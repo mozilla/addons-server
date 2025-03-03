@@ -1703,7 +1703,8 @@ class TestAddonModels(TestCase):
         promoted.approve_for_version(addon.current_version)
         del addon.promoted
         assert any(
-            promotion.group_id == promoted.group_id for promotion in addon.promoted
+            promotion['group'].group_id == promoted.group_id
+            for promotion in addon.promoted
         )
 
         # If the group changes the approval for the current version isn't
@@ -1716,7 +1717,8 @@ class TestAddonModels(TestCase):
         promoted.approve_for_version(addon.current_version)
         del addon.promoted
         assert any(
-            promotion.group_id == promoted.group_id for promotion in addon.promoted
+            promotion['group'].group_id == promoted.group_id
+            for promotion in addon.promoted
         )
 
     def test_promoted_theme(self):
@@ -1734,7 +1736,7 @@ class TestAddonModels(TestCase):
         del addon.promoted
         # it's in the collection, so is now promoted.
         assert addon.promoted
-        assert recommended in addon.promoted
+        assert any(recommended == promotion['group'] for promotion in addon.promoted)
 
         featured_collection.remove_addon(addon)
         del addon.promoted

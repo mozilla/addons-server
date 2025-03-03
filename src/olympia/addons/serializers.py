@@ -965,7 +965,7 @@ class PromotedAddonPromotionSerializer(AMOModelSerializer):
     apps = serializers.SerializerMethodField()
     category = ReverseChoiceField(
         choices=PROMOTED_GROUP_CHOICES.api_choices,
-        source='promoted_group.group_id',
+        source='group.group_id',
     )
 
     class Meta:
@@ -976,14 +976,7 @@ class PromotedAddonPromotionSerializer(AMOModelSerializer):
         )
 
     def get_apps(self, obj):
-        try:
-            return [
-                app.short
-                for promotion in obj
-                for app in promotion.approved_applications
-            ]
-        except TypeError:
-            return [app.short for app in obj.approved_applications]
+        return [app.short for app in obj['approved_apps']]
 
 
 class AddonSerializer(AMOModelSerializer):
@@ -1029,9 +1022,7 @@ class AddonSerializer(AMOModelSerializer):
         ],
     )
     previews = PreviewSerializer(many=True, source='current_previews', read_only=True)
-    promoted = PromotedAddonPromotionSerializer(
-        source='promotedaddonpromotion', many=True, read_only=True
-    )
+    promoted = PromotedAddonPromotionSerializer(many=True, read_only=True)
     ratings = serializers.SerializerMethodField()
     ratings_url = serializers.SerializerMethodField()
     review_url = serializers.SerializerMethodField()
@@ -1161,7 +1152,7 @@ class AddonSerializer(AMOModelSerializer):
         def is_recommended(obj):
             try:
                 return any(
-                    PROMOTED_GROUP_CHOICES.RECOMMENDED == promotion.group_id
+                    PROMOTED_GROUP_CHOICES.RECOMMENDED == promotion['group'].group_id
                     for promotion in obj.promoted
                 )
             except TypeError:

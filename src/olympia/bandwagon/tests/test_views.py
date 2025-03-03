@@ -254,7 +254,7 @@ class TestCollectionViewSetDetail(TestCase):
         self.collection.add_addon(addon_factory())
         self.collection.add_addon(addon_factory())
         # see TestCollectionAddonViewSetList.test_basic for the query breakdown
-        with self.assertNumQueries(37):
+        with self.assertNumQueries(33):
             response = self.client.get(self.url + '?with_addons')
         assert len(response.data['addons']) == 4
         patched_drf_setting = dict(settings.REST_FRAMEWORK)
@@ -1070,7 +1070,7 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         )
         self.client.login_api(self.user)
         # Passing authentication makes an extra query. We should not be caching.
-        self._test_response(expected_num_queries=32)
+        self._test_response(expected_num_queries=29)
 
     def test_no_caching_authenticated_by_username(self):
         self.user.update(username='notmozilla')
@@ -1083,7 +1083,7 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         )
         self.client.login_api(self.user)
         # Passing authentication makes an extra query. We should not be caching.
-        self._test_response(expected_num_queries=32)
+        self._test_response(expected_num_queries=29)
 
     def test_no_caching_anonymous_not_mozilla_collection(self):
         # We get the Cache-Control set from middleware (not the view).
@@ -1120,7 +1120,7 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         )
         self._test_response(expected_max_age=7200)
 
-    def _test_response(self, expected_num_queries=31, expected_max_age=None):
+    def _test_response(self, expected_num_queries=28, expected_max_age=None):
         with self.assertNumQueries(expected_num_queries):
             response = self.client.get(self.url)
         assert response['Content-Type'] == 'application/json'
@@ -1132,8 +1132,8 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
 
         # Tere is no caching so we should get an updated response with only 2 add-ons.
         self.collection.addons.remove(self.addon_a)
-        # TODO: promoted
-        with self.assertNumQueries(expected_num_queries - 2):
+        # TODO: promotedaddon
+        with self.assertNumQueries(expected_num_queries - 1):
             response = self.client.get(self.url)
         assert response['Content-Type'] == 'application/json'
         assert response.status_code == 200
@@ -1141,7 +1141,7 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         assert get_max_age(response) == expected_max_age
 
     def test_basic(self):
-        with self.assertNumQueries(31):
+        with self.assertNumQueries(28):
             #  1. start savepoint
             #  2. get user
             #  3. get collections of user

@@ -127,6 +127,7 @@ class TestSyncPromoted(TestCase):
             1,
             addon=self.addon,
             promoted_group=self.promoted_group(PROMOTED_GROUP_CHOICES.SPOTLIGHT),
+            application_id=amo.FIREFOX.id,
         )
         # Expect 2 approvals and 2 promoted addon versions, 1 for each application
         self.assert_count(PromotedAddonVersion, 2, version=self.addon.current_version)
@@ -238,19 +239,23 @@ class TestSyncPromoted(TestCase):
 
         self.sync_promoted_addons()
 
+        # The promotion has been deleted because the application has changed
+        with self.assertRaises(PromotedAddonPromotion.DoesNotExist):
+            promoted_addon_promotion.reload()
+
         # The approval and version have not been deleted or updated because the
         # new application would require approval, but the old application is still
         # approved. This could be a bug but the goal is for the models to sync correctly
         # even if the underlying logic does not make sense.
         self.assertEqual(promoted_approval.reload().group_id, spotlight.group_id)
+        self.assertEqual(promoted_addon_version.reload().promoted_group, spotlight)
 
         promoted_addon_promotion = PromotedAddonPromotion.objects.get(
             addon=self.addon,
             promoted_group=self.promoted_group(PROMOTED_GROUP_CHOICES.SPOTLIGHT),
             application_id=amo.ANDROID.id,
         )
-        # There are approvals for the new application,
-        # as SPOTLIGHT does not have prereview
+        # There are no approvals for the new application yet
         self.assert_count(
             PromotedApproval,
             0,
@@ -259,7 +264,7 @@ class TestSyncPromoted(TestCase):
         )
         self.assert_count(
             PromotedAddonVersion,
-            1,
+            0,
             version=self.addon.current_version,
             application_id=amo.ANDROID.id,
         )
@@ -295,11 +300,20 @@ class TestSyncPromoted(TestCase):
             application_id=amo.FIREFOX.id,
         )
 
+        promoted_addon_promotion = PromotedAddonPromotion.objects.get(
+            addon=self.addon,
+            promoted_group=self.promoted_group(PROMOTED_GROUP_CHOICES.SPOTLIGHT),
+            application_id=amo.FIREFOX.id,
+        )
+
         promoted_addon.delete()
+
+        with self.assertRaises(PromotedAddonPromotion.DoesNotExist):
+            promoted_addon_promotion.reload()
 
         self.assert_count(
             PromotedAddonPromotion,
-            2,
+            1,
             promoted_group=self.promoted_group(PROMOTED_GROUP_CHOICES.SPOTLIGHT),
             application_id=amo.FIREFOX.id,
         )

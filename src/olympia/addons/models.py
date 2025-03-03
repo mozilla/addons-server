@@ -1592,9 +1592,7 @@ class Addon(OnChangeMixin, ModelBase):
         from olympia.addons.serializers import APP_IDS
         from olympia.constants.applications import APP_USAGE
 
-        apps = self.promotedaddonpromotion.exclude(application_id=None).values_list(
-            'application_id', flat=True
-        )
+        apps = self.promotedaddonpromotion.values_list('application_id', flat=True)
 
         return (
             [APP_IDS.get(app_id) for app_id in apps]
@@ -1612,26 +1610,39 @@ class Addon(OnChangeMixin, ModelBase):
         """The applications that the given promoted group is approved for,
         for the current version."""
 
-        if self._is_recommended_theme() and self.promoted:
+        if self._is_recommended_theme():
             return self.all_applications if self.current_version else []
 
-        return self.promoted_version(
-            promoted_group=promoted_group
-        ).approved_applications
+        return [
+            version
+            for version in self.promoted_version(
+                promoted_group=promoted_group
+            ).approved_applications
+            if version in self.all_applications
+        ]
 
     @cached_property
     def promoted(self):
-        promoted_group = self.promoted_group()
+        promoted_group = self.promoted_group().all()
         if promoted_group:
-            return list(self.promoted_group().all())
+            return [
+                {
+                    'group': group,
+                    'approved_apps': self._approved_applications(group),
+                }
+                for group in promoted_group
+            ]
         else:
             if self._is_recommended_theme():
                 from olympia.promoted.models import PromotedGroup
 
                 return [
-                    PromotedGroup.objects.get(
-                        group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
-                    )
+                    {
+                        'group': PromotedGroup.objects.get(
+                            group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+                        ),
+                        'approved_apps': self.approved_applications,
+                    }
                 ]
         return []
 
@@ -1662,7 +1673,7 @@ class Addon(OnChangeMixin, ModelBase):
         return (
             promotions
             and all(
-                promotion.can_be_compatible_with_all_fenix_versions
+                promotion['group'].can_be_compatible_with_all_fenix_versions
                 for promotion in promotions
             )
             and amo.ANDROID in approved_applications

@@ -44,7 +44,8 @@ class PromotedGroupManager(ManagerBase):
         # associated promoted_version version that is:
         # 1. The addon's current version
         # 2. The same promoted group
-        return (
+        # 3.The group has approved_applications for the current version
+        groups = (
             self.all_for(addon=addon)
             .filter(
                 promoted_versions__version=addon.current_version,
@@ -52,6 +53,12 @@ class PromotedGroupManager(ManagerBase):
             )
             .distinct()
         )
+        valid_groups = [
+            group.id
+            for group in groups
+            if addon._approved_applications(promoted_group=group)
+        ]
+        return groups.filter(id__in=valid_groups)
 
 
 class PromotedGroup(models.Model):

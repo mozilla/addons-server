@@ -22,25 +22,51 @@ def promoted_addon_to_promoted_addon_promotion(
     # Create the missing instances on the PromotedAddonPromotion model.
     # If its update to NOT_PROMOTED, then delete the existing instead.
     if promoted_group.group_id != PROMOTED_GROUP_CHOICES.NOT_PROMOTED:
-        PromotedAddonPromotion.objects.update_or_create(
-            addon=instance.addon,
-            application_id=instance.application_id,
-            defaults={
-                'promoted_group': promoted_group,
-            },
-        )
-
         current_version = instance.addon.current_version
         channel = current_version.channel if current_version else None
         prereview = (
             channel == amo.CHANNEL_LISTED and promoted_group.listed_pre_review
         ) or (channel == amo.CHANNEL_UNLISTED and promoted_group.unlisted_pre_review)
 
-        existing_approval = PromotedApproval.objects.filter(
-            version=current_version, group_id=promoted_group.group_id
+        # Get the current set of app ids related to both models for the addon/group
+        # If we are deleting,  then the set should be empty
+        promoted_addon_app_ids = set(
+            [app.id for app in instance.all_applications]
+            if signal == models.signals.post_save
+            else []
         )
 
-        # 1. If the group is not prereviewed, approve for all apps.
+        # Get the current set of app ids related to both models for the addon/group
+        promoted_addon_promotion_app_ids = set(
+            PromotedAddonPromotion.objects.filter(
+                addon=instance.addon,
+                promoted_group=promoted_group,
+            ).values_list('application_id', flat=True)
+        )
+
+        # Diff the app ids to determine which ones to add and which ones to remove
+        promotions_to_add = promoted_addon_app_ids - promoted_addon_promotion_app_ids
+        promotions_to_remove = promoted_addon_promotion_app_ids - promoted_addon_app_ids
+
+        # Create the missing instances on the PromotedAddonPromotion model.
+        for app_id in promotions_to_add:
+            PromotedAddonPromotion.objects.update_or_create(
+                addon=instance.addon,
+                application_id=app_id,
+                defaults={
+                    'promoted_group': promoted_group,
+                },
+            )
+
+        # Delete extra instances on the PromotedAddonPromotion model
+        # that are no longer on the PromotedAddon instance
+        for app_id in promotions_to_remove:
+            PromotedAddonPromotion.objects.filter(
+                addon=instance.addon,
+                application_id=app_id,
+            ).delete()
+
+        # If the group is not prereviewed, approve for all apps.
         if channel and not prereview:
             for app in APP_USAGE:
                 PromotedAddonVersion.objects.update_or_create(
@@ -48,24 +74,6 @@ def promoted_addon_to_promoted_addon_promotion(
                     promoted_group=promoted_group,
                     application_id=app.id,
                 )
-        # 2. If the addon has previously been approved
-        # (i.e has existing approvals) for the current group
-        # and promotedaddon's application_id is not None:
-        # a) delete the PromotedAddonVersions that are not the
-        # current application_id, and
-        # b) make sure the current application_id exists.
-        # Otherwise, it should be available for all applications.
-        # This should mirror the behaviour of PromotedAddon's
-        # all_applications() when used by approved_applications.
-        elif existing_approval.exists() and instance.application_id:
-            PromotedAddonVersion.objects.filter(version=current_version).exclude(
-                application_id=instance.application_id
-            ).delete()
-            PromotedAddonVersion.objects.update_or_create(
-                version=current_version,
-                promoted_group=promoted_group,
-                application_id=instance.application_id,
-            )
     elif instance.pk:
         PromotedAddonPromotion.objects.filter(addon=instance.addon).delete()
 

@@ -554,7 +554,7 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         self.url = reverse_ns('addon-detail', api_version='v5', kwargs={'pk': param})
 
     def test_queries(self):
-        with self.assertNumQueries(16):
+        with self.assertNumQueries(15):
             # 16 queries:
             # - 2 savepoints because of tests
             # - 1 for the add-on
@@ -569,11 +569,10 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
             # - 1 for translations of the license
             # - 1 for webext permissions
             # - 1 for tags
-            # - 1 for approved promoted groups
-            # - 1 for all promoted groups
+            # - 1 for promoted groups
             self._test_url(lang='en-US')
 
-        with self.assertNumQueries(17):
+        with self.assertNumQueries(16):
             # One additional query for region exclusions test
             self._test_url(lang='en-US', extra={'HTTP_X_COUNTRY_CODE': 'fr'})
 

@@ -572,35 +572,26 @@ class AddonSerializerOutputTestMixin:
         assert promoted['apps'] == [app.short for app in amo.APP_USAGE]
 
     def test_promoted_shim(self):
-        groups = PromotedGroup.objects.filter(
-            group_id__in=[
-                PROMOTED_GROUP_CHOICES.RECOMMENDED,
-                PROMOTED_GROUP_CHOICES.LINE,
-            ]
-        )
+        group = PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED)
         self.addon = addon_factory()
 
-        # TODO: promotedaddon; approve_for_version refactor (Write PR)
-        for group in groups:
-            PromotedAddonPromotion.objects.create(
-                addon=self.addon, promoted_group=group
-            )
-            PromotedAddonVersion.objects.create(
-                version=self.addon.current_version,
-                application_id=amo.FIREFOX.id,
-                promoted_group=group,
-            )
+        PromotedAddonPromotion.objects.create(
+            addon=self.addon,
+            application_id=amo.FIREFOX.id,
+            promoted_group=group,
+        )
+        PromotedAddonVersion.objects.create(
+            version=self.addon.current_version,
+            application_id=amo.FIREFOX.id,
+            promoted_group=group,
+        )
 
         assert self.addon.promoted_group()
 
-        result = self.serialize()
-        assert len(result['promoted']) == 2
-
-        # v3 and v4 expect only one promoted addon.
+        # v3 and v4 expect the promoted addon directly.
         gates = {self.request.version: ('promoted-groups-shim',)}
         with override_settings(DRF_API_GATES=gates):
             result = self.serialize()
-            # only the first promotion (RECOMMENDED) is returned.
             promoted = result['promoted']
             assert promoted['category'] == PROMOTED_GROUP_CHOICES.RECOMMENDED.api_value
             assert promoted['apps'] == [amo.FIREFOX.short]

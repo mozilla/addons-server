@@ -1371,7 +1371,7 @@ class TestVersion(AMOPaths, TestCase):
             addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
         )
         addon.reload()
-        with self.assertNumQueries(4):
+        with self.assertNumQueries(9):
             # 1. query for the addon's promoted groups
             # 2. check if the addon is badged
             # 3. check if the addon is listed_pre_review
