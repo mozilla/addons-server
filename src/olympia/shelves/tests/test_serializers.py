@@ -165,7 +165,7 @@ class TestShelvesSerializer(ESTestCase):
         elif instance.endpoint == 'random-tag':
             return (
                 f'{reverse_ns("addon-search")}{criteria}'
-                f'{"&" if len(criteria)>1 else ""}tag={tag}'
+                f'{"&" if len(criteria) > 1 else ""}tag={tag}'
             )
         else:
             return None

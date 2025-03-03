@@ -81,9 +81,9 @@ class TranslationSequenceTestCase(TestCase):
         newtrans1.save()
         newtrans2 = Translation.new('def', 'de')
         newtrans2.save()
-        assert (
-            newtrans2.pk > newtrans1.pk
-        ), 'Translation sequence needs to keep increasing.'
+        assert newtrans2.pk > newtrans1.pk, (
+            'Translation sequence needs to keep increasing.'
+        )
 
 
 class TranslationTestCase(TestCase):
@@ -731,8 +731,7 @@ class TestPurifiedMarkdownTranslation(TestCase):
         s = '__bold text__ or _italics_<b>not bold</b>'
         x = PurifiedMarkdownTranslation(localized_string=s)
         assert x.__html__() == (
-            '<strong>bold text</strong> or <em>italics</em>'
-            '&lt;b&gt;not bold&lt;/b&gt;'
+            '<strong>bold text</strong> or <em>italics</em>&lt;b&gt;not bold&lt;/b&gt;'
         )
 
     def test_html(self):

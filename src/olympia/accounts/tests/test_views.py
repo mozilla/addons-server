@@ -2367,9 +2367,7 @@ class TestFxaNotificationView(TestCase):
 
     def test_post(self):
         url = reverse_ns('fxa-notification', api_version='auth')
-        class_path = (
-            f'{FxaNotificationView.__module__}.' f'{FxaNotificationView.__name__}'
-        )
+        class_path = f'{FxaNotificationView.__module__}.{FxaNotificationView.__name__}'
         with (
             mock.patch(f'{class_path}.get_jwt_payload') as get_jwt_mock,
             mock.patch(f'{class_path}.process_event') as process_event_mock,

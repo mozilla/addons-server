@@ -227,7 +227,7 @@ class TestActivity(HubTest):
         assert response.status_code == 302
 
     def test_xss_addon(self):
-        self.addon.name = "<script>alert('Buy more Diet Mountain Dew.')" '</script>'
+        self.addon.name = "<script>alert('Buy more Diet Mountain Dew.')</script>"
         self.addon.save()
         self.log_creates(1)
         doc = self.get_pq()
@@ -236,7 +236,7 @@ class TestActivity(HubTest):
         assert '&lt;script&gt;' in str(doc), 'XSS FTL'
 
     def test_xss_unlisted_addon(self):
-        self.addon.name = "<script>alert('Buy more Diet Mountain Dew.')" '</script>'
+        self.addon.name = "<script>alert('Buy more Diet Mountain Dew.')</script>"
         self.addon.save()
         self.make_addon_unlisted(self.addon)
         self.log_creates(1)

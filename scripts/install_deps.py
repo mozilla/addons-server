@@ -80,12 +80,12 @@ def main(targets):
 
     if pip_includes:
         # Install pip dependencies
-        print(f"Installing pip dependencies: {', '.join(pip_includes)} \n")
+        print(f'Installing pip dependencies: {", ".join(pip_includes)} \n')
         subprocess.run(pip_args, check=True)
 
     if npm_includes:
         # Install npm dependencies
-        print(f"Installing npm dependencies: {', '.join(npm_includes)} \n")
+        print(f'Installing npm dependencies: {", ".join(npm_includes)} \n')
         subprocess.run(npm_args, check=True)
 
 

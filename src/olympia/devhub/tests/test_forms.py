@@ -564,9 +564,10 @@ class TestPreviewForm(TestCase):
         form.save(addon)
         preview = addon.previews.all()[0]
         assert os.path.exists(preview.thumbnail_path)
-        with storage.open(preview.thumbnail_path, 'rb') as thumb_file, open(
-            get_image_path(name + '.jpg'), 'rb'
-        ) as sample_file:
+        with (
+            storage.open(preview.thumbnail_path, 'rb') as thumb_file,
+            open(get_image_path(name + '.jpg'), 'rb') as sample_file,
+        ):
             assert thumb_file.read() == sample_file.read()
 
     @mock.patch('olympia.amo.utils.pngcrush_image')

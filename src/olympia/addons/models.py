@@ -2210,8 +2210,7 @@ class AddonUserPendingConfirmation(OnChangeMixin, SaveUpdateMixin, models.Model)
         constraints = [
             models.UniqueConstraint(
                 fields=('addon', 'user'),
-                name='addons_users_pending_confirmation_'
-                'addon_id_user_id_38e3bb32_uniq',
+                name='addons_users_pending_confirmation_addon_id_user_id_38e3bb32_uniq',
             ),
         ]
 

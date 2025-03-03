@@ -847,9 +847,9 @@ class SafeStorage(FileSystemStorage):
         if 'root_setting' in kwargs:
             self.root_setting = kwargs.pop('root_setting')
         self.rel_location = rel_location
-        assert not (
-            rel_location is not None and kwargs.get('location') is not None
-        ), "Don't provide both location and rel_location"
+        assert not (rel_location is not None and kwargs.get('location') is not None), (
+            "Don't provide both location and rel_location"
+        )
         super().__init__(*args, **kwargs)
 
     def _clear_cached_properties(self, setting, **kwargs):

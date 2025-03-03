@@ -497,8 +497,8 @@ class TestRobots(TestCase):
     @override_settings(ENGAGE_ROBOTS=True)
     def test_allow_mozilla_collections(self):
         """Make sure Mozilla collections are allowed"""
-        id_url = f"{reverse('collections.list')}{settings.TASK_USER_ID}/"
-        username_url = f"{reverse('collections.list')}mozilla/"
+        id_url = f'{reverse("collections.list")}{settings.TASK_USER_ID}/'
+        username_url = f'{reverse("collections.list")}mozilla/'
         response = self.client.get('/robots.txt')
         assert response.status_code == 200
         content = response.content.decode('utf-8')

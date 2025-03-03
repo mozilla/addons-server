@@ -35,13 +35,13 @@ class TestRankingScenarios(ESTestCase):
         if expected_lang is None:
             expected_lang = params['lang']
 
-        assert len(results) == len(
-            expected
-        ), 'Expected {} results but {} found for query "{}": {}'.format(
-            len(expected),
-            len(results),
-            query,
-            [x['name'][expected_lang] for x in results],
+        assert len(results) == len(expected), (
+            'Expected {} results but {} found for query "{}": {}'.format(
+                len(expected),
+                len(results),
+                query,
+                [x['name'][expected_lang] for x in results],
+            )
         )
         assert data['count'] == len(results)
 
@@ -189,8 +189,7 @@ class TestRankingScenarios(ESTestCase):
             name='Privacy Badger',
             slug='privacy-badger17',
             summary=(
-                'Protects your privacy by blocking spying ads and invisible '
-                'trackers.'
+                'Protects your privacy by blocking spying ads and invisible trackers.'
             ),
             weekly_downloads=22931,
         )
@@ -211,8 +210,7 @@ class TestRankingScenarios(ESTestCase):
             name='Privacy Settings',
             slug='privacy-settings',
             summary=(
-                "Alter Firefox's built-in privacy settings easily with a "
-                'toolbar panel.'
+                "Alter Firefox's built-in privacy settings easily with a toolbar panel."
             ),
             weekly_downloads=1492,
         )
@@ -241,8 +239,7 @@ class TestRankingScenarios(ESTestCase):
             name='Ghostery',
             slug='ghostery',
             summary=(
-                'See who’s tracking you online and protect your privacy with '
-                'Ghostery.'
+                'See who’s tracking you online and protect your privacy with Ghostery.'
             ),
             weekly_downloads=49315,
         )
