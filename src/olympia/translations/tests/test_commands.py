@@ -3,12 +3,69 @@ from unittest import mock
 from django.conf import settings
 from django.core.management import call_command
 
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import TestCase, addon_factory
 from olympia.translations.models import (
     LinkifiedTranslation,
     PurifiedTranslation,
     Translation,
 )
+
+
+class TestRebleachSummaries(TestCase):
+    def setUp(self):
+        self.translation_with_url = Translation.objects.get(
+            id=addon_factory().summary_id
+        )
+        self.translation_with_url.update(
+            localized_string='foo http://bar.com',
+            localized_string_clean='foo <a href="http://bar.com">http://bar.com</a>',
+        )
+        self.translation_with_html = Translation.objects.get(
+            id=addon_factory().summary_id
+        )
+        self.translation_with_html.update(
+            localized_string='foo <a href="http://bar.com">http://bar.com</a>',
+            localized_string_clean=(
+                'foo &lt;a href=&quot;http://bar.com&quot;&gt;http://bar.com&lt;/a&gt;'
+            ),
+        )
+
+        # We shouldn't touch that one (in particular, we shouldn't double-escape it).
+        self.translation_with_already_escaped_html = Translation.objects.get(
+            id=addon_factory().summary_id
+        )
+        self.translation_with_already_escaped_html.update(
+            localized_string=(
+                'foo &lt;a href=&quot;http://bar.com&quot;&gt;http://bar.com&lt;/a&gt;'
+            ),
+            localized_string_clean=(
+                'foo &lt;a href=&quot;http://bar.com&quot;&gt;http://bar.com&lt;/a&gt;'
+            ),
+        )
+
+    def test_basic(self):
+        call_command('process_translations', task='strip_html_from_summaries')
+
+        self.translation_with_url.reload()
+        assert (
+            self.translation_with_url.localized_string
+            == self.translation_with_url.localized_string_clean
+            == 'foo http://bar.com'
+        )
+
+        self.translation_with_html.reload()
+        assert (
+            self.translation_with_html.localized_string
+            == self.translation_with_html.localized_string_clean
+            == 'foo http://bar.com'
+        )
+
+        self.translation_with_already_escaped_html.reload()
+        assert (
+            self.translation_with_already_escaped_html.localized_string
+            == self.translation_with_already_escaped_html.localized_string_clean
+            == 'foo &lt;a href=&quot;http://bar.com&quot;&gt;http://bar.com&lt;/a&gt;'
+        )
 
 
 class TestTranslationCommands(TestCase):
