@@ -1502,8 +1502,8 @@ SHELL_PLUS_POST_IMPORTS = (('olympia', 'amo'),)
 
 FXA_CONFIG = {
     'default': {
-        'client_id': env('FXA_CLIENT_ID', default='.'),
-        'client_secret': env('FXA_CLIENT_SECRET', default='.'),
+        'client_id': env('FXA_CLIENT_ID', default=''),
+        'client_secret': env('FXA_CLIENT_SECRET', default=''),
         # fxa redirects to https://%s/api/auth/authenticate-callback/ % DOMAIN
     },
 }
@@ -1638,6 +1638,6 @@ DJANGO_VITE = {
 
 # The environment in which the application is running.
 # This is set by the environment variables in production environments.
-# For local it is hard coded to "local" in `settings.py` to guarantee a clear
+# For local it is hard coded to "local" in `docker-compose.yml` to guarantee a clear
 # distinction between local and non-local environments.
 ENV = env('ENV')

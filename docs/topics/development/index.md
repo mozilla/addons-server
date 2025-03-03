@@ -28,4 +28,5 @@ docs
 waffle
 remote_settings
 ../../../README.rst
+authentication
 ```

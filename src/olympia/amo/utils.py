@@ -1163,8 +1163,8 @@ def extract_colors_from_image(path):
 
 def use_fake_fxa(config):
     """Return whether or not to use a fake FxA server for authentication.
-    Should always return False in local environments"""
-    return settings.ENV in ('local', 'test') and config.get('client_id') == '.'
+    Should always return False in non-local environments"""
+    return settings.ENV in ('local', 'test') and config.get('client_id') == ''
 
 
 class AMOJSONEncoder(JSONEncoder):
