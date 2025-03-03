@@ -80,6 +80,15 @@ def get_docker_image_meta():
     return tag, target, version, digest
 
 
+def get_olympia_site_url():
+    # In codespaces, we set the site URL to the codespace name port 80
+    # this will map to the nginx service in the devcontainer.
+    if os.environ.get('CODESPACE_NAME'):
+        return f'https://{os.environ.get("CODESPACE_NAME")}-80.githubpreview.dev'
+    # On local hosts, we set the site URL to olympia.test
+    return 'http://olympia.test'
+
+
 # Env file should contain values that are referenced in docker-compose*.yml files
 # so running docker compose commands produce consistent results in terminal and make.
 # These values should not be referenced directly in the make file.
@@ -104,6 +113,7 @@ def main():
     # use a value derived from other stable values.
     debug = os.environ.get('DEBUG', str(docker_target != 'production'))
     olympia_deps = os.environ.get('OLYMPIA_DEPS', docker_target)
+    olympia_site_url = get_olympia_site_url()
 
     set_env_file(
         {
@@ -117,6 +127,7 @@ def main():
             'HOST_UID': olympia_uid,
             'DEBUG': debug,
             'OLYMPIA_DEPS': olympia_deps,
+            'OLYMPIA_SITE_URL': olympia_site_url,
         }
     )
 
