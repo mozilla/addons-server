@@ -456,10 +456,17 @@ class TestVersionManager(TestCase):
             version=multiple, reason=NeedsHumanReview.REASONS.CINDER_ESCALATION
         )
 
-        # Version with escalated appeal
-        escalated = addon_factory(**addon_kws).current_version
+        # Version with escalated abuse report
+        escalated_abuse = addon_factory(**addon_kws).current_version
         NeedsHumanReview.objects.create(
-            version=escalated, reason=NeedsHumanReview.REASONS.CINDER_APPEAL_ESCALATION
+            version=escalated_abuse, reason=NeedsHumanReview.REASONS.CINDER_ESCALATION
+        )
+
+        # Version with escalated appeal
+        escalated_appeal = addon_factory(**addon_kws).current_version
+        NeedsHumanReview.objects.create(
+            version=escalated_appeal,
+            reason=NeedsHumanReview.REASONS.CINDER_APPEAL_ESCALATION,
         )
 
         qs = Version.objects.should_have_due_date().order_by('id')
@@ -472,7 +479,8 @@ class TestVersionManager(TestCase):
             abuse_nhr,
             appeal_nhr,
             multiple,
-            escalated,
+            escalated_abuse,
+            escalated_appeal,
         ]
 
     def test_get_due_date_reason_q_objects(self):
@@ -489,15 +497,24 @@ class TestVersionManager(TestCase):
             abuse_nhr,
             appeal_nhr,
             multiple,
-            escalated,
+            escalated_abuse,
+            escalated_appeal,
         ) = list(qs)
 
         q_objects = Version.objects.get_due_date_reason_q_objects()
         method = Version.objects.filter
 
-        assert list(method(q_objects['needs_human_review_from_cinder'])) == [
-            escalated,
+        assert list(
+            method(q_objects['needs_human_review_from_cinder_forwarded_abuse'])
+        ) == [
+            escalated_abuse,
             multiple,
+        ]
+
+        assert list(
+            method(q_objects['needs_human_review_from_cinder_forwarded_appeal'])
+        ) == [
+            escalated_appeal,
         ]
 
         assert list(method(q_objects['needs_human_review_from_abuse'])) == [abuse_nhr]

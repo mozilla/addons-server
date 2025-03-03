@@ -221,12 +221,21 @@ class VersionManager(ManagerBase):
         return {
             # Abuse-related reasons & developer replies always trigger a due
             # date even if the version has been disabled / not signed.
-            'needs_human_review_from_cinder': Q(
+            # Everything else shares the is_other_needs_human_review condition.
+            'needs_human_review_promoted': Q(
+                is_other_needs_human_review,
+                needshumanreview__reason__in=(
+                    NeedsHumanReview.REASONS.BELONGS_TO_PROMOTED_GROUP.value,
+                    NeedsHumanReview.REASONS.ADDED_TO_PROMOTED_GROUP.value,
+                ),
+            ),
+            'needs_human_review_auto_approval_disabled': Q(
+                is_other_needs_human_review,
+                needshumanreview__reason=NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED,
+            ),
+            'has_developer_reply': Q(
                 needshumanreview__is_active=True,
-                needshumanreview__reason__in={
-                    NeedsHumanReview.REASONS.CINDER_ESCALATION,
-                    NeedsHumanReview.REASONS.CINDER_APPEAL_ESCALATION,
-                },
+                needshumanreview__reason=NeedsHumanReview.REASONS.DEVELOPER_REPLY,
             ),
             'needs_human_review_from_abuse': Q(
                 needshumanreview__is_active=True,
@@ -236,23 +245,17 @@ class VersionManager(ManagerBase):
                 needshumanreview__is_active=True,
                 needshumanreview__reason=NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL,
             ),
-            'has_developer_reply': Q(
-                needshumanreview__is_active=True,
-                needshumanreview__reason=NeedsHumanReview.REASONS.DEVELOPER_REPLY,
-            ),
             # Themes are special as noted above.
             'is_from_theme_awaiting_review': is_from_theme_awaiting_review,
-            # Everything else shares the is_other_needs_human_review condition.
-            'needs_human_review_auto_approval_disabled': Q(
-                is_other_needs_human_review,
-                needshumanreview__reason=NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED,
+            'needs_human_review_from_cinder_forwarded_abuse': Q(
+                needshumanreview__is_active=True,
+                needshumanreview__reason__in={
+                    NeedsHumanReview.REASONS.CINDER_ESCALATION,
+                },
             ),
-            'needs_human_review_promoted': Q(
-                is_other_needs_human_review,
-                needshumanreview__reason__in=(
-                    NeedsHumanReview.REASONS.BELONGS_TO_PROMOTED_GROUP.value,
-                    NeedsHumanReview.REASONS.ADDED_TO_PROMOTED_GROUP.value,
-                ),
+            'needs_human_review_from_cinder_forwarded_appeal': Q(
+                needshumanreview__is_active=True,
+                needshumanreview__reason=NeedsHumanReview.REASONS.CINDER_APPEAL_ESCALATION,
             ),
             'needs_human_review_other': Q(
                 is_other_needs_human_review,
