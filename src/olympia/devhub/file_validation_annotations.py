@@ -2,9 +2,6 @@ from django.utils.translation import gettext
 
 import waffle
 
-from olympia import amo
-from olympia.amo.urlresolvers import linkify_and_clean
-from olympia.versions.compare import version_dict
 from olympia.versions.models import DeniedInstallOrigin
 
 
@@ -77,7 +74,7 @@ def annotate_search_plugin_restriction(results, file_path, channel):
     )
 
 
-def annotate_validation_results(*, results, parsed_data, channel):
+def annotate_validation_results(*, results, parsed_data):
     """Annotate validation results with potential add-on restrictions like
     denied origins."""
     if waffle.switch_is_active('record-install-origins'):
@@ -92,11 +89,11 @@ def annotate_validation_results(*, results, parsed_data, channel):
                         origin=origin
                     ),
                 )
-    add_manifest_version_messages(results=results, channel=channel)
+    add_manifest_version_messages(results=results)
     return results
 
 
-def add_manifest_version_messages(*, results, channel):
+def add_manifest_version_messages(*, results):
     mv = results.get('metadata', {}).get('manifestVersion')
     if mv != 3:
         return
@@ -122,30 +119,3 @@ def add_manifest_version_messages(*, results, channel):
             insert_validation_message(
                 results, message=new_error_message, msg_id='mv3_not_supported_yet'
             )
-    elif channel == amo.CHANNEL_LISTED:
-        # If submitting a listed upload and mv3 switch is on, we want to warn
-        # about using unlisted instead for now. The version constant is an
-        # alpha version to support Nightly, but let's be a little bit more user
-        # friendly in the message and remove the alpha bit.
-        mv3_min = version_dict(amo.DEFAULT_WEBEXT_MIN_VERSION_MV3_FIREFOX)
-        insert_validation_message(
-            results,
-            type_='warning',
-            message=gettext('Manifest V3 compatibility warning'),
-            description=[
-                gettext(
-                    'Firefox is adding support for manifest version 3 (MV3) extensions '
-                    'in Firefox {version}, however, older versions of Firefox are only '
-                    'compatible with manifest version 2 (MV2) extensions. We recommend '
-                    'uploading Manifest V3 extensions as self-hosted for now to not '
-                    'break compatibility for your users.'
-                ).format(version=f'{mv3_min["major"]}.{mv3_min["minor1"]}'),
-                linkify_and_clean(
-                    gettext(
-                        'For more information about the MV3 extension roll-out or '
-                        'self-hosting MV3 extensions, visit https://mzl.la/3hIwQXX'
-                    )
-                ),
-            ],
-            msg_id='_MV3_COMPATIBILITY',
-        )
