@@ -32,6 +32,8 @@ runs:
   using: 'composite'
   steps:
     - name: Run Docker Container
+      id: run
+      continue-on-error: true
       shell: bash
       run: |
         # Start the specified services
@@ -54,4 +56,10 @@ runs:
     - name: Logs
       if: ${{ inputs.logs }}
       shell: bash
-      run: docker compose logs
+      run: |
+        docker compose logs
+
+        # If the run command failed, exit with a non-zero exit code
+        if [ ${{ steps.run.outcome }} != 'success' ]; then
+          exit 1
+        fi
