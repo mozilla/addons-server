@@ -5,6 +5,8 @@ from django.db.models.functions import Replace
 import bleach
 
 import olympia.core.logger
+from olympia.addons.models import Addon
+from olympia.addons.tasks import index_addons
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.translations.models import Translation
@@ -63,3 +65,11 @@ def strip_html_from_summaries(pks, **kwargs):
         translation.localized_string = cleaner.clean(translation.localized_string)
         translation.localized_string_clean = translation.localized_string
         translation.save()
+    addon_ids = list(
+        Addon.unfiltered.filter(
+            # `<translation>.id` is different from `<translation.pk>`, so we need
+            # that list comprehension, can't use `translations` directly.
+            summary_id__in=[translation.id for translation in translations]
+        ).values_list('pk', flat=True)
+    )
+    index_addons.delay(addon_ids)

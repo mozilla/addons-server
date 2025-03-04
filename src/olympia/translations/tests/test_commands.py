@@ -3,6 +3,7 @@ from unittest import mock
 from django.conf import settings
 from django.core.management import call_command
 
+from olympia.addons.models import Addon
 from olympia.amo.tests import TestCase, addon_factory
 from olympia.translations.models import (
     LinkifiedTranslation,
@@ -30,7 +31,7 @@ class TestRebleachSummaries(TestCase):
             ),
         )
 
-        # We shouldn't touch that one (in particular, we shouldn't double-escape it).
+        # We shouldn't change that one (in particular, we shouldn't double-escape it).
         self.translation_with_already_escaped_html = Translation.objects.get(
             id=addon_factory().summary_id
         )
@@ -42,8 +43,18 @@ class TestRebleachSummaries(TestCase):
                 'foo &lt;a href=&quot;http://bar.com&quot;&gt;http://bar.com&lt;/a&gt;'
             ),
         )
+        addon_factory()  # extra add-on that shouldn't be touched.
 
-    def test_basic(self):
+    @mock.patch('olympia.addons.tasks.index_addons.delay')
+    def test_basic(self, index_addons_mock):
+        expected_addon_ids = Addon.unfiltered.filter(
+            summary_id__in=[
+                self.translation_with_url.id,
+                self.translation_with_html.id,
+                self.translation_with_already_escaped_html.id,
+            ]
+        ).values_list('pk', flat=True)
+
         call_command('process_translations', task='strip_html_from_summaries')
 
         self.translation_with_url.reload()
@@ -60,12 +71,16 @@ class TestRebleachSummaries(TestCase):
             == 'foo http://bar.com'
         )
 
+        # That one should not have changed.
         self.translation_with_already_escaped_html.reload()
         assert (
             self.translation_with_already_escaped_html.localized_string
             == self.translation_with_already_escaped_html.localized_string_clean
             == 'foo &lt;a href=&quot;http://bar.com&quot;&gt;http://bar.com&lt;/a&gt;'
         )
+
+        assert index_addons_mock.call_count == 1
+        assert set(index_addons_mock.call_args[0][0]) == set(expected_addon_ids)
 
 
 class TestTranslationCommands(TestCase):
