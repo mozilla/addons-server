@@ -68,7 +68,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
                 promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
             )
             AddonUser.objects.create(user=user_factory(), addon=addon)
-
+            # TODO: promotedaddon; primaryhero refactor (Write PR)
             PrimaryHero.objects.create(promoted_addon=addon.promotedaddon, enabled=True)
             SecondaryHero.objects.create(
                 enabled=True,

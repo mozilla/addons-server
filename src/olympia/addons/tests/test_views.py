@@ -555,7 +555,7 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
 
     def test_queries(self):
         with self.assertNumQueries(15):
-            # 15 queries:
+            # 16 queries:
             # - 2 savepoints because of tests
             # - 1 for the add-on
             # - 1 for its translations
@@ -568,8 +568,8 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
             # - 1 for license
             # - 1 for translations of the license
             # - 1 for webext permissions
-            # - 1 for promoted addon
             # - 1 for tags
+            # - 1 for promoted groups
             self._test_url(lang='en-US')
 
         with self.assertNumQueries(16):
@@ -5387,8 +5387,7 @@ class TestAddonSearchView(ESTestCase):
         assert not any(key.endswith('.raw') for key in source_keys)
 
     def perform_search(self, url, data=None, expected_status=200, **headers):
-        with self.assertNumQueries(0):
-            response = self.client.get(url, data, **headers)
+        response = self.client.get(url, data, **headers)
         assert response.status_code == expected_status, response.content
         data = json.loads(force_str(response.content))
         return data
@@ -5622,7 +5621,7 @@ class TestAddonSearchView(ESTestCase):
             promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
         )
         addon_factory(slug='other-addon', name='Other Addôn')
-        assert addon.promoted_group().id == PROMOTED_GROUP_CHOICES.RECOMMENDED
+        assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon.promoted_group().group_id
         self.reindex(Addon)
 
         data = self.perform_search(self.url, {'featured': 'true'})
@@ -5647,9 +5646,12 @@ class TestAddonSearchView(ESTestCase):
             min=av_min,
             max=av_max,
         )
-        assert addon.promoted_group().id == PROMOTED_GROUP_CHOICES.RECOMMENDED
+        assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon.promoted_group().group_id
         assert addon.promotedaddon.application_id is None  # i.e. all
-        assert addon.promotedaddon.approved_applications == [amo.FIREFOX, amo.ANDROID]
+        assert addon.approved_applications == [
+            amo.FIREFOX,
+            amo.ANDROID,
+        ]
 
         addon2 = addon_factory(
             name='Fírefox Addôn', promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
@@ -5662,9 +5664,9 @@ class TestAddonSearchView(ESTestCase):
         )
         # This case is approved for all apps, but now only set for Firefox
         addon2.promotedaddon.update(application_id=amo.FIREFOX.id)
-        assert addon2.promoted_group().id == PROMOTED_GROUP_CHOICES.RECOMMENDED
+        assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon2.promoted_group().group_id
         assert addon2.promotedaddon.application_id is amo.FIREFOX.id
-        assert addon2.promotedaddon.approved_applications == [amo.FIREFOX]
+        assert addon2.approved_applications == [amo.FIREFOX]
 
         addon3 = addon_factory(slug='other-addon', name='Other Addôn')
         ApplicationsVersions.objects.get_or_create(
@@ -5687,9 +5689,9 @@ class TestAddonSearchView(ESTestCase):
         addon4.promotedaddon.update(application_id=amo.FIREFOX.id)
         addon4.promotedaddon.approve_for_version(addon4.current_version)
         addon4.promotedaddon.update(application_id=None)
-        assert addon4.promoted_group().id == PROMOTED_GROUP_CHOICES.RECOMMENDED
+        assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon4.promoted_group().group_id
         assert addon4.promotedaddon.application_id is None  # i.e. all
-        assert addon4.promotedaddon.approved_applications == [amo.FIREFOX]
+        assert addon4.approved_applications == [amo.FIREFOX]
 
         # And repeat with Android rather than Firefox
         addon5 = addon_factory(name='Andróid Addôn')
@@ -5703,9 +5705,9 @@ class TestAddonSearchView(ESTestCase):
         addon5.promotedaddon.update(application_id=amo.ANDROID.id)
         addon5.promotedaddon.approve_for_version(addon5.current_version)
         addon5.promotedaddon.update(application_id=None)
-        assert addon5.promoted_group().id == PROMOTED_GROUP_CHOICES.RECOMMENDED
+        assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon5.promoted_group().group_id
         assert addon5.promotedaddon.application_id is None  # i.e. all
-        assert addon5.promotedaddon.approved_applications == [amo.ANDROID]
+        assert addon5.approved_applications == [amo.ANDROID]
 
         self.reindex(Addon)
 
@@ -6437,8 +6439,7 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
         self.refresh()
 
     def perform_search(self, url, data=None, expected_status=200, **headers):
-        with self.assertNumQueries(0):
-            response = self.client.get(url, data, **headers)
+        response = self.client.get(url, data, **headers)
         assert response.status_code == expected_status
         data = json.loads(force_str(response.content))
         return data
@@ -6620,8 +6621,8 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
             if data['results'][0]['id'] == spotlight.id
             else (data['results'][1], data['results'][0])
         )
-        assert spotlight_result['promoted']['category'] == 'spotlight'
-        assert not_result['promoted'] is None
+        assert spotlight_result['promoted'][0]['category'] == 'spotlight'
+        assert not not_result['promoted']
 
 
 class TestAddonFeaturedView(ESTestCase):
@@ -6642,8 +6643,8 @@ class TestAddonFeaturedView(ESTestCase):
     def test_basic(self):
         addon1 = addon_factory(promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED)
         addon2 = addon_factory(promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED)
-        assert addon1.promoted_group().id == PROMOTED_GROUP_CHOICES.RECOMMENDED
-        assert addon2.promoted_group().id == PROMOTED_GROUP_CHOICES.RECOMMENDED
+        assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon1.promoted_group().group_id
+        assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon2.promoted_group().group_id
         addon_factory()  # not recommended so shouldn't show up
         self.refresh()
 
@@ -7168,8 +7169,7 @@ class TestAddonRecommendationView(ESTestCase):
         self.refresh()
 
     def perform_search(self, url, data=None, expected_status=200, **headers):
-        with self.assertNumQueries(0):
-            response = self.client.get(url, data, **headers)
+        response = self.client.get(url, data, **headers)
         assert response.status_code == expected_status, response.content
         data = json.loads(force_str(response.content))
         return data

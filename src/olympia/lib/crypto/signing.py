@@ -121,10 +121,17 @@ def call_signing(file_obj):
     # We are using a separate signer that adds the mozilla-recommendation.json
     # file.
     promo_group = file_obj.addon.promoted_group(currently_approved=False)
-    if use_promoted_signer(file_obj, promo_group):
+    promo_set = {
+        promotion
+        for promotion in promo_group
+        if use_promoted_signer(file_obj, promotion)
+    }
+
+    if promo_set:
         signing_states = {
-            promo_group.autograph_signing_states.get(app.short)
-            for app in file_obj.addon.promotedaddon.all_applications
+            promo.autograph_signing_states.get(app.short)
+            for app in file_obj.addon.all_applications
+            for promo in promo_set
         }
 
         signing_data['keyid'] = conf['recommendation_signer']

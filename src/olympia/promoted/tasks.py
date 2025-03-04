@@ -35,8 +35,7 @@ def add_high_adu_extensions_to_notable():
     due_date_generator = get_staggered_review_due_date_generator()
     addons_ids_and_slugs = Addon.unfiltered.filter(
         ~Q(status=amo.STATUS_DISABLED),
-        Q(promotedaddon=None)
-        | Q(promotedaddon__group_id=PROMOTED_GROUP_CHOICES.NOT_PROMOTED),
+        Q(promotedaddonpromotion__isnull=True),
         average_daily_users__gte=lower_adu_threshold,
         type=amo.ADDON_EXTENSION,
     ).values_list('id', 'slug', 'average_daily_users')
@@ -50,6 +49,7 @@ def add_high_adu_extensions_to_notable():
         due_date = next(due_date_generator)
         try:
             # We can't use update_or_create because we need to pass _due_date to save
+            # TODO: promotedaddon; due date (Write PR)
             promo = PromotedAddon.objects.get(addon_id=addon_id)
             if promo.group_id != PROMOTED_GROUP_CHOICES.NOT_PROMOTED:
                 # Shouldn't happen because filter only includes NOT_PROMOTED.
