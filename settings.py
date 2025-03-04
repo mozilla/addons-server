@@ -204,3 +204,5 @@ if get_version_json().get('target') != 'production' and DEBUG:
             'static_url_prefix': 'bundle',
         }
     }
+
+MEMCACHE_MIN_SERVER_COUNT = 1

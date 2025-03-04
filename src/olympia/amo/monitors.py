@@ -22,13 +22,15 @@ from olympia.search.utils import get_es
 monitor_log = olympia.core.logger.getLogger('z.monitor')
 
 
-def execute_checks(checks: list[str]):
+def execute_checks(checks: list[str], verbose: bool = False):
     status_summary = {}
     for check in checks:
         with statsd.timer('monitor.%s' % check):
-            status, _ = globals()[check]()
+            status, results = globals()[check]()
         # state is a string. If it is empty, that means everything is fine.
         status_summary[check] = {'state': not status, 'status': status}
+        if verbose:
+            status_summary[check]['results'] = results
     return status_summary
 
 
@@ -40,7 +42,7 @@ def localdev_web():
     """
     status = ''
     try:
-        response = requests.get('http://127.0.0.1:8002/__version__')
+        response = requests.get('http://nginx/__version__')
         response.raise_for_status()
     except Exception as e:
         status = f'Failed to ping web: {e}'
@@ -94,9 +96,11 @@ def memcache():
                 s.close()
 
             memcache_results.append((ip, port, result))
-        if not using_twemproxy and len(memcache_results) < 2:
-            status = ('2+ memcache servers are required. %s available') % len(
-                memcache_results
+        expected_count = settings.MEMCACHE_MIN_SERVER_COUNT
+        if not using_twemproxy and len(memcache_results) < expected_count:
+            status = ('%d+ memcache servers are required. %d available') % (
+                expected_count,
+                len(memcache_results),
             )
             monitor_log.warning(status)
 
@@ -285,6 +289,10 @@ def database():
 
 
 def remotesettings():
+    # TODO: We should be able to check remote settings
+    # connectivity if the credentials are set.
+    if settings.ENV in ('local', 'test'):
+        return '', None
     # check Remote Settings connectivity.
     # Since the blocklist filter task is performed by
     # a worker, and since workers have different network

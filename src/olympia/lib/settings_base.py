@@ -306,6 +306,7 @@ SUPPORTED_NONAPPS = (
     'update',
     'user-media',
     '__heartbeat__',
+    '__healthcheck__',
     '__lbheartbeat__',
     '__version__',
 )
@@ -327,6 +328,7 @@ SUPPORTED_NONLOCALES = (
     'update',
     'user-media',
     '__heartbeat__',
+    '__healthcheck__',
     '__lbheartbeat__',
     '__version__',
 )
@@ -1641,3 +1643,5 @@ DJANGO_VITE = {
 # For local it is hard coded to "local" in `settings.py` to guarantee a clear
 # distinction between local and non-local environments.
 ENV = env('ENV')
+
+MEMCACHE_MIN_SERVER_COUNT = 2

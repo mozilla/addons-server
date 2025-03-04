@@ -1,0 +1,30 @@
+name: Health Check
+
+on:
+  # Run the workflow test on push events
+  push:
+  # Run the main workflow on workflow_dispatch or schedule
+  workflow_dispatch:
+  schedule:
+    # Every 5 minutes
+    - cron: '*/5 * * * *'
+
+jobs:
+  health_check:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        environment: ${{fromJson(github.event_name == 'push' && '["local"]' || '["dev","stage","prod"]')}}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ./.github/actions/run-docker
+        with:
+          target: development
+          version: local
+          run: ./scripts/health_check.py --env ${{ matrix.environment }} --verbose
+
+
+
