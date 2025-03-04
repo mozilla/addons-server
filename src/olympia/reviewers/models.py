@@ -86,6 +86,10 @@ VIEW_QUEUE_FLAGS = (
         'Appeal forwarded from Cinder',
     ),
     (
+        'needs_human_review_from_2nd_level_approval',
+        'Abuse or appeal forwarded from 2nd Level Approval',
+    ),
+    (
         'is_from_theme_awaiting_review',
         'Theme version',
     ),
@@ -895,6 +899,11 @@ class NeedsHumanReview(ModelBase):
         ('AUTO_APPROVAL_DISABLED', 13, 'Has auto-approval disabled'),
         ('BELONGS_TO_PROMOTED_GROUP', 14, 'Belongs to a promoted group'),
         ('CINDER_APPEAL_ESCALATION', 15, 'Escalated appeal via cinder'),
+        (
+            'AMO_2ND_LEVEL_ESCALATION',
+            16,
+            'Forwarded from 2nd level approval to reviewers',
+        ),
     )
     REASONS.add_subset(
         'ABUSE_OR_APPEAL_RELATED',
@@ -903,6 +912,7 @@ class NeedsHumanReview(ModelBase):
             'ABUSE_ADDON_VIOLATION',
             'ADDON_REVIEW_APPEAL',
             'CINDER_APPEAL_ESCALATION',
+            'AMO_2ND_LEVEL_ESCALATION',
         ),
     )
 

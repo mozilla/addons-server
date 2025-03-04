@@ -1502,9 +1502,12 @@ class TestSignedFile(SigningAPITestMixin, TestCase):
         assert response.status_code == 401
 
     def test_api_relies_on_version_downloader(self):
+        url = (
+            self.url()
+        )  # Resolve the URL before mocking to not mess up URL resolving cache
         with mock.patch('olympia.versions.views.download_file') as df:
             df.return_value = Response({})
-            self.get(self.url())
+            self.get(url)
         assert df.called is True
         assert df.call_args[0][0].user == self.user
         assert df.call_args[0][1] == str(self.file_.pk)

@@ -227,12 +227,14 @@ def sync_cinder_policies():
 
 @task
 @use_primary_db
-def handle_escalate_action(*, job_pk):
+def handle_escalate_action(*, job_pk, from_2nd_level=False):
     old_job = CinderJob.objects.get(id=job_pk)
     entity_helper = CinderJob.get_entity_helper(
         old_job.target, resolved_in_reviewer_tools=True
     )
-    job_id = entity_helper.workflow_recreate(notes=old_job.decision.notes, job=old_job)
+    job_id = entity_helper.workflow_recreate(
+        notes=old_job.decision.notes, job=old_job, from_2nd_level=from_2nd_level
+    )
 
     old_job.handle_job_recreated(new_job_id=job_id, resolvable_in_reviewer_tools=True)
 

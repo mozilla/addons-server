@@ -7645,6 +7645,11 @@ class TestHeldDecisionReview(ReviewerTest):
         assert new_job
         assert new_job.resolvable_in_reviewer_tools
         self.assertCloseToNow(self.decision.reload().action_date)
+        assert NeedsHumanReview.objects.filter(
+            reason=NeedsHumanReview.REASONS.AMO_2ND_LEVEL_ESCALATION,
+            is_active=True,
+            version=addon.current_version,
+        ).exists()
 
     def test_release_user_ban_hold(self):
         self.decision.update(
