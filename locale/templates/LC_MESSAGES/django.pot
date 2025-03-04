@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-03 10:31+0000\n"
+"POT-Creation-Date: 2025-03-04 14:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1970,35 +1970,17 @@ msgstr ""
 msgid "Recent Changes for My Add-ons"
 msgstr ""
 
-#: src/olympia/devhub/file_validation_annotations.py:57
+#: src/olympia/devhub/file_validation_annotations.py:54
 msgid ""
 "Open Search add-ons are {blog_link_open}no longer supported on "
 "AMO{blog_link_close}. You can create a {doc_link_open}search extension "
 "instead{doc_link_close}."
 msgstr ""
 
-#: src/olympia/devhub/file_validation_annotations.py:107
+#: src/olympia/devhub/file_validation_annotations.py:104
 msgid ""
 "Manifest V3 is currently not supported for upload. {start_href}Read more "
 "about the support timeline{end_href}."
-msgstr ""
-
-#: src/olympia/devhub/file_validation_annotations.py:134
-msgid "Manifest V3 compatibility warning"
-msgstr ""
-
-#: src/olympia/devhub/file_validation_annotations.py:136
-msgid ""
-"Firefox is adding support for manifest version 3 (MV3) extensions in Firefox "
-"{version}, however, older versions of Firefox are only compatible with "
-"manifest version 2 (MV2) extensions. We recommend uploading Manifest V3 "
-"extensions as self-hosted for now to not break compatibility for your users."
-msgstr ""
-
-#: src/olympia/devhub/file_validation_annotations.py:144
-msgid ""
-"For more information about the MV3 extension roll-out or self-hosting MV3 "
-"extensions, visit https://mzl.la/3hIwQXX"
 msgstr ""
 
 #: src/olympia/devhub/forms.py:85
@@ -2242,19 +2224,19 @@ msgstr ""
 msgid "Invalid or corrupt add-on file."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:370
+#: src/olympia/devhub/tasks.py:368
 msgid ""
 "Your developer API key was found in the submitted file. To protect your "
 "account, the key will be revoked."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:377
+#: src/olympia/devhub/tasks.py:375
 msgid ""
 "The developer API key of a coauthor was found in the submitted file. To "
 "protect your add-on, the key will be revoked."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:644
+#: src/olympia/devhub/tasks.py:642
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr ""
 
