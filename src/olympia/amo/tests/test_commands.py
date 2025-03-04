@@ -237,7 +237,7 @@ class BaseTestDataCommand(TestCase):
         )
 
 
-@override_settings(DATA_BACKUP_SKIP=False)
+@override_settings(SKIP_DATA_SEED=False)
 class TestInitializeDataCommand(BaseTestDataCommand):
     def setUp(self):
         super().setUp()
@@ -262,34 +262,40 @@ class TestInitializeDataCommand(BaseTestDataCommand):
             username=settings.LOCAL_ADMIN_USERNAME, email=settings.LOCAL_ADMIN_EMAIL
         )
 
-    @override_settings(DATA_BACKUP_SKIP=True)
+    @override_settings(SKIP_DATA_SEED=True)
     def test_handle_with_skip_data_initialize(self):
         """
-        Test running the 'initialize' command with the DATA_BACKUP_SKIP flag set.
-        Expected: nothing happens except verifying the dependencies.
+        Test running the 'initialize' command with the SKIP_DATA_SEED flag set.
+        Expected: Run migrations and reindex.
         """
         call_command('initialize')
         self._assert_commands_called_in_order(
             self.mocks['mock_call_command'],
             [
                 self.mock_commands.monitors_olympia_database,
+                self.mock_commands.migrate,
+                self.mock_commands.reindex_skip_if_exists,
+                self.mock_commands.monitors_database,
                 self.mock_commands.monitors,
                 self.mock_commands.check,
             ],
         )
 
-    @override_settings(DATA_BACKUP_SKIP=True)
+    @override_settings(SKIP_DATA_SEED=True)
     def test_handle_with_load_argument_and_skip_data_initialize(self):
         """
         Test running the 'initialize' command with both '--load' argument
-        and DATA_BACKUP_SKIP flag. Expected:
-        nothing happens except verifying the dependencies.
+        and SKIP_DATA_SEED flag. Expected:
+        Run data migration and load the specified backup.x
         """
         call_command('initialize', load='test')
         self._assert_commands_called_in_order(
             self.mocks['mock_call_command'],
             [
                 self.mock_commands.monitors_olympia_database,
+                self.mock_commands.migrate,
+                self.mock_commands.data_load('test'),
+                self.mock_commands.monitors_database,
                 self.mock_commands.monitors,
                 self.mock_commands.check,
             ],

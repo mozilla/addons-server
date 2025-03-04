@@ -21,7 +21,7 @@ x-env-mapping: &env
     - HISTCONTROL=erasedups
     - ENV=local
     - CIRCLECI
-    - DATA_BACKUP_SKIP
+    - SKIP_DATA_SEED
 
 x-olympia: &olympia
   <<: *env

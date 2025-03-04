@@ -15,7 +15,7 @@ inputs:
   logs:
     description: 'Show logs'
     required: false
-  data_backup_skip:
+  skip_data_seed:
     description: 'Skip data backup'
     required: false
     default: 'true'
@@ -43,7 +43,7 @@ runs:
           DOCKER_TARGET="${{ inputs.target }}" \
           OLYMPIA_UID="$(id -u)" \
           OLYMPIA_DEPS="${{ inputs.deps }}" \
-          DATA_BACKUP_SKIP="${{ inputs.data_backup_skip }}" \
+          SKIP_DATA_SEED="${{ inputs.skip_data_seed }}" \
           DOCKER_WAIT="true"
 
 
