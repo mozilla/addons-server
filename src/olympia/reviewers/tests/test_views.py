@@ -1302,6 +1302,56 @@ class TestQueueBasics(QueueTest):
         assert rows.find('td').eq(1).text() == 'Firefox Fún 1.1'
         assert rows.find('.ed-sprite-promoted-line').length == 1
 
+    def test_flags_abuse_report_forwarded_from_cinder(self):
+        addon = addon_factory(name='Firefox Fún')
+        version = version_factory(
+            addon=addon,
+            version='1.1',
+            file_kw={'status': amo.STATUS_APPROVED},
+            due_date=datetime.now() + timedelta(hours=24),
+        )
+        NeedsHumanReview.objects.create(
+            reason=NeedsHumanReview.REASONS.CINDER_ESCALATION, version=version
+        )
+
+        r = self.client.get(reverse('reviewers.queue_extension'))
+
+        rows = pq(r.content)('#addon-queue tr.addon-row')
+        assert rows.length == 1
+        assert rows.attr('data-addon') == str(addon.id)
+        assert rows.find('td').eq(1).text() == 'Firefox Fún 1.1'
+        assert (
+            rows.find(
+                '.ed-sprite-needs-human-review-from-cinder-forwarded-abuse'
+            ).length
+            == 1
+        )
+
+    def test_flags_appeal_forwarded_from_cinder(self):
+        addon = addon_factory(name='Firefox Fún')
+        version = version_factory(
+            addon=addon,
+            version='1.1',
+            file_kw={'status': amo.STATUS_APPROVED},
+            due_date=datetime.now() + timedelta(hours=24),
+        )
+        NeedsHumanReview.objects.create(
+            reason=NeedsHumanReview.REASONS.CINDER_APPEAL_ESCALATION, version=version
+        )
+
+        r = self.client.get(reverse('reviewers.queue_extension'))
+
+        rows = pq(r.content)('#addon-queue tr.addon-row')
+        assert rows.length == 1
+        assert rows.attr('data-addon') == str(addon.id)
+        assert rows.find('td').eq(1).text() == 'Firefox Fún 1.1'
+        assert (
+            rows.find(
+                '.ed-sprite-needs-human-review-from-cinder-forwarded-appeal'
+            ).length
+            == 1
+        )
+
     def test_tabnav_permissions(self):
         response = self.client.get(self.url)
         assert response.status_code == 200
