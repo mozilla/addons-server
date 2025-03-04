@@ -244,7 +244,7 @@ class PromotedAddonPromotion(ModelBase):
     )
     application_id = models.SmallIntegerField(
         choices=APPS_CHOICES,
-        null=True,
+        null=False,
         verbose_name='Application',
     )
 
@@ -257,7 +257,7 @@ class PromotedAddonPromotion(ModelBase):
         ]
 
     def __str__(self):
-        return f'{self.promoted_group.name} - {self.addon}'
+        return f'{self.promoted_group.name} - {self.addon} - {self.application.short}'
 
     @property
     def application(self):

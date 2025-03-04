@@ -7,6 +7,7 @@ from django.test import TestCase
 from olympia import amo
 from olympia.amo.tests import addon_factory
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
+from olympia.discovery.admin import PromotedAddon as PromotedAddonProxy
 from olympia.promoted.models import (
     PromotedAddon,
     PromotedAddonPromotion,
@@ -18,9 +19,10 @@ from olympia.promoted.models import (
 )
 
 
-class TestSyncPromoted(TestCase):
+class TestSyncPromotedMixin(TestCase):
     def setUp(self):
         self.addon = addon_factory()
+        self.promoted_class = PromotedAddon
 
     def assert_count(self, model, count, **kwargs):
         assert model.objects.filter(**kwargs).count() == count
@@ -29,7 +31,7 @@ class TestSyncPromoted(TestCase):
         call_command('sync_promoted_addons')
 
     def promoted_addon(self, addon=None, **kwargs):
-        return PromotedAddon.objects.create(addon=addon or self.addon, **kwargs)
+        return self.promoted_class.objects.create(addon=addon or self.addon, **kwargs)
 
     def promoted_group(self, group_id):
         return PromotedGroup.objects.get(group_id=group_id)
@@ -46,7 +48,7 @@ class TestSyncPromoted(TestCase):
         return self.with_disabled_signal(
             post_save,
             promoted_addon_to_promoted_addon_promotion,
-            sender=PromotedAddon,
+            sender=self.promoted_class,
             dispatch_uid='addons.sync_promoted.promoted_addon',
         )
 
@@ -61,7 +63,7 @@ class TestSyncPromoted(TestCase):
     def test_sync_promoted_no_op(self):
         self.sync_promoted_addons()
 
-        self.assert_count(PromotedAddon, 0)
+        self.assert_count(self.promoted_class, 0)
         self.assert_count(PromotedAddonPromotion, 0, addon=self.addon)
 
         self.assert_count(PromotedApproval, 0, version=self.addon.current_version)
@@ -127,6 +129,7 @@ class TestSyncPromoted(TestCase):
             1,
             addon=self.addon,
             promoted_group=self.promoted_group(PROMOTED_GROUP_CHOICES.SPOTLIGHT),
+            application_id=amo.FIREFOX.id,
         )
         # Expect 2 approvals and 2 promoted addon versions, 1 for each application
         self.assert_count(PromotedAddonVersion, 2, version=self.addon.current_version)
@@ -238,19 +241,23 @@ class TestSyncPromoted(TestCase):
 
         self.sync_promoted_addons()
 
+        # The promotion has been deleted because the application has changed
+        with self.assertRaises(PromotedAddonPromotion.DoesNotExist):
+            promoted_addon_promotion.reload()
+
         # The approval and version have not been deleted or updated because the
         # new application would require approval, but the old application is still
         # approved. This could be a bug but the goal is for the models to sync correctly
         # even if the underlying logic does not make sense.
         self.assertEqual(promoted_approval.reload().group_id, spotlight.group_id)
+        self.assertEqual(promoted_addon_version.reload().promoted_group, spotlight)
 
         promoted_addon_promotion = PromotedAddonPromotion.objects.get(
             addon=self.addon,
             promoted_group=self.promoted_group(PROMOTED_GROUP_CHOICES.SPOTLIGHT),
             application_id=amo.ANDROID.id,
         )
-        # There are approvals for the new application,
-        # as SPOTLIGHT does not have prereview
+        # There are no approvals for the new application yet
         self.assert_count(
             PromotedApproval,
             0,
@@ -259,7 +266,7 @@ class TestSyncPromoted(TestCase):
         )
         self.assert_count(
             PromotedAddonVersion,
-            1,
+            0,
             version=self.addon.current_version,
             application_id=amo.ANDROID.id,
         )
@@ -281,7 +288,7 @@ class TestSyncPromoted(TestCase):
                 group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT,
                 application_id=amo.FIREFOX.id,
             )
-            self.assert_count(PromotedAddon, 2)
+            self.assert_count(self.promoted_class, 2)
             self.assert_count(PromotedAddonPromotion, 0)
             self.assert_count(PromotedApproval, 2)
             self.assert_count(PromotedAddonVersion, 0)
@@ -295,16 +302,25 @@ class TestSyncPromoted(TestCase):
             application_id=amo.FIREFOX.id,
         )
 
-        promoted_addon.delete()
-
-        self.assert_count(
-            PromotedAddonPromotion,
-            2,
+        promoted_addon_promotion = PromotedAddonPromotion.objects.get(
+            addon=self.addon,
             promoted_group=self.promoted_group(PROMOTED_GROUP_CHOICES.SPOTLIGHT),
             application_id=amo.FIREFOX.id,
         )
 
-    def test_delete_promoted_addon_alread_deleted(self):
+        promoted_addon.delete()
+
+        with self.assertRaises(PromotedAddonPromotion.DoesNotExist):
+            promoted_addon_promotion.reload()
+
+        self.assert_count(
+            PromotedAddonPromotion,
+            1,
+            promoted_group=self.promoted_group(PROMOTED_GROUP_CHOICES.SPOTLIGHT),
+            application_id=amo.FIREFOX.id,
+        )
+
+    def test_delete_promoted_addon_already_deleted(self):
         spotlight = self.promoted_group(PROMOTED_GROUP_CHOICES.SPOTLIGHT)
         promoted_addon = self.promoted_addon(
             group_id=spotlight.group_id,
@@ -369,3 +385,28 @@ class TestSyncPromoted(TestCase):
             version=self.addon.current_version,
             application_id=amo.FIREFOX.id,
         ).delete()
+
+    def test_delete_unpromoted(self):
+        addon = addon_factory()
+        promoted = PromotedAddon.objects.create(
+            addon=addon, group_id=PROMOTED_GROUP_CHOICES.LINE
+        )
+        promoted.approve_for_version(version=addon.current_version)
+        self.assert_count(PromotedAddonPromotion, 2)
+        # If a group is set to NOT_PROMOTED, there should be no PromotedAddonPromotions.
+        promoted.update(group_id=PROMOTED_GROUP_CHOICES.NOT_PROMOTED)
+        self.assert_count(PromotedAddonPromotion, 0)
+
+
+class TestSyncPromotedDiscoveryProxy(TestSyncPromotedMixin):
+    def setUp(self):
+        super().setUp()
+        self.promoted_class = PromotedAddonProxy
+
+    def disable_post_save_promoted_addon(self):
+        return self.with_disabled_signal(
+            post_save,
+            promoted_addon_to_promoted_addon_promotion,
+            sender=self.promoted_class,
+            dispatch_uid='addons.sync_promoted.promoted_addon_proxy',
+        )
