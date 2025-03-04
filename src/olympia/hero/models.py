@@ -204,8 +204,7 @@ class PrimaryHero(ModelBase):
 
             if self.is_external and not self.promoted_addon.addon.homepage:
                 error_dict['is_external'] = ValidationError(
-                    'External primary shelves need a homepage defined in '
-                    'addon details.'
+                    'External primary shelves need a homepage defined in addon details.'
                 )
             elif not self.is_external:
                 can_add_to_primary = (

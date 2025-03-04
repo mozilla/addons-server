@@ -186,9 +186,9 @@ class TestDashboard(HubTest):
         assert item.find('p.downloads'), 'Expected weekly downloads'
         assert item.find('p.users'), 'Expected ADU'
         assert item.find('.item-details'), 'Expected item details'
-        assert not item.find(
-            'p.incomplete'
-        ), 'Unexpected message about incomplete add-on'
+        assert not item.find('p.incomplete'), (
+            'Unexpected message about incomplete add-on'
+        )
 
         appver = self.addon.current_version.apps.all()[0]
         appver.delete()
@@ -1314,8 +1314,7 @@ class TestUpload(UploadMixin, TestCase):
         msg = validation['messages'][0]
         assert msg['type'] == 'error'
         assert msg['message'] == (
-            'Unsupported file type, please upload a supported file '
-            '(.crx, .xpi, .zip).'
+            'Unsupported file type, please upload a supported file (.crx, .xpi, .zip).'
         )
         assert not msg['description']
 

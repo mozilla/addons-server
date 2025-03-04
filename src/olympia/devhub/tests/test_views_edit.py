@@ -353,7 +353,7 @@ class BaseTestEditDescribe(BaseTestEdit):
         Let's try to put xss in our description, and safe html, and verify
         that we are playing safe.
         """
-        self.addon.description = 'This\n**IS**' "<script>alert('awesome')</script>"
+        self.addon.description = "This\n**IS**<script>alert('awesome')</script>"
         self.addon.save()
         response = self.client.get(self.url)
         assert response.status_code == 200

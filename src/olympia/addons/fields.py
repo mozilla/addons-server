@@ -59,9 +59,7 @@ class CategoriesSerializerField(serializers.Field):
             )
         if len(category_names) > 1 and 'other' in category_names:
             raise exceptions.ValidationError(
-                gettext(
-                    'The "other" category cannot be combined with another ' 'category'
-                )
+                gettext('The "other" category cannot be combined with another category')
             )
 
         categories = []

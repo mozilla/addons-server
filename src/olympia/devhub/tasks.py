@@ -92,8 +92,9 @@ def submit_file(*, addon_pk, upload_pk, client_info):
         )
     else:
         log.info(
-            'Skipping version creation for {upload_uuid} that failed '
-            'validation'.format(upload_uuid=upload.uuid)
+            'Skipping version creation for {upload_uuid} that failed validation'.format(
+                upload_uuid=upload.uuid
+            )
         )
 
 

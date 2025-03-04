@@ -369,8 +369,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             'PUT',
             guid=guid,
             version='0.0.1',
-            filename='src/olympia/files/fixtures/files/'
-            'webextension_signed_already.xpi',
+            filename='src/olympia/files/fixtures/files/webextension_signed_already.xpi',
         )
         assert response.status_code == 201
         assert qs.exists()
@@ -390,8 +389,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             'PUT',
             guid=guid,
             version='0.0.1',
-            filename='src/olympia/files/fixtures/files/'
-            'webextension_signed_already.xpi',
+            filename='src/olympia/files/fixtures/files/webextension_signed_already.xpi',
         )
         assert response.status_code == 400
         assert response.data['error'] == (

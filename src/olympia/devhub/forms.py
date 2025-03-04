@@ -678,7 +678,7 @@ class PolicyForm(TranslationFormMixin, AMOModelForm):
     eula = TransField(
         widget=TransTextarea(),
         required=False,
-        label=_("Please specify your add-on's " 'End-User License Agreement:'),
+        label=_("Please specify your add-on's End-User License Agreement:"),
     )
     has_priv = forms.BooleanField(
         required=False, label=_('This add-on has a Privacy Policy'), label_suffix=''
@@ -721,8 +721,9 @@ class WithSourceMixin:
     def get_invalid_source_file_type_message(self):
         valid_extensions_string = '(%s)' % ', '.join(VALID_SOURCE_EXTENSIONS)
         return gettext(
-            'Unsupported file type, please upload an archive '
-            'file {extensions}.'.format(extensions=valid_extensions_string)
+            'Unsupported file type, please upload an archive file {extensions}.'.format(
+                extensions=valid_extensions_string
+            )
         )
 
     def clean_source(self):

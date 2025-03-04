@@ -99,8 +99,9 @@ def jwt_decode_handler(token, get_api_key=APIKey.get_jwt_key):
         raise exceptions.AuthenticationFailed(detail=f'Invalid JWT: {exc}.') from exc
     except (jwt.exceptions.ImmatureSignatureError, jwt.InvalidIssuedAtError) as exc:
         log.info(
-            'Invalid iat during JWT authentication: '
-            '{e.__class__.__name__}: {e}'.format(e=exc)
+            'Invalid iat during JWT authentication: {e.__class__.__name__}: {e}'.format(
+                e=exc
+            )
         )
         raise exceptions.AuthenticationFailed(
             detail='JWT iat (issued at time) is invalid. Make sure your '
@@ -115,8 +116,9 @@ def jwt_decode_handler(token, get_api_key=APIKey.get_jwt_key):
 
     if payload['exp'] - payload['iat'] > settings.MAX_APIKEY_JWT_AUTH_TOKEN_LIFETIME:
         log.info(
-            'JWT auth: expiration is too long; '
-            'iss={iss}, iat={iat}, exp={exp}'.format(**payload)
+            'JWT auth: expiration is too long; iss={iss}, iat={iat}, exp={exp}'.format(
+                **payload
+            )
         )
         raise exceptions.AuthenticationFailed(
             detail='JWT exp (expiration) is too long.'

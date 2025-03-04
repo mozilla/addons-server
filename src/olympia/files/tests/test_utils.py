@@ -75,9 +75,10 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
     def test_parse_xpi_no_manifest(self):
         fake_zip = utils.make_xpi({'dummy': 'dummy'})
 
-        with mock.patch(
-            'olympia.files.utils.get_file'
-        ) as get_file_mock, self.assertRaises(utils.NoManifestFound) as exc:
+        with (
+            mock.patch('olympia.files.utils.get_file') as get_file_mock,
+            self.assertRaises(utils.NoManifestFound) as exc,
+        ):
             get_file_mock.return_value = fake_zip
             utils.parse_xpi(None)
         assert isinstance(exc.exception, forms.ValidationError)

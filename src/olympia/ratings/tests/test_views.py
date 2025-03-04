@@ -2217,7 +2217,7 @@ class TestRatingViewSetPost(TestCase):
         )
         assert response.status_code == 400
         assert response.data['non_field_errors'] == [
-            "You can't leave more than one review for the same version of " 'an add-on.'
+            "You can't leave more than one review for the same version of an add-on."
         ]
 
     @override_settings(CACHES=locmem_cache)
