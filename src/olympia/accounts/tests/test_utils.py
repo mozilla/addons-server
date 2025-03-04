@@ -11,11 +11,6 @@ from olympia.accounts import utils
 from olympia.amo.tests import TestCase
 
 
-FXA_CONFIG = {
-    'other': {'client_id': 'foo_other', 'client_secret': 'bar_other'},
-}
-
-
 @override_settings(FXA_OAUTH_HOST='https://accounts.firefox.com/oauth')
 def test_fxa_login_url_without_requiring_two_factor_auth():
     path = '/en-US/addons/abp/?source=ddg'
@@ -206,18 +201,6 @@ def test_redirect_for_login_with_next_path():
     assert request.session['enforce_2fa'] is False
 
 
-def test_redirect_for_login_with_config():
-    request = RequestFactory().get('/somewhere')
-    request.session = {'fxa_state': 'fake-state'}
-    response = utils.redirect_for_login(request, config=FXA_CONFIG['other'])
-    assert response['location'] == utils.fxa_login_url(
-        config=FXA_CONFIG['other'],
-        state=request.session['fxa_state'],
-        next_path='/somewhere',
-    )
-    assert request.session['enforce_2fa'] is False
-
-
 def test_redirect_for_login_with_2fa_enforced():
     request = RequestFactory().get('/somewhere')
     request.session = {'fxa_state': 'fake-state'}
@@ -266,10 +249,11 @@ def test_redirect_for_login_with_2fa_enforced_and_config():
     request = RequestFactory().get('/somewhere')
     request.session = {'fxa_state': 'fake-state'}
     response = utils.redirect_for_login_with_2fa_enforced(
-        request, config=FXA_CONFIG['other']
+        request,
+        config={'client_id': 'foo_other', 'client_secret': 'bar_other'},
     )
     assert response['location'] == utils.fxa_login_url(
-        config=FXA_CONFIG['other'],
+        config={'client_id': 'foo_other', 'client_secret': 'bar_other'},
         state=request.session['fxa_state'],
         next_path='/somewhere',
         enforce_2fa=True,

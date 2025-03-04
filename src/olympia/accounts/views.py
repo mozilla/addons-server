@@ -329,7 +329,6 @@ def with_user(f):
                 request.session['fxa_state'] = fxa_state_session
                 return redirect_for_login_with_2fa_enforced(
                     request,
-                    config=fxa_config,
                     next_path=next_path,
                     id_token_hint=id_token,
                 )

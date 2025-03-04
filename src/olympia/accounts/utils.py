@@ -83,9 +83,8 @@ def get_fxa_config(request):
     return settings.FXA_CONFIG[get_fxa_config_name(request)]
 
 
-def redirect_for_login(request, *, config=None, next_path=None):
-    if config is None:
-        config = get_fxa_config(request)
+def redirect_for_login(request, *, next_path=None):
+    config = get_fxa_config(request)
     if next_path is None:
         next_path = path_with_query(request)
     request.session.setdefault('fxa_state', generate_fxa_state())
