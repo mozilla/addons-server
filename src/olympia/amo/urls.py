@@ -34,6 +34,7 @@ urlpatterns = [
     re_path(r'^services/', include(shared_services_api_patterns)),
     re_path(r'^__version__$', views.version, name='version.json'),
     re_path(r'^__heartbeat__$', views.front_heartbeat, name='amo.front_heartbeat'),
+    re_path(r'^__healthcheck__$', views.healthcheck, name='amo.healthcheck'),
     re_path(
         r'^opensearch\.xml$',
         TemplateView.as_view(

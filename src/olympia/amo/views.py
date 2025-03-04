@@ -29,41 +29,55 @@ from . import monitors
 from .sitemap import InvalidSection, get_sitemap_path, get_sitemaps, render_index_xml
 
 
+def _exec_monitors(checks: list[str], verbose: bool = False):
+    status_summary = monitors.execute_checks(checks, verbose)
+    status_code = 200 if all(a['state'] for a in status_summary.values()) else 500
+    return JsonResponse(status_summary, status=status_code)
+
+
+MONITORS = {
+    'internal': [
+        'memcache',
+        'libraries',
+        'elastic',
+        'path',
+        'database',
+    ],
+    'external': [
+        'rabbitmq',
+        'signer',
+        'remotesettings',
+        'cinder',
+    ],
+}
+
+
+@never_cache
+@non_atomic_requests
+def healthcheck(request):
+    """Check all monitors."""
+    verbose = bool(request.GET.get('verbose', False))
+    return _exec_monitors(
+        [
+            *MONITORS['internal'],
+            *MONITORS['external'],
+        ],
+        verbose,
+    )
+
+
 @never_cache
 @non_atomic_requests
 def front_heartbeat(request):
-    # For each check, a boolean pass/fail status to show in the template
-    status_summary = monitors.execute_checks(
-        [
-            'memcache',
-            'libraries',
-            'elastic',
-            'path',
-            'database',
-        ]
-    )
-    # If anything broke, send HTTP 500.
-    status_code = 200 if all(a['state'] for a in status_summary.values()) else 500
-
-    return JsonResponse(status_summary, status=status_code)
+    """Check internal monitors only."""
+    return _exec_monitors(MONITORS['internal'])
 
 
 @never_cache
 @non_atomic_requests
 def services_heartbeat(request):
-    # For each check, a boolean pass/fail status to show in the template
-    status_summary = monitors.execute_checks(
-        [
-            'rabbitmq',
-            'signer',
-            'remotesettings',
-            'cinder',
-        ]
-    )
-    # If anything broke, send HTTP 500.
-    status_code = 200 if all(a['state'] for a in status_summary.values()) else 500
-
-    return JsonResponse(status_summary, status=status_code)
+    """Check external monitors only."""
+    return _exec_monitors(MONITORS['external'])
 
 
 @never_cache

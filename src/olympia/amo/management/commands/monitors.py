@@ -22,29 +22,39 @@ class Command(BaseDataCommand):
             default=5,
             help='Number of attempts to check the services',
         )
+        parser.add_argument(
+            '--verbose',
+            action='store_true',
+            help='Verbose output',
+        )
 
     def handle(self, *args, **options):
         attempts = options.get('attempts')
         services = options.get('services')
-
+        verbose = options.get('verbose')
         self.logger.info(f'services: {services}')
 
         if not services:
             raise CommandError('No services specified')
 
-        failing_services = services.copy()
-
         current = 0
+
+        services_to_check = set(services.copy())
 
         while current < attempts:
             current += 1
-            self.logger.info(f'Checking services {services} for the {current} time')
-            status_summary = monitors.execute_checks(services)
-            failing_services = [
-                service
-                for service, result in status_summary.items()
-                if result['state'] is False
-            ]
+            self.logger.info(
+                f'Checking services {services_to_check} for the {current} time'
+            )
+            status_summary = monitors.execute_checks(list(services_to_check), verbose)
+
+            failing_services = {}
+
+            for service, result in status_summary.items():
+                if result['state'] is True and service in services_to_check:
+                    services_to_check.remove(service)
+                else:
+                    failing_services[service] = result
 
             if len(failing_services) > 0:
                 self.logger.error('Some services are failing: %s', failing_services)
@@ -54,7 +64,7 @@ class Command(BaseDataCommand):
             else:
                 break
 
-        if len(failing_services) > 0:
-            raise CommandError(f'Some services are failing: {failing_services}')
+        if len(services_to_check) > 0:
+            raise CommandError(f'Some services are failing: {list(services_to_check)}')
         else:
             self.logger.info(f'All services are healthy {services}')

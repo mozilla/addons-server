@@ -110,6 +110,7 @@ class TestMonitor(TestCase):
         obtained, _ = monitors.remotesettings()
         assert obtained == ''
 
+    @override_settings(ENV='production')
     def test_remotesettings_bad_credentials(self):
         responses.add(
             responses.GET,
@@ -126,6 +127,7 @@ class TestMonitor(TestCase):
         obtained, _ = monitors.remotesettings()
         assert 'Invalid credentials' in obtained
 
+    @override_settings(ENV='production')
     def test_remotesettings_fail(self):
         responses.add(
             responses.GET,
@@ -164,7 +166,7 @@ class TestMonitor(TestCase):
     def test_localdev_web_fail(self):
         responses.add(
             responses.GET,
-            'http://127.0.0.1:8002/__version__',
+            'http://nginx/__version__',
             status=500,
         )
         status, _ = monitors.localdev_web()
@@ -173,7 +175,7 @@ class TestMonitor(TestCase):
     def test_localdev_web_success(self):
         responses.add(
             responses.GET,
-            'http://127.0.0.1:8002/__version__',
+            'http://nginx/__version__',
             status=200,
         )
         status, _ = monitors.localdev_web()

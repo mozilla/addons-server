@@ -165,7 +165,11 @@ storage_structure = {
             'test': '',
             'uploads': '',
         },
-        'uploads': '',
+        'uploads': {
+            'addon_icons': '',
+            'previews': '',
+            'userpics': '',
+        },
     },
 }
 

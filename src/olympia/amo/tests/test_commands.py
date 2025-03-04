@@ -519,7 +519,9 @@ class TestBaseDataCommand(BaseTestDataCommand):
             os.path.join(settings.STORAGE_ROOT, 'shared_storage/tmp/preview'),
             os.path.join(settings.STORAGE_ROOT, 'shared_storage/tmp/test'),
             os.path.join(settings.STORAGE_ROOT, 'shared_storage/tmp/uploads'),
-            os.path.join(settings.STORAGE_ROOT, 'shared_storage/uploads'),
+            os.path.join(settings.STORAGE_ROOT, 'shared_storage/uploads/addon_icons'),
+            os.path.join(settings.STORAGE_ROOT, 'shared_storage/uploads/previews'),
+            os.path.join(settings.STORAGE_ROOT, 'shared_storage/uploads/userpics'),
         ]
 
         for key in keys:
@@ -723,7 +725,7 @@ class TestMonitorsCommand(BaseTestDataCommand):
     def test_monitors_succeeds_after_specified_attempts(self):
         succeed_after = 3
 
-        def mock_handler(services):
+        def mock_handler(services, _verbose):
             state = self.mock_execute_checks.call_count >= succeed_after
             return {service: {'state': state} for service in services}
 
@@ -733,7 +735,7 @@ class TestMonitorsCommand(BaseTestDataCommand):
     def test_monitors_succeeds_after_all_services_are_healthy(self):
         succeed_after = 3
 
-        def mock_handler(_):
+        def mock_handler(_a, _b):
             state = self.mock_execute_checks.call_count >= succeed_after
             return {
                 'database': {'state': state},
