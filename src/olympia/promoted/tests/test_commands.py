@@ -397,6 +397,17 @@ class TestSyncPromotedMixin(TestCase):
         promoted.update(group_id=PROMOTED_GROUP_CHOICES.NOT_PROMOTED)
         self.assert_count(PromotedAddonPromotion, 0)
 
+    def test_prereview(self):
+        addon = addon = addon_factory()
+        PromotedAddon.objects.create(addon=addon, group_id=PROMOTED_GROUP_CHOICES.LINE)
+        assert addon.promoted_group().id == PROMOTED_GROUP_CHOICES.NOT_PROMOTED
+        self.assert_count(PromotedAddonVersion, 0)
+
+        # STRATEGIC isn't pre-reviewed, approve
+        addon.promotedaddon.update(group_id=PROMOTED_GROUP_CHOICES.STRATEGIC)
+        assert addon.promoted_group().id == PROMOTED_GROUP_CHOICES.STRATEGIC
+        self.assert_count(PromotedAddonVersion, 2)
+
 
 class TestSyncPromotedDiscoveryProxy(TestSyncPromotedMixin):
     def setUp(self):
