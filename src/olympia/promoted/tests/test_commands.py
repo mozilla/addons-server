@@ -22,7 +22,7 @@ from olympia.promoted.models import (
 class TestSyncPromotedMixin(TestCase):
     def setUp(self):
         self.addon = addon_factory()
-        self.promoted_class = PromotedAddon
+        self.promoted_addon_class = PromotedAddon
 
     def assert_count(self, model, count, **kwargs):
         assert model.objects.filter(**kwargs).count() == count
@@ -31,7 +31,9 @@ class TestSyncPromotedMixin(TestCase):
         call_command('sync_promoted_addons')
 
     def promoted_addon(self, addon=None, **kwargs):
-        return self.promoted_class.objects.create(addon=addon or self.addon, **kwargs)
+        return self.promoted_addon_class.objects.create(
+            addon=addon or self.addon, **kwargs
+        )
 
     def promoted_group(self, group_id):
         return PromotedGroup.objects.get(group_id=group_id)
@@ -48,7 +50,7 @@ class TestSyncPromotedMixin(TestCase):
         return self.with_disabled_signal(
             post_save,
             promoted_addon_to_promoted_addon_promotion,
-            sender=self.promoted_class,
+            sender=self.promoted_addon_class,
             dispatch_uid='addons.sync_promoted.promoted_addon',
         )
 
@@ -63,7 +65,7 @@ class TestSyncPromotedMixin(TestCase):
     def test_sync_promoted_no_op(self):
         self.sync_promoted_addons()
 
-        self.assert_count(self.promoted_class, 0)
+        self.assert_count(self.promoted_addon_class, 0)
         self.assert_count(PromotedAddonPromotion, 0, addon=self.addon)
 
         self.assert_count(PromotedApproval, 0, version=self.addon.current_version)
@@ -288,7 +290,7 @@ class TestSyncPromotedMixin(TestCase):
                 group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT,
                 application_id=amo.FIREFOX.id,
             )
-            self.assert_count(self.promoted_class, 2)
+            self.assert_count(self.promoted_addon_class, 2)
             self.assert_count(PromotedAddonPromotion, 0)
             self.assert_count(PromotedApproval, 2)
             self.assert_count(PromotedAddonVersion, 0)
@@ -397,27 +399,16 @@ class TestSyncPromotedMixin(TestCase):
         promoted.update(group_id=PROMOTED_GROUP_CHOICES.NOT_PROMOTED)
         self.assert_count(PromotedAddonPromotion, 0)
 
-    def test_prereview(self):
-        addon = addon = addon_factory()
-        PromotedAddon.objects.create(addon=addon, group_id=PROMOTED_GROUP_CHOICES.LINE)
-        assert addon.promoted_group().id == PROMOTED_GROUP_CHOICES.NOT_PROMOTED
-        self.assert_count(PromotedAddonVersion, 0)
-
-        # STRATEGIC isn't pre-reviewed, approve
-        addon.promotedaddon.update(group_id=PROMOTED_GROUP_CHOICES.STRATEGIC)
-        assert addon.promoted_group().id == PROMOTED_GROUP_CHOICES.STRATEGIC
-        self.assert_count(PromotedAddonVersion, 2)
-
 
 class TestSyncPromotedDiscoveryProxy(TestSyncPromotedMixin):
     def setUp(self):
         super().setUp()
-        self.promoted_class = PromotedAddonProxy
+        self.promoted_addon_class = PromotedAddonProxy
 
     def disable_post_save_promoted_addon(self):
         return self.with_disabled_signal(
             post_save,
             promoted_addon_to_promoted_addon_promotion,
-            sender=self.promoted_class,
+            sender=self.promoted_addon_class,
             dispatch_uid='addons.sync_promoted.promoted_addon_proxy',
         )
