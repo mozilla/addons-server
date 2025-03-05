@@ -33,6 +33,7 @@
     <noscript><link rel="stylesheet" href="{{ static('css/legacy/nojs.css') }}"></noscript>
 
     {% if settings.DEV_MODE %}
+      {{ vite_hmr_client() }}
       {% if settings.LESS_LIVE_REFRESH %}
         <meta id="live_refresh" name="live_refresh" value="1">
       {% endif %}
