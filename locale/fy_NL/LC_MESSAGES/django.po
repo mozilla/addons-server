@@ -5479,7 +5479,7 @@ msgstr "Pas YouTube oan nei jo smaak. Jou it in nij uterlik, nije funksjes en fi
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:649
 msgid "Changes the color of Firefox to match the appearance of any website."
-msgstr ""
+msgstr "Wiziget de kleur fan Firefox sadat dizze oerienkomt mei it uterlik fan in website."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:655
@@ -5694,7 +5694,7 @@ msgstr "Alle útwreidingen besjen"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:985
 msgid "Productivity tools"
-msgstr ""
+msgstr "Produktiviteitsark"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -5920,12 +5920,12 @@ msgstr "Mear stêfkarren foar begjinnersútwreidingen besjen"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1103
 msgid "Twitch extensions"
-msgstr ""
+msgstr "Twitch-útwreidingen"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1105
 msgid "See more Twitch extension staff picks"
-msgstr ""
+msgstr "Mear stêfkarren foar Twitch-útwreidingen besjen"
 
 #: src/olympia/files/models.py:309
 msgid "Unreviewed"
