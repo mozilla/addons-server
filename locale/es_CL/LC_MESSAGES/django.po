@@ -389,7 +389,7 @@ msgstr "%(addon_type_plural)s no son compatibles con %(app_name)s"
 #: src/olympia/addons/serializers.py:635 src/olympia/devhub/forms.py:908
 #, python-format
 msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
-msgstr ""
+msgstr "Rango de versiones inválido. Para Firefox para Android, debes seleccionar solamente un rango que comience con la versión %(max)s o superior, o termine con una versión anterior a %(min)s."
 
 #: src/olympia/addons/serializers.py:885
 msgid "Add-ons need at least one owner."
@@ -421,15 +421,15 @@ msgstr "Los nombres de complementos no pueden incluir las marcas Mozilla o Firef
 
 #: src/olympia/addons/utils.py:173
 msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
-msgstr ""
+msgstr "La versión {version_string} debe ser mayor a la versión previamente aceptada {previous_version_string}."
 
 #: src/olympia/addons/validators.py:40
 msgid "Both `license` and `custom_license` cannot be provided together."
-msgstr ""
+msgstr "Tanto `license` como `custom_license` no se pueden proveer juntas."
 
 #: src/olympia/addons/validators.py:63
 msgid "This field, or custom_license, is required for listed versions."
-msgstr ""
+msgstr "Este campo, o custom_license, es obligatorio para las versiones relacionadas."
 
 #: src/olympia/addons/validators.py:91
 msgid "Wrong add-on type for this license."
@@ -445,27 +445,27 @@ msgstr "Este campo es requerido para los complementos con versiones listadas."
 
 #: src/olympia/addons/validators.py:157
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
-msgstr ""
+msgstr "Se requiere establecer los metadatos del complemento para crear una versión que se pueda enlistar: {missing_addon_metadata}."
 
 #: src/olympia/addons/validators.py:272
 msgid "A GUID must be specified in the manifest."
-msgstr ""
+msgstr "Es necesario especificar un identificador único global GUID en el manifiesto."
 
 #: src/olympia/addons/validators.py:276
 msgid "GUID mismatch between the URL and manifest."
-msgstr ""
+msgstr "El GUID no coincide con la URL ni con el manifiesto."
 
 #: src/olympia/addons/validators.py:290
 msgid "Source cannot be changed because this version has been reviewed by Mozilla."
-msgstr ""
+msgstr "La fuente no puede cambiarse porque esta versión ha sido revisada por Mozilla."
 
 #: src/olympia/addons/validators.py:314
 msgid "This type of add-on does not allow custom compatibility."
-msgstr ""
+msgstr "Esta clase de complemento no permite compatibilidad personalizada."
 
 #: src/olympia/addons/validators.py:332
 msgid "This endpoint is not valid for Themes."
-msgstr ""
+msgstr "Este endpoint no es válido para temas."
 
 #: src/olympia/addons/templates/addons/includes/dashboard_tabs.html:4 src/olympia/devhub/templates/devhub/nav.html:15 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:19
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html:16
@@ -740,7 +740,7 @@ msgstr "Error al descodificar la firma."
 
 #: src/olympia/api/authentication.py:196
 msgid "Invalid JWT Token."
-msgstr ""
+msgstr "Token JWT inválido."
 
 #: src/olympia/api/authentication.py:274
 msgid "Invalid token or hash."
@@ -756,19 +756,19 @@ msgstr "No disponible por razones legales."
 
 #: src/olympia/api/fields.py:91
 msgid "The language code \"{lang_code}\" is invalid."
-msgstr ""
+msgstr "El código de idioma \"{lang_code}\" es inválido."
 
 #: src/olympia/api/fields.py:92
 msgid "You must provide an object of {{lang-code:value}}."
-msgstr ""
+msgstr "Tienes que dar un objeto de {{lang-code:value}}."
 
 #: src/olympia/api/fields.py:93
 msgid "A value in the default locale of \"{lang_code}\" is required."
-msgstr ""
+msgstr "Se requiere un valor en el idioma predeterminado \"{lang_code}\"."
 
 #: src/olympia/api/fields.py:96
 msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
-msgstr ""
+msgstr "Se requiere un valor en el idioma predeterminado \"{lang_code}\" si se establecen otras traducciones."
 
 #: src/olympia/api/fields.py:386
 #, python-format
@@ -777,11 +777,11 @@ msgstr "Pk o URL \"%s\" inválida - el objeto no existe."
 
 #: src/olympia/api/models.py:148
 msgid "Confirmation for developer API keys"
-msgstr ""
+msgstr "Confirmación de claves de API para desarrolladores"
 
 #: src/olympia/api/throttling.py:112
 msgid "You have submitted this form too many times recently. Please try again after some time."
-msgstr ""
+msgstr "Has enviado este formulario demasiadas veces recientemente. Por favor, vuelve a intentarlo después de un tiempo."
 
 #: src/olympia/bandwagon/serializers.py:71
 msgid "This custom URL is already in use by another one of your collections."
