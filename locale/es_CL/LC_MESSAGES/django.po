@@ -1026,7 +1026,7 @@ msgstr "{addon} no listado."
 #. L10n: {0} is the add-on GUID.
 #: src/olympia/constants/activity.py:546
 msgid "Add-on id {0} with GUID {1} has been deleted"
-msgstr ""
+msgstr "El complemento con ID {0} y GUID {1} se eliminó"
 
 #: src/olympia/constants/activity.py:553 src/olympia/constants/activity.py:559
 msgid "{file} was signed."
