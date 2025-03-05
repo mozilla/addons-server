@@ -2886,23 +2886,6 @@ class TestContentDecision(TestCase):
             expect_create_override_call=True,
         )
 
-    def _check_notify_emails(self, decision, log_entry):
-        assert len(mail.outbox) == 1
-        assert mail.outbox[0].to == [decision.addon.authors.first().email]
-        assert str(log_entry.id) in mail.outbox[0].extra_headers['Message-ID']
-        assert 'days' not in mail.outbox[0].body
-        assert 'some review text' in mail.outbox[0].body
-        assert 'some policy text' not in mail.outbox[0].body
-        AttachmentLog.objects.create(
-            activity_log=log_entry,
-            file=ContentFile('Pseudo File', name='attachment.txt'),
-        )
-        decision.send_notifications()
-        assert 'An attachment was provided.' not in mail.outbox[0].body
-        assert 'To respond or view the file,' not in mail.outbox[0].body
-        assert 'An attachment was provided.' in mail.outbox[1].body
-        assert 'To respond or view the file,' in mail.outbox[1].body
-
     def _test_execute_action_ban_user_outcome(self, decision):
         self.assertCloseToNow(decision.action_date)
         self.assertCloseToNow(decision.user.reload().banned)
@@ -2970,12 +2953,19 @@ class TestContentDecision(TestCase):
         alog = ActivityLog.objects.filter(
             action=amo.LOG.HELD_ACTION_FORCE_DISABLE.id
         ).get()
+        # attachment is linked to the original decision activity log
+        AttachmentLog.objects.create(
+            activity_log=alog,
+            file=ContentFile('Pseudo File', name='attachment.txt'),
+        )
         assert alog.contentdecisionlog_set.get().decision == decision
         decision.send_notifications()
         assert len(mail.outbox) == 0
 
         decision.execute_action(release_hold=True)
         self._test_execute_action_disable_addon_outcome(decision)
+        assert 'An attachment was provided.' in mail.outbox[0].body
+        assert 'To respond or view the file,' in mail.outbox[0].body
 
     def test_execute_action_disable_addon(self):
         addon = addon_factory(users=[user_factory()])
@@ -2988,6 +2978,8 @@ class TestContentDecision(TestCase):
         decision.execute_action()
         self._test_execute_action_disable_addon_outcome(decision)
         assert '14 day(s)' not in mail.outbox[0].body
+        assert 'An attachment was provided.' not in mail.outbox[0].body
+        assert 'To respond or view the file,' not in mail.outbox[0].body
 
     def _test_execute_action_reject_version_outcome(self, decision):
         decision.send_notifications()
@@ -3024,12 +3016,19 @@ class TestContentDecision(TestCase):
             action=amo.LOG.HELD_ACTION_REJECT_VERSIONS.id
         ).get()
         assert alog.contentdecisionlog_set.get().decision == decision
+        # attachment is linked to the original decision activity log
+        AttachmentLog.objects.create(
+            activity_log=alog,
+            file=ContentFile('Pseudo File', name='attachment.txt'),
+        )
         decision.send_notifications()
         assert len(mail.outbox) == 0
         assert not version.needshumanreview_set.filter(is_active=True).exists()
 
         decision.execute_action(release_hold=True)
         self._test_execute_action_reject_version_outcome(decision)
+        assert 'An attachment was provided.' in mail.outbox[0].body
+        assert 'To respond or view the file,' in mail.outbox[0].body
 
     def test_execute_action_reject_version(self):
         addon = addon_factory(users=[user_factory()])
@@ -3061,6 +3060,8 @@ class TestContentDecision(TestCase):
         self._test_execute_action_reject_version_outcome(decision)
         assert '14 day(s)' not in mail.outbox[0].body
         assert not version.needshumanreview_set.filter(is_active=True).exists()
+        assert 'An attachment was provided.' not in mail.outbox[0].body
+        assert 'To respond or view the file,' not in mail.outbox[0].body
 
     def _test_execute_action_reject_version_delayed_outcome(self, decision):
         decision.send_notifications()
@@ -3405,7 +3406,21 @@ class TestContentDecision(TestCase):
             process_mock.assert_not_called()
             hold_mock.assert_not_called()
         decision.send_notifications()
-        self._check_notify_emails(decision, log_entry)
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].to == [decision.addon.authors.first().email]
+        assert str(log_entry.id) in mail.outbox[0].extra_headers['Message-ID']
+        assert 'days' not in mail.outbox[0].body
+        assert 'some review text' in mail.outbox[0].body
+        assert 'some policy text' not in mail.outbox[0].body
+        AttachmentLog.objects.create(
+            activity_log=log_entry,
+            file=ContentFile('Pseudo File', name='attachment.txt'),
+        )
+        decision.send_notifications()
+        assert 'An attachment was provided.' not in mail.outbox[0].body
+        assert 'To respond or view the file,' not in mail.outbox[0].body
+        assert 'An attachment was provided.' in mail.outbox[1].body
+        assert 'To respond or view the file,' in mail.outbox[1].body
 
     def test_get_target_review_url(self):
         addon = addon_factory()
