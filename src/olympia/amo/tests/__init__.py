@@ -170,9 +170,9 @@ def check_links(expected, elements, selected=None):
 
         elm = elements.eq(idx)
         if text is not None:
-            assert (
-                elm.text() == text
-            ), f'At index {idx}, expected {text}, got {elm.text()}'
+            assert elm.text() == text, (
+                f'At index {idx}, expected {text}, got {elm.text()}'
+            )
         if link is not None:
             # If we passed an <li>, try to find an <a>.
             if not elm.filter('a'):
@@ -507,9 +507,9 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
             now = datetime.now()
         now_ts = time.mktime(now.timetuple())
 
-        assert (
-            dt_earlier_ts < now_ts < dt_later_ts
-        ), f'Expected datetime to be within a minute of {now}. Got {dt!r}.'
+        assert dt_earlier_ts < now_ts < dt_later_ts, (
+            f'Expected datetime to be within a minute of {now}. Got {dt!r}.'
+        )
 
     def assertQuerySetContentsEqual(self, qs1, qs2):
         """

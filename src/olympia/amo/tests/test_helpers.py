@@ -97,8 +97,7 @@ def test_template_escaping():
     # Unless marked explicitly as safe
     expected = '<a href="...">This is a <h1>test</h1></a>'
     original = (
-        '{{ _(\'<a href="...">{0}</a>\')'
-        '|format_html("This is a <h1>test</h1>"|safe) }}'
+        '{{ _(\'<a href="...">{0}</a>\')|format_html("This is a <h1>test</h1>"|safe) }}'
     )
     assert render(original) == expected
 
@@ -113,7 +112,7 @@ def test_template_escaping():
     expected = '<b>5 users</b>'
     assert (
         render(
-            "{{ ngettext('<b>{0} user</b>', '<b>{0} users</b>', 2)" '|format_html(5) }}'
+            "{{ ngettext('<b>{0} user</b>', '<b>{0} users</b>', 2)|format_html(5) }}"
         )
         == expected
     )

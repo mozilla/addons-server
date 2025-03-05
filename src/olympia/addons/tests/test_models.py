@@ -1207,12 +1207,12 @@ class TestAddonModels(TestCase):
 
         review_list = [rating.pk for rating in addon.ratings]
 
-        assert (
-            new_rating.pk in review_list
-        ), 'Original review must show up in review list.'
-        assert (
-            new_reply.pk not in review_list
-        ), 'Developer reply must not show up in review list.'
+        assert new_rating.pk in review_list, (
+            'Original review must show up in review list.'
+        )
+        assert new_reply.pk not in review_list, (
+            'Developer reply must not show up in review list.'
+        )
 
     def test_update_logs(self):
         addon = Addon.objects.get(id=3615)

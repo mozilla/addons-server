@@ -138,8 +138,9 @@ class TestExtractDiscoStringsCommand(TestCase):
             body=json.dumps(shelves_fake_data),
         )
 
-        with tempfile.NamedTemporaryFile() as file_, override_settings(
-            EDITORIAL_CONTENT_FILENAME=file_.name
+        with (
+            tempfile.NamedTemporaryFile() as file_,
+            override_settings(EDITORIAL_CONTENT_FILENAME=file_.name),
         ):
             call_command('extract_content_strings')
 
