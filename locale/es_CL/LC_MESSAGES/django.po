@@ -1050,7 +1050,7 @@ msgstr "Respuesta del revisor"
 
 #: src/olympia/constants/activity.py:613
 msgid "Notes for reviewers changed for {addon} {version}."
-msgstr ""
+msgstr "Notas para revisores modificadas para {addon} {version}."
 
 #: src/olympia/constants/activity.py:614
 msgid "Notes for reviewers changed"
@@ -1595,23 +1595,23 @@ msgstr "Licencia Apache 2.0"
 
 #: src/olympia/constants/licenses.py:29
 msgid "GNU General Public License v2.0 only"
-msgstr ""
+msgstr "Solo Licencia Pública General de GNU v2.0"
 
 #: src/olympia/constants/licenses.py:36
 msgid "GNU General Public License v3.0 only"
-msgstr ""
+msgstr "Solo Licencia Pública General de GNU v3.0"
 
 #: src/olympia/constants/licenses.py:43
 msgid "GNU Lesser General Public License v2.1 only"
-msgstr ""
+msgstr "Solo Licencia Pública General Menor de GNU v2.1"
 
 #: src/olympia/constants/licenses.py:50
 msgid "GNU Lesser General Public License v3.0 only"
-msgstr ""
+msgstr "Solo Licencia Pública General Menor de GNU v3.0"
 
 #: src/olympia/constants/licenses.py:57
 msgid "GNU Affero General Public License v3.0 only"
-msgstr ""
+msgstr "Solo Licencia Pública General Affero de GNU v3.0"
 
 #: src/olympia/constants/licenses.py:64
 msgid "MIT License"
@@ -1623,7 +1623,7 @@ msgstr "Licencia ISC"
 
 #: src/olympia/constants/licenses.py:78
 msgid "BSD 2-Clause \"Simplified\" License"
-msgstr ""
+msgstr "Licencia BSD 2-Clause \"Simplified\""
 
 #: src/olympia/constants/licenses.py:85
 msgid "Mozilla Public License 1.1"
@@ -1770,9 +1770,8 @@ msgid "Delay auto-approval indefinitely and add restrictions"
 msgstr "Retrasar la aprobación automática indefinidamente y agregar restricciones"
 
 #: src/olympia/constants/scanners.py:31
-#, fuzzy
 msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
-msgstr "Retrasar la aprobación automática indefinidamente"
+msgstr "Retrasar la aprobación automática indefinidamente y agregar restricciones a las aprobaciones futuras"
 
 #: src/olympia/constants/scanners.py:42 src/olympia/files/utils.py:1025
 msgid "Unknown"
@@ -2047,7 +2046,7 @@ msgstr "No tienes credenciales API."
 
 #: src/olympia/devhub/forms.py:1549
 msgid "Something went wrong, please contact developer support."
-msgstr ""
+msgstr "Algo se fue a las pailas, por favor contacta al soporte para desarrolladores."
 
 #: src/olympia/devhub/tasks.py:177
 msgid "Invalid or corrupt add-on file."
@@ -5628,37 +5627,37 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:919
 msgid "Instantly translate any selected text on web pages."
-msgstr ""
+msgstr "Traduce instantáneamente cualquier texto seleccionado en páginas web."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:922
 msgid "Make Firefox change colors based on time of day."
-msgstr ""
+msgstr "Haz que cambie el color de Firefox según la hora del día."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:925
 msgid "Eliminate YouTube distractions. Remove related and recommended video suggestions, comments & more."
-msgstr ""
+msgstr "Elimina las distracciones de YouTube. Elimina sugerencias de videos relacionados y recomendados, comentarios y más."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:928
 msgid "Take emojis with you everywhere on the web."
-msgstr ""
+msgstr "Lleva emojis contigo a todas partes en la web."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:934
 msgid "Put restrictions on distracting, time-wasting websites."
-msgstr ""
+msgstr "Restringe el acceso a sitios web que causan distracción y pérdida de tiempo."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:937
 msgid "Remove clutter from your Twitter."
-msgstr ""
+msgstr "Elimina el desorden de tu Twitter."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:940
 msgid "Customize YouTube to taste."
-msgstr ""
+msgstr "Personaliza YouTube a tu gusto."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:943
@@ -6055,7 +6054,7 @@ msgstr "Se encontró una identificación de complemento duplicada."
 
 #: src/olympia/files/utils.py:910
 msgid "Version numbers should have at most {max_length} characters."
-msgstr ""
+msgstr "Los números de versión deben tener un máximo de {max_length} caracteres."
 
 #: src/olympia/files/utils.py:916
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
@@ -6929,11 +6928,11 @@ msgstr ""
 
 #: src/olympia/versions/models.py:1209
 msgid "Auto-approved, Confirmed"
-msgstr ""
+msgstr "Autoaprobado, Confirmado"
 
 #: src/olympia/versions/models.py:1211
 msgid "Auto-approved, not Confirmed"
-msgstr ""
+msgstr "Autoaprobado, no Confirmado"
 
 #: src/olympia/versions/models.py:1214
 msgid "Approved, Manual"
