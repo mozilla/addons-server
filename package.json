@@ -32,7 +32,7 @@
   "devDependencies": {
     "@rollup/plugin-inject": "^5.0.5",
     "dotenv": "^16.4.7",
-    "glob": "^11.0.0",
+    "glob": "^11.0.1",
     "jsdom": "^26.0.0",
     "lodash": "^4.17.21",
     "prettier": "^3.5.2",
