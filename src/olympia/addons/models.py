@@ -1619,13 +1619,13 @@ class Addon(OnChangeMixin, ModelBase):
 
         return [
             version
-            for version in self._promoted_versions(
+            for version in self._promoted_addon_versions(
                 promoted_group=promoted_group
             ).approved_applications
             if version in self.all_applications
         ]
 
-    def _promoted_versions(self, version=None, promoted_group=None):
+    def _promoted_addon_versions(self, version=None, promoted_group=None):
         """
         Returns the versions associated with an approval (i.e approved promotions)
         for the given version & group, or current version if none is given.
@@ -1636,8 +1636,6 @@ class Addon(OnChangeMixin, ModelBase):
             version=version if version else self.current_version,
             **({'promoted_group': promoted_group} if promoted_group else {}),
         )
-
-
 
     @cached_property
     def compatible_apps(self):

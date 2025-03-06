@@ -681,7 +681,9 @@ class AddonIndexer:
             {
                 'group_id': promotion.group_id,
                 # store the app approvals because .approved_applications needs it.
-                'approved_for_apps': [app.id for app in obj.approved_applications_for(promotion)]
+                'approved_for_apps': [
+                    app.id for app in obj.approved_applications_for(promotion)
+                ],
             }
             for promotion in obj.promoted
         )

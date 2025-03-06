@@ -42,7 +42,7 @@ from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.core.languages import AMO_LANGUAGES
 from olympia.files.models import File, FileUpload
 from olympia.files.utils import DuplicateAddonID, parse_addon
-from olympia.promoted.models import PromotedAddon, PromotedAddonPromotion
+from olympia.promoted.models import PromotedAddon, PromotedGroup
 from olympia.ratings.utils import get_grouped_ratings
 from olympia.search.filters import AddonAppVersionQueryParam
 from olympia.tags.models import Tag
@@ -961,7 +961,7 @@ class AddonPendingAuthorSerializer(AddonAuthorSerializer):
         return value
 
 
-class PromotionSerializer(AMOModelSerializer):
+class PromotedGroupSerializer(AMOModelSerializer):
     apps = serializers.SerializerMethodField()
     category = ReverseChoiceField(
         choices=PROMOTED_GROUP_CHOICES.api_choices,
@@ -969,7 +969,7 @@ class PromotionSerializer(AMOModelSerializer):
     )
 
     class Meta:
-        model = PromotedAddonPromotion
+        model = PromotedGroup
         fields = (
             'apps',
             'category',
@@ -1149,7 +1149,7 @@ class AddonSerializer(AMOModelSerializer):
 
     def get_promoted(self, obj):
         promoted = obj.promoted
-        return PromotionSerializer(
+        return PromotedGroupSerializer(
             many=True, read_only=True, instance=promoted, addon=obj
         ).data
 
