@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-06 09:47+0000\n"
+"POT-Creation-Date: 2025-03-06 11:33+0000\n"
 "PO-Revision-Date: 2015-06-29 22:55+0000\n"
 "Last-Translator: jimidar <jimidar@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,30 +23,35 @@ msgid "Your add-on should end with .zip, .xpi or .crx"
 msgstr "ਤੁਹਾਡਾ ਐਡ-ਆਨ .xpi, .jar ਜਾਂ .xml ਨਾਲ ਖਤਮ ਹੋਣਾ ਚਾਹੀਦਾ"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#, fuzzy, python-format
+#, fuzzy, python-format, python-brace-format
 msgid "{0}% complete"
 msgstr "{0}% ਮੁਕੰਮਲ"
 
+#, python-brace-format
 msgid "{0} of {1}"
 msgstr "{1} ਵਿੱਚੋਂ {0}"
 
 msgid "Cancel"
 msgstr "ਰੱਦ"
 
+#, python-brace-format
 msgid "Uploading {0}"
 msgstr "{0} ਅੱਪਲੋਡ ਹੋ ਰਿਹਾ"
 
+#, python-brace-format
 msgid "Error with {0}"
 msgstr "{0} ਨਾਲ ਖਾਮੀ"
 
 msgid "Please make sure to report any linting related issues on GitHub"
 msgstr ""
 
+#, python-brace-format
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] "ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦੀ {0} ਖਾਮੀ ਨਾਲ ਵੈਧਤਾ ਫ਼ੇਲ੍ਹ ਹੋਈ।"
 msgstr[1] "ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦੀ {0} ਖਾਮੀਆਂ ਨਾਲ ਵੈਧਤਾ ਫ਼ੇਲ੍ਹ ਹੋਈ।"
 
+#, python-brace-format
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;ਅਤੇ {0} ਹੋਰ"
@@ -55,12 +60,15 @@ msgstr[1] "&hellip;ਅਤੇ {0} ਹੋਰ"
 msgid "See full validation report"
 msgstr "ਪੂਰੀ ਵੈਧਤਾ ਰਿਪੋਰਟ ਵੇਖੋ"
 
+#, python-brace-format
 msgid "Validating {0}"
 msgstr "{0} ਵੈਧਤਾ"
 
+#, python-brace-format
 msgid "Your add-on exceeds the maximum size of {0}."
 msgstr ""
 
+#, python-brace-format
 msgid "Received an empty response from the server; status: {0}"
 msgstr "ਸਰਵਰ ਵੱਲੋਂ ਇੱਕ ਖਾਲੀ ਜਵਾਬ ਮਿਲਿਆ; ਸਥਿਤੀ: {0}"
 
@@ -73,17 +81,20 @@ msgstr "ਵੈਧਤਾ ਦੌਰਾਨ ਅਚਾਨਕ ਸਰਵਰ ਗਲਤ�
 msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
 msgstr ""
 
+#, python-brace-format
 msgid "Finished validating {0}"
 msgstr "{0} ਵੈਧਤਾ ਮੁੰਕਮਲ ਹੋਈ"
 
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr ""
 
+#, python-brace-format
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] ""
 msgstr[1] ""
 
+#, python-brace-format
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] "ਤੁਹਾਡਾ ਐਡ-ਆਨ ਬਿਨਾਂ ਕਿਸੇ ਖ਼ਾਮੀ ਅਤੇ {0} ਸੁਨੇਹੇ ਨਾਲ ਵੈਧ ਹੋਇਆ ਸੀ।"
@@ -118,6 +129,7 @@ msgstr "ਵੈਧਤਾ ਕਾਰਜ ਨੂੰ ਇਹ ਮਸਲੇ ਲੱਭੇ 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "ਤੁਹਾਨੂੰ ਵੱਲੋਂ ਅੱਪਲੋਡ ਕੀਤੀ ਫ਼ਾਈਲ ਕਿਸਮ ਦੀ ਪਛਾਣ ਨਹੀਂ ਹੋਈ।"
 
+#, python-brace-format
 msgid "Your file exceeds the maximum size of {0}."
 msgstr ""
 
@@ -130,52 +142,53 @@ msgstr "ਤਸਵੀਰਾਂ PNG ਜਾਂ JPG ਦੋਨਾਂ ਵਿੱਚ ਇ
 msgid "Videos must be in WebM."
 msgstr "ਵੀਡੀਓ WebM ਵਿੱਚ ਹੋਣੀਆਂ ਚਾਹੀਦੀਆਂ ਹਨ।"
 
+#, python-brace-format
 msgid "Week of {0}"
 msgstr "{0} ਦਾ ਹਫਤਾ"
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{0} download"
 msgid_plural "{0} downloads"
 msgstr[0] "ਡਾਊਨਲੋਡ"
 msgstr[1] "ਡਾਊਨਲੋਡ"
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{0} user"
 msgid_plural "{0} users"
 msgstr[0] "{0} ਯੂਜਰ"
 msgstr[1] "{0} ਯੂਜਰ"
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
 msgstr[0] "{0} ਐਡ-ਆਨ"
 msgstr[1] "{0} ਐਡ-ਆਨ"
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{0} collection"
 msgid_plural "{0} collections"
 msgstr[0] "{0} ਭੰਡਾਰ"
 msgstr[1] "{0} ਭੰਡਾਰ"
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{0} review"
 msgid_plural "{0} reviews"
 msgstr[0] "{0} ਸਮੀਖਿਅਕ"
 msgstr[1] "{0} ਸਮੀਖਿਅਕ"
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{0} sale"
 msgid_plural "{0} sales"
 msgstr[0] "{0} ਸੇਲ"
 msgstr[1] "{0} ਸੇਲ"
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{0} refund"
 msgid_plural "{0} refunds"
 msgstr[0] "{0} ਰਿਫੰਡ"
 msgstr[1] "{0} ਰਿਫੰਡ"
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{0} install"
 msgid_plural "{0} installs"
 msgstr[0] "{0} ਇੰਸਟਾਲ"
@@ -197,6 +210,7 @@ msgid "More Info..."
 msgstr "ਜਿਆਦਾ ਜਾਣਕਾਰੀ...."
 
 #. L10n: {0} is an ISO-formatted date.
+#, python-brace-format
 msgid "Details for {0}"
 msgstr "{0} ਲਈ ਵੇਰਵਾ"
 
@@ -372,238 +386,287 @@ msgid "Android"
 msgstr "ਐਨਡਰੋਇਡ"
 
 #. L10n: {0} is an integer.
+#, python-brace-format
 msgid "Downloads and Daily Users, last {0} days"
 msgstr "ਡਾਊਨਲੋਡ ਅਤੇ ਰੋਜਾਨਾਂ ਯੂਜਰ, ਆਖਰੀ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, python-brace-format
 msgid "Downloads and Daily Users from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਤੱਕ ਡਾਊਨਲੋਡ ਅਤੇ ਰੋਜਾਨਾਂ ਯੂਜਰ"
 
 #. L10n: {0} is an integer.
+#, python-brace-format
 msgid "Installs and Daily Users, last {0} days"
 msgstr "ਇੰਸਟਾਲ ਅਤੇ ਰੋਜਾਨਾਂ ਯੂਜਰ, ਆਖਰੀ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, python-brace-format
 msgid "Installs and Daily Users from {0} to {1}"
 msgstr "{0} ਤੋ {1} ਤੱਕ ਇੰਸਟਾਲ ਅਤੇ ਰੋਜਾਨਾਂ ਯੂਜਰ"
 
 #. L10n: {0} is an integer.
+#, python-brace-format
 msgid "Downloads, last {0} days"
 msgstr "ਡਾਊਨਲੋਡ, ਆਖਰੀ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, python-brace-format
 msgid "Downloads from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਤੱਕ ਡਾਊਨਲੋਡ"
 
 #. L10n: {0} is an integer.
+#, python-brace-format
 msgid "Daily Users, last {0} days"
 msgstr "ਰੋਜਾਨਾਂ ਯੂਜਰ, ਆਖਰੀ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, python-brace-format
 msgid "Daily Users from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਤੱਕ ਰੋਜਾਨਾਂ ਯੂਜਰ"
 
 #. L10n: {0} is an integer.
+#, python-brace-format
 msgid "Applications, last {0} days"
 msgstr "ਐਪਲੀਕੇਸ਼ਨ, ਆਖਰੀ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, python-brace-format
 msgid "Applications from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਤੱਕ ਐਪਲੀਕੇਸ਼ਨ"
 
 #. L10n: {0} is an integer.
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Countries, last {0} days"
 msgstr "ਪਿਛਲੇ {0} ਦਿਨ, ਯੋਗਦਾਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Countries from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਤੱਕ ਯੋਗਦਾਨ"
 
 #. L10n: {0} is an integer.
+#, python-brace-format
 msgid "Platforms, last {0} days"
 msgstr "ਪਲੇਟਫਾਰਮ, ਆਖਰੀ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, python-brace-format
 msgid "Platforms from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਤੱਕ ਪਲੇਟਫਾਰਮ"
 
 #. L10n: {0} is an integer.
+#, python-brace-format
 msgid "Languages, last {0} days"
 msgstr "ਭਾਸ਼ਾਵਾਂ, ਆਖਰੀ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, python-brace-format
 msgid "Languages from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਤੱਕ ਭਾਸ਼ਾਵਾਂ"
 
 #. L10n: {0} is an integer.
+#, python-brace-format
 msgid "Add-on Versions, last {0} days"
 msgstr "ਐਡ-ਆਨ ਵਰਜਨ, ਆਖਰੀ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, python-brace-format
 msgid "Add-on Versions from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਤੱਕ ਐਡ-ਆਨ ਵਰਜਨ"
 
 #. L10n: {0} is an integer.
+#, python-brace-format
 msgid "Add-on Status, last {0} days"
 msgstr "ਐਡ-ਆਨ ਸਥਿਤੀ, ਆਖਰੀ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, python-brace-format
 msgid "Add-on Status from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਤੱਕ ਐਡ-ਆਨ ਸਥਿਤੀ"
 
 #. L10n: {0} is an integer.
+#, python-brace-format
 msgid "Download Sources, last {0} days"
 msgstr "ਡਾਊਨਲੋਡ ਸਰੋਤ, ਆਖਰੀ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, python-brace-format
 msgid "Download Sources from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਤੱਕ ਡਾਊਨਲੋਡ ਸਰੋਤ"
 
 #. L10n: {0} is an integer.
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Download Mediums, last {0} days"
 msgstr "ਡਾਊਨਲੋਡ, ਆਖਰੀ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Download Mediums from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਤੱਕ ਡਾਊਨਲੋਡ"
 
 #. L10n: {0} is an integer.
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Download Contents, last {0} days"
 msgstr "ਡਾਊਨਲੋਡ ਸਰੋਤ, ਆਖਰੀ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Download Contents from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਤੱਕ ਡਾਊਨਲੋਡ"
 
 #. L10n: {0} is an integer.
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Download Campaigns, last {0} days"
 msgstr "ਡਾਊਨਲੋਡ, ਆਖਰੀ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Download Campaigns from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਤੱਕ ਡਾਊਨਲੋਡ"
 
 #. L10n: {0} is an integer.
+#, python-brace-format
 msgid "Contributions, last {0} days"
 msgstr "ਪਿਛਲੇ {0} ਦਿਨ, ਯੋਗਦਾਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, python-brace-format
 msgid "Contributions from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਤੱਕ ਯੋਗਦਾਨ"
 
 #. L10n: {0} is an integer.
+#, python-brace-format
 msgid "Site Metrics, last {0} days"
 msgstr "ਪਿਛਲੇ {0} ਦਿਨ, ਸਾਈਟ ਮੈਟ੍ਰਿਕਸ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, python-brace-format
 msgid "Site Metrics from {0} to {1}"
 msgstr "ਵਲੋ ਸਾਈਟ ਬਿਓਰਾ {0} ਤੋ {1}"
 
 #. L10n: {0} is an integer.
+#, python-brace-format
 msgid "Add-ons in Use, last {0} days"
 msgstr "ਅੈਡ-ਓਨ ਵਰਤੋ ਵਿੱਚ, ਆਖਰੀ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, python-brace-format
 msgid "Add-ons in Use from {0} to {1}"
 msgstr "ਐਡ-ਆਨ ਵਰਤੋ ਵਿਚ {0} ਤੋਂ {1}"
 
 #. L10n: {0} is an integer.
+#, python-brace-format
 msgid "Add-ons Downloaded, last {0} days"
 msgstr "ਆਖਰੀ {0} ਦਿਨ,ਐਡ-ਆਨ ਡਾਊਨਲੋਡ ਹੋਏ,"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, python-brace-format
 msgid "Add-ons Downloaded from {0} to {1}"
 msgstr "ਐਡ-ਆਨ {0} ਤੋਂ {1} ਤੱਕ ਡਾਊਨਲੋਡ ਹੋਇਆ"
 
 #. L10n: {0} is an integer.
+#, python-brace-format
 msgid "Add-ons Created, last {0} days"
 msgstr "ਆਖਰੀ {0} ਦਿਨ, ਅੈਡ-ਓਨ ਰਚੇ ਗਏ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, python-brace-format
 msgid "Add-ons Created from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਵਲੋ ਐਡ-ਆਨ ਬਣਾਓ"
 
 #. L10n: {0} is an integer.
+#, python-brace-format
 msgid "Add-ons Updated, last {0} days"
 msgstr " ਆਖਰੀ {0} ਦਿਨ, ਐਡ-ਆਨ ਅੱਪਡੇਟ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, python-brace-format
 msgid "Add-ons Updated from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਵਿੱਚੋਂ ਐਡ-ਆਨ ਅੱਪਡੇਟ"
 
 #. L10n: {0} is an integer.
+#, python-brace-format
 msgid "Reviews Written, last {0} days"
 msgstr " ਆਖਰੀ {0} ਦਿਨ, ਲਿਖਤੀ ਸਮੀਖਿਅਕ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, python-brace-format
 msgid "Reviews Written from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਤੱਕ ਲਿਖਤੀ ਸਮੀਖਿਅਕ"
 
 #. L10n: {0} is an integer.
+#, python-brace-format
 msgid "User Signups, last {0} days"
 msgstr "ਪਿਛਲੇ {0} ਦਿਨ, ਯੂਜਰ ਸਾਈਨ ਅੱਪ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, python-brace-format
 msgid "User Signups from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਤੱਕ ਯੂਜਰ ਸਾਈਨ ਅੱਪ"
 
 #. L10n: {0} is an integer.
+#, python-brace-format
 msgid "Collections Created, last {0} days"
 msgstr "ਪਿਛਲੇ {0} ਦਿਨ, ਭੰਡਾਰ ਬਣਾਏ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, python-brace-format
 msgid "Collections Created from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਤੱਕ ਬਣਾਏ ਭੰਡਾਰ"
 
 #. L10n: {0} is an integer.
+#, python-brace-format
 msgid "Subscribers, last {0} days"
 msgstr "ਪਿਛਲੇ {0} ਦਿਨ, ਗਾਹਕ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, python-brace-format
 msgid "Subscribers from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਤੱਕ ਗਾਹਕ"
 
 #. L10n: {0} is an integer.
+#, python-brace-format
 msgid "Ratings, last {0} days"
 msgstr "ਪਿਛਲੇ {0} ਦਿਨ, ਰੇਟਿੰਗ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, python-brace-format
 msgid "Ratings from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਤੱਕ ਰੇਟਿੰਗ"
 
 #. L10n: {0} is an integer.
+#, python-brace-format
 msgid "Sales, last {0} days"
 msgstr "ਆਖਰੀ {0} ਦਿਨ, ਵਿਕਰੀ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, python-brace-format
 msgid "Sales from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਵਿੱਚੋਂ ਵਿਕਰੀ"
 
 #. L10n: {0} is an integer.
+#, python-brace-format
 msgid "Installs, last {0} days"
 msgstr "ਆਖਰੀ {0} ਦਿਨ, ਇੰਸਟਾਲ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, python-brace-format
 msgid "Installs from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਵੱਲੋਂ ਇੰਸਟਾਲ"
 
 #. L10n: {0} and {1} are integers.
+#, python-brace-format
 msgid "<b>{0}</b> in last {1} days"
 msgstr "<b>{0}</b> ਆਖਰ ਵਿੱਚ {1} ਦਿਨ"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
+#, python-brace-format
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "<b>{0}</b> ਵੱਲੋਂ {1} ਤੋਂ {2}"
 
 #. L10n: {0} and {1} are integers.
+#, python-brace-format
 msgid "<b>{0}</b> average in last {1} days"
 msgstr "<b>{0}</b>ਅੌਸਤ ਆਖਰੀ {1} ਦਿਨਾਂ ਵਿਚ"
 
@@ -625,6 +688,7 @@ msgstr "ਨਵੇ ਲੇੇਖਕ ਦਾ ਈ-ਮੇਲ ਪਤਾ ਦਰਜ ਕ�
 msgid "There was an error uploading your file."
 msgstr "ਤੁਹਾਡੀ ਫਾਈਲ ਨੂੰ ਅੱਪਲੋਡ ਕਰਨ ਦੌਰਾਨ ਇੱਕ ਗਲਤੀ ਆਈ ਸੀ।"
 
+#, python-brace-format
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} ਫਾਈਲ"
@@ -633,13 +697,13 @@ msgstr[1] "{files} ਫਾਈਲਾਂ"
 msgid "Image changes being processed"
 msgstr "ਚਿੱਤਰ ਬਦਲਾਓ ਕਾਰਵਾਈ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ"
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> ਅੱਖਰ ਖੱਬੇ."
 msgstr[1] "<b>{0}</b> ਅੱਖਰ ਖੱਬੇ."
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "<b>{0}</b> ਅੱਖਰ ਖੱਬੇ."
@@ -651,12 +715,14 @@ msgstr "ਇਹ ਫ਼ੀਚਰ ਅਸਥਾਈ ਤੌਰ ਤੇ ਬੰਦ ਹੈ
 msgid "Remove this localization"
 msgstr "ਇਹ ਸਥਾਨੀਕਰਨ ਹਟਾਓ"
 
+#, python-brace-format
 msgid "{name} was viewing this page first."
 msgstr "{name} ਇਹ ਸਫਾ ਪਹਿਲਾਂ ਦੇਖਿਆ ਸੀ।"
 
 msgid "Review page polling failed."
 msgstr ""
 
+#, python-brace-format
 msgid "{name} was viewing this add-on first."
 msgstr "{name} ਇਹ ਐਡ-ਆਨ ਪਹਿਲਾਂ ਦੇਖਿਆ ਸੀ।"
 
@@ -678,6 +744,7 @@ msgstr ""
 msgid "Review notes found"
 msgstr ""
 
+#, python-brace-format
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr ""
 
@@ -723,10 +790,11 @@ msgstr "ਗਲਤੀ"
 msgid "Warning"
 msgstr "ਚੇਤਾਵਨੀ"
 
+#, python-brace-format
 msgid "{0} line {1} column {2}"
 msgstr ""
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{0} line {1}"
 msgstr "{1} ਵਿੱਚੋਂ {0}"
 
@@ -736,16 +804,19 @@ msgstr "ਐਡ-ਆਨ ਪ੍ਰਮਾਣਿਕਤਾ ਫ਼ੇਲ੍ਹ ਹੋਈ�
 msgid "Add-on passed validation."
 msgstr "ਐਡ-ਆਨ ਨੇ ਪ੍ਰਮਾਣਿਕਤਾ ਪਾਸ ਕੀਤੀ।"
 
+#, python-brace-format
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} ਗਲਤੀ"
 msgstr[1] "{0}ਗਲਤੀਆਂ"
 
+#, python-brace-format
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} ਚੇਤਾਵਨੀ"
 msgstr[1] "{0} ਚੇਤਾਵਨੀਆਂ"
 
+#, python-brace-format
 msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] "{0} ਨੋਟਿਸ"

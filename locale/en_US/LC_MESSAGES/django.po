@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-06 09:46+0000\n"
+"POT-Creation-Date: 2025-03-06 11:33+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -17,6 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.2.0\n"
 
+#, python-brace-format
 msgid "Mozilla Add-ons: {} [{}]"
 msgstr "Mozilla Add-ons: {} [{}]"
 
@@ -35,9 +36,11 @@ msgstr "Please explain why you believe that this decision was made in error, and
 msgid "User profile"
 msgstr "User profile"
 
+#, python-brace-format
 msgid "\"{}\" for {}"
 msgstr "\"{}\" for {}"
 
+#, python-brace-format
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr "Please ensure this field has no more than {max_length} characters."
 
@@ -47,6 +50,7 @@ msgstr "Invalid value"
 msgid "Appeal reviewer decision"
 msgstr "Appeal reviewer decision"
 
+#, python-brace-format
 msgid "Decision {0}"
 msgstr "Decision {0}"
 
@@ -239,7 +243,7 @@ msgstr "Full Add-on Review"
 msgid "Review"
 msgstr "Review"
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Version {0}"
 msgid_plural "Versions {0}"
 msgstr[0] "Version {0}"
@@ -255,6 +259,7 @@ msgstr "Request content length is too large."
 msgid "Add-on uploads are temporarily unavailable."
 msgstr "Add-on uploads are temporarily unavailable."
 
+#, python-brace-format
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
 msgstr "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
 
@@ -264,6 +269,7 @@ msgstr "The \"other\" category cannot be combined with another category"
 msgid "Invalid category name."
 msgstr "Invalid category name."
 
+#, python-brace-format
 msgid "URL domain must be one of [{domains}]."
 msgstr "URL domain must be one of [{domains}]."
 
@@ -273,9 +279,11 @@ msgstr "URL path for GitHub Sponsors must contain /sponsors/."
 msgid "URLs must start with https://."
 msgstr "URLs must start with https://."
 
+#, python-brace-format
 msgid "License with slug={value} does not exist."
 msgstr "License with slug={value} does not exist."
 
+#, python-brace-format
 msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr "Unsupported file type, please upload an archive file ({extensions})."
 
@@ -320,9 +328,11 @@ msgstr "File is already disabled."
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 
+#, python-brace-format
 msgid "Version {version_string} was uploaded before and deleted."
 msgstr "Version {version_string} was uploaded before and deleted."
 
+#, python-brace-format
 msgid "Version {version_string} already exists."
 msgstr "Version {version_string} already exists."
 
@@ -359,6 +369,7 @@ msgstr "This slug cannot be used. Please choose another."
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Add-on names cannot contain the Mozilla or Firefox trademarks."
 
+#, python-brace-format
 msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
 msgstr "Version {version_string} must be greater than the previous approved version {previous_version_string}."
 
@@ -377,6 +388,7 @@ msgstr "Custom licenses are not supported for themes."
 msgid "This field is required for add-ons with listed versions."
 msgstr "This field is required for add-ons with listed versions."
 
+#, python-brace-format
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
 msgstr "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
 
@@ -564,10 +576,12 @@ msgstr "Add-on uploads have been temporarily disabled. Please check back later."
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird
+#, python-brace-format
 msgid "Add-ons for {0}"
 msgstr "Add-ons for {0}"
 
 #. L10n: relative time in the past, like '4 days ago'
+#, python-brace-format
 msgid "{0} ago"
 msgstr "{0} ago"
 
@@ -618,15 +632,18 @@ msgstr "Email Address"
 msgid "Unavailable for legal reasons."
 msgstr "Unavailable for legal reasons."
 
+#, python-brace-format
 msgid "The language code \"{lang_code}\" is invalid."
 msgstr "The language code \"{lang_code}\" is invalid."
 
 msgid "You must provide an object of {{lang-code:value}}."
 msgstr "You must provide an object of {{lang-code:value}}."
 
+#, python-brace-format
 msgid "A value in the default locale of \"{lang_code}\" is required."
 msgstr "A value in the default locale of \"{lang_code}\" is required."
 
+#, python-brace-format
 msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
 msgstr "A value in the default locale of \"{lang_code}\" is required if other translations are set."
 
@@ -666,86 +683,106 @@ msgstr "Blocked"
 msgid "Restricted"
 msgstr "Restricted"
 
+#, python-brace-format
 msgid "{addon} was created."
 msgstr "{addon} was created."
 
+#, python-brace-format
 msgid "{addon} properties edited."
 msgstr "{addon} properties edited."
 
+#, python-brace-format
 msgid "{addon} description edited."
 msgstr "{addon} description edited."
 
+#, python-brace-format
 msgid "Categories edited for {addon}."
 msgstr "Categories edited for {addon}."
 
 #. L10n: {0} is the user role.
+#, python-brace-format
 msgid "{user} ({0}) added to {addon}."
 msgstr "{user} ({0}) added to {addon}."
 
 #. L10n: {0} is the user role.
+#, python-brace-format
 msgid "{user} ({0}) removed from {addon}."
 msgstr "{user} ({0}) removed from {addon}."
 
+#, python-brace-format
 msgid "Contributions for {addon}."
 msgstr "Contributions for {addon}."
 
+#, python-brace-format
 msgid "{addon} disabled."
 msgstr "{addon} disabled."
 
+#, python-brace-format
 msgid "{addon} enabled."
 msgstr "{addon} enabled."
 
 #. L10n: {status} is the status
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{addon} status changed to {status}."
 msgstr "{addon} status changed to {0}."
 
+#, python-brace-format
 msgid "{version} added to {addon}."
 msgstr "{version} added to {addon}."
 
+#, python-brace-format
 msgid "{version} edited for {addon}."
 msgstr "{version} edited for {addon}."
 
 #. L10n: {0} is the version number
+#, python-brace-format
 msgid "Version {0} deleted from {addon}."
 msgstr "Version {0} deleted from {addon}."
 
+#, python-brace-format
 msgid "File {file} added to {version} of {addon}."
 msgstr "File {file} added to {version} of {addon}."
 
+#, python-brace-format
 msgid "File {0} deleted from {version} of {addon}."
 msgstr "File {0} deleted from {version} of {addon}."
 
+#, python-brace-format
 msgid "{addon} {version} approved."
 msgstr "{addon} {version} approved."
 
 msgid "Approved"
 msgstr "Approved"
 
+#, python-brace-format
 msgid "{addon} {version} given preliminary review."
 msgstr "{addon} {version} given preliminary review."
 
 msgid "Preliminarily approved"
 msgstr "Preliminarily approved"
 
+#, python-brace-format
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version} rejected."
 
 msgid "Rejected"
 msgstr "Rejected"
 
+#, python-brace-format
 msgid "{addon} {version} retained."
 msgstr "{addon} {version} retained."
 
 msgid "Retained"
 msgstr "Retained"
 
+#, python-brace-format
 msgid "{addon} {version} review requested."
 msgstr "{addon} {version} review requested."
 
 msgid "Review requested"
 msgstr "Review requested"
 
+#, python-brace-format
 msgid "{addon} {version} more information requested."
 msgstr "{addon} {version} more information requested."
 
@@ -755,52 +792,61 @@ msgstr "More information requested"
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 
+#, python-brace-format
 msgid "{tag} added to {addon}."
 msgstr "{tag} added to {addon}."
 
+#, python-brace-format
 msgid "{tag} removed from {addon}."
 msgstr "{tag} removed from {addon}."
 
+#, python-brace-format
 msgid "{addon} added to {collection}."
 msgstr "{addon} added to {collection}."
 
+#, python-brace-format
 msgid "{addon} removed from {collection}."
 msgstr "{addon} removed from {collection}."
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{rating} for {addon} written."
 msgstr "{review} for {addon} written."
 
 #. L10n: {0} is the application, {1} is the version of the app
+#, python-brace-format
 msgid "{0} {1} added."
 msgstr "{0} {1} added."
 
 #. L10n: {0} is the user role
+#, python-brace-format
 msgid "{user} role changed to {0} for {addon}."
 msgstr "{user} role changed to {0} for {addon}."
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{addon} is now licensed under {0}."
 msgstr "{addon} is now licensed under {0.name}."
 
+#, python-brace-format
 msgid "{addon} policy changed."
 msgstr "{addon} policy changed."
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{addon} icon or previews changed."
 msgstr "{addon} icon changed."
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{rating} for {addon} approved."
 msgstr "{review} for {addon} approved."
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Review {rating} for {addon} deleted."
 msgstr "Review {review} for {addon} deleted."
 
+#, python-brace-format
 msgid "Application max version for {version} updated."
 msgstr "Application max version for {version} updated."
 
+#, python-brace-format
 msgid "Authors emailed about compatibility of {version}."
 msgstr "Authors emailed about compatibility of {version}."
 
@@ -810,6 +856,7 @@ msgstr "Email sent to Author about add-on compatibility."
 msgid "Password changed."
 msgstr "Password changed."
 
+#, python-brace-format
 msgid "{addon} {version} approved but waiting to be made public."
 msgstr "{addon} {version} approved but waiting to be made public."
 
@@ -819,28 +866,32 @@ msgstr "Approved but waiting"
 msgid "Account updated."
 msgstr "Account updated."
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Account {user} deleted."
 msgstr "Account updated."
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{rating} for {addon} updated."
 msgstr "{review} for {addon} updated."
 
+#, python-brace-format
 msgid "{addon} reviewed."
 msgstr "{addon} reviewed."
 
+#, python-brace-format
 msgid "{addon} unlisted."
 msgstr "{addon} unlisted."
 
 #. L10n: {0} is the add-on GUID.
+#, python-brace-format
 msgid "Add-on id {0} with GUID {1} has been deleted"
 msgstr "Add-on id {0} with GUID {1} has been deleted"
 
+#, python-brace-format
 msgid "{file} was signed."
 msgstr "{file} was signed."
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Reply by developer on {addon} {version}."
 msgstr "Comment on {addon} {version}."
 
@@ -848,7 +899,7 @@ msgstr "Comment on {addon} {version}."
 msgid "Developer Reply"
 msgstr "Developer News"
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Reply by reviewer on {addon} {version}."
 msgstr "Comment on {addon} {version}."
 
@@ -856,13 +907,14 @@ msgstr "Comment on {addon} {version}."
 msgid "Reviewer Reply"
 msgstr "Developer News"
 
+#, python-brace-format
 msgid "Notes for reviewers changed for {addon} {version}."
 msgstr "Notes for reviewers changed for {addon} {version}."
 
 msgid "Notes for reviewers changed"
 msgstr "Notes for reviewers changed"
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Source code uploaded for {addon} {version}."
 msgstr "Comment on {addon} {version}."
 
@@ -870,15 +922,15 @@ msgstr "Comment on {addon} {version}."
 msgid "Source code uploaded"
 msgstr "Source code"
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{addon} {version} re-enabled."
 msgstr "{addon} {version} rejected."
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{addon} {version} disabled."
 msgstr "{addon} {version} escalated."
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{addon} {version} content rejected."
 msgstr "{addon} {version} rejected."
 
@@ -886,7 +938,7 @@ msgstr "{addon} {version} rejected."
 msgid "Content rejected"
 msgstr "rejected"
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{addon} {version} admin theme-review requested."
 msgstr "{addon} {version} review requested."
 
@@ -894,11 +946,11 @@ msgstr "{addon} {version} review requested."
 msgid "Admin theme-review requested"
 msgstr "Review requested"
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "{addon} {version} given preliminary review."
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{addon} {version} content reject scheduled."
 msgstr "{addon} {version} rejected."
 
@@ -906,7 +958,7 @@ msgstr "{addon} {version} rejected."
 msgid "Content reject scheduled"
 msgstr "rejected"
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{addon} {version} reject scheduled."
 msgstr "{addon} {version} rejected."
 
@@ -914,6 +966,7 @@ msgstr "{addon} {version} rejected."
 msgid "Rejection scheduled"
 msgstr "More Information Requested"
 
+#, python-brace-format
 msgid "{addon} {version} automatically created and signed from {0}."
 msgstr "{addon} {version} automatically created and signed from {0}."
 
@@ -921,54 +974,66 @@ msgstr "{addon} {version} automatically created and signed from {0}."
 msgid "Version re-signed"
 msgstr "Version %s re-enabled."
 
+#, python-brace-format
 msgid "{addon} force-disabled"
 msgstr "{addon} force-disabled"
 
+#, python-brace-format
 msgid "{addon} force-enabled"
 msgstr "{addon} force-enabled"
 
+#, python-brace-format
 msgid "{addon} {version} un-rejected."
 msgstr "{addon} {version} un-rejected."
 
 msgid "Un-rejected"
 msgstr "Un-rejected"
 
+#, python-brace-format
 msgid "Reply to {rating} for {addon} written."
 msgstr "Reply to {rating} for {addon} written."
 
+#, python-brace-format
 msgid "{addon} {version} pending rejection cleared."
 msgstr "{addon} {version} pending rejection cleared."
 
 msgid "Pending rejection cleared"
 msgstr "Pending rejection cleared"
 
+#, python-brace-format
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr "{user_responsible} changed {addon} slug from {0} to {1}."
 
 msgid "Add-on slug changed"
 msgstr "Add-on slug changed"
 
+#, python-brace-format
 msgid "Collection {collection} deleted by moderator"
 msgstr "Collection {collection} deleted by moderator"
 
+#, python-brace-format
 msgid "Collection {collection} un-deleted by moderator"
 msgstr "Collection {collection} un-deleted by moderator"
 
+#, python-brace-format
 msgid "Review {rating} for {addon} un-deleted."
 msgstr "Review {rating} for {addon} un-deleted."
 
+#, python-brace-format
 msgid "{addon} {version} rejected automatically after delay expired."
 msgstr "{addon} {version} rejected automatically after delay expired."
 
 msgid "Rejected automatically after delay expired"
 msgstr "Rejected automatically after delay expired"
 
+#, python-brace-format
 msgid "{addon} {version} content rejected automatically after delay expired."
 msgstr "{addon} {version} content rejected automatically after delay expired."
 
 msgid "Content rejected automatically after delay expired"
 msgstr "Content rejected automatically after delay expired"
 
+#, python-brace-format
 msgid "{addon} {version} pending rejection changed."
 msgstr "{addon} {version} pending rejection changed."
 
@@ -1475,10 +1540,11 @@ msgstr "Recent Changes for %s"
 msgid "Recent Changes for My Add-ons"
 msgstr "Recent Changes for My Add-ons"
 
+#, python-brace-format
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
 msgstr "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
 
@@ -1490,6 +1556,7 @@ msgid "The slug cannot be \"%(slug)s\". Please choose another."
 msgstr "The slug cannot be \"%s\". Please choose another."
 
 #. L10n: {0} is the number of categories.
+#, python-brace-format
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "You can have only {0} category."
@@ -1502,6 +1569,7 @@ msgstr "The miscellaneous category cannot be combined with additional categories
 msgid "URL domain must be one of [%s]."
 msgstr "URL domain must be one of [%s], or a subdomain., "
 
+#, python-brace-format
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] "You have {0} too many tags."
@@ -1550,6 +1618,7 @@ msgstr "This add-on has a Privacy Policy"
 msgid "Please specify your add-on's Privacy Policy:"
 msgstr "Please specify your add-on's Privacy Policy:"
 
+#, python-brace-format
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Unsupported file type, please upload an archive file {extensions}."
 
@@ -1575,11 +1644,11 @@ msgstr "Need at least one compatible application."
 msgid "You have submitted too many uploads recently. Please try again after some time."
 msgstr "You have submitted too many uploads recently. Please try again after some time."
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Version %s already exists, or was uploaded before."
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Version {version} already exists."
 msgstr "Version already exists."
 
@@ -1599,13 +1668,15 @@ msgstr "Could not parse uploaded file."
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "Source file uploaded but you indicated no source was needed."
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
 msgstr "Ensure name and summary combined are at most 70 characters (they have {0})."
 
+#, python-brace-format
 msgid "On this site. <span class=\"helptext\">Your submission is publicly listed on {site_domain}.</span>"
 msgstr "On this site. <span class=\"helptext\">Your submission is publicly listed on {site_domain}.</span>"
 
+#, python-brace-format
 msgid ""
 "On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
 "on manifest’s <a {a_attrs}>update_url</a> is provided, as this is the URL where Firefox finds updates for automatic deployment to your users.</span>"
@@ -1631,6 +1702,7 @@ msgstr "Revoke"
 msgid "JWT issuer"
 msgstr "JWT issuer"
 
+#, python-brace-format
 msgid ""
 "To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
 "href=\"{docs_url}\">API documentation</a>."
@@ -1641,6 +1713,7 @@ msgstr ""
 msgid "JWT secret"
 msgstr "JWT secret"
 
+#, python-brace-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
 msgstr "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
 
@@ -1672,6 +1745,7 @@ msgstr "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 
+#, python-brace-format
 msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
 msgstr "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
 
@@ -1729,6 +1803,7 @@ msgstr "Invitation accepted."
 msgid "Invitation declined."
 msgstr "Invitation declined."
 
+#, python-brace-format
 msgid "A confirmation email has been sent to {email}"
 msgstr "A confirmation email has been sent to {email}"
 
@@ -1738,6 +1813,7 @@ msgstr "Changes successfully saved."
 msgid "Validate Add-on"
 msgstr "Validate Add-on"
 
+#, python-brace-format
 msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
 msgstr "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
 
@@ -1747,7 +1823,7 @@ msgstr "Icons must be either PNG or JPG."
 msgid "Icons cannot be animated."
 msgstr "Icons cannot be animated."
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr "Image must be exactly {0} pixels wide and {1} pixels tall."
 
@@ -1755,7 +1831,7 @@ msgstr "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "Images must be either PNG or JPG."
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Icon must be at least {0} pixels wide and tall."
 msgstr "Image must be exactly {0} pixels wide and {1} pixels tall."
 
@@ -1879,6 +1955,7 @@ msgid "Firefox Add-on Distribution Agreement"
 msgstr "Firefox Add-on Distribution Agreement"
 
 #. {0} is an application, like Firefox.
+#, python-brace-format
 msgid "{0} Add-ons"
 msgstr "{0} Add-ons"
 
@@ -1948,6 +2025,7 @@ msgid "Do you want your add-on to be distributed on this site?"
 msgstr "Do you want your add-on to be distributed on this site?"
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
+#, python-brace-format
 msgid "Validation Results for {0}"
 msgstr "Validation Results for {0}"
 
@@ -2029,6 +2107,7 @@ msgid "Recent Activity for My Add-ons"
 msgstr "Recent Activity for My Add-ons"
 
 #. first parameter is the name of an Addon
+#, python-brace-format
 msgid "Recent Activity for {0}"
 msgstr "Recent Activity for {0}"
 
@@ -2052,6 +2131,7 @@ msgid "Subscribe to this feed"
 msgstr "Subscribe to this feed"
 
 #. {0} is an integer.
+#, python-brace-format
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
 msgstr[0] "<b>{0}</b> add-on"
@@ -2068,6 +2148,7 @@ msgid "Older activity for My Add-ons"
 msgstr "Older activity for My Add-ons"
 
 #. {0} is an integer.
+#, python-brace-format
 msgid "<b>{0}</b> theme"
 msgid_plural "<b>{0}</b> themes"
 msgstr[0] "<b>{0}</b> theme"
@@ -2089,16 +2170,18 @@ msgstr "View other versions"
 msgid "Preview still being generated - come back later or refresh the page."
 msgstr "Preview still being generated - come back later or refresh the page."
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Author invitation for {addon_name}"
 msgstr "Contributions for {addon}."
 
+#, python-brace-format
 msgid "You have been invited to become an author of {addon_name}."
 msgstr "You have been invited to become an author of {addon_name}."
 
 msgid "Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website. "
 msgstr "Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website. "
 
+#, python-brace-format
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
 msgstr "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
 
@@ -2145,16 +2228,18 @@ msgstr "Add-on Details"
 msgid "Edit"
 msgstr "Edit"
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Additional Details for {0}"
 msgstr "Add-on Details for {0}"
 
 msgid "Tags"
 msgstr "Tags"
 
+#, python-brace-format
 msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
 msgstr "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
 
+#, python-brace-format
 msgid "Limit {0} tags."
 msgstr "Limit {0} tags."
 
@@ -2194,7 +2279,7 @@ msgid "Describe Add-on"
 msgstr "Describe your add-on"
 
 #. {0} is the addon name
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Describe {0}"
 msgstr "Describe your add-on"
 
@@ -2294,6 +2379,7 @@ msgid "Technical Details"
 msgstr "Technical Details"
 
 #. {0} is an addon name
+#, python-brace-format
 msgid "Technical Details for {0}"
 msgstr "Technical Details for {0}"
 
@@ -2326,6 +2412,7 @@ msgstr ""
 "The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that "
 "may help. This whiteboard is also editable by reviewers."
 
+#, python-brace-format
 msgid "Add-on Media for {0}"
 msgstr "Add-on Media for {0}"
 
@@ -2477,7 +2564,7 @@ msgstr "The add-on ID cannot be restored and will forever be unusable for submis
 msgid "Delete Add-on"
 msgstr "Delete Add-on"
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Enter the following text to confirm your decision: {slug}"
 msgstr "Enter the following text confirm your decision: {slug}"
 
@@ -2535,12 +2622,14 @@ msgid "This add-on doesn't have any versions."
 msgstr "This add-on is not compatible with your version of %(app)s."
 
 #. {0} is the number of downloads.
+#, python-brace-format
 msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
 msgstr[0] "<strong>{0}</strong> weekly download"
 msgstr[1] "<strong>{0}</strong> weekly downloads"
 
 #. {0} is the number of active users.
+#, python-brace-format
 msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> active user"
@@ -2723,7 +2812,7 @@ msgstr "View Listing"
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, concatenated or otherwise machine-generated code."
 msgstr "You can also edit this version you just submitted by adding version notes, files for other platforms, or source code if your submission includes minified, obfuscated or compiled code."
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Edit version {0}"
 msgstr "Beta Version {0}"
 
@@ -3132,6 +3221,7 @@ msgstr "I have read and accept this Agreement and the Rules and Policies"
 msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
 msgstr "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
 
+#, python-brace-format
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "or <a href=\"{0}\">Cancel</a>"
 
@@ -3189,7 +3279,7 @@ msgid "Remove this application"
 msgstr "Remove this application"
 
 #. {0} is the maximum number of add-on categories allowed
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Select a category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
 msgstr[0] "Select <b>up to {0}</b> {1} category for this add-on:"
@@ -3394,11 +3484,13 @@ msgstr "Sign in to the Developer Hub to submit or manage extensions and themes."
 msgid "Register for a developer account or log in to the Developer Hub"
 msgstr "Register for a developer account or log in to the Developer Hub"
 
+#, python-brace-format
 msgid "Manage Version {0}"
 msgstr "Manage Version {0}"
 
 # {0} is the name of the collection
 #. {0} is an add-on name.
+#, python-brace-format
 msgid "Manage {0}"
 msgstr "Manage {0}"
 
@@ -3441,7 +3533,7 @@ msgstr "Source code"
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
 msgstr "If your add-on contain binary or obfuscated code, make the source available here for reviewers."
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "File {file_id}"
 msgstr "File {file_id} ({platform})"
 
@@ -3501,11 +3593,11 @@ msgstr "Reply"
 msgid "Listing visibility"
 msgstr "Addon visibility"
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
 msgstr "Visible to everyone on {0} and included in search results and listing pages"
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
 msgstr "Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
@@ -3541,6 +3633,7 @@ msgstr "Upload a New Version"
 msgid "Version"
 msgstr "Version"
 
+#, python-brace-format
 msgid "Delete Version {version}"
 msgstr "Delete Version {version}"
 
@@ -3593,6 +3686,7 @@ msgstr "Are you sure you wish to cancel your review request?"
 
 # {0} is a number
 #. L10n: first parameter is the number of errors
+#, python-brace-format
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} error"
@@ -3600,6 +3694,7 @@ msgstr[1] "{0} errors"
 
 # {0} is a number
 #. L10n: first parameter is the number of warnings
+#, python-brace-format
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} warning"
@@ -4870,11 +4965,12 @@ msgid "See more tab management staff picks"
 msgstr "Recommended Extensions program"
 
 #. editorial content for the homepage shelves.
+#, python-brace-format
 msgid "“{tag}” tagged extensions"
 msgstr "“{tag}” tagged extensions"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "See more extensions tagged \"{tag}\""
 msgstr "Browse all add-ons"
 
@@ -4995,13 +5091,15 @@ msgstr "This upload has already been submitted."
 msgid "Could not parse the manifest file."
 msgstr "Could not parse the manifest file."
 
+#, python-brace-format
 msgid "Lowest supported \"strict_min_version\" is {min_version}."
 msgstr "Lowest supported \"strict_min_version\" is {min_version}."
 
+#, python-brace-format
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
 msgstr "Unknown \"strict_min_version\" {appver} for {app}"
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
 msgstr "Unknown \"strict_min_version\" {appver} for {app}"
 
@@ -5015,10 +5113,12 @@ msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or
 msgstr "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 
 #. L10n: {0} is the name of the invalid file.
+#, python-brace-format
 msgid "Invalid file name in archive: {0}"
 msgstr "Invalid file name in archive: {0}"
 
 #. L10n: {0} is the name of the invalid file.
+#, python-brace-format
 msgid "File exceeding size limit in archive: {0}"
 msgstr "File exceeding size limit in archive: {0}"
 
@@ -5044,12 +5144,14 @@ msgstr "The add-on ID in your manifest.json or install.rdf (%s) does not match t
 msgid "Duplicate add-on ID found."
 msgstr "Duplicate add-on ID found."
 
+#, python-brace-format
 msgid "Version numbers should have at most {max_length} characters."
 msgstr "Version numbers should have at most {max_length} characters."
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 
+#, python-brace-format
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr "Maximum size for WebExtension themes is {0}."
 
@@ -5070,7 +5172,7 @@ msgstr "You cannot submit a Mozilla Signed Extension"
 msgid "The locale of an existing dictionary/language pack cannot be changed"
 msgstr "The locale of an existing dictionary/language pack cannot be changed"
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Unsupported file type, please upload an archive file {extensions}."
 
@@ -5109,6 +5211,7 @@ msgstr "Auto-flagged due to user restriction"
 msgid "%(value)s contains a non-alphanumeric character."
 msgstr "%(value)s contains a non-alphanumeric character."
 
+#, python-brace-format
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
 msgstr[0] "The review text cannot contain the word: \"{0}\""
@@ -5139,7 +5242,7 @@ msgstr "someone writes a review of my add-on"
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "You cannot upload any more files for this version."
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Invalid flag [{}] - must be one of [{}]"
 msgstr "Invalid flag [%s] - must be one of [%s]"
 
@@ -5150,6 +5253,7 @@ msgstr "This rating can't flagged because it has no review text."
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
 msgstr "A short explanation must be provided when selecting \"Other\" as a flag reason."
 
+#, python-brace-format
 msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] "{num} review"
@@ -5158,6 +5262,7 @@ msgstr[1] "{num} reviews"
 msgid "Not yet rated"
 msgstr "Not yet rated"
 
+#, python-brace-format
 msgid "Rated {0} out of 5 stars"
 msgstr "Rated {0} out of 5 stars"
 
@@ -5165,6 +5270,7 @@ msgstr "Rated {0} out of 5 stars"
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Rated %(rating)s out of 5 stars"
 
+#, python-brace-format
 msgid "Unsupported file type, please upload a file {extensions}."
 msgstr "Unsupported file type, please upload a file {extensions}."
 
@@ -5245,7 +5351,7 @@ msgstr "Invalid Return To AMO guid (not in base64url format?)"
 msgid "Maximum query length exceeded."
 msgstr "Maximum query length exceeded."
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Could not find Add-on with ID \"{}\"."
 msgstr "Could not find add-on with id \"{}\"."
 
@@ -5323,17 +5429,21 @@ msgid "Export"
 msgstr "Export"
 
 #. {0} is an add-on name, {1} is an app name (like Firefox)
+#, python-brace-format
 msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
 msgstr "{0} :: Statistics Dashboard :: Add-ons for {1}"
 
+#, python-brace-format
 msgid "{0} :: Statistics Dashboard"
 msgstr "{0} :: Statistics Dashboard"
 
+#, python-brace-format
 msgid "Statistics Dashboard :: Add-ons for {0}"
 msgstr "Statistics Dashboard :: Add-ons for {0}"
 
 # %1 is the name of a collection
 #. {0} is an add-on name
+#, python-brace-format
 msgid "Statistics for {0}"
 msgstr "Statistics for {0}"
 
@@ -5423,13 +5533,14 @@ msgstr "Downloaded by Date"
 msgid "Platform usage by Date"
 msgstr "Platform usage by Date"
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "<b>{0}</b> Weekly Downloads"
 msgstr "<b>{0}</b> Downloads"
 
 msgid "Loading..."
 msgstr "Loading..."
 
+#, python-brace-format
 msgid "<b>{0}</b> Average Daily Users"
 msgstr "<b>{0}</b> Average Daily Users"
 
@@ -5480,6 +5591,7 @@ msgid "Back to Add-ons"
 msgstr "Back to Add-ons"
 
 # {0} is the application name.  Example:  Firefox
+#, python-brace-format
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Return to the {0} Add-ons homepage"
 
@@ -5568,6 +5680,7 @@ msgid "New Locales"
 msgstr "New Locales"
 
 #. {0} is a language name, like 'French'
+#, python-brace-format
 msgid "You have unsaved changes in the <b>{0}</b> locale. Would you like to save your changes before switching locales?"
 msgstr "You have unsaved changes in the <b>{0}</b> locale. Would you like to save your changes before switching locales?"
 
@@ -5575,6 +5688,7 @@ msgid "Discard Changes"
 msgstr "Discard Changes"
 
 #. {0} is a language name, like 'French'
+#, python-brace-format
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
 msgstr "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
 
@@ -5594,7 +5708,7 @@ msgstr "You can only enter one, either IP Address or Network."
 msgid "No user with that email."
 msgstr "No user with that email."
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Firefox user {id}"
 msgstr "Firefox for Android"
 
@@ -5627,7 +5741,7 @@ msgid ""
 "Notice which explains how we handle your information."
 msgstr "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
 
@@ -5773,8 +5887,10 @@ msgstr "Approved, Manual"
 msgid "Disabled by Developer"
 msgstr "Disabled by Developer"
 
+#, python-brace-format
 msgid "{app} {min} and later"
 msgstr "{app} {min} and later"
 
+#, python-brace-format
 msgid "The install origin {origin} is not permitted."
 msgstr "The install origin {origin} is not permitted."
