@@ -1,14 +1,17 @@
 import io
+import json
 import os
 from importlib import import_module
 from unittest import mock
 
 from django.conf import settings
+from django.core import mail
 from django.core.management import call_command
 from django.core.management.base import CommandError
 from django.test.utils import override_settings
 
 import pytest
+import responses
 from freezegun import freeze_time
 
 from olympia.amo.management import BaseDataCommand, storage_structure
@@ -738,3 +741,109 @@ class TestMonitorsCommand(BaseTestDataCommand):
         call_command(
             'monitors', services=['database', 'success'], attempts=succeed_after
         )
+
+
+class TestCheckLocalesCompletionRate(TestCase):
+    expected_special_locales = (
+        'ar',
+        'de',
+        'es-ES',
+        'fr',
+        'he',
+        'it',
+        'ja',
+        'pl',
+    )
+
+    def assert_pontoon_calls(self):
+        assert len(responses.calls) == 2
+        assert responses.calls[0].request.params == {
+            'query': '{project(slug:"amo"){name,localizations{locale{code,name}totalStrings,approvedStrings}}}'
+        }
+        assert responses.calls[1].request.params == {
+            'query': '{project(slug:"amo-frontend"){name,localizations{locale{code,name}totalStrings,approvedStrings}}}'
+        }
+
+    def test_full_run_typical_response(self):
+        def fake_pontoon_response(request):
+            root = os.path.join(settings.ROOT, 'src/olympia/amo/fixtures/')
+            if '{project(slug:"amo-frontend")' in request.params['query']:
+                body = open(os.path.join(root, 'pontoon_response_frontend.json')).read()
+            else:
+                body = open(os.path.join(root, 'pontoon_response.json')).read()
+            return (200, {'content-type': 'application/json'}, body)
+
+        responses.add_callback(
+            responses.GET,
+            'https://pontoon.mozilla.org/graphql',
+            content_type='application/json',
+            callback=fake_pontoon_response,
+        )
+        call_command('check_locales_completion_rate')
+        self.assert_pontoon_calls()
+        assert len(mail.outbox) == 1
+        expected_below = (
+            'The following locales are below threshold of 40% or completely '
+            'absent in one of our projects in Pontoon:\n- '
+            + '\n- '.join(
+                (
+                    'Azerbaijani',
+                    'Basque',
+                    'Bengali',
+                    'Gujarati',
+                    'Gujarati (India)',
+                    'Macedonian',
+                    'Sinhala',
+                    'Urdu',
+                    'Welsh',
+                )
+            )
+        )
+        assert expected_below in mail.outbox[0].body
+        expected_above = (
+            'The following locales are above threshold and not yet enabled:\n- '
+            + '\n- '.join(('Friulian', 'Hindi (India)', 'Icelandic', 'Interlingua'))
+        )
+        assert expected_above in mail.outbox[0].body
+
+    def test_full_run_empty_response(self):
+        responses.add(
+            responses.GET,
+            'https://pontoon.mozilla.org/graphql',
+            content_type='application/json',
+            body=json.dumps({}),
+        )
+        call_command('check_locales_completion_rate')
+        self.assert_pontoon_calls()
+        assert len(mail.outbox) == 1
+        # Everything should be missing since the response is an empty object.
+        expected_below = (
+            'The following locales are below threshold of 40% or completely '
+            'absent in one of our projects in Pontoon:\n- '
+            + '\n- '.join(
+                sorted(
+                    [
+                        data['english']
+                        for locale, data in settings.AMO_LANGUAGES.items()
+                        if locale not in self.expected_special_locales
+                        and locale != settings.LANGUAGE_CODE
+                    ]
+                )
+            )
+        )
+        assert expected_below in mail.outbox[0].body
+
+        # Those are special though.
+        expected_below_but_special = (
+            'The following locales are below threshold, but should never be '
+            'removed from AMO:\n- '
+            + '\n- '.join(
+                sorted(
+                    [
+                        settings.AMO_LANGUAGES[locale]['english']
+                        for locale in self.expected_special_locales
+                    ]
+                )
+            )
+        )
+        assert expected_below_but_special in mail.outbox[0].body
