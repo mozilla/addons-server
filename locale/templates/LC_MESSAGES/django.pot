@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-06 11:33+0000\n"
+"POT-Creation-Date: 2025-03-06 15:38+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -600,8 +600,8 @@ msgid "CIDR"
 msgstr ""
 
 #: src/olympia/amo/middleware.py:248
-#: src/olympia/devhub/templates/devhub/index.html:60
-#: src/olympia/templates/base.html:66
+#: src/olympia/devhub/templates/devhub/index.html:61
+#: src/olympia/templates/base.html:67
 msgid ""
 "Some features are temporarily disabled while we perform website maintenance. "
 "We'll be back to full capacity shortly."
@@ -7382,7 +7382,7 @@ msgstr ""
 msgid "Mozilla Add-ons"
 msgstr ""
 
-#: src/olympia/templates/base.html:85
+#: src/olympia/templates/base.html:86
 msgid "Back to Add-ons"
 msgstr ""
 
