@@ -509,7 +509,7 @@ class TestRobots(TestCase):
 
 
 @pytest.mark.django_db
-@override_settings(FXA_CONFIG={'default': {'client_id': ''}})
+@override_settings(FXA_CONFIG={'default': {'client_id': ''}}, ENV='local')
 def test_fake_fxa_authorization_correct_values_passed():
     url = reverse('fake-fxa-authorization')
     response = test.Client().get(url, {'state': 'foobar'})

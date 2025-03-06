@@ -9,21 +9,14 @@ won't be tracked in git).
 import os
 from urllib.parse import urlparse
 
-from olympia.core.utils import get_version_json
 from olympia.lib.settings_base import *  # noqa
 
-
-# Any target other than "production" is considered a development target.
-DEV_MODE = TARGET != 'production'
 
 HOST_UID = os.environ.get('HOST_UID')
 
 WSGI_APPLICATION = 'olympia.wsgi.application'
 
 INTERNAL_ROUTES_ALLOWED = True
-
-# Always
-SERVE_STATIC_FILES = True
 
 # These apps are great during development.
 INSTALLED_APPS += ('olympia.landfill',)
@@ -60,7 +53,7 @@ def insert_debug_toolbar_middleware(middlewares):
 
 
 # We can only add these dependencies if we have development dependencies
-if os.environ.get('OLYMPIA_DEPS', '') == 'development':
+if OLYMPIA_DEPS == 'development':
     INSTALLED_APPS += (
         'debug_toolbar',
         'dbbackup',
@@ -188,8 +181,11 @@ SWAGGER_SETTINGS = {
 
 ENABLE_ADMIN_MLBF_UPLOAD = True
 
-# Use dev mode if we are on a non production imqage and debug is enabled.
-if get_version_json().get('target') != 'production' and DEBUG:
+# In non production images, we should enable dev mode.
+# The 'bundle' prefix is used to control routing behavior in nginx,
+# ensuring static files are not served by nginx
+# but redirected to the vite dev server.
+if TARGET != 'production':
     DJANGO_VITE = {
         'default': {
             'dev_mode': True,

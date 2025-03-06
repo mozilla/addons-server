@@ -48,12 +48,9 @@ To better visualize the impact of the various settings, here is a reference:
 
 Given a static file 'js/devhub/my-file.js':
 
-In `DEV_MODE` the url will look like `/static/js/devhub/my-file.js` no matter what.
+On development images, the url will look like `/static/js/devhub/my-file.js` no matter what.
 However, in production, if `DEBUG` is `False`, the url will append the content hash like this,
 `/static/js/devhub/my-file.1234567890.js`. Finally, if `DEBUG` is true, this file will be minified and concatenated with other files and probably look something like this `/static/js/devhub-all.min.1234567890.js`.
-
-The true `production` mode is then when `DEBUG` is `False` and `DEV_MODE` is `False`. But it makes sense
-to make these individually toggleable so you can better "debug" js files from a production image.
 
 ### Project Static Files
 

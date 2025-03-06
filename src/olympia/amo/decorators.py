@@ -222,3 +222,28 @@ def api_authentication(f):
         return f(request, *args, **kw)
 
     return wrapper
+
+
+def restrict_request_to_env(include_env: list[str] | str | bool = True):
+    """
+    Decorator to serve a request only on specific environments.
+    If the environment is not allowed, return 404.
+    """
+
+    def decorator(f):
+        @functools.wraps(f)
+        def wrapper(request, *args, **kw):
+            if (
+                type(include_env) == bool
+                and include_env
+                or type(include_env) == str
+                and settings.ENV == include_env
+                or type(include_env) == list
+                and settings.ENV in include_env
+            ):
+                return f(request, *args, **kw)
+            raise http.Http404
+
+        return wrapper
+
+    return decorator

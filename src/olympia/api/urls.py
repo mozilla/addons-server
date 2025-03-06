@@ -27,7 +27,7 @@ def get_versioned_api_routes(version, url_patterns):
     routes = url_patterns
 
     # For now, this feature is only enabled in dev mode
-    if settings.DEV_MODE:
+    if settings.ENV == 'local':
         routes.extend(
             [
                 re_path(
