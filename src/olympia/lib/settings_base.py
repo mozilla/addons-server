@@ -1642,3 +1642,5 @@ DJANGO_VITE = {
 # For local it is hard coded to "local" in `docker-compose.yml` to guarantee a clear
 # distinction between local and non-local environments.
 ENV = env('ENV')
+
+MEMCACHE_MIN_SERVER_COUNT = 2

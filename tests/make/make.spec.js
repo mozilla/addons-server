@@ -71,7 +71,7 @@ describe('docker-compose.yml', () => {
       DOCKER_TARGET,
       DOCKER_VERSION,
       DEBUG: 'debug',
-      DATA_BACKUP_SKIP: 'skip',
+      SKIP_DATA_SEED: 'skip',
     };
 
     it('.services.(web|worker) should have the correct configuration', () => {
