@@ -29,55 +29,39 @@ from . import monitors
 from .sitemap import InvalidSection, get_sitemap_path, get_sitemaps, render_index_xml
 
 
-def _exec_monitors(checks: list[str], verbose: bool = False):
-    status_summary = monitors.execute_checks(checks, verbose)
+def _exec_monitors(checks: list[str]):
+    status_summary = monitors.execute_checks(checks)
     status_code = 200 if all(a['state'] for a in status_summary.values()) else 500
     return JsonResponse(status_summary, status=status_code)
-
-
-MONITORS = {
-    'internal': [
-        'memcache',
-        'libraries',
-        'elastic',
-        'path',
-        'database',
-    ],
-    'external': [
-        'rabbitmq',
-        'signer',
-        'remotesettings',
-        'cinder',
-    ],
-}
-
-
-@never_cache
-@non_atomic_requests
-def healthcheck(request):
-    """Check all monitors."""
-    verbose = bool(request.GET.get('verbose', False))
-    return _exec_monitors(
-        [
-            *MONITORS['internal'],
-            *MONITORS['external'],
-        ],
-        verbose,
-    )
 
 
 @never_cache
 @non_atomic_requests
 def front_heartbeat(request):
     """Check internal monitors only."""
-    return _exec_monitors(MONITORS['internal'])
+    return _exec_monitors(
+        [
+            'memcache',
+            'libraries',
+            'elastic',
+            'path',
+            'database',
+        ]
+    )
 
 
 @never_cache
 @non_atomic_requests
 def services_heartbeat(request):
     """Check external monitors only."""
-    return _exec_monitors(MONITORS['external'])
+    return _exec_monitors(
+        [
+            'rabbitmq',
+            'signer',
+            'remotesettings',
+            'cinder',
+        ]
+    )
 
 
 @never_cache

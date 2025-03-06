@@ -2,8 +2,8 @@
 
 import argparse
 import json
-from enum import Enum
 import time
+from enum import Enum
 
 import requests
 
@@ -39,11 +39,13 @@ class Fetcher:
             data = response.json()
         except (requests.exceptions.HTTPError, json.JSONDecodeError) as e:
             if self.verbose:
-                print({
-                    'error': e,
-                    'data': data,
-                    'response': response,
-                })
+                print(
+                    {
+                        'error': e,
+                        'data': data,
+                        'response': response,
+                    }
+                )
 
         if self.verbose and data is not None:
             print(json.dumps(data, indent=2))
@@ -53,25 +55,36 @@ class Fetcher:
     def version(self):
         return self._fetch('__version__')
 
-    def healthcheck(self):
-        return self._fetch('__healthcheck__?verbose=true')
+    def heartbeat(self):
+        return self._fetch('__heartbeat__')
+
+    def monitors(self):
+        return self._fetch('services/monitors.json')
 
 
 def main(env: ENV_ENUM, verbose: bool = False):
     fetcher = Fetcher(env, verbose)
 
     version_data = fetcher.version()
-    healthcheck_data = fetcher.healthcheck()
+    heartbeat_data = fetcher.heartbeat()
+    monitors_data = fetcher.monitors()
 
     if version_data is None:
         raise ValueError('Error fetching version data')
 
-    if healthcheck_data is None:
-        raise ValueError('Error fetching healthcheck data')
+    if heartbeat_data is None:
+        raise ValueError('Error fetching heartbeat data')
 
-    if healthcheck_data is not None:
-        if any(monitor['state'] is False for monitor in healthcheck_data.values()):
-            raise ValueError(f'Some monitors are failing {healthcheck_data.keys()}')
+    if monitors_data is None:
+        raise ValueError('Error fetching monitors data')
+
+    combined_data = {**heartbeat_data, **monitors_data}
+    failing_monitors = [
+        name for name, monitor in combined_data.items() if monitor['state'] is False
+    ]
+
+    if len(failing_monitors) > 0:
+        raise ValueError(f'Some monitors are failing {failing_monitors}')
 
 
 if __name__ == '__main__':
@@ -91,5 +104,5 @@ if __name__ == '__main__':
             break
         except Exception as e:
             print(f'Error: {e}')
-            time.sleep(2 ** attempt)
+            time.sleep(2**attempt)
             attempt += 1

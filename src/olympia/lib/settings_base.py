@@ -306,7 +306,6 @@ SUPPORTED_NONAPPS = (
     'update',
     'user-media',
     '__heartbeat__',
-    '__healthcheck__',
     '__lbheartbeat__',
     '__version__',
 )
@@ -328,7 +327,6 @@ SUPPORTED_NONLOCALES = (
     'update',
     'user-media',
     '__heartbeat__',
-    '__healthcheck__',
     '__lbheartbeat__',
     '__version__',
 )
