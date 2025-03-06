@@ -15,6 +15,7 @@ from olympia import amo
 from olympia.access import acl
 from olympia.addons.models import Addon
 from olympia.amo.admin import AMOModelAdmin, MultipleRelatedListFilter
+from olympia.amo.templatetags.jinja_helpers import vite_asset
 from olympia.amo.utils import is_safe_url
 from olympia.constants import scanners
 from olympia.constants.scanners import (
@@ -250,10 +251,8 @@ class AbstractScannerResultAdminMixin:
 
     class Media(AMOModelAdmin.Media):
         css = {
-            'all': (
-                'css/admin/amoadmin.css',
-                'css/admin/scannerresult.css',
-            )
+            'all': AMOModelAdmin.Media.css['all']
+            + (vite_asset('css/admin-scanner-results.less'),)
         }
 
     def get_queryset(self, request):
@@ -458,10 +457,8 @@ class AbstractScannerRuleAdminMixin:
 
     class Media(AMOModelAdmin.Media):
         css = {
-            'all': (
-                'css/admin/amoadmin.css',
-                'css/admin/scannerrule.css',
-            )
+            'all': AMOModelAdmin.Media.css['all']
+            + (vite_asset('css/admin-scanner-rule.less'),)
         }
 
     def get_fields(self, request, obj=None):
@@ -759,7 +756,7 @@ class ScannerQueryResultAdmin(AbstractScannerResultAdminMixin, AMOModelAdmin):
     ordering = ('version__addon_id', 'version__channel', 'version__created')
 
     class Media(AbstractScannerResultAdminMixin.Media):
-        js = ('js/admin/scannerqueryresult.js',)
+        js = AMOModelAdmin.Media.js + (vite_asset('js/admin-scanner-query-result.js'),)
 
     def addon_name(self, obj):
         # Custom, simpler implementation to go with add-on grouping: the

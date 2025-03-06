@@ -4,6 +4,7 @@ from django.db.models import Prefetch
 
 from olympia.addons.models import Addon
 from olympia.amo.admin import AMOModelAdmin
+from olympia.amo.templatetags.jinja_helpers import vite_asset
 from olympia.reviewers.models import NeedsHumanReview
 
 from .models import (
@@ -75,8 +76,8 @@ class LicenseAdmin(AMOModelAdmin):
 
 class VersionAdmin(AMOModelAdmin):
     class Media:
-        css = {'all': ('css/admin/l10n.css',)}
-        js = ('js/admin/l10n.js',)
+        css = {'all': (vite_asset('css/admin-versions.less'),)}
+        js = (vite_asset('js/admin-versions.js'),)
 
     view_on_site = False
     readonly_fields = ('id', 'created', 'version', 'channel')

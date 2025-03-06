@@ -9,6 +9,7 @@ from django.template.response import TemplateResponse
 from django.urls import path, reverse
 from django.utils.html import format_html
 
+from olympia.amo.templatetags.jinja_helpers import vite_asset
 import waffle
 
 from olympia.activity.models import ActivityLog
@@ -191,7 +192,7 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
     form = BlocklistSubmissionForm
 
     class Media:
-        css = {'all': ('css/admin/blocklist_blocklistsubmission.css',)}
+        css = {'all': (vite_asset('css/admin-blocklist_blocklistsubmission.less'),)}
         js = ('js/i18n/en-US.js',)
 
     def state(self, obj):
@@ -595,7 +596,7 @@ class BlockAdmin(BlockAdminAddMixin, AMOModelAdmin):
     change_form_template = 'admin/blocklist/block_change_form.html'
 
     class Media:
-        css = {'all': ('css/admin/blocklist_block.css',)}
+        css = {'all': (vite_asset('css/admin-blocklist_block.less'),)}
         js = ('js/i18n/en-US.js',)
 
     def addon_guid(self, obj):
