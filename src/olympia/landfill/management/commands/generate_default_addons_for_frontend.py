@@ -1,9 +1,9 @@
-from django.core.management.base import BaseCommand
 from django.db.models.signals import post_save
 from django.test.utils import override_settings
 from django.utils import translation
 
 from olympia.addons.models import Addon, update_search_index
+from olympia.landfill.management.commands import BaseLandfillCommand
 from olympia.landfill.serializers import GenerateAddonsSerializer
 
 
@@ -53,7 +53,7 @@ hero_addons = [
 ]
 
 
-class Command(BaseCommand):
+class Command(BaseLandfillCommand):
     """
     Generate addons used specifically for the Integration Tests.
 
@@ -68,6 +68,7 @@ class Command(BaseCommand):
     """
 
     def handle(self, *args, **kwargs):
+        self.assert_local_dev_mode()
         # Disconnect reindexing for every save, we'll reindex
         # once all addons were generated
         post_save.disconnect(

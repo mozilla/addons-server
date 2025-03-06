@@ -32,7 +32,7 @@
 
     <noscript><link rel="stylesheet" href="{{ static('css/legacy/nojs.css') }}"></noscript>
 
-    {% if settings.DEV_MODE %}
+    {% if settings.OLYMPIA_DEPS == 'development' %}
       {% if settings.LESS_LIVE_REFRESH %}
         <meta id="live_refresh" name="live_refresh" value="1">
       {% endif %}

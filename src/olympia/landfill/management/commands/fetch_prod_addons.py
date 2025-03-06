@@ -1,7 +1,5 @@
 import uuid
 
-from django.conf import settings
-from django.core.management.base import BaseCommand, CommandError
 from django.db.transaction import atomic
 
 import requests
@@ -10,6 +8,7 @@ from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.tests import addon_factory, user_factory
 from olympia.constants.categories import CATEGORIES
+from olympia.landfill.management.commands import BaseLandfillCommand
 from olympia.users.models import UserProfile
 
 
@@ -17,7 +16,7 @@ class KeyboardInterruptError(Exception):
     pass
 
 
-class Command(BaseCommand):
+class Command(BaseLandfillCommand):
     """Download and save all AMO add-ons public data."""
 
     SEARCH_API_URL = 'https://addons.mozilla.org/api/v5/addons/search/'
@@ -43,10 +42,7 @@ class Command(BaseCommand):
         )
 
     def handle(self, *args, **options):
-        if not settings.DEV_MODE:
-            raise CommandError(
-                'As a safety precaution this command only works in DEV_MODE.'
-            )
+        self.assert_local_dev_mode()
         self.fetch_addon_data(options)
 
     def get_max_pages(self, params=None):

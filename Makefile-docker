@@ -1,11 +1,3 @@
-export PYTHON_COMMAND=python3
-
-# As we're using user-local installs inside the docker-container we need
-# to be cautious about uprading pip and not confusing it with the
-# globally installed version. This will take `$PYTHONUSERBASE` and `$PIP_USER`
-# into account.
-# See https://github.com/pypa/pip/issues/7205
-export PIP_COMMAND=$(PYTHON_COMMAND) -m pip
 APP=src/olympia/
 
 # Build list of dependencies to install
@@ -18,6 +10,10 @@ endif
 .PHONY: help_redirect
 help_redirect:
 	@$(MAKE) help --no-print-directory
+
+.PHONY: clean_directory
+clean_directory: ## clean and recreate a directory
+	$(HOME)/scripts/clean_directory.py $(ARGS)
 
 .PHONY: check_debian_packages
 check_debian_packages: ## check the existence of multiple debian packages
@@ -50,7 +46,7 @@ update_assets: ## Update the static assets
 
 .PHONY: run_vite
 run_vite:
-	npm run $(NPM_ARGS) dev
+	npm run dev
 
 .PHONY: update_deps
 update_deps: ## Update the dependencies
@@ -65,7 +61,7 @@ setup-ui-tests:
 lint: ## lint the code
 	ruff check .
 	ruff format --check .
-	npm exec $(NPM_ARGS) -- prettier --check '**'
+	npm exec -- prettier --check '**'
 	curlylint src/
 
 lint-codestyle: lint
@@ -76,17 +72,17 @@ docs: ## build the documentation
 
 .PHONY: djshell
 djshell: ## connect to django shell
-	$(PYTHON_COMMAND) ./manage.py shell_plus
+	./manage.py shell_plus
 
 .PHONY: dbshell
 dbshell: ## connect to a database shell
-	$(PYTHON_COMMAND) ./manage.py dbshell
+	./manage.py dbshell
 
 .PHONY: initialize
 initialize: ## ensure database exists
 	@echo "Initializing data..."
 	@echo "args: $(ARGS)"
-	$(PYTHON_COMMAND) ./manage.py initialize $(ARGS)
+	./manage.py initialize $(ARGS)
 
 PYTEST_SRC := src/olympia/
 
@@ -178,7 +174,7 @@ watch_js_tests: ## Run+watch the JavaScript test suite (requires compiled/compre
 
 .PHONY: format
 format: ## Autoformat our codebase.
-	npm exec $(NPM_ARGS) -- prettier --write '**'
+	npm exec -- prettier --write '**'
 	ruff check --fix-only .
 	ruff format .
 
@@ -188,7 +184,7 @@ extract_locales: ## extracts and merges translation strings
 
 .PHONE: compile_locales
 compile_locales: ## compiles translation strings
-	$(PIP_COMMAND) install --progress-bar=off --no-deps -r requirements/locale.txt
+	$(HOME)/scripts/install_deps.py locale
 	$(HOME)/scripts/compile_locales.py
 
 .PHONY: help_submake

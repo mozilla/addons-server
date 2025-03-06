@@ -2,30 +2,27 @@
 
 import argparse
 import os
-import shutil
 import subprocess
 from pathlib import Path
 
 
-def clean_static_dirs(verbose: bool = False):
+def update_assets(verbose: bool = False):
     HOME = os.environ.get('HOME')
     STATIC_DIRS = ['static-build', 'site-static']
 
     for directory in STATIC_DIRS:
         path = Path(HOME) / directory
-        path.mkdir(parents=True, exist_ok=True)
-        for entry in path.iterdir():
-            entry_path = entry.as_posix()
-            if verbose:
-                print(f'Removing {entry_path}')
-            if entry.is_dir():
-                shutil.rmtree(entry_path)
-            else:
-                os.remove(entry_path)
-
-
-def update_assets(verbose: bool = False):
-    clean_static_dirs(verbose)
+        verbose_arg = '--verbose' if verbose else ''
+        subprocess.run(
+            [
+                'make',
+                '-f',
+                'Makefile-docker',
+                'clean_directory',
+                f"ARGS='{path} {verbose_arg}'",
+            ],
+            check=True,
+        )
 
     script_prefix = ['python3', 'manage.py']
 

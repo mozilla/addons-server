@@ -1,74 +1,50 @@
 #!/usr/bin/env python3
 
+import json
 import os
-import shutil
 import subprocess
 import sys
-
-
-def clean_dir(dir_path, filter):
-    if not os.path.exists(dir_path):
-        return
-
-    for item in os.listdir(dir_path):
-        item_path = os.path.join(dir_path, item)
-        if os.path.isdir(item_path) and item not in filter:
-            shutil.rmtree(item_path)
 
 
 def main(targets):
     # Constants
     ALLOWED_NPM_TARGETS = set(['prod', 'dev'])
-    DOCKER_TAG = os.environ.get('DOCKER_TAG', 'local')
-    OLYMPIA_DEPS = os.environ.get('OLYMPIA_DEPS', '')
-    DEPS_DIR = os.environ.get('DEPS_DIR')
-    NPM_DEPS_DIR = os.environ.get('NPM_DEPS_DIR')
+    BUILD_INFO = os.environ.get('BUILD_INFO')
 
     if not targets:
         raise ValueError('No targets specified')
 
+    with open(BUILD_INFO, 'r') as f:
+        build_info = json.load(f)
+
     print(
         'Updating deps... \n',
         f'targets: {", ".join(targets)} \n',
-        f'DOCKER_TAG: {DOCKER_TAG} \n',
-        f'OLYMPIA_DEPS: {OLYMPIA_DEPS} \n',
-        f'DEPS_DIR: {DEPS_DIR} \n',
-        f'NPM_DEPS_DIR: {NPM_DEPS_DIR} \n',
+        f'build_info: {build_info} \n',
     )
-
-    # If we are installing production dependencies or on a non local image
-    # we always remove existing deps as we don't know what was previously
-    # installed or in the host ./deps or ./node_modules directory
-    # before running this script
-    if 'local' not in DOCKER_TAG or OLYMPIA_DEPS == 'production':
-        print('Removing existing deps')
-        clean_dir(DEPS_DIR, ['cache'])
-        clean_dir(NPM_DEPS_DIR, [])
-    else:
-        print('Updating existing deps')
 
     # Prepare the includes lists
     pip_includes = []
     npm_includes = []
 
-    # PIP_COMMAND is set by the Dockerfile
-    pip_command = os.environ['PIP_COMMAND']
-    pip_args = pip_command.split() + [
+    pip_args = [
+        'python3',
+        '-m',
+        'pip',
         'install',
         '--progress-bar=off',
         '--no-deps',
         '--exists-action=w',
     ]
 
-    # NPM_ARGS is set by the Dockerfile
-    npm_args_env = os.environ['NPM_ARGS']
     npm_args = [
         'npm',
         'install',
-        '--no-save',
-        '--no-audit',
-        '--no-fund',
-    ] + npm_args_env.split()
+    ]
+
+    # Don't save package-lock.json on production images
+    if build_info.get('target') == 'production':
+        npm_args.append('--no-save')
 
     # Add the relevant targets to the includes lists
     for target in targets:

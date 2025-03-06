@@ -1,6 +1,4 @@
-from django.conf import settings
 from django.core.files.base import ContentFile
-from django.core.management.base import BaseCommand, CommandError
 from django.db.transaction import atomic
 
 import requests
@@ -8,13 +6,14 @@ import requests
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.tests import version_factory
+from olympia.landfill.management.commands import BaseLandfillCommand
 
 
 class KeyboardInterruptError(Exception):
     pass
 
 
-class Command(BaseCommand):
+class Command(BaseLandfillCommand):
     """Download versions for a particular add-on from AMO public data."""
 
     VERSIONS_API_URL = (
@@ -28,10 +27,7 @@ class Command(BaseCommand):
         )
 
     def handle(self, *args, **options):
-        if not settings.DEV_MODE:
-            raise CommandError(
-                'As a safety precaution this command only works in DEV_MODE.'
-            )
+        self.assert_local_dev_mode()
         self.options = options
         self.fetch_versions_data()
 
