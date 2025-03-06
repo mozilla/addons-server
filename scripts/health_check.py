@@ -59,7 +59,7 @@ class Fetcher:
         return self._fetch('__heartbeat__')
 
     def monitors(self):
-        return self._fetch('services/monitors.json')
+        return self._fetch('services/__heartbeat__')
 
 
 def main(env: ENV_ENUM, verbose: bool = False):
