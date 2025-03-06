@@ -1098,9 +1098,12 @@ class Version(OnChangeMixin, ModelBase):
         # "It should apply to the <groups> that require a review to be badged"
         from olympia.promoted.models import PromotedApproval
 
+        promotions = self.addon.promoted_group()
+
         if self != self.addon.current_version or (
-            not (group := self.addon.promoted_group())
-            or not (group.badged and group.listed_pre_review)
+            not promotions.exists()
+            or not any(promotions.badged)
+            or not any(promotions.listed_pre_review)
         ):
             return True
 
@@ -1118,7 +1121,7 @@ class Version(OnChangeMixin, ModelBase):
             .distinct()[:1]
         )
         previous_approval = PromotedApproval.objects.filter(
-            group_id=group.id, version__in=previous_version
+            group_id__in=promotions.group_id, version__in=previous_version
         )
         return previous_approval.exists()
 

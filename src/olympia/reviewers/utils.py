@@ -409,13 +409,13 @@ class ReviewHelper:
         is_admin_needed = is_admin_needed_post_review = False
 
         # More complex/specific cases.
-        if promoted_group.id == PROMOTED_GROUP_CHOICES.RECOMMENDED:
+        if PROMOTED_GROUP_CHOICES.RECOMMENDED in promoted_group.group_id:
             permission = amo.permissions.ADDONS_RECOMMENDED_REVIEW
             permission_post_review = permission
         elif version_is_unlisted:
             permission = amo.permissions.ADDONS_REVIEW_UNLISTED
             permission_post_review = permission
-        elif promoted_group.admin_review:
+        elif any(promoted_group.admin_review):
             is_admin_needed = is_admin_needed_post_review = True
         elif self.content_review:
             permission = amo.permissions.ADDONS_CONTENT_REVIEW
@@ -503,7 +503,11 @@ class ReviewHelper:
         if version_is_unlisted:
             can_reject_multiple = is_appropriate_reviewer
             can_approve_multiple = is_appropriate_reviewer
-        elif self.content_review or promoted_group.listed_pre_review or is_static_theme:
+        elif (
+            self.content_review
+            or any(promoted_group.listed_pre_review)
+            or is_static_theme
+        ):
             can_reject_multiple = (
                 addon_is_valid_and_version_is_listed and is_appropriate_reviewer
             )
@@ -744,7 +748,7 @@ class ReviewHelper:
             'available': (
                 self.version is not None
                 and is_reviewer
-                and (not promoted_group.admin_review or is_appropriate_reviewer)
+                and (not any(promoted_group.admin_review) or is_appropriate_reviewer)
             ),
             'allows_reasons': not is_static_theme,
             'requires_reasons': False,
@@ -923,13 +927,14 @@ class ReviewBase:
             return
         channel = versions[0].channel
         if group and (
-            (channel == amo.CHANNEL_LISTED and group.listed_pre_review)
-            or (channel == amo.CHANNEL_UNLISTED and group.unlisted_pre_review)
+            (channel == amo.CHANNEL_LISTED and any(group.listed_pre_review))
+            or (channel == amo.CHANNEL_UNLISTED and any(group.unlisted_pre_review))
         ):
             # These addons shouldn't be be attempted for auto approval anyway,
             # but double check that the cron job isn't trying to approve it.
             assert not self.user.id == settings.TASK_USER_ID
             for version in versions:
+                # TODO: promotedaddon; approve_for_version refactor (Write PR)
                 self.addon.promotedaddon.approve_for_version(version)
 
     def update_queue_history(self, log_entry):

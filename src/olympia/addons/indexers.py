@@ -662,8 +662,9 @@ class AddonIndexer:
         data['has_eula'] = bool(obj.eula)
         data['has_privacy_policy'] = bool(obj.privacy_policy)
 
-        data['is_recommended'] = bool(
-            obj.promoted and obj.promoted.group_id == PROMOTED_GROUP_CHOICES.RECOMMENDED
+        data['is_recommended'] = any(
+            PROMOTED_GROUP_CHOICES.RECOMMENDED == promotion.group_id
+            for promotion in obj.promoted
         )
 
         data['previews'] = [
@@ -678,14 +679,11 @@ class AddonIndexer:
 
         data['promoted'] = (
             {
-                'group_id': obj.promoted.group_id,
+                'group_id': promotion.group_id,
                 # store the app approvals because .approved_applications needs it.
-                'approved_for_apps': [
-                    app.id for app in obj.promoted.approved_applications
-                ],
+                'approved_for_apps': [app.id for app in obj.approved_applications_for(promotion)]
             }
-            if obj.promoted
-            else None
+            for promotion in obj.promoted
         )
 
         data['ratings'] = {

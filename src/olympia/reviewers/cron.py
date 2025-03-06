@@ -22,7 +22,7 @@ def record_reviewer_queues_counts():
         if group.id != PROMOTED_GROUP_CHOICES.NOT_PROMOTED:
             querysets[f'{PendingManualApprovalQueueTable.name}/{group.api_name}'] = (
                 PendingManualApprovalQueueTable.get_queryset(None).filter(
-                    promotedaddon__group_id=group.id
+                    promotedaddonpromotion__promoted_group__group_id=group.id
                 )
             )
 
