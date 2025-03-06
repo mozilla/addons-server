@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-05 19:59+0000\n"
+"POT-Creation-Date: 2025-03-06 09:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -70,7 +70,7 @@ msgid "Thank you. Your appeal has been recorded."
 msgstr ""
 
 #: src/olympia/abuse/templates/abuse/appeal.html:31
-#: src/olympia/amo/templates/amo/fake_fxa_authorization.html:15
+#: src/olympia/amo/templates/amo/fake_fxa_authorization.html:21
 msgid "OK"
 msgstr ""
 
@@ -260,7 +260,7 @@ msgstr ""
 msgid "Need help?"
 msgstr ""
 
-#: src/olympia/accounts/views.py:739
+#: src/olympia/accounts/views.py:738
 #, python-format
 msgid "Notification [%s] does not exist"
 msgstr ""
@@ -687,11 +687,11 @@ msgstr ""
 msgid "Register or Log in"
 msgstr ""
 
-#: src/olympia/amo/templates/amo/fake_fxa_authorization.html:13
+#: src/olympia/amo/templates/amo/fake_fxa_authorization.html:19
 msgid "Email:"
 msgstr ""
 
-#: src/olympia/amo/templates/amo/fake_fxa_authorization.html:14
+#: src/olympia/amo/templates/amo/fake_fxa_authorization.html:20
 msgid "Two-factor authentication"
 msgstr ""
 
