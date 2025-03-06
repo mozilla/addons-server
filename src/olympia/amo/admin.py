@@ -4,6 +4,7 @@ import operator
 from collections import OrderedDict
 
 from django import forms
+from django.conf import settings
 from django.contrib import admin
 from django.contrib.admin.options import IncorrectLookupParameters
 from django.contrib.admin.views.main import (
@@ -20,6 +21,7 @@ from django.db.models.constants import LOOKUP_SEP
 from django.http.request import QueryDict
 from django.utils.html import format_html, format_html_join
 
+from django_vite.templatetags.django_vite import vite_hmr_client
 from rangefilter.filters import DateRangeFilter as DateRangeFilterBase
 
 from olympia.activity.models import IPLog
@@ -180,7 +182,7 @@ class AMOModelAdminChangeList(ChangeList):
 
 class AMOModelAdmin(admin.ModelAdmin):
     class Media:
-        js = (
+        js = ((vite_hmr_client(),) if settings.DEV_MODE else ()) + (
             'js/admin/ip_address_search.js',
             'js/exports.js',
             'netmask/lib/netmask.js',
