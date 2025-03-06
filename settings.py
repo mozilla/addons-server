@@ -115,14 +115,6 @@ FXA_CONTENT_HOST = 'https://accounts.stage.mozaws.net'
 FXA_OAUTH_HOST = 'https://oauth.stage.mozaws.net/v1'
 FXA_PROFILE_HOST = 'https://profile.stage.mozaws.net/v1'
 
-# When USE_FAKE_FXA_AUTH and settings.DEV_MODE are both True, we serve a fake
-# authentication page, bypassing FxA. To disable this behavior, set
-# USE_FAKE_FXA = False in your local settings.
-# You will also need to specify `client_id` and `client_secret` in your
-# local_settings.py or environment variables - you must contact the FxA team to get your
-# own credentials for FxA stage.
-USE_FAKE_FXA_AUTH = True
-
 # CSP report endpoint which returns a 204 from addons-nginx in local dev.
 CSP_REPORT_URI = '/csp-report'
 RESTRICTED_DOWNLOAD_CSP['REPORT_URI'] = CSP_REPORT_URI

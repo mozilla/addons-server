@@ -92,8 +92,9 @@ def submit_file(*, addon_pk, upload_pk, client_info):
         )
     else:
         log.info(
-            'Skipping version creation for {upload_uuid} that failed '
-            'validation'.format(upload_uuid=upload.uuid)
+            'Skipping version creation for {upload_uuid} that failed validation'.format(
+                upload_uuid=upload.uuid
+            )
         )
 
 
@@ -248,9 +249,7 @@ def validate_file_path(path, channel):
 
     log.info('Running linter on %s', path)
     results = run_addons_linter(path, channel=channel)
-    annotations.annotate_validation_results(
-        results=results, parsed_data=parsed_data, channel=channel
-    )
+    annotations.annotate_validation_results(results=results, parsed_data=parsed_data)
     return json.dumps(results)
 
 

@@ -873,6 +873,7 @@ CELERY_TASK_ROUTES = {
     'olympia.search.management.commands.reindex.flag_database': {'queue': 'adhoc'},
     'olympia.search.management.commands.reindex.unflag_database': {'queue': 'adhoc'},
     'olympia.search.management.commands.reindex.update_aliases': {'queue': 'adhoc'},
+    'olympia.translations.tasks.strip_html_from_summaries': {'queue': 'adhoc'},
     'olympia.translations.tasks.update_outgoing_url': {'queue': 'adhoc'},
     'olympia.versions.tasks.delete_list_theme_previews': {'queue': 'adhoc'},
     'olympia.versions.tasks.hard_delete_versions': {'queue': 'adhoc'},
@@ -1502,8 +1503,8 @@ SHELL_PLUS_POST_IMPORTS = (('olympia', 'amo'),)
 
 FXA_CONFIG = {
     'default': {
-        'client_id': env('FXA_CLIENT_ID', default='.'),
-        'client_secret': env('FXA_CLIENT_SECRET', default='.'),
+        'client_id': env('FXA_CLIENT_ID', default=''),
+        'client_secret': env('FXA_CLIENT_SECRET', default=''),
         # fxa redirects to https://%s/api/auth/authenticate-callback/ % DOMAIN
     },
 }
@@ -1638,7 +1639,7 @@ DJANGO_VITE = {
 
 # The environment in which the application is running.
 # This is set by the environment variables in production environments.
-# For local it is hard coded to "local" in `settings.py` to guarantee a clear
+# For local it is hard coded to "local" in `docker-compose.yml` to guarantee a clear
 # distinction between local and non-local environments.
 ENV = env('ENV')
 

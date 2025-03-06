@@ -16,9 +16,7 @@ class TestDeniedOrigins(TestCase):
         DeniedInstallOrigin.objects.create(hostname_pattern='foo.com')
         results = deepcopy(VALIDATOR_SKELETON_RESULTS)
         data = {'install_origins': ['https://foo.com']}
-        return_value = annotate_validation_results(
-            results=results, parsed_data=data, channel=amo.CHANNEL_UNLISTED
-        )
+        return_value = annotate_validation_results(results=results, parsed_data=data)
         assert return_value == results
         assert results['errors'] == 0
         assert len(results['messages']) == 0
@@ -27,9 +25,7 @@ class TestDeniedOrigins(TestCase):
         DeniedInstallOrigin.objects.create(hostname_pattern='foo.com')
         results = deepcopy(VALIDATOR_SKELETON_RESULTS)
         data = {'install_origins': ['https://bar.com']}
-        return_value = annotate_validation_results(
-            results=results, parsed_data=data, channel=amo.CHANNEL_UNLISTED
-        )
+        return_value = annotate_validation_results(results=results, parsed_data=data)
         assert return_value == results
         assert results['errors'] == 0
         assert len(results['messages']) == 0
@@ -38,9 +34,7 @@ class TestDeniedOrigins(TestCase):
         DeniedInstallOrigin.objects.create(hostname_pattern='foo.com')
         results = deepcopy(VALIDATOR_SKELETON_RESULTS)
         data = {'install_origins': ['https://bar.com', 'https://example.com']}
-        return_value = annotate_validation_results(
-            results=results, parsed_data=data, channel=amo.CHANNEL_UNLISTED
-        )
+        return_value = annotate_validation_results(results=results, parsed_data=data)
         assert return_value == results
         assert results['errors'] == 0
         assert len(results['messages']) == 0
@@ -49,9 +43,7 @@ class TestDeniedOrigins(TestCase):
         DeniedInstallOrigin.objects.create(hostname_pattern='foo.com')
         results = deepcopy(VALIDATOR_SKELETON_RESULTS)
         data = {'install_origins': ['https://bar.com', 'https://foo.com']}
-        return_value = annotate_validation_results(
-            results=results, parsed_data=data, channel=amo.CHANNEL_UNLISTED
-        )
+        return_value = annotate_validation_results(results=results, parsed_data=data)
         assert return_value == results
         assert results['errors'] == 1
         assert results['messages'][0] == {
@@ -69,9 +61,7 @@ class TestDeniedOrigins(TestCase):
         DeniedInstallOrigin.objects.create(hostname_pattern='foo.*')
         results = deepcopy(VALIDATOR_SKELETON_RESULTS)
         data = {'install_origins': ['https://bar.com', 'https://foo.com']}
-        return_value = annotate_validation_results(
-            results=results, parsed_data=data, channel=amo.CHANNEL_UNLISTED
-        )
+        return_value = annotate_validation_results(results=results, parsed_data=data)
         assert return_value == results
         assert results['errors'] == 1
         assert results['messages'][0] == {
@@ -95,9 +85,7 @@ class TestDeniedOrigins(TestCase):
                 'https://foo.com',
             ]
         }
-        return_value = annotate_validation_results(
-            results=results, parsed_data=data, channel=amo.CHANNEL_UNLISTED
-        )
+        return_value = annotate_validation_results(results=results, parsed_data=data)
         assert return_value == results
         assert results['errors'] == 2
         assert results['messages'][0] == {
@@ -124,9 +112,7 @@ class TestDeniedOrigins(TestCase):
         DeniedInstallOrigin.objects.create(hostname_pattern='foo.*')
         results = deepcopy(VALIDATOR_SKELETON_RESULTS)
         data = {'install_origins': ['https://bar.com', 'https://foo.com']}
-        return_value = annotate_validation_results(
-            results=results, parsed_data=data, channel=amo.CHANNEL_UNLISTED
-        )
+        return_value = annotate_validation_results(results=results, parsed_data=data)
         assert return_value == results
         assert results['errors'] == 2
         assert results['messages'][0] == {
@@ -152,9 +138,7 @@ class TestDeniedOrigins(TestCase):
         DeniedInstallOrigin.objects.create(hostname_pattern='foo.com')
         results = deepcopy(VALIDATOR_SKELETON_RESULTS)
         data = {}
-        return_value = annotate_validation_results(
-            results=results, parsed_data=data, channel=amo.CHANNEL_UNLISTED
-        )
+        return_value = annotate_validation_results(results=results, parsed_data=data)
         assert return_value == results
         assert results['errors'] == 0
         assert len(results['messages']) == 0
@@ -166,9 +150,7 @@ class TestAddManifestVersionMessages(TestCase):
         results['messages'] = []
         results['metadata']['manifestVersion'] = 3
         data = {}
-        annotate_validation_results(
-            results=results, parsed_data=data, channel=amo.CHANNEL_UNLISTED
-        )
+        annotate_validation_results(results=results, parsed_data=data)
         # mv3 submission switch is off so we should have added the message even
         # for an unlisted submission.
         assert len(results['messages']) == 1
@@ -183,9 +165,7 @@ class TestAddManifestVersionMessages(TestCase):
         results['messages'] = []
         results['metadata']['manifestVersion'] = 2
         data = {}
-        annotate_validation_results(
-            results=results, parsed_data=data, channel=amo.CHANNEL_LISTED
-        )
+        annotate_validation_results(results=results, parsed_data=data)
         assert results['messages'] == []
 
     def test_add_manifest_version_message_switch_enabled(self):
@@ -194,27 +174,8 @@ class TestAddManifestVersionMessages(TestCase):
         results['metadata']['manifestVersion'] = 3
         data = {}
         with override_switch('enable-mv3-submissions', active=True):
-            annotate_validation_results(
-                results=results, parsed_data=data, channel=amo.CHANNEL_UNLISTED
-            )
+            annotate_validation_results(results=results, parsed_data=data)
             assert results['messages'] == []
-
-            # For listed mv3, we want our message suggesting to use unlisted for
-            # the time being.
-            annotate_validation_results(
-                results=results, parsed_data=data, channel=amo.CHANNEL_LISTED
-            )
-            assert len(results['messages']) == 1
-            assert (
-                results['messages'][0]['message'] == 'Manifest V3 compatibility warning'
-            )
-            assert (
-                'https://mzl.la/3hIwQXX'
-                in (
-                    # description is a list of strings, the link is in the second one.
-                    results['messages'][0]['description'][1]
-                )
-            )
 
     def test_add_manifest_version_message(self):
         results = deepcopy(amo.VALIDATOR_SKELETON_EXCEPTION_WEBEXT)
@@ -225,9 +186,7 @@ class TestAddManifestVersionMessages(TestCase):
         # The manifest_version error isn't in VALIDATOR_SKELETON_EXCEPTION_WEBEXT.
         results['metadata']['manifestVersion'] = 3
         data = {}
-        annotate_validation_results(
-            results=results, parsed_data=data, channel=amo.CHANNEL_LISTED
-        )
+        annotate_validation_results(results=results, parsed_data=data)
         assert len(results['messages']) == 2  # we added it
         # It should be inserted at the top.
         assert (
@@ -249,9 +208,7 @@ class TestAddManifestVersionMessages(TestCase):
         ]
         results['metadata']['manifestVersion'] = 3
         data = {}
-        annotate_validation_results(
-            results=results, parsed_data=data, channel=amo.CHANNEL_LISTED
-        )
+        annotate_validation_results(results=results, parsed_data=data)
         assert len(results['messages']) == 1  # we replaced it and not added it.
         assert (
             'https://blog.mozilla.org/addons/2021/05/27/manifest-v3-update/'

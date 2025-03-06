@@ -22,6 +22,8 @@ x-env-mapping: &env
     - ENV=local
     - CIRCLECI
     - SKIP_DATA_SEED
+    - FXA_CLIENT_ID
+    - FXA_CLIENT_SECRET
 
 x-olympia: &olympia
   <<: *env

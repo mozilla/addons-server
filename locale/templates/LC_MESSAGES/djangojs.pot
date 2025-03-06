@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-03 10:31+0000\n"
+"POT-Creation-Date: 2025-03-06 09:47+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,7 +67,7 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/common/upload-addon.js:286 static/js/common/upload-addon.js:721
+#: static/js/common/upload-addon.js:286 static/js/common/upload-addon.js:704
 msgid "See full validation report"
 msgstr ""
 
@@ -119,28 +119,28 @@ msgstr[1] ""
 msgid "Your add-on was validated with no errors or warnings."
 msgstr ""
 
-#: static/js/common/upload-addon.js:667
+#: static/js/common/upload-addon.js:650
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr ""
 
-#: static/js/common/upload-addon.js:670
+#: static/js/common/upload-addon.js:653
 msgid ""
 "If your add-on requires an account to a website in order to be fully tested, "
 "include a test username and password in the Notes to Reviewer (this can be "
 "done in the next step)."
 msgstr ""
 
-#: static/js/common/upload-addon.js:676
+#: static/js/common/upload-addon.js:659
 msgid "Add-on submission checklist"
 msgstr ""
 
-#: static/js/common/upload-addon.js:680
+#: static/js/common/upload-addon.js:663
 msgid ""
 "Please verify the following points before finalizing your submission. This "
 "will minimize delays or misunderstanding during the review process:"
 msgstr ""
 
-#: static/js/common/upload-addon.js:687
+#: static/js/common/upload-addon.js:670
 msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding "
 "known libraries) need to have their sources submitted separately for review. "
@@ -148,7 +148,7 @@ msgid ""
 "submission rejected."
 msgstr ""
 
-#: static/js/common/upload-addon.js:700
+#: static/js/common/upload-addon.js:683
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr ""
 

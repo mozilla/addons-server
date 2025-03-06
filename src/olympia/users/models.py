@@ -450,8 +450,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             return self.read_dev_agreement > change_config_date
         except (ValueError, TypeError):
             log.exception(
-                'last_developer_agreement_change misconfigured, '
-                '"%s" is not a datetime',
+                'last_developer_agreement_change misconfigured, "%s" is not a datetime',
                 last_agreement_change_config,
             )
             return self.read_dev_agreement > settings.DEV_AGREEMENT_CHANGE_FALLBACK

@@ -1207,12 +1207,12 @@ class TestAddonModels(TestCase):
 
         review_list = [rating.pk for rating in addon.ratings]
 
-        assert (
-            new_rating.pk in review_list
-        ), 'Original review must show up in review list.'
-        assert (
-            new_reply.pk not in review_list
-        ), 'Developer reply must not show up in review list.'
+        assert new_rating.pk in review_list, (
+            'Original review must show up in review list.'
+        )
+        assert new_reply.pk not in review_list, (
+            'Developer reply must not show up in review list.'
+        )
 
     def test_update_logs(self):
         addon = Addon.objects.get(id=3615)
@@ -3657,6 +3657,12 @@ class TestExtensionsQueues(TestCase):
         self._test_pending_queue_needs_human_review_from(
             NeedsHumanReview.REASONS.CINDER_APPEAL_ESCALATION,
             'needs_human_review_from_cinder_forwarded_appeal',
+        )
+
+    def test_pending_queue_needs_human_review_from_2nd_level_approval(self):
+        self._test_pending_queue_needs_human_review_from(
+            NeedsHumanReview.REASONS.AMO_2ND_LEVEL_ESCALATION,
+            'needs_human_review_from_2nd_level_approval',
         )
 
     def test_pending_queue_needs_human_review_other(self):

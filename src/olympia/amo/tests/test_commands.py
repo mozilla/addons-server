@@ -420,25 +420,25 @@ class TestBaseDataCommand(BaseTestDataCommand):
         expected_path = os.path.join(self.backup_dir, name)
 
         actual_path = self.base_data_command.backup_dir_path(name)
-        assert (
-            actual_path == expected_path
-        ), f'Expected {expected_path}, got {actual_path}'
+        assert actual_path == expected_path, (
+            f'Expected {expected_path}, got {actual_path}'
+        )
 
     def test_backup_db_path(self):
         name = 'db_backup'
         expected_path = os.path.join(self.backup_dir, name, self.db_file)
         actual_path = self.base_data_command.backup_db_path(name)
-        assert (
-            actual_path == expected_path
-        ), f'Expected {expected_path}, got {actual_path}'
+        assert actual_path == expected_path, (
+            f'Expected {expected_path}, got {actual_path}'
+        )
 
     def test_backup_storage_path(self):
         name = 'storage_backup'
         expected_path = os.path.join(self.backup_dir, name, self.storage_file)
         actual_path = self.base_data_command.backup_storage_path(name)
-        assert (
-            actual_path == expected_path
-        ), f'Expected {expected_path}, got {actual_path}'
+        assert actual_path == expected_path, (
+            f'Expected {expected_path}, got {actual_path}'
+        )
 
     @mock.patch('olympia.amo.management.shutil.rmtree')
     @mock.patch('olympia.amo.management.logging')

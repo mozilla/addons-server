@@ -847,9 +847,9 @@ class SafeStorage(FileSystemStorage):
         if 'root_setting' in kwargs:
             self.root_setting = kwargs.pop('root_setting')
         self.rel_location = rel_location
-        assert not (
-            rel_location is not None and kwargs.get('location') is not None
-        ), "Don't provide both location and rel_location"
+        assert not (rel_location is not None and kwargs.get('location') is not None), (
+            "Don't provide both location and rel_location"
+        )
         super().__init__(*args, **kwargs)
 
     def _clear_cached_properties(self, setting, **kwargs):
@@ -1161,10 +1161,10 @@ def extract_colors_from_image(path):
     return colors
 
 
-def use_fake_fxa():
+def use_fake_fxa(config):
     """Return whether or not to use a fake FxA server for authentication.
-    Should always return False in production"""
-    return settings.DEV_MODE and settings.USE_FAKE_FXA_AUTH
+    Should always return False in non-local environments"""
+    return settings.ENV in ('local', 'test') and config.get('client_id') == ''
 
 
 class AMOJSONEncoder(JSONEncoder):

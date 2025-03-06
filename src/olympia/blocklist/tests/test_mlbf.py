@@ -1157,8 +1157,7 @@ class TestMLBF(_MLBFBase):
             mlbf.validate()
 
         assert (
-            'Item guid:version found 2 times in data type '
-            f'{MLBFDataType.BLOCKED.name}'
+            f'Item guid:version found 2 times in data type {MLBFDataType.BLOCKED.name}'
         ) in str(e.exception)
 
     def test_validate_duplicate_item_in_multiple_data_types(self):

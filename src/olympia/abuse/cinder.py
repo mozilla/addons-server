@@ -229,11 +229,11 @@ class CinderEntity:
         a keyword argument."""
         pass
 
-    def workflow_recreate(self, *, notes, job=None):
+    def workflow_recreate(self, *, notes, job=None, from_2nd_level=False):
         """Recreate a job in a queue."""
         raise NotImplementedError
 
-    def post_queue_move(self, *, job):
+    def post_queue_move(self, *, job, from_2nd_level=False):
         """Callback triggered after a job has moved to, or been created in, a different
         queue."""
         raise NotImplementedError
@@ -430,14 +430,14 @@ class CinderAddon(CinderEntity):
                 ],
             }
 
-    def workflow_recreate(self, *, notes, job=None):
+    def workflow_recreate(self, *, notes, job=None, from_2nd_level=False):
         """Recreate a job in a queue."""
         job_id = self.report(report=None, reporter=None, message=notes)
         if job:
-            self.post_queue_move(job=job)
+            self.post_queue_move(job=job, from_2nd_level=from_2nd_level)
         return job_id
 
-    def post_queue_move(self, *, job):
+    def post_queue_move(self, *, job, from_2nd_level=False):
         # We don't need to do anything for, or after, the move, by default
         pass
 
@@ -525,7 +525,9 @@ class CinderAddonHandledByReviewers(CinderAddon):
         # No special appeal queue for reviewer handled jobs
         return self.queue
 
-    def flag_for_human_review(self, *, related_versions, appeal=False, forwarded=False):
+    def flag_for_human_review(
+        self, *, related_versions, appeal=False, forwarded=False, second_level=False
+    ):
         """Flag an appropriate version for needs human review so it appears in reviewers
         manual revew queue.
 
@@ -540,7 +542,7 @@ class CinderAddonHandledByReviewers(CinderAddon):
             if forwarded
             else 'dsa-abuse-reports-review'
         )
-        if not waffle.switch_is_active(waffle_switch_name):
+        if not second_level and not waffle.switch_is_active(waffle_switch_name):
             log.info(
                 'Not adding %s to review queue despite %s because %s switch is off',
                 self.addon,
@@ -549,7 +551,9 @@ class CinderAddonHandledByReviewers(CinderAddon):
             )
             return
         reason = (
-            NeedsHumanReview.REASONS.CINDER_APPEAL_ESCALATION
+            NeedsHumanReview.REASONS.AMO_2ND_LEVEL_ESCALATION
+            if second_level
+            else NeedsHumanReview.REASONS.CINDER_APPEAL_ESCALATION
             if appeal and forwarded
             else NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL
             if appeal
@@ -635,13 +639,16 @@ class CinderAddonHandledByReviewers(CinderAddon):
         self.flag_for_human_review(related_versions=related_versions, appeal=True)
         return super().appeal(decision_cinder_id=decision_cinder_id, **kwargs)
 
-    def post_queue_move(self, *, job):
+    def post_queue_move(self, *, job, from_2nd_level=False):
         # When the move is to AMO reviewers we need to flag versions for review
         reported_versions = set(
             job.abusereport_set.values_list('addon_version', flat=True)
         )
         self.flag_for_human_review(
-            related_versions=reported_versions, appeal=job.is_appeal, forwarded=True
+            related_versions=reported_versions,
+            appeal=job.is_appeal,
+            forwarded=True,
+            second_level=from_2nd_level,
         )
 
 

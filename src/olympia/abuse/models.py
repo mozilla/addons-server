@@ -370,6 +370,7 @@ class CinderJob(ModelBase):
             reasons = {
                 NeedsHumanReview.REASONS.CINDER_ESCALATION,
                 NeedsHumanReview.REASONS.CINDER_APPEAL_ESCALATION,
+                NeedsHumanReview.REASONS.AMO_2ND_LEVEL_ESCALATION,
             }
         elif self.queue_moves.exists():
             has_unresolved_jobs_with_similar_reason = base_unresolved_jobs_qs.filter(
@@ -1334,12 +1335,17 @@ class ContentDecision(ModelBase):
         return log_entry
 
     def send_notifications(self):
+        from olympia.activity.models import AttachmentLog
+
         if not self.action_date:
             return
 
         action_helper = self.get_action_helper()
         cinder_job = self.originating_job
         log_entry = self.activities.last()
+        has_attachment = AttachmentLog.objects.filter(
+            activity_log__contentdecisionlog__decision=self
+        ).exists()
 
         if cinder_job:
             cinder_job.notify_reporters(action_helper)
@@ -1365,7 +1371,7 @@ class ContentDecision(ModelBase):
                 'is_addon_disabled': details.get('is_addon_being_disabled')
                 or getattr(self.target, 'is_disabled', False),
                 'version_list': ', '.join(ver_str for ver_str in version_numbers),
-                'has_attachment': hasattr(log_entry, 'attachmentlog'),
+                'has_attachment': has_attachment,
                 'dev_url': absolutify(self.target.get_dev_url('versions'))
                 if self.addon_id
                 else None,

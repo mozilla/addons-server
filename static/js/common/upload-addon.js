@@ -608,9 +608,7 @@
               'UNSAFE_VAR_ASSIGNMENT',
               'MANIFEST_CSP',
             ],
-            mv3NoticeId = '_MV3_COMPATIBILITY',
             checklistMessages = [],
-            mv3CompatibilityMessage,
             // this.id is in the form ["abc_def_ghi', 'foo_bar', 'something'],
             // we usually only match one of the elements.
             matchId = function (id) {
@@ -638,21 +636,6 @@
                   1,
                 );
                 if (!checklistWarningsIds.length) break;
-              }
-
-              // Manifest v3 warning is a custom one added by addons-server
-              // that should be added once, regardless of whether or not we're
-              // displaying the submission warning box.
-              if (_.find([mv3NoticeId], matchId, current)) {
-                let mv3CompatibilityBox = $('<div>')
-                  .attr('class', 'submission-warning')
-                  .appendTo(upload_results);
-                $('<h5>').text(current.message).appendTo(mv3CompatibilityBox);
-                // That description is split into several paragraphs and can
-                // contain HTML for links.
-                current.description.forEach(function (item) {
-                  $('<p>').html(item).appendTo(mv3CompatibilityBox);
-                });
               }
             }
           }

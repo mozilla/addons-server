@@ -101,9 +101,9 @@ class TestUpdateInfo(UpdateInfoMixin, TestCase):
             response = self.client.get(self.url)
             assert response.status_code == 200
             assert response['Content-Type'] == 'application/xhtml+xml'
-            assert (
-                b'<br/>' in response.content
-            ), 'Should be using XHTML self-closing tags!'
+            assert b'<br/>' in response.content, (
+                'Should be using XHTML self-closing tags!'
+            )
             doc = PyQuery(response.content, parser='html')
             assert doc('html').attr('xmlns') == 'http://www.w3.org/1999/xhtml'
             assert doc('p').html() == (
