@@ -104,5 +104,7 @@ if __name__ == '__main__':
             break
         except Exception as e:
             print(f'Error: {e}')
+            if attempt == args.retries:
+                raise
             time.sleep(2**attempt)
             attempt += 1
