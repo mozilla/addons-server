@@ -1,2 +1,1 @@
 deb https://deb.nodesource.com/node_20.x nodistro main
-deb-src https://deb.nodesource.com/node_20.x nodistro main
