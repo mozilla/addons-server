@@ -12,6 +12,7 @@ from django.utils.translation import gettext
 from olympia import promoted
 from olympia.addons.models import Addon
 from olympia.amo.admin import AMOModelAdmin
+from olympia.amo.templatetags.jinja_helpers import vite_asset
 from olympia.discovery.models import DiscoveryItem
 from olympia.hero.admin import PrimaryHeroImageAdmin, SecondaryHeroAdmin
 from olympia.hero.models import PrimaryHeroImage, SecondaryHero
@@ -80,7 +81,7 @@ class PositionChinaFilter(PositionFilter):
 
 class DiscoveryItemAdmin(AMOModelAdmin):
     class Media:
-        css = {'all': ('css/admin/discovery.css',)}
+        css = {'all': (vite_asset('css/admin-discovery.less'),)}
 
     list_display = (
         '__str__',
