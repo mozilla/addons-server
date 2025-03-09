@@ -5787,7 +5787,7 @@ msgstr "Lihat semua ekstensi"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1004
 msgid "Popular themes"
-msgstr ""
+msgstr "Tema populer"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1006
@@ -5828,7 +5828,7 @@ msgstr "Disarankan"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1021
 msgid "See more recommended themes"
-msgstr ""
+msgstr "Lihat lebih banyak tema yang disarankan"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1024
@@ -5844,7 +5844,7 @@ msgstr "Lihat semua ekstensi"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1029
 msgid "Translation tools"
-msgstr ""
+msgstr "Alat penerjemahan"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1031
@@ -5867,7 +5867,7 @@ msgstr "Lihat semua ekstensi"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1039
 msgid "Tab managers"
-msgstr ""
+msgstr "Pengelola tab"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1041
@@ -6720,11 +6720,11 @@ msgstr ""
 
 #: src/olympia/templates/photon-footer.html:34
 msgid "Products"
-msgstr ""
+msgstr "Produk"
 
 #: src/olympia/templates/photon-footer.html:52
 msgid "Privacy"
-msgstr ""
+msgstr "Privasi"
 
 #: src/olympia/templates/photon-footer.html:53
 msgid "Cookies"
