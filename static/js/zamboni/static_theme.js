@@ -1,16 +1,25 @@
+import $ from 'jquery';
+import JSZip from 'jszip';
+import _ from 'underscore';
+import '@claviska/jquery-minicolors';
+import { _pd } from '../lib/prevent-default';
+import { b64toBlob } from './helpers';
+import { formatFileSize } from './global';
+import { format } from '../lib/format';
+
 $(document).ready(function () {
   $('#theme-wizard').each(initThemeWizard);
 
-  var MAX_STATICTHEME_SIZE = 7 * 1024 * 1024;
+  let MAX_STATICTHEME_SIZE = 7 * 1024 * 1024;
 
   function initThemeWizard() {
-    var $wizard = $(this);
-    var preLoadBlob = null;
-    var headerImageError = false;
+    let $wizard = $(this);
+    let preLoadBlob = null;
+    let headerImageError = false;
 
     function getFile() {
-      file_selector = $wizard.find('#header-img')[0];
-      file = file_selector.files[0];
+      const file_selector = $wizard.find('#header-img')[0];
+      const file = file_selector.files[0];
       if (
         file &&
         $wizard
@@ -27,27 +36,27 @@ $(document).ready(function () {
       'click',
       '.reset',
       _pd(function () {
-        var $this = $(this),
+        let $this = $(this),
           $row = $this.closest('.row');
         $row.find('input[type="file"]').click();
       }),
     );
 
     $wizard.on('change', 'input[type="file"]', function () {
-      var $row = $(this).closest('.row');
-      var reader = new FileReader(),
+      let $row = $(this).closest('.row');
+      let reader = new FileReader(),
         file = getFile();
       if (!file) return; // don't do anything if no file selected.
-      var $preview_img = $row.find('.preview');
+      let $preview_img = $row.find('.preview');
 
       reader.onload = function (e) {
         $preview_img.attr('src', e.target.result);
         $preview_img.show().addClass('loaded');
         $row.find('.reset').show().css('display', 'block');
         $row.find('input[type=file], .note').hide();
-        var filename = file.name.replace(/\.[^/.]+$/, '');
+        let filename = file.name.replace(/\.[^/.]+$/, '');
         $wizard.find('a.download').attr('download', filename + '.zip');
-        var name_input = $wizard.find('#theme-name');
+        let name_input = $wizard.find('#theme-name');
         if (!name_input.val()) {
           name_input.val(filename);
         }
@@ -58,24 +67,24 @@ $(document).ready(function () {
     $wizard.find('input[type="file"]').trigger('change');
 
     $wizard.find('img.preview').on('load', function (e) {
-      var $svg_img = $('#svg-header-img'),
+      let $svg_img = $('#svg-header-img'),
         $svg = $('#preview-svg-root');
       $svg_img.attr('href', ($svg_img.src = e.target.src));
       $svg_img.attr('height', e.target.naturalHeight);
-      var meetOrSlice = e.target.naturalWidth < $svg.width() ? 'meet' : 'slice';
+      let meetOrSlice = e.target.naturalWidth < $svg.width() ? 'meet' : 'slice';
       $svg_img.attr('preserveAspectRatio', 'xMaxYMin ' + meetOrSlice);
     });
 
     $wizard.find('#theme-header').each(function (index, element) {
-      var img_src = $(element).data('existing-header');
+      let img_src = $(element).data('existing-header');
       // If we already have a preview from a selected file don't overwrite it.
       if (getFile() || !img_src) return;
-      var xhr = new XMLHttpRequest();
+      let xhr = new XMLHttpRequest();
       xhr.open('GET', window.location.href + '/background');
       xhr.responseType = 'json';
       // load the image as a blob so we can treat it as a File
       xhr.onload = function () {
-        jsonResponse = xhr.response;
+        const jsonResponse = xhr.response;
         preLoadBlob = b64toBlob(jsonResponse[img_src]);
         preLoadBlob.name = img_src;
         $wizard.find('input[type="file"]').trigger('change');
@@ -84,7 +93,7 @@ $(document).ready(function () {
     });
 
     function updateManifest() {
-      textarea = $wizard.find('#manifest').val(generateManifest());
+      const textarea = $wizard.find('#manifest').val(generateManifest());
       toggleSubmitIfNeeded();
     }
 
@@ -95,14 +104,14 @@ $(document).ready(function () {
     }
 
     function generateManifest() {
-      var headerFile = getFile(),
+      let headerFile = getFile(),
         headerPath = headerFile ? headerFile.name : '';
 
       function colVal(id) {
         return $wizard.find('#' + id).val();
       }
 
-      var colors = {
+      let colors = {
         frame: colVal('frame'),
         tab_background_text: colVal('tab_background_text'),
         toolbar: colVal('toolbar'),
@@ -115,7 +124,7 @@ $(document).ready(function () {
         return value === '';
       });
 
-      manifest = {
+      const manifest = {
         name: $wizard.find('#theme-name').val(),
         manifest_version: 2,
         version: $wizard.data('version'),
@@ -130,21 +139,22 @@ $(document).ready(function () {
     }
 
     function buildZip() {
-      var zip = new JSZip();
+      console.log('ZIPPPP');
+      let zip = new JSZip();
       zip.file('manifest.json', generateManifest());
-      var header_img = getFile();
+      let header_img = getFile();
       if (header_img) {
         zip.file(header_img.name, header_img);
       }
       return zip;
     }
 
-    var $color = $wizard.find('input.color-picker');
+    let $color = $wizard.find('input.color-picker');
     $color
       .change(function () {
-        var $this = $(this);
+        let $this = $(this);
         ['fill', 'stroke'].forEach(function (prop) {
-          var color_property_selector = '.' + $this[0].id + '.' + prop,
+          let color_property_selector = '.' + $this[0].id + '.' + prop,
             $svg_element = $(color_property_selector),
             // If there's no value set and we have a fallback color we can use that instead
             $have_fallback = $(color_property_selector + '[data-fallback]').not(
@@ -190,8 +200,8 @@ $(document).ready(function () {
       'click',
       'button.upload',
       _pd(function (event) {
-        var $button = $(event.target);
-        var zip = buildZip();
+        let $button = $(event.target);
+        let zip = buildZip();
         $button
           .addClass('uploading')
           .addClass('disabled')
@@ -214,7 +224,7 @@ $(document).ready(function () {
           })
           .then(
             function (blob) {
-              var formData = new FormData();
+              let formData = new FormData();
               formData.append('upload', blob, 'upload.zip');
               formData.append('theme_specific', true);
               $.ajax({

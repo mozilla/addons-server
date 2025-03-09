@@ -1396,7 +1396,7 @@ class TestQueueBasics(QueueTest):
         )
         assert links == expected
 
-    @override_settings(DEBUG=True, LESS_PREPROCESS=False)
+    @override_settings(DEBUG=True)
     def test_queue_is_never_executing_the_full_query(self):
         """Test that queue() is paginating without accidentally executing the
         full query."""

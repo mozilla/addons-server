@@ -182,12 +182,8 @@ class AMOModelAdminChangeList(ChangeList):
 
 class AMOModelAdmin(admin.ModelAdmin):
     class Media:
-        js = ((vite_hmr_client(),) if settings.DEV_MODE else ()) + (
-            'js/admin/ip_address_search.js',
-            'js/exports.js',
-            'netmask/lib/netmask.js',
-        )
-        css = {'all': ('css/admin/amoadmin.css',)}
+        js = ((vite_hmr_client(),) if settings.DEV_MODE else ()) + ('js/admin.js',)
+        css = {'all': ('css/admin.css',)}
 
     # Classes that want to implement search by ip can override these if needed.
     search_by_ip_actions = ()  # Deactivated by default.

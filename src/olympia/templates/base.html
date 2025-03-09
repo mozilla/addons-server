@@ -19,32 +19,29 @@
           href="{{ url('amo.opensearch') }}" />
 
     {% block site_css %}
-      {{ css('common/fonts') }}
-      {{ css('zamboni/css') }}
-      {{ css('common/footer') }}
+      {{ vite_asset('css/fonts.less') }}
+      {{ vite_asset('css/zamboni.less') }}
+      {{ vite_asset('css/footer.less') }}
     {% endblock %}
 
     {% block extrahead %}{% endblock %}
 
     {% block restyle %}
-      {{ css('restyle/css') }}
+      {{ vite_asset('css/restyle.less') }}
     {% endblock %}
 
-    <noscript><link rel="stylesheet" href="{{ static('css/legacy/nojs.css') }}"></noscript>
+    <noscript>
+      {{ vite_asset('css/nojs.less') }}
+    </noscript>
 
     {% if settings.DEV_MODE %}
       {{ vite_hmr_client() }}
-      {% if settings.LESS_LIVE_REFRESH %}
-        <meta id="live_refresh" name="live_refresh" value="1">
-      {% endif %}
-      {{ js('debug') }}
     {% endif %}
 
     {% if user.is_authenticated %}
       <meta name="csrf" content="{{ csrf_token }}">
     {% endif %}
 
-    {{ js('jquery_base') }}
     {{ vite_asset('js/preload.js') }}
   </head>
   <body class="html-{{ DIR }} {{ amo.FIREFOX.short }} moz-header-slim {% block bodyclass %}{% endblock %} restyle"
@@ -117,8 +114,8 @@
       </div>
       {# js #}
       {% block site_js %}
-        <script src="{{ static('js/i18n/%s.js'|format(LANG)) }}"></script>
-        {{ js('common') }}
+        <script type="text/javascript" src="{{ static('js/i18n/%s.js'|format(LANG)) }}"></script>
+        {{ vite_asset('js/common.js') }}
       {% endblock %}
       {% block js %}{% endblock %}
       {% block footer %}

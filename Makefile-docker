@@ -96,17 +96,11 @@ test_needs_locales_compilation:
 		-m 'needs_locales_compilation' \
 		$(ARGS)
 
-.PHONY: test_static_assets
-test_static_assets: run_js_tests
-	pytest $(PYTEST_SRC) \
-		-m 'static_assets' \
-		$(ARGS)
-
 .PHONY: test_main
 test_main:
 	pytest $(PYTEST_SRC) \
 		-n auto \
-		-m 'not es_tests and not needs_locales_compilation and not static_assets and not internal_routes_allowed' \
+		-m 'not es_tests and not needs_locales_compilation and not internal_routes_allowed' \
 		$(ARGS)
 
 .PHONY: test_internal_routes_allowed
@@ -124,7 +118,7 @@ test_internal_routes_allowed:
 test_es_tests:
 	pytest \
 		$(PYTEST_SRC) \
-		-m 'es_tests and not needs_locales_compilation and not static_assets' \
+		-m 'es_tests and not needs_locales_compilation' \
 		$(ARGS)
 
 .PHONY: test
