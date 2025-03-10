@@ -1534,16 +1534,6 @@ CRON_JOBS = {
     'write_sitemaps': 'olympia.amo.cron',
 }
 
-RECOMMENDATION_ENGINE_URL = env(
-    'RECOMMENDATION_ENGINE_URL',
-    default='https://taar.dev.mozaws.net/v1/api/recommendations/',
-)
-TAAR_LITE_RECOMMENDATION_ENGINE_URL = env(
-    'TAAR_LITE_RECOMMENDATION_ENGINE_URL',
-    default=('https://taar.dev.mozaws.net/taarlite/api/v1/addon_recommendations/'),
-)
-RECOMMENDATION_ENGINE_TIMEOUT = env.float('RECOMMENDATION_ENGINE_TIMEOUT', default=1)
-
 # Reputation service is disabled by default, enabled for dev/stage/prod via
 # those 3 env variables.
 REPUTATION_SERVICE_URL = env('REPUTATION_SERVICE_URL', default=None)

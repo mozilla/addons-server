@@ -21,25 +21,17 @@ Firefox (about:addons).
 
 .. note::
 
-    If a telemetry client id is passed as a parameter to the discovery pane api
-    endpoint then static curated content is amended with recommendations from the
-    `recommendation service <https://github.com/mozilla/taar>`_.  The same number
-    of results will be returned as a standard discovery response and only extensions
-    (not themes) are recommended.  Only valid, publicly available addons are shown.
-
-    E.g. a standard discovery pane will display 7 items, 4 extensions and 3 themes.
-    Up to 4 extensions will be replaced with recommendations; the 3 themes will not
-    be replaced. The API will still return a total of 7 items.
+    A standard discovery pane will display 7 items, 4 extensions and 3 themes.
 
 .. http:get:: /api/v5/discovery/
 
-    :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
+    :query string lang: Activates translations. (See :ref:`translated fields <api-overview-translations>`)
     :query string edition: Optionally return content for a specific edition of Firefox.  Currently only ``china`` (and the alias ``MozillaOnline``)  is supported.
-    :query string telemetry-client-id: Optional sha256 hash of the telemetry client ID to be passed to the TAAR service to enable recommendations. Must be the hex value of a sha256 hash, otherwise it will be ignored.
+    :query string telemetry-client-id: Ignored. Was previously an optional sha256 hash of the telemetry client ID to be passed to the TAAR service to enable recommendations.
     :>json int count: The number of results for this query.
     :>json array results: The array containing the results for this query.
     :>json object|null results[].description_text: The description for this item, if any. (See :ref:`translated fields <api-overview-translations>`.  Note: when ``lang`` is not specified, not all locales will be returned, unlike other translated fields).
-    :>json boolean results[].is_recommendation: If this item was from the recommendation service, rather than static curated content.
+    :>json boolean results[].is_recommendation: Always False.
     :>json object results[].addon: The :ref:`add-on <addon-detail-object>` for this item. Only a subset of fields are present: ``id``, ``authors``, ``average_daily_users``, ``current_version`` (with only the ``id``, ``compatibility``, ``is_strict_compatibility_enabled`` and ``file`` fields present), ``guid``, ``icon_url``, ``name``, ``ratings``, ``previews``, ``slug``, ``theme_data``, ``type`` and ``url``.
 
 
@@ -51,8 +43,7 @@ Editorial Content
 
 This endpoint allows you to fetch all editorial content for Discovery Pane
 Recommendations. This is used internally to generate .po files containing the
-strings defined by the content team.  It is also used by TAAR service to obtain a list
-of appropriate add-ons to recommended.
+strings defined by the content team.
 
  .. http:get:: /api/v5/discovery/editorial/
 

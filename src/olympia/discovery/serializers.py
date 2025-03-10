@@ -19,8 +19,7 @@ from olympia.versions.models import Version
 class DiscoveryEditorialContentSerializer(AMOModelSerializer):
     """
     Serializer used to fetch editorial-content only, for internal use when
-    generating the .po files containing all editorial content to be translated
-    or for internal consumption by the TAAR team.
+    generating the .po files containing all editorial content to be translated.
     """
 
     addon = serializers.SerializerMethodField()
@@ -94,16 +93,7 @@ class DiscoverySerializer(AMOModelSerializer):
         model = DiscoveryItem
 
     def get_is_recommendation(self, obj):
-        # If an object is ever returned without having a position set, that
-        # means it's coming from the recommendation server, it wasn't an
-        # editorial choice.
-        view = self.context.get('view')
-        if view and view.get_edition() == 'china':
-            position_field = 'position_china'
-        else:
-            position_field = 'position'
-        position_value = getattr(obj, position_field)
-        return position_value is None or position_value < 1
+        return False
 
     def get_heading(self, obj):
         return format_html(

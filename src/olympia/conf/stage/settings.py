@@ -62,11 +62,6 @@ FXA_CONFIG = {
     },
 }
 
-TAAR_LITE_RECOMMENDATION_ENGINE_URL = env(
-    'TAAR_LITE_RECOMMENDATION_ENGINE_URL',
-    default=('https://taarlite.prod.mozaws.net/taarlite/api/v1/addon_recommendations/'),
-)
-
 REMOTE_SETTINGS_API_URL = 'https://firefox.settings.services.allizom.org/v1/'
 REMOTE_SETTINGS_WRITER_URL = env(
     'REMOTE_SETTINGS_WRITER_URL', default='https://remote-settings.allizom.org/v1/'

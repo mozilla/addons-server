@@ -1,16 +1,10 @@
-from unittest import mock
-
 from django.test.utils import override_settings
-
-from waffle import switch_is_active
-from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import TestCase, addon_factory, reverse_ns, user_factory
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.discovery.models import DiscoveryItem
-from olympia.discovery.utils import replace_extensions
 
 
 class DiscoveryTestMixin:
@@ -111,9 +105,6 @@ class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
             DiscoveryItem.objects.create(addon=addon, position_china=i)
 
     def test_list(self):
-        # Precache waffle-switch to not rely on switch caching behavior
-        switch_is_active('disco-recommendations')
-
         with self.assertNumQueries(11):
             # 12 queries:
             # - 1 to fetch the discovery items
@@ -244,136 +235,6 @@ class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
         for i, result in enumerate(response.data['results']):
             assert result['is_recommendation'] is False
             self._check_disco_addon(result, discopane_items[i])
-
-
-@override_switch('disco-recommendations', active=True)
-class TestDiscoveryRecommendations(DiscoveryTestMixin, TestCase):
-    def setUp(self):
-        super().setUp()
-
-        self.addons = []
-
-        # This one should not appear anywhere, position isn't set.
-        DiscoveryItem.objects.create(addon=addon_factory())
-
-        for i in range(1, 8):
-            if i % 3:
-                type_ = amo.ADDON_STATICTHEME
-            else:
-                type_ = amo.ADDON_EXTENSION
-            addon = addon_factory(type=type_)
-            self.addons.append(addon)
-            DiscoveryItem.objects.create(addon=addon, position=i)
-
-        for i in range(1, 8):
-            if i % 3:
-                type_ = amo.ADDON_STATICTHEME
-            else:
-                type_ = amo.ADDON_EXTENSION
-            addon = addon_factory(type=type_)
-            DiscoveryItem.objects.create(addon=addon, position_china=i)
-
-        patcher = mock.patch('olympia.discovery.views.get_disco_recommendations')
-        self.get_disco_recommendations_mock = patcher.start()
-        self.addCleanup(patcher.stop)
-        # If no recommendations then results should be as before - tests from
-        # the parent class check this.
-        self.get_disco_recommendations_mock.return_value = []
-        self.url = reverse_ns('discovery-list', api_version='v5')
-
-    def test_recommendations(self):
-        author = user_factory()
-        recommendations = [
-            addon_factory(guid='101@mozilla', users=[author]),
-            addon_factory(guid='102@mozilla', users=[author]),
-            addon_factory(guid='103@mozilla', users=[author]),
-            addon_factory(guid='104@mozilla', users=[author]),
-        ]
-        replacement_items = [
-            DiscoveryItem(addon=recommendations[0]),
-            DiscoveryItem(addon=recommendations[1]),
-            DiscoveryItem(addon=recommendations[2]),
-            DiscoveryItem(addon=recommendations[3]),
-        ]
-        self.addons.extend(recommendations)
-        self.get_disco_recommendations_mock.return_value = replacement_items
-
-        response = self.client.get(
-            self.url,
-            {'lang': 'en-US', 'telemetry-client-id': '666', 'platform': 'WINNT'},
-        )
-        self.get_disco_recommendations_mock.assert_called_with('666', [])
-
-        # should still be the same number of results.
-        discopane_items = DiscoveryItem.objects.filter(position__gt=0).order_by(
-            'position'
-        )
-        assert response.data['count'] == len(discopane_items)
-        assert response.data['results']
-
-        # themes aren't replaced by recommendations, so should be as before.
-        new_discopane_items = replace_extensions(discopane_items, replacement_items)
-        for i, result in enumerate(response.data['results']):
-            self._check_disco_addon(result, new_discopane_items[i])
-            if result['addon']['type'] != 'extension':
-                # There aren't any theme recommendations.
-                assert result['is_recommendation'] is False
-            else:
-                assert result['is_recommendation'] is True
-
-    def test_recommendations_with_override(self):
-        author = user_factory()
-        addon1 = addon_factory(guid='101@mozilla', users=[author])
-        addon2 = addon_factory(guid='102@mozilla', users=[author])
-        addon3 = addon_factory(guid='103@mozilla', users=[author])
-        DiscoveryItem.objects.create(addon=addon1, position_override=4)
-        DiscoveryItem.objects.create(addon=addon2)
-        DiscoveryItem.objects.create(addon=addon3, position_override=1)
-
-        self.client.get(self.url, {'telemetry-client-id': '666'})
-        self.get_disco_recommendations_mock.assert_called_with(
-            '666', ['103@mozilla', '101@mozilla']
-        )
-
-    def test_recommendations_with_garbage_telemetry_id(self):
-        self.client.get(self.url, {'telemetry-client-id': 'gærbäge'})
-        assert not self.get_disco_recommendations_mock.called
-
-        self.client.get(self.url, {'telemetry-client-id': ''})
-        assert not self.get_disco_recommendations_mock.called
-
-    def test_no_recommendations_for_china_edition(self):
-        author = user_factory()
-        recommendations = [
-            addon_factory(id=101, guid='101@mozilla', users=[author]),
-        ]
-        replacement_items = [DiscoveryItem(addon_id=101)]
-        self.addons.extend(recommendations)
-        self.get_disco_recommendations_mock.return_value = replacement_items
-
-        response = self.client.get(
-            self.url,
-            {
-                'lang': 'en-US',
-                'telemetry-client-id': '666',
-                'platform': 'WINNT',
-                'edition': 'china',
-            },
-        )
-        self.get_disco_recommendations_mock.assert_not_called()
-
-        # should be normal results
-        discopane_items_china = (
-            DiscoveryItem.objects.all()
-            .filter(position_china__gt=0)
-            .order_by('position_china')
-        )
-        assert response.data['count'] == len(discopane_items_china)
-        assert response.data['results']
-
-        for i, result in enumerate(response.data['results']):
-            assert result['is_recommendation'] is False
-            self._check_disco_addon(result, discopane_items_china[i])
 
 
 class TestDiscoveryItemViewSet(TestCase):

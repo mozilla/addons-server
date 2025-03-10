@@ -52,16 +52,6 @@ ES_INDEXES = {k: f'{v}_{ENV}' for k, v in ES_INDEXES.items()}
 ES_DEFAULT_NUM_SHARDS = 10
 ES_COMPRESS = False
 
-RECOMMENDATION_ENGINE_URL = env(
-    'RECOMMENDATION_ENGINE_URL',
-    default='https://taar.prod.mozaws.net/v1/api/recommendations/',
-)
-
-TAAR_LITE_RECOMMENDATION_ENGINE_URL = env(
-    'TAAR_LITE_RECOMMENDATION_ENGINE_URL',
-    default=('https://taarlite.prod.mozaws.net/taarlite/api/v1/addon_recommendations/'),
-)
-
 EXTENSION_WORKSHOP_URL = env(
     'EXTENSION_WORKSHOP_URL', default='https://extensionworkshop.com'
 )
