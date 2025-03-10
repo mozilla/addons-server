@@ -16,6 +16,7 @@ from olympia import amo
 from olympia.access import acl
 from olympia.addons.models import Addon, AddonApprovalsCounter
 from olympia.amo.admin import AMOModelAdmin, DateRangeFilter, FakeChoicesMixin
+from olympia.amo.templatetags.jinja_helpers import vite_asset
 from olympia.ratings.models import Rating
 from olympia.translations.utils import truncate_text
 
@@ -91,13 +92,8 @@ class MinimumReportsCountFilter(FakeChoicesMixin, admin.SimpleListFilter):
 
 
 class AbuseReportAdmin(AMOModelAdmin):
-    class Media(AMOModelAdmin.Media):
-        css = {
-            'all': (
-                'css/admin/amoadmin.css',
-                'css/admin/abuse_reports.css',
-            )
-        }
+    class Media:
+        css = {'all': (vite_asset('css/admin-abuse-report.less'),)}
 
     date_hierarchy = 'modified'
     list_display = (

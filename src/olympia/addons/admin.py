@@ -176,12 +176,9 @@ class FileInline(admin.TabularInline):
 
 
 class AddonAdmin(AMOModelAdmin):
-    class Media(AMOModelAdmin.Media):
-        css = {
-            'all': AMOModelAdmin.Media.css['all']
-            + (vite_asset('css/admin-addon.less'),)
-        }
-        js = AMOModelAdmin.Media.js + (
+    class Media:
+        css = {'all': (vite_asset('css/admin-addon.less'),)}
+        js = (
             # TODO: This is probably a redundant dependency
             'admin/js/jquery.init.js',
             vite_asset('js/admin-addon.js'),

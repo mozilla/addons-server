@@ -4,7 +4,6 @@ import operator
 from collections import OrderedDict
 
 from django import forms
-from django.conf import settings
 from django.contrib import admin
 from django.contrib.admin.options import IncorrectLookupParameters
 from django.contrib.admin.views.main import (
@@ -26,6 +25,7 @@ from rangefilter.filters import DateRangeFilter as DateRangeFilterBase
 
 from olympia.activity.models import IPLog
 from olympia.amo.models import GroupConcat, Inet6Ntoa
+from olympia.amo.templatetags.jinja_helpers import vite_asset
 from olympia.constants.activity import LOG_BY_ID
 
 from .models import FakeEmail
@@ -182,12 +182,8 @@ class AMOModelAdminChangeList(ChangeList):
 
 class AMOModelAdmin(admin.ModelAdmin):
     class Media:
-        js = ((vite_hmr_client(),) if settings.DEV_MODE else ()) + (
-            'js/admin/ip_address_search.js',
-            'js/exports.js',
-            'netmask/lib/netmask.js',
-        )
-        css = {'all': ('css/admin/amoadmin.css',)}
+        js = (vite_hmr_client(), vite_asset('js/admin.js'))
+        css = {'all': (vite_asset('css/admin.less'),)}
 
     # Classes that want to implement search by ip can override these if needed.
     search_by_ip_actions = ()  # Deactivated by default.

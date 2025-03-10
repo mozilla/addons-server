@@ -15,6 +15,7 @@ from olympia import amo
 from olympia.access import acl
 from olympia.addons.models import Addon
 from olympia.amo.admin import AMOModelAdmin, MultipleRelatedListFilter
+from olympia.amo.templatetags.jinja_helpers import vite_asset
 from olympia.amo.utils import is_safe_url
 from olympia.constants import scanners
 from olympia.constants.scanners import (
@@ -249,12 +250,7 @@ class AbstractScannerResultAdminMixin:
     ordering = ('-pk',)
 
     class Media(AMOModelAdmin.Media):
-        css = {
-            'all': (
-                'css/admin/amoadmin.css',
-                'css/admin/scannerresult.css',
-            )
-        }
+        css = {'all': (vite_asset('css/admin-scanner-results.less'),)}
 
     def get_queryset(self, request):
         # We already set list_select_related() so we don't need to repeat that.
@@ -457,12 +453,7 @@ class AbstractScannerRuleAdminMixin:
         return super().formfield_for_choice_field(db_field, request, **kwargs)
 
     class Media(AMOModelAdmin.Media):
-        css = {
-            'all': (
-                'css/admin/amoadmin.css',
-                'css/admin/scannerrule.css',
-            )
-        }
+        css = {'all': (vite_asset('css/admin-scanner-rule.less'),)}
 
     def get_fields(self, request, obj=None):
         fields = super().get_fields(request, obj)
@@ -759,7 +750,7 @@ class ScannerQueryResultAdmin(AbstractScannerResultAdminMixin, AMOModelAdmin):
     ordering = ('version__addon_id', 'version__channel', 'version__created')
 
     class Media(AbstractScannerResultAdminMixin.Media):
-        js = ('js/admin/scannerqueryresult.js',)
+        js = (vite_asset('js/admin-scanner-query-result.js'),)
 
     def addon_name(self, obj):
         # Custom, simpler implementation to go with add-on grouping: the

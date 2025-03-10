@@ -1,13 +1,32 @@
-document.addEventListener('DOMContentLoaded', () => {
-  'use strict';
+import { Netmask } from 'netmask';
 
+document.addEventListener('DOMContentLoaded', () => {
   /* Those variables are used in the functions below, and initialized a bit
      later if we're on a userprofile changelist page */
-  var search_bar;
-  var original_search_terms;
-  var ip_fields;
+  const search_bar = document.querySelector('#searchbar');
 
-  const Netmask = exports.Netmask;
+  function get_search_bar_terms() {
+    /**
+     * Return a Set of all search terms in the search bar.
+     */
+    if (!search_bar) {
+      return new Set();
+    }
+
+    const search_term = search_bar.value.trim();
+    return new Set(
+      search_term
+        ? search_term.split(',').map(function (x) {
+            return x.trim();
+          })
+        : [],
+    );
+  }
+
+  const original_search_terms = get_search_bar_terms();
+  const ip_fields = document.querySelectorAll(
+    '.change-list .field-known_ip_adresses li',
+  );
 
   function are_set_equal(a, b) {
     /** Return whether or not two sets contains the same values. */
@@ -20,20 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
     return true;
-  }
-
-  function get_search_bar_terms() {
-    /**
-     * Return a Set of all search terms in the search bar.
-     */
-    const search_term = search_bar.value.trim();
-    return new Set(
-      search_term
-        ? search_term.split(',').map(function (x) {
-            return x.trim();
-          })
-        : [],
-    );
   }
 
   function highlight_ips_not_in(values) {
@@ -67,6 +72,10 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         field.classList.remove('notinsearch');
       }
+    }
+
+    if (!search_bar) {
+      return;
     }
 
     if (!are_set_equal(original_search_terms, values)) {
@@ -106,14 +115,11 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
-  search_bar = document.querySelector('#searchbar');
-  original_search_terms = get_search_bar_terms();
-  ip_fields = document.querySelectorAll(
-    '.change-list .field-known_ip_adresses li',
-  );
   add_add_remove_links();
   const values = get_search_bar_terms();
-  search_bar.value = [...values].join(', ');
+  if (search_bar) {
+    search_bar.value = [...values].join(', ');
+  }
   highlight_ips_not_in(values);
 
   document.querySelector('#result_list').addEventListener('click', (e) => {
@@ -128,7 +134,9 @@ document.addEventListener('DOMContentLoaded', () => {
       } else if (target.classList.contains('deletelink')) {
         values.delete(new_value);
       }
-      search_bar.value = [...values].join(', ');
+      if (search_bar) {
+        search_bar.value = [...values].join(', ');
+      }
       highlight_ips_not_in(values);
     }
   });
