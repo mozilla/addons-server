@@ -1,9 +1,11 @@
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.db.models import Q
 from django.dispatch import receiver
 
+from olympia.abuse.models import ManagerBase
 from olympia.addons.models import Addon
-from olympia.amo.models import ModelBase
+from olympia.amo.models import BaseQuerySet, ModelBase
 from olympia.constants.applications import APP_IDS, APP_USAGE, APPS_CHOICES
 from olympia.constants.promoted import (
     DEACTIVATED_LEGACY_IDS,
@@ -12,6 +14,63 @@ from olympia.constants.promoted import (
 )
 from olympia.reviewers.models import NeedsHumanReview
 from olympia.versions.models import Version
+
+
+class PromotedGroupQuerySet(BaseQuerySet):
+    def __getattr__(self, attribute):
+        if hasattr(self.model, attribute):
+            return self.values_list(attribute, flat=True)
+        raise AttributeError(f'PromotedGroup has no attribute: {attribute}')
+
+    @property
+    def name(self):
+        return ', '.join(self.__getattr__('name'))
+
+
+class PromotedGroupManager(ManagerBase):
+    _queryset_class = PromotedGroupQuerySet
+
+    def all_for(self, addon):
+        return (
+            self.get_queryset()
+            .prefetch_related('promotedaddonpromotion_set')
+            .filter(promotedaddonpromotion__addon=addon)
+            .distinct()
+        )
+
+    def approved_for(self, addon):
+        if not addon.current_version:
+            return self.none()
+        # For each PromotedGroup, the group should have an
+        # associated promoted_version version that is:
+        # 1. The addon's current version
+        # 2. The same promoted group
+        # 3. The group has approved_applications for the current version
+        # OR is not prereviewed for all apps
+        groups = (
+            self.all_for(addon=addon)
+            .filter(
+                Q(
+                    promoted_versions__version=addon.current_version,
+                    promotedaddonpromotion__promoted_group=models.F('id'),
+                )
+                | Q(
+                    promotedaddonpromotion__promoted_group__listed_pre_review=False,
+                    promotedaddonpromotion__promoted_group__unlisted_pre_review=False,
+                )
+            )
+            .distinct()
+        )
+        valid_groups = [
+            group.id
+            for group in groups
+            if addon.approved_applications_for(promoted_group=group)
+            or (
+                not (group.listed_pre_review and group.unlisted_pre_review)
+                and all(app in addon.all_applications for app in APP_USAGE)
+            )
+        ]
+        return groups.filter(id__in=valid_groups)
 
 
 class PromotedGroup(models.Model):
@@ -82,6 +141,7 @@ class PromotedGroup(models.Model):
             '(inactive groups are considered obsolete).'
         ),
     )
+    objects = PromotedGroupManager()
 
     def __bool__(self):
         """
@@ -222,6 +282,11 @@ class PromotedAddon(ModelBase):
             )
 
 
+class PromotedAddonPromotionManager(ManagerBase):
+    def get_queryset(self):
+        return super().get_queryset().select_related('promoted_group', 'addon')
+
+
 # TODO: Drop Promotion suffix after dropping PromotedAddon table
 class PromotedAddonPromotion(ModelBase):
     promoted_group = models.ForeignKey(
@@ -241,12 +306,14 @@ class PromotedAddonPromotion(ModelBase):
         'automatically for you. If you have access to the add-on '
         'admin page, you can use the magnifying glass to see '
         'all available add-ons.',
+        related_name='promotedaddonpromotion',
     )
     application_id = models.SmallIntegerField(
         choices=APPS_CHOICES,
         null=False,
         verbose_name='Application',
     )
+    objects = PromotedAddonPromotionManager()
 
     class Meta:
         constraints = [
@@ -262,6 +329,45 @@ class PromotedAddonPromotion(ModelBase):
     @property
     def application(self):
         return APP_IDS.get(self.application_id)
+
+    @property
+    def approved_applications(self):
+        """The applications that the current promoted group is approved for,
+        for the current version."""
+        return self.addon.approved_applications_for(self.promoted_group)
+
+    def approve_for_version(self, version):
+        """Create PromotedApproval for current applications in the current
+        promoted group."""
+        for app in self.addon.all_applications:
+            PromotedApproval.objects.update_or_create(
+                version=version,
+                group_id=self.promoted_group.group_id,
+                application_id=app.id,
+            )
+        try:
+            del version.approved_for_groups
+        except AttributeError:
+            pass
+
+    def approve_for_addon(self):
+        """This sets up the addon as approved for the current promoted group.
+
+        The current version will be signed for approval."""
+
+        if not self.addon.current_version:
+            return
+        self.approve_for_version(self.addon.current_version)
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
+        if (
+            self.pk is None
+            and self.promoted_group.immediate_approval
+            and self.approved_applications != self.addon.all_applications
+        ):
+            self.approve_for_addon()
 
 
 class PromotedTheme(PromotedAddon):
@@ -311,6 +417,21 @@ class PromotedApproval(ModelBase):
         return APP_IDS.get(self.application_id)
 
 
+class PromotedAddonVersionQuerySet(BaseQuerySet):
+    @property
+    def approved_applications(self):
+        """The applications that the current promoted group is approved for."""
+        app_ids = self.values_list('application_id', flat=True).distinct()
+        return [APP_IDS[id] for id in app_ids]
+
+
+class PromotedAddonVersionManager(ManagerBase):
+    _queryset_class = PromotedAddonVersionQuerySet
+
+    def get_queryset(self):
+        return super().get_queryset().select_related('promoted_group', 'version')
+
+
 class PromotedAddonVersion(ModelBase):
     """A join table between a promoted group, version and application id.
     This model represents an approved promotion for a specific version of an addon
@@ -330,6 +451,7 @@ class PromotedAddonVersion(ModelBase):
     version = models.ForeignKey(
         Version, on_delete=models.CASCADE, null=False, related_name='promoted_versions'
     )
+    objects = PromotedAddonVersionManager()
 
     class Meta:
         constraints = [
