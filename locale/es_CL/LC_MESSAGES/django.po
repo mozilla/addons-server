@@ -1164,7 +1164,7 @@ msgstr "{addon} se migró desde un tema ligero."
 #: src/olympia/constants/activity.py:804
 #, python-brace-format
 msgid "{addon} {version} content reject scheduled."
-msgstr ""
+msgstr "Rechazo de contenido de {addon} {version} programado."
 
 #: src/olympia/constants/activity.py:805
 msgid "Content reject scheduled"
@@ -1173,7 +1173,7 @@ msgstr "Rechazo de contenido programado"
 #: src/olympia/constants/activity.py:817
 #, python-brace-format
 msgid "{addon} {version} reject scheduled."
-msgstr ""
+msgstr "Rechazo de {addon} {version} programado."
 
 #: src/olympia/constants/activity.py:818
 msgid "Rejection scheduled"
@@ -1215,7 +1215,7 @@ msgstr "Respuesta a {rating} para {addon} escrito."
 #: src/olympia/constants/activity.py:933
 #, python-brace-format
 msgid "{addon} {version} pending rejection cleared."
-msgstr ""
+msgstr "Se eliminó el rechazo pendiente de {addon} {version}."
 
 #: src/olympia/constants/activity.py:934
 msgid "Pending rejection cleared"
@@ -1918,7 +1918,7 @@ msgstr "Los complementos de Open Search {blog_link_open}ya no son compatibles co
 #: src/olympia/devhub/file_validation_annotations.py:105
 #, python-brace-format
 msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr ""
+msgstr "El manifiesto V3 actualmente no está soportado para la carga. {start_href}Lee más sobre el cronograma de soporte{end_href}."
 
 #: src/olympia/devhub/forms.py:85
 msgid "This slug is already in use. Please choose another."
@@ -1942,9 +1942,9 @@ msgid "The miscellaneous category cannot be combined with additional categories.
 msgstr "La categoría miscelánea no puede combinarse con categorías adicionales."
 
 #: src/olympia/devhub/forms.py:272
-#, fuzzy, python-format
+#, python-format
 msgid "URL domain must be one of [%s]."
-msgstr "La URL del dominio tiene que ser una de [%s] o un subdominio."
+msgstr "El dominio de la URL debe ser uno de [%s]."
 
 #: src/olympia/devhub/forms.py:288
 #, python-brace-format
@@ -2083,7 +2083,7 @@ msgstr "Asegúrate de que el nombre y la descripción, combinados, tienen como m
 #: src/olympia/devhub/forms.py:1358
 #, python-brace-format
 msgid "On this site. <span class=\"helptext\">Your submission is publicly listed on {site_domain}.</span>"
-msgstr ""
+msgstr "En este sitio. <span class=\"helptext\">Tu envío está listado públicamente en {site_domain}.</span>"
 
 #: src/olympia/devhub/forms.py:1365
 #, python-brace-format
@@ -2091,6 +2091,8 @@ msgid ""
 "On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
 "on manifest’s <a {a_attrs}>update_url</a> is provided, as this is the URL where Firefox finds updates for automatic deployment to your users.</span>"
 msgstr ""
+"Por tu cuenta. <span class=\"helptext\">Una vez que Mozilla firma tu envío, puedes descargar el archivo .xpi desde la Central de desarrolladores y distribuirlo entre tu audiencia. Asegúrate de que "
+"se proporciona el <a {a_attrs}>update_url</a> en el archivo manifest del complemento, ya que esta es la URL donde Firefox consulta para la actualización automática para tus usuarios.</span>"
 
 #: src/olympia/devhub/forms.py:1404 src/olympia/devhub/templates/devhub/includes/agreement.html:15
 msgid "Display Name"
@@ -2122,6 +2124,8 @@ msgid ""
 "To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
 "href=\"{docs_url}\">API documentation</a>."
 msgstr ""
+"Para hacer pedidos a la API, envía un <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> como encabezado de autorización. Tendrás que generar un JWT para cada solicitud, tal como se explica en la <a "
+"href=\"{docs_url}\">documentación de la API</a>."
 
 #: src/olympia/devhub/forms.py:1494
 msgid "JWT secret"
@@ -2130,7 +2134,7 @@ msgstr "Secreto JWT"
 #: src/olympia/devhub/forms.py:1515
 #, python-brace-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
-msgstr ""
+msgstr "Haz clic en el botón de confirmación a continuación para generar credenciales de API para el usuario <strong>{name}</strong>."
 
 #: src/olympia/devhub/forms.py:1521
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
@@ -2168,7 +2172,7 @@ msgstr "La validación ha generado demasiados errores/advertencias de modo que %
 #: src/olympia/devhub/utils.py:207
 #, python-brace-format
 msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
-msgstr ""
+msgstr "Este complemento no es un tema. Utiliza la página <a href=\"{link}\">Enviar un nuevo complemento</a> para enviar extensiones."
 
 #: src/olympia/devhub/views.py:114
 msgid "Updated"
@@ -2259,7 +2263,7 @@ msgstr "Validar el complemento"
 #: src/olympia/devhub/views.py:644
 #, python-brace-format
 msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
-msgstr ""
+msgstr "<a href=\"{link}\">Por favor, añade autenticación de dos factores a tu cuenta para enviar extensiones.</a>"
 
 #: src/olympia/devhub/views.py:1013
 msgid "Icons must be either PNG or JPG."
@@ -2296,6 +2300,8 @@ msgstr "Ha sucedido un error al subir la vista previa."
 msgid ""
 "The latest approved version of this %s add-on cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
+"La última versión aprobada de este complemento %s no puede ser eliminada ni deshabilitada porque la versión anterior no fue aprobada para la promoción de %s. Por favor, ponte en contacto con los "
+"administradores de AMO si necesitas ayuda con esto."
 
 #: src/olympia/devhub/views.py:1222
 #, python-format
@@ -2337,9 +2343,8 @@ msgid "Toolbar area background"
 msgstr "Fondo del área de la barra de herramientas"
 
 #: src/olympia/devhub/views.py:1443
-#, fuzzy
 msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
-msgstr "El color de fondo de la barra de navegación, barra de marcadores y la pestaña seleccionada.  Campo de manifiesto:  toolbar."
+msgstr "El color de fondo de la barra de navegación, la barra de marcadores y la pestaña seleccionada.  Campo de manifiesto:  toolbar."
 
 #: src/olympia/devhub/views.py:1450
 msgid "Toolbar area text and icons"
@@ -2372,6 +2377,8 @@ msgstr "Resaltado de pestañas"
 #: src/olympia/devhub/views.py:1480
 msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
 msgstr ""
+"El color de resaltado de la pestaña activa. Implementado como un borde alrededor de la pestaña en Firefox 89 y superiores y una línea sobre la pestaña en Firefox más antiguos. Campo de manifiesto:  "
+"tab_line."
 
 #: src/olympia/devhub/views.py:1579
 msgid "Add-on uploads are temporarily unavailable"
@@ -2391,7 +2398,7 @@ msgstr "Se han revocado tus antiguas credenciales y ya no son válidas."
 
 #: src/olympia/devhub/views.py:2070
 msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
-msgstr ""
+msgstr "Mantén tus claves de API en secreto y nunca las compartas con nadie, incluidos los colaboradores de Mozilla."
 
 #: src/olympia/devhub/views.py:2087
 msgid "New API key created"
@@ -2492,7 +2499,7 @@ msgstr "Buscar"
 #: src/olympia/devhub/templates/devhub/suppressed_email.html:4
 #, python-format
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
-msgstr ""
+msgstr "Hemos descubierto que tu correo electrónico \"%(email)s\" no puede recibir correos de nuestra parte. Por favor, actualiza tu dirección de correo a una que pueda recibir correos de nosotros."
 
 #: src/olympia/devhub/templates/devhub/suppressed_email.html:8
 msgid "Learn more"
@@ -2546,11 +2553,11 @@ msgstr "No fue posible verificar la dirección de correo electrónico. El enlace
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:24
 msgid "We are sending an email to you, please be patient... <div class=\"loader\"></div> The page will automatically refresh."
-msgstr ""
+msgstr "Te estamos enviando un correo electrónico, por favor, sé paciente... <div class=\"loader\"></div> La página se actualizará automáticamente."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:30
 msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again later."
-msgstr ""
+msgstr "Está tardando más de lo esperado en confirmar la entrega de tu correo electrónico de verificación. Por favor, vuelve a intentarlo más tarde."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:34
 msgid "Success!"
@@ -2562,6 +2569,8 @@ msgid ""
 "An email with a confirmation link has been sent to your email address: %(email)s. Please click the link to confirm your email address. If you did not receive the email, please check your spam "
 "folder."
 msgstr ""
+"Se ha enviado un correo electrónico con un enlace de confirmación a tu dirección de correo: %(email)s. Por favor, haz clic en el enlace para confirmar tu dirección de correo electrónico. Si no "
+"recibiste el correo, revisa tu carpeta de spam."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:39
 #, python-format
@@ -2569,6 +2578,8 @@ msgid ""
 "The provided code is invalid, unauthorized, expired or incomplete. Please use the link in the email sent to your email address %(email)s. If the code is still not working, please request a new "
 "email."
 msgstr ""
+"El código proporcionado no es válido, no está autorizado, ha expirado o está incompleto. Por favor, usa el enlace en el correo enviado a tu dirección de correo %(email)s. Si el código aún no "
+"funciona, pide el envío de un nuevo correo electrónico."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:49
 msgid "<strong>Email history:</strong> The table below shows all emails we have attempted to send to you in the last 2 days."
@@ -4975,21 +4986,18 @@ msgstr "Abre una nueva pestaña a la derecha de la pestaña actual, no al final 
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:263
-#, fuzzy
 msgid "Conquer spam. Use clever temporary email addresses to remain anonymous and avoid spam."
-msgstr "Utiliza direcciones de correo electrónico temporales inteligentes para permanecer anónimo y evitar el spam."
+msgstr "Derrota el spam. Utiliza direcciones de correo electrónico temporales inteligentes para permanecer en el anonimato y evitar el spam."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:266
-#, fuzzy
 msgid "A direct path to customizing the built-in privacy settings in Firefox."
-msgstr "Personaliza fácilmente la configuración de privacidad predeterminada de Firefox."
+msgstr "Una ruta directa para personalizar los ajustes de privacidad integrados en Firefox."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:269
-#, fuzzy
 msgid "Get instant translations by highlighting text and clicking the button that pops up."
-msgstr "Consigue una traducción inmediata seleccionando un texto y haciendo clic en el botón que aparece."
+msgstr "Obtén traducciones instantáneas resaltando el texto y haciendo clic en el botón que aparece."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:272
@@ -4998,15 +5006,13 @@ msgstr "Ve directamente al sitio web al que deseas acceder sin ser redirigido po
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:275
-#, fuzzy
 msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
-msgstr "Accede a WhatsApp desde el panel de la barra de herramientas de Firefox para obtener una notificación acerca de las conversaciones no leídas."
+msgstr "WhatsApp en la Web. Accede a WhatsApp desde el panel de la barra de herramientas de Firefox para recibir notificaciones de conversaciones no leídas."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:278
-#, fuzzy
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
-msgstr "Restringe el acceso de Firefox a los sitios web que tú definas."
+msgstr "Restringe el acceso de Firefox a los sitios web que definas. Una excelente herramienta para ejercitar la autodisciplina en línea."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:281
@@ -5031,9 +5037,8 @@ msgstr "Realiza una búsqueda inversa de imágenes aprovechando la potencia de v
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:293
-#, fuzzy
 msgid "A more efficient way to save bookmarks if you use multiple bookmark folders."
-msgstr "Esta es la mejor manera de guardar tus marcadores si usas varias carpetas de marcadores."
+msgstr "Una manera más eficiente de guardar marcadores si utilizas varias carpetas de marcadores."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:296
