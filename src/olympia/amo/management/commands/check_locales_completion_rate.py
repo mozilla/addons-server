@@ -52,7 +52,7 @@ class Command(BaseCommand):
         'ja',
         'pl',
     )
-    EMAIL_RECIPIENTS = ('amo-notifications+locales@mozilla.com',)
+    EMAIL_RECIPIENTS = ('amo-locales-notifications@mozilla.com',)
     EMAIL_SUBJECT = 'AMO locales completion rate check'
     EMAIL_TEMPLATE_PATH = 'amo/emails/locales_completion.ltxt'
 
