@@ -1,0 +1,545 @@
+{
+    "data": {
+        "project": {
+            "localizations": [
+                {
+                    "approvedStrings": 1695,
+                    "locale": {
+                        "code": "zh-TW",
+                        "name": "Chinese (Taiwan)"
+                    },
+                    "totalStrings": 1695
+                },
+                {
+                    "approvedStrings": 1725,
+                    "locale": {
+                        "code": "en-GB",
+                        "name": "English (Great Britain)"
+                    },
+                    "totalStrings": 1725
+                },
+                {
+                    "approvedStrings": 1725,
+                    "locale": {
+                        "code": "de",
+                        "name": "German"
+                    },
+                    "totalStrings": 1725
+                },
+                {
+                    "approvedStrings": 1725,
+                    "locale": {
+                        "code": "it",
+                        "name": "Italian"
+                    },
+                    "totalStrings": 1725
+                },
+                {
+                    "approvedStrings": 1725,
+                    "locale": {
+                        "code": "pt-BR",
+                        "name": "Portuguese (Brazil)"
+                    },
+                    "totalStrings": 1725
+                },
+                {
+                    "approvedStrings": 1501,
+                    "locale": {
+                        "code": "pt-PT",
+                        "name": "Portuguese (Portugal)"
+                    },
+                    "totalStrings": 1725
+                },
+                {
+                    "approvedStrings": 1737,
+                    "locale": {
+                        "code": "sl",
+                        "name": "Slovenian"
+                    },
+                    "totalStrings": 1785
+                },
+                {
+                    "approvedStrings": 1725,
+                    "locale": {
+                        "code": "sv-SE",
+                        "name": "Swedish"
+                    },
+                    "totalStrings": 1725
+                },
+                {
+                    "approvedStrings": 1751,
+                    "locale": {
+                        "code": "uk",
+                        "name": "Ukrainian"
+                    },
+                    "totalStrings": 1755
+                },
+                {
+                    "approvedStrings": 169,
+                    "locale": {
+                        "code": "cy",
+                        "name": "Welsh"
+                    },
+                    "totalStrings": 1845
+                },
+                {
+                    "approvedStrings": 1374,
+                    "locale": {
+                        "code": "ro",
+                        "name": "Romanian"
+                    },
+                    "totalStrings": 1755
+                },
+                {
+                    "approvedStrings": 1695,
+                    "locale": {
+                        "code": "zh-CN",
+                        "name": "Chinese (China)"
+                    },
+                    "totalStrings": 1695
+                },
+                {
+                    "approvedStrings": 1725,
+                    "locale": {
+                        "code": "hu",
+                        "name": "Hungarian"
+                    },
+                    "totalStrings": 1725
+                },
+                {
+                    "approvedStrings": 1189,
+                    "locale": {
+                        "code": "fa",
+                        "name": "Persian"
+                    },
+                    "totalStrings": 1725
+                },
+                {
+                    "approvedStrings": 1703,
+                    "locale": {
+                        "code": "tr",
+                        "name": "Turkish"
+                    },
+                    "totalStrings": 1725
+                },
+                {
+                    "approvedStrings": 745,
+                    "locale": {
+                        "code": "ar",
+                        "name": "Arabic"
+                    },
+                    "totalStrings": 1845
+                },
+                {
+                    "approvedStrings": 1236,
+                    "locale": {
+                        "code": "ja",
+                        "name": "Japanese"
+                    },
+                    "totalStrings": 1695
+                },
+                {
+                    "approvedStrings": 1720,
+                    "locale": {
+                        "code": "af",
+                        "name": "Afrikaans"
+                    },
+                    "totalStrings": 1725
+                },
+                {
+                    "approvedStrings": 1663,
+                    "locale": {
+                        "code": "mn",
+                        "name": "Mongolian"
+                    },
+                    "totalStrings": 1725
+                },
+                {
+                    "approvedStrings": 1436,
+                    "locale": {
+                        "code": "he",
+                        "name": "Hebrew"
+                    },
+                    "totalStrings": 1725
+                },
+                {
+                    "approvedStrings": 1212,
+                    "locale": {
+                        "code": "id",
+                        "name": "Indonesian"
+                    },
+                    "totalStrings": 1695
+                },
+                {
+                    "approvedStrings": 1463,
+                    "locale": {
+                        "code": "hr",
+                        "name": "Croatian"
+                    },
+                    "totalStrings": 1755
+                },
+                {
+                    "approvedStrings": 959,
+                    "locale": {
+                        "code": "fi",
+                        "name": "Finnish"
+                    },
+                    "totalStrings": 1725
+                },
+                {
+                    "approvedStrings": 1232,
+                    "locale": {
+                        "code": "th",
+                        "name": "Thai"
+                    },
+                    "totalStrings": 1695
+                },
+                {
+                    "approvedStrings": 1052,
+                    "locale": {
+                        "code": "nb-NO",
+                        "name": "Norwegian Bokmål"
+                    },
+                    "totalStrings": 1725
+                },
+                {
+                    "approvedStrings": 1648,
+                    "locale": {
+                        "code": "vi",
+                        "name": "Vietnamese"
+                    },
+                    "totalStrings": 1695
+                },
+                {
+                    "approvedStrings": 794,
+                    "locale": {
+                        "code": "bg",
+                        "name": "Bulgarian"
+                    },
+                    "totalStrings": 1725
+                },
+                {
+                    "approvedStrings": 947,
+                    "locale": {
+                        "code": "da",
+                        "name": "Danish"
+                    },
+                    "totalStrings": 1725
+                },
+                {
+                    "approvedStrings": 1695,
+                    "locale": {
+                        "code": "ca",
+                        "name": "Catalan"
+                    },
+                    "totalStrings": 1725
+                },
+                {
+                    "approvedStrings": 1725,
+                    "locale": {
+                        "code": "el",
+                        "name": "Greek"
+                    },
+                    "totalStrings": 1725
+                },
+                {
+                    "approvedStrings": 1755,
+                    "locale": {
+                        "code": "sk",
+                        "name": "Slovak"
+                    },
+                    "totalStrings": 1755
+                },
+                {
+                    "approvedStrings": 1426,
+                    "locale": {
+                        "code": "ko",
+                        "name": "Korean"
+                    },
+                    "totalStrings": 1695
+                },
+                {
+                    "approvedStrings": 1283,
+                    "locale": {
+                        "code": "pa-IN",
+                        "name": "Punjabi"
+                    },
+                    "totalStrings": 1725
+                },
+                {
+                    "approvedStrings": 1755,
+                    "locale": {
+                        "code": "cs",
+                        "name": "Czech"
+                    },
+                    "totalStrings": 1755
+                },
+                {
+                    "approvedStrings": 1755,
+                    "locale": {
+                        "code": "ru",
+                        "name": "Russian"
+                    },
+                    "totalStrings": 1755
+                },
+                {
+                    "approvedStrings": 1725,
+                    "locale": {
+                        "code": "nl",
+                        "name": "Dutch"
+                    },
+                    "totalStrings": 1725
+                },
+                {
+                    "approvedStrings": 1748,
+                    "locale": {
+                        "code": "lt",
+                        "name": "Lithuanian"
+                    },
+                    "totalStrings": 1755
+                },
+                {
+                    "approvedStrings": 1706,
+                    "locale": {
+                        "code": "sq",
+                        "name": "Albanian"
+                    },
+                    "totalStrings": 1725
+                },
+                {
+                    "approvedStrings": 1725,
+                    "locale": {
+                        "code": "ka",
+                        "name": "Georgian"
+                    },
+                    "totalStrings": 1725
+                },
+                {
+                    "approvedStrings": 1785,
+                    "locale": {
+                        "code": "dsb",
+                        "name": "Sorbian, Lower"
+                    },
+                    "totalStrings": 1785
+                },
+                {
+                    "approvedStrings": 1785,
+                    "locale": {
+                        "code": "hsb",
+                        "name": "Sorbian, Upper"
+                    },
+                    "totalStrings": 1785
+                },
+                {
+                    "approvedStrings": 1244,
+                    "locale": {
+                        "code": "nn-NO",
+                        "name": "Norwegian Nynorsk"
+                    },
+                    "totalStrings": 1725
+                },
+                {
+                    "approvedStrings": 1710,
+                    "locale": {
+                        "code": "ast",
+                        "name": "Asturian"
+                    },
+                    "totalStrings": 1725
+                },
+                {
+                    "approvedStrings": 1540,
+                    "locale": {
+                        "code": "kab",
+                        "name": "Kabyle"
+                    },
+                    "totalStrings": 1725
+                },
+                {
+                    "approvedStrings": 1725,
+                    "locale": {
+                        "code": "fy-NL",
+                        "name": "Frisian"
+                    },
+                    "totalStrings": 1725
+                },
+                {
+                    "approvedStrings": 1541,
+                    "locale": {
+                        "code": "ga-IE",
+                        "name": "Irish"
+                    },
+                    "totalStrings": 1815
+                },
+                {
+                    "approvedStrings": 1055,
+                    "locale": {
+                        "code": "te",
+                        "name": "Telugu"
+                    },
+                    "totalStrings": 1725
+                },
+                {
+                    "approvedStrings": 1016,
+                    "locale": {
+                        "code": "ms",
+                        "name": "Malay"
+                    },
+                    "totalStrings": 1695
+                },
+                {
+                    "approvedStrings": 1125,
+                    "locale": {
+                        "code": "cak",
+                        "name": "Kaqchikel"
+                    },
+                    "totalStrings": 1725
+                },
+                {
+                    "approvedStrings": 1700,
+                    "locale": {
+                        "code": "bs",
+                        "name": "Bosnian"
+                    },
+                    "totalStrings": 1755
+                },
+                {
+                    "approvedStrings": 275,
+                    "locale": {
+                        "code": "gu-IN",
+                        "name": "Gujarati"
+                    },
+                    "totalStrings": 1725
+                },
+                {
+                    "approvedStrings": 763,
+                    "locale": {
+                        "code": "hi-IN",
+                        "name": "Hindi"
+                    },
+                    "totalStrings": 1725
+                },
+                {
+                    "approvedStrings": 1725,
+                    "locale": {
+                        "code": "fr",
+                        "name": "French"
+                    },
+                    "totalStrings": 1725
+                },
+                {
+                    "approvedStrings": 1721,
+                    "locale": {
+                        "code": "en-CA",
+                        "name": "English (Canada)"
+                    },
+                    "totalStrings": 1725
+                },
+                {
+                    "approvedStrings": 1725,
+                    "locale": {
+                        "code": "ia",
+                        "name": "Interlingua"
+                    },
+                    "totalStrings": 1725
+                },
+                {
+                    "approvedStrings": 1314,
+                    "locale": {
+                        "code": "is",
+                        "name": "Icelandic"
+                    },
+                    "totalStrings": 1725
+                },
+                {
+                    "approvedStrings": 979,
+                    "locale": {
+                        "code": "pl",
+                        "name": "Polish"
+                    },
+                    "totalStrings": 1755
+                },
+                {
+                    "approvedStrings": 875,
+                    "locale": {
+                        "code": "et",
+                        "name": "Estonian"
+                    },
+                    "totalStrings": 1725
+                },
+                {
+                    "approvedStrings": 1700,
+                    "locale": {
+                        "code": "lv",
+                        "name": "Latvian"
+                    },
+                    "totalStrings": 1755
+                },
+                {
+                    "approvedStrings": 1780,
+                    "locale": {
+                        "code": "mt",
+                        "name": "Maltese"
+                    },
+                    "totalStrings": 1785
+                },
+                {
+                    "approvedStrings": 578,
+                    "locale": {
+                        "code": "bn",
+                        "name": "Bengali"
+                    },
+                    "totalStrings": 1725
+                },
+                {
+                    "approvedStrings": 414,
+                    "locale": {
+                        "code": "si",
+                        "name": "Sinhala"
+                    },
+                    "totalStrings": 1725
+                },
+                {
+                    "approvedStrings": 1721,
+                    "locale": {
+                        "code": "fur",
+                        "name": "Friulian"
+                    },
+                    "totalStrings": 1725
+                },
+                {
+                    "approvedStrings": 1684,
+                    "locale": {
+                        "code": "es-AR",
+                        "name": "Spanish (Argentina)"
+                    },
+                    "totalStrings": 1725
+                },
+                {
+                    "approvedStrings": 1558,
+                    "locale": {
+                        "code": "es-CL",
+                        "name": "Spanish (Chile)"
+                    },
+                    "totalStrings": 1725
+                },
+                {
+                    "approvedStrings": 1574,
+                    "locale": {
+                        "code": "es-MX",
+                        "name": "Spanish (Mexico)"
+                    },
+                    "totalStrings": 1725
+                },
+                {
+                    "approvedStrings": 1294,
+                    "locale": {
+                        "code": "es-ES",
+                        "name": "Spanish (Spain)"
+                    },
+                    "totalStrings": 1725
+                }
+            ],
+            "name": "AMO"
+        }
+    }
+}
