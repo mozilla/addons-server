@@ -106,7 +106,7 @@ class BannedUserContentInline(admin.TabularInline):
 
 @admin.register(UserProfile)
 class UserAdmin(AMOModelAdmin):
-    list_display = ('__str__', 'email', 'last_login', 'is_public', 'deleted')
+    list_display = ('__str__', 'email', 'last_login', 'has_full_profile', 'deleted')
     # pk and IP address search are supported without needing to specify them in
     # search_fields (see `AMOModelAdmin`)
     search_fields = ('email__like',)
@@ -131,7 +131,7 @@ class UserAdmin(AMOModelAdmin):
         'has_active_api_key',
         'history_for_this_user',
         'id',
-        'is_public',
+        'has_full_profile',
         'known_ip_adresses',
         'last_known_activity_time',
         'last_login',
@@ -165,7 +165,7 @@ class UserAdmin(AMOModelAdmin):
         (
             'Flags',
             {
-                'fields': ('deleted', 'is_public'),
+                'fields': ('deleted', 'has_full_profile'),
             },
         ),
         (

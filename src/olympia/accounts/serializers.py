@@ -5,7 +5,6 @@ from rest_framework import serializers
 
 import olympia.core.logger
 from olympia import amo
-from olympia.access import acl
 from olympia.access.models import Group
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import (
@@ -36,14 +35,7 @@ class BaseUserSerializer(AMOModelSerializer):
         fields = ('id', 'name', 'url', 'username')
 
     def get_url(self, obj):
-        def is_adminish(user):
-            return user and acl.action_allowed_for(user, amo.permissions.USERS_EDIT)
-
-        request = self.context.get('request', None)
-        current_user = getattr(request, 'user', None) if request else None
-        # Only return your own profile url, and for developers.
-        if obj == current_user or is_adminish(current_user) or obj.is_public:
-            return obj.get_absolute_url()
+        return obj.get_absolute_url()
 
     # Used in subclasses.
     def get_permissions(self, obj):
@@ -57,7 +49,7 @@ class BaseUserSerializer(AMOModelSerializer):
         return None
 
 
-class PublicUserProfileSerializer(BaseUserSerializer):
+class FullUserProfileSerializer(BaseUserSerializer):
     picture_url = serializers.SerializerMethodField()
     average_addon_rating = serializers.FloatField(
         source='averagerating', read_only=True
@@ -83,7 +75,34 @@ class PublicUserProfileSerializer(BaseUserSerializer):
         read_only_fields = fields
 
 
-class UserProfileSerializer(PublicUserProfileSerializer):
+class MinimalUserProfileSerializer(FullUserProfileSerializer):
+    nullable_fields = (
+        'biography',
+        'homepage',
+        'location',
+        'occupation',
+        'picture_type',
+        'picture_url',
+    )
+
+    def to_representation(self, obj):
+        data = super().to_representation(obj)
+        request = self.context.get('request', None)
+
+        # Once we drop this api gate we can drop this class and use BaseUserSerializer
+        if request and is_gate_active(request, 'mimimal-profile-has-all-fields-shim'):
+            data.update({field: None for field in self.nullable_fields})
+        else:
+            data = {
+                field: value
+                for field, value in data.items()
+                if field in BaseUserSerializer.Meta.fields
+            }
+
+        return data
+
+
+class SelfUserProfileSerializer(FullUserProfileSerializer):
     display_name = serializers.CharField(
         min_length=2,
         max_length=50,
@@ -97,8 +116,8 @@ class UserProfileSerializer(PublicUserProfileSerializer):
     # Override homepage to use our own URLField with custom validation.
     homepage = HttpHttpsOnlyURLField(required=False, allow_blank=True)
 
-    class Meta(PublicUserProfileSerializer.Meta):
-        fields = PublicUserProfileSerializer.Meta.fields + (
+    class Meta(FullUserProfileSerializer.Meta):
+        fields = FullUserProfileSerializer.Meta.fields + (
             'deleted',
             'display_name',
             'email',

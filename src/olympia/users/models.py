@@ -296,7 +296,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         'bypass_upload_restrictions',
         'display_name',
         'homepage',
-        'is_public',
+        'has_full_profile',
         'location',
         'occupation',
         'picture_type',
@@ -338,8 +338,8 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     email_changed = models.DateTimeField(null=True, editable=False)
     banned = models.DateTimeField(null=True, editable=False)
 
-    # Is the profile page for this account publicly viewable?
-    is_public = models.BooleanField(default=False, db_column='public')
+    # Is the profile page for this account a full profile?
+    has_full_profile = models.BooleanField(default=False, db_column='public')
 
     fxa_id = models.CharField(blank=True, null=True, max_length=128)
 
@@ -555,18 +555,23 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         return self.cached_developer_status['is_theme_developer']
 
     @use_primary_db
-    def update_is_public(self):
-        pre = self.is_public
-        is_public = self.addonuser_set.filter(
+    def update_has_full_profile(self):
+        pre = self.has_full_profile
+        has_full_profile = self.addonuser_set.filter(
             role__in=[amo.AUTHOR_ROLE_OWNER, amo.AUTHOR_ROLE_DEV],
             listed=True,
             addon__status=amo.STATUS_APPROVED,
         ).exists()
-        if is_public != pre:
-            log.info('Updating %s.is_public from %s to %s', self.pk, pre, is_public)
-            self.update(is_public=is_public)
+        if has_full_profile != pre:
+            log.info(
+                'Updating %s.has_full_profile from %s to %s',
+                self.pk,
+                pre,
+                has_full_profile,
+            )
+            self.update(has_full_profile=has_full_profile)
         else:
-            log.info('Not changing %s.is_public from %s', self.pk, pre)
+            log.info('Not changing %s.has_full_profile from %s', self.pk, pre)
 
     @property
     def name(self):

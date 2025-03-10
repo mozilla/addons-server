@@ -4,18 +4,20 @@ from rest_framework.test import APIRequestFactory
 
 from olympia import amo
 from olympia.access.models import Group, GroupUser
-from olympia.accounts.serializers import (
-    BaseUserSerializer,
-    PublicUserProfileSerializer,
-    UserNotificationSerializer,
-    UserProfileSerializer,
-)
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import TestCase, addon_factory, days_ago, user_factory
 from olympia.amo.utils import urlparams
 from olympia.users.models import UserNotification, UserProfile
 from olympia.users.notifications import NOTIFICATIONS_BY_SHORT
 from olympia.zadmin.models import Config, set_config
+
+from ..serializers import (
+    BaseUserSerializer,
+    FullUserProfileSerializer,
+    MinimalUserProfileSerializer,
+    SelfUserProfileSerializer,
+    UserNotificationSerializer,
+)
 
 
 class BaseTestUserMixin:
@@ -29,26 +31,6 @@ class BaseTestUserMixin:
         result = self.serialize()
         assert result['id'] == self.user.pk
         assert result['name'] == self.user.name
-        assert result['url'] is None
-
-    def test_url_for_yourself(self):
-        # should include account profile url
-        self.request.user = self.user
-        result = self.serialize()
-        assert result['url'] == absolutify(self.user.get_url_path())
-
-    def test_url_for_developers(self):
-        # should include account profile url
-        addon_factory(users=[self.user])
-        result = self.serialize()
-        assert result['url'] == absolutify(self.user.get_url_path())
-
-    def test_url_for_admins(self):
-        # should include account profile url
-        admin = user_factory()
-        self.grant_permission(admin, 'Users:Edit')
-        self.request.user = admin
-        result = self.serialize()
         assert result['url'] == absolutify(self.user.get_url_path())
 
     def test_username(self):
@@ -64,8 +46,8 @@ class TestBaseUserSerializer(TestCase, BaseTestUserMixin):
         self.user = user_factory()
 
 
-class TestPublicUserProfileSerializer(TestCase):
-    serializer = PublicUserProfileSerializer
+class TestFullUserProfileSerializer(TestCase):
+    serializer = FullUserProfileSerializer
     user_kwargs = {
         'username': 'amo',
         'biography': 'stuff',
@@ -111,21 +93,7 @@ class TestPublicUserProfileSerializer(TestCase):
         assert data['num_addons_listed'] == 2  # only public addons.
         assert data['average_addon_rating'] == 3.6
 
-    def test_url_for_non_developers(self):
-        result = self.serialize()
-        assert result['url'] is None
-
-    def test_url_for_developers(self):
-        # should include the account profile url for a developer
-        addon_factory(users=[self.user])
-        result = self.serialize()
-        assert result['url'] == absolutify(self.user.get_url_path())
-
-    def test_url_for_admins(self):
-        # should include account profile url for admins
-        admin = user_factory()
-        self.grant_permission(admin, 'Users:Edit')
-        self.request.user = admin
+    def test_url(self):
         result = self.serialize()
         assert result['url'] == absolutify(self.user.get_url_path())
 
@@ -146,6 +114,47 @@ class TestPublicUserProfileSerializer(TestCase):
         data = self.serialize()
         assert data['has_anonymous_username'] is False
         assert data['has_anonymous_display_name'] is False
+
+
+class TestMinimalUserProfileSerializer(TestFullUserProfileSerializer):
+    serializer = MinimalUserProfileSerializer
+    gates = {None: ('mimimal-profile-has-all-fields-shim',)}
+
+    def test_picture(self):
+        self.user.update(picture_type='image/jpeg')
+        data = self.serialize()
+        assert 'picture_url' not in data
+        assert 'picture_type' not in data
+
+        with override_settings(DRF_API_GATES=self.gates):
+            data = self.serialize()
+            assert data['picture_url'] is None
+            assert data['picture_type'] is None
+
+    def test_basic(self):
+        mimimal_data = {
+            'id': self.user.id,
+            'username': self.user.username,
+            'name': self.user.name,
+            'url': absolutify(self.user.get_url_path()),
+        }
+        data = self.serialize()
+        assert data == mimimal_data
+
+        with override_settings(DRF_API_GATES=self.gates):
+            data = self.serialize()
+            for field, value in mimimal_data.items():
+                assert data[field] == value
+            for field in MinimalUserProfileSerializer.nullable_fields:
+                assert data[field] is None
+
+    def test_anonymous_username_display_name(self):
+        data = self.serialize()
+        assert 'has_anonymous_username' not in data
+        assert 'has_anonymous_display_name' not in data
+
+        with override_settings(DRF_API_GATES=self.gates):
+            super().test_anonymous_username_display_name()
 
 
 class PermissionsTestMixin:
@@ -183,8 +192,10 @@ class PermissionsTestMixin:
         ]
 
 
-class TestUserProfileSerializer(TestPublicUserProfileSerializer, PermissionsTestMixin):
-    serializer = UserProfileSerializer
+class TestSelfUserProfileSerializer(
+    TestFullUserProfileSerializer, PermissionsTestMixin
+):
+    serializer = SelfUserProfileSerializer
 
     def setUp(self):
         self.now = days_ago(0)

@@ -443,7 +443,7 @@ class AddonIndexer:
                         'id': {'type': 'long'},
                         'name': {'type': 'text'},
                         'username': {'type': 'keyword'},
-                        'is_public': {'type': 'boolean', 'index': False},
+                        'has_full_profile': {'type': 'boolean', 'index': False},
                     },
                 },
                 'modified': {'type': 'date', 'index': False},
@@ -654,7 +654,7 @@ class AddonIndexer:
                 'name': a.name,
                 'id': a.id,
                 'username': a.username,
-                'is_public': a.is_public,
+                'has_full_profile': a.has_full_profile,
             }
             for a in obj.listed_authors
         ]

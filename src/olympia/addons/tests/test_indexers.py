@@ -234,7 +234,7 @@ class TestAddonIndexer(TestCase):
                 'name': '55021 التطب',
                 'id': 55021,
                 'username': '55021',
-                'is_public': True,
+                'has_full_profile': True,
             }
         ]
         assert extracted['ratings'] == {

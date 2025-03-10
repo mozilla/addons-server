@@ -308,7 +308,7 @@ class AccountSitemap(Sitemap):
             addon_q = addon_q & Q(addons__id__in=promoted_addon_ids)
 
         users = (
-            UserProfile.objects.filter(is_public=True, deleted=False)
+            UserProfile.objects.filter(has_full_profile=True, deleted=False)
             .annotate(
                 theme_count=Count(
                     'addons', filter=Q(addon_q, addons__type=amo.ADDON_STATICTHEME)

@@ -796,8 +796,8 @@ def addon_factory(status=amo.STATUS_APPROVED, version_kw=None, file_kw=None, **k
     if addon.guid:
         AddonGUID.objects.create(addon=addon, guid=addon.guid)
 
-    # Potentially update is_public on authors
-    [user.update_is_public() for user in users]
+    # Potentially update has_full_profile on authors
+    [user.update_has_full_profile() for user in users]
 
     if 'due_date' in version_kw:
         # If a due date was set on the version, then it might have been
