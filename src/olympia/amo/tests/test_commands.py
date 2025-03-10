@@ -787,22 +787,30 @@ class TestCheckLocalesCompletionRate(TestCase):
             'absent in one of our projects in Pontoon:\n- '
             + '\n- '.join(
                 (
-                    'Azerbaijani',
-                    'Basque',
-                    'Bengali',
-                    'Gujarati',
-                    'Gujarati (India)',
-                    'Macedonian',
-                    'Sinhala',
-                    'Urdu',
-                    'Welsh',
+                    'Azerbaijani [az]',
+                    'Basque [eu]',
+                    'Bengali [bn]',
+                    'Gujarati (India) [gu-IN]',
+                    'Gujarati [gu]',
+                    'Macedonian [mk]',
+                    'Sinhala [si]',
+                    'Urdu [ur]',
+                    'Welsh [cy]',
                 )
             )
         )
         assert expected_below in mail.outbox[0].body
+
         expected_above = (
             'The following locales are above threshold and not yet enabled:\n- '
-            + '\n- '.join(('Friulian', 'Hindi (India)', 'Icelandic', 'Interlingua'))
+            + '\n- '.join(
+                (
+                    'Friulian [fur]',
+                    'Hindi (India) [hi-IN]',
+                    'Icelandic [is]',
+                    'Interlingua [ia]',
+                )
+            )
         )
         assert expected_above in mail.outbox[0].body
 
@@ -823,7 +831,7 @@ class TestCheckLocalesCompletionRate(TestCase):
             + '\n- '.join(
                 sorted(
                     [
-                        data['english']
+                        f"{data['english']} [{locale}]"
                         for locale, data in settings.AMO_LANGUAGES.items()
                         if locale not in self.expected_special_locales
                         and locale != settings.LANGUAGE_CODE
@@ -840,7 +848,7 @@ class TestCheckLocalesCompletionRate(TestCase):
             + '\n- '.join(
                 sorted(
                     [
-                        settings.AMO_LANGUAGES[locale]['english']
+                        f"{settings.AMO_LANGUAGES[locale]['english']} [{locale}]"
                         for locale in self.expected_special_locales
                     ]
                 )

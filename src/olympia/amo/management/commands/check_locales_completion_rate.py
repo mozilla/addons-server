@@ -131,7 +131,10 @@ class Command(BaseCommand):
         return locale_data['locale']['code']
 
     def pretty_locale_name(self, locale):
-        return ALL_LANGUAGES.get(locale, {}).get('english', locale)
+        pretty = ALL_LANGUAGES.get(locale, {}).get('english')
+        if pretty:
+            return f'{pretty} [{locale}]'
+        return locale
 
     def warn_about(self, *, locales_below_threshold, locales_above_threshold):
         locales_to_keep_despite_being_below_threshold = set()
