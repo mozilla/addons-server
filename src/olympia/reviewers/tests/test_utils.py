@@ -1090,7 +1090,8 @@ class TestReviewHelper(TestReviewHelperBase):
             'cinder_policies': [
                 CinderPolicy.objects.create(uuid='x'),
                 CinderPolicy.objects.create(
-                    uuid='z', default_cinder_action=DECISION_ACTIONS.AMO_IGNORE
+                    uuid='z',
+                    enforcement_actions=[DECISION_ACTIONS.AMO_IGNORE.api_value],
                 ),
             ],
             'cinder_jobs_to_resolve': [cinder_job],
@@ -3636,7 +3637,7 @@ class TestReviewHelper(TestReviewHelperBase):
     def _record_decision_called_everywhere_checkbox_shown(self, actions):
         job, _ = CinderJob.objects.get_or_create(job_id='1234')
         policy, _ = CinderPolicy.objects.get_or_create(
-            default_cinder_action=DECISION_ACTIONS.AMO_APPROVE
+            enforcement_actions=[DECISION_ACTIONS.AMO_APPROVE.api_value]
         )
         self.helper.handler.data = {
             'versions': [self.review_version],
@@ -3688,7 +3689,7 @@ class TestReviewHelper(TestReviewHelperBase):
                 )
                 assert (
                     decision.action == actions[action_name]['cinder_action']
-                    or policy.default_cinder_action
+                    or policy.enforcement_actions
                 )
                 assert job.decision == decision
 

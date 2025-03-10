@@ -417,7 +417,7 @@ class TestReviewForm(TestCase):
             uuid='x',
             name='ok',
             expose_in_reviewer_tools=True,
-            default_cinder_action=DECISION_ACTIONS.AMO_IGNORE,
+            enforcement_actions=[DECISION_ACTIONS.AMO_IGNORE.api_value],
         )
         form = self.get_form()
         assert not form.is_bound
@@ -478,19 +478,19 @@ class TestReviewForm(TestCase):
             uuid='a',
             name='ignore',
             expose_in_reviewer_tools=True,
-            default_cinder_action=DECISION_ACTIONS.AMO_IGNORE,
+            enforcement_actions=[DECISION_ACTIONS.AMO_IGNORE.api_value],
         )
         action_policy_b = CinderPolicy.objects.create(
             uuid='b',
             name='ignore again',
             expose_in_reviewer_tools=True,
-            default_cinder_action=DECISION_ACTIONS.AMO_IGNORE,
+            enforcement_actions=[DECISION_ACTIONS.AMO_IGNORE.api_value],
         )
         action_policy_c = CinderPolicy.objects.create(
             uuid='c',
             name='approve',
             expose_in_reviewer_tools=True,
-            default_cinder_action=DECISION_ACTIONS.AMO_APPROVE,
+            enforcement_actions=[DECISION_ACTIONS.AMO_APPROVE.api_value],
         )
         form = self.get_form()
         assert not form.is_bound
@@ -537,7 +537,7 @@ class TestReviewForm(TestCase):
             uuid='a',
             name='ignore',
             expose_in_reviewer_tools=True,
-            default_cinder_action=DECISION_ACTIONS.AMO_IGNORE,
+            enforcement_actions=[DECISION_ACTIONS.AMO_IGNORE.api_value],
         )
 
         data = {

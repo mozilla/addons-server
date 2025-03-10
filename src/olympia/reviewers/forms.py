@@ -504,7 +504,7 @@ class ReviewForm(forms.Form):
         if self.cleaned_data.get('cinder_jobs_to_resolve') and self.cleaned_data.get(
             'cinder_policies'
         ):
-            actions = self.helper.handler.get_cinder_actions_from_policies(
+            actions = self.helper.handler.get_decision_actions_from_policies(
                 self.cleaned_data.get('cinder_policies')
             )
             if len(actions) == 0:

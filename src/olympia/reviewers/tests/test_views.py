@@ -2613,7 +2613,7 @@ class TestReview(ReviewBase):
         policy = CinderPolicy.objects.create(
             uuid='x',
             expose_in_reviewer_tools=True,
-            default_cinder_action=DECISION_ACTIONS.AMO_IGNORE,
+            enforcement_actions=[DECISION_ACTIONS.AMO_IGNORE.api_value],
         )
         AbuseReport.objects.create(
             guid=self.addon.guid,
@@ -7539,7 +7539,9 @@ class TestHeldDecisionReview(ReviewerTest):
             CinderPolicy.objects.create(uuid='1', name='Bad Things')
         )
         CinderPolicy.objects.create(
-            uuid='2', name='Approve', default_cinder_action=DECISION_ACTIONS.AMO_APPROVE
+            uuid='2',
+            name='Approve',
+            enforcement_actions=[DECISION_ACTIONS.AMO_APPROVE.api_value],
         )
         # CinderJob.objects.create(cinder)
         self.url = reverse('reviewers.decision_review', args=(self.decision.id,))

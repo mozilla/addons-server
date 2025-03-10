@@ -35,9 +35,11 @@ from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.core import set_user
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import NeedsHumanReview
+from olympia.users.models import UserProfile
 from olympia.versions.models import Version, VersionReviewerFlags
 
 from ..actions import (
+    CONTENT_ACTION_FROM_DECISION_ACTION,
     ContentActionBanUser,
     ContentActionDeleteCollection,
     ContentActionDeleteRating,
@@ -1953,6 +1955,46 @@ class TestCinderPolicy(TestCase):
             lone_policy,
         }
 
+    def test_get_decision_actions_from_policies(self):
+        policies = (
+            # no actions, ignored
+            CinderPolicy.objects.create(uuid='1', enforcement_actions=[]),
+            # multiple actions
+            CinderPolicy.objects.create(
+                uuid='2',
+                enforcement_actions=[
+                    'amo-disable-addon',
+                    'amo-approve',
+                    'amo-ban-user',
+                ],
+            ),
+            # some duplicates, and unsupported actions
+            CinderPolicy.objects.create(
+                uuid='3', enforcement_actions=['amo-disable-addon', 'not-amo-action']
+            ),
+        )
+        assert sorted(CinderPolicy.get_decision_actions_from_policies(policies)) == [
+            DECISION_ACTIONS.AMO_BAN_USER,
+            DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            DECISION_ACTIONS.AMO_APPROVE,
+        ]
+
+        assert sorted(
+            CinderPolicy.get_decision_actions_from_policies(policies, for_entity=Addon)
+        ) == [
+            DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            DECISION_ACTIONS.AMO_APPROVE,
+        ]
+
+        assert sorted(
+            CinderPolicy.get_decision_actions_from_policies(
+                policies, for_entity=UserProfile
+            )
+        ) == [
+            DECISION_ACTIONS.AMO_BAN_USER,
+            DECISION_ACTIONS.AMO_APPROVE,
+        ]
+
 
 class TestContentDecisionManager(TestCase):
     def test_held_for_2nd_level_approval(self):
@@ -2121,7 +2163,7 @@ class TestContentDecision(TestCase):
             },
         }
         action_to_class = [
-            (decision_action, ContentDecision.get_action_helper_class(decision_action))
+            (decision_action, CONTENT_ACTION_FROM_DECISION_ACTION[decision_action])
             for decision_action in DECISION_ACTIONS.values
         ]
         # base cases, where it's a decision without an override or appeal involved
@@ -2188,7 +2230,7 @@ class TestContentDecision(TestCase):
             )
 
         action_existing_to_class_no_reporter_emails = {
-            (action, action): ContentDecision.get_action_helper_class(action)
+            (action, action): CONTENT_ACTION_FROM_DECISION_ACTION[action]
             for action in DECISION_ACTIONS.REMOVING.values
         }
         for (
@@ -2245,7 +2287,7 @@ class TestContentDecision(TestCase):
 
                 # But if there is no action_date the override is ignored
                 action_existing_to_class[(approve_action, action, None, None)] = (
-                    ContentDecision.get_action_helper_class(approve_action)
+                    CONTENT_ACTION_FROM_DECISION_ACTION[approve_action]
                 )
 
                 # Previous decisions are also considered though

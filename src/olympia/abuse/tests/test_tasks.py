@@ -837,6 +837,10 @@ class TestSyncCinderPolicies(TestCase):
             'name': 'test-name',
             'description': 'test-description',
             'nested_policies': [],
+            'enforcement_actions': [
+                {'slug': 'amo-disable-addon'},
+                {'slug': 'amo-ban-user'},
+            ],
         }
 
     def test_sync_cinder_policies_headers(self):
@@ -1102,6 +1106,35 @@ class TestSyncCinderPolicies(TestCase):
         sync_cinder_policies.delay()
         assert CinderPolicy.objects.count() == 6
         assert CinderPolicy.objects.filter(text='ADDED').count() == 6
+
+    def test_enforcement_actions_synced(self):
+        data = [
+            {
+                'uuid': 'no-actions',
+                'name': 'no actions',
+                'description': '',
+                'enforcement_actions': [],
+            },
+            {
+                'uuid': 'multiple',
+                'name': 'multiple',
+                'description': '',
+                'enforcement_actions': [
+                    {'slug': 'amo-disable-addon'},
+                    {'slug': 'amo-approve'},
+                    {'slug': 'amo-ban-user'},
+                    {'slug': 'some-unsupported-action'},
+                ],
+            },
+        ]
+
+        responses.add(responses.GET, self.url, json=data, status=200)
+        sync_cinder_policies.delay()
+        assert CinderPolicy.objects.get(uuid='multiple').enforcement_actions == [
+            'amo-disable-addon',
+            'amo-approve',
+            'amo-ban-user',
+        ]
 
 
 def do_handle_escalate_action(*, from_2nd_level, expected_nhr_reason):
