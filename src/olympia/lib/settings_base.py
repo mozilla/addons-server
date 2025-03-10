@@ -361,6 +361,9 @@ JINJA_EXCLUDE_TEMPLATE_PATHS = (
     # Swagger URLs are for the API docs, use some syntax that jinja doesn't support
     r'drf-yasg/swagger-ui.html',
     r'drf-yasg/redoc.html',
+    r'django_extensions/graph_models/django2018/digraph.dot',
+    r'django_extensions/graph_models/django2018/label.dot'
+    r'django_extensions/graph_models/django2018/relation.dot',
 )
 
 TEMPLATES = [
