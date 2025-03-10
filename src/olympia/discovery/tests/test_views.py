@@ -1,7 +1,5 @@
 from django.test.utils import override_settings
 
-from waffle import switch_is_active
-
 from olympia import amo
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import TestCase, addon_factory, reverse_ns, user_factory
@@ -107,9 +105,6 @@ class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
             DiscoveryItem.objects.create(addon=addon, position_china=i)
 
     def test_list(self):
-        # Precache waffle-switch to not rely on switch caching behavior
-        switch_is_active('disco-recommendations')
-
         with self.assertNumQueries(11):
             # 12 queries:
             # - 1 to fetch the discovery items
