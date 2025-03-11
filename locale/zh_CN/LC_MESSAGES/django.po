@@ -6738,7 +6738,7 @@ msgstr "放弃更改"
 #: src/olympia/translations/templates/translations/trans-menu.html:56
 #, python-brace-format
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
-msgstr "您确定要移除所有的 <b>{0}</b> 翻译？此操作无法撤销。"
+msgstr "您确定要移除所有的 <b>{0}</b> 翻译吗？此操作无法撤销。"
 
 #: src/olympia/translations/templates/translations/trans-menu.html:61
 msgid "Delete Locale"
