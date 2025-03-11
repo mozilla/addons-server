@@ -965,7 +965,7 @@ msgstr "{addon} está agora licenciado sob {0}."
 #: src/olympia/constants/activity.py:346
 #, python-brace-format
 msgid "{addon} policy changed."
-msgstr "{addon} política alterada."
+msgstr "Política de {addon} alterada."
 
 #: src/olympia/constants/activity.py:353
 #, fuzzy, python-brace-format
