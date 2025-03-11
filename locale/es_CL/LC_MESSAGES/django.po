@@ -5666,40 +5666,37 @@ msgstr "¿Viste una imagen interesante en la web? Utiliza TinEye para buscar su 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:695
 msgid "Save images easily — just grab them from your current tab."
-msgstr ""
+msgstr "Guarda imágenes con facilidad — solo tómalas desde la pestaña actual."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:698
 msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr ""
+msgstr "Disfruta del máximo control de pestañas — cierra pestañas duplicadas, combina ventanas, copia el título de la pestaña y mucho más."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:716
-#, fuzzy
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
-msgstr "Lee archivos ePub directamente en Firefox: aumenta el tamaño de la fuente, las dimensiones de la página y mucho más."
+msgstr "Lee archivos ePub directamente en Firefox — aumenta el tamaño de la fuente, las dimensiones de la página y mucho más."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:737
-#, fuzzy
 msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configurations."
-msgstr "Personaliza los gestos del ratón. Descubre una nueva forma de navegar con más de 50 gestos de ratón."
+msgstr "Personaliza los gestos del ratón. Descubre una nueva forma de navegar con más de 50 configuraciones."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:788
 msgid "Customize the look of any website. Shift colors, page backgrounds & more."
-msgstr ""
+msgstr "Personaliza el aspecto de cualquier sitio web. Cambia los colores, fondos de página y más."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:797
-#, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages & more."
-msgstr "Usa gestos del ratón para cerrar pestañas, retroceder una página, actualizar y mucho más."
+msgstr "Usa gestos del ratón para cerrar pestañas, navegar entre páginas y más."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:800
 msgid "A simple way to adjust the size of any page's text — or even enlarge the page itself."
-msgstr ""
+msgstr "Una forma sencilla de ajustar el tamaño del texto de cualquier página — o incluso ampliar la página misma."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:827
@@ -5709,12 +5706,12 @@ msgstr "Disfruta de imágenes en miniatura junto a los resultados de búsqueda."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:833
 msgid "Save an entire web page — including images and styling — as a single HTML file."
-msgstr ""
+msgstr "Guarda una página web completa — incluidas las imágenes y el estilo — como un único archivo HTML."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:848
 msgid "Edit a web page before printing. Make sweeping visual changes — remove ads or unsavory content—to any web page you want to print."
-msgstr ""
+msgstr "Edita una página web antes de imprimirla. Realiza cambios visuales radicales — elimina anuncios o contenido desagradable — en cualquier página web que desees imprimir."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:875
@@ -5728,9 +5725,8 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:884
-#, fuzzy
 msgid "Get weather updates directly from Firefox."
-msgstr "Actualizaciones instantáneas del clima en todo el mundo."
+msgstr "Obtén actualizaciones meteorológicas directamente desde Firefox."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:887
