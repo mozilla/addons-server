@@ -761,11 +761,21 @@ class TestCheckLocalesCompletionRate(TestCase):
         return open(os.path.join(root, 'pontoon_response.json')).read()
 
     def test_max_retries(self):
-        with responses.RequestsMock(registry=registries.OrderedRegistry) as responses_with_retries:
-            responses_with_retries.get('https://pontoon.mozilla.org/graphql', status=504)
-            responses_with_retries.get('https://pontoon.mozilla.org/graphql', status=503)
-            responses_with_retries.get('https://pontoon.mozilla.org/graphql', status=500)
-            responses_with_retries.get('https://pontoon.mozilla.org/graphql', status=502)
+        with responses.RequestsMock(
+            registry=registries.OrderedRegistry
+        ) as responses_with_retries:
+            responses_with_retries.get(
+                'https://pontoon.mozilla.org/graphql', status=504
+            )
+            responses_with_retries.get(
+                'https://pontoon.mozilla.org/graphql', status=503
+            )
+            responses_with_retries.get(
+                'https://pontoon.mozilla.org/graphql', status=500
+            )
+            responses_with_retries.get(
+                'https://pontoon.mozilla.org/graphql', status=502
+            )
             responses_with_retries.get(
                 'https://pontoon.mozilla.org/graphql',
                 content_type='application/json',

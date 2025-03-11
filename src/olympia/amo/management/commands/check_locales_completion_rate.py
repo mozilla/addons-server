@@ -140,7 +140,7 @@ class Command(BaseCommand):
                 status_forcelist=[500, 502, 503, 504],
             )
         )
-        session.mount("https://", adapter)
+        session.mount('https://', adapter)
         response = session.get(
             self.PONTOON_API, params={'query': self.PONTOON_QUERY}, timeout=5
         )
