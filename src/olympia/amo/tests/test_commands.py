@@ -755,32 +755,19 @@ class TestCheckLocalesCompletionRate(TestCase):
         'pl',
     )
 
-    def assert_pontoon_calls(self):
-        assert len(responses.calls) == 2
-        assert responses.calls[0].request.params == {
-            'query': '{project(slug:"amo"){name,localizations{locale{code,name}totalStrings,approvedStrings}}}'
-        }
-        assert responses.calls[1].request.params == {
-            'query': '{project(slug:"amo-frontend"){name,localizations{locale{code,name}totalStrings,approvedStrings}}}'
-        }
-
     def test_full_run_typical_response(self):
-        def fake_pontoon_response(request):
+        def fake_pontoon_response():
             root = os.path.join(settings.ROOT, 'src/olympia/amo/fixtures/')
-            if '{project(slug:"amo-frontend")' in request.params['query']:
-                body = open(os.path.join(root, 'pontoon_response_frontend.json')).read()
-            else:
-                body = open(os.path.join(root, 'pontoon_response.json')).read()
-            return (200, {'content-type': 'application/json'}, body)
+            return open(os.path.join(root, 'pontoon_response.json')).read()
 
-        responses.add_callback(
+        responses.add(
             responses.GET,
             'https://pontoon.mozilla.org/graphql',
             content_type='application/json',
-            callback=fake_pontoon_response,
+            body=fake_pontoon_response(),
         )
-        call_command('check_locales_completion_rate')
-        self.assert_pontoon_calls()
+        call_command('check_locales_completion_rate', stdout=io.StringIO())
+        len(responses.calls) == 1
         assert len(mail.outbox) == 1
         expected_below = (
             'The following locales are below threshold of 40% or completely '
@@ -821,8 +808,27 @@ class TestCheckLocalesCompletionRate(TestCase):
             content_type='application/json',
             body=json.dumps({}),
         )
-        call_command('check_locales_completion_rate')
-        self.assert_pontoon_calls()
+        self._test_full_run_empty_response()
+
+    def test_full_run_completely_empty_response(self):
+        responses.add(
+            responses.GET,
+            'https://pontoon.mozilla.org/graphql',
+            content_type='application/json',
+            body=json.dumps(
+                {
+                    'data': {
+                        'amo': {'localizations': []},
+                        'amoFrontend': {'localizations': []},
+                    }
+                }
+            ),
+        )
+        self._test_full_run_empty_response()
+
+    def _test_full_run_empty_response(self):
+        call_command('check_locales_completion_rate', stdout=io.StringIO())
+        assert len(responses.calls) == 1
         assert len(mail.outbox) == 1
         # Everything should be missing since the response is an empty object.
         expected_below = (
