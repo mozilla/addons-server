@@ -3587,12 +3587,12 @@ msgstr "<span class=\"instruction-emphasis\">Nota:</span> Los archivos fuente (a
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:67
 #, python-format
 msgid "The maximum file size accepted is %(max_size)s."
-msgstr ""
+msgstr "El tamaño máximo de archivo aceptado es %(max_size)s."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:72
 #, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
-msgstr ""
+msgstr "Para más información, por favor lee <a %(a_attrs)s>Envío de código fuente</a> en el taller de extensiones de Firefox."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:77
 msgid "Upload source code:"
@@ -3625,7 +3625,7 @@ msgstr "Usa los siguientes campos para subir el complemento. Una vez subido, se 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:34
 #, python-format
 msgid "The maximum file size accepted is %(max_size)s. If your add-on is larger than %(max_size)s, it will fail validation."
-msgstr ""
+msgstr "El tamaño máximo de archivo aceptado es %(max_size)s. Si tu complemento es más grande que %(max_size)s, fallará la validación."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:59
 msgid "Which applications is this version compatible with?"
@@ -4004,7 +4004,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/macros.html:8
 msgid "Some Markdown supported."
-msgstr ""
+msgstr "Se admiten algunos Markdown."
 
 #: src/olympia/devhub/templates/devhub/includes/macros.html:58
 msgid "Remove this application"
@@ -4668,9 +4668,8 @@ msgstr "Accede a la sabiduría académica. Disfruta del acceso gratuito a más d
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:83
-#, fuzzy
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ configurations."
-msgstr "Personaliza los gestos del ratón. Descubre una nueva forma de navegar con más de 50 gestos de ratón."
+msgstr "Personaliza los gestos del ratón. Descubre una nueva forma de navegar con más de 50 configuraciones."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4855,15 +4854,13 @@ msgstr "No permitas ser rastreado al hacer clic en los resultados de búsqueda d
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:188
-#, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages, and more."
-msgstr "Usa gestos del ratón para cerrar pestañas, retroceder una página, actualizar y mucho más."
+msgstr "Usa gestos del ratón para cerrar pestañas, navegar entre páginas y mucho más."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:191
-#, fuzzy
 msgid "See thumbnail images alongside your search returns."
-msgstr "Disfruta de imágenes en miniatura junto a los resultados de búsqueda."
+msgstr "Mira imágenes en miniatura junto a los resultados de búsqueda."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:194
@@ -5186,9 +5183,8 @@ msgstr "Dispone de muchas opciones para gestionar pestañas: cierre de pestañas
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:377
-#, fuzzy
 msgid "Enjoy a strange education. Load a random Wikipedia article each time you open a new tab."
-msgstr "Carga un artículo de Wikipedia al azar cada vez que abras una nueva pestaña."
+msgstr "Disfruta de una educación diferente. Carga un artículo de Wikipedia al azar cada vez que abras una nueva pestaña."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:380
@@ -5701,7 +5697,7 @@ msgstr "Una forma sencilla de ajustar el tamaño del texto de cualquier página 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:827
 msgid "Enjoy thumbnail images of websites alongside your search returns."
-msgstr "Disfruta de imágenes en miniatura junto a los resultados de búsqueda."
+msgstr "Disfruta de imágenes en miniatura de los sitios web junto a los resultados de búsqueda."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:833
@@ -5731,12 +5727,12 @@ msgstr "Obtén actualizaciones meteorológicas directamente desde Firefox."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:887
 msgid "Manage your time better with a browser clock that charts work intervals."
-msgstr ""
+msgstr "Mejora tu gestión del tiempo con un reloj en el navegador que registre tus intervalos de trabajo."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:890
 msgid "Tired of that \"Video paused. Continue watching?\" message? Listen to your favorite music uninterrupted on YouTube."
-msgstr ""
+msgstr "Te has cansado de ese mensaje de \"Video detenido ¿continuar viendo?\"\" Escucha tu música sin interrupciones en YouTube."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:896
@@ -5746,12 +5742,12 @@ msgstr "¡Fuera, molestosas advertencias de cookies!"
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:902
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
-msgstr ""
+msgstr "Regresa a una época más sencilla — cuando tus resultados de búsqueda principales estaban por encima de los anuncios (compatible con los buscadores de Google y Bing)."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:917
 msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
-msgstr ""
+msgstr "Enmascara tu correo electrónico para proteger tu identidad y evitar el correo basura. Las nuevas actualizaciones hacen que Firefox Relay sea aún más fácil de usar."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:920
@@ -5791,18 +5787,17 @@ msgstr "Personaliza YouTube a tu gusto."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:944
 msgid "Delete browsing data directly from the browser toolbar."
-msgstr ""
+msgstr "Elimina datos de navegación directamente desde la barra de herramientas del navegador."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:947
-#, fuzzy
 msgid "Get RSS feed auto-updates direct to your bookmark folders."
 msgstr "Obtén carpetas de marcadores de RSS autopobladas."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:950
 msgid "Effective blocker against all types of ads."
-msgstr ""
+msgstr "Bloqueador efectivo contra todo tipo de publicidad."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:953
@@ -6486,7 +6481,7 @@ msgstr ""
 
 #: src/olympia/signing/views.py:275
 msgid "No uploaded file for that add-on and version."
-msgstr ""
+msgstr "No hay ningún archivo cargado para ese complemento y versión."
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:4
 msgid "Overview"
@@ -6640,18 +6635,16 @@ msgid "Previous"
 msgstr "Anterior"
 
 #: src/olympia/stats/templates/stats/stats.html:166
-#, fuzzy
 msgid "This dashboard is <b>private</b>."
-msgstr "Este panel de control es actualmente <b>privado</b>."
+msgstr "Este panel de control es <b>privado</b>."
 
 #: src/olympia/stats/templates/stats/reports/apps.html:3
 msgid "Application usage by Date"
 msgstr "Uso de la aplicación por fecha"
 
 #: src/olympia/stats/templates/stats/reports/campaigns.html:3
-#, fuzzy
 msgid "Download campaigns by Date"
-msgstr "Fuentes de descarga por fecha"
+msgstr "Campañas de descarga por fecha"
 
 #: src/olympia/stats/templates/stats/reports/campaigns.html:7 src/olympia/stats/templates/stats/reports/contents.html:7 src/olympia/stats/templates/stats/reports/mediums.html:7
 #: src/olympia/stats/templates/stats/reports/sources.html:7
@@ -6659,14 +6652,12 @@ msgid "About tracking external sources..."
 msgstr "Sobre la monitorización de orígenes externos..."
 
 #: src/olympia/stats/templates/stats/reports/contents.html:3
-#, fuzzy
 msgid "Download contents by Date"
-msgstr "Fuentes de descarga por fecha"
+msgstr "Contenidos descargados por fecha"
 
 #: src/olympia/stats/templates/stats/reports/countries.html:3
-#, fuzzy
 msgid "User countries by Date"
-msgstr "Idiomas de usuario por fecha"
+msgstr "Países de usuarios por fecha"
 
 #: src/olympia/stats/templates/stats/reports/downloads.html:3
 msgid "Downloaded by Date"
@@ -6677,9 +6668,8 @@ msgid "User languages by Date"
 msgstr "Idiomas de usuario por fecha"
 
 #: src/olympia/stats/templates/stats/reports/mediums.html:3
-#, fuzzy
 msgid "Download mediums by Date"
-msgstr "Descargado por fecha"
+msgstr "Medios de descarga por fecha"
 
 #: src/olympia/stats/templates/stats/reports/os.html:3
 msgid "Platform usage by Date"
