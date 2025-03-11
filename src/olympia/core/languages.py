@@ -187,10 +187,7 @@ ADDITIONAL_PRODUCT_LANGUAGES = {
     'ml': {'english': 'Malayalam', 'native': '\u0d2e\u0d32\u0d2f\u0d3e\u0d33\u0d02'},
     'mn': {'english': 'Mongolian', 'native': '\u041c\u043e\u043d\u0433\u043e\u043b'},
     'mr': {'english': 'Marathi', 'native': '\u092e\u0930\u093e\u0920\u0940'},
-    'mt': {
-        'english': 'Maltese',
-        'native': 'Malti',
-    },
+    'mt': {'english': 'Maltese', 'native': 'Malti'},
     'my': {
         'english': 'Burmese',
         'native': '\u1019\u103c\u1014\u103a\u1019\u102c\u1018\u102c\u101e\u102c',  # noqa
