@@ -158,6 +158,7 @@ ADDITIONAL_PRODUCT_LANGUAGES = {
         'english': 'Armenian',
         'native': '\u0540\u0561\u0575\u0565\u0580\u0565\u0576',
     },
+    'ia': {'english': 'Interlingua', 'native': 'Interlingua'},
     'ig': {'english': 'Igbo', 'native': 'Igbo'},
     'ja-JP-mac': {'english': 'Japanese', 'native': '\u65e5\u672c\u8a9e'},
     'kk': {'english': 'Kazakh', 'native': '\u049a\u0430\u0437\u0430\u049b'},
