@@ -1,6 +1,7 @@
 from base64 import urlsafe_b64decode, urlsafe_b64encode
 from urllib.parse import parse_qs, urlparse
 
+from django.conf import settings
 from django.test import RequestFactory
 from django.test.utils import override_settings
 from django.urls import reverse
@@ -10,16 +11,6 @@ from olympia.accounts import utils
 from olympia.amo.tests import TestCase
 
 
-FXA_CONFIG = {
-    'default': {
-        'client_id': 'foo',
-        'client_secret': 'bar',
-    },
-    'other': {'client_id': 'foo_other', 'client_secret': 'bar_other'},
-}
-
-
-@override_settings(FXA_CONFIG=FXA_CONFIG)
 @override_settings(FXA_OAUTH_HOST='https://accounts.firefox.com/oauth')
 def test_fxa_login_url_without_requiring_two_factor_auth():
     path = '/en-US/addons/abp/?source=ddg'
@@ -27,7 +18,7 @@ def test_fxa_login_url_without_requiring_two_factor_auth():
     request.session = {'fxa_state': 'myfxastate'}
 
     raw_url = utils.fxa_login_url(
-        config=FXA_CONFIG['default'],
+        config=settings.FXA_CONFIG['default'],
         state=request.session['fxa_state'],
         next_path=path,
         enforce_2fa=False,
@@ -41,14 +32,13 @@ def test_fxa_login_url_without_requiring_two_factor_auth():
     query = parse_qs(url.query)
     next_path = urlsafe_b64encode(path.encode('utf-8')).rstrip(b'=')
     assert query == {
-        'client_id': ['foo'],
+        'client_id': ['amodefault'],
         'scope': ['profile openid'],
         'state': [f'myfxastate:{force_str(next_path)}'],
         'access_type': ['offline'],
     }
 
 
-@override_settings(FXA_CONFIG=FXA_CONFIG)
 @override_settings(FXA_OAUTH_HOST='https://accounts.firefox.com/oauth')
 def test_fxa_login_url_requiring_two_factor_auth():
     path = '/en-US/addons/abp/?source=ddg'
@@ -56,7 +46,7 @@ def test_fxa_login_url_requiring_two_factor_auth():
     request.session = {'fxa_state': 'myfxastate'}
 
     raw_url = utils.fxa_login_url(
-        config=FXA_CONFIG['default'],
+        config=settings.FXA_CONFIG['default'],
         state=request.session['fxa_state'],
         next_path=path,
         enforce_2fa=True,
@@ -71,14 +61,13 @@ def test_fxa_login_url_requiring_two_factor_auth():
     next_path = urlsafe_b64encode(path.encode('utf-8')).rstrip(b'=')
     assert query == {
         'acr_values': ['AAL2'],
-        'client_id': ['foo'],
+        'client_id': ['amodefault'],
         'scope': ['profile openid'],
         'state': [f'myfxastate:{force_str(next_path)}'],
         'access_type': ['offline'],
     }
 
 
-@override_settings(FXA_CONFIG=FXA_CONFIG)
 @override_settings(FXA_OAUTH_HOST='https://accounts.firefox.com/oauth')
 def test_fxa_login_url_requiring_two_factor_auth_passing_token():
     path = '/en-US/addons/abp/?source=ddg'
@@ -86,7 +75,7 @@ def test_fxa_login_url_requiring_two_factor_auth_passing_token():
     request.session = {'fxa_state': 'myfxastate'}
 
     raw_url = utils.fxa_login_url(
-        config=FXA_CONFIG['default'],
+        config=settings.FXA_CONFIG['default'],
         state=request.session['fxa_state'],
         next_path=path,
         enforce_2fa=True,
@@ -102,7 +91,7 @@ def test_fxa_login_url_requiring_two_factor_auth_passing_token():
     next_path = urlsafe_b64encode(path.encode('utf-8')).rstrip(b'=')
     assert query == {
         'acr_values': ['AAL2'],
-        'client_id': ['foo'],
+        'client_id': ['amodefault'],
         'id_token_hint': ['YWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXo='],
         'prompt': ['none'],
         'scope': ['profile openid'],
@@ -111,7 +100,6 @@ def test_fxa_login_url_requiring_two_factor_auth_passing_token():
     }
 
 
-@override_settings(FXA_CONFIG=FXA_CONFIG)
 @override_settings(FXA_OAUTH_HOST='https://accounts.firefox.com/oauth')
 def test_fxa_login_url_requiring_two_factor_auth_passing_request():
     path = '/en-US/addons/abp/?source=ddg'
@@ -119,7 +107,7 @@ def test_fxa_login_url_requiring_two_factor_auth_passing_request():
     request.session = {'fxa_state': 'myfxastate'}
 
     raw_url = utils.fxa_login_url(
-        config=FXA_CONFIG['default'],
+        config=settings.FXA_CONFIG['default'],
         state=request.session['fxa_state'],
         next_path=path,
         enforce_2fa=True,
@@ -135,14 +123,13 @@ def test_fxa_login_url_requiring_two_factor_auth_passing_request():
     next_path = urlsafe_b64encode(path.encode('utf-8')).rstrip(b'=')
     assert query == {
         'acr_values': ['AAL2'],
-        'client_id': ['foo'],
+        'client_id': ['amodefault'],
         'scope': ['profile openid'],
         'state': [f'myfxastate:{force_str(next_path)}'],
         'access_type': ['offline'],
     }
 
 
-@override_settings(FXA_CONFIG=FXA_CONFIG)
 @override_settings(FXA_OAUTH_HOST='https://accounts.firefox.com/oauth')
 def test_fxa_login_url_requiring_two_factor_auth_passing_login_hint():
     path = '/en-US/addons/abp/?source=ddg'
@@ -150,7 +137,7 @@ def test_fxa_login_url_requiring_two_factor_auth_passing_login_hint():
     request.session = {'fxa_state': 'myfxastate'}
 
     raw_url = utils.fxa_login_url(
-        config=FXA_CONFIG['default'],
+        config=settings.FXA_CONFIG['default'],
         state=request.session['fxa_state'],
         next_path=path,
         enforce_2fa=True,
@@ -167,7 +154,7 @@ def test_fxa_login_url_requiring_two_factor_auth_passing_login_hint():
     next_path = urlsafe_b64encode(path.encode('utf-8')).rstrip(b'=')
     assert query == {
         'acr_values': ['AAL2'],
-        'client_id': ['foo'],
+        'client_id': ['amodefault'],
         'login_hint': ['test@example.com'],
         'prompt': ['none'],
         'scope': ['profile openid'],
@@ -181,7 +168,7 @@ def test_unicode_next_path():
     request = RequestFactory().get(path)
     request.session = {'fxa_state': 'fake-state'}
     url = utils.fxa_login_url(
-        config=FXA_CONFIG['default'],
+        config=settings.FXA_CONFIG['default'],
         state=request.session['fxa_state'],
         next_path=utils.path_with_query(request),
     )
@@ -190,52 +177,36 @@ def test_unicode_next_path():
     assert next_path.decode('utf-8') == path
 
 
-@override_settings(FXA_CONFIG=FXA_CONFIG)
 def test_redirect_for_login():
     request = RequestFactory().get('/somewhere')
     request.session = {'fxa_state': 'fake-state'}
     response = utils.redirect_for_login(request)
     assert response['location'] == utils.fxa_login_url(
-        config=FXA_CONFIG['default'],
+        config=settings.FXA_CONFIG['default'],
         state=request.session['fxa_state'],
         next_path='/somewhere',
     )
     assert request.session['enforce_2fa'] is False
 
 
-@override_settings(FXA_CONFIG=FXA_CONFIG)
 def test_redirect_for_login_with_next_path():
     request = RequestFactory().get('/somewhere')
     request.session = {'fxa_state': 'fake-state'}
     response = utils.redirect_for_login(request, next_path='/over/the/rainbow')
     assert response['location'] == utils.fxa_login_url(
-        config=FXA_CONFIG['default'],
+        config=settings.FXA_CONFIG['default'],
         state=request.session['fxa_state'],
         next_path='/over/the/rainbow',
     )
     assert request.session['enforce_2fa'] is False
 
 
-@override_settings(FXA_CONFIG=FXA_CONFIG)
-def test_redirect_for_login_with_config():
-    request = RequestFactory().get('/somewhere')
-    request.session = {'fxa_state': 'fake-state'}
-    response = utils.redirect_for_login(request, config=FXA_CONFIG['other'])
-    assert response['location'] == utils.fxa_login_url(
-        config=FXA_CONFIG['other'],
-        state=request.session['fxa_state'],
-        next_path='/somewhere',
-    )
-    assert request.session['enforce_2fa'] is False
-
-
-@override_settings(FXA_CONFIG=FXA_CONFIG)
 def test_redirect_for_login_with_2fa_enforced():
     request = RequestFactory().get('/somewhere')
     request.session = {'fxa_state': 'fake-state'}
     response = utils.redirect_for_login_with_2fa_enforced(request)
     assert response['location'] == utils.fxa_login_url(
-        config=FXA_CONFIG['default'],
+        config=settings.FXA_CONFIG['default'],
         state=request.session['fxa_state'],
         next_path='/somewhere',
         enforce_2fa=True,
@@ -243,7 +214,6 @@ def test_redirect_for_login_with_2fa_enforced():
     assert request.session['enforce_2fa'] is True
 
 
-@override_settings(FXA_CONFIG=FXA_CONFIG)
 def test_redirect_for_login_with_2fa_enforced_id_token_hint():
     request = RequestFactory().get('/somewhere')
     request.session = {'fxa_state': 'fake-state'}
@@ -251,7 +221,7 @@ def test_redirect_for_login_with_2fa_enforced_id_token_hint():
         request, id_token_hint='some_token_hint'
     )
     assert response['location'] == utils.fxa_login_url(
-        config=FXA_CONFIG['default'],
+        config=settings.FXA_CONFIG['default'],
         state=request.session['fxa_state'],
         next_path='/somewhere',
         enforce_2fa=True,
@@ -260,7 +230,6 @@ def test_redirect_for_login_with_2fa_enforced_id_token_hint():
     assert request.session['enforce_2fa'] is True
 
 
-@override_settings(FXA_CONFIG=FXA_CONFIG)
 def test_redirect_for_login_with_2fa_enforced_and_next_path():
     request = RequestFactory().get('/somewhere')
     request.session = {'fxa_state': 'fake-state'}
@@ -268,7 +237,7 @@ def test_redirect_for_login_with_2fa_enforced_and_next_path():
         request, next_path='/over/the/rainbow'
     )
     assert response['location'] == utils.fxa_login_url(
-        config=FXA_CONFIG['default'],
+        config=settings.FXA_CONFIG['default'],
         state=request.session['fxa_state'],
         next_path='/over/the/rainbow',
         enforce_2fa=True,
@@ -276,15 +245,15 @@ def test_redirect_for_login_with_2fa_enforced_and_next_path():
     assert request.session['enforce_2fa'] is True
 
 
-@override_settings(FXA_CONFIG=FXA_CONFIG)
 def test_redirect_for_login_with_2fa_enforced_and_config():
     request = RequestFactory().get('/somewhere')
     request.session = {'fxa_state': 'fake-state'}
     response = utils.redirect_for_login_with_2fa_enforced(
-        request, config=FXA_CONFIG['other']
+        request,
+        config={'client_id': 'foo_other', 'client_secret': 'bar_other'},
     )
     assert response['location'] == utils.fxa_login_url(
-        config=FXA_CONFIG['other'],
+        config={'client_id': 'foo_other', 'client_secret': 'bar_other'},
         state=request.session['fxa_state'],
         next_path='/somewhere',
         enforce_2fa=True,
@@ -292,13 +261,13 @@ def test_redirect_for_login_with_2fa_enforced_and_config():
     assert request.session['enforce_2fa'] is True
 
 
-@override_settings(DEV_MODE=True, USE_FAKE_FXA_AUTH=True)
+@override_settings(FXA_CONFIG={'default': {'client_id': ''}})
 def test_fxa_login_url_when_faking_fxa_auth():
     path = '/en-US/addons/abp/?source=ddg'
     request = RequestFactory().get(path)
     request.session = {'fxa_state': 'myfxastate'}
     raw_url = utils.fxa_login_url(
-        config=FXA_CONFIG['default'],
+        config=settings.FXA_CONFIG['default'],
         state=request.session['fxa_state'],
         next_path=path,
     )
@@ -306,10 +275,11 @@ def test_fxa_login_url_when_faking_fxa_auth():
     assert url.scheme == ''
     assert url.netloc == ''
     assert url.path == reverse('fake-fxa-authorization')
-    query = parse_qs(url.query)
+    # client_id has a blank value, so we should inspect blank values
+    query = parse_qs(url.query, keep_blank_values=True)
     next_path = urlsafe_b64encode(path.encode('utf-8')).rstrip(b'=')
     assert query == {
-        'client_id': ['foo'],
+        'client_id': [''],
         'scope': ['profile openid'],
         'state': [f'myfxastate:{force_str(next_path)}'],
         'access_type': ['offline'],

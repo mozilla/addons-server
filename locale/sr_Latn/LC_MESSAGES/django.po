@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-04 16:26+0000\n"
+"POT-Creation-Date: 2025-03-06 15:38+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -15,6 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.2.0\n"
 
+#, python-brace-format
 msgid "Mozilla Add-ons: {} [{}]"
 msgstr ""
 
@@ -35,9 +36,11 @@ msgstr ""
 msgid "User profile"
 msgstr ""
 
+#, python-brace-format
 msgid "\"{}\" for {}"
 msgstr ""
 
+#, python-brace-format
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr ""
 
@@ -47,6 +50,7 @@ msgstr ""
 msgid "Appeal reviewer decision"
 msgstr ""
 
+#, python-brace-format
 msgid "Decision {0}"
 msgstr ""
 
@@ -227,7 +231,7 @@ msgstr "Puna recenzija dodatka"
 msgid "Review"
 msgstr "Pregled"
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Version {0}"
 msgid_plural "Versions {0}"
 msgstr[0] "Verzija {0}"
@@ -243,6 +247,7 @@ msgstr ""
 msgid "Add-on uploads are temporarily unavailable."
 msgstr ""
 
+#, python-brace-format
 msgid ""
 "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
 msgstr ""
@@ -253,6 +258,7 @@ msgstr ""
 msgid "Invalid category name."
 msgstr ""
 
+#, python-brace-format
 msgid "URL domain must be one of [{domains}]."
 msgstr ""
 
@@ -262,9 +268,11 @@ msgstr ""
 msgid "URLs must start with https://."
 msgstr ""
 
+#, python-brace-format
 msgid "License with slug={value} does not exist."
 msgstr ""
 
+#, python-brace-format
 msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr ""
 
@@ -314,9 +322,11 @@ msgid ""
 "Admins if you need help with this."
 msgstr ""
 
+#, python-brace-format
 msgid "Version {version_string} was uploaded before and deleted."
 msgstr ""
 
+#, python-brace-format
 msgid "Version {version_string} already exists."
 msgstr ""
 
@@ -356,6 +366,7 @@ msgstr ""
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
 
+#, python-brace-format
 msgid ""
 "Version {version_string} must be greater than the previous approved version "
 "{previous_version_string}."
@@ -376,6 +387,7 @@ msgstr ""
 msgid "This field is required for add-ons with listed versions."
 msgstr ""
 
+#, python-brace-format
 msgid ""
 "Add-on metadata is required to be set to create a listed version: "
 "{missing_addon_metadata}."
@@ -612,10 +624,12 @@ msgstr ""
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird
+#, python-brace-format
 msgid "Add-ons for {0}"
 msgstr "Dodaci za {0}"
 
 #. L10n: relative time in the past, like '4 days ago'
+#, python-brace-format
 msgid "{0} ago"
 msgstr "pre {0}"
 
@@ -667,15 +681,18 @@ msgstr "Adresa e-pošte"
 msgid "Unavailable for legal reasons."
 msgstr ""
 
+#, python-brace-format
 msgid "The language code \"{lang_code}\" is invalid."
 msgstr ""
 
 msgid "You must provide an object of {{lang-code:value}}."
 msgstr ""
 
+#, python-brace-format
 msgid "A value in the default locale of \"{lang_code}\" is required."
 msgstr ""
 
+#, python-brace-format
 msgid ""
 "A value in the default locale of \"{lang_code}\" is required if other "
 "translations are set."
@@ -721,86 +738,106 @@ msgstr ""
 msgid "Restricted"
 msgstr ""
 
+#, python-brace-format
 msgid "{addon} was created."
 msgstr "{addon} je kreiran."
 
+#, python-brace-format
 msgid "{addon} properties edited."
 msgstr "Svojstva su izmenjena za {addon}."
 
+#, python-brace-format
 msgid "{addon} description edited."
 msgstr "Opis je izmenjen za {addon}."
 
+#, python-brace-format
 msgid "Categories edited for {addon}."
 msgstr "Kategorije su izmenjene za {addon}."
 
 #. L10n: {0} is the user role.
+#, python-brace-format
 msgid "{user} ({0}) added to {addon}."
 msgstr ""
 
 #. L10n: {0} is the user role.
+#, python-brace-format
 msgid "{user} ({0}) removed from {addon}."
 msgstr ""
 
+#, python-brace-format
 msgid "Contributions for {addon}."
 msgstr "Prilozi za {addon}."
 
+#, python-brace-format
 msgid "{addon} disabled."
 msgstr "{addon} onemogućen."
 
+#, python-brace-format
 msgid "{addon} enabled."
 msgstr "{addon} omogućen."
 
 #. L10n: {status} is the status
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{addon} status changed to {status}."
 msgstr "{addon} status izmenjen na {0}."
 
+#, python-brace-format
 msgid "{version} added to {addon}."
 msgstr "{version} dodata u {addon}."
 
+#, python-brace-format
 msgid "{version} edited for {addon}."
 msgstr "{version} izmenjen za {addon}."
 
 #. L10n: {0} is the version number
+#, python-brace-format
 msgid "Version {0} deleted from {addon}."
 msgstr "Verzija {0} izbrisana iz {addon}."
 
+#, python-brace-format
 msgid "File {file} added to {version} of {addon}."
 msgstr ""
 
+#, python-brace-format
 msgid "File {0} deleted from {version} of {addon}."
 msgstr "Datoteka {0} izbrisana iz {version} dodatka {addon}."
 
+#, python-brace-format
 msgid "{addon} {version} approved."
 msgstr "{addon} {version} odobren."
 
 msgid "Approved"
 msgstr "Odobreno"
 
+#, python-brace-format
 msgid "{addon} {version} given preliminary review."
 msgstr "Data je preliminarna recenzija za {addon} {version}."
 
 msgid "Preliminarily approved"
 msgstr "Premiliminarno odobreno"
 
+#, python-brace-format
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version} je odbijen."
 
 msgid "Rejected"
 msgstr "Odbijeno"
 
+#, python-brace-format
 msgid "{addon} {version} retained."
 msgstr "{addon} {version} je zadržan."
 
 msgid "Retained"
 msgstr "Zadržano"
 
+#, python-brace-format
 msgid "{addon} {version} review requested."
 msgstr "Zahtevana je recenzija za {addon} {version}."
 
 msgid "Review requested"
 msgstr "Zahtevana recenzija"
 
+#, python-brace-format
 msgid "{addon} {version} more information requested."
 msgstr "Zahtevane su dodatne informacije za {addon} {version}."
 
@@ -813,52 +850,61 @@ msgid ""
 "review might take longer than usual."
 msgstr ""
 
+#, python-brace-format
 msgid "{tag} added to {addon}."
 msgstr "{tag} dodato u {addon}."
 
+#, python-brace-format
 msgid "{tag} removed from {addon}."
 msgstr "{tag} uklonjeno iz {addon}."
 
+#, python-brace-format
 msgid "{addon} added to {collection}."
 msgstr "{addon} dodat u {collection}."
 
+#, python-brace-format
 msgid "{addon} removed from {collection}."
 msgstr "{addon} uklonjeno iz {collection}."
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{rating} for {addon} written."
 msgstr "{review} za {addon} je napisana."
 
 #. L10n: {0} is the application, {1} is the version of the app
+#, python-brace-format
 msgid "{0} {1} added."
 msgstr "{0} {1} je dodat."
 
 #. L10n: {0} is the user role
+#, python-brace-format
 msgid "{user} role changed to {0} for {addon}."
 msgstr ""
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{addon} is now licensed under {0}."
 msgstr "{addon} je sada licenciran pod {0.name}."
 
+#, python-brace-format
 msgid "{addon} policy changed."
 msgstr "Polisa izmenjena za {addon}."
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{addon} icon or previews changed."
 msgstr "Ikonica je promenjena za {addon}."
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{rating} for {addon} approved."
 msgstr "{review} za {addon} je odobren."
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Review {rating} for {addon} deleted."
 msgstr "Recenzija {review} za {addon} je izbrisana."
 
+#, python-brace-format
 msgid "Application max version for {version} updated."
 msgstr "Maksimalna verzija aplikacije za {version} je ažurirana."
 
+#, python-brace-format
 msgid "Authors emailed about compatibility of {version}."
 msgstr "Autori poslali e-poštu o kompatibilnosti verzije {version}."
 
@@ -868,6 +914,7 @@ msgstr "E-pošta poslata autoru o kompatibilnosti dodatka."
 msgid "Password changed."
 msgstr "Lozinka je izmenjena."
 
+#, python-brace-format
 msgid "{addon} {version} approved but waiting to be made public."
 msgstr "{addon} {version} je odobren ali čeka da postane javan."
 
@@ -877,28 +924,32 @@ msgstr "Odobren ali na čekanju"
 msgid "Account updated."
 msgstr "Nalog ažuriran."
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Account {user} deleted."
 msgstr "Nalog ažuriran."
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{rating} for {addon} updated."
 msgstr "{review} za {addon} je ažuriran."
 
+#, python-brace-format
 msgid "{addon} reviewed."
 msgstr "{addon} je pregledan."
 
+#, python-brace-format
 msgid "{addon} unlisted."
 msgstr ""
 
 #. L10n: {0} is the add-on GUID.
+#, python-brace-format
 msgid "Add-on id {0} with GUID {1} has been deleted"
 msgstr ""
 
+#, python-brace-format
 msgid "{file} was signed."
 msgstr ""
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Reply by developer on {addon} {version}."
 msgstr "Komentar na {addon} {version}."
 
@@ -906,7 +957,7 @@ msgstr "Komentar na {addon} {version}."
 msgid "Developer Reply"
 msgstr "Programerske vesti"
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Reply by reviewer on {addon} {version}."
 msgstr "Komentar na {addon} {version}."
 
@@ -914,13 +965,14 @@ msgstr "Komentar na {addon} {version}."
 msgid "Reviewer Reply"
 msgstr "Programerske vesti"
 
+#, python-brace-format
 msgid "Notes for reviewers changed for {addon} {version}."
 msgstr ""
 
 msgid "Notes for reviewers changed"
 msgstr ""
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Source code uploaded for {addon} {version}."
 msgstr "Komentar na {addon} {version}."
 
@@ -928,15 +980,15 @@ msgstr "Komentar na {addon} {version}."
 msgid "Source code uploaded"
 msgstr "Izvorni kod"
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{addon} {version} re-enabled."
 msgstr "{addon} {version} je odbijen."
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{addon} {version} disabled."
 msgstr "{addon} {version} se eskalirao."
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{addon} {version} content rejected."
 msgstr "{addon} {version} je odbijen."
 
@@ -944,7 +996,7 @@ msgstr "{addon} {version} je odbijen."
 msgid "Content rejected"
 msgstr "odbijeno"
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{addon} {version} admin theme-review requested."
 msgstr "Zahtevana je recenzija za {addon} {version}."
 
@@ -952,11 +1004,11 @@ msgstr "Zahtevana je recenzija za {addon} {version}."
 msgid "Admin theme-review requested"
 msgstr "Zahtevana recenzija"
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{addon} was migrated from a lightweight theme."
 msgstr "Data je preliminarna recenzija za {addon} {version}."
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{addon} {version} content reject scheduled."
 msgstr "{addon} {version} je odbijen."
 
@@ -964,7 +1016,7 @@ msgstr "{addon} {version} je odbijen."
 msgid "Content reject scheduled"
 msgstr "odbijeno"
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{addon} {version} reject scheduled."
 msgstr "{addon} {version} je odbijen."
 
@@ -972,6 +1024,7 @@ msgstr "{addon} {version} je odbijen."
 msgid "Rejection scheduled"
 msgstr "Zahtevane dodatne informacije"
 
+#, python-brace-format
 msgid "{addon} {version} automatically created and signed from {0}."
 msgstr ""
 
@@ -979,54 +1032,66 @@ msgstr ""
 msgid "Version re-signed"
 msgstr "Verzija %s onemogućena."
 
+#, python-brace-format
 msgid "{addon} force-disabled"
 msgstr ""
 
+#, python-brace-format
 msgid "{addon} force-enabled"
 msgstr ""
 
+#, python-brace-format
 msgid "{addon} {version} un-rejected."
 msgstr ""
 
 msgid "Un-rejected"
 msgstr ""
 
+#, python-brace-format
 msgid "Reply to {rating} for {addon} written."
 msgstr ""
 
+#, python-brace-format
 msgid "{addon} {version} pending rejection cleared."
 msgstr ""
 
 msgid "Pending rejection cleared"
 msgstr ""
 
+#, python-brace-format
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr ""
 
 msgid "Add-on slug changed"
 msgstr ""
 
+#, python-brace-format
 msgid "Collection {collection} deleted by moderator"
 msgstr ""
 
+#, python-brace-format
 msgid "Collection {collection} un-deleted by moderator"
 msgstr ""
 
+#, python-brace-format
 msgid "Review {rating} for {addon} un-deleted."
 msgstr ""
 
+#, python-brace-format
 msgid "{addon} {version} rejected automatically after delay expired."
 msgstr ""
 
 msgid "Rejected automatically after delay expired"
 msgstr ""
 
+#, python-brace-format
 msgid "{addon} {version} content rejected automatically after delay expired."
 msgstr ""
 
 msgid "Content rejected automatically after delay expired"
 msgstr ""
 
+#, python-brace-format
 msgid "{addon} {version} pending rejection changed."
 msgstr ""
 
@@ -1611,12 +1676,14 @@ msgstr "Skorašnje izmene za %s"
 msgid "Recent Changes for My Add-ons"
 msgstr "Skorašnje izmene za Moji dodaci"
 
+#, python-brace-format
 msgid ""
 "Open Search add-ons are {blog_link_open}no longer supported on "
 "AMO{blog_link_close}. You can create a {doc_link_open}search extension "
 "instead{doc_link_close}."
 msgstr ""
 
+#, python-brace-format
 msgid ""
 "Manifest V3 is currently not supported for upload. {start_href}Read more "
 "about the support timeline{end_href}."
@@ -1630,6 +1697,7 @@ msgid "The slug cannot be \"%(slug)s\". Please choose another."
 msgstr "Naziv url adrese ne može biti \"%s\". Molimo Vas izaberite drugi."
 
 #. L10n: {0} is the number of categories.
+#, python-brace-format
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "Možete imati samo {0} kategoriju."
@@ -1643,6 +1711,7 @@ msgstr "Kategorija Ostalo se ne može spojiti sa dodatnim kategorijama."
 msgid "URL domain must be one of [%s]."
 msgstr ""
 
+#, python-brace-format
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] "Imate {0} previše oznaka."
@@ -1697,6 +1766,7 @@ msgstr "Ovaj dodatak ima Polisu privatnosti"
 msgid "Please specify your add-on's Privacy Policy:"
 msgstr "Molimo Vas navedite Polisu privatnosti Vašeg dodatka:"
 
+#, python-brace-format
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr ""
 "Tip datoteke nije podržan, molimo Vas da otpremite arhivu datoteke "
@@ -1726,10 +1796,11 @@ msgid ""
 "time."
 msgstr ""
 
+#, python-brace-format
 msgid "Version {version} was uploaded before and deleted."
 msgstr ""
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Version {version} already exists."
 msgstr "{addon} {version} odobren."
 
@@ -1749,16 +1820,19 @@ msgstr "Nije moguće raščlaniti otpremljenu datoteku."
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
 
+#, python-brace-format
 msgid ""
 "Ensure name and summary combined are at most {limit_value} characters (they "
 "have {show_value})."
 msgstr ""
 
+#, python-brace-format
 msgid ""
 "On this site. <span class=\"helptext\">Your submission is publicly listed on "
 "{site_domain}.</span>"
 msgstr ""
 
+#, python-brace-format
 msgid ""
 "On your own. <span class=\"helptext\">After your submission is signed by "
 "Mozilla, you can download the .xpi file from the Developer Hub and "
@@ -1785,6 +1859,7 @@ msgstr ""
 msgid "JWT issuer"
 msgstr ""
 
+#, python-brace-format
 msgid ""
 "To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> "
 "as the authorization header. You'll need to generate a JWT for every request "
@@ -1794,6 +1869,7 @@ msgstr ""
 msgid "JWT secret"
 msgstr ""
 
+#, python-brace-format
 msgid ""
 "Please click the confirm button below to generate API credentials for user "
 "<strong>{name}</strong>."
@@ -1836,6 +1912,7 @@ msgstr ""
 "Overa je stvorila previše grešaka/upozorenja pa je %s poruka skraćeno. Nakon "
 "obraćanja vidljivim porukama, bićete u mogućnosti da pogledate ostale."
 
+#, python-brace-format
 msgid ""
 "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</"
 "a> page to submit extensions."
@@ -1895,6 +1972,7 @@ msgstr ""
 msgid "Invitation declined."
 msgstr ""
 
+#, python-brace-format
 msgid "A confirmation email has been sent to {email}"
 msgstr ""
 
@@ -1904,6 +1982,7 @@ msgstr "Izmene su uspešno sačuvane."
 msgid "Validate Add-on"
 msgstr "Overite dodatak"
 
+#, python-brace-format
 msgid ""
 "<a href=\"{link}\">Please add two-factor authentication to your account to "
 "submit extensions.</a>"
@@ -1915,7 +1994,7 @@ msgstr "Ikonice moraju biti ili PNG ili JPG formata."
 msgid "Icons cannot be animated."
 msgstr "Ikonice ne mogu biti pokretne."
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr "Slika mora biti široka tačno {0} piksela i visoka {1} piksela."
 
@@ -1923,7 +2002,7 @@ msgstr "Slika mora biti široka tačno {0} piksela i visoka {1} piksela."
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "Slike moraju biti ili PNG ili JPG formata."
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Icon must be at least {0} pixels wide and tall."
 msgstr "Slika mora biti široka tačno {0} piksela i visoka {1} piksela."
 
@@ -2059,6 +2138,7 @@ msgid "Firefox Add-on Distribution Agreement"
 msgstr ""
 
 #. {0} is an application, like Firefox.
+#, python-brace-format
 msgid "{0} Add-ons"
 msgstr "{0} dodataka"
 
@@ -2135,6 +2215,7 @@ msgid "Do you want your add-on to be distributed on this site?"
 msgstr ""
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
+#, python-brace-format
 msgid "Validation Results for {0}"
 msgstr "Rezultati validacije za {0}"
 
@@ -2222,6 +2303,7 @@ msgid "Recent Activity for My Add-ons"
 msgstr "Skorašnja aktivnost za Moji dodaci"
 
 #. first parameter is the name of an Addon
+#, python-brace-format
 msgid "Recent Activity for {0}"
 msgstr "Skorašnja aktivnost za {0}"
 
@@ -2248,6 +2330,7 @@ msgid "Subscribe to this feed"
 msgstr "Pretplatite se na ove novosti"
 
 #. {0} is an integer.
+#, python-brace-format
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
 msgstr[0] "<b>{0}</b> dodatak"
@@ -2264,6 +2347,7 @@ msgid "Older activity for My Add-ons"
 msgstr "Starije aktivnosti za Moji dodaci"
 
 #. {0} is an integer.
+#, python-brace-format
 msgid "<b>{0}</b> theme"
 msgid_plural "<b>{0}</b> themes"
 msgstr[0] "<b>{0}</b> tema"
@@ -2285,10 +2369,11 @@ msgstr "Pogledajte druge verzije"
 msgid "Preview still being generated - come back later or refresh the page."
 msgstr ""
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Author invitation for {addon_name}"
 msgstr "Prilozi za {addon}."
 
+#, python-brace-format
 msgid "You have been invited to become an author of {addon_name}."
 msgstr ""
 
@@ -2297,6 +2382,7 @@ msgid ""
 "show your name in the authors list on the website. "
 msgstr ""
 
+#, python-brace-format
 msgid ""
 "Click on the Accept button below to confirm you want to be added as an "
 "author for {addon_name}."
@@ -2351,18 +2437,20 @@ msgstr "Detalji dodatka"
 msgid "Edit"
 msgstr "Uredi"
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Additional Details for {0}"
 msgstr "Detalji dodatka za {0}"
 
 msgid "Tags"
 msgstr "Oznake"
 
+#, python-brace-format
 msgid ""
 "Tags help users find your add-on. You may have a maximum of {0} tags. Only "
 "choose tags that are relevant to your add-on."
 msgstr ""
 
+#, python-brace-format
 msgid "Limit {0} tags."
 msgstr ""
 
@@ -2406,7 +2494,7 @@ msgid "Describe Add-on"
 msgstr "Opišite svoj dodatak"
 
 #. {0} is the addon name
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Describe {0}"
 msgstr "Opišite svoj dodatak"
 
@@ -2516,6 +2604,7 @@ msgid "Technical Details"
 msgstr "Tehnički detalji"
 
 #. {0} is an addon name
+#, python-brace-format
 msgid "Technical Details for {0}"
 msgstr "Tehnički detalji za {0}"
 
@@ -2553,6 +2642,7 @@ msgid ""
 "also editable by reviewers."
 msgstr ""
 
+#, python-brace-format
 msgid "Add-on Media for {0}"
 msgstr "Medij dodatka za {0}"
 
@@ -2716,6 +2806,7 @@ msgstr ""
 msgid "Delete Add-on"
 msgstr "Izbriši dodatak"
 
+#, python-brace-format
 msgid "Enter the following text to confirm your decision: {slug}"
 msgstr ""
 
@@ -2775,12 +2866,14 @@ msgid "This add-on doesn't have any versions."
 msgstr "Ovaj dodatak nije kompatibilan sa Vašom verzijom %(app)s-a."
 
 #. {0} is the number of downloads.
+#, python-brace-format
 msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
 msgstr[0] "<strong>{0}</strong> preuzimanje nedeljno"
 msgstr[1] "<strong>{0}</strong> preuzimanja nedeljno"
 
 #. {0} is the number of active users.
+#, python-brace-format
 msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> korisnik"
@@ -2980,7 +3073,7 @@ msgid ""
 "code."
 msgstr ""
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Edit version {0}"
 msgstr "Beta verzija {0}"
 
@@ -3374,6 +3467,7 @@ msgid ""
 "coming from. Please enter one below."
 msgstr ""
 
+#, python-brace-format
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "ili <a href=\"{0}\">Otkaži</a>"
 
@@ -3437,7 +3531,7 @@ msgid "Remove this application"
 msgstr "Ukloni ovu aplikaciju"
 
 #. {0} is the maximum number of add-on categories allowed
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Select a category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
 msgstr[0] "Izaberite <b>do {0}</b> {1} kategoriju za ovaj dodatak:"
@@ -3669,11 +3763,13 @@ msgstr ""
 msgid "Register for a developer account or log in to the Developer Hub"
 msgstr ""
 
+#, python-brace-format
 msgid "Manage Version {0}"
 msgstr "Upravljaj verzijom {0}"
 
 # {0} is the name of the collection
 #. {0} is an add-on name.
+#, python-brace-format
 msgid "Manage {0}"
 msgstr "Upravljaj sa {0}"
 
@@ -3732,7 +3828,7 @@ msgstr ""
 "Ako Vaš dodatak sadrži binarni ili bagovit kod, uverite se da je izvorni kod "
 "dostupan za recezente."
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "File {file_id}"
 msgstr "Datoteka {file_id} ({platform})"
 
@@ -3794,11 +3890,13 @@ msgstr "Odgovori"
 msgid "Listing visibility"
 msgstr "Istorijat dodatka"
 
+#, python-brace-format
 msgid ""
 "{label_open}Visible:{label_close} Visible to everyone on {site_url} and "
 "included in search results and product pages."
 msgstr ""
 
+#, python-brace-format
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and "
 "its product page will indicate you disabled it. New version submissions for "
@@ -3836,6 +3934,7 @@ msgstr "Postavi novu verziju"
 msgid "Version"
 msgstr "Verzija"
 
+#, python-brace-format
 msgid "Delete Version {version}"
 msgstr "Izbriši verziju {version}"
 
@@ -3905,6 +4004,7 @@ msgstr "Da li ste sigurni da želite da prekinete Vaš zahtev za pregled?"
 
 # {0} is a number
 #. L10n: first parameter is the number of errors
+#, python-brace-format
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} greška"
@@ -3912,6 +4012,7 @@ msgstr[1] "{0} greške"
 
 # {0} is a number
 #. L10n: first parameter is the number of warnings
+#, python-brace-format
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} upozorenje"
@@ -5292,11 +5393,12 @@ msgid "See more tab management staff picks"
 msgstr "Pogledajte sve dodatke"
 
 #. editorial content for the homepage shelves.
+#, python-brace-format
 msgid "“{tag}” tagged extensions"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "See more extensions tagged \"{tag}\""
 msgstr "Pogledajte sve dodatke"
 
@@ -5416,12 +5518,15 @@ msgstr ""
 msgid "Could not parse the manifest file."
 msgstr ""
 
+#, python-brace-format
 msgid "Lowest supported \"strict_min_version\" is {min_version}."
 msgstr ""
 
+#, python-brace-format
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
 msgstr ""
 
+#, python-brace-format
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
 msgstr ""
 
@@ -5437,10 +5542,12 @@ msgid ""
 msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
+#, python-brace-format
 msgid "Invalid file name in archive: {0}"
 msgstr "Nevažeći naziv datoteke u arhivi: {0}"
 
 #. L10n: {0} is the name of the invalid file.
+#, python-brace-format
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Veličina prelazi ograničenje veličine u arhivi: {0}"
 
@@ -5470,6 +5577,7 @@ msgstr ""
 msgid "Duplicate add-on ID found."
 msgstr ""
 
+#, python-brace-format
 msgid "Version numbers should have at most {max_length} characters."
 msgstr ""
 
@@ -5480,6 +5588,7 @@ msgstr ""
 "Broj verzije vi trebalo da sadrži samo slova, brojeve, i ove karaktere: +*.-"
 "_."
 
+#, python-brace-format
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr ""
 
@@ -5498,7 +5607,7 @@ msgstr ""
 msgid "The locale of an existing dictionary/language pack cannot be changed"
 msgstr ""
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr ""
 "Tip datoteke nije podržan, molimo Vas da otpremite arhivu datoteke "
@@ -5539,6 +5648,7 @@ msgstr ""
 msgid "%(value)s contains a non-alphanumeric character."
 msgstr ""
 
+#, python-brace-format
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
 msgstr[0] ""
@@ -5571,6 +5681,7 @@ msgstr "neko piše recenziju na moj dodatak"
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Ne možete više datoteka otpremiti za ovu verziju."
 
+#, python-brace-format
 msgid "Invalid flag [{}] - must be one of [{}]"
 msgstr ""
 
@@ -5582,6 +5693,7 @@ msgid ""
 "reason."
 msgstr ""
 
+#, python-brace-format
 msgid "{num} review"
 msgid_plural "{num} reviews"
 msgstr[0] "{num} kritika"
@@ -5590,6 +5702,7 @@ msgstr[1] "{num} kritike"
 msgid "Not yet rated"
 msgstr "Nije još ocenjeno"
 
+#, python-brace-format
 msgid "Rated {0} out of 5 stars"
 msgstr "Ocenjeno sa {0} od 5 zvezdica"
 
@@ -5597,6 +5710,7 @@ msgstr "Ocenjeno sa {0} od 5 zvezdica"
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Ocenjeno sa %(rating)s od 5 zvezdica"
 
+#, python-brace-format
 msgid "Unsupported file type, please upload a file {extensions}."
 msgstr ""
 
@@ -5690,6 +5804,7 @@ msgstr ""
 msgid "Maximum query length exceeded."
 msgstr ""
 
+#, python-brace-format
 msgid "Could not find Add-on with ID \"{}\"."
 msgstr ""
 
@@ -5769,16 +5884,20 @@ msgid "Export"
 msgstr "Izvoz"
 
 #. {0} is an add-on name, {1} is an app name (like Firefox)
+#, python-brace-format
 msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
 msgstr "{0} :: Kontrolna tabla statistika :: dodaci za {1}"
 
+#, python-brace-format
 msgid "{0} :: Statistics Dashboard"
 msgstr "{0} :: Kontrolna tabla statistika"
 
+#, python-brace-format
 msgid "Statistics Dashboard :: Add-ons for {0}"
 msgstr "Kontrolna tabla statistika :: dodaci za {0}"
 
 #. {0} is an add-on name
+#, python-brace-format
 msgid "Statistics for {0}"
 msgstr "Statistika za {0}"
 
@@ -5868,13 +5987,14 @@ msgstr "Preuzimanja po datumu"
 msgid "Platform usage by Date"
 msgstr "Korišćenje platforme po datumu"
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "<b>{0}</b> Weekly Downloads"
 msgstr "<b>{0}</b> Preuzimanja"
 
 msgid "Loading..."
 msgstr "Učitavam..."
 
+#, python-brace-format
 msgid "<b>{0}</b> Average Daily Users"
 msgstr "<b>{0}</b> prosečno dnevnih korisnika"
 
@@ -5930,6 +6050,7 @@ msgid "Back to Add-ons"
 msgstr "Nazad na dodatke"
 
 # {0} is the application name.  Example:  Firefox
+#, python-brace-format
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Vratite se na početnu stranicu {0} dodataka"
 
@@ -6020,6 +6141,7 @@ msgid "New Locales"
 msgstr "Novi lokali"
 
 #. {0} is a language name, like 'French'
+#, python-brace-format
 msgid ""
 "You have unsaved changes in the <b>{0}</b> locale. Would you like to save "
 "your changes before switching locales?"
@@ -6031,6 +6153,7 @@ msgid "Discard Changes"
 msgstr "Odbaci promene"
 
 #. {0} is a language name, like 'French'
+#, python-brace-format
 msgid ""
 "Are you sure you want to remove all <b>{0}</b> translations? This cannot be "
 "undone."
@@ -6056,7 +6179,7 @@ msgstr ""
 msgid "No user with that email."
 msgstr "Nema korisnika sa tom adresom e-pošte."
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Firefox user {id}"
 msgstr "Firefox za Android"
 
@@ -6093,6 +6216,7 @@ msgid ""
 "we handle your information."
 msgstr ""
 
+#, python-brace-format
 msgid ""
 "Please read and accept our Firefox Add-on Distribution Agreement as well as "
 "our Review Policies and Rules by visiting {url}"
@@ -6219,8 +6343,10 @@ msgstr ""
 msgid "Disabled by Developer"
 msgstr ""
 
+#, python-brace-format
 msgid "{app} {min} and later"
 msgstr "{app} {min} i kasnije"
 
+#, python-brace-format
 msgid "The install origin {origin} is not permitted."
 msgstr ""

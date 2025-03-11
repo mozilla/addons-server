@@ -80,7 +80,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/configure-pages@v4
+      - uses: actions/configure-pages@v5
 
       - name: Build Docs
         uses: ./.github/actions/run-docker

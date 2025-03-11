@@ -19,6 +19,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from olympia import amo
+from olympia.accounts.utils import get_fxa_config
 from olympia.amo.utils import HttpResponseXSendFile, use_fake_fxa
 from olympia.api.exceptions import base_500_data
 from olympia.api.serializers import SiteStatusSerializer
@@ -29,11 +30,17 @@ from . import monitors
 from .sitemap import InvalidSection, get_sitemap_path, get_sitemaps, render_index_xml
 
 
+def _exec_monitors(checks: list[str]):
+    status_summary = monitors.execute_checks(checks)
+    status_code = 200 if all(a['state'] for a in status_summary.values()) else 500
+    return JsonResponse(status_summary, status=status_code)
+
+
 @never_cache
 @non_atomic_requests
 def front_heartbeat(request):
-    # For each check, a boolean pass/fail status to show in the template
-    status_summary = monitors.execute_checks(
+    """Check internal monitors only."""
+    return _exec_monitors(
         [
             'memcache',
             'libraries',
@@ -42,17 +49,13 @@ def front_heartbeat(request):
             'database',
         ]
     )
-    # If anything broke, send HTTP 500.
-    status_code = 200 if all(a['state'] for a in status_summary.values()) else 500
-
-    return JsonResponse(status_summary, status=status_code)
 
 
 @never_cache
 @non_atomic_requests
 def services_heartbeat(request):
-    # For each check, a boolean pass/fail status to show in the template
-    status_summary = monitors.execute_checks(
+    """Check external monitors only."""
+    return _exec_monitors(
         [
             'rabbitmq',
             'signer',
@@ -60,10 +63,6 @@ def services_heartbeat(request):
             'cinder',
         ]
     )
-    # If anything broke, send HTTP 500.
-    status_code = 200 if all(a['state'] for a in status_summary.values()) else 500
-
-    return JsonResponse(status_summary, status=status_code)
 
 
 @never_cache
@@ -194,7 +193,7 @@ frontend_view.is_frontend_view = True
 
 def fake_fxa_authorization(request):
     """Fake authentication page to bypass FxA in local development envs."""
-    if not use_fake_fxa():
+    if not use_fake_fxa(get_fxa_config(request)):
         raise Http404()
     interesting_accounts = UserProfile.objects.exclude(groups=None).exclude(
         deleted=True

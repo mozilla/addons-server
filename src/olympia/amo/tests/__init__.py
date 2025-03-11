@@ -37,7 +37,7 @@ from waffle.models import Flag, Sample, Switch
 
 from olympia import amo
 from olympia.access.models import Group, GroupUser
-from olympia.accounts.utils import fxa_login_url
+from olympia.accounts.utils import fxa_login_url, get_fxa_config
 from olympia.addons.indexers import AddonIndexer
 from olympia.addons.models import (
     Addon,
@@ -170,9 +170,9 @@ def check_links(expected, elements, selected=None):
 
         elm = elements.eq(idx)
         if text is not None:
-            assert (
-                elm.text() == text
-            ), f'At index {idx}, expected {text}, got {elm.text()}'
+            assert elm.text() == text, (
+                f'At index {idx}, expected {text}, got {elm.text()}'
+            )
         if link is not None:
             # If we passed an <li>, try to find an <a>.
             if not elm.filter('a'):
@@ -302,18 +302,19 @@ class APITestClientSessionID(APIClient):
         request = HttpRequest()
         request.user = user
         # this is pretty much what django.contrib.auth.login does to initialize session
-        fxa_details = (
-            {'fxa_access_token_expiry': time.time() + 1000}
-            if not use_fake_fxa()
-            else {}
-        )
+        session_data = {
+            auth.SESSION_KEY: user._meta.pk.value_to_string(user),
+            auth.BACKEND_SESSION_KEY: settings.AUTHENTICATION_BACKENDS[0],
+            auth.HASH_SESSION_KEY: user.get_session_auth_hash(),
+        }
+
+        if not use_fake_fxa(get_fxa_config(request)):
+            session_data['fxa_access_token_expiry'] = time.time() + 1000
+
         initialize_session(
             request,
             {
-                auth.SESSION_KEY: user._meta.pk.value_to_string(user),
-                auth.BACKEND_SESSION_KEY: settings.AUTHENTICATION_BACKENDS[0],
-                auth.HASH_SESSION_KEY: user.get_session_auth_hash(),
-                **fxa_details,
+                **session_data,
                 **overrides,
             },
         )
@@ -507,9 +508,9 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
             now = datetime.now()
         now_ts = time.mktime(now.timetuple())
 
-        assert (
-            dt_earlier_ts < now_ts < dt_later_ts
-        ), f'Expected datetime to be within a minute of {now}. Got {dt!r}.'
+        assert dt_earlier_ts < now_ts < dt_later_ts, (
+            f'Expected datetime to be within a minute of {now}. Got {dt!r}.'
+        )
 
     def assertQuerySetContentsEqual(self, qs1, qs2):
         """

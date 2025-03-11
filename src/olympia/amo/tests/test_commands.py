@@ -241,7 +241,7 @@ class BaseTestDataCommand(TestCase):
         )
 
 
-@override_settings(DATA_BACKUP_SKIP=False)
+@override_settings(SKIP_DATA_SEED=False)
 class TestInitializeDataCommand(BaseTestDataCommand):
     def setUp(self):
         super().setUp()
@@ -266,34 +266,40 @@ class TestInitializeDataCommand(BaseTestDataCommand):
             username=settings.LOCAL_ADMIN_USERNAME, email=settings.LOCAL_ADMIN_EMAIL
         )
 
-    @override_settings(DATA_BACKUP_SKIP=True)
+    @override_settings(SKIP_DATA_SEED=True)
     def test_handle_with_skip_data_initialize(self):
         """
-        Test running the 'initialize' command with the DATA_BACKUP_SKIP flag set.
-        Expected: nothing happens except verifying the dependencies.
+        Test running the 'initialize' command with the SKIP_DATA_SEED flag set.
+        Expected: Run migrations and reindex.
         """
         call_command('initialize')
         self._assert_commands_called_in_order(
             self.mocks['mock_call_command'],
             [
                 self.mock_commands.monitors_olympia_database,
+                self.mock_commands.migrate,
+                self.mock_commands.reindex_skip_if_exists,
+                self.mock_commands.monitors_database,
                 self.mock_commands.monitors,
                 self.mock_commands.check,
             ],
         )
 
-    @override_settings(DATA_BACKUP_SKIP=True)
+    @override_settings(SKIP_DATA_SEED=True)
     def test_handle_with_load_argument_and_skip_data_initialize(self):
         """
         Test running the 'initialize' command with both '--load' argument
-        and DATA_BACKUP_SKIP flag. Expected:
-        nothing happens except verifying the dependencies.
+        and SKIP_DATA_SEED flag. Expected:
+        Run data migration and load the specified backup.x
         """
         call_command('initialize', load='test')
         self._assert_commands_called_in_order(
             self.mocks['mock_call_command'],
             [
                 self.mock_commands.monitors_olympia_database,
+                self.mock_commands.migrate,
+                self.mock_commands.data_load('test'),
+                self.mock_commands.monitors_database,
                 self.mock_commands.monitors,
                 self.mock_commands.check,
             ],
@@ -418,25 +424,25 @@ class TestBaseDataCommand(BaseTestDataCommand):
         expected_path = os.path.join(self.backup_dir, name)
 
         actual_path = self.base_data_command.backup_dir_path(name)
-        assert (
-            actual_path == expected_path
-        ), f'Expected {expected_path}, got {actual_path}'
+        assert actual_path == expected_path, (
+            f'Expected {expected_path}, got {actual_path}'
+        )
 
     def test_backup_db_path(self):
         name = 'db_backup'
         expected_path = os.path.join(self.backup_dir, name, self.db_file)
         actual_path = self.base_data_command.backup_db_path(name)
-        assert (
-            actual_path == expected_path
-        ), f'Expected {expected_path}, got {actual_path}'
+        assert actual_path == expected_path, (
+            f'Expected {expected_path}, got {actual_path}'
+        )
 
     def test_backup_storage_path(self):
         name = 'storage_backup'
         expected_path = os.path.join(self.backup_dir, name, self.storage_file)
         actual_path = self.base_data_command.backup_storage_path(name)
-        assert (
-            actual_path == expected_path
-        ), f'Expected {expected_path}, got {actual_path}'
+        assert actual_path == expected_path, (
+            f'Expected {expected_path}, got {actual_path}'
+        )
 
     @mock.patch('olympia.amo.management.shutil.rmtree')
     @mock.patch('olympia.amo.management.logging')
@@ -517,7 +523,9 @@ class TestBaseDataCommand(BaseTestDataCommand):
             os.path.join(settings.STORAGE_ROOT, 'shared_storage/tmp/preview'),
             os.path.join(settings.STORAGE_ROOT, 'shared_storage/tmp/test'),
             os.path.join(settings.STORAGE_ROOT, 'shared_storage/tmp/uploads'),
-            os.path.join(settings.STORAGE_ROOT, 'shared_storage/uploads'),
+            os.path.join(settings.STORAGE_ROOT, 'shared_storage/uploads/addon_icons'),
+            os.path.join(settings.STORAGE_ROOT, 'shared_storage/uploads/previews'),
+            os.path.join(settings.STORAGE_ROOT, 'shared_storage/uploads/userpics'),
         ]
 
         for key in keys:
@@ -721,7 +729,7 @@ class TestMonitorsCommand(BaseTestDataCommand):
     def test_monitors_succeeds_after_specified_attempts(self):
         succeed_after = 3
 
-        def mock_handler(services):
+        def mock_handler(services, _verbose):
             state = self.mock_execute_checks.call_count >= succeed_after
             return {service: {'state': state} for service in services}
 
@@ -731,7 +739,7 @@ class TestMonitorsCommand(BaseTestDataCommand):
     def test_monitors_succeeds_after_all_services_are_healthy(self):
         succeed_after = 3
 
-        def mock_handler(_):
+        def mock_handler(_a, _b):
             state = self.mock_execute_checks.call_count >= succeed_after
             return {
                 'database': {'state': state},

@@ -22,6 +22,12 @@ class ManifestStaticFilesStorageNotMaps(ManifestStaticFilesStorage):
         ),
     )
 
+    def stored_name(self, name):
+        # Skip manifest lookup for vite assets
+        if name.startswith('assets/'):
+            return name
+        return super().stored_name(name)
+
 
 OlympiaStaticFilesStorage = (
     StaticFilesStorage if settings.DEV_MODE else ManifestStaticFilesStorageNotMaps

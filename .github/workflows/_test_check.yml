@@ -95,7 +95,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v4
       - name: Install dependencies
         shell: bash
         run: npm ci
@@ -160,5 +160,4 @@ jobs:
       - uses: ./.github/actions/run-docker
         with:
           version: ${{ inputs.version }}
-          data_backup_skip: false
           run: echo true

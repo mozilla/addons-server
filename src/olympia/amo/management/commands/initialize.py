@@ -46,32 +46,33 @@ class Command(BaseDataCommand):
         # Always ensure "olympia" database exists and is accessible.
         call_command('monitors', services=['olympia_database', 'elastic'])
 
-        # If we are not skipping data backup
-        # then run the logic to ensure the DB is ready.
-        if not settings.DATA_BACKUP_SKIP:
-            # If DB empty or we are explicitly cleaning, then bail with data_seed.
-            if options.get('clean') or not self.local_admin_exists():
-                call_command('data_seed')
-            # Otherwise, we're working with a pre-existing DB.
+        if (
+            # If we are not skipping data seeding
+            not settings.SKIP_DATA_SEED
+            # and we are either explicitly cleaning or loading a fresh db
+            and (options.get('clean') or not self.local_admin_exists())
+        ):
+            call_command('data_seed')
+        # Otherwise, we're working with a pre-existing DB.
+        else:
+            load = options.get('load')
+            # We always migrate the DB.
+            logging.info('Migrating...')
+            call_command('migrate', '--noinput')
+
+            # If we specify a specific backup, simply load that.
+            if load:
+                call_command('data_load', '--name', load)
+            # We should reindex even if no data is loaded/modified
+            # because we might have a fresh instance of elasticsearch
             else:
-                load = options.get('load')
-                # We always migrate the DB.
-                logging.info('Migrating...')
-                call_command('migrate', '--noinput')
+                call_command(
+                    'reindex', '--wipe', '--force', '--noinput', '--skip-if-exists'
+                )
 
-                # If we specify a specific backup, simply load that.
-                if load:
-                    call_command('data_load', '--name', load)
-                # We should reindex even if no data is loaded/modified
-                # because we might have a fresh instance of elasticsearch
-                else:
-                    call_command(
-                        'reindex', '--wipe', '--force', '--noinput', '--skip-if-exists'
-                    )
-
-            # By now, we excpect the database to exist, and to be migrated
-            # so our database tables should be accessible
-            call_command('monitors', services=['database'])
+        # By now, we excpect the database to exist, and to be migrated
+        # so our database tables should be accessible
+        call_command('monitors', services=['database'])
 
         # Ensure that the storage directories exist.
         self.make_storage(clean=False)

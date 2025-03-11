@@ -497,8 +497,8 @@ class TestRobots(TestCase):
     @override_settings(ENGAGE_ROBOTS=True)
     def test_allow_mozilla_collections(self):
         """Make sure Mozilla collections are allowed"""
-        id_url = f"{reverse('collections.list')}{settings.TASK_USER_ID}/"
-        username_url = f"{reverse('collections.list')}mozilla/"
+        id_url = f'{reverse("collections.list")}{settings.TASK_USER_ID}/'
+        username_url = f'{reverse("collections.list")}mozilla/'
         response = self.client.get('/robots.txt')
         assert response.status_code == 200
         content = response.content.decode('utf-8')
@@ -509,35 +509,27 @@ class TestRobots(TestCase):
 
 
 @pytest.mark.django_db
+@override_settings(FXA_CONFIG={'default': {'client_id': ''}})
 def test_fake_fxa_authorization_correct_values_passed():
-    with override_settings(DEV_MODE=True):  # USE_FAKE_FXA_AUTH is already True
-        url = reverse('fake-fxa-authorization')
-        response = test.Client().get(url, {'state': 'foobar'})
-        assert response.status_code == 200
-        doc = pq(response.content)
-        form = doc('#fake_fxa_authorization')[0]
-        assert form.attrib['action'] == reverse('auth:accounts.authenticate')
-        elm = doc('#fake_fxa_authorization input[name=code]')[0]
-        assert elm.attrib['value'] == 'fakecode'
-        elm = doc('#fake_fxa_authorization input[name=state]')[0]
-        assert elm.attrib['value'] == 'foobar'
-        elm = doc('#fake_fxa_authorization input[name=fake_fxa_email]')
-        assert elm  # No value yet, should just be present.
+    url = reverse('fake-fxa-authorization')
+    response = test.Client().get(url, {'state': 'foobar'})
+    assert response.status_code == 200
+    doc = pq(response.content)
+    form = doc('#fake_fxa_authorization')[0]
+    assert form.attrib['action'] == reverse('auth:accounts.authenticate')
+    elm = doc('#fake_fxa_authorization input[name=code]')[0]
+    assert elm.attrib['value'] == 'fakecode'
+    elm = doc('#fake_fxa_authorization input[name=state]')[0]
+    assert elm.attrib['value'] == 'foobar'
+    elm = doc('#fake_fxa_authorization input[name=fake_fxa_email]')
+    assert elm  # No value yet, should just be present.
 
 
 @pytest.mark.django_db
+@override_settings(FXA_CONFIG={'default': {'client_id': 'amodefault'}})
 def test_fake_fxa_authorization_deactivated():
     url = reverse('fake-fxa-authorization')
-    with override_settings(DEV_MODE=False, USE_FAKE_FXA_AUTH=False):
-        response = test.Client().get(url)
-    assert response.status_code == 404
-
-    with override_settings(DEV_MODE=False, USE_FAKE_FXA_AUTH=True):
-        response = test.Client().get(url)
-    assert response.status_code == 404
-
-    with override_settings(DEV_MODE=True, USE_FAKE_FXA_AUTH=False):
-        response = test.Client().get(url)
+    response = test.Client().get(url)
     assert response.status_code == 404
 
 

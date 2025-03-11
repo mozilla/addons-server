@@ -14,8 +14,11 @@ DOCKER_WAIT ?=
 export DOCKER_COMMIT ?=
 export DOCKER_BUILD ?=
 export DOCKER_VERSION ?=
-export DATA_BACKUP_SKIP ?=
+export SKIP_DATA_SEED ?=
 override DOCKER_MYSQLD_VOLUME = addons-server_data_mysqld
+
+export FXA_CLIENT_ID ?=
+export FXA_CLIENT_SECRET ?=
 
 INITIALIZE_ARGS ?=
 INIT_CLEAN ?=

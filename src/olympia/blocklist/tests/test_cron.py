@@ -328,19 +328,19 @@ class TestUploadToRemoteSettings(TestCase):
         mlbf = MLBF.load_from_storage(self.current_time)
 
         if BlockListAction.UPLOAD_BLOCKED_FILTER.name in expected_actions:
-            assert mlbf.storage.exists(
-                mlbf.filter_path(BlockType.BLOCKED)
-            ), 'Expected filter {BlockType.BLOCKED} but none exists'
+            assert mlbf.storage.exists(mlbf.filter_path(BlockType.BLOCKED)), (
+                'Expected filter {BlockType.BLOCKED} but none exists'
+            )
 
         if BlockListAction.UPLOAD_SOFT_BLOCKED_FILTER.name in expected_actions:
-            assert mlbf.storage.exists(
-                mlbf.filter_path(BlockType.SOFT_BLOCKED)
-            ), 'Expected filter {BlockType.SOFT_BLOCKED} but none exists'
+            assert mlbf.storage.exists(mlbf.filter_path(BlockType.SOFT_BLOCKED)), (
+                'Expected filter {BlockType.SOFT_BLOCKED} but none exists'
+            )
 
         if BlockListAction.UPLOAD_STASH.name in expected_actions:
-            assert mlbf.storage.exists(
-                mlbf.stash_path
-            ), 'Expected stash but none exists'
+            assert mlbf.storage.exists(mlbf.stash_path), (
+                'Expected stash but none exists'
+            )
 
         assert (
             mock.call(

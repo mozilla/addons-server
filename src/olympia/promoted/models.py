@@ -304,9 +304,7 @@ class PromotedApproval(ModelBase):
         ]
 
     def __str__(self):
-        return (
-            f'{self.get_group_id_display()} - ' f'{self.version.addon}: {self.version}'
-        )
+        return f'{self.get_group_id_display()} - {self.version.addon}: {self.version}'
 
     @property
     def application(self):
@@ -342,11 +340,7 @@ class PromotedAddonVersion(ModelBase):
         ]
 
     def __str__(self):
-        return (
-            f'{self.promoted_group.name} - '
-            f'{self.version} - '
-            f'{self.application.short}'
-        )
+        return f'{self.promoted_group.name} - {self.version} - {self.application.short}'
 
     @property
     def application(self):

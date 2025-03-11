@@ -15,7 +15,7 @@ inputs:
   logs:
     description: 'Show logs'
     required: false
-  data_backup_skip:
+  skip_data_seed:
     description: 'Skip data backup'
     required: false
     default: 'true'
@@ -32,6 +32,8 @@ runs:
   using: 'composite'
   steps:
     - name: Run Docker Container
+      id: run
+      continue-on-error: true
       shell: bash
       run: |
         # Start the specified services
@@ -41,7 +43,7 @@ runs:
           DOCKER_TARGET="${{ inputs.target }}" \
           OLYMPIA_UID="$(id -u)" \
           OLYMPIA_DEPS="${{ inputs.deps }}" \
-          DATA_BACKUP_SKIP="${{ inputs.data_backup_skip }}" \
+          SKIP_DATA_SEED="${{ inputs.skip_data_seed }}" \
           DOCKER_WAIT="true"
 
 
@@ -54,4 +56,10 @@ runs:
     - name: Logs
       if: ${{ inputs.logs }}
       shell: bash
-      run: docker compose logs
+      run: |
+        docker compose logs
+
+        # If the run command failed, exit with a non-zero exit code
+        if [ ${{ steps.run.outcome }} != 'success' ]; then
+          exit 1
+        fi

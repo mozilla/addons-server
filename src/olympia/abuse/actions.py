@@ -314,7 +314,7 @@ class ContentActionDisableAddon(ContentAction):
             activity_log__contentdecision__id=self.decision.id
         ).first():
             attachment.update(activity_log=activity_log)
-            activity_log.attacmentlog = attachment  # update fk
+            activity_log.attachmentlog = attachment  # update fk
         return activity_log
 
     def process_action(self):

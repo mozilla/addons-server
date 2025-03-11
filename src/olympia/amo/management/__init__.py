@@ -165,7 +165,11 @@ storage_structure = {
             'test': '',
             'uploads': '',
         },
-        'uploads': '',
+        'uploads': {
+            'addon_icons': '',
+            'previews': '',
+            'userpics': '',
+        },
     },
 }
 
@@ -206,7 +210,7 @@ class BaseDataCommand(BaseCommand):
                 self.clean_dir(name)
             else:
                 raise CommandError(
-                    f'path {path} already exists.' 'Use --force to overwrite.'
+                    f'path {path} already exists.Use --force to overwrite.'
                 )
 
         os.makedirs(path, exist_ok=True)

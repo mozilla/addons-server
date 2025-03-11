@@ -1,17 +1,11 @@
 # Languages that we support on AMO, e.g we have translations for them
 # and they're tested.
 AMO_LANGUAGES = {
-    'af': {'english': 'Afrikaans', 'native': 'Afrikaans'},
     'ar': {'english': 'Arabic', 'native': '\u0639\u0631\u0628\u064a'},
-    'ast': {'english': 'Asturian', 'native': 'Asturianu'},
-    'az': {'english': 'Azerbaijani', 'native': 'Az\u0259rbaycanca'},
     'bg': {
         'english': 'Bulgarian',
         'native': '\u0411\u044a\u043b\u0433\u0430\u0440\u0441\u043a\u0438',
     },
-    'bn': {'english': 'Bengali', 'native': '\u09ac\u09be\u0982\u09b2\u09be'},
-    'bs': {'english': 'Bosnian', 'native': 'Bosanski'},
-    'ca': {'english': 'Catalan', 'native': 'Catal\xe0'},
     'cak': {'english': 'Kaqchikel', 'native': 'Maya Kaqchikel'},
     'cs': {'english': 'Czech', 'native': '\u010ce\u0161tina'},
     'da': {'english': 'Danish', 'native': 'Dansk'},
@@ -28,22 +22,17 @@ AMO_LANGUAGES = {
     'es-CL': {'english': 'Spanish (Chile)', 'native': 'Espa\xf1ol (de Chile)'},
     'es-ES': {'english': 'Spanish (Spain)', 'native': 'Espa\xf1ol (de Espa\xf1a)'},
     'es-MX': {'english': 'Spanish (Mexico)', 'native': 'Espa\xf1ol (de M\xe9xico)'},
-    'et': {'english': 'Estonian', 'native': 'Eesti keel'},
-    'eu': {'english': 'Basque', 'native': 'Euskara'},
-    'fa': {'english': 'Persian', 'native': '\u0641\u0627\u0631\u0633\u06cc'},
     'fi': {'english': 'Finnish', 'native': 'suomi'},
     'fr': {'english': 'French', 'native': 'Fran\xe7ais'},
+    'fur': {'english': 'Friulian', 'native': 'Furlan'},
     'fy-NL': {'english': 'Frisian', 'native': 'Frysk'},
-    'ga-IE': {'english': 'Irish', 'native': 'Gaeilge'},
-    'gu': {
-        'english': 'Gujarati',
-        'native': '\u0a97\u0ac1\u0a9c\u0ab0\u0abe\u0aa4\u0ac0',
-    },
     'he': {'english': 'Hebrew', 'native': '\u05e2\u05d1\u05e8\u05d9\u05ea'},
     'hr': {'english': 'Croatian', 'native': 'Hrvatski'},
     'hsb': {'english': 'Upper Sorbian', 'native': 'Hornjoserbsce'},
     'hu': {'english': 'Hungarian', 'native': 'magyar'},
+    'ia': {'english': 'Interlingua', 'native': 'Interlingua'},
     'id': {'english': 'Indonesian', 'native': 'Bahasa Indonesia'},
+    'is': {'english': 'Icelandic', 'native': '\xedslenska'},
     'it': {'english': 'Italian', 'native': 'Italiano'},
     'ja': {'english': 'Japanese', 'native': '\u65e5\u672c\u8a9e'},
     'ka': {
@@ -52,18 +41,7 @@ AMO_LANGUAGES = {
     },
     'kab': {'english': 'Kabyle', 'native': 'Taqbaylit'},
     'ko': {'english': 'Korean', 'native': '\ud55c\uad6d\uc5b4'},
-    'lt': {'english': 'Lithuanian', 'native': 'Lietuvi\u0173'},
-    'lv': {'english': 'Latvian', 'native': 'Latvie\u0161u'},
-    'mk': {
-        'english': 'Macedonian',
-        'native': '\u041c\u0430\u043a\u0435\u0434\u043e\u043d\u0441\u043a\u0438',  # noqa
-    },
-    'mn': {'english': 'Mongolian', 'native': '\u041c\u043e\u043d\u0433\u043e\u043b'},
     'ms': {'english': 'Malay', 'native': 'Melayu'},
-    'mt': {
-        'english': 'Maltese',
-        'native': 'Malti',
-    },
     'nb-NO': {'english': 'Norwegian (Bokm\xe5l)', 'native': 'Norsk bokm\xe5l'},
     'nl': {'english': 'Dutch', 'native': 'Nederlands'},
     'nn-NO': {'english': 'Norwegian (Nynorsk)', 'native': 'Norsk nynorsk'},
@@ -94,7 +72,6 @@ AMO_LANGUAGES = {
         'english': 'Ukrainian',
         'native': '\u0423\u043a\u0440\u0430\u0457\u043d\u0441\u044c\u043a\u0430',  # noqa
     },
-    'ur': {'english': 'Urdu', 'native': '\u0627\u064f\u0631\u062f\u0648'},
     'vi': {'english': 'Vietnamese', 'native': 'Ti\u1ebfng Vi\u1ec7t'},
     'zh-CN': {
         'english': 'Chinese (Simplified)',
@@ -106,13 +83,16 @@ AMO_LANGUAGES = {
     },
 }
 
-# Languages supported by product-details that we don't have translations for
-# and haven't been tested. It's fine to move languages up to `AMO_LANGUAGES`
-# but make sure they're tested.
-# Languages in here are used for example in statistics views.
+# Languages that don't meet the threshold for being available on AMO pages.
+# We don't offer translations of AMO in those languages but they may still be
+# used to show that language a locale code maps to, for instance in statistics
+# views.
 ADDITIONAL_PRODUCT_LANGUAGES = {
     'ach': {'english': 'Acholi', 'native': 'Acholi'},
+    'af': {'english': 'Afrikaans', 'native': 'Afrikaans'},
     'ak': {'english': 'Akan', 'native': 'Akan'},
+    'ast': {'english': 'Asturian', 'native': 'Asturianu'},
+    'az': {'english': 'Azerbaijani', 'native': 'Az\u0259rbaycanca'},
     'am-et': {'english': 'Amharic', 'native': '\u12a0\u121b\u122d\u129b'},
     'an': {'english': 'Aragonese', 'native': 'aragon\xe9s'},
     'as': {
@@ -128,8 +108,11 @@ ADDITIONAL_PRODUCT_LANGUAGES = {
         'native': '\u0411\u0435\u043b\u0430\u0440\u0443\u0441\u043a\u0430\u044f',  # noqa
     },
     'bm': {'english': 'Bambara', 'native': 'Bamanankan'},
+    'bn': {'english': 'Bengali', 'native': '\u09ac\u09be\u0982\u09b2\u09be'},
     'br': {'english': 'Breton', 'native': 'Brezhoneg'},
     'brx': {'english': 'Bodo', 'native': "\u092c\u0930'"},
+    'bs': {'english': 'Bosnian', 'native': 'Bosanski'},
+    'ca': {'english': 'Catalan', 'native': 'Catal\xe0'},
     'ca-valencia': {
         'english': 'Catalan (Valencian)',
         'native': 'catal\xe0 (valenci\xe0)',
@@ -147,13 +130,20 @@ ADDITIONAL_PRODUCT_LANGUAGES = {
         'native': 'English (South African)',
     },
     'eo': {'english': 'Esperanto', 'native': 'Esperanto'},
+    'et': {'english': 'Estonian', 'native': 'Eesti keel'},
+    'eu': {'english': 'Basque', 'native': 'Euskara'},
+    'fa': {'english': 'Persian', 'native': '\u0641\u0627\u0631\u0633\u06cc'},
     'ff': {'english': 'Fulah', 'native': 'Pulaar-Fulfulde'},
     'fj-FJ': {'english': 'Fijian', 'native': 'Vosa vaka-Viti'},
-    'fur': {'english': 'Friulian', 'native': 'Furlan'},
     'ga': {'english': 'Irish', 'native': 'Gaeilge'},
+    'ga-IE': {'english': 'Irish', 'native': 'Gaeilge'},
     'gd': {'english': 'Gaelic (Scotland)', 'native': 'G\xe0idhlig'},
     'gl': {'english': 'Galician', 'native': 'Galego'},
     'gn': {'english': 'Guarani', 'native': "Ava\xf1e'\u1ebd"},
+    'gu': {
+        'english': 'Gujarati',
+        'native': '\u0a97\u0ac1\u0a9c\u0ab0\u0abe\u0aa4\u0ac0',
+    },
     'gu-IN': {
         'english': 'Gujarati (India)',
         'native': '\u0a97\u0ac1\u0a9c\u0ab0\u0abe\u0aa4\u0ac0 (\u0aad\u0abe\u0ab0\u0aa4)',  # noqa
@@ -170,7 +160,6 @@ ADDITIONAL_PRODUCT_LANGUAGES = {
     },
     'ia': {'english': 'Interlingua', 'native': 'Interlingua'},
     'ig': {'english': 'Igbo', 'native': 'Igbo'},
-    'is': {'english': 'Icelandic', 'native': '\xedslenska'},
     'ja-JP-mac': {'english': 'Japanese', 'native': '\u65e5\u672c\u8a9e'},
     'kk': {'english': 'Kazakh', 'native': '\u049a\u0430\u0437\u0430\u049b'},
     'km': {'english': 'Khmer', 'native': '\u1781\u17d2\u1798\u17c2\u179a'},
@@ -183,15 +172,23 @@ ADDITIONAL_PRODUCT_LANGUAGES = {
     'lij': {'english': 'Ligurian', 'native': 'Ligure'},
     'ln': {'english': 'Lingala', 'native': 'Ling\xe1la'},
     'lo': {'english': 'Lao', 'native': '\u0e9e\u0eb2\u0eaa\u0eb2\u0ea5\u0eb2\u0ea7'},
+    'lt': {'english': 'Lithuanian', 'native': 'Lietuvi\u0173'},
     'ltg': {'english': 'Latgalian', 'native': 'Latgalie\u0161u valoda'},
+    'lv': {'english': 'Latvian', 'native': 'Latvie\u0161u'},
     'mai': {
         'english': 'Maithili',
         'native': '\u092e\u0948\u0925\u093f\u0932\u0940 \u09ae\u09c8\u09a5\u09bf\u09b2\u09c0',  # noqa
     },
     'mg': {'english': 'Malagasy', 'native': 'Malagasy'},
     'mi': {'english': 'Maori (Aotearoa)', 'native': 'M\u0101ori (Aotearoa)'},
+    'mk': {
+        'english': 'Macedonian',
+        'native': '\u041c\u0430\u043a\u0435\u0434\u043e\u043d\u0441\u043a\u0438',  # noqa
+    },
     'ml': {'english': 'Malayalam', 'native': '\u0d2e\u0d32\u0d2f\u0d3e\u0d33\u0d02'},
+    'mn': {'english': 'Mongolian', 'native': '\u041c\u043e\u043d\u0433\u043e\u043b'},
     'mr': {'english': 'Marathi', 'native': '\u092e\u0930\u093e\u0920\u0940'},
+    'mt': {'english': 'Maltese', 'native': 'Malti'},
     'my': {
         'english': 'Burmese',
         'native': '\u1019\u103c\u1014\u103a\u1019\u102c\u1018\u102c\u101e\u102c',  # noqa
@@ -239,6 +236,7 @@ ADDITIONAL_PRODUCT_LANGUAGES = {
     'ts': {'english': 'Tsonga', 'native': 'Xitsonga'},
     'tsz': {'english': 'Pur\xe9pecha', 'native': 'Pur\xe9pecha'},
     'tt-RU': {'english': 'Tatar', 'native': 'Tatar\xe7a'},
+    'ur': {'english': 'Urdu', 'native': '\u0627\u064f\u0631\u062f\u0648'},
     'uz': {'english': 'Uzbek', 'native': 'O\u02bbzbek tili'},
     've': {'english': 'Venda', 'native': 'Tshiven\u1e13a'},
     'wo': {'english': 'Wolof', 'native': 'Wolof'},

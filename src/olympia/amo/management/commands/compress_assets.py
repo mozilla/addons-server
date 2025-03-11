@@ -48,8 +48,7 @@ class Command(BaseCommand):
             '--dry-run',
             action='store_true',
             help=(
-                'Do not actually compress assets, '
-                'just print the compressed file paths.'
+                'Do not actually compress assets, just print the compressed file paths.'
             ),
         )
 

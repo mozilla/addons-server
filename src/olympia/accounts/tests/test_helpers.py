@@ -6,8 +6,7 @@ from olympia.accounts.templatetags import jinja_helpers
 def test_login_link():
     request = RequestFactory().get('/en-US/firefox/addons')
     assert jinja_helpers.login_link({'request': request}) == (
-        'http://testserver/api/v5/accounts/login/start/'
-        '?to=%2Fen-US%2Ffirefox%2Faddons'
+        'http://testserver/api/v5/accounts/login/start/?to=%2Fen-US%2Ffirefox%2Faddons'
     )
 
     request = RequestFactory().get('/en-US/firefox/addons?blah=1')

@@ -9,6 +9,7 @@ from django.forms import BaseInlineFormSet
 from django.utils.safestring import mark_safe
 
 from olympia.amo.admin import AMOModelAdmin
+from olympia.amo.templatetags.jinja_helpers import vite_asset
 from olympia.amo.utils import resize_image
 
 from .models import PrimaryHero, PrimaryHeroImage, SecondaryHeroModule
@@ -23,7 +24,7 @@ class ImageChoiceField(forms.ModelChoiceField):
 
 class PrimaryHeroInline(admin.StackedInline):
     class Media:
-        css = {'all': ('css/admin/discovery.css',)}
+        css = {'all': (vite_asset('css/admin-discovery.less'),)}
 
     model = PrimaryHero
     fields = (
@@ -57,7 +58,7 @@ class PrimaryHeroInline(admin.StackedInline):
 
 class PrimaryHeroImageAdmin(AMOModelAdmin):
     class Media:
-        css = {'all': ('css/admin/discovery.css',)}
+        css = {'all': (vite_asset('css/admin-discovery.less'),)}
 
     list_display = ('preview_image', 'custom_image')
     actions = ['delete_selected']
@@ -100,7 +101,7 @@ class SecondaryHeroModuleInline(admin.StackedInline):
 
 class SecondaryHeroAdmin(AMOModelAdmin):
     class Media:
-        css = {'all': ('css/admin/discovery.css',)}
+        css = {'all': (vite_asset('css/admin-discovery.less'),)}
 
     list_display = ('headline', 'description', 'enabled')
     inlines = [SecondaryHeroModuleInline]

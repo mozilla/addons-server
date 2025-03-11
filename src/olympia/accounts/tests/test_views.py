@@ -161,7 +161,7 @@ def has_cors_headers(response, origin='https://addons-frontend'):
 
 
 class TestLoginStartView(TestCase):
-    @override_settings(DEV_MODE=True, USE_FAKE_FXA_AUTH=True)
+    @override_settings(FXA_CONFIG={'default': {'client_id': ''}})
     def test_redirect_url_fake_fxa_auth(self):
         response = self.client.get(reverse_ns('accounts.login_start'))
         assert response.status_code == 302
@@ -689,7 +689,7 @@ class TestWithUser(TestCase):
         self.request.session['enforce_2fa'] = True
         self._test_should_continue_without_redirect_for_two_factor_auth()
 
-    @override_settings(DEV_MODE=True, USE_FAKE_FXA_AUTH=True)
+    @override_settings(FXA_CONFIG={'default': {'client_id': ''}})
     def test_fake_fxa_auth(self):
         self.user = user_factory()
         self.find_user.return_value = self.user
@@ -710,7 +710,7 @@ class TestWithUser(TestCase):
         assert kwargs['next_path'] == '/a/path/?'
         assert self.fxa_identify.call_count == 0
 
-    @override_settings(DEV_MODE=True, USE_FAKE_FXA_AUTH=True)
+    @override_settings(FXA_CONFIG={'default': {'client_id': ''}})
     def test_fake_fxa_auth_with_2fa(self):
         self.user = user_factory()
         self.find_user.return_value = self.user
@@ -2367,9 +2367,7 @@ class TestFxaNotificationView(TestCase):
 
     def test_post(self):
         url = reverse_ns('fxa-notification', api_version='auth')
-        class_path = (
-            f'{FxaNotificationView.__module__}.' f'{FxaNotificationView.__name__}'
-        )
+        class_path = f'{FxaNotificationView.__module__}.{FxaNotificationView.__name__}'
         with (
             mock.patch(f'{class_path}.get_jwt_payload') as get_jwt_mock,
             mock.patch(f'{class_path}.process_event') as process_event_mock,

@@ -33,7 +33,7 @@ DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
 DBBACKUP_CONNECTOR_MAPPING = {
     'olympia.core.db.mysql': 'dbbackup.db.mysql.MysqlDumpConnector',
 }
-DATA_BACKUP_SKIP = os.environ.get('DATA_BACKUP_SKIP', False)
+SKIP_DATA_SEED = os.environ.get('SKIP_DATA_SEED', False)
 
 # Override logging config to enable DEBUG logs for (almost) everything.
 LOGGING['root']['level'] = logging.DEBUG
@@ -114,14 +114,6 @@ DATABASES = {
 FXA_CONTENT_HOST = 'https://accounts.stage.mozaws.net'
 FXA_OAUTH_HOST = 'https://oauth.stage.mozaws.net/v1'
 FXA_PROFILE_HOST = 'https://profile.stage.mozaws.net/v1'
-
-# When USE_FAKE_FXA_AUTH and settings.DEV_MODE are both True, we serve a fake
-# authentication page, bypassing FxA. To disable this behavior, set
-# USE_FAKE_FXA = False in your local settings.
-# You will also need to specify `client_id` and `client_secret` in your
-# local_settings.py or environment variables - you must contact the FxA team to get your
-# own credentials for FxA stage.
-USE_FAKE_FXA_AUTH = True
 
 # CSP report endpoint which returns a 204 from addons-nginx in local dev.
 CSP_REPORT_URI = '/csp-report'
@@ -204,3 +196,5 @@ if get_version_json().get('target') != 'production' and DEBUG:
             'static_url_prefix': 'bundle',
         }
     }
+
+MEMCACHE_MIN_SERVER_COUNT = 1

@@ -6,6 +6,7 @@ import requests
 from django_statsd.clients import statsd
 
 import olympia.core.logger
+from olympia.accounts.utils import get_fxa_config
 from olympia.amo.utils import use_fake_fxa
 
 
@@ -44,9 +45,9 @@ def get_fxa_token(*, code=None, refresh_token=None, config=None):
     `id_token` keys.
     """
     assert config, 'config dict must be provided to get_fxa_token'
-    assert (
-        code or refresh_token
-    ), 'either code or refresh_token must be provided to get_fxa_token'
+    assert code or refresh_token, (
+        'either code or refresh_token must be provided to get_fxa_token'
+    )
     log_identifier = f'code:{code}' if code else f'refresh:{refresh_token[:8]}'
     log.info(f'Getting token [{log_identifier}]')
     with statsd.timer('accounts.fxa.identify.token'):
@@ -117,7 +118,7 @@ def check_and_update_fxa_access_token(request):
     otherwise."""
 
     if (
-        not use_fake_fxa()
+        not use_fake_fxa(get_fxa_config(request))
         and settings.VERIFY_FXA_ACCESS_TOKEN
         and (request.session.get('fxa_access_token_expiry') or 0) < time.time()
     ):

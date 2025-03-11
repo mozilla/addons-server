@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-04 16:26+0000\n"
+"POT-Creation-Date: 2025-03-06 15:38+0000\n"
 "PO-Revision-Date: 2015-02-01 09:53+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,30 +23,35 @@ msgid "Your add-on should end with .zip, .xpi or .crx"
 msgstr "Ваш додатак се треба завршити са .xpi, .jar или .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#, fuzzy, python-format
+#, fuzzy, python-format, python-brace-format
 msgid "{0}% complete"
 msgstr "{0}% завршено"
 
+#, python-brace-format
 msgid "{0} of {1}"
 msgstr "{0} од {1}"
 
 msgid "Cancel"
 msgstr "Откажи"
 
+#, python-brace-format
 msgid "Uploading {0}"
 msgstr "Отпремам {0}"
 
+#, python-brace-format
 msgid "Error with {0}"
 msgstr "Грешка са {0}"
 
 msgid "Please make sure to report any linting related issues on GitHub"
 msgstr ""
 
+#, python-brace-format
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] "Ваш додатак није прошао проверу - {0} грешка."
 msgstr[1] "Ваш додатак није прошао проверу - {0} грешке."
 
+#, python-brace-format
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;и још {0}"
@@ -55,12 +60,15 @@ msgstr[1] "&hellip;и још {0}"
 msgid "See full validation report"
 msgstr "Погледајте потпуни извештај прегледа"
 
+#, python-brace-format
 msgid "Validating {0}"
 msgstr "Проверавам {0}"
 
+#, python-brace-format
 msgid "Your add-on exceeds the maximum size of {0}."
 msgstr ""
 
+#, python-brace-format
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Добијен је празан одговор од сервера; статус: {0}"
 
@@ -73,17 +81,20 @@ msgstr "Неочекивана грешка на серверу током пр�
 msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
 msgstr ""
 
+#, python-brace-format
 msgid "Finished validating {0}"
 msgstr "Завршена провера {0}"
 
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr ""
 
+#, python-brace-format
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] ""
 msgstr[1] ""
 
+#, python-brace-format
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] ""
@@ -119,6 +130,7 @@ msgstr "Процес валидације је нашао проблеме ко�
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Тип датотеке коју сте послали није препознат."
 
+#, python-brace-format
 msgid "Your file exceeds the maximum size of {0}."
 msgstr ""
 
@@ -131,52 +143,53 @@ msgstr "Слике морају бити PNG или JPG."
 msgid "Videos must be in WebM."
 msgstr "Видео снимци морају бити у WebM формату."
 
+#, python-brace-format
 msgid "Week of {0}"
 msgstr "Седмица од {0}"
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{0} download"
 msgid_plural "{0} downloads"
 msgstr[0] "Преузимања"
 msgstr[1] "Преузимања"
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{0} user"
 msgid_plural "{0} users"
 msgstr[0] "{0} корисника"
 msgstr[1] "{0} корисника"
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
 msgstr[0] "{0} додатака"
 msgstr[1] "{0} додатака"
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{0} collection"
 msgid_plural "{0} collections"
 msgstr[0] "{0} колекције"
 msgstr[1] "{0} колекције"
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{0} review"
 msgid_plural "{0} reviews"
 msgstr[0] "{0} рецензија"
 msgstr[1] "{0} рецензија"
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{0} sale"
 msgid_plural "{0} sales"
 msgstr[0] "{0} продаја"
 msgstr[1] "{0} продаја"
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{0} refund"
 msgid_plural "{0} refunds"
 msgstr[0] "{0} рефункдација"
 msgstr[1] "{0} рефункдација"
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{0} install"
 msgid_plural "{0} installs"
 msgstr[0] "{0} инсталација"
@@ -198,6 +211,7 @@ msgid "More Info..."
 msgstr "Више информација..."
 
 #. L10n: {0} is an ISO-formatted date.
+#, python-brace-format
 msgid "Details for {0}"
 msgstr "Детаљи о {0}"
 
@@ -373,238 +387,287 @@ msgid "Android"
 msgstr "Android"
 
 #. L10n: {0} is an integer.
+#, python-brace-format
 msgid "Downloads and Daily Users, last {0} days"
 msgstr "Преузимања и дневни корисници, последњих {0} дана"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, python-brace-format
 msgid "Downloads and Daily Users from {0} to {1}"
 msgstr "Преузимања и дневни корисници од {0} до {1}"
 
 #. L10n: {0} is an integer.
+#, python-brace-format
 msgid "Installs and Daily Users, last {0} days"
 msgstr "Инсталације и дневни корисници, последњих {0} дана"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, python-brace-format
 msgid "Installs and Daily Users from {0} to {1}"
 msgstr "Инсталације и дневни корисници од {0} до {1}"
 
 #. L10n: {0} is an integer.
+#, python-brace-format
 msgid "Downloads, last {0} days"
 msgstr "Преузимања, последњих {0} дана"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, python-brace-format
 msgid "Downloads from {0} to {1}"
 msgstr "Преузимања од {0} до {1}"
 
 #. L10n: {0} is an integer.
+#, python-brace-format
 msgid "Daily Users, last {0} days"
 msgstr "Дневни корисници, последњих {0} дана"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, python-brace-format
 msgid "Daily Users from {0} to {1}"
 msgstr "Дневни корисници од {0} до {1}"
 
 #. L10n: {0} is an integer.
+#, python-brace-format
 msgid "Applications, last {0} days"
 msgstr "Апликације, последњих {0} дана"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, python-brace-format
 msgid "Applications from {0} to {1}"
 msgstr "Апликације од {0} до {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Countries, last {0} days"
 msgstr "Доприноси, последњих {0} дана"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Countries from {0} to {1}"
 msgstr "Доприноси од {0} до {1}"
 
 #. L10n: {0} is an integer.
+#, python-brace-format
 msgid "Platforms, last {0} days"
 msgstr "Платформе, последњих {0} дана"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, python-brace-format
 msgid "Platforms from {0} to {1}"
 msgstr "Платформе од {0} до {1}"
 
 #. L10n: {0} is an integer.
+#, python-brace-format
 msgid "Languages, last {0} days"
 msgstr "Језици, последњих {0} дана"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, python-brace-format
 msgid "Languages from {0} to {1}"
 msgstr "Језици од {0} до {1}"
 
 #. L10n: {0} is an integer.
+#, python-brace-format
 msgid "Add-on Versions, last {0} days"
 msgstr "Верзије додатака, последњих {0} дана"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, python-brace-format
 msgid "Add-on Versions from {0} to {1}"
 msgstr "Верзије додатака од {0} до {1}"
 
 #. L10n: {0} is an integer.
+#, python-brace-format
 msgid "Add-on Status, last {0} days"
 msgstr "Статус додатака, последњих {0} дана"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, python-brace-format
 msgid "Add-on Status from {0} to {1}"
 msgstr "Статус додатака, од {0} до {1}"
 
 #. L10n: {0} is an integer.
+#, python-brace-format
 msgid "Download Sources, last {0} days"
 msgstr "Извори преузимања, последњих {0} дана"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, python-brace-format
 msgid "Download Sources from {0} to {1}"
 msgstr "Извори преузимања од {0} до {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Download Mediums, last {0} days"
 msgstr "Преузимања, последњих {0} дана"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Download Mediums from {0} to {1}"
 msgstr "Преузимања од {0} до {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Download Contents, last {0} days"
 msgstr "Извори преузимања, последњих {0} дана"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Download Contents from {0} to {1}"
 msgstr "Преузимања од {0} до {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Download Campaigns, last {0} days"
 msgstr "Преузимања, последњих {0} дана"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "Download Campaigns from {0} to {1}"
 msgstr "Преузимања од {0} до {1}"
 
 #. L10n: {0} is an integer.
+#, python-brace-format
 msgid "Contributions, last {0} days"
 msgstr "Доприноси, последњих {0} дана"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, python-brace-format
 msgid "Contributions from {0} to {1}"
 msgstr "Доприноси од {0} до {1}"
 
 #. L10n: {0} is an integer.
+#, python-brace-format
 msgid "Site Metrics, last {0} days"
 msgstr "Показатељи за сајт, последњих {0} дана"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, python-brace-format
 msgid "Site Metrics from {0} to {1}"
 msgstr "Показатељи за сајт од {0} до {1}"
 
 #. L10n: {0} is an integer.
+#, python-brace-format
 msgid "Add-ons in Use, last {0} days"
 msgstr "Додаци у употреби, последњих {0} дана"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, python-brace-format
 msgid "Add-ons in Use from {0} to {1}"
 msgstr "Додаци у употреби од {0} до {1}"
 
 #. L10n: {0} is an integer.
+#, python-brace-format
 msgid "Add-ons Downloaded, last {0} days"
 msgstr "Додатака преузето, последњих {0} дана"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, python-brace-format
 msgid "Add-ons Downloaded from {0} to {1}"
 msgstr "Додатака преузето од {0} до {1}"
 
 #. L10n: {0} is an integer.
+#, python-brace-format
 msgid "Add-ons Created, last {0} days"
 msgstr "Додатака направљено, последњих {0} дана"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, python-brace-format
 msgid "Add-ons Created from {0} to {1}"
 msgstr "Додатака направљено од {0} до {1}"
 
 #. L10n: {0} is an integer.
+#, python-brace-format
 msgid "Add-ons Updated, last {0} days"
 msgstr "Додатака ажурирано, последњих {0} дана"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, python-brace-format
 msgid "Add-ons Updated from {0} to {1}"
 msgstr "Додатака ажурирано од {0} до {1}"
 
 #. L10n: {0} is an integer.
+#, python-brace-format
 msgid "Reviews Written, last {0} days"
 msgstr "Рецензија написано, последњих {0} дана"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, python-brace-format
 msgid "Reviews Written from {0} to {1}"
 msgstr "Рецензија написано од {0} до {1}"
 
 #. L10n: {0} is an integer.
+#, python-brace-format
 msgid "User Signups, last {0} days"
 msgstr "Регистрације корисника, последњих {0} дана"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, python-brace-format
 msgid "User Signups from {0} to {1}"
 msgstr "Регистрације корисника од {0} до {1}"
 
 #. L10n: {0} is an integer.
+#, python-brace-format
 msgid "Collections Created, last {0} days"
 msgstr "Колекција направљено, последњих {0} дана"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, python-brace-format
 msgid "Collections Created from {0} to {1}"
 msgstr "Колекција направљено од {0} до {1}"
 
 #. L10n: {0} is an integer.
+#, python-brace-format
 msgid "Subscribers, last {0} days"
 msgstr "Претплатници, последњих {0} дана"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, python-brace-format
 msgid "Subscribers from {0} to {1}"
 msgstr "Претплатници од {0} до {1}"
 
 #. L10n: {0} is an integer.
+#, python-brace-format
 msgid "Ratings, last {0} days"
 msgstr "Оцењивања, последњих {0} дана"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, python-brace-format
 msgid "Ratings from {0} to {1}"
 msgstr "Оцењивања од {0} до {1}"
 
 #. L10n: {0} is an integer.
+#, python-brace-format
 msgid "Sales, last {0} days"
 msgstr "Продаја, последњих {0} дана"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, python-brace-format
 msgid "Sales from {0} to {1}"
 msgstr "Продаја од {0} до {1}"
 
 #. L10n: {0} is an integer.
+#, python-brace-format
 msgid "Installs, last {0} days"
 msgstr "Инсталације, последњих {0} дана"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#, python-brace-format
 msgid "Installs from {0} to {1}"
 msgstr "Инсталације, од {0} до {1}"
 
 #. L10n: {0} and {1} are integers.
+#, python-brace-format
 msgid "<b>{0}</b> in last {1} days"
 msgstr "<b>{0}</b> у последњих {1} дана"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
+#, python-brace-format
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "<b>{0}</b> од {1} до {2}"
 
 #. L10n: {0} and {1} are integers.
+#, python-brace-format
 msgid "<b>{0}</b> average in last {1} days"
 msgstr "<b>{0}</b> просечне у последњих {1} дана"
 
@@ -626,6 +689,7 @@ msgstr "Унесите адресу е-поште новог аутора"
 msgid "There was an error uploading your file."
 msgstr "Дошло је до грешке приликом отпремања Ваше датотеке."
 
+#, python-brace-format
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} датотека"
@@ -634,13 +698,13 @@ msgstr[1] "{files} датотеке"
 msgid "Image changes being processed"
 msgstr "Измене на слици се обрађују"
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> карактер преостао."
 msgstr[1] "<b>{0}</b> карактера преостала."
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "<b>{0}</b> карактер преостао."
@@ -652,12 +716,14 @@ msgstr "Ова могућност је привремено онемогућен
 msgid "Remove this localization"
 msgstr "Уклони ову локализацију"
 
+#, python-brace-format
 msgid "{name} was viewing this page first."
 msgstr "{name} је први гледао ову страницу."
 
 msgid "Review page polling failed."
 msgstr ""
 
+#, python-brace-format
 msgid "{name} was viewing this add-on first."
 msgstr "{name} је први прегледавао овај додатак."
 
@@ -679,6 +745,7 @@ msgstr ""
 msgid "Review notes found"
 msgstr ""
 
+#, python-brace-format
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr ""
 
@@ -724,10 +791,11 @@ msgstr "Грешка"
 msgid "Warning"
 msgstr "Упозорење"
 
+#, python-brace-format
 msgid "{0} line {1} column {2}"
 msgstr ""
 
-#, fuzzy
+#, fuzzy, python-brace-format
 msgid "{0} line {1}"
 msgstr "{0} од {1}"
 
@@ -737,16 +805,19 @@ msgstr "Додатак није прошао проверу."
 msgid "Add-on passed validation."
 msgstr "Додатак је прошао проверу."
 
+#, python-brace-format
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} грешка"
 msgstr[1] "{0} грешке"
 
+#, python-brace-format
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} упозорење"
 msgstr[1] "{0} упозорења"
 
+#, python-brace-format
 msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] "{0} обавештење"

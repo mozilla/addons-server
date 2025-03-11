@@ -2155,9 +2155,10 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         self.upload.update(created=datetime.now() - timedelta(days=1))
 
         mock_path = 'olympia.versions.models.statsd.'
-        with mock.patch(f'{mock_path}timing') as mock_timing, mock.patch(
-            f'{mock_path}incr'
-        ) as mock_incr:
+        with (
+            mock.patch(f'{mock_path}timing') as mock_timing,
+            mock.patch(f'{mock_path}incr') as mock_incr,
+        ):
             Version.from_upload(
                 self.upload,
                 self.addon,
