@@ -13,6 +13,7 @@ from django.test.utils import override_settings
 import pytest
 import responses
 from freezegun import freeze_time
+from responses import registries
 
 from olympia.amo.management import BaseDataCommand, storage_structure
 from olympia.amo.tests import TestCase, user_factory
@@ -755,20 +756,40 @@ class TestCheckLocalesCompletionRate(TestCase):
         'pl',
     )
 
-    def test_full_run_typical_response(self):
-        def fake_pontoon_response():
-            root = os.path.join(settings.ROOT, 'src/olympia/amo/fixtures/')
-            return open(os.path.join(root, 'pontoon_response.json')).read()
+    def fake_successful_pontoon_response(self):
+        root = os.path.join(settings.ROOT, 'src/olympia/amo/fixtures/')
+        return open(os.path.join(root, 'pontoon_response.json')).read()
 
+    def test_max_retries(self):
+        with responses.RequestsMock(registry=registries.OrderedRegistry) as responses_with_retries:
+            responses_with_retries.get('https://pontoon.mozilla.org/graphql', status=504)
+            responses_with_retries.get('https://pontoon.mozilla.org/graphql', status=503)
+            responses_with_retries.get('https://pontoon.mozilla.org/graphql', status=500)
+            responses_with_retries.get('https://pontoon.mozilla.org/graphql', status=502)
+            responses_with_retries.get(
+                'https://pontoon.mozilla.org/graphql',
+                content_type='application/json',
+                body=self.fake_successful_pontoon_response(),
+                status=200,
+            )
+            call_command('check_locales_completion_rate', stdout=io.StringIO())
+            len(responses_with_retries.calls) == 5
+            assert len(mail.outbox) == 1
+            self._test_full_run_typical_response()
+
+    def test_full_run_typical_response(self):
         responses.add(
             responses.GET,
             'https://pontoon.mozilla.org/graphql',
             content_type='application/json',
-            body=fake_pontoon_response(),
+            body=self.fake_successful_pontoon_response(),
         )
         call_command('check_locales_completion_rate', stdout=io.StringIO())
         len(responses.calls) == 1
         assert len(mail.outbox) == 1
+        self._test_full_run_typical_response()
+
+    def _test_full_run_typical_response(self):
         expected_below = (
             'The following locales are below threshold of 40% or completely '
             'absent in one of our projects in Pontoon:\n- '
@@ -808,6 +829,9 @@ class TestCheckLocalesCompletionRate(TestCase):
             content_type='application/json',
             body=json.dumps({}),
         )
+        call_command('check_locales_completion_rate', stdout=io.StringIO())
+        assert len(responses.calls) == 1
+        assert len(mail.outbox) == 1
         self._test_full_run_empty_response()
 
     def test_full_run_completely_empty_response(self):
@@ -824,12 +848,12 @@ class TestCheckLocalesCompletionRate(TestCase):
                 }
             ),
         )
-        self._test_full_run_empty_response()
-
-    def _test_full_run_empty_response(self):
         call_command('check_locales_completion_rate', stdout=io.StringIO())
         assert len(responses.calls) == 1
         assert len(mail.outbox) == 1
+        self._test_full_run_empty_response()
+
+    def _test_full_run_empty_response(self):
         # Everything should be missing since the response is an empty object.
         expected_below = (
             'The following locales are below threshold of 40% or completely '

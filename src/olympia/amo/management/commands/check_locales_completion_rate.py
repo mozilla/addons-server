@@ -4,6 +4,8 @@ from collections import defaultdict
 
 import requests
 from django_statsd.clients import statsd
+from requests.adapters import HTTPAdapter
+from requests.packages.urllib3.util.retry import Retry
 
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
@@ -130,8 +132,17 @@ class Command(BaseCommand):
         self.stdout.write(
             f'Calling pontoon with {re.sub(r'\s', '', self.PONTOON_QUERY)}'
         )
-        response = requests.get(
-            self.PONTOON_API, {'query': self.PONTOON_QUERY}, timeout=5
+        session = requests.Session()
+        adapter = HTTPAdapter(
+            max_retries=Retry(
+                total=6,
+                backoff_factor=1.0,
+                status_forcelist=[500, 502, 503, 504],
+            )
+        )
+        session.mount("https://", adapter)
+        response = session.get(
+            self.PONTOON_API, params={'query': self.PONTOON_QUERY}, timeout=5
         )
         response.raise_for_status()
         data = response.json().get('data', {})
