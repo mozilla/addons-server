@@ -5638,7 +5638,7 @@ msgstr "Personalize YouTube daûr dai tiei gurcj. Dai un gnûf aspiet, gnovis fu
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:649
 msgid "Changes the color of Firefox to match the appearance of any website."
-msgstr ""
+msgstr "Al cambie il colôr di Firefox in mût che al corispuindi al aspiet di cualsisei sît."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:656
@@ -5853,7 +5853,7 @@ msgstr "Viôt dutis lis estensions"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:986
 msgid "Productivity tools"
-msgstr ""
+msgstr "Struments pe produtivitât"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -6081,12 +6081,12 @@ msgstr "Viôt altris estensions par scomençâ sieltis dal nestri organic"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1104
 msgid "Twitch extensions"
-msgstr ""
+msgstr "Estensions par Twitch"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1106
 msgid "See more Twitch extension staff picks"
-msgstr ""
+msgstr "Scuvierç altris estensions par Twitch sieltis dal nestri organic"
 
 #: src/olympia/files/models.py:309
 msgid "Unreviewed"
