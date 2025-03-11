@@ -810,6 +810,7 @@ class TestCheckLocalesCompletionRate(TestCase):
                     'Bengali [bn]',
                     'Gujarati (India) [gu-IN]',
                     'Gujarati [gu]',
+                    'Hindi (India) [hi-IN]',
                     'Macedonian [mk]',
                     'Sinhala [si]',
                     'Urdu [ur]',
@@ -824,7 +825,6 @@ class TestCheckLocalesCompletionRate(TestCase):
             + '\n- '.join(
                 (
                     'Friulian [fur]',
-                    'Hindi (India) [hi-IN]',
                     'Icelandic [is]',
                     'Interlingua [ia]',
                 )

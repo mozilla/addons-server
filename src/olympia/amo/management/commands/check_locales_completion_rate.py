@@ -105,11 +105,14 @@ class Command(BaseCommand):
                         f'({completion}%) in {project}'
                     )
                     locales_above_threshold.add(locale)
-        # Add to locales below threshold locales we only saw in one project.
+        # Add to locales below threshold locales we only saw in zero or one
+        # project.
         # Use the ones we already have enabled in production, in case somehow
         # a locale would disappear completely from pontoon and still be enabled
         # on our side.
-        for locale in settings.AMO_LANGUAGES:
+        for locale in list(settings.AMO_LANGUAGES.keys()) + list(
+            locales_above_threshold
+        ):
             if (
                 locale != settings.LANGUAGE_CODE
                 and seen_locales[locale] != self.PONTOON_PROJECTS
