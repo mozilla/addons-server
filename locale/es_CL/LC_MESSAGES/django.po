@@ -3211,7 +3211,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:6
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
-msgstr ""
+msgstr "El ID del complemento no se puede restaurar y será inutilizable para su envío de manera permanente."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:2 src/olympia/devhub/templates/devhub/versions/list.html:253 src/olympia/devhub/templates/devhub/versions/list.html:257
 msgid "Delete Add-on"
@@ -3508,7 +3508,7 @@ msgstr "Editar versión {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:59
 msgid "As a reminder, your add-on is subject to manual review at any time."
-msgstr ""
+msgstr "Como recordatorio, tu complemento está sujeto a revisión manual en cualquier momento."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:64
 msgid "Go to My Submissions"
@@ -3524,7 +3524,7 @@ msgstr "¿Necesitas enviar código fuente?"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:15
 msgid "Mozilla’s add-on reviewers need to be able to read and reproduce the code in your extension. If they can’t, your extension may be rejected."
-msgstr ""
+msgstr "Los revisores de complementos de Mozilla deben poder leer y reproducir el código de tu extensión. Si no pueden hacerlo, tu extensión podría ser rechazada."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:21
 msgid "Do you use any of the following in your extension?"
@@ -3543,9 +3543,8 @@ msgid "Web template engines, both for HTML and CSS"
 msgstr "Motores de plantillas web, tanto para HTML como para CSS"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:32
-#, fuzzy
 msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the extension"
-msgstr "Cualquier otra herramienta que acceda a código o archivos y procese y genere código o archivo(s) para incluirlos en el complemento"
+msgstr "Cualquier otra herramienta que acceda a código o archivos, procese y genere código o archivo(s) para incluirlos en la extensión"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:43
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
@@ -4040,9 +4039,8 @@ msgstr ""
 "                Solo es útil para complementos listados."
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html:3
-#, fuzzy
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code other than known libraries, upload its sources for review."
-msgstr "Si tu complemento contiene código binario u ofuscado además de bibliotecas conocidas, sube sus fuentes para revisión."
+msgstr "Si tu complemento contiene código minificado, concatenado o generado por una máquina que no sean bibliotecas conocidas, sube sus fuentes para su revisión."
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html:5
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
