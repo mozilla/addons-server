@@ -44,7 +44,7 @@ jobs:
 
           if [[ "$conclusion" == "success" ]]; then
             emoji=":white_check_mark:"
-          elif [[ "$conclussion" == "cancelled" ]]; then
+          elif [[ "$conclusion" == "cancelled" ]]; then
             emoji=":github-actions-cancelled:"
           else
             emoji=":x:"
