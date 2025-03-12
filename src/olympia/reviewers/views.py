@@ -667,6 +667,19 @@ def review(request, addon, channel=None):
         pk__in=version_ids
     ).count()
 
+    # if the add-on was force-disabled we want to inform the reviewer what versions will
+    # be re-enabled automatically by a force enable action. (in all channels)
+    versions_that_would_be_enabled = (
+        ()
+        if addon.status != amo.STATUS_DISABLED
+        else File.objects.disabled_to_be_reenabled()
+        .filter(version__addon=addon)
+        .order_by('-created')
+        .values_list(
+            'version__version', 'original_status', 'version__channel', named=True
+        )
+    )
+
     flags = get_flags(addon, version) if version else []
 
     try:
@@ -719,12 +732,12 @@ def review(request, addon, channel=None):
             and request.user.is_staff
         ),
         actions=actions,
+        actions_attachments=actions_attachments,
         actions_comments=actions_comments,
         actions_delayable=actions_delayable,
         actions_full=actions_full,
         actions_policies=actions_policies,
         actions_reasons=actions_reasons,
-        actions_attachments=actions_attachments,
         actions_resolves_cinder_jobs=actions_resolves_cinder_jobs,
         addon=addon,
         addons_sharing_same_guid=addons_sharing_same_guid,
@@ -770,6 +783,8 @@ def review(request, addon, channel=None):
         user_ratings=user_ratings,
         version=version,
         VERSION_ADU_LIMIT=VERSION_ADU_LIMIT,
+        versions_that_would_be_enabled=versions_that_would_be_enabled,
+        VERSIONS_THAT_WOULD_BE_ENABLED_MAX=10,
         versions_with_a_due_date_other=versions_with_a_due_date_other,
         versions_flagged_by_mad_other=versions_flagged_by_mad_other,
         versions_pending_rejection_other=versions_pending_rejection_other,
