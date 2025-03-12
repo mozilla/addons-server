@@ -337,13 +337,13 @@ class PromotedAddonPromotion(ModelBase):
         return self.addon.approved_applications_for(self.promoted_group)
 
     def approve_for_version(self, version):
-        """Create PromotedApproval for current applications in the current
-        promoted group."""
+        """Create PromotedAddonVersions for current applications
+        in the current promoted group."""
         for app in self.addon.all_applications:
-            PromotedApproval.objects.update_or_create(
-                version=version,
-                group_id=self.promoted_group.group_id,
+            PromotedAddonVersion.objects.update_or_create(
+                promoted_group=self.promoted_group,
                 application_id=app.id,
+                version=version,
             )
         try:
             del version.approved_for_groups
