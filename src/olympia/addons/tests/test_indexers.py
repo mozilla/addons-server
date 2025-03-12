@@ -230,12 +230,7 @@ class TestAddonIndexer(TestCase):
         assert extracted['category'] == [1, 22, 71]  # From fixture.
         assert extracted['current_version']
         assert extracted['listed_authors'] == [
-            {
-                'name': '55021 التطب',
-                'id': 55021,
-                'username': '55021',
-                'has_full_profile': True,
-            }
+            {'name': '55021 التطب', 'id': 55021, 'username': '55021'}
         ]
         assert extracted['ratings'] == {
             'average': self.addon.average_rating,

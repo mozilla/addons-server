@@ -1547,7 +1547,6 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
                 created=None,
                 display_name=data_author['name'],
                 username=data_author['username'],
-                has_full_profile=data_author.get('has_full_profile', False),
             )
             for data_author in data_authors
         ]
