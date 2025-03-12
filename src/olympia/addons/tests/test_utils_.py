@@ -1,7 +1,5 @@
 from datetime import timedelta
-from unittest import mock
 
-from django.conf import settings
 from django.forms import ValidationError
 
 import pytest
@@ -12,18 +10,10 @@ from olympia.amo.tests import TestCase, addon_factory, user_factory, version_fac
 from olympia.users.models import Group, GroupUser
 
 from ..utils import (
-    TAAR_LITE_FALLBACK_REASON_EMPTY,
-    TAAR_LITE_FALLBACK_REASON_INVALID,
-    TAAR_LITE_FALLBACK_REASON_TIMEOUT,
-    TAAR_LITE_FALLBACKS,
-    TAAR_LITE_OUTCOME_CURATED,
-    TAAR_LITE_OUTCOME_REAL_FAIL,
-    TAAR_LITE_OUTCOME_REAL_SUCCESS,
+    RECOMMENDATIONS,
     DeleteTokenSigner,
     get_addon_recommendations,
-    get_addon_recommendations_invalid,
     get_filtered_fallbacks,
-    is_outcome_recommended,
     validate_version_number_is_gt_latest_signed_listed_version,
     verify_mozilla_trademark,
 )
@@ -69,12 +59,8 @@ def test_verify_mozilla_trademark(name, allowed, give_permission):
         verify_mozilla_trademark(name, user)
 
 
-@mock.patch('django_statsd.clients.statsd.incr')
 class TestGetAddonRecommendations(TestCase):
     def setUp(self):
-        patcher = mock.patch('olympia.addons.utils.call_recommendation_server')
-        self.recommendation_server_mock = patcher.start()
-        self.addCleanup(patcher.stop)
         self.a101 = addon_factory(id=101, guid='101@mozilla')
         addon_factory(id=102, guid='102@mozilla')
         addon_factory(id=103, guid='103@mozilla')
@@ -88,92 +74,16 @@ class TestGetAddonRecommendations(TestCase):
         ]
         self.recommendation_server_mock.return_value = self.recommendation_guids
 
-    def test_recommended(self, incr_mock):
-        recommendations, outcome, reason = get_addon_recommendations('a@b', True)
-        assert recommendations == self.recommendation_guids
-        assert outcome == TAAR_LITE_OUTCOME_REAL_SUCCESS
-        assert reason is None
-        self.recommendation_server_mock.assert_called_with(
-            settings.TAAR_LITE_RECOMMENDATION_ENGINE_URL, 'a@b', {}
-        )
-        assert incr_mock.call_count == 1
-        assert incr_mock.call_args_list[0][0] == (
-            'services.addon_recommendations.success',
-        )
+    def test_not_recommended(self):
+        recommendations = get_addon_recommendations('a@b')
+        # It returns the first four fallback recommendations
+        assert recommendations == RECOMMENDATIONS[:4]
 
-    def test_recommended_no_results(self, incr_mock):
-        self.recommendation_server_mock.return_value = []
-        recommendations, outcome, reason = get_addon_recommendations('a@b', True)
-        # If there's no results, it takes the first four fallback recommendations
-        assert recommendations == TAAR_LITE_FALLBACKS[:4]
-        assert outcome == TAAR_LITE_OUTCOME_REAL_FAIL
-        assert reason is TAAR_LITE_FALLBACK_REASON_EMPTY
-        self.recommendation_server_mock.assert_called_with(
-            settings.TAAR_LITE_RECOMMENDATION_ENGINE_URL, 'a@b', {}
-        )
-        assert incr_mock.call_count == 1
-        assert incr_mock.call_args_list[0][0] == (
-            f'services.addon_recommendations.{TAAR_LITE_FALLBACK_REASON_EMPTY}',
-        )
-        # Fallback filters out the current guid if it exists in TAAR_LITE_FALLBACKS
-        recommendations, _, _ = get_addon_recommendations(TAAR_LITE_FALLBACKS[0], True)
-        assert TAAR_LITE_FALLBACKS[0] not in recommendations
-
-    def test_recommended_timeout(self, incr_mock):
-        self.recommendation_server_mock.return_value = None
-        recommendations, outcome, reason = get_addon_recommendations('a@b', True)
-        # If there's no results, it takes the first four fallback recommendations
-        assert recommendations == TAAR_LITE_FALLBACKS[:4]
-        assert outcome == TAAR_LITE_OUTCOME_REAL_FAIL
-        assert reason is TAAR_LITE_FALLBACK_REASON_TIMEOUT
-        self.recommendation_server_mock.assert_called_with(
-            settings.TAAR_LITE_RECOMMENDATION_ENGINE_URL, 'a@b', {}
-        )
-        assert incr_mock.call_count == 1
-        assert incr_mock.call_args_list[0][0] == (
-            f'services.addon_recommendations.{TAAR_LITE_FALLBACK_REASON_TIMEOUT}',
-        )
-
-    def test_not_recommended(self, incr_mock):
-        recommendations, outcome, reason = get_addon_recommendations('a@b', False)
-        assert not self.recommendation_server_mock.called
-        # If there's no results, it takes the first four fallback recommendations
-        assert recommendations == TAAR_LITE_FALLBACKS[:4]
-        assert outcome == TAAR_LITE_OUTCOME_CURATED
-        assert reason is None
-        assert incr_mock.call_count == 0
-
-    def test_invalid_fallback(self, incr_mock):
-        recommendations, outcome, reason = get_addon_recommendations_invalid()
-        assert not self.recommendation_server_mock.called
-        # If there's no results, it takes the first four fallback recommendations
-        assert recommendations == TAAR_LITE_FALLBACKS[:4]
-        assert outcome == TAAR_LITE_OUTCOME_REAL_FAIL
-        assert reason == TAAR_LITE_FALLBACK_REASON_INVALID
-        assert incr_mock.call_count == 0
-        # Fallback filters out the current guid if it exists in TAAR_LITE_FALLBACKS
-        recommendations, _, _ = get_addon_recommendations_invalid(
-            TAAR_LITE_FALLBACKS[0]
-        )
-        assert TAAR_LITE_FALLBACKS[0] not in recommendations
-
-    def test_get_filtered_fallbacks(self, _):
-        # Fallback filters out the current guid if it exists in TAAR_LITE_FALLBACKS
-        recommendations = get_filtered_fallbacks(TAAR_LITE_FALLBACKS[2])
-        assert TAAR_LITE_FALLBACKS[2] not in recommendations
-        # Fallback returns the first four if it does not.
-        recommendations, outcome, reason = get_addon_recommendations_invalid(
-            'random-guid'
-        )
-        # If there's no results, it takes the first four fallback recommendations
-        assert recommendations == TAAR_LITE_FALLBACKS[:4]
-
-    def test_is_outcome_recommended(self, incr_mock):
-        assert is_outcome_recommended(TAAR_LITE_OUTCOME_REAL_SUCCESS)
-        assert not is_outcome_recommended(TAAR_LITE_OUTCOME_REAL_FAIL)
-        assert not is_outcome_recommended(TAAR_LITE_OUTCOME_CURATED)
-        assert not self.recommendation_server_mock.called
-        assert incr_mock.call_count == 0
+    def test_get_filtered_fallbacks(self):
+        # Fallback filters out the current guid if it exists in RECOMMENDATIONS
+        recommendations = get_filtered_fallbacks(RECOMMENDATIONS[2])
+        assert RECOMMENDATIONS[2] not in recommendations
+        assert len(recommendations) == 4
 
 
 @freeze_time(as_kwarg='frozen_time')
