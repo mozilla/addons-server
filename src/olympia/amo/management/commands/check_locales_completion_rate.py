@@ -109,9 +109,8 @@ class Command(BaseCommand):
         # Use the ones we already have enabled in production, in case somehow
         # a locale would disappear completely from pontoon and still be enabled
         # on our side.
-        for locale in list(settings.AMO_LANGUAGES.keys()) + list(
-            locales_above_threshold
-        ):
+        locales_already_on_amo = set(settings.AMO_LANGUAGES.keys())
+        for locale in locales_already_on_amo | locales_above_threshold:
             if (
                 locale != settings.LANGUAGE_CODE
                 and seen_locales[locale] != self.PONTOON_PROJECTS
@@ -128,6 +127,10 @@ class Command(BaseCommand):
         for locale in locales_in_both_sets:
             self.stdout.write(f'❌ {self.pretty_locale_name(locale)} is in both sets')
         locales_above_threshold -= locales_in_both_sets
+        # Now that we have used locales_below_threshold to clean up the other
+        # set, we can keep the only locales that are relevant for the email,
+        # which are those already on AMO.
+        locales_below_threshold &= locales_already_on_amo
         return locales_below_threshold, locales_above_threshold
 
     def fetch_data(self):
