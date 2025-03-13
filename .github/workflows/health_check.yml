@@ -9,6 +9,10 @@ on:
     # Every 5 minutes
     - cron: '*/5 * * * *'
 
+env:
+  health_check_file: health_check.json
+  health_check_blocks_file: health_check_blocks.json
+
 jobs:
   health_check:
     runs-on: ubuntu-latest
@@ -20,11 +24,45 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: ./.github/actions/run-docker
+      - name: Run health check
+        id: health_check
+        continue-on-error: true
+        uses: ./.github/actions/run-docker
         with:
           target: development
           version: local
-          run: ./scripts/health_check.py --env ${{ matrix.environment }} --verbose
+          run: |
+            ./scripts/health_check.py \
+            --env ${{ matrix.environment }} \
+            --verbose \
+            --output ${{ env.health_check_file }}
 
+      - name: Set message blocks
+        id: blocks
+        if: steps.health_check.outcome == 'failure'
+        shell: bash
+        run: |
+          # Create the message blocks file
+          ./scripts/health_check_blocks.py \
+          --input ${{ env.health_check_file }} \
+          --output ${{ env.health_check_blocks_file }}
+          # Multiline output needs to use a delimiter to be passed to
+          # the GITHUB_OUTPUT file.
+          blocks=$(cat ${{ env.health_check_blocks_file }})
+          echo "blocks<<EOF"$'\n'$blocks$'\n'EOF >> $GITHUB_OUTPUT
+          cat $GITHUB_OUTPUT
 
+      - uses: mozilla/addons/.github/actions/slack@main
+        if: steps.health_check.outcome == 'failure'
+        with:
+          slack_token: ${{ secrets.SLACK_TOKEN }}
+          payload: |
+            {
+              "channel": "${{ secrets.SLACK_ADDONS_PRODUCTION_CHANNEL }}",
+              "blocks": ${{ toJson(steps.blocks.outputs.blocks) }},
+              "text": "Health check failed",
+              # Don't unfurl links or media
+              "unfurl_links": false,
+              "unfurl_media": false,
+            }
 
