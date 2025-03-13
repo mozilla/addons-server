@@ -194,7 +194,6 @@ LANGUAGE_CODE = 'en-US'
 from olympia.core.languages import AMO_LANGUAGES  # noqa
 
 # Bidirectional languages.
-# Locales in here *must* be in `AMO_LANGUAGES` too.
 LANGUAGES_BIDI = ('ar', 'fa', 'he', 'ur')
 
 # Explicit conversion of a shorter language code into a more specific one.
