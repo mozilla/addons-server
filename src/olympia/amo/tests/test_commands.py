@@ -879,7 +879,7 @@ class TestCheckLocalesCompletionRate(TestCase):
             + '\n- '.join(
                 sorted(
                     [
-                        f"{data['english']} [{locale}]"
+                        f'{data["english"]} [{locale}]'
                         for locale, data in settings.AMO_LANGUAGES.items()
                         if locale not in self.expected_special_locales
                         and locale != settings.LANGUAGE_CODE
@@ -896,7 +896,7 @@ class TestCheckLocalesCompletionRate(TestCase):
             + '\n- '.join(
                 sorted(
                     [
-                        f"{settings.AMO_LANGUAGES[locale]['english']} [{locale}]"
+                        f'{settings.AMO_LANGUAGES[locale]["english"]} [{locale}]'
                         for locale in self.expected_special_locales
                     ]
                 )
