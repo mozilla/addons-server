@@ -84,7 +84,7 @@ msgstr "Ker je bila odločitev, na katero se pritožujete, že razveljavljena, s
 
 #: src/olympia/abuse/templates/abuse/appeal.html:42
 msgid "The decision you are appealing has already been overridden by a new decision, so this decision can't be appealed."
-msgstr "Zoper sklep, na katerega se pritožujete, je že prišlo do razveljavitve novega sklepa, zato pritožba nanj ni mogoča."
+msgstr "Sklep, na katerega se pritožujete, je že bil razveljavljen z novim sklepom, zato pritožba nanj ni mogoča."
 
 #: src/olympia/abuse/templates/abuse/appeal.html:44
 msgid "This decision can't be appealed."
@@ -1752,7 +1752,7 @@ msgstr "Creative Commons Attribution-ShareAlike 4.0"
 
 #: src/olympia/constants/licenses.py:222
 msgid "The Unlicense"
-msgstr "Nelicenco"
+msgstr "Unlicense"
 
 #: src/olympia/constants/promoted.py:74
 msgid "Not Promoted"
@@ -3984,11 +3984,11 @@ msgstr "Razvrsti po:"
 #: src/olympia/devhub/templates/devhub/includes/macros.html:7
 #, python-format
 msgid "Allowed Markdown: %(allowed_markdown)s"
-msgstr "Dovoljeno zmanjšanje: %(allowed_markdown)s"
+msgstr "Dovoljene oznake Markdown: %(allowed_markdown)s"
 
 #: src/olympia/devhub/templates/devhub/includes/macros.html:8
 msgid "Some Markdown supported."
-msgstr "Nekaj podprtih Markdownov."
+msgstr "Podprte so nekatere oznake Markdown."
 
 #: src/olympia/devhub/templates/devhub/includes/macros.html:58
 msgid "Remove this application"
@@ -5602,7 +5602,7 @@ msgstr "Prilagodite YouTube svojemu okusu. Dajte mu nov videz, nove funkcije in 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:649
 msgid "Changes the color of Firefox to match the appearance of any website."
-msgstr "Spremeni barvo Firefoxa, da se ujema z videzom kateregakoli spletnega mesta."
+msgstr "Usklajuje barvo Firefoxa z videzom kateregakoli spletnega mesta."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:656
@@ -6045,7 +6045,7 @@ msgstr "Več osebno izbranih razširitev za začetek"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1104
 msgid "Twitch extensions"
-msgstr "Razširitve Twitch"
+msgstr "Razširitve za Twitch"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1106
