@@ -230,32 +230,32 @@ msgstr ""
 "\n"
 "Vašo prijavo in zadevno vsebino smo obravnavali ter ugotovili, da krši Mozilline pravilnike (%(policy_document_url)s), zato smo vsebino odstranili.\n"
 
-#: src/olympia/accounts/serializers.py:133 src/olympia/bandwagon/serializers.py:98
+#: src/olympia/accounts/serializers.py:152 src/olympia/bandwagon/serializers.py:98
 msgid "No links are allowed."
 msgstr "Povezave niso dovoljene."
 
-#: src/olympia/accounts/serializers.py:139
+#: src/olympia/accounts/serializers.py:158
 msgid "This display name cannot be used."
 msgstr "Tega prikaznega imena ni mogoče uporabljati."
 
-#: src/olympia/accounts/serializers.py:148 src/olympia/addons/fields.py:366 src/olympia/devhub/views.py:1015
+#: src/olympia/accounts/serializers.py:167 src/olympia/addons/fields.py:366 src/olympia/devhub/views.py:1015
 msgid "Images must be either PNG or JPG."
 msgstr "Slike morajo biti bodisi PNG ali JPG."
 
-#: src/olympia/accounts/serializers.py:152 src/olympia/addons/fields.py:371 src/olympia/devhub/views.py:1021
+#: src/olympia/accounts/serializers.py:171 src/olympia/addons/fields.py:371 src/olympia/devhub/views.py:1021
 msgid "Images cannot be animated."
 msgstr "Slike ne morejo biti animirane."
 
-#: src/olympia/accounts/serializers.py:157 src/olympia/devhub/views.py:1030
+#: src/olympia/accounts/serializers.py:176 src/olympia/devhub/views.py:1030
 #, python-format
 msgid "Please use images smaller than %dMB."
 msgstr "Uporabljajte slike, ki so manjše od %d MB."
 
-#: src/olympia/accounts/views.py:193
+#: src/olympia/accounts/views.py:194
 msgid "Need help?"
 msgstr "Potrebujete pomoč?"
 
-#: src/olympia/accounts/views.py:738
+#: src/olympia/accounts/views.py:731
 #, python-format
 msgid "Notification [%s] does not exist"
 msgstr "Obvestilo [%s] ne obstaja"
@@ -6854,34 +6854,34 @@ msgstr "Vnesete lahko samo eno, IP-naslov ali omrežje."
 msgid "No user with that email."
 msgstr "Ni uporabnika s tem e-naslovom."
 
-#: src/olympia/users/models.py:576
+#: src/olympia/users/models.py:581
 #, python-brace-format
 msgid "Firefox user {id}"
 msgstr "Uporabnik Firefoxa {id}"
 
-#: src/olympia/users/models.py:822
+#: src/olympia/users/models.py:827
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "Vnesite veljaven obseg omrežja IPv4 ali IPv6 CIDR, npr. 127.0.0.1/28"
 
-#: src/olympia/users/models.py:826
+#: src/olympia/users/models.py:831
 msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
 msgstr "Z vaše lokacije je bilo poslano veliko število predložitev, ki kršijo naše pravilnike. Naslov IP je bil blokiran."
 
-#: src/olympia/users/models.py:938
+#: src/olympia/users/models.py:943
 msgid "Email Pattern"
 msgstr "Vzorec e-pošte"
 
-#: src/olympia/users/models.py:941
+#: src/olympia/users/models.py:946
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr ""
 "Vnesite celoten e-poštni naslov, ki ga želite blokirati, ali uporabite nadomestne znake v slogu Unixa, npr. \"*@example.com\". Če želite blokirati domeno vključno z njenimi poddomenami, dodajte "
 "drugi vnos, npr. \"*@*.example.com\"."
 
-#: src/olympia/users/models.py:948
+#: src/olympia/users/models.py:953
 msgid "The email address used for your account is not allowed for submissions."
 msgstr "E-poštni naslov, ki ga uporablja vaš račun, ni dovoljen za predložitve."
 
-#: src/olympia/users/models.py:1027
+#: src/olympia/users/models.py:1032
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
 "restrictions\" instead."
@@ -6889,7 +6889,7 @@ msgstr ""
 "Vnesite celotno e-poštno domeno, ki naj bo blokirana. Nadomestni znaki niso podprti: če jih potrebujete ali bi radi primerjavo s celotnim elektronskim sporočilom in ne le z domeno, uporabite "
 "\"Omejitve elektronske pošte\"."
 
-#: src/olympia/users/models.py:1178
+#: src/olympia/users/models.py:1183
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
 " which explains how we handle your information."
@@ -6897,12 +6897,12 @@ msgstr ""
 "Pred začetkom si preberite in sprejmite Sporazum o razširjanju Firefoxovih dodatkov, kot tudi našo politiko in pravila pregledov. Sporazum vsebuje tudi povezavo na naše Obvestilo o zasebnosti, ki "
 "razlaga, kako ravnamo z vašimi podatki."
 
-#: src/olympia/users/models.py:1192
+#: src/olympia/users/models.py:1197
 #, python-brace-format
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr "Pred začetkom si preberite in sprejmite Sporazum o razširjanju dodatkov za Firefox, kot tudi našo politiko in pravila pregledov, na {url}"
 
-#: src/olympia/users/models.py:1243
+#: src/olympia/users/models.py:1248
 msgid "User Restriction History"
 msgstr "Zgodovina omejitev uporabnika"
 

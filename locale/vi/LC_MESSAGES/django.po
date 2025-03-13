@@ -232,32 +232,32 @@ msgstr ""
 "\n"
 "Chúng tôi đã xem xét báo cáo của bạn và nội dung được đề cập và nhận thấy rằng báo cáo đó vi phạm chính sách của Mozilla (%(policy_document_url)s), và do đó đã xóa nội dung.\n"
 
-#: src/olympia/accounts/serializers.py:133 src/olympia/bandwagon/serializers.py:98
+#: src/olympia/accounts/serializers.py:152 src/olympia/bandwagon/serializers.py:98
 msgid "No links are allowed."
 msgstr "Không có liên kết được cho phép."
 
-#: src/olympia/accounts/serializers.py:139
+#: src/olympia/accounts/serializers.py:158
 msgid "This display name cannot be used."
 msgstr "Không thể sử dụng tên hiển thị này."
 
-#: src/olympia/accounts/serializers.py:148 src/olympia/addons/fields.py:366 src/olympia/devhub/views.py:1015
+#: src/olympia/accounts/serializers.py:167 src/olympia/addons/fields.py:366 src/olympia/devhub/views.py:1015
 msgid "Images must be either PNG or JPG."
 msgstr "Hình ảnh phải là PNG hoặc JPG."
 
-#: src/olympia/accounts/serializers.py:152 src/olympia/addons/fields.py:371 src/olympia/devhub/views.py:1021
+#: src/olympia/accounts/serializers.py:171 src/olympia/addons/fields.py:371 src/olympia/devhub/views.py:1021
 msgid "Images cannot be animated."
 msgstr "Hình ảnh không được chuyển động."
 
-#: src/olympia/accounts/serializers.py:157 src/olympia/devhub/views.py:1030
+#: src/olympia/accounts/serializers.py:176 src/olympia/devhub/views.py:1030
 #, python-format
 msgid "Please use images smaller than %dMB."
 msgstr "Vui lòng dùng hình ảnh nhỏ hơn %dMB."
 
-#: src/olympia/accounts/views.py:193
+#: src/olympia/accounts/views.py:194
 msgid "Need help?"
 msgstr "Cần trợ giúp?"
 
-#: src/olympia/accounts/views.py:738
+#: src/olympia/accounts/views.py:731
 #, python-format
 msgid "Notification [%s] does not exist"
 msgstr "Thông báo [%s] không tồn tại"
@@ -6844,32 +6844,32 @@ msgstr "Bạn chỉ có thể nhập một, địa chỉ IP hoặc mạng."
 msgid "No user with that email."
 msgstr "Không người dùng nào có email đó."
 
-#: src/olympia/users/models.py:576
+#: src/olympia/users/models.py:581
 #, python-brace-format
 msgid "Firefox user {id}"
 msgstr "Người dùng Firefox {id}"
 
-#: src/olympia/users/models.py:822
+#: src/olympia/users/models.py:827
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "Nhập dải mạng CIDR IPv4 hoặc IPv6 hợp lệ, ví dụ: 127.0.0.1/28"
 
-#: src/olympia/users/models.py:826
+#: src/olympia/users/models.py:831
 msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
 msgstr "Nhiều đệ trình vi phạm chính sách của chúng tôi đã được gửi từ vị trí của bạn. Địa chỉ IP đã bị chặn."
 
-#: src/olympia/users/models.py:938
+#: src/olympia/users/models.py:943
 msgid "Email Pattern"
 msgstr "Mẫu email"
 
-#: src/olympia/users/models.py:941
+#: src/olympia/users/models.py:946
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr "Nhập email đầy đủ cần chặn hoặc sử dụng ký tự đại diện kiểu Unix, ví dụ: \"*@example.com\". Nếu bạn cần chặn một miền bao gồm các miền phụ, hãy thêm mục nhập thứ hai, ví dụ: \"*@*.example.com\"."
 
-#: src/olympia/users/models.py:948
+#: src/olympia/users/models.py:953
 msgid "The email address used for your account is not allowed for submissions."
 msgstr "Địa chỉ email sử dụng cho tài khoản của bạn không được phép cho đệ trình."
 
-#: src/olympia/users/models.py:1027
+#: src/olympia/users/models.py:1032
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
 "restrictions\" instead."
@@ -6877,7 +6877,7 @@ msgstr ""
 "Nhập đầy đủ miền email dùng một lần cần chặn. Ký tự đại diện không được hỗ trợ: nếu bạn cần những thứ đó hoặc cần đối sánh với toàn bộ email chứ không chỉ phần tên miền, thay vào đó hãy sử dụng "
 "\"Hạn chế người dùng bằng email\"."
 
-#: src/olympia/users/models.py:1178
+#: src/olympia/users/models.py:1183
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
 " which explains how we handle your information."
@@ -6885,12 +6885,12 @@ msgstr ""
 "Trước khi bắt đầu, vui lòng đọc và chấp nhận Thỏa thuận phân phối tiện ích Firefox cũng như Chính sách và quy tắc đánh giá của chúng tôi. Thỏa thuận phân phối tiện ích Firefox cũng liên kết đến "
 "thông báo về Quyền riêng tư của chúng tôi, trong đó giải thích cách chúng tôi xử lý thông tin của bạn."
 
-#: src/olympia/users/models.py:1192
+#: src/olympia/users/models.py:1197
 #, python-brace-format
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr "Vui lòng đọc và chấp nhận Thỏa thuận phân phối tiện ích Firefox của chúng tôi cũng như các Chính sách và quy tắc đánh giá của chúng tôi bằng cách truy cập {url}"
 
-#: src/olympia/users/models.py:1243
+#: src/olympia/users/models.py:1248
 msgid "User Restriction History"
 msgstr "Lịch sử hạn chế người dùng"
 

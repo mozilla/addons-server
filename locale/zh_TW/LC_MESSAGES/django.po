@@ -228,32 +228,32 @@ msgstr ""
 "\n"
 "經過審查後，我們認為此內容違反了 Mozilla 的政策（%(policy_document_url)s），已採取行動移除該內容。\n"
 
-#: src/olympia/accounts/serializers.py:133 src/olympia/bandwagon/serializers.py:98
+#: src/olympia/accounts/serializers.py:152 src/olympia/bandwagon/serializers.py:98
 msgid "No links are allowed."
 msgstr "不允許加入鏈結。"
 
-#: src/olympia/accounts/serializers.py:139
+#: src/olympia/accounts/serializers.py:158
 msgid "This display name cannot be used."
 msgstr "無法使用此顯示名稱。"
 
-#: src/olympia/accounts/serializers.py:148 src/olympia/addons/fields.py:366 src/olympia/devhub/views.py:1015
+#: src/olympia/accounts/serializers.py:167 src/olympia/addons/fields.py:366 src/olympia/devhub/views.py:1015
 msgid "Images must be either PNG or JPG."
 msgstr "圖片格式必須為 PNG 或 JPG。"
 
-#: src/olympia/accounts/serializers.py:152 src/olympia/addons/fields.py:371 src/olympia/devhub/views.py:1021
+#: src/olympia/accounts/serializers.py:171 src/olympia/addons/fields.py:371 src/olympia/devhub/views.py:1021
 msgid "Images cannot be animated."
 msgstr "不能使用動畫圖片。"
 
-#: src/olympia/accounts/serializers.py:157 src/olympia/devhub/views.py:1030
+#: src/olympia/accounts/serializers.py:176 src/olympia/devhub/views.py:1030
 #, python-format
 msgid "Please use images smaller than %dMB."
 msgstr "請使用小於 %dMB 的圖片。"
 
-#: src/olympia/accounts/views.py:193
+#: src/olympia/accounts/views.py:194
 msgid "Need help?"
 msgstr "需要幫助嗎？"
 
-#: src/olympia/accounts/views.py:738
+#: src/olympia/accounts/views.py:731
 #, python-format
 msgid "Notification [%s] does not exist"
 msgstr "通知 [%s] 不存在"
@@ -6764,49 +6764,49 @@ msgstr "僅能輸入一組 IP 地址或網段。"
 msgid "No user with that email."
 msgstr "無使用者使用此信箱。"
 
-#: src/olympia/users/models.py:576
+#: src/olympia/users/models.py:581
 #, python-brace-format
 msgid "Firefox user {id}"
 msgstr "Firefox 使用者 {id}"
 
-#: src/olympia/users/models.py:822
+#: src/olympia/users/models.py:827
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "請輸入有效的 IPv4 或 IPv6 CIDR 網段，例如 127.0.0.1/28"
 
-#: src/olympia/users/models.py:826
+#: src/olympia/users/models.py:831
 msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
 msgstr "您的所在位置多次送出違反我們使用政策的附加元件。此 IP 已遭封鎖。"
 
-#: src/olympia/users/models.py:938
+#: src/olympia/users/models.py:943
 msgid "Email Pattern"
 msgstr "郵件模式"
 
-#: src/olympia/users/models.py:941
+#: src/olympia/users/models.py:946
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr "請輸入要封鎖的完整電子郵件地址，或使用 unix 格式的萬用字元（例如「*@example.com」）。若您要封鎖包含所有子網域的完整網域，請另外針對子網域加入一筆「*@*.example.com」。"
 
-#: src/olympia/users/models.py:948
+#: src/olympia/users/models.py:953
 msgid "The email address used for your account is not allowed for submissions."
 msgstr "您帳號的電子郵件地址不允許用來送出附加元件。"
 
-#: src/olympia/users/models.py:1027
+#: src/olympia/users/models.py:1032
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
 "restrictions\" instead."
 msgstr "輸入要封鎖的完整電子郵件網域。不支援萬用字元: 若您需要萬用字元，或需要符合整組 E-Mail 地址，請改用「電子郵件使用者限制」。"
 
-#: src/olympia/users/models.py:1178
+#: src/olympia/users/models.py:1183
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
 " which explains how we handle your information."
 msgstr "開始前，請先閱讀並接受我們的 Firefox 附加元件發行同意書，以及我們的審核規則與政策。Firefox 附加元件發行同意書當中亦包含我們的隱私權公告，解釋我們會如何處理您的資訊。"
 
-#: src/olympia/users/models.py:1192
+#: src/olympia/users/models.py:1197
 #, python-brace-format
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr "請先到 {url} 閱讀並接受我們的 Firefox 附加元件發行同意書，以及我們的審核規則與政策。"
 
-#: src/olympia/users/models.py:1243
+#: src/olympia/users/models.py:1248
 msgid "User Restriction History"
 msgstr "使用者限制記錄"
 

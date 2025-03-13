@@ -189,32 +189,32 @@ msgid ""
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
 
-#: src/olympia/accounts/serializers.py:133 src/olympia/bandwagon/serializers.py:98
+#: src/olympia/accounts/serializers.py:152 src/olympia/bandwagon/serializers.py:98
 msgid "No links are allowed."
 msgstr "ਕਿਸੇ ਲਿੰਕ ਦੀ ਇਜ਼ਾਜਤ ਨਹੀਂ।"
 
-#: src/olympia/accounts/serializers.py:139
+#: src/olympia/accounts/serializers.py:158
 msgid "This display name cannot be used."
 msgstr "ਇਹ ਡਿਸਪਲੇਅ ਨਾਂ ਵਰਤਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ।"
 
-#: src/olympia/accounts/serializers.py:148 src/olympia/addons/fields.py:366 src/olympia/devhub/views.py:1015
+#: src/olympia/accounts/serializers.py:167 src/olympia/addons/fields.py:366 src/olympia/devhub/views.py:1015
 msgid "Images must be either PNG or JPG."
 msgstr "ਤਸਵੀਰਾਂ PNG ਜਾਂ JPG ਹੋਣੀਆਂ ਚਾਹੀਦੀਆਂ।"
 
-#: src/olympia/accounts/serializers.py:152 src/olympia/addons/fields.py:371 src/olympia/devhub/views.py:1021
+#: src/olympia/accounts/serializers.py:171 src/olympia/addons/fields.py:371 src/olympia/devhub/views.py:1021
 msgid "Images cannot be animated."
 msgstr "ਤਸਵੀਰ ਐਨੀਮੇਟ ਨਹੀਂ ਹੋ ਸਕਦੀ।"
 
-#: src/olympia/accounts/serializers.py:157 src/olympia/devhub/views.py:1030
+#: src/olympia/accounts/serializers.py:176 src/olympia/devhub/views.py:1030
 #, python-format
 msgid "Please use images smaller than %dMB."
 msgstr "%dMB ਤੋਂ ਛੋਟੀਆਂ ਤਸਵੀਰਾਂ ਵਰਤੋਂ।"
 
-#: src/olympia/accounts/views.py:193
+#: src/olympia/accounts/views.py:194
 msgid "Need help?"
 msgstr "ਮਦਦ ਚਾਹੀਦੀ ਹੈ?"
 
-#: src/olympia/accounts/views.py:738
+#: src/olympia/accounts/views.py:731
 #, python-format
 msgid "Notification [%s] does not exist"
 msgstr "ਸੂਚਨਾ [%s] ਮੌਜੂਦ ਨਹੀਂ ਹੈ"
@@ -6819,39 +6819,39 @@ msgstr "ਤੁਸੀਂ ਸਿਰਫ਼ ਇੱਕ ਹੀ ਦਰਜ ਕਰ ਸਕ
 msgid "No user with that email."
 msgstr "ਇਸ ਈਮੇਲ ਨਾਲ ਕੋਈ ਵਰਤੋਂਕਾਰ ਨਹੀਂ।"
 
-#: src/olympia/users/models.py:576
+#: src/olympia/users/models.py:581
 #, python-brace-format
 msgid "Firefox user {id}"
 msgstr "Firefox ਵਰਤੋਂਕਾਰ {id}"
 
-#: src/olympia/users/models.py:822
+#: src/olympia/users/models.py:827
 #, fuzzy
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "ਇੱਕ ਜਾਇਜ IPv6 ਜਾਂ IPv6 ਸੀਆਈਡੀਆਰ ਨੈਟਵਰਕ ਰੇਂਜ ਦਰਜ ਕਰੋ, ਉਦਾਹਰਨ ਲਈ। 127.0.0.1/28"
 
-#: src/olympia/users/models.py:826
+#: src/olympia/users/models.py:831
 msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
 msgstr ""
 
-#: src/olympia/users/models.py:938
+#: src/olympia/users/models.py:943
 msgid "Email Pattern"
 msgstr "ਈਮੇਲ ਤਰਤੀਬ"
 
-#: src/olympia/users/models.py:941
+#: src/olympia/users/models.py:946
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr ""
 
-#: src/olympia/users/models.py:948
+#: src/olympia/users/models.py:953
 msgid "The email address used for your account is not allowed for submissions."
 msgstr ""
 
-#: src/olympia/users/models.py:1027
+#: src/olympia/users/models.py:1032
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
 "restrictions\" instead."
 msgstr ""
 
-#: src/olympia/users/models.py:1178
+#: src/olympia/users/models.py:1183
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
 " which explains how we handle your information."
@@ -6859,14 +6859,14 @@ msgstr ""
 "ਸ਼ੁਰੂ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ, ਕਿਰਪਾ ਕਰਕੇ ਸਾਡੇ Firefox ਐਡ-ਆਨ ਵੰਡ ਪ੍ਰਣਾਲੀ ਦੇ ਨਾਲ ਸਾਡੀ ਸਮੀਖਿਆ ਦੀਆਂ ਨੀਤੀਆਂ ਅਤੇ ਨਿਯਮਾਂ ਨੂੰ ਪੜ੍ਹੋ ਅਤੇ ਮਨਜ਼ੂਰ ਕਰੋ। Firefox ਐਡ-ਆਨ ਡਿਸਟਰੀਬਿਊਸ਼ਨ ਇਕਰਾਰਨਾਮਾ ਵੀ ਸਾਡੇ ਪਰਦੇਦਾਰੀ ਨੋਟਿਸ ਨਾਲ "
 "ਜੁੜਦਾ ਹੈ, ਜੋ ਦੱਸਦੀ ਹੈ ਕਿ ਅਸੀਂ ਤੁਹਾਡੀ ਜਾਣਕਾਰੀ ਨੂੰ ਕਿਵੇਂ ਚਲਾਉਂਦੇ ਹਾਂ।"
 
-#: src/olympia/users/models.py:1192
+#: src/olympia/users/models.py:1197
 #, python-brace-format
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr ""
 "ਸ਼ੁਰੂ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ, ਕਿਰਪਾ ਕਰਕੇ ਸਾਡੇ Firefox ਐਡ-ਆਨ ਵੰਡ ਪ੍ਰਣਾਲੀ ਦੇ ਨਾਲ ਸਾਡੀ ਸਮੀਖਿਆ ਦੀਆਂ ਨੀਤੀਆਂ ਅਤੇ ਨਿਯਮਾਂ ਨੂੰ ਪੜ੍ਹੋ ਅਤੇ ਮਨਜ਼ੂਰ ਕਰੋ। Firefox ਐਡ-ਆਨ ਡਿਸਟਰੀਬਿਊਸ਼ਨ ਇਕਰਾਰਨਾਮਾ ਵੀ ਸਾਡੇ ਪਰਦੇਦਾਰੀ ਨੋਟਿਸ ਨਾਲ "
 "ਜੁੜਦਾ ਹੈ, ਜੋ ਦੱਸਦੀ ਹੈ ਕਿ ਅਸੀਂ ਤੁਹਾਡੀ ਜਾਣਕਾਰੀ ਨੂੰ ਕਿਵੇਂ ਚਲਾਉਂਦੇ ਹਾਂ।"
 
-#: src/olympia/users/models.py:1243
+#: src/olympia/users/models.py:1248
 msgid "User Restriction History"
 msgstr "ਵਰਤੋਂਕਾਰ ਪਾਬੰਦੀ ਅਤੀਤ"
 

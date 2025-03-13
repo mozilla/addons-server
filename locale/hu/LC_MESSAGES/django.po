@@ -229,32 +229,32 @@ msgstr ""
 "\n"
 "Kivizsgáltuk a bejelentését és a kérdéses tartalmat, és megállapítottuk, hogy az sérti a Mozilla kiegészítőkre vonatkozó irányelveit (%(policy_document_url)s), ezért töröltük a tartalmat.\n"
 
-#: src/olympia/accounts/serializers.py:133 src/olympia/bandwagon/serializers.py:98
+#: src/olympia/accounts/serializers.py:152 src/olympia/bandwagon/serializers.py:98
 msgid "No links are allowed."
 msgstr "Hivatkozások nem engedélyezettek."
 
-#: src/olympia/accounts/serializers.py:139
+#: src/olympia/accounts/serializers.py:158
 msgid "This display name cannot be used."
 msgstr "Ez a megjelenítendő név nem használható."
 
-#: src/olympia/accounts/serializers.py:148 src/olympia/addons/fields.py:366 src/olympia/devhub/views.py:1015
+#: src/olympia/accounts/serializers.py:167 src/olympia/addons/fields.py:366 src/olympia/devhub/views.py:1015
 msgid "Images must be either PNG or JPG."
 msgstr "Az ikonnak PNG-nek vagy JPG-nek kell lennie."
 
-#: src/olympia/accounts/serializers.py:152 src/olympia/addons/fields.py:371 src/olympia/devhub/views.py:1021
+#: src/olympia/accounts/serializers.py:171 src/olympia/addons/fields.py:371 src/olympia/devhub/views.py:1021
 msgid "Images cannot be animated."
 msgstr "A kép nem lehet animált."
 
-#: src/olympia/accounts/serializers.py:157 src/olympia/devhub/views.py:1030
+#: src/olympia/accounts/serializers.py:176 src/olympia/devhub/views.py:1030
 #, python-format
 msgid "Please use images smaller than %dMB."
 msgstr "Használjon %dMB méretnél kisebb képeket."
 
-#: src/olympia/accounts/views.py:193
+#: src/olympia/accounts/views.py:194
 msgid "Need help?"
 msgstr "Segítségre van szüksége?"
 
-#: src/olympia/accounts/views.py:738
+#: src/olympia/accounts/views.py:731
 #, python-format
 msgid "Notification [%s] does not exist"
 msgstr "A(z) [%s] értesítés nem létezik"
@@ -6864,34 +6864,34 @@ msgstr "Csak egy IP-címet vagy hálózatot adhat meg."
 msgid "No user with that email."
 msgstr "Nincs ilyen felhasználó ezzel az e-mail-címmel."
 
-#: src/olympia/users/models.py:576
+#: src/olympia/users/models.py:581
 #, python-brace-format
 msgid "Firefox user {id}"
 msgstr "Firefox felhasználó {id}"
 
-#: src/olympia/users/models.py:822
+#: src/olympia/users/models.py:827
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "Adjon meg érvényes IPv4 vagy IPv6 CIDR hálózati tartományt, például 127.0.0.1/28"
 
-#: src/olympia/users/models.py:826
+#: src/olympia/users/models.py:831
 msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
 msgstr "Több, a szabályzatunkat sértő elemet küldtek be az Ön tartózkodási helyéről. Az IP-címe blokkolásra került."
 
-#: src/olympia/users/models.py:938
+#: src/olympia/users/models.py:943
 msgid "Email Pattern"
 msgstr "E-mail minta"
 
-#: src/olympia/users/models.py:941
+#: src/olympia/users/models.py:946
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr ""
 "Írja be a letiltandó teljes e-mail-címet, vagy használjon unix-stílusú helyettesítő karaktereket, például „*@example.com”. Ha le kell tiltania egy domaint, beleértve az összes aldomaint, akkor adjon"
 " hozzá egy második bejegyzést is, például „*@*.example.com”."
 
-#: src/olympia/users/models.py:948
+#: src/olympia/users/models.py:953
 msgid "The email address used for your account is not allowed for submissions."
 msgstr "A fiókjához használt e-mail-cím nem használható a beküldésekhez."
 
-#: src/olympia/users/models.py:1027
+#: src/olympia/users/models.py:1032
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
 "restrictions\" instead."
@@ -6899,7 +6899,7 @@ msgstr ""
 "Adja meg a blokkolandó eldobható e-mailcímeket biztosító tartományt. A helyettesítő karakterek nem támogatottak: ha ezekre van szüksége, vagy a teljes e-mailre, és nem csak a domain részre szeretne "
 "egyezést megadni, akkor használja inkább az „E-mail felhasználói korlátozások” lehetőséget."
 
-#: src/olympia/users/models.py:1178
+#: src/olympia/users/models.py:1183
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
 " which explains how we handle your information."
@@ -6907,12 +6907,12 @@ msgstr ""
 "Kezdés előtt olvassa el és fogadja el a Firefox kiegészítő-terjesztési megállapodásunkat, valamint az értékelési irányelveinket és szabályzatunkat. A Firefox kiegészítő-terjesztési megállapodás "
 "hivatkozik az adatvédelmi nyilatkozatra is, amely elmagyarázza, hogyan kezeljük az adatait."
 
-#: src/olympia/users/models.py:1192
+#: src/olympia/users/models.py:1197
 #, python-brace-format
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr "Kezdés előtt olvassa el és fogadja el a Firefox kiegészítő-terjesztési megállapodásunkat, valamint az értékelési irányelveinket és szabályzatunkat a(z) {url} felkeresésével"
 
-#: src/olympia/users/models.py:1243
+#: src/olympia/users/models.py:1248
 msgid "User Restriction History"
 msgstr "Felhasználói korlátozások előzményei"
 

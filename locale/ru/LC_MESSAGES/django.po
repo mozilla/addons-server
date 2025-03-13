@@ -230,32 +230,32 @@ msgstr ""
 "\n"
 "Мы рассмотрели ваше сообщение и данное содержимое, и обнаружили, что оно нарушает политику Mozilla (%(policy_document_url)s), и поэтому удалили это содержимое.\n"
 
-#: src/olympia/accounts/serializers.py:133 src/olympia/bandwagon/serializers.py:98
+#: src/olympia/accounts/serializers.py:152 src/olympia/bandwagon/serializers.py:98
 msgid "No links are allowed."
 msgstr "Ссылки не разрешены."
 
-#: src/olympia/accounts/serializers.py:139
+#: src/olympia/accounts/serializers.py:158
 msgid "This display name cannot be used."
 msgstr "Это отображаемое имя не может быть использовано."
 
-#: src/olympia/accounts/serializers.py:148 src/olympia/addons/fields.py:366 src/olympia/devhub/views.py:1015
+#: src/olympia/accounts/serializers.py:167 src/olympia/addons/fields.py:366 src/olympia/devhub/views.py:1015
 msgid "Images must be either PNG or JPG."
 msgstr "Изображения могут быть либо в PNG либо в JPG."
 
-#: src/olympia/accounts/serializers.py:152 src/olympia/addons/fields.py:371 src/olympia/devhub/views.py:1021
+#: src/olympia/accounts/serializers.py:171 src/olympia/addons/fields.py:371 src/olympia/devhub/views.py:1021
 msgid "Images cannot be animated."
 msgstr "Изображения не могут быть анимированы."
 
-#: src/olympia/accounts/serializers.py:157 src/olympia/devhub/views.py:1030
+#: src/olympia/accounts/serializers.py:176 src/olympia/devhub/views.py:1030
 #, python-format
 msgid "Please use images smaller than %dMB."
 msgstr "Пожалуйста, используйте изображения менее %dМБ."
 
-#: src/olympia/accounts/views.py:193
+#: src/olympia/accounts/views.py:194
 msgid "Need help?"
 msgstr "Нужна помощь?"
 
-#: src/olympia/accounts/views.py:738
+#: src/olympia/accounts/views.py:731
 #, python-format
 msgid "Notification [%s] does not exist"
 msgstr "Уведомление [%s] не существует"
@@ -6882,34 +6882,34 @@ msgstr "Вы можете ввести только что-то одно, IP-а�
 msgid "No user with that email."
 msgstr "Нет пользователя с таким почтовым адресом."
 
-#: src/olympia/users/models.py:576
+#: src/olympia/users/models.py:581
 #, python-brace-format
 msgid "Firefox user {id}"
 msgstr "Пользователь Firefox {id}"
 
-#: src/olympia/users/models.py:822
+#: src/olympia/users/models.py:827
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "Введите корректную IPv4 или IPv6 подсеть CIDR, например, 127.0.0.1/28"
 
-#: src/olympia/users/models.py:826
+#: src/olympia/users/models.py:831
 msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
 msgstr "Несколько материалов, нарушающих наши правила, были отправлены из вашего местоположения. IP-адрес заблокирован."
 
-#: src/olympia/users/models.py:938
+#: src/olympia/users/models.py:943
 msgid "Email Pattern"
 msgstr "Шаблон адреса электронной почты"
 
-#: src/olympia/users/models.py:941
+#: src/olympia/users/models.py:946
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr ""
 "Введите полный адрес электронной почты, который следует заблокировать, или используйте подстановочные знаки в стиле unix, например, \"*@example.com\". Если вам нужно заблокировать домен, включая "
 "поддомены, добавьте вторую запись, например, \"*@*.example.com\"."
 
-#: src/olympia/users/models.py:948
+#: src/olympia/users/models.py:953
 msgid "The email address used for your account is not allowed for submissions."
 msgstr "Адрес электронной почты, используемый вами в аккаунте, не может быть использован для отправки материалов."
 
-#: src/olympia/users/models.py:1027
+#: src/olympia/users/models.py:1032
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
 "restrictions\" instead."
@@ -6917,7 +6917,7 @@ msgstr ""
 "Для блокировки введите полный доступный домен адреса электронной почты. Wildcards не поддерживаются: если вам они необходимы, или вам нужно проверять соответствие всего адреса, а не только домена, "
 "используйте «Ограничение пользовательских адресов электронной почты»."
 
-#: src/olympia/users/models.py:1178
+#: src/olympia/users/models.py:1183
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
 " which explains how we handle your information."
@@ -6925,12 +6925,12 @@ msgstr ""
 "Перед началом, пожалуйста прочтите и примите наше Соглашение по распространению дополнений Firefox, а также наши Политики и Правила проверки. Соглашение по распространению дополнений Firefox также "
 "ссылается на Уведомление об использовании конфиденциальной информации, которое объясняет, как мы обрабатываем вашу информацию."
 
-#: src/olympia/users/models.py:1192
+#: src/olympia/users/models.py:1197
 #, python-brace-format
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr "Пожалуйста, прочитайте и примите наше Соглашение по распространению дополнений Firefox, а также наши Политики и правила проверки, посетив {url}"
 
-#: src/olympia/users/models.py:1243
+#: src/olympia/users/models.py:1248
 msgid "User Restriction History"
 msgstr "История ограничений пользователя"
 

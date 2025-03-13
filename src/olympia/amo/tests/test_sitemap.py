@@ -251,7 +251,7 @@ class TestAccountSitemap(TestCase):
         user_with_themes = user_factory()
         user_with_extensions = user_factory()
         user_with_both = user_factory()
-        user_factory(is_public=True)  # marked as public, but no addons.
+        user_factory(has_full_profile=True)  # marked as developer, but no addons.
         extension = addon_factory(users=(user_with_extensions, user_with_both))
         theme = addon_factory(
             type=amo.ADDON_STATICTHEME, users=(user_with_themes, user_with_both)
@@ -285,7 +285,7 @@ class TestAccountSitemap(TestCase):
         user_with_themes = user_factory()
         user_with_extensions = user_factory()
         user_with_both = user_factory()
-        user_factory(is_public=True)  # marked as public, but no addons.
+        user_factory(has_full_profile=True)  # marked as developer, but no addons.
         addon_factory(users=(user_with_extensions, user_with_both))
         addon_factory(
             type=amo.ADDON_STATICTHEME, users=(user_with_themes, user_with_both)
@@ -482,7 +482,7 @@ class TestAccountSitemap(TestCase):
         user_with_themes = user_factory()
         user_with_extensions = user_factory()
         user_with_both = user_factory()
-        user_factory(is_public=True)  # marked as public, but no addons.
+        user_factory(has_full_profile=True)  # marked as developer, but no addons.
         extension = addon_factory(
             users=(user_with_extensions, user_with_both),
             version_kw={'application': amo.ANDROID.id},
