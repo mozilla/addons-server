@@ -1098,7 +1098,7 @@ class Version(OnChangeMixin, ModelBase):
         # "It should apply to the <groups> that require a review to be badged"
         from olympia.promoted.models import PromotedApproval
 
-        promotions = self.addon.promoted_group()
+        promotions = self.addon.promoted_groups()
 
         if self != self.addon.current_version or (
             not promotions.exists()

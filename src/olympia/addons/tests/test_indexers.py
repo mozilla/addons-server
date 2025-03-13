@@ -514,9 +514,12 @@ class TestAddonIndexer(TestCase):
         # Promoted extension.
         self.addon = addon_factory(promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED)
         extracted = self._extract()
-        assert extracted['promoted']
-        assert extracted['promoted']['group_id'] == PROMOTED_GROUP_CHOICES.RECOMMENDED
-        assert extracted['promoted']['approved_for_apps'] == [
+
+        assert extracted['promoted'][0]
+        assert (
+            extracted['promoted'][0]['group_id'] == PROMOTED_GROUP_CHOICES.RECOMMENDED
+        )
+        assert extracted['promoted'][0]['approved_for_apps'] == [
             amo.FIREFOX.id,
             amo.ANDROID.id,
         ]
@@ -525,7 +528,7 @@ class TestAddonIndexer(TestCase):
         # Specific application.
         self.addon.promotedaddon.update(application_id=amo.FIREFOX.id)
         extracted = self._extract()
-        assert extracted['promoted']['approved_for_apps'] == [amo.FIREFOX.id]
+        assert extracted['promoted'][0]['approved_for_apps'] == [amo.FIREFOX.id]
         assert extracted['is_recommended'] is True
 
         # Promoted theme.
@@ -535,9 +538,11 @@ class TestAddonIndexer(TestCase):
         )
         featured_collection.add_addon(self.addon)
         extracted = self._extract()
-        assert extracted['promoted']
-        assert extracted['promoted']['group_id'] == PROMOTED_GROUP_CHOICES.RECOMMENDED
-        assert extracted['promoted']['approved_for_apps'] == [
+        assert extracted['promoted'][0]
+        assert (
+            extracted['promoted'][0]['group_id'] == PROMOTED_GROUP_CHOICES.RECOMMENDED
+        )
+        assert extracted['promoted'][0]['approved_for_apps'] == [
             amo.FIREFOX.id,
             amo.ANDROID.id,
         ]

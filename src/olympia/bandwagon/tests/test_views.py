@@ -254,7 +254,7 @@ class TestCollectionViewSetDetail(TestCase):
         self.collection.add_addon(addon_factory())
         self.collection.add_addon(addon_factory())
         # see TestCollectionAddonViewSetList.test_basic for the query breakdown
-        with self.assertNumQueries(37):
+        with self.assertNumQueries(33):
             response = self.client.get(self.url + '?with_addons')
         assert len(response.data['addons']) == 4
         patched_drf_setting = dict(settings.REST_FRAMEWORK)
@@ -1120,7 +1120,7 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         )
         self._test_response(expected_max_age=7200)
 
-    def _test_response(self, expected_num_queries=31, expected_max_age=None):
+    def _test_response(self, expected_num_queries=28, expected_max_age=None):
         with self.assertNumQueries(expected_num_queries):
             response = self.client.get(self.url)
         assert response['Content-Type'] == 'application/json'
@@ -1132,7 +1132,7 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
 
         # Tere is no caching so we should get an updated response with only 2 add-ons.
         self.collection.addons.remove(self.addon_a)
-        with self.assertNumQueries(expected_num_queries - 2):
+        with self.assertNumQueries(expected_num_queries - 1):
             response = self.client.get(self.url)
         assert response['Content-Type'] == 'application/json'
         assert response.status_code == 200
@@ -1140,7 +1140,7 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         assert get_max_age(response) == expected_max_age
 
     def test_basic(self):
-        with self.assertNumQueries(31):
+        with self.assertNumQueries(28):
             #  1. start savepoint
             #  2. get user
             #  3. get collections of user
@@ -1165,9 +1165,7 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
             # 22. l10n for licenses in all locales
             # 23. end savepoint
             # 24. approved promoted groups x3
-            # 27. promoted group information x3
-            # 30. promoted addons
-            # 31. promoted approvals for versions
+            # 28. promoted addons
             super().test_basic()
 
     def test_transforms(self):

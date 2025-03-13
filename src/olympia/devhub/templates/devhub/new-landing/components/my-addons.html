@@ -1,5 +1,5 @@
 {% macro render_status(addon) %}
-  {% set promoted_group = addon.promoted_group() %}
+  {% set promoted_group = addon.promoted_groups() %}
   {% if addon.status != amo.STATUS_DISABLED and addon.disabled_by_user %}
     {% set status_text = _('Invisible') %}
   {% elif addon.status == amo.STATUS_APPROVED and promoted_group.badged|python_any %}

@@ -586,7 +586,7 @@ class AddonSerializerOutputTestMixin:
             promoted_group=group,
         )
 
-        assert self.addon.promoted_group()
+        assert self.addon.promoted_groups()
 
         # v3 and v4 expect the promoted addon directly.
         gates = {self.request.version: ('promoted-groups-shim',)}

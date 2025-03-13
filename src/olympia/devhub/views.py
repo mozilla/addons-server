@@ -1210,7 +1210,7 @@ def version_delete(request, addon_id, addon):
     if not version.can_be_disabled_and_deleted():
         # Developers shouldn't be able to delete/disable the current version
         # of a promoted approved add-on.
-        group = addon.promoted_group()
+        group = addon.promoted_groups()
         msg = gettext(
             'The latest approved version of this %s add-on cannot '
             'be deleted or disabled because the previous version was not '
@@ -1588,7 +1588,7 @@ def _submit_upload(
         # If we're not showing the generic submit notification warning, show
         # one specific to pre review if the developer would be affected because
         # of its promoted group.
-        promoted_group = addon.promoted_group(currently_approved=False)
+        promoted_group = addon.promoted_groups(currently_approved=False)
         if (
             channel == amo.CHANNEL_LISTED and any(promoted_group.listed_pre_review)
         ) or (

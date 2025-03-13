@@ -513,7 +513,7 @@ class DeveloperVersionSerializer(VersionSerializer):
             ):
                 raise exceptions.ValidationError(gettext('File is already disabled.'))
             if not version.can_be_disabled_and_deleted():
-                group = version.addon.promoted_group()
+                group = version.addon.promoted_groups()
                 msg = gettext(
                     'The latest approved version of this %s add-on cannot be deleted '
                     'because the previous version was not approved for %s promotion. '
@@ -1026,7 +1026,7 @@ class AddonSerializer(AMOModelSerializer):
         ],
     )
     previews = PreviewSerializer(many=True, source='current_previews', read_only=True)
-    promoted = serializers.SerializerMethodField()
+    promoted = serializers.SerializerMethodField(source='cached_promoted_groups')
     ratings = serializers.SerializerMethodField()
     ratings_url = serializers.SerializerMethodField()
     review_url = serializers.SerializerMethodField()
@@ -1148,7 +1148,7 @@ class AddonSerializer(AMOModelSerializer):
         return data
 
     def get_promoted(self, obj):
-        promoted = obj.promoted
+        promoted = obj.cached_promoted_groups
         return PromotedGroupSerializer(
             many=True, read_only=True, instance=promoted, addon=obj
         ).data
@@ -1163,12 +1163,15 @@ class AddonSerializer(AMOModelSerializer):
             try:
                 return any(
                     PROMOTED_GROUP_CHOICES.RECOMMENDED == promotion.group_id
-                    for promotion in obj.promoted
+                    for promotion in obj.cached_promoted_groups
                 )
             except TypeError:
-                return PROMOTED_GROUP_CHOICES.RECOMMENDED == obj.promoted.group_id
+                return (
+                    PROMOTED_GROUP_CHOICES.RECOMMENDED
+                    == obj.cached_promoted_groups.group_id
+                )
 
-        return bool(obj.promoted and is_recommended(obj))
+        return bool(obj.cached_promoted_groups and is_recommended(obj))
 
     def get_has_privacy_policy(self, obj):
         return bool(getattr(obj, 'has_privacy_policy', obj.privacy_policy))
@@ -1583,6 +1586,7 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
 
         promoted = data.get('promoted', None)
         if promoted:
+            promoted = promoted[0]
             # set .approved_for_groups cached_property because it's used in
             # .approved_applications.
             approved_for_apps = promoted.get('approved_for_apps')

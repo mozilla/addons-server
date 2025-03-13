@@ -344,7 +344,7 @@
         </li>
       {% else %}
         {% if addon.type in (amo.ADDON_EXTENSION, amo.ADDON_LPAPP, amo.ADDON_DICT) %}
-          {% if channel == amo.CHANNEL_LISTED and addon.promoted_group(currently_approved=False).listed_pre_review|python_any %}
+          {% if channel == amo.CHANNEL_LISTED and addon.promoted_groups(currently_approved=False).listed_pre_review|python_any %}
           <li>
             <button id="auto_approval_disabled" class="disabled" disabled type="button">Listed Auto-Approval Disabled by Promoted group</button>
           </li>
@@ -377,7 +377,7 @@
                     data-toggle-button-selector="#disable_auto_approval_until_next_approval"
                     id="enable_auto_approval_until_next_approval" class="toggle" type="button">Enable Listed Auto-Approval Before Next Manual Approval</button>
           </li>
-          {% elif channel == amo.CHANNEL_UNLISTED and addon.promoted_group(currently_approved=False).unlisted_pre_review|python_any %}
+          {% elif channel == amo.CHANNEL_UNLISTED and addon.promoted_groups(currently_approved=False).unlisted_pre_review|python_any %}
           <li>
             <button id="auto_approval_disabled_unlisted" class="disabled" disabled type="button">Unlisted Auto-Approval Disabled by Promoted group</button>
           </li>

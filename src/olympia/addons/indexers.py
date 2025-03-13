@@ -664,7 +664,7 @@ class AddonIndexer:
 
         data['is_recommended'] = any(
             PROMOTED_GROUP_CHOICES.RECOMMENDED == promotion.group_id
-            for promotion in obj.promoted
+            for promotion in obj.cached_promoted_groups
         )
 
         data['previews'] = [
@@ -677,7 +677,7 @@ class AddonIndexer:
             for preview in obj.current_previews
         ]
 
-        data['promoted'] = (
+        data['promoted'] = [
             {
                 'group_id': promotion.group_id,
                 # store the app approvals because .approved_applications needs it.
@@ -685,8 +685,8 @@ class AddonIndexer:
                     app.id for app in obj.approved_applications_for(promotion)
                 ],
             }
-            for promotion in obj.promoted
-        )
+            for promotion in obj.cached_promoted_groups
+        ]
 
         data['ratings'] = {
             'average': obj.average_rating,

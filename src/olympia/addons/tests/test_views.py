@@ -5622,7 +5622,7 @@ class TestAddonSearchView(ESTestCase):
             promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
         )
         addon_factory(slug='other-addon', name='Other Addôn')
-        assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon.promoted_group().group_id
+        assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon.promoted_groups().group_id
         self.reindex(Addon)
 
         data = self.perform_search(self.url, {'featured': 'true'})
@@ -5647,7 +5647,7 @@ class TestAddonSearchView(ESTestCase):
             min=av_min,
             max=av_max,
         )
-        assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon.promoted_group().group_id
+        assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon.promoted_groups().group_id
         assert addon.promotedaddon.application_id is None  # i.e. all
         assert addon.approved_applications == [
             amo.FIREFOX,
@@ -5665,7 +5665,7 @@ class TestAddonSearchView(ESTestCase):
         )
         # This case is approved for all apps, but now only set for Firefox
         addon2.promotedaddon.update(application_id=amo.FIREFOX.id)
-        assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon2.promoted_group().group_id
+        assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon2.promoted_groups().group_id
         assert addon2.promotedaddon.application_id is amo.FIREFOX.id
         assert addon2.approved_applications == [amo.FIREFOX]
 
@@ -5690,7 +5690,7 @@ class TestAddonSearchView(ESTestCase):
         addon4.promotedaddon.update(application_id=amo.FIREFOX.id)
         addon4.promotedaddon.approve_for_version(addon4.current_version)
         addon4.promotedaddon.update(application_id=None)
-        assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon4.promoted_group().group_id
+        assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon4.promoted_groups().group_id
         assert addon4.promotedaddon.application_id is None  # i.e. all
         assert addon4.approved_applications == [amo.FIREFOX]
 
@@ -5706,7 +5706,7 @@ class TestAddonSearchView(ESTestCase):
         addon5.promotedaddon.update(application_id=amo.ANDROID.id)
         addon5.promotedaddon.approve_for_version(addon5.current_version)
         addon5.promotedaddon.update(application_id=None)
-        assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon5.promoted_group().group_id
+        assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon5.promoted_groups().group_id
         assert addon5.promotedaddon.application_id is None  # i.e. all
         assert addon5.approved_applications == [amo.ANDROID]
 
@@ -6645,8 +6645,8 @@ class TestAddonFeaturedView(ESTestCase):
     def test_basic(self):
         addon1 = addon_factory(promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED)
         addon2 = addon_factory(promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED)
-        assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon1.promoted_group().group_id
-        assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon2.promoted_group().group_id
+        assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon1.promoted_groups().group_id
+        assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon2.promoted_groups().group_id
         addon_factory()  # not recommended so shouldn't show up
         self.refresh()
 

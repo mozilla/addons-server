@@ -120,7 +120,7 @@ def call_signing(file_obj):
 
     # We are using a separate signer that adds the mozilla-recommendation.json
     # file.
-    promo_group = file_obj.addon.promoted_group(currently_approved=False)
+    promo_group = file_obj.addon.promoted_groups(currently_approved=False)
     promo_set = {
         promotion
         for promotion in promo_group

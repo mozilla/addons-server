@@ -155,7 +155,7 @@ def get_flags(addon, version):
         not in exclude_flags_by_channel.get(getattr(version, 'channel', None), ())
     ]
     # add in the promoted group flag and return
-    if promoted := addon.promoted_group(currently_approved=False):
+    if promoted := addon.promoted_groups(currently_approved=False):
         for group in promoted:
             flags.append((f'promoted-{group.api_name}', group.name))
     return flags
@@ -640,7 +640,7 @@ class AutoApprovalSummary(ModelBase):
     def check_is_promoted_prereview(cls, version):
         """Check whether the add-on is a promoted addon group that requires
         pre-review."""
-        promotions = version.addon.promoted_group(currently_approved=False)
+        promotions = version.addon.promoted_groups(currently_approved=False)
 
         return bool(
             promotions.exists()

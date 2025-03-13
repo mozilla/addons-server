@@ -4329,7 +4329,9 @@ class TestReview(ReviewBase):
         assert mock_sign_file.called
 
     @mock.patch('olympia.reviewers.utils.sign_file')
-    def test_approve_addon_for_unlisted_pre_review_promoted_group(self, mock_sign_file):
+    def test_approve_addon_for_unlisted_pre_review_promoted_groups(
+        self, mock_sign_file
+    ):
         reason = ReviewActionReason.objects.create(
             name='reason 1', is_active=True, canned_response='reason'
         )

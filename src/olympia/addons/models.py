@@ -1556,7 +1556,7 @@ class Addon(OnChangeMixin, ModelBase):
             ).exists()
         )
 
-    def promoted_group(self, *, currently_approved=True):
+    def promoted_groups(self, *, currently_approved=True):
         """Is the addon currently promoted for the current applications?
 
         Returns the group constant, or NOT_PROMOTED (which is falsey)
@@ -1576,8 +1576,8 @@ class Addon(OnChangeMixin, ModelBase):
         )
 
     @cached_property
-    def promoted(self):
-        promoted_group = self.promoted_group()
+    def cached_promoted_groups(self):
+        promoted_group = self.promoted_groups()
         if promoted_group:
             return promoted_group.all()
         else:
@@ -1658,7 +1658,7 @@ class Addon(OnChangeMixin, ModelBase):
     def can_be_compatible_with_all_fenix_versions(self):
         """Whether or not the addon is allowed to be compatible with all Fenix
         versions (i.e. it's a recommended/line extension for Android)."""
-        promotions = self.promoted
+        promotions = self.cached_promoted_groups
         approved_applications = self.approved_applications
 
         return (

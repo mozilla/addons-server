@@ -399,7 +399,7 @@ class ReviewHelper:
             self.version and self.version.channel == amo.CHANNEL_UNLISTED
         )
         version_is_listed = self.version and self.version.channel == amo.CHANNEL_LISTED
-        promoted_group = self.addon.promoted_group(currently_approved=False)
+        promoted_group = self.addon.promoted_groups(currently_approved=False)
         is_static_theme = self.addon.type == amo.ADDON_STATICTHEME
 
         # Default permissions / admin needed values if it's just a regular
@@ -920,7 +920,7 @@ class ReviewBase:
         file.save()
 
     def set_promoted(self, versions=None):
-        group = self.addon.promoted_group(currently_approved=False)
+        group = self.addon.promoted_groups(currently_approved=False)
         if versions is None:
             versions = [self.version]
         elif not versions:
