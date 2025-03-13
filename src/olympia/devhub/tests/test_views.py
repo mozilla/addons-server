@@ -7,15 +7,12 @@ from urllib.parse import quote, urlencode
 
 from django.conf import settings
 from django.core import mail
+from django.http import HttpResponseNotAllowed
 from django.test import RequestFactory
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.encoding import force_str
 from django.utils.translation import trim_whitespace
-
-from django.http import (
-    HttpResponseNotAllowed,
-)
 
 import freezegun
 import pytest

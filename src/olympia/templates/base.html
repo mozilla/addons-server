@@ -56,7 +56,7 @@
         {% block bodyattrs %}{% endblock %}>
 
     <div id="main-wrapper">
-      {% if switch_is_active('dev_exp_survey') and user.is_authenticated and user.is_survey_eligible(survey_id=amo.DEV_EXP_SURVEY_ALCHEMER_ID) %}
+      {% if user.is_authenticated and user.is_survey_eligible(survey_id=amo.DEV_EXP_SURVEY_ALCHEMER_ID) and switch_is_active('dev_exp_survey') %}
         <div id="dev-survey-banner" response-url="{{ url('devhub.survey_response', survey_id=amo.DEV_EXP_SURVEY_ALCHEMER_ID) }}">
           <div>
             Help us make things better!
