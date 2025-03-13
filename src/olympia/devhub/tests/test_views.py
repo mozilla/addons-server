@@ -9,6 +9,7 @@ from django.conf import settings
 from django.core import mail
 from django.test import RequestFactory
 from django.urls import reverse
+from django.utils import timezone
 from django.utils.encoding import force_str
 from django.utils.translation import trim_whitespace
 
@@ -39,7 +40,7 @@ from olympia.applications.models import AppVersion
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.devhub.decorators import dev_required
 from olympia.devhub.forms import APIKeyForm
-from olympia.devhub.models import BlogPost
+from olympia.devhub.models import BlogPost, SurveyResponse
 from olympia.devhub.tasks import validate
 from olympia.devhub.views import get_next_version_number
 from olympia.files.models import FileUpload
@@ -2497,3 +2498,67 @@ class TestVerifyEmail(TestCase):
             in doc.text()
         )
         assert 'Send another email' in doc.text()
+
+
+@override_switch('dev_exp_survey', active=True)
+class TestSurvey(TestCase):
+    def setUp(self):
+        super().setUp()
+        self.survey_id = amo.DEV_EXP_SURVEY_ALCHEMER_ID
+        self.url = reverse('devhub.addons')
+        self.user = user_factory()
+
+    def test_survey_response(self):
+        url = reverse('devhub.survey_response', kwargs={'survey_id': self.survey_id})
+
+        self.client.get(url)
+        assert not SurveyResponse.objects.all()
+
+        self.client.force_login(self.user)
+        self.client.get(url)
+        assert SurveyResponse.objects.get(user=self.user, survey_id=self.survey_id)
+
+    def test_dev_exp_survey_banner(self):
+        # non-authenticated users should not see the banner.
+        response = self.client.get(self.url, follow=True)
+        assert b'Take our quick survey' not in response.content
+
+        # neither should users without an addon
+        self.client.force_login(self.user)
+        response = self.client.get(self.url, follow=True)
+        assert b'Take our quick survey' not in response.content
+
+        # nor users with addons updated >30 days ago
+        self.addon = addon_factory(users=[self.user])
+        self.addon.last_updated = timezone.now() - timedelta(days=31)
+        self.addon.save()
+        response = self.client.get(self.url, follow=True)
+        assert b'Take our quick survey' not in response.content
+
+        # users who've updated an addon <30 days should be
+        # should be able to see the banner initially
+        self.addon.last_updated = timezone.now() - timedelta(days=29)
+        self.addon.save()
+        response = self.client.get(self.url, follow=True)
+        assert b'Take our quick survey' in response.content
+
+        # but not once they've responded or dismissed the banner
+        instance = SurveyResponse.objects.create(
+            user=self.user, survey_id=self.survey_id
+        )
+        response = self.client.get(self.url, follow=True)
+        assert b'Take our quick survey' not in response.content
+
+        # unless they last did so >180 days ago
+        instance.date_responded = timezone.now() - timedelta(days=181)
+        instance.save()
+        response = self.client.get(self.url, follow=True)
+        assert b'Take our quick survey' in response.content
+
+    @override_switch('dev_exp_survey', active=False)
+    def test_survey_waffle(self):
+        # survey banner should not appear if waffle is inactive
+        self.client.force_login(self.user)
+        self.addon = addon_factory(users=[self.user])
+        response = self.client.get(self.url, follow=True)
+        assert b'Take our quick survey' not in response.content

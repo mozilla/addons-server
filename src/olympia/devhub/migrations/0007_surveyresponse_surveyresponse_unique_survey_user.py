@@ -24,6 +24,7 @@ class Migration(migrations.Migration):
                 ('modified', models.DateTimeField(auto_now=True)),
                 ('id', olympia.amo.fields.PositiveAutoField(primary_key=True, serialize=False)),
                 ('survey_id', models.IntegerField(help_text='Alchemy identifier for the survey.')),
+                ('date_responded', models.DateTimeField(default=datetime.datetime.now)),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='surveyresponse', to=settings.AUTH_USER_MODEL)),
             ],
             bases=(olympia.amo.models.SaveUpdateMixin, models.Model),

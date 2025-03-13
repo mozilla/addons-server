@@ -707,7 +707,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             and not self.surveyresponse.filter(
                 user=self,
                 survey_id=survey_id,
-                modified__gte=(timezone.now() - timedelta(days=180)),
+                date_responded__gte=(timezone.now() - timedelta(days=180)),
             ).exists()
         )
 

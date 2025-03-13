@@ -47,6 +47,7 @@ class SurveyResponse(ModelBase):
     user = models.ForeignKey(
         UserProfile, on_delete=models.CASCADE, related_name='surveyresponse'
     )
+    date_responded = models.DateTimeField(default=datetime.now)
 
     class Meta:
         constraints = [
