@@ -148,13 +148,20 @@ class TestMinimalUserProfileSerializer(TestFullUserProfileSerializer):
             for field in MinimalUserProfileSerializer.nullable_fields:
                 assert data[field] is None
 
+    def test_addons(self):
+        with override_settings(DRF_API_GATES=self.gates):
+            super().test_addons()
+        data = self.serialize()
+        assert 'num_addons_listed' not in data
+        assert 'average_addon_rating' not in data
+
     def test_anonymous_username_display_name(self):
+        with override_settings(DRF_API_GATES=self.gates):
+            super().test_anonymous_username_display_name()
+
         data = self.serialize()
         assert 'has_anonymous_username' not in data
         assert 'has_anonymous_display_name' not in data
-
-        with override_settings(DRF_API_GATES=self.gates):
-            super().test_anonymous_username_display_name()
 
 
 class PermissionsTestMixin:

@@ -60,7 +60,7 @@ class TestBaseRatingSerializer(TestCase):
         assert result['user'] == {
             'id': self.user.pk,
             'name': str(self.user.name),
-            'url': None,
+            'url': absolutify(self.user.get_url_path()),
             'username': self.user.username,
         }
         assert result['version'] == {
@@ -113,7 +113,7 @@ class TestBaseRatingSerializer(TestCase):
         assert result['user'] == {
             'id': self.user.pk,
             'name': str(self.user.name),
-            'url': None,
+            'url': absolutify(self.user.get_url_path()),
             'username': self.user.username,
         }
         assert result['version'] == {
