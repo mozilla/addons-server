@@ -1,15 +1,14 @@
-import hashlib
 import re
 from collections import defaultdict
+
+from django.conf import settings
+from django.core.management.base import BaseCommand
+from django.template import loader
 
 import requests
 from django_statsd.clients import statsd
 from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.util.retry import Retry
-
-from django.conf import settings
-from django.core.management.base import BaseCommand, CommandError
-from django.template import loader
 
 from olympia.amo.utils import send_mail
 from olympia.core.languages import ALL_LANGUAGES
@@ -133,7 +132,7 @@ class Command(BaseCommand):
 
     def fetch_data(self):
         self.stdout.write(
-            f'Calling pontoon with {re.sub(r'\s', '', self.PONTOON_QUERY)}'
+            f'Calling pontoon with {re.sub(r"\s", "", self.PONTOON_QUERY)}'
         )
         session = requests.Session()
         adapter = HTTPAdapter(

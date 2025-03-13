@@ -127,7 +127,6 @@ jobs:
         with:
           digest: ${{ inputs.digest }}
           version: ${{ inputs.version }}
-          logs: true
           run: |
             exit 1
 
