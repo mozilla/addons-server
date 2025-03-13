@@ -2225,10 +2225,11 @@ def email_verification(request):
     return TemplateResponse(request, 'devhub/verify_email.html', context=data)
 
 
+@post_required
 @login_required
 def survey_response(request, survey_id):
-    obj, _ = SurveyResponse.objects.update_or_create(
+    SurveyResponse.objects.update_or_create(
         user=request.user,
         survey_id=survey_id,
     )
-    return http.HttpResponse(status=201 if obj else 500)
+    return http.HttpResponse(status=201)

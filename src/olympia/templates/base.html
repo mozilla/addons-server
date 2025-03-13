@@ -60,7 +60,7 @@
         <div id="dev-survey-banner" response-url="{{ url('devhub.survey_response', survey_id=amo.DEV_EXP_SURVEY_ALCHEMER_ID) }}">
           <div>
             Help us make things better!
-            <a target="_blank" href="https://survey.alchemer.com/s3/7953020/MV3-Developer-Sentiment-2024" class="survey-link">Take our quick survey</a> 🦊
+            <a target="_blank" href="{{amo.SURVEY_LINK[amo.DEV_EXP_SURVEY_ALCHEMER_ID]}}" class="survey-link">Take our quick survey</a> 🦊
           </div>
           <a href="#" class="survey-dismiss">
             ✕
