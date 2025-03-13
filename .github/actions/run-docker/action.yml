@@ -53,13 +53,15 @@ runs:
           ${{ inputs.run }}
         EOF
 
-    - name: Logs
-      if: ${{ inputs.logs }}
+    - name: Post Run (logs and exit code)
+      if: always()
       shell: bash
       run: |
-        docker compose logs
+        if [[ "${{ inputs.logs }}" == "true" ]]; then
+          docker compose logs
+        fi
 
         # If the run command failed, exit with a non-zero exit code
-        if [ ${{ steps.run.outcome }} != 'success' ]; then
+        if [ "${{ steps.run.outcome }}" != 'success' ]; then
           exit 1
         fi
