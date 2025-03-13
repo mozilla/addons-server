@@ -72,7 +72,6 @@ class TestGetAddonRecommendations(TestCase):
             '103@mozilla',
             '104@mozilla',
         ]
-        self.recommendation_server_mock.return_value = self.recommendation_guids
 
     def test_not_recommended(self):
         recommendations = get_addon_recommendations('a@b')
