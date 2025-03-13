@@ -60,7 +60,7 @@ from olympia.devhub.decorators import (
     two_factor_auth_required_if_non_theme,
 )
 from olympia.devhub.file_validation_annotations import insert_validation_message
-from olympia.devhub.models import BlogPost, RssKey
+from olympia.devhub.models import BlogPost, RssKey, SurveyResponse
 from olympia.devhub.utils import (
     extract_theme_properties,
     wizard_unsupported_properties,
@@ -2223,3 +2223,12 @@ def email_verification(request):
         data['button_text'] = get_button_text(data['state'])
 
     return TemplateResponse(request, 'devhub/verify_email.html', context=data)
+
+
+@login_required
+def survey_response(request, survey_id):
+    obj, _ = SurveyResponse.objects.update_or_create(
+        user=request.user,
+        survey_id=survey_id,
+    )
+    return http.HttpResponse(status=201 if obj else 500)

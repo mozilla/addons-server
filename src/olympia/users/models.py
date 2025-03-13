@@ -695,6 +695,22 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             suppressed_email=self.suppressed_email
         ).first()
 
+    def is_survey_eligible(self, survey_id):
+        if survey_id not in amo.ACTIVE_SURVEYS:
+            raise ValueError('Given survey_id is not a valid survey.')
+        # If developer has uploaded an add-on in the past 30 days, and
+        # has not responded/dismissed the survey in the past 180 days.
+        return (
+            self.addons.filter(
+                last_updated__gte=(timezone.now() - timedelta(days=30))
+            ).exists()
+            and not self.surveyresponse.filter(
+                user=self,
+                survey_id=survey_id,
+                modified__gte=(timezone.now() - timedelta(days=180)),
+            ).exists()
+        )
+
 
 class UserNotification(ModelBase):
     user = models.ForeignKey(
