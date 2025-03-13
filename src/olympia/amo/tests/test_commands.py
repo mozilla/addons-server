@@ -791,7 +791,7 @@ class TestCheckLocalesCompletionRate(TestCase):
                 status=200,
             )
             call_command('check_locales_completion_rate', stdout=io.StringIO())
-            len(responses_with_retries.calls) == 5
+            assert len(responses_with_retries.calls) == 5
             assert len(mail.outbox) == 1
             self._test_full_run_typical_response()
 
@@ -803,7 +803,7 @@ class TestCheckLocalesCompletionRate(TestCase):
             body=self.fake_successful_pontoon_response(),
         )
         call_command('check_locales_completion_rate', stdout=io.StringIO())
-        len(responses.calls) == 1
+        assert len(responses.calls) == 1
         assert len(mail.outbox) == 1
         self._test_full_run_typical_response()
 
@@ -813,16 +813,8 @@ class TestCheckLocalesCompletionRate(TestCase):
             'absent in one of our projects in Pontoon:\n- '
             + '\n- '.join(
                 (
-                    'Azerbaijani [az]',
-                    'Basque [eu]',
-                    'Bengali [bn]',
-                    'Gujarati (India) [gu-IN]',
-                    'Gujarati [gu]',
-                    'Hindi (India) [hi-IN]',
-                    'Macedonian [mk]',
+                    'Portuguese (Brazilian) [pt-BR]',
                     'Sinhala [si]',
-                    'Urdu [ur]',
-                    'Welsh [cy]',
                 )
             )
         )
@@ -832,9 +824,9 @@ class TestCheckLocalesCompletionRate(TestCase):
             'The following locales are above threshold and not yet enabled:\n- '
             + '\n- '.join(
                 (
-                    'Friulian [fur]',
-                    'Icelandic [is]',
-                    'Interlingua [ia]',
+                    'Latvian [lv]',
+                    'Lithuanian [lt]',
+                    'Mongolian [mn]',
                 )
             )
         )

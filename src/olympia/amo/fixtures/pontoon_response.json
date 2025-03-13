@@ -35,7 +35,7 @@
                     "totalStrings": 1725
                 },
                 {
-                    "approvedStrings": 1725,
+                    "approvedStrings": 75,
                     "locale": {
                         "code": "pt-BR",
                         "name": "Portuguese (Brazil)"
@@ -107,7 +107,7 @@
                     "totalStrings": 1725
                 },
                 {
-                    "approvedStrings": 1189,
+                    "approvedStrings": 189,
                     "locale": {
                         "code": "fa",
                         "name": "Persian"
@@ -139,7 +139,7 @@
                     "totalStrings": 1695
                 },
                 {
-                    "approvedStrings": 1720,
+                    "approvedStrings": 720,
                     "locale": {
                         "code": "af",
                         "name": "Afrikaans"
@@ -339,7 +339,7 @@
                     "totalStrings": 1725
                 },
                 {
-                    "approvedStrings": 1710,
+                    "approvedStrings": 710,
                     "locale": {
                         "code": "ast",
                         "name": "Asturian"
@@ -363,7 +363,7 @@
                     "totalStrings": 1725
                 },
                 {
-                    "approvedStrings": 1541,
+                    "approvedStrings": 541,
                     "locale": {
                         "code": "ga-IE",
                         "name": "Irish"
@@ -395,7 +395,7 @@
                     "totalStrings": 1725
                 },
                 {
-                    "approvedStrings": 1700,
+                    "approvedStrings": 600,
                     "locale": {
                         "code": "bs",
                         "name": "Bosnian"
@@ -459,7 +459,7 @@
                     "totalStrings": 1755
                 },
                 {
-                    "approvedStrings": 875,
+                    "approvedStrings": 75,
                     "locale": {
                         "code": "et",
                         "name": "Estonian"
@@ -475,7 +475,7 @@
                     "totalStrings": 1755
                 },
                 {
-                    "approvedStrings": 1780,
+                    "approvedStrings": 780,
                     "locale": {
                         "code": "mt",
                         "name": "Maltese"
@@ -544,7 +544,7 @@
         "amoFrontend": {
             "localizations": [
                 {
-                    "approvedStrings": 830,
+                    "approvedStrings": 30,
                     "locale": {
                         "code": "af",
                         "name": "Afrikaans"
@@ -584,7 +584,7 @@
                     "totalStrings": 837
                 },
                 {
-                    "approvedStrings": 830,
+                    "approvedStrings": 80,
                     "locale": {
                         "code": "ca",
                         "name": "Catalan"
@@ -744,7 +744,7 @@
                     "totalStrings": 837
                 },
                 {
-                    "approvedStrings": 802,
+                    "approvedStrings": 2,
                     "locale": {
                         "code": "fa",
                         "name": "Persian"
@@ -848,7 +848,7 @@
                     "totalStrings": 837
                 },
                 {
-                    "approvedStrings": 796,
+                    "approvedStrings": 96,
                     "locale": {
                         "code": "ast",
                         "name": "Asturian"
@@ -1016,7 +1016,7 @@
                     "totalStrings": 871
                 },
                 {
-                    "approvedStrings": 900,
+                    "approvedStrings": 0,
                     "locale": {
                         "code": "mt",
                         "name": "Maltese"

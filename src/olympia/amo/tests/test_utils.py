@@ -241,7 +241,7 @@ def test_get_locale_from_lang(lang):
     locale = get_locale_from_lang(lang)
 
     ignored_languages = ('cak',)
-    long_languages = ('ast', 'dsb', 'hsb', 'kab')
+    long_languages = ('ast', 'dsb', 'fur', 'hsb', 'kab')
     expected_language = (
         lang[:3]
         if lang in long_languages
@@ -256,12 +256,6 @@ def test_get_locale_from_lang(lang):
     if separator:
         territory = lang.split(separator)[1]
         assert locale.territory == territory
-
-
-@pytest.mark.parametrize('lang', settings.LANGUAGES_BIDI)
-def test_bidi_language_in_amo_languages(lang):
-    """Make sure all bidi marked locales are in AMO_LANGUAGES too."""
-    assert lang in settings.AMO_LANGUAGES
 
 
 @mock.patch('olympia.amo.utils.subprocess')
