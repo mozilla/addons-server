@@ -171,6 +171,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
+"\n"
+"Mozilla의 확장 기능 %(name)s에 대해 신고해 주셔서 감사합니다.\n"
+"\n"
+"신고와 질문 내용을 검토한 결과 Mozilla 정책 (%(policy_document_url)s)을 위반한 사유가 발견되어 그에 따라 해당 내용을 삭제하였습니다.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_addon_delayed.txt:5
 #, python-format
@@ -180,6 +184,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
 msgstr ""
+"\n"
+"Mozilla의 확장 기능 %(name)s에 대해 신고해 주셔서 감사합니다.\n"
+"\n"
+"신고와 문제가 된 내용을 검토한 결과 Mozilla 정책 (%(policy_document_url)s)을 위반한 사유가 발견되어 개발자에게 수정을 요청했습니다. 당사자들이 위반 사항을 바로잡지 않으면 해당 내용은 삭제하도록 하겠습니다.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_collection.txt:5
 #, python-format
@@ -346,7 +354,7 @@ msgstr "업로드가 유효하지 않습니다."
 msgid "File is already disabled."
 msgstr "파일이 이미 비활성화 되었습니다."
 
-#: src/olympia/addons/serializers.py:518 src/olympia/addons/views.py:737
+#: src/olympia/addons/serializers.py:518 src/olympia/addons/views.py:736
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr "이 %s 부가기능의 최신 승인 버전은 이전 버전이 %s 프로모션용으로 승인되지 않았기 때문에 삭제할 수 없습니다. 이에 대한 도움이 필요하면 AMO 관리자에게 문의하십시오."
@@ -399,11 +407,11 @@ msgstr "작성자로 추가하려면 계정에 표시 이름이 필요합니다.
 msgid "This slug cannot be used. Please choose another."
 msgstr "이 주소는 사용할 수 없습니다. 다른걸 사용해 주세요."
 
-#: src/olympia/addons/utils.py:43
+#: src/olympia/addons/utils.py:39
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "부가 기능 이름은 Mozilla 및 Firefox 상표를 포함할 수 없습니다."
 
-#: src/olympia/addons/utils.py:173
+#: src/olympia/addons/utils.py:130
 #, python-brace-format
 msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
 msgstr "{version_string} 버전은 이전에 승인된 {previous_version_string} 버전보다 높아야 합니다."
@@ -4239,7 +4247,7 @@ msgstr "리뷰 메모를 가져오는 중에 문제가 발생했습니다."
 msgid "Load older..."
 msgstr "불러오는 중..."
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:128 src/olympia/discovery/serializers.py:112
+#: src/olympia/devhub/templates/devhub/versions/list.html:128 src/olympia/discovery/serializers.py:102
 msgid "by"
 msgstr "제작: "
 

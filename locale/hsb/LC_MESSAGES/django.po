@@ -370,7 +370,7 @@ msgstr "Nahraće płaćiwe njeje."
 msgid "File is already disabled."
 msgstr "Dataja je hižo znjemóžnjena."
 
-#: src/olympia/addons/serializers.py:518 src/olympia/addons/views.py:737
+#: src/olympia/addons/serializers.py:518 src/olympia/addons/views.py:736
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
@@ -425,11 +425,11 @@ msgstr "Konto zwobraznjenske mjeno trjeba, prjedy hač da so jako awtor přidać
 msgid "This slug cannot be used. Please choose another."
 msgstr "Adresowe mjeno njeda so wužiwać. Prošu wubjerće druhe."
 
-#: src/olympia/addons/utils.py:43
+#: src/olympia/addons/utils.py:39
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Mjena přidatkow njemóźa wikowanske znamjo Mozilla abo Firefox wobsahować."
 
-#: src/olympia/addons/utils.py:173
+#: src/olympia/addons/utils.py:130
 #, python-brace-format
 msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
 msgstr "Wersija {version_string} dyrbi wjetša hač předchadna schwalena wersija {previous_version_string} być."
@@ -4366,7 +4366,7 @@ msgstr "Při wotwołowanju připomnjenkow přepruwowanjow je problem wustupił"
 msgid "Load older..."
 msgstr "Starše so začituja..."
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:128 src/olympia/discovery/serializers.py:112
+#: src/olympia/devhub/templates/devhub/versions/list.html:128 src/olympia/discovery/serializers.py:102
 msgid "by"
 msgstr "wot"
 

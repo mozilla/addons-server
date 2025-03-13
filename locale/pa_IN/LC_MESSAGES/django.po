@@ -328,7 +328,7 @@ msgstr "ਅੱਪਲੋਡ ਠੀਕ ਨਹੀਂ ਹੈ।"
 msgid "File is already disabled."
 msgstr "ਫ਼ਾਇਲ ਪਹਿਲਾਂ ਹੀ ਅਸਮਰੱਥ ਕੀਤੀ ਗਈ ਹੈ।"
 
-#: src/olympia/addons/serializers.py:518 src/olympia/addons/views.py:737
+#: src/olympia/addons/serializers.py:518 src/olympia/addons/views.py:736
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
@@ -381,11 +381,11 @@ msgstr "ਇਸ ਨੂੰ ਲੇਖਕ ਦੇ ਤੌਰ ਤੇ ਸ਼ਾਮਲ �
 msgid "This slug cannot be used. Please choose another."
 msgstr ""
 
-#: src/olympia/addons/utils.py:43
+#: src/olympia/addons/utils.py:39
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "ਐਡ-ਆਨ ਦੇ ਨਾਂ ਵਿੱਚ Mozilla ਜਾਂ Firefox ਟ੍ਰੇਡਮਾਰਕ ਸ਼ਾਮਲ ਨਹੀਂ ਹੋ ਸਕਦੇ ਹਨ।"
 
-#: src/olympia/addons/utils.py:173
+#: src/olympia/addons/utils.py:130
 #, python-brace-format
 msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
 msgstr ""
@@ -4255,7 +4255,7 @@ msgstr "ਸਮੀਖਿਆ ਨੋਟਸ ਨੂੰ ਮੁੜ ਪ੍ਰਾਪਤ �
 msgid "Load older..."
 msgstr "ਪੁਰਾਣੇ ਲੋਡ ਕਰੋ..."
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:128 src/olympia/discovery/serializers.py:112
+#: src/olympia/devhub/templates/devhub/versions/list.html:128 src/olympia/discovery/serializers.py:102
 msgid "by"
 msgstr "ਵੱਲੋਂ"
 

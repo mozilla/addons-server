@@ -371,7 +371,7 @@ msgstr "Il cjariament in rêt nol è valit."
 msgid "File is already disabled."
 msgstr "Il file al è za disativât."
 
-#: src/olympia/addons/serializers.py:518 src/olympia/addons/views.py:737
+#: src/olympia/addons/serializers.py:518 src/olympia/addons/views.py:736
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
@@ -426,11 +426,11 @@ msgstr "Par jessi zontât come autôr, l’account al à di jessi dotât di un n
 msgid "This slug cannot be used. Please choose another."
 msgstr "Nol è pussibil doprâchest slug. Sielç un altri."
 
-#: src/olympia/addons/utils.py:43
+#: src/olympia/addons/utils.py:39
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "I nons dai components adizionâi no puedin contignî lis marchis regjistradis di Mozilla o Firefox."
 
-#: src/olympia/addons/utils.py:173
+#: src/olympia/addons/utils.py:130
 #, python-brace-format
 msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
 msgstr "La version {version_string} e scugne jessi plui grande de version aprovade prime {previous_version_string}."
@@ -4386,7 +4386,7 @@ msgstr "O vin vût problemis tal recuperâ lis notis di revision"
 msgid "Load older..."
 msgstr "Cjarie plui vecjis…"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:128 src/olympia/discovery/serializers.py:112
+#: src/olympia/devhub/templates/devhub/versions/list.html:128 src/olympia/discovery/serializers.py:102
 msgid "by"
 msgstr "di"
 
@@ -5638,7 +5638,7 @@ msgstr "Personalize YouTube daûr dai tiei gurcj. Dai un gnûf aspiet, gnovis fu
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:649
 msgid "Changes the color of Firefox to match the appearance of any website."
-msgstr ""
+msgstr "Al cambie il colôr di Firefox in mût che al corispuindi al aspiet di cualsisei sît."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:656
@@ -5853,7 +5853,7 @@ msgstr "Viôt dutis lis estensions"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:986
 msgid "Productivity tools"
-msgstr ""
+msgstr "Struments pe produtivitât"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -6081,12 +6081,12 @@ msgstr "Viôt altris estensions par scomençâ sieltis dal nestri organic"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1104
 msgid "Twitch extensions"
-msgstr ""
+msgstr "Estensions par Twitch"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1106
 msgid "See more Twitch extension staff picks"
-msgstr ""
+msgstr "Scuvierç altris estensions par Twitch sieltis dal nestri organic"
 
 #: src/olympia/files/models.py:309
 msgid "Unreviewed"

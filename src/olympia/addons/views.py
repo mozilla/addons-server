@@ -104,10 +104,9 @@ from .serializers import (
     VersionSerializer,
 )
 from .utils import (
+    RECOMMENDATION_OUTCOME_CURATED,
     DeleteTokenSigner,
     get_addon_recommendations,
-    get_addon_recommendations_invalid,
-    is_outcome_recommended,
 )
 
 
@@ -1229,12 +1228,12 @@ class AddonRecommendationView(AddonSearchView):
     pagination_class = None
 
     def get_paginated_response(self, data):
-        data = data[:4]  # taar is only supposed to return 4 anyway.
+        data = data[:4]  # data is only supposed to be 4 anyway.
         return Response(
             OrderedDict(
                 [
-                    ('outcome', self.ab_outcome),
-                    ('fallback_reason', self.fallback_reason),
+                    ('outcome', RECOMMENDATION_OUTCOME_CURATED),
+                    ('fallback_reason', None),
                     ('page_size', 1),
                     ('page_count', 1),
                     ('count', len(data)),
@@ -1245,36 +1244,14 @@ class AddonRecommendationView(AddonSearchView):
             )
         )
 
-    def get_results_count(self, results):
-        try:
-            # Elasticsearch 7.x and higher
-            total = results.hits.total['value']
-        except TypeError:
-            # Elasticsearch 6.x and lower
-            total = results.hits.total
-        return int(total)
-
     def filter_queryset(self, qs):
         qs = super().filter_queryset(qs)
         guid_param = self.request.GET.get('guid')
         if not guid_param or not amo.ADDON_GUID_PATTERN.match(guid_param):
             raise exceptions.ParseError('Invalid guid parameter')
-        taar_enable = self.request.GET.get('recommended', '').lower() == 'true'
-        guids, self.ab_outcome, self.fallback_reason = get_addon_recommendations(
-            guid_param, taar_enable
-        )
+        guids = get_addon_recommendations(guid_param)
         recommended_qs = qs.query(query.Bool(must=[Q('terms', guid=guids)]))
-        results = recommended_qs.execute()
-        if self.get_results_count(results) != 4 and is_outcome_recommended(
-            self.ab_outcome
-        ):
-            (
-                guids,
-                self.ab_outcome,
-                self.fallback_reason,
-            ) = get_addon_recommendations_invalid(guid_param)
-            return qs.query(query.Bool(must=[Q('terms', guid=guids)]))
-        return results
+        return recommended_qs.execute()
 
     def paginate_queryset(self, queryset):
         # We don't need pagination for the fixed number of results.

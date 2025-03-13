@@ -1108,7 +1108,7 @@ class TestAdditionalDetailsForm(TestCase):
 
     def test_locales(self):
         form = forms.AdditionalDetailsForm(request=self.request, instance=self.addon)
-        assert form.fields['default_locale'].choices[0][0] == 'af'
+        assert form.fields['default_locale'].choices[0][0] == 'ar'
 
     def _get_tag_text(self):
         return [t.tag_text for t in self.addon.tags.all()]

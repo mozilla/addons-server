@@ -84,7 +84,7 @@ msgstr "Ker je bila odločitev, na katero se pritožujete, že razveljavljena, s
 
 #: src/olympia/abuse/templates/abuse/appeal.html:42
 msgid "The decision you are appealing has already been overridden by a new decision, so this decision can't be appealed."
-msgstr "Zoper sklep, na katerega se pritožujete, je že prišlo do razveljavitve novega sklepa, zato pritožba nanj ni mogoča."
+msgstr "Sklep, na katerega se pritožujete, je že bil razveljavljen z novim sklepom, zato pritožba nanj ni mogoča."
 
 #: src/olympia/abuse/templates/abuse/appeal.html:44
 msgid "This decision can't be appealed."
@@ -371,7 +371,7 @@ msgstr "Nalaganje je neveljavno."
 msgid "File is already disabled."
 msgstr "Datoteka je že onemogočena."
 
-#: src/olympia/addons/serializers.py:518 src/olympia/addons/views.py:737
+#: src/olympia/addons/serializers.py:518 src/olympia/addons/views.py:736
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr "Zadnje odobrene različice tega dodatka %s ni mogoče izbrisati, ker prejšnja različica ni bila odobrena za promocijo %s. Če potrebujete pomoč pri tem, se obrnite na skrbnike AMO."
@@ -424,11 +424,11 @@ msgstr "Da bo ta račun lahko dodan kot avtor, potrebuje prikazno ime."
 msgid "This slug cannot be used. Please choose another."
 msgstr "Te reglete ni mogoče uporabiti. Izberite drugačno."
 
-#: src/olympia/addons/utils.py:43
+#: src/olympia/addons/utils.py:39
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Imena dodatkov ne smejo vsebovati blagovnih znamk Mozilla ali Firefox."
 
-#: src/olympia/addons/utils.py:173
+#: src/olympia/addons/utils.py:130
 #, python-brace-format
 msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
 msgstr "Različica {version_string} mora biti novejša od prejšnje odobrene različice {previous_version_string}."
@@ -1752,7 +1752,7 @@ msgstr "Creative Commons Attribution-ShareAlike 4.0"
 
 #: src/olympia/constants/licenses.py:222
 msgid "The Unlicense"
-msgstr "Nelicenco"
+msgstr "Unlicense"
 
 #: src/olympia/constants/promoted.py:74
 msgid "Not Promoted"
@@ -3984,11 +3984,11 @@ msgstr "Razvrsti po:"
 #: src/olympia/devhub/templates/devhub/includes/macros.html:7
 #, python-format
 msgid "Allowed Markdown: %(allowed_markdown)s"
-msgstr "Dovoljeno zmanjšanje: %(allowed_markdown)s"
+msgstr "Dovoljene oznake Markdown: %(allowed_markdown)s"
 
 #: src/olympia/devhub/templates/devhub/includes/macros.html:8
 msgid "Some Markdown supported."
-msgstr "Nekaj podprtih Markdownov."
+msgstr "Podprte so nekatere oznake Markdown."
 
 #: src/olympia/devhub/templates/devhub/includes/macros.html:58
 msgid "Remove this application"
@@ -4352,7 +4352,7 @@ msgstr "Prišlo je do težave pri pridobivanju opomb pregleda"
 msgid "Load older..."
 msgstr "Naloži starejše ..."
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:128 src/olympia/discovery/serializers.py:112
+#: src/olympia/devhub/templates/devhub/versions/list.html:128 src/olympia/discovery/serializers.py:102
 msgid "by"
 msgstr "-"
 
@@ -5602,7 +5602,7 @@ msgstr "Prilagodite YouTube svojemu okusu. Dajte mu nov videz, nove funkcije in 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:649
 msgid "Changes the color of Firefox to match the appearance of any website."
-msgstr "Spremeni barvo Firefoxa, da se ujema z videzom kateregakoli spletnega mesta."
+msgstr "Usklajuje barvo Firefoxa z videzom kateregakoli spletnega mesta."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:656
@@ -6045,7 +6045,7 @@ msgstr "Več osebno izbranih razširitev za začetek"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1104
 msgid "Twitch extensions"
-msgstr "Razširitve Twitch"
+msgstr "Razširitve za Twitch"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1106

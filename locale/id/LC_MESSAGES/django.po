@@ -36,12 +36,12 @@ msgstr "Silakan jelaskan mengapa Anda meyakini keputusan ini salah, dan/atau tid
 
 #: src/olympia/abuse/models.py:1065
 msgid "User profile"
-msgstr ""
+msgstr "Profil pengguna"
 
 #: src/olympia/abuse/models.py:1394
 #, python-brace-format
 msgid "\"{}\" for {}"
-msgstr ""
+msgstr "\"{}\" untuk {}"
 
 #: src/olympia/abuse/serializers.py:29
 #, python-brace-format
@@ -54,16 +54,16 @@ msgstr "Nilai tidak valid"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:10 src/olympia/abuse/templates/abuse/appeal.html:15
 msgid "Appeal reviewer decision"
-msgstr ""
+msgstr "Mengajukan banding terhadap keputusan pemeriksa"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:16
 #, python-brace-format
 msgid "Decision {0}"
-msgstr ""
+msgstr "Keputusan {0}"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:20
 msgid "Thank you. Your appeal has been recorded."
-msgstr ""
+msgstr "Terima kasih. Banding Anda telah dicatat."
 
 #: src/olympia/abuse/templates/abuse/appeal.html:31 src/olympia/amo/templates/amo/fake_fxa_authorization.html:21
 msgid "OK"
@@ -71,7 +71,7 @@ msgstr "Oke"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:33 src/olympia/abuse/templates/abuse/appeal.html:41
 msgid "Thank you for your report."
-msgstr ""
+msgstr "Terima kasih atas laporan Anda."
 
 #: src/olympia/abuse/templates/abuse/appeal.html:37
 msgid ""
@@ -92,7 +92,7 @@ msgstr ""
 
 #: src/olympia/abuse/templates/abuse/emails/base_reporter.txt:1
 msgid "Hello,"
-msgstr ""
+msgstr "Halo,"
 
 #: src/olympia/abuse/templates/abuse/emails/base_reporter.txt:7
 msgid "Mozilla Add-ons Team"
@@ -313,7 +313,7 @@ msgstr "Terdaftar"
 
 #: src/olympia/addons/models.py:2379
 msgid "Add-on and collection paths need to end with \"/\""
-msgstr ""
+msgstr "Path koleksi dan pengaya harus diakhiri dengan \"/\""
 
 #: src/olympia/addons/serializers.py:303
 msgid "Built in licenses can not be updated."
@@ -327,7 +327,7 @@ msgstr "Unggahan tidak valid."
 msgid "File is already disabled."
 msgstr "Berkas telah dinonaktifkan."
 
-#: src/olympia/addons/serializers.py:518 src/olympia/addons/views.py:737
+#: src/olympia/addons/serializers.py:518 src/olympia/addons/views.py:736
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
@@ -380,11 +380,11 @@ msgstr "Akun ini membutuhkan nama sebelum dapat ditambahkan sebagai penulis."
 msgid "This slug cannot be used. Please choose another."
 msgstr "Slug ini tidak dapat digunakan. Silakan pilih yang lain."
 
-#: src/olympia/addons/utils.py:43
+#: src/olympia/addons/utils.py:39
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Nama pengaya tidak boleh mengandung merek dagang Mozilla atau Firefox."
 
-#: src/olympia/addons/utils.py:173
+#: src/olympia/addons/utils.py:130
 #, python-brace-format
 msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
 msgstr "Versi {version_string} harus lebih besar dari versi {previous_version_string} yang telah disetujui sebelumnya."
@@ -611,7 +611,7 @@ msgstr "Surel:"
 
 #: src/olympia/amo/templates/amo/fake_fxa_authorization.html:20
 msgid "Two-factor authentication"
-msgstr ""
+msgstr "Autentikasi dua faktor"
 
 #. abbreviation of 'previous'
 #: src/olympia/amo/templates/amo/paginator.html:5 src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:49
@@ -1014,9 +1014,9 @@ msgid "Account updated."
 msgstr "Akun diperbarui."
 
 #: src/olympia/constants/activity.py:415
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Account {user} deleted."
-msgstr "Akun diperbarui."
+msgstr "Akun {user} dihapus."
 
 #: src/olympia/constants/activity.py:481
 #, python-brace-format
@@ -1840,9 +1840,8 @@ msgid "Aborting"
 msgstr "Membatalkan"
 
 #: src/olympia/constants/scanners.py:60
-#, fuzzy
 msgid "Completed"
-msgstr "Tidak lengkap"
+msgstr "Lengkap"
 
 #: src/olympia/constants/scanners.py:61
 msgid "Scheduled"
@@ -2352,7 +2351,7 @@ msgstr "Kunci API dicabut"
 
 #: src/olympia/devhub/views.py:2158
 msgid "Verify email"
-msgstr ""
+msgstr "Verifikasi surel"
 
 #: src/olympia/devhub/views.py:2160
 msgid "Send another email"
@@ -2360,7 +2359,7 @@ msgstr ""
 
 #: src/olympia/devhub/views.py:2193
 msgid "Your email has been verified"
-msgstr ""
+msgstr "Surel Anda telah diverifikasi"
 
 #: src/olympia/devhub/widgets.py:81
 msgid "My add-on doesn't fit into any of the categories"
@@ -2445,7 +2444,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/suppressed_email.html:8
 msgid "Learn more"
-msgstr ""
+msgstr "Pelajari lebih lanjut"
 
 #: src/olympia/devhub/templates/devhub/validate_addon.html:12
 msgid "Use the field below to upload your add-on package."
@@ -2475,7 +2474,7 @@ msgstr "Divalidasi di:"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:3
 msgid "Email Address Verification"
-msgstr ""
+msgstr "Verifikasi Alamat Surel"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:63 src/olympia/devhub/templates/devhub/includes/addon_details.html:90 src/olympia/devhub/templates/devhub/verify_email.html:10
 msgid "Status:"
@@ -2483,7 +2482,7 @@ msgstr "Status:"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:12
 msgid "Your email address is verified."
-msgstr ""
+msgstr "Alamat surel Anda telah diverifikasi."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:16
 msgid "Please verify your email."
@@ -2491,7 +2490,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:20
 msgid "Could not verify email address. The verification link has expired."
-msgstr ""
+msgstr "Tidak dapat memverifikasi alamat surel. Tautan verifikasi telah kedaluwarsa."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:24
 msgid "We are sending an email to you, please be patient... <div class=\"loader\"></div> The page will automatically refresh."
@@ -3252,13 +3251,12 @@ msgid "Are you sure you wish to cancel and disable version?"
 msgstr "Yakin Anda ingin menghapus versi ini?"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html:40
-#, fuzzy
 msgid "Yes, Cancel"
-msgstr "Batal"
+msgstr "Ya, Batalkan"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html:41
 msgid "No, don't cancel"
-msgstr ""
+msgstr "Tidak, jangan batalkan"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:16
 msgid "Name and Summary:"
@@ -3970,7 +3968,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:8
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:10
 msgid "For developers"
@@ -3982,7 +3980,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:17
 msgid "Matrix"
-msgstr ""
+msgstr "Matrix"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:18
 #, fuzzy
@@ -4012,7 +4010,7 @@ msgstr "Daftar"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:52
 msgid "Thanks!"
-msgstr ""
+msgstr "Terima kasih!"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:53
 msgid "If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us."
@@ -4275,7 +4273,7 @@ msgstr "Kami menghadapi masalah menerima catatan ulasan"
 msgid "Load older..."
 msgstr "Memuat yang lebih lama..."
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:128 src/olympia/discovery/serializers.py:112
+#: src/olympia/devhub/templates/devhub/versions/list.html:128 src/olympia/discovery/serializers.py:102
 msgid "by"
 msgstr "oleh"
 
@@ -5789,7 +5787,7 @@ msgstr "Lihat semua ekstensi"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1004
 msgid "Popular themes"
-msgstr ""
+msgstr "Tema populer"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1006
@@ -5830,7 +5828,7 @@ msgstr "Disarankan"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1021
 msgid "See more recommended themes"
-msgstr ""
+msgstr "Lihat lebih banyak tema yang disarankan"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1024
@@ -5846,7 +5844,7 @@ msgstr "Lihat semua ekstensi"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1029
 msgid "Translation tools"
-msgstr ""
+msgstr "Alat penerjemahan"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1031
@@ -5869,7 +5867,7 @@ msgstr "Lihat semua ekstensi"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1039
 msgid "Tab managers"
-msgstr ""
+msgstr "Pengelola tab"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1041
@@ -6722,11 +6720,11 @@ msgstr ""
 
 #: src/olympia/templates/photon-footer.html:34
 msgid "Products"
-msgstr ""
+msgstr "Produk"
 
 #: src/olympia/templates/photon-footer.html:52
 msgid "Privacy"
-msgstr ""
+msgstr "Privasi"
 
 #: src/olympia/templates/photon-footer.html:53
 msgid "Cookies"

@@ -366,7 +366,7 @@ msgstr "上傳無效。"
 msgid "File is already disabled."
 msgstr "已停用檔案。"
 
-#: src/olympia/addons/serializers.py:518 src/olympia/addons/views.py:737
+#: src/olympia/addons/serializers.py:518 src/olympia/addons/views.py:736
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr "%s 這套附加元件的先前版本並未通過審核成為 %s 推薦項目，無法刪除此推薦擴充套件最新通過審核的版本。若您需要協助，請聯絡 AMO 管理員。"
@@ -419,11 +419,11 @@ msgstr "帳號需要先加入顯示名稱，才能被設定為作者。"
 msgid "This slug cannot be used. Please choose another."
 msgstr "這個 slug 無法使用，請改用其他的 slug。"
 
-#: src/olympia/addons/utils.py:43
+#: src/olympia/addons/utils.py:39
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "附加元件名稱中，不得包含 Mozilla 或 Firefox 商標。"
 
-#: src/olympia/addons/utils.py:173
+#: src/olympia/addons/utils.py:130
 #, python-brace-format
 msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
 msgstr "版本 {version_string} 必須大於先前通過審核的版本 {previous_version_string}。"
@@ -4281,7 +4281,7 @@ msgstr "取得審核註記時遇到問題"
 msgid "Load older..."
 msgstr "載入更舊的…"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:128 src/olympia/discovery/serializers.py:112
+#: src/olympia/devhub/templates/devhub/versions/list.html:128 src/olympia/discovery/serializers.py:102
 msgid "by"
 msgstr "作者:"
 

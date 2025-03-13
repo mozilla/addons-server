@@ -343,15 +343,15 @@ def test_outgoing_url_javascript_scheme():
 @pytest.mark.parametrize(
     'test_input,expected',
     [
-        ('ga-ie', 'ga-IE'),
+        ('es-es', 'es-ES'),
         # Capitalization is no big deal.
-        ('ga-IE', 'ga-IE'),
-        ('GA-ie', 'ga-IE'),
+        ('es-ES', 'es-ES'),
+        ('ES-es', 'es-ES'),
         # Go for something less specific.
         ('fr-FR', 'fr'),
         # Go for something more specific.
-        ('ga', 'ga-IE'),
-        ('ga-XX', 'ga-IE'),
+        ('es', 'es-ES'),
+        ('es-ES', 'es-ES'),
         # With multiple zh-XX choices, choose the first alphabetically.
         ('zh', 'zh-CN'),
         # Default to en-us.
@@ -364,14 +364,14 @@ def test_outgoing_url_javascript_scheme():
         # zh is a partial match but it's still preferred.
         ('zh, fr;q=0.8', 'zh-CN'),
         # Caps + q= sorting.
-        ('ga-IE,en;q=0.8,fr;q=0.6', 'ga-IE'),
+        ('es-ES,en;q=0.8,fr;q=0.6', 'es-ES'),
         ('fr-fr, en;q=0.8, es;q=0.2', 'fr'),
         # Consolidated languages.
         ('fr-CA', 'fr'),
     ],
 )
 def test_parse_accept_language(test_input, expected):
-    expected_locales = 'ga-IE', 'zh-TW', 'zh-CN', 'en-US', 'fr'
+    expected_locales = ('es-ES', 'zh-TW', 'zh-CN', 'en-US', 'fr')
     for lang in expected_locales:
         assert lang in settings.AMO_LANGUAGES, lang
     assert urlresolvers.lang_from_accept_header(test_input) == expected

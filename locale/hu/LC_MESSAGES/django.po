@@ -368,7 +368,7 @@ msgstr "A feltöltés nem érvényes."
 msgid "File is already disabled."
 msgstr "A fájl már le van tiltva."
 
-#: src/olympia/addons/serializers.py:518 src/olympia/addons/views.py:737
+#: src/olympia/addons/serializers.py:518 src/olympia/addons/views.py:736
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
@@ -423,11 +423,11 @@ msgstr "A fiókhoz megjelenítendő név szükséges, mielőtt szerzőként felv
 msgid "This slug cannot be used. Please choose another."
 msgstr "Ez a SEO webcím nem használható. Válasszon egy másikat."
 
-#: src/olympia/addons/utils.py:43
+#: src/olympia/addons/utils.py:39
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "A kiegészítőnevek nem tartalmazhatják a Mozilla vagy a Firefox védjegyeket."
 
-#: src/olympia/addons/utils.py:173
+#: src/olympia/addons/utils.py:130
 #, python-brace-format
 msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
 msgstr "Az új, {version_string} verziónak nagyobbnak kell lennie, mint a korábban jóváhagyott {previous_version_string} verzió."
@@ -4367,7 +4367,7 @@ msgstr "Probléma történt az ellenőrzési megjegyzések lekérésekor"
 msgid "Load older..."
 msgstr "Régebbi betöltése…"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:128 src/olympia/discovery/serializers.py:112
+#: src/olympia/devhub/templates/devhub/versions/list.html:128 src/olympia/discovery/serializers.py:102
 msgid "by"
 msgstr ":"
 

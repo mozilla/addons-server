@@ -372,7 +372,7 @@ msgstr "L’envoi n’est pas valide."
 msgid "File is already disabled."
 msgstr "Le fichier est déjà désactivé."
 
-#: src/olympia/addons/serializers.py:518 src/olympia/addons/views.py:737
+#: src/olympia/addons/serializers.py:518 src/olympia/addons/views.py:736
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
@@ -427,11 +427,11 @@ msgstr "Le compte nécessite un nom à afficher avant de pouvoir être ajouté e
 msgid "This slug cannot be used. Please choose another."
 msgstr "Ce raccourci ne peut pas être utilisé. Veuillez en choisir un autre."
 
-#: src/olympia/addons/utils.py:43
+#: src/olympia/addons/utils.py:39
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Les noms des modules ne peuvent contenir les marques déposées Mozilla ou Firefox."
 
-#: src/olympia/addons/utils.py:173
+#: src/olympia/addons/utils.py:130
 #, python-brace-format
 msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
 msgstr "La version {version_string} doit être supérieure à la précédente version approuvée {previous_version_string}."
@@ -4408,7 +4408,7 @@ msgstr "Une erreur s’est produite lors de la récupération des notes de revue
 msgid "Load older..."
 msgstr "Chargement…"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:128 src/olympia/discovery/serializers.py:112
+#: src/olympia/devhub/templates/devhub/versions/list.html:128 src/olympia/discovery/serializers.py:102
 msgid "by"
 msgstr "par "
 
