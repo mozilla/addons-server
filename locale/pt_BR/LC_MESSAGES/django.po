@@ -369,7 +369,7 @@ msgstr "O envio não é válido."
 msgid "File is already disabled."
 msgstr "O arquivo já está desativado."
 
-#: src/olympia/addons/serializers.py:518 src/olympia/addons/views.py:737
+#: src/olympia/addons/serializers.py:518 src/olympia/addons/views.py:736
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
@@ -424,11 +424,11 @@ msgstr "A conta precisa de um nome de exibição antes de poder ser adicionada c
 msgid "This slug cannot be used. Please choose another."
 msgstr "Este identificador não pode ser usado. Escolha outro."
 
-#: src/olympia/addons/utils.py:43
+#: src/olympia/addons/utils.py:39
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Os nomes das extensões não podem conter as marcas registradas Mozilla ou Firefox."
 
-#: src/olympia/addons/utils.py:173
+#: src/olympia/addons/utils.py:130
 #, python-brace-format
 msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
 msgstr "A versão {version_string} deve ser maior que a versão anterior aprovada {previous_version_string}."
@@ -557,7 +557,7 @@ msgstr "Insira uma rede IP4 ou IP6 válida."
 msgid "CIDR"
 msgstr "CIDR"
 
-#: src/olympia/amo/middleware.py:248 src/olympia/devhub/templates/devhub/index.html:60 src/olympia/templates/base.html:66
+#: src/olympia/amo/middleware.py:248 src/olympia/devhub/templates/devhub/index.html:61 src/olympia/templates/base.html:67
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Alguns recursos foram temporariamente desativados para realizamos a manutenção do site. Em breve estaremos de volta a plena capacidade."
 
@@ -4352,7 +4352,7 @@ msgstr "Nós tivemos um problema ao recuperar as notas da análise"
 msgid "Load older..."
 msgstr "Carregar mais antigos..."
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:128 src/olympia/discovery/serializers.py:112
+#: src/olympia/devhub/templates/devhub/versions/list.html:128 src/olympia/discovery/serializers.py:102
 msgid "by"
 msgstr "por"
 
@@ -6698,7 +6698,7 @@ msgstr "Versões da extensão por data"
 msgid "Mozilla Add-ons"
 msgstr "Mozilla Add-ons"
 
-#: src/olympia/templates/base.html:85
+#: src/olympia/templates/base.html:86
 msgid "Back to Add-ons"
 msgstr "Voltar as extensões"
 

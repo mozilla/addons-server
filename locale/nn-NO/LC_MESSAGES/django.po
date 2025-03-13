@@ -330,7 +330,7 @@ msgstr "Ugyldig opplasting."
 msgid "File is already disabled."
 msgstr "Fila er allereie deaktivert."
 
-#: src/olympia/addons/serializers.py:518 src/olympia/addons/views.py:737
+#: src/olympia/addons/serializers.py:518 src/olympia/addons/views.py:736
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr "Den siste godkjende versjonen av dette %s-tillegget kan ikkje slettast fordi den tidigare versjonen ikkje vart godkjend for %s-marknadsføring. Kontakt AMO Admins om du treng hjelp med dette."
@@ -383,11 +383,11 @@ msgstr "Kontoen treng eit visingsnamn før han kan leggjast til som ein opphavsm
 msgid "This slug cannot be used. Please choose another."
 msgstr ""
 
-#: src/olympia/addons/utils.py:43
+#: src/olympia/addons/utils.py:39
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Tilleggsnamn kan ikkje innehalde varemerka Mozilla eller Firefox."
 
-#: src/olympia/addons/utils.py:173
+#: src/olympia/addons/utils.py:130
 #, python-brace-format
 msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
 msgstr ""
@@ -516,7 +516,7 @@ msgstr "Skriv inn eit gyldig IP4- eller IP6-nettverk."
 msgid "CIDR"
 msgstr "CIDR"
 
-#: src/olympia/amo/middleware.py:248 src/olympia/devhub/templates/devhub/index.html:60 src/olympia/templates/base.html:66
+#: src/olympia/amo/middleware.py:248 src/olympia/devhub/templates/devhub/index.html:61 src/olympia/templates/base.html:67
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Nokre funksjonar er for tida utilgjengelege medan vi utfører rutinemessig vedlikehald av nettstaden. Vi kjem tilbake med full kapasitet om kort tid."
 
@@ -4265,7 +4265,7 @@ msgstr "Vi hadde eit problem med å hente vurderingsmerknadar"
 msgid "Load older..."
 msgstr "Last eldre…"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:128 src/olympia/discovery/serializers.py:112
+#: src/olympia/devhub/templates/devhub/versions/list.html:128 src/olympia/discovery/serializers.py:102
 msgid "by"
 msgstr "av"
 
@@ -6617,7 +6617,7 @@ msgstr "Programversjonar etter dato"
 msgid "Mozilla Add-ons"
 msgstr "Mozilla-utvidingar"
 
-#: src/olympia/templates/base.html:85
+#: src/olympia/templates/base.html:86
 msgid "Back to Add-ons"
 msgstr "Tilbake til utvidingar"
 

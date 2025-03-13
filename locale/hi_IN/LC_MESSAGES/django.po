@@ -329,7 +329,7 @@ msgstr ""
 msgid "File is already disabled."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:518 src/olympia/addons/views.py:737
+#: src/olympia/addons/serializers.py:518 src/olympia/addons/views.py:736
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
@@ -382,11 +382,11 @@ msgstr "लेखक के रूप में जोड़े जाने स
 msgid "This slug cannot be used. Please choose another."
 msgstr ""
 
-#: src/olympia/addons/utils.py:43
+#: src/olympia/addons/utils.py:39
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "ऐड-ऑन नामों में Mozilla या Firefox ट्रेडमार्कों को शामिल नहीं किया जा सकता है."
 
-#: src/olympia/addons/utils.py:173
+#: src/olympia/addons/utils.py:130
 #, python-brace-format
 msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
 msgstr ""
@@ -515,7 +515,7 @@ msgstr "एक मान्य IP4 या IP6 नेटवर्क दर्ज
 msgid "CIDR"
 msgstr "CIDR"
 
-#: src/olympia/amo/middleware.py:248 src/olympia/devhub/templates/devhub/index.html:60 src/olympia/templates/base.html:66
+#: src/olympia/amo/middleware.py:248 src/olympia/devhub/templates/devhub/index.html:61 src/olympia/templates/base.html:67
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "वेबसाइट के रखरखाव के दौरान कुछ सुविधाएं अस्थायी रूप से अक्षम होती हैं। हम जल्द ही पूर्ण क्षमता पर वापस आ जाएंगे।"
 
@@ -4231,7 +4231,7 @@ msgstr ""
 msgid "Load older..."
 msgstr "पुराना लोड करें..."
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:128 src/olympia/discovery/serializers.py:112
+#: src/olympia/devhub/templates/devhub/versions/list.html:128 src/olympia/discovery/serializers.py:102
 msgid "by"
 msgstr "द्वारा"
 
@@ -6594,7 +6594,7 @@ msgstr "दिनांक द्वारा अनुप्रयोग सं
 msgid "Mozilla Add-ons"
 msgstr "Mozilla ऐड-ऑन"
 
-#: src/olympia/templates/base.html:85
+#: src/olympia/templates/base.html:86
 msgid "Back to Add-ons"
 msgstr "ऐड-ऑन्स पर वापस जाएँ"
 

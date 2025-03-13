@@ -334,7 +334,7 @@ msgstr "การอัปโหลดไม่ถูกต้อง"
 msgid "File is already disabled."
 msgstr "ไฟล์ถูกปิดใช้งานอยู่แล้ว"
 
-#: src/olympia/addons/serializers.py:518 src/olympia/addons/views.py:737
+#: src/olympia/addons/serializers.py:518 src/olympia/addons/views.py:736
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
@@ -387,11 +387,11 @@ msgstr "บัญชีนี้ต้องการชื่อที่ใช
 msgid "This slug cannot be used. Please choose another."
 msgstr ""
 
-#: src/olympia/addons/utils.py:43
+#: src/olympia/addons/utils.py:39
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "ชื่อส่วนเสริมต้องไม่มีเครื่องหมายการค้าของ Mozilla หรือ Firefox"
 
-#: src/olympia/addons/utils.py:173
+#: src/olympia/addons/utils.py:130
 #, python-brace-format
 msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
 msgstr "เวอร์ชัน {version_string} จะต้องสูงกว่าเวอร์ชัน {previous_version_string} ที่ได้รับอนุมัติก่อนหน้านี้"
@@ -520,7 +520,7 @@ msgstr "ป้อนเครือข่าย IP4 หรือ IP6 ที่�
 msgid "CIDR"
 msgstr "CIDR"
 
-#: src/olympia/amo/middleware.py:248 src/olympia/devhub/templates/devhub/index.html:60 src/olympia/templates/base.html:66
+#: src/olympia/amo/middleware.py:248 src/olympia/devhub/templates/devhub/index.html:61 src/olympia/templates/base.html:67
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "บางคุณลักษณะถูกปิดใช้งานชั่วคราวในขณะที่เรากำลังทำการบำรุงรักษาเว็บไซต์ เราจะกลับมาเปิดให้ใช้เต็มรูปแบบอีกครั้งในไม่ช้า"
 
@@ -4229,7 +4229,7 @@ msgstr "เรามีปัญหาขณะเรียกอ่านหม
 msgid "Load older..."
 msgstr "โหลดที่เก่ากว่า..."
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:128 src/olympia/discovery/serializers.py:112
+#: src/olympia/devhub/templates/devhub/versions/list.html:128 src/olympia/discovery/serializers.py:102
 msgid "by"
 msgstr "โดย"
 
@@ -6589,7 +6589,7 @@ msgstr "รุ่นแอปพลิเคชันตามวันที่
 msgid "Mozilla Add-ons"
 msgstr "ส่วนเสริม Mozilla"
 
-#: src/olympia/templates/base.html:85
+#: src/olympia/templates/base.html:86
 msgid "Back to Add-ons"
 msgstr "กลับไปที่ส่วนเสริม"
 

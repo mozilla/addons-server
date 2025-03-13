@@ -150,7 +150,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         guid = '@create-version'
         qs = Addon.unfiltered.filter(guid=guid)
         assert not qs.exists()
-        with mock.patch('olympia.addons.utils.statsd.incr') as statsd_incr_mock:
+        with mock.patch('olympia.devhub.utils.statsd.incr') as statsd_incr_mock:
             response = self.request('PUT', guid=guid, version='1.0')
         assert response.status_code == 201
         assert qs.exists()
@@ -235,7 +235,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         assert existing.count() == 1
         assert existing[0].channel == amo.CHANNEL_LISTED
 
-        with mock.patch('olympia.addons.utils.statsd.incr') as statsd_incr_mock:
+        with mock.patch('olympia.devhub.utils.statsd.incr') as statsd_incr_mock:
             response = self.request(
                 'PUT',
                 self.url(self.guid, '3.0'),

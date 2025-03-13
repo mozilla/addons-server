@@ -370,7 +370,7 @@ msgstr "Вивантаження недійсне."
 msgid "File is already disabled."
 msgstr "Файл уже вимкнено."
 
-#: src/olympia/addons/serializers.py:518 src/olympia/addons/views.py:737
+#: src/olympia/addons/serializers.py:518 src/olympia/addons/views.py:736
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
@@ -424,11 +424,11 @@ msgstr "Обліковий запис повинен мати відображу
 msgid "This slug cannot be used. Please choose another."
 msgstr "Не може бути застосовано це закінчення. Виберіть інше."
 
-#: src/olympia/addons/utils.py:43
+#: src/olympia/addons/utils.py:39
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Назви додатків не можуть містити торговельні марки Mozilla чи Firefox."
 
-#: src/olympia/addons/utils.py:173
+#: src/olympia/addons/utils.py:130
 #, python-brace-format
 msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
 msgstr "Версія {version_string} повинна бути вищою за попередню затверджену версію {previous_version_string}."
@@ -557,7 +557,7 @@ msgstr "Введіть дійсну мережу IP4 або IP6."
 msgid "CIDR"
 msgstr "CIDR"
 
-#: src/olympia/amo/middleware.py:248 src/olympia/devhub/templates/devhub/index.html:60 src/olympia/templates/base.html:66
+#: src/olympia/amo/middleware.py:248 src/olympia/devhub/templates/devhub/index.html:61 src/olympia/templates/base.html:67
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Деякі функції тимчасово недоступні, поки ми проводимо обслуговування сайту. Незабаром ми повернемо повну функціональність."
 
@@ -4367,7 +4367,7 @@ msgstr "Виникла проблема з отриманням нотаток �
 msgid "Load older..."
 msgstr "Завантажити старші..."
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:128 src/olympia/discovery/serializers.py:112
+#: src/olympia/devhub/templates/devhub/versions/list.html:128 src/olympia/discovery/serializers.py:102
 msgid "by"
 msgstr "автор"
 
@@ -6713,7 +6713,7 @@ msgstr "Версії програми за датою"
 msgid "Mozilla Add-ons"
 msgstr "Додатки Mozilla"
 
-#: src/olympia/templates/base.html:85
+#: src/olympia/templates/base.html:86
 msgid "Back to Add-ons"
 msgstr "Назад до додатків"
 

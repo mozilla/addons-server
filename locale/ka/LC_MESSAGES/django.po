@@ -369,7 +369,7 @@ msgstr "ატვირთვა არამართებულია."
 msgid "File is already disabled."
 msgstr "ფაილი უკვე ამორთულია."
 
-#: src/olympia/addons/serializers.py:518 src/olympia/addons/views.py:737
+#: src/olympia/addons/serializers.py:518 src/olympia/addons/views.py:736
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr "უახლესი დამოწმებული ვერსიის %s დამატება ვერ წაიშლება, ვინაიდან წინა ვერსია არ დამოწმებულა %s რეკლამისთვის. გთხოვთ, დაუკავშირდეთ AMO-ს ხელმძღვანელობას ამ საკითხზე დახმარებისთვის."
@@ -422,11 +422,11 @@ msgstr "ანგარიში საჭიროებს გამოსა�
 msgid "This slug cannot be used. Please choose another."
 msgstr "ეს დაბოლოება ვერ იქნება გამოყენებული. გთხოვთ, შეარჩიოთ სხვა."
 
-#: src/olympia/addons/utils.py:43
+#: src/olympia/addons/utils.py:39
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "დამატების სახელში Mozilla-ს ან Firefox-ის სავაჭრო ნიშნების გამოყენება დაუშვებელია."
 
-#: src/olympia/addons/utils.py:173
+#: src/olympia/addons/utils.py:130
 #, python-brace-format
 msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
 msgstr "ვერსია {version_string} უნდა აღემატებოდეს წინა დამოწმებულ ვერსიას {previous_version_string}."
@@ -555,7 +555,7 @@ msgstr "მიუთითეთ მართებული IP4 ან IP6-ქ�
 msgid "CIDR"
 msgstr "CIDR"
 
-#: src/olympia/amo/middleware.py:248 src/olympia/devhub/templates/devhub/index.html:60 src/olympia/templates/base.html:66
+#: src/olympia/amo/middleware.py:248 src/olympia/devhub/templates/devhub/index.html:61 src/olympia/templates/base.html:67
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "ზოგიერთი შესაძლებლობები დროებით შეზღუდულია, ვებსაიტზე ტექნიკური სამუშაოების მიმდინარეობის გამო. მოკლე ხანში, სრული დატვირთვით ამუშავდება."
 
@@ -4357,7 +4357,7 @@ msgstr "ხარვეზებია განხილვის მონა�
 msgid "Load older..."
 msgstr "ძველი ჩატვირთვა..."
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:128 src/olympia/discovery/serializers.py:112
+#: src/olympia/devhub/templates/devhub/versions/list.html:128 src/olympia/discovery/serializers.py:102
 msgid "by"
 msgstr "ავტორი"
 
@@ -6702,7 +6702,7 @@ msgstr "პროგრამების ვერსიები თარი�
 msgid "Mozilla Add-ons"
 msgstr "Mozilla-ს დამატებები"
 
-#: src/olympia/templates/base.html:85
+#: src/olympia/templates/base.html:86
 msgid "Back to Add-ons"
 msgstr "დამატებების გვერდზე დაბრუნება"
 

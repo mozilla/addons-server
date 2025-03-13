@@ -327,7 +327,7 @@ msgstr "アップロードが無効です。"
 msgid "File is already disabled."
 msgstr "ファイルはすでに無効になっています。"
 
-#: src/olympia/addons/serializers.py:518 src/olympia/addons/views.py:737
+#: src/olympia/addons/serializers.py:518 src/olympia/addons/views.py:736
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr "この %s アドオンは、以前のバージョンが %s プロモーションで承認されなかったため、最新の承認済みバージョンを削除することができません。助けが必要な場合は AMO の管理者に問い合わせてください。"
@@ -380,11 +380,11 @@ msgstr "アカウントを作成者として追加するには、アカウント
 msgid "This slug cannot be used. Please choose another."
 msgstr "このスラグは使用できません。別のスラグを付けてください。"
 
-#: src/olympia/addons/utils.py:43
+#: src/olympia/addons/utils.py:39
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "アドオン名には Mozilla または Firefox の商標を含めることはできません。"
 
-#: src/olympia/addons/utils.py:173
+#: src/olympia/addons/utils.py:130
 #, python-brace-format
 msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
 msgstr "バージョン {version_string} は、以前に承認されたバージョン {previous_version_string} より大きくなければなりません。"
@@ -513,7 +513,7 @@ msgstr "正しい IPv4 または IPv6 のアドレスを入力してください
 msgid "CIDR"
 msgstr "CIDR"
 
-#: src/olympia/amo/middleware.py:248 src/olympia/devhub/templates/devhub/index.html:60 src/olympia/templates/base.html:66
+#: src/olympia/amo/middleware.py:248 src/olympia/devhub/templates/devhub/index.html:61 src/olympia/templates/base.html:67
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "サイトメンテナンスの間、いくつかの機能が一時的に無効になっています。まもなく復旧する予定です。"
 
@@ -4191,7 +4191,7 @@ msgstr "審査ノートの取得中に問題が発生しました"
 msgid "Load older..."
 msgstr "読み込み順..."
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:128 src/olympia/discovery/serializers.py:112
+#: src/olympia/devhub/templates/devhub/versions/list.html:128 src/olympia/discovery/serializers.py:102
 msgid "by"
 msgstr "作者:"
 
@@ -6604,7 +6604,7 @@ msgstr "日別アプリケーションバージョン"
 msgid "Mozilla Add-ons"
 msgstr "Mozilla アドオン"
 
-#: src/olympia/templates/base.html:85
+#: src/olympia/templates/base.html:86
 msgid "Back to Add-ons"
 msgstr "アドオンのページへ戻る"
 

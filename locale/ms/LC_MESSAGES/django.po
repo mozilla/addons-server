@@ -328,7 +328,7 @@ msgstr ""
 msgid "File is already disabled."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:518 src/olympia/addons/views.py:737
+#: src/olympia/addons/serializers.py:518 src/olympia/addons/views.py:736
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
@@ -382,11 +382,11 @@ msgstr ""
 msgid "This slug cannot be used. Please choose another."
 msgstr ""
 
-#: src/olympia/addons/utils.py:43
+#: src/olympia/addons/utils.py:39
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Nama add-on tidak boleh mengandungi tanda dagangan Mozilla atau Firefox."
 
-#: src/olympia/addons/utils.py:173
+#: src/olympia/addons/utils.py:130
 #, python-brace-format
 msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
 msgstr ""
@@ -515,7 +515,7 @@ msgstr ""
 msgid "CIDR"
 msgstr ""
 
-#: src/olympia/amo/middleware.py:248 src/olympia/devhub/templates/devhub/index.html:60 src/olympia/templates/base.html:66
+#: src/olympia/amo/middleware.py:248 src/olympia/devhub/templates/devhub/index.html:61 src/olympia/templates/base.html:67
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Beberapa ciri dinyahdayakan buat sementara waktu sementara kami melakukan penyelenggaraan laman web. Kami akan kembali ke kapasiti penuh tidak lama lagi."
 
@@ -4283,7 +4283,7 @@ msgstr "Kami ada masalah mendapatkan nota semakan"
 msgid "Load older..."
 msgstr "Muatkan yang terdahulu..."
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:128 src/olympia/discovery/serializers.py:112
+#: src/olympia/devhub/templates/devhub/versions/list.html:128 src/olympia/discovery/serializers.py:102
 msgid "by"
 msgstr "oleh"
 
@@ -6725,7 +6725,7 @@ msgstr "Versi Aplikasi mengikut Tarikh"
 msgid "Mozilla Add-ons"
 msgstr "Add-ons Mozilla"
 
-#: src/olympia/templates/base.html:85
+#: src/olympia/templates/base.html:86
 msgid "Back to Add-ons"
 msgstr "Kembali ke Add-ons"
 

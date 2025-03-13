@@ -328,7 +328,7 @@ msgstr "O carregamento não é válido."
 msgid "File is already disabled."
 msgstr "O ficheiro já está desativado."
 
-#: src/olympia/addons/serializers.py:518 src/olympia/addons/views.py:737
+#: src/olympia/addons/serializers.py:518 src/olympia/addons/views.py:736
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
@@ -381,11 +381,11 @@ msgstr "A conta precisa de um nome de exibição antes de poder ser adicionada c
 msgid "This slug cannot be used. Please choose another."
 msgstr "Este identificador não pode ser utilizado. Por favor, escolha outro."
 
-#: src/olympia/addons/utils.py:43
+#: src/olympia/addons/utils.py:39
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Nomes de extras não podem conter as marcas registadas Mozilla ou Firefox."
 
-#: src/olympia/addons/utils.py:173
+#: src/olympia/addons/utils.py:130
 #, python-brace-format
 msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
 msgstr "A versão {version_string} deve ser superior à versão {previous_version_string} aprovada anteriormente."
@@ -514,7 +514,7 @@ msgstr "Insira uma rede IP4 ou IP6 válida."
 msgid "CIDR"
 msgstr "CIDR"
 
-#: src/olympia/amo/middleware.py:248 src/olympia/devhub/templates/devhub/index.html:60 src/olympia/templates/base.html:66
+#: src/olympia/amo/middleware.py:248 src/olympia/devhub/templates/devhub/index.html:61 src/olympia/templates/base.html:67
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Algumas funcionalidades estão temporariamente desativadas enquanto efetuamos uma manutenção ao site. Voltamos dentro de alguns momentos com todas as funcionalidades."
 
@@ -965,7 +965,7 @@ msgstr "{addon} está agora licenciado sob {0}."
 #: src/olympia/constants/activity.py:346
 #, python-brace-format
 msgid "{addon} policy changed."
-msgstr "{addon} política alterada."
+msgstr "Política de {addon} alterada."
 
 #: src/olympia/constants/activity.py:353
 #, fuzzy, python-brace-format
@@ -4291,7 +4291,7 @@ msgstr "Nós tivemos um problema ao obter as notas da revisão"
 msgid "Load older..."
 msgstr "Carregar mais antigas..."
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:128 src/olympia/discovery/serializers.py:112
+#: src/olympia/devhub/templates/devhub/versions/list.html:128 src/olympia/discovery/serializers.py:102
 msgid "by"
 msgstr "por"
 
@@ -6647,7 +6647,7 @@ msgstr "Versões da aplicação por data"
 msgid "Mozilla Add-ons"
 msgstr "Extras da Mozilla"
 
-#: src/olympia/templates/base.html:85
+#: src/olympia/templates/base.html:86
 msgid "Back to Add-ons"
 msgstr "Voltar aos extras"
 

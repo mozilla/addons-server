@@ -1,0 +1,100 @@
+name: CI Completed
+
+on:
+  workflow_run:
+    workflows: CI
+    types: [completed]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name}}-${{ github.ref}}
+  cancel-in-progress: true
+
+jobs:
+  context:
+    runs-on: ubuntu-latest
+
+    outputs:
+      is_fork: ${{ steps.context.outputs.is_fork }}
+      is_default_branch: ${{ steps.context.outputs.is_default_branch }}
+
+      event: ${{ github.event.workflow_run.event}}
+      workflow_id: ${{ github.event.workflow_run.id }}
+      workflow_url: ${{ github.event.workflow_run.html_url}}
+      actor: ${{ github.event.workflow_run.triggering_actor.login }}
+      title: ${{ github.event.workflow_run.display_title }}
+      branch: ${{ github.event.workflow_run.head_branch }}
+      repo_url: ${{ github.server_url }}/${{ github.repository }}
+
+      sha: ${{ steps.ref.outputs.sha }}
+      conclusion: ${{ steps.ref.outputs.conclusion }}
+      commit_short: ${{ steps.ref.outputs.commit_short }}
+      emoji: ${{ steps.ref.outputs.emoji }}
+
+    steps:
+      - uses: actions/checkout@v4
+      - id: context
+        uses: ./.github/actions/context
+      - id: ref
+        shell: bash
+        run: |
+          sha="${{ github.event.workflow_run.head_sha }}"
+          conclusion="${{ github.event.workflow_run.conclusion }}"
+
+          commit_short=$(echo "$sha" | cut -c1-7)
+
+          if [[ "$conclusion" == "success" ]]; then
+            emoji=":white_check_mark:"
+          elif [[ "$conclusion" == "cancelled" ]]; then
+            emoji=":github-actions-cancelled:"
+          else
+            emoji=":x:"
+          fi
+
+          echo "sha=$sha" >> $GITHUB_OUTPUT
+          echo "conclusion=$conclusion" >> $GITHUB_OUTPUT
+          echo "commit_short=$commit_short" >> $GITHUB_OUTPUT
+          echo "emoji=$emoji" >> $GITHUB_OUTPUT
+          cat $GITHUB_OUTPUT
+
+  slack_notification_master_push:
+    needs: context
+    if: |
+      needs.context.outputs.is_default_branch == 'true' &&
+      needs.context.outputs.is_fork == 'false' &&
+      needs.context.outputs.event == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: mozilla/addons/.github/actions/slack-workflow-notification@main
+        with:
+          slack_token: ${{ secrets.SLACK_TOKEN }}
+          slack_channel: ${{ secrets.SLACK_ADDONS_PRODUCTION_CHANNEL }}
+          emoji: ${{ needs.context.outputs.emoji }}
+          actor: ${{ needs.context.outputs.actor }}
+          conclusion: ${{ needs.context.outputs.conclusion }}
+          workflow_id: ${{ needs.context.outputs.workflow_id }}
+          workflow_url: ${{ needs.context.outputs.workflow_url }}
+          event: ${{ needs.context.outputs.event }}
+          env: dev
+          ref: ${{ format('{0} ({1}) {2}', needs.context.outputs.branch, needs.context.outputs.commit_short, needs.context.outputs.title) }}
+          ref_link: ${{ format('{0}/commit/{1}', needs.context.outputs.repo_url, needs.context.outputs.sha) }}
+
+  slack_notification_release:
+    needs: context
+    if: |
+      needs.context.outputs.is_fork == 'false' &&
+      needs.context.outputs.event == 'release'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: mozilla/addons/.github/actions/slack-workflow-notification@main
+        with:
+          slack_token: ${{ secrets.SLACK_TOKEN }}
+          slack_channel: ${{ secrets.SLACK_ADDONS_PRODUCTION_CHANNEL }}
+          emoji: ${{ needs.context.outputs.emoji }}
+          actor: ${{ needs.context.outputs.actor }}
+          conclusion: ${{ needs.context.outputs.conclusion }}
+          workflow_id: ${{ needs.context.outputs.workflow_id }}
+          workflow_url: ${{ needs.context.outputs.workflow_url }}
+          event: ${{ needs.context.outputs.event }}
+          env: production
+          ref: ${{ format('{0}', needs.context.outputs.branch) }}
+          ref_link: ${{ format('{0}/releases/tag/{1}', needs.context.outputs.repo_url, needs.context.outputs.branch) }}

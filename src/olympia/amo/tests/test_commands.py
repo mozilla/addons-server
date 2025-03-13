@@ -1,15 +1,19 @@
 import io
+import json
 import os
 from importlib import import_module
 from unittest import mock
 
 from django.conf import settings
+from django.core import mail
 from django.core.management import call_command
 from django.core.management.base import CommandError
 from django.test.utils import override_settings
 
 import pytest
+import responses
 from freezegun import freeze_time
+from responses import registries
 
 from olympia.amo.management import BaseDataCommand, storage_structure
 from olympia.amo.tests import TestCase, user_factory
@@ -746,3 +750,148 @@ class TestMonitorsCommand(BaseTestDataCommand):
         call_command(
             'monitors', services=['database', 'success'], attempts=succeed_after
         )
+
+
+class TestCheckLocalesCompletionRate(TestCase):
+    expected_special_locales = (
+        'ar',
+        'de',
+        'es-ES',
+        'fr',
+        'he',
+        'it',
+        'ja',
+        'pl',
+    )
+
+    def fake_successful_pontoon_response(self):
+        root = os.path.join(settings.ROOT, 'src/olympia/amo/fixtures/')
+        return open(os.path.join(root, 'pontoon_response.json')).read()
+
+    def test_max_retries(self):
+        with responses.RequestsMock(
+            registry=registries.OrderedRegistry
+        ) as responses_with_retries:
+            responses_with_retries.get(
+                'https://pontoon.mozilla.org/graphql', status=504
+            )
+            responses_with_retries.get(
+                'https://pontoon.mozilla.org/graphql', status=503
+            )
+            responses_with_retries.get(
+                'https://pontoon.mozilla.org/graphql', status=500
+            )
+            responses_with_retries.get(
+                'https://pontoon.mozilla.org/graphql', status=502
+            )
+            responses_with_retries.get(
+                'https://pontoon.mozilla.org/graphql',
+                content_type='application/json',
+                body=self.fake_successful_pontoon_response(),
+                status=200,
+            )
+            call_command('check_locales_completion_rate', stdout=io.StringIO())
+            assert len(responses_with_retries.calls) == 5
+            assert len(mail.outbox) == 1
+            self._test_full_run_typical_response()
+
+    def test_full_run_typical_response(self):
+        responses.add(
+            responses.GET,
+            'https://pontoon.mozilla.org/graphql',
+            content_type='application/json',
+            body=self.fake_successful_pontoon_response(),
+        )
+        call_command('check_locales_completion_rate', stdout=io.StringIO())
+        assert len(responses.calls) == 1
+        assert len(mail.outbox) == 1
+        self._test_full_run_typical_response()
+
+    def _test_full_run_typical_response(self):
+        expected_below = (
+            'The following locales are below threshold of 40% or completely '
+            'absent in one of our projects in Pontoon:\n- '
+            + '\n- '.join(
+                (
+                    'Portuguese (Brazilian) [pt-BR]',
+                    'Sinhala [si]',
+                )
+            )
+        )
+        assert expected_below in mail.outbox[0].body
+
+        expected_above = (
+            'The following locales are above threshold and not yet enabled:\n- '
+            + '\n- '.join(
+                (
+                    'Latvian [lv]',
+                    'Lithuanian [lt]',
+                    'Mongolian [mn]',
+                )
+            )
+        )
+        assert expected_above in mail.outbox[0].body
+
+    def test_full_run_empty_response(self):
+        responses.add(
+            responses.GET,
+            'https://pontoon.mozilla.org/graphql',
+            content_type='application/json',
+            body=json.dumps({}),
+        )
+        call_command('check_locales_completion_rate', stdout=io.StringIO())
+        assert len(responses.calls) == 1
+        assert len(mail.outbox) == 1
+        self._test_full_run_empty_response()
+
+    def test_full_run_completely_empty_response(self):
+        responses.add(
+            responses.GET,
+            'https://pontoon.mozilla.org/graphql',
+            content_type='application/json',
+            body=json.dumps(
+                {
+                    'data': {
+                        'amo': {'localizations': []},
+                        'amoFrontend': {'localizations': []},
+                    }
+                }
+            ),
+        )
+        call_command('check_locales_completion_rate', stdout=io.StringIO())
+        assert len(responses.calls) == 1
+        assert len(mail.outbox) == 1
+        self._test_full_run_empty_response()
+
+    def _test_full_run_empty_response(self):
+        # Everything should be missing since the response is an empty object.
+        expected_below = (
+            'The following locales are below threshold of 40% or completely '
+            'absent in one of our projects in Pontoon:\n- '
+            + '\n- '.join(
+                sorted(
+                    [
+                        f'{data["english"]} [{locale}]'
+                        for locale, data in settings.AMO_LANGUAGES.items()
+                        if locale not in self.expected_special_locales
+                        and locale != settings.LANGUAGE_CODE
+                    ]
+                )
+            )
+        )
+        assert expected_below in mail.outbox[0].body
+
+        # Those are special though.
+        expected_below_but_special = (
+            'The following locales are below threshold, but should never be '
+            'removed from AMO:\n- '
+            + '\n- '.join(
+                sorted(
+                    [
+                        f'{settings.AMO_LANGUAGES[locale]["english"]} [{locale}]'
+                        for locale in self.expected_special_locales
+                    ]
+                )
+            )
+        )
+        assert expected_below_but_special in mail.outbox[0].body

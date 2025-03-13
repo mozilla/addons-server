@@ -456,7 +456,7 @@ Replacement Add-ons
 
 .. _v3-addon-replacement-addons:
 
-This endpoint returns a list of suggested replacements for legacy add-ons that are unsupported in Firefox 57.  Added to support the TAAR recommendation service.
+This endpoint returns a list of suggested replacements for legacy add-ons that are unsupported in Firefox 57.
 
 .. http:get:: /api/v3/addons/replacement-addon/
 
@@ -508,16 +508,15 @@ Recommendations
 
 .. _v3-addon-recommendations:
 
-This endpoint provides recommendations of other addons to install, fetched from the `recommendation service <https://github.com/mozilla/taar>`_.
-Four recommendations are fetched, but only valid, publicly available addons are shown (so max 4 will be returned, and possibly less).
+This endpoint provides recommendations of other addons to install. Maximum four recommendations will be returned.
 
 .. http:get:: /api/v3/addons/recommendations/
 
     :query string guid: Fetch recommendations for this add-on guid.
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <v3-api-overview-translations>`)
-    :query boolean recommended: Fetch recommendations from the recommendation service, or return a curated fallback list instead.
-    :>json string outcome: Outcome of the response returned.  Will be either: ``recommended`` - responses from recommendation service; ``recommended_fallback`` - service timed out or returned empty results so we returned fallback; ``curated`` - ``recommended=False`` was requested so fallback returned.
-    :>json string|null fallback_reason: if ``outcome`` was ``recommended_fallback`` then the reason why.  Will be either: ``timeout`` or ``no_results``.
+    :query boolean recommended: Ignored.
+    :>json string outcome: Outcome of the response returned. Will always be ``curated``.
+    :>json null fallback_reason: Always null.
     :>json int count: The number of results for this query.
     :>json string next: The URL of the next page of results.
     :>json string previous: The URL of the previous page of results.

@@ -17,6 +17,7 @@ from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonReviewerFlags, AddonUser
 from olympia.amo.admin import AMOModelAdmin, DateRangeFilter
 from olympia.amo.forms import AMOModelForm
+from olympia.amo.templatetags.jinja_helpers import vite_asset
 from olympia.amo.utils import send_mail
 from olympia.files.models import File
 from olympia.ratings.models import Rating
@@ -175,18 +176,12 @@ class FileInline(admin.TabularInline):
 
 
 class AddonAdmin(AMOModelAdmin):
-    class Media(AMOModelAdmin.Media):
-        css = {
-            'all': (
-                'css/admin/amoadmin.css',
-                'css/admin/l10n.css',
-                'css/admin/pagination.css',
-                'css/admin/addons.css',
-            )
-        }
-        js = AMOModelAdmin.Media.js + (
+    class Media:
+        css = {'all': (vite_asset('css/admin-addon.less'),)}
+        js = (
+            # TODO: This is probably a redundant dependency
             'admin/js/jquery.init.js',
-            'js/admin/l10n.js',
+            vite_asset('js/admin-addon.js'),
         )
 
     list_display = (

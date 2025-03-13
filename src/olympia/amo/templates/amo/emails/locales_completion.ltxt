@@ -1,0 +1,18 @@
+Hi,
+{% if locales_below_threshold %}
+The following locales are below threshold of {{ COMPLETION_THRESHOLD }}% or completely absent in one of our projects in Pontoon:
+- {{ locales_below_threshold }}
+{% endif %}
+{% if locales_to_keep_despite_being_below_threshold %}
+The following locales are below threshold, but should never be removed from AMO:
+- {{ locales_to_keep_despite_being_below_threshold }}
+{% endif %}
+{% if locales_above_threshold %}
+The following locales are above threshold and not yet enabled:
+- {{ locales_above_threshold }}
+{% endif %}
+{% if not locales_below_threshold and not locales_above_threshold and not locales_to_keep_despite_being_below_threshold %}
+Nothing to report at this time, no locales below threshold, no new locales to enable in AMO.
+{% endif %}
+
+Have a nice day!

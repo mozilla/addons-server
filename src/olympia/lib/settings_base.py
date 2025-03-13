@@ -194,7 +194,6 @@ LANGUAGE_CODE = 'en-US'
 from olympia.core.languages import AMO_LANGUAGES  # noqa
 
 # Bidirectional languages.
-# Locales in here *must* be in `AMO_LANGUAGES` too.
 LANGUAGES_BIDI = ('ar', 'fa', 'he', 'ur')
 
 # Explicit conversion of a shorter language code into a more specific one.
@@ -1535,16 +1534,6 @@ CRON_JOBS = {
     'upload_mlbf_to_remote_settings': 'olympia.blocklist.cron',
     'write_sitemaps': 'olympia.amo.cron',
 }
-
-RECOMMENDATION_ENGINE_URL = env(
-    'RECOMMENDATION_ENGINE_URL',
-    default='https://taar.dev.mozaws.net/v1/api/recommendations/',
-)
-TAAR_LITE_RECOMMENDATION_ENGINE_URL = env(
-    'TAAR_LITE_RECOMMENDATION_ENGINE_URL',
-    default=('https://taar.dev.mozaws.net/taarlite/api/v1/addon_recommendations/'),
-)
-RECOMMENDATION_ENGINE_TIMEOUT = env.float('RECOMMENDATION_ENGINE_TIMEOUT', default=1)
 
 # Reputation service is disabled by default, enabled for dev/stage/prod via
 # those 3 env variables.

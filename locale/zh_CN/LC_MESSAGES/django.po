@@ -366,7 +366,7 @@ msgstr "上传无效。"
 msgid "File is already disabled."
 msgstr "已禁用文件。"
 
-#: src/olympia/addons/serializers.py:518 src/olympia/addons/views.py:737
+#: src/olympia/addons/serializers.py:518 src/olympia/addons/views.py:736
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr "此 %s 附加组件先前的版本未通过审核成为 %s 推广项目，无法删除此推广附加组件最新通过审核的版本。若您需要协助，请联系 AMO 管理员。"
@@ -419,11 +419,11 @@ msgstr "在将账户添加为作者之前，需要一个显示名称。"
 msgid "This slug cannot be used. Please choose another."
 msgstr "短网址不可用，请另选。"
 
-#: src/olympia/addons/utils.py:43
+#: src/olympia/addons/utils.py:39
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "附加组件名称不得包含 Mozilla 或 Firefox 商标。"
 
-#: src/olympia/addons/utils.py:173
+#: src/olympia/addons/utils.py:130
 #, python-brace-format
 msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
 msgstr "版本 {version_string} 必须大于先前通过审核的版本 {previous_version_string}。"
@@ -552,7 +552,7 @@ msgstr "请输入有效的 IPv4 或 IPv6 网段。"
 msgid "CIDR"
 msgstr "CIDR"
 
-#: src/olympia/amo/middleware.py:248 src/olympia/devhub/templates/devhub/index.html:60 src/olympia/templates/base.html:66
+#: src/olympia/amo/middleware.py:248 src/olympia/devhub/templates/devhub/index.html:61 src/olympia/templates/base.html:67
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "在我们进行网站维护时，某些功能会被暂时禁用。我们将尽快复原。"
 
@@ -4277,7 +4277,7 @@ msgstr "我们检索审核说明时遇到问题"
 msgid "Load older..."
 msgstr "加载更早..."
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:128 src/olympia/discovery/serializers.py:112
+#: src/olympia/devhub/templates/devhub/versions/list.html:128 src/olympia/discovery/serializers.py:102
 msgid "by"
 msgstr "作者："
 
@@ -6609,7 +6609,7 @@ msgstr "依照日期统计的应用程序版本"
 msgid "Mozilla Add-ons"
 msgstr "Mozilla 附加组件"
 
-#: src/olympia/templates/base.html:85
+#: src/olympia/templates/base.html:86
 msgid "Back to Add-ons"
 msgstr "返回附加组件"
 
@@ -6738,7 +6738,7 @@ msgstr "放弃更改"
 #: src/olympia/translations/templates/translations/trans-menu.html:56
 #, python-brace-format
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
-msgstr "您确定要移除所有的 <b>{0}</b> 翻译？此操作无法撤销。"
+msgstr "您确定要移除所有的 <b>{0}</b> 翻译吗？此操作无法撤销。"
 
 #: src/olympia/translations/templates/translations/trans-menu.html:61
 msgid "Delete Locale"

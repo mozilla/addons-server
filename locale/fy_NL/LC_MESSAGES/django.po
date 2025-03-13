@@ -369,7 +369,7 @@ msgstr "Oplaad is net jildich."
 msgid "File is already disabled."
 msgstr "Bestân is al útskeakele."
 
-#: src/olympia/addons/serializers.py:518 src/olympia/addons/views.py:737
+#: src/olympia/addons/serializers.py:518 src/olympia/addons/views.py:736
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
@@ -424,11 +424,11 @@ msgstr "De account hat inskermnamme nedich foardat dizze as auteur tafoege wurde
 msgid "This slug cannot be used. Please choose another."
 msgstr "Dizze identifikator kin net brûkt wurde. Kies in oare."
 
-#: src/olympia/addons/utils.py:43
+#: src/olympia/addons/utils.py:39
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Nammen fan add-ons meie de Mozilla- of Firefox-hannelsmerken net befetsje."
 
-#: src/olympia/addons/utils.py:173
+#: src/olympia/addons/utils.py:130
 #, python-brace-format
 msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
 msgstr "Ferzje {version_string} moat heger wêze as de foarige goedkarte ferzje {previous_version_string}."
@@ -557,7 +557,7 @@ msgstr "Fier in jildich IP4- of IP6-netwurk yn."
 msgid "CIDR"
 msgstr "CIDR"
 
-#: src/olympia/amo/middleware.py:248 src/olympia/devhub/templates/devhub/index.html:60 src/olympia/templates/base.html:66
+#: src/olympia/amo/middleware.py:248 src/olympia/devhub/templates/devhub/index.html:61 src/olympia/templates/base.html:67
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Inkelde funksjes binne tydlik útskeakele fanwegen ûnderhâld oan de website. Ynkoarten binne wy wer folslein beskikber."
 
@@ -4357,7 +4357,7 @@ msgstr "Wy hiene in probleem by it opheljen fan beoardielingsopmerkingen"
 msgid "Load older..."
 msgstr "Aldere lade…"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:128 src/olympia/discovery/serializers.py:112
+#: src/olympia/devhub/templates/devhub/versions/list.html:128 src/olympia/discovery/serializers.py:102
 msgid "by"
 msgstr "troch"
 
@@ -6703,7 +6703,7 @@ msgstr "Tapassingsferzjes op datum"
 msgid "Mozilla Add-ons"
 msgstr "Mozilla-add-ons"
 
-#: src/olympia/templates/base.html:85
+#: src/olympia/templates/base.html:86
 msgid "Back to Add-ons"
 msgstr "Tebek nei add-ons"
 

@@ -370,7 +370,7 @@ msgstr "Tải lên không hợp lệ."
 msgid "File is already disabled."
 msgstr "Tập tin đã bị vô hiệu hóa."
 
-#: src/olympia/addons/serializers.py:518 src/olympia/addons/views.py:737
+#: src/olympia/addons/serializers.py:518 src/olympia/addons/views.py:736
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
@@ -424,11 +424,11 @@ msgstr "Tài khoản cần có tên hiển thị trước khi có thể được
 msgid "This slug cannot be used. Please choose another."
 msgstr "Không thể sử dụng slug này. Vui lòng chọn slug khác."
 
-#: src/olympia/addons/utils.py:43
+#: src/olympia/addons/utils.py:39
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Tên tiện ích không thể chứa nhãn hiệu Mozilla hoặc Firefox."
 
-#: src/olympia/addons/utils.py:173
+#: src/olympia/addons/utils.py:130
 #, python-brace-format
 msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
 msgstr "Phiên bản {version_string} phải lớn hơn phiên bản {previous_version_string} đã được phê duyệt trước đó."
@@ -557,7 +557,7 @@ msgstr "Nhập mạng IP4 hoặc IP6 hợp lệ."
 msgid "CIDR"
 msgstr "CIDR"
 
-#: src/olympia/amo/middleware.py:248 src/olympia/devhub/templates/devhub/index.html:60 src/olympia/templates/base.html:66
+#: src/olympia/amo/middleware.py:248 src/olympia/devhub/templates/devhub/index.html:61 src/olympia/templates/base.html:67
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Một số tính năng tạm thời bị vô hiệu hóa trong khi chúng tôi bảo trì trang web. Chúng tôi sẽ hoạt động đầy đủ lại nhanh thôi."
 
@@ -4348,7 +4348,7 @@ msgstr "Chúng tôi đã gặp sự cố khi truy xuất các ghi chú xét duy�
 msgid "Load older..."
 msgstr "Tải phần cũ hơn…"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:128 src/olympia/discovery/serializers.py:112
+#: src/olympia/devhub/templates/devhub/versions/list.html:128 src/olympia/discovery/serializers.py:102
 msgid "by"
 msgstr "bởi"
 
@@ -6691,7 +6691,7 @@ msgstr "Phiên bản ứng dụng theo Ngày"
 msgid "Mozilla Add-ons"
 msgstr "Tiện ích Mozilla"
 
-#: src/olympia/templates/base.html:85
+#: src/olympia/templates/base.html:86
 msgid "Back to Add-ons"
 msgstr "Trở lại Tiện ích"
 

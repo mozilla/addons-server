@@ -966,31 +966,31 @@ class TestRankingScenarios(ESTestCase):
             lang='fr',
         )
 
-        # Check with a language that we don't have a translation for (mn), and
+        # Check with a language that we don't have a translation for (he), and
         # that we do not have a language-specific analyzer for.
         # Note that we need to pass expected_lang because the name object won't
         # contain the lang we requested, instead it will return an object with
         # the default_locale for this addon (fr).
-        assert 'mn' not in SEARCH_LANGUAGE_TO_ANALYZER
-        assert 'mn' in settings.AMO_LANGUAGES
+        assert 'he' not in SEARCH_LANGUAGE_TO_ANALYZER
+        assert 'he' in settings.AMO_LANGUAGES
         self._check_scenario(
             'foobar unique francais',
             (['Foobar unique francais', 1062],),
-            lang='mn',
+            lang='he',
             expected_lang='fr',
         )
 
-        # Check with a language that we don't have a translation for (ca), and
+        # Check with a language that we don't have a translation for (it), and
         # that we *do* have a language-specific analyzer for.
         # Note that we need to pass expected_lang because the name object won't
         # contain the lang we requested, instead it will return an object with
         # the default_locale for this addon (fr).
-        assert 'ca' in SEARCH_LANGUAGE_TO_ANALYZER
-        assert 'ca' in settings.AMO_LANGUAGES
+        assert 'it' in SEARCH_LANGUAGE_TO_ANALYZER
+        assert 'it' in settings.AMO_LANGUAGES
         self._check_scenario(
             'foobar unique francais',
             (['Foobar unique francais', 1062],),
-            lang='ca',
+            lang='it',
             expected_lang='fr',
         )
 

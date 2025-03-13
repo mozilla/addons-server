@@ -328,7 +328,7 @@ msgstr ""
 msgid "File is already disabled."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:518 src/olympia/addons/views.py:737
+#: src/olympia/addons/serializers.py:518 src/olympia/addons/views.py:736
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
@@ -381,11 +381,11 @@ msgstr ""
 msgid "This slug cannot be used. Please choose another."
 msgstr ""
 
-#: src/olympia/addons/utils.py:43
+#: src/olympia/addons/utils.py:39
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
 
-#: src/olympia/addons/utils.py:173
+#: src/olympia/addons/utils.py:130
 #, python-brace-format
 msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
 msgstr ""
@@ -514,7 +514,7 @@ msgstr "වලංගු අ.ජා.කෙ. 4 හෝ 6 ජාලයක් යො�
 msgid "CIDR"
 msgstr "CIDR"
 
-#: src/olympia/amo/middleware.py:248 src/olympia/devhub/templates/devhub/index.html:60 src/olympia/templates/base.html:66
+#: src/olympia/amo/middleware.py:248 src/olympia/devhub/templates/devhub/index.html:61 src/olympia/templates/base.html:67
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "අපි අඩවිය නඩත්තු කරන හෙයින් ඇතැම් විශේෂාංගය තාවකාලිකව අබල කර ඇත. ටික වේලාවකට පසු සියල්ල යථා පරිදි තිබෙනු ඇත."
 
@@ -4192,7 +4192,7 @@ msgstr ""
 msgid "Load older..."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:128 src/olympia/discovery/serializers.py:112
+#: src/olympia/devhub/templates/devhub/versions/list.html:128 src/olympia/discovery/serializers.py:102
 msgid "by"
 msgstr ""
 
@@ -6528,7 +6528,7 @@ msgstr "දිනය අනුව යෙදුම් අනුවාද"
 msgid "Mozilla Add-ons"
 msgstr "මොසිල්ලා එක්කහු"
 
-#: src/olympia/templates/base.html:85
+#: src/olympia/templates/base.html:86
 msgid "Back to Add-ons"
 msgstr "එක්කහු වෙත ආපසු"
 
