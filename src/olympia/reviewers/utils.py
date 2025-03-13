@@ -1096,7 +1096,9 @@ class ReviewBase:
         version.reset_due_date()
 
     def get_decision_actions_from_policies(self, policies):
-        actions = CinderPolicy.get_decision_actions_from_policies(policies, Addon)
+        actions = CinderPolicy.get_decision_actions_from_policies(
+            policies, for_entity=Addon
+        )
         # Until https://mozilla-hub.atlassian.net/browse/AMOENG-672 completes the
         # integration we don't want to accidentally disable addons based on the actions
         # linked to reviewreasons, so filter out all but the approve/ignore actions
