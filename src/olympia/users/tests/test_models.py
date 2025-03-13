@@ -849,39 +849,39 @@ class TestUserProfile(TestCase):
             username='d', read_dev_agreement=after_change
         ).has_read_developer_agreement()
 
-    def test_is_public(self):
+    def test_has_full_profile(self):
         user = UserProfile.objects.get(id=4043307)
         assert not user.addonuser_set.exists()
-        assert not user.is_public
+        assert not user.has_full_profile
 
         addon = Addon.objects.get(pk=3615)
         addon_user = addon.addonuser_set.create(user=user)
-        assert user.is_public
+        assert user.has_full_profile
 
-        # Only developer and owner roles make a profile public.
+        # Only developer and owner roles make a developer profile.
         addon_user.update(role=amo.AUTHOR_ROLE_DEV)
-        assert user.is_public
+        assert user.has_full_profile
         addon_user.update(role=amo.AUTHOR_ROLE_OWNER)
-        assert user.is_public
+        assert user.has_full_profile
         # But only if they're listed
         addon_user.update(role=amo.AUTHOR_ROLE_OWNER, listed=False)
-        assert not user.is_public
+        assert not user.has_full_profile
         addon_user.update(listed=True)
-        assert user.is_public
+        assert user.has_full_profile
         addon_user.update(role=amo.AUTHOR_ROLE_DEV, listed=False)
-        assert not user.is_public
+        assert not user.has_full_profile
         addon_user.update(listed=True)
-        assert user.is_public
+        assert user.has_full_profile
 
         # The add-on needs to be public.
         self.make_addon_unlisted(addon)  # Easy way to toggle status
-        assert not user.reload().is_public
+        assert not user.reload().has_full_profile
         self.make_addon_listed(addon)
         addon.update(status=amo.STATUS_APPROVED)
-        assert user.reload().is_public
+        assert user.reload().has_full_profile
 
         addon.delete()
-        assert not user.reload().is_public
+        assert not user.reload().has_full_profile
 
     def test_get_lookup_field(self):
         user = UserProfile.objects.get(id=55021)

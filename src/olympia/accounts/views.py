@@ -8,7 +8,7 @@ from urllib.parse import quote_plus
 from django.conf import settings
 from django.contrib.auth import login, logout
 from django.db.models import Q
-from django.http import Http404, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.utils.encoding import force_bytes, force_str
@@ -68,9 +68,10 @@ from olympia.users.notifications import (
 from . import verify
 from .serializers import (
     AccountSuperCreateSerializer,
-    PublicUserProfileSerializer,
+    BaseUserSerializer,
+    FullUserProfileSerializer,
+    SelfUserProfileSerializer,
     UserNotificationSerializer,
-    UserProfileSerializer,
 )
 from .tasks import clear_sessions_event, delete_user_event, primary_email_change_event
 from .utils import (
@@ -478,17 +479,7 @@ class AccountViewSet(
         self.lookup_field = self.get_lookup_field(identifier)
         self.kwargs[self.lookup_field] = identifier
         self.instance = super().get_object()
-        # action won't exist for other classes that are using this ViewSet.
-        can_view_instance = (
-            not getattr(self, 'action', None)
-            or self.self_view
-            or self.admin_viewing
-            or self.instance.is_public
-        )
-        if can_view_instance:
-            return self.instance
-        else:
-            raise Http404
+        return self.instance
 
     def get_lookup_field(self, identifier):
         lookup_field = 'pk'
@@ -511,9 +502,11 @@ class AccountViewSet(
 
     def get_serializer_class(self):
         if self.self_view or self.admin_viewing:
-            return UserProfileSerializer
+            return SelfUserProfileSerializer
+        elif self.get_object().has_full_profile:
+            return FullUserProfileSerializer
         else:
-            return PublicUserProfileSerializer
+            return BaseUserSerializer
 
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()

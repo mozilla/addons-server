@@ -1547,7 +1547,6 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
                 created=None,
                 display_name=data_author['name'],
                 username=data_author['username'],
-                is_public=data_author.get('is_public', False),
             )
             for data_author in data_authors
         ]

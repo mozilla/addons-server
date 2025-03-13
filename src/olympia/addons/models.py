@@ -1943,7 +1943,7 @@ def watch_status(old_attr=None, new_attr=None, instance=None, sender=None, **kwa
 
     # Update the author's account profile visibility
     if new_status != old_status:
-        [author.update_is_public() for author in instance.authors.all()]
+        [author.update_has_full_profile() for author in instance.authors.all()]
 
     if new_status not in amo.VALID_ADDON_STATUSES or not (
         latest_version := instance.find_latest_version(channel=amo.CHANNEL_LISTED)
@@ -2181,7 +2181,7 @@ class AddonUser(OnChangeMixin, SaveUpdateMixin, models.Model):
 def watch_addon_user(
     old_attr=None, new_attr=None, instance=None, sender=None, **kwargs
 ):
-    instance.user.update_is_public()
+    instance.user.update_has_full_profile()
     # Update ES because authors is included.
     update_search_index(sender=sender, instance=instance.addon, **kwargs)
 

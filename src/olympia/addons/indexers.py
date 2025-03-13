@@ -443,7 +443,6 @@ class AddonIndexer:
                         'id': {'type': 'long'},
                         'name': {'type': 'text'},
                         'username': {'type': 'keyword'},
-                        'is_public': {'type': 'boolean', 'index': False},
                     },
                 },
                 'modified': {'type': 'date', 'index': False},
@@ -650,12 +649,7 @@ class AddonIndexer:
         data['category'] = [cat.id for cat in obj.all_categories]
         data['current_version'] = cls.extract_version(obj, obj.current_version)
         data['listed_authors'] = [
-            {
-                'name': a.name,
-                'id': a.id,
-                'username': a.username,
-                'is_public': a.is_public,
-            }
+            {'name': a.name, 'id': a.id, 'username': a.username}
             for a in obj.listed_authors
         ]
 

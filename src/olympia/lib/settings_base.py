@@ -1424,6 +1424,7 @@ DRF_API_GATES = {
         'del-preview-position',
         'categories-application',
         'promoted-verified-sponsored',
+        'mimimal-profile-has-all-fields-shim',
     ),
     'v4': (
         'l10n_flat_input_output',
@@ -1442,6 +1443,7 @@ DRF_API_GATES = {
         'promoted-verified-sponsored',
         'block-min-max-versions-shim',
         'block-versions-list-shim',
+        'mimimal-profile-has-all-fields-shim',
     ),
     'v5': (
         'addons-search-_score-field',
@@ -1450,6 +1452,7 @@ DRF_API_GATES = {
         'addon-submission-api',
         'promoted-verified-sponsored',
         'block-versions-list-shim',
+        'mimimal-profile-has-all-fields-shim',
     ),
 }
 

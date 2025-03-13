@@ -1221,7 +1221,7 @@ class TestAccountViewSet(TestCase):
     client_class = APITestClientSessionID
 
     def setUp(self):
-        self.user = user_factory()
+        self.user = user_factory(biography='I did a thing')
         self.url = reverse_ns('account-detail', kwargs={'pk': self.user.pk})
         super().setUp()
 
@@ -1257,7 +1257,7 @@ class TestAccountViewSet(TestCase):
         assert response.data['url'] == absolutify(self.user.get_url_path())
 
     def test_view_deleted(self):
-        self.user.update(deleted=True, is_public=True)
+        self.user.update(deleted=True, has_full_profile=True)
         response = self.client.get(self.url)
         assert response.status_code == 404
 
@@ -1268,35 +1268,43 @@ class TestAccountViewSet(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 404
 
-    def test_is_not_public_because_not_developer(self):
-        assert not self.user.is_public
+    def test_is_not_full_public_profile_because_not_developer(self):
+        assert not self.user.has_full_profile
         response = self.client.get(self.url)  # No auth.
-        assert response.status_code == 404
+        assert response.data['name'] == self.user.name
+        assert 'biography' not in response.data
+        assert 'email' not in response.data
+        assert response.data['url'] == absolutify(self.user.get_url_path())
+
         # Login as a random user and check it's still not visible.
         self.client.login_api(user_factory())
         response = self.client.get(self.url)
-        assert response.status_code == 404
+        assert response.data['name'] == self.user.name
+        assert 'biography' not in response.data
+        assert 'email' not in response.data
+        assert response.data['url'] == absolutify(self.user.get_url_path())
 
-    def test_is_public_because_developer(self):
+    def test_full_public_profile_because_developer(self):
         addon_factory(users=[self.user])
-        assert self.user.is_developer and self.user.is_public
+        assert self.user.is_developer and self.user.has_full_profile
         response = self.client.get(self.url)  # No auth.
         assert response.status_code == 200
         assert response.data['name'] == self.user.name
+        assert response.data['biography'] == self.user.biography
         assert 'email' not in response.data  # Don't expose private data.
-        # They are a developer so we should link to account profile url
         assert response.data['url'] == absolutify(self.user.get_url_path())
 
     def test_admin_view(self):
         self.grant_permission(self.user, 'Users:Edit')
         self.client.login_api(self.user)
-        self.random_user = user_factory()
+        self.random_user = user_factory(biography='something!')
         random_user_profile_url = reverse_ns(
             'account-detail', kwargs={'pk': self.random_user.pk}
         )
         response = self.client.get(random_user_profile_url)
         assert response.status_code == 200
         assert response.data['name'] == self.random_user.name
+        assert response.data['biography'] == self.random_user.biography
         assert response.data['email'] == self.random_user.email
         assert response.data['url'] == absolutify(self.random_user.get_url_path())
 
@@ -1305,15 +1313,15 @@ class TestAccountViewSet(TestCase):
         self.url = reverse_ns('account-detail', kwargs={'pk': self.user.username})
         self.test_self_view()
 
-    def test_is_public_because_developer_slug(self):
+    def test_full_public_profile_because_developer_slug(self):
         # Check it works the same with an account slug rather than pk.
         self.url = reverse_ns('account-detail', kwargs={'pk': self.user.username})
-        self.test_is_public_because_developer()
+        self.test_full_public_profile_because_developer()
 
         # Should still work if the username contains a period.
         self.user.update(username='fôo.bar')
         self.url = reverse_ns('account-detail', kwargs={'pk': self.user.username})
-        self.test_is_public_because_developer()
+        self.test_full_public_profile_because_developer()
 
     def test_admin_view_slug(self):
         # Check it works the same with an account slug rather than pk.
