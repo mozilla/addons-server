@@ -11,6 +11,7 @@ from django.core.exceptions import PermissionDenied
 from django.core.files.storage import default_storage as storage
 from django.db import transaction
 from django.db.models import Count, F, Func, OuterRef, Subquery
+from django.db.utils import IntegrityError
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.template import loader
@@ -2228,8 +2229,11 @@ def email_verification(request):
 @post_required
 @login_required
 def survey_response(request, survey_id):
-    SurveyResponse.objects.update_or_create(
-        user=request.user,
-        survey_id=survey_id,
-    )
+    try:
+        SurveyResponse.objects.update_or_create(
+            user=request.user,
+            survey_id=survey_id,
+        )
+    except IntegrityError:
+        return http.HttpResponse(status=500)
     return http.HttpResponse(status=201)
