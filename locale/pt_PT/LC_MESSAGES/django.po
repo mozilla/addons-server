@@ -5190,7 +5190,7 @@ msgstr "Tome controlo total dos cookies que acumulou enquanto navega."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:431
 msgid "Automatically delete browser history for websites you select."
-msgstr "Apague automaticamente o histórico do navegador para os sites que selecionar."
+msgstr "Elimine automaticamente o histórico do navegador para os sites que selecionar."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5393,7 +5393,7 @@ msgstr "Receba atualizações meteorológicas diretamente no navegador."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:552
 msgid "Delete cookies, browsing history, and cached files with just a single click."
-msgstr "Elimine cookies, histórico de navegação, ficheiros em cache com apenas um clique."
+msgstr "Elimine cookies, histórico de navegação e ficheiros em cache com apenas um clique."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
