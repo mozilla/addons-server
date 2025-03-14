@@ -37,7 +37,7 @@
 {% endblock %}
 
 {% block site_notice %}
-  {% if user.is_authenticated and user.is_survey_eligible(survey_id=amo.DEV_EXP_SURVEY_ALCHEMER_ID) and switch_is_active('enable_dev_experience_survey') %}
+  {% if switch_is_active('enable_dev_experience_survey') and user.is_authenticated and user.is_survey_eligible(survey_id=amo.DEV_EXP_SURVEY_ALCHEMER_ID) %}
     <div id="dev-survey-banner" response-url="{{ url('devhub.survey_response', survey_id=amo.DEV_EXP_SURVEY_ALCHEMER_ID) }}">
       <div>
         Help us make things better!

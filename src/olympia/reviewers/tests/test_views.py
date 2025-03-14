@@ -240,7 +240,7 @@ class TestReviewLog(ReviewerTest):
 
         # But they should have 2 showing for someone with the right perms.
         self.grant_permission(self.user, 'Addons:ReviewUnlisted')
-        with self.assertNumQueries(15):
+        with self.assertNumQueries(14):
             # 14 queries:
             # - 2 savepoints because of tests
             # - 2 user and its groups
@@ -253,7 +253,6 @@ class TestReviewLog(ReviewerTest):
             # - 1 for the translations of these add-ons
             # - 1 for the versions for these activities
             # - 1 for the translations of these versions
-            # -1 for surveyresponse
             response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -264,7 +263,7 @@ class TestReviewLog(ReviewerTest):
         # Add more activity, it'd still should not cause more queries.
         self.make_an_approval(amo.LOG.APPROVE_CONTENT, addon=addon_factory())
         self.make_an_approval(amo.LOG.REJECT_CONTENT, addon=addon_factory())
-        with self.assertNumQueries(15):
+        with self.assertNumQueries(14):
             response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -1463,7 +1462,7 @@ class TestExtensionQueue(QueueTest):
             auto_approve_disabled=True,
         )
         self.expected_versions = self.get_expected_versions(self.expected_addons)
-        with self.assertNumQueries(13):
+        with self.assertNumQueries(12):
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
             # - 1 for the due date cut off config
@@ -1473,7 +1472,6 @@ class TestExtensionQueue(QueueTest):
             #     the important bit)
             # - 2 for config items (motd / site notice)
             # - 1 for my add-ons in user menu
-            # - 1 for surveyresponse
             self._test_results()
 
     def test_results_two_versions(self):
@@ -1786,7 +1784,7 @@ class TestThemeQueue(QueueTest):
         self.grant_permission(self.user, 'Addons:ThemeReview')
 
     def test_results(self):
-        with self.assertNumQueries(12):
+        with self.assertNumQueries(11):
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
             # - 1 for the current queue count for pagination purposes
@@ -1795,7 +1793,6 @@ class TestThemeQueue(QueueTest):
             #     the important bit)
             # - 2 for config items (motd / site notice)
             # - 1 for my add-ons in user menu
-            # - 1 for surveyresponse
             self._test_results()
 
     def test_queue_ordering_by_due_date(self):
@@ -2219,7 +2216,7 @@ class TestContentReviewQueue(QueueTest):
     def test_results(self):
         self.login_with_permission()
         self.generate_files()
-        with self.assertNumQueries(11):
+        with self.assertNumQueries(10):
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
             # - 1 for the current queue count for pagination purposes
@@ -2228,7 +2225,6 @@ class TestContentReviewQueue(QueueTest):
             #     the important bit)
             # - 2 for config items (motd / site notice)
             # - 1 for my add-ons in user menu
-            # - 1 for surveyresponse
             self._test_results()
 
     def test_queue_layout(self):
@@ -2319,7 +2315,7 @@ class TestPendingRejectionReviewQueue(QueueTest):
     def test_results(self):
         self.login_as_admin()
         self.generate_files()
-        with self.assertNumQueries(12):
+        with self.assertNumQueries(11):
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
             # - 1 for the current queue count for pagination purposes
@@ -2328,7 +2324,6 @@ class TestPendingRejectionReviewQueue(QueueTest):
             #     the important bit)
             # - 2 for config items (motd / site notice)
             # - 1 for my add-ons in user menu
-            # - 1 for surveyresponse
             self._test_results()
 
 
@@ -2954,7 +2949,7 @@ class TestReview(ReviewBase):
             str(author.get_role_display()),
             self.addon,
         )
-        with self.assertNumQueries(58):
+        with self.assertNumQueries(57):
             # FIXME: obviously too high, but it's a starting point.
             # Potential further optimizations:
             # - Remove trivial... and not so trivial duplicates
@@ -3020,7 +3015,6 @@ class TestReview(ReviewBase):
             # 55. select users by role for this add-on (?)
             # 56. unreviewed versions in other channel
             # 57. attachmentlog
-            # 58. surveyresponse
             response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -5699,7 +5693,7 @@ class TestReview(ReviewBase):
                     results={'matchedRules': [customs_rule.name]},
                 )
 
-        with self.assertNumQueries(59):
+        with self.assertNumQueries(58):
             # See test_item_history_pagination() for more details about the
             # queries count. What's important here is that the extra versions
             # and scanner results don't cause extra queries.
@@ -6098,7 +6092,7 @@ class TestAbuseReportsView(ReviewerTest):
         AbuseReport.objects.create(guid=self.addon.guid, message='Two')
         AbuseReport.objects.create(guid=self.addon.guid, message='Three')
         AbuseReport.objects.create(user=self.addon_developer, message='Four')
-        with self.assertNumQueries(19):
+        with self.assertNumQueries(18):
             # - 2 savepoint/release savepoint
             # - 2 for user and groups
             # - 1 for the add-on
@@ -6110,7 +6104,6 @@ class TestAbuseReportsView(ReviewerTest):
             # - 1 for finding the original guid
             # - 1 for abuse reports count (pagination)
             # - 1 for the abuse reports
-            # - 1 for surveyresponse
             response = self.client.get(self.url)
         assert response.status_code == 200
 
@@ -7220,7 +7213,7 @@ class TestMadQueue(QueueTest):
         self.expected_versions = self.get_expected_versions(self.expected_addons)
 
     def test_results(self):
-        with self.assertNumQueries(11):
+        with self.assertNumQueries(10):
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
             # - 1 for the current queue count for pagination purposes
@@ -7229,7 +7222,6 @@ class TestMadQueue(QueueTest):
             #     how many are in the queue - that's the important bit)
             # - 2 for config items (motd / site notice)
             # - 1 for my add-ons in user menu
-            # - 1 for surveyresponse
             response = self.client.get(self.url)
         assert response.status_code == 200
 
