@@ -1079,9 +1079,8 @@ class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
 
         obj = self.search()
 
-        # TODO: temp
-        # with self.assertNumQueries(0):
-        return self.serializer.to_representation(obj)
+        with self.assertNumQueries(0):
+            return self.serializer.to_representation(obj)
 
     def test_no_expensive_defaults(self):
         auth_id_field = UserProfile._meta.get_field('auth_id')
@@ -1661,9 +1660,8 @@ class TestESAddonAutoCompleteSerializer(ESTestCase):
 
         obj = self.search()
 
-        # TODO: temp
-        # with self.assertNumQueries(0):
-        result = self.serializer.to_representation(obj)
+        with self.assertNumQueries(0):
+            result = self.serializer.to_representation(obj)
         return result
 
     def test_basic(self):

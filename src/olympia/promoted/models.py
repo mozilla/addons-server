@@ -32,10 +32,7 @@ class PromotedGroupManager(ManagerBase):
 
     def all_for(self, addon):
         return (
-            self.get_queryset()
-            .prefetch_related('promotedaddonpromotion_set')
-            .filter(promotedaddonpromotion__addon=addon)
-            .distinct()
+            self.get_queryset().filter(promotedaddonpromotion__addon=addon).distinct()
         )
 
     def approved_for(self, addon):
@@ -282,11 +279,6 @@ class PromotedAddon(ModelBase):
             )
 
 
-class PromotedAddonPromotionManager(ManagerBase):
-    def get_queryset(self):
-        return super().get_queryset().select_related('promoted_group', 'addon')
-
-
 # TODO: Drop Promotion suffix after dropping PromotedAddon table
 class PromotedAddonPromotion(ModelBase):
     promoted_group = models.ForeignKey(
@@ -313,7 +305,6 @@ class PromotedAddonPromotion(ModelBase):
         null=False,
         verbose_name='Application',
     )
-    objects = PromotedAddonPromotionManager()
 
     class Meta:
         constraints = [
@@ -427,9 +418,6 @@ class PromotedAddonVersionQuerySet(BaseQuerySet):
 
 class PromotedAddonVersionManager(ManagerBase):
     _queryset_class = PromotedAddonVersionQuerySet
-
-    def get_queryset(self):
-        return super().get_queryset().select_related('promoted_group', 'version')
 
 
 class PromotedAddonVersion(ModelBase):
