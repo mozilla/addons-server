@@ -36,7 +36,7 @@
   <img class="footerlogo" src="{{ static('img/developers/hub-logo-footer.png') }}" alt="">
 {% endblock %}
 
-{% block site_notice %}
+{% block survey_banner %}
   {% if switch_is_active('enable_dev_experience_survey') and user.is_authenticated and user.is_survey_eligible(survey_id=amo.DEV_EXP_SURVEY_ALCHEMER_ID) %}
     <div id="dev-survey-banner" response-url="{{ url('devhub.survey_response', survey_id=amo.DEV_EXP_SURVEY_ALCHEMER_ID) }}">
       <div>
@@ -48,5 +48,4 @@
       </a>
     </div>
   {% endif %}
-  {{ block.super }}
 {% endblock %}
