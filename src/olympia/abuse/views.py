@@ -169,6 +169,28 @@ class CinderInboundPermission:
         return hmac.compare_digest(header, digest)
 
 
+class CinderWebhookError(ValidationError):
+    """Validation error from Cinder webhook payload."""
+
+    reportable = True  # True == should raise as 400 in response
+
+
+class CinderWebhookIgnoredError(CinderWebhookError):
+    """Not an error, we're just ignoring the decision because we already took action, or
+    its for an entity we don't need to track."""
+
+    reportable = False
+
+
+class CinderWebhookMissingIdError(CinderWebhookError):
+    """Potentially known error - for prod we want to fail as all ids should be known.
+    For other envs ignore because we reuse Cinder stage."""
+
+    @property
+    def reportable(self):
+        return settings.CINDER_UNIQUE_IDS
+
+
 def filter_enforcement_actions(enforcement_actions, cinder_job):
     target = cinder_job.target
     if not target:
@@ -193,7 +215,7 @@ def process_webhook_payload_decision(payload):
             cinder_job = CinderJob.objects.get(job_id=job_id)
         except CinderJob.DoesNotExist as exc:
             log.debug('CinderJob instance not found for job id %s', job_id)
-            raise ValidationError('No matching job id found') from exc
+            raise CinderWebhookMissingIdError('No matching job id found') from exc
     else:
         decision_id = payload.get('previous_decision', {}).get('id', '')
 
@@ -201,16 +223,16 @@ def process_webhook_payload_decision(payload):
             decision = ContentDecision.objects.get(cinder_id=decision_id)
         except ContentDecision.DoesNotExist as exc:
             log.debug('ContentDecision instance not found for id %s', decision_id)
-            raise ValidationError('No matching decision id found') from exc
+            raise CinderWebhookMissingIdError('No matching decision id found') from exc
 
         cinder_job = decision.originating_job
         if not cinder_job:
             log.debug('No job for ContentDecision with id %s', decision_id)
-            raise ValidationError('No matching job found for decision id')
+            raise CinderWebhookMissingIdError('No matching job found for decision id')
 
     if cinder_job.resolvable_in_reviewer_tools:
         log.debug('Cinder webhook decision for reviewer resolvable job skipped.')
-        raise ValidationError('Decision already handled via reviewer tools')
+        raise CinderWebhookIgnoredError('Decision already handled via reviewer tools')
 
     enforcement_actions = filter_enforcement_actions(
         payload.get('enforcement_actions') or [],
@@ -228,7 +250,7 @@ def process_webhook_payload_decision(payload):
             f'Cinder webhook request failed: {reason} [%s]',
             payload.get('enforcement_actions'),
         )
-        raise ValidationError(f'Payload invalid: {reason}')
+        raise CinderWebhookError(f'Payload invalid: {reason}')
 
     cinder_job.process_decision(
         decision_cinder_id=source.get('decision', {}).get('id'),
@@ -241,19 +263,21 @@ def process_webhook_payload_decision(payload):
 def process_webhook_payload_job_actioned(payload):
     if (action := payload.get('action')) != 'escalated':
         log.debug('Cinder webhook action was invalid (not "escalated")')
-        raise ValidationError(f'Unsupported action ({action}) for job.actioned')
+        raise CinderWebhookError(f'Unsupported action ({action}) for job.actioned')
     job = payload.get('job', {})
     entity = job.get('entity', {}).get('entity_schema')
     if entity != CinderAddon.type:
         log.debug('Cinder webhook entity_schema was not %s', CinderAddon.type)
-        raise ValidationError(f'Unsupported entity_schema ({entity}) for job.actioned')
+        raise CinderWebhookIgnoredError(
+            f'Unsupported entity_schema ({entity}) for job.actioned'
+        )
     job_id = job.get('id', '')
 
     try:
         cinder_job = CinderJob.objects.get(job_id=job_id)
     except CinderJob.DoesNotExist as exc:
         log.debug('CinderJob instance not found for job id %s', job_id)
-        raise ValidationError('No matching job id found') from exc
+        raise CinderWebhookMissingIdError('No matching job id found') from exc
 
     new_queue = payload.get('job', {}).get('queue', {}).get('slug')
     notes = payload.get('notes', '')
@@ -275,7 +299,7 @@ def cinder_webhook(request):
             or not payload
         ):
             log.info('No payload dict received: %s', str(request.data)[:255])
-            raise ValidationError('No payload dict')
+            raise CinderWebhookError('No payload dict')
         match event := request.data.get('event'):
             case 'decision.created':
                 process_webhook_payload_decision(payload)
@@ -283,9 +307,9 @@ def cinder_webhook(request):
                 process_webhook_payload_job_actioned(payload)
             case _:
                 log.info('Unsupported payload received: %s', str(request.data)[:255])
-                raise ValidationError(f'{event} is not a event we support')
+                raise CinderWebhookError(f'{event} is not a event we support')
 
-    except ValidationError as exc:
+    except CinderWebhookError as exc:
         return Response(
             data={
                 'amo': {
@@ -294,9 +318,11 @@ def cinder_webhook(request):
                     'not_handled_reason': exc.message,
                 }
             },
-            # cinder will retry indefinitely on 4xx or 5xx so we return 200 even when
-            # it's an error
-            status=status.HTTP_200_OK,
+            # We differentiate errors we want exposed in Cinder's logs, and known cases
+            # where we can safely ignore the error.
+            status=(
+                status.HTTP_400_BAD_REQUEST if exc.reportable else status.HTTP_200_OK
+            ),
         )
     return Response(
         data={'amo': {'received': True, 'handled': True}},

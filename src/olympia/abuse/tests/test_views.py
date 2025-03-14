@@ -1506,7 +1506,7 @@ class TestCinderWebhook(TestCase):
         with mock.patch.object(CinderJob, 'process_decision') as process_mock:
             response = cinder_webhook(req)
             process_mock.assert_not_called()
-        assert response.status_code == 200
+        assert response.status_code == 400
         assert response.data == {
             'amo': {
                 'received': True,
@@ -1526,7 +1526,7 @@ class TestCinderWebhook(TestCase):
 
         def check(response):
             process_mock.assert_not_called()
-            assert response.status_code == 200
+            assert response.status_code == 400
             assert response.data == expected
 
         self._setup_reports()
@@ -1539,12 +1539,12 @@ class TestCinderWebhook(TestCase):
             data['payload'] = {}
             check(cinder_webhook(self.get_request(data=data)))
 
-    def test_no_cinder_job(self):
+    def _test_no_cinder_job(self, status_code):
         req = self.get_request()
         with mock.patch.object(CinderJob, 'process_decision') as process_mock:
             response = cinder_webhook(req)
             process_mock.assert_not_called()
-        assert response.status_code == 200
+        assert response.status_code == status_code
         assert response.data == {
             'amo': {
                 'received': True,
@@ -1553,14 +1553,22 @@ class TestCinderWebhook(TestCase):
             }
         }
 
-    def test_no_decision(self):
+    def test_no_cinder_job_nonprod(self):
+        with override_settings(CINDER_UNIQUE_IDS=False):
+            self._test_no_cinder_job(200)
+
+    def test_no_cinder_job_prod(self):
+        with override_settings(CINDER_UNIQUE_IDS=True):
+            self._test_no_cinder_job(400)
+
+    def _test_no_decision(self, status_code):
         req = self.get_request(
             data=self.get_data(filename='override_change_to_approve.json')
         )
         with mock.patch.object(CinderJob, 'process_decision') as process_mock:
             response = cinder_webhook(req)
             process_mock.assert_not_called()
-        assert response.status_code == 200
+        assert response.status_code == status_code
         assert response.data == {
             'amo': {
                 'received': True,
@@ -1569,7 +1577,15 @@ class TestCinderWebhook(TestCase):
             }
         }
 
-    def test_valid_decision_but_no_cinder_job(self):
+    def test_no_decision_noprod(self):
+        with override_settings(CINDER_UNIQUE_IDS=False):
+            self._test_no_decision(200)
+
+    def test_no_decision_prod(self):
+        with override_settings(CINDER_UNIQUE_IDS=True):
+            self._test_no_decision(400)
+
+    def _test_valid_decision_but_no_cinder_job(self, status_code):
         abuse_report = self._setup_reports()
         ContentDecision.objects.create(
             cinder_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
@@ -1582,7 +1598,7 @@ class TestCinderWebhook(TestCase):
         with mock.patch.object(CinderJob, 'process_decision') as process_mock:
             response = cinder_webhook(req)
             process_mock.assert_not_called()
-        assert response.status_code == 200
+        assert response.status_code == status_code
         assert response.data == {
             'amo': {
                 'received': True,
@@ -1590,6 +1606,14 @@ class TestCinderWebhook(TestCase):
                 'not_handled_reason': 'No matching job found for decision id',
             }
         }
+
+    def test_valid_decision_but_no_cinder_job_nonprod(self):
+        with override_settings(CINDER_UNIQUE_IDS=False):
+            self._test_valid_decision_but_no_cinder_job(200)
+
+    def test_valid_decision_but_no_cinder_job_prod(self):
+        with override_settings(CINDER_UNIQUE_IDS=True):
+            self._test_valid_decision_but_no_cinder_job(400)
 
     def test_reviewer_tools_resolved_cinder_job(self):
         report = self._setup_reports()
@@ -1614,7 +1638,7 @@ class TestCinderWebhook(TestCase):
 
         data['payload']['enforcement_actions'] = []
         response = cinder_webhook(self.get_request(data=data))
-        assert response.status_code == 200
+        assert response.status_code == 400
         assert response.data == {
             'amo': {
                 'received': True,
@@ -1627,7 +1651,7 @@ class TestCinderWebhook(TestCase):
 
         data['payload']['enforcement_actions'] = ['unknown_action']
         response = cinder_webhook(self.get_request(data=data))
-        assert response.status_code == 200
+        assert response.status_code == 400
         assert response.data == {
             'amo': {
                 'received': True,
@@ -1643,7 +1667,7 @@ class TestCinderWebhook(TestCase):
             'amo-escalate-addon',
         ]
         response = cinder_webhook(self.get_request(data=data))
-        assert response.status_code == 200
+        assert response.status_code == 400
         assert response.data == {
             'amo': {
                 'received': True,
@@ -1669,14 +1693,14 @@ class TestCinderWebhook(TestCase):
         assert response.status_code == 201
         assert response.data == {'amo': {'received': True, 'handled': True}}
 
-    def test_process_queue_move_no_cinder_report(self):
+    def _test_process_queue_move_no_cinder_report(self, status_code):
         req = self.get_request(
             data=self.get_data('job_actioned_move_to_dev_infringement.json')
         )
         with mock.patch.object(CinderJob, 'process_queue_move') as process_mock:
             response = cinder_webhook(req)
             process_mock.assert_not_called()
-        assert response.status_code == 200
+        assert response.status_code == status_code
         assert response.data == {
             'amo': {
                 'received': True,
@@ -1685,12 +1709,20 @@ class TestCinderWebhook(TestCase):
             }
         }
 
+    def test_process_queue_move_no_cinder_report_nonprod(self):
+        with override_settings(CINDER_UNIQUE_IDS=False):
+            self._test_process_queue_move_no_cinder_report(200)
+
+    def test_process_queue_move_no_cinder_report_prod(self):
+        with override_settings(CINDER_UNIQUE_IDS=True):
+            self._test_process_queue_move_no_cinder_report(400)
+
     def test_process_queue_move_invalid_action(self):
         data = self.get_data('job_actioned_move_to_dev_infringement.json')
 
         data['payload']['action'] = 'something_else'
         response = cinder_webhook(self.get_request(data=data))
-        assert response.status_code == 200
+        assert response.status_code == 400
         assert response.data == {
             'amo': {
                 'received': True,
