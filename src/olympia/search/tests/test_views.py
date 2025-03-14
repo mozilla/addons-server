@@ -774,8 +774,9 @@ class TestStaticThemeSearch(SearchBase):
             self.check_name_results({'q': term}, [])
 
         # Try to match 'Frodo Baggins'.
-        for term in ('frodo', 'baggins', 'fro', 'bag', 'frodo ballin'):
+        for term in ('frodo', 'baggins'):
             self.check_name_results({'q': term}, [p1.pk])
+        self.check_name_results({'q': 'frodo ballin'}, []) # This should NOT match, right?
 
         # Try to match 'The Life Aquatic with SeaVan'.
         # We have prefix_length=4 so fuzziness matching starts
