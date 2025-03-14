@@ -3865,7 +3865,7 @@ msgstr "Ya, saya telah menguji ekstensi saya pada Firefox untuk Android"
 
 #: src/olympia/devhub/templates/devhub/includes/android_compatibility_modal.html:7
 msgid "No, I have not tested"
-msgstr ""
+msgstr "Tidak, belum saya uji"
 
 #: src/olympia/devhub/templates/devhub/includes/blog_posts.html:3
 msgid "Developer News"
