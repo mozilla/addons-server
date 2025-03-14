@@ -62,7 +62,7 @@ Static files specific to the addons-server project are stored in the `./static` 
 In reality there are 3 static directories in our docker compose container:
 
 - `/data/olympia/static`: Contains static files that are mounted directly from the host.
-- `/data/olympia/static-build`: Contains static files that are built by `compress_assets`.
+- `/data/olympia/static-build`: Contains static files that are built by `vite`.
 - `/data/olympia/site-static`: Contains static files that are collected by the `collectstatic` command.
 
 The only of these directories that is exposed to your host is the `./static` directory.
@@ -83,5 +83,4 @@ During development they are served by the django development server.
 
 ### npm Dependencies
 
-We have a (complex) set of npm static assets that are built by the `compress_assets` management command.
-During development, these assets are served directly from the node_modules directory using a custom static finder.
+Static assets are built by `vite` and served by nginx.
