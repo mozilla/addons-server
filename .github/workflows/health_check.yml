@@ -53,7 +53,9 @@ jobs:
           cat $GITHUB_OUTPUT
 
       - uses: mozilla/addons/.github/actions/slack@main
-        if: steps.health_check.outcome == 'failure'
+        if: |
+          github.event_name == 'scheduled' &&
+          steps.health_check.outcome == 'failure'
         with:
           slack_token: ${{ secrets.SLACK_TOKEN }}
           payload: |
