@@ -26,7 +26,7 @@ class TestHealthCheck(TestCase):
         self.mock_url(
             'services/__heartbeat__', status=200, json=self._monitor('two', True, '')
         )
-        main('local', False)
+        results, _ = main('local', False)
 
     def test_missing_version(self):
         self.mock_url('__version__', status=500)
@@ -35,8 +35,8 @@ class TestHealthCheck(TestCase):
             'services/__heartbeat__', status=200, json=self._monitor('two', True, '')
         )
 
-        with self.assertRaisesRegex(ValueError, 'Error fetching version data'):
-            main('local', False)
+        results, _ = main('local', False)
+        self.assertEqual(results['version'], {})
 
     def test_invalid_version(self):
         self.mock_url('__version__', status=200, body='{not valid json')
@@ -45,8 +45,8 @@ class TestHealthCheck(TestCase):
             'services/__heartbeat__', status=200, json=self._monitor('two', True, '')
         )
 
-        with self.assertRaisesRegex(ValueError, 'Error fetching version data'):
-            main('local', False)
+        results, _ = main('local', False)
+        self.assertEqual(results['version'], {})
 
     def test_missing_heartbeat(self):
         self.mock_url('__heartbeat__', status=500)
@@ -55,8 +55,8 @@ class TestHealthCheck(TestCase):
             'services/__heartbeat__', status=200, json=self._monitor('two', True, '')
         )
 
-        with self.assertRaisesRegex(ValueError, 'Error fetching heartbeat data'):
-            main('local', False)
+        results, _ = main('local', False)
+        self.assertEqual(results['heartbeat'], {})
 
     def test_failing_heartbeat(self):
         failing_monitor = self._monitor('fail', False, 'Service is down')
@@ -65,16 +65,25 @@ class TestHealthCheck(TestCase):
         self.mock_url('__version__', status=200, json={'version': '1.0.0'})
         self.mock_url('services/__heartbeat__', status=200, json=success_monitor)
 
-        with self.assertRaisesRegex(ValueError, r'Some monitors are failing.*fail'):
-            main('local', False)
+        results, has_failures = main('local', False)
+        self.assertTrue(has_failures)
+        # Check for failing monitors
+        failing_monitors = []
+        for monitor_type, monitor_data in results.items():
+            if monitor_type == 'version':
+                continue
+            for name, details in monitor_data.get('data', {}).items():
+                if details.get('state') is False:
+                    failing_monitors.append(f'{monitor_type}.{name}')
+        self.assertIn('heartbeat.fail', failing_monitors)
 
     def test_missing_monitors(self):
         self.mock_url('services/__heartbeat__', status=500)
         self.mock_url('__version__', status=200, json={'version': '1.0.0'})
         self.mock_url('__heartbeat__', status=200, json=self._monitor('one', True, ''))
 
-        with self.assertRaisesRegex(ValueError, 'Error fetching monitors data'):
-            main('local', False)
+        results, _ = main('local', False)
+        self.assertEqual(results['monitors'], {})
 
     def test_failing_monitors(self):
         failing_monitor = self._monitor('fail', False, 'Service is down')
@@ -83,5 +92,14 @@ class TestHealthCheck(TestCase):
         self.mock_url('__version__', status=200, json={'version': '1.0.0'})
         self.mock_url('__heartbeat__', status=200, json=success_monitor)
 
-        with self.assertRaisesRegex(ValueError, r'Some monitors are failing.*fail'):
-            main('local', False)
+        results, has_failures = main('local', False)
+        self.assertTrue(has_failures)
+        # Check for failing monitors
+        failing_monitors = []
+        for monitor_type, monitor_data in results.items():
+            if monitor_type == 'version':
+                continue
+            for name, details in monitor_data.get('data', {}).items():
+                if details.get('state') is False:
+                    failing_monitors.append(f'{monitor_type}.{name}')
+        self.assertIn('monitors.fail', failing_monitors)

@@ -25,7 +25,7 @@ class Fetcher:
         self.environment = ENV_ENUM[env]
         self.verbose = verbose
 
-    def _fetch(self, path: str) -> dict[str, str] | None:
+    def _fetch(self, path: str):
         url = f'{self.environment.value}/{path}'
         if self.verbose:
             print(f'Requesting {url} for {self.environment.name}')
@@ -47,10 +47,13 @@ class Fetcher:
                     }
                 )
 
-        if self.verbose and data is not None:
+        if data is None:
+            return {}
+
+        if self.verbose:
             print(json.dumps(data, indent=2))
 
-        return data
+        return {'url': url, 'data': data}
 
     def version(self):
         return self._fetch('__version__')
@@ -62,29 +65,38 @@ class Fetcher:
         return self._fetch('services/__heartbeat__')
 
 
-def main(env: ENV_ENUM, verbose: bool = False):
+def main(env: ENV_ENUM, verbose: bool, retries: int = 0, attempt: int = 0):
     fetcher = Fetcher(env, verbose)
 
     version_data = fetcher.version()
     heartbeat_data = fetcher.heartbeat()
     monitors_data = fetcher.monitors()
 
-    if version_data is None:
-        raise ValueError('Error fetching version data')
+    combined_data = {
+        'heartbeat': heartbeat_data,
+        'monitors': monitors_data,
+    }
 
-    if heartbeat_data is None:
-        raise ValueError('Error fetching heartbeat data')
+    has_failures = any(
+        monitor['state'] is False
+        for data in combined_data.values()
+        for monitor in data.get('data', {}).values()
+    )
 
-    if monitors_data is None:
-        raise ValueError('Error fetching monitors data')
+    if has_failures and attempt < retries:
+        wait_for = 2**attempt
+        if verbose:
+            print(f'waiting for {wait_for} seconds')
+        time.sleep(wait_for)
+        return main(env, verbose, retries, attempt + 1)
 
-    combined_data = {**heartbeat_data, **monitors_data}
-    failing_monitors = [
-        name for name, monitor in combined_data.items() if monitor['state'] is False
-    ]
+    results = {
+        'version': version_data,
+        'heartbeat': heartbeat_data,
+        'monitors': monitors_data,
+    }
 
-    if len(failing_monitors) > 0:
-        raise ValueError(f'Some monitors are failing {failing_monitors}')
+    return results, has_failures
 
 
 if __name__ == '__main__':
@@ -92,19 +104,19 @@ if __name__ == '__main__':
     args.add_argument(
         '--env', type=str, choices=list(ENV_ENUM.__members__.keys()), required=True
     )
+    args.add_argument('--output', type=str)
     args.add_argument('--verbose', action='store_true')
     args.add_argument('--retries', type=int, default=3)
     args = args.parse_args()
 
-    attempt = 1
+    data, has_failures = main(args.env, args.verbose, args.retries)
 
-    while attempt <= args.retries:
-        try:
-            main(args.env, args.verbose)
-            break
-        except Exception as e:
-            print(f'Error: {e}')
-            if attempt == args.retries:
-                raise
-            time.sleep(2**attempt)
-            attempt += 1
+    if args.output:
+        with open(args.output, 'w') as f:
+            json_data = json.dumps(data, indent=2)
+            f.write(json_data)
+        if args.verbose:
+            print(f'Health check data saved to {args.output}')
+
+    if has_failures:
+        raise ValueError(f'Health check failed: {data}')
