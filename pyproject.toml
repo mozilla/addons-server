@@ -96,7 +96,6 @@ markers = [
   "es_tests: mark a test as an elasticsearch test.",
   "needs_locales_compilation: mark a test as needing compiled locales to work.",
   "allow_external_http_requests: mark a test to allow external http requests and disable responses.",
-  "static_assets: Tests that are depending on `compress_assets` and require to be separated with other tests.",
   "internal_routes_allowed: mark a test as needing INTERNAL_ROUTES_ALLOWED=True.",
 ]
 env = [

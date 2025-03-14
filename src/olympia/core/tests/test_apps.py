@@ -1,8 +1,9 @@
+import json
 import os
 import tempfile
 from unittest import mock
 
-from django.core.management import CommandError, call_command
+from django.core.management import call_command
 from django.core.management.base import SystemCheckError
 from django.test import TestCase
 from django.test.utils import override_settings
@@ -34,14 +35,11 @@ class SystemCheckIntegrationTest(TestCase):
         with open(self.fake_css_file, 'w') as f:
             f.write('body { background: red; }')
 
-        patch_command = mock.patch('olympia.core.apps.call_command')
-        self.mock_call_command = patch_command.start()
-        self.mock_call_command.side_effect = (
-            lambda command, dry_run, stdout: stdout.write(f'{self.fake_css_file}\n')
-        )
-        self.addCleanup(patch_command.stop)
-
         self.media_root = tempfile.mkdtemp(prefix='media-root')
+        self.static_root = tempfile.mkdtemp(prefix='static-root')
+        self.manifest_path = os.path.join(
+            tempfile.mkdtemp(prefix='manifest-dir'), 'manifest.json'
+        )
 
     @mock.patch('olympia.core.apps.connection.cursor')
     def test_db_charset_check(self, mock_cursor):
@@ -104,63 +102,87 @@ class SystemCheckIntegrationTest(TestCase):
         with override_settings(HOST_UID=1000):
             call_command('check')
 
-    def test_static_check_no_assets_found(self):
-        """
-        Test static_check fails if compress_assets reports no files.
-        """
-        self.mock_get_version_json.return_value['target'] = 'production'
-        # Simulate "compress_assets" returning no file paths.
-        self.mock_call_command.side_effect = (
-            lambda command, dry_run, stdout: stdout.write('')
-        )
-        with self.assertRaisesMessage(
-            SystemCheckError, 'No compressed asset files were found.'
-        ):
-            call_command('check')
-
-    @mock.patch('os.path.exists')
-    def test_static_check_missing_assets(self, mock_exists):
-        """
-        Test static_check fails if at least one specified compressed
-        asset file does not exist.
-        """
-        self.mock_get_version_json.return_value['target'] = 'production'
-        # Simulate "compress_assets" returning a couple of files.
-        self.mock_call_command.side_effect = (
-            lambda command, dry_run, stdout: stdout.write(
-                f'{self.fake_css_file}\nfoo.js\n'
-            )
-        )
-        # Pretend neither file exists on disk.
-        mock_exists.return_value = False
-
+    @override_settings(STATIC_BUILD_MANIFEST_PATH='/nonexistent/path/manifest.json')
+    def test_static_check_manifest_does_not_exist(self):
+        """Test that an error is raised when the manifest file doesn't exist."""
         with self.assertRaisesMessage(
             SystemCheckError,
-            # Only the first missing file triggers the AssertionError message check
-            'Compressed asset file does not exist: foo.js',
+            'Static build manifest file does not exist: '
+            '/nonexistent/path/manifest.json',
         ):
             call_command('check')
 
-    def test_static_check_command_error(self):
-        """
-        Test static_check fails if there's an error during compress_assets.
-        """
-        self.mock_get_version_json.return_value['target'] = 'production'
-        self.mock_call_command.side_effect = CommandError('Oops')
-        with self.assertRaisesMessage(
-            SystemCheckError, 'Error running compress_assets command: Oops'
-        ):
+    @override_settings(STATIC_ROOT='/static/root', STATIC_BUILD_MANIFEST_PATH=None)
+    def test_static_check_manifest_references_nonexistent_files(self):
+        """Test that an error is raised when manifest references non-existent files."""
+        # Create a temporary manifest file with references to non-existent files
+        with tempfile.NamedTemporaryFile(mode='w', delete=False) as f:
+            manifest_content = {
+                'app.js': {'file': 'app.123abc.js'},
+                'styles.css': {'file': 'styles.456def.css'},
+            }
+            json.dump(manifest_content, f)
+            manifest_path = f.name
+
+        with override_settings(STATIC_BUILD_MANIFEST_PATH=manifest_path):
+            with self.assertRaisesMessage(
+                SystemCheckError,
+                'Static asset app.js does not exist at expected path: '
+                '/static/root/app.123abc.js',
+            ):
+                call_command('check')
+
+        os.unlink(manifest_path)
+
+    @override_settings(STATIC_BUILD_MANIFEST_PATH=None)
+    def test_static_check_empty_manifest(self):
+        """Test that no error is raised with an empty manifest."""
+        # Create an empty manifest file
+        with tempfile.NamedTemporaryFile(mode='w', delete=False) as f:
+            json.dump({}, f)
+            manifest_path = f.name
+
+        with override_settings(STATIC_BUILD_MANIFEST_PATH=manifest_path):
+            # No error should be raised with an empty manifest
             call_command('check')
 
-    def test_static_check_command_success(self):
-        """
-        Test static_check succeeds if compress_assets runs without errors.
-        """
-        self.mock_get_version_json.return_value['target'] = 'production'
-        self.mock_call_command.side_effect = (
-            lambda command, dry_run, stdout: stdout.write(f'{self.fake_css_file}\n')
-        )
-        call_command('check')
+        os.unlink(manifest_path)
+
+    def test_static_check_valid_manifest(self):
+        """Test that no error is raised when manifest references existing files."""
+        # Create a temporary static root with actual files
+        static_root = tempfile.mkdtemp(prefix='static-root-valid')
+
+        # Create the asset files
+        asset1_path = os.path.join(static_root, 'app.123abc.js')
+        asset2_path = os.path.join(static_root, 'styles.456def.css')
+
+        with open(asset1_path, 'w') as f:
+            f.write('console.log("test");')
+
+        with open(asset2_path, 'w') as f:
+            f.write('body { color: blue; }')
+
+        # Create a manifest file that references these files
+        with tempfile.NamedTemporaryFile(mode='w', delete=False) as f:
+            manifest_content = {
+                'app.js': {'file': 'app.123abc.js'},
+                'styles.css': {'file': 'styles.456def.css'},
+            }
+            json.dump(manifest_content, f)
+            manifest_path = f.name
+
+        with override_settings(
+            STATIC_ROOT=static_root, STATIC_BUILD_MANIFEST_PATH=manifest_path
+        ):
+            # No error should be raised with a valid manifest
+            call_command('check')
+
+        # Clean up
+        os.unlink(manifest_path)
+        os.unlink(asset1_path)
+        os.unlink(asset2_path)
+        os.rmdir(static_root)
 
     def test_nginx_skips_check_on_production_target(self):
         fake_media_root = '/fake/not/real'
