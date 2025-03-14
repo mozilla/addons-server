@@ -76,11 +76,13 @@ msgstr "Terima kasih atas laporan Anda."
 #: src/olympia/abuse/templates/abuse/appeal.html:37
 msgid ""
 "We have already reviewed a similar appeal from another reporter, and have reversed our prior decision. We have taken action against the content and/or account holder in accordance with our policies."
-msgstr "Kami telah meninjau pengajuan serupa dari pelapor lain dan membatalkan keputusan sebelumnya. Sesuai dengan kebijakan kami, kami telah mengambil tindakan terhadap konten dan/atau pemilik akun."
+msgstr ""
+"Kami telah meninjau pengajuan banding serupa dari pelapor lain dan membatalkan keputusan sebelumnya. Sesuai dengan kebijakan kami, kami telah mengambil tindakan terhadap konten dan/atau pemilik "
+"akun."
 
 #: src/olympia/abuse/templates/abuse/appeal.html:38
 msgid "Because the decision you are appealing has already been overturned, your appeal will not be processed."
-msgstr ""
+msgstr "Karena putusan banding telah dibatalkan, pengajuan banding Anda tidak akan diproses lebih lanjut."
 
 #: src/olympia/abuse/templates/abuse/appeal.html:42
 msgid "The decision you are appealing has already been overridden by a new decision, so this decision can't be appealed."
@@ -88,7 +90,7 @@ msgstr ""
 
 #: src/olympia/abuse/templates/abuse/appeal.html:44
 msgid "This decision can't be appealed."
-msgstr ""
+msgstr "Putusan ini tidak dapat diajukan banding."
 
 #: src/olympia/abuse/templates/abuse/emails/base_reporter.txt:1
 msgid "Hello,"
@@ -96,7 +98,7 @@ msgstr "Halo,"
 
 #: src/olympia/abuse/templates/abuse/emails/base_reporter.txt:7
 msgid "Mozilla Add-ons Team"
-msgstr ""
+msgstr "Tim Pengaya Mozilla"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_approve.txt:8
 #, python-format
