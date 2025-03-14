@@ -4671,7 +4671,7 @@ msgstr "Baca berkas ePub langsung di Firefox—perbesar ukuran huruf, dimensi la
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:137 src/olympia/discovery/strings.jinja2:860
 msgid "Play YouTube videos by default in the highest quality, turn off annotations, and more."
-msgstr ""
+msgstr "Putar video YouTube secara otomatis dengan kualitas tertinggi, matikan anotasi, dan lainnya."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:140
@@ -4686,7 +4686,7 @@ msgstr "Ubah server proksi dan jelajahi web dengan setelan proksi Anda sendiri."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:146
 msgid "Enhance your viewing experience by adjusting video speed and more."
-msgstr ""
+msgstr "Tingkatkan pengalaman menonton Anda dengan menyesuaikan kecepatan video dan lainnya."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -6442,7 +6442,7 @@ msgstr "berdasarkan Platform"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:41
 msgid "by Country"
-msgstr ""
+msgstr "berdasarkan Negara"
 
 #: src/olympia/stats/templates/stats/popup.html:2 src/olympia/stats/templates/stats/popup.html:8 src/olympia/stats/templates/stats/stats.html:181
 msgid "close"
@@ -6682,7 +6682,7 @@ msgstr "Pengaya"
 
 #: src/olympia/templates/photon-footer.html:4
 msgid "Go to Mozilla's homepage"
-msgstr ""
+msgstr "Ke beranda Mozilla"
 
 #: src/olympia/templates/photon-footer.html:11
 msgid "About"
@@ -6812,7 +6812,7 @@ msgstr "Isi dengan alamat IPv4 atau IPv6 yang benar,contoh 127.0.0.1. Akan diuba
 
 #: src/olympia/users/forms.py:37
 msgid "You can only enter one, either IP Address or Network."
-msgstr ""
+msgstr "Anda hanya boleh mengisi satu saja, antara alamat IP atau Jaringan."
 
 #: src/olympia/users/models.py:82
 msgid "No user with that email."
@@ -6991,7 +6991,7 @@ msgstr ""
 
 #: src/olympia/versions/models.py:1221
 msgid "Disabled by Developer"
-msgstr ""
+msgstr "Dinonaktifkan oleh Pengembang"
 
 #: src/olympia/versions/models.py:1579
 #, python-brace-format
