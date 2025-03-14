@@ -332,7 +332,7 @@ msgstr "Berkas telah dinonaktifkan."
 #: src/olympia/addons/serializers.py:518 src/olympia/addons/views.py:736
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
-msgstr ""
+msgstr "Versi terbaru dari pengaya %s ini tidak dapat dihapus karena versi sebelumnya tidak disetujui untuk promosi %s. Silakan hubungi Admin AMO jika Anda memerlukan bantuan terkait hal ini."
 
 #: src/olympia/addons/serializers.py:533
 #, python-brace-format
@@ -364,7 +364,7 @@ msgstr "Pengaya membutuhkan sekurangnya satu pemilik."
 
 #: src/olympia/addons/serializers.py:900
 msgid "Add-ons need at least one listed author."
-msgstr ""
+msgstr "Pengaya membutuhkan setidaknya satu kreator terdaftar."
 
 #: src/olympia/addons/serializers.py:932
 msgid "Account not found."
@@ -397,7 +397,7 @@ msgstr "Baik `license` dan `custom_license` tidak dapat disediakan bersamaan."
 
 #: src/olympia/addons/validators.py:64
 msgid "This field, or custom_license, is required for listed versions."
-msgstr ""
+msgstr "Bagian ini, atau custom_license, diperlukan untuk versi yang terdaftar."
 
 #: src/olympia/addons/validators.py:91
 msgid "Wrong add-on type for this license."
@@ -691,11 +691,11 @@ msgstr "Otorisasi header tidak valid. Rangkaian pengenal seharusnya tidak mengan
 
 #: src/olympia/api/authentication.py:108
 msgid "Valid user session not found matching the provided session key."
-msgstr ""
+msgstr "Sesi pengguna yang sah tidak sesuai dengan kunci sesi yang diberikan."
 
 #: src/olympia/api/authentication.py:122
 msgid "Access token refresh failed; user needs to login to FxA again."
-msgstr ""
+msgstr "Pembaruan token akses gagal; pengguna harus log masuk ke FxA kembali."
 
 #: src/olympia/api/authentication.py:187
 msgid "Wrong type for one or more keys in payload"
@@ -728,7 +728,7 @@ msgstr "Tidak tersedia karena alasan hukum."
 #: src/olympia/api/fields.py:91
 #, python-brace-format
 msgid "The language code \"{lang_code}\" is invalid."
-msgstr ""
+msgstr "Kode bahasa \"{lang_code}\" tidak sah."
 
 #: src/olympia/api/fields.py:92
 msgid "You must provide an object of {{lang-code:value}}."
@@ -3495,9 +3495,8 @@ msgid "You must submit your extension's source code."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:51
-#, fuzzy
 msgid "Your source code must include:"
-msgstr "KOde sumber diunggah"
+msgstr "Kode sumber Anda harus disertakan:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:56
 #, fuzzy
@@ -3852,7 +3851,7 @@ msgstr "Informasi lebih lanjut mengenai Akun Pengembang"
 
 #: src/olympia/devhub/templates/devhub/includes/android_compatibility_modal.html:3
 msgid "Firefox for Android compatibility"
-msgstr ""
+msgstr "Kompatibilitas Firefox untuk Android"
 
 #: src/olympia/devhub/templates/devhub/includes/android_compatibility_modal.html:4
 msgid ""
@@ -3862,7 +3861,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/android_compatibility_modal.html:6
 msgid "Yes, I’ve tested my extension with Firefox for Android"
-msgstr ""
+msgstr "Ya, saya telah menguji ekstensi saya pada Firefox untuk Android"
 
 #: src/olympia/devhub/templates/devhub/includes/android_compatibility_modal.html:7
 msgid "No, I have not tested"
