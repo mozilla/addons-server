@@ -780,11 +780,11 @@ msgstr "Pengaya ini sudah termasuk dalam koleksi ini"
 
 #: src/olympia/blocklist/models.py:188
 msgid "Blocked"
-msgstr ""
+msgstr "Diblokir"
 
 #: src/olympia/blocklist/models.py:188
 msgid "Restricted"
-msgstr ""
+msgstr "Terbatas"
 
 #: src/olympia/constants/activity.py:25
 #, python-brace-format
@@ -1072,7 +1072,7 @@ msgstr ""
 
 #: src/olympia/constants/activity.py:614
 msgid "Notes for reviewers changed"
-msgstr ""
+msgstr "Catatan untuk pengulas diubah"
 
 #: src/olympia/constants/activity.py:622
 #, python-brace-format
@@ -1126,9 +1126,9 @@ msgid "Content reject scheduled"
 msgstr "Penolakan konten dijadwalkan"
 
 #: src/olympia/constants/activity.py:817
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{addon} {version} reject scheduled."
-msgstr "{addon} {version} ditolak."
+msgstr "Penolakan {addon}{version}dijadwalkan."
 
 #: src/olympia/constants/activity.py:818
 msgid "Rejection scheduled"
