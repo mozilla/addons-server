@@ -2501,7 +2501,7 @@ class TestVerifyEmail(TestCase):
         assert 'Send another email' in doc.text()
 
 
-@override_switch('dev_exp_survey', active=True)
+@override_switch('enable_dev_experience_survey', active=True)
 class TestSurvey(TestCase):
     def setUp(self):
         super().setUp()
@@ -2560,7 +2560,7 @@ class TestSurvey(TestCase):
         print(response.content)
         assert b'Take our quick survey' in response.content
 
-    @override_switch('dev_exp_survey', active=False)
+    @override_switch('enable_dev_experience_survey', active=False)
     def test_survey_waffle(self):
         # survey banner should not appear if waffle is inactive
         self.client.force_login(self.user)

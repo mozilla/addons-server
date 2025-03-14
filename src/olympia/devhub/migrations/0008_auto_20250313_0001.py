@@ -11,5 +11,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        CreateWaffleSwitch('dev_exp_survey')
+        CreateWaffleSwitch('enable_dev_experience_survey')
     ]
