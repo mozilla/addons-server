@@ -5074,7 +5074,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:368
 msgid "Highlight text from any website and right-click to search YouTube for related media."
-msgstr ""
+msgstr "Sorot teks dari situs web mana pun dan klik kanan untuk mencari media terkait di YouTube."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:371
