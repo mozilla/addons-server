@@ -357,6 +357,7 @@ msgstr ""
 #, python-format
 msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
 msgstr ""
+"Rentang versi tidak valid. Untuk Firefox untuk Android, Anda hanya dapat memilih rentang yang dimulai dengan versi %(max)s atau lebih tinggi, atau diakhiri dengan lebih rendah dari versi %(min)s."
 
 #: src/olympia/addons/serializers.py:885
 msgid "Add-ons need at least one owner."
@@ -414,7 +415,7 @@ msgstr ""
 #: src/olympia/addons/validators.py:158
 #, python-brace-format
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
-msgstr ""
+msgstr "Metadata pengaya diperlukan untuk membuat versi terdaftar: {missing_addon_metadata}."
 
 #: src/olympia/addons/validators.py:272
 msgid "A GUID must be specified in the manifest."
@@ -430,7 +431,7 @@ msgstr "Sumber tidak dapat diubah karena versi ini telah ditinjau oleh Mozilla."
 
 #: src/olympia/addons/validators.py:315
 msgid "This type of add-on does not allow custom compatibility."
-msgstr ""
+msgstr "Jenis pengaya ini tidak mengizinkan kompatibilitas khusus."
 
 #: src/olympia/addons/validators.py:332
 msgid "This endpoint is not valid for Themes."
@@ -648,7 +649,7 @@ msgstr "Sejumlah fitur pada laman ini dimatikan sementara saat kami melakukan pe
 
 #: src/olympia/amo/templates/amo/submissions_disabled.html:3
 msgid "Add-on uploads temporarily disabled"
-msgstr ""
+msgstr "Unggahan pengaya untuk sementara dinonaktifkan"
 
 #: src/olympia/amo/templates/amo/submissions_disabled.html:13
 msgid "Add-on uploads have been temporarily disabled. Please check back later."
@@ -5116,7 +5117,7 @@ msgstr "Akses tab terbuka, markah, dan riwayat Anda dengan mudah."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:392
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
-msgstr ""
+msgstr "Banyak tab terbuka? Lewati pengguliran dan cari melalui pintasan papan ketik."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:395
@@ -5141,7 +5142,7 @@ msgstr "Ubah markah Anda melalui panel yang mudah diakses."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:407
 msgid "Store passwords securely and sign in automatically to known websites."
-msgstr ""
+msgstr "Simpan kata sandi dengan aman dan masuk secara otomatis ke situs web yang dikenal."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:410
