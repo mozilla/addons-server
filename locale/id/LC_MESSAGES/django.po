@@ -1184,7 +1184,7 @@ msgstr ""
 
 #: src/olympia/constants/activity.py:982
 msgid "Add-on slug changed"
-msgstr ""
+msgstr "Slug pengaya diubah"
 
 #: src/olympia/constants/activity.py:989
 #, python-brace-format
