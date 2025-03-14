@@ -7,7 +7,8 @@ on:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event_name}}-${{ github.ref}}
-  cancel-in-progress: true
+  # Don't cancel concurrent runs. Every run should notify.
+  cancel-in-progress: false
 
 jobs:
   context:
