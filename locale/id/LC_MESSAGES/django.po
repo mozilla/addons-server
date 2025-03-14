@@ -1147,21 +1147,21 @@ msgstr "Versi %s dihidupkan lagi."
 #: src/olympia/constants/activity.py:838
 #, python-brace-format
 msgid "{addon} force-disabled"
-msgstr ""
+msgstr "{addon} dinonaktifkan paksa"
 
 #: src/olympia/constants/activity.py:849
 #, python-brace-format
 msgid "{addon} force-enabled"
-msgstr ""
+msgstr "{addon} diaktifkan paksa"
 
 #: src/olympia/constants/activity.py:878
 #, python-brace-format
 msgid "{addon} {version} un-rejected."
-msgstr ""
+msgstr "{addon} {version} batal ditolak."
 
 #: src/olympia/constants/activity.py:879
 msgid "Un-rejected"
-msgstr ""
+msgstr "Batal ditolak"
 
 #: src/olympia/constants/activity.py:916
 #, python-brace-format
