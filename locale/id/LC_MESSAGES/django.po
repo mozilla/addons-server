@@ -3883,6 +3883,7 @@ msgstr "Versi Bertandatangan"
 #: src/olympia/devhub/templates/devhub/includes/done_unlisted.html:3
 msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
+"Selesai! Anda akan diberi tahu melalui surel ketika berkas yang ditandatangani siap diunduh dari Pusat Pengembang. Jika Anda tidak menerima surel setelah 24 jam, mohon periksa folder spam Anda."
 
 #: src/olympia/devhub/templates/devhub/includes/license_form.html:5 src/olympia/devhub/templates/devhub/versions/edit.html:83
 msgid "License"
@@ -3965,7 +3966,7 @@ msgstr "Kunjungi Lokakarya Ekstensi"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:4
 msgid "Connect with us"
-msgstr ""
+msgstr "Hubungi kami"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:8
 msgid "Twitter"
@@ -4040,7 +4041,7 @@ msgstr "Tombol \"Dapatkan Pengaya\""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:28
 msgid "Recommended Extensions program"
-msgstr ""
+msgstr "Program Ekstensi yang Direkomendasikan"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:33
 msgid "Contribute"
@@ -4072,7 +4073,7 @@ msgstr "Lihat bagaimana"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/get_involved.html:9
 msgid "Get involved"
-msgstr ""
+msgstr "Mari berperan"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/get_involved.html:11
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
@@ -4155,7 +4156,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/submit_or_manage_extension.html:11
 msgid "Register for a developer account or log in to the Developer Hub"
-msgstr ""
+msgstr "Daftarkan akun pengembang atau masuk ke Pusat Pengembang"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:5
 #, python-brace-format
@@ -4623,7 +4624,7 @@ msgstr "Buat Firefox melupakan data situs seperti kuki dan penyimpanan lokal, ta
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:113 src/olympia/discovery/strings.jinja2:794
 msgid "No need to write the same thing over and over. Save frequently-entered text to paste anytime."
-msgstr ""
+msgstr "Tidak perlu menuliskan hal yang sama berulang kali. Simpan teks yang sering dipakai kemudian tempel kapan saja."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
