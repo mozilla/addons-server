@@ -230,7 +230,7 @@ msgid "Review"
 msgstr "Ulasan"
 
 #: src/olympia/activity/models.py:816 src/olympia/devhub/templates/devhub/versions/list.html:41
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Version {0}"
 msgid_plural "Versions {0}"
 msgstr[0] "Versi {0}"
@@ -245,7 +245,7 @@ msgstr "Konten yang diminta terlalu besar."
 
 #: src/olympia/addons/decorators.py:78 src/olympia/amo/templates/amo/submissions_disabled.html:8
 msgid "Add-on uploads are temporarily unavailable."
-msgstr ""
+msgstr "Unggahan pengaya untuk sementara tidak tersedia."
 
 #: src/olympia/addons/fields.py:56
 #, python-brace-format
@@ -522,7 +522,7 @@ msgstr "Beberapa fitur sedang dimatikan sementara karena kami sedang melakukan p
 
 #: src/olympia/amo/utils.py:1112
 msgid "URLs are not allowed."
-msgstr ""
+msgstr "URL tidak diizinkan."
 
 #: src/olympia/amo/validators.py:17
 msgid "Must contain at least one printable character."
@@ -653,7 +653,7 @@ msgstr "Unggahan pengaya untuk sementara dinonaktifkan"
 
 #: src/olympia/amo/templates/amo/submissions_disabled.html:13
 msgid "Add-on uploads have been temporarily disabled. Please check back later."
-msgstr ""
+msgstr "Unggahan pengaya telah dinonaktifkan untuk sementara. Silakan periksa kembali nanti."
 
 #: src/olympia/amo/templatetags/jinja_helpers.py:148
 #, python-brace-format
