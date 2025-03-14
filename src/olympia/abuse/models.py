@@ -29,21 +29,8 @@ from olympia.users.models import UserProfile
 from olympia.versions.models import Version, VersionReviewerFlags
 
 from .actions import (
-    ContentActionAlreadyRemoved,
-    ContentActionApproveInitialDecision,
-    ContentActionApproveNoAction,
-    ContentActionBanUser,
-    ContentActionChangePendingRejectionDate,
-    ContentActionDeleteCollection,
-    ContentActionDeleteRating,
-    ContentActionDisableAddon,
-    ContentActionForwardToLegal,
-    ContentActionForwardToReviewers,
-    ContentActionIgnore,
-    ContentActionNotImplemented,
+    CONTENT_ACTION_FROM_DECISION_ACTION,
     ContentActionOverrideApprove,
-    ContentActionRejectVersion,
-    ContentActionRejectVersionDelayed,
     ContentActionTargetAppealApprove,
     ContentActionTargetAppealRemovalAffirmation,
 )
@@ -892,9 +879,7 @@ class CinderPolicy(ModelBase):
         related_name='children',
     )
     expose_in_reviewer_tools = models.BooleanField(default=False)
-    default_cinder_action = models.PositiveSmallIntegerField(
-        choices=DECISION_ACTIONS.choices, null=True, blank=True
-    )
+    enforcement_actions = models.JSONField(default=list, null=True)
     present_in_cinder = models.BooleanField(null=True)
 
     objects = CinderPolicyQuerySet.as_manager()
@@ -915,6 +900,23 @@ class CinderPolicy(ModelBase):
 
     class Meta:
         verbose_name_plural = 'Cinder Policies'
+
+    @classmethod
+    def get_decision_actions_from_policies(cls, policies, *, for_entity=None):
+        actions = {
+            action.value
+            for policy in policies
+            for api_value in policy.enforcement_actions
+            if policy.enforcement_actions
+            and DECISION_ACTIONS.has_api_value(api_value)
+            and (action := DECISION_ACTIONS.for_api_value(api_value))
+            and (
+                not for_entity
+                or for_entity
+                in CONTENT_ACTION_FROM_DECISION_ACTION[action.value].valid_targets
+            )
+        }
+        return list(actions)
 
 
 class ContentDecisionManager(ManagerBase):
@@ -1070,31 +1072,9 @@ class ContentDecision(ModelBase):
     def is_third_party_initiated(self):
         return bool((job := self.originating_job) and job.all_abuse_reports)
 
-    @classmethod
-    def get_action_helper_class(cls, decision_action):
-        return {
-            DECISION_ACTIONS.AMO_BAN_USER: ContentActionBanUser,
-            DECISION_ACTIONS.AMO_DISABLE_ADDON: ContentActionDisableAddon,
-            DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON: ContentActionRejectVersion,
-            DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON: (
-                ContentActionRejectVersionDelayed
-            ),
-            DECISION_ACTIONS.AMO_ESCALATE_ADDON: ContentActionForwardToReviewers,
-            DECISION_ACTIONS.AMO_DELETE_COLLECTION: ContentActionDeleteCollection,
-            DECISION_ACTIONS.AMO_DELETE_RATING: ContentActionDeleteRating,
-            DECISION_ACTIONS.AMO_APPROVE: ContentActionApproveNoAction,
-            DECISION_ACTIONS.AMO_APPROVE_VERSION: ContentActionApproveInitialDecision,
-            DECISION_ACTIONS.AMO_IGNORE: ContentActionIgnore,
-            DECISION_ACTIONS.AMO_CLOSED_NO_ACTION: ContentActionAlreadyRemoved,
-            DECISION_ACTIONS.AMO_LEGAL_FORWARD: ContentActionForwardToLegal,
-            DECISION_ACTIONS.AMO_CHANGE_PENDING_REJECTION_DATE: (
-                ContentActionChangePendingRejectionDate
-            ),
-        }.get(decision_action, ContentActionNotImplemented)
-
     def get_action_helper(self):
         # Base case when it's a new decision, that wasn't an appeal
-        ContentActionClass = self.get_action_helper_class(self.action)
+        ContentActionClass = CONTENT_ACTION_FROM_DECISION_ACTION[self.action]
         skip_reporter_notify = False
         any_cinder_job = self.originating_job
 

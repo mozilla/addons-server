@@ -989,7 +989,7 @@ class ReviewBase:
                 # If there isn't a cinder_action from the activity action already, get
                 # it from the policy. There should only be one in the list as form
                 # validation raises for multiple cinder actions.
-                (actions := self.get_cinder_actions_from_policies(policies))
+                (actions := self.get_decision_actions_from_policies(policies))
                 and actions[0].value
             )
         assert cinder_action
@@ -1095,14 +1095,18 @@ class ReviewBase:
         # explicitly.
         version.reset_due_date()
 
-    def get_cinder_actions_from_policies(self, policies):
-        return list(
-            {
-                DECISION_ACTIONS.for_value(policy.default_cinder_action)
-                for policy in policies
-                if getattr(policy, 'default_cinder_action', None)
-            }
+    def get_decision_actions_from_policies(self, policies):
+        actions = CinderPolicy.get_decision_actions_from_policies(
+            policies, for_entity=Addon
         )
+        # Until https://mozilla-hub.atlassian.net/browse/AMOENG-672 completes the
+        # integration we don't want to accidentally disable addons based on the actions
+        # linked to reviewreasons, so filter out all but the approve/ignore actions
+        return [
+            action
+            for action in actions
+            if action in (DECISION_ACTIONS.AMO_APPROVE, DECISION_ACTIONS.AMO_IGNORE)
+        ]
 
     def log_action(
         self,

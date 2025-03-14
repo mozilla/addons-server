@@ -31,6 +31,7 @@ from olympia.core import set_user
 from olympia.ratings.views import RatingViewSet
 from olympia.users.models import UserProfile
 
+from .actions import CONTENT_ACTION_FROM_DECISION_ACTION
 from .cinder import CinderAddon
 from .forms import AbuseAppealEmailForm, AbuseAppealForm
 from .models import AbuseReport, CinderJob, ContentDecision
@@ -178,7 +179,7 @@ def filter_enforcement_actions(enforcement_actions, cinder_job):
         if DECISION_ACTIONS.has_api_value(action_slug)
         and (action := DECISION_ACTIONS.for_api_value(action_slug))
         and target.__class__
-        in ContentDecision.get_action_helper_class(action.value).valid_targets
+        in CONTENT_ACTION_FROM_DECISION_ACTION[action.value].valid_targets
     ]
 
 

@@ -1268,7 +1268,7 @@ def decision_review(request, decision_id):
                 )
                 new_decision.policies.set(
                     CinderPolicy.objects.filter(
-                        default_cinder_action=DECISION_ACTIONS.AMO_APPROVE
+                        enforcement_actions__in=DECISION_ACTIONS.AMO_APPROVE.api_value
                     )
                 )
                 new_decision.execute_action(release_hold=True)
