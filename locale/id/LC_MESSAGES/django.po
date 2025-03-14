@@ -76,7 +76,7 @@ msgstr "Terima kasih atas laporan Anda."
 #: src/olympia/abuse/templates/abuse/appeal.html:37
 msgid ""
 "We have already reviewed a similar appeal from another reporter, and have reversed our prior decision. We have taken action against the content and/or account holder in accordance with our policies."
-msgstr ""
+msgstr "Kami telah meninjau pengajuan serupa dari pelapor lain dan membatalkan keputusan sebelumnya. Sesuai dengan kebijakan kami, kami telah mengambil tindakan terhadap konten dan/atau pemilik akun."
 
 #: src/olympia/abuse/templates/abuse/appeal.html:38
 msgid "Because the decision you are appealing has already been overturned, your appeal will not be processed."
