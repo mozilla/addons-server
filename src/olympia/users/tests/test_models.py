@@ -11,6 +11,7 @@ from django.db import models
 from django.db.utils import IntegrityError
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
+from django.utils import timezone
 
 import pytest
 import responses
@@ -24,6 +25,7 @@ from olympia.amo.tests import TestCase, addon_factory, collection_factory, user_
 from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.amo.utils import SafeStorage
 from olympia.bandwagon.models import Collection
+from olympia.devhub.models import SurveyResponse
 from olympia.files.models import File, FileUpload
 from olympia.ratings.models import Rating
 from olympia.users.models import (
@@ -911,6 +913,33 @@ class TestUserProfile(TestCase):
         )
 
         assert user.reload().email_verification.id == verification.id
+
+    def test_is_survey_eligible(self):
+        user = user_factory()
+        addon = addon_factory(users=[user])
+        survey_id = amo.DEV_EXP_SURVEY_ALCHEMER_ID
+
+        with self.assertRaises(ValueError):
+            user.is_survey_eligible(123)
+
+        # 1. addon updated >30 days ago
+        addon.last_updated = timezone.now() - timedelta(days=31)
+        addon.save()
+        assert not user.is_survey_eligible(survey_id)
+
+        # 2. addon updated <30 days ago, no survey response
+        addon.last_updated = timezone.now() - timedelta(days=29)
+        addon.save()
+        assert user.is_survey_eligible(amo.DEV_EXP_SURVEY_ALCHEMER_ID)
+
+        # 3. addon updated <30 days ago, survey response
+        instance = SurveyResponse.objects.create(user=user, survey_id=survey_id)
+        assert not user.is_survey_eligible(amo.DEV_EXP_SURVEY_ALCHEMER_ID)
+
+        # 4. addon updated <30 days ago, survey response >180 days ago
+        instance.date_responded = timezone.now() - timedelta(days=181)
+        instance.save()
+        assert user.is_survey_eligible(amo.DEV_EXP_SURVEY_ALCHEMER_ID)
 
 
 class TestDeniedName(TestCase):

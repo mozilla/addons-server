@@ -3264,3 +3264,30 @@ ul.errorlist li.strength {
     padding: 0 10px;
     max-width: 960px;
 }
+
+
+#dev-survey-banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 54px;
+    background-color: #D6FFCD;
+}
+
+#dev-survey-banner * {
+    font-size: 16px;
+    color: #000;
+}
+
+#dev-survey-banner .survey-link {
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+#dev-survey-banner .survey-dismiss {
+    position: absolute;
+    text-decoration: none;
+    padding: 20px;
+    right: 0px;
+}

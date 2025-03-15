@@ -47,6 +47,11 @@ $(document).ready(function () {
     initUploadPreview();
   });
 
+  // Developer experience survey
+  $('#dev-survey-banner').exists(function () {
+    initSurveyBanner();
+  });
+
   // disable buttons if submission is explicitly disabled
   const submissionField = $('#submission-field');
   const submissionsDisabled =
@@ -1414,4 +1419,16 @@ function initSubmitModals() {
         confirmedOnce = true;
       });
   }
+}
+
+function initSurveyBanner() {
+  const banner = $('#dev-survey-banner');
+  const link = $('#dev-survey-banner .survey-link');
+  const dismiss = $('#dev-survey-banner .survey-dismiss');
+  const responseUrl = banner.attr('response-url');
+
+  link.add(dismiss).on('click', () => {
+    $.post(responseUrl);
+    banner.hide();
+  });
 }

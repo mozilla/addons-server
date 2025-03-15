@@ -39,3 +39,19 @@ class BlogPost(ModelBase):
     class Meta:
         db_table = 'blogposts'
         ordering = ('-date_posted',)
+
+
+class SurveyResponse(ModelBase):
+    id = PositiveAutoField(primary_key=True)
+    survey_id = models.IntegerField(help_text='Alchemer survey identifier.')
+    user = models.ForeignKey(
+        UserProfile, on_delete=models.CASCADE, related_name='surveyresponse'
+    )
+    date_responded = models.DateTimeField(default=datetime.now)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=['survey_id', 'user'], name='unique_survey_user'
+            )
+        ]

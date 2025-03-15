@@ -56,6 +56,7 @@
         {% block bodyattrs %}{% endblock %}>
 
     <div id="main-wrapper">
+      {% block survey_banner %}{% endblock %}
       {% block site_notice %}
         {% set admin_message = get_config('site_notice') %}
         {% if admin_message or settings.READ_ONLY %}
