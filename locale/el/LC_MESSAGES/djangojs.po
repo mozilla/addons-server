@@ -52,7 +52,7 @@ msgstr "Σφάλμα με το {0}"
 
 #: static/js/common/upload-addon.js:236
 msgid "Please make sure to report any linting related issues on GitHub"
-msgstr "Παρακαλούμε αναφέρετε τυχόν ζητήματα σχετικά με το linting στο GitHub"
+msgstr "Αναφέρετε τυχόν ζητήματα σχετικά με το linting στο GitHub"
 
 #: static/js/common/upload-addon.js:247
 #, python-brace-format
@@ -142,7 +142,7 @@ msgstr "Λίστα ελέγχου υποβολής προσθέτων"
 
 #: static/js/common/upload-addon.js:663
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr "Παρακαλούμε επιβεβαιώστε τα παρακάτω σημεία πριν από την ολοκλήρωση της υποβολής σας. Αυτό θα μειώσει τυχόν καθυστερήσεις ή ασάφειες κατά τη διαδικασία της αξιολόγησης:"
+msgstr "Επιβεβαιώστε τα παρακάτω σημεία πριν ολοκληρώσετε την υποβολή σας. Έτσι, θα μειωθούν τυχόν καθυστερήσεις ή ασάφειες κατά τη διαδικασία της αξιολόγησης:"
 
 #: static/js/common/upload-addon.js:670
 msgid ""
@@ -885,7 +885,7 @@ msgstr[1] "Απομένουν <b>{0}</b> χαρακτήρες"
 
 #: static/js/zamboni/init.js:8
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Αυτή η λειτουργία έχει απενεργοποιηθεί προσωρινά λόγω εκτέλεσης εργασιών συντήρησης στον ιστότοπο. Παρακαλούμε δοκιμάστε ξανά αργότερα."
+msgstr "Αυτή η λειτουργία έχει απενεργοποιηθεί προσωρινά λόγω εκτέλεσης εργασιών συντήρησης στον ιστότοπο. Δοκιμάστε ξανά αργότερα."
 
 #: static/js/zamboni/l10n.js:55
 msgid "Remove this localization"

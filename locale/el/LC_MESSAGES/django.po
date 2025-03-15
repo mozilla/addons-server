@@ -32,7 +32,7 @@ msgstr "Λόγος ένστασης"
 
 #: src/olympia/abuse/forms.py:63
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
-msgstr "Παρακαλούμε εξηγήστε γιατί πιστεύετε ότι αυτή η απόφαση λήφθηκε κατά λάθος ή/και δεν συμμορφώνεται με την ισχύουσα πολιτική ή νομοθεσία."
+msgstr "Εξηγήστε γιατί πιστεύετε ότι αυτή η απόφαση λήφθηκε κατά λάθος ή/και γιατί δεν συμμορφώνεται με την ισχύουσα πολιτική ή νομοθεσία."
 
 #: src/olympia/abuse/models.py:1067
 msgid "User profile"
@@ -46,7 +46,7 @@ msgstr "«{}» για {}"
 #: src/olympia/abuse/serializers.py:29
 #, python-brace-format
 msgid "Please ensure this field has no more than {max_length} characters."
-msgstr "Παρακαλούμε βεβαιωθείτε ότι αυτό το πεδίο δεν περιέχει πάνω από {max_length} χαρακτήρες."
+msgstr "Βεβαιωθείτε ότι αυτό το πεδίο δεν περιέχει πάνω από {max_length} χαρακτήρες."
 
 #: src/olympia/abuse/serializers.py:233 src/olympia/abuse/serializers.py:249 src/olympia/addons/fields.py:51 src/olympia/addons/fields.py:257
 msgid "Invalid value"
@@ -323,7 +323,7 @@ msgstr "Η άδεια με slug={value} δεν υπάρχει."
 #: src/olympia/addons/fields.py:210
 #, python-brace-format
 msgid "Unsupported file type, please upload an archive file ({extensions})."
-msgstr "Μη υποστηριζόμενος τύπος αρχείου, παρακαλώ μεταφορτώστε ένα αρχείο αρχειοθήκης ({extensions})."
+msgstr "Ο τύπος αρχείου δεν υποστηρίζεται, μεταφορτώστε ένα συμπιεσμένο αρχείο ({extensions})."
 
 #: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:756 src/olympia/files/utils.py:755 src/olympia/reviewers/forms.py:344
 msgid "Invalid or broken archive."
@@ -375,7 +375,7 @@ msgstr "Το αρχείο είναι ήδη ανενεργό."
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
-"Η τελευταία εγκεκριμένη έκδοση του προσθέτου %s δεν μπορεί να διαγραφεί, επειδή η προηγούμενη έκδοση δεν εγκρίθηκε για προώθηση %s. Παρακαλούμε επικοινωνήστε με τους διαχειριστές του AMO αν "
+"Δεν είναι δυνατή η διαγραφή της τελευταίας εγκεκριμένης έκδοσης του προσθέτου %s, καθώς η προηγούμενη έκδοση δεν είχε εγκριθεί για προώθηση %s. Επικοινωνήστε με τους διαχειριστές του AMO αν "
 "χρειάζεστε βοήθεια."
 
 #: src/olympia/addons/serializers.py:533
@@ -425,7 +425,7 @@ msgstr "Ο λογαριασμός χρειάζεται ένα εμφανιζόμ
 
 #: src/olympia/addons/serializers.py:1217
 msgid "This slug cannot be used. Please choose another."
-msgstr "Αυτό το αναγνωριστικό URL δεν μπορεί να χρησιμοποιηθεί. Παρακαλώ επιλέξτε κάποιο άλλο."
+msgstr "Δεν είναι δυνατή η χρήση αυτού του αναγνωριστικού URL. Επιλέξτε κάποιο άλλο."
 
 #: src/olympia/addons/utils.py:39
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -546,11 +546,11 @@ msgstr "Θετικός ακέραιος"
 
 #: src/olympia/amo/fields.py:80
 msgid "Incorrect, please try again."
-msgstr "Λάθος, παρακαλούμε δοκιμάστε ξανά."
+msgstr "Λάθος, δοκιμάστε ξανά."
 
 #: src/olympia/amo/fields.py:81
 msgid "Error verifying input, please try again."
-msgstr "Σφάλμα επαλήθευσης εισόδου, παρακαλούμε δοκιμάστε ξανά."
+msgstr "Σφάλμα επαλήθευσης εισόδου, δοκιμάστε ξανά."
 
 #: src/olympia/amo/fields.py:90 src/olympia/amo/fields.py:97
 msgid "Enter a valid IP4 or IP6 network."
