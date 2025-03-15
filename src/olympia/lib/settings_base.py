@@ -1612,6 +1612,7 @@ CINDER_SERVER_URL = env(
 CINDER_API_TOKEN = env('CINDER_API_TOKEN', default=None)
 CINDER_WEBHOOK_TOKEN = env('CINDER_WEBHOOK_TOKEN', default=None)
 CINDER_QUEUE_PREFIX = 'amo-dev-'
+CINDER_UNIQUE_IDS = False
 
 SOCKET_LABS_HOST = env('SOCKET_LABS_HOST', default='https://api.socketlabs.com/v2/')
 SOCKET_LABS_TOKEN = env('SOCKET_LABS_TOKEN', default=None)
