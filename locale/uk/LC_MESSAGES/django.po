@@ -5847,7 +5847,7 @@ msgstr "Розширення для приватності й безпеки"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:992 src/olympia/discovery/strings.jinja2:994 src/olympia/discovery/strings.jinja2:996
 msgid "See staff picks"
-msgstr "Переглянути розширення відібрані персоналом"
+msgstr "Переглянути вибір наших співробітників"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:999
@@ -5907,7 +5907,7 @@ msgstr "Надійні менеджери паролів"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1026
 msgid "See more password manager staff picks"
-msgstr "Переглянути більше менеджерів паролів відібраних персоналом"
+msgstr "Інші менеджери паролів, відібрані нашими співробітниками"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1029
@@ -5917,7 +5917,7 @@ msgstr "Засоби для перекладу"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1031
 msgid "See more translation tool staff picks"
-msgstr "Переглянути більше засобів перекладу відібрані персоналом"
+msgstr "Інші засоби перекладу, відібрані нашими співробітниками"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1034
@@ -5927,7 +5927,7 @@ msgstr "Стрічки з суспільних мереж"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1036
 msgid "See more social streaming staff picks"
-msgstr "Переглянути більше розширень для стрічок суспільних мереж відібраних персоналом"
+msgstr "Інші розширення для стрічок соціальних мереж, відібрані нашими співробітниками"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1039
@@ -5937,7 +5937,7 @@ msgstr "Менеджери вкладок"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1041
 msgid "See more tab management staff picks"
-msgstr "Переглянути більше розширень для керування вкладками відібраних персоналом"
+msgstr "Інші розширення для керування вкладками, відібрані нашими співробітниками"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1044
@@ -5959,12 +5959,12 @@ msgstr "Елітні блокувальники реклами"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1051
 msgid "See more ad blocker staff picks"
-msgstr "Переглянути більше відібраних персоналом блокувальників реклами"
+msgstr "Інші розширення для блокування реклами, відібрані нашими співробітниками"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1056
 msgid "See more YouTube extension staff picks"
-msgstr "Переглянути більше розширень YouTube відібраних персоналом"
+msgstr "Інші розширення для YouTube, відібрані нашими співробітниками"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1059
@@ -6024,7 +6024,7 @@ msgstr "Розширення для соціальних мереж"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1086
 msgid "See more social media staff picks"
-msgstr "Переглянути більше розширень соціальних мереж відібраних персоналом"
+msgstr "Інші розширення для соціальних мереж, відібрані нашими співробітниками"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1089
@@ -6044,7 +6044,7 @@ msgstr "Розширення для поліпшення доступності"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1096
 msgid "See more accessibility staff picks"
-msgstr "Переглянути більше відібраного персоналом з питань доступності"
+msgstr "Інші засоби доступності, відібрані нашими співробітниками"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1099
@@ -6064,7 +6064,7 @@ msgstr "Розширення Twitch"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1106
 msgid "See more Twitch extension staff picks"
-msgstr ""
+msgstr "Інші розширення для Twitch, відібрані нашими співробітниками"
 
 #: src/olympia/files/models.py:309
 msgid "Unreviewed"
