@@ -5469,7 +5469,7 @@ msgstr "Αλλάξτε την εμφάνιση του προγράμματος �
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:525
 msgid "Keep personal notes anywhere on the web. Simply use a sidebar to attach notes on specific web pages."
-msgstr "Κρατήστε προσωπικές σημειώσεις οπουδήποτε στο διαδίκτυο. Απλώς χρησιμοποιήστε την πλευρική γραμμή για να επισυνάψετε σημειώσεις σε συγκεκριμένες ιστοσελίδες."
+msgstr "Κρατήστε προσωπικές σημειώσεις οπουδήποτε στο διαδίκτυο. Χρησιμοποιήστε την πλευρική γραμμή για να επισυνάψετε σημειώσεις σε συγκεκριμένες ιστοσελίδες."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:528
