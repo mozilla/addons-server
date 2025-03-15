@@ -3,14 +3,12 @@ import logging
 import os
 import subprocess
 import warnings
-from io import StringIO
+from pathlib import Path
 from pwd import getpwnam
 
 from django.apps import AppConfig
 from django.conf import settings
 from django.core.checks import Error, Tags, register
-from django.core.management import call_command
-from django.core.management.base import CommandError
 from django.db import connection
 from django.utils.translation import gettext_lazy as _
 
@@ -87,68 +85,38 @@ def version_check(app_configs, **kwargs):
 @register(CustomTags.custom_setup)
 def static_check(app_configs, **kwargs):
     errors = []
-    output = StringIO()
     version = get_version_json()
 
     # We only run this check in production images.
     if version.get('target') != 'production':
         return []
 
-    try:
-        call_command('compress_assets', dry_run=True, stdout=output)
-        stripped_output = output.getvalue().strip()
+    manifest_path = Path(settings.STATIC_BUILD_MANIFEST_PATH)
 
-        if stripped_output:
-            file_paths = stripped_output.split('\n')
-            for file_path in file_paths:
-                if not os.path.exists(file_path):
-                    error = f'Compressed asset file does not exist: {file_path}'
-                    errors.append(
-                        Error(
-                            error,
-                            id='setup.E003',
-                        )
-                    )
-        else:
-            errors.append(
-                Error(
-                    'No compressed asset files were found.',
-                    id='setup.E003',
-                )
-            )
-
-    except CommandError as e:
-        errors.append(
-            Error(
-                f'Error running compress_assets command: {str(e)}',
-                id='setup.E004',
-            )
-        )
-
-    if not os.path.exists(settings.STATIC_BUILD_MANIFEST_PATH):
+    if not manifest_path.exists():
         errors.append(
             Error(
                 (
                     'Static build manifest file '
-                    f'does not exist: {settings.STATIC_BUILD_MANIFEST_PATH}'
+                    f'does not exist: {manifest_path.as_posix()}'
                 ),
                 id='setup.E003',
             )
         )
     else:
-        with open(settings.STATIC_BUILD_MANIFEST_PATH, 'r') as f:
+        with open(manifest_path.as_posix(), 'r') as f:
             manifest = json.load(f)
 
             for name, asset in manifest.items():
                 # Assets compiled by vite are in the static root directory
                 # after running collectstatic. So we should look there.
-                path = os.path.join(settings.STATIC_ROOT, asset['file'])
-                if not os.path.exists(path):
+                path = Path(settings.STATIC_ROOT) / asset['file']
+                if not path.exists():
                     errors.append(
                         Error(
                             (
                                 f'Static asset {name} does not exist at '
-                                f'expected path: {path}'
+                                f'expected path: {path.as_posix()}'
                             ),
                             id='setup.E003',
                         )

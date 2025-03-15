@@ -1,8 +1,8 @@
 {% extends "admin/change_form.html" %}
-{% load admin_urls static %}
+{% load admin_urls static django_vite %}
 {% block admin_change_form_document_ready %}
 {{ block.super }}
-<script type="text/javascript" src="{% static 'js/admin/blocklist_blocklistsubmission.js' %}"></script>
+{% vite_asset 'js/blocklist_blocklistsubmission.js' %}
 {% endblock %}
 
 {% block submit_buttons_bottom %}

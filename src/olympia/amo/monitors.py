@@ -34,6 +34,26 @@ def execute_checks(checks: list[str], verbose: bool = False):
     return status_summary
 
 
+def localdev_static():
+    """
+    Used in local development environments to determine if the
+    local dev server is running and responding to requests.
+    """
+    status = ''
+    try:
+        base_url = 'http://nginx'
+        url = urljoin(base_url, '/static/bundle/ping.txt')
+        response = requests.get(url)
+        response.raise_for_status()
+
+        if response.headers.get('X-Served-By') != 'vite':
+            raise ValueError('File not served by vite')
+    except Exception as e:
+        status = f'Failed to ping local dev server: {e}'
+        monitor_log.critical(status)
+    return status, None
+
+
 def localdev_web():
     """
     Used in local development environments to determine if the web container

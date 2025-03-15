@@ -5,7 +5,7 @@ function isDoNotTrackEnabled() {
   // unsupported browsers and don't really respect the DNT spec. This
   // covers new versions of IE/Edge, Firefox from 32+, Chrome, Safari, and
   // any browsers built on these stacks (Chromium, Tor Browser, etc.).
-  var dnt = navigator.doNotTrack || window.doNotTrack;
+  let dnt = navigator.doNotTrack || window.doNotTrack;
   if (dnt === '1') {
     window.console &&
       console.info(
