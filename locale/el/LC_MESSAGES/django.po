@@ -3491,8 +3491,8 @@ msgid ""
 "You’re done! ✨ You will receive a confirmation email when this version is published on %(site_domain)s. Note that it may take up to 24 hours before publication occurs, or longer if your add-on is "
 "selected for manual review. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
-"Αυτό ήταν! ✨ Θα λάβετε ένα email επιβεβαίωσης όταν δημοσιευτεί αυτή η έκδοση στο %(site_domain)s. Σημειώστε ότι ίσως χρειαστούν έως και 24 ώρες πριν γίνει η δημοσίευση, ή περισσότερες εάν το "
-"πρόσθετό σας επιλεχθεί για μη αυτόματο έλεγχο. Αν δεν δείτε κάποιο email μετά από 24 ώρες, παρακαλούμε ελέγξτε τον φάκελο ανεπιθύμητων μηνυμάτων σας."
+"Αυτό ήταν! ✨ Θα λάβετε ένα email επιβεβαίωσης όταν αυτή η έκδοση δημοσιευτεί στο %(site_domain)s. Ενδέχεται να χρειαστούν έως και 24 ώρες πριν από τη δημοσίευση, ή περισσότερες εάν το πρόσθετό σας "
+"επιλεχθεί για μη αυτόματο έλεγχο. Αν δεν δείτε κάποιο email μετά από 24 ώρες, ελέγξτε τον φάκελο ανεπιθύμητων μηνυμάτων σας."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:31
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
@@ -3605,7 +3605,7 @@ msgstr "Το μέγιστο αποδεκτό μέγεθος αρχείου εί�
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:72
 #, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
-msgstr "Για περισσότερες πληροφορίες, παρακαλούμε διαβάστε το <a %(a_attrs)s>Υποβολή πηγαίου κώδικα</a> στο εργαστήριο επεκτάσεων του Firefox."
+msgstr "Για περισσότερες πληροφορίες, διαβάστε το άρθρο <a %(a_attrs)s>Υποβολή πηγαίου κώδικα</a> στο εργαστήριο επεκτάσεων του Firefox."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:77
 msgid "Upload source code:"
@@ -3747,9 +3747,9 @@ msgstr ""
 "\n"
 "%(api_key_confirmation_link)s\n"
 "\n"
-"Εάν δεν το ζητήσατε εσείς αυτό, παρακαλούμε ενημερώστε μας στο amo-admins@mozilla.com.\n"
+"Εάν δεν κάνατε εσείς αυτό το αίτημα, ενημερώστε μας στο amo-admins@mozilla.com.\n"
 "\n"
-"Ευχαριστούμε,\n"
+"Με εκτίμηση,\n"
 "\n"
 "Η ομάδα των Προσθέτων Mozilla"
 
@@ -3810,10 +3810,10 @@ msgid ""
 msgstr ""
 "Αγαπητέ προγραμματιστή προσθέτων,\n"
 "\n"
-"Παρατηρήσαμε ότι τα μυστικά σας διαπιστευτήρια AMO API συμπεριλαμβάνονται σε πρόσθετο που υποβλήθηκε στο addons.mozilla.org. Προκειμένου να προστατεύσουμε τον λογαριασμό σας και τα πρόσθετά σας, ανακαλέσαμε τα διαπιστευτήρια που διέρρευσαν.\n"
+"Παρατηρήσαμε ότι τα μυστικά διαπιστευτήρια API σας για το AMO συμπεριλαμβάνονται σε ένα πρόσθετο που υποβλήθηκε στο addons.mozilla.org. Προκειμένου να προστατεύσουμε τον λογαριασμό σας και τα πρόσθετά σας, ανακαλέσαμε τα διαπιστευτήρια που διέρρευσαν.\n"
 "Μπορείτε να δημιουργήσετε νέα διαπιστευτήρια API στο %(api_keys_url)s\n"
 "\n"
-"Παρακαλούμε βεβαιωθείτε ότι δεν θα κοινοποιείτε ποτέ τα διαπιστευτήριά σας σε κανέναν. Ποτέ μην τα συμπεριλάβετε σε δημόσιο αποθετήριο, πρόσθετο ή σε οποιοδήποτε δημόσιο χώρο. Σας προτείνουμε να ελέγξετε τα αποθετήρια του κώδικά και των επεκτάσεων σας και να καταργήσετε τυχόν αναφορές στα διαπιστευτήριά AMO σας.\n"
+"Μην κοινοποιείτε ποτέ τα διαπιστευτήριά σας σε κανέναν. Μην τα συμπεριλάβετε ποτέ σε κάποιο δημόσιο αποθετήριο, πρόσθετο ή σε οποιοδήποτε δημόσιο χώρο. Σας προτείνουμε να ελέγξετε τα αποθετήρια του κώδικα και των επεκτάσεών σας, ώστε να καταργήσετε τυχόν αναφορές στα διαπιστευτήριά σας για το AMO.\n"
 "\n"
 "Ευχαριστούμε,\n"
 "Η ομάδα των Προσθέτων Mozilla"
@@ -3854,12 +3854,12 @@ msgid ""
 msgstr ""
 "Γεια σας,\n"
 "\n"
-"Λαμβάνετε αυτό το μήνυμα επειδή ζητήσατε επαλήθευση του email σας.\n"
+"Λαμβάνετε αυτό το μήνυμα επειδή ζητήσατε την επαλήθευση του email σας.\n"
 "Για να ολοκληρώσετε αυτήν τη διαδικασία, κάντε κλικ στον παρακάτω σύνδεσμο:\n"
 "\n"
 "%(confirmation_link)s\n"
 "\n"
-"Εάν δεν το ζητήσατε εσείς αυτό, παρακαλούμε ενημερώστε μας στο amo-admins@mozilla.com.\n"
+"Εάν δεν κάνατε εσείς αυτό το αίτημα, ενημερώστε μας στο amo-admins@mozilla.com.\n"
 "\n"
 "Με εκτίμηση,\n"
 "\n"
@@ -3871,7 +3871,7 @@ msgstr "Αόρατο"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:24
 msgid "Please complete your add-on by adding a version or missing metadata."
-msgstr "Παρακαλούμε ολοκληρώστε το πρόσθετό σας προσθέτοντας μια έκδοση ή τα μεταδεδομένα που λείπουν."
+msgstr "Ολοκληρώστε το πρόσθετό σας προσθέτοντας μια έκδοση ή τα μεταδεδομένα που λείπουν."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:25
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
@@ -3884,7 +3884,7 @@ msgstr "Το πρόσθετό σας εμφανίζεται στη συλλογ�
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:30
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.com."
-msgstr "Το πρόσθετό σας απενεργοποιήθηκε από έναν διαχειριστή του ιστοτόπου και δεν εμφανίζεται πλέον στη συλλογή μας. Αν έχετε απορίες, παρακαλούμε επικοινωνήστε μαζί μας στο amo-admins@mozilla.com."
+msgstr "Το πρόσθετό σας απενεργοποιήθηκε από έναν διαχειριστή του ιστοτόπου και δεν εμφανίζεται πλέον στη συλλογή μας. Αν έχετε απορίες, επικοινωνήστε μαζί μας στο amo-admins@mozilla.com."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:34
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
@@ -3970,7 +3970,7 @@ msgstr "Έχω διαβάσει και αποδεχθεί αυτήν τη συμ
 
 #: src/olympia/devhub/templates/devhub/includes/agreement.html:16
 msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr "Ο λογαριασμός σας απαιτεί ένα εμφανιζόμενο όνομα, ώστε να γνωρίζουν οι χρήστες από ποιον προέρχεται το πρόσθετό σας. Παρακαλούμε εισαγάγετε ένα όνομα παρακάτω."
+msgstr "Ο λογαριασμός σας απαιτεί ένα εμφανιζόμενο όνομα, ώστε να γνωρίζουν οι χρήστες από ποιον προέρχεται το πρόσθετό σας. Εισαγάγετε ένα όνομα παρακάτω."
 
 #: src/olympia/devhub/templates/devhub/includes/agreement.html:36
 #, python-brace-format
@@ -4017,8 +4017,8 @@ msgstr "Εκκρεμεί η υπογραφή έκδοσης"
 #: src/olympia/devhub/templates/devhub/includes/done_unlisted.html:3
 msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
-"Τελειώσατε! ✨ Θα ειδοποιηθείτε μέσω email όταν το υπογεγραμμένο αρχείο θα είναι έτοιμο για λήψη από το Κέντρο προγραμματιστών. Αν δεν δείτε κάποιο email μετά από 24 ώρες, παρακαλούμε ελέγξτε τον "
-"φάκελο ανεπιθύμητών σας."
+"Αυτό ήταν! ✨ Θα ειδοποιηθείτε μέσω email όταν το υπογεγραμμένο αρχείο θα είναι έτοιμο για λήψη από το Κέντρο προγραμματιστών. Αν δεν δείτε κάποιο email μετά από 24 ώρες, ελέγξτε τον φάκελο "
+"ανεπιθύμητων μηνυμάτων σας."
 
 #: src/olympia/devhub/templates/devhub/includes/license_form.html:5 src/olympia/devhub/templates/devhub/versions/edit.html:83
 msgid "License"
@@ -4026,7 +4026,7 @@ msgstr "Άδεια"
 
 #: src/olympia/devhub/templates/devhub/includes/license_form.html:6
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
-msgstr "Παρακαλούμε επιλέξτε μια κατάλληλη άδεια για τα δικαιώματα που θέλετε να παραχωρήσετε στον πηγαίο σας κώδικα. Αφορά μόνο τα καταχωρημένα πρόσθετα."
+msgstr "Επιλέξτε μια κατάλληλη άδεια για τα δικαιώματα που θέλετε να παραχωρήσετε στον πηγαίο σας κώδικα. Αφορά μόνο τα καταχωρημένα πρόσθετα."
 
 #: src/olympia/devhub/templates/devhub/includes/listing_header.html:2
 msgid "Sort by:"
@@ -4060,7 +4060,7 @@ msgstr "Συμφωνία άδειας τελικού χρήστη"
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:4
 msgid "Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
-msgstr "Παρακαλούμε σημειώστε ότι μια EULA δεν είναι ίδια με μια άδεια κώδικα, όπως η GPL ή η MPL. Αφορά μόνο τα καταχωρημένα πρόσθετα."
+msgstr "Σημειώστε ότι μια EULA δεν είναι ίδια με μια άδεια κώδικα, όπως η GPL ή η MPL. Αφορά μόνο τα καταχωρημένα πρόσθετα."
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:21
 msgid "Privacy Policy"
@@ -4078,7 +4078,7 @@ msgstr "Αν το πρόσθετό σας περιέχει ελαχιστοπο�
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html:5
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
-msgstr "Παρακαλούμε συμπεριλάβετε οδηγίες για τον τρόπο δημιουργίας του τελικού αρχείου του προσθέτου, είτε σε αρχείο README είτε στις «Σημειώσεις προς ελεγκτές» αυτής της έκδοσης."
+msgstr "Συμπεριλάβετε οδηγίες για τον τρόπο δημιουργίας του τελικού αρχείου του προσθέτου, είτε σε αρχείο README είτε στις σημειώσεις προς ελεγκτές αυτής της έκδοσης."
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html:9
 msgid "Read more about the source code review policy."
@@ -4150,7 +4150,7 @@ msgstr "Ευχαριστούμε!"
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:53
 msgid "If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us."
 msgstr ""
-"Αν δεν έχετε προηγουμένως επιβεβαιώσει την εγγραφή σας σε κάποιο newsletter σχετικό με τη Mozilla, ίσως θα πρέπει να το κάνετε. Παρακαλούμε ελέγξτε τα εισερχόμενα ή το φίλτρο ανεπιθύμητων για ένα "
+"Αν δεν είχατε επιβεβαιώσει παλαιότερα την εγγραφή σας σε κάποιο ενημερωτικό δελτίο για τη Mozilla, ίσως χρειαστεί να το κάνετε. Ελέγξτε τα εισερχόμενα ή το φίλτρο ανεπιθύμητων μηνυμάτων σας για ένα "
 "email από εμάς."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:3
@@ -4511,8 +4511,8 @@ msgid ""
 "The latest approved version of this %(promoted_group_name)s add-on cannot be deleted or disabled because the previous version was not approved for %(promoted_group_name)s promotion. Please contact "
 "AMO Admins if you need help with this."
 msgstr ""
-"Η τελευταία εγκεκριμένη έκδοση του προσθέτου %(promoted_group_name)s δεν μπορεί να διαγραφεί ή να απενεργοποιηθεί, επειδή η προηγούμενη έκδοση δεν εγκρίθηκε για προώθηση %(promoted_group_name)s. "
-"Παρακαλούμε επικοινωνήστε με τους διαχειριστές του AMO αν χρειάζεστε βοήθεια."
+"Δεν είναι δυνατή η διαγραφή ή η απενεργοποίηση της τελευταίας εγκεκριμένης έκδοσης του προσθέτου %(promoted_group_name)s, καθώς η προηγούμενη έκδοση δεν είχε εγκριθεί για προώθηση "
+"%(promoted_group_name)s. Επικοινωνήστε με τους διαχειριστές του AMO αν χρειάζεστε βοήθεια."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:312 src/olympia/devhub/templates/devhub/versions/list.html:338
 msgid "Hide Add-on"
