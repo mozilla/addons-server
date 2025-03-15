@@ -1637,7 +1637,7 @@ msgstr "Màu đồng nhất"
 
 #: src/olympia/constants/categories.py:318
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
-msgstr "Tải xuống chủ đề Firefox với các màu đồng nhất và gradient để cá nhân hóa trình duyệt của bạn. Danh mục này bao gồm màu đỏ đậm, phấn màu, xám dịu và nhiều hơn nữa."
+msgstr "Tải xuống chủ đề Firefox với các màu đồng nhất và màu chuyển sắc để cá nhân hóa trình duyệt của bạn. Danh mục này bao gồm màu đỏ đậm, phấn màu, xám dịu và nhiều hơn nữa."
 
 #: src/olympia/constants/categories.py:325
 msgid "Sports"
