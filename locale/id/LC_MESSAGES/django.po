@@ -1171,21 +1171,21 @@ msgstr "Batal ditolak"
 #: src/olympia/constants/activity.py:916
 #, python-brace-format
 msgid "Reply to {rating} for {addon} written."
-msgstr ""
+msgstr "Balasan ke {rating} untuk {addon} ditulis."
 
 #: src/olympia/constants/activity.py:933
 #, python-brace-format
 msgid "{addon} {version} pending rejection cleared."
-msgstr ""
+msgstr "Penolakan tertunda {addon} {version} dibersihkan."
 
 #: src/olympia/constants/activity.py:934
 msgid "Pending rejection cleared"
-msgstr ""
+msgstr "Penolakan yang tertunda dibersihkan"
 
 #: src/olympia/constants/activity.py:981
 #, python-brace-format
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
-msgstr ""
+msgstr "{user_responsible} mengubah slug {addon} dari {0} menjadi {1}."
 
 #: src/olympia/constants/activity.py:982
 msgid "Add-on slug changed"
@@ -1199,35 +1199,35 @@ msgstr "Koleksi {collection} dihapus oleh moderator"
 #: src/olympia/constants/activity.py:995
 #, python-brace-format
 msgid "Collection {collection} un-deleted by moderator"
-msgstr ""
+msgstr "Koleksi {collection} batal dihapus oleh moderator"
 
 #: src/olympia/constants/activity.py:1004
 #, python-brace-format
 msgid "Review {rating} for {addon} un-deleted."
-msgstr ""
+msgstr "Ulasan {rating} untuk {addon} batal dihapus."
 
 #: src/olympia/constants/activity.py:1033
 #, python-brace-format
 msgid "{addon} {version} rejected automatically after delay expired."
-msgstr ""
+msgstr "{addon} {version} ditolak secara otomatis setelah penundaan berakhir."
 
 #: src/olympia/constants/activity.py:1034
 msgid "Rejected automatically after delay expired"
-msgstr ""
+msgstr "Ditolak secara otomatis setelah penundaan berakhir"
 
 #: src/olympia/constants/activity.py:1045
 #, python-brace-format
 msgid "{addon} {version} content rejected automatically after delay expired."
-msgstr ""
+msgstr "Konten {addon} {version} ditolak secara otomatis setelah penundaan berakhir."
 
 #: src/olympia/constants/activity.py:1046
 msgid "Content rejected automatically after delay expired"
-msgstr ""
+msgstr "Konten ditolak secara otomatis setelah penundaan berakhir"
 
 #: src/olympia/constants/activity.py:1171
 #, python-brace-format
 msgid "{addon} {version} pending rejection changed."
-msgstr ""
+msgstr "Penolakan tertunda {addon} {version} diubah."
 
 #: src/olympia/constants/activity.py:1172
 msgid "Pending rejection changed"
@@ -1343,7 +1343,7 @@ msgstr "Tema"
 
 #: src/olympia/constants/base.py:138
 msgid "Deprecated Site Permission"
-msgstr ""
+msgstr "Izin Situs Usang"
 
 #: src/olympia/constants/base.py:143 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:10
 msgid "Extensions"
@@ -1383,7 +1383,7 @@ msgstr "Tema"
 
 #: src/olympia/constants/base.py:152
 msgid "Deprecated Site Permissions"
-msgstr ""
+msgstr "Izin Situs Usang"
 
 #: src/olympia/constants/categories.py:68
 msgid "Alerts & Updates"
@@ -1631,7 +1631,7 @@ msgstr "Lisensi Publik Mozilla 2.0"
 
 #: src/olympia/constants/licenses.py:22
 msgid "Apache License 2.0"
-msgstr ""
+msgstr "Lisensi Apache 2.0"
 
 #: src/olympia/constants/licenses.py:29
 msgid "GNU General Public License v2.0 only"
@@ -1655,11 +1655,11 @@ msgstr ""
 
 #: src/olympia/constants/licenses.py:64
 msgid "MIT License"
-msgstr ""
+msgstr "Lisensi MIT"
 
 #: src/olympia/constants/licenses.py:71
 msgid "ISC License"
-msgstr ""
+msgstr "Lisensi ISC"
 
 #: src/olympia/constants/licenses.py:78
 msgid "BSD 2-Clause \"Simplified\" License"
@@ -1699,27 +1699,27 @@ msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 #: src/olympia/constants/licenses.py:162
 msgid "Creative Commons Attribution 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution 4.0"
 
 #: src/olympia/constants/licenses.py:172
 msgid "Creative Commons Attribution-NonCommercial 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial 4.0"
 
 #: src/olympia/constants/licenses.py:182
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
 
 #: src/olympia/constants/licenses.py:192
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
 
 #: src/olympia/constants/licenses.py:202
 msgid "Creative Commons Attribution-NoDerivs 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NoDerivs 4.0"
 
 #: src/olympia/constants/licenses.py:212
 msgid "Creative Commons Attribution-ShareAlike 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-ShareAlike 4.0"
 
 #: src/olympia/constants/licenses.py:222
 msgid "The Unlicense"
@@ -2542,7 +2542,7 @@ msgstr "Untuk"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:60
 msgid "Subject"
-msgstr ""
+msgstr "Subjek"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:61 src/olympia/devhub/templates/devhub/versions/list.html:189 src/olympia/devhub/templates/devhub/versions/list.html:207
 #: src/olympia/devhub/templates/devhub/versions/list.html:233
@@ -4974,7 +4974,7 @@ msgstr "Hapus laman pengalihan dan parameter pelacakan URL dari tautan web. Beke
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:308
 msgid "Prevent search engines from knowing what search results you click on."
-msgstr ""
+msgstr "Cegah mesin pencari untuk mengetahui hasil pencarian yang Anda klik."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:311
@@ -4985,7 +4985,7 @@ msgstr "Unduh video dan/atau audio YouTube."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:314 src/olympia/discovery/strings.jinja2:857
 msgid "An advanced reader for aggregating all of your RSS/Atom/RDF sources."
-msgstr ""
+msgstr "Pembaca tingkat lanjut untuk menggabungkan semua sumber RSS/Atom/RDF Anda."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:317
@@ -4996,7 +4996,7 @@ msgstr "Buat catatan umum dan spesifik-situs untuk ditinjau kemudian."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:320 src/olympia/discovery/strings.jinja2:683
 msgid "Phone-like scrolling for your desktop. Features \"grab-n-drag\" style mouse movement."
-msgstr ""
+msgstr "Pengguliran mirip ponsel untuk desktop Anda. Menampilkan gerakan mouse gaya \"grab-n-drag\"."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5007,7 +5007,7 @@ msgstr "Bersihkan tembolok peramban Anda dengan sekali klik atau ketukan tombol.
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:326
 msgid "Highlight text on web pages to save and access later."
-msgstr ""
+msgstr "Sorot teks pada halaman web untuk disimpan dan diakses nanti."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5024,19 +5024,19 @@ msgstr "Hemat lebar pita dengan pengaliran audio saja dari klip YouTube."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:335
 msgid "Turn words into beautiful headlines and image overlay text."
-msgstr ""
+msgstr "Ubah kata-kata menjadi tajuk berita dan hamparan gambar yang indah."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:338 src/olympia/discovery/strings.jinja2:701
 msgid "Automatically navigate to the secure version of a website if it's available."
-msgstr ""
+msgstr "Secara otomatis menavigasi ke versi situs web yang aman jika tersedia."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:341 src/olympia/discovery/strings.jinja2:782
 msgid "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
-msgstr ""
+msgstr "Hapus riwayat navigasi Anda. Tentukan jumlah hari untuk menyimpan riwayat browser sebelum secara otomatis dihapus."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:344
@@ -5051,18 +5051,18 @@ msgstr "Simpan sandi dengan aman dan masuk secara otomatis ke situs yang dikenal
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:350
 msgid "Fill forms automatically. Save entered data once and it will auto-fill next time."
-msgstr ""
+msgstr "Isi formulir secara otomatis. Simpan data yang dimasukkan sekali dan akan terisi otomatis di lain waktu."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:356
 msgid "Search privately with just a click."
-msgstr ""
+msgstr "Cari secara pribadi hanya dengan satu klik."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:359 src/olympia/discovery/strings.jinja2:815
 msgid "Put an end to tab hijacking. Don't let clicked links take control of your current tab and load content you didn't ask for."
-msgstr ""
+msgstr "Akhiri pembajakan tab. Jangan biarkan tautan yang diklik mengendalikan tab Anda saat ini dan memuat konten yang tidak Anda minta."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:362
@@ -5073,7 +5073,7 @@ msgstr "Lakukan pencarian Wikipedia dengan cukup menyorot teks pada laman dan me
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:365
 msgid "Find what you're looking for within a specific domain."
-msgstr ""
+msgstr "Temukan apa yang Anda cari dalam domain tertentu."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:368
@@ -5619,7 +5619,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:884
 msgid "Get weather updates directly from Firefox."
-msgstr ""
+msgstr "Dapatkan pembaruan cuaca langsung dari Firefox."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:887
@@ -5704,7 +5704,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:956
 msgid "Remove ads & receive better protection against malware."
-msgstr ""
+msgstr "Hapus iklan & dapatkan perlindungan yang lebih kuat dari malware."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:959
@@ -5719,7 +5719,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:965
 msgid "Enhance your gaming experience on Steam."
-msgstr ""
+msgstr "Tingkatkan pengalaman bermain Anda di Steam."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:968
@@ -6021,7 +6021,7 @@ msgstr ""
 
 #: src/olympia/files/models.py:309
 msgid "Unreviewed"
-msgstr ""
+msgstr "Belum diulas"
 
 #: src/olympia/files/models.py:312
 #, python-format
@@ -6044,12 +6044,12 @@ msgstr ""
 #: src/olympia/files/utils.py:350
 #, python-brace-format
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
-msgstr ""
+msgstr "\"strict_min_version\" {appver} tidak diketahui untuk {app}"
 
 #: src/olympia/files/utils.py:364
 #, python-brace-format
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
-msgstr ""
+msgstr "\"strict_max_version\" {appver} tidak diketahui untuk {app}"
 
 #: src/olympia/files/utils.py:542
 msgid "Unsupported compression method in archive."
@@ -6081,7 +6081,7 @@ msgstr ""
 
 #: src/olympia/files/utils.py:631
 msgid "Uncompressed size is too large"
-msgstr ""
+msgstr "Ukuran tidak terkompresi terlalu besar"
 
 #: src/olympia/files/utils.py:663
 msgid "Invalid archive."
@@ -6305,7 +6305,7 @@ msgstr ""
 
 #: src/olympia/scanners/models.py:135
 msgid "Human-readable name"
-msgstr ""
+msgstr "Nama yang dapat dibaca manusia"
 
 #: src/olympia/scanners/models.py:139
 msgid "Human readable description for the scanner rule"
@@ -6326,11 +6326,11 @@ msgstr ""
 #: src/olympia/scanners/models.py:195
 #, python-format
 msgid "The definition is not valid: %(error)s"
-msgstr ""
+msgstr "Definisi tidak valid: %(error)s"
 
 #: src/olympia/scanners/models.py:201
 msgid "An error occurred when compiling the definition"
-msgstr ""
+msgstr "Kesalahan terjadi saat melakukan kompilasi definisi"
 
 #: src/olympia/scanners/models.py:212
 msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
