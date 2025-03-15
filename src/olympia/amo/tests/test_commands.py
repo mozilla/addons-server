@@ -1,13 +1,16 @@
 import io
 import json
 import os
+import tempfile
 from importlib import import_module
+from pathlib import Path
 from unittest import mock
 
 from django.conf import settings
 from django.core import mail
 from django.core.management import call_command
 from django.core.management.base import CommandError
+from django.http import HttpResponseServerError
 from django.test.utils import override_settings
 
 import pytest
@@ -152,6 +155,53 @@ def test_generate_jsi18n_files():
     with open(filename) as f:
         content = f.read()
         assert 'Erreur' in content
+
+
+@override_settings(SWAGGER_UI_ENABLED=True)
+class TestGenerateJsSwaggerFiles(TestCase):
+    def setUp(self):
+        self.tmp_dir = tempfile.mkdtemp()
+        self.expected_path = Path(self.tmp_dir) / 'js' / 'swagger' / 'swagger_ui.js'
+
+    def generate_js_swagger_files(self):
+        with override_settings(STATIC_BUILD_PATH=self.tmp_dir):
+            call_command('generate_js_swagger_files')
+
+    def test_generate_js_swagger_files(self):
+        self.generate_js_swagger_files()
+        assert self.expected_path.exists()
+
+    def test_creates_missing_dir(self):
+        assert not self.expected_path.exists()
+        self.generate_js_swagger_files()
+        assert self.expected_path.exists()
+
+    def test_content_is_correct(self):
+        self.generate_js_swagger_files()
+        with open(self.expected_path, 'r') as f:
+            content = f.read()
+            assert 'SwaggerUIBundle' in content
+
+    def test_raises_on_server_error(self):
+        def return_http_500(*args, **kwargs):
+            return HttpResponseServerError
+
+        with mock.patch(
+            (
+                'olympia.amo.management.commands.generate_js_swagger_files.'
+                'SpectacularSwaggerSplitView.as_view'
+            )
+        ) as mock_view:
+            mock_view.return_value = return_http_500
+            with pytest.raises(CommandError) as error_info:
+                self.generate_js_swagger_files()
+            assert 'Unexpected status code: 500' in str(error_info.value)
+
+    @override_settings(SWAGGER_UI_ENABLED=False)
+    def test_raises_on_switch_disabled(self):
+        with pytest.raises(CommandError) as error_info:
+            self.generate_js_swagger_files()
+        assert 'Swagger UI is not enabled' in str(error_info.value)
 
 
 class BaseTestDataCommand(TestCase):
