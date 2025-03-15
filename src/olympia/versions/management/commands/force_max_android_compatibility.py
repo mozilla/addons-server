@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from django.db.models import Q
+from django.db.models import Count, Q
 from django.db.transaction import atomic
 
 import olympia.core.logger
@@ -45,14 +45,24 @@ class Command(BaseCommand):
             ApplicationsVersions.objects.filter(application=amo.ANDROID.id)
             .filter(version__addon__type=amo.ADDON_EXTENSION)
             .filter(version__channel=amo.CHANNEL_LISTED)
+            .annotate(
+                promoted_count=Count('version__addon__promotedaddonpromotion')
+            )  # force group by
             .filter(
                 # They need to be either:
-                Q(version__addon__promotedaddon__isnull=True)  # Not promoted at all
+                Q(
+                    version__addon__promotedaddonpromotion__isnull=True
+                )  # Not promoted at all
                 | ~Q(
-                    version__addon__promotedaddon__group_id__in=promoted_groups_ids
+                    version__addon__promotedaddonpromotion__promoted_group__group_id__in=promoted_groups_ids
                 )  # Promoted, but not for line / recommended
                 | Q(
-                    version__addon__promotedaddon__application_id=amo.FIREFOX.id
+                    Q(
+                        version__addon__promotedaddonpromotion__application_id=amo.FIREFOX.id
+                    )
+                    & ~Q(
+                        version__addon__promotedaddonpromotion__application_id=amo.ANDROID.id
+                    )
                 )  # Promoted, but for Firefox only (not Android / not both)
             )
             # If they are already marked as compatible with GA version, we

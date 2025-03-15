@@ -363,7 +363,7 @@ class TestPromotedAddonAdmin(TestCase):
         assert item.application_id is None
         assert item.all_applications == [amo.FIREFOX, amo.ANDROID]
         assert PromotedApproval.objects.count() == 0  # we didn't create any
-        assert not addon.promoted_group()
+        assert not addon.promoted_groups()
 
     def test_can_add_when_existing_approval(self):
         addon = addon_factory(name='unattached')
@@ -398,7 +398,9 @@ class TestPromotedAddonAdmin(TestCase):
         assert response.status_code == 200
         assert 'errors' not in response.context_data
         assert PromotedApproval.objects.count() == 1  # still one
-        assert addon.promoted_group().id == PROMOTED_GROUP_CHOICES.LINE  # now approved
+        assert (
+            PROMOTED_GROUP_CHOICES.LINE in addon.promoted_groups().group_id
+        )  # now approved
 
     def test_cannot_add_without_discovery_edit_permission(self):
         addon = addon_factory()
