@@ -86,7 +86,7 @@ msgstr "Karena putusan banding telah dibatalkan, pengajuan banding Anda tidak ak
 
 #: src/olympia/abuse/templates/abuse/appeal.html:42
 msgid "The decision you are appealing has already been overridden by a new decision, so this decision can't be appealed."
-msgstr ""
+msgstr "Keputusan yang Anda ajukan banding telah ditimpa oleh keputusan baru, sehingga keputusan ini tidak dapat diajukan banding."
 
 #: src/olympia/abuse/templates/abuse/appeal.html:44
 msgid "This decision can't be appealed."
@@ -1226,7 +1226,7 @@ msgstr ""
 
 #: src/olympia/constants/activity.py:1172
 msgid "Pending rejection changed"
-msgstr ""
+msgstr "Penolakan yang tertunda berubah"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -1278,7 +1278,7 @@ msgstr "Tidak terdaftar"
 
 #: src/olympia/constants/base.py:85
 msgid "Signing API"
-msgstr ""
+msgstr "API Penandatanganan"
 
 #: src/olympia/constants/base.py:86
 msgid "Add-on API"
