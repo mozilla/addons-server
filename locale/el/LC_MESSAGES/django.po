@@ -6150,7 +6150,7 @@ msgstr "Μη υποστηριζόμενος τύπος αρχείου."
 
 #: src/olympia/files/utils.py:554
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
-msgstr "Μη έγκυρο όνομα αρχείου στην αρχειοθήκη. Παρακαλούμε βεβαιωθείτε ότι όλα τα ονόματα αρχείων είναι κωδικοποιημένα σε utf-8 ή latin1."
+msgstr "Μη έγκυρο όνομα αρχείου στο συμπιεσμένο αρχείο. Βεβαιωθείτε ότι όλα τα ονόματα αρχείων έχουν κωδικοποίηση UTF-8 ή Latin 1."
 
 #. L10n: {0} is the name of the invalid file.
 #: src/olympia/files/utils.py:568
@@ -6230,7 +6230,7 @@ msgstr "Δεν είναι δυνατή η αλλαγή της γλώσσας ε�
 #: src/olympia/files/utils.py:1006
 #, python-brace-format
 msgid "Unsupported file type, please upload a supported file {extensions}."
-msgstr "Μη υποστηριζόμενος τύπος αρχείου, παρακαλούμε μεταφορτώστε ένα υποστηριζόμενο αρχείο {extensions}."
+msgstr "Ο τύπος αρχείου δεν υποστηρίζεται, μεταφορτώστε ένα υποστηριζόμενο αρχείο {extensions}."
 
 #: src/olympia/files/utils.py:1015
 msgid "Unexpected error."
@@ -6263,7 +6263,7 @@ msgstr "Αναφορά σφάλματος ή αίτημα υποστήριξης
 
 #: src/olympia/ratings/models.py:366
 msgid "Other (please specify)"
-msgstr "Άλλος (παρακαλούμε εξηγήστε)"
+msgstr "Άλλος (διευκρινίστε)"
 
 #: src/olympia/ratings/models.py:370
 msgid "Auto-flagged due to word match"
@@ -6350,7 +6350,7 @@ msgstr "Βαθμολογήθηκε %(rating)s στα 5 αστέρια"
 #: src/olympia/reviewers/forms.py:330
 #, python-brace-format
 msgid "Unsupported file type, please upload a file {extensions}."
-msgstr "Μη υποστηριζόμενος τύπος αρχείου, παρακαλούμε μεταφορτώστε ένα αρχείο {extensions}."
+msgstr "Ο τύπος αρχείου δεν υποστηρίζεται, μεταφορτώστε ένα αρχείο {extensions}."
 
 #: src/olympia/reviewers/forms.py:336
 msgid "File too large."
@@ -6485,7 +6485,7 @@ msgstr "Δεν μπορείτε να προσθέσετε καταχωρημέν
 
 #: src/olympia/signing/views.py:220
 msgid "You cannot add a listed version to this add-on via the API due to missing metadata. Please submit via the website"
-msgstr "Δεν μπορείτε να προσθέσετε μια καταχωρημένη έκδοση σε αυτό το πρόσθετο μέσω του API, λόγω ελλιπών μεταδεδομένων. Παρακαλώ κάντε υποβολή μέσω του ιστοτόπου"
+msgstr "Δεν μπορείτε να προσθέσετε μια καταχωρημένη έκδοση σε αυτό το πρόσθετο μέσω του API λόγω απουσίας μεταδεδομένων. Κάντε υποβολή μέσω του ιστοτόπου"
 
 #: src/olympia/signing/views.py:275
 msgid "No uploaded file for that add-on and version."
@@ -6946,13 +6946,13 @@ msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
 " which explains how we handle your information."
 msgstr ""
-"Πριν ξεκινήσετε, παρακαλούμε διαβάστε και αποδεχτείτε τη Συμφωνία διανομής προσθέτων του Firefox, καθώς και τις Πολιτικές και τους Κανόνες αξιολόγησης. Η συμφωνία διανομής προσθέτων του Firefox θα "
-"σας παραπέμψει στη Σημείωση απορρήτου μας, που εξηγεί πώς χειριζόμαστε τις πληροφορίες σας."
+"Πριν ξεκινήσετε, διαβάστε και αποδεχτείτε τη Συμφωνία διανομής προσθέτων του Firefox, καθώς και τις Πολιτικές και τους Κανόνες αξιολόγησης. Η συμφωνία διανομής προσθέτων του Firefox θα σας "
+"παραπέμψει στη Σημείωση απορρήτου μας, η οποία εξηγεί πώς χειριζόμαστε τις πληροφορίες σας."
 
 #: src/olympia/users/models.py:1197
 #, python-brace-format
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
-msgstr "Παρακαλούμε διαβάστε και αποδεχτείτε τη συμφωνία διανομής προσθέτων του Firefox, καθώς και τις πολιτικές και τους κανόνες αξιολόγησης, εδώ: {url}"
+msgstr "Διαβάστε και αποδεχτείτε τη Συμφωνία διανομής προσθέτων του Firefox, καθώς και τις Πολιτικές και τους Κανόνες αξιολόγησης, εδώ: {url}"
 
 #: src/olympia/users/models.py:1248
 msgid "User Restriction History"
@@ -7035,13 +7035,13 @@ msgid ""
 msgstr ""
 "Γεια σας %(author_name)s,\n"
 "\n"
-"Έχετε προσκληθεί να γίνετε δημιουργός του %(addon_name)s στο %(domain)s. Αν αποδεχτείτε την πρόσκληση, θα μπορείτε να επεξεργαστείτε το πρόσθετο και το όνομά σας ενδέχεται να εμφανιστεί στη λίστα δημιουργών στον ιστότοπο.\n"
+"Έχετε προσκληθεί να γίνετε δημιουργός του %(addon_name)s στο %(domain)s. Αν αποδεχτείτε την πρόσκληση, θα μπορείτε να επεξεργαστείτε το πρόσθετο. Επίσης, το όνομά σας μπορεί να εμφανιστεί στη λίστα δημιουργών στον ιστότοπο.\n"
 "\n"
 "Κάντε κλικ στον παρακάτω σύνδεσμο για να απαντήσετε αν θέλετε να προστεθείτε ως δημιουργός του %(addon_name)s.\n"
 "\n"
 "%(author_confirmation_link)s\n"
 "\n"
-"Αν δεν αναμένατε αυτήν την πρόσκληση, παρακαλούμε στείλτε email στο amo-admins@mozilla.com.\n"
+"Αν δεν αναμένατε αυτήν την πρόσκληση, στείλτε ένα email στο amo-admins@mozilla.com.\n"
 "\n"
 "Με εκτίμηση,\n"
 "Η ομάδα προσθέτων της Mozilla"
@@ -7085,7 +7085,7 @@ msgstr ""
 "\n"
 "Λαμβάνετε αυτό το μήνυμα επειδή ο λογαριασμός χρήστη %(name)s στο %(site_url)s έχει διαγραφεί. Αυτό μάλλον έγινε αυτόματα αν διαγράψατε πρόσφατα τον λογαριασμό Mozilla σας.\n"
 "\n"
-"Αν δεν το κάνατε αυτό ή πιστεύετε ότι κάποιος μη εξουσιοδοτημένος τρίτος έχει πρόσβαση στον λογαριασμό σας, παρακαλούμε απαντήστε στο παρόν email. Διαφορετικά, δεν απαιτείται καμία περαιτέρω ενέργεια.\n"
+"Αν δεν το κάνατε αυτό ή πιστεύετε ότι κάποιος μη εξουσιοδοτημένος τρίτος έχει πρόσβαση στον λογαριασμό σας, απαντήστε στο παρόν email. Διαφορετικά, δεν απαιτείται καμία περαιτέρω ενέργεια.\n"
 "\n"
 "Με εκτίμηση,\n"
 "\n"

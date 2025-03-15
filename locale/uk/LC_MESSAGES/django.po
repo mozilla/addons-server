@@ -5616,7 +5616,7 @@ msgstr "Налаштуйте YouTube на свій смак. Надайте йо
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:649
 msgid "Changes the color of Firefox to match the appearance of any website."
-msgstr ""
+msgstr "Змінює колір Firefox відповідно до зовнішнього вигляду будь-якого вебсайту."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:656
@@ -5831,7 +5831,7 @@ msgstr "Переглянути всі розширення"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:986
 msgid "Productivity tools"
-msgstr ""
+msgstr "Інструменти продуктивності"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -6059,7 +6059,7 @@ msgstr "Переглянути більше стартових пакунків 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1104
 msgid "Twitch extensions"
-msgstr ""
+msgstr "Розширення Twitch"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1106
