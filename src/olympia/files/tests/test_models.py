@@ -27,6 +27,7 @@ from olympia.amo.tests import (
     addon_factory,
     create_default_webext_appversion,
     user_factory,
+    version_factory,
 )
 from olympia.amo.utils import chunked
 from olympia.applications.models import AppVersion
@@ -102,6 +103,48 @@ class UploadMixin(amo.tests.AMOPaths):
             )
             upload.save()
         return upload
+
+
+class TestFileManager(TestCase):
+    def test_disabled_to_be_reenabled(self):
+        addon = addon_factory(
+            status=amo.STATUS_DISABLED,
+            file_kw={
+                'status': amo.STATUS_DISABLED,
+                'original_status': amo.STATUS_APPROVED,
+                # We don't want to re-enable a version the developer disabled
+                'status_disabled_reason': File.STATUS_DISABLED_REASONS.DEVELOPER,
+            },
+        )
+        version_factory(
+            addon=addon,
+            file_kw={
+                'status': amo.STATUS_DISABLED,
+                'original_status': amo.STATUS_APPROVED,
+                # we also don't want to re-enable a version we rejected
+                'status_disabled_reason': File.STATUS_DISABLED_REASONS.NONE,
+            },
+        )
+        v3 = version_factory(
+            addon=addon,
+            file_kw={
+                'status': amo.STATUS_DISABLED,
+                'original_status': amo.STATUS_APPROVED,
+                # but we do want to re-enable a version we only disabled with the addon
+                'status_disabled_reason': File.STATUS_DISABLED_REASONS.ADDON_DISABLE,
+            },
+        )
+        v4 = version_factory(
+            addon=addon,
+            file_kw={
+                'status': amo.STATUS_DISABLED,
+                'original_status': amo.STATUS_AWAITING_REVIEW,
+                # awaiting review versions could also be re-enabled
+                'status_disabled_reason': File.STATUS_DISABLED_REASONS.ADDON_DISABLE,
+            },
+        )
+
+        assert list(File.objects.disabled_to_be_reenabled()) == [v3.file, v4.file]
 
 
 class TestFile(TestCase, amo.tests.AMOPaths):

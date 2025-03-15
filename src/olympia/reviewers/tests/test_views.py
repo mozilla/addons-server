@@ -10,7 +10,7 @@ from unittest import mock
 from django.conf import settings
 from django.core import mail
 from django.core.cache import cache
-from django.core.files import File, temp
+from django.core.files import temp
 from django.core.files.base import ContentFile, File as DjangoFile
 from django.db import connection, reset_queries
 from django.template import defaultfilters
@@ -63,7 +63,7 @@ from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
 from olympia.constants.scanners import CUSTOMS, MAD, YARA
-from olympia.files.models import FileValidation, WebextPermission
+from olympia.files.models import File, FileValidation, WebextPermission
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.reviewers.models import (
     AutoApprovalSummary,
@@ -2841,7 +2841,7 @@ class TestReview(ReviewBase):
         # Any file greater than the limit should be rejected.
         assert AttachmentLog.objects.count() == 0
         file_buffer = io.BytesIO(b'0' * (settings.MAX_UPLOAD_SIZE + 1))
-        attachment = File(file_buffer, name='im_too_big.txt')
+        attachment = DjangoFile(file_buffer, name='im_too_big.txt')
         response = self.client.post(
             self.url,
             {
@@ -6019,6 +6019,76 @@ class TestReview(ReviewBase):
         assert decision.activities.all().get() == log_entry
         assert decision.action == DECISION_ACTIONS.AMO_APPROVE_VERSION
         self.assertCloseToNow(decision.action_date)
+
+    def test_force_enable_shows_versions_to_reenabled(self):
+        v1 = self.addon.current_version
+        v2 = version_factory(addon=self.addon)
+        v3 = version_factory(addon=self.addon)
+        v4 = version_factory(addon=self.addon, channel=amo.CHANNEL_UNLISTED)
+        self.addon.update(status=amo.STATUS_DISABLED)
+        v1.file.update(
+            status=amo.STATUS_DISABLED,
+            original_status=amo.STATUS_APPROVED,
+            # We don't want to re-enable a version the developer disabled
+            status_disabled_reason=File.STATUS_DISABLED_REASONS.DEVELOPER,
+        )
+        v2.file.update(
+            status=amo.STATUS_DISABLED,
+            original_status=amo.STATUS_APPROVED,
+            # we also don't want to re-enable a version we rejected
+            status_disabled_reason=File.STATUS_DISABLED_REASONS.NONE,
+        )
+        v3.file.update(
+            status=amo.STATUS_DISABLED,
+            original_status=amo.STATUS_APPROVED,
+            # but we do want to re-enable a version we only disabled with the addon
+            status_disabled_reason=File.STATUS_DISABLED_REASONS.ADDON_DISABLE,
+        )
+        v4.file.update(
+            status=amo.STATUS_DISABLED,
+            original_status=amo.STATUS_AWAITING_REVIEW,
+            # awaiting review versions could also be re-enabled
+            status_disabled_reason=File.STATUS_DISABLED_REASONS.ADDON_DISABLE,
+        )
+
+        response = self.client.get(self.url)
+        self.assertContains(response, '2 version(s) will be re-enabled:')
+        doc = pq(response.content)
+        items = doc('li.version-that-would-be-reenabled')
+        assert len(items) == 2
+        assert v3.version in items[1].text_content()
+        assert '-> Approved' in items[1].text_content()
+        assert 'Listed' in items[1].text_content()
+        assert v4.version in items[0].text_content()
+        assert '-> Awaiting Review' in items[0].text_content()
+        assert 'Unlisted' in items[0].text_content()
+        assert len(doc('li.version-that-would-be-reenabled.overflow-message')) == 0
+        assert doc('li.version-that-would-be-reenabled a').eq(1).attr.href == reverse(
+            'reviewers.review_version_redirect', args=[self.addon.id, v3.version]
+        )
+        assert doc('li.version-that-would-be-reenabled a').eq(0).attr.href == reverse(
+            'reviewers.review_version_redirect', args=[self.addon.id, v4.version]
+        )
+
+    def test_force_enable_shows_versions_to_reenabled_too_many(self):
+        self.addon.update(status=amo.STATUS_DISABLED)
+        for _ in range(0, 12):
+            version_factory(
+                addon=self.addon,
+                file_kw={
+                    'status': amo.STATUS_DISABLED,
+                    'original_status': amo.STATUS_APPROVED,
+                    'status_disabled_reason': (
+                        File.STATUS_DISABLED_REASONS.ADDON_DISABLE
+                    ),
+                },
+            )
+        response = self.client.get(self.url)
+        self.assertContains(response, '12 version(s) will be re-enabled:')
+        doc = pq(response.content)
+        items = doc('li.version-that-would-be-reenabled')
+        assert len(items) == 11
+        assert '...' in items[-1].text_content()
 
 
 class TestAbuseReportsView(ReviewerTest):
