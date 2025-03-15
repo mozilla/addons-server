@@ -2551,11 +2551,11 @@ msgstr "Status"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:87
 msgid "We have not found any email records for you in the last 2 days."
-msgstr ""
+msgstr "Kami belum menemukan catatan surel untuk Anda dalam 2 hari terakhir."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:91
 msgid "Refresh results"
-msgstr ""
+msgstr "Segarkan hasil"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:101
 #, python-format
