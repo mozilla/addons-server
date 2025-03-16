@@ -764,7 +764,7 @@ msgstr ""
 
 #: src/olympia/blocklist/models.py:188
 msgid "Blocked"
-msgstr ""
+msgstr "අවහිරයි"
 
 #: src/olympia/blocklist/models.py:188
 msgid "Restricted"
@@ -856,7 +856,7 @@ msgstr ""
 
 #: src/olympia/constants/activity.py:148 src/olympia/constants/base.py:25 src/olympia/constants/base.py:32
 msgid "Approved"
-msgstr ""
+msgstr "අනුමතයි"
 
 #: src/olympia/constants/activity.py:159
 #, python-brace-format
@@ -874,7 +874,7 @@ msgstr ""
 
 #: src/olympia/constants/activity.py:172 src/olympia/files/models.py:307
 msgid "Rejected"
-msgstr ""
+msgstr "ප්‍රතික්‍ෂේපිතයි"
 
 #: src/olympia/constants/activity.py:183
 #, python-brace-format
@@ -892,7 +892,7 @@ msgstr ""
 
 #: src/olympia/constants/activity.py:207
 msgid "Review requested"
-msgstr ""
+msgstr "සමාලෝචනයට ඉල්ලා ඇත"
 
 #: src/olympia/constants/activity.py:216
 #, python-brace-format
@@ -936,7 +936,7 @@ msgstr ""
 #: src/olympia/constants/activity.py:320
 #, python-brace-format
 msgid "{0} {1} added."
-msgstr ""
+msgstr "{0} {1} එක් කර ඇත."
 
 #. L10n: {0} is the user role
 #: src/olympia/constants/activity.py:328
@@ -985,7 +985,7 @@ msgstr ""
 
 #: src/olympia/constants/activity.py:395
 msgid "Password changed."
-msgstr ""
+msgstr "මුරපදය වෙනස් කෙරිණි."
 
 #: src/olympia/constants/activity.py:401
 #, python-brace-format
@@ -1038,7 +1038,7 @@ msgstr ""
 
 #: src/olympia/constants/activity.py:597
 msgid "Developer Reply"
-msgstr ""
+msgstr "සංවර්ධකයාගේ පිළිතුර"
 
 #: src/olympia/constants/activity.py:605
 #, python-brace-format
@@ -1047,7 +1047,7 @@ msgstr ""
 
 #: src/olympia/constants/activity.py:606
 msgid "Reviewer Reply"
-msgstr ""
+msgstr "සමාලෝචකයාගේ පිළිතුර"
 
 #: src/olympia/constants/activity.py:613
 #, python-brace-format
