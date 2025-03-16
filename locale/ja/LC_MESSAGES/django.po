@@ -243,7 +243,7 @@ msgstr "リクエストしたコンテンツが長すぎます。"
 
 #: src/olympia/addons/decorators.py:78 src/olympia/amo/templates/amo/submissions_disabled.html:8
 msgid "Add-on uploads are temporarily unavailable."
-msgstr ""
+msgstr "アドオンのアップロードが一時的に利用できなくなっています。"
 
 #: src/olympia/addons/fields.py:56
 #, python-brace-format
@@ -300,7 +300,7 @@ msgstr "不明な最小アプリ バージョンが指定されました"
 #: src/olympia/addons/fields.py:307 src/olympia/addons/fields.py:325 src/olympia/addons/serializers.py:622
 #, python-format
 msgid "Can not override compatibility information set in the manifest for this application (%s)"
-msgstr ""
+msgstr "このアプリのマニフェストで設定された互換性情報を上書きできません (%s)"
 
 #: src/olympia/addons/fields.py:375
 #, python-format
@@ -344,17 +344,17 @@ msgstr "バージョン {version_string} は既に存在します。"
 
 #: src/olympia/addons/serializers.py:556
 msgid "Listed versions cannot be submitted while add-on is disabled."
-msgstr ""
+msgstr "アドオンが無効になっている間、リストに載ったバージョンを送信することはできません。"
 
 #: src/olympia/addons/serializers.py:597
 #, python-format
 msgid "%(addon_type_plural)s are not supported by %(app_name)s"
-msgstr ""
+msgstr "%(addon_type_plural)s は %(app_name)s ではサポートされていません"
 
 #: src/olympia/addons/serializers.py:636 src/olympia/devhub/forms.py:910
 #, python-format
 msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
-msgstr ""
+msgstr "無効なバージョン範囲です。Android 版 Firefox の場合は、バージョン %(max)s 以上で始まるか、バージョン %(min)s 未満で終わる範囲のみを選択できます。"
 
 #: src/olympia/addons/serializers.py:885
 msgid "Add-ons need at least one owner."
@@ -432,7 +432,7 @@ msgstr "この種類のアドオンは、カスタム互換性を許可しませ
 
 #: src/olympia/addons/validators.py:332
 msgid "This endpoint is not valid for Themes."
-msgstr ""
+msgstr "このエンドポイントはテーマには無効です。"
 
 #: src/olympia/addons/templates/addons/includes/dashboard_tabs.html:4 src/olympia/devhub/templates/devhub/nav.html:15 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:19
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html:16
@@ -519,7 +519,7 @@ msgstr "サイトメンテナンスの間、いくつかの機能が一時的に
 
 #: src/olympia/amo/utils.py:1112
 msgid "URLs are not allowed."
-msgstr ""
+msgstr "URLは使用できません。"
 
 #: src/olympia/amo/validators.py:17
 msgid "Must contain at least one printable character."
@@ -638,11 +638,11 @@ msgstr "このページ内の一部の機能はサイトメンテナンスのた
 
 #: src/olympia/amo/templates/amo/submissions_disabled.html:3
 msgid "Add-on uploads temporarily disabled"
-msgstr ""
+msgstr "アドオンのアップロードが一時的に利用できません"
 
 #: src/olympia/amo/templates/amo/submissions_disabled.html:13
 msgid "Add-on uploads have been temporarily disabled. Please check back later."
-msgstr ""
+msgstr "アドオンのアップロードが一時的に無効になっています。しばらくしてからもう一度ご確認ください。"
 
 #: src/olympia/amo/templatetags/jinja_helpers.py:148
 #, python-brace-format
@@ -745,7 +745,7 @@ msgstr "開発者 API キーを確認する"
 
 #: src/olympia/api/throttling.py:113
 msgid "You have submitted this form too many times recently. Please try again after some time."
-msgstr ""
+msgstr "このフォームは最近何度も送信されています。しばらくしてからもう一度お試しください。"
 
 #: src/olympia/bandwagon/serializers.py:72
 msgid "This custom URL is already in use by another one of your collections."
@@ -910,7 +910,7 @@ msgstr "詳細情報請求済み"
 
 #: src/olympia/constants/activity.py:234
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
-msgstr ""
+msgstr "このアドオンは管理者による審査が必要と判断されました。まだ審査待ちですが、管理者がチェックする必要があります。審査には通常より時間がかかるかもしれません。"
 
 #: src/olympia/constants/activity.py:255
 #, python-brace-format
@@ -947,7 +947,7 @@ msgstr "{0}{1} が追加されました。"
 #: src/olympia/constants/activity.py:328
 #, python-brace-format
 msgid "{user} role changed to {0} for {addon}."
-msgstr ""
+msgstr "{addon} における {user} の役割が {0} に変更されました。"
 
 #: src/olympia/constants/activity.py:339
 #, python-brace-format
@@ -960,9 +960,9 @@ msgid "{addon} policy changed."
 msgstr "{addon} のポリシーが変更されました。"
 
 #: src/olympia/constants/activity.py:353
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{addon} icon or previews changed."
-msgstr "{addon} のアイコンが変更されました。"
+msgstr "{addon} のアイコンまたはプレビューが変更されました。"
 
 #: src/olympia/constants/activity.py:360
 #, python-brace-format
@@ -1029,7 +1029,7 @@ msgstr "{addon} のリスト掲載が中止されました。"
 #: src/olympia/constants/activity.py:546
 #, python-brace-format
 msgid "Add-on id {0} with GUID {1} has been deleted"
-msgstr ""
+msgstr "GUID {1}を持つアドオン ID {0} が削除されました"
 
 #: src/olympia/constants/activity.py:553 src/olympia/constants/activity.py:559
 #, python-brace-format
@@ -1057,11 +1057,11 @@ msgstr "審査担当者の返信"
 #: src/olympia/constants/activity.py:613
 #, python-brace-format
 msgid "Notes for reviewers changed for {addon} {version}."
-msgstr ""
+msgstr "{addon} {version} に関する審査担当者向けのメモが変更されました。"
 
 #: src/olympia/constants/activity.py:614
 msgid "Notes for reviewers changed"
-msgstr ""
+msgstr "審査担当者へのメモが変更されました"
 
 #: src/olympia/constants/activity.py:622
 #, python-brace-format
@@ -1126,7 +1126,7 @@ msgstr "却下が予定されました"
 #: src/olympia/constants/activity.py:829
 #, python-brace-format
 msgid "{addon} {version} automatically created and signed from {0}."
-msgstr ""
+msgstr "{addon} {version} が {0} から自動的に作成され、署名されました。"
 
 #: src/olympia/constants/activity.py:830
 msgid "Version re-signed"
@@ -1135,26 +1135,26 @@ msgstr "バージョンが再署名されました"
 #: src/olympia/constants/activity.py:838
 #, python-brace-format
 msgid "{addon} force-disabled"
-msgstr ""
+msgstr "{addon} が強制的に無効化されました"
 
 #: src/olympia/constants/activity.py:849
 #, python-brace-format
 msgid "{addon} force-enabled"
-msgstr ""
+msgstr "{addon} が強制的に有効化されました"
 
 #: src/olympia/constants/activity.py:878
 #, python-brace-format
 msgid "{addon} {version} un-rejected."
-msgstr ""
+msgstr "{addon} {version} の審査の却下が取り消されました。"
 
 #: src/olympia/constants/activity.py:879
 msgid "Un-rejected"
-msgstr ""
+msgstr "却下の取り消し"
 
 #: src/olympia/constants/activity.py:916
 #, python-brace-format
 msgid "Reply to {rating} for {addon} written."
-msgstr ""
+msgstr "{addon} の {rating} への返信が書かれました。"
 
 #: src/olympia/constants/activity.py:933
 #, python-brace-format
