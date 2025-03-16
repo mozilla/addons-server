@@ -142,6 +142,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it does not violate Mozilla's policies (%(policy_document_url)s).  It will therefore not be subject to any moderation action.\n"
 msgstr ""
+"\n"
+"Terima kasih atas laporan Anda tentang %(name)s, di %(target_url)s.\n"
+"\n"
+"Kami telah meninjau laporan Anda dan konten yang dipermasalahkan, dan menemukan bahwa itu tersebut tidak melanggar kebijakan Mozilla (%(policy_document_url)s).  Oleh karena itu tidak akan dikenakan tindakan moderasi.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:7
 #, python-format
@@ -149,6 +153,8 @@ msgid ""
 "You have the right to appeal this decision within 6 months from the date of this email. See %(appeal_url)s for details on the appeal process, including how to file an appeal for this specific "
 "decision."
 msgstr ""
+"Anda berhak untuk mengajukan banding atas keputusan ini dalam waktu 6 bulan sejak tanggal surel ini. Lihat %(appeal_url)s untuk detail tentang proses banding, termasuk cara mengajukan banding "
+"spesifik untuk keputusan ini."
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_addon.txt:5
 #, python-format
@@ -293,7 +299,7 @@ msgstr "Arsip rusak atau tidak valid."
 
 #: src/olympia/addons/fields.py:267
 msgid "Invalid app specified"
-msgstr ""
+msgstr "Aplikasi yang ditentukan tidak valid"
 
 #: src/olympia/addons/fields.py:285
 msgid "Unknown max app version specified"
@@ -306,7 +312,7 @@ msgstr "Versi aplikasi minimum yang tidak diketahui telah ditentukan"
 #: src/olympia/addons/fields.py:307 src/olympia/addons/fields.py:325 src/olympia/addons/serializers.py:622
 #, python-format
 msgid "Can not override compatibility information set in the manifest for this application (%s)"
-msgstr ""
+msgstr "Tidak bisa menimpa informasi kompatibilitas yang diatur dalam manifes untuk aplikasi ini (%s)"
 
 #: src/olympia/addons/fields.py:375
 #, python-format
@@ -355,7 +361,7 @@ msgstr "Versi yang terdaftar tidak dapat dikirim saat pengaya dinonaktifkan."
 #: src/olympia/addons/serializers.py:597
 #, python-format
 msgid "%(addon_type_plural)s are not supported by %(app_name)s"
-msgstr ""
+msgstr "%(addon_type_plural)s tidak didukung oleh %(app_name)s"
 
 #: src/olympia/addons/serializers.py:636 src/olympia/devhub/forms.py:910
 #, python-format
@@ -414,7 +420,7 @@ msgstr "Lisensi kustom tidak didukung untuk tema."
 
 #: src/olympia/addons/validators.py:132
 msgid "This field is required for add-ons with listed versions."
-msgstr ""
+msgstr "Bidang ini diperlukan untuk pengaya dengan versi terdaftar."
 
 #: src/olympia/addons/validators.py:158
 #, python-brace-format
@@ -439,7 +445,7 @@ msgstr "Jenis pengaya ini tidak mengizinkan kompatibilitas khusus."
 
 #: src/olympia/addons/validators.py:332
 msgid "This endpoint is not valid for Themes."
-msgstr ""
+msgstr "Titik akhir ini tidak valid untuk Tema."
 
 #: src/olympia/addons/templates/addons/includes/dashboard_tabs.html:4 src/olympia/devhub/templates/devhub/nav.html:15 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:19
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html:16
@@ -760,7 +766,7 @@ msgstr "Konfirmasi untuk pengembang kunci API"
 
 #: src/olympia/api/throttling.py:113
 msgid "You have submitted this form too many times recently. Please try again after some time."
-msgstr ""
+msgstr "Anda telah mengirimkan formulir ini terlalu sering baru-baru ini. Silakan coba lagi setelah beberapa saat."
 
 #: src/olympia/bandwagon/serializers.py:72
 msgid "This custom URL is already in use by another one of your collections."
@@ -977,9 +983,9 @@ msgid "{addon} policy changed."
 msgstr "{addon} kebijakan diubah."
 
 #: src/olympia/constants/activity.py:353
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{addon} icon or previews changed."
-msgstr "Ikon {addon} diganti."
+msgstr "Pratinjau atau ikon {addon} berubah."
 
 #: src/olympia/constants/activity.py:360
 #, python-brace-format
@@ -1143,7 +1149,7 @@ msgstr "Penolakan dijadwalkan"
 #: src/olympia/constants/activity.py:829
 #, python-brace-format
 msgid "{addon} {version} automatically created and signed from {0}."
-msgstr ""
+msgstr "{addon} {version} dibuat dan ditandatangani secara otomatis dari {0}."
 
 #: src/olympia/constants/activity.py:830
 msgid "Version re-signed"
@@ -2052,7 +2058,7 @@ msgstr "Nama Tampilan"
 
 #: src/olympia/devhub/forms.py:1435
 msgid "Confirm email address"
-msgstr ""
+msgstr "Konfirmasi alamat surel"
 
 #: src/olympia/devhub/forms.py:1436
 msgid "Generate new credentials"
