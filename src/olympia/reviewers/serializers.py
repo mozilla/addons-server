@@ -160,6 +160,7 @@ class FileEntriesSerializer(FileSerializer):
         return mime, 'binary' if mime_type not in known_types else mime_type
 
     def get_selected_file(self, obj):
+        print('get_select_file', obj)
         requested_file = self.context.get('file', None)
 
         if requested_file is None:
@@ -176,9 +177,12 @@ class FileEntriesSerializer(FileSerializer):
         return requested_file
 
     def get_content(self, obj):
+        print('get_content', obj)
         commit = self._get_commit(obj)
-        blob_or_tree = commit.tree[self.get_selected_file(obj)]
-
+        print('type', type(commit))
+        key = self.get_selected_file(obj)
+        print(key)
+        blob_or_tree = commit.tree[key]
         if blob_or_tree.type == 'blob':
             # TODO: Test if this is actually needed, historically it was
             # because files inside a zip could have any encoding but I'm not
