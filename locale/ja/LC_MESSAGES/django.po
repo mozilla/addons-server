@@ -16,27 +16,27 @@ msgstr ""
 #: src/olympia/abuse/actions.py:189
 #, python-brace-format
 msgid "Mozilla Add-ons: {} [{}]"
-msgstr ""
+msgstr "Mozilla アドオン: {} [{}]"
 
 #: src/olympia/abuse/forms.py:30
 msgid "Email address"
-msgstr ""
+msgstr "メールアドレス"
 
 #: src/olympia/abuse/forms.py:45
 msgid "Invalid email provided."
-msgstr ""
+msgstr "入力されたメールアドレスは無効です。"
 
 #: src/olympia/abuse/forms.py:61
 msgid "Reason for appeal"
-msgstr ""
+msgstr "上告理由"
 
 #: src/olympia/abuse/forms.py:63
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
-msgstr ""
+msgstr "この決定が誤ってなされた、または適用される方針もしくは法律に合致していないと考える理由を説明してください。"
 
 #: src/olympia/abuse/models.py:1067
 msgid "User profile"
-msgstr ""
+msgstr "ユーザープロファイル"
 
 #: src/olympia/abuse/models.py:1374
 #, python-brace-format
@@ -54,16 +54,16 @@ msgstr "無効な値"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:10 src/olympia/abuse/templates/abuse/appeal.html:15
 msgid "Appeal reviewer decision"
-msgstr ""
+msgstr "審査員の決定に対する異議申し立て"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:16
 #, python-brace-format
 msgid "Decision {0}"
-msgstr ""
+msgstr "決定 {0}"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:20
 msgid "Thank you. Your appeal has been recorded."
-msgstr ""
+msgstr "ありがとうございます。異議申し立てが記録されました。"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:31 src/olympia/amo/templates/amo/fake_fxa_authorization.html:21
 msgid "OK"
@@ -71,7 +71,7 @@ msgstr "OK"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:33 src/olympia/abuse/templates/abuse/appeal.html:41
 msgid "Thank you for your report."
-msgstr ""
+msgstr "ご報告ありがとうございます。"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:37
 msgid ""
@@ -92,11 +92,11 @@ msgstr ""
 
 #: src/olympia/abuse/templates/abuse/emails/base_reporter.txt:1
 msgid "Hello,"
-msgstr ""
+msgstr "こんにちは"
 
 #: src/olympia/abuse/templates/abuse/emails/base_reporter.txt:7
 msgid "Mozilla Add-ons Team"
-msgstr ""
+msgstr "Mozilla アドオンチーム"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_approve.txt:8
 #, python-format
@@ -769,11 +769,11 @@ msgstr "このアドオンは既にコレクションに含まれています"
 
 #: src/olympia/blocklist/models.py:188
 msgid "Blocked"
-msgstr ""
+msgstr "ブロックされています"
 
 #: src/olympia/blocklist/models.py:188
 msgid "Restricted"
-msgstr ""
+msgstr "制限されています"
 
 #: src/olympia/constants/activity.py:25
 #, python-brace-format
@@ -847,7 +847,7 @@ msgstr "{addon} のバージョン {0}が削除されました。"
 #: src/olympia/constants/activity.py:129
 #, python-brace-format
 msgid "File {file} added to {version} of {addon}."
-msgstr ""
+msgstr "{addon} のバージョン {version} にファイル {file} が追加されました。"
 
 #: src/olympia/constants/activity.py:141
 #, python-brace-format

@@ -95,7 +95,7 @@ msgstr "検証中に予期せぬサーバーエラーが発生しました。"
 
 #: static/js/common/upload-addon.js:519
 msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
-msgstr ""
+msgstr "マニフェストでは Android 版 Firefox との互換性が明示されています"
 
 #: static/js/common/upload-addon.js:561
 #, python-brace-format
@@ -879,7 +879,7 @@ msgstr "{name} が初めてこのページを見ました。"
 
 #: static/js/zamboni/reviewers.js:219
 msgid "Review page polling failed."
-msgstr ""
+msgstr "評価ページの投票に失敗しました。"
 
 #: static/js/zamboni/reviewers.js:507
 #, python-brace-format
