@@ -2082,6 +2082,8 @@ msgid ""
 "To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
 "href=\"{docs_url}\">API documentation</a>."
 msgstr ""
+"Untuk membuat permintaan API, kirim <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> sebagai header otorisasi. Anda harus membuat JWT untuk setiap permintaan seperti yang dijelaskan dalam <a "
+"href=\"{docs_url}\">dokumentasi API</a>."
 
 #: src/olympia/devhub/forms.py:1494
 msgid "JWT secret"
@@ -2090,7 +2092,7 @@ msgstr "Rahasia JWT"
 #: src/olympia/devhub/forms.py:1515
 #, python-brace-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
-msgstr ""
+msgstr "Silakan klik tombol konfirmasi di bawah ini untuk membuat kredensial API bagi pengguna <strong>{name}</strong>."
 
 #: src/olympia/devhub/forms.py:1521
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
@@ -2102,7 +2104,7 @@ msgstr "Anda tidak memiliki kredensial API apapun."
 
 #: src/olympia/devhub/forms.py:1549
 msgid "Something went wrong, please contact developer support."
-msgstr ""
+msgstr "Ada yang salah, silakan hubungi dukungan pengembang."
 
 #: src/olympia/devhub/tasks.py:178
 msgid "Invalid or corrupt add-on file."
@@ -2219,7 +2221,7 @@ msgstr "Pengaya Divalidasi"
 #: src/olympia/devhub/views.py:644
 #, python-brace-format
 msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
-msgstr ""
+msgstr "<a href=\"{link}\">Harap tambahkan otentikasi dua faktor ke akun Anda untuk mengirimkan ekstensi.</a>"
 
 #: src/olympia/devhub/views.py:1013
 msgid "Icons must be either PNG or JPG."
