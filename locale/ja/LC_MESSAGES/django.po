@@ -1853,7 +1853,7 @@ msgstr "Open Searchアドオンは、{blog_link_open}AMO でのサポートを�
 #: src/olympia/devhub/file_validation_annotations.py:105
 #, python-brace-format
 msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr ""
+msgstr "現在、Manifest V3 のアップロードはサポートされていません。{start_href}サポートのタイムラインの詳細について{end_href} をご覧ください。"
 
 #: src/olympia/devhub/forms.py:85
 msgid "This slug is already in use. Please choose another."
@@ -1876,9 +1876,9 @@ msgid "The miscellaneous category cannot be combined with additional categories.
 msgstr "「その他」カテゴリーを他のカテゴリーと組み合わせることはできません。"
 
 #: src/olympia/devhub/forms.py:272
-#, fuzzy, python-format
+#, python-format
 msgid "URL domain must be one of [%s]."
-msgstr "URL ドメインは [%s] のいずれか、もしくはサブドメインでなければなりません。"
+msgstr "URL ドメインは [%s] のいずれかである必要があります。"
 
 #: src/olympia/devhub/forms.py:288
 #, python-brace-format
@@ -1974,7 +1974,7 @@ msgstr "対応アプリケーションを少なくとも一つ選択する必要
 
 #: src/olympia/devhub/forms.py:1059
 msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr ""
+msgstr "最近のアップロード数が多すぎます。しばらくしてからもう一度お試しください。"
 
 #: src/olympia/devhub/forms.py:1108 src/olympia/signing/views.py:156
 #, python-brace-format
@@ -2031,7 +2031,7 @@ msgstr "表示名"
 
 #: src/olympia/devhub/forms.py:1435
 msgid "Confirm email address"
-msgstr ""
+msgstr "メールアドレスの確認"
 
 #: src/olympia/devhub/forms.py:1436
 msgid "Generate new credentials"
@@ -2054,7 +2054,7 @@ msgstr "JWT 発行者"
 msgid ""
 "To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
 "href=\"{docs_url}\">API documentation</a>."
-msgstr ""
+msgstr "API リクエストを行うには、認証ヘッダーとして <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> を送信します。<a href=\"{docs_url}\">API ドキュメント</a> に書かれている通り、リクエストごとに JWT を生成する必要があります。"
 
 #: src/olympia/devhub/forms.py:1494
 msgid "JWT secret"
@@ -2063,7 +2063,7 @@ msgstr "JWT 秘密鍵"
 #: src/olympia/devhub/forms.py:1515
 #, python-brace-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
-msgstr ""
+msgstr "ユーザー <strong>{name}</strong> の API 認証情報を生成するには、以下の確認ボタンをクリックしてください。"
 
 #: src/olympia/devhub/forms.py:1521
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
@@ -2075,7 +2075,7 @@ msgstr "あなたは API 認証情報を持っていません。"
 
 #: src/olympia/devhub/forms.py:1549
 msgid "Something went wrong, please contact developer support."
-msgstr ""
+msgstr "問題が発生しました。開発者サポートにお問い合わせください。"
 
 #: src/olympia/devhub/tasks.py:178
 msgid "Invalid or corrupt add-on file."
@@ -2101,7 +2101,7 @@ msgstr "検証の結果、多数のエラーや警告が見つかったため、
 #: src/olympia/devhub/utils.py:207
 #, python-brace-format
 msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
-msgstr ""
+msgstr "このアドオンはテーマではありません。拡張機能は <a href=\"{link}\">新しいアドオンを送信</a> ページから送信してください。"
 
 #: src/olympia/devhub/views.py:114
 msgid "Updated"
@@ -2192,7 +2192,7 @@ msgstr "アドオンの検証"
 #: src/olympia/devhub/views.py:644
 #, python-brace-format
 msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
-msgstr ""
+msgstr "<a href=\"{link}\">拡張機能を送信するには、アカウントに 2 要素認証を追加してください。</a>"
 
 #: src/olympia/devhub/views.py:1013
 msgid "Icons must be either PNG or JPG."
@@ -2228,7 +2228,7 @@ msgstr "プレビューのアップロード中に問題が発生しました。
 #, python-format
 msgid ""
 "The latest approved version of this %s add-on cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
-msgstr ""
+msgstr "この %s アドオンは、以前のバージョンが %s プロモーションで承認されなかったため、最新の承認済みバージョンを削除または無効化することはできません。助けが必要な場合は AMO の管理者に問い合わせてください。"
 
 #: src/olympia/devhub/views.py:1222
 #, python-format
@@ -2299,15 +2299,15 @@ msgstr "アドレスバーなどツールバー上の入力欄の文字色。マ
 
 #: src/olympia/devhub/views.py:1478
 msgid "Tab highlight"
-msgstr ""
+msgstr "タブのハイライト"
 
 #: src/olympia/devhub/views.py:1480
 msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
-msgstr ""
+msgstr "アクティブなタブの強調色。Firefox 89 以降ではタブの周りの境界線として、古い Firefox ではタブの上の線として実装されています。 Manifest フィールド:  tab_line。"
 
 #: src/olympia/devhub/views.py:1579
 msgid "Add-on uploads are temporarily unavailable"
-msgstr ""
+msgstr "アドオンのアップロードが一時的に利用できなくなっています"
 
 #: src/olympia/devhub/views.py:1947
 msgid "Review requested."
@@ -2323,7 +2323,7 @@ msgstr "あなたの古い認証情報は取り消されているため正当で
 
 #: src/olympia/devhub/views.py:2070
 msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
-msgstr ""
+msgstr "API キーはあなただけの秘密にしておき、Mozilla の貢献者を含め誰とも共有してはいけません。"
 
 #: src/olympia/devhub/views.py:2087
 msgid "New API key created"
@@ -2335,15 +2335,15 @@ msgstr "API キーが無効化されました"
 
 #: src/olympia/devhub/views.py:2158
 msgid "Verify email"
-msgstr ""
+msgstr "メールアドレスを確認"
 
 #: src/olympia/devhub/views.py:2160
 msgid "Send another email"
-msgstr ""
+msgstr "別のメールを送信"
 
 #: src/olympia/devhub/views.py:2193
 msgid "Your email has been verified"
-msgstr ""
+msgstr "メールアドレスが確認されました"
 
 #: src/olympia/devhub/widgets.py:81
 msgid "My add-on doesn't fit into any of the categories"
@@ -2428,7 +2428,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/suppressed_email.html:8
 msgid "Learn more"
-msgstr ""
+msgstr "詳細情報"
 
 #: src/olympia/devhub/templates/devhub/validate_addon.html:12
 msgid "Use the field below to upload your add-on package."
@@ -2458,7 +2458,7 @@ msgstr "検証対象:"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:3
 msgid "Email Address Verification"
-msgstr ""
+msgstr "メールアドレスの確認"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:63 src/olympia/devhub/templates/devhub/includes/addon_details.html:90 src/olympia/devhub/templates/devhub/verify_email.html:10
 msgid "Status:"
@@ -2466,15 +2466,15 @@ msgstr "状態:"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:12
 msgid "Your email address is verified."
-msgstr ""
+msgstr "メールアドレスが確認されました。"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:16
 msgid "Please verify your email."
-msgstr ""
+msgstr "メールアドレスを確認してください。"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:20
 msgid "Could not verify email address. The verification link has expired."
-msgstr ""
+msgstr "メールアドレスを確認できませんでした。確認リンクの有効期限が切れています。"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:24
 msgid "We are sending an email to you, please be patient... <div class=\"loader\"></div> The page will automatically refresh."
