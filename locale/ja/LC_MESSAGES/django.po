@@ -1302,7 +1302,7 @@ msgstr "スペルチェック辞書"
 
 #: src/olympia/constants/base.py:132
 msgid "Deprecated Search Engine"
-msgstr ""
+msgstr "非推奨の検索エンジン"
 
 #: src/olympia/constants/base.py:133
 msgid "Language Pack"
@@ -1310,11 +1310,11 @@ msgstr "言語パック"
 
 #: src/olympia/constants/base.py:134
 msgid "Deprecated Language Pack (Add-on)"
-msgstr ""
+msgstr "非推奨の言語パック (アドオン)"
 
 #: src/olympia/constants/base.py:135
 msgid "Deprecated Plugin"
-msgstr ""
+msgstr "非推奨のプラグイン"
 
 #: src/olympia/constants/base.py:136
 msgid "Deprecated LWT"
@@ -1326,7 +1326,7 @@ msgstr "テーマ"
 
 #: src/olympia/constants/base.py:138
 msgid "Deprecated Site Permission"
-msgstr ""
+msgstr "非推奨のサイト権限"
 
 #: src/olympia/constants/base.py:143 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:10
 msgid "Extensions"
@@ -1342,7 +1342,7 @@ msgstr "スペルチェック辞書"
 
 #: src/olympia/constants/base.py:146
 msgid "Deprecated Search Tools"
-msgstr ""
+msgstr "非推奨の検索ツール"
 
 #: src/olympia/constants/base.py:147
 msgid "Language Packs"
@@ -1350,11 +1350,11 @@ msgstr "言語パック"
 
 #: src/olympia/constants/base.py:148
 msgid "Deprecated Language Packs (Add-on)"
-msgstr ""
+msgstr "非推奨の言語パック (アドオン)"
 
 #: src/olympia/constants/base.py:149
 msgid "Deprecated Plugins"
-msgstr ""
+msgstr "非推奨のプラグイン"
 
 #: src/olympia/constants/base.py:150
 msgid "Deprecated LWTs"
@@ -1366,7 +1366,7 @@ msgstr "テーマ"
 
 #: src/olympia/constants/base.py:152
 msgid "Deprecated Site Permissions"
-msgstr ""
+msgstr "非推奨のサイト権限"
 
 #: src/olympia/constants/categories.py:68
 msgid "Alerts & Updates"
@@ -1606,7 +1606,7 @@ msgstr "一般"
 
 #: src/olympia/constants/licenses.py:15
 msgid "Mozilla Public License 2.0"
-msgstr ""
+msgstr "Mozilla Public License 2.0"
 
 #: src/olympia/constants/licenses.py:22
 msgid "Apache License 2.0"
@@ -3044,15 +3044,15 @@ msgstr "Creative Commons ライセンスに関する詳しい情報"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/invisible_channel_warning.html:2
 msgid "Your add-on is currently set to \"Invisible\"."
-msgstr ""
+msgstr "アドオンは現在「非表示」に設定されています。"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/invisible_channel_warning.html:3
 msgid "While in this state, \"On your own\" is the only distribution method available."
-msgstr ""
+msgstr "この状態での配布方法は「自分のみ」となります。"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/source_file_input.html:12
 msgid "You cannot change attached sources because this version has been reviewed by Mozilla."
-msgstr ""
+msgstr "このバージョンは Mozilla によってレビューされているため、ソースを変更できません。"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:5 src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:53
 msgid "General Tests"
@@ -3094,7 +3094,7 @@ msgstr "アドオンを削除すると、このアドオンのために登録さ
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:6
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
-msgstr ""
+msgstr "アドオン ID は元に戻せず、永久に投稿できなくなります。"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:2 src/olympia/devhub/templates/devhub/versions/list.html:253 src/olympia/devhub/templates/devhub/versions/list.html:257
 msgid "Delete Add-on"
@@ -3324,7 +3324,7 @@ msgstr "このバージョンの配布手段"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html:10
 msgid "To get started, select how you would like to distribute this version."
-msgstr ""
+msgstr "まず、このバージョンの配布方法を選んでください。"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html:19
 #, python-format
@@ -3357,7 +3357,7 @@ msgstr "設定完了！ このバージョンは審査終了後に公開され�
 msgid ""
 "You’re done! ✨ You will receive a confirmation email when this version is published on %(site_domain)s. Note that it may take up to 24 hours before publication occurs, or longer if your add-on is "
 "selected for manual review. If you do not see an email after 24 hours, please check your spam folder."
-msgstr ""
+msgstr "完了しました！✨ このバージョンが %(site_domain)s で公開されると同時に確認メールが届きます。アドオンが手動レビュー用に選択された場合、公開されるまで最大 24 時間かかる可能性があります。24 時間経ってもメールが届かない場合は、迷惑メールフォルダーを確認してください。"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:31
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
@@ -3385,7 +3385,7 @@ msgstr "バージョン {0}を編集"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:59
 msgid "As a reminder, your add-on is subject to manual review at any time."
-msgstr ""
+msgstr "アドオンはいつでも人間によるレビューの対象となることに注意してください。"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:64
 msgid "Go to My Submissions"
@@ -3429,7 +3429,7 @@ msgstr "あなたはソースコードを提出する必要はなく、次のス
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:49
 msgid "You must submit your extension's source code."
-msgstr ""
+msgstr "拡張機能のソースコードを送信する必要があります。"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:51
 msgid "Your source code must include:"
@@ -3783,7 +3783,7 @@ msgstr "開発者アカウントに関する詳しい情報"
 
 #: src/olympia/devhub/templates/devhub/includes/android_compatibility_modal.html:3
 msgid "Firefox for Android compatibility"
-msgstr ""
+msgstr "Android 版 Firefox の互換性"
 
 #: src/olympia/devhub/templates/devhub/includes/android_compatibility_modal.html:4
 msgid ""
@@ -3793,11 +3793,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/android_compatibility_modal.html:6
 msgid "Yes, I’ve tested my extension with Firefox for Android"
-msgstr ""
+msgstr "はい、Android 版 Firefox で拡張機能をテストしました"
 
 #: src/olympia/devhub/templates/devhub/includes/android_compatibility_modal.html:7
 msgid "No, I have not tested"
-msgstr ""
+msgstr "いいえ、テストしていません"
 
 #: src/olympia/devhub/templates/devhub/includes/blog_posts.html:3
 msgid "Developer News"
@@ -3813,7 +3813,7 @@ msgstr "バージョンの署名保留中"
 
 #: src/olympia/devhub/templates/devhub/includes/done_unlisted.html:3
 msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
-msgstr ""
+msgstr "これで完了です。 ✨ 署名付きファイルを開発者ハブからダウンロードできるようになると、メールで通知されます。 24 時間経ってもメールが届かない場合は、迷惑メールフォルダーを確認してください。"
 
 #: src/olympia/devhub/templates/devhub/includes/license_form.html:5 src/olympia/devhub/templates/devhub/versions/edit.html:83
 msgid "License"
@@ -3878,11 +3878,11 @@ msgstr "ソースコードのレビューポリシーについての詳細をお
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/banner.html:4
 msgid "Build best-in-class extensions and themes"
-msgstr ""
+msgstr "最高クラスの拡張機能とテーマを構築する"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/banner.html:7 src/olympia/devhub/templates/devhub/new-landing/components/overview.html:5
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
-msgstr ""
+msgstr "拡張機能開発の初心者でも、既存の拡張機能やテーマの改良や移植でも、カスタムエンタープライズソリューションの作成でも、私たちはあなたをサポートするためのリソースを用意しています。"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/banner.html:13
 msgid "Visit the Firefox Extension Workshop"
@@ -3890,7 +3890,7 @@ msgstr "Firefox 拡張機能ワークショップを訪れる"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:4
 msgid "Connect with us"
-msgstr ""
+msgstr "私たちとつながる"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:8
 msgid "Twitter"
@@ -3918,7 +3918,7 @@ msgstr "拡張機能開発者ニュースレター"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:23
 msgid "Stay up-to-date on news and events for Firefox extension developers."
-msgstr ""
+msgstr "Firefox 拡張機能開発者向けのニュースやイベントの最新情報をお届けします。"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:32 src/olympia/devhub/templates/devhub/new-landing/components/connect.html:33
 msgid "Email Address"
@@ -4589,7 +4589,7 @@ msgstr "トラッカーを追跡。クリックするだけで、誰があなた
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:143
 msgid "Change your proxy server and surf the web through self-defined proxy settings."
-msgstr "プロキシサーバーを変更し、自分で決めたプロキシ設定でネットサーフィン。"
+msgstr "プロキシーサーバーを変更し、自分で決めたプロキシー設定でネットサーフィン。"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:146
@@ -4599,9 +4599,8 @@ msgstr "動画の速度などを調整して、より快適な視聴体験を。
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:149 src/olympia/discovery/strings.jinja2:749
-#, fuzzy
 msgid "Add encrypted security to any site that supports HTTPS. Browse securely."
-msgstr "どんなサイトにも HTTPS 対応の暗号化セキュリティを追加。"
+msgstr "HTTPS をサポートするすべてのサイトに暗号化されたセキュリティを追加します。安全に閲覧できます。"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:152
@@ -4982,7 +4981,7 @@ msgstr "入力したデータを一度保存すると、次回から自動入力
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:356
 msgid "Search privately with just a click."
-msgstr ""
+msgstr "ワンクリックでプライベートに検索。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
