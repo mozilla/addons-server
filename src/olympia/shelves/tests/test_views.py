@@ -148,8 +148,8 @@ class TestShelfViewSet(ESTestCase):
         # don't enable shelf_c
         self.shelf_d.update(enabled=True)
 
-        # would be 36 but we mocked Shelf.tag that does a query.
-        with self.assertNumQueries(37):
+        # would be 27 but we mocked Shelf.tag that does a query.
+        with self.assertNumQueries(28):
             response = self.client.get(self.url)
         assert response.status_code == 200
 
@@ -268,12 +268,12 @@ class TestShelfViewSet(ESTestCase):
 
         self.shelf_a.update(enabled=True)
 
-        with self.assertNumQueries(22):
-            # 22 queries:
+        with self.assertNumQueries(18):
+            # 18 queries:
             # - 3 to get the shelves
             # - 11 as TestPrimaryHeroShelfViewSet.test_basic
             # - 2 as TestSecondaryHeroShelfViewSet.test_basic
-            # - 6 promoted group related queries
+            # - 2 promoted group related queries
             response = self.client.get(self.url)
         assert response.status_code == 200
 

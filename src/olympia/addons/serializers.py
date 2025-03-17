@@ -3,7 +3,6 @@ import re
 
 from django.core.exceptions import ValidationError as DjangoValidationError
 from django.core.files import File as DjangoFile
-from django.forms.models import model_to_dict
 from django.urls import reverse
 from django.utils.translation import gettext
 
@@ -1585,7 +1584,14 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
             # .approved_applications.
             approved_for_apps = promoted.get('approved_for_apps')
             group = PromotedGroup.objects.get(group_id=promoted['group_id'])
-            obj.promoted = [model_to_dict(group)]
+
+            obj.promoted = [
+                {
+                    'group_id': group.group_id,
+                    'category': group.api_name,
+                    'apps': [APP_IDS.get(app_id).short for app_id in approved_for_apps],
+                }
+            ]
 
             # we can safely regenerate these tuples because
             # .appproved_applications only cares about the current group
