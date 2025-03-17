@@ -55,8 +55,7 @@
         data-readonly="{{ settings.READ_ONLY|json }}"
         {% block bodyattrs %}{% endblock %}>
 
-    <div id="main-wrapper">
-      {% block survey_banner %}{% endblock %}
+    <div id="main-wrapper"> 
       {% block site_notice %}
         {% set admin_message = get_config('site_notice') %}
         {% if admin_message or settings.READ_ONLY %}
