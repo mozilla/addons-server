@@ -1401,11 +1401,11 @@ class TestVersion(AMOPaths, TestCase):
             addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
         )
         addon.reload()
-        with self.assertNumQueries(9):
+        with self.assertNumQueries(8):
             # 1. query for the addon's promoted groups
             # 2. check if the addon is badged
             # 3. check if the addon is listed_pre_review
-            # 4-9. promoted group queries
+            # 4-8. promoted group queries
             assert not addon.current_version.can_be_disabled_and_deleted()
 
     def test_is_blocked(self):

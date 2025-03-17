@@ -3,6 +3,7 @@ import re
 
 from django.core.exceptions import ValidationError as DjangoValidationError
 from django.core.files import File as DjangoFile
+from django.forms.models import model_to_dict
 from django.urls import reverse
 from django.utils.translation import gettext
 
@@ -1589,9 +1590,8 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
             # set .approved_for_groups cached_property because it's used in
             # .approved_applications.
             approved_for_apps = promoted.get('approved_for_apps')
-
-            # promoted should be a list of PromotedGroup
-            obj.promoted = [PromotedGroup.objects.get(group_id=promoted['group_id'])]
+            group = PromotedGroup.objects.get(group_id=promoted['group_id'])
+            obj.promoted = [model_to_dict(group)]
 
             # we can safely regenerate these tuples because
             # .appproved_applications only cares about the current group
