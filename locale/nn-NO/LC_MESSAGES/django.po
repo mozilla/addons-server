@@ -3910,11 +3910,11 @@ msgstr "Fjern denne appen"
 
 #. {0} is the maximum number of add-on categories allowed
 #: src/olympia/devhub/templates/devhub/includes/macros.html:69
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Select a category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
-msgstr[0] "Vel ein kategori for denne utvidinga:"
-msgstr[1] "Vel ein kategori for denne utvidinga:"
+msgstr[0] "Vel ein kategori for dette tillegget:"
+msgstr[1] "Vel <b>opp til {0}</b> kategoriar for dette tillegget:"
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:3
 msgid "End-User License Agreement"
@@ -4459,7 +4459,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:26 src/olympia/discovery/strings.jinja2:746
 msgid "Instant weather updates from around the world."
-msgstr ""
+msgstr "Rask vêroppdatering frå heile verda."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:29
@@ -4746,12 +4746,12 @@ msgstr ""
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:188
 msgid "Use mouse gestures to close tabs, navigate pages, and more."
-msgstr ""
+msgstr "Bruk muserørsler for å late att faner, navigere på sider, og meir."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:191
 msgid "See thumbnail images alongside your search returns."
-msgstr ""
+msgstr "Sjå miniatyrbilde saman med søkjeresultata dine."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:194
@@ -4767,7 +4767,7 @@ msgstr "Blokker all sprettoppvindauge som standard og bestem seinare kva for nok
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:200
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
-msgstr ""
+msgstr "Tilpass utsjånad på kva som helst nettstad. Byt fargar, sidebakgrunnar og meir."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:203
