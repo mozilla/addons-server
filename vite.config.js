@@ -50,6 +50,13 @@ export default defineConfig(({ command }) => {
       port: 5173,
       allowedHosts: true,
     },
+    resolve: {
+      alias: {
+        // Alias 'highcharts' to our local vendored copy
+        // we cannot use npm to install due to licensing constraints
+        highcharts: resolve(__dirname, 'static/js/lib/highcharts-module.js'),
+      },
+    },
     plugins: [
       // Inject jQuery globals in the bundle for usage by npm packages
       // that rely on it being globally available.

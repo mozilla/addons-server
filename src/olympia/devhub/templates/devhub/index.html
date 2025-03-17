@@ -23,9 +23,9 @@
           href="{{ url('amo.opensearch') }}" />
 
     {% block site_css %}
-      {{ css('common/fonts') }}
-      {{ css('devhub/new-landing/css') }}
-      {{ css('common/footer') }}
+      {{ vite_asset('css/fonts.less') }}
+      {{ vite_asset('css/devhub-new-landing.less') }}
+      {{ vite_asset('css/footer.less') }}
     {% endblock %}
 
     {% block extrahead %}{% endblock %}
@@ -36,13 +36,8 @@
 
     {% if settings.DEV_MODE %}
       {{ vite_hmr_client() }}
-      {% if settings.LESS_LIVE_REFRESH %}
-        <meta id="live_refresh" name="live_refresh" value="1">
-      {% endif %}
-      {{ js('debug') }}
     {% endif %}
 
-    {{ js('jquery_base') }}
     {{ vite_asset('js/preload.js') }}
   </head>
   {% set user_authenticated = request.user.is_authenticated %}
@@ -82,7 +77,7 @@
     </div>
     {% block site_js %}
       <script src="{{ static('js/i18n/%s.js'|format(LANG)) }}"></script>
-      {{ js('devhub/new-landing/js') }}
+      {{ vite_asset('js/devhub-new-landing.js') }}
     {% endblock %}
   </body>
 </html>
