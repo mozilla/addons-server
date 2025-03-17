@@ -3486,12 +3486,12 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:67
 #, python-format
 msgid "The maximum file size accepted is %(max_size)s."
-msgstr ""
+msgstr "Maksimalt tillatne filstorleik er %(max_size)s."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:72
 #, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
-msgstr ""
+msgstr "Meir informasjon finst i <a %(a_attrs)s>Send inn kjeldekode</a> i Firefox Extension Workshop."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:77
 msgid "Upload source code:"
@@ -3527,9 +3527,8 @@ msgid "The maximum file size accepted is %(max_size)s. If your add-on is larger 
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:59
-#, fuzzy
 msgid "Which applications is this version compatible with?"
-msgstr "Kva for plattformer er denne fila kompatibel med?"
+msgstr "Kva for program er denne versjonen kompatibel med?"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:66
 msgid "Administrative overrides"
@@ -3865,7 +3864,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/android_compatibility_modal.html:7
 msgid "No, I have not tested"
-msgstr ""
+msgstr "Nei, eg har ikkje testa"
 
 #: src/olympia/devhub/templates/devhub/includes/blog_posts.html:3
 msgid "Developer News"
@@ -5726,7 +5725,7 @@ msgstr "Vis alle utvidingar"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:986
 msgid "Productivity tools"
-msgstr ""
+msgstr "Produktivitetsverktøy"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -5810,7 +5809,7 @@ msgstr "Vis fleire tilrådde utvidingar"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1029
 msgid "Translation tools"
-msgstr ""
+msgstr "Omsettingsverktøy"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1031
@@ -5825,9 +5824,8 @@ msgstr "Sosial strøyming"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1036
-#, fuzzy
 msgid "See more social streaming staff picks"
-msgstr "Vis fleire populære utvidingar"
+msgstr "Sjå fleire val av tilsette for sosial strøyming"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1039
@@ -5848,9 +5846,9 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1046
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "See more extensions tagged \"{tag}\""
-msgstr "Vis fleire populære utvidingar"
+msgstr "Sjå fleire tillegg merkte med «{tag}»"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1049
@@ -5951,7 +5949,7 @@ msgstr ""
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1099
 msgid "Extension starter pack"
-msgstr ""
+msgstr "Startpakke for utvidingar"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1101
@@ -5961,7 +5959,7 @@ msgstr ""
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1104
 msgid "Twitch extensions"
-msgstr ""
+msgstr "Twitch-tillegg"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1106
@@ -6216,7 +6214,7 @@ msgstr ""
 
 #: src/olympia/reviewers/forms.py:336
 msgid "File too large."
-msgstr ""
+msgstr "Fila er for stor."
 
 #: src/olympia/reviewers/templates/reviewers/moderationlog_detail.html:11
 #, python-format
@@ -6226,7 +6224,7 @@ msgstr "<dd>%(review_author)s</dd>"
 #: src/olympia/reviewers/templates/reviewers/queue.html:48
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s"
-msgstr ""
+msgstr "av %(user)s den %(date)s %(stars)s"
 
 #: src/olympia/reviewers/templates/reviewers/queue.html:59
 #, python-format
@@ -6364,7 +6362,7 @@ msgstr "etter kjelde"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:14
 msgid "by Medium"
-msgstr ""
+msgstr "etter medium"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:17
 msgid "by Content"
@@ -6372,7 +6370,7 @@ msgstr "etter innhald"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:20
 msgid "by Campaign"
-msgstr ""
+msgstr "etter kanmpanje"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:26
 msgid "Daily Users"
@@ -6396,7 +6394,7 @@ msgstr "etter plattform"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:41
 msgid "by Country"
-msgstr ""
+msgstr "etter land"
 
 #: src/olympia/stats/templates/stats/popup.html:2 src/olympia/stats/templates/stats/popup.html:8 src/olympia/stats/templates/stats/stats.html:181
 msgid "close"
@@ -6783,7 +6781,7 @@ msgstr ""
 
 #: src/olympia/users/models.py:943
 msgid "Email Pattern"
-msgstr ""
+msgstr "E-postmønster"
 
 #: src/olympia/users/models.py:946
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
