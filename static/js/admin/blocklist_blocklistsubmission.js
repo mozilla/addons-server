@@ -1,6 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-  'use strict';
-
   const checkOrClearAllCheckboxes = (event) => {
     event.target.parentElement
       .querySelectorAll(`input[name="changed_version_ids"]`)
