@@ -1027,7 +1027,7 @@ class AddonSerializer(AMOModelSerializer):
         ],
     )
     previews = PreviewSerializer(many=True, source='current_previews', read_only=True)
-    promoted = serializers.SerializerMethodField(source='cached_promoted_groups')
+    promoted = serializers.SerializerMethodField()
     ratings = serializers.SerializerMethodField()
     ratings_url = serializers.SerializerMethodField()
     review_url = serializers.SerializerMethodField()
@@ -1161,16 +1161,10 @@ class AddonSerializer(AMOModelSerializer):
         # featured is gone, but we need to keep the API backwards compatible so
         # fake it with promoted status instead.
         def is_recommended(obj):
-            try:
-                return any(
-                    PROMOTED_GROUP_CHOICES.RECOMMENDED == promotion.group_id
-                    for promotion in obj.cached_promoted_groups
-                )
-            except TypeError:
-                return (
-                    PROMOTED_GROUP_CHOICES.RECOMMENDED
-                    == obj.cached_promoted_groups.group_id
-                )
+            return any(
+                PROMOTED_GROUP_CHOICES.RECOMMENDED == promotion.group_id
+                for promotion in obj.cached_promoted_groups
+            )
 
         return bool(obj.cached_promoted_groups and is_recommended(obj))
 
@@ -1635,6 +1629,15 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
 
     def get_promoted(self, obj):
         return obj.promoted
+
+    def get_is_featured(self, obj):
+        def is_recommended(obj):
+            return any(
+                PROMOTED_GROUP_CHOICES.RECOMMENDED == promotion['group_id']
+                for promotion in obj.promoted
+            )
+
+        return bool(obj.promoted and is_recommended(obj))
 
 
 class ESAddonAutoCompleteSerializer(ESAddonSerializer):
