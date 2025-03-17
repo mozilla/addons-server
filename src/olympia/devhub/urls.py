@@ -271,5 +271,10 @@ urlpatterns = decorate(
         re_path(
             r'^verify-email', views.email_verification, name='devhub.email_verification'
         ),
+        re_path(
+            r'^survey_response/(?P<survey_id>\d+)/$',
+            views.survey_response,
+            name='devhub.survey_response',
+        ),
     ],
 )

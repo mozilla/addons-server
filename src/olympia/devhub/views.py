@@ -11,6 +11,7 @@ from django.core.exceptions import PermissionDenied
 from django.core.files.storage import default_storage as storage
 from django.db import transaction
 from django.db.models import Count, F, Func, OuterRef, Subquery
+from django.db.utils import IntegrityError
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.template import loader
@@ -60,7 +61,7 @@ from olympia.devhub.decorators import (
     two_factor_auth_required_if_non_theme,
 )
 from olympia.devhub.file_validation_annotations import insert_validation_message
-from olympia.devhub.models import BlogPost, RssKey
+from olympia.devhub.models import BlogPost, RssKey, SurveyResponse
 from olympia.devhub.utils import (
     extract_theme_properties,
     wizard_unsupported_properties,
@@ -2223,3 +2224,16 @@ def email_verification(request):
         data['button_text'] = get_button_text(data['state'])
 
     return TemplateResponse(request, 'devhub/verify_email.html', context=data)
+
+
+@post_required
+@login_required
+def survey_response(request, survey_id):
+    try:
+        SurveyResponse.objects.update_or_create(
+            user=request.user,
+            survey_id=survey_id,
+        )
+    except IntegrityError:
+        return http.HttpResponse(status=500)
+    return http.HttpResponse(status=201)
