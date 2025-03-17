@@ -664,7 +664,9 @@ class Addon(OnChangeMixin, ModelBase):
         log.info(
             'Addon "%s" status force-changed to: %s', self.slug, amo.STATUS_APPROVED
         )
-        qs = File.objects.disabled_to_be_reenabled().filter(version__addon=self)
+        qs = File.objects.disabled_that_would_be_renabled_with_addon().filter(
+            version__addon=self
+        )
         qs.update(status=F('original_status'))
         qs.update(
             status_disabled_reason=File.STATUS_DISABLED_REASONS.NONE,

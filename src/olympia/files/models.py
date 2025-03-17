@@ -77,7 +77,7 @@ def files_storage():
 
 
 class FileManager(ManagerBase):
-    def disabled_to_be_reenabled(self):
+    def disabled_that_would_be_renabled_with_addon(self):
         return self.filter(
             status=amo.STATUS_DISABLED,
             status_disabled_reason=File.STATUS_DISABLED_REASONS.ADDON_DISABLE,

@@ -60,6 +60,7 @@ from olympia.constants.reviewers import (
     REVIEWS_PER_PAGE,
     REVIEWS_PER_PAGE_MAX,
     VERSIONS_PER_REVIEW_PAGE,
+    VERSIONS_THAT_WOULD_BE_ENABLED_SHOWN_MAX,
 )
 from olympia.devhub import tasks as devhub_tasks
 from olympia.files.models import File
@@ -672,7 +673,7 @@ def review(request, addon, channel=None):
     versions_that_would_be_enabled = (
         ()
         if addon.status != amo.STATUS_DISABLED
-        else File.objects.disabled_to_be_reenabled()
+        else File.objects.disabled_that_would_be_renabled_with_addon()
         .filter(version__addon=addon)
         .order_by('-created')
         .values_list(
@@ -784,7 +785,7 @@ def review(request, addon, channel=None):
         version=version,
         VERSION_ADU_LIMIT=VERSION_ADU_LIMIT,
         versions_that_would_be_enabled=versions_that_would_be_enabled,
-        VERSIONS_THAT_WOULD_BE_ENABLED_MAX=10,
+        VERSIONS_THAT_WOULD_BE_ENABLED_SHOWN_MAX=VERSIONS_THAT_WOULD_BE_ENABLED_SHOWN_MAX,
         versions_with_a_due_date_other=versions_with_a_due_date_other,
         versions_flagged_by_mad_other=versions_flagged_by_mad_other,
         versions_pending_rejection_other=versions_pending_rejection_other,

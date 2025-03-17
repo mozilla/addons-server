@@ -106,7 +106,7 @@ class UploadMixin(amo.tests.AMOPaths):
 
 
 class TestFileManager(TestCase):
-    def test_disabled_to_be_reenabled(self):
+    def test_disabled_that_would_be_renabled_with_addon(self):
         addon = addon_factory(
             status=amo.STATUS_DISABLED,
             file_kw={
@@ -125,7 +125,7 @@ class TestFileManager(TestCase):
                 'status_disabled_reason': File.STATUS_DISABLED_REASONS.NONE,
             },
         )
-        v3 = version_factory(
+        was_approved = version_factory(
             addon=addon,
             file_kw={
                 'status': amo.STATUS_DISABLED,
@@ -134,7 +134,7 @@ class TestFileManager(TestCase):
                 'status_disabled_reason': File.STATUS_DISABLED_REASONS.ADDON_DISABLE,
             },
         )
-        v4 = version_factory(
+        was_awaiting_review = version_factory(
             addon=addon,
             file_kw={
                 'status': amo.STATUS_DISABLED,
@@ -144,7 +144,10 @@ class TestFileManager(TestCase):
             },
         )
 
-        assert list(File.objects.disabled_to_be_reenabled()) == [v3.file, v4.file]
+        assert list(File.objects.disabled_that_would_be_renabled_with_addon()) == [
+            was_approved.file,
+            was_awaiting_review.file,
+        ]
 
 
 class TestFile(TestCase, amo.tests.AMOPaths):

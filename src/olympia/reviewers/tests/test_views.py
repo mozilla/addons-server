@@ -6023,8 +6023,10 @@ class TestReview(ReviewBase):
     def test_force_enable_shows_versions_to_reenabled(self):
         v1 = self.addon.current_version
         v2 = version_factory(addon=self.addon)
-        v3 = version_factory(addon=self.addon)
-        v4 = version_factory(addon=self.addon, channel=amo.CHANNEL_UNLISTED)
+        was_approved = version_factory(addon=self.addon)
+        was_awaiting_review = version_factory(
+            addon=self.addon, channel=amo.CHANNEL_UNLISTED
+        )
         self.addon.update(status=amo.STATUS_DISABLED)
         v1.file.update(
             status=amo.STATUS_DISABLED,
@@ -6038,13 +6040,13 @@ class TestReview(ReviewBase):
             # we also don't want to re-enable a version we rejected
             status_disabled_reason=File.STATUS_DISABLED_REASONS.NONE,
         )
-        v3.file.update(
+        was_approved.file.update(
             status=amo.STATUS_DISABLED,
             original_status=amo.STATUS_APPROVED,
             # but we do want to re-enable a version we only disabled with the addon
             status_disabled_reason=File.STATUS_DISABLED_REASONS.ADDON_DISABLE,
         )
-        v4.file.update(
+        was_awaiting_review.file.update(
             status=amo.STATUS_DISABLED,
             original_status=amo.STATUS_AWAITING_REVIEW,
             # awaiting review versions could also be re-enabled
@@ -6052,27 +6054,37 @@ class TestReview(ReviewBase):
         )
 
         response = self.client.get(self.url)
+        # Only the two disabled versions that have status_disabled_reason=ADDON_DISABLE
+        # will be re-enabled.
         self.assertContains(response, '2 version(s) will be re-enabled:')
         doc = pq(response.content)
         items = doc('li.version-that-would-be-reenabled')
         assert len(items) == 2
-        assert v3.version in items[1].text_content()
-        assert '-> Approved' in items[1].text_content()
-        assert 'Listed' in items[1].text_content()
-        assert v4.version in items[0].text_content()
-        assert '-> Awaiting Review' in items[0].text_content()
-        assert 'Unlisted' in items[0].text_content()
+        approved_li = items[1].text_content()
+        awaiting_li = items[0].text_content()
+        assert was_approved.version in approved_li
+        assert was_awaiting_review.version in awaiting_li
+        assert '-> Approved' in approved_li
+        assert '-> Awaiting Review' in awaiting_li
+        assert 'Listed' in approved_li
+        assert 'Unlisted' in awaiting_li
+
         assert len(doc('li.version-that-would-be-reenabled.overflow-message')) == 0
         assert doc('li.version-that-would-be-reenabled a').eq(1).attr.href == reverse(
-            'reviewers.review_version_redirect', args=[self.addon.id, v3.version]
+            'reviewers.review_version_redirect',
+            args=[self.addon.id, was_approved.version],
         )
         assert doc('li.version-that-would-be-reenabled a').eq(0).attr.href == reverse(
-            'reviewers.review_version_redirect', args=[self.addon.id, v4.version]
+            'reviewers.review_version_redirect',
+            args=[self.addon.id, was_awaiting_review.version],
         )
 
     def test_force_enable_shows_versions_to_reenabled_too_many(self):
+        MAX_MOCK = 5
         self.addon.update(status=amo.STATUS_DISABLED)
-        for _ in range(0, 12):
+        # +2 for an unambigious assertion on the number of li items
+        version_count = MAX_MOCK + 2
+        for _ in range(0, version_count):
             version_factory(
                 addon=self.addon,
                 file_kw={
@@ -6083,11 +6095,14 @@ class TestReview(ReviewBase):
                     ),
                 },
             )
-        response = self.client.get(self.url)
-        self.assertContains(response, '12 version(s) will be re-enabled:')
+        with mock.patch(
+            'olympia.reviewers.views.VERSIONS_THAT_WOULD_BE_ENABLED_SHOWN_MAX', MAX_MOCK
+        ):
+            response = self.client.get(self.url)
+        self.assertContains(response, f'{version_count} version(s) will be re-enabled:')
         doc = pq(response.content)
         items = doc('li.version-that-would-be-reenabled')
-        assert len(items) == 11
+        assert len(items) == MAX_MOCK + 1  # + 1 for the overflow li
         assert '...' in items[-1].text_content()
 
 
