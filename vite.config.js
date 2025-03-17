@@ -1,7 +1,8 @@
 import { defineConfig } from 'vite';
 import inject from '@rollup/plugin-inject';
-import { resolve } from 'path';
+import { resolve, relative } from 'path';
 import { glob } from 'glob';
+import babel from '@rollup/plugin-babel';
 
 const INPUT_DIR = './static';
 const OUTPUT_DIR = './static-build';
@@ -13,14 +14,32 @@ const OUTPUT_DIR = './static-build';
 const jsFiles = glob.sync('./static/js/*.js');
 const cssFiles = glob.sync('./static/css/*.less');
 
-const inputs = [...jsFiles, ...cssFiles].reduce((acc, path) => {
-  const key = path.split('.')[0];
-  acc[key] = path;
+// format inputs with unique keys
+const input = [...jsFiles, ...cssFiles].reduce((acc, path) => {
+  const relativePath = relative(INPUT_DIR, path);
+  const entryName = relativePath.replace(/\.(js|less)$/, '');
+  acc[entryName] = resolve(path);
   return acc;
 }, {});
 
+const jqueryGlobals = {
+  $: 'jquery',
+  jQuery: 'jquery',
+};
+
+const env = (name) => {
+  const value = process.env[name];
+  if (!value) {
+    throw new Error(`${name} is not defined`);
+  }
+  return value;
+};
+
 export default defineConfig(({ command }) => {
-  return {
+  const isLocal = env('ENV') === 'local';
+
+  const baseConfig = {
+    strict: true,
     root: resolve(INPUT_DIR),
     // In dev mode, prefix 'bundle' to static file URLs
     // so that nginx knows to forward the request to the vite
@@ -35,28 +54,30 @@ export default defineConfig(({ command }) => {
       // Inject jQuery globals in the bundle for usage by npm packages
       // that rely on it being globally available.
       inject({
-        $: 'jquery',
-        jQuery: 'jquery',
+        exclude: ['**/*.less'],
+        ...jqueryGlobals,
       }),
     ],
     build: {
       // This value should be kept in sync with settings_base.py
       // which determines where to read static file paths
       // for production URL resolution
-      manifest: 'manifest.json',
+      manifest: env('VITE_MANIFEST_FILE_NAME'),
       // Ensure we always build from an empty directory to prevent stale files
       emptyOutDir: true,
       // Configurable values helpful for debugging
       copyPublicDir: true,
-      minify: false,
-      sourcemap: true,
+      // Minify the output for non local builds
+      minify: !isLocal,
+      // Include sourcemaps in local builds only
+      sourcemap: isLocal,
       // This value should be kept in sync with settings_base.py
       // which includes this path as a staticfiles directory
       outDir: resolve(OUTPUT_DIR),
       rollupOptions: {
-        input: inputs,
-        format: 'es',
+        input,
         output: {
+          format: 'es',
           // Isolate vendor code into a separate chunk to avoid
           // polluting the UMD functions in legacy modules with the
           // rollup defined shims for module.exports / exports;
@@ -66,6 +87,15 @@ export default defineConfig(({ command }) => {
             }
           },
         },
+        plugins: [
+          // Use babel to ensure compatibility with all specified browsers
+          babel({
+            extensions: ['.js', '.less'],
+            // any helper code injected by babel will be bundled
+            // along with the rest of the code
+            babelHelpers: 'bundled',
+          }),
+        ],
       },
     },
     css: {
@@ -88,4 +118,18 @@ export default defineConfig(({ command }) => {
       ],
     },
   };
+
+  if (command === 'serve') {
+    // In dev mode, add the bundle path to direct
+    // static requests to the vite dev server via nginx
+    baseConfig.base += 'bundle/';
+    // Configure the dev server in dev mode
+    baseConfig.server = {
+      host: true,
+      port: 5173,
+      allowedHosts: true,
+    };
+  }
+
+  return baseConfig;
 });
