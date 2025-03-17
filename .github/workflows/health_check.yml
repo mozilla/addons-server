@@ -54,7 +54,7 @@ jobs:
 
       - uses: mozilla/addons/.github/actions/slack@main
         if: |
-          github.event_name == 'scheduled' &&
+          github.event_name == 'schedule' &&
           steps.health_check.outcome == 'failure'
         with:
           slack_token: ${{ secrets.SLACK_TOKEN }}
