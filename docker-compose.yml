@@ -48,6 +48,11 @@ services:
       - ./:/data/olympia
       - ./deps:/data/olympia/deps
     command: make run_vite
+    healthcheck:
+      test: ["CMD-SHELL", "./manage.py monitors --services localdev_static --skip-checks"]
+      interval: 30s
+      retries: 3
+      start_interval: 1s
 
   worker:
     <<: *olympia
