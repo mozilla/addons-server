@@ -76,6 +76,14 @@ def files_storage():
     return SafeStorage(root_setting='ADDONS_PATH')
 
 
+class FileManager(ManagerBase):
+    def disabled_that_would_be_renabled_with_addon(self):
+        return self.filter(
+            status=amo.STATUS_DISABLED,
+            status_disabled_reason=File.STATUS_DISABLED_REASONS.ADDON_DISABLE,
+        ).exclude(original_status=amo.STATUS_NULL)
+
+
 class File(OnChangeMixin, ModelBase):
     id = PositiveAutoField(primary_key=True)
     STATUS_CHOICES = amo.STATUS_CHOICES_FILE
@@ -124,6 +132,8 @@ class File(OnChangeMixin, ModelBase):
     )
     # The manifest_version defined in manifest.json
     manifest_version = models.SmallIntegerField(choices=SUPPORTED_MANIFEST_VERSIONS)
+
+    objects = FileManager()
 
     class Meta(ModelBase.Meta):
         db_table = 'files'
@@ -414,7 +424,7 @@ class FileUpload(ModelBase):
     user = models.ForeignKey('users.UserProfile', on_delete=models.CASCADE)
     valid = models.BooleanField(default=False)
     validation = models.TextField(null=True)
-    channel = models.PositiveSmallIntegerField(choices=amo.CHANNEL_CHOICES)
+    channel = models.PositiveSmallIntegerField(choices=amo.CHANNEL_CHOICES.items())
     # Not all FileUploads will have a version and addon but it will be set
     # if the file was uploaded using the new API.
     version = models.CharField(max_length=255, null=True)
