@@ -1612,6 +1612,12 @@ CINDER_SERVER_URL = env(
 CINDER_API_TOKEN = env('CINDER_API_TOKEN', default=None)
 CINDER_WEBHOOK_TOKEN = env('CINDER_WEBHOOK_TOKEN', default=None)
 CINDER_QUEUE_PREFIX = 'amo-dev-'
+# Because our stage Cinder instance is shared between addons-dev, addons stage, and also
+# any local testing integration, entity ids are not unique, and a payload from the
+# webhook may return ids for a given cinder job or decision that are not valid simply
+# because it doesn't originate from the same environment that the webhook is registered
+# for. When False we don't return a 400 for an invalid ID, to not pollute the logs with
+# false positives.
 CINDER_UNIQUE_IDS = False
 
 SOCKET_LABS_HOST = env('SOCKET_LABS_HOST', default='https://api.socketlabs.com/v2/')
