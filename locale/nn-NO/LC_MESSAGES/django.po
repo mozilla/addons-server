@@ -653,7 +653,7 @@ msgstr "Opplasting av tillegg er mellombels deaktivert"
 
 #: src/olympia/amo/templates/amo/submissions_disabled.html:13
 msgid "Add-on uploads have been temporarily disabled. Please check back later."
-msgstr ""
+msgstr "Opplasting av tillegg er mellombels deaktivert. Kom tilbake seinare."
 
 #: src/olympia/amo/templatetags/jinja_helpers.py:148
 #, python-brace-format
@@ -958,7 +958,7 @@ msgstr "{0} {1} lagt til."
 #: src/olympia/constants/activity.py:328
 #, python-brace-format
 msgid "{user} role changed to {0} for {addon}."
-msgstr ""
+msgstr "Rolla {user} vart endra til {0} for {addon}."
 
 #: src/olympia/constants/activity.py:339
 #, python-brace-format
@@ -971,9 +971,9 @@ msgid "{addon} policy changed."
 msgstr "{addon}-praksis endra."
 
 #: src/olympia/constants/activity.py:353
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{addon} icon or previews changed."
-msgstr "{addon}-ikon endra."
+msgstr "{addon} ikon eller førehandsvising er endra."
 
 #: src/olympia/constants/activity.py:360
 #, python-brace-format
@@ -3898,11 +3898,11 @@ msgstr "Sorter etter:"
 #: src/olympia/devhub/templates/devhub/includes/macros.html:7
 #, python-format
 msgid "Allowed Markdown: %(allowed_markdown)s"
-msgstr ""
+msgstr "Tillaten Markdown: %(allowed_markdown)s"
 
 #: src/olympia/devhub/templates/devhub/includes/macros.html:8
 msgid "Some Markdown supported."
-msgstr ""
+msgstr "Noko Markdown vert støtta."
 
 #: src/olympia/devhub/templates/devhub/includes/macros.html:58
 msgid "Remove this application"
