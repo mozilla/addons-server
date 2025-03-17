@@ -392,6 +392,9 @@ RESERVED_ADDON_GUIDS = (
     '@temporary-addon',
     # Android Components/Fenix built-in extensions.
     '@mozac.org',
+    # Internal IDs used by Firefox
+    '@modelhub.mozilla.org',
+    '@siteperms.mozilla.org',
     # Test privileged add-ons for mozilla-central.
     '@tests.mozilla.org',
 )
