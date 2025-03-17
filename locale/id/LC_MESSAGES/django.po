@@ -1641,15 +1641,15 @@ msgstr "Lisensi Apache 2.0"
 
 #: src/olympia/constants/licenses.py:29
 msgid "GNU General Public License v2.0 only"
-msgstr ""
+msgstr "Hanya GNU General Public License v2.0"
 
 #: src/olympia/constants/licenses.py:36
 msgid "GNU General Public License v3.0 only"
-msgstr ""
+msgstr "Hanya GNU General Public License v3.0"
 
 #: src/olympia/constants/licenses.py:43
 msgid "GNU Lesser General Public License v2.1 only"
-msgstr ""
+msgstr "Hanya GNU Lesser General Public License v2.1"
 
 #: src/olympia/constants/licenses.py:50
 msgid "GNU Lesser General Public License v3.0 only"
@@ -3439,6 +3439,8 @@ msgid ""
 "You’re done! ✨ You will receive a confirmation email when this version is published on %(site_domain)s. Note that it may take up to 24 hours before publication occurs, or longer if your add-on is "
 "selected for manual review. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
+"Selesai! Anda akan menerima surel konfirmasi saat versi ini dipublikasikan di %(site_domain)s. Perhatikan bahwa mungkin diperlukan waktu hingga 24 jam sebelum publikasi terjadi, atau lebih lama jika"
+" pengaya Anda dipilih untuk tinjauan manual. Jika Anda tidak melihat surel setelah 24 jam, silakan periksa folder spam Anda."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:31
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
