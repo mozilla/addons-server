@@ -1,0 +1,45 @@
+name: Health Check Completed
+
+on:
+  workflow_run:
+    workflows: Health Check
+    types: [completed]
+
+jobs:
+  context:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Context
+        id: context
+        uses: ./.github/actions/context
+
+  health_check_failure_notification:
+    if: |
+      github.event.workflow_run.event == 'schedule' &&
+      github.event.workflow_run.conclusion == 'failure'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Context
+        id: context
+        uses: ./.github/actions/context
+
+      - uses: mozilla/addons/.github/actions/slack-workflow-notification@main
+        with:
+          slack_token: ${{ secrets.SLACK_TOKEN }}
+          slack_channel: ${{ secrets.SLACK_ADDONS_PRODUCTION_CHANNEL }}
+          emoji: ':x:'
+          actor: ${{ vars.slack_actor }}
+          conclusion: ${{ github.event.workflow_run.conclusion }}
+          workflow_id: ${{ github.event.workflow_run.id }}
+          workflow_url: ${{ github.event.workflow_run.url }}
+          event: ${{ github.event.workflow_run.event }}
+          env: ci
+          ref: ''
+          ref_link: ''
+
+

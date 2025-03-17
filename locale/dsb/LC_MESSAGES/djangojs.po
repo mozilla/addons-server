@@ -868,19 +868,19 @@ msgstr "Datum"
 msgid "Other"
 msgstr "Druge"
 
-#: static/js/zamboni/devhub.js:287
+#: static/js/zamboni/devhub.js:292
 msgid "Changes Saved"
 msgstr "Změny su se składli"
 
-#: static/js/zamboni/devhub.js:304
+#: static/js/zamboni/devhub.js:309
 msgid "Enter a new author's email address"
 msgstr "E-mailowu adresu nowego awtora zapódaś"
 
-#: static/js/zamboni/devhub.js:430
+#: static/js/zamboni/devhub.js:435
 msgid "There was an error uploading your file."
 msgstr "Pśi nagrawanju wašeje dataje jo zmólka nastała."
 
-#: static/js/zamboni/devhub.js:586
+#: static/js/zamboni/devhub.js:591
 #, python-brace-format
 msgid "{files} file"
 msgid_plural "{files} files"
@@ -889,7 +889,7 @@ msgstr[1] "{files} dataji"
 msgstr[2] "{files} dataje"
 msgstr[3] "{files} datajow"
 
-#: static/js/zamboni/devhub.js:1118
+#: static/js/zamboni/devhub.js:1123
 msgid "Image changes being processed"
 msgstr "Wobrazowe změny se pśeźěłuju"
 

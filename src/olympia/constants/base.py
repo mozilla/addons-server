@@ -61,10 +61,10 @@ VALID_FILE_STATUSES = (STATUS_AWAITING_REVIEW, STATUS_APPROVED)
 CHANNEL_UNLISTED = 1
 CHANNEL_LISTED = 2
 
-CHANNEL_CHOICES = (
-    (CHANNEL_UNLISTED, _('Unlisted')),
-    (CHANNEL_LISTED, _('Listed')),
-)
+CHANNEL_CHOICES = {
+    CHANNEL_UNLISTED: _('Unlisted'),
+    CHANNEL_LISTED: _('Listed'),
+}
 
 CHANNEL_CHOICES_API = {
     CHANNEL_UNLISTED: 'unlisted',
@@ -392,6 +392,9 @@ RESERVED_ADDON_GUIDS = (
     '@temporary-addon',
     # Android Components/Fenix built-in extensions.
     '@mozac.org',
+    # Internal IDs used by Firefox
+    '@modelhub.mozilla.org',
+    '@siteperms.mozilla.org',
     # Test privileged add-ons for mozilla-central.
     '@tests.mozilla.org',
 )
@@ -474,3 +477,10 @@ APPVERSIONS_ORIGINATED_FROM_DEVELOPER = 2
 APPVERSIONS_ORIGINATED_FROM_MANIFEST = 3
 APPVERSIONS_ORIGINATED_FROM_MANIFEST_GECKO_ANDROID = 4
 APPVERSIONS_ORIGINATED_FROM_MIGRATION = 5
+
+DEV_EXP_SURVEY_ALCHEMER_ID = 7953020
+ACTIVE_SURVEYS = {DEV_EXP_SURVEY_ALCHEMER_ID}
+
+SURVEY_LINK = {
+    DEV_EXP_SURVEY_ALCHEMER_ID: 'https://survey.alchemer.com/s3/7953020/MV3-Developer-Sentiment-2024'
+}

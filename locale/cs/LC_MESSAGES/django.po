@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "Generated-By: Pontoon\n"
 
-#: src/olympia/abuse/actions.py:187
+#: src/olympia/abuse/actions.py:189
 #, python-brace-format
 msgid "Mozilla Add-ons: {} [{}]"
 msgstr "Doplňky Mozilly: {} [{}]"
@@ -34,11 +34,11 @@ msgstr "Důvod odvolání"
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr "Vysvětlete prosím, proč si myslíte, že toto rozhodnutí bylo učiněno omylem a/nebo proč není v souladu s platnými zásadami či zákonem."
 
-#: src/olympia/abuse/models.py:1065
+#: src/olympia/abuse/models.py:1067
 msgid "User profile"
 msgstr "Profil uživatele"
 
-#: src/olympia/abuse/models.py:1394
+#: src/olympia/abuse/models.py:1374
 #, python-brace-format
 msgid "\"{}\" for {}"
 msgstr "\"{}\" pro {}"
@@ -238,15 +238,15 @@ msgstr "Odkazy nejsou povoleny."
 msgid "This display name cannot be used."
 msgstr "Toto jméno nemůže být použito."
 
-#: src/olympia/accounts/serializers.py:167 src/olympia/addons/fields.py:366 src/olympia/devhub/views.py:1015
+#: src/olympia/accounts/serializers.py:167 src/olympia/addons/fields.py:366 src/olympia/devhub/views.py:1016
 msgid "Images must be either PNG or JPG."
 msgstr "Obrázky musí být ve formátech PNG či JPG."
 
-#: src/olympia/accounts/serializers.py:171 src/olympia/addons/fields.py:371 src/olympia/devhub/views.py:1021
+#: src/olympia/accounts/serializers.py:171 src/olympia/addons/fields.py:371 src/olympia/devhub/views.py:1022
 msgid "Images cannot be animated."
 msgstr "Obrázky nemohou být animované."
 
-#: src/olympia/accounts/serializers.py:176 src/olympia/devhub/views.py:1030
+#: src/olympia/accounts/serializers.py:176 src/olympia/devhub/views.py:1031
 #, python-format
 msgid "Please use images smaller than %dMB."
 msgstr "Používejte prosím obrázky menší než %dMB."
@@ -350,11 +350,11 @@ msgstr "Není možné přepsat informaci o kompatibilitě pro aplikaci (%s) nast
 msgid "Images must be smaller than %dMB"
 msgstr "Obrázky musí být menší než %d MB"
 
-#: src/olympia/addons/models.py:2144 src/olympia/addons/models.py:2201 src/olympia/constants/base.py:66
+#: src/olympia/addons/models.py:2142 src/olympia/addons/models.py:2199 src/olympia/constants/base.py:66
 msgid "Listed"
 msgstr "Zobrazení"
 
-#: src/olympia/addons/models.py:2379
+#: src/olympia/addons/models.py:2377
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr "Cesty k doplňkům a sbírkám musí končit znakem \"/\""
 
@@ -525,7 +525,7 @@ msgstr "Přidání nového vzhledu"
 msgid "Developer Hub"
 msgstr "Pro vývojáře"
 
-#: src/olympia/amo/context_processors.py:79 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:20 src/olympia/devhub/views.py:2076
+#: src/olympia/amo/context_processors.py:79 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:20 src/olympia/devhub/views.py:2077
 msgid "Manage API Keys"
 msgstr "Spravovat API klíče"
 
@@ -926,7 +926,7 @@ msgstr "Předběžně schváleno"
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version} zamítnut."
 
-#: src/olympia/constants/activity.py:172 src/olympia/files/models.py:307
+#: src/olympia/constants/activity.py:172 src/olympia/files/models.py:317
 msgid "Rejected"
 msgstr "Zamítnuto"
 
@@ -1338,7 +1338,7 @@ msgstr "Vývojář"
 msgid "(Deleted)"
 msgstr "(Smazáno)"
 
-#: src/olympia/constants/base.py:129 src/olympia/constants/reviewers.py:66
+#: src/olympia/constants/base.py:129 src/olympia/constants/reviewers.py:67
 msgid "Extension"
 msgstr "Rozšíření"
 
@@ -1370,7 +1370,7 @@ msgstr "Zastaralý zásuvný modul"
 msgid "Deprecated LWT"
 msgstr "Zastaralý odlehčený motiv vzhledu"
 
-#: src/olympia/constants/base.py:137 src/olympia/constants/reviewers.py:67
+#: src/olympia/constants/base.py:137 src/olympia/constants/reviewers.py:68
 msgid "Theme"
 msgstr "Motiv vzhledu"
 
@@ -1798,27 +1798,27 @@ msgstr "Velmi dobré (2)"
 msgid "Excellent (3)"
 msgstr "Výborné (3)"
 
-#: src/olympia/constants/reviewers.py:38
+#: src/olympia/constants/reviewers.py:39
 msgid "Request More Info"
 msgstr "Požádat o více informací"
 
-#: src/olympia/constants/reviewers.py:39
+#: src/olympia/constants/reviewers.py:40
 msgid "Flag"
 msgstr "Označit"
 
-#: src/olympia/constants/reviewers.py:40
+#: src/olympia/constants/reviewers.py:41
 msgid "Duplicate"
 msgstr "Duplicitní"
 
-#: src/olympia/constants/reviewers.py:41
+#: src/olympia/constants/reviewers.py:42
 msgid "Reject"
 msgstr "Zamítnout"
 
-#: src/olympia/constants/reviewers.py:42
+#: src/olympia/constants/reviewers.py:43
 msgid "Approve"
 msgstr "Schválit"
 
-#: src/olympia/constants/reviewers.py:65
+#: src/olympia/constants/reviewers.py:66
 msgid "All"
 msgstr "Vše"
 
@@ -2165,128 +2165,128 @@ msgstr "Kontrola vygenerovala příliš mnoho chyb/varování a %s zpráv tak ne
 msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
 msgstr "Tento doplněk není motivem vzhledu. Pro odeslání rozšíření použijte stránku <a href=\"{link}\">Přidání nového doplňku</a>."
 
-#: src/olympia/devhub/views.py:114
+#: src/olympia/devhub/views.py:115
 msgid "Updated"
 msgstr "Aktualizováno"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:38 src/olympia/devhub/templates/devhub/addons/edit/describe.html:75 src/olympia/devhub/templates/devhub/addons/submit/describe.html:35
-#: src/olympia/devhub/views.py:115 src/olympia/devhub/views.py:125
+#: src/olympia/devhub/views.py:116 src/olympia/devhub/views.py:126
 msgid "Name"
 msgstr "Název"
 
-#: src/olympia/devhub/views.py:116 src/olympia/devhub/views.py:124
+#: src/olympia/devhub/views.py:117 src/olympia/devhub/views.py:125
 msgid "Created"
 msgstr "Vytvořeno"
 
-#: src/olympia/devhub/views.py:117 src/olympia/devhub/views.py:126 src/olympia/stats/templates/stats/addon_report_menu.html:8
+#: src/olympia/devhub/views.py:118 src/olympia/devhub/views.py:127 src/olympia/stats/templates/stats/addon_report_menu.html:8
 msgid "Downloads"
 msgstr "Stažení"
 
-#: src/olympia/devhub/views.py:118 src/olympia/devhub/views.py:127
+#: src/olympia/devhub/views.py:119 src/olympia/devhub/views.py:128
 msgid "Rating"
 msgstr "Hodnocení"
 
-#: src/olympia/devhub/views.py:191
+#: src/olympia/devhub/views.py:192
 msgid "All My Add-ons"
 msgstr "Všechny mé doplňky"
 
-#: src/olympia/devhub/views.py:219
+#: src/olympia/devhub/views.py:220
 msgid "All Activity"
 msgstr "Všechny aktivity"
 
-#: src/olympia/devhub/views.py:220
+#: src/olympia/devhub/views.py:221
 msgid "Add-on Updates"
 msgstr "Aktualizace doplňku"
 
-#: src/olympia/devhub/views.py:221
+#: src/olympia/devhub/views.py:222
 msgid "Add-on Status"
 msgstr "Stav doplňku"
 
-#: src/olympia/devhub/views.py:222
+#: src/olympia/devhub/views.py:223
 msgid "User Collections"
 msgstr "Sbírky uživatele"
 
-#: src/olympia/devhub/views.py:223
+#: src/olympia/devhub/views.py:224
 msgid "User Reviews"
 msgstr "Recenze uživatelů"
 
-#: src/olympia/devhub/views.py:371
+#: src/olympia/devhub/views.py:372
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "Doplněk nemůže být smazán. Na místo toho jej zakažte."
 
-#: src/olympia/devhub/views.py:382
+#: src/olympia/devhub/views.py:383
 msgid "Theme deleted."
 msgstr "Vzhled byl smazán."
 
-#: src/olympia/devhub/views.py:382
+#: src/olympia/devhub/views.py:383
 msgid "Add-on deleted."
 msgstr "Doplněk smazán."
 
-#: src/olympia/devhub/views.py:388
+#: src/olympia/devhub/views.py:389
 msgid "URL name was incorrect. Theme was not deleted."
 msgstr "Nesprávný název URL. Vzhled nebyl smazán."
 
-#: src/olympia/devhub/views.py:390
+#: src/olympia/devhub/views.py:391
 msgid "URL name was incorrect. Add-on was not deleted."
 msgstr "Nesprávný název URL. Doplněk nebyl smazán."
 
-#: src/olympia/devhub/views.py:462
+#: src/olympia/devhub/views.py:463
 msgid "Invitation accepted."
 msgstr "Nabídka byla přijata."
 
-#: src/olympia/devhub/views.py:465
+#: src/olympia/devhub/views.py:466
 msgid "Invitation declined."
 msgstr "Nabídka byla odmítnuta."
 
-#: src/olympia/devhub/views.py:533
+#: src/olympia/devhub/views.py:534
 #, python-brace-format
 msgid "A confirmation email has been sent to {email}"
 msgstr "Na adresu {email} byl zaslán potvrzovací e-mail"
 
-#: src/olympia/devhub/views.py:550 src/olympia/devhub/views.py:1158
+#: src/olympia/devhub/views.py:551 src/olympia/devhub/views.py:1159
 msgid "Changes successfully saved."
 msgstr "Změny byly úspěšně uloženy."
 
-#: src/olympia/devhub/views.py:570
+#: src/olympia/devhub/views.py:571
 msgid "Validate Add-on"
 msgstr "Kontrola doplňku"
 
-#: src/olympia/devhub/views.py:644
+#: src/olympia/devhub/views.py:645
 #, python-brace-format
 msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
 msgstr "<a href=\"{link}\">Abyste mohli odeslat rozšíření, přidejte prosím ke svému účtu dvoufaktorové ověřování.</a>"
 
-#: src/olympia/devhub/views.py:1013
+#: src/olympia/devhub/views.py:1014
 msgid "Icons must be either PNG or JPG."
 msgstr "Ikona musí být ve formátu PNG či JPG."
 
-#: src/olympia/devhub/views.py:1019
+#: src/olympia/devhub/views.py:1020
 msgid "Icons cannot be animated."
 msgstr "Ikony nemohou být animované."
 
-#: src/olympia/devhub/views.py:1045
+#: src/olympia/devhub/views.py:1046
 #, python-brace-format
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr "Obrázek musí být alespoň {0} pixelů široký a {1} pixelů vysoký."
 
-#: src/olympia/devhub/views.py:1049
+#: src/olympia/devhub/views.py:1050
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "Rozměry obrázku musí být v poměru 4:3."
 
-#: src/olympia/devhub/views.py:1057
+#: src/olympia/devhub/views.py:1058
 #, python-brace-format
 msgid "Icon must be at least {0} pixels wide and tall."
 msgstr "Ikona musí být alespoň {0} pixelů široká i vysoká."
 
-#: src/olympia/devhub/views.py:1062
+#: src/olympia/devhub/views.py:1063
 msgid "Icon must be square (same width and height)."
 msgstr "Ikona musí být čtvercová (stejná šířka a výška)."
 
-#: src/olympia/devhub/views.py:1068
+#: src/olympia/devhub/views.py:1069
 msgid "There was an error uploading your preview."
 msgstr "Při nahrávání obrázku se vyskytla chyba."
 
-#: src/olympia/devhub/views.py:1215
+#: src/olympia/devhub/views.py:1216
 #, python-format
 msgid ""
 "The latest approved version of this %s add-on cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
@@ -2294,118 +2294,118 @@ msgstr ""
 "Nejnovější schválenou verzi tohoto doplňku pro %s nelze odstranit ani zakázat, protože předchozí verze nebyla schválena pro propagaci aplikace %s. Pokud s tím potřebujete pomoci, obraťte se na "
 "správce AMO."
 
-#: src/olympia/devhub/views.py:1222
+#: src/olympia/devhub/views.py:1223
 #, python-format
 msgid "Version %s disabled."
 msgstr "Verze %s je zakázána."
 
-#: src/olympia/devhub/views.py:1226
+#: src/olympia/devhub/views.py:1227
 #, python-format
 msgid "Version %s deleted."
 msgstr "Verze %s byla smazána."
 
-#: src/olympia/devhub/views.py:1237
+#: src/olympia/devhub/views.py:1238
 #, python-format
 msgid "Version %s re-enabled."
 msgstr "Verze %s znovu povolena."
 
-#: src/olympia/devhub/views.py:1253
+#: src/olympia/devhub/views.py:1254
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "Při nahrávání selhala kontrola a výsledky kontroly tak mohou být nekompletní. Věnujte tomu při kontrole zvláštní péči."
 
-#: src/olympia/devhub/views.py:1422
+#: src/olympia/devhub/views.py:1423
 msgid "Header area background"
 msgstr "Pozadí záhlaví"
 
-#: src/olympia/devhub/views.py:1424
+#: src/olympia/devhub/views.py:1425
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
 msgstr "Barva pozadí v oblasti záhlaví, která se použije pro nezakrytou plochu záhlaví nebo pro plochu viditelnou skrze obrázek v záhlaví. Pole manifestu:  frame."
 
-#: src/olympia/devhub/views.py:1432
+#: src/olympia/devhub/views.py:1433
 msgid "Header area text and icons"
 msgstr "Text a ikony v záhlaví"
 
-#: src/olympia/devhub/views.py:1434
+#: src/olympia/devhub/views.py:1435
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
 msgstr "Barva textu a ikon v oblasti záhlaví, s výjimkou aktivního panelu. Pole manifestu:  tab_background_text."
 
-#: src/olympia/devhub/views.py:1441
+#: src/olympia/devhub/views.py:1442
 msgid "Toolbar area background"
 msgstr "Pozadí nástrojových lišt"
 
-#: src/olympia/devhub/views.py:1443
+#: src/olympia/devhub/views.py:1444
 msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
 msgstr "Barva pozadí navigační lišty, lišty záložek a aktivního panelu.  Pole manifestu:  toolbar."
 
-#: src/olympia/devhub/views.py:1450
+#: src/olympia/devhub/views.py:1451
 msgid "Toolbar area text and icons"
 msgstr "Text a ikony v nástrojové liště"
 
-#: src/olympia/devhub/views.py:1452
+#: src/olympia/devhub/views.py:1453
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
 msgstr "Barva textu a ikon v lištách a aktivním panelu. Pole manifestu:  bookmark_text."
 
-#: src/olympia/devhub/views.py:1459
+#: src/olympia/devhub/views.py:1460
 msgid "Toolbar field area background"
 msgstr "Pozadí polí v nástrojových lištách"
 
-#: src/olympia/devhub/views.py:1461
+#: src/olympia/devhub/views.py:1462
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
 msgstr "Barva pozadí polí v nástrojových lištách, jako je např. adresní řádek. Pole manifestu:  toolbar_field."
 
-#: src/olympia/devhub/views.py:1468
+#: src/olympia/devhub/views.py:1469
 msgid "Toolbar field area text"
 msgstr "Text polí v nástrojových lištách"
 
-#: src/olympia/devhub/views.py:1470
+#: src/olympia/devhub/views.py:1471
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "Barva textu v polích v nástrojových lištách, jako je např. adresní řádek. Pole manifestu:  toolbar_field_text."
 
-#: src/olympia/devhub/views.py:1478
+#: src/olympia/devhub/views.py:1479
 msgid "Tab highlight"
 msgstr "Zvýraznění panelu"
 
-#: src/olympia/devhub/views.py:1480
+#: src/olympia/devhub/views.py:1481
 msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
 msgstr "Barva zvýraznění aktivního panelu. Ve Firefoxu 89 a vyšším je implementována jako rámeček kolem panelu a ve starších Firefoxech jako čára nad panelem. Pole manifestu:  tab_line."
 
-#: src/olympia/devhub/views.py:1579
+#: src/olympia/devhub/views.py:1580
 msgid "Add-on uploads are temporarily unavailable"
 msgstr "Nahrávání doplňků je dočasně nedostupné"
 
-#: src/olympia/devhub/views.py:1947
+#: src/olympia/devhub/views.py:1948
 msgid "Review requested."
 msgstr "Vyžádána kontrola."
 
-#: src/olympia/devhub/views.py:1949
+#: src/olympia/devhub/views.py:1950
 msgid "You must provide further details to proceed."
 msgstr "Pro pokračování musíte poskytnout více detailů."
 
-#: src/olympia/devhub/views.py:2051
+#: src/olympia/devhub/views.py:2052
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Vaše stará pověření byla zenplatněna."
 
-#: src/olympia/devhub/views.py:2070
+#: src/olympia/devhub/views.py:2071
 msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
 msgstr "Uchovávejte své API klíče v tajnosti a nikdy je s nikým nesdílejte, ani s přispěvateli Mozilly."
 
-#: src/olympia/devhub/views.py:2087
+#: src/olympia/devhub/views.py:2088
 msgid "New API key created"
 msgstr "Nový API klíč byl vytvořen"
 
-#: src/olympia/devhub/views.py:2098
+#: src/olympia/devhub/views.py:2099
 msgid "API key revoked"
 msgstr "API klíč byl zneplatněn"
 
-#: src/olympia/devhub/views.py:2158
+#: src/olympia/devhub/views.py:2159
 msgid "Verify email"
 msgstr "Ověřit e-mailovou adresu"
 
-#: src/olympia/devhub/views.py:2160
+#: src/olympia/devhub/views.py:2161
 msgid "Send another email"
 msgstr "Poslat další e-mail"
 
-#: src/olympia/devhub/views.py:2193
+#: src/olympia/devhub/views.py:2194
 msgid "Your email has been verified"
 msgstr "Vaše e-mailová adresa byla ověřena"
 
@@ -2416,6 +2416,14 @@ msgstr "Můj doplněk nezapadá do žádné z kategorií"
 #: src/olympia/devhub/templates/devhub/agreement.html:3 src/olympia/devhub/templates/devhub/agreement.html:11 src/olympia/devhub/templates/devhub/includes/agreement.html:7
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Dohoda o distribuci doplňků pro Firefox"
+
+#: src/olympia/devhub/templates/devhub/base.html:43
+msgid "Help us make things better!"
+msgstr "Pomozte nám dělat věci lépe!"
+
+#: src/olympia/devhub/templates/devhub/base.html:44
+msgid "Take our quick survey"
+msgstr "Zúčastnit se našeho rychlého průzkumu"
 
 #. {0} is an application, like Firefox.
 #: src/olympia/devhub/templates/devhub/index.html:21 src/olympia/templates/base.html:17
@@ -6046,11 +6054,11 @@ msgstr "Rozšíření pro Twitch"
 msgid "See more Twitch extension staff picks"
 msgstr "Další vybraná rozšíření pro Twitch"
 
-#: src/olympia/files/models.py:309
+#: src/olympia/files/models.py:319
 msgid "Unreviewed"
 msgstr "Nezkontrolované"
 
-#: src/olympia/files/models.py:312
+#: src/olympia/files/models.py:322
 #, python-format
 msgid "[status:%s]"
 msgstr "[stav:%s]"
@@ -6311,7 +6319,7 @@ msgstr "od %(user)s dne %(date)s %(stars)s"
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">Označil uživatel %(user)s dne %(date)s</span>"
 
-#: src/olympia/reviewers/templates/reviewers/review.html:283
+#: src/olympia/reviewers/templates/reviewers/review.html:301
 msgid "<strong>Warning!</strong> Another user may be viewing this page before you."
 msgstr "<strong>Upozornění!</strong> Tuto stránku si možná před vámi prohlíží jiný uživatel."
 
@@ -6851,29 +6859,29 @@ msgstr "Nebyl nalezen uživatel, který by měl tento e-mail."
 msgid "Firefox user {id}"
 msgstr "Uživatel Firefoxu - {id}"
 
-#: src/olympia/users/models.py:827
+#: src/olympia/users/models.py:841
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "Zadejte platný rozsah sítě ve formátu IPv4 nebo IPv6 CIDR, např. 127.0.0.1/28"
 
-#: src/olympia/users/models.py:831
+#: src/olympia/users/models.py:845
 msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
 msgstr "Z vašeho umístění bylo odesláno několik příspěvků, které porušují naše pravidla. IP adresa byla zablokována."
 
-#: src/olympia/users/models.py:943
+#: src/olympia/users/models.py:957
 msgid "Email Pattern"
 msgstr "Šablona e-mailové adresy"
 
-#: src/olympia/users/models.py:946
+#: src/olympia/users/models.py:960
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr ""
 "Zadejte celý e-mail, který má být zablokovaný nebo použijte zástupné znaky ve styl u Unixu, např. \"*@example.com\". Pokud potřebujete zablokovat doménu včetně subdomén, přidejte druhou položku, "
 "např. \"*@*.example.com\"."
 
-#: src/olympia/users/models.py:953
+#: src/olympia/users/models.py:967
 msgid "The email address used for your account is not allowed for submissions."
 msgstr "E-mailová adresa použitá pro váš účet nemá povolené odesílání příspěvků."
 
-#: src/olympia/users/models.py:1032
+#: src/olympia/users/models.py:1046
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
 "restrictions\" instead."
@@ -6881,7 +6889,7 @@ msgstr ""
 "Zadejte celé doménové jméno e-mailové adresy, které by mělo být zablokováno. Zástupné znaky nejsou podporovány: pokud je potřebujete nebo potřebujete vložit celou e-mailovou adresu a ne jen její "
 "doménu, použijte místo toho „Omezení uživatelů dle e-mailové adresy“."
 
-#: src/olympia/users/models.py:1183
+#: src/olympia/users/models.py:1197
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
 " which explains how we handle your information."
@@ -6889,12 +6897,12 @@ msgstr ""
 "Než začnete, přečtěte si prosím naše pravidla pro distribuci doplňků pro Firefox a zásady a pravidla pro kontrolu doplňků. Pravidla pro distribuci doplňků pro Firefox také odkazují na naše zásady "
 "ochrany osobních údajů, které vysvětlují, jak nakládáme s vašimi údaji."
 
-#: src/olympia/users/models.py:1197
+#: src/olympia/users/models.py:1211
 #, python-brace-format
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr "Navštivte adresu {url} a přečtěte si Dohodu k distribuci doplňků pro Firefox a naše Zásady a pravidla kontroly, a následně je akceptujte"
 
-#: src/olympia/users/models.py:1248
+#: src/olympia/users/models.py:1262
 msgid "User Restriction History"
 msgstr "Historie omezení uživatelů"
 

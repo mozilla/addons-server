@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 "Generated-By: Pontoon\n"
 
-#: src/olympia/abuse/actions.py:187
+#: src/olympia/abuse/actions.py:189
 #, python-brace-format
 msgid "Mozilla Add-ons: {} [{}]"
 msgstr "Dodanki Mozilla: {} [{}]"
@@ -34,11 +34,11 @@ msgstr "Pśicyna za pśeśiwjenje"
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr "Pšosym wujasniśo, cogodla se mysliśo, až jo se womólnje rozsuźiło, a/abo płaśiwym pšawidłam abo płaśiwej kazni wótpowědujo."
 
-#: src/olympia/abuse/models.py:1065
+#: src/olympia/abuse/models.py:1067
 msgid "User profile"
 msgstr "Wužywaŕski profil"
 
-#: src/olympia/abuse/models.py:1394
+#: src/olympia/abuse/models.py:1374
 #, python-brace-format
 msgid "\"{}\" for {}"
 msgstr "„{}“ za {}"
@@ -239,15 +239,15 @@ msgstr "Wótkaze njejsu dowólone."
 msgid "This display name cannot be used."
 msgstr "Tós to pokazane mě njedajo se wužywaś."
 
-#: src/olympia/accounts/serializers.py:167 src/olympia/addons/fields.py:366 src/olympia/devhub/views.py:1015
+#: src/olympia/accounts/serializers.py:167 src/olympia/addons/fields.py:366 src/olympia/devhub/views.py:1016
 msgid "Images must be either PNG or JPG."
 msgstr "Wobraze muse format PNG abo JPG měś."
 
-#: src/olympia/accounts/serializers.py:171 src/olympia/addons/fields.py:371 src/olympia/devhub/views.py:1021
+#: src/olympia/accounts/serializers.py:171 src/olympia/addons/fields.py:371 src/olympia/devhub/views.py:1022
 msgid "Images cannot be animated."
 msgstr "Wobraze njedaju se animěrowaś."
 
-#: src/olympia/accounts/serializers.py:176 src/olympia/devhub/views.py:1030
+#: src/olympia/accounts/serializers.py:176 src/olympia/devhub/views.py:1031
 #, python-format
 msgid "Please use images smaller than %dMB."
 msgstr "Pšosym wužywajśo wobraze, kótarež su mjeńše ako %d MB."
@@ -352,11 +352,11 @@ msgstr "Informacije wó kompatibelnosći , kótarež su w manifesće za toś to 
 msgid "Images must be smaller than %dMB"
 msgstr "Wobraze muse mjeńše ako %d MB byś"
 
-#: src/olympia/addons/models.py:2144 src/olympia/addons/models.py:2201 src/olympia/constants/base.py:66
+#: src/olympia/addons/models.py:2142 src/olympia/addons/models.py:2199 src/olympia/constants/base.py:66
 msgid "Listed"
 msgstr "W lisćinje"
 
-#: src/olympia/addons/models.py:2379
+#: src/olympia/addons/models.py:2377
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr "Sćažki dodankow a zběrkow muse se na \"/\" kóńcyś"
 
@@ -528,7 +528,7 @@ msgstr "Nowu drastwu zapódaś"
 msgid "Developer Hub"
 msgstr "Wuwijarski rožk"
 
-#: src/olympia/amo/context_processors.py:79 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:20 src/olympia/devhub/views.py:2076
+#: src/olympia/amo/context_processors.py:79 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:20 src/olympia/devhub/views.py:2077
 msgid "Manage API Keys"
 msgstr "API-kluce zastojaś"
 
@@ -930,7 +930,7 @@ msgstr "Nachylu pśizwólony"
 msgid "{addon} {version} rejected."
 msgstr "Dodank {addon} {version} wótpokazany."
 
-#: src/olympia/constants/activity.py:172 src/olympia/files/models.py:307
+#: src/olympia/constants/activity.py:172 src/olympia/files/models.py:317
 msgid "Rejected"
 msgstr "Wótpokazany"
 
@@ -1343,7 +1343,7 @@ msgstr "Wuwijaŕ"
 msgid "(Deleted)"
 msgstr "(Wulašowane)"
 
-#: src/olympia/constants/base.py:129 src/olympia/constants/reviewers.py:66
+#: src/olympia/constants/base.py:129 src/olympia/constants/reviewers.py:67
 msgid "Extension"
 msgstr "Rozšyrjenje"
 
@@ -1375,7 +1375,7 @@ msgstr "Zestarjety tykac"
 msgid "Deprecated LWT"
 msgstr "Zestarjona lažka drastwa"
 
-#: src/olympia/constants/base.py:137 src/olympia/constants/reviewers.py:67
+#: src/olympia/constants/base.py:137 src/olympia/constants/reviewers.py:68
 msgid "Theme"
 msgstr "Drastwa"
 
@@ -1802,27 +1802,27 @@ msgstr "Wjelgin dobry (2)"
 msgid "Excellent (3)"
 msgstr "Wuběrny (3)"
 
-#: src/olympia/constants/reviewers.py:38
+#: src/olympia/constants/reviewers.py:39
 msgid "Request More Info"
 msgstr "Dalšne informacije pominaś"
 
-#: src/olympia/constants/reviewers.py:39
+#: src/olympia/constants/reviewers.py:40
 msgid "Flag"
 msgstr "Markěrowaś"
 
-#: src/olympia/constants/reviewers.py:40
+#: src/olympia/constants/reviewers.py:41
 msgid "Duplicate"
 msgstr "Duplikat"
 
-#: src/olympia/constants/reviewers.py:41
+#: src/olympia/constants/reviewers.py:42
 msgid "Reject"
 msgstr "Wótpokazaś"
 
-#: src/olympia/constants/reviewers.py:42
+#: src/olympia/constants/reviewers.py:43
 msgid "Approve"
 msgstr "Pśizwóliś"
 
-#: src/olympia/constants/reviewers.py:65
+#: src/olympia/constants/reviewers.py:66
 msgid "All"
 msgstr "Wšykne"
 
@@ -2171,128 +2171,128 @@ msgstr "Pśeglědanje jo pśewjele zmólkow/warnowanjow wunjasło, togodla jo se
 msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
 msgstr "Toś ten dodank njejo drastwa. Wužywajśo město togo bok <a href=\"{link}\">Nowy dodank zapódaś</a>, aby rozšyrjenja zapódał."
 
-#: src/olympia/devhub/views.py:114
+#: src/olympia/devhub/views.py:115
 msgid "Updated"
 msgstr "Aktualizěrowane"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:38 src/olympia/devhub/templates/devhub/addons/edit/describe.html:75 src/olympia/devhub/templates/devhub/addons/submit/describe.html:35
-#: src/olympia/devhub/views.py:115 src/olympia/devhub/views.py:125
+#: src/olympia/devhub/views.py:116 src/olympia/devhub/views.py:126
 msgid "Name"
 msgstr "Mě"
 
-#: src/olympia/devhub/views.py:116 src/olympia/devhub/views.py:124
+#: src/olympia/devhub/views.py:117 src/olympia/devhub/views.py:125
 msgid "Created"
 msgstr "Napórane"
 
-#: src/olympia/devhub/views.py:117 src/olympia/devhub/views.py:126 src/olympia/stats/templates/stats/addon_report_menu.html:8
+#: src/olympia/devhub/views.py:118 src/olympia/devhub/views.py:127 src/olympia/stats/templates/stats/addon_report_menu.html:8
 msgid "Downloads"
 msgstr "Ześěgnjenja"
 
-#: src/olympia/devhub/views.py:118 src/olympia/devhub/views.py:127
+#: src/olympia/devhub/views.py:119 src/olympia/devhub/views.py:128
 msgid "Rating"
 msgstr "Pógódnośenje"
 
-#: src/olympia/devhub/views.py:191
+#: src/olympia/devhub/views.py:192
 msgid "All My Add-ons"
 msgstr "Wšykne móje dodanki"
 
-#: src/olympia/devhub/views.py:219
+#: src/olympia/devhub/views.py:220
 msgid "All Activity"
 msgstr "Wša aktiwnosć"
 
-#: src/olympia/devhub/views.py:220
+#: src/olympia/devhub/views.py:221
 msgid "Add-on Updates"
 msgstr "Aktualizacije dodankow"
 
-#: src/olympia/devhub/views.py:221
+#: src/olympia/devhub/views.py:222
 msgid "Add-on Status"
 msgstr "Status dodanka"
 
-#: src/olympia/devhub/views.py:222
+#: src/olympia/devhub/views.py:223
 msgid "User Collections"
 msgstr "Wužywaŕske zběrki"
 
-#: src/olympia/devhub/views.py:223
+#: src/olympia/devhub/views.py:224
 msgid "User Reviews"
 msgstr "Wužywaŕske pógódnośenja"
 
-#: src/olympia/devhub/views.py:371
+#: src/olympia/devhub/views.py:372
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "Dodank njedajo se lašowaś. Znjemóžniśo toś ten dodank město togo."
 
-#: src/olympia/devhub/views.py:382
+#: src/olympia/devhub/views.py:383
 msgid "Theme deleted."
 msgstr "Drastwa jo se wulašowała."
 
-#: src/olympia/devhub/views.py:382
+#: src/olympia/devhub/views.py:383
 msgid "Add-on deleted."
 msgstr "Dodank jo se wulašował."
 
-#: src/olympia/devhub/views.py:388
+#: src/olympia/devhub/views.py:389
 msgid "URL name was incorrect. Theme was not deleted."
 msgstr "URL-mě jo wopak było. Drastwa njejo se wulašowała."
 
-#: src/olympia/devhub/views.py:390
+#: src/olympia/devhub/views.py:391
 msgid "URL name was incorrect. Add-on was not deleted."
 msgstr "URL-mě jo wopak było. Dodank njejo se wulašował."
 
-#: src/olympia/devhub/views.py:462
+#: src/olympia/devhub/views.py:463
 msgid "Invitation accepted."
 msgstr "Pśepšosba jo akceptěrowana."
 
-#: src/olympia/devhub/views.py:465
+#: src/olympia/devhub/views.py:466
 msgid "Invitation declined."
 msgstr "Pśepšosba jo wótpokazana."
 
-#: src/olympia/devhub/views.py:533
+#: src/olympia/devhub/views.py:534
 #, python-brace-format
 msgid "A confirmation email has been sent to {email}"
 msgstr "Wobkšuśeńska mejlka jo se pósłała na {email}"
 
-#: src/olympia/devhub/views.py:550 src/olympia/devhub/views.py:1158
+#: src/olympia/devhub/views.py:551 src/olympia/devhub/views.py:1159
 msgid "Changes successfully saved."
 msgstr "Změny su se wuspěšnje składli."
 
-#: src/olympia/devhub/views.py:570
+#: src/olympia/devhub/views.py:571
 msgid "Validate Add-on"
 msgstr "Dodank pśeglědowaś"
 
-#: src/olympia/devhub/views.py:644
+#: src/olympia/devhub/views.py:645
 #, python-brace-format
 msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
 msgstr "<a href=\"{link}\">Pšosym pśidajśo swójomu kontoju dwójofaktorowu awtentifikaciju, aby rozšyrjenja zapódał.</a>"
 
-#: src/olympia/devhub/views.py:1013
+#: src/olympia/devhub/views.py:1014
 msgid "Icons must be either PNG or JPG."
 msgstr "Symbole muse pak we formaśe PNG pak JPG byś."
 
-#: src/olympia/devhub/views.py:1019
+#: src/olympia/devhub/views.py:1020
 msgid "Icons cannot be animated."
 msgstr "Symbole njedaju se animěrowaś."
 
-#: src/olympia/devhub/views.py:1045
+#: src/olympia/devhub/views.py:1046
 #, python-brace-format
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr "Wobraz musy nanejmjenjej {0} pikselow šyroki a {1} pikselow wusoki byś."
 
-#: src/olympia/devhub/views.py:1049
+#: src/olympia/devhub/views.py:1050
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "Wobrazowe wótměry muse w poměrje 4:3 byś."
 
-#: src/olympia/devhub/views.py:1057
+#: src/olympia/devhub/views.py:1058
 #, python-brace-format
 msgid "Icon must be at least {0} pixels wide and tall."
 msgstr "Symbol musy nanejmjenjej {0} pikselow šyroki a wusoki byś."
 
-#: src/olympia/devhub/views.py:1062
+#: src/olympia/devhub/views.py:1063
 msgid "Icon must be square (same width and height)."
 msgstr "Symbol musy kwadratiski byś (jadnaka šyrokosć a wusokosć)."
 
-#: src/olympia/devhub/views.py:1068
+#: src/olympia/devhub/views.py:1069
 msgid "There was an error uploading your preview."
 msgstr "Pśi nagrawanju wašogo pśeglěda jo zmólka nastała."
 
-#: src/olympia/devhub/views.py:1215
+#: src/olympia/devhub/views.py:1216
 #, python-format
 msgid ""
 "The latest approved version of this %s add-on cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
@@ -2300,118 +2300,118 @@ msgstr ""
 "Nejnowša pśizwólona wersija dodanka %s njedajo se wulašowaś abo znjemóžniś, dokulaž pjerwjejšna wersija njejo se pśizwóliła za dopórucenje %s. Pšosym stajśo se z administratorami AMO do zwiska, "
 "jolic pomoc wó tom trjebaśo."
 
-#: src/olympia/devhub/views.py:1222
+#: src/olympia/devhub/views.py:1223
 #, python-format
 msgid "Version %s disabled."
 msgstr "Wersija %s jo se znjemóžniła."
 
-#: src/olympia/devhub/views.py:1226
+#: src/olympia/devhub/views.py:1227
 #, python-format
 msgid "Version %s deleted."
 msgstr "Wersija %s jo se wulašowała."
 
-#: src/olympia/devhub/views.py:1237
+#: src/olympia/devhub/views.py:1238
 #, python-format
 msgid "Version %s re-enabled."
 msgstr "Wersija %s jo se zasej zmóžniła."
 
-#: src/olympia/devhub/views.py:1253
+#: src/olympia/devhub/views.py:1254
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "Toś to nagraśe njejo pśeglědanje wobstało a njama snaź žedne dopołne pśeglědowańske wuslědki. Pšosym źiwajśo na to, gaž jo pśeglědujośo."
 
-#: src/olympia/devhub/views.py:1422
+#: src/olympia/devhub/views.py:1423
 msgid "Header area background"
 msgstr "Slězyna głowowego wobceŕka"
 
-#: src/olympia/devhub/views.py:1424
+#: src/olympia/devhub/views.py:1425
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
 msgstr "Barwa slězyny głowowego wobceŕka, kótaraž se w tom źělu głowowego wobceŕka pokazujo, kótaryž njejo zakšyty abo widobny pśez wobraz głowowego wobceŕka. Pólo manifesta: frame."
 
-#: src/olympia/devhub/views.py:1432
+#: src/olympia/devhub/views.py:1433
 msgid "Header area text and icons"
 msgstr "Tekst a symbole głowowego wobceŕka"
 
-#: src/olympia/devhub/views.py:1434
+#: src/olympia/devhub/views.py:1435
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
 msgstr "Barwa teksta a symbole w głowowem wobceŕku, mimo aktiwnego rejtarika. Pólo manifesta: tab_background_text."
 
-#: src/olympia/devhub/views.py:1441
+#: src/olympia/devhub/views.py:1442
 msgid "Toolbar area background"
 msgstr "Slězyna wobceŕka symboloweje rědki"
 
-#: src/olympia/devhub/views.py:1443
+#: src/olympia/devhub/views.py:1444
 msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
 msgstr "Slězynowa barwa za nawigacisku rědku, rědku cytańskich znamjenjopw a aktiwny rejtarik. Pólo manifesta: toolbar."
 
-#: src/olympia/devhub/views.py:1450
+#: src/olympia/devhub/views.py:1451
 msgid "Toolbar area text and icons"
 msgstr "Tekst a symbole wobceŕka symboloweje rědki"
 
-#: src/olympia/devhub/views.py:1452
+#: src/olympia/devhub/views.py:1453
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
 msgstr "Tekstowa barwa a symbole w symbolowej rědce a w aktiwnem rejtariku. Pólo manifesta: bookmark_text."
 
-#: src/olympia/devhub/views.py:1459
+#: src/olympia/devhub/views.py:1460
 msgid "Toolbar field area background"
 msgstr "Slězyna pólnego wobceŕka symboloweje rědki"
 
-#: src/olympia/devhub/views.py:1461
+#: src/olympia/devhub/views.py:1462
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
 msgstr "Slězynowa barwa za póla w symbolowej rědce, kaž na pś. adresowe pólo. Pólo manifesta: toolbar_field."
 
-#: src/olympia/devhub/views.py:1468
+#: src/olympia/devhub/views.py:1469
 msgid "Toolbar field area text"
 msgstr "Tekst pólnego wobceŕka symboloweje rědki"
 
-#: src/olympia/devhub/views.py:1470
+#: src/olympia/devhub/views.py:1471
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "Tekstowa barwa w pólach w symbolowej rědce, na pś. w adresowem pólu Pólo manifesta: toolbar_field_text."
 
-#: src/olympia/devhub/views.py:1478
+#: src/olympia/devhub/views.py:1479
 msgid "Tab highlight"
 msgstr "Wuzwignjenje rejtarika"
 
-#: src/olympia/devhub/views.py:1480
+#: src/olympia/devhub/views.py:1481
 msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
 msgstr "Wuzwignjeńska barwa aktiwnego rejtarika. Ako ramik wokoło rejtarika w Firefox 89+ a smužka nad rejtarikom w staršych wersijach Firefox implementěrowana. Pólo w manifesće:  tab_line."
 
-#: src/olympia/devhub/views.py:1579
+#: src/olympia/devhub/views.py:1580
 msgid "Add-on uploads are temporarily unavailable"
 msgstr "Nagraśa dodankow nachylu njejsu k dispoziciji"
 
-#: src/olympia/devhub/views.py:1947
+#: src/olympia/devhub/views.py:1948
 msgid "Review requested."
 msgstr "Pśeglědowanje jo se pominało."
 
-#: src/olympia/devhub/views.py:1949
+#: src/olympia/devhub/views.py:1950
 msgid "You must provide further details to proceed."
 msgstr "Musyśo dalšne drobnostki pódaś, aby pókšacował."
 
-#: src/olympia/devhub/views.py:2051
+#: src/olympia/devhub/views.py:2052
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Waše stare pśizjawjeńske daty su se wótwołali a njejsu wěcej płaśiwe."
 
-#: src/olympia/devhub/views.py:2070
+#: src/olympia/devhub/views.py:2071
 msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
 msgstr "Źaržćo swóje API-kluce tajne a njedajśo je nikomu dalej inkluziwnje sobustatkujucym Mozilla."
 
-#: src/olympia/devhub/views.py:2087
+#: src/olympia/devhub/views.py:2088
 msgid "New API key created"
 msgstr "Nowy API-kluc napórany"
 
-#: src/olympia/devhub/views.py:2098
+#: src/olympia/devhub/views.py:2099
 msgid "API key revoked"
 msgstr "API-kluc wótwołany"
 
-#: src/olympia/devhub/views.py:2158
+#: src/olympia/devhub/views.py:2159
 msgid "Verify email"
 msgstr "E-mailowu adresu wobkšuśiś"
 
-#: src/olympia/devhub/views.py:2160
+#: src/olympia/devhub/views.py:2161
 msgid "Send another email"
 msgstr "Dalšnu mejlku pósłaś"
 
-#: src/olympia/devhub/views.py:2193
+#: src/olympia/devhub/views.py:2194
 msgid "Your email has been verified"
 msgstr "Waša e-mailowa adresa jo se wobkšuśiła"
 
@@ -2422,6 +2422,14 @@ msgstr "Mój dodank njegóźi se do žedneje kategorije"
 #: src/olympia/devhub/templates/devhub/agreement.html:3 src/olympia/devhub/templates/devhub/agreement.html:11 src/olympia/devhub/templates/devhub/includes/agreement.html:7
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Dojadnanje za rozdźělowanje dodankow Firefox"
+
+#: src/olympia/devhub/templates/devhub/base.html:43
+msgid "Help us make things better!"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/base.html:44
+msgid "Take our quick survey"
+msgstr ""
 
 #. {0} is an application, like Firefox.
 #: src/olympia/devhub/templates/devhub/index.html:21 src/olympia/templates/base.html:17
@@ -6072,11 +6080,11 @@ msgstr "Rozšyrjenja Twitch"
 msgid "See more Twitch extension staff picks"
 msgstr "Dalšne wót sobuźěłaśerjow wubrane rozšyrjenja Twitch pokazaś"
 
-#: src/olympia/files/models.py:309
+#: src/olympia/files/models.py:319
 msgid "Unreviewed"
 msgstr "Njepśeglědany"
 
-#: src/olympia/files/models.py:312
+#: src/olympia/files/models.py:322
 #, python-format
 msgid "[status:%s]"
 msgstr "[status:%s]"
@@ -6339,7 +6347,7 @@ msgstr "wót %(user)s dnja %(date)s %(stars)s"
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr "<strong>%(reason)s</strong><span class=\"light\">Markěrowany wót %(user)s %(date)s</span>"
 
-#: src/olympia/reviewers/templates/reviewers/review.html:283
+#: src/olympia/reviewers/templates/reviewers/review.html:301
 msgid "<strong>Warning!</strong> Another user may be viewing this page before you."
 msgstr "<strong>Warnowanje!</strong> Drugi wužywaŕ se snaź toś ten bok pśed wami woglědujo."
 
@@ -6879,29 +6887,29 @@ msgstr "Žeden wužywaŕ z toś teju e-mailoweju adresu."
 msgid "Firefox user {id}"
 msgstr "Wužywaŕ Firefox {id}"
 
-#: src/olympia/users/models.py:827
+#: src/olympia/users/models.py:841
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "Zapódajśo płaśiwy IPv4 abo seśowy wobceŕk CIDR IPv6, na pś. 127.0.0.1/28"
 
-#: src/olympia/users/models.py:831
+#: src/olympia/users/models.py:845
 msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
 msgstr "Wót wašogo stojnišća su se pósłali někotare zapódaśa, kótarež se pśeśiwo našym pšawidłam pśejdu. IP-adresa jo se blokěrowała."
 
-#: src/olympia/users/models.py:943
+#: src/olympia/users/models.py:957
 msgid "Email Pattern"
 msgstr "E-mailowy muster"
 
-#: src/olympia/users/models.py:946
+#: src/olympia/users/models.py:960
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr ""
 "Zapódajśo dopołnu e-mailowu adresu, kótaraž ma se blokěrowaś abo wužywajśo zastupujuce symbole w stilu Unix, na pś. „*@example.com“. Jolic musyśo domenu inkluziwnje póddomeny blokěrowaś, pśidajśo "
 "dalšny zapisk, na pś. „*@*.example.com“."
 
-#: src/olympia/users/models.py:953
+#: src/olympia/users/models.py:967
 msgid "The email address used for your account is not allowed for submissions."
 msgstr "E-mailowa adresa, kótaruž sćo wužył za swójo konto njejo dowólona za zapódaśa."
 
-#: src/olympia/users/models.py:1032
+#: src/olympia/users/models.py:1046
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
 "restrictions\" instead."
@@ -6909,7 +6917,7 @@ msgstr ""
 "Zapódajśo dopołnu jadnorazowu e-mailowu domenu, kótaraž měła se blokěrowaś. Zastupujuce symbole se njepódpěraju: Jolic te trjebaśo, abo musyśo z cyłeju e-mailoweju adresu pśirownaś a nic jano z "
 "domenowym źělom, wužywajśo „e-mailowe wužywarske wobgranicowanja“ město togo."
 
-#: src/olympia/users/models.py:1183
+#: src/olympia/users/models.py:1197
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
 " which explains how we handle your information."
@@ -6917,12 +6925,12 @@ msgstr ""
 "Nježli až zachopijośo, cytajśo a akceptěrujśo pšosym našo dojadnanje wó rozdźělowanju a naše pśeglědowańske zasady a pšawidła. Dojadnanje wó rozdźělowanju Firefox teke wótkazujo k našomu pokazoju "
 "priwatnosći, kótaraž wujasnjujo, kak z wašymi informacijami wobchadamy."
 
-#: src/olympia/users/models.py:1197
+#: src/olympia/users/models.py:1211
 #, python-brace-format
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr "Woglědajśo se k {url} a cytajśo a akceptěrujśo pšosym našo dojadnanje wó rozdźělowanju dodankow Firefox a naše pśeglědowańske směrnice a pšawidła."
 
-#: src/olympia/users/models.py:1248
+#: src/olympia/users/models.py:1262
 msgid "User Restriction History"
 msgstr "Historija wužywarskich wobgranicowanjow"
 

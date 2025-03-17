@@ -95,7 +95,7 @@ msgstr "検証中に予期せぬサーバーエラーが発生しました。"
 
 #: static/js/common/upload-addon.js:519
 msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
-msgstr ""
+msgstr "マニフェストでは Android 版 Firefox との互換性が明示されています"
 
 #: static/js/common/upload-addon.js:561
 #, python-brace-format
@@ -830,25 +830,25 @@ msgstr "日付"
 msgid "Other"
 msgstr "その他"
 
-#: static/js/zamboni/devhub.js:287
+#: static/js/zamboni/devhub.js:292
 msgid "Changes Saved"
 msgstr "変更が保存されました"
 
-#: static/js/zamboni/devhub.js:304
+#: static/js/zamboni/devhub.js:309
 msgid "Enter a new author's email address"
 msgstr "新しい作者のメールアドレスを入力してください"
 
-#: static/js/zamboni/devhub.js:430
+#: static/js/zamboni/devhub.js:435
 msgid "There was an error uploading your file."
 msgstr "ファイルのアップロード中にエラーが発生しました。"
 
-#: static/js/zamboni/devhub.js:586
+#: static/js/zamboni/devhub.js:591
 #, python-brace-format
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} 個のファイル"
 
-#: static/js/zamboni/devhub.js:1118
+#: static/js/zamboni/devhub.js:1123
 msgid "Image changes being processed"
 msgstr "画像の変換処理を行っています"
 
@@ -879,7 +879,7 @@ msgstr "{name} が初めてこのページを見ました。"
 
 #: static/js/zamboni/reviewers.js:219
 msgid "Review page polling failed."
-msgstr ""
+msgstr "評価ページの投票に失敗しました。"
 
 #: static/js/zamboni/reviewers.js:507
 #, python-brace-format

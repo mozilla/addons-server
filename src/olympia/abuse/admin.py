@@ -374,7 +374,6 @@ class CinderPolicyAdmin(AMOModelAdmin):
         'text',
         'expose_in_reviewer_tools',
         'present_in_cinder',
-        'default_cinder_action',
     )
     list_display = (
         'uuid',
@@ -383,12 +382,10 @@ class CinderPolicyAdmin(AMOModelAdmin):
         'linked_review_reasons',
         'expose_in_reviewer_tools',
         'present_in_cinder',
-        'default_cinder_action',
+        'enforcement_actions',
         'text',
     )
-    readonly_fields = tuple(
-        set(fields) - {'expose_in_reviewer_tools', 'default_cinder_action'}
-    )
+    readonly_fields = tuple(set(fields) - {'expose_in_reviewer_tools'})
     ordering = ('parent__name', 'name')
     list_select_related = ('parent',)
     view_on_site = False

@@ -856,19 +856,19 @@ msgstr "Dátum"
 msgid "Other"
 msgstr "Iné"
 
-#: static/js/zamboni/devhub.js:287
+#: static/js/zamboni/devhub.js:292
 msgid "Changes Saved"
 msgstr "Zmeny boli uložené"
 
-#: static/js/zamboni/devhub.js:304
+#: static/js/zamboni/devhub.js:309
 msgid "Enter a new author's email address"
 msgstr "Zadajte e‑mailovú adresu nového autora"
 
-#: static/js/zamboni/devhub.js:430
+#: static/js/zamboni/devhub.js:435
 msgid "There was an error uploading your file."
 msgstr "Pri odosielaní súboru sa vyskytla chyba."
 
-#: static/js/zamboni/devhub.js:586
+#: static/js/zamboni/devhub.js:591
 #, python-brace-format
 msgid "{files} file"
 msgid_plural "{files} files"
@@ -876,7 +876,7 @@ msgstr[0] "{files} súbor"
 msgstr[1] "{files} súbory"
 msgstr[2] "{files} súborov"
 
-#: static/js/zamboni/devhub.js:1118
+#: static/js/zamboni/devhub.js:1123
 msgid "Image changes being processed"
 msgstr "Zmeny obrázkov sa práve spracovávajú"
 

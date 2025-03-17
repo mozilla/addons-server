@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Pontoon\n"
 
-#: src/olympia/abuse/actions.py:187
+#: src/olympia/abuse/actions.py:189
 #, python-brace-format
 msgid "Mozilla Add-ons: {} [{}]"
 msgstr "Mozilla 附加组件：{} [{}]"
@@ -34,11 +34,11 @@ msgstr "申诉原因"
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr "请说明您认为此决定有误，或是与适用的政策、法律要求不符的原因。"
 
-#: src/olympia/abuse/models.py:1065
+#: src/olympia/abuse/models.py:1067
 msgid "User profile"
 msgstr "用户资料"
 
-#: src/olympia/abuse/models.py:1394
+#: src/olympia/abuse/models.py:1374
 #, python-brace-format
 msgid "\"{}\" for {}"
 msgstr "\"{}\" for {}"
@@ -236,15 +236,15 @@ msgstr "不允许使用链接。"
 msgid "This display name cannot be used."
 msgstr "无法使用这个显示名。"
 
-#: src/olympia/accounts/serializers.py:167 src/olympia/addons/fields.py:366 src/olympia/devhub/views.py:1015
+#: src/olympia/accounts/serializers.py:167 src/olympia/addons/fields.py:366 src/olympia/devhub/views.py:1016
 msgid "Images must be either PNG or JPG."
 msgstr "图像必须为 PNG 或 JPG 格式。"
 
-#: src/olympia/accounts/serializers.py:171 src/olympia/addons/fields.py:371 src/olympia/devhub/views.py:1021
+#: src/olympia/accounts/serializers.py:171 src/olympia/addons/fields.py:371 src/olympia/devhub/views.py:1022
 msgid "Images cannot be animated."
 msgstr "不能使用动态图像。"
 
-#: src/olympia/accounts/serializers.py:176 src/olympia/devhub/views.py:1030
+#: src/olympia/accounts/serializers.py:176 src/olympia/devhub/views.py:1031
 #, python-format
 msgid "Please use images smaller than %dMB."
 msgstr "请使用小于 %dMB 的图像。"
@@ -346,11 +346,11 @@ msgstr "无法改写此应用程序在清单中设置的兼容性信息（%s）"
 msgid "Images must be smaller than %dMB"
 msgstr "图片必须小于 %d MB"
 
-#: src/olympia/addons/models.py:2144 src/olympia/addons/models.py:2201 src/olympia/constants/base.py:66
+#: src/olympia/addons/models.py:2142 src/olympia/addons/models.py:2199 src/olympia/constants/base.py:66
 msgid "Listed"
 msgstr "显示"
 
-#: src/olympia/addons/models.py:2379
+#: src/olympia/addons/models.py:2377
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr "附加组件和收藏集的路径需要以“/”结尾"
 
@@ -520,7 +520,7 @@ msgstr "提交一个新主题"
 msgid "Developer Hub"
 msgstr "开发者中心"
 
-#: src/olympia/amo/context_processors.py:79 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:20 src/olympia/devhub/views.py:2076
+#: src/olympia/amo/context_processors.py:79 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:20 src/olympia/devhub/views.py:2077
 msgid "Manage API Keys"
 msgstr "管理 API 密钥"
 
@@ -913,7 +913,7 @@ msgstr "已通过初步审核"
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version} 已被驳回。"
 
-#: src/olympia/constants/activity.py:172 src/olympia/files/models.py:307
+#: src/olympia/constants/activity.py:172 src/olympia/files/models.py:317
 msgid "Rejected"
 msgstr "被驳回"
 
@@ -1324,7 +1324,7 @@ msgstr "开发者"
 msgid "(Deleted)"
 msgstr "（已删除）"
 
-#: src/olympia/constants/base.py:129 src/olympia/constants/reviewers.py:66
+#: src/olympia/constants/base.py:129 src/olympia/constants/reviewers.py:67
 msgid "Extension"
 msgstr "扩展"
 
@@ -1356,7 +1356,7 @@ msgstr "弃用的插件"
 msgid "Deprecated LWT"
 msgstr "不赞成使用的 LWT"
 
-#: src/olympia/constants/base.py:137 src/olympia/constants/reviewers.py:67
+#: src/olympia/constants/base.py:137 src/olympia/constants/reviewers.py:68
 msgid "Theme"
 msgstr "主题"
 
@@ -1780,27 +1780,27 @@ msgstr "很好 (2)"
 msgid "Excellent (3)"
 msgstr "极好 (3)"
 
-#: src/olympia/constants/reviewers.py:38
+#: src/olympia/constants/reviewers.py:39
 msgid "Request More Info"
 msgstr "要求更多信息"
 
-#: src/olympia/constants/reviewers.py:39
+#: src/olympia/constants/reviewers.py:40
 msgid "Flag"
 msgstr "提请删除"
 
-#: src/olympia/constants/reviewers.py:40
+#: src/olympia/constants/reviewers.py:41
 msgid "Duplicate"
 msgstr "重复"
 
-#: src/olympia/constants/reviewers.py:41
+#: src/olympia/constants/reviewers.py:42
 msgid "Reject"
 msgstr "驳回"
 
-#: src/olympia/constants/reviewers.py:42
+#: src/olympia/constants/reviewers.py:43
 msgid "Approve"
 msgstr "核准"
 
-#: src/olympia/constants/reviewers.py:65
+#: src/olympia/constants/reviewers.py:66
 msgid "All"
 msgstr "所有"
 
@@ -2139,245 +2139,245 @@ msgstr "验证过程中产生的错误或警告信息过多，%s 个信息已被
 msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
 msgstr "此附加组件不是主题。请使用<a href=\"{link}\">提交新附加组件</a>的页面提交扩展程序。"
 
-#: src/olympia/devhub/views.py:114
+#: src/olympia/devhub/views.py:115
 msgid "Updated"
 msgstr "更新日期"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:38 src/olympia/devhub/templates/devhub/addons/edit/describe.html:75 src/olympia/devhub/templates/devhub/addons/submit/describe.html:35
-#: src/olympia/devhub/views.py:115 src/olympia/devhub/views.py:125
+#: src/olympia/devhub/views.py:116 src/olympia/devhub/views.py:126
 msgid "Name"
 msgstr "名称"
 
-#: src/olympia/devhub/views.py:116 src/olympia/devhub/views.py:124
+#: src/olympia/devhub/views.py:117 src/olympia/devhub/views.py:125
 msgid "Created"
 msgstr "创建日期"
 
-#: src/olympia/devhub/views.py:117 src/olympia/devhub/views.py:126 src/olympia/stats/templates/stats/addon_report_menu.html:8
+#: src/olympia/devhub/views.py:118 src/olympia/devhub/views.py:127 src/olympia/stats/templates/stats/addon_report_menu.html:8
 msgid "Downloads"
 msgstr "下载次数"
 
-#: src/olympia/devhub/views.py:118 src/olympia/devhub/views.py:127
+#: src/olympia/devhub/views.py:119 src/olympia/devhub/views.py:128
 msgid "Rating"
 msgstr "评分"
 
-#: src/olympia/devhub/views.py:191
+#: src/olympia/devhub/views.py:192
 msgid "All My Add-ons"
 msgstr "我的所有附加组件"
 
-#: src/olympia/devhub/views.py:219
+#: src/olympia/devhub/views.py:220
 msgid "All Activity"
 msgstr "所有动态"
 
-#: src/olympia/devhub/views.py:220
+#: src/olympia/devhub/views.py:221
 msgid "Add-on Updates"
 msgstr "附加组件更新"
 
-#: src/olympia/devhub/views.py:221
+#: src/olympia/devhub/views.py:222
 msgid "Add-on Status"
 msgstr "附加组件状态"
 
-#: src/olympia/devhub/views.py:222
+#: src/olympia/devhub/views.py:223
 msgid "User Collections"
 msgstr "用户收藏集"
 
-#: src/olympia/devhub/views.py:223
+#: src/olympia/devhub/views.py:224
 msgid "User Reviews"
 msgstr "用户评价"
 
-#: src/olympia/devhub/views.py:371
+#: src/olympia/devhub/views.py:372
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "附加组件无法被删除，可以禁用。"
 
-#: src/olympia/devhub/views.py:382
+#: src/olympia/devhub/views.py:383
 msgid "Theme deleted."
 msgstr "主题已删除。"
 
-#: src/olympia/devhub/views.py:382
+#: src/olympia/devhub/views.py:383
 msgid "Add-on deleted."
 msgstr "附加组件已删除。"
 
-#: src/olympia/devhub/views.py:388
+#: src/olympia/devhub/views.py:389
 msgid "URL name was incorrect. Theme was not deleted."
 msgstr "URL 名称不正确。主题未被删除。"
 
-#: src/olympia/devhub/views.py:390
+#: src/olympia/devhub/views.py:391
 msgid "URL name was incorrect. Add-on was not deleted."
 msgstr "URL 名称不正确。附加组件未被删除。"
 
-#: src/olympia/devhub/views.py:462
+#: src/olympia/devhub/views.py:463
 msgid "Invitation accepted."
 msgstr "邀请已被接受。"
 
-#: src/olympia/devhub/views.py:465
+#: src/olympia/devhub/views.py:466
 msgid "Invitation declined."
 msgstr "邀请被拒绝。"
 
-#: src/olympia/devhub/views.py:533
+#: src/olympia/devhub/views.py:534
 #, python-brace-format
 msgid "A confirmation email has been sent to {email}"
 msgstr "验证邮件已发送到 {email}"
 
-#: src/olympia/devhub/views.py:550 src/olympia/devhub/views.py:1158
+#: src/olympia/devhub/views.py:551 src/olympia/devhub/views.py:1159
 msgid "Changes successfully saved."
 msgstr "更改已成功保存。"
 
-#: src/olympia/devhub/views.py:570
+#: src/olympia/devhub/views.py:571
 msgid "Validate Add-on"
 msgstr "验证附加组件"
 
-#: src/olympia/devhub/views.py:644
+#: src/olympia/devhub/views.py:645
 #, python-brace-format
 msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
 msgstr "<a href=\"{link}\">若要提交扩展，请先为账户添加双因子身份验证。</a>"
 
-#: src/olympia/devhub/views.py:1013
+#: src/olympia/devhub/views.py:1014
 msgid "Icons must be either PNG or JPG."
 msgstr "图标必须为 PNG 或 JPG 格式。"
 
-#: src/olympia/devhub/views.py:1019
+#: src/olympia/devhub/views.py:1020
 msgid "Icons cannot be animated."
 msgstr "不能使用动画图标。"
 
-#: src/olympia/devhub/views.py:1045
+#: src/olympia/devhub/views.py:1046
 #, python-brace-format
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr "图片宽度必须至少为 {0} 像素且高度为 {1} 像素。"
 
-#: src/olympia/devhub/views.py:1049
+#: src/olympia/devhub/views.py:1050
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "图片比例必须为 4:3。"
 
-#: src/olympia/devhub/views.py:1057
+#: src/olympia/devhub/views.py:1058
 #, python-brace-format
 msgid "Icon must be at least {0} pixels wide and tall."
 msgstr "图标宽度和高度至少达到 {0} 像素。"
 
-#: src/olympia/devhub/views.py:1062
+#: src/olympia/devhub/views.py:1063
 msgid "Icon must be square (same width and height)."
 msgstr "图标必须为正方形（宽度和高度相同）。"
 
-#: src/olympia/devhub/views.py:1068
+#: src/olympia/devhub/views.py:1069
 msgid "There was an error uploading your preview."
 msgstr "上传预览图的过程中发生错误。"
 
-#: src/olympia/devhub/views.py:1215
+#: src/olympia/devhub/views.py:1216
 #, python-format
 msgid ""
 "The latest approved version of this %s add-on cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr "此 %s 附加组件先前的版本未通过审核成为 %s 推广项目，无法删除或禁用此推广附加组件最新通过审核的版本。若您需要协助，请联系 AMO 管理员。"
 
-#: src/olympia/devhub/views.py:1222
+#: src/olympia/devhub/views.py:1223
 #, python-format
 msgid "Version %s disabled."
 msgstr "已停用版本 %s。"
 
-#: src/olympia/devhub/views.py:1226
+#: src/olympia/devhub/views.py:1227
 #, python-format
 msgid "Version %s deleted."
 msgstr "版本 %s 已删除。"
 
-#: src/olympia/devhub/views.py:1237
+#: src/olympia/devhub/views.py:1238
 #, python-format
 msgid "Version %s re-enabled."
 msgstr "版本 %s 已重新启用。"
 
-#: src/olympia/devhub/views.py:1253
+#: src/olympia/devhub/views.py:1254
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "本次上传校验失败，可能缺少完整校验结果。请在检查时特别注意这点。"
 
-#: src/olympia/devhub/views.py:1422
+#: src/olympia/devhub/views.py:1423
 msgid "Header area background"
 msgstr "标题区域背景色"
 
-#: src/olympia/devhub/views.py:1424
+#: src/olympia/devhub/views.py:1425
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
 msgstr "标题区域背景的颜色，显示在标题区域或标题图像未覆盖的部分。清单字段：frame。"
 
-#: src/olympia/devhub/views.py:1432
+#: src/olympia/devhub/views.py:1433
 msgid "Header area text and icons"
 msgstr "标题区域文本和图标"
 
-#: src/olympia/devhub/views.py:1434
+#: src/olympia/devhub/views.py:1435
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
 msgstr "标题区域所显示文字和图标的颜色。清单字段：tab_background_text。"
 
-#: src/olympia/devhub/views.py:1441
+#: src/olympia/devhub/views.py:1442
 msgid "Toolbar area background"
 msgstr "工具栏区域背景色"
 
-#: src/olympia/devhub/views.py:1443
+#: src/olympia/devhub/views.py:1444
 msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
 msgstr "导航栏、书签栏和活动标签页的背景颜色。清单字段：toolbar。"
 
-#: src/olympia/devhub/views.py:1450
+#: src/olympia/devhub/views.py:1451
 msgid "Toolbar area text and icons"
 msgstr "工具栏区域文本和图标"
 
-#: src/olympia/devhub/views.py:1452
+#: src/olympia/devhub/views.py:1453
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
 msgstr "工具栏和活跃标签页中的文字和图标的颜色。清单字段：bookmark_text。"
 
-#: src/olympia/devhub/views.py:1459
+#: src/olympia/devhub/views.py:1460
 msgid "Toolbar field area background"
 msgstr "工具栏文本框区域背景颜色"
 
-#: src/olympia/devhub/views.py:1461
+#: src/olympia/devhub/views.py:1462
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
 msgstr "工具栏中文本框的背景颜色，例如网址栏。清单字段：toolbar_field。"
 
-#: src/olympia/devhub/views.py:1468
+#: src/olympia/devhub/views.py:1469
 msgid "Toolbar field area text"
 msgstr "工具栏文本框区域文本"
 
-#: src/olympia/devhub/views.py:1470
+#: src/olympia/devhub/views.py:1471
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "工具栏中的文本框里面文字的颜色，例如网址栏。清单字段：toolbar_field_text。"
 
-#: src/olympia/devhub/views.py:1478
+#: src/olympia/devhub/views.py:1479
 msgid "Tab highlight"
 msgstr "标签页高亮"
 
-#: src/olympia/devhub/views.py:1480
+#: src/olympia/devhub/views.py:1481
 msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
 msgstr "高亮活动的标签页。在 Firefox 89+ 上显示为标签页周围的边框（旧版上会显示为顶端的横线）。清单字段：tab_line。"
 
-#: src/olympia/devhub/views.py:1579
+#: src/olympia/devhub/views.py:1580
 msgid "Add-on uploads are temporarily unavailable"
 msgstr "暂时无法上传附加组件"
 
-#: src/olympia/devhub/views.py:1947
+#: src/olympia/devhub/views.py:1948
 msgid "Review requested."
 msgstr "已请求审核。"
 
-#: src/olympia/devhub/views.py:1949
+#: src/olympia/devhub/views.py:1950
 msgid "You must provide further details to proceed."
 msgstr "您必须提供进一步的详细信息才能继续。"
 
-#: src/olympia/devhub/views.py:2051
+#: src/olympia/devhub/views.py:2052
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "您的旧凭据已被吊销并且不再有效。"
 
-#: src/olympia/devhub/views.py:2070
+#: src/olympia/devhub/views.py:2071
 msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
 msgstr "请保密您的 API 密钥，绝对不要分享给其他人，包括 Mozilla 贡献者。"
 
-#: src/olympia/devhub/views.py:2087
+#: src/olympia/devhub/views.py:2088
 msgid "New API key created"
 msgstr "新的 API 密钥已创建"
 
-#: src/olympia/devhub/views.py:2098
+#: src/olympia/devhub/views.py:2099
 msgid "API key revoked"
 msgstr "API 密钥已吊销"
 
-#: src/olympia/devhub/views.py:2158
+#: src/olympia/devhub/views.py:2159
 msgid "Verify email"
 msgstr "验证邮箱"
 
-#: src/olympia/devhub/views.py:2160
+#: src/olympia/devhub/views.py:2161
 msgid "Send another email"
 msgstr "重新发送"
 
-#: src/olympia/devhub/views.py:2193
+#: src/olympia/devhub/views.py:2194
 msgid "Your email has been verified"
 msgstr "您的邮箱地址已验证"
 
@@ -2388,6 +2388,14 @@ msgstr "我的附加组件不适合任何分类"
 #: src/olympia/devhub/templates/devhub/agreement.html:3 src/olympia/devhub/templates/devhub/agreement.html:11 src/olympia/devhub/templates/devhub/includes/agreement.html:7
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Firefox 附加组件分发协议"
+
+#: src/olympia/devhub/templates/devhub/base.html:43
+msgid "Help us make things better!"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/base.html:44
+msgid "Take our quick survey"
+msgstr ""
 
 #. {0} is an application, like Firefox.
 #: src/olympia/devhub/templates/devhub/index.html:21 src/olympia/templates/base.html:17
@@ -5968,11 +5976,11 @@ msgstr "Twitch 扩展"
 msgid "See more Twitch extension staff picks"
 msgstr "更多编辑推荐 > Twitch 扩展"
 
-#: src/olympia/files/models.py:309
+#: src/olympia/files/models.py:319
 msgid "Unreviewed"
 msgstr "未审核"
 
-#: src/olympia/files/models.py:312
+#: src/olympia/files/models.py:322
 #, python-format
 msgid "[status:%s]"
 msgstr "[状态：%s]"
@@ -6229,7 +6237,7 @@ msgstr "由 %(user)s 在 %(date)s 点赞 %(stars)s"
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">%(user)s 于 %(date)s 标记</span>"
 
-#: src/olympia/reviewers/templates/reviewers/review.html:283
+#: src/olympia/reviewers/templates/reviewers/review.html:301
 msgid "<strong>Warning!</strong> Another user may be viewing this page before you."
 msgstr "<strong>警告！</strong>可能有其他用户先于您在查看此页。"
 
@@ -6765,44 +6773,44 @@ msgstr "那个邮件地址没有用户。"
 msgid "Firefox user {id}"
 msgstr "Firefox 用户 {id}"
 
-#: src/olympia/users/models.py:827
+#: src/olympia/users/models.py:841
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "请输入有效的 IPv4 或 IPv6 CIDR 网络范围，例如：127.0.0.1/28"
 
-#: src/olympia/users/models.py:831
+#: src/olympia/users/models.py:845
 msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
 msgstr "已有多份违规内容来自您所在的位置。 此 IP 地址已被阻止。"
 
-#: src/olympia/users/models.py:943
+#: src/olympia/users/models.py:957
 msgid "Email Pattern"
 msgstr "邮箱模式"
 
-#: src/olympia/users/models.py:946
+#: src/olympia/users/models.py:960
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr "请输入要屏蔽的完整电子邮件地址，或使用 unix 格式的通配符，例如“*@example.com”。若您要屏蔽包含所有子域的完整域名，则另需添加“*@*.example.com”。"
 
-#: src/olympia/users/models.py:953
+#: src/olympia/users/models.py:967
 msgid "The email address used for your account is not allowed for submissions."
 msgstr "您的账户电子邮件地址不能用于提交。"
 
-#: src/olympia/users/models.py:1032
+#: src/olympia/users/models.py:1046
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
 "restrictions\" instead."
 msgstr "输入要屏蔽的一次性邮箱的完整域。不支持通配符：如果您需要该特性，或需匹配整个电子邮件地址（不仅仅是域部分），请改用“电子邮件用户限制”。"
 
-#: src/olympia/users/models.py:1183
+#: src/olympia/users/models.py:1197
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
 " which explains how we handle your information."
 msgstr "在开始之前，请阅读并接受我们的 Firefox 附加组件分发协议以及我们的审核政策和规则。Firefox 附加组件分发协议还链接了我们的隐私声明，那明确解释了我们如何处理您的信息。"
 
-#: src/olympia/users/models.py:1197
+#: src/olympia/users/models.py:1211
 #, python-brace-format
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr "在开始之前，请访问 {url} 阅读并接受我们的 Firefox 附加组件分发协议以及我们的审核政策和规则"
 
-#: src/olympia/users/models.py:1248
+#: src/olympia/users/models.py:1262
 msgid "User Restriction History"
 msgstr "用户限制记录"
 

@@ -830,25 +830,25 @@ msgstr "日期"
 msgid "Other"
 msgstr "其他"
 
-#: static/js/zamboni/devhub.js:287
+#: static/js/zamboni/devhub.js:292
 msgid "Changes Saved"
 msgstr "修改已儲存"
 
-#: static/js/zamboni/devhub.js:304
+#: static/js/zamboni/devhub.js:309
 msgid "Enter a new author's email address"
 msgstr "輸入新作者的電子郵件地址"
 
-#: static/js/zamboni/devhub.js:430
+#: static/js/zamboni/devhub.js:435
 msgid "There was an error uploading your file."
 msgstr "上傳您的檔案時發生錯誤。"
 
-#: static/js/zamboni/devhub.js:586
+#: static/js/zamboni/devhub.js:591
 #, python-brace-format
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} 個檔案"
 
-#: static/js/zamboni/devhub.js:1118
+#: static/js/zamboni/devhub.js:1123
 msgid "Image changes being processed"
 msgstr "正在處理圖片更改"
 

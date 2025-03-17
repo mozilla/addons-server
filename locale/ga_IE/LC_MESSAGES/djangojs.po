@@ -879,19 +879,19 @@ msgstr "Dáta"
 msgid "Other"
 msgstr "Eile"
 
-#: static/js/zamboni/devhub.js:287
+#: static/js/zamboni/devhub.js:292
 msgid "Changes Saved"
 msgstr "Sábháladh na hAthruithe"
 
-#: static/js/zamboni/devhub.js:304
+#: static/js/zamboni/devhub.js:309
 msgid "Enter a new author's email address"
 msgstr ""
 
-#: static/js/zamboni/devhub.js:430
+#: static/js/zamboni/devhub.js:435
 msgid "There was an error uploading your file."
 msgstr "Tharla earráid agus do chomhad á uaslódáil."
 
-#: static/js/zamboni/devhub.js:586
+#: static/js/zamboni/devhub.js:591
 #, python-brace-format
 msgid "{files} file"
 msgid_plural "{files} files"
@@ -901,7 +901,7 @@ msgstr[2] ""
 msgstr[3] ""
 msgstr[4] ""
 
-#: static/js/zamboni/devhub.js:1118
+#: static/js/zamboni/devhub.js:1123
 msgid "Image changes being processed"
 msgstr ""
 

@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Pontoon\n"
 
-#: src/olympia/abuse/actions.py:187
+#: src/olympia/abuse/actions.py:189
 #, python-brace-format
 msgid "Mozilla Add-ons: {} [{}]"
 msgstr "Mozilla-add-ons: {} [{}]"
@@ -34,11 +34,11 @@ msgstr "Reden foar beswier"
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr "Lis út wêrom’t jo leauwe dat dit beslút net terjochte makke is en/of net oerienkomt mei it jildende belied of wet."
 
-#: src/olympia/abuse/models.py:1065
+#: src/olympia/abuse/models.py:1067
 msgid "User profile"
 msgstr "Brûkersprofyl"
 
-#: src/olympia/abuse/models.py:1394
+#: src/olympia/abuse/models.py:1374
 #, python-brace-format
 msgid "\"{}\" for {}"
 msgstr "‘{}’ foar {}"
@@ -238,15 +238,15 @@ msgstr "Keppelingen binne net tastien."
 msgid "This display name cannot be used."
 msgstr "Dizze skermnamme kin net brûkt wurde."
 
-#: src/olympia/accounts/serializers.py:167 src/olympia/addons/fields.py:366 src/olympia/devhub/views.py:1015
+#: src/olympia/accounts/serializers.py:167 src/olympia/addons/fields.py:366 src/olympia/devhub/views.py:1016
 msgid "Images must be either PNG or JPG."
 msgstr "Ofbyldingen moatte fan it type PNG of JPG wêze."
 
-#: src/olympia/accounts/serializers.py:171 src/olympia/addons/fields.py:371 src/olympia/devhub/views.py:1021
+#: src/olympia/accounts/serializers.py:171 src/olympia/addons/fields.py:371 src/olympia/devhub/views.py:1022
 msgid "Images cannot be animated."
 msgstr "Ofbyldingen meie net bewegend wêze."
 
-#: src/olympia/accounts/serializers.py:176 src/olympia/devhub/views.py:1030
+#: src/olympia/accounts/serializers.py:176 src/olympia/devhub/views.py:1031
 #, python-format
 msgid "Please use images smaller than %dMB."
 msgstr "Brûk ôfbyldingen lytser as %d MB."
@@ -349,11 +349,11 @@ msgstr "Kin de kompatibiliteitsynformaasje ynsteld yn it manifest foar dizze tap
 msgid "Images must be smaller than %dMB"
 msgstr "Ofbyldingen moatte lytser wêze as %dMB"
 
-#: src/olympia/addons/models.py:2144 src/olympia/addons/models.py:2201 src/olympia/constants/base.py:66
+#: src/olympia/addons/models.py:2142 src/olympia/addons/models.py:2199 src/olympia/constants/base.py:66
 msgid "Listed"
 msgstr "Fermeld"
 
-#: src/olympia/addons/models.py:2379
+#: src/olympia/addons/models.py:2377
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr "Paden nei add-ons en kolleksjes moatte mei ‘/’ einigje"
 
@@ -525,7 +525,7 @@ msgstr "In nij tema yntsjinje"
 msgid "Developer Hub"
 msgstr "Untwikkelershub"
 
-#: src/olympia/amo/context_processors.py:79 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:20 src/olympia/devhub/views.py:2076
+#: src/olympia/amo/context_processors.py:79 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:20 src/olympia/devhub/views.py:2077
 msgid "Manage API Keys"
 msgstr "API-kaaien beheare"
 
@@ -928,7 +928,7 @@ msgstr "Foarearst beoardiele"
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version} ôfwêzen."
 
-#: src/olympia/constants/activity.py:172 src/olympia/files/models.py:307
+#: src/olympia/constants/activity.py:172 src/olympia/files/models.py:317
 msgid "Rejected"
 msgstr "Ofwezen"
 
@@ -1341,7 +1341,7 @@ msgstr "Untwikkeler"
 msgid "(Deleted)"
 msgstr "(Fuortsmiten)"
 
-#: src/olympia/constants/base.py:129 src/olympia/constants/reviewers.py:66
+#: src/olympia/constants/base.py:129 src/olympia/constants/reviewers.py:67
 msgid "Extension"
 msgstr "Utwreiding"
 
@@ -1373,7 +1373,7 @@ msgstr "Ferâldere ynstekker"
 msgid "Deprecated LWT"
 msgstr "Ferâldere LWT"
 
-#: src/olympia/constants/base.py:137 src/olympia/constants/reviewers.py:67
+#: src/olympia/constants/base.py:137 src/olympia/constants/reviewers.py:68
 msgid "Theme"
 msgstr "Tema"
 
@@ -1801,27 +1801,27 @@ msgstr "Hiel goed (2)"
 msgid "Excellent (3)"
 msgstr "Poerbêst (3)"
 
-#: src/olympia/constants/reviewers.py:38
+#: src/olympia/constants/reviewers.py:39
 msgid "Request More Info"
 msgstr "Mear ynformaasje freegje"
 
-#: src/olympia/constants/reviewers.py:39
+#: src/olympia/constants/reviewers.py:40
 msgid "Flag"
 msgstr "Label"
 
-#: src/olympia/constants/reviewers.py:40
+#: src/olympia/constants/reviewers.py:41
 msgid "Duplicate"
 msgstr "Duplikaat"
 
-#: src/olympia/constants/reviewers.py:41
+#: src/olympia/constants/reviewers.py:42
 msgid "Reject"
 msgstr "Ofwize"
 
-#: src/olympia/constants/reviewers.py:42
+#: src/olympia/constants/reviewers.py:43
 msgid "Approve"
 msgstr "Goedkarre"
 
-#: src/olympia/constants/reviewers.py:65
+#: src/olympia/constants/reviewers.py:66
 msgid "All"
 msgstr "Alle"
 
@@ -2166,128 +2166,128 @@ msgstr "De falidaasje levere te folle flaters/warskôgingen op, dus %s berjochte
 msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
 msgstr "Dizze add-on is gjin tema. Brûk de side <a href=\"{link}\">In nije add-on yntsjinje</a> om útwreidingen yn te tsjinjen."
 
-#: src/olympia/devhub/views.py:114
+#: src/olympia/devhub/views.py:115
 msgid "Updated"
 msgstr "Bywurke"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:38 src/olympia/devhub/templates/devhub/addons/edit/describe.html:75 src/olympia/devhub/templates/devhub/addons/submit/describe.html:35
-#: src/olympia/devhub/views.py:115 src/olympia/devhub/views.py:125
+#: src/olympia/devhub/views.py:116 src/olympia/devhub/views.py:126
 msgid "Name"
 msgstr "Namme"
 
-#: src/olympia/devhub/views.py:116 src/olympia/devhub/views.py:124
+#: src/olympia/devhub/views.py:117 src/olympia/devhub/views.py:125
 msgid "Created"
 msgstr "Oanmakke"
 
-#: src/olympia/devhub/views.py:117 src/olympia/devhub/views.py:126 src/olympia/stats/templates/stats/addon_report_menu.html:8
+#: src/olympia/devhub/views.py:118 src/olympia/devhub/views.py:127 src/olympia/stats/templates/stats/addon_report_menu.html:8
 msgid "Downloads"
 msgstr "Downloads"
 
-#: src/olympia/devhub/views.py:118 src/olympia/devhub/views.py:127
+#: src/olympia/devhub/views.py:119 src/olympia/devhub/views.py:128
 msgid "Rating"
 msgstr "Wurdearring"
 
-#: src/olympia/devhub/views.py:191
+#: src/olympia/devhub/views.py:192
 msgid "All My Add-ons"
 msgstr "Al myn add-ons"
 
-#: src/olympia/devhub/views.py:219
+#: src/olympia/devhub/views.py:220
 msgid "All Activity"
 msgstr "Alle aktiviteit"
 
-#: src/olympia/devhub/views.py:220
+#: src/olympia/devhub/views.py:221
 msgid "Add-on Updates"
 msgstr "Add-on-fernijingen"
 
-#: src/olympia/devhub/views.py:221
+#: src/olympia/devhub/views.py:222
 msgid "Add-on Status"
 msgstr "Add-on-steat"
 
-#: src/olympia/devhub/views.py:222
+#: src/olympia/devhub/views.py:223
 msgid "User Collections"
 msgstr "Brûkerskolleksjes"
 
-#: src/olympia/devhub/views.py:223
+#: src/olympia/devhub/views.py:224
 msgid "User Reviews"
 msgstr "Brûkersbeoardielingen"
 
-#: src/olympia/devhub/views.py:371
+#: src/olympia/devhub/views.py:372
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "Add-on kin net fuortsmiten wurde. Skeakelje dizze add-on út."
 
-#: src/olympia/devhub/views.py:382
+#: src/olympia/devhub/views.py:383
 msgid "Theme deleted."
 msgstr "Tema fuortsmiten."
 
-#: src/olympia/devhub/views.py:382
+#: src/olympia/devhub/views.py:383
 msgid "Add-on deleted."
 msgstr "Add-on fuortsmiten."
 
-#: src/olympia/devhub/views.py:388
+#: src/olympia/devhub/views.py:389
 msgid "URL name was incorrect. Theme was not deleted."
 msgstr "URL-namme net krekt. Tema is net fuortsmiten."
 
-#: src/olympia/devhub/views.py:390
+#: src/olympia/devhub/views.py:391
 msgid "URL name was incorrect. Add-on was not deleted."
 msgstr "URL-namme net krekt. Add-on is net fuortsmiten."
 
-#: src/olympia/devhub/views.py:462
+#: src/olympia/devhub/views.py:463
 msgid "Invitation accepted."
 msgstr "Utnûging akseptearre."
 
-#: src/olympia/devhub/views.py:465
+#: src/olympia/devhub/views.py:466
 msgid "Invitation declined."
 msgstr "Utnûging wegere."
 
-#: src/olympia/devhub/views.py:533
+#: src/olympia/devhub/views.py:534
 #, python-brace-format
 msgid "A confirmation email has been sent to {email}"
 msgstr "Der is in befêstigingsberjocht ferstjoerd nei {email}"
 
-#: src/olympia/devhub/views.py:550 src/olympia/devhub/views.py:1158
+#: src/olympia/devhub/views.py:551 src/olympia/devhub/views.py:1159
 msgid "Changes successfully saved."
 msgstr "Wizigingen mei sukses bewarre."
 
-#: src/olympia/devhub/views.py:570
+#: src/olympia/devhub/views.py:571
 msgid "Validate Add-on"
 msgstr "Add-on falidearje"
 
-#: src/olympia/devhub/views.py:644
+#: src/olympia/devhub/views.py:645
 #, python-brace-format
 msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
 msgstr "<a href=\"{link}\">Foegje twafaktorautentikaasje ta oan jo account om útwreidingen yn te tsjinjen.</a>"
 
-#: src/olympia/devhub/views.py:1013
+#: src/olympia/devhub/views.py:1014
 msgid "Icons must be either PNG or JPG."
 msgstr "Piktogrammen moatte yn PNG- of JPG-opmaak wêze."
 
-#: src/olympia/devhub/views.py:1019
+#: src/olympia/devhub/views.py:1020
 msgid "Icons cannot be animated."
 msgstr "Piktogrammen meie net bewegend wêze."
 
-#: src/olympia/devhub/views.py:1045
+#: src/olympia/devhub/views.py:1046
 #, python-brace-format
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr "Ofbyldingen moatte op syn minst {0} piksels breed en {1} piksels heech wêze."
 
-#: src/olympia/devhub/views.py:1049
+#: src/olympia/devhub/views.py:1050
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "Ofbyldingsôfmjittingen moatte yn de ferhâlding 4:3 wêze."
 
-#: src/olympia/devhub/views.py:1057
+#: src/olympia/devhub/views.py:1058
 #, python-brace-format
 msgid "Icon must be at least {0} pixels wide and tall."
 msgstr "Piktogram moat op syn minst {0} piksels breed en heech wêze."
 
-#: src/olympia/devhub/views.py:1062
+#: src/olympia/devhub/views.py:1063
 msgid "Icon must be square (same width and height)."
 msgstr "Piktogram moat fjouwerkant wêze (deselde breedte en hichte)."
 
-#: src/olympia/devhub/views.py:1068
+#: src/olympia/devhub/views.py:1069
 msgid "There was an error uploading your preview."
 msgstr "Der is in flater bard by it opladen fan jo foarbyld."
 
-#: src/olympia/devhub/views.py:1215
+#: src/olympia/devhub/views.py:1216
 #, python-format
 msgid ""
 "The latest approved version of this %s add-on cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
@@ -2295,118 +2295,118 @@ msgstr ""
 "De nijste goedkarre ferzje fan dizze %s add-on kin net fuortsmiten of útskeakele wurde, omdat de foarige ferzje net goedkard is foar promoasje as %s. Nim kontakt op mei AMO-behearders as jo hjir "
 "help by nedich hawwe."
 
-#: src/olympia/devhub/views.py:1222
+#: src/olympia/devhub/views.py:1223
 #, python-format
 msgid "Version %s disabled."
 msgstr "Ferzje %s útskeakele."
 
-#: src/olympia/devhub/views.py:1226
+#: src/olympia/devhub/views.py:1227
 #, python-format
 msgid "Version %s deleted."
 msgstr "Ferzje %s fuortsmiten."
 
-#: src/olympia/devhub/views.py:1237
+#: src/olympia/devhub/views.py:1238
 #, python-format
 msgid "Version %s re-enabled."
 msgstr "Ferzje %s opnij ynskeakele."
 
-#: src/olympia/devhub/views.py:1253
+#: src/olympia/devhub/views.py:1254
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "De falidaasje fan dizze oplaad is mislearre en der ûntbrekke mooglik folsleine falidaasjeresultaten. Let goed op by de beoardieling."
 
-#: src/olympia/devhub/views.py:1422
+#: src/olympia/devhub/views.py:1423
 msgid "Header area background"
 msgstr "Eftergrûn fan headergebied"
 
-#: src/olympia/devhub/views.py:1424
+#: src/olympia/devhub/views.py:1425
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
 msgstr "De kleur fan de eftergrûn fan it headergebied, werjaan yn it part fan de header dat net ôfdekt wurdt of sichtber is fia de headerôfbylding. Manifestfjild: ·  ·  frame."
 
-#: src/olympia/devhub/views.py:1432
+#: src/olympia/devhub/views.py:1433
 msgid "Header area text and icons"
 msgstr "Tekst en piktogrammen fan headergebied"
 
-#: src/olympia/devhub/views.py:1434
+#: src/olympia/devhub/views.py:1435
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
 msgstr "De kleur fan de tekst en de piktogrammen yn it headergebied, behalve it aktive ljepblêd. Manifestfjild:  tab_background_text."
 
-#: src/olympia/devhub/views.py:1441
+#: src/olympia/devhub/views.py:1442
 msgid "Toolbar area background"
 msgstr "Eftergrûn fan arkbalkegebied"
 
-#: src/olympia/devhub/views.py:1443
+#: src/olympia/devhub/views.py:1444
 msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
 msgstr "De eftergrûnkleur foar de navigaasjebalke, de blêdwizerarkbalke en it aktive ljepblêd.  Manifestfjild:  toolbar."
 
-#: src/olympia/devhub/views.py:1450
+#: src/olympia/devhub/views.py:1451
 msgid "Toolbar area text and icons"
 msgstr "Tekst en piktogrammen fan it arkbalkegebied"
 
-#: src/olympia/devhub/views.py:1452
+#: src/olympia/devhub/views.py:1453
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
 msgstr "De kleur fan tekst en piktogrammen yn de arkbalke en it aktive ljepblêd. Manifestfjild:  bookmark_text."
 
-#: src/olympia/devhub/views.py:1459
+#: src/olympia/devhub/views.py:1460
 msgid "Toolbar field area background"
 msgstr "Eftergrûn fan arkbalkefjildgebied"
 
-#: src/olympia/devhub/views.py:1461
+#: src/olympia/devhub/views.py:1462
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
 msgstr "De eftergrûnkleur foar fjilden yn de arkbalke, lykas de URL-balke. Manifestfjild: ·  · toolbar_field."
 
-#: src/olympia/devhub/views.py:1468
+#: src/olympia/devhub/views.py:1469
 msgid "Toolbar field area text"
 msgstr "Tekst arkbalkefjildgebied"
 
-#: src/olympia/devhub/views.py:1470
+#: src/olympia/devhub/views.py:1471
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "De kleur fan tekst yn fjilden yn de arkbalke, lykas de URL-balke. Manifestfjild: ·  · toolbar_field_text."
 
-#: src/olympia/devhub/views.py:1478
+#: src/olympia/devhub/views.py:1479
 msgid "Tab highlight"
 msgstr "Ljepblêdmarkearing"
 
-#: src/olympia/devhub/views.py:1480
+#: src/olympia/devhub/views.py:1481
 msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
 msgstr "De markearingskleur fan it aktive ljepblêd. Ymplemintearre as in râne om it ljepblêd yn Firefox 89+ en in line boppe it ljepblêd yn âldere ferzjes fan Firefox. Manifestfjild:  tab_line."
 
-#: src/olympia/devhub/views.py:1579
+#: src/olympia/devhub/views.py:1580
 msgid "Add-on uploads are temporarily unavailable"
 msgstr "Add-on-oplaads binne tydlik net beskikber"
 
-#: src/olympia/devhub/views.py:1947
+#: src/olympia/devhub/views.py:1948
 msgid "Review requested."
 msgstr "Beoardieling oanfrege."
 
-#: src/olympia/devhub/views.py:1949
+#: src/olympia/devhub/views.py:1950
 msgid "You must provide further details to proceed."
 msgstr "Jo moatte mear details opjaan om fierder te gean."
 
-#: src/olympia/devhub/views.py:2051
+#: src/olympia/devhub/views.py:2052
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Jo âlde oanmeldgegevens binne ynlutsen en binne net mear jildich."
 
-#: src/olympia/devhub/views.py:2070
+#: src/olympia/devhub/views.py:2071
 msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
 msgstr "Hâld jo API-kaaien geheim en diel se nea mei oaren, ek net mei Mozilla-meiwurkers."
 
-#: src/olympia/devhub/views.py:2087
+#: src/olympia/devhub/views.py:2088
 msgid "New API key created"
 msgstr "Nije API-kaai makke"
 
-#: src/olympia/devhub/views.py:2098
+#: src/olympia/devhub/views.py:2099
 msgid "API key revoked"
 msgstr "API-kaai ynlutsen"
 
-#: src/olympia/devhub/views.py:2158
+#: src/olympia/devhub/views.py:2159
 msgid "Verify email"
 msgstr "E-mailadres ferifiearje"
 
-#: src/olympia/devhub/views.py:2160
+#: src/olympia/devhub/views.py:2161
 msgid "Send another email"
 msgstr "Noch in e-mailberjocht ferstjoere"
 
-#: src/olympia/devhub/views.py:2193
+#: src/olympia/devhub/views.py:2194
 msgid "Your email has been verified"
 msgstr "Jo e-mailadres is ferifiearre"
 
@@ -2417,6 +2417,14 @@ msgstr "Myn add-on past net yn ien fan de kategoryen"
 #: src/olympia/devhub/templates/devhub/agreement.html:3 src/olympia/devhub/templates/devhub/agreement.html:11 src/olympia/devhub/templates/devhub/includes/agreement.html:7
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Firefox-add-on-distribúsjeoerienkomst"
+
+#: src/olympia/devhub/templates/devhub/base.html:43
+msgid "Help us make things better!"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/base.html:44
+msgid "Take our quick survey"
+msgstr ""
 
 #. {0} is an application, like Firefox.
 #: src/olympia/devhub/templates/devhub/index.html:21 src/olympia/templates/base.html:17
@@ -6058,11 +6066,11 @@ msgstr "Twitch-útwreidingen"
 msgid "See more Twitch extension staff picks"
 msgstr "Mear stêfkarren foar Twitch-útwreidingen besjen"
 
-#: src/olympia/files/models.py:309
+#: src/olympia/files/models.py:319
 msgid "Unreviewed"
 msgstr "Net beoardiele"
 
-#: src/olympia/files/models.py:312
+#: src/olympia/files/models.py:322
 #, python-format
 msgid "[status:%s]"
 msgstr "[steat:%s]"
@@ -6321,7 +6329,7 @@ msgstr "troch %(user)s op %(date)s %(stars)s"
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">Markearre troch %(user)s op %(date)s</span>"
 
-#: src/olympia/reviewers/templates/reviewers/review.html:283
+#: src/olympia/reviewers/templates/reviewers/review.html:301
 msgid "<strong>Warning!</strong> Another user may be viewing this page before you."
 msgstr "<strong>Warskôging!</strong> In oare brûker besjocht dizze side mooglik earder as jo."
 
@@ -6861,29 +6869,29 @@ msgstr "Der is gjin brûker mei dat e-mailadres."
 msgid "Firefox user {id}"
 msgstr "Firefox-brûker {id}"
 
-#: src/olympia/users/models.py:827
+#: src/olympia/users/models.py:841
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "Fier in jildige IPv4- of IPv6-CIDR-netwurkreeks yn, byg. 127.0.0.1/28"
 
-#: src/olympia/users/models.py:831
+#: src/olympia/users/models.py:845
 msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
 msgstr "Fan jo lokaasje ôf binne mear ynstjoeringen dy’t stridich binne mei ús belied yntsjinne. It IP-adres is blokkearre."
 
-#: src/olympia/users/models.py:943
+#: src/olympia/users/models.py:957
 msgid "Email Pattern"
 msgstr "E-mailpatroan"
 
-#: src/olympia/users/models.py:946
+#: src/olympia/users/models.py:960
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr ""
 "Fier it folsleine e-mailadres yn dat blokkearre wurde moat of brûk wildcards yn Unix-styl, byg. ‘*@foarbyld.com’. As jo in domein ynklusyf subdomeinen blokkearje wolle, foegje dan in twadde item ta,"
 " byg. ‘*@*.foarbyld.com’."
 
-#: src/olympia/users/models.py:953
+#: src/olympia/users/models.py:967
 msgid "The email address used for your account is not allowed for submissions."
 msgstr "It e-mailadres dat jo foar jo account brûkt hawwe is net tastien foar ynstjoeringen."
 
-#: src/olympia/users/models.py:1032
+#: src/olympia/users/models.py:1046
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
 "restrictions\" instead."
@@ -6891,7 +6899,7 @@ msgstr ""
 "Fier in folslein domein foar tydlike e-mailadressen yn dat blokkearre wurde moat. Wildcards wurde net stipe: as jo dizze nedich hawwe, of as jo matche wolle tsjin it folsleine e-mailadres en net "
 "allinnich it domeinpart, brûk dan ‘Beheiningen e-mailbrûker’."
 
-#: src/olympia/users/models.py:1183
+#: src/olympia/users/models.py:1197
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
 " which explains how we handle your information."
@@ -6899,12 +6907,12 @@ msgstr ""
 "Lês en akseptearje eardat jo begjinne ús Firefox-add-on-distribúsje-oerienkomst en ús Beoardielingsrigels en belied. Dizze ferwiist ek nei ús Privacyferklearring, dy’t útleit hoe’t wy mei jo "
 "gegevens omgean."
 
-#: src/olympia/users/models.py:1197
+#: src/olympia/users/models.py:1211
 #, python-brace-format
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr "Lês en akseptearje ús Firefox-add-on-distribúsje-oerienkomst en ús Beoardielingsrigels en -belied op {url}"
 
-#: src/olympia/users/models.py:1248
+#: src/olympia/users/models.py:1262
 msgid "User Restriction History"
 msgstr "Skiednis brûkersrestriksjes"
 

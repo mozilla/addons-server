@@ -856,19 +856,19 @@ msgstr "Datum"
 msgid "Other"
 msgstr "Ostali"
 
-#: static/js/zamboni/devhub.js:287
+#: static/js/zamboni/devhub.js:292
 msgid "Changes Saved"
 msgstr "Izmjene spremljene"
 
-#: static/js/zamboni/devhub.js:304
+#: static/js/zamboni/devhub.js:309
 msgid "Enter a new author's email address"
 msgstr "Unesite novu email adresu autora"
 
-#: static/js/zamboni/devhub.js:430
+#: static/js/zamboni/devhub.js:435
 msgid "There was an error uploading your file."
 msgstr "Dogodila se greška tijekom učitavanja tvoje datoteke."
 
-#: static/js/zamboni/devhub.js:586
+#: static/js/zamboni/devhub.js:591
 #, python-brace-format
 msgid "{files} file"
 msgid_plural "{files} files"
@@ -876,7 +876,7 @@ msgstr[0] "{files} datoteka"
 msgstr[1] "{files} datoteke"
 msgstr[2] "{files} datoteka"
 
-#: static/js/zamboni/devhub.js:1118
+#: static/js/zamboni/devhub.js:1123
 msgid "Image changes being processed"
 msgstr "Obrađuju se izmjene na slici"
 

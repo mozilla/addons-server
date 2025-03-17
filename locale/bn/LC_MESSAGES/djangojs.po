@@ -842,26 +842,26 @@ msgstr "তারিখ"
 msgid "Other"
 msgstr "অন্যান্য"
 
-#: static/js/zamboni/devhub.js:287
+#: static/js/zamboni/devhub.js:292
 msgid "Changes Saved"
 msgstr "পরিবর্তন সংরক্ষণ করা হয়েছে"
 
-#: static/js/zamboni/devhub.js:304
+#: static/js/zamboni/devhub.js:309
 msgid "Enter a new author's email address"
 msgstr "নতুন সম্পাদকের ইমেইল ঠিকানা দিন"
 
-#: static/js/zamboni/devhub.js:430
+#: static/js/zamboni/devhub.js:435
 msgid "There was an error uploading your file."
 msgstr "আপনার ফাইল আপলোড করার সময় একটি ত্রুটি পাওয়া গেছে।"
 
-#: static/js/zamboni/devhub.js:586
+#: static/js/zamboni/devhub.js:591
 #, python-brace-format
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} ফাইল"
 msgstr[1] "{files} ফাইল"
 
-#: static/js/zamboni/devhub.js:1118
+#: static/js/zamboni/devhub.js:1123
 msgid "Image changes being processed"
 msgstr "ছবির পরিবর্তন প্রক্রিয়াধীন"
 

@@ -1,9 +1,9 @@
 {% extends "admin/base_site.html" %}
-{% load admin_urls static admin_modify %}
+{% load admin_urls static admin_modify django_vite %}
 
 {% block extrahead %}{{ block.super }}
 <script type="text/javascript" src="{% static 'js/i18n/en-US.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/admin/blocklist_blocklistsubmission.js' %}"></script>
+{% vite_asset 'js/blocklist_blocklistsubmission.js' %}
 {{ media }}
 {% endblock %}
 

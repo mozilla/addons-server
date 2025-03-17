@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-13 17:40+0000\n"
+"POT-Creation-Date: 2025-03-17 18:11+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1871,6 +1871,12 @@ msgid "My add-on doesn't fit into any of the categories"
 msgstr "ਮੇਰਾ ਐਡ-ਆਨ ਕਿਸੇ ਵੀ ਵਰਗ ਵਿੱਚ ਰਾਸ ਨਹੀਂਂ ਆ ਰਿਹਾ"
 
 msgid "Firefox Add-on Distribution Agreement"
+msgstr ""
+
+msgid "Help us make things better!"
+msgstr ""
+
+msgid "Take our quick survey"
 msgstr ""
 
 #. {0} is an application, like Firefox.

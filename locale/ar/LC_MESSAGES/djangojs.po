@@ -891,19 +891,19 @@ msgstr "التاريخ"
 msgid "Other"
 msgstr "أخرى"
 
-#: static/js/zamboni/devhub.js:287
+#: static/js/zamboni/devhub.js:292
 msgid "Changes Saved"
 msgstr "حُفظت التغييرات"
 
-#: static/js/zamboni/devhub.js:304
+#: static/js/zamboni/devhub.js:309
 msgid "Enter a new author's email address"
 msgstr "أدخِل عنوان البريد الجديد للمؤلف"
 
-#: static/js/zamboni/devhub.js:430
+#: static/js/zamboni/devhub.js:435
 msgid "There was an error uploading your file."
 msgstr "حدث خطأ أثناء رفع الملف."
 
-#: static/js/zamboni/devhub.js:586
+#: static/js/zamboni/devhub.js:591
 #, python-brace-format
 msgid "{files} file"
 msgid_plural "{files} files"
@@ -914,7 +914,7 @@ msgstr[3] "{files} ملفات"
 msgstr[4] "{files} ملفًا"
 msgstr[5] "{files} ملف"
 
-#: static/js/zamboni/devhub.js:1118
+#: static/js/zamboni/devhub.js:1123
 msgid "Image changes being processed"
 msgstr "يُعالج التغييرات على الصورة"
 

@@ -13,32 +13,32 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Pontoon\n"
 
-#: src/olympia/abuse/actions.py:187
+#: src/olympia/abuse/actions.py:189
 #, python-brace-format
 msgid "Mozilla Add-ons: {} [{}]"
-msgstr ""
+msgstr "Mozilla アドオン: {} [{}]"
 
 #: src/olympia/abuse/forms.py:30
 msgid "Email address"
-msgstr ""
+msgstr "メールアドレス"
 
 #: src/olympia/abuse/forms.py:45
 msgid "Invalid email provided."
-msgstr ""
+msgstr "入力されたメールアドレスは無効です。"
 
 #: src/olympia/abuse/forms.py:61
 msgid "Reason for appeal"
-msgstr ""
+msgstr "上告理由"
 
 #: src/olympia/abuse/forms.py:63
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
-msgstr ""
+msgstr "この決定が誤ってなされた、または適用される方針もしくは法律に合致していないと考える理由を説明してください。"
 
-#: src/olympia/abuse/models.py:1065
+#: src/olympia/abuse/models.py:1067
 msgid "User profile"
-msgstr ""
+msgstr "ユーザープロファイル"
 
-#: src/olympia/abuse/models.py:1394
+#: src/olympia/abuse/models.py:1374
 #, python-brace-format
 msgid "\"{}\" for {}"
 msgstr ""
@@ -54,16 +54,16 @@ msgstr "無効な値"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:10 src/olympia/abuse/templates/abuse/appeal.html:15
 msgid "Appeal reviewer decision"
-msgstr ""
+msgstr "審査員の決定に対する異議申し立て"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:16
 #, python-brace-format
 msgid "Decision {0}"
-msgstr ""
+msgstr "決定 {0}"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:20
 msgid "Thank you. Your appeal has been recorded."
-msgstr ""
+msgstr "ありがとうございます。異議申し立てが記録されました。"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:31 src/olympia/amo/templates/amo/fake_fxa_authorization.html:21
 msgid "OK"
@@ -71,7 +71,7 @@ msgstr "OK"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:33 src/olympia/abuse/templates/abuse/appeal.html:41
 msgid "Thank you for your report."
-msgstr ""
+msgstr "ご報告ありがとうございます。"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:37
 msgid ""
@@ -92,11 +92,11 @@ msgstr ""
 
 #: src/olympia/abuse/templates/abuse/emails/base_reporter.txt:1
 msgid "Hello,"
-msgstr ""
+msgstr "こんにちは"
 
 #: src/olympia/abuse/templates/abuse/emails/base_reporter.txt:7
 msgid "Mozilla Add-ons Team"
-msgstr ""
+msgstr "Mozilla アドオンチーム"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_approve.txt:8
 #, python-format
@@ -197,15 +197,15 @@ msgstr "リンクの使用は許可されていません。"
 msgid "This display name cannot be used."
 msgstr "この表示名は使用できません。"
 
-#: src/olympia/accounts/serializers.py:167 src/olympia/addons/fields.py:366 src/olympia/devhub/views.py:1015
+#: src/olympia/accounts/serializers.py:167 src/olympia/addons/fields.py:366 src/olympia/devhub/views.py:1016
 msgid "Images must be either PNG or JPG."
 msgstr "画像は PNG か JPG 形式でなければなりません。"
 
-#: src/olympia/accounts/serializers.py:171 src/olympia/addons/fields.py:371 src/olympia/devhub/views.py:1021
+#: src/olympia/accounts/serializers.py:171 src/olympia/addons/fields.py:371 src/olympia/devhub/views.py:1022
 msgid "Images cannot be animated."
 msgstr "アニメーションする画像は使用できません。"
 
-#: src/olympia/accounts/serializers.py:176 src/olympia/devhub/views.py:1030
+#: src/olympia/accounts/serializers.py:176 src/olympia/devhub/views.py:1031
 #, python-format
 msgid "Please use images smaller than %dMB."
 msgstr "画像のサイズは %dMB 以下にしてください。"
@@ -243,7 +243,7 @@ msgstr "リクエストしたコンテンツが長すぎます。"
 
 #: src/olympia/addons/decorators.py:78 src/olympia/amo/templates/amo/submissions_disabled.html:8
 msgid "Add-on uploads are temporarily unavailable."
-msgstr ""
+msgstr "アドオンのアップロードが一時的に利用できなくなっています。"
 
 #: src/olympia/addons/fields.py:56
 #, python-brace-format
@@ -300,18 +300,18 @@ msgstr "不明な最小アプリ バージョンが指定されました"
 #: src/olympia/addons/fields.py:307 src/olympia/addons/fields.py:325 src/olympia/addons/serializers.py:622
 #, python-format
 msgid "Can not override compatibility information set in the manifest for this application (%s)"
-msgstr ""
+msgstr "このアプリのマニフェストで設定された互換性情報を上書きできません (%s)"
 
 #: src/olympia/addons/fields.py:375
 #, python-format
 msgid "Images must be smaller than %dMB"
 msgstr "画像サイズは %d MB 未満でなければなりません"
 
-#: src/olympia/addons/models.py:2144 src/olympia/addons/models.py:2201 src/olympia/constants/base.py:66
+#: src/olympia/addons/models.py:2142 src/olympia/addons/models.py:2199 src/olympia/constants/base.py:66
 msgid "Listed"
 msgstr "表示"
 
-#: src/olympia/addons/models.py:2379
+#: src/olympia/addons/models.py:2377
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr "アドオンとコレクションのパスは「/」で終わっていなければなりません"
 
@@ -344,17 +344,17 @@ msgstr "バージョン {version_string} は既に存在します。"
 
 #: src/olympia/addons/serializers.py:556
 msgid "Listed versions cannot be submitted while add-on is disabled."
-msgstr ""
+msgstr "アドオンが無効になっている間、リストに載ったバージョンを送信することはできません。"
 
 #: src/olympia/addons/serializers.py:597
 #, python-format
 msgid "%(addon_type_plural)s are not supported by %(app_name)s"
-msgstr ""
+msgstr "%(addon_type_plural)s は %(app_name)s ではサポートされていません"
 
 #: src/olympia/addons/serializers.py:636 src/olympia/devhub/forms.py:910
 #, python-format
 msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
-msgstr ""
+msgstr "無効なバージョン範囲です。Android 版 Firefox の場合は、バージョン %(max)s 以上で始まるか、バージョン %(min)s 未満で終わる範囲のみを選択できます。"
 
 #: src/olympia/addons/serializers.py:885
 msgid "Add-ons need at least one owner."
@@ -432,7 +432,7 @@ msgstr "この種類のアドオンは、カスタム互換性を許可しませ
 
 #: src/olympia/addons/validators.py:332
 msgid "This endpoint is not valid for Themes."
-msgstr ""
+msgstr "このエンドポイントはテーマには無効です。"
 
 #: src/olympia/addons/templates/addons/includes/dashboard_tabs.html:4 src/olympia/devhub/templates/devhub/nav.html:15 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:19
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html:16
@@ -481,7 +481,7 @@ msgstr "新しいテーマを登録"
 msgid "Developer Hub"
 msgstr "開発者センター"
 
-#: src/olympia/amo/context_processors.py:79 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:20 src/olympia/devhub/views.py:2076
+#: src/olympia/amo/context_processors.py:79 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:20 src/olympia/devhub/views.py:2077
 msgid "Manage API Keys"
 msgstr "API キーを管理"
 
@@ -519,7 +519,7 @@ msgstr "サイトメンテナンスの間、いくつかの機能が一時的に
 
 #: src/olympia/amo/utils.py:1112
 msgid "URLs are not allowed."
-msgstr ""
+msgstr "URLは使用できません。"
 
 #: src/olympia/amo/validators.py:17
 msgid "Must contain at least one printable character."
@@ -638,11 +638,11 @@ msgstr "このページ内の一部の機能はサイトメンテナンスのた
 
 #: src/olympia/amo/templates/amo/submissions_disabled.html:3
 msgid "Add-on uploads temporarily disabled"
-msgstr ""
+msgstr "アドオンのアップロードが一時的に利用できません"
 
 #: src/olympia/amo/templates/amo/submissions_disabled.html:13
 msgid "Add-on uploads have been temporarily disabled. Please check back later."
-msgstr ""
+msgstr "アドオンのアップロードが一時的に無効になっています。しばらくしてからもう一度ご確認ください。"
 
 #: src/olympia/amo/templatetags/jinja_helpers.py:148
 #, python-brace-format
@@ -745,7 +745,7 @@ msgstr "開発者 API キーを確認する"
 
 #: src/olympia/api/throttling.py:113
 msgid "You have submitted this form too many times recently. Please try again after some time."
-msgstr ""
+msgstr "このフォームは最近何度も送信されています。しばらくしてからもう一度お試しください。"
 
 #: src/olympia/bandwagon/serializers.py:72
 msgid "This custom URL is already in use by another one of your collections."
@@ -769,11 +769,11 @@ msgstr "このアドオンは既にコレクションに含まれています"
 
 #: src/olympia/blocklist/models.py:188
 msgid "Blocked"
-msgstr ""
+msgstr "ブロックされています"
 
 #: src/olympia/blocklist/models.py:188
 msgid "Restricted"
-msgstr ""
+msgstr "制限されています"
 
 #: src/olympia/constants/activity.py:25
 #, python-brace-format
@@ -847,7 +847,7 @@ msgstr "{addon} のバージョン {0}が削除されました。"
 #: src/olympia/constants/activity.py:129
 #, python-brace-format
 msgid "File {file} added to {version} of {addon}."
-msgstr ""
+msgstr "{addon} のバージョン {version} にファイル {file} が追加されました。"
 
 #: src/olympia/constants/activity.py:141
 #, python-brace-format
@@ -877,7 +877,7 @@ msgstr "事前承認されました"
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version} の審査が却下されました。"
 
-#: src/olympia/constants/activity.py:172 src/olympia/files/models.py:307
+#: src/olympia/constants/activity.py:172 src/olympia/files/models.py:317
 msgid "Rejected"
 msgstr "却下済み"
 
@@ -910,7 +910,7 @@ msgstr "詳細情報請求済み"
 
 #: src/olympia/constants/activity.py:234
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
-msgstr ""
+msgstr "このアドオンは管理者による審査が必要と判断されました。まだ審査待ちですが、管理者がチェックする必要があります。審査には通常より時間がかかるかもしれません。"
 
 #: src/olympia/constants/activity.py:255
 #, python-brace-format
@@ -947,7 +947,7 @@ msgstr "{0}{1} が追加されました。"
 #: src/olympia/constants/activity.py:328
 #, python-brace-format
 msgid "{user} role changed to {0} for {addon}."
-msgstr ""
+msgstr "{addon} における {user} の役割が {0} に変更されました。"
 
 #: src/olympia/constants/activity.py:339
 #, python-brace-format
@@ -960,9 +960,9 @@ msgid "{addon} policy changed."
 msgstr "{addon} のポリシーが変更されました。"
 
 #: src/olympia/constants/activity.py:353
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{addon} icon or previews changed."
-msgstr "{addon} のアイコンが変更されました。"
+msgstr "{addon} のアイコンまたはプレビューが変更されました。"
 
 #: src/olympia/constants/activity.py:360
 #, python-brace-format
@@ -1029,7 +1029,7 @@ msgstr "{addon} のリスト掲載が中止されました。"
 #: src/olympia/constants/activity.py:546
 #, python-brace-format
 msgid "Add-on id {0} with GUID {1} has been deleted"
-msgstr ""
+msgstr "GUID {1}を持つアドオン ID {0} が削除されました"
 
 #: src/olympia/constants/activity.py:553 src/olympia/constants/activity.py:559
 #, python-brace-format
@@ -1057,11 +1057,11 @@ msgstr "審査担当者の返信"
 #: src/olympia/constants/activity.py:613
 #, python-brace-format
 msgid "Notes for reviewers changed for {addon} {version}."
-msgstr ""
+msgstr "{addon} {version} に関する審査担当者向けのメモが変更されました。"
 
 #: src/olympia/constants/activity.py:614
 msgid "Notes for reviewers changed"
-msgstr ""
+msgstr "審査担当者へのメモが変更されました"
 
 #: src/olympia/constants/activity.py:622
 #, python-brace-format
@@ -1126,7 +1126,7 @@ msgstr "却下が予定されました"
 #: src/olympia/constants/activity.py:829
 #, python-brace-format
 msgid "{addon} {version} automatically created and signed from {0}."
-msgstr ""
+msgstr "{addon} {version} が {0} から自動的に作成され、署名されました。"
 
 #: src/olympia/constants/activity.py:830
 msgid "Version re-signed"
@@ -1135,86 +1135,86 @@ msgstr "バージョンが再署名されました"
 #: src/olympia/constants/activity.py:838
 #, python-brace-format
 msgid "{addon} force-disabled"
-msgstr ""
+msgstr "{addon} が強制的に無効化されました"
 
 #: src/olympia/constants/activity.py:849
 #, python-brace-format
 msgid "{addon} force-enabled"
-msgstr ""
+msgstr "{addon} が強制的に有効化されました"
 
 #: src/olympia/constants/activity.py:878
 #, python-brace-format
 msgid "{addon} {version} un-rejected."
-msgstr ""
+msgstr "{addon} {version} の審査の却下が取り消されました。"
 
 #: src/olympia/constants/activity.py:879
 msgid "Un-rejected"
-msgstr ""
+msgstr "却下の取り消し"
 
 #: src/olympia/constants/activity.py:916
 #, python-brace-format
 msgid "Reply to {rating} for {addon} written."
-msgstr ""
+msgstr "{addon} の {rating} への返信が書かれました。"
 
 #: src/olympia/constants/activity.py:933
 #, python-brace-format
 msgid "{addon} {version} pending rejection cleared."
-msgstr ""
+msgstr "{addon} {version} の却下の保留が解除されました。"
 
 #: src/olympia/constants/activity.py:934
 msgid "Pending rejection cleared"
-msgstr ""
+msgstr "却下の保留が解除されました"
 
 #: src/olympia/constants/activity.py:981
 #, python-brace-format
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
-msgstr ""
+msgstr "{user_responsible} が {addon} のスラッグを {0} から {1} に変更しました。"
 
 #: src/olympia/constants/activity.py:982
 msgid "Add-on slug changed"
-msgstr ""
+msgstr "アドオンスラッグが変更されました"
 
 #: src/olympia/constants/activity.py:989
 #, python-brace-format
 msgid "Collection {collection} deleted by moderator"
-msgstr ""
+msgstr "コレクション {collection} がモデレーターによって削除されました"
 
 #: src/olympia/constants/activity.py:995
 #, python-brace-format
 msgid "Collection {collection} un-deleted by moderator"
-msgstr ""
+msgstr "コレクション {collection} の削除がモデレーターによって取り消されました"
 
 #: src/olympia/constants/activity.py:1004
 #, python-brace-format
 msgid "Review {rating} for {addon} un-deleted."
-msgstr ""
+msgstr "{addon} のレビュー {rating} の削除が取り消されました。"
 
 #: src/olympia/constants/activity.py:1033
 #, python-brace-format
 msgid "{addon} {version} rejected automatically after delay expired."
-msgstr ""
+msgstr "遅延時間が経過した後、{addon} {version} が自動的に却下されました。"
 
 #: src/olympia/constants/activity.py:1034
 msgid "Rejected automatically after delay expired"
-msgstr ""
+msgstr "遅延時間が経過すると自動的に却下されます"
 
 #: src/olympia/constants/activity.py:1045
 #, python-brace-format
 msgid "{addon} {version} content rejected automatically after delay expired."
-msgstr ""
+msgstr "遅延時間が経過した後、{addon} {version} のコンテンツが自動的に却下されました。"
 
 #: src/olympia/constants/activity.py:1046
 msgid "Content rejected automatically after delay expired"
-msgstr ""
+msgstr "遅延時間が経過するとコンテンツが自動的に却下されます"
 
 #: src/olympia/constants/activity.py:1171
 #, python-brace-format
 msgid "{addon} {version} pending rejection changed."
-msgstr ""
+msgstr "{addon} {version} の却下の保留が変更されました。"
 
 #: src/olympia/constants/activity.py:1172
 msgid "Pending rejection changed"
-msgstr ""
+msgstr "却下の保留が変更されました"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -1288,7 +1288,7 @@ msgstr "開発者"
 msgid "(Deleted)"
 msgstr "(削除済み)"
 
-#: src/olympia/constants/base.py:129 src/olympia/constants/reviewers.py:66
+#: src/olympia/constants/base.py:129 src/olympia/constants/reviewers.py:67
 msgid "Extension"
 msgstr "拡張機能"
 
@@ -1302,7 +1302,7 @@ msgstr "スペルチェック辞書"
 
 #: src/olympia/constants/base.py:132
 msgid "Deprecated Search Engine"
-msgstr ""
+msgstr "非推奨の検索エンジン"
 
 #: src/olympia/constants/base.py:133
 msgid "Language Pack"
@@ -1310,23 +1310,23 @@ msgstr "言語パック"
 
 #: src/olympia/constants/base.py:134
 msgid "Deprecated Language Pack (Add-on)"
-msgstr ""
+msgstr "非推奨の言語パック (アドオン)"
 
 #: src/olympia/constants/base.py:135
 msgid "Deprecated Plugin"
-msgstr ""
+msgstr "非推奨のプラグイン"
 
 #: src/olympia/constants/base.py:136
 msgid "Deprecated LWT"
 msgstr "非推奨の LWT"
 
-#: src/olympia/constants/base.py:137 src/olympia/constants/reviewers.py:67
+#: src/olympia/constants/base.py:137 src/olympia/constants/reviewers.py:68
 msgid "Theme"
 msgstr "テーマ"
 
 #: src/olympia/constants/base.py:138
 msgid "Deprecated Site Permission"
-msgstr ""
+msgstr "非推奨のサイト権限"
 
 #: src/olympia/constants/base.py:143 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:10
 msgid "Extensions"
@@ -1342,7 +1342,7 @@ msgstr "スペルチェック辞書"
 
 #: src/olympia/constants/base.py:146
 msgid "Deprecated Search Tools"
-msgstr ""
+msgstr "非推奨の検索ツール"
 
 #: src/olympia/constants/base.py:147
 msgid "Language Packs"
@@ -1350,11 +1350,11 @@ msgstr "言語パック"
 
 #: src/olympia/constants/base.py:148
 msgid "Deprecated Language Packs (Add-on)"
-msgstr ""
+msgstr "非推奨の言語パック (アドオン)"
 
 #: src/olympia/constants/base.py:149
 msgid "Deprecated Plugins"
-msgstr ""
+msgstr "非推奨のプラグイン"
 
 #: src/olympia/constants/base.py:150
 msgid "Deprecated LWTs"
@@ -1366,7 +1366,7 @@ msgstr "テーマ"
 
 #: src/olympia/constants/base.py:152
 msgid "Deprecated Site Permissions"
-msgstr ""
+msgstr "非推奨のサイト権限"
 
 #: src/olympia/constants/categories.py:68
 msgid "Alerts & Updates"
@@ -1606,7 +1606,7 @@ msgstr "一般"
 
 #: src/olympia/constants/licenses.py:15
 msgid "Mozilla Public License 2.0"
-msgstr ""
+msgstr "Mozilla Public License 2.0"
 
 #: src/olympia/constants/licenses.py:22
 msgid "Apache License 2.0"
@@ -1638,15 +1638,15 @@ msgstr ""
 
 #: src/olympia/constants/licenses.py:71
 msgid "ISC License"
-msgstr ""
+msgstr "ISC ライセンス"
 
 #: src/olympia/constants/licenses.py:78
 msgid "BSD 2-Clause \"Simplified\" License"
-msgstr ""
+msgstr "2条項簡易 BSD ライセンス"
 
 #: src/olympia/constants/licenses.py:85
 msgid "Mozilla Public License 1.1"
-msgstr ""
+msgstr "Mozilla Public License 1.1"
 
 #: src/olympia/constants/licenses.py:93 src/olympia/constants/licenses.py:229
 msgid "All Rights Reserved"
@@ -1678,31 +1678,31 @@ msgstr "Creative Commons 表示-継承 3.0"
 
 #: src/olympia/constants/licenses.py:162
 msgid "Creative Commons Attribution 4.0"
-msgstr ""
+msgstr "Creative Commons 表示 4.0"
 
 #: src/olympia/constants/licenses.py:172
 msgid "Creative Commons Attribution-NonCommercial 4.0"
-msgstr ""
+msgstr "Creative Commons 表示-非営利 4.0"
 
 #: src/olympia/constants/licenses.py:182
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
-msgstr ""
+msgstr "Creative Commons 表示-非営利-改変禁止 4.0"
 
 #: src/olympia/constants/licenses.py:192
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
-msgstr ""
+msgstr "Creative Commons 表示-非営利-継承 4.0"
 
 #: src/olympia/constants/licenses.py:202
 msgid "Creative Commons Attribution-NoDerivs 4.0"
-msgstr ""
+msgstr "Creative Commons 表示-改変禁止 4.0"
 
 #: src/olympia/constants/licenses.py:212
 msgid "Creative Commons Attribution-ShareAlike 4.0"
-msgstr ""
+msgstr "Creative Commons 表示-継承 4.0"
 
 #: src/olympia/constants/licenses.py:222
 msgid "The Unlicense"
-msgstr ""
+msgstr "The Unlicense"
 
 #: src/olympia/constants/promoted.py:74
 msgid "Not Promoted"
@@ -1713,9 +1713,8 @@ msgid "Recommended"
 msgstr "おすすめ"
 
 #: src/olympia/constants/promoted.py:111
-#, fuzzy
 msgid "By Firefox"
-msgstr "Firefox"
+msgstr "By Firefox"
 
 #: src/olympia/constants/promoted.py:129
 msgid "Spotlight"
@@ -1727,7 +1726,7 @@ msgstr "戦略的"
 
 #: src/olympia/constants/promoted.py:147
 msgid "Notable"
-msgstr ""
+msgstr "注目"
 
 #: src/olympia/constants/reviewers.py:21
 msgid "No Reputation"
@@ -1745,27 +1744,27 @@ msgstr "とても良い (2)"
 msgid "Excellent (3)"
 msgstr "非常に良い (3)"
 
-#: src/olympia/constants/reviewers.py:38
+#: src/olympia/constants/reviewers.py:39
 msgid "Request More Info"
 msgstr "詳しい情報を求める"
 
-#: src/olympia/constants/reviewers.py:39
+#: src/olympia/constants/reviewers.py:40
 msgid "Flag"
 msgstr "フラグ"
 
-#: src/olympia/constants/reviewers.py:40
+#: src/olympia/constants/reviewers.py:41
 msgid "Duplicate"
 msgstr "重複"
 
-#: src/olympia/constants/reviewers.py:41
+#: src/olympia/constants/reviewers.py:42
 msgid "Reject"
 msgstr "却下"
 
-#: src/olympia/constants/reviewers.py:42
+#: src/olympia/constants/reviewers.py:43
 msgid "Approve"
 msgstr "承認"
 
-#: src/olympia/constants/reviewers.py:65
+#: src/olympia/constants/reviewers.py:66
 msgid "All"
 msgstr "すべて"
 
@@ -1775,7 +1774,7 @@ msgstr "アクションなし"
 
 #: src/olympia/constants/scanners.py:25
 msgid "Flag for human review"
-msgstr ""
+msgstr "人間による再審査を依頼"
 
 #: src/olympia/constants/scanners.py:26
 msgid "Delay auto-approval"
@@ -1783,15 +1782,15 @@ msgstr "自動承認を遅らせる"
 
 #: src/olympia/constants/scanners.py:27
 msgid "Delay auto-approval indefinitely"
-msgstr ""
+msgstr "自動承認を無期限に遅らせる"
 
 #: src/olympia/constants/scanners.py:29
 msgid "Delay auto-approval indefinitely and add restrictions"
-msgstr ""
+msgstr "自動承認を無期限に遅らせて制限を追加する"
 
 #: src/olympia/constants/scanners.py:32
 msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
-msgstr ""
+msgstr "自動承認を無期限に遅延し、将来の承認に制限を追加します"
 
 #: src/olympia/constants/scanners.py:42 src/olympia/files/utils.py:1025
 msgid "Unknown"
@@ -1854,7 +1853,7 @@ msgstr "Open Searchアドオンは、{blog_link_open}AMO でのサポートを�
 #: src/olympia/devhub/file_validation_annotations.py:105
 #, python-brace-format
 msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr ""
+msgstr "現在、Manifest V3 のアップロードはサポートされていません。{start_href}サポートのタイムラインの詳細について{end_href} をご覧ください。"
 
 #: src/olympia/devhub/forms.py:85
 msgid "This slug is already in use. Please choose another."
@@ -1877,9 +1876,9 @@ msgid "The miscellaneous category cannot be combined with additional categories.
 msgstr "「その他」カテゴリーを他のカテゴリーと組み合わせることはできません。"
 
 #: src/olympia/devhub/forms.py:272
-#, fuzzy, python-format
+#, python-format
 msgid "URL domain must be one of [%s]."
-msgstr "URL ドメインは [%s] のいずれか、もしくはサブドメインでなければなりません。"
+msgstr "URL ドメインは [%s] のいずれかである必要があります。"
 
 #: src/olympia/devhub/forms.py:288
 #, python-brace-format
@@ -1975,7 +1974,7 @@ msgstr "対応アプリケーションを少なくとも一つ選択する必要
 
 #: src/olympia/devhub/forms.py:1059
 msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr ""
+msgstr "最近のアップロード数が多すぎます。しばらくしてからもう一度お試しください。"
 
 #: src/olympia/devhub/forms.py:1108 src/olympia/signing/views.py:156
 #, python-brace-format
@@ -2032,7 +2031,7 @@ msgstr "表示名"
 
 #: src/olympia/devhub/forms.py:1435
 msgid "Confirm email address"
-msgstr ""
+msgstr "メールアドレスの確認"
 
 #: src/olympia/devhub/forms.py:1436
 msgid "Generate new credentials"
@@ -2055,7 +2054,7 @@ msgstr "JWT 発行者"
 msgid ""
 "To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
 "href=\"{docs_url}\">API documentation</a>."
-msgstr ""
+msgstr "API リクエストを行うには、認証ヘッダーとして <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> を送信します。<a href=\"{docs_url}\">API ドキュメント</a> に書かれている通り、リクエストごとに JWT を生成する必要があります。"
 
 #: src/olympia/devhub/forms.py:1494
 msgid "JWT secret"
@@ -2064,7 +2063,7 @@ msgstr "JWT 秘密鍵"
 #: src/olympia/devhub/forms.py:1515
 #, python-brace-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
-msgstr ""
+msgstr "ユーザー <strong>{name}</strong> の API 認証情報を生成するには、以下の確認ボタンをクリックしてください。"
 
 #: src/olympia/devhub/forms.py:1521
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
@@ -2076,7 +2075,7 @@ msgstr "あなたは API 認証情報を持っていません。"
 
 #: src/olympia/devhub/forms.py:1549
 msgid "Something went wrong, please contact developer support."
-msgstr ""
+msgstr "問題が発生しました。開発者サポートにお問い合わせください。"
 
 #: src/olympia/devhub/tasks.py:178
 msgid "Invalid or corrupt add-on file."
@@ -2102,249 +2101,249 @@ msgstr "検証の結果、多数のエラーや警告が見つかったため、
 #: src/olympia/devhub/utils.py:207
 #, python-brace-format
 msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
-msgstr ""
+msgstr "このアドオンはテーマではありません。拡張機能は <a href=\"{link}\">新しいアドオンを送信</a> ページから送信してください。"
 
-#: src/olympia/devhub/views.py:114
+#: src/olympia/devhub/views.py:115
 msgid "Updated"
 msgstr "更新日"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:38 src/olympia/devhub/templates/devhub/addons/edit/describe.html:75 src/olympia/devhub/templates/devhub/addons/submit/describe.html:35
-#: src/olympia/devhub/views.py:115 src/olympia/devhub/views.py:125
+#: src/olympia/devhub/views.py:116 src/olympia/devhub/views.py:126
 msgid "Name"
 msgstr "タイトル"
 
-#: src/olympia/devhub/views.py:116 src/olympia/devhub/views.py:124
+#: src/olympia/devhub/views.py:117 src/olympia/devhub/views.py:125
 msgid "Created"
 msgstr "新着"
 
-#: src/olympia/devhub/views.py:117 src/olympia/devhub/views.py:126 src/olympia/stats/templates/stats/addon_report_menu.html:8
+#: src/olympia/devhub/views.py:118 src/olympia/devhub/views.py:127 src/olympia/stats/templates/stats/addon_report_menu.html:8
 msgid "Downloads"
 msgstr "ダウンロード数"
 
-#: src/olympia/devhub/views.py:118 src/olympia/devhub/views.py:127
+#: src/olympia/devhub/views.py:119 src/olympia/devhub/views.py:128
 msgid "Rating"
 msgstr "評価"
 
-#: src/olympia/devhub/views.py:191
+#: src/olympia/devhub/views.py:192
 msgid "All My Add-ons"
 msgstr "自分のすべてのアドオン"
 
-#: src/olympia/devhub/views.py:219
+#: src/olympia/devhub/views.py:220
 msgid "All Activity"
 msgstr "すべてのアクティビティ"
 
-#: src/olympia/devhub/views.py:220
+#: src/olympia/devhub/views.py:221
 msgid "Add-on Updates"
 msgstr "アドオンの更新"
 
-#: src/olympia/devhub/views.py:221
+#: src/olympia/devhub/views.py:222
 msgid "Add-on Status"
 msgstr "アドオンのステータス"
 
-#: src/olympia/devhub/views.py:222
+#: src/olympia/devhub/views.py:223
 msgid "User Collections"
 msgstr "ユーザーコレクション"
 
-#: src/olympia/devhub/views.py:223
+#: src/olympia/devhub/views.py:224
 msgid "User Reviews"
 msgstr "ユーザーレビュー"
 
-#: src/olympia/devhub/views.py:371
+#: src/olympia/devhub/views.py:372
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "アドオンを削除できません。代わりに無効化してください。"
 
-#: src/olympia/devhub/views.py:382
+#: src/olympia/devhub/views.py:383
 msgid "Theme deleted."
 msgstr "テーマは削除されました。"
 
-#: src/olympia/devhub/views.py:382
+#: src/olympia/devhub/views.py:383
 msgid "Add-on deleted."
 msgstr "アドオンは削除されました。"
 
-#: src/olympia/devhub/views.py:388
+#: src/olympia/devhub/views.py:389
 msgid "URL name was incorrect. Theme was not deleted."
 msgstr "URL 名が正しくありません。テーマは削除されませんでした。"
 
-#: src/olympia/devhub/views.py:390
+#: src/olympia/devhub/views.py:391
 msgid "URL name was incorrect. Add-on was not deleted."
 msgstr "URL 名が正しくありません。アドオンは削除されませんでした。"
 
-#: src/olympia/devhub/views.py:462
+#: src/olympia/devhub/views.py:463
 msgid "Invitation accepted."
 msgstr "招待を受け入れました。"
 
-#: src/olympia/devhub/views.py:465
+#: src/olympia/devhub/views.py:466
 msgid "Invitation declined."
 msgstr "招待を辞退しました。"
 
-#: src/olympia/devhub/views.py:533
+#: src/olympia/devhub/views.py:534
 #, python-brace-format
 msgid "A confirmation email has been sent to {email}"
 msgstr "確認メールを {email} に送信しました"
 
-#: src/olympia/devhub/views.py:550 src/olympia/devhub/views.py:1158
+#: src/olympia/devhub/views.py:551 src/olympia/devhub/views.py:1159
 msgid "Changes successfully saved."
 msgstr "変更の保存が完了しました。"
 
-#: src/olympia/devhub/views.py:570
+#: src/olympia/devhub/views.py:571
 msgid "Validate Add-on"
 msgstr "アドオンの検証"
 
-#: src/olympia/devhub/views.py:644
+#: src/olympia/devhub/views.py:645
 #, python-brace-format
 msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
-msgstr ""
+msgstr "<a href=\"{link}\">拡張機能を送信するには、アカウントに 2 要素認証を追加してください。</a>"
 
-#: src/olympia/devhub/views.py:1013
+#: src/olympia/devhub/views.py:1014
 msgid "Icons must be either PNG or JPG."
 msgstr "アイコンは PNG か JPG 形式でなければなりません。"
 
-#: src/olympia/devhub/views.py:1019
+#: src/olympia/devhub/views.py:1020
 msgid "Icons cannot be animated."
 msgstr "アニメーションするアイコンは使用できません。"
 
-#: src/olympia/devhub/views.py:1045
+#: src/olympia/devhub/views.py:1046
 #, python-brace-format
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr "画像は幅 {0}ピクセル以上、高さ {1} ピクセル以上でなければなりません。"
 
-#: src/olympia/devhub/views.py:1049
+#: src/olympia/devhub/views.py:1050
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "画像の寸法は 4:3 の比率でなければなりません。"
 
-#: src/olympia/devhub/views.py:1057
+#: src/olympia/devhub/views.py:1058
 #, python-brace-format
 msgid "Icon must be at least {0} pixels wide and tall."
 msgstr "アイコンは幅と高さが {0}ピクセル以上でなければなりません。"
 
-#: src/olympia/devhub/views.py:1062
+#: src/olympia/devhub/views.py:1063
 msgid "Icon must be square (same width and height)."
 msgstr "アイコンは正方形 (縦横が同じサイズ) でなければなりません。"
 
-#: src/olympia/devhub/views.py:1068
+#: src/olympia/devhub/views.py:1069
 msgid "There was an error uploading your preview."
 msgstr "プレビューのアップロード中に問題が発生しました。"
 
-#: src/olympia/devhub/views.py:1215
+#: src/olympia/devhub/views.py:1216
 #, python-format
 msgid ""
 "The latest approved version of this %s add-on cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
-msgstr ""
+msgstr "この %s アドオンは、以前のバージョンが %s プロモーションで承認されなかったため、最新の承認済みバージョンを削除または無効化することはできません。助けが必要な場合は AMO の管理者に問い合わせてください。"
 
-#: src/olympia/devhub/views.py:1222
+#: src/olympia/devhub/views.py:1223
 #, python-format
 msgid "Version %s disabled."
 msgstr "バージョン %sを無効にしました。"
 
-#: src/olympia/devhub/views.py:1226
+#: src/olympia/devhub/views.py:1227
 #, python-format
 msgid "Version %s deleted."
 msgstr "バージョン %sを削除しました。"
 
-#: src/olympia/devhub/views.py:1237
+#: src/olympia/devhub/views.py:1238
 #, python-format
 msgid "Version %s re-enabled."
 msgstr "バージョン %sを再び有効にしました。"
 
-#: src/olympia/devhub/views.py:1253
+#: src/olympia/devhub/views.py:1254
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "今回のアップロードは検証に失敗したため、完全な検証結果を表示できない可能性があります。審査の際はその点に注意してください。"
 
-#: src/olympia/devhub/views.py:1422
+#: src/olympia/devhub/views.py:1423
 msgid "Header area background"
 msgstr "ヘッダー領域の背景"
 
-#: src/olympia/devhub/views.py:1424
+#: src/olympia/devhub/views.py:1425
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
 msgstr "ヘッダー領域の背景色。ヘッダーに覆われていない部分やヘッダー画像の透過部分に表示されます。マニフェストの該当項目: frame"
 
-#: src/olympia/devhub/views.py:1432
+#: src/olympia/devhub/views.py:1433
 msgid "Header area text and icons"
 msgstr "ヘッダー領域の文字とアイコン"
 
-#: src/olympia/devhub/views.py:1434
+#: src/olympia/devhub/views.py:1435
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
 msgstr "アクティブなタブを除く、ヘッダー領域内に表示される文字とアイコンの色。マニフェストの該当項目: tab_background_text"
 
-#: src/olympia/devhub/views.py:1441
+#: src/olympia/devhub/views.py:1442
 msgid "Toolbar area background"
 msgstr "ツールバー領域の背景"
 
-#: src/olympia/devhub/views.py:1443
+#: src/olympia/devhub/views.py:1444
 msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
 msgstr "ナビゲーションバー、ブックマークバー、アクティブなタブの背景色。 マニフェストの該当項目: toolbar"
 
-#: src/olympia/devhub/views.py:1450
+#: src/olympia/devhub/views.py:1451
 msgid "Toolbar area text and icons"
 msgstr "ツールバー領域の文字とアイコン"
 
-#: src/olympia/devhub/views.py:1452
+#: src/olympia/devhub/views.py:1453
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
 msgstr "ツールバー内の文字とアイコン、アクティブなタブの色。マニフェストの該当項目: bookmark_text"
 
-#: src/olympia/devhub/views.py:1459
+#: src/olympia/devhub/views.py:1460
 msgid "Toolbar field area background"
 msgstr "ツールバー入力領域の背景"
 
-#: src/olympia/devhub/views.py:1461
+#: src/olympia/devhub/views.py:1462
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
 msgstr "アドレスバーなどツールバー上の入力欄の背景色。マニフェストの該当項目は toolbar_field です。"
 
-#: src/olympia/devhub/views.py:1468
+#: src/olympia/devhub/views.py:1469
 msgid "Toolbar field area text"
 msgstr "ツールバー入力領域の文字"
 
-#: src/olympia/devhub/views.py:1470
+#: src/olympia/devhub/views.py:1471
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "アドレスバーなどツールバー上の入力欄の文字色。マニフェストの該当項目は toolbar_field_text です。"
 
-#: src/olympia/devhub/views.py:1478
+#: src/olympia/devhub/views.py:1479
 msgid "Tab highlight"
-msgstr ""
+msgstr "タブのハイライト"
 
-#: src/olympia/devhub/views.py:1480
+#: src/olympia/devhub/views.py:1481
 msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
-msgstr ""
+msgstr "アクティブなタブの強調色。Firefox 89 以降ではタブの周りの境界線として、古い Firefox ではタブの上の線として実装されています。 Manifest フィールド:  tab_line。"
 
-#: src/olympia/devhub/views.py:1579
+#: src/olympia/devhub/views.py:1580
 msgid "Add-on uploads are temporarily unavailable"
-msgstr ""
+msgstr "アドオンのアップロードが一時的に利用できなくなっています"
 
-#: src/olympia/devhub/views.py:1947
+#: src/olympia/devhub/views.py:1948
 msgid "Review requested."
 msgstr "審査が申請されました。"
 
-#: src/olympia/devhub/views.py:1949
+#: src/olympia/devhub/views.py:1950
 msgid "You must provide further details to proceed."
 msgstr "続けるにはさらに詳しい情報を提供してください。"
 
-#: src/olympia/devhub/views.py:2051
+#: src/olympia/devhub/views.py:2052
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "あなたの古い認証情報は取り消されているため正当ではありません。"
 
-#: src/olympia/devhub/views.py:2070
+#: src/olympia/devhub/views.py:2071
 msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
-msgstr ""
+msgstr "API キーはあなただけの秘密にしておき、Mozilla の貢献者を含め誰とも共有してはいけません。"
 
-#: src/olympia/devhub/views.py:2087
+#: src/olympia/devhub/views.py:2088
 msgid "New API key created"
 msgstr "新しい API キーが作成されました"
 
-#: src/olympia/devhub/views.py:2098
+#: src/olympia/devhub/views.py:2099
 msgid "API key revoked"
 msgstr "API キーが無効化されました"
 
-#: src/olympia/devhub/views.py:2158
+#: src/olympia/devhub/views.py:2159
 msgid "Verify email"
-msgstr ""
+msgstr "メールアドレスを確認"
 
-#: src/olympia/devhub/views.py:2160
+#: src/olympia/devhub/views.py:2161
 msgid "Send another email"
-msgstr ""
+msgstr "別のメールを送信"
 
-#: src/olympia/devhub/views.py:2193
+#: src/olympia/devhub/views.py:2194
 msgid "Your email has been verified"
-msgstr ""
+msgstr "メールアドレスが確認されました"
 
 #: src/olympia/devhub/widgets.py:81
 msgid "My add-on doesn't fit into any of the categories"
@@ -2353,6 +2352,14 @@ msgstr "このアドオンはどのカテゴリーにも当てはまりません
 #: src/olympia/devhub/templates/devhub/agreement.html:3 src/olympia/devhub/templates/devhub/agreement.html:11 src/olympia/devhub/templates/devhub/includes/agreement.html:7
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Firefox アドオン配布規約"
+
+#: src/olympia/devhub/templates/devhub/base.html:43
+msgid "Help us make things better!"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/base.html:44
+msgid "Take our quick survey"
+msgstr ""
 
 #. {0} is an application, like Firefox.
 #: src/olympia/devhub/templates/devhub/index.html:21 src/olympia/templates/base.html:17
@@ -2429,7 +2436,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/suppressed_email.html:8
 msgid "Learn more"
-msgstr ""
+msgstr "詳細情報"
 
 #: src/olympia/devhub/templates/devhub/validate_addon.html:12
 msgid "Use the field below to upload your add-on package."
@@ -2459,7 +2466,7 @@ msgstr "検証対象:"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:3
 msgid "Email Address Verification"
-msgstr ""
+msgstr "メールアドレスの確認"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:63 src/olympia/devhub/templates/devhub/includes/addon_details.html:90 src/olympia/devhub/templates/devhub/verify_email.html:10
 msgid "Status:"
@@ -2467,27 +2474,27 @@ msgstr "状態:"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:12
 msgid "Your email address is verified."
-msgstr ""
+msgstr "メールアドレスが確認されました。"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:16
 msgid "Please verify your email."
-msgstr ""
+msgstr "メールアドレスを確認してください。"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:20
 msgid "Could not verify email address. The verification link has expired."
-msgstr ""
+msgstr "メールアドレスを確認できませんでした。確認リンクの有効期限が切れています。"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:24
 msgid "We are sending an email to you, please be patient... <div class=\"loader\"></div> The page will automatically refresh."
-msgstr ""
+msgstr "メールを送信しています。しばらくお待ちください... <div class=\"loader\"></div> ページは自動的に更新されます。"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:30
 msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again later."
-msgstr ""
+msgstr "確認メールの配信の確認に予想よりも時間がかかっています。しばらくしてからもう一度お試しください。"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:34
 msgid "Success!"
-msgstr ""
+msgstr "完了しました！"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:35
 #, python-format
@@ -2509,7 +2516,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:57
 msgid "Date"
-msgstr ""
+msgstr "日付"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:58 src/olympia/stats/templates/stats/popup.html:12
 msgid "From"
@@ -2521,7 +2528,7 @@ msgstr "終了日"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:60
 msgid "Subject"
-msgstr ""
+msgstr "件名"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:61 src/olympia/devhub/templates/devhub/versions/list.html:189 src/olympia/devhub/templates/devhub/versions/list.html:207
 #: src/olympia/devhub/templates/devhub/versions/list.html:233
@@ -3045,15 +3052,15 @@ msgstr "Creative Commons ライセンスに関する詳しい情報"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/invisible_channel_warning.html:2
 msgid "Your add-on is currently set to \"Invisible\"."
-msgstr ""
+msgstr "アドオンは現在「非表示」に設定されています。"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/invisible_channel_warning.html:3
 msgid "While in this state, \"On your own\" is the only distribution method available."
-msgstr ""
+msgstr "この状態での配布方法は「自分のみ」となります。"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/source_file_input.html:12
 msgid "You cannot change attached sources because this version has been reviewed by Mozilla."
-msgstr ""
+msgstr "このバージョンは Mozilla によってレビューされているため、ソースを変更できません。"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:5 src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:53
 msgid "General Tests"
@@ -3095,7 +3102,7 @@ msgstr "アドオンを削除すると、このアドオンのために登録さ
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:6
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
-msgstr ""
+msgstr "アドオン ID は元に戻せず、永久に投稿できなくなります。"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:2 src/olympia/devhub/templates/devhub/versions/list.html:253 src/olympia/devhub/templates/devhub/versions/list.html:257
 msgid "Delete Add-on"
@@ -3325,7 +3332,7 @@ msgstr "このバージョンの配布手段"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html:10
 msgid "To get started, select how you would like to distribute this version."
-msgstr ""
+msgstr "まず、このバージョンの配布方法を選んでください。"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html:19
 #, python-format
@@ -3358,7 +3365,7 @@ msgstr "設定完了！ このバージョンは審査終了後に公開され�
 msgid ""
 "You’re done! ✨ You will receive a confirmation email when this version is published on %(site_domain)s. Note that it may take up to 24 hours before publication occurs, or longer if your add-on is "
 "selected for manual review. If you do not see an email after 24 hours, please check your spam folder."
-msgstr ""
+msgstr "完了しました！✨ このバージョンが %(site_domain)s で公開されると同時に確認メールが届きます。アドオンが手動レビュー用に選択された場合、公開されるまで最大 24 時間かかる可能性があります。24 時間経ってもメールが届かない場合は、迷惑メールフォルダーを確認してください。"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:31
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
@@ -3386,7 +3393,7 @@ msgstr "バージョン {0}を編集"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:59
 msgid "As a reminder, your add-on is subject to manual review at any time."
-msgstr ""
+msgstr "アドオンはいつでも人間によるレビューの対象となることに注意してください。"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:64
 msgid "Go to My Submissions"
@@ -3430,7 +3437,7 @@ msgstr "あなたはソースコードを提出する必要はなく、次のス
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:49
 msgid "You must submit your extension's source code."
-msgstr ""
+msgstr "拡張機能のソースコードを送信する必要があります。"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:51
 msgid "Your source code must include:"
@@ -3784,7 +3791,7 @@ msgstr "開発者アカウントに関する詳しい情報"
 
 #: src/olympia/devhub/templates/devhub/includes/android_compatibility_modal.html:3
 msgid "Firefox for Android compatibility"
-msgstr ""
+msgstr "Android 版 Firefox の互換性"
 
 #: src/olympia/devhub/templates/devhub/includes/android_compatibility_modal.html:4
 msgid ""
@@ -3794,11 +3801,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/android_compatibility_modal.html:6
 msgid "Yes, I’ve tested my extension with Firefox for Android"
-msgstr ""
+msgstr "はい、Android 版 Firefox で拡張機能をテストしました"
 
 #: src/olympia/devhub/templates/devhub/includes/android_compatibility_modal.html:7
 msgid "No, I have not tested"
-msgstr ""
+msgstr "いいえ、テストしていません"
 
 #: src/olympia/devhub/templates/devhub/includes/blog_posts.html:3
 msgid "Developer News"
@@ -3814,7 +3821,7 @@ msgstr "バージョンの署名保留中"
 
 #: src/olympia/devhub/templates/devhub/includes/done_unlisted.html:3
 msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
-msgstr ""
+msgstr "これで完了です。 ✨ 署名付きファイルを開発者ハブからダウンロードできるようになると、メールで通知されます。 24 時間経ってもメールが届かない場合は、迷惑メールフォルダーを確認してください。"
 
 #: src/olympia/devhub/templates/devhub/includes/license_form.html:5 src/olympia/devhub/templates/devhub/versions/edit.html:83
 msgid "License"
@@ -3879,11 +3886,11 @@ msgstr "ソースコードのレビューポリシーについての詳細をお
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/banner.html:4
 msgid "Build best-in-class extensions and themes"
-msgstr ""
+msgstr "最高クラスの拡張機能とテーマを構築する"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/banner.html:7 src/olympia/devhub/templates/devhub/new-landing/components/overview.html:5
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
-msgstr ""
+msgstr "拡張機能開発の初心者でも、既存の拡張機能やテーマの改良や移植でも、カスタムエンタープライズソリューションの作成でも、私たちはあなたをサポートするためのリソースを用意しています。"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/banner.html:13
 msgid "Visit the Firefox Extension Workshop"
@@ -3891,7 +3898,7 @@ msgstr "Firefox 拡張機能ワークショップを訪れる"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:4
 msgid "Connect with us"
-msgstr ""
+msgstr "私たちとつながる"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:8
 msgid "Twitter"
@@ -3919,7 +3926,7 @@ msgstr "拡張機能開発者ニュースレター"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:23
 msgid "Stay up-to-date on news and events for Firefox extension developers."
-msgstr ""
+msgstr "Firefox 拡張機能開発者向けのニュースやイベントの最新情報をお届けします。"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:32 src/olympia/devhub/templates/devhub/new-landing/components/connect.html:33
 msgid "Email Address"
@@ -3928,7 +3935,7 @@ msgstr "メールアドレス"
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:39
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
-msgstr ""
+msgstr "Mozilla が %(link_open)sプライバシー通知%(link_close)s に従って私の個人情報を扱うことに同意します。"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:48
 msgid "Sign Up"
@@ -3940,7 +3947,7 @@ msgstr "ありがとうございます！"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:53
 msgid "If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us."
-msgstr ""
+msgstr "これまでに Mozilla 関連のニュースレターを購読したことがない場合、購読開始の確認が必要となります。お送りした確認メールを受信トレイもしくは迷惑メールフィルタから探してください。"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:3
 msgid "Resources"
@@ -3996,11 +4003,11 @@ msgstr "詳しくはこちら"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/get_involved.html:9
 msgid "Get involved"
-msgstr ""
+msgstr "参加する"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/get_involved.html:11
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
-msgstr ""
+msgstr "何千もの開発者とつながり、拡張機能のエコシステムに貢献できるさらなる方法を見つけてください。"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/get_involved.html:16
 msgid "Learn more about the developer community"
@@ -4069,15 +4076,15 @@ msgstr "アドオンの作り方を学ぶ"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/submit_or_manage_extension.html:4
 msgid "Ready to submit or manage your extension?"
-msgstr ""
+msgstr "拡張機能の申請または管理の準備はできましたか？"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/submit_or_manage_extension.html:7
 msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
-msgstr ""
+msgstr "開発者ハブにログインして、拡張機能とテーマを投稿または管理しましょう。"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/submit_or_manage_extension.html:11
 msgid "Register for a developer account or log in to the Developer Hub"
-msgstr ""
+msgstr "開発者アカウントに登録するか、開発者ハブにログインしてください"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:5
 #, python-brace-format
@@ -4289,7 +4296,7 @@ msgstr "バージョンを無効化"
 msgid ""
 "The latest approved version of this %(promoted_group_name)s add-on cannot be deleted or disabled because the previous version was not approved for %(promoted_group_name)s promotion. Please contact "
 "AMO Admins if you need help with this."
-msgstr ""
+msgstr "この %(promoted_group_name)s アドオンは、以前のバージョンが %(promoted_group_name)s プロモーションで承認されなかったため、最新の承認済みバージョンを削除または無効化することはできません。助けが必要な場合は AMO の管理者に問い合わせてください。"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:312 src/olympia/devhub/templates/devhub/versions/list.html:338
 msgid "Hide Add-on"
@@ -4356,9 +4363,8 @@ msgstr "一連の検索エンジンで逆画像検索を実行。"
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:14 src/olympia/discovery/strings.jinja2:767
-#, fuzzy
 msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr "シンプルな設定で、表示される広告やインターネット上で追跡される方法をコントロール。"
+msgstr "広告ブロックとプライバシー保護。簡単な設定で、表示される広告やインターネット上での追跡方法をコントロールできます。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4369,22 +4375,20 @@ msgstr "開いているタブが多すぎて困っていませんか？サイド
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:20 src/olympia/discovery/strings.jinja2:755
-#, fuzzy
 msgid "Stop Facebook tracking. Isolate your Facebook identity into a separate “container” to prevent Facebook from tracking you around the web."
-msgstr "Facebook ID を別の「コンテナー」に隔離することで、Facebook にウェブ上の動きを追跡されにくくできます。"
+msgstr "Facebook の追跡を阻止。Facebook ID を別の「コンテナー」に隔離して Facebookがウェブ上であなたを追跡するのを防ぎましょう。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:23 src/olympia/discovery/strings.jinja2:809
-#, fuzzy
 msgid "Simplify search by highlighting text on any web page to search the phrase from an array of engines."
-msgstr "ウェブページのテキストを強調表示するだけで、検索エンジンでフレーズ検索。"
+msgstr "ウェブページ上の文字を強調表示することで、その語句をさまざまな検索エンジンから検索できます。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:26 src/olympia/discovery/strings.jinja2:746
 msgid "Instant weather updates from around the world."
-msgstr ""
+msgstr "世界中の天気予報を即時にお届け。"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:29
@@ -4405,15 +4409,13 @@ msgstr "YouTube、Facebook、Vimeo、Twitch、Dailymotion、Periscope など数�
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:38
-#, fuzzy
 msgid "Up your emoji game. Dozens of amazing emojis for every occasion—always just a click away."
-msgstr "あらゆるシーンにぴったりの豊富な絵文字が、いつでもワンクリックで。"
+msgstr "絵文字をもっと使いこなそう。あらゆる場面で使えるたくさんの絵文字が、いつでもワンクリックで。"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:41
-#, fuzzy
 msgid "Password management simplified. Sync all your logins across devices with one password to rule them all."
-msgstr "すべてのウェブサイトのログイン情報をすべてのデバイス上でたった 1 つのパスワードにまとめて同期させ、一括管理。"
+msgstr "パスワードの管理を簡単に。デバイス間ですべてのログインを同期し、1つのパスワードですべてを管理できます。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4434,9 +4436,8 @@ msgstr "テキストを強調表示して右クリックすれば、あっとい
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:53
-#, fuzzy
 msgid "Enjoy visual bookmarks. Access your favorite sites from a tile layout."
-msgstr "タイルレイアウトからお気に入りのサイトにアクセス。"
+msgstr "ビジュアルブックマークを楽しもう。タイルレイアウトからお気に入りのサイトにアクセス。"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:56
@@ -4477,21 +4478,18 @@ msgstr "世界の現地時間を Firefox のステータスバーに表示。"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:77
-#, fuzzy
 msgid "Easy translations. Highlight text on any webpage—or select the entire page— to translate instantly."
-msgstr "ウェブページ上でテキストを強調表示 (またはページ全体を選択) すれば、あっという間に翻訳できます。"
+msgstr "簡単に翻訳。ウェブページ上の文字を選択するか、ページ全体を選択すると、即座に翻訳できます。"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:80
-#, fuzzy
 msgid "Tap academic wisdom. Access 10+ million research papers for free."
-msgstr "1,000 万本以上の研究論文に無料でアクセス。"
+msgstr "学術の英知を活用しよう。1,000万件以上の研究論文に無料でアクセス。"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:83
-#, fuzzy
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ configurations."
-msgstr "50 種類以上の便利なマウスジェスチャーで操作する新しい方法を体験してください。"
+msgstr "マウスジェスチャーをカスタマイズ。50種類以上の設定で新しい操作方法を発見してください。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4536,15 +4534,14 @@ msgstr "追跡中のトラッカーを停止させ、その詳細を確認。"
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:110 src/olympia/discovery/strings.jinja2:824
-#, fuzzy
 msgid "Leave a clean digital trail. Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr "Firefox が Cookie やローカルストレージのようなウェブサイトデータを忘れて、選択したドメインのみを記憶するようにします。"
+msgstr "きれいにデジタル痕跡を消す。Firefox は、Cookie やローカルストレージにあるような Web サイトデータを消去します。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:113 src/olympia/discovery/strings.jinja2:794
 msgid "No need to write the same thing over and over. Save frequently-entered text to paste anytime."
-msgstr ""
+msgstr "同じことを何度も書く必要はありません。よく入力するテキストを保存しておけば、いつでも貼り付けられます。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4560,9 +4557,8 @@ msgstr "開いているタブをすっきりと整頓されたサイドバーで
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:122 src/olympia/discovery/strings.jinja2:866
-#, fuzzy
 msgid "Avoid sneaky trackers and restrictions. Disguise your navigation by cloaking the identity of your browser and operating system."
-msgstr "ブラウザーと OS の ID を隠すことで、あなたの行動を隠しましょう。"
+msgstr "ブラウザーと OS の ID を隠すことで、あなたの行動を隠し、トラッカーや制限を避ける。ブラウザとオペレーティングシステムを隠すことで、ナビゲーションを偽装します。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4574,7 +4570,7 @@ msgstr "設定した時間間隔で、タブを自動的に再読み込み。"
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:128 src/olympia/discovery/strings.jinja2:932
 msgid "Keep parts of your online life separated into color-coded and cookie separated tabs. Now integrated with Mozilla VPN for an extra layer of privacy."
-msgstr ""
+msgstr "あなたのオンラインライフの一部を色分けし、Cookie 分離されたタブに分けましょう。Mozilla VPN と統合され、プライバシーがさらに強化されました。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4584,28 +4580,24 @@ msgstr "ウェブを閲覧するときのトラッキング防止にさらなる
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:134
-#, fuzzy
 msgid "Read ePub files right in Firefox—increase font size, page dimensions, and more."
-msgstr "フォントサイズやページサイズなどを増やして、ePub ファイルを Firefox で楽しもう。"
+msgstr "Firefox で ePub ファイルを読みましょう。フォントサイズ、ページサイズなどを大きくできます。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:137 src/olympia/discovery/strings.jinja2:860
-#, fuzzy
 msgid "Play YouTube videos by default in the highest quality, turn off annotations, and more."
-msgstr "初期設定で最高品質の動画を再生、注釈を無効化など。"
+msgstr "YouTube 動画を既定の最高画質で再生したり、注釈をオフにしたり。"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:140
-#, fuzzy
 msgid "Track the trackers. Get a glimpse into who's tracking you with just a click."
-msgstr "あなたを追跡している人物をワンクリックで垣間見る。"
+msgstr "トラッカーを追跡。クリックするだけで、誰があなたを追跡しているか見ることができます。"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:143
-#, fuzzy
 msgid "Change your proxy server and surf the web through self-defined proxy settings."
-msgstr "自己定義したプロキシ設定でネットサーフィン。"
+msgstr "プロキシーサーバーを変更し、自分で決めたプロキシー設定でネットサーフィン。"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:146
@@ -4615,9 +4607,8 @@ msgstr "動画の速度などを調整して、より快適な視聴体験を。
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:149 src/olympia/discovery/strings.jinja2:749
-#, fuzzy
 msgid "Add encrypted security to any site that supports HTTPS. Browse securely."
-msgstr "どんなサイトにも HTTPS 対応の暗号化セキュリティを追加。"
+msgstr "HTTPS をサポートするすべてのサイトに暗号化されたセキュリティを追加します。安全に閲覧できます。"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:152
@@ -4998,7 +4989,7 @@ msgstr "入力したデータを一度保存すると、次回から自動入力
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:356
 msgid "Search privately with just a click."
-msgstr ""
+msgstr "ワンクリックでプライベートに検索。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5958,11 +5949,11 @@ msgstr ""
 msgid "See more Twitch extension staff picks"
 msgstr ""
 
-#: src/olympia/files/models.py:309
+#: src/olympia/files/models.py:319
 msgid "Unreviewed"
 msgstr ""
 
-#: src/olympia/files/models.py:312
+#: src/olympia/files/models.py:322
 #, python-format
 msgid "[status:%s]"
 msgstr "[状態:%s]"
@@ -6219,7 +6210,7 @@ msgstr ""
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">フラグを付けたユーザー: %(user)s、%(date)s</span>"
 
-#: src/olympia/reviewers/templates/reviewers/review.html:283
+#: src/olympia/reviewers/templates/reviewers/review.html:301
 msgid "<strong>Warning!</strong> Another user may be viewing this page before you."
 msgstr ""
 
@@ -6760,45 +6751,45 @@ msgstr "このメールアドレスを持つユーザーは存在しません。
 msgid "Firefox user {id}"
 msgstr "Firefox ユーザー {id}"
 
-#: src/olympia/users/models.py:827
+#: src/olympia/users/models.py:841
 #, fuzzy
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "有効な IPv6 または IPv6 CIDR ネットワーク範囲を入力してください (例: 127.0.0.1/28)。"
 
-#: src/olympia/users/models.py:831
+#: src/olympia/users/models.py:845
 msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
 msgstr ""
 
-#: src/olympia/users/models.py:943
+#: src/olympia/users/models.py:957
 msgid "Email Pattern"
 msgstr ""
 
-#: src/olympia/users/models.py:946
+#: src/olympia/users/models.py:960
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr ""
 
-#: src/olympia/users/models.py:953
+#: src/olympia/users/models.py:967
 msgid "The email address used for your account is not allowed for submissions."
 msgstr ""
 
-#: src/olympia/users/models.py:1032
+#: src/olympia/users/models.py:1046
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
 "restrictions\" instead."
 msgstr ""
 
-#: src/olympia/users/models.py:1183
+#: src/olympia/users/models.py:1197
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
 " which explains how we handle your information."
 msgstr "始める前に、Firefox アドオン配布規約と審査ポリシー・ルールを読んでその内容に同意してください。個人情報の取り扱いについて説明したプライバシー通知も Firefox アドオン配布規約からリンクされています。"
 
-#: src/olympia/users/models.py:1197
+#: src/olympia/users/models.py:1211
 #, fuzzy, python-brace-format
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr "始める前に、Firefox アドオン配布規約と審査ポリシー・ルールを読んでその内容に同意してください。個人情報の取り扱いについて説明したプライバシー通知も Firefox アドオン配布規約からリンクされています。"
 
-#: src/olympia/users/models.py:1248
+#: src/olympia/users/models.py:1262
 msgid "User Restriction History"
 msgstr "ユーザー制限履歴"
 

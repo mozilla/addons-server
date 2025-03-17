@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-13 17:40+0000\n"
+"POT-Creation-Date: 2025-03-17 18:11+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1953,6 +1953,12 @@ msgstr "My add-on doesn't fit into any of the categories"
 
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Firefox Add-on Distribution Agreement"
+
+msgid "Help us make things better!"
+msgstr "Help us make things better!"
+
+msgid "Take our quick survey"
+msgstr "Take our quick survey"
 
 #. {0} is an application, like Firefox.
 #, python-brace-format

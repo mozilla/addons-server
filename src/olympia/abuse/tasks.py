@@ -14,6 +14,7 @@ from olympia.addons.models import Addon
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import to_language
+from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.reviewers.models import NeedsHumanReview, UsageTier
 from olympia.users.models import UserProfile
 
@@ -171,6 +172,11 @@ def sync_cinder_policies():
                 # If the policy is labelled, but not for AMO, skip it
                 continue
             policies_in_cinder.add(policy['uuid'])
+            actions = [
+                action['slug']
+                for action in policy.get('enforcement_actions', [])
+                if DECISION_ACTIONS.has_api_value(action['slug'])
+            ]
             cinder_policy, _ = CinderPolicy.objects.update_or_create(
                 uuid=policy['uuid'],
                 defaults={
@@ -179,6 +185,7 @@ def sync_cinder_policies():
                     'parent_id': parent_id,
                     'modified': datetime.now(),
                     'present_in_cinder': True,
+                    'enforcement_actions': actions,
                 },
             )
 

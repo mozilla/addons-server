@@ -1,4 +1,5 @@
 import random
+from collections import defaultdict
 from datetime import datetime
 
 from django.conf import settings
@@ -18,6 +19,7 @@ from olympia.addons.models import Addon, AddonReviewerFlags
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import send_mail
 from olympia.bandwagon.models import Collection
+from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.files.models import File
 from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
@@ -626,3 +628,27 @@ class ContentActionAlreadyRemoved(AnyTargetMixin, NoActionMixin, ContentAction):
 
 class ContentActionNotImplemented(NoActionMixin, ContentAction):
     pass
+
+
+CONTENT_ACTION_FROM_DECISION_ACTION = defaultdict(
+    lambda: ContentActionNotImplemented,
+    {
+        DECISION_ACTIONS.AMO_BAN_USER: ContentActionBanUser,
+        DECISION_ACTIONS.AMO_DISABLE_ADDON: ContentActionDisableAddon,
+        DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON: ContentActionRejectVersion,
+        DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON: (
+            ContentActionRejectVersionDelayed
+        ),
+        DECISION_ACTIONS.AMO_ESCALATE_ADDON: ContentActionForwardToReviewers,
+        DECISION_ACTIONS.AMO_DELETE_COLLECTION: ContentActionDeleteCollection,
+        DECISION_ACTIONS.AMO_DELETE_RATING: ContentActionDeleteRating,
+        DECISION_ACTIONS.AMO_APPROVE: ContentActionApproveNoAction,
+        DECISION_ACTIONS.AMO_APPROVE_VERSION: ContentActionApproveInitialDecision,
+        DECISION_ACTIONS.AMO_IGNORE: ContentActionIgnore,
+        DECISION_ACTIONS.AMO_CLOSED_NO_ACTION: ContentActionAlreadyRemoved,
+        DECISION_ACTIONS.AMO_LEGAL_FORWARD: ContentActionForwardToLegal,
+        DECISION_ACTIONS.AMO_CHANGE_PENDING_REJECTION_DATE: (
+            ContentActionChangePendingRejectionDate
+        ),
+    },
+)

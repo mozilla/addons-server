@@ -83,7 +83,7 @@ msgstr "Penggaya anda melebihi ukuran maksimum {0}."
 #: static/js/common/upload-addon.js:358
 #, python-brace-format
 msgid "Received an empty response from the server; status: {0}"
-msgstr "Menerima balasan kosong dari server; status: {0}"
+msgstr "Menerima respon kosong dari server; status: {0}"
 
 #: static/js/common/upload-addon.js:403
 msgid "Your extension has to be compatible with at least one application."
@@ -124,7 +124,7 @@ msgstr "Pengaya Anda divalidasi tanpa kesalahan atau peringatan."
 
 #: static/js/common/upload-addon.js:650
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr "Masukkan catatan versi yang rinci (dapat dilakukan di step berikutnya)."
+msgstr "Sertakan catatan versi yang mendetail (ini dapat dilakukan di langkah berikutnya)."
 
 #: static/js/common/upload-addon.js:653
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
@@ -834,25 +834,25 @@ msgstr "Tanggal"
 msgid "Other"
 msgstr "Lainnya"
 
-#: static/js/zamboni/devhub.js:287
+#: static/js/zamboni/devhub.js:292
 msgid "Changes Saved"
 msgstr "Perubahan Disimpan"
 
-#: static/js/zamboni/devhub.js:304
+#: static/js/zamboni/devhub.js:309
 msgid "Enter a new author's email address"
 msgstr "Ketik alamat surel baru penyusun"
 
-#: static/js/zamboni/devhub.js:430
+#: static/js/zamboni/devhub.js:435
 msgid "There was an error uploading your file."
 msgstr "Ada kesalahan mengunggah berkas Anda."
 
-#: static/js/zamboni/devhub.js:586
+#: static/js/zamboni/devhub.js:591
 #, python-brace-format
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} berkas"
 
-#: static/js/zamboni/devhub.js:1118
+#: static/js/zamboni/devhub.js:1123
 msgid "Image changes being processed"
 msgstr "Perubahan gambar sedang diproses"
 

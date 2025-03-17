@@ -857,19 +857,19 @@ msgstr "Dată"
 msgid "Other"
 msgstr "Altele"
 
-#: static/js/zamboni/devhub.js:287
+#: static/js/zamboni/devhub.js:292
 msgid "Changes Saved"
 msgstr "Modificări salvate"
 
-#: static/js/zamboni/devhub.js:304
+#: static/js/zamboni/devhub.js:309
 msgid "Enter a new author's email address"
 msgstr "Introdu adresa de e-mail a unui nou autor"
 
-#: static/js/zamboni/devhub.js:430
+#: static/js/zamboni/devhub.js:435
 msgid "There was an error uploading your file."
 msgstr "A apărut o eroare la încărcarea fișierului tău."
 
-#: static/js/zamboni/devhub.js:586
+#: static/js/zamboni/devhub.js:591
 #, python-brace-format
 msgid "{files} file"
 msgid_plural "{files} files"
@@ -877,7 +877,7 @@ msgstr[0] "{files} fișier"
 msgstr[1] "{files} fișiere"
 msgstr[2] "{files} de fișiere"
 
-#: static/js/zamboni/devhub.js:1118
+#: static/js/zamboni/devhub.js:1123
 msgid "Image changes being processed"
 msgstr "Se procesează schimbările imaginii"
 

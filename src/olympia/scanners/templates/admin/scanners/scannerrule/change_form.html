@@ -1,8 +1,7 @@
 {% extends "admin/change_form.html" %}
-{% load static %}
+{% load admin_urls static django_vite %}
 
 {% block admin_change_form_document_ready %}
   {{ block.super }}
-
-  <script type="text/javascript" src="{% static 'js/scanners/scannerrule_change_form.js' %}"></script>
-{% endblock %}
+  {% vite_asset 'js/scannerrule_change_form.js' %}
+  {% endblock %}

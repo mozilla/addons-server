@@ -868,19 +868,19 @@ msgstr "Datum"
 msgid "Other"
 msgstr "Ostalo"
 
-#: static/js/zamboni/devhub.js:287
+#: static/js/zamboni/devhub.js:292
 msgid "Changes Saved"
 msgstr "Spremembe shranjene"
 
-#: static/js/zamboni/devhub.js:304
+#: static/js/zamboni/devhub.js:309
 msgid "Enter a new author's email address"
 msgstr "Vnesite elektronski naslov novega avtorja"
 
-#: static/js/zamboni/devhub.js:430
+#: static/js/zamboni/devhub.js:435
 msgid "There was an error uploading your file."
 msgstr "Pri nalaganju vaše datoteke je prišlo do napake."
 
-#: static/js/zamboni/devhub.js:586
+#: static/js/zamboni/devhub.js:591
 #, python-brace-format
 msgid "{files} file"
 msgid_plural "{files} files"
@@ -889,7 +889,7 @@ msgstr[1] "{files} datoteki"
 msgstr[2] "{files} datoteke"
 msgstr[3] "{files} datotek"
 
-#: static/js/zamboni/devhub.js:1118
+#: static/js/zamboni/devhub.js:1123
 msgid "Image changes being processed"
 msgstr "Obdelovanje sprememb slike"
 

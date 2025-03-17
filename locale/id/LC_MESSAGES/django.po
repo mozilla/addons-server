@@ -13,10 +13,10 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Pontoon\n"
 
-#: src/olympia/abuse/actions.py:187
+#: src/olympia/abuse/actions.py:189
 #, python-brace-format
 msgid "Mozilla Add-ons: {} [{}]"
-msgstr ""
+msgstr "Pengaya Mozilla: {} [{}]"
 
 #: src/olympia/abuse/forms.py:30
 msgid "Email address"
@@ -34,11 +34,11 @@ msgstr "Alasan banding"
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr "Silakan jelaskan mengapa Anda meyakini keputusan ini salah, dan/atau tidak sejalan dengan kebijakan atau hukum yang berlaku."
 
-#: src/olympia/abuse/models.py:1065
+#: src/olympia/abuse/models.py:1067
 msgid "User profile"
 msgstr "Profil pengguna"
 
-#: src/olympia/abuse/models.py:1394
+#: src/olympia/abuse/models.py:1374
 #, python-brace-format
 msgid "\"{}\" for {}"
 msgstr "\"{}\" untuk {}"
@@ -77,18 +77,20 @@ msgstr "Terima kasih atas laporan Anda."
 msgid ""
 "We have already reviewed a similar appeal from another reporter, and have reversed our prior decision. We have taken action against the content and/or account holder in accordance with our policies."
 msgstr ""
+"Kami telah meninjau pengajuan banding serupa dari pelapor lain dan membatalkan keputusan sebelumnya. Sesuai dengan kebijakan kami, kami telah mengambil tindakan terhadap konten dan/atau pemilik "
+"akun."
 
 #: src/olympia/abuse/templates/abuse/appeal.html:38
 msgid "Because the decision you are appealing has already been overturned, your appeal will not be processed."
-msgstr ""
+msgstr "Karena putusan banding telah dibatalkan, pengajuan banding Anda tidak akan diproses lebih lanjut."
 
 #: src/olympia/abuse/templates/abuse/appeal.html:42
 msgid "The decision you are appealing has already been overridden by a new decision, so this decision can't be appealed."
-msgstr ""
+msgstr "Keputusan yang Anda ajukan banding telah ditimpa oleh keputusan baru, sehingga keputusan ini tidak dapat diajukan banding."
 
 #: src/olympia/abuse/templates/abuse/appeal.html:44
 msgid "This decision can't be appealed."
-msgstr ""
+msgstr "Putusan ini tidak dapat diajukan banding."
 
 #: src/olympia/abuse/templates/abuse/emails/base_reporter.txt:1
 msgid "Hello,"
@@ -96,7 +98,7 @@ msgstr "Halo,"
 
 #: src/olympia/abuse/templates/abuse/emails/base_reporter.txt:7
 msgid "Mozilla Add-ons Team"
-msgstr ""
+msgstr "Tim Pengaya Mozilla"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_approve.txt:8
 #, python-format
@@ -118,6 +120,10 @@ msgid ""
 "\n"
 "After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, we have removed the content, and notified the user of our action.\n"
 msgstr ""
+"\n"
+"Terima kasih atas laporan Anda tentang %(name)s pada Pengaya Mozilla, dan telah memberikan informasi lebih lanjut mengenai kekhawatiran Anda.\n"
+"\n"
+"Setelah meninjau banding Anda, kami telah menentukan bahwa keputusan sebelumnya, bahwa konten ini tidak melanggar kebijakan Mozilla (%(policy_document_url)s), adalah tidak benar. Berdasarkan penentuan itu, kami telah menghapus konten tersebut, dan memberi tahu pengguna tentang tindakan kami.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown_delayed.txt:5
 #, python-format
@@ -136,6 +142,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it does not violate Mozilla's policies (%(policy_document_url)s).  It will therefore not be subject to any moderation action.\n"
 msgstr ""
+"\n"
+"Terima kasih atas laporan Anda tentang %(name)s, di %(target_url)s.\n"
+"\n"
+"Kami telah meninjau laporan Anda dan konten yang dipermasalahkan, dan menemukan bahwa itu tersebut tidak melanggar kebijakan Mozilla (%(policy_document_url)s).  Oleh karena itu tidak akan dikenakan tindakan moderasi.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:7
 #, python-format
@@ -143,6 +153,8 @@ msgid ""
 "You have the right to appeal this decision within 6 months from the date of this email. See %(appeal_url)s for details on the appeal process, including how to file an appeal for this specific "
 "decision."
 msgstr ""
+"Anda berhak untuk mengajukan banding atas keputusan ini dalam waktu 6 bulan sejak tanggal surel ini. Lihat %(appeal_url)s untuk detail tentang proses banding, termasuk cara mengajukan banding "
+"spesifik untuk keputusan ini."
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_addon.txt:5
 #, python-format
@@ -197,15 +209,15 @@ msgstr "Tautan tidak diperbolehkan."
 msgid "This display name cannot be used."
 msgstr "Nama tampilan ini tidak dapat digunakan."
 
-#: src/olympia/accounts/serializers.py:167 src/olympia/addons/fields.py:366 src/olympia/devhub/views.py:1015
+#: src/olympia/accounts/serializers.py:167 src/olympia/addons/fields.py:366 src/olympia/devhub/views.py:1016
 msgid "Images must be either PNG or JPG."
 msgstr "Gambar harus dalam bentuk PNG atau JPG."
 
-#: src/olympia/accounts/serializers.py:171 src/olympia/addons/fields.py:371 src/olympia/devhub/views.py:1021
+#: src/olympia/accounts/serializers.py:171 src/olympia/addons/fields.py:371 src/olympia/devhub/views.py:1022
 msgid "Images cannot be animated."
 msgstr "Gambar tidak dapat dijadikan animasi."
 
-#: src/olympia/accounts/serializers.py:176 src/olympia/devhub/views.py:1030
+#: src/olympia/accounts/serializers.py:176 src/olympia/devhub/views.py:1031
 #, python-format
 msgid "Please use images smaller than %dMB."
 msgstr "Gunakan gambar lebih kecil dari %d MB."
@@ -228,7 +240,7 @@ msgid "Review"
 msgstr "Ulasan"
 
 #: src/olympia/activity/models.py:816 src/olympia/devhub/templates/devhub/versions/list.html:41
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Version {0}"
 msgid_plural "Versions {0}"
 msgstr[0] "Versi {0}"
@@ -243,7 +255,7 @@ msgstr "Konten yang diminta terlalu besar."
 
 #: src/olympia/addons/decorators.py:78 src/olympia/amo/templates/amo/submissions_disabled.html:8
 msgid "Add-on uploads are temporarily unavailable."
-msgstr ""
+msgstr "Unggahan pengaya untuk sementara tidak tersedia."
 
 #: src/olympia/addons/fields.py:56
 #, python-brace-format
@@ -287,31 +299,31 @@ msgstr "Arsip rusak atau tidak valid."
 
 #: src/olympia/addons/fields.py:267
 msgid "Invalid app specified"
-msgstr ""
+msgstr "Aplikasi yang ditentukan tidak valid"
 
 #: src/olympia/addons/fields.py:285
 msgid "Unknown max app version specified"
-msgstr ""
+msgstr "Versi aplikasi maksimum yang tidak diketahui telah ditentukan"
 
 #: src/olympia/addons/fields.py:297
 msgid "Unknown min app version specified"
-msgstr ""
+msgstr "Versi aplikasi minimum yang tidak diketahui telah ditentukan"
 
 #: src/olympia/addons/fields.py:307 src/olympia/addons/fields.py:325 src/olympia/addons/serializers.py:622
 #, python-format
 msgid "Can not override compatibility information set in the manifest for this application (%s)"
-msgstr ""
+msgstr "Tidak bisa menimpa informasi kompatibilitas yang diatur dalam manifes untuk aplikasi ini (%s)"
 
 #: src/olympia/addons/fields.py:375
 #, python-format
 msgid "Images must be smaller than %dMB"
 msgstr "Gambar harus lebih kecil dari %dMB"
 
-#: src/olympia/addons/models.py:2144 src/olympia/addons/models.py:2201 src/olympia/constants/base.py:66
+#: src/olympia/addons/models.py:2142 src/olympia/addons/models.py:2199 src/olympia/constants/base.py:66
 msgid "Listed"
 msgstr "Terdaftar"
 
-#: src/olympia/addons/models.py:2379
+#: src/olympia/addons/models.py:2377
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr "Path koleksi dan pengaya harus diakhiri dengan \"/\""
 
@@ -330,7 +342,7 @@ msgstr "Berkas telah dinonaktifkan."
 #: src/olympia/addons/serializers.py:518 src/olympia/addons/views.py:736
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
-msgstr ""
+msgstr "Versi terbaru dari pengaya %s ini tidak dapat dihapus karena versi sebelumnya tidak disetujui untuk promosi %s. Silakan hubungi Admin AMO jika Anda memerlukan bantuan terkait hal ini."
 
 #: src/olympia/addons/serializers.py:533
 #, python-brace-format
@@ -349,12 +361,13 @@ msgstr "Versi yang terdaftar tidak dapat dikirim saat pengaya dinonaktifkan."
 #: src/olympia/addons/serializers.py:597
 #, python-format
 msgid "%(addon_type_plural)s are not supported by %(app_name)s"
-msgstr ""
+msgstr "%(addon_type_plural)s tidak didukung oleh %(app_name)s"
 
 #: src/olympia/addons/serializers.py:636 src/olympia/devhub/forms.py:910
 #, python-format
 msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
 msgstr ""
+"Rentang versi tidak valid. Untuk Firefox untuk Android, Anda hanya dapat memilih rentang yang dimulai dengan versi %(max)s atau lebih tinggi, atau diakhiri dengan lebih rendah dari versi %(min)s."
 
 #: src/olympia/addons/serializers.py:885
 msgid "Add-ons need at least one owner."
@@ -362,7 +375,7 @@ msgstr "Pengaya membutuhkan sekurangnya satu pemilik."
 
 #: src/olympia/addons/serializers.py:900
 msgid "Add-ons need at least one listed author."
-msgstr ""
+msgstr "Pengaya membutuhkan setidaknya satu kreator terdaftar."
 
 #: src/olympia/addons/serializers.py:932
 msgid "Account not found."
@@ -395,7 +408,7 @@ msgstr "Baik `license` dan `custom_license` tidak dapat disediakan bersamaan."
 
 #: src/olympia/addons/validators.py:64
 msgid "This field, or custom_license, is required for listed versions."
-msgstr ""
+msgstr "Bagian ini, atau custom_license, diperlukan untuk versi yang terdaftar."
 
 #: src/olympia/addons/validators.py:91
 msgid "Wrong add-on type for this license."
@@ -407,12 +420,12 @@ msgstr "Lisensi kustom tidak didukung untuk tema."
 
 #: src/olympia/addons/validators.py:132
 msgid "This field is required for add-ons with listed versions."
-msgstr ""
+msgstr "Bidang ini diperlukan untuk pengaya dengan versi terdaftar."
 
 #: src/olympia/addons/validators.py:158
 #, python-brace-format
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
-msgstr ""
+msgstr "Metadata pengaya diperlukan untuk membuat versi terdaftar: {missing_addon_metadata}."
 
 #: src/olympia/addons/validators.py:272
 msgid "A GUID must be specified in the manifest."
@@ -428,11 +441,11 @@ msgstr "Sumber tidak dapat diubah karena versi ini telah ditinjau oleh Mozilla."
 
 #: src/olympia/addons/validators.py:315
 msgid "This type of add-on does not allow custom compatibility."
-msgstr ""
+msgstr "Jenis pengaya ini tidak mengizinkan kompatibilitas khusus."
 
 #: src/olympia/addons/validators.py:332
 msgid "This endpoint is not valid for Themes."
-msgstr ""
+msgstr "Titik akhir ini tidak valid untuk Tema."
 
 #: src/olympia/addons/templates/addons/includes/dashboard_tabs.html:4 src/olympia/devhub/templates/devhub/nav.html:15 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:19
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html:16
@@ -481,7 +494,7 @@ msgstr "Mengajukan Tema Baru"
 msgid "Developer Hub"
 msgstr "Pusat Pengembang"
 
-#: src/olympia/amo/context_processors.py:79 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:20 src/olympia/devhub/views.py:2076
+#: src/olympia/amo/context_processors.py:79 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:20 src/olympia/devhub/views.py:2077
 msgid "Manage API Keys"
 msgstr "Mengelola Kunci API"
 
@@ -519,7 +532,7 @@ msgstr "Beberapa fitur sedang dimatikan sementara karena kami sedang melakukan p
 
 #: src/olympia/amo/utils.py:1112
 msgid "URLs are not allowed."
-msgstr ""
+msgstr "URL tidak diizinkan."
 
 #: src/olympia/amo/validators.py:17
 msgid "Must contain at least one printable character."
@@ -646,11 +659,11 @@ msgstr "Sejumlah fitur pada laman ini dimatikan sementara saat kami melakukan pe
 
 #: src/olympia/amo/templates/amo/submissions_disabled.html:3
 msgid "Add-on uploads temporarily disabled"
-msgstr ""
+msgstr "Unggahan pengaya untuk sementara dinonaktifkan"
 
 #: src/olympia/amo/templates/amo/submissions_disabled.html:13
 msgid "Add-on uploads have been temporarily disabled. Please check back later."
-msgstr ""
+msgstr "Unggahan pengaya telah dinonaktifkan untuk sementara. Silakan periksa kembali nanti."
 
 #: src/olympia/amo/templatetags/jinja_helpers.py:148
 #, python-brace-format
@@ -689,11 +702,11 @@ msgstr "Otorisasi header tidak valid. Rangkaian pengenal seharusnya tidak mengan
 
 #: src/olympia/api/authentication.py:108
 msgid "Valid user session not found matching the provided session key."
-msgstr ""
+msgstr "Sesi pengguna yang sah tidak sesuai dengan kunci sesi yang diberikan."
 
 #: src/olympia/api/authentication.py:122
 msgid "Access token refresh failed; user needs to login to FxA again."
-msgstr ""
+msgstr "Pembaruan token akses gagal; pengguna harus log masuk ke FxA kembali."
 
 #: src/olympia/api/authentication.py:187
 msgid "Wrong type for one or more keys in payload"
@@ -726,21 +739,21 @@ msgstr "Tidak tersedia karena alasan hukum."
 #: src/olympia/api/fields.py:91
 #, python-brace-format
 msgid "The language code \"{lang_code}\" is invalid."
-msgstr ""
+msgstr "Kode bahasa \"{lang_code}\" tidak sah."
 
 #: src/olympia/api/fields.py:92
 msgid "You must provide an object of {{lang-code:value}}."
-msgstr ""
+msgstr "Anda harus menyediakan objek {{lang-code:value}}."
 
 #: src/olympia/api/fields.py:94
 #, python-brace-format
 msgid "A value in the default locale of \"{lang_code}\" is required."
-msgstr ""
+msgstr "Nilai dalam pelokalan baku \"{lang_code}\" diperlukan."
 
 #: src/olympia/api/fields.py:97
 #, python-brace-format
 msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
-msgstr ""
+msgstr "Nilai dalam pelokalan baku \"{lang_code}\" diperlukan jika terjemahan lain telah ditetapkan."
 
 #: src/olympia/api/fields.py:386
 #, python-format
@@ -753,7 +766,7 @@ msgstr "Konfirmasi untuk pengembang kunci API"
 
 #: src/olympia/api/throttling.py:113
 msgid "You have submitted this form too many times recently. Please try again after some time."
-msgstr ""
+msgstr "Anda telah mengirimkan formulir ini terlalu sering baru-baru ini. Silakan coba lagi setelah beberapa saat."
 
 #: src/olympia/bandwagon/serializers.py:72
 msgid "This custom URL is already in use by another one of your collections."
@@ -777,11 +790,11 @@ msgstr "Pengaya ini sudah termasuk dalam koleksi ini"
 
 #: src/olympia/blocklist/models.py:188
 msgid "Blocked"
-msgstr ""
+msgstr "Diblokir"
 
 #: src/olympia/blocklist/models.py:188
 msgid "Restricted"
-msgstr ""
+msgstr "Terbatas"
 
 #: src/olympia/constants/activity.py:25
 #, python-brace-format
@@ -807,13 +820,13 @@ msgstr "Kategori diedit untuk {addon}."
 #: src/olympia/constants/activity.py:57
 #, python-brace-format
 msgid "{user} ({0}) added to {addon}."
-msgstr ""
+msgstr "{user} ({0}) ditambahkan ke {addon}."
 
 #. L10n: {0} is the user role.
 #: src/olympia/constants/activity.py:67
 #, python-brace-format
 msgid "{user} ({0}) removed from {addon}."
-msgstr ""
+msgstr "{user} ({0}) dihapus dari {addon}."
 
 #: src/olympia/constants/activity.py:76
 #, python-brace-format
@@ -855,7 +868,7 @@ msgstr "Versi {0} dihapus dari {addon}."
 #: src/olympia/constants/activity.py:129
 #, python-brace-format
 msgid "File {file} added to {version} of {addon}."
-msgstr ""
+msgstr "Berkas {file} ditambahkan ke {version} dari {addon}."
 
 #: src/olympia/constants/activity.py:141
 #, python-brace-format
@@ -885,7 +898,7 @@ msgstr "Disetujui sebelumnya"
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version} ditolak."
 
-#: src/olympia/constants/activity.py:172 src/olympia/files/models.py:307
+#: src/olympia/constants/activity.py:172 src/olympia/files/models.py:317
 msgid "Rejected"
 msgstr "Ditolak"
 
@@ -919,6 +932,8 @@ msgstr "Diperlukan lebih banyak informasi"
 #: src/olympia/constants/activity.py:234
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
+"Pengaya telah ditandai untuk Tinjauan Admin. Pengaya ini masih dalam antrean, tetapi akan perlu diperiksa oleh salah satu admin pengulas kami. Tinjauan mungkin memakan waktu lebih lama dari "
+"biasanya."
 
 #: src/olympia/constants/activity.py:255
 #, python-brace-format
@@ -955,7 +970,7 @@ msgstr "{0} {1} ditambahkan."
 #: src/olympia/constants/activity.py:328
 #, python-brace-format
 msgid "{user} role changed to {0} for {addon}."
-msgstr ""
+msgstr "{user} perannya telah diubah menjadi {0} untuk {addon}."
 
 #: src/olympia/constants/activity.py:339
 #, python-brace-format
@@ -968,9 +983,9 @@ msgid "{addon} policy changed."
 msgstr "{addon} kebijakan diubah."
 
 #: src/olympia/constants/activity.py:353
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{addon} icon or previews changed."
-msgstr "Ikon {addon} diganti."
+msgstr "Pratinjau atau ikon {addon} berubah."
 
 #: src/olympia/constants/activity.py:360
 #, python-brace-format
@@ -1065,11 +1080,11 @@ msgstr "Balasan Pengulas"
 #: src/olympia/constants/activity.py:613
 #, python-brace-format
 msgid "Notes for reviewers changed for {addon} {version}."
-msgstr ""
+msgstr "Catatan untuk pengulas diubah untuk {addon} {version}."
 
 #: src/olympia/constants/activity.py:614
 msgid "Notes for reviewers changed"
-msgstr ""
+msgstr "Catatan untuk pengulas diubah"
 
 #: src/olympia/constants/activity.py:622
 #, python-brace-format
@@ -1123,9 +1138,9 @@ msgid "Content reject scheduled"
 msgstr "Penolakan konten dijadwalkan"
 
 #: src/olympia/constants/activity.py:817
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{addon} {version} reject scheduled."
-msgstr "{addon} {version} ditolak."
+msgstr "Penolakan {addon}{version}dijadwalkan."
 
 #: src/olympia/constants/activity.py:818
 msgid "Rejection scheduled"
@@ -1134,96 +1149,95 @@ msgstr "Penolakan dijadwalkan"
 #: src/olympia/constants/activity.py:829
 #, python-brace-format
 msgid "{addon} {version} automatically created and signed from {0}."
-msgstr ""
+msgstr "{addon} {version} dibuat dan ditandatangani secara otomatis dari {0}."
 
 #: src/olympia/constants/activity.py:830
-#, fuzzy
 msgid "Version re-signed"
-msgstr "Versi %s dihidupkan lagi."
+msgstr "Versi ditandatangani ulang"
 
 #: src/olympia/constants/activity.py:838
 #, python-brace-format
 msgid "{addon} force-disabled"
-msgstr ""
+msgstr "{addon} dinonaktifkan paksa"
 
 #: src/olympia/constants/activity.py:849
 #, python-brace-format
 msgid "{addon} force-enabled"
-msgstr ""
+msgstr "{addon} diaktifkan paksa"
 
 #: src/olympia/constants/activity.py:878
 #, python-brace-format
 msgid "{addon} {version} un-rejected."
-msgstr ""
+msgstr "{addon} {version} batal ditolak."
 
 #: src/olympia/constants/activity.py:879
 msgid "Un-rejected"
-msgstr ""
+msgstr "Batal ditolak"
 
 #: src/olympia/constants/activity.py:916
 #, python-brace-format
 msgid "Reply to {rating} for {addon} written."
-msgstr ""
+msgstr "Balasan ke {rating} untuk {addon} ditulis."
 
 #: src/olympia/constants/activity.py:933
 #, python-brace-format
 msgid "{addon} {version} pending rejection cleared."
-msgstr ""
+msgstr "Penolakan tertunda {addon} {version} dibersihkan."
 
 #: src/olympia/constants/activity.py:934
 msgid "Pending rejection cleared"
-msgstr ""
+msgstr "Penolakan yang tertunda dibersihkan"
 
 #: src/olympia/constants/activity.py:981
 #, python-brace-format
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
-msgstr ""
+msgstr "{user_responsible} mengubah slug {addon} dari {0} menjadi {1}."
 
 #: src/olympia/constants/activity.py:982
 msgid "Add-on slug changed"
-msgstr ""
+msgstr "Slug pengaya diubah"
 
 #: src/olympia/constants/activity.py:989
 #, python-brace-format
 msgid "Collection {collection} deleted by moderator"
-msgstr ""
+msgstr "Koleksi {collection} dihapus oleh moderator"
 
 #: src/olympia/constants/activity.py:995
 #, python-brace-format
 msgid "Collection {collection} un-deleted by moderator"
-msgstr ""
+msgstr "Koleksi {collection} batal dihapus oleh moderator"
 
 #: src/olympia/constants/activity.py:1004
 #, python-brace-format
 msgid "Review {rating} for {addon} un-deleted."
-msgstr ""
+msgstr "Ulasan {rating} untuk {addon} batal dihapus."
 
 #: src/olympia/constants/activity.py:1033
 #, python-brace-format
 msgid "{addon} {version} rejected automatically after delay expired."
-msgstr ""
+msgstr "{addon} {version} ditolak secara otomatis setelah penundaan berakhir."
 
 #: src/olympia/constants/activity.py:1034
 msgid "Rejected automatically after delay expired"
-msgstr ""
+msgstr "Ditolak secara otomatis setelah penundaan berakhir"
 
 #: src/olympia/constants/activity.py:1045
 #, python-brace-format
 msgid "{addon} {version} content rejected automatically after delay expired."
-msgstr ""
+msgstr "Konten {addon} {version} ditolak secara otomatis setelah penundaan berakhir."
 
 #: src/olympia/constants/activity.py:1046
 msgid "Content rejected automatically after delay expired"
-msgstr ""
+msgstr "Konten ditolak secara otomatis setelah penundaan berakhir"
 
 #: src/olympia/constants/activity.py:1171
 #, python-brace-format
 msgid "{addon} {version} pending rejection changed."
-msgstr ""
+msgstr "Penolakan tertunda {addon} {version} diubah."
 
 #: src/olympia/constants/activity.py:1172
 msgid "Pending rejection changed"
-msgstr ""
+msgstr "Penolakan yang tertunda berubah"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -1275,15 +1289,15 @@ msgstr "Tidak terdaftar"
 
 #: src/olympia/constants/base.py:85
 msgid "Signing API"
-msgstr ""
+msgstr "API Penandatanganan"
 
 #: src/olympia/constants/base.py:86
 msgid "Add-on API"
-msgstr ""
+msgstr "API Pengaya"
 
 #: src/olympia/constants/base.py:87
 msgid "Automatically generated by AMO"
-msgstr ""
+msgstr "Dibuat secara otomatis oleh AMO"
 
 #: src/olympia/constants/base.py:96
 msgid "Owner"
@@ -1297,7 +1311,7 @@ msgstr "Pengembang"
 msgid "(Deleted)"
 msgstr "(Dihapus)"
 
-#: src/olympia/constants/base.py:129 src/olympia/constants/reviewers.py:66
+#: src/olympia/constants/base.py:129 src/olympia/constants/reviewers.py:67
 msgid "Extension"
 msgstr "Ekstensi"
 
@@ -1311,31 +1325,31 @@ msgstr "Словник"
 
 #: src/olympia/constants/base.py:132
 msgid "Deprecated Search Engine"
-msgstr ""
+msgstr "Mesin Pencari Yang Telah Usang"
 
 #: src/olympia/constants/base.py:133
 msgid "Language Pack"
-msgstr ""
+msgstr "Paket Bahasa"
 
 #: src/olympia/constants/base.py:134
 msgid "Deprecated Language Pack (Add-on)"
-msgstr ""
+msgstr "Paket Bahasa yang Sudah Usang (Pengaya)"
 
 #: src/olympia/constants/base.py:135
 msgid "Deprecated Plugin"
-msgstr ""
+msgstr "Plugin yang telah usang"
 
 #: src/olympia/constants/base.py:136
 msgid "Deprecated LWT"
 msgstr "LWT Usang"
 
-#: src/olympia/constants/base.py:137 src/olympia/constants/reviewers.py:67
+#: src/olympia/constants/base.py:137 src/olympia/constants/reviewers.py:68
 msgid "Theme"
 msgstr "Tema"
 
 #: src/olympia/constants/base.py:138
 msgid "Deprecated Site Permission"
-msgstr ""
+msgstr "Izin Situs Usang"
 
 #: src/olympia/constants/base.py:143 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:10
 msgid "Extensions"
@@ -1351,19 +1365,19 @@ msgstr "Kamus"
 
 #: src/olympia/constants/base.py:146
 msgid "Deprecated Search Tools"
-msgstr ""
+msgstr "Alat Pencarian Usang"
 
 #: src/olympia/constants/base.py:147
 msgid "Language Packs"
-msgstr ""
+msgstr "Paket Bahasa"
 
 #: src/olympia/constants/base.py:148
 msgid "Deprecated Language Packs (Add-on)"
-msgstr ""
+msgstr "Paket Bahasa yang Sudah Usang (Pengaya)"
 
 #: src/olympia/constants/base.py:149
 msgid "Deprecated Plugins"
-msgstr ""
+msgstr "Plugin Usang"
 
 #: src/olympia/constants/base.py:150
 msgid "Deprecated LWTs"
@@ -1375,7 +1389,7 @@ msgstr "Tema"
 
 #: src/olympia/constants/base.py:152
 msgid "Deprecated Site Permissions"
-msgstr ""
+msgstr "Izin Situs Usang"
 
 #: src/olympia/constants/categories.py:68
 msgid "Alerts & Updates"
@@ -1619,11 +1633,11 @@ msgstr "Umum"
 
 #: src/olympia/constants/licenses.py:15
 msgid "Mozilla Public License 2.0"
-msgstr ""
+msgstr "Lisensi Publik Mozilla 2.0"
 
 #: src/olympia/constants/licenses.py:22
 msgid "Apache License 2.0"
-msgstr ""
+msgstr "Lisensi Apache 2.0"
 
 #: src/olympia/constants/licenses.py:29
 msgid "GNU General Public License v2.0 only"
@@ -1647,11 +1661,11 @@ msgstr ""
 
 #: src/olympia/constants/licenses.py:64
 msgid "MIT License"
-msgstr ""
+msgstr "Lisensi MIT"
 
 #: src/olympia/constants/licenses.py:71
 msgid "ISC License"
-msgstr ""
+msgstr "Lisensi ISC"
 
 #: src/olympia/constants/licenses.py:78
 msgid "BSD 2-Clause \"Simplified\" License"
@@ -1659,7 +1673,7 @@ msgstr ""
 
 #: src/olympia/constants/licenses.py:85
 msgid "Mozilla Public License 1.1"
-msgstr ""
+msgstr "Lisensi Publik Mozilla 1.1"
 
 #: src/olympia/constants/licenses.py:93 src/olympia/constants/licenses.py:229
 msgid "All Rights Reserved"
@@ -1691,27 +1705,27 @@ msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 #: src/olympia/constants/licenses.py:162
 msgid "Creative Commons Attribution 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution 4.0"
 
 #: src/olympia/constants/licenses.py:172
 msgid "Creative Commons Attribution-NonCommercial 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial 4.0"
 
 #: src/olympia/constants/licenses.py:182
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
 
 #: src/olympia/constants/licenses.py:192
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
 
 #: src/olympia/constants/licenses.py:202
 msgid "Creative Commons Attribution-NoDerivs 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NoDerivs 4.0"
 
 #: src/olympia/constants/licenses.py:212
 msgid "Creative Commons Attribution-ShareAlike 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-ShareAlike 4.0"
 
 #: src/olympia/constants/licenses.py:222
 msgid "The Unlicense"
@@ -1726,9 +1740,8 @@ msgid "Recommended"
 msgstr "Disarankan"
 
 #: src/olympia/constants/promoted.py:111
-#, fuzzy
 msgid "By Firefox"
-msgstr "Firefox"
+msgstr "Oleh Firefox"
 
 #: src/olympia/constants/promoted.py:129
 msgid "Spotlight"
@@ -1758,27 +1771,27 @@ msgstr "Sangat Baik (2)"
 msgid "Excellent (3)"
 msgstr "Istimewa (3)"
 
-#: src/olympia/constants/reviewers.py:38
+#: src/olympia/constants/reviewers.py:39
 msgid "Request More Info"
 msgstr "Meminta Info Tambahan"
 
-#: src/olympia/constants/reviewers.py:39
+#: src/olympia/constants/reviewers.py:40
 msgid "Flag"
 msgstr "Tandai"
 
-#: src/olympia/constants/reviewers.py:40
+#: src/olympia/constants/reviewers.py:41
 msgid "Duplicate"
 msgstr "Duplikat"
 
-#: src/olympia/constants/reviewers.py:41
+#: src/olympia/constants/reviewers.py:42
 msgid "Reject"
 msgstr "Tolak"
 
-#: src/olympia/constants/reviewers.py:42
+#: src/olympia/constants/reviewers.py:43
 msgid "Approve"
 msgstr "Setujui"
 
-#: src/olympia/constants/reviewers.py:65
+#: src/olympia/constants/reviewers.py:66
 msgid "All"
 msgstr "Semua"
 
@@ -1803,9 +1816,8 @@ msgid "Delay auto-approval indefinitely and add restrictions"
 msgstr "Tunda persetujuan otomatis tanpa batas waktu dan tambahkan batasan"
 
 #: src/olympia/constants/scanners.py:32
-#, fuzzy
 msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
-msgstr "Tunda persetujuan otomatis tanpa batas waktu dan tambahkan batasan"
+msgstr "Tunda persetujuan otomatis selamanya dan tambahkan batasan pada persetujuan mendatang"
 
 #: src/olympia/constants/scanners.py:42 src/olympia/files/utils.py:1025
 msgid "Unknown"
@@ -1863,12 +1875,12 @@ msgstr "Perubahan Terbaru Untuk Pengaya Saya"
 #: src/olympia/devhub/file_validation_annotations.py:55
 #, python-brace-format
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
-msgstr ""
+msgstr "Pengaya Open Search {blog_link_open}tidak lagi didukung di AMO{blog_link_close}. Anda dapat membuat sebuah {doc_link_open}ekstensi pencari sebagai pengganti{doc_link_close}."
 
 #: src/olympia/devhub/file_validation_annotations.py:105
 #, python-brace-format
 msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr ""
+msgstr "Manifest V3 saat ini tidak didukung untuk diunggah. {start_href}Baca lebih lanjut tentang garis waktu dukungan{end_href}."
 
 #: src/olympia/devhub/forms.py:85
 msgid "This slug is already in use. Please choose another."
@@ -1891,9 +1903,9 @@ msgid "The miscellaneous category cannot be combined with additional categories.
 msgstr "Kategori lain-lain tidak dapat digabungkan dengan kategori lainnya."
 
 #: src/olympia/devhub/forms.py:272
-#, fuzzy, python-format
+#, python-format
 msgid "URL domain must be one of [%s]."
-msgstr "Domain URL harus merupakan salah satu dari [%s], atau sebuah subdomain."
+msgstr "Domain URL harus salah satu dari [%s]."
 
 #: src/olympia/devhub/forms.py:288
 #, python-brace-format
@@ -2031,7 +2043,7 @@ msgstr "Pastikan gabungan jumlah karakter nama dan ringkasan paling banyak {limi
 #: src/olympia/devhub/forms.py:1358
 #, python-brace-format
 msgid "On this site. <span class=\"helptext\">Your submission is publicly listed on {site_domain}.</span>"
-msgstr ""
+msgstr "Di situs ini. <span class=\"helptext\">Pengajuan Anda didaftar secara publik pada {site_domain}.</span>"
 
 #: src/olympia/devhub/forms.py:1365
 #, python-brace-format
@@ -2046,7 +2058,7 @@ msgstr "Nama Tampilan"
 
 #: src/olympia/devhub/forms.py:1435
 msgid "Confirm email address"
-msgstr ""
+msgstr "Konfirmasi alamat surel"
 
 #: src/olympia/devhub/forms.py:1436
 msgid "Generate new credentials"
@@ -2070,6 +2082,8 @@ msgid ""
 "To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
 "href=\"{docs_url}\">API documentation</a>."
 msgstr ""
+"Untuk membuat permintaan API, kirim <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> sebagai header otorisasi. Anda harus membuat JWT untuk setiap permintaan seperti yang dijelaskan dalam <a "
+"href=\"{docs_url}\">dokumentasi API</a>."
 
 #: src/olympia/devhub/forms.py:1494
 msgid "JWT secret"
@@ -2078,7 +2092,7 @@ msgstr "Rahasia JWT"
 #: src/olympia/devhub/forms.py:1515
 #, python-brace-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
-msgstr ""
+msgstr "Silakan klik tombol konfirmasi di bawah ini untuk membuat kredensial API bagi pengguna <strong>{name}</strong>."
 
 #: src/olympia/devhub/forms.py:1521
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
@@ -2090,7 +2104,7 @@ msgstr "Anda tidak memiliki kredensial API apapun."
 
 #: src/olympia/devhub/forms.py:1549
 msgid "Something went wrong, please contact developer support."
-msgstr ""
+msgstr "Ada yang salah, silakan hubungi dukungan pengembang."
 
 #: src/olympia/devhub/tasks.py:178
 msgid "Invalid or corrupt add-on file."
@@ -2118,246 +2132,246 @@ msgstr "Validasi menghasilkan terlalu banyak kesalahan/peringatan sehingga %s pe
 msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
 msgstr ""
 
-#: src/olympia/devhub/views.py:114
+#: src/olympia/devhub/views.py:115
 msgid "Updated"
 msgstr "Diperbarui"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:38 src/olympia/devhub/templates/devhub/addons/edit/describe.html:75 src/olympia/devhub/templates/devhub/addons/submit/describe.html:35
-#: src/olympia/devhub/views.py:115 src/olympia/devhub/views.py:125
+#: src/olympia/devhub/views.py:116 src/olympia/devhub/views.py:126
 msgid "Name"
 msgstr "Nama"
 
-#: src/olympia/devhub/views.py:116 src/olympia/devhub/views.py:124
+#: src/olympia/devhub/views.py:117 src/olympia/devhub/views.py:125
 msgid "Created"
 msgstr "Dibuat"
 
-#: src/olympia/devhub/views.py:117 src/olympia/devhub/views.py:126 src/olympia/stats/templates/stats/addon_report_menu.html:8
+#: src/olympia/devhub/views.py:118 src/olympia/devhub/views.py:127 src/olympia/stats/templates/stats/addon_report_menu.html:8
 msgid "Downloads"
 msgstr "Unduhan"
 
-#: src/olympia/devhub/views.py:118 src/olympia/devhub/views.py:127
+#: src/olympia/devhub/views.py:119 src/olympia/devhub/views.py:128
 msgid "Rating"
 msgstr "Peringkat"
 
-#: src/olympia/devhub/views.py:191
+#: src/olympia/devhub/views.py:192
 msgid "All My Add-ons"
 msgstr "Semua Pengaya Saya"
 
-#: src/olympia/devhub/views.py:219
+#: src/olympia/devhub/views.py:220
 msgid "All Activity"
 msgstr "Semua Aktivitas"
 
-#: src/olympia/devhub/views.py:220
+#: src/olympia/devhub/views.py:221
 msgid "Add-on Updates"
 msgstr "Pembaruan Pengaya"
 
-#: src/olympia/devhub/views.py:221
+#: src/olympia/devhub/views.py:222
 msgid "Add-on Status"
 msgstr "Status Pengaya"
 
-#: src/olympia/devhub/views.py:222
+#: src/olympia/devhub/views.py:223
 msgid "User Collections"
 msgstr "Koleksi Pengguna"
 
-#: src/olympia/devhub/views.py:223
+#: src/olympia/devhub/views.py:224
 msgid "User Reviews"
 msgstr "Ulasan Pengguna"
 
-#: src/olympia/devhub/views.py:371
+#: src/olympia/devhub/views.py:372
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "Pengaya tidak dapat dihapus. Menonaktifkan pengaya ini sebagai gantinya."
 
-#: src/olympia/devhub/views.py:382
+#: src/olympia/devhub/views.py:383
 msgid "Theme deleted."
 msgstr "Tema dihapus."
 
-#: src/olympia/devhub/views.py:382
+#: src/olympia/devhub/views.py:383
 msgid "Add-on deleted."
 msgstr "Pengaya dihapus."
 
-#: src/olympia/devhub/views.py:388
+#: src/olympia/devhub/views.py:389
 msgid "URL name was incorrect. Theme was not deleted."
 msgstr "Nama URL salah. Tema tidak dihapus."
 
-#: src/olympia/devhub/views.py:390
+#: src/olympia/devhub/views.py:391
 msgid "URL name was incorrect. Add-on was not deleted."
 msgstr "Nama URL salah. Pengaya tidak dihapus."
 
-#: src/olympia/devhub/views.py:462
+#: src/olympia/devhub/views.py:463
 msgid "Invitation accepted."
 msgstr "Undangan diterima."
 
-#: src/olympia/devhub/views.py:465
+#: src/olympia/devhub/views.py:466
 msgid "Invitation declined."
 msgstr "Undangan ditolak."
 
-#: src/olympia/devhub/views.py:533
+#: src/olympia/devhub/views.py:534
 #, python-brace-format
 msgid "A confirmation email has been sent to {email}"
 msgstr "Email konfirmasi telah dikirim ke {email}"
 
-#: src/olympia/devhub/views.py:550 src/olympia/devhub/views.py:1158
+#: src/olympia/devhub/views.py:551 src/olympia/devhub/views.py:1159
 msgid "Changes successfully saved."
 msgstr "Perubahan berhasil disimpan."
 
-#: src/olympia/devhub/views.py:570
+#: src/olympia/devhub/views.py:571
 msgid "Validate Add-on"
 msgstr "Pengaya Divalidasi"
 
-#: src/olympia/devhub/views.py:644
+#: src/olympia/devhub/views.py:645
 #, python-brace-format
 msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
-msgstr ""
+msgstr "<a href=\"{link}\">Harap tambahkan otentikasi dua faktor ke akun Anda untuk mengirimkan ekstensi.</a>"
 
-#: src/olympia/devhub/views.py:1013
+#: src/olympia/devhub/views.py:1014
 msgid "Icons must be either PNG or JPG."
 msgstr "Ikon harus dalam PNG atau JPG."
 
-#: src/olympia/devhub/views.py:1019
+#: src/olympia/devhub/views.py:1020
 msgid "Icons cannot be animated."
 msgstr "Icon tidak dapat dijadikan animasi."
 
-#: src/olympia/devhub/views.py:1045
+#: src/olympia/devhub/views.py:1046
 #, python-brace-format
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr "Resolusi minimum gambar adalah selebar {0} piksel dan setinggi {1} piksel."
 
-#: src/olympia/devhub/views.py:1049
+#: src/olympia/devhub/views.py:1050
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "Dimensi gambar harus dalam rasio 4:3."
 
-#: src/olympia/devhub/views.py:1057
+#: src/olympia/devhub/views.py:1058
 #, python-brace-format
 msgid "Icon must be at least {0} pixels wide and tall."
 msgstr "Lebar dan tinggi ikon harus berukuran minimum {0} piksel."
 
-#: src/olympia/devhub/views.py:1062
+#: src/olympia/devhub/views.py:1063
 msgid "Icon must be square (same width and height)."
 msgstr "Ikon harus persegi (sama lebar dan tingginya)."
 
-#: src/olympia/devhub/views.py:1068
+#: src/olympia/devhub/views.py:1069
 msgid "There was an error uploading your preview."
 msgstr "Terjadi kesalahan menggunggah pratinjau anda."
 
-#: src/olympia/devhub/views.py:1215
+#: src/olympia/devhub/views.py:1216
 #, python-format
 msgid ""
 "The latest approved version of this %s add-on cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1222
+#: src/olympia/devhub/views.py:1223
 #, python-format
 msgid "Version %s disabled."
 msgstr "Versi %s dinonaktifkan."
 
-#: src/olympia/devhub/views.py:1226
+#: src/olympia/devhub/views.py:1227
 #, python-format
 msgid "Version %s deleted."
 msgstr "Versi %s dihapus."
 
-#: src/olympia/devhub/views.py:1237
+#: src/olympia/devhub/views.py:1238
 #, python-format
 msgid "Version %s re-enabled."
 msgstr "Versi %s dihidupkan lagi."
 
-#: src/olympia/devhub/views.py:1253
+#: src/olympia/devhub/views.py:1254
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "Unggahan ini telah gagal divalidasi, dan boleh jadi tidak memiliki hasil validasi yang lengkap. Silakan berhati-hati saat mengulasnya."
 
-#: src/olympia/devhub/views.py:1422
+#: src/olympia/devhub/views.py:1423
 msgid "Header area background"
 msgstr "Latar area header"
 
-#: src/olympia/devhub/views.py:1424
+#: src/olympia/devhub/views.py:1425
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
 msgstr "Warna latar bidang header, ditampilkan dalam bagian header yang tidak tertutup atau terlihat dalam gambar header. Bidang manifes:  frame."
 
-#: src/olympia/devhub/views.py:1432
+#: src/olympia/devhub/views.py:1433
 msgid "Header area text and icons"
 msgstr "Teks dan ikon area header"
 
-#: src/olympia/devhub/views.py:1434
+#: src/olympia/devhub/views.py:1435
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
 msgstr "Warna teks dan ikon dalam area header, kecuali tab aktif. Bidang manifes:  tab_background_text."
 
-#: src/olympia/devhub/views.py:1441
+#: src/olympia/devhub/views.py:1442
 msgid "Toolbar area background"
 msgstr "Latar area bilah alat"
 
-#: src/olympia/devhub/views.py:1443
+#: src/olympia/devhub/views.py:1444
 #, fuzzy
 msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
 msgstr "Warna latar bilah navigasi, bilah markah dan tab yang dipilih.  Bidang tampil:  toolbar."
 
-#: src/olympia/devhub/views.py:1450
+#: src/olympia/devhub/views.py:1451
 msgid "Toolbar area text and icons"
 msgstr "Teks dan ikon area bilah alat"
 
-#: src/olympia/devhub/views.py:1452
+#: src/olympia/devhub/views.py:1453
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
 msgstr "Warna teks dan ikon dalam bilah alat dan tab aktif. Bidang manifes:  bookmark_text."
 
-#: src/olympia/devhub/views.py:1459
+#: src/olympia/devhub/views.py:1460
 msgid "Toolbar field area background"
 msgstr "Latar area bidang bilah alat"
 
-#: src/olympia/devhub/views.py:1461
+#: src/olympia/devhub/views.py:1462
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
 msgstr "Warna latar untuk bidang pada bilah alat, misalnya bilah URL. Bidang tampil:  toolbar_field."
 
-#: src/olympia/devhub/views.py:1468
+#: src/olympia/devhub/views.py:1469
 msgid "Toolbar field area text"
 msgstr "Teks area bidang bilah alat"
 
-#: src/olympia/devhub/views.py:1470
+#: src/olympia/devhub/views.py:1471
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "Warna teks pada bidang dalam bilah alat, misalnya bilah URL. Bidang tampil:  toolbar_field_text."
 
-#: src/olympia/devhub/views.py:1478
+#: src/olympia/devhub/views.py:1479
 msgid "Tab highlight"
 msgstr "Tab sorotan"
 
-#: src/olympia/devhub/views.py:1480
+#: src/olympia/devhub/views.py:1481
 msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1579
+#: src/olympia/devhub/views.py:1580
 msgid "Add-on uploads are temporarily unavailable"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1947
+#: src/olympia/devhub/views.py:1948
 msgid "Review requested."
 msgstr "Ulasan diminta."
 
-#: src/olympia/devhub/views.py:1949
+#: src/olympia/devhub/views.py:1950
 msgid "You must provide further details to proceed."
 msgstr "Anda harus memberikan keterangan terinci untuk melanjutkan."
 
-#: src/olympia/devhub/views.py:2051
+#: src/olympia/devhub/views.py:2052
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Kredensial lama Anda telah dicabut dan tidak berlaku lagi."
 
-#: src/olympia/devhub/views.py:2070
+#: src/olympia/devhub/views.py:2071
 msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
 msgstr ""
 
-#: src/olympia/devhub/views.py:2087
+#: src/olympia/devhub/views.py:2088
 msgid "New API key created"
 msgstr "Kunci API baru dibuat"
 
-#: src/olympia/devhub/views.py:2098
+#: src/olympia/devhub/views.py:2099
 msgid "API key revoked"
 msgstr "Kunci API dicabut"
 
-#: src/olympia/devhub/views.py:2158
+#: src/olympia/devhub/views.py:2159
 msgid "Verify email"
 msgstr "Verifikasi surel"
 
-#: src/olympia/devhub/views.py:2160
+#: src/olympia/devhub/views.py:2161
 msgid "Send another email"
 msgstr ""
 
-#: src/olympia/devhub/views.py:2193
+#: src/olympia/devhub/views.py:2194
 msgid "Your email has been verified"
 msgstr "Surel Anda telah diverifikasi"
 
@@ -2368,6 +2382,14 @@ msgstr "Pengaya saya tidak cocok ke kategori apa pun"
 #: src/olympia/devhub/templates/devhub/agreement.html:3 src/olympia/devhub/templates/devhub/agreement.html:11 src/olympia/devhub/templates/devhub/includes/agreement.html:7
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Kesepakatan Distribusi Pengaya Firefox"
+
+#: src/olympia/devhub/templates/devhub/base.html:43
+msgid "Help us make things better!"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/base.html:44
+msgid "Take our quick survey"
+msgstr ""
 
 #. {0} is an application, like Firefox.
 #: src/olympia/devhub/templates/devhub/index.html:21 src/olympia/templates/base.html:17
@@ -2440,7 +2462,7 @@ msgstr "Cari"
 #: src/olympia/devhub/templates/devhub/suppressed_email.html:4
 #, python-format
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
-msgstr ""
+msgstr "Kami telah menemukan bahwa surel Anda \"%(email)s\" tidak dapat menerima surel dari kami. Perbarui alamat surel Anda ke alamat surel yang dapat menerima surel dari kami."
 
 #: src/olympia/devhub/templates/devhub/suppressed_email.html:8
 msgid "Learn more"
@@ -2536,7 +2558,7 @@ msgstr "Untuk"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:60
 msgid "Subject"
-msgstr ""
+msgstr "Subjek"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:61 src/olympia/devhub/templates/devhub/versions/list.html:189 src/olympia/devhub/templates/devhub/versions/list.html:207
 #: src/olympia/devhub/templates/devhub/versions/list.html:233
@@ -2545,11 +2567,11 @@ msgstr "Status"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:87
 msgid "We have not found any email records for you in the last 2 days."
-msgstr ""
+msgstr "Kami belum menemukan catatan surel untuk Anda dalam 2 hari terakhir."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:91
 msgid "Refresh results"
-msgstr ""
+msgstr "Segarkan hasil"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:101
 #, python-format
@@ -3383,7 +3405,7 @@ msgstr "Cara Mendistribusikan Versi ini"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html:10
 msgid "To get started, select how you would like to distribute this version."
-msgstr ""
+msgstr "Untuk memulai, pilih bagaimana Anda ingin mendistribusikan versi ini."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html:19
 #, python-format
@@ -3490,12 +3512,11 @@ msgstr "Anda tidak perlu mengajukan Kode Sumber, dan Anda siap menuju langkah be
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:49
 msgid "You must submit your extension's source code."
-msgstr ""
+msgstr "Anda harus mengirimkan kode sumber ekstensi Anda."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:51
-#, fuzzy
 msgid "Your source code must include:"
-msgstr "KOde sumber diunggah"
+msgstr "Kode sumber Anda harus disertakan:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:56
 #, fuzzy
@@ -3850,7 +3871,7 @@ msgstr "Informasi lebih lanjut mengenai Akun Pengembang"
 
 #: src/olympia/devhub/templates/devhub/includes/android_compatibility_modal.html:3
 msgid "Firefox for Android compatibility"
-msgstr ""
+msgstr "Kompatibilitas Firefox untuk Android"
 
 #: src/olympia/devhub/templates/devhub/includes/android_compatibility_modal.html:4
 msgid ""
@@ -3860,11 +3881,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/android_compatibility_modal.html:6
 msgid "Yes, I’ve tested my extension with Firefox for Android"
-msgstr ""
+msgstr "Ya, saya telah menguji ekstensi saya pada Firefox untuk Android"
 
 #: src/olympia/devhub/templates/devhub/includes/android_compatibility_modal.html:7
 msgid "No, I have not tested"
-msgstr ""
+msgstr "Tidak, belum saya uji"
 
 #: src/olympia/devhub/templates/devhub/includes/blog_posts.html:3
 msgid "Developer News"
@@ -3882,6 +3903,7 @@ msgstr "Versi Bertandatangan"
 #: src/olympia/devhub/templates/devhub/includes/done_unlisted.html:3
 msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
+"Selesai! Anda akan diberi tahu melalui surel ketika berkas yang ditandatangani siap diunduh dari Pusat Pengembang. Jika Anda tidak menerima surel setelah 24 jam, mohon periksa folder spam Anda."
 
 #: src/olympia/devhub/templates/devhub/includes/license_form.html:5 src/olympia/devhub/templates/devhub/versions/edit.html:83
 msgid "License"
@@ -3964,7 +3986,7 @@ msgstr "Kunjungi Lokakarya Ekstensi"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:4
 msgid "Connect with us"
-msgstr ""
+msgstr "Hubungi kami"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:8
 msgid "Twitter"
@@ -4039,7 +4061,7 @@ msgstr "Tombol \"Dapatkan Pengaya\""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:28
 msgid "Recommended Extensions program"
-msgstr ""
+msgstr "Program Ekstensi yang Direkomendasikan"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:33
 msgid "Contribute"
@@ -4071,7 +4093,7 @@ msgstr "Lihat bagaimana"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/get_involved.html:9
 msgid "Get involved"
-msgstr ""
+msgstr "Mari berperan"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/get_involved.html:11
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
@@ -4154,7 +4176,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/submit_or_manage_extension.html:11
 msgid "Register for a developer account or log in to the Developer Hub"
-msgstr ""
+msgstr "Daftarkan akun pengembang atau masuk ke Pusat Pengembang"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:5
 #, python-brace-format
@@ -4622,7 +4644,7 @@ msgstr "Buat Firefox melupakan data situs seperti kuki dan penyimpanan lokal, ta
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:113 src/olympia/discovery/strings.jinja2:794
 msgid "No need to write the same thing over and over. Save frequently-entered text to paste anytime."
-msgstr ""
+msgstr "Tidak perlu menuliskan hal yang sama berulang kali. Simpan teks yang sering dipakai kemudian tempel kapan saja."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4669,7 +4691,7 @@ msgstr "Baca berkas ePub langsung di Firefox—perbesar ukuran huruf, dimensi la
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:137 src/olympia/discovery/strings.jinja2:860
 msgid "Play YouTube videos by default in the highest quality, turn off annotations, and more."
-msgstr ""
+msgstr "Putar video YouTube secara otomatis dengan kualitas tertinggi, matikan anotasi, dan lainnya."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:140
@@ -4684,7 +4706,7 @@ msgstr "Ubah server proksi dan jelajahi web dengan setelan proksi Anda sendiri."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:146
 msgid "Enhance your viewing experience by adjusting video speed and more."
-msgstr ""
+msgstr "Tingkatkan pengalaman menonton Anda dengan menyesuaikan kecepatan video dan lainnya."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4875,12 +4897,12 @@ msgstr "Sembunyikan sebagian situs web yang Anda lihat."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:254
 msgid "Download images you find on the web."
-msgstr ""
+msgstr "Unduh gambar yang Anda temukan di web."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:257
 msgid "Restrict access to inappropriate or undesired content with a filter."
-msgstr ""
+msgstr "Batasi akses ke konten yang tidak pantas atau tidak diinginkan dengan filter."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:260
@@ -4907,7 +4929,7 @@ msgstr "Dapatkan terjemahan seketika dengan menyorot teks dan mengeklik tombol y
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:272
 msgid "Go straight to the website you want to access without being redirected in between."
-msgstr ""
+msgstr "Langsung ke situs web yang ingin Anda akses tanpa dialihkan di antaranya."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:275
@@ -4938,7 +4960,7 @@ msgstr "Aktifkan mode malam untuk pengalaman melihat yang lebih baik."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:290
 msgid "Reverse image search by leveraging the power of multiple search providers."
-msgstr ""
+msgstr "Pencarian gambar balik dengan memanfaatkan kekuatan beberapa penyedia pencarian."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:293
@@ -4963,12 +4985,12 @@ msgstr "Tampilkan seluruh tautan dengan seketika dari laman web di tab baru."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:305
 msgid "Strip away redirect pages and URL tracking parameters from web links. Works automatically."
-msgstr ""
+msgstr "Hapus laman pengalihan dan parameter pelacakan URL dari tautan web. Bekerja secara otomatis."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:308
 msgid "Prevent search engines from knowing what search results you click on."
-msgstr ""
+msgstr "Cegah mesin pencari untuk mengetahui hasil pencarian yang Anda klik."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:311
@@ -4979,7 +5001,7 @@ msgstr "Unduh video dan/atau audio YouTube."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:314 src/olympia/discovery/strings.jinja2:857
 msgid "An advanced reader for aggregating all of your RSS/Atom/RDF sources."
-msgstr ""
+msgstr "Pembaca tingkat lanjut untuk menggabungkan semua sumber RSS/Atom/RDF Anda."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:317
@@ -4990,7 +5012,7 @@ msgstr "Buat catatan umum dan spesifik-situs untuk ditinjau kemudian."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:320 src/olympia/discovery/strings.jinja2:683
 msgid "Phone-like scrolling for your desktop. Features \"grab-n-drag\" style mouse movement."
-msgstr ""
+msgstr "Pengguliran mirip ponsel untuk desktop Anda. Menampilkan gerakan mouse gaya \"grab-n-drag\"."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5001,7 +5023,7 @@ msgstr "Bersihkan tembolok peramban Anda dengan sekali klik atau ketukan tombol.
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:326
 msgid "Highlight text on web pages to save and access later."
-msgstr ""
+msgstr "Sorot teks pada halaman web untuk disimpan dan diakses nanti."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5018,19 +5040,19 @@ msgstr "Hemat lebar pita dengan pengaliran audio saja dari klip YouTube."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:335
 msgid "Turn words into beautiful headlines and image overlay text."
-msgstr ""
+msgstr "Ubah kata-kata menjadi tajuk berita dan hamparan gambar yang indah."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:338 src/olympia/discovery/strings.jinja2:701
 msgid "Automatically navigate to the secure version of a website if it's available."
-msgstr ""
+msgstr "Secara otomatis menavigasi ke versi situs web yang aman jika tersedia."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:341 src/olympia/discovery/strings.jinja2:782
 msgid "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
-msgstr ""
+msgstr "Hapus riwayat navigasi Anda. Tentukan jumlah hari untuk menyimpan riwayat browser sebelum secara otomatis dihapus."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:344
@@ -5045,18 +5067,18 @@ msgstr "Simpan sandi dengan aman dan masuk secara otomatis ke situs yang dikenal
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:350
 msgid "Fill forms automatically. Save entered data once and it will auto-fill next time."
-msgstr ""
+msgstr "Isi formulir secara otomatis. Simpan data yang dimasukkan sekali dan akan terisi otomatis di lain waktu."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:356
 msgid "Search privately with just a click."
-msgstr ""
+msgstr "Cari secara pribadi hanya dengan satu klik."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:359 src/olympia/discovery/strings.jinja2:815
 msgid "Put an end to tab hijacking. Don't let clicked links take control of your current tab and load content you didn't ask for."
-msgstr ""
+msgstr "Akhiri pembajakan tab. Jangan biarkan tautan yang diklik mengendalikan tab Anda saat ini dan memuat konten yang tidak Anda minta."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:362
@@ -5067,12 +5089,12 @@ msgstr "Lakukan pencarian Wikipedia dengan cukup menyorot teks pada laman dan me
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:365
 msgid "Find what you're looking for within a specific domain."
-msgstr ""
+msgstr "Temukan apa yang Anda cari dalam domain tertentu."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:368
 msgid "Highlight text from any website and right-click to search YouTube for related media."
-msgstr ""
+msgstr "Sorot teks dari situs web mana pun dan klik kanan untuk mencari media terkait di YouTube."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:371
@@ -5114,7 +5136,7 @@ msgstr "Akses tab terbuka, markah, dan riwayat Anda dengan mudah."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:392
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
-msgstr ""
+msgstr "Banyak tab terbuka? Lewati pengguliran dan cari melalui pintasan papan ketik."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:395
@@ -5139,7 +5161,7 @@ msgstr "Ubah markah Anda melalui panel yang mudah diakses."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:407
 msgid "Store passwords securely and sign in automatically to known websites."
-msgstr ""
+msgstr "Simpan kata sandi dengan aman dan masuk secara otomatis ke situs web yang dikenal."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:410
@@ -5613,7 +5635,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:884
 msgid "Get weather updates directly from Firefox."
-msgstr ""
+msgstr "Dapatkan pembaruan cuaca langsung dari Firefox."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:887
@@ -5698,7 +5720,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:956
 msgid "Remove ads & receive better protection against malware."
-msgstr ""
+msgstr "Hapus iklan & dapatkan perlindungan yang lebih kuat dari malware."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:959
@@ -5713,7 +5735,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:965
 msgid "Enhance your gaming experience on Steam."
-msgstr ""
+msgstr "Tingkatkan pengalaman bermain Anda di Steam."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:968
@@ -6013,11 +6035,11 @@ msgstr ""
 msgid "See more Twitch extension staff picks"
 msgstr ""
 
-#: src/olympia/files/models.py:309
+#: src/olympia/files/models.py:319
 msgid "Unreviewed"
-msgstr ""
+msgstr "Belum diulas"
 
-#: src/olympia/files/models.py:312
+#: src/olympia/files/models.py:322
 #, python-format
 msgid "[status:%s]"
 msgstr "[status: %s]"
@@ -6038,12 +6060,12 @@ msgstr ""
 #: src/olympia/files/utils.py:350
 #, python-brace-format
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
-msgstr ""
+msgstr "\"strict_min_version\" {appver} tidak diketahui untuk {app}"
 
 #: src/olympia/files/utils.py:364
 #, python-brace-format
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
-msgstr ""
+msgstr "\"strict_max_version\" {appver} tidak diketahui untuk {app}"
 
 #: src/olympia/files/utils.py:542
 msgid "Unsupported compression method in archive."
@@ -6075,7 +6097,7 @@ msgstr ""
 
 #: src/olympia/files/utils.py:631
 msgid "Uncompressed size is too large"
-msgstr ""
+msgstr "Ukuran tidak terkompresi terlalu besar"
 
 #: src/olympia/files/utils.py:663
 msgid "Invalid archive."
@@ -6275,7 +6297,7 @@ msgstr ""
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">Ditandai oleh %(user)s pada %(date)s</span>"
 
-#: src/olympia/reviewers/templates/reviewers/review.html:283
+#: src/olympia/reviewers/templates/reviewers/review.html:301
 msgid "<strong>Warning!</strong> Another user may be viewing this page before you."
 msgstr ""
 
@@ -6299,7 +6321,7 @@ msgstr ""
 
 #: src/olympia/scanners/models.py:135
 msgid "Human-readable name"
-msgstr ""
+msgstr "Nama yang dapat dibaca manusia"
 
 #: src/olympia/scanners/models.py:139
 msgid "Human readable description for the scanner rule"
@@ -6320,11 +6342,11 @@ msgstr ""
 #: src/olympia/scanners/models.py:195
 #, python-format
 msgid "The definition is not valid: %(error)s"
-msgstr ""
+msgstr "Definisi tidak valid: %(error)s"
 
 #: src/olympia/scanners/models.py:201
 msgid "An error occurred when compiling the definition"
-msgstr ""
+msgstr "Kesalahan terjadi saat melakukan kompilasi definisi"
 
 #: src/olympia/scanners/models.py:212
 msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
@@ -6416,7 +6438,7 @@ msgstr "Isi"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:20
 msgid "by Campaign"
-msgstr ""
+msgstr "berdasarkan Kampanye"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:26
 msgid "Daily Users"
@@ -6440,7 +6462,7 @@ msgstr "berdasarkan Platform"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:41
 msgid "by Country"
-msgstr ""
+msgstr "berdasarkan Negara"
 
 #: src/olympia/stats/templates/stats/popup.html:2 src/olympia/stats/templates/stats/popup.html:8 src/olympia/stats/templates/stats/stats.html:181
 msgid "close"
@@ -6680,7 +6702,7 @@ msgstr "Pengaya"
 
 #: src/olympia/templates/photon-footer.html:4
 msgid "Go to Mozilla's homepage"
-msgstr ""
+msgstr "Ke beranda Mozilla"
 
 #: src/olympia/templates/photon-footer.html:11
 msgid "About"
@@ -6810,7 +6832,7 @@ msgstr "Isi dengan alamat IPv4 atau IPv6 yang benar,contoh 127.0.0.1. Akan diuba
 
 #: src/olympia/users/forms.py:37
 msgid "You can only enter one, either IP Address or Network."
-msgstr ""
+msgstr "Anda hanya boleh mengisi satu saja, antara alamat IP atau Jaringan."
 
 #: src/olympia/users/models.py:82
 msgid "No user with that email."
@@ -6821,34 +6843,34 @@ msgstr "Tidak ada pengguna dengan email tersebut."
 msgid "Firefox user {id}"
 msgstr "Pengguna Firefox {id}"
 
-#: src/olympia/users/models.py:827
+#: src/olympia/users/models.py:841
 #, fuzzy
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "Masukkan rentang jaringan IPv6 atau IPv6 CIDR yang valid, misalnya 127.0.0.1/28"
 
-#: src/olympia/users/models.py:831
+#: src/olympia/users/models.py:845
 msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
 msgstr ""
 
-#: src/olympia/users/models.py:943
+#: src/olympia/users/models.py:957
 msgid "Email Pattern"
 msgstr "Pola Surel"
 
-#: src/olympia/users/models.py:946
+#: src/olympia/users/models.py:960
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr ""
 
-#: src/olympia/users/models.py:953
+#: src/olympia/users/models.py:967
 msgid "The email address used for your account is not allowed for submissions."
 msgstr ""
 
-#: src/olympia/users/models.py:1032
+#: src/olympia/users/models.py:1046
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
 "restrictions\" instead."
 msgstr ""
 
-#: src/olympia/users/models.py:1183
+#: src/olympia/users/models.py:1197
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
 " which explains how we handle your information."
@@ -6856,14 +6878,14 @@ msgstr ""
 "Sebelum memulai, baca dan terima Perjanjian Distribusi Pengaya Firefox serta Kebijakan dan juga Aturan Peninjauan kami. Perjanjian Distribusi Pengaya Firefox juga terhubung ke Pemberitahuan Privasi "
 "kami yang menjelaskan bagaimana kami menangani informasi Anda."
 
-#: src/olympia/users/models.py:1197
+#: src/olympia/users/models.py:1211
 #, fuzzy, python-brace-format
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr ""
 "Sebelum memulai, baca dan terima Perjanjian Distribusi Pengaya Firefox serta Kebijakan dan juga Aturan Peninjauan kami. Perjanjian Distribusi Pengaya Firefox juga terhubung ke Pemberitahuan Privasi "
 "kami yang menjelaskan bagaimana kami menangani informasi Anda."
 
-#: src/olympia/users/models.py:1248
+#: src/olympia/users/models.py:1262
 msgid "User Restriction History"
 msgstr "Riwayat Pembatasan Pengguna"
 
@@ -6989,7 +7011,7 @@ msgstr ""
 
 #: src/olympia/versions/models.py:1221
 msgid "Disabled by Developer"
-msgstr ""
+msgstr "Dinonaktifkan oleh Pengembang"
 
 #: src/olympia/versions/models.py:1579
 #, python-brace-format

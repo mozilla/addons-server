@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-13 17:40+0000\n"
+"POT-Creation-Date: 2025-03-17 18:11+0000\n"
 "PO-Revision-Date: 2018-08-10 18:00+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -1871,6 +1871,12 @@ msgstr "Mój dodatek nie pasuje do żadnej z kategorii"
 
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Umowa dotycząca dystrybucji dodatków Firefoksa"
+
+msgid "Help us make things better!"
+msgstr ""
+
+msgid "Take our quick survey"
+msgstr ""
 
 #. {0} is an application, like Firefox.
 #, python-brace-format

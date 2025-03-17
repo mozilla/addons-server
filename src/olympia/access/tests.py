@@ -299,6 +299,8 @@ system_guids = pytest.mark.parametrize(
         'flop@search.mozilla.org',
         'user@mozillaonline.com',
         'tester@MoZiLlAoNlInE.CoM',
+        'foo@siteperms.mozilla.org',
+        'bar@modelhub.mozilla.org',
     ],
 )
 
