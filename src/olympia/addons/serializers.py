@@ -42,7 +42,7 @@ from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.core.languages import AMO_LANGUAGES
 from olympia.files.models import File, FileUpload
 from olympia.files.utils import DuplicateAddonID, parse_addon
-from olympia.promoted.models import PromotedAddon, PromotedGroup
+from olympia.promoted.models import PromotedGroup
 from olympia.ratings.utils import get_grouped_ratings
 from olympia.search.filters import AddonAppVersionQueryParam
 from olympia.tags.models import Tag
@@ -1589,12 +1589,10 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
             # set .approved_for_groups cached_property because it's used in
             # .approved_applications.
             approved_for_apps = promoted.get('approved_for_apps')
-            obj.promoted = PromotedAddon(
-                addon=obj,
-                approved_application_ids=approved_for_apps,
-                created=None,
-                group_id=promoted['group_id'],
-            )
+
+            # promoted should be a list of PromotedGroup
+            obj.promoted = [PromotedGroup.objects.get(group_id=promoted['group_id'])]
+
             # we can safely regenerate these tuples because
             # .appproved_applications only cares about the current group
             obj._current_version.approved_for_groups = (
@@ -1602,7 +1600,7 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
                 for app_id in approved_for_apps
             )
         else:
-            obj.promoted = None
+            obj.promoted = []
 
         ratings = data.get('ratings', {})
         obj.average_rating = ratings.get('average')
@@ -1634,6 +1632,9 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
         ):
             data.pop('_score')
         return data
+
+    def get_promoted(self, obj):
+        return obj.promoted
 
 
 class ESAddonAutoCompleteSerializer(ESAddonSerializer):
