@@ -2425,11 +2425,11 @@ msgstr "Dojadnanje za rozdźělowanje dodankow Firefox"
 
 #: src/olympia/devhub/templates/devhub/base.html:43
 msgid "Help us make things better!"
-msgstr ""
+msgstr "Pomagajśo nam, wěcy pólěpšyś!"
 
 #: src/olympia/devhub/templates/devhub/base.html:44
 msgid "Take our quick survey"
-msgstr ""
+msgstr "Wobźělśo se na našom krotkem napšašowanju"
 
 #. {0} is an application, like Firefox.
 #: src/olympia/devhub/templates/devhub/index.html:21 src/olympia/templates/base.html:17
