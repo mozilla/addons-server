@@ -54,7 +54,7 @@ msgstr "Ugyldig verdi"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:10 src/olympia/abuse/templates/abuse/appeal.html:15
 msgid "Appeal reviewer decision"
-msgstr ""
+msgstr "Overklag avgjerda til vurderaren"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:16
 #, python-brace-format
@@ -6922,19 +6922,19 @@ msgstr ""
 
 #: src/olympia/versions/models.py:1209
 msgid "Auto-approved, Confirmed"
-msgstr ""
+msgstr "Automatisk godkjenning, stadfesta"
 
 #: src/olympia/versions/models.py:1211
 msgid "Auto-approved, not Confirmed"
-msgstr ""
+msgstr "Automatisk godkjenning, ikkje stadfesta"
 
 #: src/olympia/versions/models.py:1214
 msgid "Approved, Manual"
-msgstr ""
+msgstr "Godkjend, manuelt"
 
 #: src/olympia/versions/models.py:1221
 msgid "Disabled by Developer"
-msgstr ""
+msgstr "Deaktivert av utviklar"
 
 #: src/olympia/versions/models.py:1579
 #, python-brace-format
