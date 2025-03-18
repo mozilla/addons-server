@@ -16,37 +16,37 @@ msgstr ""
 #: src/olympia/abuse/actions.py:189
 #, python-brace-format
 msgid "Mozilla Add-ons: {} [{}]"
-msgstr ""
+msgstr "Mozilla-tillegg: {} [{}]"
 
 #: src/olympia/abuse/forms.py:30
 msgid "Email address"
-msgstr ""
+msgstr "E-postadresse"
 
 #: src/olympia/abuse/forms.py:45
 msgid "Invalid email provided."
-msgstr ""
+msgstr "Ugyldig e-postadresse oppgitt."
 
 #: src/olympia/abuse/forms.py:61
 msgid "Reason for appeal"
-msgstr ""
+msgstr "Begrunnelse for anke"
 
 #: src/olympia/abuse/forms.py:63
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
-msgstr ""
+msgstr "Forklar hvorfor du mener at denne avgjørelsen ble tatt ved en feil og/eller ikke samsvarer med gjeldende retningslinjer eller lover."
 
 #: src/olympia/abuse/models.py:1067
 msgid "User profile"
-msgstr ""
+msgstr "Brukerprofil"
 
 #: src/olympia/abuse/models.py:1374
 #, python-brace-format
 msgid "\"{}\" for {}"
-msgstr ""
+msgstr "\"{}\" for {}"
 
 #: src/olympia/abuse/serializers.py:29
 #, python-brace-format
 msgid "Please ensure this field has no more than {max_length} characters."
-msgstr "Se til at dette feltet ikke har mer enn {max_length} tegn."
+msgstr "Sørg for at dette feltet ikke har mer enn {max_length} tegn."
 
 #: src/olympia/abuse/serializers.py:233 src/olympia/abuse/serializers.py:249 src/olympia/addons/fields.py:51 src/olympia/addons/fields.py:257
 msgid "Invalid value"
@@ -54,16 +54,16 @@ msgstr "Ugyldig verdi"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:10 src/olympia/abuse/templates/abuse/appeal.html:15
 msgid "Appeal reviewer decision"
-msgstr ""
+msgstr "Anke vurdererens beslutning"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:16
 #, python-brace-format
 msgid "Decision {0}"
-msgstr ""
+msgstr "Beslutning {0}"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:20
 msgid "Thank you. Your appeal has been recorded."
-msgstr ""
+msgstr "Takk skal du ha. Anken din er registrert."
 
 #: src/olympia/abuse/templates/abuse/appeal.html:31 src/olympia/amo/templates/amo/fake_fxa_authorization.html:21
 msgid "OK"
@@ -71,20 +71,22 @@ msgstr "OK"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:33 src/olympia/abuse/templates/abuse/appeal.html:41
 msgid "Thank you for your report."
-msgstr ""
+msgstr "Takk for rapporten."
 
 #: src/olympia/abuse/templates/abuse/appeal.html:37
 msgid ""
 "We have already reviewed a similar appeal from another reporter, and have reversed our prior decision. We have taken action against the content and/or account holder in accordance with our policies."
 msgstr ""
+"Vi har allerede gjennomgått en lignende anke fra en annen bruker, og har omgjort vår tidligere avgjørelse. Vi har iverksatt tiltak mot innholdet og/eller kontoinnehaveren i samsvar med våre "
+"retningslinjer."
 
 #: src/olympia/abuse/templates/abuse/appeal.html:38
 msgid "Because the decision you are appealing has already been overturned, your appeal will not be processed."
-msgstr ""
+msgstr "Fordi vedtaket du klager på allerede er omgjort, vil ikke klagen din bli behandlet."
 
 #: src/olympia/abuse/templates/abuse/appeal.html:42
 msgid "The decision you are appealing has already been overridden by a new decision, so this decision can't be appealed."
-msgstr ""
+msgstr "Beslutningen du anker har allerede blitt overskrevet av en ny beslutning, så denne beslutningen kan ikke ankes."
 
 #: src/olympia/abuse/templates/abuse/appeal.html:44
 msgid "This decision can't be appealed."

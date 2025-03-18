@@ -89,7 +89,7 @@ msgstr "Mottok en tom respons fra serveren; status: {0}"
 
 #: static/js/common/upload-addon.js:403
 msgid "Your extension has to be compatible with at least one application."
-msgstr ""
+msgstr "Utvidelsen din må være kompatibel med minst ett program."
 
 #: static/js/common/upload-addon.js:473
 msgid "Unexpected server error while validating."
@@ -97,7 +97,7 @@ msgstr "Uventet serverfeil ved validering."
 
 #: static/js/common/upload-addon.js:519
 msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
-msgstr ""
+msgstr "Eksplisitt merket som kompatibel med Firefox for Android i manifestet"
 
 #: static/js/common/upload-addon.js:561
 #, python-brace-format
@@ -897,7 +897,7 @@ msgstr "{name} så på denne siden først."
 
 #: static/js/zamboni/reviewers.js:219
 msgid "Review page polling failed."
-msgstr ""
+msgstr "Klarte ikke å hente siden med vurderinger."
 
 #: static/js/zamboni/reviewers.js:507
 #, python-brace-format
