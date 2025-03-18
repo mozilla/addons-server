@@ -6819,27 +6819,27 @@ msgstr "Brukaravgrensingshistorikk"
 
 #: src/olympia/users/notifications.py:27
 msgid "an add-on developer replies to my review"
-msgstr ""
+msgstr "ein tilleggsutviklar svarar på vurderinga mi"
 
 #: src/olympia/users/notifications.py:36
 msgid "new add-ons or Firefox features are available"
-msgstr ""
+msgstr "nye tillegg eller Firefox-funksjonar er tilgjengelege"
 
 #: src/olympia/users/notifications.py:45
 msgid "my add-on's compatibility is upgraded successfully"
-msgstr ""
+msgstr "tilleggskompatibilitetn til innlegget mitt har blitt oppgradert"
 
 #: src/olympia/users/notifications.py:54
 msgid "someone writes a review of my add-on"
-msgstr ""
+msgstr "nokon skriv ei vurdering av tillegget mitt"
 
 #: src/olympia/users/notifications.py:69
 msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
-msgstr ""
+msgstr "hald deg oppdatert med nyheiter og hendingar som er relevante for tilleggsutviklarar (inkludert nyheitsbrevet about:addons)"
 
 #: src/olympia/users/notifications.py:81
 msgid "my add-on's compatibility cannot be upgraded"
-msgstr ""
+msgstr "tilleggskompatibiliteten til innlegget mitt kan ikkje oppgraderast"
 
 #: src/olympia/users/notifications.py:90
 msgid "my add-on is reviewed by a reviewer"
