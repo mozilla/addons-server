@@ -318,17 +318,11 @@ class TestAddDynamicThemeTagForThemeApiCommand(TestCase):
         ]
 
     def test_tag_added_for_is_dynamic_theme(self):
-        addon = addon_factory(file_kw={'is_webextension': True})
-        WebextPermission.objects.create(
-            file=addon.current_version.all_files[0],
-            permissions=['theme'])
+        addon = addon_factory(file_kw={'is_webextension': True, 'permissions': ['theme']})
         assert addon.tags.all().count() == 0
         # Add some more that shouldn't be tagged
         no_perms = addon_factory(file_kw={'is_webextension': True})
-        not_a_theme = addon_factory(file_kw={'is_webextension': True})
-        WebextPermission.objects.create(
-            file=not_a_theme.current_version.all_files[0],
-            permissions=['downloads'])
+        not_a_theme = addon_factory(file_kw={'is_webextension': True, 'permissions': ['downloads']})
 
         call_command(
             'process_addons', task='add_dynamic_theme_tag_for_theme_api')
