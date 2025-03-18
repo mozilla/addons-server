@@ -1457,7 +1457,7 @@ msgstr "Søkjeverktøy"
 
 #: src/olympia/constants/categories.py:154
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
-msgstr ""
+msgstr "Last ned Firefox-utvidingar for søk og oppslag. Denne kategorien inneheld utvidingar som framhevar og søkjer etter tekst, oppslag av IP-adresser/domene og meir."
 
 #: src/olympia/constants/categories.py:161
 msgid "Shopping"
@@ -2370,7 +2370,7 @@ msgstr "Firefox distribusjonsavtale for utvidingar"
 
 #: src/olympia/devhub/templates/devhub/base.html:43
 msgid "Help us make things better!"
-msgstr ""
+msgstr "Hjelp oss med å gjere ting betre!"
 
 #: src/olympia/devhub/templates/devhub/base.html:44
 msgid "Take our quick survey"
@@ -2493,11 +2493,11 @@ msgstr "E-postadressa di er stadfesta."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:16
 msgid "Please verify your email."
-msgstr ""
+msgstr "Stadfest e-postadressa di."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:20
 msgid "Could not verify email address. The verification link has expired."
-msgstr ""
+msgstr "Klarte ikkje å stadfeste e-postadressa. Stadfestingslenka er utgått."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:24
 msgid "We are sending an email to you, please be patient... <div class=\"loader\"></div> The page will automatically refresh."
@@ -3455,9 +3455,8 @@ msgid "Web template engines, both for HTML and CSS"
 msgstr "Motorar for webmalar, for både HTML og CSS"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:32
-#, fuzzy
 msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the extension"
-msgstr "Andre verktøy som handterer kode eller filer, brukar prosessering og genererer kode eller fil(er) som vert inkludert i tillegget"
+msgstr "Andre verktøy som handtsamar kode eller filer, brukar prosessering og genererer kode eller fil(er) som vert inkludert i utvidinga"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:43
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
