@@ -858,7 +858,7 @@ msgstr "Versjon {0} slettet fra {addon}."
 #: src/olympia/constants/activity.py:129
 #, python-brace-format
 msgid "File {file} added to {version} of {addon}."
-msgstr ""
+msgstr "Filen {file} er lagt til {version} av {addon}."
 
 #: src/olympia/constants/activity.py:141
 #, python-brace-format
@@ -958,7 +958,7 @@ msgstr "{0} {1} lagt til."
 #: src/olympia/constants/activity.py:328
 #, python-brace-format
 msgid "{user} role changed to {0} for {addon}."
-msgstr ""
+msgstr "{user} sin rolle er endret til {0} for {addon}."
 
 #: src/olympia/constants/activity.py:339
 #, python-brace-format
@@ -971,9 +971,9 @@ msgid "{addon} policy changed."
 msgstr "{addon} sin policy endret."
 
 #: src/olympia/constants/activity.py:353
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{addon} icon or previews changed."
-msgstr "{addon} ikon endret."
+msgstr "{addon} ikon eller forhåndsvisninger er endret."
 
 #: src/olympia/constants/activity.py:360
 #, python-brace-format
@@ -1017,9 +1017,9 @@ msgid "Account updated."
 msgstr "Konto oppdatert."
 
 #: src/olympia/constants/activity.py:415
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Account {user} deleted."
-msgstr "Konto oppdatert."
+msgstr "Kontoen {user} er slettet."
 
 #: src/olympia/constants/activity.py:481
 #, python-brace-format
@@ -1441,7 +1441,7 @@ msgstr "Foto, musikk og videoer"
 
 #: src/olympia/constants/categories.py:135
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
-msgstr ""
+msgstr "Last ned Firefox-utvidelser som forbedrer bilde-, musikk- og videoopplevelser. Utvidelser i denne kategorien endrer lyd og video, omvendt bildesøk og mer."
 
 #: src/olympia/constants/categories.py:142
 msgid "Privacy & Security"
@@ -1457,7 +1457,7 @@ msgstr "Søkeverktøy"
 
 #: src/olympia/constants/categories.py:154
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
-msgstr ""
+msgstr "Last ned Firefox-utvidelser for søk og oppslag. Denne kategorien inkluderer utvidelser som fremhever og søker etter tekst, oppslag av IP-adresser/domener og mer."
 
 #: src/olympia/constants/categories.py:161
 msgid "Shopping"
@@ -1465,7 +1465,7 @@ msgstr "Shopping"
 
 #: src/olympia/constants/categories.py:163
 msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
-msgstr ""
+msgstr "Last ned Firefox-utvidelser som kan forbedre din handleopplevelse med søking etter kuponger og rabatter samt analyser av anmeldelse med mer."
 
 #: src/olympia/constants/categories.py:170
 msgid "Social & Communication"
