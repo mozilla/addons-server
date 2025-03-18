@@ -1188,7 +1188,7 @@ msgstr ""
 #: src/olympia/constants/activity.py:989
 #, python-brace-format
 msgid "Collection {collection} deleted by moderator"
-msgstr ""
+msgstr "Samling {collection} sletta av moderator"
 
 #: src/olympia/constants/activity.py:995
 #, python-brace-format
@@ -1325,7 +1325,7 @@ msgstr "Forelda språkpakke (tillegg)"
 
 #: src/olympia/constants/base.py:135
 msgid "Deprecated Plugin"
-msgstr ""
+msgstr "Forelda programtillegg"
 
 #: src/olympia/constants/base.py:136
 msgid "Deprecated LWT"
@@ -1337,7 +1337,7 @@ msgstr "Tema"
 
 #: src/olympia/constants/base.py:138
 msgid "Deprecated Site Permission"
-msgstr ""
+msgstr "Forelda nettstadløyve"
 
 #: src/olympia/constants/base.py:143 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:10
 msgid "Extensions"
@@ -1361,7 +1361,7 @@ msgstr "Språkpakkar"
 
 #: src/olympia/constants/base.py:148
 msgid "Deprecated Language Packs (Add-on)"
-msgstr ""
+msgstr "Forelda språkpakkar (tillegg)"
 
 #: src/olympia/constants/base.py:149
 msgid "Deprecated Plugins"
@@ -2314,7 +2314,7 @@ msgstr ""
 
 #: src/olympia/devhub/views.py:1479
 msgid "Tab highlight"
-msgstr ""
+msgstr "Fanemarkering"
 
 #: src/olympia/devhub/views.py:1481
 msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
@@ -2374,7 +2374,7 @@ msgstr "Hjelp oss med å gjere ting betre!"
 
 #: src/olympia/devhub/templates/devhub/base.html:44
 msgid "Take our quick survey"
-msgstr ""
+msgstr "Ta den kjappe undersøkinga vår"
 
 #. {0} is an application, like Firefox.
 #: src/olympia/devhub/templates/devhub/index.html:21 src/olympia/templates/base.html:17
@@ -5777,9 +5777,8 @@ msgstr "Forbetra personvernutvidingar"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1011
-#, fuzzy
 msgid "See more recommended privacy extensions"
-msgstr "Vis fleire tilrådde utvidingar"
+msgstr "Vis fleire tilrådde personvern-utvidingar"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1014
@@ -5803,9 +5802,8 @@ msgstr "Vis fleire tilrådde tema"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1024
-#, fuzzy
 msgid "Strong password managers"
-msgstr "Tilrådde passordhandterarar"
+msgstr "Sterke passordhandsamarar"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1026
@@ -6321,9 +6319,9 @@ msgid "Maximum query length exceeded."
 msgstr ""
 
 #: src/olympia/signing/views.py:54
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Could not find Add-on with ID \"{}\"."
-msgstr "Klarte ikkje å finne ei utviding med ID-en \"{}\"."
+msgstr "Klarte ikkje å finne eit tillegg med ID-en «{}»."
 
 #: src/olympia/signing/views.py:73
 msgid "You do not own this add-on."
