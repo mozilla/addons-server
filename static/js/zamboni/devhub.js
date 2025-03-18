@@ -1,6 +1,17 @@
+import $ from 'jquery';
+import _ from 'underscore';
+import { initCharCount, show_slug_edit } from './global';
+import { _pd } from '../lib/prevent-default';
+import { format } from '../lib/format';
+import { slugify, validateFileUploadSize } from '../zamboni/global';
+import { annotateLocalizedErrors, refreshL10n } from './l10n';
+import { template } from '../lib/format';
+import { capabilities } from '../zamboni/capabilities';
+import { render } from 'timeago.js';
+
 $(document).ready(function () {
   // Modals
-  var $modalFile, $modalDelete, $modalDisable;
+  let $modalFile, $modalDelete, $modalDisable;
 
   // Edit Add-on
   $('#edit-addon').exists(initEditAddon);
@@ -60,9 +71,9 @@ $(document).ready(function () {
   $('.submission-buttons .button').toggleClass('disabled', submissionsDisabled);
 
   // Add-on uploader
-  var $uploadAddon = $('#upload-addon');
+  let $uploadAddon = $('#upload-addon');
   if ($('#upload-addon').length) {
-    var opt = {
+    let opt = {
       cancel: $('.upload-file-cancel'),
       maxSize: $uploadAddon.data('max-upload-size'),
       submissionsDisabled,
@@ -122,7 +133,7 @@ $(document).ready(function () {
     }
   }
   if ($('#modal-unlist').length) {
-    $modalUnlist = $('#modal-unlist').modal('.unlist-addon', {
+    const $modalUnlist = $('#modal-unlist').modal('.unlist-addon', {
       width: 400,
     });
     if (window.location.hash === '#unlist-addon') {
@@ -134,8 +145,8 @@ $(document).ready(function () {
   // add-ons.
   $(document.body).on('submit', '[data-confirm]', function (e) {
     e.preventDefault();
-    var $form = $(e.target);
-    var $modal = $form.data('modal');
+    let $form = $(e.target);
+    let $modal = $form.data('modal');
     if (!$modal) {
       $modal = $($form.data('confirm')).modal();
       $form.data('modal', $modal);
@@ -176,7 +187,7 @@ $(document).ready(function () {
   $.ajaxSetup({ cache: false });
 
   $('.more-actions-popup').each(function () {
-    var el = $(this);
+    let el = $(this);
     el.popup(el.closest('li').find('.more-actions'), {
       width: 'inherit',
       offset: { x: 15 },
@@ -187,7 +198,7 @@ $(document).ready(function () {
   });
 
   $('.modal-delete').each(function () {
-    var el = $(this);
+    let el = $(this);
     el.modal(el.siblings('.delete-addon'), {
       width: 400,
       callback: function (obj) {
@@ -202,11 +213,11 @@ $(document).ready(function () {
   initCompatibility();
 
   $(document).on('click', '.addon-edit-cancel', function () {
-    parent_div = $(this).closest('.edit-addon-section');
+    const parent_div = $(this).closest('.edit-addon-section');
     parent_div.load($(this).attr('href'), function () {
       $('.tooltip').tooltip('#tooltip');
       hideSameSizedIcons();
-      z.refreshL10n();
+      refreshL10n();
     });
     if (parent_div.is('#edit-addon-media')) {
       imageStatus.start();
@@ -215,30 +226,29 @@ $(document).ready(function () {
   });
 });
 
-(function initFormPerms() {
-  z.noEdit = $('body').hasClass('no-edit');
-  if (z.noEdit) {
-    $primary = $('.primary');
-    $els = $primary.find('input, select, textarea, button, a.button');
-    $els.prop('disabled', true);
-    $primary.find('span.handle, a.remove').hide();
-    $('.primary h3 a.button').remove();
-    $(document).ready(function () {
-      $els.off().off();
-    });
-  }
-})();
+let noEdit = $('body').hasClass('no-edit');
+
+if (noEdit) {
+  const $primary = $('.primary');
+  const $els = $primary.find('input, select, textarea, button, a.button');
+  $els.prop('disabled', true);
+  $primary.find('span.handle, a.remove').hide();
+  $('.primary h3 a.button').remove();
+  $(document).ready(function () {
+    $els.off().off();
+  });
+}
 
 function truncateFields() {
   // TODO (potch) find a good fix for this later
   // as per Bug 622030...
   return;
-  // var els = [
+  // let els = [
   //         "#addon-description",
   //         "#developer_comments"
   //     ];
   // $(els.join(', ')).each(function(i,el) {
-  //     var $el = $(el),
+  //     let $el = $(el),
   //         originalHTML = $el.html();
   //     $el.on("click", "a.truncate_expand", function(e) {
   //         e.preventDefault();
@@ -251,58 +261,56 @@ function truncateFields() {
 }
 
 function addonFormSubmit() {
-  parent_div = $(this);
+  const parent_div = $(this);
 
-  (function (parent_div) {
-    // If the baseurl changes (the slug changed) we need to go to the new url.
-    var baseurl = function () {
-      return parent_div.find('#addon-edit-describe').attr('data-baseurl');
-    };
-    $('.edit-media-button button').prop('disabled', false);
-    $('form', parent_div).submit(function (e) {
-      e.preventDefault();
-      var old_baseurl = baseurl();
-      parent_div.find('.item').removeClass('loaded').addClass('loading');
-      var $document = $(document),
-        scrollBottom = $document.height() - $document.scrollTop(),
-        $form = $(this);
+  // If the baseurl changes (the slug changed) we need to go to the new url.
+  let baseurl = function () {
+    return parent_div.find('#addon-edit-describe').attr('data-baseurl');
+  };
+  $('.edit-media-button button').prop('disabled', false);
+  $('form', parent_div).submit(function (e) {
+    e.preventDefault();
+    let old_baseurl = baseurl();
+    parent_div.find('.item').removeClass('loaded').addClass('loading');
+    let $document = $(document),
+      scrollBottom = $document.height() - $document.scrollTop(),
+      $form = $(this);
 
-      $.post($form.attr('action'), $form.serialize(), function (d) {
-        parent_div.html(d).each(addonFormSubmit);
-        // The HTML has changed after we posted the form, thus the need to retrieve the new HTML
-        $form = parent_div.find('form');
-        var hasErrors = $form.find('.errorlist').length;
-        $('.tooltip').tooltip('#tooltip');
-        if (!hasErrors && old_baseurl && old_baseurl !== baseurl()) {
-          document.location = baseurl();
-        }
-        $document.scrollTop($document.height() - scrollBottom);
-        truncateFields();
-        annotateLocalizedErrors(parent_div);
-        if (parent_div.is('#edit-addon-media')) {
-          imageStatus.start();
-          hideSameSizedIcons();
-        }
-        if ($form.find('#addon-categories-edit').length) {
-          initCatFields();
-        }
+    $.post($form.attr('action'), $form.serialize(), function (d) {
+      parent_div.html(d).each(addonFormSubmit);
+      // The HTML has changed after we posted the form, thus the need to retrieve the new HTML
+      $form = parent_div.find('form');
+      let hasErrors = $form.find('.errorlist').length;
+      $('.tooltip').tooltip('#tooltip');
+      if (!hasErrors && old_baseurl && old_baseurl !== baseurl()) {
+        document.location = baseurl();
+      }
+      $document.scrollTop($document.height() - scrollBottom);
+      truncateFields();
+      annotateLocalizedErrors(parent_div);
+      if (parent_div.is('#edit-addon-media')) {
+        imageStatus.start();
+        hideSameSizedIcons();
+      }
+      if ($form.find('#addon-categories-edit').length) {
+        initCatFields();
+      }
 
-        if (!hasErrors) {
-          var e = $(
-            format('<b class="save-badge">{0}</b>', [gettext('Changes Saved')]),
-          ).appendTo(parent_div.find('h3').first());
+      if (!hasErrors) {
+        let e = $(
+          format('<b class="save-badge">{0}</b>', [gettext('Changes Saved')]),
+        ).appendTo(parent_div.find('h3').first());
+        setTimeout(function () {
+          e.css('opacity', 0);
           setTimeout(function () {
-            e.css('opacity', 0);
-            setTimeout(function () {
-              e.remove();
-            }, 200);
-          }, 2000);
-        }
-      });
+            e.remove();
+          }, 200);
+        }, 2000);
+      }
     });
-    reorderPreviews();
-    z.refreshL10n();
-  })(parent_div);
+  });
+  reorderPreviews();
+  refreshL10n();
 }
 
 $('#user-form-template .author-email').attr({
@@ -311,26 +319,24 @@ $('#user-form-template .author-email').attr({
 });
 
 function initEditAddon() {
-  if (z.noEdit) return;
+  if (noEdit) return;
 
   // Load the edit form.
   $('#edit-addon').on('click', 'h3 a', function (e) {
     e.preventDefault();
 
-    var a = e.target;
-    parent_div = $(a).closest('.edit-addon-section');
+    const a = e.target;
+    const parent_div = $(a).closest('.edit-addon-section');
 
-    (function (parent_div, a) {
-      parent_div.find('.item').addClass('loading');
-      parent_div.load($(a).attr('data-editurl'), function () {
-        $('.tooltip').tooltip('#tooltip');
-        if (parent_div.find('#addon-categories-edit').length) {
-          initCatFields();
-        }
-        $(this).each(addonFormSubmit);
-        initInvisibleUploads();
-      });
-    })(parent_div, a);
+    parent_div.find('.item').addClass('loading');
+    parent_div.load($(a).attr('data-editurl'), function () {
+      $('.tooltip').tooltip('#tooltip');
+      if (parent_div.find('#addon-categories-edit').length) {
+        initCatFields();
+      }
+      $(this).each(addonFormSubmit);
+      initInvisibleUploads();
+    });
 
     return false;
   });
@@ -342,12 +348,12 @@ function initEditAddon() {
 }
 
 function create_new_preview_field() {
-  var forms_count = $('#id_files-TOTAL_FORMS').val(),
+  let forms_count = $('#id_files-TOTAL_FORMS').val(),
     last = $('#file-list .preview').last(),
     last_clone = last.clone();
 
   $('input, textarea, div', last_clone).each(function () {
-    var re = new RegExp(format('-{0}-', [forms_count - 1])),
+    let re = new RegExp(format('-{0}-', [forms_count - 1])),
       new_count = '-' + forms_count + '-',
       el = $(this);
 
@@ -364,7 +370,7 @@ function create_new_preview_field() {
 }
 
 function renumberPreviews() {
-  previews = $('#file-list').children('.preview:visible');
+  const previews = $('#file-list').children('.preview:visible');
   previews.each(function (i, el) {
     $(this).find('.position input').val(i);
   });
@@ -374,7 +380,7 @@ function renumberPreviews() {
 }
 
 function reorderPreviews() {
-  var preview_list = $('#file-list');
+  let preview_list = $('#file-list');
 
   if (preview_list.length) {
     preview_list.sortable({
@@ -390,7 +396,7 @@ function reorderPreviews() {
 }
 
 function initUploadPreview() {
-  var forms = {},
+  let forms = {},
     $f = $('#edit-addon-media, #submit-media');
 
   function upload_start_all(e) {
@@ -407,7 +413,7 @@ function initUploadPreview() {
   }
 
   function upload_start(e, file) {
-    form = create_new_preview_field();
+    const form = create_new_preview_field();
     forms['form_' + file.instance] = form;
 
     $(form)
@@ -419,18 +425,18 @@ function initUploadPreview() {
   }
 
   function upload_finished(e, file) {
-    form = forms['form_' + file.instance];
+    const form = forms['form_' + file.instance];
     form.find('.preview-thumb').removeClass('loading');
     renumberPreviews();
   }
 
   function upload_success(e, file, upload_hash) {
-    form = forms['form_' + file.instance];
+    const form = forms['form_' + file.instance];
     form.find('[name$="upload_hash"]').val(upload_hash);
   }
 
   function upload_errors(e, file, errors) {
-    var form = forms['form_' + file.instance],
+    let form = forms['form_' + file.instance],
       $el = $(form),
       error_msg = gettext('There was an error uploading your file.'),
       $error_title = $('<strong>').text(error_msg),
@@ -454,7 +460,7 @@ function initUploadPreview() {
     renumberPreviews();
   }
 
-  if (z.capabilities.fileAPI) {
+  if (capabilities.fileAPI) {
     $f.on('upload_finished', '#screenshot_upload', upload_finished)
       .on('upload_success', '#screenshot_upload', upload_success)
       .on('upload_start', '#screenshot_upload', upload_start)
@@ -471,7 +477,7 @@ function initUploadPreview() {
     '#file-list .remove',
     function (e) {
       e.preventDefault();
-      var row = $(this).closest('.preview');
+      let row = $(this).closest('.preview');
       row.find('.delete input').prop('checked', true);
       row.slideUp(300, renumberPreviews);
     },
@@ -479,7 +485,7 @@ function initUploadPreview() {
 }
 
 function initInvisibleUploads() {
-  if (!z.capabilities.fileAPI) {
+  if (!capabilities.fileAPI) {
     $('.invisible-upload').addClass('legacy');
   }
 }
@@ -493,7 +499,7 @@ function initUploadIcon() {
     function (e) {
       e.preventDefault();
 
-      var $error_list = $('#icon_preview').parent().find('.errorlist'),
+      let $error_list = $('#icon_preview').parent().find('.errorlist'),
         $parent = $(this).closest('li');
 
       $('input', $parent).prop('checked', true);
@@ -511,9 +517,9 @@ function initUploadIcon() {
   );
 
   // Upload an image!
-  var $f = $('#edit-addon-media, #submit-media'),
+  let $f = $('#edit-addon-media, #submit-media'),
     upload_errors = function (e, file, errors) {
-      var $error_list = $('#icon_preview').parent().find('.errorlist');
+      let $error_list = $('#icon_preview').parent().find('.errorlist');
       $.each(errors, function (i, v) {
         $error_list.append('<li>' + v + '</li>');
       });
@@ -531,7 +537,7 @@ function initUploadIcon() {
       ).prop('checked', true);
     },
     upload_start = function (e, file) {
-      var $error_list = $('#icon_preview').parent().find('.errorlist');
+      let $error_list = $('#icon_preview').parent().find('.errorlist');
       $error_list.html('');
 
       $('.icon_preview img', $f).addClass('loading');
@@ -548,7 +554,7 @@ function initUploadIcon() {
     .on('upload_finished', '#id_icon_upload', upload_finished)
     .on('upload_errors', '#id_icon_upload', upload_errors)
     .on('change', '#id_icon_upload', function (e) {
-      if (z.capabilities.fileAPI) {
+      if (capabilities.fileAPI) {
         $(this).imageUploader();
       } else {
         $('#icon_preview').hide();
@@ -560,7 +566,7 @@ function fixPasswordField($context) {
   // This is a hack to prevent password managers from automatically
   // deleting add-ons.  See bug 630126.
   $context.find('input[type="password"]').each(function () {
-    var $this = $(this);
+    let $this = $(this);
     if ($this.attr('data-name')) {
       $this.attr('name', $this.attr('data-name'));
     }
@@ -570,7 +576,7 @@ function fixPasswordField($context) {
 
 function initVersions() {
   $('#modals').hide();
-  var versions;
+  let versions;
   $.getJSON($('#version-list').attr('data-stats'), function (json) {
     versions = json;
   });
@@ -579,7 +585,7 @@ function initVersions() {
     width: 400,
     callback: function (d) {
       /* This sucks because of ngettext. */
-      var el = $(d.click_target),
+      let el = $(d.click_target),
         version = versions[el.data('version')],
         is_current = el.data('is-current') === 1,
         can_be_disabled = el.data('can-be-disabled') === 1,
@@ -603,17 +609,17 @@ function initVersions() {
   });
 
   function addToReviewHistory(json, historyContainer, reverseOrder) {
-    var empty_note = historyContainer.children('.review-entry-empty');
+    let empty_note = historyContainer.children('.review-entry-empty');
     json.forEach(function (note) {
-      var clone = empty_note.clone(true, true);
+      let clone = empty_note.clone(true, true);
       clone.attr('class', 'review-entry');
       if (note['highlight'] == true) {
         clone.addClass('new');
       }
       clone.find('.action')[0].textContent = note['action_label'];
-      var user = clone.find('.user_name');
+      let user = clone.find('.user_name');
       user[0].textContent = note['user']['name'];
-      var date = clone.find('.timeago');
+      let date = clone.find('.timeago');
       date[0].textContent = note['date'];
       date.attr('datetime', note['date']);
       date.attr('title', note['date']);
@@ -630,28 +636,29 @@ function initVersions() {
         clone.insertAfter(historyContainer.children('.review-entry-failure'));
       }
     });
-    $('time.timeago').timeago('updateFromDOM');
+    render(document.querySelectorAll('time.timeago'));
   }
 
   function loadReviewHistory(div, nextLoad) {
     div.removeClass('hidden');
-    replybox = div.children('.dev-review-reply');
+    const replybox = div.children('.dev-review-reply');
     if (replybox.length == 1) {
       replybox[0].scrollIntoView(false);
     }
-    var sessionId = div.data('session-id');
-    var container = div.children('.history-container');
+    let sessionId = div.data('session-id');
+    let container = div.children('.history-container');
     container.children('.review-entry-loading').removeClass('hidden');
     container.children('.review-entry-failure').addClass('hidden');
+    let api_url;
     if (!nextLoad) {
       container.children('.review-entry').remove();
-      var api_url = div.data('api-url');
+      api_url = div.data('api-url');
     } else {
-      var api_url = div.data('next-url');
+      api_url = div.data('next-url');
     }
-    var success = function (json) {
+    let success = function (json) {
       addToReviewHistory(json['results'], container);
-      var loadmorediv = container.children('div.review-entry-loadmore');
+      let loadmorediv = container.children('div.review-entry-loadmore');
       if (json['next']) {
         loadmorediv.removeClass('hidden');
         container.prepend(loadmorediv);
@@ -660,7 +667,7 @@ function initVersions() {
         loadmorediv.addClass('hidden');
       }
     };
-    var fail = function (xhr) {
+    let fail = function (xhr) {
       container.children('.review-entry-failure').removeClass('hidden');
       container
         .children('.review-entry-failure')
@@ -691,49 +698,49 @@ function initVersions() {
   }
   $('.review-history-show').click(function (e) {
     e.preventDefault();
-    var version = $(this).data('version');
-    var $show_link = $('#review-history-show-' + version);
+    let version = $(this).data('version');
+    let $show_link = $('#review-history-show-' + version);
     $show_link.addClass('hidden');
     $show_link.next().removeClass('hidden');
     loadReviewHistory($($show_link.data('div')));
   });
   $('.review-history-hide').click(function (e) {
     e.preventDefault();
-    var $tgt = $(this);
+    let $tgt = $(this);
     $tgt.addClass('hidden');
-    var prev = $tgt.prev();
+    let prev = $tgt.prev();
     prev.removeClass('hidden');
     $(prev.data('div')).addClass('hidden');
   });
   $('a.review-history-loadmore').click(function (e) {
     e.preventDefault();
-    var $tgt = $(this);
+    let $tgt = $(this);
     loadReviewHistory($($tgt.data('div')), true);
   });
   $('.review-history-hide').prop('style', '');
   $('.review-history.hidden').prop('style', '');
   $('.history-container .hidden').prop('style', '');
-  $('time.timeago').timeago();
+  render(document.querySelectorAll('time.timeago'));
 
   $('.dev-review-reply-form').submit(function (e) {
     e.preventDefault();
-    $replyForm = $(e.target);
+    const $replyForm = $(e.target);
     if ($replyForm.children('textarea').val() == '') {
       return false;
     }
-    var submitButton = $replyForm.children('button');
+    let submitButton = $replyForm.children('button');
     $.ajax({
       type: 'POST',
       url: $replyForm.attr('action'),
       data: $replyForm.serialize(),
       beforeSend: function (xhr) {
         submitButton.prop('disabled', true);
-        var sessionId = $replyForm.data('session-id');
+        let sessionId = $replyForm.data('session-id');
         xhr.setRequestHeader('Authorization', 'Session ' + sessionId);
       },
       success: function (json) {
-        var historyDiv = $($replyForm.data('history'));
-        var container = historyDiv.children('.history-container');
+        let historyDiv = $($replyForm.data('history'));
+        let container = historyDiv.children('.history-container');
         addToReviewHistory([json], container, true);
         $replyForm.children('textarea').val('');
       },
@@ -747,8 +754,8 @@ function initVersions() {
 }
 
 function initSubmit() {
-  var dl = $('body').attr('data-default-locale');
-  var el = format('#trans-name [lang="{0}"]', dl);
+  let dl = $('body').attr('data-default-locale');
+  let el = format('#trans-name [lang="{0}"]', dl);
   $(el).attr('id', 'id_name');
   $('#submit-describe')
     .on('keyup', el, slugify)
@@ -756,7 +763,7 @@ function initSubmit() {
     .on('click', '#edit_slug', show_slug_edit)
     .on('change', '#id_slug', function () {
       $('#id_slug').attr('data-customized', 1);
-      var v = $('#id_slug').val();
+      let v = $('#id_slug').val();
       if (!v) {
         $('#id_slug').attr('data-customized', 0);
         slugify();
@@ -772,7 +779,7 @@ function initSubmit() {
 }
 
 function showNameSummaryCroppingWarnings() {
-  var exceeds_max_length = false,
+  let exceeds_max_length = false,
     max_length = $('.edit-addon-details .char-count').data('maxlength'),
     name_default_val = $('[name^="name_"]:visible').val(),
     summary_default_val = $('[name^="summary_"]:visible').val(),
@@ -780,7 +787,7 @@ function showNameSummaryCroppingWarnings() {
       '.combine-name-summary [name^="name_"]:hidden, .combine-name-summary [name^="summary_"]:hidden';
 
   $(selectors).each(function (index, element) {
-    var locale = $(element).attr('lang'),
+    let locale = $(element).attr('lang'),
       name_val = $('[name="name_' + locale + '"]').val() || name_default_val,
       summary_val =
         $('[name="summary_' + locale + '"]').val() || summary_default_val;
@@ -794,7 +801,7 @@ function showNameSummaryCroppingWarnings() {
 }
 
 function generateErrorList(o) {
-  var list = $("<ul class='errorlist'></ul>");
+  let list = $("<ul class='errorlist'></ul>");
   $.each(o, function (i, v) {
     list.append($(format('<li>{0}</li>', v)));
   });
@@ -802,16 +809,16 @@ function generateErrorList(o) {
 }
 
 function initEditVersions() {
-  if (z.noEdit) return;
+  if (noEdit) return;
   $('#file-list').on('click', 'a.remove', function () {
-    var row = $(this).closest('tr');
+    let row = $(this).closest('tr');
     $('input:first', row).prop('checked', true);
     row.hide();
     row.next().show();
   });
 
   $('#file-list').on('click', 'a.undo', function () {
-    var row = $(this).closest('tr').prev();
+    let row = $(this).closest('tr').prev();
     $('input:first', row).prop('checked', false);
     row.show();
     row.next().hide();
@@ -830,26 +837,26 @@ function initEditVersions() {
 }
 
 function initCatFields(delegate) {
-  var $delegate = $(delegate || '#addon-categories-edit');
+  let $delegate = $(delegate || '#addon-categories-edit');
   $delegate.find('div.addon-app-cats').each(function () {
-    var main_selector = '.addon-categories',
+    let main_selector = '.addon-categories',
       misc_selector = '.addon-misc-category';
-    var $parent = $(this);
-    var $grand_parent = $(this).closest('[data-max-categories]'),
+    let $parent = $(this);
+    let $grand_parent = $(this).closest('[data-max-categories]'),
       $main = $parent.find(main_selector),
       $misc = $parent.find(misc_selector),
       maxCats = parseInt($grand_parent.attr('data-max-categories'), 10);
-    var checkMainDefault = function () {
-      var checkedLength = $('input:checked', $main).length,
+    let checkMainDefault = function () {
+      let checkedLength = $('input:checked', $main).length,
         disabled = checkedLength >= maxCats;
       $('input:not(:checked)', $main).prop('disabled', disabled);
       return checkedLength;
     };
-    var checkMain = function () {
-      var checkedLength = checkMainDefault();
+    let checkMain = function () {
+      let checkedLength = checkMainDefault();
       $('input', $misc).prop('checked', checkedLength <= 0);
     };
-    var checkOther = function () {
+    let checkOther = function () {
       $('input', $main).prop('checked', false).prop('disabled', false);
     };
     checkMainDefault();
@@ -873,7 +880,7 @@ function initLicenseFields() {
       $('.priv').hide();
     }
   });
-  var other_val = $('.license-other').attr('data-val');
+  let other_val = $('.license-other').attr('data-val');
   $('.license').click(function (e) {
     if ($(this).val() == other_val) {
       $('.license-other').show().removeClass('hidden');
@@ -889,9 +896,9 @@ function initAuthorFields() {
     pointTo: $('#what-are-roles'),
   });
 
-  if (z.noEdit) return;
+  if (noEdit) return;
 
-  var request = false,
+  let request = false,
     timeout = false,
     empty_form = template(
       $('#user-form-template')
@@ -921,7 +928,7 @@ function initAuthorFields() {
 
   authors.on('click', '.remove', function (e) {
     e.preventDefault();
-    var tgt = $(this),
+    let tgt = $(this),
       row = tgt.parents('li'),
       manager = $('#id_user_form-TOTAL_FORMS');
     if (authors.children('.author:visible').length > 1) {
@@ -941,7 +948,7 @@ function initAuthorFields() {
     .on('keyup', '.author-email', validateUser)
     .on('click', '.remove', function (e) {
       e.preventDefault();
-      var tgt = $(this),
+      let tgt = $(this),
         row = tgt.parents('li'),
         manager = $('#id_authors_pending_confirmation-TOTAL_FORMS');
       if (row.hasClass('initial')) {
@@ -954,7 +961,7 @@ function initAuthorFields() {
     });
 
   function validateUser(e) {
-    var tgt = $(this),
+    let tgt = $(this),
       row = tgt.parents('li');
     if (row.hasClass('blank')) {
       tgt.removeClass('placeholder').attr('placeholder', undefined);
@@ -984,7 +991,7 @@ function initAuthorFields() {
     }
   }
   function addAuthorRow() {
-    var numForms = authors_pending_confirmation.children('.author').length,
+    let numForms = authors_pending_confirmation.children('.author').length,
       manager = $('#id_authors_pending_confirmation-TOTAL_FORMS');
     authors_pending_confirmation.append(empty_form([numForms]));
     manager.val(authors_pending_confirmation.children('.author').length);
@@ -996,7 +1003,7 @@ function initCompatibility() {
     'click',
     'p.add-app a',
     _pd(function (e) {
-      var outer = $(this).closest('form');
+      let outer = $(this).closest('form');
 
       $('tr.app-extra', outer).each(function () {
         addAppRow(this);
@@ -1008,7 +1015,7 @@ function initCompatibility() {
         'click',
         'a',
         _pd(function (e) {
-          var $this = $(this),
+          let $this = $(this),
             sel = format('tr.app-extra td[class="{0}"]', [$this.attr('class')]),
             $row = $(sel, outer);
           $row
@@ -1030,7 +1037,7 @@ function initCompatibility() {
     'click',
     '.compat-versions .remove',
     _pd(function (e) {
-      var $this = $(this),
+      let $this = $(this),
         $row = $this.closest('tr');
       $row.addClass('app-extra');
       if (!$row.hasClass('app-extra-orig')) {
@@ -1054,12 +1061,12 @@ function imagePoller() {
   };
 }
 
-var imageStatus = {
+let imageStatus = {
   start: function () {
     this.icon = new imagePoller();
     this.preview = new imagePoller();
     this.icon.check = function () {
-      var self = imageStatus,
+      let self = imageStatus,
         node = $('#edit-addon-media');
       $.getJSON(node.attr('data-checkurl'), function (json) {
         if (json !== null && json.icons) {
@@ -1077,16 +1084,16 @@ var imageStatus = {
       });
     };
     this.preview.check = function () {
-      var self = imageStatus;
+      let self = imageStatus;
       $('div.preview-thumb').each(function () {
         check_images(this);
       });
       function check_images(el) {
-        var $this = $(el);
+        let $this = $(el);
         if ($this.hasClass('preview-successful')) {
           return;
         }
-        var img = new Image();
+        let img = new Image();
         img.onload = function () {
           $this
             .removeClass('preview-error preview-unknown')
@@ -1116,7 +1123,7 @@ var imageStatus = {
   },
   polling: function () {
     if (this.icon.poll || this.preview.poll) {
-      var node = $('#edit-addon-media');
+      let node = $('#edit-addon-media');
       if (!node.find('b.image-message').length) {
         $(
           format('<b class="save-badge image-message">{0}</b>', [
@@ -1127,7 +1134,7 @@ var imageStatus = {
     }
   },
   newurl: function (orig) {
-    var bst = new Date().getTime();
+    let bst = new Date().getTime();
     orig += (orig.indexOf('?') > 1 ? '&' : '?') + bst;
     return orig;
   },
@@ -1144,11 +1151,11 @@ var imageStatus = {
 };
 
 function hideSameSizedIcons() {
-  icon_sizes = [];
+  const icon_sizes = [];
   $('#icon_preview_readonly img')
     .show()
     .each(function () {
-      size = $(this).width() + 'x' + $(this).height();
+      const size = $(this).width() + 'x' + $(this).height();
       if ($.inArray(size, icon_sizes) >= 0) {
         $(this).hide();
       }
@@ -1157,15 +1164,15 @@ function hideSameSizedIcons() {
 }
 
 function addAppRow(obj) {
-  var outer = $(obj).closest('form'),
+  let outer = $(obj).closest('form'),
     appClass = $('td.app', obj).attr('class');
   if (!$('.new-apps ul', outer).length) {
     $('.new-apps', outer).html('<ul></ul>');
   }
-  var sel = format('.new-apps ul a[class="{0}"]', [appClass]);
+  let sel = format('.new-apps ul a[class="{0}"]', [appClass]);
   if (!$(sel, outer).length) {
     // Append app to <ul> if it's not already listed.
-    var appLabel = $('td.app', obj).text(),
+    let appLabel = $('td.app', obj).text(),
       appHTML =
         '<li><a href="#" class="' + appClass + '">' + appLabel + '</a></li>';
     $('.new-apps ul', outer).append(appHTML);
@@ -1173,7 +1180,7 @@ function addAppRow(obj) {
 }
 
 function compatModalCallback(obj) {
-  var $widget = this,
+  let $widget = this,
     ct = $(obj.click_target),
     form_url = ct.attr('data-updateurl');
 
@@ -1190,13 +1197,13 @@ function compatModalCallback(obj) {
     if ($widget.hasClass('ajax-loading')) return;
     $widget.addClass('ajax-loading');
 
-    var widgetForm = $(this);
+    let widgetForm = $(this);
     $.post(widgetForm.attr('action'), widgetForm.serialize(), function (data) {
       $widget.removeClass('ajax-loading');
       if ($(data).find('.errorlist').length) {
         $widget.html(data);
       } else {
-        var c = $(
+        let c = $(
           '.item[data-addonid=' +
             widgetForm.attr('data-addonid') +
             '] .item-actions li.compat',
@@ -1224,12 +1231,12 @@ function initCCLicense() {
     }
   }
   function setLicenseFromWizard() {
-    var cc_data = $('input[name^="cc-"]:checked')
+    let cc_data = $('input[name^="cc-"]:checked')
       .map(function () {
         return this.dataset.cc;
       })
       .get();
-    var radio = $(
+    let radio = $(
       '#submit-describe #license-list input[type=radio][data-cc="' +
         cc_data.join(' ') +
         '"]',
@@ -1272,8 +1279,8 @@ function initCCLicense() {
   }
   function updateLicenseBox($license) {
     if ($license.length) {
-      var licenseTxt = $license.data('name');
-      var url = $license.next('a');
+      let licenseTxt = $license.data('name');
+      let url = $license.next('a');
       if (url.length) {
         licenseTxt = format(
           '<a href="{0}">{1}</a>',
@@ -1281,7 +1288,7 @@ function initCCLicense() {
           licenseTxt,
         );
       }
-      var $p = $('#theme-license');
+      let $p = $('#theme-license');
       $p.show()
         .find('#cc-license')
         .html(licenseTxt)
@@ -1289,7 +1296,7 @@ function initCCLicense() {
     }
   }
   function licenseChangeHandler() {
-    var $license = $(
+    let $license = $(
       '#submit-describe #license-list input[type=radio][name=license-builtin]:checked',
     );
     if ($license.length) {
@@ -1304,7 +1311,7 @@ function initCCLicense() {
     setCopyright($('input[name="cc-attrib"]:checked').data('cc') == 'copyr');
   });
   $('#submit-describe input[name^="cc-"]').change(function () {
-    var $license = setLicenseFromWizard();
+    let $license = setLicenseFromWizard();
     updateLicenseBox($license);
   });
   $(
@@ -1325,7 +1332,7 @@ function initSourceSubmitOutcomes() {
       $('#option_no_source').hide();
       $('#option_yes_source').hide();
       $('#submit-source #id_has_source input').each(function (index, element) {
-        var $radio = $(element);
+        let $radio = $(element);
         if ($radio.val() == 'yes' && $radio.prop('checked')) {
           $('#option_yes_source').show();
           $('#id_source').attr('required', true);
@@ -1340,7 +1347,7 @@ function initSourceSubmitOutcomes() {
   $('#submit-source').submit(function () {
     // Drop the upload if 'no' is selected.
     $('#submit-source #id_has_source input').each(function (index, element) {
-      var $radio = $(element);
+      let $radio = $(element);
       if ($radio.val() == 'no' && $radio.prop('checked')) {
         $('#id_source').val('');
       }
@@ -1357,7 +1364,7 @@ function initSubmitModals() {
 
   // Used by "Cancel and disable version" button during submission process
   if ($('#modal-confirm-submission-cancel').length > 0) {
-    var $modalForm = $('#modal-confirm-submission-cancel'),
+    let $modalForm = $('#modal-confirm-submission-cancel'),
       $modalDelete = $modalForm.modal('.confirm-submission-cancel', {
         width: 400,
       });
@@ -1370,7 +1377,7 @@ function initSubmitModals() {
 
       // this alternate URL is stored in this modal's submit button
       // so change the form action attribute and submit it
-      var $confirmButton = $('.confirm-submission-cancel'),
+      let $confirmButton = $('.confirm-submission-cancel'),
         $mainForm = $confirmButton.closest('form'),
         cancelUrl = $confirmButton.attr('formaction');
 

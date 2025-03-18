@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 /* Remove "Go" buttons from <form class="go" */
 $(document).ready(function () {
   $('form.go')

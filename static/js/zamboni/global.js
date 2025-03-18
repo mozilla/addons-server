@@ -1,3 +1,7 @@
+import $ from 'jquery';
+import _ from 'underscore';
+import { format } from '../lib/format';
+import { unicode_letters } from './unicode';
 // Things global to the site should go here, such as re-usable helper
 // functions and common ui components.
 
@@ -15,10 +19,10 @@
 // You can set a custom timeout (milliseconds) by using data-delay:
 //      <div data-delay="100" title="hi"></div>
 
-z.uid = 0;
+let uid = 0;
 
-jQuery.fn.tooltip = function (tip_el) {
-  var $tip = $(tip_el),
+$.fn.tooltip = function (tip_el) {
+  let $tip = $(tip_el),
     $msg = $('span', $tip),
     $targets = this,
     timeout = false,
@@ -28,14 +32,14 @@ jQuery.fn.tooltip = function (tip_el) {
 
   function setTip() {
     if (!$tgt) return;
-    var pos = $tgt.offset(),
+    let pos = $tgt.offset(),
       title = $title.attr('title'),
       html = $title.attr('data-tooltip-html');
 
     delay = $title.is('[data-delay]') ? $title.attr('data-delay') : 300;
 
     if (!html && title.indexOf('::') > 0) {
-      var title_split = title.split('::');
+      let title_split = title.split('::');
       $msg.text('');
       $msg.append($('<strong>', { text: title_split[0].trim() }));
       $msg.append($('<span>', { text: title_split[1].trim() }));
@@ -45,7 +49,7 @@ jQuery.fn.tooltip = function (tip_el) {
 
     $title.attr('data-oldtitle', title).attr('title', '');
 
-    var tw = $tip.outerWidth(false) / 2,
+    let tw = $tip.outerWidth(false) / 2,
       th = $tip.outerHeight(false),
       toX = pos.left + $tgt.innerWidth() / 2 - tw - 1,
       toY = pos.top - $tgt.innerHeight() - th - 2;
@@ -93,8 +97,8 @@ $(document).ready(function () {
 // returns an event handler that will hide/unbind an element when a click is
 // registered outside itself.
 function makeBlurHideCallback(el) {
-  var hider = function (e) {
-    _root = el.get(0);
+  const hider = function (e) {
+    const _root = el.get(0);
     // Bail if the click was somewhere on the popup.
     if (e) {
       if (
@@ -137,9 +141,8 @@ function makeBlurHideCallback(el) {
 $.fn.popup = function (click_target, o) {
   o = o || {};
 
-  var $ct = $(click_target),
+  let $ct = $(click_target),
     $popup = this,
-    uid = z.uid++,
     spawned = 0;
 
   $popup.o = $.extend(
@@ -166,7 +169,7 @@ $.fn.popup = function (click_target, o) {
     el = el || $popup.o.pointTo;
     if (!el) return false;
     $popup.detach().appendTo('body');
-    var pt = $(el),
+    let pt = $(el),
       pos = pt.offset(),
       tw = pt.outerWidth(false) / 2,
       th = pt.outerHeight(false),
@@ -189,14 +192,14 @@ $.fn.popup = function (click_target, o) {
   $popup.hideMe = function () {
     $popup.hide();
     $popup.off();
-    $(document.body).off('click.' + uid, $popup.hider);
+    $(document.body).off('click.' + uid++, $popup.hider);
     return $popup;
   };
 
   function handler(e) {
     e.preventDefault();
     spawned = e.timeStamp;
-    var resp = o.callback
+    let resp = o.callback
       ? o.callback.call($popup, {
           click_target: this,
           evt: e,
@@ -209,7 +212,7 @@ $.fn.popup = function (click_target, o) {
   }
 
   $popup.render = function () {
-    var p = $popup.o,
+    let p = $popup.o,
       hideCallback = makeBlurHideCallback($popup);
     $popup.hider = function (e) {
       if (e.timeStamp != spawned) {
@@ -276,7 +279,7 @@ $.fn.popup = function (click_target, o) {
 $.fn.modal = function (click_target, o) {
   o = o || {};
 
-  var $ct = $(click_target),
+  let $ct = $(click_target),
     $modal = this;
 
   $modal.o = $.extend(
@@ -317,7 +320,7 @@ $.fn.modal = function (click_target, o) {
   };
 
   $modal.hideMe = function () {
-    var p = $modal.o;
+    let p = $modal.o;
     $modal.hide();
     $modal.off();
     $(document.body).off('click newmodal', $modal.hider);
@@ -329,7 +332,7 @@ $.fn.modal = function (click_target, o) {
 
   function handler(e) {
     e.preventDefault();
-    var resp = o.callback
+    let resp = o.callback
       ? o.callback.call($modal, {
           click_target: this,
           evt: e,
@@ -343,7 +346,7 @@ $.fn.modal = function (click_target, o) {
   }
 
   $modal.render = function () {
-    var p = $modal.o;
+    let p = $modal.o;
     $modal.hider = makeBlurHideCallback($modal);
     if (p.hideme) {
       try {
@@ -358,7 +361,7 @@ $.fn.modal = function (click_target, o) {
       }
     }
     if (p.close) {
-      var close = $('<a>', { class: 'close', text: 'X' });
+      let close = $('<a>', { class: 'close', text: 'X' });
       $modal.append(close);
     }
     $('.popup').hide();
@@ -416,37 +419,37 @@ $.fn.modal = function (click_target, o) {
 
 function makeslug(s, delimiter) {
   if (!s) return '';
-  var re = new RegExp('[^\\w' + z.unicode_letters + '\\s-]+', 'g');
+  let re = new RegExp('[^\\w' + unicode_letters + '\\s-]+', 'g');
   s = $.trim(s.replace(re, ' '));
   s = s.replace(/[-\s]+/g, delimiter || '-').toLowerCase();
   return s;
 }
 
-function show_slug_edit(e) {
+export function show_slug_edit(e) {
   $('#slug_readonly').hide();
   $('#slug_edit').show();
   $('#id_slug').focus();
   e.preventDefault();
 }
 
-function slugify() {
-  var $slug = $('#id_slug');
-  var url_customized =
+export function slugify() {
+  let $slug = $('#id_slug');
+  let url_customized =
     $slug.attr('data-customized') === 0 || !$slug.attr('data-customized');
   if (url_customized || !$slug.val()) {
-    var new_slug = makeslug($('#id_name').val());
+    let new_slug = makeslug($('#id_name').val());
     if (new_slug !== '') {
       $slug.val(new_slug);
     }
   }
-  name_val = $slug.val();
+  const name_val = $slug.val();
   $('#slug_value').text($slug.val());
 }
 
 // Initializes character counters for textareas.
-function initCharCount() {
-  var countChars = function (val, cc) {
-    var max = parseInt(cc.attr('data-maxlength'), 10),
+export function initCharCount() {
+  let countChars = function (val, cc) {
+    let max = parseInt(cc.attr('data-maxlength'), 10),
       min = parseInt(cc.attr('data-minlength'), 10) || 0,
       // Count \r\n as one character, not two.
       lineBreaks = val.split('\n').length - 1,
@@ -482,13 +485,13 @@ function initCharCount() {
     ).toggleClass('error', left < 0 || count < min);
   };
   $('.char-count').each(function () {
-    var $cc = $(this),
+    let $cc = $(this),
       $form = $(this).closest('form'),
       $el,
       multi = false;
     if ($cc.data('for-names') !== undefined) {
       multi = true;
-      var query_string = $cc
+      let query_string = $cc
         .data('for-names')
         .split(',')
         .map(function (field_name) {
@@ -516,7 +519,7 @@ function initCharCount() {
     }
     $el
       .on('keyup blur', function () {
-        var $this = $(this),
+        let $this = $(this),
           val;
         if (multi) {
           val = $el
@@ -535,92 +538,11 @@ function initCharCount() {
   });
 }
 
-// FormData that works everywhere
-// This abstracts out the nifty new FormData object in FF4, so that
-// non-Firefox 4 browsers can take advantage of it.  If the user
-// is using FF4, it will use FormData.  If not, it will construct
-// the headers manually.
-//
-// ONLY DIFFERENCE: You don't create your own xhr object.
-//
-// Example:
-//   var fd = z.FormData();
-//   fd.append("test", "awesome");
-//   fd.append("afile", fileEl.files[0]);
-//   fd.xhr.setHeader("whatever", "val");
-//   fd.open("POST", "http://example.com");
-//   fd.send(); // same as above
-
-(function () {
-  var hasFormData = typeof FormData != 'undefined';
-
-  z.FormData = function () {
-    this.fields = {};
-    this.xhr = new XMLHttpRequest();
-    this.boundary =
-      'z' + new Date().getTime() + '' + Math.floor(Math.random() * 10000000);
-
-    if (hasFormData) {
-      this.formData = new FormData();
-    } else {
-      this.output = '';
-    }
-
-    this.append = function (name, val) {
-      if (hasFormData) {
-        this.formData.append(name, val);
-      } else {
-        if (typeof val == 'object' && 'fileName' in val) {
-          this.output += '--' + this.boundary + '\r\n';
-          this.output +=
-            'Content-Disposition: form-data; name="' +
-            name.replace(/[^\w]/g, '') +
-            '";';
-
-          // Encoding trick via ecmanaut (http://bit.ly/6p30c5)
-          this.output +=
-            ' filename="' +
-            unescape(encodeURIComponent(val.fileName)) +
-            '";\r\n';
-          this.output += 'Content-Type: ' + val.type;
-
-          this.output += '\r\n\r\n';
-          this.output += val.getAsBinary();
-          this.output += '\r\n';
-        } else {
-          this.output += '--' + this.boundary + '\r\n';
-          this.output += 'Content-Disposition: form-data; name="' + name + '";';
-
-          this.output += '\r\n\r\n';
-          this.output += '' + val; // Force it into a string.
-          this.output += '\r\n';
-        }
-      }
-    };
-
-    this.open = function (mode, url, bool, login, pass) {
-      this.xhr.open(mode, url, bool, login, pass);
-    };
-
-    this.send = function () {
-      if (hasFormData) {
-        this.xhr.send(this.formData);
-      } else {
-        content_type = 'multipart/form-data;boundary=' + this.boundary;
-        this.xhr.setRequestHeader('Content-Type', content_type);
-
-        this.output += '--' + this.boundary + '--';
-        this.xhr.sendAsBinary(this.output);
-      }
-    };
-  };
-})();
-
 // .exists()
 // This returns true if length > 0.
 
 $.fn.exists = function (callback, args) {
-  var $this = $(this),
+  let $this = $(this),
     len = $this.length;
 
   if (len && callback) {
@@ -629,7 +551,7 @@ $.fn.exists = function (callback, args) {
   return len > 0;
 };
 
-function formatFileSize(size) {
+export function formatFileSize(size) {
   return Intl.NumberFormat(document.documentElement.lang, {
     notation: 'compact',
     style: 'unit',
@@ -638,10 +560,10 @@ function formatFileSize(size) {
   }).format(size);
 }
 
-function validateFileUploadSize() {
+export function validateFileUploadSize() {
   const maxSize = $(this).data('max-upload-size');
   const file = this.files[0];
-  input = $(this).get(0);
+  const input = $(this).get(0);
   if (file.size > maxSize) {
     input.setCustomValidity(
       format(gettext('Your file exceeds the maximum size of {0}.'), [

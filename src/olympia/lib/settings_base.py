@@ -604,133 +604,10 @@ EDITORIAL_CONTENT_FILENAME = 'src/olympia/discovery/strings.jinja2'
 # and js files that can be bundled together by the minify app.
 MINIFY_BUNDLES = {
     'css': {
-        'common/fonts': ('css/common/fonts.less',),
-        'common/footer': ('css/common/footer.less',),
-        'restyle/css': ('css/restyle/restyle.less',),
-        # CSS files our DevHub (currently only required for the
-        # new landing page)
-        'devhub/new-landing/css': ('css/devhub/new-landing/base.less',),
-        # CSS files common to the entire site.
-        'zamboni/css': (
-            'css/legacy/main.css',
-            'css/legacy/main-mozilla.css',
-            'css/zamboni/zamboni.css',
-            'css/zamboni/tags.css',
-            'css/zamboni/tabs.css',
-            'css/impala/buttons.less',
-            'css/impala/formset.less',
-            'css/impala/suggestions.less',
-            'css/impala/header.less',
-            'css/impala/moz-tab.css',
-            'css/impala/faux-zamboni.less',
-        ),
-        'zamboni/stats': ('css/zamboni/stats.less',),
-        'zamboni/devhub': (
-            'css/impala/tooltips.less',
-            'css/zamboni/developers.css',
-            'css/zamboni/docs.less',
-            'css/impala/developers.less',
-            'css/devhub/listing.less',
-            'css/devhub/popups.less',
-            'css/devhub/compat.less',
-            'css/impala/formset.less',
-            'css/devhub/forms.less',
-            'css/common/invisible-upload.less',
-            'css/devhub/submission.less',
-            'css/devhub/refunds.less',
-            'css/devhub/buttons.less',
-            'css/devhub/in-app-config.less',
-            'css/devhub/static-theme.less',
-            '@claviska/jquery-minicolors/jquery.minicolors.css',
-            'css/impala/devhub-api.less',
-            'css/devhub/dashboard.less',
-        ),
-        'zamboni/reviewers': (
-            'css/zamboni/reviewers.less',
-            'css/zamboni/unlisted.less',
-        ),
-        'zamboni/themes_review': (
-            'css/zamboni/developers.css',
-            'css/zamboni/reviewers.less',
-            'css/zamboni/themes_review.less',
-        ),
+        'common': (),
     },
     'js': {
-        # JS files common to the entire site, apart from dev-landing.
-        'common': (
-            'underscore/underscore.js',
-            'js/zamboni/init.js',
-            'js/zamboni/capabilities.js',
-            'js/lib/format.js',
-            'jquery.cookie/jquery.cookie.js',
-            'js/zamboni/storage.js',
-            'js/common/keys.js',
-            'js/zamboni/helpers.js',
-            'js/zamboni/global.js',
-            'js/zamboni/l10n.js',
-            # Unicode letters for our makeslug function
-            'js/zamboni/unicode.js',
-            # Login tweaks
-            'js/zamboni/users.js',
-            'js/common/lang_switcher.js',
-        ),
-        # Things to be loaded at the top of the page
-        'jquery_base': (
-            'jquery/dist/jquery.js',
-            'jquery.browser/dist/jquery.browser.js',
-        ),
-        'zamboni/devhub': (
-            'js/lib/truncate.js',
-            'js/zamboni/truncation.js',
-            'js/common/upload-base.js',
-            'js/common/upload-addon.js',
-            'js/common/upload-image.js',
-            'js/zamboni/devhub.js',
-            'js/zamboni/validator.js',
-            'timeago/jquery.timeago.js',
-            'js/zamboni/static_theme.js',
-            '@claviska/jquery-minicolors/jquery.minicolors.js',
-            'jszip/dist/jszip.js',
-            # jQuery UI for sortable
-            'jquery-ui/ui/data.js',
-            'jquery-ui/ui/scroll-parent.js',
-            'jquery-ui/ui/widget.js',
-            'jquery-ui/ui/widgets/mouse.js',
-            'jquery-ui/ui/widgets/sortable.js',
-        ),
-        'devhub/new-landing/js': (
-            # Note that new-landing (devhub/index.html) doesn't include
-            # zamboni/devhub or even common js bundles.
-            'js/common/lang_switcher.js',
-            'js/lib/basket-client.js',
-        ),
-        'zamboni/reviewers': (
-            'js/lib/highcharts.src.js',
-            'js/lib/jquery.hoverIntent.js',  # Used by jquery.zoomBox.
-            'js/lib/jquery.zoomBox.js',  # Used by themes_review.
-            'js/zamboni/reviewers.js',
-            'js/zamboni/themes_review_templates.js',
-            'js/zamboni/themes_review.js',
-        ),
-        'zamboni/stats': (
-            'js/lib/highcharts.src.js',
-            'js/stats/csv_keys.js',
-            'js/stats/helpers.js',
-            'js/stats/dateutils.js',
-            'js/stats/manager.js',
-            'js/stats/controls.js',
-            'js/stats/overview.js',
-            'js/stats/topchart.js',
-            'js/stats/chart.js',
-            'js/stats/table.js',
-            'js/stats/stats.js',
-        ),
-        # This is included when DEV_MODE is True.  Bundle in <head>.
-        'debug': (
-            'js/debug/less_setup.js',
-            'less/dist/less.js',
-            'js/debug/less_live.js',
-        ),
+        'common': (),
     },
 }
 
@@ -1350,7 +1227,7 @@ STATICFILES_DIRS = (
     STATIC_BUILD_PATH,
 )
 
-STATICFILES_STORAGE = 'olympia.lib.storage.OlympiaStaticFilesStorage'
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 # Path related settings. In dev/stage/prod `NETAPP_STORAGE_ROOT` environment
 # variable will be set and point to our NFS/EFS storage

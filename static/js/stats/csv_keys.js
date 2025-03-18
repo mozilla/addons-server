@@ -1,4 +1,4 @@
-var csv_keys = {
+export default {
   downloads: {
     count: gettext('Downloads'),
   },

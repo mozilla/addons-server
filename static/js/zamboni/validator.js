@@ -1,3 +1,7 @@
+import $ from 'jquery';
+import { sortBy } from 'underscore';
+import { format } from '../lib/format';
+
 $(document).ready(function () {
   if ($('.addon-validator-suite').length) {
     initValidator();
@@ -8,7 +12,7 @@ function initValidator($doc) {
   $doc = $doc || $(document);
 
   function inherit(OtherClass, constructor) {
-    var NewClass = function () {
+    let NewClass = function () {
       OtherClass.apply(this, arguments);
       if (typeof constructor !== 'undefined') {
         constructor.apply(this, arguments);
@@ -56,13 +60,13 @@ function initValidator($doc) {
   };
 
   ResultsTier.prototype.createDom = function () {
-    var $tier = $($('.template', this.$suite).html().trim());
+    let $tier = $($('.template', this.$suite).html().trim());
     $tier.attr('id', 'suite-results-tier-' + this.tierId);
     return $tier;
   };
 
   ResultsTier.prototype.summarize = function () {
-    var sm = resultSummary(
+    let sm = resultSummary(
         this.counts.error,
         this.counts.warning,
         this.counts.notice,
@@ -106,7 +110,7 @@ function initValidator($doc) {
   };
 
   ResultsTier.prototype.topSummary = function () {
-    var $top = $(
+    let $top = $(
         '[class~="test-tier"]' + '[data-tier="' + this.tierId + '"]',
         this.$suite,
       ),
@@ -136,7 +140,7 @@ function initValidator($doc) {
   };
 
   ResultsTier.prototype.wakeUp = function () {
-    var $title = $('h4', this.$dom),
+    let $title = $('h4', this.$dom),
       changeLink;
     $('.tier-results', this.$dom).empty();
     this.$dom.removeClass('hidden');
@@ -189,12 +193,12 @@ function initValidator($doc) {
   }
 
   MsgVisitor.prototype.createTier = function (tierId, options) {
-    var tier = new ResultsTier(this.$suite, tierId, this.tierOptions(options));
+    let tier = new ResultsTier(this.$suite, tierId, this.tierOptions(options));
     return tier;
   };
 
   MsgVisitor.prototype.finish = function () {
-    var self = this;
+    let self = this;
     $('.result', this.$suite).each(function (i, res) {
       if (!$('.msg', res).length) {
         // No messages so no tier was created.
@@ -202,7 +206,7 @@ function initValidator($doc) {
       }
     });
     $.each(this.tiers, function (tierId, tier) {
-      var tierSum = tier.summarize();
+      let tierSum = tier.summarize();
       self.allCounts.error += tierSum.error;
       self.allCounts.warning += tierSum.warning;
     });
@@ -249,7 +253,7 @@ function initValidator($doc) {
     }
     this.msgSet[msg.uid] = true;
 
-    var tier = this.getTier(msg.tier, options),
+    let tier = this.getTier(msg.tier, options),
       msgDiv = $('<div class="msg"><h5></h5></div>'),
       effectiveType = this.getMsgType(msg),
       prefix = effectiveType == 'error' ? gettext('Error') : gettext('Warning');
@@ -265,7 +269,7 @@ function initValidator($doc) {
     // The validator returns the "description" as either string, or
     // arrays of strings. We turn it into arrays when sanitizing.
     $.each(msg.description, function (i, val) {
-      var $desc = $('<p>').html(val); // Sanitized HTML value.
+      let $desc = $('<p>').html(val); // Sanitized HTML value.
       if (i === 0) {
         $desc.prepend(format('<strong>{0}:</strong> ', prefix));
       }
@@ -273,20 +277,21 @@ function initValidator($doc) {
     });
 
     if (msg.file) {
-      var file = msg.file;
+      let file = msg.file;
       if (typeof file !== 'string') {
         // For sub-packages, this will be a list of archive paths and
         // a final file path, which we need to turn into a string.
         //   ['foo.xpi', 'chrome/thing.jar', 'content/file.js']
         file = file.join('/');
       }
+      let $link;
 
       if (this.fileURL && this.fileID) {
-        var url = this.fileURL + '?path=' + file;
+        let url = this.fileURL + '?path=' + file;
         if (msg.line) {
           url += '#L' + msg.line;
         }
-        var $link = $('<a>', {
+        $link = $('<a>', {
           href: url,
           text: file,
           target: 'file-viewer-' + this.fileID,
@@ -297,20 +302,20 @@ function initValidator($doc) {
         $link = $('<span>', { text: file });
       }
 
-      var $context = $('<div class="context">').append(
+      let $context = $('<div class="context">').append(
         $('<div class="file">').append($link),
       );
 
       if (msg.context) {
-        var $code = $('<div class="code"></div>');
-        var $lines = $('<div class="lines"></div>');
-        var $innerCode = $('<div class="inner-code"></div>');
+        let $code = $('<div class="code"></div>');
+        let $lines = $('<div class="lines"></div>');
+        let $innerCode = $('<div class="inner-code"></div>');
 
         $code.append($lines, $innerCode);
 
         // The line number in the message refers to the middle
         // line of the context, so adjust accordingly.
-        var offset = Math.floor(msg.context.length / 2);
+        let offset = Math.floor(msg.context.length / 2);
         msg.context = formatCodeIndentation(msg.context);
         $.each(msg.context, function (idx, code) {
           if (code != null) {
@@ -349,13 +354,13 @@ function initValidator($doc) {
   };
 
   function buildResults(suite, data) {
-    var vis,
+    let vis,
       validation = data.validation,
       summaryTxt;
 
     function sortByType(messages) {
-      var ordering = ['error', 'warning', 'notice', undefined /* no type */];
-      return _.sortBy(messages, function (msg) {
+      let ordering = ['error', 'warning', 'notice', undefined /* no type */];
+      return sortBy(messages, function (msg) {
         return ordering.indexOf(msg.type);
       });
     }
@@ -383,7 +388,7 @@ function initValidator($doc) {
       return gettext('These tests were not run.');
     }
     // e.g. '1 error, 3 warnings'
-    var errors = format(ngettext('{0} error', '{0} errors', numErrors), [
+    let errors = format(ngettext('{0} error', '{0} errors', numErrors), [
         numErrors,
       ]),
       warnings = format(ngettext('{0} warning', '{0} warnings', numWarnings), [
@@ -402,7 +407,7 @@ function initValidator($doc) {
     function retab(line, tabstops) {
       // Replaces tabs with spaces, to match the given tab stops.
 
-      var SPACES = '                                ';
+      let SPACES = '                                ';
       tabstops = Math.min(tabstops || 4, SPACES.length);
 
       function replace_tab(full_match, non_tab) {
@@ -410,18 +415,18 @@ function initValidator($doc) {
           position += non_tab.length;
           return non_tab;
         } else {
-          var pos = position;
+          let pos = position;
           position += position % tabstops || tabstops;
           return SPACES.substr(0, position - pos);
         }
       }
 
-      var position = 0;
+      let position = 0;
       return line.replace(/([^\t]+)|\t/g, replace_tab);
     }
 
     // Retab all lines and find the common indent.
-    var indent = Infinity;
+    let indent = Infinity;
     lines = lines.map(function (line) {
       // When the context line is at the start or end of the file,
       // the line before or after the context line will be null.
@@ -447,12 +452,12 @@ function initValidator($doc) {
   }
 
   $('.addon-validator-suite', $doc).on('validate', function (e) {
-    var el = $(this),
+    let el = $(this),
       data = el.data();
 
     if (data.annotateUrl) {
       el.on('change', '.ignore-duplicates-checkbox', function (event) {
-        var $target = $(event.target);
+        let $target = $(event.target);
         $.ajax({
           type: 'POST',
           url: data.annotateUrl,

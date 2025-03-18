@@ -1,138 +1,111 @@
-(function (jQuery, window) {
-  'use strict';
+import _ from 'underscore';
+import { normalizeRange } from './dateutils';
+import { capabilities as originalCapabilities } from '../zamboni/capabilities';
 
-  // `$` is passed by jQuery itself when calling `jQuery(stats_stats)`.
-  const stats_stats = function ($, injectedSessionStorage) {
-    var internalSessionStorage =
-      injectedSessionStorage || window.sessionStorage;
+// Modify the URL when the page state changes, if the browser supports
+// pushState.
+function updateQueryParams(view) {
+  let queryParams = {};
 
-    // Modify the URL when the page state changes, if the browser supports
-    // pushState.
-    if (z.capabilities.replaceState) {
-      $(window).on('changeview', function (e, view) {
-        var queryParams = {};
-        var range = view.range;
-
-        if (range) {
-          if (typeof range == 'string') {
-            queryParams.last = range.split(/\s+/)[0];
-          }
-        }
-
-        queryParams = $.param(queryParams);
-
-        if (queryParams) {
-          history.replaceState(view, document.title, '?' + queryParams);
-        }
-      });
+  if (view.range) {
+    if (typeof range == 'string') {
+      queryParams.last = range.split(/\s+/)[0];
     }
+  }
 
-    // Set up initial default view.
-    var initView = {
-      metric: $('.primary').attr('data-report'),
-      range: $('.primary').attr('data-range') || '30 days',
-      group: 'day',
-    };
+  queryParams = $.param(queryParams);
 
-    // Set side nav active state.
-    (function () {
-      var sel = '#side-nav li.' + initView.metric;
-      sel += ', #side-nav li[data-report=' + initView.metric + ']';
+  if (queryParams) {
+    history.replaceState(view, document.title, '?' + queryParams);
+  }
+}
 
-      $(sel).addClass('active');
-    })();
+function updateExportLinks({ metric, range }) {
+  const normalizedRange = normalizeRange(range);
 
-    // Restore any session view information from internalSessionStorage.
-    if (
-      z.capabilities.localStorage &&
-      internalSessionStorage.getItem('stats_view')
-    ) {
-      var ssView = JSON.parse(internalSessionStorage.getItem('stats_view'));
+  // See: https://github.com/mozilla/zamboni/commit/4263102
+  if (
+    typeof range === 'string' ||
+    (range.custom && typeof normalizedRange.end === 'object')
+  ) {
+    normalizedRange.end = new Date(
+      normalizedRange.end.getTime() - 24 * 60 * 60 * 1000,
+    );
+  }
 
-      // The stored range is either a string or an object.
-      if (ssView.range && typeof ssView.range === 'object') {
-        var objRange = ssView.range;
-        Object.keys(objRange).forEach(function (key) {
-          var val = objRange[key];
-          if (typeof val === 'string') {
-            objRange[key] = _.escape(val);
-          }
-        });
-        initView.range = objRange;
-      } else {
-        initView.range = _.escape(ssView.range || initView.range);
-      }
+  const baseUrl = $('.primary').attr('data-base_url');
+  const params = [
+    metric,
+    'day',
+    normalizedRange.start.pretty(''),
+    normalizedRange.end.pretty(''),
+  ];
 
-      initView.group = _.escape(ssView.group || initView.group);
-    }
+  const url = `${baseUrl}${params.join('-')}`;
 
-    // Update internalSessionStorage with our current view state.
-    (function () {
-      if (!z.capabilities.localStorage) {
-        return;
-      }
+  $('#export_data_csv').attr('href', url + '.csv');
+  $('#export_data_json').attr('href', url + '.json');
+}
 
-      var ssView = _.clone(initView);
-      $(window).on('changeview', function (e, newView) {
-        _.extend(ssView, newView);
-        internalSessionStorage.setItem(
-          'stats_view',
-          JSON.stringify({
-            range: ssView.range,
-            group: ssView.group,
-          }),
-        );
-      });
-    })();
-
-    // Update the "Export as CSV" link when the view changes.
-    (function () {
-      var view = {},
-        baseURL = $('.primary').attr('data-base_url');
-
-      $(window).on('changeview', function (e, newView) {
-        _.extend(view, newView);
-        var metric = view.metric;
-
-        var range = normalizeRange(view.range);
-
-        // See: https://github.com/mozilla/zamboni/commit/4263102
-        if (
-          typeof view.range === 'string' ||
-          (view.range.custom && typeof range.end === 'object')
-        ) {
-          range.end = new Date(range.end.getTime() - 24 * 60 * 60 * 1000);
-        }
-
-        var url =
-          baseURL +
-          [metric, 'day', range.start.pretty(''), range.end.pretty('')].join(
-            '-',
-          );
-
-        $('#export_data_csv').attr('href', url + '.csv');
-        $('#export_data_json').attr('href', url + '.json');
-      });
-    })();
-
-    // set up notes modal.
-    $('#stats-note').modal('#stats-note-link', { width: 520 });
-
-    // set up stats exception modal.
-    var $exceptionModal = $('#exception-note').modal('', { width: 250 });
-    $(window).on('explain-exception', function () {
-      $exceptionModal.render();
-    });
-
-    $('.csv-table').csvTable();
-
-    // Trigger the initial data load.
-    $(window).trigger('changeview', initView);
+// `$` is passed by jQuery itself when calling `jQuery(stats_stats)`.
+export const stats_stats = (storage = null, capabilities = {}) => {
+  // Set up initial default view.
+  const view = {
+    metric: $('.primary').attr('data-report'),
+    range: $('.primary').attr('data-range') || '30 days',
+    group: 'day',
   };
 
-  if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
-    module.exports.stats_stats = stats_stats;
-  } else {
-    jQuery(stats_stats);
+  if (capabilities.localStorage && storage) {
+    const ssView = JSON.parse(storage.getItem('stats_view'));
+
+    const combinedView = Object.entries({
+      ...view,
+      ...(ssView || {}),
+    }).reduce((acc, [key, val]) => {
+      acc[key] = typeof val === 'string' ? _.escape(val) : val;
+      return acc;
+    }, {});
+
+    view.range = combinedView.range;
+    view.group = combinedView.group;
   }
-})(jQuery, window);
+
+  // Set side nav active state.
+  const sel = `#side-nav li.${view.metric}, #side-nav li[data-report=${view.metric}]`;
+  $(sel).addClass('active');
+
+  // set up notes modal.
+  $('#stats-note').modal('#stats-note-link', { width: 520 });
+
+  // set up stats exception modal.
+  const $exceptionModal = $('#exception-note').modal('', { width: 250 });
+  $(window).on('explain-exception', function () {
+    $exceptionModal.render();
+  });
+
+  $('.csv-table').csvTable();
+
+  $(window).on('changeview', (event, view) => {
+    if (capabilities.replaceState) {
+      updateQueryParams(view);
+    }
+    updateExportLinks(view);
+    if (storage) {
+      storage.setItem(
+        'stats_view',
+        JSON.stringify({
+          range: view.range,
+          group: view.group,
+        }),
+      );
+    }
+  });
+
+  // Trigger the initial data load.
+  $(window).trigger('changeview', view);
+};
+
+if (typeof module === 'undefined') {
+  stats_stats(window.sessionStorage, originalCapabilities);
+}

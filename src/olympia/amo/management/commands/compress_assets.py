@@ -103,10 +103,7 @@ class Command(BaseCommand):
                 # Concat all the files.
                 tmp_concatted = '%s.tmp' % concatted_file
                 if len(files_all) == 0:
-                    raise CommandError(
-                        'No input files specified in '
-                        'MINIFY_BUNDLES["%s"]["%s"] in settings.py!' % (ftype, name)
-                    )
+                    return
                 with open(tmp_concatted, 'w') as f:
                     f.write(''.join(contents))
 

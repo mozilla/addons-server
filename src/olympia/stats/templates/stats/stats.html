@@ -7,9 +7,8 @@
 {% block bodyclass %}statistics{% endblock %}
 
 {% block extrahead %}
-  {{ css('zamboni/stats') }}
-  <link rel="stylesheet"
-        href="{{ static('css/zamboni/jquery-ui/custom-1.7.2.css') }}">
+  {{ vite_asset('css/stats.less') }}
+  {{ vite_asset('css/jquery-ui.less') }}
 {% endblock %}
 
 {% block title %}
@@ -185,5 +184,5 @@
 {% endblock %}
 
 {% block js %}
-{{ js('zamboni/stats') }}
+{{ vite_asset('js/stats.js') }}
 {% endblock %}
