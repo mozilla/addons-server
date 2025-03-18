@@ -1040,7 +1040,7 @@ msgstr "{addon} ikkje oppført."
 #: src/olympia/constants/activity.py:546
 #, python-brace-format
 msgid "Add-on id {0} with GUID {1} has been deleted"
-msgstr ""
+msgstr "Tilleggs-ID {0} med GUID {1} er sletta"
 
 #: src/olympia/constants/activity.py:553 src/olympia/constants/activity.py:559
 #, python-brace-format
@@ -1353,7 +1353,7 @@ msgstr "Ordbøker"
 
 #: src/olympia/constants/base.py:146
 msgid "Deprecated Search Tools"
-msgstr ""
+msgstr "Forelda søkjeverktøy"
 
 #: src/olympia/constants/base.py:147
 msgid "Language Packs"
@@ -1441,7 +1441,7 @@ msgstr "Foto, musikk og videoar"
 
 #: src/olympia/constants/categories.py:135
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
-msgstr ""
+msgstr "Last ned Firefox-utvidingar som forbetrar bilde-, musikk- og videoopplevingar. Utvidingar i denne kategorien endrar lyd og video, omvendt bildesøk og meir."
 
 #: src/olympia/constants/categories.py:142
 msgid "Privacy & Security"
