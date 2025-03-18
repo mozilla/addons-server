@@ -65,3 +65,7 @@ REMOTE_SETTINGS_WRITER_URL = env(
 BIGQUERY_AMO_DATASET = 'amo_prod'
 
 CINDER_QUEUE_PREFIX = 'amo-'
+# See comment in settings_base for background.
+# In Cinder prod the only registered webhook is for AMO prod, so all IDs should be
+# unique - and we want the 400 error.
+CINDER_UNIQUE_IDS = True
