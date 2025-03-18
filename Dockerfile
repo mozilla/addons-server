@@ -15,6 +15,7 @@ ENV OLYMPIA_UID=9500
 ENV HOME=/data/olympia
 ENV DEPS_DIR=${HOME}/deps
 ENV NPM_DEPS_DIR=${HOME}/node_modules
+ENV VITE_MANIFEST_FILE_NAME=manifest.json
 
 RUN <<EOF
 groupadd -g ${OLYMPIA_UID} olympia
