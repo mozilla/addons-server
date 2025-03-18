@@ -2423,7 +2423,7 @@ msgstr "Help ons dingen te verbeteren!"
 
 #: src/olympia/devhub/templates/devhub/base.html:44
 msgid "Take our quick survey"
-msgstr "Onze snelle enquête invullen"
+msgstr "Vul onze snelle enquête in"
 
 #. {0} is an application, like Firefox.
 #: src/olympia/devhub/templates/devhub/index.html:21 src/olympia/templates/base.html:17
