@@ -210,14 +210,6 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
             == f'{settings.CINDER_QUEUE_PREFIX}{cinder_entity.queue_suffix}'
         )
 
-    def test_queue_appeal(self):
-        extension = self._create_dummy_target()
-        assert self.CinderClass(extension).queue_appeal == 'amo-escalations'
-
-        theme = self._create_dummy_target(type=amo.ADDON_STATICTHEME)
-        # we only have a special queue for extensions
-        assert self.CinderClass(theme).queue == f'{settings.CINDER_QUEUE_PREFIX}themes'
-
     def test_build_report_payload(self):
         addon = self._create_dummy_target(
             homepage='https://home.example.com',
@@ -1118,11 +1110,6 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
             cinder_entity.queue
             == f'{settings.CINDER_QUEUE_PREFIX}{cinder_entity.queue_suffix}'
         )
-
-    def test_queue_appeal(self):
-        # Contrary to reports handled by Cinder moderators, for reports handled
-        # by AMO reviewers there is no special queue.
-        BaseTestCinderCase.test_queue_appeal(self)
 
     def setUp(self):
         self.task_user = user_factory(id=settings.TASK_USER_ID)

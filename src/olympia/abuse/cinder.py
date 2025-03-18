@@ -338,14 +338,6 @@ class CinderAddon(CinderEntity):
     def queue_suffix(self):
         return 'themes' if self.addon.type == amo.ADDON_STATICTHEME else 'listings'
 
-    @property
-    def queue_appeal(self):
-        return (
-            self.queue
-            if self.addon.type == amo.ADDON_STATICTHEME
-            else 'amo-escalations'
-        )
-
     def get_attributes(self):
         # We look at the promoted group to tell whether or not the add-on is
         # promoted in any way, but we don't care about the promotion being
@@ -520,11 +512,6 @@ class CinderAddonHandledByReviewers(CinderAddon):
         super().__init__(addon)
         self.version_string = version_string
 
-    @property
-    def queue_appeal(self):
-        # No special appeal queue for reviewer handled jobs
-        return self.queue
-
     def flag_for_human_review(
         self, *, related_versions, appeal=False, forwarded=False, second_level=False
     ):
@@ -654,7 +641,6 @@ class CinderAddonHandledByReviewers(CinderAddon):
 
 class CinderAddonHandledByLegal(CinderAddon):
     queue = 'legal-escalations'
-    queue_appeal = 'legal-escalations'
 
 
 class CinderReport(CinderEntity):

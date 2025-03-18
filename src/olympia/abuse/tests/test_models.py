@@ -2371,7 +2371,7 @@ class TestContentDecision(TestCase):
 
     def test_appeal_as_target_from_resolved_in_cinder(self):
         appeal_job = self._test_appeal_as_target(
-            resolvable_in_reviewer_tools=False, expected_queue='amo-escalations'
+            resolvable_in_reviewer_tools=False, expected_queue='amo-env-listings'
         )
         assert not appeal_job.resolvable_in_reviewer_tools
         assert not (
@@ -2569,7 +2569,7 @@ class TestContentDecision(TestCase):
         assert request_body['decision_to_appeal_id'] == str(
             abuse_report.cinder_job.decision.cinder_id
         )
-        assert request_body['queue_slug'] == 'amo-escalations'
+        assert request_body['queue_slug'] == 'amo-env-listings'
 
     def test_appeal_as_reporter_already_appealed(self):
         addon = addon_factory()
