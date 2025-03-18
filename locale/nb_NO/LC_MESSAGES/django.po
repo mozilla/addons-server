@@ -1473,7 +1473,7 @@ msgstr "Sosialt og kommunikasjon"
 
 #: src/olympia/constants/categories.py:172
 msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
-msgstr ""
+msgstr "Last ned Firefox-utvidelser for å forbedre sosiale medier og direktemeldinger. Denne kategorien inkluderer forbedrede fanevarsler, videonedlastere og mer."
 
 #: src/olympia/constants/categories.py:179
 msgid "Tabs"
