@@ -4150,7 +4150,7 @@ msgstr "Klar til å sende inn eller behandle utvidinga di?"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/submit_or_manage_extension.html:7
 msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
-msgstr ""
+msgstr "Logg inn på Developer Hub for sende inn eller handsame utvidingar og tema."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/submit_or_manage_extension.html:11
 msgid "Register for a developer account or log in to the Developer Hub"
