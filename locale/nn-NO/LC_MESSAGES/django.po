@@ -3464,7 +3464,7 @@ msgstr "Du treng ikkje å sende inn kjedekode, og du er klar for neste steg."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:49
 msgid "You must submit your extension's source code."
-msgstr ""
+msgstr "Du må sende inn kjeldekoden til utvidinga di."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:51
 msgid "Your source code must include:"
@@ -3867,7 +3867,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/android_compatibility_modal.html:6
 msgid "Yes, I’ve tested my extension with Firefox for Android"
-msgstr ""
+msgstr "Ja, eg har testa utvidinga mi med Firefox for Android"
 
 #: src/olympia/devhub/templates/devhub/includes/android_compatibility_modal.html:7
 msgid "No, I have not tested"
@@ -6849,7 +6849,7 @@ msgstr "utvidinga mi er vurdert av ein vurderar"
 
 #: src/olympia/users/notifications.py:99
 msgid "Mozilla needs to contact me about my individual add-on"
-msgstr ""
+msgstr "Mozilla må kontakte meg om det individuelle tillegget mitt"
 
 #: src/olympia/users/notifications.py:105
 msgid "User Notifications"
