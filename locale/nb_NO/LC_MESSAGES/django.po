@@ -90,15 +90,15 @@ msgstr "Beslutningen du anker har allerede blitt overskrevet av en ny beslutning
 
 #: src/olympia/abuse/templates/abuse/appeal.html:44
 msgid "This decision can't be appealed."
-msgstr ""
+msgstr "Denne beslutningen kan ikke påklages."
 
 #: src/olympia/abuse/templates/abuse/emails/base_reporter.txt:1
 msgid "Hello,"
-msgstr ""
+msgstr "Hallo,"
 
 #: src/olympia/abuse/templates/abuse/emails/base_reporter.txt:7
 msgid "Mozilla Add-ons Team"
-msgstr ""
+msgstr "Mozillas tilleggsteam"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_approve.txt:8
 #, python-format
@@ -246,7 +246,7 @@ msgstr "Forespørselens innhold er for langt."
 
 #: src/olympia/addons/decorators.py:78 src/olympia/amo/templates/amo/submissions_disabled.html:8
 msgid "Add-on uploads are temporarily unavailable."
-msgstr ""
+msgstr "Opplasting av tillegg er midlertidig utilgjengelig."
 
 #: src/olympia/addons/fields.py:56
 #, python-brace-format
@@ -361,7 +361,7 @@ msgstr ""
 
 #: src/olympia/addons/serializers.py:885
 msgid "Add-ons need at least one owner."
-msgstr ""
+msgstr "Tillegg trenger minst én eier."
 
 #: src/olympia/addons/serializers.py:900
 msgid "Add-ons need at least one listed author."
@@ -369,7 +369,7 @@ msgstr ""
 
 #: src/olympia/addons/serializers.py:932
 msgid "Account not found."
-msgstr ""
+msgstr "Fant ikke kontoen."
 
 #: src/olympia/addons/serializers.py:945 src/olympia/devhub/forms.py:410 src/olympia/devhub/forms.py:480
 msgid "An author can only be present once."
@@ -402,7 +402,7 @@ msgstr ""
 
 #: src/olympia/addons/validators.py:91
 msgid "Wrong add-on type for this license."
-msgstr ""
+msgstr "Feil type tillegg for denne lisensen."
 
 #: src/olympia/addons/validators.py:98
 msgid "Custom licenses are not supported for themes."
@@ -419,11 +419,11 @@ msgstr ""
 
 #: src/olympia/addons/validators.py:272
 msgid "A GUID must be specified in the manifest."
-msgstr ""
+msgstr "En GUID må spesifiseres i manifestet."
 
 #: src/olympia/addons/validators.py:276
 msgid "GUID mismatch between the URL and manifest."
-msgstr ""
+msgstr "GUID-uoverensstemmelse mellom URL og manifest."
 
 #: src/olympia/addons/validators.py:291
 msgid "Source cannot be changed because this version has been reviewed by Mozilla."
@@ -614,7 +614,7 @@ msgstr "E-post:"
 
 #: src/olympia/amo/templates/amo/fake_fxa_authorization.html:20
 msgid "Two-factor authentication"
-msgstr ""
+msgstr "To-faktorautentisering"
 
 #. abbreviation of 'previous'
 #: src/olympia/amo/templates/amo/paginator.html:5 src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:49
@@ -692,11 +692,11 @@ msgstr "Ugyldig autoriserings-header. Innloggingsopplysningene skal ikke innehol
 
 #: src/olympia/api/authentication.py:108
 msgid "Valid user session not found matching the provided session key."
-msgstr ""
+msgstr "Finner ikke gyldig brukerøkt som samsvarer med den oppgitte øktnøkkelen."
 
 #: src/olympia/api/authentication.py:122
 msgid "Access token refresh failed; user needs to login to FxA again."
-msgstr ""
+msgstr "Oppdatering av tilgangsnøkkel mislyktes; brukeren må logge på FxA igjen."
 
 #: src/olympia/api/authentication.py:187
 msgid "Wrong type for one or more keys in payload"
@@ -729,7 +729,7 @@ msgstr "Ikke tilgjengelig på grunn av juridiske årsaker."
 #: src/olympia/api/fields.py:91
 #, python-brace-format
 msgid "The language code \"{lang_code}\" is invalid."
-msgstr ""
+msgstr "Språkkoden «{lang_code}» er ugyldig."
 
 #: src/olympia/api/fields.py:92
 msgid "You must provide an object of {{lang-code:value}}."
@@ -810,7 +810,7 @@ msgstr "Kategorier endret for {addon}."
 #: src/olympia/constants/activity.py:57
 #, python-brace-format
 msgid "{user} ({0}) added to {addon}."
-msgstr ""
+msgstr "{user} ({0}) er lagt til i {addon}."
 
 #. L10n: {0} is the user role.
 #: src/olympia/constants/activity.py:67
