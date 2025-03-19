@@ -1145,7 +1145,7 @@ class AddonSerializer(AMOModelSerializer):
         if request and is_gate_active(request, 'promoted-groups-shim'):
             promoted = data.pop('promoted', None)
             data['promoted'] = (
-                promoted[0] if promoted and isinstance(promoted, list) else promoted
+                promoted[0] if promoted else None
             )
         return data
 
