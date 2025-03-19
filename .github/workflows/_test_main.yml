@@ -61,15 +61,15 @@ jobs:
         id: result
         shell: bash
         run: |
-          splits=${{ inputs.splits }}
+          splits="${{ inputs.splits }}"
           echo "splits: $splits"
-          echo "splits=$splits" >> $GITHUB_OUTPUT
+          echo "splits=$splits" >> "$GITHUB_OUTPUT"
 
           # Construct the matrix input for test_main using the groups count
           # the matrix.group should be an array of numbers from 1 to $splits
-          matrix=[$(seq -s, 1 $splits)]
+          matrix=$(seq -s, 1 "$splits")
           echo "matrix: $matrix"
-          echo "matrix=$matrix" >> $GITHUB_OUTPUT
+          echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
 
   test_main:
     runs-on: ubuntu-latest
@@ -85,7 +85,6 @@ jobs:
       - name: Test (test_matrix)
         uses: ./.github/actions/run-docker
         with:
-          services: ''
           digest: ${{ inputs.digest }}
           version: ${{ inputs.version }}
           deps: development
@@ -118,14 +117,14 @@ jobs:
       - name: Cat logs
         shell: bash
         run: |
-          for dir in $(ls -d ${{ env.log_artifact }}* | sort -V); do
+          for dir in $(find . -maxdepth 1 -name "${{ env.log_artifact }}*" -type d | sort -V); do
             job=$(basename "$dir")
             file="${dir}/${{ env.log_file }}"
             if [ -f "$file" ]; then
-              cat "$file" | jq \
+              jq \
                 -r \
                 --arg job "$job" \
-                'select(has("when") and .when == "teardown") | "[\($job)] \(.outcome) \(.nodeid)"'
+                'select(has("when") and .when == "teardown") | "[\($job)] \(.outcome) \(.nodeid)"' < "$file"
             else
               echo "$file: No such file or directory"
             fi

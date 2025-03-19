@@ -32,7 +32,6 @@ jobs:
     outputs:
       is_fork: ${{ steps.context.outputs.is_fork }}
       is_release_master: ${{ steps.context.outputs.is_release_master }}
-      is_dependabot: ${{ steps.context.outputs.is_dependabot }}
       is_default_branch: ${{ steps.context.outputs.is_default_branch }}
       is_release_tag: ${{ steps.context.outputs.is_release_tag }}
       docker_version: ${{ steps.context.outputs.docker_version }}
@@ -51,8 +50,8 @@ jobs:
         run: |
           docker run \
             --rm \
-            -v $(pwd):/workdir \
-            -w /workdir \
+            -v "$(pwd):/workdir" \
+            -w "/workdir" \
             rhysd/actionlint:latest \
             -verbose
 
