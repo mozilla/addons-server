@@ -1144,9 +1144,7 @@ class AddonSerializer(AMOModelSerializer):
             data.pop('is_featured', None)
         if request and is_gate_active(request, 'promoted-groups-shim'):
             promoted = data.pop('promoted', None)
-            data['promoted'] = (
-                promoted[0] if promoted else None
-            )
+            data['promoted'] = promoted[0] if promoted else None
         return data
 
     def get_promoted(self, obj):
