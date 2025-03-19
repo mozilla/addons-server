@@ -5185,9 +5185,10 @@ msgstr "Selecciona el texto de cualquier sitio web y haz clic con el botón dere
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:371
-#, fuzzy
 msgid "Gain an Amazon edge. When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
-msgstr "Si el producto que estás buscando en distintas tiendas online, está también disponible en Amazon, solo tendrás que hacer clic en un botón para verlo en Amazon."
+msgstr ""
+"Conseguí una ventaja en Amazon. Si el producto que estás buscando en distintas páginas de venta en línea también está disponible en Amazon, solo tendrás que hacer clic en un botón para verlo en "
+"Amazon."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:374
