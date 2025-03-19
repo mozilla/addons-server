@@ -84,7 +84,7 @@ msgstr "เนื่องจากคำตัดสินที่คุณย
 
 #: src/olympia/abuse/templates/abuse/appeal.html:42
 msgid "The decision you are appealing has already been overridden by a new decision, so this decision can't be appealed."
-msgstr ""
+msgstr "การตัดสินที่คุณกำลังอุทธรณ์นั้นได้รับการแทนที่ด้วยการตัดสินใหม่แล้ว ดังนั้นคุณจึงไม่สามารถอุทธรณ์การตัดสินนี้ได้"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:44
 msgid "This decision can't be appealed."
