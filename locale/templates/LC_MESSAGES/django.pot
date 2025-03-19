@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-17 18:11+0000\n"
+"POT-Creation-Date: 2025-03-19 13:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -307,7 +307,7 @@ msgstr ""
 msgid "The \"other\" category cannot be combined with another category"
 msgstr ""
 
-#: src/olympia/addons/fields.py:76 src/olympia/addons/serializers.py:1237
+#: src/olympia/addons/fields.py:76 src/olympia/addons/serializers.py:1254
 msgid "Invalid category name."
 msgstr ""
 
@@ -364,12 +364,12 @@ msgstr ""
 msgid "Images must be smaller than %dMB"
 msgstr ""
 
-#: src/olympia/addons/models.py:2142 src/olympia/addons/models.py:2199
+#: src/olympia/addons/models.py:2189 src/olympia/addons/models.py:2246
 #: src/olympia/constants/base.py:66
 msgid "Listed"
 msgstr ""
 
-#: src/olympia/addons/models.py:2377
+#: src/olympia/addons/models.py:2424
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr ""
 
@@ -441,7 +441,7 @@ msgstr ""
 msgid "The account needs a display name before it can be added as an author."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:1217
+#: src/olympia/addons/serializers.py:1234
 msgid "This slug cannot be used. Please choose another."
 msgstr ""
 
@@ -567,7 +567,7 @@ msgstr ""
 
 #: src/olympia/amo/context_processors.py:79
 #: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:20
-#: src/olympia/devhub/views.py:2077
+#: src/olympia/devhub/views.py:2079
 msgid "Manage API Keys"
 msgstr ""
 
@@ -1384,7 +1384,7 @@ msgstr ""
 msgid "Disabled by Mozilla"
 msgstr ""
 
-#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1219
+#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1222
 msgid "Deleted"
 msgstr ""
 
@@ -2580,41 +2580,41 @@ msgstr ""
 msgid "Add-on uploads are temporarily unavailable"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1948
+#: src/olympia/devhub/views.py:1950
 msgid "Review requested."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1950
+#: src/olympia/devhub/views.py:1952
 msgid "You must provide further details to proceed."
 msgstr ""
 
-#: src/olympia/devhub/views.py:2052
+#: src/olympia/devhub/views.py:2054
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr ""
 
-#: src/olympia/devhub/views.py:2071
+#: src/olympia/devhub/views.py:2073
 msgid ""
 "Keep your API keys secret and never share them with anyone, including Mozilla"
 " contributors."
 msgstr ""
 
-#: src/olympia/devhub/views.py:2088
+#: src/olympia/devhub/views.py:2090
 msgid "New API key created"
 msgstr ""
 
-#: src/olympia/devhub/views.py:2099
+#: src/olympia/devhub/views.py:2101
 msgid "API key revoked"
 msgstr ""
 
-#: src/olympia/devhub/views.py:2159
+#: src/olympia/devhub/views.py:2161
 msgid "Verify email"
 msgstr ""
 
-#: src/olympia/devhub/views.py:2161
+#: src/olympia/devhub/views.py:2163
 msgid "Send another email"
 msgstr ""
 
-#: src/olympia/devhub/views.py:2194
+#: src/olympia/devhub/views.py:2196
 msgid "Your email has been verified"
 msgstr ""
 
@@ -7725,33 +7725,33 @@ msgid ""
 "Mozilla Add-ons Team"
 msgstr ""
 
-#: src/olympia/versions/models.py:1204
+#: src/olympia/versions/models.py:1207
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
 msgstr ""
 
-#: src/olympia/versions/models.py:1209
+#: src/olympia/versions/models.py:1212
 msgid "Auto-approved, Confirmed"
 msgstr ""
 
-#: src/olympia/versions/models.py:1211
+#: src/olympia/versions/models.py:1214
 msgid "Auto-approved, not Confirmed"
 msgstr ""
 
-#: src/olympia/versions/models.py:1214
+#: src/olympia/versions/models.py:1217
 msgid "Approved, Manual"
 msgstr ""
 
-#: src/olympia/versions/models.py:1221
+#: src/olympia/versions/models.py:1224
 msgid "Disabled by Developer"
 msgstr ""
 
-#: src/olympia/versions/models.py:1579
+#: src/olympia/versions/models.py:1582
 #, python-brace-format
 msgid "{app} {min} and later"
 msgstr ""
 
-#: src/olympia/versions/models.py:1706
+#: src/olympia/versions/models.py:1709
 #, python-brace-format
 msgid "The install origin {origin} is not permitted."
 msgstr ""
