@@ -2552,7 +2552,7 @@ msgstr "Status"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:87
 msgid "We have not found any email records for you in the last 2 days."
-msgstr ""
+msgstr "Vi har ikkje funne e-postoppføringar for deg dei siste 2 dagane."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:91
 msgid "Refresh results"
@@ -2969,9 +2969,8 @@ msgid "32x32px"
 msgstr "32x32px"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:39
-#, fuzzy
 msgid "Used in listings of add-ons, like search results."
-msgstr "Brukt i opplisting av utvidingar, slik som søkjeresultat og framheva utvidingar."
+msgstr "Blir brukt i lister over tillegg, som søkjeresultat."
 
 #. The size of the icon
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:47
@@ -3075,7 +3074,7 @@ msgstr "Meir informasjon om Creative Commons-lisensar"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/invisible_channel_warning.html:2
 msgid "Your add-on is currently set to \"Invisible\"."
-msgstr ""
+msgstr "Tillegget ditt er for tida sett til «Usynleg»."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/invisible_channel_warning.html:3
 msgid "While in this state, \"On your own\" is the only distribution method available."
@@ -3145,9 +3144,8 @@ msgid "Actions"
 msgstr "Handlingar"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:11
-#, fuzzy
 msgid "Resume the submission process for this add-on"
-msgstr "Ta oppatt insendingsprosessen for dette innlegget."
+msgstr "Ta oppatt innsendingsprosessen for dette tillegget"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:12
 msgid "Resume"
