@@ -32,6 +32,13 @@ jobs:
           target: development
           version: local
           run: |
+            # On local, we want to ensure there are failures to test
+            # the later steps with so set the waffle switch to on.
+            if [ "${{ matrix.environment }}" = "local" ]; then
+              echo "Set waffle switch dummy-monitor-fails to true"
+              ./manage.py waffle_switch dummy-monitor-fails on
+            fi
+
             ./scripts/health_check.py \
             --env ${{ matrix.environment }} \
             --verbose \
