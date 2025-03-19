@@ -1144,7 +1144,9 @@ class AddonSerializer(AMOModelSerializer):
             data.pop('is_featured', None)
         if request and is_gate_active(request, 'promoted-groups-shim'):
             promoted = data.pop('promoted', None)
-            data['promoted'] = promoted[0] if promoted else None
+            data['promoted'] = (
+                promoted[0] if promoted and isinstance(promoted, list) else promoted
+            )
         return data
 
     def get_promoted(self, obj):
@@ -1579,26 +1581,29 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
 
         promoted = data.get('promoted', None)
         if promoted:
-            promoted = promoted[0]
-            # set .approved_for_groups cached_property because it's used in
-            # .approved_applications.
-            approved_for_apps = promoted.get('approved_for_apps')
-            group = PROMOTED_GROUPS_BY_ID[promoted['group_id']]
-
-            obj.promoted = [
-                {
-                    'group_id': group.id,
-                    'category': group.api_name,
-                    'apps': [APP_IDS.get(app_id).short for app_id in approved_for_apps],
-                }
-            ]
-
+            promoted_list = promoted if isinstance(promoted, list) else [promoted]
+            obj.promoted = []
+            approved_for_groups = []
+            for promotion in promoted_list:
+                # set .approved_for_groups cached_property because it's used in
+                # .approved_applications.
+                approved_for_apps = promotion.get('approved_for_apps')
+                group = PROMOTED_GROUPS_BY_ID[promotion['group_id']]
+                obj.promoted.append(
+                    {
+                        'group_id': group.id,
+                        'category': group.api_name,
+                        'apps': [
+                            APP_IDS.get(app_id).short for app_id in approved_for_apps
+                        ],
+                    }
+                )
+                approved_for_groups.extend(
+                    (group, APP_IDS.get(app_id)) for app_id in approved_for_apps
+                )
             # we can safely regenerate these tuples because
             # .appproved_applications only cares about the current group
-            obj._current_version.approved_for_groups = (
-                (obj.promoted.group, APP_IDS.get(app_id))
-                for app_id in approved_for_apps
-            )
+            obj._current_version.approved_for_groups = tuple(approved_for_groups)
         else:
             obj.promoted = []
 
