@@ -68,8 +68,8 @@ from olympia.users.notifications import (
 from . import verify
 from .serializers import (
     AccountSuperCreateSerializer,
-    BaseUserSerializer,
     FullUserProfileSerializer,
+    MinimalUserProfileSerializer,
     SelfUserProfileSerializer,
     UserNotificationSerializer,
 )
@@ -506,7 +506,7 @@ class AccountViewSet(
         elif self.get_object().has_full_profile:
             return FullUserProfileSerializer
         else:
-            return BaseUserSerializer
+            return MinimalUserProfileSerializer
 
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()

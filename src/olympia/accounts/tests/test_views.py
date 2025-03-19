@@ -1268,7 +1268,28 @@ class TestAccountViewSet(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 404
 
-    def test_is_not_full_public_profile_because_not_developer(self):
+    def test_is_not_full_public_profile_because_not_developer_but_fields_present(self):
+        # TODO: when mimimal-profile-has-all-fields-shim is removed for v5, we should
+        # change self.url to use v4 or v3
+        assert not self.user.has_full_profile
+        response = self.client.get(self.url)  # No auth.
+        assert response.data['name'] == self.user.name
+        assert response.data['biography'] is None
+        assert 'email' not in response.data
+        assert response.data['url'] == absolutify(self.user.get_url_path())
+
+        # Login as a random user and check it's still not visible.
+        self.client.login_api(user_factory())
+        response = self.client.get(self.url)
+        assert response.data['name'] == self.user.name
+        assert response.data['biography'] is None
+        assert 'email' not in response.data
+        assert response.data['url'] == absolutify(self.user.get_url_path())
+
+    @override_settings(DRF_API_GATES={'v5': ()})
+    def test_is_not_full_public_profile_because_not_developer_no_fields(self):
+        # TODO: when mimimal-profile-has-all-fields-shim is removed for v5, we won't
+        # need the override_settings
         assert not self.user.has_full_profile
         response = self.client.get(self.url)  # No auth.
         assert response.data['name'] == self.user.name
