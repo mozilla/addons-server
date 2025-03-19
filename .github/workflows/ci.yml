@@ -43,6 +43,19 @@ jobs:
         id: context
         uses: ./.github/actions/context
 
+  actionlint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run actionlint
+        run: |
+          docker run \
+            --rm \
+            -v $(pwd):/workdir \
+            -w /workdir \
+            rhysd/actionlint:latest \
+            -verbose
+
   build:
     name: ${{ needs.context.outputs.is_fork == 'true' && 'Skip' || 'Build' }}  CI Image
     runs-on: ubuntu-latest
