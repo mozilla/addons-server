@@ -775,11 +775,11 @@ msgstr "Este extra já pertence à coleção"
 
 #: src/olympia/blocklist/models.py:188
 msgid "Blocked"
-msgstr ""
+msgstr "Bloqueado"
 
 #: src/olympia/blocklist/models.py:188
 msgid "Restricted"
-msgstr ""
+msgstr "Restrito"
 
 #: src/olympia/constants/activity.py:25
 #, python-brace-format
@@ -2520,7 +2520,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:34
 msgid "Success!"
-msgstr ""
+msgstr "Sucesso!"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:35
 #, python-format
@@ -2542,7 +2542,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:57
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:58 src/olympia/stats/templates/stats/popup.html:12
 msgid "From"
@@ -2554,7 +2554,7 @@ msgstr "Para"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:60
 msgid "Subject"
-msgstr ""
+msgstr "Assunto"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:61 src/olympia/devhub/templates/devhub/versions/list.html:189 src/olympia/devhub/templates/devhub/versions/list.html:207
 #: src/olympia/devhub/templates/devhub/versions/list.html:233
@@ -5768,7 +5768,7 @@ msgstr "Ver todas as extensões"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:986
 msgid "Productivity tools"
-msgstr ""
+msgstr "Ferramentas de produtividade"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -6266,7 +6266,7 @@ msgstr "<dd>%(review_author)s</dd>"
 #: src/olympia/reviewers/templates/reviewers/queue.html:48
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s"
-msgstr ""
+msgstr "por %(user)s em %(date)s %(stars)s"
 
 #: src/olympia/reviewers/templates/reviewers/queue.html:59
 #, python-format
@@ -6698,31 +6698,31 @@ msgstr ""
 
 #: src/olympia/templates/photon-footer.html:24 src/olympia/templates/photon-footer.html:37
 msgid "Browsers"
-msgstr ""
+msgstr "Navegadores"
 
 #: src/olympia/templates/photon-footer.html:27
 msgid "Desktop"
-msgstr ""
+msgstr "Computador"
 
 #: src/olympia/templates/photon-footer.html:29
 msgid "Enterprise"
-msgstr ""
+msgstr "Empresa"
 
 #: src/olympia/templates/photon-footer.html:34
 msgid "Products"
-msgstr ""
+msgstr "Produtos"
 
 #: src/olympia/templates/photon-footer.html:52
 msgid "Privacy"
-msgstr ""
+msgstr "Privacidade"
 
 #: src/olympia/templates/photon-footer.html:53
 msgid "Cookies"
-msgstr ""
+msgstr "Cookies"
 
 #: src/olympia/templates/photon-footer.html:54
 msgid "Legal"
-msgstr ""
+msgstr "Informação legal"
 
 #: src/olympia/templates/photon-footer.html:57
 msgid ""
