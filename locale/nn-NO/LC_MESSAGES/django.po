@@ -3436,9 +3436,8 @@ msgid "Mozilla’s add-on reviewers need to be able to read and reproduce the co
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:21
-#, fuzzy
 msgid "Do you use any of the following in your extension?"
-msgstr "Brukar du eitt av følgjande?"
+msgstr "Brukar du nokre av dei følgjande i utvidinga di?"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:27
 msgid "Code generators or minifiers"
@@ -5128,7 +5127,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:410
 msgid "A simple ad blocker focused on displaying just the content you want."
-msgstr ""
+msgstr "Ein enkel annonsblokkerar fokusert på å berre vise innhaldet du vil sjå."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:413
@@ -5196,7 +5195,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:449
 msgid "Harness the ability to download video and/or audio in multiple formats."
-msgstr ""
+msgstr "Utnytt høvet til å laste ned video og/eller lyd i fleire format."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5244,7 +5243,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:479
 msgid "Automatically delete unwanted cookies. Offers white and blacklist support."
-msgstr ""
+msgstr "Slett uønskte infokapslar automatisk. Tilbyr kvit- og svartelistestøtte."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:482
