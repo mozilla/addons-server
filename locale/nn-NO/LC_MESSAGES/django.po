@@ -5740,12 +5740,12 @@ msgstr "YouTube-tilpassing"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:990
 msgid "Privacy & Security extensions"
-msgstr ""
+msgstr "Personvern- og sikkerheitsutvidingar"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:992 src/olympia/discovery/strings.jinja2:994 src/olympia/discovery/strings.jinja2:996
 msgid "See staff picks"
-msgstr ""
+msgstr "Vis tillegg valt av tilsette"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:999
@@ -6322,7 +6322,7 @@ msgstr "Klarte ikkje å finne eit tillegg med ID-en «{}»."
 
 #: src/olympia/signing/views.py:73
 msgid "You do not own this add-on."
-msgstr ""
+msgstr "Du eig ikkje dette tillegget."
 
 #: src/olympia/signing/views.py:137
 #, python-format
@@ -6338,9 +6338,8 @@ msgid "Please specify your Add-on ID in the manifest if it's longer than 64 char
 msgstr ""
 
 #: src/olympia/signing/views.py:187
-#, fuzzy
 msgid "Invalid Add-on ID in URL or package"
-msgstr "Ugyldig GUID i URL"
+msgstr "Ugyldig tillegs-ID i URL eller pakke"
 
 #: src/olympia/signing/views.py:211
 msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."
@@ -6524,9 +6523,8 @@ msgid "About tracking external sources..."
 msgstr "Om å spore eksterne kjelder…"
 
 #: src/olympia/stats/templates/stats/reports/contents.html:3
-#, fuzzy
 msgid "Download contents by Date"
-msgstr "Last ned kjeldekode etter dato"
+msgstr "Last ned innhald etter dato"
 
 #: src/olympia/stats/templates/stats/reports/countries.html:3
 msgid "User countries by Date"
