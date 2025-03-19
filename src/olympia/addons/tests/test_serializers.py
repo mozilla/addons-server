@@ -546,12 +546,9 @@ class AddonSerializerOutputTestMixin(object):
         }
 
     def test_webextension(self):
-        self.addon = addon_factory(file_kw={'is_webextension': True})
         # Give one of the versions some webext permissions to test that.
-        WebextPermission.objects.create(
-            file=self.addon.current_version.all_files[0],
-            permissions=['bookmarks', 'random permission']
-        )
+        self.addon = addon_factory(
+            file_kw={'is_webextension': True, 'permissions': ['bookmarks', 'random permission']})
 
         result = self.serialize()
 
