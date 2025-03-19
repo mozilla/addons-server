@@ -5367,7 +5367,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:552
 msgid "Delete cookies, browsing history, and cached files with just a single click."
-msgstr ""
+msgstr "Slett infokapslar, surfehistorikk og snøggbufra filer med berre eitt enkelt klikk."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5400,7 +5400,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:572
 msgid "Automatically replace derogatory words across the web."
-msgstr ""
+msgstr "Erstatt automatisk nedsettande ord på nettet."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:575
@@ -5469,7 +5469,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:610
 msgid "Goodbye, annoying cookie warnings!"
-msgstr ""
+msgstr "Farvel, irriterande informasjonskapsel-åtvaringar!"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:613
@@ -5589,7 +5589,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:884
 msgid "Get weather updates directly from Firefox."
-msgstr ""
+msgstr "Få vêroppdateringar direkte fra Firefox."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:887
