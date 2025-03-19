@@ -731,7 +731,7 @@ class AddonVersionViewSet(
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
         if not instance.can_be_disabled_and_deleted():
-            group = self.get_addon_object().promoted_group()
+            group = self.get_addon_object().promoted_groups()
             msg = gettext(
                 'The latest approved version of this %s add-on cannot be deleted '
                 'because the previous version was not approved for %s promotion. '

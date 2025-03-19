@@ -35,7 +35,7 @@ class TestSyncPromotedMixin(TestCase):
             addon=addon or self.addon, **kwargs
         )
 
-    def promoted_group(self, group_id):
+    def promoted_groups(self, group_id):
         return PromotedGroup.objects.get(group_id=group_id)
 
     @contextlib.contextmanager
@@ -85,7 +85,7 @@ class TestSyncPromotedMixin(TestCase):
             PromotedAddonPromotion,
             1,
             addon=self.addon,
-            promoted_group=self.promoted_group(PROMOTED_GROUP_CHOICES.LINE),
+            promoted_group=self.promoted_groups(PROMOTED_GROUP_CHOICES.LINE),
             application_id=amo.FIREFOX.id,
         )
         self.assert_count(PromotedApproval, 0, version=self.addon.current_version)
@@ -130,15 +130,15 @@ class TestSyncPromotedMixin(TestCase):
             PromotedAddonPromotion,
             1,
             addon=self.addon,
-            promoted_group=self.promoted_group(PROMOTED_GROUP_CHOICES.SPOTLIGHT),
+            promoted_group=self.promoted_groups(PROMOTED_GROUP_CHOICES.SPOTLIGHT),
             application_id=amo.FIREFOX.id,
         )
         # Expect 2 approvals and 2 promoted addon versions, 1 for each application
         self.assert_count(PromotedAddonVersion, 2, version=self.addon.current_version)
 
     def test_sync_promoted_addon_change_group(self):
-        spotlight = self.promoted_group(PROMOTED_GROUP_CHOICES.SPOTLIGHT)
-        line = self.promoted_group(PROMOTED_GROUP_CHOICES.LINE)
+        spotlight = self.promoted_groups(PROMOTED_GROUP_CHOICES.SPOTLIGHT)
+        line = self.promoted_groups(PROMOTED_GROUP_CHOICES.LINE)
 
         with (
             self.disable_post_save_promoted_addon(),
@@ -195,7 +195,7 @@ class TestSyncPromotedMixin(TestCase):
         self.assertEqual(promoted_addon_version.reload().promoted_group, spotlight)
 
     def test_promoted_addon_change_application(self):
-        spotlight = self.promoted_group(PROMOTED_GROUP_CHOICES.SPOTLIGHT)
+        spotlight = self.promoted_groups(PROMOTED_GROUP_CHOICES.SPOTLIGHT)
         with (
             self.disable_post_save_promoted_addon(),
             self.disable_post_save_promoted_approval(),
@@ -256,7 +256,7 @@ class TestSyncPromotedMixin(TestCase):
 
         promoted_addon_promotion = PromotedAddonPromotion.objects.get(
             addon=self.addon,
-            promoted_group=self.promoted_group(PROMOTED_GROUP_CHOICES.SPOTLIGHT),
+            promoted_group=self.promoted_groups(PROMOTED_GROUP_CHOICES.SPOTLIGHT),
             application_id=amo.ANDROID.id,
         )
         # There are no approvals for the new application yet
@@ -300,13 +300,13 @@ class TestSyncPromotedMixin(TestCase):
         self.assert_count(
             PromotedAddonPromotion,
             2,
-            promoted_group=self.promoted_group(PROMOTED_GROUP_CHOICES.SPOTLIGHT),
+            promoted_group=self.promoted_groups(PROMOTED_GROUP_CHOICES.SPOTLIGHT),
             application_id=amo.FIREFOX.id,
         )
 
         promoted_addon_promotion = PromotedAddonPromotion.objects.get(
             addon=self.addon,
-            promoted_group=self.promoted_group(PROMOTED_GROUP_CHOICES.SPOTLIGHT),
+            promoted_group=self.promoted_groups(PROMOTED_GROUP_CHOICES.SPOTLIGHT),
             application_id=amo.FIREFOX.id,
         )
 
@@ -318,12 +318,12 @@ class TestSyncPromotedMixin(TestCase):
         self.assert_count(
             PromotedAddonPromotion,
             1,
-            promoted_group=self.promoted_group(PROMOTED_GROUP_CHOICES.SPOTLIGHT),
+            promoted_group=self.promoted_groups(PROMOTED_GROUP_CHOICES.SPOTLIGHT),
             application_id=amo.FIREFOX.id,
         )
 
     def test_delete_promoted_addon_already_deleted(self):
-        spotlight = self.promoted_group(PROMOTED_GROUP_CHOICES.SPOTLIGHT)
+        spotlight = self.promoted_groups(PROMOTED_GROUP_CHOICES.SPOTLIGHT)
         promoted_addon = self.promoted_addon(
             group_id=spotlight.group_id,
             application_id=amo.FIREFOX.id,
@@ -340,7 +340,7 @@ class TestSyncPromotedMixin(TestCase):
         promoted_addon.delete()
 
     def test_delete_promoted_approval(self):
-        spotlight = self.promoted_group(PROMOTED_GROUP_CHOICES.SPOTLIGHT)
+        spotlight = self.promoted_groups(PROMOTED_GROUP_CHOICES.SPOTLIGHT)
 
         with (
             self.disable_post_save_promoted_addon(),
@@ -370,7 +370,7 @@ class TestSyncPromotedMixin(TestCase):
             promoted_addon_version.reload()
 
     def test_delete_promoted_addon_version(self):
-        spotlight = self.promoted_group(PROMOTED_GROUP_CHOICES.SPOTLIGHT)
+        spotlight = self.promoted_groups(PROMOTED_GROUP_CHOICES.SPOTLIGHT)
         self.promoted_addon(
             group_id=spotlight.group_id,
             application_id=amo.FIREFOX.id,

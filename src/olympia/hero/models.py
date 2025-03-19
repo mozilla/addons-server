@@ -174,6 +174,7 @@ class PrimaryHero(ModelBase):
         'HTML or special tags. Will be translated.',
     )
     enabled = models.BooleanField(db_index=True, default=False)
+    # TODO: promotedaddon; primaryhero refactor (Write PR)
     promoted_addon = models.OneToOneField(
         PromotedAddon, on_delete=models.CASCADE, null=False
     )

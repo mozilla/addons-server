@@ -1462,7 +1462,7 @@ class TestExtensionQueue(QueueTest):
             auto_approve_disabled=True,
         )
         self.expected_versions = self.get_expected_versions(self.expected_addons)
-        with self.assertNumQueries(12):
+        with self.assertNumQueries(16):
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
             # - 1 for the due date cut off config
@@ -1472,6 +1472,7 @@ class TestExtensionQueue(QueueTest):
             #     the important bit)
             # - 2 for config items (motd / site notice)
             # - 1 for my add-ons in user menu
+            # - 4 for promoted group queries
             self._test_results()
 
     def test_results_two_versions(self):
@@ -1784,7 +1785,7 @@ class TestThemeQueue(QueueTest):
         self.grant_permission(self.user, 'Addons:ThemeReview')
 
     def test_results(self):
-        with self.assertNumQueries(11):
+        with self.assertNumQueries(15):
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
             # - 1 for the current queue count for pagination purposes
@@ -1793,6 +1794,7 @@ class TestThemeQueue(QueueTest):
             #     the important bit)
             # - 2 for config items (motd / site notice)
             # - 1 for my add-ons in user menu
+            # - 4 for promoted group queries
             self._test_results()
 
     def test_queue_ordering_by_due_date(self):
@@ -2216,7 +2218,7 @@ class TestContentReviewQueue(QueueTest):
     def test_results(self):
         self.login_with_permission()
         self.generate_files()
-        with self.assertNumQueries(10):
+        with self.assertNumQueries(14):
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
             # - 1 for the current queue count for pagination purposes
@@ -2225,6 +2227,7 @@ class TestContentReviewQueue(QueueTest):
             #     the important bit)
             # - 2 for config items (motd / site notice)
             # - 1 for my add-ons in user menu
+            # - 4 for promoted group queries
             self._test_results()
 
     def test_queue_layout(self):
@@ -2315,7 +2318,7 @@ class TestPendingRejectionReviewQueue(QueueTest):
     def test_results(self):
         self.login_as_admin()
         self.generate_files()
-        with self.assertNumQueries(11):
+        with self.assertNumQueries(14):
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
             # - 1 for the current queue count for pagination purposes
@@ -2324,6 +2327,7 @@ class TestPendingRejectionReviewQueue(QueueTest):
             #     the important bit)
             # - 2 for config items (motd / site notice)
             # - 1 for my add-ons in user menu
+            # - 3 for promoted group queries
             self._test_results()
 
 
@@ -2949,7 +2953,7 @@ class TestReview(ReviewBase):
             str(author.get_role_display()),
             self.addon,
         )
-        with self.assertNumQueries(57):
+        with self.assertNumQueries(62):
             # FIXME: obviously too high, but it's a starting point.
             # Potential further optimizations:
             # - Remove trivial... and not so trivial duplicates
@@ -2960,61 +2964,64 @@ class TestReview(ReviewBase):
             #
             # 1. user
             # 2. savepoint
-            # 3. groups
-            # 4. add-on by slug
-            # 5. add-on translations
-            # 6. add-on categories
-            # 7. current version + file
-            # 8. current version translations
-            # 9. current version applications versions
-            # 10. add current_authors property to the addon instance
-            # 11. previews
-            # 12. promoted info for the add-on
-            # 13. latest version in channel + file
-            # 14. latest versions translations
-            # 15. latest version in channel not disabled + file
-            # 16. latest version in channel not disabled translations
-            # 17. version reviewer flags
-            # 18. version reviewer flags (repeated)
-            # 19. version autoapprovalsummary
-            # 20. blocklist
-            # 21. cinderjob exists
-            # 22. addonreusedguid
-            # 23. unresolved DSA related abuse reports
-            # 24. abuse reports count against user or addon
-            # 25. low ratings count
-            # 26. base version pk for comparison
-            # 27. count of all versions in channel
-            # 28. paginated list of versions in channel
-            # 29. scanner results for paginated list of versions
-            # 30. translations for paginated list of versions
-            # 31. applications versions for  paginated list of versions
-            # 32. activity log for  paginated list of versions
-            # 33. files for  paginated list of versions
-            # 34. versionreviewer flags exists to find out if pending rejection
-            # 35. count versions needing human review on other pages
-            # 36. count versions needing human review by mad on other pages
-            # 37. count versions pending rejection on other pages
-            # 38. whiteboard
-            # 39. reviewer subscriptions for listed
-            # 40. reviewer subscriptions for unlisted
-            # 41. config for motd
-            # 42. release savepoint (?)
-            # 43. count add-ons the user is a developer of
-            # 44. config for site notice
-            # 45. other add-ons with same guid
-            # 46. translations for... (?! id=1)
-            # 47. important activity log about the add-on
-            # 48. user for the activity (from the ActivityLog foreignkey)
-            # 49. user for the activity (from the ActivityLog arguments)
-            # 50. add-on for the activity
-            # 51. translation for the add-on for the activity
-            # 52. select all versions in channel for versions dropdown widget
-            # 53. reviewer reasons for the reason dropdown
-            # 54. cinder policies for the policy dropdown
-            # 55. select users by role for this add-on (?)
-            # 56. unreviewed versions in other channel
-            # 57. attachmentlog
+            # 3. add-on by slug
+            # 4. add-on translations
+            # 5. add-on categories
+            # 6. current version + file
+            # 7. current version translations
+            # 8. current version applications versions
+            # 9. add current_authors property to the addon instance
+            # 10. previews
+            # 11. promoted info for the add-on
+            # 12. latest version in channel + file
+            # 13. latest versions translations
+            # 14. latest version in channel not disabled + file
+            # 15. latest version in channel not disabled translations
+            # 16. version reviewer flags
+            # 17. version reviewer flags (repeated)
+            # 18. version autoapprovalsummary
+            # 19. blocklist
+            # 20. cinderjob exists
+            # 21. addonreusedguid
+            # 22. unresolved DSA related abuse reports
+            # 23. abuse reports count against user or addon
+            # 24. low ratings count
+            # 25. base version pk for comparison
+            # 26. count of all versions in channel
+            # 27. paginated list of versions in channel
+            # 28. scanner results for paginated list of versions
+            # 29. translations for paginated list of versions
+            # 30. applications versions for paginated list of versions
+            # 31. activity log for paginated list of versions
+            # 32. files for paginated list of versions
+            # 33. versionreviewer flags exists to find out if pending rejection
+            # 34. count versions needing human review on other pages
+            # 35. count versions needing human review by mad on other pages
+            # 36. count versions pending rejection on other pages
+            # 37. whiteboard
+            # 38. reviewer subscriptions for listed
+            # 39. reviewer subscriptions for unlisted
+            # 40. config for motd
+            # 41. release savepoint (?)
+            # 42. count add-ons the user is a developer of
+            # 43. config for site notice
+            # 44. other add-ons with same guid
+            # 45. translations for... (?! id=1)
+            # 46. important activity log about the add-on
+            # 47. user for the activity (from the ActivityLog foreignkey)
+            # 48. user for the activity (from the ActivityLog arguments)
+            # 49. add-on for the activity
+            # 50. translation for the add-on for the activity
+            # 51. select all versions in channel for versions dropdown widget
+            # 52. reviewer reasons for the reason dropdown
+            # 53. cinder policies for the policy dropdown
+            # 54. select users by role for this add-on (?)
+            # 55. unreviewed versions in other channel
+            # 56. attachmentlog
+            # 57. approved promoted groups ids
+            # 58/59. check if the addon is admin_review (x2)
+            # 60. check if the addon is listed_pre_review
+            # 61/62. fetch promoted groups of current version (x2)
             response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -4322,7 +4329,9 @@ class TestReview(ReviewBase):
         assert mock_sign_file.called
 
     @mock.patch('olympia.reviewers.utils.sign_file')
-    def test_approve_addon_for_unlisted_pre_review_promoted_group(self, mock_sign_file):
+    def test_approve_addon_for_unlisted_pre_review_promoted_groups(
+        self, mock_sign_file
+    ):
         reason = ReviewActionReason.objects.create(
             name='reason 1', is_active=True, canned_response='reason'
         )
@@ -5693,7 +5702,7 @@ class TestReview(ReviewBase):
                     results={'matchedRules': [customs_rule.name]},
                 )
 
-        with self.assertNumQueries(58):
+        with self.assertNumQueries(63):
             # See test_item_history_pagination() for more details about the
             # queries count. What's important here is that the extra versions
             # and scanner results don't cause extra queries.
@@ -7298,7 +7307,7 @@ class TestMadQueue(QueueTest):
         self.expected_versions = self.get_expected_versions(self.expected_addons)
 
     def test_results(self):
-        with self.assertNumQueries(10):
+        with self.assertNumQueries(14):
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
             # - 1 for the current queue count for pagination purposes
@@ -7307,6 +7316,8 @@ class TestMadQueue(QueueTest):
             #     how many are in the queue - that's the important bit)
             # - 2 for config items (motd / site notice)
             # - 1 for my add-ons in user menu
+            # - 1 for finding approved promoted groups
+            # - 4 checking the approved promoted group for each version
             response = self.client.get(self.url)
         assert response.status_code == 200
 

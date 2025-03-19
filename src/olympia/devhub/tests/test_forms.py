@@ -481,7 +481,7 @@ class TestCompatForm(TestCase):
         self.make_addon_promoted(
             self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
         )
-        del self.addon.promoted  # Reset property
+        del self.addon.cached_promoted_groups  # Reset property
         data = None
         formset = forms.CompatFormSet(
             data, queryset=version.apps.all(), form_kwargs={'version': version}

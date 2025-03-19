@@ -125,3 +125,8 @@ def addon_listing_header(
         else:
             extra_sort_opts.append((k, v))
     return new_context(**locals())
+
+
+@library.filter
+def python_any(values):
+    return any(values)

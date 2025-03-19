@@ -343,7 +343,7 @@ class CinderAddon(CinderEntity):
         # promoted in any way, but we don't care about the promotion being
         # approved for the current version, it would make more queries and it's
         # not useful for moderation purposes anyway.
-        promoted_group = self.addon.promoted_group(currently_approved=False)
+        promoted_group = self.addon.promoted_groups(currently_approved=False)
         data = {
             'id': self.id,
             'average_daily_users': self.addon.average_daily_users,
@@ -353,7 +353,7 @@ class CinderAddon(CinderEntity):
             'name': self.get_str(self.addon.name),
             'slug': self.addon.slug,
             'summary': self.get_str(self.addon.summary),
-            'promoted': self.get_str(promoted_group.name if promoted_group else ''),
+            'promoted': self.get_str(promoted_group.name),
         }
         return data
 

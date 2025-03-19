@@ -122,7 +122,7 @@ def bump_addon_version(old_version):
     task_user = get_task_user()
     addon = old_version.addon
     old_file_obj = old_version.file
-    promoted_group = addon.promoted_group(currently_approved=True)
+    promoted_group = addon.promoted_groups(currently_approved=True)
     # We only sign files that have been reviewed
     if old_file_obj.status not in amo.APPROVED_STATUSES:
         log.info(
@@ -200,7 +200,8 @@ def bump_addon_version(old_version):
             )
 
             # Carry over promotion if necessary.
-            if promoted_group and promoted_group.listed_pre_review:
+            # TODO: promotedaddon; approve_for_version refactor (Write PR)
+            if promoted_group and any(promoted_group.listed_pre_review):
                 addon.promotedaddon.approve_for_version(new_version)
 
     except Exception:

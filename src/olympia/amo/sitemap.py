@@ -21,7 +21,7 @@ from olympia.amo.utils import id_to_path
 from olympia.bandwagon.models import Collection
 from olympia.constants.categories import CATEGORIES
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
-from olympia.promoted.models import PromotedAddon
+from olympia.promoted.models import PromotedAddonPromotion
 from olympia.tags.models import AddonTag, Tag
 from olympia.users.models import UserProfile
 
@@ -133,12 +133,12 @@ class Sitemap(DjangoSitemap):
 
 
 def get_android_promoted_addons():
-    return PromotedAddon.objects.filter(
+    return PromotedAddonPromotion.objects.filter(
         Q(application_id=amo.ANDROID.id) | Q(application_id__isnull=True),
-        group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
-        addon___current_version__promoted_approvals__application_id=(amo.ANDROID.id),
-        addon___current_version__promoted_approvals__group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
-    )
+        promoted_group__group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
+        addon___current_version__promoted_versions__application_id=(amo.ANDROID.id),
+        addon___current_version__promoted_versions__promoted_group__group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
+    ).values_list('addon_id', flat=True)
 
 
 class AddonSitemap(Sitemap):
@@ -154,9 +154,7 @@ class AddonSitemap(Sitemap):
         # android is currently limited to a small number of recommended addons, so get
         # the list of those and filter further
         if current_app == amo.ANDROID:
-            promoted_addon_ids = get_android_promoted_addons().values_list(
-                'addon_id', flat=True
-            )
+            promoted_addon_ids = get_android_promoted_addons()
             addons_qs = addons_qs.filter(id__in=promoted_addon_ids)
         addons = list(
             addons_qs.order_by('-last_updated')
@@ -302,9 +300,7 @@ class AccountSitemap(Sitemap):
         # android is currently limited to a small number of recommended addons, so get
         # the list of those and filter further
         if current_app == amo.ANDROID:
-            promoted_addon_ids = get_android_promoted_addons().values_list(
-                'addon_id', flat=True
-            )
+            promoted_addon_ids = get_android_promoted_addons()
             addon_q = addon_q & Q(addons__id__in=promoted_addon_ids)
 
         users = (

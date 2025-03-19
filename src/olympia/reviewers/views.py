@@ -441,7 +441,7 @@ def review(request, addon, channel=None):
     channel, content_review = determine_channel(channel)
 
     is_static_theme = addon.type == amo.ADDON_STATICTHEME
-    promoted_group = addon.promoted_group(currently_approved=False)
+    promoted_group = addon.promoted_groups(currently_approved=False)
 
     # Are we looking at an unlisted review page, or (weirdly) the listed
     # review page of an unlisted-only add-on?

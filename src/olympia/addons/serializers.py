@@ -38,11 +38,11 @@ from olympia.bandwagon.models import Collection
 from olympia.constants.applications import APP_IDS, APPS_ALL
 from olympia.constants.base import ADDON_TYPE_CHOICES_API
 from olympia.constants.categories import CATEGORIES_BY_ID
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES, PROMOTED_GROUPS_BY_ID
 from olympia.core.languages import AMO_LANGUAGES
 from olympia.files.models import File, FileUpload
 from olympia.files.utils import DuplicateAddonID, parse_addon
-from olympia.promoted.models import PromotedAddon
+from olympia.promoted.models import PromotedGroup
 from olympia.ratings.utils import get_grouped_ratings
 from olympia.search.filters import AddonAppVersionQueryParam
 from olympia.tags.models import Tag
@@ -513,7 +513,7 @@ class DeveloperVersionSerializer(VersionSerializer):
             ):
                 raise exceptions.ValidationError(gettext('File is already disabled.'))
             if not version.can_be_disabled_and_deleted():
-                group = version.addon.promoted_group()
+                group = version.addon.promoted_groups()
                 msg = gettext(
                     'The latest approved version of this %s add-on cannot be deleted '
                     'because the previous version was not approved for %s promotion. '
@@ -961,7 +961,7 @@ class AddonPendingAuthorSerializer(AddonAuthorSerializer):
         return value
 
 
-class PromotedAddonSerializer(AMOModelSerializer):
+class PromotedGroupSerializer(AMOModelSerializer):
     apps = serializers.SerializerMethodField()
     category = ReverseChoiceField(
         choices=PROMOTED_GROUP_CHOICES.api_choices,
@@ -969,14 +969,18 @@ class PromotedAddonSerializer(AMOModelSerializer):
     )
 
     class Meta:
-        model = PromotedAddon
+        model = PromotedGroup
         fields = (
             'apps',
             'category',
         )
 
+    def __init__(self, *args, **kwargs):
+        self.addon = kwargs.pop('addon', None)
+        super().__init__(*args, **kwargs)
+
     def get_apps(self, obj):
-        return [app.short for app in obj.approved_applications]
+        return [app.short for app in self.addon.approved_applications_for(obj)]
 
 
 class AddonSerializer(AMOModelSerializer):
@@ -1022,7 +1026,7 @@ class AddonSerializer(AMOModelSerializer):
         ],
     )
     previews = PreviewSerializer(many=True, source='current_previews', read_only=True)
-    promoted = PromotedAddonSerializer(read_only=True)
+    promoted = serializers.SerializerMethodField()
     ratings = serializers.SerializerMethodField()
     ratings_url = serializers.SerializerMethodField()
     review_url = serializers.SerializerMethodField()
@@ -1138,7 +1142,16 @@ class AddonSerializer(AMOModelSerializer):
             data.pop('is_source_public', None)
         if request and not is_gate_active(request, 'is-featured-addon-shim'):
             data.pop('is_featured', None)
+        if request and is_gate_active(request, 'promoted-groups-shim'):
+            promoted = data.pop('promoted', None)
+            data['promoted'] = promoted[0] if promoted else None
         return data
+
+    def get_promoted(self, obj):
+        promoted = obj.cached_promoted_groups
+        return PromotedGroupSerializer(
+            many=True, read_only=True, instance=promoted, addon=obj
+        ).data
 
     def get_has_eula(self, obj):
         return bool(getattr(obj, 'has_eula', obj.eula))
@@ -1146,9 +1159,13 @@ class AddonSerializer(AMOModelSerializer):
     def get_is_featured(self, obj):
         # featured is gone, but we need to keep the API backwards compatible so
         # fake it with promoted status instead.
-        return bool(
-            obj.promoted and obj.promoted.group_id == PROMOTED_GROUP_CHOICES.RECOMMENDED
-        )
+        def is_recommended(obj):
+            return any(
+                PROMOTED_GROUP_CHOICES.RECOMMENDED == promotion.group_id
+                for promotion in obj.cached_promoted_groups
+            )
+
+        return bool(obj.cached_promoted_groups and is_recommended(obj))
 
     def get_has_privacy_policy(self, obj):
         return bool(getattr(obj, 'has_privacy_policy', obj.privacy_policy))
@@ -1562,15 +1579,20 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
 
         promoted = data.get('promoted', None)
         if promoted:
+            promoted = promoted[0]
             # set .approved_for_groups cached_property because it's used in
             # .approved_applications.
             approved_for_apps = promoted.get('approved_for_apps')
-            obj.promoted = PromotedAddon(
-                addon=obj,
-                approved_application_ids=approved_for_apps,
-                created=None,
-                group_id=promoted['group_id'],
-            )
+            group = PROMOTED_GROUPS_BY_ID[promoted['group_id']]
+
+            obj.promoted = [
+                {
+                    'group_id': group.id,
+                    'category': group.api_name,
+                    'apps': [APP_IDS.get(app_id).short for app_id in approved_for_apps],
+                }
+            ]
+
             # we can safely regenerate these tuples because
             # .appproved_applications only cares about the current group
             obj._current_version.approved_for_groups = (
@@ -1578,7 +1600,7 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
                 for app_id in approved_for_apps
             )
         else:
-            obj.promoted = None
+            obj.promoted = []
 
         ratings = data.get('ratings', {})
         obj.average_rating = ratings.get('average')
@@ -1610,6 +1632,18 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
         ):
             data.pop('_score')
         return data
+
+    def get_promoted(self, obj):
+        return obj.promoted
+
+    def get_is_featured(self, obj):
+        def is_recommended(obj):
+            return any(
+                PROMOTED_GROUP_CHOICES.RECOMMENDED == promotion['group_id']
+                for promotion in obj.promoted
+            )
+
+        return bool(obj.promoted and is_recommended(obj))
 
 
 class ESAddonAutoCompleteSerializer(ESAddonSerializer):

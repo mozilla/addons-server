@@ -1426,6 +1426,7 @@ DRF_API_GATES = {
         'categories-application',
         'promoted-verified-sponsored',
         'mimimal-profile-has-all-fields-shim',
+        'promoted-groups-shim',
     ),
     'v4': (
         'l10n_flat_input_output',
@@ -1444,6 +1445,7 @@ DRF_API_GATES = {
         'promoted-verified-sponsored',
         'block-min-max-versions-shim',
         'block-versions-list-shim',
+        'promoted-groups-shim',
         'mimimal-profile-has-all-fields-shim',
     ),
     'v5': (
