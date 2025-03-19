@@ -5469,7 +5469,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:610
 msgid "Goodbye, annoying cookie warnings!"
-msgstr "Farvel, irriterande informasjonskapsel-åtvaringar!"
+msgstr "Farvel, irriterande infokapsel-åtvaringar!"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:613
@@ -5579,7 +5579,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:875
 msgid "Web pages read aloud. 40+ languages supported."
-msgstr ""
+msgstr "Få nettsider lesne høgt for deg. Over 40 språk støtta."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:881
@@ -5604,7 +5604,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:896
 msgid "Begone, annoying cookie warnings!"
-msgstr ""
+msgstr "Forsvinn, irriterande infokapsel-åtvaringar!"
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:902
