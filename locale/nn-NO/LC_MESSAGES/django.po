@@ -1473,7 +1473,7 @@ msgstr "Sosialt og kommunikasjon"
 
 #: src/olympia/constants/categories.py:172
 msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
-msgstr ""
+msgstr "Last ned Firefox-utvidingar for å forbetre sosiale medium og direktemeldingar. Denne kategorien inkluderer forbetra fanevarsel, videonedlastarar, og meir."
 
 #: src/olympia/constants/categories.py:179
 msgid "Tabs"
@@ -2527,7 +2527,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:49
 msgid "<strong>Email history:</strong> The table below shows all emails we have attempted to send to you in the last 2 days."
-msgstr ""
+msgstr "<strong>E-posthistorikk:</strong> Tabellen nedanfor viser alle e-postmeldingane vi har prøvd å sende til deg dei siste 2 dagane."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:57
 msgid "Date"
