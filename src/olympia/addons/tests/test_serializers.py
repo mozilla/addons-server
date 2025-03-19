@@ -1090,11 +1090,9 @@ class TestVersionSerializerOutput(TestCase):
         # No permissions.
         assert result['files'][0]['permissions'] == []
 
-        self.version = addon_factory(
-            file_kw={'is_webextension': True}).current_version
         permissions = ['dangerdanger', 'high', 'voltage']
-        WebextPermission.objects.create(
-            permissions=permissions, file=self.version.all_files[0])
+        self.version = addon_factory(
+            file_kw={'is_webextension': True, 'permissions': permissions}).current_version
         result = self.serialize()
         assert result['files'][0]['permissions'] == permissions
 
