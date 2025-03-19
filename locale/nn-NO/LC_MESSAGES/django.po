@@ -696,7 +696,7 @@ msgstr "Fann ikkje gyldig brukarøkt som samsvarar med oppgitt øktnøkkelen."
 
 #: src/olympia/api/authentication.py:122
 msgid "Access token refresh failed; user needs to login to FxA again."
-msgstr ""
+msgstr "Mislykka oppdatering av tilgangsnøkkels; brukaren må logge på FxA igjen."
 
 #: src/olympia/api/authentication.py:187
 msgid "Wrong type for one or more keys in payload"
@@ -1465,7 +1465,7 @@ msgstr "Shopping"
 
 #: src/olympia/constants/categories.py:163
 msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
-msgstr ""
+msgstr "Last ned Firefox-utvidingar som kan forbetre handleopplevinga di med søking etter kupongar og rabattar, samt analysar av vurderingar, med meir."
 
 #: src/olympia/constants/categories.py:170
 msgid "Social & Communication"
