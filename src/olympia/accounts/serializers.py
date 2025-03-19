@@ -34,7 +34,7 @@ class BaseUserSerializer(AMOModelSerializer):
         model = UserProfile
         fields = ('id', 'name', 'url', 'username')
 
-    def get_url(self, obj):
+    def get_url(self, obj) -> str | None:
         return obj.get_absolute_url()
 
     # Used in subclasses.

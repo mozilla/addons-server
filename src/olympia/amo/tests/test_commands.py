@@ -1,7 +1,9 @@
 import io
 import json
 import os
+import tempfile
 from importlib import import_module
+from pathlib import Path
 from unittest import mock
 
 from django.conf import settings
@@ -152,6 +154,55 @@ def test_generate_jsi18n_files():
     with open(filename) as f:
         content = f.read()
         assert 'Erreur' in content
+
+
+@override_settings(SWAGGER_UI_ENABLED=True)
+class TestGenerateJsSwaggerFiles(TestCase):
+    def setUp(self):
+        self.tmp_dir = tempfile.mkdtemp()
+        self.swagger_js_dir = Path(self.tmp_dir) / 'js' / 'swagger'
+        self.versions = ['v3', 'v4', 'v5']
+
+    def assert_swagger_files_exist(self):
+        for version in self.versions:
+            assert (self.swagger_js_dir / f'{version}.js').exists()
+
+    def generate_js_swagger_files(self):
+        with override_settings(STATIC_BUILD_PATH=self.tmp_dir):
+            call_command('generate_js_swagger_files', verbose=True)
+
+    def test_generate_js_swagger_files(self):
+        self.generate_js_swagger_files()
+        assert self.swagger_js_dir.exists()
+
+    def test_creates_missing_dir(self):
+        assert not self.swagger_js_dir.exists()
+        self.generate_js_swagger_files()
+        assert self.swagger_js_dir.exists()
+
+    def test_content_is_correct(self):
+        self.generate_js_swagger_files()
+        for version in self.versions:
+            with open(self.swagger_js_dir / f'{version}.js', 'r') as f:
+                content = f.read()
+                assert 'SwaggerUIBundle' in content
+
+    def test_raises_on_server_error(self):
+        mock_response = mock.Mock()
+        mock_response.status_code = 500
+
+        with (
+            mock.patch(
+                (
+                    'olympia.amo.management.commands.generate_js_swagger_files.'
+                    'serve_swagger_ui_js'
+                )
+            ) as mock_view,
+            pytest.raises(CommandError) as error_info,
+        ):
+            mock_view.return_value = mock_response
+            self.generate_js_swagger_files()
+            assert 'Unexpected status code: 500' in str(error_info.value)
 
 
 class BaseTestDataCommand(TestCase):
@@ -421,27 +472,27 @@ class TestBaseDataCommand(BaseTestDataCommand):
 
     def test_backup_dir_path(self):
         name = 'test_backup'
-        expected_path = os.path.join(self.backup_dir, name)
+        swagger_js_dir = os.path.join(self.backup_dir, name)
 
         actual_path = self.base_data_command.backup_dir_path(name)
-        assert actual_path == expected_path, (
-            f'Expected {expected_path}, got {actual_path}'
+        assert actual_path == swagger_js_dir, (
+            f'Expected {swagger_js_dir}, got {actual_path}'
         )
 
     def test_backup_db_path(self):
         name = 'db_backup'
-        expected_path = os.path.join(self.backup_dir, name, self.db_file)
+        swagger_js_dir = os.path.join(self.backup_dir, name, self.db_file)
         actual_path = self.base_data_command.backup_db_path(name)
-        assert actual_path == expected_path, (
-            f'Expected {expected_path}, got {actual_path}'
+        assert actual_path == swagger_js_dir, (
+            f'Expected {swagger_js_dir}, got {actual_path}'
         )
 
     def test_backup_storage_path(self):
         name = 'storage_backup'
-        expected_path = os.path.join(self.backup_dir, name, self.storage_file)
+        swagger_js_dir = os.path.join(self.backup_dir, name, self.storage_file)
         actual_path = self.base_data_command.backup_storage_path(name)
-        assert actual_path == expected_path, (
-            f'Expected {expected_path}, got {actual_path}'
+        assert actual_path == swagger_js_dir, (
+            f'Expected {swagger_js_dir}, got {actual_path}'
         )
 
     @mock.patch('olympia.amo.management.shutil.rmtree')

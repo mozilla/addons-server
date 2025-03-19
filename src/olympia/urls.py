@@ -8,6 +8,7 @@ from django.views.static import serve as serve_static
 
 from olympia.amo.utils import urlparams
 from olympia.amo.views import frontend_view
+from olympia.api.views import serve_swagger_ui_js
 from olympia.files.urls import upload_patterns
 from olympia.versions import views as version_views
 from olympia.versions.update import update
@@ -143,6 +144,11 @@ if settings.SERVE_STATIC_FILES:
                 r'^static/js/i18n/(?P<locale>\w{2,3}(?:-\w{2,6})?)\.js$',
                 serve_javascript_catalog,
                 name='javascript-catalog',
+            ),
+            # Serve swagger UI JS directly from django
+            re_path(
+                r'^static/js/swagger/(?P<version>[^/]+)\.js$',
+                serve_swagger_ui_js,
             ),
             # fallback for static files that are not available directly over nginx.
             # Mostly vendor files from python or npm dependencies that are not available

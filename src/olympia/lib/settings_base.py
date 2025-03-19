@@ -358,8 +358,9 @@ JINJA_EXCLUDE_TEMPLATE_PATHS = (
     # Django's sitemap_index.xml template uses some syntax that jinja doesn't support
     r'sitemap_index.xml',
     # Swagger URLs are for the API docs, use some syntax that jinja doesn't support
-    r'drf-yasg/swagger-ui.html',
-    r'drf-yasg/redoc.html',
+    r'drf_spectacular/swagger_ui.html',
+    r'drf_spectacular/redoc.html',
+    r'drf_spectacular/swagger_ui.js',
 )
 
 TEMPLATES = [
@@ -564,7 +565,8 @@ INSTALLED_APPS = (
     'django_jinja',
     'rangefilter',
     'django_recaptcha',
-    'drf_yasg',
+    'drf_spectacular',
+    'drf_spectacular_sidecar',
     'django_node_assets',
     'django_vite',
     # Django contrib apps
@@ -1368,6 +1370,8 @@ REST_FRAMEWORK = {
     # Use our pagination class by default, which allows clients to request a
     # different page size.
     'TEST_REQUEST_DEFAULT_FORMAT': 'json',
+    # register spectacular AutoSchema with DRF.
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
 # We need to load this before sentry_sdk.init or our reverse replacement is too late.
@@ -1523,3 +1527,22 @@ DJANGO_VITE = {
 ENV = env('ENV')
 
 MEMCACHE_MIN_SERVER_COUNT = 2
+
+SPECTACULAR_SETTINGS = {
+    # Extract tag of the root path of the API route
+    # /api/v5/foo -> foo
+    'SCHEMA_PATH_PREFIX': '/api/v[0-9]',
+    'TITLE': 'AMO API',
+    'DESCRIPTION': 'Addons Server API Documentation',
+    'SERVE_INCLUDE_SCHEMA': True,
+    'SERVE_PERMISSIONS': ['rest_framework.permissions.AllowAny'],
+    # load swagger/redoc assets via collectstatic assets
+    # rather than via the CDN
+    'SWAGGER_UI_DIST': 'SIDECAR',
+    'SWAGGER_UI_FAVICON_HREF': 'SIDECAR',
+    'REDOC_DIST': 'SIDECAR',
+}
+
+SWAGGER_SCHEMA_FILE = path('schema.yml')
+
+SWAGGER_UI_ENABLED = env('SWAGGER_UI_ENABLED', default=False) or TARGET != 'production'

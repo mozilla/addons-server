@@ -215,6 +215,8 @@ class CoreConfig(AppConfig):
     def ready(self):
         super().ready()
 
+        import olympia.schema  # noqa: F401
+
         # Ignore Python warnings unless we're running in debug mode.
         if not settings.DEBUG:
             warnings.simplefilter('ignore')

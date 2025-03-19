@@ -30,6 +30,11 @@ class TestUpdateAssets(TestCase):
                 env=mock.ANY,
             ),
             mock.call(
+                ['python3', 'manage.py', 'generate_js_swagger_files'],
+                check=True,
+                env=mock.ANY,
+            ),
+            mock.call(
                 ['python3', 'manage.py', 'collectstatic', '--noinput'],
                 check=True,
                 env=mock.ANY,
