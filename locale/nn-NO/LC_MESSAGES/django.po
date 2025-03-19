@@ -415,7 +415,7 @@ msgstr "Dette feltet er påkravd for tillegg med oppførte versjonar."
 #: src/olympia/addons/validators.py:158
 #, python-brace-format
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
-msgstr ""
+msgstr "Tilleggs-metadata må stillast inn for å opprette ein oppført versjon: {missing_addon_metadata}."
 
 #: src/olympia/addons/validators.py:272
 msgid "A GUID must be specified in the manifest."
@@ -692,7 +692,7 @@ msgstr "Ugyldig autorisasjonshovud. Autorisasjonsopplysningar skal ikkje innehal
 
 #: src/olympia/api/authentication.py:108
 msgid "Valid user session not found matching the provided session key."
-msgstr ""
+msgstr "Fann ikkje gyldig brukarøkt som samsvarar med oppgitt øktnøkkelen."
 
 #: src/olympia/api/authentication.py:122
 msgid "Access token refresh failed; user needs to login to FxA again."
