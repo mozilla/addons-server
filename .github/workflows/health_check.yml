@@ -42,6 +42,11 @@ jobs:
         if: steps.health_check.outcome == 'failure'
         shell: bash
         run: |
+          if [ ! -f ${{ env.health_check_file }} ]; then
+            echo "Health check file is missing from previous step"
+            exit 1
+          fi
+
           # Create the message blocks file
           ./scripts/health_check_blocks.py \
           --input ${{ env.health_check_file }} \

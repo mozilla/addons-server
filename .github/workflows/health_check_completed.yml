@@ -8,6 +8,10 @@ on:
 jobs:
   context:
     runs-on: ubuntu-latest
+
+    outputs:
+      is_fork: ${{ steps.context.outputs.is_fork }}
+
     steps:
       - uses: actions/checkout@v4
 
@@ -16,7 +20,9 @@ jobs:
         uses: ./.github/actions/context
 
   health_check_failure_notification:
+    needs: context
     if: |
+      needs.context.outputs.is_fork == 'false' &&
       github.event.workflow_run.event == 'schedule' &&
       github.event.workflow_run.conclusion == 'failure'
     runs-on: ubuntu-latest
@@ -33,13 +39,13 @@ jobs:
           slack_token: ${{ secrets.SLACK_TOKEN }}
           slack_channel: ${{ secrets.SLACK_ADDONS_PRODUCTION_CHANNEL }}
           emoji: ':x:'
-          actor: ${{ vars.slack_actor }}
+          actor: ${{ vars.SLACK_ACTOR }}
           conclusion: ${{ github.event.workflow_run.conclusion }}
           workflow_id: ${{ github.event.workflow_run.id }}
-          workflow_url: ${{ github.event.workflow_run.url }}
+          workflow_url: ${{ github.event.workflow_run.html_url }}
           event: ${{ github.event.workflow_run.event }}
           env: ci
-          ref: ''
-          ref_link: ''
+          ref: ${{ github.event.workflow_run.repository.name }}
+          ref_link: ${{ github.event.workflow_run.html_url }}
 
 

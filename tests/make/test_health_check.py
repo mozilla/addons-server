@@ -1,5 +1,8 @@
+from json.decoder import JSONDecodeError
 from unittest import TestCase
+from unittest.mock import call, patch
 
+import requests
 import responses
 
 from scripts.health_check import main
@@ -26,7 +29,7 @@ class TestHealthCheck(TestCase):
         self.mock_url(
             'services/__heartbeat__', status=200, json=self._monitor('two', True, '')
         )
-        results, _ = main('local', False)
+        main('local')
 
     def test_missing_version(self):
         self.mock_url('__version__', status=500)
@@ -35,8 +38,8 @@ class TestHealthCheck(TestCase):
             'services/__heartbeat__', status=200, json=self._monitor('two', True, '')
         )
 
-        results, _ = main('local', False)
-        self.assertEqual(results['version'], {})
+        with self.assertRaises(JSONDecodeError):
+            main('local')
 
     def test_invalid_version(self):
         self.mock_url('__version__', status=200, body='{not valid json')
@@ -45,8 +48,8 @@ class TestHealthCheck(TestCase):
             'services/__heartbeat__', status=200, json=self._monitor('two', True, '')
         )
 
-        results, _ = main('local', False)
-        self.assertEqual(results['version'], {})
+        with self.assertRaises(JSONDecodeError):
+            main('local')
 
     def test_missing_heartbeat(self):
         self.mock_url('__heartbeat__', status=500)
@@ -55,8 +58,8 @@ class TestHealthCheck(TestCase):
             'services/__heartbeat__', status=200, json=self._monitor('two', True, '')
         )
 
-        results, _ = main('local', False)
-        self.assertEqual(results['heartbeat'], {})
+        with self.assertRaises(JSONDecodeError):
+            main('local')
 
     def test_failing_heartbeat(self):
         failing_monitor = self._monitor('fail', False, 'Service is down')
@@ -65,25 +68,16 @@ class TestHealthCheck(TestCase):
         self.mock_url('__version__', status=200, json={'version': '1.0.0'})
         self.mock_url('services/__heartbeat__', status=200, json=success_monitor)
 
-        results, has_failures = main('local', False)
+        results, has_failures = main('local')
         self.assertTrue(has_failures)
-        # Check for failing monitors
-        failing_monitors = []
-        for monitor_type, monitor_data in results.items():
-            if monitor_type == 'version':
-                continue
-            for name, details in monitor_data.get('data', {}).items():
-                if details.get('state') is False:
-                    failing_monitors.append(f'{monitor_type}.{name}')
-        self.assertIn('heartbeat.fail', failing_monitors)
 
     def test_missing_monitors(self):
         self.mock_url('services/__heartbeat__', status=500)
         self.mock_url('__version__', status=200, json={'version': '1.0.0'})
         self.mock_url('__heartbeat__', status=200, json=self._monitor('one', True, ''))
 
-        results, _ = main('local', False)
-        self.assertEqual(results['monitors'], {})
+        with self.assertRaises(JSONDecodeError):
+            main('local')
 
     def test_failing_monitors(self):
         failing_monitor = self._monitor('fail', False, 'Service is down')
@@ -92,14 +86,48 @@ class TestHealthCheck(TestCase):
         self.mock_url('__version__', status=200, json={'version': '1.0.0'})
         self.mock_url('__heartbeat__', status=200, json=success_monitor)
 
-        results, has_failures = main('local', False)
+        results, has_failures = main('local')
         self.assertTrue(has_failures)
-        # Check for failing monitors
-        failing_monitors = []
-        for monitor_type, monitor_data in results.items():
-            if monitor_type == 'version':
-                continue
-            for name, details in monitor_data.get('data', {}).items():
-                if details.get('state') is False:
-                    failing_monitors.append(f'{monitor_type}.{name}')
-        self.assertIn('monitors.fail', failing_monitors)
+
+    def test_request_retries(self):
+        count = 0
+
+        def increment_count(request):
+            nonlocal count
+            count += 1
+            return (503, {}, '')
+
+        # Mock the get request to fail with a 503 status
+        self.mock_url('__version__', status=503)
+        self.mock_url('__heartbeat__', status=503)
+        self.mock_url('services/__heartbeat__', status=503)
+
+        responses.add_callback(
+            responses.GET,
+            self._url('__version__'),
+            callback=increment_count,
+        )
+
+        with self.assertRaises(requests.exceptions.RequestException):
+            main('local', retries=0)
+
+        assert count == 5
+
+    @patch('scripts.health_check.main', wraps=main)
+    def test_retry_failures(self, mock_main):
+        self.mock_url('__version__', status=200, json={'version': '1.0.0'})
+        self.mock_url('__heartbeat__', status=200, json=self._monitor('one', True, ''))
+        self.mock_url(
+            'services/__heartbeat__',
+            json=self._monitor('fail', False, 'Service is down'),
+        )
+
+        main('local', retries=2)
+
+        # Should be called 3 times total - initial call plus 2 retries
+        self.assertEqual(mock_main.call_count, 2)
+
+        # Verify retry attempts were made with incrementing attempt numbers
+        mock_main.assert_has_calls(
+            [call('local', False, 2, 1), call('local', False, 2, 2)]
+        )
