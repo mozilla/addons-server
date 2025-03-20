@@ -1549,7 +1549,7 @@ msgstr "Ferie"
 
 #: src/olympia/constants/categories.py:264
 msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
-msgstr ""
+msgstr "Last ned Firefox-tema med høgtider. Denne kategorien inkluderer jul, Halloween, Thanksgiving, St. Patrick's Day, påske, fjerde juli og meir."
 
 #: src/olympia/constants/categories.py:271
 msgid "Music"
@@ -1557,7 +1557,7 @@ msgstr "Musikk"
 
 #: src/olympia/constants/categories.py:273
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
-msgstr ""
+msgstr "Last ned Firefox-tema for musikalske interesser og artistar. Denne kategorien inkluderer populære band som Nirvana og BTS, instrument, musikkvideoar og mykje meir."
 
 #: src/olympia/constants/categories.py:281
 msgid "Nature"
@@ -1565,11 +1565,11 @@ msgstr "Natur"
 
 #: src/olympia/constants/categories.py:283
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
-msgstr ""
+msgstr "Last ned Firefox-tema med dyr og naturlandskap. Denne kategorien inkluderer blomstrar, solnedgangar, revar, årstider, planetar, kattungar, fuglar og meir."
 
 #: src/olympia/constants/categories.py:293
 msgid "Download Firefox themes that are interesting, creative, and unique."
-msgstr ""
+msgstr "Last ned Firefox-tema som er interessante, kreative og unike."
 
 #: src/olympia/constants/categories.py:298
 msgid "Scenery"
@@ -1577,7 +1577,7 @@ msgstr "Landskap"
 
 #: src/olympia/constants/categories.py:300
 msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
-msgstr ""
+msgstr "Last ned Firefox-tema som viser miljøet og den naturlege verda. Denne kategorien inkluderer solnedgangar, strender, illustrasjonar, bysilhuettar og meir."
 
 #: src/olympia/constants/categories.py:307
 msgid "Seasonal"
@@ -1609,7 +1609,7 @@ msgstr "Nettstadar"
 
 #: src/olympia/constants/categories.py:336
 msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
-msgstr ""
+msgstr "Last ned Firefox-tema som fangar essensen av nettet – fengslande, uvanlege og særeigne."
 
 #: src/olympia/constants/categories.py:341 src/olympia/constants/categories.py:342
 msgid "General"
