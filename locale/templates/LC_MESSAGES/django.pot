@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-19 13:29+0000\n"
+"POT-Creation-Date: 2025-03-20 15:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -600,8 +600,8 @@ msgid "CIDR"
 msgstr ""
 
 #: src/olympia/amo/middleware.py:248
-#: src/olympia/devhub/templates/devhub/index.html:61
-#: src/olympia/templates/base.html:67
+#: src/olympia/devhub/templates/devhub/index.html:56
+#: src/olympia/templates/base.html:64
 msgid ""
 "Some features are temporarily disabled while we perform website maintenance. "
 "We'll be back to full capacity shortly."
@@ -724,7 +724,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:78
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:91
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:104
-#: src/olympia/stats/templates/stats/stats.html:158
+#: src/olympia/stats/templates/stats/stats.html:157
 msgid "Next"
 msgstr ""
 
@@ -2041,7 +2041,7 @@ msgstr ""
 msgid "Scheduled"
 msgstr ""
 
-#: src/olympia/core/apps.py:245
+#: src/olympia/core/apps.py:213
 msgid "Core"
 msgstr ""
 
@@ -7166,7 +7166,7 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/popup.html:2
 #: src/olympia/stats/templates/stats/popup.html:8
-#: src/olympia/stats/templates/stats/stats.html:181
+#: src/olympia/stats/templates/stats/stats.html:180
 msgid "close"
 msgstr ""
 
@@ -7183,100 +7183,100 @@ msgid "Export"
 msgstr ""
 
 #. {0} is an add-on name, {1} is an app name (like Firefox)
-#: src/olympia/stats/templates/stats/stats.html:18
+#: src/olympia/stats/templates/stats/stats.html:17
 #, python-brace-format
 msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
 msgstr ""
 
-#: src/olympia/stats/templates/stats/stats.html:20
+#: src/olympia/stats/templates/stats/stats.html:19
 #, python-brace-format
 msgid "{0} :: Statistics Dashboard"
 msgstr ""
 
-#: src/olympia/stats/templates/stats/stats.html:22
+#: src/olympia/stats/templates/stats/stats.html:21
 #, python-brace-format
 msgid "Statistics Dashboard :: Add-ons for {0}"
 msgstr ""
 
 #. {0} is an add-on name
-#: src/olympia/stats/templates/stats/stats.html:33
-#: src/olympia/stats/templates/stats/stats.html:36
+#: src/olympia/stats/templates/stats/stats.html:32
+#: src/olympia/stats/templates/stats/stats.html:35
 #, python-brace-format
 msgid "Statistics for {0}"
 msgstr ""
 
-#: src/olympia/stats/templates/stats/stats.html:39
+#: src/olympia/stats/templates/stats/stats.html:38
 msgid "Statistics Dashboard"
 msgstr ""
 
-#: src/olympia/stats/templates/stats/stats.html:46
+#: src/olympia/stats/templates/stats/stats.html:45
 msgid "Controls:"
 msgstr ""
 
-#: src/olympia/stats/templates/stats/stats.html:49
+#: src/olympia/stats/templates/stats/stats.html:48
 msgid "reset zoom"
 msgstr ""
 
-#: src/olympia/stats/templates/stats/stats.html:56
+#: src/olympia/stats/templates/stats/stats.html:55
 msgid "Group by:"
 msgstr ""
 
-#: src/olympia/stats/templates/stats/stats.html:58
+#: src/olympia/stats/templates/stats/stats.html:57
 msgid "day"
 msgstr ""
 
-#: src/olympia/stats/templates/stats/stats.html:61
+#: src/olympia/stats/templates/stats/stats.html:60
 msgid "week"
 msgstr ""
 
-#: src/olympia/stats/templates/stats/stats.html:64
+#: src/olympia/stats/templates/stats/stats.html:63
 msgid "month"
 msgstr ""
 
-#: src/olympia/stats/templates/stats/stats.html:70
+#: src/olympia/stats/templates/stats/stats.html:69
 msgid "For last:"
 msgstr ""
 
-#: src/olympia/stats/templates/stats/stats.html:73
+#: src/olympia/stats/templates/stats/stats.html:72
 msgid "7 days"
 msgstr ""
 
-#: src/olympia/stats/templates/stats/stats.html:76
+#: src/olympia/stats/templates/stats/stats.html:75
 msgid "30 days"
 msgstr ""
 
-#: src/olympia/stats/templates/stats/stats.html:79
+#: src/olympia/stats/templates/stats/stats.html:78
 msgid "90 days"
 msgstr ""
 
-#: src/olympia/stats/templates/stats/stats.html:82
+#: src/olympia/stats/templates/stats/stats.html:81
 msgid "365 days"
 msgstr ""
 
-#: src/olympia/stats/templates/stats/stats.html:85
+#: src/olympia/stats/templates/stats/stats.html:84
 msgid "Custom..."
 msgstr ""
 
-#: src/olympia/stats/templates/stats/stats.html:95
+#: src/olympia/stats/templates/stats/stats.html:94
 msgid "Sorry, the statistics are temporarily unavailable."
 msgstr ""
 
-#: src/olympia/stats/templates/stats/stats.html:101
+#: src/olympia/stats/templates/stats/stats.html:100
 msgid "Loading the latest data&hellip;"
 msgstr ""
 
 #: src/olympia/stats/templates/stats/reports/overview.html:27
 #: src/olympia/stats/templates/stats/reports/overview.html:39
 #: src/olympia/stats/templates/stats/reports/overview.html:51
-#: src/olympia/stats/templates/stats/stats.html:133
+#: src/olympia/stats/templates/stats/stats.html:132
 msgid "No data available."
 msgstr ""
 
-#: src/olympia/stats/templates/stats/stats.html:155
+#: src/olympia/stats/templates/stats/stats.html:154
 msgid "Previous"
 msgstr ""
 
-#: src/olympia/stats/templates/stats/stats.html:166
+#: src/olympia/stats/templates/stats/stats.html:165
 msgid "This dashboard is <b>private</b>."
 msgstr ""
 
@@ -7390,7 +7390,7 @@ msgstr ""
 msgid "Mozilla Add-ons"
 msgstr ""
 
-#: src/olympia/templates/base.html:86
+#: src/olympia/templates/base.html:83
 msgid "Back to Add-ons"
 msgstr ""
 

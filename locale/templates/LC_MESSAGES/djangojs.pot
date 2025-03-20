@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-19 13:29+0000\n"
+"POT-Creation-Date: 2025-03-20 15:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,66 +17,66 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.17.0\n"
 
-#: static/js/common/upload-addon.js:52 static/js/common/upload-image.js:133
+#: static/js/common/upload-addon.js:54 static/js/common/upload-image.js:136
 msgid "There was a problem contacting the server."
 msgstr ""
 
-#: static/js/common/upload-addon.js:76
+#: static/js/common/upload-addon.js:78
 msgid "Select a file..."
 msgstr ""
 
-#: static/js/common/upload-addon.js:80
+#: static/js/common/upload-addon.js:82
 msgid "Your add-on should end with .zip, .xpi or .crx"
 msgstr ""
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#: static/js/common/upload-addon.js:115
+#: static/js/common/upload-addon.js:118
 #, python-brace-format, python-format
 msgid "{0}% complete"
 msgstr ""
 
-#: static/js/common/upload-addon.js:119
+#: static/js/common/upload-addon.js:122
 #, python-brace-format
 msgid "{0} of {1}"
 msgstr ""
 
-#: static/js/common/upload-addon.js:163
+#: static/js/common/upload-addon.js:166
 msgid "Cancel"
 msgstr ""
 
-#: static/js/common/upload-addon.js:187
+#: static/js/common/upload-addon.js:189
 #, python-brace-format
 msgid "Uploading {0}"
 msgstr ""
 
-#: static/js/common/upload-addon.js:228
+#: static/js/common/upload-addon.js:229
 #, python-brace-format
 msgid "Error with {0}"
 msgstr ""
 
-#: static/js/common/upload-addon.js:236
+#: static/js/common/upload-addon.js:237
 msgid "Please make sure to report any linting related issues on GitHub"
 msgstr ""
 
-#: static/js/common/upload-addon.js:247
+#: static/js/common/upload-addon.js:248
 #, python-brace-format
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/common/upload-addon.js:265
+#: static/js/common/upload-addon.js:266
 #, python-brace-format
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/common/upload-addon.js:286 static/js/common/upload-addon.js:704
+#: static/js/common/upload-addon.js:287 static/js/common/upload-addon.js:705
 msgid "See full validation report"
 msgstr ""
 
-#: static/js/common/upload-addon.js:299
+#: static/js/common/upload-addon.js:300
 #, python-brace-format
 msgid "Validating {0}"
 msgstr ""
@@ -130,28 +130,28 @@ msgstr[1] ""
 msgid "Your add-on was validated with no errors or warnings."
 msgstr ""
 
-#: static/js/common/upload-addon.js:650
+#: static/js/common/upload-addon.js:651
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr ""
 
-#: static/js/common/upload-addon.js:653
+#: static/js/common/upload-addon.js:654
 msgid ""
 "If your add-on requires an account to a website in order to be fully tested, "
 "include a test username and password in the Notes to Reviewer (this can be "
 "done in the next step)."
 msgstr ""
 
-#: static/js/common/upload-addon.js:659
+#: static/js/common/upload-addon.js:660
 msgid "Add-on submission checklist"
 msgstr ""
 
-#: static/js/common/upload-addon.js:663
+#: static/js/common/upload-addon.js:664
 msgid ""
 "Please verify the following points before finalizing your submission. This "
 "will minimize delays or misunderstanding during the review process:"
 msgstr ""
 
-#: static/js/common/upload-addon.js:670
+#: static/js/common/upload-addon.js:671
 msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding "
 "known libraries) need to have their sources submitted separately for review. "
@@ -159,116 +159,116 @@ msgid ""
 "submission rejected."
 msgstr ""
 
-#: static/js/common/upload-addon.js:683
+#: static/js/common/upload-addon.js:684
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr ""
 
-#: static/js/common/upload-base.js:68
+#: static/js/common/upload-base.js:69
 msgid "The filetype you uploaded isn't recognized."
 msgstr ""
 
-#: static/js/common/upload-base.js:78 static/js/zamboni/global.js:647
+#: static/js/common/upload-base.js:79 static/js/zamboni/global.js:569
 #, python-brace-format
 msgid "Your file exceeds the maximum size of {0}."
 msgstr ""
 
-#: static/js/common/upload-base.js:104
+#: static/js/common/upload-base.js:105
 msgid "You cancelled the upload."
 msgstr ""
 
-#: static/js/common/upload-image.js:99
+#: static/js/common/upload-image.js:102
 msgid "Images must be either PNG or JPG."
 msgstr ""
 
-#: static/js/common/upload-image.js:103
+#: static/js/common/upload-image.js:106
 msgid "Videos must be in WebM."
 msgstr ""
 
-#: static/js/stats/chart.js:289
+#: static/js/stats/chart.js:298
 #, python-brace-format
 msgid "Week of {0}"
 msgstr ""
 
-#: static/js/stats/chart.js:298
+#: static/js/stats/chart.js:307
 #, python-brace-format
 msgid "{0} download"
 msgid_plural "{0} downloads"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/stats/chart.js:304
+#: static/js/stats/chart.js:313
 #, python-brace-format
 msgid "{0} user"
 msgid_plural "{0} users"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/stats/chart.js:310
+#: static/js/stats/chart.js:319
 #, python-brace-format
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/stats/chart.js:316
+#: static/js/stats/chart.js:325
 #, python-brace-format
 msgid "{0} collection"
 msgid_plural "{0} collections"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/stats/chart.js:322
+#: static/js/stats/chart.js:331
 #, python-brace-format
 msgid "{0} review"
 msgid_plural "{0} reviews"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/stats/chart.js:331
+#: static/js/stats/chart.js:340
 #, python-brace-format
 msgid "{0} sale"
 msgid_plural "{0} sales"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/stats/chart.js:337
+#: static/js/stats/chart.js:346
 #, python-brace-format
 msgid "{0} refund"
 msgid_plural "{0} refunds"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/stats/chart.js:343
+#: static/js/stats/chart.js:352
 #, python-brace-format
 msgid "{0} install"
 msgid_plural "{0} installs"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/stats/chart.js:444 static/js/stats/csv_keys.js:3
+#: static/js/stats/chart.js:453 static/js/stats/csv_keys.js:3
 #: static/js/stats/csv_keys.js:109
 msgid "Downloads"
 msgstr ""
 
-#: static/js/stats/chart.js:456 static/js/stats/csv_keys.js:6
+#: static/js/stats/chart.js:465 static/js/stats/csv_keys.js:6
 #: static/js/stats/csv_keys.js:110
 msgid "Daily Users"
 msgstr ""
 
-#: static/js/stats/chart.js:489
+#: static/js/stats/chart.js:498
 msgid "Amount, in USD"
 msgstr ""
 
-#: static/js/stats/chart.js:501 static/js/stats/csv_keys.js:104
+#: static/js/stats/chart.js:510 static/js/stats/csv_keys.js:104
 msgid "Number of Contributions"
 msgstr ""
 
-#: static/js/stats/chart.js:528
+#: static/js/stats/chart.js:537
 msgid "More Info..."
 msgstr ""
 
 #. L10n: {0} is an ISO-formatted date.
-#: static/js/stats/chart.js:534
+#: static/js/stats/chart.js:543
 #, python-brace-format
 msgid "Details for {0}"
 msgstr ""
@@ -845,209 +845,209 @@ msgstr ""
 msgid "<b>{0}</b> average in last {1} days"
 msgstr ""
 
-#: static/js/stats/overview.js:12
+#: static/js/stats/overview.js:18
 msgid "No data available."
 msgstr ""
 
-#: static/js/stats/table.js:80
+#: static/js/stats/table.js:84
 msgid "Date"
 msgstr ""
 
-#: static/js/stats/topchart.js:101
+#: static/js/stats/topchart.js:106
 msgid "Other"
 msgstr ""
 
-#: static/js/zamboni/devhub.js:292
+#: static/js/zamboni/devhub.js:301
 msgid "Changes Saved"
 msgstr ""
 
-#: static/js/zamboni/devhub.js:309
+#: static/js/zamboni/devhub.js:317
 msgid "Enter a new author's email address"
 msgstr ""
 
-#: static/js/zamboni/devhub.js:435
+#: static/js/zamboni/devhub.js:441
 msgid "There was an error uploading your file."
 msgstr ""
 
-#: static/js/zamboni/devhub.js:591
+#: static/js/zamboni/devhub.js:597
 #, python-brace-format
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/zamboni/devhub.js:1123
+#: static/js/zamboni/devhub.js:1130
 msgid "Image changes being processed"
 msgstr ""
 
-#: static/js/zamboni/global.js:460
+#: static/js/zamboni/global.js:463
 #, python-brace-format
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/zamboni/global.js:469
+#: static/js/zamboni/global.js:472
 #, python-brace-format
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/zamboni/init.js:8
+#: static/js/zamboni/init.js:12
 msgid ""
 "This feature is temporarily disabled while we perform website maintenance. "
 "Please check back a little later."
 msgstr ""
 
-#: static/js/zamboni/l10n.js:55
+#: static/js/zamboni/l10n.js:164
 msgid "Remove this localization"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:211
+#: static/js/zamboni/reviewers.js:222
 #, python-brace-format
 msgid "{name} was viewing this page first."
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:219
+#: static/js/zamboni/reviewers.js:230
 msgid "Review page polling failed."
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:507
+#: static/js/zamboni/reviewers.js:518
 #, python-brace-format
 msgid "{name} was viewing this add-on first."
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:520 static/js/zamboni/reviewers.js:546
+#: static/js/zamboni/reviewers.js:531 static/js/zamboni/reviewers.js:557
 msgid "Loading&hellip;"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:525
+#: static/js/zamboni/reviewers.js:536
 msgid "Version Notes"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:532
+#: static/js/zamboni/reviewers.js:543
 msgid "Notes for Reviewers"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:539
+#: static/js/zamboni/reviewers.js:550
 msgid "No version notes found"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:551
+#: static/js/zamboni/reviewers.js:562
 msgid "Review Text"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:558
+#: static/js/zamboni/reviewers.js:569
 msgid "Review notes found"
 msgstr ""
 
-#: static/js/zamboni/static_theme.js:207
+#: static/js/zamboni/static_theme.js:217
 #, python-brace-format
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr ""
 
-#: static/js/zamboni/themes_review.js:194
+#: static/js/zamboni/themes_review.js:199
 msgid "Requested Info"
 msgstr ""
 
-#: static/js/zamboni/themes_review.js:195
+#: static/js/zamboni/themes_review.js:200
 msgid "Flagged"
 msgstr ""
 
-#: static/js/zamboni/themes_review.js:196
+#: static/js/zamboni/themes_review.js:201
 msgid "Duplicate"
 msgstr ""
 
-#: static/js/zamboni/themes_review.js:197
+#: static/js/zamboni/themes_review.js:202
 msgid "Rejected"
 msgstr ""
 
-#: static/js/zamboni/themes_review.js:198
+#: static/js/zamboni/themes_review.js:203
 msgid "Approved"
 msgstr ""
 
-#: static/js/zamboni/themes_review.js:487
+#: static/js/zamboni/themes_review.js:492
 msgid "No results found"
 msgstr ""
 
-#: static/js/zamboni/themes_review_templates.js:37
+#: static/js/zamboni/themes_review_templates.js:43
 msgid "Theme"
 msgstr ""
 
-#: static/js/zamboni/themes_review_templates.js:39
+#: static/js/zamboni/themes_review_templates.js:45
 msgid "Reviewer"
 msgstr ""
 
-#: static/js/zamboni/themes_review_templates.js:41
+#: static/js/zamboni/themes_review_templates.js:47
 msgid "Status"
 msgstr ""
 
-#: static/js/zamboni/validator.js:85
+#: static/js/zamboni/validator.js:89
 msgid "All tests passed successfully."
 msgstr ""
 
-#: static/js/zamboni/validator.js:88 static/js/zamboni/validator.js:383
+#: static/js/zamboni/validator.js:92 static/js/zamboni/validator.js:388
 msgid "These tests were not run."
 msgstr ""
 
-#: static/js/zamboni/validator.js:151 static/js/zamboni/validator.js:173
+#: static/js/zamboni/validator.js:155 static/js/zamboni/validator.js:177
 msgid "Tests"
 msgstr ""
 
-#: static/js/zamboni/validator.js:255 static/js/zamboni/validator.js:487
-#: static/js/zamboni/validator.js:511
+#: static/js/zamboni/validator.js:259 static/js/zamboni/validator.js:492
+#: static/js/zamboni/validator.js:516
 msgid "Error"
 msgstr ""
 
-#: static/js/zamboni/validator.js:255
+#: static/js/zamboni/validator.js:259
 msgid "Warning"
 msgstr ""
 
-#: static/js/zamboni/validator.js:327
+#: static/js/zamboni/validator.js:332
 #, python-brace-format
 msgid "{0} line {1} column {2}"
 msgstr ""
 
-#: static/js/zamboni/validator.js:334
+#: static/js/zamboni/validator.js:339
 #, python-brace-format
 msgid "{0} line {1}"
 msgstr ""
 
-#: static/js/zamboni/validator.js:371
+#: static/js/zamboni/validator.js:376
 msgid "Add-on failed validation."
 msgstr ""
 
-#: static/js/zamboni/validator.js:373
+#: static/js/zamboni/validator.js:378
 msgid "Add-on passed validation."
 msgstr ""
 
-#: static/js/zamboni/validator.js:386
+#: static/js/zamboni/validator.js:391
 #, python-brace-format
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/zamboni/validator.js:389
+#: static/js/zamboni/validator.js:394
 #, python-brace-format
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/zamboni/validator.js:392
+#: static/js/zamboni/validator.js:397
 #, python-brace-format
 msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/zamboni/validator.js:489
+#: static/js/zamboni/validator.js:494
 msgid "Validation task could not complete or completed with errors"
 msgstr ""
 
-#: static/js/zamboni/validator.js:512
+#: static/js/zamboni/validator.js:517
 msgid "Internal server error"
 msgstr ""
 
