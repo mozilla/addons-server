@@ -1068,11 +1068,11 @@ msgstr "Svar frå vurderar"
 #: src/olympia/constants/activity.py:613
 #, python-brace-format
 msgid "Notes for reviewers changed for {addon} {version}."
-msgstr ""
+msgstr "Merknadar for vurderarar endra for {addon} {version}."
 
 #: src/olympia/constants/activity.py:614
 msgid "Notes for reviewers changed"
-msgstr ""
+msgstr "Merknadar for vurderarar er endra"
 
 #: src/olympia/constants/activity.py:622
 #, python-brace-format
