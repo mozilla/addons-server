@@ -2080,11 +2080,11 @@ msgstr "JWT-hemmelegheit"
 #: src/olympia/devhub/forms.py:1515
 #, python-brace-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
-msgstr ""
+msgstr "Klikk på stadfestingsknappen nedanfor for å generere API-legitimasjon for brukaren <strong>{name}</strong>."
 
 #: src/olympia/devhub/forms.py:1521
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr ""
+msgstr "Ei stadfestingslenkje vil bli sendt til e-postadressa di. Etter stadfesting vil du finne API-nøklane dine på denne sida."
 
 #: src/olympia/devhub/forms.py:1538
 msgid "You don't have any API credentials."
@@ -2092,7 +2092,7 @@ msgstr "Du har ingena API-inloggingsopplysningar"
 
 #: src/olympia/devhub/forms.py:1549
 msgid "Something went wrong, please contact developer support."
-msgstr ""
+msgstr "Noko gjekk gale. Ta kontakt med utviklarstøtta."
 
 #: src/olympia/devhub/tasks.py:178
 msgid "Invalid or corrupt add-on file."
@@ -2118,7 +2118,7 @@ msgstr "Validering genererte for mange feil/åtvaringar slik at %s meldingar var
 #: src/olympia/devhub/utils.py:207
 #, python-brace-format
 msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
-msgstr ""
+msgstr "Dette tillegget er ikkje eit tema. Bruk sida <a href=\"{link}\">Send inn eit nytt tillegg</a> for å sende inn utvidingar."
 
 #: src/olympia/devhub/views.py:115
 msgid "Updated"
