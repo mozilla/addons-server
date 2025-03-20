@@ -1016,7 +1016,7 @@ msgid "{addon} policy changed."
 msgstr "Política de {addon} cambiada."
 
 #: src/olympia/constants/activity.py:353
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{addon} icon or previews changed."
 msgstr "Icono de {addon} cambiado."
 
@@ -1349,7 +1349,6 @@ msgid "Extension"
 msgstr "Extensión"
 
 #: src/olympia/constants/base.py:130
-#, fuzzy
 msgid "Deprecated Complete Theme"
 msgstr "Valoración actualizada del tema completo"
 
@@ -1390,7 +1389,6 @@ msgid "Extensions"
 msgstr "Extensiones"
 
 #: src/olympia/constants/base.py:144
-#, fuzzy
 msgid "Deprecated Complete Themes"
 msgstr "Temas completos"
 
@@ -1408,7 +1406,7 @@ msgstr "Paquetes de idiomas"
 
 #: src/olympia/constants/base.py:148
 msgid "Deprecated Language Packs (Add-on)"
-msgstr ""
+msgstr "Paquetes de idiomas obsoletos (Complemento)"
 
 #: src/olympia/constants/base.py:149
 msgid "Deprecated Plugins"
@@ -1856,7 +1854,6 @@ msgid "Delay auto-approval indefinitely and add restrictions"
 msgstr "Retrasar la aprobación automática indefinidamente y agregar restricciones"
 
 #: src/olympia/constants/scanners.py:32
-#, fuzzy
 msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
 msgstr "Retrasar la aprobación automática indefinidamente"
 
@@ -1945,7 +1942,7 @@ msgid "The miscellaneous category cannot be combined with additional categories.
 msgstr "La categoría miscelánea no puede combinarse con categorías adicionales."
 
 #: src/olympia/devhub/forms.py:272
-#, fuzzy, python-format
+#, python-format
 msgid "URL domain must be one of [%s]."
 msgstr "La URL del dominio tiene que ser una de [%s] o un subdominio."
 
