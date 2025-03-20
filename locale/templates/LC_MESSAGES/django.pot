@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-20 15:00+0000\n"
+"POT-Creation-Date: 2025-03-20 21:59+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -49,12 +49,12 @@ msgstr ""
 msgid "\"{}\" for {}"
 msgstr ""
 
-#: src/olympia/abuse/serializers.py:29
+#: src/olympia/abuse/serializers.py:32
 #, python-brace-format
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr ""
 
-#: src/olympia/abuse/serializers.py:233 src/olympia/abuse/serializers.py:249
+#: src/olympia/abuse/serializers.py:241 src/olympia/abuse/serializers.py:257
 #: src/olympia/addons/fields.py:51 src/olympia/addons/fields.py:257
 msgid "Invalid value"
 msgstr ""
@@ -385,7 +385,7 @@ msgstr ""
 msgid "File is already disabled."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:518 src/olympia/addons/views.py:736
+#: src/olympia/addons/serializers.py:518 src/olympia/addons/views.py:738
 #, python-format
 msgid ""
 "The latest approved version of this %s add-on cannot be deleted because the "
