@@ -489,7 +489,7 @@ input[type=button].caution.concealed {
     white-space: normal;
 }
 
-a.button.caution: hover,
+a.button.caution:hover,
 a.button.caution:focus,
 button.caution:hover,
 button.caution:focus,

@@ -1,6 +1,16 @@
+import $ from 'jquery';
+import _ from 'underscore';
+import { _pd } from '../lib/prevent-default';
+import { normalizeRange, forEachISODate } from './dateutils';
+import csv_keys from './csv_keys';
+import { format } from '../lib/format';
+import Highcharts from 'highcharts';
+import { StatsManager } from './manager';
+
+const dayMsecs = 24 * 3600 * 1000;
+
 (function () {
-  // "use strict";
-  var $win = $(window),
+  let $win = $(window),
     $chart = $('#head-chart'),
     $btnZoom = $('#chart-zoomout'),
     baseConfig = {
@@ -73,9 +83,9 @@
       },
     };
   Highcharts.setOptions({ lang: { resetZoom: '' } });
-  var chart;
+  let chart;
   // which unit do we use for a given metric?
-  var metricTypes = {
+  let metricTypes = {
     usage: 'users',
     apps: 'users',
     locales: 'users',
@@ -104,7 +114,7 @@
     campaigns: 'downloads',
   };
 
-  var acceptedGroups = {
+  let acceptedGroups = {
     day: true,
     week: true,
     month: true,
@@ -123,7 +133,7 @@
   });
 
   $win.on('dataready', function (e, obj) {
-    var view = obj.view,
+    let view = obj.view,
       metric = view.metric,
       group = view.group,
       data = obj.data,
@@ -177,8 +187,7 @@
 
     // Transmute the data into something Highcharts understands.
     start = Date.iso(data.firstIndex);
-    z.data = data;
-    var step = '1 ' + group,
+    let step = '1 ' + group,
       point,
       dataSum = 0;
 
@@ -189,7 +198,7 @@
       function (row, d) {
         for (i = 0; i < fields.length; i++) {
           field = fields[i];
-          val = parseFloat(z.StatsManager.getField(row, field));
+          val = parseFloat(StatsManager.getField(row, field));
           if (val != val) val = null;
           series[field].push(val);
           if (val) dataSum += val;
@@ -200,9 +209,9 @@
 
     // Display marker if only one data point.
     baseConfig.plotOptions.line.marker.radius = 3;
-    var count = 0,
+    let count = 0,
       dateRegex = /\d{4}-\d{2}-\d{2}/;
-    for (var key in data) {
+    for (let key in data) {
       if (dateRegex.exec(key) && data.hasOwnProperty(key)) {
         count++;
       }
@@ -220,8 +229,8 @@
     }
 
     // Transform xAxis based on time grouping (day, week, month) and range.
-    var pointInterval = (dayMsecs = 1 * 24 * 3600 * 1000);
-    var dateRangeDays = (end - start) / dayMsecs;
+    let pointInterval = (dayMsecs = 1 * 24 * 3600 * 1000);
+    let dateRangeDays = (end - start) / dayMsecs;
     baseConfig.xAxis.min = start - dayMsecs; // Fix chart truncation.
     baseConfig.xAxis.max = end;
     baseConfig.xAxis.tickInterval = null;
@@ -242,8 +251,8 @@
     }
 
     // Set minimum max value for yAxis to prevent duplicate yAxis values.
-    var max = 0;
-    for (var key in data) {
+    let max = 0;
+    for (let key in data) {
       if (data[key].count > max) {
         max = data[key].count;
       }
@@ -255,19 +264,19 @@
 
     // Round the start time to the nearest day (truncate the time) and
     // account for time zone to line up ticks and points on datetime axis.
-    date = new Date(start);
+    const date = new Date(start);
     date.setHours(0, 0, 0);
     start = date.getTime() - date.getTimezoneOffset() * 60000;
 
     // Populate the chart config object.
-    var chartData = [],
+    let chartData = [],
       id;
     for (i = 0; i < fields.length; i++) {
       field = fields[i];
       id = field.split('|').slice(-1)[0];
       chartData.push({
         type: 'line',
-        name: z.StatsManager.getPrettyName(view.metric, id),
+        name: StatsManager.getPrettyName(view.metric, id),
         id: id,
         pointInterval: pointInterval,
         // Add offset to line up points and ticks on day grouping.
@@ -279,8 +288,8 @@
 
     // Generate the tooltip function for this chart.
     // both x and y axis can be displayed differently.
-    var tooltipFormatter = (function () {
-      var xFormatter, yFormatter;
+    let tooltipFormatter = (function () {
+      let xFormatter, yFormatter;
       function dayFormatter(d) {
         return Highcharts.dateFormat('%a, %b %e, %Y', new Date(d));
       }
@@ -345,7 +354,7 @@
         );
       }
       function addEventData(s, date) {
-        var e = events[date];
+        let e = events[date];
         if (e) {
           s += format('<br><br><b>{type_pretty}</b>', e);
         }
@@ -363,9 +372,9 @@
 
       if (is_overview) {
         return function () {
-          var ret = '<b>' + xFormatter(this.x) + '</b>',
+          let ret = '<b>' + xFormatter(this.x) + '</b>',
             p;
-          for (var i = 0; i < this.points.length; i++) {
+          for (let i = 0; i < this.points.length; i++) {
             p = this.points[i];
             ret += '<br>' + p.series.name + ': ';
             ret += Highcharts.numberFormat(p.y, 0);
@@ -374,9 +383,9 @@
         };
       } else if (metric == 'contributions') {
         return function () {
-          var ret = '<b>' + xFormatter(this.x) + '</b>',
+          let ret = '<b>' + xFormatter(this.x) + '</b>',
             p;
-          for (var i = 0; i < this.points.length; i++) {
+          for (let i = 0; i < this.points.length; i++) {
             p = this.points[i];
             ret += '<br>' + p.series.name + ': ';
             if (p.series.options.yAxis > 0) {
@@ -420,7 +429,7 @@
             break;
         }
         return function () {
-          var ret =
+          let ret =
             '<b>' +
             this.series.name +
             '</b><br>' +
@@ -433,7 +442,7 @@
     })();
 
     // Set up the new chart's configuration.
-    var newConfig = $.extend(baseConfig, { series: chartData });
+    let newConfig = $.extend(baseConfig, { series: chartData });
     // set up dual-axes for the overview chart.
     if (is_overview && newConfig.series.length) {
       _.extend(newConfig, {
@@ -521,7 +530,7 @@
 
     function makeSiteEventHandler(e) {
       return function () {
-        var s = format('<h3>{type_pretty}</h3><p>{description}</p>', e);
+        let s = format('<h3>{type_pretty}</h3><p>{description}</p>', e);
         if (e.url) {
           s += format('<p><a href="{0}">{1}</a></p>', [
             e.url,
@@ -540,9 +549,9 @@
       };
     }
 
-    var pb = [],
+    let pb = [],
       pl = [];
-    eventColors = ['#DDD', '#DDD', '#FDFFD0', '#D0FFD8'];
+    const eventColors = ['#DDD', '#DDD', '#FDFFD0', '#D0FFD8'];
     _.forEach(events, function (e) {
       pb.push({
         color: eventColors[e.type],
@@ -561,9 +570,9 @@
     }
 
     // Generate a pretty title for the chart.
-    var title;
+    let title;
     if (typeof obj.view.range == 'string') {
-      var numDays = parseInt(obj.view.range, 10);
+      let numDays = parseInt(obj.view.range, 10);
       title = format(csv_keys.chartTitle[metric][0], numDays);
     } else {
       // This is a custom range so display a range shorter by one day.

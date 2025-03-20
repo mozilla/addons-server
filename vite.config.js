@@ -46,6 +46,13 @@ export default defineConfig(({ command }) => {
     // so that nginx knows to forward the request to the vite
     // dev server instead of serving from static files or olympia
     base: '/static/',
+    resolve: {
+      alias: {
+        // Alias 'highcharts' to our local vendored copy
+        // we cannot use npm to install due to licensing constraints
+        highcharts: resolve(__dirname, 'static/js/lib/highcharts-module.js'),
+      },
+    },
     plugins: [
       // Inject jQuery globals in the bundle for usage by npm packages
       // that rely on it being globally available.

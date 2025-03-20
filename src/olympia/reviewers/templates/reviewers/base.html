@@ -17,12 +17,12 @@
 {% block header_search %}{% endblock %}
 
 {% block extrahead %}
-  {{ css('zamboni/devhub') }}
-  {{ css('zamboni/reviewers') }}
+  {{ vite_asset('css/devhub.less') }}
+  {{ vite_asset('css/reviewers.less') }}
 {% endblock %}
 
 {% block js %}
-  {{ js('zamboni/reviewers') }}
+  {{ vite_asset('js/reviewers.js') }}
 {% endblock %}
 
 {% block outer_content %}

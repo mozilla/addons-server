@@ -1,6 +1,9 @@
 import $ from 'jquery';
 import { vi } from 'vitest';
 
+import { stats_stats } from '../../../static/js/stats/stats.js';
+import { stats_overview_make_handler } from '../../../static/js/stats/overview.js';
+
 describe(__filename, () => {
   const defaultBaseUrl = 'http://example.org/';
 
@@ -11,27 +14,6 @@ describe(__filename, () => {
     $.prototype.csvTable = vi.fn();
     $.prototype.datepicker = () => ({ datepicker: vi.fn() });
     $.datepicker = { setDefaults: vi.fn() };
-
-    global.z = {
-      SessionStorage: vi.fn(() => ({
-        set: vi.fn(),
-        remove: vi.fn(),
-        get: vi.fn(),
-      })),
-      Storage: vi.fn(() => ({
-        set: vi.fn(),
-        remove: vi.fn(),
-        get: vi.fn(),
-      })),
-      capabilities: {},
-    };
-
-    global._pd = (func) => {
-      return function (e) {
-        e.preventDefault();
-        func.apply(this, arguments);
-      };
-    };
   });
 
   afterEach(() => {
@@ -39,17 +21,6 @@ describe(__filename, () => {
   });
 
   describe('stats/stats.js', () => {
-    const report = 'apps';
-
-    let stats_stats;
-
-    beforeEach(async () => {
-      const { stats_stats: _stats_stats } = await import(
-        '../../../static-build/js/zamboni/stats-all.js'
-      );
-      stats_stats = _stats_stats;
-    });
-
     describe('export links', () => {
       const createMinimalHTML = ({
         baseUrl = defaultBaseUrl,
@@ -81,7 +52,7 @@ describe(__filename, () => {
           report,
         });
 
-        stats_stats(global.$);
+        stats_stats();
 
         expect($('#export_data_csv').attr('href')).toEqual(
           `${defaultBaseUrl}${report}-day-20191007-20191013.csv`,
@@ -95,7 +66,7 @@ describe(__filename, () => {
         const report = 'apps';
         document.body.innerHTML = createMinimalHTML({ range: '', report });
 
-        stats_stats(global.$);
+        stats_stats();
 
         expect($('#export_data_csv').attr('href')).toEqual(
           `${defaultBaseUrl}${report}-day-20190914-20191013.csv`,
@@ -108,8 +79,6 @@ describe(__filename, () => {
       it('constructs the export URLs for a custom range', () => {
         const report = 'countries';
         document.body.innerHTML = createMinimalHTML({ report });
-        // Custom range is persisted in session storage.
-        global.z.capabilities.localStorage = true;
         const statsView = {
           group: 'day',
           range: {
@@ -125,7 +94,7 @@ describe(__filename, () => {
           setItem: vi.fn(),
         };
 
-        stats_stats(global.$, fakeSessionStorage);
+        stats_stats(fakeSessionStorage, { localStorage: true });
 
         expect($('#export_data_csv').attr('href')).toEqual(
           `${defaultBaseUrl}${report}-day-20191115-20191125.csv`,
@@ -138,15 +107,6 @@ describe(__filename, () => {
   });
 
   describe('stats/overview.js', () => {
-    let stats_overview_make_handler;
-
-    beforeEach(async () => {
-      const { stats_overview_make_handler: _stats_overview_make_handler } =
-        await import('../../../static-build/js/zamboni/stats-all.js');
-
-      stats_overview_make_handler = _stats_overview_make_handler;
-    });
-
     describe('"in-range" dates', () => {
       const createMinimalHTML = () => {
         return `
