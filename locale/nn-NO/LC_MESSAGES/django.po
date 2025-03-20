@@ -2306,7 +2306,7 @@ msgstr "Bakgrunn for feltområdet for verktøylinja"
 
 #: src/olympia/devhub/views.py:1462
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
-msgstr ""
+msgstr "Bakgrunnsfargen for felt i verktøylinja, til dømes URL-linja.  Manifestfelt: toolbar_field."
 
 #: src/olympia/devhub/views.py:1469
 msgid "Toolbar field area text"
@@ -2314,7 +2314,7 @@ msgstr "Tekst på feltområdet i verktøylinja"
 
 #: src/olympia/devhub/views.py:1471
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
-msgstr ""
+msgstr "Bakgrunnsfargen for felt i verktøylinja, til dømes URL-linja.  Manifestfelt: toolbar_field."
 
 #: src/olympia/devhub/views.py:1479
 msgid "Tab highlight"
@@ -2322,7 +2322,7 @@ msgstr "Fanemarkering"
 
 #: src/olympia/devhub/views.py:1481
 msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
-msgstr ""
+msgstr "Høgdepunktsfargen til den aktive fana. Implementert som ein kant rundt fana på Firefox 89+ og ei linje over fana på eldre Firefox. Manifestfelt:  tab_line."
 
 #: src/olympia/devhub/views.py:1580
 msgid "Add-on uploads are temporarily unavailable"
@@ -2451,7 +2451,7 @@ msgstr "Søk"
 #: src/olympia/devhub/templates/devhub/suppressed_email.html:4
 #, python-format
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
-msgstr ""
+msgstr "Vi har oppdaga at e-posten din \"%(email)s\" ikkje kan få e-post frå oss. Ver vennleg og oppdater e-postadressa di til ei som kan få e-post frå oss."
 
 #: src/olympia/devhub/templates/devhub/suppressed_email.html:8
 msgid "Learn more"
@@ -2505,7 +2505,7 @@ msgstr "Klarte ikkje å stadfeste e-postadressa. Stadfestingslenka er utgått."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:24
 msgid "We are sending an email to you, please be patient... <div class=\"loader\"></div> The page will automatically refresh."
-msgstr ""
+msgstr "Vi sender ein e-post til deg, vêr tolmodig... <div class=\"loader\"></div> Sida vil automatisk oppdaterast."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:30
 msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again later."
