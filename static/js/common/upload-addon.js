@@ -1,10 +1,11 @@
-import _ from 'underscore';
 import $ from 'jquery';
-import { formatFileSize } from '../zamboni/global';
-import { capabilities } from '../zamboni/capabilities';
-import { escape_ } from '../zamboni/init';
-import { _pd } from '../lib/prevent-default';
+import _ from 'underscore';
+
 import { format } from '../lib/format';
+import { _pd } from '../lib/prevent-default';
+import { capabilities } from '../zamboni/capabilities';
+import { formatFileSize } from '../zamboni/global';
+import { escape_ } from '../zamboni/init';
 /*
  * addonUploader()
  * Extends fileUploader()
@@ -45,12 +46,12 @@ $.fn.addonUploader = function (options) {
     $.extend(settings, options);
   }
 
-  function parseErrorsFromJson(response, statusCode) {
+  function parseErrorsFromJson(response) {
     let json,
       errors = [];
     try {
       json = JSON.parse(response);
-    } catch (err) {
+    } catch (_err) {
       errors = [gettext('There was a problem contacting the server.')];
     }
     if (!errors.length) {

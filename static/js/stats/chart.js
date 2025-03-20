@@ -1,10 +1,11 @@
 import $ from 'jquery';
 import _ from 'underscore';
-import { _pd } from '../lib/prevent-default';
-import { normalizeRange, forEachISODate } from './dateutils';
-import csv_keys from './csv_keys';
+
 import { format } from '../lib/format';
-import Highcharts from 'highcharts';
+import { _pd } from '../lib/prevent-default';
+import csv_keys from './csv_keys';
+import { forEachISODate, normalizeRange } from './dateutils';
+import Highcharts from './highcharts-module';
 import { StatsManager } from './manager';
 
 const dayMsecs = 24 * 3600 * 1000;
@@ -20,7 +21,7 @@ const dayMsecs = 24 * 3600 * 1000;
         events: {
           selection: function () {
             $btnZoom.removeClass('inactive').click(
-              _pd(function (e) {
+              _pd(function () {
                 $(this).trigger('zoomout');
               }),
             );
@@ -146,8 +147,6 @@ const dayMsecs = 24 * 3600 * 1000;
       events = [], // TODO: remove this, it is not used anymore because
       // the caller does not pass any values anymore.
       chartRange = {},
-      t,
-      row,
       i,
       field,
       val,
@@ -187,15 +186,13 @@ const dayMsecs = 24 * 3600 * 1000;
 
     // Transmute the data into something Highcharts understands.
     start = Date.iso(data.firstIndex);
-    let step = '1 ' + group,
-      point,
-      dataSum = 0;
+    let dataSum = 0;
 
     forEachISODate(
       { start: start, end: end },
       '1 ' + group,
       data,
-      function (row, d) {
+      function (row) {
         for (i = 0; i < fields.length; i++) {
           field = fields[i];
           val = parseFloat(StatsManager.getField(row, field));

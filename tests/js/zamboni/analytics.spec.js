@@ -1,6 +1,6 @@
 import { insertAnalyticsScript } from '../../../static/js/zamboni/analytics';
 
-describe(__filename, () => {
+describe('analytics', () => {
   beforeEach(() => {
     document.body.innerHTML = '<script />';
   });

@@ -1,12 +1,13 @@
 import $ from 'jquery';
 import _ from 'underscore';
-import { _pd } from '../lib/prevent-default';
-import { Storage } from '../zamboni/storage';
-import { b64toBlob } from './helpers';
-import { validateFileUploadSize } from './global';
+
 import { format } from '../lib/format';
-import { z } from '../zamboni/z';
+import { _pd } from '../lib/prevent-default';
 import { capabilities } from '../zamboni/capabilities';
+import { Storage } from '../zamboni/storage';
+import { z } from '../zamboni/z';
+import { validateFileUploadSize } from './global';
+import { b64toBlob } from './helpers';
 
 $(document).ready(function () {
   if ($('.daily-message').length) {
@@ -141,11 +142,11 @@ function initReviewActions() {
   }
 
   function showHideDelayedRejectionDateWidget() {
-    var delayed_rejection_input = $(
+    let delayed_rejection_input = $(
       '#id_delayed_rejection input[name=delayed_rejection]:checked',
     );
     console.log(delayed_rejection_input);
-    var delayed_rejection_date_widget = $('#id_delayed_rejection_date');
+    let delayed_rejection_date_widget = $('#id_delayed_rejection_date');
     if (delayed_rejection_input.prop('value') == 'True') {
       delayed_rejection_date_widget.prop('disabled', false);
     } else {
@@ -343,7 +344,7 @@ function initExtraReviewActions() {
       let $input = $('#due_date_update').prop('disabled', true); // Prevent double-send.
       let apiUrl = $input.data('api-url');
       let data = { due_date: $input.val(), version: $input.data('api-data') };
-      callReviewersAPI(apiUrl, 'post', data, function (response) {
+      callReviewersAPI(apiUrl, 'post', data, function () {
         $input.prop('disabled', false);
       });
     }),
@@ -380,7 +381,7 @@ function initExtraReviewActions() {
       let apiUrl = $button.data('api-url');
       let data = $button.data('api-data') || null;
       let method = $button.data('api-method') || 'post';
-      callReviewersAPI(apiUrl, method, data, function (response) {
+      callReviewersAPI(apiUrl, method, data, function () {
         $button.remove();
       });
     }),
