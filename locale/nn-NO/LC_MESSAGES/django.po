@@ -1521,7 +1521,7 @@ msgstr "Mote"
 
 #: src/olympia/constants/categories.py:229
 msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
-msgstr ""
+msgstr "Last ned Firefox-tema som hyllar stil i alle former – mønster, blomstrar, teksturar, modellar og meir."
 
 #: src/olympia/constants/categories.py:235
 msgid "Film and TV"
@@ -1529,11 +1529,11 @@ msgstr "Film og TV"
 
 #: src/olympia/constants/categories.py:237
 msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
-msgstr ""
+msgstr "Last ned Firefox-tema med filmar og TV. Denne kategorien inkluderer anime som Uchiha Madara, filmar som The Matrix, show (Game of Thrones) og meir."
 
 #: src/olympia/constants/categories.py:246
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
-msgstr ""
+msgstr "Last ned Firefox-tema med Firefox-nettlesar-temaet. Denne kategorien inkluderer fargerike, ulike skildringar av Firefox-logoen, inkludert meir generelle fox-tema."
 
 #: src/olympia/constants/categories.py:253
 msgid "Foxkeh"
@@ -1541,7 +1541,7 @@ msgstr "Foxkeh"
 
 #: src/olympia/constants/categories.py:255
 msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
-msgstr ""
+msgstr "Last ned Firefox-tema med den japanske Firefox. Denne kategorien inkluderer tema som skildrar den søte Foxkeh-maskoten i ulike positurar i ulike landskap."
 
 #: src/olympia/constants/categories.py:262
 msgid "Holiday"
