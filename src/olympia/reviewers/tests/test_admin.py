@@ -18,7 +18,7 @@ from olympia.amo.tests import (
     version_factory,
 )
 from olympia.reviewers.admin import NeedsHumanReviewAdmin
-from olympia.reviewers.models import NeedsHumanReview, ReviewActionReason
+from olympia.reviewers.models import NeedsHumanReview, ReviewActionReason, UsageTier
 
 
 class TestNeedsHumanReviewAdmin(TestCase):
@@ -208,3 +208,32 @@ class TestReviewActionReasonAdmin(TestCase):
             doc('#result_list td.field-linked_cinder_policy')[2].text_content()
             == 'Foo, specifically Zab'
         )
+
+
+class TestUsageTierAdmin(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        cls.user = user_factory(email='someone@mozilla.com')
+        grant_permission(cls.user, '*:*', 'Admins')
+
+    def setUp(self):
+        self.client.force_login(self.user)
+        self.list_url = reverse('admin:reviewers_usagetier_changelist')
+        self.tier0 = UsageTier.objects.create()
+        self.tier1 = UsageTier.objects.create(upper_adu_threshold=10)
+        self.tier2 = UsageTier.objects.create(
+            lower_adu_threshold=10, upper_adu_threshold=20
+        )
+        self.tier3 = UsageTier.objects.create(lower_adu_threshold=20)
+
+    def test_list(self):
+        response = self.client.get(self.list_url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert len(doc('#result_list tbody tr')) == UsageTier.objects.count()
+
+    def test_change_pages_load(self):
+        for tier in UsageTier.objects.all():
+            url = tier.get_admin_url_path()
+            response = self.client.get(url)
+            assert response.status_code == 200

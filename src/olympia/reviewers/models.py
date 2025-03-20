@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 from django.conf import settings
 from django.core.cache import cache
 from django.db import models
-from django.db.models import Avg, Q
+from django.db.models import Avg, Count, F, OuterRef, Q
 from django.dispatch import receiver
 from django.template import loader
 from django.urls import reverse
@@ -809,9 +809,11 @@ class UsageTier(ModelBase):
         blank=True,
         default=None,
         null=True,
-        help_text='Percentage threshold of ratio between abuse reports over the past 2 '
-        'weeks to add-on usage before we start automatically flagging the add-on for '
-        'human review.',
+        help_text='Percentage threshold of ratio between non individually actionable '
+        'abuse reports over the past 2 weeks to add-on usage before we start '
+        'automatically flagging the add-on for human review. For example, if set to 2 '
+        'and an add-on in that tier has 10,000 users, it will be flagged after 200 '
+        'reports.',
     )
 
     class Meta:
@@ -832,10 +834,12 @@ class UsageTier(ModelBase):
 
     def get_tier_boundaries(self):
         """Return boundaries used to filter add-ons for that tier instance."""
-        return {
-            'average_daily_users__gte': self.lower_adu_threshold,
-            'average_daily_users__lt': self.upper_adu_threshold,
-        }
+        # We always have a lower bound, but not necessarily a higher one, e.g.
+        # notable doesn't have a ceiling.
+        filters = {'average_daily_users__gte': self.lower_adu_threshold or 0}
+        if self.upper_adu_threshold is not None:
+            filters['average_daily_users__lt'] = self.upper_adu_threshold
+        return filters
 
     @cached_property
     def average_growth(self):
@@ -854,7 +858,9 @@ class UsageTier(ModelBase):
         decimal.
 
         It has a floor of 0."""
-        return max(0, self.average_growth + self.growth_threshold_before_flagging / 100)
+        return max(
+            0, self.average_growth + (self.growth_threshold_before_flagging or 0) / 100
+        )
 
     def get_growth_threshold_q_object(self):
         """Return Q object containing filters to apply to find add-ons over the
@@ -863,6 +869,36 @@ class UsageTier(ModelBase):
             hotness__gt=self.get_growth_threshold(),
             **self.get_tier_boundaries(),
         )
+
+    def get_abuse_threshold_q_object(self):
+        """Return Q object containing filters to apply to find add-ons over the
+        abuse threshold for that tier.
+
+        Depends on the queryset being annotated with
+        `abuse_reports_count=UsageTier.get_abuse_count_subquery()` first."""
+        return Q(
+            abuse_reports_count__gte=F('average_daily_users')
+            * (self.abuse_reports_ratio_threshold_before_flagging or 0)
+            / 100,
+            **self.get_tier_boundaries(),
+        )
+
+    @classmethod
+    def get_abuse_count_subquery(cls):
+        """Return the Subquery used to annotate `abuse_reports_count`. Needed
+        to use get_abuse_threshold_q_object()."""
+        abuse_reports_count_qs = (
+            AbuseReport.objects.values('guid')
+            .filter(
+                ~AbuseReport.objects.__class__.is_individually_actionable_q(),
+                guid=OuterRef('guid'),
+                created__gte=datetime.now() - timedelta(days=14),
+            )
+            .annotate(guid_abuse_reports_count=Count('*'))
+            .values('guid_abuse_reports_count')
+            .order_by()
+        )
+        return abuse_reports_count_qs
 
 
 class NeedsHumanReview(ModelBase):

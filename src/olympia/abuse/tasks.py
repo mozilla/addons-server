@@ -1,16 +1,14 @@
 import functools
-from datetime import datetime, timedelta
+from datetime import datetime
 
 from django.conf import settings
-from django.db.models import Count, F, OuterRef, Q, Subquery
+from django.db.models import Q
 from django.utils import translation
 
 import requests
 from django_statsd.clients import statsd
 
 import olympia.core.logger
-from olympia import amo
-from olympia.addons.models import Addon
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import to_language
@@ -21,7 +19,6 @@ from olympia.users.models import UserProfile
 from .cinder import CinderAddonHandledByLegal
 from .models import (
     AbuseReport,
-    AbuseReportManager,
     CinderJob,
     CinderPolicy,
     ContentDecision,
@@ -43,31 +40,13 @@ def flag_high_abuse_reports_addons_according_to_review_tier():
 
     tier_filters = Q()
     for usage_tier in usage_tiers:
-        tier_filters |= Q(
-            average_daily_users__gte=usage_tier.lower_adu_threshold,
-            average_daily_users__lt=usage_tier.upper_adu_threshold,
-            abuse_reports_count__gte=F('average_daily_users')
-            * usage_tier.abuse_reports_ratio_threshold_before_flagging
-            / 100,
-        )
+        tier_filters |= usage_tier.get_abuse_threshold_q_object()
     if not tier_filters:
         return
 
-    abuse_reports_count_qs = (
-        AbuseReport.objects.values('guid')
-        .filter(
-            ~AbuseReportManager.is_individually_actionable_q(),
-            guid=OuterRef('guid'),
-            created__gte=datetime.now() - timedelta(days=14),
-        )
-        .annotate(guid_abuse_reports_count=Count('*'))
-        .values('guid_abuse_reports_count')
-        .order_by()
-    )
     qs = (
-        Addon.unfiltered.exclude(status=amo.STATUS_DISABLED)
-        .filter(type=amo.ADDON_EXTENSION)
-        .annotate(abuse_reports_count=Subquery(abuse_reports_count_qs))
+        UsageTier.get_base_addons()
+        .alias(abuse_reports_count=UsageTier.get_abuse_count_subquery())
         .filter(tier_filters)
     )
     NeedsHumanReview.set_on_addons_latest_signed_versions(
