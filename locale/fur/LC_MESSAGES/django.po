@@ -2439,11 +2439,11 @@ msgstr "Acuardi di distribuzion pai components adizionâi di Firefox"
 
 #: src/olympia/devhub/templates/devhub/base.html:43
 msgid "Help us make things better!"
-msgstr ""
+msgstr "Judinus a miorâ!"
 
 #: src/olympia/devhub/templates/devhub/base.html:44
 msgid "Take our quick survey"
-msgstr ""
+msgstr "Rispuint a un nestri svelt sondaç"
 
 #. {0} is an application, like Firefox.
 #: src/olympia/devhub/templates/devhub/index.html:21 src/olympia/templates/base.html:17
