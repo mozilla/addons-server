@@ -102,12 +102,6 @@ v5_api_urls = [
     re_path(r'^shelves/', include('olympia.shelves.urls')),
 ]
 
-url_name = 'schema'
-
-try:
-    static_swagger_ui_js = staticfiles_storage.url('js/swagger/swagger_ui.js')
-except ValueError:
-    static_swagger_ui_js = None
 
 urlpatterns = [
     re_path(r'^auth/', include((auth_urls, 'auth'))),

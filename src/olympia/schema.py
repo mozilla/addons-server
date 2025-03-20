@@ -6,7 +6,7 @@ from drf_spectacular.extensions import OpenApiAuthenticationExtension
 # https://drf-spectacular.readthedocs.io/en/latest/customization.html#step-5-extensions
 
 
-class MyAuthenticationScheme(OpenApiAuthenticationExtension):
+class SessionIDAuthenticationSchema(OpenApiAuthenticationExtension):
     target_class = 'olympia.api.authentication.SessionIDAuthentication'
     name = 'SessionIDAuthentication'
 
@@ -15,5 +15,18 @@ class MyAuthenticationScheme(OpenApiAuthenticationExtension):
             'type': 'apiKey',
             'in': 'header',
             'name': 'Authorization',
-            'description': 'pase the sessionId cookie as "Session {token}"',
+            'description': 'pass the sessionId cookie as "Session {token}"',
+        }
+
+
+class JWTKeyAuthenticationSchema(OpenApiAuthenticationExtension):
+    target_class = 'olympia.api.authentication.JWTKeyAuthentication'
+    name = 'JWTKeyAuthentication'
+
+    def get_security_definition(self, auto_schema):
+        return {
+            'type': 'apiKey',
+            'in': 'header',
+            'name': 'Authorization',
+            'description': 'pass the JWT token as "JWT {token}"',
         }

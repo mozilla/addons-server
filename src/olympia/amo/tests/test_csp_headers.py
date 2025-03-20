@@ -105,6 +105,7 @@ class TestCSPHeaders(TestCase):
     def test_not_self_in_script_child_or_style_src(self):
         """script-src/style-src/child-src should not need 'self' or the entire
         a.m.o. domain"""
+        assert "'self'" not in base_settings.CSP_SCRIPT_SRC
         assert 'https://addons.mozilla.org' not in base_settings.CSP_SCRIPT_SRC
         assert "'self'" not in base_settings.CSP_STYLE_SRC
         assert 'https://addons.mozilla.org' not in base_settings.CSP_STYLE_SRC
