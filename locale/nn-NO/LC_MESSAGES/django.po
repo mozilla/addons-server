@@ -2206,7 +2206,7 @@ msgstr "Valider utvidinga"
 #: src/olympia/devhub/views.py:645
 #, python-brace-format
 msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
-msgstr ""
+msgstr "<a href=\"{link}\">Legg til tofaktorautentisering på kontoen din for å sende inn utvidingar.</a>"
 
 #: src/olympia/devhub/views.py:1014
 msgid "Icons must be either PNG or JPG."
@@ -2243,6 +2243,8 @@ msgstr "Det oppstod ein feil under opplasting av førehandsvisinga di."
 msgid ""
 "The latest approved version of this %s add-on cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
+"Den siste godkjende versjonen av dette %s-tillegget kan ikkje slettast eller blir deaktivert fordi den førre versjonen ikkje vart godkjend for %s-kampanjen. Ta kontakt med AMO Admins viss du treng "
+"hjelp med dette."
 
 #: src/olympia/devhub/views.py:1223
 #, python-format
@@ -2261,7 +2263,7 @@ msgstr "Versjon %s slått på igjen."
 
 #: src/olympia/devhub/views.py:1254
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
-msgstr ""
+msgstr "Denne opplastinga har mislykkast ved validering og kan mangle fullstendige valideringsresultat. Ver forsiktig når du vurderer ho."
 
 #: src/olympia/devhub/views.py:1423
 msgid "Header area background"
@@ -2292,9 +2294,8 @@ msgid "Toolbar area text and icons"
 msgstr "Tekst og ikon i verktøylinjeområdet"
 
 #: src/olympia/devhub/views.py:1453
-#, fuzzy
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
-msgstr "Verktøylinje-tekstfarge."
+msgstr "Fargen på teksten og ikona i  verktøylinja og den aktive fana.  Manifestfelt: bookmark_text."
 
 #: src/olympia/devhub/views.py:1460
 msgid "Toolbar field area background"
@@ -2322,7 +2323,7 @@ msgstr ""
 
 #: src/olympia/devhub/views.py:1580
 msgid "Add-on uploads are temporarily unavailable"
-msgstr ""
+msgstr "Opplasting av tillegg er mellombels utilgjengeleg"
 
 #: src/olympia/devhub/views.py:1950
 msgid "Review requested."
