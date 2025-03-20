@@ -1,6 +1,6 @@
 import { vi } from 'vitest';
 import $ from 'jquery';
-import _ from 'lodash';
+import _ from 'underscore';
 
 // Those objects are available globally in the JS source files.
 global.$ = global.jQuery = $;
@@ -22,4 +22,7 @@ beforeEach(() => {
   vi.resetAllMocks();
   // Clear out DOM
   document.body.innerHTML = '';
+  // Reset all global storage
+  window.sessionStorage.clear();
+  window.localStorage.clear();
 });

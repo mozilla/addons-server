@@ -1,0 +1,14 @@
+{
+  "$schema": "https://unpkg.com/knip@5/schema.json",
+  "entry": ["static/js/*.js", "static/css/*.{less,css}"],
+  "project": ["static/**/*.{js,less,css}"],
+  "vite": {
+    "config": "vite.config.ts"
+  },
+  "vitest": {
+    "config": "vitest.config.js"
+  },
+  "eslint": {
+    "config": "eslint.config.js"
+  }
+}

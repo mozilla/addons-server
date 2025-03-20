@@ -83,7 +83,7 @@ help_submake:
 
 .PHONY: test_setup
 test_setup:
-	npm run test tests/make
+	npm run test:serial -- tests/make/
 
 .PHONY: setup
 setup: ## create configuration files version.json and .env required to run this project
