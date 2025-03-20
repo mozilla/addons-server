@@ -1,3 +1,5 @@
+from typing import TypedDict
+
 from django.http import Http404
 from django.utils.translation import gettext_lazy as _
 
@@ -10,6 +12,7 @@ from olympia.accounts.serializers import BaseUserSerializer
 from olympia.api.exceptions import UnavailableForLegalReasons
 from olympia.api.fields import ReverseChoiceField
 from olympia.api.serializers import AMOModelSerializer
+from olympia.bandwagon.serializers import CollectionSerializer
 from olympia.constants.abuse import (
     ILLEGAL_CATEGORIES,
     ILLEGAL_SUBCATEGORIES,
@@ -163,6 +166,11 @@ class BaseAbuseReportSerializer(AMOModelSerializer):
 
 
 class AddonAbuseReportSerializer(BaseAbuseReportSerializer):
+    class AddonDict(TypedDict):
+        guid: str
+        id: int | None
+        slug: str | None
+
     addon = serializers.SerializerMethodField(
         help_text='The add-on reported for abuse.'
     )
@@ -291,7 +299,7 @@ class AddonAbuseReportSerializer(BaseAbuseReportSerializer):
         output.update(super().to_internal_value(data))
         return output
 
-    def get_addon(self, obj):
+    def get_addon(self, obj) -> AddonDict:
         output = {
             'guid': obj.guid,
             'id': None,
@@ -351,21 +359,22 @@ class RatingAbuseReportSerializer(BaseAbuseReportSerializer):
 
 
 class CollectionAbuseReportSerializer(BaseAbuseReportSerializer):
-    collection = serializers.SerializerMethodField()
+    class CollectionIdSerializer(CollectionSerializer):
+        class Meta(CollectionSerializer.Meta):
+            fields = ('id',)
 
-    class Meta:
-        model = AbuseReport
+    collection = CollectionIdSerializer(read_only=True)
+
+    class Meta(BaseAbuseReportSerializer.Meta):
         fields = BaseAbuseReportSerializer.Meta.fields + ('collection',)
 
     def to_internal_value(self, data):
         self.validate_target(data, 'collection')
         view = self.context.get('view')
-        output = {'collection': view.get_target_object()}
+        collection = view.get_target_object()
         # Pop 'collection' before passing it to super(), we already have the
         # output value and did the validation above.
-        data.pop('collection')
-        output.update(super().to_internal_value(data))
-        return output
-
-    def get_collection(self, obj):
-        return {'id': obj.collection.pk}
+        data.pop('collection', None)
+        validated_data = super().to_internal_value(data)
+        validated_data['collection'] = collection
+        return validated_data

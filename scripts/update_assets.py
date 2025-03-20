@@ -49,6 +49,11 @@ def update_assets(verbose: bool = False):
         env=environment,
     )
     subprocess.run(
+        script_prefix + ['generate_js_swagger_files'],
+        check=True,
+        env=environment,
+    )
+    subprocess.run(
         script_prefix + ['collectstatic', '--noinput'],
         check=True,
         env=environment,

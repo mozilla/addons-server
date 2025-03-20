@@ -8,7 +8,7 @@ from django.utils.cache import patch_cache_control
 from django.utils.decorators import method_decorator
 from django.utils.translation import gettext
 
-from drf_yasg.utils import swagger_auto_schema
+from drf_spectacular.utils import extend_schema, extend_schema_view
 from elasticsearch_dsl import Q, Search, query
 from rest_framework import exceptions, serializers, status
 from rest_framework.decorators import action
@@ -211,6 +211,21 @@ def find_replacement_addon(request):
     return redirect(replace_url, permanent=False)
 
 
+@extend_schema_view(
+    create=extend_schema(
+        description="""
+            This endpoint allows a submission of an upload to create a new add-on
+            and setting other AMO metadata.
+
+            To create an add-on with a listed version from an upload
+            (an upload that has channel == listed) certain metadata must be defined
+            - version license
+            - add-on name
+            - add-on summary
+            - add-on categories for each app the version is compatible with.
+        """
+    )
+)
 class AddonViewSet(
     CreateModelMixin,
     RetrieveModelMixin,
@@ -400,19 +415,6 @@ class AddonViewSet(
             return self.create(request, *args, **kwargs)
 
     @method_decorator(require_submissions_enabled)
-    @swagger_auto_schema(
-        operation_description="""
-            This endpoint allows a submission of an upload to create a new add-on
-            and setting other AMO metadata.
-
-            To create an add-on with a listed version from an upload
-            (an upload that has channel == listed) certain metadata must be defined
-            - version license
-            - add-on name
-            - add-on summary
-            - add-on categories for each app the version is compatible with.
-        """
-    )
     def create(self, request, *args, **kwargs):
         response = super().create(request, *args, **kwargs)
         return response

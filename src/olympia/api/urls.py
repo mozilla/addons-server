@@ -1,9 +1,12 @@
 from django.conf import settings
+from django.contrib.staticfiles.storage import staticfiles_storage
 from django.urls import include, re_path
 
-from drf_yasg import openapi
-from drf_yasg.views import get_schema_view
-from rest_framework import permissions
+from drf_spectacular.views import (
+    SpectacularAPIView,
+    SpectacularRedocView,
+    SpectacularSwaggerSplitView,
+)
 
 from olympia.accounts.urls import accounts_v3, accounts_v4, auth_urls
 from olympia.addons.api_urls import addons_v3, addons_v4, addons_v5
@@ -13,37 +16,42 @@ from olympia.ratings.api_urls import ratings_v3, ratings_v4
 
 def get_versioned_api_routes(version, url_patterns):
     route_pattern = r'^{}/'.format(version)
-
-    schema_view = get_schema_view(
-        openapi.Info(
-            title='AMO API',
-            default_version=version,
-            description='The official API for addons.mozilla.org.',
-        ),
-        public=True,
-        permission_classes=(permissions.AllowAny,),
-    )
+    url_name = 'schema'
 
     routes = url_patterns
 
-    # For now, this feature is only enabled in dev mode
-    if settings.DEV_MODE:
+    try:
+        static_swagger_ui_js = staticfiles_storage.url(f'js/swagger/{version}.js')
+    except ValueError:
+        static_swagger_ui_js = None
+
+    # We always include the schema endpoint in the API routes.
+    # The build depends on being able to generate swagger assets
+    # that in turn depend on a resolvable schema endpoint.
+    routes.append(
+        re_path(
+            r'^schema/$',
+            SpectacularAPIView.as_view(),
+            name=url_name,
+        ),
+    )
+
+    # Only include the UI routes if the feature flag is enabled.
+    if settings.SWAGGER_UI_ENABLED:
         routes.extend(
             [
                 re_path(
-                    r'^swagger(?P<format>\.json|\.yaml)$',
-                    schema_view.without_ui(cache_timeout=0),
-                    name='schema-json',
-                ),
-                re_path(
                     r'^swagger/$',
-                    schema_view.with_ui('swagger', cache_timeout=0),
-                    name='schema-swagger-ui',
+                    SpectacularSwaggerSplitView.as_view(
+                        url_name=url_name,
+                        url_self=static_swagger_ui_js,
+                    ),
+                    name=f'{url_name}-swagger',
                 ),
                 re_path(
                     r'^redoc/$',
-                    schema_view.with_ui('redoc', cache_timeout=0),
-                    name='schema-redoc',
+                    SpectacularRedocView.as_view(url_name=url_name),
+                    name=f'{url_name}-redoc',
                 ),
             ]
         )
@@ -93,6 +101,7 @@ v5_api_urls = [
     re_path(r'^scanner/', include('olympia.scanners.api_urls')),
     re_path(r'^shelves/', include('olympia.shelves.urls')),
 ]
+
 
 urlpatterns = [
     re_path(r'^auth/', include((auth_urls, 'auth'))),
