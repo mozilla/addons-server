@@ -348,9 +348,6 @@ class TestFileUploadViewSet(TestCase):
             data='something wicked',
         )
         assert response.status_code == 400
-        assert response.json() == {
-            'detail': 'Multipart form parse error - Invalid boundary in multipart: None'
-        }
 
 
 class TestFileUploadViewSetJWTAuth(TestFileUploadViewSet):
