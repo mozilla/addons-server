@@ -2339,7 +2339,7 @@ msgstr "Dei gamle innloggingsopplysningane dine er tilbakekalla og gjeld ikkje l
 
 #: src/olympia/devhub/views.py:2073
 msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
-msgstr ""
+msgstr "Hald API-nøklane dine hemmelege og del dei aldri med nokon, inkludert Mozilla-bidragsytarar."
 
 #: src/olympia/devhub/views.py:2090
 msgid "New API key created"
