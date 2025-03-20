@@ -81,6 +81,15 @@ help_submake:
 	@echo "\nAll other commands will be passed through to the docker 'web' container make:"
 	@make -f Makefile-docker help_submake
 
+.PHONY: actionlint
+actionlint: ## lint github action workflows
+	docker run \
+		--rm \
+		-v "$(PWD):/workdir" \
+		-w "/workdir" \
+		rhysd/actionlint@sha256:887a259a5a534f3c4f36cb02dca341673c6089431057242cdc931e9f133147e9 \
+		-verbose
+
 .PHONY: test_setup
 test_setup:
 	npm run test tests/make

@@ -43,17 +43,13 @@ jobs:
         uses: ./.github/actions/context
 
   actionlint:
+    permissions:
+      contents: 'read'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: Run actionlint
-        run: |
-          docker run \
-            --rm \
-            -v "$(pwd):/workdir" \
-            -w "/workdir" \
-            rhysd/actionlint:latest \
-            -verbose
+        run: make actionlint
 
   build:
     name: ${{ needs.context.outputs.is_fork == 'true' && 'Skip' || 'Build' }}  CI Image
