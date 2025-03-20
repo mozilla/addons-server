@@ -30,6 +30,7 @@ jobs:
       conclusion: ${{ steps.ref.outputs.conclusion }}
       commit_short: ${{ steps.ref.outputs.commit_short }}
       emoji: ${{ steps.ref.outputs.emoji }}
+      env: ci
 
     steps:
       - uses: actions/checkout@v4
@@ -75,7 +76,7 @@ jobs:
           workflow_id: ${{ needs.context.outputs.workflow_id }}
           workflow_url: ${{ needs.context.outputs.workflow_url }}
           event: ${{ needs.context.outputs.event }}
-          env: dev
+          env: ${{ needs.context.outputs.env }}
           ref: ${{ format('{0} ({1}) {2}', needs.context.outputs.branch, needs.context.outputs.commit_short, needs.context.outputs.title) }}
           ref_link: ${{ format('{0}/commit/{1}', needs.context.outputs.repo_url, needs.context.outputs.sha) }}
 
@@ -96,6 +97,6 @@ jobs:
           workflow_id: ${{ needs.context.outputs.workflow_id }}
           workflow_url: ${{ needs.context.outputs.workflow_url }}
           event: ${{ needs.context.outputs.event }}
-          env: production
+          env: ${{ needs.context.outputs.env }}
           ref: ${{ format('{0}', needs.context.outputs.branch) }}
           ref_link: ${{ format('{0}/releases/tag/{1}', needs.context.outputs.repo_url, needs.context.outputs.branch) }}
