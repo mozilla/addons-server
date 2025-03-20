@@ -1897,6 +1897,19 @@ class UsageTierTests(TestCase):
             'average_daily_users__lt': 1000,
         }
 
+    def test_get_tier_boundaries_no_lower_threshold(self):
+        self.tier.lower_adu_threshold = None
+        assert self.tier.get_tier_boundaries() == {
+            'average_daily_users__gte': 0,
+            'average_daily_users__lt': 1000,
+        }
+
+    def test_get_tier_boundaries_no_upper_threshold(self):
+        self.tier.upper_adu_threshold = None
+        assert self.tier.get_tier_boundaries() == {
+            'average_daily_users__gte': 100,
+        }
+
     def test_average_growth(self):
         addon_factory(hotness=0.5, average_daily_users=1000)  # Different tier
         addon_factory(
@@ -1925,6 +1938,10 @@ class UsageTierTests(TestCase):
         addon_factory(hotness=0.78, average_daily_users=999)
         del self.tier.average_growth
         assert round(self.tier.get_growth_threshold(), ndigits=2) == 0.77
+
+    def test_get_growth_threshold_not_set(self):
+        self.tier.growth_threshold_before_flagging = None
+        assert self.tier.get_growth_threshold() == 0
 
     def test_get_growth_threshold_zero_floor_instead_of_negative(self):
         addon_factory(hotness=-0.4, average_daily_users=100)

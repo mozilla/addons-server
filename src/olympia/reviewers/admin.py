@@ -72,10 +72,12 @@ class UsageTierAdmin(AMOModelAdmin):
         'computed_growth_threshold_before_flagging',
         'computed_number_of_addons_that_would_be_flagged_for_growth',
         'abuse_reports_ratio_threshold_before_flagging',
+        'computed_number_of_addons_that_would_be_flagged_for_abuse_reports',
     )
     readonly_fields = (
         'computed_growth_threshold_before_flagging',
         'computed_number_of_addons_that_would_be_flagged_for_growth',
+        'computed_number_of_addons_that_would_be_flagged_for_abuse_reports',
     )
 
     def computed_growth_threshold_before_flagging(self, obj):
@@ -85,6 +87,14 @@ class UsageTierAdmin(AMOModelAdmin):
         return (
             UsageTier.get_base_addons()
             .filter(obj.get_growth_threshold_q_object())
+            .count()
+        )
+
+    def computed_number_of_addons_that_would_be_flagged_for_abuse_reports(self, obj):
+        return (
+            UsageTier.get_base_addons()
+            .alias(abuse_reports_count=UsageTier.get_abuse_count_subquery())
+            .filter(obj.get_abuse_threshold_q_object())
             .count()
         )
 
