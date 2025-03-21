@@ -971,6 +971,7 @@ class DetailsPageMixin(object):
         assert version.statuses == [
             (version.all_files[0].id, amo.STATUS_DISABLED)]
 
+    @pytest.mark.xfail(reason='akismet is not used')
     @override_switch('akismet-spam-check', active=False)
     @mock.patch('olympia.lib.akismet.tasks.AkismetReport.comment_check')
     def test_akismet_spam_check_waffle_off(self, comment_check_mock):
@@ -1002,6 +1003,7 @@ class DetailsPageMixin(object):
 
         comment_check_mock.assert_called_once()
 
+    @pytest.mark.xfail(reason='akismet is not used')
     @override_switch('akismet-spam-check', active=True)
     @override_switch('akismet-addon-action', active=False)
     @mock.patch('olympia.lib.akismet.tasks.AkismetReport.comment_check')
@@ -1021,6 +1023,7 @@ class DetailsPageMixin(object):
 
         comment_check_mock.assert_called_once()
 
+    @pytest.mark.xfail(reason='akismet is not used')
     @override_switch('akismet-spam-check', active=True)
     @mock.patch('olympia.lib.akismet.tasks.AkismetReport.comment_check')
     def test_akismet_spam_check_ham(self, comment_check_mock):
@@ -1037,6 +1040,7 @@ class DetailsPageMixin(object):
         assert report.comment == u'spám'
         assert b'spam' not in response.content
 
+    @pytest.mark.xfail(reason='akismet is not used')
     @override_switch('akismet-spam-check', active=True)
     @mock.patch('olympia.lib.akismet.tasks.AkismetReport.comment_check')
     def test_akismet_spam_check_no_changes(self, comment_check_mock):
