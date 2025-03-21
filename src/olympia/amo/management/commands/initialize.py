@@ -80,7 +80,13 @@ class Command(BaseDataCommand):
         # Ensure any additional required dependencies are available before proceeding.
         call_command(
             'monitors',
-            services=['localdev_web', 'celery_worker', 'rabbitmq', 'signer'],
+            services=[
+                'localdev_web',
+                'localdev_static',
+                'celery_worker',
+                'rabbitmq',
+                'signer',
+            ],
             attempts=10,
         )
 
