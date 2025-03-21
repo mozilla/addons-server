@@ -32,16 +32,10 @@ jobs:
       run: docker run --add-host host.docker.internal:host-gateway --name es -p 9200:9200 -p 9300:9300 -e ES_NETWORK_HOST=0.0.0.0 -e discovery.type=single-node -d elasticsearch:5.6.12-alpine
 
     - name: Run docker container
-      run: docker run -f Dockerfile.python3 --add-host host.docker.internal:host-gateway -it -d --name atn -e DATABASES_DEFAULT_URL=mysql://root:verysecurepw@host.docker.internal:3306/test_olympia -e ES_HOSTS=host.docker.internal:9200 -e ELASTICSEARCH_LOCATION=host.docker.internal:9200 -v $GITHUB_WORKSPACE/src:/data/olympia/src:rw thunderbirdops/addons-server bash
+      run: docker run --add-host host.docker.internal:host-gateway -it -d --name atn -e DATABASES_DEFAULT_URL=mysql://root:verysecurepw@host.docker.internal:3306/test_olympia -e ES_HOSTS=host.docker.internal:9200 -e ELASTICSEARCH_LOCATION=host.docker.internal:9200 -v $GITHUB_WORKSPACE/src:/data/olympia/src:rw thunderbirdops/addons-server bash
 
     - name: Install deps
       run: docker exec atn bash -c "make -f Makefile-docker update_deps"
 
     - name: Run tests
       run: docker exec atn bash -c 'python3 -m pytest --junitxml=src/test_report.xml -m "not es_tests" src/olympia/'
-
-    - name: Publish test results
-      uses: EnricoMi/publish-unit-test-result-action@v2
-      if: always()
-      with:
-        files: src/test_report.xml
