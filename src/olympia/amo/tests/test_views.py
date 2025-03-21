@@ -16,6 +16,7 @@ from django.urls import reverse
 import pytest
 from lxml import etree
 from pyquery import PyQuery as pq
+from waffle.testutils import override_switch
 
 from olympia import amo, core
 from olympia.access import acl
@@ -401,6 +402,19 @@ class TestHeartbeat(TestCase):
         assert response.status_code >= 500
         assert response.json()['database']['status'] == 'boom'
 
+    def test_front_heartbeat_dummy_monitor_failure(self):
+        url = reverse('amo.front_heartbeat')
+        response = self.client.get(url)
+
+        assert response.status_code == 200
+        self.assertTrue(response.json()['dummy_monitor']['state'])
+
+        with override_switch('dummy-monitor-fails', True):
+            response = self.client.get(url)
+
+            assert response.status_code >= 500
+            assert response.json()['dummy_monitor']['status'] == 'Dummy monitor failed'
+
     def test_services_heartbeat_success(self):
         response = self.client.get(reverse('amo.services_heartbeat'))
         assert response.status_code == 200
@@ -412,6 +426,19 @@ class TestHeartbeat(TestCase):
 
         assert response.status_code >= 500
         assert response.json()['rabbitmq']['status'] == 'boom'
+
+    def test_services_heartbeat_dummy_monitor_failure(self):
+        url = reverse('amo.services_heartbeat')
+        response = self.client.get(url)
+
+        assert response.status_code == 200
+        self.assertTrue(response.json()['dummy_monitor']['state'])
+
+        with override_switch('dummy-monitor-fails', True):
+            response = self.client.get(url)
+
+            assert response.status_code >= 500
+            assert response.json()['dummy_monitor']['status'] == 'Dummy monitor failed'
 
 
 class TestCORS(TestCase):

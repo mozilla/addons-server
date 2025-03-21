@@ -4,8 +4,11 @@ import argparse
 import json
 import time
 from enum import Enum
+from functools import cached_property
 
-import requests
+from requests import Session
+from requests.adapters import HTTPAdapter
+from urllib3.util import Retry
 
 
 ENV_ENUM = Enum(
@@ -25,34 +28,29 @@ class Fetcher:
         self.environment = ENV_ENUM[env]
         self.verbose = verbose
 
+    @cached_property
+    def client(self):
+        session = Session()
+        retries = Retry(
+            total=5,
+            backoff_factor=0.1,
+            status_forcelist=[502, 503, 504],
+            allowed_methods={'GET'},
+        )
+        adapter = HTTPAdapter(max_retries=retries)
+        session.mount(self.environment.value, adapter)
+        return session
+
+    def log(self, *args):
+        if self.verbose:
+            print(*args)
+
     def _fetch(self, path: str):
         url = f'{self.environment.value}/{path}'
-        if self.verbose:
-            print(f'Requesting {url} for {self.environment.name}')
-
-        data = None
-        # We return 500 if any of the monitors are failing.
-        # So instead of raising, we should try to form valid JSON
-        # and determine if we should raise later based on the json values.
-        try:
-            response = requests.get(url, allow_redirects=False)
-            data = response.json()
-        except (requests.exceptions.HTTPError, json.JSONDecodeError) as e:
-            if self.verbose:
-                print(
-                    {
-                        'error': e,
-                        'data': data,
-                        'response': response,
-                    }
-                )
-
-        if data is None:
-            return {}
-
-        if self.verbose:
-            print(json.dumps(data, indent=2))
-
+        self.log(f'Requesting {url} for {self.environment.name}')
+        response = self.client.get(url, allow_redirects=False)
+        data = response.json()
+        self.log(json.dumps(data, indent=2))
         return {'url': url, 'data': data}
 
     def version(self):
@@ -65,7 +63,7 @@ class Fetcher:
         return self._fetch('services/__heartbeat__')
 
 
-def main(env: ENV_ENUM, verbose: bool, retries: int = 0, attempt: int = 0):
+def main(env: ENV_ENUM, verbose: bool = False, retries: int = 0, attempt: int = 0):
     fetcher = Fetcher(env, verbose)
 
     version_data = fetcher.version()

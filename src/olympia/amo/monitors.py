@@ -9,6 +9,7 @@ from django.conf import settings
 import celery
 import MySQLdb
 import requests
+import waffle
 from django_statsd.clients import statsd
 from kombu import Connection
 from PIL import Image
@@ -32,6 +33,12 @@ def execute_checks(checks: list[str], verbose: bool = False):
         if verbose:
             status_summary[check]['results'] = results
     return status_summary
+
+
+def dummy_monitor():
+    if waffle.switch_is_active('dummy-monitor-fails'):
+        return 'Dummy monitor failed', None
+    return '', None
 
 
 def localdev_web():

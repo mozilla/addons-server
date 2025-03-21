@@ -31,7 +31,7 @@ from .sitemap import InvalidSection, get_sitemap_path, get_sitemaps, render_inde
 
 
 def _exec_monitors(checks: list[str]):
-    status_summary = monitors.execute_checks(checks)
+    status_summary = monitors.execute_checks([*checks, 'dummy_monitor'])
     status_code = 200 if all(a['state'] for a in status_summary.values()) else 500
     return JsonResponse(status_summary, status=status_code)
 
