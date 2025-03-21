@@ -287,17 +287,14 @@ def test_escape_all(test_input, expected):
 
 
 @mock.patch('olympia.amo.templatetags.jinja_helpers.urlresolvers.get_outgoing_url')
-@mock.patch('bleach.callbacks.nofollow', lambda attrs, new: attrs)
 def test_escape_all_linkify_only_full(mock_get_outgoing_url):
     mock_get_outgoing_url.return_value = 'https://outgoing.firefox.com'
 
     assert escape_all('http://firefox.com') == (
-        '<a href="https://outgoing.firefox.com">http://firefox.com</a>'
+        '<a href="https://outgoing.firefox.com" rel="nofollow">http://firefox.com</a>'
     )
 
-    assert escape_all('firefox.com') == (
-        '<a href="https://outgoing.firefox.com">firefox.com</a>'
-    )
+    assert escape_all('firefox.com') == 'firefox.com'
 
 
 def test_no_jinja_autoescape():
