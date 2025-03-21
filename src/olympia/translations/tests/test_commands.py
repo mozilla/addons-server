@@ -71,12 +71,12 @@ class TestRebleachSummaries(TestCase):
             == 'foo http://bar.com'
         )
 
-        # That one should not have changed.
+        # We didn't double-escape that one.
         self.translation_with_already_escaped_html.reload()
         assert (
             self.translation_with_already_escaped_html.localized_string
             == self.translation_with_already_escaped_html.localized_string_clean
-            == 'foo &lt;a href=&quot;http://bar.com&quot;&gt;http://bar.com&lt;/a&gt;'
+            == 'foo &lt;a href="http://bar.com"&gt;http://bar.com&lt;/a&gt;'
         )
 
         assert index_addons_mock.call_count == 1
