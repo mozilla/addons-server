@@ -5590,7 +5590,7 @@ msgstr "Customize YouTube to taste. Give it a new look, new features & filter on
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:649
 msgid "Changes the color of Firefox to match the appearance of any website."
-msgstr ""
+msgstr "Changes the colour of Firefox to match the appearance of any website."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:656
@@ -5805,7 +5805,7 @@ msgstr "See all extensions"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:986
 msgid "Productivity tools"
-msgstr ""
+msgstr "Productivity tools"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -6033,12 +6033,12 @@ msgstr "See more starter extension staff picks"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1104
 msgid "Twitch extensions"
-msgstr ""
+msgstr "Twitch extensions"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1106
 msgid "See more Twitch extension staff picks"
-msgstr ""
+msgstr "See more Twitch extension staff picks"
 
 #: src/olympia/files/models.py:319
 msgid "Unreviewed"
