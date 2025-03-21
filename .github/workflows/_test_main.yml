@@ -61,15 +61,22 @@ jobs:
         id: result
         shell: bash
         run: |
-          splits="${{ inputs.splits }}"
-          echo "splits: $splits"
-          echo "splits=$splits" >> "$GITHUB_OUTPUT"
-
           # Construct the matrix input for test_main using the groups count
-          # the matrix.group should be an array of numbers from 1 to $splits
-          matrix=$(seq -s, 1 "$splits")
-          echo "matrix: $matrix"
+          # the matrix.group should be an array of numbers from 0 to ${{ inputs.splits }}
+          splits="${{ inputs.splits }}"
+          # the matrix group should be indexed from 1 to splits + 1
+          n=$((splits + 1))
+          matrix=$(jq -n -c --arg n "$n" '[range(1;($n|tonumber))]')
+
+          # validate that matrix is an array of numbers from 1 to splits + 1
+          if ! echo "$matrix" | jq empty; then
+            echo "matrix is not an array of numbers from 1 to splits + 1"
+            exit 1
+          fi
+
+          echo "splits=$splits" >> "$GITHUB_OUTPUT"
           echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
+          cat "$GITHUB_OUTPUT"
 
   test_main:
     runs-on: ubuntu-latest
