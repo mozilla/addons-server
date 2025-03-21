@@ -211,6 +211,8 @@ def linkify_and_clean(text, *, tags=None, attributes=None, attribute_filter=None
         tags=tags,
         attributes=attributes,
         attribute_filter=attribute_filter,
+        # FIXME: here and everywhere, consider a stricter url_schemes param.
+        # nh3.ALLOWED_URL_SCHEMES might be a little too broad.
         # FIXME: could consider tag_attribute_values to automatically add
         # target="_blank", and add noopener noreferrer to link_rel.
     )
