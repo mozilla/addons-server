@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite -d --strictPort --clearScreen",
-    "build": "vite build -d",
+    "build": "vite build",
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest watch"
@@ -14,8 +14,6 @@
   "dependencies": {
     "@claviska/jquery-minicolors": "2.3.6",
     "addons-linter": "7.9.0",
-    "clean-css": "5.3.3",
-    "clean-css-cli": "5.6.3",
     "jqmodal": "1.4.2",
     "jquery": "3.7.1",
     "jquery-pjax": "2.0.1",
@@ -38,7 +36,6 @@
     "jsdom": "^26.0.0",
     "lodash": "^4.17.21",
     "prettier": "^3.5.3",
-    "terser": "^5.39.0",
     "vite": "^6.2.0",
     "vitest": "^3.0.7"
   }

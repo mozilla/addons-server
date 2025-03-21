@@ -30,7 +30,6 @@ from rest_framework.settings import api_settings
 from olympia import amo
 from olympia.amo import urlresolvers, utils
 from olympia.amo.reverse import get_url_prefix
-from olympia.lib.jingo_minify_helpers import _build_html, get_css_urls, get_js_urls
 
 
 register = Library()
@@ -207,33 +206,6 @@ def format_html(string, *args, **kwargs):
     not marked as `mark_safe`) and escapes them appropriately.
     """
     return django_format_html(smart_str(string), *args, **kwargs)
-
-
-@library.global_function
-def js(bundle, debug=None):
-    """
-    If we are in debug mode, just output a single script tag for each js file.
-    If we are not in debug mode, return a script that points at bundle-min.js.
-
-    Copied from jingo-minify until we switch to something better...
-    """
-    urls = get_js_urls(bundle, debug)
-    attrs = ['src="%s"']
-
-    return _build_html(urls, '<script %s></script>' % ' '.join(attrs))
-
-
-@library.global_function
-def css(bundle, media=False, debug=None):
-    """
-    If we are in debug mode, just output a single script tag for each css file.
-    If we are not in debug mode, return a script that points at bundle-min.css.
-    """
-    urls = get_css_urls(bundle, debug)
-    if not media:
-        media = 'all'
-
-    return _build_html(urls, '<link rel="stylesheet" media="%s" href="%%s" />' % media)
 
 
 @library.filter

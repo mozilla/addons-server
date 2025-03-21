@@ -39,11 +39,6 @@ def update_assets(verbose: bool = False):
         env=environment,
     )
     subprocess.run(
-        script_prefix + ['compress_assets'],
-        check=True,
-        env=environment,
-    )
-    subprocess.run(
         script_prefix + ['generate_jsi18n_files'],
         check=True,
         env=environment,
@@ -54,7 +49,7 @@ def update_assets(verbose: bool = False):
         env=environment,
     )
     subprocess.run(
-        script_prefix + ['collectstatic', '--noinput'],
+        script_prefix + ['collectstatic', '--noinput', '--clear'],
         check=True,
         env=environment,
     )

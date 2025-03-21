@@ -22,9 +22,6 @@ class TestUpdateAssets(TestCase):
         assert self.mocks['subprocess.run'].call_args_list == [
             mock.call(['npm', 'run', 'build'], check=True, env=mock.ANY),
             mock.call(
-                ['python3', 'manage.py', 'compress_assets'], check=True, env=mock.ANY
-            ),
-            mock.call(
                 ['python3', 'manage.py', 'generate_jsi18n_files'],
                 check=True,
                 env=mock.ANY,
@@ -35,7 +32,7 @@ class TestUpdateAssets(TestCase):
                 env=mock.ANY,
             ),
             mock.call(
-                ['python3', 'manage.py', 'collectstatic', '--noinput'],
+                ['python3', 'manage.py', 'collectstatic', '--noinput', '--clear'],
                 check=True,
                 env=mock.ANY,
             ),

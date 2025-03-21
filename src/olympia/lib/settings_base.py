@@ -93,19 +93,6 @@ SILENCED_SYSTEM_CHECKS = (
     'django_recaptcha.recaptcha_test_key_error',
 )
 
-# LESS CSS OPTIONS (Debug only).
-LESS_PREPROCESS = True  # Compile LESS with Node, rather than client-side JS?
-LESS_LIVE_REFRESH = False  # Refresh the CSS on save?
-LESS_BIN = env('LESS_BIN', default=path('node_modules/less/bin/lessc'))
-
-# Path to cleancss (our CSS minifier).
-CLEANCSS_BIN = env(
-    'CLEANCSS_BIN', default=path('node_modules/clean-css-cli/bin/cleancss')
-)
-
-# Path to our JS minifier.
-JS_MINIFIER_BIN = env('JS_MINIFIER_BIN', default=path('node_modules/terser/bin/terser'))
-
 # rsvg-convert is used to save our svg static theme previews to png
 RSVG_CONVERT_BIN = env('RSVG_CONVERT_BIN', default='rsvg-convert')
 
@@ -567,7 +554,6 @@ INSTALLED_APPS = (
     'django_recaptcha',
     'drf_spectacular',
     'drf_spectacular_sidecar',
-    'django_node_assets',
     'django_vite',
     # Django contrib apps
     'django.contrib.admin',
@@ -601,17 +587,6 @@ HOMEPAGE_SHELVES_EDITORIAL_CONTENT_API = (
 # Filename where the strings will be stored. Used in extract_content_strings
 # management command, but note that the filename is hardcoded in babel.cfg.
 EDITORIAL_CONTENT_FILENAME = 'src/olympia/discovery/strings.jinja2'
-
-# Bundles is a dictionary of two dictionaries, css and js, which list css files
-# and js files that can be bundled together by the minify app.
-MINIFY_BUNDLES = {
-    'css': {
-        'common': (),
-    },
-    'js': {
-        'common': (),
-    },
-}
 
 CACHES = {
     'default': env.cache(
@@ -1208,7 +1183,6 @@ STATIC_URL = '/static/'
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'django_node_assets.finders.NodeModulesFinder',
 )
 
 NODE_MODULES_ROOT = path('node_modules')
@@ -1218,7 +1192,7 @@ NODE_PACKAGE_MANAGER_INSTALL_OPTIONS = ['--dry-run']
 # The manifest file is created in static-build but copied into the static root
 # so we should expect to find it at /<static_root/<static_build>/manifest.json
 STATIC_BUILD_PATH = path('static-build')
-# This value should be kept in sync with vite.config.js
+# This value should be kept in sync with vite.config.ts
 # where the manifest will be written to
 VITE_MANIFEST_FILE_NAME = env('VITE_MANIFEST_FILE_NAME')
 STATIC_BUILD_MANIFEST_PATH = path(STATIC_BUILD_PATH, VITE_MANIFEST_FILE_NAME)

@@ -45,10 +45,6 @@ jobs:
               make compile_locales
               make test_needs_locales_compilation
           -
-            name: Static Assets
-            services: ''
-            run: make test_static_assets
-          -
             name: Internal Routes
             services: ''
             run: make test_internal_routes_allowed
