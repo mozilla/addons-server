@@ -8,7 +8,6 @@ from django.utils.encoding import force_bytes
 from django.utils.http import _urlparse as django_urlparse
 from django.utils.translation.trans_real import parse_accept_lang_header
 
-import bleach
 import lxml_html_clean
 import markupsafe
 import nh3
@@ -193,7 +192,7 @@ def linkify_with_outgoing(text):
     )
 
 
-def linkify_and_clean(text, attribute_filter=None):
+def linkify_and_clean(text, *, tags=None, attributes=None, attribute_filter=None):
     """Linkify and clean string potentially containing HTML, transforming each
     URL to an HTML link. Only <a> tags are accepted."""
     # lxml_html_clean is not meant to be a security tool, it should *not*
@@ -202,10 +201,15 @@ def linkify_and_clean(text, attribute_filter=None):
     # Note: autolink_html() avoids re-transforming URLs in <a> tags, but wraps
     # text in a paragraph if it wasn't in one. We ultimately don't care as we
     # are going to clean it up with nh3.
+    if tags is None:
+        tags = {'a'}
+    if attributes is None:
+        attributes = {'a': {'href'}}
     return nh3.clean(
         intermediate_text,
         link_rel='nofollow',
-        tags={'a'},
+        tags=tags,
+        attributes=attributes,
         attribute_filter=attribute_filter,
         # FIXME: could consider tag_attribute_values to automatically add
         # target="_blank", and add noopener noreferrer to link_rel.

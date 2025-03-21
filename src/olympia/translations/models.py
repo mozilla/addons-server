@@ -1,15 +1,15 @@
-from functools import partial, total_ordering
+from functools import total_ordering
 
 from django.db import connections, models, router
 from django.db.models.deletion import Collector
 
-import bleach
 import markdown as md
+import nh3
 
 import olympia.core.logger
 from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ManagerBase, ModelBase
-from olympia.amo.urlresolvers import linkify_bounce_url_callback
+from olympia.amo.urlresolvers import linkify_and_clean, outgoing_href_attributes_filter
 
 from . import utils
 
@@ -166,10 +166,12 @@ class Translation(ModelBase):
 
 
 class PureTranslation(Translation):
-    """Run the string through bleach to get version with escaped HTML."""
+    """Run the string through nh3 to get version with escaped HTML."""
 
-    allowed_tags = []
+    allowed_tags = set()
     allowed_attributes = {}
+    attribute_filter = None
+    clean_method = staticmethod(nh3.clean)
 
     class Meta:
         proxy = True
@@ -185,20 +187,22 @@ class PureTranslation(Translation):
     def clean(self):
         from olympia.amo.utils import clean_nl
 
-        cleaned = self.clean_localized_string()
+        cleaned = self.clean_string(self.localized_string)
         self.localized_string_clean = clean_nl(cleaned).strip()
 
-    def clean_localized_string(self):
-        cleaner = bleach.Cleaner(
-            tags=self.allowed_tags, attributes=self.allowed_attributes
-        )
-        return cleaner.clean(str(self.localized_string))
+    def clean_string(self, text):
+        return self.clean_method(
+            str(text),
+            tags=self.allowed_tags,
+            attributes=self.allowed_attributes,
+            attribute_filter=self.attribute_filter,
+        ) if text else ''
 
 
 class PurifiedTranslation(PureTranslation):
-    """Run the string through bleach to get a safe version."""
+    """Run the string through nh3 to get a safe version."""
 
-    allowed_tags = [
+    allowed_tags = {
         'a',
         'abbr',
         'acronym',
@@ -211,34 +215,20 @@ class PurifiedTranslation(PureTranslation):
         'ol',
         'strong',
         'ul',
-    ]
-    allowed_attributes = {
-        'a': ['href', 'title', 'rel'],
-        'abbr': ['title'],
-        'acronym': ['title'],
     }
-
-    # All links (text and markup) are normalized.
-    linkify_filter = partial(
-        bleach.linkifier.LinkifyFilter,
-        callbacks=[linkify_bounce_url_callback, bleach.callbacks.nofollow],
-    )
+    allowed_attributes = {
+        'a': {'href', 'title'},
+        'abbr': {'title'},
+        'acronym': {'title'},
+    }
+    attribute_filter = outgoing_href_attributes_filter
+    clean_method = staticmethod(linkify_and_clean)
 
     class Meta:
         proxy = True
 
     def __html__(self):
         return str(self)
-
-    def clean_localized_string(self):
-        # Keep only the allowed tags and attributes, escape the rest.
-        cleaner = bleach.Cleaner(
-            tags=self.allowed_tags,
-            attributes=self.allowed_attributes,
-            filters=[self.linkify_filter],
-        )
-
-        return cleaner.clean(str(self.localized_string))
 
     @classmethod
     def get_allowed_tags(cls):
@@ -249,10 +239,10 @@ class PurifiedMarkdownTranslation(PurifiedTranslation):
     class Meta:
         proxy = True
 
-    def clean_localized_string(self):
-        # bleach user-inputted html
+    def clean_string(self, text):
+        # bleach user-inputted html first.
         cleaned = (
-            bleach.clean(self.localized_string, tags=[], attributes={})
+            nh3.clean(text, tags=set(), attributes={})
             if self.localized_string
             else ''
         )
@@ -260,23 +250,16 @@ class PurifiedMarkdownTranslation(PurifiedTranslation):
         text_with_brs = cleaned.replace('&gt;', '>')
         # the base syntax of markdown library does not provide abbreviations or fenced
         # code. see https://python-markdown.github.io/extensions/
-        markdown = md.markdown(text_with_brs, extensions=['abbr', 'fenced_code'])
+        html = md.markdown(text_with_brs, extensions=['abbr', 'fenced_code'])
 
-        # Keep only the allowed tags and attributes, strip the rest.
-        cleaner = bleach.Cleaner(
-            tags=self.allowed_tags,
-            attributes=self.allowed_attributes,
-            filters=[self.linkify_filter],
-            strip=True,
-        )
-
-        return cleaner.clean(markdown)
+        # Run through cleaning as normal
+        return super().clean_string(html)
 
 
 class LinkifiedTranslation(PurifiedTranslation):
     """Run the string through bleach to get a linkified version."""
 
-    allowed_tags = ['a']
+    allowed_tags = {'a'}
 
     class Meta:
         proxy = True
