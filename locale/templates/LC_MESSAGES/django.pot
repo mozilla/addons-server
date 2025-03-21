@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-20 21:59+0000\n"
+"POT-Creation-Date: 2025-03-21 11:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -761,13 +761,13 @@ msgstr ""
 msgid "Add-on uploads have been temporarily disabled. Please check back later."
 msgstr ""
 
-#: src/olympia/amo/templatetags/jinja_helpers.py:148
+#: src/olympia/amo/templatetags/jinja_helpers.py:147
 #, python-brace-format
 msgid "Add-ons for {0}"
 msgstr ""
 
 #. L10n: relative time in the past, like '4 days ago'
-#: src/olympia/amo/templatetags/jinja_helpers.py:181
+#: src/olympia/amo/templatetags/jinja_helpers.py:180
 #, python-brace-format
 msgid "{0} ago"
 msgstr ""
