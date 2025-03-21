@@ -4,9 +4,9 @@ name: Run Tests
 
 on:
   push:
-    branches: [master]
+    branches: [json420/master]
   pull_request:
-    branches: [master]
+    branches: [json420/master]
   workflow_dispatch:
 
 permissions:
