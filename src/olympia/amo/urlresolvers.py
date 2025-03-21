@@ -9,7 +9,9 @@ from django.utils.http import _urlparse as django_urlparse
 from django.utils.translation.trans_real import parse_accept_lang_header
 
 import bleach
+import lxml_html_clean
 import markupsafe
+import nh3
 
 from olympia import amo
 
@@ -172,18 +174,40 @@ def linkify_only_full_urls(attrs, new=False):
     return attrs
 
 
+def outgoing_href_attributes_filter(tag, attr, value):
+    """nh3.clean attribute_filter callback to force all links to go through our
+    outgoing proxy."""
+    if tag == 'a' and attr == 'href':
+        value = get_outgoing_url(value)
+    return value
+
+
 def linkify_with_outgoing(text):
     """Linkify and clean string potentially containing HTML, transforming each
-    URL to an HTML link that points to that URL through our outgoing proxy."""
-    callbacks = [linkify_bounce_url_callback, bleach.callbacks.nofollow]
-    return bleach.linkify(bleach.clean(str(text)), callbacks=callbacks)
+    URL to an HTML link that points to that URL through our outgoing proxy.
+
+    Only <a> tags are accepted."""
+    return linkify_and_clean(
+        text,
+        attribute_filter=outgoing_href_attributes_filter,
+    )
 
 
-def linkify_and_clean(text):
+def linkify_and_clean(text, attribute_filter=None):
     """Linkify and clean string potentially containing HTML, transforming each
-    URL to an HTML link."""
-    callbacks = [linkify_only_full_urls, bleach.callbacks.nofollow]
-    return bleach.linkify(bleach.clean(str(text)), callbacks=callbacks)
+    URL to an HTML link. Only <a> tags are accepted."""
+    # lxml_html_clean is not meant to be a security tool, it should *not*
+    # be used for escaping, only autolinking. nh3 does the escaping.
+    intermediate_text = lxml_html_clean.autolink_html(str(text))
+    # Note: autolink_html() avoids re-transforming URLs in <a> tags, but wraps
+    # text in a paragraph if it wasn't in one. We ultimately don't care as we
+    # are going to clean it up with nh3.
+    return nh3.clean(
+        intermediate_text,
+        link_rel='nofollow',
+        tags={'a'},
+        attribute_filter=attribute_filter,
+    )
 
 
 def lang_from_accept_header(header):

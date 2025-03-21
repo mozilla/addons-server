@@ -286,6 +286,8 @@ def test_external_url():
 
 def _test_linkify(func, value, expected_text, expected_links):
     res = func(value)
+    # Make sure we didn't accidentally wrap things in a paragraph
+    assert not res.startswith('<p')
     # Attributes could be rendered in any order so we can't test HTML directly.
     # But PyQuery text() unescapes escaped HTML, so we double-check what we
     # intended to escape too.
@@ -293,16 +295,12 @@ def _test_linkify(func, value, expected_text, expected_links):
     assert doc.text() == expected_text
     # expected_text doesn't show escaped HTML, so we double-check we escaped
     # things correctly.
-    if '<script' in value:
-        assert '&lt;script' in res
-    else:
-        assert '&lt;' not in res
     assert '<script' not in res
 
     for idx, expected_link in enumerate(expected_links):
         link = doc('a')[idx]
         assert link.attrib == {'href': expected_link[0], 'rel': 'nofollow'}
-        assert link.text_content() == expected_link[1]
+        assert link.text == expected_link[1]
 
 
 @pytest.mark.parametrize(
@@ -319,11 +317,8 @@ def _test_linkify(func, value, expected_text, expected_links):
             (('https://out.going.com/http%3A//foo.com', 'http://foo.com'),),
         ),
         (
-            'some http://foo.com <script>alert(42)</script>',
-            # expected_text is unescaped, so it would show &lt;script&gt; as
-            # <script>. We have an additional assertion in the test to check
-            # for escaping.
-            'some http://foo.com <script>alert(42)</script>',
+            'some http://foo.com <script>alert(42)</script> thing',
+            'some http://foo.com thing',
             (('https://out.going.com/http%3A//foo.com', 'http://foo.com'),),
         ),
         (
@@ -360,11 +355,8 @@ def test_linkify_with_outgoing(value, expected_text, expected_links):
             (('http://foo.com', 'http://foo.com'),),
         ),
         (
-            'some http://foo.com <script>alert(42)</script>',
-            # expected_text is unescaped, so it would show &lt;script&gt; as
-            # <script>. We have an additional assertion in the test to check
-            # for escaping.
-            'some http://foo.com <script>alert(42)</script>',
+            'some http://foo.com <script>alert(42)</script> thing',
+            'some http://foo.com thing',
             (('http://foo.com', 'http://foo.com'),),
         ),
         (
@@ -381,7 +373,7 @@ def test_linkify_with_outgoing(value, expected_text, expected_links):
     'olympia.amo.templatetags.jinja_helpers.urlresolvers.get_outgoing_url',
     lambda u: f'https://out.going.com/{quote(u)}',
 )
-def test_linkify_with_outgoing(value, expected_text, expected_links):
+def test_linkify_and_clean(value, expected_text, expected_links):
     _test_linkify(urlresolvers.linkify_and_clean, value, expected_text, expected_links)
 
 
