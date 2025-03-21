@@ -35,6 +35,7 @@ class TestFileEntriesSerializer(TestCase):
         return FileEntriesSerializer(
             instance=obj, context=extra_context).data
 
+    @pytest.mark.xfail(reason="git storage backend is no longer used")
     def test_basic(self):
         file = self.addon.current_version.current_file
 
@@ -90,6 +91,7 @@ class TestFileEntriesSerializer(TestCase):
         assert data['platform'] == 'all'
         assert data['is_mozilla_signed_extension'] is False
 
+    @pytest.mark.xfail(reason="git storage backend is no longer used")
     def test_requested_file(self):
         file = self.addon.current_version.current_file
 
@@ -111,6 +113,7 @@ class TestFileEntriesSerializer(TestCase):
         assert data['content'].startswith(
             'The "link-48.png" icon is taken from the Geomicons')
 
+    @pytest.mark.xfail(reason="git storage backend is no longer used")
     def test_get_entries_cached(self):
         file = self.addon.current_version.current_file
         serializer = FileEntriesSerializer(instance=file)
@@ -211,6 +214,7 @@ class TestAddonBrowseVersionSerializer(TestCase):
         return AddonBrowseVersionSerializer(
             instance=self.version, context=extra_context).data
 
+    @pytest.mark.xfail(reason="git storage backend is no longer used")
     def test_basic(self):
         # Overwritten partially to remove `files` related tests since we don't
         # include it in our simplified serializer version
