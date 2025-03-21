@@ -87,8 +87,7 @@ actionlint: ## lint github action workflows
 		--rm \
 		-v "$(PWD):/workdir" \
 		-w "/workdir" \
-		rhysd/actionlint@sha256:887a259a5a534f3c4f36cb02dca341673c6089431057242cdc931e9f133147e9 \
-		-verbose
+		rhysd/actionlint@sha256:887a259a5a534f3c4f36cb02dca341673c6089431057242cdc931e9f133147e9
 
 .PHONY: test_setup
 test_setup:
