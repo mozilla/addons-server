@@ -191,12 +191,16 @@ class PureTranslation(Translation):
         self.localized_string_clean = clean_nl(cleaned).strip()
 
     def clean_string(self, text):
-        return self.clean_method(
-            str(text),
-            tags=self.allowed_tags,
-            attributes=self.allowed_attributes,
-            attribute_filter=self.attribute_filter,
-        ) if text else ''
+        return (
+            self.clean_method(
+                str(text),
+                tags=self.allowed_tags,
+                attributes=self.allowed_attributes,
+                attribute_filter=self.attribute_filter,
+            )
+            if text
+            else ''
+        )
 
 
 class PurifiedTranslation(PureTranslation):
@@ -242,9 +246,7 @@ class PurifiedMarkdownTranslation(PurifiedTranslation):
     def clean_string(self, text):
         # bleach user-inputted html first.
         cleaned = (
-            nh3.clean(text, tags=set(), attributes={})
-            if self.localized_string
-            else ''
+            nh3.clean(text, tags=set(), attributes={}) if self.localized_string else ''
         )
         # hack; cleaning breaks blockquotes
         text_with_brs = cleaned.replace('&gt;', '>')

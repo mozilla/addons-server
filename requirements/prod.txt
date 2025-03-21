@@ -776,7 +776,7 @@ lxml==5.3.1 \
     --hash=sha256:f4eac0584cdc3285ef2e74eee1513a6001681fd9753b259e8159421ed28a72e5 \
     --hash=sha256:f7b64fcd670bca8800bc10ced36620c6bbb321e7bc1214b9c0c0df269c1dddc2 \
     --hash=sha256:fb7c61d4be18e930f75948705e9718618862e6fc2ed0d7159b2262be73f167a2
-lxml-html-clean==0.4.1 \
+lxml_html_clean==0.4.1 \
     --hash=sha256:40c838bbcf1fc72ba4ce811fbb3135913017b27820d7c16e8bc412ae1d8bc00b \
     --hash=sha256:b704f2757e61d793b1c08bf5ad69e4c0b68d6696f4c3c1429982caf90050bcaf
 # m2secret is required by django-aesfield
