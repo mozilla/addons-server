@@ -207,6 +207,8 @@ def linkify_and_clean(text, attribute_filter=None):
         link_rel='nofollow',
         tags={'a'},
         attribute_filter=attribute_filter,
+        # FIXME: could consider tag_attribute_values to automatically add
+        # target="_blank", and add noopener noreferrer to link_rel.
     )
 
 
