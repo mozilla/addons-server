@@ -4562,7 +4562,7 @@ msgstr "Evidenzie il test, frache il boton diestri dal mouse e tradûs intun lam
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:11 src/olympia/discovery/strings.jinja2:806
 msgid "Perform reverse image searches from an array of engines."
-msgstr "Fâs ricercjis inviersis di imagjinis di une schirie di motôrs."
+msgstr "Fâs ricercjis inviersis di imagjins di une schirie di motôrs."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
