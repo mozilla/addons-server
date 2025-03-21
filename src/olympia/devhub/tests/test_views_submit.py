@@ -471,6 +471,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         assert storage.exists(previews[1].image_path)
         assert storage.exists(previews[2].image_path)
 
+    @pytest.mark.xfail(reason='old static theme wizard we removed a while ago')
     def test_static_theme_submit_unlisted(self):
         assert Addon.unfiltered.count() == 0
         path = os.path.join(
@@ -489,6 +490,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         # Only listed submissions need a preview generated.
         assert latest_version.previews.all().count() == 0
 
+    @pytest.mark.xfail(reason='old static theme wizard we removed a while ago')
     def test_static_theme_wizard_listed(self):
         # Check we get the correct template.
         url = reverse('devhub.submit.wizard', args=['listed'])
@@ -519,6 +521,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         assert storage.exists(previews[1].image_path)
         assert storage.exists(previews[2].image_path)
 
+    @pytest.mark.xfail(reason='old static theme wizard we removed a while ago')
     def test_static_theme_wizard_unlisted(self):
         # Check we get the correct template.
         url = reverse('devhub.submit.wizard', args=['unlisted'])
