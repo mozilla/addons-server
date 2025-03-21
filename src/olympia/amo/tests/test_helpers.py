@@ -2,6 +2,7 @@ import mimetypes
 import os
 from datetime import datetime, timedelta
 from unittest.mock import Mock, patch
+from urllib.parse import quote
 
 from django.conf import settings
 from django.core.files.uploadedfile import SimpleUploadedFile
@@ -283,49 +284,105 @@ def test_external_url():
         settings.REDIRECT_SECRET_KEY = secretkey
 
 
-@patch('olympia.amo.templatetags.jinja_helpers.urlresolvers.get_outgoing_url')
-def test_linkify_bounce_url_callback(mock_get_outgoing_url):
-    mock_get_outgoing_url.return_value = 'bar'
-
-    res = urlresolvers.linkify_bounce_url_callback({(None, 'href'): 'foo'})
-
-    # Make sure get_outgoing_url was called.
-    assert res == {(None, 'href'): 'bar'}
-    mock_get_outgoing_url.assert_called_with('foo')
-
-
-@patch(
-    'olympia.amo.templatetags.jinja_helpers.urlresolvers.linkify_bounce_url_callback'
-)
-def test_linkify_with_outgoing_text_links(mock_linkify_bounce_url_callback):
-    def side_effect(attrs, new=False):
-        attrs[(None, 'href')] = 'bar'
-        return attrs
-
-    mock_linkify_bounce_url_callback.side_effect = side_effect
-
-    res = urlresolvers.linkify_with_outgoing('a text http://example.com link')
-    # Use PyQuery because the attributes could be rendered in any order.
+def _test_linkify(func, value, expected_text, expected_links):
+    res = func(value)
+    # Attributes could be rendered in any order so we can't test HTML directly.
+    # But PyQuery text() unescapes escaped HTML, so we double-check what we
+    # intended to escape too.
     doc = PyQuery(res)
-    assert doc('a[href="bar"][rel="nofollow"]')[0].text == 'http://example.com'
+    assert doc.text() == expected_text
+    # expected_text doesn't show escaped HTML, so we double-check we escaped
+    # things correctly.
+    if '<script' in value:
+        assert '&lt;script' in res
+    else:
+        assert '&lt;' not in res
+    assert '<script' not in res
+
+    for idx, expected_link in enumerate(expected_links):
+        link = doc('a')[idx]
+        assert link.attrib == {'href': expected_link[0], 'rel': 'nofollow'}
+        assert link.text_content() == expected_link[1]
 
 
-@patch(
-    'olympia.amo.templatetags.jinja_helpers.urlresolvers.linkify_bounce_url_callback'
+@pytest.mark.parametrize(
+    'value,expected_text,expected_links',
+    [
+        (
+            'some http://foo.com text',
+            'some http://foo.com text',
+            (('https://out.going.com/http%3A//foo.com', 'http://foo.com'),),
+        ),
+        (
+            'some http://foo.com <b>bold</b>',
+            'some http://foo.com bold',
+            (('https://out.going.com/http%3A//foo.com', 'http://foo.com'),),
+        ),
+        (
+            'some http://foo.com <script>alert(42)</script>',
+            # expected_text is unescaped, so it would show &lt;script&gt; as
+            # <script>. We have an additional assertion in the test to check
+            # for escaping.
+            'some http://foo.com <script>alert(42)</script>',
+            (('https://out.going.com/http%3A//foo.com', 'http://foo.com'),),
+        ),
+        (
+            'some <a href="http://existing.link.com">random</a> link https://foo.com',
+            'some random link https://foo.com',
+            (
+                ('https://out.going.com/http%3A//existing.link.com', 'random'),
+                ('https://out.going.com/https%3A//foo.com', 'https://foo.com'),
+            ),
+        ),
+    ],
 )
-def test_linkify_with_outgoing_markup_links(mock_linkify_bounce_url_callback):
-    def side_effect(attrs, new=False):
-        attrs[(None, 'href')] = 'bar'
-        return attrs
-
-    mock_linkify_bounce_url_callback.side_effect = side_effect
-
-    res = urlresolvers.linkify_with_outgoing(
-        'a markup <a href="http://example.com">link</a> with text'
+@patch(
+    'olympia.amo.urlresolvers.get_outgoing_url',
+    lambda u: f'https://out.going.com/{quote(u)}',
+)
+def test_linkify_with_outgoing(value, expected_text, expected_links):
+    _test_linkify(
+        urlresolvers.linkify_with_outgoing, value, expected_text, expected_links
     )
-    # Use PyQuery because the attributes could be rendered in any order.
-    doc = PyQuery(res)
-    assert doc('a[href="bar"][rel="nofollow"]')[0].text == 'link'
+
+
+@pytest.mark.parametrize(
+    'value,expected_text,expected_links',
+    [
+        (
+            'some http://foo.com text',
+            'some http://foo.com text',
+            (('http://foo.com', 'http://foo.com'),),
+        ),
+        (
+            'some http://foo.com <b>bold</b>',
+            'some http://foo.com bold',
+            (('http://foo.com', 'http://foo.com'),),
+        ),
+        (
+            'some http://foo.com <script>alert(42)</script>',
+            # expected_text is unescaped, so it would show &lt;script&gt; as
+            # <script>. We have an additional assertion in the test to check
+            # for escaping.
+            'some http://foo.com <script>alert(42)</script>',
+            (('http://foo.com', 'http://foo.com'),),
+        ),
+        (
+            'some <a href="http://existing.link.com">random</a> link https://foo.com',
+            'some random link https://foo.com',
+            (
+                ('http://existing.link.com', 'random'),
+                ('https://foo.com', 'https://foo.com'),
+            ),
+        ),
+    ],
+)
+@patch(
+    'olympia.amo.templatetags.jinja_helpers.urlresolvers.get_outgoing_url',
+    lambda u: f'https://out.going.com/{quote(u)}',
+)
+def test_linkify_with_outgoing(value, expected_text, expected_links):
+    _test_linkify(urlresolvers.linkify_and_clean, value, expected_text, expected_links)
 
 
 def get_image_path(name):

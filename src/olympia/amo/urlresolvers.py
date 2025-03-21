@@ -173,12 +173,15 @@ def linkify_only_full_urls(attrs, new=False):
 
 
 def linkify_with_outgoing(text):
-    """Wrapper around bleach.linkify: uses get_outgoing_url."""
+    """Linkify and clean string potentially containing HTML, transforming each
+    URL to an HTML link that points to that URL through our outgoing proxy."""
     callbacks = [linkify_bounce_url_callback, bleach.callbacks.nofollow]
-    return bleach.linkify(str(text), callbacks=callbacks)
+    return bleach.linkify(bleach.clean(str(text)), callbacks=callbacks)
 
 
 def linkify_and_clean(text):
+    """Linkify and clean string potentially containing HTML, transforming each
+    URL to an HTML link."""
     callbacks = [linkify_only_full_urls, bleach.callbacks.nofollow]
     return bleach.linkify(bleach.clean(str(text)), callbacks=callbacks)
 
