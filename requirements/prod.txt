@@ -1267,9 +1267,9 @@ pyuwsgi==2.0.28.post1 \
 django-vite==3.0.5 \
     --hash=sha256:049b74f38c999cbfcf0e2c21b254c2e059bb97bfd7e4049caf2d0f9fba0b482f \
     --hash=sha256:431c1212e7627adc20666d150578f1a8983f043e90f3905778fb3c5c0ffe6963
-drf-spectacular==0.27.2 \
-    --hash=sha256:a199492f2163c4101055075ebdbb037d59c6e0030692fc83a1a8c0fc65929981 \
-    --hash=sha256:b1c04bf8b2fbbeaf6f59414b4ea448c8787aba4d32f76055c3b13335cf7ec37b
+drf-spectacular==0.28.0 \
+    --hash=sha256:2c778a47a40ab2f5078a7c42e82baba07397bb35b074ae4680721b2805943061 \
+    --hash=sha256:856e7edf1056e49a4245e87a61e8da4baff46c83dbc25be1da2df77f354c7cb4
 # Required by drf-spectacular
 uritemplate==4.1.1 \
     --hash=sha256:4346edfc5c3b79f694bccd6d6099a322bbeb628dbf2cd86eea55a456ce5124f0 \
