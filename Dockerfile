@@ -182,7 +182,7 @@ RUN \
     --mount=type=bind,src=manage.py,target=${HOME}/manage.py \
     --mount=type=bind,src=package.json,target=${HOME}/package.json \
     --mount=type=bind,src=package-lock.json,target=${HOME}/package-lock.json \
-    --mount=type=bind,src=vite.config.js,target=${HOME}/vite.config.js \
+    --mount=type=bind,src=vite.config.ts,target=${HOME}/vite.config.ts \
 <<EOF
 make -f Makefile-docker update_assets
 EOF

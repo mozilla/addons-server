@@ -1,8 +1,9 @@
 import $ from 'jquery';
 import _ from 'underscore';
-import Highcharts from 'highcharts';
-import { normalizeRange } from './dateutils';
+
 import { template } from '../lib/format';
+import { normalizeRange } from './dateutils';
+import Highcharts from './highcharts-module';
 import { StatsManager } from './manager';
 
 let baseConfig = {
@@ -41,7 +42,7 @@ let baseConfig = {
   ],
 };
 
-$.fn.topChart = function (cfg) {
+$.fn.topChart = function () {
   $(this).each(function () {
     let $self = $(this),
       $win = $(window),

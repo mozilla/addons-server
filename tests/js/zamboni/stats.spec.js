@@ -1,10 +1,10 @@
 import $ from 'jquery';
 import { vi } from 'vitest';
 
-import { stats_stats } from '../../../static/js/stats/stats.js';
 import { stats_overview_make_handler } from '../../../static/js/stats/overview.js';
+import { stats_stats } from '../../../static/js/stats/stats.js';
 
-describe(__filename, () => {
+describe('stats', () => {
   const defaultBaseUrl = 'http://example.org/';
 
   // This should be global to all stats files.

@@ -1,6 +1,8 @@
+import $ from 'jquery';
 import _ from 'underscore';
-import { normalizeRange } from './dateutils';
+
 import { capabilities as originalCapabilities } from '../zamboni/capabilities';
+import { normalizeRange } from './dateutils';
 
 // Modify the URL when the page state changes, if the browser supports
 // pushState.
@@ -9,7 +11,7 @@ function updateQueryParams(view) {
 
   if (view.range) {
     if (typeof range == 'string') {
-      queryParams.last = range.split(/\s+/)[0];
+      queryParams.last = view.range.split(/\s+/)[0];
     }
   }
 

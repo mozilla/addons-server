@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite';
+import { defineConfig, UserConfig } from 'vite';
 import inject from '@rollup/plugin-inject';
 import { resolve, relative } from 'path';
 import { glob } from 'glob';
@@ -39,20 +39,16 @@ export default defineConfig(({ command }) => {
   const isLocal = env('ENV') === 'local';
   const isDev = command === 'serve';
 
-  const baseConfig = {
-    strict: true,
+  return {
+    // Only log warnings and errors
+    logLevel: 'warn',
+    // exclude any automatic html bundling
+    appType: 'custom',
     root: resolve(INPUT_DIR),
     // In dev mode, prefix 'bundle' to static file URLs
     // so that nginx knows to forward the request to the vite
     // dev server instead of serving from static files or olympia
-    base: '/static/',
-    resolve: {
-      alias: {
-        // Alias 'highcharts' to our local vendored copy
-        // we cannot use npm to install due to licensing constraints
-        highcharts: resolve(__dirname, 'static/js/lib/highcharts-module.js'),
-      },
-    },
+    base: '/static/' + (isDev ? 'bundle/' : ''),
     plugins: [
       // Inject jQuery globals in the bundle for usage by npm packages
       // that rely on it being globally available.
@@ -106,8 +102,9 @@ export default defineConfig(({ command }) => {
       preprocessorOptions: {
         less: {
           math: 'always',
-          // relativeUrls: true,
           javascriptEnabled: true,
+          strictImports: true,
+          lint: true,
         },
       },
     },
@@ -121,19 +118,10 @@ export default defineConfig(({ command }) => {
         'timeago',
       ],
     },
-  };
-
-  if (isDev) {
-    // In dev mode, add the bundle path to direct
-    // static requests to the vite dev server via nginx
-    baseConfig.base += 'bundle/';
-    // Configure the dev server in dev mode
-    baseConfig.server = {
+    server: {
       host: true,
       port: 5173,
       allowedHosts: true,
-    };
-  }
-
-  return baseConfig;
+    },
+  } satisfies UserConfig;
 });
