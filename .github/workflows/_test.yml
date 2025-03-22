@@ -40,21 +40,17 @@ jobs:
         include:
           -
             name: Needs Locale Compilation
-            services: ''
             run: |
               make compile_locales
               make test_needs_locales_compilation
           -
             name: Internal Routes
-            services: ''
             run: make test_internal_routes_allowed
           -
             name: Elastic Search
-            services: ''
             run: make test_es_tests
           -
             name: Codestyle
-            services: web
             run: make lint-codestyle
     steps:
       - uses: actions/checkout@v4
@@ -63,6 +59,5 @@ jobs:
         with:
           version: ${{ inputs.version }}
           digest: ${{ inputs.digest }}
-          services: ${{ matrix.services }}
           deps: development
           run: ${{ matrix.run }}

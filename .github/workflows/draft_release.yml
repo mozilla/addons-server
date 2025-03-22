@@ -49,7 +49,7 @@ jobs:
           fi
 
           # Verify that a release with this tag does not already exist
-          if gh release view $tag &> /dev/null; then
+          if gh release view "$tag" &> /dev/null; then
             echo "Release $tag-next already exists"
             exit 1
           fi
@@ -62,8 +62,8 @@ jobs:
             /repos/mozilla/addons-server/releases/latest
           )
 
-          previous_tag=$(echo $previous_release | jq -r '.tag_name')
-          previous_release_url=$(echo $previous_release | jq -r '.html_url')
+          previous_tag=$(echo "$previous_release" | jq -r '.tag_name')
+          previous_release_url=$(echo "$previous_release" | jq -r '.html_url')
 
           cat <<EOF
           $previous_release
@@ -81,8 +81,8 @@ jobs:
           # Replace {{PREVIOUS_RELEASE_URL}} in template with $previous_release_url
           template=${template//\{\{PREVIOUS_RELEASE_URL\}\}/$previous_release_url}
 
-          gh release create $tag \
-            --title $tag \
+          gh release create "$tag" \
+            --title "$tag" \
             --target master \
             --notes "$template" \
             --draft

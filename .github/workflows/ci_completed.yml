@@ -52,11 +52,13 @@ jobs:
             emoji=":x:"
           fi
 
-          echo "sha=$sha" >> $GITHUB_OUTPUT
-          echo "conclusion=$conclusion" >> $GITHUB_OUTPUT
-          echo "commit_short=$commit_short" >> $GITHUB_OUTPUT
-          echo "emoji=$emoji" >> $GITHUB_OUTPUT
-          cat $GITHUB_OUTPUT
+          {
+            echo "sha=$sha"
+            echo "conclusion=$conclusion"
+            echo "commit_short=$commit_short"
+            echo "emoji=$emoji"
+          } >> "$GITHUB_OUTPUT"
+          cat "$GITHUB_OUTPUT"
 
   slack_notification_master_push:
     needs: context
