@@ -6,7 +6,7 @@ from django.shortcuts import get_object_or_404
 from django.utils.feedgenerator import Rss201rev2Feed
 from django.utils.translation import gettext
 
-import bleach
+import nh3
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
@@ -41,7 +41,7 @@ class ActivityFeedRSS(Feed):
         )[:20]
 
     def clean_html(self, string):
-        return clean_nl(bleach.clean(str(string), tags=[], strip=True)).strip()
+        return clean_nl(nh3.clean(str(string), tags=set())).strip()
 
     def item_title(self, item):
         return self.clean_html(item.to_string())

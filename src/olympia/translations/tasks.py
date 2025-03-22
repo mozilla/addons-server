@@ -2,7 +2,7 @@ from django.conf import settings
 from django.db.models import Value
 from django.db.models.functions import Replace
 
-import bleach
+import nh3
 
 import olympia.core.logger
 from olympia.addons.models import Addon
@@ -59,10 +59,11 @@ def strip_html_from_summaries(pks, **kwargs):
     # the HTML and not just escape it here - We used to create that HTML
     # automatically, so it's out responsability to remove it, escaping it not
     # enough.
-    cleaner = bleach.Cleaner(tags=[], attributes={}, strip=True)
     translations = Translation.objects.filter(pk__in=pks)
     for translation in translations:
-        translation.localized_string = cleaner.clean(translation.localized_string)
+        translation.localized_string = nh3.clean(
+            str(translation.localized_string), tags=set(), attributes={}
+        )
         translation.localized_string_clean = translation.localized_string
         translation.save()
     addon_ids = list(
