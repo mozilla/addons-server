@@ -1199,7 +1199,7 @@ class TestAutoApprovalSummary(TestCase):
         assert weight_info['uses_custom_csp'] == 90
 
     def test_calculate_weight_uses_native_messaging(self):
-        WebextPermission.objects.create(
+        WebextPermission.objects.update(
             file=self.file, permissions=['nativeMessaging'])
 
         summary = AutoApprovalSummary(version=self.version)
