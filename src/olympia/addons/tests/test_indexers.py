@@ -266,7 +266,7 @@ class TestAddonIndexer(TestCase):
             name=u'My licensé',
             url='http://example.com/',
             builtin=0)
-        [WebextPermission.objects.create(
+        [WebextPermission.objects.update(
             file=file_, permissions=['bookmarks', 'random permission']
         ) for file_ in version.all_files]
         version.save()
