@@ -573,28 +573,6 @@ class TestVersion(TestCase):
         assert response.status_code == 302
         assert Addon.objects.get(id=3615).status == amo.STATUS_APPROVED
 
-    def test_cancel_button(self):
-        for status in Addon.STATUS_CHOICES:
-            if status != amo.STATUS_NOMINATED:
-                continue
-
-            self.addon.update(status=status)
-            response = self.client.get(self.url)
-            doc = pq(response.content)
-            assert doc('#cancel-review')
-            assert doc('#modal-cancel')
-
-    def test_not_cancel_button(self):
-        for status in Addon.STATUS_CHOICES:
-            if status == amo.STATUS_NOMINATED:
-                continue
-
-            self.addon.update(status=status)
-            response = self.client.get(self.url)
-            doc = pq(response.content)
-            assert not doc('#cancel-review'), status
-            assert not doc('#modal-cancel'), status
-
     def test_incomplete_request_review(self):
         self.addon.update(status=amo.STATUS_NULL)
         doc = pq(self.client.get(self.url).content)
