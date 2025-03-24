@@ -481,16 +481,6 @@ def promoted_addon_to_promoted_addon_promotion(sender, instance, signal, **kw):
     promoted_addon_to_promoted_addon_promotion(signal=signal, instance=instance)
 
 
-@receiver([models.signals.pre_save], sender=PromotedApproval)
-def pre_save_promoted_approval(sender, instance, **kw):
-    # Store original values if it's an update so in the case
-    # where both application_id and group_id are None, we can
-    # delete the relevant PromotedAddonVersion instances.
-    if instance.pk:
-        original = sender.objects.get(pk=instance.pk)
-        instance._state.original_group_id = original.group_id
-        instance._state.original_application_id = original.application_id
-
 @receiver(
     [models.signals.post_save, models.signals.post_delete],
     sender=PromotedApproval,

@@ -1,4 +1,4 @@
-from django.db import models
+from django.db import models, transaction
 from django.db.models.signals import ModelSignal
 
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
@@ -67,44 +67,34 @@ def promoted_approval_to_promoted_addon_version(
     signal: ModelSignal,
     instance: PromotedApproval,
 ):
-    try:
-        promoted_group = PromotedGroup.objects.get(group_id=instance.group_id)
-    except PromotedGroup.DoesNotExist:
-        promoted_group = None
-
-    # If deleting, or if the instance no longer references a valid
-    # PromotedAddonVersion, then delete the PromotedAddonVersion instance.
-    if (
-        signal == models.signals.post_delete
-        or promoted_group is None
-        or promoted_group.group_id == PROMOTED_GROUP_CHOICES.NOT_PROMOTED
-        or instance.application_id is None
-    ):
-        filters = {
-            'version': instance.version,
-        }
-        if promoted_group:
-            filters['promoted_group'] = promoted_group
-        if instance.application_id:
-            filters['application_id'] = instance.application_id
-
+    # Get all valid approvals for this version
+    valid_approvals = []
+    for approval in PromotedApproval.objects.filter(version=instance.version):
+        # Skip invalid approvals
         if (
-            hasattr(instance._state, 'original_group_id')
-            and hasattr(instance._state, 'original_application_id')
+            approval.group_id is None
+            or approval.group_id == PROMOTED_GROUP_CHOICES.NOT_PROMOTED
+            or approval.application_id is None
         ):
-            # Also delete any PromotedAddonVersion with the original values
-            PromotedAddonVersion.objects.filter(
-                version=instance.version,
-                promoted_group_id=instance._state.original_group_id,
-                application_id=instance._state.original_application_id,
-            ).delete()
+            continue
 
-        PromotedAddonVersion.objects.filter(**filters).delete()
+        try:
+            promoted_group = PromotedGroup.objects.get(group_id=approval.group_id)
+            valid_approvals.append((promoted_group, approval.application_id))
+        except PromotedGroup.DoesNotExist:
+            continue
 
-    # If saving a valid instance, then sync to PromotedAd
-    elif signal == models.signals.post_save and promoted_group is not None:
-        PromotedAddonVersion.objects.update_or_create(
-            version=instance.version,
-            promoted_group=promoted_group,
-            application_id=instance.application_id,
+    with transaction.atomic():
+        # First, delete all PromotedAddonVersions for this version
+        PromotedAddonVersion.objects.filter(version=instance.version).delete()
+        # Then re-create versions based on valid approvals
+        PromotedAddonVersion.objects.bulk_create(
+            [
+                PromotedAddonVersion(
+                    version=instance.version,
+                    promoted_group=promoted_group,
+                    application_id=application_id,
+                )
+                for promoted_group, application_id in valid_approvals
+            ]
         )
