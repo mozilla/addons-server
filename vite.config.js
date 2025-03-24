@@ -40,12 +40,20 @@ export default defineConfig(({ command }) => {
   const isDev = command === 'serve';
 
   const baseConfig = {
+    // Ensure all static assets are treated as
+    // 'in-scope' assets that can be tracked by vite
+    // this ensures any imported static assets are correctly
+    // mapped across file transformations.
+    assetsInclude: `${INPUT_DIR}/*`,
     strict: true,
     root: resolve(INPUT_DIR),
     // In dev mode, prefix 'bundle' to static file URLs
     // so that nginx knows to forward the request to the vite
     // dev server instead of serving from static files or olympia
-    base: '/static/',
+    // Use a relative path during the build
+    // this ensures that import paths can be transformed
+    // independently of where the importing file ends up in the bundle
+    base: './',
     resolve: {
       alias: {
         // Alias 'highcharts' to our local vendored copy
@@ -106,7 +114,6 @@ export default defineConfig(({ command }) => {
       preprocessorOptions: {
         less: {
           math: 'always',
-          // relativeUrls: true,
           javascriptEnabled: true,
         },
       },
