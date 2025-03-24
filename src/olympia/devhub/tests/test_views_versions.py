@@ -711,7 +711,7 @@ class TestVersion(TestCase):
             amo.LOG.REVIEWER_REPLY_VERSION, v2.addon, v2, user=self.user
         )
 
-        with self.assertNumQueries(42):
+        with self.assertNumQueries(40):
             # 1. SAVEPOINT
             # 2. the add-on
             # 3. translations for that add-on (default transformer)
@@ -750,7 +750,7 @@ class TestVersion(TestCase):
             # 35. latest non-disabled version in unlisted channel
             # 36. check on user being an author (dupe)
             # 38. waffle switch
-            # 39-42. promotion group queries
+            # 39-40. promotion group queries
             response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
