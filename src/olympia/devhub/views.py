@@ -408,7 +408,7 @@ def cancel(request, addon_id, addon, channel):
     latest_version = addon.find_latest_version(channel=channel)
     if latest_version:
         if latest_version.file.status == amo.STATUS_AWAITING_REVIEW:
-            latest_version.file.update(status=amo.STATUS_DISABLED)
+            latest_version.is_user_disabled = True  # Will update the files/activity log
         addon.update_status()
     return redirect(addon.get_dev_url('versions'))
 
@@ -1300,7 +1300,6 @@ def version_list(request, addon_id, addon):
     data = {
         'addon': addon,
         'can_request_review': addon.can_request_review(),
-        'can_cancel': not addon.is_disabled and addon.status == amo.STATUS_NOMINATED,
         'comments_maxlength': CommentLog._meta.get_field('comments').max_length,
         'is_admin': is_admin,
         'can_submit': not addon.is_disabled,
