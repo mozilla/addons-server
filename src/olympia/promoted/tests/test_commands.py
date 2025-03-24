@@ -166,16 +166,6 @@ class TestSyncPromotedMixin(TestCase):
             promoted_group=spotlight,
             application_id=amo.FIREFOX.id,
         )
-        promoted_addon_version = PromotedAddonVersion.objects.get(
-            version=self.addon.current_version,
-            promoted_group=spotlight,
-            application_id=amo.FIREFOX.id,
-        )
-        promoted_approval = PromotedApproval.objects.get(
-            version=self.addon.current_version,
-            group_id=spotlight.group_id,
-            application_id=amo.FIREFOX.id,
-        )
 
         # Update the promoted addon group without triggering the post_save signals
         with (
@@ -191,8 +181,16 @@ class TestSyncPromotedMixin(TestCase):
         # Expect the promoted addon version and approval not to have changed
         # This is because the approval was created for the original promoted group
         # and would require a new approval
-        self.assertEqual(promoted_approval.reload().group_id, spotlight.group_id)
-        self.assertEqual(promoted_addon_version.reload().promoted_group, spotlight)
+        assert PromotedApproval.objects.filter(
+            version=self.addon.current_version,
+            group_id=spotlight.group_id,
+            application_id=amo.FIREFOX.id,
+        ).exists()
+        assert PromotedAddonVersion.objects.filter(
+            version=self.addon.current_version,
+            promoted_group=spotlight,
+            application_id=amo.FIREFOX.id,
+        ).exists()
 
     def test_promoted_addon_change_application(self):
         spotlight = self.promoted_groups(PROMOTED_GROUP_CHOICES.SPOTLIGHT)
@@ -251,8 +249,16 @@ class TestSyncPromotedMixin(TestCase):
         # new application would require approval, but the old application is still
         # approved. This could be a bug but the goal is for the models to sync correctly
         # even if the underlying logic does not make sense.
-        self.assertEqual(promoted_approval.reload().group_id, spotlight.group_id)
-        self.assertEqual(promoted_addon_version.reload().promoted_group, spotlight)
+        assert PromotedApproval.objects.filter(
+            version=self.addon.current_version,
+            group_id=spotlight.group_id,
+            application_id=amo.FIREFOX.id,
+        ).exists()
+        assert PromotedAddonVersion.objects.filter(
+            version=self.addon.current_version,
+            promoted_group=spotlight,
+            application_id=amo.FIREFOX.id,
+        ).exists()
 
         promoted_addon_promotion = PromotedAddonPromotion.objects.get(
             addon=self.addon,
@@ -362,6 +368,7 @@ class TestSyncPromotedMixin(TestCase):
         promoted_addon_version = PromotedAddonVersion.objects.get(
             version=self.addon.current_version,
             application_id=amo.FIREFOX.id,
+            promoted_group=spotlight,
         )
 
         promoted_approval.delete()
@@ -388,16 +395,71 @@ class TestSyncPromotedMixin(TestCase):
             application_id=amo.FIREFOX.id,
         ).delete()
 
-    def test_delete_unpromoted(self):
-        addon = addon_factory()
-        promoted = PromotedAddon.objects.create(
-            addon=addon, group_id=PROMOTED_GROUP_CHOICES.LINE
+    def test_unapprove_promoted_approval(self):
+        """When a pre-existing PromotedApproval has application_id set to None,
+        related PromotedAddonVersion should be deleted.
+        """
+        promoted_approval = PromotedApproval.objects.create(
+            version=self.addon.current_version,
+            group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT,
+            application_id=amo.FIREFOX.id,
         )
-        promoted.approve_for_version(version=addon.current_version)
-        self.assert_count(PromotedAddonPromotion, 2)
-        # If a group is set to NOT_PROMOTED, there should be no PromotedAddonPromotions.
-        promoted.update(group_id=PROMOTED_GROUP_CHOICES.NOT_PROMOTED)
-        self.assert_count(PromotedAddonPromotion, 0)
+        self.assert_count(PromotedAddonVersion, 1)
+
+        promoted_approval.update(application_id=None)
+        promoted_approval.save()
+
+        self.assert_count(PromotedAddonVersion, 0)
+
+    def test_delete_unpromoted(self):
+        """
+        When a pre-existing PromotedApproval has group_id set to NOT_PROMOTED or None
+        the related PromotedAddonVersion should be deleted.
+        """
+        for group_id in [None, PROMOTED_GROUP_CHOICES.NOT_PROMOTED]:
+            for application_id in [None, amo.FIREFOX.id]:
+                with self.subTest(group_id=group_id, application_id=application_id):
+                    promoted_approval = PromotedApproval.objects.create(
+                        version=self.addon.current_version,
+                        # At first we have valid values for both group and application
+                        group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT,
+                        application_id=amo.FIREFOX.id,
+                    )
+                    self.assert_count(PromotedAddonVersion, 1)
+
+                    # Update the group_id and application_id to
+                    # a combination of nullish values
+                    promoted_approval.group_id = group_id
+                    promoted_approval.application_id = application_id
+                    promoted_approval.save()
+                    self.assert_count(PromotedAddonVersion, 0)
+
+    def test_sync_promoted_addons_with_null_application_id(self):
+        """Test that PromotedApproval with null application_id doesn't create a
+        PromotedAddonVersion when running sync_promoted_addons."""
+        with (
+            self.disable_post_save_promoted_addon(),
+            self.disable_post_save_promoted_approval(),
+        ):
+            promoted_addon = self.promoted_addon(
+                group_id=PROMOTED_GROUP_CHOICES.LINE,
+            )
+
+            # Create a special PromotedApproval with application_id=None
+            # This is the edge case we're testing
+            PromotedApproval.objects.create(
+                version=promoted_addon.addon.current_version,
+                group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT,
+                application_id=None,  # This is the edge case we're testing
+            )
+
+            self.assert_count(PromotedAddonPromotion, 0)
+            self.assert_count(PromotedApproval, 1)
+            self.assert_count(PromotedAddonVersion, 0)
+
+        self.sync_promoted_addons()
+
+        self.assert_count(PromotedAddonVersion, 0)
 
 
 class TestSyncPromotedDiscoveryProxy(TestSyncPromotedMixin):

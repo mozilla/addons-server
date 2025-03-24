@@ -67,15 +67,44 @@ def promoted_approval_to_promoted_addon_version(
     signal: ModelSignal,
     instance: PromotedApproval,
 ):
-    if signal == models.signals.post_save:
+    try:
+        promoted_group = PromotedGroup.objects.get(group_id=instance.group_id)
+    except PromotedGroup.DoesNotExist:
+        promoted_group = None
+
+    # If deleting, or if the instance no longer references a valid
+    # PromotedAddonVersion, then delete the PromotedAddonVersion instance.
+    if (
+        signal == models.signals.post_delete
+        or promoted_group is None
+        or promoted_group.group_id == PROMOTED_GROUP_CHOICES.NOT_PROMOTED
+        or instance.application_id is None
+    ):
+        filters = {
+            'version': instance.version,
+        }
+        if promoted_group:
+            filters['promoted_group'] = promoted_group
+        if instance.application_id:
+            filters['application_id'] = instance.application_id
+
+        if (
+            hasattr(instance._state, 'original_group_id')
+            and hasattr(instance._state, 'original_application_id')
+        ):
+            # Also delete any PromotedAddonVersion with the original values
+            PromotedAddonVersion.objects.filter(
+                version=instance.version,
+                promoted_group_id=instance._state.original_group_id,
+                application_id=instance._state.original_application_id,
+            ).delete()
+
+        PromotedAddonVersion.objects.filter(**filters).delete()
+
+    # If saving a valid instance, then sync to PromotedAd
+    elif signal == models.signals.post_save and promoted_group is not None:
         PromotedAddonVersion.objects.update_or_create(
             version=instance.version,
-            promoted_group=PromotedGroup.objects.get(group_id=instance.group_id),
+            promoted_group=promoted_group,
             application_id=instance.application_id,
         )
-    elif signal == models.signals.post_delete:
-        PromotedAddonVersion.objects.filter(
-            version=instance.version,
-            promoted_group=PromotedGroup.objects.get(group_id=instance.group_id),
-            application_id=instance.application_id,
-        ).delete()
