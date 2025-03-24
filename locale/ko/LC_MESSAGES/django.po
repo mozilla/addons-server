@@ -197,6 +197,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
+"\n"
+"Mozilla의 확장 기능 %(name)s에 대해 신고해 주셔서 감사합니다.\n"
+"\n"
+"신고와 질문 내용을 검토한 결과 Mozilla 정책 (%(policy_document_url)s)을 위반한 사유가 발견되어 그에 따라 해당 내용을 삭제하였습니다.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_rating.txt:5
 #, python-format
