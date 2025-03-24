@@ -40,12 +40,12 @@ class PromotedGroupManager(ManagerBase):
             return self.none()
 
         # An addon is approved for a promoted group if:
-        # 1. For each PromotedAddonVersion A, there exists a
-        #    PromotedAddonPromotion B (an approval) such that
+        # 1. For each PromotedAddonPromotion A, there exists a
+        #    PromotedAddonVersion B (an approval) such that
         #       i. Are the same group,
         #       ii. Are the same application,
-        #       iii. A.version = B.addon.current_version
-        # OR, 2. is a promoted group that does not require prereview.
+        #       iii. A.addon.current_version = B.version, OR
+        # 2. is a promoted group that does not require prereview.
 
         approved_promotions = PromotedAddonPromotion.objects.filter(
             models.Exists(
