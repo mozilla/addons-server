@@ -66,6 +66,11 @@ export default defineConfig(({ command }) => {
       }),
     ],
     build: {
+      // Disable inline assets. For performance reasons we want to server
+      // all static assets from dedicated URLs which in production will
+      // be cached in our CDN. The incremental build size is worse than
+      // the increase in number of requests.
+      assetsInlineLimit: 0,
       // This value should be kept in sync with settings_base.py
       // which determines where to read static file paths
       // for production URL resolution
