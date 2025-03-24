@@ -1499,14 +1499,16 @@ class TestAutoApprovalSummary(TestCase):
         assert (
             AutoApprovalSummary.check_uses_native_messaging(self.version) == 0)
 
-        webext_permissions = WebextPermission.objects.create(
+        WebextPermission.objects.update(
             file=self.file, permissions=['foobar'])
         del self.file.webext_permissions_list
         assert (
             AutoApprovalSummary.check_uses_native_messaging(self.version) == 0)
 
-        webext_permissions.update(permissions=['nativeMessaging', 'foobar'])
+        WebextPermission.objects.update(
+            file=self.file, permissions=['nativeMessaging', 'foobar'])
         del self.file.webext_permissions_list
+        # FIXME: the above seems to be workig, but this still fails
         assert (
             AutoApprovalSummary.check_uses_native_messaging(self.version) == 1)
 
