@@ -10,7 +10,7 @@ server {
         alias /srv/storage/;
     }
 
-    location ^~ /static/bundle/ {
+    location ^~ ${STATIC_URL_PREFIX}bundle/ {
         proxy_pass http://static;
 
         proxy_set_header Upgrade $http_upgrade;
@@ -25,7 +25,7 @@ server {
         add_header X-Served-By "vite" always;
     }
 
-    location ~ ^/static/(.*)$ {
+    location ~ ^${STATIC_URL_PREFIX}(.*)$ {
         add_header X-Served-By "nginx" always;
 
         # "root /srv" as we mount all files in this directory
@@ -36,7 +36,7 @@ server {
         try_files /site-static/$1 /static/$1 @olympia;
     }
 
-    location /user-media/ {
+    location ${MEDIA_URL_PREFIX} {
         alias /srv/storage/shared_storage/uploads/;
         add_header X-Served-By "nginx" always;
     }

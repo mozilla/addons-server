@@ -85,14 +85,15 @@ CELERY_TASK_ALWAYS_EAGER = False
 # replicas to zero.
 ES_DEFAULT_NUM_REPLICAS = 0
 
-SITE_URL = os.environ.get('OLYMPIA_SITE_URL') or 'http://localhost:8000'
+SITE_URL = env('SITE_URL')
+
 DOMAIN = SERVICES_DOMAIN = urlparse(SITE_URL).netloc
 ADDONS_FRONTEND_PROXY_PORT = '7000'
 SERVICES_URL = SITE_URL
 INTERNAL_SITE_URL = 'http://nginx'
 EXTERNAL_SITE_URL = SITE_URL
-STATIC_URL = '%s/static/' % EXTERNAL_SITE_URL
-MEDIA_URL = '%s/user-media/' % EXTERNAL_SITE_URL
+STATIC_URL = EXTERNAL_SITE_URL + STATIC_URL_PREFIX
+MEDIA_URL = EXTERNAL_SITE_URL + MEDIA_URL_PREFIX
 
 ALLOWED_HOSTS = ALLOWED_HOSTS + [SERVICES_DOMAIN, 'nginx', '127.0.0.1']
 
@@ -158,6 +159,7 @@ RECAPTCHA_PRIVATE_KEY = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe'
 ADDONS_SERVER_DOCS_URL = 'https://addons-server.readthedocs.io/en/latest'
 
 ENABLE_ADMIN_MLBF_UPLOAD = True
+
 
 # Use dev mode if we are on a non production imqage and debug is enabled.
 if get_version_json().get('target') != 'production' and DEBUG:

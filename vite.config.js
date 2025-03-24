@@ -27,13 +27,8 @@ const jqueryGlobals = {
   jQuery: 'jquery',
 };
 
-const env = (name) => {
-  const value = process.env[name];
-  if (!value) {
-    throw new Error(`${name} is not defined`);
-  }
-  return value;
-};
+const env = (name, defaultValue) =>
+  process.env[name] || defaultValue || new Error(`${name} is not defined`);
 
 export default defineConfig(({ command }) => {
   const isLocal = env('ENV') === 'local';
@@ -47,6 +42,7 @@ export default defineConfig(({ command }) => {
     assetsInclude: `${INPUT_DIR}/*`,
     strict: true,
     root: resolve(INPUT_DIR),
+    debug: env('DEBUG', false),
     // In dev mode, prefix 'bundle' to static file URLs
     // so that nginx knows to forward the request to the vite
     // dev server instead of serving from static files or olympia
@@ -133,12 +129,15 @@ export default defineConfig(({ command }) => {
   if (isDev) {
     // In dev mode, add the bundle path to direct
     // static requests to the vite dev server via nginx
-    baseConfig.base += 'bundle/';
+    baseConfig.base = `${env('STATIC_URL_PREFIX')}bundle/`;
     // Configure the dev server in dev mode
     baseConfig.server = {
       host: true,
       port: 5173,
       allowedHosts: true,
+      origin: env('SITE_URL'),
+      strictPort: true,
+      clearScreen: true,
     };
   }
 

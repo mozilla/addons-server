@@ -132,6 +132,8 @@ if settings.SERVE_STATIC_FILES:
     # Remove leading and trailing slashes so the regex matches.
     media_url = settings.MEDIA_URL.lstrip('/').rstrip('/')
 
+    static_url_prefix = settings.STATIC_URL_PREFIX.lstrip('/').rstrip('/')
+
     urlpatterns.extend(
         [
             re_path(
@@ -141,19 +143,22 @@ if settings.SERVE_STATIC_FILES:
             ),
             # Serve javascript catalog locales bundle directly from django
             re_path(
-                r'^static/js/i18n/(?P<locale>\w{2,3}(?:-\w{2,6})?)\.js$',
+                (
+                    r'^%s/js/i18n/(?P<locale>\w{2,3}(?:-\w{2,6})?)\.js$'
+                    % static_url_prefix
+                ),
                 serve_javascript_catalog,
                 name='javascript-catalog',
             ),
             # Serve swagger UI JS directly from django
             re_path(
-                r'^static/js/swagger/(?P<version>[^/]+)\.js$',
+                r'^%s/js/swagger/(?P<version>[^/]+)\.js$' % static_url_prefix,
                 serve_swagger_ui_js,
             ),
             # fallback for static files that are not available directly over nginx.
             # Mostly vendor files from python or npm dependencies that are not available
             # in the static files directory.
-            re_path(r'^static/(?P<path>.*)$', serve_static_files),
+            re_path(r'^%s/(?P<path>.*)$' % static_url_prefix, serve_static_files),
         ]
     )
 

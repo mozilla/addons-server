@@ -162,16 +162,17 @@ def nginx_check(app_configs, **kwargs):
         return []
 
     configs = [
-        (settings.MEDIA_ROOT, 'http://nginx/user-media'),
-        (settings.STATIC_FILES_PATH, 'http://nginx/static'),
-        (settings.STATIC_ROOT, 'http://nginx/static'),
+        (settings.MEDIA_ROOT, settings.MEDIA_URL_PREFIX),
+        (settings.STATIC_FILES_PATH, settings.STATIC_URL_PREFIX),
+        (settings.STATIC_ROOT, settings.STATIC_URL_PREFIX),
     ]
 
     files_to_remove = []
 
-    for dir, base_url in configs:
+    for dir, prefix in configs:
+        base_url = f'{settings.INTERNAL_SITE_URL}{prefix}'
         file_path = os.path.join(dir, 'test.txt')
-        file_url = f'{base_url}/test.txt'
+        file_url = f'{base_url}test.txt'
 
         if not os.path.exists(dir):
             errors.append(Error(f'{dir} does not exist', id='setup.E007'))

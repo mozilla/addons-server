@@ -10,7 +10,7 @@ x-env-mapping: &env
     - MEMCACHE_LOCATION=memcached:11211
     - MYSQL_DATABASE=olympia
     - MYSQL_ROOT_PASSWORD=docker
-    - OLYMPIA_SITE_URL=http://olympia.test
+    - SITE_URL=http://olympia.test
     - PYTHONDONTWRITEBYTECODE=1
     - PYTHONUNBUFFERED=1
     - PYTHONBREAKPOINT=ipdb.set_trace
@@ -25,6 +25,8 @@ x-env-mapping: &env
     - SKIP_DATA_SEED
     - FXA_CLIENT_ID
     - FXA_CLIENT_SECRET
+    - STATIC_URL_PREFIX
+    - MEDIA_URL_PREFIX
 
 x-olympia: &olympia
   <<: *env
@@ -94,8 +96,9 @@ services:
 
   nginx:
     image: nginx
+    <<: *env
     volumes:
-      - data_nginx:/etc/nginx/conf.d
+      - data_nginx:/etc/nginx/templates
       - ./:/srv
     ports:
       - "80:80"
