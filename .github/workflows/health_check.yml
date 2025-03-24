@@ -56,13 +56,13 @@ jobs:
 
           # Create the message blocks file
           ./scripts/health_check_blocks.py \
-          --input ${{ env.health_check_file }} \
-          --output ${{ env.health_check_blocks_file }}
+          --input "${{ env.health_check_file }}" \
+          --output "${{ env.health_check_blocks_file }}"
           # Multiline output needs to use a delimiter to be passed to
           # the GITHUB_OUTPUT file.
-          blocks=$(cat ${{ env.health_check_blocks_file }})
-          echo "blocks<<EOF"$'\n'$blocks$'\n'EOF >> $GITHUB_OUTPUT
-          cat $GITHUB_OUTPUT
+          blocks=$(cat "${{ env.health_check_blocks_file }}")
+          echo "blocks<<EOF"$'\n'"$blocks"$'\n'EOF >> "$GITHUB_OUTPUT"
+          cat "$GITHUB_OUTPUT"
 
       - uses: mozilla/addons/.github/actions/slack@main
         if: |
