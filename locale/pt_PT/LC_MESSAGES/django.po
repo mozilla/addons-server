@@ -54,7 +54,7 @@ msgstr "Valor inválido"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:10 src/olympia/abuse/templates/abuse/appeal.html:15
 msgid "Appeal reviewer decision"
-msgstr ""
+msgstr "Recorrer da decisão do revisor"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:16
 #, python-brace-format
@@ -84,7 +84,7 @@ msgstr "O seu recurso não será processado uma vez que a decisão que está a c
 
 #: src/olympia/abuse/templates/abuse/appeal.html:42
 msgid "The decision you are appealing has already been overridden by a new decision, so this decision can't be appealed."
-msgstr ""
+msgstr "A decisão que está a apresentar recurso já foi sobreposta por uma nova decisão, pelo que não é possível apelar desta decisão."
 
 #: src/olympia/abuse/templates/abuse/appeal.html:44
 msgid "This decision can't be appealed."
