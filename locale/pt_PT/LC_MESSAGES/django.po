@@ -109,6 +109,13 @@ msgid ""
 "\n"
 "Thank you for your attention.\n"
 msgstr ""
+"\n"
+"Obrigado pela sua denúncia nos Extras da Mozilla sobre %(name)s, e por fornecer mais informação sobre as suas preocupações.\n"
+"\n"
+"Depois de analisar o seu recurso, determinámos que a decisão anterior, de que este conteúdo não viola as políticas da Mozilla (%(policy_document_url)s), estava correta. Com base nessa determinação, negamos o seu recurso e não iremos tomar qualquer ação contra a conta ou o conteúdo.\n"
+"%(manual_reasoning_text)s.\n"
+"\n"
+"Obrigado pela sua atenção.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown.txt:5
 #, python-format
@@ -118,6 +125,10 @@ msgid ""
 "\n"
 "After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, we have removed the content, and notified the user of our action.\n"
 msgstr ""
+"\n"
+"Obrigado pela sua denúncia nos Extras da Mozilla sobre %(name)s, e por fornecer mais informação sobre as suas preocupações.\n"
+"\n"
+"Depois de analisar o seu recurso, determinámos que a nossa decisão anterior, de que este conteúdo não viola as políticas da Mozilla (%(policy_document_url)s), estava incorreta. Com base nessa determinação, removemos o conteúdo e notificamos o utilizador da nossa ação.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown_delayed.txt:5
 #, python-format
@@ -127,6 +138,10 @@ msgid ""
 "\n"
 "After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, we have requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
 msgstr ""
+"\n"
+"Obrigado pela sua denúncia nos Extras da Mozilla sobre %(name)s, e por fornecer mais informação sobre as suas preocupações.\n"
+"\n"
+"Depois de analisar o seu recurso, determinámos que a nossa decisão anterior, de que este conteúdo não viola as políticas da Mozilla (%(policy_document_url)s), estava incorreta. Com base nessa determinação, solicitámos que o programador fizesse alterações. Se este não atualizar o respetivo conteúdo para corrigir a violação, iremos removê-lo.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:5
 #, python-format
@@ -136,6 +151,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it does not violate Mozilla's policies (%(policy_document_url)s).  It will therefore not be subject to any moderation action.\n"
 msgstr ""
+"\n"
+"Obrigado pela sua denúncia sobre %(name)s, em %(target_url)s.\n"
+"\n"
+"Analisámos a sua denúncia e o conteúdo em questão, e verificamos que o mesmo não viola as políticas da Mozilla (%(policy_document_url)s).  Não será, portanto, sujeito a qualquer ação de moderação.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:7
 #, python-format
@@ -143,6 +162,8 @@ msgid ""
 "You have the right to appeal this decision within 6 months from the date of this email. See %(appeal_url)s for details on the appeal process, including how to file an appeal for this specific "
 "decision."
 msgstr ""
+"Tem o direito de apresentar recurso desta decisão no prazo de 6 meses a partir da data deste e-mail. Consulte %(appeal_url)s para detalhes sobre o processo de recurso, incluindo como apresentar um "
+"recurso para esta decisão específica."
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_addon.txt:5
 #, python-format
@@ -152,6 +173,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
+"\n"
+"Obrigado pela sua denúncia nos Extras da Mozilla sobre o seguinte extra: %(name)s.\n"
+"\n"
+"Analisamos a sua denúncia e o conteúdo em questão, e verificamos que viola as políticas da Mozilla (%(policy_document_url)s) e removemos o conteúdo.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_addon_delayed.txt:5
 #, python-format
@@ -161,6 +186,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
 msgstr ""
+"\n"
+"Obrigado pela sua denúncia nos Extras da Mozilla sobre o seguinte extra: %(name)s.\n"
+"\n"
+"Analisamos o seu relatório e o conteúdo em questão, e verificamos que viola as políticas da Mozilla (%(policy_document_url)s) e, por isso, solicitamos que o programador faça alterações. Se este não atualizar o respetivo conteúdo para corrigir a violação, iremos removê-lo.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_collection.txt:5
 #, python-format
