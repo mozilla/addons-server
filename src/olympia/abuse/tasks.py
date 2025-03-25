@@ -59,12 +59,11 @@ def retryable_task(f):
 
     @task(
         autoretry_for=retryable_exceptions,
-        retry_backoff=30,  # start backoff at 30 seconds
-        retry_backoff_max=2 * 60 * 60,  # Max out at 2 hours between retries
-        # With jitter we don't know the total time period for retries, but we're aiming
-        # for ~72 hours
-        retry_kwargs={'max_retries': 60},
-        bind=True,
+        retry_backoff=30,  # Start backoff at 30 seconds.
+        retry_backoff_max=2 * 60 * 60,  # Max out at 2 hours between retries.
+        retry_jitter=False,  # Delay can be 0 with jitter, which we don't want.
+        retry_kwargs={'max_retries': 60},  # Aiming for ~72 hours retry period.
+        bind=True,  # Gives access to task retries count inside the function.
     )
     @functools.wraps(f)
     def wrapper(task, *args, **kw):
