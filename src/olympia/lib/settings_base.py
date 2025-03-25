@@ -1299,7 +1299,7 @@ DRF_API_GATES = {
         'block-min-max-versions-shim',
         'block-versions-list-shim',
         'promoted-groups-shim',
-        'mimimal-profile-has-all-fields-shim',
+        'minimal-profile-has-all-fields-shim',
     ),
     'v5': (
         'addons-search-_score-field',
@@ -1308,7 +1308,6 @@ DRF_API_GATES = {
         'addon-submission-api',
         'promoted-verified-sponsored',
         'block-versions-list-shim',
-        'mimimal-profile-has-all-fields-shim',
     ),
 }
 
