@@ -176,7 +176,7 @@ msgstr ""
 "\n"
 "Obrigado pela sua denúncia nos Extras da Mozilla sobre o seguinte extra: %(name)s.\n"
 "\n"
-"Analisamos a sua denúncia e o conteúdo em questão, e verificamos que viola as políticas da Mozilla (%(policy_document_url)s) e removemos o conteúdo.\n"
+"Analisámos a sua denúncia e o conteúdo em questão, e verificámos que viola as políticas da Mozilla (%(policy_document_url)s) e removemos o conteúdo.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_addon_delayed.txt:5
 #, python-format
@@ -189,7 +189,7 @@ msgstr ""
 "\n"
 "Obrigado pela sua denúncia nos Extras da Mozilla sobre o seguinte extra: %(name)s.\n"
 "\n"
-"Analisamos o seu relatório e o conteúdo em questão, e verificamos que viola as políticas da Mozilla (%(policy_document_url)s) e, por isso, solicitamos que o programador faça alterações. Se este não atualizar o respetivo conteúdo para corrigir a violação, iremos removê-lo.\n"
+"Analisámos o seu relatório e o conteúdo em questão, e verificámos que viola as políticas da Mozilla (%(policy_document_url)s) e, por isso, solicitamos que o programador faça alterações. Se este não atualizar o respetivo conteúdo para corrigir a violação, iremos removê-lo.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_collection.txt:5
 #, python-format
@@ -199,6 +199,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
+"\n"
+"Obrigado pela sua denúncia nos Extras da Mozilla sobre a seguinte coleção: %(name)s.\n"
+"\n"
+"Analisámos a sua denúncia e o conteúdo em questão e verificámos que viola as políticas da Mozilla (%(policy_document_url)s) e removemos o conteúdo.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_rating.txt:5
 #, python-format
@@ -208,6 +212,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
+"\n"
+"Obrigado pela sua denúncia nos Extras da Mozilla sobre a seguinte avaliação: %(name)s.\n"
+"\n"
+"Analisámos a sua denúncia e o conteúdo em questão e verificámos que viola as políticas da Mozilla (%(policy_document_url)s) e removemos o conteúdo.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_user.txt:5
 #, python-format
@@ -217,6 +225,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
+"\n"
+"Obrigado pela sua denúncia nos Extras da Mozilla sobre o seguinte perfil de utilizador: %(name)s.\n"
+"\n"
+"Analisámos a sua denúncia e o conteúdo em questão e verificámos que viola as políticas da Mozilla (%(policy_document_url)s) e removemos o conteúdo.\n"
 
 #: src/olympia/accounts/serializers.py:152 src/olympia/bandwagon/serializers.py:98
 msgid "No links are allowed."
@@ -273,7 +285,7 @@ msgstr "O tamanho do conteúdo do pedido é muito grande."
 
 #: src/olympia/addons/decorators.py:78 src/olympia/amo/templates/amo/submissions_disabled.html:8
 msgid "Add-on uploads are temporarily unavailable."
-msgstr ""
+msgstr "Os carregamentos de extras estão temporariamente indisponíveis."
 
 #: src/olympia/addons/fields.py:56
 #, python-brace-format
@@ -330,7 +342,7 @@ msgstr "Versão mínima desconhecida da aplicação especificada"
 #: src/olympia/addons/fields.py:307 src/olympia/addons/fields.py:325 src/olympia/addons/serializers.py:622
 #, python-format
 msgid "Can not override compatibility information set in the manifest for this application (%s)"
-msgstr ""
+msgstr "Não é possível substituir as informações de compatibilidade definidas no manifesto para esta aplicação (%s)"
 
 #: src/olympia/addons/fields.py:375
 #, python-format
@@ -361,6 +373,7 @@ msgstr "O ficheiro já está desativado."
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
+"A última versão aprovada desta extensão %s não pode ser eliminada porque a versão anterior não foi aprovada para a promoção de %s . Contacte os administradores do AMO se precisar de ajuda com isto."
 
 #: src/olympia/addons/serializers.py:533
 #, python-brace-format
@@ -379,7 +392,7 @@ msgstr "Versões listadas não podem ser enviadas enquanto o extra estiver desab
 #: src/olympia/addons/serializers.py:597
 #, python-format
 msgid "%(addon_type_plural)s are not supported by %(app_name)s"
-msgstr ""
+msgstr "%(addon_type_plural)s não são suportados por %(app_name)s"
 
 #: src/olympia/addons/serializers.py:636 src/olympia/devhub/forms.py:910
 #, python-format
