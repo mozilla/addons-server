@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-21 11:14+0000\n"
+"POT-Creation-Date: 2025-03-25 10:46+0000\n"
 "PO-Revision-Date: 2018-08-10 18:00+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -3340,9 +3340,6 @@ msgstr "Zamknij historię sprawdzania"
 msgid "Request Review"
 msgstr "Poproś o sprawdzenie"
 
-msgid "Cancel Review Request"
-msgstr "Anuluj prośbę o sprawdzenie"
-
 msgid "Loading Review History..."
 msgstr "Wczytywanie historii sprawdzania…"
 
@@ -3443,12 +3440,6 @@ msgstr "Pliki oczekujące na sprawdzenie zostaną wyłączony i będzie konieczn
 
 msgid "Are you sure you wish to hide your add-on?"
 msgstr "Czy na pewno chcesz ukryć swój dodatek?"
-
-msgid "Canceling your review request will mark your add-on incomplete, and any versions awaiting review will be disabled."
-msgstr "Anulowanie prośby o sprawdzenie spowoduje oznaczenie dodatku jako niekompletnego, a wszystkie wersje oczekujące na sprawdzenie zostaną wyłączone."
-
-msgid "Are you sure you wish to cancel your review request?"
-msgstr "Czy na pewno chcesz anulować prośbę o sprawdzenie?"
 
 #. L10n: first parameter is the number of errors
 #, python-brace-format

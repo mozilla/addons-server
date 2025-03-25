@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-21 11:14+0000\n"
+"POT-Creation-Date: 2025-03-25 10:46+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -3571,9 +3571,6 @@ msgstr "Review History"
 msgid "Request Review"
 msgstr "Request Full Review"
 
-msgid "Cancel Review Request"
-msgstr "Cancel Review Request"
-
 #, fuzzy
 msgid "Loading Review History..."
 msgstr "Your Review History"
@@ -3682,13 +3679,6 @@ msgstr "The files awaiting review will be disabled and you will need to upload n
 
 msgid "Are you sure you wish to hide your add-on?"
 msgstr "Are you sure you wish to hide your add-on?"
-
-#, fuzzy
-msgid "Canceling your review request will mark your add-on incomplete, and any versions awaiting review will be disabled."
-msgstr "Canceling your review request will mark your add-on incomplete. If you do not complete your add-on after several days by re-requesting review, it will be deleted."
-
-msgid "Are you sure you wish to cancel your review request?"
-msgstr "Are you sure you wish to cancel your review request?"
 
 # {0} is a number
 #. L10n: first parameter is the number of errors
