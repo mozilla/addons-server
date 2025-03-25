@@ -524,8 +524,22 @@ class TestVersion(TestCase):
     def test_cancel(self):
         cancel_url = reverse('devhub.addons.cancel', args=['a3615', 'listed'])
         self.addon.current_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        latest_version = self.addon.current_version
+        assert not latest_version.is_user_disabled
+        assert (
+            ActivityLog.objects.filter(action=amo.LOG.DISABLE_VERSION.id).count() == 0
+        )
         self.client.post(cancel_url)
         assert Addon.objects.get(id=3615).status == amo.STATUS_NULL
+        assert (
+            ActivityLog.objects.filter(action=amo.LOG.DISABLE_VERSION.id).count() == 1
+        )
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.DISABLE_VERSION.id
+        ).get().arguments == [self.addon, latest_version]
+        latest_version.file.reload()
+        assert latest_version.is_user_disabled
+        assert latest_version.file.status == amo.STATUS_DISABLED
 
     def test_cancel_obey_channel_listed(self):
         addon = Addon.objects.get(id=3615)
@@ -540,10 +554,18 @@ class TestVersion(TestCase):
         self.client.post(cancel_url)
         file_.reload()
         assert file_.status == amo.STATUS_DISABLED
+        assert file_.version.is_user_disabled
         unlisted_file.reload()
+        assert not unlisted_file.version.is_user_disabled
         assert unlisted_file.status == amo.STATUS_AWAITING_REVIEW
         addon.reload()
         assert addon.status == amo.STATUS_NULL
+        assert (
+            ActivityLog.objects.filter(action=amo.LOG.DISABLE_VERSION.id).count() == 1
+        )
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.DISABLE_VERSION.id
+        ).get().arguments == [addon, file_.version]
 
     def test_cancel_obey_channel_unlisted(self):
         addon = Addon.objects.get(id=3615)
@@ -560,10 +582,18 @@ class TestVersion(TestCase):
         self.client.post(cancel_url)
         file_.reload()
         assert file_.status == amo.STATUS_DISABLED
+        assert file_.version.is_user_disabled
         listed_file.reload()
+        assert not listed_file.version.is_user_disabled
         assert listed_file.status == amo.STATUS_AWAITING_REVIEW
         addon.reload()
         assert addon.status == amo.STATUS_NOMINATED
+        assert (
+            ActivityLog.objects.filter(action=amo.LOG.DISABLE_VERSION.id).count() == 1
+        )
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.DISABLE_VERSION.id
+        ).get().arguments == [addon, file_.version]
 
     def test_not_cancel(self):
         self.client.logout()
@@ -572,28 +602,6 @@ class TestVersion(TestCase):
         response = self.client.post(cancel_url)
         assert response.status_code == 302
         assert Addon.objects.get(id=3615).status == amo.STATUS_APPROVED
-
-    def test_cancel_button(self):
-        for status in Addon.STATUS_CHOICES:
-            if status != amo.STATUS_NOMINATED:
-                continue
-
-            self.addon.update(status=status)
-            response = self.client.get(self.url)
-            doc = pq(response.content)
-            assert doc('#cancel-review')
-            assert doc('#modal-cancel')
-
-    def test_not_cancel_button(self):
-        for status in Addon.STATUS_CHOICES:
-            if status == amo.STATUS_NOMINATED:
-                continue
-
-            self.addon.update(status=status)
-            response = self.client.get(self.url)
-            doc = pq(response.content)
-            assert not doc('#cancel-review'), status
-            assert not doc('#modal-cancel'), status
 
     def test_incomplete_request_review(self):
         self.addon.update(status=amo.STATUS_NULL)

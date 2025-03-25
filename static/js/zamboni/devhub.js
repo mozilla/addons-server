@@ -108,7 +108,6 @@ $(document).ready(function () {
   });
 
   // hook up various links related to current version status
-  $('#modal-cancel').modal('#cancel-review', { width: 400 });
   if ($('#modal-delete').length) {
     $modalDelete = $('#modal-delete').modal('.delete-addon', {
       width: 400,

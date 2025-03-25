@@ -97,7 +97,7 @@
          data-is-current="{{ (version == addon.current_version)|int }}">x</a>
     </td>
   </tr>
-  {% if full_info and version.channel == amo.CHANNEL_LISTED and (can_request_review or can_cancel) %}
+  {% if full_info and version.channel == amo.CHANNEL_LISTED and can_request_review %}
     <tr>
       <td colspan="0" class="version-status-actions item-actions">
         {% if can_request_review %}
@@ -106,9 +106,6 @@
             {% csrf_token %}
             <button class="link" type="submit">{{ _('Request Review') }}</button> &middot;
           </form>
-        {% endif %}
-        {% if can_cancel %}
-          <a href="#" id="cancel-review">{{ _('Cancel Review Request') }}</a>
         {% endif %}
       </td>
     </tr>
@@ -339,35 +336,6 @@
         </button>
         {{ _('or') }} <a href="#" class="close">{{ _('Cancel') }}</a>
       </p>
-    </form>
-  </div>
-  {% endif %}
-
-  {% if not addon.is_disabled and addon.status == amo.STATUS_NOMINATED %}
-  {# Note: devhub.addons.cancel will cancel the latest version in the specified channel.
-   # This particular modal is only shown for listed versions though, so we can safely
-   # hardcode the channel parameter. #}
-  <div id="modal-cancel" class="modal">
-    <form method="post" action="{{ url('devhub.addons.cancel', addon.slug, 'listed') }}">
-      <h3>{{ _('Cancel Review Request') }}</h3>
-      <p>
-        {% trans %}
-            Canceling your review request will mark your add-on incomplete,
-            and any versions awaiting review will be disabled.
-        {% endtrans %}
-      </p>
-      <p>
-        {% trans %}
-          Are you sure you wish to cancel your review request?
-        {% endtrans %}
-      </p>
-      {% csrf_token %}
-      <input type="hidden" name="addon_id" class="addon_id" value="{{ addon.id }}">
-      <p>
-        <button type="submit">{{ _('Cancel Review Request') }}</button>
-        {{ _('or') }} <a href="#" class="cancel close">{{ _('Close') }}</a>
-      </p>
-      <a href="#" class="close">{{ _('Close') }}</a>
     </form>
   </div>
   {% endif %}
