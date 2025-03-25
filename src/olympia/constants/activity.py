@@ -641,12 +641,14 @@ class ENABLE_VERSION(_LOG):
     id = 145
     format = _('{addon} {version} re-enabled.')
     show_user_to_developer = True
+    short = 'Version re-enabled'
 
 
 class DISABLE_VERSION(_LOG):
     id = 146
     format = _('{addon} {version} disabled.')
     show_user_to_developer = True
+    short = 'Version disabled'
 
 
 class APPROVE_CONTENT(_LOG):
