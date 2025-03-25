@@ -1,12 +1,12 @@
 import contextlib
 
+from django.conf import settings
 from django.core.management import call_command
 from django.db.models.signals import post_save
-from django.test import TestCase
 
 from olympia import amo
-from olympia.amo.tests import addon_factory
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
+from olympia.amo.tests import TestCase, addon_factory, user_factory
+from olympia.constants.promoted import LINE, PROMOTED_GROUP_CHOICES
 from olympia.discovery.admin import PromotedAddon as PromotedAddonProxy
 from olympia.promoted.models import (
     PromotedAddon,
@@ -412,3 +412,38 @@ class TestSyncPromotedDiscoveryProxy(TestSyncPromotedMixin):
             sender=self.promoted_addon_class,
             dispatch_uid='addons.sync_promoted.promoted_addon_proxy',
         )
+
+
+class TestPromoteByFirefoxThemesCommand(TestCase):
+    def test_basic(self):
+        user = user_factory(pk=settings.TASK_USER_ID)
+        non_affected = [
+            # Not By Firefox user.
+            addon_factory(type=amo.ADDON_STATICTHEME),
+            # Not a theme.
+            addon_factory(users=[user]),
+            # Not public.
+            addon_factory(
+                type=amo.ADDON_STATICTHEME, status=amo.STATUS_DISABLED, users=[user]
+            ),
+        ]
+        # Already promoted, should not cause an error.
+        addon_factory(type=amo.ADDON_STATICTHEME, users=[user], promoted_id=LINE.id)
+
+        expected_affected = addon_factory(type=amo.ADDON_STATICTHEME, users=[user])
+
+        call_command('promote_by_firefox_themes')
+
+        for addon in non_affected:
+            assert not PromotedAddon.objects.filter(addon=addon).exists()
+            assert not PromotedApproval.objects.filter(version__addon=addon).exists()
+
+        assert expected_affected.promotedaddon
+        assert (
+            expected_affected.current_version.promoted_approvals.all()
+            .filter(application_id=amo.FIREFOX.id)
+            .exists()
+        )
+        assert list(expected_affected.promoted_groups()) == [
+            PromotedGroup.objects.get(group_id=LINE.id)
+        ]
