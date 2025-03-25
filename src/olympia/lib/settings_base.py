@@ -245,7 +245,7 @@ PROD_MEDIA_URL = 'https://addons.mozilla.org/user-media/'
 
 # Static
 STATIC_ROOT = path('site-static')
-# Allow overriding static/mdeia url path prefix
+# Allow overriding static/media url path prefix
 STATIC_URL_PREFIX = env('STATIC_URL_PREFIX', default='/static-server/')
 MEDIA_URL_PREFIX = env('MEDIA_URL_PREFIX', default='/user-media/')
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a

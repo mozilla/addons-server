@@ -66,7 +66,7 @@ export default defineConfig(({ command }) => {
       }),
     ],
     build: {
-      // Disable inline assets. For performance reasons we want to server
+      // Disable inline assets. For performance reasons we want to serve
       // all static assets from dedicated URLs which in production will
       // be cached in our CDN. The incremental build size is worse than
       // the increase in number of requests.
