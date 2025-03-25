@@ -1,4 +1,4 @@
-from django.db import models
+from django.db import models, transaction
 from django.db.models.signals import ModelSignal
 
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
@@ -67,15 +67,34 @@ def promoted_approval_to_promoted_addon_version(
     signal: ModelSignal,
     instance: PromotedApproval,
 ):
-    if signal == models.signals.post_save:
-        PromotedAddonVersion.objects.update_or_create(
-            version=instance.version,
-            promoted_group=PromotedGroup.objects.get(group_id=instance.group_id),
-            application_id=instance.application_id,
+    # Get all valid approvals for this version
+    valid_approvals = []
+    for approval in PromotedApproval.objects.filter(version=instance.version):
+        # Skip invalid approvals
+        if (
+            approval.group_id is None
+            or approval.group_id == PROMOTED_GROUP_CHOICES.NOT_PROMOTED
+            or approval.application_id is None
+        ):
+            continue
+
+        try:
+            promoted_group = PromotedGroup.objects.get(group_id=approval.group_id)
+            valid_approvals.append((promoted_group, approval.application_id))
+        except PromotedGroup.DoesNotExist:
+            continue
+
+    with transaction.atomic():
+        # First, delete all PromotedAddonVersions for this version
+        PromotedAddonVersion.objects.filter(version=instance.version).delete()
+        # Then re-create versions based on valid approvals
+        PromotedAddonVersion.objects.bulk_create(
+            [
+                PromotedAddonVersion(
+                    version=instance.version,
+                    promoted_group=promoted_group,
+                    application_id=application_id,
+                )
+                for promoted_group, application_id in valid_approvals
+            ]
         )
-    elif signal == models.signals.post_delete:
-        PromotedAddonVersion.objects.filter(
-            version=instance.version,
-            promoted_group=PromotedGroup.objects.get(group_id=instance.group_id),
-            application_id=instance.application_id,
-        ).delete()
