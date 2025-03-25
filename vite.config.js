@@ -27,25 +27,29 @@ const jqueryGlobals = {
   jQuery: 'jquery',
 };
 
-const env = (name) => {
-  const value = process.env[name];
-  if (!value) {
-    throw new Error(`${name} is not defined`);
-  }
-  return value;
-};
+const env = (name, defaultValue) =>
+  process.env[name] || defaultValue || new Error(`${name} is not defined`);
 
 export default defineConfig(({ command }) => {
   const isLocal = env('ENV') === 'local';
   const isDev = command === 'serve';
 
   const baseConfig = {
+    // Ensure all static assets are treated as
+    // 'in-scope' assets that can be tracked by vite
+    // this ensures any imported static assets are correctly
+    // mapped across file transformations.
+    assetsInclude: `${INPUT_DIR}/*`,
     strict: true,
     root: resolve(INPUT_DIR),
+    debug: env('DEBUG', false),
     // In dev mode, prefix 'bundle' to static file URLs
     // so that nginx knows to forward the request to the vite
     // dev server instead of serving from static files or olympia
-    base: '/static/',
+    // Use a relative path during the build
+    // this ensures that import paths can be transformed
+    // independently of where the importing file ends up in the bundle
+    base: './',
     resolve: {
       alias: {
         // Alias 'highcharts' to our local vendored copy
@@ -62,6 +66,11 @@ export default defineConfig(({ command }) => {
       }),
     ],
     build: {
+      // Disable inline assets. For performance reasons we want to serve
+      // all static assets from dedicated URLs which in production will
+      // be cached in our CDN. The incremental build size is worse than
+      // the increase in number of requests.
+      assetsInlineLimit: 0,
       // This value should be kept in sync with settings_base.py
       // which determines where to read static file paths
       // for production URL resolution
@@ -106,7 +115,6 @@ export default defineConfig(({ command }) => {
       preprocessorOptions: {
         less: {
           math: 'always',
-          // relativeUrls: true,
           javascriptEnabled: true,
         },
       },
@@ -126,12 +134,15 @@ export default defineConfig(({ command }) => {
   if (isDev) {
     // In dev mode, add the bundle path to direct
     // static requests to the vite dev server via nginx
-    baseConfig.base += 'bundle/';
+    baseConfig.base = `${env('STATIC_URL_PREFIX')}bundle/`;
     // Configure the dev server in dev mode
     baseConfig.server = {
       host: true,
       port: 5173,
       allowedHosts: true,
+      origin: env('SITE_URL'),
+      strictPort: true,
+      clearScreen: true,
     };
   }
 

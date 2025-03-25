@@ -243,6 +243,20 @@ SERVICES_URL = 'http://%s' % SERVICES_DOMAIN
 PROD_STATIC_URL = 'https://addons.mozilla.org/static-server/'
 PROD_MEDIA_URL = 'https://addons.mozilla.org/user-media/'
 
+# Static
+STATIC_ROOT = path('site-static')
+# Allow overriding static/media url path prefix
+STATIC_URL_PREFIX = env('STATIC_URL_PREFIX', default='/static-server/')
+MEDIA_URL_PREFIX = env('MEDIA_URL_PREFIX', default='/user-media/')
+# URL that handles the media served from MEDIA_ROOT. Make sure to use a
+# trailing slash if there is a path component (optional in other cases).
+# Examples: "http://media.lawrence.com", "http://example.com/media/"
+MEDIA_URL = MEDIA_URL_PREFIX
+# URL that handles the static files served from STATIC_ROOT. Make sure to use a
+# trailing slash if there is a path component (optional in other cases).
+# Examples: "http://media.lawrence.com", "http://example.com/static/"
+STATIC_URL = STATIC_URL_PREFIX
+
 # Filter IP addresses of allowed clients that can post email through the API.
 ALLOWED_CLIENTS_EMAIL_API = env.list('ALLOWED_CLIENTS_EMAIL_API', default=[])
 # Auth token required to authorize inbound email.
@@ -251,11 +265,6 @@ INBOUND_EMAIL_SECRET_KEY = env('INBOUND_EMAIL_SECRET_KEY', default='')
 INBOUND_EMAIL_VALIDATION_KEY = env('INBOUND_EMAIL_VALIDATION_KEY', default='')
 # Domain emails should be sent to.
 INBOUND_EMAIL_DOMAIN = env('INBOUND_EMAIL_DOMAIN', default=DOMAIN)
-
-# URL that handles the media served from MEDIA_ROOT. Make sure to use a
-# trailing slash if there is a path component (optional in other cases).
-# Examples: "http://media.lawrence.com", "http://example.com/media/"
-MEDIA_URL = '/user-media/'
 
 # Tarballs in DUMPED_APPS_PATH deleted 30 days after they have been written.
 DUMPED_APPS_DAYS_DELETE = 3600 * 24 * 30
@@ -288,7 +297,7 @@ SUPPORTED_NONAPPS = (
     'statistics',
     'services',
     'sitemap.xml',
-    'static',
+    STATIC_URL_PREFIX.strip('/'),
     'update',
     'user-media',
     '__heartbeat__',
@@ -309,7 +318,7 @@ SUPPORTED_NONLOCALES = (
     'services',
     'sitemap.xml',
     'downloads',
-    'static',
+    STATIC_URL_PREFIX.strip('/'),
     'update',
     'user-media',
     '__heartbeat__',
@@ -1176,9 +1185,6 @@ HIVE_CONNECTION = {
     'auth_mechanism': 'PLAIN',
 }
 
-# Static
-STATIC_ROOT = path('site-static')
-STATIC_URL = '/static/'
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',

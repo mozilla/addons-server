@@ -3,6 +3,7 @@ import os
 import tempfile
 from unittest import mock
 
+from django.conf import settings
 from django.core.management import call_command
 from django.core.management.base import SystemCheckError
 from django.test import TestCase
@@ -199,23 +200,21 @@ class SystemCheckIntegrationTest(TestCase):
             ):
                 call_command('check')
 
-    def _test_nginx_response(
-        self, base_url, status_code=200, response_text='', served_by='nginx'
-    ):
+    def _test_nginx_response(self, status_code=200, body='', served_by='nginx'):
         self.mock_get_version_json.return_value['target'] = 'development'
-        url = f'{base_url}/test.txt'
+        url = f'{settings.INTERNAL_SITE_URL}{settings.MEDIA_URL_PREFIX}test.txt'
 
         responses.add(
             responses.GET,
             url,
             status=status_code,
-            body=response_text,
+            body=body,
             headers={'X-Served-By': served_by},
         )
 
         expected_config = (
             (status_code, 200),
-            (response_text, self.media_root),
+            (body, self.media_root),
             (served_by, 'nginx'),
         )
 
@@ -228,12 +227,12 @@ class SystemCheckIntegrationTest(TestCase):
 
     def test_nginx_raises_non_200_status_code(self):
         """Test that files return a 200 status code."""
-        self._test_nginx_response('http://nginx/user-media', status_code=404)
+        self._test_nginx_response(status_code=404)
 
     def test_nginx_raises_unexpected_content(self):
         """Test that files return the expected content."""
-        self._test_nginx_response('http://nginx/user-media', response_text='foo')
+        self._test_nginx_response(body='foo')
 
     def test_nginx_raises_unexpected_served_by(self):
         """Test that files are served by nginx and not redirected elsewhere."""
-        self._test_nginx_response('http://nginx/user-media', served_by='wow')
+        self._test_nginx_response(served_by='wow')

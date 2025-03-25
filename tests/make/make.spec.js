@@ -150,7 +150,7 @@ describe('docker-compose.yml', () => {
           // mapping for nginx conf.d adding addon-server routing
           expect.objectContaining({
             source: 'data_nginx',
-            target: '/etc/nginx/conf.d',
+            target: '/etc/nginx/templates',
           }),
           // mapping for /data/olympia/ directory to /srv
           expect.objectContaining({
