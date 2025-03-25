@@ -427,6 +427,72 @@ class TestPromotedAddon(TestCase):
         ).exists()
 
 
+class TestPromotedGroupManager(TestCase):
+    def setUp(self):
+        self.addon: Addon = addon_factory()
+        self.application_id = applications.FIREFOX.id
+
+        self.promoted_group = PromotedGroup.objects.get(
+            group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT
+        )
+        self.promotion = PromotedAddonPromotion.objects.create(
+            addon=self.addon,
+            promoted_group=self.promoted_group,
+            application_id=self.application_id,
+        )
+
+    def test_unapproved_promoted_addon_promotion(self):
+        # addon has a promotion, but no associated version (no approval)
+        assert not PromotedGroup.objects.approved_for(self.addon)
+
+    def test_approved_promoted_addon_promotion(self):
+        # now approved, should appear in approved_for
+        PromotedAddonVersion.objects.create(
+            version=self.addon.current_version,
+            promoted_group=self.promoted_group,
+            application_id=self.application_id,
+        )
+        assert self.promoted_group in PromotedGroup.objects.approved_for(self.addon)
+
+        # if the current version changes (the group was not
+        # carried over) the approval is no longer valid
+        self.addon._current_version = version_factory(addon=self.addon)
+        assert not PromotedGroup.objects.approved_for(self.addon)
+
+    def test_promoted_group_non_pre_reviewed(self):
+        # alternatively, addon has a non-pre-reviewed promoted group
+        strategic_group = PromotedGroup.objects.get(
+            group_id=PROMOTED_GROUP_CHOICES.STRATEGIC
+        )
+        self.promotion.promoted_group = strategic_group
+        self.promotion.save()
+        assert strategic_group in PromotedGroup.objects.approved_for(self.addon)
+
+    def test_all_for(self):
+        self.promotion.delete()
+        assert PromotedAddonPromotion.objects.filter(addon=self.addon).count() == 0
+        assert not PromotedGroup.objects.all_for(self.addon)
+
+        PromotedAddonPromotion.objects.create(
+            addon=self.addon,
+            promoted_group=self.promoted_group,
+            application_id=self.application_id,
+        )
+
+        # the addon is promoted in that group
+        assert PromotedAddonPromotion.objects.filter(addon=self.addon).count() == 1
+        assert self.promoted_group in PromotedGroup.objects.all_for(self.addon)
+
+        # but not approved
+        assert (
+            PromotedAddonVersion.objects.filter(
+                version=self.addon.current_version
+            ).count()
+            == 0
+        )
+        assert self.promoted_group not in PromotedGroup.objects.approved_for(self.addon)
+
+
 class TestPromotedGroup(TestCase):
     def test_promoted_group_data_is_derived_from_promoted_groups(self):
         # Loop over all groups from PROMOTED_GROUPS_BY_ID to ensure complete coverage

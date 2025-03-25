@@ -123,6 +123,7 @@ def bump_addon_version(old_version):
     addon = old_version.addon
     old_file_obj = old_version.file
     promoted_group = addon.promoted_groups(currently_approved=True)
+    carryover = promoted_group and any(promoted_group.listed_pre_review)
     # We only sign files that have been reviewed
     if old_file_obj.status not in amo.APPROVED_STATUSES:
         log.info(
@@ -201,7 +202,7 @@ def bump_addon_version(old_version):
 
             # Carry over promotion if necessary.
             # TODO: promotedaddon; approve_for_version refactor (Write PR)
-            if promoted_group and any(promoted_group.listed_pre_review):
+            if carryover:
                 addon.promotedaddon.approve_for_version(new_version)
 
     except Exception:
