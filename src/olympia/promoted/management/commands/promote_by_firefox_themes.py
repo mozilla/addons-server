@@ -6,7 +6,6 @@ from olympia.addons.models import Addon
 from olympia.constants.promoted import LINE
 from olympia.promoted.models import (
     PromotedAddon,
-    PromotedApproval,
 )
 from olympia.users.models import UserProfile
 
