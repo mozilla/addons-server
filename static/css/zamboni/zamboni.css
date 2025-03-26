@@ -2839,7 +2839,7 @@ label > .optional {
     margin-top: 2em;
 }
 
-input:-moz-placeholder {
+input:placeholder {
     color: #ccc;
 }
 
