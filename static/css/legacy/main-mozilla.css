@@ -1602,7 +1602,7 @@ html[xmlns] .clearfix {
     float: left;
 }
 
-#register input[type=checkbox] {
+#register input[type="checkbox"] {
     margin: 0;
 }
 

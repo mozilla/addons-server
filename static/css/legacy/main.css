@@ -671,7 +671,7 @@ a:visited.button,
 a:hover.button,
 a:focus.button,
 a:active.button,
-button,input[type=submit],input[type=button] {
+button,input[type="submit"],input[type="button"] {
     font-family:helvetica, arial, sans-serif;
     text-decoration:none;
     white-space:nowrap;
@@ -688,8 +688,8 @@ a:active.button {
 .button.disabled,
 button.disabled,
 button:disabled,
-input[type=submit].disabled,
-input[type=submit]:disabled {
+input[type="submit"].disabled,
+input[type="submit"]:disabled {
   background-image: url("../../img/bg/button-gray.jpg");
   background-color: #ccc;
   border-color: #aaa;
@@ -843,13 +843,13 @@ button.cool img {
     border-right:1px solid #18243B;
 }
 
-a:link.button[disabled=disabled],
-a:visited.button[disabled=disabled],
-a:hover.button[disabled=disabled],
-a:focus.button[disabled=disabled],
-a:active.button[disabled=disabled],
-button[disabled=disabled],
-input[type=submit][disabled=disabled] {
+a:link.button[disabled="disabled"],
+a:visited.button[disabled="disabled"],
+a:hover.button[disabled="disabled"],
+a:focus.button[disabled="disabled"],
+a:active.button[disabled="disabled"],
+button[disabled="disabled"],
+input[type="submit"][disabled="disabled"] {
     opacity: 0.5;
     cursor: default;
 }
@@ -1369,7 +1369,7 @@ form.favorite {
     font-weight: normal;
 }
 
-#contribute-box input[type=text] {
+#contribute-box input[type="text"] {
     width: 4em;
     padding:0 1px 1px;
 }
