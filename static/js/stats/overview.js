@@ -64,7 +64,7 @@ if ($('.primary').attr('data-report') === 'overview') {
   // set up topcharts (defined in topchart.js)
   $('.toplist').topChart();
 
-  $(window).on('changeview', function (e, view) {
+  $(window).on('changeview', function () {
     $('.two-up').addClass('loading');
   });
 

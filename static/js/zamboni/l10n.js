@@ -302,7 +302,7 @@ $(document).ready(function () {
         }
         $('#l10n-confirm-rm')
           .off()
-          .click(function (e) {
+          .click(function () {
             $('.modal-actions', rmLocaleModal).addClass('ajax-loading');
             $.ajax({
               url: $('#l10n-menu').attr('data-rm-locale'),

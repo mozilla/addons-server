@@ -6,7 +6,7 @@ import { format } from '../lib/format';
 import { _pd } from '../lib/prevent-default';
 import { StatsManager } from './manager';
 
-$.fn.csvTable = function (cfg) {
+$.fn.csvTable = function () {
   $(this).each(function () {
     let $self = $(this),
       $table = $self.find('table'),

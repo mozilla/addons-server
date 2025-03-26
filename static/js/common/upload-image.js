@@ -76,8 +76,7 @@ $.fn.imageUploader = function () {
 
   // Loop through the files.
   $.each(files, function (v, f) {
-    let data = '',
-      file = {
+    let file = {
         instance: instance_id,
         name: f.name || f.fileName,
         size: f.size,
@@ -133,7 +132,7 @@ $.fn.imageUploader = function () {
         let json = {};
         try {
           json = JSON.parse(formData.xhr.responseText);
-        } catch (err) {
+        } catch (_err) {
           let error = gettext('There was a problem contacting the server.');
           $upload_field.trigger('upload_errors', [file, error]);
           finished();

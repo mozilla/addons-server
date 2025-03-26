@@ -32,10 +32,6 @@ export function search_results_template(obj) {
 
   let __t;
   let __p = '';
-  const __j = Array.prototype.join;
-  const print = function () {
-    __p += __j.call(arguments, '');
-  };
 
   // Build up the string in `__p`
   __p +=
@@ -80,12 +76,7 @@ export function search_result_row_template(obj) {
     status = '',
   } = obj || {};
 
-  let __t;
   let __p = '';
-  const __j = Array.prototype.join;
-  const print = function () {
-    __p += __j.call(arguments, '');
-  };
 
   // Build up the string in `__p`
   __p +=

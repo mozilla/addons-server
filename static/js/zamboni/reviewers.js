@@ -344,7 +344,7 @@ function initExtraReviewActions() {
       let $input = $('#due_date_update').prop('disabled', true); // Prevent double-send.
       let apiUrl = $input.data('api-url');
       let data = { due_date: $input.val(), version: $input.data('api-data') };
-      callReviewersAPI(apiUrl, 'post', data, function (response) {
+      callReviewersAPI(apiUrl, 'post', data, function () {
         $input.prop('disabled', false);
       });
     }),
@@ -381,7 +381,7 @@ function initExtraReviewActions() {
       let apiUrl = $button.data('api-url');
       let data = $button.data('api-data') || null;
       let method = $button.data('api-method') || 'post';
-      callReviewersAPI(apiUrl, method, data, function (response) {
+      callReviewersAPI(apiUrl, method, data, function () {
         $button.remove();
       });
     }),

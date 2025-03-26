@@ -46,12 +46,12 @@ $.fn.addonUploader = function (options) {
     $.extend(settings, options);
   }
 
-  function parseErrorsFromJson(response, statusCode) {
+  function parseErrorsFromJson(response) {
     let json,
       errors = [];
     try {
       json = JSON.parse(response);
-    } catch (err) {
+    } catch (_err) {
       errors = [gettext('There was a problem contacting the server.')];
     }
     if (!errors.length) {

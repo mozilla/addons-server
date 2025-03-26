@@ -18,11 +18,8 @@ function getStatsManager() {
     storageCache = SessionStorage('statscache'),
     dataStore = {},
     currentView = {},
-    siteEvents = [],
     addonId = parseInt($primary.data('addon_id'), 10),
     baseURL = $primary.data('base_url'),
-    pendingFetches = 0,
-    siteEventsEnabled = true,
     writeInterval = false,
     lookup = {},
     msDay = 24 * 60 * 60 * 1000; // One day in milliseconds.
@@ -128,36 +125,11 @@ function getStatsManager() {
   }
   $(window).on('changeview', processView);
 
-  function annotateData(data, events) {
-    let i, ev, sd, ed;
-    for (i = 0; i < events.length; i++) {
-      ev = events[i];
-      if (ev.end) {
-        sd = Date.iso(ev.start);
-        ed = Date.iso(ev.end);
-        forEachISODate({ start: sd, end: ed }, '1 day', data, function (row) {
-          if (row) {
-            row.event = ev;
-          }
-        });
-      } else {
-        if (data[ev.start]) {
-          data[ev.start].event = ev;
-        }
-      }
-    }
-    return data;
-  }
-
   // Returns a list of field names for a given data set.
   function getAvailableFields(view) {
     let metric = view.metric,
       range = normalizeRange(view.range),
-      start = range.start,
-      end = range.end,
       ds,
-      row,
-      numRows = 0,
       fields = {};
 
     // Non-breakdown metrics only have one field.
@@ -214,7 +186,6 @@ function getStatsManager() {
     function finished() {
       let ds = dataStore[metric],
         ret = {},
-        row,
         firstIndex;
       if (ds) {
         forEachISODate(
@@ -290,8 +261,6 @@ function getStatsManager() {
     let groupKey = false,
       groupVal = false,
       groupCount = 0,
-      d,
-      row,
       firstIndex;
 
     if (group == 'all') {
@@ -413,7 +382,7 @@ function getStatsManager() {
       error: errorHandler,
     });
 
-    function errorHandler(response, unused1, unused2) {
+    function errorHandler(response) {
       if (response.status === 503) {
         // The API returns a 503 with no data when we disable BigQuery so let's
         // handle this error using the normal flow, which will display "no data

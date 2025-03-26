@@ -5,9 +5,7 @@ import { _pd } from '../lib/prevent-default';
 import { normalizeRange } from './dateutils';
 
 let $rangeSelector = $('.criteria.range ul'),
-  $customRangeForm = $('div.custom.criteria'),
   $groupSelector = $('.criteria.group ul'),
-  minDate = Date.iso($('.primary').attr('data-min-date')),
   msDay = 24 * 60 * 60 * 1000; // One day in milliseconds.
 
 let $customModal = $('#custom-criteria').modal('#custom-date-range', {
@@ -75,7 +73,7 @@ $(window).on('changeview', function (e, newState) {
 $('#chart-zoomout').click(_pd);
 
 $('#date-range-form').submit(
-  _pd(function (e) {
+  _pd(function () {
     let start = Date.iso($('#date-range-start').val()),
       end = Date.iso($('#date-range-end').val()),
       newRange = {

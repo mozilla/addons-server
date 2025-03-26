@@ -42,7 +42,7 @@ let baseConfig = {
   ],
 };
 
-$.fn.topChart = function (cfg) {
+$.fn.topChart = function () {
   $(this).each(function () {
     let $self = $(this),
       $win = $(window),

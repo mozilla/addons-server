@@ -22,7 +22,7 @@ $(document)
       }
     }
   })
-  .ajaxSuccess(function (event, xhr, ajaxSettings) {
+  .ajaxSuccess(function () {
     $(window).trigger('resize'); // Redraw what needs to be redrawn.
   });
 

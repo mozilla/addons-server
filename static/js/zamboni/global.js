@@ -443,7 +443,6 @@ export function slugify() {
       $slug.val(new_slug);
     }
   }
-  const name_val = $slug.val();
   $('#slug_value').text($slug.val());
 }
 

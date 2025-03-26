@@ -95,7 +95,6 @@ $(document).ready(function () {
     });
 
     function updateManifest() {
-      const textarea = $wizard.find('#manifest').val(generateManifest());
       toggleSubmitIfNeeded();
     }
 

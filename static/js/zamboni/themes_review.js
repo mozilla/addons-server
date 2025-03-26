@@ -433,8 +433,7 @@ function fieldFocused(e) {
       $('select', self).change(onChange);
       onChange();
 
-      function onChange(e) {
-        let category = $('#rq-category', self).val();
+      function onChange() {
         let advance = $('#rq-advance:checked', self).val();
         let shortcuts = $('#rq-shortcuts:checked', self).val();
 
@@ -459,7 +458,7 @@ $(document).ready(function () {
     $theme_queue.themeQueue();
     $('.sidebar').themeQueueOptions('.theme-queue');
     $('#commit').click(
-      _pd(function (e) {
+      _pd(function () {
         $('#theme-queue-form').submit();
       }),
     );

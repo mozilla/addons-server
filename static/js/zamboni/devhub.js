@@ -12,7 +12,104 @@ import { annotateLocalizedErrors, refreshL10n } from './l10n';
 
 $(document).ready(function () {
   // Modals
-  let $modalFile, $modalDelete, $modalDisable;
+  let $modalDelete, $modalDisable;
+
+  function initSubmitModals() {
+    // Called during the submit addon step
+
+    // Hide the primary container of all modals
+    $('#modals').hide();
+
+    // Used by "Cancel and disable version" button during submission process
+    if ($('#modal-confirm-submission-cancel').length > 0) {
+      const $modalForm = $('#modal-confirm-submission-cancel');
+      $modalDelete = $modalForm.modal('.confirm-submission-cancel', {
+        width: 400,
+      });
+
+      // Submitting the form in the modal is not useful. Instead, after
+      // receiving user confirmation, form that contains the
+      // "confirm-submission-cancel" button should POST to an alternate URL
+      $modalForm.find('form').on('submit', function onSubmit(e) {
+        e.preventDefault();
+
+        // this alternate URL is stored in this modal's submit button
+        // so change the form action attribute and submit it
+        let $confirmButton = $('.confirm-submission-cancel'),
+          $mainForm = $confirmButton.closest('form'),
+          cancelUrl = $confirmButton.attr('formaction');
+
+        $mainForm.attr('action', cancelUrl);
+        $mainForm.trigger('submit');
+
+        return false; // don't follow the a.href link
+      });
+    }
+
+    // Warn about Android compatibility (if selected).
+    if ($('#modal-confirm-android-compatibility').length > 0) {
+      let confirmedOnce = false;
+      let $input = $('#id_compatible_apps label.android input[type=checkbox]');
+
+      const $modalAndroidConfirm = $(
+        '#modal-confirm-android-compatibility',
+      ).modal('#id_compatible_apps label.android', {
+        width: 525,
+        callback: function shouldShowAndroidModal() {
+          if ($input.prop('disabled')) {
+            return false;
+          }
+          if (confirmedOnce) {
+            setTimeout(function () {
+              // $().modal() calls preventDefault() before firing the callback
+              // but the checkbox is temporarily checked anyway when clicking on
+              // it (not the label). To work around this, we wrap our toggling
+              // in a setTimeout() to force it to wait for the event to be
+              // processed.
+              $input.prop('checked', !$input.prop('checked'));
+              $input.trigger('change');
+            }, 0);
+          }
+          return !confirmedOnce;
+        },
+      });
+
+      $('#modal-confirm-android-compatibility')
+        .find('form')
+        .on('submit', function onSubmit(e) {
+          e.preventDefault();
+          $input.prop('checked', true);
+          $input.trigger('change');
+          $modalAndroidConfirm.trigger('close');
+          confirmedOnce = true;
+        });
+    }
+  }
+
+  function initSubmit() {
+    let dl = $('body').attr('data-default-locale');
+    let el = format('#trans-name [lang="{0}"]', dl);
+    $(el).attr('id', 'id_name');
+    $('#submit-describe')
+      .on('keyup', el, slugify)
+      .on('blur', el, slugify)
+      .on('click', '#edit_slug', show_slug_edit)
+      .on('change', '#id_slug', function () {
+        $('#id_slug').attr('data-customized', 1);
+        let v = $('#id_slug').val();
+        if (!v) {
+          $('#id_slug').attr('data-customized', 0);
+          slugify();
+        }
+      })
+      .on('keyup blur', showNameSummaryCroppingWarnings);
+    $('#id_slug').each(slugify);
+    showNameSummaryCroppingWarnings();
+    reorderPreviews();
+    initSubmitModals();
+    $('.invisible-upload [disabled]').prop('disabled', false);
+    $('.invisible-upload .disabled').removeClass('disabled');
+  }
 
   // Edit Add-on
   $('#edit-addon').exists(initEditAddon);
@@ -109,10 +206,11 @@ $(document).ready(function () {
   });
 
   // hook up various links related to current version status
+  $('#modal-cancel').modal('#cancel-review', { width: 400 });
   if ($('#modal-delete').length) {
     $modalDelete = $('#modal-delete').modal('.delete-addon', {
       width: 400,
-      callback: function (obj) {
+      callback: function () {
         return fixPasswordField(this);
       },
     });
@@ -371,7 +469,7 @@ function create_new_preview_field() {
 
 function renumberPreviews() {
   const previews = $('#file-list').children('.preview:visible');
-  previews.each(function (i, el) {
+  previews.each(function (i) {
     $(this).find('.position input').val(i);
   });
   $(previews)
@@ -399,7 +497,7 @@ function initUploadPreview() {
   let forms = {},
     $f = $('#edit-addon-media, #submit-media');
 
-  function upload_start_all(e) {
+  function upload_start_all() {
     // Remove old errors.
     $('.edit-addon-media-screenshot-error').hide();
 
@@ -407,12 +505,12 @@ function initUploadPreview() {
     $('.edit-media-button button').prop('disabled', true);
   }
 
-  function upload_finished_all(e) {
+  function upload_finished_all() {
     // They can submit again
     $('.edit-media-button button').prop('disabled', false);
   }
 
-  function upload_start(e, file) {
+  function upload_start(_e, file) {
     const form = create_new_preview_field();
     forms['form_' + file.instance] = form;
 
@@ -467,7 +565,7 @@ function initUploadPreview() {
       .on('upload_errors', '#screenshot_upload', upload_errors)
       .on('upload_start_all', '#screenshot_upload', upload_start_all)
       .on('upload_finished_all', '#screenshot_upload', upload_finished_all)
-      .on('change', '#screenshot_upload', function (e) {
+      .on('change', '#screenshot_upload', function () {
         $(this).imageUploader();
       });
   }
@@ -536,7 +634,7 @@ function initUploadIcon() {
         $('#icons_default'),
       ).prop('checked', true);
     },
-    upload_start = function (e, file) {
+    upload_start = function () {
       let $error_list = $('#icon_preview').parent().find('.errorlist');
       $error_list.html('');
 
@@ -544,7 +642,7 @@ function initUploadIcon() {
 
       $('.edit-media-button button').prop('disabled', true);
     },
-    upload_finished = function (e) {
+    upload_finished = function () {
       $('.icon_preview img', $f).removeClass('loading');
       $('.edit-media-button button').prop('disabled', false);
     };
@@ -553,7 +651,7 @@ function initUploadIcon() {
     .on('upload_start', '#id_icon_upload', upload_start)
     .on('upload_finished', '#id_icon_upload', upload_finished)
     .on('upload_errors', '#id_icon_upload', upload_errors)
-    .on('change', '#id_icon_upload', function (e) {
+    .on('change', '#id_icon_upload', function () {
       if (capabilities.fileAPI) {
         $(this).imageUploader();
       } else {
@@ -687,7 +785,7 @@ function initVersions() {
       beforeSend: function (xhr) {
         xhr.setRequestHeader('Authorization', 'Session ' + sessionId);
       },
-      complete: function (xhr) {
+      complete: function () {
         container.children('.review-entry-loading').addClass('hidden');
       },
       processData: false,
@@ -753,31 +851,6 @@ function initVersions() {
   });
 }
 
-function initSubmit() {
-  let dl = $('body').attr('data-default-locale');
-  let el = format('#trans-name [lang="{0}"]', dl);
-  $(el).attr('id', 'id_name');
-  $('#submit-describe')
-    .on('keyup', el, slugify)
-    .on('blur', el, slugify)
-    .on('click', '#edit_slug', show_slug_edit)
-    .on('change', '#id_slug', function () {
-      $('#id_slug').attr('data-customized', 1);
-      let v = $('#id_slug').val();
-      if (!v) {
-        $('#id_slug').attr('data-customized', 0);
-        slugify();
-      }
-    })
-    .on('keyup blur', showNameSummaryCroppingWarnings);
-  $('#id_slug').each(slugify);
-  showNameSummaryCroppingWarnings();
-  reorderPreviews();
-  initSubmitModals();
-  $('.invisible-upload [disabled]').prop('disabled', false);
-  $('.invisible-upload .disabled').removeClass('disabled');
-}
-
 function showNameSummaryCroppingWarnings() {
   let exceeds_max_length = false,
     max_length = $('.edit-addon-details .char-count').data('maxlength'),
@@ -798,14 +871,6 @@ function showNameSummaryCroppingWarnings() {
   });
 
   $('#name-summary-locales-warning').toggle(exceeds_max_length);
-}
-
-function generateErrorList(o) {
-  let list = $("<ul class='errorlist'></ul>");
-  $.each(o, function (i, v) {
-    list.append($(format('<li>{0}</li>', v)));
-  });
-  return list;
 }
 
 function initEditVersions() {
@@ -866,14 +931,14 @@ function initCatFields(delegate) {
 }
 
 function initLicenseFields() {
-  $('#id_has_eula').change(function (e) {
+  $('#id_has_eula').change(function () {
     if ($(this).prop('checked')) {
       $('.eula').show().removeClass('hidden');
     } else {
       $('.eula').hide();
     }
   });
-  $('#id_has_priv').change(function (e) {
+  $('#id_has_priv').change(function () {
     if ($(this).prop('checked')) {
       $('.priv').show().removeClass('hidden');
     } else {
@@ -881,7 +946,7 @@ function initLicenseFields() {
     }
   });
   let other_val = $('.license-other').attr('data-val');
-  $('.license').click(function (e) {
+  $('.license').click(function () {
     if ($(this).val() == other_val) {
       $('.license-other').show().removeClass('hidden');
     } else {
@@ -898,9 +963,7 @@ function initAuthorFields() {
 
   if (noEdit) return;
 
-  let request = false,
-    timeout = false,
-    empty_form = template(
+  let empty_form = template(
       $('#user-form-template')
         .html()
         .replace(/__prefix__/g, '{0}'),
@@ -960,7 +1023,7 @@ function initAuthorFields() {
       }
     });
 
-  function validateUser(e) {
+  function validateUser() {
     let tgt = $(this),
       row = tgt.parents('li');
     if (row.hasClass('blank')) {
@@ -977,7 +1040,7 @@ function initAuthorFields() {
   }
 
   function renumberAuthors() {
-    authors.children('.author').each(function (i, el) {
+    authors.children('.author').each(function (i) {
       $(this).find('.position input').val(i);
     });
     if ($('.author:visible').length > 1) {
@@ -1002,7 +1065,7 @@ function initCompatibility() {
   $(document).on(
     'click',
     'p.add-app a',
-    _pd(function (e) {
+    _pd(function () {
       let outer = $(this).closest('form');
 
       $('tr.app-extra', outer).each(function () {
@@ -1014,7 +1077,7 @@ function initCompatibility() {
       $('.new-apps ul').on(
         'click',
         'a',
-        _pd(function (e) {
+        _pd(function () {
           let $this = $(this),
             sel = format('tr.app-extra td[class="{0}"]', [$this.attr('class')]),
             $row = $(sel, outer);
@@ -1036,7 +1099,7 @@ function initCompatibility() {
   $(document).on(
     'click',
     '.compat-versions .remove',
-    _pd(function (e) {
+    _pd(function () {
       let $this = $(this),
         $row = $this.closest('tr');
       $row.addClass('app-extra');
@@ -1179,44 +1242,6 @@ function addAppRow(obj) {
   }
 }
 
-function compatModalCallback(obj) {
-  let $widget = this,
-    ct = $(obj.click_target),
-    form_url = ct.attr('data-updateurl');
-
-  if ($widget.hasClass('ajax-loading')) return;
-  $widget.addClass('ajax-loading');
-  $widget.load(form_url, function (e) {
-    $widget.removeClass('ajax-loading');
-  });
-
-  $(document).on('submit', 'form.compat-versions', function (e) {
-    e.preventDefault();
-    $widget.empty();
-
-    if ($widget.hasClass('ajax-loading')) return;
-    $widget.addClass('ajax-loading');
-
-    let widgetForm = $(this);
-    $.post(widgetForm.attr('action'), widgetForm.serialize(), function (data) {
-      $widget.removeClass('ajax-loading');
-      if ($(data).find('.errorlist').length) {
-        $widget.html(data);
-      } else {
-        let c = $(
-          '.item[data-addonid=' +
-            widgetForm.attr('data-addonid') +
-            '] .item-actions li.compat',
-        );
-        c.load(c.attr('data-src'));
-        $widget.hideMe();
-      }
-    });
-  });
-
-  return { pointTo: ct };
-}
-
 function initCCLicense() {
   function setCopyright(isCopyr) {
     // Set the license options based on whether the copyright license is selected.
@@ -1354,78 +1379,6 @@ function initSourceSubmitOutcomes() {
     });
   });
   $('#id_source').on('change', validateFileUploadSize);
-}
-
-function initSubmitModals() {
-  // Called during the submit addon step
-
-  // Hide the primary container of all modals
-  $('#modals').hide();
-
-  // Used by "Cancel and disable version" button during submission process
-  if ($('#modal-confirm-submission-cancel').length > 0) {
-    let $modalForm = $('#modal-confirm-submission-cancel'),
-      $modalDelete = $modalForm.modal('.confirm-submission-cancel', {
-        width: 400,
-      });
-
-    // Submitting the form in the modal is not useful. Instead, after
-    // receiving user confirmation, form that contains the
-    // "confirm-submission-cancel" button should POST to an alternate URL
-    $modalForm.find('form').on('submit', function onSubmit(e) {
-      e.preventDefault();
-
-      // this alternate URL is stored in this modal's submit button
-      // so change the form action attribute and submit it
-      let $confirmButton = $('.confirm-submission-cancel'),
-        $mainForm = $confirmButton.closest('form'),
-        cancelUrl = $confirmButton.attr('formaction');
-
-      $mainForm.attr('action', cancelUrl);
-      $mainForm.trigger('submit');
-
-      return false; // don't follow the a.href link
-    });
-  }
-
-  // Warn about Android compatibility (if selected).
-  if ($('#modal-confirm-android-compatibility').length > 0) {
-    let confirmedOnce = false;
-    let $input = $('#id_compatible_apps label.android input[type=checkbox]');
-
-    const $modalAndroidConfirm = $(
-      '#modal-confirm-android-compatibility',
-    ).modal('#id_compatible_apps label.android', {
-      width: 525,
-      callback: function shouldShowAndroidModal(options) {
-        if ($input.prop('disabled')) {
-          return false;
-        }
-        if (confirmedOnce) {
-          setTimeout(function () {
-            // $().modal() calls preventDefault() before firing the callback
-            // but the checkbox is temporarily checked anyway when clicking on
-            // it (not the label). To work around this, we wrap our toggling
-            // in a setTimeout() to force it to wait for the event to be
-            // processed.
-            $input.prop('checked', !$input.prop('checked'));
-            $input.trigger('change');
-          }, 0);
-        }
-        return !confirmedOnce;
-      },
-    });
-
-    $('#modal-confirm-android-compatibility')
-      .find('form')
-      .on('submit', function onSubmit(e) {
-        e.preventDefault();
-        $input.prop('checked', true);
-        $input.trigger('change');
-        $modalAndroidConfirm.trigger('close');
-        confirmedOnce = true;
-      });
-  }
 }
 
 function initSurveyBanner() {

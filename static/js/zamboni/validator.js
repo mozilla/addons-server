@@ -12,21 +12,6 @@ $(document).ready(function () {
 function initValidator($doc) {
   $doc = $doc || $(document);
 
-  function inherit(OtherClass, constructor) {
-    let NewClass = function () {
-      OtherClass.apply(this, arguments);
-      if (typeof constructor !== 'undefined') {
-        constructor.apply(this, arguments);
-      }
-    };
-    $.extend(NewClass.prototype, OtherClass.prototype);
-    return NewClass;
-  }
-
-  function emptyFn() {
-    return null;
-  }
-
   function ResultsTier($suite, tierId, options) {
     if (typeof options === 'undefined') {
       options = {};
@@ -452,7 +437,7 @@ function initValidator($doc) {
     });
   }
 
-  $('.addon-validator-suite', $doc).on('validate', function (e) {
+  $('.addon-validator-suite', $doc).on('validate', function () {
     let el = $(this),
       data = el.data();
 
@@ -507,7 +492,7 @@ function initValidator($doc) {
         buildResults(el, data);
         el.trigger('success.validation');
       },
-      error: function (XMLHttpRequest, textStatus, errorThrown) {
+      error: function () {
         buildResults(el, {
           validation: {
             ending_tier: 1,
