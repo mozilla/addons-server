@@ -1350,9 +1350,9 @@ form.favorite {
     padding: 16px;
     background-color: #fff;
     color: #444;
-    box-shadow: 0 0 15px rgba(0,0,0,.5);
-    box-shadow: 0 0 15px rgba(0,0,0,.5);
-    box-shadow: 0 0 15px rgba(0,0,0,.5);
+    box-shadow: 0 0 15px rgb(0 0 0 / .5);
+    box-shadow: 0 0 15px rgb(0 0 0 / .5);
+    box-shadow: 0 0 15px rgb(0 0 0 / .5);
     border-radius: 10px;
     border-radius: 10px;
     border-radius: 10px;
@@ -1962,7 +1962,7 @@ ol.pagination li a:active {
 .share-email .share-email-success {
     display: none;
     background: #DAF1FA; /* IE */
-    background: rgba(218, 241, 250, 0.8);
+    background: rgb(218 241 250 / 0.8);
     font-size: 180%;
     font-weight: bold;
     text-align: center;

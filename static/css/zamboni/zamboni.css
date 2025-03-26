@@ -189,13 +189,13 @@ span.new  {
         linear,
         left bottom,
         left top,
-        from(rgb(42,65,135)),
-        to(rgb(59,105,177))
+        from(rgb(42 65 135)),
+        to(rgb(59 105 177))
     );
     background: linear-gradient(
         to top,
-        rgb(42,65,135) 0%,
-        rgb(59,105,177) 100%
+        rgb(42 65 135) 0%,
+        rgb(59 105 177) 100%
     );
 }
 
@@ -219,9 +219,9 @@ input[type=button] {
     display: inline-block;
     line-height: 1.538;
     text-shadow: 0 -1px 0 #3d6db5;
-    box-shadow: inset 0 0 1px rgba(255,255,255,0.1);
-    box-shadow: inset 0 0 1px rgba(255,255,255,0.1);
-    box-shadow: inset 0 0 1px rgba(255,255,255,0.1);
+    box-shadow: inset 0 0 1px rgb(255 255 255 / 0.1);
+    box-shadow: inset 0 0 1px rgb(255 255 255 / 0.1);
+    box-shadow: inset 0 0 1px rgb(255 255 255 / 0.1);
     border-radius: .95em;
     border-radius: .95em;
     border-radius: .95em;
@@ -236,7 +236,7 @@ input[type=button] {
 
 .button span,
 button span {
-    border-left: 2px groove rgba(150,150,150,0.35);
+    border-left: 2px groove rgb(150 150 150 / 0.35);
     padding: .3em .5em .2em .65em;
     margin: 0 .25em 0 -.25em;
     display: inline-block;
@@ -247,7 +247,7 @@ button span {
 .html-rtl .button span,
 .html-rtl button span {
     border-left: 0;
-    border-right: 2px groove rgba(150,150,150,0.35);
+    border-right: 2px groove rgb(150 150 150 / 0.35);
     padding: .3em .65em .2em .5em;
     margin: 0 -.25em 0 .25em;
 }
@@ -260,7 +260,7 @@ button.go span {
 }
 
 .button.concealed span {
-    border-color: rgba(130,160,175,0.15);
+    border-color: rgb(130 160 175 / 0.15);
 }
 
 a.button:hover,
@@ -272,9 +272,9 @@ input[type=button]:hover,
 input[type=submit]:focus,
 input[type=button]:focus {
     border-color: #03c;
-    box-shadow: inset 0 0 2px rgba(255,255,255,1);
-    box-shadow: inset 0 0 2px rgba(255,255,255,1);
-    box-shadow: inset 0 0 2px rgba(255,255,255,1);
+    box-shadow: inset 0 0 2px rgb(255 255 255 / 1);
+    box-shadow: inset 0 0 2px rgb(255 255 255 / 1);
+    box-shadow: inset 0 0 2px rgb(255 255 255 / 1);
 }
 
 a.button:active, button.button:active {
@@ -282,9 +282,9 @@ a.button:active, button.button:active {
     background-image: url("../../img/zamboni/button-blue-on.png");
     background: linear-gradient(#39f 40%, #6fb7ff 60%);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(40%, #39f), color-stop(60%, #6fb7ff));
-    box-shadow: inset 0 0 2px rgba(0,0,0,.5);
-    box-shadow: inset 0 0 2px rgba(0,0,0,.5);
-    box-shadow: inset 0 0 2px rgba(0,0,0,.5);
+    box-shadow: inset 0 0 2px rgb(0 0 0 / .5);
+    box-shadow: inset 0 0 2px rgb(0 0 0 / .5);
+    box-shadow: inset 0 0 2px rgb(0 0 0 / .5);
 }
 
 .cta a.button:link,
@@ -315,9 +315,9 @@ a.button:active, button.button:active {
     background: #7bf;
     background: linear-gradient(#5af, #7bf);
     background: -webkit-gradient(linear, left top, left bottom, from(#5af), to(#7bf));
-    box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5);
-    box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5);
-    box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 0 2px rgb(0 0 0 / 0.5);
+    box-shadow: inset 0 0 2px rgb(0 0 0 / 0.5);
+    box-shadow: inset 0 0 2px rgb(0 0 0 / 0.5);
 }
 
 /* larger buttons for emphasis */
@@ -474,7 +474,7 @@ input[type=submit].caution,
 input[type=button].caution {
     color: #333;
     background: #fc0 url("../../img/zamboni/button-caution.png") 0 50% repeat-x;
-    background: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0) 60%),
+    background: linear-gradient(rgb(255 255 255 / 0.4), rgb(255 255 255 / 0) 60%),
     -moz-repeating-linear-gradient(-45deg, #F0B500, #F0B500 7px, #FFD000 7px, #FFD000 14px);
     border-color: #a70;
     text-shadow: 0 1px 0 #ffe56b;
@@ -487,7 +487,7 @@ input[type=submit].caution.concealed,
 input[type=button].caution.concealed {
     color: #859fae;
     border-color: #a70;
-    background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.6) 60%),
+    background: linear-gradient(rgb(255 255 255 / 0.9), rgb(255 255 255 / 0.6) 60%),
     -moz-repeating-linear-gradient(-45deg, #F0B500, #F0B500 7px, #FFD000 7px, #FFD000 14px);
     white-space: normal;
 }
@@ -506,10 +506,10 @@ input[type=button].caution:focus {
 a.button.caution:active {
     border-color: #850;
     background-image: url("../../img/zamboni/button-caution-on.png");
-    background: linear-gradient(rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 0.3) 60%),
+    background: linear-gradient(rgb(255 255 255 / 0) 40%, rgb(255 255 255 / 0.3) 60%),
     -moz-repeating-linear-gradient(45deg, #F0B500, #F0B500 7px, #FFD000 7px, #FFD000 14px);
-    box-shadow: inset 0 0 5px rgba(0,0,0,.5);
-    box-shadow: inset 0 0 5px rgba(0,0,0,.5);
+    box-shadow: inset 0 0 5px rgb(0 0 0 / .5);
+    box-shadow: inset 0 0 5px rgb(0 0 0 / .5);
 }
 
 /** Status Button *********/
@@ -797,9 +797,9 @@ div.popup-shim {
     border-radius: 8px;
     border-radius: 8px;
     border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.35);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.35);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.35);
+    box-shadow: 0 1px 3px rgb(0 0 0 / 0.35);
+    box-shadow: 0 1px 3px rgb(0 0 0 / 0.35);
+    box-shadow: 0 1px 3px rgb(0 0 0 / 0.35);
     z-index: 2001; /* because of devhub title */
 }
 
@@ -2012,9 +2012,9 @@ form .error .note.error {
     border-radius: 5px;
     border-radius: 5px;
     border-radius: 5px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 1px 3px rgb(0 0 0 / 0.35);
+    box-shadow: 0 1px 3px rgb(0 0 0 / 0.35);
+    box-shadow: 0 1px 3px rgb(0 0 0 / 0.35);
     font-family: "helvetica neue", arial, helvetica, sans-serif;
     color: #444;
     font-size: 13px;

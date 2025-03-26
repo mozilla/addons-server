@@ -836,9 +836,9 @@ a.delete-button {
     border-radius: .95em;
     border-radius: .95em;
     border-radius: .95em;
-    box-shadow: inset 0 0 2px rgba(255,255,255,0.1);
-    box-shadow: inset 0 0 2px rgba(255,255,255,0.1);
-    box-shadow: inset 0 0 2px rgba(255,255,255,0.1);
+    box-shadow: inset 0 0 2px rgb(255 255 255 / 0.1);
+    box-shadow: inset 0 0 2px rgb(255 255 255 / 0.1);
+    box-shadow: inset 0 0 2px rgb(255 255 255 / 0.1);
     color: #fff;
     display: inline-block;
     font-weight: bold;
@@ -849,9 +849,9 @@ a.delete-button {
 }
 
 a.delete-button:hover {
-    box-shadow: inset 0 0 2px rgba(255,255,255,1);
-    box-shadow: inset 0 0 2px rgba(255,255,255,1);
-    box-shadow: inset 0 0 2px rgba(255,255,255,1);
+    box-shadow: inset 0 0 2px rgb(255 255 255 / 1);
+    box-shadow: inset 0 0 2px rgb(255 255 255 / 1);
+    box-shadow: inset 0 0 2px rgb(255 255 255 / 1);
     color: #fff;
 }
 
@@ -1679,9 +1679,9 @@ button.search-button {
   border-radius: 6px;
   border-radius: 6px;
   border-radius: 6px;
-  box-shadow: 0 1px rgba(0, 0, 0, 0.1), 0 -2px rgba(0, 0, 0, 0.1) inset;
-  box-shadow: 0 1px rgba(0, 0, 0, 0.1), 0 -2px rgba(0, 0, 0, 0.1) inset;
-  box-shadow: 0 1px rgba(0, 0, 0, 0.1), 0 -2px rgba(0, 0, 0, 0.1) inset;
+  box-shadow: 0 1px rgb(0 0 0 / 0.1), 0 -2px rgb(0 0 0 / 0.1) inset;
+  box-shadow: 0 1px rgb(0 0 0 / 0.1), 0 -2px rgb(0 0 0 / 0.1) inset;
+  box-shadow: 0 1px rgb(0 0 0 / 0.1), 0 -2px rgb(0 0 0 / 0.1) inset;
 }
 
 .html-rtl button.search-button {
