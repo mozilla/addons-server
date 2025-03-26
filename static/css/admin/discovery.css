@@ -68,7 +68,7 @@
     display: inline-block;
     margin: 0.25em;
     vertical-align: top;
-    background-color: #EEEEEE;
+    background-color: #EEE;
 }
 
 .dynamic-modules .field-icon div[id^=id_modules-][id$=-icon] > * div {

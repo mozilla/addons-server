@@ -52,7 +52,7 @@ form .char-count::after,
 
 #version-status .version-changed {
     float: right;
-    color: #888888;
+    color: #888;
 }
 
 #setup h3,
@@ -310,7 +310,7 @@ form .char-count b {
 }
 
 #file-list .preview label {
-    color: #666666;
+    color: #666;
     display: block;
     font-size: 0.9em;
     font-weight: bold;
@@ -573,7 +573,7 @@ input.valid {
 
 /* @group Payments */
 .payments .intro {
-    background-color: #FFFFFF;
+    background-color: #FFF;
     border: 1px solid #C9E8F3;
     padding: 1em;
     width: 300px;
@@ -1041,13 +1041,13 @@ pre.email_comment {
 }
 
 #upload-file .upload-status #uploadstatus {
-    color: #777777;
+    color: #777;
     font-size: 11px;
     margin-top: 4px;
 }
 
 .platform-disabled {
-    color: #777777;
+    color: #777;
 }
 
 #upload-file .submission-warning {
@@ -1496,7 +1496,7 @@ form.select-review .errorlist {
 
 #addon-validator-suite .msg-error {
     background: transparent url("../../img/developers/test-fail.png") no-repeat 0 1.1em;
-    color: #ff0000;
+    color: #f00;
 }
 
 #addon-validator-suite .msg-warning {
