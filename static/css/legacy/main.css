@@ -1828,7 +1828,7 @@ ol.pagination li a:active {
 }
 
 .share-arrow {
-    background-image: url("../../img/icons/pointer.gif") no-repeat 30px top;
+    background: url("../../img/icons/pointer.gif") no-repeat 30px top;
     padding-top: 7px;
     display: none;
 }
@@ -2514,7 +2514,7 @@ ol.pagination + .num-results {
 
 .html-rtl .object-lead .meta {
     float: left;
-    padding-left: auto;
+    padding-left: inherit;
     padding-right: 2%;
     margin-left: 2%;
     margin-right: 1em;

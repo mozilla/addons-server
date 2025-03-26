@@ -1,6 +1,5 @@
 /** @type {import('stylelint').Config} */
 export default {
-  extends: 'stylelint-config-standard',
   ignoreFiles: [
     // Ignore non CSS/LESS files
     '**/*.!(css|less)',
@@ -12,9 +11,12 @@ export default {
     'selector-id-pattern': null,
     'no-descending-specificity': null,
     'no-duplicate-selectors': null,
-    'declaration-property-value-no-unknown': null,
   },
   overrides: [
+    {
+      files: ['static/css/**/*.css'],
+      extends: ['stylelint-config-standard'],
+    },
     {
       files: ['static/css/**/*.less'],
       extends: ['stylelint-config-standard-less'],
