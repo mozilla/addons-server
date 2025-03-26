@@ -31,9 +31,11 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 ul {
     list-style: none;
 }
+
 blockquote, q {
     quotes: none;
 }
+
 blockquote:before, blockquote:after,
 q:before, q:after {
     content: '';
@@ -85,10 +87,12 @@ button.link span {
     color: #3d6db5;
     text-decoration: none;
 }
+
 a:visited {
     color: #003595;
     text-decoration: none;
 }
+
 a:hover,
 a:focus,
 a:active,
@@ -136,6 +140,7 @@ h1 {
     margin-top:0.1667em /* 6px */;
     margin-bottom:0.5833em /* 21px */;
 }
+
 h2 {
     font-size:2.154em /* 28px */;
     font-weight:normal;
@@ -144,6 +149,7 @@ h2 {
     margin-bottom:0.5em /* 14px */;
     color:#C63717;
 }
+
 h3 {
     color:#011234;
     font-size:1.385em /* 18px */;
@@ -152,10 +158,12 @@ h3 {
     margin-top:1.556em /* 28px */;
     margin-bottom:0.778em /* 14px */;
 }
+
 h4 {
     color:#223355;
     font-size:1em /* 13px */;
 }
+
 h5, h6 {
     font-size:1em /* 13px */;
 }
@@ -409,18 +417,23 @@ button.link {
     display: block;
     float: left;
 }
+
 .stars-4 {
     background-position: -13px 50%;
 }
+
 .stars-3 {
     background-position: -26px 50%;
 }
+
 .stars-2 {
     background-position: -39px 50%;
 }
+
 .stars-1 {
     background-position: -52px 50%;
 }
+
 .stars-0 {
     background-position: -65px 50%;
 }
@@ -463,40 +476,52 @@ button.link {
     background-position: 0 -200px;
     padding-bottom: 7px;
 }
+
 .collections {
     background-position: 0 -300px;
 }
+
 .subscribers {
     background-position: 0 -400px;
     padding-bottom: 7px;
 }
+
 .category {
     background-position: 0 -503px;
 }
+
 .tags {
     background-position: 0 -600px;
 }
+
 .digg {
     background-position: 0 -890px;
 }
+
 .delicious {
     background-position: 0 -990px;
 }
+
 .facebook {
     background-position: 0 -1090px;
 }
+
 .friendfeed {
     background-position: 0 -1190px;
 }
+
 .myspace {
     background-position: 0 -1290px;
 }
+
 .twitter {
     background-position: 0 -1492px;
 }
+
 .share-networks .email {
     background-position: 0 -1689px;
 }
+
 .share-email .emailerror p {
     background-position: 0 -1798px;
 }
@@ -576,24 +601,29 @@ h3 .secondary a:link, h3 .secondary a:active, h3 .secondary a:visited, h3 .secon
     margin-right: 1em;
     float: left;
 }
+
 .html-rtl .pull-left {
     margin-right: auto;
     margin-left: 1em;
     float: right;
 }
+
 .pull-right {
     margin-left: 1em;
     float: right;
 }
+
 .html-rtl .pull-right {
     margin-left: auto;
     margin-right: 1em;
     float: left;
 }
+
 .teaser-img {
     text-align: center;
     display: block;
 }
+
 img.icon {
     background-color: #fff;
     -webkit-border-radius: 4px;
@@ -607,10 +637,12 @@ h2 img.icon {
     float: left;
     margin-right: 10px;
 }
+
 h2 img.icon {
     position: relative;
     top: -0.2em;
 }
+
 img.avatar {
     border: 3px solid #FFFFFF;
 }
@@ -899,6 +931,7 @@ form.favorite {
     margin-left: 1em;
     margin-top: 0.5em;
 }
+
 .policy-statement {
     margin-bottom: 1em;
     max-height: 300px;
@@ -912,6 +945,7 @@ form.favorite {
 .prose {
     margin: 1em;
 }
+
 .primary.prose {
     margin: 0;
 }
@@ -1015,6 +1049,7 @@ form.favorite {
     clear: right;
     display: inline;
 }
+
 .secondary {
     width: 24.49%;
     float: left;
@@ -1041,22 +1076,27 @@ form.favorite {
     float: left;
     clear: left;
 }
+
 .inverse .secondary {
     float: right;
     clear: right;
 }
+
 .inverse .primary .primary {
     float: left;
     clear: none;
 }
+
 .section .inverse .primary {
     float: right;
     clear: none;
 }
+
 .inverse .primary .secondary {
     float: right;
     clear: none;
 }
+
 .section .inverse .secondary  {
     float: left;
     clear: none;
@@ -1115,6 +1155,7 @@ form.favorite {
     margin-bottom: 2em;
     clear: both;
 }
+
 .featured-inner {
     background-color: #fff;
     border: 1px solid #2E5186;
@@ -1136,6 +1177,7 @@ form.favorite {
     padding: 1em;
     overflow: hidden;
 }
+
 .secondary .article {
     margin-bottom: 1em;
 }
@@ -1250,11 +1292,13 @@ form.favorite {
     color: #666666;
     font-weight: bold;
 }
+
 .notification .suggestion {
     margin: 0;
     color: #666666;
     font-weight: bold;
 }
+
 .notification .aux {
     overflow: hidden;
     width: 100%;
@@ -1313,49 +1357,62 @@ form.favorite {
     -webkit-border-radius: 10px;
     border-radius: 10px;
 }
+
 #contribute-box h2 {
     margin-top: 0;
 }
+
 #contribute-box form {
     margin-bottom: 0;
 }
+
 #contribute-box p,
 #contribute-box h4,
 #contribute-box ul {
     font-size: 16px;
 }
+
 #contribute-box .support {
     font-size: 13px;
 }
+
 #contribute-box h4 {
     margin-bottom: .5em;
 }
+
 #contribute-box h4.comment {
     display: inline;
 }
+
 #contribute-box li {
     line-height: 180%;
 }
+
 #contribute-box label {
     font-weight: normal;
 }
+
 #contribute-box input[type=text] {
     width: 4em;
     padding:0 1px 1px 1px;
 }
+
 #contribute-box textarea {
     width: 100%;
     height: 6em;
     margin-bottom: 0.4em;
     padding:0 1px 1px 1px;
 }
+
 #contribute-box span {
     margin-left: 2em;
 }
+
 #contribute-box .commentlen {
     margin: 0;
     float: right;
 }
+
 .contrib-overlay {
     background-color: transparent;
 }
@@ -1378,6 +1435,7 @@ form.favorite {
     width: 33.2%;
     z-index: 1;
 }
+
 .primary .object-lead .toggle-info {
     width: 100%;
 }
@@ -1721,21 +1779,26 @@ ol.pagination {
     float: left;
     line-height: 2em;
 }
+
 .listing-footer ol.pagination {
     margin-bottom: 0;
 }
+
 ol.pagination li {
     display: inline;
     list-style: none;
 }
+
 ol.pagination li a {
     padding: 0.3em 0.7em;
     font-weight: bold;
 }
+
 ol.pagination span {
     font-weight: bold;
     padding: 0.3em 0.7em;
 }
+
 ol.pagination a[rel~="prev"],
 ol.pagination span.prev  {
     background-image: url(../../img/icons/arrows.gif);
@@ -1745,6 +1808,7 @@ ol.pagination span.prev  {
     padding-right:0.7em;
     padding-left: 15px;
 }
+
 ol.pagination a[rel~="next"],
 ol.pagination span.next {
     background-image: url(../../img/icons/arrows.gif);
@@ -1754,14 +1818,17 @@ ol.pagination span.next {
     padding-left:0.7em;
     padding-right: 15px;
 }
+
 ol.pagination span.prev {
     color: #666;
     background-position: 5px -540px;
 }
+
 ol.pagination span.next {
     color: #666;
     background-position: 92% -500px;
 }
+
 ol.pagination li.selected a:link,
 ol.pagination li.selected a:visited,
 ol.pagination li.selected a:hover,
@@ -1773,6 +1840,7 @@ ol.pagination li.selected a:active {
     background-color: #223355;
     color: white;
 }
+
 ol.pagination li a:hover,
 ol.pagination li a:focus,
 ol.pagination li a:active {
@@ -1852,36 +1920,45 @@ ol.pagination li a:active {
     padding: .8em;
     display: none;
 }
+
 .share-email label {
     display: block;
 }
+
 .share-email .container {
     margin-bottom: .5em;
 }
+
 .share-email .container input,
 .share-email .container textarea {
     -moz-box-sizing:border-box;
     display:block;
     width:100%;
 }
+
 .share-email .container textarea {
     min-height: 6em;
 }
+
 .share-email .container.buttons {
     margin-bottom: 0;
     text-align: right;
 }
+
 .share-email .container.buttons button {
     margin-left: .5em;
 }
+
 .html-rtl .share-email .container.buttons button {
     padding-left: 0;
     padding-right: .5em;
 }
+
 .share-email .emailerror p {
     font-weight: bold;
     max-width: 25em;
 }
+
 .share-email .share-email-success {
     display: none;
     background: #DAF1FA; /* IE */
@@ -1895,6 +1972,7 @@ ol.pagination li a:active {
     left: 0;
     top: 0;
 }
+
 .share-email .share-email-success p {
     padding-top: 50%;
     margin-top: -3.5em;
@@ -1929,6 +2007,7 @@ ol.pagination li a:active {
     padding: 1em;
     overflow: hidden;
 }
+
 .secondary-item-list ul {
     margin: 0.5em 0 0 0;
     padding: 0;
@@ -1966,10 +2045,12 @@ form.addon-feedback textarea {
     float: right;
     min-height:140px;
 }
+
 form.addon-feedback select {
     background-color: #E3F3F9;
     margin-left: 1%;
 }
+
 form.addon-feedback label {
     float: left;
     clear: both;
@@ -2008,18 +2089,22 @@ form.addon-feedback div.container {
     padding: 0.1em 0 0.1em 0.25em;
     line-height: 2.5em;
 }
+
 .listing-header ul {
     margin-bottom: 0;
     float: left;
 }
+
 .listing-header form {
     margin-bottom: 0;
 }
+
 .listing-header li {
     line-height: 2.5;
     display: inline;
     margin: 0 0;
 }
+
 .listing-header li a {
     color: #223355;
     font-weight: bold;
@@ -2031,10 +2116,12 @@ form.addon-feedback div.container {
     padding: 0.3em 0.6em;
     white-space: nowrap;
 }
+
 .listing-header li a:hover,
 .listing-header li a:focus {
     background-color: #BBDCE8;
 }
+
 .categories li.selected,
 .categories li.selected a,
 .listing-header li.selected a:link,
@@ -2085,9 +2172,11 @@ form.addon-feedback div.container {
     overflow: hidden;
     padding:0.3em 1em 0.5em;
 }
+
 .listing-footer a {
     font-weight: bold;
 }
+
 .listing-footer .subscribe,
 .listing-footer .pagination {
     float: left;
@@ -2119,6 +2208,7 @@ ol.pagination + .num-results {
     margin: 1.2em 0;
     padding-top:1px;
 }
+
 .item blockquote,
 .version blockquote {
     font-style: normal;
@@ -2133,6 +2223,7 @@ ol.pagination + .num-results {
     margin-top: 0.5em;
     margin-bottom: 0.2em;
 }
+
 .item h3,
 .item h4 {
     font-size: 1.385em; /* 18px */
@@ -2142,12 +2233,14 @@ ol.pagination + .num-results {
     margin-bottom: 0.778em;
     overflow: hidden;
 }
+
 .item h3 span,
 .item h4 span {
     font-size: 0.667em; /* 13px */
     font-weight: normal;
     display:block;
 }
+
 .item h5 span,
 .version h5 span {
     font-size: 0.857em;
@@ -2164,9 +2257,11 @@ ol.pagination + .num-results {
     border-top: 1px dotted #e0effd;
     padding-top: 0.3em;
 }
+
 .item .meta .addons {
     margin-right: 1em;
 }
+
 .html-rtl .item .meta .addons {
     margin-right: auto;
     margin-left: 1em;
@@ -2175,6 +2270,7 @@ ol.pagination + .num-results {
 .item .downloads {
     margin-left: 1em;
 }
+
 .html-rtl .item .downloads {
     margin-left: auto;
     margin-right: 1em;
@@ -2185,6 +2281,7 @@ ol.pagination + .num-results {
     margin-left: 1em;
     white-space: nowrap;
 }
+
 .html-rtl .item .updated {
     margin-left: auto;
     margin-right: 1em;
@@ -2204,6 +2301,7 @@ ol.pagination + .num-results {
     /*margin-bottom: -50em;
     padding-bottom: 50em;*/
 }
+
 .item-info ul {
     list-style-type: none;
 }
@@ -2411,6 +2509,7 @@ ol.pagination + .num-results {
     background-image: url(../../img/bg/listing-item-yellow.png);
     border-color: #fc9;
 }
+
 .recommended .meta {
     border-color: #fc9;
 }
@@ -2420,6 +2519,7 @@ ol.pagination + .num-results {
     background-image: url(../../img/bg/listing-item-red.png);
     border-color: #fcc;
 }
+
 .experimental .meta {
     border-color: #fcc;
 }
@@ -2646,14 +2746,17 @@ ul.further-navigation li a {
     float: left;
     clear: left;
 }
+
 .html-rtl .secondary {
     float: right;
     clear: right;
 }
+
 .html-rtl .primary .primary {
     float: right;
     clear: none;
 }
+
 .html-rtl .primary .secondary {
     float: left;
     clear: none;
@@ -2672,6 +2775,7 @@ ul.further-navigation li a {
 .html-rtl .more-info {
     float: left;
 }
+
 .html-rtl .more-info,
 .html-rtl .more-info:link,
 .html-rtl .more-info:visited,
@@ -2688,6 +2792,7 @@ padding-left: 1em;
 .html-rtl .more-info:active {
 background-position:left -303px;
 }
+
 .html-rtl .item a.show-expanded {
     float: left;
 }
@@ -2717,42 +2822,52 @@ background-position:left -303px;
     background-position: right -200px;
     padding: 0 20px 7px 0;
 }
+
 .html-rtl .collections {
     background-position: right -300px;
     padding: 0 20px 0 0;
 }
+
 .html-rtl .subscribers {
     background-position: right -400px;
     padding: 0 20px 7px 0;
 }
+
 .html-rtl .category {
     background-position: right -500px;
     padding: 0 20px 0 0;
 }
+
 .html-rtl .tags {
     background-position: right -600px;
     padding: 0 20px 0 0;
 }
+
 .html-rtl .digg {
     background-position: right -890px;
     padding: 0 20px 0 0;
 }
+
 .html-rtl .delicious {
     background-position: right -990px;
     padding: 0 20px 0 0;
 }
+
 .html-rtl .facebook {
     background-position: right -1090px;
     padding: 0 20px 0 0;
 }
+
 .html-rtl .friendfeed {
     background-position: right -1190px;
     padding: 0 20px 0 0;
 }
+
 .html-rtl .myspace {
     background-position: right -1290px;
     padding: 0 20px 0 0;
 }
+
 .html-rtl .twitter {
     background-position: right -1492px;
     padding: 0 20px 0 0;
@@ -2800,22 +2915,27 @@ background-position:left -303px;
     float: right;
     clear: right;
 }
+
 .html-rtl .inverse .secondary {
     float: left;
     clear: left;
 }
+
 .html-rtl .inverse .primary .primary {
     float: right;
     clear: none;
 }
+
 .html-rtl .section .inverse .primary {
     float: left;
     clear: none;
 }
+
 .html-rtl .inverse .primary .secondary {
     float: left;
     clear: none;
 }
+
 .html-rtl .section .inverse .secondary  {
     float: right;
     clear: none;
@@ -2947,6 +3067,7 @@ background-position:left -303px;
 .html-rtl ol.pagination span.prev {
     background-position: 92% -500px;
 }
+
 .html-rtl ol.pagination span.next {
     background-position: 5px -540px;
 }
@@ -3149,6 +3270,7 @@ background-position:left -303px;
     margin-left: 0;
     margin-right: 0.5em;
 }
+
 .html-rtl .item img.icon {
     left: auto;
     right: 7px;
@@ -3236,6 +3358,7 @@ background-position:left -303px;
 .thunderbird #header #title strong {
     color: #105399;
 }
+
 .thunderbird #aux-nav .change li.thunderbird {
     display: none;
 }
@@ -3244,6 +3367,7 @@ background-position:left -303px;
 .sunbird #header #title strong {
     color: #007940;
 }
+
 .sunbird #aux-nav .change li.sunbird {
     display: none;
 }
@@ -3252,6 +3376,7 @@ background-position:left -303px;
 .seamonkey #header #title strong {
     color: #1408E5;
 }
+
 .seamonkey #aux-nav .change li.seamonkey {
     display: none;
 }

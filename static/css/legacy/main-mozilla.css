@@ -37,15 +37,19 @@
     float: none;
     margin: 0 1em 0 .75em;
 }
+
 #addon-list-options ul li {
     margin: 0 0;
 }
+
 #addon-list-options ul li.perpage {
     float: right;
 }
+
 .html-rtl #addon-list-options ul li.perpage {
     float: left;
 }
+
 #addon-list-options ul li.perpage div {
     display: block;
     line-height: 2em;
@@ -73,13 +77,16 @@ li.sub-category {
 p.install-button {
     margin: 0;
 }
+
 .experimental .install-container {
     min-width: 10em;
     margin: .3em .3em .5em .3em;
 }
+
 .install strong.compatmsg {
    padding-bottom: 0.5em;
 }
+
 .install label {
     font-weight: normal;
 }
@@ -95,6 +102,7 @@ p.install-button {
 .nonfirefox {
     text-align: center;
 }
+
 .nonfirefox .installmsg {
     font-size: 120%;
 }
@@ -104,6 +112,7 @@ p.install-button {
     margin-left: 0;
     margin-right: 2%;
 }
+
 .html-rtl .first {
     margin-right: 0;
 }
@@ -113,6 +122,7 @@ span.emaillink {
     direction: rtl;
     unicode-bidi: bidi-override;
 }
+
 span.emaillink .i {
     display: none;
 }
@@ -123,34 +133,43 @@ span.emaillink .i {
     border: 3px solid #e0effd;
     padding: 15px;
 }
+
 .graybox.errors {
     background-color: #fff1eb;
 }
+
 .graybox.spaced {
     margin-bottom: 10px;
 }
+
 .rounded {
     -moz-border-radius: 6px;
     -webkit-border-radius: 6px;
     border-radius: 6px;
 }
+
 .translation-box .html_allowed {
     margin-top: -1em;
     margin-bottom: 1em;
 }
+
 .translation-box .html_allowed .allowed_tags{
     font-weight: bold;
 }
+
 .translation-box h4 {
     border-bottom: 1px solid #2E5186;
 }
+
 .translation-box h4 img {
     float: right;
     margin-top: 3px;
 }
+
 .html-rtl .translation-box h4 img {
     float: left;
 }
+
 .translation-box .translation-button img {
     cursor: pointer;
     float: left;
@@ -165,19 +184,24 @@ span.emaillink .i {
     -webkit-border-top-left-radius: 6px;
     -webkit-border-top-right-radius: 6px;
 }
+
 .html-rtl .translation-box .translation-button img {
     float: right;
     margin: 5px 10px 0 0;
 }
+
 .translation-box .translation-button.remove img {
     float: right;
 }
+
 .html-rtl .translation-box .translation-button.remove img {
     float: left;
 }
+
 .translation-box .translation-button img:hover {
     background-color: #E4F3FA;
 }
+
 .translation-box .translation-tab {
     float: left;
     margin-right: 2px;
@@ -193,47 +217,59 @@ span.emaillink .i {
     cursor: pointer;
     border-bottom: 1px solid #FFFFFF;
 }
+
 .html-rtl .translation-box .translation-tab {
     float: right;
     margin-right: auto;
     margin-left: 2px;
 }
+
 .translation-box .translation-tab.selected {
     border: 1px solid #2E5186;
     background-color: #e0effd;
     border-bottom: none;
     color: #1D587F;
 }
+
 .translation-box .translation-tab:hover {
     text-decoration: underline;
 }
+
 .translation-box .translation-area {
     clear: both;
     margin: 0;
 }
+
 .translation-box .translation-maxlength {
     text-align: right;
     display: none;
 }
+
 .html-rtl .translation-box .translation-maxlength {
     text-align: left;
 }
+
 .translation-box .translation-maxlength.selected {
     display: block;
 }
+
 .translation-box .translation-maxlength img {
     display: none;
 }
+
 .translation-box .translation-maxlength.over {
     color: #CC3333;
 }
+
 .translation-box .translation-maxlength.over img {
     display: inline;
     vertical-align: middle;
 }
+
 .translation-box .translation-maxlength span {
     font-weight: bold;
 }
+
 .translation-box .input {
     border: 1px solid #2E5186;
     margin: 0;
@@ -244,15 +280,18 @@ span.emaillink .i {
     width: 100%;
     display: none;
 }
+
 .translation-box .input.selected {
     display: block;
 }
+
 .translation-newlocale-container,
 .translation-deletelocale-container,
 .translation-help-container,
 .translation-error-container {
     display: none;
 }
+
 .translation-newlocale,
 .translation-deletelocale {
     border: 1px solid #1D587F;
@@ -265,24 +304,29 @@ span.emaillink .i {
     height: 100px;
     display: none;
 }
+
 .translation-deletelocale.textarea {
     position: absolute;
     z-index: 10;
 }
+
 .translation-newlocale.selected,
 .translation-deletelocale {
     display: block;
 }
+
 .translation-newlocale .padded,
 .translation-deletelocale .padded,
 .translation-help .padded {
     padding: 15px;
 }
+
 .translation-newlocale .buttons,
 .translation-deletelocale .buttons {
     text-align: center;
     margin: 10px;
 }
+
 .translation-help {
     background-color: #def1f8;
     margin-bottom: 10px;
@@ -291,11 +335,13 @@ span.emaillink .i {
     -moz-border-radius: 6px;
     border-radius: 6px;
 }
+
 .graybox .error-message {
     background: transparent;
     color: red;
     padding: 5px 0 5px 30px;
 }
+
 .html-rtl .graybox .error-message {
     background-position: 100% 50%;
     padding: 5px 25px 5px 0;
@@ -305,26 +351,31 @@ span.emaillink .i {
 .ui-tabs-hide {
     display: none !important;
 }
+
 .ui-tabs-nav {
     list-style: none;
     margin: 0;
     padding: 0 0 0 3px;
 }
+
 .ui-tabs-nav:after { /* clearing without presentational markup, IE gets extra treatment */
     display: block;
     clear: both;
     content: " ";
 }
+
 .ui-tabs-nav li {
     float: left;
     margin: 0 0 0 2px;
     font-weight: bold;
 }
+
 .ui-tabs-nav a, .ui-tabs-nav a span {
     float: left; /* fixes dir=ltr problem and other quirks IE */
     padding: 0 12px;
     background-color: #26395A;
 }
+
 .ui-tabs-nav a {
     margin: 5px 0 0; /* position: relative makes opacity fail for disabled tab in IE */
     padding-left: 0;
@@ -333,9 +384,11 @@ span.emaillink .i {
     white-space: nowrap; /* @ IE 6 */
     outline: 0; /* @ Firefox, prevent dotted border after click */
 }
+
 .ui-tabs-nav a:link, .ui-tabs-nav a:visited {
     color: #fff;
 }
+
 .ui-tabs-nav .ui-tabs-selected a {
     position: relative;
     top: 1px;
@@ -343,6 +396,7 @@ span.emaillink .i {
     margin-top: 0;
     background-position: 100% -23px;
 }
+
 .ui-tabs-nav a span {
     padding-top: 1px;
     padding-right: 0;
@@ -350,27 +404,33 @@ span.emaillink .i {
     background-position: 0 0;
     line-height: 20px;
 }
+
 .ui-tabs-nav .ui-tabs-selected a span {
     padding-top: 0;
     height: 27px;
     background-position: 0 -23px;
     line-height: 27px;
 }
+
 .ui-tabs-nav .ui-tabs-selected a:link, .ui-tabs-nav .ui-tabs-selected a:visited,
 .ui-tabs-nav .ui-tabs-disabled a:link, .ui-tabs-nav .ui-tabs-disabled a:visited { /* @ Opera, use pseudo classes otherwise it confuses cursor... */
     cursor: text;
 }
+
 .ui-tabs-nav a:hover, .ui-tabs-nav a:focus, .ui-tabs-nav a:active,
 .ui-tabs-nav .ui-tabs-unselect a:hover, .ui-tabs-nav .ui-tabs-unselect a:focus, .ui-tabs-nav .ui-tabs-unselect a:active { /* @ Opera, we need to be explicit again here now... */
     cursor: pointer;
 }
+
 .ui-tabs-disabled {
     opacity: .4;
     filter: alpha(opacity=40);
 }
+
 .ui-tabs-nav .ui-tabs-disabled a:link, .ui-tabs-nav .ui-tabs-disabled a:visited {
     color: #000;
 }
+
 .ui-tabs-panel {
     border: 1px solid #26395A;
     padding: 10px;
@@ -636,9 +696,11 @@ table caption {
     top: -60000px;
     opacity: 0;
 }
+
 #addon-summary table th {
     color: #223355;
 }
+
 #addon-summary tr.meta-stats a {
     margin: 0 1em;
 }
@@ -689,6 +751,7 @@ table caption {
 .hint {
     font-size: 90%;
 }
+
 .hint .example{
     font-style: italic;
 }
@@ -701,9 +764,11 @@ table caption {
 #version-history .oldversion ul.legal li {
     padding-left: 20px;
 }
+
 #version-history .oldversion ul.legal li.license {
     background: url(../../img/icons/script_code_red.png) left no-repeat;
 }
+
 #version-history .oldversion ul.legal li.source,
 .version a.source-code {
     background: url(../../img/icons/page_code.png) left no-repeat;
@@ -832,13 +897,16 @@ table caption {
 #profile-user .line .edit-picture {
     float:left;
 }
+
 .html-rtl #profile-user .line .edit-picture {
     float:right;
 }
+
 table#editor-subscriptions {
     width: 100%;
     border-collapse: separate;
 }
+
 table#editor-subscriptions tbody {
     height: 20em;
     overflow: auto;
@@ -851,6 +919,7 @@ table#editor-subscriptions tbody {
 ul.submissionHelp li span.required {
     font-weight: bold;
 }
+
 ul.submissionHelp li span.optional {
     font-style: italic;
 }
@@ -860,6 +929,7 @@ ul.submissionHelp li span.optional {
 form.collector-firstrun-favorite, div.collector-firstrun-favorite {
     margin-bottom: 1.5em;
 }
+
 div.collector-firstrun-favorite {
     clear:both;
 }
@@ -870,6 +940,7 @@ div.collector-firstrun-favorite {
     margin: 0 5px 0 0;
     float: left;
 }
+
 .html-rtl .item .baseline img.faq {
     margin: 0 0 0 5px;
     float: right;
@@ -885,9 +956,11 @@ div.collector-firstrun-favorite {
     margin-top: 0.5em;
     font-size: 0.85em;
 }
+
 .review .others-by-user a {
     padding-left: 22px;
 }
+
 .review .others-by-user a.loading {
     background: transparent;
 }
@@ -895,6 +968,7 @@ div.collector-firstrun-favorite {
 .review h3 { margin-bottom: 2px;}
 
 .review .hsession { display: inline; }
+
 .review .reviewed-on {
     font-size: .8em;
     margin: .4em 0;
@@ -905,10 +979,12 @@ div.collector-firstrun-favorite {
 .review-reply { margin-left: 3em; }
 
 .review p.flag-thanks, .review-reply p.flag-thanks { font-weight: bold }
+
 .review form.flag, .review-reply form.flag {
     display: block;
     padding-bottom: 1em;
 }
+
 .review form.flag label, .review-reply form.flag label {
     display: block;
     font-weight: bold;
@@ -934,6 +1010,7 @@ div.collector-firstrun-favorite {
 .html-rtl .meta .addons {
     float: right;
 }
+
 .html-rtl .item {
     clear: right;
 }
@@ -1150,29 +1227,37 @@ html[xmlns] .clearfix {
     -webkit-border-radius: 6px;
     border-radius: 6px;
 }
+
 #dictionaries th, #dictionaries td {
     border-bottom: 1px solid #eee;
 }
+
 #dictionaries tbody tr:nth-child(even),
 #dictionaries tbody tr.alt th, #dictionaries tbody tr.alt td {
     background-color: #fff;
 }
+
 #dictionaries {
     clear: both;
     padding: 10px 15px;
 }
+
 #dictionaries table {
     width: 100%;
 }
+
 #dictionaries th, #dictionaries td {
     padding: 6px 12px;
 }
+
 #dictionaries td p {
     margin-bottom: 0;
 }
+
 #dictionaries tbody th {
     font-weight: bold;
 }
+
 #dictionaries thead th {
     border-top: none;
 }
@@ -1182,6 +1267,7 @@ html[xmlns] .clearfix {
 .secondary h3.compact {
     margin-bottom: 12px;
 }
+
 .compact {
     margin: 0px;
 }
@@ -1363,10 +1449,12 @@ html[xmlns] .clearfix {
 }
 
 .results-head {width: 100%;}
+
 .results-head h2 {
     margin-bottom: 0;
     margin-top: 0;
 }
+
 .results-head h3 {
     margin-top: 0;
     font-family: "helvetica neue", arial, helvetica, sans-serif;
@@ -1377,6 +1465,7 @@ html[xmlns] .clearfix {
     display: block;
     margin-left: 0px;
 }
+
 .results .item .install {
     float: none;
     margin-left: 0px;
@@ -1403,6 +1492,7 @@ html[xmlns] .clearfix {
     display: block;
     color: #444; font-weight: normal;
 }
+
 .secondary ul.refinements li.selected a {
     background-color: #b9dbe7;
     -webkit-border-radius: 3px;
@@ -1413,12 +1503,14 @@ html[xmlns] .clearfix {
     background-repeat: no-repeat;
     background-position:4px -152px;
 }
+
 .secondary ul.refinements li a.tagitem {
     padding: 0.21em 2em;
     background-image: url(../../img/icons/icons.png);
     background-repeat: no-repeat;
     background-position: 3px -596px;
 }
+
 .secondary ul.refinements ul {
     padding-left: 1em;
 }
@@ -1447,6 +1539,7 @@ html[xmlns] .clearfix {
     margin-bottom: .75em;
     clear: left;
 }
+
 .html-rtl #login .container,
 .html-rtl #register .container {
     clear: right;
@@ -1509,42 +1602,53 @@ html[xmlns] .clearfix {
 #login-help li {
     margin-top: .25em;
 }
+
 #register #name-help {
     display: block;
     float: right;
     max-width: 40%;
 }
+
 .html-rtl #register #name-help {
     float: left;
 }
+
 #register input[type=checkbox] {
     margin: 0;
 }
+
 #recaptcha_whatsthis a {
     font-size: 90%;
 }
+
 #register #recaptcha_widget {
     display: block;
     margin-left: 10em;
 }
+
 .html-rtl #register #recaptcha_widget {
     margin-left: 0;
     margin-right: 10em;
 }
+
 #register-help h3 {
     margin-top: 0;
 }
+
 #register-help ul {
     list-style: square outside;
     margin-left: 1.5em;
 }
+
 .html-rtl #register-help ul {
     margin-left: 0;
     margin-right: 1.5em;
 }
+
 #register .submit {
     padding-left: 10em;
 }
+
 .html-rtl #register .submit {
     padding-left: 0;
     padding-right: 10em;
@@ -1611,6 +1715,7 @@ html[xmlns] .clearfix {
 .barometer .bars {
     position: relative;
 }
+
 .barometer .upbar,
 .barometer .downbar {
     float: left;
@@ -1817,6 +1922,7 @@ h2.compat-heading a {
     border: 1px solid black;
     padding: 12px;
 }
+
 .jqmOverlay {
     background-color: #000;
 }
@@ -1830,6 +1936,7 @@ h2.compat-heading a {
     width: expression(this.parentNode.offsetWidth+'px');
     height: expression(this.parentNode.offsetHeight+'px');
 }
+
 * html .jqmWindow {
     position: absolute;
     top: expression((document.documentElement.scrollTop || document.body.scrollTop)+Math.round(17 *(document.documentElement.offsetHeight || document.body.clientHeight) / 100)+'px');

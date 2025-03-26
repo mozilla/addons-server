@@ -13,28 +13,34 @@
         max-height: 64px;
         max-width: 64px;
     }
+
     .info {
         padding-left: 102px;
     }
+
     .item-info,
     .item-details {
         .border-box();
     }
+
     .item-info {
         border-left: 1px dotted @border-blue;
         float: right;
         margin-left: 2%;
         padding-left: 2%;
         width: 30%;
+
         .downloads,
         .users,
         .price {
             color: @green;
         }
+
         .price {
             font-size: 11px;
             line-height: 13px;
         }
+
         p {
             font-size: 13px;
             line-height: 15px;
@@ -45,36 +51,45 @@
             }
         }
     }
+
     .item-details {
         width: 68%;
+
         li.distribution-tag-unlisted,
         li.distribution-tag-listed {
             padding-top: 5px;
             border-top: 1px dotted #94bfce;
         }
+
         span.distribution-tag-listed, span.distribution-tag-unlisted {
             color: white;
             border-radius: 4px;
             padding: 1px 5px;
             font-size: smaller
         }
+
         span.distribution-tag-listed {
             background-color: #01BDAD;
         }
+
         span.distribution-tag-unlisted {
             background-color: #7A2F7A;
         }
     }
+
     &:hover {
         a {
             color: @link;
         }
+
         h5 {
             color: @dark-gray;
         }
     }
+
     .info.statictheme {
         padding-left: 148px;
+
         h3 img {
             left: 10px;
             height: 64px;
@@ -91,10 +106,12 @@
         padding-left: 0px;
         padding-right: 102px;
     }
+
     .info.statictheme {
         padding-left: 0px;
         padding-right: 148px;
     }
+
     .item-info {
         float: left;
         border: 0;
@@ -128,11 +145,13 @@
                 top: 0;
                 width: 0;
             }
+
             &:hover:after {
                 border-top-color: #05e;
             }
         }
     }
+
     button.link {
         background: transparent none;
         text-shadow: none;
@@ -144,20 +163,25 @@
         font-size: 11px;
         padding: 0;
     }
+
     button.link:hover {
         text-decoration: underline;
     }
+
     h5 {
         font-size: 1em;
         margin-right: 4px;
     }
+
     h5, > ul, > ul > li {
         color: @note-gray;
         display: inline-block;
     }
+
     h5:after {
         content: ":";
     }
+
     ul > li {
         display: inline-block;
 
@@ -172,9 +196,11 @@
         }
     }
 }
+
 .html-rtl .item-actions a.more-actions:after {
     margin: 5px 4px 0 0;
 }
+
 .html-rtl .item-actions {
     float: none;
 }
@@ -182,6 +208,7 @@
 .item:hover a.delete-addon {
     color: #d33;
 }
+
 #addon-delete-listing.item:hover a.delete-addon {
     color: #fff;
 }

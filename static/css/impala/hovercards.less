@@ -11,6 +11,7 @@
     &.cols-3 li { width: 100% / 3; }
     &.cols-2 li { width: 100% / 2; }
     &.cols-1 li { width: 100%; }
+
     section {
         display: none;
         position: relative;
@@ -20,6 +21,7 @@
         }
     }
 }
+
 .hovercard {
     position: relative;
     border: 1px solid transparent;
@@ -32,23 +34,28 @@
         z-index: 29;
         margin-top: 0;
     }
+
     .desc {
         max-height: 2.6em;
         overflow: hidden;
     }
+
     .install-shell {
         .eula, .contrib {
             font-size: 12px;
         }
+
         .extra {
             + .extra {
                 margin: 0;
             }
+
             .notavail {
                 margin: 0 0 2px;
             }
         }
     }
+
     h3 {
         color: @link;
         font-weight: bold;
@@ -60,6 +67,7 @@
         overflow: hidden;
         max-width: 200px;
     }
+
     .more {
         display: none;
         position: relative;
@@ -69,13 +77,16 @@
             margin-top: 0;
         }
     }
+
     a {
         text-decoration: none;
     }
+
     .adu {
         color: #390;
         font-size: 11px;
     }
+
     .byline {
         margin-top: 8px;
         font-size: 11px;
@@ -87,26 +98,31 @@
             color: inherit;
         }
     }
+
     &:hover {
         z-index: 25;
         background: #fff;
         border-color: #ccc;
         .box-shadow(2px 2px 6px -2px rgba(0,0,0,.4));
+
         .more {
             background: #fff;
             display: block;
             z-index: 28;
         }
+
         h3 {
             text-decoration: underline;
         }
     }
+
     &.addon .more .vitals,
     &.theme:hover .more + .vitals {
         border-top: 1px dotted #ccc;
         padding: 8px 0 0;
         margin: 8px 0 4px;
     }
+
     &.addon {
         margin: 5px 5px 5px 61px;
 
@@ -114,6 +130,7 @@
             position: relative;
             padding: 8px;
         }
+
         .summary {
             height: 55px;
             z-index: 21;
@@ -123,6 +140,7 @@
                 white-space: nowrap;
             }
         }
+
         .icon {
             position: absolute;
             left: -57px;
@@ -143,6 +161,7 @@
                 padding: 0;
             }
         }
+
         &:before {
             content: "";
             display: block;
@@ -153,38 +172,45 @@
             left: -57px;
             z-index: 1;
         }
+
         &:hover {
             float: left;
             z-index: 25;
             background: #fff;
             border-color: #ccc;
             .box-shadow(2px 2px 6px -2px rgba(0,0,0,.4));
+
             .summary {
                 background: white;
                 z-index: 26;
                 height: auto;
                 min-height: 48px;
             }
+
             .icon {
                 background: #fff;
                 border-color: #ccc;
                 z-index: 27;
             }
+
             &:before {
                 .box-shadow(2px 2px 6px -2px rgba(0,0,0,.4));
             }
         }
     }
+
     &.collection {
         &:hover {
             .summary {
                 overflow: visible;
                 height: auto;
             }
+
             .desc {
                 overflow: visible;
                 max-height: none;
             }
+
             .more {
                 font-size: 11px;
                 border-top: 1px dotted #CCCCCC;
@@ -194,17 +220,20 @@
             }
         }
     }
+
     .category, .vital {
         color: #666;
         font-size: 11px;
         line-height: 10px;
         white-space: nowrap;
     }
+
     .summary .vital {
         margin-top: 4px;
         font-size: 10px;
         line-height: 12px;
     }
+
     .vital .price {
         color: @green;
 
@@ -214,16 +243,19 @@
         }
     }
 }
+
 .featured,
 .theme-grid {
     h3 {
         font-size: 16px;
         line-height: 18px;
     }
+
     li {
         height: 212px;
         width: 240px;
     }
+
     .hovercard {
         padding: 9px 9px 11px;
         margin: 0;
@@ -233,6 +265,7 @@
                 display: none;
                 content: none;
             }
+
             .summary {
                 height: 192px;
                 padding: 0;
@@ -256,34 +289,41 @@
                 }
             }
         }
+
         &:hover {
             &.addon .summary {
                 height: auto;
             }
+
             .more {
                 padding: 14px 0 0;
             }
         }
     }
 }
+
 .theme-grid {
     li {
         height: 205px;
         margin-bottom: 1em;
         width: 180px;
     }
+
     .incompatible {
         img {
             opacity: .4;
         }
+
         &:hover {
             img {
                 opacity: 1;
             }
+
             > .notavail {
                 display: none;
             }
         }
+
         > .notavail {
             color: @note-gray;
             display: block;
@@ -291,6 +331,7 @@
             margin-top: 8px;
         }
     }
+
     .hovercard.addon .summary {
         height: 157px;
 
@@ -304,6 +345,7 @@
             }
         }
     }
+
     .hovercard.addon > .vital {
         font-size: 11px;
         margin-top: 8px;
@@ -330,28 +372,35 @@
             right: auto;
             border: 0;
         }
+
         .summary a, p {
             padding: 0;
         }
+
         .summary a {
             display: inline;
         }
+
         &:before {
             content: none;
         }
     }
 }
+
 .html-rtl .listing-grid {
     li {
         float: right;
     }
+
     .hovercard {
         &.addon {
             margin: 5px 61px 5px 5px;
         }
+
         .more {
             padding: 0 12px 8px 14px;
         }
+
         .icon {
             left: auto;
             right: -57px;
@@ -359,14 +408,17 @@
             padding-right: 8px;
             border-width: 1px 1px 1px 0;
         }
+
         &:before {
             left: auto;
             right: -57px;
         }
     }
+
     .addon:hover {
         float: right;
     }
+
     &.featured, &.theme-grid {
         .hovercard.addon {
             margin: 0;

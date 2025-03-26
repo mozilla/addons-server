@@ -7,28 +7,35 @@
             color: @medium-gray;
         }
     }
+
     .item {
         padding: 0;
     }
+
     .price {
         color: @green;
     }
+
     .long {
         white-space: nowrap;
     }
+
     th, td {
         padding: 5px;
     }
+
     th {
         background: @border-blue;
         border-bottom: 1px dotted #ADD0DC;
         color: @medium-gray;
         font-size: 11px;
     }
+
     td {
         font-size: 11px;
         vertical-align: top;
     }
+
     .reason td {
         background: lighten(@link, 45%);
         border: 0;
@@ -43,12 +50,14 @@
             -webkit-border-radius-topleft: 5px;
             border-top-left-radius: 5px;
         }
+
         &:last-child {
             -moz-border-radius-topright: 5px;
             -webkit-border-radius-topright: 5px;
             border-top-right-radius: 5px;
         }
     }
+
     tbody tr:last-child td {
         .border-radius(0 0 5px 5px);
     }
@@ -59,11 +68,13 @@
             -webkit-border-radius-bottomright: 0;
             border-bottom-right-radius: 0;
         }
+
         .action {
             border: 1px solid @border-blue;
             border-width: 0 0 0 1px;
         }
     }
+
     form {
         margin: 0;
 
@@ -85,14 +96,17 @@
         &:first-child {
             .border-radius(0 5px 0 0);
         }
+
         &:last-child {
             .border-radius(5px 0 0 0);
         }
     }
+
     #queue-pending tbody {
         tr:last-child td {
             .border-radius(0 0 5px 0);
         }
+
         .action {
             border-width: 0 1px 0 0;
         }

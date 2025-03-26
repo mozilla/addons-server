@@ -11,6 +11,7 @@
 .site-title {
     padding-top: 27px;
 }
+
 .site-title a,
 .site-title a:visited,
 .site-title a:hover,
@@ -91,12 +92,15 @@ body.content-review .primary .article {
 body.content-review .ed-sprite-needs-admin-content-review {
     display: inline-block /* show needs admin content review flag on content review pages */
 }
+
 body:not(.content-review) .ed-sprite-needs-admin-code-review {
     display: inline-block /* show needs admin code review on non-content review pages */
 }
+
 body:not(.content-review) .ed-sprite-needs-admin-content-review {
     display: none /* hide needs admin content review on non-content review pages */
 }
+
 body.content-review .ed-sprite-needs-admin-code-review {
     display: none /* hide needs admin code review on content review pages */
 }
@@ -105,12 +109,15 @@ body.content-review .ed-sprite-needs-admin-code-review {
     background: url(../../img/developers/reviewer-sprite.png?9) no-repeat top left;
     line-height: 16px;
 }
+
 .ed-sprite-sort-asc {
     background-position: right -224px;
 }
+
 .ed-sprite-sort-both {
     background-position: right -240px;
 }
+
 .ed-sprite-sort-desc {
     background-position: right -256px;
 }
@@ -118,12 +125,15 @@ body.content-review .ed-sprite-needs-admin-code-review {
 .data-grid-top {
     border-bottom: 1px solid #A5BFCE;
 }
+
 .data-grid-bottom {
     border-top: 1px solid #A5BFCE;
 }
+
 .data-grid-content {
     padding: 0.5em;
 }
+
 .data-grid-content:after {
     content: ".";
     display: block;
@@ -131,9 +141,11 @@ body.content-review .ed-sprite-needs-admin-code-review {
     height: 0;
     visibility: hidden;
 }
+
 .data-grid-content ol.pagination {
     margin: 0;
 }
+
 .queue-outer {
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -141,6 +153,7 @@ body.content-review .ed-sprite-needs-admin-code-review {
     border: 4px solid #E0EFFD;
     margin-bottom: 2em;
 }
+
 .queue-inner {
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
@@ -148,106 +161,135 @@ body.content-review .ed-sprite-needs-admin-code-review {
     background-color: #FFFFFF;
     border: 1px solid #2E5186;
 }
+
 .queue-inner a em {
     font-size: 0.8em;
     opacity: 0.6;
 }
+
 .queue-outer .no-results {
     margin: 0;
     padding: 6em 1em;
     font-size: 1.1em;
 }
+
 table ul {
     margin: 0;
 }
+
 table.data-grid {
     width: 100%;
     margin-bottom: 0;
 }
+
 table.data-grid thead tr th:nth-child(3) {
     min-width: 7em;
 }
+
 table.data-grid thead tr th:nth-child(4) {
     min-width: 8em;
 }
+
 table.data-grid thead tr th:nth-child(5) {
     min-width: 5em;
 }
+
 table.data-grid thead tr th:nth-child(6) {
     min-width: 7em;
 }
+
 table.data-grid thead tr th:nth-child(7) {
     min-width: 7em;
 }
+
 table.data-grid thead tr th:nth-child(8) {
     min-width: 10em;
 }
+
 table.data-grid tr th {
     border-top: 1px dotted #DDDDDD;
 }
+
 table.data-grid tr th a:active,
 table.data-grid tr th a:hover,
 table.data-grid tr th a:visited {
     color: #3D6DB5;
 }
+
 table.data-grid tr th.ordered {
     background-color: #FFF;
 }
+
 table.data-grid tr th.ordered a {
     color: #153A72;
 }
+
 table.data-grid tr th.ordered a:active,
 table.data-grid tr th.ordered a:hover,
 table.data-grid tr th.ordered a:visited {
     color: #003595;
 }
+
 table.data-grid tr th, table.data-grid tr td {
     padding: 0.5em;
 }
+
 table.data-grid tr th a {
     display: block;
 }
+
 table.data-grid tr td {
     border-top: 1px dotted #DDDDDD;
 }
+
 table.data-grid .addon-row a {
     display: block;
     max-width: 600px;
     word-wrap: break-word;
 }
+
 table.data-grid tbody tr:nth-child(odd) {
     background-color: #FAFAFA;
 }
+
 table.data-grid tbody tr:nth-child(even) {
     background-color: #FFFFFF;
 }
+
 table.data-grid tbody tr.auto-approval-delayed-temporarily:nth-child(odd),
 table.data-grid tbody tr.auto-approval-delayed-temporarily-unlisted:nth-child(odd) {
     background-color: #FAF5E4;
 }
+
 table.data-grid tbody tr.auto-approval-delayed-temporarily:nth-child(even),
 table.data-grid tbody tr.auto-approval-delayed-temporarily-unlisted:nth-child(even) {
     background-color: #FFFDF5;
 }
+
 table.data-grid .addon-locked {
     width: 16px;
     height: 16px;
     position: relative;
     top: 4px;
 }
+
 table.data-grid .locked .addon-locked {
     background: url(../../img/developers/reviewer-sprite.png?9) no-repeat top left;
     background-position: 0 -176px;
 }
+
 .risk-highest {
     color: @risk-highest-color;
 }
+
 .risk-high {
     color: @risk-high-color;
 }
+
 .risk-medium {
     color: @risk-medium-color;
 }
+
 .risk-low {
     color: @risk-low-color;
 }
@@ -257,6 +299,7 @@ table.data-grid .locked .addon-locked {
 .incentive-points th {
     text-align: right;
 }
+
 .incentive-points tr th:first-child {
     text-align: left;
 }
@@ -268,9 +311,11 @@ table.data-grid .locked .addon-locked {
     max-height: 200px;
     margin-bottom: 1em;
 }
+
 .addon-version-notes {
     position: relative;
 }
+
 table.data-grid .addon-version-notes a {
     text-decoration: none;
 }
@@ -281,15 +326,18 @@ ul.tabnav {
     margin-bottom: 0;
     padding: 5px 14px;
 }
+
 .html-rtl ul.tabnav {
     text-align: right;
 }
+
 ul.tabnav li {
     display: inline;
     position: relative;
     top: 2px;
     margin: 0px 4px;
 }
+
 ul.tabnav li a {
     font-weight: bold;
     text-decoration: none;
@@ -301,11 +349,13 @@ ul.tabnav li a {
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 }
+
 ul.tabnav li.selected a {
     background-color: #ffffff;
     border-color: #2E5186;
     padding-bottom: 10px;
 }
+
 ul.tabnav a:hover {
     background-color: #C9E5FC;
     border-color: #BCE0FF;
@@ -461,6 +511,7 @@ table.data-grid tr.comments td {
 .waiting_old {
     background-color: #FFD3D3;
 }
+
 .waiting_old:hover {
     background-color: #FCBCBC;
 }
@@ -468,12 +519,15 @@ table.data-grid tr.comments td {
 .waiting_med {
     background-color: #FFFFB4;
 }
+
 .waiting_med:hover {
     background-color: #F5F484;
 }
+
 .waiting_new {
     background-color: #B8E6B8;
 }
+
 .waiting_new:hover {
     background-color: #9DE19C;
 }
@@ -498,15 +552,18 @@ div.reviewer-stats-table > div.reviewer-stats-dark {
 .dashboard .listing h3 {
     margin: 0.5em 0 0 0;
 }
+
 .dashboard .listing ul {
     columns: 3;
 }
+
 .dashboard .listing a {
     display: block;
     font-size: 110%;
     margin: 0.1em;
     padding: 0.5em;
 }
+
 .dashboard .listing a:hover {
     background-color: #F9F9F9;
 }
@@ -591,12 +648,15 @@ div.reviewer-stats-table > div.reviewer-stats-dark {
 #log-filter form {
     margin: 0;
 }
+
 .log-filter-outside {
     float: right;
 }
+
 .log-filter-outside label {
     font-weight: normal;
 }
+
 .log-filter-outside input::-webkit-input-placeholder {
     color: #BBB;
 }
@@ -613,39 +673,48 @@ div.reviewer-stats-table > div.reviewer-stats-dark {
     margin: 0;
     padding: 0;
 }
+
 .queue-outer .queue-search,
 .date_range {
     padding: 1em;
 }
+
 .advanced-search {
     display: none;
     margin-top: 1em;
 }
+
 .advanced-search .column1 {
     float: left;
     width: 375px;
 }
+
 .advanced-search .column1 label {
     display: block;
     float: left;
     width: 13em;
 }
+
 .advanced-search .form-elem {
     margin-bottom: 0.5em;
 }
+
 .advanced-search .column2,
 .advanced-search .column3 {
     float: left;
     width: 250px;
 }
+
 .advanced-search .column2 label,
 .advanced-search .column3 label {
     display: block;
 }
+
 .advanced-search .form-row {
     clear: both;
     padding-bottom: 1em;
 }
+
 .advanced-search .column3:after {
     content: ".";
     display: block;
@@ -653,6 +722,7 @@ div.reviewer-stats-table > div.reviewer-stats-dark {
     height: 0;
     visibility: hidden;
 }
+
 #id_text_query {
     width: 25em;
     height: 1.5em;
@@ -662,12 +732,15 @@ div.reviewer-stats-table > div.reviewer-stats-dark {
 #log-listing tr th:nth-child(1) {
     width: 20%;
 }
+
 #log-listing tr th:nth-child(2) {
     width: 40%;
 }
+
 #log-listing tr th:nth-child(3) {
     width: 25%;
 }
+
 #log-listing tr th:nth-child(4) {
     width: 15%;
 }
@@ -694,6 +767,7 @@ div.reviewer-stats-table > div.reviewer-stats-dark {
     position: absolute;
     top: 0;
 }
+
 #scroll_sidebar.sticky {
     position: fixed;
     top: 10px;
@@ -707,10 +781,12 @@ div.reviewer-stats-table > div.reviewer-stats-dark {
     margin: 0;
     width: 100%;
 }
+
 .review-files h5 {
     display: inline;
     font-weight: bold;
 }
+
 .review-files caption {
     border: 1px solid grey;
     opacity: inherit;
@@ -718,9 +794,11 @@ div.reviewer-stats-table > div.reviewer-stats-dark {
     padding: 4px;
     position: inherit;
 }
+
 .review-files caption a {
     display: block;
 }
+
 .review-files .files {
     background-color: #FAFAFA;
     border-right: 1px dotted #DDDDDD;
@@ -737,20 +815,25 @@ div.reviewer-stats-table > div.reviewer-stats-dark {
     max-height: 25.5em;
     overflow: auto;
 }
+
 .review-files-header h3 {
     float: left;
 }
+
 .review-files-header h3 span {
     font-size: 0.7em;
 }
+
 .review-files-header h3 a.on {
     color: #333;
     font-weight: bold;
 }
+
 .review-files-header .review-files-paginate {
     float: right;
     margin-top: 2em;
 }
+
 .review-files-paginate ol {
     float: right;
     margin: 0;
@@ -759,27 +842,34 @@ div.reviewer-stats-table > div.reviewer-stats-dark {
     top: -20px;
     width: auto;
 }
+
 table.activity {
     margin: 0;
     width: 100%;
 }
+
 table.activity th {
     width: 25%;
     padding-right: 1em;
 }
+
 table.activity tr {
     border-top: 1px dotted #ccc;
 }
+
 table.activity tr:first-child {
     border-top: 0 none;
 }
+
 .review-files .listing-header span.light {
     font-weight: normal;
     color: #000;
 }
+
 .review-files tr.listing-header:first-child {
     border-top: none;
 }
+
 .review-files tr.listing-header {
     border-top: 1px solid #A5BFCE;
 }
@@ -819,34 +909,43 @@ table.activity tr:first-child {
     cursor: pointer;
     background-color: #CCE6FF;
 }
+
 .review-files tr.listing-header:active {
     cursor: pointer;
     background-color: #FFF;
 }
+
 .review-files tr.listing-header input[type=checkbox] {
     float: right;
 }
+
 .review-files .files > div {
     line-height: 1.3em;
     margin: 10px 0;
 }
+
 .review-files .no-activity {
     color: #777777;
     font-style: italic;
     text-align: center;
 }
+
 .review-files .install {
     padding: 0;
 }
+
 .review-files p.version-adu-value {
     display: inline;
 }
+
 .review-files .files > .compatibility, .review-files .files > .compatibility li {
     padding-top: 0;
 }
+
 .review-files .files > .compatibility > strong {
     vertical-align: top;
 }
+
 .review-files .files > .compatibility ul {
     display: inline-block;
     vertical-align: top;
@@ -902,6 +1001,7 @@ table.activity tr:first-child {
 form.review-form .data-toggle {
     display: none; /* hide all toggles by default, they'll be shown through javascript */
 }
+
 #review-actions-form textarea,
 #review-actions-form input[type=text],
 #review-actions-form select {
@@ -1037,6 +1137,7 @@ form.review-form .data-toggle {
     margin-top: 1em;
     padding-top: 1em;
 }
+
 .review-actions-tested label {
     margin-left: 25px;
     margin-right: 10px;
@@ -1076,6 +1177,7 @@ form.review-form .data-toggle {
     details {
         margin-left: 2em;
     }
+
     span {
         font-style: italic;
     }
@@ -1255,6 +1357,7 @@ p.is_promoted {
 .html-rtl #leaderboard .number {
     text-align: left;
 }
+
 #leaderboard .name {
     width: 70%;
 }
@@ -1263,6 +1366,7 @@ p.is_promoted {
     padding: 0.2em;
     text-align: center;
 }
+
 #leaderboard .level::before,
 #leaderboard .level::after,
 #leaderboard .level:before,
@@ -1285,16 +1389,20 @@ p.is_promoted {
     -moz-border-radius: 7px;
     -webkit-border-radius: 7px;
     border-radius: 7px;
+
     &.private {
         background-color: #FFE4E4;
         margin: 1em 0 1em 0;
     }
+
     .whiteboard-inner {
         padding: 10px;
+
         textarea {
             border: 1px solid #AFBDD3;
             height: 75px;
         }
+
         .whiteboard-actions {
             text-align: right;
         }
@@ -1361,6 +1469,7 @@ p.is_promoted {
             border: 2px solid #C9DDF2;
             background: rgba(201,221,242,.1);
         }
+
         .zoombox {
             overflow: hidden;
             position: relative;
@@ -1369,6 +1478,7 @@ p.is_promoted {
                 position: absolute;
                 right: 0;
             }
+
             span {
                 position: absolute;
                 background-color: rgba(255,255,255,.75);

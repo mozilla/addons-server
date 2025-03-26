@@ -60,6 +60,7 @@ h1,
 #masthead h1 {
   font-family: @primary-font;
 }
+
 #masthead h1 a {
   color: @link-on-color-bg;
 }
@@ -971,6 +972,7 @@ input:not(.upvotes):not(.downvotes)[type="submit"] {
   &.delete-button,
   &.developer {
     background: #bc2b1a;
+
     span {
       background-position: 0 -383px;
 
@@ -1319,7 +1321,6 @@ body:not(.developer-hub) section.secondary {
 
 /* Notice - underneath description (asking for contribution &/or showing dependencies )*/
 .addon-details {
-
   .hovercard.addon:hover {
     .rating a {
       color: @link-on-white-bg;
@@ -1674,7 +1675,6 @@ h3.author .transfer-ownership {
 }
 
 .category-landing .featured.three-col .addon.hovercard {
-
   &:hover {
     height: 320px;
     margin-bottom: -320px;
@@ -1698,7 +1698,6 @@ h3.author .transfer-ownership {
 }
 
 .category-landing .featured.three-col .addon.hovercard.feature {
-
   &:focus,
   &:hover {
     height: auto;
@@ -1758,7 +1757,6 @@ h3.author .transfer-ownership {
 
 .addon.hovercard,
 .items .item.incompatible {
-
   .extra .button.not-available {
     display: none;
     float: right;
@@ -1812,6 +1810,7 @@ h3.author .transfer-ownership {
 .notice.c.author .button-wrapper {
   float:right;
 }
+
 .html-rtl .notice.c.author .button-wrapper {
   float:right;
 }
@@ -2116,7 +2115,6 @@ body.reviewer-tools {
     }
 
     #addon.primary {
-
       #addon-summary {
         a {
           color: @link-on-white-bg;
@@ -2299,9 +2297,11 @@ body.windows .install-shell .platform.mac {
 
 .webext-permissions.badge {
   display: block;
+
   img {
     height: 1.1em;
     margin-right: 0.25em;
+
     .html-rtl & {
       margin-left: 0.25em;
     }
@@ -2311,31 +2311,39 @@ body.windows .install-shell .platform.mac {
 #webext-permissions {
   ul {
     margin-left: 1.5em;
+
     .html-rtl & {
       margin-right: 1.5em;
     }
+
     li {
       list-style: circle;
+
       details {
         summary {
           list-style: none;
         }
+
         li {
           list-style-type: disc;
         }
       }
+
       details[open] summary:after {
         content: " \25b2"
       }
+
       details summary:after {
         content: " \25bc"
       }
     }
   }
+
   h3 {
       font-size: larger;
       margin-top: 1em;
   }
+
   .prose {
     img {
       float: left;

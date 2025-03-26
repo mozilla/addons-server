@@ -32,27 +32,32 @@ button.bad, .button.bad, .button.developer, .button.scary { // Red
         font-size: 16px;
         .box-shadow(0 3px rgba(0, 0, 0, 0.1), 0 -4px rgba(0, 0, 0, 0.1) inset);
     }
+
     &.add { // Green
         span {
             padding-left: 16px;
             background: url(../../img/impala/button-icons.png) no-repeat 0 3px;
         }
+
         &.prominent {
             span {
                 padding-left: 24px;
                 .sprite-pos(3, 64, 3px);
             }
+
             &.warning, &.caution {
                 span {
                     .sprite-pos(5, 64, 3px);
                 }
             }
+
             &.disabled, &.concealed, &.caution.concealed {
                 span {
                     .sprite-pos(4, 64, 3px);
                 }
             }
         }
+
         &.warning,
         &.caution {
             background: url(../../img/impala/warning-bg.png);
@@ -64,6 +69,7 @@ button.bad, .button.bad, .button.developer, .button.scary { // Red
                 .sprite-pos(2, 64, 3px);
             }
         }
+
         &.disabled,
         &.concealed,
         &.caution.concealed {
@@ -74,6 +80,7 @@ button.bad, .button.bad, .button.developer, .button.scary { // Red
             }
         }
     }
+
     &.paypal {
         .gradient-two-color(#F8EAC4, #EEC546);
         color: rgb(51, 70, 118);
@@ -81,16 +88,20 @@ button.bad, .button.bad, .button.developer, .button.scary { // Red
         font-style: italic;
         font-family: Verdana, @sans-stack;
         background-color: #EEC546;
+
         small {
             font-size: 0.7em;
         }
+
         em {
             color: rgb(90, 120, 168);
         }
+
         &.disabled em {
             color: #919497;
         }
     }
+
     &.contribute { // Blue
         &.prominent b {
             background: url(../../img/impala/button-icons.png) no-repeat;
@@ -99,6 +110,7 @@ button.bad, .button.bad, .button.developer, .button.scary { // Red
             .sprite-pos(7, 64, 4px);
         }
     }
+
     &.developer, &.scary { // Red
         span {
             margin-left: -4px;
@@ -107,14 +119,17 @@ button.bad, .button.bad, .button.developer, .button.scary { // Red
             .sprite-pos(6, 64, 3px);
         }
     }
+
     &.watch:not(.watching) { // Orange
         background: #ea0;
         .gradient-two-color(#ea0, darken(#ea0, 10%));
     }
+
     &.platform {
         display: none;
     }
 }
+
 .html-rtl {
     .button {
         &.add {
@@ -122,6 +137,7 @@ button.bad, .button.bad, .button.developer, .button.scary { // Red
                 background-position: 93px 3px;
                 padding: 0 16px 0 0;
             }
+
             &.prominent {
                 &.disabled, &.concealed, &.caution.concealed {
                     span {
@@ -129,12 +145,14 @@ button.bad, .button.bad, .button.developer, .button.scary { // Red
                     }
                 }
             }
+
             &.warning,
             &.caution {
                 span {
                     .sprite-pos-right(2, 64, 3px);
                 }
             }
+
             &.disabled,
             &.concealed,
             &.caution.concealed {
@@ -143,11 +161,13 @@ button.bad, .button.bad, .button.developer, .button.scary { // Red
                 }
             }
         }
+
         &.contribute.prominent b {
             margin: 0 -4px 0 0;
             padding: 0 24px 0 4px;
             .sprite-pos-right(7, 64, 4px);
         }
+
         &.developer, &.scary {
             span {
                 margin: 0 -4px 0 0;
@@ -156,6 +176,7 @@ button.bad, .button.bad, .button.developer, .button.scary { // Red
         }
     }
 }
+
 .button:hover,
 .button:focus,
 .button:active,
@@ -213,12 +234,15 @@ body.android.addon-details .button.platform.android:not(.concealed) {
     .install {
         display: inline-block;
     }
+
     .warning {
         font-size: 12px;
     }
+
     .extra {
         margin-top: 8px;
     }
+
     .notavail,
     .notsupported {
         color: @error-red;
@@ -226,10 +250,12 @@ body.android.addon-details .button.platform.android:not(.concealed) {
         font-size: 11px;
         margin: 0 0 4px;
     }
+
     .acr-incompat,
     .notsupported {
         color: @note-gray;
     }
+
     .notsupported span:before {
         content: "\0B7";
         padding: 0 4px;
@@ -254,10 +280,12 @@ body.android.addon-details .button.platform.android:not(.concealed) {
         .install-button {
             margin: 0;
         }
+
         .button.disabled,
         .button.concealed {
             display: none !important;
         }
+
         .addon-summary {
             line-height: 16px;
         }
@@ -271,6 +299,7 @@ body.android.addon-details .button.platform.android:not(.concealed) {
 .windows .button.windows {
     display: inherit;
 }
+
 .thunderbird .listing-grid .install-shell {
     display: none;
 }
@@ -285,6 +314,7 @@ button[disabled],
     .box-shadow(0 3px rgba(0, 0, 0, 0.05), 0 -4px rgba(0, 0, 0, 0.05) inset);
     text-shadow: 0 1px 0 rgba(255,255,255,.5);
 }
+
 button[disabled],
 .button.disabled,
 .button.concealed,
@@ -292,6 +322,7 @@ button[disabled],
     cursor: default;
     pointer-events: none;
 }
+
 .button.CTA {
     min-width: 80px;
     padding: 25px;

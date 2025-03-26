@@ -57,10 +57,12 @@
 
 .auto {
     counter-reset: item;
+
     > li,
     > h3 {
         counter-increment: item;
     }
+
     > h3 {
         padding-left: 50px;
         position: relative;
@@ -69,6 +71,7 @@
             top: -12px;
         }
     }
+
     h3:before {
         content: counter(item);
         line-height: .9;
@@ -83,6 +86,7 @@ ol.numbered {
     h3 {
         margin-top: 7px;
     }
+
     li li + li {
         margin-top: 1em;
 
@@ -90,6 +94,7 @@ ol.numbered {
             margin-bottom: 1.5em;
         }
     }
+
     > li {
         position: relative;
         margin-bottom: 1em;
@@ -104,6 +109,7 @@ ol.numbered {
         li + li {
             margin-top: 1em;
         }
+
         ul li {
             margin: 1em 0 0 50px;
         }
@@ -115,9 +121,11 @@ ol.numbered {
         float: right;
         padding: 1em;
     }
+
     h3 {
         margin-top: .5em;
     }
+
     > h3 {
         margin: 2.5em 0 1em;
 
@@ -125,11 +133,13 @@ ol.numbered {
             margin-top: .5em;
         }
     }
+
     .numbered h3 {
         color: lighten(#011234, 10%);
         font-size: 1.2em;
         margin-top: .75em;
     }
+
     ol.reflist {
         margin-bottom: 2em;
 
@@ -141,16 +151,19 @@ ol.numbered {
             }
         }
     }
+
     ol.numbered {
         border-bottom: 1px dotted @inset-blue;
         margin-bottom: 2.5em;
     }
+
     code {
         background: #eee;
         border: 1px solid #ddd;
         margin: 0 2px;
         padding: 0 2px;
     }
+
     .screenshot {
         margin-top: 2em;
 
@@ -169,6 +182,7 @@ ol.numbered {
         list-style: disc outside;
         margin-left: 2em;
     }
+
     .primary ol ul {
         list-style: lower-alpha;
         margin-left: 0;
@@ -178,6 +192,7 @@ ol.numbered {
             padding-left: 0;
         }
     }
+
     ul.reflist, ul.blocks {
         list-style: none;
         margin-left: 0;
@@ -186,6 +201,7 @@ ol.numbered {
             font-size: 1.3em;
         }
     }
+
     ol.reflist {
         margin-left: 0;
         padding-left: 3em;
@@ -202,6 +218,7 @@ ol.numbered {
             max-width: 100%;
         }
     }
+
     .info {
         margin-left: 35%;
     }
@@ -230,6 +247,7 @@ ol.numbered {
     .hubtext {
          margin: 0 25%;
     }
+
     .item {
         width: auto;
         min-width: 0;
@@ -258,6 +276,7 @@ ol.numbered {
             margin: 0 auto;
         }
     }
+
     img.pull {
         margin-top: 0;
         max-width: 22%;
@@ -314,12 +333,15 @@ ol.numbered {
     ul, ol {
         list-style: outside none disc;
         padding-left: 40px;
+
         .loud-noises {
             text-transform: uppercase;
         }
+
         li {
             margin-bottom: 0.5em;
         }
+
         ul {
             list-style: circle outside none;
             margin: 1em 2em;

@@ -12,14 +12,17 @@
 .secondary #tag-box div {
     font-size: 60%;
 }
+
 .primary #tag-box div {
     text-align: center;
 }
+
 #tag-box div {
     line-height: 3.07em;
     padding: 0;
     text-align: left;
 }
+
 .html-rtl #tag-box div {
     text-align: right;
 }
@@ -27,9 +30,11 @@
 #tag-box .tag {
     vertical-align: baseline;
 }
+
 .html-ltr #tag-box .tag {
     margin-right: 8px;
 }
+
 .html-rtl #tag-box .tag {
     margin-left: 8px;
 }
@@ -40,6 +45,7 @@
     padding-top: .3em;
     text-align: right;
 }
+
 .html-rtl #tag-box p.more {
     text-align: left;
 }

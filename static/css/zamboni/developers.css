@@ -138,6 +138,7 @@ form .char-count,
 .html-rtl form .edit-addon-details .char-count {
     float: left;
 }
+
 .html-rtl form .char-count,
 form .edit-addon-details .char-count {
     float: right;
@@ -146,6 +147,7 @@ form .edit-addon-details .char-count {
 form .char-count {
     font-size: 0.9em;
 }
+
 form .edit-addon-details .char-count,
 form .edit-addon-details .syntax-support {
     font-size: 1em;
@@ -163,6 +165,7 @@ span.hint,
 .devhub-form label {
     font-weight: normal;
 }
+
 .devhub-form th label {
     font-weight: bold;
     display: inline;
@@ -449,10 +452,12 @@ form.new-addon-file label,
     display: block;
     padding-bottom: 3px;
 }
+
 form.new-addon-file label[for=id_is_sideload] {
     display: none;
     margin-left: 20px;
 }
+
 .submit-license input[type=checkbox] + label {
     display: inline;
     padding-bottom: 0;
@@ -473,21 +478,26 @@ form.new-addon-file label[for=id_is_sideload] {
     width: 220px;
     padding-right:20px;
 }
+
 .author_list {
     padding-top: 4px;
 }
+
 .author_list li {
     padding: 8px 0;
     border-bottom: 1px dotted #ADD0DC;
 }
+
 .author_list li:last-of-type {
     border: 0;
 }
+
 .author_list li > label,
 .author_list li > input,
 .author_list li > select {
     margin-right: .5em;
 }
+
 .author_list .handle,
 #file-list .handle {
     width: 20px;
@@ -496,51 +506,64 @@ form.new-addon-file label[for=id_is_sideload] {
     cursor: move;
     background: url(../../img/zamboni/icons/icon-draggable.png) no-repeat 0 center;
 }
+
 #file-list .handle {
     display: block;
     float: left;
 }
+
 .author_list .blank * {
     display: none;
 }
+
 .author_list .blank .author-email,
 #authors_pending_confirmation .author-email {
     display: inline;
     margin-left: 23px;
 }
+
 .author .errorlist {
     display: none;
 }
+
 input.formerror {
     border-color: #c00;
 }
+
 input.invalid {
     background: url(../../img/zamboni/notifications.png) no-repeat 229px -160px;
 }
+
 input.valid {
     background: url(../../img/zamboni/notifications.png) no-repeat 226px -367px;
 }
+
 .license-other input {
     margin-bottom: 1em;
 }
+
 .devhub-form .priv label,
 .devhub-form .eula label,
 .devhub-form .license-other label {
     font-weight: bold;
     margin-bottom: .5em;
 }
+
 .devhub-form .priv,
 .devhub-form .eula,
 .devhub-form .license-other {
     margin: 16px 0 0 32px;
 }
+
 .eula label,
 .priv label {
     font-weight: bold;
 }
+
 #author-roles-help {
     display: none;
 }
+
 #what-are-roles {
     display: block;
     font-size: .9em;
@@ -560,62 +583,77 @@ input.valid {
     display: inline-block;
     vertical-align: top;
 }
+
 .payments .full-intro {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     width: 100%;
 }
+
 .payments .intro ul {
     list-style-type: disc;
     padding: 0 0 1em 1em;
     border-bottom: 1px dotted #ADD0DC;
 }
+
 .html-rtl .payments .intro ul {
     padding: 0 1em 1em 0;
 }
+
 .payments .intro h3 {
     margin-top: 0;
 }
+
 .payments .intro ul,
 .payments .intro p {
     font-size: 12px;
     line-height: 16px;
     margin-bottom: 1em;
 }
+
 .payments .intro ul li + li {
     margin-top: .5em;
 }
+
 .payments .intro p.error {
     margin: 0;
 }
+
 .payments .intro .button-wrapper,
 .payments .learn-more {
     text-align: center;
 }
+
 .payments .indent {
     padding-left: 2em;
 }
+
 .devhub-form .brform label,
 .devhub-form .b {
     font-weight: 500;
 }
+
 .brform > label,
 .brform > input,
 .brform > div,
 .brform > ul {
     display: block;
 }
+
 .payments form > div {
     margin-bottom: 2em;
 }
+
 .extra {
     font-size: .9em;
     line-height: 1.4em;
 }
+
 a.extra {
     margin-left: .5em;
 }
+
 #status-bar form {
     float: right;
     margin: 0;
@@ -623,14 +661,17 @@ a.extra {
     font-size: .9em;
     font-weight: 500;
 }
+
 #status-bar p {
     float: left;
     margin: 0;
     padding: 0;
 }
+
 #status-bar p span {
     font-size: 0.9em;
 }
+
 #status-bar {
     padding: .5em 1em;
     -moz-border-radius: 8px;
@@ -788,6 +829,7 @@ div.dev-review-reply button {
     border-color: #ad1212;
     text-shadow: 0 -1px #e00;
 }
+
 a.delete-button:hover,
 a.delete-button {
     border: 1px solid #ad1212;
@@ -805,6 +847,7 @@ a.delete-button {
     text-decoration: none;
     text-shadow: 0 -1px 0 #e00;
 }
+
 a.delete-button:hover {
     -moz-box-shadow: inset 0 0 2px rgba(255,255,255,1);
     -webkit-box-shadow: inset 0 0 2px rgba(255,255,255,1);
@@ -974,6 +1017,7 @@ pre.email_comment {
     background-repeat: no-repeat;
     padding: 2px 0 2px 24px;
 }
+
 .html-rtl #upload-status-results strong {
     padding: 2px 24px 2px 0;
 }
@@ -982,6 +1026,7 @@ pre.email_comment {
     color: #D81916;
     background-position: 0 -120px;
 }
+
 .html-rtl #upload-status-results.status-fail strong {
     background-position: 100% -120px;
 }
@@ -990,6 +1035,7 @@ pre.email_comment {
     color: #325487;
     background-position: 0 -80px;
 }
+
 .html-rtl #upload-status-results.status-pass strong {
     background-position: 100% -80px;
 }
@@ -1025,12 +1071,15 @@ pre.email_comment {
     display: inline-block;
     vertical-align: middle;
 }
+
 #upload-file .submission-warning ul {
     margin-left: 0;
 }
+
 #upload-file .submission-warning li {
     float: none;
 }
+
 #upload-file .submission-warning a.review-process-overview {
     font-style: italic;
     display: block;
@@ -1043,6 +1092,7 @@ pre.email_comment {
 .secondary-feed {
     padding: 1em 0 0 1em;
 }
+
 .secondary-feed .subscribe {
     padding: 2px 0 0 24px;
 }
@@ -1094,6 +1144,7 @@ pre.email_comment {
     text-decoration: none;
     cursor: pointer;
 }
+
 #navbar {
     display: block;
     border:  1px solid #021437;
@@ -1106,26 +1157,32 @@ pre.email_comment {
     white-space: nowrap;
     overflow: hidden;
 }
+
 #navbar ul.top {
     overflow: visible;
 }
+
 #navbar li.top {
     float: left;
     border-right: 1px solid #455c87;
     list-style: none;
 }
+
 #navbar li.top a.controller {
     display: block;
     padding: .5em 1.3em;
     margin: 0;
 }
+
 #navbar li.top a.controller {
     border-right: 1px solid #1e2e4c;
 }
+
 #navbar li.top:hover,
 #navbar li.top.selected {
     background-image: url(../../img/bg/heading-dark-blue-highlighted.png);
 }
+
 #navbar li.top ul {
     display: none;
     position: absolute;
@@ -1133,6 +1190,7 @@ pre.email_comment {
     top: auto;
     margin-left: -1px;
 }
+
 #navbar li.top ul,
 #navbar li.top ul li:last-child {
     -moz-border-radius-bottomleft: 8px;
@@ -1142,9 +1200,11 @@ pre.email_comment {
     -webkit-border-bottom-right-radius: 8px;
     border-bottom-right-radius: 8px;
 }
+
 #navbar li.top:hover ul {
     display: block;
 }
+
 #navbar li ul li {
     background-image: url(../../img/bg/heading-dark-blue-highlighted.png);
     background-repeat: repeat-x;
@@ -1152,11 +1212,13 @@ pre.email_comment {
     background-color: #305083;
     border-bottom: 1px solid #5a7297;
 }
+
 #navbar li ul li a {
     display: block;
     padding: .5em 1.3em;
     border-bottom: 1px solid #3f4f6a;
 }
+
 #navbar li.top ul li:last-child,
 #navbar li.top ul li:last-child a {
     border: none;
@@ -1173,11 +1235,13 @@ form.select-review .errorlist {
     float: left;
     width: 50%;
 }
+
 .review-type .highlight {
     background-color: #fff;
     border: 1px solid #c8e8f3;
     margin-right: 0.5em;
 }
+
 .review-type + .review-type .highlight {
     margin: 0 0 0 .5em;
 }
@@ -1187,10 +1251,12 @@ form.select-review .errorlist {
     font-size: 16px;
     margin: 0;
 }
+
 .review-type p,
 .review-type ul {
     margin-top: 0.5em;
 }
+
 .review-type ul {
     min-height: 8em;
 }
@@ -1201,9 +1267,11 @@ form.select-review .errorlist {
     float: left;
     margin-right: 8px;
 }
+
 .html-rtl #upload-file li {
     float: right;
 }
+
 #upload-file ul {
     overflow: hidden;
     margin-bottom: 1em;
@@ -1212,6 +1280,7 @@ form.select-review .errorlist {
 #upload-file select {
     margin: 1em 0;
 }
+
 #upload-file .binary-source input[type="file"] {
     margin-bottom: 1em;
 }
@@ -1220,6 +1289,7 @@ form.select-review .errorlist {
     margin-right: 1em;
 }
 #file-list { margin-bottom: 1em;}
+
 #file-list tr {
     border-bottom: 1px dotted #ADD0DC;
 }
@@ -1228,10 +1298,12 @@ form.select-review .errorlist {
 #addon-validator-suite {
     color: #929292;
 }
+
 #addon-validator-suite .template,
 #addon-validator-suite .hidden {
     display: none;
 }
+
 #addon-validator-suite .suite,
 #addon-validator-suite .suite-container,
 #addon-validator-suite .results .tier-results {
@@ -1240,15 +1312,19 @@ form.select-review .errorlist {
     border-radius: 8px;
     background-color: #fff;
 }
+
 #addon-validator-suite .suite h4 {
     color: #497ae1;
 }
+
 #addon-validator-suite .suite .ajax-loading h4 {
     color: #929292;
 }
+
 #addon-validator-suite .suite {
     border: 1px solid #4f6697;
 }
+
 #addon-validator-suite .suite-container {
     border: 4px solid #b5d9e5;
     margin-bottom: 0;
@@ -1256,6 +1332,7 @@ form.select-review .errorlist {
     -moz-border-radius: 12px;
     border-radius: 12px;
 }
+
 #addon-validator-suite .test-tier {
     padding: 52px 1em 0 1em;
     margin: 1em 0 1em 0;
@@ -1264,24 +1341,31 @@ form.select-review .errorlist {
     text-align: center;
     border-left: 1px dashed #b9cedb;
 }
+
 #addon-validator-suite .test-tier:first-child {
     border-left: none;
 }
+
 #addon-validator-suite .suite .tests-passed {
     background: url("../../img/developers/suite-pass.png") no-repeat top;
 }
+
 #addon-validator-suite .suite .tests-notrun {
     background: url("../../img/developers/suite-notrun.png") no-repeat top;
 }
+
 #addon-validator-suite .suite .ajax-loading {
     background: url("../../img/developers/suite-running.gif") no-repeat top;
 }
+
 #addon-validator-suite .suite .tests-failed {
     background: url("../../img/developers/suite-fail.png") no-repeat top;
 }
+
 #addon-validator-suite .suite .tests-warnings {
     background: url("../../img/developers/test-warning.png") no-repeat center 4px / 40px;
 }
+
 #addon-validator-suite .suite-summary {
     display: none;
     text-align: center;
@@ -1291,6 +1375,7 @@ form.select-review .errorlist {
     border-top: 1px solid #bbcad7;
     background: #f7fbfd url("../../img/developers/suite-summary-bg.jpg") repeat-x top;
 }
+
 #addon-validator-suite .suite-options {
     padding-left: 1em;
     color: #626363;
@@ -1299,24 +1384,29 @@ form.select-review .errorlist {
     border-top: 1px solid #bbcad7;
     background: #f7fbfd url("../../img/developers/suite-summary-bg.jpg") repeat-x top;
 }
+
 #addon-validator-suite .results .tier-results {
     border: 1px solid #b5d9e5;
     margin: 0 4px 4px 4px;
     background-color: #fff;
 }
+
 #addon-validator-suite .results {
     background: none;
     border: none;
 }
+
 #addon-validator-suite .results h4 {
     font-size: 1.4em;
     font-weight: normal;
     font-family: georgia,serif;
     margin: 0 0 0.4em 4px;
 }
+
 #addon-validator-suite .results .tier-results {
     height: 10em;
 }
+
 #addon-validator-suite .results .ajax-loading,
 #addon-validator-suite .results .tests-passed,
 #addon-validator-suite .results .tests-passed-notices,
@@ -1325,80 +1415,101 @@ form.select-review .errorlist {
 #addon-validator-suite .results .tests-notrun {
     height: auto;
 }
+
 #addon-validator-suite .results .tests-passed,
 #addon-validator-suite .results .tests-notrun,
 #addon-validator-suite .results .ajax-loading {
     padding: 100px 0 45px 0;
     text-align: center;
 }
+
 #addon-validator-suite .results .tests-passed {
     background: #fff url("../../img/developers/suite-pass.png") no-repeat center 50px;
 }
+
 #addon-validator-suite .results .tests-notrun {
     background: #fff url("../../img/developers/suite-notrun.png") no-repeat center 50px;
 }
+
 #addon-validator-suite .results .ajax-loading {
     background: #fff url("../../img/developers/suite-running.gif") no-repeat center 50px;
 }
+
 #addon-validator-suite .result {
     margin-top: 2.85em;
 }
+
 #addon-validator-suite .result-summary {
     margin-top: 1.8em;
     visibility: hidden;
 }
+
 #addon-validator-suite .result-header {
     padding-bottom: 0.5em;
 }
+
 #addon-validator-suite .result h4 {
     float: left;
     margin-right: 1em;
 }
+
 #addon-validator-suite ul.result-nav {
     float: right;
     font-size: 0.9em;
     padding-right: 4px;
 }
+
 #addon-validator-suite ul.result-nav li {
     display: inline;
 }
+
 #addon-validator-suite ul.result-nav li:before {
     content: "|";
     margin: 0.3em;
 }
+
 #addon-validator-suite ul.result-nav li:first-child:before {
     content: "";
 }
+
 #addon-validator-suite .msg {
     margin: 0 1em;
     padding: 0.8em 1em 1em 45px;
 }
+
 #addon-validator-suite .msg {
     border-top: 1px dashed #b9cedb;
 }
+
 #addon-validator-suite .msg:first-child {
     border-top: none;
 }
+
 #addon-validator-suite .msg h5 {
     font-weight: bold;
     color: #565656;
 }
+
 #addon-validator-suite .msg p {
     margin: .8em 0;
 }
+
 #addon-validator-suite .msg-error {
     background: transparent url("../../img/developers/test-fail.png") no-repeat 0 1.1em;
     color: #ff0000;
 }
+
 #addon-validator-suite .msg-warning {
     background: transparent url("../../img/developers/test-warning.png") no-repeat 0 1.1em;
     color: #6b6b6b;
 }
+
 #addon-validator-suite .msg-info,
 #addon-validator-suite .msg-notice {
     background: transparent url("../../img/developers/test-info.png") no-repeat 0 1.1em;
     color: #6b6b6b;
 }
+
 #addon-validator-suite .context {
     margin: 0.5em 0 0 1em;
     padding: 0.4em;
@@ -1407,24 +1518,29 @@ form.select-review .errorlist {
     background-color: #f9f9f9;
     font-family: "Courier New", Courier, monospace;
 }
+
 #addon-validator-suite .context .file {
     font-size: 105%;
     margin-bottom: 0.3em;
 }
+
 #addon-validator-suite .context .lines {
     float: left;
     background-color: #f9f9f9;
 }
+
 #addon-validator-suite .context .inner-code {
     float: left;
     padding-left: 0.2em;
 }
+
 #addon-validator-suite .context .inner-code div {
     max-width: 45em;
     height: 1.65em;
     overflow: hidden;
     white-space: pre;
 }
+
 #addon-validator-suite .context .code:last-child:after {
     content: ".";
     display: block;
@@ -1432,17 +1548,21 @@ form.select-review .errorlist {
     height: 0;
     visibility: hidden;
 }
+
 #addon-validator-suite .context .code {
     font-size: 95%;
     background-color: #f3f3f3;
 }
+
 #addon-validator-suite .context .lines div,
 #addon-validator-suite .context .inner-code div {
     padding: 0.1em;
 }
+
 #addon-validator-suite .context .lines div {
     margin-right: 0.3em;
 }
+
 #addon-validator-suite .version-change-link {
     display: block;
     float: right;
@@ -1453,6 +1573,7 @@ form.select-review .errorlist {
 #addon-validator-suite .validator-signing-only {
     display: none;
 }
+
 #addon-validator-suite.automated-signing .validator-signing-only {
     display: block;
 }
@@ -1462,6 +1583,7 @@ form.select-review .errorlist {
 .loading, .loaded {
     position:relative;
 }
+
 .loading:before {
     -moz-transition: opacity .5s;
     content: "\00a0";
@@ -1476,9 +1598,11 @@ form.select-review .errorlist {
     z-index: 1000;
     top: 0;
 }
+
 .item.loading:before {
     -moz-border-radius: 8px 8px 8px 8px;
 }
+
 .loaded:before {
     opacity: 0;
     pointer-events: none;

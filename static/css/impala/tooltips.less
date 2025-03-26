@@ -12,13 +12,16 @@
     position: absolute;
     padding: 1em;
     pointer-events: none;
+
     &.error {
         background: #6c1a1a;
     }
+
     span {
         display: block;
         line-height: 1.2em;
     }
+
     &:before {
         content: "\00a0";
         display: block; /* reduce the damage in FF3.0 */
@@ -33,6 +36,7 @@
         border-top-color: #2a4364;
         pointer-events: none;
     }
+
     &.error:before {
         border-top-color: #6c1a1a;
     }

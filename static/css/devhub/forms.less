@@ -11,43 +11,53 @@
             border-top: 1px dotted #add0dc;
             padding: 8px 0;
         }
+
         tr:first-child {
             td, th {
                 border-top: medium none;
             }
         }
+
         tr.version-disabled {
             opacity: 0.5;
         }
+
         td {
             max-width: 547px;
         }
+
         th {
             color: #888;
             font-size: 11px;
             padding: 8px 20px 8px 0;
             vertical-align: top;
             width: 130px;
+
             &.version-delete {
                 text-align: right;
                 width: 35px;
             }
         }
+
         ul {
             margin: 0;
         }
+
         table td {
             border-top-width: 0;
         }
+
         .screenshot.thumbnail {
             width: 100px;
             height: 75px;
         }
+
         .note {
             color: @note-gray;
             display: block;
         }
     }
+
     table, tbody {
         border-top: medium none;
         border-bottom: medium none;
@@ -70,6 +80,7 @@
     clear: both;
     margin: 0 0 1em;
     position: relative;
+
     + h3 {
         margin-top: 1.5em;
     }
@@ -103,16 +114,19 @@ span.remove {
     text-decoration: none;
     width: 18px;
 }
+
 .devhub-form .tip,
 .addon-submission-process .tip {
     vertical-align: top;
 }
+
 a.remove {
     cursor: pointer;
     line-height: 16px;
     float: right;
     margin-top: 2px;
 }
+
 span.remove {
     background-color: #eee;
 }
@@ -153,18 +167,22 @@ p.addon-submit-distribute {
             font-weight: normal;
         }
     }
+
     #cc-chooser {
         h3 {
             font-size: 1em;
             line-height: 1.4em;
             font-weight: normal;
         }
+
         li label {
             font-weight: normal;
         }
     }
+
     #license-list {
         display: none;
+
         li label {
             font-weight: normal;
         }
@@ -188,6 +206,7 @@ p.addon-submit-distribute {
                 width: auto;
             }
         }
+
         p.select-license {
             margin-bottom: 1em;
         }
@@ -232,6 +251,7 @@ a.remove:hover {
 .undo {
     float: right;
 }
+
 .html-rtl .undo {
     float: left;
 }
@@ -253,6 +273,7 @@ a.remove:hover {
         color: #eee;
         text-decoration: underline;
     }
+
     &.tl:before {
         border-bottom: 6px solid #888;
         border-left: 6px solid transparent;
