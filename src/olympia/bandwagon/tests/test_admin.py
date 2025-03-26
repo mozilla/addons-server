@@ -338,6 +338,8 @@ class TestCollectionAdmin(TestCase):
         self.client.force_login(user)
         response = self.client.post(self.delete_url, data={'post': 'yes'}, follow=True)
         assert response.status_code == 200
+        assert collection.reload().deleted
+        assert collection.slug  # Slug was kept
         assert not Collection.objects.filter(pk=collection.pk).exists()
         assert Collection.unfiltered.filter(pk=collection.pk).exists()  # Soft-deleted.
         assert not ActivityLog.objects.filter(action=amo.LOG.COLLECTION_UNDELETED.id).exists()

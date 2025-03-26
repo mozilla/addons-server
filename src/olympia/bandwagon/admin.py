@@ -99,7 +99,7 @@ class CollectionAdmin(AMOModelAdmin):
 
     def delete_model(self, request, obj):
         ActivityLog.objects.create(amo.LOG.COLLECTION_DELETED, obj)
-        obj.delete()
+        obj.delete(clear_slug=False)
 
     def save_model(self, request, obj, form, change):
         super().save_model(request, obj, form, change)
