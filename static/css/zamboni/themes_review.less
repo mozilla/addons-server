@@ -149,7 +149,7 @@ nav.theme-review {
     li {
         display: inline;
 
-        + li:before {
+        + li::before {
             content: "|";
         }
 
@@ -273,7 +273,7 @@ h2 a:last-child {
             background: #6ea027;
         }
 
-        &:before {
+        &::before {
             background-image: url('../../img/sprites/mkt-reviewer-icons/page_white_edit.png');
             content: "";
             display: block;
@@ -395,7 +395,7 @@ h2 a:last-child {
         }
 
         .clear-review {
-            &:after {
+            &::after {
                 background: url('../../img/impala/close.png');
                 content: '';
                 height: 16px;
@@ -405,7 +405,7 @@ h2 a:last-child {
                 width: 16px;
             }
 
-            &:hover:after {
+            &:hover::after {
                 cursor: pointer;
             }
         }
@@ -420,7 +420,7 @@ h2 a:last-child {
             display: inline;
             float: none;
 
-            &:after {
+            &::after {
                 content: none;
             }
         }
@@ -428,17 +428,17 @@ h2 a:last-child {
         dt {
             font-weight: bold;
 
-            &:before {
+            &::before {
                 color: @note-gray;
                 content: "/";
                 margin: 0 7px 0 4px;
             }
 
-            &:after {
+            &::after {
                 content: ": ";
             }
 
-            &:first-child:before {
+            &:first-child::before {
                 display: none;
             }
         }
@@ -515,7 +515,7 @@ h2 a:last-child {
     position: absolute;
     z-index: 2;
 
-    &:before {
+    &::before {
         background: #fff;
         box-shadow: 1px 1px 0 rgba(255,255,255,.5) inset, -1px -1px 0 @border-blue;
         content: "";
@@ -558,13 +558,13 @@ h2 a:last-child {
 }
 
 .flag-dropdown {
-    &:before {
+    &::before {
         right: 253px;
     }
 }
 
 .duplicate-dropdown {
-    &:before {
+    &::before {
         right: 126px;
     }
 
@@ -574,7 +574,7 @@ h2 a:last-child {
 }
 
 .reject-reason-dropdown {
-    &:before {
+    &::before {
         right: 26px;
     }
 
@@ -599,7 +599,7 @@ h2 a:last-child {
 }
 
 .reject-reason-detail-dropdown {
-    &:before {
+    &::before {
         right: 12px;
     }
 
@@ -611,11 +611,11 @@ h2 a:last-child {
 .moreinfo-dropdown {
     right: 352px;
 
-    &:before {
+    &::before {
         right: 177px;
     }
 
-    &.rereview:before {
+    &.rereview::before {
         right: 74px;
     }
 

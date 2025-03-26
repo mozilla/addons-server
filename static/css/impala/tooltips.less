@@ -22,7 +22,7 @@
         line-height: 1.2em;
     }
 
-    &:before {
+    &::before {
         content: "\00a0";
         display: block; /* reduce the damage in FF3.0 */
         position: absolute;
@@ -37,7 +37,7 @@
         pointer-events: none;
     }
 
-    &.error:before {
+    &.error::before {
         border-top-color: #6c1a1a;
     }
 }

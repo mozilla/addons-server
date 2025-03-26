@@ -4,7 +4,7 @@
     margin-bottom: 25px;
 
     /* Log in link loader */
-    a.loading-submit:before {
+    a.loading-submit::before {
         background-image: url("../../img/zamboni/loading-white.gif");
         content: "";
         display: block;
@@ -91,7 +91,7 @@
     }
 
     li.slim:hover {
-        &:after {
+        &::after {
             display: none;
         }
 
@@ -127,7 +127,7 @@
                     display: block;
                 }
 
-                &:after {
+                &::after {
                     content: "";
                     width: 200px;
                     z-index: 62;
@@ -205,7 +205,7 @@
         left: auto;
         right: -9px;
 
-        &:hover:after {
+        &:hover::after {
             left: auto;
             right: 1px;
         }
@@ -274,7 +274,7 @@
 
 #aux-nav {
     > ul {
-        > li:not(:first-child):before {
+        > li:not(:first-child)::before {
             content: "";
             display: block;
             position: absolute;
@@ -297,7 +297,7 @@
                 .border-radius(0);
                 outline: none;
 
-                &:after {
+                &::after {
                     display: inline-block;
                     vertical-align: middle;
                     top: 12px;
@@ -315,13 +315,13 @@
             &:hover {
                 z-index: 63;
 
-                &:after {
+                &::after {
                     left: auto;
                     right: 1px;
                 }
             }
 
-            &:after {
+            &::after {
                 top: 32px;
             }
 
@@ -334,7 +334,7 @@
                 a {
                     display: inline-block;
 
-                    &:after {
+                    &::after {
                         display: none;
                     }
                 }
@@ -346,14 +346,14 @@
                         border-color: transparent;
                     }
 
-                    &:after {
+                    &::after {
                         display: none;
                     }
                 }
             }
 
             &.logout, &.login {
-                &:before {
+                &::before {
                     background: 0;
                 }
 
@@ -403,7 +403,7 @@
 .html-rtl {
     #aux-nav {
         > ul > li {
-            &:hover:after {
+            &:hover::after {
                 left: 1px;
                 right: auto;
             }
@@ -418,7 +418,7 @@
                 }
             }
 
-            > a:after {
+            > a::after {
                 margin: 0 4px 0 0;
                 right: 4px;
                 left: auto;
@@ -554,7 +554,7 @@ button.search-button {
         font-weight: bold;
     }
 
-    &:before, &:after {
+    &::before, &::after {
         content: '';
         display: block;
         width: 0;
@@ -564,12 +564,12 @@ button.search-button {
         border-top: 18px solid transparent;
     }
 
-    &:before {
+    &::before {
         left: 34px;
         top: -18px;
     }
 
-    &:after {
+    &::after {
         left: 36px;
         top: -13px;
         border-left-color: #FCEFB7;
@@ -626,19 +626,19 @@ button.search-button {
     .site-balloon, .site-tip, #lightbox, &.is-impala .modal {
         padding: 15px 15px 15px 45px;
 
-        &:before, &:after {
+        &::before, &::after {
             border-color: transparent;
             border-right: 18px solid #E3873B;
             border-top: 18px solid transparent;
             left: auto;
         }
 
-        &:before {
+        &::before {
             right: 34px;
             top: -18px;
         }
 
-        &:after {
+        &::after {
             right: 36px;
             top: -13px;
             border-right-color: #FCEFB7;

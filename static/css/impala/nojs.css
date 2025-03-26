@@ -18,13 +18,13 @@ form.go button {
     display: inherit;
 }
 
-#search-facets .facets .facet:after {
+#search-facets .facets .facet::after {
     -webkit-transform: rotate(90deg);
     -moz-transform: rotate(90deg);
     transform: rotate(90deg);
 }
 
-.html-rtl #search-facets .facets .facet:after {
+.html-rtl #search-facets .facets .facet::after {
     -webkit-transform: rotate(-90deg);
     -moz-transform: rotate(-90deg);
     transform: rotate(-90deg);

@@ -142,7 +142,7 @@ table tbody tr {
             padding-left: 1em;
         }
 
-        &:first-child:after {
+        &:first-child::after {
             content: '';
             display: block;
             position: absolute;
@@ -415,7 +415,7 @@ table.stats-aggregate tbody span.change.minus {
     position:relative;
 }
 
-.loading:after {
+.loading::after {
     -moz-transition: opacity .5s;
     content: "\00a0";
     display: block;
@@ -429,7 +429,7 @@ table.stats-aggregate tbody span.change.minus {
     left: 0;
 }
 
-.loaded:after {
+.loaded::after {
     opacity: 0;
     pointer-events: none;
 }
@@ -573,7 +573,7 @@ table.stats-aggregate tbody span.change.minus {
     color: @dark-gray;
     font-weight: bold;
 
-    &:after {
+    &::after {
         color: inherit;
     }
 }
