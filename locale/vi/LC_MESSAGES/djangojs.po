@@ -182,7 +182,7 @@ msgstr "Tuần {0}"
 #, python-brace-format
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] "{0} tải về"
+msgstr[0] "{0} tải xuống"
 
 #: static/js/stats/chart.js:313
 #, python-brace-format
