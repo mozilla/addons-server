@@ -52,7 +52,9 @@ form .char-count::after,
 
 #version-status .version-changed {
     float: right;
-    color: #888;
+    color: #AAA;
+    display: block;
+    font-size: 11px;
 }
 
 #setup h3,
@@ -687,12 +689,6 @@ a.extra {
     display: block;
 }
 
-#version-status .version-changed {
-    color: #AAA;
-    display: block;
-    font-size: 11px;
-}
-
 #version-list table {
     width: 100%;
 }
@@ -1144,9 +1140,6 @@ pre.email_comment {
     display: block;
     padding: .5em 1.3em;
     margin: 0;
-}
-
-#navbar li.top a.controller {
     border-right: 1px solid #1e2e4c;
 }
 
@@ -1280,6 +1273,9 @@ form.select-review .errorlist {
 #addon-validator-suite .results .tier-results {
     border-radius: 8px;
     background-color: #fff;
+    border: 1px solid #b5d9e5;
+    margin: 0 4px 4px;
+    height: 10em;
 }
 
 #addon-validator-suite .suite h4 {
@@ -1352,12 +1348,6 @@ form.select-review .errorlist {
     background: #f7fbfd url("../../img/developers/suite-summary-bg.jpg") repeat-x top;
 }
 
-#addon-validator-suite .results .tier-results {
-    border: 1px solid #b5d9e5;
-    margin: 0 4px 4px;
-    background-color: #fff;
-}
-
 #addon-validator-suite .results {
     background: none;
     border: none;
@@ -1368,10 +1358,6 @@ form.select-review .errorlist {
     font-weight: normal;
     font-family: georgia,serif;
     margin: 0 0 0.4em 4px;
-}
-
-#addon-validator-suite .results .tier-results {
-    height: 10em;
 }
 
 #addon-validator-suite .results .ajax-loading,
@@ -1442,9 +1428,6 @@ form.select-review .errorlist {
 #addon-validator-suite .msg {
     margin: 0 1em;
     padding: 0.8em 1em 1em 45px;
-}
-
-#addon-validator-suite .msg {
     border-top: 1px dashed #b9cedb;
 }
 

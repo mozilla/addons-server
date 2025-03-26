@@ -1966,15 +1966,20 @@ form .error .note.error {
 
 .notification-box h2 {
     margin: 0;
+    padding: 0;
     padding-top: 10px;
-    font-size: 130%;
-    line-height: 1.5em;
-    min-height: 38px;
     color: #444;
+    background: none;
+    font-weight: bold;
+    font-family: "helvetica neue", arial, helvetica, sans-serif;
+    font-size: 13px;
+    line-height: 1;
+    min-height: 0;
 }
 
 .notification-box p {
-     padding-top: 8px;
+    padding-top: 8px;
+    margin: 0;
 }
 
 .notification-box p:first-child {
@@ -2044,20 +2049,6 @@ form .error .note.error {
 
 .html-rtl .notification-box {
     padding: 13px 58px 13px 13px;
-}
-
-.notification-box h2 {
-    background: none;
-    font-weight: bold;
-    padding: 0;
-    font-family: "helvetica neue", arial, helvetica, sans-serif;
-    font-size: 13px;
-    line-height: 1;
-    min-height: 0;
-}
-
-.notification-box p {
-    margin: 0;
 }
 
 /** Add-on detail page buttons. **/
@@ -2192,10 +2183,6 @@ form .error .note.error {
 .install-wrapper.lite,
 .install-wrapper.unreviewed {
     padding: 0.4em;
-}
-
-.install-wrapper.lite,
-.install-wrapper.unreviewed {
     background: #FFE57F;
 }
 
@@ -2208,6 +2195,7 @@ form .error .note.error {
 /** Add-on listing on the homepage. */
 .listing.compact .item blockquote {
     padding: 0;
+    clear: both;
 }
 
 .listing.compact .item .install-shell,
@@ -2232,10 +2220,6 @@ td .addon-rating,
 .listing.compact .item .meta .downloads,
 .listing.compact .item .meta .updated {
     display: inline;
-}
-
-.listing.compact .item blockquote {
-    clear: both;
 }
 
 #discovery-modules .ordering input {

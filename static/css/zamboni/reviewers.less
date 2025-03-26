@@ -659,10 +659,6 @@ div.reviewer-stats-table > div.reviewer-stats-dark {
     color: #BBB;
 }
 
-.log-filter-outside input::placeholder {
-    color: #BBB;
-}
-
 .log-filter-outside div.date_range {
     padding: 0.5em 0 0;
 }
@@ -1044,6 +1040,10 @@ form.review-form .data-toggle {
     background-color: #E0EFFD;
     display: table-cell;
     text-align: center;
+    text-shadow: 1px 1px 0 #FFF;
+    border-top: 1px solid #2E5186;
+    border-bottom: 1px solid #2E5186;
+    border-right: 1px solid #A5BFCE;
 }
 
 .review-actions .action_nav #id_action>*:active {
@@ -1057,13 +1057,6 @@ form.review-form .data-toggle {
 .review-actions .action_nav #id_action>* label {
     display: block;
     padding: 5px;
-}
-
-.review-actions .action_nav #id_action>* {
-    text-shadow: 1px 1px 0 #FFF;
-    border-top: 1px solid #2E5186;
-    border-bottom: 1px solid #2E5186;
-    border-right: 1px solid #A5BFCE;
 }
 
 .review-actions .action_nav #id_action>*:first-child {
@@ -1351,8 +1344,6 @@ p.is_promoted {
     text-align: center;
 }
 
-#leaderboard .level::before,
-#leaderboard .level::after,
 #leaderboard .level::before,
 #leaderboard .level::after {
     content: "▴";
