@@ -144,8 +144,6 @@ span.emaillink .i {
 
 .rounded {
     border-radius: 6px;
-    border-radius: 6px;
-    border-radius: 6px;
 }
 
 .translation-box .html_allowed {
@@ -332,7 +330,6 @@ span.emaillink .i {
     margin-bottom: 10px;
     display: none;
     border: 1px solid #e0effd;
-    border-radius: 6px;
     border-radius: 6px;
 }
 
@@ -641,8 +638,6 @@ h4.author a {
 #addon-summary #addon-install .install {
     float: left;
     text-align: center;
-    border-radius: 11px;
-    border-radius: 11px;
     border-radius: 11px;
     padding: 0 3px 3px;
 }
@@ -1085,8 +1080,6 @@ dl.faq dt:target, dl.validation dt:target { color: #df731b; }
     background: #fbfefb;
     border: 4px solid #b4e4b4;
     border-radius: 5px;
-    border-radius: 5px;
-    border-radius: 5px;
     text-align: left;
     z-index: 10001;
     display: none;
@@ -1099,8 +1092,6 @@ dl.faq dt:target, dl.validation dt:target { color: #df731b; }
 .app_install-popup-inner {
     padding: 1em;
     border: 1px solid #256350;
-    border-radius: 3px;
-    border-radius: 3px;
     border-radius: 3px;
 }
 
@@ -1229,8 +1220,6 @@ html[xmlns] .clearfix {
     background-color: #f7fafc;
     border: 1px solid #eef1f3;
     border-radius: 6px;
-    border-radius: 6px;
-    border-radius: 6px;
 }
 
 #dictionaries th, #dictionaries td {
@@ -1309,8 +1298,6 @@ html[xmlns] .clearfix {
     padding: 1.5em 8px 0;
     border: 1px solid #ececec;
     border-radius: 8px;
-    border-radius: 8px;
-    border-radius: 8px;
 }
 
 .browse-thumbs ul.thumbs .inner > a {
@@ -1371,8 +1358,6 @@ html[xmlns] .clearfix {
     pointer-events: none;
     padding: 10px;
     border-radius: 8px;
-    border-radius: 8px;
-    border-radius: 8px;
     text-align: center;
 }
 
@@ -1385,8 +1370,6 @@ html[xmlns] .clearfix {
 }
 
 .browse-thumbs .subcategories li.selected {
-    border-radius: 3px;
-    border-radius: 3px;
     border-radius: 3px;
     border: 1px solid #013;
     background-color: #235;
@@ -1503,8 +1486,6 @@ html[xmlns] .clearfix {
 
 .secondary ul.refinements li.selected a {
     background-color: #b9dbe7;
-    border-radius: 3px;
-    border-radius: 3px;
     border-radius: 3px;
     font-weight: bold;
     background-image: url("../../img/icons/arrows.gif");
@@ -1669,8 +1650,6 @@ html[xmlns] .clearfix {
     background-color: #FFA5A5;
     color: #C63717;
     border-radius: 3px;
-    border-radius: 3px;
-    border-radius: 3px;
 }
 
 
@@ -1678,8 +1657,6 @@ html[xmlns] .clearfix {
 
 .support-this-addon {
     text-align: center;
-    border-radius: 5px;
-    border-radius: 5px;
     border-radius: 5px;
     background-color: #dfeef5;
     font-size: 0.9em;
@@ -1964,8 +1941,6 @@ h2.compat-heading a {
 /* Listed add-ons */
 .visit-listed {
     border-radius: 6px;
-    border-radius: 6px;
-    border-radius: 6px;
     background-color: #fff0a6;
     padding: 1em;
 }
@@ -1981,8 +1956,6 @@ h2.compat-heading a {
 div.visit-listed-popup {
     width: 30em;
     border: 4px solid #cb7e42;
-    border-radius: 6px;
-    border-radius: 6px;
     border-radius: 6px;
     padding: 0;
 }

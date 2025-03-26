@@ -4,8 +4,6 @@
     position: relative;
     margin-top: 3em;
     border-radius: 5px;
-    border-radius: 5px;
-    border-radius: 5px;
 }
 
 .tab-wrapper form {
@@ -53,8 +51,6 @@
     display: none;
     border: 1px solid #2e5186;
     border-radius: 3px;
-    border-radius: 3px;
-    border-radius: 3px;
     background: #fff;
 }
 
@@ -72,6 +68,5 @@
     padding: 0.3em 1em 0.5em;
     border-bottom-right-radius: 3px;
     border-bottom-left-radius: 3px;
-    border-radius: 0 0 3px 3px;
     border-radius: 0 0 3px 3px;
 }

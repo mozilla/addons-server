@@ -531,8 +531,6 @@ span.new {
     background-color: #305083;
     color: white;
     border-radius: 8px;
-    border-radius: 8px;
-    border-radius: 8px;
     background-repeat: repeat-x;
     background-position: bottom left;
     border:  1px solid #021437;
@@ -627,8 +625,6 @@ h3 .secondary a:link, h3 .secondary a:active, h3 .secondary a:visited, h3 .secon
 img.icon {
     background-color: #fff;
     border-radius: 4px;
-    border-radius: 4px;
-    border-radius: 4px;
     padding: 4px;
 }
 
@@ -708,8 +704,6 @@ a:focus.button img,
 a:active.button img,
 button img {
     vertical-align:middle;
-    padding:0;
-    margin:0;
     border-left:none;
     border-top:none;
     border-bottom:none;
@@ -736,8 +730,6 @@ a:active.prominent,
 button.prominent {
     font-size:1.2em;
     border-radius: 13px;
-    border-radius: 11px;
-    border-radius: 13px;
 }
 
 a:link.significant,
@@ -747,8 +739,6 @@ a:focus.significant,
 a:active.significant,
 button.significant {
     font-size:1.2em;
-    border-radius: 16px;
-    border-radius: 14px;
     border-radius: 16px;
     font-weight: bold;
     padding:0.4em 0.8em 0.3em 0.5em;
@@ -1151,8 +1141,6 @@ form.favorite {
     border: 4px solid #e0effd;
     background-color: #e0effd;
     border-radius: 5px;
-    border-radius: 5px;
-    border-radius: 5px;
     margin-bottom: 2em;
     clear: both;
 }
@@ -1160,8 +1148,6 @@ form.favorite {
 .featured-inner {
     background-color: #fff;
     border: 1px solid #2E5186;
-    border-radius: 3px;
-    border-radius: 3px;
     border-radius: 3px;
 }
 
@@ -1172,8 +1158,6 @@ form.favorite {
 .article {
     background-color: #fff;
     border: 1px solid #C9E8F3;
-    border-radius: 3px;
-    border-radius: 3px;
     border-radius: 3px;
     padding: 1em;
     overflow: hidden;
@@ -1218,8 +1202,6 @@ form.favorite {
 .notification {
     background-color: #FFF;
     border: 1px solid #e0effd;
-    border-radius: 5px;
-    border-radius: 5px;
     border-radius: 5px;
     padding: 1em;
     color: #444;
@@ -1340,8 +1322,6 @@ form.favorite {
     background-color: white;
     border: 1px solid #2E5186;
     border-radius:5px;
-    border-radius:5px;
-    border-radius:5px;
 }
 
 #contribute-box {
@@ -1352,10 +1332,6 @@ form.favorite {
     background-color: #fff;
     color: #444;
     box-shadow: 0 0 15px rgb(0 0 0 / 50%);
-    box-shadow: 0 0 15px rgb(0 0 0 / 50%);
-    box-shadow: 0 0 15px rgb(0 0 0 / 50%);
-    border-radius: 10px;
-    border-radius: 10px;
     border-radius: 10px;
 }
 
@@ -1419,7 +1395,6 @@ form.favorite {
 }
 
 .notification .toggle-info {
-    clear: both;
     font-weight: normal;
     position: absolute;
     right: 0;
@@ -1452,8 +1427,6 @@ form.favorite {
 
 .highlight {
     background-color: #e0effd;
-    border-radius: 5px;
-    border-radius: 5px;
     border-radius: 5px;
     padding: 1em;
     color: #444;
@@ -1517,8 +1490,6 @@ form.favorite {
     background-color: #e0effd;
     color: #444;
     border-radius: 5px;
-    border-radius: 5px;
-    border-radius: 5px;
     width: 24.49%;
     float: left;
     margin-bottom: 1em;
@@ -1549,8 +1520,6 @@ form.favorite {
     padding: 0.79em 0.8em; /* 10px 13px*/
     background-color: #305083;
     color: white;
-    border-radius: 5px;
-    border-radius: 5px;
     border-radius: 5px;
     font-size: 1.231em;
     background-repeat: repeat-x;
@@ -1836,8 +1805,6 @@ ol.pagination li.selected a:hover,
 ol.pagination li.selected a:focus,
 ol.pagination li.selected a:active {
     border-radius: 3px;
-    border-radius: 3px;
-    border-radius: 3px;
     background-color: #235;
     color: white;
 }
@@ -1848,8 +1815,6 @@ ol.pagination li a:active {
     background-color: #BDDDE8;
 
     /*color: #223355;*/
-    border-radius: 3px;
-    border-radius: 3px;
     border-radius: 3px;
     text-decoration: none;
 }
@@ -1869,8 +1834,6 @@ ol.pagination li a:active {
 }
 
 #sharing-popup div.share-content {
-    border-radius:5px;
-    border-radius:5px;
     border-radius:5px;
     margin: 0;
 }
@@ -2004,8 +1967,6 @@ ol.pagination li a:active {
     background-color: #fff;
     border: 1px solid #C9E8F3;
     border-radius: 3px;
-    border-radius: 3px;
-    border-radius: 3px;
     padding: 1em;
     overflow: hidden;
 }
@@ -2088,7 +2049,6 @@ form.addon-feedback div.container {
     border-top-right-radius: 3px;
     border-top-left-radius: 3px;
     border-radius: 3px 3px 0 0;
-    border-radius: 3px 3px 0 0;
     padding: 0.1em 0 0.1em 0.25em;
     line-height: 2.5em;
 }
@@ -2113,8 +2073,6 @@ form.addon-feedback div.container {
     font-weight: bold;
     text-decoration: none;
     border: 1px solid transparent;
-    border-radius: 3px;
-    border-radius: 3px;
     border-radius: 3px;
     padding: 0.3em 0.6em;
     white-space: nowrap;
@@ -2167,7 +2125,6 @@ form.addon-feedback div.container {
     border-top: 1px solid #A5BFCE;
     border-bottom-right-radius: 3px;
     border-bottom-left-radius: 3px;
-    border-radius: 0 0 3px 3px;
     border-radius: 0 0 3px 3px;
     margin-top: -1px;
     position: relative;
@@ -2318,8 +2275,6 @@ ol.pagination + .num-results {
     float: right;
     text-align: center;
     border-radius: 11px;
-    border-radius: 11px;
-    border-radius: 11px;
     padding: 2px 3px 3px;
     margin-left: 0.5em;
 }
@@ -2431,8 +2386,6 @@ ol.pagination + .num-results {
     border: 1px solid #C9E8F3;
     margin: 0 0 1em;
     border-radius:8px;
-    border-radius: 8px;
-    border-radius:8px;
 }
 
 .listing .item {
@@ -2454,8 +2407,6 @@ ol.pagination + .num-results {
     min-width: 315px;
     clear: none;
     float: left;
-    border-radius:6px;
-    border-radius: 6px;
     border-radius:6px;
 }
 
@@ -2488,8 +2439,6 @@ ol.pagination + .num-results {
     display: table;
     padding-left: 2em;
     width: 90%;
-    border-radius:6px;
-    border-radius: 6px;
     border-radius:6px;
 }
 

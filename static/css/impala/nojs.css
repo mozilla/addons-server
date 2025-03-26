@@ -21,13 +21,9 @@ form.go button {
 
 #search-facets .facets .facet::after {
     transform: rotate(90deg);
-    transform: rotate(90deg);
-    transform: rotate(90deg);
 }
 
 .html-rtl #search-facets .facets .facet::after {
-    transform: rotate(-90deg);
-    transform: rotate(-90deg);
     transform: rotate(-90deg);
 }
 

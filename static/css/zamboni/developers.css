@@ -240,17 +240,11 @@ form .char-count b {
 
 .addon-categories {
     column-count: 3;
-    column-count: 3;
-    column-count: 3;
-    column-gap: 1.5em;
-    column-gap: 1.5em;
     column-gap: 1.5em;
     margin-bottom: 0.5em;
 }
 
 #addon-categories-edit .addon-categories {
-    column-count: 2;
-    column-count: 2;
     column-count: 2;
 }
 
@@ -332,14 +326,11 @@ form .char-count b {
 .edit-previews-submit {
     border: 1px solid #C9E8F3;
     border-radius: 10px;
-    border-radius: 10px;
-    border-radius: 10px;
     margin-top: 10px;
     padding: 15px;
 }
 
 .preview-thumb, .preview-error {
-    background-size: contain;
     -webkit-background-size: contain;
     background-size: contain;
     background-position: center center;
@@ -579,15 +570,11 @@ input.valid {
     padding: 1em;
     width: 300px;
     border-radius: 8px;
-    border-radius: 8px;
-    border-radius: 8px;
     display: inline-block;
     vertical-align: top;
 }
 
 .payments .full-intro {
-    box-sizing: border-box;
-    box-sizing: border-box;
     box-sizing: border-box;
     width: 100%;
 }
@@ -675,8 +662,6 @@ a.extra {
 
 #status-bar {
     padding: .5em 1em;
-    border-radius: 8px;
-    border-radius: 8px;
     border-radius: 8px;
     margin-bottom: 2em;
     background: #fff;
@@ -836,10 +821,6 @@ a.delete-button:hover,
 a.delete-button {
     border: 1px solid #ad1212;
     border-radius: .95em;
-    border-radius: .95em;
-    border-radius: .95em;
-    box-shadow: inset 0 0 2px rgb(255 255 255 / 10%);
-    box-shadow: inset 0 0 2px rgb(255 255 255 / 10%);
     box-shadow: inset 0 0 2px rgb(255 255 255 / 10%);
     color: #fff;
     display: inline-block;
@@ -851,8 +832,6 @@ a.delete-button {
 }
 
 a.delete-button:hover {
-    box-shadow: inset 0 0 2px rgb(255 255 255 / 100%);
-    box-shadow: inset 0 0 2px rgb(255 255 255 / 100%);
     box-shadow: inset 0 0 2px rgb(255 255 255 / 100%);
     color: #fff;
 }
@@ -893,8 +872,6 @@ pre.email_comment {
 }
 
 #upload-file .upload-status {
-    border-radius: 10px;
-    border-radius: 10px;
     border-radius: 10px;
     border:1px solid #D2ECF5;
     margin-bottom: 1em;
@@ -950,8 +927,6 @@ pre.email_comment {
 #upload-status-bar {
     background-color: #F2F2F2;
     border-radius: 5px;
-    border-radius: 5px;
-    border-radius: 5px;
     height: 20px;
 }
 
@@ -965,8 +940,6 @@ pre.email_comment {
 
 #upload-status-bar div {
     background-color: #8BC5FA;
-    border-radius: 5px;
-    border-radius: 5px;
     border-radius: 5px;
     width: 0%;
     height: 20px;
@@ -1150,8 +1123,6 @@ pre.email_comment {
     display: block;
     border:  1px solid #021437;
     border-radius: 5px;
-    border-radius: 5px;
-    border-radius: 5px;
     margin: 0 0 1.5em;
     color: white;
     font-size: 1.231em;
@@ -1196,9 +1167,7 @@ pre.email_comment {
 #navbar li.top ul li:last-child {
     -moz-border-radius-bottomleft: 8px;
     border-bottom-left-radius: 8px;
-    border-bottom-left-radius: 8px;
     -moz-border-radius-bottomright: 8px;
-    border-bottom-right-radius: 8px;
     border-bottom-right-radius: 8px;
 }
 
@@ -1310,8 +1279,6 @@ form.select-review .errorlist {
 #addon-validator-suite .suite-container,
 #addon-validator-suite .results .tier-results {
     border-radius: 8px;
-    border-radius: 8px;
-    border-radius: 8px;
     background-color: #fff;
 }
 
@@ -1330,8 +1297,6 @@ form.select-review .errorlist {
 #addon-validator-suite .suite-container {
     border: 4px solid #b5d9e5;
     margin-bottom: 0;
-    border-radius: 12px;
-    border-radius: 12px;
     border-radius: 12px;
 }
 
@@ -1679,16 +1644,11 @@ button.search-button {
   height: 30px;
   width: 36px;
   border-radius: 6px;
-  border-radius: 6px;
-  border-radius: 6px;
-  box-shadow: 0 1px rgb(0 0 0 / 10%), 0 -2px rgb(0 0 0 / 10%) inset;
-  box-shadow: 0 1px rgb(0 0 0 / 10%), 0 -2px rgb(0 0 0 / 10%) inset;
   box-shadow: 0 1px rgb(0 0 0 / 10%), 0 -2px rgb(0 0 0 / 10%) inset;
 }
 
 .html-rtl button.search-button {
   float: left;
-  transform: scaleX(-1);
   transform: scaleX(-1);
 }
 

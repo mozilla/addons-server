@@ -225,10 +225,6 @@ input[type=button] {
     line-height: 1.538;
     text-shadow: 0 -1px 0 #3d6db5;
     box-shadow: inset 0 0 1px rgb(255 255 255 / 10%);
-    box-shadow: inset 0 0 1px rgb(255 255 255 / 10%);
-    box-shadow: inset 0 0 1px rgb(255 255 255 / 10%);
-    border-radius: .95em;
-    border-radius: .95em;
     border-radius: .95em;
 }
 
@@ -278,8 +274,6 @@ input[type=submit]:focus,
 input[type=button]:focus {
     border-color: #03c;
     box-shadow: inset 0 0 2px rgb(255 255 255 / 100%);
-    box-shadow: inset 0 0 2px rgb(255 255 255 / 100%);
-    box-shadow: inset 0 0 2px rgb(255 255 255 / 100%);
 }
 
 a.button:active, button.button:active {
@@ -288,8 +282,6 @@ a.button:active, button.button:active {
     background: linear-gradient(#39f 40%, #6fb7ff 60%);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(40%, #39f), color-stop(60%, #6fb7ff));
     box-shadow: inset 0 0 2px rgb(0 0 0 / 50%);
-    box-shadow: inset 0 0 2px rgb(0 0 0 / 50%);
-    box-shadow: inset 0 0 2px rgb(0 0 0 / 50%);
 }
 
 .cta a.button:link,
@@ -297,8 +289,6 @@ a.button:active, button.button:active {
     background: #5af;
     background: linear-gradient(#acf, #5af);
     background: -webkit-gradient(linear, left top, left bottom, from(#acf), to(#5af));
-    border-radius: 8px;
-    border-radius: 8px;
     border-radius: 8px;
     display: block;
     line-height: 1.0;
@@ -311,8 +301,6 @@ a.button:active, button.button:active {
 .cta a.button:focus {
     border-color: #25f;
     box-shadow: inset 0 0 2px #fff;
-    box-shadow: inset 0 0 2px #fff;
-    box-shadow: inset 0 0 2px #fff;
 }
 
 .cta a.button:active {
@@ -320,8 +308,6 @@ a.button:active, button.button:active {
     background: #7bf;
     background: linear-gradient(#5af, #7bf);
     background: -webkit-gradient(linear, left top, left bottom, from(#5af), to(#7bf));
-    box-shadow: inset 0 0 2px rgb(0 0 0 / 50%);
-    box-shadow: inset 0 0 2px rgb(0 0 0 / 50%);
     box-shadow: inset 0 0 2px rgb(0 0 0 / 50%);
 }
 
@@ -342,8 +328,6 @@ button.link {
     background: transparent none;
     text-shadow: none;
     box-shadow: none;
-    box-shadow: none;
-    box-shadow: none;
     border: 0;
     font-weight: bold;
     color: #3d6db5;
@@ -357,8 +341,6 @@ input[type=submit]:disabled,
 input[type=button]:disabled {
     background: #a6a6a6;
     border-color: #666;
-    box-shadow: none;
-    box-shadow: none;
     box-shadow: none;
     text-shadow: 0 -1px 0 #666;
 }
@@ -449,7 +431,6 @@ input[type=button].go {
     border-color: #E0EFFD;
     text-shadow: 0 1px 0 #fff;
     box-shadow: inset 0 0 3px #c0e1ee;
-    box-shadow: inset 0 0 3px #c0e1ee;
 }
 
 a.button.go:hover,
@@ -467,7 +448,6 @@ input[type=button].go:focus {
 a.button.go:active {
     border-color: #95b9c5;
     background-image: none;
-    box-shadow: inset 0 0 5px #ccc;
     box-shadow: inset 0 0 5px #ccc;
 }
 
@@ -515,7 +495,6 @@ a.button.caution:active {
     background: linear-gradient(rgb(255 255 255 / 0%) 40%, rgb(255 255 255 / 30%) 60%),
     -moz-repeating-linear-gradient(45deg, #F0B500, #F0B500 7px, #FFD000 7px, #FFD000 14px);
     box-shadow: inset 0 0 5px rgb(0 0 0 / 50%);
-    box-shadow: inset 0 0 5px rgb(0 0 0 / 50%);
 }
 
 /** Status Button *********/
@@ -528,7 +507,6 @@ input[type=button].status {
     background: #fff none;
     border-color: #E0EFFD;
     text-shadow: 0 1px 0 #fff;
-    box-shadow: inset 0 0 3px #c0e1ee;
     box-shadow: inset 0 0 3px #c0e1ee;
 }
 
@@ -548,7 +526,6 @@ a.button.status:active {
     border-color: #95b9c5;
     background-image: none;
     box-shadow: inset 0 0 8px #a4cee2;
-    box-shadow: inset 0 0 8px #a4cee2;
 }
 
 /** Concealed Button *********/
@@ -561,7 +538,6 @@ input[type=button].concealed {
     background: #fff none;
     border-color: #E0EFFD;
     text-shadow: 0 1px 0 #fff;
-    box-shadow: inset 0 0 3px #c0e1ee;
     box-shadow: inset 0 0 3px #c0e1ee;
 }
 
@@ -580,7 +556,6 @@ input[type=button].concealed:focus {
 a.button.concealed:active {
     border-color: #95b9c5;
     background-image: none;
-    box-shadow: inset 0 0 8px #a4cee2;
     box-shadow: inset 0 0 8px #a4cee2;
 }
 
@@ -631,7 +606,6 @@ a.button.concealed:active {
 .install.lite,
 .install.unreviewed {
     padding: 2px;
-    border-radius: .95em .95em .95em 0;
     border-radius: .95em;
     border-bottom-left-radius: 0;
     border-radius: .95em .95em .95em 0;
@@ -640,7 +614,6 @@ a.button.concealed:active {
 .html-rtl .install.featuredaddon,
 .html-rtl .install.lite,
 .html-rtl .install.unreviewed {
-    border-radius: .95em .95em 0;
     border-radius: .95em;
     border-bottom-left-radius: .95em;
     border-bottom-right-radius: 0;
@@ -801,10 +774,6 @@ div.popup-shim {
     padding: 10px;
     border: 3px solid #2e5186;
     border-radius: 8px;
-    border-radius: 8px;
-    border-radius: 8px;
-    box-shadow: 0 1px 3px rgb(0 0 0 / 35%);
-    box-shadow: 0 1px 3px rgb(0 0 0 / 35%);
     box-shadow: 0 1px 3px rgb(0 0 0 / 35%);
     z-index: 2001; /* because of devhub title */
 }
@@ -938,7 +907,6 @@ div.popup-shim {
     color: white;
     font-size: 11px;
     border: 1px solid #fff;
-    border-radius: .8em;
     border-radius: .8em;
     max-width: 300px;
     text-align: center;
@@ -1526,7 +1494,6 @@ form .error .note.error {
 .category-landing .addons-column ul, .category-landing .info-message {
     border: 1px solid #E0EFFD;
     border-radius: 5px;
-    border-radius: 5px;
     padding: 0;
     margin: 0;
 }
@@ -1655,8 +1622,6 @@ form .error .note.error {
     border: 4px solid #E0EFFD;
     background-color: #E0EFFD;
     border-radius: 5px;
-    border-radius: 5px;
-    border-radius: 5px;
     margin-bottom: 2em;
     clear: both;
 }
@@ -1664,8 +1629,6 @@ form .error .note.error {
 .results-inner {
     background-color: #fff;
     border: 1px solid #2e5186;
-    border-radius: 3px;
-    border-radius: 3px;
     border-radius: 3px;
     overflow: visible;
 }
@@ -1689,8 +1652,6 @@ form .error .note.error {
     background-color: transparent;
     margin-bottom: 0;
     border-radius: 0;
-    border-radius: 0;
-    border-radius: 0;
 }
 
 .result-count {
@@ -1705,8 +1666,6 @@ form .error .note.error {
     float: left;
     padding: 3px 10px;
     margin-top: 0.5em;
-    border-radius: 5px;
-    border-radius: 5px;
     border-radius: 5px;
     width: 95%;
 }
@@ -1797,8 +1756,6 @@ form .error .note.error {
     padding: 6px 8px 6px 28px;
     background: #ffc url("../../img/zamboni/icons/suggest-help.png") 6px .5em no-repeat;
     border: 1px solid #fc6;
-    box-shadow: 2px 2px 0 #E0EFFD;
-    box-shadow: 2px 2px 0 #E0EFFD;
     box-shadow: 2px 2px 0 #E0EFFD;
     top: 0;
     right: 0;
@@ -2022,10 +1979,6 @@ form .error .note.error {
     background-color: #e0effd;
     padding: 13px 13px 13px 58px;
     border-radius: 5px;
-    border-radius: 5px;
-    border-radius: 5px;
-    box-shadow: 0 1px 3px rgb(0 0 0 / 35%);
-    box-shadow: 0 1px 3px rgb(0 0 0 / 35%);
     box-shadow: 0 1px 3px rgb(0 0 0 / 35%);
     font-family: "helvetica neue", arial, helvetica, sans-serif;
     color: #444;
@@ -2145,8 +2098,6 @@ form .error .note.error {
 
 .install-wrapper {
     margin-bottom: 1.5em;
-    border-radius: 6px;
-    border-radius: 6px;
     border-radius: 6px;
 }
 
@@ -2415,8 +2366,6 @@ ul.review-options > li {
     font-weight: normal;
     color: #aaa;
     transition: color .2s;
-    transition: color .2s;
-    transition: color .2s;
 }
 
 ul.review-options > li:not(:first-child) {
@@ -2426,8 +2375,6 @@ ul.review-options > li:not(:first-child) {
 
 .article.review {
     margin-bottom: 1em;
-    border-radius: 8px;
-    border-radius: 8px;
     border-radius: 8px;
     overflow: visible;
 }
@@ -2505,7 +2452,6 @@ h6.author, .author a {
     border-left: 1px solid black;
     height: 2em;
     float: left;
-    width: 0;
     overflow: visible;
     width: 120px;
 }
@@ -2520,7 +2466,6 @@ h6.author, .author a {
 
 .grouped_ratings .rating_bar span.bar {
     display:block;
-    height: 100%;
     position: relative;
     background: #acd;
     margin: .4em .5em 0 0;
@@ -2806,7 +2751,6 @@ label > .optional {
 }
 
 #icon_upload .icon_preview img {
-  border-radius: 5px;
   border-radius: 5px;
   border: 1px solid #C1E0EA;
   padding: 8px;
