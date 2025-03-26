@@ -1689,8 +1689,8 @@ button.search-button {
 
 .html-rtl button.search-button {
   float: left;
-  transform: scalex(-1);
-  transform: scalex(-1);
+  transform: scaleX(-1);
+  transform: scaleX(-1);
 }
 
 span.distribution-tag-listed, span.distribution-tag-unlisted {
