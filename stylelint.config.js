@@ -14,7 +14,6 @@ export default {
     'no-duplicate-selectors': null,
     'declaration-property-value-no-unknown': null,
     'font-family-no-missing-generic-family-keyword': null,
-    'function-linear-gradient-no-nonstandard-direction': null,
   },
   overrides: [
     {
