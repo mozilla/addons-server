@@ -211,8 +211,8 @@ span.new  {
 a.button:link,
 a.button:visited,
 button,
-input[type=submit],
-input[type=button] {
+input[type="submit"],
+input[type="button"] {
     font-weight: bold;
     color: #fff;
     background: #39f url("../../img/zamboni/button-blue.png") 0 50% repeat-x;
@@ -229,8 +229,8 @@ input[type=button] {
 }
 
 button,
-input[type=submit],
-input[type=button] {
+input[type="submit"],
+input[type="button"] {
     padding: .2em .95em .3em;
     cursor: pointer;
 }
@@ -268,10 +268,10 @@ a.button:hover,
 a.button:focus,
 button:hover,
 button:focus,
-input[type=submit]:hover,
-input[type=button]:hover,
-input[type=submit]:focus,
-input[type=button]:focus {
+input[type="submit"]:hover,
+input[type="button"]:hover,
+input[type="submit"]:focus,
+input[type="button"]:focus {
     border-color: #03c;
     box-shadow: inset 0 0 2px rgb(255 255 255 / 100%);
 }
@@ -318,8 +318,8 @@ a.button.prominent:hover,
 a.button.prominent:focus,
 a.button.prominent:active,
 button.prominent,
-input[type=button].prominent,
-input[type=submit].prominent {
+input[type="button"].prominent,
+input[type="submit"].prominent {
     font-size: 1.2em;
 }
 
@@ -337,8 +337,8 @@ button.link {
 a.button.disabled,
 a.button[disabled],
 button.button:disabled,
-input[type=submit]:disabled,
-input[type=button]:disabled {
+input[type="submit"]:disabled,
+input[type="button"]:disabled {
     background: #a6a6a6;
     border-color: #666;
     box-shadow: none;
@@ -356,18 +356,18 @@ button.link:focus {
 a.button.add:link,
 a.button.add:visited,
 button.add,
-input[type=submit].add,
-input[type=button].add,
+input[type="submit"].add,
+input[type="button"].add,
 a.button.download:link,
 a.button.download:visited,
 button.download,
-input[type=submit].download,
-input[type=button].download,
+input[type="submit"].download,
+input[type="button"].download,
 a.button.mobile:link,
 a.button.mobile:visited,
 button.mobile,
-input[type=button].mobile,
-input[type=submit].mobile {
+input[type="button"].mobile,
+input[type="submit"].mobile {
     background: #55a802 url("../../img/zamboni/button-green.png") 0 50% repeat-x;
     background: linear-gradient(#93c85e 30%, #55a802 55%);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(30%, #93c85e), color-stop(55%, #55a802));
@@ -379,10 +379,10 @@ a.button.add:hover,
 a.button.add:focus,
 button.add:hover,
 button.add:focus,
-input[type=submit].add:hover,
-input[type=button].add:hover,
-input[type=submit].add:focus,
-input[type=button].add:focus {
+input[type="submit"].add:hover,
+input[type="button"].add:hover,
+input[type="submit"].add:focus,
+input[type="button"].add:focus {
     border-color: #1a5404;
 }
 
@@ -397,24 +397,24 @@ a.button.download:active {
 /** Temporary diagnostic styles to weed out redundant button classes *********/
 a.button.significant,
 button.significant,
-input[type=submit].significant,
-input[type=button].significant,
+input[type="submit"].significant,
+input[type="button"].significant,
 a.button.positive,
 button.positive,
-input[type=submit].positive,
-input[type=button].positive,
+input[type="submit"].positive,
+input[type="button"].positive,
 a.button.negative,
 button.negative,
-input[type=submit].negative,
-input[type=button].negative,
+input[type="submit"].negative,
+input[type="button"].negative,
 a.button.neutral,
 button.neutral,
-input[type=submit].neutral,
-input[type=button].neutral,
+input[type="submit"].neutral,
+input[type="button"].neutral,
 a.button.cool,
 button.cool,
-input[type=submit].cool,
-input[type=button].cool {
+input[type="submit"].cool,
+input[type="button"].cool {
     outline: 3px dotted red;
 }
 
@@ -424,8 +424,8 @@ input[type=button].cool {
 a.button.go:link,
 a.button.go:visited,
 button.go,
-input[type=submit].go,
-input[type=button].go {
+input[type="submit"].go,
+input[type="button"].go {
     color: #3d6db5;
     background: #fff none;
     border-color: #E0EFFD;
@@ -437,10 +437,10 @@ a.button.go:hover,
 a.button.go:focus,
 button.go:hover,
 button.go:focus,
-input[type=submit].go:hover,
-input[type=button].go:hover,
-input[type=submit].go:focus,
-input[type=button].go:focus {
+input[type="submit"].go:hover,
+input[type="button"].go:hover,
+input[type="submit"].go:focus,
+input[type="button"].go:focus {
     color: #3d6db5;
     border-color: #a8cedd;
 }
@@ -456,8 +456,8 @@ a.button.go:active {
 a.button.caution:link,
 a.button.caution:visited,
 button.caution,
-input[type=submit].caution,
-input[type=button].caution {
+input[type="submit"].caution,
+input[type="button"].caution {
     color: #333;
     background: #fc0 url("../../img/zamboni/button-caution.png") 0 50% repeat-x;
     background: linear-gradient(rgb(255 255 255 / 40%), rgb(255 255 255 / 0%) 60%),
@@ -469,8 +469,8 @@ input[type=button].caution {
 a.button.caution.concealed:link,
 a.button.caution.concealed:visited,
 button.caution.concealed,
-input[type=submit].caution.concealed,
-input[type=button].caution.concealed {
+input[type="submit"].caution.concealed,
+input[type="button"].caution.concealed {
     color: #859fae;
     border-color: #a70;
     background: linear-gradient(rgb(255 255 255 / 90%), rgb(255 255 255 / 60%) 60%),
@@ -482,10 +482,10 @@ a.button.caution:hover,
 a.button.caution:focus,
 button.caution:hover,
 button.caution:focus,
-input[type=submit].caution:hover,
-input[type=button].caution:hover,
-input[type=submit].caution:focus,
-input[type=button].caution:focus {
+input[type="submit"].caution:hover,
+input[type="button"].caution:hover,
+input[type="submit"].caution:focus,
+input[type="button"].caution:focus {
     border-color: #850;
 }
 
@@ -501,8 +501,8 @@ a.button.caution:active {
 a.button.status:link,
 a.button.status:visited,
 button.status,
-input[type=submit].status,
-input[type=button].status {
+input[type="submit"].status,
+input[type="button"].status {
     color: #333;
     background: #fff none;
     border-color: #E0EFFD;
@@ -514,10 +514,10 @@ a.button.status:hover,
 a.button.status:focus,
 button.status:hover,
 button.status:focus,
-input[type=submit].status:hover,
-input[type=button].status:hover,
-input[type=submit].status:focus,
-input[type=button].status:focus {
+input[type="submit"].status:hover,
+input[type="button"].status:hover,
+input[type="submit"].status:focus,
+input[type="button"].status:focus {
     color: #333;
     border-color: #a8cedd;
 }
@@ -532,8 +532,8 @@ a.button.status:active {
 a.button.concealed:link,
 a.button.concealed:visited,
 button.concealed,
-input[type=submit].concealed,
-input[type=button].concealed {
+input[type="submit"].concealed,
+input[type="button"].concealed {
     color: #859fae;
     background: #fff none;
     border-color: #E0EFFD;
@@ -545,10 +545,10 @@ a.button.concealed:hover,
 a.button.concealed:focus,
 button.concealed:hover,
 button.concealed:focus,
-input[type=submit].concealed:hover,
-input[type=button].concealed:hover,
-input[type=submit].concealed:focus,
-input[type=button].concealed:focus {
+input[type="submit"].concealed:hover,
+input[type="button"].concealed:hover,
+input[type="submit"].concealed:focus,
+input[type="button"].concealed:focus {
     color: #657f8e;
     border-color: #a8cedd;
 }
@@ -2690,7 +2690,7 @@ label > .optional {
     padding: 2px 2px 2px 5px;
 }
 
-.edit_with_prefix input, .edit_with_prefix input[type=text] {
+.edit_with_prefix input, .edit_with_prefix input[type="text"] {
     border: 1px solid #5875a0;
     border-left: 0 none;
 }

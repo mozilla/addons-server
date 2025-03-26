@@ -64,14 +64,14 @@
     background-repeat: no-repeat;
 }
 
-.dynamic-modules .field-icon div[id^=id_modules-][id$=-icon] > * {
+.dynamic-modules .field-icon div[id^="id_modules-"][id$="-icon"] > * {
     display: inline-block;
     margin: 0.25em;
     vertical-align: top;
     background-color: #EEE;
 }
 
-.dynamic-modules .field-icon div[id^=id_modules-][id$=-icon] > * div {
+.dynamic-modules .field-icon div[id^="id_modules-"][id$="-icon"] > * div {
     height: 3em;
     width: 4.25em;
     background-size: contain;
@@ -79,13 +79,13 @@
     background-position: right;
 }
 
-.dynamic-modules .field-icon div[id^=id_modules-][id$=-icon] > * div label {
+.dynamic-modules .field-icon div[id^="id_modules-"][id$="-icon"] > * div label {
     color: transparent;
     display: block;
     width: inherit;
 }
 
-.dynamic-modules .field-icon div[id^=id_modules-][id$=-icon] > *:first-child div label {
+.dynamic-modules .field-icon div[id^="id_modules-"][id$="-icon"] > *:first-child div label {
     color: black;
 }
 
