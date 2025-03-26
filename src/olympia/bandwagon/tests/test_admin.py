@@ -3,7 +3,9 @@ from django.urls import reverse
 
 from pyquery import PyQuery as pq
 
+from olympia import amo
 from olympia.amo.tests import TestCase, addon_factory, formset, user_factory
+from olympia.activity.models import ActivityLog
 from olympia.bandwagon.models import Collection, CollectionAddon
 
 
@@ -114,6 +116,8 @@ class TestCollectionAdmin(TestCase):
         assert collection_addon.addon == addon2
         assert collection_addon.collection == collection
         assert CollectionAddon.objects.count() == 1
+        # Editing normally shouldn't have triggered the undeletion log.
+        assert not ActivityLog.objects.filter(action=amo.LOG.COLLECTION_UNDELETED.id).exists()
 
     def test_can_not_list_without_collections_edit_permission(self):
         collection = Collection.objects.create(slug='floob')
@@ -335,3 +339,37 @@ class TestCollectionAdmin(TestCase):
         response = self.client.post(self.delete_url, data={'post': 'yes'}, follow=True)
         assert response.status_code == 200
         assert not Collection.objects.filter(pk=collection.pk).exists()
+        assert Collection.unfiltered.filter(pk=collection.pk).exists()  # Soft-deleted.
+        assert not ActivityLog.objects.filter(action=amo.LOG.COLLECTION_UNDELETED.id).exists()
+        assert ActivityLog.objects.filter(action=amo.LOG.COLLECTION_DELETED.id).exists()
+        activity = ActivityLog.objects.filter(action=amo.LOG.COLLECTION_DELETED.id).get()
+        assert activity.arguments == [collection]
+        assert activity.user == user
+
+    def test_can_undelete_with_admin_collection_edit_permission(self):
+        someone = user_factory()
+        collection = Collection.objects.create(slug='floob', deleted=True, author=someone)
+        collection.delete(clear_slug=False)
+        self.change_url = reverse(
+            'admin:bandwagon_collection_change', args=(collection.pk,)
+        )
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Admin:Advanced')
+        self.grant_permission(user, 'Collections:Edit')
+        self.client.force_login(user)
+        post_data = {
+            # Django wants the whole form to be submitted, unfortunately.
+            'default_locale': collection.default_locale,
+            'author': someone.pk,
+            'description_en-us': '',
+            'slug': collection.slug,
+            'listed': 'on',
+        }
+        post_data.update(formset(prefix='collectionaddon_set'))
+        response = self.client.post(self.change_url, data=post_data, follow=True)
+        assert response.status_code == 200
+        assert Collection.objects.filter(pk=collection.pk).exists()
+        assert ActivityLog.objects.filter(action=amo.LOG.COLLECTION_UNDELETED.id).exists()
+        activity = ActivityLog.objects.filter(action=amo.LOG.COLLECTION_UNDELETED.id).get()
+        assert activity.arguments == [collection]
+        assert activity.user == user
