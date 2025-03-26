@@ -105,7 +105,6 @@ const config = defineConfig([
     rules: {
       // Disable all the error-causing rules for tests
       'vitest/valid-title': 'off',
-      'vitest/expect-expect': 'off',
       'prettier/prettier': 'off',
     },
   },

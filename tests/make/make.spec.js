@@ -165,14 +165,9 @@ describe('docker-compose.yml', () => {
       const {
         config: { services },
       } = getConfig(inputValues);
-      for (let [name, config] of Object.entries(services)) {
+      for (let config of Object.values(services)) {
         for (let volume of config.volumes ?? []) {
-          if (!volume.bind && !volume.source) {
-            throw new Error(
-              `'.services.${name}.volumes' contains unnamed volume mount: ` +
-                `'${volume.target}'. Please use a named volume mount instead.`,
-            );
-          }
+          expect(volume.bind || volume.source).toBeTruthy();
         }
       }
     });
