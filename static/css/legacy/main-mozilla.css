@@ -421,7 +421,6 @@ span.emaillink .i {
 
 .ui-tabs-disabled {
     opacity: .4;
-    filter: alpha(opacity=40);
 }
 
 .ui-tabs-nav .ui-tabs-disabled a:link, .ui-tabs-nav .ui-tabs-disabled a:visited {
@@ -1023,7 +1022,6 @@ div.collector-firstrun-favorite {
     border-color: #999;
     cursor: default;
     opacity: 0.3;
-    filter: (opacity=30);
 }
 
 .exp-loggedout .button.positive:link img,
@@ -1290,7 +1288,7 @@ html[xmlns] .clearfix {
     width: 24.5%;
     float: left;
     position: relative;
-    background: #f9f9f9 radial-gradient(center, circle, #d3eff7, #fff 90%);
+    background: #f9f9f9 radial-gradient(circle at center, #d3eff7, #fff 90%);
 }
 
 .browse-thumbs ul.thumbs .inner {
@@ -1922,8 +1920,8 @@ h2.compat-heading a {
     top: 0;
     left: 0;
     z-index: -1;
-    width: expression(this.parentnode.offsetwidth+'px');
-    height: expression(this.parentnode.offsetheight+'px');
+    width: 100%;
+    height: 100%;
 }
 
 * html .jqmWindow {
