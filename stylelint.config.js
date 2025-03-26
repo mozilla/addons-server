@@ -19,7 +19,6 @@ export default {
     'declaration-block-no-shorthand-property-overrides': null,
     'selector-pseudo-element-no-unknown': null,
     'selector-attribute-quotes': null,
-    'media-feature-range-notation': null,
     'value-keyword-case': null,
     'selector-not-notation': null,
     'declaration-property-value-keyword-no-deprecated': null,
