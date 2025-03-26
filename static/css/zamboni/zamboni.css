@@ -219,11 +219,11 @@ input[type=button] {
     display: inline-block;
     line-height: 1.538;
     text-shadow: 0 -1px 0 #3d6db5;
-    -moz-box-shadow: inset 0 0 1px rgba(255,255,255,0.1);
-    -webkit-box-shadow: inset 0 0 1px rgba(255,255,255,0.1);
     box-shadow: inset 0 0 1px rgba(255,255,255,0.1);
-    -moz-border-radius: .95em;
-    -webkit-border-radius: .95em;
+    box-shadow: inset 0 0 1px rgba(255,255,255,0.1);
+    box-shadow: inset 0 0 1px rgba(255,255,255,0.1);
+    border-radius: .95em;
+    border-radius: .95em;
     border-radius: .95em;
 }
 
@@ -272,8 +272,8 @@ input[type=button]:hover,
 input[type=submit]:focus,
 input[type=button]:focus {
     border-color: #03c;
-    -moz-box-shadow: inset 0 0 2px rgba(255,255,255,1);
-    -webkit-box-shadow: inset 0 0 2px rgba(255,255,255,1);
+    box-shadow: inset 0 0 2px rgba(255,255,255,1);
+    box-shadow: inset 0 0 2px rgba(255,255,255,1);
     box-shadow: inset 0 0 2px rgba(255,255,255,1);
 }
 
@@ -282,8 +282,8 @@ a.button:active, button.button:active {
     background-image: url("../../img/zamboni/button-blue-on.png");
     background: linear-gradient(#39f 40%, #6fb7ff 60%);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(40%, #39f), color-stop(60%, #6fb7ff));
-    -moz-box-shadow: inset 0 0 2px rgba(0,0,0,.5);
-    -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,.5);
+    box-shadow: inset 0 0 2px rgba(0,0,0,.5);
+    box-shadow: inset 0 0 2px rgba(0,0,0,.5);
     box-shadow: inset 0 0 2px rgba(0,0,0,.5);
 }
 
@@ -292,8 +292,8 @@ a.button:active, button.button:active {
     background: #5af;
     background: linear-gradient(#acf, #5af);
     background: -webkit-gradient(linear, left top, left bottom, from(#acf), to(#5af));
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    border-radius: 8px;
     border-radius: 8px;
     display: block;
     line-height: 1.0;
@@ -305,8 +305,8 @@ a.button:active, button.button:active {
 .cta a.button:hover,
 .cta a.button:focus {
     border-color: #25f;
-    -moz-box-shadow: inset 0 0 2px #fff;
-    -webkit-box-shadow: inset 0 0 2px #fff;
+    box-shadow: inset 0 0 2px #fff;
+    box-shadow: inset 0 0 2px #fff;
     box-shadow: inset 0 0 2px #fff;
 }
 
@@ -315,8 +315,8 @@ a.button:active, button.button:active {
     background: #7bf;
     background: linear-gradient(#5af, #7bf);
     background: -webkit-gradient(linear, left top, left bottom, from(#5af), to(#7bf));
-    -moz-box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5);
-    -webkit-box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5);
     box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5);
 }
 
@@ -336,8 +336,8 @@ input[type=submit].prominent {
 button.link {
     background: transparent none;
     text-shadow: none;
-    -moz-box-shadow: none;
-    -webkit-box-shadow: none;
+    box-shadow: none;
+    box-shadow: none;
     box-shadow: none;
     border: 0;
     font-weight: bold;
@@ -352,8 +352,8 @@ input[type=submit]:disabled,
 input[type=button]:disabled {
     background: #a6a6a6;
     border-color: #666;
-    -moz-box-shadow: none;
-    -webkit-box-shadow: none;
+    box-shadow: none;
+    box-shadow: none;
     box-shadow: none;
     text-shadow: 0 -1px 0 #666;
 }
@@ -442,8 +442,8 @@ input[type=button].go {
     background: #fff none;
     border-color: #E0EFFD;
     text-shadow: 0 1px 0 #fff;
-    -moz-box-shadow: inset 0 0 3px #c0e1ee;
-    -webkit-box-shadow: inset 0 0 3px #c0e1ee;
+    box-shadow: inset 0 0 3px #c0e1ee;
+    box-shadow: inset 0 0 3px #c0e1ee;
 }
 
 a.button.go:hover,
@@ -461,8 +461,8 @@ input[type=button].go:focus {
 a.button.go:active {
     border-color: #95b9c5;
     background-image: none;
-    -moz-box-shadow: inset 0 0 5px #ccc;
-    -webkit-box-shadow: inset 0 0 5px #ccc;
+    box-shadow: inset 0 0 5px #ccc;
+    box-shadow: inset 0 0 5px #ccc;
 }
 
 
@@ -508,8 +508,8 @@ a.button.caution:active {
     background-image: url("../../img/zamboni/button-caution-on.png");
     background: linear-gradient(rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 0.3) 60%),
     -moz-repeating-linear-gradient(45deg, #F0B500, #F0B500 7px, #FFD000 7px, #FFD000 14px);
-    -moz-box-shadow: inset 0 0 5px rgba(0,0,0,.5);
-    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,.5);
+    box-shadow: inset 0 0 5px rgba(0,0,0,.5);
+    box-shadow: inset 0 0 5px rgba(0,0,0,.5);
 }
 
 /** Status Button *********/
@@ -522,8 +522,8 @@ input[type=button].status {
     background: #fff none;
     border-color: #E0EFFD;
     text-shadow: 0 1px 0 #fff;
-    -moz-box-shadow: inset 0 0 3px #c0e1ee;
-    -webkit-box-shadow: inset 0 0 3px #c0e1ee;
+    box-shadow: inset 0 0 3px #c0e1ee;
+    box-shadow: inset 0 0 3px #c0e1ee;
 }
 
 a.button.status:hover,
@@ -541,8 +541,8 @@ input[type=button].status:focus {
 a.button.status:active {
     border-color: #95b9c5;
     background-image: none;
-    -moz-box-shadow: inset 0 0 8px #a4cee2;
-    -webkit-box-shadow: inset 0 0 8px #a4cee2;
+    box-shadow: inset 0 0 8px #a4cee2;
+    box-shadow: inset 0 0 8px #a4cee2;
 }
 
 /** Concealed Button *********/
@@ -555,8 +555,8 @@ input[type=button].concealed {
     background: #fff none;
     border-color: #E0EFFD;
     text-shadow: 0 1px 0 #fff;
-    -moz-box-shadow: inset 0 0 3px #c0e1ee;
-    -webkit-box-shadow: inset 0 0 3px #c0e1ee;
+    box-shadow: inset 0 0 3px #c0e1ee;
+    box-shadow: inset 0 0 3px #c0e1ee;
 }
 
 a.button.concealed:hover,
@@ -574,8 +574,8 @@ input[type=button].concealed:focus {
 a.button.concealed:active {
     border-color: #95b9c5;
     background-image: none;
-    -moz-box-shadow: inset 0 0 8px #a4cee2;
-    -webkit-box-shadow: inset 0 0 8px #a4cee2;
+    box-shadow: inset 0 0 8px #a4cee2;
+    box-shadow: inset 0 0 8px #a4cee2;
 }
 
 
@@ -625,19 +625,19 @@ a.button.concealed:active {
 .install.lite,
 .install.unreviewed {
     padding: 2px;
-    -moz-border-radius: .95em .95em .95em 0;
-    -webkit-border-radius: .95em;
-    -webkit-border-bottom-left-radius: 0;
+    border-radius: .95em .95em .95em 0;
+    border-radius: .95em;
+    border-bottom-left-radius: 0;
     border-radius: .95em .95em .95em 0;
 }
 
 .html-rtl .install.featuredaddon,
 .html-rtl .install.lite,
 .html-rtl .install.unreviewed {
-    -moz-border-radius: .95em .95em 0 .95em;
-    -webkit-border-radius: .95em;
-    -webkit-border-bottom-left-radius: .95em;
-    -webkit-border-bottom-right-radius: 0;
+    border-radius: .95em .95em 0 .95em;
+    border-radius: .95em;
+    border-bottom-left-radius: .95em;
+    border-bottom-right-radius: 0;
     border-radius: .95em .95em 0 .95em;
 }
 
@@ -794,11 +794,11 @@ div.popup-shim {
     background: #fff;
     padding: 10px;
     border: 3px solid #2e5186;
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
     border-radius: 8px;
-    -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.35);
-    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.35);
+    border-radius: 8px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.35);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.35);
     box-shadow: 0 1px 3px rgba(0,0,0,0.35);
     z-index: 2001; /* because of devhub title */
 }
@@ -930,8 +930,8 @@ div.popup-shim {
     color: white;
     font-size: 11px;
     border: 1px solid #fff;
-    -moz-border-radius: .8em;
-    -webkit-border-radius: .8em;
+    border-radius: .8em;
+    border-radius: .8em;
     max-width: 300px;
     text-align: center;
     position: absolute;
@@ -1297,7 +1297,7 @@ form .error .note.error {
 
 #user-profile .trans {
     width: 100%;
-    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .html-rtl #user-edit #acct-notify {
@@ -1513,7 +1513,7 @@ form .error .note.error {
 
 .category-landing .addons-column ul, .category-landing .info-message {
     border: 1px solid #E0EFFD;
-    -moz-border-radius: 5px;
+    border-radius: 5px;
     border-radius: 5px;
     padding: 0;
     margin: 0;
@@ -1642,8 +1642,8 @@ form .error .note.error {
 .results {
     border: 4px solid #E0EFFD;
     background-color: #E0EFFD;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border-radius: 5px;
     border-radius: 5px;
     margin-bottom: 2em;
     clear: both;
@@ -1652,8 +1652,8 @@ form .error .note.error {
 .results-inner {
     background-color: #fff;
     border: 1px solid #2e5186;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
+    border-radius: 3px;
+    border-radius: 3px;
     border-radius: 3px;
     overflow: visible;
 }
@@ -1676,8 +1676,8 @@ form .error .note.error {
     border-width: 0 0 1px;
     background-color: transparent;
     margin-bottom: 0;
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
+    border-radius: 0;
+    border-radius: 0;
     border-radius: 0;
 }
 
@@ -1693,8 +1693,8 @@ form .error .note.error {
     float: left;
     padding: 3px 10px;
     margin-top: 0.5em;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border-radius: 5px;
     border-radius: 5px;
     width: 95%;
 }
@@ -1785,8 +1785,8 @@ form .error .note.error {
     padding: 6px 8px 6px 28px;
     background: #ffc url("../../img/zamboni/icons/suggest-help.png") 6px .5em no-repeat;
     border: 1px solid #fc6;
-    -moz-box-shadow: 2px 2px 0 #E0EFFD;
-    -webkit-box-shadow: 2px 2px 0 #E0EFFD;
+    box-shadow: 2px 2px 0 #E0EFFD;
+    box-shadow: 2px 2px 0 #E0EFFD;
     box-shadow: 2px 2px 0 #E0EFFD;
     top: 0;
     right: 0;
@@ -2009,11 +2009,11 @@ form .error .note.error {
     border: 3px solid #1d4900;
     background-color: #e0effd;
     padding: 13px 13px 13px 58px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
     border-radius: 5px;
-    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
-    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+    border-radius: 5px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
     font-family: "helvetica neue", arial, helvetica, sans-serif;
     color: #444;
@@ -2133,8 +2133,8 @@ form .error .note.error {
 
 .install-wrapper {
     margin-bottom: 1.5em;
-    -moz-border-radius: 6px;
-    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    border-radius: 6px;
     border-radius: 6px;
 }
 
@@ -2321,7 +2321,7 @@ td .addon-rating,
     width: 24px;
     height: 24px;
     border: 1px solid #7fcbd8;
-    -moz-border-radius: 13px;
+    border-radius: 13px;
     cursor: pointer;
     text-indent: -999px;
     background: white;
@@ -2402,8 +2402,8 @@ ul.review-options > li {
 .review ul.review-options > li > a {
     font-weight: normal;
     color: #aaa;
-    -moz-transition: color .2s;
-    -webkit-transition: color .2s;
+    transition: color .2s;
+    transition: color .2s;
     transition: color .2s;
 }
 
@@ -2414,8 +2414,8 @@ ul.review-options > li:not(:first-child) {
 
 .article.review {
     margin-bottom: 1em;
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    border-radius: 8px;
     border-radius: 8px;
     overflow: visible;
 }
@@ -2770,7 +2770,7 @@ label > .optional {
 
 .collections-details #id_name {
     display: block;
-    -moz-box-sizing: border-box;
+    box-sizing: border-box;
     width: 100%;
 }
 
@@ -2794,8 +2794,8 @@ label > .optional {
 }
 
 #icon_upload .icon_preview img {
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  border-radius: 5px;
   border: 1px solid #C1E0EA;
   padding: 8px;
   width: 32px;
@@ -3186,7 +3186,7 @@ input.ui-autocomplete-loading {
 
 /** Add-on detail page QR Code area. Feature test from Bug 595561 **/
 #addon-qr-code {
-    -moz-border-radius: 5px;
+    border-radius: 5px;
     background-color: #e0effd;
     border: 6px solid #e0effd;
     color: #223355;

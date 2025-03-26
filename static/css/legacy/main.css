@@ -369,7 +369,7 @@ input.long, textarea.long {
 
 textarea {
     width: 100%;
-    -moz-box-sizing: border-box;
+    box-sizing: border-box;
     display: block;
 }
 
@@ -391,7 +391,7 @@ button.link {
     width: auto;
     overflow: visible;
     text-shadow: none;
-    -moz-user-select: text;
+    user-select: text;
 }
 
 /* accessibility feature, resize check and radio inputs */
@@ -530,8 +530,8 @@ span.new {
     padding: 0.2em 0.5em;
     background-color: #305083;
     color: white;
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    border-radius: 8px;
     border-radius: 8px;
     background-repeat: repeat-x;
     background-position: bottom left;
@@ -626,8 +626,8 @@ h3 .secondary a:link, h3 .secondary a:active, h3 .secondary a:visited, h3 .secon
 
 img.icon {
     background-color: #fff;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
+    border-radius: 4px;
+    border-radius: 4px;
     border-radius: 4px;
     padding: 4px;
 }
@@ -735,8 +735,8 @@ a:focus.prominent,
 a:active.prominent,
 button.prominent {
     font-size:1.2em;
-    -moz-border-radius: 13px;
-    -webkit-border-radius: 11px;
+    border-radius: 13px;
+    border-radius: 11px;
     border-radius: 13px;
 }
 
@@ -747,8 +747,8 @@ a:focus.significant,
 a:active.significant,
 button.significant {
     font-size:1.2em;
-    -moz-border-radius: 16px;
-    -webkit-border-radius: 14px;
+    border-radius: 16px;
+    border-radius: 14px;
     border-radius: 16px;
     font-weight: bold;
     padding:0.4em 0.8em 0.3em 0.5em;
@@ -874,7 +874,7 @@ button.add-to-fav {
     background-image: url(../../img/icons/fav-off.gif);
     background-position: left center;
     background-repeat: no-repeat;
-    -moz-border-radius: 0;
+    border-radius: 0;
     border:none;
     color: #3d6db5;
     cursor:pointer;
@@ -1149,8 +1149,8 @@ form.favorite {
 .featured {
     border: 4px solid #e0effd;
     background-color: #e0effd;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border-radius: 5px;
     border-radius: 5px;
     margin-bottom: 2em;
     clear: both;
@@ -1159,8 +1159,8 @@ form.favorite {
 .featured-inner {
     background-color: #fff;
     border: 1px solid #2E5186;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
+    border-radius: 3px;
+    border-radius: 3px;
     border-radius: 3px;
 }
 
@@ -1171,8 +1171,8 @@ form.favorite {
 .article {
     background-color: #fff;
     border: 1px solid #C9E8F3;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
+    border-radius: 3px;
+    border-radius: 3px;
     border-radius: 3px;
     padding: 1em;
     overflow: hidden;
@@ -1217,8 +1217,8 @@ form.favorite {
 .notification {
     background-color: #FFFFFF;
     border: 1px solid #e0effd;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border-radius: 5px;
     border-radius: 5px;
     padding: 1em;
     color: #444444;
@@ -1338,8 +1338,8 @@ form.favorite {
 .dropdown {
     background-color: white;
     border: 1px solid #2E5186;
-    -moz-border-radius:5px;
-    -webkit-border-radius:5px;
+    border-radius:5px;
+    border-radius:5px;
     border-radius:5px;
 }
 
@@ -1350,11 +1350,11 @@ form.favorite {
     padding: 16px;
     background-color: #fff;
     color: #444;
-    -moz-box-shadow: 0 0 15px rgba(0,0,0,.5);
-    -webkit-box-shadow: 0 0 15px rgba(0,0,0,.5);
     box-shadow: 0 0 15px rgba(0,0,0,.5);
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,.5);
+    box-shadow: 0 0 15px rgba(0,0,0,.5);
+    border-radius: 10px;
+    border-radius: 10px;
     border-radius: 10px;
 }
 
@@ -1451,8 +1451,8 @@ form.favorite {
 
 .highlight {
     background-color: #e0effd;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border-radius: 5px;
     border-radius: 5px;
     padding: 1em;
     color: #444444;
@@ -1515,8 +1515,8 @@ form.favorite {
 .categories {
     background-color: #e0effd;
     color: #444444;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border-radius: 5px;
     border-radius: 5px;
     width: 24.49%;
     float: left;
@@ -1548,8 +1548,8 @@ form.favorite {
     padding: 0.79em 0.8em; /* 10px 13px*/
     background-color: #305083;
     color: white;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border-radius: 5px;
     border-radius: 5px;
     font-size: 1.231em;
     background-repeat: repeat-x;
@@ -1834,8 +1834,8 @@ ol.pagination li.selected a:visited,
 ol.pagination li.selected a:hover,
 ol.pagination li.selected a:focus,
 ol.pagination li.selected a:active {
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
+    border-radius: 3px;
+    border-radius: 3px;
     border-radius: 3px;
     background-color: #223355;
     color: white;
@@ -1846,8 +1846,8 @@ ol.pagination li a:focus,
 ol.pagination li a:active {
     background-color: #BDDDE8;
     /*color: #223355;*/
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
+    border-radius: 3px;
+    border-radius: 3px;
     border-radius: 3px;
     text-decoration: none;
 }
@@ -1867,8 +1867,8 @@ ol.pagination li a:active {
 }
 
 #sharing-popup div.share-content {
-    -moz-border-radius:5px;
-    -webkit-border-radius:5px;
+    border-radius:5px;
+    border-radius:5px;
     border-radius:5px;
     margin: 0;
 }
@@ -1876,7 +1876,7 @@ ol.pagination li a:active {
 .share-networks ul {
     padding: 0 0 0 0.8em;
     display: table;
-    -moz-box-sizing: border-box;
+    box-sizing: border-box;
     margin: 0;
     width:100%;
 }
@@ -1931,7 +1931,7 @@ ol.pagination li a:active {
 
 .share-email .container input,
 .share-email .container textarea {
-    -moz-box-sizing:border-box;
+    box-sizing:border-box;
     display:block;
     width:100%;
 }
@@ -2001,8 +2001,8 @@ ol.pagination li a:active {
 .secondary-item-list {
     background-color: #fff;
     border: 1px solid #C9E8F3;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
+    border-radius: 3px;
+    border-radius: 3px;
     border-radius: 3px;
     padding: 1em;
     overflow: hidden;
@@ -2082,9 +2082,9 @@ form.addon-feedback div.container {
 
 .listing-header {
     border-bottom: 1px solid #A5BFCE;
-    -webkit-border-top-right-radius: 3px;
-    -webkit-border-top-left-radius: 3px;
-    -moz-border-radius: 3px 3px 0 0;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+    border-radius: 3px 3px 0 0;
     border-radius: 3px 3px 0 0;
     padding: 0.1em 0 0.1em 0.25em;
     line-height: 2.5em;
@@ -2110,8 +2110,8 @@ form.addon-feedback div.container {
     font-weight: bold;
     text-decoration: none;
     border: 1px solid transparent;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
+    border-radius: 3px;
+    border-radius: 3px;
     border-radius: 3px;
     padding: 0.3em 0.6em;
     white-space: nowrap;
@@ -2162,9 +2162,9 @@ form.addon-feedback div.container {
     background-repeat: repeat-x;
     background-position: left top;
     border-top: 1px solid #A5BFCE;
-    -webkit-border-bottom-right-radius: 3px;
-    -webkit-border-bottom-left-radius: 3px;
-    -moz-border-radius: 0 0 3px 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-radius: 0 0 3px 3px;
     border-radius: 0 0 3px 3px;
     margin-top: -1px;
     position: relative;
@@ -2313,8 +2313,8 @@ ol.pagination + .num-results {
 .item .install {
     float: right;
     text-align: center;
-    -webkit-border-radius: 11px;
-    -moz-border-radius: 11px;
+    border-radius: 11px;
+    border-radius: 11px;
     border-radius: 11px;
     padding: 2px 3px 3px 3px;
     margin-left: 0.5em;
@@ -2426,8 +2426,8 @@ ol.pagination + .num-results {
 .separated-listing .item {
     border: 1px solid #C9E8F3;
     margin: 0 0 1em 0;
-    -moz-border-radius:8px;
-    -webkit-border-radius: 8px;
+    border-radius:8px;
+    border-radius: 8px;
     border-radius:8px;
 }
 
@@ -2452,8 +2452,8 @@ ol.pagination + .num-results {
     clear: none;
     float: left;
 
-    -moz-border-radius:6px;
-    -webkit-border-radius: 6px;
+    border-radius:6px;
+    border-radius: 6px;
     border-radius:6px;
 }
 
@@ -2486,8 +2486,8 @@ ol.pagination + .num-results {
     display: table;
     padding-left: 2em;
     width: 90%;
-    -moz-border-radius:6px;
-    -webkit-border-radius: 6px;
+    border-radius:6px;
+    border-radius: 6px;
     border-radius:6px;
 }
 
