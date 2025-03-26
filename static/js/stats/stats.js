@@ -9,8 +9,8 @@ function updateQueryParams(view) {
   let queryParams = {};
 
   if (view.range) {
-    if (typeof range == 'string') {
-      queryParams.last = range.split(/\s+/)[0];
+    if (typeof view.range == 'string') {
+      queryParams.last = view.range.split(/\s+/)[0];
     }
   }
 
