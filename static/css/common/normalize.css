@@ -12,8 +12,7 @@
 
 html {
   font-family: sans-serif; /* 1 */
-  line-height: 1.15; /* 2 */
-  text-size-adjust: 100%; /* 3 */
+  line-height: 1.15; /* 2 */ /* 3 */
   text-size-adjust: 100%; /* 3 */
 }
 
