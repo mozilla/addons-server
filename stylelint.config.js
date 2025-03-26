@@ -18,7 +18,6 @@ export default {
     'declaration-block-single-line-max-declarations': null,
     'selector-pseudo-class-no-unknown': null,
     'declaration-block-no-shorthand-property-overrides': null,
-    'no-empty-source': null,
     'at-rule-prelude-no-invalid': null,
     'selector-type-no-unknown': null,
     'number-max-precision': null,
