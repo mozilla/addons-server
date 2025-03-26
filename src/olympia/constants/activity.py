@@ -198,6 +198,7 @@ class ESCALATE_VERSION(_LOG):
     review_email_user = True
     review_queue = True
     hide_developer = True
+    obsolete = True
 
 
 class REQUEST_VERSION(_LOG):
@@ -219,6 +220,7 @@ class REQUEST_INFORMATION(_LOG):
     review_email_user = True
     review_queue = True
     reviewer_review_action = True
+    obsolete = True
 
 
 # Obsolete now that we've split the requests for admin review into separate
@@ -237,6 +239,7 @@ class REQUEST_SUPER_REVIEW(_LOG):
         'usual.'
     )
     reviewer_review_action = True
+    obsolete = True
 
 
 class COMMENT_VERSION(_LOG):
@@ -290,6 +293,7 @@ class ADD_RECOMMENDED_CATEGORY(_LOG):
     id = 31
     action_class = 'edit'
     format = '{addon} featured in {0}.'
+    obsolete = True
 
 
 # Obsolete, kept for compatibility.
@@ -297,6 +301,7 @@ class REMOVE_RECOMMENDED_CATEGORY(_LOG):
     id = 32
     action_class = 'edit'
     format = '{addon} no longer featured in {0}.'
+    obsolete = True
 
 
 # Obsolete, kept for compatibility.
@@ -304,6 +309,7 @@ class ADD_RECOMMENDED(_LOG):
     id = 33
     format = '{addon} is now featured.'
     keep = True
+    obsolete = True
 
 
 # Obsolete, kept for compatibility.
@@ -311,6 +317,7 @@ class REMOVE_RECOMMENDED(_LOG):
     id = 34
     format = '{addon} is no longer featured.'
     keep = True
+    obsolete = True
 
 
 class ADD_APPVERSION(_LOG):
@@ -424,29 +431,34 @@ class USER_AUTO_DELETED(_LOG):
 class CUSTOM_TEXT(_LOG):
     id = 98
     format = '{0}'
+    obsolete = True
 
 
 class CUSTOM_HTML(_LOG):
     id = 99
     format = '{0}'
+    obsolete = True
 
 
 class OBJECT_ADDED(_LOG):
     id = 100
     format = 'Created: {0}.'
     admin_event = True
+    obsolete = True
 
 
 class OBJECT_EDITED(_LOG):
     id = 101
     format = 'Edited field: {2} set to: {0}.'
     admin_event = True
+    obsolete = True
 
 
 class OBJECT_DELETED(_LOG):
     id = 102
     format = 'Deleted: {1}.'
     admin_event = True
+    obsolete = True
 
 
 class ADMIN_USER_EDITED(_LOG):
@@ -530,6 +542,7 @@ class BETA_SIGNED(_LOG):
     id = 131
     format = '{file} was signed.'
     keep = True
+    obsolete = True
 
 
 # Obsolete, we don't care about validation results on beta files.
@@ -537,6 +550,7 @@ class BETA_SIGNED_VALIDATION_FAILED(_LOG):
     id = 132
     format = '{file} was signed.'
     keep = True
+    obsolete = True
 
 
 class DELETE_ADDON(_LOG):
@@ -565,6 +579,7 @@ class UNLISTED_SIGNED_VALIDATION_FAILED(_LOG):
     id = 136
     format = '{file} was signed.'
     keep = True
+    obsolete = True
 
 
 # Obsolete, we don't care about validation results on unlisted files anymore,
@@ -573,6 +588,7 @@ class UNLISTED_SIDELOAD_SIGNED_VALIDATION_PASSED(_LOG):
     id = 137
     format = '{file} was signed.'
     keep = True
+    obsolete = True
 
 
 # Obsolete, we don't care about validation results on unlisted files anymore,
@@ -581,6 +597,7 @@ class UNLISTED_SIDELOAD_SIGNED_VALIDATION_FAILED(_LOG):
     id = 138
     format = '{file} was signed.'
     keep = True
+    obsolete = True
 
 
 # Obsolete, kept for compatibility.
@@ -589,6 +606,7 @@ class PRELIMINARY_ADDON_MIGRATED(_LOG):
     format = '{addon} migrated from preliminary.'
     keep = True
     review_queue = True
+    obsolete = True
 
 
 class DEVELOPER_REPLY_VERSION(_LOG):
@@ -681,6 +699,7 @@ class ADMIN_ALTER_INFO_REQUEST(_LOG):
     keep = True
     reviewer_review_action = True
     review_queue = True
+    obsolete = True
 
 
 # Obsolete, kept for compatibility.
@@ -690,6 +709,7 @@ class DEVELOPER_CLEAR_INFO_REQUEST(_LOG):
     short = 'Information request removed'
     keep = True
     review_queue = True
+    obsolete = True
 
 
 # Obsolete, kept for compatibility.
@@ -701,6 +721,7 @@ class REQUEST_ADMIN_REVIEW_CODE(_LOG):
     review_queue = True
     reviewer_review_action = True
     sanitize = REQUEST_SUPER_REVIEW.sanitize
+    obsolete = True
 
 
 # Obsolete, kept for compatibility.
@@ -712,6 +733,7 @@ class REQUEST_ADMIN_REVIEW_CONTENT(_LOG):
     review_queue = True
     reviewer_review_action = True
     sanitize = REQUEST_SUPER_REVIEW.sanitize
+    obsolete = True
 
 
 class REQUEST_ADMIN_REVIEW_THEME(_LOG):
@@ -902,6 +924,7 @@ class CLEAR_NEEDS_HUMAN_REVIEWS_LEGACY(_LOG):
     admin_event = True
     review_queue = True
     reviewer_review_action = True
+    obsolete = True
 
 
 class NEEDS_HUMAN_REVIEW_AUTOMATIC(_LOG):
@@ -1210,6 +1233,8 @@ LOG_REVIEW_QUEUE_DEVELOPER = list(set(LOG_REVIEW_QUEUE) - set(LOG_HIDE_DEVELOPER
 LOG_SHOW_USER_TO_DEVELOPER = [
     log.id for log in LOGS if hasattr(log, 'show_user_to_developer')
 ]
+
+LOG_OBSOLETE = [log.id for log in LOGS if getattr(log, 'obsolete', False)]
 
 # Actions that store IP
 LOG_STORE_IPS = [log.id for log in LOGS if getattr(log, 'store_ip', False)]
