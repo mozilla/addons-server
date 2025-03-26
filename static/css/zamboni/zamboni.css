@@ -23,11 +23,11 @@
     word-wrap: break-word;
 }
 
-/************************************/
+/***********************************  */
 
 /*             ELEMENTS             */
 
-/************************************/
+/***********************************  */
 .section,
 .notification .aux,
 .aux .button-wrapper,
@@ -144,11 +144,11 @@ ul.errorlist {
     background-color: #E0EFFD;
 }
 
-/************************************/
+/***********************************  */
 
 /*             GRADIENTS            */
 
-/************************************/
+/***********************************  */
 
 /*  If you made a gradient, add it here.
  *  If you want to use an existing gradient, add your selector here.
@@ -1027,11 +1027,11 @@ ul.license li.cc-noncom { background-position: 0 -130px; }
 ul.license li.cc-share { background-position: 0 -195px; }
 ul.license li.copyr { background-position: 0 -260px; }
 
-/************************************/
+/***********************************  */
 
 /*               PAGES              */
 
-/************************************/
+/***********************************  */
 
 #search-suggest li.ext a { background-position: 7px 2px; }
 #search-suggest li.col a { background-position: 7px -98px; }
@@ -1135,7 +1135,7 @@ select:disabled {
 }
 
 .user-input textarea {
-/*    width: 98%;*/
+/*    width: 98%; */
 }
 
 .user-input .instruct {
@@ -1220,11 +1220,11 @@ form .error .note.error {
     display: block;
 }
 
-/************************************/
+/***********************************  */
 
 /*               PAGES              */
 
-/************************************/
+/***********************************  */
 
 /** =User =Edit *********/
 #user-profile ol {
@@ -2273,7 +2273,7 @@ td .addon-rating,
 /* Carousel arrows for personas carousel */
 
 .personas-home ol.breadcrumbs {
-    clear:none; /*don't want breadcrumbs clearing floats in this module*/
+    clear:none; /* don't want breadcrumbs clearing floats in this module */
 }
 
 .arrow {

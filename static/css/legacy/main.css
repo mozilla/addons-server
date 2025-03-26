@@ -893,7 +893,7 @@ form button.add-to-fav.loading-fav:active {
     background-image: url("../../img/icons/orange-loading.gif");
 }
 
-/*.favorite {
+/* .favorite {
     background-image: url(../../img/icons/icons.png);
     background-repeat: no-repeat;
     background-position: 0 -700px;
@@ -1517,7 +1517,7 @@ form.favorite {
 .categories h2,
 .categories h3 {
     margin: 0;
-    padding: 0.79em 0.8em; /* 10px 13px*/
+    padding: 0.79em 0.8em; /* 10px 13px */
     background-color: #305083;
     color: white;
     border-radius: 5px;
@@ -1814,7 +1814,7 @@ ol.pagination li a:focus,
 ol.pagination li a:active {
     background-color: #BDDDE8;
 
-    /*color: #223355;*/
+    /* color: #223355; */
     border-radius: 3px;
     text-decoration: none;
 }
@@ -2259,8 +2259,8 @@ ol.pagination + .num-results {
 .item .item-info {
     border-left: 1px dotted #B4DFEE;
 
-    /*margin-bottom: -50em;
-    padding-bottom: 50em;*/
+    /* margin-bottom: -50em;
+    padding-bottom: 50em; */
 }
 
 .item-info ul {
