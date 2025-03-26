@@ -1170,5 +1170,6 @@ def fix_webext_fixture(filename):
     yield temp_file
 
     # Clean up the temp file
-    os.remove(temp_file)
+    # FIXME: This was getting deleted before the test could use the file. Do something proper here
+    #os.remove(temp_file)
 
