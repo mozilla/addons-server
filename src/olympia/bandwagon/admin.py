@@ -62,7 +62,7 @@ class CollectionAdmin(AMOModelAdmin):
         # something not yet deleted the admin should use the regular button
         # instead of the checkbox.
         if obj and obj.deleted:
-            return fields + ('deleted', )
+            return fields + ('deleted',)
         return fields
 
     # Permission checks:
@@ -95,7 +95,6 @@ class CollectionAdmin(AMOModelAdmin):
         return acl.action_allowed_for(
             request.user, amo.permissions.ADMIN_CURATION
         ) or super().has_add_permission(request)
-
 
     def delete_model(self, request, obj):
         ActivityLog.objects.create(amo.LOG.COLLECTION_DELETED, obj)
