@@ -156,29 +156,15 @@ ul.errorlist {
 
 /* 'listing header' */
 .listing-header {
-    background-color: #E0EFFD;
-    background: -webkit-gradient(
-        linear,
-        left bottom,
-        left top,
-        from(#FFF),
-        to(#E0EFFD)
-    );
     background: linear-gradient(#FFF, #E0EFFD);
+    background-color: #E0EFFD;
 }
 
 /* 'listing item' */
 .object-lead,
 .listing .item {
-    background-color: #E0EFFD;
-    background: -webkit-gradient(
-        linear,
-        left bottom,
-        left top,
-        from(#FFF),
-        to(#F6FBFF)
-    );
     background: linear-gradient(#FFF, #F6FBFF);
+    background-color: #E0EFFD;
 }
 
 /* 'Mozilla' */
@@ -278,9 +264,8 @@ input[type="button"]:focus {
 
 a.button:active, button.button:active {
     border-color: #03c;
-    background-image: url("../../img/zamboni/button-blue-on.png");
     background: linear-gradient(#39f 40%, #6fb7ff 60%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(40%, #39f), color-stop(60%, #6fb7ff));
+    background-image: url("../../img/zamboni/button-blue-on.png");
     box-shadow: inset 0 0 2px rgb(0 0 0 / 50%);
 }
 
@@ -389,9 +374,8 @@ input[type="button"].add:focus {
 a.button.add:active,
 a.button.download:active {
     border-color: #1a5404;
-    background-image: url("../../img/zamboni/button-green-on.png");
     background: linear-gradient(#55a802 40%, #83c046 65%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(40%, #55a802), color-stop(65%, #83c046));
+    background-image: url("../../img/zamboni/button-green-on.png");
 }
 
 /** Temporary diagnostic styles to weed out redundant button classes *********/
@@ -491,9 +475,9 @@ input[type="button"].caution:focus {
 
 a.button.caution:active {
     border-color: #850;
-    background-image: url("../../img/zamboni/button-caution-on.png");
     background: linear-gradient(rgb(255 255 255 / 0%) 40%, rgb(255 255 255 / 30%) 60%),
     repeating-linear-gradient(45deg, #F0B500, #F0B500 7px, #FFD000 7px, #FFD000 14px);
+    background-image: url("../../img/zamboni/button-caution-on.png");
     box-shadow: inset 0 0 5px rgb(0 0 0 / 50%);
 }
 
@@ -606,15 +590,12 @@ a.button.concealed:active {
 .install.lite,
 .install.unreviewed {
     padding: 2px;
-    border-bottom-left-radius: 0;
     border-radius: .95em .95em .95em 0;
 }
 
 .html-rtl .install.featuredaddon,
 .html-rtl .install.lite,
 .html-rtl .install.unreviewed {
-    border-bottom-left-radius: .95em;
-    border-bottom-right-radius: 0;
     border-radius: .95em .95em 0;
 }
 
@@ -1746,7 +1727,6 @@ form .error .note.error {
 }
 
 .results-head .suggest {
-    padding-left: 10px;
     font-size: .923em;
     line-height: 1.4;
     position: absolute;
