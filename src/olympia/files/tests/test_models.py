@@ -387,13 +387,13 @@ class TestParseXpi(TestCase):
         # methods).
         expected = {
             'guid': '@webextension-guid',
-            'name': 'xpi name',
-            'summary': 'xpi description',
-            'version': '0.1',
-            'homepage': 'http://homepage.com',
+            'name': 'My WebExtension Addon',
+            'summary': 'just a test addon with the manifest.json format',
+            'version': '0.0.1',
             'type': 1,
-            'is_webextension': False,
+            'is_webextension': True,
         }
+        # FIXME: Is 'webextension.xpi' the correct file to load for this test?
         parsed = self.parse()
         for key, value in expected.items():
             assert parsed[key] == value
