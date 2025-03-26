@@ -737,7 +737,7 @@ b.review-history-pending-count {
 }
 
 div.history-container {
-    margin: 0em 1em;
+    margin: 0 1em;
 }
 
 div.review-entry {
@@ -753,24 +753,24 @@ div.review-entry.new {
 
 div.review-entry p {
     color: #999;
-    margin-bottom: 0px;
+    margin-bottom: 0;
 }
 
 div.review-entry pre {
     white-space: pre-wrap;
     max-width: 650px;
     word-wrap: break-word;
-    margin-bottom: 0px;
+    margin-bottom: 0;
 }
 
 div.dev-review-reply {
-    margin: 0em 1em;
+    margin: 0 1em;
 }
 
 div.dev-review-reply textarea {
     border-color: #999;
     border-radius: 3px;
-    margin: 0.5em 0em;
+    margin: 0.5em 0;
 }
 
 div.dev-review-reply button {
@@ -1008,7 +1008,7 @@ pre.email_comment {
 
 #upload-status-results a.addons-linter-info {
     font-size: 0.8em;
-    padding: 0px 0 10px;
+    padding: 0 0 10px;
     display: inline-block;
 }
 

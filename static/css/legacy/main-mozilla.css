@@ -1269,7 +1269,7 @@ html[xmlns] .clearfix {
 }
 
 .compact {
-    margin: 0px;
+    margin: 0;
 }
 /* END Search engines & Themes Landing pages */
 
@@ -1413,7 +1413,7 @@ html[xmlns] .clearfix {
     padding-left: 20px;
     background-image: url(../../img/icons/icons.png);
     background-repeat: no-repeat;
-    background-position: 0px -1400px;
+    background-position: 0 -1400px;
 }
 
 .html-rtl .addon-tags .tag .tagitem {
@@ -1439,7 +1439,7 @@ html[xmlns] .clearfix {
 	padding-left: 20px;
 	background-image: url(../../img/icons/icons.png);
 	background-repeat: no-repeat;
-	background-position: 0px -200px;
+	background-position: 0 -200px;
 }
 
 .html-rtl .addon-otheraddons li .addonitem {
@@ -1463,12 +1463,12 @@ html[xmlns] .clearfix {
 
 .results .item .item-info .downloads {
     display: block;
-    margin-left: 0px;
+    margin-left: 0;
 }
 
 .results .item .install {
     float: none;
-    margin-left: 0px;
+    margin-left: 0;
 }
 
 .results .item h3 {
@@ -1520,8 +1520,8 @@ html[xmlns] .clearfix {
     background: #ffe; border-bottom: 2px solid #ccc;
     font-size: 110%;
     width: 80%;
-    padding: 5px 10% 0px;
-    margin: 0px;
+    padding: 5px 10% 0;
+    margin: 0;
     text-align: center;
 }
 
