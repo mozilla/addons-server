@@ -1922,8 +1922,8 @@ h2.compat-heading a {
     top: 0;
     left: 0;
     z-index: -1;
-    width: expression(this.parentNode.offsetWidth+'px');
-    height: expression(this.parentNode.offsetHeight+'px');
+    width: expression(this.parentnode.offsetwidth+'px');
+    height: expression(this.parentnode.offsetheight+'px');
 }
 
 * html .jqmWindow {
