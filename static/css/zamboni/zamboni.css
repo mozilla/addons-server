@@ -634,11 +634,11 @@ a.button.concealed:active {
 .html-rtl .install.featuredaddon,
 .html-rtl .install.lite,
 .html-rtl .install.unreviewed {
-    border-radius: .95em .95em 0 .95em;
+    border-radius: .95em .95em 0;
     border-radius: .95em;
     border-bottom-left-radius: .95em;
     border-bottom-right-radius: 0;
-    border-radius: .95em .95em 0 .95em;
+    border-radius: .95em .95em 0;
 }
 
 .install.featuredaddon {
@@ -2433,7 +2433,7 @@ ul.review-options > li:not(:first-child) {
 }
 
 .review p {
-    margin: 1em 0 0 0;
+    margin: 1em 0 0;
 }
 
 .review .reviewed-on {
@@ -2584,11 +2584,11 @@ h6.author, .author a {
 }
 
 #review-form {
-    margin: 2em 1em 0 1em;
+    margin: 2em 1em 0;
 }
 
 .review-form textarea {
-    margin: 1em 0 1em 0;
+    margin: 1em 0;
     clear: left;
 }
 
@@ -2804,7 +2804,7 @@ label > .optional {
 }
 
 #ajax_collections_list {
-    margin: 0 0 .5em 0;
+    margin: 0 0 .5em;
 }
 
 #ajax_new_collection {
@@ -3324,7 +3324,7 @@ input.ui-autocomplete-loading {
 }
 
 #requires-restart {
-    margin: -1em 0 1.5em 0;
+    margin: -1em 0 1.5em;
 }
 
 #requires-restart-msg {

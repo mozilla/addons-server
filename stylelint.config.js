@@ -18,7 +18,6 @@ export default {
     'selector-pseudo-class-no-unknown': null,
     'declaration-block-no-shorthand-property-overrides': null,
     'selector-pseudo-element-no-unknown': null,
-    'shorthand-property-no-redundant-values': null,
     'color-function-notation': null,
     'alpha-value-notation': null,
     'color-hex-length': null,
