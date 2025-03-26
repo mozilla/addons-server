@@ -4,7 +4,7 @@
 
 .trans .transbox-new {
     width: 100%;
-    background: linear-gradient(rgb(255 255 255 / 0.3), rgb(255 255 255 / 0.8));
+    background: linear-gradient(rgb(255 255 255 / 30%), rgb(255 255 255 / 80%));
     text-align: center;
     border: 1px solid #2e5186;
     border-radius: 0 0 5px 5px;
