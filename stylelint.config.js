@@ -19,7 +19,6 @@ export default {
     'declaration-block-no-shorthand-property-overrides': null,
     'selector-pseudo-element-no-unknown': null,
     'selector-attribute-quotes': null,
-    'declaration-empty-line-before': null,
     'at-rule-empty-line-before': null,
     'comment-empty-line-before': null,
     'function-name-case': null,

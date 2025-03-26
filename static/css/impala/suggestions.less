@@ -3,6 +3,7 @@
 #site-search-suggestions {
     .transition-property(~'bottom, opacity, visibility');
     .transition-duration(.3s);
+
     font: 13px/26px @sans-stack;
     height: 0;
     opacity: 0;
@@ -24,6 +25,7 @@
         border: 1px solid @shadow-blue;
         .border-radius(4px);
         .box-shadow(0 0 4px rgba(0,0,0,.2), 0 -2px 0 @inset-blue inset);
+
         position: absolute;
         top: 0;
         right: 0;
@@ -71,8 +73,10 @@
 
         span {
             .border-box();
+
             background: no-repeat 4px 50%;
             .background-size(20px auto);
+
             max-width: 280px;
             padding: 2px 2px 2px 32px;
 
@@ -83,6 +87,7 @@
             &.app {
                 background-image: url("../../img/app-icons/16/sprite.png");
                 .background-size(18px auto);
+
                 background-position: 4px 6px;
                 min-height: 0 !important;
             }
