@@ -173,8 +173,8 @@ span.emaillink .i {
 .translation-box .translation-button img {
     cursor: pointer;
     float: left;
-    background-color: #EEEEEE;
-    border: 1px solid #EEEEEE;
+    background-color: #EEE;
+    border: 1px solid #EEE;
     border-bottom: none;
     padding: 2px 5px 3px;
     margin: 5px 0 0 10px;
@@ -205,7 +205,7 @@ span.emaillink .i {
 .translation-box .translation-tab {
     float: left;
     margin-right: 2px;
-    background-color: #DDDDDD;
+    background-color: #DDD;
     text-align: center;
     padding: 5px;
     -moz-border-radius-topleft: 6px;
@@ -215,7 +215,7 @@ span.emaillink .i {
     width: 3.1em;
     height: 1.5em;
     cursor: pointer;
-    border-bottom: 1px solid #FFFFFF;
+    border-bottom: 1px solid #FFF;
 }
 
 .html-rtl .translation-box .translation-tab {
@@ -258,7 +258,7 @@ span.emaillink .i {
 }
 
 .translation-box .translation-maxlength.over {
-    color: #CC3333;
+    color: #C33;
 }
 
 .translation-box .translation-maxlength.over img {
@@ -443,7 +443,7 @@ span.emaillink .i {
 .no-results,
 p.addon-search-message {
     margin-top:2em;
-    color: #777777;
+    color: #777;
     font-size: 180%;
     font-weight: bold;
     text-align:center;
@@ -655,8 +655,8 @@ h4.author a {
     border: 1px solid #D2E7EE;
     padding: 0.3em;
     width: 10em;
-    background-color: #FFFFFF;
-    color: #666666;
+    background-color: #FFF;
+    color: #666;
 }
 
 .aux #addon-summary.rec .install,
@@ -682,7 +682,7 @@ h4.author a {
     font-size: 0.85em;
     line-height: 1em;
     color: #000;
-    text-shadow: #FFFFFF 1px 1px 1px;
+    text-shadow: #FFF 1px 1px 1px;
     clear: left;
 }
 
@@ -698,7 +698,7 @@ table caption {
 }
 
 #addon-summary table th {
-    color: #223355;
+    color: #235;
 }
 
 #addon-summary tr.meta-stats a {
@@ -1308,7 +1308,7 @@ html[xmlns] .clearfix {
 .browse-thumbs ul.thumbs .inner > a {
     display: block;
     overflow: hidden;
-    border:1px solid #CCCCCC;
+    border:1px solid #CCC;
     height: 135px;
 }
 
@@ -1380,8 +1380,8 @@ html[xmlns] .clearfix {
     border-radius: 3px;
     border-radius: 3px;
     border-radius: 3px;
-    border: 1px solid #001133;
-    background-color: #223355;
+    border: 1px solid #013;
+    background-color: #235;
     padding: 0 3px;
 }
 
@@ -1871,7 +1871,7 @@ html[xmlns] .clearfix {
 /* Compatibility first-run */
 .firstrun-image {
     padding: 10px;
-    background-color: #FFFFFF;
+    background-color: #FFF;
     border-radius: 6px;
     margin-top: 75px;
     width: 85%;

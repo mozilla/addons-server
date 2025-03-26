@@ -156,10 +156,10 @@ ul.errorlist {
         linear,
         left bottom,
         left top,
-        from(#FFFFFF),
+        from(#FFF),
         to(#E0EFFD)
     );
-    background: linear-gradient(#FFFFFF, #E0EFFD);
+    background: linear-gradient(#FFF, #E0EFFD);
 }
 
 /* 'listing item' */
@@ -170,10 +170,10 @@ ul.errorlist {
         linear,
         left bottom,
         left top,
-        from(#FFFFFF),
+        from(#FFF),
         to(#F6FBFF)
     );
-    background: linear-gradient(#FFFFFF, #F6FBFF);
+    background: linear-gradient(#FFF, #F6FBFF);
 }
 
 /* 'Mozilla' */
@@ -2027,7 +2027,7 @@ form .error .note.error {
     font-size: 130%;
     line-height: 1.5em;
     min-height: 38px;
-    color: #444444;
+    color: #444;
 }
 
 .notification-box p {
@@ -2235,7 +2235,7 @@ form .error .note.error {
 
 .install-wrapper.lite .extra,
 .install-wrapper.unreviewed .extra {
-    border-top: 1px dotted #AA7700;
+    border-top: 1px dotted #A70;
 }
 
 .install-wrapper.lite .install strong,
@@ -3029,7 +3029,7 @@ td.input {
     padding: 1em;
     min-height: 190px;
     background-image: url(../../img/illustrations/logo-collections-220x270.png),
-                      linear-gradient(#e4f5fb, #ffffff);
+                      linear-gradient(#e4f5fb, #fff);
     background-repeat: no-repeat;
     background-position: 95% 30px, left top;
 }
@@ -3189,7 +3189,7 @@ input.ui-autocomplete-loading {
     border-radius: 5px;
     background-color: #e0effd;
     border: 6px solid #e0effd;
-    color: #223355;
+    color: #235;
     float: right;
     font-size: 0.9em;
     margin-left: 0.5em;
@@ -3359,7 +3359,7 @@ ul.errorlist li progress {
 }
 
 ul.errorlist li.strength {
-    color: #444444;
+    color: #444;
 }
 
 .generic-content {

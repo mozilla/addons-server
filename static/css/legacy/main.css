@@ -52,7 +52,7 @@ table {
 
 body {
     margin: 0 auto;
-    color:#444444;
+    color:#444;
     font-size:13px;
     line-height:1.538em; /* Baseline grid of 20px */
     position: relative;
@@ -160,7 +160,7 @@ h3 {
 }
 
 h4 {
-    color:#223355;
+    color:#235;
     font-size:1em /* 13px */;
 }
 
@@ -644,7 +644,7 @@ h2 img.icon {
 }
 
 img.avatar {
-    border: 3px solid #FFFFFF;
+    border: 3px solid #FFF;
 }
 
 .screenshot.thumbnail {
@@ -713,7 +713,7 @@ button img {
     border-left:none;
     border-top:none;
     border-bottom:none;
-    border-right:1px solid #3399FF;
+    border-right:1px solid #39F;
     margin:0 0.6em 0.25em 0;
     padding:0.1em 0.5em 0.1em 0;
 }
@@ -786,7 +786,7 @@ a:hover.button.neutral img,
 a:focus.button.neutral img,
 a:active.button.neutral img,
 button.neutral img {
-    border-right:1px solid #DD7711;
+    border-right:1px solid #D71;
 }
 
 a:link.button.positive,
@@ -807,7 +807,7 @@ a:hover.button.positive img,
 a:focus.button.positive img,
 a:active.button.positive img,
 button.positive img {
-    border-right:1px solid #55AA00;
+    border-right:1px solid #5A0;
 }
 
 a:link.negative,
@@ -885,7 +885,7 @@ button.add-to-fav {
 }
 
 button.add-to-fav.fav {
-    color: #CC0000;
+    color: #C00;
     background-image: url(../../img/icons/fav-on.gif);
 }
 
@@ -939,7 +939,7 @@ form.favorite {
     padding:2px 5px;
     background-color: #fff;
     border: 1px solid #5875A0;
-    color:#666666;
+    color:#666;
 }
 
 .prose {
@@ -985,7 +985,7 @@ form.favorite {
 
 #title {
     font-size: 3.231em; /* 42px */
-    color: #223355;
+    color: #235;
     font-weight: bold;
     margin-top: 1.2em;
     margin-bottom: 0.4em;
@@ -997,13 +997,13 @@ form.favorite {
 #title a:hover,
 #title a:focus,
 #title a:active {
-    color: #223355;
+    color: #235;
     text-decoration: none;
     background: none;
 }
 
 #title em {
-    color: #445577;
+    color: #457;
     font-weight: normal;
     font-style: italic;
 }
@@ -1215,13 +1215,13 @@ form.favorite {
 /* @group Notification */
 
 .notification {
-    background-color: #FFFFFF;
+    background-color: #FFF;
     border: 1px solid #e0effd;
     border-radius: 5px;
     border-radius: 5px;
     border-radius: 5px;
     padding: 1em;
-    color: #444444;
+    color: #444;
     margin-bottom: 2em;
     position: relative;
 }
@@ -1234,7 +1234,7 @@ form.favorite {
     font-style: italic;
     font-weight: normal;
     line-height: 1.5em;
-    color: #223355;
+    color: #235;
     margin-top: 0;
 }
 
@@ -1289,13 +1289,13 @@ form.favorite {
 
 .notification .suggestion p {
     margin: 0;
-    color: #666666;
+    color: #666;
     font-weight: bold;
 }
 
 .notification .suggestion {
     margin: 0;
-    color: #666666;
+    color: #666;
     font-weight: bold;
 }
 
@@ -1323,7 +1323,7 @@ form.favorite {
 }
 
 .notification .toggle-info {
-    color: #666666;
+    color: #666;
     font-size:1.385em;
     line-height: 1.375em;
     position: relative;
@@ -1455,7 +1455,7 @@ form.favorite {
     border-radius: 5px;
     border-radius: 5px;
     padding: 1em;
-    color: #444444;
+    color: #444;
     overflow: hidden;
     margin-bottom: 1em;
 }
@@ -1514,7 +1514,7 @@ form.favorite {
 
 .categories {
     background-color: #e0effd;
-    color: #444444;
+    color: #444;
     border-radius: 5px;
     border-radius: 5px;
     border-radius: 5px;
@@ -1837,7 +1837,7 @@ ol.pagination li.selected a:active {
     border-radius: 3px;
     border-radius: 3px;
     border-radius: 3px;
-    background-color: #223355;
+    background-color: #235;
     color: white;
 }
 
@@ -2106,7 +2106,7 @@ form.addon-feedback div.container {
 }
 
 .listing-header li a {
-    color: #223355;
+    color: #235;
     font-weight: bold;
     text-decoration: none;
     border: 1px solid transparent;
@@ -2158,7 +2158,7 @@ form.addon-feedback div.container {
 /* @group Listing - Footer */
 
 .listing-footer {
-    background-color: #FFFFFF;
+    background-color: #FFF;
     background-repeat: repeat-x;
     background-position: left top;
     border-top: 1px solid #A5BFCE;
@@ -2324,8 +2324,8 @@ ol.pagination + .num-results {
     border: 1px solid #D2E7EE;
     padding: 0.3em;
     width: 10em;
-    background-color: #FFFFFF;
-    color: #666666;
+    background-color: #FFF;
+    color: #666;
 }
 
 .recommended .install {
@@ -2344,7 +2344,7 @@ ol.pagination + .num-results {
     font-size: 0.85em;
     line-height: 1em;
     color: #000;
-    text-shadow: #FFFFFF 1px 1px 1px;
+    text-shadow: #FFF 1px 1px 1px;
     clear: left;
     margin: 1px 0 0;
 }
@@ -2415,7 +2415,7 @@ ol.pagination + .num-results {
 .separated-listing .item {
     padding: 1em 1em 1em 52px;
     position: relative;
-    background-color: #FFFFFF;
+    background-color: #FFF;
     clear: both;
     background-repeat: repeat-x;
     background-position: left bottom;
@@ -3178,7 +3178,7 @@ background-position:left -303px;
 .html-rtl a:active.button img,
 .html-rtl button img {
     border-right:none;
-    border-left:1px solid #3399FF;
+    border-left:1px solid #39F;
     margin-right:0;
     margin-left: 0.7em;
     padding-right:0.2em;
@@ -3202,7 +3202,7 @@ background-position:left -303px;
 .html-rtl a:active.button.positive img,
 .html-rtl button.positive img {
     border-right:none;
-    border-left:1px solid #55AA00;
+    border-left:1px solid #5A0;
 }
 
 .html-rtl a:link.button.neutral img,
@@ -3212,7 +3212,7 @@ background-position:left -303px;
 .html-rtl a:active.button.neutral img,
 .html-rtl button.neutral img {
     border-right:none;
-    border-left:1px solid #DD7711;
+    border-left:1px solid #D71;
 }
 
 .html-rtl .search-form button img {
