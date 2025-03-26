@@ -560,15 +560,10 @@ h4.author a {
     margin-right: 5px;
 }
 
-#addon-summary .stats {
-    margin: 0;
-    float: none;
-    text-align: left;
-    color: #6FB727;
-}
-
 .html-rtl #addon-summary .stats {
     text-align: right;
+    left: auto;
+    right: -240px;
 }
 
 #addon-summary .stats em {
@@ -626,11 +621,10 @@ h4.author a {
     position: absolute;
     left: -240px;
     top: 180px;
-}
-
-.html-rtl #addon-summary .stats {
-    left: auto;
-    right: -240px;
+    margin: 0;
+    float: none;
+    text-align: left;
+    color: #6FB727;
 }
 
 .aux #addon-summary .install ,
@@ -1104,13 +1098,7 @@ dl.faq dt:target, dl.validation dt:target { color: #df731b; }
 }
 
 .html-rtl .app_install-popup ol {
-    margin-left: 0;
-    margin-right: 2em;
-}
-
-.html-rtl .app_install-popup ol {
-    margin-top: 1.5em;
-    margin-bottom: 0;
+    margin: 1.5em 2em 0 0;
 }
 
 .app_install-popup .close {
@@ -1218,10 +1206,13 @@ html[xmlns] .clearfix {
     background-color: #f7fafc;
     border: 1px solid #eef1f3;
     border-radius: 6px;
+    clear: both;
+    padding: 10px 15px;
 }
 
 #dictionaries th, #dictionaries td {
     border-bottom: 1px solid #eee;
+    padding: 6px 12px;
 }
 
 #dictionaries tbody tr:nth-child(even),
@@ -1229,17 +1220,8 @@ html[xmlns] .clearfix {
     background-color: #fff;
 }
 
-#dictionaries {
-    clear: both;
-    padding: 10px 15px;
-}
-
 #dictionaries table {
     width: 100%;
-}
-
-#dictionaries th, #dictionaries td {
-    padding: 6px 12px;
 }
 
 #dictionaries td p {
@@ -1908,10 +1890,6 @@ h2.compat-heading a {
     color: #333;
     border: 1px solid black;
     padding: 12px;
-}
-
-.jqmOverlay {
-    background-color: #000;
 }
 
 /* Background iframe styling for IE6. Prevents ActiveX bleed-through (<select> form elements, etc.) */

@@ -30,13 +30,6 @@
     margin-bottom: 7px;
 }
 
-#aux-nav {
-    float: right;
-}
-
-.html-rtl #aux-nav {
-    float: left;
-}
 
 .site-title img {
     float: left;
@@ -195,6 +188,65 @@
 }
 
 .html-rtl {
+    float: left;
+
+    #aux-nav {
+        > ul > li {
+            &:hover::after {
+                left: 1px;
+                right: auto;
+            }
+
+            &.legacy {
+                a {
+                    padding: 0 .5em 0 1em;
+                }
+
+                a:first-child {
+                    padding: 0 1em 0 .5em;
+                }
+            }
+
+            > a::after {
+                margin: 0 4px 0 0;
+                right: 4px;
+                left: auto;
+            }
+
+            > ul {
+                left: 0;
+                right: auto;
+            }
+        }
+
+        .other-apps {
+            a {
+                padding-left: 0;
+                padding-right: 24px;
+            }
+        }
+
+        .firefox a {
+            background-position: right 5px;
+        }
+
+        .thunderbird a {
+            background-position: right -28px;
+        }
+
+        .sunbird a {
+            background-position: right -92px;
+        }
+
+        .seamonkey a {
+            background-position: right -60px;
+        }
+
+        .android a {
+            background-position: right -124px;
+        }
+    }
+
     .menu-nav {
         margin-left: 0;
         margin-right: 64px;
@@ -210,6 +262,33 @@
         &:hover::after {
             left: auto;
             right: 1px;
+        }
+    }
+
+    .site-balloon, .site-tip, #lightbox, &.is-impala .modal {
+        padding: 15px 15px 15px 45px;
+
+        &::before, &::after {
+            border-color: transparent;
+            border-right: 18px solid #E3873B;
+            border-top: 18px solid transparent;
+            left: auto;
+        }
+
+        &::before {
+            right: 34px;
+            top: -18px;
+        }
+
+        &::after {
+            right: 36px;
+            top: -13px;
+            border-right-color: #FCEFB7;
+        }
+
+        .close {
+            right: auto;
+            left: 15px;
         }
     }
 }
@@ -275,6 +354,8 @@
 }
 
 #aux-nav {
+    float: right;
+
     > ul {
         > li:not(:first-child)::before {
             content: "";
@@ -401,65 +482,6 @@
 
     .android a {
         background-position: left -124px;
-    }
-}
-
-.html-rtl {
-    #aux-nav {
-        > ul > li {
-            &:hover::after {
-                left: 1px;
-                right: auto;
-            }
-
-            &.legacy {
-                a {
-                    padding: 0 .5em 0 1em;
-                }
-
-                a:first-child {
-                    padding: 0 1em 0 .5em;
-                }
-            }
-
-            > a::after {
-                margin: 0 4px 0 0;
-                right: 4px;
-                left: auto;
-            }
-
-            > ul {
-                left: 0;
-                right: auto;
-            }
-        }
-
-        .other-apps {
-            a {
-                padding-left: 0;
-                padding-right: 24px;
-            }
-        }
-
-        .firefox a {
-            background-position: right 5px;
-        }
-
-        .thunderbird a {
-            background-position: right -28px;
-        }
-
-        .sunbird a {
-            background-position: right -92px;
-        }
-
-        .seamonkey a {
-            background-position: right -60px;
-        }
-
-        .android a {
-            background-position: right -124px;
-        }
     }
 }
 
@@ -626,35 +648,6 @@ button.search-button {
     margin: auto;
     top: 0;
     bottom: 0;
-}
-
-.html-rtl {
-    .site-balloon, .site-tip, #lightbox, &.is-impala .modal {
-        padding: 15px 15px 15px 45px;
-
-        &::before, &::after {
-            border-color: transparent;
-            border-right: 18px solid #E3873B;
-            border-top: 18px solid transparent;
-            left: auto;
-        }
-
-        &::before {
-            right: 34px;
-            top: -18px;
-        }
-
-        &::after {
-            right: 36px;
-            top: -13px;
-            border-right-color: #FCEFB7;
-        }
-
-        .close {
-            right: auto;
-            left: 15px;
-        }
-    }
 }
 
 

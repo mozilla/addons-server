@@ -10,7 +10,7 @@ export default {
     'selector-class-pattern': null,
     'selector-id-pattern': null,
     'no-descending-specificity': null,
-    'no-duplicate-selectors': null,
+    // 'no-duplicate-selectors': null,
   },
   overrides: [
     {

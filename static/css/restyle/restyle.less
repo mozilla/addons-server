@@ -233,6 +233,7 @@ button.link:active span {
 
 .amo-header {
   margin-bottom: 0;
+  font-family: inherit;
 }
 
 .amo-header-wrapper {
@@ -255,10 +256,6 @@ button.link:active span {
   overflow: hidden;
 }
 
-.amo-header {
-  font-family: inherit;
-}
-
 body:not(.home) .amo-header,
 .addon-details .header-bg,
 .home .header-bg {
@@ -271,10 +268,6 @@ body:not(.home) .amo-header,
 
 #site-nav ul {
   margin-bottom: 0;
-}
-
-.menu-nav {
-  color: @link-on-color-bg;
 }
 
 .amo-header ul a {
@@ -410,6 +403,8 @@ body:not(.home) .amo-header,
 }
 
 .menu-nav {
+  color: @link-on-color-bg;
+
   a {
     color: #000;
   }
@@ -469,24 +464,6 @@ body:not(.home) .amo-header,
 }
 
 #aux-nav > ul > li {
-  > ul::after {
-    right: 10px;
-
-    .html-rtl & {
-      left: 10px;
-      right: auto;
-    }
-  }
-
-  &:hover::after {
-    top: 32px;
-    right: 1px;
-    height: 10px;
-  }
-}
-
-// Top Menu
-#aux-nav > ul > li {
   // Other Applications Panel triangle position
   ul::after {
     left: auto;
@@ -507,6 +484,21 @@ body:not(.home) .amo-header,
       #fff 80%,
       transparent 80%
     );
+  }
+
+  > ul::after {
+    right: 10px;
+
+    .html-rtl & {
+      left: 10px;
+      right: auto;
+    }
+  }
+
+  &:hover::after {
+    top: 32px;
+    right: 1px;
+    height: 10px;
   }
 }
 
@@ -689,6 +681,23 @@ body:not(.home) .amo-header,
   .promo-test-pilot {
     background: none;
   }
+
+  .prev {
+    left: 0;
+  }
+
+  .next {
+    right: 0;
+  }
+
+  h2, h3 {
+    font-family: inherit;
+    font-style: normal;
+  }
+
+  .promo {
+    background-size: cover;
+  }
 }
 
 #promos,
@@ -743,6 +752,7 @@ body:not(.home) .amo-header,
 
   .wrap > div  {
     max-height: 160px;
+    display: block;
   }
 }
 
@@ -776,32 +786,6 @@ body:not(.home) .amo-header,
 
 .restyle .control {
   font-family: @primary-font;
-}
-
-#promos {
-  .prev {
-    left: 0;
-  }
-
-  .next {
-    right: 0;
-  }
-
-  h2, h3 {
-    font-family: inherit;
-    font-style: normal;
-  }
-
-  .promo {
-    background-size: cover;
-  }
-}
-
-// Featured/Monthly Add-on Carousel Element
-// move icon to the left
-#featured-addon .wrap > div,
-#monthly .wrap > div {
-  display: block;
 }
 
 #featured-addon .blurb,
@@ -1218,6 +1202,106 @@ body:not(.developer-hub) section.secondary {
   .extra .button.disabled.not-available {
     padding: 5px 5px 5px 25px;
   }
+
+  .primary:first-of-type {
+    min-height: 257px;
+  }
+
+  .secondary.addon-vitals {
+    position: relative;
+    z-index: 1;
+  }
+
+  .install-wrapper .install-button a.button.download {
+    margin-bottom: 10px;
+  }
+
+  .version-number,
+  h4.author,
+  h4.author a,
+  a.eula,
+  a.privacy-policy,
+  a.webext-permissions,
+  .notice h3,
+  .notice p,
+  .notice p a,
+  .notice p b,
+  .warning a,
+  #addon-summary,
+  #weekly-downloads .stats,
+  #reviews-link,
+  #daily-users a {
+    color: @link-on-color-bg;
+  }
+
+  h4.author a,
+  a.privacy-policy,
+  a.webext-permissions,
+  a.eula,
+  .vital a,
+  .warning a,
+  #contribution.notice p a,
+  #reviews-link {
+    text-decoration: underline;
+  }
+
+  #weekly-downloads .stats {
+    font-size: 1rem;
+  }
+
+  .version-number {
+    font-size: 0.39em;
+
+    .html-rtl& {
+      margin: 15px 4px 0;
+    }
+  }
+
+  .notice h3 {
+    font-style: normal;
+  }
+
+  .addon-vitals .stats {
+    background: none;
+  }
+
+  .widgets {
+    display: none;
+  }
+
+  .hovercard.addon:hover {
+    .rating a {
+      color: @link-on-white-bg;
+    }
+  }
+
+  .primary .notice {
+    background: 0;
+    border: 0;
+    border-radius: 0;
+    border-top: 1px solid rgb(255 255 255 / 30%);
+    box-shadow: none;
+    padding-bottom: 18px;
+
+    .hovercard.addon {
+      .rating b {
+        color: #fff;
+      }
+
+      &:hover,
+      &:focus {
+        .summary a h3,
+        .summary a .category.more-info,
+        .rating b {
+          color: @default-font-color;
+        }
+      }
+
+      .more .addon-summary {
+        display: none;
+      }
+    }
+  }
 }
 
 .html-rtl {
@@ -1235,22 +1319,6 @@ body:not(.developer-hub) section.secondary {
 .version-number {
   color: #ccc;
   font-size: 0.5em;
-}
-
-// first block of details - icon, name, description...
-.addon-details {
-  .primary:first-of-type {
-    min-height: 257px;
-  }
-
-  .secondary.addon-vitals {
-    position: relative;
-    z-index: 1;
-  }
-
-  .install-wrapper .install-button a.button.download {
-    margin-bottom: 10px;
-  }
 }
 
 #addon-description.prose {
@@ -1321,43 +1389,6 @@ body:not(.developer-hub) section.secondary {
   color: @link-on-white-bg;
 }
 
-/* Notice - underneath description (asking for contribution &/or showing dependencies ) */
-.addon-details {
-  .hovercard.addon:hover {
-    .rating a {
-      color: @link-on-white-bg;
-    }
-  }
-
-  .primary .notice {
-    background: 0;
-    border: 0;
-    border-radius: 0;
-    border-top: 1px solid rgb(255 255 255 / 30%);
-    box-shadow: none;
-    padding-bottom: 18px;
-
-    .hovercard.addon {
-      .rating b {
-        color: #fff;
-      }
-
-      &:hover,
-      &:focus {
-        .summary a h3,
-        .summary a .category.more-info,
-        .rating b {
-          color: @default-font-color;
-        }
-      }
-
-      .more .addon-summary {
-        display: none;
-      }
-    }
-  }
-}
-
 // Standard pages have the default
 // text color. This is overridden for details
 // pages below.
@@ -1370,62 +1401,6 @@ h4.author a {
 h3.author .transfer-ownership {
   color: @link-on-color-bg;
   text-decoration: none;
-}
-
-// font issues on addon-details
-.addon-details {
-  .version-number,
-  h4.author,
-  h4.author a,
-  a.eula,
-  a.privacy-policy,
-  a.webext-permissions,
-  .notice h3,
-  .notice p,
-  .notice p a,
-  .notice p b,
-  .warning a,
-  #addon-summary,
-  #weekly-downloads .stats,
-  #reviews-link,
-  #daily-users a {
-    color: @link-on-color-bg;
-  }
-
-  h4.author a,
-  a.privacy-policy,
-  a.webext-permissions,
-  a.eula,
-  .vital a,
-  .warning a,
-  #contribution.notice p a,
-  #reviews-link {
-    text-decoration: underline;
-  }
-
-  #weekly-downloads .stats {
-    font-size: 1rem;
-  }
-
-  .version-number {
-    font-size: 0.39em;
-
-    .html-rtl& {
-      margin: 15px 4px 0;
-    }
-  }
-
-  .notice h3 {
-    font-style: normal;
-  }
-
-  .addon-vitals .stats {
-    background: none;
-  }
-
-  .widgets {
-    display: none;
-  }
 }
 
 .restyle #promos.shown {
@@ -1759,13 +1734,14 @@ h3.author .transfer-ownership {
 .addon.hovercard,
 .items .item.incompatible {
   .extra .button.not-available {
-    display: none;
-    float: right;
+    display: inline-block;
+    visibility: hidden;
   }
 
   &:focus .extra .button.not-available,
   &:hover .extra .button.not-available {
     display: block !important;
+    visibility: visible;
   }
 
   .install-shell .install {
@@ -1904,11 +1880,7 @@ h3.author .transfer-ownership {
 }
 
 .prettyform .listing-footer {
-  background: none;
   border-top: 0;
-}
-
-.prettyform .listing-footer {
   background: none;
 }
 
@@ -2277,23 +2249,6 @@ body.windows .install-shell .platform.mac {
 // Hide the datepicker display on stats at the bottom of the page.
 #ui-datepicker-div {
   display: none;
-}
-
-// Override weird impala styles that make hovers for incompatible add-ons
-// jump around (https://github.com/mozilla/addons-server/issues/3203)
-.addon.hovercard,
-.items .item.incompatible {
-  .extra .button.not-available {
-    display: inline-block;
-    visibility: hidden;
-  }
-
-  &:hover,
-  &:focus {
-    .extra .button.not-available {
-      visibility: visible;
-    }
-  }
 }
 
 .webext-permissions.badge {

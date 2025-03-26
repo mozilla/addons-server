@@ -127,7 +127,7 @@ h4.step {
     font-style: italic;
 }
 
-pre, code, kbd, tt, samp, tt {
+pre, code, kbd, samp, tt {
     font-family: "andale mono", monospace;
 }
 
@@ -524,6 +524,8 @@ button.link {
 
 .share-email .emailerror p {
     background-position: 0 -1798px;
+    font-weight: bold;
+    max-width: 25em;
 }
 
 span.new {
@@ -1244,10 +1246,13 @@ form.favorite {
 .notification .suggestion {
     float: right;
     text-align: right;
+    margin: 0;
+    color: #666;
+    font-weight: bold;
 }
 
-.about .notification .suggestion {
-    float: none;
+.notification .suggestion p {
+    margin: 0;
 }
 
 .about .notification .aux {
@@ -1268,18 +1273,6 @@ form.favorite {
 
 .html-rtl .notification .button {
     unicode-bidi: embed;
-}
-
-.notification .suggestion p {
-    margin: 0;
-    color: #666;
-    font-weight: bold;
-}
-
-.notification .suggestion {
-    margin: 0;
-    color: #666;
-    font-weight: bold;
 }
 
 .notification .aux {
@@ -1307,15 +1300,23 @@ form.favorite {
 
 .notification .toggle-info {
     color: #666;
-    font-size:1.385em;
     line-height: 1.375em;
-    position: relative;
+    position: absolute;
+    right: 0;
+    font-size: 1em;
+    clear: both;
+    width: 24.3%;
+    background-image: url("../../img/icons/pointer.gif");
+    background-repeat: no-repeat;
+    background-position: 95% 4px;
+    padding-top: 10px;
     display: none;
 }
 
 .notification .toggle-info p {
+    margin-top: 0;
     margin-bottom: 0;
-    margin-top: 1em;
+    padding: 1em;
 }
 
 .dropdown {
@@ -1394,19 +1395,6 @@ form.favorite {
     background-color: transparent;
 }
 
-.notification .toggle-info {
-    font-weight: normal;
-    position: absolute;
-    right: 0;
-    font-size: 1em;
-    clear:both;
-    width: 24.3%;
-    background-image: url("../../img/icons/pointer.gif");
-    background-repeat: no-repeat;
-    background-position: 95% 4px;
-    padding-top: 10px;
-}
-
 .primary .notification .toggle-info {
     width: 33.2%;
     z-index: 1;
@@ -1414,11 +1402,6 @@ form.favorite {
 
 .primary .object-lead .toggle-info {
     width: 100%;
-}
-
-.notification .toggle-info p {
-    margin-top: 0;
-    padding: 1em;
 }
 
 /* @end */
@@ -1919,11 +1902,6 @@ ol.pagination li a:active {
     padding-right: .5em;
 }
 
-.share-email .emailerror p {
-    font-weight: bold;
-    max-width: 25em;
-}
-
 .share-email .share-email-success {
     display: none;
     background: #DAF1FA; /* IE */
@@ -2222,16 +2200,6 @@ ol.pagination + .num-results {
     margin-right: auto;
     margin-left: 1em;
 }
-
-.item .downloads {
-    margin-left: 1em;
-}
-
-.html-rtl .item .downloads {
-    margin-left: auto;
-    margin-right: 1em;
-}
-
 
 .item .updated {
     margin-left: 1em;
@@ -2849,7 +2817,10 @@ background-position:left -303px;
 }
 
 .html-rtl .stars {
-    text-indent:-5000px;
+    float: right;
+    margin-left: 0.5em;
+    margin-right: 0;
+    text-indent: -5000px;
 }
 
 /* @end */
@@ -2912,12 +2883,6 @@ background-position:left -303px;
 }
 
 /* @end */
-
-.html-rtl .stars {
-    float: right;
-    margin-left: 0.5em;
-    margin-right: 0;
-}
 
 .html-rtl h5 img.icon,
 .html-rtl h2 img.icon {
