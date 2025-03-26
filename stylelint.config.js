@@ -19,7 +19,6 @@ export default {
     'declaration-block-no-shorthand-property-overrides': null,
     'selector-pseudo-element-no-unknown': null,
     'selector-attribute-quotes': null,
-    'declaration-block-no-redundant-longhand-properties': null,
     'font-family-no-duplicate-names': null,
     'declaration-block-no-duplicate-properties': null,
     'value-no-vendor-prefix': null,
