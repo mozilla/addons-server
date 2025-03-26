@@ -246,8 +246,8 @@ PROD_MEDIA_URL = 'https://addons.mozilla.org/user-media/'
 # Static
 STATIC_ROOT = path('site-static')
 # Allow overriding static/media url path prefix
-STATIC_URL_PREFIX = env('STATIC_URL_PREFIX', default='/static-server/')
-MEDIA_URL_PREFIX = env('MEDIA_URL_PREFIX', default='/user-media/')
+STATIC_URL_PREFIX = env('STATIC_URL_PREFIX')
+MEDIA_URL_PREFIX = env('MEDIA_URL_PREFIX')
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
@@ -299,7 +299,7 @@ SUPPORTED_NONAPPS = (
     'sitemap.xml',
     STATIC_URL_PREFIX.strip('/'),
     'update',
-    'user-media',
+    MEDIA_URL_PREFIX.strip('/'),
     '__heartbeat__',
     '__lbheartbeat__',
     '__version__',
@@ -320,7 +320,7 @@ SUPPORTED_NONLOCALES = (
     'downloads',
     STATIC_URL_PREFIX.strip('/'),
     'update',
-    'user-media',
+    MEDIA_URL_PREFIX.strip('/'),
     '__heartbeat__',
     '__lbheartbeat__',
     '__version__',
