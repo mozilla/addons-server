@@ -351,10 +351,7 @@ input[type='password'],
 select {
     border-width: 1px;
     border-style: solid;
-    border-top-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #ccc;
-    border-right-color: #ccc;
+    border-color: #999 #ccc #ccc #999;
     padding: 0 1px 1px;
 }
 

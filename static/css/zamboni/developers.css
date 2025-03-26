@@ -383,8 +383,7 @@ form .char-count b {
 #icons_default {
     border: 1px solid #6A89AC;
     max-height: 100px;
-    overflow-x: hidden;
-    overflow-y: scroll;
+    overflow: hidden scroll;
     padding: 5px;
     background-color: #fff;
 }
