@@ -408,8 +408,7 @@ class TestValidateFile(BaseUploadTest):
         assert response.status_code == 200
         data = json.loads(response.content)
         msg = data['validation']['messages'][0]
-        assert msg['message'] == (
-            '&#34;/manifest_version&#34; should be &gt;= 2')
+        assert msg['message'] == 'Sorry, we couldn&#39;t load your WebExtension.'
 
     def test_time(self):
         response = self.client.post(
