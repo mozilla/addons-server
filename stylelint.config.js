@@ -7,10 +7,9 @@ export default {
     'static/css/zamboni/jquery-ui/*',
   ],
   rules: {
-    'selector-class-pattern': null,
-    'selector-id-pattern': null,
-    'no-descending-specificity': null,
-    // 'no-duplicate-selectors': null,
+    'selector-class-pattern': null, // We have PascalCase class names in the codebase
+    'selector-id-pattern': null, // We have snake_case id selectors in the codebase
+    'no-descending-specificity': null, // 1610 Errors .. this might be too big to fail
   },
   overrides: [
     {
