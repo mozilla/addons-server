@@ -17,7 +17,6 @@ export default {
     'function-linear-gradient-no-nonstandard-direction': null,
     'declaration-block-single-line-max-declarations': null,
     'selector-pseudo-class-no-unknown': null,
-    'block-no-empty': null,
     'declaration-block-no-shorthand-property-overrides': null,
     'no-empty-source': null,
     'at-rule-prelude-no-invalid': null,
