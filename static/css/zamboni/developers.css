@@ -122,7 +122,7 @@ ul.refinements:last-child {
 }
 
 #slug_edit span, #id_slug {
-  font-family: Verdana !important;
+  font-family: Verdana, @sans-stack !important;
 
   /** This is so they match up size-wise **/
 }
