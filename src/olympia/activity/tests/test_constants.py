@@ -1,6 +1,6 @@
-import pytest
-
 from django.utils.translation import gettext_lazy as _
+
+import pytest
 
 from olympia.constants.activity import (
     LOG,
