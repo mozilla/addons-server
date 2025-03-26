@@ -10,6 +10,7 @@ The project uses `ruff` and `prettier` to format and lint code for Python and No
 - **Curlylint**: Used for linting and formatting django/jinja templates.
 - **ESLint**: Used for linting and formatting Node.js code.
 - **Prettier**: Used for linting and formatting Node.js code.
+- **Knip**: Used for verifying dependencies are used.
 
 To format and lint your code, run:
 
