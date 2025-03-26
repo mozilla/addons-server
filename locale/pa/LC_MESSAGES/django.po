@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-25 16:52+0000\n"
+"POT-Creation-Date: 2025-03-26 19:44+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -204,6 +204,9 @@ msgstr "ਸਮੀਖਿਆ ਮਿਤੀ"
 
 msgid "Request content length is too large."
 msgstr ""
+
+msgid "Add-on"
+msgstr "ਐਡ-ਆਨ"
 
 msgid "Add-on uploads are temporarily unavailable."
 msgstr ""
@@ -2040,9 +2043,6 @@ msgstr "ਕੋਈ ਨਤੀਜਾ ਨਹੀਂਂ ਮਿਲਿਆ"
 
 msgid "Refine Activity"
 msgstr "ਸਰਗਰਮੀ ਸੁਧਾਰ"
-
-msgid "Add-on"
-msgstr "ਐਡ-ਆਨ"
 
 msgid "Activity"
 msgstr "ਸਰਗਰਮੀ"

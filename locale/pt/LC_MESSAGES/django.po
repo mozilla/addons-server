@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-25 16:52+0000\n"
+"POT-Creation-Date: 2025-03-26 19:44+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -204,6 +204,9 @@ msgstr "Data da revisão"
 
 msgid "Request content length is too large."
 msgstr ""
+
+msgid "Add-on"
+msgstr "Extra"
 
 msgid "Add-on uploads are temporarily unavailable."
 msgstr ""
@@ -2040,9 +2043,6 @@ msgstr "Não foram encontrados resultados."
 
 msgid "Refine Activity"
 msgstr "Refinar atividade"
-
-msgid "Add-on"
-msgstr "Extra"
 
 msgid "Activity"
 msgstr "Atividade"
