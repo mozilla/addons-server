@@ -1290,7 +1290,7 @@ html[xmlns] .clearfix {
     width: 24.5%;
     float: left;
     position: relative;
-    background: #f9f9f9 -moz-radial-gradient(center, circle, #d3eff7, #fff 90%);
+    background: #f9f9f9 radial-gradient(center, circle, #d3eff7, #fff 90%);
 }
 
 .browse-thumbs ul.thumbs .inner {
