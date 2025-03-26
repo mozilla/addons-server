@@ -18,7 +18,6 @@ export default {
     'selector-pseudo-class-no-unknown': null,
     'declaration-block-no-shorthand-property-overrides': null,
     'selector-pseudo-element-no-unknown': null,
-    'function-url-quotes': null,
     'selector-attribute-quotes': null,
     'declaration-empty-line-before': null,
     'at-rule-empty-line-before': null,

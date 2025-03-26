@@ -504,7 +504,7 @@ form.new-addon-file label[for=id_is_sideload] {
     height: 16px;
     display: inline-block;
     cursor: move;
-    background: url(../../img/zamboni/icons/icon-draggable.png) no-repeat 0 center;
+    background: url("../../img/zamboni/icons/icon-draggable.png") no-repeat 0 center;
 }
 
 #file-list .handle {
@@ -531,11 +531,11 @@ input.formerror {
 }
 
 input.invalid {
-    background: url(../../img/zamboni/notifications.png) no-repeat 229px -160px;
+    background: url("../../img/zamboni/notifications.png") no-repeat 229px -160px;
 }
 
 input.valid {
-    background: url(../../img/zamboni/notifications.png) no-repeat 226px -367px;
+    background: url("../../img/zamboni/notifications.png") no-repeat 226px -367px;
 }
 
 .license-other input {
@@ -1106,7 +1106,7 @@ pre.email_comment {
 }
 
 .listing .item .action {
-    background: url(../../img/zamboni/icons/feed-icons.png) no-repeat;
+    background: url("../../img/zamboni/icons/feed-icons.png") no-repeat;
     display: block;
     float: left;
     margin-top: 3px;
@@ -1180,7 +1180,7 @@ pre.email_comment {
 
 #navbar li.top:hover,
 #navbar li.top.selected {
-    background-image: url(../../img/bg/heading-dark-blue-highlighted.png);
+    background-image: url("../../img/bg/heading-dark-blue-highlighted.png");
 }
 
 #navbar li.top ul {
@@ -1206,7 +1206,7 @@ pre.email_comment {
 }
 
 #navbar li ul li {
-    background-image: url(../../img/bg/heading-dark-blue-highlighted.png);
+    background-image: url("../../img/bg/heading-dark-blue-highlighted.png");
     background-repeat: repeat-x;
     background-position: bottom left;
     background-color: #305083;

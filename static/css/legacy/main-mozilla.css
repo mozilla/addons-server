@@ -766,12 +766,12 @@ table caption {
 }
 
 #version-history .oldversion ul.legal li.license {
-    background: url(../../img/icons/script_code_red.png) left no-repeat;
+    background: url("../../img/icons/script_code_red.png") left no-repeat;
 }
 
 #version-history .oldversion ul.legal li.source,
 .version a.source-code {
-    background: url(../../img/icons/page_code.png) left no-repeat;
+    background: url("../../img/icons/page_code.png") left no-repeat;
 }
 
 /* addons "source license" page */
@@ -1411,7 +1411,7 @@ html[xmlns] .clearfix {
 /** tag styles **/
 .addon-tags .tag .tagitem {
     padding-left: 20px;
-    background-image: url(../../img/icons/icons.png);
+    background-image: url("../../img/icons/icons.png");
     background-repeat: no-repeat;
     background-position: 0 -1400px;
 }
@@ -1425,7 +1425,7 @@ html[xmlns] .clearfix {
 .collectionitem,
 .collection-add strong {
     padding-left: 22px;
-    background: url(../../img/icons/icons.png) no-repeat 0 -300px;
+    background: url("../../img/icons/icons.png") no-repeat 0 -300px;
 }
 
 .html-rtl .collectionitem,
@@ -1437,7 +1437,7 @@ html[xmlns] .clearfix {
 
 .addon-otheraddons li .addonitem {
 	padding-left: 20px;
-	background-image: url(../../img/icons/icons.png);
+	background-image: url("../../img/icons/icons.png");
 	background-repeat: no-repeat;
 	background-position: 0 -200px;
 }
@@ -1499,14 +1499,14 @@ html[xmlns] .clearfix {
     border-radius: 3px;
     border-radius: 3px;
     font-weight: bold;
-    background-image: url(../../img/icons/arrows.gif);
+    background-image: url("../../img/icons/arrows.gif");
     background-repeat: no-repeat;
     background-position:4px -152px;
 }
 
 .secondary ul.refinements li a.tagitem {
     padding: 0.21em 2em;
-    background-image: url(../../img/icons/icons.png);
+    background-image: url("../../img/icons/icons.png");
     background-repeat: no-repeat;
     background-position: 3px -596px;
 }
