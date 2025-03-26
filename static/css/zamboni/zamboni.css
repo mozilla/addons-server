@@ -94,7 +94,7 @@ ul.errorlist {
     padding-left: 20px;
     background-image: url(../../img/icons/icons.png);
     background-repeat: no-repeat;
-    background-position: 0px -200px;
+    background-position: 0 -200px;
 }
 
 .html-rtl .other-author-addons li .addonitem {
@@ -2035,7 +2035,7 @@ form .error .note.error {
 }
 
 .notification-box p:first-child {
-     padding-top: 0pt;
+     padding-top: 0;
 }
 
 .html-rtl .notification-box h2 {
@@ -2493,7 +2493,7 @@ h6.author, .author a {
     border-left: 1px solid black;
     height: 2em;
     float: left;
-    width: 0px;
+    width: 0;
     overflow: visible;
     width: 120px;
 }
@@ -3130,7 +3130,7 @@ a.outlink:hover {
 .widget.edit { background-position: 0 -350px; }
 .widget.edit:hover { background-position: 0 -300px; }
 .widget.copy { background-position: 0 -50px; }
-.widget.copy:hover { background-position: 0 0px; }
+.widget.copy:hover { background-position: 0 0; }
 .widget.watch { background-position: 0 -750px; }
 .widget.watch:hover { background-position: 0 -700px;}
 .widget.watching { background-position: 0 -650px; }
@@ -3176,7 +3176,7 @@ input.ui-autocomplete-loading {
 }
 
 #contribute-box .ajax-loading {
-    margin-left: 0px;
+    margin-left: 0;
     font-weight: bold;
 }
 
@@ -3351,7 +3351,7 @@ input.ui-autocomplete-loading {
 }
 
 #contribute-box .error {
-    padding: 10px 0px 10px 50px;
+    padding: 10px 0 10px 50px;
 }
 
 ul.errorlist li progress {
@@ -3392,5 +3392,5 @@ ul.errorlist li.strength {
     position: absolute;
     text-decoration: none;
     padding: 20px;
-    right: 0px;
+    right: 0;
 }

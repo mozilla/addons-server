@@ -185,7 +185,7 @@ ul.xoxo ul {
 .html-rtl ul.xoxo ul {
 /* unordered lists more often DON'T require bullets except in extended bits of writing. Where bullets are required apply the .prose class to a container, or apply directly with .xoxo */
     list-style-type: square;
-    margin-left: 0em;
+    margin-left: 0;
     margin-right: 1.5em; /* 21px */
 }
 
@@ -3222,7 +3222,7 @@ background-position:left -303px;
 .html-rtl button.add-to-fav {
     background-position: right;
     float: right;
-    padding:0.5em 19px 0.2em 0px;
+    padding:0.5em 19px 0.2em 0;
 }
 
 /* @end */

@@ -150,22 +150,22 @@
 // Vertical sprite
 .sprite(@url, @pos, @spacing, @offset:0) {
     background: ~'url(@{url}) no-repeat';
-    background-position: 0 (@spacing * @pos * -1 + @offset) + 0px;
+    background-position: 0 (@spacing * @pos * -1 + @offset) + 0;
 }
 .sprite-pos(@pos, @spacing, @offset:0) {
-    background-position: 0 (@spacing * @pos * -1 + @offset) + 0px;
+    background-position: 0 (@spacing * @pos * -1 + @offset) + 0;
 }
 .sprite-pos-right(@pos, @spacing, @offset:0) {
-    background-position: right (@spacing * @pos * -1 + @offset) + 0px;
+    background-position: right (@spacing * @pos * -1 + @offset) + 0;
 }
 
 // Horizontal sprite
 .hsprite(@url, @pos, @spacing, @offset:0) {
     background: ~'url(@{url}) no-repeat';
-    background-position: (@spacing * @pos * -1 + @offset) + 0px 0;
+    background-position: (@spacing * @pos * -1 + @offset) + 0 0;
 }
 .hsprite-pos(@pos, @spacing, @offset:0) {
-    background-position: (@spacing * @pos * -1 + @offset) + 0px 0;
+    background-position: (@spacing * @pos * -1 + @offset) + 0 0;
 }
 
 @white-trans: fadeout(#fff, 100%);
