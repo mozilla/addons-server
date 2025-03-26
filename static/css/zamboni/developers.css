@@ -713,7 +713,7 @@ a.extra {
 #version-list table th {
     color: #888;
     font-size: 11px;
-    padding: 0 0 5px 0;
+    padding: 0 0 5px;
 }
 
 #version-list table th.version-delete {
@@ -1008,7 +1008,7 @@ pre.email_comment {
 
 #upload-status-results a.addons-linter-info {
     font-size: 0.8em;
-    padding: 0px 0 10px 0;
+    padding: 0px 0 10px;
     display: inline-block;
 }
 
@@ -1151,7 +1151,7 @@ pre.email_comment {
     border-radius: 5px;
     border-radius: 5px;
     border-radius: 5px;
-    margin: 0 0 1.5em 0;
+    margin: 0 0 1.5em;
     color: white;
     font-size: 1.231em;
     white-space: nowrap;
@@ -1334,8 +1334,8 @@ form.select-review .errorlist {
 }
 
 #addon-validator-suite .test-tier {
-    padding: 52px 1em 0 1em;
-    margin: 1em 0 1em 0;
+    padding: 52px 1em 0;
+    margin: 1em 0;
     width: 17.1%;
     float: left;
     text-align: center;
@@ -1387,7 +1387,7 @@ form.select-review .errorlist {
 
 #addon-validator-suite .results .tier-results {
     border: 1px solid #b5d9e5;
-    margin: 0 4px 4px 4px;
+    margin: 0 4px 4px;
     background-color: #fff;
 }
 
@@ -1419,7 +1419,7 @@ form.select-review .errorlist {
 #addon-validator-suite .results .tests-passed,
 #addon-validator-suite .results .tests-notrun,
 #addon-validator-suite .results .ajax-loading {
-    padding: 100px 0 45px 0;
+    padding: 100px 0 45px;
     text-align: center;
 }
 
@@ -1600,7 +1600,7 @@ form.select-review .errorlist {
 }
 
 .item.loading::before {
-    border-radius: 8px 8px 8px 8px;
+    border-radius: 8px;
 }
 
 .loaded::before {

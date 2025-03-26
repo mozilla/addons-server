@@ -220,7 +220,7 @@ ul ul, ol ol, ol ul, ul ol {
 
 blockquote {
     font-style: italic;
-    margin:0  1.5em  1.5em 1.5em; /* 19.5px */
+    margin:0 1.5em 1.5em; /* 19.5px */
 }
 
 p+p+blockquote {
@@ -272,7 +272,7 @@ form .container {
 
 fieldset {
     border: 1px solid #ccc;
-    padding: 0 1.5em 1em 1.5em; /* 0 19.5px 13px 19.5px */
+    padding: 0 1.5em 1em; /* 0 19.5px 13px 19.5px */
 }
 
 legend {
@@ -352,7 +352,7 @@ select {
     border-left-color: #999;
     border-bottom-color: #ccc;
     border-right-color: #ccc;
-    padding: 0 1px 1px 1px;
+    padding: 0 1px 1px;
 }
 
 input.short {
@@ -550,7 +550,7 @@ h3 .secondary a:link, h3 .secondary a:active, h3 .secondary a:visited, h3 .secon
 
 .review-detail {
     border-bottom: 1px dotted #e0effd;
-    padding: 0.5em 0 1em 0;
+    padding: 0.5em 0 1em;
     margin-bottom: 0.5em;
 }
 
@@ -978,7 +978,7 @@ form.favorite {
 
 #header {
     position: relative;
-    padding: 1px 0 0 0;
+    padding: 1px 0 0;
 }
 
 /* @group Title */
@@ -1243,7 +1243,7 @@ form.favorite {
 }
 
 .notification .continue {
-    margin: 0 1em 0 1em;
+    margin: 0 1em;
 }
 
 .html-rtl .notification .continue {
@@ -1270,7 +1270,7 @@ form.favorite {
 .about .notification .aux {
     width: auto;
     float: right;
-    margin: -0.6em 0 0 0;
+    margin: -0.6em 0 0;
 }
 
 .about .notification .aux .button-wrapper {
@@ -1394,14 +1394,14 @@ form.favorite {
 
 #contribute-box input[type=text] {
     width: 4em;
-    padding:0 1px 1px 1px;
+    padding:0 1px 1px;
 }
 
 #contribute-box textarea {
     width: 100%;
     height: 6em;
     margin-bottom: 0.4em;
-    padding:0 1px 1px 1px;
+    padding:0 1px 1px;
 }
 
 #contribute-box span {
@@ -1565,7 +1565,7 @@ form.favorite {
 }
 
 .categories ul ul {
-    padding: 0 0 1em 0;
+    padding: 0 0 1em;
     margin: 0;
     font-weight: bold;
 }
@@ -1596,7 +1596,7 @@ form.favorite {
 }
 
 .teaser-items .item .install strong {
-    margin: 4px 0 0 0;
+    margin: 4px 0 0;
 }
 
 /* Hide version/platform warnings in the teaser box. */
@@ -1671,7 +1671,7 @@ form.favorite {
 
 .section-teaser .window ol.teaser-items li {
     margin: 0;
-    padding: 1px 0 0 0;
+    padding: 1px 0 0;
 }
 
 .section-teaser .window .more-info {
@@ -2009,7 +2009,7 @@ ol.pagination li a:active {
 }
 
 .secondary-item-list ul {
-    margin: 0.5em 0 0 0;
+    margin: 0.5em 0 0;
     padding: 0;
 }
 
@@ -2019,7 +2019,7 @@ ol.pagination li a:active {
 }
 
 .secondary-item-list ul li a {
-    margin: 0 0 0.8em 0;
+    margin: 0 0 0.8em;
     padding: 0 0 0 25px;
     display: block;
     line-height: 1.25;
@@ -2102,7 +2102,7 @@ form.addon-feedback div.container {
 .listing-header li {
     line-height: 2.5;
     display: inline;
-    margin: 0 0;
+    margin: 0;
 }
 
 .listing-header li a {
@@ -2316,7 +2316,7 @@ ol.pagination + .num-results {
     border-radius: 11px;
     border-radius: 11px;
     border-radius: 11px;
-    padding: 2px 3px 3px 3px;
+    padding: 2px 3px 3px;
     margin-left: 0.5em;
 }
 
@@ -2346,7 +2346,7 @@ ol.pagination + .num-results {
     color: #000;
     text-shadow: #FFFFFF 1px 1px 1px;
     clear: left;
-    margin: 1px 0 0 0;
+    margin: 1px 0 0;
 }
 
 /* @end */
@@ -2425,7 +2425,7 @@ ol.pagination + .num-results {
 .blocks .item,
 .separated-listing .item {
     border: 1px solid #C9E8F3;
-    margin: 0 0 1em 0;
+    margin: 0 0 1em;
     border-radius:8px;
     border-radius: 8px;
     border-radius:8px;
@@ -2433,7 +2433,7 @@ ol.pagination + .num-results {
 
 .listing .item {
     border-bottom: 1px solid #D6E9F0;
-    margin: 0 0 0 0;
+    margin: 0;
 }
 
 .listing .item img.icon,
@@ -2659,13 +2659,13 @@ table.person-info td {
 table.person-info td {
     border-top:none;
     margin: 0;
-    padding: 0.1em 0 0.3em 0;
+    padding: 0.1em 0 0.3em;
 }
 
 table.person-info th {
     border-top:1px dotted #A5C9D5;
     margin: 0;
-    padding: 0.3em 0 0 0;
+    padding: 0.3em 0 0;
 }
 
 table.person-info tr:first-child th {
