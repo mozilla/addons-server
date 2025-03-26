@@ -1131,7 +1131,8 @@ def fix_webext_fixture(filename):
     * applications key is renamed to browser_specific_settings if encountered.
     * browser_specific_settings.gecko.id is generated if not found.
     * if experiment is found in the filename a browser_specific_settings.gecko.strict_max_version is set."""
-    temp_file = f'/tmp/{uuid.uuid4().hex}.xpi'
+    ext = os.path.split(filename)[1]
+    temp_file = f'/tmp/{uuid.uuid4().hex}.{ext}'
     shutil.copy(filename, temp_file)
 
     # HACK: This is so we don't have to modify a bunch of binaries...it's ugly!
