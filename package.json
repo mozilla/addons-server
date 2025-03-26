@@ -20,16 +20,13 @@
   "dependencies": {
     "@claviska/jquery-minicolors": "2.3.6",
     "addons-linter": "7.9.0",
-    "jqmodal": "1.4.2",
     "jquery": "3.7.1",
-    "jquery-pjax": "2.0.1",
     "jquery-ui": "1.14.1",
     "jquery.browser": "0.1.0",
     "jquery.cookie": "1.4.1",
     "jszip": "3.10.1",
     "less": "4.2.2",
     "netmask": "2.0.2",
-    "source-map": "0.7.4",
     "timeago.js": "^4.0.2",
     "underscore": "1.13.7"
   },

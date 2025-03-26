@@ -1,7 +1,7 @@
-import Highcharts from 'highcharts';
 import $ from 'jquery';
 import _ from 'underscore';
 
+import Highcharts from '../lib/highcharts-module';
 import { SessionStorage, Storage } from '../zamboni/storage';
 import csv_keys from './csv_keys';
 import { forEachISODate, normalizeRange } from './dateutils';

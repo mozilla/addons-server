@@ -56,13 +56,6 @@ export default defineConfig(({ command }) => {
     // When building, use a relative path to ensure import paths can be transformed
     // independently of where the importing file ends up in the bundle
     base: isDev ? `${env.STATIC_URL_PREFIX}bundle/` : './',
-    resolve: {
-      alias: {
-        // Alias 'highcharts' to our local vendored copy
-        // we cannot use npm to install due to licensing constraints
-        highcharts: resolve(__dirname, 'static/js/lib/highcharts-module.js'),
-      },
-    },
     plugins: [
       // Inject jQuery globals in the bundle for usage by npm packages
       // that rely on it being globally available.

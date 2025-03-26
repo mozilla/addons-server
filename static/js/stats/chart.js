@@ -1,8 +1,8 @@
-import Highcharts from 'highcharts';
 import $ from 'jquery';
 import _ from 'underscore';
 
 import { format } from '../lib/format';
+import Highcharts from '../lib/highcharts-module';
 import { _pd } from '../lib/prevent-default';
 import csv_keys from './csv_keys';
 import { forEachISODate, normalizeRange } from './dateutils';
