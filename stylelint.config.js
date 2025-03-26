@@ -18,7 +18,6 @@ export default {
     'selector-pseudo-class-no-unknown': null,
     'declaration-block-no-shorthand-property-overrides': null,
     'selector-pseudo-element-no-unknown': null,
-    'selector-not-notation': null,
     'declaration-property-value-keyword-no-deprecated': null,
   },
   overrides: [
