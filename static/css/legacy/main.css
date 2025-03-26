@@ -2421,7 +2421,7 @@ ol.pagination + .num-results {
 }
 
 /* Float every other block right for a nice grid if we have space. */
-@media all and (min-width: 1055px) {
+@media all and (width >= 1055px) {
     .blocks .item {
         width: 45%;
     }
