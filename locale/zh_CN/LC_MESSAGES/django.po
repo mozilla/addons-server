@@ -5393,7 +5393,7 @@ msgstr "创建并定制标签页组。"
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:567
 msgid "Save an entire web page—including images and styling—as a single HTML file."
-msgstr "将整个网页—包括图片与样式—保存到单独的 HTML 文件中。"
+msgstr "将整个网页（包括图片与样式）保存成一份 HTML 文件。"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:572
