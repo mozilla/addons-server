@@ -209,7 +209,7 @@ const dayMsecs = 24 * 3600 * 1000;
     let count = 0,
       dateRegex = /\d{4}-\d{2}-\d{2}/;
     for (let key in data) {
-      if (dateRegex.exec(key) && data.hasOwnProperty(key)) {
+      if (dateRegex.exec(key) && Object.prototype.hasOwnProperty.call(data, key)) {
         count++;
       }
       if (count > 1) {

@@ -613,7 +613,7 @@ $.fn.addonUploader = function (options) {
           // this.id is in the form ["abc_def_ghi', 'foo_bar', 'something'],
           // we usually only match one of the elements.
           matchId = function (id, message) {
-            return message.hasOwnProperty('id') && _.contains(message.id, id);
+            return Object.prototype.hasOwnProperty.call(message, 'id') && _.contains(message.id, id);
           };
 
         if (results.validation.messages) {

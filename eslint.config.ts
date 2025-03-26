@@ -84,7 +84,6 @@ const config = defineConfig([
     rules: {
       // Disable rules causing errors
       'prettier/prettier': 'off',
-      'no-prototype-builtins': 'off',
       'no-const-assign': 'off',
       'no-dupe-keys': 'off',
     },
