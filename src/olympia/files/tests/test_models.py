@@ -403,11 +403,14 @@ class TestParseXpi(TestCase):
         # properties.
         expected = {
             'guid': '@webextension-guid',
-            'version': '0.1',
+            'version': '0.0.1',
             'type': amo.ADDON_EXTENSION,
-            'is_webextension': False,
-            'name': 'xpi name',
-            'summary': 'xpi description',
+            'is_webextension': True,
+            'name': 'My WebExtension Addon',
+            'summary': 'just a test addon with the manifest.json format',
+            'default_locale': None, # FIXME: Should this be present?
+            'homepage': None, # FIXME: Should this be present?
+            'is_experiment': False, # FIXME: Should this be present?
         }
         parsed = self.parse(minimal=True)
         assert parsed == expected
