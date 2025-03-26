@@ -866,36 +866,63 @@ div.collector-firstrun-favorite {
 /* END pages/collector_firstrun */
 
 /* Plug-ins browse page */
-.item .baseline img.faq {margin: 0 5px 0 0; float: left;}
-.html-rtl .item .baseline img.faq {margin: 0 0 0 5px; float: right;}
+.item .baseline img.faq {
+    margin: 0 5px 0 0;
+    float: left;
+}
+.html-rtl .item .baseline img.faq {
+    margin: 0 0 0 5px;
+    float: right;
+}
 /* END Plug-ins browse page */
 
 
 /* =Reviews Page */
 
-.review .others-by-user { font-style: italic; display: block; margin-top: 0.5em; font-size: 0.85em }
-.review .others-by-user a { padding-left: 22px;  }
-.review .others-by-user a.loading { background: transparent; }
+.review .others-by-user {
+    font-style: italic;
+    display: block;
+    margin-top: 0.5em;
+    font-size: 0.85em;
+}
+.review .others-by-user a {
+    padding-left: 22px;
+}
+.review .others-by-user a.loading {
+    background: transparent;
+}
 .review h2 { margin-bottom: 2px;}
 .review h3 { margin-bottom: 2px;}
 
 .review .hsession { display: inline; }
-.review .reviewed-on { font-size: .8em; margin: .4em 0; }
+.review .reviewed-on {
+    font-size: .8em;
+    margin: .4em 0;
+}
 
 .others-by-user-load { padding-left: 3em; }
 
 .review-reply { margin-left: 3em; }
 
 .review p.flag-thanks, .review-reply p.flag-thanks { font-weight: bold }
-.review form.flag, .review-reply form.flag { display: block; padding-bottom: 1em }
-.review form.flag label, .review-reply form.flag label { display: block; font-weight: bold }
+.review form.flag, .review-reply form.flag {
+    display: block;
+    padding-bottom: 1em;
+}
+.review form.flag label, .review-reply form.flag label {
+    display: block;
+    font-weight: bold;
+}
 .review form.flag .error { color:#f00; }
 
 .with-js .review p.flag-thanks, .with-js .review-reply p.flag-thanks { display: inline }
 .with-js .review form.flag, .with-js .review-reply form.flag { display: inline }
 .with-js .review form.flag label, .with-js .review-reply form.flag label { display: none; }
 
-.review .flag span.loading, .review-reply .flag span.loading { padding-left: 22px; background: transparent; }
+.review .flag span.loading, .review-reply .flag span.loading {
+    padding-left: 22px;
+    background: transparent;
+}
 
 /* END =Reviews Page */
 
@@ -1336,11 +1363,24 @@ html[xmlns] .clearfix {
 }
 
 .results-head {width: 100%;}
-.results-head h2 { margin-bottom: 0; margin-top: 0;}
-.results-head h3 {margin-top: 0; font-family: "helvetica neue", arial, helvetica, sans-serif; font-weight: normal; color: #444;}
+.results-head h2 {
+    margin-bottom: 0;
+    margin-top: 0;
+}
+.results-head h3 {
+    margin-top: 0;
+    font-family: "helvetica neue", arial, helvetica, sans-serif;
+    font-weight: normal; color: #444;
+}
 
-.results .item .item-info .downloads {display: block; margin-left: 0px;}
-.results .item .install {float: none; margin-left: 0px;}
+.results .item .item-info .downloads {
+    display: block;
+    margin-left: 0px;
+}
+.results .item .install {
+    float: none;
+    margin-left: 0px;
+}
 
 .results .item h3 {
     float: left;
@@ -1358,7 +1398,11 @@ html[xmlns] .clearfix {
     clear: right;
 }
 
-.secondary ul.refinements li a { padding: 0.21em 1.2em; display: block; color: #444; font-weight: normal;}
+.secondary ul.refinements li a {
+    padding: 0.21em 1.2em;
+    display: block;
+    color: #444; font-weight: normal;
+}
 .secondary ul.refinements li.selected a {
     background-color: #b9dbe7;
     -webkit-border-radius: 3px;
