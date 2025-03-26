@@ -46,8 +46,8 @@ form .char-count::after,
     font-weight: bold;
     margin-left: 0.5em;
     padding: 0.375em 1em;
-    -moz-transition-property: opacity;
-    -moz-transition-duration: 1s;
+    transition-property: opacity;
+    transition-duration: 1s;
 }
 
 #version-status .version-changed {
@@ -238,18 +238,18 @@ form .char-count b {
 }
 
 .addon-categories {
-    -moz-column-count: 3;
-    -webkit-column-count: 3;
     column-count: 3;
-    -moz-column-gap: 1.5em;
-    -webkit-column-gap: 1.5em;
+    column-count: 3;
+    column-count: 3;
+    column-gap: 1.5em;
+    column-gap: 1.5em;
     column-gap: 1.5em;
     margin-bottom: 0.5em;
 }
 
 #addon-categories-edit .addon-categories {
-    -moz-column-count: 2;
-    -webkit-column-count: 2;
+    column-count: 2;
+    column-count: 2;
     column-count: 2;
 }
 
@@ -330,15 +330,15 @@ form .char-count b {
 
 .edit-previews-submit {
     border: 1px solid #C9E8F3;
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    border-radius: 10px;
     border-radius: 10px;
     margin-top: 10px;
     padding: 15px;
 }
 
 .preview-thumb, .preview-error {
-    -moz-background-size: contain;
+    background-size: contain;
     -webkit-background-size: contain;
     background-size: contain;
     background-position: center center;
@@ -407,7 +407,7 @@ form .char-count b {
 #icons_default li a {
     padding:8px;
     display:block;
-    -moz-border-radius: 3px;
+    border-radius: 3px;
 }
 
 #icons_default li a:hover {
@@ -577,16 +577,16 @@ input.valid {
     border: 1px solid #C9E8F3;
     padding: 1em;
     width: 300px;
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    border-radius: 8px;
     border-radius: 8px;
     display: inline-block;
     vertical-align: top;
 }
 
 .payments .full-intro {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    box-sizing: border-box;
     box-sizing: border-box;
     width: 100%;
 }
@@ -674,8 +674,8 @@ a.extra {
 
 #status-bar {
     padding: .5em 1em;
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    border-radius: 8px;
     border-radius: 8px;
     margin-bottom: 2em;
     background: #fff;
@@ -833,11 +833,11 @@ div.dev-review-reply button {
 a.delete-button:hover,
 a.delete-button {
     border: 1px solid #ad1212;
-    -moz-border-radius: .95em;
-    -webkit-border-radius: .95em;
     border-radius: .95em;
-    -moz-box-shadow: inset 0 0 2px rgba(255,255,255,0.1);
-    -webkit-box-shadow: inset 0 0 2px rgba(255,255,255,0.1);
+    border-radius: .95em;
+    border-radius: .95em;
+    box-shadow: inset 0 0 2px rgba(255,255,255,0.1);
+    box-shadow: inset 0 0 2px rgba(255,255,255,0.1);
     box-shadow: inset 0 0 2px rgba(255,255,255,0.1);
     color: #fff;
     display: inline-block;
@@ -849,8 +849,8 @@ a.delete-button {
 }
 
 a.delete-button:hover {
-    -moz-box-shadow: inset 0 0 2px rgba(255,255,255,1);
-    -webkit-box-shadow: inset 0 0 2px rgba(255,255,255,1);
+    box-shadow: inset 0 0 2px rgba(255,255,255,1);
+    box-shadow: inset 0 0 2px rgba(255,255,255,1);
     box-shadow: inset 0 0 2px rgba(255,255,255,1);
     color: #fff;
 }
@@ -891,8 +891,8 @@ pre.email_comment {
 }
 
 #upload-file .upload-status {
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    border-radius: 10px;
     border-radius: 10px;
     border:1px solid #D2ECF5;
     margin-bottom: 1em;
@@ -948,8 +948,8 @@ pre.email_comment {
 
 #upload-status-bar {
     background-color: #F2F2F2;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border-radius: 5px;
     border-radius: 5px;
     height: 20px;
 }
@@ -964,8 +964,8 @@ pre.email_comment {
 
 #upload-status-bar div {
     background-color: #8BC5FA;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border-radius: 5px;
     border-radius: 5px;
     width: 0%;
     height: 20px;
@@ -1148,8 +1148,8 @@ pre.email_comment {
 #navbar {
     display: block;
     border:  1px solid #021437;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border-radius: 5px;
     border-radius: 5px;
     margin: 0 0 1.5em 0;
     color: white;
@@ -1194,10 +1194,10 @@ pre.email_comment {
 #navbar li.top ul,
 #navbar li.top ul li:last-child {
     -moz-border-radius-bottomleft: 8px;
-    -webkit-border-bottom-left-radius: 8px;
+    border-bottom-left-radius: 8px;
     border-bottom-left-radius: 8px;
     -moz-border-radius-bottomright: 8px;
-    -webkit-border-bottom-right-radius: 8px;
+    border-bottom-right-radius: 8px;
     border-bottom-right-radius: 8px;
 }
 
@@ -1307,8 +1307,8 @@ form.select-review .errorlist {
 #addon-validator-suite .suite,
 #addon-validator-suite .suite-container,
 #addon-validator-suite .results .tier-results {
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
+    border-radius: 8px;
+    border-radius: 8px;
     border-radius: 8px;
     background-color: #fff;
 }
@@ -1328,8 +1328,8 @@ form.select-review .errorlist {
 #addon-validator-suite .suite-container {
     border: 4px solid #b5d9e5;
     margin-bottom: 0;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
+    border-radius: 12px;
+    border-radius: 12px;
     border-radius: 12px;
 }
 
@@ -1585,7 +1585,7 @@ form.select-review .errorlist {
 }
 
 .loading::before {
-    -moz-transition: opacity .5s;
+    transition: opacity .5s;
     content: "\00a0";
     display: block;
     position: absolute;
@@ -1600,7 +1600,7 @@ form.select-review .errorlist {
 }
 
 .item.loading::before {
-    -moz-border-radius: 8px 8px 8px 8px;
+    border-radius: 8px 8px 8px 8px;
 }
 
 .loaded::before {
@@ -1676,18 +1676,18 @@ button.search-button {
   cursor: pointer;
   height: 30px;
   width: 36px;
-  -webkit-border-radius: 6px;
-  -moz-border-radius: 6px;
+  border-radius: 6px;
+  border-radius: 6px;
   border-radius: 6px;
   box-shadow: 0 1px rgba(0, 0, 0, 0.1), 0 -2px rgba(0, 0, 0, 0.1) inset;
-  -moz-box-shadow: 0 1px rgba(0, 0, 0, 0.1), 0 -2px rgba(0, 0, 0, 0.1) inset;
-  -webkit-box-shadow: 0 1px rgba(0, 0, 0, 0.1), 0 -2px rgba(0, 0, 0, 0.1) inset;
+  box-shadow: 0 1px rgba(0, 0, 0, 0.1), 0 -2px rgba(0, 0, 0, 0.1) inset;
+  box-shadow: 0 1px rgba(0, 0, 0, 0.1), 0 -2px rgba(0, 0, 0, 0.1) inset;
 }
 
 .html-rtl button.search-button {
   float: left;
-  -moz-transform: scalex(-1);
-  -webkit-transform: scalex(-1);
+  transform: scalex(-1);
+  transform: scalex(-1);
 }
 
 span.distribution-tag-listed, span.distribution-tag-unlisted {

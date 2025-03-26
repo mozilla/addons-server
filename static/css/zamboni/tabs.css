@@ -3,8 +3,8 @@
     border: 4px solid #b5d9e5;
     position: relative;
     margin-top: 3em;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border-radius: 5px;
     border-radius: 5px;
 }
 
@@ -40,7 +40,7 @@
       background: #b5d9e5;
       border: 0;
       padding: .5em 12px;
-      -moz-border-radius: 5px 5px 0 0;
+      border-radius: 5px 5px 0 0;
 }
 
 .tab-wrapper .tab-nav .tab-selected a {
@@ -52,8 +52,8 @@
 .tab-wrapper .tab-panel {
     display: none;
     border: 1px solid #2e5186;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    border-radius: 3px;
     border-radius: 3px;
     background: #fff;
 }
@@ -70,8 +70,8 @@
     z-index: 10;
     overflow: hidden;
     padding: 0.3em 1em 0.5em;
-    -webkit-border-bottom-right-radius: 3px;
-    -webkit-border-bottom-left-radius: 3px;
-    -moz-border-radius: 0 0 3px 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-radius: 0 0 3px 3px;
     border-radius: 0 0 3px 3px;
 }

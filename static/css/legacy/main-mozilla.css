@@ -143,8 +143,8 @@ span.emaillink .i {
 }
 
 .rounded {
-    -moz-border-radius: 6px;
-    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    border-radius: 6px;
     border-radius: 6px;
 }
 
@@ -181,8 +181,8 @@ span.emaillink .i {
     height: 1.5em;
     -moz-border-radius-topleft: 6px;
     -moz-border-radius-topright: 6px;
-    -webkit-border-top-left-radius: 6px;
-    -webkit-border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
 }
 
 .html-rtl .translation-box .translation-button img {
@@ -210,8 +210,8 @@ span.emaillink .i {
     padding: 5px;
     -moz-border-radius-topleft: 6px;
     -moz-border-radius-topright: 6px;
-    -webkit-border-top-left-radius: 6px;
-    -webkit-border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
     width: 3.1em;
     height: 1.5em;
     cursor: pointer;
@@ -275,8 +275,8 @@ span.emaillink .i {
     margin: 0;
     -moz-border-radius-bottomleft: 6px;
     -moz-border-radius-bottomright: 6px;
-    -webkit-border-bottom-left-radius: 6px;
-    -webkit-border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
     width: 100%;
     display: none;
 }
@@ -298,8 +298,8 @@ span.emaillink .i {
     margin: 0;
     -moz-border-radius-bottomleft: 6px;
     -moz-border-radius-bottomright: 6px;
-    -webkit-border-bottom-left-radius: 6px;
-    -webkit-border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
     width: 100%;
     height: 100px;
     display: none;
@@ -332,7 +332,7 @@ span.emaillink .i {
     margin-bottom: 10px;
     display: none;
     border: 1px solid #e0effd;
-    -moz-border-radius: 6px;
+    border-radius: 6px;
     border-radius: 6px;
 }
 
@@ -640,8 +640,8 @@ h4.author a {
 #addon-summary #addon-install .install {
     float: left;
     text-align: center;
-    -webkit-border-radius: 11px;
-    -moz-border-radius: 11px;
+    border-radius: 11px;
+    border-radius: 11px;
     border-radius: 11px;
     padding: 0 3px 3px 3px;
 }
@@ -780,7 +780,7 @@ table caption {
     overflow-y: auto;
     background-color: #fff;
     padding: 1em 2em;
-    -moz-border-radius: 8px;
+    border-radius: 8px;
 }
 
 #version-license h2 span {
@@ -1080,8 +1080,8 @@ dl.faq dt:target, dl.validation dt:target { color: #df731b; }
     width: 32em;
     background: #fbfefb;
     border: 4px solid #b4e4b4;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border-radius: 5px;
     border-radius: 5px;
     text-align: left;
     z-index: 10001;
@@ -1095,8 +1095,8 @@ dl.faq dt:target, dl.validation dt:target { color: #df731b; }
 .app_install-popup-inner {
     padding: 1em;
     border: 1px solid #256350;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
+    border-radius: 3px;
+    border-radius: 3px;
     border-radius: 3px;
 }
 
@@ -1223,8 +1223,8 @@ html[xmlns] .clearfix {
 #dictionaries {
     background-color: #f7fafc;
     border: 1px solid #eef1f3;
-    -moz-border-radius: 6px;
-    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    border-radius: 6px;
     border-radius: 6px;
 }
 
@@ -1300,8 +1300,8 @@ html[xmlns] .clearfix {
     margin: 6px 4px;
     padding: 1.5em 8px 0;
     border: 1px solid #ececec;
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    border-radius: 8px;
     border-radius: 8px;
 }
 
@@ -1362,8 +1362,8 @@ html[xmlns] .clearfix {
     color: #fff;
     pointer-events: none;
     padding: 10px;
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    border-radius: 8px;
     border-radius: 8px;
     text-align: center;
 }
@@ -1377,8 +1377,8 @@ html[xmlns] .clearfix {
 }
 
 .browse-thumbs .subcategories li.selected {
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    border-radius: 3px;
     border-radius: 3px;
     border: 1px solid #001133;
     background-color: #223355;
@@ -1495,8 +1495,8 @@ html[xmlns] .clearfix {
 
 .secondary ul.refinements li.selected a {
     background-color: #b9dbe7;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
+    border-radius: 3px;
+    border-radius: 3px;
     border-radius: 3px;
     font-weight: bold;
     background-image: url(../../img/icons/arrows.gif);
@@ -1659,8 +1659,8 @@ html[xmlns] .clearfix {
     border-color: #C63717;
     background-color: #FFA5A5;
     color: #C63717;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    border-radius: 3px;
     border-radius: 3px;
 }
 
@@ -1669,8 +1669,8 @@ html[xmlns] .clearfix {
 
 .support-this-addon {
     text-align: center;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border-radius: 5px;
     border-radius: 5px;
     background-color: #dfeef5;
     font-size: 0.9em;
@@ -1748,7 +1748,7 @@ html[xmlns] .clearfix {
     border: 0 none;
     cursor: pointer;
     text-shadow: none;
-    -moz-border-radius: 0;
+    border-radius: 0;
     font-weight: normal;
 
     padding-top: 0.1em; /* Push the text down a bit. */
@@ -1844,7 +1844,7 @@ html[xmlns] .clearfix {
 .thumbnails li {
     display: inline-block;
     border: 2px solid #ecf2f5;
-    -moz-border-radius: 6px;
+    border-radius: 6px;
     margin: 1.2em;
     padding: 1em 0.5em;
     background: #f9f9f9;
@@ -1872,7 +1872,7 @@ html[xmlns] .clearfix {
 .firstrun-image {
     padding: 10px;
     background-color: #FFFFFF;
-    -moz-border-radius: 6px;
+    border-radius: 6px;
     margin-top: 75px;
     width: 85%;
 }
@@ -1950,8 +1950,8 @@ h2.compat-heading a {
 
 /* Listed add-ons */
 .visit-listed {
-    -moz-border-radius: 6px;
-    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    border-radius: 6px;
     border-radius: 6px;
     background-color: #fff0a6;
     padding: 1em;
@@ -1968,8 +1968,8 @@ h2.compat-heading a {
 div.visit-listed-popup {
     width: 30em;
     border: 4px solid #cb7e42;
-    -moz-border-radius: 6px;
-    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    border-radius: 6px;
     border-radius: 6px;
     padding: 0;
 }

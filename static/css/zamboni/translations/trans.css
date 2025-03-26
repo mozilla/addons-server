@@ -7,7 +7,7 @@
     background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.8));
     text-align: center;
     border: 1px solid #2e5186;
-    -moz-border-radius: 0 0 5px 5px;
+    border-radius: 0 0 5px 5px;
 }
 
 .trans .transbox-new p {
@@ -38,7 +38,7 @@
     border: none;
     margin: -1px 0 0;
     padding: .25em 12px;
-    -moz-border-radius: 5px 5px 0 0;
+    border-radius: 5px 5px 0 0;
     font-weight: bold
 }
 
