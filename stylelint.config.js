@@ -13,7 +13,6 @@ export default {
     'no-descending-specificity': null,
     'no-duplicate-selectors': null,
     'declaration-property-value-no-unknown': null,
-    'font-family-no-missing-generic-family-keyword': null,
   },
   overrides: [
     {
