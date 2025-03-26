@@ -1636,7 +1636,6 @@ form.select-review .errorlist {
 button.search-button {
   background: #84c63c url("../../img/icons/go-arrow.png") center no-repeat;
   background-image: url("../../img/icons/go-arrow.png"), linear-gradient(#84c63c, #489615);
-  background-image: url("../../img/icons/go-arrow.png"), -webkit-linear-gradient(#84c63c, #489615);
   border: 0;
   float: right;
   vertical-align: bottom;

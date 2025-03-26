@@ -461,7 +461,7 @@ input[type=button].caution {
     color: #333;
     background: #fc0 url("../../img/zamboni/button-caution.png") 0 50% repeat-x;
     background: linear-gradient(rgb(255 255 255 / 40%), rgb(255 255 255 / 0%) 60%),
-    -moz-repeating-linear-gradient(-45deg, #F0B500, #F0B500 7px, #FFD000 7px, #FFD000 14px);
+    repeating-linear-gradient(-45deg, #F0B500, #F0B500 7px, #FFD000 7px, #FFD000 14px);
     border-color: #a70;
     text-shadow: 0 1px 0 #ffe56b;
 }
@@ -474,7 +474,7 @@ input[type=button].caution.concealed {
     color: #859fae;
     border-color: #a70;
     background: linear-gradient(rgb(255 255 255 / 90%), rgb(255 255 255 / 60%) 60%),
-    -moz-repeating-linear-gradient(-45deg, #F0B500, #F0B500 7px, #FFD000 7px, #FFD000 14px);
+    repeating-linear-gradient(-45deg, #F0B500, #F0B500 7px, #FFD000 7px, #FFD000 14px);
     white-space: normal;
 }
 
@@ -493,7 +493,7 @@ a.button.caution:active {
     border-color: #850;
     background-image: url("../../img/zamboni/button-caution-on.png");
     background: linear-gradient(rgb(255 255 255 / 0%) 40%, rgb(255 255 255 / 30%) 60%),
-    -moz-repeating-linear-gradient(45deg, #F0B500, #F0B500 7px, #FFD000 7px, #FFD000 14px);
+    repeating-linear-gradient(45deg, #F0B500, #F0B500 7px, #FFD000 7px, #FFD000 14px);
     box-shadow: inset 0 0 5px rgb(0 0 0 / 50%);
 }
 
@@ -606,7 +606,6 @@ a.button.concealed:active {
 .install.lite,
 .install.unreviewed {
     padding: 2px;
-    border-radius: .95em;
     border-bottom-left-radius: 0;
     border-radius: .95em .95em .95em 0;
 }
@@ -614,7 +613,6 @@ a.button.concealed:active {
 .html-rtl .install.featuredaddon,
 .html-rtl .install.lite,
 .html-rtl .install.unreviewed {
-    border-radius: .95em;
     border-bottom-left-radius: .95em;
     border-bottom-right-radius: 0;
     border-radius: .95em .95em 0;

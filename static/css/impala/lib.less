@@ -82,15 +82,15 @@
 
 .height-calc(@calc, @fallback) {
     height: @fallback;
-    height: -moz-calc(@calc);
-    height: -webkit-calc(@calc);
+    height: calc(@calc);
+    height: calc(@calc);
     height: calc(@calc);
 }
 
 .width-calc(@calc, @fallback) {
     width: @fallback;
-    width: -moz-calc(@calc);
-    width: -webkit-calc(@calc);
+    width: calc(@calc);
+    width: calc(@calc);
     width: calc(@calc);
 }
 
@@ -111,7 +111,7 @@
 .gradient-two-color(@color1, @color2) {
     background-image: -webkit-gradient(linear, left bottom, left top, from(@color1), to(@color2));
     background-image: linear-gradient(@color1, @color2);
-    background-image: -webkit-linear-gradient(@color1, @color2);
+    background-image: linear-gradient(@color1, @color2);
 }
 
 .gradient-two-color(@color1, @color2, @fallback) {
@@ -142,7 +142,7 @@
 
 @white-trans: fadeout(#fff, 100%);
 .checkerboard() {
-    background: -moz-repeating-linear-gradient(left, #ccc, #ccc 2px, @white-trans 2px, @white-trans 4px);
+    background: repeating-linear-gradient(left, #ccc, #ccc 2px, @white-trans 2px, @white-trans 4px);
     background: repeating-linear-gradient(to right, #ccc, #ccc 2px, @white-trans 2px, @white-trans 4px);
 }
 
