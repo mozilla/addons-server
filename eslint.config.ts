@@ -81,10 +81,6 @@ const config = defineConfig([
         $: 'readonly', // Add jQuery global
       },
     },
-    rules: {
-      // Disable rules causing errors
-      'prettier/prettier': 'off',
-    },
   },
   // Specific rules for test files
   {
@@ -105,7 +101,6 @@ const config = defineConfig([
     rules: {
       // Disable all the error-causing rules for tests
       'vitest/valid-title': 'off',
-      'prettier/prettier': 'off',
     },
   },
 ]);

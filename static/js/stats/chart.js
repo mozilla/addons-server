@@ -5,7 +5,7 @@ import _ from 'underscore';
 import { format } from '../lib/format';
 import { _pd } from '../lib/prevent-default';
 import csv_keys from './csv_keys';
-import { forEachISODate,normalizeRange } from './dateutils';
+import { forEachISODate, normalizeRange } from './dateutils';
 import { StatsManager } from './manager';
 
 const dayMsecs = 24 * 3600 * 1000;
@@ -209,7 +209,10 @@ const dayMsecs = 24 * 3600 * 1000;
     let count = 0,
       dateRegex = /\d{4}-\d{2}-\d{2}/;
     for (let key in data) {
-      if (dateRegex.exec(key) && Object.prototype.hasOwnProperty.call(data, key)) {
+      if (
+        dateRegex.exec(key) &&
+        Object.prototype.hasOwnProperty.call(data, key)
+      ) {
         count++;
       }
       if (count > 1) {
