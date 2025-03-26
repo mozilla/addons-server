@@ -3,7 +3,7 @@ from django.core.management.base import BaseCommand
 
 from olympia import amo
 from olympia.addons.models import Addon
-from olympia.constants.promoted import LINE
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.promoted.models import (
     PromotedAddon,
 )
@@ -24,6 +24,9 @@ class Command(BaseCommand):
             self.stdout.write(f'Promoting {addon.slug}')
             promotion, created = PromotedAddon.objects.get_or_create(
                 addon=addon,
-                defaults={'application_id': amo.FIREFOX.id, 'group_id': LINE.id},
+                defaults={
+                    'application_id': amo.FIREFOX.id,
+                    'group_id': PROMOTED_GROUP_CHOICES.LINE,
+                },
             )
             promotion.approve_for_addon()
