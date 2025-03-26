@@ -14,6 +14,7 @@
             &:hover {
                 background-color: @faded-blue;
             }
+
             .gs-title {
                 font-size: 16px;
                 font-weight: bold;
@@ -27,23 +28,28 @@
                     b {
                         color: @orange;
                     }
+
                     &:hover {
                         text-decoration: underline;
                     }
+
                     * {
                         text-decoration: none;
                     }
                 }
             }
+
             .gs-title, .gs-snippet {
                 margin-bottom: 5px;
             }
+
             .gs-snippet {
                 color: @medium-gray;
                 margin-top: .5em;
                 font-size: 12px;
                 line-height: 1.3em;
             }
+
             .gs-per-result-labels {
                 margin-top: 5px;
                 font-size: 11px;
@@ -58,19 +64,23 @@
                     }
                 }
             }
+
             .gs-visibleUrl {
                 color: @green;
             }
         }
+
         .gsc-result {
             border-bottom: 1px dotted @border-blue;
         }
     }
+
     .gsc-result-info {
         padding: .5em 0 1em 0;
         font-size: 11px;
         border-bottom: 1px dotted @border-blue;
     }
+
     .gsc-tabHeader {
         border: 0;
         font-size: 11px;
@@ -84,10 +94,12 @@
                 border-left: 0;
             }
         }
+
         &.gsc-tabhActive {
             color: @orange;
             font-weight: bold;
         }
+
         &.gsc-tabhInactive {
             background: transparent;
             color: @link;
@@ -96,13 +108,16 @@
                 text-decoration: underline;
             }
         }
+
         &:first-child {
             padding-left: 0;
         }
     }
+
     .gsc-cursor-box {
         margin-top: 1em;
     }
+
     .gsc-cursor-page {
         color: @dark-gray;
         text-decoration: none;
@@ -112,13 +127,16 @@
         &.gsc-cursor-current-page {
             color: @orange;
         }
+
         &:hover {
             text-decoration: underline;
         }
     }
+
     .gsc-result .gs-title {
         height: auto;
     }
+
     .gsc-tabsArea {
         margin-bottom: .5em;
 
@@ -126,14 +144,17 @@
             display: none;
         }
     }
+
     .gsc-thinWrapper {
         width: 100%;
     }
 }
+
 .html-rtl #search-results {
     .gsc-cursor-page {
         margin: 0 0 0 8px;
     }
+
     .gsc-tabHeader {
         margin-left: 0;
 
@@ -142,6 +163,7 @@
             border-right: 1px solid @light-gray;
         }
     }
+
     .gsc-tabsArea div .gsc-tabHeader:first-child {
         border-right: 0 !important;
         padding: 0 0 0 6px;

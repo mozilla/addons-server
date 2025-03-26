@@ -42,6 +42,7 @@ form ul.guid_list .addon-name {
 .field-blocks label {
     display: none;
 }
+
 .field-blocks div.readonly {
     margin-left: 0 !important;
     margin-right: 0;
@@ -52,6 +53,7 @@ form ul.guid_list .addon-name {
 #id_url:disabled {
     background-color:#eeeeee;
 }
+
 label[for="id_reason"],
 label[for="id_url"] {
     display: inline-block;

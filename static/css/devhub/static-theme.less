@@ -3,31 +3,38 @@
         display: block;
         font-size: 1.1em;
     }
+
     .note {
         display: block;
         padding-top: 2px;
         margin-bottom: 0px;
+
         li {
             display: inline-block;
             font-size: 0.9em;
         }
+
         li::before {
             content: "\b7";
             padding-right: 3px;
         }
     }
+
     h3 {
         font-size: 14px;
         font-weight: bold;
     }
+
     h3.colors {
         margin-top: 26px;
     }
+
     .colors {
         li.row.left {
             margin-right: 20px;
             margin-left: 20px;
         }
+
         li.row {
             display: inline-block;
             width: 325px;
@@ -36,14 +43,17 @@
                 font-weight: normal;
                 margin-top: 5px;
                 width: 290px;
+
                 span {
                     white-space: nowrap;
+
                     span.optional  {
                         font-weight: 400;
                         color: #888;
                     }
                 }
             }
+
             input {
                 width: 290px;
                 padding-left: 30px;
@@ -51,36 +61,44 @@
                 padding-bottom: 4px;
                 padding-top: 4px;
             }
+
             .minicolors-swatch,
             .minicolors-swatch-color {
                 border-radius: 3px;
             }
         }
     }
+
     .preview,
     .reset {
         display: none;
     }
+
     .reset {
         font-weight: bold;
     }
+
     .preview {
         width: auto;
         max-width: 680px;
         max-height: 200px;
     }
+
     #browser-preview {
         background-color: #ccc;
         height: 92px;
         width: 680px;
     }
+
     #theme-header .preview.loading {
         height: 50px;
     }
+
     .loading,
     .loaded {
         display: block;
     }
+
     .loading:before {
         background: #444;
         background-size: auto 70%;
@@ -91,12 +109,15 @@
         transition: opacity .5s;
         width: 100%;
     }
+
     .loaded:before {
         opacity: 0;
     }
+
     #manifest {
         display: none;
     }
+
     .button.upload.uploading {
         background-image: url(../../img/zamboni/discovery_pane/loading.gif);
         background-size: 1.5em;
@@ -105,6 +126,7 @@
         padding-left: 3em;
         padding-right: 3em;
 }
+
     .html-rtl .button.upload.uploading {
         background-position: 5% center;
     }

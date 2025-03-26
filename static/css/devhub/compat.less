@@ -6,15 +6,18 @@
     min-height: 24px;
     padding-left: 35px;
 }
+
 .compat-versions td.app {
     background-position: 0 0.5em;
     .background-size(auto 24px);
     line-height: 30px;
     width: 152px;
 }
+
 .devhub-form .compat-versions td.app {
     background-position: 0 4px;
 }
+
 .new-apps a.app {
     background-position: 0 50%;
     .background-size(auto 16px);
@@ -30,6 +33,7 @@
     tbody {
         border: 0;
     }
+
     p.add-app {
         margin-top: 1em;
     }
@@ -39,6 +43,7 @@
     table {
         width: 100%;
     }
+
     tbody {
         border: 1px solid @dark-gray;
         border-width: 1px 0;
@@ -47,23 +52,29 @@
             border-bottom: 1px dotted @border-blue;
         }
     }
+
     thead th {
         color: #888;
     }
+
     table tbody td {
         padding-top: 0;
     }
+
     p.add-app + .new-apps {
         margin: 0 0 1em;
     }
+
     td div .errorlist {
         font-size: 0.85em;
     }
+
     thead th,
     table + p,
     .errorlist {
         margin-bottom: 0;
     }
+
     td.select {
         display: flex;
         justify-content: space-between;
@@ -78,19 +89,23 @@
                 padding-left: 0;
             }
         }
+
         select {
             width: 120px;
         }
     }
+
     td label,
     td.remove input {
         position: absolute;
         left: -9999px;
     }
+
     td.remove div {
         position: relative;
         top: 0.308em;
     }
+
     tr.app-extra,
     .new-apps {
         display: none;

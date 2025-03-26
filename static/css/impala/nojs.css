@@ -1,9 +1,11 @@
 #more-webpage {
     display: none;
 }
+
 .island .expando .content {
     display: block;
 }
+
 .island .expando .toggle {
     display: none;
 }

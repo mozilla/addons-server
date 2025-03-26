@@ -12,11 +12,13 @@
     left: -10px;
     visibility: hidden;
     z-index: 53;
+
     &.visible {
         opacity: 1;
         bottom: -15px;
         visibility: visible;
     }
+
     .wrap {
         background: #fff;
         border: 1px solid @shadow-blue;
@@ -26,6 +28,7 @@
         top: 0;
         right: 0;
         left: 0;
+
         &:before {
             background: url(../../img/impala/search-stem.png) 50% 100% no-repeat;
             content: "";
@@ -37,12 +40,15 @@
             width: 40px;
         }
     }
+
     ul {
         margin: 0 16px 10px;
     }
+
     p {
         margin: 10px 16px 0;
     }
+
     a {
         display: block;
         text-decoration: none;
@@ -54,6 +60,7 @@
             height: 0;
             visibility: hidden;
         }
+
         span, .subtitle {
             display: block;
             float: left;
@@ -61,34 +68,42 @@
             text-overflow: ellipsis;
             white-space: nowrap;
         }
+
         span {
             .border-box();
             background: no-repeat 4px 50%;
             .background-size(20px auto);
             max-width: 280px;
             padding: 2px 2px 2px 32px;
+
             &.cat {
                 background-image: url(../../img/icons/search-cat.png);
             }
+
             &.app {
                 background-image: url(../../img/app-icons/16/sprite.png);
                 .background-size(18px auto);
                 background-position: 4px 6px;
                 min-height: 0 !important;
             }
+
             &.thunderbird {
                 background-position: 5px -30px;
             }
+
             &.seamonkey {
                 background-position: 4px -66px;
             }
+
             &.sunbird {
                 background-position: 4px -100px;
             }
+
             &.android {
                 background-position: 4px -138px;
             }
         }
+
         .subtitle {
             color: @note-gray;
             font-size: 12px;
@@ -97,12 +112,14 @@
             margin-left: 5px;
         }
     }
+
     a:hover,
     a.sel,
     &.sel a.sel:hover {
         background-color: #EBF4FE;
         color: #447BC4;
     }
+
     &.sel a:hover {
         background-color: transparent;
         color: @link;
@@ -114,6 +131,7 @@
         left: auto;
         right: 14px;
     }
+
     a span {
         background-position: right;
         float: none;

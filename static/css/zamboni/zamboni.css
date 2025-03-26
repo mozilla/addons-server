@@ -72,6 +72,7 @@ ul.errorlist {
     content: '\25B8';
     margin-left: .5em;
 }
+
 .html-rtl a.more-link:after {
     content: '\25C2';
     margin-right: .5em;
@@ -300,6 +301,7 @@ a.button:active, button.button:active {
     padding: 0.75em 0.95em;
     text-align: center;
 }
+
 .cta a.button:hover,
 .cta a.button:focus {
     border-color: #25f;
@@ -307,6 +309,7 @@ a.button:active, button.button:active {
     -webkit-box-shadow: inset 0 0 2px #fff;
     box-shadow: inset 0 0 2px #fff;
 }
+
 .cta a.button:active {
     border-color: #03c;
     background: #7bf;
@@ -641,6 +644,7 @@ a.button.concealed:active {
 .install.featuredaddon {
     background: #bcdba2;
 }
+
 .install.featuredaddon strong {
     color: #360;
 }
@@ -649,6 +653,7 @@ a.button.concealed:active {
 .install.unreviewed {
     background: #ffe57f;
 }
+
 .install.lite strong,
 .install.unreviewed strong {
     color: #333;
@@ -667,6 +672,7 @@ a.button.concealed:active {
 }
 
 .button.add b { background-position: 25% 0; }
+
 .button.add.prominent b {
     background-position: 25% -49px;
     position: relative;
@@ -745,6 +751,7 @@ div:has(> .download-reply-attachment) {
 .popup-shim {
     position: relative;
 }
+
 div.popup-shim {
     display: inline-block;
 }
@@ -803,14 +810,17 @@ div.popup-shim {
 .modal form {
     margin: 0;
 }
+
 .modal h2,
 .modal h3 {
     margin-top: 0;
     color: #2e5186;
 }
+
 .modal-delete h3 {
     color: #6c1a1a;
 }
+
 .install-note {
     width: 300px;
 }
@@ -953,6 +963,7 @@ div.popup-shim {
     border-top-color: #2A4364;
     pointer-events: none;
 }
+
 #tooltip.error:before {
     border-top-color: #6c1a1a;
 }
@@ -1013,19 +1024,24 @@ ul.license li {
     float: left;
     list-style: none;
 }
+
 .html-rtl ul.license li {
     float: right;
 }
+
 ul.license li.text {
     font-size: 90%;
     margin-top: -.2em;
 }
+
 .html-ltr ul.license li.text {
     margin-left: .3em;
 }
+
 .html-rtl ul.license li.text {
     margin-right: .3em;
 }
+
 ul.license li.icon {
     background: url(../../img/zamboni/licenses.png) no-repeat top left;
     height: 15px;
@@ -1502,6 +1518,7 @@ form .error .note.error {
     padding: 0;
     margin: 0;
 }
+
 .category-landing .info-message {
     clear: both;
     padding: 1em;
@@ -1518,6 +1535,7 @@ form .error .note.error {
     margin: 0;
     color: #444;
 }
+
 .category-landing .info-message .view-all a {
     font-weight: bold;
 }
@@ -1630,6 +1648,7 @@ form .error .note.error {
     margin-bottom: 2em;
     clear: both;
 }
+
 .results-inner {
     background-color: #fff;
     border: 1px solid #2e5186;
@@ -2352,12 +2371,15 @@ td .addon-rating,
     padding: .25em 0 0 1em;
     margin: 0;
 }
+
 .other-note input[type='text'] {
     width: 150px;
 }
+
 .other-note input[type='submit'] {
     margin-top: -2px;
 }
+
 .other .other-note,
 .review-reason a {
     display: block;
@@ -2372,9 +2394,11 @@ ul.review-options {
     margin-bottom: 2px;
     color: #aaa;
 }
+
 ul.review-options > li {
     float: left;
 }
+
 .review ul.review-options > li > a {
     font-weight: normal;
     color: #aaa;
@@ -2382,10 +2406,12 @@ ul.review-options > li {
     -webkit-transition: color .2s;
     transition: color .2s;
 }
+
 ul.review-options > li:not(:first-child) {
     list-style-type: disc;
     margin-left: 1.6em;
 }
+
 .article.review {
     margin-bottom: 1em;
     -moz-border-radius: 8px;
@@ -2393,45 +2419,56 @@ ul.review-options > li:not(:first-child) {
     border-radius: 8px;
     overflow: visible;
 }
+
 .review h5 {
     float: left;
     margin-right: .8em;
     font-size: 120%;
 }
+
 .html-rtl .review h5 {
     float: right;
     margin-right: inherit;
     margin-left: .8em;
 }
+
 .review p {
     margin: 1em 0 0 0;
 }
+
 .review .reviewed-on {
     clear: left;
     font-size: .9em;
 }
+
 .html-rtl .review .reviewed-on {
     clear: right;
 }
+
 .review.deleted {
     display: none;
 }
+
 h6.author, .author a {
     font-weight: normal;
 }
+
 .reviews .highlight > span {
     display: block;
 }
+
 .reviews .highlight hgroup {
     display: block;
     margin-bottom: 1em;
 }
+
 .reviews .highlight > div {
     margin: 0;
     padding: 1em .2em;
     border-top: 1px dashed #ccc;
     font-size: .9em;
 }
+
 .reviews .highlight > div:last-child {
     text-align: center;
     padding-bottom: 0;
@@ -2460,6 +2497,7 @@ h6.author, .author a {
     overflow: visible;
     width: 120px;
 }
+
 .num_ratings {
     width: 1px;
     position: absolute;
@@ -2467,6 +2505,7 @@ h6.author, .author a {
     top: -2px;
     line-height: 1em;
 }
+
 .grouped_ratings .rating_bar span.bar {
     display:block;
     height: 100%;
@@ -2498,15 +2537,19 @@ h6.author, .author a {
 .grouped_ratings .stars-4 {
     background-position: 13px 50%;
 }
+
 .grouped_ratings .stars-3 {
     background-position: 26px 50%;
 }
+
 .grouped_ratings .stars-2 {
     background-position: 39px 50%;
 }
+
 .grouped_ratings .stars-1 {
     background-position: 52px 50%;
 }
+
 .grouped_ratings .stars-0 {
     background-position: 65px 50%;
 }
@@ -2579,20 +2622,25 @@ h6.author, .author a {
 .review:hover ul.review-options > li > a {
     color: #3d6db5;
 }
+
 .review-wrapper {
     position: relative;
 }
+
 .reviews header {
     margin-left: 0;
 }
+
 .highlight h5 {
     font-size: 120%;
 }
+
 .review.reply {
     margin-left: 4em;
     background: #f0f6f2;
     border-color: #d0e2c5;
 }
+
 .review .review-note {
     float: left;
     font-size: .9em;
@@ -2605,24 +2653,30 @@ h6.author, .author a {
     background: #e0effd;
     border: 0;
 }
+
 .reply-form form {
     margin-bottom: 0;
 }
+
 .reply-form label {
     display: block;
     margin-top: 1em;
 }
+
 label > .optional {
     font-weight: normal;
     color: #888;
 }
+
 .reply-form textarea {
     margin-bottom: 2em;
     width: 80%;
 }
+
 .reply-form h3 {
     margin: 0;
 }
+
 .reply-form input[type='text'] {
     width: 60%;
 }
@@ -2654,9 +2708,11 @@ label > .optional {
 .popup h3 {
     margin-top: 0;
 }
+
 #add-to-collection form {
     margin-bottom: 0;
 }
+
 #add-to-collection #id_description {
     height: 6em;
 }
@@ -2666,6 +2722,7 @@ label > .optional {
     background: #eee;
     color: #888;
 }
+
 .edit_with_prefix input:focus, .edit_with_suffix input:focus {
     outline: 0;
 }
@@ -2677,6 +2734,7 @@ label > .optional {
     border-right: 0 none;
     padding: 2px 2px 2px 5px;
 }
+
 .edit_with_prefix input, .edit_with_prefix input[type=text] {
     border: 1px solid #5875a0;
     border-left: 0 none;
@@ -2799,6 +2857,7 @@ label > .optional {
 .followers {
     color: #37a632;
 }
+
 .followers span {
     font-weight: bold;
 }
@@ -2829,6 +2888,7 @@ label > .optional {
 input:-moz-placeholder {
     color: #ccc;
 }
+
 input::-webkit-placeholder {
     color: #ccc;
 }
@@ -2836,51 +2896,63 @@ input::-webkit-placeholder {
 table#addons-list, table#contributors-list {
     width: 100%;
 }
+
 #addons-list .comments {
     display: none;
     margin: 0 0 .2em 42px;
 }
+
 #addons-list .comments.hascomment {
     display: block;
 }
+
 #addons-list .comments.hascomment textarea {
     resize:vertical;
 }
+
 td.remove {
     width: 20px;
     text-align:center;
 }
+
 #addons-list thead,
 #contributors-list thead {
     font-size: .9em;
 }
+
 #addons-list tbody tr,
 #contributors-list tbody tr {
     border-top: 1px dotted #A5BFCE;
 }
+
 #addons-list tbody tr:hover,
 #contributors-list tbody tr:hover,
 .ui-state-hover {
     background-color: #e4f5fb;
 }
+
 td.input {
     background: #E0EFFD;
     padding-top: .5em;
     padding-bottom: .4em;
 }
+
 #addons-list h3 {
     line-height: 36px;
     display: inline;
     margin: 0;
     padding: 0;
 }
+
 #addons-list img {
     float: left;
     margin: 2px 1em 0 0;
 }
+
 #id_name {
     display: block;
 }
+
 #addons-list a.remove,
 #addons-list a.comment,
 #contributors-list a.remove {
@@ -2894,15 +2966,18 @@ td.input {
     background-repeat: no-repeat;
     background-image: url(../../img/zamboni/icons/collections.png);
 }
+
 #addons-list a.remove,
 #contributors-list a.remove {
     background-position: 0 -250px;
 }
+
 #addons-list a.remove:hover,
 #contributors-list a.remove:hover,
 .collection-admin a.delete {
     background-position: 0 -200px;
 }
+
 #addons-list a.comment {
     background-position: 0 -800px;
 }
@@ -2913,6 +2988,7 @@ td.input {
     margin-bottom: 0;
     display: inline-block;
 }
+
 .collection-admin a {
     background-repeat: no-repeat;
     background-image: url(../../img/zamboni/icons/collections.png);
@@ -2920,9 +2996,11 @@ td.input {
     white-space: nowrap;
     padding-left: 22px;
 }
+
 .collection-admin a.edit {
     background-position: 0 -300px;
 }
+
 .collection-create .featured-inner {
     padding: 1em;
 }
@@ -2936,9 +3014,11 @@ td.input {
 .contributor span {
     position: relative;
 }
+
 #contributor-ac-error {
     margin: 0;
 }
+
 .make-owner {
     margin-left: 1em;
 }
@@ -2975,6 +3055,7 @@ td.input {
 .html-rtl .collections-landing {
     background-position: 5% 20px, left top;
 }
+
 .html-rtl .collections-landing p {
     padding-right: 0;
     padding-left: 250px;
@@ -2989,6 +3070,7 @@ a.outlink {
     padding-left: 16px;
     background-position: 0 -850px;
 }
+
 a.outlink:hover {
     background-position: 0 -900px;
 }
@@ -3006,6 +3088,7 @@ a.outlink:hover {
 .object-details .collection_widgets {
     margin-bottom: 1em;
 }
+
 .widget {
     background-image: url(../../img/zamboni/icons/collections.png);
     background-repeat: no-repeat;
@@ -3014,26 +3097,32 @@ a.outlink:hover {
     height: 16px;
     line-height: 16px;
 }
+
 .html-rtl .widget {
     margin-right: 0;
     margin-left: 1em;
 }
+
 .widget.condensed {
     margin-right: 8px;
     padding-left: 16px;
     width: 16px;
 }
+
 .html-rtl .widget.condensed {
     margin-left: .8em;
 }
+
 #addon .widgets {
     clear:left;
 }
+
 #addon .widget {
     display: block;
     margin-bottom: 1em;
     float: left;
 }
+
 .html-rtl #addon .widget {
     float: right;
 }
@@ -3063,9 +3152,11 @@ input.ui-autocomplete-loading,
    background-repeat: no-repeat;
    background-position: left bottom;
 }
+
 input.ui-autocomplete-loading {
     background-position: right center;
 }
+
 .modal.ajax-loading {
     background-position: center center;
 }
@@ -3120,15 +3211,19 @@ input.ui-autocomplete-loading {
 #l10n-menu {
     float: right;
 }
+
 #l10n-menu p {
     margin: 0;
 }
+
 .html-rtl #l10n-menu {
     float: left;
 }
+
 #change-locale {
     padding-right: 16px;
 }
+
 #change-locale:after {
     position: relative;
     top: 12px;
@@ -3141,12 +3236,15 @@ input.ui-autocomplete-loading {
     border-style: solid;
     border-top-color: #003595;
 }
+
 #locale-popup:after {
   right: 53px;
 }
+
 #locale-popup:before {
   right: 48px;
 }
+
 #locale-popup section {
   display: block;
   height: 300px;
@@ -3154,25 +3252,31 @@ input.ui-autocomplete-loading {
   margin-right: -10px;
   overflow-y: auto;
 }
+
 #locale-popup section a {
   display: block;
 }
+
 #locale-popup section a:hover {
   background-color: #eefafe;
   text-decoration: none;
 }
+
 #locale-popup section a em {
   color: #98bfef;
 }
+
 #locale-popup section ul {
   margin: 0;
 }
+
 #existing_locales a.remove {
   display: block;
   float: right;
   margin: 4px 8px;
   line-height: 18px;
 }
+
 #existing_locales a.remove:hover {
   background-color: #2a4364;
 }
@@ -3180,9 +3284,11 @@ input.ui-autocomplete-loading {
 .trans [lang] {
     display: none;
 }
+
 .trans [lang]:first-child {
     display: block;
 }
+
 .trans .init-trans {
     display: none;
 }
@@ -3212,6 +3318,7 @@ input.ui-autocomplete-loading {
 .errorlist .l10n {
     cursor: pointer;
 }
+
 .errorlist .l10n:hover {
     text-decoration: underline;
 }

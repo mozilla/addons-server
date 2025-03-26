@@ -19,6 +19,7 @@
             display: inline;
             margin: 0;
         }
+
         li.selected a {
             color: @orange;
             font-weight: bold;
@@ -155,10 +156,12 @@
         position: relative;
         top: -1px;
         z-index: 0;
+
         &:hover {
             background: #f4f8fc;
         }
     }
+
     a.active {
         .gradient-two-color(#fff, #fcfdfe);
         border-bottom: 0;
@@ -168,6 +171,7 @@
         font-weight: bold;
         top: 0;
         z-index: 1;
+
         &:hover {
             text-decoration: none;
         }
@@ -180,6 +184,7 @@
         font-size: 14px;
         line-height: 16px;
     }
+
     .button-wrapper {
         margin: 1em 0 0;
         text-align: center;
@@ -193,6 +198,7 @@ p.submit-cta {
     + p.submit-cta {
         margin-bottom: 1.5em;
     }
+
     .button {
         display: block;
         font-size: 13px;
@@ -205,6 +211,7 @@ p.submit-cta {
         margin-bottom: -.5em;
         padding-bottom: .5em;
     }
+
     li a {
         display: block;
     }
