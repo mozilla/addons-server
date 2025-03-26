@@ -83,7 +83,6 @@ const config = defineConfig([
     },
     rules: {
       // Disable rules causing errors
-      'no-var': 'off',
       'prettier/prettier': 'off',
       'no-prototype-builtins': 'off',
       'no-const-assign': 'off',
