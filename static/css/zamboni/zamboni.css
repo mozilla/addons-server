@@ -38,7 +38,7 @@ li.usertag {
 }
 
 #main-wrapper {
-    background: #fff url(../../img/zamboni/global/bg-header.png) repeat-x;
+    background: #fff url("../../img/zamboni/global/bg-header.png") repeat-x;
 }
 
 header {
@@ -92,7 +92,7 @@ ul.errorlist {
 
 .other-author-addons li .addonitem {
     padding-left: 20px;
-    background-image: url(../../img/icons/icons.png);
+    background-image: url("../../img/icons/icons.png");
     background-repeat: no-repeat;
     background-position: 0 -200px;
 }
@@ -593,7 +593,7 @@ a.button.concealed:active {
 .install-shell .notavail {
     padding: 1px 0 1px 20px;
     margin-left: 3px;  /* Match the padding of .install. */
-    background: url(../../img/zamboni/icons/no-14x14.png) 0 30% no-repeat;
+    background: url("../../img/zamboni/icons/no-14x14.png") 0 30% no-repeat;
     white-space: nowrap;
 }
 
@@ -769,20 +769,20 @@ div.popup-shim {
 }
 
 .mobile .install-note .msg, .mobile.app,
-.firefox .install-note .msg, .firefox.app { background-image: url(../../img/app-icons/small/firefox.png); }
-.thunderbird .install-note .msg, .thunderbird.app { background-image: url(../../img/app-icons/small/thunderbird.png); }
-.sunbird .install-note .msg, .sunbird.app { background-image: url(../../img/app-icons/small/sunbird.png); }
-.seamonkey .install-note .msg, .seamonkey.app { background-image: url(../../img/app-icons/small/seamonkey.png); }
-.android .install-note .msg, .android.app { background-image: url(../../img/app-icons/small/android.png); }
-.mz.app { background-image: url(../../img/app-icons/small/mozilla.png); }
+.firefox .install-note .msg, .firefox.app { background-image: url("../../img/app-icons/small/firefox.png"); }
+.thunderbird .install-note .msg, .thunderbird.app { background-image: url("../../img/app-icons/small/thunderbird.png"); }
+.sunbird .install-note .msg, .sunbird.app { background-image: url("../../img/app-icons/small/sunbird.png"); }
+.seamonkey .install-note .msg, .seamonkey.app { background-image: url("../../img/app-icons/small/seamonkey.png"); }
+.android .install-note .msg, .android.app { background-image: url("../../img/app-icons/small/android.png"); }
+.mz.app { background-image: url("../../img/app-icons/small/mozilla.png"); }
 
 .install-note .msg.m-unreviewed,
 .popup.warning .msg {
-    background-image: url(../../img/zamboni/icons/alert-32x32.png);
+    background-image: url("../../img/zamboni/icons/alert-32x32.png");
 }
 
 .install-note .msg.m-platforms {
-    background-image: url(../../img/zamboni/icons/no-32x32.png);
+    background-image: url("../../img/zamboni/icons/no-32x32.png");
 }
 
 .install-note,
@@ -1043,7 +1043,7 @@ ul.license li.text {
 }
 
 ul.license li.icon {
-    background: url(../../img/zamboni/licenses.png) no-repeat top left;
+    background: url("../../img/zamboni/licenses.png") no-repeat top left;
     height: 15px;
     width: 15px;
 }
@@ -1620,12 +1620,12 @@ form .error .note.error {
     font-size: 1em;
     color: #3d6db5;
     padding-right: 10px;
-    background: transparent url(../../img/zamboni/icons/arrow-right-blue.png) 100% 55% no-repeat;
+    background: transparent url("../../img/zamboni/icons/arrow-right-blue.png") 100% 55% no-repeat;
 }
 
 .html-rtl.category-landing .view-all a:link,
 .html-rtl.category-landing .view-all a:visited {
-    background: transparent url(../../img/zamboni/icons/arrow-left-blue.png) 0 55% no-repeat;
+    background: transparent url("../../img/zamboni/icons/arrow-left-blue.png") 0 55% no-repeat;
     padding: 0 0 0 10px;
 }
 
@@ -2052,7 +2052,7 @@ form .error .note.error {
     top: 50%;
     margin-top: -16px;
     position: absolute;
-    background-image:url(../../img/zamboni/notifications.png);
+    background-image:url("../../img/zamboni/notifications.png");
 }
 
 .html-rtl .notification-box::before {
@@ -2818,7 +2818,7 @@ label > .optional {
     padding-left: 30px;
     background-repeat: no-repeat;
     background-position: 0 4px;
-    background-image: url(../../img/zamboni/icons/checks.png);
+    background-image: url("../../img/zamboni/icons/checks.png");
 }
 
 #ajax_collections_list li:hover {
@@ -2830,7 +2830,7 @@ label > .optional {
 }
 
 #ajax_collections_list li.ajax-loading {
-   background-image: url(../../img/zamboni/loading-white.gif);
+   background-image: url("../../img/zamboni/loading-white.gif");
    background-position: left bottom;
 }
 
@@ -2964,7 +2964,7 @@ td.input {
     margin: 10px;
     text-indent: -9000px;
     background-repeat: no-repeat;
-    background-image: url(../../img/zamboni/icons/collections.png);
+    background-image: url("../../img/zamboni/icons/collections.png");
 }
 
 #addons-list a.remove,
@@ -2991,7 +2991,7 @@ td.input {
 
 .collection-admin a {
     background-repeat: no-repeat;
-    background-image: url(../../img/zamboni/icons/collections.png);
+    background-image: url("../../img/zamboni/icons/collections.png");
     margin-left: 1em;
     white-space: nowrap;
     padding-left: 22px;
@@ -3028,7 +3028,7 @@ td.input {
 .collections-landing {
     padding: 1em;
     min-height: 190px;
-    background-image: url(../../img/illustrations/logo-collections-220x270.png),
+    background-image: url("../../img/illustrations/logo-collections-220x270.png"),
                       linear-gradient(#e4f5fb, #fff);
     background-repeat: no-repeat;
     background-position: 95% 30px, left top;
@@ -3065,7 +3065,7 @@ td.input {
 a.outlink {
     margin-left: 4px;
     background-repeat: no-repeat;
-    background-image: url(../../img/zamboni/icons/collections.png);
+    background-image: url("../../img/zamboni/icons/collections.png");
     white-space: nowrap;
     padding-left: 16px;
     background-position: 0 -850px;
@@ -3090,7 +3090,7 @@ a.outlink:hover {
 }
 
 .widget {
-    background-image: url(../../img/zamboni/icons/collections.png);
+    background-image: url("../../img/zamboni/icons/collections.png");
     background-repeat: no-repeat;
     padding-left: 22px;
     margin-right: 7px;
@@ -3148,7 +3148,7 @@ input.ui-autocomplete-loading,
 .modal.ajax-loading,
 .tooltip.ajax-loading,
 .tooltip:hover.ajax-loading {
-   background-image: url(../../img/zamboni/loading-white.gif);
+   background-image: url("../../img/zamboni/loading-white.gif");
    background-repeat: no-repeat;
    background-position: left bottom;
 }
@@ -3162,14 +3162,14 @@ input.ui-autocomplete-loading {
 }
 
 .modal-actions.ajax-loading {
-    background-image: url(../../img/zamboni/loading-white.gif);
+    background-image: url("../../img/zamboni/loading-white.gif");
     background-repeat: no-repeat;
     background-position: right center;
 }
 
 .suggested-amount.ajax-loading,
 #contribute-box .ajax-loading {
-    background-image: url(../../img/zamboni/loading-white.gif);
+    background-image: url("../../img/zamboni/loading-white.gif");
     background-repeat: no-repeat;
     background-position: right center;
     padding-right: 30px;

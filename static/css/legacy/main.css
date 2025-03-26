@@ -409,7 +409,7 @@ button.link {
 
 .stars {
     text-indent:-5000px;
-    background-image: url(../../img/icons/stars.png);
+    background-image: url("../../img/icons/stars.png");
     background-position: 0 50%;
     background-repeat: no-repeat;
     margin-right: 0.5em;
@@ -463,7 +463,7 @@ button.link {
 .twitter,
 .share-networks .email,
 .share-email .emailerror p {
-    background-image: url(../../img/icons/icons.png);
+    background-image: url("../../img/icons/icons.png");
     background-repeat: no-repeat;
     padding-left: 20px;
 }
@@ -574,7 +574,7 @@ h3 .secondary a:link, h3 .secondary a:active, h3 .secondary a:visited, h3 .secon
 .more-info:active {
     font-weight: bold;
     float: right;
-    background-image: url(../../img/icons/arrows.gif);
+    background-image: url("../../img/icons/arrows.gif");
     background-repeat: no-repeat;
     background-position:right -153px;
     padding-right: 1em;
@@ -694,7 +694,7 @@ button.disabled,
 button:disabled,
 input[type=submit].disabled,
 input[type=submit]:disabled {
-  background-image: url(../../img/bg/button-gray.jpg);
+  background-image: url("../../img/bg/button-gray.jpg");
   background-color: #ccc;
   border-color: #aaa;
   text-shadow:-1px -1px 1px #999;
@@ -775,7 +775,7 @@ a:focus.button.neutral,
 a:active.button.neutral,
 button.neutral {
     background-color:#E5A365;
-    background-image: url(../../img/bg/button-orange.jpg);
+    background-image: url("../../img/bg/button-orange.jpg");
     border:1px solid #CB7E42;
     text-shadow:-1px -1px 1px #BF6524;
 }
@@ -796,7 +796,7 @@ a:focus.button.positive,
 a:active.button.positive,
 button.positive {
     background-color:#8CC553;
-    background-image: url(../../img/bg/button-green.jpg);
+    background-image: url("../../img/bg/button-green.jpg");
     border: 1px solid #488F03;
     text-shadow:-1px -1px 1px #7BAB29;
 }
@@ -817,7 +817,7 @@ a:focus.negative,
 a:active.negative,
 button.negative {
     background-color:#EC7F82;
-    background-image: url(../../img/bg/button-red.jpg);
+    background-image: url("../../img/bg/button-red.jpg");
     border: 1px solid #CF2F1E;
     text-shadow: -1px -1px 1px #CF2F1E;
 }
@@ -838,7 +838,7 @@ a:focus.button.cool,
 a:active.button.cool,
 button.cool {
     background-color: #8D96A7;
-    background-image: url(../../img/bg/button-dark-blue.jpg);
+    background-image: url("../../img/bg/button-dark-blue.jpg");
     border: 1px solid #22334f;
     text-shadow:-1px -1px 1px #7C869A;
 }
@@ -871,7 +871,7 @@ button.add-to-fav {
     margin: 0;
     padding: 0.5em 0 0.2em 19px;
     background: none;
-    background-image: url(../../img/icons/fav-off.gif);
+    background-image: url("../../img/icons/fav-off.gif");
     background-position: left center;
     background-repeat: no-repeat;
     border-radius: 0;
@@ -886,7 +886,7 @@ button.add-to-fav {
 
 button.add-to-fav.fav {
     color: #C00;
-    background-image: url(../../img/icons/fav-on.gif);
+    background-image: url("../../img/icons/fav-on.gif");
 }
 
 form button.add-to-fav:hover,
@@ -899,7 +899,7 @@ form button.add-to-fav.loading-fav:hover,
 form button.add-to-fav.loading-fav:focus,
 form button.add-to-fav.loading-fav:active {
     color: #A4A5A5;
-    background-image: url(../../img/icons/orange-loading.gif);
+    background-image: url("../../img/icons/orange-loading.gif");
 }
 
 /*.favorite {
@@ -1425,7 +1425,7 @@ form.favorite {
     font-size: 1em;
     clear:both;
     width: 24.3%;
-    background-image: url(../../img/icons/pointer.gif);
+    background-image: url("../../img/icons/pointer.gif");
     background-repeat: no-repeat;
     background-position: 95% 4px;
     padding-top: 10px;
@@ -1622,7 +1622,7 @@ form.favorite {
     left: 8px;
     width: 27px;
     height: 27px;
-    background-image: url(../../img/icons/arrows-scroller.png);
+    background-image: url("../../img/icons/arrows-scroller.png");
     background-position: 0 0;
     background-repeat: no-repeat;
 }
@@ -1801,7 +1801,7 @@ ol.pagination span {
 
 ol.pagination a[rel~="prev"],
 ol.pagination span.prev  {
-    background-image: url(../../img/icons/arrows.gif);
+    background-image: url("../../img/icons/arrows.gif");
     background-repeat: no-repeat;
     background-position: 5px -420px;
     color: #3d6db5;
@@ -1811,7 +1811,7 @@ ol.pagination span.prev  {
 
 ol.pagination a[rel~="next"],
 ol.pagination span.next {
-    background-image: url(../../img/icons/arrows.gif);
+    background-image: url("../../img/icons/arrows.gif");
     background-repeat: no-repeat;
     background-position: 95% -340px;
     color: #3d6db5;
@@ -1861,7 +1861,7 @@ ol.pagination li a:active {
 }
 
 .share-arrow {
-    background-image: url(../../img/icons/pointer.gif) no-repeat 30px top;
+    background-image: url("../../img/icons/pointer.gif") no-repeat 30px top;
     padding-top: 7px;
     display: none;
 }
@@ -1891,7 +1891,7 @@ ol.pagination li a:active {
 }
 
 .share-networks li:hover span.share-link {
-    background-image:url(../../img/icons/share-arrow-sprite.png);
+    background-image:url("../../img/icons/share-arrow-sprite.png");
     background-repeat:no-repeat;
     background-position: right 8px;
 }
@@ -2506,7 +2506,7 @@ ol.pagination + .num-results {
 
 .listing .recommended,
 .separated-listing .recommended {
-    background-image: url(../../img/bg/listing-item-yellow.png);
+    background-image: url("../../img/bg/listing-item-yellow.png");
     border-color: #fc9;
 }
 
@@ -2516,7 +2516,7 @@ ol.pagination + .num-results {
 
 .listing .experimental,
 .separated-listing .experimental {
-    background-image: url(../../img/bg/listing-item-red.png);
+    background-image: url("../../img/bg/listing-item-red.png");
     border-color: #fcc;
 }
 
@@ -2583,7 +2583,7 @@ ol.pagination + .num-results {
     position: absolute;
     top: 1em;
     right:0;
-    background-image:url(../../img/icons/developer.png);
+    background-image:url("../../img/icons/developer.png");
     background-position: left center;
     background-repeat: no-repeat;
     padding: 0.3em 1.18em 0.3em 35px;

@@ -1,12 +1,12 @@
 .blocked {
-    background: left top url(../../img/zamboni/blocklist.png) no-repeat;
+    background: left top url("../../img/zamboni/blocklist.png") no-repeat;
     padding-left: 80px;
     width: 760px;
     display: block;
 }
 
 .html-rtl .blocked {
-    background: right top url(../../img/zamboni/blocklist.png) no-repeat;
+    background: right top url("../../img/zamboni/blocklist.png") no-repeat;
     padding-left: 0;
     padding-right: 80px;
     display: block;
