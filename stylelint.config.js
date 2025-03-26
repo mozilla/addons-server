@@ -15,7 +15,6 @@ export default {
     'declaration-property-value-no-unknown': null,
     'font-family-no-missing-generic-family-keyword': null,
     'function-linear-gradient-no-nonstandard-direction': null,
-    'selector-pseudo-class-no-unknown': null,
   },
   overrides: [
     {

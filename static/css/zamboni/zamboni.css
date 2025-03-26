@@ -2819,7 +2819,7 @@ label > .optional {
     margin-top: 2em;
 }
 
-input:placeholder {
+input::placeholder {
     color: #ccc;
 }
 
