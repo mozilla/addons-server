@@ -41,7 +41,6 @@ export default {
     'comment-empty-line-before': null,
     'function-name-case': null,
     'declaration-block-no-redundant-longhand-properties': null,
-    'import-notation': null,
     'font-family-no-duplicate-names': null,
     'declaration-block-no-duplicate-properties': null,
     'value-no-vendor-prefix': null,
