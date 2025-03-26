@@ -123,6 +123,7 @@ ul.refinements:last-child {
 
 #slug_edit span, #id_slug {
   font-family: Verdana !important;
+
   /** This is so they match up size-wise **/
 }
 
@@ -569,6 +570,7 @@ input.valid {
     font-size: .9em;
     font-weight: normal;
 }
+
 /* @end */
 
 /* @group Payments */
@@ -681,6 +683,7 @@ a.extra {
     background: #fff;
     border: 1px solid #C9E8F3;
 }
+
 /* @end */
 
 
@@ -1222,6 +1225,7 @@ pre.email_comment {
 #navbar li.top ul li:last-child a {
     border: none;
 }
+
 /* @end */
 
 /* @group Select a Review Process */
