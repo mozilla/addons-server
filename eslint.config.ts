@@ -84,7 +84,6 @@ const config = defineConfig([
     rules: {
       // Disable rules causing errors
       'prettier/prettier': 'off',
-      'no-dupe-keys': 'off',
     },
   },
   // Specific rules for test files

@@ -76,7 +76,6 @@ export default {
     category: gettext('Category Pages'),
     collection: gettext('Collections'),
     'cb-hc-featured': gettext('Category Landing Featured Carousel'),
-    'cb-dl-featured': gettext('Category Landing Featured Carousel'),
     'cb-hc-toprated': gettext('Category Landing Top Rated'),
     'cb-dl-toprated': gettext('Category Landing Top Rated'),
     'cb-hc-mostpopular': gettext('Category Landing Most Popular'),
