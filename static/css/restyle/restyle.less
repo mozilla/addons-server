@@ -322,7 +322,7 @@ body:not(.home) .amo-header,
     color: @link-on-color-bg;
     outline: none;
 
-    &:before {
+    &::before {
       background-image: none;
     }
 
@@ -346,7 +346,7 @@ body:not(.home) .amo-header,
     }
 
     // arrow
-    > ul:after {
+    > ul::after {
       left: 10px;
 
       .html-rtl & {
@@ -355,7 +355,7 @@ body:not(.home) .amo-header,
       }
     }
 
-    &:hover:after {
+    &:hover::after {
       top: 25px;
       left: 1px;
       height: 10px;
@@ -430,7 +430,7 @@ body:not(.home) .amo-header,
       top: 25px;
 
       // Menu Panel triangle
-      &:after {
+      &::after {
         box-shadow: -2px -2px 2px rgba(0, 0, 0, 0.1);
         content: '';
         display: block;
@@ -451,7 +451,7 @@ body:not(.home) .amo-header,
       box-shadow: none;
     }
 
-    &:hover:after {
+    &:hover::after {
       background: #fff;
       content: '';
       height: 16px;
@@ -460,14 +460,14 @@ body:not(.home) .amo-header,
       z-index: 62;
     }
 
-    &.nomenu:hover:after {
+    &.nomenu:hover::after {
       display: none;
     }
   }
 }
 
 #aux-nav > ul > li {
-  > ul:after {
+  > ul::after {
     right: 10px;
 
     .html-rtl & {
@@ -476,7 +476,7 @@ body:not(.home) .amo-header,
     }
   }
 
-  &:hover:after {
+  &:hover::after {
     top: 32px;
     right: 1px;
     height: 10px;
@@ -486,17 +486,17 @@ body:not(.home) .amo-header,
 // Top Menu
 #aux-nav > ul > li {
   // Other Applications Panel triangle position
-  ul:after {
+  ul::after {
     left: auto;
     right: 15px;
   }
 
   // Other Applications Menu Arrow
-  a:after {
+  a::after {
     display: none;
   }
 
-  &:not(:first-child):before {
+  &:not(:first-child)::before {
     background: linear-gradient(
       to bottom,
       transparent 0%,
@@ -760,7 +760,7 @@ body:not(.home) .amo-header,
     color: rgba(255, 255, 255, 0.3);
   }
 
-  &:after {
+  &::after {
     background: none;
     border: 0;
     border-radius: 0;
@@ -1055,7 +1055,7 @@ input:not(.upvotes):not(.downvotes)[type="submit"] {
 .sidebar button {
   width: 100%;
 
-  &#commit:before {
+  &#commit::before {
     top: 12px;
   }
 }
@@ -1511,7 +1511,7 @@ h3.author .transfer-ownership {
     position: relative;
     text-decoration: none;
 
-    &:after {
+    &::after {
       color: rgba(0, 0, 0, 0.125);
       content: '\203a';
       font-family: Georgia;
@@ -1526,9 +1526,9 @@ h3.author .transfer-ownership {
       background-color: #ecf5fe;
     }
 
-    &:hover:after,
-    &:focus:after,
-    &.selected:after {
+    &:hover::after,
+    &:focus::after,
+    &.selected::after {
       color: inherit;
     }
   }
@@ -2329,11 +2329,11 @@ body.windows .install-shell .platform.mac {
         }
       }
 
-      details[open] summary:after {
+      details[open] summary::after {
         content: " \25b2"
       }
 
-      details summary:after {
+      details summary::after {
         content: " \25bc"
       }
     }

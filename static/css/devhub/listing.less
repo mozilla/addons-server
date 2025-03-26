@@ -134,7 +134,7 @@
         &.more-actions {
             position: relative;
 
-            &:after {
+            &::after {
                 border-color: @note-gray transparent transparent;
                 border-style: solid;
                 border-width: 3px 3px 0;
@@ -146,7 +146,7 @@
                 width: 0;
             }
 
-            &:hover:after {
+            &:hover::after {
                 border-top-color: #05e;
             }
         }
@@ -178,14 +178,14 @@
         display: inline-block;
     }
 
-    h5:after {
+    h5::after {
         content: ":";
     }
 
     ul > li {
         display: inline-block;
 
-        &:not(:first-child):before {
+        &:not(:first-child)::before {
             background-color: @note-gray;
             border-radius: 5em;
             content: "";
@@ -197,7 +197,7 @@
     }
 }
 
-.html-rtl .item-actions a.more-actions:after {
+.html-rtl .item-actions a.more-actions::after {
     margin: 5px 4px 0 0;
 }
 

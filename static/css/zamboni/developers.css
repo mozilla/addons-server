@@ -1,10 +1,10 @@
 /*clearfix*/
-.brform:after,
-#status-bar:after,
-#addon-validator-suite .tiers:after,
-form.select-review:after,
-form .char-count:after,
-#addon-compat-upload:after {
+.brform::after,
+#status-bar::after,
+#addon-validator-suite .tiers::after,
+form.select-review::after,
+form .char-count::after,
+#addon-compat-upload::after {
     content: ".";
     display: block;
     clear: both;
@@ -1061,7 +1061,7 @@ pre.email_comment {
     line-height: 32px;
 }
 
-#upload-file .submission-warning h5:before {
+#upload-file .submission-warning h5::before {
     background-image: url('../../img/developers/test-warning.png');
     width: 32px;
     height: 32px;
@@ -1463,12 +1463,12 @@ form.select-review .errorlist {
     display: inline;
 }
 
-#addon-validator-suite ul.result-nav li:before {
+#addon-validator-suite ul.result-nav li::before {
     content: "|";
     margin: 0.3em;
 }
 
-#addon-validator-suite ul.result-nav li:first-child:before {
+#addon-validator-suite ul.result-nav li:first-child::before {
     content: "";
 }
 
@@ -1541,7 +1541,7 @@ form.select-review .errorlist {
     white-space: pre;
 }
 
-#addon-validator-suite .context .code:last-child:after {
+#addon-validator-suite .context .code:last-child::after {
     content: ".";
     display: block;
     clear: both;
@@ -1584,7 +1584,7 @@ form.select-review .errorlist {
     position:relative;
 }
 
-.loading:before {
+.loading::before {
     -moz-transition: opacity .5s;
     content: "\00a0";
     display: block;
@@ -1599,11 +1599,11 @@ form.select-review .errorlist {
     top: 0;
 }
 
-.item.loading:before {
+.item.loading::before {
     -moz-border-radius: 8px 8px 8px 8px;
 }
 
-.loaded:before {
+.loaded::before {
     opacity: 0;
     pointer-events: none;
 }

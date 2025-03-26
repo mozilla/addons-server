@@ -358,7 +358,7 @@ span.emaillink .i {
     padding: 0 0 0 3px;
 }
 
-.ui-tabs-nav:after { /* clearing without presentational markup, IE gets extra treatment */
+.ui-tabs-nav::after { /* clearing without presentational markup, IE gets extra treatment */
     display: block;
     clear: both;
     content: " ";
@@ -517,11 +517,11 @@ h4.author a {
     display: inline;
 }
 
-.addon-cats li:after {
+.addon-cats li::after {
     content: " | ";
 }
 
-.addon-cats li:last-child:after {
+.addon-cats li:last-child::after {
     content: "";
 }
 
@@ -1132,16 +1132,16 @@ dl.faq dt:target, dl.validation dt:target { color: #df731b; }
 
 
 /* Clearfix! */
-.browse-thumbs .thumbs:after,
-#builder li:after,
-.block-row:after,
-.barometer:after,
-.vcard:after,
-#addon-install:after,
-.stars:after, .notification:after,
-.featured-inner:after,
-.article.userinput:after,
-.addon-info:after {
+.browse-thumbs .thumbs::after,
+#builder li::after,
+.block-row::after,
+.barometer::after,
+.vcard::after,
+#addon-install::after,
+.stars::after, .notification::after,
+.featured-inner::after,
+.article.userinput::after,
+.addon-info::after {
     content: ".";
     clear: both;
     display: block;
@@ -1150,7 +1150,7 @@ dl.faq dt:target, dl.validation dt:target { color: #df731b; }
     overflow: hidden;
 }
 
-.clearfix:after {
+.clearfix::after {
     content: ".";
     display: block;
     clear: both;

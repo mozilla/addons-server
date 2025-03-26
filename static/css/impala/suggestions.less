@@ -29,7 +29,7 @@
         right: 0;
         left: 0;
 
-        &:before {
+        &::before {
             background: url(../../img/impala/search-stem.png) 50% 100% no-repeat;
             content: "";
             display: block;
@@ -53,7 +53,7 @@
         display: block;
         text-decoration: none;
 
-        &:after {
+        &::after {
             clear: both;
             content: ".";
             display: block;
@@ -127,7 +127,7 @@
 }
 
 .html-rtl #site-search-suggestions {
-    .wrap:before {
+    .wrap::before {
         left: auto;
         right: 14px;
     }

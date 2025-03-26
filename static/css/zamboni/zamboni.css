@@ -1,17 +1,17 @@
 /* Clearfix!!! */
-.listing .item:after,
-.section:after,
-.notification .aux:after,
-.aux .button-wrapper:after,
-.object-lead .button-wrapper:after,
-.article.version:after,
-.article.review:after,
-.grouped_ratings li:after,
-.bars:after,
-.item:after,
-.secondary > div:after,
-.listing-header:after,
-.review-form p:after {
+.listing .item::after,
+.section::after,
+.notification .aux::after,
+.aux .button-wrapper::after,
+.object-lead .button-wrapper::after,
+.article.version::after,
+.article.review::after,
+.grouped_ratings li::after,
+.bars::after,
+.item::after,
+.secondary > div::after,
+.listing-header::after,
+.review-form p::after {
     content: ".";
     display: block;
     clear: both;
@@ -68,12 +68,12 @@ ul.errorlist {
     clear:both;
 }
 
-.html-ltr a.more-link:after {
+.html-ltr a.more-link::after {
     content: '\25B8';
     margin-left: .5em;
 }
 
-.html-rtl a.more-link:after {
+.html-rtl a.more-link::after {
     content: '\25C2';
     margin-right: .5em;
 }
@@ -860,8 +860,8 @@ div.popup-shim {
 
 /* http://nicolasgallagher.com/demo/pure-css-speech-bubbles/bubbles.html */
 /* Creates the larger triangle. */
-.install-note:before,
-.popup:before {
+.install-note::before,
+.popup::before {
     content: "\00a0";
     display: block; /* reduce the damage in FF3.0 */
     position: absolute;
@@ -874,18 +874,18 @@ div.popup-shim {
     pointer-events: none;
 }
 
-.unreviewed .install-note:before,
-.popup.warning:before {
+.unreviewed .install-note::before,
+.popup.warning::before {
     border-bottom-color: #c90;
 }
 
-.popup.error:before {
+.popup.error::before {
     border-bottom-color: #6c1a1a;
 }
 
 /* creates the smaller triangle */
-.install-note:after,
-.popup:after {
+.install-note::after,
+.popup::after {
     content: "\00a0";
     display: block; /* reduce the damage in FF3.0 */
     position: absolute;
@@ -898,14 +898,14 @@ div.popup-shim {
     pointer-events: none;
 }
 
-.install-note.left:before,
-.popup.left:before {
+.install-note.left::before,
+.popup.left::before {
     right: 71px; /* controls horizontal position */
     left: auto;
 }
 
-.install-note.left:after,
-.popup.left:after {
+.install-note.left::after,
+.popup.left::after {
     right: 76px; /* value = (:before right) + (:before border-right) - (:after border-right) */
     left: auto;
 }
@@ -949,7 +949,7 @@ div.popup-shim {
     line-height: 1.2em;
 }
 
-#tooltip:before {
+#tooltip::before {
     content: "\00a0";
     display: block; /* reduce the damage in FF3.0 */
     position: absolute;
@@ -964,7 +964,7 @@ div.popup-shim {
     pointer-events: none;
 }
 
-#tooltip.error:before {
+#tooltip.error::before {
     border-top-color: #6c1a1a;
 }
 
@@ -1895,7 +1895,7 @@ form .error .note.error {
     margin-top:0;
 }
 
-.article.version h3 span:before {
+.article.version h3 span::before {
     content: '\02013\00a0';
 }
 
@@ -2043,7 +2043,7 @@ form .error .note.error {
     background-position: top right;
 }
 
-.notification-box:before {
+.notification-box::before {
     content: "\00a0";
     width: 32px;
     height: 32px;
@@ -2055,7 +2055,7 @@ form .error .note.error {
     background-image:url(../../img/zamboni/notifications.png);
 }
 
-.html-rtl .notification-box:before {
+.html-rtl .notification-box::before {
     right: 10px;
     left: auto;
 }
@@ -2066,7 +2066,7 @@ form .error .note.error {
     border: 3px solid #550b00;
 }
 
-.notification-box.warning:before {
+.notification-box.warning::before {
     background-position: 0 -225px;
 }
 
@@ -2076,7 +2076,7 @@ form .error .note.error {
     border: 3px solid #550b00;
 }
 
-.notification-box.error:before {
+.notification-box.error::before {
     background-position: 0 -83px;
 }
 
@@ -2090,7 +2090,7 @@ form .error .note.error {
     border: 3px solid #002955;
 }
 
-.notification-box.info:before {
+.notification-box.info::before {
     background-position: 0 -435px;
 }
 
@@ -2343,7 +2343,7 @@ td .addon-rating,
     top: 304px;
 }
 
-.arrow:before {
+.arrow::before {
     content: "\00a0";
     display: block; /* reduce the damage in FF3.0 */
     position: absolute;
@@ -2353,13 +2353,13 @@ td .addon-rating,
     border-style: solid;
 }
 
-.arrow.prev:before {
+.arrow.prev::before {
     left: 6px;
     top: 2px;
     border-bottom-color: #0471ed;
 }
 
-.arrow.next:before {
+.arrow.next::before {
     left: 6px;
     top: 9px;
     border-top-color: #0471ed;
@@ -3224,7 +3224,7 @@ input.ui-autocomplete-loading {
     padding-right: 16px;
 }
 
-#change-locale:after {
+#change-locale::after {
     position: relative;
     top: 12px;
     left: 4px;
@@ -3237,11 +3237,11 @@ input.ui-autocomplete-loading {
     border-top-color: #003595;
 }
 
-#locale-popup:after {
+#locale-popup::after {
   right: 53px;
 }
 
-#locale-popup:before {
+#locale-popup::before {
   right: 48px;
 }
 
