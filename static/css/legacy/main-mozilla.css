@@ -1358,7 +1358,7 @@ html[xmlns] .clearfix {
     display: none;
     position: absolute;
     top: 30%;
-    background: rgb(0 0 0 / 0.5);
+    background: rgb(0 0 0 / 50%);
     color: #fff;
     pointer-events: none;
     padding: 10px;
