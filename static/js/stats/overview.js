@@ -1,10 +1,10 @@
 import './topchart';
 
-import Highcharts from 'highcharts';
 import $ from 'jquery';
 import _ from 'underscore';
 
 import { format } from '../lib/format';
+import Highcharts from '../lib/highcharts-module';
 import csv_keys from './csv_keys';
 import { normalizeRange } from './dateutils';
 import { StatsManager } from './manager';
