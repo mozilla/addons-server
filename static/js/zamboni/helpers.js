@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import _ from 'underscore';
+
 import { anonymous } from '../zamboni/init';
 // CSRF Tokens
 // Hijack the AJAX requests, and insert a CSRF token as a header.

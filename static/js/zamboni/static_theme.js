@@ -1,11 +1,13 @@
+import '@claviska/jquery-minicolors';
+
 import $ from 'jquery';
 import JSZip from 'jszip';
 import _ from 'underscore';
-import '@claviska/jquery-minicolors';
-import { _pd } from '../lib/prevent-default';
-import { b64toBlob } from './helpers';
-import { formatFileSize } from './global';
+
 import { format } from '../lib/format';
+import { _pd } from '../lib/prevent-default';
+import { formatFileSize } from './global';
+import { b64toBlob } from './helpers';
 
 $(document).ready(function () {
   $('#theme-wizard').each(initThemeWizard);

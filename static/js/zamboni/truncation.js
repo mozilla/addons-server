@@ -1,4 +1,5 @@
 import $ from 'jquery';
+
 import { truncate } from '../lib/truncate';
 
 $.fn.truncate = function (opts) {

@@ -1,12 +1,13 @@
 import $ from 'jquery';
 import _ from 'underscore';
-import { _pd } from '../lib/prevent-default';
-import { Storage } from '../zamboni/storage';
-import { b64toBlob } from './helpers';
-import { validateFileUploadSize } from './global';
+
 import { format } from '../lib/format';
-import { z } from '../zamboni/z';
+import { _pd } from '../lib/prevent-default';
 import { capabilities } from '../zamboni/capabilities';
+import { Storage } from '../zamboni/storage';
+import { z } from '../zamboni/z';
+import { validateFileUploadSize } from './global';
+import { b64toBlob } from './helpers';
 
 $(document).ready(function () {
   if ($('.daily-message').length) {

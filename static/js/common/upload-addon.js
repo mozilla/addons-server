@@ -1,10 +1,11 @@
-import _ from 'underscore';
 import $ from 'jquery';
-import { formatFileSize } from '../zamboni/global';
-import { capabilities } from '../zamboni/capabilities';
-import { escape_ } from '../zamboni/init';
-import { _pd } from '../lib/prevent-default';
+import _ from 'underscore';
+
 import { format } from '../lib/format';
+import { _pd } from '../lib/prevent-default';
+import { capabilities } from '../zamboni/capabilities';
+import { formatFileSize } from '../zamboni/global';
+import { escape_ } from '../zamboni/init';
 /*
  * addonUploader()
  * Extends fileUploader()

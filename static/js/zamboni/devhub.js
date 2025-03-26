@@ -1,13 +1,14 @@
 import $ from 'jquery';
-import _ from 'underscore';
-import { initCharCount, show_slug_edit } from './global';
-import { _pd } from '../lib/prevent-default';
-import { format } from '../lib/format';
-import { slugify, validateFileUploadSize } from '../zamboni/global';
-import { annotateLocalizedErrors, refreshL10n } from './l10n';
-import { template } from '../lib/format';
-import { capabilities } from '../zamboni/capabilities';
 import { render } from 'timeago.js';
+import _ from 'underscore';
+
+import { format } from '../lib/format';
+import { template } from '../lib/format';
+import { _pd } from '../lib/prevent-default';
+import { capabilities } from '../zamboni/capabilities';
+import { slugify, validateFileUploadSize } from '../zamboni/global';
+import { initCharCount, show_slug_edit } from './global';
+import { annotateLocalizedErrors, refreshL10n } from './l10n';
 
 $(document).ready(function () {
   // Modals

@@ -1,8 +1,9 @@
+import Highcharts from 'highcharts';
 import $ from 'jquery';
 import _ from 'underscore';
-import Highcharts from 'highcharts';
-import { normalizeRange } from './dateutils';
+
 import { template } from '../lib/format';
+import { normalizeRange } from './dateutils';
 import { StatsManager } from './manager';
 
 let baseConfig = {

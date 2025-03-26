@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import { sortBy } from 'underscore';
+
 import { format } from '../lib/format';
 
 $(document).ready(function () {

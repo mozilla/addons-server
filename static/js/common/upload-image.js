@@ -1,4 +1,5 @@
 import $ from 'jquery';
+
 import { _pd } from '../lib/prevent-default';
 import { capabilities } from '../zamboni/capabilities';
 import { CustomFormData } from '../zamboni/form-data';

@@ -1,6 +1,7 @@
 import _ from 'underscore';
-import { normalizeRange } from './dateutils';
+
 import { capabilities as originalCapabilities } from '../zamboni/capabilities';
+import { normalizeRange } from './dateutils';
 
 // Modify the URL when the page state changes, if the browser supports
 // pushState.

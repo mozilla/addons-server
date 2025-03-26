@@ -1,10 +1,11 @@
+import Highcharts from 'highcharts';
 import $ from 'jquery';
 import _ from 'underscore';
-import { _pd } from '../lib/prevent-default';
-import { normalizeRange, forEachISODate } from './dateutils';
-import csv_keys from './csv_keys';
+
 import { format } from '../lib/format';
-import Highcharts from 'highcharts';
+import { _pd } from '../lib/prevent-default';
+import csv_keys from './csv_keys';
+import { forEachISODate,normalizeRange } from './dateutils';
 import { StatsManager } from './manager';
 
 const dayMsecs = 24 * 3600 * 1000;

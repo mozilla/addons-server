@@ -1,6 +1,8 @@
+import 'jquery.cookie';
+
 import $ from 'jquery';
 import _ from 'underscore';
-import 'jquery.cookie';
+
 import { format } from '../lib/format';
 import { initCharCount } from './global';
 // Yes, this is out here for a reason.

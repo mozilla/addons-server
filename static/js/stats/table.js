@@ -1,8 +1,9 @@
+import Highcharts from 'highcharts';
 import $ from 'jquery';
 import _ from 'underscore';
-import Highcharts from 'highcharts';
-import { _pd } from '../lib/prevent-default';
+
 import { format } from '../lib/format';
+import { _pd } from '../lib/prevent-default';
 import { StatsManager } from './manager';
 
 $.fn.csvTable = function (cfg) {

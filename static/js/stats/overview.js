@@ -1,10 +1,12 @@
+import './topchart';
+
+import Highcharts from 'highcharts';
 import $ from 'jquery';
 import _ from 'underscore';
-import Highcharts from 'highcharts';
-import './topchart';
-import { normalizeRange } from './dateutils';
+
 import { format } from '../lib/format';
 import csv_keys from './csv_keys';
+import { normalizeRange } from './dateutils';
 import { StatsManager } from './manager';
 
 // This function is called once we have stats data and we get aggregates for

@@ -1,9 +1,10 @@
+import Highcharts from 'highcharts';
 import $ from 'jquery';
 import _ from 'underscore';
-import Highcharts from 'highcharts';
+
+import { SessionStorage,Storage } from '../zamboni/storage';
 import csv_keys from './csv_keys';
-import { normalizeRange, forEachISODate } from './dateutils';
-import { Storage, SessionStorage } from '../zamboni/storage';
+import { forEachISODate,normalizeRange } from './dateutils';
 
 function getStatsManager() {
   // The version of the stats localStorage we are using.
