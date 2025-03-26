@@ -24,7 +24,9 @@
 }
 
 /************************************/
+
 /*             ELEMENTS             */
+
 /************************************/
 .section,
 .notification .aux,
@@ -143,8 +145,11 @@ ul.errorlist {
 }
 
 /************************************/
+
 /*             GRADIENTS            */
+
 /************************************/
+
 /*  If you made a gradient, add it here.
  *  If you want to use an existing gradient, add your selector here.
 **/
@@ -430,6 +435,7 @@ input[type=submit].cool,
 input[type=button].cool {
     outline: 3px dotted red;
 }
+
 /** end of diagnostic styles **/
 
 /** Navigational Button *********/
@@ -824,6 +830,7 @@ div.popup-shim {
 .install-note {
     width: 300px;
 }
+
 /* append the left class if the bubble is to the far right */
 .install-note.left,
 .popup.left {
@@ -859,6 +866,7 @@ div.popup-shim {
 }
 
 /* http://nicolasgallagher.com/demo/pure-css-speech-bubbles/bubbles.html */
+
 /* Creates the larger triangle. */
 .install-note::before,
 .popup::before {
@@ -1054,7 +1062,9 @@ ul.license li.cc-share { background-position: 0 -195px; }
 ul.license li.copyr { background-position: 0 -260px; }
 
 /************************************/
+
 /*               PAGES              */
+
 /************************************/
 
 #search-suggest li.ext a { background-position: 7px 2px; }
@@ -1245,7 +1255,9 @@ form .error .note.error {
 }
 
 /************************************/
+
 /*               PAGES              */
+
 /************************************/
 
 /** =User =Edit *********/
@@ -3203,10 +3215,12 @@ input.ui-autocomplete-loading {
 }
 
 /** Hide Featured tab on Search Tools landing page when there's a category **/
+
 /** Bug 605670, 609318 **/
 .search-tools-for-cat li a[href*="?sort=featured"] {
     display: none;
 }
+
 /** l10n */
 #l10n-menu {
     float: right;
@@ -3297,6 +3311,7 @@ input.ui-autocomplete-loading {
     color: #ccc;
     font-style: italic;
 }
+
 /* end l10n */
 
 /** "Some HTML/Markdown Allowed" text/popup **/

@@ -449,6 +449,7 @@ p.addon-search-message {
     text-align:center;
     padding-bottom: .5em;
 }
+
 /** END Search Pages */
 
 /** Add-on display page additions **/
@@ -923,6 +924,7 @@ ul.submissionHelp li span.required {
 ul.submissionHelp li span.optional {
     font-style: italic;
 }
+
 /* END pages/submissionhelp */
 
 /* pages/collector_firstrun */
@@ -933,6 +935,7 @@ form.collector-firstrun-favorite, div.collector-firstrun-favorite {
 div.collector-firstrun-favorite {
     clear:both;
 }
+
 /* END pages/collector_firstrun */
 
 /* Plug-ins browse page */
@@ -945,6 +948,7 @@ div.collector-firstrun-favorite {
     margin: 0 0 0 5px;
     float: right;
 }
+
 /* END Plug-ins browse page */
 
 
@@ -1128,6 +1132,7 @@ dl.faq dt:target, dl.validation dt:target { color: #df731b; }
 .html-rtl .app_install-popup .close {
     text-align: left;
 }
+
 /** END Installation instruction overlays **/
 
 
@@ -1261,6 +1266,7 @@ html[xmlns] .clearfix {
 #dictionaries thead th {
     border-top: none;
 }
+
 /*** END =Dictionaries ***/
 
 /* Search engines & Themes Landing pages */
@@ -1271,12 +1277,14 @@ html[xmlns] .clearfix {
 .compact {
     margin: 0;
 }
+
 /* END Search engines & Themes Landing pages */
 
 /* Search engines & Themes Landing pages */
 .secondary h3.compact-bottom {
     margin-bottom: 6px;
 }
+
 /* END Search engines & Themes Landing pages */
 
 /*** =Browse Thumbs ***/
@@ -1653,6 +1661,7 @@ html[xmlns] .clearfix {
     padding-left: 0;
     padding-right: 10em;
 }
+
 /** END Login and Registration Page */
 
 .amo-form .error_message {
@@ -1686,6 +1695,7 @@ html[xmlns] .clearfix {
 
 .category_landing .support-this-addon {
     margin-left: 5%;
+
     /* What could be better than absolute positioning with pixels??? */
     position: absolute;
     bottom: 34px;
@@ -1832,6 +1842,7 @@ html[xmlns] .clearfix {
 .hub-category-description {
     padding-right: 35px;
 }
+
 /** END Hub pages **/
 
 .error,
@@ -1856,6 +1867,7 @@ html[xmlns] .clearfix {
     background: -webkit-gradient(linear, left top, left 20%, from(#cfeaf4), to(#fff));
     background-repeat: no-repeat;
 }
+
 /* END Thumbnails (like the personas browser) */
 
 .hide {
@@ -1906,6 +1918,7 @@ h2.compat-heading a {
 #compat-filters li {
     margin-bottom: 0.5em;
 }
+
 /* END Compatibility Reporter */
 
 /** jqModal overlay styling */
@@ -1940,6 +1953,7 @@ h2.compat-heading a {
     position: absolute;
     top: expression((document.documentElement.scrollTop || document.body.scrollTop)+Math.round(17 *(document.documentElement.offsetHeight || document.body.clientHeight) / 100)+'px');
 }
+
 /** END jqModal */
 
 #credits table {
@@ -1976,6 +1990,7 @@ div.visit-listed-popup {
 .visit-listed-popup .visit-listed {
     background-color: #fff;
 }
+
 /* END Listed add-ons */
 
 /* Homepage */
@@ -2000,6 +2015,7 @@ div.visit-listed-popup {
 .addon-listing-featured #list-featured {
     display: block;
 }
+
 /* END Homepage */
 
 .appversion img {

@@ -1,4 +1,5 @@
 /* @group General styles */
+
 /*
 Harmonise v1.3
 Resets styles then adds basic typographical styling.
@@ -9,6 +10,7 @@ By Clearleft.com
 /* @group Reset */
 
 /* Based on http://meyerweb.com/eric/tools/css/reset/ */
+
 /* v1.0 | 20080212 */
 
 html, body, div, span, applet, object, iframe,
@@ -71,6 +73,7 @@ body.policy header {
 body.about .section {
     overflow: hidden;
 }
+
 /* for pages without a header or footer */
 body.min {
     background-image: none;
@@ -762,6 +765,7 @@ a:focus.significant img,
 a:active.significant img,
 button.significant img {
     /* padding:0 0.4em 0.2em 0.2em; */
+
     /* margin-right: 0.4em; */
         margin-bottom:0.4em;
     margin-right:0.6em;
@@ -1845,6 +1849,7 @@ ol.pagination li a:hover,
 ol.pagination li a:focus,
 ol.pagination li a:active {
     background-color: #BDDDE8;
+
     /*color: #223355;*/
     border-radius: 3px;
     border-radius: 3px;
@@ -2028,6 +2033,7 @@ ol.pagination li a:active {
 .secondary-item-list.n h4 a {
     color: inherit;
 }
+
 /* @end */
 
 /* @group Feedback Form */
@@ -2298,6 +2304,7 @@ ol.pagination + .num-results {
 
 .item .item-info {
     border-left: 1px dotted #B4DFEE;
+
     /*margin-bottom: -50em;
     padding-bottom: 50em;*/
 }
@@ -3312,6 +3319,7 @@ background-position:left -303px;
 }
 
 /* @end */
+
 /* @end */
 
 /* @group Object Lead */
@@ -3333,6 +3341,7 @@ background-position:left -303px;
 
 
 /* @end */
+
 /* @end */
 
 /* @group Different Applications  */
