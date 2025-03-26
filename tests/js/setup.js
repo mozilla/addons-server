@@ -1,6 +1,6 @@
-import { vi } from 'vitest';
 import $ from 'jquery';
 import _ from 'lodash';
+import { vi } from 'vitest';
 
 // Those objects are available globally in the JS source files.
 global.$ = global.jQuery = $;

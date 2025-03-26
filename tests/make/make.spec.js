@@ -1,7 +1,7 @@
 import { spawnSync } from 'child_process';
-import path from 'path';
-import fs from 'fs';
 import { parse } from 'dotenv';
+import fs from 'fs';
+import path from 'path';
 
 const rootPath = path.join(import.meta.dirname, '..', '..');
 const envPath = path.join(rootPath, '.env');

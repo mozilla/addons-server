@@ -108,7 +108,6 @@ const config = defineConfig([
     extends: [vitest.configs.recommended, baseConfig],
     rules: {
       // Disable all the error-causing rules for tests
-      'simple-import-sort/imports': 'off',
       'vitest/valid-title': 'off',
       'vitest/expect-expect': 'off',
       'prettier/prettier': 'off',
