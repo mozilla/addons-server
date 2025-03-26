@@ -2046,8 +2046,6 @@ form.addon-feedback div.container {
 
 .listing-header {
     border-bottom: 1px solid #A5BFCE;
-    border-top-right-radius: 3px;
-    border-top-left-radius: 3px;
     border-radius: 3px 3px 0 0;
     padding: 0.1em 0 0.1em 0.25em;
     line-height: 2.5em;
@@ -2123,8 +2121,6 @@ form.addon-feedback div.container {
     background-repeat: repeat-x;
     background-position: left top;
     border-top: 1px solid #A5BFCE;
-    border-bottom-right-radius: 3px;
-    border-bottom-left-radius: 3px;
     border-radius: 0 0 3px 3px;
     margin-top: -1px;
     position: relative;

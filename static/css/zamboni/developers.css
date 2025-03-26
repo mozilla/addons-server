@@ -1344,9 +1344,9 @@ form.select-review .errorlist {
 }
 
 #addon-validator-suite .suite-options {
-    padding-left: 1em;
     color: #626363;
     padding: 0.5em;
+    padding-left: 1em;
     border-radius: 0 0 8px 8px;
     border-top: 1px solid #bbcad7;
     background: #f7fbfd url("../../img/developers/suite-summary-bg.jpg") repeat-x top;
