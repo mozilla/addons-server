@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import _ from 'underscore';
+
 import { format } from '../lib/format';
 import { unicode_letters } from './unicode';
 // Things global to the site should go here, such as re-usable helper
@@ -442,7 +443,6 @@ export function slugify() {
       $slug.val(new_slug);
     }
   }
-  const name_val = $slug.val();
   $('#slug_value').text($slug.val());
 }
 

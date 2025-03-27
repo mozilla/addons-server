@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import _ from 'underscore';
+
 import { anonymous } from '../zamboni/init';
 // CSRF Tokens
 // Hijack the AJAX requests, and insert a CSRF token as a header.
@@ -21,7 +22,7 @@ $(document)
       }
     }
   })
-  .ajaxSuccess(function (event, xhr, ajaxSettings) {
+  .ajaxSuccess(function () {
     $(window).trigger('resize'); // Redraw what needs to be redrawn.
   });
 

@@ -37,15 +37,19 @@
     float: none;
     margin: 0 1em 0 .75em;
 }
+
 #addon-list-options ul li {
-    margin: 0 0;
+    margin: 0;
 }
+
 #addon-list-options ul li.perpage {
     float: right;
 }
+
 .html-rtl #addon-list-options ul li.perpage {
     float: left;
 }
+
 #addon-list-options ul li.perpage div {
     display: block;
     line-height: 2em;
@@ -73,20 +77,18 @@ li.sub-category {
 p.install-button {
     margin: 0;
 }
+
 .experimental .install-container {
     min-width: 10em;
-    margin: .3em .3em .5em .3em;
+    margin: .3em .3em .5em;
 }
+
 .install strong.compatmsg {
    padding-bottom: 0.5em;
 }
+
 .install label {
     font-weight: normal;
-}
-
-.experimental .install .exp-confirm-install {
-}
-.experimental .install .exp-desc {
 }
 
 .teaser-items .item .install {
@@ -100,6 +102,7 @@ p.install-button {
 .nonfirefox {
     text-align: center;
 }
+
 .nonfirefox .installmsg {
     font-size: 120%;
 }
@@ -109,6 +112,7 @@ p.install-button {
     margin-left: 0;
     margin-right: 2%;
 }
+
 .html-rtl .first {
     margin-right: 0;
 }
@@ -118,6 +122,7 @@ span.emaillink {
     direction: rtl;
     unicode-bidi: bidi-override;
 }
+
 span.emaillink .i {
     display: none;
 }
@@ -128,179 +133,212 @@ span.emaillink .i {
     border: 3px solid #e0effd;
     padding: 15px;
 }
+
 .graybox.errors {
     background-color: #fff1eb;
 }
+
 .graybox.spaced {
     margin-bottom: 10px;
 }
+
 .rounded {
-    -moz-border-radius: 6px;
-    -webkit-border-radius: 6px;
     border-radius: 6px;
 }
+
 .translation-box .html_allowed {
     margin-top: -1em;
     margin-bottom: 1em;
 }
+
 .translation-box .html_allowed .allowed_tags{
     font-weight: bold;
 }
+
 .translation-box h4 {
     border-bottom: 1px solid #2E5186;
 }
+
 .translation-box h4 img {
     float: right;
     margin-top: 3px;
 }
+
 .html-rtl .translation-box h4 img {
     float: left;
 }
+
 .translation-box .translation-button img {
     cursor: pointer;
     float: left;
-    background-color: #EEEEEE;
-    border: 1px solid #EEEEEE;
+    background-color: #EEE;
+    border: 1px solid #EEE;
     border-bottom: none;
     padding: 2px 5px 3px;
     margin: 5px 0 0 10px;
     height: 1.5em;
     -moz-border-radius-topleft: 6px;
     -moz-border-radius-topright: 6px;
-    -webkit-border-top-left-radius: 6px;
-    -webkit-border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
 }
+
 .html-rtl .translation-box .translation-button img {
     float: right;
     margin: 5px 10px 0 0;
 }
+
 .translation-box .translation-button.remove img {
     float: right;
 }
+
 .html-rtl .translation-box .translation-button.remove img {
     float: left;
 }
+
 .translation-box .translation-button img:hover {
     background-color: #E4F3FA;
 }
+
 .translation-box .translation-tab {
     float: left;
     margin-right: 2px;
-    background-color: #DDDDDD;
+    background-color: #DDD;
     text-align: center;
     padding: 5px;
     -moz-border-radius-topleft: 6px;
     -moz-border-radius-topright: 6px;
-    -webkit-border-top-left-radius: 6px;
-    -webkit-border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
     width: 3.1em;
     height: 1.5em;
     cursor: pointer;
-    border-bottom: 1px solid #FFFFFF;
+    border-bottom: 1px solid #FFF;
 }
+
 .html-rtl .translation-box .translation-tab {
     float: right;
     margin-right: auto;
     margin-left: 2px;
 }
+
 .translation-box .translation-tab.selected {
     border: 1px solid #2E5186;
     background-color: #e0effd;
     border-bottom: none;
     color: #1D587F;
 }
+
 .translation-box .translation-tab:hover {
     text-decoration: underline;
 }
+
 .translation-box .translation-area {
     clear: both;
     margin: 0;
 }
+
 .translation-box .translation-maxlength {
     text-align: right;
     display: none;
 }
+
 .html-rtl .translation-box .translation-maxlength {
     text-align: left;
 }
+
 .translation-box .translation-maxlength.selected {
     display: block;
 }
+
 .translation-box .translation-maxlength img {
     display: none;
 }
+
 .translation-box .translation-maxlength.over {
-    color: #CC3333;
+    color: #C33;
 }
+
 .translation-box .translation-maxlength.over img {
     display: inline;
     vertical-align: middle;
 }
+
 .translation-box .translation-maxlength span {
     font-weight: bold;
 }
+
 .translation-box .input {
     border: 1px solid #2E5186;
     margin: 0;
     -moz-border-radius-bottomleft: 6px;
     -moz-border-radius-bottomright: 6px;
-    -webkit-border-bottom-left-radius: 6px;
-    -webkit-border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
     width: 100%;
     display: none;
 }
+
 .translation-box .input.selected {
     display: block;
 }
+
 .translation-newlocale-container,
 .translation-deletelocale-container,
 .translation-help-container,
 .translation-error-container {
     display: none;
 }
+
 .translation-newlocale,
 .translation-deletelocale {
     border: 1px solid #1D587F;
     margin: 0;
     -moz-border-radius-bottomleft: 6px;
     -moz-border-radius-bottomright: 6px;
-    -webkit-border-bottom-left-radius: 6px;
-    -webkit-border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
     width: 100%;
     height: 100px;
     display: none;
 }
+
 .translation-deletelocale.textarea {
     position: absolute;
     z-index: 10;
 }
+
 .translation-newlocale.selected,
 .translation-deletelocale {
     display: block;
 }
+
 .translation-newlocale .padded,
 .translation-deletelocale .padded,
 .translation-help .padded {
     padding: 15px;
 }
+
 .translation-newlocale .buttons,
 .translation-deletelocale .buttons {
     text-align: center;
     margin: 10px;
 }
+
 .translation-help {
     background-color: #def1f8;
     margin-bottom: 10px;
     display: none;
     border: 1px solid #e0effd;
-    -moz-border-radius: 6px;
     border-radius: 6px;
 }
+
 .graybox .error-message {
     background: transparent;
     color: red;
     padding: 5px 0 5px 30px;
 }
+
 .html-rtl .graybox .error-message {
     background-position: 100% 50%;
     padding: 5px 25px 5px 0;
@@ -310,26 +348,31 @@ span.emaillink .i {
 .ui-tabs-hide {
     display: none !important;
 }
+
 .ui-tabs-nav {
     list-style: none;
     margin: 0;
     padding: 0 0 0 3px;
 }
-.ui-tabs-nav:after { /* clearing without presentational markup, IE gets extra treatment */
+
+.ui-tabs-nav::after { /* clearing without presentational markup, IE gets extra treatment */
     display: block;
     clear: both;
     content: " ";
 }
+
 .ui-tabs-nav li {
     float: left;
     margin: 0 0 0 2px;
     font-weight: bold;
 }
+
 .ui-tabs-nav a, .ui-tabs-nav a span {
     float: left; /* fixes dir=ltr problem and other quirks IE */
     padding: 0 12px;
     background-color: #26395A;
 }
+
 .ui-tabs-nav a {
     margin: 5px 0 0; /* position: relative makes opacity fail for disabled tab in IE */
     padding-left: 0;
@@ -338,9 +381,11 @@ span.emaillink .i {
     white-space: nowrap; /* @ IE 6 */
     outline: 0; /* @ Firefox, prevent dotted border after click */
 }
+
 .ui-tabs-nav a:link, .ui-tabs-nav a:visited {
     color: #fff;
 }
+
 .ui-tabs-nav .ui-tabs-selected a {
     position: relative;
     top: 1px;
@@ -348,6 +393,7 @@ span.emaillink .i {
     margin-top: 0;
     background-position: 100% -23px;
 }
+
 .ui-tabs-nav a span {
     padding-top: 1px;
     padding-right: 0;
@@ -355,27 +401,32 @@ span.emaillink .i {
     background-position: 0 0;
     line-height: 20px;
 }
+
 .ui-tabs-nav .ui-tabs-selected a span {
     padding-top: 0;
     height: 27px;
     background-position: 0 -23px;
     line-height: 27px;
 }
+
 .ui-tabs-nav .ui-tabs-selected a:link, .ui-tabs-nav .ui-tabs-selected a:visited,
 .ui-tabs-nav .ui-tabs-disabled a:link, .ui-tabs-nav .ui-tabs-disabled a:visited { /* @ Opera, use pseudo classes otherwise it confuses cursor... */
     cursor: text;
 }
+
 .ui-tabs-nav a:hover, .ui-tabs-nav a:focus, .ui-tabs-nav a:active,
 .ui-tabs-nav .ui-tabs-unselect a:hover, .ui-tabs-nav .ui-tabs-unselect a:focus, .ui-tabs-nav .ui-tabs-unselect a:active { /* @ Opera, we need to be explicit again here now... */
     cursor: pointer;
 }
+
 .ui-tabs-disabled {
     opacity: .4;
-    filter: alpha(opacity=40);
 }
+
 .ui-tabs-nav .ui-tabs-disabled a:link, .ui-tabs-nav .ui-tabs-disabled a:visited {
     color: #000;
 }
+
 .ui-tabs-panel {
     border: 1px solid #26395A;
     padding: 10px;
@@ -388,12 +439,13 @@ span.emaillink .i {
 .no-results,
 p.addon-search-message {
     margin-top:2em;
-    color: #777777;
+    color: #777;
     font-size: 180%;
     font-weight: bold;
     text-align:center;
     padding-bottom: .5em;
 }
+
 /** END Search Pages */
 
 /** Add-on display page additions **/
@@ -462,11 +514,11 @@ h4.author a {
     display: inline;
 }
 
-.addon-cats li:after {
+.addon-cats li::after {
     content: " | ";
 }
 
-.addon-cats li:last-child:after {
+.addon-cats li:last-child::after {
     content: "";
 }
 
@@ -508,15 +560,10 @@ h4.author a {
     margin-right: 5px;
 }
 
-#addon-summary .stats {
-    margin: 0;
-    float: none;
-    text-align: left;
-    color: #6FB727;
-}
-
 .html-rtl #addon-summary .stats {
     text-align: right;
+    left: auto;
+    right: -240px;
 }
 
 #addon-summary .stats em {
@@ -574,21 +621,18 @@ h4.author a {
     position: absolute;
     left: -240px;
     top: 180px;
-}
-
-.html-rtl #addon-summary .stats {
-    left: auto;
-    right: -240px;
+    margin: 0;
+    float: none;
+    text-align: left;
+    color: #6FB727;
 }
 
 .aux #addon-summary .install ,
 #addon-summary #addon-install .install {
     float: left;
     text-align: center;
-    -webkit-border-radius: 11px;
-    -moz-border-radius: 11px;
     border-radius: 11px;
-    padding: 0 3px 3px 3px;
+    padding: 0 3px 3px;
 }
 
 .html-rtl .aux #addon-summary .install ,
@@ -600,8 +644,8 @@ h4.author a {
     border: 1px solid #D2E7EE;
     padding: 0.3em;
     width: 10em;
-    background-color: #FFFFFF;
-    color: #666666;
+    background-color: #FFF;
+    color: #666;
 }
 
 .aux #addon-summary.rec .install,
@@ -627,7 +671,7 @@ h4.author a {
     font-size: 0.85em;
     line-height: 1em;
     color: #000;
-    text-shadow: #FFFFFF 1px 1px 1px;
+    text-shadow: #FFF 1px 1px 1px;
     clear: left;
 }
 
@@ -641,9 +685,11 @@ table caption {
     top: -60000px;
     opacity: 0;
 }
+
 #addon-summary table th {
-    color: #223355;
+    color: #235;
 }
+
 #addon-summary tr.meta-stats a {
     margin: 0 1em;
 }
@@ -694,6 +740,7 @@ table caption {
 .hint {
     font-size: 90%;
 }
+
 .hint .example{
     font-style: italic;
 }
@@ -706,12 +753,14 @@ table caption {
 #version-history .oldversion ul.legal li {
     padding-left: 20px;
 }
+
 #version-history .oldversion ul.legal li.license {
-    background: url(../../img/icons/script_code_red.png) left no-repeat;
+    background: url("../../img/icons/script_code_red.png") left no-repeat;
 }
+
 #version-history .oldversion ul.legal li.source,
 .version a.source-code {
-    background: url(../../img/icons/page_code.png) left no-repeat;
+    background: url("../../img/icons/page_code.png") left no-repeat;
 }
 
 /* addons "source license" page */
@@ -720,7 +769,7 @@ table caption {
     overflow-y: auto;
     background-color: #fff;
     padding: 1em 2em;
-    -moz-border-radius: 8px;
+    border-radius: 8px;
 }
 
 #version-license h2 span {
@@ -837,13 +886,16 @@ table caption {
 #profile-user .line .edit-picture {
     float:left;
 }
+
 .html-rtl #profile-user .line .edit-picture {
     float:right;
 }
+
 table#editor-subscriptions {
     width: 100%;
     border-collapse: separate;
 }
+
 table#editor-subscriptions tbody {
     height: 20em;
     overflow: auto;
@@ -856,51 +908,89 @@ table#editor-subscriptions tbody {
 ul.submissionHelp li span.required {
     font-weight: bold;
 }
+
 ul.submissionHelp li span.optional {
     font-style: italic;
 }
+
 /* END pages/submissionhelp */
 
 /* pages/collector_firstrun */
 form.collector-firstrun-favorite, div.collector-firstrun-favorite {
     margin-bottom: 1.5em;
 }
+
 div.collector-firstrun-favorite {
     clear:both;
 }
+
 /* END pages/collector_firstrun */
 
 /* Plug-ins browse page */
-.item .baseline img.faq {margin: 0 5px 0 0; float: left;}
-.html-rtl .item .baseline img.faq {margin: 0 0 0 5px; float: right;}
+.item .baseline img.faq {
+    margin: 0 5px 0 0;
+    float: left;
+}
+
+.html-rtl .item .baseline img.faq {
+    margin: 0 0 0 5px;
+    float: right;
+}
+
 /* END Plug-ins browse page */
 
 
 /* =Reviews Page */
 
-.review .others-by-user { font-style: italic; display: block; margin-top: 0.5em; font-size: 0.85em }
-.review .others-by-user a { padding-left: 22px;  }
-.review .others-by-user a.loading { background: transparent; }
+.review .others-by-user {
+    font-style: italic;
+    display: block;
+    margin-top: 0.5em;
+    font-size: 0.85em;
+}
+
+.review .others-by-user a {
+    padding-left: 22px;
+}
+
+.review .others-by-user a.loading {
+    background: transparent;
+}
 .review h2 { margin-bottom: 2px;}
 .review h3 { margin-bottom: 2px;}
 
 .review .hsession { display: inline; }
-.review .reviewed-on { font-size: .8em; margin: .4em 0; }
+
+.review .reviewed-on {
+    font-size: .8em;
+    margin: .4em 0;
+}
 
 .others-by-user-load { padding-left: 3em; }
 
 .review-reply { margin-left: 3em; }
 
 .review p.flag-thanks, .review-reply p.flag-thanks { font-weight: bold }
-.review form.flag, .review-reply form.flag { display: block; padding-bottom: 1em }
-.review form.flag label, .review-reply form.flag label { display: block; font-weight: bold }
+
+.review form.flag, .review-reply form.flag {
+    display: block;
+    padding-bottom: 1em;
+}
+
+.review form.flag label, .review-reply form.flag label {
+    display: block;
+    font-weight: bold;
+}
 .review form.flag .error { color:#f00; }
 
 .with-js .review p.flag-thanks, .with-js .review-reply p.flag-thanks { display: inline }
 .with-js .review form.flag, .with-js .review-reply form.flag { display: inline }
 .with-js .review form.flag label, .with-js .review-reply form.flag label { display: none; }
 
-.review .flag span.loading, .review-reply .flag span.loading { padding-left: 22px; background: transparent; }
+.review .flag span.loading, .review-reply .flag span.loading {
+    padding-left: 22px;
+    background: transparent;
+}
 
 /* END =Reviews Page */
 
@@ -912,6 +1002,7 @@ div.collector-firstrun-favorite {
 .html-rtl .meta .addons {
     float: right;
 }
+
 .html-rtl .item {
     clear: right;
 }
@@ -925,7 +1016,6 @@ div.collector-firstrun-favorite {
     border-color: #999;
     cursor: default;
     opacity: 0.3;
-    filter: (opacity=30);
 }
 
 .exp-loggedout .button.positive:link img,
@@ -981,8 +1071,6 @@ dl.faq dt:target, dl.validation dt:target { color: #df731b; }
     width: 32em;
     background: #fbfefb;
     border: 4px solid #b4e4b4;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
     border-radius: 5px;
     text-align: left;
     z-index: 10001;
@@ -996,8 +1084,6 @@ dl.faq dt:target, dl.validation dt:target { color: #df731b; }
 .app_install-popup-inner {
     padding: 1em;
     border: 1px solid #256350;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
     border-radius: 3px;
 }
 
@@ -1012,13 +1098,7 @@ dl.faq dt:target, dl.validation dt:target { color: #df731b; }
 }
 
 .html-rtl .app_install-popup ol {
-    margin-left: 0;
-    margin-right: 2em;
-}
-
-.html-rtl .app_install-popup ol {
-    margin-top: 1.5em;
-    margin-bottom: 0;
+    margin: 1.5em 2em 0 0;
 }
 
 .app_install-popup .close {
@@ -1029,20 +1109,21 @@ dl.faq dt:target, dl.validation dt:target { color: #df731b; }
 .html-rtl .app_install-popup .close {
     text-align: left;
 }
+
 /** END Installation instruction overlays **/
 
 
 /* Clearfix! */
-.browse-thumbs .thumbs:after,
-#builder li:after,
-.block-row:after,
-.barometer:after,
-.vcard:after,
-#addon-install:after,
-.stars:after, .notification:after,
-.featured-inner:after,
-.article.userinput:after,
-.addon-info:after {
+.browse-thumbs .thumbs::after,
+#builder li::after,
+.block-row::after,
+.barometer::after,
+.vcard::after,
+#addon-install::after,
+.stars::after, .notification::after,
+.featured-inner::after,
+.article.userinput::after,
+.addon-info::after {
     content: ".";
     clear: both;
     display: block;
@@ -1051,7 +1132,7 @@ dl.faq dt:target, dl.validation dt:target { color: #df731b; }
     overflow: hidden;
 }
 
-.clearfix:after {
+.clearfix::after {
     content: ".";
     display: block;
     clear: both;
@@ -1124,51 +1205,55 @@ html[xmlns] .clearfix {
 #dictionaries {
     background-color: #f7fafc;
     border: 1px solid #eef1f3;
-    -moz-border-radius: 6px;
-    -webkit-border-radius: 6px;
     border-radius: 6px;
+    clear: both;
+    padding: 10px 15px;
 }
+
 #dictionaries th, #dictionaries td {
     border-bottom: 1px solid #eee;
+    padding: 6px 12px;
 }
+
 #dictionaries tbody tr:nth-child(even),
 #dictionaries tbody tr.alt th, #dictionaries tbody tr.alt td {
     background-color: #fff;
 }
-#dictionaries {
-    clear: both;
-    padding: 10px 15px;
-}
+
 #dictionaries table {
     width: 100%;
 }
-#dictionaries th, #dictionaries td {
-    padding: 6px 12px;
-}
+
 #dictionaries td p {
     margin-bottom: 0;
 }
+
 #dictionaries tbody th {
     font-weight: bold;
 }
+
 #dictionaries thead th {
     border-top: none;
 }
+
 /*** END =Dictionaries ***/
 
 /* Search engines & Themes Landing pages */
 .secondary h3.compact {
     margin-bottom: 12px;
 }
+
 .compact {
-    margin: 0px;
+    margin: 0;
 }
+
 /* END Search engines & Themes Landing pages */
 
 /* Search engines & Themes Landing pages */
 .secondary h3.compact-bottom {
     margin-bottom: 6px;
 }
+
 /* END Search engines & Themes Landing pages */
 
 /*** =Browse Thumbs ***/
@@ -1185,22 +1270,20 @@ html[xmlns] .clearfix {
     width: 24.5%;
     float: left;
     position: relative;
-    background: #f9f9f9 -moz-radial-gradient(center, circle, #d3eff7, #fff 90%);
+    background: #f9f9f9 radial-gradient(circle at center, #d3eff7, #fff 90%);
 }
 
 .browse-thumbs ul.thumbs .inner {
     margin: 6px 4px;
     padding: 1.5em 8px 0;
     border: 1px solid #ececec;
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
     border-radius: 8px;
 }
 
 .browse-thumbs ul.thumbs .inner > a {
     display: block;
     overflow: hidden;
-    border:1px solid #CCCCCC;
+    border:1px solid #CCC;
     height: 135px;
 }
 
@@ -1250,12 +1333,10 @@ html[xmlns] .clearfix {
     display: none;
     position: absolute;
     top: 30%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgb(0 0 0 / 50%);
     color: #fff;
     pointer-events: none;
     padding: 10px;
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
     border-radius: 8px;
     text-align: center;
 }
@@ -1269,12 +1350,10 @@ html[xmlns] .clearfix {
 }
 
 .browse-thumbs .subcategories li.selected {
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
     border-radius: 3px;
-    border: 1px solid #001133;
-    background-color: #223355;
-    padding: 0 3px 0 3px;
+    border: 1px solid #013;
+    background-color: #235;
+    padding: 0 3px;
 }
 
 .browse-thumbs .subcategories li.selected a {
@@ -1303,9 +1382,9 @@ html[xmlns] .clearfix {
 /** tag styles **/
 .addon-tags .tag .tagitem {
     padding-left: 20px;
-    background-image: url(../../img/icons/icons.png);
+    background-image: url("../../img/icons/icons.png");
     background-repeat: no-repeat;
-    background-position: 0px -1400px;
+    background-position: 0 -1400px;
 }
 
 .html-rtl .addon-tags .tag .tagitem {
@@ -1317,7 +1396,7 @@ html[xmlns] .clearfix {
 .collectionitem,
 .collection-add strong {
     padding-left: 22px;
-    background: url(../../img/icons/icons.png) no-repeat 0 -300px;
+    background: url("../../img/icons/icons.png") no-repeat 0 -300px;
 }
 
 .html-rtl .collectionitem,
@@ -1329,9 +1408,9 @@ html[xmlns] .clearfix {
 
 .addon-otheraddons li .addonitem {
 	padding-left: 20px;
-	background-image: url(../../img/icons/icons.png);
+	background-image: url("../../img/icons/icons.png");
 	background-repeat: no-repeat;
-	background-position: 0px -200px;
+	background-position: 0 -200px;
 }
 
 .html-rtl .addon-otheraddons li .addonitem {
@@ -1341,11 +1420,27 @@ html[xmlns] .clearfix {
 }
 
 .results-head {width: 100%;}
-.results-head h2 { margin-bottom: 0; margin-top: 0;}
-.results-head h3 {margin-top: 0; font-family: "helvetica neue", arial, helvetica, sans-serif; font-weight: normal; color: #444;}
 
-.results .item .item-info .downloads {display: block; margin-left: 0px;}
-.results .item .install {float: none; margin-left: 0px;}
+.results-head h2 {
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.results-head h3 {
+    margin-top: 0;
+    font-family: "helvetica neue", arial, helvetica, sans-serif;
+    font-weight: normal; color: #444;
+}
+
+.results .item .item-info .downloads {
+    display: block;
+    margin-left: 0;
+}
+
+.results .item .install {
+    float: none;
+    margin-left: 0;
+}
 
 .results .item h3 {
     float: left;
@@ -1363,23 +1458,28 @@ html[xmlns] .clearfix {
     clear: right;
 }
 
-.secondary ul.refinements li a { padding: 0.21em 1.2em; display: block; color: #444; font-weight: normal;}
+.secondary ul.refinements li a {
+    padding: 0.21em 1.2em;
+    display: block;
+    color: #444; font-weight: normal;
+}
+
 .secondary ul.refinements li.selected a {
     background-color: #b9dbe7;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
     border-radius: 3px;
     font-weight: bold;
-    background-image: url(../../img/icons/arrows.gif);
+    background-image: url("../../img/icons/arrows.gif");
     background-repeat: no-repeat;
     background-position:4px -152px;
 }
+
 .secondary ul.refinements li a.tagitem {
     padding: 0.21em 2em;
-    background-image: url(../../img/icons/icons.png);
+    background-image: url("../../img/icons/icons.png");
     background-repeat: no-repeat;
     background-position: 3px -596px;
 }
+
 .secondary ul.refinements ul {
     padding-left: 1em;
 }
@@ -1389,8 +1489,8 @@ html[xmlns] .clearfix {
     background: #ffe; border-bottom: 2px solid #ccc;
     font-size: 110%;
     width: 80%;
-    padding: 5px 10% 0px;
-    margin: 0px;
+    padding: 5px 10% 0;
+    margin: 0;
     text-align: center;
 }
 
@@ -1408,6 +1508,7 @@ html[xmlns] .clearfix {
     margin-bottom: .75em;
     clear: left;
 }
+
 .html-rtl #login .container,
 .html-rtl #register .container {
     clear: right;
@@ -1470,54 +1571,64 @@ html[xmlns] .clearfix {
 #login-help li {
     margin-top: .25em;
 }
+
 #register #name-help {
     display: block;
     float: right;
     max-width: 40%;
 }
+
 .html-rtl #register #name-help {
     float: left;
 }
-#register input[type=checkbox] {
+
+#register input[type="checkbox"] {
     margin: 0;
 }
+
 #recaptcha_whatsthis a {
     font-size: 90%;
 }
+
 #register #recaptcha_widget {
     display: block;
     margin-left: 10em;
 }
+
 .html-rtl #register #recaptcha_widget {
     margin-left: 0;
     margin-right: 10em;
 }
+
 #register-help h3 {
     margin-top: 0;
 }
+
 #register-help ul {
     list-style: square outside;
     margin-left: 1.5em;
 }
+
 .html-rtl #register-help ul {
     margin-left: 0;
     margin-right: 1.5em;
 }
+
 #register .submit {
     padding-left: 10em;
 }
+
 .html-rtl #register .submit {
     padding-left: 0;
     padding-right: 10em;
 }
+
 /** END Login and Registration Page */
 
 .amo-form .error_message {
     border-color: #C63717;
     background-color: #FFA5A5;
     color: #C63717;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
     border-radius: 3px;
 }
 
@@ -1526,8 +1637,6 @@ html[xmlns] .clearfix {
 
 .support-this-addon {
     text-align: center;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
     border-radius: 5px;
     background-color: #dfeef5;
     font-size: 0.9em;
@@ -1543,6 +1652,7 @@ html[xmlns] .clearfix {
 
 .category_landing .support-this-addon {
     margin-left: 5%;
+
     /* What could be better than absolute positioning with pixels??? */
     position: absolute;
     bottom: 34px;
@@ -1572,6 +1682,7 @@ html[xmlns] .clearfix {
 .barometer .bars {
     position: relative;
 }
+
 .barometer .upbar,
 .barometer .downbar {
     float: left;
@@ -1604,9 +1715,8 @@ html[xmlns] .clearfix {
     border: 0 none;
     cursor: pointer;
     text-shadow: none;
-    -moz-border-radius: 0;
+    border-radius: 0;
     font-weight: normal;
-
     padding-top: 0.1em; /* Push the text down a bit. */
     background-repeat: no-repeat;
     background-color: transparent;
@@ -1689,6 +1799,7 @@ html[xmlns] .clearfix {
 .hub-category-description {
     padding-right: 35px;
 }
+
 /** END Hub pages **/
 
 .error,
@@ -1700,7 +1811,7 @@ html[xmlns] .clearfix {
 .thumbnails li {
     display: inline-block;
     border: 2px solid #ecf2f5;
-    -moz-border-radius: 6px;
+    border-radius: 6px;
     margin: 1.2em;
     padding: 1em 0.5em;
     background: #f9f9f9;
@@ -1713,6 +1824,7 @@ html[xmlns] .clearfix {
     background: -webkit-gradient(linear, left top, left 20%, from(#cfeaf4), to(#fff));
     background-repeat: no-repeat;
 }
+
 /* END Thumbnails (like the personas browser) */
 
 .hide {
@@ -1727,8 +1839,8 @@ html[xmlns] .clearfix {
 /* Compatibility first-run */
 .firstrun-image {
     padding: 10px;
-    background-color: #FFFFFF;
-    -moz-border-radius: 6px;
+    background-color: #FFF;
+    border-radius: 6px;
     margin-top: 75px;
     width: 85%;
 }
@@ -1763,6 +1875,7 @@ h2.compat-heading a {
 #compat-filters li {
     margin-bottom: 0.5em;
 }
+
 /* END Compatibility Reporter */
 
 /** jqModal overlay styling */
@@ -1778,9 +1891,6 @@ h2.compat-heading a {
     border: 1px solid black;
     padding: 12px;
 }
-.jqmOverlay {
-    background-color: #000;
-}
 
 /* Background iframe styling for IE6. Prevents ActiveX bleed-through (<select> form elements, etc.) */
 * iframe.jqm {
@@ -1788,13 +1898,15 @@ h2.compat-heading a {
     top: 0;
     left: 0;
     z-index: -1;
-    width: expression(this.parentNode.offsetWidth+'px');
-    height: expression(this.parentNode.offsetHeight+'px');
+    width: 100%;
+    height: 100%;
 }
+
 * html .jqmWindow {
     position: absolute;
     top: expression((document.documentElement.scrollTop || document.body.scrollTop)+Math.round(17 *(document.documentElement.offsetHeight || document.body.clientHeight) / 100)+'px');
 }
+
 /** END jqModal */
 
 #credits table {
@@ -1804,8 +1916,6 @@ h2.compat-heading a {
 
 /* Listed add-ons */
 .visit-listed {
-    -moz-border-radius: 6px;
-    -webkit-border-radius: 6px;
     border-radius: 6px;
     background-color: #fff0a6;
     padding: 1em;
@@ -1822,8 +1932,6 @@ h2.compat-heading a {
 div.visit-listed-popup {
     width: 30em;
     border: 4px solid #cb7e42;
-    -moz-border-radius: 6px;
-    -webkit-border-radius: 6px;
     border-radius: 6px;
     padding: 0;
 }
@@ -1831,6 +1939,7 @@ div.visit-listed-popup {
 .visit-listed-popup .visit-listed {
     background-color: #fff;
 }
+
 /* END Listed add-ons */
 
 /* Homepage */
@@ -1855,6 +1964,7 @@ div.visit-listed-popup {
 .addon-listing-featured #list-featured {
     display: block;
 }
+
 /* END Homepage */
 
 .appversion img {

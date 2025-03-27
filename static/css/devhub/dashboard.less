@@ -19,6 +19,7 @@
             display: inline;
             margin: 0;
         }
+
         li.selected a {
             color: @orange;
             font-weight: bold;
@@ -51,7 +52,7 @@
             width: 100%;
 
             &:hover {
-                background-color: rgba(201,221,242,.1);
+                background-color: rgb(201 221 242 / 10%);
 
                 .item-actions a {
                     color: #447bc4;
@@ -148,6 +149,7 @@
     a {
         .box-shadow(0 -2px 0 rgba(204, 223, 243, 0.3) inset, 0 0 1px rgba(0, 0, 0, 0.1));
         .gradient-two-color(#fcfdfe, #f4f8fc);
+
         background: #fcfdfe;
         border-radius: 5px 5px 0 0;
         border: 1px solid @border-blue;
@@ -155,12 +157,15 @@
         position: relative;
         top: -1px;
         z-index: 0;
+
         &:hover {
             background: #f4f8fc;
         }
     }
+
     a.active {
         .gradient-two-color(#fff, #fcfdfe);
+
         border-bottom: 0;
         box-shadow: none;
         color: @orange;
@@ -168,6 +173,7 @@
         font-weight: bold;
         top: 0;
         z-index: 1;
+
         &:hover {
             text-decoration: none;
         }
@@ -180,6 +186,7 @@
         font-size: 14px;
         line-height: 16px;
     }
+
     .button-wrapper {
         margin: 1em 0 0;
         text-align: center;
@@ -193,6 +200,7 @@ p.submit-cta {
     + p.submit-cta {
         margin-bottom: 1.5em;
     }
+
     .button {
         display: block;
         font-size: 13px;
@@ -205,6 +213,7 @@ p.submit-cta {
         margin-bottom: -.5em;
         padding-bottom: .5em;
     }
+
     li a {
         display: block;
     }
@@ -219,7 +228,7 @@ p.submit-cta {
 }
 
 h3 a.subscribe-feed {
-    background: url(../../img/zamboni/icons/subscribe-icons.png) no-repeat;
+    background: url("../../img/zamboni/icons/subscribe-icons.png") no-repeat;
     display: inline-block;
     line-height: 16px;
     height: 16px;

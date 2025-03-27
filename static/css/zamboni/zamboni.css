@@ -1,17 +1,17 @@
 /* Clearfix!!! */
-.listing .item:after,
-.section:after,
-.notification .aux:after,
-.aux .button-wrapper:after,
-.object-lead .button-wrapper:after,
-.article.version:after,
-.article.review:after,
-.grouped_ratings li:after,
-.bars:after,
-.item:after,
-.secondary > div:after,
-.listing-header:after,
-.review-form p:after {
+.listing .item::after,
+.section::after,
+.notification .aux::after,
+.aux .button-wrapper::after,
+.object-lead .button-wrapper::after,
+.article.version::after,
+.article.review::after,
+.grouped_ratings li::after,
+.bars::after,
+.item::after,
+.secondary > div::after,
+.listing-header::after,
+.review-form p::after {
     content: ".";
     display: block;
     clear: both;
@@ -23,9 +23,11 @@
     word-wrap: break-word;
 }
 
-/************************************/
+/***********************************  */
+
 /*             ELEMENTS             */
-/************************************/
+
+/***********************************  */
 .section,
 .notification .aux,
 .aux .button-wrapper,
@@ -38,7 +40,7 @@ li.usertag {
 }
 
 #main-wrapper {
-    background: #fff url(../../img/zamboni/global/bg-header.png) repeat-x;
+    background: #fff url("../../img/zamboni/global/bg-header.png") repeat-x;
 }
 
 header {
@@ -68,11 +70,12 @@ ul.errorlist {
     clear:both;
 }
 
-.html-ltr a.more-link:after {
+.html-ltr a.more-link::after {
     content: '\25B8';
     margin-left: .5em;
 }
-.html-rtl a.more-link:after {
+
+.html-rtl a.more-link::after {
     content: '\25C2';
     margin-right: .5em;
 }
@@ -91,9 +94,9 @@ ul.errorlist {
 
 .other-author-addons li .addonitem {
     padding-left: 20px;
-    background-image: url(../../img/icons/icons.png);
+    background-image: url("../../img/icons/icons.png");
     background-repeat: no-repeat;
-    background-position: 0px -200px;
+    background-position: 0 -200px;
 }
 
 .html-rtl .other-author-addons li .addonitem {
@@ -141,38 +144,27 @@ ul.errorlist {
     background-color: #E0EFFD;
 }
 
-/************************************/
+/***********************************  */
+
 /*             GRADIENTS            */
-/************************************/
+
+/***********************************  */
+
 /*  If you made a gradient, add it here.
  *  If you want to use an existing gradient, add your selector here.
 **/
 
 /* 'listing header' */
 .listing-header {
+    background: linear-gradient(#FFF, #E0EFFD);
     background-color: #E0EFFD;
-    background: -webkit-gradient(
-        linear,
-        left bottom,
-        left top,
-        from(#FFFFFF),
-        to(#E0EFFD)
-    );
-    background: linear-gradient(#FFFFFF, #E0EFFD);
 }
 
 /* 'listing item' */
 .object-lead,
 .listing .item {
+    background: linear-gradient(#FFF, #F6FBFF);
     background-color: #E0EFFD;
-    background: -webkit-gradient(
-        linear,
-        left bottom,
-        left top,
-        from(#FFFFFF),
-        to(#F6FBFF)
-    );
-    background: linear-gradient(#FFFFFF, #F6FBFF);
 }
 
 /* 'Mozilla' */
@@ -188,13 +180,13 @@ span.new  {
         linear,
         left bottom,
         left top,
-        from(rgb(42,65,135)),
-        to(rgb(59,105,177))
+        from(rgb(42 65 135)),
+        to(rgb(59 105 177))
     );
     background: linear-gradient(
         to top,
-        rgb(42,65,135) 0%,
-        rgb(59,105,177) 100%
+        rgb(42 65 135) 0%,
+        rgb(59 105 177) 100%
     );
 }
 
@@ -205,8 +197,8 @@ span.new  {
 a.button:link,
 a.button:visited,
 button,
-input[type=submit],
-input[type=button] {
+input[type="submit"],
+input[type="button"] {
     font-weight: bold;
     color: #fff;
     background: #39f url("../../img/zamboni/button-blue.png") 0 50% repeat-x;
@@ -218,24 +210,20 @@ input[type=button] {
     display: inline-block;
     line-height: 1.538;
     text-shadow: 0 -1px 0 #3d6db5;
-    -moz-box-shadow: inset 0 0 1px rgba(255,255,255,0.1);
-    -webkit-box-shadow: inset 0 0 1px rgba(255,255,255,0.1);
-    box-shadow: inset 0 0 1px rgba(255,255,255,0.1);
-    -moz-border-radius: .95em;
-    -webkit-border-radius: .95em;
+    box-shadow: inset 0 0 1px rgb(255 255 255 / 10%);
     border-radius: .95em;
 }
 
 button,
-input[type=submit],
-input[type=button] {
+input[type="submit"],
+input[type="button"] {
     padding: .2em .95em .3em;
     cursor: pointer;
 }
 
 .button span,
 button span {
-    border-left: 2px groove rgba(150,150,150,0.35);
+    border-left: 2px groove rgb(150 150 150 / 35%);
     padding: .3em .5em .2em .65em;
     margin: 0 .25em 0 -.25em;
     display: inline-block;
@@ -246,7 +234,7 @@ button span {
 .html-rtl .button span,
 .html-rtl button span {
     border-left: 0;
-    border-right: 2px groove rgba(150,150,150,0.35);
+    border-right: 2px groove rgb(150 150 150 / 35%);
     padding: .3em .65em .2em .5em;
     margin: 0 -.25em 0 .25em;
 }
@@ -259,31 +247,26 @@ button.go span {
 }
 
 .button.concealed span {
-    border-color: rgba(130,160,175,0.15);
+    border-color: rgb(130 160 175 / 15%);
 }
 
 a.button:hover,
 a.button:focus,
 button:hover,
 button:focus,
-input[type=submit]:hover,
-input[type=button]:hover,
-input[type=submit]:focus,
-input[type=button]:focus {
+input[type="submit"]:hover,
+input[type="button"]:hover,
+input[type="submit"]:focus,
+input[type="button"]:focus {
     border-color: #03c;
-    -moz-box-shadow: inset 0 0 2px rgba(255,255,255,1);
-    -webkit-box-shadow: inset 0 0 2px rgba(255,255,255,1);
-    box-shadow: inset 0 0 2px rgba(255,255,255,1);
+    box-shadow: inset 0 0 2px rgb(255 255 255 / 100%);
 }
 
 a.button:active, button.button:active {
     border-color: #03c;
-    background-image: url("../../img/zamboni/button-blue-on.png");
     background: linear-gradient(#39f 40%, #6fb7ff 60%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(40%, #39f), color-stop(60%, #6fb7ff));
-    -moz-box-shadow: inset 0 0 2px rgba(0,0,0,.5);
-    -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,.5);
-    box-shadow: inset 0 0 2px rgba(0,0,0,.5);
+    background-image: url("../../img/zamboni/button-blue-on.png");
+    box-shadow: inset 0 0 2px rgb(0 0 0 / 50%);
 }
 
 .cta a.button:link,
@@ -291,8 +274,6 @@ a.button:active, button.button:active {
     background: #5af;
     background: linear-gradient(#acf, #5af);
     background: -webkit-gradient(linear, left top, left bottom, from(#acf), to(#5af));
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
     border-radius: 8px;
     display: block;
     line-height: 1.0;
@@ -300,21 +281,19 @@ a.button:active, button.button:active {
     padding: 0.75em 0.95em;
     text-align: center;
 }
+
 .cta a.button:hover,
 .cta a.button:focus {
     border-color: #25f;
-    -moz-box-shadow: inset 0 0 2px #fff;
-    -webkit-box-shadow: inset 0 0 2px #fff;
     box-shadow: inset 0 0 2px #fff;
 }
+
 .cta a.button:active {
     border-color: #03c;
     background: #7bf;
     background: linear-gradient(#5af, #7bf);
     background: -webkit-gradient(linear, left top, left bottom, from(#5af), to(#7bf));
-    -moz-box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5);
-    -webkit-box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5);
-    box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 0 2px rgb(0 0 0 / 50%);
 }
 
 /* larger buttons for emphasis */
@@ -324,8 +303,8 @@ a.button.prominent:hover,
 a.button.prominent:focus,
 a.button.prominent:active,
 button.prominent,
-input[type=button].prominent,
-input[type=submit].prominent {
+input[type="button"].prominent,
+input[type="submit"].prominent {
     font-size: 1.2em;
 }
 
@@ -333,8 +312,6 @@ input[type=submit].prominent {
 button.link {
     background: transparent none;
     text-shadow: none;
-    -moz-box-shadow: none;
-    -webkit-box-shadow: none;
     box-shadow: none;
     border: 0;
     font-weight: bold;
@@ -345,12 +322,10 @@ button.link {
 a.button.disabled,
 a.button[disabled],
 button.button:disabled,
-input[type=submit]:disabled,
-input[type=button]:disabled {
+input[type="submit"]:disabled,
+input[type="button"]:disabled {
     background: #a6a6a6;
     border-color: #666;
-    -moz-box-shadow: none;
-    -webkit-box-shadow: none;
     box-shadow: none;
     text-shadow: 0 -1px 0 #666;
 }
@@ -366,18 +341,18 @@ button.link:focus {
 a.button.add:link,
 a.button.add:visited,
 button.add,
-input[type=submit].add,
-input[type=button].add,
+input[type="submit"].add,
+input[type="button"].add,
 a.button.download:link,
 a.button.download:visited,
 button.download,
-input[type=submit].download,
-input[type=button].download,
+input[type="submit"].download,
+input[type="button"].download,
 a.button.mobile:link,
 a.button.mobile:visited,
 button.mobile,
-input[type=button].mobile,
-input[type=submit].mobile {
+input[type="button"].mobile,
+input[type="submit"].mobile {
     background: #55a802 url("../../img/zamboni/button-green.png") 0 50% repeat-x;
     background: linear-gradient(#93c85e 30%, #55a802 55%);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(30%, #93c85e), color-stop(55%, #55a802));
@@ -389,68 +364,67 @@ a.button.add:hover,
 a.button.add:focus,
 button.add:hover,
 button.add:focus,
-input[type=submit].add:hover,
-input[type=button].add:hover,
-input[type=submit].add:focus,
-input[type=button].add:focus {
+input[type="submit"].add:hover,
+input[type="button"].add:hover,
+input[type="submit"].add:focus,
+input[type="button"].add:focus {
     border-color: #1a5404;
 }
 
 a.button.add:active,
 a.button.download:active {
     border-color: #1a5404;
-    background-image: url("../../img/zamboni/button-green-on.png");
     background: linear-gradient(#55a802 40%, #83c046 65%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(40%, #55a802), color-stop(65%, #83c046));
+    background-image: url("../../img/zamboni/button-green-on.png");
 }
 
 /** Temporary diagnostic styles to weed out redundant button classes *********/
 a.button.significant,
 button.significant,
-input[type=submit].significant,
-input[type=button].significant,
+input[type="submit"].significant,
+input[type="button"].significant,
 a.button.positive,
 button.positive,
-input[type=submit].positive,
-input[type=button].positive,
+input[type="submit"].positive,
+input[type="button"].positive,
 a.button.negative,
 button.negative,
-input[type=submit].negative,
-input[type=button].negative,
+input[type="submit"].negative,
+input[type="button"].negative,
 a.button.neutral,
 button.neutral,
-input[type=submit].neutral,
-input[type=button].neutral,
+input[type="submit"].neutral,
+input[type="button"].neutral,
 a.button.cool,
 button.cool,
-input[type=submit].cool,
-input[type=button].cool {
+input[type="submit"].cool,
+input[type="button"].cool {
     outline: 3px dotted red;
 }
+
 /** end of diagnostic styles **/
 
 /** Navigational Button *********/
 a.button.go:link,
 a.button.go:visited,
 button.go,
-input[type=submit].go,
-input[type=button].go {
+input[type="submit"].go,
+input[type="button"].go {
     color: #3d6db5;
     background: #fff none;
     border-color: #E0EFFD;
     text-shadow: 0 1px 0 #fff;
-    -moz-box-shadow: inset 0 0 3px #c0e1ee;
-    -webkit-box-shadow: inset 0 0 3px #c0e1ee;
+    box-shadow: inset 0 0 3px #c0e1ee;
 }
 
 a.button.go:hover,
 a.button.go:focus,
 button.go:hover,
 button.go:focus,
-input[type=submit].go:hover,
-input[type=button].go:hover,
-input[type=submit].go:focus,
-input[type=button].go:focus {
+input[type="submit"].go:hover,
+input[type="button"].go:hover,
+input[type="submit"].go:focus,
+input[type="button"].go:focus {
     color: #3d6db5;
     border-color: #a8cedd;
 }
@@ -458,8 +432,7 @@ input[type=button].go:focus {
 a.button.go:active {
     border-color: #95b9c5;
     background-image: none;
-    -moz-box-shadow: inset 0 0 5px #ccc;
-    -webkit-box-shadow: inset 0 0 5px #ccc;
+    box-shadow: inset 0 0 5px #ccc;
 }
 
 
@@ -467,12 +440,12 @@ a.button.go:active {
 a.button.caution:link,
 a.button.caution:visited,
 button.caution,
-input[type=submit].caution,
-input[type=button].caution {
+input[type="submit"].caution,
+input[type="button"].caution {
     color: #333;
     background: #fc0 url("../../img/zamboni/button-caution.png") 0 50% repeat-x;
-    background: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0) 60%),
-    -moz-repeating-linear-gradient(-45deg, #F0B500, #F0B500 7px, #FFD000 7px, #FFD000 14px);
+    background: linear-gradient(rgb(255 255 255 / 40%), rgb(255 255 255 / 0%) 60%),
+    repeating-linear-gradient(-45deg, #F0B500, #F0B500 7px, #FFD000 7px, #FFD000 14px);
     border-color: #a70;
     text-shadow: 0 1px 0 #ffe56b;
 }
@@ -480,12 +453,12 @@ input[type=button].caution {
 a.button.caution.concealed:link,
 a.button.caution.concealed:visited,
 button.caution.concealed,
-input[type=submit].caution.concealed,
-input[type=button].caution.concealed {
+input[type="submit"].caution.concealed,
+input[type="button"].caution.concealed {
     color: #859fae;
     border-color: #a70;
-    background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.6) 60%),
-    -moz-repeating-linear-gradient(-45deg, #F0B500, #F0B500 7px, #FFD000 7px, #FFD000 14px);
+    background: linear-gradient(rgb(255 255 255 / 90%), rgb(255 255 255 / 60%) 60%),
+    repeating-linear-gradient(-45deg, #F0B500, #F0B500 7px, #FFD000 7px, #FFD000 14px);
     white-space: normal;
 }
 
@@ -493,44 +466,42 @@ a.button.caution:hover,
 a.button.caution:focus,
 button.caution:hover,
 button.caution:focus,
-input[type=submit].caution:hover,
-input[type=button].caution:hover,
-input[type=submit].caution:focus,
-input[type=button].caution:focus {
+input[type="submit"].caution:hover,
+input[type="button"].caution:hover,
+input[type="submit"].caution:focus,
+input[type="button"].caution:focus {
     border-color: #850;
 }
 
 a.button.caution:active {
     border-color: #850;
+    background: linear-gradient(rgb(255 255 255 / 0%) 40%, rgb(255 255 255 / 30%) 60%),
+    repeating-linear-gradient(45deg, #F0B500, #F0B500 7px, #FFD000 7px, #FFD000 14px);
     background-image: url("../../img/zamboni/button-caution-on.png");
-    background: linear-gradient(rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 0.3) 60%),
-    -moz-repeating-linear-gradient(45deg, #F0B500, #F0B500 7px, #FFD000 7px, #FFD000 14px);
-    -moz-box-shadow: inset 0 0 5px rgba(0,0,0,.5);
-    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,.5);
+    box-shadow: inset 0 0 5px rgb(0 0 0 / 50%);
 }
 
 /** Status Button *********/
 a.button.status:link,
 a.button.status:visited,
 button.status,
-input[type=submit].status,
-input[type=button].status {
+input[type="submit"].status,
+input[type="button"].status {
     color: #333;
     background: #fff none;
     border-color: #E0EFFD;
     text-shadow: 0 1px 0 #fff;
-    -moz-box-shadow: inset 0 0 3px #c0e1ee;
-    -webkit-box-shadow: inset 0 0 3px #c0e1ee;
+    box-shadow: inset 0 0 3px #c0e1ee;
 }
 
 a.button.status:hover,
 a.button.status:focus,
 button.status:hover,
 button.status:focus,
-input[type=submit].status:hover,
-input[type=button].status:hover,
-input[type=submit].status:focus,
-input[type=button].status:focus {
+input[type="submit"].status:hover,
+input[type="button"].status:hover,
+input[type="submit"].status:focus,
+input[type="button"].status:focus {
     color: #333;
     border-color: #a8cedd;
 }
@@ -538,32 +509,30 @@ input[type=button].status:focus {
 a.button.status:active {
     border-color: #95b9c5;
     background-image: none;
-    -moz-box-shadow: inset 0 0 8px #a4cee2;
-    -webkit-box-shadow: inset 0 0 8px #a4cee2;
+    box-shadow: inset 0 0 8px #a4cee2;
 }
 
 /** Concealed Button *********/
 a.button.concealed:link,
 a.button.concealed:visited,
 button.concealed,
-input[type=submit].concealed,
-input[type=button].concealed {
+input[type="submit"].concealed,
+input[type="button"].concealed {
     color: #859fae;
     background: #fff none;
     border-color: #E0EFFD;
     text-shadow: 0 1px 0 #fff;
-    -moz-box-shadow: inset 0 0 3px #c0e1ee;
-    -webkit-box-shadow: inset 0 0 3px #c0e1ee;
+    box-shadow: inset 0 0 3px #c0e1ee;
 }
 
 a.button.concealed:hover,
 a.button.concealed:focus,
 button.concealed:hover,
 button.concealed:focus,
-input[type=submit].concealed:hover,
-input[type=button].concealed:hover,
-input[type=submit].concealed:focus,
-input[type=button].concealed:focus {
+input[type="submit"].concealed:hover,
+input[type="button"].concealed:hover,
+input[type="submit"].concealed:focus,
+input[type="button"].concealed:focus {
     color: #657f8e;
     border-color: #a8cedd;
 }
@@ -571,8 +540,7 @@ input[type=button].concealed:focus {
 a.button.concealed:active {
     border-color: #95b9c5;
     background-image: none;
-    -moz-box-shadow: inset 0 0 8px #a4cee2;
-    -webkit-box-shadow: inset 0 0 8px #a4cee2;
+    box-shadow: inset 0 0 8px #a4cee2;
 }
 
 
@@ -590,7 +558,7 @@ a.button.concealed:active {
 .install-shell .notavail {
     padding: 1px 0 1px 20px;
     margin-left: 3px;  /* Match the padding of .install. */
-    background: url(../../img/zamboni/icons/no-14x14.png) 0 30% no-repeat;
+    background: url("../../img/zamboni/icons/no-14x14.png") 0 30% no-repeat;
     white-space: nowrap;
 }
 
@@ -622,25 +590,19 @@ a.button.concealed:active {
 .install.lite,
 .install.unreviewed {
     padding: 2px;
-    -moz-border-radius: .95em .95em .95em 0;
-    -webkit-border-radius: .95em;
-    -webkit-border-bottom-left-radius: 0;
     border-radius: .95em .95em .95em 0;
 }
 
 .html-rtl .install.featuredaddon,
 .html-rtl .install.lite,
 .html-rtl .install.unreviewed {
-    -moz-border-radius: .95em .95em 0 .95em;
-    -webkit-border-radius: .95em;
-    -webkit-border-bottom-left-radius: .95em;
-    -webkit-border-bottom-right-radius: 0;
-    border-radius: .95em .95em 0 .95em;
+    border-radius: .95em .95em 0;
 }
 
 .install.featuredaddon {
     background: #bcdba2;
 }
+
 .install.featuredaddon strong {
     color: #360;
 }
@@ -649,6 +611,7 @@ a.button.concealed:active {
 .install.unreviewed {
     background: #ffe57f;
 }
+
 .install.lite strong,
 .install.unreviewed strong {
     color: #333;
@@ -667,6 +630,7 @@ a.button.concealed:active {
 }
 
 .button.add b { background-position: 25% 0; }
+
 .button.add.prominent b {
     background-position: 25% -49px;
     position: relative;
@@ -745,6 +709,7 @@ div:has(> .download-reply-attachment) {
 .popup-shim {
     position: relative;
 }
+
 div.popup-shim {
     display: inline-block;
 }
@@ -762,20 +727,20 @@ div.popup-shim {
 }
 
 .mobile .install-note .msg, .mobile.app,
-.firefox .install-note .msg, .firefox.app { background-image: url(../../img/app-icons/small/firefox.png); }
-.thunderbird .install-note .msg, .thunderbird.app { background-image: url(../../img/app-icons/small/thunderbird.png); }
-.sunbird .install-note .msg, .sunbird.app { background-image: url(../../img/app-icons/small/sunbird.png); }
-.seamonkey .install-note .msg, .seamonkey.app { background-image: url(../../img/app-icons/small/seamonkey.png); }
-.android .install-note .msg, .android.app { background-image: url(../../img/app-icons/small/android.png); }
-.mz.app { background-image: url(../../img/app-icons/small/mozilla.png); }
+.firefox .install-note .msg, .firefox.app { background-image: url("../../img/app-icons/small/firefox.png"); }
+.thunderbird .install-note .msg, .thunderbird.app { background-image: url("../../img/app-icons/small/thunderbird.png"); }
+.sunbird .install-note .msg, .sunbird.app { background-image: url("../../img/app-icons/small/sunbird.png"); }
+.seamonkey .install-note .msg, .seamonkey.app { background-image: url("../../img/app-icons/small/seamonkey.png"); }
+.android .install-note .msg, .android.app { background-image: url("../../img/app-icons/small/android.png"); }
+.mz.app { background-image: url("../../img/app-icons/small/mozilla.png"); }
 
 .install-note .msg.m-unreviewed,
 .popup.warning .msg {
-    background-image: url(../../img/zamboni/icons/alert-32x32.png);
+    background-image: url("../../img/zamboni/icons/alert-32x32.png");
 }
 
 .install-note .msg.m-platforms {
-    background-image: url(../../img/zamboni/icons/no-32x32.png);
+    background-image: url("../../img/zamboni/icons/no-32x32.png");
 }
 
 .install-note,
@@ -787,12 +752,8 @@ div.popup-shim {
     background: #fff;
     padding: 10px;
     border: 3px solid #2e5186;
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
     border-radius: 8px;
-    -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.35);
-    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.35);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.35);
+    box-shadow: 0 1px 3px rgb(0 0 0 / 35%);
     z-index: 2001; /* because of devhub title */
 }
 
@@ -803,17 +764,21 @@ div.popup-shim {
 .modal form {
     margin: 0;
 }
+
 .modal h2,
 .modal h3 {
     margin-top: 0;
     color: #2e5186;
 }
+
 .modal-delete h3 {
     color: #6c1a1a;
 }
+
 .install-note {
     width: 300px;
 }
+
 /* append the left class if the bubble is to the far right */
 .install-note.left,
 .popup.left {
@@ -849,9 +814,10 @@ div.popup-shim {
 }
 
 /* http://nicolasgallagher.com/demo/pure-css-speech-bubbles/bubbles.html */
+
 /* Creates the larger triangle. */
-.install-note:before,
-.popup:before {
+.install-note::before,
+.popup::before {
     content: "\00a0";
     display: block; /* reduce the damage in FF3.0 */
     position: absolute;
@@ -864,18 +830,18 @@ div.popup-shim {
     pointer-events: none;
 }
 
-.unreviewed .install-note:before,
-.popup.warning:before {
+.unreviewed .install-note::before,
+.popup.warning::before {
     border-bottom-color: #c90;
 }
 
-.popup.error:before {
+.popup.error::before {
     border-bottom-color: #6c1a1a;
 }
 
 /* creates the smaller triangle */
-.install-note:after,
-.popup:after {
+.install-note::after,
+.popup::after {
     content: "\00a0";
     display: block; /* reduce the damage in FF3.0 */
     position: absolute;
@@ -888,14 +854,14 @@ div.popup-shim {
     pointer-events: none;
 }
 
-.install-note.left:before,
-.popup.left:before {
+.install-note.left::before,
+.popup.left::before {
     right: 71px; /* controls horizontal position */
     left: auto;
 }
 
-.install-note.left:after,
-.popup.left:after {
+.install-note.left::after,
+.popup.left::after {
     right: 76px; /* value = (:before right) + (:before border-right) - (:after border-right) */
     left: auto;
 }
@@ -920,8 +886,7 @@ div.popup-shim {
     color: white;
     font-size: 11px;
     border: 1px solid #fff;
-    -moz-border-radius: .8em;
-    -webkit-border-radius: .8em;
+    border-radius: .8em;
     max-width: 300px;
     text-align: center;
     position: absolute;
@@ -939,7 +904,7 @@ div.popup-shim {
     line-height: 1.2em;
 }
 
-#tooltip:before {
+#tooltip::before {
     content: "\00a0";
     display: block; /* reduce the damage in FF3.0 */
     position: absolute;
@@ -953,7 +918,8 @@ div.popup-shim {
     border-top-color: #2A4364;
     pointer-events: none;
 }
-#tooltip.error:before {
+
+#tooltip.error::before {
     border-top-color: #6c1a1a;
 }
 
@@ -1013,21 +979,26 @@ ul.license li {
     float: left;
     list-style: none;
 }
+
 .html-rtl ul.license li {
     float: right;
 }
+
 ul.license li.text {
     font-size: 90%;
     margin-top: -.2em;
 }
+
 .html-ltr ul.license li.text {
     margin-left: .3em;
 }
+
 .html-rtl ul.license li.text {
     margin-right: .3em;
 }
+
 ul.license li.icon {
-    background: url(../../img/zamboni/licenses.png) no-repeat top left;
+    background: url("../../img/zamboni/licenses.png") no-repeat top left;
     height: 15px;
     width: 15px;
 }
@@ -1037,9 +1008,11 @@ ul.license li.cc-noncom { background-position: 0 -130px; }
 ul.license li.cc-share { background-position: 0 -195px; }
 ul.license li.copyr { background-position: 0 -260px; }
 
-/************************************/
+/***********************************  */
+
 /*               PAGES              */
-/************************************/
+
+/***********************************  */
 
 #search-suggest li.ext a { background-position: 7px 2px; }
 #search-suggest li.col a { background-position: 7px -98px; }
@@ -1143,7 +1116,7 @@ select:disabled {
 }
 
 .user-input textarea {
-/*    width: 98%;*/
+/*    width: 98%; */
 }
 
 .user-input .instruct {
@@ -1228,9 +1201,11 @@ form .error .note.error {
     display: block;
 }
 
-/************************************/
+/***********************************  */
+
 /*               PAGES              */
-/************************************/
+
+/***********************************  */
 
 /** =User =Edit *********/
 #user-profile ol {
@@ -1281,7 +1256,7 @@ form .error .note.error {
 
 #user-profile .trans {
     width: 100%;
-    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .html-rtl #user-edit #acct-notify {
@@ -1497,11 +1472,11 @@ form .error .note.error {
 
 .category-landing .addons-column ul, .category-landing .info-message {
     border: 1px solid #E0EFFD;
-    -moz-border-radius: 5px;
     border-radius: 5px;
     padding: 0;
     margin: 0;
 }
+
 .category-landing .info-message {
     clear: both;
     padding: 1em;
@@ -1518,6 +1493,7 @@ form .error .note.error {
     margin: 0;
     color: #444;
 }
+
 .category-landing .info-message .view-all a {
     font-weight: bold;
 }
@@ -1602,12 +1578,12 @@ form .error .note.error {
     font-size: 1em;
     color: #3d6db5;
     padding-right: 10px;
-    background: transparent url(../../img/zamboni/icons/arrow-right-blue.png) 100% 55% no-repeat;
+    background: transparent url("../../img/zamboni/icons/arrow-right-blue.png") 100% 55% no-repeat;
 }
 
 .html-rtl.category-landing .view-all a:link,
 .html-rtl.category-landing .view-all a:visited {
-    background: transparent url(../../img/zamboni/icons/arrow-left-blue.png) 0 55% no-repeat;
+    background: transparent url("../../img/zamboni/icons/arrow-left-blue.png") 0 55% no-repeat;
     padding: 0 0 0 10px;
 }
 
@@ -1624,17 +1600,14 @@ form .error .note.error {
 .results {
     border: 4px solid #E0EFFD;
     background-color: #E0EFFD;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
     border-radius: 5px;
     margin-bottom: 2em;
     clear: both;
 }
+
 .results-inner {
     background-color: #fff;
     border: 1px solid #2e5186;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
     border-radius: 3px;
     overflow: visible;
 }
@@ -1657,8 +1630,6 @@ form .error .note.error {
     border-width: 0 0 1px;
     background-color: transparent;
     margin-bottom: 0;
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
     border-radius: 0;
 }
 
@@ -1674,8 +1645,6 @@ form .error .note.error {
     float: left;
     padding: 3px 10px;
     margin-top: 0.5em;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
     border-radius: 5px;
     width: 95%;
 }
@@ -1758,7 +1727,6 @@ form .error .note.error {
 }
 
 .results-head .suggest {
-    padding-left: 10px;
     font-size: .923em;
     line-height: 1.4;
     position: absolute;
@@ -1766,8 +1734,6 @@ form .error .note.error {
     padding: 6px 8px 6px 28px;
     background: #ffc url("../../img/zamboni/icons/suggest-help.png") 6px .5em no-repeat;
     border: 1px solid #fc6;
-    -moz-box-shadow: 2px 2px 0 #E0EFFD;
-    -webkit-box-shadow: 2px 2px 0 #E0EFFD;
     box-shadow: 2px 2px 0 #E0EFFD;
     top: 0;
     right: 0;
@@ -1876,7 +1842,7 @@ form .error .note.error {
     margin-top:0;
 }
 
-.article.version h3 span:before {
+.article.version h3 span::before {
     content: '\02013\00a0';
 }
 
@@ -1990,12 +1956,8 @@ form .error .note.error {
     border: 3px solid #1d4900;
     background-color: #e0effd;
     padding: 13px 13px 13px 58px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
     border-radius: 5px;
-    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
-    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 1px 3px rgb(0 0 0 / 35%);
     font-family: "helvetica neue", arial, helvetica, sans-serif;
     color: #444;
     font-size: 13px;
@@ -2004,19 +1966,24 @@ form .error .note.error {
 
 .notification-box h2 {
     margin: 0;
+    padding: 0;
     padding-top: 10px;
-    font-size: 130%;
-    line-height: 1.5em;
-    min-height: 38px;
-    color: #444444;
+    color: #444;
+    background: none;
+    font-weight: bold;
+    font-family: "helvetica neue", arial, helvetica, sans-serif;
+    font-size: 13px;
+    line-height: 1;
+    min-height: 0;
 }
 
 .notification-box p {
-     padding-top: 8px;
+    padding-top: 8px;
+    margin: 0;
 }
 
 .notification-box p:first-child {
-     padding-top: 0pt;
+     padding-top: 0;
 }
 
 .html-rtl .notification-box h2 {
@@ -2024,7 +1991,7 @@ form .error .note.error {
     background-position: top right;
 }
 
-.notification-box:before {
+.notification-box::before {
     content: "\00a0";
     width: 32px;
     height: 32px;
@@ -2033,10 +2000,10 @@ form .error .note.error {
     top: 50%;
     margin-top: -16px;
     position: absolute;
-    background-image:url(../../img/zamboni/notifications.png);
+    background-image:url("../../img/zamboni/notifications.png");
 }
 
-.html-rtl .notification-box:before {
+.html-rtl .notification-box::before {
     right: 10px;
     left: auto;
 }
@@ -2047,7 +2014,7 @@ form .error .note.error {
     border: 3px solid #550b00;
 }
 
-.notification-box.warning:before {
+.notification-box.warning::before {
     background-position: 0 -225px;
 }
 
@@ -2057,7 +2024,7 @@ form .error .note.error {
     border: 3px solid #550b00;
 }
 
-.notification-box.error:before {
+.notification-box.error::before {
     background-position: 0 -83px;
 }
 
@@ -2071,7 +2038,7 @@ form .error .note.error {
     border: 3px solid #002955;
 }
 
-.notification-box.info:before {
+.notification-box.info::before {
     background-position: 0 -435px;
 }
 
@@ -2082,20 +2049,6 @@ form .error .note.error {
 
 .html-rtl .notification-box {
     padding: 13px 58px 13px 13px;
-}
-
-.notification-box h2 {
-    background: none;
-    font-weight: bold;
-    padding: 0;
-    font-family: "helvetica neue", arial, helvetica, sans-serif;
-    font-size: 13px;
-    line-height: 1;
-    min-height: 0;
-}
-
-.notification-box p {
-    margin: 0;
 }
 
 /** Add-on detail page buttons. **/
@@ -2114,8 +2067,6 @@ form .error .note.error {
 
 .install-wrapper {
     margin-bottom: 1.5em;
-    -moz-border-radius: 6px;
-    -webkit-border-radius: 6px;
     border-radius: 6px;
 }
 
@@ -2153,10 +2104,6 @@ form .error .note.error {
 .install-wrapper .extra {
     border-top: 1px dotted #A5C9D5;
     padding-top: 6px;
-}
-
-/* Contributions */
-#contribution.notification .aux {
 }
 
 #contribution .aux .button-wrapper {
@@ -2220,7 +2167,7 @@ form .error .note.error {
 
 .install-wrapper.lite .extra,
 .install-wrapper.unreviewed .extra {
-    border-top: 1px dotted #AA7700;
+    border-top: 1px dotted #A70;
 }
 
 .install-wrapper.lite .install strong,
@@ -2236,10 +2183,6 @@ form .error .note.error {
 .install-wrapper.lite,
 .install-wrapper.unreviewed {
     padding: 0.4em;
-}
-
-.install-wrapper.lite,
-.install-wrapper.unreviewed {
     background: #FFE57F;
 }
 
@@ -2252,6 +2195,7 @@ form .error .note.error {
 /** Add-on listing on the homepage. */
 .listing.compact .item blockquote {
     padding: 0;
+    clear: both;
 }
 
 .listing.compact .item .install-shell,
@@ -2278,10 +2222,6 @@ td .addon-rating,
     display: inline;
 }
 
-.listing.compact .item blockquote {
-    clear: both;
-}
-
 #discovery-modules .ordering input {
     width: 2em;
 }
@@ -2297,7 +2237,7 @@ td .addon-rating,
 /* Carousel arrows for personas carousel */
 
 .personas-home ol.breadcrumbs {
-    clear:none; /*don't want breadcrumbs clearing floats in this module*/
+    clear:none; /* don't want breadcrumbs clearing floats in this module */
 }
 
 .arrow {
@@ -2306,7 +2246,7 @@ td .addon-rating,
     width: 24px;
     height: 24px;
     border: 1px solid #7fcbd8;
-    -moz-border-radius: 13px;
+    border-radius: 13px;
     cursor: pointer;
     text-indent: -999px;
     background: white;
@@ -2328,7 +2268,7 @@ td .addon-rating,
     top: 304px;
 }
 
-.arrow:before {
+.arrow::before {
     content: "\00a0";
     display: block; /* reduce the damage in FF3.0 */
     position: absolute;
@@ -2338,13 +2278,13 @@ td .addon-rating,
     border-style: solid;
 }
 
-.arrow.prev:before {
+.arrow.prev::before {
     left: 6px;
     top: 2px;
     border-bottom-color: #0471ed;
 }
 
-.arrow.next:before {
+.arrow.next::before {
     left: 6px;
     top: 9px;
     border-top-color: #0471ed;
@@ -2356,12 +2296,15 @@ td .addon-rating,
     padding: .25em 0 0 1em;
     margin: 0;
 }
+
 .other-note input[type='text'] {
     width: 150px;
 }
+
 .other-note input[type='submit'] {
     margin-top: -2px;
 }
+
 .other .other-note,
 .review-reason a {
     display: block;
@@ -2376,66 +2319,77 @@ ul.review-options {
     margin-bottom: 2px;
     color: #aaa;
 }
+
 ul.review-options > li {
     float: left;
 }
+
 .review ul.review-options > li > a {
     font-weight: normal;
     color: #aaa;
-    -moz-transition: color .2s;
-    -webkit-transition: color .2s;
     transition: color .2s;
 }
+
 ul.review-options > li:not(:first-child) {
     list-style-type: disc;
     margin-left: 1.6em;
 }
+
 .article.review {
     margin-bottom: 1em;
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
     border-radius: 8px;
     overflow: visible;
 }
+
 .review h5 {
     float: left;
     margin-right: .8em;
     font-size: 120%;
 }
+
 .html-rtl .review h5 {
     float: right;
     margin-right: inherit;
     margin-left: .8em;
 }
+
 .review p {
-    margin: 1em 0 0 0;
+    margin: 1em 0 0;
 }
+
 .review .reviewed-on {
     clear: left;
     font-size: .9em;
 }
+
 .html-rtl .review .reviewed-on {
     clear: right;
 }
+
 .review.deleted {
     display: none;
 }
+
 h6.author, .author a {
     font-weight: normal;
 }
+
 .reviews .highlight > span {
     display: block;
 }
+
 .reviews .highlight hgroup {
     display: block;
     margin-bottom: 1em;
 }
+
 .reviews .highlight > div {
     margin: 0;
     padding: 1em .2em;
     border-top: 1px dashed #ccc;
     font-size: .9em;
 }
+
 .reviews .highlight > div:last-child {
     text-align: center;
     padding-bottom: 0;
@@ -2460,10 +2414,10 @@ h6.author, .author a {
     border-left: 1px solid black;
     height: 2em;
     float: left;
-    width: 0px;
     overflow: visible;
     width: 120px;
 }
+
 .num_ratings {
     width: 1px;
     position: absolute;
@@ -2471,9 +2425,9 @@ h6.author, .author a {
     top: -2px;
     line-height: 1em;
 }
+
 .grouped_ratings .rating_bar span.bar {
     display:block;
-    height: 100%;
     position: relative;
     background: #acd;
     margin: .4em .5em 0 0;
@@ -2502,15 +2456,19 @@ h6.author, .author a {
 .grouped_ratings .stars-4 {
     background-position: 13px 50%;
 }
+
 .grouped_ratings .stars-3 {
     background-position: 26px 50%;
 }
+
 .grouped_ratings .stars-2 {
     background-position: 39px 50%;
 }
+
 .grouped_ratings .stars-1 {
     background-position: 52px 50%;
 }
+
 .grouped_ratings .stars-0 {
     background-position: 65px 50%;
 }
@@ -2545,11 +2503,11 @@ h6.author, .author a {
 }
 
 #review-form {
-    margin: 2em 1em 0 1em;
+    margin: 2em 1em 0;
 }
 
 .review-form textarea {
-    margin: 1em 0 1em 0;
+    margin: 1em 0;
     clear: left;
 }
 
@@ -2583,20 +2541,25 @@ h6.author, .author a {
 .review:hover ul.review-options > li > a {
     color: #3d6db5;
 }
+
 .review-wrapper {
     position: relative;
 }
+
 .reviews header {
     margin-left: 0;
 }
+
 .highlight h5 {
     font-size: 120%;
 }
+
 .review.reply {
     margin-left: 4em;
     background: #f0f6f2;
     border-color: #d0e2c5;
 }
+
 .review .review-note {
     float: left;
     font-size: .9em;
@@ -2609,24 +2572,30 @@ h6.author, .author a {
     background: #e0effd;
     border: 0;
 }
+
 .reply-form form {
     margin-bottom: 0;
 }
+
 .reply-form label {
     display: block;
     margin-top: 1em;
 }
+
 label > .optional {
     font-weight: normal;
     color: #888;
 }
+
 .reply-form textarea {
     margin-bottom: 2em;
     width: 80%;
 }
+
 .reply-form h3 {
     margin: 0;
 }
+
 .reply-form input[type='text'] {
     width: 60%;
 }
@@ -2658,9 +2627,11 @@ label > .optional {
 .popup h3 {
     margin-top: 0;
 }
+
 #add-to-collection form {
     margin-bottom: 0;
 }
+
 #add-to-collection #id_description {
     height: 6em;
 }
@@ -2670,6 +2641,7 @@ label > .optional {
     background: #eee;
     color: #888;
 }
+
 .edit_with_prefix input:focus, .edit_with_suffix input:focus {
     outline: 0;
 }
@@ -2681,7 +2653,8 @@ label > .optional {
     border-right: 0 none;
     padding: 2px 2px 2px 5px;
 }
-.edit_with_prefix input, .edit_with_prefix input[type=text] {
+
+.edit_with_prefix input, .edit_with_prefix input[type="text"] {
     border: 1px solid #5875a0;
     border-left: 0 none;
 }
@@ -2716,7 +2689,7 @@ label > .optional {
 
 .collections-details #id_name {
     display: block;
-    -moz-box-sizing: border-box;
+    box-sizing: border-box;
     width: 100%;
 }
 
@@ -2740,8 +2713,7 @@ label > .optional {
 }
 
 #icon_upload .icon_preview img {
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
+  border-radius: 5px;
   border: 1px solid #C1E0EA;
   padding: 8px;
   width: 32px;
@@ -2750,7 +2722,7 @@ label > .optional {
 }
 
 #ajax_collections_list {
-    margin: 0 0 .5em 0;
+    margin: 0 0 .5em;
 }
 
 #ajax_new_collection {
@@ -2764,7 +2736,7 @@ label > .optional {
     padding-left: 30px;
     background-repeat: no-repeat;
     background-position: 0 4px;
-    background-image: url(../../img/zamboni/icons/checks.png);
+    background-image: url("../../img/zamboni/icons/checks.png");
 }
 
 #ajax_collections_list li:hover {
@@ -2776,7 +2748,7 @@ label > .optional {
 }
 
 #ajax_collections_list li.ajax-loading {
-   background-image: url(../../img/zamboni/loading-white.gif);
+   background-image: url("../../img/zamboni/loading-white.gif");
    background-position: left bottom;
 }
 
@@ -2803,6 +2775,7 @@ label > .optional {
 .followers {
     color: #37a632;
 }
+
 .followers span {
     font-weight: bold;
 }
@@ -2830,9 +2803,10 @@ label > .optional {
     margin-top: 2em;
 }
 
-input:-moz-placeholder {
+input::placeholder {
     color: #ccc;
 }
+
 input::-webkit-placeholder {
     color: #ccc;
 }
@@ -2840,51 +2814,63 @@ input::-webkit-placeholder {
 table#addons-list, table#contributors-list {
     width: 100%;
 }
+
 #addons-list .comments {
     display: none;
     margin: 0 0 .2em 42px;
 }
+
 #addons-list .comments.hascomment {
     display: block;
 }
+
 #addons-list .comments.hascomment textarea {
     resize:vertical;
 }
+
 td.remove {
     width: 20px;
     text-align:center;
 }
+
 #addons-list thead,
 #contributors-list thead {
     font-size: .9em;
 }
+
 #addons-list tbody tr,
 #contributors-list tbody tr {
     border-top: 1px dotted #A5BFCE;
 }
+
 #addons-list tbody tr:hover,
 #contributors-list tbody tr:hover,
 .ui-state-hover {
     background-color: #e4f5fb;
 }
+
 td.input {
     background: #E0EFFD;
     padding-top: .5em;
     padding-bottom: .4em;
 }
+
 #addons-list h3 {
     line-height: 36px;
     display: inline;
     margin: 0;
     padding: 0;
 }
+
 #addons-list img {
     float: left;
     margin: 2px 1em 0 0;
 }
+
 #id_name {
     display: block;
 }
+
 #addons-list a.remove,
 #addons-list a.comment,
 #contributors-list a.remove {
@@ -2896,17 +2882,20 @@ td.input {
     margin: 10px;
     text-indent: -9000px;
     background-repeat: no-repeat;
-    background-image: url(../../img/zamboni/icons/collections.png);
+    background-image: url("../../img/zamboni/icons/collections.png");
 }
+
 #addons-list a.remove,
 #contributors-list a.remove {
     background-position: 0 -250px;
 }
+
 #addons-list a.remove:hover,
 #contributors-list a.remove:hover,
 .collection-admin a.delete {
     background-position: 0 -200px;
 }
+
 #addons-list a.comment {
     background-position: 0 -800px;
 }
@@ -2917,16 +2906,19 @@ td.input {
     margin-bottom: 0;
     display: inline-block;
 }
+
 .collection-admin a {
     background-repeat: no-repeat;
-    background-image: url(../../img/zamboni/icons/collections.png);
+    background-image: url("../../img/zamboni/icons/collections.png");
     margin-left: 1em;
     white-space: nowrap;
     padding-left: 22px;
 }
+
 .collection-admin a.edit {
     background-position: 0 -300px;
 }
+
 .collection-create .featured-inner {
     padding: 1em;
 }
@@ -2940,9 +2932,11 @@ td.input {
 .contributor span {
     position: relative;
 }
+
 #contributor-ac-error {
     margin: 0;
 }
+
 .make-owner {
     margin-left: 1em;
 }
@@ -2952,8 +2946,8 @@ td.input {
 .collections-landing {
     padding: 1em;
     min-height: 190px;
-    background-image: url(../../img/illustrations/logo-collections-220x270.png),
-                      linear-gradient(#e4f5fb, #ffffff);
+    background-image: url("../../img/illustrations/logo-collections-220x270.png"),
+                      linear-gradient(#e4f5fb, #fff);
     background-repeat: no-repeat;
     background-position: 95% 30px, left top;
 }
@@ -2979,6 +2973,7 @@ td.input {
 .html-rtl .collections-landing {
     background-position: 5% 20px, left top;
 }
+
 .html-rtl .collections-landing p {
     padding-right: 0;
     padding-left: 250px;
@@ -2988,11 +2983,12 @@ td.input {
 a.outlink {
     margin-left: 4px;
     background-repeat: no-repeat;
-    background-image: url(../../img/zamboni/icons/collections.png);
+    background-image: url("../../img/zamboni/icons/collections.png");
     white-space: nowrap;
     padding-left: 16px;
     background-position: 0 -850px;
 }
+
 a.outlink:hover {
     background-position: 0 -900px;
 }
@@ -3010,34 +3006,41 @@ a.outlink:hover {
 .object-details .collection_widgets {
     margin-bottom: 1em;
 }
+
 .widget {
-    background-image: url(../../img/zamboni/icons/collections.png);
+    background-image: url("../../img/zamboni/icons/collections.png");
     background-repeat: no-repeat;
     padding-left: 22px;
     margin-right: 7px;
     height: 16px;
     line-height: 16px;
 }
+
 .html-rtl .widget {
     margin-right: 0;
     margin-left: 1em;
 }
+
 .widget.condensed {
     margin-right: 8px;
     padding-left: 16px;
     width: 16px;
 }
+
 .html-rtl .widget.condensed {
     margin-left: .8em;
 }
+
 #addon .widgets {
     clear:left;
 }
+
 #addon .widget {
     display: block;
     margin-bottom: 1em;
     float: left;
 }
+
 .html-rtl #addon .widget {
     float: right;
 }
@@ -3045,7 +3048,7 @@ a.outlink:hover {
 .widget.edit { background-position: 0 -350px; }
 .widget.edit:hover { background-position: 0 -300px; }
 .widget.copy { background-position: 0 -50px; }
-.widget.copy:hover { background-position: 0 0px; }
+.widget.copy:hover { background-position: 0 0; }
 .widget.watch { background-position: 0 -750px; }
 .widget.watch:hover { background-position: 0 -700px;}
 .widget.watching { background-position: 0 -650px; }
@@ -3063,33 +3066,35 @@ input.ui-autocomplete-loading,
 .modal.ajax-loading,
 .tooltip.ajax-loading,
 .tooltip:hover.ajax-loading {
-   background-image: url(../../img/zamboni/loading-white.gif);
+   background-image: url("../../img/zamboni/loading-white.gif");
    background-repeat: no-repeat;
    background-position: left bottom;
 }
+
 input.ui-autocomplete-loading {
     background-position: right center;
 }
+
 .modal.ajax-loading {
     background-position: center center;
 }
 
 .modal-actions.ajax-loading {
-    background-image: url(../../img/zamboni/loading-white.gif);
+    background-image: url("../../img/zamboni/loading-white.gif");
     background-repeat: no-repeat;
     background-position: right center;
 }
 
 .suggested-amount.ajax-loading,
 #contribute-box .ajax-loading {
-    background-image: url(../../img/zamboni/loading-white.gif);
+    background-image: url("../../img/zamboni/loading-white.gif");
     background-repeat: no-repeat;
     background-position: right center;
     padding-right: 30px;
 }
 
 #contribute-box .ajax-loading {
-    margin-left: 0px;
+    margin-left: 0;
     font-weight: bold;
 }
 
@@ -3099,10 +3104,10 @@ input.ui-autocomplete-loading {
 
 /** Add-on detail page QR Code area. Feature test from Bug 595561 **/
 #addon-qr-code {
-    -moz-border-radius: 5px;
+    border-radius: 5px;
     background-color: #e0effd;
     border: 6px solid #e0effd;
-    color: #223355;
+    color: #235;
     float: right;
     font-size: 0.9em;
     margin-left: 0.5em;
@@ -3116,24 +3121,30 @@ input.ui-autocomplete-loading {
 }
 
 /** Hide Featured tab on Search Tools landing page when there's a category **/
+
 /** Bug 605670, 609318 **/
 .search-tools-for-cat li a[href*="?sort=featured"] {
     display: none;
 }
+
 /** l10n */
 #l10n-menu {
     float: right;
 }
+
 #l10n-menu p {
     margin: 0;
 }
+
 .html-rtl #l10n-menu {
     float: left;
 }
+
 #change-locale {
     padding-right: 16px;
 }
-#change-locale:after {
+
+#change-locale::after {
     position: relative;
     top: 12px;
     left: 4px;
@@ -3145,12 +3156,15 @@ input.ui-autocomplete-loading {
     border-style: solid;
     border-top-color: #003595;
 }
-#locale-popup:after {
+
+#locale-popup::after {
   right: 53px;
 }
-#locale-popup:before {
+
+#locale-popup::before {
   right: 48px;
 }
+
 #locale-popup section {
   display: block;
   height: 300px;
@@ -3158,25 +3172,31 @@ input.ui-autocomplete-loading {
   margin-right: -10px;
   overflow-y: auto;
 }
+
 #locale-popup section a {
   display: block;
 }
+
 #locale-popup section a:hover {
   background-color: #eefafe;
   text-decoration: none;
 }
+
 #locale-popup section a em {
   color: #98bfef;
 }
+
 #locale-popup section ul {
   margin: 0;
 }
+
 #existing_locales a.remove {
   display: block;
   float: right;
   margin: 4px 8px;
   line-height: 18px;
 }
+
 #existing_locales a.remove:hover {
   background-color: #2a4364;
 }
@@ -3184,9 +3204,11 @@ input.ui-autocomplete-loading {
 .trans [lang] {
     display: none;
 }
+
 .trans [lang]:first-child {
     display: block;
 }
+
 .trans .init-trans {
     display: none;
 }
@@ -3195,6 +3217,7 @@ input.ui-autocomplete-loading {
     color: #ccc;
     font-style: italic;
 }
+
 /* end l10n */
 
 /** "Some HTML/Markdown Allowed" text/popup **/
@@ -3216,12 +3239,13 @@ input.ui-autocomplete-loading {
 .errorlist .l10n {
     cursor: pointer;
 }
+
 .errorlist .l10n:hover {
     text-decoration: underline;
 }
 
 #requires-restart {
-    margin: -1em 0 1.5em 0;
+    margin: -1em 0 1.5em;
 }
 
 #requires-restart-msg {
@@ -3248,7 +3272,7 @@ input.ui-autocomplete-loading {
 }
 
 #contribute-box .error {
-    padding: 10px 0px 10px 50px;
+    padding: 10px 0 10px 50px;
 }
 
 ul.errorlist li progress {
@@ -3256,7 +3280,7 @@ ul.errorlist li progress {
 }
 
 ul.errorlist li.strength {
-    color: #444444;
+    color: #444;
 }
 
 .generic-content {
@@ -3289,5 +3313,5 @@ ul.errorlist li.strength {
     position: absolute;
     text-decoration: none;
     padding: 20px;
-    right: 0px;
+    right: 0;
 }

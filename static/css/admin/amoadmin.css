@@ -32,9 +32,6 @@
 
 #changelist #searchbar-explainer li {
     margin-left: 1.5em;
-}
-
-#changelist #searchbar-explainer li {
     list-style-type: square;
 }
 
@@ -53,11 +50,11 @@
     cursor: pointer;
 }
 
-.hasaddremoveip .addlink, .hasaddremoveip .deletelink {
-    visibility: hidden
+.hasaddremoveip .addremoveip-link {
+    visibility: hidden;
 }
 
-.hasaddremoveip:hover .addlink, .hasaddremoveip:hover .deletelink {
+.hasaddremoveip:hover .addremoveip-link {
     visibility: visible;
 }
 

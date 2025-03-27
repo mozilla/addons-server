@@ -1,10 +1,12 @@
 .DevHub-Connect{
     h2 {
         font-size: 24px;
+
         @media @large {
           font-size: 36px;
         }
     }
+
     font-size: 14px;
 }
 
@@ -20,17 +22,22 @@
     p, li {
         color: @color-scheme-dark-items;
     }
+
     ul {
         list-style-type: none;
         padding: 0;
     }
+
     li {
         line-height: 24px;
+
         a {
             .link(@color-scheme-dark-text);
         }
+
         margin-bottom: 20px;
     }
+
     ul.DevHub-content-copy--Connect-twitter-list li a {
         display: block;
     }
@@ -70,14 +77,14 @@
         padding-right: 0;
         text-indent: -1.5em;
 
-        html[dir=rtl] & {
+        html[dir="rtl"] & {
             padding-left: 0;
             padding-right: 1.5em;
         }
     }
 
     .form_input {
-        background: rgba(177,177,179,0.2);
+        background: rgb(177 177 179 / 20%);
         color: @color-scheme-dark-text;
         border: 0;
         padding: 6px;
@@ -87,9 +94,11 @@
 
     #newsletter_privacy {
         order: 2;
+
         a {
             .link(@color-scheme-dark-text, @decoration: underline);
         }
+
         width: 100%;
     }
 
@@ -110,6 +119,7 @@
         button {
             height: 32px;
             .button(@color-scheme-dark-background, @color-scheme-dark-text);
+
             font-size: 14px;
             border-radius: 0.25rem;
             border-width: 0;
@@ -132,9 +142,11 @@
 
         ul {
             list-style-type: disc;
+
             li {
                 color: @color-scheme-dark-text;
             }
+
             &:last-child {
                 margin-bottom: 0;
             }
@@ -153,19 +165,19 @@ a.Before-Icon::before {
     line-height: 1.2;
     vertical-align: middle;
 
-    html[dir=rtl] & {
+    html[dir="rtl"] & {
         padding: 0 0 0 0.3em;
     }
 }
 
 a.Before-Icon-twitter::before {
-    content: url(../../../../img/icons/twitter.svg);
+    content: url("../../../../img/icons/twitter.svg");
 }
 
 a.Before-Icon-matrix::before {
-    content: url(../../../../img/icons/matrix.svg);
+    content: url("../../../../img/icons/matrix.svg");
 }
 
 a.Before-Icon-mail::before {
-    content: url(../../../../img/icons/mail.svg);
+    content: url("../../../../img/icons/mail.svg");
 }

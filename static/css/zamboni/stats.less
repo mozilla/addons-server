@@ -13,17 +13,21 @@
             right: 20px;
         }
     }
+
     .island {
         float: none;
         margin-bottom: 2em;
     }
+
     hgroup {
         clear: both;
     }
+
     .ui-helper-hidden-accessible {
         display: none !important;
     }
 }
+
 .html-rtl.statistics #page .header-search {
     right: auto;
     left: 20px;
@@ -35,7 +39,7 @@
     margin: 0;
     padding: .5em 1%;
     border-top: 1px solid #A5BFCE;
-    -moz-border-radius: 0 0 3px 3px;
+    border-radius: 0 0 3px 3px;
     background: linear-gradient(#DAF0F6, #FDFEFE) repeat scroll 0 0 transparent
 }
 
@@ -49,7 +53,7 @@ table tbody tr {
 }
 
 .featured-inner {
-    background: linear-gradient(#ffffff, #eff8fb);
+    background: linear-gradient(#fff, #eff8fb);
 }
 
 .secondary {
@@ -57,6 +61,7 @@ table tbody tr {
         float: none;
     }
 }
+
 .secondary > aside,
 .secondary > div {
     margin-bottom: 2em;
@@ -75,6 +80,7 @@ table tbody tr {
     ul {
         line-height: 2.5em;
     }
+
     li {
         color: @dark-gray;
         font-weight: bold;
@@ -92,10 +98,12 @@ table tbody tr {
                 text-decoration: underline;
             }
         }
+
         &.selected a {
             font-weight: bold;
             color: @orange;
         }
+
         a.inactive {
             color: @light-gray;
             cursor: default;
@@ -106,6 +114,7 @@ table tbody tr {
         }
     }
 }
+
 .html-rtl .island.criteria {
     float: left;
     margin: 0 1em 0 0;
@@ -122,16 +131,19 @@ table tbody tr {
 
     div {
         .border-box();
+
         float: left;
         text-align: left;
         width: 50%;
         position: relative;
         padding-left: 2em;
         color: @dark-gray;
+
         &:first-child {
             padding-left: 1em;
         }
-        &:first-child:after {
+
+        &:first-child::after {
             content: '';
             display: block;
             position: absolute;
@@ -140,15 +152,18 @@ table tbody tr {
             border-left: 1px dotted @medium-gray;
             height: 100%;
         }
+
         b {
             font-size: 150%;
         }
+
         a {
             line-height: 2rem;
             display: block;
             font-weight: bold;
             font-size: 140%;
         }
+
         small {
             line-height: 2rem;
             font-size: 110%;
@@ -166,20 +181,23 @@ table tbody tr {
     position: relative;
     top: .7em;
     margin-right: .5em;
-    -moz-border-radius: 4px;
+    border-radius: 4px;
     height: 8px;
     width: 8px;
 }
+
 .listing-header .seriesdot {
     border: 2px solid #fff;
-    -moz-border-radius: 6px;
+    border-radius: 6px;
     margin: 0 .2em 0 .5em;
     top: .8em;
 }
+
 .toplists {
     margin-bottom: 2em;
     overflow: hidden;
 }
+
 .toplist {
     position: relative;
     overflow: hidden;
@@ -191,22 +209,27 @@ table tbody tr {
     &:first-child {
         margin-left: 0;
     }
+
     h3 {
-        margin: 0 0 .2em 0;
+        margin: 0 0 .2em;
     }
+
     .highcharts-tooltip {
         position: absolute;
         top: 0 !important;
         left: 0 !important;
     }
+
      table {
         width: 100%;
         height: 160px;
         margin: .7em 0;
     }
+
     tr:first-child {
         border-top: 0;
     }
+
     td {
         text-align: right;
         padding: 0;
@@ -217,6 +240,7 @@ table tbody tr {
             display: inline-flex;
             flex-direction: row-reverse;
         }
+
         &:last-child {
             text-align: left;
             font-size: 90%;
@@ -225,6 +249,7 @@ table tbody tr {
         }
     }
 }
+
 a.more {
     display: block;
     text-align: right;
@@ -239,16 +264,19 @@ a.more {
         width: 100%;
         overflow: auto;
     }
+
     table {
         width: 100%;
         border-collapse: collapse;
         table-layout: fixed;
     }
+
     thead th {
         white-space: normal;
         overflow: hidden;
         text-overflow: ellipsis;
     }
+
     th, td {
         width: 100px;
         padding: .5em 1em;
@@ -259,9 +287,11 @@ a.more {
             width: 200px;
         }
     }
+
     th {
         font-weight: bold;
     }
+
     tbody {
         display: none;
 
@@ -271,6 +301,7 @@ a.more {
             }
         }
     }
+
     .paginator {
         float: none;
 
@@ -285,8 +316,9 @@ a.more {
 div.piechart {
     height: 200px;
 }
+
 div.piechart .highcharts-container {
-    margin: 8px auto 0 auto;
+    margin: 8px auto 0;
 }
 
 /**
@@ -301,9 +333,11 @@ aside.highlight {
     dt {
         margin-top: 1em;
     }
+
     dd {
         font-size: .8em;
     }
+
     code {
         font-family: @mono-stack;
         background: @light-gray;
@@ -352,7 +386,7 @@ table.stats-aggregate tbody td {
 }
 
 table.stats-aggregate tbody td.value {
-    padding: 5px 0 3 0px;
+    padding: 5px 0 3;
     text-align: right;
 }
 
@@ -373,6 +407,7 @@ table.stats-aggregate tbody span.change {
 table.stats-aggregate tbody span.change.plus {
     color: #00774d;
 }
+
 table.stats-aggregate tbody span.change.minus {
     color: #850000;
 }
@@ -380,8 +415,9 @@ table.stats-aggregate tbody span.change.minus {
 .loading, .loaded {
     position:relative;
 }
-.loading:after {
-    -moz-transition: opacity .5s;
+
+.loading::after {
+    transition: opacity .5s;
     content: "\00a0";
     display: block;
     position: absolute;
@@ -393,7 +429,8 @@ table.stats-aggregate tbody span.change.minus {
     top: 0;
     left: 0;
 }
-.loaded:after {
+
+.loaded::after {
     opacity: 0;
     pointer-events: none;
 }
@@ -404,6 +441,7 @@ table.stats-aggregate tbody span.change.minus {
     width: 100%;
     overflow: hidden;
 }
+
 #head-chart {
     position: relative;
     background: #fff;
@@ -428,6 +466,7 @@ table.stats-aggregate tbody span.change.minus {
         font-size: 2em;
     }
 }
+
 .nodata .no-data-overlay {
     display: block;
 }
@@ -441,8 +480,6 @@ table.stats-aggregate tbody span.change.minus {
     margin: 0 auto;
     text-align: center;
     pointer-events: none;
-    -moz-transition: top .5s;
-    -webkit-transition: top .5s;
     transition: top .5s;
     z-index:9000;
 }
@@ -455,8 +492,6 @@ table.stats-aggregate tbody span.change.minus {
     line-height: 2em;
     color: #fff;
     opacity: .75;
-    -moz-border-radius: 0 0 .75em .75em;
-    -webkit-border-radius: 0 0 .75em .75em;
     border-radius: 0 0 .75em .75em;
 }
 
@@ -472,17 +507,21 @@ table.stats-aggregate tbody span.change.minus {
 #fieldMenu, #fieldList {
     margin-bottom: 0;
 }
+
 #fieldList label {
     display: block;
     white-space: nowrap;
     padding-right: 2em;
 }
+
 #fieldList label:hover {
     background: #ccf;
 }
+
 #fieldMenu button {
     width: 100%;
 }
+
 #fieldList {
     max-height: 300px;
     min-width: 160px;
@@ -493,6 +532,7 @@ table.stats-aggregate tbody span.change.minus {
     form {
         overflow: hidden;
     }
+
     fieldset {
         display: inline-block;
         vertical-align: top;
@@ -500,14 +540,17 @@ table.stats-aggregate tbody span.change.minus {
         &:first-child {
             margin-right: 1em;
         }
+
         p {
             margin: 0 0 1em;
         }
     }
+
     footer {
         clear: left;
     }
 }
+
 .html-rtl #custom-criteria fieldset:first-child {
     margin: 0 0 0 1em;
 }
@@ -527,7 +570,7 @@ table.stats-aggregate tbody span.change.minus {
     color: @dark-gray;
     font-weight: bold;
 
-    &:after {
+    &::after {
         color: inherit;
     }
 }

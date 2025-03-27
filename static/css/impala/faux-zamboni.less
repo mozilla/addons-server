@@ -3,10 +3,18 @@
 /* >> The Magnificent CLEARFIX <<
    Lifted from html5boilerplate.com
    License is Public domain */
-.c:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
-.c { display: inline-block; }
-* html .c { height: 1%; } /* Hides from IE-mac \*/
-.c { display: block; }
+.c::after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.c {
+    display: inline-block;
+
+}
 
 #main-wrapper {
     border-top: 2px solid #fff;
@@ -42,6 +50,7 @@ a, .amo-header ul a {
     float: left;
     margin-bottom: 3em;
 }
+
 .html-rtl #site-nav ul {
     float: right;
 }
@@ -51,7 +60,7 @@ a, .amo-header ul a {
     margin-top: 0;
 }
 
-input:-moz-placeholder {
+input::placeholder {
     color: #aaa;
 }
 

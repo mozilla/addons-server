@@ -1,8 +1,9 @@
 import $ from 'jquery';
-import { _pd } from '../lib/prevent-default';
-import { formatFileSize } from '../zamboni/global';
+
 import { format } from '../lib/format';
+import { _pd } from '../lib/prevent-default';
 import { CustomFormData } from '../zamboni/form-data';
+import { formatFileSize } from '../zamboni/global';
 /* This abstracts the uploading of all files.  Currently, it's only
  * extended by addonUploader().  Eventually imageUploader() should as well */
 

@@ -1,6 +1,7 @@
 import _ from 'underscore';
-import { normalizeRange } from './dateutils';
+
 import { capabilities as originalCapabilities } from '../zamboni/capabilities';
+import { normalizeRange } from './dateutils';
 
 // Modify the URL when the page state changes, if the browser supports
 // pushState.
@@ -8,8 +9,8 @@ function updateQueryParams(view) {
   let queryParams = {};
 
   if (view.range) {
-    if (typeof range == 'string') {
-      queryParams.last = range.split(/\s+/)[0];
+    if (typeof view.range == 'string') {
+      queryParams.last = view.range.split(/\s+/)[0];
     }
   }
 

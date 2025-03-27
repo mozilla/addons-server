@@ -1,4 +1,4 @@
-@import (less) '../photon-site/base';
+@import '../photon-site/base.less';
 
 .Footer {
     background-color: #051818;
@@ -54,27 +54,28 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+
     span {
         display: none;
     }
 }
 
 .Icon-mozilla {
-    background-image: url(../../img/icons/mozilla.svg);
+    background-image: url("../../img/icons/mozilla.svg");
     height: 32px;
     width: 112px;
 }
 
 .Icon-twitter {
-    background-image: url(../../img/icons/twitter.svg);
+    background-image: url("../../img/icons/twitter.svg");
 }
 
 .Icon-instagram {
-    background-image: url(../../img/icons/instagram.svg);
+    background-image: url("../../img/icons/instagram.svg");
 }
 
 .Icon-youtube {
-    background-image: url(../../img/icons/youtube.svg);
+    background-image: url("../../img/icons/youtube.svg");
 }
 
 .Footer-amo-links {
@@ -118,7 +119,8 @@
     .Footer-link-social {
         display: inline-block;
         margin-right: 20px;
-        html[dir=rtl] & {
+
+        html[dir="rtl"] & {
             margin-right: auto;
             margin-left: 20px;
         }
@@ -134,7 +136,8 @@
     li {
         display: inline-block;
         margin-right: 30px;
-        html[dir=rtl] & {
+
+        html[dir="rtl"] & {
             margin-right: auto;
             margin-left: 30px;
         }
@@ -154,7 +157,8 @@
     grid-area: copyright;
     padding-left: 0;
     padding-right: 20px;
-    html[dir=rtl] & {
+
+    html[dir="rtl"] & {
         padding-right: 0;
         padding-left: 20px;
     }
@@ -192,13 +196,11 @@
         font-size: 12px;
         font-weight: lighter;
         margin-right: 20px;
-        html[dir=rtl] & {
+
+        html[dir="rtl"] & {
             margin-right: auto;
             margin-left: 20px;
         }
     }
 
-    select {
-
-    }
 }

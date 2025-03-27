@@ -1,5 +1,7 @@
-import $ from 'jquery';
 import 'jquery.cookie';
+
+import $ from 'jquery';
+
 import { capabilities } from '../zamboni/capabilities';
 
 /**

@@ -1,6 +1,6 @@
 @import 'lib';
 
-.button, button, input[type=submit] {
+.button, button, input[type="submit"] {
     position: relative;
     padding: 6px 10px 7px;
     text-align: center;
@@ -9,9 +9,11 @@
     cursor: pointer;
     background: #5784BF;
     .gradient-two-color(#669BE1, #5784BF);
-    text-shadow: 0 1px 0 rgba(0,0,0,.5);
+
+    text-shadow: 0 1px 0 rgb(0 0 0 / 50%);
     .border-radius(6px);
     .box-shadow(0 1px rgba(0, 0, 0, 0.1), 0 -2px rgba(0, 0, 0, 0.1) inset);
+
     border: 0;
 }
 
@@ -32,38 +34,44 @@ button.bad, .button.bad, .button.developer, .button.scary { // Red
         font-size: 16px;
         .box-shadow(0 3px rgba(0, 0, 0, 0.1), 0 -4px rgba(0, 0, 0, 0.1) inset);
     }
+
     &.add { // Green
         span {
             padding-left: 16px;
-            background: url(../../img/impala/button-icons.png) no-repeat 0 3px;
+            background: url("../../img/impala/button-icons.png") no-repeat 0 3px;
         }
+
         &.prominent {
             span {
                 padding-left: 24px;
                 .sprite-pos(3, 64, 3px);
             }
+
             &.warning, &.caution {
                 span {
                     .sprite-pos(5, 64, 3px);
                 }
             }
+
             &.disabled, &.concealed, &.caution.concealed {
                 span {
                     .sprite-pos(4, 64, 3px);
                 }
             }
         }
+
         &.warning,
         &.caution {
-            background: url(../../img/impala/warning-bg.png);
+            background: url("../../img/impala/warning-bg.png");
             color: #333;
-            text-shadow: 0 -1px 0 rgba(255,255,255,.5);
+            text-shadow: 0 -1px 0 rgb(255 255 255 / 50%);
             top: 0;
 
             span {
                 .sprite-pos(2, 64, 3px);
             }
         }
+
         &.disabled,
         &.concealed,
         &.caution.concealed {
@@ -74,47 +82,57 @@ button.bad, .button.bad, .button.developer, .button.scary { // Red
             }
         }
     }
+
     &.paypal {
         .gradient-two-color(#F8EAC4, #EEC546);
-        color: rgb(51, 70, 118);
+
+        color: rgb(51 70 118);
         text-shadow: 1px 1px #EDE8BF;
         font-style: italic;
         font-family: Verdana, @sans-stack;
         background-color: #EEC546;
+
         small {
             font-size: 0.7em;
         }
+
         em {
-            color: rgb(90, 120, 168);
+            color: rgb(90 120 168);
         }
+
         &.disabled em {
             color: #919497;
         }
     }
+
     &.contribute { // Blue
         &.prominent b {
-            background: url(../../img/impala/button-icons.png) no-repeat;
+            background: url("../../img/impala/button-icons.png") no-repeat;
             padding-left: 24px;
             margin-left: -4px;
             .sprite-pos(7, 64, 4px);
         }
     }
+
     &.developer, &.scary { // Red
         span {
             margin-left: -4px;
             padding-left: 24px;
-            background: url(../../img/impala/button-icons.png) no-repeat;
+            background: url("../../img/impala/button-icons.png") no-repeat;
             .sprite-pos(6, 64, 3px);
         }
     }
+
     &.watch:not(.watching) { // Orange
         background: #ea0;
         .gradient-two-color(#ea0, darken(#ea0, 10%));
     }
+
     &.platform {
         display: none;
     }
 }
+
 .html-rtl {
     .button {
         &.add {
@@ -122,6 +140,7 @@ button.bad, .button.bad, .button.developer, .button.scary { // Red
                 background-position: 93px 3px;
                 padding: 0 16px 0 0;
             }
+
             &.prominent {
                 &.disabled, &.concealed, &.caution.concealed {
                     span {
@@ -129,12 +148,14 @@ button.bad, .button.bad, .button.developer, .button.scary { // Red
                     }
                 }
             }
+
             &.warning,
             &.caution {
                 span {
                     .sprite-pos-right(2, 64, 3px);
                 }
             }
+
             &.disabled,
             &.concealed,
             &.caution.concealed {
@@ -143,11 +164,13 @@ button.bad, .button.bad, .button.developer, .button.scary { // Red
                 }
             }
         }
+
         &.contribute.prominent b {
             margin: 0 -4px 0 0;
             padding: 0 24px 0 4px;
             .sprite-pos-right(7, 64, 4px);
         }
+
         &.developer, &.scary {
             span {
                 margin: 0 -4px 0 0;
@@ -156,6 +179,7 @@ button.bad, .button.bad, .button.developer, .button.scary { // Red
         }
     }
 }
+
 .button:hover,
 .button:focus,
 .button:active,
@@ -184,7 +208,7 @@ body.android.addon-details .button.platform.android:not(.concealed) {
 .button.prominent.selected {
     top: 2px;
 
-    &:before {
+    &::before {
         /* `top: 2px` creates a 2px "deadzone" making the link unclickable.
             This effectively fills the deadzone. See bug 710284. */
         content: "";
@@ -213,12 +237,15 @@ body.android.addon-details .button.platform.android:not(.concealed) {
     .install {
         display: inline-block;
     }
+
     .warning {
         font-size: 12px;
     }
+
     .extra {
         margin-top: 8px;
     }
+
     .notavail,
     .notsupported {
         color: @error-red;
@@ -226,11 +253,13 @@ body.android.addon-details .button.platform.android:not(.concealed) {
         font-size: 11px;
         margin: 0 0 4px;
     }
+
     .acr-incompat,
     .notsupported {
         color: @note-gray;
     }
-    .notsupported span:before {
+
+    .notsupported span::before {
         content: "\0B7";
         padding: 0 4px;
     }
@@ -240,7 +269,7 @@ body.android.addon-details .button.platform.android:not(.concealed) {
     display: block;
     margin-top: 4px;
 
-    &:before {
+    &::before {
         content: "";
     }
 }
@@ -254,10 +283,12 @@ body.android.addon-details .button.platform.android:not(.concealed) {
         .install-button {
             margin: 0;
         }
+
         .button.disabled,
         .button.concealed {
             display: none !important;
         }
+
         .addon-summary {
             line-height: 16px;
         }
@@ -271,6 +302,7 @@ body.android.addon-details .button.platform.android:not(.concealed) {
 .windows .button.windows {
     display: inherit;
 }
+
 .thunderbird .listing-grid .install-shell {
     display: none;
 }
@@ -281,41 +313,31 @@ button[disabled],
 .button.caution.concealed {
     background: #c1c5ca;
     .gradient-two-color(#d1d4d7, #c1c5ca);
+
     color: #919497;
     .box-shadow(0 3px rgba(0, 0, 0, 0.05), 0 -4px rgba(0, 0, 0, 0.05) inset);
-    text-shadow: 0 1px 0 rgba(255,255,255,.5);
-}
-button[disabled],
-.button.disabled,
-.button.concealed,
-.button.caution.concealed {
+
+    text-shadow: 0 1px 0 rgb(255 255 255 / 50%);
     cursor: default;
     pointer-events: none;
 }
+
 .button.CTA {
     min-width: 80px;
     padding: 25px;
     border: 0;
     border-radius: 6px;
     border-radius: .25em;
-    box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.2), inset 0 -1px 0 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 1px 0 0 rgb(0 0 0 / 20%), inset 0 -1px 0 0 rgb(0 0 0 / 30%);
     cursor: pointer;
     color: #fff !important;
-    background-color: #43a6e2 !important;
-    background-color: #277ac1 !important;
-    background-color: #81bc2e !important;
     background-color: #659324 !important;
-    background-image: -webkit-linear-gradient(top, #43a6e2, #277ac1) !important;
-    background-image: linear-gradient(to bottom, #43a6e2, #277ac1) !important;
-    background-image: -webkit-linear-gradient(top, #81bc2e, #659324) !important;
     background-image: linear-gradient(to bottom, #81bc2e, #659324) !important;
     background-repeat: repeat-x !important;
-    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#81bc2e', endColorstr='#659324', GradientType=0)";
-    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#43a6e2', endColorstr='#277ac1', GradientType=0)";
+    filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#81bc2e', endColorstr='#659324', GradientType=0)";
+    filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#43a6e2', endColorstr='#277ac1', GradientType=0)";
     text-decoration: none;
-    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
-    font-family: 'Open Sans', X-LocaleSpecific, sans-serif;
-    -webkit-transition: all linear .25s;
+    text-shadow: 0 1px 0 rgb(0 0 0 / 25%);
     transition: all linear .25s;
     text-align: center;
     font-size: 25px;

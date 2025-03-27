@@ -1,14 +1,11 @@
 #global-header-tab a {
     display: block;
     float: right;
+    color: #fff;
 }
 
 .html-rtl #global-header-tab a {
     float: left;
     margin: 0 16px 0 0;
-}
-
-#global-header-tab a {
-    color: #fff;
 }
 

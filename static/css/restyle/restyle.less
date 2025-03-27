@@ -1,5 +1,6 @@
 // Needed for hovercards
-@import (less) '../impala/hovercards';
+@import '../impala/hovercards.less';
+@import '../photon-site/base.less';
 
 // Colors
 @primary-blue: rgba(12, 153, 213, 1);
@@ -60,6 +61,7 @@ h1,
 #masthead h1 {
   font-family: @primary-font;
 }
+
 #masthead h1 a {
   color: @link-on-color-bg;
 }
@@ -84,7 +86,7 @@ hgroup h2.collection,
   font-style: normal;
 }
 
-masthead.submit-theme,
+#masthead.submit-theme,
 #collections-landing {
   margin-top: 20px;
 }
@@ -151,6 +153,7 @@ button.link:active span {
 
 .header-bg {
   background-color: #0c99d5;
+
   /*
     Main Content Wrapper Background - General
     blue-pattern, blue-gradient, white overlay
@@ -164,17 +167,17 @@ button.link:active span {
     ),
     linear-gradient(
       to bottom,
-      rgba(12, 153, 213, 0) 0,
+      rgb(12 153 213 / 0%) 0,
       @primary-blue 500px,
       #fff 0%
     ),
     repeating-linear-gradient(
       118deg,
-      rgba(12, 153, 213, 0) 0,
+      rgb(12 153 213 / 0%) 0,
       #00a7e0 550px,
-      rgba(12, 153, 213, 0) 550px,
+      rgb(12 153 213 / 0%) 550px,
       #00a7e0 800px,
-      rgba(12, 153,213, 0) 800px,
+      rgb(12 153 213 / 0%) 800px,
       #00a7e0 950px
     );
   background-position:
@@ -209,17 +212,17 @@ button.link:active span {
     ),
     linear-gradient(
       to bottom,
-      rgba(12, 153, 213, 0) 0,
+      rgb(12 153 213 / 0%) 0,
       @primary-blue 500px,
       @primary-blue 0%
     ),
     repeating-linear-gradient(
       118deg,
-      rgba(12, 153, 213, 0) 0,
+      rgb(12 153 213 / 0%) 0,
       #00a7e0 550px,
-      rgba(12, 153, 213, 0) 550px,
+      rgb(12 153 213 / 0%) 550px,
       #00a7e0 800px,
-      rgba(12, 153, 213, 0) 800px,
+      rgb(12 153 213 / 0%) 800px,
       #00a7e0 950px
     );
   background-position:
@@ -230,6 +233,7 @@ button.link:active span {
 
 .amo-header {
   margin-bottom: 0;
+  font-family: inherit;
 }
 
 .amo-header-wrapper {
@@ -252,10 +256,6 @@ button.link:active span {
   overflow: hidden;
 }
 
-.amo-header {
-  font-family: inherit;
-}
-
 body:not(.home) .amo-header,
 .addon-details .header-bg,
 .home .header-bg {
@@ -268,10 +268,6 @@ body:not(.home) .amo-header,
 
 #site-nav ul {
   margin-bottom: 0;
-}
-
-.menu-nav {
-  color: @link-on-color-bg;
 }
 
 .amo-header ul a {
@@ -321,7 +317,7 @@ body:not(.home) .amo-header,
     color: @link-on-color-bg;
     outline: none;
 
-    &:before {
+    &::before {
       background-image: none;
     }
 
@@ -345,7 +341,7 @@ body:not(.home) .amo-header,
     }
 
     // arrow
-    > ul:after {
+    > ul::after {
       left: 10px;
 
       .html-rtl & {
@@ -354,7 +350,7 @@ body:not(.home) .amo-header,
       }
     }
 
-    &:hover:after {
+    &:hover::after {
       top: 25px;
       left: 1px;
       height: 10px;
@@ -407,6 +403,8 @@ body:not(.home) .amo-header,
 }
 
 .menu-nav {
+  color: @link-on-color-bg;
+
   a {
     color: #000;
   }
@@ -425,12 +423,12 @@ body:not(.home) .amo-header,
       background-color: #fff;
       border: 0;
       border-radius: 0;
-      box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 0 4px rgb(0 0 0 / 40%);
       top: 25px;
 
       // Menu Panel triangle
-      &:after {
-        box-shadow: -2px -2px 2px rgba(0, 0, 0, 0.1);
+      &::after {
+        box-shadow: -2px -2px 2px rgb(0 0 0 / 10%);
         content: '';
         display: block;
         position: absolute;
@@ -450,7 +448,7 @@ body:not(.home) .amo-header,
       box-shadow: none;
     }
 
-    &:hover:after {
+    &:hover::after {
       background: #fff;
       content: '';
       height: 16px;
@@ -459,43 +457,25 @@ body:not(.home) .amo-header,
       z-index: 62;
     }
 
-    &.nomenu:hover:after {
+    &.nomenu:hover::after {
       display: none;
     }
   }
 }
 
 #aux-nav > ul > li {
-  > ul:after {
-    right: 10px;
-
-    .html-rtl & {
-      left: 10px;
-      right: auto;
-    }
-  }
-
-  &:hover:after {
-    top: 32px;
-    right: 1px;
-    height: 10px;
-  }
-}
-
-// Top Menu
-#aux-nav > ul > li {
   // Other Applications Panel triangle position
-  ul:after {
+  ul::after {
     left: auto;
     right: 15px;
   }
 
   // Other Applications Menu Arrow
-  a:after {
+  a::after {
     display: none;
   }
 
-  &:not(:first-child):before {
+  &:not(:first-child)::before {
     background: linear-gradient(
       to bottom,
       transparent 0%,
@@ -504,6 +484,21 @@ body:not(.home) .amo-header,
       #fff 80%,
       transparent 80%
     );
+  }
+
+  > ul::after {
+    right: 10px;
+
+    .html-rtl & {
+      left: 10px;
+      right: auto;
+    }
+  }
+
+  &:hover::after {
+    top: 32px;
+    right: 1px;
+    height: 10px;
   }
 }
 
@@ -548,7 +543,7 @@ body:not(.home) .amo-header,
   }
 
   .close {
-    background-image: url(../../img/impala/banner-close-style-refresh.png);
+    background-image: url("../../img/impala/banner-close-style-refresh.png");
     color: @default-font-color;
 
     &:focus,
@@ -570,25 +565,25 @@ body:not(.home) .amo-header,
 
   &.warning {
     background-color: #fd9;
-    border-color: #664400;
+    border-color: #640;
   }
 }
 
 #try-new-frontend {
-  background: url(../../img/zamboni/promo-background.png) #202340;
+  background: url("../../img/zamboni/promo-background.png") #202340;
   border: none;
   border-radius: 0;
   color: #fff;
   font-size: 17px;
   font-weight: 600;
   line-height: 26px;
-  margin: -12px 0 12px 0;  // header_bg has a 12px bottom margin.
+  margin: -12px 0 12px;  // header_bg has a 12px bottom margin.
   padding: 17px 80px;
 
   .close {
     background-color: #FFF;
     background-image: none;  // override default to use our svg mask instead.
-    mask: url(../../img/impala/x.svg) no-repeat 50% 50%;
+    mask: url("../../img/impala/x.svg") no-repeat 50% 50%;
     right: 24px;
     width: 13px;
     height: 13px;
@@ -636,7 +631,7 @@ body:not(.home) .amo-header,
   }
 
   #monthly {
-    background-image: url(../../img/zamboni/discovery_pane/promos-refresh/carousel-1.png);
+    background-image: url("../../img/zamboni/discovery_pane/promos-refresh/carousel-1.png");
 
     h2,
     h3,
@@ -651,7 +646,7 @@ body:not(.home) .amo-header,
   .promo-purple,
   #holiday,
   #travel {
-    background-image: url(../../img/zamboni/discovery_pane/promos-refresh/carousel-2.png);
+    background-image: url("../../img/zamboni/discovery_pane/promos-refresh/carousel-2.png");
 
     h2,
     h3,
@@ -680,11 +675,28 @@ body:not(.home) .amo-header,
   }
 
   .promo-gray {
-    background-image: url(../../img/zamboni/discovery_pane/promos-refresh/carousel-gray.png);
+    background-image: url("../../img/zamboni/discovery_pane/promos-refresh/carousel-gray.png");
   }
 
   .promo-test-pilot {
     background: none;
+  }
+
+  .prev {
+    left: 0;
+  }
+
+  .next {
+    right: 0;
+  }
+
+  h2, h3 {
+    font-family: inherit;
+    font-style: normal;
+  }
+
+  .promo {
+    background-size: cover;
   }
 }
 
@@ -692,7 +704,6 @@ body:not(.home) .amo-header,
 #promos li > div,
 #promos > div,
 #promos .feature {
-  border-radius: 0;
   border-radius: 0;
 }
 
@@ -741,6 +752,7 @@ body:not(.home) .amo-header,
 
   .wrap > div  {
     max-height: 160px;
+    display: block;
   }
 }
 
@@ -755,16 +767,16 @@ body:not(.home) .amo-header,
 #promos .control,
 .carousel > a {
   &:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: rgba(255, 255, 255, 0.3);
+    background: rgb(255 255 255 / 10%);
+    color: rgb(255 255 255 / 30%);
   }
 
-  &:after {
+  &::after {
     background: none;
     border: 0;
     border-radius: 0;
     box-shadow: none;
-    color: rgba(255, 255, 255, 1);
+    color: rgb(255 255 255 / 100%);
     font-family: @primary-font;
     height: 100%;
     line-height: 260px;
@@ -774,32 +786,6 @@ body:not(.home) .amo-header,
 
 .restyle .control {
   font-family: @primary-font;
-}
-
-#promos {
-  .prev {
-    left: 0;
-  }
-
-  .next {
-    right: 0;
-  }
-
-  h2, h3 {
-    font-family: inherit;
-    font-style: normal;
-  }
-
-  .promo {
-    background-size: cover;
-  }
-}
-
-// Featured/Monthly Add-on Carousel Element
-// move icon to the left
-#featured-addon .wrap > div,
-#monthly .wrap > div {
-  display: block;
 }
 
 #featured-addon .blurb,
@@ -819,7 +805,7 @@ body:not(.home) .amo-header,
 #monthly > div,
 .addons li > a {
   background: none;
-  background-color: rgba(255, 255, 255, 0);
+  background-color: rgb(255 255 255 / 0%);
   border: 0;
   border-radius: 0;
   box-shadow: none;
@@ -829,7 +815,7 @@ body:not(.home) .amo-header,
 .addons li > a:active,
 .addons li > a:focus,
 .addons li > a:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgb(255 255 255 / 20%);
   box-shadow: none;
   transition-property: background-color;
 
@@ -916,12 +902,12 @@ button.button,
 .button,
 a.button:link,
 a.button:visited,
-input:not(.upvotes):not(.downvotes)[type="submit"] {
+input:not(.upvotes, .downvotes)[type="submit"] {
   background: #5784bf;
   border: none;
   border-radius: 3px;
-  box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.10),
-       inset 0 -2px 0 0 rgba(0, 0, 0, 0.10);
+  box-shadow: 0 2px 0 0 rgb(0 0 0 / 10%),
+       inset 0 -2px 0 0 rgb(0 0 0 / 10%);
   box-sizing: border-box;
   color: #fff;
   font-family: @primary-font;
@@ -937,8 +923,8 @@ input:not(.upvotes):not(.downvotes)[type="submit"] {
   &.add,
   &.button-green {
     background: #57bd35;
-    box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.10),
-          inset 0 -2px 0 0 rgba(56, 136, 30, 0.50);
+    box-shadow: 0 2px 0 0 rgb(0 0 0 / 10%),
+          inset 0 -2px 0 0 rgb(56 136 30 / 50%);
 
     &.button-red {
       background: @button-red-dark;
@@ -947,7 +933,7 @@ input:not(.upvotes):not(.downvotes)[type="submit"] {
     span:not(.os) {
       border: none;
       margin: 0;
-      background: url(../../img/impala/button-icons.png) no-repeat 0 -191px;
+      background: url("../../img/impala/button-icons.png") no-repeat 0 -191px;
       padding: 0 0 0 24px;
 
       .html-rtl & {
@@ -971,6 +957,7 @@ input:not(.upvotes):not(.downvotes)[type="submit"] {
   &.delete-button,
   &.developer {
     background: #bc2b1a;
+
     span {
       background-position: 0 -383px;
 
@@ -984,14 +971,14 @@ input:not(.upvotes):not(.downvotes)[type="submit"] {
   &:disabled,
   &.concealed {
     background: #ccc;
-    box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.10),
-          inset 0 -2px 0 0 rgba(136, 136, 136, 0.50);
+    box-shadow: 0 2px 0 0 rgb(0 0 0 / 10%),
+          inset 0 -2px 0 0 rgb(136 136 136 / 50%);
     color: #919497;
     text-shadow: none;
 
     &:hover {
-      box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.10),
-           inset 0 -2px 0 0 rgba(0, 0, 0, 0.10);
+      box-shadow: 0 2px 0 0 rgb(0 0 0 / 10%),
+           inset 0 -2px 0 0 rgb(0 0 0 / 10%);
     }
 
     &:active {
@@ -1014,9 +1001,9 @@ input:not(.upvotes):not(.downvotes)[type="submit"] {
   &.selected,
   &:hover,
   &:focus {
-    box-shadow: 0 2px rgba(0, 0, 0, 0.1),
-          inset 0 -2px rgba(0, 0, 0, 0.1),
-          inset 0 0 100px rgba(255, 255, 255, 0.2);
+    box-shadow: 0 2px rgb(0 0 0 / 10%),
+          inset 0 -2px rgb(0 0 0 / 10%),
+          inset 0 0 100px rgb(255 255 255 / 20%);
   }
 
   &:active {
@@ -1028,7 +1015,7 @@ input:not(.upvotes):not(.downvotes)[type="submit"] {
   &.installer.caution,
   &.caution:not(.concealed),
   &.warning:not(.concealed) {
-    background-image: url(../../img/impala/warning-bg.png);
+    background-image: url("../../img/impala/warning-bg.png");
     color: #333 !important;
 
     span,
@@ -1053,7 +1040,7 @@ input:not(.upvotes):not(.downvotes)[type="submit"] {
 .sidebar button {
   width: 100%;
 
-  &#commit:before {
+  &#commit::before {
     top: 12px;
   }
 }
@@ -1085,7 +1072,7 @@ a.button.release-theme-lock {
 
   &:hover,
   &:focus {
-    box-shadow: inset 0 0 100px rgba(255, 255, 255, 0.2);
+    box-shadow: inset 0 0 100px rgb(255 255 255 / 20%);
   }
 
   &:active {
@@ -1129,6 +1116,7 @@ body:not(.developer-hub) section.secondary {
   .highlight {
     padding: 7px 0 0;
   }
+
   width: 180px;
 }
 
@@ -1171,9 +1159,9 @@ body:not(.developer-hub) section.secondary {
 }
 
 #footer {
-  background-color: rgba(12, 153, 213, 1);
+  background-color: rgb(12 153 213 / 100%);
   color: #666;
-  padding: 60px 0 5px 0;
+  padding: 60px 0 5px;
   width: 100%;
 
   .links-footer a {
@@ -1214,6 +1202,106 @@ body:not(.developer-hub) section.secondary {
   .extra .button.disabled.not-available {
     padding: 5px 5px 5px 25px;
   }
+
+  .primary:first-of-type {
+    min-height: 257px;
+  }
+
+  .secondary.addon-vitals {
+    position: relative;
+    z-index: 1;
+  }
+
+  .install-wrapper .install-button a.button.download {
+    margin-bottom: 10px;
+  }
+
+  .version-number,
+  h4.author,
+  h4.author a,
+  a.eula,
+  a.privacy-policy,
+  a.webext-permissions,
+  .notice h3,
+  .notice p,
+  .notice p a,
+  .notice p b,
+  .warning a,
+  #addon-summary,
+  #weekly-downloads .stats,
+  #reviews-link,
+  #daily-users a {
+    color: @link-on-color-bg;
+  }
+
+  h4.author a,
+  a.privacy-policy,
+  a.webext-permissions,
+  a.eula,
+  .vital a,
+  .warning a,
+  #contribution.notice p a,
+  #reviews-link {
+    text-decoration: underline;
+  }
+
+  #weekly-downloads .stats {
+    font-size: 1rem;
+  }
+
+  .version-number {
+    font-size: 0.39em;
+
+    .html-rtl& {
+      margin: 15px 4px 0;
+    }
+  }
+
+  .notice h3 {
+    font-style: normal;
+  }
+
+  .addon-vitals .stats {
+    background: none;
+  }
+
+  .widgets {
+    display: none;
+  }
+
+  .hovercard.addon:hover {
+    .rating a {
+      color: @link-on-white-bg;
+    }
+  }
+
+  .primary .notice {
+    background: 0;
+    border: 0;
+    border-radius: 0;
+    border-top: 1px solid rgb(255 255 255 / 30%);
+    box-shadow: none;
+    padding-bottom: 18px;
+
+    .hovercard.addon {
+      .rating b {
+        color: #fff;
+      }
+
+      &:hover,
+      &:focus {
+        .summary a h3,
+        .summary a .category.more-info,
+        .rating b {
+          color: @default-font-color;
+        }
+      }
+
+      .more .addon-summary {
+        display: none;
+      }
+    }
+  }
 }
 
 .html-rtl {
@@ -1231,22 +1319,6 @@ body:not(.developer-hub) section.secondary {
 .version-number {
   color: #ccc;
   font-size: 0.5em;
-}
-
-// first block of details - icon, name, description...
-.addon-details {
-  .primary:first-of-type {
-    min-height: 257px;
-  }
-
-  .secondary.addon-vitals {
-    position: relative;
-    z-index: 1;
-  }
-
-  .install-wrapper .install-button a.button.download {
-    margin-bottom: 10px;
-  }
 }
 
 #addon-description.prose {
@@ -1317,44 +1389,6 @@ body:not(.developer-hub) section.secondary {
   color: @link-on-white-bg;
 }
 
-/* Notice - underneath description (asking for contribution &/or showing dependencies )*/
-.addon-details {
-
-  .hovercard.addon:hover {
-    .rating a {
-      color: @link-on-white-bg;
-    }
-  }
-
-  .primary .notice {
-    background: 0;
-    border: 0;
-    border-radius: 0;
-    border-top: 1px solid rgba(255,255,255,0.3);
-    box-shadow: none;
-    padding-bottom: 18px;
-
-    .hovercard.addon {
-      .rating b {
-        color: #fff;
-      }
-
-      &:hover,
-      &:focus {
-        .summary a h3,
-        .summary a .category.more-info,
-        .rating b {
-          color: @default-font-color;
-        }
-      }
-
-      .more .addon-summary {
-        display: none;
-      }
-    }
-  }
-}
-
 // Standard pages have the default
 // text color. This is overridden for details
 // pages below.
@@ -1367,62 +1401,6 @@ h4.author a {
 h3.author .transfer-ownership {
   color: @link-on-color-bg;
   text-decoration: none;
-}
-
-// font issues on addon-details
-.addon-details {
-  .version-number,
-  h4.author,
-  h4.author a,
-  a.eula,
-  a.privacy-policy,
-  a.webext-permissions,
-  .notice h3,
-  .notice p,
-  .notice p a,
-  .notice p b,
-  .warning a,
-  #addon-summary,
-  #weekly-downloads .stats,
-  #reviews-link,
-  #daily-users a {
-    color: @link-on-color-bg;
-  }
-
-  h4.author a,
-  a.privacy-policy,
-  a.webext-permissions,
-  a.eula,
-  .vital a,
-  .warning a,
-  #contribution.notice p a,
-  #reviews-link {
-    text-decoration: underline;
-  }
-
-  #weekly-downloads .stats {
-    font-size: 1rem;
-  }
-
-  .version-number {
-    font-size: 0.39em;
-
-    .html-rtl& {
-      margin: 15px 4px 0 4px;
-    }
-  }
-
-  .notice h3 {
-    font-style: normal;
-  }
-
-  .addon-vitals .stats {
-    background: none;
-  }
-
-  .widgets {
-    display: none;
-  }
 }
 
 .restyle #promos.shown {
@@ -1510,10 +1488,10 @@ h3.author .transfer-ownership {
     position: relative;
     text-decoration: none;
 
-    &:after {
-      color: rgba(0, 0, 0, 0.125);
+    &::after {
+      color: rgb(0 0 0 / 12.5%);
       content: '\203a';
-      font-family: Georgia;
+      font-family: Georgia, @sans-stack;
       font-weight: normal;
       font-size: 18px;
       position: absolute;
@@ -1525,9 +1503,9 @@ h3.author .transfer-ownership {
       background-color: #ecf5fe;
     }
 
-    &:hover:after,
-    &:focus:after,
-    &.selected:after {
+    &:hover::after,
+    &:focus::after,
+    &.selected::after {
       color: inherit;
     }
   }
@@ -1574,8 +1552,7 @@ h3.author .transfer-ownership {
     margin: 0 auto;
     max-width: @pageWidth;
     padding: 6px 20px;
-    overflow-x: hidden;
-    overflow-y: visible;
+    overflow: hidden visible;
     position: relative;
   }
 
@@ -1589,13 +1566,13 @@ h3.author .transfer-ownership {
     }
 
     &.prev {
-      background: linear-gradient(to right, rgba(245, 245, 245, 1) 50%,
-                                            rgba(245, 245, 245, 0));
+      background: linear-gradient(to right, rgb(245 245 245 / 100%) 50%,
+                                            rgb(245 245 245 / 0%));
     }
 
     &.next {
-      background: linear-gradient(to left, rgba(245, 245, 245, 1) 50%,
-                                           rgba(245, 245, 245, 0));
+      background: linear-gradient(to left, rgb(245 245 245 / 100%) 50%,
+                                           rgb(245 245 245 / 0%));
     }
 
     &.disabled {
@@ -1624,7 +1601,7 @@ h3.author .transfer-ownership {
 
 // lightbox
 #lightbox {
-  background: rgba(0, 0, 0, 0.75);
+  background: rgb(0 0 0 / 75%);
 
   section {
     border: 0;
@@ -1674,7 +1651,6 @@ h3.author .transfer-ownership {
 }
 
 .category-landing .featured.three-col .addon.hovercard {
-
   &:hover {
     height: 320px;
     margin-bottom: -320px;
@@ -1698,7 +1674,6 @@ h3.author .transfer-ownership {
 }
 
 .category-landing .featured.three-col .addon.hovercard.feature {
-
   &:focus,
   &:hover {
     height: auto;
@@ -1740,11 +1715,11 @@ h3.author .transfer-ownership {
 }
 
 .extra .button.not-available {
-  background: #fbfbfb url(../../img/impala/no.png) 6px 50% no-repeat;
+  background: #fbfbfb url("../../img/impala/no.png") 6px 50% no-repeat;
   border: 1px solid #b1b1b1;
   border-radius: 3px;
-  box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.1),
-              inset 0 -2px 0 0 rgba(30, 30, 30, 0.25);
+  box-shadow: 0 2px 0 0 rgb(0 0 0 / 10%),
+              inset 0 -2px 0 0 rgb(30 30 30 / 25%);
   color: #b1b1b1;
   cursor: default;
   font-size: 14px;
@@ -1758,15 +1733,15 @@ h3.author .transfer-ownership {
 
 .addon.hovercard,
 .items .item.incompatible {
-
   .extra .button.not-available {
-    display: none;
-    float: right;
+    display: inline-block;
+    visibility: hidden;
   }
 
   &:focus .extra .button.not-available,
   &:hover .extra .button.not-available {
     display: block !important;
+    visibility: visible;
   }
 
   .install-shell .install {
@@ -1812,6 +1787,7 @@ h3.author .transfer-ownership {
 .notice.c.author .button-wrapper {
   float:right;
 }
+
 .html-rtl .notice.c.author .button-wrapper {
   float:right;
 }
@@ -1895,7 +1871,7 @@ h3.author .transfer-ownership {
 
 .contrib-overlay,
 .modal-overlay {
-  background: rgba(0, 0, 0, 0.7);
+  background: rgb(0 0 0 / 70%);
 }
 
 .primary.island {
@@ -1904,11 +1880,7 @@ h3.author .transfer-ownership {
 }
 
 .prettyform .listing-footer {
-  background: none;
   border-top: 0;
-}
-
-.prettyform .listing-footer {
   background: none;
 }
 
@@ -1964,7 +1936,7 @@ body.reviewer-tools {
   }
 
   .pill-nav-amo a.selected {
-    background-color: #ffffff;
+    background-color: #fff;
     color: @link-on-white-bg;
     background-image: none;
   }
@@ -1976,7 +1948,7 @@ body.reviewer-tools {
 
   #navbar ul li.top {
     border-right: 0;
-    padding: 0 30px 0;
+    padding: 0 30px;
     text-align: center;
   }
 
@@ -1984,7 +1956,7 @@ body.reviewer-tools {
     background-color: #fff;
     border: none;
     border-radius: 0;
-    box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 4px rgb(0 0 0 / 40%);
   }
 
   #navbar > ul li > ul li {
@@ -2082,7 +2054,7 @@ body.reviewer-tools {
       }
 
       li.selected a {
-        background-color: #ffffff;
+        background-color: #fff;
         border-color: #ebebeb;
         color: @default-font-color;
       }
@@ -2097,7 +2069,7 @@ body.reviewer-tools {
         border: none;
 
         .data-grid th.ordered {
-          background: #ffffff;
+          background: #fff;
         }
 
         a,
@@ -2116,7 +2088,6 @@ body.reviewer-tools {
     }
 
     #addon.primary {
-
       #addon-summary {
         a {
           color: @link-on-white-bg;
@@ -2155,7 +2126,7 @@ body.reviewer-tools {
 
           #id_action>*.on-tab {
             color: @default-font-color;
-            background-color: #ffffff;
+            background-color: #fff;
             border-top: none;
           }
 
@@ -2280,28 +2251,13 @@ body.windows .install-shell .platform.mac {
   display: none;
 }
 
-// Override weird impala styles that make hovers for incompatible add-ons
-// jump around (https://github.com/mozilla/addons-server/issues/3203)
-.addon.hovercard,
-.items .item.incompatible {
-  .extra .button.not-available {
-    display: inline-block;
-    visibility: hidden;
-  }
-
-  &:hover,
-  &:focus {
-    .extra .button.not-available {
-      visibility: visible;
-    }
-  }
-}
-
 .webext-permissions.badge {
   display: block;
+
   img {
     height: 1.1em;
     margin-right: 0.25em;
+
     .html-rtl & {
       margin-left: 0.25em;
     }
@@ -2311,31 +2267,39 @@ body.windows .install-shell .platform.mac {
 #webext-permissions {
   ul {
     margin-left: 1.5em;
+
     .html-rtl & {
       margin-right: 1.5em;
     }
+
     li {
       list-style: circle;
+
       details {
         summary {
           list-style: none;
         }
+
         li {
           list-style-type: disc;
         }
       }
-      details[open] summary:after {
+
+      details[open] summary::after {
         content: " \25b2"
       }
-      details summary:after {
+
+      details summary::after {
         content: " \25bc"
       }
     }
   }
+
   h3 {
       font-size: larger;
       margin-top: 1em;
   }
+
   .prose {
     img {
       float: left;

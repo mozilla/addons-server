@@ -35,8 +35,8 @@
     color: @color-scheme-light-text;
   }
 
-  &:before,
-  &:after {
+  &::before,
+  &::after {
     background-color: @color-scheme-light-background;
   }
 }
@@ -49,8 +49,8 @@
     color: @color-scheme-medium-text;
   }
 
-  &:before,
-  &:after {
+  &::before,
+  &::after {
     background: @color-scheme-medium-background;
   }
 }
@@ -67,8 +67,8 @@
     color: @color-scheme-dark-text;
   }
 
-  &:before,
-  &:after {
+  &::before,
+  &::after {
     background-color: @color-scheme-dark-background;
   }
 }
@@ -105,11 +105,10 @@
   padding: 0 20px 20px;
   position: relative;
   width: 100%;
-
-  box-shadow: 0 0 1px rgba(32,18,58,0.04);
-  box-shadow: 0 1px 2px rgba(34,0,51,0.04);
-  box-shadow: 0 2px 1px rgba(7,48,114,0.12);
-  box-shadow: 0 1px 6px rgba(14,13,26,0.12);
+  box-shadow: 0 0 1px rgb(32 18 58 / 4%);
+  box-shadow: 0 1px 2px rgb(34 0 51 / 4%);
+  box-shadow: 0 2px 1px rgb(7 48 114 / 12%);
+  box-shadow: 0 1px 6px rgb(14 13 26 / 12%);
 
   @media @large {
     margin: 50px auto 0;
@@ -119,7 +118,7 @@
 .DevHub-callout-copy {
   padding-right: 30px;
 
-  html[dir=rtl] & {
+  html[dir="rtl"] & {
     padding-left: 30px;
     padding-right: 0;
   }
@@ -132,11 +131,11 @@
   }
 
   .DevHub-content-copy .Button {
-    margin: 25px 0 40px 0;
+    margin: 25px 0 40px;
   }
 
   .DevHub-content-copy {
-    margin: 0 auto 40px auto;
+    margin: 0 auto 40px;
   }
 
   .DevHub-content-container {
@@ -155,7 +154,7 @@
     top: 10px;
     width: 100%;
 
-    html[dir=rtl] & {
+    html[dir="rtl"] & {
       padding-left: 0;
       padding-right: 30px;
       float: left;

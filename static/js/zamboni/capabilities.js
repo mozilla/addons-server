@@ -1,7 +1,7 @@
 function isLocalStorageAvailable() {
   try {
     return 'localStorage' in window && window['localStorage'] !== null;
-  } catch (e) {
+  } catch (_e) {
     return false;
   }
 }
@@ -9,7 +9,7 @@ function isLocalStorageAvailable() {
 function isSessionStorageAvailable() {
   try {
     return 'sessionStorage' in window && window['sessionStorage'] !== null;
-  } catch (e) {
+  } catch (_e) {
     return false;
   }
 }

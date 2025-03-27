@@ -43,90 +43,62 @@
 }
 
 .transform(@tform) {
-    -webkit-transform: @tform;
-    -moz-transform: @tform;
-    -ms-transform: @tform;
     transform: @tform;
 }
 
 .transition(@property) {
-    -moz-transition: @property;
-    -webkit-transition: @property;
     transition: @property;
 }
 
 .transition-property(@property) {
-    -moz-transition-property: @property;
-    -webkit-transition-property: @property;
     transition-property: @property;
 }
 
 .transition-duration(@duration:2s) {
-    -moz-transition-duration: @duration;
-    -webkit-transition-duration: @duration;
     transition-duration: @duration;
 }
 
 .background-size(@size) {
-    -moz-background-size: @size;
-    -wekbkit-background-size: @size;
     background-size: @size;
 }
 .background-size(@size, @size2) {
-    -moz-background-size: @size, @size2;
-    -wekbkit-background-size: @size, @size2;
     background-size: @size, @size2;
 }
 
 .box-shadow(@shadow) {
     box-shadow: @shadow;
-    -moz-box-shadow: @shadow;
-    -webkit-box-shadow: @shadow;
 }
 .box-shadow(@shadow, @shadow2) {
     box-shadow: @shadow, @shadow2;
-    -moz-box-shadow: @shadow, @shadow2;
-    -webkit-box-shadow: @shadow, @shadow2;
 }
 .box-shadow(@shadow, @shadow2, @shadow3) {
     box-shadow: @shadow, @shadow2, @shadow3;
-    -moz-box-shadow: @shadow, @shadow2, @shadow3;
-    -webkit-box-shadow: @shadow, @shadow2, @shadow3;
 }
 
 .columns(@count, @gap: 1em) {
     column-count: @count;
-    -moz-column-count: @count;
-    -webkit-column-count: @count;
     column-gap: @gap;
-    -moz-column-gap: @gap;
-    -webkit-column-gap: @gap;
 }
 
 .height-calc(@calc, @fallback) {
     height: @fallback;
-    height: -moz-calc(@calc);
-    height: -webkit-calc(@calc);
+    height: calc(@calc);
+    height: calc(@calc);
     height: calc(@calc);
 }
 
 .width-calc(@calc, @fallback) {
     width: @fallback;
-    width: -moz-calc(@calc);
-    width: -webkit-calc(@calc);
+    width: calc(@calc);
+    width: calc(@calc);
     width: calc(@calc);
 }
 
 .border-box() {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
 
 .animation(@animation) {
-    -webkit-animation: @animation;
-    -moz-animation: @animation;
-    -ms-animation: @animation;
     animation: @animation;
 }
 
@@ -139,7 +111,7 @@
 .gradient-two-color(@color1, @color2) {
     background-image: -webkit-gradient(linear, left bottom, left top, from(@color1), to(@color2));
     background-image: linear-gradient(@color1, @color2);
-    background-image: -webkit-linear-gradient(@color1, @color2);
+    background-image: linear-gradient(@color1, @color2);
 }
 
 .gradient-two-color(@color1, @color2, @fallback) {
@@ -150,27 +122,27 @@
 // Vertical sprite
 .sprite(@url, @pos, @spacing, @offset:0) {
     background: ~'url(@{url}) no-repeat';
-    background-position: 0 (@spacing * @pos * -1 + @offset) + 0px;
+    background-position: 0 (@spacing * @pos * -1 + @offset) + 0;
 }
 .sprite-pos(@pos, @spacing, @offset:0) {
-    background-position: 0 (@spacing * @pos * -1 + @offset) + 0px;
+    background-position: 0 (@spacing * @pos * -1 + @offset) + 0;
 }
 .sprite-pos-right(@pos, @spacing, @offset:0) {
-    background-position: right (@spacing * @pos * -1 + @offset) + 0px;
+    background-position: right (@spacing * @pos * -1 + @offset) + 0;
 }
 
 // Horizontal sprite
 .hsprite(@url, @pos, @spacing, @offset:0) {
     background: ~'url(@{url}) no-repeat';
-    background-position: (@spacing * @pos * -1 + @offset) + 0px 0;
+    background-position: (@spacing * @pos * -1 + @offset) + 0 0;
 }
 .hsprite-pos(@pos, @spacing, @offset:0) {
-    background-position: (@spacing * @pos * -1 + @offset) + 0px 0;
+    background-position: (@spacing * @pos * -1 + @offset) + 0 0;
 }
 
 @white-trans: fadeout(#fff, 100%);
 .checkerboard() {
-    background: -moz-repeating-linear-gradient(left, #ccc, #ccc 2px, @white-trans 2px, @white-trans 4px);
+    background: repeating-linear-gradient(left, #ccc, #ccc 2px, @white-trans 2px, @white-trans 4px);
     background: repeating-linear-gradient(to right, #ccc, #ccc 2px, @white-trans 2px, @white-trans 4px);
 }
 
@@ -187,12 +159,14 @@
         left: 0;
         top: 0;
     }
+
     .summary {
         float: left;
 
         h3 {
             font-weight: bold;
         }
+
         p.desc {
             margin-top: 0;
         }

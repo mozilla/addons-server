@@ -1,11 +1,12 @@
 import $ from 'jquery';
 import _ from 'underscore';
-import Highcharts from 'highcharts';
-import { _pd } from '../lib/prevent-default';
+
 import { format } from '../lib/format';
+import Highcharts from '../lib/highcharts-module';
+import { _pd } from '../lib/prevent-default';
 import { StatsManager } from './manager';
 
-$.fn.csvTable = function (cfg) {
+$.fn.csvTable = function () {
   $(this).each(function () {
     let $self = $(this),
       $table = $self.find('table'),

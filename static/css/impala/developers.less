@@ -5,22 +5,27 @@
         small, strong {
             display: block;
         }
+
         strong {
             font-size: 48px;
             line-height: 40px;
         }
     }
+
     #page {
         #masthead .site-title {
             margin-top: -10px;
         }
+
         #homepage {
             margin-right: 240px;
         }
+
         #devhub-sidebar {
             width: 220px;
         }
     }
+
     &.apps #page #masthead .site-title {
         margin-top: 0;
     }
@@ -54,19 +59,23 @@
     .menu-nav {
         margin-right: 0;
     }
+
     #page #homepage {
         margin: 0 0 0 240px;
     }
+
     .sidebar-breakout,
     .secondary.devhub-sidebar {
         .addon-item {
             .addon-details {
                 margin: 0 38px 10px 0;
             }
+
             img {
                 right: 0;
             }
         }
+
         ul.refinements li a,
         ul.refinements li button {
             padding: 0 10px 0 0;
@@ -96,7 +105,9 @@
     p {
         padding: 0;
     }
+
     border-bottom: 1px solid #ccc;
+
     div.item {
         border-top: 1px solid #ccc;
 
@@ -105,6 +116,7 @@
             font-weight: bold;
             padding: 1em 0;
         }
+
         p {
             color: #555;
             font-family: @sans-stack;
@@ -123,7 +135,7 @@
     li {
         border: medium none;
         padding-bottom: 1em;
-        font-family: verdana;
+        font-family: Verdana, @sans-stack;
         font-size: 11px;
 
         a {
@@ -131,11 +143,13 @@
             line-height: 13px;
         }
     }
+
     a {
         display: inline;
         padding: 0;
         margin: 0;
     }
+
     .activity-timestamp {
         display: block;
         color: @note-gray;
@@ -152,34 +166,42 @@
         padding-bottom: 10px;
         border-bottom: 1px dotted lighten(@border-blue, 7%);
         margin-bottom: 5px;
+
         .addon-name,
         .upload-new-version a {
             display: block;
         }
+
         img {
             position: absolute;
             top: 5px;
             left: 0;
         }
+
         .addon-details {
             margin-left: 38px;
             font-size: 12px;
         }
+
         p {
             margin-top: 0;
             margin-bottom: 0;
         }
+
         .more {
             padding: 3px;
         }
+
         .upload-new-version {
             font-size: 11px;
             font-weight: bold;
         }
     }
+
     .button {
         display: block;
     }
+
     #link-view-all {
         display: block;
         margin-top: 12px;
@@ -193,19 +215,15 @@
     &.island,
     > .blog-posts {
         height: 100%;
-
-        display: -webkit-flex;
         display: flex;
-
-        -webkit-flex-direction: column;
         flex-direction: column;
     }
 
     .empty-box-placeholder {
-        -webkit-justify-content: center;
         justify-content: center;
         padding: 0 2em;
     }
+
     .empty-box-placeholder,
     .empty-box-placeholder p {
         text-align: center;
@@ -223,17 +241,21 @@
         margin: 0 0 12px;
         padding: 10px;
         position: relative;
+
         img {
             left: 10px;
             position: absolute;
             top: 12px;
         }
+
         .addon-details {
             font-size: 12px;
-            margin: 0 0 5px 0px;
+            margin: 0 0 5px;
+
             li.addon-listed-status {
                 color: #444;
             }
+
             .tip {
                 border-radius: 6px;
                 font-size: 10px;
@@ -242,12 +264,14 @@
                 margin-left: 3px;
                 width: 12px;
             }
+
             li.distribution-tag-unlisted,
             li.distribution-tag-listed {
                 padding-top: 5px;
                 border-top: 1px dotted #94bfce;
             }
         }
+
         .addon-upload {
             border-top: 1px dotted #94bfce;
             font-size: 11px;
@@ -255,13 +279,16 @@
             padding-top: 5px;
         }
     }
+
     ul.refinements {
         border-bottom: 1px dotted #94bfce;
         margin-bottom: 1em;
         padding-bottom: 1em;
+
         &:last-child {
             border-bottom: none;
         }
+
         li a {
             color: #3d6db5;
             font-size: .923em;
@@ -271,21 +298,26 @@
 
         li.addon-manage a {
             display: inline;
+
             &:last-child {
                 padding-left: 0;
-                &:before {
+
+                &::before {
                     content: "\00b7";
                     padding-right: 5px;
                 }
             }
+
             &:only-child {
                 padding-left: 10px;
-                &:before {
+
+                &::before {
                     content: "";
                     padding: 0;
                 }
             }
         }
+
         li.selected a {
             background: url("../../img/zamboni/arrow-right-blue.png") 0 .5em no-repeat;
         }
@@ -310,14 +342,17 @@
         border: 1px solid @teal;
         overflow: hidden;
         .border-radius(5px);
+
         > div {
             display: table-cell;
 
             &.vf-text {
                 width: 100%;
             }
+
             &.vf-button button {
                 .border-radius(0);
+
                 border: none;
                 border-left: 1px solid @teal;
                 font-family: @sans-stack;
@@ -339,6 +374,7 @@
 /* Paypal checker */
 #id_paypal_id, #id_support_email {
     .border-box();
+
     padding-right: 20px;
     width: 250px;
 }
@@ -358,14 +394,16 @@
     width: 16px;
 
     &.pp-success {
-        background-image: url(../../img/developers/input-indicators.png);
+        background-image: url("../../img/developers/input-indicators.png");
         background-position: 16px center;
     }
+
     &.pp-unknown {
-        background-image: url(../../img/zamboni/loading-white.gif);
+        background-image: url("../../img/zamboni/loading-white.gif");
     }
+
     &.pp-error {
-        background-image: url(../../img/developers/input-indicators.png);
+        background-image: url("../../img/developers/input-indicators.png");
         background-position: 0 center;
 
         & + #paypal-id-error {
@@ -388,7 +426,7 @@
     position: relative;
     display: none;
 
-    &:before {
+    &::before {
         border-bottom: 6px solid transparent;
         border-right: 6px solid #888;
         border-top: 6px solid transparent;
@@ -405,7 +443,7 @@
 .html-rtl #paypal-id-error {
     margin: 0 -7px 0 0;
 
-    &:before {
+    &::before {
         border: 6px solid transparent;
         border-left-color: #888;
         left: auto;
@@ -429,6 +467,7 @@
         }
     }
 }
+
 .html-rtl #icon_preview {
     float: left;
     margin: 0 10px 0 0;
@@ -477,11 +516,13 @@
     span {
         float: left;
     }
+
     &:hover {
         span {
             text-decoration: underline;
         }
     }
+
     .success, .failure {
         color: #fff;
         float: right;
@@ -491,12 +532,16 @@
         margin: 4px 0 0;
         padding: 0 5px;
     }
+
     .success {
         .border-radius(5px 0 0 5px);
+
         background: #080;
     }
+
     .failure {
          .border-radius(0 5px 5px 0);
+
         background: #800;
     }
 }

@@ -1,6 +1,7 @@
 .field-addon_card > div > div.readonly {
     margin-left: 0;
 }
+
 .field-addon_card > div > label {
     display: none;
 }
@@ -10,27 +11,34 @@
     outline: 2px solid #eee;
     flex-flow: row wrap;
 }
+
 .addon-info-and-previews h2 {
     flex: 1 100%;
     font-size: 20px;
     font-weight: bold;
 }
+
 .addon_previews {
     flex: 1 220px;
 }
+
 .addon-info {
     flex: 1 auto;
 }
+
 .field-addon_card h3 {
     padding-left: 0;
 }
+
 .addon-info-and-previews caption {
     display: none;
 }
+
 form ul.user_ratings {
     margin-left: 0;
     padding-left: 0;
 }
+
 .screenshot.thumbnail {
     border: 3px solid #C9E8F3;
     float: left;
@@ -39,6 +47,7 @@ form ul.user_ratings {
     height: 150px;
     width: 200px;
 }
+
 .screenshot.thumbnail img {
     display: block;
     max-height: 150px;

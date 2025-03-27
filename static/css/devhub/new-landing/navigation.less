@@ -1,5 +1,5 @@
 .DevHub-Navigation {
-  box-shadow: 0 4px 16px rgba(12,12,13,0.1);
+  box-shadow: 0 4px 16px rgb(12 12 13 / 10%);
 
   .DevHub-Navigation-list-wrapper {
     padding: 5px @side-margin;
@@ -11,7 +11,6 @@
   }
 
   ul {
-
     display: flex;
     list-style: none;
     margin: 0;
@@ -23,7 +22,7 @@
     }
 
     li {
-      margin: 25px 0 0 0;
+      margin: 25px 0 0;
 
       @media @large {
         margin: 10px;
@@ -42,7 +41,7 @@
         margin: 0;
         flex-grow: 1;
 
-        html[dir=rtl] & {
+        html[dir="rtl"] & {
           margin: 0;
         }
       }
@@ -58,9 +57,11 @@
       &.DevHub-Navigation-Register {
         .Button {
           .button(@color-button-register-text, @color-button-register);
+
           padding-left: 15px;
           padding-right: 15px;
         }
+
         a {
           width: 100%;
         }
@@ -74,7 +75,7 @@
             width: auto;
           }
 
-          html[dir=rtl] & {
+          html[dir="rtl"] & {
             margin-right: 50px;
             margin-left: 0;
           }
@@ -129,7 +130,7 @@
           display: none;
         }
 
-        html[dir=rtl] & {
+        html[dir="rtl"] & {
           margin: 0 auto 0 0;
           padding: 0 @side-margin 0 0;
           border-width: 0 1px 0 0;
@@ -147,7 +148,7 @@
           display: none;
           border-width: 0;
 
-          html[dir=rtl] & {
+          html[dir="rtl"] & {
             border-width: 0;
           }
       }

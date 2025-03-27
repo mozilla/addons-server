@@ -1,7 +1,7 @@
 import { spawnSync } from 'child_process';
-import path from 'path';
-import fs from 'fs';
 import { parse } from 'dotenv';
+import fs from 'fs';
+import path from 'path';
 
 const rootPath = path.join(import.meta.dirname, '..', '..');
 const envPath = path.join(rootPath, '.env');
@@ -165,14 +165,9 @@ describe('docker-compose.yml', () => {
       const {
         config: { services },
       } = getConfig(inputValues);
-      for (let [name, config] of Object.entries(services)) {
+      for (let config of Object.values(services)) {
         for (let volume of config.volumes ?? []) {
-          if (!volume.bind && !volume.source) {
-            throw new Error(
-              `'.services.${name}.volumes' contains unnamed volume mount: ` +
-                `'${volume.target}'. Please use a named volume mount instead.`,
-            );
-          }
+          expect(volume.bind || volume.source).toBeTruthy();
         }
       }
     });
