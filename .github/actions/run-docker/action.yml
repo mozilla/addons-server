@@ -44,7 +44,8 @@ runs:
           OLYMPIA_UID="$(id -u)" \
           OLYMPIA_DEPS="${{ inputs.deps }}" \
           SKIP_DATA_SEED="${{ inputs.skip_data_seed }}" \
-          DOCKER_WAIT="true"
+          DOCKER_WAIT="true" \
+          DEBUG="False"
 
 
         # Exec the run command in the container

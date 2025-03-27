@@ -21,6 +21,10 @@ export FXA_CLIENT_ID ?=
 export FXA_CLIENT_SECRET ?=
 export STATIC_URL_PREFIX ?= /static-server/
 export MEDIA_URL_PREFIX ?= /user-media/
+
+SHELL_USER ?= olympia
+SHELL_ARGS ?= bash
+
 INITIALIZE_ARGS ?=
 INIT_CLEAN ?=
 INIT_LOAD ?=
@@ -108,11 +112,11 @@ update_docker: data_export up data_restore ## update all the docker images
 
 .PHONY: shell
 shell: ## connect to a running addons-server docker shell
-	docker compose exec --user olympia web bash
+	@docker compose exec --user $(SHELL_USER) web $(SHELL_ARGS)
 
 .PHONY: rootshell
 rootshell: ## connect to a running addons-server docker shell with root user
-	docker compose exec --user root web bash
+	$(MAKE) shell SHELL_USER=root SHELL_ARGS="$(SHELL_ARGS)"
 
 .PHONY: docker_compose_config
 docker_compose_config: ## Show the docker compose configuration
