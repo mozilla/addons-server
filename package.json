@@ -8,6 +8,10 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
+    "check": "run-p *:check",
+    "fix": "run-p *:fix",
+    "prettier:check": "prettier --check .",
+    "prettier:fix": "prettier --write .",
     "test": "vitest run",
     "test:watch": "vitest watch"
   },
@@ -35,6 +39,7 @@
     "glob": "^11.0.1",
     "jsdom": "^26.0.0",
     "lodash": "^4.17.21",
+    "npm-run-all": "^4.1.5",
     "prettier": "^3.5.3",
     "vite": "^6.2.0",
     "vitest": "^3.0.7",
