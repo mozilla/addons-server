@@ -35,12 +35,16 @@ runs:
       id: run
       continue-on-error: true
       shell: bash
+      env:
+        docker_build: '${{ github.event.repository.html_url }}/actions/runs/${{ github.run_id }}'
       run: |
         # Start the specified services
         make up \
           DOCKER_VERSION="${{ inputs.version }}" \
           DOCKER_DIGEST="${{ inputs.digest }}" \
           DOCKER_TARGET="${{ inputs.target }}" \
+          DOCKER_COMMIT="${{ github.sha }}" \
+          DOCKER_BUILD="${{ env.docker_build }}" \
           OLYMPIA_UID="$(id -u)" \
           OLYMPIA_DEPS="${{ inputs.deps }}" \
           SKIP_DATA_SEED="${{ inputs.skip_data_seed }}" \

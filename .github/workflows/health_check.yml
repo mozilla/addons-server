@@ -29,7 +29,6 @@ jobs:
         continue-on-error: true
         uses: ./.github/actions/run-docker
         with:
-          target: development
           version: local
           run: |
             # On local, we want to ensure there are failures to test

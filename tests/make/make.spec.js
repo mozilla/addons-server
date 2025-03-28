@@ -45,6 +45,12 @@ function getConfig(env = {}) {
   }
 }
 
+const PRODUCTION_INPUTS = {
+  DOCKER_TARGET: 'production',
+  DOCKER_BUILD: 'build',
+  DOCKER_COMMIT: 'commit',
+};
+
 function permutations(configObj) {
   return Object.entries(configObj).reduce((acc, [key, values]) => {
     if (!acc.length) return values.map((value) => ({ [key]: value }));
@@ -72,6 +78,9 @@ describe('docker-compose.yml', () => {
       DOCKER_VERSION,
       DEBUG: 'debug',
       SKIP_DATA_SEED: 'skip',
+      // For non local images, we need to use valid production inputs
+      // For setup.py validation to work
+      ...(DOCKER_VERSION == 'latest' ? PRODUCTION_INPUTS : {}),
     };
 
     it('.services.(web|worker) should have the correct configuration', () => {
@@ -80,7 +89,9 @@ describe('docker-compose.yml', () => {
           services: { web, worker },
         },
         env: { DOCKER_TAG },
-      } = getConfig(inputValues);
+      } = getConfig({
+        ...inputValues,
+      });
 
       for (let service of [web, worker]) {
         expect(service.image).toStrictEqual(DOCKER_TAG);
@@ -176,26 +187,6 @@ describe('docker-compose.yml', () => {
         }
       }
     });
-
-    const EXCLUDED_KEYS = ['DOCKER_COMMIT', 'DOCKER_VERSION', 'DOCKER_BUILD'];
-    // This test ensures that we do NOT include environment variables that are used
-    // at build time in the container. Cointainer environment variables are dynamic
-    // and should not be able to deviate from the state at build time.
-    it('.services.(web|worker).environment excludes build info variables', () => {
-      const {
-        config: {
-          services: { web, worker },
-        },
-      } = getConfig({
-        ...inputValues,
-        ...Object.fromEntries(EXCLUDED_KEYS.map((key) => [key, 'filtered'])),
-      });
-      for (let service of [web, worker]) {
-        for (let key of EXCLUDED_KEYS) {
-          expect(service.environment).not.toHaveProperty(key);
-        }
-      }
-    });
   });
 
   // these keys require special handling to prevent runtime errors in make setup
@@ -208,6 +199,11 @@ describe('docker-compose.yml', () => {
     'OLYMPIA_UID',
     // Ignored because the HOST_UID is always set to the host user's UID
     'HOST_UID',
+  ];
+  const productionKeys = [
+    // Keys require specific additional inputs for validation
+    'DOCKER_VERSION',
+    'DOCKER_DIGEST',
   ];
   const defaultEnv = runSetup();
   const customValue = 'custom';
@@ -236,8 +232,27 @@ describe('docker-compose.yml', () => {
             );
           }
         });
-      } else {
+      } else if (productionKeys.includes(key)) {
         it('variable should be overriden based on the input', () => {
+          const {
+            config: {
+              services: { web, worker },
+            },
+          } = getConfig({
+            ...defaultEnv,
+            ...PRODUCTION_INPUTS,
+            [key]: customValue,
+          });
+          for (let service of [web, worker]) {
+            expect(service.environment).toEqual(
+              expect.objectContaining({
+                [key]: customValue,
+              }),
+            );
+          }
+        });
+      } else {
+        it('variable should be overriden based on the input and valid production inputs', () => {
           const {
             config: {
               services: { web, worker },
@@ -297,20 +312,29 @@ describe('docker-bake.hcl', () => {
 
   it('renders custom DOCKER_VERSION', () => {
     const version = 'version';
-    const output = getBakeConfig({ DOCKER_VERSION: version });
+    const output = getBakeConfig({
+      ...PRODUCTION_INPUTS,
+      DOCKER_VERSION: version,
+    });
     expect(output).toContain(`"DOCKER_VERSION": "${version}"`);
     expect(output).toContain(`mozilla/addons-server:${version}`);
   });
 
   it('renders custom DOCKER_DIGEST', () => {
     const digest = 'sha256:digest';
-    const output = getBakeConfig({ DOCKER_DIGEST: digest });
+    const output = getBakeConfig({
+      ...PRODUCTION_INPUTS,
+      DOCKER_DIGEST: digest,
+    });
     expect(output).toContain(`mozilla/addons-server@${digest}`);
   });
 
   it('renders custom target', () => {
     const target = 'target';
-    const output = getBakeConfig({ DOCKER_TARGET: target });
+    const output = getBakeConfig({
+      ...PRODUCTION_INPUTS,
+      DOCKER_TARGET: target,
+    });
     expect(output).toContain(`"target": "${target}"`);
   });
 });
