@@ -56,29 +56,18 @@ class Fetcher:
     def version(self):
         return self._fetch('__version__')
 
-    def heartbeat(self):
-        return self._fetch('__heartbeat__')
-
     def monitors(self):
-        return self._fetch('services/__heartbeat__')
+        return self._fetch('services/monitor.json')
 
 
 def main(env: ENV_ENUM, verbose: bool = False, retries: int = 0, attempt: int = 0):
     fetcher = Fetcher(env, verbose)
 
     version_data = fetcher.version()
-    heartbeat_data = fetcher.heartbeat()
     monitors_data = fetcher.monitors()
 
-    combined_data = {
-        'heartbeat': heartbeat_data,
-        'monitors': monitors_data,
-    }
-
     has_failures = any(
-        monitor['state'] is False
-        for data in combined_data.values()
-        for monitor in data.get('data', {}).values()
+        monitor['state'] is False for monitor in monitors_data.get('data', {}).values()
     )
 
     if has_failures and attempt < retries:
@@ -90,7 +79,6 @@ def main(env: ENV_ENUM, verbose: bool = False, retries: int = 0, attempt: int = 
 
     results = {
         'version': version_data,
-        'heartbeat': heartbeat_data,
         'monitors': monitors_data,
     }
 

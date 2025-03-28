@@ -1,0 +1,101 @@
+[
+  {
+    "elements": [
+      {
+        "elements": [
+          {
+            "name": "x",
+            "type": "emoji"
+          },
+          {
+            "style": {
+              "bold": true
+            },
+            "text": "Health Check Alert: ",
+            "type": "text"
+          },
+          {
+            "text": "Issues Detected",
+            "type": "text"
+          }
+        ],
+        "type": "rich_text_section"
+      }
+    ],
+    "type": "rich_text"
+  },
+  {
+    "elements": [
+      {
+        "elements": [
+          {
+            "style": {
+              "bold": true
+            },
+            "text": "Monitors:",
+            "type": "text"
+          }
+        ],
+        "type": "rich_text_section"
+      },
+      {
+        "border": 1,
+        "elements": [
+          {
+            "elements": [
+              {
+                "style": {
+                  "bold": true
+                },
+                "text": "cinder: ",
+                "type": "text"
+              },
+              {
+                "text": "cinder is down",
+                "type": "text"
+              }
+            ],
+            "type": "rich_text_section"
+          },
+          {
+            "elements": [
+              {
+                "style": {
+                  "bold": true
+                },
+                "text": "memcache: ",
+                "type": "text"
+              },
+              {
+                "text": "Service is down",
+                "type": "text"
+              }
+            ],
+            "type": "rich_text_section"
+          }
+        ],
+        "indent": 0,
+        "style": "bullet",
+        "type": "rich_text_list"
+      }
+    ],
+    "type": "rich_text"
+  },
+  {
+    "elements": [
+      {
+        "text": "Version: 1.0.0 |",
+        "type": "mrkdwn"
+      },
+      {
+        "text": "<http://nginx/__version__|Version> |",
+        "type": "mrkdwn"
+      },
+      {
+        "text": "<http://nginx/services/monitor.json|Monitors> |",
+        "type": "mrkdwn"
+      }
+    ],
+    "type": "context"
+  }
+]

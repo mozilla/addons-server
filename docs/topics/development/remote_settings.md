@@ -86,7 +86,7 @@ At this point, AMO should be able to authenticate to Remote Settings. This can
 be verified with the following command:
 
 ```
-curl http://olympia.test/services/__heartbeat__
+curl http://olympia.test/services/monitor.json
 {
     "cinder": {
         "state": true,

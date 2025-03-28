@@ -49,7 +49,7 @@ server {
         try_files $uri @olympia;
     }
 
-    location ~ ^/(__version__|__heartbeat__)(\?.*)?$ {
+    location ~ ^/(__version__|__heartbeat__|services/monitor.json)(\?.*)?$ {
         try_files $uri @olympia;
     }
 
