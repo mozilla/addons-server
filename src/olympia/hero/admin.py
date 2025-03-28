@@ -22,14 +22,15 @@ class ImageChoiceField(forms.ModelChoiceField):
         )
 
 
-class PrimaryHeroInline(admin.StackedInline):
+class PrimaryHeroAdmin(AMOModelAdmin):
     class Media:
         css = {'all': (vite_asset('css/admin-discovery.less'),)}
 
     model = PrimaryHero
     fields = (
         'description',
-        'promoted_addon',
+        'addon',
+        'promoted_group',
         'select_image',
         'gradient_color',
         'is_external',

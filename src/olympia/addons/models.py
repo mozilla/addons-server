@@ -1557,8 +1557,7 @@ class Addon(OnChangeMixin, ModelBase):
     def promoted_groups(self, *, currently_approved=True):
         """Is the addon currently promoted for the current applications?
 
-        Returns the group constant, or NOT_PROMOTED (which is falsey)
-        otherwise.
+        Returns a queryset of PromotedGroups.
 
         `currently_approved=True` means only returns True if
         self.current_version is approved for the current promotion & apps.
@@ -1591,22 +1590,27 @@ class Addon(OnChangeMixin, ModelBase):
 
     @property
     def all_applications(self):
-        from olympia.addons.serializers import APP_IDS
-        from olympia.constants.applications import APP_USAGE
-
-        apps = self.promotedaddonpromotion.values_list('application_id', flat=True)
-
-        return (
-            [APP_IDS.get(app_id) for app_id in apps]
-            if apps
-            else [app for app in APP_USAGE]
-        )
+        return self.all_applications_for()
 
     @property
     def approved_applications(self):
         """All the applications that the current addon is approved for,
         for the current version."""
         return self.approved_applications_for()
+
+    def all_applications_for(self, promoted_group=None):
+        from olympia.addons.serializers import APP_IDS
+        from olympia.constants.applications import APP_USAGE
+
+        apps = self.promotedaddonpromotion.filter(
+            **({'promoted_group': promoted_group} if promoted_group else {}),
+        ).values_list('application_id', flat=True)
+
+        return (
+            [APP_IDS.get(app_id) for app_id in apps]
+            if apps
+            else [app for app in APP_USAGE]
+        )
 
     def approved_applications_for(self, promoted_group=None):
         """The applications that the given promoted group is approved for,
@@ -1622,6 +1626,15 @@ class Addon(OnChangeMixin, ModelBase):
             ).approved_applications
             if version in self.all_applications
         ]
+
+    def approve_for_version(self, version, promoted_groups=None):
+        """Create PromotedAddonVersion for current applications in the given
+        promoted groups. If none are given, approve all promotions."""
+        promotions = self.promotedaddonpromotion.filter(
+            **({'promoted_group__in': promoted_groups} if promoted_groups else {}),
+        )
+        for promotion in promotions:
+            promotion.approve_for_version(version)
 
     def _promoted_addon_versions(self, version=None, promoted_group=None):
         """

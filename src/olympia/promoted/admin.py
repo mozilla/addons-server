@@ -4,29 +4,29 @@ from django.forms.models import modelformset_factory
 
 from olympia.addons.models import Addon
 from olympia.amo.admin import AMOModelAdmin
-from olympia.hero.admin import PrimaryHeroInline
+from olympia.hero.models import PrimaryHero
 from olympia.versions.models import Version
 
 from .forms import AdminBasePromotedApprovalFormSet
-from .models import PromotedApproval
+from .models import PromotedAddonVersion
 
 
-class PromotedApprovalInlineChecks(admin.checks.InlineModelAdminChecks):
+class PromotedAddonVersionInlineChecks(admin.checks.InlineModelAdminChecks):
     def _check_relation(self, obj, parent_model):
-        """PromotedApproval doesn't have a direct FK to PromotedAddon (it's via
+        """PromotedAddonVersion doesn't have a direct FK to PromotedAddon (it's via
         Addon, Version) so we have to bypass this check.
         """
         return []
 
 
-class PromotedApprovalInline(admin.TabularInline):
-    model = PromotedApproval
+class PromotedAddonVersionInline(admin.TabularInline):
+    model = PromotedAddonVersion
     extra = 0
     max_num = 0
-    fields = ('version', 'group_id', 'application_id')
+    fields = ('version', 'promoted_group', 'application_id')
     can_delete = True
     view_on_site = False
-    checks_class = PromotedApprovalInlineChecks
+    checks_class = PromotedAddonVersionInlineChecks
 
     def has_add_permission(self, request, obj=None):
         return False
@@ -52,26 +52,26 @@ class PromotedApprovalInline(admin.TabularInline):
         if not self.instance:
             return self.model.objects.none()
         qs = super().get_queryset(request)
-        qs = qs.filter(version__addon__promotedaddon=self.instance).order_by(
-            '-version_id'
-        )
+        qs = qs.filter(
+            version__addon=self.instance.addon,
+            application_id=self.instance.application_id,
+        ).order_by('-version_id')
         return qs
 
 
-class PromotedAddonAdmin(AMOModelAdmin):
+class PromotedAddonPromotionAdmin(AMOModelAdmin):
     list_display = (
         'addon__name',
-        'group_id',
+        'promoted_group',
         'application_id',
         'is_approved',
         'primary_hero_shelf',
     )
     view_on_site = False
     raw_id_fields = ('addon',)
-    fields = ('addon', 'group_id', 'application_id')
-    list_filter = ('group_id', 'application_id')
-    inlines = (PromotedApprovalInline, PrimaryHeroInline)
-    list_select_related = ('primaryhero',)
+    fields = ('addon', 'promoted_group', 'application_id')
+    list_filter = ('promoted_group', 'application_id')
+    inlines = (PromotedAddonVersionInline,)
 
     @classmethod
     def _transformer(self, objs):
@@ -109,10 +109,10 @@ class PromotedAddonAdmin(AMOModelAdmin):
     addon__name.short_description = 'Addon'
 
     def is_approved(self, obj):
-        apps = obj.approved_applications
+        apps = obj.addon.approved_applications_for(obj.promoted_group)
         if not apps:
             return False
-        elif apps == obj.all_applications:
+        elif apps == obj.addon.all_applications_for(obj.promoted_group):
             return True
         else:
             # return None when there are some apps approved but not all.
@@ -138,8 +138,12 @@ class PromotedAddonAdmin(AMOModelAdmin):
         return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
     def has_delete_permission(self, request, obj=None):
-        qs = PrimaryHeroInline.model.objects.filter(enabled=True)
         shelf = getattr(obj, 'primaryhero', None)
+        addon = getattr(obj, 'addon', None)
+        promoted_group = getattr(obj, 'promoted_group', None)
+        qs = PrimaryHero.objects.filter(
+            addon=addon, promoted_group=promoted_group, enabled=True
+        )
         if shelf and shelf.enabled and qs.count() == 1:
             return False
         return super().has_delete_permission(request=request, obj=obj)

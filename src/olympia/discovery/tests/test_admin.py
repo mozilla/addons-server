@@ -12,8 +12,15 @@ from olympia import amo
 from olympia.amo.reverse import django_reverse
 from olympia.amo.tests import TestCase, addon_factory, reverse_ns, user_factory
 from olympia.amo.tests.test_helpers import get_uploaded_file
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.discovery.models import DiscoveryItem
-from olympia.hero.models import PrimaryHeroImage, SecondaryHero, SecondaryHeroModule
+from olympia.hero.models import (
+    PrimaryHero,
+    PrimaryHeroImage,
+    SecondaryHero,
+    SecondaryHeroModule,
+)
+from olympia.promoted.models import PromotedAddonPromotion, PromotedAddonVersion
 from olympia.shelves.models import Shelf
 
 
@@ -567,6 +574,141 @@ class TestPrimaryHeroImageAdmin(TestCase):
                 settings.MEDIA_ROOT, 'hero-featured-image', 'thumbs', 'transparent.jpg'
             )
         )
+
+
+class TestPrimaryHeroAdmin(TestCase):
+    def setUp(self):
+        self.list_url = reverse('admin:discovery_primaryhero_changelist')
+        self.detail_url_name = 'admin:discovery_primaryhero_change'
+        self.add_url = reverse('admin:discovery_primaryhero_add')
+
+    def _get_heroform(self, addon_id, promoted_group_id=''):
+        return {
+            'id': '',
+            'image': '',
+            'gradient_color': '',
+            'addon': str(addon_id),
+            'promoted_group': str(promoted_group_id),
+            'form-TOTAL_FORMS': 1,
+            'form-INITIAL_FORMS': 0,
+            'form-MIN_NUM_FORMS': '0',
+            'form-MAX_NUM_FORMS': '1',
+        }
+
+    def test_can_edit_primary_hero(self):
+        addon = addon_factory(name='BarFöo')
+        hero = PrimaryHero.objects.create(addon=addon, gradient_color='#592ACB')
+        self.detail_url = reverse(self.detail_url_name, args=(hero.pk,))
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Discovery:Edit')
+        self.client.force_login(user)
+        response = self.client.get(self.detail_url, follow=True)
+        assert response.status_code == 200
+        content = response.content.decode('utf-8')
+        assert 'BarFöo' in content
+        assert '#592ACB' in content
+
+        response = self.client.post(
+            self.detail_url,
+            dict(
+                self._get_heroform(addon_id=addon.id),
+                **{
+                    'form-INITIAL_FORMS': '1',
+                    'id': str(hero.pk),
+                    'gradient_color': '#054096',
+                    'description': 'primary descriptíon',
+                },
+            ),
+            follow=True,
+        )
+        assert response.status_code == 200
+
+        hero.reload()
+        assert PromotedAddonPromotion.objects.count() == 0
+        assert PrimaryHero.objects.count() == 1
+        assert hero.gradient_color == '#054096'
+        assert hero.description == 'primary descriptíon'
+        assert hero.addon == addon
+        assert hero.promoted_group is None
+
+    def test_can_add_primary_hero(self):
+        addon = addon_factory(name='BarFöo')
+        uploaded_photo = get_uploaded_file('transparent.png')
+        image = PrimaryHeroImage.objects.create(custom_image=uploaded_photo)
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Discovery:Edit')
+        self.client.force_login(user)
+        response = self.client.get(self.add_url, follow=True)
+        assert response.status_code == 200
+        content = response.content.decode('utf-8')
+        assert 'No image selected' in content
+        assert PrimaryHero.objects.count() == 0
+
+        response = self.client.post(
+            self.add_url,
+            dict(
+                self._get_heroform(addon_id=addon.id),
+                **{
+                    'gradient_color': '#054096',
+                    'select_image': image.pk,
+                    'description': 'primary descriptíon',
+                },
+            ),
+            follow=True,
+        )
+        assert response.status_code == 200
+        assert PromotedAddonPromotion.objects.count() == 0
+        assert PrimaryHero.objects.count() == 1
+        hero = PrimaryHero.objects.last()
+        assert hero.select_image == image
+        assert hero.select_image.pk == image.pk
+        assert hero.gradient_color == '#054096'
+        assert hero.addon == addon
+        assert hero.description == 'primary descriptíon'
+
+    def test_can_delete_primary_hero(self):
+        addon = addon_factory()
+        item = self.make_addon_promoted(
+            addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
+        )[0]
+        shelf = PrimaryHero.objects.create(
+            addon=addon, promoted_group=addon.promoted_groups().first()
+        )
+        delete_url = reverse('admin:discovery_primaryhero_delete', args=(item.pk,))
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Discovery:Edit')
+        self.client.force_login(user)
+        # Can access delete confirmation page.
+        response = self.client.get(delete_url, follow=True)
+        assert response.status_code == 200
+        assert PromotedAddonPromotion.objects.filter(pk=item.pk).exists()
+        assert PrimaryHero.objects.filter(pk=shelf.id).exists()
+
+        # But not if the primary hero shelf is the only enabled shelf.
+        shelf.update(enabled=True)
+        response = self.client.get(delete_url, follow=True)
+        assert response.status_code == 403
+
+        # And can't actually delete either
+        response = self.client.post(delete_url, {'post': 'yes'}, follow=True)
+        assert response.status_code == 403
+        assert PromotedAddonPromotion.objects.filter(pk=item.pk).exists()
+
+        # But if there's another enabled shelf we can now access the page.
+        PrimaryHero.objects.create(
+            addon=addon_factory(),
+            enabled=True,
+        )
+        response = self.client.get(delete_url, follow=True)
+        assert response.status_code == 200
+
+        # And can actually delete.
+        response = self.client.post(delete_url, {'post': 'yes'}, follow=True)
+        assert response.status_code == 200
+        assert not PromotedAddonPromotion.objects.filter(pk=item.pk).exists()
+        assert not PrimaryHero.objects.filter(pk=shelf.id).exists()
+        # The approval *won't* have been deleted though
+        assert PromotedAddonVersion.objects.filter().exists()
 
 
 class TestSecondaryHeroShelfAdmin(TestCase):

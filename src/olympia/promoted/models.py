@@ -9,6 +9,7 @@ from olympia.amo.models import BaseQuerySet, ModelBase
 from olympia.constants.applications import APP_IDS, APP_USAGE, APPS_CHOICES
 from olympia.constants.promoted import (
     DEACTIVATED_LEGACY_IDS,
+    NOT_PROMOTED,
     PROMOTED_GROUP_CHOICES,
     PROMOTED_GROUPS_BY_ID,
 )
@@ -198,9 +199,7 @@ class PromotedAddon(ModelBase):
 
     @property
     def group(self):
-        return PROMOTED_GROUPS_BY_ID.get(
-            self.group_id, PROMOTED_GROUPS_BY_ID[PROMOTED_GROUP_CHOICES.NOT_PROMOTED]
-        )
+        return PROMOTED_GROUPS_BY_ID.get(self.group_id, NOT_PROMOTED)
 
     @property
     def all_applications(self):
@@ -345,6 +344,7 @@ class PromotedAddonPromotion(ModelBase):
         self.approve_for_version(self.addon.current_version)
 
     def save(self, *args, **kwargs):
+        due_date = kwargs.pop('_due_date', None)
         super().save(*args, **kwargs)
 
         if (
@@ -353,6 +353,11 @@ class PromotedAddonPromotion(ModelBase):
             and self.approved_applications != self.addon.all_applications
         ):
             self.approve_for_addon()
+        elif self.promoted_group.flag_for_human_review:
+            self.addon.set_needs_human_review_on_latest_versions(
+                due_date=due_date,
+                reason=NeedsHumanReview.REASONS.ADDED_TO_PROMOTED_GROUP,
+            )
 
 
 class PromotedTheme(PromotedAddon):
@@ -467,6 +472,15 @@ def update_es_for_promoted(sender, instance, **kw):
     dispatch_uid='addons.search.index',
 )
 def update_es_for_promoted_approval(sender, instance, **kw):
+    update_es_for_promoted(sender=sender, instance=instance.version, **kw)
+
+
+@receiver(
+    models.signals.post_save,
+    sender=PromotedAddonVersion,
+    dispatch_uid='addons.search.index',
+)
+def update_es_for_promoted_addon_version(sender, instance, **kw):
     update_es_for_promoted(sender=sender, instance=instance.version, **kw)
 
 
