@@ -866,6 +866,11 @@ class UsageTier(ModelBase):
 class ChoiceEntryWithNHRAnnotationPrefix(ChoiceEntry):
     @property
     def annotation(self):
+        """Annotation that querysets will use when returning the queue."""
+        # This needs to match the classes in the CSS to show the right flag
+        # for the right reason, and it's also used in the queue filter form,
+        # and therefore in URLs that reviewers might have bookmarked - don't
+        # change it lightly!
         return f'needs_human_review_{self.constant.lower()}'
 
 
