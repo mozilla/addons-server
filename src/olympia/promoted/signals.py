@@ -1,8 +1,8 @@
 from django.db import models, transaction
 from django.db.models.signals import ModelSignal
 
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.amo.decorators import use_primary_db
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 
 from .models import (
     PromotedAddon,

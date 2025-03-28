@@ -3,8 +3,8 @@ from django.core.management.base import BaseCommand
 
 from olympia import amo
 from olympia.addons.models import Addon
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.amo.decorators import use_primary_db
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.promoted.models import (
     PromotedAddon,
 )
