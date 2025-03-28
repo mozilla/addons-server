@@ -108,9 +108,11 @@ def get_flags(addon, version):
     }
     flags = [
         (prop.replace('_', '-'), title)
-        for (prop, title) in VIEW_QUEUE_FLAGS + tuple(
+        for (prop, title) in VIEW_QUEUE_FLAGS
+        + tuple(
             (entry.annotation, entry.display)
-            for entry in NeedsHumanReview.REASONS.entries)
+            for entry in NeedsHumanReview.REASONS.entries
+        )
         if getattr(version, prop, getattr(addon, prop, None))
         and prop
         not in exclude_flags_by_channel.get(getattr(version, 'channel', None), ())
