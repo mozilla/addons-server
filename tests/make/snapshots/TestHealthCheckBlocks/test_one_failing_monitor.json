@@ -76,11 +76,7 @@
         "type": "mrkdwn"
       },
       {
-        "text": "<http://nginx/__heartbeat__|Heartbeat> |",
-        "type": "mrkdwn"
-      },
-      {
-        "text": "<http://nginx/services/__heartbeat__|Monitors> |",
+        "text": "<http://nginx/services/monitor.json|Monitors> |",
         "type": "mrkdwn"
       }
     ],

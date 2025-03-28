@@ -5,7 +5,7 @@ import json
 
 
 def format_monitors(data: dict, source: str):
-    monitors = data['data']
+    monitors = data.get(source, {}).get('data', {})
     failures = []
 
     for name, monitor in monitors.items():
@@ -100,10 +100,8 @@ def create_blocks(health_data: dict):
     """Create a Slack message from health check data."""
     failing_monitors = []
 
-    for name, data in health_data.items():
-        if name in ['monitors', 'heartbeat']:
-            if monitors := format_monitors(data, name):
-                failing_monitors.append(monitors)
+    if monitors := format_monitors(health_data, 'monitors'):
+        failing_monitors.append(monitors)
 
     if not failing_monitors:
         return []

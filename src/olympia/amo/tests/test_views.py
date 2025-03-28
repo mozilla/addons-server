@@ -402,33 +402,27 @@ class TestHeartbeat(TestCase):
         assert response.status_code >= 500
         assert response.json()['database']['status'] == 'boom'
 
-    def test_front_heartbeat_dummy_monitor_failure(self):
+    @override_switch('dummy-monitor-fails', True)
+    def test_front_heartbeat_dummy_monitor_no_failure(self):
         url = reverse('amo.front_heartbeat')
         response = self.client.get(url)
 
         assert response.status_code == 200
-        self.assertTrue(response.json()['dummy_monitor']['state'])
 
-        with override_switch('dummy-monitor-fails', True):
-            response = self.client.get(url)
-
-            assert response.status_code >= 500
-            assert response.json()['dummy_monitor']['status'] == 'Dummy monitor failed'
-
-    def test_services_heartbeat_success(self):
-        response = self.client.get(reverse('amo.services_heartbeat'))
+    def test_services_monitor_success(self):
+        response = self.client.get(reverse('amo.services_monitor'))
         assert response.status_code == 200
 
-    def test_services_heartbeat_failure(self):
+    def test_services_monitor_failure(self):
         self.mocks['rabbitmq'].return_value = ('boom', None)
 
-        response = self.client.get(reverse('amo.services_heartbeat'))
+        response = self.client.get(reverse('amo.services_monitor'))
 
         assert response.status_code >= 500
         assert response.json()['rabbitmq']['status'] == 'boom'
 
-    def test_services_heartbeat_dummy_monitor_failure(self):
-        url = reverse('amo.services_heartbeat')
+    def test_services_monitor_dummy_monitor_failure(self):
+        url = reverse('amo.services_monitor')
         response = self.client.get(url)
 
         assert response.status_code == 200

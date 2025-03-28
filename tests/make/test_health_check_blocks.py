@@ -12,13 +12,9 @@ class TestHealthCheckBlocks(TestCase):
                 'data': {'version': '1.0.0'},
                 'url': 'http://nginx/__version__',
             },
-            'heartbeat': {
-                'data': {'heartbeat': {'state': True, 'status': ''}},
-                'url': 'http://nginx/__heartbeat__',
-            },
             'monitors': {
                 'data': {'memcache': {'state': True, 'status': ''}},
-                'url': 'http://nginx/services/__heartbeat__',
+                'url': 'http://nginx/services/monitor.json',
             },
         }
 
@@ -68,7 +64,7 @@ class TestHealthCheckBlocks(TestCase):
             {
                 'monitors': {
                     'data': self._monitor('memcache', False, 'Service is down'),
-                    'url': 'http://nginx/services/__heartbeat__',
+                    'url': 'http://nginx/services/monitor.json',
                 },
             }
         )
@@ -80,13 +76,12 @@ class TestHealthCheckBlocks(TestCase):
         data = dict(self.base_data)
         data.update(
             {
-                'heartbeat': {
-                    'data': self._monitor('cinder', False, 'cinder is down'),
-                    'url': 'http://nginx/__heartbeat__',
-                },
                 'monitors': {
-                    'data': self._monitor('memcache', False, 'Service is down'),
-                    'url': 'http://nginx/services/__heartbeat__',
+                    'data': {
+                        **self._monitor('cinder', False, 'cinder is down'),
+                        **self._monitor('memcache', False, 'Service is down'),
+                    },
+                    'url': 'http://nginx/services/monitor.json',
                 },
             }
         )
@@ -100,7 +95,7 @@ class TestHealthCheckBlocks(TestCase):
         }
         data['monitors'] = {
             'data': self._monitor('memcache', False, 'Service is down'),
-            'url': 'http://nginx/services/__heartbeat__',
+            'url': 'http://nginx/services/monitor.json',
         }
         self.assertMatchesJsonSnapshot(create_blocks(data))
 

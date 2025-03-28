@@ -5,10 +5,7 @@ from . import views
 
 
 services_patterns = [
-    re_path(
-        r'^__heartbeat__$', views.services_heartbeat, name='amo.services_heartbeat'
-    ),
-    re_path(r'^monitor\.json$', views.services_heartbeat, name='amo.services_monitor'),
+    re_path(r'^monitor\.json$', views.services_monitor, name='amo.services_monitor'),
 ]
 
 shared_services_api_patterns = [
