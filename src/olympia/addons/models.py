@@ -715,6 +715,7 @@ class Addon(OnChangeMixin, ModelBase):
         unique_reason=False,
         skip_activity_log=False,
     ):
+        print('HELLO WORLD')
         set_listed = self._set_needs_human_review_on_latest_signed_version(
             channel=amo.CHANNEL_LISTED,
             due_date=due_date,
@@ -731,6 +732,7 @@ class Addon(OnChangeMixin, ModelBase):
             unique_reason=unique_reason,
             skip_activity_log=skip_activity_log,
         )
+        print(set_listed, set_unlisted)
         return [ver for ver in (set_listed, set_unlisted) if ver]
 
     def _set_needs_human_review_on_latest_signed_version(

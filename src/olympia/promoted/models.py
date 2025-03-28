@@ -264,6 +264,7 @@ class PromotedAddon(ModelBase):
             self.group.immediate_approval
             and self.approved_applications != self.all_applications
         ):
+            print('HELLO WORLD')
             self.approve_for_addon()
         elif self.group.flag_for_human_review:
             self.addon.set_needs_human_review_on_latest_versions(
@@ -352,6 +353,7 @@ class PromotedAddonPromotion(ModelBase):
             and self.promoted_group.immediate_approval
             and self.approved_applications != self.addon.all_applications
         ):
+            print('HELLO WORLD')
             self.approve_for_addon()
         elif self.promoted_group.flag_for_human_review:
             self.addon.set_needs_human_review_on_latest_versions(

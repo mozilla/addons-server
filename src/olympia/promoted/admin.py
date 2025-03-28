@@ -72,6 +72,7 @@ class PromotedAddonPromotionAdmin(AMOModelAdmin):
     fields = ('addon', 'promoted_group', 'application_id')
     list_filter = ('promoted_group', 'application_id')
     inlines = (PromotedAddonVersionInline,)
+    list_select_related = ('promoted_group',)
 
     @classmethod
     def _transformer(self, objs):
