@@ -78,6 +78,7 @@ def main(env: ENV_ENUM, verbose: bool = False, retries: int = 0, attempt: int = 
         return main(env, verbose, retries, attempt + 1)
 
     results = {
+        'environment': env,
         'version': version_data,
         'monitors': monitors_data,
     }
