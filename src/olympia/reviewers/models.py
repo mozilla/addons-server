@@ -115,7 +115,6 @@ def get_flags(addon, version):
         and prop
         not in exclude_flags_by_channel.get(getattr(version, 'channel', None), ())
     ]
-    # FIXME: add needs_human_review annotations here.
 
     # add in the promoted group flag and return
     if promoted := addon.promoted_groups(currently_approved=False):
