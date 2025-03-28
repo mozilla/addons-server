@@ -1,4 +1,5 @@
-import { defineConfig } from 'vite';
+import { defineConfig, UserConfig } from 'vite';
+import { z } from 'zod';
 import inject from '@rollup/plugin-inject';
 import { resolve, relative } from 'path';
 import { glob } from 'glob';
@@ -27,29 +28,34 @@ const jqueryGlobals = {
   jQuery: 'jquery',
 };
 
-const env = (name, defaultValue) =>
-  process.env[name] || defaultValue || new Error(`${name} is not defined`);
+const envSchema = z.object({
+  ENV: z.enum(['local', 'build', 'dev', 'stage', 'prod']),
+  STATIC_URL_PREFIX: z.string(),
+  VITE_MANIFEST_FILE_NAME: z.string(),
+  SITE_URL: z.string().optional(),
+});
+
+const env = envSchema.parse(process.env);
 
 export default defineConfig(({ command }) => {
-  const isLocal = env('ENV') === 'local';
+  const isLocal = env.ENV === 'local';
   const isDev = command === 'serve';
 
-  const baseConfig = {
+  return {
     // Ensure all static assets are treated as
     // 'in-scope' assets that can be tracked by vite
     // this ensures any imported static assets are correctly
     // mapped across file transformations.
     assetsInclude: `${INPUT_DIR}/*`,
-    strict: true,
+    // Only log warnings and errors
+    logLevel: 'warn',
+    // exclude any automatic html bundling
+    appType: 'custom',
     root: resolve(INPUT_DIR),
-    debug: env('DEBUG', false),
-    // In dev mode, prefix 'bundle' to static file URLs
-    // so that nginx knows to forward the request to the vite
-    // dev server instead of serving from static files or olympia
-    // Use a relative path during the build
-    // this ensures that import paths can be transformed
+    // When serving, use a url prefix that forwards from nginx to the vite dev-server
+    // When building, use a relative path to ensure import paths can be transformed
     // independently of where the importing file ends up in the bundle
-    base: './',
+    base: isDev ? `${env.STATIC_URL_PREFIX}bundle/` : './',
     resolve: {
       alias: {
         // Alias 'highcharts' to our local vendored copy
@@ -74,7 +80,7 @@ export default defineConfig(({ command }) => {
       // This value should be kept in sync with settings_base.py
       // which determines where to read static file paths
       // for production URL resolution
-      manifest: env('VITE_MANIFEST_FILE_NAME'),
+      manifest: env.VITE_MANIFEST_FILE_NAME,
       // Ensure we always build from an empty directory to prevent stale files
       emptyOutDir: true,
       // Configurable values helpful for debugging
@@ -129,22 +135,12 @@ export default defineConfig(({ command }) => {
         'timeago',
       ],
     },
-  };
-
-  if (isDev) {
-    // In dev mode, add the bundle path to direct
-    // static requests to the vite dev server via nginx
-    baseConfig.base = `${env('STATIC_URL_PREFIX')}bundle/`;
-    // Configure the dev server in dev mode
-    baseConfig.server = {
+    server: {
       host: true,
       port: 5173,
       allowedHosts: true,
-      origin: env('SITE_URL'),
+      origin: env?.SITE_URL ?? '127.0.0.1',
       strictPort: true,
-      clearScreen: true,
-    };
-  }
-
-  return baseConfig;
+    },
+  } satisfies UserConfig;
 });

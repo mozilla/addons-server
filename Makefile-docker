@@ -65,8 +65,8 @@ setup-ui-tests:
 lint: ## lint the code
 	ruff check .
 	ruff format --check .
-	npm exec $(NPM_ARGS) -- prettier --check '**'
-	curlylint src/
+	npm run check
+	curlylint src/ --quiet
 
 lint-codestyle: lint
 
@@ -95,6 +95,7 @@ test_needs_locales_compilation:
 	pytest $(PYTEST_SRC) \
 		-m 'needs_locales_compilation' \
 		$(ARGS)
+	npm run test tests/js/
 
 .PHONY: test_main
 test_main:
@@ -164,15 +165,15 @@ test_failed: ## rerun the failed tests from the previous run
 
 .PHONY: run_js_tests
 run_js_tests: ## Run the JavaScript test suite (requires compiled/compressed assets).
-	npm run test tests/js
+	npm run test
 
 .PHONY: watch_js_tests
 watch_js_tests: ## Run+watch the JavaScript test suite (requires compiled/compressed assets).
-	npm run test:watch tests/js
+	npm run test:watch
 
 .PHONY: format
 format: ## Autoformat our codebase.
-	npm exec $(NPM_ARGS) -- prettier --write '**'
+	npm run fix
 	ruff check --fix-only .
 	ruff format .
 

@@ -7,6 +7,8 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: ['./tests/js/setup.js'],
     include: ['tests/**/*.spec.js'],
+    // Allow for longer running tests
+    testTimeout: 10_000,
   },
   resolve: {
     alias: {
