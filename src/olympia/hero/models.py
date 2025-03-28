@@ -235,12 +235,16 @@ class PrimaryHero(ModelBase):
                         'non-external primary shelves.' % can_hero_groups
                     )
         else:
-            if list(PrimaryHero.objects.filter(enabled=True)) == [self]:
+            if self.is_only_enabled_shelf:
                 error_dict['enabled'] = ValidationError(
                     "You can't disable the only enabled primary shelf."
                 )
         if error_dict:
             raise ValidationError(error_dict)
+
+    @property
+    def is_only_enabled_shelf(self):
+        return list(PrimaryHero.objects.filter(enabled=True)) == [self]
 
 
 class CTACheckMixin:

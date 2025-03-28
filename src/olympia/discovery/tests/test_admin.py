@@ -674,7 +674,7 @@ class TestPrimaryHeroAdmin(TestCase):
         shelf = PrimaryHero.objects.create(
             addon=addon, promoted_group=addon.promoted_groups().first()
         )
-        delete_url = reverse('admin:discovery_primaryhero_delete', args=(item.pk,))
+        delete_url = reverse('admin:discovery_primaryhero_delete', args=(shelf.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Discovery:Edit')
         self.client.force_login(user)
@@ -705,9 +705,9 @@ class TestPrimaryHeroAdmin(TestCase):
         # And can actually delete.
         response = self.client.post(delete_url, {'post': 'yes'}, follow=True)
         assert response.status_code == 200
-        assert not PromotedAddonPromotion.objects.filter(pk=item.pk).exists()
         assert not PrimaryHero.objects.filter(pk=shelf.id).exists()
-        # The approval *won't* have been deleted though
+        # The the approval and the promotion *won't* have been deleted though
+        assert PromotedAddonPromotion.objects.filter(pk=item.pk).exists()
         assert PromotedAddonVersion.objects.filter().exists()
 
 
