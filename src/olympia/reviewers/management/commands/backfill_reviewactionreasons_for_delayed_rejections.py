@@ -2,7 +2,9 @@ from django.core.management.base import BaseCommand
 
 import olympia.core.logger
 from olympia import amo
+from olympia.abuse.models import CinderPolicy
 from olympia.activity.models import ActivityLog, CinderPolicyLog, ReviewActionReasonLog
+from olympia.reviewers.models import ReviewActionReason
 
 
 log = olympia.core.logger.getLogger(
@@ -31,8 +33,14 @@ class Command(BaseCommand):
         log.info('%s Rejections to fix', rejections.count())
         for alog in rejections:
             versions_qs = alog.versionlog_set.values_list('version', flat=True)
-            self.fix_rejection_reasons(alog, versions_qs)
-            self.fix_rejection_policies(alog, versions_qs)
+            reasons = self.fix_rejection_reasons(alog, versions_qs)
+            policies = self.fix_rejection_policies(alog, versions_qs)
+            alog.set_arguments(
+                alog.arguments
+                + [(ReviewActionReason, r_id) for r_id in reasons]
+                + [(CinderPolicy, p_id) for p_id in policies]
+            )
+            alog.save()
         log.info('%s Rejections fixed', rejections.count())
 
     def fix_rejection_reasons(self, alog, versions_qs):
@@ -59,6 +67,7 @@ class Command(BaseCommand):
             ReviewActionReasonLog(activity_log=alog, reason_id=reason_id)
             for reason_id in rejection_reasons
         )
+        return rejection_reasons
 
     def fix_rejection_policies(self, alog, versions_qs):
         # collect the policies that the delayed rejection had
@@ -89,3 +98,4 @@ class Command(BaseCommand):
             decision_log.decision.policies.add(
                 *(cinder_policy_id for cinder_policy_id in rejection_policies)
             )
+        return rejection_policies

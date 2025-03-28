@@ -1887,12 +1887,17 @@ class TestAutoRejectTransactions(AutoRejectTestsMixin, TransactionTestCase):
 
 class TestBackfillReviewactionreasonsForDelayedRejections(TestCase):
     def check_log(self, alog, reasons, policies):
+        alog.reload()
         assert sorted(
             alog.reviewactionreasonlog_set.values_list('reason', flat=True)
         ) == [reason.id for reason in reasons]
         assert sorted(
             alog.cinderpolicylog_set.values_list('cinder_policy', flat=True)
         ) == [policy.id for policy in policies]
+        for reason in reasons:
+            assert ReviewActionReason(id=reason.id) in alog.arguments
+        for policy in policies:
+            assert CinderPolicy(id=policy.id) in alog.arguments
 
     def check_decision(self, decision, policies):
         assert list(decision.policies.all()) == policies
