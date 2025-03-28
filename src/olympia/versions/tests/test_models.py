@@ -395,10 +395,10 @@ class TestVersionManager(TestCase):
 
         addon_factory(**addon_kws)  # no due_date
 
-        other_nhr = addon_factory(**addon_kws).current_version
+        unknown_nhr = addon_factory(**addon_kws).current_version
         # having the needs_human_review flag means a due dute is needed
         NeedsHumanReview.objects.create(
-            version=other_nhr, reason=NeedsHumanReview.REASONS.SCANNER_ACTION
+            version=unknown_nhr, reason=NeedsHumanReview.REASONS.UNKNOWN
         )
 
         # Or if it's in a pre-review promoted group it will.
@@ -478,7 +478,7 @@ class TestVersionManager(TestCase):
         qs = Version.objects.should_have_due_date().order_by('id')
         assert list(qs) == [
             # absent addon with nothing special set
-            other_nhr,
+            unknown_nhr,
             recommended,
             # absent promoted but not prereview addon
             developer_reply,
@@ -497,7 +497,7 @@ class TestVersionManager(TestCase):
         # See test_should_have_due_date for order
         (
             _,  # addon with nothing special set
-            other_nhr,
+            unknown_nhr,
             recommended,
             _,  # promoted but not prereview addon
             developer_reply,
@@ -512,35 +512,39 @@ class TestVersionManager(TestCase):
         q_objects = Version.objects.get_due_date_reason_q_objects()
         method = Version.objects.filter
 
-        assert list(
-            method(q_objects['needs_human_review_from_cinder_forwarded_abuse'])
-        ) == [
+        assert list(method(q_objects['needs_human_review_cinder_escalation'])) == [
             escalated_abuse,
             multiple,
         ]
 
         assert list(
-            method(q_objects['needs_human_review_from_cinder_forwarded_appeal'])
+            method(q_objects['needs_human_review_cinder_appeal_escalation'])
         ) == [
             escalated_appeal,
         ]
 
         assert list(
-            method(q_objects['needs_human_review_from_2nd_level_approval'])
+            method(q_objects['needs_human_review_amo_2nd_level_escalation'])
         ) == [forwarded_2nd_level_abuse]
 
-        assert list(method(q_objects['needs_human_review_from_abuse'])) == [abuse_nhr]
+        assert list(method(q_objects['needs_human_review_abuse_addon_violation'])) == [
+            abuse_nhr
+        ]
 
-        assert list(method(q_objects['needs_human_review_from_appeal'])) == [appeal_nhr]
+        assert list(method(q_objects['needs_human_review_addon_review_appeal'])) == [
+            appeal_nhr
+        ]
 
-        assert list(method(q_objects['needs_human_review_other'])) == [other_nhr]
+        assert list(method(q_objects['needs_human_review_unknown'])) == [unknown_nhr]
 
-        assert list(method(q_objects['needs_human_review_promoted'])) == [
+        assert list(
+            method(q_objects['needs_human_review_belongs_to_promoted_group'])
+        ) == [
             multiple,
             recommended,
         ]
 
-        assert list(method(q_objects['has_developer_reply'])) == [
+        assert list(method(q_objects['needs_human_review_developer_reply'])) == [
             multiple,
             developer_reply,
         ]
