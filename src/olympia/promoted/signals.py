@@ -2,6 +2,7 @@ from django.db import models, transaction
 from django.db.models.signals import ModelSignal
 
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
+from olympia.amo.decorators import use_primary_db
 
 from .models import (
     PromotedAddon,
@@ -12,6 +13,7 @@ from .models import (
 )
 
 
+@use_primary_db
 def promoted_addon_to_promoted_addon_promotion(
     signal: ModelSignal, instance: PromotedAddon
 ):
@@ -63,6 +65,7 @@ def promoted_addon_to_promoted_addon_promotion(
         ).delete()
 
 
+@use_primary_db
 def promoted_approval_to_promoted_addon_version(
     signal: ModelSignal,
     instance: PromotedApproval,

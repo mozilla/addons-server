@@ -4,6 +4,7 @@ from django.core.management.base import BaseCommand
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
+from olympia.amo.decorators import use_primary_db
 from olympia.promoted.models import (
     PromotedAddon,
 )
@@ -13,6 +14,7 @@ from olympia.users.models import UserProfile
 class Command(BaseCommand):
     help = 'Give themes with Firefox as author the "By Firefox" badge'
 
+    @use_primary_db
     def handle(self, *args, **options):
         firefox_user = UserProfile.objects.get(pk=settings.TASK_USER_ID)
         addons = (
