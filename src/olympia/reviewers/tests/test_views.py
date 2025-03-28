@@ -1319,12 +1319,7 @@ class TestQueueBasics(QueueTest):
         assert rows.length == 1
         assert rows.attr('data-addon') == str(addon.id)
         assert rows.find('td').eq(1).text() == 'Firefox Fún 1.1'
-        assert (
-            rows.find(
-                '.ed-sprite-needs-human-review-from-cinder-forwarded-abuse'
-            ).length
-            == 1
-        )
+        assert rows.find('.ed-sprite-needs-human-review-cinder-escalation').length == 1
 
     def test_flags_appeal_forwarded_from_cinder(self):
         addon = addon_factory(name='Firefox Fún')
