@@ -39,7 +39,7 @@ DOCKER_BAKE_ARGS := \
 	--progress $(DOCKER_PROGRESS) \
 	--metadata-file $(DOCKER_METADATA_FILE) \
 
-ifeq ($(DOCKER_PUSH), true)
+ifneq ($(DOCKER_PUSH),)
 	DOCKER_BAKE_ARGS += --push
 endif
 
@@ -98,6 +98,9 @@ test_setup:
 setup: ## create configuration files version.json and .env required to run this project
 	for path in $(CLEAN_PATHS); do rm -rf "$(PWD)/$$path" && echo "$$path removed"; done
 	./scripts/setup.py
+
+.PHONY: build
+build: setup docker_build_web ## build the docker image
 
 .PHONY: push_locales
 push_locales: ## extracts and merges translation strings
