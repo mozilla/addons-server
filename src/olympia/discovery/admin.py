@@ -9,14 +9,18 @@ from django.utils.html import conditional_escape, format_html
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext
 
-from olympia import promoted
+from olympia import hero, promoted
 from olympia.addons.models import Addon
 from olympia.amo.admin import AMOModelAdmin
 from olympia.amo.templatetags.jinja_helpers import vite_asset
 from olympia.discovery.models import DiscoveryItem
-from olympia.hero.admin import PrimaryHeroImageAdmin, SecondaryHeroAdmin
+from olympia.hero.admin import (
+    PrimaryHeroAdmin,
+    PrimaryHeroImageAdmin,
+    SecondaryHeroAdmin,
+)
 from olympia.hero.models import PrimaryHeroImage, SecondaryHero
-from olympia.promoted.admin import PromotedAddonAdmin
+from olympia.promoted.admin import PromotedAddonPromotionAdmin
 from olympia.shelves.admin import ShelfAdmin
 from olympia.shelves.models import Shelf
 
@@ -147,6 +151,14 @@ class PromotedAddon(promoted.models.PromotedAddon):
         proxy = True
 
 
+class PromotedAddonPromotion(promoted.models.PromotedAddonPromotion):
+    """Just a proxy class to have all the hero related objects in one
+    place under Discovery in django admin."""
+
+    class Meta:
+        proxy = True
+
+
 @receiver(
     [models.signals.post_save, models.signals.post_delete],
     sender=PromotedAddon,
@@ -156,6 +168,14 @@ def proxy_promoted_addon_to_promoted_addon_promotion(sender, instance, signal, *
     from olympia.promoted.signals import promoted_addon_to_promoted_addon_promotion
 
     promoted_addon_to_promoted_addon_promotion(signal=signal, instance=instance)
+
+
+class PrimaryHero(hero.models.PrimaryHero):
+    """Just a proxy class to have all the hero related objects in one
+    place under Discovery in django admin."""
+
+    class Meta:
+        proxy = True
 
 
 class PrimaryHeroImageUpload(PrimaryHeroImage):
@@ -183,7 +203,8 @@ class HomepageShelves(Shelf):
 
 
 admin.site.register(DiscoveryItem, DiscoveryItemAdmin)
-admin.site.register(PromotedAddon, PromotedAddonAdmin)
+admin.site.register(PromotedAddonPromotion, PromotedAddonPromotionAdmin)
+admin.site.register(PrimaryHero, PrimaryHeroAdmin)
 admin.site.register(PrimaryHeroImageUpload, PrimaryHeroImageAdmin)
 admin.site.register(SecondaryHeroShelf, SecondaryHeroAdmin)
 admin.site.register(HomepageShelves, ShelfAdmin)

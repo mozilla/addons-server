@@ -22,21 +22,21 @@ class ImageChoiceField(forms.ModelChoiceField):
         )
 
 
-class PrimaryHeroInline(admin.StackedInline):
+class PrimaryHeroAdmin(admin.ModelAdmin):
     class Media:
         css = {'all': (vite_asset('css/admin-discovery.less'),)}
 
     model = PrimaryHero
     fields = (
         'description',
-        'promoted_addon',
+        'addon',
+        'promoted_group',
         'select_image',
         'gradient_color',
         'is_external',
         'enabled',
     )
     view_on_site = False
-    can_delete = False
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         if db_field.name == 'select_image':
@@ -54,6 +54,9 @@ class PrimaryHeroInline(admin.StackedInline):
             )
             return ImageChoiceField(**kwargs)
         return super().formfield_for_foreignkey(db_field, request, **kwargs)
+
+    def has_delete_permission(self, request, obj=None):
+        return obj and not obj.is_only_enabled_shelf
 
 
 class PrimaryHeroImageAdmin(AMOModelAdmin):

@@ -36,11 +36,11 @@ class HeroAddonSerializer(DiscoveryAddonSerializer):
 class PrimaryHeroShelfSerializer(AMOModelSerializer):
     description = FallbackField(
         GetTextTranslationSerializerFieldFlat(),
-        TranslationSerializerFieldFlat(source='promoted_addon.addon.summary'),
+        TranslationSerializerFieldFlat(source='addon.summary'),
     )
     featured_image = serializers.CharField(source='image_url')
-    addon = HeroAddonSerializer(source='promoted_addon.addon')
-    external = ExternalAddonSerializer(source='promoted_addon.addon')
+    addon = HeroAddonSerializer()
+    external = ExternalAddonSerializer(source='addon')
 
     class Meta:
         model = PrimaryHero

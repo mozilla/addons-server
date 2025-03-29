@@ -934,8 +934,7 @@ class ReviewBase:
             # but double check that the cron job isn't trying to approve it.
             assert not self.user.id == settings.TASK_USER_ID
             for version in versions:
-                # TODO: promotedaddon; approve_for_version refactor (Write PR)
-                self.addon.promotedaddon.approve_for_version(version)
+                self.addon.approve_for_version(version)
 
     def update_queue_history(self, log_entry):
         """Update ReviewQueueHistory so that the first action (log_entry) made

@@ -442,9 +442,10 @@ class TestSigning(TestCase):
 
     def test_call_signing_promoted_recommended_android_only(self):
         self.make_addon_promoted(
-            self.file_.version.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED
+            self.file_.version.addon,
+            PROMOTED_GROUP_CHOICES.RECOMMENDED,
+            apps=[amo.ANDROID],
         )
-        self.file_.version.addon.promotedaddon.update(application_id=amo.ANDROID.id)
 
         # Recommended has different states for desktop and android
         self._check_signed_correctly(states=['recommended-android'])
@@ -661,27 +662,27 @@ class TestTasks(TestCase):
         )
         assert self.addon.cached_promoted_groups
         # Should have an approval for Firefox and one for Android.
-        assert self.addon.current_version.promoted_approvals.count() == 2
+        assert self.addon.current_version.promoted_versions.count() == 2
 
         tasks.bump_and_resign_addons([self.addon.pk])
 
         del self.addon.cached_promoted_groups  # Reload the cached property.
         assert self.addon.cached_promoted_groups
         # Should have an approval for Firefox and one for Android.
-        assert self.addon.current_version.promoted_approvals.count() == 2
+        assert self.addon.current_version.promoted_versions.count() == 2
 
     def test_resign_doesnt_carry_over_unapproved_promotion(self, mock_sign_file):
         self.make_addon_promoted(
             self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=False
         )
         assert not self.addon.cached_promoted_groups
-        assert self.addon.current_version.promoted_approvals.count() == 0
+        assert self.addon.current_version.promoted_versions.count() == 0
 
         tasks.bump_and_resign_addons([self.addon.pk])
 
         del self.addon.cached_promoted_groups  # Reload the cached property.
         assert not self.addon.cached_promoted_groups
-        assert self.addon.current_version.promoted_approvals.count() == 0
+        assert self.addon.current_version.promoted_versions.count() == 0
 
     def test_resign_multiple_emails_same_addon(self, mock_sign_file):
         self.addon.authors.add(user_factory(last_login_ip='127.0.0.2'))

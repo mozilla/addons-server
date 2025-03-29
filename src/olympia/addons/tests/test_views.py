@@ -53,6 +53,10 @@ from olympia.constants.promoted import (
 )
 from olympia.files.tests.test_models import UploadMixin
 from olympia.files.utils import parse_addon, parse_xpi
+from olympia.promoted.models import (
+    PromotedAddonPromotion,
+    PromotedGroup,
+)
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import AutoApprovalSummary
 from olympia.search.utils import get_es
@@ -5652,7 +5656,14 @@ class TestAddonSearchView(ESTestCase):
             max=av_max,
         )
         assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon.promoted_groups().group_id
-        assert addon.promotedaddon.application_id is None  # i.e. all
+        assert list(
+            PromotedAddonPromotion.objects.filter(addon=addon).values_list(
+                'application_id', flat=True
+            )
+        ) == [
+            amo.FIREFOX.id,
+            amo.ANDROID.id,
+        ]
         assert addon.approved_applications == [
             amo.FIREFOX,
             amo.ANDROID,
@@ -5668,9 +5679,19 @@ class TestAddonSearchView(ESTestCase):
             max=av_max,
         )
         # This case is approved for all apps, but now only set for Firefox
-        addon2.promotedaddon.update(application_id=amo.FIREFOX.id)
+        self.make_addon_promoted(
+            addon=addon2,
+            group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
+            apps=[amo.FIREFOX],
+        )
         assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon2.promoted_groups().group_id
-        assert addon2.promotedaddon.application_id is amo.FIREFOX.id
+        assert list(
+            PromotedAddonPromotion.objects.filter(addon=addon2).values_list(
+                'application_id', flat=True
+            )
+        ) == [
+            amo.FIREFOX.id,
+        ]
         assert addon2.approved_applications == [amo.FIREFOX]
 
         addon3 = addon_factory(slug='other-addon', name='Other Addôn')
@@ -5690,12 +5711,28 @@ class TestAddonSearchView(ESTestCase):
             min=av_min,
             max=av_max,
         )
-        self.make_addon_promoted(addon4, PROMOTED_GROUP_CHOICES.RECOMMENDED)
-        addon4.promotedaddon.update(application_id=amo.FIREFOX.id)
-        addon4.promotedaddon.approve_for_version(addon4.current_version)
-        addon4.promotedaddon.update(application_id=None)
+        self.make_addon_promoted(
+            addon4,
+            PROMOTED_GROUP_CHOICES.RECOMMENDED,
+            apps=[amo.FIREFOX],
+            approve_version=True,
+        )
+        PromotedAddonPromotion.objects.create(
+            addon=addon4,
+            promoted_group=PromotedGroup.objects.get(
+                group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+            ),
+            application_id=amo.ANDROID.id,
+        )
         assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon4.promoted_groups().group_id
-        assert addon4.promotedaddon.application_id is None  # i.e. all
+        assert list(
+            PromotedAddonPromotion.objects.filter(addon=addon4).values_list(
+                'application_id', flat=True
+            )
+        ) == [
+            amo.FIREFOX.id,
+            amo.ANDROID.id,
+        ]
         assert addon4.approved_applications == [amo.FIREFOX]
 
         # And repeat with Android rather than Firefox
@@ -5706,12 +5743,28 @@ class TestAddonSearchView(ESTestCase):
             min=av_min,
             max=av_max,
         )
-        self.make_addon_promoted(addon5, PROMOTED_GROUP_CHOICES.RECOMMENDED)
-        addon5.promotedaddon.update(application_id=amo.ANDROID.id)
-        addon5.promotedaddon.approve_for_version(addon5.current_version)
-        addon5.promotedaddon.update(application_id=None)
+        self.make_addon_promoted(
+            addon5,
+            PROMOTED_GROUP_CHOICES.RECOMMENDED,
+            apps=[amo.ANDROID],
+            approve_version=True,
+        )
+        PromotedAddonPromotion.objects.create(
+            addon=addon5,
+            promoted_group=PromotedGroup.objects.get(
+                group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+            ),
+            application_id=amo.FIREFOX.id,
+        )
         assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon5.promoted_groups().group_id
-        assert addon5.promotedaddon.application_id is None  # i.e. all
+        assert list(
+            PromotedAddonPromotion.objects.filter(addon=addon5).values_list(
+                'application_id', flat=True
+            )
+        ) == [
+            amo.FIREFOX.id,
+            amo.ANDROID.id,
+        ]
         assert addon5.approved_applications == [amo.ANDROID]
 
         self.reindex(Addon)
