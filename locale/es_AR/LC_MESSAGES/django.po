@@ -6620,9 +6620,8 @@ msgid "Previous"
 msgstr "Anterior"
 
 #: src/olympia/stats/templates/stats/stats.html:165
-#, fuzzy
 msgid "This dashboard is <b>private</b>."
-msgstr "Este panel de control es actualmente <b>privado</b>."
+msgstr "Este panel de control es <b>privado</b>."
 
 #: src/olympia/stats/templates/stats/reports/apps.html:3
 msgid "Application usage by Date"
