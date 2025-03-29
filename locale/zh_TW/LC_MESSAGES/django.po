@@ -5716,7 +5716,7 @@ msgstr "簡單就能為英文郵件、文件、文章、影片內容做摘要，
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:980
 msgid "You’re in control. Turn off VPN when a website won’t work and set different locations for different websites. Windows only."
-msgstr ""
+msgstr "由您自行掌控。網站無法正常運作時，可關閉 VPN，或針對不同網站設定不同連線位置。僅支援 Windows。"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:983
