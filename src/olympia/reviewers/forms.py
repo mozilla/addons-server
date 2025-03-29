@@ -26,7 +26,6 @@ from olympia.files.utils import SafeZip
 from olympia.ratings.models import Rating
 from olympia.ratings.permissions import user_can_delete_rating
 from olympia.reviewers.models import (
-    VIEW_QUEUE_FLAGS,
     NeedsHumanReview,
     ReviewActionReason,
     Whiteboard,
@@ -736,12 +735,14 @@ class ReviewQueueFilter(forms.Form):
     )
 
     def __init__(self, data, *args, **kw):
-        due_date_reasons = list(Version.objects.get_due_date_reason_q_objects().keys())
+        due_date_reasons = [
+            entry.annotation for entry in NeedsHumanReview.REASONS.entries
+        ]
         kw['initial'] = {'due_date_reasons': due_date_reasons}
         super().__init__(data, *args, **kw)
-        labels = {reason: label for reason, label in VIEW_QUEUE_FLAGS}
         self.fields['due_date_reasons'].choices = [
-            (reason, labels.get(reason, reason)) for reason in due_date_reasons
+            (entry.annotation, entry.display)
+            for entry in NeedsHumanReview.REASONS.entries
         ]
 
 

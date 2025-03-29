@@ -195,8 +195,10 @@ class VersionManager(ManagerBase):
         for each reason as values."""
         from olympia.reviewers.models import NeedsHumanReview
 
+        reasons = {}
+
         # Versions of themes not yet reviewed should have a due date.
-        is_from_theme_awaiting_review = (
+        reasons['is_from_theme_awaiting_review'] = (
             Q(
                 Q(
                     channel=amo.CHANNEL_LISTED,
@@ -211,6 +213,19 @@ class VersionManager(ManagerBase):
             )
             & ~Q(addon__status=amo.STATUS_DELETED)
         )
+
+        # Abuse-related reasons & developer replies always trigger a due
+        # date even if the version has been disabled / not signed.
+        abuse_related_or_developer_reply = (
+            NeedsHumanReview.REASONS.ABUSE_OR_APPEAL_RELATED.entries
+            + [NeedsHumanReview.REASONS.DEVELOPER_REPLY.choice_entry]
+        )
+        for entry in abuse_related_or_developer_reply:
+            reasons[entry.annotation] = Q(
+                needshumanreview__is_active=True,
+                needshumanreview__reason=entry.value,
+            )
+
         # Versions that haven't been disabled or have ever been signed and have
         # the explicit needs human review flag should have a due date (it gets
         # dropped on various reviewer actions).
@@ -218,64 +233,14 @@ class VersionManager(ManagerBase):
             ~Q(file__status=amo.STATUS_DISABLED) | Q(file__is_signed=True),
             needshumanreview__is_active=True,
         )
-        return {
-            # Abuse-related reasons & developer replies always trigger a due
-            # date even if the version has been disabled / not signed.
-            # Everything else shares the is_other_needs_human_review condition.
-            'needs_human_review_promoted': Q(
+        for entry in set(NeedsHumanReview.REASONS.entries).difference(
+            abuse_related_or_developer_reply
+        ):
+            reasons[entry.annotation] = Q(
                 is_other_needs_human_review,
-                needshumanreview__reason__in=(
-                    NeedsHumanReview.REASONS.BELONGS_TO_PROMOTED_GROUP.value,
-                    NeedsHumanReview.REASONS.ADDED_TO_PROMOTED_GROUP.value,
-                ),
-            ),
-            'needs_human_review_auto_approval_disabled': Q(
-                is_other_needs_human_review,
-                needshumanreview__reason=NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED,
-            ),
-            'has_developer_reply': Q(
-                needshumanreview__is_active=True,
-                needshumanreview__reason=NeedsHumanReview.REASONS.DEVELOPER_REPLY,
-            ),
-            'needs_human_review_from_abuse': Q(
-                needshumanreview__is_active=True,
-                needshumanreview__reason=NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION,
-            ),
-            'needs_human_review_from_appeal': Q(
-                needshumanreview__is_active=True,
-                needshumanreview__reason=NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL,
-            ),
-            # Themes are special as noted above.
-            'is_from_theme_awaiting_review': is_from_theme_awaiting_review,
-            'needs_human_review_from_cinder_forwarded_abuse': Q(
-                needshumanreview__is_active=True,
-                needshumanreview__reason=NeedsHumanReview.REASONS.CINDER_ESCALATION,
-            ),
-            'needs_human_review_from_cinder_forwarded_appeal': Q(
-                needshumanreview__is_active=True,
-                needshumanreview__reason=NeedsHumanReview.REASONS.CINDER_APPEAL_ESCALATION,
-            ),
-            'needs_human_review_from_2nd_level_approval': Q(
-                needshumanreview__is_active=True,
-                needshumanreview__reason=NeedsHumanReview.REASONS.AMO_2ND_LEVEL_ESCALATION,
-            ),
-            'needs_human_review_other': Q(
-                is_other_needs_human_review,
-                ~Q(
-                    needshumanreview__reason__in=(
-                        NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION.value,
-                        NeedsHumanReview.REASONS.CINDER_ESCALATION.value,
-                        NeedsHumanReview.REASONS.CINDER_APPEAL_ESCALATION.value,
-                        NeedsHumanReview.REASONS.AMO_2ND_LEVEL_ESCALATION.value,
-                        NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL.value,
-                        NeedsHumanReview.REASONS.BELONGS_TO_PROMOTED_GROUP.value,
-                        NeedsHumanReview.REASONS.ADDED_TO_PROMOTED_GROUP.value,
-                        NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED.value,
-                        NeedsHumanReview.REASONS.DEVELOPER_REPLY.value,
-                    )
-                ),
-            ),
-        }
+                needshumanreview__reason=entry.value,
+            )
+        return reasons
 
 
 class UnfilteredVersionManagerForRelations(VersionManager):

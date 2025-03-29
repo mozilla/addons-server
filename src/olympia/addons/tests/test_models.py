@@ -3641,36 +3641,36 @@ class TestExtensionsQueues(TestCase):
     def test_pending_queue_needs_human_review_from_abuse(self):
         self._test_pending_queue_needs_human_review_from(
             NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION,
-            'needs_human_review_from_abuse',
+            'needs_human_review_abuse_addon_violation',
         )
 
     def test_pending_queue_needs_human_review_from_appeal(self):
         self._test_pending_queue_needs_human_review_from(
             NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL,
-            'needs_human_review_from_appeal',
+            'needs_human_review_addon_review_appeal',
         )
 
     def test_pending_queue_needs_human_review_from_cinder_forwarded_abuse(self):
         self._test_pending_queue_needs_human_review_from(
             NeedsHumanReview.REASONS.CINDER_ESCALATION,
-            'needs_human_review_from_cinder_forwarded_abuse',
+            'needs_human_review_cinder_escalation',
         )
 
     def test_pending_queue_needs_human_review_from_cinder_forwarded_appeal(self):
         self._test_pending_queue_needs_human_review_from(
             NeedsHumanReview.REASONS.CINDER_APPEAL_ESCALATION,
-            'needs_human_review_from_cinder_forwarded_appeal',
+            'needs_human_review_cinder_appeal_escalation',
         )
 
     def test_pending_queue_needs_human_review_from_2nd_level_approval(self):
         self._test_pending_queue_needs_human_review_from(
             NeedsHumanReview.REASONS.AMO_2ND_LEVEL_ESCALATION,
-            'needs_human_review_from_2nd_level_approval',
+            'needs_human_review_amo_2nd_level_escalation',
         )
 
-    def test_pending_queue_needs_human_review_other(self):
+    def test_pending_queue_needs_human_scanner_action(self):
         self._test_pending_queue_needs_human_review_from(
-            NeedsHumanReview.REASONS.SCANNER_ACTION, 'needs_human_review_other'
+            NeedsHumanReview.REASONS.SCANNER_ACTION, 'needs_human_review_scanner_action'
         )
 
     def test_get_pending_rejection_queue(self):
