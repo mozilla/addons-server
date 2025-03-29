@@ -5712,7 +5712,7 @@ msgstr "轻松提炼网页上邮件、文档、文章、视频转录文本（英
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:980
 msgid "You’re in control. Turn off VPN when a website won’t work and set different locations for different websites. Windows only."
-msgstr ""
+msgstr "网络体验由您掌控。在网站无法正常使用时关闭 VPN，或通过不同位置访问各网站。仅支持 Windows。"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:983
