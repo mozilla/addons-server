@@ -5298,7 +5298,7 @@ msgstr "Uredite spletno stran pred tiskanjem. Opravite zajetne vizualne sprememb
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:461
 msgid "Track Amazon pricing history. Make smart shopping decisions by receiving alerts for price changes on Amazon products you're interested in."
-msgstr "Sledite zgodovini cen Amazona. Sprejemajte pametne nakupovalne odločitve s prejemanjem opozoril o spremembah cen izdelkov Amazon, ki vas zanimajo."
+msgstr "Sledite zgodovini cen na Amazonu. Pri nakupovanju se odločajte pametno in prejemajte opozorila o spremembah cen izdelkov, ki vas zanimajo."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5771,7 +5771,7 @@ msgstr "Zaščita zasebnosti pred sledenjem prstnih odtisov."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:965
 msgid "Enhance your gaming experience on Steam."
-msgstr "Izboljšajte svojo igralno izkušnjo na Steamu."
+msgstr "Izboljšajte svojo igričarsko izkušnjo na Steamu."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:968
@@ -5796,7 +5796,7 @@ msgstr "Preprosto povzemite e-poštna sporočila, dokumentacijo, članke in zapi
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:980
 msgid "You’re in control. Turn off VPN when a website won’t work and set different locations for different websites. Windows only."
-msgstr "Imate nadzor. Izklopite VPN, ko spletno mesto ne bo delovalo in nastavite različne lokacije za različna spletna mesta. Samo za Windows."
+msgstr "Imejte nadzor. Izklopite VPN, kadar spletno mesto ne deluje, in nastavite različne lokacije za različna spletna mesta. Samo za Windows."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:983
