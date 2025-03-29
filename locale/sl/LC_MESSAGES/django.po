@@ -5796,7 +5796,7 @@ msgstr "Preprosto povzemite e-poštna sporočila, dokumentacijo, članke in zapi
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:980
 msgid "You’re in control. Turn off VPN when a website won’t work and set different locations for different websites. Windows only."
-msgstr ""
+msgstr "Imate nadzor. Izklopite VPN, ko spletno mesto ne bo delovalo in nastavite različne lokacije za različna spletna mesta. Samo za Windows."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:983

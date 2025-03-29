@@ -5858,7 +5858,7 @@ msgstr "Riepiloga facilmente email, documenti, articoli e trascrizioni di video 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:980
 msgid "You’re in control. Turn off VPN when a website won’t work and set different locations for different websites. Windows only."
-msgstr ""
+msgstr "Hai il controllo. Disattiva la VPN quando un sito web non funziona e imposta posizioni diverse per i diversi siti web. Solo per Windows."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:983

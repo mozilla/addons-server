@@ -5797,7 +5797,7 @@ msgstr "Crie facilmente resumos de emails, documentos, artigos e transcrições 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:980
 msgid "You’re in control. Turn off VPN when a website won’t work and set different locations for different websites. Windows only."
-msgstr ""
+msgstr "Você está no controle. Desative a VPN quando um site não funcionar e defina locais diferentes para sites diferentes. Somente no Windows."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:983
