@@ -3,6 +3,7 @@ from django.contrib import admin
 
 from olympia import amo
 from olympia.access import acl
+from olympia.activity.models import ActivityLog
 from olympia.amo.admin import AMOModelAdmin
 
 from .models import Collection, CollectionAddon
@@ -48,13 +49,21 @@ class CollectionAdmin(AMOModelAdmin):
         'description',
         'uuid',
         'listed',
-        'deleted',
         'default_locale',
         'author',
     )
     raw_id_fields = ('author',)
     readonly_fields = ('uuid',)
     inlines = (CollectionAddonInline,)
+
+    def get_fields(self, request, obj=None):
+        fields = super().get_fields(request, obj=obj)
+        # Only add "deleted" to the fields for something already deleted, for
+        # something not yet deleted the admin should use the regular button
+        # instead of the checkbox.
+        if obj and obj.deleted:
+            return fields + ('deleted',)
+        return fields
 
     # Permission checks:
     # A big part of the curation job for the homepage etc is done through
@@ -86,6 +95,15 @@ class CollectionAdmin(AMOModelAdmin):
         return acl.action_allowed_for(
             request.user, amo.permissions.ADMIN_CURATION
         ) or super().has_add_permission(request)
+
+    def delete_model(self, request, obj):
+        ActivityLog.objects.create(amo.LOG.COLLECTION_DELETED, obj)
+        obj.delete(clear_slug=False)
+
+    def save_model(self, request, obj, form, change):
+        super().save_model(request, obj, form, change)
+        if change and 'deleted' in form.changed_data and not obj.deleted:
+            ActivityLog.objects.create(amo.LOG.COLLECTION_UNDELETED, obj)
 
 
 admin.site.register(Collection, CollectionAdmin)
