@@ -109,7 +109,7 @@ class Command(BaseCommand):
                 'version_list': ', '.join(str(v.version) for v in versions),
                 # Because we expand the reason/policy text into notes in the reviewer
                 # tools, we don't want to duplicate it as policies too.
-                'policies': (),
+                'policy_texts': (),
             },
         )
 

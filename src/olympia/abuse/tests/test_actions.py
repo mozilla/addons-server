@@ -646,7 +646,9 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
             action=self.takedown_decision_action,
             notes='some other policy justification',
         )
-        self.ActionClass(self.decision).notify_owners(extra_context={'policies': ()})
+        self.ActionClass(self.decision).notify_owners(
+            extra_context={'policy_texts': ()}
+        )
         mail_item = mail.outbox[0]
         self._check_owner_email(
             mail_item, f'Mozilla Add-ons: {self.addon.name}', self.disable_snippet

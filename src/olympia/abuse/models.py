@@ -1,3 +1,4 @@
+from collections.abc import Mapping
 from datetime import datetime, timedelta
 from itertools import chain
 
@@ -884,22 +885,32 @@ class CinderPolicy(ModelBase):
 
     objects = CinderPolicyQuerySet.as_manager()
 
-    def __str__(self):
-        return self.full_text('')
-
-    def full_text(self, canned_response_text=None):
-        if canned_response_text is None:
-            canned_response_text = self.text
-        parts = []
-        if self.parent:
-            parts.append(f'{self.parent.name}, specifically ')
-        parts.append(self.name)
-        if canned_response_text:
-            parts.append(f': {canned_response_text}')
-        return ''.join(parts)
-
     class Meta:
         verbose_name_plural = 'Cinder Policies'
+
+    class DictKeyAsDefault(dict):
+        def __missing__(self, key):
+            return f'{{{key}}}'
+
+    def __str__(self):
+        return self.full_name()
+
+    def full_name(self):
+        return (
+            f'{self.parent.name + ", specifically " if self.parent else ""}{self.name}'
+        )
+
+    def full_text(self, *, text=None, values=None):
+        if text is None:
+            text = self.text
+        if isinstance(values, Mapping):
+            text = text.format_map(self.DictKeyAsDefault(**values))
+        return f'{self.full_name()}: {text}'
+
+    @classmethod
+    def get_full_texts(self, policies, *, values=None):
+        values = values or {}
+        return [policy.full_text(values=values.get(policy.uuid)) for policy in policies]
 
     @classmethod
     def get_decision_actions_from_policies(cls, policies, *, for_entity=None):
@@ -980,6 +991,7 @@ class ContentDecision(ModelBase):
     # Any additional metadata we need to attach to this decision that doesn't warrant a
     # dedicated field
     metadata = models.JSONField(default=dict)
+    POLICY_DYNAMIC_VALUES = 'policy-dynamic-values'
 
     objects = ContentDecisionManager()
 
@@ -1357,7 +1369,7 @@ class ContentDecision(ModelBase):
                 else None,
                 # Because we expand the reason/policy text into notes in the
                 # reviewer tools, we don't want to duplicate it as policies too.
-                **({'policies': ()} if self.notes and from_reviewer_tools else {}),
+                **({'policy_texts': ()} if self.notes and from_reviewer_tools else {}),
             }
         else:
             extra_context = {}
@@ -1374,6 +1386,12 @@ class ContentDecision(ModelBase):
             _('"{}" for {}').format(self.rating, self.rating.addon.name)
             if self.rating
             else getattr(self.target, 'name', self.target)
+        )
+
+    def get_policy_texts(self):
+        return CinderPolicy.get_full_texts(
+            self.policies.all(),
+            values=self.metadata.get(self.POLICY_DYNAMIC_VALUES, {}),
         )
 
 
