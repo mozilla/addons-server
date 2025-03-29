@@ -118,7 +118,7 @@ class TestFullUserProfileSerializer(TestCase):
 
 class TestMinimalUserProfileSerializer(TestFullUserProfileSerializer):
     serializer = MinimalUserProfileSerializer
-    gates = {None: ('mimimal-profile-has-all-fields-shim',)}
+    gates = {None: ('minimal-profile-has-all-fields-shim',)}
 
     def test_picture(self):
         self.user.update(picture_type='image/jpeg')
