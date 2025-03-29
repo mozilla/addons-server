@@ -5816,7 +5816,7 @@ msgstr "Zespominajśo lažko mejlki, dokumenty, nastawki a wideotranskripcije w 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:980
 msgid "You’re in control. Turn off VPN when a website won’t work and set different locations for different websites. Windows only."
-msgstr ""
+msgstr "Maśo kontrolu. Znjemóžniśo VPN, gaž websedło njefunkcioněrujo a nastajśo druge stojnišća za rozdźělne websedła. Jano Windows."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:983
