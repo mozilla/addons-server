@@ -5790,7 +5790,7 @@ msgstr "Snadno sumarizujte e-maily, dokumenty, články a přepisy videí v angl
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:980
 msgid "You’re in control. Turn off VPN when a website won’t work and set different locations for different websites. Windows only."
-msgstr "Vše máte pod kontrolou. Vypněte VPN, když webová stránka nefunguje a nastavte různá umístění pro různé weby. Pouze pro Windows."
+msgstr "Máte to pod kontrolou. Vypněte VPN, když webová stránka nefunguje, a nastavte různá umístění pro různé webové stránky. Pouze pro Windows."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:983
