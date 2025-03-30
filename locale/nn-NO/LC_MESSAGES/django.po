@@ -6085,9 +6085,9 @@ msgid "The locale of an existing dictionary/language pack cannot be changed"
 msgstr ""
 
 #: src/olympia/files/utils.py:1006
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Unsupported file type, please upload a supported file {extensions}."
-msgstr "Filtypen er ikkje støtta, last opp ei arkivfil {extensions}."
+msgstr "Filtypen er ikkje støtta, last opp ei fil som er støtta {extensions}."
 
 #: src/olympia/files/utils.py:1015
 msgid "Unexpected error."
