@@ -5826,7 +5826,7 @@ msgstr "Легко резюмируйте электронные письма, �
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:980
 msgid "You’re in control. Turn off VPN when a website won’t work and set different locations for different websites. Windows only."
-msgstr ""
+msgstr "Вы всё контролируете. Отключайте VPN, когда веб-сайт не работает, и установите разные местоположения для разных веб-сайтов. Только для Windows."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:983
