@@ -695,7 +695,7 @@ msgstr "Envios de extras temporariamente desativados"
 
 #: src/olympia/amo/templates/amo/submissions_disabled.html:13
 msgid "Add-on uploads have been temporarily disabled. Please check back later."
-msgstr ""
+msgstr "Os envios de extras foram temporariamente desativados. Por favor, volte mais tarde."
 
 #: src/olympia/amo/templatetags/jinja_helpers.py:147
 #, python-brace-format
@@ -775,17 +775,17 @@ msgstr "O código de idioma \"{lang_code}\" é inválido."
 
 #: src/olympia/api/fields.py:92
 msgid "You must provide an object of {{lang-code:value}}."
-msgstr ""
+msgstr "Deve fornecer um objeto de {{lang-code:value}}."
 
 #: src/olympia/api/fields.py:94
 #, python-brace-format
 msgid "A value in the default locale of \"{lang_code}\" is required."
-msgstr ""
+msgstr "É necessário um valor no idioma predefinido \"{lang_code}\"."
 
 #: src/olympia/api/fields.py:97
 #, python-brace-format
 msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
-msgstr ""
+msgstr "Um valor no idioma por omissão \"{lang_code}\" é requerido se outras traduções estiverem definidas."
 
 #: src/olympia/api/fields.py:386
 #, python-format
