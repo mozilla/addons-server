@@ -90,7 +90,7 @@ class MinimalUserProfileSerializer(FullUserProfileSerializer):
         request = self.context.get('request', None)
 
         # Once we drop this api gate we can drop this class and use BaseUserSerializer
-        if request and is_gate_active(request, 'mimimal-profile-has-all-fields-shim'):
+        if request and is_gate_active(request, 'minimal-profile-has-all-fields-shim'):
             data.update({field: None for field in self.nullable_fields})
         else:
             data = {
