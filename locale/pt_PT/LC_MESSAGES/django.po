@@ -798,7 +798,7 @@ msgstr "Confirmação para as chaves de API do programador"
 
 #: src/olympia/api/throttling.py:113
 msgid "You have submitted this form too many times recently. Please try again after some time."
-msgstr ""
+msgstr "Submeteu este formulário demasiadas vezes recentemente. Por favor, volte a tentar mais tarde."
 
 #: src/olympia/bandwagon/serializers.py:72
 msgid "This custom URL is already in use by another one of your collections."
@@ -852,13 +852,13 @@ msgstr "Categorias editadas para {addon}."
 #: src/olympia/constants/activity.py:57
 #, python-brace-format
 msgid "{user} ({0}) added to {addon}."
-msgstr ""
+msgstr "{user} ({0}) adicionado a {addon}."
 
 #. L10n: {0} is the user role.
 #: src/olympia/constants/activity.py:67
 #, python-brace-format
 msgid "{user} ({0}) removed from {addon}."
-msgstr ""
+msgstr "{user} ({0}) removido de {addon}."
 
 #: src/olympia/constants/activity.py:76
 #, python-brace-format
@@ -900,7 +900,7 @@ msgstr "Versão {0} eliminada de {addon}."
 #: src/olympia/constants/activity.py:129
 #, python-brace-format
 msgid "File {file} added to {version} of {addon}."
-msgstr ""
+msgstr "O ficheiro {file} foi adicionado à {version} de {addon}."
 
 #: src/olympia/constants/activity.py:141
 #, python-brace-format
