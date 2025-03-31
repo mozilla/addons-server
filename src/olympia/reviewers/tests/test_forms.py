@@ -29,9 +29,10 @@ from olympia.files.models import File
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version, VersionReviewerFlags
 
-from ..forms import HeldDecisionReviewForm, ReviewForm
+from ..forms import HeldDecisionReviewForm, ReviewForm, ReviewQueueFilter
 from ..models import (
     AutoApprovalSummary,
+    NeedsHumanReview,
     ReviewActionReason,
 )
 from ..utils import ReviewHelper
@@ -1390,3 +1391,10 @@ class TestHeldDecisionReviewForm(TestCase):
         )
         form = HeldDecisionReviewForm({'choice': 'yes'}, decision=decision)
         assert not form.is_valid()
+
+
+def test_review_queue_filter_form_due_date_reasons():
+    form = ReviewQueueFilter(data=None)
+    assert form.fields['due_date_reasons'].choices == [
+        (entry.annotation, entry.display) for entry in NeedsHumanReview.REASONS.entries
+    ]

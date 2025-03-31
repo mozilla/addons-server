@@ -1842,6 +1842,10 @@ class TestNeedsHumanReview(TestCase):
         flagged.save()
         assert ActivityLog.objects.count() == 0
 
+    def test_reasons_have_annotation_property(self):
+        for entry in NeedsHumanReview.REASONS.entries:
+            assert entry.annotation == f'needs_human_review_{entry.constant.lower()}'
+
 
 class UsageTierTests(TestCase):
     def setUp(self):
