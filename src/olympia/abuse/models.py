@@ -1344,8 +1344,6 @@ class ContentDecision(ModelBase):
 
         if self.addon_id:
             details = (log_entry and log_entry.details) or {}
-            # ContentDecision created from Cinder doesn't set reviewer_user
-            from_reviewer_tools = bool(self.reviewer_user)
             is_auto_approval = (
                 self.action == DECISION_ACTIONS.AMO_APPROVE_VERSION
                 and not details.get('human_review', True)
@@ -1367,9 +1365,12 @@ class ContentDecision(ModelBase):
                 'dev_url': absolutify(self.target.get_dev_url('versions'))
                 if self.addon_id
                 else None,
-                # Because we expand the reason/policy text into notes in the
-                # reviewer tools, we don't want to duplicate it as policies too.
-                **({'policy_texts': ()} if self.notes and from_reviewer_tools else {}),
+                # If we expanded the reason/policy text into notes in the reviewer tools
+                # we wouldn't have set this key in details - so the default is want we
+                # want: we don't want to duplicate it as policies too;
+                # otherwise it will already contain policy_text from
+                # ContentAction.log_action, so we don't need to do it again.
+                'policy_texts': details.get('policy_texts', []),
             }
         else:
             extra_context = {}
@@ -1386,6 +1387,15 @@ class ContentDecision(ModelBase):
             _('"{}" for {}').format(self.rating, self.rating.addon.name)
             if self.rating
             else getattr(self.target, 'name', self.target)
+        )
+
+    @property
+    def has_policy_text_in_comments(self):
+        # ContentDecision created from Cinder doesn't set reviewer_user;
+        # POLICY_DYNAMIC_VALUES is not saved in metadata when we expanded
+        # ReviewActionReason canned responses in the reviewer tools comments
+        return (
+            bool(self.reviewer_user) and self.POLICY_DYNAMIC_VALUES not in self.metadata
         )
 
     def get_policy_texts(self):

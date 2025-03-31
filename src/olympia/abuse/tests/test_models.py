@@ -3581,6 +3581,26 @@ class TestContentDecision(TestCase):
             'policy b: Other thing? with {MISSING}',
         ]
 
+    def test_has_policy_text_in_comments(self):
+        decision = ContentDecision.objects.create(
+            addon=addon_factory(),
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+        )
+        assert decision.has_policy_text_in_comments is False
+
+        decision.update(reviewer_user=user_factory())
+        assert decision.has_policy_text_in_comments is True
+
+        decision.update(
+            metadata={
+                ContentDecision.POLICY_DYNAMIC_VALUES: {
+                    'uuid-a': {'NPM_VER': '123.4', 'EXPLAIN': ':rolleyes:'},
+                    'uuid-b': {'THING': 'thing?'},
+                }
+            },
+        )
+        assert decision.has_policy_text_in_comments is False
+
 
 @pytest.mark.django_db
 @pytest.mark.parametrize(

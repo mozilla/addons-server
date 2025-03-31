@@ -350,6 +350,39 @@ class BaseTestContentAction:
             == reviewer
         )
 
+    def test_log_action_saves_policy_texts(self):
+        # update the policy with a placeholder - these are't supposed to be used with
+        # Cinder originated policy decisions, but testing the edge case.
+        self.policy.update(text='This is {JUDGEMENT} thing')
+        assert self.ActionClass(self.decision).log_action(
+            amo.LOG.ADMIN_USER_UNBAN
+        ).details['policy_texts'] == [
+            'Parent Policy, specifically Bad policy: This is {JUDGEMENT} thing'
+        ]
+        # change the decision to one that was made by an AMO reviewer
+        self.decision.update(reviewer_user=user_factory())
+        assert (
+            # no policy text - the text will be included in the decision notes
+            'policy_texts'
+            not in self.ActionClass(self.decision)
+            .log_action(amo.LOG.ADMIN_USER_UNBAN)
+            .details
+        )
+
+        # except if the review has directly specified the policies with the placeholders
+        self.decision.update(
+            metadata={
+                ContentDecision.POLICY_DYNAMIC_VALUES: {
+                    self.policy.uuid: {'JUDGEMENT': 'a Térrible'}
+                }
+            }
+        )
+        assert self.ActionClass(self.decision).log_action(
+            amo.LOG.ADMIN_USER_UNBAN
+        ).details['policy_texts'] == [
+            'Parent Policy, specifically Bad policy: This is a Térrible thing'
+        ]
+
 
 class TestContentActionUser(BaseTestContentAction, TestCase):
     ActionClass = ContentActionBanUser
@@ -368,7 +401,10 @@ class TestContentActionUser(BaseTestContentAction, TestCase):
         assert ActivityLog.objects.count() == 1
         assert activity.arguments == [self.user, self.decision, self.policy]
         assert activity.user == self.task_user
-        assert activity.details == {'comments': self.decision.notes}
+        assert activity.details == {
+            'comments': self.decision.notes,
+            'policy_texts': [self.policy.full_text()],
+        }
 
         self.user.reload()
         self.assertCloseToNow(self.user.banned)
@@ -432,7 +468,10 @@ class TestContentActionUser(BaseTestContentAction, TestCase):
         assert activity.log == amo.LOG.ADMIN_USER_UNBAN
         assert activity.arguments == [self.user, self.decision, self.policy]
         assert activity.user == self.task_user
-        assert activity.details == {'comments': self.decision.notes}
+        assert activity.details == {
+            'comments': self.decision.notes,
+            'policy_texts': [self.policy.full_text()],
+        }
         assert len(mail.outbox) == 0
 
         self.cinder_job.notify_reporters(action)
@@ -485,7 +524,10 @@ class TestContentActionUser(BaseTestContentAction, TestCase):
         assert ActivityLog.objects.count() == 1
         assert activity.arguments == [self.user, self.decision, self.policy]
         assert activity.user == self.task_user
-        assert activity.details == {'comments': self.decision.notes}
+        assert activity.details == {
+            'comments': self.decision.notes,
+            'policy_texts': [self.policy.full_text()],
+        }
 
 
 @override_switch('dsa-cinder-forwarded-review', active=True)
@@ -759,6 +801,7 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
             'comments': self.decision.notes,
             'version': self.version.version,
             'human_review': False,
+            'policy_texts': [self.policy.full_text()],
         }
 
         user = user_factory()
@@ -839,6 +882,7 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
             'version': self.version.version,
             'human_review': False,
             'comments': self.decision.notes,
+            'policy_texts': [self.policy.full_text()],
         }
 
         # add a ReviewActionReason from a previous decision via the reviewer tools
@@ -1139,6 +1183,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
             'comments': self.decision.notes,
             'version': self.version.version,
             'human_review': False,
+            'policy_texts': [self.policy.full_text()],
         }
 
         user = user_factory()
@@ -1300,7 +1345,10 @@ class TestContentActionCollection(BaseTestContentAction, TestCase):
         assert ActivityLog.objects.count() == 1
         assert activity.arguments == [self.collection, self.decision, self.policy]
         assert activity.user == self.task_user
-        assert activity.details == {'comments': self.decision.notes}
+        assert activity.details == {
+            'comments': self.decision.notes,
+            'policy_texts': [self.policy.full_text()],
+        }
 
 
 class TestContentActionRating(BaseTestContentAction, TestCase):
@@ -1335,6 +1383,7 @@ class TestContentActionRating(BaseTestContentAction, TestCase):
             'addon_title': str(self.rating.addon.name),
             'body': self.rating.body,
             'is_flagged': False,
+            'policy_texts': [self.policy.full_text()],
         }
 
         assert self.rating.reload().deleted
@@ -1407,6 +1456,7 @@ class TestContentActionRating(BaseTestContentAction, TestCase):
             'addon_title': str(self.rating.addon.name),
             'body': self.rating.body,
             'is_flagged': False,
+            'policy_texts': [self.policy.full_text()],
         }
         assert not self.rating.reload().deleted
         assert len(mail.outbox) == 0
@@ -1466,4 +1516,7 @@ class TestContentActionRating(BaseTestContentAction, TestCase):
             self.rating.addon,
         ]
         assert activity.user == self.task_user
-        assert activity.details == {'comments': self.decision.notes}
+        assert activity.details == {
+            'comments': self.decision.notes,
+            'policy_texts': [self.policy.full_text()],
+        }
