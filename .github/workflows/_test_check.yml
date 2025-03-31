@@ -61,16 +61,9 @@ jobs:
           - production
     steps:
       - uses: actions/checkout@v4
-      - shell: bash
-        continue-on-error: true
-        run: |
-          cat <<EOF
-            Values passed to the action:
-            version: ${{ matrix.version }}
-            target: ${{ matrix.target }}
-            deps: ${{ matrix.deps }}
-          EOF
       - name: ${{ matrix.version == 'local' && 'Uncached Build' || 'Pull' }} Check
+        id: build
+        continue-on-error: true
         uses: ./.github/actions/run-docker
         # Set environment variables that are expected to be ignored
         env:
@@ -81,9 +74,22 @@ jobs:
           target: ${{ matrix.target }}
           deps: ${{ matrix.deps }}
           run: make check
+
+      - name: Verify build
+        id: verify
+        shell: bash
+        run: |
+          version="${{ matrix.version }}"
+          target="${{ matrix.target }}"
+          outcome="${{ steps.build.outcome }}"
+          if [[ "$version" != "local" && "$target" == "development" && "$outcome" == "success" ]]; then
+            echo "Non local images must run in production mode"
+            exit 1
+          fi
+
       - name: Cached Build Check
         uses: ./.github/actions/run-docker
-        if: ${{ matrix.version == 'local' }}
+        if: matrix.version == 'local' && steps.verify.outcome == 'success'
         with:
           version: ${{ matrix.version }}
           target: ${{ matrix.target }}

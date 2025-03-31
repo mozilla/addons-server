@@ -96,7 +96,6 @@ jobs:
           digest: ${{ needs.build.outputs.digest }}
           version: ${{ needs.build.outputs.version }}
           deps: development
-          target: development
           run: |
             make docs
 

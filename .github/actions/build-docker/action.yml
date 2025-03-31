@@ -56,16 +56,15 @@ runs:
       id: build
       shell: bash
       env:
+        # These values are irrelevant for local builds, so don't include them
+        # in the make command directly but set them on the environment to be picked up.
         DOCKER_TAGS_FILE: ${{ steps.meta.outputs.bake-file-tags }}
         DOCKER_ANNOTATIONS_FILE: ${{ steps.meta.outputs.bake-file-annotations }}
         DOCKER_METADATA_FILE: ${{ steps.context.outputs.metadata_file }}
         DOCKER_PUSH: ${{ inputs.push }}
       run: |
-        make setup \
-          DOCKER_TARGET="production" \
-          DOCKER_VERSION="${{ steps.meta.outputs.version }}"
-
-        make docker_build_web \
+        make build \
+          DOCKER_VERSION="${{ steps.meta.outputs.version }}" \
           DOCKER_COMMIT="${{ steps.context.outputs.git_sha }}" \
           DOCKER_BUILD="${{ steps.context.outputs.git_build_url }}"
 
