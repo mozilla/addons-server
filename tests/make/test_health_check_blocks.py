@@ -8,8 +8,13 @@ from scripts.health_check_blocks import create_blocks
 class TestHealthCheckBlocks(TestCase):
     def setUp(self):
         self.base_data = {
+            'environment': 'test',
             'version': {
-                'data': {'version': '1.0.0'},
+                'data': {
+                    'version': '1.0.0',
+                    'commit': '1234567890',
+                    'build': '1234567890',
+                },
                 'url': 'http://nginx/__version__',
             },
             'monitors': {
