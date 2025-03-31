@@ -885,7 +885,11 @@ def user_factory(**kw):
     if 'last_login_ip' not in kw:
         kw['last_login_ip'] = '127.0.0.1'
     if 'auth_id' not in kw:
-        kw['auth_id'] = random.randint(1, 42)  # Cheaper default.
+        # In tests, we don't need the expensive SystemRandom for the auth_id,
+        # just random.randint() is enough. We use a slightly lower boundary to
+        # allow us to do some quick & dirty additions with the auth_id to make
+        # invalid ones.
+        kw['auth_id'] = random.randint(1, 4294967295 - 42)
     user = UserProfile.objects.create(username=username, email=email, **kw)
     return user
 

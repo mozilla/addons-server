@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 from unittest import mock
 
 from django.conf import settings
+from django.contrib.auth import SESSION_KEY
 from django.test import RequestFactory
 from django.urls import reverse
 
@@ -311,7 +312,7 @@ class TestSessionIDAuthentication(TestCase):
         self.update_token_mock.assert_not_called()
 
     def test_user_id_is_none(self):
-        token = self.client.create_session(self.user, _auth_user_id=None)
+        token = self.client.create_session(self.user, **{SESSION_KEY: None})
         with self.assertRaises(AuthenticationFailed) as exp:
             self._authenticate(token)
         assert exp.exception.detail['code'] == 'ERROR_AUTHENTICATION_EXPIRED'
@@ -332,7 +333,7 @@ class TestSessionIDAuthentication(TestCase):
         self.update_token_mock.assert_not_called()
 
     def test_invalid_user_not_found(self):
-        token = self.client.create_session(self.user, _auth_user_id=-1)
+        token = self.client.create_session(self.user, **{SESSION_KEY: -1})
         with self.assertRaises(AuthenticationFailed) as exp:
             self._authenticate(token)
         assert exp.exception.detail['code'] == 'ERROR_AUTHENTICATION_EXPIRED'
@@ -342,8 +343,13 @@ class TestSessionIDAuthentication(TestCase):
         self.update_token_mock.assert_not_called()
 
     def test_invalid_user_other_user(self):
-        user2 = user_factory(read_dev_agreement=datetime.now())
-        token = self.client.create_session(self.user, _auth_user_id=user2.pk)
+        user2 = user_factory(
+            read_dev_agreement=datetime.now(), auth_id=self.user.auth_id + 42
+        )
+        # That token should be invalid: it's a session generated for self.user,
+        # but we have overridden the SESSION_KEY to point to user2 instead, so
+        # it shouldn't work, because the auth_id hash will differ.
+        token = self.client.create_session(self.user, **{SESSION_KEY: user2.pk})
         with self.assertRaises(AuthenticationFailed) as exp:
             self._authenticate(token)
         assert exp.exception.detail['code'] == 'ERROR_AUTHENTICATION_EXPIRED'
