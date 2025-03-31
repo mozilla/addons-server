@@ -2126,6 +2126,8 @@ msgid ""
 "To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
 "href=\"{docs_url}\">API documentation</a>."
 msgstr ""
+"Para fazer pedidos à API, envie um <a href=\"{jwt_url}\">Token Web JSON (JWT)</a> como o cabeçalho da autorização. Precisa de gerar um JWT para cada pedido tal como é explicado na <a "
+"href=\"{docs_url}\">documentação da API</a>."
 
 #: src/olympia/devhub/forms.py:1494
 msgid "JWT secret"
@@ -2134,7 +2136,7 @@ msgstr "Segredo JWT"
 #: src/olympia/devhub/forms.py:1515
 #, python-brace-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
-msgstr ""
+msgstr "Por favor, clique no botão de confirmação abaixo para gerar as credenciais de API para o utilizador <strong>{name}</strong>."
 
 #: src/olympia/devhub/forms.py:1521
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
@@ -2146,7 +2148,7 @@ msgstr "Não possui quaisquer credenciais da API."
 
 #: src/olympia/devhub/forms.py:1549
 msgid "Something went wrong, please contact developer support."
-msgstr ""
+msgstr "Algo correu mal. Por favor, contacte o apoio ao programador."
 
 #: src/olympia/devhub/tasks.py:178
 msgid "Invalid or corrupt add-on file."
@@ -2172,7 +2174,7 @@ msgstr "A validação gerou muitos erros/alertas então %s mensagens foram trunc
 #: src/olympia/devhub/utils.py:207
 #, python-brace-format
 msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
-msgstr ""
+msgstr "Este extra não é um tema. Utilize a página <a href=\"{link}\">Submeter um novo extra</a> para submeter extensões."
 
 #: src/olympia/devhub/views.py:115
 msgid "Updated"
@@ -2263,7 +2265,7 @@ msgstr "Validar extra"
 #: src/olympia/devhub/views.py:645
 #, python-brace-format
 msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
-msgstr ""
+msgstr "<a href=\"{link}\">Adicione a autenticação de dois fatores à sua conta para submeter extensões.</a>"
 
 #: src/olympia/devhub/views.py:1014
 msgid "Icons must be either PNG or JPG."
@@ -2300,6 +2302,8 @@ msgstr "Ocorreu um erro ao enviar a sua pré-visualização."
 msgid ""
 "The latest approved version of this %s add-on cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
+"A última versão aprovada desta extensão %s não pode ser eliminada ou desativada porque a versão anterior não foi aprovada para a promoção %s . Por favor, contacte os administradores do AMO se "
+"precisar de ajuda com isto."
 
 #: src/olympia/devhub/views.py:1223
 #, python-format
@@ -2380,7 +2384,7 @@ msgstr ""
 
 #: src/olympia/devhub/views.py:1579
 msgid "Add-on uploads are temporarily unavailable"
-msgstr ""
+msgstr "Os envios de extras estão temporariamente indisponíveis"
 
 #: src/olympia/devhub/views.py:1949
 msgid "Review requested."
@@ -2396,7 +2400,7 @@ msgstr "As suas credenciais antigas foram revogadas e já não são válidas."
 
 #: src/olympia/devhub/views.py:2072
 msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
-msgstr ""
+msgstr "Mantenha as suas chaves da API secretas e nunca as partilhe com ninguém, incluindo colaboradores da Mozilla."
 
 #: src/olympia/devhub/views.py:2089
 msgid "New API key created"
@@ -2412,7 +2416,7 @@ msgstr "Verificar e-mail"
 
 #: src/olympia/devhub/views.py:2162
 msgid "Send another email"
-msgstr ""
+msgstr "Enviar outro e-mail"
 
 #: src/olympia/devhub/views.py:2195
 msgid "Your email has been verified"
@@ -2428,11 +2432,11 @@ msgstr "Acordo de distribuição de extras do Firefox"
 
 #: src/olympia/devhub/templates/devhub/base.html:43
 msgid "Help us make things better!"
-msgstr ""
+msgstr "Ajude-nos a tornar as coisas melhores!"
 
 #: src/olympia/devhub/templates/devhub/base.html:44
 msgid "Take our quick survey"
-msgstr ""
+msgstr "Participe no nosso questionário rápido"
 
 #. {0} is an application, like Firefox.
 #: src/olympia/devhub/templates/devhub/index.html:21 src/olympia/templates/base.html:17
@@ -2505,7 +2509,7 @@ msgstr "Pesquisa"
 #: src/olympia/devhub/templates/devhub/suppressed_email.html:4
 #, python-format
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
-msgstr ""
+msgstr "Descobrimos que o seu e-mail \"%(email)s\" não pode receber mensagens nossas. Atualize o seu endereço de e-mail para um que possa receber mensagens nossas."
 
 #: src/olympia/devhub/templates/devhub/suppressed_email.html:8
 msgid "Learn more"
@@ -2551,11 +2555,11 @@ msgstr "O seu endereço de e-mail está verificado."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:16
 msgid "Please verify your email."
-msgstr ""
+msgstr "Verifique o seu e-mail."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:20
 msgid "Could not verify email address. The verification link has expired."
-msgstr ""
+msgstr "Não foi possível verificar o endereço de e-mail. A ligação de verificação expirou."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:24
 msgid "We are sending an email to you, please be patient... <div class=\"loader\"></div> The page will automatically refresh."
