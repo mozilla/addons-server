@@ -9,10 +9,11 @@ from django.core.management import call_command
 from django.test.testcases import TransactionTestCase
 
 import responses
+from freezegun import freeze_time
 
 from olympia import amo
 from olympia.abuse.models import AbuseReport, CinderJob, CinderPolicy, ContentDecision
-from olympia.activity.models import ActivityLog
+from olympia.activity.models import ActivityLog, CinderPolicyLog, ReviewActionReasonLog
 from olympia.addons.models import AddonApprovalsCounter, AddonReviewerFlags
 from olympia.amo.tests import (
     TestCase,
@@ -30,8 +31,15 @@ from olympia.files.models import FileValidation
 from olympia.files.utils import lock
 from olympia.lib.crypto.signing import SigningError
 from olympia.ratings.models import Rating
-from olympia.reviewers.management.commands import auto_approve, auto_reject
-from olympia.reviewers.models import (
+from olympia.scanners.models import ScannerResult, ScannerRule
+from olympia.versions.models import Version, VersionReviewerFlags
+
+from ..management.commands import (
+    auto_approve,
+    auto_reject,
+    backfill_reviewactionreasons_for_delayed_rejections,
+)
+from ..models import (
     AutoApprovalNoValidationResultError,
     AutoApprovalSummary,
     NeedsHumanReview,
@@ -39,8 +47,6 @@ from olympia.reviewers.models import (
     get_reviewing_cache,
     set_reviewing_cache,
 )
-from olympia.scanners.models import ScannerResult, ScannerRule
-from olympia.versions.models import Version, VersionReviewerFlags
 
 
 class AutoApproveTestsMixin:
@@ -1885,6 +1891,7 @@ class TestAutoRejectTransactions(AutoRejectTestsMixin, TransactionTestCase):
         assert 'right to appeal' in mail.outbox[1].body
 
 
+@freeze_time(backfill_reviewactionreasons_for_delayed_rejections.Command.MAX_DATE)
 class TestBackfillReviewactionreasonsForDelayedRejections(TestCase):
     def check_log(self, alog, reasons, policies):
         alog.reload()
@@ -2036,5 +2043,69 @@ class TestBackfillReviewactionreasonsForDelayedRejections(TestCase):
 
         call_command('backfill_reviewactionreasons_for_delayed_rejections')
 
+        self.check_log(rejected, [reason], [policy])
+        self.check_decision(override_decision, [policy])
+
+    def test_too_old_and_too_new(self):
+        addon = addon_factory()
+        version = addon.current_version
+        user = user_factory()
+        date_within = (
+            backfill_reviewactionreasons_for_delayed_rejections.Command.MAX_DATE
+        )
+        date_after = date_within + timedelta(minutes=1)
+        date_before = (
+            backfill_reviewactionreasons_for_delayed_rejections.Command.MIN_DATE
+            - timedelta(minutes=1)
+        )
+
+        policy = CinderPolicy.objects.create(uuid='1', name='the policy')
+        warning_decision = ContentDecision.objects.create(
+            action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON, addon=addon
+        )
+        warning_decision.policies.set((policy,))
+        reason = ReviewActionReason.objects.create(
+            name='the reason', canned_response='why', cinder_policy=policy
+        )
+        with freeze_time(date_after):
+            delayed = ActivityLog.objects.create(
+                amo.LOG.REJECT_VERSION_DELAYED,
+                addon,
+                version,
+                reason,
+                policy,
+                warning_decision,
+                user=user,
+            )
+            override_decision = ContentDecision.objects.create(
+                action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
+                addon=addon,
+                override_of=warning_decision,
+            )
+            rejected = ActivityLog.objects.create(
+                amo.LOG.AUTO_REJECT_VERSION_AFTER_DELAY_EXPIRED,
+                addon,
+                version,
+                override_decision,
+                user=user,
+            )
+
+        call_command('backfill_reviewactionreasons_for_delayed_rejections')
+        self.check_log(rejected, [], [])
+        self.check_decision(override_decision, [])
+
+        delayed.update(created=date_before)
+        rejected.update(created=date_before)
+        CinderPolicyLog.objects.update(created=date_before)
+        ReviewActionReasonLog.objects.update(created=date_before)
+        call_command('backfill_reviewactionreasons_for_delayed_rejections')
+        self.check_log(rejected, [], [])
+        self.check_decision(override_decision, [])
+
+        delayed.update(created=date_within)
+        rejected.update(created=date_within)
+        CinderPolicyLog.objects.update(created=date_within)
+        ReviewActionReasonLog.objects.update(created=date_within)
+        call_command('backfill_reviewactionreasons_for_delayed_rejections')
         self.check_log(rejected, [reason], [policy])
         self.check_decision(override_decision, [policy])

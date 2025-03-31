@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.core.management.base import BaseCommand
 
 import olympia.core.logger
@@ -22,6 +24,10 @@ class Command(BaseCommand):
             amo.LOG.REJECT_VERSION_DELAYED.id
         ),
     }
+    # To reduce the risk of fixing something badly, and making it worse, we're
+    # limiting the fix to a period from the start of 2025 to early March.
+    MIN_DATE = datetime(2025, 1, 1)
+    MAX_DATE = datetime(2025, 3, 6)
 
     def handle(self, *args, **options):
         rejections = ActivityLog.objects.filter(
@@ -29,6 +35,8 @@ class Command(BaseCommand):
             action__in=self.expired_from_delayed_action_ids.keys(),
             # with no review action reasons currently
             reviewactionreasonlog__id=None,
+            created__gte=self.MIN_DATE,
+            created__lte=self.MAX_DATE,
         ).exclude(versionlog__id=None)
         log.info('%s Rejections to fix', rejections.count())
         for alog in rejections:
@@ -50,6 +58,7 @@ class Command(BaseCommand):
                 activity_log__action=self.expired_from_delayed_action_ids[alog.action],
                 activity_log__versionlog__version__in=versions_qs,
                 created__lte=alog.created,
+                created__gte=self.MIN_DATE,
             )
             .order_by('created')
             .values_list('activity_log__versionlog__version_id', 'reason_id')
@@ -76,6 +85,7 @@ class Command(BaseCommand):
                 activity_log__action=self.expired_from_delayed_action_ids[alog.action],
                 activity_log__versionlog__version__in=versions_qs,
                 created__lte=alog.created,
+                created__gte=self.MIN_DATE,
             )
             .order_by('created')
             .values_list('activity_log__versionlog__version_id', 'cinder_policy_id')
