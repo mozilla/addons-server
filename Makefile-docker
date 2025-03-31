@@ -146,6 +146,12 @@ copy_node_js:
 	for dest in $(NODE_LIBS_JS) ; do cp $(NODE_MODULES)$$dest $(STATIC_JS) ; done
 	for dest in $(NODE_LIBS_JQUERY_UI) ; do cp $(NODE_MODULES)$$dest $(STATIC_JQUERY_UI) ; done
 
+.PHONY: update_deps_python
+update_deps_python: cleanup_python_build_dir install_python_dev_dependencies
+
+.PHONY: update_deps_node
+update_deps_node: install_node_dependencies
+
 .PHONY: update_deps
 update_deps: cleanup_python_build_dir install_python_dev_dependencies install_node_dependencies
 
