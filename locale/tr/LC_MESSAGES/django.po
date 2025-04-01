@@ -4360,7 +4360,7 @@ msgstr "{label_open}Görünür:{label_close} {site_url} üzerindeki herkese gör
 #, python-brace-format
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
-msgstr ""
+msgstr "{label_open}Görünmez:{label_close} Arama sonuçlarına dahil edilmeyecek ve ürün sayfasında devre dışı bıraktığınız belirtilecektir. Bu durumda yeni sürüm gönderimleri kabul edilmeyecektir."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:178
 msgid "Listed versions"
@@ -4896,7 +4896,7 @@ msgstr "Fiyat geçmişini izleyin, rakip ürünleri bulun, satıcı puanlarını
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:239 src/olympia/discovery/strings.jinja2:707
 msgid "Make it your YouTube. Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
-msgstr ""
+msgstr "YouTube’u kişiselleştirin. Videoları açılır pencerede oynatın, yalnızca abone olduğunuz kanallardaki reklamları görün, videolardan ekran görüntüleri alın ve çok daha fazlasını yapın."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:242
