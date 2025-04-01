@@ -1511,7 +1511,7 @@ SPECTACULAR_SETTINGS = {
     # Extract tag of the root path of the API route
     # /api/v5/foo -> foo
     'SCHEMA_PATH_PREFIX': '/api/v[0-9]',
-    'TITLE': 'AMO API',
+    'TITLE': 'AMO API (Experimental)',
     'DESCRIPTION': 'Addons Server API Documentation',
     'SERVE_INCLUDE_SCHEMA': True,
     'SERVE_PERMISSIONS': ['rest_framework.permissions.AllowAny'],
