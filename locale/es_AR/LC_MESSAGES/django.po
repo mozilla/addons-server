@@ -1240,7 +1240,7 @@ msgstr "Colección {collection} eliminada por el moderador"
 #: src/olympia/constants/activity.py:1020
 #, python-brace-format
 msgid "Collection {collection} un-deleted by moderator"
-msgstr ""
+msgstr "Colección {collection} restaurada por el moderador"
 
 #: src/olympia/constants/activity.py:1029
 #, python-brace-format
