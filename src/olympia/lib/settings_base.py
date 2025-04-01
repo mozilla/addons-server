@@ -1512,7 +1512,11 @@ SPECTACULAR_SETTINGS = {
     # /api/v5/foo -> foo
     'SCHEMA_PATH_PREFIX': '/api/v[0-9]',
     'TITLE': 'AMO API (Experimental)',
-    'DESCRIPTION': 'Addons Server API Documentation (Experimental, check out <a href="https://mozilla.github.io/addons-server/topics/api/index.html">official documentation</a> for a more reliable source of information)',
+    'DESCRIPTION': (
+        'Addons Server API Documentation (Experimental, check out '
+        '<a href="https://mozilla.github.io/addons-server/topics/api/index.html">'
+        'official documentation</a> for a more reliable source of information)'
+    ),
     'SERVE_INCLUDE_SCHEMA': True,
     'SERVE_PERMISSIONS': ['rest_framework.permissions.AllowAny'],
     # load swagger/redoc assets via collectstatic assets
