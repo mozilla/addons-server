@@ -1284,7 +1284,7 @@ DRF_API_GATES = {
         'del-preview-position',
         'categories-application',
         'promoted-verified-sponsored',
-        'mimimal-profile-has-all-fields-shim',
+        'minimal-profile-has-all-fields-shim',
         'promoted-groups-shim',
     ),
     'v4': (
