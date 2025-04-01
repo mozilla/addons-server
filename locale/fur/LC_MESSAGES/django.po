@@ -5832,7 +5832,7 @@ msgstr "Met in struc in mût sempliç e-mails, documents, articui e trascrizions
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:980
 msgid "You’re in control. Turn off VPN when a website won’t work and set different locations for different websites. Windows only."
-msgstr ""
+msgstr "Tu sês tu a vê il control. Disative la VPN se un sît web nol funzione e stabilìs posizions diferentis pai varis sîts. Nome su Windows."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:983
