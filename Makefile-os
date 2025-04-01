@@ -84,7 +84,7 @@ help_submake:
 
 .PHONY: actionlint
 actionlint: ## lint github action workflows
-	docker compose -p actionlint -f docker-compose.tools.yml run --rm -it actionlint
+	docker compose -p actionlint -f docker-compose.tools.yml run --rm actionlint
 
 .PHONY: test_setup
 test_setup:
