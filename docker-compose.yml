@@ -95,7 +95,7 @@ services:
       start_interval: 1s
 
   nginx:
-    image: nginx
+    image: nginx:1.27-bookworm@sha256:124b44bfc9ccd1f3cedf4b592d4d1e8bddb78b51ec2ed5056c52d3692baebc19
     <<: *env
     volumes:
       - data_nginx:/etc/nginx/templates
@@ -110,10 +110,10 @@ services:
       - web
 
   memcached:
-    image: memcached:1.5.16
+    image: memcached:1.5.16@sha256:9258aa018bce5300ba3548aba19e95612508b43e6587462c6e22b5ac6a35d5a9
 
   mysqld:
-    image: mysql:8.0
+    image: mysql:8.0@sha256:bf577825b52ab281d6281fb281eabbfdc73507eda8f2c2745790251533ef0306
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
       - MYSQL_DATABASE=olympia
@@ -139,7 +139,7 @@ services:
       retries: 3
 
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.27
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.27@sha256:e3db87aef5d115408b36e3d5bbd309629100597462910d6b5efec70fcfead22a
     environment:
       # Disable all xpack related features to avoid unrelated logging
       # in docker logs. https://github.com/mozilla/addons-server/issues/8887
@@ -154,12 +154,12 @@ services:
     mem_limit: 2g
 
   redis:
-    image: redis:6.2
+    image: redis:6.2-bookworm@sha256:c628c49a6ce4a68bfbd548d7957d3d52b2267a4cd4b4a16779a1ca0cd1126527
     volumes:
       - data_redis:/data
 
   rabbitmq:
-    image: rabbitmq:3.12
+    image: rabbitmq:3.12@sha256:4dc5d5a5076f7c458b7f3468e2282f329a8911cc3c31c4ed4aefcedb27917da2
     hostname: olympia
     expose:
       - "5672"
@@ -171,14 +171,14 @@ services:
       - data_rabbitmq:/var/lib/rabbitmq
 
   autograph:
-    image: mozilla/autograph:7.3.3
+    image: mozilla/autograph:7.3.6@sha256:abbd38f0969b86fca2266570870087c15db91204533b893cc2a948c422ed3424
     command: /go/bin/autograph -c /data/autograph/autograph_localdev_config.yaml
     volumes:
       - data_autograph:/data/autograph
 
   addons-frontend:
     <<: *env
-    image: mozilla/addons-frontend:latest
+    image: mozilla/addons-frontend:2025.03.20-1@sha256:32b1c20b6678df73df4ac81c19cbb74bfe5a062a7e39273efba626d0347e8019
     platform: linux/amd64
     environment:
       # We change the proxy port (which is the main entrypoint) as well as the
