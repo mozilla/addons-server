@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-29 05:40+0000\n"
+"POT-Creation-Date: 2025-04-01 15:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -340,7 +340,7 @@ msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr ""
 
 #: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:756
-#: src/olympia/files/utils.py:755 src/olympia/reviewers/forms.py:344
+#: src/olympia/files/utils.py:755 src/olympia/reviewers/forms.py:343
 msgid "Invalid or broken archive."
 msgstr ""
 
@@ -1389,7 +1389,7 @@ msgstr ""
 msgid "Disabled by Mozilla"
 msgstr ""
 
-#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1222
+#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1187
 msgid "Deleted"
 msgstr ""
 
@@ -6951,12 +6951,12 @@ msgstr ""
 msgid "Rated %(rating)s out of 5 stars"
 msgstr ""
 
-#: src/olympia/reviewers/forms.py:330
+#: src/olympia/reviewers/forms.py:329
 #, python-brace-format
 msgid "Unsupported file type, please upload a file {extensions}."
 msgstr ""
 
-#: src/olympia/reviewers/forms.py:336
+#: src/olympia/reviewers/forms.py:335
 msgid "File too large."
 msgstr ""
 
@@ -7714,33 +7714,33 @@ msgid ""
 "Mozilla Add-ons Team"
 msgstr ""
 
-#: src/olympia/versions/models.py:1207
+#: src/olympia/versions/models.py:1172
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
 msgstr ""
 
-#: src/olympia/versions/models.py:1212
+#: src/olympia/versions/models.py:1177
 msgid "Auto-approved, Confirmed"
 msgstr ""
 
-#: src/olympia/versions/models.py:1214
+#: src/olympia/versions/models.py:1179
 msgid "Auto-approved, not Confirmed"
 msgstr ""
 
-#: src/olympia/versions/models.py:1217
+#: src/olympia/versions/models.py:1182
 msgid "Approved, Manual"
 msgstr ""
 
-#: src/olympia/versions/models.py:1224
+#: src/olympia/versions/models.py:1189
 msgid "Disabled by Developer"
 msgstr ""
 
-#: src/olympia/versions/models.py:1582
+#: src/olympia/versions/models.py:1547
 #, python-brace-format
 msgid "{app} {min} and later"
 msgstr ""
 
-#: src/olympia/versions/models.py:1709
+#: src/olympia/versions/models.py:1674
 #, python-brace-format
 msgid "The install origin {origin} is not permitted."
 msgstr ""
