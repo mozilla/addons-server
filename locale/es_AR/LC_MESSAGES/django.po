@@ -1245,7 +1245,7 @@ msgstr "Colección {collection} restaurada por el moderador"
 #: src/olympia/constants/activity.py:1029
 #, python-brace-format
 msgid "Review {rating} for {addon} un-deleted."
-msgstr ""
+msgstr "Revisión {rating} para {addon} restaurada."
 
 #: src/olympia/constants/activity.py:1058
 #, python-brace-format
