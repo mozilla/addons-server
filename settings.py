@@ -121,5 +121,5 @@ except ImportError as exc:
     import warnings
     import traceback
 
-    warnings.warn('Could not import local_settings module. {}'.format(
-        traceback.format_exc()))
+    #warnings.warn('Could not import local_settings module. {}'.format(
+    #    traceback.format_exc()))
