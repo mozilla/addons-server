@@ -395,10 +395,18 @@ class TestVersionManager(TestCase):
 
         addon_factory(**addon_kws)  # no due_date
 
-        other_nhr = addon_factory(**addon_kws).current_version
+        first_theme_initial_version = addon_factory(
+            type=amo.ADDON_STATICTHEME, status=amo.STATUS_NOMINATED, **addon_kws
+        ).versions.get()
+        second_theme_second_version = version_factory(
+            addon=addon_factory(type=amo.ADDON_STATICTHEME),
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
+
+        unknown_nhr = addon_factory(**addon_kws).current_version
         # having the needs_human_review flag means a due dute is needed
         NeedsHumanReview.objects.create(
-            version=other_nhr, reason=NeedsHumanReview.REASONS.SCANNER_ACTION
+            version=unknown_nhr, reason=NeedsHumanReview.REASONS.UNKNOWN
         )
 
         # Or if it's in a pre-review promoted group it will.
@@ -478,7 +486,9 @@ class TestVersionManager(TestCase):
         qs = Version.objects.should_have_due_date().order_by('id')
         assert list(qs) == [
             # absent addon with nothing special set
-            other_nhr,
+            first_theme_initial_version,
+            second_theme_second_version,
+            unknown_nhr,
             recommended,
             # absent promoted but not prereview addon
             developer_reply,
@@ -491,13 +501,25 @@ class TestVersionManager(TestCase):
         ]
 
     def test_get_due_date_reason_q_objects(self):
+        q_objects = Version.objects.get_due_date_reason_q_objects()
+        # Every NHR reason leads to a Q() object in that dict, plus the special
+        # one for themes awaiting review.
+        assert len(q_objects) == len(NeedsHumanReview.REASONS) + 1
+        assert 'is_from_theme_awaiting_review' in q_objects
+        for entry in NeedsHumanReview.REASONS.entries:
+            assert entry.annotation in q_objects
+
+    def test_get_due_date_reason_q_objects_filtering(self):
         self.test_should_have_due_date()  # to set up the Versions
 
         qs = Version.objects.all().order_by('id')
         # See test_should_have_due_date for order
         (
             _,  # addon with nothing special set
-            other_nhr,
+            first_theme_initial_version,
+            _,  # second theme first version, already approved
+            second_theme_second_version,
+            unknown_nhr,
             recommended,
             _,  # promoted but not prereview addon
             developer_reply,
@@ -510,39 +532,48 @@ class TestVersionManager(TestCase):
         ) = list(qs)
 
         q_objects = Version.objects.get_due_date_reason_q_objects()
-        method = Version.objects.filter
+        method = Version.objects.order_by('id').filter
 
-        assert list(
-            method(q_objects['needs_human_review_from_cinder_forwarded_abuse'])
-        ) == [
-            escalated_abuse,
+        assert list(method(q_objects['is_from_theme_awaiting_review'])) == [
+            first_theme_initial_version,
+            second_theme_second_version,
+        ]
+
+        assert list(method(q_objects['needs_human_review_cinder_escalation'])) == [
             multiple,
+            escalated_abuse,
         ]
 
         assert list(
-            method(q_objects['needs_human_review_from_cinder_forwarded_appeal'])
+            method(q_objects['needs_human_review_cinder_appeal_escalation'])
         ) == [
             escalated_appeal,
         ]
 
         assert list(
-            method(q_objects['needs_human_review_from_2nd_level_approval'])
+            method(q_objects['needs_human_review_amo_2nd_level_escalation'])
         ) == [forwarded_2nd_level_abuse]
 
-        assert list(method(q_objects['needs_human_review_from_abuse'])) == [abuse_nhr]
-
-        assert list(method(q_objects['needs_human_review_from_appeal'])) == [appeal_nhr]
-
-        assert list(method(q_objects['needs_human_review_other'])) == [other_nhr]
-
-        assert list(method(q_objects['needs_human_review_promoted'])) == [
-            multiple,
-            recommended,
+        assert list(method(q_objects['needs_human_review_abuse_addon_violation'])) == [
+            abuse_nhr
         ]
 
-        assert list(method(q_objects['has_developer_reply'])) == [
+        assert list(method(q_objects['needs_human_review_addon_review_appeal'])) == [
+            appeal_nhr
+        ]
+
+        assert list(method(q_objects['needs_human_review_unknown'])) == [unknown_nhr]
+
+        assert list(
+            method(q_objects['needs_human_review_belongs_to_promoted_group'])
+        ) == [
+            recommended,
             multiple,
+        ]
+
+        assert list(method(q_objects['needs_human_review_developer_reply'])) == [
             developer_reply,
+            multiple,
         ]
 
 
@@ -1079,7 +1110,7 @@ class TestVersion(AMOPaths, TestCase):
         )
         assert version.should_have_due_date
 
-    def test_should_have_due_date_listed_theme(self):
+    def test_should_have_due_date_listed_theme_incomplete(self):
         addon = addon_factory(
             status=amo.STATUS_NULL,
             type=amo.ADDON_STATICTHEME,
@@ -1096,6 +1127,26 @@ class TestVersion(AMOPaths, TestCase):
 
         needs_human_review.update(is_active=False)
         assert not version.should_have_due_date
+
+    def test_should_have_due_date_listed_theme_nominated(self):
+        addon = addon_factory(
+            status=amo.STATUS_NOMINATED,
+            type=amo.ADDON_STATICTHEME,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
+        version = addon.versions.get()
+
+        # Listed version of a nominated add-on should have a due date.
+        assert version.should_have_due_date
+
+    def test_should_have_due_date_listed_theme_public(self):
+        addon = addon_factory(type=amo.ADDON_STATICTHEME)
+        version = version_factory(
+            addon=addon, file_kw={'status': amo.STATUS_AWAITING_REVIEW}
+        )
+
+        # New listed version of an approved theme should have a due date.
+        assert version.should_have_due_date
 
     def test_should_have_due_date_unlisted_theme(self):
         addon = addon_factory(

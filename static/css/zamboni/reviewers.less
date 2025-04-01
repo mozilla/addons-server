@@ -21,6 +21,7 @@
 
 .app-icon, .platform-icon {
     background: url(../../img/developers/reviewer-sprite.png) no-repeat top left;
+    background-position: 0 -128px; /* default icon should be an add-on warning sign */
     display: inline-block;
     text-decoration: none;
     vertical-align: middle;
@@ -32,42 +33,46 @@
 .ed-sprite-seamonkey { background-position: 0 -32px; }
 .ed-sprite-android { background-position: 0 -48px; }
 .ed-sprite-mobile { background-position: 0 -64px; }
+.ed-sprite-promoted-notable { background-position: 0 -80px; }
 .ed-sprite-notes { background-position: 0 -112px; }
 .ed-sprite-needs-admin-content-review { background-position: 0 -128px; }
 .ed-sprite-needs-admin-code-review { background-position: 0 -128px; }
 .ed-sprite-needs-admin-theme-review { background-position: 0 -128px; }
-.ed-sprite-has-developer-reply { background-position: 0 -144px; }
-.ed-sprite-needs-human-review-other { background-position: 0 -160px; }
+.ed-sprite-needs-human-review-developer-reply { background-position: 0 -144px; }
 .ed-sprite-is-pre-review-version { background-position: 0 -160px; }
 .ed-sprite-sources-provided { background-position: 0 -192px; }
 .ed-sprite-webextension { background-position: 0 -208px; }
 .ed-sprite-expired-info { background-position: 0 -272px; }
 .ed-sprite-auto-approval-delayed-temporarily { background-position: 0 -288px; }
 .ed-sprite-auto-approval-delayed-indefinitely { background-position: 0 -304px; }
-.ed-sprite-promoted-recommended { background-position: 0 -336px; }
-.ed-sprite-promoted-line { background-position: 0 -368px; }
 .ed-sprite-promoted-strategic { background-position: 0 -320px; }
 .ed-sprite-promoted-spotlight { background-position: 0 -320px; }
-.ed-sprite-auto-approval-delayed-temporarily-unlisted { background-position: 0 -386px; }
-.ed-sprite-auto-approval-delayed-indefinitely-unlisted { background-position: 0 -402px; }
-.ed-sprite-needs-human-review { background-position: 0 -418px; }
-.ed-sprite-auto-approval-disabled { background-position: 0 -434px }
-.ed-sprite-auto-approval-disabled-unlisted { background-position: 0 -450px }
-.ed-sprite-needs-human-review-from-abuse { background-position: 0 -468px; }
-.ed-sprite-needs-human-review-from-appeal { background-position: 0 -500px; }
-.ed-sprite-needs-human-review-from-cinder-forwarded-abuse { background-position: 0 -484px; }
-.ed-sprite-needs-human-review-from-cinder-forwarded-appeal { background-position: 0 -484px; }
+.ed-sprite-promoted-recommended { background-position: 0 -336px; }
+.ed-sprite-needs-human-review-scanner-action { background-position: 0 -352px; }
+.ed-sprite-promoted-line { background-position: 0 -368px; }
+.ed-sprite-auto-approval-delayed-temporarily-unlisted { background-position: 0 -384px; }
+.ed-sprite-auto-approval-delayed-indefinitely-unlisted { background-position: 0 -400px; }
+.ed-sprite-needs-human-review { background-position: 0 -416px; }
+.ed-sprite-auto-approval-disabled { background-position: 0 -432px }
+.ed-sprite-auto-approval-disabled-unlisted { background-position: 0 -448px }
+.ed-sprite-needs-human-review-abuse-addon-violation { background-position: 0 -464px; }
+.ed-sprite-needs-human-review-cinder-escalation { background-position: 0 -480px; }
+.ed-sprite-needs-human-review-cinder-appeal-escalation { background-position: 0 -480px; }
+.ed-sprite-needs-human-review-addon-review-appeal { background-position: 0 -498px; }
+.ed-sprite-action-target-Rating { background-position: 0 -112px; }  /* re-used "notes" */
+.ed-sprite-action-target-User { background-position: 0 -512px; }
+.ed-sprite-action-target-Extension { background-position: 0 -528px; }
+.ed-sprite-action-target-Collection { background-position: 0 -544px; }
+.ed-sprite-action-target-Theme { background-position: 0 -560px; }
+.ed-sprite-needs-human-review-hotness-threshold { background-position: 0 -576px; }
+.ed-sprite-needs-human-review-abuse-reports-threshold { background-position: 0 -592px; }
 /* Those NeedsHumanReview reasons are already handled through separate, more
    precise flags, so hide them */
-.ed-sprite-needs-human-review-promoted { display: none; }
+.ed-sprite-needs-human-review-added-to-promoted-group { display: none; }
+.ed-sprite-needs-human-review-belongs-to-promoted-group { display: none; }
 .ed-sprite-needs-human-review-auto-approval-disabled { display: none; }
 .ed-sprite-is-from-theme-awaiting-review { display: none; }
 
-.ed-sprite-action-target-Extension { background-position: 0 -532px; }
-.ed-sprite-action-target-Theme { background-position: 0 -564px; }
-.ed-sprite-action-target-Collection { background-position: 0 -548px; }
-.ed-sprite-action-target-Rating { background-position: 0 -112px; }
-.ed-sprite-action-target-User { background-position: 0 -516px; }
 
 
 .platform-icon {
@@ -1412,6 +1417,10 @@ table.abuse_reports {
 
     form {
         margin-bottom: 0;
+    }
+
+    .select-links {
+        margin: 0.5em 0;
     }
 }
 

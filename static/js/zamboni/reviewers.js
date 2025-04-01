@@ -83,6 +83,21 @@ $(document).ready(function () {
     ) {
       filter_form.hidden = true;
     }
+
+    $('#addon-queue-filter-form .select-all').click(function (e) {
+      e.preventDefault();
+      jQuery('#addon-queue-filter-form input[type="checkbox"]').prop(
+        'checked',
+        true,
+      );
+    });
+    $('#addon-queue-filter-form .select-none').click(function (e) {
+      e.preventDefault();
+      jQuery('#addon-queue-filter-form input[type="checkbox"]').prop(
+        'checked',
+        false,
+      );
+    });
   }
 });
 

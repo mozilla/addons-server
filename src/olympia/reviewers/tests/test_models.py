@@ -32,7 +32,6 @@ from olympia.files.models import File, FileValidation, WebextPermission
 from olympia.promoted.models import PromotedAddon
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import (
-    VIEW_QUEUE_FLAGS,
     AutoApprovalNoValidationResultError,
     AutoApprovalSummary,
     NeedsHumanReview,
@@ -1788,51 +1787,18 @@ class TestGetFlags(TestCase):
 
     def test_due_date_reason_flags(self):
         def reset_all_flags_to_false():
-            self.addon.needs_human_review_from_abuse = False
-            self.addon.needs_human_review_from_cinder_forwarded_abuse = False
-            self.addon.needs_human_review_from_cinder_forwarded_appeal = False
-            self.addon.needs_human_review_from_2nd_level_approval = False
-            self.addon.needs_human_review_from_appeal = False
-            self.addon.is_from_theme_awaiting_review = False
-            self.addon.needs_human_review_promoted = False
-            self.addon.needs_human_review_auto_approval_disabled = False
-            self.addon.needs_human_review_other = False
-            self.addon.has_developer_reply = False
+            for entry in NeedsHumanReview.REASONS.entries:
+                setattr(self.addon, entry.annotation, False)
 
         assert get_flags(self.addon, self.addon.current_version) == []
         reset_all_flags_to_false()
         assert get_flags(self.addon, self.addon.current_version) == []
-        for attribute, title in (
-            (
-                'needs_human_review_from_cinder_forwarded_abuse',
-                'Abuse report forwarded from Cinder',
-            ),
-            (
-                'needs_human_review_from_cinder_forwarded_appeal',
-                'Appeal forwarded from Cinder',
-            ),
-            (
-                'needs_human_review_from_2nd_level_approval',
-                'Abuse or appeal forwarded from 2nd Level Approval',
-            ),
-            ('needs_human_review_from_abuse', 'Abuse report to AMO'),
-            ('needs_human_review_from_appeal', 'Appeal on decision from AMO'),
-            ('is_from_theme_awaiting_review', 'Theme version'),
-            ('needs_human_review_promoted', 'Promoted add-on'),
-            ('needs_human_review_auto_approval_disabled', 'Auto-approval disabled'),
-            ('needs_human_review_other', 'Other NeedsHumanReview flag'),
-            ('has_developer_reply', 'Outstanding developer reply'),
-        ):
+        for entry in NeedsHumanReview.REASONS.entries:
             reset_all_flags_to_false()
-            setattr(self.addon, attribute, True)
+            setattr(self.addon, entry.annotation, True)
             assert get_flags(self.addon, self.addon.current_version) == [
-                (attribute.replace('_', '-'), title)
+                (entry.annotation.replace('_', '-'), entry.display)
             ]
-
-    def test_all_due_due_reasons_exposed_as_flags(self):
-        assert set(Version.objects.get_due_date_reason_q_objects().keys()).issubset(
-            {flag for flag, _ in VIEW_QUEUE_FLAGS}
-        )
 
 
 class TestNeedsHumanReview(TestCase):
@@ -1875,6 +1841,10 @@ class TestNeedsHumanReview(TestCase):
         flagged.reason = NeedsHumanReview.REASONS.DEVELOPER_REPLY
         flagged.save()
         assert ActivityLog.objects.count() == 0
+
+    def test_reasons_have_annotation_property(self):
+        for entry in NeedsHumanReview.REASONS.entries:
+            assert entry.annotation == f'needs_human_review_{entry.constant.lower()}'
 
 
 class UsageTierTests(TestCase):

@@ -11,6 +11,7 @@ from django.urls import reverse
 from django.utils.functional import cached_property
 
 from extended_choices import Choices
+from extended_choices.helpers import ChoiceEntry
 
 import olympia.core.logger
 from olympia import activity, amo, core
@@ -67,48 +68,6 @@ VIEW_QUEUE_FLAGS = (
         'auto_approval_delayed_indefinitely_unlisted',
         'Unlisted Auto-approval delayed indefinitely',
     ),
-    # The following are annotations set by AddonManager.get_queryset_for_pending_queues
-    # See VersionManager.get_due_date_reason_q_objects for the names
-    (
-        'needs_human_review_from_cinder_forwarded_abuse',
-        'Abuse report forwarded from Cinder',
-    ),
-    (
-        'needs_human_review_from_abuse',
-        'Abuse report to AMO',
-    ),
-    (
-        'needs_human_review_from_appeal',
-        'Appeal on decision from AMO',
-    ),
-    (
-        'needs_human_review_from_cinder_forwarded_appeal',
-        'Appeal forwarded from Cinder',
-    ),
-    (
-        'needs_human_review_from_2nd_level_approval',
-        'Abuse or appeal forwarded from 2nd Level Approval',
-    ),
-    (
-        'is_from_theme_awaiting_review',
-        'Theme version',
-    ),
-    (
-        'needs_human_review_promoted',
-        'Promoted add-on',
-    ),
-    (
-        'needs_human_review_auto_approval_disabled',
-        'Auto-approval disabled',
-    ),
-    (
-        'needs_human_review_other',
-        'Other NeedsHumanReview flag',
-    ),
-    (
-        'has_developer_reply',
-        'Outstanding developer reply',
-    ),
 )
 
 
@@ -150,10 +109,15 @@ def get_flags(addon, version):
     flags = [
         (prop.replace('_', '-'), title)
         for (prop, title) in VIEW_QUEUE_FLAGS
+        + tuple(
+            (entry.annotation, entry.display)
+            for entry in NeedsHumanReview.REASONS.entries
+        )
         if getattr(version, prop, getattr(addon, prop, None))
         and prop
         not in exclude_flags_by_channel.get(getattr(version, 'channel', None), ())
     ]
+
     # add in the promoted group flag and return
     if promoted := addon.promoted_groups(currently_approved=False):
         for group in promoted:
@@ -901,11 +865,26 @@ class UsageTier(ModelBase):
         return abuse_reports_count_qs
 
 
+class ChoiceEntryWithNHRAnnotationPrefix(ChoiceEntry):
+    @property
+    def annotation(self):
+        """Annotation that querysets will use when returning the queue."""
+        # This needs to match the classes in the CSS to show the right flag
+        # for the right reason, and it's also used in the queue filter form,
+        # and therefore in URLs that reviewers might have bookmarked - don't
+        # change it lightly!
+        return f'needs_human_review_{self.constant.lower()}'
+
+
+class ChoicesWithNHRAnnotationPrefix(Choices):
+    ChoiceEntryClass = ChoiceEntryWithNHRAnnotationPrefix
+
+
 class NeedsHumanReview(ModelBase):
     """Model holding information about why a version was flagged for human
     review."""
 
-    REASONS = Choices(
+    REASONS = ChoicesWithNHRAnnotationPrefix(
         ('UNKNOWN', 0, 'Unknown'),
         ('SCANNER_ACTION', 1, 'Hit scanner rule'),
         ('ADDED_TO_PROMOTED_GROUP', 2, 'Was added to a promoted group'),
