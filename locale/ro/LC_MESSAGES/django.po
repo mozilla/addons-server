@@ -1885,7 +1885,7 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py:85
 msgid "This slug is already in use. Please choose another."
-msgstr "Slugul este deja utilizat. Te rugăm să alegi altul."
+msgstr "Acest slug este deja în uz. Te rugăm să alegi altul."
 
 #: src/olympia/devhub/forms.py:88
 #, python-format
