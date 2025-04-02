@@ -12,11 +12,19 @@ from django.utils.translation import gettext
 from olympia import promoted
 from olympia.addons.models import Addon
 from olympia.amo.admin import AMOModelAdmin
+from olympia.amo.reverse import reverse
 from olympia.amo.templatetags.jinja_helpers import vite_asset
 from olympia.discovery.models import DiscoveryItem
-from olympia.hero.admin import PrimaryHeroImageAdmin, SecondaryHeroAdmin
+from olympia.hero.admin import (
+    PrimaryHeroImageAdmin,
+    PrimaryHeroInline,
+    SecondaryHeroAdmin,
+)
 from olympia.hero.models import PrimaryHeroImage, SecondaryHero
-from olympia.promoted.admin import PromotedAddonAdmin
+from olympia.promoted.admin import (
+    PromotedAddonPromotionAdminInline,
+    PromotedAddonVersionInline,
+)
 from olympia.shelves.admin import ShelfAdmin
 from olympia.shelves.models import Shelf
 
@@ -147,6 +155,14 @@ class PromotedAddon(promoted.models.PromotedAddon):
         proxy = True
 
 
+class PromotedAddonPromotion(promoted.models.PromotedAddonPromotion):
+    """Just a proxy class to have all the hero related objects in one
+    place under Discovery in django admin."""
+
+    class Meta:
+        proxy = True
+
+
 @receiver(
     [models.signals.post_save, models.signals.post_delete],
     sender=PromotedAddon,
@@ -182,8 +198,53 @@ class HomepageShelves(Shelf):
         verbose_name_plural = 'homepage shelves'
 
 
+class DiscoveryAddon(Addon):
+    class Meta:
+        proxy = True
+
+
+DISCOVERY_ADDON_FIELDS = ['__str__', 'addon', 'guid', 'has_promotions']
+
+
+class DiscoveryAddonAdmin(AMOModelAdmin):
+    model = DiscoveryAddon
+    inlines = [
+        PromotedAddonPromotionAdminInline,
+        PromotedAddonVersionInline,
+        PrimaryHeroInline,
+    ]
+    fields = DISCOVERY_ADDON_FIELDS
+    readonly_fields = DISCOVERY_ADDON_FIELDS
+    list_display = DISCOVERY_ADDON_FIELDS
+    search_fields = ('guid',)
+
+    def get_queryset(self, request):
+        qset = Addon.unfiltered.all().only_translations()
+        return qset
+
+    def addon(self, obj):
+        if obj.pk:
+            return format_html(
+                '<a href="{}">{}</a>',
+                reverse('admin:addons_addon_change', args=[obj.pk]),
+                'addon',
+            )
+        return '-'
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+    def has_add_permission(self, request, obj=None):
+        return False
+
+    def has_promotions(self, obj):
+        return obj.has_promotions
+
+    has_promotions.boolean = True
+
+
+admin.site.register(DiscoveryAddon, DiscoveryAddonAdmin)
 admin.site.register(DiscoveryItem, DiscoveryItemAdmin)
-admin.site.register(PromotedAddon, PromotedAddonAdmin)
 admin.site.register(PrimaryHeroImageUpload, PrimaryHeroImageAdmin)
 admin.site.register(SecondaryHeroShelf, SecondaryHeroAdmin)
 admin.site.register(HomepageShelves, ShelfAdmin)

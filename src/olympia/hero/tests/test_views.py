@@ -9,7 +9,6 @@ from olympia import amo
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import TestCase, addon_factory, reverse_ns
 from olympia.amo.tests.test_helpers import get_uploaded_file
-from olympia.promoted.models import PromotedAddon
 
 from ..models import PrimaryHero, PrimaryHeroImage, SecondaryHero, SecondaryHeroModule
 from ..serializers import PrimaryHeroShelfSerializer, SecondaryHeroShelfSerializer
@@ -34,28 +33,24 @@ class TestPrimaryHeroShelfViewSet(TestCase):
         assert response.json() == {'results': []}
 
         hero_a = PrimaryHero.objects.create(
-            promoted_addon=PromotedAddon.objects.create(addon=addon_factory()),
+            addon=addon_factory(),
             description='Its a déscription!',
             select_image=self.phi_a,
             gradient_color='#123456',
         )
         hero_b = PrimaryHero.objects.create(
-            promoted_addon=PromotedAddon.objects.create(
-                addon=addon_factory(summary='fooo')
-            ),
+            addon=addon_factory(summary='fooo'),
             select_image=self.phi_b,
             gradient_color='#987654',
         )
         hero_external = PrimaryHero.objects.create(
-            promoted_addon=PromotedAddon.objects.create(
-                addon=addon_factory(homepage='https://mozilla.org/')
-            ),
+            addon=addon_factory(homepage='https://mozilla.org/'),
             select_image=self.phi_c,
             gradient_color='#FABFAB',
             is_external=True,
         )
         PrimaryHero.objects.create(
-            promoted_addon=PromotedAddon.objects.create(addon=addon_factory()),
+            addon=addon_factory(),
             select_image=self.phi_d,
             gradient_color='#989898',
         )
@@ -106,9 +101,7 @@ class TestPrimaryHeroShelfViewSet(TestCase):
         }
         results = response.json()['results']
         # double check the different serializer representations
-        assert results[0]['addon']['url'] == (
-            absolutify(hero_a.promoted_addon.addon.get_detail_url())
-        )
+        assert results[0]['addon']['url'] == (absolutify(hero_a.addon.get_detail_url()))
         assert results[2]['external']['homepage']['url'] == {
             'en-US': 'https://mozilla.org/'
         }
@@ -117,9 +110,7 @@ class TestPrimaryHeroShelfViewSet(TestCase):
     @override_settings(DRF_API_GATES={'v5': ('wrap-outgoing-parameter',)})
     def test_outgoing_wrapper_gate(self):
         PrimaryHero.objects.create(
-            promoted_addon=PromotedAddon.objects.create(
-                addon=addon_factory(homepage='https://mozilla.org/')
-            ),
+            addon=addon_factory(homepage='https://mozilla.org/'),
             select_image=self.phi_a,
             gradient_color='#FABFAB',
             is_external=True,
@@ -136,19 +127,19 @@ class TestPrimaryHeroShelfViewSet(TestCase):
 
     def test_all_param(self):
         PrimaryHero.objects.create(
-            promoted_addon=PromotedAddon.objects.create(addon=addon_factory()),
+            addon=addon_factory(),
             select_image=self.phi_a,
             gradient_color='#989898',
             enabled=True,
         )
         PrimaryHero.objects.create(
-            promoted_addon=PromotedAddon.objects.create(addon=addon_factory()),
+            addon=addon_factory(),
             select_image=self.phi_b,
             gradient_color='#989898',
             enabled=True,
         )
         PrimaryHero.objects.create(
-            promoted_addon=PromotedAddon.objects.create(addon=addon_factory()),
+            addon=addon_factory(),
             select_image=self.phi_c,
             gradient_color='#989898',
             enabled=False,
@@ -164,40 +155,32 @@ class TestPrimaryHeroShelfViewSet(TestCase):
 
     def test_public_filtering(self):
         ph = PrimaryHero.objects.create(
-            promoted_addon=PromotedAddon.objects.create(addon=addon_factory()),
+            addon=addon_factory(),
             select_image=self.phi_a,
             gradient_color='#989898',
             enabled=True,
         )
         PrimaryHero.objects.create(
-            promoted_addon=PromotedAddon.objects.create(
-                addon=addon_factory(status=amo.STATUS_DELETED)
-            ),
+            addon=addon_factory(status=amo.STATUS_DELETED),
             select_image=self.phi_b,
             gradient_color='#989898',
             enabled=True,
         )
         PrimaryHero.objects.create(
-            promoted_addon=PromotedAddon.objects.create(
-                addon=addon_factory(disabled_by_user=True)
-            ),
+            addon=addon_factory(disabled_by_user=True),
             select_image=self.phi_c,
             gradient_color='#989898',
             enabled=True,
         )
         PrimaryHero.objects.create(
-            promoted_addon=PromotedAddon.objects.create(
-                addon=addon_factory(status=amo.STATUS_NOMINATED)
-            ),
+            addon=addon_factory(status=amo.STATUS_NOMINATED),
             select_image=self.phi_d,
             gradient_color='#989898',
             enabled=True,
         )
         # external addons don't have to be public
         external = PrimaryHero.objects.create(
-            promoted_addon=PromotedAddon.objects.create(
-                addon=addon_factory(status=amo.STATUS_NULL)
-            ),
+            addon=addon_factory(status=amo.STATUS_NULL),
             select_image=self.phi_a,
             gradient_color='#989898',
             enabled=True,
@@ -205,27 +188,21 @@ class TestPrimaryHeroShelfViewSet(TestCase):
         )
         # but we still filter out deleted and disabled
         PrimaryHero.objects.create(
-            promoted_addon=PromotedAddon.objects.create(
-                addon=addon_factory(status=amo.STATUS_DELETED)
-            ),
+            addon=addon_factory(status=amo.STATUS_DELETED),
             select_image=self.phi_b,
             gradient_color='#989898',
             enabled=True,
             is_external=True,
         )
         PrimaryHero.objects.create(
-            promoted_addon=PromotedAddon.objects.create(
-                addon=addon_factory(status=amo.STATUS_DISABLED)
-            ),
+            addon=addon_factory(status=amo.STATUS_DISABLED),
             select_image=self.phi_c,
             gradient_color='#989898',
             enabled=True,
             is_external=True,
         )
         PrimaryHero.objects.create(
-            promoted_addon=PromotedAddon.objects.create(
-                addon=addon_factory(disabled_by_user=True)
-            ),
+            addon=addon_factory(disabled_by_user=True),
             select_image=self.phi_d,
             gradient_color='#989898',
             enabled=True,
@@ -235,12 +212,8 @@ class TestPrimaryHeroShelfViewSet(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         assert len(response.json()['results']) == 2
-        assert response.json()['results'][0]['addon']['id'] == (
-            ph.promoted_addon.addon.id
-        )
-        assert response.json()['results'][1]['external']['id'] == (
-            external.promoted_addon.addon.id
-        )
+        assert response.json()['results'][0]['addon']['id'] == (ph.addon.id)
+        assert response.json()['results'][1]['external']['id'] == (external.addon.id)
 
         response = self.client.get(self.url + '?all=true')
         assert response.status_code == 200
@@ -248,24 +221,20 @@ class TestPrimaryHeroShelfViewSet(TestCase):
 
     def test_raw_param(self):
         PrimaryHero.objects.create(
-            promoted_addon=PromotedAddon.objects.create(
-                addon=addon_factory(summary='addon')
-            ),
+            addon=addon_factory(summary='addon'),
             select_image=self.phi_a,
             gradient_color='#989898',
             enabled=True,
         )
         PrimaryHero.objects.create(
-            promoted_addon=PromotedAddon.objects.create(addon=addon_factory()),
+            addon=addon_factory(),
             description='hero',
             select_image=self.phi_b,
             gradient_color='#989898',
             enabled=True,
         )
         PrimaryHero.objects.create(
-            promoted_addon=PromotedAddon.objects.create(
-                addon=addon_factory(summary=None)
-            ),
+            addon=addon_factory(summary=None),
             select_image=self.phi_c,
             gradient_color='#989898',
             enabled=True,
@@ -384,7 +353,7 @@ class TestHeroShelvesView(TestCase):
 
     def test_basic(self):
         phero = PrimaryHero.objects.create(
-            promoted_addon=PromotedAddon.objects.create(addon=addon_factory()),
+            addon=addon_factory(),
             enabled=True,
         )
         shero = SecondaryHero.objects.create(
@@ -417,9 +386,7 @@ class TestHeroShelvesView(TestCase):
 
     def test_outgoing_wrapper(self):
         PrimaryHero.objects.create(
-            promoted_addon=PromotedAddon.objects.create(
-                addon=addon_factory(homepage='http://foo.baa')
-            ),
+            addon=addon_factory(homepage='http://foo.baa'),
             enabled=True,
             is_external=True,
         )
@@ -436,17 +403,11 @@ class TestHeroShelvesView(TestCase):
 
     def test_shelf_randomness(self):
         addon_1 = addon_factory()
-        PrimaryHero.objects.create(
-            promoted_addon=PromotedAddon.objects.create(addon=addon_1), enabled=True
-        )
+        PrimaryHero.objects.create(addon=addon_1, enabled=True)
         addon_2 = addon_factory()
-        PrimaryHero.objects.create(
-            promoted_addon=PromotedAddon.objects.create(addon=addon_2), enabled=True
-        )
+        PrimaryHero.objects.create(addon=addon_2, enabled=True)
         addon_3 = addon_factory()
-        PrimaryHero.objects.create(
-            promoted_addon=PromotedAddon.objects.create(addon=addon_3), enabled=True
-        )
+        PrimaryHero.objects.create(addon=addon_3, enabled=True)
         addon_ids = {addon_1.id, addon_2.id, addon_3.id}
 
         response = self.client.get(self.url)
@@ -465,7 +426,7 @@ class TestHeroShelvesView(TestCase):
 
     def test_no_valid_shelves(self):
         PrimaryHero.objects.create(
-            promoted_addon=PromotedAddon.objects.create(addon=addon_factory()),
+            addon=addon_factory(),
             enabled=False,
         )
         # No SecondaryHero at all
