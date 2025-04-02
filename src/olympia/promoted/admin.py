@@ -1,32 +1,32 @@
 from django.contrib import admin
-from django.db.models import Prefetch
+from django.db.models import Prefetch, Q
 from django.forms.models import modelformset_factory
 
 from olympia.addons.models import Addon
-from olympia.amo.admin import AMOModelAdmin
-from olympia.hero.admin import PrimaryHeroInline
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
+from olympia.hero.models import PrimaryHero
 from olympia.versions.models import Version
 
 from .forms import AdminBasePromotedApprovalFormSet
-from .models import PromotedApproval
+from .models import PromotedAddonVersion, PromotedGroup, PromotedAddonPromotion
 
 
-class PromotedApprovalInlineChecks(admin.checks.InlineModelAdminChecks):
+class PromotedAddonVersionInlineChecks(admin.checks.InlineModelAdminChecks):
     def _check_relation(self, obj, parent_model):
-        """PromotedApproval doesn't have a direct FK to PromotedAddon (it's via
+        """PromotedAddonVersion doesn't have a direct FK to PromotedAddon (it's via
         Addon, Version) so we have to bypass this check.
         """
         return []
 
 
-class PromotedApprovalInline(admin.TabularInline):
-    model = PromotedApproval
+class PromotedAddonVersionInline(admin.TabularInline):
+    model = PromotedAddonVersion
     extra = 0
     max_num = 0
-    fields = ('version', 'group_id', 'application_id')
+    fields = ('version', 'promoted_group', 'application_id')
     can_delete = True
     view_on_site = False
-    checks_class = PromotedApprovalInlineChecks
+    checks_class = PromotedAddonVersionInlineChecks
 
     def has_add_permission(self, request, obj=None):
         return False
@@ -52,26 +52,18 @@ class PromotedApprovalInline(admin.TabularInline):
         if not self.instance:
             return self.model.objects.none()
         qs = super().get_queryset(request)
-        qs = qs.filter(version__addon__promotedaddon=self.instance).order_by(
+        qs = qs.filter(version__addon=self.instance).order_by(
             '-version_id'
         )
         return qs
 
 
-class PromotedAddonAdmin(AMOModelAdmin):
-    list_display = (
-        'addon__name',
-        'group_id',
-        'application_id',
-        'is_approved',
-        'primary_hero_shelf',
-    )
+class PromotedAddonPromotionAdminInline(admin.TabularInline):
+    model = PromotedAddonPromotion
+    extra = 0
     view_on_site = False
     raw_id_fields = ('addon',)
-    fields = ('addon', 'group_id', 'application_id')
-    list_filter = ('group_id', 'application_id')
-    inlines = (PromotedApprovalInline, PrimaryHeroInline)
-    list_select_related = ('primaryhero',)
+    fields = ('addon', 'promoted_group', 'application_id')
 
     @classmethod
     def _transformer(self, objs):
@@ -103,28 +95,6 @@ class PromotedAddonAdmin(AMOModelAdmin):
         )
         return qset
 
-    def addon__name(self, obj):
-        return str(obj.addon)
-
-    addon__name.short_description = 'Addon'
-
-    def is_approved(self, obj):
-        apps = obj.approved_applications
-        if not apps:
-            return False
-        elif apps == obj.all_applications:
-            return True
-        else:
-            # return None when there are some apps approved but not all.
-            return None
-
-    is_approved.boolean = True
-
-    def primary_hero_shelf(self, obj):
-        return obj.primaryhero.enabled if hasattr(obj, 'primaryhero') else None
-
-    primary_hero_shelf.boolean = True
-
     def formfield_for_foreignkey(self, db_field, request=None, **kwargs):
         from olympia.discovery.admin import SlugOrPkChoiceField
 
@@ -135,10 +105,15 @@ class PromotedAddonAdmin(AMOModelAdmin):
             kwargs['queryset'] = Addon.objects.all()
             kwargs['help_text'] = db_field.help_text
             return SlugOrPkChoiceField(**kwargs)
+        if db_field.name == 'promoted_group':
+            kwargs['queryset'] = PromotedGroup.objects.filter(
+                ~Q(group_id=PROMOTED_GROUP_CHOICES.NOT_PROMOTED)
+            )
         return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
     def has_delete_permission(self, request, obj=None):
-        qs = PrimaryHeroInline.model.objects.filter(enabled=True)
+        addon = getattr(obj, 'addon', None)
+        qs = PrimaryHero.objects.filter(addon=addon, enabled=True)
         shelf = getattr(obj, 'primaryhero', None)
         if shelf and shelf.enabled and qs.count() == 1:
             return False
