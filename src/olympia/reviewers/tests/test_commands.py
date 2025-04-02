@@ -18,7 +18,6 @@ from olympia.addons.models import AddonApprovalsCounter, AddonReviewerFlags
 from olympia.amo.tests import (
     TestCase,
     addon_factory,
-    create_switch,
     user_factory,
     version_factory,
     version_review_flags_factory,
@@ -1263,8 +1262,6 @@ class AutoRejectTestsMixin:
             f'{settings.CINDER_SERVER_URL}create_decision',
             callback=lambda r: (201, {}, json.dumps({'uuid': uuid.uuid4().hex})),
         )
-
-        create_switch('dsa-appeals-review', active=True)
 
     def days_ago(self, days):
         return days_ago(days)

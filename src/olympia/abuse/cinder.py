@@ -523,13 +523,17 @@ class CinderAddonHandledByReviewers(CinderAddon):
         from olympia.reviewers.models import NeedsHumanReview
 
         waffle_switch_name = (
-            'dsa-appeals-review'
+            None
             if appeal
             else 'dsa-cinder-forwarded-review'
             if forwarded
             else 'dsa-abuse-reports-review'
         )
-        if not second_level and not waffle.switch_is_active(waffle_switch_name):
+        if (
+            not second_level
+            and waffle_switch_name
+            and not waffle.switch_is_active(waffle_switch_name)
+        ):
             log.info(
                 'Not adding %s to review queue despite %s because %s switch is off',
                 self.addon,
