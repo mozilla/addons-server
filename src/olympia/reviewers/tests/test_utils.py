@@ -44,7 +44,10 @@ from olympia.lib.crypto.tests.test_signing import (
     _get_recommendation_data,
     _get_signature_details,
 )
-from olympia.promoted.models import PromotedAddon, PromotedApproval
+from olympia.promoted.models import (
+    PromotedAddonPromotion,
+    PromotedAddonVersion,
+)
 from olympia.reviewers.models import (
     AutoApprovalSummary,
     NeedsHumanReview,
@@ -1942,7 +1945,7 @@ class TestReviewHelper(TestReviewHelperBase):
     def test_confirm_auto_approved_approves_for_promoted(self):
         self.grant_permission(self.user, 'Addons:Review')
         self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
-        PromotedAddon.objects.create(
+        self.make_addon_promoted(
             addon=self.addon, group_id=PROMOTED_GROUP_CHOICES.NOTABLE
         )
         self.create_paths()
@@ -1955,10 +1958,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self.helper.handler.confirm_auto_approved()
 
         self.addon.reload()
-        self.addon.promotedaddon.reload()
-        assert (
-            PROMOTED_GROUP_CHOICES.NOTABLE in self.addon.promoted_groups().group_id
-        ), self.addon.promotedaddon
+        assert PROMOTED_GROUP_CHOICES.NOTABLE in self.addon.promoted_groups().group_id
         assert self.review_version.reload().approved_for_groups == [
             (PROMOTED_GROUPS_BY_ID.get(PROMOTED_GROUP_CHOICES.NOTABLE), amo.FIREFOX),
             (PROMOTED_GROUPS_BY_ID.get(PROMOTED_GROUP_CHOICES.NOTABLE), amo.ANDROID),
@@ -3149,8 +3149,8 @@ class TestReviewHelper(TestReviewHelperBase):
         self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED)
         assert not self.addon.promoted_groups()
         self.test_nomination_to_public()
-        assert self.addon.current_version.promoted_approvals.filter(
-            group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+        assert self.addon.current_version.promoted_versions.filter(
+            promoted_group__group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
         ).exists()
         assert (
             PROMOTED_GROUP_CHOICES.RECOMMENDED in self.addon.promoted_groups().group_id
@@ -3160,8 +3160,8 @@ class TestReviewHelper(TestReviewHelperBase):
         self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.LINE)
         assert not self.addon.promoted_groups()
         self.test_nomination_to_public()
-        assert self.addon.current_version.promoted_approvals.filter(
-            group_id=PROMOTED_GROUP_CHOICES.LINE
+        assert self.addon.current_version.promoted_versions.filter(
+            promoted_group__group_id=PROMOTED_GROUP_CHOICES.LINE
         ).exists()
         assert PROMOTED_GROUP_CHOICES.LINE in self.addon.promoted_groups().group_id
 
@@ -3169,8 +3169,8 @@ class TestReviewHelper(TestReviewHelperBase):
         self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED)
         assert not self.addon.promoted_groups()
         self.test_public_addon_with_version_awaiting_review_to_public()
-        assert self.addon.current_version.promoted_approvals.filter(
-            group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+        assert self.addon.current_version.promoted_versions.filter(
+            promoted_group__group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
         ).exists()
         assert (
             PROMOTED_GROUP_CHOICES.RECOMMENDED in self.addon.promoted_groups().group_id
@@ -3180,8 +3180,8 @@ class TestReviewHelper(TestReviewHelperBase):
         self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.LINE)
         assert not self.addon.promoted_groups()
         self.test_public_addon_with_version_awaiting_review_to_public()
-        assert self.addon.current_version.promoted_approvals.filter(
-            group_id=PROMOTED_GROUP_CHOICES.LINE
+        assert self.addon.current_version.promoted_versions.filter(
+            promoted_group__group_id=PROMOTED_GROUP_CHOICES.LINE
         ).exists()
         assert PROMOTED_GROUP_CHOICES.LINE in self.addon.promoted_groups().group_id
 
@@ -3192,26 +3192,28 @@ class TestReviewHelper(TestReviewHelperBase):
 
         with self.assertRaises(AssertionError):
             self.test_nomination_to_public()
-        assert not PromotedApproval.objects.filter(
+        assert not PromotedAddonVersion.objects.filter(
             version=self.addon.current_version
         ).exists()
         assert not self.addon.promoted_groups()
 
         # change to other type of promoted; same should happen
-        self.addon.promotedaddon.update(group_id=PROMOTED_GROUP_CHOICES.LINE)
+        PromotedAddonPromotion.objects.filter(addon=self.addon).delete()
+        self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.LINE)
         with self.assertRaises(AssertionError):
             self.test_nomination_to_public()
-        assert not PromotedApproval.objects.filter(
+        assert not PromotedAddonVersion.objects.filter(
             version=self.addon.current_version
         ).exists()
         assert not self.addon.promoted_groups()
 
         # except for a group that doesn't require prereview
-        self.addon.promotedaddon.update(group_id=PROMOTED_GROUP_CHOICES.STRATEGIC)
+        PromotedAddonPromotion.objects.filter(addon=self.addon).delete()
+        self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.STRATEGIC)
         assert PROMOTED_GROUP_CHOICES.STRATEGIC in self.addon.promoted_groups().group_id
         self.test_nomination_to_public()
-        # But no promotedapproval though
-        assert not PromotedApproval.objects.filter(
+        # But no PromotedAddonVersion though
+        assert not PromotedAddonVersion.objects.filter(
             version=self.addon.current_version
         ).exists()
         assert PROMOTED_GROUP_CHOICES.STRATEGIC in self.addon.promoted_groups().group_id
@@ -4251,8 +4253,8 @@ class TestReviewHelperSigning(TestReviewHelperBase):
         assert self.addon.status == amo.STATUS_APPROVED
         assert self.addon.versions.all()[0].file.status == (amo.STATUS_APPROVED)
 
-        assert self.addon.current_version.promoted_approvals.filter(
-            group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+        assert self.addon.current_version.promoted_versions.filter(
+            promoted_group__group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
         ).exists()
         assert (
             PROMOTED_GROUP_CHOICES.RECOMMENDED in self.addon.promoted_groups().group_id

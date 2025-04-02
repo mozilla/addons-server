@@ -55,11 +55,16 @@ from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
 from olympia.blocklist.models import Block, BlockType, BlockVersion
 from olympia.constants.categories import CATEGORIES
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.files.models import File
 from olympia.promoted.models import (
     PromotedAddon,
+    PromotedAddonPromotion,
+    PromotedAddonVersion,
     PromotedApproval,
+    PromotedGroup,
     update_es_for_promoted,
+    update_es_for_promoted_addon_version,
     update_es_for_promoted_approval,
 )
 from olympia.search.utils import get_es, timestamp_index
@@ -584,15 +589,30 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
             version.update(channel=channel)
 
     @classmethod
-    def make_addon_promoted(cls, addon, group_id, approve_version=False):
-        obj, created = PromotedAddon.objects.update_or_create(
-            addon=addon, defaults={'group_id': group_id}
-        )
+    def make_addon_promoted(cls, addon, group_id, approve_version=False, apps=None):
+        """
+        Promotes the addon for the group in the given apps, or all if none are given.
+        If already approved for a group, remakes the approvals for only the given apps.
+        """
+        if group_id == PROMOTED_GROUP_CHOICES.NOT_PROMOTED:
+            return
+
+        # TODO: promotedaddon; while constraint is in place,
+        # need to delete any other promotions.
+        PromotedAddonPromotion.objects.filter(addon=addon).delete()
+
+        promoted_group = PromotedGroup.objects.get(group_id=group_id)
+        apps_to_create = apps if apps else amo.APP_USAGE
+        promotions = []
+        for app in apps_to_create:
+            obj, created = PromotedAddonPromotion.objects.update_or_create(
+                addon=addon, promoted_group=promoted_group, application_id=app.id
+            )
+            promotions.append(obj)
+
         if approve_version:
-            obj.approve_for_version(addon.current_version)
-        if not created:
-            addon.promotedaddon.reload()
-        return obj
+            addon.approve_for_version(addon.current_version)
+        return promotions
 
     def _add_fake_throttling_action(
         self,
@@ -684,6 +704,11 @@ def addon_factory(status=amo.STATUS_APPROVED, version_kw=None, file_kw=None, **k
         sender=PromotedApproval,
         dispatch_uid='addons.search.index',
     )
+    post_save.disconnect(
+        update_es_for_promoted_addon_version,
+        sender=PromotedAddonVersion,
+        dispatch_uid='addons.search.index',
+    )
 
     type_ = kw.pop('type', amo.ADDON_EXTENSION)
     popularity = kw.pop('popularity', None)
@@ -727,8 +752,12 @@ def addon_factory(status=amo.STATUS_APPROVED, version_kw=None, file_kw=None, **k
         addon = Addon.objects.create(type=type_, **kwargs)
 
     # Save 2.
-    if promoted_group_id:
-        PromotedAddon.objects.create(addon=addon, group_id=promoted_group_id)
+    if promoted_group_id and promoted_group_id != PROMOTED_GROUP_CHOICES.NOT_PROMOTED:
+        group = PromotedGroup.objects.get(group_id=promoted_group_id)
+        for app in amo.APP_USAGE:
+            PromotedAddonPromotion.objects.create(
+                addon=addon, promoted_group=group, application_id=app.id
+            )
         if 'promotion_approved' not in version_kw:
             version_kw['promotion_approved'] = True
 
@@ -788,6 +817,11 @@ def addon_factory(status=amo.STATUS_APPROVED, version_kw=None, file_kw=None, **k
     post_save.connect(
         update_es_for_promoted_approval,
         sender=PromotedApproval,
+        dispatch_uid='addons.search.index',
+    )
+    post_save.connect(
+        update_es_for_promoted_addon_version,
+        sender=PromotedAddonVersion,
         dispatch_uid='addons.search.index',
     )
 
@@ -970,7 +1004,7 @@ def version_factory(*, file_kw=None, needshumanreview_kw=None, **kw):
         file_kw = file_kw or {}
         file_factory(version=ver, **file_kw)
     if promotion_approved:
-        kw['addon'].promotedaddon.approve_for_version(version=ver)
+        kw['addon'].approve_for_version(version=ver)
     av_min, _ = AppVersion.objects.get_or_create(
         application=application, version=min_app_version
     )

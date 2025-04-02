@@ -21,6 +21,7 @@ from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.devhub.utils import create_version_for_upload
 from olympia.hero.models import PrimaryHero, SecondaryHero
 from olympia.landfill.collection import generate_collection
+from olympia.promoted.models import PromotedAddonPromotion, PromotedGroup
 from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
 
@@ -62,14 +63,19 @@ class GenerateAddonsSerializer(serializers.Serializer):
         generated.
 
         """
-        for _ in range(10):
+        for _ in range(5):
             addon = addon_factory(
                 status=amo.STATUS_APPROVED,
                 promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
             )
             AddonUser.objects.create(user=user_factory(), addon=addon)
-            # TODO: promotedaddon; primaryhero refactor (Write PR)
-            PrimaryHero.objects.create(promoted_addon=addon.promotedaddon, enabled=True)
+            promoted_group = PromotedGroup.objects.all_for(addon=addon).first()
+            PromotedAddonPromotion.objects.update_or_create(
+                addon=addon,
+                promoted_group=promoted_group,
+                application_id=amo.FIREFOX.id,
+            )
+            PrimaryHero.objects.create(addon=addon, enabled=True)
             SecondaryHero.objects.create(
                 enabled=True,
                 headline='This is a headline',

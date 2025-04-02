@@ -22,7 +22,7 @@ from olympia.hero.serializers import (
     PrimaryHeroShelfSerializer,
     SecondaryHeroShelfSerializer,
 )
-from olympia.promoted.models import PromotedAddon
+from olympia.promoted.models import PromotedAddonPromotion, PromotedGroup
 from olympia.shelves.models import Shelf
 from olympia.tags.models import Tag
 from olympia.users.models import UserProfile
@@ -69,13 +69,16 @@ class TestShelfViewSet(ESTestCase):
             summary=None,
         )
 
-        PromotedAddon.objects.create(
-            addon=addon_ext, group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
-        ).approve_for_version(version=addon_ext.current_version)
+        group = PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED)
+        PromotedAddonPromotion.objects.create(
+            addon=addon_ext, promoted_group=group, application_id=amo.FIREFOX.id
+        )
+        addon_ext.approve_for_version(version=addon_ext.current_version)
 
-        PromotedAddon.objects.create(
-            addon=addon_theme, group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
-        ).approve_for_version(version=addon_theme.current_version)
+        PromotedAddonPromotion.objects.create(
+            addon=addon_theme, promoted_group=group, application_id=amo.FIREFOX.id
+        )
+        addon_ext.approve_for_version(version=addon_theme.current_version)
 
         user = UserProfile.objects.create(pk=settings.TASK_USER_ID)
         collection = collection_factory(author=user, slug='privacy-matters')
@@ -219,7 +222,7 @@ class TestShelfViewSet(ESTestCase):
     # If we delete HeroShelvesView move all the TestHeroShelvesView tests here
     def test_only_hero_shelves_in_response(self):
         phero = PrimaryHero.objects.create(
-            promoted_addon=PromotedAddon.objects.create(addon=addon_factory()),
+            addon=addon_factory(),
             enabled=True,
         )
         shero = SecondaryHero.objects.create(
@@ -255,7 +258,7 @@ class TestShelfViewSet(ESTestCase):
 
     def test_full_response(self):
         phero = PrimaryHero.objects.create(
-            promoted_addon=PromotedAddon.objects.create(addon=addon_factory()),
+            addon=addon_factory(),
             enabled=True,
             description='Hero!',
         )
@@ -269,7 +272,7 @@ class TestShelfViewSet(ESTestCase):
         self.shelf_a.update(enabled=True)
 
         with self.assertNumQueries(17):
-            # 18 queries:
+            # 17 queries:
             # - 3 to get the shelves
             # - 11 as TestPrimaryHeroShelfViewSet.test_basic
             # - 2 as TestSecondaryHeroShelfViewSet.test_basic

@@ -4323,8 +4323,8 @@ class TestReview(ReviewBase):
         assert addon.status == amo.STATUS_APPROVED
         assert addon.current_version
         assert addon.current_version.file.status == amo.STATUS_APPROVED
-        assert addon.current_version.promoted_approvals.filter(
-            group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+        assert addon.current_version.promoted_versions.filter(
+            promoted_group__group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
         ).exists()
         assert mock_sign_file.called
 
@@ -4355,8 +4355,8 @@ class TestReview(ReviewBase):
         self.assert3xx(response, unlisted_url)
         self.version.file.reload()
         assert self.version.file.status == amo.STATUS_APPROVED
-        assert self.version.promoted_approvals.filter(
-            group_id=PROMOTED_GROUP_CHOICES.NOTABLE
+        assert self.version.promoted_versions.filter(
+            promoted_group__group_id=PROMOTED_GROUP_CHOICES.NOTABLE
         ).exists()
         assert mock_sign_file.called
 
