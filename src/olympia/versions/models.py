@@ -878,13 +878,13 @@ class Version(OnChangeMixin, ModelBase):
         if not versions:
             return
 
-        PromotedApproval = versions[0].promoted_approvals.model
+        PromotedAddonVersion = versions[0].promoted_versions.model
 
         ids = {v.id for v in versions}
 
         approvals = list(
-            PromotedApproval.objects.filter(version_id__in=ids).values_list(
-                'version_id', 'group_id', 'application_id', named=True
+            PromotedAddonVersion.objects.filter(version_id__in=ids).values_list(
+                'version_id', 'promoted_group__group_id', 'application_id', named=True
             )
         )
 
@@ -896,11 +896,11 @@ class Version(OnChangeMixin, ModelBase):
             v_id = version.id
             groups = [
                 (
-                    PROMOTED_GROUPS_BY_ID.get(approval.group_id),
+                    PROMOTED_GROUPS_BY_ID.get(approval.promoted_group__group_id),
                     APP_IDS.get(approval.application_id),
                 )
                 for approval in approval_dict.get(v_id, [])
-                if approval.group_id in PROMOTED_GROUPS_BY_ID
+                if approval.promoted_group__group_id in PROMOTED_GROUPS_BY_ID
             ]
             version.approved_for_groups = groups
 
@@ -1096,7 +1096,7 @@ class Version(OnChangeMixin, ModelBase):
     def can_be_disabled_and_deleted(self):
         # see https://github.com/mozilla/addons-server/issues/15121#issuecomment-667226959  # noqa
         # "It should apply to the <groups> that require a review to be badged"
-        from olympia.promoted.models import PromotedApproval
+        from olympia.promoted.models import PromotedAddonVersion
 
         promotions = self.addon.promoted_groups()
 
@@ -1120,8 +1120,9 @@ class Version(OnChangeMixin, ModelBase):
             # possible in a single query
             .distinct()[:1]
         )
-        previous_approval = PromotedApproval.objects.filter(
-            group_id__in=promotions.group_id, version__in=previous_version
+        previous_approval = PromotedAddonVersion.objects.filter(
+            promoted_group__group_id__in=promotions.group_id,
+            version__in=previous_version,
         )
         return previous_approval.exists()
 
@@ -1192,11 +1193,14 @@ class Version(OnChangeMixin, ModelBase):
 
     @cached_property
     def approved_for_groups(self):
-        approvals = list(self.promoted_approvals.all())
+        approvals = list(self.promoted_versions.all())
         return [
-            (PROMOTED_GROUPS_BY_ID.get(approval.group_id), approval.application)
+            (
+                PROMOTED_GROUPS_BY_ID.get(approval.promoted_group.group_id),
+                approval.application,
+            )
             for approval in approvals
-            if approval.group_id in PROMOTED_GROUPS_BY_ID
+            if approval.promoted_group.group_id in PROMOTED_GROUPS_BY_ID
         ]
 
     def get_review_status_for_auto_approval_and_delay_reject(self):

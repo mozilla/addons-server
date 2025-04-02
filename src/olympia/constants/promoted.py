@@ -69,6 +69,7 @@ class PromotedClass(_PromotedSuperClass):
         return bool(self.id)
 
 
+# Obsolete with transition to DB-Based PromotedGroups.
 NOT_PROMOTED = PromotedClass(
     id=PROMOTED_GROUP_CHOICES.NOT_PROMOTED,
     name=_('Not Promoted'),
