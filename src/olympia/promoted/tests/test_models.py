@@ -615,16 +615,6 @@ class TestPromotedAddonPromotion(TestCase):
 
         assert PromotedAddonPromotion.objects.create(**merged) is not None
 
-    def test_multiple_promoted_groups_per_addon_raises(self):
-        self._test_unique_constraint(
-            {
-                'promoted_group': PromotedGroup.objects.get(
-                    group_id=PROMOTED_GROUP_CHOICES.NOT_PROMOTED
-                ),
-            },
-            should_raise=True,
-        )
-
     def test_multiple_applications_per_promoted_group_allowed(self):
         self._test_unique_constraint(
             {

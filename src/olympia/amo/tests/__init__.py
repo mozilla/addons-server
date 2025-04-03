@@ -589,19 +589,25 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
             version.update(channel=channel)
 
     @classmethod
-    def make_addon_promoted(cls, addon, group_id, approve_version=False, apps=None):
+    def make_addon_promoted(
+        cls, addon, group_id, approve_version=False, apps=None, reset=True
+    ):
         """
         Promotes the addon for the group in the given apps, or all if none are given.
+        If reset=True, resets the PromotedAddonPromotions of the app.
         If already approved for a group, remakes the approvals for only the given apps.
         """
         if group_id == PROMOTED_GROUP_CHOICES.NOT_PROMOTED:
             return
 
-        # TODO: promotedaddon; while constraint is in place,
-        # need to delete any other promotions.
-        PromotedAddonPromotion.objects.filter(addon=addon).delete()
-
         promoted_group = PromotedGroup.objects.get(group_id=group_id)
+        previous_promotions = PromotedAddonPromotion.objects.filter(addon=addon)
+        if not reset:
+            previous_promotions = PromotedAddonPromotion.objects.filter(
+                promoted_group=promoted_group
+            )
+        previous_promotions.delete()
+
         apps_to_create = apps if apps else amo.APP_USAGE
         promotions = []
         for app in apps_to_create:
