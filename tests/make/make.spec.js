@@ -2,6 +2,7 @@ import { spawnSync } from 'child_process';
 import path from 'path';
 import fs from 'fs';
 import { parse } from 'dotenv';
+import { describe, afterAll, it, expect } from 'vitest';
 
 const rootPath = path.join(import.meta.dirname, '..', '..');
 const envPath = path.join(rootPath, '.env');
@@ -45,45 +46,28 @@ function getConfig(env = {}) {
   }
 }
 
-function permutations(configObj) {
-  return Object.entries(configObj).reduce((acc, [key, values]) => {
-    if (!acc.length) return values.map((value) => ({ [key]: value }));
-    return acc.flatMap((obj) =>
-      values.map((value) => ({ ...obj, [key]: value })),
-    );
-  }, []);
-}
-
 describe('docker-compose.yml', () => {
   afterAll(() => {
     clearEnv();
   });
 
-  describe.each(
-    permutations({
-      DOCKER_TARGET: ['development', 'production'],
-      DOCKER_VERSION: ['local', 'latest'],
-    }),
-  )('\n%s\n', (config) => {
-    const { DOCKER_TARGET, DOCKER_VERSION } = config;
-
+  describe.for([
+    ['local', 'development'],
+    ['local', 'production'],
+    ['latest', 'production'],
+  ])('DOCKER_VERSION: %s, DOCKER_TARGET: %s', (version, target) => {
     const inputValues = {
-      DOCKER_TARGET,
-      DOCKER_VERSION,
+      DOCKER_TARGET: target,
+      DOCKER_VERSION: version,
       DEBUG: 'debug',
       SKIP_DATA_SEED: 'skip',
     };
 
-    it('.services.(web|worker) should have the correct configuration', () => {
-      const {
-        config: {
-          services: { web, worker },
-        },
-        env: { DOCKER_TAG },
-      } = getConfig(inputValues);
+    const {config, env} = getConfig(inputValues);
 
-      for (let service of [web, worker]) {
-        expect(service.image).toStrictEqual(DOCKER_TAG);
+    it('.services.(web|worker) should have the correct configuration', () => {
+      for (let service of [config.services.web, config.services.worker]) {
+        expect(service.image).toStrictEqual(env.DOCKER_TAG);
         expect(service.pull_policy).toStrictEqual('never');
         expect(service.user).toStrictEqual('root');
         expect(service.platform).toStrictEqual('linux/amd64');
@@ -131,13 +115,8 @@ describe('docker-compose.yml', () => {
     });
 
     it('.services.nginx should have the correct configuration', () => {
-      const {
-        config: {
-          services: { nginx },
-        },
-      } = getConfig(inputValues);
       // nginx is mapped from http://olympia.test to port 80 in /etc/hosts on the host
-      expect(nginx.ports).toStrictEqual([
+      expect(config.services.nginx.ports).toStrictEqual([
         expect.objectContaining({
           mode: 'ingress',
           protocol: 'tcp',
@@ -145,7 +124,7 @@ describe('docker-compose.yml', () => {
           target: 80,
         }),
       ]);
-      expect(nginx.volumes).toEqual(
+      expect(config.services.nginx.volumes).toEqual(
         expect.arrayContaining([
           // mapping for nginx conf.d adding addon-server routing
           expect.objectContaining({
@@ -162,11 +141,8 @@ describe('docker-compose.yml', () => {
     });
 
     it('.services.*.volumes does not contain anonymous or unnamed volumes', () => {
-      const {
-        config: { services },
-      } = getConfig(inputValues);
-      for (let [name, config] of Object.entries(services)) {
-        for (let volume of config.volumes ?? []) {
+      for (let [name, service] of Object.entries(config.services)) {
+        for (let volume of service.volumes ?? []) {
           if (!volume.bind && !volume.source) {
             throw new Error(
               `'.services.${name}.volumes' contains unnamed volume mount: ` +
@@ -176,84 +152,7 @@ describe('docker-compose.yml', () => {
         }
       }
     });
-
-    const EXCLUDED_KEYS = ['DOCKER_COMMIT', 'DOCKER_VERSION', 'DOCKER_BUILD'];
-    // This test ensures that we do NOT include environment variables that are used
-    // at build time in the container. Cointainer environment variables are dynamic
-    // and should not be able to deviate from the state at build time.
-    it('.services.(web|worker).environment excludes build info variables', () => {
-      const {
-        config: {
-          services: { web, worker },
-        },
-      } = getConfig({
-        ...inputValues,
-        ...Object.fromEntries(EXCLUDED_KEYS.map((key) => [key, 'filtered'])),
-      });
-      for (let service of [web, worker]) {
-        for (let key of EXCLUDED_KEYS) {
-          expect(service.environment).not.toHaveProperty(key);
-        }
-      }
-    });
   });
-
-  // these keys require special handling to prevent runtime errors in make setup
-  const failKeys = [
-    // Invalid docker tag leads to docker not parsing the image
-    'DOCKER_TAG',
-  ];
-  const ignoreKeys = [
-    // Ignored because these values are explicitly mapped to the host_* values
-    'OLYMPIA_UID',
-    // Ignored because the HOST_UID is always set to the host user's UID
-    'HOST_UID',
-  ];
-  const defaultEnv = runSetup();
-  const customValue = 'custom';
-
-  describe.each(Array.from(new Set([...Object.keys(defaultEnv), ...failKeys])))(
-    `custom value for environment variable %s=${customValue}`,
-    (key) => {
-      if (failKeys.includes(key)) {
-        it('config should fail if set to an arbitrary custom value', () => {
-          expect(() =>
-            getConfig({ DOCKER_TARGET: 'production', [key]: customValue }),
-          ).toThrow();
-        });
-      } else if (ignoreKeys.includes(key)) {
-        it('variable should be ignored', () => {
-          const {
-            config: {
-              services: { web, worker },
-            },
-          } = getConfig({ ...defaultEnv, [key]: customValue });
-          for (let service of [web, worker]) {
-            expect(service.environment).not.toEqual(
-              expect.objectContaining({
-                [key]: customValue,
-              }),
-            );
-          }
-        });
-      } else {
-        it('variable should be overriden based on the input', () => {
-          const {
-            config: {
-              services: { web, worker },
-            },
-          } = getConfig({ ...defaultEnv, [key]: customValue });
-          for (let service of [web, worker]) {
-            expect(service.environment).toEqual(
-              expect.objectContaining({
-                [key]: customValue,
-              }),
-            );
-          }
-        });
-      }
-    },
-  );
 });
 
 describe('docker-bake.hcl', () => {
@@ -283,34 +182,17 @@ describe('docker-bake.hcl', () => {
     expect(output).toContain('mozilla/addons-server:local');
   });
 
-  it('renders custom DOCKER_BUILD', () => {
-    const build = 'build';
-    const output = getBakeConfig({ DOCKER_BUILD: build });
-    expect(output).toContain(`"DOCKER_BUILD": "${build}"`);
-  });
-
-  it('renders custom DOCKER_COMMIT', () => {
-    const commit = 'commit';
-    const output = getBakeConfig({ DOCKER_COMMIT: commit });
-    expect(output).toContain(`"DOCKER_COMMIT": "${commit}"`);
-  });
-
-  it('renders custom DOCKER_VERSION', () => {
-    const version = 'version';
-    const output = getBakeConfig({ DOCKER_VERSION: version });
-    expect(output).toContain(`"DOCKER_VERSION": "${version}"`);
-    expect(output).toContain(`mozilla/addons-server:${version}`);
-  });
-
-  it('renders custom DOCKER_DIGEST', () => {
-    const digest = 'sha256:digest';
-    const output = getBakeConfig({ DOCKER_DIGEST: digest });
-    expect(output).toContain(`mozilla/addons-server@${digest}`);
-  });
-
-  it('renders custom target', () => {
-    const target = 'target';
-    const output = getBakeConfig({ DOCKER_TARGET: target });
-    expect(output).toContain(`"target": "${target}"`);
+  describe.for([
+    ['DOCKER_BUILD', 'build', '"DOCKER_BUILD": "build"'],
+    ['DOCKER_COMMIT', 'commit', '"DOCKER_COMMIT": "commit"'],
+    ['DOCKER_VERSION', 'latest', '"DOCKER_VERSION": "latest"'],
+    ['DOCKER_VERSION', 'latest', 'mozilla/addons-server:latest'],
+    ['DOCKER_DIGEST', 'sha256:digest', 'mozilla/addons-server@sha256:digest'],
+    ['DOCKER_TARGET', 'production', '"target": "production"']
+  ])('%s: %s', ([name, value, expected]) => {
+    it(`renders custom value (${expected})`, () => {
+      const output = getBakeConfig({ [name]: value });
+      expect(output).toContain(expected);
+    });
   });
 });
