@@ -15,6 +15,7 @@ PROMOTED_GROUP_CHOICES = APIChoices(
     ('NOTABLE', 7, 'Notable'),
     ('SPONSORED', 8, 'Sponsored'),
     ('VERIFIED', 9, 'Verified'),
+    ('PARTNER', 10, 'Partner'),
 )
 
 DEACTIVATED_LEGACY_IDS = [
@@ -153,6 +154,12 @@ NOTABLE = PromotedClass(
     high_profile=True,
 )
 
+PARTNER = PromotedClass(
+    id=PROMOTED_GROUP_CHOICES.PARTNER,
+    name=_('Partner'),
+    api_name=PROMOTED_GROUP_CHOICES.PARTNER.api_value,
+    high_profile=True,
+)
 
 # _VERIFIED and _SPONSORED should not be included, they are no longer valid
 # promoted groups.
@@ -166,6 +173,12 @@ PROMOTED_GROUPS = [
     SPOTLIGHT,
     STRATEGIC,
     NOTABLE,
+    PARTNER,
+]
+
+# Groups that should not be exposed in the API.
+API_HIDDEN_GROUPS = [
+    PARTNER,
 ]
 
 BADGED_GROUPS = [group for group in PROMOTED_GROUPS if group.badged]
@@ -176,3 +189,4 @@ PROMOTED_API_NAME_TO_IDS = {
     **{p.api_name: [p.id] for p in PROMOTED_GROUPS if p},
     BADGED_API_NAME: [p.id for p in BADGED_GROUPS],
 }
+API_HIDDEN_GROUPS_BY_API_NAME = {p.api_name: p for p in API_HIDDEN_GROUPS}

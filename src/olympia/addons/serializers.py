@@ -38,7 +38,11 @@ from olympia.bandwagon.models import Collection
 from olympia.constants.applications import APP_IDS, APPS_ALL
 from olympia.constants.base import ADDON_TYPE_CHOICES_API
 from olympia.constants.categories import CATEGORIES_BY_ID
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES, PROMOTED_GROUPS_BY_ID
+from olympia.constants.promoted import (
+    API_HIDDEN_GROUPS_BY_API_NAME,
+    PROMOTED_GROUP_CHOICES,
+    PROMOTED_GROUPS_BY_ID,
+)
 from olympia.core.languages import AMO_LANGUAGES
 from olympia.files.models import File, FileUpload
 from olympia.files.utils import DuplicateAddonID, parse_addon
@@ -1135,6 +1139,14 @@ class AddonSerializer(AMOModelSerializer):
     def to_representation(self, obj):
         data = super().to_representation(obj)
         request = self.context.get('request', None)
+
+        # Do not expose partner status via API.
+        if request and 'promoted' in data:
+            data['promoted'] = [
+                promotion
+                for promotion in data['promoted']
+                if promotion['category'] not in API_HIDDEN_GROUPS_BY_API_NAME
+            ]
 
         if request and is_gate_active(request, 'del-addons-created-field'):
             data.pop('created', None)
