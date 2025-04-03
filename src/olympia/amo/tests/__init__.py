@@ -55,7 +55,7 @@ from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
 from olympia.blocklist.models import Block, BlockType, BlockVersion
 from olympia.constants.categories import CATEGORIES
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES, PROMOTED_GROUPS_BY_ID
 from olympia.files.models import File
 from olympia.promoted.models import (
     PromotedAddon,
@@ -619,6 +619,21 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
         if approve_version:
             addon.approve_for_version(addon.current_version)
         return promotions
+
+    @property
+    def promoted_groups(self):
+        return {
+            id: PromotedGroup.objects.get(group_id=id) for id in PROMOTED_GROUPS_BY_ID
+        }
+
+    def make_promoted(self, addon, group_ids=None, apps=None, approve_version=False):
+        group_ids = group_ids or []
+        for group_id in group_ids:
+            self.make_addon_promoted(
+                addon=addon, group_id=group_id, apps=apps, reset=False
+            )
+        if approve_version:
+            addon.approve_for_version()
 
     def _add_fake_throttling_action(
         self,
