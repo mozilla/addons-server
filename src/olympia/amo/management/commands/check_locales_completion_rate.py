@@ -46,10 +46,8 @@ class Command(BaseCommand):
     # query above. AMO locales are split into 2 projects, our query reflects
     # that by querying amo and amoFrontend.
     PONTOON_PROJECTS = 2
-    # 40% completion is the first step of the project. Then we'll move it up to
-    # 80% for a limited period, and eventually it will be set to 70% to account
-    # for new strings being added over time.
-    COMPLETION_THRESHOLD = 40
+    # Threshold to enable/disable locales.
+    COMPLETION_THRESHOLD = 70
     # Arbitrary list of locales we always want to keep, either because they
     # receive the most traffic/affect the most users, or because they are RTL
     # and we want to keep at least one of those to ensure AMO works in RTL.
