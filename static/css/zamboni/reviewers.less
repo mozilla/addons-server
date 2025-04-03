@@ -1129,9 +1129,33 @@ pre.history-comment {
     font-style: italic;
 }
 
-.history-notes {
-    max-width: 370px;
+.history-notes, .history-comment {
     overflow: auto;
+    max-height: 50em;
+    /* hack to show gradients indicating that there is some scrolling to do,
+       in case the browser would decide to hide it despite overflow-y: scroll;
+       See https://lea.verou.me/blog/2012/04/background-attachment-local/
+    */
+    background:
+        /* Shadow covers */
+        linear-gradient(white 30%, rgba(255,255,255,0)),
+        linear-gradient(rgba(255,255,255,0), white 70%) 0 100%,
+
+        /* Shadows */
+        radial-gradient(50% 0, farthest-side, rgba(0,0,0,.2), rgba(0,0,0,0)),
+        radial-gradient(50% 100%,farthest-side, rgba(0,0,0,.2), rgba(0,0,0,0)) 0 100%;
+    background:
+        /* Shadow covers */
+        linear-gradient(white 30%, rgba(255,255,255,0)),
+        linear-gradient(rgba(255,255,255,0), white 70%) 0 100%,
+
+        /* Shadows */
+        radial-gradient(farthest-side at 50% 0, rgba(0,0,0,.2), rgba(0,0,0,0)),
+        radial-gradient(farthest-side at 50% 100%, rgba(0,0,0,.2), rgba(0,0,0,0)) 0 100%;
+    background-repeat: no-repeat;
+    background-color: white;
+    background-size: 100% 40px, 100% 40px, 100% 14px, 100% 14px;
+    background-attachment: local, local, scroll, scroll;
 }
 
 .review-paging {
