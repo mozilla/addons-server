@@ -2459,11 +2459,11 @@ msgstr "Accord de distribution des modules complémentaires Firefox"
 
 #: src/olympia/devhub/templates/devhub/base.html:43
 msgid "Help us make things better!"
-msgstr ""
+msgstr "Aidez-nous à rendre les choses meilleures !"
 
 #: src/olympia/devhub/templates/devhub/base.html:44
 msgid "Take our quick survey"
-msgstr ""
+msgstr "Répondre à notre court sondage"
 
 #. {0} is an application, like Firefox.
 #: src/olympia/devhub/templates/devhub/index.html:21 src/olympia/templates/base.html:17
@@ -5859,7 +5859,7 @@ msgstr "Résumez facilement vos e-mails, documents, articles et transcriptions d
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:980
 msgid "You’re in control. Turn off VPN when a website won’t work and set different locations for different websites. Windows only."
-msgstr ""
+msgstr "Vous avez le contrôle. Désactivez le VPN quand un site web ne fonctionne pas et définissez des emplacements différents pour des sites web différents. Sous Windows uniquement."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:983
