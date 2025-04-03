@@ -409,10 +409,12 @@ DEFAULT_WEBEXT_DICT_MIN_VERSION_THUNDERBIRD = '60.5.0'
 # Minimum version allowed to use manifest v3
 DEFAULT_MANIFEST_V3_MIN_VERSION = '128.0'
 
+# FIXME: This regex was changed to allow GUIDs to optionally start with a @.
+# It fixes a bunch of tests, but need to double check the consequences of this.
 ADDON_GUID_PATTERN = re.compile(
     # Match {uuid} or something@host.tld ("something" being optional)
     # guids. Copied from mozilla-central XPIProvider.jsm.
-    r'^(\{[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\}'
+    r'^\@?(\{[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\}'
     r'|[a-z0-9-\._]*\@[a-z0-9-\._]+)$', re.IGNORECASE)
 
 SYSTEM_ADDON_GUIDS = (
