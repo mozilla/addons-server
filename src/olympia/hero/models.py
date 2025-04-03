@@ -11,6 +11,7 @@ from django.templatetags.static import static
 from django.urls import Resolver404
 from django.utils.safestring import mark_safe
 
+from olympia.addons.models import Addon
 from olympia.amo.models import LongNameIndex, ModelBase
 from olympia.amo.reverse import resolve_with_trailing_slash, reverse
 from olympia.amo.utils import SafeStorage
@@ -176,12 +177,14 @@ class PrimaryHero(ModelBase):
     enabled = models.BooleanField(db_index=True, default=False)
     # TODO: promotedaddon; primaryhero refactor (Write PR)
     promoted_addon = models.OneToOneField(
-        PromotedAddon, on_delete=models.CASCADE, null=False
+        PromotedAddon, on_delete=models.CASCADE, null=True
     )
+    addon = models.OneToOneField(Addon, on_delete=models.CASCADE, null=False)
+
     is_external = models.BooleanField(default=False)
 
     def __str__(self):
-        return str(self.promoted_addon.addon)
+        return str(self.addon)
 
     @property
     def image_url(self):
@@ -203,14 +206,14 @@ class PrimaryHero(ModelBase):
                     'Gradient color is required for enabled shelves'
                 )
 
-            if self.is_external and not self.promoted_addon.addon.homepage:
+            if self.is_external and not self.addon.homepage:
                 error_dict['is_external'] = ValidationError(
                     'External primary shelves need a homepage defined in addon details.'
                 )
             elif not self.is_external:
                 can_add_to_primary = (
-                    self.promoted_addon.group.can_primary_hero
-                    and self.promoted_addon.approved_applications
+                    any(self.addon.promoted_groups().can_primary_hero)
+                    and self.addon.approved_applications
                 )
                 if not can_add_to_primary:
                     can_hero_groups = ', '.join(
@@ -223,12 +226,16 @@ class PrimaryHero(ModelBase):
                         'non-external primary shelves.' % can_hero_groups
                     )
         else:
-            if list(PrimaryHero.objects.filter(enabled=True)) == [self]:
+            if self.is_only_enabled_shelf:
                 error_dict['enabled'] = ValidationError(
                     "You can't disable the only enabled primary shelf."
                 )
         if error_dict:
             raise ValidationError(error_dict)
+
+    @property
+    def is_only_enabled_shelf(self):
+        return list(PrimaryHero.objects.filter(enabled=True)) == [self]
 
 
 class CTACheckMixin:

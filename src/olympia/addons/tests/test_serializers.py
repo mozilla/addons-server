@@ -538,7 +538,7 @@ class AddonSerializerOutputTestMixin:
         with override_settings(DRF_API_GATES=gates):
             result = self.serialize()
             assert result['is_featured'] is True
-            self.addon.current_version.promoted_approvals.all().delete()
+            self.addon.current_version.promoted_versions.all().delete()
             result = self.serialize()
             assert result['is_featured'] is False
 
@@ -552,14 +552,14 @@ class AddonSerializerOutputTestMixin:
         assert promoted['apps'] == [app.short for app in amo.APP_USAGE]
 
         # With a specific application approved.
-        self.addon.current_version.promoted_approvals.filter(
+        self.addon.current_version.promoted_versions.filter(
             application_id=amo.ANDROID.id
         ).delete()
         result = self.serialize()
         assert result['promoted'][0]['apps'] == [amo.FIREFOX.short]
 
         # With a recommended theme.
-        self.addon.promotedaddon.delete()
+        PromotedAddonPromotion.objects.filter(addon=self.addon).delete()
         self.addon.update(type=amo.ADDON_STATICTHEME)
         featured_collection, _ = Collection.objects.get_or_create(
             id=settings.COLLECTION_FEATURED_THEMES_ID

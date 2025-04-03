@@ -71,7 +71,6 @@ class TestPromotedAddon(TestCase):
         promoted_addon = PromotedAddon.objects.create(
             addon=addon, group_id=PROMOTED_GROUP_CHOICES.LINE
         )
-        assert addon.promotedaddon
         assert PromotedAddonPromotion.objects.filter(
             addon=addon,
             promoted_group=self.promoted_groups(promoted_addon.group.id),
@@ -171,7 +170,6 @@ class TestPromotedAddon(TestCase):
         # No associated PromotedAddonPromotion should be created
         assert not PromotedAddonPromotion.objects.filter(
             addon=promo.addon,
-            promoted_group=self.promoted_groups(promo.group.id),
         ).exists()
         assert promo.group.id == PROMOTED_GROUP_CHOICES.NOT_PROMOTED
         assert promo.approved_applications == []
@@ -259,12 +257,12 @@ class TestPromotedAddon(TestCase):
             addon=addon_factory(), application_id=amo.FIREFOX.id
         )
         assert (
-            PromotedAddonPromotion.objects.filter(
+            promo.group_id == PROMOTED_GROUP_CHOICES.NOT_PROMOTED
+            or PromotedAddonPromotion.objects.filter(
                 addon=promo.addon,
                 promoted_group=self.promoted_groups(promo.group.id),
                 application_id=amo.FIREFOX.id,
             ).exists()
-            or promo.group_id == PROMOTED_GROUP_CHOICES.NOT_PROMOTED
         )
         listed_ver = promo.addon.current_version
         unlisted_ver = version_factory(addon=promo.addon, channel=amo.CHANNEL_UNLISTED)
@@ -282,11 +280,11 @@ class TestPromotedAddon(TestCase):
 
         # Verify promotion state
         assert (
-            PromotedAddonPromotion.objects.filter(
+            group_id == PROMOTED_GROUP_CHOICES.NOT_PROMOTED
+            or PromotedAddonPromotion.objects.filter(
                 addon=promo.addon,
                 promoted_group=self.promoted_groups(group_id),
             ).exists()
-            or group_id == PROMOTED_GROUP_CHOICES.NOT_PROMOTED
         )
         assert promo.approved_applications == []
         assert not PromotedApproval.objects.exists()

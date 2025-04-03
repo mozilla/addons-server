@@ -29,7 +29,9 @@ from olympia.blocklist.models import BlockVersion
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.constants.scanners import CUSTOMS, MAD
 from olympia.files.models import File, FileValidation, WebextPermission
-from olympia.promoted.models import PromotedAddon
+from olympia.promoted.models import (
+    PromotedAddonPromotion,
+)
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import (
     AutoApprovalNoValidationResultError,
@@ -1196,24 +1198,32 @@ class TestAutoApprovalSummary(TestCase):
     def test_check_is_promoted_prereview(self):
         assert AutoApprovalSummary.check_is_promoted_prereview(self.version) is False
 
-        promoted = PromotedAddon.objects.create(addon=self.addon)
         assert AutoApprovalSummary.check_is_promoted_prereview(self.version) is False
 
-        promoted.update(group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED)
+        self.make_addon_promoted(
+            addon=self.addon, group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+        )
         assert AutoApprovalSummary.check_is_promoted_prereview(self.version) is True
 
-        promoted.update(
-            group_id=PROMOTED_GROUP_CHOICES.STRATEGIC
+        PromotedAddonPromotion.objects.filter(addon=self.addon).delete()
+        self.make_addon_promoted(
+            addon=self.addon, group_id=PROMOTED_GROUP_CHOICES.STRATEGIC
         )  # STRATEGIC isn't prereview
         assert AutoApprovalSummary.check_is_promoted_prereview(self.version) is False
 
-        promoted.update(group_id=PROMOTED_GROUP_CHOICES.LINE)  # LINE is though
+        PromotedAddonPromotion.objects.filter(addon=self.addon).delete()
+        self.make_addon_promoted(
+            addon=self.addon, group_id=PROMOTED_GROUP_CHOICES.LINE
+        )  # LINE is though
         assert AutoApprovalSummary.check_is_promoted_prereview(self.version) is True
 
         self.version.update(channel=amo.CHANNEL_UNLISTED)  # not for unlisted though
         assert AutoApprovalSummary.check_is_promoted_prereview(self.version) is False
 
-        promoted.update(group_id=PROMOTED_GROUP_CHOICES.NOTABLE)  # NOTABLE is
+        PromotedAddonPromotion.objects.filter(addon=self.addon).delete()
+        self.make_addon_promoted(
+            addon=self.addon, group_id=PROMOTED_GROUP_CHOICES.NOTABLE
+        )  # NOTABLE is
         assert AutoApprovalSummary.check_is_promoted_prereview(self.version) is True
 
         self.version.update(channel=amo.CHANNEL_LISTED)  # and for listed too

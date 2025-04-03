@@ -33,7 +33,7 @@ from olympia.constants.scanners import CUSTOMS, MAD, YARA
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadMixin
 from olympia.files.utils import parse_addon
-from olympia.promoted.models import PromotedAddon, PromotedApproval
+from olympia.promoted.models import PromotedAddonVersion, PromotedGroup
 from olympia.reviewers.models import AutoApprovalSummary, NeedsHumanReview
 from olympia.scanners.models import ScannerResult
 from olympia.users.models import (
@@ -411,7 +411,7 @@ class TestVersionManager(TestCase):
 
         # Or if it's in a pre-review promoted group it will.
         recommended = addon_factory(**addon_kws).current_version
-        PromotedAddon.objects.create(
+        self.make_addon_promoted(
             addon=recommended.addon, group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
         )
         NeedsHumanReview.objects.create(
@@ -420,8 +420,8 @@ class TestVersionManager(TestCase):
         )
 
         # And not if it's a non-pre-review group
-        PromotedAddon.objects.create(
-            addon=addon_factory(**addon_kws), group_id=PROMOTED_GROUP_CHOICES.STRATEGIC
+        self.make_addon_promoted(
+            addon=recommended.addon, group_id=PROMOTED_GROUP_CHOICES.STRATEGIC
         )
 
         # A disabled version with a developer reply
@@ -450,8 +450,8 @@ class TestVersionManager(TestCase):
 
         # And a version with multiple reasons
         multiple = addon_factory(**addon_kws).current_version
-        PromotedAddon.objects.create(
-            addon=multiple.addon, group_id=PROMOTED_GROUP_CHOICES.LINE
+        self.make_addon_promoted(
+            addon=recommended.addon, group_id=PROMOTED_GROUP_CHOICES.LINE
         )
         NeedsHumanReview.objects.create(
             version=multiple, reason=NeedsHumanReview.REASONS.BELONGS_TO_PROMOTED_GROUP
@@ -521,7 +521,6 @@ class TestVersionManager(TestCase):
             second_theme_second_version,
             unknown_nhr,
             recommended,
-            _,  # promoted but not prereview addon
             developer_reply,
             abuse_nhr,
             appeal_nhr,
@@ -1365,21 +1364,27 @@ class TestVersion(AMOPaths, TestCase):
         version_factory(addon=addon, promotion_approved=True)
         addon = addon.reload()
         assert previous_version != addon.current_version
-        assert addon.current_version.promoted_approvals.filter(
-            group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+        assert addon.current_version.promoted_versions.filter(
+            promoted_group__group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
         ).exists()
-        assert previous_version.promoted_approvals.filter(
-            group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+        assert previous_version.promoted_versions.filter(
+            promoted_group__group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
         ).exists()
         # unless the previous version is also approved for the same group
         assert addon.current_version.can_be_disabled_and_deleted()
         assert previous_version.can_be_disabled_and_deleted()
 
         # double-check by changing the approval of previous version
-        previous_version.promoted_approvals.update(group_id=PROMOTED_GROUP_CHOICES.LINE)
+        previous_version.promoted_versions.update(
+            promoted_group=PromotedGroup.objects.get(
+                group_id=PROMOTED_GROUP_CHOICES.LINE
+            )
+        )
         assert not addon.current_version.can_be_disabled_and_deleted()
-        previous_version.promoted_approvals.update(
-            group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+        previous_version.promoted_versions.update(
+            promoted_group=PromotedGroup.objects.get(
+                group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+            )
         )
 
         # Check the scenario when some of the previous versions are approved
@@ -1393,18 +1398,18 @@ class TestVersion(AMOPaths, TestCase):
         addon = addon.reload()
         version_b = version_b.reload()
         assert version_d == addon.current_version
-        assert version_a.promoted_approvals.filter(
-            group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+        assert version_a.promoted_versions.filter(
+            promoted_group__group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
         ).exists()
-        assert version_b.promoted_approvals.filter(
-            group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+        assert version_b.promoted_versions.filter(
+            promoted_group__group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
         ).exists()
         # ignored because disabled
-        assert not version_c.promoted_approvals.filter(
-            group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+        assert not version_c.promoted_versions.filter(
+            promoted_group__group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
         ).exists()
-        assert version_d.promoted_approvals.filter(
-            group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+        assert version_d.promoted_versions.filter(
+            promoted_group__group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
         ).exists()
         assert version_a.can_be_disabled_and_deleted()
         assert version_b.can_be_disabled_and_deleted()
@@ -1412,9 +1417,7 @@ class TestVersion(AMOPaths, TestCase):
         assert version_d.can_be_disabled_and_deleted()
         assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon.promoted_groups().group_id
         # now un-approve version_b
-        version_b.promoted_approvals.update(
-            group_id=PROMOTED_GROUP_CHOICES.NOT_PROMOTED
-        )
+        version_b.promoted_versions.all().delete()
         assert version_a.can_be_disabled_and_deleted()
         assert version_b.can_be_disabled_and_deleted()
         assert version_c.can_be_disabled_and_deleted()
@@ -1602,14 +1605,18 @@ class TestVersion(AMOPaths, TestCase):
         assert version.approved_for_groups == []
 
         # give it some promoted approvals
-        PromotedApproval.objects.create(
+        PromotedAddonVersion.objects.create(
             version=version,
-            group_id=PROMOTED_GROUP_CHOICES.LINE,
+            promoted_group=PromotedGroup.objects.get(
+                group_id=PROMOTED_GROUP_CHOICES.LINE
+            ),
             application_id=amo.FIREFOX.id,
         )
-        PromotedApproval.objects.create(
+        PromotedAddonVersion.objects.create(
             version=version,
-            group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
+            promoted_group=PromotedGroup.objects.get(
+                group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+            ),
             application_id=amo.ANDROID.id,
         )
 
@@ -1634,24 +1641,32 @@ class TestVersion(AMOPaths, TestCase):
             assert versions[1].approved_for_groups == []
 
         # give them some promoted approvals
-        PromotedApproval.objects.create(
+        PromotedAddonVersion.objects.create(
             version=version_a,
-            group_id=PROMOTED_GROUP_CHOICES.LINE,
+            promoted_group=PromotedGroup.objects.get(
+                group_id=PROMOTED_GROUP_CHOICES.LINE
+            ),
             application_id=amo.FIREFOX.id,
         )
-        PromotedApproval.objects.create(
+        PromotedAddonVersion.objects.create(
             version=version_a,
-            group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
+            promoted_group=PromotedGroup.objects.get(
+                group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+            ),
             application_id=amo.FIREFOX.id,
         )
-        PromotedApproval.objects.create(
+        PromotedAddonVersion.objects.create(
             version=version_b,
-            group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
+            promoted_group=PromotedGroup.objects.get(
+                group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+            ),
             application_id=amo.FIREFOX.id,
         )
-        PromotedApproval.objects.create(
+        PromotedAddonVersion.objects.create(
             version=version_b,
-            group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
+            promoted_group=PromotedGroup.objects.get(
+                group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+            ),
             application_id=amo.ANDROID.id,
         )
 
@@ -3126,7 +3141,7 @@ class TestApplicationsVersionsVersionRangeContainsForbiddenCompatibility(TestCas
     def test_recommended_or_line_for_desktop(self):
         addon = addon_factory(promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED)
         android_approval = (
-            addon.current_version.promoted_approvals.all()
+            addon.current_version.promoted_versions.all()
             .filter(application_id=amo.ANDROID.id)
             .get()
         )

@@ -53,18 +53,16 @@ class PrimaryHeroShelfViewSet(ShelfViewSet):
         qs = super().get_queryset()
         if not self.is_all:
             qs = qs.filter(
-                Q(promoted_addon__addon__status=amo.STATUS_APPROVED)
+                Q(addon__status=amo.STATUS_APPROVED)
                 | Q(
                     is_external=True,
-                    promoted_addon__addon__status__in=(
-                        amo.VALID_ADDON_STATUSES + (amo.STATUS_NULL,)
-                    ),
+                    addon__status__in=(amo.VALID_ADDON_STATUSES + (amo.STATUS_NULL,)),
                 ),
-                promoted_addon__addon__disabled_by_user=False,
+                addon__disabled_by_user=False,
             )
-        qs = qs.select_related('promoted_addon', 'select_image').prefetch_related(
-            'promoted_addon__addon___current_version__previews',
-            'promoted_addon__addon___current_version__file___webext_permissions',
+        qs = qs.select_related('select_image').prefetch_related(
+            'addon___current_version__previews',
+            'addon___current_version__file___webext_permissions',
         )
         return qs
 

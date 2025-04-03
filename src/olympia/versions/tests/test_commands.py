@@ -7,10 +7,14 @@ from django.core.management import call_command
 from django.core.management.base import CommandError
 
 from olympia import amo
-from olympia.amo.tests import TestCase, addon_factory, version_factory
+from olympia.amo.tests import (
+    PromotedAddonPromotion,
+    TestCase,
+    addon_factory,
+    version_factory,
+)
 from olympia.applications.models import AppVersion
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
-from olympia.promoted.models import PromotedAddon
 from olympia.versions.compare import version_int
 from olympia.versions.management.commands.force_min_android_compatibility import (
     Command as ForceMinAndroidCompatibility,
@@ -274,10 +278,13 @@ class TestForceMaxAndroidCompatibility(TestCase):
         ]
         # Manually update the promoted add-ons we want to only recommend for a
         # single app..
-        PromotedAddon.objects.get(addon=addons_to_ignore_promoted[0]).update(
-            application_id=amo.ANDROID.id
-        )
-        PromotedAddon.objects.get(addon=addons[1]).update(application_id=amo.FIREFOX.id)
+        PromotedAddonPromotion.objects.filter(
+            addon=addons_to_ignore_promoted[0],
+            application_id=amo.FIREFOX.id,
+        ).delete()
+        PromotedAddonPromotion.objects.filter(
+            addon=addons[1], application_id=amo.ANDROID.id
+        ).delete()
         # Directly creating an add-on compatible with Firefox for Android 99.0
         # is no longer possible without being recommended, so manually update
         # some ApplicationsVersions that we couldn't set.

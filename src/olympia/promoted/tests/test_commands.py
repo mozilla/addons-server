@@ -512,9 +512,8 @@ class TestPromoteByFirefoxThemesCommand(TestCase):
             ).exists()
 
         for addon in (already_promoted, expected_affected):
-            assert addon.promotedaddon
             assert (
-                addon.current_version.promoted_approvals.all()
+                addon.current_version.promoted_versions.all()
                 .filter(application_id=amo.FIREFOX.id)
                 .exists()
             )

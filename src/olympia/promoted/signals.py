@@ -17,14 +17,14 @@ from .models import (
 def promoted_addon_to_promoted_addon_promotion(
     signal: ModelSignal, instance: PromotedAddon
 ):
-    promoted_group = PromotedGroup.objects.get(group_id=instance.group_id)
-
     # Create the missing instances on the PromotedAddonPromotion model.
     # If its update to NOT_PROMOTED, then delete the existing instead.
-    if promoted_group.group_id == PROMOTED_GROUP_CHOICES.NOT_PROMOTED:
+    if instance.group_id == PROMOTED_GROUP_CHOICES.NOT_PROMOTED:
         if instance.pk:
             PromotedAddonPromotion.objects.filter(addon=instance.addon).delete()
         return
+
+    promoted_group = PromotedGroup.objects.get(group_id=instance.group_id)
 
     # Get the current set of app ids related to both models for the addon/group
     # If we are deleting,  then the set should be empty

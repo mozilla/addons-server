@@ -7,7 +7,6 @@ from olympia.amo.urlresolvers import get_outgoing_url
 from olympia.constants.promoted import (
     PROMOTED_GROUP_CHOICES,
 )
-from olympia.promoted.models import PromotedAddon
 
 from ..models import (
     GRADIENT_START_COLOR,
@@ -37,7 +36,7 @@ class TestPrimaryHeroShelfSerializer(TestCase):
     def test_basic(self):
         addon = addon_factory(promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED)
         hero = PrimaryHero.objects.create(
-            promoted_addon=addon.promotedaddon,
+            addon=addon,
             description='Déscription',
             select_image=self.phi,
             gradient_color='#008787',
@@ -59,7 +58,7 @@ class TestPrimaryHeroShelfSerializer(TestCase):
     def test_description(self):
         addon = addon_factory(type=amo.ADDON_STATICTHEME, summary=None)
         hero = PrimaryHero.objects.create(
-            promoted_addon=PromotedAddon.objects.create(addon=addon),
+            addon=addon,
             description='hero description',
         )
         data = PrimaryHeroShelfSerializer(instance=hero).data
@@ -82,7 +81,7 @@ class TestPrimaryHeroShelfSerializer(TestCase):
             version_kw={'channel': amo.CHANNEL_UNLISTED},
         )
         hero = PrimaryHero.objects.create(
-            promoted_addon=PromotedAddon.objects.create(addon=addon),
+            addon=addon,
             select_image=self.phi,
             gradient_color='#008787',
             is_external=True,

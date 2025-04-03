@@ -30,6 +30,7 @@ from olympia.constants.abuse import (
     ILLEGAL_SUBCATEGORIES,
 )
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
+from olympia.promoted.models import PromotedAddonPromotion
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import NeedsHumanReview
 from olympia.users.models import UserProfile
@@ -508,7 +509,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
             },
         }
 
-        self.make_addon_promoted(addon, PROMOTED_GROUP_CHOICES.NOT_PROMOTED)
+        PromotedAddonPromotion.objects.filter(addon=addon).delete()
         data = cinder_addon.build_report_payload(
             report=CinderReport(abuse_report), reporter=None
         )
