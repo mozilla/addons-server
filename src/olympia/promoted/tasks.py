@@ -50,9 +50,7 @@ def add_high_adu_extensions_to_notable():
         due_date = next(due_date_generator)
         try:
             # We can't use update_or_create because we need to pass _due_date to save
-            promotions = PromotedAddonPromotion.objects.filter(
-                addon_id=addon_id
-            ).first()
+            promotions = PromotedAddonPromotion.objects.filter(addon_id=addon_id)
             if promotions:
                 # Shouldn't happen because filter only includes
                 # addons with no promotions.
