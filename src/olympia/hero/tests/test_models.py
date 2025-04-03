@@ -3,6 +3,7 @@ from datetime import datetime
 from django.core.exceptions import ValidationError
 from django.test.utils import override_settings
 
+from olympia import amo
 from olympia.amo.tests import TestCase, addon_factory
 from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
@@ -12,7 +13,7 @@ from olympia.hero.models import (
     SecondaryHero,
     SecondaryHeroModule,
 )
-from olympia.promoted.models import PromotedAddon
+from olympia.promoted.models import PromotedAddonPromotion, PromotedGroup
 
 
 class TestPrimaryHero(TestCase):
@@ -23,7 +24,7 @@ class TestPrimaryHero(TestCase):
 
     def test_image_url(self):
         ph = PrimaryHero.objects.create(
-            promoted_addon=PromotedAddon.objects.create(addon=addon_factory()),
+            addon=addon_factory(),
             select_image=self.phi,
         )
         assert ph.image_url == (
@@ -35,16 +36,21 @@ class TestPrimaryHero(TestCase):
 
     def test_gradiant(self):
         ph = PrimaryHero.objects.create(
-            promoted_addon=PromotedAddon.objects.create(addon=addon_factory()),
+            addon=addon_factory(),
             gradient_color='#C60084',
         )
         assert ph.gradient == {'start': 'color-ink-80', 'end': 'color-pink-70'}
 
     def test_clean_requires_approved_can_primary_hero_group(self):
+        addon = addon_factory()
+        promoted_group = PromotedGroup.objects.get(
+            group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+        )
+        promotion = PromotedAddonPromotion.objects.create(
+            addon=addon, promoted_group=promoted_group, application_id=amo.FIREFOX.id
+        )
         ph = PrimaryHero.objects.create(
-            promoted_addon=PromotedAddon.objects.create(
-                addon=addon_factory(), group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
-            ),
+            addon=addon,
             gradient_color='#C60184',
             select_image=self.phi,
         )
@@ -54,25 +60,23 @@ class TestPrimaryHero(TestCase):
         with self.assertRaises(ValidationError):
             ph.clean()
 
-        assert not ph.promoted_addon.addon.promoted_groups()
-        ph.promoted_addon.approve_for_version(ph.promoted_addon.addon.current_version)
+        assert not ph.addon.promoted_groups()
+        ph.addon.approve_for_version(ph.addon.current_version)
         ph.reload()
         ph.enabled = True
-        assert (
-            PROMOTED_GROUP_CHOICES.RECOMMENDED
-            in ph.promoted_addon.addon.promoted_groups().group_id
-        )
+        assert PROMOTED_GROUP_CHOICES.RECOMMENDED in ph.addon.promoted_groups().group_id
         ph.clean()  # it raises if there's an error
 
         # change to a different group
-        ph.promoted_addon.update(group_id=PROMOTED_GROUP_CHOICES.STRATEGIC)
-        ph.promoted_addon.approve_for_version(ph.promoted_addon.addon.current_version)
+        promoted_group = PromotedGroup.objects.get(
+            group_id=PROMOTED_GROUP_CHOICES.STRATEGIC
+        )
+        promotion.update(promoted_group=promoted_group)
+        promotion.reload()
+        ph.addon.approve_for_version(ph.addon.current_version)
         ph.reload()
         ph.enabled = True
-        assert (
-            PROMOTED_GROUP_CHOICES.STRATEGIC
-            in ph.promoted_addon.addon.promoted_groups().group_id
-        )
+        assert PROMOTED_GROUP_CHOICES.STRATEGIC in ph.addon.promoted_groups().group_id
         with self.assertRaises(ValidationError) as context:
             # STRATEGIC isn't a group that can be added as a primary hero
             ph.clean()
@@ -82,19 +86,20 @@ class TestPrimaryHero(TestCase):
         ]
 
         # change to a different group that *can* be added as a primary hero
-        ph.promoted_addon.update(group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT)
-        ph.promoted_addon.approve_for_version(ph.promoted_addon.addon.current_version)
+        promoted_group = PromotedGroup.objects.get(
+            group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT
+        )
+        promotion.update(promoted_group=promoted_group)
+        promotion.reload()
+        ph.addon.approve_for_version(ph.addon.current_version)
         ph.reload()
         ph.enabled = True
-        assert (
-            PROMOTED_GROUP_CHOICES.SPOTLIGHT
-            in ph.promoted_addon.addon.promoted_groups().group_id
-        )
+        assert PROMOTED_GROUP_CHOICES.SPOTLIGHT in ph.addon.promoted_groups().group_id
         ph.clean()  # it raises if there's an error
 
     def test_clean_external_requires_homepage(self):
         ph = PrimaryHero.objects.create(
-            promoted_addon=PromotedAddon.objects.create(addon=addon_factory()),
+            addon=addon_factory(),
             is_external=True,
             gradient_color='#C60184',
             select_image=self.phi,
@@ -105,18 +110,21 @@ class TestPrimaryHero(TestCase):
         with self.assertRaises(ValidationError):
             ph.clean()
 
-        ph.promoted_addon.addon.homepage = 'https://foobar.com/'
-        ph.promoted_addon.addon.save()
+        ph.addon.homepage = 'https://foobar.com/'
+        ph.addon.save()
         ph.clean()  # it raises if there's an error
 
     def test_clean_gradient_and_image(self):
         # Currently, gradient is required and image isn't.
-        ph = PrimaryHero.objects.create(
-            promoted_addon=PromotedAddon.objects.create(
-                addon=addon_factory(), group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
-            )
+        addon = addon_factory()
+        recommended_group = PromotedGroup.objects.get(
+            group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
         )
-        ph.promoted_addon.approve_for_version(ph.promoted_addon.addon.current_version)
+        PromotedAddonPromotion.objects.create(
+            addon=addon, promoted_group=recommended_group, application_id=amo.FIREFOX.id
+        )
+        ph = PrimaryHero.objects.create(addon=addon)
+        ph.addon.approve_for_version(ph.addon.current_version)
         ph.reload()
         assert not ph.enabled
         ph.clean()  # it raises if there's an error
@@ -136,16 +144,19 @@ class TestPrimaryHero(TestCase):
         ph.clean()  # it raises if there's an error
 
     def test_clean_only_enabled(self):
+        addon = addon_factory()
+        promoted_group = PromotedGroup.objects.get(
+            group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+        )
+        PromotedAddonPromotion.objects.create(
+            addon=addon, promoted_group=promoted_group, application_id=amo.FIREFOX.id
+        )
         hero = PrimaryHero.objects.create(
-            promoted_addon=PromotedAddon.objects.create(
-                addon=addon_factory(), group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
-            ),
+            addon=addon,
             gradient_color='#C60184',
             select_image=self.phi,
         )
-        hero.promoted_addon.approve_for_version(
-            hero.promoted_addon.addon.current_version
-        )
+        hero.addon.approve_for_version(hero.addon.current_version)
         hero.reload()
         assert not hero.enabled
         assert not PrimaryHero.objects.filter(enabled=True).exists()
@@ -165,7 +176,7 @@ class TestPrimaryHero(TestCase):
 
         # But if there's another shelf enabled, then it's fine to disable.
         PrimaryHero.objects.create(
-            promoted_addon=PromotedAddon.objects.create(addon=addon_factory()),
+            addon=addon_factory(),
             enabled=True,
         )
         hero.clean()
