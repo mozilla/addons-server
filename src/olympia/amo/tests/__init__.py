@@ -55,7 +55,7 @@ from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
 from olympia.blocklist.models import Block, BlockType, BlockVersion
 from olympia.constants.categories import CATEGORIES
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES, PROMOTED_GROUPS_BY_ID
 from olympia.files.models import File
 from olympia.promoted.models import (
     PromotedAddon,
@@ -589,19 +589,25 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
             version.update(channel=channel)
 
     @classmethod
-    def make_addon_promoted(cls, addon, group_id, approve_version=False, apps=None):
+    def make_addon_promoted(
+        cls, addon, group_id, approve_version=False, apps=None, reset=True
+    ):
         """
         Promotes the addon for the group in the given apps, or all if none are given.
+        If reset=True, resets the PromotedAddonPromotions of the app.
         If already approved for a group, remakes the approvals for only the given apps.
         """
         if group_id == PROMOTED_GROUP_CHOICES.NOT_PROMOTED:
             return
 
-        # TODO: promotedaddon; while constraint is in place,
-        # need to delete any other promotions.
-        PromotedAddonPromotion.objects.filter(addon=addon).delete()
-
         promoted_group = PromotedGroup.objects.get(group_id=group_id)
+        previous_promotions = PromotedAddonPromotion.objects.filter(addon=addon)
+        if not reset:
+            previous_promotions = PromotedAddonPromotion.objects.filter(
+                promoted_group=promoted_group
+            )
+        previous_promotions.delete()
+
         apps_to_create = apps if apps else amo.APP_USAGE
         promotions = []
         for app in apps_to_create:
@@ -613,6 +619,21 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
         if approve_version:
             addon.approve_for_version(addon.current_version)
         return promotions
+
+    @property
+    def promoted_groups(self):
+        return {
+            id: PromotedGroup.objects.get(group_id=id) for id in PROMOTED_GROUPS_BY_ID
+        }
+
+    def make_promoted(self, addon, group_ids=None, apps=None, approve_version=False):
+        group_ids = group_ids or []
+        for group_id in group_ids:
+            self.make_addon_promoted(
+                addon=addon, group_id=group_id, apps=apps, reset=False
+            )
+        if approve_version:
+            addon.approve_for_version()
 
     def _add_fake_throttling_action(
         self,
