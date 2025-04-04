@@ -1090,7 +1090,6 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
 
 
 @override_switch('dsa-abuse-reports-review', active=True)
-@override_switch('dsa-appeals-review', active=True)
 @override_switch('dsa-cinder-forwarded-review', active=True)
 class TestCinderAddonHandledByReviewers(TestCinderAddon):
     CinderClass = CinderAddonHandledByReviewers
@@ -1289,18 +1288,6 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
             == NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL
         )
         assert version.reload().due_date
-
-    @override_switch('dsa-appeals-review', active=False)
-    def test_appeal_waffle_switch_off(self):
-        addon = self._create_dummy_target()
-        # We are no longer doing the queries for the activitylog, needshumanreview
-        # etc since the waffle switch is off. So we're back to the same number of
-        # queries made by the reports that go to Cinder.
-        self.expected_queries_for_report = TestCinderAddon.expected_queries_for_report
-        self._test_appeal(
-            CinderUser(user_factory()), cinder_entity_instance=self.CinderClass(addon)
-        )
-        assert addon.current_version.needshumanreview_set.count() == 0
 
     def test_report_with_ongoing_appeal(self):
         addon = self._create_dummy_target()
