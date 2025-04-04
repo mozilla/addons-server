@@ -19,6 +19,7 @@ topics/remote_addr
 topics/third-party
 topics/blocklist
 topics/environments
+topics/data/index
 ```
 
 ## Archived Contents
