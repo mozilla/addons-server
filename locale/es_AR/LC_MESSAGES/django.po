@@ -1767,7 +1767,7 @@ msgstr "Creative Commons Attribution-ShareAlike 4.0"
 
 #: src/olympia/constants/licenses.py:222
 msgid "The Unlicense"
-msgstr ""
+msgstr "Sin licencia"
 
 #: src/olympia/constants/promoted.py:75
 msgid "Not Promoted"
