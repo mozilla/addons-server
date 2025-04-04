@@ -5107,7 +5107,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:404
 msgid "Modify your bookmarks through an easily accessible panel."
-msgstr ""
+msgstr "Endre bokmerka dine via eit lett tilgjengeleg panel."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:407
@@ -5149,7 +5149,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:428 src/olympia/discovery/strings.jinja2:689
 msgid "Take full control of the cookies you've accumulated while browsing."
-msgstr ""
+msgstr "Ta full kontroll over informasjonskapslane du har samla medan du surfar."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:431
@@ -5160,7 +5160,7 @@ msgstr "Slett nettlesarloggen automatisk for nettstadar du vel."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:434 src/olympia/discovery/strings.jinja2:779
 msgid "Password-protect your personal bookmarks."
-msgstr ""
+msgstr "Passordbeskytt dei personlege bokmerka dine."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:437
