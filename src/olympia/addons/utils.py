@@ -25,8 +25,9 @@ from olympia.lib.cache import memoize, memoize_key
 from olympia.translations.fields import LocaleErrorMessage
 
 
+# FIXME: Decide for sure whether GUID should start with a '@'
 def generate_addon_guid():
-    return '@{%s}' % str(uuid.uuid4())
+    return '{%s}' % str(uuid.uuid4())
 
 
 def clear_get_featured_ids_cache(*args, **kwargs):
