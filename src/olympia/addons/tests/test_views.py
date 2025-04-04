@@ -3446,7 +3446,6 @@ class TestStaticCategoryView(TestCase):
         assert response.status_code == 200
         assert response['cache-control'] == 'max-age=21600'
 
-
 class TestLanguageToolsView(TestCase):
     client_class = APITestClient
 
@@ -3543,6 +3542,7 @@ class TestLanguageToolsView(TestCase):
             set(item['id'] for item in data['results']) ==
             set(item.pk for item in expected))
 
+    # FIXME: This passing on first run after `docker-compose up`, fails on subsequent
     def test_with_multiple_authors_filtering(self):
         user1 = user_factory(username=u'mozillä')
         user2 = user_factory(username=u'firefôx')
