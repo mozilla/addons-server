@@ -552,7 +552,7 @@ class TestPromotedGroup(TestCase):
 
     def test_get_active_or_badged_promoted_groups(self):
         active_groups = PromotedGroup.active_groups()
-        assert len(active_groups) == 6
+        assert len(active_groups) == 7
         badged_groups = PromotedGroup.badged_groups()
         assert len(badged_groups) == 2
 

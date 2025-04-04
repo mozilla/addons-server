@@ -596,6 +596,13 @@ class AddonSerializerOutputTestMixin:
             assert promoted['category'] == PROMOTED_GROUP_CHOICES.RECOMMENDED.api_value
             assert promoted['apps'] == [amo.FIREFOX.short]
 
+    def test_promoted_partner_api_hidden(self):
+        self.addon = addon_factory(promoted_id=PROMOTED_GROUP_CHOICES.PARTNER)
+        result = self.serialize()
+        assert not result['promoted']
+        # But still promoted
+        assert PROMOTED_GROUP_CHOICES.PARTNER in self.addon.promoted_groups().group_id
+
     def test_translations(self):
         translated_descriptions = {
             'en-US': 'My Addôn description in english',
