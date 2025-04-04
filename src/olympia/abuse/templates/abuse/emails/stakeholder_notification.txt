@@ -1,0 +1,7 @@
+{{ rejection_type }} for versions:
+{{ version_list }}
+
+{{ notes }}
+
+{{ review_urls }}
+{{ target_url }}
