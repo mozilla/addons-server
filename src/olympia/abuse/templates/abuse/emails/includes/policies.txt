@@ -1,6 +1,6 @@
-{% for policy in policies %}
+{% for policytext in policy_texts %}
     {# Policies text may contain HTML entities, this is a text email so we consider that safe #}
-    - {{ policy.full_text|safe }}
+    - {{ policytext|safe }}
 {% endfor %}
 {% if manual_reasoning_text %}{{ manual_reasoning_text|safe }}. {% endif %}
 

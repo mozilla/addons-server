@@ -226,7 +226,7 @@ class ReasonsChoiceWidget(forms.CheckboxSelectMultiple):
         # full object, not a label, this is what makes this work.
         obj = option['label']
         canned_response = (
-            obj.cinder_policy.full_text(obj.canned_response)
+            obj.cinder_policy.full_text(text=obj.canned_response)
             if obj.cinder_policy
             else obj.canned_response
         )
