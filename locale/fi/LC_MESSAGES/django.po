@@ -2364,11 +2364,11 @@ msgstr "Firefoxin lisäosan jakelusopimus"
 
 #: src/olympia/devhub/templates/devhub/base.html:43
 msgid "Help us make things better!"
-msgstr ""
+msgstr "Auta meitä parantamaan asioita!"
 
 #: src/olympia/devhub/templates/devhub/base.html:44
 msgid "Take our quick survey"
-msgstr ""
+msgstr "Vastaa lyhyeeseen kyselyyn"
 
 #. {0} is an application, like Firefox.
 #: src/olympia/devhub/templates/devhub/index.html:21 src/olympia/templates/base.html:17
@@ -3864,7 +3864,7 @@ msgstr "Järjestys:"
 #: src/olympia/devhub/templates/devhub/includes/macros.html:7
 #, python-format
 msgid "Allowed Markdown: %(allowed_markdown)s"
-msgstr ""
+msgstr "Sallittu Markdown: %(allowed_markdown)s"
 
 #: src/olympia/devhub/templates/devhub/includes/macros.html:8
 msgid "Some Markdown supported."
@@ -5686,7 +5686,7 @@ msgstr "Selaa kaikkia laajennuksia"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:989
 msgid "Productivity tools"
-msgstr ""
+msgstr "Tuottavuuden työkalut"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -6167,7 +6167,7 @@ msgstr ""
 
 #: src/olympia/reviewers/forms.py:335
 msgid "File too large."
-msgstr ""
+msgstr "Tiedosto on liian suuri."
 
 #: src/olympia/reviewers/templates/reviewers/moderationlog_detail.html:11
 #, python-format
