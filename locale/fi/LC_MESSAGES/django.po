@@ -5858,9 +5858,8 @@ msgstr "Steamin tehostajat"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1079
-#, fuzzy
 msgid "See more Steam staff picks"
-msgstr "Katso lisää sosiaalisen suoratoiston laajennuksia"
+msgstr "Katso lisää henkilöstön Steam-valintoja"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1082
@@ -5915,12 +5914,12 @@ msgstr "Katso lisää laajennusten aloituspakkauksia"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1107
 msgid "Twitch extensions"
-msgstr ""
+msgstr "Twitch-laajennukset"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1109
 msgid "See more Twitch extension staff picks"
-msgstr ""
+msgstr "Katso lisää henkilöstön Twitch-laajennusten valintoja"
 
 #: src/olympia/files/models.py:319
 msgid "Unreviewed"
