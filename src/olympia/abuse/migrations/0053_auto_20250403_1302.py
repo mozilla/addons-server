@@ -7,7 +7,7 @@ from olympia.abuse.actions import ContentActionRejectVersion
 
 def create_stakeholder_group(apps, schema_editor):
     Group = apps.get_model('access', 'Group')
-    Group.objects.get_or_create(name=ContentActionRejectVersion.stakeholder_acl_group_name)
+    Group.objects.update_or_create(name=ContentActionRejectVersion.stakeholder_acl_group_name, defaults={'rules': 'None:None'})
 
 
 def delete_stakeholder_group(apps, schema_editor):

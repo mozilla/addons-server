@@ -990,9 +990,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
             stakeholder
         )
         self.version.file.update(is_signed=True)
-        self.make_addon_promoted(
-            self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
-        )
+        self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED)
         self._test_reject_version(content_review=False, expected_emails_from_action=1)
         assert len(mail.outbox) == 4
         assert mail.outbox[0].recipients() == [stakeholder.email]
@@ -1113,9 +1111,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
             stakeholder
         )
         self.version.file.update(is_signed=True)
-        self.make_addon_promoted(
-            self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
-        )
+        self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED)
         self._test_reject_version_delayed(
             content_review=False, expected_emails_from_action=1
         )
@@ -1222,9 +1218,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         assert len(mail.outbox) == 0
 
         # make the addon promoted
-        self.make_addon_promoted(
-            self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
-        )
+        self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED)
         action.notify_stakeholders('teh reason')
         assert len(mail.outbox) == 1
         assert mail.outbox[0].recipients() == [stakeholder.email]

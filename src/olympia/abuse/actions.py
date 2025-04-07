@@ -352,7 +352,7 @@ class ContentActionRejectVersion(ContentActionDisableAddon):
 
     def notify_stakeholders(self, rejection_type):
         if (
-            self.target.promoted_groups()
+            self.target.promoted_groups(currently_approved=False)
             and self.decision.target_versions.filter(file__is_signed=True).exists()
             and (
                 stakeholder_group := Group.objects.filter(
@@ -372,16 +372,16 @@ class ContentActionRejectVersion(ContentActionDisableAddon):
                 )
             )
             if any(ver.channel == amo.CHANNEL_LISTED for ver in versions):
-                review_urls = reverse(
-                    'reviewers.review', args=['listed', self.target.id]
+                review_urls = absolutify(
+                    reverse('reviewers.review', args=['listed', self.target.id])
                 )
             else:
                 review_urls = ''
             if any(ver.channel == amo.CHANNEL_UNLISTED for ver in versions):
                 if review_urls:
                     review_urls += ' | '
-                review_urls += reverse(
-                    'reviewers.review', args=['unlisted', self.target.id]
+                review_urls += absolutify(
+                    reverse('reviewers.review', args=['unlisted', self.target.id])
                 )
             context_dict = {
                 'rejection_type': rejection_type,
