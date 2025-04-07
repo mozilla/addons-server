@@ -1,4 +1,4 @@
-{% from "devhub/includes/macros.html" import tip, supported_syntax_tip, empty_unless, flags %}
+{% from "devhub/includes/macros.html" import tip, supported_syntax_link, empty_unless, flags %}
 
 <form method="post"
       action="{{ url('devhub.addons.section', addon.slug, 'technical', 'edit') }}">
@@ -32,7 +32,7 @@
               {% if editable %}
                 {{ main_form.developer_comments }}
                 {{ main_form.developer_comments.errors }}
-                {{ supported_syntax_tip(allowed_markdown) }}
+                {{ supported_syntax_link(settings) }}
               {% else %}
                 {% call empty_unless(addon.developer_comments) %}
                   <div id="developer_comments">{{ addon|all_locales('developer_comments', nl2br=True) }}</div>
