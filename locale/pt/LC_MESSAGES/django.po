@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-03 14:16+0000\n"
+"POT-Creation-Date: 2025-04-07 13:22+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3103,11 +3103,6 @@ msgstr "Por favor escolha uma licença apropriada para os direitos que concede a
 
 msgid "Sort by:"
 msgstr "Ordenar por:"
-
-#. %s is a list of markdown syntax.
-#, python-format
-msgid "Allowed Markdown: %(allowed_markdown)s"
-msgstr ""
 
 msgid "Some Markdown supported."
 msgstr ""

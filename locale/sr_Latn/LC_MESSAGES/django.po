@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-03 14:16+0000\n"
+"POT-Creation-Date: 2025-04-07 13:22+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -3524,11 +3524,6 @@ msgstr ""
 
 msgid "Sort by:"
 msgstr "Poređaj po:"
-
-#. %s is a list of markdown syntax.
-#, python-format
-msgid "Allowed Markdown: %(allowed_markdown)s"
-msgstr ""
 
 msgid "Some Markdown supported."
 msgstr ""
