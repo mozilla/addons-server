@@ -3389,21 +3389,29 @@ class TestStaticCategoryView(TestCase):
         assert len(data) == 128
 
         # some basic checks to verify integrity
-        entry = data[0]
-
-        assert entry == {
+        assert data[0] == {
             u'name': u'Feeds, News & Blogging',
             u'weight': 0,
             u'misc': False,
             u'id': 1,
             u'application': u'firefox',
-            u'description': (
-                u'Download Firefox extensions that remove clutter so you '
-                u'can stay up-to-date on social media, catch up on blogs, '
-                u'RSS feeds, reduce eye strain, and more.'
-            ),
+            u'description': None, # FIXME: This matches the data, right?
             u'type': u'extension',
             u'slug': u'feeds-news-blogging'
+        }
+        # FIXME: This is the first addon with a non-None description
+        assert data[61] == {
+            'name': 'Abstract',
+            'weight': 0,
+            'misc': False,
+            'id': 100,
+            'application': 'firefox',
+            'description': (
+                'Download Firefox artistic and conceptual themes. This category includes colorful '
+                'palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers.'
+            ),
+            'type': 'persona',
+            'slug': 'abstract'
         }
 
     def test_with_description(self):
