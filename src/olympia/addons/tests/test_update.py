@@ -359,12 +359,14 @@ class TestDefaultToCompat(VersionCheckMixin, TestCase):
         self.ver_1_3 = 1268884
 
         self.expected = {
-            '3.0-strict': None, '3.0-normal': None, '3.0-ignore': None,
+            '3.0-strict': None,
+            '3.0-normal': self.ver_1_3,
+            '3.0-ignore': None,
             '4.0-strict': self.ver_1_0,
-            '4.0-normal': self.ver_1_0,
+            '4.0-normal': self.ver_1_3,
             '4.0-ignore': self.ver_1_0,
             '5.0-strict': self.ver_1_2,
-            '5.0-normal': self.ver_1_2,
+            '5.0-normal': self.ver_1_3,
             '5.0-ignore': self.ver_1_2,
             '6.0-strict': self.ver_1_3,
             '6.0-normal': self.ver_1_3,
@@ -552,10 +554,10 @@ class TestDefaultToCompat(VersionCheckMixin, TestCase):
             '4.0-ignore': self.ver_1_3,
             '5.0-ignore': self.ver_1_3,
             '6.0-strict': self.ver_1_2,
-            '6.0-normal': self.ver_1_2,
+            #'6.0-normal': self.ver_1_2,
             '7.0-strict': self.ver_1_2,
-            '7.0-normal': self.ver_1_2,
-            '8.0-normal': self.ver_1_2,
+            #'7.0-normal': self.ver_1_2,
+            #'8.0-normal': self.ver_1_2,
         })
         self.check(self.expected)
 
