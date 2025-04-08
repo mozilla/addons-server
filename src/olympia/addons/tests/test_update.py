@@ -754,7 +754,7 @@ class TestResponse(VersionCheckMixin, TestCase):
         }
         instance = self.get_update_instance(data)
         result = instance.get_output()
-        print(result)
+        # FIXME: data[row] == {} here, not sure why
         assert len(instance.data['row']) > 0, instance.data
         assert instance.data['row']['hash'].startswith('sha256:9d9a389')
         assert instance.data['row']['min'] == '1.0'
