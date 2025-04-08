@@ -223,12 +223,13 @@ def validate_file_path(path, channel, is_experiment=False, **kw):
 
 
 @validation_task
-def validate_file(file_id):
+def validate_file(file_id, **kwargs):
     """Validate a File instance. If cached validation results exist, return
     those, otherwise run the validator.
 
     Should only be called directly by Validator."""
 
+    # FIXME: This should take no kwargs, but is getting called with 'hash_'
     file_ = File.objects.get(pk=file_id)
     try:
         return file_.validation.validation
