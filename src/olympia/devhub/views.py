@@ -1522,7 +1522,7 @@ def _submit_details(request, addon, version):
             form.is_valid() for form in forms_list):
         if show_all_fields:
             addon = describe_form.save()
-            cat_form.save()
+            cat_form.save() # TestStaticThemeSubmitDetails.test_summary_auto_cropping_content_optimization fails here
             policy_form.save()
             license_form.save(log=False)
             if not static_theme:
