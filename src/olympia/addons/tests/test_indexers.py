@@ -313,8 +313,8 @@ class TestAddonIndexer(TestCase):
             assert extracted_file['platform'] == file_.platform
             assert extracted_file['size'] == file_.size
             assert extracted_file['status'] == file_.status
-            assert extracted_file['webext_permissions_list'] == [
-                'bookmarks', 'random permission']
+            perm_list = [] if index == 0 else ['bookmarks', 'random permission']
+            assert extracted_file['webext_permissions_list'] == perm_list
 
         assert set(extracted['platforms']) == set([PLATFORM_MAC.id,
                                                    PLATFORM_ALL.id])
