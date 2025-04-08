@@ -11,6 +11,7 @@ import responses
 from waffle.testutils import override_switch
 
 from olympia import amo
+from olympia.access.models import Group
 from olympia.activity.models import (
     ActivityLog,
     ActivityLogToken,
@@ -917,7 +918,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
     disable_snippet = 'versions of your Extension have been disabled'
     takedown_decision_action = DECISION_ACTIONS.AMO_DISABLE_ADDON
 
-    def _test_reject_version(self, *, content_review):
+    def _test_reject_version(self, *, content_review, expected_emails_from_action=0):
         self.decision.update(
             action=self.takedown_decision_action,
             metadata={'content_review': content_review},
@@ -951,11 +952,9 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
             self.version,
         ]
         assert activity.user == self.decision.reviewer_user
-        assert len(mail.outbox) == 0
-
+        assert len(mail.outbox) == expected_emails_from_action
         subject = f'Mozilla Add-ons: {self.addon.name}'
 
-        assert len(mail.outbox) == 0
         self.cinder_job.notify_reporters(action)
         action.notify_owners(extra_context={'version_list': '2.3, 3.45'})
         mail_item = mail.outbox[-1]
@@ -985,6 +984,18 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         assert len(mail.outbox) == 3
         self._test_reporter_takedown_email(subject)
 
+    def test_execute_action_with_stakeholder_email(self):
+        stakeholder = user_factory()
+        Group.objects.get(name=self.ActionClass.stakeholder_acl_group_name).users.add(
+            stakeholder
+        )
+        self.version.file.update(is_signed=True)
+        self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED)
+        self._test_reject_version(content_review=False, expected_emails_from_action=1)
+        assert len(mail.outbox) == 4
+        assert mail.outbox[0].recipients() == [stakeholder.email]
+        assert mail.outbox[0].subject == f'Rejection issued for {self.addon.name}'
+
     def test_execute_action_after_reporter_appeal(self):
         original_job = CinderJob.objects.create(
             job_id='original',
@@ -1002,7 +1013,9 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         assert len(mail.outbox) == 2
         self._test_reporter_appeal_takedown_email(subject)
 
-    def _test_reject_version_delayed(self, *, content_review):
+    def _test_reject_version_delayed(
+        self, *, content_review, expected_emails_from_action=0
+    ):
         in_the_future = datetime.now() + timedelta(days=14, hours=1)
         self.decision.update(
             action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
@@ -1040,11 +1053,9 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
             self.version,
         ]
         assert activity.user == self.decision.reviewer_user
-        assert len(mail.outbox) == 0
-
+        assert len(mail.outbox) == expected_emails_from_action
         subject = f'Mozilla Add-ons: {self.addon.name}'
 
-        assert len(mail.outbox) == 0
         self.cinder_job.notify_reporters(action)
         action.notify_owners(
             extra_context={
@@ -1093,6 +1104,23 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
 
     def test_execute_action_content_review_delayed(self):
         self.test_execute_action_delayed(content_review=True)
+
+    def test_execute_action_delayed_with_stakeholder_email(self):
+        stakeholder = user_factory()
+        Group.objects.get(name=self.ActionClass.stakeholder_acl_group_name).users.add(
+            stakeholder
+        )
+        self.version.file.update(is_signed=True)
+        self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED)
+        self._test_reject_version_delayed(
+            content_review=False, expected_emails_from_action=1
+        )
+        assert len(mail.outbox) == 4
+        assert mail.outbox[0].recipients() == [stakeholder.email]
+        assert (
+            mail.outbox[0].subject
+            == f'14 day delayed rejection issued for {self.addon.name}'
+        )
 
     def test_execute_action_delayed_after_reporter_appeal(self):
         original_job = CinderJob.objects.create(
@@ -1169,6 +1197,56 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         self.decision = ContentDecision.objects.get(id=self.decision.id)
         assert not self.decision.target_versions.filter(file__is_signed=True).exists()
         assert action.should_hold_action() is False
+
+    def test_notify_stakeholders(self):
+        stakeholder = user_factory()
+        action = self.ActionClass(self.decision)
+        assert len(mail.outbox) == 0
+        listed_version = self.version
+        listed_version.file.update(is_signed=True)
+        unlisted_version = version_factory(
+            addon=self.addon, channel=amo.CHANNEL_UNLISTED, file_kw={'is_signed': True}
+        )
+        Group.objects.get(name=self.ActionClass.stakeholder_acl_group_name).users.add(
+            stakeholder
+        )
+        self.decision.update(notes='Bad things!')
+
+        # the addon is not promoted
+        assert self.addon.cached_promoted_groups == []
+        action.notify_stakeholders('teh reason')
+        assert len(mail.outbox) == 0
+
+        # make the addon promoted
+        self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED)
+        action.notify_stakeholders('teh reason')
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].recipients() == [stakeholder.email]
+        assert mail.outbox[0].subject == f'teh reason issued for {self.addon.name}'
+        assert 'Bad things!' in mail.outbox[0].body
+        assert (
+            f'teh reason for versions:\n{listed_version.version}' in mail.outbox[0].body
+        )
+        assert f'/review-listed/{self.addon.id}' in mail.outbox[0].body
+        assert f'/review-unlisted/{self.addon.id}' not in mail.outbox[0].body
+        assert self.addon.get_absolute_url() in mail.outbox[0].body
+
+        # an unlisted version should result in second link to the unlisted review page
+        self.decision.target_versions.add(unlisted_version)
+        action.notify_stakeholders('teh reason')
+        assert len(mail.outbox) == 2  # another email
+        assert (
+            'teh reason for versions:\n'
+            f'{listed_version.version}, {unlisted_version.version}'
+        ) in mail.outbox[1].body
+        assert f'/review-listed/{self.addon.id} | ' in mail.outbox[1].body
+        assert f'/review-unlisted/{self.addon.id}' in mail.outbox[1].body
+
+        # And check that if no versions were signed we don't send an email
+        listed_version.file.update(is_signed=False)
+        unlisted_version.file.update(is_signed=False)
+        action.notify_stakeholders('teh reason')
+        assert len(mail.outbox) == 2  # still two
 
 
 class TestContentActionCollection(BaseTestContentAction, TestCase):
