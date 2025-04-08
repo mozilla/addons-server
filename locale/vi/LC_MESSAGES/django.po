@@ -1669,7 +1669,7 @@ msgstr "Mozilla Public License 2.0"
 
 #: src/olympia/constants/licenses.py:22
 msgid "Apache License 2.0"
-msgstr ""
+msgstr "Giấy phép Apache 2.0"
 
 #: src/olympia/constants/licenses.py:29
 msgid "GNU General Public License v2.0 only"
@@ -1701,7 +1701,7 @@ msgstr "Giấy phép ISC"
 
 #: src/olympia/constants/licenses.py:78
 msgid "BSD 2-Clause \"Simplified\" License"
-msgstr ""
+msgstr "Giấy phép BSD 2-Clause \"Simplified\""
 
 #: src/olympia/constants/licenses.py:85
 msgid "Mozilla Public License 1.1"
@@ -1761,7 +1761,7 @@ msgstr "Creative Commons Attribution-ShareAlike 4.0"
 
 #: src/olympia/constants/licenses.py:222
 msgid "The Unlicense"
-msgstr ""
+msgstr "Giấy phép Unlicense"
 
 #: src/olympia/constants/promoted.py:75
 msgid "Not Promoted"
@@ -5782,7 +5782,7 @@ msgstr "Tóm tắt thư từ, tài liệu, bài báo và bản phiên âm video 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:980
 msgid "You’re in control. Turn off VPN when a website won’t work and set different locations for different websites. Windows only."
-msgstr ""
+msgstr "Bạn đang được kiểm soát. Tắt VPN khi trang web không hoạt động và đặt các địa điểm khác nhau cho các trang web khác nhau. Chỉ dành cho Windows."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:983
