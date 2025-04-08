@@ -229,7 +229,7 @@ const dayMsecs = 24 * 3600 * 1000;
     }
 
     // Transform xAxis based on time grouping (day, week, month) and range.
-    let pointInterval = (dayMsecs = 1 * 24 * 3600 * 1000);
+    let pointInterval = dayMsecs;
     let dateRangeDays = (end - start) / dayMsecs;
     baseConfig.xAxis.min = start - dayMsecs; // Fix chart truncation.
     baseConfig.xAxis.max = end;
