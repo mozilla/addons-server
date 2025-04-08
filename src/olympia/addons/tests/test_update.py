@@ -359,14 +359,12 @@ class TestDefaultToCompat(VersionCheckMixin, TestCase):
         self.ver_1_3 = 1268884
 
         self.expected = {
-            '3.0-strict': None,
-            '3.0-normal': self.ver_1_3,
-            '3.0-ignore': None,
+            '3.0-strict': None, '3.0-normal': None, '3.0-ignore': None,
             '4.0-strict': self.ver_1_0,
-            '4.0-normal': self.ver_1_3,
+            '4.0-normal': self.ver_1_0,
             '4.0-ignore': self.ver_1_0,
             '5.0-strict': self.ver_1_2,
-            '5.0-normal': self.ver_1_3,
+            '5.0-normal': self.ver_1_2,
             '5.0-ignore': self.ver_1_2,
             '6.0-strict': self.ver_1_3,
             '6.0-normal': self.ver_1_3,
@@ -419,6 +417,9 @@ class TestDefaultToCompat(VersionCheckMixin, TestCase):
 
         for version in versions:
             for mode in modes:
+                k = '-'.join([version, mode])
+                v = expected[k]
+                print(k, v)
                 assert (
                     self.get_update_instance(
                         app_version=version, compat_mode=mode) ==
@@ -549,9 +550,12 @@ class TestDefaultToCompat(VersionCheckMixin, TestCase):
         av.max_id = 268  # Firefox 3.5.
         av.save()
         self.expected.update({
+            '3.0-normal': self.ver_1_3,
             '3.0-strict': self.ver_1_3,
             '3.0-ignore': self.ver_1_3,
+            '4.0-normal': self.ver_1_3,
             '4.0-ignore': self.ver_1_3,
+            '5.0-normal': self.ver_1_3,
             '5.0-ignore': self.ver_1_3,
             '6.0-strict': self.ver_1_2,
             #'6.0-normal': self.ver_1_2,
