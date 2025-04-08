@@ -393,9 +393,9 @@ class TestDetailPage(TestCase):
         print("expected->",expected)
         assert doc('#report-abuse').attr('href') == expected
 
+    @pytest.mark.xfail(reason='Personas are no longer supported')
     def test_personas_context(self):
         response = self.client.get(reverse('addons.detail', args=['a15663']))
-        print(response.context)
         assert 'review_form' in response.context
         assert 'reviews' in response.context
         assert 'get_replies' in response.context
@@ -1127,15 +1127,14 @@ class TestStatus(TestCase):
 
     def test_persona(self):
         for status in Persona.STATUS_CHOICES.keys():
-            if status == amo.STATUS_DELETED:
-                continue
             self.persona.status = status
             self.persona.save()
+            status_code = self.client.head(self.persona_url).status_code
             # ATN doesn't support personas anymore
-            assert self.client.head(self.persona_url).status_code == 410
-            #assert self.client.head(self.persona_url).status_code == (
-            #    200 if status in [amo.STATUS_PUBLIC, amo.STATUS_PENDING]
-            #    else 404)
+            if status in (amo.STATUS_PENDING, amo.STATUS_PUBLIC):
+                assert status_code == 410
+            else:
+                assert status_code == 404
 
     def test_persona_disabled(self):
         for status in Persona.STATUS_CHOICES.keys():
