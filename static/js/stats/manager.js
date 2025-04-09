@@ -8,12 +8,12 @@ import { Storage, SessionStorage } from '../zamboni/storage';
 function getStatsManager() {
   // The version of the stats localStorage we are using.
   // If you increment this number, you cache-bust everyone!
-  let STATS_VERSION = '2020-10-08';
-  let PRECISION = 2;
+  var STATS_VERSION = '2020-10-08';
+  var PRECISION = 2;
 
-  let $primary = $('.primary');
+  var $primary = $('.primary');
 
-  let storage = Storage('stats'),
+  var storage = Storage('stats'),
     storageCache = SessionStorage('statscache'),
     dataStore = {},
     currentView = {},
@@ -31,7 +31,7 @@ function getStatsManager() {
 
   // It's a bummer, but we need to know which metrics have breakdown fields.
   // check by saying `if (metric in breakdownMetrics)`
-  let breakdownMetrics = {
+  var breakdownMetrics = {
     apps: true,
     locales: true,
     os: true,
@@ -47,7 +47,7 @@ function getStatsManager() {
   };
 
   // is a metric an average or a sum?
-  let metricTypes = {
+  var metricTypes = {
     usage: 'mean',
     apps: 'mean',
     locales: 'mean',
@@ -66,7 +66,7 @@ function getStatsManager() {
   // Initialize from localStorage when dom is ready.
   function init() {
     if (verifyLocalStorage()) {
-      let cacheObject = storageCache.get(addonId);
+      var cacheObject = storageCache.get(addonId);
       if (cacheObject) {
         cacheObject = JSON.parse(cacheObject);
         if (cacheObject) {
@@ -106,6 +106,7 @@ function getStatsManager() {
 
   // Runs when 'changeview' event is detected.
   function processView(e, newView) {
+    console.debug('manager:window:changeview', newView);
     // Update our internal view state.
     currentView = $.extend(currentView, newView);
 
@@ -128,7 +129,7 @@ function getStatsManager() {
   $(window).on('changeview', processView);
 
   function annotateData(data, events) {
-    let i, ev, sd, ed;
+    var i, ev, sd, ed;
     for (i = 0; i < events.length; i++) {
       ev = events[i];
       if (ev.end) {
@@ -150,7 +151,7 @@ function getStatsManager() {
 
   // Returns a list of field names for a given data set.
   function getAvailableFields(view) {
-    let metric = view.metric,
+    var metric = view.metric,
       range = normalizeRange(view.range),
       start = range.start,
       end = range.end,
@@ -204,14 +205,14 @@ function getStatsManager() {
   // the range currently stored locally. Once all server requests return,
   // we move on.
   function getDataRange(view) {
-    let range = normalizeRange(view.range),
+    var range = normalizeRange(view.range),
       metric = view.metric,
       ds = dataStore[metric],
       reqs = [],
       $def = $.Deferred();
 
     function finished() {
-      let ds = dataStore[metric],
+      var ds = dataStore[metric],
         ret = {},
         row,
         firstIndex;
@@ -221,7 +222,7 @@ function getStatsManager() {
           '1 day',
           ds,
           function (row, date) {
-            let d = date.iso();
+            var d = date.iso();
             if (row) {
               if (!firstIndex) {
                 firstIndex = range.start;
@@ -267,14 +268,14 @@ function getStatsManager() {
 
   // Aggregate data based on view's `group` setting.
   function groupData(data, view) {
-    let metric = view.metric,
+    var metric = view.metric,
       range = normalizeRange(view.range),
       group = view.group || 'day',
       groupedData = {};
 
     // If grouping doesn't fit into custom date range, force group to day.
-    let dayMsecs = 24 * 3600 * 1000;
-    let date_range_days =
+    var dayMsecs = 24 * 3600 * 1000;
+    var date_range_days =
       (range.end.getTime() - range.start.getTime()) / dayMsecs;
     if (
       (group == 'week' && date_range_days <= 8) ||
@@ -286,7 +287,7 @@ function getStatsManager() {
 
     // if grouping is by day, do nothing.
     if (group == 'day') return data;
-    let groupKey = false,
+    var groupKey = false,
       groupVal = false,
       groupCount = 0,
       d,
@@ -394,11 +395,11 @@ function getStatsManager() {
 
   // The beef. Negotiates with the server for data.
   function fetchData(metric, start, end) {
-    let seriesStart = start,
+    var seriesStart = start,
       seriesEnd = end,
       $def = $.Deferred();
 
-    let seriesURLStart = Highcharts.dateFormat('%Y%m%d', seriesStart),
+    var seriesURLStart = Highcharts.dateFormat('%Y%m%d', seriesStart),
       seriesURLEnd = Highcharts.dateFormat('%Y%m%d', seriesEnd),
       seriesURL =
         baseURL +
@@ -424,7 +425,7 @@ function getStatsManager() {
     }
 
     function fetchHandler(raw_data, status, xhr) {
-      let maxdate = '1970-01-01',
+      var maxdate = '1970-01-01',
         mindate = new Date().iso();
 
       if ([200, 503].includes(xhr.status)) {
@@ -435,10 +436,10 @@ function getStatsManager() {
           };
         }
 
-        let ds = dataStore[metric],
+        var ds = dataStore[metric],
           data = JSON.parse(raw_data);
 
-        let i, datekey;
+        var i, datekey;
         for (i = 0; i < data.length; i++) {
           datekey = data[i].date;
           maxdate = String.max(datekey, maxdate);
@@ -453,7 +454,7 @@ function getStatsManager() {
       } else if (xhr.status == 202) {
         //Handle a successful fetch but with no response
 
-        let retry_delay = 30000;
+        var retry_delay = 30000;
 
         if (xhr.getResponseHeader('Retry-After')) {
           retry_delay =
@@ -469,7 +470,7 @@ function getStatsManager() {
   }
 
   function collapseSources(row) {
-    let out = {
+    var out = {
         count: row.count,
         date: row.date,
         end: row.end,
@@ -495,7 +496,7 @@ function getStatsManager() {
   // Rounds application version strings to a given precision.
   // Passing `0` will truncate versions entirely.
   function collapseVersions(row, precision) {
-    let out = {
+    var out = {
         count: row.count,
         date: row.date,
         end: row.end,
@@ -519,14 +520,14 @@ function getStatsManager() {
 
   // Takes a data row and a field identifier and returns the value.
   function getField(row, field) {
-    let parts = field.split('|'),
+    var parts = field.split('|'),
       val = row;
 
     // give up if the row is falsy.
     if (!val) return null;
     // drill into the row object for a nested key.
     // `data|api` means row['data']['api']
-    for (let i = 0; i < parts.length; i++) {
+    for (var i = 0; i < parts.length; i++) {
       val = val[parts[i]];
       if (!_.isNumber(val) && !_.isObject(val)) {
         return null;
@@ -536,7 +537,7 @@ function getStatsManager() {
   }
 
   function getPrettyName(metric, field) {
-    let parts = field.split('_'),
+    var parts = field.split('_'),
       key = parts[0];
     parts = parts.slice(1);
 

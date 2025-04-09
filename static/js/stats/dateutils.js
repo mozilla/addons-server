@@ -4,17 +4,17 @@ import _ from 'underscore';
 
 // utility
 function pad2(n) {
-  let str = n.toString();
+  var str = n.toString();
   return ('0' + str).substr(-2);
 }
-let intervalRegex = /(-?\d+)\s*(\w)/,
+var intervalRegex = /(-?\d+)\s*(\w)/,
   // ISO date format is used for internal representations.
   dateRegex = /(\d{4})[^\d]?(\d{2})[^\d]?(\d{2})/;
 
 _.extend(Date.prototype, {
   forward: function (by, unit) {
     if (typeof by == 'string') {
-      let match = intervalRegex.exec(by);
+      var match = intervalRegex.exec(by);
       by = +match[1];
       unit = match[2];
     }
@@ -40,7 +40,7 @@ _.extend(Date.prototype, {
   },
   backward: function (by, unit) {
     if (typeof by == 'string') {
-      let match = intervalRegex.exec(by);
+      var match = intervalRegex.exec(by);
       by = +match[1];
       unit = match[2];
     }
@@ -79,7 +79,7 @@ _.extend(Date, {
   },
   iso: function (s) {
     if (s instanceof Date) return s;
-    let d = dateRegex.exec(s);
+    var d = dateRegex.exec(s);
     if (d) {
       return new Date(d[1], d[2] - 1, d[3]);
     }
@@ -95,15 +95,15 @@ _.extend(String, {
 });
 
 export function forEachISODate(range, step, data, iterator, context) {
-  let d = range.start.clone();
+  var d = range.start.clone();
   for (d; d.isBefore(range.end); d.forward(step)) {
-    let ds = d.iso();
+    var ds = d.iso();
     iterator.call(context, data[ds], d, ds);
   }
 }
 
 export function normalizeRange(range) {
-  let ret = {};
+  var ret = {};
   if (typeof range == 'string') {
     ret.start = Date.ago(range);
     ret.end = new Date();
