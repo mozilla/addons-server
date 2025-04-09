@@ -112,14 +112,16 @@ Stash data is stored directly within the Remote Settings record JSON, not as an 
   "stash_time": 1678887000123, // Example Timestamp (milliseconds)
   "stash": {
     "blocked": [
-      "{guid1}:{versionA}",
-      "{guid2}:{versionB}"
+      "{6f6b1eaa-bb69-4cdb-a24f-1014493d4290}:10.48",
+      "kittens@pioneer.mozilla.com:1.2",
+      "kittens@pioneer.mozilla.com:1.1",
+      "{b01e0601-eddc-4306-886b-8a4fb5c38a1e}:1",
+      "{232f11df-20ca-49d4-94eb-e3e63d7ae773}:1.1.2",
+      "kittens@pioneer.mozilla.com:1.3",
     ],
     "unblocked": [
-      "{guid3}:{versionC}"
-    ],
-    "soft_blocked": [
-      "{guid4}:{versionD}"
+      "{896aff0b-d86e-4dd5-9097-5869579b4c28}:1.2",
+      "{95ffc924-6ea7-4dfb-8f7b-1dd44f2159d1}:1.22.2"
     ]
   }
 }
