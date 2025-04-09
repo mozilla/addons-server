@@ -1366,7 +1366,7 @@ class ContentDecision(ModelBase):
                 if self.addon_id
                 else None,
                 # If we expanded the reason/policy text into notes in the reviewer tools
-                # we wouldn't have set this key in details - so the default is want we
+                # we wouldn't have set this key in details - so the default is what we
                 # want: we don't want to duplicate it as policies too;
                 # otherwise it will already contain policy_text from
                 # ContentAction.log_action, so we don't need to do it again.
