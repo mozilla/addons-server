@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Pontoon\n"
 
-#: src/olympia/abuse/actions.py:189
+#: src/olympia/abuse/actions.py:190
 #, python-brace-format
 msgid "Mozilla Add-ons: {} [{}]"
 msgstr "Mozilla 附加组件：{} [{}]"
@@ -236,15 +236,15 @@ msgstr "不允许使用链接。"
 msgid "This display name cannot be used."
 msgstr "无法使用这个显示名。"
 
-#: src/olympia/accounts/serializers.py:167 src/olympia/addons/fields.py:366 src/olympia/devhub/views.py:1016
+#: src/olympia/accounts/serializers.py:167 src/olympia/addons/fields.py:366 src/olympia/devhub/views.py:1014
 msgid "Images must be either PNG or JPG."
 msgstr "图像必须为 PNG 或 JPG 格式。"
 
-#: src/olympia/accounts/serializers.py:171 src/olympia/addons/fields.py:371 src/olympia/devhub/views.py:1022
+#: src/olympia/accounts/serializers.py:171 src/olympia/addons/fields.py:371 src/olympia/devhub/views.py:1020
 msgid "Images cannot be animated."
 msgstr "不能使用动态图像。"
 
-#: src/olympia/accounts/serializers.py:176 src/olympia/devhub/views.py:1031
+#: src/olympia/accounts/serializers.py:176 src/olympia/devhub/views.py:1029
 #, python-format
 msgid "Please use images smaller than %dMB."
 msgstr "请使用小于 %dMB 的图像。"
@@ -324,7 +324,7 @@ msgstr "slug={value} 的许可证不存在。"
 msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr "不支持的文件格式，请上传 {extensions} 格式的压缩文件。"
 
-#: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:756 src/olympia/files/utils.py:755 src/olympia/reviewers/forms.py:344
+#: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:756 src/olympia/files/utils.py:755 src/olympia/reviewers/forms.py:343
 msgid "Invalid or broken archive."
 msgstr "无效或损坏的压缩文件。"
 
@@ -350,11 +350,11 @@ msgstr "无法改写此应用程序在清单中设置的兼容性信息（%s）"
 msgid "Images must be smaller than %dMB"
 msgstr "图片必须小于 %d MB"
 
-#: src/olympia/addons/models.py:2189 src/olympia/addons/models.py:2246 src/olympia/constants/base.py:66
+#: src/olympia/addons/models.py:2209 src/olympia/addons/models.py:2266 src/olympia/constants/base.py:66
 msgid "Listed"
 msgstr "显示"
 
-#: src/olympia/addons/models.py:2424
+#: src/olympia/addons/models.py:2444
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr "附加组件和收藏集的路径需要以“/”结尾"
 
@@ -524,7 +524,7 @@ msgstr "提交一个新主题"
 msgid "Developer Hub"
 msgstr "开发者中心"
 
-#: src/olympia/amo/context_processors.py:79 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:20 src/olympia/devhub/views.py:2078
+#: src/olympia/amo/context_processors.py:79 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:20 src/olympia/devhub/views.py:2074
 msgid "Manage API Keys"
 msgstr "管理 API 密钥"
 
@@ -1296,7 +1296,7 @@ msgstr "等待审核"
 msgid "Disabled by Mozilla"
 msgstr "已被 Mozilla 停用"
 
-#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1222
+#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1191
 msgid "Deleted"
 msgstr "已删除"
 
@@ -1744,27 +1744,27 @@ msgstr "知识共享署名—相同方式共享 4.0"
 msgid "The Unlicense"
 msgstr "零约束许可证"
 
-#: src/olympia/constants/promoted.py:74
+#: src/olympia/constants/promoted.py:75
 msgid "Not Promoted"
 msgstr "未推广"
 
-#: src/olympia/constants/promoted.py:80
+#: src/olympia/constants/promoted.py:81
 msgid "Recommended"
 msgstr "推荐"
 
-#: src/olympia/constants/promoted.py:111
+#: src/olympia/constants/promoted.py:112
 msgid "By Firefox"
 msgstr "Firefox 出品"
 
-#: src/olympia/constants/promoted.py:129
+#: src/olympia/constants/promoted.py:130
 msgid "Spotlight"
 msgstr "新鲜快报"
 
-#: src/olympia/constants/promoted.py:140
+#: src/olympia/constants/promoted.py:141
 msgid "Strategic"
 msgstr "策略"
 
-#: src/olympia/constants/promoted.py:147
+#: src/olympia/constants/promoted.py:148
 msgid "Notable"
 msgstr "请注意"
 
@@ -2143,245 +2143,245 @@ msgstr "验证过程中产生的错误或警告信息过多，%s 个信息已被
 msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
 msgstr "此附加组件不是主题。请使用<a href=\"{link}\">提交新附加组件</a>的页面提交扩展程序。"
 
-#: src/olympia/devhub/views.py:115
+#: src/olympia/devhub/views.py:114
 msgid "Updated"
 msgstr "更新日期"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:38 src/olympia/devhub/templates/devhub/addons/edit/describe.html:75 src/olympia/devhub/templates/devhub/addons/submit/describe.html:35
-#: src/olympia/devhub/views.py:116 src/olympia/devhub/views.py:126
+#: src/olympia/devhub/views.py:115 src/olympia/devhub/views.py:125
 msgid "Name"
 msgstr "名称"
 
-#: src/olympia/devhub/views.py:117 src/olympia/devhub/views.py:125
+#: src/olympia/devhub/views.py:116 src/olympia/devhub/views.py:124
 msgid "Created"
 msgstr "创建日期"
 
-#: src/olympia/devhub/views.py:118 src/olympia/devhub/views.py:127 src/olympia/stats/templates/stats/addon_report_menu.html:8
+#: src/olympia/devhub/views.py:117 src/olympia/devhub/views.py:126 src/olympia/stats/templates/stats/addon_report_menu.html:8
 msgid "Downloads"
 msgstr "下载次数"
 
-#: src/olympia/devhub/views.py:119 src/olympia/devhub/views.py:128
+#: src/olympia/devhub/views.py:118 src/olympia/devhub/views.py:127
 msgid "Rating"
 msgstr "评分"
 
-#: src/olympia/devhub/views.py:192
+#: src/olympia/devhub/views.py:191
 msgid "All My Add-ons"
 msgstr "我的所有附加组件"
 
-#: src/olympia/devhub/views.py:220
+#: src/olympia/devhub/views.py:219
 msgid "All Activity"
 msgstr "所有动态"
 
-#: src/olympia/devhub/views.py:221
+#: src/olympia/devhub/views.py:220
 msgid "Add-on Updates"
 msgstr "附加组件更新"
 
-#: src/olympia/devhub/views.py:222
+#: src/olympia/devhub/views.py:221
 msgid "Add-on Status"
 msgstr "附加组件状态"
 
-#: src/olympia/devhub/views.py:223
+#: src/olympia/devhub/views.py:222
 msgid "User Collections"
 msgstr "用户收藏集"
 
-#: src/olympia/devhub/views.py:224
+#: src/olympia/devhub/views.py:223
 msgid "User Reviews"
 msgstr "用户评价"
 
-#: src/olympia/devhub/views.py:372
+#: src/olympia/devhub/views.py:371
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "附加组件无法被删除，可以禁用。"
 
-#: src/olympia/devhub/views.py:383
+#: src/olympia/devhub/views.py:382
 msgid "Theme deleted."
 msgstr "主题已删除。"
 
-#: src/olympia/devhub/views.py:383
+#: src/olympia/devhub/views.py:382
 msgid "Add-on deleted."
 msgstr "附加组件已删除。"
 
-#: src/olympia/devhub/views.py:389
+#: src/olympia/devhub/views.py:388
 msgid "URL name was incorrect. Theme was not deleted."
 msgstr "URL 名称不正确。主题未被删除。"
 
-#: src/olympia/devhub/views.py:391
+#: src/olympia/devhub/views.py:390
 msgid "URL name was incorrect. Add-on was not deleted."
 msgstr "URL 名称不正确。附加组件未被删除。"
 
-#: src/olympia/devhub/views.py:463
+#: src/olympia/devhub/views.py:462
 msgid "Invitation accepted."
 msgstr "邀请已被接受。"
 
-#: src/olympia/devhub/views.py:466
+#: src/olympia/devhub/views.py:465
 msgid "Invitation declined."
 msgstr "邀请被拒绝。"
 
-#: src/olympia/devhub/views.py:534
+#: src/olympia/devhub/views.py:533
 #, python-brace-format
 msgid "A confirmation email has been sent to {email}"
 msgstr "验证邮件已发送到 {email}"
 
-#: src/olympia/devhub/views.py:551 src/olympia/devhub/views.py:1159
+#: src/olympia/devhub/views.py:550 src/olympia/devhub/views.py:1157
 msgid "Changes successfully saved."
 msgstr "更改已成功保存。"
 
-#: src/olympia/devhub/views.py:571
+#: src/olympia/devhub/views.py:570
 msgid "Validate Add-on"
 msgstr "验证附加组件"
 
-#: src/olympia/devhub/views.py:645
+#: src/olympia/devhub/views.py:644
 #, python-brace-format
 msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
 msgstr "<a href=\"{link}\">若要提交扩展，请先为账户添加双因子身份验证。</a>"
 
-#: src/olympia/devhub/views.py:1014
+#: src/olympia/devhub/views.py:1012
 msgid "Icons must be either PNG or JPG."
 msgstr "图标必须为 PNG 或 JPG 格式。"
 
-#: src/olympia/devhub/views.py:1020
+#: src/olympia/devhub/views.py:1018
 msgid "Icons cannot be animated."
 msgstr "不能使用动画图标。"
 
-#: src/olympia/devhub/views.py:1046
+#: src/olympia/devhub/views.py:1044
 #, python-brace-format
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr "图片宽度必须至少为 {0} 像素且高度为 {1} 像素。"
 
-#: src/olympia/devhub/views.py:1050
+#: src/olympia/devhub/views.py:1048
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "图片比例必须为 4:3。"
 
-#: src/olympia/devhub/views.py:1058
+#: src/olympia/devhub/views.py:1056
 #, python-brace-format
 msgid "Icon must be at least {0} pixels wide and tall."
 msgstr "图标宽度和高度至少达到 {0} 像素。"
 
-#: src/olympia/devhub/views.py:1063
+#: src/olympia/devhub/views.py:1061
 msgid "Icon must be square (same width and height)."
 msgstr "图标必须为正方形（宽度和高度相同）。"
 
-#: src/olympia/devhub/views.py:1069
+#: src/olympia/devhub/views.py:1067
 msgid "There was an error uploading your preview."
 msgstr "上传预览图的过程中发生错误。"
 
-#: src/olympia/devhub/views.py:1216
+#: src/olympia/devhub/views.py:1213
 #, python-format
 msgid ""
 "The latest approved version of this %s add-on cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr "此 %s 附加组件先前的版本未通过审核成为 %s 推广项目，无法删除或禁用此推广附加组件最新通过审核的版本。若您需要协助，请联系 AMO 管理员。"
 
-#: src/olympia/devhub/views.py:1223
+#: src/olympia/devhub/views.py:1220
 #, python-format
 msgid "Version %s disabled."
 msgstr "已停用版本 %s。"
 
-#: src/olympia/devhub/views.py:1227
+#: src/olympia/devhub/views.py:1224
 #, python-format
 msgid "Version %s deleted."
 msgstr "版本 %s 已删除。"
 
-#: src/olympia/devhub/views.py:1238
+#: src/olympia/devhub/views.py:1235
 #, python-format
 msgid "Version %s re-enabled."
 msgstr "版本 %s 已重新启用。"
 
-#: src/olympia/devhub/views.py:1254
+#: src/olympia/devhub/views.py:1251
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "本次上传校验失败，可能缺少完整校验结果。请在检查时特别注意这点。"
 
-#: src/olympia/devhub/views.py:1422
+#: src/olympia/devhub/views.py:1419
 msgid "Header area background"
 msgstr "标题区域背景色"
 
-#: src/olympia/devhub/views.py:1424
+#: src/olympia/devhub/views.py:1421
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
 msgstr "标题区域背景的颜色，显示在标题区域或标题图像未覆盖的部分。清单字段：frame。"
 
-#: src/olympia/devhub/views.py:1432
+#: src/olympia/devhub/views.py:1429
 msgid "Header area text and icons"
 msgstr "标题区域文本和图标"
 
-#: src/olympia/devhub/views.py:1434
+#: src/olympia/devhub/views.py:1431
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
 msgstr "标题区域所显示文字和图标的颜色。清单字段：tab_background_text。"
 
-#: src/olympia/devhub/views.py:1441
+#: src/olympia/devhub/views.py:1438
 msgid "Toolbar area background"
 msgstr "工具栏区域背景色"
 
-#: src/olympia/devhub/views.py:1443
+#: src/olympia/devhub/views.py:1440
 msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
 msgstr "导航栏、书签栏和活动标签页的背景颜色。清单字段：toolbar。"
 
-#: src/olympia/devhub/views.py:1450
+#: src/olympia/devhub/views.py:1447
 msgid "Toolbar area text and icons"
 msgstr "工具栏区域文本和图标"
 
-#: src/olympia/devhub/views.py:1452
+#: src/olympia/devhub/views.py:1449
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
 msgstr "工具栏和活跃标签页中的文字和图标的颜色。清单字段：bookmark_text。"
 
-#: src/olympia/devhub/views.py:1459
+#: src/olympia/devhub/views.py:1456
 msgid "Toolbar field area background"
 msgstr "工具栏文本框区域背景颜色"
 
-#: src/olympia/devhub/views.py:1461
+#: src/olympia/devhub/views.py:1458
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
 msgstr "工具栏中文本框的背景颜色，例如网址栏。清单字段：toolbar_field。"
 
-#: src/olympia/devhub/views.py:1468
+#: src/olympia/devhub/views.py:1465
 msgid "Toolbar field area text"
 msgstr "工具栏文本框区域文本"
 
-#: src/olympia/devhub/views.py:1470
+#: src/olympia/devhub/views.py:1467
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "工具栏中的文本框里面文字的颜色，例如网址栏。清单字段：toolbar_field_text。"
 
-#: src/olympia/devhub/views.py:1478
+#: src/olympia/devhub/views.py:1475
 msgid "Tab highlight"
 msgstr "标签页高亮"
 
-#: src/olympia/devhub/views.py:1480
+#: src/olympia/devhub/views.py:1477
 msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
 msgstr "高亮活动的标签页。在 Firefox 89+ 上显示为标签页周围的边框（旧版上会显示为顶端的横线）。清单字段：tab_line。"
 
-#: src/olympia/devhub/views.py:1579
+#: src/olympia/devhub/views.py:1576
 msgid "Add-on uploads are temporarily unavailable"
 msgstr "暂时无法上传附加组件"
 
-#: src/olympia/devhub/views.py:1949
+#: src/olympia/devhub/views.py:1945
 msgid "Review requested."
 msgstr "已请求审核。"
 
-#: src/olympia/devhub/views.py:1951
+#: src/olympia/devhub/views.py:1947
 msgid "You must provide further details to proceed."
 msgstr "您必须提供进一步的详细信息才能继续。"
 
-#: src/olympia/devhub/views.py:2053
+#: src/olympia/devhub/views.py:2049
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "您的旧凭据已被吊销并且不再有效。"
 
-#: src/olympia/devhub/views.py:2072
+#: src/olympia/devhub/views.py:2068
 msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
 msgstr "请保密您的 API 密钥，绝对不要分享给其他人，包括 Mozilla 贡献者。"
 
-#: src/olympia/devhub/views.py:2089
+#: src/olympia/devhub/views.py:2085
 msgid "New API key created"
 msgstr "新的 API 密钥已创建"
 
-#: src/olympia/devhub/views.py:2100
+#: src/olympia/devhub/views.py:2096
 msgid "API key revoked"
 msgstr "API 密钥已吊销"
 
-#: src/olympia/devhub/views.py:2160
+#: src/olympia/devhub/views.py:2156
 msgid "Verify email"
 msgstr "验证邮箱"
 
-#: src/olympia/devhub/views.py:2162
+#: src/olympia/devhub/views.py:2158
 msgid "Send another email"
 msgstr "重新发送"
 
-#: src/olympia/devhub/views.py:2195
+#: src/olympia/devhub/views.py:2191
 msgid "Your email has been verified"
 msgstr "您的邮箱地址已验证"
 
@@ -2651,7 +2651,7 @@ msgstr[0] "<b>{0}</b> 个主题"
 msgid "Edit Product Page"
 msgstr "编辑产品页面"
 
-#: src/olympia/devhub/templates/devhub/addons/edit.html:13 src/olympia/devhub/templates/devhub/includes/macros.html:17 src/olympia/ratings/models.py:107
+#: src/olympia/devhub/templates/devhub/addons/edit.html:13 src/olympia/devhub/templates/devhub/includes/macros.html:14 src/olympia/ratings/models.py:107
 #: src/olympia/translations/templates/translations/all-locales.html:6
 msgid "None"
 msgstr "无"
@@ -3920,22 +3920,16 @@ msgstr "请选择一个许可协议，标明您对您的源代码授予的权利
 msgid "Sort by:"
 msgstr "排序依照："
 
-#. %s is a list of markdown syntax.
-#: src/olympia/devhub/templates/devhub/includes/macros.html:7
-#, python-format
-msgid "Allowed Markdown: %(allowed_markdown)s"
-msgstr "允许使用的 Markdown 语法：%(allowed_markdown)s"
-
-#: src/olympia/devhub/templates/devhub/includes/macros.html:8
+#: src/olympia/devhub/templates/devhub/includes/macros.html:5
 msgid "Some Markdown supported."
 msgstr "支持部分 Markdown 语法。"
 
-#: src/olympia/devhub/templates/devhub/includes/macros.html:58
+#: src/olympia/devhub/templates/devhub/includes/macros.html:55
 msgid "Remove this application"
 msgstr "移除此应用程序"
 
 #. {0} is the maximum number of add-on categories allowed
-#: src/olympia/devhub/templates/devhub/includes/macros.html:69
+#: src/olympia/devhub/templates/devhub/includes/macros.html:66
 #, python-brace-format
 msgid "Select a category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
@@ -5709,256 +5703,261 @@ msgstr "阻止浪费时间的网站。既能完全阻止，也能仅在您选择
 msgid "Easily summarize emails, docs, articles, and video transcripts in English across the web — without sacrificing your privacy."
 msgstr "轻松提炼网页上邮件、文档、文章、视频转录文本（英语）的重点，不妥协隐私。"
 
-#. editorial content for the secondary hero shelves.
+#. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:980
+msgid "You’re in control. Turn off VPN when a website won’t work and set different locations for different websites. Windows only."
+msgstr "网络体验由您掌控。在网站无法正常使用时关闭 VPN，或通过不同位置访问各网站。仅支持 Windows。"
+
+#. editorial content for the secondary hero shelves.
+#: src/olympia/discovery/strings.jinja2:983
 msgid "Extensions are like apps for Firefox."
 msgstr "Firefox 上的“小程序”。"
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:982
+#: src/olympia/discovery/strings.jinja2:985
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
 msgstr "为 Firefox 增添功能，让上网变得更快、更安全，乐趣十足。"
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:984
+#: src/olympia/discovery/strings.jinja2:987
 msgid "See all extensions"
 msgstr "浏览所有扩展"
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:986
+#: src/olympia/discovery/strings.jinja2:989
 msgid "Productivity tools"
 msgstr "生产力工具"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:988 src/olympia/discovery/strings.jinja2:1054
+#: src/olympia/discovery/strings.jinja2:991 src/olympia/discovery/strings.jinja2:1057
 msgid "YouTube customization"
 msgstr "YouTube 体验定制"
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:990
+#: src/olympia/discovery/strings.jinja2:993
 msgid "Privacy & Security extensions"
 msgstr "隐私和安全扩展"
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:992 src/olympia/discovery/strings.jinja2:994 src/olympia/discovery/strings.jinja2:996
+#: src/olympia/discovery/strings.jinja2:995 src/olympia/discovery/strings.jinja2:997 src/olympia/discovery/strings.jinja2:999
 msgid "See staff picks"
 msgstr "编辑推荐"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:999
+#: src/olympia/discovery/strings.jinja2:1002
 msgid "Recommended extensions"
 msgstr "推荐扩展"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1001
+#: src/olympia/discovery/strings.jinja2:1004
 msgid "See more recommended extensions"
 msgstr "更多推荐扩展"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1004
+#: src/olympia/discovery/strings.jinja2:1007
 msgid "Popular themes"
 msgstr "热门主题"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1006
+#: src/olympia/discovery/strings.jinja2:1009
 msgid "See more popular themes"
 msgstr "更多热门主题"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1009
+#: src/olympia/discovery/strings.jinja2:1012
 msgid "Enhanced privacy extensions"
 msgstr "隐私增强扩展"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1011
+#: src/olympia/discovery/strings.jinja2:1014
 msgid "See more recommended privacy extensions"
 msgstr "更多推荐隐私扩展"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1014
+#: src/olympia/discovery/strings.jinja2:1017
 msgid "Popular extensions"
 msgstr "热门扩展"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1016
+#: src/olympia/discovery/strings.jinja2:1019
 msgid "See more popular extensions"
 msgstr "更多热门扩展"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1019
+#: src/olympia/discovery/strings.jinja2:1022
 msgid "Recommended themes"
 msgstr "推荐主题"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1021
+#: src/olympia/discovery/strings.jinja2:1024
 msgid "See more recommended themes"
 msgstr "更多推荐主题"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1024
+#: src/olympia/discovery/strings.jinja2:1027
 msgid "Strong password managers"
 msgstr "高强度密码管理器"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1026
+#: src/olympia/discovery/strings.jinja2:1029
 msgid "See more password manager staff picks"
 msgstr "更多编辑推荐 > 密码管理器"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1029
+#: src/olympia/discovery/strings.jinja2:1032
 msgid "Translation tools"
 msgstr "翻译工具"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1031
+#: src/olympia/discovery/strings.jinja2:1034
 msgid "See more translation tool staff picks"
 msgstr "更多编辑推荐 > 翻译工具"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1034
+#: src/olympia/discovery/strings.jinja2:1037
 msgid "Social streaming"
 msgstr "社交流媒体"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1036
+#: src/olympia/discovery/strings.jinja2:1039
 msgid "See more social streaming staff picks"
 msgstr "更多编辑推荐 > 社交流媒体扩展"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1039
+#: src/olympia/discovery/strings.jinja2:1042
 msgid "Tab managers"
 msgstr "标签页管理器"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1041
+#: src/olympia/discovery/strings.jinja2:1044
 msgid "See more tab management staff picks"
 msgstr "更多编辑推荐 > 标签页管理扩展"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1044
+#: src/olympia/discovery/strings.jinja2:1047
 #, python-brace-format
 msgid "“{tag}” tagged extensions"
 msgstr "含“{tag}”标签的扩展"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1046
+#: src/olympia/discovery/strings.jinja2:1049
 #, python-brace-format
 msgid "See more extensions tagged \"{tag}\""
 msgstr "更多含“{tag}”标签的扩展"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1049
+#: src/olympia/discovery/strings.jinja2:1052
 msgid "Elite ad blockers"
 msgstr "王者级广告拦截工具"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1051
+#: src/olympia/discovery/strings.jinja2:1054
 msgid "See more ad blocker staff picks"
 msgstr "更多编辑推荐 > 广告拦截工具"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1056
+#: src/olympia/discovery/strings.jinja2:1059
 msgid "See more YouTube extension staff picks"
 msgstr "更多编辑推荐 > YouTube 扩展"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1059
+#: src/olympia/discovery/strings.jinja2:1062
 msgid "Trending themes"
 msgstr "热门主题"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1061
+#: src/olympia/discovery/strings.jinja2:1064
 msgid "See more trending themes"
 msgstr "更多热门主题"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1064 src/olympia/discovery/strings.jinja2:1109
+#: src/olympia/discovery/strings.jinja2:1067 src/olympia/discovery/strings.jinja2:1112
 msgid "Top rated themes"
 msgstr "最受好评的主题"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1066 src/olympia/discovery/strings.jinja2:1111
+#: src/olympia/discovery/strings.jinja2:1069 src/olympia/discovery/strings.jinja2:1114
 msgid "See more top rated themes"
 msgstr "更多好评主题"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1069
+#: src/olympia/discovery/strings.jinja2:1072
 msgid "Trending extensions"
 msgstr "热门扩展"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1071
+#: src/olympia/discovery/strings.jinja2:1074
 msgid "See more trending extensions"
 msgstr "更多热门扩展"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1074
+#: src/olympia/discovery/strings.jinja2:1077
 msgid "Steam enhancers"
 msgstr "Steam 增强工具"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1076
+#: src/olympia/discovery/strings.jinja2:1079
 msgid "See more Steam staff picks"
 msgstr "更多编辑推荐 > Steam 工具"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1079
+#: src/olympia/discovery/strings.jinja2:1082
 msgid "Creativity extensions"
 msgstr "创意扩展"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1081
+#: src/olympia/discovery/strings.jinja2:1084
 msgid "See more creativity staff picks"
 msgstr "更多编辑推荐 > 创意工具"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1084
+#: src/olympia/discovery/strings.jinja2:1087
 msgid "Social media extensions"
 msgstr "社交媒体扩展"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1086
+#: src/olympia/discovery/strings.jinja2:1089
 msgid "See more social media staff picks"
 msgstr "查看更多社交媒体员工精选"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1089
+#: src/olympia/discovery/strings.jinja2:1092
 msgid "Top download managers"
 msgstr "热门下载管理器"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1091
+#: src/olympia/discovery/strings.jinja2:1094
 msgid "See more download manager staff picks"
 msgstr "看看更多下载管理器（官方精选）"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1094
+#: src/olympia/discovery/strings.jinja2:1097
 msgid "Accessibility extensions"
 msgstr "无障碍扩展"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1096
+#: src/olympia/discovery/strings.jinja2:1099
 msgid "See more accessibility staff picks"
 msgstr "更多编辑推荐 > 无障碍"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1099
+#: src/olympia/discovery/strings.jinja2:1102
 msgid "Extension starter pack"
 msgstr "新手必备扩展"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1101
+#: src/olympia/discovery/strings.jinja2:1104
 msgid "See more starter extension staff picks"
 msgstr "更多编辑推荐 > 新手必备扩展"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1104
+#: src/olympia/discovery/strings.jinja2:1107
 msgid "Twitch extensions"
 msgstr "Twitch 扩展"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1106
+#: src/olympia/discovery/strings.jinja2:1109
 msgid "See more Twitch extension staff picks"
 msgstr "更多编辑推荐 > Twitch 扩展"
 
@@ -6199,12 +6198,12 @@ msgstr "评分{0}星，满分5星"
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "给 %(rating)s 以5星评价"
 
-#: src/olympia/reviewers/forms.py:330
+#: src/olympia/reviewers/forms.py:329
 #, python-brace-format
 msgid "Unsupported file type, please upload a file {extensions}."
 msgstr "不支持的文件类型，请上传 {extensions} 格式的文件。"
 
-#: src/olympia/reviewers/forms.py:336
+#: src/olympia/reviewers/forms.py:335
 msgid "File too large."
 msgstr "文件过大。"
 
@@ -6933,33 +6932,33 @@ msgstr ""
 "\n"
 "Mozilla 附加组件团队"
 
-#: src/olympia/versions/models.py:1207
+#: src/olympia/versions/models.py:1176
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
 msgstr "推迟驳回，安排于 %s"
 
-#: src/olympia/versions/models.py:1212
+#: src/olympia/versions/models.py:1181
 msgid "Auto-approved, Confirmed"
 msgstr "自动通过审核，已确认"
 
-#: src/olympia/versions/models.py:1214
+#: src/olympia/versions/models.py:1183
 msgid "Auto-approved, not Confirmed"
 msgstr "自动通过审核，未确认"
 
-#: src/olympia/versions/models.py:1217
+#: src/olympia/versions/models.py:1186
 msgid "Approved, Manual"
 msgstr "已通过审核，手动"
 
-#: src/olympia/versions/models.py:1224
+#: src/olympia/versions/models.py:1193
 msgid "Disabled by Developer"
 msgstr "被开发者禁用"
 
-#: src/olympia/versions/models.py:1582
+#: src/olympia/versions/models.py:1551
 #, python-brace-format
 msgid "{app} {min} and later"
 msgstr "{app} {min} 及更新的版本"
 
-#: src/olympia/versions/models.py:1709
+#: src/olympia/versions/models.py:1678
 #, python-brace-format
 msgid "The install origin {origin} is not permitted."
 msgstr "不允许从 {origin} 安装。"

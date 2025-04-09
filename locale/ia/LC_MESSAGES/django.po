@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Pontoon\n"
 
-#: src/olympia/abuse/actions.py:189
+#: src/olympia/abuse/actions.py:190
 #, python-brace-format
 msgid "Mozilla Add-ons: {} [{}]"
 msgstr "Additivos de Mozilla: {} [{}]"
@@ -239,15 +239,15 @@ msgstr "Le ligamines non es permittite."
 msgid "This display name cannot be used."
 msgstr "Iste nomine de schermo non pote esser usate."
 
-#: src/olympia/accounts/serializers.py:167 src/olympia/addons/fields.py:366 src/olympia/devhub/views.py:1016
+#: src/olympia/accounts/serializers.py:167 src/olympia/addons/fields.py:366 src/olympia/devhub/views.py:1014
 msgid "Images must be either PNG or JPG."
 msgstr "Le imagines debe esser in formato PNG o JPG."
 
-#: src/olympia/accounts/serializers.py:171 src/olympia/addons/fields.py:371 src/olympia/devhub/views.py:1022
+#: src/olympia/accounts/serializers.py:171 src/olympia/addons/fields.py:371 src/olympia/devhub/views.py:1020
 msgid "Images cannot be animated."
 msgstr "Le imagines non pote esser animate."
 
-#: src/olympia/accounts/serializers.py:176 src/olympia/devhub/views.py:1031
+#: src/olympia/accounts/serializers.py:176 src/olympia/devhub/views.py:1029
 #, python-format
 msgid "Please use images smaller than %dMB."
 msgstr "Per favor usa imagines minor que %dMB."
@@ -328,7 +328,7 @@ msgstr "Il non existe licentia con alias breve={value}."
 msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr "Typo incompatibile de file, per favor incarga un file de archivo ({extensions})."
 
-#: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:756 src/olympia/files/utils.py:755 src/olympia/reviewers/forms.py:344
+#: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:756 src/olympia/files/utils.py:755 src/olympia/reviewers/forms.py:343
 msgid "Invalid or broken archive."
 msgstr "Archivo non valide o rupte."
 
@@ -354,11 +354,11 @@ msgstr "Impossibile reimplaciar le informationes de compatibilitate definite in 
 msgid "Images must be smaller than %dMB"
 msgstr "Imagines debe esser minor de %dMB"
 
-#: src/olympia/addons/models.py:2189 src/olympia/addons/models.py:2246 src/olympia/constants/base.py:66
+#: src/olympia/addons/models.py:2209 src/olympia/addons/models.py:2266 src/olympia/constants/base.py:66
 msgid "Listed"
 msgstr "Listate"
 
-#: src/olympia/addons/models.py:2424
+#: src/olympia/addons/models.py:2444
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr "Le routes de additivos e collectiones debe finir con \"/\""
 
@@ -530,7 +530,7 @@ msgstr "Inviar un nove thema"
 msgid "Developer Hub"
 msgstr "Centro de disveloppatores"
 
-#: src/olympia/amo/context_processors.py:79 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:20 src/olympia/devhub/views.py:2078
+#: src/olympia/amo/context_processors.py:79 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:20 src/olympia/devhub/views.py:2074
 msgid "Manage API Keys"
 msgstr "Gerer le claves API"
 
@@ -1313,7 +1313,7 @@ msgstr "Attendente revision"
 msgid "Disabled by Mozilla"
 msgstr "Disactivate per Mozilla"
 
-#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1222
+#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1191
 msgid "Deleted"
 msgstr "Delite"
 
@@ -1766,27 +1766,27 @@ msgstr "Creative Commons Attribution-ShareAlike 4.0"
 msgid "The Unlicense"
 msgstr "The Unlicense"
 
-#: src/olympia/constants/promoted.py:74
+#: src/olympia/constants/promoted.py:75
 msgid "Not Promoted"
 msgstr "Non promovite"
 
-#: src/olympia/constants/promoted.py:80
+#: src/olympia/constants/promoted.py:81
 msgid "Recommended"
 msgstr "Recommendate"
 
-#: src/olympia/constants/promoted.py:111
+#: src/olympia/constants/promoted.py:112
 msgid "By Firefox"
 msgstr "Per Firefox"
 
-#: src/olympia/constants/promoted.py:129
+#: src/olympia/constants/promoted.py:130
 msgid "Spotlight"
 msgstr "Puncto luce"
 
-#: src/olympia/constants/promoted.py:140
+#: src/olympia/constants/promoted.py:141
 msgid "Strategic"
 msgstr "Strategic"
 
-#: src/olympia/constants/promoted.py:147
+#: src/olympia/constants/promoted.py:148
 msgid "Notable"
 msgstr "Notabile"
 
@@ -2171,128 +2171,128 @@ msgstr "Le validation ha producite troppo de errores/avisos, dunque %s messages 
 msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
 msgstr "Iste additivo non es un thema. Usa le pagina <a href=\"{link}\">Inviar un nove additivo</a> pro inviar extensiones."
 
-#: src/olympia/devhub/views.py:115
+#: src/olympia/devhub/views.py:114
 msgid "Updated"
 msgstr "Actualisate"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:38 src/olympia/devhub/templates/devhub/addons/edit/describe.html:75 src/olympia/devhub/templates/devhub/addons/submit/describe.html:35
-#: src/olympia/devhub/views.py:116 src/olympia/devhub/views.py:126
+#: src/olympia/devhub/views.py:115 src/olympia/devhub/views.py:125
 msgid "Name"
 msgstr "Nomine"
 
-#: src/olympia/devhub/views.py:117 src/olympia/devhub/views.py:125
+#: src/olympia/devhub/views.py:116 src/olympia/devhub/views.py:124
 msgid "Created"
 msgstr "Create"
 
-#: src/olympia/devhub/views.py:118 src/olympia/devhub/views.py:127 src/olympia/stats/templates/stats/addon_report_menu.html:8
+#: src/olympia/devhub/views.py:117 src/olympia/devhub/views.py:126 src/olympia/stats/templates/stats/addon_report_menu.html:8
 msgid "Downloads"
 msgstr "Discargamentos"
 
-#: src/olympia/devhub/views.py:119 src/olympia/devhub/views.py:128
+#: src/olympia/devhub/views.py:118 src/olympia/devhub/views.py:127
 msgid "Rating"
 msgstr "Evalutation"
 
-#: src/olympia/devhub/views.py:192
+#: src/olympia/devhub/views.py:191
 msgid "All My Add-ons"
 msgstr "Tote mi additivos"
 
-#: src/olympia/devhub/views.py:220
+#: src/olympia/devhub/views.py:219
 msgid "All Activity"
 msgstr "Tote le activitates"
 
-#: src/olympia/devhub/views.py:221
+#: src/olympia/devhub/views.py:220
 msgid "Add-on Updates"
 msgstr "Actualisationes del additivos"
 
-#: src/olympia/devhub/views.py:222
+#: src/olympia/devhub/views.py:221
 msgid "Add-on Status"
 msgstr "Stato del additivo"
 
-#: src/olympia/devhub/views.py:223
+#: src/olympia/devhub/views.py:222
 msgid "User Collections"
 msgstr "Collectiones del usator"
 
-#: src/olympia/devhub/views.py:224
+#: src/olympia/devhub/views.py:223
 msgid "User Reviews"
 msgstr "Recensiones del usator"
 
-#: src/olympia/devhub/views.py:372
+#: src/olympia/devhub/views.py:371
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "Le additivo non pote esser delite. In vice de isto, disactiva lo."
 
-#: src/olympia/devhub/views.py:383
+#: src/olympia/devhub/views.py:382
 msgid "Theme deleted."
 msgstr "Thema delite."
 
-#: src/olympia/devhub/views.py:383
+#: src/olympia/devhub/views.py:382
 msgid "Add-on deleted."
 msgstr "Additivo delite."
 
-#: src/olympia/devhub/views.py:389
+#: src/olympia/devhub/views.py:388
 msgid "URL name was incorrect. Theme was not deleted."
 msgstr "Le nomine del URL esseva incorrecte. Le thema non esseva delite."
 
-#: src/olympia/devhub/views.py:391
+#: src/olympia/devhub/views.py:390
 msgid "URL name was incorrect. Add-on was not deleted."
 msgstr "Le nomine del URL esseva incorrecte. Le additivo non esseva delite."
 
-#: src/olympia/devhub/views.py:463
+#: src/olympia/devhub/views.py:462
 msgid "Invitation accepted."
 msgstr "Invitation acceptate."
 
-#: src/olympia/devhub/views.py:466
+#: src/olympia/devhub/views.py:465
 msgid "Invitation declined."
 msgstr "Invitation declinate."
 
-#: src/olympia/devhub/views.py:534
+#: src/olympia/devhub/views.py:533
 #, python-brace-format
 msgid "A confirmation email has been sent to {email}"
 msgstr "Un email de confirmation ha essite inviate a {email}"
 
-#: src/olympia/devhub/views.py:551 src/olympia/devhub/views.py:1159
+#: src/olympia/devhub/views.py:550 src/olympia/devhub/views.py:1157
 msgid "Changes successfully saved."
 msgstr "Cambios salvate con successo."
 
-#: src/olympia/devhub/views.py:571
+#: src/olympia/devhub/views.py:570
 msgid "Validate Add-on"
 msgstr "Validar additivo"
 
-#: src/olympia/devhub/views.py:645
+#: src/olympia/devhub/views.py:644
 #, python-brace-format
 msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
 msgstr "<a href=\"{link}\">Activa le authentication a duo factores in tu conto pro inviar extensiones.</a>"
 
-#: src/olympia/devhub/views.py:1014
+#: src/olympia/devhub/views.py:1012
 msgid "Icons must be either PNG or JPG."
 msgstr "Le icones debe esser in formato PNG o JPG."
 
-#: src/olympia/devhub/views.py:1020
+#: src/olympia/devhub/views.py:1018
 msgid "Icons cannot be animated."
 msgstr "Le icones non pote esser animate."
 
-#: src/olympia/devhub/views.py:1046
+#: src/olympia/devhub/views.py:1044
 #, python-brace-format
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr "Le imagine debe mesurar al minus {0} pixels de latitude e {1} pixels de altitude."
 
-#: src/olympia/devhub/views.py:1050
+#: src/olympia/devhub/views.py:1048
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "Le dimensiones del imagine debe esser in le ration 4:3."
 
-#: src/olympia/devhub/views.py:1058
+#: src/olympia/devhub/views.py:1056
 #, python-brace-format
 msgid "Icon must be at least {0} pixels wide and tall."
 msgstr "Le imagine debe mesurar al minus {0} pixels de latitude e de altitude."
 
-#: src/olympia/devhub/views.py:1063
+#: src/olympia/devhub/views.py:1061
 msgid "Icon must be square (same width and height)."
 msgstr "Le icone debe esser quadrate (altitude equal al latitude)."
 
-#: src/olympia/devhub/views.py:1069
+#: src/olympia/devhub/views.py:1067
 msgid "There was an error uploading your preview."
 msgstr "Error durante le incargamento de tu vista preliminar."
 
-#: src/olympia/devhub/views.py:1216
+#: src/olympia/devhub/views.py:1213
 #, python-format
 msgid ""
 "The latest approved version of this %s add-on cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
@@ -2300,120 +2300,120 @@ msgstr ""
 "Le ultime version approbate de iste additivo %s non pote esser delite o disactivate perque le previe version non ha essite approbate pro promotion a %s. Contacta le administratores de AMO si tu ha "
 "besonio de adjuta pro isto."
 
-#: src/olympia/devhub/views.py:1223
+#: src/olympia/devhub/views.py:1220
 #, python-format
 msgid "Version %s disabled."
 msgstr "Version %s disactivate."
 
-#: src/olympia/devhub/views.py:1227
+#: src/olympia/devhub/views.py:1224
 #, python-format
 msgid "Version %s deleted."
 msgstr "Version %s delite."
 
-#: src/olympia/devhub/views.py:1238
+#: src/olympia/devhub/views.py:1235
 #, python-format
 msgid "Version %s re-enabled."
 msgstr "Version %s re-activate."
 
-#: src/olympia/devhub/views.py:1254
+#: src/olympia/devhub/views.py:1251
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "Le validation de iste incargamento ha fallite e le resultatos del validation pote esser incomplete. Revide lo con attention."
 
-#: src/olympia/devhub/views.py:1422
+#: src/olympia/devhub/views.py:1419
 msgid "Header area background"
 msgstr "Fundo del area del titulo"
 
-#: src/olympia/devhub/views.py:1424
+#: src/olympia/devhub/views.py:1421
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
 msgstr "Le color del fundo del area de titulo, displicate in le parte del titulo non coperite o visibile per le imagine del titulo. Campo de manifesto:  frame."
 
-#: src/olympia/devhub/views.py:1432
+#: src/olympia/devhub/views.py:1429
 msgid "Header area text and icons"
 msgstr "Texto e icones del area de titulo"
 
-#: src/olympia/devhub/views.py:1434
+#: src/olympia/devhub/views.py:1431
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
 msgstr "Le color del texto e le icones in le area del titulo, a exception del scheda active. Campo de manifesto:  tab_background_text."
 
-#: src/olympia/devhub/views.py:1441
+#: src/olympia/devhub/views.py:1438
 msgid "Toolbar area background"
 msgstr "Fundo del area del barra de instrumentos"
 
-#: src/olympia/devhub/views.py:1443
+#: src/olympia/devhub/views.py:1440
 msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
 msgstr "Le color de fundo pro le barra de navigation, le barra de marcapaginas e le scheda active.  Campo de manifesto:  barra de instrumentos."
 
-#: src/olympia/devhub/views.py:1450
+#: src/olympia/devhub/views.py:1447
 msgid "Toolbar area text and icons"
 msgstr "Texto e icones del area del barra de instrumentos"
 
-#: src/olympia/devhub/views.py:1452
+#: src/olympia/devhub/views.py:1449
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
 msgstr "Le color del texto e del icones in le barra de instrumentos e le scheda active. Campo de manifesto:  bookmark_text."
 
-#: src/olympia/devhub/views.py:1459
+#: src/olympia/devhub/views.py:1456
 msgid "Toolbar field area background"
 msgstr "Fundo del area del campo del barra de instrumentos"
 
-#: src/olympia/devhub/views.py:1461
+#: src/olympia/devhub/views.py:1458
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
 msgstr "Le color de fundo pro le campos in le barra de instrumentos, como le barra de adresse. Campo de manifesto:  toolbar_field."
 
-#: src/olympia/devhub/views.py:1468
+#: src/olympia/devhub/views.py:1465
 msgid "Toolbar field area text"
 msgstr "Texto del area del campo del barra de instrumentos"
 
-#: src/olympia/devhub/views.py:1470
+#: src/olympia/devhub/views.py:1467
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "Le color de texto in le campos del barra de instrumentos, como le barra de adresse. Campo de manifesto:  toolbar_field_text."
 
-#: src/olympia/devhub/views.py:1478
+#: src/olympia/devhub/views.py:1475
 msgid "Tab highlight"
 msgstr "Color de scheda active"
 
-#: src/olympia/devhub/views.py:1480
+#: src/olympia/devhub/views.py:1477
 msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
 msgstr ""
 "Le color que mitte in evidentia le scheda active. Implementate como un bordo circa le scheda sur Firefox 89+ e como un linea supra le scheda sur versiones anterior de Firefox. Campo de manifesto:  "
 "tab_line."
 
-#: src/olympia/devhub/views.py:1579
+#: src/olympia/devhub/views.py:1576
 msgid "Add-on uploads are temporarily unavailable"
 msgstr "Cargamento de additivos temporarimente indisponibile"
 
-#: src/olympia/devhub/views.py:1949
+#: src/olympia/devhub/views.py:1945
 msgid "Review requested."
 msgstr "Revision demandate."
 
-#: src/olympia/devhub/views.py:1951
+#: src/olympia/devhub/views.py:1947
 msgid "You must provide further details to proceed."
 msgstr "Tu debe fornir altere detalios pro continuar."
 
-#: src/olympia/devhub/views.py:2053
+#: src/olympia/devhub/views.py:2049
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Tu vetere credentiales esseva revocate e non es plus valide."
 
-#: src/olympia/devhub/views.py:2072
+#: src/olympia/devhub/views.py:2068
 msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
 msgstr "Mantene tu claves API secrete e non divulga los jammais a alcuno, non mesmo a collaboratores de Mozilla."
 
-#: src/olympia/devhub/views.py:2089
+#: src/olympia/devhub/views.py:2085
 msgid "New API key created"
 msgstr "Nove clave API create"
 
-#: src/olympia/devhub/views.py:2100
+#: src/olympia/devhub/views.py:2096
 msgid "API key revoked"
 msgstr "Clave API revocate"
 
-#: src/olympia/devhub/views.py:2160
+#: src/olympia/devhub/views.py:2156
 msgid "Verify email"
 msgstr "Verificar le email"
 
-#: src/olympia/devhub/views.py:2162
+#: src/olympia/devhub/views.py:2158
 msgid "Send another email"
 msgstr "Inviar un altere email"
 
-#: src/olympia/devhub/views.py:2195
+#: src/olympia/devhub/views.py:2191
 msgid "Your email has been verified"
 msgstr "Tu email ha essite verificate"
 
@@ -2688,7 +2688,7 @@ msgstr[1] "<b>{0}</b> themas"
 msgid "Edit Product Page"
 msgstr "Redige le pagina de producto"
 
-#: src/olympia/devhub/templates/devhub/addons/edit.html:13 src/olympia/devhub/templates/devhub/includes/macros.html:17 src/olympia/ratings/models.py:107
+#: src/olympia/devhub/templates/devhub/addons/edit.html:13 src/olympia/devhub/templates/devhub/includes/macros.html:14 src/olympia/ratings/models.py:107
 #: src/olympia/translations/templates/translations/all-locales.html:6
 msgid "None"
 msgstr "Nulle"
@@ -3985,22 +3985,16 @@ msgstr "Per favor elige un licentia appropriate pro le derectos que tu accorda s
 msgid "Sort by:"
 msgstr "Ordinar per:"
 
-#. %s is a list of markdown syntax.
-#: src/olympia/devhub/templates/devhub/includes/macros.html:7
-#, python-format
-msgid "Allowed Markdown: %(allowed_markdown)s"
-msgstr "Markdown consentite: %(allowed_markdown)s"
-
-#: src/olympia/devhub/templates/devhub/includes/macros.html:8
+#: src/olympia/devhub/templates/devhub/includes/macros.html:5
 msgid "Some Markdown supported."
 msgstr "Markdown partialmente consentite."
 
-#: src/olympia/devhub/templates/devhub/includes/macros.html:58
+#: src/olympia/devhub/templates/devhub/includes/macros.html:55
 msgid "Remove this application"
 msgstr "Remover iste application"
 
 #. {0} is the maximum number of add-on categories allowed
-#: src/olympia/devhub/templates/devhub/includes/macros.html:69
+#: src/olympia/devhub/templates/devhub/includes/macros.html:66
 #, python-brace-format
 msgid "Select a category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
@@ -5791,256 +5785,261 @@ msgstr "Bloca le sitos web dilapida tempore. Bloca los completemente o justo dur
 msgid "Easily summarize emails, docs, articles, and video transcripts in English across the web — without sacrificing your privacy."
 msgstr "Facilemente resume emails, documentation, articulos, e transcriptiones video in anglese a transverso le web, sin sacrificar tu confidentialitate."
 
-#. editorial content for the secondary hero shelves.
+#. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:980
+msgid "You’re in control. Turn off VPN when a website won’t work and set different locations for different websites. Windows only."
+msgstr "Tu ha le controlo. Disactiva le VPN quando un sito web non functiona e imposta positiones differente pro sitos web differente. Solo pro Windows."
+
+#. editorial content for the secondary hero shelves.
+#: src/olympia/discovery/strings.jinja2:983
 msgid "Extensions are like apps for Firefox."
 msgstr "Le extensiones es como applicationes pro Firefox."
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:982
+#: src/olympia/discovery/strings.jinja2:985
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
 msgstr "Illos adde functiones a Firefox pro render le navigation plus veloce, plus secur o simplemente plus amusante."
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:984
+#: src/olympia/discovery/strings.jinja2:987
 msgid "See all extensions"
 msgstr "Vider tote le extensiones"
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:986
+#: src/olympia/discovery/strings.jinja2:989
 msgid "Productivity tools"
 msgstr "Utensiles de productivitate"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:988 src/olympia/discovery/strings.jinja2:1054
+#: src/olympia/discovery/strings.jinja2:991 src/olympia/discovery/strings.jinja2:1057
 msgid "YouTube customization"
 msgstr "Personalisationes de YouTube"
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:990
+#: src/olympia/discovery/strings.jinja2:993
 msgid "Privacy & Security extensions"
 msgstr "Extensiones de securitate e confidentialitate"
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:992 src/olympia/discovery/strings.jinja2:994 src/olympia/discovery/strings.jinja2:996
+#: src/olympia/discovery/strings.jinja2:995 src/olympia/discovery/strings.jinja2:997 src/olympia/discovery/strings.jinja2:999
 msgid "See staff picks"
 msgstr "Vide lo que eligeva nostre equipa"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:999
+#: src/olympia/discovery/strings.jinja2:1002
 msgid "Recommended extensions"
 msgstr "Extensiones recommendate"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1001
+#: src/olympia/discovery/strings.jinja2:1004
 msgid "See more recommended extensions"
 msgstr "Vide altere extensiones recommendate"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1004
+#: src/olympia/discovery/strings.jinja2:1007
 msgid "Popular themes"
 msgstr "Themas popular"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1006
+#: src/olympia/discovery/strings.jinja2:1009
 msgid "See more popular themes"
 msgstr "Vide altere themas popular"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1009
+#: src/olympia/discovery/strings.jinja2:1012
 msgid "Enhanced privacy extensions"
 msgstr "Extensiones pro accrescer le confidentialitate"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1011
+#: src/olympia/discovery/strings.jinja2:1014
 msgid "See more recommended privacy extensions"
 msgstr "Vide altere extensiones de confidentialitate"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1014
+#: src/olympia/discovery/strings.jinja2:1017
 msgid "Popular extensions"
 msgstr "Extensiones popular"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1016
+#: src/olympia/discovery/strings.jinja2:1019
 msgid "See more popular extensions"
 msgstr "Vide altere extensiones popular"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1019
+#: src/olympia/discovery/strings.jinja2:1022
 msgid "Recommended themes"
 msgstr "Themas recommendate"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1021
+#: src/olympia/discovery/strings.jinja2:1024
 msgid "See more recommended themes"
 msgstr "Vide altere themas recommendate"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1024
+#: src/olympia/discovery/strings.jinja2:1027
 msgid "Strong password managers"
 msgstr "Gestores de contrasignos forte"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1026
+#: src/olympia/discovery/strings.jinja2:1029
 msgid "See more password manager staff picks"
 msgstr "Vide altere gestores de contrasignos seligite per nostre equipa"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1029
+#: src/olympia/discovery/strings.jinja2:1032
 msgid "Translation tools"
 msgstr "Utensiles de traduction"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1031
+#: src/olympia/discovery/strings.jinja2:1034
 msgid "See more translation tool staff picks"
 msgstr "Vide altere utensile de traduction seligite per nostre equipa"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1034
+#: src/olympia/discovery/strings.jinja2:1037
 msgid "Social streaming"
 msgstr "Diffusion social"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1036
+#: src/olympia/discovery/strings.jinja2:1039
 msgid "See more social streaming staff picks"
 msgstr "Vide altere diffusion social seligite per nostre equipa"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1039
+#: src/olympia/discovery/strings.jinja2:1042
 msgid "Tab managers"
 msgstr "Gestores de scheda"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1041
+#: src/olympia/discovery/strings.jinja2:1044
 msgid "See more tab management staff picks"
 msgstr "Vide altere gestion de schedas seligite per nostre equipa"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1044
+#: src/olympia/discovery/strings.jinja2:1047
 #, python-brace-format
 msgid "“{tag}” tagged extensions"
 msgstr "Extensiones con le etiquetta \"{tag}\" "
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1046
+#: src/olympia/discovery/strings.jinja2:1049
 #, python-brace-format
 msgid "See more extensions tagged \"{tag}\""
 msgstr "Vide altere extensiones etiquettate \"{tag}\""
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1049
+#: src/olympia/discovery/strings.jinja2:1052
 msgid "Elite ad blockers"
 msgstr "Blocatores de avisos elite"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1051
+#: src/olympia/discovery/strings.jinja2:1054
 msgid "See more ad blocker staff picks"
 msgstr "Vide altere blocatores de avisos seligite per nostre equipa"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1056
+#: src/olympia/discovery/strings.jinja2:1059
 msgid "See more YouTube extension staff picks"
 msgstr "Vide altere extensiones YouTube seligite per nostre equipa"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1059
+#: src/olympia/discovery/strings.jinja2:1062
 msgid "Trending themes"
 msgstr "Themas de tendentia"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1061
+#: src/olympia/discovery/strings.jinja2:1064
 msgid "See more trending themes"
 msgstr "Vide altere themas de tendentia"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1064 src/olympia/discovery/strings.jinja2:1109
+#: src/olympia/discovery/strings.jinja2:1067 src/olympia/discovery/strings.jinja2:1112
 msgid "Top rated themes"
 msgstr "Le themas melio evalutate"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1066 src/olympia/discovery/strings.jinja2:1111
+#: src/olympia/discovery/strings.jinja2:1069 src/olympia/discovery/strings.jinja2:1114
 msgid "See more top rated themes"
 msgstr "Vide altere themas melio valutate"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1069
+#: src/olympia/discovery/strings.jinja2:1072
 msgid "Trending extensions"
 msgstr "Extensiones de tendentia"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1071
+#: src/olympia/discovery/strings.jinja2:1074
 msgid "See more trending extensions"
 msgstr "Vide altere extensiones de tendentia"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1074
+#: src/olympia/discovery/strings.jinja2:1077
 msgid "Steam enhancers"
 msgstr "Augmentatores de Steam"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1076
+#: src/olympia/discovery/strings.jinja2:1079
 msgid "See more Steam staff picks"
 msgstr "Vide altere recommendationes del staff de Steam"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1079
+#: src/olympia/discovery/strings.jinja2:1082
 msgid "Creativity extensions"
 msgstr "Extensiones de creativitate"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1081
+#: src/olympia/discovery/strings.jinja2:1084
 msgid "See more creativity staff picks"
 msgstr "Vide altere utensile de creativitate eligite per nostre equipa"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1084
+#: src/olympia/discovery/strings.jinja2:1087
 msgid "Social media extensions"
 msgstr "Extensiones de medios social"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1086
+#: src/olympia/discovery/strings.jinja2:1089
 msgid "See more social media staff picks"
 msgstr "Vide altere medios social seligite per nostre equipa"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1089
+#: src/olympia/discovery/strings.jinja2:1092
 msgid "Top download managers"
 msgstr "Principal gestores de discargamento"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1091
+#: src/olympia/discovery/strings.jinja2:1094
 msgid "See more download manager staff picks"
 msgstr "Vide altere gestores de discargamento seligite per nostre equipa"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1094
+#: src/olympia/discovery/strings.jinja2:1097
 msgid "Accessibility extensions"
 msgstr "Extensiones de accessibilitate"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1096
+#: src/olympia/discovery/strings.jinja2:1099
 msgid "See more accessibility staff picks"
 msgstr "Vide altere selectiones de accessibilitate per nostre equipa"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1099
+#: src/olympia/discovery/strings.jinja2:1102
 msgid "Extension starter pack"
 msgstr "Pacchetto initial de extensiones"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1101
+#: src/olympia/discovery/strings.jinja2:1104
 msgid "See more starter extension staff picks"
 msgstr "Vide altere extensiones pro initiar seligite per nostre equipa"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1104
+#: src/olympia/discovery/strings.jinja2:1107
 msgid "Twitch extensions"
 msgstr "Extensiones pro Twitch"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1106
+#: src/olympia/discovery/strings.jinja2:1109
 msgid "See more Twitch extension staff picks"
 msgstr "Vide altere extensiones pro Twitch seligite per nostre equipa"
 
@@ -6283,12 +6282,12 @@ msgstr "Evalutate con {0} de 5 stellas"
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Evalutate con %(rating)s de 5 stellas"
 
-#: src/olympia/reviewers/forms.py:330
+#: src/olympia/reviewers/forms.py:329
 #, python-brace-format
 msgid "Unsupported file type, please upload a file {extensions}."
 msgstr "Typo de file non supportate, carga un file valide {extensions}."
 
-#: src/olympia/reviewers/forms.py:336
+#: src/olympia/reviewers/forms.py:335
 msgid "File too large."
 msgstr "File troppo grande."
 
@@ -7027,33 +7026,33 @@ msgstr ""
 "\n"
 "Le equipa del additivos de Mozilla"
 
-#: src/olympia/versions/models.py:1207
+#: src/olympia/versions/models.py:1176
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
 msgstr "Rejection-retardate, programmate pro le %s"
 
-#: src/olympia/versions/models.py:1212
+#: src/olympia/versions/models.py:1181
 msgid "Auto-approved, Confirmed"
 msgstr "Auto-approbate, confirmate"
 
-#: src/olympia/versions/models.py:1214
+#: src/olympia/versions/models.py:1183
 msgid "Auto-approved, not Confirmed"
 msgstr "Auto-approbate, non confirmate"
 
-#: src/olympia/versions/models.py:1217
+#: src/olympia/versions/models.py:1186
 msgid "Approved, Manual"
 msgstr "Approbate, manual"
 
-#: src/olympia/versions/models.py:1224
+#: src/olympia/versions/models.py:1193
 msgid "Disabled by Developer"
 msgstr "Disactivate per le disveloppator"
 
-#: src/olympia/versions/models.py:1582
+#: src/olympia/versions/models.py:1551
 #, python-brace-format
 msgid "{app} {min} and later"
 msgstr "{app} {min} e plus recente"
 
-#: src/olympia/versions/models.py:1709
+#: src/olympia/versions/models.py:1678
 #, python-brace-format
 msgid "The install origin {origin} is not permitted."
 msgstr "Le origine del installation {origin} non es permittite."

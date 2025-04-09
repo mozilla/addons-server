@@ -10,7 +10,7 @@ import { StatsManager } from './manager';
 const dayMsecs = 24 * 3600 * 1000;
 
 (function () {
-  let $win = $(window),
+  var $win = $(window),
     $chart = $('#head-chart'),
     $btnZoom = $('#chart-zoomout'),
     baseConfig = {
@@ -83,9 +83,9 @@ const dayMsecs = 24 * 3600 * 1000;
       },
     };
   Highcharts.setOptions({ lang: { resetZoom: '' } });
-  let chart;
+  var chart;
   // which unit do we use for a given metric?
-  let metricTypes = {
+  var metricTypes = {
     usage: 'users',
     apps: 'users',
     locales: 'users',
@@ -114,7 +114,7 @@ const dayMsecs = 24 * 3600 * 1000;
     campaigns: 'downloads',
   };
 
-  let acceptedGroups = {
+  var acceptedGroups = {
     day: true,
     week: true,
     month: true,
@@ -133,7 +133,7 @@ const dayMsecs = 24 * 3600 * 1000;
   });
 
   $win.on('dataready', function (e, obj) {
-    let view = obj.view,
+    var view = obj.view,
       metric = view.metric,
       group = view.group,
       data = obj.data,
@@ -187,7 +187,7 @@ const dayMsecs = 24 * 3600 * 1000;
 
     // Transmute the data into something Highcharts understands.
     start = Date.iso(data.firstIndex);
-    let step = '1 ' + group,
+    var step = '1 ' + group,
       point,
       dataSum = 0;
 
@@ -209,9 +209,9 @@ const dayMsecs = 24 * 3600 * 1000;
 
     // Display marker if only one data point.
     baseConfig.plotOptions.line.marker.radius = 3;
-    let count = 0,
+    var count = 0,
       dateRegex = /\d{4}-\d{2}-\d{2}/;
-    for (let key in data) {
+    for (var key in data) {
       if (dateRegex.exec(key) && data.hasOwnProperty(key)) {
         count++;
       }
@@ -229,8 +229,8 @@ const dayMsecs = 24 * 3600 * 1000;
     }
 
     // Transform xAxis based on time grouping (day, week, month) and range.
-    let pointInterval = (dayMsecs = 1 * 24 * 3600 * 1000);
-    let dateRangeDays = (end - start) / dayMsecs;
+    var pointInterval = dayMsecs;
+    var dateRangeDays = (end - start) / dayMsecs;
     baseConfig.xAxis.min = start - dayMsecs; // Fix chart truncation.
     baseConfig.xAxis.max = end;
     baseConfig.xAxis.tickInterval = null;
@@ -251,10 +251,10 @@ const dayMsecs = 24 * 3600 * 1000;
     }
 
     // Set minimum max value for yAxis to prevent duplicate yAxis values.
-    let max = 0;
-    for (let key in data) {
-      if (data[key].count > max) {
-        max = data[key].count;
+    var max = 0;
+    for (var _key in data) {
+      if (data[_key].count > max) {
+        max = data[_key].count;
       }
     }
     // Chart has minimum 5 ticks so set max to 5 to avoid pigeonholing.
@@ -269,7 +269,7 @@ const dayMsecs = 24 * 3600 * 1000;
     start = date.getTime() - date.getTimezoneOffset() * 60000;
 
     // Populate the chart config object.
-    let chartData = [],
+    var chartData = [],
       id;
     for (i = 0; i < fields.length; i++) {
       field = fields[i];
@@ -288,8 +288,8 @@ const dayMsecs = 24 * 3600 * 1000;
 
     // Generate the tooltip function for this chart.
     // both x and y axis can be displayed differently.
-    let tooltipFormatter = (function () {
-      let xFormatter, yFormatter;
+    var tooltipFormatter = (function () {
+      var xFormatter, yFormatter;
       function dayFormatter(d) {
         return Highcharts.dateFormat('%a, %b %e, %Y', new Date(d));
       }
@@ -354,7 +354,7 @@ const dayMsecs = 24 * 3600 * 1000;
         );
       }
       function addEventData(s, date) {
-        let e = events[date];
+        var e = events[date];
         if (e) {
           s += format('<br><br><b>{type_pretty}</b>', e);
         }
@@ -372,9 +372,9 @@ const dayMsecs = 24 * 3600 * 1000;
 
       if (is_overview) {
         return function () {
-          let ret = '<b>' + xFormatter(this.x) + '</b>',
+          var ret = '<b>' + xFormatter(this.x) + '</b>',
             p;
-          for (let i = 0; i < this.points.length; i++) {
+          for (var i = 0; i < this.points.length; i++) {
             p = this.points[i];
             ret += '<br>' + p.series.name + ': ';
             ret += Highcharts.numberFormat(p.y, 0);
@@ -383,9 +383,9 @@ const dayMsecs = 24 * 3600 * 1000;
         };
       } else if (metric == 'contributions') {
         return function () {
-          let ret = '<b>' + xFormatter(this.x) + '</b>',
+          var ret = '<b>' + xFormatter(this.x) + '</b>',
             p;
-          for (let i = 0; i < this.points.length; i++) {
+          for (var i = 0; i < this.points.length; i++) {
             p = this.points[i];
             ret += '<br>' + p.series.name + ': ';
             if (p.series.options.yAxis > 0) {
@@ -429,7 +429,7 @@ const dayMsecs = 24 * 3600 * 1000;
             break;
         }
         return function () {
-          let ret =
+          var ret =
             '<b>' +
             this.series.name +
             '</b><br>' +
@@ -442,7 +442,7 @@ const dayMsecs = 24 * 3600 * 1000;
     })();
 
     // Set up the new chart's configuration.
-    let newConfig = $.extend(baseConfig, { series: chartData });
+    var newConfig = $.extend(baseConfig, { series: chartData });
     // set up dual-axes for the overview chart.
     if (is_overview && newConfig.series.length) {
       _.extend(newConfig, {
@@ -530,7 +530,7 @@ const dayMsecs = 24 * 3600 * 1000;
 
     function makeSiteEventHandler(e) {
       return function () {
-        let s = format('<h3>{type_pretty}</h3><p>{description}</p>', e);
+        var s = format('<h3>{type_pretty}</h3><p>{description}</p>', e);
         if (e.url) {
           s += format('<p><a href="{0}">{1}</a></p>', [
             e.url,
@@ -549,7 +549,7 @@ const dayMsecs = 24 * 3600 * 1000;
       };
     }
 
-    let pb = [],
+    var pb = [],
       pl = [];
     const eventColors = ['#DDD', '#DDD', '#FDFFD0', '#D0FFD8'];
     _.forEach(events, function (e) {
@@ -570,9 +570,9 @@ const dayMsecs = 24 * 3600 * 1000;
     }
 
     // Generate a pretty title for the chart.
-    let title;
+    var title;
     if (typeof obj.view.range == 'string') {
-      let numDays = parseInt(obj.view.range, 10);
+      var numDays = parseInt(obj.view.range, 10);
       title = format(csv_keys.chartTitle[metric][0], numDays);
     } else {
       // This is a custom range so display a range shorter by one day.

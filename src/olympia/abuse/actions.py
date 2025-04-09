@@ -10,10 +10,9 @@ from django.utils import translation
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 
-import waffle
-
 import olympia
 from olympia import amo
+from olympia.access.models import Group
 from olympia.activity import log_create
 from olympia.addons.models import Addon, AddonReviewerFlags
 from olympia.amo.templatetags.jinja_helpers import absolutify
@@ -136,10 +135,7 @@ class ContentAction:
         }
         if 'policy_texts' not in context_dict:
             context_dict['policy_texts'] = self.decision.get_policy_texts()
-        if self.decision.can_be_appealed(is_reporter=False) and (
-            self.decision.is_third_party_initiated
-            or waffle.switch_is_active('dsa-appeals-review')
-        ):
+        if self.decision.can_be_appealed(is_reporter=False):
             context_dict['appeal_url'] = absolutify(
                 reverse(
                     'abuse.appeal_author',
@@ -344,6 +340,8 @@ class ContentActionDisableAddon(ContentAction):
 
 class ContentActionRejectVersion(ContentActionDisableAddon):
     description = 'Add-on version(s) have been rejected'
+    stakeholder_template_path = 'abuse/emails/stakeholder_notification.txt'
+    stakeholder_acl_group_name = 'Stakeholder-Rejection-Notifications'
 
     def __init__(self, decision):
         super().__init__(decision)
@@ -354,6 +352,52 @@ class ContentActionRejectVersion(ContentActionDisableAddon):
             super().should_hold_action()
             and self.decision.target_versions.filter(file__is_signed=True).exists()
         )
+
+    def notify_stakeholders(self, rejection_type):
+        if (
+            self.target.promoted_groups(currently_approved=False)
+            and self.decision.target_versions.filter(file__is_signed=True).exists()
+            and (
+                stakeholder_group := Group.objects.filter(
+                    name=self.stakeholder_acl_group_name
+                ).first()
+            )
+        ):
+            if not (
+                recipients := [user.email for user in stakeholder_group.users.all()]
+            ):
+                # no recipients, nothing to do
+                return
+            template = loader.get_template(self.stakeholder_template_path)
+            versions = list(
+                self.decision.target_versions.order_by('id').values_list(
+                    'version', 'channel', named=True
+                )
+            )
+            if any(ver.channel == amo.CHANNEL_LISTED for ver in versions):
+                review_urls = absolutify(
+                    reverse('reviewers.review', args=['listed', self.target.id])
+                )
+            else:
+                review_urls = ''
+            if any(ver.channel == amo.CHANNEL_UNLISTED for ver in versions):
+                if review_urls:
+                    review_urls += ' | '
+                review_urls += absolutify(
+                    reverse('reviewers.review', args=['unlisted', self.target.id])
+                )
+            context_dict = {
+                'rejection_type': rejection_type,
+                'version_list': ', '.join(ver.version for ver in versions),
+                'notes': self.decision.notes,
+                'review_urls': review_urls,
+                'target_url': self.target.get_absolute_url()
+                if self.target.get_url_path()
+                else '',
+            }
+            subject = f'{rejection_type} issued for {self.decision.get_target_name()}'
+            message = template.render(context_dict)
+            send_mail(subject, message, recipient_list=recipients)
 
     def log_action(self, activity_log_action, *extra_args, extra_details=None):
         # include target versions. addon_version will be included already
@@ -386,6 +430,7 @@ class ContentActionRejectVersion(ContentActionDisableAddon):
             )
 
         self.target.update_status()
+        self.notify_stakeholders('Rejection')
         return self.log_action(
             amo.LOG.REJECT_CONTENT if self.content_review else amo.LOG.REJECT_VERSION
         )
@@ -409,18 +454,19 @@ class ContentActionRejectVersionDelayed(ContentActionRejectVersion):
             self.delayed_rejection_date = datetime.fromisoformat(
                 self.decision.metadata.get('delayed_rejection_date')
             )
+            self.delayed_rejection_days = (
+                self.delayed_rejection_date - datetime.now()
+            ).days
         else:
             # Will fail later if we try to use it to log/process the action,
             # but allows us to at least instantiate the class and use other
             # methods.
-            self.delayed_rejection_date = None
+            self.delayed_rejection_date = self.delayed_rejection_days = None
 
     def log_action(self, activity_log_action, *extra_args, extra_details=None):
         extra_details = {
             **(extra_details or {}),
-            'delayed_rejection_days': (
-                self.delayed_rejection_date - datetime.now()
-            ).days,
+            'delayed_rejection_days': self.delayed_rejection_days,
         }
         return super().log_action(
             activity_log_action, *extra_args, extra_details=extra_details
@@ -448,6 +494,7 @@ class ContentActionRejectVersionDelayed(ContentActionRejectVersion):
             addon=self.target,
             defaults={'notified_about_expiring_delayed_rejections': False},
         )
+        self.notify_stakeholders(f'{self.delayed_rejection_days} day delayed rejection')
         return self.log_action(
             amo.LOG.REJECT_CONTENT_DELAYED
             if self.content_review

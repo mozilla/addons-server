@@ -840,7 +840,7 @@ msgstr "Ingen data tilgjengelege."
 msgid "Date"
 msgstr "Dato"
 
-#: static/js/stats/topchart.js:106
+#: static/js/stats/topchart.js:107
 msgid "Other"
 msgstr "Anna"
 
@@ -889,41 +889,41 @@ msgstr "Denne funksjonen er mellombels slått av medan vi utfører vedlikehald a
 msgid "Remove this localization"
 msgstr "Fjern denne omsettinga"
 
-#: static/js/zamboni/reviewers.js:222
+#: static/js/zamboni/reviewers.js:237
 #, python-brace-format
 msgid "{name} was viewing this page first."
 msgstr "{name} såg på sida først."
 
-#: static/js/zamboni/reviewers.js:230
+#: static/js/zamboni/reviewers.js:245
 msgid "Review page polling failed."
 msgstr "Klarte ikkje å hente sida med vurderingar."
 
-#: static/js/zamboni/reviewers.js:518
+#: static/js/zamboni/reviewers.js:533
 #, python-brace-format
 msgid "{name} was viewing this add-on first."
 msgstr "{name} såg på utvidinga først."
 
-#: static/js/zamboni/reviewers.js:531 static/js/zamboni/reviewers.js:557
+#: static/js/zamboni/reviewers.js:546 static/js/zamboni/reviewers.js:572
 msgid "Loading&hellip;"
 msgstr "Lastar &hellip;"
 
-#: static/js/zamboni/reviewers.js:536
+#: static/js/zamboni/reviewers.js:551
 msgid "Version Notes"
 msgstr "Versjonsmerknadar"
 
-#: static/js/zamboni/reviewers.js:543
+#: static/js/zamboni/reviewers.js:558
 msgid "Notes for Reviewers"
 msgstr "Merknadar for vurderarar"
 
-#: static/js/zamboni/reviewers.js:550
+#: static/js/zamboni/reviewers.js:565
 msgid "No version notes found"
 msgstr "Fann ingen versjonsmerknadar"
 
-#: static/js/zamboni/reviewers.js:562
+#: static/js/zamboni/reviewers.js:577
 msgid "Review Text"
 msgstr "Evaluer tekst"
 
-#: static/js/zamboni/reviewers.js:569
+#: static/js/zamboni/reviewers.js:584
 msgid "Review notes found"
 msgstr "Fann ingen evalueringar"
 

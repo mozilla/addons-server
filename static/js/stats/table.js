@@ -7,7 +7,7 @@ import { StatsManager } from './manager';
 
 $.fn.csvTable = function (cfg) {
   $(this).each(function () {
-    let $self = $(this),
+    var $self = $(this),
       $table = $self.find('table'),
       $thead = $self.find('thead'),
       $paginator = $self.find('.paginator'),
@@ -56,7 +56,7 @@ $.fn.csvTable = function (cfg) {
     }
 
     function showPage(page) {
-      let p = pages[page];
+      var p = pages[page];
       if (p) {
         $table.find('tbody').hide();
         p.el.show();
@@ -67,7 +67,7 @@ $.fn.csvTable = function (cfg) {
 
     function getPage(page) {
       if (pages[page] || page < 0) return;
-      let $def = $.Deferred(),
+      var $def = $.Deferred(),
         range = {
           end: Date.ago(pageSize * page + 'days'),
           start: Date.ago(pageSize * page + pageSize + 'days'),
@@ -78,14 +78,14 @@ $.fn.csvTable = function (cfg) {
           range: range,
         };
       $.when(StatsManager.getDataRange(view)).then(function (data) {
-        let fields = StatsManager.getAvailableFields(view),
+        var fields = StatsManager.getAvailableFields(view),
           newBody = '<tbody>',
           newPage = {},
           newHead = '<tr><th>' + gettext('Date') + '</th>',
           row;
 
         _.each(fields, function (f) {
-          let id = f.split('|').pop(),
+          var id = f.split('|').pop(),
             prettyName = _.escape(StatsManager.getPrettyName(metric, id)),
             trimmedPrettyName =
               prettyName.length > 32
@@ -96,7 +96,7 @@ $.fn.csvTable = function (cfg) {
           newHead += '</th>';
         });
 
-        let d = range.end.clone().backward('1 day'),
+        var d = range.end.clone().backward('1 day'),
           lastRowDate = range.start.clone().backward('1 day');
         for (; lastRowDate.isBefore(d); d.backward('1 day')) {
           row = data[d.iso()] || {};
@@ -109,7 +109,8 @@ $.fn.csvTable = function (cfg) {
             newBody += '<td>';
             if (metric == 'contributions' && f != 'count') {
               newBody +=
-                '$' + Highcharts.numberFormat(StatsManager.getField(row, f), 2);
+                '$' +
+                Highcharts.numberFormat(StatsManager.getField(row, f), 2);
             } else {
               newBody += Highcharts.numberFormat(
                 StatsManager.getField(row, f),

@@ -1284,7 +1284,7 @@ DRF_API_GATES = {
         'del-preview-position',
         'categories-application',
         'promoted-verified-sponsored',
-        'mimimal-profile-has-all-fields-shim',
+        'minimal-profile-has-all-fields-shim',
         'promoted-groups-shim',
     ),
     'v4': (
@@ -1305,7 +1305,7 @@ DRF_API_GATES = {
         'block-min-max-versions-shim',
         'block-versions-list-shim',
         'promoted-groups-shim',
-        'mimimal-profile-has-all-fields-shim',
+        'minimal-profile-has-all-fields-shim',
     ),
     'v5': (
         'addons-search-_score-field',
@@ -1314,7 +1314,6 @@ DRF_API_GATES = {
         'addon-submission-api',
         'promoted-verified-sponsored',
         'block-versions-list-shim',
-        'mimimal-profile-has-all-fields-shim',
     ),
 }
 
@@ -1512,8 +1511,12 @@ SPECTACULAR_SETTINGS = {
     # Extract tag of the root path of the API route
     # /api/v5/foo -> foo
     'SCHEMA_PATH_PREFIX': '/api/v[0-9]',
-    'TITLE': 'AMO API',
-    'DESCRIPTION': 'Addons Server API Documentation',
+    'TITLE': 'AMO API (Experimental)',
+    'DESCRIPTION': (
+        'Addons Server API Documentation (Experimental, check out '
+        '<a href="https://mozilla.github.io/addons-server/topics/api/index.html">'
+        'official documentation</a> for a more reliable source of information)'
+    ),
     'SERVE_INCLUDE_SCHEMA': True,
     'SERVE_PERMISSIONS': ['rest_framework.permissions.AllowAny'],
     # load swagger/redoc assets via collectstatic assets

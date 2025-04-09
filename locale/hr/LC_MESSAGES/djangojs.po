@@ -852,7 +852,7 @@ msgstr "Nema podataka."
 msgid "Date"
 msgstr "Datum"
 
-#: static/js/stats/topchart.js:106
+#: static/js/stats/topchart.js:107
 msgid "Other"
 msgstr "Ostali"
 
@@ -904,41 +904,41 @@ msgstr "Usluga je privremeno deaktivirana tijekom radova na održavanju stranice
 msgid "Remove this localization"
 msgstr "Ukloni ovaj prijevod"
 
-#: static/js/zamboni/reviewers.js:222
+#: static/js/zamboni/reviewers.js:237
 #, python-brace-format
 msgid "{name} was viewing this page first."
 msgstr "{name} je prvi pregledao stranicu."
 
-#: static/js/zamboni/reviewers.js:230
+#: static/js/zamboni/reviewers.js:245
 msgid "Review page polling failed."
 msgstr "Pregled stranice ankete neuspio."
 
-#: static/js/zamboni/reviewers.js:518
+#: static/js/zamboni/reviewers.js:533
 #, python-brace-format
 msgid "{name} was viewing this add-on first."
 msgstr "{name} je pregledao ovaj dodatak prvi."
 
-#: static/js/zamboni/reviewers.js:531 static/js/zamboni/reviewers.js:557
+#: static/js/zamboni/reviewers.js:546 static/js/zamboni/reviewers.js:572
 msgid "Loading&hellip;"
 msgstr "Učitavanje &hellip;"
 
-#: static/js/zamboni/reviewers.js:536
+#: static/js/zamboni/reviewers.js:551
 msgid "Version Notes"
 msgstr "Napomene o verziji"
 
-#: static/js/zamboni/reviewers.js:543
+#: static/js/zamboni/reviewers.js:558
 msgid "Notes for Reviewers"
 msgstr "Napomene za recenzente"
 
-#: static/js/zamboni/reviewers.js:550
+#: static/js/zamboni/reviewers.js:565
 msgid "No version notes found"
 msgstr "Nema napomena o verziji"
 
-#: static/js/zamboni/reviewers.js:562
+#: static/js/zamboni/reviewers.js:577
 msgid "Review Text"
 msgstr "Ocjeni tekst"
 
-#: static/js/zamboni/reviewers.js:569
+#: static/js/zamboni/reviewers.js:584
 msgid "Review notes found"
 msgstr "Pronađene napomene o recenziji"
 

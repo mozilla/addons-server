@@ -54,4 +54,5 @@ tmp/*
 
 # do not ignore the following files
 !docker-compose.private.yml
+!docker-compose.tools.yml
 !private/README.md

@@ -842,7 +842,7 @@ msgstr "Nulle datos disponibile."
 msgid "Date"
 msgstr "Data"
 
-#: static/js/stats/topchart.js:106
+#: static/js/stats/topchart.js:107
 msgid "Other"
 msgstr "Altere"
 
@@ -891,41 +891,41 @@ msgstr "Iste function es temporarimente disactivate pro mantenentia del sito web
 msgid "Remove this localization"
 msgstr "Remover iste localisation"
 
-#: static/js/zamboni/reviewers.js:222
+#: static/js/zamboni/reviewers.js:237
 #, python-brace-format
 msgid "{name} was viewing this page first."
 msgstr "{name} visualisava antea iste pagina."
 
-#: static/js/zamboni/reviewers.js:230
+#: static/js/zamboni/reviewers.js:245
 msgid "Review page polling failed."
 msgstr "Impossibile recuperar le pagina del recensiones."
 
-#: static/js/zamboni/reviewers.js:518
+#: static/js/zamboni/reviewers.js:533
 #, python-brace-format
 msgid "{name} was viewing this add-on first."
 msgstr "{name} visualisava antea iste additivo."
 
-#: static/js/zamboni/reviewers.js:531 static/js/zamboni/reviewers.js:557
+#: static/js/zamboni/reviewers.js:546 static/js/zamboni/reviewers.js:572
 msgid "Loading&hellip;"
 msgstr "Cargamento&hellip;"
 
-#: static/js/zamboni/reviewers.js:536
+#: static/js/zamboni/reviewers.js:551
 msgid "Version Notes"
 msgstr "Notas de version"
 
-#: static/js/zamboni/reviewers.js:543
+#: static/js/zamboni/reviewers.js:558
 msgid "Notes for Reviewers"
 msgstr "Notas pro le revisores"
 
-#: static/js/zamboni/reviewers.js:550
+#: static/js/zamboni/reviewers.js:565
 msgid "No version notes found"
 msgstr "Nulle notas de version trovate"
 
-#: static/js/zamboni/reviewers.js:562
+#: static/js/zamboni/reviewers.js:577
 msgid "Review Text"
 msgstr "Texto pro revision"
 
-#: static/js/zamboni/reviewers.js:569
+#: static/js/zamboni/reviewers.js:584
 msgid "Review notes found"
 msgstr "Notas de revision trovate"
 

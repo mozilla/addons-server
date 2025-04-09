@@ -3,6 +3,7 @@ from django.db.models import Q
 import olympia.core.logger
 from olympia import amo
 from olympia.addons.models import Addon
+from olympia.addons.serializers import PromotedGroup
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.constants.promoted import (
@@ -11,7 +12,7 @@ from olympia.constants.promoted import (
 from olympia.reviewers.models import UsageTier
 from olympia.versions.utils import get_staggered_review_due_date_generator
 
-from .models import PromotedAddon
+from .models import PromotedAddonPromotion
 
 
 log = olympia.core.logger.getLogger('z.promoted.tasks')
@@ -49,29 +50,31 @@ def add_high_adu_extensions_to_notable():
         due_date = next(due_date_generator)
         try:
             # We can't use update_or_create because we need to pass _due_date to save
-            # TODO: promotedaddon; due date (Write PR)
-            promo = PromotedAddon.objects.get(addon_id=addon_id)
-            if promo.group_id != PROMOTED_GROUP_CHOICES.NOT_PROMOTED:
-                # Shouldn't happen because filter only includes NOT_PROMOTED.
+            promotions = PromotedAddonPromotion.objects.filter(addon_id=addon_id)
+            if promotions:
+                # Shouldn't happen because filter only includes
+                # addons with no promotions.
                 log.warning(
                     'With addon id[%s], attempt to overwrite %s with %s. Skipping',
                     addon_id,
-                    promo.group.name,
+                    [promo.group.name for promo in promotions],
                     PROMOTED_GROUP_CHOICES.NOTABLE.api_value,
                 )
-                continue
-            promo.group_id = PROMOTED_GROUP_CHOICES.NOTABLE
-            created = False
-        except PromotedAddon.DoesNotExist:
-            promo = PromotedAddon(
-                addon_id=addon_id, group_id=PROMOTED_GROUP_CHOICES.NOTABLE
-            )
-            created = True
-        promo.save(_due_date=due_date)
+            else:
+                raise PromotedAddonPromotion.DoesNotExist
+        except PromotedAddonPromotion.DoesNotExist:
+            # Can reconstruct addon.all_applications() directly from APP_USAGE,
+            # since there's no existing promotions.
+            notable = PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.NOTABLE)
+            for app in amo.APP_USAGE:
+                promo = PromotedAddonPromotion(
+                    addon_id=addon_id, promoted_group=notable, application_id=app.id
+                )
+                promo.save(_due_date=due_date)
 
         log.info(
             '%s addon id[%s], slug[%s], with ADU[%s] to %s.',
-            ('Adding' if created else 'Updating'),
+            ('Adding' if not promotions else 'Updating'),
             addon_id,
             addon_slug,
             adu,

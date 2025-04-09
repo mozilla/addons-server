@@ -11,11 +11,11 @@
             "style": {
               "bold": true
             },
-            "text": "Health Check Alert: ",
+            "text": " [test] ",
             "type": "text"
           },
           {
-            "text": "Issues Detected",
+            "text": "Some health checks are failing!",
             "type": "text"
           }
         ],
@@ -27,17 +27,29 @@
   {
     "elements": [
       {
-        "elements": [
-          {
-            "style": {
-              "bold": true
-            },
-            "text": "Monitors:",
-            "type": "text"
-          }
-        ],
-        "type": "rich_text_section"
+        "text": "<http://nginx/__version__|Version>",
+        "type": "mrkdwn"
       },
+      {
+        "text": "<http://nginx/services/monitor.json|Monitors>",
+        "type": "mrkdwn"
+      },
+      {
+        "text": "version: 1.0.0",
+        "type": "mrkdwn"
+      },
+      {
+        "text": "commit: 1234567890",
+        "type": "mrkdwn"
+      }
+    ],
+    "type": "context"
+  },
+  {
+    "type": "divider"
+  },
+  {
+    "elements": [
       {
         "border": 1,
         "elements": [
@@ -80,22 +92,5 @@
       }
     ],
     "type": "rich_text"
-  },
-  {
-    "elements": [
-      {
-        "text": "Version: 1.0.0 |",
-        "type": "mrkdwn"
-      },
-      {
-        "text": "<http://nginx/__version__|Version> |",
-        "type": "mrkdwn"
-      },
-      {
-        "text": "<http://nginx/services/monitor.json|Monitors> |",
-        "type": "mrkdwn"
-      }
-    ],
-    "type": "context"
   }
 ]

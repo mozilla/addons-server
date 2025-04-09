@@ -84,11 +84,7 @@ help_submake:
 
 .PHONY: actionlint
 actionlint: ## lint github action workflows
-	docker run \
-		--rm \
-		-v "$(PWD):/workdir" \
-		-w "/workdir" \
-		rhysd/actionlint@sha256:887a259a5a534f3c4f36cb02dca341673c6089431057242cdc931e9f133147e9
+	docker compose -p actionlint -f docker-compose.tools.yml run --rm actionlint
 
 .PHONY: test_setup
 test_setup:
@@ -97,7 +93,12 @@ test_setup:
 .PHONY: setup
 setup: ## create configuration files version.json and .env required to run this project
 	for path in $(CLEAN_PATHS); do rm -rf "$(PWD)/$$path" && echo "$$path removed"; done
-	./scripts/setup.py
+	./scripts/setup.py $(SETUP_ARGS)
+
+.PHONY: build
+build: ## build the docker image
+	$(MAKE) setup SETUP_ARGS="--build"
+	$(MAKE) docker_build_web
 
 .PHONY: push_locales
 push_locales: ## extracts and merges translation strings

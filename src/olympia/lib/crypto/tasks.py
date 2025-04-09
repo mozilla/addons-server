@@ -122,8 +122,11 @@ def bump_addon_version(old_version):
     task_user = get_task_user()
     addon = old_version.addon
     old_file_obj = old_version.file
-    promoted_group = addon.promoted_groups(currently_approved=True)
-    carryover = promoted_group and any(promoted_group.listed_pre_review)
+    carryover_groups = [
+        promotion
+        for promotion in addon.promoted_groups()
+        if promotion.listed_pre_review
+    ]
     # We only sign files that have been reviewed
     if old_file_obj.status not in amo.APPROVED_STATUSES:
         log.info(
@@ -201,9 +204,8 @@ def bump_addon_version(old_version):
             )
 
             # Carry over promotion if necessary.
-            # TODO: promotedaddon; approve_for_version refactor (Write PR)
-            if carryover:
-                addon.promotedaddon.approve_for_version(new_version)
+            if carryover_groups:
+                addon.approve_for_version(new_version, carryover_groups)
 
     except Exception:
         log.exception(f'Failed re-signing file {old_file_obj.pk}', exc_info=True)

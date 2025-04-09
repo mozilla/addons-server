@@ -5,7 +5,7 @@ import { normalizeRange } from './dateutils';
 import { template } from '../lib/format';
 import { StatsManager } from './manager';
 
-let baseConfig = {
+var baseConfig = {
   chart: {
     backgroundColor: null,
   },
@@ -42,8 +42,9 @@ let baseConfig = {
 };
 
 $.fn.topChart = function (cfg) {
+  console.debug('topchart:init');
   $(this).each(function () {
-    let $self = $(this),
+    var $self = $(this),
       $win = $(window),
       $chart = $self.find('.piechart'),
       hChart,
@@ -56,6 +57,7 @@ $.fn.topChart = function (cfg) {
 
     // reload the data when the view's range is modified.
     $win.on('changeview', function (e, newView) {
+      console.debug('topchart:window:changeview', newView);
       // we only want to respond to changes in range.
       if (!newView.range) return;
       $self.addClass('loading');
@@ -75,7 +77,7 @@ $.fn.topChart = function (cfg) {
         $table.html('');
         return;
       }
-      let totalValue = 0,
+      var totalValue = 0,
         otherValue = 0;
       data = data[data.firstIndex].data;
       if (_.isEmpty(data)) return;
@@ -84,8 +86,8 @@ $.fn.topChart = function (cfg) {
         totalValue += val;
       });
       // Convert all fields to percentages and prettify names.
-      let rankedList = _.map(data, function (val, key) {
-        let field = key.split('|').slice(-1)[0];
+      var rankedList = _.map(data, function (val, key) {
+        var field = key.split('|').slice(-1)[0];
         return [
           StatsManager.getPrettyName(metric, field),
           val,
@@ -97,7 +99,7 @@ $.fn.topChart = function (cfg) {
         return -a[1];
       });
       // Calculate the 'Other' percentage
-      for (let i = 5; i < rankedList.length; i++) {
+      for (var i = 5; i < rankedList.length; i++) {
         otherValue += rankedList[i][1];
       }
       // Take the top 5 values and append an 'Other' row.
@@ -111,17 +113,20 @@ $.fn.topChart = function (cfg) {
       done(rankedList);
     }
 
-    let tableRow = template(
+    var tableRow = template(
       '<tr><td>{0}</td><td title="{3}">{1}</td><td>({2}%)</td></tr>',
     );
 
     function render(data) {
-      let newBody = '<tbody>';
+      var newBody = '<tbody>';
       _.each(data, function (row) {
-        let title = row[0];
-        let raw_value = row[1];
-        let value = Highcharts.numberFormat(raw_value, raw_value < 10 ? 1 : 0);
-        let percent = Highcharts.numberFormat(row[2], 0);
+        var title = row[0];
+        var raw_value = row[1];
+        var value = Highcharts.numberFormat(
+          raw_value,
+          raw_value < 10 ? 1 : 0,
+        );
+        var percent = Highcharts.numberFormat(row[2], 0);
 
         if (percent < 1) {
           percent = '<1';
@@ -133,7 +138,7 @@ $.fn.topChart = function (cfg) {
       $table.html(newBody);
 
       // set up chart.
-      let newConfig = _.clone(baseConfig),
+      var newConfig = _.clone(baseConfig),
         row;
       newConfig.chart.renderTo = $chart[0];
       newConfig.series[0].data = _.map(data, function (r) {
@@ -141,7 +146,7 @@ $.fn.topChart = function (cfg) {
       });
       hChart = new Highcharts.Chart(newConfig);
       for (let i = 0; i < data.length; i++) {
-        row = $table.find('tr').eq(i);
+        const row = $table.find('tr').eq(i);
         row
           .children()
           .eq(0)

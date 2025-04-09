@@ -842,7 +842,7 @@ msgstr "Nincs dátum."
 msgid "Date"
 msgstr "Dátum"
 
-#: static/js/stats/topchart.js:106
+#: static/js/stats/topchart.js:107
 msgid "Other"
 msgstr "Egyéb"
 
@@ -891,41 +891,41 @@ msgstr "Ez a funkció a weboldal karbantartása alatt, átmenetileg nem érhető
 msgid "Remove this localization"
 msgstr "Honosítás eltávolítása"
 
-#: static/js/zamboni/reviewers.js:222
+#: static/js/zamboni/reviewers.js:237
 #, python-brace-format
 msgid "{name} was viewing this page first."
 msgstr "{name} nézte meg először az oldalt."
 
-#: static/js/zamboni/reviewers.js:230
+#: static/js/zamboni/reviewers.js:245
 msgid "Review page polling failed."
 msgstr "Az értékelési oldal lekérdezése sikertelen."
 
-#: static/js/zamboni/reviewers.js:518
+#: static/js/zamboni/reviewers.js:533
 #, python-brace-format
 msgid "{name} was viewing this add-on first."
 msgstr "{name} nézte meg először a kiegészítőt."
 
-#: static/js/zamboni/reviewers.js:531 static/js/zamboni/reviewers.js:557
+#: static/js/zamboni/reviewers.js:546 static/js/zamboni/reviewers.js:572
 msgid "Loading&hellip;"
 msgstr "Betöltés&hellip;"
 
-#: static/js/zamboni/reviewers.js:536
+#: static/js/zamboni/reviewers.js:551
 msgid "Version Notes"
 msgstr "Megjegyzések a verzióhoz"
 
-#: static/js/zamboni/reviewers.js:543
+#: static/js/zamboni/reviewers.js:558
 msgid "Notes for Reviewers"
 msgstr "Megjegyzés a vizsgálatot végzőknek"
 
-#: static/js/zamboni/reviewers.js:550
+#: static/js/zamboni/reviewers.js:565
 msgid "No version notes found"
 msgstr "Nincsenek megjegyzések a verzióhoz"
 
-#: static/js/zamboni/reviewers.js:562
+#: static/js/zamboni/reviewers.js:577
 msgid "Review Text"
 msgstr "Értékelés szövege"
 
-#: static/js/zamboni/reviewers.js:569
+#: static/js/zamboni/reviewers.js:584
 msgid "Review notes found"
 msgstr "Talált értékelési jegyzetek"
 

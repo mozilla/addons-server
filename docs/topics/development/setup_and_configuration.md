@@ -118,6 +118,9 @@ make up DOCKER_VERSION=<version>
 
 Version is the published tag of addons-server and corresponds to `mozilla/addons-server:<version>` in [dockerhub][addons-server-tags].
 
+> **Important**: When using a remote image (via `DOCKER_VERSION` or `DOCKER_DIGEST`), the `DOCKER_TARGET` must be set to 'production'.
+> Running remote images in development mode is not supported and will fail validation during setup.
+
 Specifying a version will configure docker compose to set the [pull policy] to _always_ and specify the _image_ property
 in the docker compose config to pull the latest build of the specified `version`. Once you've specified a version,
 subsequent calls to `make up` will pull the same version consistently {ref}`see idempotence <idempotence>` for more details.
@@ -198,6 +201,19 @@ This means when you run `make docker_compose_up`, the output on your machine wil
 but sometimes you need to debug further what a command is running on the terminal and this architecture allows you to do that.
 
 By following these steps, you can set up your local development environment and understand the existing CI workflows for the **addons-server** project. For more details on specific commands and configurations, refer to the upcoming sections in this documentation.
+
+### Environment Validation
+
+The setup process includes strict validation of environment variables to ensure a valid configuration:
+
+| Validation Rule | Description | Required | Validation | Default | From .env file|
+|----------------|-------------|----------|------------|---------|--------------|
+| `DOCKER_TAG` | The full docker tag for the image | false | (derived from other values) | mozilla/addons-server:local |true |
+| `DOCKER_TARGET` | The target stage to build the docker image to | true | must be `production` when building an image or using a remote image | `development` for local images, `production` for remote images | true (only for local images) |
+| `DOCKER_VERSION` | The docker tag version to use when building/pulling an image | false | none | local | false |
+| `DOCKER_DIGEST` | The docker image build digest to pull a specific build | false | overrides `DOCKER_VERSION` | none | false |
+
+These validations help prevent configuration issues early in the setup process.
 
 ## Gotchas
 
@@ -392,3 +408,21 @@ Inspecting the database can be done via:
 ```bash
 make dbshell
 ```
+
+### Environment validation errors during setup
+
+If you see validation errors during `make up` like this:
+
+```bash
+Invalid items: check setup.py for validations
+• DOCKER_TARGET
+• DOCKER_COMMIT
+• DOCKER_BUILD
+```
+
+This usually means you're trying to use a remote image (via `DOCKER_VERSION` or `DOCKER_DIGEST`) without the required production configuration. Remember that remote images:
+
+- Must use `DOCKER_TARGET=production`
+- Require `DOCKER_COMMIT` and `DOCKER_BUILD` values
+
+For local development, use the default local image build which has more flexible validation rules.

@@ -2053,7 +2053,6 @@ class TestContentDecisionManager(TestCase):
 
 
 @override_switch('dsa-abuse-reports-review', active=True)
-@override_switch('dsa-appeals-review', active=True)
 class TestContentDecision(TestCase):
     def setUp(self):
         # It's the webhook's responsibility to do this before calling the

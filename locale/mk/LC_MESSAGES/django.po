@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-26 19:44+0000\n"
+"POT-Creation-Date: 2025-04-09 13:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2950,11 +2950,6 @@ msgstr ""
 msgid "Sort by:"
 msgstr ""
 
-#. %s is a list of markdown syntax.
-#, python-format
-msgid "Allowed Markdown: %(allowed_markdown)s"
-msgstr ""
-
 msgid "Some Markdown supported."
 msgstr ""
 
@@ -4379,6 +4374,10 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Easily summarize emails, docs, articles, and video transcripts in English across the web — without sacrificing your privacy."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "You’re in control. Turn off VPN when a website won’t work and set different locations for different websites. Windows only."
 msgstr ""
 
 #. editorial content for the secondary hero shelves.

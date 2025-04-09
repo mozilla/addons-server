@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+import argparse
+import json
 import os
 
 
@@ -39,9 +41,10 @@ def get_value(key, default_value):
     return default_value
 
 
-def get_docker_image_meta():
+def get_docker_image_meta(build=False):
     image = 'mozilla/addons-server'
     version = 'local'
+    digest = None
 
     # First get the tag from the full tag variable
     tag = get_value('DOCKER_TAG', f'{image}:{version}')
@@ -51,7 +54,6 @@ def get_docker_image_meta():
         version = None
     elif ':' in tag:
         image, version = tag.split(':')
-        digest = None
 
     # DOCKER_DIGEST or DOCKER_VERSION can override the extracted version or digest
     # Note: it will inherit the image from the provided DOCKER_TAG if also provided
@@ -62,22 +64,71 @@ def get_docker_image_meta():
     elif bool(os.environ.get('DOCKER_VERSION', False)):
         version = os.environ['DOCKER_VERSION']
         tag = f'{image}:{version}'
-        digest = None
 
-    # Docker target can be set on local images, but should be inferred from the image
-    # on remote images. Remote images are always built for production.
-    target = (
+    is_local = version == 'local' and digest is None
+    docker_target = (
         get_value('DOCKER_TARGET', 'development')
-        if version == 'local'
-        else 'production'
+        if is_local
+        else os.environ.get('DOCKER_TARGET', 'production')
     )
+    is_production = docker_target == 'production'
+    docker_commit = os.environ.get('DOCKER_COMMIT')
+    docker_build = os.environ.get('DOCKER_BUILD')
 
-    print('tag: ', tag)
-    print('target: ', target)
-    print('version: ', version)
-    print('digest: ', digest)
+    valid_version_digest = (version and not digest) or (digest and not version)
+    valid_docker_target = is_production or (is_local and not build)
 
-    return tag, target, version, digest
+    def valid_build_commit(value):
+        # We don't care what the value is in local images
+        if is_local:
+            return True
+        # When building, the value is required
+        # to be written to the build-info.json
+        elif build:
+            return bool(value)
+        # When running (on production), the value is forbidden
+        # it was defined in the build-info.json
+        elif is_production:
+            return not bool(value)
+
+    # Define metadata and define if the value is valid
+    data = {
+        # Docker tag is always required but often derived from other inputs
+        'DOCKER_TAG': (tag, tag is not None),
+        # Docker version and digest are mutually exclusive
+        # exactly and only one should be set
+        'DOCKER_VERSION': (version, valid_version_digest),
+        'DOCKER_DIGEST': (digest, valid_version_digest),
+        # Docker target can be set on local images,
+        # but should be production for remote images.
+        # Remote images are always built for production.
+        'DOCKER_TARGET': (docker_target, valid_docker_target),
+        # Docker commit and build are:
+        # - optional for non production images
+        # - forbidden on remote images (already defined in the build-info.json)
+        'DOCKER_COMMIT': (docker_commit, valid_build_commit(docker_commit)),
+        'DOCKER_BUILD': (docker_build, valid_build_commit(docker_build)),
+    }
+
+    errors = {}
+    meta = {}
+
+    for key, (value, valid) in data.items():
+        # Add defined values to meta
+        if value:
+            meta[key] = value
+        # Add invalid values to errors
+        if not valid:
+            errors[key] = value
+
+    if len(errors.keys()):
+        raise ValueError(
+            f'\n{json.dumps(meta, indent=2)}\n'
+            f'Invalid items: check setup.py for validations (build={build})'
+            '\n• ' + '\n• '.join(errors.keys())
+        )
+
+    return meta
 
 
 # Env file should contain values that are referenced in docker-compose*.yml files
@@ -94,21 +145,21 @@ def get_docker_image_meta():
 # 4. the value defined in the make args.
 
 
-def main():
-    docker_tag, docker_target, _, _ = get_docker_image_meta()
-
-    olympia_uid = os.getuid()
+def main(build=False):
+    image_meta = get_docker_image_meta(build)
+    docker_target = image_meta['DOCKER_TARGET']
 
     # These variables are special, as we should allow the user to override them
     # but we should not set a default to the previously set value but instead
     # use a value derived from other stable values.
     debug = os.environ.get('DEBUG', str(docker_target != 'production'))
     olympia_deps = os.environ.get('OLYMPIA_DEPS', docker_target)
+    # These variables are not set by the user, but are derived from the environment only
+    olympia_uid = os.getuid()
 
     set_env_file(
         {
-            'DOCKER_TAG': docker_tag,
-            'DOCKER_TARGET': docker_target,
+            **image_meta,
             # We save olympia_* values as host_* values to ensure that
             # inputs can be recieved via environment variables, but that
             # docker compose only reads the values explicitly set in the .env file.
@@ -126,4 +177,7 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--build', action='store_true')
+    args = parser.parse_args()
+    main(args.build)

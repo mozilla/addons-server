@@ -48,7 +48,7 @@ from olympia.devhub.models import RssKey
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadMixin
 from olympia.files.utils import parse_addon
-from olympia.promoted.models import PromotedAddon, PromotedGroup
+from olympia.promoted.models import PromotedAddonPromotion, PromotedGroup
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.reviewers.models import NeedsHumanReview
 from olympia.translations.models import (
@@ -1642,28 +1642,25 @@ class TestAddonModels(TestCase):
         assert not addon.promoted_groups(currently_approved=False)
 
         # It's promoted but nothing has been approved
-        promoted = PromotedAddon.objects.create(
-            addon=addon, group_id=PROMOTED_GROUP_CHOICES.LINE
-        )
+        self.make_addon_promoted(addon=addon, group_id=PROMOTED_GROUP_CHOICES.LINE)
         assert addon.promoted_groups(currently_approved=False)
         assert not addon.promoted_groups()
 
         # The latest version is approved for the same group.
-        promoted.approve_for_version(version=addon.current_version)
+        addon.approve_for_version(version=addon.current_version)
         assert addon.promoted_groups()
         assert PROMOTED_GROUP_CHOICES.LINE in addon.promoted_groups().group_id
 
         # if the group has changes the approval for the current version isn't
         # valid
-        promoted.update(group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT)
-        assert not addon.promoted_groups()
-        assert addon.promoted_groups(currently_approved=False)
+        self.make_addon_promoted(addon=addon, group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT)
+        assert PROMOTED_GROUP_CHOICES.SPOTLIGHT not in addon.promoted_groups().group_id
         assert (
             PROMOTED_GROUP_CHOICES.SPOTLIGHT
             in addon.promoted_groups(currently_approved=False).group_id
         )
 
-        promoted.approve_for_version(version=addon.current_version)
+        addon.approve_for_version(version=addon.current_version)
         assert PROMOTED_GROUP_CHOICES.SPOTLIGHT in addon.promoted_groups().group_id
 
         # Application specific group membership should work too
@@ -1671,14 +1668,18 @@ class TestAddonModels(TestCase):
         assert PROMOTED_GROUP_CHOICES.SPOTLIGHT in addon.promoted_groups().group_id
 
         # update to mobile app
-        promoted.update(application_id=amo.ANDROID.id)
+        self.make_addon_promoted(
+            addon=addon, group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT, apps=[amo.ANDROID]
+        )
         assert addon.promoted_groups()
         # but if there's no approval for Android it's not promoted
-        addon.current_version.promoted_approvals.filter(
+        addon.current_version.promoted_versions.filter(
             application_id=amo.ANDROID.id
         ).delete()
         assert not addon.promoted_groups()
-        promoted.update(application_id=amo.FIREFOX.id)
+        self.make_addon_promoted(
+            addon=addon, group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT, apps=[amo.FIREFOX]
+        )
         assert PROMOTED_GROUP_CHOICES.SPOTLIGHT in addon.promoted_groups().group_id
 
         # check it doesn't error if there's no current_version
@@ -1694,30 +1695,29 @@ class TestAddonModels(TestCase):
         assert not addon.cached_promoted_groups
 
         # It's promoted but nothing has been approved.
-        promoted = PromotedAddon.objects.create(
-            addon=addon, group_id=PROMOTED_GROUP_CHOICES.LINE
-        )
+        self.make_addon_promoted(addon=addon, group_id=PROMOTED_GROUP_CHOICES.LINE)
         assert not addon.cached_promoted_groups
 
         # The latest version is approved.
-        promoted.approve_for_version(addon.current_version)
+        addon.approve_for_version(addon.current_version)
         del addon.cached_promoted_groups
         assert any(
-            promotion.group_id == promoted.group_id
+            promotion.group_id == PROMOTED_GROUP_CHOICES.LINE
             for promotion in addon.cached_promoted_groups
         )
 
         # If the group changes the approval for the current version isn't
         # valid.
-        promoted.update(group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT)
+        PromotedAddonPromotion.objects.filter(addon=addon).delete()
+        self.make_addon_promoted(addon=addon, group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT)
         del addon.cached_promoted_groups
         assert not addon.cached_promoted_groups
 
         # Add an approval for the new group.
-        promoted.approve_for_version(addon.current_version)
+        addon.approve_for_version(addon.current_version)
         del addon.cached_promoted_groups
         assert any(
-            promotion.group_id == promoted.group_id
+            promotion.group_id == PROMOTED_GROUP_CHOICES.SPOTLIGHT
             for promotion in addon.cached_promoted_groups
         )
 
@@ -1743,7 +1743,6 @@ class TestAddonModels(TestCase):
         featured_collection.remove_addon(addon)
         del addon.cached_promoted_groups
         addon = Addon.objects.get(id=addon.id)
-        # assert not addon.promotedaddon
         # but not when it's removed.
         assert not addon.cached_promoted_groups
 
@@ -1786,20 +1785,22 @@ class TestAddonModels(TestCase):
         assert not addon.can_be_compatible_with_all_fenix_versions
 
         # It's promoted but nothing has been approved.
-        promoted = PromotedAddon.objects.create(
-            addon=addon, group_id=PROMOTED_GROUP_CHOICES.LINE
-        )
+        self.make_addon_promoted(addon=addon, group_id=PROMOTED_GROUP_CHOICES.LINE)
         assert not addon.can_be_compatible_with_all_fenix_versions
 
         # The latest version is approved.
-        promoted.approve_for_version(addon.current_version)
+        addon.approve_for_version(addon.current_version)
         del addon.cached_promoted_groups
         assert addon.can_be_compatible_with_all_fenix_versions
 
-        promoted.update(application_id=amo.FIREFOX.id)
+        self.make_addon_promoted(
+            addon=addon, group_id=PROMOTED_GROUP_CHOICES.LINE, apps=[amo.FIREFOX]
+        )
         assert not addon.can_be_compatible_with_all_fenix_versions
 
-        promoted.update(application_id=amo.ANDROID.id)
+        self.make_addon_promoted(
+            addon=addon, group_id=PROMOTED_GROUP_CHOICES.LINE, apps=[amo.ANDROID]
+        )
         assert addon.can_be_compatible_with_all_fenix_versions
 
 
@@ -3641,36 +3642,36 @@ class TestExtensionsQueues(TestCase):
     def test_pending_queue_needs_human_review_from_abuse(self):
         self._test_pending_queue_needs_human_review_from(
             NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION,
-            'needs_human_review_from_abuse',
+            'needs_human_review_abuse_addon_violation',
         )
 
     def test_pending_queue_needs_human_review_from_appeal(self):
         self._test_pending_queue_needs_human_review_from(
             NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL,
-            'needs_human_review_from_appeal',
+            'needs_human_review_addon_review_appeal',
         )
 
     def test_pending_queue_needs_human_review_from_cinder_forwarded_abuse(self):
         self._test_pending_queue_needs_human_review_from(
             NeedsHumanReview.REASONS.CINDER_ESCALATION,
-            'needs_human_review_from_cinder_forwarded_abuse',
+            'needs_human_review_cinder_escalation',
         )
 
     def test_pending_queue_needs_human_review_from_cinder_forwarded_appeal(self):
         self._test_pending_queue_needs_human_review_from(
             NeedsHumanReview.REASONS.CINDER_APPEAL_ESCALATION,
-            'needs_human_review_from_cinder_forwarded_appeal',
+            'needs_human_review_cinder_appeal_escalation',
         )
 
     def test_pending_queue_needs_human_review_from_2nd_level_approval(self):
         self._test_pending_queue_needs_human_review_from(
             NeedsHumanReview.REASONS.AMO_2ND_LEVEL_ESCALATION,
-            'needs_human_review_from_2nd_level_approval',
+            'needs_human_review_amo_2nd_level_escalation',
         )
 
-    def test_pending_queue_needs_human_review_other(self):
+    def test_pending_queue_needs_human_scanner_action(self):
         self._test_pending_queue_needs_human_review_from(
-            NeedsHumanReview.REASONS.SCANNER_ACTION, 'needs_human_review_other'
+            NeedsHumanReview.REASONS.SCANNER_ACTION, 'needs_human_review_scanner_action'
         )
 
     def test_get_pending_rejection_queue(self):

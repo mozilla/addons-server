@@ -1557,8 +1557,7 @@ class Addon(OnChangeMixin, ModelBase):
     def promoted_groups(self, *, currently_approved=True):
         """Is the addon currently promoted for the current applications?
 
-        Returns the group constant, or NOT_PROMOTED (which is falsey)
-        otherwise.
+        Returns a queryset of PromotedGroups.
 
         `currently_approved=True` means only returns True if
         self.current_version is approved for the current promotion & apps.
@@ -1589,12 +1588,22 @@ class Addon(OnChangeMixin, ModelBase):
                 ]
         return []
 
+    @cached_property
+    def has_promotions(self):
+        return bool(self.promoted_groups(currently_approved=False))
+
     @property
     def all_applications(self):
+        return self.all_applications_for()
+
+    def all_applications_for(self, promoted_group=None):
         from olympia.addons.serializers import APP_IDS
         from olympia.constants.applications import APP_USAGE
 
-        apps = self.promotedaddonpromotion.values_list('application_id', flat=True)
+        qs = self.promotedaddonpromotion
+        if promoted_group:
+            qs = qs.filter(promoted_group=promoted_group)
+        apps = qs.values_list('application_id', flat=True)
 
         return (
             [APP_IDS.get(app_id) for app_id in apps]
@@ -1623,6 +1632,17 @@ class Addon(OnChangeMixin, ModelBase):
             if version in self.all_applications
         ]
 
+    def approve_for_version(self, version=None, promoted_groups=None):
+        """Create PromotedAddonVersion for current applications in the given
+        promoted groups. If none are given, approve all promotions."""
+        version = version or self.current_version
+        promotions = self.promotedaddonpromotion
+        if promoted_groups:
+            promotions = promotions.filter(promoted_group__in=promoted_groups)
+
+        for promotion in promotions.all():
+            promotion.approve_for_version(version)
+
     def _promoted_addon_versions(self, version=None, promoted_group=None):
         """
         Returns the versions associated with an approval (i.e approved promotions)
@@ -1631,7 +1651,7 @@ class Addon(OnChangeMixin, ModelBase):
         from olympia.promoted.models import PromotedAddonVersion
 
         return PromotedAddonVersion.objects.filter(
-            version=version if version else self.current_version,
+            version=version or self.current_version,
             **({'promoted_group': promoted_group} if promoted_group else {}),
         )
 

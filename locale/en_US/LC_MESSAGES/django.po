@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-26 19:44+0000\n"
+"POT-Creation-Date: 2025-04-09 13:01+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -3273,11 +3273,6 @@ msgstr "Please choose a license appropriate for the rights you grant on your sou
 msgid "Sort by:"
 msgstr "Sort by:"
 
-#. %s is a list of markdown syntax.
-#, python-format
-msgid "Allowed Markdown: %(allowed_markdown)s"
-msgstr "Allowed Markdown: %(allowed_markdown)s"
-
 msgid "Some Markdown supported."
 msgstr "Some Markdown supported."
 
@@ -4840,6 +4835,10 @@ msgstr "Block time-wasting websites. Block them completely or just during time f
 #. editorial content for the primary hero shelves.
 msgid "Easily summarize emails, docs, articles, and video transcripts in English across the web — without sacrificing your privacy."
 msgstr "Easily summarize emails, docs, articles, and video transcripts in English across the web — without sacrificing your privacy."
+
+#. editorial content for the primary hero shelves.
+msgid "You’re in control. Turn off VPN when a website won’t work and set different locations for different websites. Windows only."
+msgstr "You’re in control. Turn off VPN when a website won’t work and set different locations for different websites. Windows only."
 
 #. editorial content for the secondary hero shelves.
 #, fuzzy

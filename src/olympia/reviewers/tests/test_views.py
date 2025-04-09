@@ -80,7 +80,6 @@ from olympia.users.models import UserProfile
 from olympia.versions.models import (
     ApplicationsVersions,
     AppVersion,
-    VersionManager,
 )
 from olympia.versions.utils import get_review_due_date
 from olympia.zadmin.models import get_config
@@ -1320,12 +1319,7 @@ class TestQueueBasics(QueueTest):
         assert rows.length == 1
         assert rows.attr('data-addon') == str(addon.id)
         assert rows.find('td').eq(1).text() == 'Firefox Fún 1.1'
-        assert (
-            rows.find(
-                '.ed-sprite-needs-human-review-from-cinder-forwarded-abuse'
-            ).length
-            == 1
-        )
+        assert rows.find('.ed-sprite-needs-human-review-cinder-escalation').length == 1
 
     def test_flags_appeal_forwarded_from_cinder(self):
         addon = addon_factory(name='Firefox Fún')
@@ -1346,9 +1340,7 @@ class TestQueueBasics(QueueTest):
         assert rows.attr('data-addon') == str(addon.id)
         assert rows.find('td').eq(1).text() == 'Firefox Fún 1.1'
         assert (
-            rows.find(
-                '.ed-sprite-needs-human-review-from-cinder-forwarded-appeal'
-            ).length
+            rows.find('.ed-sprite-needs-human-review-cinder-appeal-escalation').length
             == 1
         )
 
@@ -1732,10 +1724,10 @@ class TestExtensionQueue(QueueTest):
         # and all the checkboxes are checked by default if there are not GET params
         assert doc(
             '#addon-queue-filter-form input[type="checkbox"]:checked'
-        ).length == len(VersionManager.get_due_date_reason_q_objects())
+        ).length == len(NeedsHumanReview.REASONS)
 
     def test_due_date_reason_filtering(self):
-        self.url += '?due_date_reasons=needs_human_review_from_abuse'
+        self.url += '?due_date_reasons=needs_human_review_abuse_addon_violation'
         self.expected_addons = self.get_expected_addons_by_names(
             ['Pending One', 'Nominated Two'],
             auto_approve_disabled=True,
@@ -1750,8 +1742,8 @@ class TestExtensionQueue(QueueTest):
     def test_due_date_reason_with_two_filters(self):
         # test with two filters applied
         self.url += (
-            '?due_date_reasons=needs_human_review_from_abuse'
-            '&due_date_reasons=has_developer_reply'
+            '?due_date_reasons=needs_human_review_abuse_addon_violation'
+            '&due_date_reasons=needs_human_review_developer_reply'
         )
         self.expected_addons = self.get_expected_addons_by_names(
             ['Pending One', 'Nominated One', 'Nominated Two'],
@@ -4323,8 +4315,8 @@ class TestReview(ReviewBase):
         assert addon.status == amo.STATUS_APPROVED
         assert addon.current_version
         assert addon.current_version.file.status == amo.STATUS_APPROVED
-        assert addon.current_version.promoted_approvals.filter(
-            group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+        assert addon.current_version.promoted_versions.filter(
+            promoted_group__group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
         ).exists()
         assert mock_sign_file.called
 
@@ -4355,8 +4347,8 @@ class TestReview(ReviewBase):
         self.assert3xx(response, unlisted_url)
         self.version.file.reload()
         assert self.version.file.status == amo.STATUS_APPROVED
-        assert self.version.promoted_approvals.filter(
-            group_id=PROMOTED_GROUP_CHOICES.NOTABLE
+        assert self.version.promoted_versions.filter(
+            promoted_group__group_id=PROMOTED_GROUP_CHOICES.NOTABLE
         ).exists()
         assert mock_sign_file.called
 

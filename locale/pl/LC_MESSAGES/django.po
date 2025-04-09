@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-26 19:44+0000\n"
+"POT-Creation-Date: 2025-04-09 13:01+0000\n"
 "PO-Revision-Date: 2018-08-10 18:00+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -3051,11 +3051,6 @@ msgstr "Wybierz licencję odpowiednią dla praw, których udzielasz do kodu źr�
 msgid "Sort by:"
 msgstr "Sortuj wg:"
 
-#. %s is a list of markdown syntax.
-#, python-format
-msgid "Allowed Markdown: %(allowed_markdown)s"
-msgstr ""
-
 msgid "Some Markdown supported."
 msgstr ""
 
@@ -4577,6 +4572,10 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Easily summarize emails, docs, articles, and video transcripts in English across the web — without sacrificing your privacy."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "You’re in control. Turn off VPN when a website won’t work and set different locations for different websites. Windows only."
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
