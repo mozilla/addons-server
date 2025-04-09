@@ -490,7 +490,6 @@ class TestContentActionUser(BaseTestContentAction, TestCase):
 
 
 @override_switch('dsa-cinder-forwarded-review', active=True)
-@override_switch('dsa-appeals-review', active=True)
 class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
     ActionClass = ContentActionDisableAddon
     activity_log_action = amo.LOG.FORCE_DISABLE
@@ -706,29 +705,6 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
             f'{settings.SITE_URL}/en-US/developers/addon/{self.addon.id}/'
             in mail_item.body
         )
-
-    def test_notify_owner_with_appeal_waffle_off_doesnt_offer_appeal(self):
-        self.cinder_job.delete()
-        self.decision.refresh_from_db()
-        self.decision.update(action=self.takedown_decision_action)
-        assert not self.decision.is_third_party_initiated
-
-        with override_switch('dsa-appeals-review', active=True):
-            self.ActionClass(self.decision).notify_owners()
-        mail_item = mail.outbox[0]
-        self._check_owner_email(
-            mail_item, f'Mozilla Add-ons: {self.addon.name}', self.disable_snippet
-        )
-        assert 'right to appeal' in mail_item.body
-        mail.outbox.clear()
-
-        with override_switch('dsa-appeals-review', active=False):
-            self.ActionClass(self.decision).notify_owners()
-        mail_item = mail.outbox[0]
-        self._check_owner_email(
-            mail_item, f'Mozilla Add-ons: {self.addon.name}', self.disable_snippet
-        )
-        assert 'right to appeal' not in mail_item.body
 
     def test_should_hold_action(self):
         self.decision.update(action=self.takedown_decision_action)

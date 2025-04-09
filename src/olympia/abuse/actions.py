@@ -10,8 +10,6 @@ from django.utils import translation
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 
-import waffle
-
 import olympia
 from olympia import amo
 from olympia.access.models import Group
@@ -129,10 +127,7 @@ class ContentAction:
         }
         if 'policies' not in context_dict:
             context_dict['policies'] = self.decision.policies.all()
-        if self.decision.can_be_appealed(is_reporter=False) and (
-            self.decision.is_third_party_initiated
-            or waffle.switch_is_active('dsa-appeals-review')
-        ):
+        if self.decision.can_be_appealed(is_reporter=False):
             context_dict['appeal_url'] = absolutify(
                 reverse(
                     'abuse.appeal_author',
