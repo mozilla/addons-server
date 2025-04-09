@@ -42,6 +42,7 @@ var baseConfig = {
 };
 
 $.fn.topChart = function (cfg) {
+  console.debug('topchart:init');
   $(this).each(function () {
     var $self = $(this),
       $win = $(window),

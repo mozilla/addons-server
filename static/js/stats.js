@@ -11,5 +11,5 @@ import { stats_stats } from './stats/stats';
 import { capabilities } from './zamboni/capabilities';
 
 // Initialize the stats module.
-stats_stats(window.sessionStorage, capabilities);
 stats_overview();
+stats_stats(window.sessionStorage, capabilities);
