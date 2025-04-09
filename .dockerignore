@@ -64,3 +64,6 @@ Makefile-os
 
 # Do not copy .git directory to docker images
 .git
+
+# Ignore generated credentials from google-github-actions/auth
+gha-creds-*.json
