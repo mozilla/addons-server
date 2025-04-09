@@ -23,7 +23,7 @@ Firefox determines which add-ons are unsafe to allow to continue to be enabled b
 v2/v1 are referred to as "legacy" blocklist in these docs.
 ```
 
-AMO holds the addon blocklist records (`Block` models) defining blocks for the **v3 system** (including hard/soft type) and generates the v3 bloomfilters and stashes as needed, which are then uploaded to the `addons-bloomfilters` collection on Remote Settings. The `Block` records are managed via the admin tools on addons-server.
+AMO holds the addon blocklist records (`Block`) defining blocks for the **v3 system** (including hard/soft type) and generates the v3 bloomfilters and stashes as needed, which are then uploaded to the `addons-bloomfilters` collection on Remote Settings. The `Block` records are managed via the admin tools on addons-server.
 
 ```{admonition} legacy
 If any changes are needed to the contents of the legacy blocklist it must be made via the Firefox Remote Settings web admin tool - there is no longer any way to import or export changes between the legacy blocklist and the v3 blocklist.
