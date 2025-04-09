@@ -1879,7 +1879,7 @@ class TestCinderPolicy(TestCase):
                 uuid=existing_policy.uuid,
             )
 
-    def test_str(self):
+    def test_full_name(self):
         parent_policy = CinderPolicy.objects.create(
             name='Parent Policy',
             text='Parent Policy Description',
@@ -1897,30 +1897,61 @@ class TestCinderPolicy(TestCase):
     def test_full_text(self):
         parent_policy = CinderPolicy.objects.create(
             name='Parent Policy',
-            text='Parent Policy Description',
+            text='Parent Description',
             uuid='parent-uuid',
         )
         child_policy = CinderPolicy.objects.create(
             name='Child Policy',
-            text='Child Policy Description',
+            text='Child {FOO} Description {BAR}',
             uuid='child-uuid',
             parent=parent_policy,
         )
-        assert parent_policy.full_text('') == 'Parent Policy'
-        assert parent_policy.full_text() == 'Parent Policy: Parent Policy Description'
+        assert parent_policy.full_text() == 'Parent Policy: Parent Description'
         assert (
-            parent_policy.full_text('Some Canned Response')
+            parent_policy.full_text(text='Some Canned Response')
             == 'Parent Policy: Some Canned Response'
         )
-        assert child_policy.full_text('') == 'Parent Policy, specifically Child Policy'
         assert (
             child_policy.full_text()
-            == 'Parent Policy, specifically Child Policy: Child Policy Description'
+            == 'Parent Policy, specifically Child Policy: Child {FOO} Description {BAR}'
         )
         assert (
-            child_policy.full_text('Some Canned Response')
-            == 'Parent Policy, specifically Child Policy: Some Canned Response'
+            child_policy.full_text(values={'FOO': 'yes'})
+            == 'Parent Policy, specifically Child Policy: Child yes Description {BAR}'
         )
+        assert (
+            child_policy.full_text(text='Canned Response')
+            == 'Parent Policy, specifically Child Policy: Canned Response'
+        )
+        assert (
+            child_policy.full_text(
+                text='Canned Response with {TOKEN}', values={'TOKEN': 'magic'}
+            )
+            == 'Parent Policy, specifically Child Policy: Canned Response with magic'
+        )
+
+    def test_get_full_texts(self):
+        parent_policy = CinderPolicy.objects.create(
+            name='Parent Policy',
+            text='Parent Description',
+            uuid='parent-uuid',
+        )
+        child_policy = CinderPolicy.objects.create(
+            name='Child Policy',
+            text='Child {FOO} Description {BAR}',
+            uuid='child-uuid',
+            parent=parent_policy,
+        )
+        policies = (parent_policy, child_policy)
+        values = {child_policy.uuid: {'FOO': 'egg'}}
+        assert CinderPolicy.get_full_texts(policies) == [
+            'Parent Policy: Parent Description',
+            'Parent Policy, specifically Child Policy: Child {FOO} Description {BAR}',
+        ]
+        assert CinderPolicy.get_full_texts(policies, values=values) == [
+            'Parent Policy: Parent Description',
+            'Parent Policy, specifically Child Policy: Child egg Description {BAR}',
+        ]
 
     def test_without_parents_if_their_children_are_present(self):
         parent_policy = CinderPolicy.objects.create(
@@ -3521,6 +3552,53 @@ class TestContentDecision(TestCase):
             decision.get_target_name()
             == f'"something" for {decision.rating.addon.name}'
         )
+
+    def test_get_policy_texts(self):
+        decision = ContentDecision.objects.create(
+            addon=addon_factory(),
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            metadata={
+                ContentDecision.POLICY_DYNAMIC_VALUES: {
+                    'uuid-a': {'NPM_VER': '123.4', 'EXPLAIN': ':rolleyes:'},
+                    'uuid-b': {'THING': 'thing?'},
+                }
+            },
+        )
+        decision.policies.set(
+            (
+                CinderPolicy.objects.create(
+                    name='policy a', uuid='uuid-a', text='Something {NPM_VER} {EXPLAIN}'
+                ),
+                CinderPolicy.objects.create(
+                    name='policy b', uuid='uuid-b', text='Other {THING} with {MISSING}'
+                ),
+            )
+        )
+
+        assert decision.get_policy_texts() == [
+            'policy a: Something 123.4 :rolleyes:',
+            'policy b: Other thing? with {MISSING}',
+        ]
+
+    def test_has_policy_text_in_comments(self):
+        decision = ContentDecision.objects.create(
+            addon=addon_factory(),
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+        )
+        assert decision.has_policy_text_in_comments is False
+
+        decision.update(reviewer_user=user_factory())
+        assert decision.has_policy_text_in_comments is True
+
+        decision.update(
+            metadata={
+                ContentDecision.POLICY_DYNAMIC_VALUES: {
+                    'uuid-a': {'NPM_VER': '123.4', 'EXPLAIN': ':rolleyes:'},
+                    'uuid-b': {'THING': 'thing?'},
+                }
+            },
+        )
+        assert decision.has_policy_text_in_comments is False
 
 
 @pytest.mark.django_db

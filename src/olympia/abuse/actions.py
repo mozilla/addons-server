@@ -68,7 +68,15 @@ class ContentAction:
                 if self.decision.reviewer_user
                 else {}
             ),
-            details={'comments': self.decision.notes, **(extra_details or {})},
+            details={
+                'comments': self.decision.notes,
+                **(
+                    {'policy_texts': self.decision.get_policy_texts()}
+                    if not self.decision.has_policy_text_in_comments
+                    else {}
+                ),
+                **(extra_details or {}),
+            },
         )
 
     def should_hold_action(self):
@@ -125,8 +133,8 @@ class ContentAction:
             'SITE_URL': settings.SITE_URL,
             **(extra_context or {}),
         }
-        if 'policies' not in context_dict:
-            context_dict['policies'] = self.decision.policies.all()
+        if 'policy_texts' not in context_dict:
+            context_dict['policy_texts'] = self.decision.get_policy_texts()
         if self.decision.can_be_appealed(is_reporter=False):
             context_dict['appeal_url'] = absolutify(
                 reverse(
