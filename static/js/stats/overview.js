@@ -9,7 +9,7 @@ import { StatsManager } from './manager';
 
 // This function is called once we have stats data and we get aggregates for
 // daily users and weekly downloads.
-export function stats_overview_make_handler({ view }) {
+export const stats_overview_make_handler = function ({ view }) {
   const range = normalizeRange(view.range);
 
   return function (data) {
@@ -19,7 +19,7 @@ export function stats_overview_make_handler({ view }) {
       );
     } else {
       // make all that data pretty.
-      let aggregateRow = data[data.firstIndex].data,
+      var aggregateRow = data[data.firstIndex].data,
         totalDownloads = Highcharts.numberFormat(aggregateRow.downloads, 0),
         totalUsers = Highcharts.numberFormat(aggregateRow.updates, 0),
         startString = range.start.iso(),
@@ -55,14 +55,20 @@ export function stats_overview_make_handler({ view }) {
     }
     $('.two-up').removeClass('loading');
   };
-}
+};
 
 // `$` is passed by jQuery itself when calling `jQuery(stats_overview)`.
-if ($('.primary').attr('data-report') === 'overview') {
+export const stats_overview = function () {
+  console.debug('overview:stats_overview:init');
+  if ($('.primary').attr('data-report') != 'overview') {
+    return;
+  }
+
   // set up topcharts (defined in topchart.js)
   $('.toplist').topChart();
 
   $(window).on('changeview', function (e, view) {
+    console.debug('overview:window:changeview', view);
     $('.two-up').addClass('loading');
   });
 
@@ -75,4 +81,4 @@ if ($('.primary').attr('data-report') === 'overview') {
       stats_overview_make_handler({ view }),
     );
   });
-}
+};

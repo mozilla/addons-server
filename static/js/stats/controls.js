@@ -3,20 +3,20 @@ import _ from 'underscore';
 import { _pd } from '../lib/prevent-default';
 import { normalizeRange } from './dateutils';
 
-let $rangeSelector = $('.criteria.range ul'),
+var $rangeSelector = $('.criteria.range ul'),
   $customRangeForm = $('div.custom.criteria'),
   $groupSelector = $('.criteria.group ul'),
   minDate = Date.iso($('.primary').attr('data-min-date')),
   msDay = 24 * 60 * 60 * 1000; // One day in milliseconds.
 
-let $customModal = $('#custom-criteria').modal('#custom-date-range', {
+var $customModal = $('#custom-criteria').modal('#custom-date-range', {
   width: 520,
   hideme: true,
 });
 
 $rangeSelector.click(function (e) {
-  let $target = $(e.target).parent();
-  let newRange = $target.attr('data-range');
+  var $target = $(e.target).parent();
+  var newRange = $target.attr('data-range');
   if (newRange && newRange != 'custom') {
     $target.trigger('changeview', { range: newRange });
   }
@@ -24,7 +24,7 @@ $rangeSelector.click(function (e) {
 });
 
 $groupSelector.on('click', 'a', function (e) {
-  let $target = $(this).parent(),
+  var $target = $(this).parent(),
     newGroup = $target.attr('data-group');
 
   $(this).trigger('changeview', { group: newGroup });
@@ -33,9 +33,10 @@ $groupSelector.on('click', 'a', function (e) {
 
 // set controls when `changeview` is detected.
 $(window).on('changeview', function (e, newState) {
+  console.debug('controls:window:changeview', newState);
   if (!newState) return;
   function populateCustomRange() {
-    let nRange = normalizeRange(newState.range),
+    var nRange = normalizeRange(newState.range),
       startStr = nRange.start.iso(),
       endStr = nRange.end.iso();
 
@@ -50,7 +51,7 @@ $(window).on('changeview', function (e, newState) {
   }
   if (newState.range) {
     if (!newState.range.custom) {
-      let newRange = newState.range,
+      var newRange = newState.range,
         $rangeEl = $('li[data-range="' + _.escape(newRange) + '"]');
       if ($rangeEl.length) {
         $rangeSelector.children('li.selected').removeClass('selected');
@@ -75,7 +76,7 @@ $('#chart-zoomout').click(_pd);
 
 $('#date-range-form').submit(
   _pd(function (e) {
-    let start = Date.iso($('#date-range-start').val()),
+    var start = Date.iso($('#date-range-start').val()),
       end = Date.iso($('#date-range-end').val()),
       newRange = {
         custom: true,
