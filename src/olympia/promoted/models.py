@@ -132,6 +132,12 @@ class PromotedGroup(models.Model):
             '(inactive groups are considered obsolete).'
         ),
     )
+    is_public = models.BooleanField(
+        default=True,
+        help_text=(
+            'Marks whether this promotion group is public (accessible via the API).'
+        ),
+    )
     objects = PromotedGroupManager()
 
     def __bool__(self):

@@ -1692,34 +1692,43 @@ class TestAddonModels(TestCase):
     def test_promoted(self):
         addon = addon_factory()
         # default case - no group so return None.
-        assert not addon.cached_promoted_groups
+        assert not addon.publicly_promoted_groups
 
         # It's promoted but nothing has been approved.
         self.make_addon_promoted(addon=addon, group_id=PROMOTED_GROUP_CHOICES.LINE)
-        assert not addon.cached_promoted_groups
+        assert not addon.publicly_promoted_groups
 
         # The latest version is approved.
         addon.approve_for_version(addon.current_version)
-        del addon.cached_promoted_groups
+        del addon.publicly_promoted_groups
         assert any(
             promotion.group_id == PROMOTED_GROUP_CHOICES.LINE
-            for promotion in addon.cached_promoted_groups
+            for promotion in addon.publicly_promoted_groups
         )
 
         # If the group changes the approval for the current version isn't
         # valid.
         PromotedAddonPromotion.objects.filter(addon=addon).delete()
         self.make_addon_promoted(addon=addon, group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT)
-        del addon.cached_promoted_groups
-        assert not addon.cached_promoted_groups
+        del addon.publicly_promoted_groups
+        assert not addon.publicly_promoted_groups
 
         # Add an approval for the new group.
         addon.approve_for_version(addon.current_version)
-        del addon.cached_promoted_groups
+        del addon.publicly_promoted_groups
         assert any(
             promotion.group_id == PROMOTED_GROUP_CHOICES.SPOTLIGHT
-            for promotion in addon.cached_promoted_groups
+            for promotion in addon.publicly_promoted_groups
         )
+
+    def test_promoted_not_public(self):
+        addon = addon_factory()
+        self.make_addon_promoted(addon=addon, group_id=PROMOTED_GROUP_CHOICES.PARTNER)
+        assert addon.promoted_groups()
+        assert not addon.publicly_promoted_groups
+        addon.approve_for_version(addon.current_version)
+        assert addon.promoted_groups()
+        assert not addon.publicly_promoted_groups
 
     def test_promoted_theme(self):
         recommended = PromotedGroup.objects.get(
@@ -1727,24 +1736,24 @@ class TestAddonModels(TestCase):
         )
         addon = addon_factory(type=amo.ADDON_STATICTHEME)
         # default case - no group so return None.
-        assert not addon.cached_promoted_groups
+        assert not addon.publicly_promoted_groups
 
         featured_collection, _ = Collection.objects.get_or_create(
             id=settings.COLLECTION_FEATURED_THEMES_ID
         )
         featured_collection.add_addon(addon)
-        del addon.cached_promoted_groups
+        del addon.publicly_promoted_groups
         # it's in the collection, so is now promoted.
-        assert addon.cached_promoted_groups
+        assert addon.publicly_promoted_groups
         assert any(
-            recommended == promotion for promotion in addon.cached_promoted_groups
+            recommended == promotion for promotion in addon.publicly_promoted_groups
         )
 
         featured_collection.remove_addon(addon)
-        del addon.cached_promoted_groups
+        del addon.publicly_promoted_groups
         addon = Addon.objects.get(id=addon.id)
         # but not when it's removed.
-        assert not addon.cached_promoted_groups
+        assert not addon.publicly_promoted_groups
 
     def test_block_property(self):
         addon = Addon.objects.get(id=3615)
@@ -1790,7 +1799,7 @@ class TestAddonModels(TestCase):
 
         # The latest version is approved.
         addon.approve_for_version(addon.current_version)
-        del addon.cached_promoted_groups
+        del addon.publicly_promoted_groups
         assert addon.can_be_compatible_with_all_fenix_versions
 
         self.make_addon_promoted(

@@ -1236,7 +1236,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         self.decision.update(notes='Bad things!')
 
         # the addon is not promoted
-        assert self.addon.cached_promoted_groups == []
+        assert self.addon.publicly_promoted_groups == []
         action.notify_stakeholders('teh reason')
         assert len(mail.outbox) == 0
 

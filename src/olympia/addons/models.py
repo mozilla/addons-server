@@ -1573,10 +1573,10 @@ class Addon(OnChangeMixin, ModelBase):
         )
 
     @cached_property
-    def cached_promoted_groups(self):
+    def publicly_promoted_groups(self):
         promoted_group = self.promoted_groups()
         if promoted_group:
-            return promoted_group.all()
+            return promoted_group.filter(is_public=True).all()
         else:
             if self._is_recommended_theme():
                 from olympia.promoted.models import PromotedGroup
@@ -1676,7 +1676,7 @@ class Addon(OnChangeMixin, ModelBase):
     def can_be_compatible_with_all_fenix_versions(self):
         """Whether or not the addon is allowed to be compatible with all Fenix
         versions (i.e. it's a recommended/line extension for Android)."""
-        promotions = self.cached_promoted_groups
+        promotions = self.publicly_promoted_groups
         approved_applications = self.approved_applications
 
         return (

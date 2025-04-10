@@ -38,7 +38,10 @@ from olympia.bandwagon.models import Collection
 from olympia.constants.applications import APP_IDS, APPS_ALL
 from olympia.constants.base import ADDON_TYPE_CHOICES_API
 from olympia.constants.categories import CATEGORIES_BY_ID
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES, PROMOTED_GROUPS_BY_ID
+from olympia.constants.promoted import (
+    PROMOTED_GROUP_CHOICES,
+    PROMOTED_GROUPS_BY_ID,
+)
 from olympia.core.languages import AMO_LANGUAGES
 from olympia.files.models import File, FileUpload
 from olympia.files.utils import DuplicateAddonID, parse_addon
@@ -1148,7 +1151,7 @@ class AddonSerializer(AMOModelSerializer):
         return data
 
     def get_promoted(self, obj):
-        promoted = obj.cached_promoted_groups
+        promoted = obj.publicly_promoted_groups
         return PromotedGroupSerializer(
             many=True, read_only=True, instance=promoted, addon=obj
         ).data
@@ -1162,10 +1165,10 @@ class AddonSerializer(AMOModelSerializer):
         def is_recommended(obj):
             return any(
                 PROMOTED_GROUP_CHOICES.RECOMMENDED == promotion.group_id
-                for promotion in obj.cached_promoted_groups
+                for promotion in obj.publicly_promoted_groups
             )
 
-        return bool(obj.cached_promoted_groups and is_recommended(obj))
+        return bool(obj.publicly_promoted_groups and is_recommended(obj))
 
     def get_has_privacy_policy(self, obj):
         return bool(getattr(obj, 'has_privacy_policy', obj.privacy_policy))
