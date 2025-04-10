@@ -4,6 +4,8 @@
 # Variables referenced in docker-compose*.yml should be read from .env, exported and saved in .env
 ####################################################################################################
 
+export ENV_FILE ?= .env
+
 DOCKER_PROGRESS ?= auto
 DOCKER_METADATA_FILE ?= buildx-bake-metadata.json
 DOCKER_PUSH ?=
@@ -13,7 +15,6 @@ DOCKER_WAIT ?=
 # Static, cache preserved.
 export DOCKER_COMMIT ?=
 export DOCKER_BUILD ?=
-export DOCKER_VERSION ?=
 export SKIP_DATA_SEED ?=
 override DOCKER_MYSQLD_VOLUME = addons-server_data_mysqld
 
@@ -35,7 +36,7 @@ endif
 
 DOCKER_BAKE_ARGS := \
 	--file docker-bake.hcl \
-	--file .env \
+	--file $(ENV_FILE) \
 	--progress $(DOCKER_PROGRESS) \
 	--metadata-file $(DOCKER_METADATA_FILE) \
 
@@ -61,16 +62,6 @@ ifneq ($(DOCKER_WAIT),)
 	DOCKER_COMPOSE_ARGS += --wait
 endif
 
-# Paths should be cleaned before mounting .:/data/olympia
-# These are files which should be sourced from the container
-# or should be fresh on every run of the project
-CLEAN_PATHS := \
-	src/olympia.egg-info \
-	supervisord.pid \
-	version.json \
-	logs \
-	buildx-bake-metadata.json \
-
 .PHONY: help_redirect
 help_redirect:
 	@$(MAKE) help --no-print-directory
@@ -92,8 +83,7 @@ test_setup:
 
 .PHONY: setup
 setup: ## create configuration files version.json and .env required to run this project
-	for path in $(CLEAN_PATHS); do rm -rf "$(PWD)/$$path" && echo "$$path removed"; done
-	./scripts/setup.py $(SETUP_ARGS)
+	@python3 -m scripts.setup --env-file $(ENV_FILE) $(SETUP_ARGS)
 
 .PHONY: build
 build: ## build the docker image
@@ -117,7 +107,11 @@ rootshell: ## connect to a running addons-server docker shell with root user
 
 .PHONY: docker_compose_config
 docker_compose_config: ## Show the docker compose configuration
-	@docker compose config web --format json
+	@docker compose config --format json 2>/dev/null
+
+.PHONY: docker_bake_config
+docker_bake_config: ## Show the docker buildx bake configuration
+	@docker buildx bake $(DOCKER_BAKE_ARGS) --print 2>/dev/null
 
 .PHONY: docker_build_web
 docker_build_web: ## Build the docker images using buildx bake
@@ -138,7 +132,7 @@ docker_pull_or_build:
 # the image is already built and pushed to a registry.
 	@IMAGE=$$(docker compose config web --format json | jq -r '.services.web.image'); \
 	echo "image: $$IMAGE"; \
-	if echo "$$IMAGE" | grep -q ":local"; then \
+	if echo "$$IMAGE" | grep -q "local"; then \
 		$(MAKE) docker_build_web; \
 	else \
 		$(MAKE) docker_pull_web; \

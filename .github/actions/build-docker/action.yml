@@ -18,7 +18,7 @@ inputs:
 outputs:
   tag:
     description: The docker tag of the built image
-    value: ${{ steps.build_meta.outputs.tag }}
+    value: ${{ steps.build_meta.outputs.tag }}@${{ steps.build_meta.outputs.digest }}
   version:
     description: The docker version of the built image
     value: ${{ steps.meta.outputs.version }}
@@ -64,7 +64,7 @@ runs:
         DOCKER_PUSH: ${{ inputs.push }}
       run: |
         make build \
-          DOCKER_VERSION="${{ steps.meta.outputs.version }}" \
+          DOCKER_TAG="${{ steps.meta.outputs.tags }}" \
           DOCKER_COMMIT="${{ steps.context.outputs.git_sha }}" \
           DOCKER_BUILD="${{ steps.context.outputs.git_build_url }}"
 

@@ -2,19 +2,14 @@ name: Test Docker Image (test_main only)
 
 run-name: |
   ref: ${{ github.ref_name }} |
-  version: ${{ inputs.version }} |
-  digest: ${{ inputs.digest }} |
+  tag: ${{ inputs.tag }} |
   splits: ${{ inputs.splits }} |
 
 on:
   workflow_call:
     inputs:
-      version:
-        description: The version of the image to run
-        type: string
-        required: false
-      digest:
-        description: The build digest of the image to run. Overrides version.
+      tag:
+        description: The tag/version/version+digest of the image to run
         type: string
         required: false
       splits:
@@ -24,14 +19,10 @@ on:
         default: 14
   workflow_dispatch:
     inputs:
-      version:
-        description: The version of the image to run
+      tag:
+        description: The tag/version/version+digest of the image to run
         type: string
         required: true
-      digest:
-        description: The build digest of the image to run. Overrides version.
-        type: string
-        required: false
       splits:
         description: How many splits for test_main
         type: number
@@ -92,8 +83,7 @@ jobs:
       - name: Test (test_matrix)
         uses: ./.github/actions/run-docker
         with:
-          digest: ${{ inputs.digest }}
-          version: ${{ inputs.version }}
+          tag: ${{ inputs.tag }}
           deps: development
           run: |
             split="--splits ${{ needs.test_config.outputs.splits }}"

@@ -1,7 +1,7 @@
 x-env-mapping: &env
   # https://docs.docker.com/compose/environment-variables/envvars-precedence/
   env_file:
-    - .env
+    - ${ENV_FILE:-.env}
   environment:
     - CELERY_BROKER_URL=amqp://olympia:olympia@rabbitmq/olympia
     - CELERY_RESULT_BACKEND=redis://redis:6379/1

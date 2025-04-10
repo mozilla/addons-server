@@ -3,4 +3,6 @@ from unittest import mock
 
 
 def override_env(**kwargs):
-    return mock.patch.dict(os.environ, kwargs, clear=True)
+    return mock.patch.dict(
+        os.environ, {k: str(v) for k, v in kwargs.items()}, clear=True
+    )

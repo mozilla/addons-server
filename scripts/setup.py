@@ -3,129 +3,111 @@
 import argparse
 import json
 import os
+import shutil
+from pathlib import Path
+
+from scripts.utils import Env, parse_docker_tag
 
 
-root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+# Paths should be removed before mounting .:/data/olympia
+REMOVE_PATHS = [
+    'src/olympia.egg-info',
+    'supervisord.pid',
+    'version.json',
+    'logs',
+    'buildx-bake-metadata.json',
+]
 
-env_path = os.path.join(root, '.env')
-
-
-def set_env_file(values):
-    with open(env_path, 'w') as f:
-        print('Environment:')
-        for key, value in values.items():
-            f.write(f'{key}="{value}"\n')
-            print(f'{key}={value}')
-
-
-def get_env_file():
-    env = {}
-
-    if os.path.exists(env_path):
-        with open(env_path, 'r') as f:
-            for line in f:
-                key, value = line.strip().split('=', 1)
-                env[key] = value.strip('"')
-    return env
+# Paths should be created before mounting .:/data/olympia
+CREATE_PATHS = [
+    'deps',
+    'site-static',
+    'static-build',
+    'storage',
+]
 
 
-def get_value(key, default_value):
-    if key in os.environ:
-        return os.environ[key]
+def get_docker_image_meta(env: Env, is_build=False):
+    for key in ['DOCKER_VERSION', 'DOCKER_DIGEST']:
+        if env.get(key, from_file=False):
+            raise ValueError(
+                f'{key} is not allowed to be set in the environment'
+                ' but is derived from the DOCKER_TAG variable.'
+            )
 
-    from_file = get_env_file()
-
-    if key in from_file:
-        return from_file[key]
-
-    return default_value
-
-
-def get_docker_image_meta(build=False):
-    image = 'mozilla/addons-server'
-    version = 'local'
-    digest = None
-
-    # First get the tag from the full tag variable
-    tag = get_value('DOCKER_TAG', f'{image}:{version}')
-    # extract version or digest from existing tag
-    if '@' in tag:
-        image, digest = tag.split('@')
-        version = None
-    elif ':' in tag:
-        image, version = tag.split(':')
-
-    # DOCKER_DIGEST or DOCKER_VERSION can override the extracted version or digest
-    # Note: it will inherit the image from the provided DOCKER_TAG if also provided
-    if bool(os.environ.get('DOCKER_DIGEST', False)):
-        digest = os.environ['DOCKER_DIGEST']
-        tag = f'{image}@{digest}'
-        version = None
-    elif bool(os.environ.get('DOCKER_VERSION', False)):
-        version = os.environ['DOCKER_VERSION']
-        tag = f'{image}:{version}'
-
+    original_tag = env.get('DOCKER_TAG', 'mozilla/addons-server:local', type=str)
+    tag, _, version, digest = parse_docker_tag(original_tag)
     is_local = version == 'local' and digest is None
-    docker_target = (
-        get_value('DOCKER_TARGET', 'development')
-        if is_local
-        else os.environ.get('DOCKER_TARGET', 'production')
+    is_latest = version == 'latest' and digest is None
+    docker_target = env.get(
+        'DOCKER_TARGET',
+        'production' if (is_build or not is_local) else 'development',
+        type=str,
+        from_file=False,
     )
+    docker_commit = env.get('DOCKER_COMMIT', from_file=False)
+    docker_build = env.get('DOCKER_BUILD', from_file=False)
     is_production = docker_target == 'production'
-    docker_commit = os.environ.get('DOCKER_COMMIT')
-    docker_build = os.environ.get('DOCKER_BUILD')
 
-    valid_version_digest = (version and not digest) or (digest and not version)
-    valid_docker_target = is_production or (is_local and not build)
+    def not_none(key, value):
+        if value is None:
+            return f'{key} is required'
 
-    def valid_build_commit(value):
-        # We don't care what the value is in local images
-        if is_local:
-            return True
-        # When building, the value is required
-        # to be written to the build-info.json
-        elif build:
-            return bool(value)
-        # When running (on production), the value is forbidden
-        # it was defined in the build-info.json
-        elif is_production:
-            return not bool(value)
+    def valid_digest(key, value):
+        defined = bool(value)
+        if is_build:
+            if defined:
+                return (
+                    f'{key} must not be set when building, '
+                    'the digest is derived from the build metadata.'
+                )
+        elif not (is_local or is_latest) and not defined:
+            return f'{key} is required for non-local images other than "latest"'
 
-    # Define metadata and define if the value is valid
+    def valid_docker_target(key, value):
+        if not is_production:
+            if is_build:
+                return f'{key} must be set to "production" when building'
+            if not is_local:
+                return f'{key} must be set to "production" on non-local images'
+
+    def valid_build_commit(key, value):
+        defined = bool(value)
+
+        if is_build and not defined:
+            return f'{key} is required when building'
+        if not is_build and defined:
+            return f'Cannot set {key} outside of a build. read from /build-info.json.'
+
     data = {
-        # Docker tag is always required but often derived from other inputs
-        'DOCKER_TAG': (tag, tag is not None),
-        # Docker version and digest are mutually exclusive
-        # exactly and only one should be set
-        'DOCKER_VERSION': (version, valid_version_digest),
-        'DOCKER_DIGEST': (digest, valid_version_digest),
-        # Docker target can be set on local images,
-        # but should be production for remote images.
-        # Remote images are always built for production.
+        # These values are derived from the docker tag parser.
+        # they cannot be invalid so are simply required here.
+        'DOCKER_TAG': (tag, not_none),
+        'DOCKER_VERSION': (version, not_none),
+        # A digest is only required for non local/latest images.
+        'DOCKER_DIGEST': (digest, valid_digest),
+        # The next values have custom validation logic.
         'DOCKER_TARGET': (docker_target, valid_docker_target),
-        # Docker commit and build are:
-        # - optional for non production images
-        # - forbidden on remote images (already defined in the build-info.json)
-        'DOCKER_COMMIT': (docker_commit, valid_build_commit(docker_commit)),
-        'DOCKER_BUILD': (docker_build, valid_build_commit(docker_build)),
+        'DOCKER_COMMIT': (docker_commit, valid_build_commit),
+        'DOCKER_BUILD': (docker_build, valid_build_commit),
     }
 
     errors = {}
     meta = {}
 
-    for key, (value, valid) in data.items():
+    for key, (value, validator) in data.items():
         # Add defined values to meta
         if value:
             meta[key] = value
         # Add invalid values to errors
-        if not valid:
-            errors[key] = value
+        if error := validator(key, value):
+            errors[key] = error
 
     if len(errors.keys()):
         raise ValueError(
             f'\n{json.dumps(meta, indent=2)}\n'
-            f'Invalid items: check setup.py for validations (build={build})'
-            '\n• ' + '\n• '.join(errors.keys())
+            f'Invalid items: check setup.py for validations (build={is_build})'
+            '\n• ' + '\n• '.join(errors.values())
         )
 
     return meta
@@ -145,39 +127,60 @@ def get_docker_image_meta(build=False):
 # 4. the value defined in the make args.
 
 
-def main(build=False):
-    image_meta = get_docker_image_meta(build)
+def main(root: Path, env_file: str, is_build: bool, dry_run: bool):
+    env = Env(root / env_file)
+    image_meta = get_docker_image_meta(env, is_build)
     docker_target = image_meta['DOCKER_TARGET']
 
     # These variables are special, as we should allow the user to override them
     # but we should not set a default to the previously set value but instead
     # use a value derived from other stable values.
-    debug = os.environ.get('DEBUG', str(docker_target != 'production'))
-    olympia_deps = os.environ.get('OLYMPIA_DEPS', docker_target)
+    debug = env.get(
+        'DEBUG', bool(docker_target != 'production'), from_file=False, type=bool
+    )
+    olympia_deps = env.get('OLYMPIA_DEPS', docker_target, from_file=False, type=str)
     # These variables are not set by the user, but are derived from the environment only
     olympia_uid = os.getuid()
 
-    set_env_file(
-        {
-            **image_meta,
-            # We save olympia_* values as host_* values to ensure that
-            # inputs can be recieved via environment variables, but that
-            # docker compose only reads the values explicitly set in the .env file.
-            # These values are mapped back to the olympia_* values in the environment
-            # of the container so everywhere they can be referenced as the user expects.
-            'HOST_UID': olympia_uid,
-            'DEBUG': debug,
-            'OLYMPIA_DEPS': olympia_deps,
-        }
-    )
+    result = {
+        **image_meta,
+        # We save olympia_* values as host_* values to ensure that
+        # inputs can be recieved via environment variables, but that
+        # docker compose only reads the values explicitly set in the .env file.
+        # These values are mapped back to the olympia_* values in the environment
+        # of the container so everywhere they can be referenced as the user expects.
+        'HOST_UID': olympia_uid,
+        'DEBUG': debug,
+        'OLYMPIA_DEPS': olympia_deps,
+    }
+
+    if dry_run:
+        return result
+
+    for path in REMOVE_PATHS:
+        remove_path = root / path
+
+        if remove_path.exists():
+            if remove_path.is_dir():
+                shutil.rmtree(remove_path)
+            else:
+                remove_path.unlink()
+
+    env.write_env_file(result)
 
     # Create the directories that are expected to exist in the container.
-    for dir in ['deps', 'site-static', 'static-build', 'storage']:
-        os.makedirs(os.path.join(root, dir), exist_ok=True)
+    for dir in CREATE_PATHS:
+        (root / dir).mkdir(parents=True, exist_ok=True)
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--build', action='store_true')
+    parser.add_argument('--root', type=Path, default=Path(__file__).parent.parent)
+    parser.add_argument('--env-file', type=str, default='.env')
+    parser.add_argument('--dry-run', action='store_true')
     args = parser.parse_args()
-    main(args.build)
+    result = main(args.root, args.env_file, args.build, args.dry_run)
+
+    if args.dry_run:
+        print(json.dumps(result, indent=2))

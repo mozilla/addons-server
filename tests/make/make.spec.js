@@ -2,71 +2,85 @@ import { spawnSync } from 'child_process';
 import path from 'path';
 import fs from 'fs';
 import { parse } from 'dotenv';
-import { describe, afterAll, it, expect } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
+
+const CUSTOM_DIGEST = 'sha256:124b44bfc9ccd1f3cedf4b592d4d1e8bddb78b51ec2ed5056c52d3692baebc19'
 
 const rootPath = path.join(import.meta.dirname, '..', '..');
-const envPath = path.join(rootPath, '.env');
+const envPath = path.join(rootPath, '.env.test');
 
 function clearEnv() {
   fs.rmSync(envPath, { force: true });
 }
 
-function runSetup(env) {
+beforeEach(() => {
   clearEnv();
-  const result = spawnSync('make', ['setup'], {
+});
+
+afterAll(() => {
+  clearEnv();
+});
+
+function runSetup(env, isBuild = false) {
+  clearEnv();
+  // Run setup in dry-mode to get the printed env back.
+  const result = spawnSync('make', [
+    'setup', `SETUP_ARGS=--env-file ${envPath} ${isBuild ? '--build' : ''}`
+  ], {
     env: { ...process.env, ...env },
     encoding: 'utf-8',
   });
   if (result.stderr) {
     throw new Error(result.stderr);
   }
-  return parse(fs.readFileSync(envPath, { encoding: 'utf-8' }));
+  const file = fs.readFileSync(envPath, { encoding: 'utf-8' });
+  return parse(file);
 }
 
-function getConfig(env = {}) {
-  const rawEnv = runSetup(env);
+function makeJsonOutput(command, env = {}, isBuild = false) {
+  const rawEnv = runSetup(env, isBuild);
   const { stdout: rawConfig, stderr: rawError } = spawnSync(
-    'docker',
-    ['compose', 'config', '--format', 'json'],
+    'make',
+    [command, `ENV_FILE=${envPath}`],
     {
       encoding: 'utf-8',
-      env: { ...process.env, ...env },
+      env: { ...process.env, ...rawEnv },
     },
   );
   try {
     if (rawError) throw new Error(rawError);
-    return {
-      config: JSON.parse(rawConfig),
+    const firstBraceIndex = rawConfig.indexOf('{');
+    const lastBraceIndex = rawConfig.lastIndexOf('}');
+    if (firstBraceIndex === -1 || lastBraceIndex === -1 || lastBraceIndex < firstBraceIndex) {
+      throw new Error('Could not find valid JSON object braces in make output.');
+    }
+    const jsonString = rawConfig.substring(firstBraceIndex, lastBraceIndex + 1);
+    const result = {
+      config: JSON.parse(jsonString),
       env: rawEnv,
     };
+    return result;
   } catch (error) {
     throw new Error(
-      JSON.stringify({ error, rawConfig, rawError, rawEnv }, null, 2),
+      JSON.stringify({ error: error.message, rawConfig, rawError, rawEnv }, null, 2),
     );
   }
 }
 
 describe('docker-compose.yml', () => {
-  afterAll(() => {
-    clearEnv();
-  });
-
   describe.for([
     ['local', 'development'],
     ['local', 'production'],
     ['latest', 'production'],
-  ])('DOCKER_VERSION: %s, DOCKER_TARGET: %s', (version, target) => {
-    const inputValues = {
+  ])('DOCKER_TAG: %s, DOCKER_TARGET: %s', ([tag, target]) => {
+    const {config, env} = makeJsonOutput('docker_compose_config', {
       DOCKER_TARGET: target,
-      DOCKER_VERSION: version,
-      DEBUG: 'debug',
-      SKIP_DATA_SEED: 'skip',
-    };
+      DOCKER_TAG: tag,
+    });
 
-    const {config, env} = getConfig(inputValues);
-
-    it('.services.(web|worker) should have the correct configuration', () => {
-      for (let service of [config.services.web, config.services.worker]) {
+    describe.for(['web', 'worker'])('.service.%s', (name) => {
+      const service = config.services[name];
+      it('should have the correct configuration', () => {
         expect(service.image).toStrictEqual(env.DOCKER_TAG);
         expect(service.pull_policy).toStrictEqual('never');
         expect(service.user).toStrictEqual('root');
@@ -102,16 +116,11 @@ describe('docker-compose.yml', () => {
             }),
           ]),
         );
-        const { DOCKER_VERSION, DOCKER_TARGET, ...environmentOutput } =
-          inputValues;
-        expect(service.environment).toEqual(
-          expect.objectContaining({
-            ...environmentOutput,
-          }),
-        );
-        // We excpect not to pass the input values to the container
-        expect(service.environment).not.toHaveProperty('OLYMPIA_UID');
-      }
+      });
+
+      it('should have correct environment configuration', () => {
+        expect(service.environment).toEqual(expect.objectContaining(env));
+      })
     });
 
     it('.services.nginx should have the correct configuration', () => {
@@ -156,43 +165,45 @@ describe('docker-compose.yml', () => {
 });
 
 describe('docker-bake.hcl', () => {
-  afterAll(() => {
-    clearEnv();
-  });
-
-  function getBakeConfig(env = {}) {
-    runSetup(env);
-    const { stdout: output } = spawnSync(
-      'make',
-      ['docker_build_web', 'ARGS=--print'],
-      {
-        encoding: 'utf-8',
-        env: { ...process.env, ...env },
-      },
-    );
-
-    return output;
-  }
   it('renders empty values for undefined variables', () => {
-    const output = getBakeConfig();
-    expect(output).toContain('"DOCKER_BUILD": ""');
-    expect(output).toContain('"DOCKER_COMMIT": ""');
-    expect(output).toContain('"DOCKER_VERSION": ""');
-    expect(output).toContain('"target": "development"');
-    expect(output).toContain('mozilla/addons-server:local');
+    const {config: {target: {web}}} = makeJsonOutput('docker_bake_config');
+    expect(web).toStrictEqual({
+      context: '.',
+      dockerfile: 'Dockerfile',
+      args: {
+        DOCKER_BUILD: '',
+        DOCKER_COMMIT: '',
+        DOCKER_SOURCE: 'https://github.com/mozilla/addons-server',
+        DOCKER_TARGET: 'development',
+        DOCKER_VERSION: 'local'
+      },
+      tags: [ 'mozilla/addons-server:local' ],
+      target: 'development',
+      platforms: [ 'linux/amd64' ],
+      output: [ 'type=docker' ],
+      pull: true
+    });
   });
 
   describe.for([
-    ['DOCKER_BUILD', 'build', '"DOCKER_BUILD": "build"'],
-    ['DOCKER_COMMIT', 'commit', '"DOCKER_COMMIT": "commit"'],
-    ['DOCKER_VERSION', 'latest', '"DOCKER_VERSION": "latest"'],
-    ['DOCKER_VERSION', 'latest', 'mozilla/addons-server:latest'],
-    ['DOCKER_DIGEST', 'sha256:digest', 'mozilla/addons-server@sha256:digest'],
-    ['DOCKER_TARGET', 'production', '"target": "production"']
-  ])('%s: %s', ([name, value, expected]) => {
-    it(`renders custom value (${expected})`, () => {
-      const output = getBakeConfig({ [name]: value });
-      expect(output).toContain(expected);
+    ['custom/image:latest', 'custom/image:latest', true],
+    ['latest', 'mozilla/addons-server:latest', true],
+    ['latest@sha256:124b44bfc9ccd1f3cedf4b592d4d1e8bddb78b51ec2ed5056c52d3692baebc19', `mozilla/addons-server:latest@${CUSTOM_DIGEST}`, false],
+  ])('%s: %s', ([value, expected, isBuild]) => {
+    it(`renders custom DOCKER_TAG ${isBuild ? '' : 'not'} building`, () => {
+      const {config: {target: {web}}} = makeJsonOutput('docker_bake_config', {
+        DOCKER_TAG: value,
+        // Pass required args for build if isBuild is true.
+        ...(isBuild ? {
+          DOCKER_BUILD: 'build',
+          DOCKER_COMMIT: 'commit',
+        } : {}),
+      }, isBuild);
+      expect(web.tags).toStrictEqual([expected]);
+      if (isBuild) {
+        expect(web.args.DOCKER_BUILD).toStrictEqual('build');
+        expect(web.args.DOCKER_COMMIT).toStrictEqual('commit');
+      }
     });
   });
 });
