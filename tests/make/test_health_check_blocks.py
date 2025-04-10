@@ -1,6 +1,4 @@
-import json
-from pathlib import Path
-from unittest import TestCase
+from tests import TestCase
 
 from scripts.health_check_blocks import create_blocks
 
@@ -22,38 +20,6 @@ class TestHealthCheckBlocks(TestCase):
                 'url': 'http://nginx/services/monitor.json',
             },
         }
-
-    def assertEqualDicts(self, result: dict, expected: dict):
-        import json
-
-        left = json.dumps(result, indent=2, sort_keys=True)
-        right = json.dumps(expected, indent=2, sort_keys=True)
-
-        if left != right:
-            import difflib
-
-            diff = difflib.unified_diff(
-                left.splitlines(True),
-                right.splitlines(True),
-                fromfile='actual',
-                tofile='expected',
-            )
-            self.fail('\n' + ''.join(diff))
-
-    def assertMatchesJsonSnapshot(self, result):
-        snapshot_dir = Path(__file__).parent / 'snapshots' / self.__class__.__name__
-        snapshot_dir.mkdir(parents=True, exist_ok=True)
-        name = self._testMethodName
-
-        snapshot_path = snapshot_dir / f'{name}.json'
-
-        if not snapshot_path.exists():
-            snapshot_path.write_text(json.dumps(result, indent=2, sort_keys=True))
-
-        with snapshot_path.open('r') as f:
-            snapshot = json.load(f)
-
-        self.assertEqualDicts(result, snapshot)
 
     def _monitor(self, name: str, state: bool, status: str):
         return {name: {'state': state, 'status': status}}
