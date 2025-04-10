@@ -7653,16 +7653,17 @@ class TestHeldDecisionReview(ReviewerTest):
         assert self.version.version in doc.text()
         return doc
 
+    def test_review_page_addon_no_job(self):
+        doc = self._test_review_page_addon()
+        assert (
+            'Cancel and enqueue in Reviewer Tools' == doc('[for="id_choice_2"]').text()
+        )
+
     def test_review_page_addon_with_job(self):
         CinderJob.objects.create(
             target_addon=self.decision.addon, decision=self.decision
         )
-        doc = self._test_review_page_addon()
-        assert 'Forward to Reviewer Tools' == doc('[for="id_choice_2"]').text()
-
-    def test_review_page_addon_no_job(self):
-        doc = self._test_review_page_addon()
-        assert 'Forward to Reviewer Tools' not in doc.text()
+        self.test_review_page_addon_no_job()
 
     def test_review_page_user(self):
         self.decision.update(
@@ -7716,27 +7717,43 @@ class TestHeldDecisionReview(ReviewerTest):
         self.assertCloseToNow(override.action_date)
         assert override.override_of == self.decision
 
-    def test_escalate_addon_instead(self):
+    def test_cancel_addon_with_job(self):
         addon = self.decision.addon
-        CinderJob.objects.create(target_addon=addon, decision=self.decision)
+        job = CinderJob.objects.create(target_addon=addon, decision=self.decision)
         assert addon.status == amo.STATUS_APPROVED
-        responses.add(
-            responses.POST,
-            f'{settings.CINDER_SERVER_URL}create_report',
-            json={'job_id': '5678'},
-            status=201,
-        )
 
-        response = self.client.post(self.url, {'choice': 'forward'})
+        response = self.client.post(self.url, {'choice': 'cancel'})
 
         assert response.status_code == 302
         assert addon.reload().status == amo.STATUS_APPROVED
-        new_job = self.decision.cinder_job.reload().forwarded_to_job
-        assert new_job
-        assert new_job.resolvable_in_reviewer_tools
-        self.assertCloseToNow(self.decision.reload().action_date)
+        assert job.reload().resolvable_in_reviewer_tools
+        assert self.decision.reload().action_date is None
+        assert self.decision.cinder_job == job
+        new_decision = job.final_decision
+        assert self.decision.overridden_by == new_decision
+        assert new_decision.action == DECISION_ACTIONS.AMO_REQUEUE
         assert NeedsHumanReview.objects.filter(
-            reason=NeedsHumanReview.REASONS.AMO_2ND_LEVEL_ESCALATION,
+            reason=NeedsHumanReview.REASONS.SECOND_LEVEL_REQUEUE,
+            is_active=True,
+            version=addon.current_version,
+        ).exists()
+
+    def test_cancel_addon_no_job(self):
+        addon = self.decision.addon
+        assert addon.status == amo.STATUS_APPROVED
+
+        response = self.client.post(self.url, {'choice': 'cancel'})
+
+        assert response.status_code == 302
+        assert addon.reload().status == amo.STATUS_APPROVED
+        new_job = self.decision.reload().cinder_job
+        assert new_job.resolvable_in_reviewer_tools
+        new_decision = new_job.final_decision
+        assert self.decision.overridden_by == new_decision
+        assert new_decision.action == DECISION_ACTIONS.AMO_REQUEUE
+        assert self.decision.reload().action_date is None
+        assert NeedsHumanReview.objects.filter(
+            reason=NeedsHumanReview.REASONS.SECOND_LEVEL_REQUEUE,
             is_active=True,
             version=addon.current_version,
         ).exists()

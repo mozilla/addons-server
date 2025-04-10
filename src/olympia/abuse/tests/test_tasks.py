@@ -721,9 +721,9 @@ def test_report_decision_to_cinder_and_notify_with_job():
         action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
         action_date=datetime.now(),
         notes='some review text',
+        cinder_job=cinder_job,
     )
     decision.policies.add(cinder_policy)
-    cinder_job.update(decision=decision)
     ActivityLog.objects.create(
         amo.LOG.FORCE_DISABLE,
         decision.addon,
@@ -1182,5 +1182,5 @@ def test_handle_escalate_action():
 def test_handle_escalate_action_from_2nd_level():
     do_handle_escalate_action(
         from_2nd_level=True,
-        expected_nhr_reason=NeedsHumanReview.REASONS.AMO_2ND_LEVEL_ESCALATION,
+        expected_nhr_reason=NeedsHumanReview.REASONS.SECOND_LEVEL_REQUEUE,
     )

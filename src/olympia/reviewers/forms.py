@@ -21,6 +21,7 @@ from olympia import amo, ratings
 from olympia.abuse.models import CinderJob, CinderPolicy, ContentDecision
 from olympia.access import acl
 from olympia.amo.forms import AMOModelForm
+from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
 from olympia.files.utils import SafeZip
 from olympia.ratings.models import Rating
@@ -250,8 +251,11 @@ class CinderJobsWidget(forms.CheckboxSelectMultiple):
         # full object, not a label, this is what makes this work.
         obj = label
         forwarded_notes = [
-            *obj.forwarded_from_jobs.all().values_list('decision__notes', flat=True),
+            *obj.forwarded_from_jobs.all().values_list('decisions__notes', flat=True),
             *obj.queue_moves.values_list('notes', flat=True),
+            *obj.decisions.filter(action=DECISION_ACTIONS.AMO_REQUEUE).values_list(
+                'notes', flat=True
+            ),
         ]
         is_appeal = obj.is_appeal
         reports = obj.all_abuse_reports
@@ -284,13 +288,14 @@ class CinderJobsWidget(forms.CheckboxSelectMultiple):
         ]
 
         label = format_html(
-            '{}{}{}<details><summary>Show detail on {} reports</summary>'
-            '<span>{}</span><ul>{}</ul></details>',
+            '{}{}{}<br/><span>{}</span>'
+            '<details><summary>Show detail on {} reports</summary><ul>{}</ul>'
+            '</details>',
             '[Appeal] ' if is_appeal else '',
             '[Forwarded] ' if forwarded else '',
             format_html_join(', ', '"{}"', reasons_set),
-            len(reports),
             format_html_join('', '{}<br/>', subtexts_gen),
+            len(reports),
             format_html_join('', '<li>{}{}</li>', messages_gen),
         )
 
@@ -758,20 +763,21 @@ class HeldDecisionReviewForm(forms.Form):
         choices=(('yes', 'Proceed with action'), ('no', 'Approve content instead')),
         widget=forms.RadioSelect,
     )
+    comments = forms.CharField(required=False)
 
     def __init__(self, *args, **kw):
         self.decision = kw.pop('decision')
-        self.cinder_jobs_qs = CinderJob.objects.filter(decision_id=self.decision.id)
+        self.cinder_jobs_qs = CinderJob.objects.filter(decisions=self.decision)
         super().__init__(*args, **kw)
 
         if self.cinder_jobs_qs:
             # Set the queryset for cinder_job
             self.fields['cinder_job'].queryset = self.cinder_jobs_qs
             self.fields['cinder_job'].initial = [job.id for job in self.cinder_jobs_qs]
-            if self.decision.addon:
-                self.fields['choice'].choices += (
-                    ('forward', 'Forward to Reviewer Tools'),
-                )
+        if self.decision.addon:
+            self.fields['choice'].choices += (
+                ('cancel', 'Cancel and enqueue in Reviewer Tools'),
+            )
 
     def clean(self):
         super().clean()
