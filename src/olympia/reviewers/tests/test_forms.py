@@ -1304,8 +1304,8 @@ class TestReviewForm(TestCase):
         label_0 = doc('label[for="id_cinder_jobs_to_resolve_0"]')
         assert label_0.text() == (
             '[Forwarded] "DSA: It violates Mozilla\'s Add-on Policies"\n'
-            'Show detail on 1 reports\n'
             'Reasoning: Why o why; Zee de zee\n\n'
+            'Show detail on 1 reports\n'
             'v[<script>alert()</script>]: ddd'
         )
         assert '<script>alert()</script>' not in content  # should be escaped
@@ -1313,14 +1313,14 @@ class TestReviewForm(TestCase):
         label_1 = doc('label[for="id_cinder_jobs_to_resolve_1"]')
         assert label_1.text() == (
             '[Appeal] "DSA: It violates Mozilla\'s Add-on Policies"\n'
-            'Show detail on 1 reports\n'
             'Developer Appeal: some justification\n'
             'Reporter Appeal: some other justification\n\n'
+            'Show detail on 1 reports\n'
             'v[1.2]: ccc'
         )
         label_2 = doc('label[for="id_cinder_jobs_to_resolve_2"]')
         assert label_2.text() == (
-            '"DSA: It violates Mozilla\'s Add-on Policies"\n'
+            '"DSA: It violates Mozilla\'s Add-on Policies"\n\n'
             'Show detail on 2 reports\n<no message>\nbbb'
         )
 

@@ -3665,8 +3665,8 @@ class TestExtensionsQueues(TestCase):
 
     def test_pending_queue_needs_human_review_from_2nd_level_approval(self):
         self._test_pending_queue_needs_human_review_from(
-            NeedsHumanReview.REASONS.AMO_2ND_LEVEL_ESCALATION,
-            'needs_human_review_amo_2nd_level_escalation',
+            NeedsHumanReview.REASONS.SECOND_LEVEL_REQUEUE,
+            'needs_human_review_second_level_requeue',
         )
 
     def test_pending_queue_needs_human_scanner_action(self):

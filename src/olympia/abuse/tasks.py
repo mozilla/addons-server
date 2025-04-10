@@ -218,7 +218,7 @@ def handle_escalate_action(*, job_pk, from_2nd_level=False):
         old_job.target, resolved_in_reviewer_tools=True
     )
     job_id = entity_helper.workflow_recreate(
-        notes=old_job.decision.notes, job=old_job, from_2nd_level=from_2nd_level
+        notes=old_job.final_decision.notes, job=old_job, from_2nd_level=from_2nd_level
     )
 
     old_job.handle_job_recreated(new_job_id=job_id, resolvable_in_reviewer_tools=True)
