@@ -251,9 +251,6 @@ class CinderJobsWidget(forms.CheckboxSelectMultiple):
         # full object, not a label, this is what makes this work.
         obj = label
         forwarded_notes = [
-            *obj.forwarded_from_jobs.all().values_list(
-                'decisions__private_notes', flat=True
-            ),
             *obj.queue_moves.values_list('notes', flat=True),
             *obj.decisions.filter(action=DECISION_ACTIONS.AMO_REQUEUE).values_list(
                 'private_notes', flat=True

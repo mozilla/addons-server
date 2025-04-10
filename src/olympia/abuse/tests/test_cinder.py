@@ -1308,26 +1308,6 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         # The add-on does not get flagged again while the appeal is ongoing.
         assert addon.current_version.needshumanreview_set.count() == 0
 
-    def test_report_with_ongoing_forwarded_appeal(self):
-        addon = self._create_dummy_target()
-        job = CinderJob.objects.create(job_id='1234-xyz')
-        CinderJob.objects.create(forwarded_to_job=job)
-        job.appealed_decisions.add(
-            ContentDecision.objects.create(
-                addon=addon,
-                cinder_id='1234-decision',
-                action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
-            )
-        )
-        # Trigger switch_is_active to ensure it's cached to make db query
-        # count more predictable.
-        waffle.switch_is_active('dsa-abuse-reports-review')
-        self._test_report(addon)
-        cinder_instance = self.CinderClass(addon)
-        cinder_instance.post_report(job)
-        # The add-on does not get flagged again while the appeal is ongoing.
-        assert addon.current_version.needshumanreview_set.count() == 0
-
     def test_create_decision(self):
         target = self._create_dummy_target()
 

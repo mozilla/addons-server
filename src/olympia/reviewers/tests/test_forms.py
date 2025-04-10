@@ -1261,14 +1261,11 @@ class TestReviewForm(TestCase):
             resolvable_in_reviewer_tools=True,
             target_addon=self.addon,
         )
-        CinderJob.objects.create(
-            job_id='forwarded_from',
-            forwarded_to_job=cinder_job_forwarded,
-            decision=ContentDecision.objects.create(
-                action=DECISION_ACTIONS.AMO_ESCALATE_ADDON,
-                private_notes='Why o why',
-                addon=self.addon,
-            ),
+        ContentDecision.objects.create(
+            action=DECISION_ACTIONS.AMO_REQUEUE,
+            private_notes='Why o why',
+            addon=self.addon,
+            cinder_job=cinder_job_forwarded,
         )
         CinderQueueMove.objects.create(
             cinder_job=cinder_job_forwarded,
@@ -1319,7 +1316,7 @@ class TestReviewForm(TestCase):
         label_0 = doc('label[for="id_cinder_jobs_to_resolve_0"]')
         assert label_0.text() == (
             '[Forwarded] "DSA: It violates Mozilla\'s Add-on Policies"\n'
-            'Reasoning: Why o why; Zee de zee\n\n'
+            'Reasoning: Zee de zee; Why o why\n\n'
             'Show detail on 1 reports\n'
             'v[<script>alert()</script>]: ddd'
         )
