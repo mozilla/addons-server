@@ -15,6 +15,8 @@ Firefox determines which add-ons are unsafe to allow to continue to be enabled b
 
 **The blocklists are all served via Firefox Remote Settings (the current implementation is Kinto):**
 
+<https://github.com/mozilla-extensions/remote-settings-devtools>
+
 - the v3 blocklist bloomfilter files are attachments in the records of <https://firefox.settings.services.mozilla.com/v1/buckets/blocklists/collections/addons-bloomfilters/records>
 - the v2 blocklist is the full output of <https://firefox.settings.services.mozilla.com/v1/buckets/blocklists/collections/addons/records>
 - the v1 blocklist is a (server-side) wrapper around the v2 blocklist that rewrites the JSON into XML
