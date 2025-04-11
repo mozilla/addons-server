@@ -250,6 +250,7 @@ class VersionManager(ManagerBase):
         )
         return self.filter(pk__in=version_ids)
 
+
 class UnfilteredVersionManagerForRelations(VersionManager):
     """Like VersionManager, but defaults to include deleted objects.
 

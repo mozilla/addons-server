@@ -57,10 +57,10 @@ from olympia.api.permissions import (
 )
 from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.reviewers import (
+    MAX_VERSIONS_SHOWN_INLINE,
     REVIEWS_PER_PAGE,
     REVIEWS_PER_PAGE_MAX,
     VERSIONS_PER_REVIEW_PAGE,
-    MAX_VERSIONS_SHOWN_INLINE,
 )
 from olympia.devhub import tasks as devhub_tasks
 from olympia.files.models import File

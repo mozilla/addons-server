@@ -349,7 +349,7 @@ class ContentActionDisableAddon(ContentAction):
         if self.target.status != amo.STATUS_DISABLED:
             return self.log_action(
                 amo.LOG.HELD_ACTION_FORCE_DISABLE,
-                *target_versions,
+                *self.target_versions,
                 extra_details={
                     'versions': [version.version for version in self.target_versions]
                 },
@@ -636,6 +636,7 @@ class ContentActionTargetAppealApprove(
 
     @property
     def target_versions(self):
+        target = self.target
         if isinstance(target, Addon) and target.status == amo.STATUS_DISABLED:
             qs = (
                 Version.unfiltered.disabled_that_would_be_renabled_with_addon(target)
