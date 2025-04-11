@@ -426,8 +426,7 @@ class ContentActionRejectVersion(ContentActionDisableAddon):
         return self.decision.target_versions
 
     def log_action(self, activity_log_action, *extra_args, extra_details=None):
-        # include target versions. addon_version will be included already
-        versions = tuple(self.target_versions.exclude(id=self.addon_version.id))
+        versions = tuple(self.target_versions.all())
         return super().log_action(
             activity_log_action, *extra_args, *versions, extra_details=extra_details
         )
