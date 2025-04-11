@@ -660,14 +660,14 @@ class TestTasks(TestCase):
         self.make_addon_promoted(
             self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
         )
-        assert self.addon.cached_promoted_groups
+        assert self.addon.publicly_promoted_groups
         # Should have an approval for Firefox and one for Android.
         assert self.addon.current_version.promoted_versions.count() == 2
 
         tasks.bump_and_resign_addons([self.addon.pk])
 
-        del self.addon.cached_promoted_groups  # Reload the cached property.
-        assert self.addon.cached_promoted_groups
+        del self.addon.publicly_promoted_groups  # Reload the cached property.
+        assert self.addon.publicly_promoted_groups
         # Should have an approval for Firefox and one for Android.
         assert self.addon.current_version.promoted_versions.count() == 2
 
@@ -675,13 +675,13 @@ class TestTasks(TestCase):
         self.make_addon_promoted(
             self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=False
         )
-        assert not self.addon.cached_promoted_groups
+        assert not self.addon.publicly_promoted_groups
         assert self.addon.current_version.promoted_versions.count() == 0
 
         tasks.bump_and_resign_addons([self.addon.pk])
 
-        del self.addon.cached_promoted_groups  # Reload the cached property.
-        assert not self.addon.cached_promoted_groups
+        del self.addon.publicly_promoted_groups  # Reload the cached property.
+        assert not self.addon.publicly_promoted_groups
         assert self.addon.current_version.promoted_versions.count() == 0
 
     def test_resign_multiple_emails_same_addon(self, mock_sign_file):
