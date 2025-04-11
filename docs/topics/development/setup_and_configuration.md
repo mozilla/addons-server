@@ -98,7 +98,7 @@ By default, _addons-server_ builds a [docker image](./building_and_running_servi
 To run _addons-server_ with the _local_ image, just run `make up` like you normally would. It is the default.
 
 Instead of building, you can configure your environment to run a pulled image instead. To run a pulled image,
-specify a {ref}`version or digest <version-vs-digest>` when calling `make up`. E.g `make up DOCKER_VERSION=latest` to run
+specify a {ref}`version or digest <version-vs-digest>` when calling `make up`. E.g `make up DOCKER_TAG=latest` to run
 the latest published version of `addons-server`.
 
 For typical development it is recommended to use the default built image. It is aggressively cached and most closely
@@ -113,12 +113,12 @@ The default behavior is to build the docker image locally, but if you want to ru
 you can specify a docker image version to pull with:
 
 ```bash
-make up DOCKER_VERSION=<version>
+make up DOCKER_TAG=<tag>
 ```
 
 Version is the published tag of addons-server and corresponds to `mozilla/addons-server:<version>` in [dockerhub][addons-server-tags].
 
-> **Important**: When using a remote image (via `DOCKER_VERSION` or `DOCKER_DIGEST`), the `DOCKER_TARGET` must be set to 'production'.
+> **Important**: When using a remote image (via `DOCKER_TAG`), the `DOCKER_TARGET` must be set to 'production'.
 > Running remote images in development mode is not supported and will fail validation during setup.
 
 Specifying a version will configure docker compose to set the [pull policy] to _always_ and specify the _image_ property
@@ -152,7 +152,7 @@ The version for the above image is `pr-22395-ci` and the digest is `sha256:84648
 To run the specific build of the exact run for `pr-22395` you would run:
 
 ```bash
-    make up DOCKER_VERSION=pr-22395-ci
+    make up DOCKER_TAG=pr-22395-ci
 ```
 
 And to run exactly the version built in this run, even if it is not the latest version, you would run:
@@ -171,7 +171,7 @@ That means if the command is repeated with the same inputs you will always get t
 If you run
 
 ```bash
-    make up DOCKER_VERSION=banana
+    make up DOCKER_TAG=banana
 ```
 
 and then run make up again, the .env file will have a docker tag specifying the version `banana`.
@@ -208,10 +208,8 @@ The setup process includes strict validation of environment variables to ensure 
 
 | Validation Rule | Description | Required | Validation | Default | From .env file|
 |----------------|-------------|----------|------------|---------|--------------|
-| `DOCKER_TAG` | The full docker tag for the image | false | (derived from other values) | mozilla/addons-server:local |true |
+| `DOCKER_TAG` | The full docker tag for the image, version or version+digest | false | (derived from other values) | mozilla/addons-server:local |true |
 | `DOCKER_TARGET` | The target stage to build the docker image to | true | must be `production` when building an image or using a remote image | `development` for local images, `production` for remote images | true (only for local images) |
-| `DOCKER_VERSION` | The docker tag version to use when building/pulling an image | false | none | local | false |
-| `DOCKER_DIGEST` | The docker image build digest to pull a specific build | false | overrides `DOCKER_VERSION` | none | false |
 
 These validations help prevent configuration issues early in the setup process.
 
@@ -420,7 +418,7 @@ Invalid items: check setup.py for validations
 • DOCKER_BUILD
 ```
 
-This usually means you're trying to use a remote image (via `DOCKER_VERSION` or `DOCKER_DIGEST`) without the required production configuration. Remember that remote images:
+This usually means you're trying to use a remote image (via `DOCKER_TAG`) without the required production configuration. Remember that remote images:
 
 - Must use `DOCKER_TARGET=production`
 - Require `DOCKER_COMMIT` and `DOCKER_BUILD` values

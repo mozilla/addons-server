@@ -58,8 +58,7 @@ jobs:
 
     outputs:
       # If build is skipped we should pass local version to build the image
-      version: ${{ steps.build.outputs.version || 'local' }}
-      digest: ${{ steps.build.outputs.digest || '' }}
+      tag: ${{ steps.build.outputs.tag || 'local' }}
 
     steps:
       - uses: actions/checkout@v4
@@ -93,8 +92,7 @@ jobs:
       - name: Build Docs
         uses: ./.github/actions/run-docker
         with:
-          digest: ${{ needs.build.outputs.digest }}
-          version: ${{ needs.build.outputs.version }}
+          tag: ${{ needs.build.outputs.tag }}
           deps: development
           run: |
             make docs
@@ -144,8 +142,7 @@ jobs:
       - name: Extract Locales
         uses: ./.github/actions/run-docker
         with:
-          digest: ${{ needs.build.outputs.digest }}
-          version: ${{ needs.build.outputs.version }}
+          tag: ${{ needs.build.outputs.tag }}
           deps: development
           run: make extract_locales
 
@@ -178,22 +175,19 @@ jobs:
     needs: build
     uses: ./.github/workflows/_test.yml
     with:
-      version: ${{ needs.build.outputs.version }}
-      digest: ${{ needs.build.outputs.digest }}
+      tag: ${{ needs.build.outputs.tag }}
 
   test_main:
     needs: [context, build]
     uses: ./.github/workflows/_test_main.yml
     with:
-      version: ${{ needs.build.outputs.version }}
-      digest: ${{ needs.build.outputs.digest }}
+      tag: ${{ needs.build.outputs.tag }}
 
   test_check:
     needs: [context, build]
     uses: ./.github/workflows/_test_check.yml
     with:
-      version: ${{ needs.build.outputs.version }}
-      digest: ${{ needs.build.outputs.digest }}
+      tag: ${{ needs.build.outputs.tag }}
 
   push_dockerhub:
     name: Push Production Docker Image (Dockerhub)

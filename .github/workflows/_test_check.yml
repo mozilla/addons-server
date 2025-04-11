@@ -2,30 +2,23 @@ name: Test make up and check the local dev setup
 
 run-name: |
   ref: ${{ github.ref_name }} |
-  version: ${{ inputs.version }} |
-  digest: ${{ inputs.digest }} |
+  tag: ${{ inputs.tag }} |
 
 on:
   workflow_call:
     inputs:
-      version:
-        description: The version of the image to run
+      tag:
+        description: The tag/version/version+digest of the image to run
         type: string
         required: true
-      digest:
-        description: The build digest of the image to run. Overrides version.
-        type: string
-        required: false
+
   workflow_dispatch:
     inputs:
-      version:
-        description: The version of the image to run
+      tag:
+        description: The tag/version/version+digest of the image to run
         type: string
         required: true
-      digest:
-        description: The build digest of the image to run. Overrides version.
-        type: string
-        required: false
+
 
 concurrency:
   group: test_check-${{ github.workflow }}-${{ github.event_name}}-${{ github.ref}}-${{ toJson(inputs) }}
@@ -44,15 +37,15 @@ jobs:
   test_check:
     runs-on: ubuntu-latest
     name: |
-      version: '${{ matrix.version }}' |
+      tag: '${{ matrix.tag }}' |
       target: '${{ matrix.target }}' |
       deps: '${{ matrix.deps }}'
     strategy:
       fail-fast: false
       matrix:
-        version:
+        tag:
           - local
-          - ${{ inputs.version }}
+          - ${{ inputs.tag }}
         target:
           - development
           - production
@@ -61,16 +54,15 @@ jobs:
           - production
     steps:
       - uses: actions/checkout@v4
-      - name: ${{ matrix.version == 'local' && 'Uncached Build' || 'Pull' }} Check
+      - name: ${{ matrix.tag == 'local' && 'Uncached Build' || 'Pull' }} Check
         id: build
         continue-on-error: true
         uses: ./.github/actions/run-docker
         # Set environment variables that are expected to be ignored
         env:
           DOCKER_COMMIT: 'not-expected'
-          DOCKER_VERSION: 'not-expected'
         with:
-          version: ${{ matrix.version }}
+          tag: ${{ matrix.tag }}
           target: ${{ matrix.target }}
           deps: ${{ matrix.deps }}
           run: make check
@@ -79,19 +71,19 @@ jobs:
         id: verify
         shell: bash
         run: |
-          version="${{ matrix.version }}"
+          tag="${{ matrix.tag }}"
           target="${{ matrix.target }}"
           outcome="${{ steps.build.outcome }}"
-          if [[ "$version" != "local" && "$target" == "development" && "$outcome" == "success" ]]; then
+          if [[ "$tag" != "local" && "$target" == "development" && "$outcome" == "success" ]]; then
             echo "Non local images must run in production mode"
             exit 1
           fi
 
       - name: Cached Build Check
         uses: ./.github/actions/run-docker
-        if: matrix.version == 'local' && steps.verify.outcome == 'success'
+        if: matrix.tag == 'local' && steps.verify.outcome == 'success'
         with:
-          version: ${{ matrix.version }}
+          tag: ${{ matrix.tag }}
           target: ${{ matrix.target }}
           deps: ${{ matrix.deps }}
           run: echo true
@@ -113,8 +105,7 @@ jobs:
       - name: Test setup
         uses: ./.github/actions/run-docker
         with:
-          digest: ${{ inputs.digest }}
-          version: ${{ inputs.version }}
+          tag: ${{ inputs.tag }}
           deps: development
           run: |
             pytest tests/make/
@@ -131,8 +122,7 @@ jobs:
         continue-on-error: true
         uses: ./.github/actions/run-docker
         with:
-          digest: ${{ inputs.digest }}
-          version: ${{ inputs.version }}
+          tag: ${{ inputs.tag }}
           run: |
             exit 1
 
@@ -151,8 +141,7 @@ jobs:
       - name: Check (special characters in command)
         uses: ./.github/actions/run-docker
         with:
-          digest: ${{ inputs.digest }}
-          version: ${{ inputs.version }}
+          tag: ${{ inputs.tag }}
           run: |
             echo 'this is a question?'
             echo 'a * is born'
@@ -164,5 +153,5 @@ jobs:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/run-docker
         with:
-          version: ${{ inputs.version }}
+          tag: ${{ inputs.tag }}
           run: echo true

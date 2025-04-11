@@ -14,7 +14,7 @@
 .*.sw?
 .cache
 .DS_Store
-.env
+.env*
 .ipython
 .mysql_history
 .nose*

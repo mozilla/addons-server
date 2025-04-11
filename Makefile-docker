@@ -173,9 +173,9 @@ watch_js_tests: ## Run+watch the JavaScript test suite (requires compiled/compre
 
 .PHONY: format
 format: ## Autoformat our codebase.
-	npm run fix
 	ruff check --fix-only .
 	ruff format .
+	npm run fix
 
 .PHONY: extract_locales
 extract_locales: ## extracts and merges translation strings
