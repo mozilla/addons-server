@@ -242,6 +242,13 @@ class VersionManager(ManagerBase):
             )
         return reasons
 
+    def disabled_that_would_be_renabled_with_addon(self, addon):
+        version_ids = (
+            File.objects.disabled_that_would_be_renabled_with_addon()
+            .filter(version__addon=addon)
+            .values_list('version_id')
+        )
+        return self.filter(pk__in=version_ids)
 
 class UnfilteredVersionManagerForRelations(VersionManager):
     """Like VersionManager, but defaults to include deleted objects.
