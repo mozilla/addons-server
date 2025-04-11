@@ -296,7 +296,7 @@ class ContentActionDisableAddon(ContentAction):
             and any(self.target.promoted_groups(currently_approved=False).high_profile)
         )
 
-    def log_action(self, activity_log_action, *extra_args, extra_details=None):
+    def log_action(self, activity_log_action, *extra_args, extra_details=None, target_versions=None):
         from olympia.activity.models import AttachmentLog
         from olympia.reviewers.models import ReviewActionReason
 
@@ -304,6 +304,9 @@ class ContentActionDisableAddon(ContentAction):
             (user := self.decision.reviewer_user) and user.id != settings.TASK_USER_ID
         )
         extra_details = {'human_review': human_review} | (extra_details or {})
+        if target_versions:
+            extra_args = (*target_versions, *extra_args)
+            extra_details['versions'] = [version.version for version in target_versions]
         # While we still have ReviewActionReason in addition to ContentPolicy, re-add
         # any instances from earlier activity logs (e.g. held action)
         reasons = ReviewActionReason.objects.filter(
@@ -324,9 +327,9 @@ class ContentActionDisableAddon(ContentAction):
     def target_versions(self):
         return (
             Version.objects.all()
-            .no_transforms()
             .filter(addon=self.target)
             .exclude(file__status=amo.STATUS_DISABLED)
+            .no_transforms()
             .only('pk', 'version')
         )
 
@@ -338,10 +341,7 @@ class ContentActionDisableAddon(ContentAction):
             self.target.force_disable(skip_activity_log=True)
             return self.log_action(
                 amo.LOG.FORCE_DISABLE,
-                *target_versions,
-                extra_details={
-                    'versions': [version.version for version in target_versions]
-                },
+                target_versions=target_versions,
             )
         return None
 
@@ -349,10 +349,7 @@ class ContentActionDisableAddon(ContentAction):
         if self.target.status != amo.STATUS_DISABLED:
             return self.log_action(
                 amo.LOG.HELD_ACTION_FORCE_DISABLE,
-                *self.target_versions,
-                extra_details={
-                    'versions': [version.version for version in self.target_versions]
-                },
+                target_versions=self.target_versions,
             )
         return None
 
@@ -369,16 +366,20 @@ class ContentActionRejectVersion(ContentActionDisableAddon):
         super().__init__(decision)
         self.content_review = decision.metadata.get('content_review', False)
 
+    def log_action(self, *args, **kwargs):
+        kwargs.update(target_versions=self.target_versions)
+        return super().log_action(*args, **kwargs)
+
     def should_hold_action(self):
         return (
             super().should_hold_action()
-            and self.decision.target_versions.filter(file__is_signed=True).exists()
+            and self.target_versions.filter(file__is_signed=True).exists()
         )
 
     def notify_stakeholders(self, rejection_type):
         if (
             self.target.promoted_groups(currently_approved=False)
-            and self.decision.target_versions.filter(file__is_signed=True).exists()
+            and self.target_versions.filter(file__is_signed=True).exists()
             and (
                 stakeholder_group := Group.objects.filter(
                     name=self.stakeholder_acl_group_name
@@ -392,7 +393,7 @@ class ContentActionRejectVersion(ContentActionDisableAddon):
                 return
             template = loader.get_template(self.stakeholder_template_path)
             versions = list(
-                self.decision.target_versions.order_by('id').values_list(
+                self.target_versions.order_by('id').values_list(
                     'version', 'channel', named=True
                 )
             )
@@ -423,19 +424,13 @@ class ContentActionRejectVersion(ContentActionDisableAddon):
 
     @property
     def target_versions(self):
-        return self.decision.target_versions
-
-    def log_action(self, activity_log_action, *extra_args, extra_details=None):
-        versions = tuple(self.target_versions.all())
-        return super().log_action(
-            activity_log_action, *extra_args, *versions, extra_details=extra_details
-        )
+        return self.decision.target_versions.all().no_transforms().only('pk', 'version')
 
     def process_action(self):
         if not self.decision.reviewer_user:
             # This action should only be used by reviewer tools, not cinder webhook
             raise NotImplementedError
-        for version in self.target_versions.all():
+        for version in self.target_versions:
             version.file.update(
                 datestatuschanged=datetime.now(),
                 status=amo.STATUS_DISABLED,
@@ -455,14 +450,14 @@ class ContentActionRejectVersion(ContentActionDisableAddon):
         self.target.update_status()
         self.notify_stakeholders('Rejection')
         return self.log_action(
-            amo.LOG.REJECT_CONTENT if self.content_review else amo.LOG.REJECT_VERSION
+            amo.LOG.REJECT_CONTENT if self.content_review else amo.LOG.REJECT_VERSION,
         )
 
     def hold_action(self):
         return self.log_action(
             amo.LOG.HELD_ACTION_REJECT_CONTENT
             if self.content_review
-            else amo.LOG.HELD_ACTION_REJECT_VERSIONS
+            else amo.LOG.HELD_ACTION_REJECT_VERSIONS,
         )
 
 
@@ -486,13 +481,13 @@ class ContentActionRejectVersionDelayed(ContentActionRejectVersion):
             # methods.
             self.delayed_rejection_date = self.delayed_rejection_days = None
 
-    def log_action(self, activity_log_action, *extra_args, extra_details=None):
+    def log_action(self, activity_log_action, *extra_args, extra_details=None, **kwargs):
         extra_details = {
             **(extra_details or {}),
             'delayed_rejection_days': self.delayed_rejection_days,
         }
         return super().log_action(
-            activity_log_action, *extra_args, extra_details=extra_details
+            activity_log_action, *extra_args, extra_details=extra_details, **kwargs
         )
 
     # should_hold_action as ContentActionRejectVersion
@@ -502,7 +497,7 @@ class ContentActionRejectVersionDelayed(ContentActionRejectVersion):
             # This action should only be used by reviewer tools, not cinder webhook
             raise NotImplementedError
 
-        for version in self.target_versions.all():
+        for version in self.target_versions:
             # (Re)set pending_rejection.
             VersionReviewerFlags.objects.update_or_create(
                 version=version,
@@ -521,7 +516,7 @@ class ContentActionRejectVersionDelayed(ContentActionRejectVersion):
         return self.log_action(
             amo.LOG.REJECT_CONTENT_DELAYED
             if self.content_review
-            else amo.LOG.REJECT_VERSION_DELAYED
+            else amo.LOG.REJECT_VERSION_DELAYED,
         )
 
     def hold_action(self):
@@ -639,12 +634,10 @@ class ContentActionTargetAppealApprove(
         if isinstance(target, Addon) and target.status == amo.STATUS_DISABLED:
             qs = (
                 Version.unfiltered.disabled_that_would_be_renabled_with_addon(target)
-                .no_transforms()
-                .only('id', 'version')
             )
         else:
-            qs = self.decision.target_versions
-        return qs
+            qs = self.decision.target_versions.all()
+        return qs.no_transforms().only('pk', 'version')
 
     def process_action(self):
         target = self.target
