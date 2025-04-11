@@ -803,7 +803,7 @@ class TestRankingScenarios(ESTestCase):
         # Doesn't find "RapidShare DownloadHelper" anymore
         # since we now query by "MegaUpload AND DownloadHelper"
         self._check_scenario(
-            'MegaUpload DownloadHelper', (['MegaUpload DownloadHelper', 5241],)
+            'MegaUpload DownloadHelper', (['MegaUpload DownloadHelper', 4772],)
         )
 
     def test_scenario_downloadhelper(self):
