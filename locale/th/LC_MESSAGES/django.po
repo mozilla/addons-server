@@ -306,7 +306,7 @@ msgstr "ไม่สามารถระบุเวอร์ชันสูง
 
 #: src/olympia/addons/fields.py:297
 msgid "Unknown min app version specified"
-msgstr ""
+msgstr "ไม่สามารถระบุเวอร์ชันต่ำสุดของแอพได้"
 
 #: src/olympia/addons/fields.py:307 src/olympia/addons/fields.py:325 src/olympia/addons/serializers.py:622
 #, python-format
@@ -369,11 +369,11 @@ msgstr ""
 
 #: src/olympia/addons/serializers.py:885
 msgid "Add-ons need at least one owner."
-msgstr ""
+msgstr "ส่วนเสริมต้องมีเจ้าของอย่างน้อยหนึ่งคน"
 
 #: src/olympia/addons/serializers.py:900
 msgid "Add-ons need at least one listed author."
-msgstr ""
+msgstr "ส่วนเสริมต้องมีชื่อผู้เขียนอย่างน้อยหนึ่งคน"
 
 #: src/olympia/addons/serializers.py:932
 msgid "Account not found."
