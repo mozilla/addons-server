@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-09 16:19+0000\n"
+"POT-Creation-Date: 2025-04-11 13:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -312,7 +312,7 @@ msgstr ""
 msgid "The \"other\" category cannot be combined with another category"
 msgstr ""
 
-#: src/olympia/addons/fields.py:76 src/olympia/addons/serializers.py:1254
+#: src/olympia/addons/fields.py:76 src/olympia/addons/serializers.py:1257
 msgid "Invalid category name."
 msgstr ""
 
@@ -357,7 +357,7 @@ msgid "Unknown min app version specified"
 msgstr ""
 
 #: src/olympia/addons/fields.py:307 src/olympia/addons/fields.py:325
-#: src/olympia/addons/serializers.py:622
+#: src/olympia/addons/serializers.py:625
 #, python-format
 msgid ""
 "Can not override compatibility information set in the manifest for this "
@@ -378,19 +378,19 @@ msgstr ""
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr ""
 
-#: src/olympia/addons/serializers.py:303
+#: src/olympia/addons/serializers.py:306
 msgid "Built in licenses can not be updated."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:498
+#: src/olympia/addons/serializers.py:501
 msgid "Upload is not valid."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:514
+#: src/olympia/addons/serializers.py:517
 msgid "File is already disabled."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:518 src/olympia/addons/views.py:738
+#: src/olympia/addons/serializers.py:521 src/olympia/addons/views.py:738
 #, python-format
 msgid ""
 "The latest approved version of this %s add-on cannot be deleted because the "
@@ -398,26 +398,26 @@ msgid ""
 " if you need help with this."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:533
+#: src/olympia/addons/serializers.py:536
 #, python-brace-format
 msgid "Version {version_string} was uploaded before and deleted."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:536
+#: src/olympia/addons/serializers.py:539
 #, python-brace-format
 msgid "Version {version_string} already exists."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:556
+#: src/olympia/addons/serializers.py:559
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:597
+#: src/olympia/addons/serializers.py:600
 #, python-format
 msgid "%(addon_type_plural)s are not supported by %(app_name)s"
 msgstr ""
 
-#: src/olympia/addons/serializers.py:636 src/olympia/devhub/forms.py:910
+#: src/olympia/addons/serializers.py:639 src/olympia/devhub/forms.py:910
 #, python-format
 msgid ""
 "Invalid version range. For Firefox for Android, you may only pick a range "
@@ -425,28 +425,28 @@ msgid ""
 "%(min)s."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:885
+#: src/olympia/addons/serializers.py:888
 msgid "Add-ons need at least one owner."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:900
+#: src/olympia/addons/serializers.py:903
 msgid "Add-ons need at least one listed author."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:932
+#: src/olympia/addons/serializers.py:935
 msgid "Account not found."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:945 src/olympia/devhub/forms.py:410
+#: src/olympia/addons/serializers.py:948 src/olympia/devhub/forms.py:410
 #: src/olympia/devhub/forms.py:480
 msgid "An author can only be present once."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:956 src/olympia/devhub/forms.py:422
+#: src/olympia/addons/serializers.py:959 src/olympia/devhub/forms.py:422
 msgid "The account needs a display name before it can be added as an author."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:1234
+#: src/olympia/addons/serializers.py:1237
 msgid "This slug cannot be used. Please choose another."
 msgstr ""
 
@@ -1918,28 +1918,32 @@ msgstr ""
 msgid "The Unlicense"
 msgstr ""
 
-#: src/olympia/constants/promoted.py:75
+#: src/olympia/constants/promoted.py:76
 msgid "Not Promoted"
 msgstr ""
 
-#: src/olympia/constants/promoted.py:81
+#: src/olympia/constants/promoted.py:82
 msgid "Recommended"
 msgstr ""
 
-#: src/olympia/constants/promoted.py:112
+#: src/olympia/constants/promoted.py:113
 msgid "By Firefox"
 msgstr ""
 
-#: src/olympia/constants/promoted.py:130
+#: src/olympia/constants/promoted.py:131
 msgid "Spotlight"
 msgstr ""
 
-#: src/olympia/constants/promoted.py:141
+#: src/olympia/constants/promoted.py:142
 msgid "Strategic"
 msgstr ""
 
-#: src/olympia/constants/promoted.py:148
+#: src/olympia/constants/promoted.py:149
 msgid "Notable"
+msgstr ""
+
+#: src/olympia/constants/promoted.py:159
+msgid "Partner"
 msgstr ""
 
 #: src/olympia/constants/reviewers.py:21
