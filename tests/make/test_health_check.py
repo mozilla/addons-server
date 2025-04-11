@@ -1,105 +1,181 @@
+import json
+from contextlib import contextmanager
 from json.decoder import JSONDecodeError
 from unittest import TestCase
-from unittest.mock import call, patch
-
-import requests
-import responses
+from unittest.mock import MagicMock, call, patch
+from urllib.error import HTTPError
 
 from scripts.health_check import main
 
 
 class TestHealthCheck(TestCase):
+    def setUp(self):
+        path = patch('urllib.request.urlopen')
+        self.mock_urlsopen = path.start()
+        self.addCleanup(path.stop)
+
     def _url(self, path: str):
         return f'http://nginx/{path}'
 
-    def mock_url(self, path: str, **kwargs):
-        responses.add(
-            responses.GET,
-            self._url(path),
-            **kwargs,
-        )
+    @contextmanager
+    def mock_urls(self, mocks: tuple[str, int, any]):
+        def create_mock_response(request, status, body):
+            cm = MagicMock()
+            cm.status = status
+            # Set headers attribute, needed by HTTPError
+            cm.headers = {}
+            mock_info = MagicMock()
+            mock_info.get_content_charset.return_value = 'utf-8'
+
+            mock_data = MagicMock()
+            data = body(request) if callable(body) else body
+            if isinstance(data, dict):
+                data = json.dumps(data)
+            mock_data.decode.return_value = data
+            cm.read.return_value = mock_data
+            cm.info.return_value = mock_info
+            cm.__enter__.return_value = cm
+
+            # If status is not OK, raise HTTPError with the mock response
+            if status != 200:
+                raise HTTPError(
+                    url=request.full_url,
+                    code=status,
+                    msg=f'Mock HTTP Error {status}',
+                    hdrs=mock_info,
+                    fp=cm,
+                )
+            return cm
+
+        def side_effect(request, timeout=None):
+            url = request.full_url
+            for path, status, body in mocks:
+                if url == self._url(path):
+                    return create_mock_response(request, status, body)
+            raise ValueError(f'Unexpected URL requested: {url}')
+
+        self.mock_urlsopen.side_effect = side_effect
+
+        self.mock_urlsopen.side_effect = side_effect
+
+        yield
 
     def _monitor(self, name: str, state: bool, status: str):
         return {name: {'state': state, 'status': status}}
 
     def test_basic(self):
         """Test happy path returning no failing monitors"""
-        self.mock_url('__version__', status=200, json={'version': '1.0.0'})
-        self.mock_url(
-            'services/monitor.json', status=200, json=self._monitor('two', True, '')
-        )
-        main('local')
+        with self.mock_urls(
+            [
+                ('__version__', 200, {'version': '1.0.0'}),
+                ('services/monitor.json', 200, self._monitor('two', True, '')),
+            ]
+        ):
+            main('container')
 
     def test_missing_version(self):
-        self.mock_url('__version__', status=500)
-        self.mock_url(
-            'services/monitor.json', status=200, json=self._monitor('two', True, '')
-        )
-
-        with self.assertRaises(JSONDecodeError):
-            main('local')
+        with (
+            self.assertRaises(HTTPError),
+            self.mock_urls(
+                [
+                    ('__version__', 503, ''),
+                    ('services/monitor.json', 200, self._monitor('two', True, '')),
+                ]
+            ),
+        ):
+            main('container')
 
     def test_invalid_version(self):
-        self.mock_url('__version__', status=200, body='{not valid json')
-        self.mock_url(
-            'services/monitor.json', status=200, json=self._monitor('two', True, '')
-        )
-
-        with self.assertRaises(JSONDecodeError):
-            main('local')
+        with (
+            self.assertRaises(JSONDecodeError),
+            self.mock_urls(
+                [
+                    ('__version__', 200, '{not valid json'),
+                    ('services/monitor.json', 200, self._monitor('two', True, '')),
+                ]
+            ),
+        ):
+            main('container')
 
     def test_missing_monitors(self):
-        self.mock_url('services/monitor.json', status=500)
-        self.mock_url('__version__', status=200, json={'version': '1.0.0'})
-
-        with self.assertRaises(JSONDecodeError):
-            main('local')
+        with (
+            self.assertRaises(HTTPError),
+            self.mock_urls(
+                [
+                    ('services/monitor.json', 503, ''),
+                    ('__version__', 200, {'version': '1.0.0'}),
+                ]
+            ),
+        ):
+            main('container')
 
     def test_failing_monitors(self):
         failing_monitor = self._monitor('fail', False, 'Service is down')
-        self.mock_url('services/monitor.json', status=200, json=failing_monitor)
-        self.mock_url('__version__', status=200, json={'version': '1.0.0'})
-
-        results, has_failures = main('local')
-        self.assertTrue(has_failures)
+        with self.mock_urls(
+            [
+                ('services/monitor.json', 200, failing_monitor),
+                ('__version__', 200, {'version': '1.0.0'}),
+            ]
+        ):
+            results, has_failures = main('container')
+            self.assertTrue(has_failures)
 
     def test_request_retries(self):
-        count = 0
+        for status in [502, 503, 504]:
+            with self.subTest(status=status):
+                count = 0
 
-        def increment_count(request):
-            nonlocal count
-            count += 1
-            return (503, {}, '')
+                def increment_count(request):
+                    nonlocal count
+                    count += 1
+                    return ''
 
-        # Mock the get request to fail with a 503 status
-        self.mock_url('__version__', status=503)
-        self.mock_url('services/monitor.json', status=503)
+                with (
+                    self.assertRaises(HTTPError),
+                    self.mock_urls(
+                        [
+                            ('services/monitor.json', status, ''),
+                            ('__version__', status, increment_count),
+                        ]
+                    ),
+                ):
+                    # Retry 2 times means we should retry main if successful
+                    # and has errors. In this case the request itself is failing
+                    # which will be retried 5 times and then raise the error.
+                    main('container', retries=2)
 
-        responses.add_callback(
-            responses.GET,
-            self._url('__version__'),
-            callback=increment_count,
-        )
-
-        with self.assertRaises(requests.exceptions.RequestException):
-            main('local', retries=0)
-
-        assert count == 5
+                assert count == 5
 
     @patch('scripts.health_check.main', wraps=main)
     def test_retry_failures(self, mock_main):
-        self.mock_url('__version__', status=200, json={'version': '1.0.0'})
-        self.mock_url(
-            'services/monitor.json',
-            json=self._monitor('fail', False, 'Service is down'),
-        )
-
-        main('local', retries=2)
+        with self.mock_urls(
+            [
+                ('__version__', 200, {'version': '1.0.0'}),
+                (
+                    'services/monitor.json',
+                    500,
+                    self._monitor('fail', False, 'Service is down'),
+                ),
+            ]
+        ):
+            main('container', retries=2)
 
         # Should be called 3 times total - initial call plus 2 retries
         self.assertEqual(mock_main.call_count, 2)
 
         # Verify retry attempts were made with incrementing attempt numbers
         mock_main.assert_has_calls(
-            [call('local', False, 2, 1), call('local', False, 2, 2)]
+            [call('container', False, 2, 1), call('container', False, 2, 2)]
         )
+
+    def test_retry_unhandled_status(self):
+        with (
+            self.assertRaises(HTTPError),
+            self.mock_urls(
+                [
+                    ('services/monitor.json', 522, ''),
+                    ('__version__', 503, ''),
+                ]
+            ),
+        ):
+            main('container', retries=5)

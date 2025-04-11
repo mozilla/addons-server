@@ -14,34 +14,58 @@ env:
   health_check_blocks_file: health_check_blocks.json
 
 jobs:
+  context:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.context.outputs.matrix }}
+    steps:
+      - name: Set Context
+        id: context
+        shell: bash
+        run: |
+          is_test="${{ github.event_name == 'push' }}"
+          if [[ "${is_test}" == "true" ]]; then
+            matrix='["host"]'
+          else
+            matrix='["dev","stage","prod"]'
+          fi
+
+          echo "is_test=${is_test}" >> "$GITHUB_OUTPUT"
+          echo "matrix=${matrix}" >> "$GITHUB_OUTPUT"
+          cat "$GITHUB_OUTPUT"
+
   health_check:
+    needs: context
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        environment: ${{fromJson(github.event_name == 'push' && '["local"]' || '["dev","stage","prod"]')}}
+        environment: ${{ fromJson(needs.context.outputs.matrix) }}
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Run health check
-        id: health_check
-        continue-on-error: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: 3.12
+
+      - name: Set waffle switch dummy-monitor-fails to true
+        if: matrix.environment == 'host'
         uses: ./.github/actions/run-docker
         with:
           version: local
           run: |
-            # On local, we want to ensure there are failures to test
-            # the later steps with so set the waffle switch to on.
-            if [ "${{ matrix.environment }}" = "local" ]; then
-              echo "Set waffle switch dummy-monitor-fails to true"
-              ./manage.py waffle_switch dummy-monitor-fails on
-            fi
+            ./manage.py waffle_switch dummy-monitor-fails on
 
-            ./scripts/health_check.py \
-            --env ${{ matrix.environment }} \
-            --verbose \
-            --output ${{ env.health_check_file }}
+      - name: Run health check
+        continue-on-error: true
+        id: health_check
+        shell: bash
+        run: |
+          ./scripts/health_check.py \
+          --env ${{ matrix.environment }} \
+          --verbose \
+          --output ${{ env.health_check_file }}
 
       - name: Set message blocks
         id: blocks

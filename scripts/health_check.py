@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
 
 import argparse
+import http.client
 import json
 import time
+import urllib.error
+import urllib.request
+import urllib.response
 from enum import Enum
-from functools import cached_property
-
-from requests import Session
-from requests.adapters import HTTPAdapter
-from urllib3.util import Retry
 
 
 ENV_ENUM = Enum(
@@ -18,40 +17,107 @@ ENV_ENUM = Enum(
         ('stage', 'https://addons.allizom.org'),
         ('prod', 'https://addons.mozilla.org'),
         # For local environments hit the nginx container as set in docker-compose.yml
-        ('local', 'http://nginx'),
+        ('container', 'http://nginx'),
+        ('host', 'http://127.0.0.1:80'),
     ],
 )
 
 
 class Fetcher:
-    def __init__(self, env: ENV_ENUM, verbose: bool = False):
+    def __init__(
+        self,
+        env: ENV_ENUM,
+        verbose: bool = False,
+        retries: int = 5,
+        backoff_factor: float = 0.1,
+        status_forcelist: list[int] = None,
+    ):
         self.environment = ENV_ENUM[env]
         self.verbose = verbose
-
-    @cached_property
-    def client(self):
-        session = Session()
-        retries = Retry(
-            total=5,
-            backoff_factor=0.1,
-            status_forcelist=[502, 503, 504],
-            allowed_methods={'GET'},
-        )
-        adapter = HTTPAdapter(max_retries=retries)
-        session.mount(self.environment.value, adapter)
-        return session
+        self.retries = retries
+        self.backoff_factor = backoff_factor
+        self.status_forcelist = status_forcelist or [502, 503, 504]
+        self.timeout = 10
 
     def log(self, *args):
         if self.verbose:
             print(*args)
 
+    def _response(self, response):
+        raw_data = response.read()
+        encoding = response.info().get_content_charset('utf-8')
+        decoded_data = raw_data.decode(encoding)
+        data = json.loads(decoded_data)
+        self.log(json.dumps(data, indent=2))
+        return {'url': response.url, 'data': data}
+
     def _fetch(self, path: str):
         url = f'{self.environment.value}/{path}'
-        self.log(f'Requesting {url} for {self.environment.name}')
-        response = self.client.get(url, allow_redirects=False)
-        data = response.json()
-        self.log(json.dumps(data, indent=2))
-        return {'url': url, 'data': data}
+        last_exception = None
+
+        for attempt in range(1, self.retries + 1):
+            self.log(
+                f'Attempt {attempt}/{self.retries}: '
+                f'Requesting {url} for {self.environment.name}'
+            )
+            try:
+                req = urllib.request.Request(url)
+                with urllib.request.urlopen(req, timeout=self.timeout) as response:
+                    return self._response(response)
+
+            except (
+                urllib.error.HTTPError,
+                urllib.error.URLError,
+                http.client.RemoteDisconnected,
+                TimeoutError,
+            ) as e:
+                last_exception = e
+                should_retry = False
+                log_reason = ''
+
+                if isinstance(e, urllib.error.HTTPError):
+                    log_reason = f'status {e.code}'
+                    try:
+                        self.log(
+                            f'Request failed with {log_reason}, '
+                            'attempting to parse error response body.'
+                        )
+                        return self._response(e)
+                    except (
+                        json.decoder.JSONDecodeError,
+                        UnicodeDecodeError,
+                    ) as parse_error:
+                        self.log(f'Failed to parse error response body: {parse_error}')
+                        if e.code in self.status_forcelist and attempt < self.retries:
+                            should_retry = True
+                else:
+                    log_reason = str(e)
+                    if attempt < self.retries:
+                        should_retry = True
+
+                if should_retry:
+                    wait_time = self.backoff_factor * (2**attempt)
+                    self.log(
+                        f'Request failed with {log_reason}. '
+                        f'Retrying in {wait_time:.2f} seconds...'
+                    )
+                    time.sleep(wait_time)
+                    continue
+                else:
+                    self.log(
+                        f'Request failed with {log_reason}. '
+                        'No more retries or not retryable.'
+                    )
+                    raise e
+
+            except Exception as e:
+                last_exception = e
+                self.log(f'An unexpected error occurred: {e}. No more retries.')
+                raise e
+
+        raise last_exception or RuntimeError(
+            f'Failed to fetch {url} after {self.retries + 1} attempts'
+        )
 
     def version(self):
         return self._fetch('__version__')
@@ -73,7 +139,10 @@ def main(env: ENV_ENUM, verbose: bool = False, retries: int = 0, attempt: int = 
     if has_failures and attempt < retries:
         wait_for = 2**attempt
         if verbose:
-            print(f'waiting for {wait_for} seconds')
+            print(
+                f'Monitors reported failures. Waiting {wait_for} seconds before '
+                f'retrying check (attempt {attempt + 1}/{retries})...'
+            )
         time.sleep(wait_for)
         return main(env, verbose, retries, attempt + 1)
 
@@ -93,7 +162,15 @@ if __name__ == '__main__':
     )
     args.add_argument('--output', type=str)
     args.add_argument('--verbose', action='store_true')
-    args.add_argument('--retries', type=int, default=3)
+    args.add_argument(
+        '--retries',
+        type=int,
+        default=3,
+        help=(
+            'Number of times to retry the *entire* health check if monitors report '
+            'failures. Default is 3.'
+        ),
+    )
     args = args.parse_args()
 
     data, has_failures = main(args.env, args.verbose, args.retries)
