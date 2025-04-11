@@ -6,7 +6,11 @@ from django.conf import settings
 from olympia import amo
 from olympia.addons.indexers import AddonIndexer
 from olympia.addons.models import Addon, Preview, attach_tags, attach_translations_dict
-from olympia.amo.tests import ESTestCase, TestCase, addon_factory
+from olympia.amo.tests import (
+    ESTestCase,
+    TestCase,
+    addon_factory,
+)
 from olympia.bandwagon.models import Collection
 from olympia.constants.applications import FIREFOX
 from olympia.constants.licenses import LICENSES_BY_BUILTIN
@@ -528,6 +532,20 @@ class TestAddonIndexer(TestCase):
         extracted = self._extract()
         assert extracted['promoted'][0]['approved_for_apps'] == [amo.FIREFOX.id]
         assert extracted['is_recommended'] is True
+
+        # With multiple promotions
+        self.make_addon_promoted(
+            addon=self.addon,
+            group_id=PROMOTED_GROUP_CHOICES.LINE,
+            apps=[amo.FIREFOX],
+        )
+        self.addon.approve_for_version()
+        extracted = self._extract()
+        assert extracted['promoted']
+        assert (
+            extracted['promoted'][0]['group_id'] == PROMOTED_GROUP_CHOICES.RECOMMENDED
+        )
+        assert extracted['promoted'][1]['group_id'] == PROMOTED_GROUP_CHOICES.LINE
 
         # Promoted theme.
         self.addon = addon_factory(type=amo.ADDON_STATICTHEME)

@@ -558,6 +558,34 @@ class AddonSerializerOutputTestMixin:
         result = self.serialize()
         assert result['promoted'][0]['apps'] == [amo.FIREFOX.short]
 
+        # Test multiple promotions.
+        PromotedAddonPromotion.objects.create(
+            addon=self.addon,
+            promoted_group=PromotedGroup.objects.get(
+                group_id=PROMOTED_GROUP_CHOICES.LINE
+            ),
+            application_id=amo.FIREFOX.id,
+        )
+        self.addon.approve_for_version(self.addon.current_version)
+        result = self.serialize()
+        assert len(result['promoted']) == 2
+        assert (
+            result['promoted'][0]['category']
+            == PROMOTED_GROUP_CHOICES.RECOMMENDED.api_value
+        )
+        assert (
+            result['promoted'][1]['category'] == PROMOTED_GROUP_CHOICES.LINE.api_value
+        )
+
+        # Directly returns first promotion in v3, v4
+        gates = {self.request.version: ('promoted-groups-shim',)}
+        with override_settings(DRF_API_GATES=gates):
+            result = self.serialize()
+            assert (
+                result['promoted']['category']
+                == PROMOTED_GROUP_CHOICES.RECOMMENDED.api_value
+            )
+
         # With a recommended theme.
         PromotedAddonPromotion.objects.filter(addon=self.addon).delete()
         self.addon.update(type=amo.ADDON_STATICTHEME)

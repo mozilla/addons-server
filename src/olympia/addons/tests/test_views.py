@@ -5679,6 +5679,7 @@ class TestAddonSearchView(ESTestCase):
             max=av_max,
         )
         # This case is approved for all apps, but now only set for Firefox
+        addon2.promotedaddonpromotion.all().delete()
         self.make_addon_promoted(
             addon=addon2,
             group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,

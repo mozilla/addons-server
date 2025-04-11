@@ -2473,6 +2473,7 @@ class TestReview(ReviewBase):
             assert entry.text() == ('This is a Recommended add-on.')
 
         # Change to a different class of promoted addon
+        self.addon.promotedaddonpromotion.all().delete()
         self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.SPOTLIGHT)
 
         response = self.client.get(self.url)
@@ -3734,6 +3735,7 @@ class TestReview(ReviewBase):
         assert not doc('#disable_auto_approval')
 
         # Strategic is listed_pre_review=False so auto approval isn't disabled
+        self.addon.promotedaddonpromotion.all().delete()
         self.make_addon_promoted(self.addon, group_id=PROMOTED_GROUP_CHOICES.STRATEGIC)
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -3759,6 +3761,7 @@ class TestReview(ReviewBase):
         assert not doc('#disable_auto_approval_unlisted')
 
         # Recommended is unlisted_pre_review=False so auto approval isn't disabled
+        self.addon.promotedaddonpromotion.all().delete()
         self.make_addon_promoted(
             self.addon, group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
         )
