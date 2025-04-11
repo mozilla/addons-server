@@ -1726,6 +1726,7 @@ class TestAddonModels(TestCase):
         self.make_addon_promoted(addon=addon, group_id=PROMOTED_GROUP_CHOICES.PARTNER)
         assert addon.promoted_groups()
         assert not addon.publicly_promoted_groups
+        del addon.publicly_promoted_groups
         addon.approve_for_version(addon.current_version)
         assert addon.promoted_groups()
         assert not addon.publicly_promoted_groups
