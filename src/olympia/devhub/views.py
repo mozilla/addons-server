@@ -16,6 +16,7 @@ from django.utils.http import is_safe_url
 from django.utils.translation import ugettext, ugettext_lazy as _
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
+from rest_framework.exceptions import MethodNotAllowed
 
 import six
 import waffle
@@ -961,6 +962,8 @@ def upload_image(request, addon_id, addon, upload_type):
 
 @dev_required
 def version_edit(request, addon_id, addon, version_id):
+    if request.method not in ('GET', 'POST'):
+        raise MethodNotAllowed(request.method)
     version = get_object_or_404(Version.objects, pk=version_id, addon=addon)
     static_theme = addon.type == amo.ADDON_STATICTHEME
     version_form = forms.VersionForm(
