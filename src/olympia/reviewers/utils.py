@@ -1672,9 +1672,20 @@ class ReviewBase:
     def enable_addon(self):
         """Force enable the add-on."""
         self.version = None
-        self.addon.force_enable(skip_activity_log=True)
+        # self.addon.force_enable(skip_activity_log=True)
         log.info('Sending email for %s' % (self.addon))
-        self.record_decision(amo.LOG.FORCE_ENABLE)
+        versions = (
+            Version.unfiltered.disabled_that_would_be_renabled_with_addon(self.addon)
+            .no_transforms()
+            .only('id', 'version')
+        )
+        # We can't use action_completed=False, because FORCE_ENABLE is tied to
+        # AMO_APPROVE_VERSION, which is essentially a no-op.
+        self.record_decision(
+            amo.LOG.FORCE_ENABLE,
+            versions=versions,
+            log_action_kw={'versions': versions},
+        )
 
     def disable_addon(self):
         """Force disable the add-on and all versions."""

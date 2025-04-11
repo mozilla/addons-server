@@ -53,7 +53,7 @@
           </tr>
           <tr class="addon-status">
             <th>Status</th>
-            <td>
+            <td class="status-{{ amo.STATUS_CHOICES_API.get(addon.status, 'unknown') }}">
                 <strong>{{ addon.get_status_display() }}</strong>
             </td>
           </tr>

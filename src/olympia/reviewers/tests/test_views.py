@@ -6096,9 +6096,7 @@ class TestReview(ReviewBase):
                     ),
                 },
             )
-        with mock.patch(
-            'olympia.reviewers.views.VERSIONS_THAT_WOULD_BE_ENABLED_SHOWN_MAX', MAX_MOCK
-        ):
+        with mock.patch('olympia.reviewers.views.MAX_VERSIONS_SHOWN_INLINE', MAX_MOCK):
             response = self.client.get(self.url)
         self.assertContains(response, f'{version_count} version(s) will be re-enabled:')
         doc = pq(response.content)

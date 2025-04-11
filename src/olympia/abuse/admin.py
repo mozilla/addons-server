@@ -329,6 +329,7 @@ class AbuseReportAdmin(AMOModelAdmin):
         context = {
             'addon': addon,
             'addon_name': addon.name,
+            'amo': amo,
             'approvals_info': approvals_info,
             'reports': Paginator(
                 AbuseReport.objects.all().for_addon(addon).exclude(pk=obj.pk), 5
