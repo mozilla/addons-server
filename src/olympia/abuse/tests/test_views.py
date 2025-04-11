@@ -1284,15 +1284,14 @@ class TestCinderWebhook(TestCase):
         abuse_report = self._setup_reports()
         addon = addon_factory(guid=abuse_report.guid)
         original_cinder_job = CinderJob.objects.get()
-        original_cinder_job.update(
-            decision=ContentDecision.objects.create(
-                cinder_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
-                action=DECISION_ACTIONS.AMO_APPROVE,
-                appeal_job=CinderJob.objects.create(
-                    job_id='5c7c3e21-8ccd-4d2f-b3b4-429620bd7a63'
-                ),
-                addon=addon,
+        ContentDecision.objects.create(
+            cinder_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
+            action=DECISION_ACTIONS.AMO_APPROVE,
+            appeal_job=CinderJob.objects.create(
+                job_id='5c7c3e21-8ccd-4d2f-b3b4-429620bd7a63'
             ),
+            addon=addon,
+            cinder_job=original_cinder_job,
         )
         req = self.get_request(data=data)
         with mock.patch.object(CinderJob, 'process_decision') as process_mock:
@@ -1320,16 +1319,15 @@ class TestCinderWebhook(TestCase):
         abuse_report = self._setup_reports()
         addon = addon_factory(guid=abuse_report.guid)
         original_cinder_job = CinderJob.objects.get()
-        original_cinder_job.update(
-            decision=ContentDecision.objects.create(
-                action_date=datetime(2023, 10, 12, 9, 8, 37, 4789),
-                cinder_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
-                action=DECISION_ACTIONS.AMO_APPROVE,
-                appeal_job=CinderJob.objects.create(
-                    job_id='5ab7cb33-a5ab-4dfa-9d72-4c2061ffeb08'
-                ),
-                addon=addon,
-            )
+        ContentDecision.objects.create(
+            action_date=datetime(2023, 10, 12, 9, 8, 37, 4789),
+            cinder_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
+            action=DECISION_ACTIONS.AMO_APPROVE,
+            appeal_job=CinderJob.objects.create(
+                job_id='5ab7cb33-a5ab-4dfa-9d72-4c2061ffeb08'
+            ),
+            addon=addon,
+            cinder_job=original_cinder_job,
         )
         req = self.get_request(data=data)
         with mock.patch.object(CinderJob, 'process_decision') as process_mock:
@@ -1349,12 +1347,11 @@ class TestCinderWebhook(TestCase):
 
     def test_process_decision_called_for_override_to_approve(self):
         abuse_report = self._setup_reports()
-        CinderJob.objects.get().update(
-            decision=ContentDecision.objects.create(
-                cinder_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
-                action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
-                addon=addon_factory(guid=abuse_report.guid),
-            ),
+        ContentDecision.objects.create(
+            cinder_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            addon=addon_factory(guid=abuse_report.guid),
+            cinder_job=CinderJob.objects.get(),
         )
         req = self.get_request(
             data=self.get_data(filename='override_change_to_approve.json')
@@ -1377,16 +1374,15 @@ class TestCinderWebhook(TestCase):
         author = user_factory()
         addon = addon_factory(guid=abuse_report.guid, users=[author])
         original_cinder_job = CinderJob.objects.get()
-        original_cinder_job.update(
-            decision=ContentDecision.objects.create(
-                action_date=datetime(2023, 10, 12, 9, 8, 37, 4789),
-                cinder_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
-                action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
-                appeal_job=CinderJob.objects.create(
-                    job_id='5ab7cb33-a5ab-4dfa-9d72-4c2061ffeb08'
-                ),
-                addon=addon,
-            )
+        ContentDecision.objects.create(
+            action_date=datetime(2023, 10, 12, 9, 8, 37, 4789),
+            cinder_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            appeal_job=CinderJob.objects.create(
+                job_id='5ab7cb33-a5ab-4dfa-9d72-4c2061ffeb08'
+            ),
+            addon=addon,
+            cinder_job=original_cinder_job,
         )
         req = self.get_request(data=data)
         with mock.patch.object(
@@ -1404,16 +1400,15 @@ class TestCinderWebhook(TestCase):
         author = user_factory()
         addon = addon_factory(guid=abuse_report.guid, users=[author])
         original_cinder_job = CinderJob.objects.get()
-        original_cinder_job.update(
-            decision=ContentDecision.objects.create(
-                action_date=datetime(2023, 10, 12, 9, 8, 37, 4789),
-                cinder_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
-                action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
-                appeal_job=CinderJob.objects.create(
-                    job_id='5ab7cb33-a5ab-4dfa-9d72-4c2061ffeb08'
-                ),
-                addon=addon,
-            )
+        ContentDecision.objects.create(
+            action_date=datetime(2023, 10, 12, 9, 8, 37, 4789),
+            cinder_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            appeal_job=CinderJob.objects.create(
+                job_id='5ab7cb33-a5ab-4dfa-9d72-4c2061ffeb08'
+            ),
+            addon=addon,
+            cinder_job=original_cinder_job,
         )
         req = self.get_request(data=data)
         with mock.patch.object(
@@ -1431,16 +1426,15 @@ class TestCinderWebhook(TestCase):
         author = user_factory()
         addon = addon_factory(guid=abuse_report.guid, users=[author])
         original_cinder_job = CinderJob.objects.get()
-        original_cinder_job.update(
-            decision=ContentDecision.objects.create(
-                action_date=datetime(2023, 10, 12, 9, 8, 37, 4789),
-                cinder_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
-                action=DECISION_ACTIONS.AMO_APPROVE,
-                appeal_job=CinderJob.objects.create(
-                    job_id='5ab7cb33-a5ab-4dfa-9d72-4c2061ffeb08'
-                ),
-                addon=addon,
-            )
+        ContentDecision.objects.create(
+            action_date=datetime(2023, 10, 12, 9, 8, 37, 4789),
+            cinder_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
+            action=DECISION_ACTIONS.AMO_APPROVE,
+            appeal_job=CinderJob.objects.create(
+                job_id='5ab7cb33-a5ab-4dfa-9d72-4c2061ffeb08'
+            ),
+            addon=addon,
+            cinder_job=original_cinder_job,
         )
         abuse_report.update(
             reporter_email='reporter@email.com', cinder_job=original_cinder_job
@@ -1466,16 +1460,15 @@ class TestCinderWebhook(TestCase):
         author = user_factory()
         addon = addon_factory(guid=abuse_report.guid, users=[author])
         original_cinder_job = CinderJob.objects.get()
-        original_cinder_job.update(
-            decision=ContentDecision.objects.create(
-                action_date=datetime(2023, 10, 12, 9, 8, 37, 4789),
-                cinder_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
-                action=DECISION_ACTIONS.AMO_APPROVE,
-                appeal_job=CinderJob.objects.create(
-                    job_id='5c7c3e21-8ccd-4d2f-b3b4-429620bd7a63'
-                ),
-                addon=addon,
-            )
+        ContentDecision.objects.create(
+            action_date=datetime(2023, 10, 12, 9, 8, 37, 4789),
+            cinder_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
+            action=DECISION_ACTIONS.AMO_APPROVE,
+            appeal_job=CinderJob.objects.create(
+                job_id='5c7c3e21-8ccd-4d2f-b3b4-429620bd7a63'
+            ),
+            addon=addon,
+            cinder_job=original_cinder_job,
         )
         abuse_report.update(
             reporter_email='reporter@email.com', cinder_job=original_cinder_job
@@ -3007,12 +3000,11 @@ class TestAppeal(TestCase):
         # reporter can't submit an appeal anymore, it's too late. They get a
         # specific error message (in this case we confirmed the original
         # decision).
-        appeal_job.update(
-            decision=ContentDecision.objects.create(
-                cinder_id='appeal decision id',
-                action=DECISION_ACTIONS.AMO_APPROVE,
-                addon=self.addon,
-            )
+        ContentDecision.objects.create(
+            cinder_id='appeal decision id',
+            action=DECISION_ACTIONS.AMO_APPROVE,
+            addon=self.addon,
+            cinder_job=appeal_job,
         )
 
         response = self.client.get(self.reporter_appeal_url)
@@ -3058,12 +3050,11 @@ class TestAppeal(TestCase):
         # specific error message (in this case the decision was overturned,
         # the content is already supposed to be disabled but the reporter might
         # not have noticed).
-        appeal_job.update(
-            decision=ContentDecision.objects.create(
-                cinder_id='appeal decision id',
-                action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
-                addon=self.addon,
-            )
+        ContentDecision.objects.create(
+            cinder_id='appeal decision id',
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            addon=self.addon,
+            cinder_job=appeal_job,
         )
 
         response = self.client.get(self.reporter_appeal_url)

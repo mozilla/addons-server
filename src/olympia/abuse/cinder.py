@@ -542,7 +542,7 @@ class CinderAddonHandledByReviewers(CinderAddon):
             )
             return
         reason = (
-            NeedsHumanReview.REASONS.AMO_2ND_LEVEL_ESCALATION
+            NeedsHumanReview.REASONS.SECOND_LEVEL_REQUEUE
             if second_level
             else NeedsHumanReview.REASONS.CINDER_APPEAL_ESCALATION
             if appeal and forwarded

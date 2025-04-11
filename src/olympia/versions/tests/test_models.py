@@ -480,7 +480,7 @@ class TestVersionManager(TestCase):
         forwarded_2nd_level_abuse = addon_factory(**addon_kws).current_version
         NeedsHumanReview.objects.create(
             version=forwarded_2nd_level_abuse,
-            reason=NeedsHumanReview.REASONS.AMO_2ND_LEVEL_ESCALATION,
+            reason=NeedsHumanReview.REASONS.SECOND_LEVEL_REQUEUE,
         )
 
         qs = Version.objects.should_have_due_date().order_by('id')
@@ -549,9 +549,9 @@ class TestVersionManager(TestCase):
             escalated_appeal,
         ]
 
-        assert list(
-            method(q_objects['needs_human_review_amo_2nd_level_escalation'])
-        ) == [forwarded_2nd_level_abuse]
+        assert list(method(q_objects['needs_human_review_second_level_requeue'])) == [
+            forwarded_2nd_level_abuse
+        ]
 
         assert list(method(q_objects['needs_human_review_abuse_addon_violation'])) == [
             abuse_nhr
@@ -1273,7 +1273,7 @@ class TestVersion(AMOPaths, TestCase):
             NeedsHumanReview.REASONS.CINDER_ESCALATION,
             NeedsHumanReview.REASONS.CINDER_APPEAL_ESCALATION,
             NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL,
-            NeedsHumanReview.REASONS.AMO_2ND_LEVEL_ESCALATION,
+            NeedsHumanReview.REASONS.SECOND_LEVEL_REQUEUE,
         ]:
             # Every other reason shouldn't result in a due date since the
             # version is disabled and not signed at this point.
