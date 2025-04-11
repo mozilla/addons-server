@@ -592,26 +592,24 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
     def make_addon_promoted(cls, addon, group_id, approve_version=False, apps=None):
         """
         Promotes the addon for the group in the given apps, or all if none are given.
-        If already approved for a group, remakes the approvals for only the given apps.
         """
         if group_id == PROMOTED_GROUP_CHOICES.NOT_PROMOTED:
             return
 
-        # TODO: promotedaddon; while constraint is in place,
-        # need to delete any other promotions.
-        PromotedAddonPromotion.objects.filter(addon=addon).delete()
-
         promoted_group = PromotedGroup.objects.get(group_id=group_id)
+
         apps_to_create = apps if apps else amo.APP_USAGE
         promotions = []
         for app in apps_to_create:
-            obj, created = PromotedAddonPromotion.objects.update_or_create(
+            obj, _ = PromotedAddonPromotion.objects.update_or_create(
                 addon=addon, promoted_group=promoted_group, application_id=app.id
             )
             promotions.append(obj)
 
         if approve_version:
-            addon.approve_for_version(addon.current_version)
+            addon.approve_for_version(
+                addon.current_version, promoted_groups=[promoted_group]
+            )
         return promotions
 
     def _add_fake_throttling_action(

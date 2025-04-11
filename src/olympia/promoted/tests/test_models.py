@@ -615,29 +615,36 @@ class TestPromotedAddonPromotion(TestCase):
 
         assert PromotedAddonPromotion.objects.create(**merged) is not None
 
-    def test_multiple_promoted_groups_per_addon_raises(self):
-        self._test_unique_constraint(
-            {
-                'promoted_group': PromotedGroup.objects.get(
-                    group_id=PROMOTED_GROUP_CHOICES.NOT_PROMOTED
-                ),
-            },
-            should_raise=True,
-        )
-
     def test_multiple_applications_per_promoted_group_allowed(self):
-        self._test_unique_constraint(
-            {
-                'application_id': applications.ANDROID.id,
-            },
-            should_raise=False,
+        PromotedAddonPromotion.objects.create(**self.required_fields)
+        assert (
+            PromotedAddonPromotion.objects.create(
+                **{**self.required_fields, 'application_id': applications.ANDROID.id}
+            )
+            is not None
         )
 
     def test_multiple_addons_per_application_group_allowed(self):
-        self._test_unique_constraint({'addon': addon_factory()}, should_raise=False)
+        PromotedAddonPromotion.objects.create(**self.required_fields)
+        assert (
+            PromotedAddonPromotion.objects.create(
+                **{**self.required_fields, **{'addon': addon_factory()}}
+            )
+            is not None
+        )
 
-    def test_pure_duplicate_raises(self):
-        self._test_unique_constraint({}, should_raise=True)
+    def test_duplicate_raises(self):
+        # Create the original instance to test constraints against
+        original = PromotedAddonPromotion.objects.create(**self.required_fields)
+        with (
+            self.assertRaises(IntegrityError),
+            transaction.atomic(),
+        ):
+            PromotedAddonPromotion.objects.create(**{**self.required_fields})
+        # Delete the original instance to test the constraint
+        # is lifted when it is deleted.
+        original.delete()
+        PromotedAddonPromotion.objects.create(**{**self.required_fields})
 
 
 class TestPromotedAddonVersion(TestCase):
