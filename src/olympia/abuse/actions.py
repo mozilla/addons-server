@@ -296,7 +296,9 @@ class ContentActionDisableAddon(ContentAction):
             and any(self.target.promoted_groups(currently_approved=False).high_profile)
         )
 
-    def log_action(self, activity_log_action, *extra_args, extra_details=None, target_versions=None):
+    def log_action(
+        self, activity_log_action, *extra_args, extra_details=None, target_versions=None
+    ):
         from olympia.activity.models import AttachmentLog
         from olympia.reviewers.models import ReviewActionReason
 
@@ -481,7 +483,9 @@ class ContentActionRejectVersionDelayed(ContentActionRejectVersion):
             # methods.
             self.delayed_rejection_date = self.delayed_rejection_days = None
 
-    def log_action(self, activity_log_action, *extra_args, extra_details=None, **kwargs):
+    def log_action(
+        self, activity_log_action, *extra_args, extra_details=None, **kwargs
+    ):
         extra_details = {
             **(extra_details or {}),
             'delayed_rejection_days': self.delayed_rejection_days,
@@ -632,9 +636,7 @@ class ContentActionTargetAppealApprove(
     def target_versions(self):
         target = self.target
         if isinstance(target, Addon) and target.status == amo.STATUS_DISABLED:
-            qs = (
-                Version.unfiltered.disabled_that_would_be_renabled_with_addon(target)
-            )
+            qs = Version.unfiltered.disabled_that_would_be_renabled_with_addon(target)
         else:
             qs = self.decision.target_versions.all()
         return qs.no_transforms().only('pk', 'version')
