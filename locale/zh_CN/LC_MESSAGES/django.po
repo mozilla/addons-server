@@ -1770,7 +1770,7 @@ msgstr "请注意"
 
 #: src/olympia/constants/promoted.py:159
 msgid "Partner"
-msgstr ""
+msgstr "合作伙伴"
 
 #: src/olympia/constants/reviewers.py:21
 msgid "No Reputation"
