@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-11 13:48+0000\n"
+"POT-Creation-Date: 2025-04-12 00:11+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4417,6 +4417,10 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Changes the color of Firefox to match the appearance of any website."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Protect your privacy against a unique form of JavaScript “fingerprinting”."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
