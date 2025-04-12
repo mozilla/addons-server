@@ -5629,7 +5629,7 @@ msgstr "Изменяет цвет Firefox, чтобы он соответств�
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:659
 msgid "Protect your privacy against a unique form of JavaScript “fingerprinting”."
-msgstr ""
+msgstr "Защитите свою приватность от уникальной формы «сбора цифровых отпечатков» в JavaScript."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:662
