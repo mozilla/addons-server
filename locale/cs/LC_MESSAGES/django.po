@@ -5593,7 +5593,7 @@ msgstr "Změní barvu prohlížeče Firefox tak, aby odpovídala vzhledu libovol
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:659
 msgid "Protect your privacy against a unique form of JavaScript “fingerprinting”."
-msgstr ""
+msgstr "Chraňte své soukromí před unikátní formou „vytváření otisku prohlížeče“ JavaScriptu."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:662

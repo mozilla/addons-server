@@ -5599,7 +5599,7 @@ msgstr "Usklajuje barvo Firefoxa z videzom kateregakoli spletnega mesta."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:659
 msgid "Protect your privacy against a unique form of JavaScript “fingerprinting”."
-msgstr ""
+msgstr "Zaščitite svojo zasebnost pred edinstveno obliko \"prstnega odtisa\" JavaScripta."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:662
