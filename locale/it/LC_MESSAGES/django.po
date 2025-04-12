@@ -5661,7 +5661,7 @@ msgstr "Cambia il colore di Firefox in modo che corrisponda all’aspetto di qua
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:659
 msgid "Protect your privacy against a unique form of JavaScript “fingerprinting”."
-msgstr ""
+msgstr "Proteggi la tua privacy da una forma particolare di “fingerprinting” tramite JavaScript."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:662
