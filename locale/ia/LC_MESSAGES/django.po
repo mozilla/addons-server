@@ -5597,7 +5597,7 @@ msgstr "Cambia le color de Firefox pro satisfacer le apparentia de qualcunque si
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:659
 msgid "Protect your privacy against a unique form of JavaScript “fingerprinting”."
-msgstr ""
+msgstr "Protege tu confidentialitate contra un forma exclusive de “detection de dactylogrammas” de JavaScript."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:662

@@ -5515,7 +5515,7 @@ msgstr "更改 Firefox 的颜色以适配任何网站的外观。"
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:659
 msgid "Protect your privacy against a unique form of JavaScript “fingerprinting”."
-msgstr ""
+msgstr "保护您的隐私，免受特殊形式的 JavaScript 数字指纹跟踪。"
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:662
