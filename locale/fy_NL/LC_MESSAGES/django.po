@@ -1791,7 +1791,7 @@ msgstr "Opmerklik"
 
 #: src/olympia/constants/promoted.py:159
 msgid "Partner"
-msgstr ""
+msgstr "Partner wurde"
 
 #: src/olympia/constants/reviewers.py:21
 msgid "No Reputation"
@@ -5605,7 +5605,7 @@ msgstr "Wiziget de kleur fan Firefox sadat dizze oerienkomt mei it uterlik fan i
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:659
 msgid "Protect your privacy against a unique form of JavaScript “fingerprinting”."
-msgstr ""
+msgstr "Beskermje jo privacy tsjin in unike foarm fan JavaScript ‘fingerprinting’."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:662
