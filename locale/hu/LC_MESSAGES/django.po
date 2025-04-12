@@ -1796,7 +1796,7 @@ msgstr "Jelentős"
 
 #: src/olympia/constants/promoted.py:159
 msgid "Partner"
-msgstr ""
+msgstr "Partner"
 
 #: src/olympia/constants/reviewers.py:21
 msgid "No Reputation"
@@ -5613,7 +5613,7 @@ msgstr "Módosítja a Firefox színét, hogy illeszkedjen a weboldal kinézetéh
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:659
 msgid "Protect your privacy against a unique form of JavaScript “fingerprinting”."
-msgstr ""
+msgstr "Védje meg a magánszféráját a JavaScript „ujjlenyomat-készítés” egy egyedi formája ellen."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:662
