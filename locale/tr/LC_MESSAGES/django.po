@@ -1791,7 +1791,7 @@ msgstr "Dikkate değer"
 
 #: src/olympia/constants/promoted.py:159
 msgid "Partner"
-msgstr ""
+msgstr "İş ortağı"
 
 #: src/olympia/constants/reviewers.py:21
 msgid "No Reputation"
