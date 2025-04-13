@@ -5604,7 +5604,7 @@ msgstr "ცვლის შეფერილობას, რომ Firefox გ
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:659
 msgid "Protect your privacy against a unique form of JavaScript “fingerprinting”."
-msgstr ""
+msgstr "დაიცავით პირადულობა JavaScript-ით „ამოცნობისგან“."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:662
