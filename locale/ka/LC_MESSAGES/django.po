@@ -1803,7 +1803,7 @@ msgstr "ღირსშესანიშნავი"
 
 #: src/olympia/constants/promoted.py:159
 msgid "Partner"
-msgstr ""
+msgstr "თანამონაწილე"
 
 #: src/olympia/constants/reviewers.py:21
 msgid "No Reputation"
