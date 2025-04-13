@@ -20,11 +20,11 @@ msgstr ""
 
 #: src/olympia/abuse/forms.py:30
 msgid "Email address"
-msgstr ""
+msgstr "Adreça electrònica"
 
 #: src/olympia/abuse/forms.py:45
 msgid "Invalid email provided."
-msgstr ""
+msgstr "L'adreça electrònica no és vàlida."
 
 #: src/olympia/abuse/forms.py:61
 msgid "Reason for appeal"
@@ -59,7 +59,7 @@ msgstr ""
 #: src/olympia/abuse/templates/abuse/appeal.html:16
 #, python-brace-format
 msgid "Decision {0}"
-msgstr ""
+msgstr "Decisió {0}"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:20
 msgid "Thank you. Your appeal has been recorded."
@@ -71,7 +71,7 @@ msgstr "D'acord"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:33 src/olympia/abuse/templates/abuse/appeal.html:41
 msgid "Thank you for your report."
-msgstr ""
+msgstr "Gràcies pel vostre informe."
 
 #: src/olympia/abuse/templates/abuse/appeal.html:37
 msgid ""
@@ -261,7 +261,7 @@ msgstr ""
 
 #: src/olympia/addons/fields.py:76 src/olympia/addons/serializers.py:1257
 msgid "Invalid category name."
-msgstr ""
+msgstr "El nom de la categoria és no és vàlid."
 
 #: src/olympia/addons/fields.py:116
 #, python-brace-format
@@ -287,13 +287,12 @@ msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr ""
 
 #: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:756 src/olympia/files/utils.py:755 src/olympia/reviewers/forms.py:343
-#, fuzzy
 msgid "Invalid or broken archive."
-msgstr "Arxiu invàlid."
+msgstr "L’arxiu no és vàlid o està malmès."
 
 #: src/olympia/addons/fields.py:267
 msgid "Invalid app specified"
-msgstr ""
+msgstr "L'aplicació especificada no és vàlida"
 
 #: src/olympia/addons/fields.py:285
 msgid "Unknown max app version specified"
