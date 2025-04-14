@@ -964,6 +964,7 @@ class ReviewBase:
         log_action_kw=None,
         decision_metadata=None,
         action_completed=True,
+        version=None,
         versions=None,
         update_queue_history=True,
     ):
@@ -998,7 +999,13 @@ class ReviewBase:
             )
         assert cinder_action
 
-        versions = versions or ([self.version] if self.version else [])
+        if version is not None:
+            # If version is passed, don't modify `versions`: we are going to
+            # pass that intact to log_action() below.
+            decision_versions = [version]
+        else:
+            versions = versions or ([self.version] if self.version else [])
+            decision_versions = versions
 
         decision_kw = {
             'addon': self.addon,
@@ -1015,7 +1022,7 @@ class ReviewBase:
             decision = ContentDecision.objects.create(**decision_kw)
             decision.policies.set(policies)
             if versions:
-                decision.target_versions.set(versions)
+                decision.target_versions.set(decision_versions)
             decisions.append(decision)
             return decision
 
@@ -1037,6 +1044,7 @@ class ReviewBase:
                 decisions=decisions,
                 reasons=reasons,
                 policies=policies,
+                version=version,
                 versions=versions,
                 **(log_action_kw or {}),
             )
@@ -1131,6 +1139,7 @@ class ReviewBase:
             'human_review': self.human_review,
             **(extra_details or {}),
         }
+
         if version is None and self.version:
             version = self.version
 
@@ -1395,8 +1404,7 @@ class ReviewBase:
             self.set_human_review_date(version)
             self.record_decision(
                 amo.LOG.CONFIRM_AUTO_APPROVED,
-                versions=[version],
-                log_action_kw={'version': version},
+                version=version,
             )
         else:
             self.log_action(amo.LOG.CONFIRM_AUTO_APPROVED, version=version)
