@@ -5599,7 +5599,7 @@ msgstr "Usklajuje barvo Firefoxa z videzom kateregakoli spletnega mesta."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:659
 msgid "Protect your privacy against a unique form of JavaScript “fingerprinting”."
-msgstr "Zaščitite svojo zasebnost pred edinstveno obliko \"prstnega odtisa\" JavaScripta."
+msgstr "Zaščitite svojo zasebnost pred edinstveno obliko \"sledenja prstnemu odtisu\" z JavaScriptom."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:662
@@ -5699,7 +5699,7 @@ msgstr "Vrnite se v preprostejše čase – ko so najustreznejši zadetki iskanj
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:923
 msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
-msgstr "Zakrijte svojo e-pošto, da zaščitite svojo identiteto in preprečite neželeno pošto. Nove posodobitve poenostavljajo uporabo Firefox Relaya."
+msgstr "Zakrijte svoj e-poštni naslov, da zaščitite svojo identiteto in se izognete neželeni pošti. Z novimi posodobitvami je Firefox Relay še enostavnejši za uporabo."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:926
