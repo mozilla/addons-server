@@ -898,7 +898,7 @@ class TestCinderJob(TestCase):
         assert cinder_job.target_addon == abuse_report.target
         assert not cinder_job.resolvable_in_reviewer_tools
 
-    def check_report_with_already_removed_content(self, abuse_report):
+    def check_report_with_already_moderated_content(self, abuse_report):
         responses.add(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}create_decision',
@@ -909,7 +909,7 @@ class TestCinderJob(TestCase):
         assert not CinderJob.objects.exists()
         assert len(mail.outbox) == 1
         assert mail.outbox[0].to == ['some@email.com']
-        assert 'already been removed' in mail.outbox[0].body
+        assert 'already been moderated' in mail.outbox[0].body
         assert ContentDecision.objects.exists()
         decision = ContentDecision.objects.get()
         assert decision.action == DECISION_ACTIONS.AMO_CLOSED_NO_ACTION
@@ -923,7 +923,7 @@ class TestCinderJob(TestCase):
             reporter_email='some@email.com',
         )
         addon.update(status=amo.STATUS_DISABLED)
-        self.check_report_with_already_removed_content(abuse_report)
+        self.check_report_with_already_moderated_content(abuse_report)
 
     def test_report_with_banned_user(self):
         user = user_factory()
@@ -933,7 +933,7 @@ class TestCinderJob(TestCase):
             reporter_email='some@email.com',
         )
         user.update(banned=datetime.now())
-        self.check_report_with_already_removed_content(abuse_report)
+        self.check_report_with_already_moderated_content(abuse_report)
 
     def test_report_with_deleted_collection(self):
         collection = collection_factory()
@@ -943,7 +943,7 @@ class TestCinderJob(TestCase):
             reporter_email='some@email.com',
         )
         collection.delete()
-        self.check_report_with_already_removed_content(abuse_report)
+        self.check_report_with_already_moderated_content(abuse_report)
 
     def test_report_with_deleted_rating(self):
         rating = Rating.objects.create(addon=addon_factory(), user=user_factory())
@@ -953,7 +953,7 @@ class TestCinderJob(TestCase):
             reporter_email='some@email.com',
         )
         rating.delete()
-        self.check_report_with_already_removed_content(abuse_report)
+        self.check_report_with_already_moderated_content(abuse_report)
 
     def test_report_with_outstanding_rejection(self):
         self.test_report()
