@@ -2,7 +2,7 @@ Hello,
 
 Thank you for your report about {{ name }}, at {{ target_url }} that appeared to violate our policies.
 
-As this content has already been removed before your report was reviewed, your report will not be processed.
+As this content has already been moderated before your report was reviewed, your report will not be processed.
 
 Thank you for your attention.
 
