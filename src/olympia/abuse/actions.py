@@ -676,8 +676,8 @@ class ContentActionIgnore(AnyTargetMixin, NoActionMixin, ContentAction):
 
 
 class ContentActionAlreadyRemoved(AnyTargetMixin, NoActionMixin, ContentAction):
-    description = 'Content is already disabled or deleted, so no action'
-    reporter_template_path = 'abuse/emails/reporter_disabled_ignore.txt'
+    description = 'Content is already moderated, disabled or deleted, so no action'
+    reporter_template_path = 'abuse/emails/reporter_moderated_ignore.txt'
     # no appeal template because no appeals possible
 
 
