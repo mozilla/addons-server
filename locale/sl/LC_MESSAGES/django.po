@@ -5862,12 +5862,12 @@ msgstr "Razširitve za zasebnost in varnost"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1015
 msgid "Essential add-ons"
-msgstr ""
+msgstr "Bistveni dodatki"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1017
 msgid "Reddit extensions"
-msgstr ""
+msgstr "Razširitve za Reddit"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1019 src/olympia/discovery/strings.jinja2:1021 src/olympia/discovery/strings.jinja2:1023

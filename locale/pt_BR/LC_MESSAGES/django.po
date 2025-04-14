@@ -5863,12 +5863,12 @@ msgstr "Extensões de privacidade e segurança"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1015
 msgid "Essential add-ons"
-msgstr ""
+msgstr "Extensões essenciais"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1017
 msgid "Reddit extensions"
-msgstr ""
+msgstr "Extensões do Reddit"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1019 src/olympia/discovery/strings.jinja2:1021 src/olympia/discovery/strings.jinja2:1023

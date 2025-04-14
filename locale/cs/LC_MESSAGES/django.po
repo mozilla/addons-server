@@ -5856,12 +5856,12 @@ msgstr "Rozšíření zaměřená na bezpečnost a soukromí"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1015
 msgid "Essential add-ons"
-msgstr ""
+msgstr "Nezbytné doplňky"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1017
 msgid "Reddit extensions"
-msgstr ""
+msgstr "Rozšíření pro Reddit"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1019 src/olympia/discovery/strings.jinja2:1021 src/olympia/discovery/strings.jinja2:1023
