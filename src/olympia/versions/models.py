@@ -242,13 +242,11 @@ class VersionManager(ManagerBase):
             )
         return reasons
 
-    def disabled_that_would_be_renabled_with_addon(self, addon):
-        version_ids = (
-            File.objects.disabled_that_would_be_renabled_with_addon()
-            .filter(version__addon=addon)
-            .values_list('version_id')
-        )
-        return self.filter(pk__in=version_ids)
+    def disabled_that_would_be_renabled_with_addon(self):
+        return self.filter(
+            file__status=amo.STATUS_DISABLED,
+            file__status_disabled_reason=File.STATUS_DISABLED_REASONS.ADDON_DISABLE,
+        ).exclude(file__original_status=amo.STATUS_NULL)
 
 
 class UnfilteredVersionManagerForRelations(VersionManager):

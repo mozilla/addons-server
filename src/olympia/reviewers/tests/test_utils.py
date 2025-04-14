@@ -3595,9 +3595,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self.grant_permission(self.user, 'Reviews:Admin')
         self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
         other_version = version_factory(addon=self.addon)
-        already_disabled_version = version_factory(
-            addon=self.addon, file_kw={'status': amo.STATUS_DISABLED}
-        )
+        version_factory(addon=self.addon, file_kw={'status': amo.STATUS_DISABLED})
         self.helper.handler.disable_addon()
 
         self.addon.reload()
@@ -3629,9 +3627,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self.grant_permission(self.user, 'Reviews:Admin')
         self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
         other_version = version_factory(addon=self.addon)
-        already_disabled_version = version_factory(
-            addon=self.addon, file_kw={'status': amo.STATUS_DISABLED}
-        )
+        version_factory(addon=self.addon, file_kw={'status': amo.STATUS_DISABLED})
         Addon.disable_all_files(
             [self.addon], File.STATUS_DISABLED_REASONS.ADDON_DISABLE
         )
