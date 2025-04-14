@@ -309,8 +309,8 @@ class PromotedAddonPromotion(ModelBase):
     class Meta:
         constraints = [
             models.UniqueConstraint(
-                fields=('addon', 'application_id'),
-                name='unique_promoted_addon_application',
+                fields=('addon', 'promoted_group', 'application_id'),
+                name='unique_addon_promotion_application',
             ),
         ]
 

@@ -543,6 +543,7 @@ class TestReviewHelper(TestReviewHelperBase):
         )
 
         # only for groups that are admin_review though
+        self.addon.promotedaddonpromotion.all().delete()
         self.make_addon_promoted(
             self.addon, PROMOTED_GROUP_CHOICES.NOTABLE, approve_version=True
         )

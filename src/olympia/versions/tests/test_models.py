@@ -1435,6 +1435,7 @@ class TestVersion(AMOPaths, TestCase):
         assert not addon.current_version.can_be_disabled_and_deleted()
 
         # STRATEGIC isn't pre-reviewd or badged, so it's okay though
+        addon.promotedaddonpromotion.all().delete()
         self.make_addon_promoted(
             addon, PROMOTED_GROUP_CHOICES.STRATEGIC, approve_version=True
         )
