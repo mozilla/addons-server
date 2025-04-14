@@ -1809,7 +1809,7 @@ msgstr "Rilevants"
 
 #: src/olympia/constants/promoted.py:159
 msgid "Partner"
-msgstr ""
+msgstr "Partner"
 
 #: src/olympia/constants/reviewers.py:21
 msgid "No Reputation"

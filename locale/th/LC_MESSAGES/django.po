@@ -272,7 +272,7 @@ msgstr "ชื่อหมวดหมู่ไม่ถูกต้อง"
 #: src/olympia/addons/fields.py:116
 #, python-brace-format
 msgid "URL domain must be one of [{domains}]."
-msgstr ""
+msgstr "โดเมน URL ต้องเป็นหนึ่งใน [{domains}]"
 
 #: src/olympia/addons/fields.py:125 src/olympia/devhub/forms.py:278
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
