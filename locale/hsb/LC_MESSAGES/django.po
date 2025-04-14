@@ -5628,7 +5628,7 @@ msgstr "Někotre sydła maja ćežkosće, wideja na Android wothrawać. Tu je ro
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:683
 msgid "Find an interesting pic on the web? Use TinEye to discover its origins."
-msgstr ""
+msgstr "Sće zajimawy wobraz w interneće namakał? Wužiwajće TinEye, zo byšće wuslědźił, zwotkelž pochadźa."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:701
@@ -5638,7 +5638,7 @@ msgstr "Składujće wobrazy cyle lochko – hrabńće je ze swojeho aktualneho r
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:704
 msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title & more."
-msgstr ""
+msgstr "Mějće ultimatiwnu kontrolu nad rajtarkami – dwójne rajtarki začinić, wokna zjednoćić, rajtarkowy titul kopěrować a wjace."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:722
@@ -5718,7 +5718,7 @@ msgstr "Wróćo k jednorišemu časej – hdyž waše najwažniše pytanske wusl
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:911
 msgid "Get the mouse scrollbar you've always wanted — specify width and color."
-msgstr ""
+msgstr "Wobstarajće sej suwansku lajstu myški, kotruž sće hižo přeco chcył – wubjerće šěrokosć a barbu."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:923
@@ -5838,7 +5838,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:995
 msgid "Enhance your Twitch experience."
-msgstr ""
+msgstr "Polěpšće swoje dožiwjenje Twitch."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:998
