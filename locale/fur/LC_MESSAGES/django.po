@@ -5635,7 +5635,7 @@ msgstr "Al cambie il colôr di Firefox in mût che al corispuindi al aspiet di c
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:659
 msgid "Protect your privacy against a unique form of JavaScript “fingerprinting”."
-msgstr ""
+msgstr "Protêç la tô riservatece cuintri une forme particolâr di “fingerprinting” (rilevament di stamp numeric) vie JavaScript."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:662
