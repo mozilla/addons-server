@@ -1680,7 +1680,9 @@ class ReviewBase:
     def enable_addon(self):
         """Force enable the add-on."""
         self.version = None
-        versions = (
+        # Force queryset evaluation before we enable the versions, so that the
+        # list of versions is properly recorded after.
+        versions = tuple(
             Version.unfiltered.disabled_that_would_be_renabled_with_addon(self.addon)
             .no_transforms()
             .only('id', 'version')

@@ -3594,6 +3594,10 @@ class TestReviewHelper(TestReviewHelperBase):
     def test_disable_addon(self):
         self.grant_permission(self.user, 'Reviews:Admin')
         self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
+        other_version = version_factory(addon=self.addon)
+        already_disabled_version = version_factory(
+            addon=self.addon, file_kw={'status': amo.STATUS_DISABLED}
+        )
         self.helper.handler.disable_addon()
 
         self.addon.reload()
@@ -3602,7 +3606,20 @@ class TestReviewHelper(TestReviewHelperBase):
         activity_log = ActivityLog.objects.latest('pk')
         assert activity_log.action == amo.LOG.FORCE_DISABLE.id
         assert activity_log.arguments[0] == self.addon
-
+        # FIXME: There is an inconsistency between ReviewHelper.log_action()
+        # and ContentAction.log_action() regarding where to put the
+        # ContentDecision. See test_enable_addon() for comparison.
+        assert isinstance(activity_log.arguments[1], ContentDecision)
+        assert activity_log.arguments[2] == other_version
+        assert activity_log.arguments[3] == self.review_version
+        assert {vlog.version for vlog in activity_log.versionlog_set.all()} == {
+            other_version,
+            self.review_version,
+        }
+        assert activity_log.details['versions'] == [
+            other_version.version,
+            self.review_version.version,
+        ]
         assert len(mail.outbox) == 1
         message = mail.outbox[0]
         self.check_subject(message)
@@ -3610,7 +3627,15 @@ class TestReviewHelper(TestReviewHelperBase):
 
     def test_enable_addon(self):
         self.grant_permission(self.user, 'Reviews:Admin')
-        self.setup_data(amo.STATUS_DISABLED, file_status=amo.STATUS_APPROVED)
+        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
+        other_version = version_factory(addon=self.addon)
+        already_disabled_version = version_factory(
+            addon=self.addon, file_kw={'status': amo.STATUS_DISABLED}
+        )
+        Addon.disable_all_files(
+            [self.addon], File.STATUS_DISABLED_REASONS.ADDON_DISABLE
+        )
+
         self.helper.handler.enable_addon()
 
         self.addon.reload()
@@ -3619,6 +3644,17 @@ class TestReviewHelper(TestReviewHelperBase):
         activity_log = ActivityLog.objects.latest('pk')
         assert activity_log.action == amo.LOG.FORCE_ENABLE.id
         assert activity_log.arguments[0] == self.addon
+        assert activity_log.arguments[1] == other_version
+        assert activity_log.arguments[2] == self.review_version
+        assert isinstance(activity_log.arguments[3], ContentDecision)
+        assert {vlog.version for vlog in activity_log.versionlog_set.all()} == {
+            other_version,
+            self.review_version,
+        }
+        assert activity_log.details['versions'] == [
+            other_version.version,
+            self.review_version.version,
+        ]
 
         assert len(mail.outbox) == 1
         message = mail.outbox[0]
