@@ -5828,12 +5828,12 @@ msgstr "Maće kontrolu. Znjemóžńće VPN, hdyž websydło njefunguje a nastaj�
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:989
 msgid "Automatically handle GDPR consent forms."
-msgstr ""
+msgstr "Formulary zwolenja ZWDŠ awtomatisce předźěłać."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:992
 msgid "Block malicious websites from port scanning."
-msgstr ""
+msgstr "Złowólne websydła při skenowanju portow haćić."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:995
