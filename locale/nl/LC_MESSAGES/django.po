@@ -5665,7 +5665,7 @@ msgstr "Sla een volledige webpagina – inclusief afbeeldingen en opmaak – op 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:854
 msgid "Edit a web page before printing. Remove ads or any unwanted content."
-msgstr ""
+msgstr "Bewerk een webpagina voordat u deze afdrukt. Verwijder advertenties of ongewenste inhoud."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:863

@@ -5658,7 +5658,7 @@ msgstr "Salve uma página inteira, incluindo imagens e estilo, como um único ar
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:854
 msgid "Edit a web page before printing. Remove ads or any unwanted content."
-msgstr ""
+msgstr "Edite uma página web antes de imprimir. Remova anúncios ou qualquer conteúdo indesejado."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:863

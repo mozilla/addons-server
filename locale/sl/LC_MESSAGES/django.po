@@ -5657,7 +5657,7 @@ msgstr "Shranite celotne strani – vključno s slikami in slogi – kot eno dat
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:854
 msgid "Edit a web page before printing. Remove ads or any unwanted content."
-msgstr ""
+msgstr "Uredite spletno stran pred tiskanjem. Odstranite oglase in vso neželeno vsebino."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:863

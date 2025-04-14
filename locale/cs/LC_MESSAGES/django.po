@@ -5651,7 +5651,7 @@ msgstr "Uložte si celou webovou stránku — včetně obrázků a stylů — ja
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:854
 msgid "Edit a web page before printing. Remove ads or any unwanted content."
-msgstr ""
+msgstr "Úprava webové stránky před vytištěním. Odstraňte reklamy nebo jakýkoli nežádoucí obsah."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:863
