@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-14 19:50+0000\n"
+"POT-Creation-Date: 2025-04-14 20:20+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -4892,17 +4892,16 @@ msgid "See all extensions"
 msgstr "Browse all add-ons"
 
 #. editorial content for the secondary hero shelves.
-msgid "Productivity tools"
-msgstr "Productivity tools"
-
-#. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "YouTube customization"
-
-#. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
 msgstr "Privacy & Security extensions"
+
+#. editorial content for the secondary hero shelves.
+msgid "Essential add-ons"
+msgstr "Essential add-ons"
+
+#. editorial content for the secondary hero shelves.
+msgid "Reddit extensions"
+msgstr "Reddit extensions"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -5015,6 +5014,10 @@ msgstr "Update add-on block"
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "Recommended Extensions program"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "YouTube customization"
 
 #. editorial content for the homepage shelves.
 #, fuzzy

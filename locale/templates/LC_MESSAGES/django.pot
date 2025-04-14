@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-14 19:50+0000\n"
+"POT-Creation-Date: 2025-04-14 20:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -6494,19 +6494,17 @@ msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1013
-msgid "Productivity tools"
+msgid "Privacy & Security extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1015
-#: src/olympia/discovery/strings.jinja2:1081
-msgid "YouTube customization"
+msgid "Essential add-ons"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1017
-msgid "Privacy & Security extensions"
+msgid "Reddit extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -6626,6 +6624,11 @@ msgstr ""
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1078
 msgid "See more ad blocker staff picks"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#: src/olympia/discovery/strings.jinja2:1081
+msgid "YouTube customization"
 msgstr ""
 
 #. editorial content for the homepage shelves.
