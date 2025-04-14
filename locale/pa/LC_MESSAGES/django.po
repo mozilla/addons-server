@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-14 18:37+0000\n"
+"POT-Creation-Date: 2025-04-14 19:20+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3949,7 +3949,6 @@ msgid "Download YouTube videos and/or audio."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "An advanced reader for aggregating all of your RSS/Atom/RDF sources."
 msgstr ""
 
@@ -4451,6 +4450,10 @@ msgid "Edit a web page before printing. Make sweeping visual changes — remove 
 msgstr ""
 
 #. editorial content for the primary hero shelves.
+msgid "Advanced reader for aggregating all of your RSS/Atom/RDF sources."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
 msgstr ""
 
@@ -4576,6 +4579,18 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Enhance your Twitch experience."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Re-take Twitter/X and customize your experience."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Translate text without leaving the page you're on (PDF compatible)."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Change the color of Firefox to match every website you visit."
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
