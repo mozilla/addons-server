@@ -304,7 +304,11 @@ class ContentActionDisableAddon(ContentAction):
             (user := self.decision.reviewer_user) and user.id != settings.TASK_USER_ID
         )
         extra_details = {'human_review': human_review} | (extra_details or {})
-        if target_versions := self.target_versions.no_transforms().only('pk', 'version').order_by('pk'):
+        if (
+            target_versions := self.target_versions.no_transforms()
+            .only('pk', 'version')
+            .order_by('pk')
+        ):
             extra_args = (*target_versions, *extra_args)
             extra_details['versions'] = [version.version for version in target_versions]
         # While we still have ReviewActionReason in addition to ContentPolicy, re-add
@@ -637,7 +641,9 @@ class ContentActionTargetAppealApprove(
         target = self.target
         log_entry = None
         if isinstance(target, Addon) and target.status == amo.STATUS_DISABLED:
-            target_versions = list(self.target_versions.no_transforms().only('pk', 'version'))
+            target_versions = list(
+                self.target_versions.no_transforms().only('pk', 'version')
+            )
             target.force_enable(skip_activity_log=True)
             log_entry = self.log_action(
                 amo.LOG.FORCE_ENABLE,
