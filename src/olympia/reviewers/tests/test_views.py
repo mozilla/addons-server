@@ -5007,7 +5007,7 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         important_changes = doc('#important-changes-history table.activity tr')
         assert len(important_changes) == 1
-        details = doc(f'#important-changes-history .activity tr:nth-child(1) details')
+        details = doc('#important-changes-history .activity tr:nth-child(1) details')
         assert details
         lis = details.find('li')
         assert len(lis) == 2
@@ -5032,7 +5032,7 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         important_changes = doc('#important-changes-history table.activity tr')
         assert len(important_changes) == 1
-        details = doc(f'#important-changes-history .activity tr:nth-child(1) details')
+        details = doc('#important-changes-history .activity tr:nth-child(1) details')
         assert details
         lis = details.find('li')
         assert len(lis) == 1
@@ -5056,7 +5056,7 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         important_changes = doc('#important-changes-history table.activity tr')
         assert len(important_changes) == 1
-        details = doc(f'#important-changes-history .activity tr:nth-child(1) details')
+        details = doc('#important-changes-history .activity tr:nth-child(1) details')
         assert details
         lis = details.find('li')
         assert len(lis) == MAX_MOCK + 1
