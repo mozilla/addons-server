@@ -354,9 +354,7 @@ class ContentActionDisableAddon(ContentAction):
     def hold_action(self):
         if self.target.status != amo.STATUS_DISABLED:
             self.decision.target_versions.set(self.versions_force_disable_will_affect)
-            return self.log_action(
-                amo.LOG.HELD_ACTION_FORCE_DISABLE,
-            )
+            return self.log_action(amo.LOG.HELD_ACTION_FORCE_DISABLE)
         return None
 
     def get_owners(self):
@@ -479,15 +477,13 @@ class ContentActionRejectVersionDelayed(ContentActionRejectVersion):
             # methods.
             self.delayed_rejection_date = self.delayed_rejection_days = None
 
-    def log_action(
-        self, activity_log_action, *extra_args, extra_details=None, **kwargs
-    ):
+    def log_action(self, activity_log_action, *extra_args, extra_details=None):
         extra_details = {
             **(extra_details or {}),
             'delayed_rejection_days': self.delayed_rejection_days,
         }
         return super().log_action(
-            activity_log_action, *extra_args, extra_details=extra_details, **kwargs
+            activity_log_action, *extra_args, extra_details=extra_details
         )
 
     # should_hold_action as ContentActionRejectVersion
@@ -516,7 +512,7 @@ class ContentActionRejectVersionDelayed(ContentActionRejectVersion):
         return self.log_action(
             amo.LOG.REJECT_CONTENT_DELAYED
             if self.content_review
-            else amo.LOG.REJECT_VERSION_DELAYED,
+            else amo.LOG.REJECT_VERSION_DELAYED
         )
 
     def hold_action(self):
