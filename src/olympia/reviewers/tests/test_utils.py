@@ -1155,7 +1155,7 @@ class TestReviewHelper(TestReviewHelperBase):
     def test_logging_is_similar_in_reviewer_tools_and_content_action(self):
         data = {
             **self.get_data(),
-            'action': 'disable_addon',
+            'action': 'reject_multiple_versions',
             'reasons': [
                 ReviewActionReason.objects.create(
                     name='reason 1', is_active=True, canned_response='.'
@@ -1167,6 +1167,7 @@ class TestReviewHelper(TestReviewHelperBase):
                     canned_response='.',
                 ),
             ],
+            'versions': [self.review_version],
         }
         self.grant_permission(self.user, 'Addons:Review')
         self.grant_permission(self.user, 'Reviews:Admin')
@@ -1175,13 +1176,15 @@ class TestReviewHelper(TestReviewHelperBase):
         self.helper.handler.review_action = self.helper.actions[data['action']]
 
         # first, record_decision but with the action completed so we log in ReviewHelper
-        self.helper.handler.record_decision(amo.LOG.FORCE_DISABLE)
-        logs = ActivityLog.objects.filter(action=amo.LOG.FORCE_DISABLE.id)
+        self.helper.handler.record_decision(
+            amo.LOG.REJECT_VERSION, versions=data['versions']
+        )
+        logs = ActivityLog.objects.filter(action=amo.LOG.REJECT_VERSION.id)
         assert logs.count() == 1
         reviewer_tools_activity = logs.get()
         decision1 = ContentDecision.objects.last()
         assert self.addon in reviewer_tools_activity.arguments
-        assert self.addon.current_version in reviewer_tools_activity.arguments
+        assert self.review_version in reviewer_tools_activity.arguments
         assert decision1 in reviewer_tools_activity.arguments
         assert data['reasons'][0] in reviewer_tools_activity.arguments
         assert data['reasons'][1] in reviewer_tools_activity.arguments
@@ -1189,17 +1192,20 @@ class TestReviewHelper(TestReviewHelperBase):
 
         # then repeat with action_completed=False, which will log in ContentAction
         self.helper.handler.record_decision(
-            amo.LOG.FORCE_DISABLE, action_completed=False
+            amo.LOG.REJECT_VERSION, versions=data['versions'], action_completed=False
         )
-        logs = ActivityLog.objects.filter(action=amo.LOG.FORCE_DISABLE.id).exclude(
+        logs = ActivityLog.objects.filter(action=amo.LOG.REJECT_VERSION.id).exclude(
             id=reviewer_tools_activity.id
         )
         assert logs.count() == 1
         content_action_activity = logs.get()
         decision2 = ContentDecision.objects.last()
 
-        # and compare
-        assert reviewer_tools_activity.details == content_action_activity.details
+        # and compare... reviewer tools adds an extra `files` too which we
+        # ignore.
+        expected_details = dict(reviewer_tools_activity.details)
+        del expected_details['files']
+        assert expected_details == content_action_activity.details
         # reasons won't be in the arguments, because they're added afterwards
         assert set(reviewer_tools_activity.arguments) - {
             decision1,

@@ -307,7 +307,7 @@ class ContentActionDisableAddon(ContentAction):
         if (
             target_versions := self.target_versions.no_transforms()
             .only('pk', 'version')
-            .order_by('pk')
+            .order_by('-pk')
         ):
             extra_args = (*target_versions, *extra_args)
             extra_details['versions'] = [version.version for version in target_versions]
@@ -339,7 +339,7 @@ class ContentActionDisableAddon(ContentAction):
             .exclude(file__status=amo.STATUS_DISABLED)
             .no_transforms()
             .only('pk', 'version')
-            .order_by('pk')
+            .order_by('-pk')
         )
 
     def process_action(self):

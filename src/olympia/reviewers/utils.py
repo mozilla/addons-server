@@ -1037,6 +1037,7 @@ class ReviewBase:
                 decisions=decisions,
                 reasons=reasons,
                 policies=policies,
+                versions=versions,
                 **(log_action_kw or {}),
             )
             if update_queue_history:
@@ -1136,13 +1137,13 @@ class ReviewBase:
         if self.file:
             details['files'] = [self.file.id]
 
-        if version is not None:
-            details['version'] = version.version
-            args = (self.addon, version)
-        elif versions is not None:
+        if versions is not None:
             details['versions'] = [v.version for v in versions]
             details['files'] = [v.file.id for v in versions]
             args = (self.addon, *versions)
+        elif version is not None:
+            details['version'] = version.version
+            args = (self.addon, version)
         else:
             args = (self.addon,)
         if timestamp is None:
@@ -1556,7 +1557,6 @@ class ReviewBase:
                     versions=versions,
                     decision_metadata=extra_details,
                     log_action_kw={
-                        'versions': versions,
                         'timestamp': now,
                         'user': user,
                         'extra_details': extra_details,
@@ -1656,8 +1656,8 @@ class ReviewBase:
             log.info('Sending email for %s' % (self.addon))
             self.record_decision(
                 amo.LOG.CHANGE_PENDING_REJECTION,
+                versions=self.data['versions'],
                 log_action_kw={
-                    'versions': self.data['versions'],
                     'extra_details': extra_details,
                 },
                 update_queue_history=False,  # This action doesn't affect the queue.
@@ -1684,11 +1684,7 @@ class ReviewBase:
         # force_enable() and determine which versions to pass to
         # record_decision() just like the ContentAction would do.
         self.addon.force_enable(skip_activity_log=True)
-        self.record_decision(
-            amo.LOG.FORCE_ENABLE,
-            versions=versions,
-            log_action_kw={'versions': versions},
-        )
+        self.record_decision(amo.LOG.FORCE_ENABLE, versions=versions)
 
     def disable_addon(self):
         """Force disable the add-on and all versions."""
@@ -1811,11 +1807,7 @@ class ReviewUnlisted(ReviewBase):
                 self.clear_specific_needs_human_review_flags(version)
                 self.set_human_review_date(version)
 
-        self.record_decision(
-            amo.LOG.CONFIRM_AUTO_APPROVED,
-            versions=versions,
-            log_action_kw={'versions': versions},
-        )
+        self.record_decision(amo.LOG.CONFIRM_AUTO_APPROVED, versions=versions)
 
     def approve_multiple_versions(self):
         """Set multiple unlisted add-on versions files to public."""
@@ -1842,11 +1834,7 @@ class ReviewUnlisted(ReviewBase):
                 defaults={'auto_approval_disabled_until_next_approval_unlisted': False},
             )
             log.info('Sending email(s) for %s' % (self.addon))
-            self.record_decision(
-                amo.LOG.APPROVE_VERSION,
-                versions=versions,
-                log_action_kw={'versions': versions},
-            )
+            self.record_decision(amo.LOG.APPROVE_VERSION, versions=versions)
         else:
             self.log_action(amo.LOG.APPROVE_VERSION, versions=versions)
 

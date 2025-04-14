@@ -584,8 +584,8 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
             self.addon,
             self.decision,
             self.policy,
-            self.old_version,
             self.version,
+            self.old_version,
         ]
         assert activity.user == self.task_user
         assert len(mail.outbox) == 0
@@ -773,13 +773,13 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
             self.addon,
             self.decision,
             self.policy,
-            self.old_version,
             self.version,
+            self.old_version,
         ]
         assert activity.user == self.task_user
         assert activity.details == {
             'comments': self.decision.notes,
-            'versions': [self.old_version.version, self.version.version],
+            'versions': [self.version.version, self.old_version.version],
             'human_review': False,
             'policy_texts': [self.policy.full_text()],
         }
@@ -791,13 +791,13 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
             self.addon,
             self.decision,
             self.policy,
-            self.old_version,
             self.version,
+            self.old_version,
         ]
         assert activity.user == user
         assert activity.details == {
             'comments': self.decision.notes,
-            'versions': [self.old_version.version, self.version.version],
+            'versions': [self.version.version, self.old_version.version],
             'human_review': True,
         }
 
@@ -857,11 +857,11 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
             self.addon,
             self.decision,
             self.policy,
-            self.old_version,
             self.version,
+            self.old_version,
         ]
         assert activity.details == {
-            'versions': [self.old_version.version, self.version.version],
+            'versions': [self.version.version, self.old_version.version],
             'human_review': False,
             'comments': self.decision.notes,
             'policy_texts': [self.policy.full_text()],
@@ -882,8 +882,8 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
             self.addon,
             self.decision,
             self.policy,
-            self.old_version,
             self.version,
+            self.old_version,
             reason,
         ]
 
@@ -984,8 +984,8 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
             self.addon,
             self.decision,
             self.policy,
-            self.old_version,
             self.version,
+            self.old_version,
         ]
         assert activity.user == self.decision.reviewer_user
         assert len(mail.outbox) == expected_emails_from_action
@@ -1087,8 +1087,8 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
             self.addon,
             self.decision,
             self.policy,
-            self.old_version,
             self.version,
+            self.old_version,
         ]
         assert activity.user == self.decision.reviewer_user
         assert len(mail.outbox) == expected_emails_from_action
@@ -1196,13 +1196,13 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
             self.addon,
             self.decision,
             self.policy,
-            self.old_version,
             self.version,
+            self.old_version,
         ]
         assert activity.user == self.task_user
         assert activity.details == {
             'comments': self.decision.notes,
-            'versions': [self.old_version.version, self.version.version],
+            'versions': [self.version.version, self.old_version.version],
             'human_review': False,
             'policy_texts': [self.policy.full_text()],
         }
@@ -1214,13 +1214,13 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
             self.addon,
             self.decision,
             self.policy,
-            self.old_version,
             self.version,
+            self.old_version,
         ]
         assert activity.user == user
         assert activity.details == {
             'comments': self.decision.notes,
-            'versions': [self.old_version.version, self.version.version],
+            'versions': [self.version.version, self.old_version.version],
             'human_review': True,
         }
 
