@@ -5662,7 +5662,7 @@ msgstr "Uredite spletno stran pred tiskanjem. Opravite zajetne vizualne sprememb
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:863
 msgid "Advanced reader for aggregating all of your RSS/Atom/RDF sources."
-msgstr ""
+msgstr "Napreden bralnik za združevanje vseh vaših virov RSS/Atom/RDF."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:881
@@ -5827,17 +5827,17 @@ msgstr "Izboljšajte svojo izkušnjo Twitcha."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:998
 msgid "Re-take Twitter/X and customize your experience."
-msgstr ""
+msgstr "Ponovno vzemite Twitter/X in prilagodite svojo izkušnjo."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1001
 msgid "Translate text without leaving the page you're on (PDF compatible)."
-msgstr ""
+msgstr "Prevedite besedilo, ne da bi zapustili stran, na kateri se nahajate (združljivo s PDF)."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1004
 msgid "Change the color of Firefox to match every website you visit."
-msgstr ""
+msgstr "Spremenite barvo Firefoxa, da se bo ujemala z vsakim spletnim mestom, ki ga obiščete."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1007
