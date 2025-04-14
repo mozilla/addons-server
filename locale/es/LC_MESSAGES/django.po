@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-14 19:20+0000\n"
+"POT-Creation-Date: 2025-04-14 19:50+0000\n"
 "PO-Revision-Date: 2024-01-15 13:27+0000\n"
 "Last-Translator: Bund10z <abu.avila@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -4478,7 +4478,7 @@ msgid "Save an entire web page — including images and styling — as a single 
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-msgid "Edit a web page before printing. Make sweeping visual changes — remove ads or unsavory content—to any web page you want to print."
+msgid "Edit a web page before printing. Remove ads or any unwanted content."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
