@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-12 00:11+0000\n"
+"POT-Creation-Date: 2025-04-14 18:37+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -5025,7 +5025,6 @@ msgid "The easiest way to manage YouTube subscriptions."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Get the mouse scrollbar you've always wanted—specify width and color."
 msgstr ""
 
@@ -5092,8 +5091,7 @@ msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-msgid ""
-"Find an interesting image on the web? Use TinEye to explore its origins."
+msgid "Find an interesting pic on the web? Use TinEye to discover its origins."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -5103,7 +5101,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 msgid ""
 "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the "
-"tab title, and more."
+"tab title & more."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -5179,6 +5177,10 @@ msgstr ""
 msgid ""
 "Return to a simpler time — when your top search results stood above the ads "
 "(Google and Bing search engine compatible)."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Get the mouse scrollbar you've always wanted — specify width and color."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -5273,6 +5275,18 @@ msgstr ""
 msgid ""
 "You’re in control. Turn off VPN when a website won’t work and set different "
 "locations for different websites. Windows only."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Automatically handle GDPR consent forms."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Block malicious websites from port scanning."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Enhance your Twitch experience."
 msgstr ""
 
 #. editorial content for the secondary hero shelves.

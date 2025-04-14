@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-12 00:11+0000\n"
+"POT-Creation-Date: 2025-04-14 18:37+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -4620,7 +4620,6 @@ msgid "The easiest way to manage YouTube subscriptions."
 msgstr "The easiest way to manage all of your YouTube channel subscriptions."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Get the mouse scrollbar you've always wanted—specify width and color."
 msgstr "Get the scrollbar you always wanted—select width and your color of choice."
@@ -4682,16 +4681,16 @@ msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
 
 #. editorial content for the primary hero shelves.
-msgid "Find an interesting image on the web? Use TinEye to explore its origins."
-msgstr "Find an interesting image on the web? Use TinEye to explore its origins."
+msgid "Find an interesting pic on the web? Use TinEye to discover its origins."
+msgstr "Find an interesting pic on the web? Use TinEye to discover its origins."
 
 #. editorial content for the primary hero shelves.
 msgid "Save images easily — just grab them from your current tab."
 msgstr "Save images easily — just grab them from your current tab."
 
 #. editorial content for the primary hero shelves.
-msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title, and more."
+msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title & more."
+msgstr "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title & more."
 
 #. editorial content for the primary hero shelves.
 #, fuzzy
@@ -4760,6 +4759,10 @@ msgstr "Begone, annoying cookie warnings!"
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
 msgstr "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
+
+#. editorial content for the primary hero shelves.
+msgid "Get the mouse scrollbar you've always wanted — specify width and color."
+msgstr "Get the mouse scrollbar you've always wanted — specify width and color."
 
 #. editorial content for the primary hero shelves.
 msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
@@ -4846,6 +4849,18 @@ msgstr "Easily summarize emails, docs, articles, and video transcripts in Englis
 #. editorial content for the primary hero shelves.
 msgid "You’re in control. Turn off VPN when a website won’t work and set different locations for different websites. Windows only."
 msgstr "You’re in control. Turn off VPN when a website won’t work and set different locations for different websites. Windows only."
+
+#. editorial content for the primary hero shelves.
+msgid "Automatically handle GDPR consent forms."
+msgstr "Automatically handle GDPR consent forms."
+
+#. editorial content for the primary hero shelves.
+msgid "Block malicious websites from port scanning."
+msgstr "Block malicious websites from port scanning."
+
+#. editorial content for the primary hero shelves.
+msgid "Enhance your Twitch experience."
+msgstr "Enhance your Twitch experience."
 
 #. editorial content for the secondary hero shelves.
 #, fuzzy
