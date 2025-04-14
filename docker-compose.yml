@@ -7,7 +7,6 @@ x-env-mapping: &env
     - CELERY_RESULT_BACKEND=redis://redis:6379/1
     - DATABASES_DEFAULT_URL=mysql://root:@mysqld/olympia
     - ELASTICSEARCH_LOCATION=elasticsearch:9200
-    - ELASTIC_CLIENT_APIVERSIONING=1
     - MEMCACHE_LOCATION=memcached:11211
     - MYSQL_DATABASE=olympia
     - MYSQL_ROOT_PASSWORD=docker
