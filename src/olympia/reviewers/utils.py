@@ -1684,6 +1684,7 @@ class ReviewBase:
             Version.unfiltered.disabled_that_would_be_renabled_with_addon(self.addon)
             .no_transforms()
             .only('id', 'version')
+            .order_by('-pk')
         )
         log.info('Sending email for %s' % (self.addon))
         # We can't use record_decision(..., action_completed=False) like we do

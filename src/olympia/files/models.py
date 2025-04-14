@@ -78,14 +78,10 @@ def files_storage():
 
 class FileManager(ManagerBase):
     def disabled_that_would_be_renabled_with_addon(self):
-        return (
-            self.filter(
-                status=amo.STATUS_DISABLED,
-                status_disabled_reason=File.STATUS_DISABLED_REASONS.ADDON_DISABLE,
-            )
-            .exclude(original_status=amo.STATUS_NULL)
-            .order_by('pk')
-        )
+        return self.filter(
+            status=amo.STATUS_DISABLED,
+            status_disabled_reason=File.STATUS_DISABLED_REASONS.ADDON_DISABLE,
+        ).exclude(original_status=amo.STATUS_NULL)
 
 
 class File(OnChangeMixin, ModelBase):

@@ -638,7 +638,9 @@ class ContentActionTargetAppealApprove(
         log_entry = None
         if isinstance(target, Addon) and target.status == amo.STATUS_DISABLED:
             target_versions = list(
-                self.target_versions.no_transforms().only('pk', 'version')
+                self.target_versions.no_transforms()
+                .only('pk', 'version')
+                .order_by('-pk')
             )
             target.force_enable(skip_activity_log=True)
             log_entry = self.log_action(
