@@ -29,6 +29,7 @@ from olympia.amo.tests import (
 from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.core import set_user
+from olympia.files.models import File
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import ReviewActionReason
 from olympia.versions.models import VersionReviewerFlags
@@ -542,34 +543,34 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
         super().setUp()
         self.author = user_factory()
         self.addon = addon_factory(users=(self.author,), name='<b>Bad Addön</b>')
-        self.version = self.addon.current_version
-        version_factory(addon=self.addon)
+        self.old_version = self.addon.current_version
+        self.version = version_factory(addon=self.addon)
+        self.another_version = version_factory(
+            addon=self.addon, file_kw={'status': amo.STATUS_DISABLED}
+        )
         self.addon.reload()
         ActivityLog.objects.all().delete()
         self.cinder_job.abusereport_set.update(guid=self.addon.guid)
         self.decision.update(addon=self.addon)
-        self.decision.target_versions.add(self.version)
+        self.decision.target_versions.set((self.version, self.old_version))
 
     def test_addon_version(self):
-        first_version = self.version
-        second_version = self.addon.current_version
-
-        # if the decision has target_versions, then the first target version is used
+        # if the decision has target_versions, then the most recent target
+        # version is used.
         assert self.addon.current_version
-        assert self.addon.current_version != first_version
-        assert self.ActionClass(self.decision).addon_version == first_version
+        assert self.ActionClass(self.decision).addon_version == self.version
 
         # addon_version defaults to current_version, if decision has no target_versions
         self.decision.target_versions.clear()
-        assert self.addon.current_version == second_version
-        assert self.ActionClass(self.decision).addon_version == second_version
+        assert (
+            self.ActionClass(self.decision).addon_version == self.addon.current_version
+        )
 
         # except if there is no current_version, where the latest version is used
-        first_version.file.update(status=amo.STATUS_DISABLED)
-        second_version.file.update(status=amo.STATUS_DISABLED)
+        File.objects.update(status=amo.STATUS_DISABLED)
         self.addon.update_version()
         assert not self.addon.current_version
-        assert self.ActionClass(self.decision).addon_version == second_version
+        assert self.ActionClass(self.decision).addon_version == self.another_version
 
     def _test_disable_addon(self):
         self.decision.update(action=self.takedown_decision_action)
@@ -583,6 +584,7 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
             self.addon,
             self.decision,
             self.policy,
+            self.old_version,
             self.version,
         ]
         assert activity.user == self.task_user
@@ -771,12 +773,13 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
             self.addon,
             self.decision,
             self.policy,
+            self.old_version,
             self.version,
         ]
         assert activity.user == self.task_user
         assert activity.details == {
             'comments': self.decision.notes,
-            'version': self.version.version,
+            'versions': [self.old_version.version, self.version.version],
             'human_review': False,
             'policy_texts': [self.policy.full_text()],
         }
@@ -788,12 +791,13 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
             self.addon,
             self.decision,
             self.policy,
+            self.old_version,
             self.version,
         ]
         assert activity.user == user
         assert activity.details == {
             'comments': self.decision.notes,
-            'version': self.version.version,
+            'versions': [self.old_version.version, self.version.version],
             'human_review': True,
         }
 
@@ -853,10 +857,11 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
             self.addon,
             self.decision,
             self.policy,
+            self.old_version,
             self.version,
         ]
         assert activity.details == {
-            'version': self.version.version,
+            'versions': [self.old_version.version, self.version.version],
             'human_review': False,
             'comments': self.decision.notes,
             'policy_texts': [self.policy.full_text()],
@@ -877,6 +882,7 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
             self.addon,
             self.decision,
             self.policy,
+            self.old_version,
             self.version,
             reason,
         ]
@@ -940,6 +946,12 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
     disable_snippet = 'versions of your Extension have been disabled'
     takedown_decision_action = DECISION_ACTIONS.AMO_DISABLE_ADDON
 
+    def setUp(self):
+        super().setUp()
+        # Set up another_version as approved so that the rejection of the other
+        # 2 versions leaves one version approved and the add-on stays public.
+        self.another_version.file.update(status=amo.STATUS_APPROVED)
+
     def _test_reject_version(self, *, content_review, expected_emails_from_action=0):
         self.decision.update(
             action=self.takedown_decision_action,
@@ -961,16 +973,18 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
             else amo.LOG.REJECT_VERSION
         )
         assert self.addon.reload().status == amo.STATUS_APPROVED
-        assert self.version.file.reload().status == amo.STATUS_DISABLED
-        version_flags = VersionReviewerFlags.objects.filter(version=self.version).get()
-        assert version_flags.pending_rejection is None
-        assert version_flags.pending_rejection_by is None
-        assert version_flags.pending_content_rejection is None
+        for version in (self.old_version, self.version):
+            assert version.file.reload().status == amo.STATUS_DISABLED
+            version_flags = VersionReviewerFlags.objects.filter(version=version).get()
+            assert version_flags.pending_rejection is None
+            assert version_flags.pending_rejection_by is None
+            assert version_flags.pending_content_rejection is None
         assert ActivityLog.objects.count() == 1
         assert activity.arguments == [
             self.addon,
             self.decision,
             self.policy,
+            self.old_version,
             self.version,
         ]
         assert activity.user == self.decision.reviewer_user
@@ -1062,16 +1076,18 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
             else amo.LOG.REJECT_VERSION_DELAYED
         )
         assert self.addon.reload().status == amo.STATUS_APPROVED
-        assert self.version.file.status == amo.STATUS_APPROVED
-        version_flags = VersionReviewerFlags.objects.filter(version=self.version).get()
-        self.assertCloseToNow(version_flags.pending_rejection, now=in_the_future)
-        assert version_flags.pending_rejection_by == reviewer
-        assert version_flags.pending_content_rejection == content_review
+        for version in (self.old_version, self.version):
+            assert version.file.status == amo.STATUS_APPROVED
+            version_flags = VersionReviewerFlags.objects.filter(version=version).get()
+            self.assertCloseToNow(version_flags.pending_rejection, now=in_the_future)
+            assert version_flags.pending_rejection_by == reviewer
+            assert version_flags.pending_content_rejection == content_review
         assert ActivityLog.objects.count() == 1
         assert activity.arguments == [
             self.addon,
             self.decision,
             self.policy,
+            self.old_version,
             self.version,
         ]
         assert activity.user == self.decision.reviewer_user
@@ -1180,12 +1196,13 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
             self.addon,
             self.decision,
             self.policy,
+            self.old_version,
             self.version,
         ]
         assert activity.user == self.task_user
         assert activity.details == {
             'comments': self.decision.notes,
-            'version': self.version.version,
+            'versions': [self.old_version.version, self.version.version],
             'human_review': False,
             'policy_texts': [self.policy.full_text()],
         }
@@ -1197,12 +1214,13 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
             self.addon,
             self.decision,
             self.policy,
+            self.old_version,
             self.version,
         ]
         assert activity.user == user
         assert activity.details == {
             'comments': self.decision.notes,
-            'version': self.version.version,
+            'versions': [self.old_version.version, self.version.version],
             'human_review': True,
         }
 
@@ -1223,6 +1241,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
 
     def test_notify_stakeholders(self):
         stakeholder = user_factory()
+        self.decision.target_versions.set([self.version])
         action = self.ActionClass(self.decision)
         assert len(mail.outbox) == 0
         listed_version = self.version

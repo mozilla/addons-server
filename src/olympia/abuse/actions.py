@@ -45,7 +45,7 @@ class ContentAction:
 
         if isinstance(self.target, Addon):
             self.addon_version = (
-                (decision.id and decision.target_versions.order_by('-id').first())
+                (decision.id and decision.target_versions.order_by('-pk').first())
                 or self.target.current_version
                 or self.target.find_latest_version(channel=None, exclude=())
             )
@@ -296,9 +296,7 @@ class ContentActionDisableAddon(ContentAction):
             and any(self.target.promoted_groups(currently_approved=False).high_profile)
         )
 
-    def log_action(
-        self, activity_log_action, *extra_args, extra_details=None, target_versions=None
-    ):
+    def log_action(self, activity_log_action, *extra_args, extra_details=None):
         from olympia.activity.models import AttachmentLog
         from olympia.reviewers.models import ReviewActionReason
 
@@ -306,7 +304,7 @@ class ContentActionDisableAddon(ContentAction):
             (user := self.decision.reviewer_user) and user.id != settings.TASK_USER_ID
         )
         extra_details = {'human_review': human_review} | (extra_details or {})
-        if target_versions:
+        if target_versions := self.target_versions.no_transforms().only('pk', 'version').order_by('pk'):
             extra_args = (*target_versions, *extra_args)
             extra_details['versions'] = [version.version for version in target_versions]
         # While we still have ReviewActionReason in addition to ContentPolicy, re-add
@@ -327,31 +325,33 @@ class ContentActionDisableAddon(ContentAction):
 
     @property
     def target_versions(self):
+        return self.decision.target_versions.all()
+
+    @property
+    def versions_force_disable_will_affect(self):
         return (
             Version.objects.all()
             .filter(addon=self.target)
             .exclude(file__status=amo.STATUS_DISABLED)
             .no_transforms()
             .only('pk', 'version')
+            .order_by('pk')
         )
 
     def process_action(self):
         if self.target.status != amo.STATUS_DISABLED:
             # Evaluate target_versions before executing the action, since the
             # queryset depends on the file statuses.
-            target_versions = tuple(self.target_versions)
+            self.decision.target_versions.set(self.versions_force_disable_will_affect)
             self.target.force_disable(skip_activity_log=True)
-            return self.log_action(
-                amo.LOG.FORCE_DISABLE,
-                target_versions=target_versions,
-            )
+            return self.log_action(amo.LOG.FORCE_DISABLE)
         return None
 
     def hold_action(self):
         if self.target.status != amo.STATUS_DISABLED:
+            self.decision.target_versions.set(self.versions_force_disable_will_affect)
             return self.log_action(
                 amo.LOG.HELD_ACTION_FORCE_DISABLE,
-                target_versions=self.target_versions,
             )
         return None
 
@@ -367,10 +367,6 @@ class ContentActionRejectVersion(ContentActionDisableAddon):
     def __init__(self, decision):
         super().__init__(decision)
         self.content_review = decision.metadata.get('content_review', False)
-
-    def log_action(self, *args, **kwargs):
-        kwargs.update(target_versions=self.target_versions)
-        return super().log_action(*args, **kwargs)
 
     def should_hold_action(self):
         return (
@@ -423,10 +419,6 @@ class ContentActionRejectVersion(ContentActionDisableAddon):
             subject = f'{rejection_type} issued for {self.decision.get_target_name()}'
             message = template.render(context_dict)
             send_mail(subject, message, recipient_list=recipients)
-
-    @property
-    def target_versions(self):
-        return self.decision.target_versions.all().no_transforms().only('pk', 'version')
 
     def process_action(self):
         if not self.decision.reviewer_user:
@@ -639,13 +631,13 @@ class ContentActionTargetAppealApprove(
             qs = Version.unfiltered.disabled_that_would_be_renabled_with_addon(target)
         else:
             qs = self.decision.target_versions.all()
-        return qs.no_transforms().only('pk', 'version')
+        return qs
 
     def process_action(self):
         target = self.target
         log_entry = None
         if isinstance(target, Addon) and target.status == amo.STATUS_DISABLED:
-            target_versions = list(self.target_versions)
+            target_versions = list(self.target_versions.no_transforms().only('pk', 'version'))
             target.force_enable(skip_activity_log=True)
             log_entry = self.log_action(
                 amo.LOG.FORCE_ENABLE,
