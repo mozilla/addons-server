@@ -5670,7 +5670,7 @@ msgstr "Questa estensione risolve i problemi riscontrati con alcuni siti nel rip
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:683
 msgid "Find an interesting pic on the web? Use TinEye to discover its origins."
-msgstr ""
+msgstr "Hai trovato un’immagine interessante sul Web? Utilizza TinEye per scoprire da dove arriva."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:701
@@ -5680,7 +5680,7 @@ msgstr "Salva facilmente le immagini: basta afferrarle dalla scheda corrente."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:704
 msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title & more."
-msgstr ""
+msgstr "Sfrutta le tantissime opzioni per il controllo delle schede: chiudi schede duplicate, unisci finestre, copia il titolo della scheda e altro ancora."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:722
@@ -5760,7 +5760,7 @@ msgstr "Ritorna al tempo in cui era tutto più semplice, quando i risultati di r
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:911
 msgid "Get the mouse scrollbar you've always wanted — specify width and color."
-msgstr ""
+msgstr "Ottieni la barra di scorrimento che hai sempre desiderato: specifica la larghezza e il colore che preferisci."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:923
@@ -5870,17 +5870,17 @@ msgstr "Hai il controllo. Disattiva la VPN quando un sito web non funziona e imp
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:989
 msgid "Automatically handle GDPR consent forms."
-msgstr ""
+msgstr "Gestisci automaticamente i moduli di consenso GDPR."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:992
 msgid "Block malicious websites from port scanning."
-msgstr ""
+msgstr "Impedisci ai siti web dannosi di scansionare le porte."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:995
 msgid "Enhance your Twitch experience."
-msgstr ""
+msgstr "Migliora la tua esperienza su Twitch."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:998

@@ -5616,7 +5616,7 @@ msgstr "Sommige websites hebben moeite met het afspelen van video’s op Android
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:683
 msgid "Find an interesting pic on the web? Use TinEye to discover its origins."
-msgstr ""
+msgstr "Een interessante afbeelding op het web gevonden? Gebruik TinEye om de oorsprong ervan te ontdekken."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:701
@@ -5626,7 +5626,7 @@ msgstr "Sla afbeeldingen eenvoudig op – sleep ze eenvoudigweg van uw huidige t
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:704
 msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title & more."
-msgstr ""
+msgstr "Geniet van ultiem tabbladbeheer – sluit dubbele tabbladen, voeg vensters samen, kopieer de tabbladtitel en meer."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:722
@@ -5706,7 +5706,7 @@ msgstr "Keer terug naar een eenvoudiger tijdperk – toen uw beste zoekresultate
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:911
 msgid "Get the mouse scrollbar you've always wanted — specify width and color."
-msgstr ""
+msgstr "Verkrijg de muisscrollbalk die u altijd al wilde – geef de breedte en de kleur op."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:923
@@ -5816,17 +5816,17 @@ msgstr "U hebt de controle. Schakel VPN uit wanneer een website niet werkt en st
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:989
 msgid "Automatically handle GDPR consent forms."
-msgstr ""
+msgstr "Automatisch AVG-toestemmingsformulieren verwerken."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:992
 msgid "Block malicious websites from port scanning."
-msgstr ""
+msgstr "Poorten scannen blokkeren voor kwaadwillende websites."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:995
 msgid "Enhance your Twitch experience."
-msgstr ""
+msgstr "Verbeter uw Twitch-ervaring."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:998

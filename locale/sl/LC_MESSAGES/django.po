@@ -5608,7 +5608,7 @@ msgstr "Nekatere strani imajo težave pri predvajanju videoposnetkov v sistemu A
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:683
 msgid "Find an interesting pic on the web? Use TinEye to discover its origins."
-msgstr ""
+msgstr "Ste našli zanimivo sliko na spletu? Uporabite TinEye in odkrijte njegov izvor."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:701
@@ -5618,7 +5618,7 @@ msgstr "Enostavno shranjevanje slik – prenesite jih s trenutnega zavihka."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:704
 msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title & more."
-msgstr ""
+msgstr "Imejte popoln nadzor nad zavihki – zapiranje podvojenih zavihkov, združevanje oken, kopiranje naslova zavihka in več."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:722
@@ -5698,7 +5698,7 @@ msgstr "Vrnite se v preprostejše čase – ko so najustreznejši zadetki iskanj
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:911
 msgid "Get the mouse scrollbar you've always wanted — specify width and color."
-msgstr ""
+msgstr "Pridobite drsnik miške, kot ste ga vedno želeli – določite širino in barvo."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:923
@@ -5808,17 +5808,17 @@ msgstr "Imejte nadzor. Izklopite VPN, kadar spletno mesto ne deluje, in nastavit
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:989
 msgid "Automatically handle GDPR consent forms."
-msgstr ""
+msgstr "Samodejno obdelajte obrazce za soglasje GDPR."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:992
 msgid "Block malicious websites from port scanning."
-msgstr ""
+msgstr "Preprečite zlonamernim spletnim mestom pregled vrat."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:995
 msgid "Enhance your Twitch experience."
-msgstr ""
+msgstr "Izboljšajte svojo izkušnjo Twitcha."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:998
