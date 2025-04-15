@@ -46,6 +46,11 @@ class DiscoveryItem(ModelBase):
         default=0, blank=True, db_index=True,
         help_text='Position in the discovery pane in China '
                   '(See position field above).')
+    position_override = models.PositiveSmallIntegerField(
+        default=0, blank=True, db_index=True,
+        help_text='Position in the discovery pane when telemetry-aware '
+                  'recommendations are on but we want to override them.'
+                  '(See position field above).')
 
     def __str__(self):
         return six.text_type(self.addon)
