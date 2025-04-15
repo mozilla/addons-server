@@ -5783,7 +5783,7 @@ msgstr ""
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1017
 msgid "Reddit extensions"
-msgstr ""
+msgstr "Reddit 扩展"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1019 src/olympia/discovery/strings.jinja2:1021 src/olympia/discovery/strings.jinja2:1023
