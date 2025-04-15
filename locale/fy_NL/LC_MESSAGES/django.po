@@ -5613,7 +5613,7 @@ msgstr "Guon websites hawwe muoite mei it ôfspyljen fan fideo’s op Android. D
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:683
 msgid "Find an interesting pic on the web? Use TinEye to discover its origins."
-msgstr ""
+msgstr "In ynteressante ôfbylding op it web fûn? Brûk TinEye om de werkomst derfan te ûntdekken."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:701
@@ -5623,7 +5623,7 @@ msgstr "Bewarje ôfbyldingen maklik – sleep se ienfâldichwei fan jo aktive lj
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:704
 msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title & more."
-msgstr ""
+msgstr "Genietsje fan ultym ljepblêdbehear – dûbele ljepblêden slúte, finsters gearfoegje, de ljepblêdtitel kopiearje en mear."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:722
@@ -5663,12 +5663,12 @@ msgstr "Bewarje folsleine siden – ynklusyf ôfbyldingen en opmaak – as ien H
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:854
 msgid "Edit a web page before printing. Remove ads or any unwanted content."
-msgstr ""
+msgstr "Bewurkje in webside eardat jo dizze ôfdrukke. Smyt advertinsjes as net-winske ynhâld fuort."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:863
 msgid "Advanced reader for aggregating all of your RSS/Atom/RDF sources."
-msgstr ""
+msgstr "Avansearre lêzer foar it gearfoegjen fan al jo RSS-/Atom-/RDF-boarnen."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:881
@@ -5708,7 +5708,7 @@ msgstr "Gean werom nei in ienfâldiger tiden – doe’t jo bêste sykresultaten
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:911
 msgid "Get the mouse scrollbar you've always wanted — specify width and color."
-msgstr ""
+msgstr "Krij de mûsskowbalke dy’t jo altyd al woene – jou de breedte en de kleur op."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:923
@@ -5818,27 +5818,27 @@ msgstr "Jo hawwe de kontrôle. Skeakelje VPN út as in webside net wurket en ste
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:989
 msgid "Automatically handle GDPR consent forms."
-msgstr ""
+msgstr "Automatysk AVG-tastimmingsformulieren ferwurkje."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:992
 msgid "Block malicious websites from port scanning."
-msgstr ""
+msgstr "Poartescan troch kweawollende websites blokkearje."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:995
 msgid "Enhance your Twitch experience."
-msgstr ""
+msgstr "Ferbetterje jo Twitch-ûnderfining."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:998
 msgid "Re-take Twitter/X and customize your experience."
-msgstr ""
+msgstr "Untdek Twitter/X opnij en pas jo ûnderfining oan."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1001
 msgid "Translate text without leaving the page you're on (PDF compatible)."
-msgstr ""
+msgstr "Set tekst oer sûnder de side wêrop jo binne te ferlitten (PDF-kompatibel)."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1004
