@@ -628,9 +628,12 @@ class ContentActionTargetAppealApprove(
     def target_versions(self):
         target = self.target
         if isinstance(target, Addon) and target.status == amo.STATUS_DISABLED:
-            qs = target.versions(
-                manager='unfiltered_for_relations'
-            ).disabled_that_would_be_renabled_with_addon()
+            files_qs = File.objects.disabled_that_would_be_renabled_with_addon().filter(
+                version__addon=target
+            )
+            qs = target.versions(manager='unfiltered_for_relations').filter(
+                pk__in=files_qs.values_list('version')
+            )
         else:
             qs = self.decision.target_versions.all()
         return qs

@@ -1682,9 +1682,12 @@ class ReviewBase:
         self.version = None
         # Force queryset evaluation before we enable the versions, so that the
         # list of versions is properly recorded after.
+        files_qs = File.objects.disabled_that_would_be_renabled_with_addon().filter(
+            version__addon=self.addon
+        )
         versions = tuple(
             self.addon.versions(manager='unfiltered_for_relations')
-            .disabled_that_would_be_renabled_with_addon()
+            .filter(pk__in=files_qs.values_list('version'))
             .no_transforms()
             .only('id', 'version')
             .order_by('-pk')

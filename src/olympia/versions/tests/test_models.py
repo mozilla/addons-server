@@ -575,49 +575,6 @@ class TestVersionManager(TestCase):
             multiple,
         ]
 
-    def test_disabled_that_would_be_renabled_with_addon(self):
-        addon = addon_factory(
-            status=amo.STATUS_DISABLED,
-            file_kw={
-                'status': amo.STATUS_DISABLED,
-                'original_status': amo.STATUS_APPROVED,
-                # We don't want to re-enable a version the developer disabled
-                'status_disabled_reason': File.STATUS_DISABLED_REASONS.DEVELOPER,
-            },
-        )
-        version_factory(
-            addon=addon,
-            file_kw={
-                'status': amo.STATUS_DISABLED,
-                'original_status': amo.STATUS_APPROVED,
-                # we also don't want to re-enable a version we rejected
-                'status_disabled_reason': File.STATUS_DISABLED_REASONS.NONE,
-            },
-        )
-        was_approved = version_factory(
-            addon=addon,
-            file_kw={
-                'status': amo.STATUS_DISABLED,
-                'original_status': amo.STATUS_APPROVED,
-                # but we do want to re-enable a version we only disabled with the addon
-                'status_disabled_reason': File.STATUS_DISABLED_REASONS.ADDON_DISABLE,
-            },
-        )
-        was_awaiting_review = version_factory(
-            addon=addon,
-            file_kw={
-                'status': amo.STATUS_DISABLED,
-                'original_status': amo.STATUS_AWAITING_REVIEW,
-                # awaiting review versions could also be re-enabled
-                'status_disabled_reason': File.STATUS_DISABLED_REASONS.ADDON_DISABLE,
-            },
-        )
-
-        assert set(Version.objects.disabled_that_would_be_renabled_with_addon()) == {
-            was_approved,
-            was_awaiting_review,
-        }
-
 
 class TestVersion(AMOPaths, TestCase):
     fixtures = ['base/addon_3615', 'base/admin']

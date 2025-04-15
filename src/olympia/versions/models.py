@@ -242,12 +242,6 @@ class VersionManager(ManagerBase):
             )
         return reasons
 
-    def disabled_that_would_be_renabled_with_addon(self):
-        return self.filter(
-            file__status=amo.STATUS_DISABLED,
-            file__status_disabled_reason=File.STATUS_DISABLED_REASONS.ADDON_DISABLE,
-        ).exclude(file__original_status=amo.STATUS_NULL)
-
 
 class UnfilteredVersionManagerForRelations(VersionManager):
     """Like VersionManager, but defaults to include deleted objects.
