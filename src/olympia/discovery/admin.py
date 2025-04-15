@@ -24,7 +24,9 @@ from olympia.hero.models import PrimaryHeroImage, SecondaryHero
 from olympia.promoted.admin import (
     PromotedAddonPromotionAdminInline,
     PromotedAddonVersionInline,
+    PromotedGroupAdmin,
 )
+from olympia.promoted.models import PromotedGroup
 from olympia.shelves.admin import ShelfAdmin
 from olympia.shelves.models import Shelf
 
@@ -203,6 +205,11 @@ class DiscoveryAddon(Addon):
         proxy = True
 
 
+class DiscoveryPromotedGroup(PromotedGroup):
+    class Meta:
+        proxy = True
+
+
 DISCOVERY_ADDON_FIELDS = ['__str__', 'addon', 'guid', 'has_promotions']
 
 
@@ -244,6 +251,7 @@ class DiscoveryAddonAdmin(AMOModelAdmin):
 
 
 admin.site.register(DiscoveryAddon, DiscoveryAddonAdmin)
+admin.site.register(DiscoveryPromotedGroup, PromotedGroupAdmin)
 admin.site.register(DiscoveryItem, DiscoveryItemAdmin)
 admin.site.register(PrimaryHeroImageUpload, PrimaryHeroImageAdmin)
 admin.site.register(SecondaryHeroShelf, SecondaryHeroAdmin)
