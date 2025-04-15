@@ -5686,12 +5686,12 @@ msgstr "Speichern Sie eine gesamte Webseite – einschließlich Grafiken und Sti
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:854
 msgid "Edit a web page before printing. Remove ads or any unwanted content."
-msgstr ""
+msgstr "Bearbeiten Sie eine Webseite vor dem Drucken. Entfernen Sie Werbung oder unerwünschte Inhalte."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:863
 msgid "Advanced reader for aggregating all of your RSS/Atom/RDF sources."
-msgstr ""
+msgstr "Ein erweitertes Leseprogramm, das alle Ihre RSS-/Atom-/RDF-Quellen anzeigt."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:881
@@ -5856,7 +5856,7 @@ msgstr "Verbessern Sie Ihr Twitch-Erlebnis."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:998
 msgid "Re-take Twitter/X and customize your experience."
-msgstr ""
+msgstr "Nutzen Sie Twitter/X neu und passen Sie Ihr Erlebnis an."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1001
