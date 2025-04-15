@@ -5728,7 +5728,7 @@ msgstr "网络体验由您掌控。在网站无法正常使用时关闭 VPN，�
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:989
 msgid "Automatically handle GDPR consent forms."
-msgstr ""
+msgstr "自动处理 GDPR 同意表单。"
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:992
