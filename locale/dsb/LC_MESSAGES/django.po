@@ -5847,7 +5847,7 @@ msgstr "Pólěpšćo swójo dožywjenje Twitch."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:998
 msgid "Re-take control of Twitter/X and customize your experience."
-msgstr ""
+msgstr "Pśewzejśo zasej kontrolu nad Twitter/X a pśiměŕśo swójo dožywjenje."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1001

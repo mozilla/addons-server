@@ -5687,12 +5687,12 @@ msgstr "Сохраните всю веб-страницу, включая изо
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:854
 msgid "Edit a web page before printing. Remove ads or any unwanted content."
-msgstr ""
+msgstr "Отредактируйте веб-страницу перед печатью. Удаляйте рекламу и любой нежелательный контент."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:863
 msgid "Advanced reader for aggregating all of your RSS/Atom/RDF sources."
-msgstr ""
+msgstr "Продвинутая читалка для агрегирования всех ваших исходников RSS/Atom/RDF."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:881
@@ -5857,17 +5857,17 @@ msgstr "Улучшите свой опыт использования в Twitch.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:998
 msgid "Re-take control of Twitter/X and customize your experience."
-msgstr ""
+msgstr "Верните контроль над Twitter/X и настройте его по своему вкусу."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1001
 msgid "Translate text without leaving the page you're on (PDF compatible)."
-msgstr ""
+msgstr "Переводите текст, не покидая текущей страницы (совместимо с PDF)."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1004
 msgid "Change the color of Firefox to match every website you visit."
-msgstr ""
+msgstr "Измените цвет Firefox, чтобы он соответствовал каждому посещаемому вами веб-сайту."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1007
@@ -5892,12 +5892,12 @@ msgstr "Расширения конфиденциальности и безоп�
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1015
 msgid "Essential add-ons"
-msgstr ""
+msgstr "Необходимые дополнения"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1017
 msgid "Reddit extensions"
-msgstr ""
+msgstr "Расширения Reddit"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1019 src/olympia/discovery/strings.jinja2:1021 src/olympia/discovery/strings.jinja2:1023
