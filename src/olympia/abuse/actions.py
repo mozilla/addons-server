@@ -344,7 +344,7 @@ class ContentActionDisableAddon(ContentAction):
 
     def process_action(self):
         if self.target.status != amo.STATUS_DISABLED:
-            # Evaluate target_versions before executing the action, since the
+            # Set target_versions before executing the action, since the
             # queryset depends on the file statuses.
             self.decision.target_versions.set(self.versions_force_disable_will_affect)
             self.target.force_disable(skip_activity_log=True)
@@ -446,14 +446,14 @@ class ContentActionRejectVersion(ContentActionDisableAddon):
         self.target.update_status()
         self.notify_stakeholders('Rejection')
         return self.log_action(
-            amo.LOG.REJECT_CONTENT if self.content_review else amo.LOG.REJECT_VERSION,
+            amo.LOG.REJECT_CONTENT if self.content_review else amo.LOG.REJECT_VERSION
         )
 
     def hold_action(self):
         return self.log_action(
             amo.LOG.HELD_ACTION_REJECT_CONTENT
             if self.content_review
-            else amo.LOG.HELD_ACTION_REJECT_VERSIONS,
+            else amo.LOG.HELD_ACTION_REJECT_VERSIONS
         )
 
 
