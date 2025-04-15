@@ -5607,7 +5607,7 @@ msgstr "Nekatere strani imajo težave pri predvajanju videoposnetkov v sistemu A
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:683
 msgid "Find an interesting pic on the web? Use TinEye to discover its origins."
-msgstr "Ste našli zanimivo sliko na spletu? Uporabite TinEye in odkrijte njegov izvor."
+msgstr "Ste na spletu našli zanimivo sliko? S TinEye odkrijte njen izvor."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:701
