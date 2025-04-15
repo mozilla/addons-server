@@ -177,6 +177,7 @@ DJANGO_PERMISSIONS_MAPPING.update(
         'discovery.add_discoveryaddon': DISCOVERY_EDIT,
         'discovery.change_discoveryaddon': DISCOVERY_EDIT,
         'discovery.delete_discoveryaddon': DISCOVERY_EDIT,
+        'discovery.view_discoverypromotedgroup': DISCOVERY_EDIT,
         'files.change_file': ADMIN_ADVANCED,
         'files.change_webextpermission': ADMIN_ADVANCED,
         'files.change_filevalidation': ADMIN_ADVANCED,

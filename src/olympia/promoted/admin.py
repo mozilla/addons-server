@@ -3,6 +3,7 @@ from django.db.models import Prefetch, Q
 from django.forms.models import modelformset_factory
 
 from olympia.addons.models import Addon
+from olympia.amo.admin import AMOModelAdmin
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.hero.models import PrimaryHero
 from olympia.versions.models import Version
@@ -117,3 +118,32 @@ class PromotedAddonPromotionAdminInline(admin.TabularInline):
         if shelf and shelf.enabled and qs.count() == 1:
             return False
         return super().has_delete_permission(request=request, obj=obj)
+
+
+class PromotedGroupAdmin(AMOModelAdmin):
+    model = PromotedGroup
+    list_display = [
+        'name',
+        'listed_pre_review',
+        'unlisted_pre_review',
+        'admin_review',
+        'badged',
+        'can_primary_hero',
+        'flag_for_human_review',
+        'can_be_compatible_with_all_fenix_versions',
+        'high_profile',
+        'high_profile_rating',
+        'search_ranking_bump',
+        'active',
+    ]
+    list_filter = list_display
+    search_fields = ('name',)
+
+    def has_add_permission(self, request, obj=None):
+        return False
+
+    def has_change_permission(self, request, obj=None):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
