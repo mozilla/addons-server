@@ -5847,17 +5847,17 @@ msgstr "Polěpšće swoje dožiwjenje Twitch."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:998
 msgid "Re-take Twitter/X and customize your experience."
-msgstr ""
+msgstr "Přewzajće zaso kontrolu nad Twitter/X a přiměrće sowje dožiwjenje."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1001
 msgid "Translate text without leaving the page you're on (PDF compatible)."
-msgstr ""
+msgstr "Přełožće tekst, bjeztoho zo byšće stronu wopušćił, na kotrejž sće (kompatibelny z PDF)."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1004
 msgid "Change the color of Firefox to match every website you visit."
-msgstr ""
+msgstr "Změńće barbu Firefox, zo by kóždemu websydłu wotpowěduje, kotrež wopytujeće."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1007
