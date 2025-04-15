@@ -19,6 +19,49 @@ from olympia.promoted.models import (
 )
 
 
+class TestDiscoveryPromotedGroupAdmin(TestCase):
+    def setUp(self):
+        self.list_url_name = 'admin:discovery_discoverypromotedgroup_changelist'
+
+    def test_can_see_in_admin_with_discovery_edit(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Discovery:Edit')
+        self.client.force_login(user)
+        url = reverse('admin:index')
+        response = self.client.get(url)
+        assert response.status_code == 200
+
+        # Use django's reverse, since that's what the admin will use. Using our
+        # own would fail the assertion because of the locale that gets added.
+        self.list_url = django_reverse(self.list_url_name)
+        assert self.list_url in response.content.decode('utf-8')
+
+    def test_cannot_see_in_admin_without_discovery_edit(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.client.force_login(user)
+        url = reverse('admin:index')
+        response = self.client.get(url)
+        assert response.status_code == 200
+
+        self.list_url = django_reverse(self.list_url_name)
+        assert self.list_url not in response.content.decode('utf-8')
+
+    def test_can_list_with_discovery_edit(self):
+        addon_factory(name='FooBâr')
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Discovery:Edit')
+        self.client.force_login(user)
+        response = self.client.get(reverse(self.list_url_name), follow=True)
+        assert response.status_code == 200
+
+    def test_cannot_list_without_discovery_edit(self):
+        addon_factory(name='FooBâr')
+        user = user_factory(email='someone@mozilla.com')
+        self.client.force_login(user)
+        response = self.client.get(reverse(self.list_url_name), follow=True)
+        assert response.status_code == 403
+
+
 class TestDiscoveryAddonAdmin(TestCase):
     def setUp(self):
         self.list_url = reverse('admin:discovery_discoveryaddon_changelist')
