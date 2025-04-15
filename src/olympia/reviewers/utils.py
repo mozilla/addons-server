@@ -1385,7 +1385,7 @@ class ReviewBase:
             else:
                 # For unlisted versions, only drop the needs_human_review flag
                 # on the latest version.
-                self.clear_specific_needs_human_review_flags(version)
+                self.clear_specific_needs_human_review_flags(self.version)
 
             # Clear the "pending_rejection" flag for all versions (Note that
             # the action should only be accessible to admins if the current
