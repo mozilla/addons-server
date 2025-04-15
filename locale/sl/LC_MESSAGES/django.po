@@ -5827,12 +5827,12 @@ msgstr "Izboljšajte svojo izkušnjo na Twitchu."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:998
 msgid "Re-take control of Twitter/X and customize your experience."
-msgstr "Znova prevzemite nadzor nad Twitterjem/X in prilagodite svojo izkušnjo."
+msgstr "Povrnite si nadzor nad Twitterjem/X-om in prilagodite svojo izkušnjo."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1001
 msgid "Translate text without leaving the page you're on (PDF compatible)."
-msgstr "Prevedite besedilo, ne da bi zapustili stran, na kateri se nahajate (združljivo s PDF)."
+msgstr "Prevedite besedilo, ne da bi zapustili stran, na kateri ste (deluje tudi za PDF)."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1004
