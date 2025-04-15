@@ -5500,7 +5500,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:649
 msgid "Changes the color of Firefox to match the appearance of any website."
-msgstr ""
+msgstr "Endrar fargen på Firefox for å matche utsjånaden på ein nettstad."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:659
@@ -5525,7 +5525,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:704
 msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title & more."
-msgstr ""
+msgstr "Nyt ultimate fanekontroll – lat att dupliserte faner, slå saman vindauge, kopier fanetittelen, og meir."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:722
@@ -5565,12 +5565,12 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:854
 msgid "Edit a web page before printing. Remove ads or any unwanted content."
-msgstr ""
+msgstr "Rediger ei nettside før utskrift. Fjern annonsar eller uønskt innhald."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:863
 msgid "Advanced reader for aggregating all of your RSS/Atom/RDF sources."
-msgstr ""
+msgstr "Avansert lesar for å samle alle RSS/Atom/RDF-kjeldene dine."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:881
@@ -5610,7 +5610,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:911
 msgid "Get the mouse scrollbar you've always wanted — specify width and color."
-msgstr ""
+msgstr "Få muserullefeltet du alltid har ønskt deg – spesifiser breidde og farge."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:923
