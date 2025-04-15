@@ -5733,12 +5733,12 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:992
 msgid "Block malicious websites from port scanning."
-msgstr ""
+msgstr "阻止恶意网站进行端口扫描。"
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:995
 msgid "Enhance your Twitch experience."
-msgstr ""
+msgstr "增强您的 Twitch 体验。"
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:998
