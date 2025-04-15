@@ -554,19 +554,29 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
         self.decision.update(addon=self.addon)
         self.decision.target_versions.set((self.version, self.old_version))
 
-    def test_addon_version(self):
+    def test_addon_version_has_target_versions(self):
         # if the decision has target_versions, then the most recent target
         # version is used.
-        assert self.addon.current_version
+        # Approve another_version, making it the new current version, it should
+        # not make it the addon_version on the ContentAction, because it's not
+        # in target_versions.
+        self.another_version.file.update(status=amo.STATUS_APPROVED)
+        assert self.version != self.addon.current_version
         assert self.ActionClass(self.decision).addon_version == self.version
 
-        # addon_version defaults to current_version, if decision has no target_versions
+        # If we add it to the target_versions, then it will become the
+        # addon_version because it's the last one.
+        self.decision.target_versions.add(self.another_version)
+        assert self.ActionClass(self.decision).addon_version == self.another_version
+
+    def test_addon_version_has_no_target_version(self):
+        # If there is no target_versions we default to the current_version...
         self.decision.target_versions.clear()
         assert (
             self.ActionClass(self.decision).addon_version == self.addon.current_version
         )
-
-        # except if there is no current_version, where the latest version is used
+        # ... but if there is no current_version we use the latest version,
+        # regardless of status.
         File.objects.update(status=amo.STATUS_DISABLED)
         self.addon.update_version()
         assert not self.addon.current_version
