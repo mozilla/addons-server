@@ -5677,12 +5677,12 @@ msgstr "Składujće cyłu webstronu – mjez nimi wobrazy a stile – jako jeni�
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:854
 msgid "Edit a web page before printing. Remove ads or any unwanted content."
-msgstr ""
+msgstr "Wobdźěłajće webstronu do ćišćenja. Wotstrońće wabjenje abo njewitany wobsah."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:863
 msgid "Advanced reader for aggregating all of your RSS/Atom/RDF sources."
-msgstr ""
+msgstr "Rozšěrjeny čitak, kotryž wšě waše RSS/Atom/RDF-žórła hromadźi."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:881
@@ -5882,12 +5882,12 @@ msgstr "Rozšěrjenja priwatnosće a wěstoty"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1015
 msgid "Essential add-ons"
-msgstr ""
+msgstr "Zakładne přidatki"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1017
 msgid "Reddit extensions"
-msgstr ""
+msgstr "Rozšěrjenja Reddit"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1019 src/olympia/discovery/strings.jinja2:1021 src/olympia/discovery/strings.jinja2:1023
