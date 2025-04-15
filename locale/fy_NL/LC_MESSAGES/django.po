@@ -5843,7 +5843,7 @@ msgstr "Set tekst oer sûnder de side wêrop jo binne te ferlitten (PDF-kompatib
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1004
 msgid "Change the color of Firefox to match every website you visit."
-msgstr ""
+msgstr "Wizigje de kleur fan Firefox sadat dizze oerienkomt mei elke besochte website."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1007
@@ -5868,12 +5868,12 @@ msgstr "Privacy- & befeiligngsútwreidingen"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1015
 msgid "Essential add-ons"
-msgstr ""
+msgstr "Essinsjele add-ons"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1017
 msgid "Reddit extensions"
-msgstr ""
+msgstr "Reddit-útwreidingen"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1019 src/olympia/discovery/strings.jinja2:1021 src/olympia/discovery/strings.jinja2:1023
