@@ -73,3 +73,5 @@ FXA_PROFILE_HOST = 'https://profile.stage.mozaws.net/v1'
 SITEMAP_DEBUG_AVAILABLE = True
 
 ENABLE_ADMIN_MLBF_UPLOAD = True
+
+SWAGGER_UI_ENABLED = True
