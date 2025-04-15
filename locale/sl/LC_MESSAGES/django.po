@@ -5822,7 +5822,7 @@ msgstr "Preprečite zlonamernim spletnim mestom pregled vrat."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:995
 msgid "Enhance your Twitch experience."
-msgstr "Izboljšajte svojo izkušnjo Twitcha."
+msgstr "Izboljšajte svojo izkušnjo na Twitchu."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:998
@@ -5862,7 +5862,7 @@ msgstr "Razširitve za zasebnost in varnost"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1015
 msgid "Essential add-ons"
-msgstr "Bistveni dodatki"
+msgstr "Nepogrešljivi dodatki"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1017
