@@ -173,14 +173,14 @@
         <div class="review-actions-versions-reenabled data-toggle" data-value="enable_addon">
           {{ versions_that_would_be_enabled|count }} version(s) will be re-enabled:
           <ul>
-            {% for ver in versions_that_would_be_enabled[:VERSIONS_THAT_WOULD_BE_ENABLED_SHOWN_MAX] %}
+            {% for ver in versions_that_would_be_enabled[:MAX_VERSIONS_SHOWN_INLINE] %}
               <li class="version-that-would-be-reenabled">
                 <a href="{{ url('reviewers.review_version_redirect', addon.id, ver.version__version) }}">{{ ver.version__version }}</a>
                 -> {{ amo.STATUS_CHOICES_FILE.get(ver.original_status, ver.original_status) }},
                 {{ amo.CHANNEL_CHOICES.get(ver.version__channel, ver.version__channel) }}
               </li>
             {% endfor %}
-            {% if versions_that_would_be_enabled|count > VERSIONS_THAT_WOULD_BE_ENABLED_SHOWN_MAX %}
+            {% if versions_that_would_be_enabled|count > MAX_VERSIONS_SHOWN_INLINE %}
               <li class="version-that-would-be-reenabled overflow-message">
                 ...
               </li>

@@ -3188,6 +3188,47 @@ class TestReview(ReviewBase):
         assert approval.length == 1
         assert approval.text() == 'secret hi'
 
+    def test_item_history_activities_with_version_no_details_because_alone(self):
+        version = self.addon.versions.all()[0]
+        core.set_user(UserProfile.objects.get(pk=settings.TASK_USER_ID))
+        ActivityLog.objects.create(
+            amo.LOG.FORCE_ENABLE,
+            self.addon,
+            version,
+            details={
+                'comments': 'Some comment at force enabling',
+                'versions': [version.version],
+            },
+        )
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        details = doc('#versions-history #version-0_1 + tr .activity details')
+        assert not details
+
+    def test_item_history_activities_with_version_details(self):
+        version1 = self.addon.versions.all()[0]
+        version2 = version_factory(addon=self.addon)
+        core.set_user(UserProfile.objects.get(pk=settings.TASK_USER_ID))
+        ActivityLog.objects.create(
+            amo.LOG.FORCE_ENABLE,
+            self.addon,
+            version1,
+            version2,
+            details={
+                'comments': 'Some comment at force enabling',
+                'versions': [version1.version, version2.version],
+            },
+        )
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        details = doc('#versions-history #version-0_1 + tr .activity details')
+        assert details
+        lis = details.find('li')
+        assert lis[0].text == version1.version
+        assert lis[1].text == version2.version
+
     def test_item_history_header(self):
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -4492,6 +4533,8 @@ class TestReview(ReviewBase):
         a_log = ActivityLog.objects.filter(
             action=amo.LOG.CONFIRM_AUTO_APPROVED.id
         ).get()
+        # This matters because `version` is used in the formatting string - it
+        # shouldn't be `versions` plural.
         assert a_log.details['version'] == self.addon.current_version.version
         assert a_log.details['comments'] == ''
         self.assert3xx(response, self.listed_url)
@@ -4948,6 +4991,83 @@ class TestReview(ReviewBase):
             else:
                 assert activity.to_string('reviewer')
                 assert activity.to_string('reviewer') in change.html()
+
+    def test_important_changes_log_with_versions_attached(self):
+        version1 = self.addon.versions.get()
+        version2 = version_factory(addon=self.addon)
+        author = self.addon.addonuser_set.get()
+        core.set_user(author.user)
+        ActivityLog.objects.create(
+            amo.LOG.FORCE_ENABLE,
+            self.addon,
+            version1,
+            version2,
+            details={
+                'comments': 'Some comment at force enabling',
+                'versions': [version1.version, version2.version],
+            },
+        )
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        important_changes = doc('#important-changes-history table.activity tr')
+        assert len(important_changes) == 1
+        details = doc('#important-changes-history .activity tr:nth-child(1) details')
+        assert details
+        lis = details.find('li')
+        assert len(lis) == 2
+        assert lis[0].text == version1.version
+        assert lis[1].text == version2.version
+
+    def test_important_changes_log_with_only_one_version_attached(self):
+        version = self.addon.versions.get()
+        author = self.addon.addonuser_set.get()
+        core.set_user(author.user)
+        ActivityLog.objects.create(
+            amo.LOG.FORCE_ENABLE,
+            self.addon,
+            version,
+            details={
+                'comments': 'Some comment at force enabling',
+                'versions': [version.version],
+            },
+        )
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        important_changes = doc('#important-changes-history table.activity tr')
+        assert len(important_changes) == 1
+        details = doc('#important-changes-history .activity tr:nth-child(1) details')
+        assert details
+        lis = details.find('li')
+        assert len(lis) == 1
+        assert lis[0].text == version.version
+
+    def test_important_changes_log_with_too_many_versions_attached(self):
+        author = self.addon.addonuser_set.get()
+        core.set_user(author.user)
+        MAX_MOCK = 5
+        ActivityLog.objects.create(
+            amo.LOG.FORCE_ENABLE,
+            self.addon,
+            details={
+                'comments': 'Some comment at force enabling',
+                'versions': [f'{i}.0' for i in range(1, MAX_MOCK + 2)],
+            },
+        )
+        with mock.patch('olympia.reviewers.views.MAX_VERSIONS_SHOWN_INLINE', MAX_MOCK):
+            response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        important_changes = doc('#important-changes-history table.activity tr')
+        assert len(important_changes) == 1
+        details = doc('#important-changes-history .activity tr:nth-child(1) details')
+        assert details
+        lis = details.find('li')
+        assert len(lis) == MAX_MOCK + 1
+        for i, li in enumerate(lis[:MAX_MOCK], start=1):
+            assert li.text == f'{i}.0'
+        assert lis[MAX_MOCK].text == '...'
 
     @override_settings(CELERY_TASK_ALWAYS_EAGER=True)
     @mock.patch('olympia.devhub.tasks.validate')
@@ -6099,9 +6219,7 @@ class TestReview(ReviewBase):
                     ),
                 },
             )
-        with mock.patch(
-            'olympia.reviewers.views.VERSIONS_THAT_WOULD_BE_ENABLED_SHOWN_MAX', MAX_MOCK
-        ):
+        with mock.patch('olympia.reviewers.views.MAX_VERSIONS_SHOWN_INLINE', MAX_MOCK):
             response = self.client.get(self.url)
         self.assertContains(response, f'{version_count} version(s) will be re-enabled:')
         doc = pq(response.content)

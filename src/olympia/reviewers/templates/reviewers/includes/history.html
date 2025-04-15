@@ -6,6 +6,22 @@
       <div>
         <div>By {{ record.user|user_link }} on {{ record.created|datetime }}</div>
         {% if record.details %}
+          {% if record.details.versions %}
+            {% set affected = record.details.versions|count %}
+            {% if affected > 1 or show_long_format_fallback %}
+              <details>
+                <summary>{{ affected }} version(s) affected</summary>
+                <ul>
+                  {% for version in record.details.versions[:MAX_VERSIONS_SHOWN_INLINE] %}
+                    <li>{{ version }}</li>
+                  {% endfor %}
+                  {% if affected > MAX_VERSIONS_SHOWN_INLINE %}
+                    <li>...</li>
+                  {% endif %}
+                </ul>
+              </details>
+            {% endif %}
+          {% endif %}
           {# <pre> rather than <div> so that white space is preserved on copy #}
           <pre class="light history-comment">{{ record.details.comments }}</pre>
           {% if record.details.reason %}

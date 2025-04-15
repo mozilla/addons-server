@@ -1037,6 +1037,7 @@ class ReviewBase:
                 decisions=decisions,
                 reasons=reasons,
                 policies=policies,
+                versions=versions,
                 **(log_action_kw or {}),
             )
             if update_queue_history:
@@ -1130,6 +1131,7 @@ class ReviewBase:
             'human_review': self.human_review,
             **(extra_details or {}),
         }
+
         if version is None and self.version:
             version = self.version
 
@@ -1357,6 +1359,11 @@ class ReviewBase:
             # add-on is deleted or invisible for instance, we still want to
             # allow confirming approval, so we use self.version in that case.
             version = self.addon.current_version or self.version
+            # Reset self.version from now on because we want to go through the
+            # logic log_action() has to record a single version, even when
+            # called indirectly through record_decision().
+            self.version = version
+            self.file = version.file
         else:
             # For unlisted, we just use self.version.
             version = self.version
@@ -1392,11 +1399,7 @@ class ReviewBase:
                 pending_content_rejection=None,
             )
             self.set_human_review_date(version)
-            self.record_decision(
-                amo.LOG.CONFIRM_AUTO_APPROVED,
-                versions=[version],
-                log_action_kw={'version': version},
-            )
+            self.record_decision(amo.LOG.CONFIRM_AUTO_APPROVED, versions=[version])
         else:
             self.log_action(amo.LOG.CONFIRM_AUTO_APPROVED, version=version)
 
@@ -1556,7 +1559,6 @@ class ReviewBase:
                     versions=versions,
                     decision_metadata=extra_details,
                     log_action_kw={
-                        'versions': versions,
                         'timestamp': now,
                         'user': user,
                         'extra_details': extra_details,
@@ -1656,8 +1658,8 @@ class ReviewBase:
             log.info('Sending email for %s' % (self.addon))
             self.record_decision(
                 amo.LOG.CHANGE_PENDING_REJECTION,
+                versions=self.data['versions'],
                 log_action_kw={
-                    'versions': self.data['versions'],
                     'extra_details': extra_details,
                 },
                 update_queue_history=False,  # This action doesn't affect the queue.
@@ -1671,10 +1673,28 @@ class ReviewBase:
 
     def enable_addon(self):
         """Force enable the add-on."""
+        self.file = None
         self.version = None
-        self.addon.force_enable(skip_activity_log=True)
+        # Force queryset evaluation before we enable the versions, so that the
+        # list of versions is properly recorded after.
+        files_qs = File.objects.disabled_that_would_be_renabled_with_addon().filter(
+            version__addon=self.addon
+        )
+        versions = tuple(
+            self.addon.versions(manager='unfiltered_for_relations')
+            .filter(pk__in=files_qs.values_list('version'))
+            .no_transforms()
+            .only('id', 'version')
+            .order_by('-pk')
+        )
         log.info('Sending email for %s' % (self.addon))
-        self.record_decision(amo.LOG.FORCE_ENABLE)
+        # We can't use record_decision(..., action_completed=False) like we do
+        # in disable_addon(), because FORCE_ENABLE is tied to
+        # AMO_APPROVE_VERSION, which is essentially a no-op. So we call
+        # force_enable() and determine which versions to pass to
+        # record_decision() just like the ContentAction would do.
+        self.addon.force_enable(skip_activity_log=True)
+        self.record_decision(amo.LOG.FORCE_ENABLE, versions=versions)
 
     def disable_addon(self):
         """Force disable the add-on and all versions."""
@@ -1797,11 +1817,7 @@ class ReviewUnlisted(ReviewBase):
                 self.clear_specific_needs_human_review_flags(version)
                 self.set_human_review_date(version)
 
-        self.record_decision(
-            amo.LOG.CONFIRM_AUTO_APPROVED,
-            versions=versions,
-            log_action_kw={'versions': versions},
-        )
+        self.record_decision(amo.LOG.CONFIRM_AUTO_APPROVED, versions=versions)
 
     def approve_multiple_versions(self):
         """Set multiple unlisted add-on versions files to public."""
@@ -1828,11 +1844,7 @@ class ReviewUnlisted(ReviewBase):
                 defaults={'auto_approval_disabled_until_next_approval_unlisted': False},
             )
             log.info('Sending email(s) for %s' % (self.addon))
-            self.record_decision(
-                amo.LOG.APPROVE_VERSION,
-                versions=versions,
-                log_action_kw={'versions': versions},
-            )
+            self.record_decision(amo.LOG.APPROVE_VERSION, versions=versions)
         else:
             self.log_action(amo.LOG.APPROVE_VERSION, versions=versions)
 

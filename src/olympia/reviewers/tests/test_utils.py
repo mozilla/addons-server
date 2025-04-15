@@ -1156,7 +1156,7 @@ class TestReviewHelper(TestReviewHelperBase):
     def test_logging_is_similar_in_reviewer_tools_and_content_action(self):
         data = {
             **self.get_data(),
-            'action': 'disable_addon',
+            'action': 'reject_multiple_versions',
             'reasons': [
                 ReviewActionReason.objects.create(
                     name='reason 1', is_active=True, canned_response='.'
@@ -1168,6 +1168,7 @@ class TestReviewHelper(TestReviewHelperBase):
                     canned_response='.',
                 ),
             ],
+            'versions': [self.review_version],
         }
         self.grant_permission(self.user, 'Addons:Review')
         self.grant_permission(self.user, 'Reviews:Admin')
@@ -1175,14 +1176,20 @@ class TestReviewHelper(TestReviewHelperBase):
         self.helper.set_data(data)
         self.helper.handler.review_action = self.helper.actions[data['action']]
 
-        # first, record_decision but with the action completed so we log in ReviewHelper
-        self.helper.handler.record_decision(amo.LOG.FORCE_DISABLE)
-        logs = ActivityLog.objects.filter(action=amo.LOG.FORCE_DISABLE.id)
+        # First, record_decision but with the action completed so we log in
+        # ReviewHelper - In order to mimic what reject_multiple_versions() does
+        # we set self.version and self.file to None first.
+        self.helper.handler.file = None
+        self.helper.handler.version = None
+        self.helper.handler.record_decision(
+            amo.LOG.REJECT_VERSION, versions=data['versions']
+        )
+        logs = ActivityLog.objects.filter(action=amo.LOG.REJECT_VERSION.id)
         assert logs.count() == 1
         reviewer_tools_activity = logs.get()
         decision1 = ContentDecision.objects.last()
         assert self.addon in reviewer_tools_activity.arguments
-        assert self.addon.current_version in reviewer_tools_activity.arguments
+        assert self.review_version in reviewer_tools_activity.arguments
         assert decision1 in reviewer_tools_activity.arguments
         assert data['reasons'][0] in reviewer_tools_activity.arguments
         assert data['reasons'][1] in reviewer_tools_activity.arguments
@@ -1190,17 +1197,20 @@ class TestReviewHelper(TestReviewHelperBase):
 
         # then repeat with action_completed=False, which will log in ContentAction
         self.helper.handler.record_decision(
-            amo.LOG.FORCE_DISABLE, action_completed=False
+            amo.LOG.REJECT_VERSION, versions=data['versions'], action_completed=False
         )
-        logs = ActivityLog.objects.filter(action=amo.LOG.FORCE_DISABLE.id).exclude(
+        logs = ActivityLog.objects.filter(action=amo.LOG.REJECT_VERSION.id).exclude(
             id=reviewer_tools_activity.id
         )
         assert logs.count() == 1
         content_action_activity = logs.get()
         decision2 = ContentDecision.objects.last()
 
-        # and compare
-        assert reviewer_tools_activity.details == content_action_activity.details
+        # and compare... reviewer tools adds an extra `files` too which we
+        # ignore.
+        expected_details = dict(reviewer_tools_activity.details)
+        del expected_details['files']
+        assert expected_details == content_action_activity.details
         # reasons won't be in the arguments, because they're added afterwards
         assert set(reviewer_tools_activity.arguments) - {
             decision1,
@@ -3589,6 +3599,8 @@ class TestReviewHelper(TestReviewHelperBase):
     def test_disable_addon(self):
         self.grant_permission(self.user, 'Reviews:Admin')
         self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
+        other_version = version_factory(addon=self.addon)
+        version_factory(addon=self.addon, file_kw={'status': amo.STATUS_DISABLED})
         self.helper.handler.disable_addon()
 
         self.addon.reload()
@@ -3597,7 +3609,20 @@ class TestReviewHelper(TestReviewHelperBase):
         activity_log = ActivityLog.objects.latest('pk')
         assert activity_log.action == amo.LOG.FORCE_DISABLE.id
         assert activity_log.arguments[0] == self.addon
-
+        # FIXME: There is an inconsistency between ReviewHelper.log_action()
+        # and ContentAction.log_action() regarding where to put the
+        # ContentDecision. See test_enable_addon() for comparison.
+        assert isinstance(activity_log.arguments[1], ContentDecision)
+        assert activity_log.arguments[2] == other_version
+        assert activity_log.arguments[3] == self.review_version
+        assert {vlog.version for vlog in activity_log.versionlog_set.all()} == {
+            other_version,
+            self.review_version,
+        }
+        assert activity_log.details['versions'] == [
+            other_version.version,
+            self.review_version.version,
+        ]
         assert len(mail.outbox) == 1
         message = mail.outbox[0]
         self.check_subject(message)
@@ -3605,7 +3630,13 @@ class TestReviewHelper(TestReviewHelperBase):
 
     def test_enable_addon(self):
         self.grant_permission(self.user, 'Reviews:Admin')
-        self.setup_data(amo.STATUS_DISABLED, file_status=amo.STATUS_APPROVED)
+        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
+        other_version = version_factory(addon=self.addon)
+        version_factory(addon=self.addon, file_kw={'status': amo.STATUS_DISABLED})
+        Addon.disable_all_files(
+            [self.addon], File.STATUS_DISABLED_REASONS.ADDON_DISABLE
+        )
+
         self.helper.handler.enable_addon()
 
         self.addon.reload()
@@ -3614,6 +3645,17 @@ class TestReviewHelper(TestReviewHelperBase):
         activity_log = ActivityLog.objects.latest('pk')
         assert activity_log.action == amo.LOG.FORCE_ENABLE.id
         assert activity_log.arguments[0] == self.addon
+        assert activity_log.arguments[1] == other_version
+        assert activity_log.arguments[2] == self.review_version
+        assert isinstance(activity_log.arguments[3], ContentDecision)
+        assert {vlog.version for vlog in activity_log.versionlog_set.all()} == {
+            other_version,
+            self.review_version,
+        }
+        assert activity_log.details['versions'] == [
+            other_version.version,
+            self.review_version.version,
+        ]
 
         assert len(mail.outbox) == 1
         message = mail.outbox[0]
