@@ -5825,7 +5825,7 @@ msgstr "Automatisch AVG-toestemmingsformulieren verwerken."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:992
 msgid "Block malicious websites from port scanning."
-msgstr "Poorten scannen blokkeren voor kwaadwillende websites."
+msgstr "Poortscannen door kwaadwillende websites blokkeren."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:995
@@ -5835,12 +5835,12 @@ msgstr "Verbeter uw Twitch-ervaring."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:998
 msgid "Re-take Twitter/X and customize your experience."
-msgstr "Neem Twitter/X opnieuw en pas uw ervaring aan."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1001
 msgid "Translate text without leaving the page you're on (PDF compatible)."
-msgstr "Vertaal tekst zonder de pagina te verlaten waarop u zich bevindt (PDF-compatibel)."
+msgstr "Vertaal tekst zonder de pagina waarop u zich bevindt te verlaten (PDF-compatibel)."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1004
