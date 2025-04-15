@@ -5735,17 +5735,17 @@ msgstr "Gjer Twitch-opplevinga di betre."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:998
 msgid "Re-take Twitter/X and customize your experience."
-msgstr ""
+msgstr "Ta tilbake Twitter/X og tilpass opplevinga di."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1001
 msgid "Translate text without leaving the page you're on (PDF compatible)."
-msgstr ""
+msgstr "Omset tekst utan å forlate sida du er på (PDF-kompatibel)."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1004
 msgid "Change the color of Firefox to match every website you visit."
-msgstr ""
+msgstr "Endre fargen på Firefox for å matche kvar nettstad du besøkjer."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1007
@@ -5770,12 +5770,12 @@ msgstr "Personvern- og sikkerheitsutvidingar"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1015
 msgid "Essential add-ons"
-msgstr ""
+msgstr "Viktige tillegg"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1017
 msgid "Reddit extensions"
-msgstr ""
+msgstr "Reddit-utviding"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1019 src/olympia/discovery/strings.jinja2:1021 src/olympia/discovery/strings.jinja2:1023
