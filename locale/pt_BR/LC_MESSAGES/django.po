@@ -5828,7 +5828,7 @@ msgstr "Melhore sua experiência na Twitch."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:998
 msgid "Re-take control of Twitter/X and customize your experience."
-msgstr ""
+msgstr "Assuma novamente o controle do Twitter/X e personalize sua experiência de uso."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1001
