@@ -120,26 +120,23 @@ class PromotedAddonPromotionAdminInline(admin.TabularInline):
         return super().has_delete_permission(request=request, obj=obj)
 
 
-PROMOTED_GROUP_FIELDS = [
-    'name',
-    'listed_pre_review',
-    'unlisted_pre_review',
-    'admin_review',
-    'badged',
-    'can_primary_hero',
-    'flag_for_human_review',
-    'can_be_compatible_with_all_fenix_versions',
-    'high_profile',
-    'high_profile_rating',
-    'search_ranking_bump',
-    'active',
-]
-
-
 class PromotedGroupAdmin(AMOModelAdmin):
     model = PromotedGroup
-    list_display = PROMOTED_GROUP_FIELDS
-    list_filter = PROMOTED_GROUP_FIELDS
+    list_display = [
+        'name',
+        'listed_pre_review',
+        'unlisted_pre_review',
+        'admin_review',
+        'badged',
+        'can_primary_hero',
+        'flag_for_human_review',
+        'can_be_compatible_with_all_fenix_versions',
+        'high_profile',
+        'high_profile_rating',
+        'search_ranking_bump',
+        'active',
+    ]
+    list_filter = list_display
     search_fields = ('name',)
 
     def has_add_permission(self, request, obj=None):
