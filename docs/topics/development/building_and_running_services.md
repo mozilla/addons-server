@@ -66,7 +66,7 @@ You can specify additional make arguments to control the behaviour of the build:
 - `DOCKER_METADATA_FILE` - Specify the file to store build metadata. Default is "buildx-bake-metadata.json".
 - `DOCKER_COMMIT` - Set the Git commit hash for the image. If not set, it will be determined automatically.
 - `DOCKER_BUILD` - Set a custom build number for the image. If not set, a timestamp will be used.
-- `DOCKER_VERSION` - Set a custom version for the image. If not set, it will be determined from Git tags.
+- `DOCKER_TAG` - Set a custom version for the image. If not set, it will be determined from Git tags.
 - `ARGS` - Pass additional arguments to the `docker buildx bake` command.
 
 These arguments allow you to customize various aspects of the build process,

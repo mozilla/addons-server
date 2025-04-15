@@ -1,14 +1,10 @@
 name: 'Docker Run Action'
 description: 'Run a command in a new container'
 inputs:
-  version:
-    description: 'The version of the image to run. '
+  tag:
+    description: 'The tag/version/version+digest of the image to run. '
     required: true
     default: 'local'
-  digest:
-    description: 'The build digest of the image to run. Overrides version.'
-    required: true
-    default: ''
   run:
     description: 'Run command in container'
     required: true
@@ -38,8 +34,7 @@ runs:
       run: |
         # Start the specified services
         make up \
-          DOCKER_VERSION="${{ inputs.version }}" \
-          DOCKER_DIGEST="${{ inputs.digest }}" \
+          DOCKER_TAG="${{ inputs.tag }}" \
           DOCKER_TARGET="${{ inputs.target }}" \
           OLYMPIA_UID="$(id -u)" \
           OLYMPIA_DEPS="${{ inputs.deps }}" \

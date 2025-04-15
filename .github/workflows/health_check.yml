@@ -53,7 +53,7 @@ jobs:
         if: matrix.environment == 'host'
         uses: ./.github/actions/run-docker
         with:
-          version: local
+          tag: local
           run: |
             ./manage.py waffle_switch dummy-monitor-fails on
 

@@ -1,332 +1,209 @@
-import os
-import unittest
+import tempfile
+from pathlib import Path
 from unittest import mock
 
-from scripts.setup import get_docker_image_meta, main
+from scripts.setup import CREATE_PATHS, REMOVE_PATHS, get_docker_image_meta, main
 from tests import override_env
-
-
-class BaseTestClass(unittest.TestCase):
-    def assert_set_env_file_called_with(self, **kwargs):
-        result = self.mock_set_env_file.call_args_list[0][0][0]
-        for key, value in kwargs.items():
-            assert result[key] == value
-
-    def setUp(self):
-        patch = mock.patch('scripts.setup.set_env_file')
-        self.addCleanup(patch.stop)
-        self.mock_set_env_file = patch.start()
-
-        patch_two = mock.patch('scripts.setup.get_env_file', return_value={})
-        self.addCleanup(patch_two.stop)
-        self.mock_get_env_file = patch_two.start()
+from tests.make import BaseTestClass
 
 
 @override_env()
-class TestGetDockerTag(BaseTestClass):
-    def test_default_value_is_local(self):
-        meta = get_docker_image_meta()
-        self.assertEqual(meta['DOCKER_TAG'], 'mozilla/addons-server:local')
-        self.assertEqual(meta['DOCKER_TARGET'], 'development')
-        self.assertEqual(meta['DOCKER_VERSION'], 'local')
-        assert 'DOCKER_DIGEST' not in meta
+class TestDockerImageMeta(BaseTestClass):
+    def test_default_values(self):
+        result = get_docker_image_meta(self.env)
+        self.assertEqual(result['DOCKER_TAG'], 'mozilla/addons-server:local')
+        self.assertEqual(result['DOCKER_VERSION'], 'local')
+        assert 'DOCKER_DIGEST' not in result
+        self.assertEqual(result['DOCKER_TARGET'], 'development')
+        assert 'DOCKER_COMMIT' not in result
+        assert 'DOCKER_BUILD' not in result
 
-        with override_env(DOCKER_TARGET='production'):
-            meta = get_docker_image_meta()
-            self.assertEqual(meta['DOCKER_TARGET'], 'production')
+    def test_missing_docker_tag_should_raise(self):
+        with self.assertRaises(ValueError):
+            self.env.write_env_file({'DOCKER_TAG': ''})
+            get_docker_image_meta(self.env)
 
-    @override_env(DOCKER_VERSION='test')
-    def test_version_overrides_default(self):
-        meta = get_docker_image_meta()
-        self.assertEqual(meta['DOCKER_TAG'], 'mozilla/addons-server:test')
-        self.assertEqual(meta['DOCKER_TARGET'], 'production')
-        self.assertEqual(meta['DOCKER_VERSION'], 'test')
-        assert 'DOCKER_DIGEST' not in meta
+    @mock.patch('scripts.setup.parse_docker_tag', return_value=('image', None, None))
+    def test_missing_docker_version_should_raise(self, mock_parse_docker_tag):
+        with self.assertRaises(ValueError):
+            get_docker_image_meta(self.env)
 
-    @override_env(DOCKER_DIGEST='sha256:123')
-    def test_digest_overrides_version_and_default(self):
-        meta = get_docker_image_meta()
-        self.assertEqual(meta['DOCKER_TAG'], 'mozilla/addons-server@sha256:123')
-        self.assertEqual(meta['DOCKER_TARGET'], 'production')
-        assert 'DOCKER_VERSION' not in meta
-        self.assertEqual(meta['DOCKER_DIGEST'], 'sha256:123')
+    @mock.patch(
+        'scripts.setup.parse_docker_tag', return_value=('image', 'remote', None)
+    )
+    def test_missing_docker_digest_on_remote_image_should_raise(
+        self, mock_parse_docker_tag
+    ):
+        with self.assertRaises(ValueError):
+            get_docker_image_meta(self.env)
 
-        with override_env(
-            DOCKER_VERSION='test',
-            DOCKER_DIGEST='sha256:123',
-        ):
-            meta = get_docker_image_meta()
-            self.assertEqual(meta['DOCKER_TAG'], 'mozilla/addons-server@sha256:123')
-            self.assertEqual(meta['DOCKER_TARGET'], 'production')
-            assert 'DOCKER_VERSION' not in meta
-            self.assertEqual(meta['DOCKER_DIGEST'], 'sha256:123')
+    def test_missing_docker_digest_on_local_latest_image_should_not_raise(self):
+        for version in ['local', 'latest']:
+            with mock.patch(
+                'scripts.setup.parse_docker_tag',
+                return_value=('tag', 'image', version, None),
+            ):
+                get_docker_image_meta(self.env)
 
-    @override_env(DOCKER_TAG='image:latest')
-    def test_tag_overrides_default_version(self):
-        meta = get_docker_image_meta()
-        self.assertEqual(meta['DOCKER_TAG'], 'image:latest')
-        self.assertEqual(meta['DOCKER_TARGET'], 'production')
-        self.assertEqual(meta['DOCKER_VERSION'], 'latest')
-        assert 'DOCKER_DIGEST' not in meta
+    @mock.patch(
+        'scripts.setup.parse_docker_tag', return_value=('image', 'latest', 'digest')
+    )
+    def test_defined_docker_digest_on_build_should_raise(self, mock_parse_docker_tag):
+        with self.assertRaises(ValueError):
+            get_docker_image_meta(self.env, is_build=True)
 
-        with override_env(
-            DOCKER_TAG='image:latest',
-            DOCKER_VERSION='test',
-        ):
-            meta = get_docker_image_meta()
-            self.assertEqual(meta['DOCKER_TAG'], 'image:test')
-            self.assertEqual(meta['DOCKER_TARGET'], 'production')
-            self.assertEqual(meta['DOCKER_VERSION'], 'test')
-            assert 'DOCKER_DIGEST' not in meta
-
-    @override_env(DOCKER_TAG='image@sha256:123')
-    def test_tag_overrides_default_digest(self):
-        meta = get_docker_image_meta()
-        self.assertEqual(meta['DOCKER_TAG'], 'image@sha256:123')
-        self.assertEqual(meta['DOCKER_TARGET'], 'production')
-        assert 'DOCKER_VERSION' not in meta
-        self.assertEqual(meta['DOCKER_DIGEST'], 'sha256:123')
-
-        with mock.patch.dict(os.environ, {'DOCKER_DIGEST': 'test'}):
-            meta = get_docker_image_meta()
-            self.assertEqual(meta['DOCKER_TAG'], 'image@test')
-            self.assertEqual(meta['DOCKER_TARGET'], 'production')
-            assert 'DOCKER_VERSION' not in meta
-            self.assertEqual(meta['DOCKER_DIGEST'], 'test')
-
-    @override_env(DOCKER_TAG='image:latest')
-    def test_version_from_env_file(self):
-        self.mock_get_env_file.return_value = {'DOCKER_TAG': 'image:latest'}
-        meta = get_docker_image_meta()
-        self.assertEqual(meta['DOCKER_TAG'], 'image:latest')
-        self.assertEqual(meta['DOCKER_TARGET'], 'production')
-        self.assertEqual(meta['DOCKER_VERSION'], 'latest')
-        assert 'DOCKER_DIGEST' not in meta
-
-    def test_digest_from_env_file(self):
-        self.mock_get_env_file.return_value = {'DOCKER_TAG': 'image@sha256:123'}
-        meta = get_docker_image_meta()
-        self.assertEqual(meta['DOCKER_TAG'], 'image@sha256:123')
-        self.assertEqual(meta['DOCKER_TARGET'], 'production')
-        assert 'DOCKER_VERSION' not in meta
-        self.assertEqual(meta['DOCKER_DIGEST'], 'sha256:123')
-
-    @override_env(DOCKER_VERSION='')
-    def test_default_when_version_is_empty(self):
-        meta = get_docker_image_meta()
-        self.assertEqual(meta['DOCKER_TAG'], 'mozilla/addons-server:local')
-        self.assertEqual(meta['DOCKER_TARGET'], 'development')
-        self.assertEqual(meta['DOCKER_VERSION'], 'local')
-        assert 'DOCKER_DIGEST' not in meta
-
-        with override_env(DOCKER_VERSION='', DOCKER_TARGET='production'):
-            meta = get_docker_image_meta()
-            self.assertEqual(meta['DOCKER_TARGET'], 'production')
+    def test_docker_target_override_from_file_ignored(self):
+        self.env.write_env_file({'DOCKER_TARGET': 'production'})
+        result = get_docker_image_meta(self.env)
+        self.assertEqual(result['DOCKER_TARGET'], 'development')
 
     @override_env(
-        DOCKER_DIGEST='',
-        DOCKER_TAG='image@sha256:123',
+        DOCKER_COMMIT='commit', DOCKER_BUILD='build', DOCKER_TARGET='production'
     )
-    def test_default_when_digest_is_empty(self):
-        self.mock_get_env_file.return_value = {'DOCKER_TAG': 'image@sha256:123'}
-        meta = get_docker_image_meta()
-        self.assertEqual(meta['DOCKER_TAG'], 'image@sha256:123')
-        self.assertEqual(meta['DOCKER_TARGET'], 'production')
-        assert 'DOCKER_VERSION' not in meta
-        self.assertEqual(meta['DOCKER_DIGEST'], 'sha256:123')
+    def test_docker_target_production(self):
+        self.env.write_env_file({'DOCKER_TAG': 'latest'})
+        get_docker_image_meta(self.env, is_build=True)
 
-    def test_version_on_env_file_ignored(self):
-        self.mock_get_env_file.return_value = {'DOCKER_VERSION': 'latest'}
-        meta = get_docker_image_meta()
-        self.assertEqual(meta['DOCKER_VERSION'], 'local')
+    @override_env(
+        DOCKER_COMMIT='commit',
+        DOCKER_BUILD='build',
+        DOCKER_TARGET='development',
+    )
+    def test_docker_target_development_on_build_should_raise(self):
+        with self.assertRaises(ValueError):
+            self.env.write_env_file({'DOCKER_TAG': 'image:latest'})
+            self.assertEqual(self.env.get('DOCKER_TARGET'), 'development')
+            get_docker_image_meta(self.env, is_build=True)
 
-    def test_commit_on_env_file_ignored(self):
-        self.mock_get_env_file.return_value = {'DOCKER_COMMIT': 'commit'}
-        meta = get_docker_image_meta()
-        assert 'DOCKER_COMMIT' not in meta
-
-    def test_build_on_env_file_ignored(self):
-        self.mock_get_env_file.return_value = {'DOCKER_BUILD': 'build'}
-        meta = get_docker_image_meta()
-        assert 'DOCKER_BUILD' not in meta
-
-
-@override_env()
-class TestDockerTarget(BaseTestClass):
-    def test_default_development_target(self):
-        main()
-        self.assert_set_env_file_called_with(DOCKER_TARGET='development')
-
-    @override_env(DOCKER_VERSION='test')
-    def test_default_production_target(self):
-        main()
-        self.assert_set_env_file_called_with(DOCKER_TARGET='production')
+    @override_env(DOCKER_TARGET='development')
+    def test_docker_target_development_on_non_local_image_raises(self):
+        with self.assertRaises(ValueError):
+            self.env.write_env_file({'DOCKER_TAG': 'image:latest'})
+            get_docker_image_meta(self.env)
 
     @override_env()
-    def test_default_env_file(self):
-        self.mock_get_env_file.return_value = {
-            'DOCKER_TAG': 'mozilla/addons-server:test'
-        }
-        main()
-        self.assert_set_env_file_called_with(DOCKER_TARGET='production')
-
-    @override_env(DOCKER_VERSION='latest', DOCKER_COMMIT='abc', DOCKER_BUILD='build')
-    def test_env_file_is_ignored_when_building_remote_image(self):
-        self.mock_get_env_file.return_value = {
-            'DOCKER_TARGET': 'development',
-        }
-        main(build=True)
-        self.assert_set_env_file_called_with(DOCKER_TARGET='production')
-
-    @override_env(DOCKER_VERSION='latest', DOCKER_TARGET='development')
-    def test_invalid_remote_development_image(self):
+    def test_docker_commit_and_build_required_on_build(self):
         with self.assertRaises(ValueError):
-            main()
+            self.env.write_env_file({'DOCKER_TAG': 'image:latest'})
+            get_docker_image_meta(self.env, is_build=True)
 
-    @override_env(DOCKER_TARGET='development')
-    def test_invalid_building_development_image(self):
-        for version in ['local', 'latest']:
-            with self.subTest(version=version):
-                with override_env(DOCKER_VERSION=version):
-                    with self.assertRaises(ValueError):
-                        main(build=True)
+    @override_env(DOCKER_COMMIT='commit', DOCKER_BUILD='build')
+    def test_docker_commit_and_build_on_non_build_should_raise(self):
+        with self.assertRaises(ValueError):
+            self.env.write_env_file({'DOCKER_TAG': 'image:latest'})
+            get_docker_image_meta(self.env)
+
+    @override_env(DOCKER_VERSION='version')
+    def test_docker_version_on_env_should_raise(self):
+        with self.assertRaises(ValueError):
+            get_docker_image_meta(self.env)
+
+    @override_env(DOCKER_DIGEST='digest')
+    def test_docker_digest_on_env_should_raise(self):
+        with self.assertRaises(ValueError):
+            get_docker_image_meta(self.env)
 
 
 @override_env()
-class DockerCommitAndBuildMixin:
-    @override_env(
-        DOCKER_TARGET='production',
-        DOCKER_VERSION='local',
-    )
-    def test_env_file_is_ignored(self):
+class TestMain(BaseTestClass):
+    def run_setup(self, is_build=False):
         """
-        The previous commit on a .env file is ignored and so will never be used
-        in subsequent runs of make setup.
+        Run the setup script with the given arguments, always dry-running.
         """
-        self.mock_get_env_file.return_value = {self.key: 'c'}
-        main()
-        self.assert_set_env_file_called_with(
-            DOCKER_TARGET='production',
-            DOCKER_VERSION='local',
-        )
+        return main(self.root, '.env', is_build, dry_run=True)
 
-    def test_forbidden_when_running_remote_image(self):
-        with (
-            override_env(
-                DOCKER_TARGET='production',
-                DOCKER_VERSION='latest',
-                **{self.key: 'c'},
-            ),
-            self.assertRaises(ValueError),
-        ):
-            main()
+    def test_main(self):
+        self.env.write_env_file({'DOCKER_TAG': 'latest'})
+        result = self.run_setup()
+        assert isinstance(result, dict)
+        self.assertEqual(result['DOCKER_VERSION'], 'latest')
 
-    def test_required_when_building_remote_image(self):
-        for target in ['production', 'development']:
-            with self.subTest(target=target):
-                with (
-                    override_env(
-                        DOCKER_TARGET=target,
-                        DOCKER_VERSION='latest',
-                        **{self.key: ''},
-                    ),
-                    self.assertRaises(ValueError),
-                ):
-                    main(build=True)
+    def test_main_with_build(self):
+        # Set an invalid build argument. we cannot build a development image.
+        # This confirms that the build argument is passed to the metadata function.
+        self.env.write_env_file({'DOCKER_TAG': 'development'})
+        with self.assertRaises(ValueError):
+            self.run_setup(is_build=True)
 
-    def test_irrelevant_when_local_image(self):
-        for target in ['production', 'development']:
-            for build in [True, False]:
-                with self.subTest(target=target, build=build):
-                    with (
-                        override_env(
-                            DOCKER_TARGET=target,
-                            DOCKER_VERSION='local',
-                            **{self.key: ''},
-                        ),
-                    ):
-                        # We cannot build a development image
-                        # so this will fail for a different reason
-                        if build and target == 'development':
-                            continue
-                        else:
-                            main(build=build)
+    def test_main_with_dry_run_does_not_write_files(self):
+        for dir in REMOVE_PATHS:
+            remove_path = self.root / dir
+            if not remove_path.exists():
+                if remove_path.is_dir():
+                    remove_path.mkdir(parents=True, exist_ok=True)
+                else:
+                    remove_path.mkdir(parents=True, exist_ok=True)
+                    remove_path.touch()
 
+        result = self.run_setup()
+        assert isinstance(result, dict)
 
-class TestDockerCommit(BaseTestClass, DockerCommitAndBuildMixin):
-    key = 'DOCKER_COMMIT'
+        self.assertFalse((self.root / '.env').exists())
 
+        for dir in CREATE_PATHS:
+            self.assertFalse((self.root / dir).exists())
 
-class TestDockerBuild(BaseTestClass, DockerCommitAndBuildMixin):
-    key = 'DOCKER_BUILD'
+        for dir in REMOVE_PATHS:
+            remove_path = self.root / dir
+            self.assertTrue(remove_path.exists())
 
-
-@override_env()
-class TestDebug(BaseTestClass):
-    def test_default_debug(self):
-        main()
-        self.assert_set_env_file_called_with(DEBUG='True')
+    def test_debug_default_to_opposite_of_docker_target(self):
+        for docker_target, expected_debug in [
+            ('development', True),
+            ('production', False),
+        ]:
+            with (
+                self.subTest(docker_target=docker_target),
+                override_env(DOCKER_TARGET=docker_target),
+            ):
+                result = self.run_setup()
+                self.assertEqual(result['DEBUG'], expected_debug)
 
     @override_env(DOCKER_TARGET='production')
-    def test_production_debug(self):
-        main()
-        self.assert_set_env_file_called_with(DEBUG='False')
+    def test_debug_from_file_ignored(self):
+        self.env.write_env_file({'DEBUG': 'true'})
+        result = self.run_setup()
+        self.assertEqual(result['DEBUG'], False)
+
+    @override_env(DEBUG=True, DOCKER_TARGET='production')
+    def test_debug_from_env_overrides(self):
+        result = self.run_setup()
+        self.assertEqual(result['DEBUG'], True)
 
     @override_env(DOCKER_TARGET='production')
-    def test_override_env_debug_false_on_target_production(self):
-        self.mock_get_env_file.return_value = {'DEBUG': 'True'}
-        main()
-        self.assert_set_env_file_called_with(DEBUG='False')
-
-    @override_env(DOCKER_TARGET='development')
-    def test_override_env_debug_true_on_target_development(self):
-        self.mock_get_env_file.return_value = {'DEBUG': 'False'}
-        main()
-        self.assert_set_env_file_called_with(DEBUG='True')
-
-    @override_env(DEBUG='test')
-    def test_debug_override(self):
-        main()
-        self.assert_set_env_file_called_with(DEBUG='test')
-
-
-@override_env()
-class TestOlympiaDeps(BaseTestClass):
-    def test_default_olympia_deps(self):
-        main()
-        self.assert_set_env_file_called_with(OLYMPIA_DEPS='development')
+    def test_olympia_deps_defaults_to_docker_target(self):
+        result = self.run_setup()
+        self.assertEqual(result['OLYMPIA_DEPS'], 'production')
 
     @override_env(DOCKER_TARGET='production')
-    def test_production_olympia_deps(self):
-        main()
-        self.assert_set_env_file_called_with(OLYMPIA_DEPS='production')
+    def test_olympia_deps_override_from_file_ignored(self):
+        self.env.write_env_file({'OLYMPIA_DEPS': 'development'})
+        result = self.run_setup()
+        self.assertEqual(result['OLYMPIA_DEPS'], 'production')
 
-    @override_env(DOCKER_TARGET='production')
-    def test_override_env_olympia_deps_development_on_target_production(self):
-        self.mock_get_env_file.return_value = {'OLYMPIA_DEPS': 'development'}
-        main()
-        self.assert_set_env_file_called_with(OLYMPIA_DEPS='production')
+    @override_env(OLYMPIA_DEPS='development', DOCKER_TARGET='production')
+    def test_olympia_deps_from_env_overrides_docker_target(self):
+        result = self.run_setup()
+        self.assertEqual(result['OLYMPIA_DEPS'], 'development')
 
-    @override_env(DOCKER_TARGET='development')
-    def test_override_env_olympia_deps_development_on_target_development(self):
-        self.mock_get_env_file.return_value = {'OLYMPIA_DEPS': 'production'}
-        main()
-        self.assert_set_env_file_called_with(OLYMPIA_DEPS='development')
+    @mock.patch('os.getuid', return_value=123)
+    def test_olympia_id_always_from_os(self, mock_getuid):
+        result = self.run_setup()
+        self.assertEqual(result['HOST_UID'], 123)
 
-    @override_env(OLYMPIA_DEPS='test')
-    def test_olympia_deps_override(self):
-        main()
-        self.assert_set_env_file_called_with(OLYMPIA_DEPS='test')
+    def test_none_values_not_in_result(self):
+        result = self.run_setup()
+        assert 'DOCKER_COMMIT' not in result
+        assert 'DOCKER_BUILD' not in result
 
 
 @override_env()
 class TestMakeDirs(BaseTestClass):
-    @mock.patch('scripts.setup.os.makedirs')
-    def test_make_dirs(self, mock_makedirs):
-        from scripts.setup import root
+    def test_make_dirs(self):
+        tmpdir = tempfile.mkdtemp()
+        root = Path(tmpdir)
 
-        main()
-        assert mock_makedirs.call_args_list == [
-            mock.call(os.path.join(root, dir), exist_ok=True)
-            for dir in ['deps', 'site-static', 'static-build', 'storage']
-        ]
+        main(root, '.env', False, False)
+
+        for dir in ['deps', 'site-static', 'static-build', 'storage']:
+            self.assertTrue((root / dir).exists())
