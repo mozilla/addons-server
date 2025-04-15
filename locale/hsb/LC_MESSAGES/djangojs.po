@@ -15,7 +15,7 @@ msgstr ""
 
 #: static/js/common/upload-addon.js:54 static/js/common/upload-image.js:136
 msgid "There was a problem contacting the server."
-msgstr "Při kontaktowanju serwera je problem wustupił."
+msgstr "Při skontaktowanju serwera je problem wustupił."
 
 #: static/js/common/upload-addon.js:78
 msgid "Select a file..."

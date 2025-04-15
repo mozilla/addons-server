@@ -5677,12 +5677,12 @@ msgstr "Składujśo ceły webbok – mjazy nimi wobraze a stile – ako jadnučk
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:854
 msgid "Edit a web page before printing. Remove ads or any unwanted content."
-msgstr ""
+msgstr "Wobźěłajśo webbok do śišćanja. Wótwónoźćo wabjenje abo njewitane wopśimjeśe."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:863
 msgid "Advanced reader for aggregating all of your RSS/Atom/RDF sources."
-msgstr ""
+msgstr "Rozšyrjony cytak, kótaryž wšykne waše RSS/Atom/RDF-žrědła gromaźi."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:881
@@ -5722,7 +5722,7 @@ msgstr "Slědk k jadnorjejšemu casoju – gaž wašo nejwažnjejše pytańske w
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:911
 msgid "Get the mouse scrollbar you've always wanted — specify width and color."
-msgstr ""
+msgstr "Wobstarajśo se suwańsku rědku myški, kótaruž sćo južo pśecej kśěł – wubjeŕśo šyrokosć a barwu."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:923
@@ -5832,32 +5832,32 @@ msgstr "Maśo kontrolu. Znjemóžniśo VPN, gaž websedło njefunkcioněrujo a n
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:989
 msgid "Automatically handle GDPR consent forms."
-msgstr ""
+msgstr "Formulary zwólenja ZPŠD awtomatiski pśeźěłaś."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:992
 msgid "Block malicious websites from port scanning."
-msgstr ""
+msgstr "Złosnym websedłam scannowanje portow zawoboraś."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:995
 msgid "Enhance your Twitch experience."
-msgstr ""
+msgstr "Pólěpšćo swójo dožywjenje Twitch."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:998
 msgid "Re-take Twitter/X and customize your experience."
-msgstr ""
+msgstr "Pśewzejśo zasej kontrolu nad Twitter/X a pśiměŕśo swójo dožywjenje."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1001
 msgid "Translate text without leaving the page you're on (PDF compatible)."
-msgstr ""
+msgstr "Pśełožćo tekst, bźez togo aby bok spušćił, na kótaremž sćo (kompatibelny z PDF)."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1004
 msgid "Change the color of Firefox to match every website you visit."
-msgstr ""
+msgstr "Změńśo barwu Firefox, aby kuždemu websedłoju wótpowědujo, ku kótaremuž woglědujośo."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1007
@@ -5882,12 +5882,12 @@ msgstr "Rozšyrjenja priwatnosći a wěstoty"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1015
 msgid "Essential add-ons"
-msgstr ""
+msgstr "Zakładne dodanki"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1017
 msgid "Reddit extensions"
-msgstr ""
+msgstr "Rozšyrjenja Reddit"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1019 src/olympia/discovery/strings.jinja2:1021 src/olympia/discovery/strings.jinja2:1023
