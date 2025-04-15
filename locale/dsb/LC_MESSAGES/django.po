@@ -5627,7 +5627,7 @@ msgstr "Někotare sedła maju śěžkosći, wideo na Android wótgrawaś. How jo
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:683
 msgid "Find an interesting pic on the web? Use TinEye to discover its origins."
-msgstr ""
+msgstr "Sćo namakał zajmny wobraz w interneśe? Wužywajśo TinEye, aby wuslěźił, wótkul póchada."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:701
@@ -5637,7 +5637,7 @@ msgstr "Składujśo wobraze cele lažko – pópadniśo je jadnorje ze swójogo 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:704
 msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title & more."
-msgstr ""
+msgstr "Mějśo ultimatiwnu kontrolu nad rejtarikami – dwójne rejtariki zacyniś, wokna zjadnośiś, rejtarikowy titel kopěrowaś a wěcej."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:722
