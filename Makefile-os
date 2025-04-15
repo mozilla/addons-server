@@ -26,6 +26,10 @@ INITIALIZE_ARGS ?=
 INIT_CLEAN ?=
 INIT_LOAD ?=
 
+export SWAGGER_FILE ?= swagger.json
+export SWAGGER_LANG ?= typescript-fetch
+export SWAGGER_OUTPUT_PATH ?= swagger-client
+
 ifneq ($(INIT_CLEAN),)
 	INITIALIZE_ARGS += --clean
 endif

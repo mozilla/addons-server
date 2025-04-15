@@ -48,6 +48,8 @@ static-build/*
 static/css/node_lib/*
 static/js/node_lib/*
 storage/*
+swagger-client/*
+swagger.json
 tmp/*
 
 # End of .gitignore. Please keep this in sync with the top section of .dockerignore

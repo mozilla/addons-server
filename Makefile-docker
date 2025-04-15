@@ -186,6 +186,23 @@ compile_locales: ## compiles translation strings
 	$(PIP_COMMAND) install --progress-bar=off --no-deps -r requirements/locale.txt
 	$(HOME)/scripts/compile_locales.py
 
+.PHONY: swagger
+swagger: ## generate the swagger.json schema
+	./manage.py spectacular \
+		--format openapi-json \
+		--file $(SWAGGER_FILE) \
+		--validate \
+		--color \
+		--api-version v5
+
+.PHONY: swagger_client
+swagger_client: ## generate the swagger client
+	openapi-generator-cli generate \
+		-i $(SWAGGER_FILE) \
+		-g $(SWAGGER_LANG) \
+		-o $(SWAGGER_OUTPUT_PATH) \
+		--skip-validate-spec
+
 .PHONY: help_submake
 help_submake:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' Makefile-docker | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'

@@ -49,6 +49,8 @@ static-build/*
 static/css/node_lib/*
 static/js/node_lib/*
 storage
+swagger-client/*
+swagger.json
 tmp/*
 
 # Additionally ignore these files from the docker build that are not in .gitignore

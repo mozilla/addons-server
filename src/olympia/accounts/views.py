@@ -68,10 +68,8 @@ from olympia.users.notifications import (
 from . import verify
 from .serializers import (
     AccountSuperCreateSerializer,
-    FullUserProfileSerializer,
-    MinimalUserProfileSerializer,
-    SelfUserProfileSerializer,
     UserNotificationSerializer,
+    UserProfileSerializer,
 )
 from .tasks import clear_sessions_event, delete_user_event, primary_email_change_event
 from .utils import (
@@ -453,6 +451,7 @@ class AllowSelf(BasePermission):
 class AccountViewSet(
     RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin, GenericViewSet
 ):
+    serializer_class = UserProfileSerializer
     permission_classes = [
         ByHttpMethod(
             {
@@ -468,6 +467,23 @@ class AccountViewSet(
     # Periods are not allowed in username, but we still have some in the
     # database so relax the lookup regexp to allow them to load their profile.
     lookup_value_regex = '[^/]+'
+
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+
+        # Determine the view type based on various conditions
+        if self.self_view:
+            context['view_type'] = 'self'
+        elif (
+            not self.request.user.is_authenticated
+            or not self.admin_viewing
+            or 'minimal' in self.request.GET.get('show', '').split(',')
+        ):
+            context['view_type'] = 'minimal'
+        else:
+            context['view_type'] = 'full'
+
+        return context
 
     def get_queryset(self):
         return UserProfile.objects.exclude(deleted=True).all()
@@ -499,14 +515,6 @@ class AccountViewSet(
     @property
     def admin_viewing(self):
         return acl.action_allowed_for(self.request.user, amo.permissions.USERS_EDIT)
-
-    def get_serializer_class(self):
-        if self.self_view or self.admin_viewing:
-            return SelfUserProfileSerializer
-        elif self.get_object().has_full_profile:
-            return FullUserProfileSerializer
-        else:
-            return MinimalUserProfileSerializer
 
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
@@ -545,6 +553,10 @@ class ProfileView(APIView):
             kwargs={'pk': str(self.request.user.pk)},
         )
         account_viewset.format_kwarg = self.format_kwarg
+        # Ensure we're using the 'self' view type for the current user
+        context = account_viewset.get_serializer_context()
+        context['view_type'] = 'self'
+        account_viewset._serializer_context = context
         return account_viewset.retrieve(request)
 
 

@@ -87,7 +87,12 @@ class BaseESSerializer(AMOModelSerializer):
         return obj
 
 
-class SiteStatusSerializer(serializers.BaseSerializer):
+class SiteStatusSerializer(serializers.Serializer):
+    """Serializer for site status information."""
+
+    read_only = serializers.BooleanField(read_only=True)
+    notice = serializers.CharField(read_only=True, required=False, allow_null=True)
+
     def to_representation(self, obj):
         return {
             'read_only': settings.READ_ONLY,

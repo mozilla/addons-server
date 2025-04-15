@@ -17,6 +17,7 @@ from ..serializers import (
     MinimalUserProfileSerializer,
     SelfUserProfileSerializer,
     UserNotificationSerializer,
+    UserProfileSerializer,
 )
 
 
@@ -44,6 +45,57 @@ class TestBaseUserSerializer(TestCase, BaseTestUserMixin):
     def setUp(self):
         self.request = APIRequestFactory().get('/')
         self.user = user_factory()
+
+
+class TestUserProfileSerializer(TestCase):
+    user_kwargs = {
+        'username': 'jane',
+        'display_name': 'Jane Doe',
+        'biography': 'my biography',
+        'homepage': 'http://example.com',
+        'location': 'Seattle',
+        'occupation': 'developer',
+    }
+
+    def setUp(self):
+        self.request = APIRequestFactory().get('/')
+        self.user = user_factory(
+            **self.user_kwargs,
+            last_login_ip='123.45.67.89',
+        )
+        self.user.update(averagerating=3.5)
+        addon_factory(users=[self.user])
+
+    def serialize(self, view_type='full'):
+        self.user = UserProfile.objects.get(pk=self.user.pk)
+        serializer = UserProfileSerializer(
+            self.user, context={'request': self.request, 'view_type': view_type}
+        )
+        return serializer.to_representation(self.user)
+
+    def test_different_view_types(self):
+        # Test full view type
+        result = self.serialize('full')
+        assert 'picture_url' in result
+        assert 'created' in result
+        assert 'biography' in result
+
+        # Test minimal view type
+        result = self.serialize('minimal')
+        assert 'id' in result
+        assert 'name' in result
+        assert 'url' in result
+        assert 'username' in result
+        assert 'picture_url' not in result
+        assert 'biography' not in result
+
+        # Test self view type
+        result = self.serialize('self')
+        assert 'permissions' in result
+        assert 'fxa_edit_email_url' in result
+        assert 'email' in result
+        assert 'picture_url' in result
+        assert 'display_name' in result
 
 
 class TestFullUserProfileSerializer(TestCase):

@@ -1328,6 +1328,7 @@ REST_FRAMEWORK = {
     'DATETIME_FORMAT': '%Y-%m-%dT%H:%M:%SZ',
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'olympia.api.authentication.SessionIDAuthentication',
+        'olympia.api.authentication.JWTKeyAuthentication',
     ),
     'DEFAULT_PAGINATION_CLASS': ('olympia.api.pagination.CustomPageNumberPagination'),
     # Use json by default when using APIClient.

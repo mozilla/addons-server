@@ -27,6 +27,9 @@ x-env-mapping: &env
     - FXA_CLIENT_SECRET
     - STATIC_URL_PREFIX
     - MEDIA_URL_PREFIX
+    - SWAGGER_FILE
+    - SWAGGER_LANG
+    - SWAGGER_OUTPUT_PATH
 
 x-olympia: &olympia
   <<: *env

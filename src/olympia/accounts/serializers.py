@@ -18,7 +18,6 @@ from olympia.amo.utils import (
 from olympia.api.fields import HttpHttpsOnlyURLField
 from olympia.api.serializers import AMOModelSerializer, SiteStatusSerializer
 from olympia.api.utils import is_gate_active
-from olympia.api.validators import OneOrMorePrintableCharacterAPIValidator
 from olympia.users import notifications
 from olympia.users.models import DeniedName, UserProfile
 from olympia.users.utils import upload_picture
@@ -38,7 +37,7 @@ class BaseUserSerializer(AMOModelSerializer):
         return obj.get_absolute_url()
 
     # Used in subclasses.
-    def get_permissions(self, obj):
+    def get_permissions(self, obj) -> list[str]:
         out = {perm for group in obj.groups_list for perm in group.rules.split(',')}
         return sorted(out)
 
@@ -49,33 +48,32 @@ class BaseUserSerializer(AMOModelSerializer):
         return None
 
 
-class FullUserProfileSerializer(BaseUserSerializer):
+class UserProfileSerializer(BaseUserSerializer):
+    """
+    A combined serializer that replaces FullUserProfileSerializer,
+    MinimalUserProfileSerializer, and SelfUserProfileSerializer.
+
+    The serializer's behavior is controlled by the 'view_type' context parameter:
+    - 'full': Standard profile view (default)
+    - 'minimal': Returns minimal profile data
+    - 'self': Returns full profile data with additional fields for the user themselves
+    """
+
     picture_url = serializers.SerializerMethodField()
     average_addon_rating = serializers.FloatField(
         source='averagerating', read_only=True
     )
+    # Custom fields only for the 'self' view type
+    picture_upload = serializers.ImageField(
+        use_url=True, write_only=True, required=False
+    )
+    permissions = serializers.SerializerMethodField()
+    fxa_edit_email_url = serializers.SerializerMethodField()
+    site_status = SiteStatusSerializer(source='*', read_only=True)
+    # Override homepage to use our own URLField with custom validation for security
+    homepage = HttpHttpsOnlyURLField(required=False, allow_blank=True)
 
-    class Meta(BaseUserSerializer.Meta):
-        fields = BaseUserSerializer.Meta.fields + (
-            'average_addon_rating',
-            'created',
-            'biography',
-            'has_anonymous_display_name',
-            'has_anonymous_username',
-            'homepage',
-            'is_addon_developer',
-            'is_artist',
-            'location',
-            'occupation',
-            'num_addons_listed',
-            'picture_type',
-            'picture_url',
-        )
-        # This serializer should never be used for updates but just to be sure.
-        read_only_fields = fields
-
-
-class MinimalUserProfileSerializer(FullUserProfileSerializer):
+    # Fields used by MinimalUserProfileSerializer
     nullable_fields = (
         'biography',
         'homepage',
@@ -85,52 +83,34 @@ class MinimalUserProfileSerializer(FullUserProfileSerializer):
         'picture_url',
     )
 
-    def to_representation(self, obj):
-        data = super().to_representation(obj)
-        request = self.context.get('request', None)
-
-        # Once we drop this api gate we can drop this class and use BaseUserSerializer
-        if request and is_gate_active(request, 'minimal-profile-has-all-fields-shim'):
-            data.update({field: None for field in self.nullable_fields})
-        else:
-            data = {
-                field: value
-                for field, value in data.items()
-                if field in BaseUserSerializer.Meta.fields
-            }
-
-        return data
-
-
-class SelfUserProfileSerializer(FullUserProfileSerializer):
-    display_name = serializers.CharField(
-        min_length=2,
-        max_length=50,
-        validators=[OneOrMorePrintableCharacterAPIValidator()],
-    )
-    picture_upload = serializers.ImageField(use_url=True, write_only=True)
-    permissions = serializers.SerializerMethodField()
-    fxa_edit_email_url = serializers.SerializerMethodField()
-    # Just Need to specify any field for the source - '*' is the entire obj.
-    site_status = SiteStatusSerializer(source='*', read_only=True)
-    # Override homepage to use our own URLField with custom validation.
-    homepage = HttpHttpsOnlyURLField(required=False, allow_blank=True)
-
-    class Meta(FullUserProfileSerializer.Meta):
-        fields = FullUserProfileSerializer.Meta.fields + (
+    class Meta(BaseUserSerializer.Meta):
+        model = UserProfile
+        fields = BaseUserSerializer.Meta.fields + (
+            'average_addon_rating',
+            'biography',
+            'created',
             'deleted',
             'display_name',
             'email',
             'fxa_edit_email_url',
+            'has_anonymous_display_name',
+            'has_anonymous_username',
+            'homepage',
+            'is_addon_developer',
+            'is_artist',
             'last_login',
             'last_login_ip',
+            'location',
+            'occupation',
+            'num_addons_listed',
             'permissions',
+            'picture_type',
             'picture_upload',
+            'picture_url',
             'read_dev_agreement',
             'site_status',
-            'username',
         )
-        writeable_fields = (
+        self_writeable_fields = (
             'biography',
             'display_name',
             'homepage',
@@ -138,9 +118,30 @@ class SelfUserProfileSerializer(FullUserProfileSerializer):
             'occupation',
             'picture_upload',
         )
-        read_only_fields = tuple(set(fields) - set(writeable_fields))
+        # By default, everything is read-only
+        read_only_fields = fields
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        # Set fields based on view_type
+        view_type = self.context.get('view_type', 'full')
+
+        # If it's a self view, make certain fields writable
+        if view_type == 'self':
+            for field_name in self.Meta.self_writeable_fields:
+                if field_name in self.fields:
+                    self.fields[field_name].read_only = False
+
+    def get_permissions(self, obj) -> list[str]:
+        if self.context.get('view_type') == 'self':
+            return super().get_permissions(obj)
+        return []
 
     def get_fxa_edit_email_url(self, user):
+        if self.context.get('view_type') != 'self':
+            return None
+
         base_url = f'{settings.FXA_CONTENT_HOST}/settings'
         return urlparams(
             base_url, uid=user.fxa_id, email=user.email, entrypoint='addons'
@@ -190,10 +191,49 @@ class SelfUserProfileSerializer(FullUserProfileSerializer):
     def to_representation(self, obj):
         data = super().to_representation(obj)
         request = self.context.get('request', None)
+        view_type = self.context.get('view_type', 'full')
 
-        if request and is_gate_active(request, 'del-accounts-fxa-edit-email-url'):
-            data.pop('fxa_edit_email_url', None)
+        if view_type == 'minimal':
+            # Handle MinimalUserProfileSerializer logic
+            if request and is_gate_active(
+                request, 'mimimal-profile-has-all-fields-shim'
+            ):
+                data.update({field: None for field in self.nullable_fields})
+            else:
+                data = {
+                    field: value
+                    for field, value in data.items()
+                    if field in BaseUserSerializer.Meta.fields
+                }
+        elif view_type == 'self':
+            # Handle SelfUserProfileSerializer logic
+            if request and is_gate_active(request, 'del-accounts-fxa-edit-email-url'):
+                data.pop('fxa_edit_email_url', None)
+
         return data
+
+
+# Keep the old serializer classes for backwards compatibility
+# They simply use the new combined serializer with the appropriate view_type
+class FullUserProfileSerializer(UserProfileSerializer):
+    def __init__(self, *args, **kwargs):
+        kwargs.setdefault('context', {})
+        kwargs['context']['view_type'] = 'full'
+        super().__init__(*args, **kwargs)
+
+
+class MinimalUserProfileSerializer(UserProfileSerializer):
+    def __init__(self, *args, **kwargs):
+        kwargs.setdefault('context', {})
+        kwargs['context']['view_type'] = 'minimal'
+        super().__init__(*args, **kwargs)
+
+
+class SelfUserProfileSerializer(UserProfileSerializer):
+    def __init__(self, *args, **kwargs):
+        kwargs.setdefault('context', {})
+        kwargs['context']['view_type'] = 'self'
+        super().__init__(*args, **kwargs)
 
 
 group_rules = {

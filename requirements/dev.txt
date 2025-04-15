@@ -344,3 +344,13 @@ django-dbbackup==4.2.1 \
 pytest-env==1.1.5 \
     --hash=sha256:91209840aa0e43385073ac464a554ad2947cc2fd663a9debf88d03b01e0cc1cf \
     --hash=sha256:ce90cf8772878515c24b31cd97c7fa1f4481cd68d588419fd45f10ecaee6bc30
+openapi-generator-cli[jdk4py]==7.12.0 \
+    --hash=sha256:11dc4fd67fc7d839572ae8e29fb1dee5892195a7ac88b98e41a2cd8105e3250f \
+    --hash=sha256:cf97e0e40bacc66ca70963845e52b0c003aaab85da7f1d10cc25abf2f1c8bb6e
+# jdk4py is required by openapi-generator-cli
+jdk4py==21.0.4.2 \
+    --hash=sha256:12cdccd593e586751aa2aabc82805b72da86a04f00acdadf8af8cd1cdfea86cc \
+    --hash=sha256:65f21dd70360341df4968e2c3a1978dd4b5ec725cd5c0f338f4b418f2e858312 \
+    --hash=sha256:acbd3cc81af3a1de9489caa573f1cf87a8965923b0c5fc0771bf6f102e81bd56 \
+    --hash=sha256:b0577795e70f69e5df92eceb05c0b584bd7512d6e479fad63d49c22362f31e9d \
+    --hash=sha256:b3b2fbfded8b023977aa8b4909c0f9897668a315060e7713610bce0757447707
