@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-14 20:20+0000\n"
+"POT-Creation-Date: 2025-04-15 17:08+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -4866,8 +4866,8 @@ msgid "Enhance your Twitch experience."
 msgstr "Enhance your Twitch experience."
 
 #. editorial content for the primary hero shelves.
-msgid "Re-take Twitter/X and customize your experience."
-msgstr "Re-take Twitter/X and customize your experience."
+msgid "Re-take control of Twitter/X and customize your experience."
+msgstr "Re-take control of Twitter/X and customize your experience."
 
 #. editorial content for the primary hero shelves.
 msgid "Translate text without leaving the page you're on (PDF compatible)."
