@@ -5856,17 +5856,17 @@ msgstr "Verbessern Sie Ihr Twitch-Erlebnis."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:998
 msgid "Re-take Twitter/X and customize your experience."
-msgstr "Nutzen Sie Twitter/X neu und passen Sie Ihr Erlebnis an."
+msgstr "Entdecken Sie Twitter/X neu und passen Sie Ihr Erlebnis an."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1001
 msgid "Translate text without leaving the page you're on (PDF compatible)."
-msgstr ""
+msgstr "Übersetzen Sie Text, ohne die aktuelle Seite zu verlassen (PDF-kompatibel)."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1004
 msgid "Change the color of Firefox to match every website you visit."
-msgstr ""
+msgstr "Ändern Sie die Farbe von Firefox, damit sie zu jeder besuchten Website passt."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1007
@@ -5891,12 +5891,12 @@ msgstr "Datenschutz- und Sicherheitseinstellungen"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1015
 msgid "Essential add-ons"
-msgstr ""
+msgstr "Wichtige Add-ons"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1017
 msgid "Reddit extensions"
-msgstr ""
+msgstr "Reddit-Erweiterungen"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1019 src/olympia/discovery/strings.jinja2:1021 src/olympia/discovery/strings.jinja2:1023
