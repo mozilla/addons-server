@@ -5605,7 +5605,7 @@ msgstr "Alcun sitos ha difficultate a reproducer videos sur Firefox pro Android.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:683
 msgid "Find an interesting pic on the web? Use TinEye to discover its origins."
-msgstr ""
+msgstr "Trovava tu un photo interessante sur le web? Usa TinEye pro discoperir su origines."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:701
