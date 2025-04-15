@@ -964,7 +964,6 @@ class ReviewBase:
         log_action_kw=None,
         decision_metadata=None,
         action_completed=True,
-        version=None,
         versions=None,
         update_queue_history=True,
     ):
@@ -999,13 +998,7 @@ class ReviewBase:
             )
         assert cinder_action
 
-        if version is not None:
-            # If version is passed, don't modify `versions`: we are going to
-            # pass that intact to log_action() below.
-            decision_versions = [version]
-        else:
-            versions = versions or ([self.version] if self.version else [])
-            decision_versions = versions
+        versions = versions or ([self.version] if self.version else [])
 
         decision_kw = {
             'addon': self.addon,
@@ -1022,7 +1015,7 @@ class ReviewBase:
             decision = ContentDecision.objects.create(**decision_kw)
             decision.policies.set(policies)
             if versions:
-                decision.target_versions.set(decision_versions)
+                decision.target_versions.set(versions)
             decisions.append(decision)
             return decision
 
@@ -1044,7 +1037,6 @@ class ReviewBase:
                 decisions=decisions,
                 reasons=reasons,
                 policies=policies,
-                version=version,
                 versions=versions,
                 **(log_action_kw or {}),
             )
@@ -1146,13 +1138,13 @@ class ReviewBase:
         if self.file:
             details['files'] = [self.file.id]
 
-        if versions is not None:
+        if version is not None:
+            details['version'] = version.version
+            args = (self.addon, version)
+        elif versions is not None:
             details['versions'] = [v.version for v in versions]
             details['files'] = [v.file.id for v in versions]
             args = (self.addon, *versions)
-        elif version is not None:
-            details['version'] = version.version
-            args = (self.addon, version)
         else:
             args = (self.addon,)
         if timestamp is None:
@@ -1367,6 +1359,11 @@ class ReviewBase:
             # add-on is deleted or invisible for instance, we still want to
             # allow confirming approval, so we use self.version in that case.
             version = self.addon.current_version or self.version
+            # Reset self.version from now on because we want to go through the
+            # logic log_action() has to record a single version, even when
+            # called indirectly through record_decision().
+            self.version = version
+            self.file = version.file
         else:
             # For unlisted, we just use self.version.
             version = self.version
@@ -1388,7 +1385,7 @@ class ReviewBase:
             else:
                 # For unlisted versions, only drop the needs_human_review flag
                 # on the latest version.
-                self.clear_specific_needs_human_review_flags(self.version)
+                self.clear_specific_needs_human_review_flags(version)
 
             # Clear the "pending_rejection" flag for all versions (Note that
             # the action should only be accessible to admins if the current
@@ -1402,10 +1399,7 @@ class ReviewBase:
                 pending_content_rejection=None,
             )
             self.set_human_review_date(version)
-            self.record_decision(
-                amo.LOG.CONFIRM_AUTO_APPROVED,
-                version=version,
-            )
+            self.record_decision(amo.LOG.CONFIRM_AUTO_APPROVED, versions=[version])
         else:
             self.log_action(amo.LOG.CONFIRM_AUTO_APPROVED, version=version)
 
@@ -1679,6 +1673,7 @@ class ReviewBase:
 
     def enable_addon(self):
         """Force enable the add-on."""
+        self.file = None
         self.version = None
         # Force queryset evaluation before we enable the versions, so that the
         # list of versions is properly recorded after.

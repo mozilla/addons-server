@@ -4530,6 +4530,8 @@ class TestReview(ReviewBase):
         a_log = ActivityLog.objects.filter(
             action=amo.LOG.CONFIRM_AUTO_APPROVED.id
         ).get()
+        # This matters because `version` is used in the formatting string - it
+        # shouldn't be `versions` plural.
         assert a_log.details['version'] == self.addon.current_version.version
         assert a_log.details['comments'] == ''
         self.assert3xx(response, self.listed_url)

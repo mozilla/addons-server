@@ -1175,7 +1175,11 @@ class TestReviewHelper(TestReviewHelperBase):
         self.helper.set_data(data)
         self.helper.handler.review_action = self.helper.actions[data['action']]
 
-        # first, record_decision but with the action completed so we log in ReviewHelper
+        # First, record_decision but with the action completed so we log in
+        # ReviewHelper - In order to mimic what reject_multiple_versions() does
+        # we set self.version and self.file to None first.
+        self.helper.handler.file = None
+        self.helper.handler.version = None
         self.helper.handler.record_decision(
             amo.LOG.REJECT_VERSION, versions=data['versions']
         )
