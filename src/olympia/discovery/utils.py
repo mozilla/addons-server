@@ -11,16 +11,32 @@ from django_statsd.clients import statsd
 
 import olympia.core.logger
 from olympia import amo
+from urllib.parse import urlparse, urljoin
 
 
 log = olympia.core.logger.getLogger('z.amo')
 
 
-def call_recommendation_server(id_or_guid, params, server):
-    params = OrderedDict(sorted(params.items(), key=lambda t: t[0]))
-    endpoint = urljoin(
-        server,
-        '%s/%s%s' % (id_or_guid, '?' if params else '', urlencode(params)))
+def call_recommendation_server(server, client_id_or_guid, data, verb='get'):
+    """Call taar `server` to get recommendations for a given
+    `client_id_or_guid`.
+
+    `data` is a dict containing either query parameters to be passed in the URL
+    if we're calling the server through GET, or the data we'll pass through
+    POST as json.
+    The HTTP verb to use is either "get" or "post", controlled through `verb`,
+    which defaults to "get"."""
+    request_kwargs = {
+        'timeout': settings.RECOMMENDATION_ENGINE_TIMEOUT
+    }
+    if verb == 'get':
+        params = OrderedDict(sorted(data.items(), key=lambda t: t[0]))
+        endpoint = urljoin(server, '%s/%s%s' % (
+            client_id_or_guid, '?' if params else '', urlencode(params)))
+
+    else:
+        endpoint = urljoin(server, '%s/' % client_id_or_guid)
+        request_kwargs['json'] = data
     log.debug(u'Calling recommendation server: {0}'.format(endpoint))
     try:
         with statsd.timer('services.recommendations'):
