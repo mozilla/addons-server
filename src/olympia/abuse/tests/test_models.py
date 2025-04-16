@@ -1376,7 +1376,7 @@ class TestCinderJob(TestCase):
             appeal_job=appeal_job,
             cinder_job=job,
         )
-        # the abuse reports are found by the appealled job AND the appeal
+        # the abuse reports are found by the appealed job AND the appeal
         assert appeal_job.all_abuse_reports == [report, report2]
         assert list(job.all_abuse_reports) == [report, report2]
 
