@@ -554,7 +554,6 @@ class TestFeaturedLocale(TestCase):
         category.update(type=amo.ADDON_STATICTHEME)
 
         addon.addoncategory_set.create(category=category, feature=True)
-        self.reset()
         url = reverse('browse.static-themes', args=[category.slug])
         res = self.client.get(url)
         assert addon in res.context['filter'].all()['featured']
@@ -598,8 +597,7 @@ class TestFeaturedLocale(TestCase):
         res = self.client.get(reverse('home'))
         listed = [p.pk for p in (Addon.objects
                                  .listed(amo.FIREFOX)
-                                 .exclude(type=amo.ADDON_PERSONA))]
-                                 #.exclude(type=amo.ADDON_STATICTHEME))]
+                                 .exclude(type=amo.ADDON_STATICTHEME))]
 
         featured = Addon.featured_random(amo.FIREFOX, 'en-US')
         actual = [p.pk for p in res.context['featured']]
