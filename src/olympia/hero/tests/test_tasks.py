@@ -36,14 +36,9 @@ class TestSyncPrimaryHeroAddon(TestCase):
         or a promoted addon. This should not happen, but we should handle the edge case
         until we have removed the legacy promoted_addon field.
         """
-        addon_factory()
-        hero = PrimaryHero.objects.create()
+        PrimaryHero.objects.create()
 
-        with self.assertRaises(
-            ValueError,
-            msg=f'{hero} heroes have no addon or legacy promoted addon'
-        ):
+        with self.assertLogs(logger='z.hero', level='ERROR') as cm:
             sync_primary_hero_addon.apply()
 
-
-
+        assert 'Invalid PrimaryHero records' in cm.output[0]

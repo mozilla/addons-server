@@ -743,6 +743,7 @@ CELERY_TASK_ROUTES = {
     'olympia.files.tasks.backfill_file_manifest': {'queue': 'adhoc'},
     'olympia.files.tasks.extract_host_permissions': {'queue': 'adhoc'},
     'olympia.lib.crypto.tasks.bump_and_resign_addons': {'queue': 'adhoc'},
+    'olympia.hero.tasks.sync_primary_hero_addon': {'queue': 'adhoc'},
     # Misc AMO tasks.
     'olympia.blocklist.tasks.monitor_remote_settings': {'queue': 'amo'},
     'olympia.abuse.tasks.appeal_to_cinder': {'queue': 'amo'},
@@ -779,7 +780,6 @@ CELERY_TASK_ROUTES = {
     'olympia.users.tasks.resize_photo': {'queue': 'amo'},
     'olympia.users.tasks.update_user_ratings_task': {'queue': 'amo'},
     'olympia.versions.tasks.delete_preview_files': {'queue': 'amo'},
-    'olympia.hero.tasks.sync_primary_hero_addon': {'queue': 'amo'},
     # 'Default' queue. In theory shouldn't be used, it's mostly a fallback.
     'celery.accumulate': {'queue': 'default'},
     'celery.backend_cleanup': {'queue': 'default'},

@@ -1,8 +1,13 @@
-from olympia.hero.models import PrimaryHero
+import olympia.core.logger
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
+from olympia.hero.models import PrimaryHero
 
-@task()
+
+log = olympia.core.logger.getLogger('z.hero')
+
+
+@task
 @use_primary_db
 def sync_primary_hero_addon():
     invalid_heroes = []
@@ -12,9 +17,9 @@ def sync_primary_hero_addon():
         if promoted_addon is None:
             invalid_heroes.append(hero)
         else:
+            log.info(f'Syncing hero {hero} with promoted addon {hero.promoted_addon}')
             hero.addon = promoted_addon.addon
             hero.save()
 
     if len(invalid_heroes) > 0:
-        raise ValueError(f'{invalid_heroes} heroes have no addon or legacy promoted addon')
-
+        log.error(f'Invalid PrimaryHero records: {invalid_heroes}')
