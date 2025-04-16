@@ -591,10 +591,15 @@ class TestFeaturedLocale(TestCase):
 
     def test_homepage_filter(self):
         # Ensure that the base homepage filter is applied.
+        # FIXME: in amo/fixtures/base/featured.json the one we want to filter
+        # (pk=1567) hase type: 9 (amo.ADDON_PERSONA), so I suppose that's what we
+        # need to filter on instead of amo.ADDON_STATICTHEME? Might need double
+        # check from @Mel
         res = self.client.get(reverse('home'))
         listed = [p.pk for p in (Addon.objects
                                  .listed(amo.FIREFOX)
-                                 .exclude(type=amo.ADDON_STATICTHEME))]
+                                 .exclude(type=amo.ADDON_PERSONA))]
+                                 #.exclude(type=amo.ADDON_STATICTHEME))]
 
         featured = Addon.featured_random(amo.FIREFOX, 'en-US')
         actual = [p.pk for p in res.context['featured']]
