@@ -918,9 +918,9 @@ class NeedsHumanReview(ModelBase):
         ('BELONGS_TO_PROMOTED_GROUP', 14, 'Belongs to a promoted group'),
         ('CINDER_APPEAL_ESCALATION', 15, 'Escalated appeal via cinder'),
         (
-            'AMO_2ND_LEVEL_ESCALATION',
+            'SECOND_LEVEL_REQUEUE',
             16,
-            'Forwarded from 2nd level approval to reviewers',
+            'Re-enqueued in reviewer tools from 2nd level approval',
         ),
     )
     REASONS.add_subset(
@@ -930,7 +930,7 @@ class NeedsHumanReview(ModelBase):
             'ABUSE_ADDON_VIOLATION',
             'ADDON_REVIEW_APPEAL',
             'CINDER_APPEAL_ESCALATION',
-            'AMO_2ND_LEVEL_ESCALATION',
+            'SECOND_LEVEL_REQUEUE',
         ),
     )
 

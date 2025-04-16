@@ -26,10 +26,7 @@ from rest_framework.viewsets import GenericViewSet
 import olympia.core.logger
 from olympia import amo
 from olympia.abuse.models import AbuseReport, CinderPolicy, ContentDecision
-from olympia.abuse.tasks import (
-    handle_escalate_action,
-    report_decision_to_cinder_and_notify,
-)
+from olympia.abuse.tasks import report_decision_to_cinder_and_notify
 from olympia.access import acl
 from olympia.activity.models import ActivityLog, CommentLog
 from olympia.addons.models import (
@@ -1281,6 +1278,7 @@ def decision_review(request, decision_id):
                     action=DECISION_ACTIONS.AMO_APPROVE,
                     reviewer_user=request.user,
                     override_of=decision,
+                    cinder_job=decision.cinder_job,
                 )
                 new_decision.policies.set(
                     CinderPolicy.objects.filter(
@@ -1290,12 +1288,11 @@ def decision_review(request, decision_id):
                 new_decision.execute_action(release_hold=True)
                 new_decision.target_versions.set(decision.target_versions.all())
                 report_decision_to_cinder_and_notify.delay(decision_id=new_decision.id)
-            case 'forward':
-                # TODO: Refactor so we can push this through the normal ContentDecision
-                # execution flow.
-                decision.update(action_date=datetime.now())
-                for job in form.cinder_jobs_qs:
-                    handle_escalate_action.delay(job_pk=job.id, from_2nd_level=True)
+            case 'cancel':
+                decision.requeue_held_action(
+                    user=request.user, notes=data.get('comments', '')
+                )
+
         return redirect('reviewers.queue_decisions')
     return TemplateResponse(
         request,

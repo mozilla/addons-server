@@ -812,8 +812,7 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
         }
 
     def test_forward_from_reviewers_no_job(self):
-        self.decision.update(action=DECISION_ACTIONS.AMO_LEGAL_FORWARD)
-        self.decision.cinder_job.update(decision=None)
+        self.decision.update(action=DECISION_ACTIONS.AMO_LEGAL_FORWARD, cinder_job=None)
         action = ContentActionForwardToLegal(self.decision)
         responses.add(
             responses.POST,

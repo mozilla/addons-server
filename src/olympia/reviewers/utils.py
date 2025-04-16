@@ -1011,8 +1011,12 @@ class ReviewBase:
 
         decisions = []
 
-        def create_decision():
-            decision = ContentDecision.objects.create(**decision_kw)
+        def create_decision(job):
+            decision = ContentDecision.objects.create(
+                cinder_job=job,
+                override_of=job.final_decision if job else None,
+                **decision_kw,
+            )
             decision.policies.set(policies)
             if versions:
                 decision.target_versions.set(versions)
@@ -1022,13 +1026,9 @@ class ReviewBase:
         if cinder_jobs := self.data.get('cinder_jobs_to_resolve', ()):
             # with appeals and escalations there could be multiple jobs
             for job in cinder_jobs:
-                decision = create_decision()
-                if job.decision:
-                    decision.update(override_of=job.decision)
-                else:
-                    job.update(decision=decision)
+                decision = create_decision(job)
         else:
-            create_decision()
+            create_decision(None)
 
         log_entry = None
         if action_completed:
@@ -1222,13 +1222,11 @@ class ReviewBase:
                 action_date=datetime.now(),
                 notes=self.data.get('comments', ''),
                 reviewer_user=self.user,
+                cinder_job=job,
+                override_of=job.final_decision,
             )
             decision.policies.set(list(previous_policies))
             decision.target_versions.set(previous_versions)
-            if job.decision:
-                decision.update(override_of=job.decision)
-            else:
-                job.update(decision=decision)
             self.log_action(
                 amo.LOG.DENY_APPEAL_JOB,
                 versions=previous_versions,

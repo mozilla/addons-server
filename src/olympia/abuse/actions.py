@@ -529,7 +529,7 @@ class ContentActionForwardToReviewers(ContentAction):
     def process_action(self):
         from olympia.abuse.tasks import handle_escalate_action
 
-        handle_escalate_action.delay(job_pk=self.decision.originating_job.pk)
+        handle_escalate_action.delay(job_pk=self.decision.cinder_job.pk)
 
 
 class ContentActionForwardToLegal(ContentAction):
@@ -720,7 +720,7 @@ class ContentActionAlreadyRemoved(AnyTargetMixin, NoActionMixin, ContentAction):
     # no appeal template because no appeals possible
 
 
-class ContentActionNotImplemented(NoActionMixin, ContentAction):
+class ContentActionNotImplemented(AnyTargetMixin, NoActionMixin, ContentAction):
     pass
 
 

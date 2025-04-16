@@ -1235,7 +1235,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self.helper.handler.record_decision(amo.LOG.APPROVE_VERSION)
         decision = ContentDecision.objects.get()
         mock_report.assert_called_once_with(decision_id=decision.id)
-        assert not hasattr(decision, 'cinder_job')
+        assert not decision.cinder_job
 
         # With 'cinder_jobs_to_resolve', report_decision_to_cinder_and_notify the
         # decision created is linked to a job
@@ -3742,7 +3742,6 @@ class TestReviewHelper(TestReviewHelperBase):
                 )
                 assert job.decision == decision
 
-                job.update(decision=None)
                 decision.delete()
                 reviewer_log_mock.reset_mock()
                 content_action_log_mock.reset_mock()

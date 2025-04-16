@@ -26,6 +26,7 @@ DECISION_ACTIONS = APIChoicesWithDash(
     # Changing pending rejection date is not an available action for moderators
     # in cinder - it is only performed by AMO Reviewers.
     ('AMO_CHANGE_PENDING_REJECTION_DATE', 14, 'Pending rejection date changed'),
+    ('AMO_REQUEUE', 15, 'No action - internal requeue'),
 )
 DECISION_ACTIONS.add_subset(
     'APPEALABLE_BY_AUTHOR',

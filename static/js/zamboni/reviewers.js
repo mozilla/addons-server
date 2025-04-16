@@ -60,6 +60,19 @@ $(document).ready(function () {
     initVersionsADU();
   }
 
+  if ($('.review-held-action-form').length > 0) {
+    let comments_field = $('.review-held-action-form #id_comments');
+    let choices = $('.review-held-action-form #id_choice input');
+
+    choices.click(function () {
+      if ($('.review-held-action-form #id_choice input:checked').val() == 'cancel') {
+        comments_field.attr('disabled', false);
+      } else {
+        comments_field.attr('disabled', true);
+      }
+    })
+  }
+
   // Show add-on ID when icon is clicked
   if ($('#addon[data-id], #persona[data-id]').length) {
     $('#addon .icon').click(function () {

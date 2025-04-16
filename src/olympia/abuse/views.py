@@ -225,7 +225,7 @@ def process_webhook_payload_decision(payload):
             log.debug('ContentDecision instance not found for id %s', decision_id)
             raise CinderWebhookMissingIdError('No matching decision id found') from exc
 
-        cinder_job = decision.originating_job
+        cinder_job = decision.cinder_job
         if not cinder_job:
             log.debug('No job for ContentDecision with id %s', decision_id)
             raise CinderWebhookMissingIdError('No matching job found for decision id')
@@ -343,7 +343,7 @@ def appeal(request, *, abuse_report_id, decision_cinder_id, **kwargs):
         abuse_report = get_object_or_404(
             AbuseReport.objects.filter(cinder_job__isnull=False),
             id=abuse_report_id,
-            cinder_job=cinder_decision.originating_job,
+            cinder_job=cinder_decision.cinder_job,
         )
     else:
         abuse_report = None
@@ -458,7 +458,7 @@ def appeal(request, *, abuse_report_id, decision_cinder_id, **kwargs):
                 # error message in this case.
                 context_data['appealed_decision_already_made'] = True
                 context_data['appealed_decision_affirmed'] = (
-                    cinder_decision.appeal_job.decision.final.action
+                    cinder_decision.appeal_job.final_decision.action
                     == cinder_decision.action
                 )
 

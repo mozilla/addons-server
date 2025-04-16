@@ -1525,12 +1525,11 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
             self._setup_post_queue_move_test()
         )
         appeal = CinderJob.objects.create(job_id='an appeal job')
-        cinder_job.update(
-            decision=ContentDecision.objects.create(
-                action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
-                addon=cinder_instance.addon,
-                appeal_job=appeal,
-            )
+        ContentDecision.objects.create(
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            addon=cinder_instance.addon,
+            appeal_job=appeal,
+            cinder_job=cinder_job,
         )
         cinder_instance.post_queue_move(job=appeal)
         assert (
@@ -1546,7 +1545,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         self._check_post_queue_move_test(
             listed_version,
             unlisted_version,
-            NeedsHumanReview.REASONS.AMO_2ND_LEVEL_ESCALATION,
+            NeedsHumanReview.REASONS.SECOND_LEVEL_REQUEUE,
         )
 
     def test_post_queue_move_specific_version(self):
@@ -1615,7 +1614,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         self._check_post_queue_move_test(
             listed_version,
             unlisted_version,
-            NeedsHumanReview.REASONS.AMO_2ND_LEVEL_ESCALATION,
+            NeedsHumanReview.REASONS.SECOND_LEVEL_REQUEUE,
         )
 
     def test_post_queue_move_no_versions_to_flag(self):
