@@ -5612,7 +5612,7 @@ msgstr "საიტების ნაწილს ხარვეზები 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:683
 msgid "Find an interesting pic on the web? Use TinEye to discover its origins."
-msgstr ""
+msgstr "სურათმა მიიქცია თქვენი ყურადღება ინტერნეტში? გამოიყენეთ TinEye წყაროს დასადგენად."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:701
@@ -5622,7 +5622,7 @@ msgstr "შეინახეთ სურათები იოლად — �
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:704
 msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title & more."
-msgstr ""
+msgstr "ისარგებლეთ ჩანართების უკიდეგანო მართვით — გაორმაგებულების დახურვა, ფანჯრების გაერთიანება, ჩანართის სათაურის ასლის აღება და სხვ."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:722
@@ -5662,12 +5662,12 @@ msgstr "შეინახეთ ვებგვერდი სრულად 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:854
 msgid "Edit a web page before printing. Remove ads or any unwanted content."
-msgstr ""
+msgstr "ვებგვერდის ჩასწორება ამობეჭდვამდე. მოაცილეთ რეკლამები ან ნებისმიერი არასასურველი შიგთავსი."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:863
 msgid "Advanced reader for aggregating all of your RSS/Atom/RDF sources."
-msgstr ""
+msgstr "მძლავრი წამკითხველი ერთად თავმოყრილი RSS/Atom/RDF-მასალების გასაცნობად."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:881
