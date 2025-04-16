@@ -885,17 +885,32 @@ class NeedsHumanReview(ModelBase):
     review."""
 
     REASONS = ChoicesWithNHRAnnotationPrefix(
-        ('UNKNOWN', 0, 'Unknown'),
-        ('SCANNER_ACTION', 1, 'Hit scanner rule'),
+        ('BELONGS_TO_PROMOTED_GROUP', 14, 'Belongs to a promoted group'),
         ('ADDED_TO_PROMOTED_GROUP', 2, 'Was added to a promoted group'),
-        ('HOTNESS_THRESHOLD', 3, 'Over growth threshold for usage tier'),
-        ('INHERITANCE', 4, 'Previous version in channel had needs human review set'),
+        ('DEVELOPER_REPLY', 6, 'Developer replied'),
+        ('CINDER_ESCALATION', 10, 'Escalated for an abuse report, via cinder'),
+        ('ABUSE_ADDON_VIOLATION', 11, 'Reported for abuse within the add-on'),
+        (
+            'ADDON_REVIEW_APPEAL',
+            12,
+            "Appeal of a reviewer's decision about a policy violation",
+        ),
+        ('CINDER_APPEAL_ESCALATION', 15, 'Escalated appeal via cinder'),
+        (
+            'SECOND_LEVEL_REQUEUE',
+            16,
+            'Re-enqueued in reviewer tools from 2nd level approval',
+        ),
+        ('ABUSE_REPORTS_THRESHOLD', 9, 'Over abuse reports threshold for usage tier'),
         (
             'PENDING_REJECTION_SOURCES_PROVIDED',
             5,
             'Sources provided while pending rejection',
         ),
-        ('DEVELOPER_REPLY', 6, 'Developer replied'),
+        ('AUTO_APPROVAL_DISABLED', 13, 'Has auto-approval disabled'),
+        ('SCANNER_ACTION', 1, 'Hit scanner rule'),
+        ('HOTNESS_THRESHOLD', 3, 'Over growth threshold for usage tier'),
+        ('INHERITANCE', 4, 'Previous version in channel had needs human review set'),
         (
             'MANUALLY_SET_BY_REVIEWER',
             7,
@@ -906,22 +921,7 @@ class NeedsHumanReview(ModelBase):
             8,
             'Auto-approved but still had an approval delay set in the past',
         ),
-        ('ABUSE_REPORTS_THRESHOLD', 9, 'Over abuse reports threshold for usage tier'),
-        ('CINDER_ESCALATION', 10, 'Escalated for an abuse report, via cinder'),
-        ('ABUSE_ADDON_VIOLATION', 11, 'Reported for abuse within the add-on'),
-        (
-            'ADDON_REVIEW_APPEAL',
-            12,
-            "Appeal of a reviewer's decision about a policy violation",
-        ),
-        ('AUTO_APPROVAL_DISABLED', 13, 'Has auto-approval disabled'),
-        ('BELONGS_TO_PROMOTED_GROUP', 14, 'Belongs to a promoted group'),
-        ('CINDER_APPEAL_ESCALATION', 15, 'Escalated appeal via cinder'),
-        (
-            'SECOND_LEVEL_REQUEUE',
-            16,
-            'Re-enqueued in reviewer tools from 2nd level approval',
-        ),
+        ('UNKNOWN', 0, 'Unknown'),
     )
     REASONS.add_subset(
         'ABUSE_OR_APPEAL_RELATED',
