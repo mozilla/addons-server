@@ -8,6 +8,7 @@ from django.utils.translation import gettext
 
 import colorgram
 from elasticsearch_dsl import Q, query
+from olympia.amo.tests import PromotedGroup
 from rest_framework import serializers
 from rest_framework.filters import BaseFilterBackend
 from waffle import switch_is_active
@@ -17,8 +18,7 @@ from olympia.api.utils import is_gate_active
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.constants.promoted import (
     BADGED_API_NAME,
-    PROMOTED_API_NAME_TO_IDS,
-    PROMOTED_GROUPS,
+    PROMOTED_GROUP_CHOICES,
 )
 from olympia.versions.compare import version_int
 
@@ -392,10 +392,11 @@ class AddonFeaturedQueryParam(AddonQueryParam):
     es_field = 'is_recommended'
 
 
+promoted_api_name_to_ids = {promotion.api_name: promotion.group_id for promotion in PromotedGroup.objects.all()}
 class AddonPromotedQueryParam(AddonQueryMultiParam):
     query_param = 'promoted'
-    reverse_dict = PROMOTED_API_NAME_TO_IDS
-    valid_values = PROMOTED_API_NAME_TO_IDS.values()
+    reverse_dict = promoted_api_name_to_ids
+    valid_values = promoted_api_name_to_ids.values()
 
     def __init__(self, request, query_data=None):
         super().__init__(request)
@@ -881,7 +882,7 @@ class SearchQueryFilter(BaseFilterBackend):
             ),
         ]
         ranking_bump_groups = amo.utils.sorted_groupby(
-            PROMOTED_GROUPS, lambda g: g.search_ranking_bump, reverse=True
+            PROMOTED_GROUP_CHOICES, lambda g: g.search_ranking_bump, reverse=True
         )
         for bump, promo_ids in ranking_bump_groups:
             if not bump:

@@ -15,8 +15,8 @@ from olympia.addons.models import Addon
 from olympia.amo.models import LongNameIndex, ModelBase
 from olympia.amo.reverse import resolve_with_trailing_slash, reverse
 from olympia.amo.utils import SafeStorage
-from olympia.constants.promoted import PROMOTED_GROUPS
-from olympia.promoted.models import PromotedAddon
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
+from olympia.promoted.models import PromotedGroup
 
 
 GRADIENT_START_COLOR = ('#20123A', 'color-ink-80')
@@ -175,10 +175,6 @@ class PrimaryHero(ModelBase):
         'HTML or special tags. Will be translated.',
     )
     enabled = models.BooleanField(db_index=True, default=False)
-    # TODO: promotedaddon; primaryhero refactor (Write PR)
-    promoted_addon = models.OneToOneField(
-        PromotedAddon, on_delete=models.CASCADE, null=True
-    )
     addon = models.OneToOneField(Addon, on_delete=models.CASCADE, null=False)
 
     is_external = models.BooleanField(default=False)
@@ -217,9 +213,9 @@ class PrimaryHero(ModelBase):
                 )
                 if not can_add_to_primary:
                     can_hero_groups = ', '.join(
-                        str(promo.name)
-                        for promo in PROMOTED_GROUPS
-                        if promo.can_primary_hero
+                        str(group.name)
+                        for group in PROMOTED_GROUP_CHOICES
+                        if PromotedGroup.objects.get(group_id=group).can_primary_hero
                     )
                     error_dict['enabled'] = ValidationError(
                         'Only add-ons that are %s can be enabled for '

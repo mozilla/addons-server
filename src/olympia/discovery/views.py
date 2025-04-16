@@ -71,7 +71,7 @@ class DiscoveryItemViewSet(ListModelMixin, GenericViewSet):
         if self.request.query_params.get('recommended', False) == 'true':
             qs = qs.filter(
                 **{
-                    'addon__promotedaddonpromotion__promoted_group__group_id': (
+                    'addon__promotedaddon__promoted_group__group_id': (
                         PROMOTED_GROUP_CHOICES.RECOMMENDED
                     ),
                     'addon___current_version__promoted_versions__promoted_group__group_id': PROMOTED_GROUP_CHOICES.RECOMMENDED,  # noqa

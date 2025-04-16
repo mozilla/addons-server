@@ -2,16 +2,16 @@
 
 from django.db import migrations, models
 
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES, PROMOTED_GROUPS_BY_ID
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 
 def create_partner_promoted_group(apps, schema_editor):
     PromotedGroup = apps.get_model('promoted', 'PromotedGroup')
-    partner = PROMOTED_GROUPS_BY_ID[PROMOTED_GROUP_CHOICES.PARTNER]
+    api_name, group_id, name = PROMOTED_GROUP_CHOICES.for_api_value(PROMOTED_GROUP_CHOICES.PARTNER.api_value)
     PromotedGroup.objects.update_or_create(
-        group_id=partner.id,
+        group_id=group_id,
         defaults={
-            'name': partner.name,
-            'api_name': partner.api_name,
+            'name': name,
+            'api_name': api_name,
             'high_profile': True,
             'active': True,
             'is_public': False

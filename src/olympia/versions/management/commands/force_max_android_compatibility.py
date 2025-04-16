@@ -5,8 +5,9 @@ from django.db.transaction import atomic
 import olympia.core.logger
 from olympia import amo
 from olympia.applications.models import AppVersion
-from olympia.constants.promoted import PROMOTED_GROUPS
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.files.models import File
+from olympia.promoted.models import PromotedGroup
 from olympia.versions.models import ApplicationsVersions
 
 
@@ -37,7 +38,7 @@ class Command(BaseCommand):
             application=amo.ANDROID.id, version=amo.MAX_VERSION_FENNEC
         )
         promoted_groups_ids = [
-            p.id for p in PROMOTED_GROUPS if p.can_be_compatible_with_all_fenix_versions
+            group for group in PROMOTED_GROUP_CHOICES if PromotedGroup.objects.get(group_id=group).can_be_compatible_with_all_fenix_versions
         ]
         qs = (
             # We only care about listed extensions already marked as compatible
@@ -46,22 +47,22 @@ class Command(BaseCommand):
             .filter(version__addon__type=amo.ADDON_EXTENSION)
             .filter(version__channel=amo.CHANNEL_LISTED)
             .annotate(
-                promoted_count=Count('version__addon__promotedaddonpromotion')
+                promoted_count=Count('version__addon__promotedaddon')
             )  # force group by
             .filter(
                 # They need to be either:
                 Q(
-                    version__addon__promotedaddonpromotion__isnull=True
+                    version__addon__promotedaddon__isnull=True
                 )  # Not promoted at all
                 | ~Q(
-                    version__addon__promotedaddonpromotion__promoted_group__group_id__in=promoted_groups_ids
+                    version__addon__promotedaddon__promoted_group__group_id__in=promoted_groups_ids
                 )  # Promoted, but not for line / recommended
                 | Q(
                     Q(
-                        version__addon__promotedaddonpromotion__application_id=amo.FIREFOX.id
+                        version__addon__promotedaddon__application_id=amo.FIREFOX.id
                     )
                     & ~Q(
-                        version__addon__promotedaddonpromotion__application_id=amo.ANDROID.id
+                        version__addon__promotedaddon__application_id=amo.ANDROID.id
                     )
                 )  # Promoted, but for Firefox only (not Android / not both)
             )

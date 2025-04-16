@@ -13,7 +13,7 @@ from olympia.hero.models import (
     SecondaryHero,
     SecondaryHeroModule,
 )
-from olympia.promoted.models import PromotedAddonPromotion, PromotedGroup
+from olympia.promoted.models import PromotedAddon, PromotedGroup
 
 
 class TestPrimaryHero(TestCase):
@@ -46,7 +46,7 @@ class TestPrimaryHero(TestCase):
         promoted_group = PromotedGroup.objects.get(
             group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
         )
-        promotion = PromotedAddonPromotion.objects.create(
+        promotion = PromotedAddon.objects.create(
             addon=addon, promoted_group=promoted_group, application_id=amo.FIREFOX.id
         )
         ph = PrimaryHero.objects.create(
@@ -120,7 +120,7 @@ class TestPrimaryHero(TestCase):
         recommended_group = PromotedGroup.objects.get(
             group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
         )
-        PromotedAddonPromotion.objects.create(
+        PromotedAddon.objects.create(
             addon=addon, promoted_group=recommended_group, application_id=amo.FIREFOX.id
         )
         ph = PrimaryHero.objects.create(addon=addon)
@@ -148,7 +148,7 @@ class TestPrimaryHero(TestCase):
         promoted_group = PromotedGroup.objects.get(
             group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
         )
-        PromotedAddonPromotion.objects.create(
+        PromotedAddon.objects.create(
             addon=addon, promoted_group=promoted_group, application_id=amo.FIREFOX.id
         )
         hero = PrimaryHero.objects.create(

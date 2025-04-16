@@ -21,7 +21,7 @@ from olympia.amo.utils import id_to_path
 from olympia.bandwagon.models import Collection
 from olympia.constants.categories import CATEGORIES
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
-from olympia.promoted.models import PromotedAddonPromotion
+from olympia.promoted.models import PromotedAddon
 from olympia.tags.models import AddonTag, Tag
 from olympia.users.models import UserProfile
 
@@ -133,7 +133,7 @@ class Sitemap(DjangoSitemap):
 
 
 def get_android_promoted_addons():
-    return PromotedAddonPromotion.objects.filter(
+    return PromotedAddon.objects.filter(
         Q(application_id=amo.ANDROID.id) | Q(application_id__isnull=True),
         promoted_group__group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
         addon___current_version__promoted_versions__application_id=(amo.ANDROID.id),

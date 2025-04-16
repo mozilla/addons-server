@@ -5,7 +5,7 @@ from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.decorators import use_primary_db
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
-from olympia.promoted.models import PromotedAddonPromotion, PromotedGroup
+from olympia.promoted.models import PromotedAddon, PromotedGroup
 from olympia.users.models import UserProfile
 
 
@@ -23,7 +23,7 @@ class Command(BaseCommand):
         for addon in addons:
             self.stdout.write(f'Promoting {addon.slug}')
             group = PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.LINE)
-            PromotedAddonPromotion.objects.get_or_create(
+            PromotedAddon.objects.get_or_create(
                 addon=addon,
                 application_id=amo.FIREFOX.id,
                 promoted_group=group,

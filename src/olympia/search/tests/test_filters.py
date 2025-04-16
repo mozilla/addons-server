@@ -9,14 +9,13 @@ from django.utils.http import urlsafe_base64_encode
 
 from elasticsearch_dsl import Search
 from freezegun import freeze_time
+from olympia.promoted.models import PromotedGroup
 from rest_framework import serializers
 
 from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.constants.categories import CATEGORIES
 from olympia.constants.promoted import (
-    BADGED_GROUPS,
-    PROMOTED_API_NAME_TO_IDS,
     PROMOTED_GROUP_CHOICES,
 )
 from olympia.search.filters import (
@@ -697,6 +696,7 @@ class TestSearchParameterFilter(FilterTestsBase):
         } in filter_
 
     def test_return_to_amo(self):
+        badged_groups = PromotedGroup.badged_groups.values_list('group_id', flat=True)
         self.create_switch('return-to-amo', active=True)
         self.create_switch('return-to-amo-for-all-listed', active=False)
         param = 'rta:{}'.format(urlsafe_base64_encode(b'@foobar'))
@@ -706,10 +706,11 @@ class TestSearchParameterFilter(FilterTestsBase):
         filter_ = qs['query']['bool']['filter']
         assert {'terms': {'guid': ['@foobar']}} in filter_
         assert {
-            'terms': {'promoted.group_id': [group.id for group in BADGED_GROUPS]}
+            'terms': {'promoted.group_id': badged_groups}
         } in filter_
 
     def test_return_to_amo_for_all_listed(self):
+        badged_groups = PromotedGroup.badged_groups.values_list('group_id', flat=True)
         self.create_switch('return-to-amo', active=True)
         self.create_switch('return-to-amo-for-all-listed', active=True)
         param = 'rta:{}'.format(urlsafe_base64_encode(b'@foobar'))
@@ -719,7 +720,7 @@ class TestSearchParameterFilter(FilterTestsBase):
         filter_ = qs['query']['bool']['filter']
         assert {'terms': {'guid': ['@foobar']}} in filter_
         assert {
-            'terms': {'promoted.group_id': [group.id for group in BADGED_GROUPS]}
+            'terms': {'promoted.group_id': badged_groups}
         } not in filter_
 
     def test_search_by_app_invalid(self):
@@ -939,14 +940,14 @@ class TestSearchParameterFilter(FilterTestsBase):
             self._filter(data={'promoted': 'foo'})
         assert context.exception.detail == ['Invalid "promoted" parameter.']
 
-        for api_name, ids in PROMOTED_API_NAME_TO_IDS.items():
-            qs = self._filter(data={'promoted': api_name})
+        for group in PromotedGroup.objects.all():
+            qs = self._filter(data={'promoted': group.api_name})
             filter_ = qs['query']['bool']['filter']
-            assert [{'terms': {'promoted.group_id': ids}}] == filter_
+            assert [{'terms': {'promoted.group_id': group.group_id}}] == filter_
 
-            qs = self._filter(data={'promoted': api_name, 'app': 'firefox'})
+            qs = self._filter(data={'promoted': group.api_name, 'app': 'firefox'})
             filter_ = qs['query']['bool']['filter']
-            assert {'terms': {'promoted.group_id': ids}} in filter_
+            assert {'terms': {'promoted.group_id': group.group_id}} in filter_
             assert {'term': {'promoted.approved_for_apps': amo.FIREFOX.id}} in filter_
 
         # test multiple param values

@@ -36,7 +36,6 @@ from olympia.blocklist.models import Block, BlocklistSubmission
 from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.promoted import (
     PROMOTED_GROUP_CHOICES,
-    PROMOTED_GROUPS_BY_ID,
 )
 from olympia.files.models import File
 from olympia.lib.crypto.signing import SigningError
@@ -45,8 +44,9 @@ from olympia.lib.crypto.tests.test_signing import (
     _get_signature_details,
 )
 from olympia.promoted.models import (
-    PromotedAddonPromotion,
+    PromotedAddon,
     PromotedAddonVersion,
+    PromotedGroup,
 )
 from olympia.reviewers.models import (
     AutoApprovalSummary,
@@ -543,7 +543,7 @@ class TestReviewHelper(TestReviewHelperBase):
         )
 
         # only for groups that are admin_review though
-        self.addon.promotedaddonpromotion.all().delete()
+        self.addon.promotedaddon.all().delete()
         self.make_addon_promoted(
             self.addon, PROMOTED_GROUP_CHOICES.NOTABLE, approve_version=True
         )
@@ -1971,8 +1971,8 @@ class TestReviewHelper(TestReviewHelperBase):
         self.addon.reload()
         assert PROMOTED_GROUP_CHOICES.NOTABLE in self.addon.promoted_groups().group_id
         assert self.review_version.reload().approved_for_groups == [
-            (PROMOTED_GROUPS_BY_ID.get(PROMOTED_GROUP_CHOICES.NOTABLE), amo.FIREFOX),
-            (PROMOTED_GROUPS_BY_ID.get(PROMOTED_GROUP_CHOICES.NOTABLE), amo.ANDROID),
+            (PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.NOTABLE), amo.FIREFOX),
+            (PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.NOTABLE), amo.ANDROID),
         ]
 
     def test_addon_with_version_need_human_review_confirm_auto_approval(self):
@@ -3209,7 +3209,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert not self.addon.promoted_groups()
 
         # change to other type of promoted; same should happen
-        PromotedAddonPromotion.objects.filter(addon=self.addon).delete()
+        PromotedAddon.objects.filter(addon=self.addon).delete()
         self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.LINE)
         with self.assertRaises(AssertionError):
             self.test_nomination_to_public()
@@ -3219,7 +3219,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert not self.addon.promoted_groups()
 
         # except for a group that doesn't require prereview
-        PromotedAddonPromotion.objects.filter(addon=self.addon).delete()
+        PromotedAddon.objects.filter(addon=self.addon).delete()
         self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.STRATEGIC)
         assert PROMOTED_GROUP_CHOICES.STRATEGIC in self.addon.promoted_groups().group_id
         self.test_nomination_to_public()

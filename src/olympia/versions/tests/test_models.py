@@ -27,7 +27,6 @@ from olympia.applications.models import AppVersion
 from olympia.blocklist.models import Block, BlockVersion
 from olympia.constants.promoted import (
     PROMOTED_GROUP_CHOICES,
-    PROMOTED_GROUPS_BY_ID,
 )
 from olympia.constants.scanners import CUSTOMS, MAD, YARA
 from olympia.files.models import File
@@ -1435,7 +1434,7 @@ class TestVersion(AMOPaths, TestCase):
         assert not addon.current_version.can_be_disabled_and_deleted()
 
         # STRATEGIC isn't pre-reviewd or badged, so it's okay though
-        addon.promotedaddonpromotion.all().delete()
+        addon.promotedaddon.all().delete()
         self.make_addon_promoted(
             addon, PROMOTED_GROUP_CHOICES.STRATEGIC, approve_version=True
         )
@@ -1623,9 +1622,9 @@ class TestVersion(AMOPaths, TestCase):
 
         del version.approved_for_groups
         assert version.approved_for_groups == [
-            (PROMOTED_GROUPS_BY_ID.get(PROMOTED_GROUP_CHOICES.LINE), amo.FIREFOX),
+            (PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.LINE), amo.FIREFOX),
             (
-                PROMOTED_GROUPS_BY_ID.get(PROMOTED_GROUP_CHOICES.RECOMMENDED),
+                PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED),
                 amo.ANDROID,
             ),
         ]
@@ -1683,11 +1682,11 @@ class TestVersion(AMOPaths, TestCase):
             assert sorted(versions[1].approved_for_groups, key=_sort) == sorted(
                 [
                     (
-                        PROMOTED_GROUPS_BY_ID.get(PROMOTED_GROUP_CHOICES.RECOMMENDED),
+                        PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED),
                         amo.FIREFOX,
                     ),
                     (
-                        PROMOTED_GROUPS_BY_ID.get(PROMOTED_GROUP_CHOICES.LINE),
+                        PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.LINE),
                         amo.FIREFOX,
                     ),
                 ],
@@ -1696,11 +1695,11 @@ class TestVersion(AMOPaths, TestCase):
             assert sorted(versions[0].approved_for_groups, key=_sort) == sorted(
                 [
                     (
-                        PROMOTED_GROUPS_BY_ID.get(PROMOTED_GROUP_CHOICES.RECOMMENDED),
+                        PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED),
                         amo.FIREFOX,
                     ),
                     (
-                        PROMOTED_GROUPS_BY_ID.get(PROMOTED_GROUP_CHOICES.RECOMMENDED),
+                        PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED),
                         amo.ANDROID,
                     ),
                 ],

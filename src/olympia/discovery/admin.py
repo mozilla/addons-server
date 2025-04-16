@@ -22,7 +22,7 @@ from olympia.hero.admin import (
 )
 from olympia.hero.models import PrimaryHeroImage, SecondaryHero
 from olympia.promoted.admin import (
-    PromotedAddonPromotionAdminInline,
+    PromotedAddonAdminInline,
     PromotedAddonVersionInline,
     PromotedGroupAdmin,
 )
@@ -148,33 +148,12 @@ class DiscoveryItemAdmin(AMOModelAdmin):
                 translations.append(conditional_escape(self.build_preview(obj, locale)))
         return mark_safe(''.join(translations))
 
-
 class PromotedAddon(promoted.models.PromotedAddon):
     """Just a proxy class to have all the hero related objects in one
     place under Discovery in django admin."""
 
     class Meta:
         proxy = True
-
-
-class PromotedAddonPromotion(promoted.models.PromotedAddonPromotion):
-    """Just a proxy class to have all the hero related objects in one
-    place under Discovery in django admin."""
-
-    class Meta:
-        proxy = True
-
-
-@receiver(
-    [models.signals.post_save, models.signals.post_delete],
-    sender=PromotedAddon,
-    dispatch_uid='addons.sync_promoted.promoted_addon_proxy',
-)
-def proxy_promoted_addon_to_promoted_addon_promotion(sender, instance, signal, **kw):
-    from olympia.promoted.signals import promoted_addon_to_promoted_addon_promotion
-
-    promoted_addon_to_promoted_addon_promotion(signal=signal, instance=instance)
-
 
 class PrimaryHeroImageUpload(PrimaryHeroImage):
     """Just a proxy class to have all the hero related objects in one
@@ -216,7 +195,7 @@ DISCOVERY_ADDON_FIELDS = ['__str__', 'addon', 'guid', 'has_promotions']
 class DiscoveryAddonAdmin(AMOModelAdmin):
     model = DiscoveryAddon
     inlines = [
-        PromotedAddonPromotionAdminInline,
+        PromotedAddonAdminInline,
         PromotedAddonVersionInline,
         PrimaryHeroInline,
     ]

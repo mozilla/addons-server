@@ -48,7 +48,7 @@ from olympia.devhub.models import RssKey
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadMixin
 from olympia.files.utils import parse_addon
-from olympia.promoted.models import PromotedAddonPromotion, PromotedGroup
+from olympia.promoted.models import PromotedAddon, PromotedGroup
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.reviewers.models import NeedsHumanReview
 from olympia.translations.models import (
@@ -1662,7 +1662,7 @@ class TestAddonModels(TestCase):
         # if the group for one approved group changes, its
         # approval for the current version isn't valid,
         # but other groups remain valid
-        PromotedAddonPromotion.objects.filter(
+        PromotedAddon.objects.filter(
             addon=addon, promoted_group__group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
         ).update(
             promoted_group=PromotedGroup.objects.get(
@@ -1716,7 +1716,7 @@ class TestAddonModels(TestCase):
         assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon.promoted_groups().group_id
         assert PROMOTED_GROUP_CHOICES.LINE in addon.promoted_groups().group_id
         # update to android only
-        PromotedAddonPromotion.objects.filter(
+        PromotedAddon.objects.filter(
             addon=addon,
             promoted_group__group_id=PROMOTED_GROUP_CHOICES.LINE,
             application_id=amo.FIREFOX.id,
@@ -1772,7 +1772,7 @@ class TestAddonModels(TestCase):
         )
         # If the group changes the approval for that group
         # in the current version isn't valid.
-        PromotedAddonPromotion.objects.filter(
+        PromotedAddon.objects.filter(
             addon=addon, promoted_group__group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
         ).update(
             promoted_group=PromotedGroup.objects.get(
@@ -1897,7 +1897,7 @@ class TestAddonModels(TestCase):
         del addon.publicly_promoted_groups
         assert addon.can_be_compatible_with_all_fenix_versions
 
-        addon.promotedaddonpromotion.all().delete()
+        addon.promotedaddon.all().delete()
         self.make_addon_promoted(
             addon=addon, group_id=PROMOTED_GROUP_CHOICES.LINE, apps=[amo.FIREFOX]
         )

@@ -43,9 +43,6 @@ from olympia.amo.utils import (
 from olympia.applications.models import AppVersion
 from olympia.constants.applications import APP_IDS
 from olympia.constants.licenses import CC_LICENSES, FORM_LICENSES, LICENSES_BY_BUILTIN
-from olympia.constants.promoted import (
-    PROMOTED_GROUPS_BY_ID,
-)
 from olympia.constants.scanners import MAD
 from olympia.files import utils
 from olympia.files.models import File, cleanup_file
@@ -839,6 +836,7 @@ class Version(OnChangeMixin, ModelBase):
 
     @classmethod
     def transformer_promoted(cls, versions):
+        from olympia.promoted.models import PromotedGroup
         """Attach the promoted approvals to the versions."""
         if not versions:
             return
@@ -861,11 +859,11 @@ class Version(OnChangeMixin, ModelBase):
             v_id = version.id
             groups = [
                 (
-                    PROMOTED_GROUPS_BY_ID.get(approval.promoted_group__group_id),
+                    PromotedGroup.objects.get(group_id=approval.promoted_group__group_id),
                     APP_IDS.get(approval.application_id),
                 )
                 for approval in approval_dict.get(v_id, [])
-                if approval.promoted_group__group_id in PROMOTED_GROUPS_BY_ID
+                if approval.promoted_group__group_id in PromotedGroup.objects.all().values_list('group_id', flat=True)
             ]
             version.approved_for_groups = groups
 
@@ -1158,14 +1156,15 @@ class Version(OnChangeMixin, ModelBase):
 
     @cached_property
     def approved_for_groups(self):
+        from olympia.promoted.models import PromotedGroup
         approvals = list(self.promoted_versions.all())
         return [
             (
-                PROMOTED_GROUPS_BY_ID.get(approval.promoted_group.group_id),
+                PromotedGroup.objects.get(group_id=approval.promoted_group.group_id),
                 approval.application,
             )
             for approval in approvals
-            if approval.promoted_group.group_id in PROMOTED_GROUPS_BY_ID
+            if approval.promoted_group.group_id in PromotedGroup.objects.all().values_list('group_id', flat=True)
         ]
 
     def get_review_status_for_auto_approval_and_delay_reject(self):

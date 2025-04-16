@@ -65,7 +65,7 @@ from olympia.constants.promoted import (
 from olympia.files.models import WebextPermission
 from olympia.promoted.models import (
     PromotedAddon,
-    PromotedAddonPromotion,
+    PromotedAddon,
     PromotedAddonVersion,
     PromotedGroup,
 )
@@ -559,7 +559,7 @@ class AddonSerializerOutputTestMixin:
         assert result['promoted'][0]['apps'] == [amo.FIREFOX.short]
 
         # Test multiple promotions.
-        PromotedAddonPromotion.objects.create(
+        PromotedAddon.objects.create(
             addon=self.addon,
             promoted_group=PromotedGroup.objects.get(
                 group_id=PROMOTED_GROUP_CHOICES.LINE
@@ -587,7 +587,7 @@ class AddonSerializerOutputTestMixin:
             )
 
         # With a recommended theme.
-        PromotedAddonPromotion.objects.filter(addon=self.addon).delete()
+        PromotedAddon.objects.filter(addon=self.addon).delete()
         self.addon.update(type=amo.ADDON_STATICTHEME)
         featured_collection, _ = Collection.objects.get_or_create(
             id=settings.COLLECTION_FEATURED_THEMES_ID
@@ -603,7 +603,7 @@ class AddonSerializerOutputTestMixin:
         group = PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED)
         self.addon = addon_factory()
 
-        PromotedAddonPromotion.objects.create(
+        PromotedAddon.objects.create(
             addon=self.addon,
             application_id=amo.FIREFOX.id,
             promoted_group=group,

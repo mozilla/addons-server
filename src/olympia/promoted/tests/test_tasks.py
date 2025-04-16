@@ -2,13 +2,13 @@ from datetime import datetime
 
 from django.conf import settings
 
+from olympia.promoted.models import PromotedAddon, PromotedGroup
 import pytest
 from freezegun import freeze_time
 
 from olympia import amo
 from olympia.amo.tests import addon_factory, user_factory, version_factory
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
-from olympia.promoted.models import PromotedAddon
 from olympia.reviewers.models import UsageTier
 from olympia.versions.utils import get_staggered_review_due_date_generator
 from olympia.zadmin.models import set_config
@@ -69,13 +69,10 @@ def test_add_high_adu_extensions_to_notable():
         average_daily_users=lower_adu_threshold + 1, file_kw={'is_signed': True}
     )
     PromotedAddon.objects.create(
-        addon=already_promoted, group_id=PROMOTED_GROUP_CHOICES.LINE
+        addon=already_promoted, promoted_group=PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.LINE)
     )
     promoted_record_exists = addon_factory(
         average_daily_users=lower_adu_threshold + 1, file_kw={'is_signed': True}
-    )
-    PromotedAddon.objects.create(
-        addon=promoted_record_exists, group_id=PROMOTED_GROUP_CHOICES.NOT_PROMOTED
     )
     unlisted_only_extension = addon_factory(
         average_daily_users=lower_adu_threshold + 1,

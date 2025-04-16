@@ -8,7 +8,6 @@ from olympia import amo
 from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.constants.promoted import (
     PROMOTED_GROUP_CHOICES,
-    PROMOTED_GROUPS,
 )
 from olympia.reviewers.cron import record_reviewer_queues_counts
 from olympia.reviewers.models import NeedsHumanReview, QueueCount
@@ -22,7 +21,7 @@ class TestQueueCount(TestCase):
     def _test_expected_count(self, date):
         # We are recording every queue, plus drilling down in every promoted
         # group, minus the special not promoted group.
-        expected_count = len(reviewer_tables_registry) + len(PROMOTED_GROUPS) - 1
+        expected_count = len(reviewer_tables_registry) + len(PROMOTED_GROUP_CHOICES) - 1
         assert QueueCount.objects.filter(date=date).count() == expected_count
 
     def test_empty(self):

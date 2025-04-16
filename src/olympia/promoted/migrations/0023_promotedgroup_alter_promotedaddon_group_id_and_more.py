@@ -6,30 +6,17 @@ import django.db.models.deletion
 import django.utils.timezone
 import olympia.amo.models
 
-from olympia.constants.promoted import PROMOTED_GROUPS_BY_ID
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 
 def create_promoted_groups(apps, schema_editor):
     PromotedGroup = apps.get_model('promoted', 'PromotedGroup')
-    # Import legacy promoted groups from constants
-
-    # Loop over all groups (active and inactive) from PROMOTED_GROUPS_BY_ID
-    for group in PROMOTED_GROUPS_BY_ID.values():
+    # Loop over all groups (active and inactive) from PROMOTED_GROUPS
+    for group in PROMOTED_GROUP_CHOICES.entries:
+        api_name, group_id, name = group
         PromotedGroup.objects.create(
-            group_id=group.id,
-            name=group.name,
-            api_name=group.api_name,
-            search_ranking_bump=group.search_ranking_bump,
-            listed_pre_review=group.listed_pre_review,
-            unlisted_pre_review=group.unlisted_pre_review,
-            admin_review=group.admin_review,
-            badged=group.badged,
-            autograph_signing_states=group.autograph_signing_states,
-            can_primary_hero=group.can_primary_hero,
-            immediate_approval=group.immediate_approval,
-            flag_for_human_review=group.flag_for_human_review,
-            can_be_compatible_with_all_fenix_versions=group.can_be_compatible_with_all_fenix_versions,
-            high_profile=group.high_profile,
-            high_profile_rating=group.high_profile_rating,
+            group_id=group_id,
+            name=name,
+            api_name=api_name,
             # We only include actively promoted groups so we can hardcode to true
             active=True,
         )

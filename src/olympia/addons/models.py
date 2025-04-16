@@ -1600,7 +1600,7 @@ class Addon(OnChangeMixin, ModelBase):
         from olympia.addons.serializers import APP_IDS
         from olympia.constants.applications import APP_USAGE
 
-        qs = self.promotedaddonpromotion
+        qs = self.promotedaddon
         if promoted_group:
             qs = qs.filter(promoted_group=promoted_group)
         apps = qs.values_list('application_id', flat=True)
@@ -1636,7 +1636,7 @@ class Addon(OnChangeMixin, ModelBase):
         """Create PromotedAddonVersion for current applications in the given
         promoted groups. If none are given, approve all promotions."""
         version = version or self.current_version
-        promotions = self.promotedaddonpromotion
+        promotions = self.promotedaddon
         if promoted_groups:
             promotions = promotions.filter(promoted_group__in=promoted_groups)
 

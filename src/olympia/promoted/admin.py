@@ -9,7 +9,7 @@ from olympia.hero.models import PrimaryHero
 from olympia.versions.models import Version
 
 from .forms import AdminBasePromotedApprovalFormSet
-from .models import PromotedAddonPromotion, PromotedAddonVersion, PromotedGroup
+from .models import PromotedAddon, PromotedAddonVersion, PromotedGroup
 
 
 class PromotedAddonVersionInlineChecks(admin.checks.InlineModelAdminChecks):
@@ -57,8 +57,8 @@ class PromotedAddonVersionInline(admin.TabularInline):
         return qs
 
 
-class PromotedAddonPromotionAdminInline(admin.TabularInline):
-    model = PromotedAddonPromotion
+class PromotedAddonAdminInline(admin.TabularInline):
+    model = PromotedAddon
     extra = 0
     view_on_site = False
     raw_id_fields = ('addon',)
