@@ -5621,7 +5621,7 @@ msgstr "Egyes webhelyek nehezen tudnak videókat lejátszani Androidon. Itt egy 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:683
 msgid "Find an interesting pic on the web? Use TinEye to discover its origins."
-msgstr ""
+msgstr "Talált egy érdekes képet a weben? Használja a TinEye-t az eredete felfedezéséhez."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:701
@@ -5631,7 +5631,7 @@ msgstr "Mentsen képeket könnyedén – csak fogja és vigye el őket a jelenle
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:704
 msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title & more."
-msgstr ""
+msgstr "Élvezze a lapok feletti teljes irányítást – duplán megnyitott lapok bezárása, ablakok egyesítése, lapcím másolása, és még sok más."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:722
