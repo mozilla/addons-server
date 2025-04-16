@@ -5290,7 +5290,6 @@ msgstr "Cierra ventanas emergentes molestas con un simple clic."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:443
-#, fuzzy
 msgid "Find an interesting image on the web? Want to learn more about it?"
 msgstr "¿Viste una imagen interesante en la web? Utiliza TinEye para buscar su procedencia."
 
@@ -5312,7 +5311,6 @@ msgstr "Averigua dónde está ubicado geográficamente el servidor de cualquier 
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:455
-#, fuzzy
 msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? SoundFixer can help."
 msgstr "¿El volumen de un sitio web es demasiado bajo? ¿O demasiado alto? SoundFixer puede ayudarte."
 
@@ -6174,7 +6172,7 @@ msgstr "\"strict_max_version\" {appver} desconocida para {app}"
 
 #: src/olympia/files/utils.py:542
 msgid "Unsupported compression method in archive."
-msgstr ""
+msgstr "Método de compresión no soportado en el archivo."
 
 #: src/olympia/files/utils.py:545
 msgid "Unsupported archive type."
@@ -6210,11 +6208,11 @@ msgstr "Archivo no válido."
 
 #: src/olympia/files/utils.py:852
 msgid "No manifest.json found"
-msgstr ""
+msgstr "No se encontró manifest.json"
 
 #: src/olympia/files/utils.py:857
 msgid "Invalid or corrupted file."
-msgstr ""
+msgstr "Archivo no válido o dañado."
 
 #: src/olympia/files/utils.py:897
 #, fuzzy, python-format
@@ -6299,7 +6297,7 @@ msgstr "Otro (por favor, especifícalo)"
 
 #: src/olympia/ratings/models.py:370
 msgid "Auto-flagged due to word match"
-msgstr ""
+msgstr "Marcado automático por coincidencia de palabras"
 
 #: src/olympia/ratings/models.py:371
 msgid "Auto-flagged due to user restriction"
