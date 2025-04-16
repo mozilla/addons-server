@@ -179,7 +179,7 @@ class PrimaryHero(ModelBase):
     promoted_addon = models.OneToOneField(
         PromotedAddon, on_delete=models.CASCADE, null=True
     )
-    addon = models.OneToOneField(Addon, on_delete=models.CASCADE, null=False)
+    addon = models.OneToOneField(Addon, on_delete=models.CASCADE, null=True)
 
     is_external = models.BooleanField(default=False)
 
