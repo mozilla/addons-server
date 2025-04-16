@@ -5743,7 +5743,7 @@ msgstr "增强您的 Twitch 体验。"
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:998
 msgid "Re-take control of Twitter/X and customize your experience."
-msgstr ""
+msgstr "做 Twitter/X 的主人，定制适合自己的体验。"
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1001
