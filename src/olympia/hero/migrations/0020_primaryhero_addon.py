@@ -36,12 +36,4 @@ class Migration(migrations.Migration):
             name='addon',
             field=models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='addons.addon', null=True),
         ),
-        # Migrate promoted_addon to addon
-        migrations.RunPython(primary_hero_addon_up, primary_hero_addon_down),
-        # Make the addon field non-nullable after populating the existing data
-        migrations.AlterField(
-            model_name='primaryhero',
-            name='addon',
-            field=models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='addons.addon', null=False),
-        ),
     ]
