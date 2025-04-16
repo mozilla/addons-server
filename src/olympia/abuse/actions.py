@@ -509,15 +509,6 @@ class ContentActionRejectVersionDelayed(ContentActionRejectVersion):
         )
 
 
-class ContentActionForwardToReviewers(ContentAction):
-    valid_targets = (Addon,)
-
-    def process_action(self):
-        from olympia.abuse.tasks import handle_escalate_action
-
-        handle_escalate_action.delay(job_pk=self.decision.cinder_job.pk)
-
-
 class ContentActionForwardToLegal(ContentAction):
     valid_targets = (Addon,)
 
@@ -694,7 +685,6 @@ CONTENT_ACTION_FROM_DECISION_ACTION = defaultdict(
         DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON: (
             ContentActionRejectVersionDelayed
         ),
-        DECISION_ACTIONS.AMO_ESCALATE_ADDON: ContentActionForwardToReviewers,
         DECISION_ACTIONS.AMO_DELETE_COLLECTION: ContentActionDeleteCollection,
         DECISION_ACTIONS.AMO_DELETE_RATING: ContentActionDeleteRating,
         DECISION_ACTIONS.AMO_APPROVE: ContentActionApproveNoAction,

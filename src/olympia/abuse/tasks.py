@@ -212,35 +212,22 @@ def sync_cinder_policies():
 
 @task
 @use_primary_db
-def handle_escalate_action(*, job_pk, from_2nd_level=False):
-    old_job = CinderJob.objects.get(id=job_pk)
-    entity_helper = CinderJob.get_entity_helper(
-        old_job.target, resolved_in_reviewer_tools=True
-    )
-    job_id = entity_helper.workflow_recreate(
-        notes=old_job.final_decision.notes, job=old_job, from_2nd_level=from_2nd_level
-    )
-
-    old_job.handle_job_recreated(new_job_id=job_id, resolvable_in_reviewer_tools=True)
-
-
-@task
-@use_primary_db
 def handle_forward_to_legal_action(*, decision_pk):
     decision = ContentDecision.objects.get(id=decision_pk)
     old_job = getattr(decision, 'cinder_job', None)
     entity_helper = CinderAddonHandledByLegal(decision.addon)
     job_id = entity_helper.workflow_recreate(notes=decision.notes, job=old_job)
 
+    new_job, _ = CinderJob.objects.update_or_create(
+        job_id=job_id,
+        defaults={
+            'resolvable_in_reviewer_tools': False,
+            'target_addon': decision.addon,
+        },
+    )
+
     if old_job:
-        old_job.handle_job_recreated(
-            new_job_id=job_id, resolvable_in_reviewer_tools=False
-        )
-    else:
-        CinderJob.objects.update_or_create(
-            job_id=job_id,
-            defaults={
-                'resolvable_in_reviewer_tools': False,
-                'target_addon': decision.addon,
-            },
-        )
+        # Update fks to connected objects
+        AbuseReport.objects.filter(cinder_job=old_job).update(cinder_job=new_job)
+        ContentDecision.objects.filter(appeal_job=old_job).update(appeal_job=new_job)
+        old_job.update(forwarded_to_job=new_job)

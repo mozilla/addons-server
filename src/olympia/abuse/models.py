@@ -247,45 +247,6 @@ class CinderJob(ModelBase):
             reporter_abuse_reports=appellants, is_appeal=True
         )
 
-    def handle_job_recreated(self, *, new_job_id, resolvable_in_reviewer_tools):
-        from olympia.reviewers.models import NeedsHumanReview
-
-        new_job, created = CinderJob.objects.update_or_create(
-            job_id=new_job_id,
-            defaults={
-                'resolvable_in_reviewer_tools': resolvable_in_reviewer_tools,
-                'target_addon': self.target_addon,
-            },
-        )
-        # If this forward has been combined with an existing non-forwarded job we need
-        # to clear the NHR for reason:ABUSE_ADDON_VIOLATION, because it now has a NHR
-        # for reason:CINDER_ESCALATION.
-        if not created and not new_job.forwarded_from_jobs.exists():
-            has_unresolved_abuse_report_jobs = (
-                self.__class__.objects.for_addon(new_job.target_addon)
-                .exclude(
-                    id=new_job.id,
-                    forwarded_from_jobs__isnull=True,
-                    appealed_decisions__isnull=True,
-                )
-                .unresolved()
-                .resolvable_in_reviewer_tools()
-                .exists()
-            )
-            # But only if there aren't other jobs that should legitimately have a NHR
-            # for reason:ABUSE_ADDON_VIOLATION
-            if not has_unresolved_abuse_report_jobs:
-                NeedsHumanReview.objects.filter(
-                    version__addon_id=new_job.target_addon.id,
-                    is_active=True,
-                    reason=NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION,
-                ).update(is_active=False)
-                new_job.target_addon.update_all_due_dates()
-        # Update our fks to connected objects
-        AbuseReport.objects.filter(cinder_job=self).update(cinder_job=new_job)
-        ContentDecision.objects.filter(appeal_job=self).update(appeal_job=new_job)
-        self.update(forwarded_to_job=new_job)
-
     def process_decision(
         self,
         *,
@@ -368,14 +329,6 @@ class CinderJob(ModelBase):
                 decisions__overridden_by__isnull=True,
             ).exists()
             reasons = {NeedsHumanReview.REASONS.SECOND_LEVEL_REQUEUE}
-        elif self.forwarded_from_jobs.exists():
-            has_unresolved_jobs_with_similar_reason = base_unresolved_jobs_qs.filter(
-                forwarded_from_jobs__isnull=False
-            ).exists()
-            reasons = {
-                NeedsHumanReview.REASONS.CINDER_ESCALATION,
-                NeedsHumanReview.REASONS.CINDER_APPEAL_ESCALATION,
-            }
         elif self.queue_moves.exists():
             has_unresolved_jobs_with_similar_reason = base_unresolved_jobs_qs.filter(
                 queue_moves__id__gt=0
