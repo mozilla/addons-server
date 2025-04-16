@@ -5817,12 +5817,12 @@ msgstr "ყველაფერს თავად განკარგავ�
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:989
 msgid "Automatically handle GDPR consent forms."
-msgstr ""
+msgstr "GDPR-თანხმობის ველების თავისთავად შევსება."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:992
 msgid "Block malicious websites from port scanning."
-msgstr ""
+msgstr "აღუკვეთეთ მავნე საიტებს თქვენი პორტების მოსინჯვის საშუალება."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:995
@@ -5832,7 +5832,7 @@ msgstr "გამოიყენეთ Twitch მეტად მოხერხ
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:998
 msgid "Re-take control of Twitter/X and customize your experience."
-msgstr ""
+msgstr "დაიბრუნეთ მართვის სადავეები, რომ მოირგოთ Twitter/X მოხერხებულად სარგებლობისთვის."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1001
