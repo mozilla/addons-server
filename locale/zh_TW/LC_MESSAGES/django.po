@@ -5747,7 +5747,7 @@ msgstr "加強您的 Twitch 使用體驗。"
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:998
 msgid "Re-take control of Twitter/X and customize your experience."
-msgstr ""
+msgstr "重新搶回 Twitter/X 的控制，並自訂您的使用體驗。"
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1001
