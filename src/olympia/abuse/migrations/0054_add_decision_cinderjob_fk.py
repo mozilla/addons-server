@@ -4,23 +4,6 @@ from django.db import migrations, models
 import django.db.models.deletion
 
 
-def set_cinder_job_on_decisions(apps, schema_editor):
-    ContentDecision = apps.get_model('abuse', 'ContentDecision')
-    decisions_with_jobs = []
-
-    # Because there can be a chain of overrides we may need to recurse down the overrides, setting cinder_job on all of them
-    def set_cinder_job(decision, job):
-        decision.cinder_job = job
-        decisions_with_jobs.append(decision)
-        if decision.overridden_by:
-            set_cinder_job(decision.overridden_by, job)
-
-    for first_decision in ContentDecision.objects.filter(_cinder_job__isnull=False):
-        set_cinder_job(first_decision, first_decision._cinder_job)
-
-    ContentDecision.objects.bulk_update(decisions_with_jobs, fields=('cinder_job',))
-
-
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -42,7 +25,6 @@ class Migration(migrations.Migration):
             name='decision',
             field=models.OneToOneField(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='_cinder_job', to='abuse.contentdecision'),
         ),
-        migrations.RunPython(set_cinder_job_on_decisions),
         migrations.AlterField(
             model_name='contentdecision',
             name='action',
