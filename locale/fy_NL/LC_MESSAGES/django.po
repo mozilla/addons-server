@@ -5833,7 +5833,7 @@ msgstr "Ferbetterje jo Twitch-ûnderfining."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:998
 msgid "Re-take control of Twitter/X and customize your experience."
-msgstr ""
+msgstr "Nim de kontrôle oer Twitter/X werom en pas jo ûnderfining oan."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1001
