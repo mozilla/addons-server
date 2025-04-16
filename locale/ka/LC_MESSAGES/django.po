@@ -5847,7 +5847,7 @@ msgstr "შეაფერადეთ Firefox მონახულებულ
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1007
 msgid "Extensions are like apps for Firefox."
-msgstr "გაფართოებები ერთგვარი პროგრამებია, რომელთაც დაიმატებს Firefox."
+msgstr "გაფართოებები ერთგვარი პროგრამებია, რომელთაც იმატებს Firefox."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1009
