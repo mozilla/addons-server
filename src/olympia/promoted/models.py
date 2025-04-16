@@ -1,6 +1,5 @@
 from django.core.exceptions import ValidationError
 from django.db import models
-from django.db.models import Q
 from django.dispatch import receiver
 
 from olympia.abuse.models import ManagerBase
