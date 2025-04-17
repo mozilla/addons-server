@@ -5604,7 +5604,7 @@ msgstr "Niektoré webové stránky majú problémy s prehrávaním videí v syst
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:683
 msgid "Find an interesting pic on the web? Use TinEye to discover its origins."
-msgstr ""
+msgstr "Našli ste na webe zaujímavý obrázok? Použite TinEye, ktorý vám pomôže zistiť jeho pôvod."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:701
@@ -5614,7 +5614,7 @@ msgstr "Ukladajte obrázky jednoducho — jednoducho ich uchopte z aktuálnej ka
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:704
 msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title & more."
-msgstr ""
+msgstr "Užite si dokonalé ovládanie kariet — zatvorte duplicitné karty, zlúčte okná, skopírujte názov karty a ďalšie."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:722
@@ -5654,12 +5654,12 @@ msgstr "Uložte celú webovú stránku vrátane obrázkov a štýlu ako jeden s�
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:854
 msgid "Edit a web page before printing. Remove ads or any unwanted content."
-msgstr ""
+msgstr "Pred tlačou si upravte webovú stránku. Odstráňte reklamy alebo akýkoľvek nechcený obsah."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:863
 msgid "Advanced reader for aggregating all of your RSS/Atom/RDF sources."
-msgstr ""
+msgstr "Pokročilá čítačka na agregáciu všetkých vašich zdrojov RSS/Atom/RDF."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:881
@@ -5699,7 +5699,7 @@ msgstr "Vráťte sa do jednoduchšieho obdobia – keď vaše najlepšie výsled
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:911
 msgid "Get the mouse scrollbar you've always wanted — specify width and color."
-msgstr ""
+msgstr "Získajte posuvníky, aké ste vždy chceli — zadefinujte si ich šírku a farbu."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:923
@@ -5809,32 +5809,32 @@ msgstr "Všetko máte pod kontrolou. Keď webová stránka nefunguje, vypnite si
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:989
 msgid "Automatically handle GDPR consent forms."
-msgstr ""
+msgstr "Automaticky spracovávajte formuláre súhlasu s GDPR."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:992
 msgid "Block malicious websites from port scanning."
-msgstr ""
+msgstr "Blokujte skenovanie portov škodlivými webovými stránkami."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:995
 msgid "Enhance your Twitch experience."
-msgstr ""
+msgstr "Vylepšite svoj zážitok zo služby Twitch."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:998
 msgid "Re-take control of Twitter/X and customize your experience."
-msgstr ""
+msgstr "Znovu prevezmite kontrolu nad Twitterom/X a prispôsobte si svoje prostredie."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1001
 msgid "Translate text without leaving the page you're on (PDF compatible)."
-msgstr ""
+msgstr "Prekladajte text bez opustenia stránky, na ktorej sa nachádzate (kompatibilné s PDF)."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1004
 msgid "Change the color of Firefox to match every website you visit."
-msgstr ""
+msgstr "Zmeňte farbu Firefoxu tak, aby zodpovedala webovej stránke, na ktorej práve ste."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1007
@@ -5859,12 +5859,12 @@ msgstr "Rozšírenia zamerané na bezpečnosť a súkromie"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1015
 msgid "Essential add-ons"
-msgstr ""
+msgstr "Nevyhnutné doplnky"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1017
 msgid "Reddit extensions"
-msgstr ""
+msgstr "Rozšírenia pre Reddit"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1019 src/olympia/discovery/strings.jinja2:1021 src/olympia/discovery/strings.jinja2:1023
