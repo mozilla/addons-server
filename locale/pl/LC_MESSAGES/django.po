@@ -80,19 +80,19 @@ msgstr ""
 
 #: src/olympia/abuse/templates/abuse/appeal.html:38
 msgid "Because the decision you are appealing has already been overturned, your appeal will not be processed."
-msgstr ""
+msgstr "Ponieważ decyzja, od której się odwołujesz, została już uchylona, więc twoje zgłoszenie nie zostanie rozpatrzone."
 
 #: src/olympia/abuse/templates/abuse/appeal.html:42
 msgid "The decision you are appealing has already been overridden by a new decision, so this decision can't be appealed."
-msgstr ""
+msgstr "Decyzja, od której się odwołujesz, została nadpisana nową decyzją, więc nie można się już od niej odwołać."
 
 #: src/olympia/abuse/templates/abuse/appeal.html:44
 msgid "This decision can't be appealed."
-msgstr ""
+msgstr "Od tej decyzji nie można się odwołać."
 
 #: src/olympia/abuse/templates/abuse/emails/base_reporter.txt:1
 msgid "Hello,"
-msgstr ""
+msgstr "Cześć,"
 
 #: src/olympia/abuse/templates/abuse/emails/base_reporter.txt:7
 msgid "Mozilla Add-ons Team"
@@ -366,7 +366,7 @@ msgstr ""
 
 #: src/olympia/addons/serializers.py:888
 msgid "Add-ons need at least one owner."
-msgstr ""
+msgstr "Dodatki wymagają co najmniej jednego właściciela."
 
 #: src/olympia/addons/serializers.py:903
 msgid "Add-ons need at least one listed author."
@@ -408,11 +408,11 @@ msgstr ""
 
 #: src/olympia/addons/validators.py:91
 msgid "Wrong add-on type for this license."
-msgstr ""
+msgstr "Nieprawidłowy typ dodatku dla tej licencji."
 
 #: src/olympia/addons/validators.py:98
 msgid "Custom licenses are not supported for themes."
-msgstr ""
+msgstr "Licencje niestandardowe nie są obsługiwane w przypadku motywów."
 
 #: src/olympia/addons/validators.py:132
 msgid "This field is required for add-ons with listed versions."
@@ -504,7 +504,7 @@ msgstr "Strefa administratora"
 
 #: src/olympia/amo/fields.py:22
 msgid "Positive integer"
-msgstr ""
+msgstr "Liczba całkowita dodatnia"
 
 #: src/olympia/amo/fields.py:80
 msgid "Incorrect, please try again."
@@ -528,7 +528,7 @@ msgstr "W trakcie wykonywania serwisu witryny niektóre funkcje są tymczasowo w
 
 #: src/olympia/amo/utils.py:1112
 msgid "URLs are not allowed."
-msgstr ""
+msgstr "Adresy URL nie są dozwolone."
 
 #: src/olympia/amo/validators.py:17
 #, fuzzy
@@ -610,7 +610,7 @@ msgstr "<h1>Ups! Wystąpił błąd.</h1> <p>Postaramy się szybko to naprawić.<
 
 #: src/olympia/amo/templates/amo/fake_fxa_authorization.html:4
 msgid "Register or Log in"
-msgstr ""
+msgstr "Zarejestruj lub zaloguj się"
 
 #: src/olympia/amo/templates/amo/fake_fxa_authorization.html:19
 #, fuzzy
@@ -619,7 +619,7 @@ msgstr "E-mail"
 
 #: src/olympia/amo/templates/amo/fake_fxa_authorization.html:20
 msgid "Two-factor authentication"
-msgstr ""
+msgstr "Uwierzytelnianie dwuetapowe"
 
 #. abbreviation of 'previous'
 #: src/olympia/amo/templates/amo/paginator.html:5 src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:49
@@ -654,7 +654,7 @@ msgstr "W trakcie wykonywania serwisu witryny niektóre funkcje na tej stronie s
 
 #: src/olympia/amo/templates/amo/submissions_disabled.html:3
 msgid "Add-on uploads temporarily disabled"
-msgstr ""
+msgstr "Przesyłanie dodatków jest tymczasowo wyłączone"
 
 #: src/olympia/amo/templates/amo/submissions_disabled.html:13
 msgid "Add-on uploads have been temporarily disabled. Please check back later."
