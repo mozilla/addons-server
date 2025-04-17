@@ -15,7 +15,7 @@ def set_cinder_job_on_decisions(apps, schema_editor):
         if hasattr(decision, 'overridden_by'):
             set_cinder_job(decision.overridden_by, job)
 
-    for first_decision in ContentDecision.objects.filter(_cinder_job__isnull=False):
+    for first_decision in ContentDecision.objects.filter(_cinder_job__isnull=False).using('default'):
         set_cinder_job(first_decision, first_decision._cinder_job)
 
     ContentDecision.objects.bulk_update(decisions_with_jobs, fields=('cinder_job',))
