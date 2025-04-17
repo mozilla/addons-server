@@ -5816,7 +5816,7 @@ msgstr "Blokování skenování portů škodlivým webům."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:995
 msgid "Enhance your Twitch experience."
-msgstr "Vylepšete svou zkušenost s Twitchi."
+msgstr "Vylepšete si zážitek z Twitche."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:998
