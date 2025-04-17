@@ -2419,6 +2419,38 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert not upload_version.due_date
         assert upload_version.needshumanreview_set.count() == 0
 
+    def test_dont_inherit_due_date_for_some_specific_reasons(self):
+        # Some NeedsHumanReview reasons don't pass their due date through
+        # inheritance if they are the only reason a version had a due date.
+        old_version = self.addon.current_version
+        old_version.needshumanreview_set.create(
+            reason=NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION
+        )
+        assert old_version.due_date
+        old_version.update(due_date=self.days_ago(1))
+        new_version = Version.from_upload(
+            self.upload,
+            self.addon,
+            amo.CHANNEL_LISTED,
+            selected_apps=[self.selected_app],
+            parsed_data=self.dummy_parsed_data,
+        )
+        assert new_version.due_date
+        assert new_version.due_date > old_version.due_date
+        assert new_version.generate_due_date() > old_version.due_date
+
+        # Remains true for CINDER_ESCALATION which is another reason that
+        # doesn't trigger due date inheritance.
+        old_version.needshumanreview_set.create(
+            reason=NeedsHumanReview.REASONS.CINDER_ESCALATION
+        )
+        assert new_version.generate_due_date() > old_version.due_date
+
+        # If we add another reason that does trigger inheritance to the old
+        # version, suddenly we will inherit its due date.
+        old_version.needshumanreview_set.create(reason=NeedsHumanReview.REASONS.UNKNOWN)
+        assert new_version.generate_due_date() == old_version.due_date
+
     def test_set_version_to_customs_scanners_result(self):
         self.create_switch('enable-customs', active=True)
         scanners_result = ScannerResult.objects.create(
