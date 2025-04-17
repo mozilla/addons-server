@@ -520,7 +520,7 @@ msgstr ""
 
 #: src/olympia/amo/fields.py:96
 msgid "CIDR"
-msgstr ""
+msgstr "CIDR"
 
 #: src/olympia/amo/middleware.py:248 src/olympia/devhub/templates/devhub/index.html:56 src/olympia/templates/base.html:64
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
