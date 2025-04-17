@@ -250,12 +250,12 @@ msgstr "Dodatek"
 
 #: src/olympia/addons/decorators.py:78 src/olympia/amo/templates/amo/submissions_disabled.html:8
 msgid "Add-on uploads are temporarily unavailable."
-msgstr ""
+msgstr "Możliwość przesyłania dodatków jest tymczasowo niedostępna."
 
 #: src/olympia/addons/fields.py:56
 #, python-brace-format
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
-msgstr ""
+msgstr "Przekroczono maksymalną liczbę kategorii na aplikację ({MAX_CATEGORIES})"
 
 #: src/olympia/addons/fields.py:62
 msgid "The \"other\" category cannot be combined with another category"
@@ -357,7 +357,7 @@ msgstr ""
 #: src/olympia/addons/serializers.py:600
 #, python-format
 msgid "%(addon_type_plural)s are not supported by %(app_name)s"
-msgstr ""
+msgstr "%(addon_type_plural)s nie są wspierane przez %(app_name)s"
 
 #: src/olympia/addons/serializers.py:639 src/olympia/devhub/forms.py:910
 #, python-format
