@@ -67,11 +67,11 @@ msgstr "Dziękujemy. Twoje odwołanie zostało zarejestrowane."
 
 #: src/olympia/abuse/templates/abuse/appeal.html:31 src/olympia/amo/templates/amo/fake_fxa_authorization.html:21
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:33 src/olympia/abuse/templates/abuse/appeal.html:41
 msgid "Thank you for your report."
-msgstr ""
+msgstr "Dziękujemy za Twoje zgłoszenie."
 
 #: src/olympia/abuse/templates/abuse/appeal.html:37
 msgid ""
@@ -263,12 +263,12 @@ msgstr ""
 
 #: src/olympia/addons/fields.py:76 src/olympia/addons/serializers.py:1257
 msgid "Invalid category name."
-msgstr ""
+msgstr "Nieprawidłowa nazwa kategorii."
 
 #: src/olympia/addons/fields.py:116
 #, python-brace-format
 msgid "URL domain must be one of [{domains}]."
-msgstr ""
+msgstr "Domena URL musi być jedną z [{domains}]."
 
 #: src/olympia/addons/fields.py:125 src/olympia/devhub/forms.py:278
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
@@ -276,7 +276,7 @@ msgstr ""
 
 #: src/olympia/addons/fields.py:128 src/olympia/devhub/forms.py:281
 msgid "URLs must start with https://."
-msgstr ""
+msgstr "Adresy URL muszą zaczynać się od https://."
 
 #: src/olympia/addons/fields.py:187
 #, python-brace-format
@@ -286,7 +286,7 @@ msgstr ""
 #: src/olympia/addons/fields.py:210
 #, python-brace-format
 msgid "Unsupported file type, please upload an archive file ({extensions})."
-msgstr ""
+msgstr "Nieobsługiwany typ pliku. Prześlij plik archiwum ({extensions})."
 
 #: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:756 src/olympia/files/utils.py:755 src/olympia/reviewers/forms.py:348
 #, fuzzy
@@ -313,7 +313,7 @@ msgstr ""
 #: src/olympia/addons/fields.py:375
 #, python-format
 msgid "Images must be smaller than %dMB"
-msgstr ""
+msgstr "Obrazy muszą być mniejsze niż %dMB"
 
 #: src/olympia/addons/models.py:2209 src/olympia/addons/models.py:2266 src/olympia/constants/base.py:66
 msgid "Listed"
@@ -325,7 +325,7 @@ msgstr ""
 
 #: src/olympia/addons/serializers.py:306
 msgid "Built in licenses can not be updated."
-msgstr ""
+msgstr "Wbudowanych licencji nie można aktualizować."
 
 #: src/olympia/addons/serializers.py:501
 msgid "Upload is not valid."
@@ -333,7 +333,7 @@ msgstr ""
 
 #: src/olympia/addons/serializers.py:517
 msgid "File is already disabled."
-msgstr ""
+msgstr "Plik jest już wyłączony."
 
 #: src/olympia/addons/serializers.py:521 src/olympia/addons/views.py:738
 #, python-format
@@ -343,12 +343,12 @@ msgstr ""
 #: src/olympia/addons/serializers.py:536
 #, python-brace-format
 msgid "Version {version_string} was uploaded before and deleted."
-msgstr ""
+msgstr "Wersja {version_string} została wcześniej przesłana i usunięta."
 
 #: src/olympia/addons/serializers.py:539
 #, python-brace-format
 msgid "Version {version_string} already exists."
-msgstr ""
+msgstr "Wersja {version_string} już istnieje."
 
 #: src/olympia/addons/serializers.py:559
 msgid "Listed versions cannot be submitted while add-on is disabled."
@@ -374,7 +374,7 @@ msgstr ""
 
 #: src/olympia/addons/serializers.py:935
 msgid "Account not found."
-msgstr ""
+msgstr "Nie odnaleziono konta."
 
 #: src/olympia/addons/serializers.py:948 src/olympia/devhub/forms.py:410 src/olympia/devhub/forms.py:480
 #, fuzzy
@@ -3776,7 +3776,6 @@ msgid "Your add-on is displayed in our gallery and users are receiving automatic
 msgstr "Dodatek jest wyświetlany w naszej galerii i użytkownicy otrzymują jego automatyczne aktualizacje."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:30
-#, fuzzy
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.com."
 msgstr "Dodatek został wyłączony przez administratora witryny i nie jest już wyświetlany w naszej galerii. Jeśli masz jakieś pytania, wyślij wiadomość e-mail na adres amo-admins@mozilla.com."
 
