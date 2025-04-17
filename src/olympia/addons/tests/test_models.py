@@ -48,7 +48,11 @@ from olympia.devhub.models import RssKey
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadMixin
 from olympia.files.utils import parse_addon
-from olympia.promoted.models import PromotedAddonPromotion, PromotedGroup
+from olympia.promoted.models import (
+    PromotedAddonPromotion,
+    PromotedAddonVersion,
+    PromotedGroup,
+)
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.reviewers.models import NeedsHumanReview
 from olympia.translations.models import (
@@ -1907,6 +1911,88 @@ class TestAddonModels(TestCase):
             addon=addon, group_id=PROMOTED_GROUP_CHOICES.LINE, apps=[amo.ANDROID]
         )
         assert addon.can_be_compatible_with_all_fenix_versions
+
+    def test_all_approved_applications_for_group_removal_after_approval(self):
+        addon = addon_factory()
+        self.make_addon_promoted(addon=addon, group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT)
+        self.make_addon_promoted(addon=addon, group_id=PROMOTED_GROUP_CHOICES.LINE)
+        assert addon.all_applications_for(
+            PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT)
+        ) == [amo.FIREFOX, amo.ANDROID]
+        assert (
+            addon.approved_applications_for(
+                PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT)
+            )
+            == []
+        )
+
+        addon.approve_for_version()
+        assert addon.all_applications_for(
+            PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT)
+        ) == [amo.FIREFOX, amo.ANDROID]
+        assert addon.approved_applications_for(
+            PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT)
+        ) == [amo.FIREFOX, amo.ANDROID]
+
+        # If an app is removed, it should no longer be in all_apps nor approved
+        PromotedAddonPromotion.objects.filter(
+            promoted_group__group_id=PROMOTED_GROUP_CHOICES.LINE,
+            application_id=amo.FIREFOX.id,
+        ).delete()
+        assert addon.all_applications_for(
+            PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.LINE)
+        ) == [amo.ANDROID]
+        assert addon.approved_applications_for(
+            PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.LINE)
+        ) == [amo.ANDROID]
+
+        # Shouldn't affect any other promotion
+        assert addon.all_applications_for(
+            PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT)
+        ) == [amo.FIREFOX, amo.ANDROID]
+        assert addon.approved_applications_for(
+            PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT)
+        ) == [amo.FIREFOX, amo.ANDROID]
+
+        # But the approval still exists
+        assert PromotedAddonVersion.objects.filter(
+            promoted_group__group_id=PROMOTED_GROUP_CHOICES.LINE,
+            application_id=amo.FIREFOX.id,
+        ).exists()
+
+        # And if we add the PromotedAddonPromotion back, it should be approved again
+        self.make_addon_promoted(addon=addon, group_id=PROMOTED_GROUP_CHOICES.LINE)
+        assert addon.approved_applications_for(
+            PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.LINE)
+        ) == [amo.FIREFOX, amo.ANDROID]
+
+    def test_all_approved_applications_for_group_addition_after_approval(self):
+        addon = addon_factory()
+        self.make_addon_promoted(
+            addon=addon, group_id=PROMOTED_GROUP_CHOICES.LINE, apps=[amo.FIREFOX]
+        )
+        assert addon.all_applications_for(
+            PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.LINE)
+        ) == [amo.FIREFOX]
+        assert (
+            addon.approved_applications_for(
+                PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.LINE)
+            )
+            == []
+        )
+
+        # Adding an app after a version should not approve the application
+        addon.approve_for_version()
+        self.make_addon_promoted(
+            addon=addon,
+            group_id=PROMOTED_GROUP_CHOICES.LINE,
+        )
+        assert addon.all_applications_for(
+            PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.LINE)
+        ) == [amo.FIREFOX, amo.ANDROID]
+        assert addon.approved_applications_for(
+            PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.LINE)
+        ) == [amo.FIREFOX]
 
 
 class TestAddonUser(TestCase):

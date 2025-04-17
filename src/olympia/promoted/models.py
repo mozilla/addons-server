@@ -1,6 +1,5 @@
 from django.core.exceptions import ValidationError
 from django.db import models
-from django.db.models import Q
 from django.dispatch import receiver
 
 from olympia.abuse.models import ManagerBase
@@ -38,29 +37,9 @@ class PromotedGroupManager(ManagerBase):
     def approved_for(self, addon):
         if not addon.current_version:
             return self.none()
-
-        # An addon is approved for a promoted group if:
-        # 1. For each PromotedAddonPromotion A, there exists a
-        #    PromotedAddonVersion B (an approval) such that
-        #       i. Are the same group,
-        #       ii. Are the same application,
-        #       iii. A.addon.current_version = B.version, OR
-        # 2. is a promoted group that does not require prereview.
-
-        approved_promotions = PromotedAddonPromotion.objects.filter(
-            models.Exists(
-                PromotedAddonVersion.objects.filter(
-                    promoted_group=models.OuterRef('promoted_group'),
-                    application_id=models.OuterRef('application_id'),
-                    version=models.OuterRef('addon___current_version'),
-                )
-            )
-            | Q(
-                promoted_group__listed_pre_review=False,
-                promoted_group__unlisted_pre_review=False,
-            )
-        ).values_list('promoted_group__group_id', flat=True)
-
+        approved_promotions = addon.approved_promotions().values_list(
+            'promoted_group__group_id', flat=True
+        )
         return self.all_for(addon=addon).filter(group_id__in=approved_promotions)
 
 
@@ -330,7 +309,7 @@ class PromotedAddonPromotion(ModelBase):
     def approve_for_version(self, version):
         """Create PromotedAddonVersions for current applications
         in the current promoted group."""
-        for app in self.addon.all_applications:
+        for app in self.addon.all_applications_for(promoted_group=self.promoted_group):
             PromotedAddonVersion.objects.update_or_create(
                 promoted_group=self.promoted_group,
                 application_id=app.id,
