@@ -957,9 +957,9 @@ class TestAPIKeyInSubmission(TestCase):
 
         upload.refresh_from_db()
 
-        assert upload.processed_validation['errors'] == 1
+        assert upload.processed_validation['errors'] == 2
         messages = upload.processed_validation['messages']
-        assert len(messages) == 1
+        assert len(messages) == 2
         assert messages[0]['id'] == [
             u'validation', u'messages', u'api_key_detected']
         assert ('Your developer API key was found in the submitted '
@@ -986,9 +986,9 @@ class TestAPIKeyInSubmission(TestCase):
 
         upload.refresh_from_db()
 
-        assert upload.processed_validation['errors'] == 1
+        assert upload.processed_validation['errors'] == 2
         messages = upload.processed_validation['messages']
-        assert len(messages) == 1
+        assert len(messages) == 2
         assert messages[0]['id'] == [
             u'validation', u'messages', u'api_key_detected']
         assert ('The developer API key of a coauthor was found in the '
