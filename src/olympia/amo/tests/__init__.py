@@ -1165,8 +1165,8 @@ def fix_webext_fixture(filename):
                     manifest['browser_specific_settings']['gecko']['strict_max_version'] = THUNDERBIRD.latest_version
                 manifest = json.dumps(manifest)
 
-                with zipfile.ZipFile(temp_file, 'w') as xpi_contents:
-                    xpi_contents.writestr('manifest.json', manifest)
+                with zipfile.ZipFile(temp_file, 'a') as xpi_contents:
+                    xpi_contents.writestr('manifest.json', manifest.encode())
 
     yield temp_file
 
