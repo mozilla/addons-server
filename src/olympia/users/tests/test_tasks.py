@@ -55,10 +55,10 @@ def test_resize_photo_poorly():
                                       delete=False, dir=settings.TMP_PATH)
     shutil.copyfile(somepic, src.name)
     src_image = Image.open(src.name)
-    assert src_image.size == (339, 128)
+    assert src_image.size == (1356, 512)
 
     resize_photo(src.name, src.name)
 
     # assert nothing happened
     src_image = Image.open(src.name)
-    assert src_image.size == (339, 128)
+    assert src_image.size == (1356, 512)
