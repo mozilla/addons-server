@@ -147,13 +147,12 @@ msgid "Please verify the following points before finalizing your submission. Thi
 msgstr "Sprawdź następujące punkty przed zakończeniem zgłoszenia. Pozwoli to zminimalizować opóźnienia i nieporozumienia podczas sprawdzania: "
 
 #: static/js/common/upload-addon.js:671
-#, fuzzy
 msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Skompilowane pliki binarne oraz zminimalizowane i zaciemnione skrypty (z wyłączeniem znanych bibliotek) wymagają oddzielnie przesłanych kodów źródłowych do sprawdzenia. Upewnij się, że używasz pola "
-"do przesłania kodu źródłowego, aby uniknąć odrzucenia zgłoszenia."
+"Zminimalizowane, skonsolidowane lub w inny sposób wygenerowane maszynowo skrypty (z wyłączeniem znanych bibliotek) muszą mieć swoje źródła przesłane osobno do sprawdzenia. Upewnij się, że używasz "
+"pola do przesłania kodu źródłowego, aby uniknąć odrzucenia zgłoszenia."
 
 #: static/js/common/upload-addon.js:684
 msgid "The validation process found these issues that can lead to rejections:"
@@ -189,7 +188,7 @@ msgstr "Tydzień: {0}"
 #, fuzzy, python-brace-format
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] " pobrań"
+msgstr[0] "{0} pobrań"
 msgstr[1] " pobrań"
 msgstr[2] " pobrań"
 
@@ -197,7 +196,7 @@ msgstr[2] " pobrań"
 #, fuzzy, python-brace-format
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] "użytkownicy: {0}"
+msgstr[0] "{0} użytkowników"
 msgstr[1] "użytkownicy: {0}"
 msgstr[2] "użytkownicy: {0}"
 
@@ -205,7 +204,7 @@ msgstr[2] "użytkownicy: {0}"
 #, fuzzy, python-brace-format
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
-msgstr[0] "Dodatki: {0}"
+msgstr[0] "{0} dodatków"
 msgstr[1] "Dodatki: {0}"
 msgstr[2] "Dodatki: {0}"
 

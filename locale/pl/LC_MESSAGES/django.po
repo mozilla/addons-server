@@ -289,9 +289,8 @@ msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr "Nieobsługiwany typ pliku. Prześlij plik archiwum ({extensions})."
 
 #: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:756 src/olympia/files/utils.py:755 src/olympia/reviewers/forms.py:348
-#, fuzzy
 msgid "Invalid or broken archive."
-msgstr "Niewłaściwe archiwum."
+msgstr "Nieprawidłowe lub uszkodzone archiwum."
 
 #: src/olympia/addons/fields.py:267
 msgid "Invalid app specified"
@@ -613,9 +612,8 @@ msgid "Register or Log in"
 msgstr "Zarejestruj lub zaloguj się"
 
 #: src/olympia/amo/templates/amo/fake_fxa_authorization.html:19
-#, fuzzy
 msgid "Email:"
-msgstr "E-mail"
+msgstr "E-mail:"
 
 #: src/olympia/amo/templates/amo/fake_fxa_authorization.html:20
 msgid "Two-factor authentication"
