@@ -5793,27 +5793,27 @@ msgstr "GDPR izin formlarını otomatik olarak işleyin."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:992
 msgid "Block malicious websites from port scanning."
-msgstr ""
+msgstr "Kötü amaçlı sitelerin port taraması yapmasını engelleyin."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:995
 msgid "Enhance your Twitch experience."
-msgstr ""
+msgstr "Twitch deneyiminizi geliştirin."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:998
 msgid "Re-take control of Twitter/X and customize your experience."
-msgstr ""
+msgstr "Twitter/X’in kontrolünü yeniden ele geçirin, deneyiminizi özelleştirin."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1001
 msgid "Translate text without leaving the page you're on (PDF compatible)."
-msgstr ""
+msgstr "Okuduğunuz sayfadan ayrılmadan metinleri çevirin (PDF uyumlu)."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1004
 msgid "Change the color of Firefox to match every website you visit."
-msgstr ""
+msgstr "Firefox’un rengini ziyaret ettiğiniz her siteye uyacak şekilde değiştirin."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1007
@@ -5838,12 +5838,12 @@ msgstr "Gizlilik ve güvenlik uzantıları"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1015
 msgid "Essential add-ons"
-msgstr ""
+msgstr "Temel eklentiler"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1017
 msgid "Reddit extensions"
-msgstr ""
+msgstr "Reddit uzantıları"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1019 src/olympia/discovery/strings.jinja2:1021 src/olympia/discovery/strings.jinja2:1023
@@ -6567,7 +6567,7 @@ msgstr "ay"
 
 #: src/olympia/stats/templates/stats/stats.html:69
 msgid "For last:"
-msgstr ""
+msgstr "Son:"
 
 #: src/olympia/stats/templates/stats/stats.html:72
 msgid "7 days"
