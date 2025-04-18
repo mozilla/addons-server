@@ -104,7 +104,7 @@ def _uploader(resize_size, final_size):
 
         # Return value of the task should be a dict with an icon_hash key
         # containing the 8 first chars of the md5 hash of the source file,
-        # which is bb362450b00f0461c6bddc6b97b3c30b.
+        # which is d6d37c114dcd30b8bb9fac46bb63e052.
         assert return_value == {'icon_hash': 'd6d37c11'}
 
         os.remove(dest_image)
