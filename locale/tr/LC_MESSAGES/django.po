@@ -1703,7 +1703,7 @@ msgstr "ISC Lisansı"
 
 #: src/olympia/constants/licenses.py:78
 msgid "BSD 2-Clause \"Simplified\" License"
-msgstr ""
+msgstr "BSD 2 Maddeli \"Basitleştirilmiş\" Lisans"
 
 #: src/olympia/constants/licenses.py:85
 msgid "Mozilla Public License 1.1"
@@ -4980,7 +4980,7 @@ msgstr "Daha iyi bir deneyim için gece modunu etkinleştirin."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:290
 msgid "Reverse image search by leveraging the power of multiple search providers."
-msgstr ""
+msgstr "Farklı arama sağlayıcılarının gücünden yararlanarak tersine görsel arama yapın."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:293
@@ -5266,7 +5266,7 @@ msgstr "Sinir bozucu sesleri düzeltin. Bir web sitesindeki ses çok mu kısık 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:458
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
-msgstr ""
+msgstr "Yazdırmadan önce web sayfalarını düzenleyin. Yazdırmak istediğiniz web sayfalarında kapsamlı görsel değişiklikler yapabilirsiniz. (Örn. reklamları ve gereksiz içerikleri kaldırabilirsiniz.)"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:461
@@ -5573,7 +5573,7 @@ msgstr "Firefox’un rengini her web sitesinin görünümüne uyacak şekilde de
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:659
 msgid "Protect your privacy against a unique form of JavaScript “fingerprinting”."
-msgstr ""
+msgstr "Benzersiz bir JavaScript “parmak izi” biçimine karşı gizliliğinizi koruyun."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:662
@@ -5583,7 +5583,7 @@ msgstr "Bazı web siteleri Android'de video oynatmakta zorluk çekiyor. İşte b
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:683
 msgid "Find an interesting pic on the web? Use TinEye to discover its origins."
-msgstr ""
+msgstr "Web'de ilginç bir resim mi buldunuz? Kökenini keşfetmek için TinEye'ı kullanın."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:701
@@ -5593,7 +5593,7 @@ msgstr "Resimleri kolayca kaydedin: Bulunduğunuz sekmeden resimleri tutup sür�
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:704
 msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title & more."
-msgstr ""
+msgstr "Gelişmiş sekme yönetiminin tadını çıkarın: Kopya sekmeleri kapatın, pencereleri birleştirin, sekme başlığını kopyalayın ve daha fazlasını yapın."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:722
@@ -5633,12 +5633,12 @@ msgstr "Görseller ve stil dahil olmak üzere tüm web sayfasını tek bir HTML 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:854
 msgid "Edit a web page before printing. Remove ads or any unwanted content."
-msgstr ""
+msgstr "Web sayfalarını yazdırmadan önce düzenleyin. Reklamları ve istenmeyen içerikleri kaldırın."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:863
 msgid "Advanced reader for aggregating all of your RSS/Atom/RDF sources."
-msgstr ""
+msgstr "Tüm RSS/Atom/RDF kaynaklarınızı bir araya getiren gelişmiş bir okuyucu."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:881
@@ -5678,7 +5678,7 @@ msgstr "İlk arama sonuçlarının reklamların üzerinde göründüğü eski za
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:911
 msgid "Get the mouse scrollbar you've always wanted — specify width and color."
-msgstr ""
+msgstr "Her zaman istediğiniz, genişliğini ve rengini değiştirebileceğiniz kaydırma çubuğuna kavuşun."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:923
@@ -5763,7 +5763,7 @@ msgstr "Steam’deki oyun deneyiminizi geliştirin."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:974
 msgid "Thumbs-up to bringing back thumbs-down."
-msgstr ""
+msgstr "\"Beğenmeme\"yi geri getirin."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:977
@@ -5783,12 +5783,12 @@ msgstr "İngilizce e-postaları, belgeleri, makaleleri ve video metinlerini gizl
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:986
 msgid "You’re in control. Turn off VPN when a website won’t work and set different locations for different websites. Windows only."
-msgstr ""
+msgstr "Kontrol sizde. VPN ile çalışmayan sitelerde VPN’i kapatabilir, farklı siteler için farklı konumlar ayarlayabilirsiniz. Yalnızca Windows ile uyumludur."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:989
 msgid "Automatically handle GDPR consent forms."
-msgstr ""
+msgstr "GDPR izin formlarını otomatik olarak işleyin."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:992
