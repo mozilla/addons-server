@@ -217,7 +217,7 @@ msgstr "Potrzebujesz pomocy?"
 #: src/olympia/accounts/views.py:731
 #, python-format
 msgid "Notification [%s] does not exist"
-msgstr ""
+msgstr "Powiadomienie [%s] nie istnieje"
 
 #: src/olympia/activity/models.py:42
 #, fuzzy
