@@ -5523,7 +5523,7 @@ msgstr "某些网站无法在 Android 上正常播放视频，此扩展可修正
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:683
 msgid "Find an interesting pic on the web? Use TinEye to discover its origins."
-msgstr ""
+msgstr "在网上发现了有趣的图片？用 TinEye 探查其出处。"
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:701
@@ -5533,7 +5533,7 @@ msgstr "轻松保存图像——你只需从当前标签页中抓取图像。"
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:704
 msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title & more."
-msgstr ""
+msgstr "畅享终极标签页控制功能，包括关闭重复标签页、合并窗口、复制标签页标题等等。"
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:722
@@ -5573,12 +5573,12 @@ msgstr "将整个网页（包括图像和样式）保存为单个 HTML 文件。
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:854
 msgid "Edit a web page before printing. Remove ads or any unwanted content."
-msgstr ""
+msgstr "打印网页前先编辑，移除广告等多余内容。"
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:863
 msgid "Advanced reader for aggregating all of your RSS/Atom/RDF sources."
-msgstr ""
+msgstr "高级阅读器，聚合您的所有 RSS/Atom/RDF 订阅。"
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:881
@@ -5618,7 +5618,7 @@ msgstr "返璞归真 — 将重要搜索结果列于广告的上方（适用于 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:911
 msgid "Get the mouse scrollbar you've always wanted — specify width and color."
-msgstr ""
+msgstr "定制您的理想型滚动条，宽度和颜色都依您。"
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:923
@@ -5748,12 +5748,12 @@ msgstr "做 Twitter/X 的主人，定制适合自己的体验。"
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1001
 msgid "Translate text without leaving the page you're on (PDF compatible)."
-msgstr ""
+msgstr "直接在页面内翻译文本（兼容 PDF）。"
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1004
 msgid "Change the color of Firefox to match every website you visit."
-msgstr ""
+msgstr "更改 Firefox 的颜色，与您访问的每个网站呼应。"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1007
