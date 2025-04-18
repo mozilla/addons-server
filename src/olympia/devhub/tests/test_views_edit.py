@@ -1105,7 +1105,7 @@ class TestEditMedia(BaseTestEdit):
 
     @override_switch('content-optimization', active=True)
     def test_icon_dimensions_and_ratio(self):
-        size_msg = 'Icon must be at least 128 pixels wide and tall.'
+        size_msg = 'Icon must be at least 512 pixels wide and tall.'
         ratio_msg = 'Icon must be square (same width and height).'
 
         # mozilla-snall.png is too small and not square

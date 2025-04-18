@@ -46,8 +46,8 @@ def test_resize_icon_shrink():
 def test_resize_icon_enlarge():
     """ Image stays the same, since the new size is bigger than both sides. """
 
-    resize_size = 350
-    final_size = (339, 128)
+    resize_size = 1400
+    final_size = (1356, 512)
 
     _uploader(resize_size, final_size)
 
@@ -55,8 +55,8 @@ def test_resize_icon_enlarge():
 def test_resize_icon_same():
     """ Image stays the same, since the new size is the same. """
 
-    resize_size = 339
-    final_size = (339, 128)
+    resize_size = 1356
+    final_size = (1356, 512)
 
     _uploader(resize_size, final_size)
 
@@ -64,15 +64,15 @@ def test_resize_icon_same():
 def test_resize_icon_list():
     """ Resize multiple images at once. """
 
-    resize_size = [32, 339, 350]
-    final_size = [(32, 12), (339, 128), (339, 128)]
+    resize_size = [32, 1365, 1400]
+    final_size = [(32, 12), (1356, 512), (1356, 512)]
 
     _uploader(resize_size, final_size)
 
 
 def _uploader(resize_size, final_size):
     img = get_image_path('mozilla.png')
-    original_size = (339, 128)
+    original_size = (1356, 512)
 
     src = tempfile.NamedTemporaryFile(
         mode='r+b', suffix='.png', delete=False, dir=settings.TMP_PATH)
@@ -105,7 +105,7 @@ def _uploader(resize_size, final_size):
         # Return value of the task should be a dict with an icon_hash key
         # containing the 8 first chars of the md5 hash of the source file,
         # which is bb362450b00f0461c6bddc6b97b3c30b.
-        assert return_value == {'icon_hash': 'bb362450'}
+        assert return_value == {'icon_hash': 'd6d37c11'}
 
         os.remove(dest_image)
         assert not os.path.exists(dest_image)

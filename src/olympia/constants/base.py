@@ -230,10 +230,7 @@ VALID_CONTRIBUTION_DOMAINS = (
 )
 
 # Icon upload sizes
-ADDON_ICON_SIZES = [32, 64, 128]
-# FIXME: We probably need sync this with master below, but currently
-# causes test failures
-#ADDON_ICON_SIZES = [32, 48, 64, 128, 256, 512]
+ADDON_ICON_SIZES = [32, 48, 64, 128, 256, 512]
 
 _size_tuple = namedtuple('SizeTuple', 'width height')
 # Preview upload sizes - see mozilla/addons-server#9487 for background.
