@@ -961,7 +961,7 @@ class TestEditMedia(BaseTestEdit):
         assert image_size(dest) == (32, 12)
 
         assert addon.icon_type == 'image/png'
-        assert addon.icon_hash == 'bb362450'
+        assert addon.icon_hash == 'd6d37c11'
 
     def test_edit_media_icon_log(self):
         self.test_edit_media_uploadedicon()
