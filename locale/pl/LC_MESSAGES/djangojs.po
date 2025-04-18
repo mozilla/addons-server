@@ -22,9 +22,8 @@ msgid "Select a file..."
 msgstr "Wybierz plik…"
 
 #: static/js/common/upload-addon.js:82
-#, fuzzy
 msgid "Your add-on should end with .zip, .xpi or .crx"
-msgstr "Nazwa pliku dodatku powinna kończyć się rozszerzeniem .zip, .xpi, .crx, .jar lub .xml"
+msgstr "Nazwa pliku dodatku powinna kończyć się rozszerzeniem .zip, .xpi lub .crx"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: static/js/common/upload-addon.js:118
