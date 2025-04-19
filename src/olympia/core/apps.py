@@ -9,7 +9,7 @@ from pwd import getpwnam
 from django.apps import AppConfig
 from django.conf import settings
 from django.core.checks import Error, Tags, register
-from django.db import connection
+from django.db import connection, models
 from django.utils.translation import gettext_lazy as _
 
 import requests
@@ -207,6 +207,47 @@ def nginx_check(app_configs, **kwargs):
         os.remove(file_path)
 
     return errors
+
+
+# Store the original __init__/deconstruct methods
+original_field_init = models.Field.__init__
+original_deconstruct = models.Field.deconstruct
+
+
+def patched_field_init(self, *args, **kwargs):
+    """
+    Patched __init__ for django.db.models.Field to add a 'pii' attribute.
+    """
+    # Pop 'pii' kwarg, default to False if not present
+    self.pii = kwargs.pop('pii', False)
+    # Call the original __init__ with the remaining args and kwargs
+    original_field_init(self, *args, **kwargs)
+
+
+def patched_deconstruct(self):
+    name, path, args, kwargs = original_deconstruct(self)
+    if getattr(self, 'pii', False):
+        kwargs['pii'] = True
+    return name, path, args, kwargs
+
+
+@property
+def is_pii(self):
+    """
+    Property to check if the field is considered PII.
+    """
+    return getattr(self, 'pii', False)
+
+
+# Monkey patch base field to allow setting PII fields globally
+if not hasattr(models.Field, '_pii_patched'):
+    print('Patching django.db.models.Field to add PII handling')
+    # Apply the patch
+    models.Field.__init__ = patched_field_init
+    models.Field.deconstruct = patched_deconstruct
+    models.Field.is_pii = is_pii
+    # Mark the class as patched
+    models.Field._pii_patched = True
 
 
 class CoreConfig(AppConfig):
