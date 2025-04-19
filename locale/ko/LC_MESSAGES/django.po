@@ -210,6 +210,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
+" \n"
+" Mozilla 부가 기능: %(name)s에 대해 신고해주셔서 감사합니다. \n"
+" \n"
+"신고해 주신 내용을 검토했으며, Mozilla 정책(%(policy_document_url)s)을 위반한 것이 확인되어 해당 콘텐츠는 삭제하였습니다. \n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_user.txt:5
 #, python-format
@@ -278,7 +282,7 @@ msgstr "부가 기능"
 
 #: src/olympia/addons/decorators.py:78 src/olympia/amo/templates/amo/submissions_disabled.html:8
 msgid "Add-on uploads are temporarily unavailable."
-msgstr ""
+msgstr "현재 부가 기능 업로드가 일시적으로 제공되고 있지 않습니다."
 
 #: src/olympia/addons/fields.py:56
 #, python-brace-format
@@ -673,11 +677,11 @@ msgstr "웹사이트 점검 관계로 이 페이지의 일부 기능을 잠시�
 
 #: src/olympia/amo/templates/amo/submissions_disabled.html:3
 msgid "Add-on uploads temporarily disabled"
-msgstr ""
+msgstr "부가 기능이 일시적으로 비활성화됨"
 
 #: src/olympia/amo/templates/amo/submissions_disabled.html:13
 msgid "Add-on uploads have been temporarily disabled. Please check back later."
-msgstr ""
+msgstr "부가 기능 업로드가 일시적으로 비활성화되었습니다. 나중에 다시 확인해 주세요."
 
 #: src/olympia/amo/templatetags/jinja_helpers.py:147
 #, python-brace-format
@@ -804,11 +808,11 @@ msgstr "이 부가 기능은 이미 모음집에 속해 있음"
 
 #: src/olympia/blocklist/models.py:188
 msgid "Blocked"
-msgstr ""
+msgstr "차단됨"
 
 #: src/olympia/blocklist/models.py:188
 msgid "Restricted"
-msgstr ""
+msgstr "금지됨"
 
 #: src/olympia/constants/activity.py:25
 #, python-brace-format
