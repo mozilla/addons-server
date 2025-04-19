@@ -581,7 +581,7 @@ msgid "Not Found"
 msgstr "Nie znaleziono"
 
 #: src/olympia/amo/templates/amo/404.html:7
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
 "the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
@@ -590,11 +590,11 @@ msgid ""
 "href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>Przepraszamy, ale nie możemy znaleźć szukanego elementu.</h1> <p>Żądana strona lub plik nie zostały znalezione w tej witrynie. Możliwe, że został użyty nieaktualny odnośnik lub adres był "
-"niepoprawnie wprowadzony. </p> <ul> <li>Sprawdź dokładnie pisownię wprowadzanego adresu strony.</li> <li>Jeśli informacja ta została wyświetlona po kliknięciu odnośnika na jakiejś stronie, <a "
-"href=\"https://github.com/mozilla/addons-server/issues/new/\">zgłoś problem</a>. Poinformuj nas, na jakiej stronie został użyty odnośnik i jakie informacje były szukane, a my zrobimy wszystko, by to"
-" naprawić.</li> </ul> <p>Możesz również przejść do którejś z popularnych stron w naszej witrynie.</p> <ul> <li>Interesują cię <a href=\"%(rec)s\">polecane dodatki</a>?</li> <li>Chcesz <a "
-"href=\"%(search)s\">poszukać dodatków</a>? Przejdź do <a href=\"%(search)s\">strony wyszukiwania</a> lub użyj pola wyszukiwania znajdującego się powyżej. </li> <li>Jeśli chcesz zacząć od początku, "
-"przejdź do <a href=\"%(home)s\">strony głównej dodatków</a>. </li> </ul>"
+"niepoprawnie wprowadzony. </p> <ul> <li>Sprawdź dokładnie pisownię wprowadzanego adresu strony.</li> <li>Jeśli informacja ta została wyświetlona po kliknięciu odnośnika na jakiejś stronie, "
+"%(open_bug_link)szgłoś problem%(close_bug_link)s. Poinformuj nas, na jakiej stronie został użyty odnośnik i jakie informacje były szukane, a my zrobimy wszystko, by to naprawić.</li> </ul> <p>Możesz"
+" również przejść do którejś z popularnych stron w naszej witrynie.</p> <ul> <li>Interesują cię <a href=\"%(rec)s\">polecane dodatki</a>?</li> <li>Chcesz <a href=\"%(search)s\">poszukać dodatków</a>?"
+" Przejdź do <a href=\"%(search)s\">strony wyszukiwania</a> lub użyj pola wyszukiwania znajdującego się powyżej. </li> <li>Jeśli chcesz zacząć od początku, przejdź do <a href=\"%(home)s\">strony "
+"głównej dodatków</a>. </li> </ul>"
 
 #: src/olympia/amo/templates/amo/500.html:3
 msgid "Oops"
@@ -718,27 +718,25 @@ msgid "Invalid JWT Token."
 msgstr "Nieprawidłowy token JWT."
 
 #: src/olympia/api/authentication.py:274
-#, fuzzy
 msgid "Invalid token or hash."
-msgstr "Niewłaściwe archiwum."
+msgstr "Nieprawidłowy token lub hash."
 
 #: src/olympia/api/authentication.py:278
-#, fuzzy
 msgid "Email address not found."
-msgstr "Adres e-mail"
+msgstr "Adres e-mail nie został znaleziony."
 
 #: src/olympia/api/exceptions.py:16
 msgid "Unavailable for legal reasons."
-msgstr ""
+msgstr "Niedostępne ze względów prawnych."
 
 #: src/olympia/api/fields.py:91
 #, python-brace-format
 msgid "The language code \"{lang_code}\" is invalid."
-msgstr ""
+msgstr "Kod języka „{lang_code}” jest nieprawidłowy."
 
 #: src/olympia/api/fields.py:92
 msgid "You must provide an object of {{lang-code:value}}."
-msgstr ""
+msgstr "Należy określić obiekt {{lang-code:value}}."
 
 #: src/olympia/api/fields.py:94
 #, python-brace-format
@@ -1305,9 +1303,8 @@ msgid "Developer"
 msgstr "Autor"
 
 #: src/olympia/constants/base.py:105
-#, fuzzy
 msgid "(Deleted)"
-msgstr "Usunięto"
+msgstr "(Usunięto)"
 
 #: src/olympia/constants/base.py:129 src/olympia/constants/reviewers.py:67
 msgid "Extension"
@@ -1738,9 +1735,8 @@ msgid "Recommended"
 msgstr "Skomentowano"
 
 #: src/olympia/constants/promoted.py:113
-#, fuzzy
 msgid "By Firefox"
-msgstr "Firefox"
+msgstr "Od Firefoksa"
 
 #: src/olympia/constants/promoted.py:131
 msgid "Spotlight"
