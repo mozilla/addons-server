@@ -1006,19 +1006,30 @@ class Version(OnChangeMixin, ModelBase):
     def generate_due_date(self):
         """
         (Re)Generate a due date for this version, inheriting from the earliest
-        due date possible from any other version in the same channel if one
-        exists, but only if the result would be at at earlier date than
-        the default/existing one on the instance.
+        due date possible from any other version with reasons that can trigger
+        inheritance in the same channel if one exists, but only if the result
+        would be at at earlier date than the default/existing one on the
+        instance.
         """
+        from olympia.reviewers.models import NeedsHumanReview
+
+        reasons_triggering_inheritance = set(
+            NeedsHumanReview.REASONS.values.keys()
+        ) - set(NeedsHumanReview.REASONS.NO_DUE_DATE_INHERITANCE.values.keys())
         qs = (
-            Version.unfiltered.filter(addon=self.addon, channel=self.channel)
+            Version.unfiltered.filter(
+                addon=self.addon,
+                channel=self.channel,
+                needshumanreview__reason__in=reasons_triggering_inheritance,
+                needshumanreview__is_active=True,
+            )
             .exclude(due_date=None)
             .exclude(id=self.pk)
             .values_list('due_date', flat=True)
             .order_by('-due_date')
         )
-        standard_or_existing_due_date = self.due_date or get_review_due_date()
         due_date = qs.first()
+        standard_or_existing_due_date = self.due_date or get_review_due_date()
         if not due_date or due_date > standard_or_existing_due_date:
             due_date = standard_or_existing_due_date
         return due_date
