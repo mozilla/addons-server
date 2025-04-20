@@ -5811,7 +5811,7 @@ msgstr "Automaticky zpracovávat formuláře souhlasu podle GDPR."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:992
 msgid "Block malicious websites from port scanning."
-msgstr "Blokování skenování portů škodlivým webům."
+msgstr "Blokujte skenování portů škodlivými webovými stránkami."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:995
