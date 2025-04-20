@@ -605,7 +605,7 @@ def review(request, addon, channel=None):
             actions_delayable.append(key)
         if action.get('allows_reasons', False):
             actions_reasons.append(key)
-        if action.get('requires_policies', False):
+        if action.get('enforcement_actions'):
             actions_policies.append(key)
         if action.get('resolves_cinder_jobs', False):
             actions_resolves_cinder_jobs.append(key)
@@ -750,6 +750,7 @@ def review(request, addon, channel=None):
         auto_approval_info=auto_approval_info,
         base_version_pk=base_version_pk,
         channel=channel,
+        cinder_policies=form.fields['cinder_policies'].queryset,
         content_review=content_review,
         count=count,
         flags=flags,

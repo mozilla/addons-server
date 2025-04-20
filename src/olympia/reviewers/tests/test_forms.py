@@ -6,6 +6,7 @@ from django.utils.encoding import force_str
 
 from freezegun import freeze_time
 from pyquery import PyQuery as pq
+from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.abuse.models import (
@@ -436,6 +437,72 @@ class TestReviewForm(TestCase):
         assert form.is_bound
         assert form.is_valid(), form.errors
         assert not form.errors
+
+    @override_switch('policy_selection_rather_than_reasons', active=True)
+    def test_comments_optional_for_actions_with_enforcement_actions(self):
+        policy = CinderPolicy.objects.create(
+            uuid='xxx',
+            name='ok',
+            expose_in_reviewer_tools=True,
+            enforcement_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value],
+        )
+        self.grant_permission(self.request.user, 'Addons:Review')
+        self.grant_permission(self.request.user, 'Reviews:Admin')
+        self.addon.update(status=amo.STATUS_NOMINATED)
+        self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        for action_name in ('public', 'reject', 'disable_addon'):
+            form = self.get_form(
+                data={'action': action_name, 'cinder_policies': [policy.id]}
+            )
+            assert 'comments' not in form.helper.actions[action_name]
+            assert form.is_bound
+            assert form.is_valid(), form.errors
+            assert not form.errors
+
+    @override_switch('policy_selection_rather_than_reasons', active=True)
+    def test_policy_values_parsed(self):
+        self.grant_permission(self.request.user, 'Addons:Review')
+        self.addon.update(status=amo.STATUS_NOMINATED)
+        self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        policy = CinderPolicy.objects.create(
+            uuid='xxx',
+            name='ok',
+            expose_in_reviewer_tools=True,
+            enforcement_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value],
+        )
+        unselected_policy = CinderPolicy.objects.create(
+            uuid='yyy',
+            name='not okay',
+            expose_in_reviewer_tools=True,
+            enforcement_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value],
+        )
+        form = self.get_form()
+        assert not form.is_bound
+        data = {
+            'action': 'reject',
+            'cinder_policies': [policy.id],
+        }
+        form = self.get_form(data=data)
+        assert form.is_bound
+        assert form.is_valid(), form.errors
+        assert 'policy_values' in form.cleaned_data
+        assert form.cleaned_data['policy_values'] == {}
+
+        data = {
+            'action': 'reject',
+            'cinder_policies': [policy.id],
+            f'policy-value-{policy.id}-SOME-PLACEHOLDER': 'some value?',
+            # Include some data that will be ignored
+            f'policy-value-{unselected_policy.id}-DOESNT_EXIST': 'not selected',
+            f'policy-value-{policy.id}': 'not_in_the_correct_format',
+        }
+        form = self.get_form(data=data)
+        assert form.is_bound
+        assert form.is_valid(), form.errors
+        assert 'policy_values' in form.cleaned_data
+        assert form.cleaned_data['policy_values'] == {
+            'xxx': {'SOME-PLACEHOLDER': 'some value?'}
+        }
 
     def test_appeal_action_require_with_resolve_appeal_job(self):
         self.grant_permission(self.request.user, 'Addons:Review')
@@ -1386,6 +1453,44 @@ class TestReviewForm(TestCase):
         assert form.errors == {
             'attachment_input': ['Cannot upload both a file and input.']
         }
+
+    def test_cinder_policy_choices(self):
+        CinderPolicy.objects.create(uuid='not-exposed', name='not exposed')
+        CinderPolicy.objects.create(
+            uuid='no-enforcement', name='no enforcement', expose_in_reviewer_tools=True
+        )
+        CinderPolicy.objects.create(
+            uuid='4-rejections',
+            name='for rejections',
+            expose_in_reviewer_tools=True,
+            enforcement_actions=[
+                DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value,
+                'some-other-action',
+            ],
+        )
+        CinderPolicy.objects.create(
+            uuid='4-approve',
+            name='for approving',
+            expose_in_reviewer_tools=True,
+            enforcement_actions=[DECISION_ACTIONS.AMO_APPROVE.api_value],
+        )
+        self.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        with override_switch('policy_selection_rather_than_reasons', active=True):
+            self.grant_permission(self.request.user, 'Addons:Review')
+            form = self.get_form()
+
+        content = str(form['cinder_policies'])
+        doc = pq(content)
+        label_0 = doc('#id_cinder_policies_0')
+        label_1 = doc('#id_cinder_policies_1')
+        label_2 = doc('#id_cinder_policies_2')
+
+        assert label_0.attr['class'] == 'data-toggle'
+        assert label_0.attr['data-value'] == ''
+        assert label_1.attr['class'] == 'data-toggle'
+        assert label_1.attr['data-value'] == 'reject reject_multiple_versions'
+        assert label_2.attr['class'] == 'data-toggle'
+        assert label_2.attr['data-value'] == 'public'
 
 
 class TestHeldDecisionReviewForm(TestCase):

@@ -12,6 +12,7 @@ from django.urls import reverse
 
 import pytest
 import responses
+from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.abuse.models import AbuseReport, CinderJob, CinderPolicy, ContentDecision
@@ -1016,6 +1017,73 @@ class TestReviewHelper(TestReviewHelperBase):
         )
         assert expected == actions
 
+    @override_switch('policy_selection_rather_than_reasons', active=True)
+    def test_actions_with_use_policies_enabled(self):
+        self.grant_permission(self.user, 'Addons:Review')
+        self.grant_permission(self.user, 'Reviews:Admin')
+        self.grant_permission(self.user, 'Addons:ReviewUnlisted')
+        CinderJob.objects.create(
+            target_addon=self.addon, resolvable_in_reviewer_tools=True
+        )
+        actions = self.get_review_actions(
+            addon_status=amo.STATUS_NOMINATED, file_status=amo.STATUS_AWAITING_REVIEW
+        )
+        assert actions['public']['allows_reasons'] is False
+        assert actions['public']['requires_reasons'] is False
+        assert actions['public']['requires_reasons_for_cinder_jobs'] is False
+        assert actions['public']['enforcement_actions'] == (
+            DECISION_ACTIONS.AMO_APPROVE,
+        )
+
+        assert actions['reject']['allows_reasons'] is False
+        assert actions['reject']['requires_reasons'] is False
+        assert actions['reject']['requires_reasons_for_cinder_jobs'] is False
+        assert actions['reject']['enforcement_actions'] == (
+            DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
+        )
+
+        assert actions['reject_multiple_versions']['allows_reasons'] is False
+        assert actions['reject_multiple_versions']['requires_reasons'] is False
+        assert (
+            actions['reject_multiple_versions']['requires_reasons_for_cinder_jobs']
+            is False
+        )
+        assert actions['reject_multiple_versions']['enforcement_actions'] == (
+            DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
+        )
+
+        assert actions['disable_addon']['allows_reasons'] is False
+        assert actions['disable_addon']['requires_reasons'] is False
+        assert actions['disable_addon']['requires_reasons_for_cinder_jobs'] is False
+        assert actions['disable_addon']['enforcement_actions'] == (
+            DECISION_ACTIONS.AMO_DISABLE_ADDON,
+        )
+
+        assert 'allow_reasons' not in actions['resolve_reports_job']
+        assert 'requires_reasons' not in actions['resolve_reports_job']
+        assert 'requires_reasons_for_cinder_jobs' not in actions['resolve_reports_job']
+        assert actions['resolve_reports_job']['enforcement_actions'] == (
+            DECISION_ACTIONS.AMO_APPROVE,
+            DECISION_ACTIONS.AMO_IGNORE,
+            DECISION_ACTIONS.AMO_CLOSED_NO_ACTION,
+        )
+
+        self.review_version.update(channel=amo.CHANNEL_UNLISTED)
+        actions = self.get_review_actions(
+            addon_status=amo.STATUS_NOMINATED, file_status=amo.STATUS_AWAITING_REVIEW
+        )
+        assert actions['approve_multiple_versions']['allows_reasons'] is False
+        assert actions['approve_multiple_versions']['requires_reasons'] is False
+        assert (
+            actions['approve_multiple_versions']['requires_reasons_for_cinder_jobs']
+            is False
+        )
+        assert actions['approve_multiple_versions']['enforcement_actions'] == (
+            DECISION_ACTIONS.AMO_APPROVE,
+        )
+
     def test_set_file(self):
         self.file.update(datestatuschanged=yesterday)
         self.helper.handler.set_file(amo.STATUS_APPROVED, self.review_version.file)
@@ -1053,7 +1121,7 @@ class TestReviewHelper(TestReviewHelperBase):
                     canned_response='.',
                 ),
             ],
-            # ignored - the action doesn't allow_policies
+            # ignored - the action doesn't have enforcement_actions set
             'cinder_policies': [
                 CinderPolicy.objects.create(uuid='x'),
                 CinderPolicy.objects.create(uuid='z'),
@@ -1072,7 +1140,7 @@ class TestReviewHelper(TestReviewHelperBase):
         )
 
     @patch('olympia.reviewers.utils.report_decision_to_cinder_and_notify.delay')
-    def test_record_decision_sets_policies_with_allow_policies(self, report_mock):
+    def test_record_decision_sets_policies_with_enforcement_actions(self, report_mock):
         self.grant_permission(self.user, 'Addons:Review')
         cinder_job = CinderJob.objects.create(
             target_addon=self.addon, resolvable_in_reviewer_tools=True
@@ -1114,6 +1182,54 @@ class TestReviewHelper(TestReviewHelperBase):
             == DECISION_ACTIONS.AMO_IGNORE
         )
         report_mock.assert_called_once()
+
+    @override_switch('policy_selection_rather_than_reasons', active=True)
+    def test_record_decision_saves_placeholder_values_for_policies(self):
+        self.grant_permission(self.user, 'Addons:Review')
+        self.helper = self.get_helper()
+        data = {
+            # ignored - the action doesn't allow_reasons with the waffle enabled
+            'reasons': [
+                ReviewActionReason.objects.create(
+                    name='reason 1', is_active=True, canned_response='.'
+                ),
+                ReviewActionReason.objects.create(
+                    name='reason 2',
+                    is_active=True,
+                    cinder_policy=CinderPolicy.objects.create(uuid='y'),
+                    canned_response='.',
+                ),
+            ],
+            'cinder_policies': [
+                CinderPolicy.objects.create(uuid='xxx'),
+                CinderPolicy.objects.create(
+                    uuid='zzz',
+                    enforcement_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value],
+                ),
+            ],
+            'policy_values': {
+                'xxx': {'PLACE1': 'some value', 'PLACE2': 'some other value'},
+                'zzz': {'@ "" wierdness': ':shrug:'},
+            },
+        }
+        self.helper.set_data(data)
+        self.helper.handler.review_action = self.helper.actions[
+            'reject_multiple_versions'
+        ]
+
+        self.helper.handler.record_decision(amo.LOG.REJECT_VERSION)
+        assert ReviewActionReasonLog.objects.count() == 0
+        assert CinderPolicyLog.objects.count() == 2
+        decision = (
+            ActivityLog.objects.get(action=amo.LOG.REJECT_VERSION.id)
+            .contentdecisionlog_set.get()
+            .decision
+        )
+        assert decision.action == DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
+        assert (
+            decision.metadata[ContentDecision.POLICY_DYNAMIC_VALUES]
+            == data['policy_values']
+        )
 
     @patch('olympia.reviewers.utils.report_decision_to_cinder_and_notify.delay')
     def test_record_decision_sets_policies_with_closed_no_action(self, report_mock):
@@ -3942,9 +4058,13 @@ class TestReviewHelper(TestReviewHelperBase):
         )
 
     def test_resolve_appeal_job(self):
-        policy_a = CinderPolicy.objects.create(uuid='a')
-        policy_b = CinderPolicy.objects.create(uuid='b')
-        policy_c = CinderPolicy.objects.create(uuid='c')
+        policy_a = CinderPolicy.objects.create(
+            uuid='a', text='The {THING} with the {OTHER} thing or {SOMETHING}'
+        )
+        policy_b = CinderPolicy.objects.create(
+            uuid='b', text='The {THING} with this {DUNNO}'
+        )
+        policy_c = CinderPolicy.objects.create(uuid='c', text='{mmm}.')
         policy_d = CinderPolicy.objects.create(uuid='d')
 
         appeal_job1 = CinderJob.objects.create(
@@ -3954,11 +4074,23 @@ class TestReviewHelper(TestReviewHelperBase):
             appeal_job=appeal_job1,
             action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
             addon=self.addon,
+            metadata={
+                ContentDecision.POLICY_DYNAMIC_VALUES: {
+                    policy_a.uuid: {'THING': 'la la', 'OTHER': 'da da'},
+                    policy_b.uuid: {'THING': 'so so'},
+                }
+            },
         ).policies.add(policy_a, policy_b)
         ContentDecision.objects.create(
             appeal_job=appeal_job1,
             action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
             addon=self.addon,
+            metadata={
+                ContentDecision.POLICY_DYNAMIC_VALUES: {
+                    policy_a.uuid: {'THING': 'laa laa', 'SOMETHING': 'else?'},
+                    policy_c.uuid: {'mmm': 'no!'},
+                }
+            },
         ).policies.add(policy_a, policy_c)
         responses.add_callback(
             responses.POST,
@@ -4009,6 +4141,16 @@ class TestReviewHelper(TestReviewHelperBase):
             policy_c,
         }
         assert set(appeal_job2.reload().decision.policies.all()) == {policy_d}
+
+        assert decision1.metadata[ContentDecision.POLICY_DYNAMIC_VALUES] == {
+            policy_a.uuid: {
+                'THING': 'la la | laa laa',
+                'OTHER': 'da da',
+                'SOMETHING': 'else?',
+            },
+            policy_b.uuid: {'THING': 'so so'},
+            policy_c.uuid: {'mmm': 'no!'},
+        }
 
     def test_reject_multiple_versions_resets_original_status_too(self):
         old_version = self.review_version

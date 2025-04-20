@@ -3001,7 +3001,7 @@ class TestReview(ReviewBase):
             str(author.get_role_display()),
             self.addon,
         )
-        with self.assertNumQueries(62):
+        with self.assertNumQueries(64):
             # FIXME: obviously too high, but it's a starting point.
             # Potential further optimizations:
             # - Remove trivial... and not so trivial duplicates
@@ -3010,66 +3010,68 @@ class TestReview(ReviewBase):
             # - Remove useless things like user add-ons and collection
             # - Make some joins
             #
-            # 1. user
-            # 2. savepoint
-            # 3. add-on by slug
-            # 4. add-on translations
-            # 5. add-on categories
-            # 6. current version + file
-            # 7. current version translations
-            # 8. current version applications versions
-            # 9. add current_authors property to the addon instance
-            # 10. previews
-            # 11. promoted info for the add-on
+            # 1. savepoint
+            # 2. user
+            # 3. groups
+            # 4. add-on by slug
+            # 5. add-on translations
+            # 6. add-on categories
+            # 7. current version + file
+            # 8. current version translations
+            # 9. current version applications versions
+            # 10. add current_authors property to the addon instance
+            # 11. previews
             # 12. latest version in channel + file
             # 13. latest versions translations
             # 14. latest version in channel not disabled + file
             # 15. latest version in channel not disabled translations
-            # 16. version reviewer flags
-            # 17. version reviewer flags (repeated)
-            # 18. version autoapprovalsummary
-            # 19. blocklist
-            # 20. cinderjob exists
-            # 21. addonreusedguid
-            # 22. unresolved DSA related abuse reports
-            # 23. abuse reports count against user or addon
-            # 24. low ratings count
-            # 25. base version pk for comparison
-            # 26. count of all versions in channel
-            # 27. paginated list of versions in channel
-            # 28. scanner results for paginated list of versions
-            # 29. translations for paginated list of versions
-            # 30. applications versions for paginated list of versions
-            # 31. activity log for paginated list of versions
-            # 32. files for paginated list of versions
-            # 33. versionreviewer flags exists to find out if pending rejection
-            # 34. count versions needing human review on other pages
-            # 35. count versions needing human review by mad on other pages
-            # 36. count versions pending rejection on other pages
-            # 37. whiteboard
-            # 38. reviewer subscriptions for listed
-            # 39. reviewer subscriptions for unlisted
-            # 40. config for motd
-            # 41. release savepoint (?)
-            # 42. count add-ons the user is a developer of
-            # 43. config for site notice
-            # 44. other add-ons with same guid
-            # 45. translations for... (?! id=1)
-            # 46. important activity log about the add-on
-            # 47. user for the activity (from the ActivityLog foreignkey)
-            # 48. user for the activity (from the ActivityLog arguments)
-            # 49. add-on for the activity
-            # 50. translation for the add-on for the activity
-            # 51. select all versions in channel for versions dropdown widget
-            # 52. reviewer reasons for the reason dropdown
-            # 53. cinder policies for the policy dropdown
-            # 54. select users by role for this add-on (?)
-            # 55. unreviewed versions in other channel
-            # 56. attachmentlog
-            # 57. approved promoted groups ids
-            # 58/59. check if the addon is admin_review (x2)
-            # 60. check if the addon is listed_pre_review
-            # 61/62. fetch promoted groups of current version (x2)
+            # 16/17. promoted info for the add-on
+            # 18/19. version reviewer flags
+            # 20. version autoapprovalsummary
+            # 21. blocklist
+            # 22. cinderjob exists
+            # 23. fetch promoted groups of current version
+            # 24. waffle switch for policy_selection_rather_than_reasons
+            # 25. fetch promoted groups of current version (repeated)
+            # 26. addonreusedguid
+            # 27. abuse reports count against user or addon
+            # 28. low ratings count
+            # 29. base version pk for comparison
+            # 30. count of all versions in channel
+            # 31. paginated list of versions in channel
+            # 32. scanner results for paginated list of versions
+            # 33. translations for paginated list of versions
+            # 34. applications versions for paginated list of versions
+            # 35. activity log for paginated list of versions
+            # 36. unreviewed versions in other channel
+            # 37. count versions needing human review on other pages
+            # 38. count versions needing human review by mad on other pages
+            # 39. count versions pending rejection on other pages
+            # 40. versionreviewer flags exists to find out if pending rejection
+            # 41. fetch promoted groups of current version (repeated)
+            # 42. whiteboard
+            # 43. count add-ons the user is a developer of
+            # 44. something to do with due_date?
+            # 45. reviewer subscriptions for listed
+            # 46. reviewer subscriptions for unlisted
+            # 47. config for motd
+            # 48. release savepoint (?)
+            # 49. select users by role for this add-on (?)
+            # 50. config for site notice
+            # 51. fetch promoted groups of current version (repeated)?
+            # 52. other add-ons with same guid
+            # 53. translations for... (?! id=1)
+            # 54. important activity log about the add-on
+            # 55. user for the activity (from the ActivityLog foreignkey)
+            # 56. user for the activity (from the ActivityLog arguments)
+            # 57. add-on for the activity
+            # 58. translation for the add-on for the activity
+            # 59. waffle switch enable-activity-log-attachments
+            # 60. select all versions in channel for versions dropdown widget
+            # 61. cinder policies for the policy dropdown
+            # 62. reviewer reasons for the reason dropdown
+            # 63. cinder policies for the policy dropdown (repeated)
+            # 64. unresolved DSA related abuse reports
             response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -4827,6 +4829,66 @@ class TestReview(ReviewBase):
             assert version.pending_rejection
             self.assertCloseToNow(version.pending_rejection, now=in_the_future)
 
+    @override_switch('policy_selection_rather_than_reasons', active=True)
+    def test_reject_with_policy_selection(self):
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}create_decision',
+            json={'uuid': uuid.uuid4().hex},
+            status=201,
+        )
+        policy = CinderPolicy.objects.create(
+            uuid='123-reject',
+            name='Bad thing',
+            expose_in_reviewer_tools=True,
+            enforcement_actions=[
+                DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value,
+                'some-other-action',
+            ],
+            text='Policy with {PLACEHOLDER} and {another}',
+        )
+        old_version = self.version
+        NeedsHumanReview.objects.create(version=old_version)
+        self.version = version_factory(addon=self.addon, version='3.0')
+        AutoApprovalSummary.objects.create(
+            version=self.addon.current_version, verdict=amo.AUTO_APPROVED
+        )
+        GroupUser.objects.filter(user=self.reviewer).all().delete()
+        self.grant_permission(self.reviewer, 'Addons:Review')
+
+        response = self.client.post(
+            self.url,
+            {
+                'action': 'reject_multiple_versions',
+                'comments': 'multireject!',
+                'cinder_policies': [policy.id],
+                'versions': [old_version.pk, self.version.pk],
+                'delayed_rejection': 'False',
+                f'policy-value-{policy.id}-PLACEHOLDER': 'bad things',
+                f'policy-value-{policy.id}-another': 'stuff!',
+            },
+        )
+
+        assert response.status_code == 302
+        for version in [old_version, self.version]:
+            version.reload()
+            assert not version.needshumanreview_set.filter(is_active=True)
+            file_ = version.file.reload()
+            assert file_.status == amo.STATUS_DISABLED
+            assert not version.pending_rejection
+        decision = ContentDecision.objects.first()
+        assert list(decision.policies.all()) == [policy]
+        assert decision.metadata[ContentDecision.POLICY_DYNAMIC_VALUES] == {
+            policy.uuid: {
+                'PLACEHOLDER': 'bad things',
+                'another': 'stuff!',
+            }
+        }
+        alog = ActivityLog.objects.filter(contentdecisionlog__decision=decision).get()
+        assert alog.details['policy_texts'] == [
+            'Bad thing: Policy with bad things and stuff!'
+        ]
+
     def test_change_pending_rejection_date(self):
         self.grant_permission(self.reviewer, 'Addons:Review,Reviews:Admin')
         old_version = self.version
@@ -5899,7 +5961,7 @@ class TestReview(ReviewBase):
                     results={'matchedRules': [customs_rule.name]},
                 )
 
-        with self.assertNumQueries(63):
+        with self.assertNumQueries(65):
             # See test_item_history_pagination() for more details about the
             # queries count. What's important here is that the extra versions
             # and scanner results don't cause extra queries.
@@ -6308,6 +6370,61 @@ class TestReview(ReviewBase):
         items = doc('li.version-that-would-be-reenabled')
         assert len(items) == MAX_MOCK + 1  # + 1 for the overflow li
         assert '...' in items[-1].text_content()
+
+    @override_switch('policy_selection_rather_than_reasons', active=True)
+    def test_comments_when_using_policies_rather_than_reasons(self):
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert doc('.review-comments textarea')
+        assert doc('.review-comments textarea[rows="2"]')
+        assert not doc('.review-comments details[open] textarea')
+
+        with override_switch('policy_selection_rather_than_reasons', active=False):
+            response = self.client.get(self.url)
+            doc = pq(response.content)
+            assert doc('.review-comments textarea')
+            assert not doc('.review-comments textarea[rows="2"]')
+            assert doc('.review-comments details[open] textarea')
+
+    def test_policy_text_rendered(self):
+        CinderPolicy.objects.create(uuid='not-exposed', name='not exposed')
+        policy_fixed = CinderPolicy.objects.create(
+            uuid='no-enforcement',
+            name='no enforcement',
+            expose_in_reviewer_tools=True,
+            text='Something something',
+        )
+        policy_dynamic = CinderPolicy.objects.create(
+            uuid='4-rejections',
+            name='for rejections',
+            expose_in_reviewer_tools=True,
+            enforcement_actions=[
+                DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value,
+                'some-other-action',
+            ],
+            text='Policy with {PLACEHOLDER} and {"EDGE&case }',
+        )
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert len(doc('.policy-texts div')) == 2
+
+        assert doc(f'#policy-text-{policy_fixed.id}[hidden]')
+        assert doc(f'#policy-text-{policy_fixed.id}').text() == 'Something something'
+        assert not doc(f'#policy-text-{policy_fixed.id} input')
+
+        assert doc(f'#policy-text-{policy_dynamic.id}[hidden]')
+        assert doc(f'#policy-text-{policy_dynamic.id}').text() == 'Policy with and'
+        assert doc(f'#policy-text-{policy_dynamic.id} input')
+        assert doc(f'#policy-text-{policy_dynamic.id} input').eq(0).attr['name'] == (
+            f'policy-value-{policy_dynamic.id}-PLACEHOLDER'
+        )
+        assert doc(f'#policy-text-{policy_dynamic.id} input').eq(1).attr['name'] == (
+            f'policy-value-{policy_dynamic.id}-"EDGE&case '
+        )
+        # pyquery is escaping the name - check it's encoded in the raw html
+        assert f'"policy-value-{policy_dynamic.id}-&quot;EDGE&amp;case "'.encode() in (
+            response.content
+        )
 
 
 class TestAbuseReportsView(ReviewerTest):
