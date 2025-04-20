@@ -112,6 +112,14 @@ $(document).ready(function () {
       );
     });
   }
+
+  let policySelectionInputs = $('.review-actions-policies-select input[name="cinder_policies"]');
+  policySelectionInputs.change((event) => {
+    let checkbox = event.target;
+    $("#policy-text-" + checkbox.value)[0].hidden = !checkbox.checked;
+  });
+  policySelectionInputs.trigger("click").trigger("click");
+
 });
 
 function initReviewActions() {
