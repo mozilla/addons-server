@@ -13,7 +13,6 @@ from olympia.abuse.models import (
     CinderAppeal,
     CinderJob,
     CinderPolicy,
-    CinderQueueMove,
     ContentDecision,
 )
 from olympia.addons.models import Addon
@@ -1246,19 +1245,17 @@ class TestReviewForm(TestCase):
             resolvable_in_reviewer_tools=True,
             target_addon=self.addon,
         )
-        CinderJob.objects.create(
-            job_id='forwarded_from',
-            forwarded_to_job=cinder_job_forwarded,
-            decision=ContentDecision.objects.create(
-                action=DECISION_ACTIONS.AMO_ESCALATE_ADDON,
-                notes='Why o why',
-                addon=self.addon,
-            ),
-        )
-        CinderQueueMove.objects.create(
-            cinder_job=cinder_job_forwarded,
+        ContentDecision.objects.create(
+            action=DECISION_ACTIONS.AMO_ESCALATE,
             notes='Zee de zee',
-            to_queue='amo-env-content-infringment',
+            addon=self.addon,
+            cinder_job=cinder_job_forwarded,
+        )
+        ContentDecision.objects.create(
+            action=DECISION_ACTIONS.AMO_REQUEUE,
+            notes='Why o why',
+            addon=self.addon,
+            cinder_job=cinder_job_forwarded,
         )
         AbuseReport.objects.create(
             **{**abuse_kw, 'location': AbuseReport.LOCATION.AMO},
