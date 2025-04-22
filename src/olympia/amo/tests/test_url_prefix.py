@@ -269,6 +269,9 @@ def test_outgoing_url_dirty_unicode():
 
 
 def test_outgoing_url_query_params():
+    if not getattr(settings, 'REDIRECT_URL', None):
+        settings.REDIRECT_URL = 'https://outgoing.prod.mozaws.net/v1/'
+
     url = 'http://xx.com?q=1&v=2'
     fixed = urlresolvers.get_outgoing_url(url)
     assert fixed.endswith('http%3A//xx.com%3Fq=1&v=2'), fixed
@@ -284,6 +287,9 @@ def test_outgoing_url_query_params():
 
 
 def test_outgoing_url_javascript_scheme():
+    if not getattr(settings, 'REDIRECT_URL', None):
+        settings.REDIRECT_URL = 'https://outgoing.prod.mozaws.net/v1/'
+
     url = 'javascript://addons.mozilla.org/%0Aalert(location.href)'
     fixed = urlresolvers.get_outgoing_url(url)
     assert fixed == '/'
