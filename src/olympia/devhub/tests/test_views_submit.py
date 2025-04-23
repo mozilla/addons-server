@@ -29,7 +29,6 @@ from olympia.addons.models import (
 from olympia.amo.tests import (
     TestCase, addon_factory, create_default_webext_appversion, formset,
     initial, version_factory)
-from olympia.amo.tests import populate_static_categories
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import reverse
 from olympia.constants.categories import CATEGORIES_BY_ID
@@ -1480,7 +1479,7 @@ class TestStaticThemeSubmitDetails(DetailsPageMixin, TestSubmitBase):
         assert sorted(addon_cats) == [320]
 
     def test_submit_categories_change(self):
-        populate_static_categories()
+        Category.populate_static_categories()
         category_desktop = Category.objects.get(id=300)
         category_android = Category.objects.get(id=400)
         AddonCategory(addon=self.addon, category=category_desktop).save()

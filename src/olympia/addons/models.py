@@ -44,7 +44,7 @@ from olympia.amo.utils import (
     AMOJSONEncoder, StopWatch, attach_trans_dict, cache_ns_key, chunked,
     find_language, send_mail, slugify, sorted_groupby, timer, to_language)
 from olympia.constants.applications import THUNDERBIRD
-from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
+from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID, StaticCategory
 from olympia.constants.reviewers import REPUTATION_CHOICES
 from olympia.files.models import File
 from olympia.files.utils import extract_translations, resolve_i18n_message
@@ -2034,6 +2034,18 @@ class Category(OnChangeMixin, ModelBase):
             return category
         else:
             return cls(**data)
+
+    @classmethod
+    def populate_static_categories(cls):
+        """
+        This adds all the static categories to the database.
+
+        It can be called more than once without error.
+        """
+        print('POPULATING STATIC CATEGORIES')
+        for cat in CATEGORIES_BY_ID.values():
+            assert type(cat) is StaticCategory
+            Category.from_static_category(cat, save=True)
 
 
 class Preview(BasePreview, ModelBase):
