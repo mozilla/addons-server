@@ -1146,6 +1146,8 @@ def fix_webext_fixture(filename):
 
                 manifest = json.loads(manifest)
 
+                print(manifest.keys())
+                print('yo '* 100)
                 if not manifest.get('browser_specific_settings'):
                     # If we have the deprecated applications, rename it to browser_specific_settings
                     if manifest.get('applications'):

@@ -29,7 +29,7 @@ from olympia.amo.storage_utils import copy_stored_file
 from olympia.amo.templatetags.jinja_helpers import (
     format_date, url as url_reverse, urlparams)
 from olympia.amo.tests import (
-    TestCase, addon_factory, user_factory, version_factory)
+    TestCase, addon_factory, user_factory, version_factory, fix_webext_fixture)
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import reverse
 from olympia.api.models import SYMMETRIC_JWT_TYPE, APIKey
@@ -935,10 +935,11 @@ class TestUploadDetail(BaseUploadTest):
     def upload_file(self, file, url='devhub.upload'):
         addon = os.path.join(
             settings.ROOT, 'src', 'olympia', 'devhub', 'tests', 'addons', file)
-        with open(addon, 'rb') as f:
-            response = self.client.post(
-                reverse(url), {'upload': f})
-        assert response.status_code == 302
+        with fix_webext_fixture(addon) as addon:
+            with open(addon, 'rb') as f:
+                response = self.client.post(
+                    reverse(url), {'upload': f})
+            assert response.status_code == 302
 
     def test_detail_json(self):
         self.post()
