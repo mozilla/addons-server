@@ -50,12 +50,13 @@ from olympia.addons.models import (
     Addon, AddonCategory, Category, Persona,
     update_search_index as addon_update_search_index)
 from olympia.addons.tasks import version_changed
+from olympia.addons.models import Category
 from olympia.amo.urlresolvers import get_url_prefix, Prefixer, set_url_prefix
 from olympia.amo.storage_utils import copy_stored_file
 from olympia.addons.tasks import unindex_addons
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
-from olympia.constants.categories import CATEGORIES
+from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID, StaticCategory
 from olympia.files.models import File, WebextPermission
 from olympia.lib.es.utils import timestamp_index
 from olympia.tags.models import Tag
@@ -1121,6 +1122,17 @@ def reverse_ns(viewname, api_version=None, args=None, kwargs=None, **extra):
         viewname, args=args or [], kwargs=kwargs or {}, request=request,
         **extra)
 
+
+def populate_static_categories():
+    """
+    This is add all the static categories to the database.
+
+    It can be called more than once without error.
+    """
+    print('POPULATING STATIC CATEGORIES')
+    for cat in CATEGORIES_BY_ID.values():
+        assert type(cat) is StaticCategory
+        Category.from_static_category(cat, save=True)
 
 @contextmanager
 def fix_webext_fixture(filename):
