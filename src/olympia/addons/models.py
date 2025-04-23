@@ -768,6 +768,21 @@ class Addon(OnChangeMixin, ModelBase):
             version.reset_due_date(due_date)
         return version
 
+    def versions_triggering_needs_human_review_inheritance(self, channel):
+        """Return queryset of Versions belonging to this addon in the specified
+        channel that should be considered for due date and NeedsHumanReview
+        inheritance."""
+        from olympia.reviewers.models import NeedsHumanReview
+
+        reasons_triggering_inheritance = set(
+            NeedsHumanReview.REASONS.values.keys()
+        ) - set(NeedsHumanReview.REASONS.NO_DUE_DATE_INHERITANCE.values.keys())
+        return self.versions(manager='unfiltered_for_relations').filter(
+            channel=channel,
+            needshumanreview__is_active=True,
+            needshumanreview__reason__in=reasons_triggering_inheritance,
+        )
+
     @property
     def is_guid_denied(self):
         return DeniedGuid.objects.filter(guid=self.guid).exists()

@@ -2419,7 +2419,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert not upload_version.due_date
         assert upload_version.needshumanreview_set.count() == 0
 
-    def test_dont_inherit_due_date_for_some_specific_reasons(self):
+    def test_dont_inherit_due_date_or_nhr_for_some_specific_reasons(self):
         # Some NeedsHumanReview reasons don't pass their due date through
         # inheritance if they are the only reason a version had a due date.
         old_version = self.addon.current_version
@@ -2435,18 +2435,25 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
+        # The version doesn't gain a NHR for INHERITANCE
+        assert new_version.needshumanreview_set.count() == 0
+        # If it gains a NHR, it doesn't inherit the due date since the old
+        # version only needs human review for one of the reasons that does not
+        # trigger inheritance.
+        new_version.needshumanreview_set.create(reason=NeedsHumanReview.REASONS.UNKNOWN)
         assert new_version.due_date
         assert new_version.due_date > old_version.due_date
+        # Forcing re-generation doesn't change anything.
         assert new_version.generate_due_date() > old_version.due_date
 
-        # Remains true for CINDER_ESCALATION which is another reason that
-        # doesn't trigger due date inheritance.
+        # The above remains true for CINDER_ESCALATION which is another reason
+        # that doesn't trigger due date inheritance.
         old_version.needshumanreview_set.create(
             reason=NeedsHumanReview.REASONS.CINDER_ESCALATION
         )
         assert new_version.generate_due_date() > old_version.due_date
 
-        # If we add another reason that does trigger inheritance to the old
+        # If we add another reason that *does* trigger inheritance to the old
         # version, suddenly we will inherit its due date.
         old_version.needshumanreview_set.create(reason=NeedsHumanReview.REASONS.UNKNOWN)
         assert new_version.generate_due_date() == old_version.due_date

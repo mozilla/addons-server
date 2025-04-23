@@ -430,9 +430,7 @@ class Version(OnChangeMixin, ModelBase):
             )
 
         previous_version_had_needs_human_review = (
-            addon.versions(manager='unfiltered_for_relations')
-            .filter(channel=channel, needshumanreview__is_active=True)
-            .exists()
+            addon.versions_triggering_needs_human_review_inheritance(channel).exists()
         )
 
         version = cls.objects.create(
@@ -1011,18 +1009,8 @@ class Version(OnChangeMixin, ModelBase):
         would be at at earlier date than the default/existing one on the
         instance.
         """
-        from olympia.reviewers.models import NeedsHumanReview
-
-        reasons_triggering_inheritance = set(
-            NeedsHumanReview.REASONS.values.keys()
-        ) - set(NeedsHumanReview.REASONS.NO_DUE_DATE_INHERITANCE.values.keys())
         qs = (
-            Version.unfiltered.filter(
-                addon=self.addon,
-                channel=self.channel,
-                needshumanreview__reason__in=reasons_triggering_inheritance,
-                needshumanreview__is_active=True,
-            )
+            self.addon.versions_triggering_needs_human_review_inheritance(self.channel)
             .exclude(due_date=None)
             .exclude(id=self.pk)
             .values_list('due_date', flat=True)

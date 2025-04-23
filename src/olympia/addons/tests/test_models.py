@@ -2397,6 +2397,46 @@ class TestAddonDueDate(TestCase):
             == NeedsHumanReview.REASONS.UNKNOWN
         )
 
+    def test_versions_triggering_needs_human_review_inheritance(self):
+        addon = Addon.objects.get(id=3615)
+        version = addon.current_version
+        version.needshumanreview_set.create(reason=NeedsHumanReview.REASONS.UNKNOWN)
+        version2 = version_factory(addon=addon)
+        unlisted_version = version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
+        unlisted_version.needshumanreview_set.create(
+            reason=NeedsHumanReview.REASONS.UNKNOWN
+        )
+        assert set(
+            addon.versions_triggering_needs_human_review_inheritance(amo.CHANNEL_LISTED)
+        ) == {version}
+        assert set(
+            addon.versions_triggering_needs_human_review_inheritance(
+                amo.CHANNEL_UNLISTED
+            )
+        ) == {unlisted_version}
+
+        # Adding any of those NHR should not matter.
+        for reason_value, _ in NeedsHumanReview.REASONS.NO_DUE_DATE_INHERITANCE:
+            version2.needshumanreview_set.create(reason=reason_value)
+
+        assert set(
+            addon.versions_triggering_needs_human_review_inheritance(amo.CHANNEL_LISTED)
+        ) == {version}
+
+        # Adding any other NHR should.
+        nhr = version2.needshumanreview_set.create(
+            reason=NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+        )
+        assert set(
+            addon.versions_triggering_needs_human_review_inheritance(amo.CHANNEL_LISTED)
+        ) == {version, version2}
+
+        # An inactive NHR should not trigger inheritance.
+        nhr.update(is_active=False)
+        assert set(
+            addon.versions_triggering_needs_human_review_inheritance(amo.CHANNEL_LISTED)
+        ) == {version}
+
     def test_update_all_due_dates(self):
         addon = Addon.objects.get(id=3615)
         versions_that_should_have_due_date = [
