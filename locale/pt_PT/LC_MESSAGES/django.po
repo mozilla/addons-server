@@ -262,7 +262,7 @@ msgstr "A notificação [%s] não existe"
 
 #: src/olympia/activity/models.py:42
 msgid "Add-ons Review Team"
-msgstr "Equipa de Revisão de Extensões"
+msgstr "Equipa de Revisão de Extras"
 
 #: src/olympia/activity/models.py:738
 msgid "Review"
@@ -377,7 +377,7 @@ msgstr "O ficheiro já está desativado."
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
-"A última versão aprovada desta extensão %s não pode ser eliminada porque a versão anterior não foi aprovada para a promoção de %s . Contacte os administradores do AMO se precisar de ajuda com isto."
+"A última versão aprovada deste extra %s não pode ser eliminada porque a versão anterior não foi aprovada para a promoção de %s . Contacte os administradores do AMO se precisar de ajuda com isto."
 
 #: src/olympia/addons/serializers.py:536
 #, python-brace-format
@@ -2306,8 +2306,8 @@ msgstr "Ocorreu um erro ao enviar a sua pré-visualização."
 msgid ""
 "The latest approved version of this %s add-on cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
-"A última versão aprovada desta extensão %s não pode ser eliminada ou desativada porque a versão anterior não foi aprovada para a promoção %s . Por favor, contacte os administradores do AMO se "
-"precisar de ajuda com isto."
+"A última versão aprovada deste extra %s não pode ser eliminada ou desativada porque a versão anterior não foi aprovada para a promoção %s . Por favor, contacte os administradores do AMO se precisar "
+"de ajuda com isto."
 
 #: src/olympia/devhub/views.py:1220
 #, python-format
