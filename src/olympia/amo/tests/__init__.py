@@ -1121,6 +1121,27 @@ def reverse_ns(viewname, api_version=None, args=None, kwargs=None, **extra):
         viewname, args=args or [], kwargs=kwargs or {}, request=request,
         **extra)
 
+
+def fix_manifest(data, filename):
+    manifest = json.loads(data)
+    if not manifest.get('browser_specific_settings'):
+        # If we have the deprecated applications, rename it to browser_specific_settings
+        if manifest.get('applications'):
+            manifest['browser_specific_settings'] = manifest['applications']
+            del manifest['applications']
+        else:
+            # Otherwise generate a guid
+            manifest['browser_specific_settings'] = {
+                'gecko': {
+                    'id': f'{uuid.uuid4().hex}@example.com',
+                }
+            }
+
+    # If we're an experiment (indicated by filename) then set the strict max version
+    if 'experiment' in filename:
+        manifest['browser_specific_settings']['gecko']['strict_max_version'] = THUNDERBIRD.latest_version
+    return json.dumps(manifest)
+
 @contextmanager
 def fix_webext_fixture(filename):
     """Most test fixtures don't work with the latest addons-linter due to various errors.
@@ -1130,41 +1151,22 @@ def fix_webext_fixture(filename):
     * applications key is renamed to browser_specific_settings if encountered.
     * browser_specific_settings.gecko.id is generated if not found.
     * if experiment is found in the filename a browser_specific_settings.gecko.strict_max_version is set."""
-    ext = os.path.split(filename)[1]
-    temp_file = f'/tmp/{uuid.uuid4().hex}.{ext}'
-    shutil.copy(filename, temp_file)
+
+    ext = os.path.splitext(filename)[1]
+    temp_file = f'/tmp/{uuid.uuid4().hex}{ext}'
 
     # HACK: This is so we don't have to modify a bunch of binaries...it's ugly!
     # Check if we have a GUID for this addon, if not then make one.
-    if any(['.xpi' in filename, '.jar' in filename]):
-        with zipfile.ZipFile(temp_file) as xpi_contents:
-            # Do we have a manifest file at all?
-            # (If not it's not a web extension and will fail later)
-            if 'manifest.json' in xpi_contents.namelist():
-                with xpi_contents.open('manifest.json') as fh:
-                    manifest = fh.read()
-
-                manifest = json.loads(manifest)
-                if not manifest.get('browser_specific_settings'):
-                    # If we have the deprecated applications, rename it to browser_specific_settings
-                    if manifest.get('applications'):
-                        manifest['browser_specific_settings'] = manifest['applications']
-                        del manifest['applications']
-                    else:
-                        # Otherwise generate a guid
-                        manifest['browser_specific_settings'] = {
-                            'gecko': {
-                                'id': f'{uuid.uuid4().hex}@example.com',
-                            }
-                        }
-
-                # If we're an experiment (indicated by filename) then set the strict max version
-                if 'experiment' in filename:
-                    manifest['browser_specific_settings']['gecko']['strict_max_version'] = THUNDERBIRD.latest_version
-                manifest = json.dumps(manifest)
-
-                with zipfile.ZipFile(temp_file, 'a') as xpi_contents:
-                    xpi_contents.writestr('manifest.json', manifest.encode())
+    if ext in ['.xpi', '.jar']:
+        with zipfile.ZipFile(filename) as zip_in:
+            with zipfile.ZipFile(temp_file, 'w') as zip_out:
+                for info in zip_in.infolist():
+                    data = zip_in.read(info)
+                    if info.filename == 'manifest.json':
+                        data = fix_manifest(data, filename)
+                    zip_out.writestr(info, data)
+    else:
+        shutil.copy(filename, temp_file)
 
     yield temp_file
 

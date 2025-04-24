@@ -180,6 +180,9 @@ def fix_addons_linter_output(validation, channel):
                 msg['tier'] = 1
                 yield msg
 
+    if validation['metadata'] is None:
+        validation['metadata'] = {}
+    
     identified_files = {
         name: {'path': path}
         for name, path in validation['metadata'].get('jsLibs', {}).items()
