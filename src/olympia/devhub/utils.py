@@ -180,7 +180,7 @@ def fix_addons_linter_output(validation, channel):
                 msg['tier'] = 1
                 yield msg
 
-    if validation['metadata'] is None:
+    if not isinstance(validation.get('metadata', None), dict):
         validation['metadata'] = {}
     
     identified_files = {
