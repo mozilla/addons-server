@@ -5961,9 +5961,8 @@ msgstr "Administradores de contraseñas seguras"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1053
-#, fuzzy
 msgid "See more password manager staff picks"
-msgstr "Ver más extensiones recomendadas"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1056
@@ -5972,9 +5971,8 @@ msgstr "Herramientas de traducción"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1058
-#, fuzzy
 msgid "See more translation tool staff picks"
-msgstr "por versión del complemento"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1061
