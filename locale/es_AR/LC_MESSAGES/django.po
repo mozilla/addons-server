@@ -1217,11 +1217,11 @@ msgstr "Respuesta a {rating} para {addon} escrita."
 #: src/olympia/constants/activity.py:958
 #, python-brace-format
 msgid "{addon} {version} pending rejection cleared."
-msgstr ""
+msgstr "Se eliminó el rechazo pendiente de {addon} {version}."
 
 #: src/olympia/constants/activity.py:959
 msgid "Pending rejection cleared"
-msgstr ""
+msgstr "Rechazo pendiente borrado"
 
 #: src/olympia/constants/activity.py:1006
 #, python-brace-format
@@ -1250,7 +1250,7 @@ msgstr "Revisión {rating} para {addon} restaurada."
 #: src/olympia/constants/activity.py:1058
 #, python-brace-format
 msgid "{addon} {version} rejected automatically after delay expired."
-msgstr ""
+msgstr "{addon} {version} rechazada automáticamente una vez transcurrido el plazo."
 
 #: src/olympia/constants/activity.py:1059
 msgid "Rejected automatically after delay expired"
@@ -1259,7 +1259,7 @@ msgstr ""
 #: src/olympia/constants/activity.py:1070
 #, python-brace-format
 msgid "{addon} {version} content rejected automatically after delay expired."
-msgstr ""
+msgstr "Contenido de {addon} {version} rechazado automáticamente una vez transcurrido el plazo."
 
 #: src/olympia/constants/activity.py:1071
 msgid "Content rejected automatically after delay expired"
