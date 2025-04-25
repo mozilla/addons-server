@@ -4729,7 +4729,7 @@ msgstr "Hægrismelltu og dragðu tengla sem þú vilt opna í nýjum flipa."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:218
 msgid "Access recently closed tabs by right-clicking the icon in your toolbar."
-msgstr "Fáðu aðgang að nýlokuðum flipum með því að hægrismella á táknmyndina í verkfæraslánni."
+msgstr "Fáðu aðgang að nýlokuðum flipum með því að hægrismella á táknmyndina í verkfærastikunni."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:221
