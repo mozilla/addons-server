@@ -1,0 +1,38 @@
+name: Pull Request
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  check_migrations:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Changed files
+        id: changed_files
+        uses: tj-actions/changed-files@ed68ef82c095e0d48ec87eccea555d944a631a4c
+        with:
+          since_last_remote_commit: true
+          files: '**/migrations/*.py'
+
+      - name: Link to migration docs
+        if: steps.changed_files.outputs.any_changed == 'true'
+        uses: mozilla/addons/.github/actions/pr-comment@main
+        env:
+          docs_base_url: https://mozilla.github.io/addons-server
+          database_path: /topics/development/database.html
+        with:
+          repo: ${{ github.repository }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          pr: ${{ github.event.pull_request.number }}
+          edit_last: true
+          body: |
+            ## ⚠️ Data migration detected ⚠️
+
+            It looks like there are data migrations in your PR.
+            Please **read our policies** on database migrations before merging.
+
+            [Migration Docs](${{ env.docs_base_url }}${{ env.database_path }})
