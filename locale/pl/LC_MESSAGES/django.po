@@ -2753,9 +2753,9 @@ msgid "Edit"
 msgstr "Edytuj"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:15
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Additional Details for {0}"
-msgstr "Szczegółowe dane dodatku {0}"
+msgstr "Dodatkowe szczegóły dla dodatku {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:19
 msgid "Tags"
@@ -2819,14 +2819,13 @@ msgstr "Opisz dodatek"
 
 #. {0} is the addon name
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:18
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Describe {0}"
-msgstr "Opisz dodatek"
+msgstr "Opisz {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:22
-#, fuzzy
 msgid "Name and Summary"
-msgstr "Podsumowanie"
+msgstr "Nazwa i podsumowanie"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:24 src/olympia/devhub/templates/devhub/addons/submit/describe.html:22
 msgid ""
@@ -2852,9 +2851,8 @@ msgstr "Strona dodatku"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:98 src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:63
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:36
-#, fuzzy
 msgid "View Product Page"
-msgstr "Zobacz profil"
+msgstr "Wyświetl stronę produktu"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:107 src/olympia/devhub/templates/devhub/addons/submit/describe.html:91
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
@@ -2973,6 +2971,8 @@ msgid ""
 "The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that may"
 " help. This whiteboard is also editable by reviewers."
 msgstr ""
+"Tablica jest miejscem, w którym można udostępniać recenzentom informacje istotne dla Twojego dodatku, niezależnie od jego wersji. Używaj jej, by podać sposoby testowania dodatku oraz inne przydatne "
+"informacje. Tablica może być również edytowana przez recenzentów."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:10
 #, python-brace-format
@@ -3001,9 +3001,8 @@ msgid "32x32px"
 msgstr "32x32px"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:39
-#, fuzzy
 msgid "Used in listings of add-ons, like search results."
-msgstr "Używana w wykazach dodatków, takich jak wyniki wyszukiwania czy polecane dodatki."
+msgstr "Używana w wykazach dodatków, takich jak wyniki wyszukiwania."
 
 #. The size of the icon
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:47
@@ -3061,11 +3060,11 @@ msgstr "Obsługiwane są formaty PNG i JPG, zalecany jest PNG. Maksymalny i zale
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:153
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
-msgstr ""
+msgstr "Minimalny rozmiar to 1000x750, a wymagane proporcje wynoszą 4:3."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:155
 msgid "Having screenshots in your product page greatly increases its chances of being installed."
-msgstr ""
+msgstr "Umieszczenie zrzutów ekranu na stronie produktu znacznie zwiększa szanse na jego zainstalowanie."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:182 src/olympia/devhub/templates/devhub/addons/submit/distribute.html:30
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:85 src/olympia/devhub/templates/devhub/addons/submit/upload.html:99
@@ -3151,11 +3150,8 @@ msgid "Top"
 msgstr "Do góry"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:1
-#, fuzzy
 msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
-msgstr ""
-"Usunięcie dodatku spowoduje trwałe usunięcie wszystkich wersji i plików przesłanych dla tego dodatku, niezależnie od tego, czy jest wyświetlany w spisach. Identyfikator dodatku pozostanie powiązany "
-"z Twoim kontem, dzięki czemu inni nie będą mogli przesyłać wersji przy użyciu tego samego identyfikatora."
+msgstr "Usunięcie dodatku spowoduje trwałe usunięcie wszystkich wersji i plików przesłanych dla tego dodatku, niezależnie od tego, czy jest wyświetlany w spisach."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:6
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
@@ -3281,9 +3277,8 @@ msgid "No, don't cancel"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:16
-#, fuzzy
 msgid "Name and Summary:"
-msgstr "Podsumowanie:"
+msgstr "Nazwa i podsumowanie:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:16 src/olympia/devhub/templates/devhub/addons/submit/describe.html:87
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:102 src/olympia/devhub/templates/devhub/addons/submit/describe.html:164
@@ -3320,9 +3315,8 @@ msgid "Summary:"
 msgstr "Podsumowanie:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:100
-#, fuzzy
 msgid "Description:"
-msgstr "Opis"
+msgstr "Opis:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:123
 msgid "This add-on is experimental"
@@ -3819,9 +3813,8 @@ msgid "Latest Version:"
 msgstr "Najnowsza wersja:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:108
-#, fuzzy
 msgid "This is the newest uploaded unlisted version"
-msgstr "To jest najnowsza przesłana wersja, która nie została jeszcze opublikowana."
+msgstr "To jest najnowsza przesłana wersja, która nie została jeszcze opublikowana"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:19
 msgid "Upload New Version"
@@ -3997,7 +3990,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:17
 msgid "Matrix"
-msgstr ""
+msgstr "Matrix"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:18
 #, fuzzy
