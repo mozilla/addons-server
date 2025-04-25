@@ -3017,12 +3017,11 @@ msgstr "Używana na stronach dodatku."
 #. The size of the icon
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:56
 msgid "128x128px"
-msgstr ""
+msgstr "128x128px"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:57
-#, fuzzy
 msgid "Will be the standard in future add-on detail pages."
-msgstr "Używana na stronach dodatku."
+msgstr "W przyszłości będzie standardem na stronach ze szczegółami dodatków."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:64
 msgid "Upload a Custom Icon..."
@@ -3030,16 +3029,15 @@ msgstr "Prześlij własną ikonę…"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:73
 msgid "PNG and JPG supported."
-msgstr ""
+msgstr "Obsługiwane są formaty PNG i JPG."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:75
 msgid "Icons must be square and a minimum size of 128x128 pixels."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:77
-#, fuzzy
 msgid "Icons will be resized to 128x128 pixels if larger."
-msgstr "Obsługiwane formaty to PNG i JPG. Ikony, jeśli są większe, zostaną przeskalowane do wielkości 64×64 pikseli."
+msgstr "Ikony, jeśli są większe, zostaną przeskalowane do wielkości 128x128 pikseli."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:94
 msgid "Screenshots"
@@ -3059,7 +3057,7 @@ msgstr "Dodaj obraz…"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:148
 msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
-msgstr ""
+msgstr "Obsługiwane są formaty PNG i JPG, zalecany jest PNG. Maksymalny i zalecany rozmiar zrzutów ekranu to 2400x1800 pikseli."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:153
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
