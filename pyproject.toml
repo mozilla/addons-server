@@ -45,6 +45,7 @@ select = [
     "I",  # isort
     "Q",  # flake8-quotes
     "W",  # pycodestyle warnings
+    "TID251",  # banned imports
 ]
 
 [tool.ruff.lint.flake8-quotes]
@@ -56,6 +57,9 @@ lines-after-imports = 2
 section-order = ["future", "standard-library", "django", "third-party", "first-party", "local-folder"]
 [tool.ruff.lint.isort.sections]
 "django" = ["django"]
+
+[tool.ruff.lint.flake8-tidy-imports.banned-api]
+"settings".msg = "`settings` is a module at the root of the project. Did you mean from `django.conf import settings` instead?"
 
 [tool.ruff.format]
 quote-style = "single"
