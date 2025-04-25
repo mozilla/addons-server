@@ -493,6 +493,12 @@ class TestReviewForm(TestCase):
             expose_in_reviewer_tools=True,
             enforcement_actions=[DECISION_ACTIONS.AMO_APPROVE.api_value],
         )
+        action_policy_d = CinderPolicy.objects.create(
+            uuid='d',
+            name='closed already',
+            expose_in_reviewer_tools=True,
+            enforcement_actions=[DECISION_ACTIONS.AMO_CLOSED_NO_ACTION.api_value],
+        )
         form = self.get_form()
         assert not form.is_bound
         data = {
@@ -503,19 +509,28 @@ class TestReviewForm(TestCase):
         form = self.get_form(data=data)
         assert not form.is_valid()
         assert form.errors == {
-            '__all__': ['No policies selected with an associated cinder action.']
+            'cinder_policies': [
+                'No policies selected with an associated cinder action.'
+            ]
         }
 
         data['cinder_policies'] = [action_policy_a.id, action_policy_c.id]
         form = self.get_form(data=data)
         assert not form.is_valid()
         assert form.errors == {
-            '__all__': ['Multiple policies selected with different cinder actions.']
+            'cinder_policies': [
+                'Multiple policies selected with different cinder actions.'
+            ]
         }
 
         data['cinder_policies'] = [action_policy_a.id, action_policy_b.id]
         form = self.get_form(data=data)
         assert form.is_valid()
+        assert not form.errors
+
+        data['cinder_policies'] = [action_policy_d.id]
+        form = self.get_form(data=data)
+        assert form.is_valid(), form.errors
         assert not form.errors
 
     def test_cinder_jobs_filtered_for_resolve_reports_job_and_resolve_appeal_job(self):
@@ -1368,7 +1383,9 @@ class TestReviewForm(TestCase):
 
         form = self.get_form(data=data, files=files)
         assert not form.is_valid()
-        assert form.errors == {'__all__': ['Cannot upload both a file and input.']}
+        assert form.errors == {
+            'attachment_input': ['Cannot upload both a file and input.']
+        }
 
 
 class TestHeldDecisionReviewForm(TestCase):

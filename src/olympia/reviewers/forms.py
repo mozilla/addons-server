@@ -485,14 +485,14 @@ class ReviewForm(forms.Form):
 
     def clean(self):
         super().clean()
-        # If the user select a different type of job before changing actions there could
-        # be non-appeal jobs selected as cinder_jobs_to_resolve under resolve_appeal_job
-        # action, or appeal jobs under resolve_reports_job action. So filter them out.
         if self.cleaned_data.get('attachment_input') and self.cleaned_data.get(
             'attachment_file'
         ):
-            raise ValidationError('Cannot upload both a file and input.')
+            self.add_error('attachment_input', 'Cannot upload both a file and input.')
         selected_action = self.cleaned_data.get('action')
+        # If the user select a different type of job before changing actions there could
+        # be non-appeal jobs selected as cinder_jobs_to_resolve under resolve_appeal_job
+        # action, or appeal jobs under resolve_reports_job action. So filter them out.
         if selected_action == 'resolve_appeal_job':
             self.cleaned_data['cinder_jobs_to_resolve'] = [
                 job
@@ -512,12 +512,14 @@ class ReviewForm(forms.Form):
                 self.cleaned_data.get('cinder_policies')
             )
             if len(actions) == 0:
-                raise ValidationError(
-                    'No policies selected with an associated cinder action.'
+                self.add_error(
+                    'cinder_policies',
+                    'No policies selected with an associated cinder action.',
                 )
             elif len(actions) > 1:
-                raise ValidationError(
-                    'Multiple policies selected with different cinder actions.'
+                self.add_error(
+                    'cinder_policies',
+                    'Multiple policies selected with different cinder actions.',
                 )
 
         if self.helper.actions.get(selected_action, {}).get('delayable'):
