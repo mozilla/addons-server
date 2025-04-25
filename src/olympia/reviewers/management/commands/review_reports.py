@@ -1,12 +1,12 @@
 import os
 from datetime import date, timedelta
 
+from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.db import connection
 from django.utils.encoding import force_str
 
 import olympia.core.logger
-import settings
 from olympia import amo
 from olympia.amo.utils import send_mail
 from olympia.constants.reviewers import (
