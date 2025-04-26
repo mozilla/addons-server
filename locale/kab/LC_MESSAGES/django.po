@@ -779,11 +779,11 @@ msgstr "Azegrir-agi ittekkayakan ar tegrumma"
 
 #: src/olympia/blocklist/models.py:188
 msgid "Blocked"
-msgstr ""
+msgstr "Iwḥel"
 
 #: src/olympia/blocklist/models.py:188
 msgid "Restricted"
-msgstr ""
+msgstr "Yettwaqeyyed"
 
 #: src/olympia/constants/activity.py:25
 #, python-brace-format
