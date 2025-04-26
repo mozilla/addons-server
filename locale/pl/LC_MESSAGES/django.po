@@ -369,16 +369,15 @@ msgstr "Dodatki wymagają co najmniej jednego właściciela."
 
 #: src/olympia/addons/serializers.py:903
 msgid "Add-ons need at least one listed author."
-msgstr ""
+msgstr "Dodatki muszą mieć co najmniej jednego autora."
 
 #: src/olympia/addons/serializers.py:935
 msgid "Account not found."
 msgstr "Nie odnaleziono konta."
 
 #: src/olympia/addons/serializers.py:948 src/olympia/devhub/forms.py:410 src/olympia/devhub/forms.py:480
-#, fuzzy
 msgid "An author can only be present once."
-msgstr "Autor może być wyszczególniony tylko raz."
+msgstr "Jeden autor może wystąpić tylko raz."
 
 #: src/olympia/addons/serializers.py:959 src/olympia/devhub/forms.py:422
 msgid "The account needs a display name before it can be added as an author."
@@ -428,7 +427,7 @@ msgstr "Identyfikator GUID musi być określony w manifeście."
 
 #: src/olympia/addons/validators.py:276
 msgid "GUID mismatch between the URL and manifest."
-msgstr ""
+msgstr "Niezgodność identyfikatora GUID pomiędzy adresem URL i manifestem."
 
 #: src/olympia/addons/validators.py:291
 msgid "Source cannot be changed because this version has been reviewed by Mozilla."
