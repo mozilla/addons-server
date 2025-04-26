@@ -600,11 +600,13 @@ msgid "Oops"
 msgstr "Ups"
 
 #: src/olympia/amo/templates/amo/500.html:11
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
-msgstr "<h1>Ups! Wystąpił błąd.</h1> <p>Postaramy się szybko to naprawić.</p> <p> Możesz spróbować odświeżyć stronę lub wrócić na <a href=\"%(home)s\">stronę główną dodatków</a>. </p>"
+msgstr ""
+"<h1>Ups! Wystąpił błąd.</h1> <p>Postaramy się szybko to naprawić.</p> <p> Możesz spróbować odświeżyć stronę lub wrócić na <a href=\"%(home)s\">stronę główną dodatków</a>. Możesz również pomóc nam to"
+" naprawić, <a href=\"https://github.com/mozilla/addons/issues/new\">wypełniając zgłoszenie</a> ze szczegółami, w jaki sposób trafiłeś na tę stronę. </p>"
 
 #: src/olympia/amo/templates/amo/fake_fxa_authorization.html:4
 msgid "Register or Log in"
@@ -655,7 +657,7 @@ msgstr "Przesyłanie dodatków jest tymczasowo wyłączone"
 
 #: src/olympia/amo/templates/amo/submissions_disabled.html:13
 msgid "Add-on uploads have been temporarily disabled. Please check back later."
-msgstr ""
+msgstr "Przesyłanie dodatków zostało tymczasowo wyłączone. Sprawdź ponownie później."
 
 #: src/olympia/amo/templatetags/jinja_helpers.py:147
 #, python-brace-format
@@ -694,7 +696,7 @@ msgstr "Nieprawidłowy nagłówek autoryzacji. Łańcuch poświadczeń nie może
 
 #: src/olympia/api/authentication.py:108
 msgid "Valid user session not found matching the provided session key."
-msgstr ""
+msgstr "Nie znaleziono prawidłowej sesji użytkownika odpowiadającej podanemu kluczowi sesji."
 
 #: src/olympia/api/authentication.py:122
 msgid "Access token refresh failed; user needs to login to FxA again."
@@ -759,7 +761,7 @@ msgstr "Więcej informacji o licencji Creative Commons"
 
 #: src/olympia/api/throttling.py:113
 msgid "You have submitted this form too many times recently. Please try again after some time."
-msgstr ""
+msgstr "Ostatnio wysłałeś ten formularz zbyt wiele razy. Spróbuj ponownie za jakiś czas."
 
 #: src/olympia/bandwagon/serializers.py:72
 msgid "This custom URL is already in use by another one of your collections."
@@ -783,11 +785,11 @@ msgstr "Ten dodatek już należy do kolekcji"
 
 #: src/olympia/blocklist/models.py:188
 msgid "Blocked"
-msgstr ""
+msgstr "Zablokowano"
 
 #: src/olympia/blocklist/models.py:188
 msgid "Restricted"
-msgstr ""
+msgstr "Z ograniczeniami"
 
 #: src/olympia/constants/activity.py:25
 #, python-brace-format
@@ -813,13 +815,13 @@ msgstr "Edytowano kategorie dodatku {addon}."
 #: src/olympia/constants/activity.py:57
 #, python-brace-format
 msgid "{user} ({0}) added to {addon}."
-msgstr ""
+msgstr "{user} ({0}) został dodany do dodatku {addon}."
 
 #. L10n: {0} is the user role.
 #: src/olympia/constants/activity.py:67
 #, python-brace-format
 msgid "{user} ({0}) removed from {addon}."
-msgstr ""
+msgstr "{user} ({0}) został usunięty z dodatku {addon}."
 
 #: src/olympia/constants/activity.py:76
 #, python-brace-format
@@ -861,7 +863,7 @@ msgstr "Z dodatku {addon} została usunięta wersja {0}."
 #: src/olympia/constants/activity.py:129
 #, python-brace-format
 msgid "File {file} added to {version} of {addon}."
-msgstr ""
+msgstr "Do wersji {version} dodatku {addon} dodano plik {file}."
 
 #: src/olympia/constants/activity.py:141
 #, python-brace-format
@@ -925,6 +927,8 @@ msgstr "Poproszono o więcej informacji"
 #: src/olympia/constants/activity.py:236
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
+"Dodatek został oznaczony w celu sprawdzenia przez administratora. Dodatek nadal znajduje się w naszej kolejce do sprawdzenia, ale musi zostać sprawdzony przez jednego z naszych administratorów. "
+"Przegląd może zająć więcej czasu niż zwykle."
 
 #: src/olympia/constants/activity.py:258
 #, python-brace-format
@@ -961,7 +965,7 @@ msgstr "Program {0} {1} został dodany."
 #: src/olympia/constants/activity.py:335
 #, python-brace-format
 msgid "{user} role changed to {0} for {addon}."
-msgstr ""
+msgstr "W dodatku {addon} zmieniono rolę użytkownika {user} na „{0}”."
 
 #: src/olympia/constants/activity.py:346
 #, python-brace-format
@@ -974,9 +978,9 @@ msgid "{addon} policy changed."
 msgstr "Zostały zmienione zasady ochrony prywatności dodatku {addon}."
 
 #: src/olympia/constants/activity.py:360
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{addon} icon or previews changed."
-msgstr "Zmieniono ikonę dodatku {addon}."
+msgstr "Zmieniono ikonę lub podgląd dodatku {addon}."
 
 #: src/olympia/constants/activity.py:367
 #, python-brace-format
@@ -1020,9 +1024,9 @@ msgid "Account updated."
 msgstr "Zaktualizowano konto."
 
 #: src/olympia/constants/activity.py:422
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Account {user} deleted."
-msgstr "Zaktualizowano konto."
+msgstr "Konto {user} zostało usunięte."
 
 #: src/olympia/constants/activity.py:493
 #, python-brace-format
@@ -1043,7 +1047,7 @@ msgstr "Dodatek {addon} został usunięty z listy."
 #: src/olympia/constants/activity.py:560
 #, python-brace-format
 msgid "Add-on id {0} with GUID {1} has been deleted"
-msgstr ""
+msgstr "Dodatek o identyfikatorze {0} z GUID {1} został usunięty"
 
 #: src/olympia/constants/activity.py:567 src/olympia/constants/activity.py:573
 #, python-brace-format
@@ -1324,7 +1328,7 @@ msgstr ""
 
 #: src/olympia/constants/base.py:133
 msgid "Language Pack"
-msgstr ""
+msgstr "Pakiet językowy"
 
 #: src/olympia/constants/base.py:134
 msgid "Deprecated Language Pack (Add-on)"
