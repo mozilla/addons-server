@@ -89,7 +89,7 @@ msgstr "Irmes-d tiririt tilemt seg uqeddac; addad: {0}"
 
 #: static/js/common/upload-addon.js:403
 msgid "Your extension has to be compatible with at least one application."
-msgstr ""
+msgstr "Asiɣzef-ik ilaq ad yemṣada xerṣum d yiwen n usnas."
 
 #: static/js/common/upload-addon.js:473
 msgid "Unexpected server error while validating."
