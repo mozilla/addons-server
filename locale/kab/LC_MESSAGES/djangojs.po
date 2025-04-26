@@ -97,7 +97,7 @@ msgstr "Tuccḍa n uqeddac ur nettwaraǧu ara deg usentem."
 
 #: static/js/common/upload-addon.js:519
 msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
-msgstr ""
+msgstr "Yettwacreḍ s wudem afrawan belli yemṣada d Firefox i Android deg umeskan"
 
 #: static/js/common/upload-addon.js:561
 #, python-brace-format
@@ -896,7 +896,7 @@ msgstr "{name} yettwali seg tazwara asebter-a."
 
 #: static/js/zamboni/reviewers.js:258
 msgid "Review page polling failed."
-msgstr ""
+msgstr "Tecceḍ tririt n usebter n usenqed."
 
 #: static/js/zamboni/reviewers.js:546
 #, python-brace-format
