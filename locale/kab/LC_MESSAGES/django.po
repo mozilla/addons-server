@@ -524,7 +524,7 @@ msgstr "Kra n tmahilin nsant akka tura skudd nettṣeggim asmel-nneɣ. Ad d-nuɣ
 
 #: src/olympia/amo/utils.py:1112
 msgid "URLs are not allowed."
-msgstr ""
+msgstr "URLs ur ttwasirgen ara."
 
 #: src/olympia/amo/validators.py:17
 msgid "Must contain at least one printable character."
@@ -1164,7 +1164,7 @@ msgstr "Ur yettwagi ara"
 #: src/olympia/constants/activity.py:941
 #, python-brace-format
 msgid "Reply to {rating} for {addon} written."
-msgstr ""
+msgstr "Err i {rating} i {addon} yettwarun."
 
 #: src/olympia/constants/activity.py:958
 #, python-brace-format
@@ -1646,11 +1646,11 @@ msgstr ""
 
 #: src/olympia/constants/licenses.py:64
 msgid "MIT License"
-msgstr ""
+msgstr "Turagt IT"
 
 #: src/olympia/constants/licenses.py:71
 msgid "ISC License"
-msgstr ""
+msgstr "Turagt ISC"
 
 #: src/olympia/constants/licenses.py:78
 msgid "BSD 2-Clause \"Simplified\" License"
@@ -1742,7 +1742,7 @@ msgstr ""
 
 #: src/olympia/constants/promoted.py:159
 msgid "Partner"
-msgstr ""
+msgstr "Amendid"
 
 #: src/olympia/constants/reviewers.py:21
 msgid "No Reputation"
