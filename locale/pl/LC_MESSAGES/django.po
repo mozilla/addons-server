@@ -2066,11 +2066,11 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py:1404 src/olympia/devhub/templates/devhub/includes/agreement.html:15
 msgid "Display Name"
-msgstr ""
+msgstr "Wyświetlana nazwa"
 
 #: src/olympia/devhub/forms.py:1435
 msgid "Confirm email address"
-msgstr ""
+msgstr "Potwierdź adres e-mail"
 
 #: src/olympia/devhub/forms.py:1436
 msgid "Generate new credentials"
@@ -3035,7 +3035,7 @@ msgstr "Obsługiwane są formaty PNG i JPG."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:75
 msgid "Icons must be square and a minimum size of 128x128 pixels."
-msgstr ""
+msgstr "Ikony muszą być kwadratowe z minimalnym rozmiarem 128x128 pikseli."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:77
 msgid "Icons will be resized to 128x128 pixels if larger."
@@ -4236,9 +4236,9 @@ msgid "If your add-on contains minified, concatenated or otherwise machine-gener
 msgstr "Jeśli twój dodatek zawiera komponenty binarne lub zaciemniony kod, udostępnij go tutaj recenzentom."
 
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html:1
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "File {file_id}"
-msgstr "Plik {file_id} ({platform})"
+msgstr "Plik {file_id}"
 
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html:5
 #, python-format
@@ -6025,15 +6025,13 @@ msgstr "Wybierz kolory swojego motywu"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1091 src/olympia/discovery/strings.jinja2:1136
-#, fuzzy
 msgid "Top rated themes"
-msgstr "Skomentowano"
+msgstr "Najwyżej oceniane motywy"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1093 src/olympia/discovery/strings.jinja2:1138
-#, fuzzy
 msgid "See more top rated themes"
-msgstr "Wybierz kolory swojego motywu"
+msgstr "Więcej najwyżej ocenianych motywów"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1096
