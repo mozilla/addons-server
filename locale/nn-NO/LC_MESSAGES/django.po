@@ -4706,7 +4706,7 @@ msgstr "Surf anonymt. Surf på nettet med ein skjult identitet – det ser til o
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:170
 msgid "Enjoy visual bookmarks. Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr ""
+msgstr "Kos deg med visuelle bokmerke. Få tilgang til favorittnettstadar, nyleg attlatne faner og meir – alt frå eit nydeleg flisvising."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:173
