@@ -4542,7 +4542,7 @@ msgstr "Vis gjeldande verdsomspennande tider i statusfeltet til Firefox."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:77
 msgid "Easy translations. Highlight text on any webpage—or select the entire page— to translate instantly."
-msgstr ""
+msgstr "Enkle omsettingar. Marker tekst på kva nettside som helst – eller vel heile sida – for å omsette straks."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:80
@@ -4644,7 +4644,7 @@ msgstr "Få yttarlegare eit lag av sporingsvern når du surfar på nettet."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:134
 msgid "Read ePub files right in Firefox—increase font size, page dimensions, and more."
-msgstr ""
+msgstr "Les ePub-filer rett i Firefox – auk skriftstorleik, sidedimensjonar og meir."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
