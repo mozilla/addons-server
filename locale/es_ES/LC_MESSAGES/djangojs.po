@@ -89,7 +89,7 @@ msgstr "Se ha recibido una respuesta vacía del servidor; estado: {0}"
 
 #: static/js/common/upload-addon.js:403
 msgid "Your extension has to be compatible with at least one application."
-msgstr ""
+msgstr "Tu extensión debe ser compatible con al menos una aplicación."
 
 #: static/js/common/upload-addon.js:473
 msgid "Unexpected server error while validating."
@@ -97,7 +97,7 @@ msgstr "Error inesperado del servidor durante la validación."
 
 #: static/js/common/upload-addon.js:519
 msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
-msgstr ""
+msgstr "Marcado explícitamente como compatible con Firefox para Android en el manifiesto"
 
 #: static/js/common/upload-addon.js:561
 #, python-brace-format
@@ -144,13 +144,12 @@ msgid "Please verify the following points before finalizing your submission. Thi
 msgstr "Por favor, verifica los siguientes puntos antes de finalizar tu envío. Esto minimizará retrasos o malentendidos durante el proceso de revisión:"
 
 #: static/js/common/upload-addon.js:671
-#, fuzzy
 msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Los binarios compilados, así como los scripts minificados u ofuscados (excluyendo bibliotecas conocidas) deben ser enviados por separado para su revisión. Asegúrate de que utilizas el campo de subir"
-" código fuente para evitar que tu envío sea rechazado."
+"Los scripts minimizados, concatenados o generados por máquinas (excluidas las bibliotecas conocidas) deben enviar sus fuentes por separado para su revisión. Asegúrate de utilizar el campo de carga "
+"del código fuente para evitar que se rechace tu envío."
 
 #: static/js/common/upload-addon.js:684
 msgid "The validation process found these issues that can lead to rejections:"
@@ -632,7 +631,7 @@ msgstr "Descarga de medios, últimos {0} días"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/stats/csv_keys.js:197
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Download Mediums from {0} to {1}"
 msgstr "Descargas desde {0} al {1}"
 

@@ -16,11 +16,11 @@ msgstr ""
 #: src/olympia/abuse/actions.py:193
 #, python-brace-format
 msgid "Mozilla Add-ons: {} [{}]"
-msgstr ""
+msgstr "Complementos de Mozilla: {} [{}]"
 
 #: src/olympia/abuse/forms.py:30
 msgid "Email address"
-msgstr ""
+msgstr "Dirección de correo electrónico"
 
 #: src/olympia/abuse/forms.py:45
 msgid "Invalid email provided."
@@ -36,12 +36,12 @@ msgstr ""
 
 #: src/olympia/abuse/models.py:1089
 msgid "User profile"
-msgstr ""
+msgstr "Perfil del usuario"
 
 #: src/olympia/abuse/models.py:1431
 #, python-brace-format
 msgid "\"{}\" for {}"
-msgstr ""
+msgstr "\"{}\" para {}"
 
 #: src/olympia/abuse/serializers.py:32
 #, python-brace-format
@@ -50,7 +50,7 @@ msgstr "Asegúrate de que este campo no tiene más de {max_length} caracteres."
 
 #: src/olympia/abuse/serializers.py:241 src/olympia/abuse/serializers.py:257 src/olympia/addons/fields.py:51 src/olympia/addons/fields.py:257
 msgid "Invalid value"
-msgstr ""
+msgstr "Valor no válido"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:10 src/olympia/abuse/templates/abuse/appeal.html:15
 msgid "Appeal reviewer decision"
