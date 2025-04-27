@@ -3421,7 +3421,7 @@ msgstr "Handter oppføring"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:47
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, concatenated or otherwise machine-generated code."
-msgstr ""
+msgstr "Du kan også redigere denne versjonen for å leggje til versjonsnotat eller kjeldekode dersom innsendinga di inneheld minimert, samankopla eller på annan måte maskingenerert kode."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:52
 #, python-brace-format
@@ -3766,11 +3766,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:28
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
-msgstr ""
+msgstr "Tillegget ditt blir vist i galleriet vårt, og brukarane får automatiske oppdateringar."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:30
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.com."
-msgstr ""
+msgstr "Tillegget ditt vart deaktivert av ein nettstad-administrator og vert ikkje lenger vist i galleriet vårt. Om du har spørsmål, kan du sende ein e-post til amo-admins@mozilla.com."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:34
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
