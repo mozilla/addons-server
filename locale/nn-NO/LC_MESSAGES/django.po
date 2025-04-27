@@ -3867,7 +3867,7 @@ msgstr "Meir informasjon om utviklarkontoar"
 
 #: src/olympia/devhub/templates/devhub/includes/android_compatibility_modal.html:3
 msgid "Firefox for Android compatibility"
-msgstr ""
+msgstr "Firefox for Android-kompatibilitet"
 
 #: src/olympia/devhub/templates/devhub/includes/android_compatibility_modal.html:4
 msgid ""
@@ -3933,7 +3933,7 @@ msgstr "Sluttbrukarlisens"
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:4
 msgid "Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Ver merksam på at ei EULA ikkje er det same som ein kodelisens, som til dømes GPL eller MPL. Den er berre relevant for oppførte tilleggsprogram."
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:21
 msgid "Privacy Policy"
@@ -3947,7 +3947,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html:3
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code other than known libraries, upload its sources for review."
-msgstr ""
+msgstr "Dersom tillegget ditt inneheld minimert, samankopla eller på annan måte maskingenerert kode utover kjende bibliotek, last opp kjeldekoden for gjennomgang."
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html:5
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
@@ -3999,7 +3999,7 @@ msgstr "Nyheitsbrev for tilleggsutviklarar"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:23
 msgid "Stay up-to-date on news and events for Firefox extension developers."
-msgstr ""
+msgstr "Hald deg oppdatert på nyheiter og arrangement for utviklarar av Firefox-utvidingar."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:32 src/olympia/devhub/templates/devhub/new-landing/components/connect.html:33
 msgid "Email Address"
