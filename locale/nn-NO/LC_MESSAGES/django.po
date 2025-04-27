@@ -742,12 +742,12 @@ msgstr "Du må oppgi eit objekt med {{lang-code:value}}."
 #: src/olympia/api/fields.py:94
 #, python-brace-format
 msgid "A value in the default locale of \"{lang_code}\" is required."
-msgstr ""
+msgstr "Ein verdi i standardspråkinnstillinga «{lang_code}» er påkravd."
 
 #: src/olympia/api/fields.py:97
 #, python-brace-format
 msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
-msgstr ""
+msgstr "Ein verdi i standardspråkinnstillinga «{lang_code}» er påkravd dersom andre omsettingar er angitt."
 
 #: src/olympia/api/fields.py:386
 #, python-format
