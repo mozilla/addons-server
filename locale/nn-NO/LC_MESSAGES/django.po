@@ -4706,7 +4706,7 @@ msgstr "Surf anonymt. Surf på nettet med ein skjult identitet – det ser til o
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:170
 msgid "Enjoy visual bookmarks. Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr "Kos deg med visuelle bokmerke. Få tilgang til favorittnettstadar, nyleg attlatne faner og meir – alt frå eit nydeleg flisvising."
+msgstr "Kos deg med visuelle bokmerke. Få tilgang til favorittnettstadar, nyleg attlatne faner og meir – alt frå eit nydeleg rutevising."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:173
@@ -4723,7 +4723,7 @@ msgstr "Konverter alle dei opne fanene dine til ei liste for enkelt å behandle 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:179 src/olympia/discovery/strings.jinja2:719
 msgid "Robust download management. Check the state of your downloads through a status bar, download history page, and more."
-msgstr ""
+msgstr "Robust nedlastingshandsaming. Sjekk statusen på nedlastingane dine via ei statuslinje, nedlastingshistorikkside, og meir."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:182
@@ -4733,7 +4733,7 @@ msgstr "Lagre informasjon frå nettet til OneNote så du kan redigere, kommenter
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:185
 msgid "Stop ad trackers when you click Google and Yandex search returns."
-msgstr ""
+msgstr "Stoppar annonsesporing når du klikkar på Google- og Yandex-søkjeresultat."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:188
