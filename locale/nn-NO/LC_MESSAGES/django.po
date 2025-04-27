@@ -4500,7 +4500,7 @@ msgstr "Uthev tekst og høgreklikk for å raskt utføre eit bildesøk."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:53
 msgid "Enjoy visual bookmarks. Access your favorite sites from a tile layout."
-msgstr ""
+msgstr "Kos deg med visuelle bokmerke. Få tilgang til favorittnettstadane dine frå ei ruteutforming."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:56
@@ -4764,7 +4764,7 @@ msgstr "Tilpass utsjånad på kva som helst nettstad. Byt fargar, sidebakgrunnar
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:203
 msgid "Customize your new tab page to display a preferred number of tiles, background image, and more."
-msgstr ""
+msgstr "Tilpass den nye fanesida di for å vise eit føretrekt antal ruter, bakgrunnsbilde, og meir."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:206
