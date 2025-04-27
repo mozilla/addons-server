@@ -111,6 +111,13 @@ msgid ""
 "\n"
 "Thank you for your attention.\n"
 msgstr ""
+"\n"
+"Takk for rapporten din om %(name)s på Mozilla-tillegg, og for at du gir meir informasjon om bekymringane dine.\n"
+"\n"
+"Etter å ha gått gjennom anken din, har vi konkludert med at den førre avgjerda om at dette innhaldet ikkje bryt med Mozillas retningslinjer (%(policy_document_url)s), var korrekt. Basert på denne avgjerda har vi avvist anken din, og vi vil ikkje setje i verk nokon tiltak mot kontoen eller innhaldet.\n"
+"%(manual_reasoning_text)s.\n"
+"\n"
+"Takk for merksemda di.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown.txt:5
 #, python-format
@@ -3423,7 +3430,7 @@ msgstr "Rediger versjon {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:59
 msgid "As a reminder, your add-on is subject to manual review at any time."
-msgstr ""
+msgstr "Som ei påminning, kan tillegget ditt når som helst vurderast manuelt."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:64
 msgid "Go to My Submissions"
