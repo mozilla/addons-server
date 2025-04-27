@@ -4660,7 +4660,7 @@ msgstr "Følg sporarar. Få eit glimt av kven som sporar deg med berre eit klikk
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:143
 msgid "Change your proxy server and surf the web through self-defined proxy settings."
-msgstr ""
+msgstr "Endre proxy-serveren din og surf på nettet gjennom sjølvdefinerte proxy-innstillingar."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:146
@@ -4701,7 +4701,7 @@ msgstr "Finn ut kven som sporar deg og kvar dei kan dele informasjonen din."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:167
 msgid "Surf anonymously. Browse the web with disguised identity—even appear as if you're browsing from another country."
-msgstr ""
+msgstr "Surf anonymt. Surf på nettet med ein skjult identitet – det ser til og med ut som om du surfar frå eit anna land."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:170
