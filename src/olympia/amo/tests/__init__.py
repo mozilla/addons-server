@@ -1157,7 +1157,7 @@ def fix_webext_fixture(filename):
 
     # HACK: This is so we don't have to modify a bunch of binaries...it's ugly!
     # Check if we have a GUID for this addon, if not then make one.
-    if ext in ['.xpi', '.jar']:
+    if ext in ['.xpi', '.jar'] and not filename.endswith('unopenable.xpi'):
         with zipfile.ZipFile(filename) as zip_in:
             with zipfile.ZipFile(temp_file, 'w') as zip_out:
                 for info in zip_in.infolist():
