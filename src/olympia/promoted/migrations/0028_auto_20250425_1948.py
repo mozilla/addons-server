@@ -2,6 +2,7 @@
 
 from django.db import migrations
 
+from olympia.addons.tasks import index_addons
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 
 PROMOTED_GROUPS_TO_UPDATE = [PROMOTED_GROUP_CHOICES.STRATEGIC, 
@@ -21,6 +22,14 @@ def reverse_public_promoted_group(apps, schema_editor):
         group.is_public = True
         group.save()
 
+def update_elasticsearch(apps, schema_editor):
+    PromotedAddonPromotion = apps.get_model('promoted', 'PromotedAddonPromotion')
+    addons_ids = list(PromotedAddonPromotion.objects.filter(
+        promoted_group__group_id__in=PROMOTED_GROUPS_TO_UPDATE
+    ).values_list('addon_id', flat=True).distinct())
+    if addons_ids:
+        index_addons.delay(addons_ids)
+
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -28,5 +37,6 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(update_public_promoted_groups, reverse_public_promoted_group)
+        migrations.RunPython(update_public_promoted_groups, reverse_public_promoted_group),
+        migrations.RunPython(update_elasticsearch)
     ]
