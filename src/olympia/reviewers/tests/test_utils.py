@@ -1115,6 +1115,39 @@ class TestReviewHelper(TestReviewHelperBase):
         )
         report_mock.assert_called_once()
 
+    @patch('olympia.reviewers.utils.report_decision_to_cinder_and_notify.delay')
+    def test_record_decision_sets_policies_with_closed_no_action(self, report_mock):
+        self.grant_permission(self.user, 'Addons:Review')
+        cinder_job = CinderJob.objects.create(
+            target_addon=self.addon, resolvable_in_reviewer_tools=True
+        )
+        self.helper = self.get_helper()
+        data = {
+            'cinder_policies': [
+                CinderPolicy.objects.create(uuid='x'),
+                CinderPolicy.objects.create(
+                    uuid='z',
+                    enforcement_actions=[
+                        DECISION_ACTIONS.AMO_CLOSED_NO_ACTION.api_value
+                    ],
+                ),
+            ],
+            'cinder_jobs_to_resolve': [cinder_job],
+        }
+        self.helper.set_data(data)
+        self.helper.handler.review_action = self.helper.actions.get(
+            'resolve_reports_job'
+        )
+        self.helper.handler.record_decision(amo.LOG.RESOLVE_CINDER_JOB_WITH_NO_ACTION)
+        assert CinderPolicyLog.objects.count() == 2
+        assert (
+            ActivityLog.objects.get(action=amo.LOG.RESOLVE_CINDER_JOB_WITH_NO_ACTION.id)
+            .contentdecisionlog_set.get()
+            .decision.action
+            == DECISION_ACTIONS.AMO_CLOSED_NO_ACTION
+        )
+        report_mock.assert_called_once()
+
     def test_log_action_override_user(self):
         # ActivityLog.user will default to self.user in log_action.
         self.helper.set_data(self.get_data())

@@ -1110,7 +1110,11 @@ class ReviewBase:
         return [
             action
             for action in actions
-            if action in (DECISION_ACTIONS.AMO_APPROVE, DECISION_ACTIONS.AMO_IGNORE)
+            if action
+            in (
+                *DECISION_ACTIONS.NON_OFFENDING.values,
+                DECISION_ACTIONS.AMO_CLOSED_NO_ACTION,
+            )
         ]
 
     def log_action(

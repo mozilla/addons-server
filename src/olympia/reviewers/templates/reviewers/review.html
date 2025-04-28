@@ -102,9 +102,6 @@
 <form method="POST" enctype="multipart/form-data" action="#review-actions" class="review-form">
   {% csrf_token %}
 
-  <input type="hidden" name="version_pk" value="{{ version.pk }}"/>
-  {{ form.version_pk.errors }}
-
   <div id="review-files-header">
     <h3 id="history">
       Add-on History
@@ -140,6 +137,12 @@
         You don't have permission to review it.
       {% endif %}
     </p>
+  {% endif %}
+
+  <input type="hidden" name="version_pk" value="{{ version.pk }}"/>
+  {{ form.version_pk.errors }}
+  {% if form.errors.__all__ %}
+    {{ form.errors.__all__ }}
   {% endif %}
 
   <div id="review-actions" class="review-actions">
