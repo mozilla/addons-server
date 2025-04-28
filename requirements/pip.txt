@@ -1,5 +1,5 @@
 ## Requirements needed to be installed *before* any other requirements.
 ## This makes sure we have the latest version of pip.
-pip==25.0.1 \
-    --hash=sha256:88f96547ea48b940a3a385494e181e29fb8637898f88d88737c5049780f196ea \
-    --hash=sha256:c46efd13b6aa8279f33f2864459c8ce587ea6a1a59ee20de055868d8f7688f7f
+pip==25.1 \
+    --hash=sha256:13b4aa0aaad055020a11bec8a1c2a70a2b2d080e12d89b962266029fff0a16ba \
+    --hash=sha256:272bdd1289f80165e9070a4f881e8f9e1001bbb50378561d1af20e49bf5a2200
