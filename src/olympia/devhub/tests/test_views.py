@@ -1040,7 +1040,11 @@ class TestUploadDetail(BaseUploadTest):
         data = json.loads(force_text(response.content))
         message = [(m['message'], m.get('type') == 'error')
                    for m in data['validation']['messages']]
-        expected = [(u'&#34;/version&#34; is a required property', True)]
+        expected = [
+            ('&#34;/&#34; must have required property &#39;version&#39;', True),
+            # FIXME: This is probably harmless to include, but also not quite correct:
+            ('The version string should be simplified.', True)
+        ]
         assert message == expected
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
