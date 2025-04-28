@@ -5807,10 +5807,6 @@ class TestAddonSearchView(ESTestCase):
                 PROMOTED_GROUP_CHOICES.SPOTLIGHT,
                 PROMOTED_GROUP_CHOICES.SPOTLIGHT.api_value,
             ),
-            (
-                PROMOTED_GROUP_CHOICES.STRATEGIC,
-                PROMOTED_GROUP_CHOICES.STRATEGIC.api_value,
-            ),
         ):
             self.make_addon_promoted(addon, group_id, approve_version=True)
             self.reindex(Addon)
