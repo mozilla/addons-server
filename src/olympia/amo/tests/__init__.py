@@ -1141,7 +1141,7 @@ def fix_manifest(data, filename):
     if 'experiment' in filename:
         manifest['browser_specific_settings']['gecko']['strict_max_version'] = THUNDERBIRD.latest_version
 
-    if 'theme' in manifest:
+    if 'theme' in manifest and 'headerURL' in manifest['theme']['images']:
         theme_frame = manifest['theme']['images'].pop('headerURL')
         assert type(theme_frame) is str
         manifest['theme']['images']['theme_frame'] = theme_frame
