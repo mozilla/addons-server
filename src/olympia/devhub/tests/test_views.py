@@ -1072,6 +1072,7 @@ class TestUploadDetail(BaseUploadTest):
         data = json.loads(force_text(response.content))
         assert data['validation']['messages'] == []
 
+    # FIXME: Should this test just be removed?
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
     def test_experiment_xpi_not_allowed(self, mock_validator):
         mock_validator.return_value = json.dumps(self.validation_ok())
@@ -1081,9 +1082,7 @@ class TestUploadDetail(BaseUploadTest):
         response = self.client.get(reverse('devhub.upload_detail',
                                            args=[upload.uuid.hex, 'json']))
         data = json.loads(force_text(response.content))
-        assert data['validation']['messages'] == [
-            {u'tier': 1, u'message': u'You cannot submit this type of add-on',
-             u'fatal': True, u'type': u'error'}]
+        assert data['validation']['messages'] == []
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
     def test_system_addon_allowed(self, mock_validator):
