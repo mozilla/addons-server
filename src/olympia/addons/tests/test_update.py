@@ -417,9 +417,6 @@ class TestDefaultToCompat(VersionCheckMixin, TestCase):
 
         for version in versions:
             for mode in modes:
-                k = '-'.join([version, mode])
-                v = expected[k]
-                print(k, v)
                 assert (
                     self.get_update_instance(
                         app_version=version, compat_mode=mode) ==
