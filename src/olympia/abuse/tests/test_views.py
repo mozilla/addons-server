@@ -1554,7 +1554,7 @@ class TestCinderWebhook(TestCase):
         with override_settings(CINDER_UNIQUE_IDS=True):
             self._test_no_cinder_job(400)
 
-    def _test_no_decision(self, status_code):
+    def _test_unknown_decision_for_override(self, status_code):
         req = self.get_request(
             data=self.get_data(filename='override_change_to_approve.json')
         )
@@ -1572,11 +1572,11 @@ class TestCinderWebhook(TestCase):
 
     def test_no_decision_noprod(self):
         with override_settings(CINDER_UNIQUE_IDS=False):
-            self._test_no_decision(200)
+            self._test_unknown_decision_for_override(200)
 
     def test_no_decision_prod(self):
         with override_settings(CINDER_UNIQUE_IDS=True):
-            self._test_no_decision(400)
+            self._test_unknown_decision_for_override(400)
 
     def _test_valid_decision_but_no_cinder_job(self, status_code):
         abuse_report = self._setup_reports()
@@ -1608,10 +1608,11 @@ class TestCinderWebhook(TestCase):
         with override_settings(CINDER_UNIQUE_IDS=True):
             self._test_valid_decision_but_no_cinder_job(400)
 
-    def test_reviewer_tools_resolved_cinder_job(self):
-        report = self._setup_reports()
-        report.cinder_job.update(resolvable_in_reviewer_tools=True)
-        req = self.get_request()
+    def test_reviewer_tools_resolved_decision(self):
+        data = self.get_data()
+        data['payload']['source']['type'] = 'api_decision'
+        self._setup_reports()
+        req = self.get_request(data=data)
         with mock.patch.object(CinderJob, 'process_decision') as process_mock:
             response = cinder_webhook(req)
             process_mock.assert_not_called()
@@ -1621,6 +1622,23 @@ class TestCinderWebhook(TestCase):
                 'received': True,
                 'handled': False,
                 'not_handled_reason': 'Decision already handled via reviewer tools',
+            }
+        }
+
+    def test_proactive_decision_from_cinder(self):
+        data = self.get_data(filename='override_change_to_approve.json')
+        del data['payload']['previous_decision']
+        self._setup_reports()
+        req = self.get_request(data=data)
+        with mock.patch.object(CinderJob, 'process_decision') as process_mock:
+            response = cinder_webhook(req)
+            process_mock.assert_not_called()
+        assert response.status_code == 400
+        assert response.data == {
+            'amo': {
+                'received': True,
+                'handled': False,
+                'not_handled_reason': 'Unsupported Manual decision',
             }
         }
 
