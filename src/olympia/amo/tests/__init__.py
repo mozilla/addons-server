@@ -1140,6 +1140,12 @@ def fix_manifest(data, filename):
     # If we're an experiment (indicated by filename) then set the strict max version
     if 'experiment' in filename:
         manifest['browser_specific_settings']['gecko']['strict_max_version'] = THUNDERBIRD.latest_version
+
+    if 'theme' in manifest:
+        theme_frame = manifest['theme']['images'].pop('headerURL')
+        assert type(theme_frame) is str
+        manifest['theme']['images']['theme_frame'] = theme_frame
+
     return json.dumps(manifest)
 
 @contextmanager
@@ -1157,7 +1163,7 @@ def fix_webext_fixture(filename):
 
     # HACK: This is so we don't have to modify a bunch of binaries...it's ugly!
     # Check if we have a GUID for this addon, if not then make one.
-    if ext in ['.xpi', '.jar'] and not filename.endswith('unopenable.xpi'):
+    if ext in ['.xpi', '.jar', '.zip'] and not filename.endswith('unopenable.xpi'):
         with zipfile.ZipFile(filename) as zip_in:
             with zipfile.ZipFile(temp_file, 'w') as zip_out:
                 for info in zip_in.infolist():
