@@ -88,7 +88,7 @@ class CinderJobManager(ManagerBase):
 
 
 class CinderJob(ModelBase):
-    job_id = models.CharField(max_length=36, unique=True)
+    job_id = models.CharField(max_length=36, unique=True, null=True)
     target_addon = models.ForeignKey(
         to=Addon, blank=True, null=True, on_delete=models.deletion.SET_NULL
     )
@@ -215,12 +215,16 @@ class CinderJob(ModelBase):
             resolved_in_reviewer_tools=abuse_report.is_handled_by_reviewers,
         )
         job_id = entity_helper.report(report=report_entity, reporter=reporter_entity)
-        defaults = {
-            'target_addon': target if isinstance(target, Addon) else None,
-            'resolvable_in_reviewer_tools': abuse_report.is_handled_by_reviewers,
-        }
         with atomic():
-            cinder_job, _ = cls.objects.get_or_create(job_id=job_id, defaults=defaults)
+            cinder_job, _ = CinderJob.objects.get_or_create(
+                job_id=job_id,
+                defaults={
+                    'target_addon': abuse_report.addon,
+                    'resolvable_in_reviewer_tools': (
+                        abuse_report.is_handled_by_reviewers
+                    ),
+                },
+            )
             abuse_report.update(cinder_job=cinder_job)
         # Additional context can take a while, so it is reported outside the
         # atomic() block so that the transaction can be committed quickly,
@@ -1346,6 +1350,7 @@ class ContentDecision(ModelBase):
             job = CinderJob.objects.create(
                 target_addon=self.addon,
                 resolvable_in_reviewer_tools=True,
+                job_id=None,
             )
             # and link the current decision to that job, so the override works
             self.update(cinder_job=job)
