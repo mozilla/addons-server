@@ -53,8 +53,9 @@ class TestGzipMiddleware(TestCase):
         # been modified by another middleware.
         # Sadly, raven inserts 2 middlewares before, but luckily the ones it
         # automatically inserts not modify the response.
+        #print(settings.MIDDLEWARE)
         assert (
-            settings.MIDDLEWARE[4] ==
+            settings.MIDDLEWARE[5] ==
             'olympia.api.middleware.GZipMiddlewareForAPIOnly')
 
     def test_api_endpoint_gzipped(self):
