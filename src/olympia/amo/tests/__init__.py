@@ -1124,6 +1124,7 @@ def reverse_ns(viewname, api_version=None, args=None, kwargs=None, **extra):
 
 def fix_manifest(data, filename):
     manifest = json.loads(data)
+    print(filename)
     print('MANIFEST', manifest)
     if not manifest.get('browser_specific_settings'):
         # If we have the deprecated applications, rename it to browser_specific_settings
@@ -1149,6 +1150,7 @@ def fix_manifest(data, filename):
         assert type(theme_frame) is str
         manifest['theme']['images']['theme_frame'] = theme_frame
 
+    print('MANIFEST', manifest)
     return json.dumps(manifest)
 
 @contextmanager
