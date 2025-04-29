@@ -3819,6 +3819,52 @@ class TestExtensionsQueues(TestCase):
             NeedsHumanReview.REASONS.SCANNER_ACTION, 'needs_human_review_scanner_action'
         )
 
+    def test_get_queryset_for_pending_queues_for_specific_due_date_reasons(self):
+        expected_addons = [
+            version_factory(
+                addon=addon_factory(
+                    version_kw={
+                        'needshumanreview_kw': {
+                            'reason': NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION
+                        },
+                        'due_date': self.days_ago(48),
+                        'version': '0.1',
+                    }
+                ),
+                needshumanreview_kw={
+                    'reason': NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+                },
+                due_date=self.days_ago(15),
+                version='0.2',
+            ).addon,
+            addon_factory(
+                version_kw={
+                    'needshumanreview_kw': {
+                        'reason': NeedsHumanReview.REASONS.SCANNER_ACTION
+                    },
+                    'due_date': self.days_ago(16),
+                    'version': '666.0',
+                }
+            ),
+        ]
+        addon_factory(
+            version_kw={
+                'needshumanreview_kw': {
+                    'reason': NeedsHumanReview.REASONS.DEVELOPER_REPLY
+                },
+                'due_date': self.days_ago(23),
+            }
+        )  # Should not show up
+        addons = Addon.objects.get_queryset_for_pending_queues(
+            due_date_reasons_choices=NeedsHumanReview.REASONS.extract_subset(
+                'AUTO_APPROVAL_DISABLED', 'SCANNER_ACTION'
+            )
+        )
+        expected_version = expected_addons[0].versions.get(version='0.2')
+        assert addons[0].first_version_id == expected_version.pk
+        assert addons[0].first_pending_version == expected_version
+        assert addons[0].first_version_due_date == expected_version.due_date
+
     def test_get_pending_rejection_queue(self):
         expected_addons = [
             version_review_flags_factory(

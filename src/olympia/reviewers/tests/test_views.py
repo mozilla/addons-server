@@ -1762,6 +1762,34 @@ class TestExtensionQueue(QueueTest):
             )
         self._test_results()
 
+    def test_different_due_dates_correct_one_is_shown_when_filtering(self):
+        self.url += '?due_date_reasons=needs_human_review_developer_reply'
+        self.expected_addons = self.get_expected_addons_by_names(
+            ['Pending One', 'Public'],
+        )
+        # Create a NHR that would be filtered out and not inherited on
+        # "Pending One" first version with an old due date, then make a new
+        # version with a NHR that we are going to filter for, and a different
+        # due date. That new version and due date should be the ones shown.
+        self.addons['Pending One'].current_version.needshumanreview_set.create(
+            reason=NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION
+        )
+        self.addons['Pending One'].current_version.update(due_date=self.days_ago(42))
+        self.expected_versions = self.get_expected_versions(self.expected_addons)
+        self.expected_versions[self.addons['Pending One']] = version_factory(
+            addon=self.addons['Pending One'], version='0.2'
+        )
+        for version in self.expected_versions.values():
+            version.needshumanreview_set.create(
+                reason=NeedsHumanReview.REASONS.DEVELOPER_REPLY
+            )
+            version.update(due_date=self.days_ago(1))
+
+        self.expected_versions[self.addons['Pending One']]
+        doc = self._test_results()
+        rows = doc('#addon-queue tr.addon-row')
+        assert '1\xa0day ago' in rows[0].text_content()
+
 
 class TestThemeQueue(QueueTest):
     def setUp(self):

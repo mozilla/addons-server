@@ -1,5 +1,3 @@
-import functools
-import operator
 from collections import OrderedDict
 from datetime import date, datetime
 from urllib.parse import urljoin
@@ -316,7 +314,6 @@ def queue(request, tab):
 
     @permission_or_tools_listed_view_required(TableObj.permission)
     def _queue(request, tab):
-        qs = TableObj.get_queryset(request=request, upcoming_due_date_focus=True)
         params = {}
         order_by = request.GET.get('sort')
         if order_by is None and hasattr(TableObj, 'default_order_by'):
@@ -326,11 +323,21 @@ def queue(request, tab):
         filter_form = ReviewQueueFilter(
             request.GET if 'due_date_reasons' in request.GET else None
         )
-        if filter_form.is_valid() and (
-            due_date_reasons := filter_form.cleaned_data['due_date_reasons']
-        ):
-            filters = [Q(**{reason: True}) for reason in due_date_reasons]
-            qs = qs.filter(functools.reduce(operator.or_, filters))
+        due_date_reasons_choices = None
+        if filter_form.is_valid():
+            # Build a choices subset from the submitted reasons.
+            due_date_reasons_choices = NeedsHumanReview.REASONS.__class__(
+                *(
+                    entry
+                    for entry in NeedsHumanReview.REASONS.entries
+                    if entry.annotation in filter_form.cleaned_data['due_date_reasons']
+                )
+            )
+        qs = TableObj.get_queryset(
+            request=request,
+            upcoming_due_date_focus=True,
+            due_date_reasons_choices=due_date_reasons_choices,
+        )
         table = TableObj(data=qs, **params)
         per_page = request.GET.get('per_page', REVIEWS_PER_PAGE)
         try:
