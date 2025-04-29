@@ -743,7 +743,6 @@ CELERY_TASK_ROUTES = {
     'olympia.files.tasks.backfill_file_manifest': {'queue': 'adhoc'},
     'olympia.files.tasks.extract_host_permissions': {'queue': 'adhoc'},
     'olympia.lib.crypto.tasks.bump_and_resign_addons': {'queue': 'adhoc'},
-    'olympia.hero.tasks.sync_primary_hero_addon': {'queue': 'adhoc'},
     # Misc AMO tasks.
     'olympia.blocklist.tasks.monitor_remote_settings': {'queue': 'amo'},
     'olympia.abuse.tasks.appeal_to_cinder': {'queue': 'amo'},
