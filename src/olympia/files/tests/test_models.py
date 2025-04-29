@@ -445,9 +445,9 @@ class TestParseXpi(TestCase):
 
     def test_parse_apps(self):
         expected = [Extractor.App(
-            amo.FIREFOX, amo.FIREFOX.id,
-            AppVersion.objects.get(version='3.0'),
-            AppVersion.objects.get(version='3.6.*'))]
+            amo.THUNDERBIRD, amo.THUNDERBIRD.id,
+            AppVersion.objects.get(version='60.0'),
+            AppVersion.objects.get(version='*'))]
         assert self.parse()['apps'] == expected
 
     def test_no_parse_apps_error_webextension(self):
