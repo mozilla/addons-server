@@ -5888,7 +5888,7 @@ msgstr "Ανακτήστε τον έλεγχο του Twitter/X και προσ�
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1001
 msgid "Translate text without leaving the page you're on (PDF compatible)."
-msgstr ""
+msgstr "Μεταφράστε κείμενο χωρίς να αποχωρήσετε από τη σελίδα (συμβατό και με PDF)."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1004
