@@ -933,6 +933,13 @@ class NeedsHumanReview(ModelBase):
             'SECOND_LEVEL_REQUEUE',
         ),
     )
+    REASONS.add_subset(
+        'NO_DUE_DATE_INHERITANCE',
+        (
+            'ABUSE_ADDON_VIOLATION',
+            'CINDER_ESCALATION',
+        ),
+    )
 
     reason = models.SmallIntegerField(
         default=0, choices=REASONS.choices, editable=False

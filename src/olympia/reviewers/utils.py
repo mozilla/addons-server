@@ -115,7 +115,14 @@ class PendingManualApprovalQueueTable(AddonQueueTable):
         orderable = True
 
     @classmethod
-    def get_queryset(cls, request, *, upcoming_due_date_focus=False, **kwargs):
+    def get_queryset(
+        cls,
+        request,
+        *,
+        upcoming_due_date_focus=False,
+        due_date_reasons_choices=None,
+        **kwargs,
+    ):
         if request is None:
             admin_reviewer = True
             show_temporarily_delayed = True
@@ -132,6 +139,7 @@ class PendingManualApprovalQueueTable(AddonQueueTable):
             admin_reviewer=admin_reviewer,
             show_temporarily_delayed=show_temporarily_delayed,
             show_only_upcoming=show_only_upcoming,
+            due_date_reasons_choices=due_date_reasons_choices,
         )
 
     def get_version(self, record):
@@ -172,10 +180,12 @@ class ThemesQueueTable(PendingManualApprovalQueueTable):
         )
 
     @classmethod
-    def get_queryset(cls, request, **kwargs):
+    def get_queryset(cls, request, due_date_reasons_choices=None, **kwargs):
         admin_reviewer = is_admin_reviewer(request.user) if request else True
         return Addon.objects.get_queryset_for_pending_queues(
-            admin_reviewer=admin_reviewer, theme_review=True
+            admin_reviewer=admin_reviewer,
+            theme_review=True,
+            due_date_reasons_choices=due_date_reasons_choices,
         )
 
 

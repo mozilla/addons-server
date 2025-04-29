@@ -2483,6 +2483,46 @@ class TestAddonDueDate(TestCase):
             == NeedsHumanReview.REASONS.UNKNOWN
         )
 
+    def test_versions_triggering_needs_human_review_inheritance(self):
+        addon = Addon.objects.get(id=3615)
+        version = addon.current_version
+        version.needshumanreview_set.create(reason=NeedsHumanReview.REASONS.UNKNOWN)
+        version2 = version_factory(addon=addon)
+        unlisted_version = version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
+        unlisted_version.needshumanreview_set.create(
+            reason=NeedsHumanReview.REASONS.UNKNOWN
+        )
+        assert set(
+            addon.versions_triggering_needs_human_review_inheritance(amo.CHANNEL_LISTED)
+        ) == {version}
+        assert set(
+            addon.versions_triggering_needs_human_review_inheritance(
+                amo.CHANNEL_UNLISTED
+            )
+        ) == {unlisted_version}
+
+        # Adding any of those NHR should not matter.
+        for reason_value, _ in NeedsHumanReview.REASONS.NO_DUE_DATE_INHERITANCE:
+            version2.needshumanreview_set.create(reason=reason_value)
+
+        assert set(
+            addon.versions_triggering_needs_human_review_inheritance(amo.CHANNEL_LISTED)
+        ) == {version}
+
+        # Adding any other NHR should.
+        nhr = version2.needshumanreview_set.create(
+            reason=NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+        )
+        assert set(
+            addon.versions_triggering_needs_human_review_inheritance(amo.CHANNEL_LISTED)
+        ) == {version, version2}
+
+        # An inactive NHR should not trigger inheritance.
+        nhr.update(is_active=False)
+        assert set(
+            addon.versions_triggering_needs_human_review_inheritance(amo.CHANNEL_LISTED)
+        ) == {version}
+
     def test_update_all_due_dates(self):
         addon = Addon.objects.get(id=3615)
         versions_that_should_have_due_date = [
@@ -3864,6 +3904,52 @@ class TestExtensionsQueues(TestCase):
         self._test_pending_queue_needs_human_review_from(
             NeedsHumanReview.REASONS.SCANNER_ACTION, 'needs_human_review_scanner_action'
         )
+
+    def test_get_queryset_for_pending_queues_for_specific_due_date_reasons(self):
+        expected_addons = [
+            version_factory(
+                addon=addon_factory(
+                    version_kw={
+                        'needshumanreview_kw': {
+                            'reason': NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION
+                        },
+                        'due_date': self.days_ago(48),
+                        'version': '0.1',
+                    }
+                ),
+                needshumanreview_kw={
+                    'reason': NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
+                },
+                due_date=self.days_ago(15),
+                version='0.2',
+            ).addon,
+            addon_factory(
+                version_kw={
+                    'needshumanreview_kw': {
+                        'reason': NeedsHumanReview.REASONS.SCANNER_ACTION
+                    },
+                    'due_date': self.days_ago(16),
+                    'version': '666.0',
+                }
+            ),
+        ]
+        addon_factory(
+            version_kw={
+                'needshumanreview_kw': {
+                    'reason': NeedsHumanReview.REASONS.DEVELOPER_REPLY
+                },
+                'due_date': self.days_ago(23),
+            }
+        )  # Should not show up
+        addons = Addon.objects.get_queryset_for_pending_queues(
+            due_date_reasons_choices=NeedsHumanReview.REASONS.extract_subset(
+                'AUTO_APPROVAL_DISABLED', 'SCANNER_ACTION'
+            )
+        )
+        expected_version = expected_addons[0].versions.get(version='0.2')
+        assert addons[0].first_version_id == expected_version.pk
+        assert addons[0].first_pending_version == expected_version
+        assert addons[0].first_version_due_date == expected_version.due_date
 
     def test_get_pending_rejection_queue(self):
         expected_addons = [

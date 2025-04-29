@@ -307,6 +307,7 @@ class AddonManager(ManagerBase):
         theme_review=False,
         show_temporarily_delayed=True,
         show_only_upcoming=False,
+        due_date_reasons_choices=None,
     ):
         filters = {
             'type__in': amo.GROUP_TYPE_THEME if theme_review else amo.GROUP_TYPE_ADDON,
@@ -359,13 +360,29 @@ class AddonManager(ManagerBase):
                     & ~Q(**{listed_delay_flag_field: datetime.max})
                 )
             )
+        version_subqs = versions_due_qs.all()
+        if due_date_reasons_choices:
+            versions_filter = Q(
+                versions__needshumanreview__reason__in=due_date_reasons_choices.values
+            )
+            version_subqs = version_subqs.filter(
+                needshumanreview__reason__in=due_date_reasons_choices.values
+            )
+        else:
+            versions_filter = None
         qs = (
             qs.filter(**filters)
             .annotate(
-                first_version_due_date=Min('versions__due_date'),
-                first_version_id=Subquery(
-                    versions_due_qs.filter(addon=OuterRef('pk')).values('pk')[:1]
+                # We need both first_version_due_date and first_version_id to
+                # be set and have the same behavior. The former is used for
+                # grouping (hence the Min()) and provides a way for callers to
+                # sort this queryset by due date, the latter to filter add-ons
+                # matching the reasons we care about and to instantiate the
+                # right Version in first_pending_version_transformer().
+                first_version_due_date=Min(
+                    'versions__due_date', filter=versions_filter
                 ),
+                first_version_id=Subquery(version_subqs.values('pk')[:1]),
                 **{
                     name: Exists(versions_due_qs.filter(q))
                     for name, q in (
@@ -767,6 +784,21 @@ class Addon(OnChangeMixin, ModelBase):
             # If we have a specific due_date, override the default
             version.reset_due_date(due_date)
         return version
+
+    def versions_triggering_needs_human_review_inheritance(self, channel):
+        """Return queryset of Versions belonging to this addon in the specified
+        channel that should be considered for due date and NeedsHumanReview
+        inheritance."""
+        from olympia.reviewers.models import NeedsHumanReview
+
+        reasons_triggering_inheritance = set(
+            NeedsHumanReview.REASONS.values.keys()
+        ) - set(NeedsHumanReview.REASONS.NO_DUE_DATE_INHERITANCE.values.keys())
+        return self.versions(manager='unfiltered_for_relations').filter(
+            channel=channel,
+            needshumanreview__is_active=True,
+            needshumanreview__reason__in=reasons_triggering_inheritance,
+        )
 
     @property
     def is_guid_denied(self):
