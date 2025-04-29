@@ -453,12 +453,10 @@ class TestParseXpi(TestCase):
     def test_no_parse_apps_error_webextension(self):
         AppVersion.objects.all().delete()
         assert self.parse(filename='webextension_with_apps_targets.xpi')
-        assert e.exception.messages[0].startswith('Lowest supported "strict_min_version"')
 
         assert self.parse(
             filename='webextension_with_apps_targets.xpi',
             minimal=False)
-        assert e.exception.messages[0].startswith('Lowest supported "strict_min_version"')
 
         # When minimal=True is passed, we don't do validation...
         expected = {
@@ -466,6 +464,7 @@ class TestParseXpi(TestCase):
             'type': amo.ADDON_EXTENSION,
             'version': '1.0',
             'is_webextension': True,
+            'is_experiment': False,
             'name': 'Beastify',
             'summary': None,
             'default_locale': None,

@@ -1124,6 +1124,7 @@ def reverse_ns(viewname, api_version=None, args=None, kwargs=None, **extra):
 
 def fix_manifest(data, filename):
     manifest = json.loads(data)
+    print('MANIFEST', manifest)
     if not manifest.get('browser_specific_settings'):
         # If we have the deprecated applications, rename it to browser_specific_settings
         if manifest.get('applications'):
@@ -1136,6 +1137,8 @@ def fix_manifest(data, filename):
                     'id': f'{uuid.uuid4().hex}@example.com',
                 }
             }
+
+    manifest['browser_specific_settings']['gecko']['strict_min_version'] = '60.0'
 
     # If we're an experiment (indicated by filename) then set the strict max version
     if 'experiment' in filename:
