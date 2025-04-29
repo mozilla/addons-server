@@ -16,7 +16,6 @@ from olympia.amo.models import LongNameIndex, ModelBase
 from olympia.amo.reverse import resolve_with_trailing_slash, reverse
 from olympia.amo.utils import SafeStorage
 from olympia.constants.promoted import PROMOTED_GROUPS
-from olympia.promoted.models import PromotedAddon
 
 
 GRADIENT_START_COLOR = ('#20123A', 'color-ink-80')
@@ -175,12 +174,7 @@ class PrimaryHero(ModelBase):
         'HTML or special tags. Will be translated.',
     )
     enabled = models.BooleanField(db_index=True, default=False)
-    # TODO: promotedaddon; primaryhero refactor (Write PR)
-    promoted_addon = models.OneToOneField(
-        PromotedAddon, on_delete=models.CASCADE, null=True
-    )
-    addon = models.OneToOneField(Addon, on_delete=models.CASCADE, null=True)
-
+    addon = models.OneToOneField(Addon, on_delete=models.CASCADE, null=False)
     is_external = models.BooleanField(default=False)
 
     def __str__(self):
