@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-29 17:11+0000\n"
+"POT-Creation-Date: 2025-04-29 17:33+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -369,12 +369,12 @@ msgstr ""
 msgid "Images must be smaller than %dMB"
 msgstr ""
 
-#: src/olympia/addons/models.py:2236 src/olympia/addons/models.py:2293
+#: src/olympia/addons/models.py:2268 src/olympia/addons/models.py:2325
 #: src/olympia/constants/base.py:66
 msgid "Listed"
 msgstr ""
 
-#: src/olympia/addons/models.py:2471
+#: src/olympia/addons/models.py:2503
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr ""
 
@@ -1389,7 +1389,7 @@ msgstr ""
 msgid "Disabled by Mozilla"
 msgstr ""
 
-#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1191
+#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1190
 msgid "Deleted"
 msgstr ""
 
@@ -7754,33 +7754,33 @@ msgid ""
 "Mozilla Add-ons Team"
 msgstr ""
 
-#: src/olympia/versions/models.py:1176
+#: src/olympia/versions/models.py:1175
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
 msgstr ""
 
-#: src/olympia/versions/models.py:1181
+#: src/olympia/versions/models.py:1180
 msgid "Auto-approved, Confirmed"
 msgstr ""
 
-#: src/olympia/versions/models.py:1183
+#: src/olympia/versions/models.py:1182
 msgid "Auto-approved, not Confirmed"
 msgstr ""
 
-#: src/olympia/versions/models.py:1186
+#: src/olympia/versions/models.py:1185
 msgid "Approved, Manual"
 msgstr ""
 
-#: src/olympia/versions/models.py:1193
+#: src/olympia/versions/models.py:1192
 msgid "Disabled by Developer"
 msgstr ""
 
-#: src/olympia/versions/models.py:1551
+#: src/olympia/versions/models.py:1550
 #, python-brace-format
 msgid "{app} {min} and later"
 msgstr ""
 
-#: src/olympia/versions/models.py:1678
+#: src/olympia/versions/models.py:1677
 #, python-brace-format
 msgid "The install origin {origin} is not permitted."
 msgstr ""
