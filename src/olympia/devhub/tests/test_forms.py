@@ -531,6 +531,8 @@ class TestDistributionChoiceForm(TestCase):
 
             expected = 'Auf dieser Website.'
             label = six.text_type(label)
+            # label is currently:
+            # 'On this site. <span class="helptext">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>'
             assert label.startswith(expected)
 
 
