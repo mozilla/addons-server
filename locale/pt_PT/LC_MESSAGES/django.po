@@ -1015,9 +1015,9 @@ msgid "{addon} policy changed."
 msgstr "Política de {addon} alterada."
 
 #: src/olympia/constants/activity.py:360
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{addon} icon or previews changed."
-msgstr "{addon} ícone alterado."
+msgstr "Ícone ou pré-visualizações de {addon} alterados."
 
 #: src/olympia/constants/activity.py:367
 #, python-brace-format
