@@ -4807,7 +4807,7 @@ msgstr "Παρακολουθήστε τους ιχνηλάτες. Δείτε π�
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:143
 msgid "Change your proxy server and surf the web through self-defined proxy settings."
-msgstr "Αλλάξτε το διακομιστή μεσολάβησής σας και περιηγηθείτε στο διαδίκτυο με τις δικές σας ρυθμίσεις."
+msgstr "Αλλάξτε τον διακομιστή μεσολάβησής σας και περιηγηθείτε στο διαδίκτυο με τις δικές σας ρυθμίσεις."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:146
