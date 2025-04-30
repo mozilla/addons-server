@@ -4294,7 +4294,7 @@ msgstr "Συνδεθείτε στο Κέντρο προγραμματιστών 
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/submit_or_manage_extension.html:11
 msgid "Register for a developer account or log in to the Developer Hub"
-msgstr "Εγγραφείτε για λογαριασμό προγραμματιστή ή συνδεθείτε στο Κέντρο προγραμματιστών"
+msgstr "Δημιουργήστε έναν λογαριασμό προγραμματιστή ή συνδεθείτε στο Κέντρο προγραμματιστών"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:5
 #, python-brace-format
