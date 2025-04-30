@@ -291,7 +291,7 @@ msgstr "Πρόσθετο"
 
 #: src/olympia/addons/decorators.py:78 src/olympia/amo/templates/amo/submissions_disabled.html:8
 msgid "Add-on uploads are temporarily unavailable."
-msgstr "Οι μεταφορτώσεις προσθέτων δεν είναι προσωρινά διαθέσιμες."
+msgstr "Οι αποστολές προσθέτων δεν είναι προσωρινά διαθέσιμες."
 
 #: src/olympia/addons/fields.py:56
 #, python-brace-format
@@ -327,7 +327,7 @@ msgstr "Η άδεια με slug={value} δεν υπάρχει."
 #: src/olympia/addons/fields.py:210
 #, python-brace-format
 msgid "Unsupported file type, please upload an archive file ({extensions})."
-msgstr "Ο τύπος αρχείου δεν υποστηρίζεται, μεταφορτώστε ένα συμπιεσμένο αρχείο ({extensions})."
+msgstr "Ο τύπος αρχείου δεν υποστηρίζεται, κάντε αποστολή ενός συμπιεσμένου αρχείου ({extensions})."
 
 #: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:756 src/olympia/files/utils.py:755 src/olympia/reviewers/forms.py:348
 msgid "Invalid or broken archive."
@@ -385,7 +385,7 @@ msgstr ""
 #: src/olympia/addons/serializers.py:536
 #, python-brace-format
 msgid "Version {version_string} was uploaded before and deleted."
-msgstr "Η έκδοση {version_string} μεταφορτώθηκε πριν και διαγράφηκε."
+msgstr "Η έκδοση {version_string} απεστάλη στο παρελθόν και διαγράφηκε."
 
 #: src/olympia/addons/serializers.py:539
 #, python-brace-format
@@ -698,11 +698,11 @@ msgstr "Ορισμένες λειτουργίες της σελίδας έχου
 
 #: src/olympia/amo/templates/amo/submissions_disabled.html:3
 msgid "Add-on uploads temporarily disabled"
-msgstr "Οι μεταφορτώσεις προσθέτων έχουν απενεργοποιηθεί προσωρινά"
+msgstr "Οι αποστολές προσθέτων έχουν απενεργοποιηθεί προσωρινά"
 
 #: src/olympia/amo/templates/amo/submissions_disabled.html:13
 msgid "Add-on uploads have been temporarily disabled. Please check back later."
-msgstr "Οι μεταφορτώσεις προσθέτων έχουν απενεργοποιηθεί προσωρινά. Δοκιμάστε ξανά αργότερα."
+msgstr "Οι αποστολές προσθέτων έχουν απενεργοποιηθεί προσωρινά. Δοκιμάστε ξανά αργότερα."
 
 #: src/olympia/amo/templatetags/jinja_helpers.py:147
 #, python-brace-format
@@ -1128,11 +1128,11 @@ msgstr "Οι σημειώσεις για τους ελεγκτές άλλαξα�
 #: src/olympia/constants/activity.py:640
 #, python-brace-format
 msgid "Source code uploaded for {addon} {version}."
-msgstr "Μεταφορτώθηκε ο πηγαίος κώδικας για το {addon} {version}."
+msgstr "Έγινε αποστολή του πηγαίου κώδικα για το {addon} {version}."
 
 #: src/olympia/constants/activity.py:641
 msgid "Source code uploaded"
-msgstr "Μεταφορτώθηκε ο πηγαίος κώδικας"
+msgstr "Έγινε αποστολή πηγαίου κώδικα"
 
 #: src/olympia/constants/activity.py:660
 #, python-brace-format
@@ -2049,7 +2049,7 @@ msgstr "Καθορίστε την πολιτική απορρήτου του π�
 #: src/olympia/devhub/forms.py:724
 #, python-brace-format
 msgid "Unsupported file type, please upload an archive file {extensions}."
-msgstr "Ο τύπος αρχείου δεν υποστηρίζεται, μεταφορτώστε ένα συμπιεσμένο αρχείο {extensions}."
+msgstr "Ο τύπος αρχείου δεν υποστηρίζεται, κάντε αποστολή ενός συμπιεσμένου αρχείου {extensions}."
 
 #: src/olympia/devhub/forms.py:768
 msgid "View current"
@@ -2077,7 +2077,7 @@ msgstr "Πρέπει να επιλέξετε τουλάχιστον μια εφ�
 
 #: src/olympia/devhub/forms.py:1059
 msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr "Έχετε κάνει πάρα πολλές μεταφορτώσεις πρόσφατα. Δοκιμάστε ξανά αργότερα."
+msgstr "Έχετε κάνει πάρα πολλές αποστολές πρόσφατα. Δοκιμάστε ξανά αργότερα."
 
 #: src/olympia/devhub/forms.py:1108 src/olympia/signing/views.py:156
 #, python-brace-format

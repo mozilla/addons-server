@@ -43,7 +43,7 @@ msgstr "Ακύρωση"
 #: static/js/common/upload-addon.js:189
 #, python-brace-format
 msgid "Uploading {0}"
-msgstr "Μεταφόρτωση του {0}"
+msgstr "Αποστολή του {0}"
 
 #: static/js/common/upload-addon.js:229
 #, python-brace-format
@@ -150,7 +150,7 @@ msgid ""
 "field to avoid having your submission rejected."
 msgstr ""
 "Για τα ελαχιστοποιημένα, συνενωμένα ή με άλλο τρόπο μηχανικά δημιουργημένα σενάρια (εξαιρούνται γνωστές βιβλιοθήκες), πρέπει να υποβάλλετε τις πηγές ξεχωριστά για έλεγχο. Βεβαιωθείτε ότι "
-"χρησιμοποιείτε το πεδίο μεταφόρτωσης πηγαίου κώδικα για να αποφύγετε την απόρριψη της υποβολής σας."
+"χρησιμοποιείτε το πεδίο αποστολής πηγαίου κώδικα για να αποφύγετε την απόρριψη της υποβολής σας."
 
 #: static/js/common/upload-addon.js:684
 msgid "The validation process found these issues that can lead to rejections:"
@@ -158,7 +158,7 @@ msgstr "Η διαδικασία επικύρωσης βρήκε προβλήμα
 
 #: static/js/common/upload-base.js:69
 msgid "The filetype you uploaded isn't recognized."
-msgstr "Ο τύπος αρχείου που μεταφορτώσατε δεν αναγνωρίζεται."
+msgstr "Ο τύπος αρχείου που αποστείλατε δεν αναγνωρίζεται."
 
 #: static/js/common/upload-base.js:79 static/js/zamboni/global.js:569
 #, python-brace-format
@@ -167,7 +167,7 @@ msgstr "Το αρχείο σας ξεπερνά το μέγιστο μέγεθο
 
 #: static/js/common/upload-base.js:105
 msgid "You cancelled the upload."
-msgstr "Ακυρώσατε τη μεταφόρτωση."
+msgstr "Ακυρώσατε την αποστολή."
 
 #: static/js/common/upload-image.js:102
 msgid "Images must be either PNG or JPG."
@@ -856,7 +856,7 @@ msgstr "Εισαγάγετε τη διεύθυνση email νέου δημιου
 
 #: static/js/zamboni/devhub.js:440
 msgid "There was an error uploading your file."
-msgstr "Προέκυψε σφάλμα κατά τη μεταφόρτωση του αρχείου σας."
+msgstr "Προέκυψε σφάλμα κατά την αποστολή του αρχείου σας."
 
 #: static/js/zamboni/devhub.js:596
 #, python-brace-format
