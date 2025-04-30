@@ -291,7 +291,7 @@ msgstr "Πρόσθετο"
 
 #: src/olympia/addons/decorators.py:78 src/olympia/amo/templates/amo/submissions_disabled.html:8
 msgid "Add-on uploads are temporarily unavailable."
-msgstr "Οι αποστολές προσθέτων δεν είναι προσωρινά διαθέσιμες."
+msgstr "Οι μεταφορτώσεις προσθέτων δεν είναι προσωρινά διαθέσιμες."
 
 #: src/olympia/addons/fields.py:56
 #, python-brace-format
@@ -327,7 +327,7 @@ msgstr "Η άδεια με slug={value} δεν υπάρχει."
 #: src/olympia/addons/fields.py:210
 #, python-brace-format
 msgid "Unsupported file type, please upload an archive file ({extensions})."
-msgstr "Ο τύπος αρχείου δεν υποστηρίζεται, κάντε αποστολή ενός συμπιεσμένου αρχείου ({extensions})."
+msgstr "Ο τύπος αρχείου δεν υποστηρίζεται, μεταφορτώστε ένα συμπιεσμένο αρχείο ({extensions})."
 
 #: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:756 src/olympia/files/utils.py:755 src/olympia/reviewers/forms.py:348
 msgid "Invalid or broken archive."
@@ -385,7 +385,7 @@ msgstr ""
 #: src/olympia/addons/serializers.py:536
 #, python-brace-format
 msgid "Version {version_string} was uploaded before and deleted."
-msgstr "Η έκδοση {version_string} απεστάλη στο παρελθόν και διαγράφηκε."
+msgstr "Η έκδοση {version_string} μεταφορτώθηκε στο παρελθόν και διαγράφηκε."
 
 #: src/olympia/addons/serializers.py:539
 #, python-brace-format
@@ -698,11 +698,11 @@ msgstr "Ορισμένες λειτουργίες της σελίδας έχου
 
 #: src/olympia/amo/templates/amo/submissions_disabled.html:3
 msgid "Add-on uploads temporarily disabled"
-msgstr "Οι αποστολές προσθέτων έχουν απενεργοποιηθεί προσωρινά"
+msgstr "Οι μεταφορτώσεις προσθέτων έχουν απενεργοποιηθεί προσωρινά"
 
 #: src/olympia/amo/templates/amo/submissions_disabled.html:13
 msgid "Add-on uploads have been temporarily disabled. Please check back later."
-msgstr "Οι αποστολές προσθέτων έχουν απενεργοποιηθεί προσωρινά. Δοκιμάστε ξανά αργότερα."
+msgstr "Οι μεταφορτώσεις προσθέτων έχουν απενεργοποιηθεί προσωρινά. Δοκιμάστε ξανά αργότερα."
 
 #: src/olympia/amo/templatetags/jinja_helpers.py:147
 #, python-brace-format
@@ -1128,11 +1128,11 @@ msgstr "Οι σημειώσεις για τους ελεγκτές άλλαξα�
 #: src/olympia/constants/activity.py:640
 #, python-brace-format
 msgid "Source code uploaded for {addon} {version}."
-msgstr "Έγινε αποστολή του πηγαίου κώδικα για το {addon} {version}."
+msgstr "Μεταφορτώθηκε πηγαίος κώδικας για το {addon} {version}."
 
 #: src/olympia/constants/activity.py:641
 msgid "Source code uploaded"
-msgstr "Έγινε αποστολή πηγαίου κώδικα"
+msgstr "Μεταφορτώθηκε πηγαίος κώδικας"
 
 #: src/olympia/constants/activity.py:660
 #, python-brace-format
@@ -2049,7 +2049,7 @@ msgstr "Καθορίστε την πολιτική απορρήτου του π�
 #: src/olympia/devhub/forms.py:724
 #, python-brace-format
 msgid "Unsupported file type, please upload an archive file {extensions}."
-msgstr "Ο τύπος αρχείου δεν υποστηρίζεται, κάντε αποστολή ενός συμπιεσμένου αρχείου {extensions}."
+msgstr "Ο τύπος αρχείου δεν υποστηρίζεται, μεταφορτώστε ένα συμπιεσμένο αρχείο {extensions}."
 
 #: src/olympia/devhub/forms.py:768
 msgid "View current"
@@ -2077,12 +2077,12 @@ msgstr "Πρέπει να επιλέξετε τουλάχιστον μια εφ�
 
 #: src/olympia/devhub/forms.py:1059
 msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr "Έχετε κάνει πάρα πολλές αποστολές πρόσφατα. Δοκιμάστε ξανά αργότερα."
+msgstr "Έχετε κάνει πάρα πολλές μεταφορτώσεις πρόσφατα. Δοκιμάστε ξανά αργότερα."
 
 #: src/olympia/devhub/forms.py:1108 src/olympia/signing/views.py:156
 #, python-brace-format
 msgid "Version {version} was uploaded before and deleted."
-msgstr "Η έκδοση {version} μεταφορτώθηκε πριν και διαγράφηκε."
+msgstr "Η έκδοση {version} μεταφορτώθηκε στο παρελθόν και διαγράφηκε."
 
 #: src/olympia/devhub/forms.py:1117 src/olympia/devhub/forms.py:1123 src/olympia/signing/views.py:158
 #, python-brace-format
@@ -2091,7 +2091,7 @@ msgstr "Η έκδοση {version} υπάρχει ήδη."
 
 #: src/olympia/devhub/forms.py:1119
 msgid "Continue with existing upload instead?"
-msgstr "Συνέχει με την υπάρχουσα μεταφόρτωση;"
+msgstr "Συνέχεια με την υπάρχουσα μεταφόρτωση;"
 
 #: src/olympia/devhub/forms.py:1157 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:7 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:22
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:37
@@ -2105,11 +2105,11 @@ msgstr "Όχι"
 
 #: src/olympia/devhub/forms.py:1172
 msgid "You have not uploaded a source file."
-msgstr "Δεν έχετε μεταφορτώσει αρχείο πηγής."
+msgstr "Δεν έχετε μεταφορτώσει αρχείο πηγαίου κώδικα."
 
 #: src/olympia/devhub/forms.py:1175
 msgid "Source file uploaded but you indicated no source was needed."
-msgstr "Το αρχείο πηγής μεταφορτώθηκε, αλλά υποδείξατε ότι δεν χρειαζόταν πηγή."
+msgstr "Μεταφορτώθηκε αρχείο πηγαίου κώδικα, αλλά υποδείξατε ότι δεν χρειαζόταν."
 
 #: src/olympia/devhub/forms.py:1239
 #, python-brace-format
@@ -2551,11 +2551,11 @@ msgstr "Μάθετε περισσότερα"
 
 #: src/olympia/devhub/templates/devhub/validate_addon.html:12
 msgid "Use the field below to upload your add-on package."
-msgstr "Χρησιμοποιήστε το πεδίο παρακάτω για να μεταφορτώσετε τη συσκευασία προσθέτου σας."
+msgstr "Χρησιμοποιήστε το παρακάτω πεδίο παρακάτω για να μεταφορτώσετε το πακέτο του προσθέτου σας."
 
 #: src/olympia/devhub/templates/devhub/validate_addon.html:15
 msgid "After upload, a series of automated validation tests will be run on your file."
-msgstr "Μετά τη μεταφόρτωση, θα εκτελεστεί μια σειρά από αυτόματους ελέγχους εγκυρότητας στο αρχείο σας."
+msgstr "Μετά τη μεταφόρτωση, θα εκτελεστεί μια σειρά από αυτοματοποιημένους ελέγχους εγκυρότητας στο αρχείο σας."
 
 #: src/olympia/devhub/templates/devhub/validate_addon.html:22
 msgid "Do you want your add-on to be distributed on this site?"
@@ -3098,7 +3098,7 @@ msgstr "Θα είναι το πρότυπο στις μελλοντικές σε
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:64
 msgid "Upload a Custom Icon..."
-msgstr "Αποστολή προσαρμοσμένου εικονιδίου..."
+msgstr "Μεταφόρτωση προσαρμοσμένου εικονιδίου..."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:73
 msgid "PNG and JPG supported."
@@ -3643,7 +3643,7 @@ msgstr "Μεταφόρτωση έκδοσης"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:30
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
-msgstr "Χρησιμοποιήστε τα παρακάτω πεδία για να μεταφορτώσετε το πακέτου του προσθέτου σας. Μετά τη μεταφόρτωση, θα διεξαχθεί στο αρχείο σας μια σειρά αυτοματοποιημένων δοκιμών και ελέγχων."
+msgstr "Χρησιμοποιήστε τα παρακάτω πεδία για να μεταφορτώσετε το πακέτο του προσθέτου σας. Μετά τη μεταφόρτωση, θα εκτελεστεί μια σειρά από αυτοματοποιημένους ελέγχους εγκυρότητας στο αρχείο σας."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:34
 #, python-format
