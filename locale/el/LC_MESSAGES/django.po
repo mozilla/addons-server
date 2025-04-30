@@ -3931,7 +3931,7 @@ msgstr "Επόμενη καταχωρημένη έκδοση:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:82
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
-msgstr "Αυτή είναι η νεότερη έκδοση που έχει μεταφορτωθεί, ωστόσο δεν έχει δημοσιευθεί στον ιστότοπο ακόμα"
+msgstr "Αυτή είναι η νεότερη έκδοση που έχει μεταφορτωθεί, ωστόσο δεν έχει δημοσιευθεί ακόμα στον ιστότοπο"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:100 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:66
 #: src/olympia/devhub/templates/devhub/versions/list.html:26
@@ -4467,7 +4467,7 @@ msgstr "Όλες οι εκδόσεις"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:224
 msgid "Upload a New Version"
-msgstr "Αποστολή νέας έκδοσης"
+msgstr "Μεταφόρτωση νέας έκδοσης"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:229
 msgid "Version"
