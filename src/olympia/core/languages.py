@@ -1,14 +1,7 @@
 # Languages that we support on AMO, e.g we have translations for them
 # and they're tested.
 AMO_LANGUAGES = {
-    'ar': {'english': 'Arabic', 'native': '\u0639\u0631\u0628\u064a'},
-    'bg': {
-        'english': 'Bulgarian',
-        'native': '\u0411\u044a\u043b\u0433\u0430\u0440\u0441\u043a\u0438',
-    },
-    'cak': {'english': 'Kaqchikel', 'native': 'Maya Kaqchikel'},
     'cs': {'english': 'Czech', 'native': '\u010ce\u0161tina'},
-    'da': {'english': 'Danish', 'native': 'Dansk'},
     'de': {'english': 'German', 'native': 'Deutsch'},
     'dsb': {'english': 'Lower Sorbian', 'native': 'Dolnoserb\u0161\u0107ina'},
     'el': {
@@ -22,7 +15,6 @@ AMO_LANGUAGES = {
     'es-CL': {'english': 'Spanish (Chile)', 'native': 'Espa\xf1ol (de Chile)'},
     'es-ES': {'english': 'Spanish (Spain)', 'native': 'Espa\xf1ol (de Espa\xf1a)'},
     'es-MX': {'english': 'Spanish (Mexico)', 'native': 'Espa\xf1ol (de M\xe9xico)'},
-    'fi': {'english': 'Finnish', 'native': 'suomi'},
     'fr': {'english': 'French', 'native': 'Fran\xe7ais'},
     'fur': {'english': 'Friulian', 'native': 'Furlan'},
     'fy-NL': {'english': 'Frisian', 'native': 'Frysk'},
@@ -32,7 +24,6 @@ AMO_LANGUAGES = {
     'hu': {'english': 'Hungarian', 'native': 'magyar'},
     'ia': {'english': 'Interlingua', 'native': 'Interlingua'},
     'id': {'english': 'Indonesian', 'native': 'Bahasa Indonesia'},
-    'is': {'english': 'Icelandic', 'native': '\xedslenska'},
     'it': {'english': 'Italian', 'native': 'Italiano'},
     'ja': {'english': 'Japanese', 'native': '\u65e5\u672c\u8a9e'},
     'ka': {
@@ -41,32 +32,22 @@ AMO_LANGUAGES = {
     },
     'kab': {'english': 'Kabyle', 'native': 'Taqbaylit'},
     'ko': {'english': 'Korean', 'native': '\ud55c\uad6d\uc5b4'},
-    'ms': {'english': 'Malay', 'native': 'Melayu'},
-    'nb-NO': {'english': 'Norwegian (Bokm\xe5l)', 'native': 'Norsk bokm\xe5l'},
     'nl': {'english': 'Dutch', 'native': 'Nederlands'},
     'nn-NO': {'english': 'Norwegian (Nynorsk)', 'native': 'Norsk nynorsk'},
-    'pa-IN': {
-        'english': 'Punjabi (India)',
-        'native': '\u0a2a\u0a70\u0a1c\u0a3e\u0a2c\u0a40 (\u0a2d\u0a3e\u0a30\u0a24)',  # noqa
-    },
     'pl': {'english': 'Polish', 'native': 'Polski'},
     'pt-BR': {
         'english': 'Portuguese (Brazilian)',
         'native': 'Portugu\xeas (do\xa0Brasil)',
     },
     'pt-PT': {'english': 'Portuguese (Portugal)', 'native': 'Portugu\xeas (Europeu)'},
-    'ro': {'english': 'Romanian', 'native': 'Rom\xe2n\u0103'},
     'ru': {
         'english': 'Russian',
         'native': '\u0420\u0443\u0441\u0441\u043a\u0438\u0439',
     },
-    'si': {'english': 'Sinhala', 'native': '\u0dc3\u0dd2\u0d82\u0dc4\u0dbd'},
     'sk': {'english': 'Slovak', 'native': 'sloven\u010dina'},
     'sl': {'english': 'Slovenian', 'native': 'Sloven\u0161\u010dina'},
     'sq': {'english': 'Albanian', 'native': 'Shqip'},
     'sv-SE': {'english': 'Swedish', 'native': 'Svenska'},
-    'te': {'english': 'Telugu', 'native': '\u0c24\u0c46\u0c32\u0c41\u0c17\u0c41'},
-    'th': {'english': 'Thai', 'native': '\u0e44\u0e17\u0e22'},
     'tr': {'english': 'Turkish', 'native': 'T\xfcrk\xe7e'},
     'uk': {
         'english': 'Ukrainian',
@@ -91,6 +72,7 @@ ADDITIONAL_PRODUCT_LANGUAGES = {
     'ach': {'english': 'Acholi', 'native': 'Acholi'},
     'af': {'english': 'Afrikaans', 'native': 'Afrikaans'},
     'ak': {'english': 'Akan', 'native': 'Akan'},
+    'ar': {'english': 'Arabic', 'native': '\u0639\u0631\u0628\u064a'},
     'ast': {'english': 'Asturian', 'native': 'Asturianu'},
     'az': {'english': 'Azerbaijani', 'native': 'Az\u0259rbaycanca'},
     'am-et': {'english': 'Amharic', 'native': '\u12a0\u121b\u122d\u129b'},
@@ -107,18 +89,24 @@ ADDITIONAL_PRODUCT_LANGUAGES = {
         'english': 'Belarusian',
         'native': '\u0411\u0435\u043b\u0430\u0440\u0443\u0441\u043a\u0430\u044f',  # noqa
     },
+    'bg': {
+        'english': 'Bulgarian',
+        'native': '\u0411\u044a\u043b\u0433\u0430\u0440\u0441\u043a\u0438',
+    },
     'bm': {'english': 'Bambara', 'native': 'Bamanankan'},
     'bn': {'english': 'Bengali', 'native': '\u09ac\u09be\u0982\u09b2\u09be'},
     'br': {'english': 'Breton', 'native': 'Brezhoneg'},
     'brx': {'english': 'Bodo', 'native': "\u092c\u0930'"},
     'bs': {'english': 'Bosnian', 'native': 'Bosanski'},
     'ca': {'english': 'Catalan', 'native': 'Catal\xe0'},
+    'cak': {'english': 'Kaqchikel', 'native': 'Maya Kaqchikel'},
     'ca-valencia': {
         'english': 'Catalan (Valencian)',
         'native': 'catal\xe0 (valenci\xe0)',
     },
     'csb': {'english': 'Kashubian', 'native': 'Kasz\xebbsczi'},
     'cy': {'english': 'Welsh', 'native': 'Cymraeg'},
+    'da': {'english': 'Danish', 'native': 'Dansk'},
     'de-AT': {'english': 'German (Austria)', 'native': 'Deutsch (\xd6sterreich)'},
     'de-CH': {'english': 'German (Switzerland)', 'native': 'Deutsch (Schweiz)'},
     'de-DE': {'english': 'German (Germany)', 'native': 'Deutsch (Deutschland)'},
@@ -134,6 +122,7 @@ ADDITIONAL_PRODUCT_LANGUAGES = {
     'eu': {'english': 'Basque', 'native': 'Euskara'},
     'fa': {'english': 'Persian', 'native': '\u0641\u0627\u0631\u0633\u06cc'},
     'ff': {'english': 'Fulah', 'native': 'Pulaar-Fulfulde'},
+    'fi': {'english': 'Finnish', 'native': 'suomi'},
     'fj-FJ': {'english': 'Fijian', 'native': 'Vosa vaka-Viti'},
     'ga': {'english': 'Irish', 'native': 'Gaeilge'},
     'ga-IE': {'english': 'Irish', 'native': 'Gaeilge'},
@@ -160,6 +149,7 @@ ADDITIONAL_PRODUCT_LANGUAGES = {
     },
     'ia': {'english': 'Interlingua', 'native': 'Interlingua'},
     'ig': {'english': 'Igbo', 'native': 'Igbo'},
+    'is': {'english': 'Icelandic', 'native': '\xedslenska'},
     'ja-JP-mac': {'english': 'Japanese', 'native': '\u65e5\u672c\u8a9e'},
     'kk': {'english': 'Kazakh', 'native': '\u049a\u0430\u0437\u0430\u049b'},
     'km': {'english': 'Khmer', 'native': '\u1781\u17d2\u1798\u17c2\u179a'},
@@ -188,18 +178,25 @@ ADDITIONAL_PRODUCT_LANGUAGES = {
     'ml': {'english': 'Malayalam', 'native': '\u0d2e\u0d32\u0d2f\u0d3e\u0d33\u0d02'},
     'mn': {'english': 'Mongolian', 'native': '\u041c\u043e\u043d\u0433\u043e\u043b'},
     'mr': {'english': 'Marathi', 'native': '\u092e\u0930\u093e\u0920\u0940'},
+    'ms': {'english': 'Malay', 'native': 'Melayu'},
     'mt': {'english': 'Maltese', 'native': 'Malti'},
     'my': {
         'english': 'Burmese',
         'native': '\u1019\u103c\u1014\u103a\u1019\u102c\u1018\u102c\u101e\u102c',  # noqa
     },
+    'nb-NO': {'english': 'Norwegian (Bokm\xe5l)', 'native': 'Norsk bokm\xe5l'},
     'ne-NP': {'english': 'Nepali', 'native': '\u0928\u0947\u092a\u093e\u0932\u0940'},
     'nr': {'english': 'Ndebele, South', 'native': 'isiNdebele'},
     'nso': {'english': 'Northern Sotho', 'native': 'Sepedi'},
     'oc': {'english': 'Occitan', 'native': 'occitan'},
     'or': {'english': 'Odia', 'native': '\u0b13\u0b21\u0b3c\u0b3f\u0b06'},
     'pa': {'english': 'Punjabi', 'native': '\u0a2a\u0a70\u0a1c\u0a3e\u0a2c\u0a40'},
+    'pa-IN': {
+        'english': 'Punjabi (India)',
+        'native': '\u0a2a\u0a70\u0a1c\u0a3e\u0a2c\u0a40 (\u0a2d\u0a3e\u0a30\u0a24)',  # noqa
+    },
     'rm': {'english': 'Romansh', 'native': 'rumantsch'},
+    'ro': {'english': 'Romanian', 'native': 'Rom\xe2n\u0103'},
     'rw': {'english': 'Kinyarwanda', 'native': 'Ikinyarwanda'},
     'sa': {
         'english': 'Sanskrit',
@@ -231,6 +228,8 @@ ADDITIONAL_PRODUCT_LANGUAGES = {
         'english': 'Tamil (Sri Lanka)',
         'native': '\u0ba4\u0bae\u0bbf\u0bb4\u0bcd (\u0b87\u0bb2\u0b99\u0bcd\u0b95\u0bc8)',  # noqa
     },
+    'te': {'english': 'Telugu', 'native': '\u0c24\u0c46\u0c32\u0c41\u0c17\u0c41'},
+    'th': {'english': 'Thai', 'native': '\u0e44\u0e17\u0e22'},
     'tl': {'english': 'Tagalog', 'native': 'Tagalog'},
     'tn': {'english': 'Tswana', 'native': 'Setswana'},
     'ts': {'english': 'Tsonga', 'native': 'Xitsonga'},

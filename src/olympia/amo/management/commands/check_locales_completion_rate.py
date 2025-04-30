@@ -47,12 +47,11 @@ class Command(BaseCommand):
     # that by querying amo and amoFrontend.
     PONTOON_PROJECTS = 2
     # Threshold to enable/disable locales.
-    COMPLETION_THRESHOLD = 70
+    COMPLETION_THRESHOLD = 80
     # Arbitrary list of locales we always want to keep, either because they
     # receive the most traffic/affect the most users, or because they are RTL
     # and we want to keep at least one of those to ensure AMO works in RTL.
     LOCALES_TO_ALWAYS_KEEP = (
-        'ar',
         'de',
         'en-US',
         'es-ES',
