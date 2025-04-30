@@ -1190,8 +1190,7 @@ class TestCinderWebhook(TestCase):
             cinder_job=cinder_job,
         )
 
-    def get_request(self, **kwargs):
-        data = kwargs.get('data', self.get_data())
+    def get_request(self, data):
         digest = hmac.new(
             b'webhook-token',
             msg=force_bytes(json.dumps(data, separators=(',', ':'))),
@@ -1533,7 +1532,7 @@ class TestCinderWebhook(TestCase):
             check(cinder_webhook(self.get_request(data=data)))
 
     def _test_no_cinder_job(self, status_code):
-        req = self.get_request()
+        req = self.get_request(data=self.get_data())
         with mock.patch.object(CinderJob, 'process_decision') as process_mock:
             response = cinder_webhook(req)
             process_mock.assert_not_called()
@@ -1609,8 +1608,7 @@ class TestCinderWebhook(TestCase):
             self._test_valid_decision_but_no_cinder_job(400)
 
     def test_reviewer_tools_resolved_decision(self):
-        data = self.get_data()
-        data['payload']['source']['type'] = 'api_decision'
+        data = self.get_data(filename='proactive_decision_from_amo.json')
         self._setup_reports()
         req = self.get_request(data=data)
         with mock.patch.object(CinderJob, 'process_decision') as process_mock:
@@ -1626,8 +1624,8 @@ class TestCinderWebhook(TestCase):
         }
 
     def test_proactive_decision_from_cinder(self):
-        data = self.get_data(filename='override_change_to_approve.json')
-        del data['payload']['previous_decision']
+        data = self.get_data(filename='proactive_decision_from_amo.json')
+        data['payload']['source']['decision']['type'] = 'queue_review'
         self._setup_reports()
         req = self.get_request(data=data)
         with mock.patch.object(CinderJob, 'process_decision') as process_mock:
@@ -1762,7 +1760,7 @@ class TestCinderWebhook(TestCase):
 
     def test_set_user(self):
         set_user(user_factory())
-        req = self.get_request()
+        req = self.get_request(data=self.get_data())
         response = cinder_webhook(req)
         assert response.status_code == 200
         assert get_user() == self.task_user

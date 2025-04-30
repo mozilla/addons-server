@@ -208,7 +208,7 @@ def filter_enforcement_actions(enforcement_actions, cinder_job):
 def process_webhook_payload_decision(payload):
     source = payload.get('source', {})
     log.info('Valid Payload from AMO queue: %s', payload)
-    if source.get('type') == 'api_decision':
+    if source.get('decision').get('type') == 'api_decision':
         log.debug('Cinder webhook decision for api decision skipped.')
         raise CinderWebhookIgnoredError('Decision already handled via reviewer tools')
     elif 'job' in source:
