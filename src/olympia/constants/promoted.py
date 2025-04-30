@@ -159,6 +159,7 @@ PARTNER = PromotedClass(
     name=_('Partner'),
     api_name=PROMOTED_GROUP_CHOICES.PARTNER.api_value,
     high_profile=True,
+    high_profile_rating=True,
 )
 
 # _VERIFIED and _SPONSORED should not be included, they are no longer valid
