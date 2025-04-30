@@ -208,31 +208,30 @@ def filter_enforcement_actions(enforcement_actions, cinder_job):
 def process_webhook_payload_decision(payload):
     source = payload.get('source', {})
     log.info('Valid Payload from AMO queue: %s', payload)
-    if 'job' in source:
-        job_id = source.get('job', {}).get('id', '')
-
+    if source.get('decision', {}).get('type') == 'api_decision':
+        log.debug('Cinder webhook decision for api decision skipped.')
+        raise CinderWebhookIgnoredError('Decision already handled via reviewer tools')
+    elif job_id := source.get('job', {}).get('id'):
         try:
             cinder_job = CinderJob.objects.get(job_id=job_id)
         except CinderJob.DoesNotExist as exc:
             log.debug('CinderJob instance not found for job id %s', job_id)
             raise CinderWebhookMissingIdError('No matching job id found') from exc
-    else:
-        decision_id = payload.get('previous_decision', {}).get('id', '')
-
+    elif prev_decision_id := payload.get('previous_decision', {}).get('id'):
         try:
-            decision = ContentDecision.objects.get(cinder_id=decision_id)
+            prev_decision = ContentDecision.objects.get(cinder_id=prev_decision_id)
         except ContentDecision.DoesNotExist as exc:
-            log.debug('ContentDecision instance not found for id %s', decision_id)
+            log.debug('ContentDecision instance not found for id %s', prev_decision_id)
             raise CinderWebhookMissingIdError('No matching decision id found') from exc
 
-        cinder_job = decision.cinder_job
+        cinder_job = prev_decision.cinder_job
         if not cinder_job:
-            log.debug('No job for ContentDecision with id %s', decision_id)
+            log.debug('No job for ContentDecision with id %s', prev_decision_id)
             raise CinderWebhookMissingIdError('No matching job found for decision id')
-
-    if cinder_job.resolvable_in_reviewer_tools:
-        log.debug('Cinder webhook decision for reviewer resolvable job skipped.')
-        raise CinderWebhookIgnoredError('Decision already handled via reviewer tools')
+    else:
+        # We may support this one day, but we currently don't support this
+        log.debug('Cinder webhook decision for cinder proactive decision skipped.')
+        raise CinderWebhookError('Unsupported Manual decision')
 
     enforcement_actions = filter_enforcement_actions(
         payload.get('enforcement_actions') or [],
