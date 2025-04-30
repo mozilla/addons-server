@@ -6,15 +6,22 @@ from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 
 def set_partner_group_high_profile_rating(apps, schema_editor):
     PromotedGroup = apps.get_model('promoted', 'PromotedGroup')
-    group = PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.PARTNER)
-    group.high_profile_rating = True
-    group.save()
+    try: 
+        group = PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.PARTNER)
+        group.high_profile_rating = True
+        group.save()
+    except PromotedGroup.DoesNotExist:
+        pass
+
 
 def reverse_partner_group_high_profile_rating(apps, schema_editor):
     PromotedGroup = apps.get_model('promoted', 'PromotedGroup')
-    group = PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.PARTNER)
-    group.high_profile_rating = False
-    group.save()
+    try:
+        group = PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.PARTNER)
+        group.high_profile_rating = False
+        group.save()
+    except PromotedGroup.DoesNotExist:
+        pass
 
 class Migration(migrations.Migration):
 
