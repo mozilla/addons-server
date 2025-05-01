@@ -3372,6 +3372,33 @@ class TestReview(ReviewBase):
         assert span.length == 1
         assert span.text() == '2 versions pending rejection on other pages.'
 
+    def test_item_history_policy_text(self):
+        def check_entry(parent):
+            assert parent('.activity th').eq(0).text() == 'Force disabled'
+            assert parent('.history-comment').length == 3  # comments + 2 policies
+            assert parent('li.history-comment').eq(0).text() == 'Text for policy'
+            assert parent('li.history-comment').eq(1).text() == 'Another policy'
+            assert parent('pre.history-comment').eq(0).text() == 'reasoning!'
+
+        ActivityLog.objects.create(
+            amo.LOG.FORCE_DISABLE,
+            self.addon,
+            self.version,
+            details={
+                'comments': 'reasoning!',
+                'policy_texts': ['Text for policy', 'Another policy'],
+            },
+            user=self.reviewer,
+        )
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        # the policy text should be in the version history
+        version_history = pq(response.content)('#versions-history .review-files')
+        check_entry(version_history)
+        # and because it's a force disable, in the important changes too
+        version_history = pq(response.content)('#important-changes-history')
+        check_entry(version_history)
+
     def test_files_in_item_history(self):
         data = {
             'action': 'public',
