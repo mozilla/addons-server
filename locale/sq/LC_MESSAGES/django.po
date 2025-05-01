@@ -2427,11 +2427,11 @@ msgstr "Marrëveshje Shpërndarjesh Shtesash Firefox-i"
 
 #: src/olympia/devhub/templates/devhub/base.html:43
 msgid "Help us make things better!"
-msgstr ""
+msgstr "Ndihmonani t’i bëjmë gjërat më mirë!"
 
 #: src/olympia/devhub/templates/devhub/base.html:44
 msgid "Take our quick survey"
-msgstr ""
+msgstr "Plotësoni pyetësorin tonë të shpejtë"
 
 #. {0} is an application, like Firefox.
 #: src/olympia/devhub/templates/devhub/index.html:21 src/olympia/templates/base.html:17
@@ -5604,7 +5604,7 @@ msgstr "Ndryshon ngjyrën e Firefox-it për ta përputhur me pamjen e cilitdo sa
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:659
 msgid "Protect your privacy against a unique form of JavaScript “fingerprinting”."
-msgstr ""
+msgstr "Mbroni privatësinë tuaj nga një formë unike “fingerprinting” JavaScript."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:662
@@ -5614,7 +5614,7 @@ msgstr "Disa sajte kanë vështirësi të luajnë video nën Android. Ky zgjerim
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:683
 msgid "Find an interesting pic on the web? Use TinEye to discover its origins."
-msgstr ""
+msgstr "Gjetët një figurë me interes në web? Përdorni TinEye që të zbuloni origjinën e saj."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:701
@@ -5624,7 +5624,7 @@ msgstr "Ruani figura kollaj — thjesht merrini nga skeda juaj e çastit."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:704
 msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title & more."
-msgstr ""
+msgstr "Gëzojuni kontrollit të përkryer të skedave — mbyllni skeda të përsëdytura, përzieni dritare, kopjoni titullin e skedës, etj."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:722
@@ -5664,12 +5664,12 @@ msgstr "Ruani një faqe të tërë web — përfshi figura dhe stilizim — si n
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:854
 msgid "Edit a web page before printing. Remove ads or any unwanted content."
-msgstr ""
+msgstr "Përpunoni një faqe web para shtypjes. Hiqni reklama apo çfarëdo lënde të padëshiruar."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:863
 msgid "Advanced reader for aggregating all of your RSS/Atom/RDF sources."
-msgstr ""
+msgstr "Lexues i thelluar për grumbullim të krejt burimeve tuaja RSS/Atom/RDF."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:881
@@ -5709,7 +5709,7 @@ msgstr "Riktheni te një kohë më e thjeshtë — kur përfundimet kryesuese tu
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:911
 msgid "Get the mouse scrollbar you've always wanted — specify width and color."
-msgstr ""
+msgstr "Kini rrëshqitjen me miun që keni dashur përherë — specifikoni gjerësi dhe ngjyrë."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:923
