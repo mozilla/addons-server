@@ -436,7 +436,7 @@ def test_extract_theme_properties():
     # Add the zip in the right place
     zip_file = os.path.join(
         settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip')
-    with fix_webext_fixture(zip_file) as zip_file:
+    with fix_webext_fixture(zip_file, guid=addon.guid) as zip_file:
         copy_stored_file(zip_file, addon.current_version.all_files[0].file_path)
         result = utils.extract_theme_properties(
             addon, addon.current_version.channel)
@@ -446,7 +446,7 @@ def test_extract_theme_properties():
                 "textcolor": "#000"
             },
             "images": {
-                "headerURL": "weta.png"
+                "theme_frame": "weta.png"
             }
         }
 

@@ -1122,9 +1122,9 @@ def reverse_ns(viewname, api_version=None, args=None, kwargs=None, **extra):
         **extra)
 
 
-def fix_manifest(data, filename):
+def fix_manifest(data, filename, guid=None):
     manifest = json.loads(data)
-    print(filename)
+    guid = f'{uuid.uuid4().hex}@example.com' if guid is None else guid
     print('MANIFEST', manifest)
     if not manifest.get('browser_specific_settings'):
         # If we have the deprecated applications, rename it to browser_specific_settings
@@ -1132,12 +1132,13 @@ def fix_manifest(data, filename):
             manifest['browser_specific_settings'] = manifest['applications']
             del manifest['applications']
         else:
-            # Otherwise generate a guid
-            manifest['browser_specific_settings'] = {
-                'gecko': {
-                    'id': f'{uuid.uuid4().hex}@example.com',
-                }
+            pass
+        # Otherwise generate a guid
+        manifest['browser_specific_settings'] = {
+            'gecko': {
+                'id': guid,
             }
+        }
 
     manifest['browser_specific_settings']['gecko']['strict_min_version'] = '60.0'
 
@@ -1154,7 +1155,7 @@ def fix_manifest(data, filename):
     return json.dumps(manifest)
 
 @contextmanager
-def fix_webext_fixture(filename):
+def fix_webext_fixture(filename, guid=None):
     """Most test fixtures don't work with the latest addons-linter due to various errors.
     This 'fixes' those errors by hacking at the manifest.json until it fits nicely.
 
@@ -1174,7 +1175,7 @@ def fix_webext_fixture(filename):
                 for info in zip_in.infolist():
                     data = zip_in.read(info)
                     if info.filename == 'manifest.json':
-                        data = fix_manifest(data, filename)
+                        data = fix_manifest(data, filename, guid)
                     zip_out.writestr(info, data)
     else:
         shutil.copy(filename, temp_file)
