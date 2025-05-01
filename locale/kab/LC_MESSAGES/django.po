@@ -5705,7 +5705,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:977
 msgid "Translate websites in Firefox — privately — without using the cloud."
-msgstr ""
+msgstr "Suqel ismal web deg firefox — s wudem uslig — war aseqdec n usigna."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:980
