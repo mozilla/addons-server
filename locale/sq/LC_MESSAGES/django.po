@@ -5814,37 +5814,37 @@ msgstr "Përmblidhni me lehtësi email-e, dokumente, artikuj dhe transkriptime v
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:986
 msgid "You’re in control. Turn off VPN when a website won’t work and set different locations for different websites. Windows only."
-msgstr ""
+msgstr "Keni kontrollin në dorë. Çaktivizoni VPN-në, kur një sajt s’funksionon dhe caktoni vendndodhje të ndryshme për sajte të ndryshëm. Vetëm në Windows."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:989
 msgid "Automatically handle GDPR consent forms."
-msgstr ""
+msgstr "Trajtoni automatikisht formularë pajtimi me RPMD-në."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:992
 msgid "Block malicious websites from port scanning."
-msgstr ""
+msgstr "Bllokojuni sajteve dashakeqë skanimin e portave."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:995
 msgid "Enhance your Twitch experience."
-msgstr ""
+msgstr "Thelloni funksionimin e Twitch-it për ju."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:998
 msgid "Re-take control of Twitter/X and customize your experience."
-msgstr ""
+msgstr "Rifitoni kontroll mbi Twitter/X dhe përshtatni funksionimin për ju."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1001
 msgid "Translate text without leaving the page you're on (PDF compatible)."
-msgstr ""
+msgstr "Përktheni tekst pa dalë nga faqja ku gjendeni (Vlen dhe për PDF)."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1004
 msgid "Change the color of Firefox to match every website you visit."
-msgstr ""
+msgstr "Ndryshojeni ngjyrën e Firefox-it që të përkojë me çdo sajt që vizitoni."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1007
@@ -5869,12 +5869,12 @@ msgstr "Zgjerime për Privatësi & Siguri"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1015
 msgid "Essential add-ons"
-msgstr ""
+msgstr "Shtesa thelbësore"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1017
 msgid "Reddit extensions"
-msgstr ""
+msgstr "Zgjerime për Reddit"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1019 src/olympia/discovery/strings.jinja2:1021 src/olympia/discovery/strings.jinja2:1023
