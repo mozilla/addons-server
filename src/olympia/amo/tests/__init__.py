@@ -1124,7 +1124,6 @@ def reverse_ns(viewname, api_version=None, args=None, kwargs=None, **extra):
 
 def fix_manifest(data, filename, guid=None):
     manifest = json.loads(data)
-    guid = f'{uuid.uuid4().hex}@example.com' if guid is None else guid
     print('MANIFEST', manifest)
     if not manifest.get('browser_specific_settings'):
         # If we have the deprecated applications, rename it to browser_specific_settings
@@ -1132,24 +1131,28 @@ def fix_manifest(data, filename, guid=None):
             manifest['browser_specific_settings'] = manifest['applications']
             del manifest['applications']
         else:
-            pass
-        # Otherwise generate a guid
-        manifest['browser_specific_settings'] = {
-            'gecko': {
-                'id': guid,
+            manifest['browser_specific_settings'] = {
+                'gecko': {
+                    'id': f'{uuid.uuid4().hex}@example.com',
+                }
             }
-        }
 
+    # This allows tests to pass in a guid. Needed to fix test_extract_theme_properties()
+    if guid is not None:
+        manifest['browser_specific_settings']['gecko']['id'] = guid
+
+    # headerURL -> theme_frame. Needed to fix test_extract_theme_properties()
+    if 'theme' in manifest and 'headerURL' in manifest['theme']['images']:
+        theme_frame = manifest['theme']['images'].pop('headerURL')
+        assert type(theme_frame) is str
+        manifest['theme']['images']['theme_frame'] = theme_frame
+
+    # Need this too
     manifest['browser_specific_settings']['gecko']['strict_min_version'] = '60.0'
 
     # If we're an experiment (indicated by filename) then set the strict max version
     if 'experiment' in filename:
         manifest['browser_specific_settings']['gecko']['strict_max_version'] = THUNDERBIRD.latest_version
-
-    if 'theme' in manifest and 'headerURL' in manifest['theme']['images']:
-        theme_frame = manifest['theme']['images'].pop('headerURL')
-        assert type(theme_frame) is str
-        manifest['theme']['images']['theme_frame'] = theme_frame
 
     print('MANIFEST', manifest)
     return json.dumps(manifest)
