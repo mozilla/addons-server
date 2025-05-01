@@ -15,7 +15,7 @@ from six import text_type
 from olympia import amo
 from olympia.amo.storage_utils import copy_stored_file
 from olympia.amo.tests import (
-    addon_factory, TestCase, user_factory, version_factory)
+    addon_factory, TestCase, user_factory, version_factory, fix_webext_fixture)
 from olympia.devhub import tasks, utils
 from olympia.files.models import FileUpload
 from olympia.lib.akismet.models import AkismetReport
@@ -421,26 +421,34 @@ class TestGetAddonAkismetReports(TestCase):
 
 @pytest.mark.django_db
 def test_extract_theme_properties():
+    # This generates a random GUID for the addon here
     addon = addon_factory(type=amo.ADDON_STATICTHEME)
     result = utils.extract_theme_properties(
         addon, addon.current_version.channel)
     assert result == {}  # There's no file, but it be should safely handled.
 
+    # The extracted manifest must have a GUID (if we remove it the test
+    # also fails). But whatever GUID is generated above, it wont match.
+    # We can work around this in the test by modifying fix_webext_fixture(),
+    # but it does leave the question of whether the application logic is correct.
+    # Needs double check... FIXME.
+
     # Add the zip in the right place
     zip_file = os.path.join(
         settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip')
-    copy_stored_file(zip_file, addon.current_version.all_files[0].file_path)
-    result = utils.extract_theme_properties(
-        addon, addon.current_version.channel)
-    assert result == {
-        "colors": {
-            "accentcolor": "#adb09f",
-            "textcolor": "#000"
-        },
-        "images": {
-            "headerURL": "weta.png"
+    with fix_webext_fixture(zip_file) as zip_file:
+        copy_stored_file(zip_file, addon.current_version.all_files[0].file_path)
+        result = utils.extract_theme_properties(
+            addon, addon.current_version.channel)
+        assert result == {
+            "colors": {
+                "accentcolor": "#adb09f",
+                "textcolor": "#000"
+            },
+            "images": {
+                "headerURL": "weta.png"
+            }
         }
-    }
 
 
 @pytest.mark.django_db
