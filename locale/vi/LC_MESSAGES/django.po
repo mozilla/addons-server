@@ -1789,7 +1789,7 @@ msgstr "Đáng chú ý"
 
 #: src/olympia/constants/promoted.py:159
 msgid "Partner"
-msgstr ""
+msgstr "Đối tác"
 
 #: src/olympia/constants/reviewers.py:21
 msgid "No Reputation"
@@ -5589,7 +5589,7 @@ msgstr "Thay đổi màu sắc của Firefox để phù hợp với giao diện 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:659
 msgid "Protect your privacy against a unique form of JavaScript “fingerprinting”."
-msgstr ""
+msgstr "Bảo vệ sự riêng tư của bạn chống lại một hình thức “dấu vân tay” JavaScript duy nhất."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:662
@@ -5599,7 +5599,7 @@ msgstr "Một số trang web gặp khó khăn khi phát video trên Android. Đ�
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:683
 msgid "Find an interesting pic on the web? Use TinEye to discover its origins."
-msgstr ""
+msgstr "Tìm một bức ảnh thú vị trên web? Sử dụng TinEye để khám phá nguồn gốc của nó."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:701
@@ -5609,7 +5609,7 @@ msgstr "Lưu hình ảnh dễ dàng — chỉ cần lấy chúng từ thẻ hi�
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:704
 msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title & more."
-msgstr ""
+msgstr "Tận hưởng khả năng kiểm soát thẻ tối ưu — đóng thẻ trùng lặp, hợp nhất cửa sổ, sao chép tiêu đề thẻ và nhiều chức năng khác."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:722
@@ -5649,12 +5649,12 @@ msgstr "Lưu các trang hoàn chỉnh — hoặc chỉ một phần — vào t�
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:854
 msgid "Edit a web page before printing. Remove ads or any unwanted content."
-msgstr ""
+msgstr "Chỉnh sửa trang web trước khi in. Xóa quảng cáo hoặc bất kỳ nội dung không mong muốn nào."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:863
 msgid "Advanced reader for aggregating all of your RSS/Atom/RDF sources."
-msgstr ""
+msgstr "Trình đọc nâng cao để tổng hợp tất cả nguồn RSS/Atom/RDF của bạn."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:881
@@ -5694,7 +5694,7 @@ msgstr "Quay trở lại thời điểm đơn giản hơn — khi kết quả t�
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:911
 msgid "Get the mouse scrollbar you've always wanted — specify width and color."
-msgstr ""
+msgstr "Nhận thanh cuộn chuột mà bạn luôn muốn — chỉ định chiều rộng và màu sắc."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:923
@@ -5804,32 +5804,32 @@ msgstr "Bạn đang được kiểm soát. Tắt VPN khi trang web không hoạt
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:989
 msgid "Automatically handle GDPR consent forms."
-msgstr ""
+msgstr "Tự động xử lý biểu mẫu đồng ý GDPR."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:992
 msgid "Block malicious websites from port scanning."
-msgstr ""
+msgstr "Chặn các trang web độc hại khỏi chức năng quét cổng."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:995
 msgid "Enhance your Twitch experience."
-msgstr ""
+msgstr "Nâng cao trải nghiệm Twitch của bạn."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:998
 msgid "Re-take control of Twitter/X and customize your experience."
-msgstr ""
+msgstr "Kiểm soát lại Twitter/X và tùy chỉnh trải nghiệm của bạn."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1001
 msgid "Translate text without leaving the page you're on (PDF compatible)."
-msgstr ""
+msgstr "Dịch văn bản mà không cần rời khỏi trang bạn đang xem (tương thích với PDF)."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1004
 msgid "Change the color of Firefox to match every website you visit."
-msgstr ""
+msgstr "Thay đổi màu của Firefox để phù hợp với mọi trang web bạn truy cập."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1007
@@ -5854,12 +5854,12 @@ msgstr "Tiện ích mở rộng Quyền riêng tư & bảo mật"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1015
 msgid "Essential add-ons"
-msgstr ""
+msgstr "Tiện ích mở rộng cần thiết"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1017
 msgid "Reddit extensions"
-msgstr ""
+msgstr "Tiện ích mở rộng Reddit"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1019 src/olympia/discovery/strings.jinja2:1021 src/olympia/discovery/strings.jinja2:1023
@@ -6071,7 +6071,7 @@ msgstr "Xem thêm các tiện ích hỗ trợ tiếp cận được lựa chọn
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1126
 msgid "Extension starter pack"
-msgstr ""
+msgstr "Gói khởi đầu tiện ích mở rộng"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1128
