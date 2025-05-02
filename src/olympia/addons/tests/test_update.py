@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import json
 import mock
+import pytest
 
 from datetime import datetime, timedelta
 from email import utils
@@ -741,6 +742,7 @@ class TestResponse(VersionCheckMixin, TestCase):
         data = json.loads(content)
         assert 'update_info_url' not in data['addons'][guid]['updates'][0]
 
+    @pytest.mark.xfail(reason="legacy extensions aren't supported, so rdf manifests aren't supported")
     def test_seamonkey_serve_rdf(self):
         data = {
             'id': 'bettergmail2@ginatrapani.org',
