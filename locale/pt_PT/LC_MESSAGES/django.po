@@ -1435,11 +1435,11 @@ msgstr ""
 
 #: src/olympia/constants/categories.py:78
 msgid "Appearance"
-msgstr "Aparência"
+msgstr "Aspeto"
 
 #: src/olympia/constants/categories.py:80
 msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
-msgstr "Transfira extensões que modificam a aparência dos sites e do navegador Firefox. Esta categoria inclui extensões para temas escuros, gestão de separadores e muito mais."
+msgstr "Transfira extensões que modificam o aspeto dos sites e do navegador Firefox. Esta categoria inclui extensões para temas escuros, gestão de separadores e muito mais."
 
 #: src/olympia/constants/categories.py:88
 msgid "Bookmarks"
@@ -4911,7 +4911,7 @@ msgstr "Obtenha informação pormenorizada sobre tráfego e interesse para qualq
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:245
 msgid "Applies a fresh, modern appearance to Wikipedia."
-msgstr "Aplica uma aparência moderna e refrescante à Wikipedia."
+msgstr "Aplica um aspeto moderno e refrescante à Wikipedia."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:248
@@ -5384,7 +5384,7 @@ msgstr "Bloquear os sites que distraem. Basta indicar os sites que deseja que a 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:522 src/olympia/discovery/strings.jinja2:692
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
-msgstr "Altere a aparência do seu navegador. Crie com facilidade os seus próprios temas visuais para que o Firefox tenha a aparência que desejar."
+msgstr "Altere o aspeto do seu navegador. Crie com facilidade os seus próprios temas visuais para que o Firefox tenha o aspeto que desejar."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:525
