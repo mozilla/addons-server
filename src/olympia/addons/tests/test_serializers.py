@@ -64,7 +64,6 @@ from olympia.constants.promoted import (
 )
 from olympia.files.models import WebextPermission
 from olympia.promoted.models import (
-    PromotedAddon,
     PromotedAddonPromotion,
     PromotedAddonVersion,
     PromotedGroup,
@@ -1133,7 +1132,6 @@ class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
             AppVersion,
             License,
             Preview,
-            PromotedAddon,
             UserProfile,
             Version,
         )
@@ -1149,7 +1147,7 @@ class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
                     except FieldDoesNotExist:
                         pass
             self.serialize()
-        assert len(mocks) == 8  # created on all models + auth_id.
+        assert len(mocks) == 7  # created on all models + auth_id.
         for mocked_default in mocks.values():
             assert mocked_default.call_count == 0
 

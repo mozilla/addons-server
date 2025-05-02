@@ -1,9 +1,7 @@
 from django import forms
 from django.contrib import admin
 from django.contrib.admin.widgets import ForeignKeyRawIdWidget
-from django.db import models
 from django.db.models import Prefetch
-from django.dispatch import receiver
 from django.utils import translation
 from django.utils.html import conditional_escape, format_html
 from django.utils.safestring import mark_safe
@@ -149,31 +147,12 @@ class DiscoveryItemAdmin(AMOModelAdmin):
         return mark_safe(''.join(translations))
 
 
-class PromotedAddon(promoted.models.PromotedAddon):
-    """Just a proxy class to have all the hero related objects in one
-    place under Discovery in django admin."""
-
-    class Meta:
-        proxy = True
-
-
 class PromotedAddonPromotion(promoted.models.PromotedAddonPromotion):
     """Just a proxy class to have all the hero related objects in one
     place under Discovery in django admin."""
 
     class Meta:
         proxy = True
-
-
-@receiver(
-    [models.signals.post_save, models.signals.post_delete],
-    sender=PromotedAddon,
-    dispatch_uid='addons.sync_promoted.promoted_addon_proxy',
-)
-def proxy_promoted_addon_to_promoted_addon_promotion(sender, instance, signal, **kw):
-    from olympia.promoted.signals import promoted_addon_to_promoted_addon_promotion
-
-    promoted_addon_to_promoted_addon_promotion(signal=signal, instance=instance)
 
 
 class PrimaryHeroImageUpload(PrimaryHeroImage):

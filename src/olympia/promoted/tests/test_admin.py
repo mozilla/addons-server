@@ -14,7 +14,6 @@ from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.hero.models import PrimaryHero, PrimaryHeroImage
 from olympia.promoted.models import (
     PromotedAddonVersion,
-    PromotedApproval,
     PromotedGroup,
 )
 
@@ -267,9 +266,11 @@ class TestDiscoveryAddonAdmin(TestCase):
             application_id=amo.FIREFOX.id,
         )
         ver1 = addon.current_version
-        approval = PromotedApproval.objects.create(
+        approval = PromotedAddonVersion.objects.create(
             version=ver1,
-            group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
+            promoted_group=PromotedGroup.objects.get(
+                group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+            ),
             application_id=amo.FIREFOX.id,
         )
         detail_url = reverse(self.detail_url_name, args=(addon.pk,))
@@ -294,7 +295,7 @@ class TestDiscoveryAddonAdmin(TestCase):
             follow=True,
         )
         approval.reload()
-        assert approval.group_id == PROMOTED_GROUP_CHOICES.RECOMMENDED
+        assert approval.promoted_group.group_id == PROMOTED_GROUP_CHOICES.RECOMMENDED
         assert response.status_code == 200
         assert PromotedAddonPromotion.objects.count() == 1
 
@@ -316,7 +317,7 @@ class TestDiscoveryAddonAdmin(TestCase):
         )
         assert response.status_code == 200
         assert PromotedAddonPromotion.objects.count() == 1
-        assert PromotedApproval.objects.count() == 1
+        assert PromotedAddonVersion.objects.count() == 1
 
     def test_cannot_edit_without_discovery_edit_permission(self):
         addon = addon_factory()
@@ -329,9 +330,11 @@ class TestDiscoveryAddonAdmin(TestCase):
         )
         ver1 = addon.current_version
         approvals = [
-            PromotedApproval.objects.create(
+            PromotedAddonVersion.objects.create(
                 version=ver1,
-                group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
+                promoted_group=PromotedGroup.objects.get(
+                    group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+                ),
                 application_id=amo.FIREFOX.id,
             ),
         ]
@@ -365,7 +368,7 @@ class TestDiscoveryAddonAdmin(TestCase):
         promotion.reload()
         assert PromotedAddonPromotion.objects.count() == 1
         assert promotion.promoted_group.group_id == PROMOTED_GROUP_CHOICES.RECOMMENDED
-        assert PromotedApproval.objects.count() == 1
+        assert PromotedAddonVersion.objects.count() == 1
 
         # Try to delete the approval instead
         response = self.client.post(
@@ -380,7 +383,7 @@ class TestDiscoveryAddonAdmin(TestCase):
         )
         assert response.status_code == 403
         assert PromotedAddonPromotion.objects.count() == 1
-        assert PromotedApproval.objects.count() == 1
+        assert PromotedAddonVersion.objects.count() == 1
 
     def test_can_delete_with_discovery_edit_permission(self):
         addon = addon_factory()
