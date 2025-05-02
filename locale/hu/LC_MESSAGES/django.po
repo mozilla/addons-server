@@ -5671,12 +5671,12 @@ msgstr "Teljes oldal – vagy csak a képek és stílusok – letöltése egyetl
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:854
 msgid "Edit a web page before printing. Remove ads or any unwanted content."
-msgstr ""
+msgstr "Weboldal szerkesztése nyomtatás előtt. Távolítsa el a reklámokat vagy a felesleges tartalmakat."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:863
 msgid "Advanced reader for aggregating all of your RSS/Atom/RDF sources."
-msgstr ""
+msgstr "Fejlett olvasó az összes RSS/Atom/RDF forrása összegyűjtésére."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:881
@@ -5716,7 +5716,7 @@ msgstr "Térjen vissza egy egyszerűbb időbe – amikor a keresési találatok 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:911
 msgid "Get the mouse scrollbar you've always wanted — specify width and color."
-msgstr ""
+msgstr "Szerezze be a görgetősávot, amelyre mindig vágyott – adja meg a kívánt szélességet és színt."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:923
@@ -5826,32 +5826,32 @@ msgstr "Ön irányít. Kapcsolja ki a VPN-t, ha egy webhely nem működik, és �
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:989
 msgid "Automatically handle GDPR consent forms."
-msgstr ""
+msgstr "A GDPR hozzájárulási űrlapok automatikus kezelése."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:992
 msgid "Block malicious websites from port scanning."
-msgstr ""
+msgstr "A kártékony weboldalak portvizsgálatának blokkolása."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:995
 msgid "Enhance your Twitch experience."
-msgstr ""
+msgstr "Javítsa a Twitch élményét."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:998
 msgid "Re-take control of Twitter/X and customize your experience."
-msgstr ""
+msgstr "Vegye át a Twitter/X feletti irányítását, és szabja testre az élményét."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1001
 msgid "Translate text without leaving the page you're on (PDF compatible)."
-msgstr ""
+msgstr "Fordítson szöveget a jelenlegi oldal elhagyása nélkül (PDF-kompatibilis)."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1004
 msgid "Change the color of Firefox to match every website you visit."
-msgstr ""
+msgstr "Módosítsa a Firefox színét, hogy illeszkedjen minden felkeresett webhelyhez."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1007
@@ -5876,12 +5876,12 @@ msgstr "Adatvédelmi és biztonsági kiegészítők"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1015
 msgid "Essential add-ons"
-msgstr ""
+msgstr "Elengedhetetlen kiegészítők"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1017
 msgid "Reddit extensions"
-msgstr ""
+msgstr "Reddit kiegészítők"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1019 src/olympia/discovery/strings.jinja2:1021 src/olympia/discovery/strings.jinja2:1023
