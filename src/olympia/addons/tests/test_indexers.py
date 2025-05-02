@@ -17,7 +17,7 @@ from olympia.constants.licenses import LICENSES_BY_BUILTIN
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.constants.search import SEARCH_LANGUAGE_TO_ANALYZER
 from olympia.files.models import WebextPermission
-from olympia.promoted.models import PromotedAddonVersion
+from olympia.promoted.models import PromotedApproval
 from olympia.versions.compare import version_int
 from olympia.versions.models import License, VersionPreview
 
@@ -526,7 +526,7 @@ class TestAddonIndexer(TestCase):
         assert extracted['is_recommended'] is True
 
         # Specific application.
-        PromotedAddonVersion.objects.filter(
+        PromotedApproval.objects.filter(
             version=self.addon.current_version, application_id=amo.ANDROID.id
         ).delete()
         extracted = self._extract()

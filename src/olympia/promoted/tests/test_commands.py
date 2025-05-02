@@ -5,8 +5,8 @@ from olympia import amo
 from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.promoted.models import (
-    PromotedAddonPromotion,
-    PromotedAddonVersion,
+    PromotedAddon,
+    PromotedApproval,
     PromotedGroup,
 )
 
@@ -41,10 +41,8 @@ class TestPromoteByFirefoxThemesCommand(TestCase):
         call_command('promote_by_firefox_themes')
 
         for addon in non_affected:
-            assert not PromotedAddonPromotion.objects.filter(addon=addon).exists()
-            assert not PromotedAddonVersion.objects.filter(
-                version__addon=addon
-            ).exists()
+            assert not PromotedAddon.objects.filter(addon=addon).exists()
+            assert not PromotedApproval.objects.filter(version__addon=addon).exists()
 
         for addon in (already_promoted, expected_affected):
             assert (

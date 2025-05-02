@@ -9,7 +9,7 @@ from olympia import amo
 from olympia.addons.serializers import PromotedGroup
 from olympia.amo.tests import addon_factory, user_factory, version_factory
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
-from olympia.promoted.models import PromotedAddonPromotion
+from olympia.promoted.models import PromotedAddon
 from olympia.reviewers.models import UsageTier
 from olympia.versions.utils import get_staggered_review_due_date_generator
 from olympia.zadmin.models import set_config
@@ -69,7 +69,7 @@ def test_add_high_adu_extensions_to_notable():
     already_promoted = addon_factory(
         average_daily_users=lower_adu_threshold + 1, file_kw={'is_signed': True}
     )
-    PromotedAddonPromotion.objects.create(
+    PromotedAddon.objects.create(
         addon=already_promoted,
         promoted_group=PromotedGroup.objects.create(
             group_id=PROMOTED_GROUP_CHOICES.LINE

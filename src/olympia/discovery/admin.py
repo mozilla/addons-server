@@ -20,8 +20,8 @@ from olympia.hero.admin import (
 )
 from olympia.hero.models import PrimaryHeroImage, SecondaryHero
 from olympia.promoted.admin import (
-    PromotedAddonPromotionAdminInline,
-    PromotedAddonVersionInline,
+    PromotedAddonAdminInline,
+    PromotedApprovalInline,
     PromotedGroupAdmin,
 )
 from olympia.promoted.models import PromotedGroup
@@ -147,7 +147,7 @@ class DiscoveryItemAdmin(AMOModelAdmin):
         return mark_safe(''.join(translations))
 
 
-class PromotedAddonPromotion(promoted.models.PromotedAddonPromotion):
+class PromotedAddon(promoted.models.PromotedAddon):
     """Just a proxy class to have all the hero related objects in one
     place under Discovery in django admin."""
 
@@ -195,8 +195,8 @@ DISCOVERY_ADDON_FIELDS = ['__str__', 'addon', 'guid', 'has_promotions']
 class DiscoveryAddonAdmin(AMOModelAdmin):
     model = DiscoveryAddon
     inlines = [
-        PromotedAddonPromotionAdminInline,
-        PromotedAddonVersionInline,
+        PromotedAddonAdminInline,
+        PromotedApprovalInline,
         PrimaryHeroInline,
     ]
     fields = DISCOVERY_ADDON_FIELDS

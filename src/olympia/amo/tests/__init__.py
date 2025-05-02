@@ -58,8 +58,8 @@ from olympia.constants.categories import CATEGORIES
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.files.models import File
 from olympia.promoted.models import (
-    PromotedAddonPromotion,
-    PromotedAddonVersion,
+    PromotedAddon,
+    PromotedApproval,
     PromotedGroup,
     update_es_for_promoted_addon_version,
 )
@@ -597,7 +597,7 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
         apps_to_create = apps if apps else amo.APP_USAGE
         promotions = []
         for app in apps_to_create:
-            obj, _ = PromotedAddonPromotion.objects.update_or_create(
+            obj, _ = PromotedAddon.objects.update_or_create(
                 addon=addon, promoted_group=promoted_group, application_id=app.id
             )
             promotions.append(obj)
@@ -692,7 +692,7 @@ def addon_factory(status=amo.STATUS_APPROVED, version_kw=None, file_kw=None, **k
     )
     post_save.disconnect(
         update_es_for_promoted_addon_version,
-        sender=PromotedAddonVersion,
+        sender=PromotedApproval,
         dispatch_uid='addons.search.index',
     )
 
@@ -741,7 +741,7 @@ def addon_factory(status=amo.STATUS_APPROVED, version_kw=None, file_kw=None, **k
     if promoted_group_id and promoted_group_id != PROMOTED_GROUP_CHOICES.NOT_PROMOTED:
         group = PromotedGroup.objects.get(group_id=promoted_group_id)
         for app in amo.APP_USAGE:
-            PromotedAddonPromotion.objects.create(
+            PromotedAddon.objects.create(
                 addon=addon, promoted_group=group, application_id=app.id
             )
         if 'promotion_approved' not in version_kw:
@@ -799,7 +799,7 @@ def addon_factory(status=amo.STATUS_APPROVED, version_kw=None, file_kw=None, **k
     )
     post_save.connect(
         update_es_for_promoted_addon_version,
-        sender=PromotedAddonVersion,
+        sender=PromotedApproval,
         dispatch_uid='addons.search.index',
     )
 

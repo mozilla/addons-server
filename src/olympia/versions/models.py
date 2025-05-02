@@ -841,12 +841,12 @@ class Version(OnChangeMixin, ModelBase):
         if not versions:
             return
 
-        PromotedAddonVersion = versions[0].promoted_versions.model
+        PromotedApproval = versions[0].promoted_versions.model
 
         ids = {v.id for v in versions}
 
         approvals = list(
-            PromotedAddonVersion.objects.filter(version_id__in=ids).values_list(
+            PromotedApproval.objects.filter(version_id__in=ids).values_list(
                 'version_id', 'promoted_group__group_id', 'application_id', named=True
             )
         )
@@ -1060,7 +1060,7 @@ class Version(OnChangeMixin, ModelBase):
     def can_be_disabled_and_deleted(self):
         # see https://github.com/mozilla/addons-server/issues/15121#issuecomment-667226959  # noqa
         # "It should apply to the <groups> that require a review to be badged"
-        from olympia.promoted.models import PromotedAddonVersion
+        from olympia.promoted.models import PromotedApproval
 
         promotions = self.addon.promoted_groups()
 
@@ -1084,7 +1084,7 @@ class Version(OnChangeMixin, ModelBase):
             # possible in a single query
             .distinct()[:1]
         )
-        previous_approval = PromotedAddonVersion.objects.filter(
+        previous_approval = PromotedApproval.objects.filter(
             promoted_group__group_id__in=promotions.group_id,
             version__in=previous_version,
         )

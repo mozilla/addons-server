@@ -9,25 +9,25 @@ from olympia.hero.models import PrimaryHero
 from olympia.versions.models import Version
 
 from .forms import AdminBasePromotedApprovalFormSet
-from .models import PromotedAddonPromotion, PromotedAddonVersion, PromotedGroup
+from .models import PromotedAddon, PromotedApproval, PromotedGroup
 
 
-class PromotedAddonVersionInlineChecks(admin.checks.InlineModelAdminChecks):
+class PromotedApprovalInlineChecks(admin.checks.InlineModelAdminChecks):
     def _check_relation(self, obj, parent_model):
-        """PromotedAddonVersion doesn't have a direct FK to PromotedAddon (it's via
+        """PromotedApproval doesn't have a direct FK to PromotedAddon (it's via
         Addon, Version) so we have to bypass this check.
         """
         return []
 
 
-class PromotedAddonVersionInline(admin.TabularInline):
-    model = PromotedAddonVersion
+class PromotedApprovalInline(admin.TabularInline):
+    model = PromotedApproval
     extra = 0
     max_num = 0
     fields = ('version', 'promoted_group', 'application_id')
     can_delete = True
     view_on_site = False
-    checks_class = PromotedAddonVersionInlineChecks
+    checks_class = PromotedApprovalInlineChecks
 
     def has_add_permission(self, request, obj=None):
         return False
@@ -57,8 +57,8 @@ class PromotedAddonVersionInline(admin.TabularInline):
         return qs
 
 
-class PromotedAddonPromotionAdminInline(admin.TabularInline):
-    model = PromotedAddonPromotion
+class PromotedAddonAdminInline(admin.TabularInline):
+    model = PromotedAddon
     extra = 0
     view_on_site = False
     raw_id_fields = ('addon',)

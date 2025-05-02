@@ -29,9 +29,7 @@ class PromotedGroupManager(ManagerBase):
     _queryset_class = PromotedGroupQuerySet
 
     def all_for(self, addon):
-        return (
-            self.get_queryset().filter(promotedaddonpromotion__addon=addon).distinct()
-        )
+        return self.get_queryset().filter(promotedaddon__addon=addon).distinct()
 
     def approved_for(self, addon):
         if not addon.current_version:
@@ -148,7 +146,7 @@ class PromotedGroup(models.Model):
 
 
 # TODO: Drop Promotion suffix after dropping PromotedAddon table
-class PromotedAddonPromotion(ModelBase):
+class PromotedAddon(ModelBase):
     promoted_group = models.ForeignKey(
         PromotedGroup,
         on_delete=models.CASCADE,
@@ -166,7 +164,7 @@ class PromotedAddonPromotion(ModelBase):
         'automatically for you. If you have access to the add-on '
         'admin page, you can use the magnifying glass to see '
         'all available add-ons.',
-        related_name='promotedaddonpromotion',
+        related_name='promotedaddon',
     )
     application_id = models.SmallIntegerField(
         choices=APPS_CHOICES,
@@ -196,10 +194,10 @@ class PromotedAddonPromotion(ModelBase):
         return self.addon.approved_applications_for(self.promoted_group)
 
     def approve_for_version(self, version):
-        """Create PromotedAddonVersions for current applications
+        """Create PromotedApprovals for current applications
         in the current promoted group."""
         for app in self.addon.all_applications_for(promoted_group=self.promoted_group):
-            PromotedAddonVersion.objects.update_or_create(
+            PromotedApproval.objects.update_or_create(
                 promoted_group=self.promoted_group,
                 application_id=app.id,
                 version=version,
@@ -236,7 +234,7 @@ class PromotedAddonPromotion(ModelBase):
             )
 
 
-class PromotedAddonVersionQuerySet(BaseQuerySet):
+class PromotedApprovalQuerySet(BaseQuerySet):
     @property
     def approved_applications(self):
         """The applications that the current promoted group is approved for."""
@@ -244,11 +242,11 @@ class PromotedAddonVersionQuerySet(BaseQuerySet):
         return [APP_IDS[id] for id in app_ids]
 
 
-class PromotedAddonVersionManager(ManagerBase):
-    _queryset_class = PromotedAddonVersionQuerySet
+class PromotedApprovalManager(ManagerBase):
+    _queryset_class = PromotedApprovalQuerySet
 
 
-class PromotedAddonVersion(ModelBase):
+class PromotedApproval(ModelBase):
     """A join table between a promoted group, version and application id.
     This model represents an approved promotion for a specific version of an addon
     on a specific application. We can granularly control which approvals are available
@@ -267,7 +265,7 @@ class PromotedAddonVersion(ModelBase):
     version = models.ForeignKey(
         Version, on_delete=models.CASCADE, null=False, related_name='promoted_versions'
     )
-    objects = PromotedAddonVersionManager()
+    objects = PromotedApprovalManager()
 
     class Meta:
         constraints = [
@@ -287,7 +285,7 @@ class PromotedAddonVersion(ModelBase):
 
 @receiver(
     models.signals.post_save,
-    sender=PromotedAddonPromotion,
+    sender=PromotedAddon,
     dispatch_uid='addons.search.index',
 )
 def update_es_for_promoted(sender, instance, **kw):
@@ -299,7 +297,7 @@ def update_es_for_promoted(sender, instance, **kw):
 
 @receiver(
     models.signals.post_save,
-    sender=PromotedAddonVersion,
+    sender=PromotedApproval,
     dispatch_uid='addons.search.index',
 )
 def update_es_for_promoted_addon_version(sender, instance, **kw):

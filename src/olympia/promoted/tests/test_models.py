@@ -10,8 +10,8 @@ from olympia.constants.promoted import (
     PROMOTED_GROUPS_BY_ID,
 )
 from olympia.promoted.models import (
-    PromotedAddonPromotion,
-    PromotedAddonVersion,
+    PromotedAddon,
+    PromotedApproval,
     PromotedGroup,
 )
 
@@ -24,7 +24,7 @@ class TestPromotedGroupManager(TestCase):
         self.promoted_group = PromotedGroup.objects.get(
             group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT
         )
-        self.promotion = PromotedAddonPromotion.objects.create(
+        self.promotion = PromotedAddon.objects.create(
             addon=self.addon,
             promoted_group=self.promoted_group,
             application_id=self.application_id,
@@ -36,7 +36,7 @@ class TestPromotedGroupManager(TestCase):
 
     def test_approved_promoted_addon_promotion(self):
         # now approved, should appear in approved_for
-        PromotedAddonVersion.objects.create(
+        PromotedApproval.objects.create(
             version=self.addon.current_version,
             promoted_group=self.promoted_group,
             application_id=self.application_id,
@@ -59,24 +59,22 @@ class TestPromotedGroupManager(TestCase):
 
     def test_all_for(self):
         self.promotion.delete()
-        assert PromotedAddonPromotion.objects.filter(addon=self.addon).count() == 0
+        assert PromotedAddon.objects.filter(addon=self.addon).count() == 0
         assert not PromotedGroup.objects.all_for(self.addon)
 
-        PromotedAddonPromotion.objects.create(
+        PromotedAddon.objects.create(
             addon=self.addon,
             promoted_group=self.promoted_group,
             application_id=self.application_id,
         )
 
         # the addon is promoted in that group
-        assert PromotedAddonPromotion.objects.filter(addon=self.addon).count() == 1
+        assert PromotedAddon.objects.filter(addon=self.addon).count() == 1
         assert self.promoted_group in PromotedGroup.objects.all_for(self.addon)
 
         # but not approved
         assert (
-            PromotedAddonVersion.objects.filter(
-                version=self.addon.current_version
-            ).count()
+            PromotedApproval.objects.filter(version=self.addon.current_version).count()
             == 0
         )
         assert self.promoted_group not in PromotedGroup.objects.approved_for(self.addon)
@@ -156,7 +154,7 @@ class TestPromotedGroup(TestCase):
                 assert group not in active_groups and group not in badged_groups
 
 
-class TestPromotedAddonPromotion(TestCase):
+class TestPromotedAddon(TestCase):
     def setUp(self):
         self.addon: Addon = addon_factory()
         self.promoted_group = PromotedGroup.objects.get(
@@ -176,21 +174,19 @@ class TestPromotedAddonPromotion(TestCase):
             }
             with self.assertRaises(IntegrityError):
                 with transaction.atomic():
-                    PromotedAddonPromotion.objects.create(**missing_fields)
+                    PromotedAddon.objects.create(**missing_fields)
 
-        assert PromotedAddonPromotion.objects.create(**self.required_fields) is not None
+        assert PromotedAddon.objects.create(**self.required_fields) is not None
 
     def test_str_method(self):
-        promoted_addon_promotion = PromotedAddonPromotion.objects.create(
-            **self.required_fields
-        )
+        promoted_addon_promotion = PromotedAddon.objects.create(**self.required_fields)
         assert str(promoted_addon_promotion) == (
             f'{self.promoted_group.name} - {self.addon} - {applications.FIREFOX.short}'
         )
 
     def _test_unique_constraint(self, fields, should_raise=False):
         # Create the original instance to test constraints against
-        original = PromotedAddonPromotion.objects.create(**self.required_fields)
+        original = PromotedAddon.objects.create(**self.required_fields)
         # merge the fields with the required fields
         merged = {**self.required_fields, **fields}
         if should_raise:
@@ -199,26 +195,26 @@ class TestPromotedAddonPromotion(TestCase):
                 self.assertRaises(IntegrityError),
                 transaction.atomic(),
             ):
-                PromotedAddonPromotion.objects.create(**merged)
+                PromotedAddon.objects.create(**merged)
             # Delete the original instance to test the constraint
             # is lifted when it is deleted.
             original.delete()
 
-        assert PromotedAddonPromotion.objects.create(**merged) is not None
+        assert PromotedAddon.objects.create(**merged) is not None
 
     def test_multiple_applications_per_promoted_group_allowed(self):
-        PromotedAddonPromotion.objects.create(**self.required_fields)
+        PromotedAddon.objects.create(**self.required_fields)
         assert (
-            PromotedAddonPromotion.objects.create(
+            PromotedAddon.objects.create(
                 **{**self.required_fields, 'application_id': applications.ANDROID.id}
             )
             is not None
         )
 
     def test_multiple_addons_per_application_group_allowed(self):
-        PromotedAddonPromotion.objects.create(**self.required_fields)
+        PromotedAddon.objects.create(**self.required_fields)
         assert (
-            PromotedAddonPromotion.objects.create(
+            PromotedAddon.objects.create(
                 **{**self.required_fields, **{'addon': addon_factory()}}
             )
             is not None
@@ -226,19 +222,19 @@ class TestPromotedAddonPromotion(TestCase):
 
     def test_duplicate_raises(self):
         # Create the original instance to test constraints against
-        original = PromotedAddonPromotion.objects.create(**self.required_fields)
+        original = PromotedAddon.objects.create(**self.required_fields)
         with (
             self.assertRaises(IntegrityError),
             transaction.atomic(),
         ):
-            PromotedAddonPromotion.objects.create(**{**self.required_fields})
+            PromotedAddon.objects.create(**{**self.required_fields})
         # Delete the original instance to test the constraint
         # is lifted when it is deleted.
         original.delete()
-        PromotedAddonPromotion.objects.create(**{**self.required_fields})
+        PromotedAddon.objects.create(**{**self.required_fields})
 
 
-class TestPromotedAddonVersion(TestCase):
+class TestPromotedApproval(TestCase):
     def setUp(self):
         self.addon = addon_factory()
         self.promoted_group = PromotedGroup.objects.get(
@@ -258,14 +254,12 @@ class TestPromotedAddonVersion(TestCase):
             }
             with self.assertRaises(IntegrityError):
                 with transaction.atomic():
-                    PromotedAddonVersion.objects.create(**missing_fields)
+                    PromotedApproval.objects.create(**missing_fields)
 
-        assert PromotedAddonVersion.objects.create(**self.required_fields) is not None
+        assert PromotedApproval.objects.create(**self.required_fields) is not None
 
     def test_str_method(self):
-        promoted_addon_version = PromotedAddonVersion.objects.create(
-            **self.required_fields
-        )
+        promoted_addon_version = PromotedApproval.objects.create(**self.required_fields)
 
         assert str(promoted_addon_version) == (
             f'{self.promoted_group.name} - '
@@ -274,13 +268,13 @@ class TestPromotedAddonVersion(TestCase):
         )
 
     def test_unique_constraint(self):
-        original = PromotedAddonVersion.objects.create(**self.required_fields)
+        original = PromotedApproval.objects.create(**self.required_fields)
 
         with (
             self.assertRaises(IntegrityError),
             transaction.atomic(),
         ):
-            PromotedAddonVersion.objects.create(**self.required_fields)
+            PromotedApproval.objects.create(**self.required_fields)
 
         original.delete()
-        assert PromotedAddonVersion.objects.create(**self.required_fields) is not None
+        assert PromotedApproval.objects.create(**self.required_fields) is not None

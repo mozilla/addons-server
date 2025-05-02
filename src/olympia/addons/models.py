@@ -1632,7 +1632,7 @@ class Addon(OnChangeMixin, ModelBase):
         from olympia.addons.serializers import APP_IDS
         from olympia.constants.applications import APP_USAGE
 
-        qs = self.promotedaddonpromotion
+        qs = self.promotedaddon
         if promoted_group:
             qs = qs.filter(promoted_group=promoted_group)
         apps = qs.values_list('application_id', flat=True)
@@ -1665,24 +1665,24 @@ class Addon(OnChangeMixin, ModelBase):
         ]
 
     def approved_promotions(self, promoted_group=None):
-        """Returns PromotedAddonPromotions with an associated
-        approval (PromotedAddonVersion) for a specified promoted group,
+        """Returns PromotedAddons with an associated
+        approval (PromotedApproval) for a specified promoted group,
         or all groups if none is given.
         """
-        from olympia.promoted.models import PromotedAddonPromotion, PromotedAddonVersion
+        from olympia.promoted.models import PromotedAddon, PromotedApproval
 
         # An addon is approved for a promoted group if:
-        # 1. For each PromotedAddonPromotion A, there exists a
-        #    PromotedAddonVersion B (an approval) such that
+        # 1. For each PromotedAddon A, there exists a
+        #    PromotedApproval B such that
         #       i. Are the same group,
         #       ii. Are the same application,
         #       iii. A.addon.current_version = B.version, OR
         # 2. is a promoted group that does not require prereview.
 
-        approved_promotions = PromotedAddonPromotion.objects.filter(
+        approved_promotions = PromotedAddon.objects.filter(
             Q(
                 models.Exists(
-                    PromotedAddonVersion.objects.filter(
+                    PromotedApproval.objects.filter(
                         promoted_group=models.OuterRef('promoted_group'),
                         application_id=models.OuterRef('application_id'),
                         version=models.OuterRef('addon___current_version'),
@@ -1704,10 +1704,10 @@ class Addon(OnChangeMixin, ModelBase):
         return approved_promotions
 
     def approve_for_version(self, version=None, promoted_groups=None):
-        """Create PromotedAddonVersion for current applications in the given
+        """Create PromotedApproval for current applications in the given
         promoted groups. If none are given, approve all promotions."""
         version = version or self.current_version
-        promotions = self.promotedaddonpromotion
+        promotions = self.promotedaddon
         if promoted_groups:
             promotions = promotions.filter(promoted_group__in=promoted_groups)
 

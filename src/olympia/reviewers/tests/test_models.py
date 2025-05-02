@@ -30,7 +30,7 @@ from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.constants.scanners import CUSTOMS, MAD
 from olympia.files.models import File, FileValidation, WebextPermission
 from olympia.promoted.models import (
-    PromotedAddonPromotion,
+    PromotedAddon,
 )
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import (
@@ -1205,13 +1205,13 @@ class TestAutoApprovalSummary(TestCase):
         )
         assert AutoApprovalSummary.check_is_promoted_prereview(self.version) is True
 
-        PromotedAddonPromotion.objects.filter(addon=self.addon).delete()
+        PromotedAddon.objects.filter(addon=self.addon).delete()
         self.make_addon_promoted(
             addon=self.addon, group_id=PROMOTED_GROUP_CHOICES.STRATEGIC
         )  # STRATEGIC isn't prereview
         assert AutoApprovalSummary.check_is_promoted_prereview(self.version) is False
 
-        PromotedAddonPromotion.objects.filter(addon=self.addon).delete()
+        PromotedAddon.objects.filter(addon=self.addon).delete()
         self.make_addon_promoted(
             addon=self.addon, group_id=PROMOTED_GROUP_CHOICES.LINE
         )  # LINE is though
@@ -1220,7 +1220,7 @@ class TestAutoApprovalSummary(TestCase):
         self.version.update(channel=amo.CHANNEL_UNLISTED)  # not for unlisted though
         assert AutoApprovalSummary.check_is_promoted_prereview(self.version) is False
 
-        PromotedAddonPromotion.objects.filter(addon=self.addon).delete()
+        PromotedAddon.objects.filter(addon=self.addon).delete()
         self.make_addon_promoted(
             addon=self.addon, group_id=PROMOTED_GROUP_CHOICES.NOTABLE
         )  # NOTABLE is

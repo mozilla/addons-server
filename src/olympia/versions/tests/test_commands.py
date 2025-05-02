@@ -8,7 +8,7 @@ from django.core.management.base import CommandError
 
 from olympia import amo
 from olympia.amo.tests import (
-    PromotedAddonPromotion,
+    PromotedAddon,
     TestCase,
     addon_factory,
     version_factory,
@@ -278,11 +278,11 @@ class TestForceMaxAndroidCompatibility(TestCase):
         ]
         # Manually update the promoted add-ons we want to only recommend for a
         # single app..
-        PromotedAddonPromotion.objects.filter(
+        PromotedAddon.objects.filter(
             addon=addons_to_ignore_promoted[0],
             application_id=amo.FIREFOX.id,
         ).delete()
-        PromotedAddonPromotion.objects.filter(
+        PromotedAddon.objects.filter(
             addon=addons[1], application_id=amo.ANDROID.id
         ).delete()
         # Directly creating an add-on compatible with Firefox for Android 99.0
