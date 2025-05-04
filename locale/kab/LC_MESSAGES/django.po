@@ -1187,7 +1187,7 @@ msgstr ""
 #: src/olympia/constants/activity.py:1014
 #, python-brace-format
 msgid "Collection {collection} deleted by moderator"
-msgstr ""
+msgstr "Tafrant {collection} tettwakkes sɣur yimḍebber"
 
 #: src/olympia/constants/activity.py:1020
 #, python-brace-format
