@@ -354,7 +354,7 @@ msgstr "Ileqman yettwabdaren ur zmirent ara ad ttwaznent mi ara yens uzegrir."
 #: src/olympia/addons/serializers.py:600
 #, python-format
 msgid "%(addon_type_plural)s are not supported by %(app_name)s"
-msgstr ""
+msgstr "%(addon_type_plural)s ur ttwasefraken ara sɣur %(app_name)s"
 
 #: src/olympia/addons/serializers.py:639 src/olympia/devhub/forms.py:910
 #, python-format
@@ -1192,7 +1192,7 @@ msgstr "Tafrant {collection} tettwakkes sɣur yimḍebber"
 #: src/olympia/constants/activity.py:1020
 #, python-brace-format
 msgid "Collection {collection} un-deleted by moderator"
-msgstr ""
+msgstr "Tafrant {collection} tettwarr-d sɣur yimḍebber"
 
 #: src/olympia/constants/activity.py:1029
 #, python-brace-format
@@ -2049,7 +2049,7 @@ msgstr "Sken-d Isem"
 
 #: src/olympia/devhub/forms.py:1435
 msgid "Confirm email address"
-msgstr ""
+msgstr "Sentem tansa n yimayl"
 
 #: src/olympia/devhub/forms.py:1436
 msgid "Generate new credentials"
@@ -2485,7 +2485,7 @@ msgstr "Yettwasentem di:"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:3
 msgid "Email Address Verification"
-msgstr ""
+msgstr "Asenqed n tansa n yimayl"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:63 src/olympia/devhub/templates/devhub/includes/addon_details.html:90 src/olympia/devhub/templates/devhub/verify_email.html:10
 msgid "Status:"
