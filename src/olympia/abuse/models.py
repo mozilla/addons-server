@@ -319,7 +319,9 @@ class CinderJob(ModelBase):
             user=getattr(abuse_report_or_decision, 'user', None),
             cinder_id=decision_cinder_id,
             action=decision_action,
-            notes=decision_notes[: ContentDecision._meta.get_field('notes').max_length],
+            private_notes=decision_notes[
+                : ContentDecision._meta.get_field('reasoning').max_length
+            ],
             override_of=self.final_decision,
             cinder_job=self,
         )
@@ -972,7 +974,8 @@ class ContentDecision(ModelBase):
     action = models.PositiveSmallIntegerField(choices=DECISION_ACTIONS.choices)
     cinder_id = models.CharField(max_length=36, default=None, null=True, unique=True)
     action_date = models.DateTimeField(null=True, db_column='date')
-    notes = models.TextField(max_length=1000, blank=True)
+    reasoning = models.TextField(max_length=1000, blank=True)
+    private_notes = models.TextField(max_length=1000, blank=True)
     policies = models.ManyToManyField(to='abuse.CinderPolicy')
     appeal_job = models.ForeignKey(
         to='abuse.CinderJob',
@@ -1284,7 +1287,7 @@ class ContentDecision(ModelBase):
         ):
             create_decision_kw = {
                 'action': DECISION_ACTIONS.for_value(self.action).api_value,
-                'reasoning': self.notes,
+                'reasoning': self.reasoning,
                 'policy_uuids': list(self.policies.values_list('uuid', flat=True)),
             }
 
@@ -1368,7 +1371,7 @@ class ContentDecision(ModelBase):
             reviewer_user=user,
             override_of=self,
             action_date=datetime.now(),
-            notes=notes,
+            private_notes=notes,
             cinder_job=job,
         )
 

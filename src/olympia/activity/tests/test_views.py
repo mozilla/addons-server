@@ -349,7 +349,7 @@ class TestReviewNotesViewSetList(ReviewNotesViewSetDetailMixin, TestCase):
 
     def test_admin_activity_hidden_from_developer(self):
         # Add an extra activity note but a type we don't show the developer.
-        self.log('sécrets', amo.LOG.COMMENT_VERSION, self.days_ago(0))
+        self.log('sécrets', amo.LOG.REVIEWER_PRIVATE_COMMENT, self.days_ago(0))
         self._login_developer()
         # _test_url will check only the 3 notes defined in setup are there.
         self._test_url()

@@ -1,7 +1,7 @@
 {{ rejection_type }} for versions:
 {{ version_list }}
 
-{{ notes }}
+{{ reasoning }}
 
 {{ review_urls }}
 {{ target_url }}
