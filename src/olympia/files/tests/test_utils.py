@@ -1205,7 +1205,6 @@ def test_extract_translations_simple():
         'de',
         'en-US',
         'ja',
-        'nb-NO',
         'nl',
         'ru',
         'sv-SE',
