@@ -726,7 +726,6 @@ class TestMonitorsCommand(BaseTestDataCommand):
 
 class TestCheckLocalesCompletionRate(TestCase):
     expected_special_locales = (
-        'ar',
         'de',
         'es-ES',
         'fr',
@@ -781,19 +780,13 @@ class TestCheckLocalesCompletionRate(TestCase):
 
     def _test_full_run_typical_response(self):
         expected_below = (
-            'The following locales are below threshold of 70% or completely '
+            'The following locales are below threshold of 80% or completely '
             'absent in one of our projects in Pontoon:\n- '
             + '\n- '.join(
                 (
-                    'Bulgarian [bg]',
-                    'Danish [da]',
-                    'Finnish [fi]',
-                    'Kaqchikel [cak]',
-                    'Malay [ms]',
-                    'Norwegian (Bokmål) [nb-NO]',
+                    'Indonesian [id]',
+                    'Norwegian (Nynorsk) [nn-NO]',
                     'Portuguese (Brazilian) [pt-BR]',
-                    'Sinhala [si]',
-                    'Telugu [te]',
                 )
             )
         )
@@ -845,7 +838,7 @@ class TestCheckLocalesCompletionRate(TestCase):
     def _test_full_run_empty_response(self):
         # Everything should be missing since the response is an empty object.
         expected_below = (
-            'The following locales are below threshold of 70% or completely '
+            'The following locales are below threshold of 80% or completely '
             'absent in one of our projects in Pontoon:\n- '
             + '\n- '.join(
                 sorted(
