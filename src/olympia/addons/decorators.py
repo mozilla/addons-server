@@ -1,6 +1,7 @@
 import functools
 
 from django import http
+from urllib.parse import urlparse
 from django.shortcuts import get_object_or_404
 from django.template.response import TemplateResponse
 from django.utils.translation import gettext
@@ -33,10 +34,12 @@ def addon_view(f, qs=Addon.objects.all, include_deleted_when_checking_versions=F
                 raise http.Http404 from exc
             # Don't get in an infinite loop if addon.slug.isdigit().
             if addon.slug and addon.slug != addon_id:
-                url = request.path.replace(addon_id, addon.slug, 1)
+                sanitized_path = request.path.replace('\\', '').replace(addon_id, addon.slug, 1)
                 if request.GET:
-                    url += '?' + request.GET.urlencode()
-                return http.HttpResponsePermanentRedirect(url)
+                    sanitized_path += '?' + request.GET.urlencode()
+                if not urlparse(sanitized_path).netloc and not urlparse(sanitized_path).scheme:
+                    return http.HttpResponsePermanentRedirect(sanitized_path)
+                return http.HttpResponsePermanentRedirect('/')
 
         # If the addon has no listed versions it needs either an author
         # (owner/viewer/dev/support) or an unlisted addon reviewer.
