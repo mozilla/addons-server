@@ -102,6 +102,11 @@ class CinderJob(ModelBase):
 
     objects = CinderJobManager()
 
+    class Meta:
+        constraints = [
+            models.CheckConstraint(name='no_empty_job_id', check=~Q(job_id=''))
+        ]
+
     @property
     def decision(self):
         """This is the first decision made on the job"""
