@@ -1799,7 +1799,7 @@ msgstr "Destacable"
 
 #: src/olympia/constants/promoted.py:159
 msgid "Partner"
-msgstr ""
+msgstr "Socio"
 
 #: src/olympia/constants/reviewers.py:21
 msgid "No Reputation"
@@ -2633,7 +2633,7 @@ msgstr "Actualizar resultados"
 #: src/olympia/devhub/templates/devhub/verify_email.html:101
 #, python-format
 msgid "If you encounter issues, please see our <a %(a_attrs)s>troubleshooting suggestions</a> on Firefox Extension Workshop."
-msgstr ""
+msgstr "Si tienes problemas, consulta nuestras <a %(a_attrs)s>sugerencias de solución de problemas</a> en el taller de extensiones de Firefox."
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html:4 src/olympia/devhub/templates/devhub/addons/activity.html:17
 msgid "Recent Activity for My Add-ons"
@@ -2804,7 +2804,7 @@ msgstr "Etiquetas"
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:20
 #, python-brace-format
 msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
-msgstr ""
+msgstr "Las etiquetas ayudan a los usuarios a encontrar tu complemento. Puedes tener un máximo de {0} etiquetas. Elige unicamente las etiquetas que sean relevantes para tu complemento."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:28
 #, python-brace-format
@@ -3030,6 +3030,8 @@ msgid ""
 "The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that may"
 " help. This whiteboard is also editable by reviewers."
 msgstr ""
+"La pizarra es el lugar donde proporcionar a los revisores información relevante sobre tu complemento, sea cual sea la versión. Utilízala para proporcionar formas de probar el complemento y cualquier"
+" información adicional que pueda ser útil. Los revisores también pueden editar esta pizarra."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:10
 #, python-brace-format
