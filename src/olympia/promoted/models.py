@@ -145,7 +145,6 @@ class PromotedGroup(models.Model):
         return PromotedGroup.active_groups().filter(badged=True)
 
 
-# TODO: Drop Promotion suffix after dropping PromotedAddon table
 class PromotedAddon(ModelBase):
     promoted_group = models.ForeignKey(
         PromotedGroup,
@@ -173,6 +172,7 @@ class PromotedAddon(ModelBase):
     )
 
     class Meta:
+        db_table = 'promoted_promotedaddonpromotion'
         constraints = [
             models.UniqueConstraint(
                 fields=('addon', 'promoted_group', 'application_id'),
@@ -268,6 +268,7 @@ class PromotedApproval(ModelBase):
     objects = PromotedApprovalManager()
 
     class Meta:
+        db_table = 'promoted_promotedaddonversion'
         constraints = [
             models.UniqueConstraint(
                 fields=('promoted_group', 'application_id', 'version'),

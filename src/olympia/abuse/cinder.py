@@ -245,7 +245,9 @@ class CinderUser(CinderEntity):
 
     def __init__(self, user):
         self.user = user
-        self.related_addons = self.user.addons.all().only_translations()
+        self.related_addons = (
+            self.user.addons.all().only_translations().prefetch_related('promotedaddon')
+        )
 
     @property
     def id(self):

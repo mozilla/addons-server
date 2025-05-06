@@ -56,6 +56,7 @@ class Command(BaseCommand):
             Addon.objects.filter(pk__in=addon_ids)
             .no_transforms()
             .select_related('_current_version', '_current_version__file')
+            .prefetch_related('promotedaddon')
         )
         count = 0
         skipped = 0
