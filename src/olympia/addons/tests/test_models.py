@@ -3938,14 +3938,26 @@ class TestExtensionsQueues(TestCase):
                 'needshumanreview_kw': {
                     'reason': NeedsHumanReview.REASONS.DEVELOPER_REPLY
                 },
-                'due_date': self.days_ago(23),
+                'due_date': self.days_ago(234),
             }
         )  # Should not show up
+        addon_factory(
+            version_kw={
+                'needshumanreview_kw': {
+                    'reason': NeedsHumanReview.REASONS.DEVELOPER_REPLY
+                },
+                'due_date': self.days_ago(342),
+            }
+        ).current_version.needshumanreview_set.create(
+            reason=NeedsHumanReview.REASONS.SCANNER_ACTION, is_active=False
+        )  # Should not show up either (SCANNER_ACTION NHR is inactive)
+
         addons = Addon.objects.get_queryset_for_pending_queues(
             due_date_reasons_choices=NeedsHumanReview.REASONS.extract_subset(
                 'AUTO_APPROVAL_DISABLED', 'SCANNER_ACTION'
             )
         )
+        assert list(addons) == expected_addons
         expected_version = expected_addons[0].versions.get(version='0.2')
         assert addons[0].first_version_id == expected_version.pk
         assert addons[0].first_pending_version == expected_version
