@@ -3062,11 +3062,8 @@ msgid "32x32px"
 msgstr "32x32px"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:39
-#, fuzzy
 msgid "Used in listings of add-ons, like search results."
-msgstr ""
-"Se utiliza en los listados de complementos, como resultados de\n"
-"                            búsqueda y complementos patrocinados."
+msgstr "Se utiliza en los listados de complementos, como resultados de búsqueda y complementos patrocinados."
 
 #. The size of the icon
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:47
@@ -3127,9 +3124,8 @@ msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
 msgstr "El tamaño máximo es 1000x750 y se requiere un ratio de 4:3."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:155
-#, fuzzy
 msgid "Having screenshots in your product page greatly increases its chances of being installed."
-msgstr "Si añades capturas de pantalla a tu página del producto, podrás incrementar las descargas e instalaciones y que se promocione en la página de inicio."
+msgstr "Contar con capturas de pantalla en la página de tu producto aumenta enormemente sus posibilidades de ser instalado."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:182 src/olympia/devhub/templates/devhub/addons/submit/distribute.html:30
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:85 src/olympia/devhub/templates/devhub/addons/submit/upload.html:99
@@ -3178,7 +3174,7 @@ msgstr "Mientras esté en este estado, \"Por cuenta propia\" es el único métod
 
 #: src/olympia/devhub/templates/devhub/addons/includes/source_file_input.html:12
 msgid "You cannot change attached sources because this version has been reviewed by Mozilla."
-msgstr ""
+msgstr "No puedes cambiar las fuentes adjuntas porque esta versión ya ha sido revisada por Mozilla."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:5 src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:53
 msgid "General Tests"
@@ -3215,11 +3211,8 @@ msgid "Top"
 msgstr "Arriba"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:1
-#, fuzzy
 msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
-msgstr ""
-"Al borrar el complemento se eliminarán todas las versiones y archivos que hayas enviado para este complemento, esté listado o no. El ID del complemento seguirá enlazado a tu cuenta, para que otros "
-"no puedan enviar versiones utilizando el mismo ID."
+msgstr "Al eliminar tu complemento se borrarán permanentemente todas las versiones y archivos que hayas enviado para este complemento, estén o no en la lista."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:6
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
@@ -3459,17 +3452,17 @@ msgstr "Cómo distribuir esta versión"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html:10
 msgid "To get started, select how you would like to distribute this version."
-msgstr ""
+msgstr "Para empezar, selecciona cómo te gustaría distribuir esta versión."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html:19
 #, python-format
 msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing</a> on Firefox Extension Workshop."
-msgstr ""
+msgstr "Puedes ampliar tu conocimiento sobre estas opciones leyendo <a %(a_attrs)s>Distribución y firma de complementos</a> en el taller de extensiones de Firefox."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html:24
 #, python-format
 msgid "All add-ons must comply with <a %(a_attrs)s>Mozilla’s Add-on Policies</a> and are subject to manual review at any time after submission."
-msgstr ""
+msgstr "Todos los complementos deben cumplir con las <a %(a_attrs)s>Políticas de complementos de Mozilla</a> y están sujetos a revisión manual en cualquier momento después de su envío."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:4
 msgid "Submission Complete"
@@ -3503,6 +3496,8 @@ msgstr "Tu lista tendrá más éxito si agregas una descripción detallada. Prep
 msgid ""
 "You can attract users to your extension by adding a detailed description and screenshots to your listing. Get help <a %(a_attrs)s>creating an appealing listing</a> on Firefox Extension Workshop."
 msgstr ""
+"Puedes atraer usuarios a tu extensión añadiendo una descripción detallada y capturas de pantalla a tu anuncio. Obtén ayuda para <a %(a_attrs)s>crear una publicación atractiva</a> en el taller de "
+"extensiones de Firefox."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:43
 msgid "Manage Listing"
@@ -3968,6 +3963,9 @@ msgid ""
 "Did you test your extension to ensure it works as expected on Firefox for Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" "
 "href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
 msgstr ""
+"¿Has probado tu extensión para asegurarte de que funciona como se esperaba en Firefox para Android? Si no es así, consulta <a target=\"_blank\" rel=\"noopener noreferrer\" "
+"href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">Desarrollo de extensiones para Firefox Android</a> para obtener orientación de pruebas "
+"antes de enviar."
 
 #: src/olympia/devhub/templates/devhub/includes/android_compatibility_modal.html:6
 msgid "Yes, I’ve tested my extension with Firefox for Android"
@@ -5700,12 +5698,12 @@ msgstr "Guarda una página web completa — incluidas las imágenes y el estilo 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:854
 msgid "Edit a web page before printing. Remove ads or any unwanted content."
-msgstr ""
+msgstr "Edita una página web antes de imprimirla. Elimina anuncios o cualquier contenido no deseado."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:863
 msgid "Advanced reader for aggregating all of your RSS/Atom/RDF sources."
-msgstr ""
+msgstr "Lector avanzado en el que podrás guardar todas tus fuentes de RSS/Atom/RDF."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:881
@@ -5715,7 +5713,7 @@ msgstr "Páginas web leídas en voz alta. Más de 40 idiomas compatibles."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:887
 msgid "Removes those long tracking parameters from Google search result URL's."
-msgstr ""
+msgstr "Elimina esos largos parámetros de rastreo de la URL de los resultados de búsqueda de Google."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:890
@@ -5745,7 +5743,7 @@ msgstr "Regresa a una época más sencilla — cuando tus resultados de búsqued
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:911
 msgid "Get the mouse scrollbar you've always wanted — specify width and color."
-msgstr ""
+msgstr "Obtén la barra de desplazamiento del mouse que siempre has querido — especifica ancho y color."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:923
@@ -5805,43 +5803,42 @@ msgstr "Bloqueador efectivo contra todo tipo de publicidad."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:959
 msgid "Mass download manager makes extreme downloading extremely easy."
-msgstr ""
+msgstr "El gestor de descargas masivas facilita enormemente las descargas extremas."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:962
-#, fuzzy
 msgid "Remove ads & receive better protection against malware."
-msgstr "No solo bloquea los anuncios molestos, también te protege frente a malware y rastreo de publicidad."
+msgstr "Elimina la publicidad y recibe una mejor protección contra el malware."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:965
 msgid "Remove formatting from copied Clipboard text."
-msgstr ""
+msgstr "Elimina el formato del texto copiado en el Portapapeles."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:968
 msgid "Fingerprinting privacy protection."
-msgstr ""
+msgstr "Protección de la privacidad contra huellas dactilares (fingerprinting)."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:971
 msgid "Enhance your gaming experience on Steam."
-msgstr ""
+msgstr "Optimiza tu experiencia de juego en Steam."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:974
 msgid "Thumbs-up to bringing back thumbs-down."
-msgstr ""
+msgstr "Pulgares arriba para traer de vuelta pulgares abajo."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:977
 msgid "Translate websites in Firefox — privately — without using the cloud."
-msgstr ""
+msgstr "Traduce páginas web en Firefox - de forma privada - sin usar la nube."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:980
 msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
-msgstr ""
+msgstr "Bloquea los sitios web que te hacen perder el tiempo. Bloquéalos por completo o sólo durante los periodos de tiempo que elijas."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:983
@@ -5851,7 +5848,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:986
 msgid "You’re in control. Turn off VPN when a website won’t work and set different locations for different websites. Windows only."
-msgstr ""
+msgstr "Tú tienes el control. Desactiva el VPN cuando un sitio web no funcione y configura ubicaciones diferentes para cada sitio web. Solo para Windows."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:989
@@ -6160,7 +6157,7 @@ msgstr "No se pudo analizar el archivo de manifiesto."
 #: src/olympia/files/utils.py:319
 #, python-brace-format
 msgid "Lowest supported \"strict_min_version\" is {min_version}."
-msgstr ""
+msgstr "La \"strict_min_version\" más baja admitida es {min_version}."
 
 #: src/olympia/files/utils.py:350
 #, python-brace-format
@@ -6198,7 +6195,7 @@ msgstr "Archivo excede límite de tamaño en archivo: {0}"
 
 #: src/olympia/files/utils.py:596
 msgid "This archive contains a forbidden special file (symbolic / hard link or device / block file)"
-msgstr ""
+msgstr "Este archivo contiene un archivo especial prohibido (simbólico / enlace duro o dispositivo / archivo de bloque)"
 
 #: src/olympia/files/utils.py:631
 msgid "Uncompressed size is too large"
@@ -6308,7 +6305,7 @@ msgstr ""
 #: src/olympia/ratings/models.py:411
 #, python-format
 msgid "%(value)s contains a non-alphanumeric character."
-msgstr ""
+msgstr "%(value)s contiene un carácter no alfanumérico."
 
 #: src/olympia/ratings/serializers.py:90
 #, python-brace-format
@@ -6346,9 +6343,9 @@ msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "No puedes escribir más de una revisión para la misma versión del complemento."
 
 #: src/olympia/ratings/serializers.py:317
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Invalid flag [{}] - must be one of [{}]"
-msgstr "Etiqueta no válida [%s]: debe ser una de [%s]"
+msgstr "Bandera inválida [{}] - debe ser una de [{}]"
 
 #: src/olympia/ratings/serializers.py:329
 msgid "This rating can't be flagged because it has no review text."
