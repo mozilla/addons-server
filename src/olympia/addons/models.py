@@ -363,10 +363,12 @@ class AddonManager(ManagerBase):
         version_subqs = versions_due_qs.all()
         if due_date_reasons_choices:
             versions_filter = Q(
-                versions__needshumanreview__reason__in=due_date_reasons_choices.values
+                versions__needshumanreview__reason__in=due_date_reasons_choices.values,
+                versions__needshumanreview__is_active=True,
             )
             version_subqs = version_subqs.filter(
-                needshumanreview__reason__in=due_date_reasons_choices.values
+                needshumanreview__reason__in=due_date_reasons_choices.values,
+                needshumanreview__is_active=True,
             )
         else:
             versions_filter = None
