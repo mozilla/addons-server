@@ -1316,7 +1316,6 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
             'de': 'Meine Beispielerweiterung',
             'en-US': 'Notify link clicks i18n',
             'ja': 'リンクを通知する',
-            'nb-NO': 'Varsling ved trykk på lenke i18n',
             'nl': 'Meld klikken op hyperlinks',
             'sv-SE': 'Meld klikken op hyperlinks',
         }
@@ -1611,7 +1610,7 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
                 'categories': ['other'],
                 'support_email': {  # this field has the required locales
                     'it': 'rusiczki.ioana@gmail.com',
-                    'ro': 'rusiczki.ioana@gmail.com',
+                    'fr': 'rusiczki.ioana@gmail.com',
                     'en-US': 'rusiczki.ioana@gmail.com',
                 },
                 # The following fields are missing en-US localizations
@@ -1638,7 +1637,7 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
                 'categories': ['other'],
                 'support_email': {
                     'it': 'rusiczki.ioana@gmail.com',
-                    'ro': 'rusiczki.ioana@gmail.com',
+                    'fr': 'rusiczki.ioana@gmail.com',
                     'en-US': 'rusiczki.ioana@gmail.com',
                 },
                 'name': {'en-US': 'name'},
@@ -2323,7 +2322,7 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
     @override_settings(EXTERNAL_SITE_URL='https://amazing.site')
     def test_set_homepage_support_url_email(self):
         data = {
-            'homepage': {'ro': '#%^%&&%^&^&^*'},
+            'homepage': {'de': '#%^%&&%^&^&^*'},
             'support_email': {'en-US': '#%^%&&%^&^&^*'},
             'support_url': {'fr': '#%^%&&%^&^&^*'},
         }
@@ -2339,7 +2338,7 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         }
 
         data = {
-            'homepage': {'ro': f'{settings.EXTERNAL_SITE_URL}'},
+            'homepage': {'de': f'{settings.EXTERNAL_SITE_URL}'},
             'support_url': {'fr': f'{settings.EXTERNAL_SITE_URL}/foo/'},
         }
         response = self.request(
@@ -2356,7 +2355,7 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         }
 
         data = {
-            'homepage': {'ro': 'ftp://somewhere.com/foo'},
+            'homepage': {'de': 'ftp://somewhere.com/foo'},
             'support_url': {'fr': 'ftp://somewhere.com'},
         }
         response = self.request(
