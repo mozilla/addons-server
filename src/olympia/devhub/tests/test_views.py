@@ -331,6 +331,28 @@ class TestDevRequired(TestCase):
         assert 'no-edit' not in doc('body')[0].attrib['class']
         self.assert3xx(self.client.post(self.delete_url), self.get_url)
 
+    def test_dev_promoted_status(self):
+        self.make_addon_promoted(
+            addon=self.addon, group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+        )
+        self.make_addon_promoted(addon=self.addon, group_id=PROMOTED_GROUP_CHOICES.LINE)
+        self.make_addon_promoted(
+            addon=self.addon, group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT
+        )
+        self.addon.approve_for_version()
+        assert (
+            PROMOTED_GROUP_CHOICES.RECOMMENDED in self.addon.promoted_groups().group_id
+        )
+        assert PROMOTED_GROUP_CHOICES.LINE in self.addon.promoted_groups().group_id
+        assert PROMOTED_GROUP_CHOICES.SPOTLIGHT in self.addon.promoted_groups().group_id
+
+        response = self.client.get(self.get_url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert 'Recommended' in doc('.addon-listed-status').text()
+        assert 'By Firefox' in doc('.addon-listed-status').text()
+        assert 'Spotlight' not in doc('.addon-listed-status').text()
+
 
 class TestVersionStats(TestCase):
     fixtures = ['base/users', 'base/addon_3615']
