@@ -817,17 +817,12 @@ class SingleCategoryForm(forms.Form):
                 (self.addon.is_featured(app) for app in amo.APP_USAGE))
 
     def save(self):
+        # FIXME: This now behaves as it goes in master, except excepts category to be a str instead of an int
         category_slug = self.cleaned_data['category']
         # Clear any old categor[y|ies]
         AddonCategory.objects.filter(addon=self.addon).delete()
-        # Add new categor[y|ies]
-        for app in CATEGORIES.keys():
-            category = CATEGORIES[app].get(
-                self.addon.type, {}).get(category_slug, None)
-            if category:
-                # FIXME: Not yet the correct fix, but gets 12 tests passing
-                Category.from_static_category(category, save=True)
-                AddonCategory(addon=self.addon, category_id=category.id).save()
+        category = Category.objects.get(slug=category_slug)
+        AddonCategory(addon=self.addon, category_id=category.id).save()
         # Remove old, outdated categories cache on the model.
         del self.addon.all_categories
 
