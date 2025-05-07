@@ -2599,7 +2599,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:49
 msgid "<strong>Email history:</strong> The table below shows all emails we have attempted to send to you in the last 2 days."
-msgstr ""
+msgstr "<strong>Historial de correo electrónico:</strong> la siguiente tabla muestra todos los correos electrónicos que hemos intentado enviarte en los últimos 2 días."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:57
 msgid "Date"
@@ -3486,6 +3486,8 @@ msgid ""
 "You’re done! ✨ You will receive a confirmation email when this version is published on %(site_domain)s. Note that it may take up to 24 hours before publication occurs, or longer if your add-on is "
 "selected for manual review. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
+"¡Ya has terminado! ✨ Recibirás un correo electrónico de confirmación cuando esta versión se publique en %(site_domain)s. Ten en cuenta que pueden pasar hasta 24 horas antes de que se produzca la "
+"publicación, o más tiempo si tu complemento está seleccionado para revisión manual. Si no recibes un correo electrónico transcurridas 24 horas, comprueba tu carpeta de correo no deseado."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:31
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
@@ -3504,9 +3506,8 @@ msgid "Manage Listing"
 msgstr "Gestionar lista"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:47
-#, fuzzy
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, concatenated or otherwise machine-generated code."
-msgstr "También puedes editar la versión que acabas de enviar agregando notas de versión o el código fuente en el caso de que incluya código difícil o confuso."
+msgstr "También puede editar esta versión para añadir notas sobre la versión o el código fuente, si es que tu envío incluye código minificado, concatenado o generado por máquina."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:52
 #, python-brace-format
@@ -3566,9 +3567,8 @@ msgid "Your source code must include:"
 msgstr "Tu código fuente debe incluir:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:56
-#, fuzzy
 msgid "Step-by-step build instructions to create an exact copy of the add-on code, in a README file in your source code or in the reviewer notes on the next page."
-msgstr "Instrucciones paso a paso para crear una copia exacta del código del complemento."
+msgstr "Instrucciones de compilación paso a paso para crear una copia exacta del código del complemento, en un archivo README en tu código fuente o en las notas del revisor en la página siguiente."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:57
 msgid "A build script that executes all necessary technical steps."
@@ -4901,9 +4901,8 @@ msgstr "Accede a las pestañas cerradas recientemente haciendo clic con el botó
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:221
-#, fuzzy
 msgid "Inspire productivity. Modify your new tab page to display a beautiful background, set your daily focus, and more."
-msgstr "Modifica la nueva pestaña para visualizar un fondo bonito, añadir aquello que deseas ver a diario y mucho más."
+msgstr "Inspira productividad. Modifica tu página de nueva pestaña para que muestre un bonito fondo, establece tu enfoque diario y mucho más."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:224
@@ -5110,9 +5109,8 @@ msgstr "Navega automáticamente a la versión segura de un sitio web si está di
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:341 src/olympia/discovery/strings.jinja2:788
-#, fuzzy
 msgid "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
-msgstr "Especifica el número de días que deseas conservar el historial de navegación antes de que se borre automáticamente."
+msgstr "Elimina tu historial de navegación. Especifica un número personalizado de días para conservar el historial de navegación antes de que se borre automáticamente."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:344
@@ -5126,9 +5124,8 @@ msgstr "Almacena contraseñas de forma segura e inicia sesión automáticamente 
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:350
-#, fuzzy
 msgid "Fill forms automatically. Save entered data once and it will auto-fill next time."
-msgstr "Guarda los datos introducidos una vez y se rellenarán automáticamente la próxima vez."
+msgstr "Completa formularios automáticamente. Guarda los datos introducidos una vez y se rellenarán automáticamente la próxima vez."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:356
@@ -5138,15 +5135,13 @@ msgstr "Navega de forma privada con solo un clic."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:359 src/olympia/discovery/strings.jinja2:821
-#, fuzzy
 msgid "Put an end to tab hijacking. Don't let clicked links take control of your current tab and load content you didn't ask for."
-msgstr "No permitas que los enlaces seleccionados tomen el control de tu pestaña actual y carguen contenido que no hayas solicitado."
+msgstr "Acaba con el secuestro de pestañas. No dejes que los enlaces en los que has hecho clic tomen el control de tu pestaña actual y carguen contenido que no habías solicitado."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:362
-#, fuzzy
 msgid "Easily perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
-msgstr "Realiza una búsqueda en Wikipedia simplemente seleccionando un texto de cualquier página web y haciendo clic con el botón derecho del ratón."
+msgstr "Realiza fácilmente una búsqueda en Wikipedia simplemente resaltando texto de cualquier página web y haciendo clic con el botón derecho."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:365
@@ -5192,9 +5187,8 @@ msgstr "Para esos momentos en los que necesitas disparar rayos láser usando un 
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:389
-#, fuzzy
 msgid "Search Firefox by easily accessing your open tabs, bookmarks, and history."
-msgstr "Accede fácilmente a tus pestañas, marcadores e historial abiertos."
+msgstr "Busca en Firefox accediendo fácilmente a tus pestañas abiertas, marcadores e historial."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:392
@@ -5238,21 +5232,20 @@ msgstr "Rastrea el historial de precios de Amazon. Toma decisiones de compra inf
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:416
-#, fuzzy
 msgid "Shop with confidence. This extension provides an extra check to ensure you're shopping on a site that's been vetted for reliability."
-msgstr "Realiza una comprobación adicional para asegurarte de que estás comprando en un sitio que ha sido aprobado por su fiabilidad."
+msgstr "Compra con confianza. Esta extensión proporciona una verificación adicional para asegurarse de que estás comprando en un sitio cuya confiabilidad ha sido examinada."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:419
-#, fuzzy
 msgid "Track productivity. Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
-msgstr "Averigua la cantidad de tiempo que pasas al ordenador, o en aplicaciones de trabajo específicas como Trello, JIRA, Basecamp, GitHub, y muchas más."
+msgstr "Controla la productividad. Mide la cantidad de tiempo que pasas en el computador o en aplicaciones de trabajo específicas como Trello, JIRA, Basecamp, GitHub y muchas más."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:422
-#, fuzzy
 msgid "Save your favorite stuff on the web. Clip content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
-msgstr "Extrae contenido web como artículos, vídeos, imágenes y mucho más para guardarlo y utilizarlo en proyectos individuales o trabajos en grupo en tiempo real."
+msgstr ""
+"Guarda tus cosas favoritas en la web. Recorta contenidos como artículos, vídeos, imágenes y mucho más para guardarlos y utilizarlos en proyectos individuales o para colaborar en equipo en tiempo "
+"real."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
