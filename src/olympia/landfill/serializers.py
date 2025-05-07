@@ -21,7 +21,7 @@ from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.devhub.utils import create_version_for_upload
 from olympia.hero.models import PrimaryHero, SecondaryHero
 from olympia.landfill.collection import generate_collection
-from olympia.promoted.models import PromotedAddonPromotion, PromotedGroup
+from olympia.promoted.models import PromotedAddon, PromotedGroup
 from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
 
@@ -70,7 +70,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
             )
             AddonUser.objects.create(user=user_factory(), addon=addon)
             promoted_group = PromotedGroup.objects.all_for(addon=addon).first()
-            PromotedAddonPromotion.objects.update_or_create(
+            PromotedAddon.objects.update_or_create(
                 addon=addon,
                 promoted_group=promoted_group,
                 application_id=amo.FIREFOX.id,

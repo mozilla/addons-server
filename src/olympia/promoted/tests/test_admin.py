@@ -3,7 +3,7 @@ from django.urls import reverse
 from olympia import amo
 from olympia.amo.reverse import django_reverse
 from olympia.amo.tests import (
-    PromotedAddonPromotion,
+    PromotedAddon,
     TestCase,
     addon_factory,
     user_factory,
@@ -13,7 +13,6 @@ from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.hero.models import PrimaryHero, PrimaryHeroImage
 from olympia.promoted.models import (
-    PromotedAddonVersion,
     PromotedApproval,
     PromotedGroup,
 )
@@ -87,13 +86,13 @@ class TestDiscoveryAddonAdmin(TestCase):
         self, promotion=None, promoted_group=None, application_id=None
     ):
         return {
-            'promotedaddonpromotion-0-id': str(promotion.pk) if promotion else '',
-            'promotedaddonpromotion-TOTAL_FORMS': '1',
-            'promotedaddonpromotion-INITIAL_FORMS': '1' if promotion else '0',
-            'promotedaddonpromotion-0-promoted_group': str(promoted_group.id)
+            'promotedaddon-0-id': str(promotion.pk) if promotion else '',
+            'promotedaddon-TOTAL_FORMS': '1',
+            'promotedaddon-INITIAL_FORMS': '1' if promotion else '0',
+            'promotedaddon-0-promoted_group': str(promoted_group.id)
             if promoted_group
             else '',
-            'promotedaddonpromotion-0-application_id': str(application_id)
+            'promotedaddon-0-application_id': str(application_id)
             if application_id
             else '',
         }
@@ -157,7 +156,7 @@ class TestDiscoveryAddonAdmin(TestCase):
 
     def test_can_edit_with_discovery_edit_permission(self):
         addon = addon_factory()
-        promotion = PromotedAddonPromotion.objects.create(
+        promotion = PromotedAddon.objects.create(
             addon=addon,
             promoted_group=PromotedGroup.objects.get(
                 group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
@@ -170,28 +169,28 @@ class TestDiscoveryAddonAdmin(TestCase):
         ver3 = version_factory(addon=addon, version='1.333')
         addon.reload()
         approvals = [
-            PromotedAddonVersion.objects.create(
+            PromotedApproval.objects.create(
                 version=ver1,
                 promoted_group=PromotedGroup.objects.get(
                     group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
                 ),
                 application_id=amo.FIREFOX.id,
             ),
-            PromotedAddonVersion.objects.create(
+            PromotedApproval.objects.create(
                 version=ver2,
                 promoted_group=PromotedGroup.objects.get(
                     group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
                 ),
                 application_id=amo.ANDROID.id,
             ),
-            PromotedAddonVersion.objects.create(
+            PromotedApproval.objects.create(
                 version=ver2,
                 promoted_group=PromotedGroup.objects.get(
                     group_id=PROMOTED_GROUP_CHOICES.LINE
                 ),
                 application_id=amo.FIREFOX.id,
             ),
-            PromotedAddonVersion.objects.create(
+            PromotedApproval.objects.create(
                 version=ver3,
                 promoted_group=PromotedGroup.objects.get(
                     group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
@@ -231,9 +230,9 @@ class TestDiscoveryAddonAdmin(TestCase):
 
         promotion.reload()
         assert 'errors' not in response.context_data, response.context_data['errors']
-        assert PromotedAddonPromotion.objects.count() == 1
+        assert PromotedAddon.objects.count() == 1
         assert promotion.promoted_group.group_id == PROMOTED_GROUP_CHOICES.LINE
-        assert PromotedAddonVersion.objects.count() == 4  # same
+        assert PromotedApproval.objects.count() == 4  # same
         # now it's not promoted because the current_version isn't approved for
         # LINE group
         assert not addon.approved_applications_for(PROMOTED_GROUP_CHOICES.LINE)
@@ -253,13 +252,13 @@ class TestDiscoveryAddonAdmin(TestCase):
         )
         assert response.status_code == 200
         assert 'errors' not in response.context_data, response.context_data['errors']
-        assert PromotedAddonPromotion.objects.count() == 1
-        assert PromotedAddonVersion.objects.count() == 3
+        assert PromotedAddon.objects.count() == 1
+        assert PromotedApproval.objects.count() == 3
         assert PrimaryHero.objects.count() == 0  # check we didn't add
 
     def test_cannot_add_or_change_approval(self):
         addon = addon_factory()
-        promotion = PromotedAddonPromotion.objects.create(
+        promotion = PromotedAddon.objects.create(
             addon=addon,
             promoted_group=PromotedGroup.objects.get(
                 group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
@@ -269,7 +268,9 @@ class TestDiscoveryAddonAdmin(TestCase):
         ver1 = addon.current_version
         approval = PromotedApproval.objects.create(
             version=ver1,
-            group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
+            promoted_group=PromotedGroup.objects.get(
+                group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+            ),
             application_id=amo.FIREFOX.id,
         )
         detail_url = reverse(self.detail_url_name, args=(addon.pk,))
@@ -294,9 +295,9 @@ class TestDiscoveryAddonAdmin(TestCase):
             follow=True,
         )
         approval.reload()
-        assert approval.group_id == PROMOTED_GROUP_CHOICES.RECOMMENDED
+        assert approval.promoted_group.group_id == PROMOTED_GROUP_CHOICES.RECOMMENDED
         assert response.status_code == 200
-        assert PromotedAddonPromotion.objects.count() == 1
+        assert PromotedAddon.objects.count() == 1
 
         # try to add another approval
         response = self.client.post(
@@ -315,12 +316,12 @@ class TestDiscoveryAddonAdmin(TestCase):
             follow=True,
         )
         assert response.status_code == 200
-        assert PromotedAddonPromotion.objects.count() == 1
+        assert PromotedAddon.objects.count() == 1
         assert PromotedApproval.objects.count() == 1
 
     def test_cannot_edit_without_discovery_edit_permission(self):
         addon = addon_factory()
-        promotion = PromotedAddonPromotion.objects.create(
+        promotion = PromotedAddon.objects.create(
             addon=addon,
             promoted_group=PromotedGroup.objects.get(
                 group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
@@ -331,7 +332,9 @@ class TestDiscoveryAddonAdmin(TestCase):
         approvals = [
             PromotedApproval.objects.create(
                 version=ver1,
-                group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
+                promoted_group=PromotedGroup.objects.get(
+                    group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+                ),
                 application_id=amo.FIREFOX.id,
             ),
         ]
@@ -363,7 +366,7 @@ class TestDiscoveryAddonAdmin(TestCase):
         assert response.status_code == 403
 
         promotion.reload()
-        assert PromotedAddonPromotion.objects.count() == 1
+        assert PromotedAddon.objects.count() == 1
         assert promotion.promoted_group.group_id == PROMOTED_GROUP_CHOICES.RECOMMENDED
         assert PromotedApproval.objects.count() == 1
 
@@ -379,19 +382,19 @@ class TestDiscoveryAddonAdmin(TestCase):
             follow=True,
         )
         assert response.status_code == 403
-        assert PromotedAddonPromotion.objects.count() == 1
+        assert PromotedAddon.objects.count() == 1
         assert PromotedApproval.objects.count() == 1
 
     def test_can_delete_with_discovery_edit_permission(self):
         addon = addon_factory()
-        promotion = PromotedAddonPromotion.objects.create(
+        promotion = PromotedAddon.objects.create(
             addon=addon,
             promoted_group=PromotedGroup.objects.get(
                 group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
             ),
             application_id=amo.FIREFOX.id,
         )
-        PromotedAddonVersion.objects.create(
+        PromotedApproval.objects.create(
             version=addon.current_version,
             promoted_group=PromotedGroup.objects.get(
                 group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
@@ -411,19 +414,19 @@ class TestDiscoveryAddonAdmin(TestCase):
                 **self._get_heroform(''),
                 **self._get_promotedgrouppromotionform(promotion=promotion),
                 **{
-                    'promotedaddonpromotion-0-DELETE': 'on',
+                    'promotedaddon-0-DELETE': 'on',
                 },
             ),
             follow=True,
         )
         assert response.status_code == 200
-        assert not PromotedAddonPromotion.objects.filter(pk=promotion.pk).exists()
+        assert not PromotedAddon.objects.filter(pk=promotion.pk).exists()
         # The approval *won't* have been deleted though
-        assert PromotedAddonVersion.objects.filter().exists()
+        assert PromotedApproval.objects.filter().exists()
 
     def test_cannot_delete_without_discovery_edit_permission(self):
         addon = addon_factory()
-        promotion = PromotedAddonPromotion.objects.create(
+        promotion = PromotedAddon.objects.create(
             addon=addon,
             promoted_group=PromotedGroup.objects.get(
                 group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
@@ -442,13 +445,13 @@ class TestDiscoveryAddonAdmin(TestCase):
                 **self._get_heroform(''),
                 **self._get_promotedgrouppromotionform(promotion=promotion),
                 **{
-                    'promotedaddonpromotion-0-DELETE': 'on',
+                    'promotedaddon-0-DELETE': 'on',
                 },
             ),
             follow=True,
         )
         assert response.status_code == 403
-        assert PromotedAddonPromotion.objects.filter(pk=promotion.pk).exists()
+        assert PromotedAddon.objects.filter(pk=promotion.pk).exists()
 
     def test_can_add_with_discovery_edit_permission(self):
         addon = addon_factory()
@@ -460,7 +463,7 @@ class TestDiscoveryAddonAdmin(TestCase):
         group = PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED)
         response = self.client.get(detail_url, follow=True)
         assert response.status_code == 200
-        assert PromotedAddonPromotion.objects.count() == 0
+        assert PromotedAddon.objects.count() == 0
         response = self.client.post(
             detail_url,
             dict(
@@ -474,15 +477,13 @@ class TestDiscoveryAddonAdmin(TestCase):
         )
         assert response.status_code == 200
         assert 'errors' not in response.context_data
-        assert PromotedAddonPromotion.objects.count() == 1
-        item = PromotedAddonPromotion.objects.get()
+        assert PromotedAddon.objects.count() == 1
+        item = PromotedAddon.objects.get()
         assert item.addon == addon
         assert item.promoted_group.group_id == PROMOTED_GROUP_CHOICES.RECOMMENDED
         assert item.application_id == amo.FIREFOX.id
         assert item.application == amo.FIREFOX
-        assert (
-            PromotedAddonVersion.objects.count() == 0
-        )  # we didn't create any approvals
+        assert PromotedApproval.objects.count() == 0  # we didn't create any approvals
         assert not addon.promoted_groups()
 
     def test_can_add_when_existing_approval(self):
@@ -493,7 +494,7 @@ class TestDiscoveryAddonAdmin(TestCase):
         self.client.force_login(user)
         # create an approval that doesn't have a matching PromotedAddon yet
         group = PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.LINE)
-        PromotedAddonVersion.objects.create(
+        PromotedApproval.objects.create(
             version=addon.current_version,
             promoted_group=group,
             application_id=amo.FIREFOX.id,
@@ -501,7 +502,7 @@ class TestDiscoveryAddonAdmin(TestCase):
         response = self.client.get(detail_url, follow=True)
         assert response.status_code == 200
         assert b'unattached' in response.content
-        assert PromotedAddonPromotion.objects.count() == 0
+        assert PromotedAddon.objects.count() == 0
         response = self.client.post(
             detail_url,
             dict(
@@ -515,8 +516,8 @@ class TestDiscoveryAddonAdmin(TestCase):
         )
         assert response.status_code == 200
         assert 'errors' not in response.context_data
-        assert PromotedAddonVersion.objects.count() == 1  # still one
-        assert PromotedAddonPromotion.objects.count() == 1
+        assert PromotedApproval.objects.count() == 1  # still one
+        assert PromotedAddon.objects.count() == 1
         assert (
             PROMOTED_GROUP_CHOICES.LINE in addon.promoted_groups().group_id
         )  # now approved
@@ -537,7 +538,7 @@ class TestDiscoveryAddonAdmin(TestCase):
             follow=True,
         )
         assert response.status_code == 403
-        assert PromotedAddonPromotion.objects.count() == 0
+        assert PromotedAddon.objects.count() == 0
 
     def test_can_edit_primary_hero(self):
         addon = addon_factory(name='BarFöo')

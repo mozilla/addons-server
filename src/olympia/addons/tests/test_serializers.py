@@ -65,8 +65,7 @@ from olympia.constants.promoted import (
 from olympia.files.models import WebextPermission
 from olympia.promoted.models import (
     PromotedAddon,
-    PromotedAddonPromotion,
-    PromotedAddonVersion,
+    PromotedApproval,
     PromotedGroup,
 )
 from olympia.ratings.models import Rating
@@ -559,7 +558,7 @@ class AddonSerializerOutputTestMixin:
         assert result['promoted'][0]['apps'] == [amo.FIREFOX.short]
 
         # Test multiple promotions.
-        PromotedAddonPromotion.objects.create(
+        PromotedAddon.objects.create(
             addon=self.addon,
             promoted_group=PromotedGroup.objects.get(
                 group_id=PROMOTED_GROUP_CHOICES.LINE
@@ -587,7 +586,7 @@ class AddonSerializerOutputTestMixin:
             )
 
         # With a recommended theme.
-        PromotedAddonPromotion.objects.filter(addon=self.addon).delete()
+        PromotedAddon.objects.filter(addon=self.addon).delete()
         self.addon.update(type=amo.ADDON_STATICTHEME)
         featured_collection, _ = Collection.objects.get_or_create(
             id=settings.COLLECTION_FEATURED_THEMES_ID
@@ -603,12 +602,12 @@ class AddonSerializerOutputTestMixin:
         group = PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED)
         self.addon = addon_factory()
 
-        PromotedAddonPromotion.objects.create(
+        PromotedAddon.objects.create(
             addon=self.addon,
             application_id=amo.FIREFOX.id,
             promoted_group=group,
         )
-        PromotedAddonVersion.objects.create(
+        PromotedApproval.objects.create(
             version=self.addon.current_version,
             application_id=amo.FIREFOX.id,
             promoted_group=group,
@@ -1133,7 +1132,6 @@ class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
             AppVersion,
             License,
             Preview,
-            PromotedAddon,
             UserProfile,
             Version,
         )
@@ -1149,7 +1147,7 @@ class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
                     except FieldDoesNotExist:
                         pass
             self.serialize()
-        assert len(mocks) == 8  # created on all models + auth_id.
+        assert len(mocks) == 7  # created on all models + auth_id.
         for mocked_default in mocks.values():
             assert mocked_default.call_count == 0
 

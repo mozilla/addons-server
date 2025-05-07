@@ -54,7 +54,7 @@ from olympia.constants.promoted import (
 from olympia.files.tests.test_models import UploadMixin
 from olympia.files.utils import parse_addon, parse_xpi
 from olympia.promoted.models import (
-    PromotedAddonPromotion,
+    PromotedAddon,
     PromotedGroup,
 )
 from olympia.ratings.models import Rating
@@ -5656,7 +5656,7 @@ class TestAddonSearchView(ESTestCase):
         )
         assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon.promoted_groups().group_id
         assert list(
-            PromotedAddonPromotion.objects.filter(addon=addon).values_list(
+            PromotedAddon.objects.filter(addon=addon).values_list(
                 'application_id', flat=True
             )
         ) == [
@@ -5678,7 +5678,7 @@ class TestAddonSearchView(ESTestCase):
             max=av_max,
         )
         # This case is approved for all apps, but now only set for Firefox
-        addon2.promotedaddonpromotion.all().delete()
+        addon2.promotedaddon.all().delete()
         self.make_addon_promoted(
             addon=addon2,
             group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
@@ -5686,7 +5686,7 @@ class TestAddonSearchView(ESTestCase):
         )
         assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon2.promoted_groups().group_id
         assert list(
-            PromotedAddonPromotion.objects.filter(addon=addon2).values_list(
+            PromotedAddon.objects.filter(addon=addon2).values_list(
                 'application_id', flat=True
             )
         ) == [
@@ -5717,7 +5717,7 @@ class TestAddonSearchView(ESTestCase):
             apps=[amo.FIREFOX],
             approve_version=True,
         )
-        PromotedAddonPromotion.objects.create(
+        PromotedAddon.objects.create(
             addon=addon4,
             promoted_group=PromotedGroup.objects.get(
                 group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
@@ -5726,7 +5726,7 @@ class TestAddonSearchView(ESTestCase):
         )
         assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon4.promoted_groups().group_id
         assert list(
-            PromotedAddonPromotion.objects.filter(addon=addon4).values_list(
+            PromotedAddon.objects.filter(addon=addon4).values_list(
                 'application_id', flat=True
             )
         ) == [
@@ -5749,7 +5749,7 @@ class TestAddonSearchView(ESTestCase):
             apps=[amo.ANDROID],
             approve_version=True,
         )
-        PromotedAddonPromotion.objects.create(
+        PromotedAddon.objects.create(
             addon=addon5,
             promoted_group=PromotedGroup.objects.get(
                 group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
@@ -5758,7 +5758,7 @@ class TestAddonSearchView(ESTestCase):
         )
         assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon5.promoted_groups().group_id
         assert list(
-            PromotedAddonPromotion.objects.filter(addon=addon5).values_list(
+            PromotedAddon.objects.filter(addon=addon5).values_list(
                 'application_id', flat=True
             )
         ) == [

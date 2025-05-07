@@ -45,8 +45,8 @@ from olympia.lib.crypto.tests.test_signing import (
     _get_signature_details,
 )
 from olympia.promoted.models import (
-    PromotedAddonPromotion,
-    PromotedAddonVersion,
+    PromotedAddon,
+    PromotedApproval,
 )
 from olympia.reviewers.models import (
     AutoApprovalSummary,
@@ -543,7 +543,7 @@ class TestReviewHelper(TestReviewHelperBase):
         )
 
         # only for groups that are admin_review though
-        self.addon.promotedaddonpromotion.all().delete()
+        self.addon.promotedaddon.all().delete()
         self.make_addon_promoted(
             self.addon, PROMOTED_GROUP_CHOICES.NOTABLE, approve_version=True
         )
@@ -3236,28 +3236,28 @@ class TestReviewHelper(TestReviewHelperBase):
 
         with self.assertRaises(AssertionError):
             self.test_nomination_to_public()
-        assert not PromotedAddonVersion.objects.filter(
+        assert not PromotedApproval.objects.filter(
             version=self.addon.current_version
         ).exists()
         assert not self.addon.promoted_groups()
 
         # change to other type of promoted; same should happen
-        PromotedAddonPromotion.objects.filter(addon=self.addon).delete()
+        PromotedAddon.objects.filter(addon=self.addon).delete()
         self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.LINE)
         with self.assertRaises(AssertionError):
             self.test_nomination_to_public()
-        assert not PromotedAddonVersion.objects.filter(
+        assert not PromotedApproval.objects.filter(
             version=self.addon.current_version
         ).exists()
         assert not self.addon.promoted_groups()
 
         # except for a group that doesn't require prereview
-        PromotedAddonPromotion.objects.filter(addon=self.addon).delete()
+        PromotedAddon.objects.filter(addon=self.addon).delete()
         self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.STRATEGIC)
         assert PROMOTED_GROUP_CHOICES.STRATEGIC in self.addon.promoted_groups().group_id
         self.test_nomination_to_public()
-        # But no PromotedAddonVersion though
-        assert not PromotedAddonVersion.objects.filter(
+        # But no PromotedApproval though
+        assert not PromotedApproval.objects.filter(
             version=self.addon.current_version
         ).exists()
         assert PROMOTED_GROUP_CHOICES.STRATEGIC in self.addon.promoted_groups().group_id

@@ -33,7 +33,7 @@ from olympia.constants.scanners import CUSTOMS, MAD, YARA
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadMixin
 from olympia.files.utils import parse_addon
-from olympia.promoted.models import PromotedAddonVersion, PromotedGroup
+from olympia.promoted.models import PromotedApproval, PromotedGroup
 from olympia.reviewers.models import AutoApprovalSummary, NeedsHumanReview
 from olympia.scanners.models import ScannerResult
 from olympia.users.models import (
@@ -1435,7 +1435,7 @@ class TestVersion(AMOPaths, TestCase):
         assert not addon.current_version.can_be_disabled_and_deleted()
 
         # STRATEGIC isn't pre-reviewd or badged, so it's okay though
-        addon.promotedaddonpromotion.all().delete()
+        addon.promotedaddon.all().delete()
         self.make_addon_promoted(
             addon, PROMOTED_GROUP_CHOICES.STRATEGIC, approve_version=True
         )
@@ -1606,14 +1606,14 @@ class TestVersion(AMOPaths, TestCase):
         assert version.approved_for_groups == []
 
         # give it some promoted approvals
-        PromotedAddonVersion.objects.create(
+        PromotedApproval.objects.create(
             version=version,
             promoted_group=PromotedGroup.objects.get(
                 group_id=PROMOTED_GROUP_CHOICES.LINE
             ),
             application_id=amo.FIREFOX.id,
         )
-        PromotedAddonVersion.objects.create(
+        PromotedApproval.objects.create(
             version=version,
             promoted_group=PromotedGroup.objects.get(
                 group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
@@ -1642,28 +1642,28 @@ class TestVersion(AMOPaths, TestCase):
             assert versions[1].approved_for_groups == []
 
         # give them some promoted approvals
-        PromotedAddonVersion.objects.create(
+        PromotedApproval.objects.create(
             version=version_a,
             promoted_group=PromotedGroup.objects.get(
                 group_id=PROMOTED_GROUP_CHOICES.LINE
             ),
             application_id=amo.FIREFOX.id,
         )
-        PromotedAddonVersion.objects.create(
+        PromotedApproval.objects.create(
             version=version_a,
             promoted_group=PromotedGroup.objects.get(
                 group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
             ),
             application_id=amo.FIREFOX.id,
         )
-        PromotedAddonVersion.objects.create(
+        PromotedApproval.objects.create(
             version=version_b,
             promoted_group=PromotedGroup.objects.get(
                 group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
             ),
             application_id=amo.FIREFOX.id,
         )
-        PromotedAddonVersion.objects.create(
+        PromotedApproval.objects.create(
             version=version_b,
             promoted_group=PromotedGroup.objects.get(
                 group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED

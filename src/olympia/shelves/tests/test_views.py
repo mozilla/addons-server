@@ -22,7 +22,7 @@ from olympia.hero.serializers import (
     PrimaryHeroShelfSerializer,
     SecondaryHeroShelfSerializer,
 )
-from olympia.promoted.models import PromotedAddonPromotion, PromotedGroup
+from olympia.promoted.models import PromotedAddon, PromotedGroup
 from olympia.shelves.models import Shelf
 from olympia.tags.models import Tag
 from olympia.users.models import UserProfile
@@ -70,12 +70,12 @@ class TestShelfViewSet(ESTestCase):
         )
 
         group = PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED)
-        PromotedAddonPromotion.objects.create(
+        PromotedAddon.objects.create(
             addon=addon_ext, promoted_group=group, application_id=amo.FIREFOX.id
         )
         addon_ext.approve_for_version(version=addon_ext.current_version)
 
-        PromotedAddonPromotion.objects.create(
+        PromotedAddon.objects.create(
             addon=addon_theme, promoted_group=group, application_id=amo.FIREFOX.id
         )
         addon_ext.approve_for_version(version=addon_theme.current_version)
@@ -151,7 +151,7 @@ class TestShelfViewSet(ESTestCase):
         # don't enable shelf_c
         self.shelf_d.update(enabled=True)
 
-        # would be 25 but we mocked Shelf.tag that does a query.
+        # would be 24 but we mocked Shelf.tag that does a query.
         with self.assertNumQueries(26):
             response = self.client.get(self.url)
         assert response.status_code == 200
