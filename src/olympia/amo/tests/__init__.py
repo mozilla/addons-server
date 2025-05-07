@@ -1167,12 +1167,13 @@ def fix_webext_fixture(filename, guid=None):
     * browser_specific_settings.gecko.id is generated if not found.
     * if experiment is found in the filename a browser_specific_settings.gecko.strict_max_version is set."""
 
-    ext = os.path.splitext(filename)[1]
-    temp_file = f'/tmp/{uuid.uuid4().hex}{ext}'
+    name = os.path.split(filename)[1]
+    ext = os.path.splitext(name)[1]
+    temp_file = f'/tmp/{uuid.uuid4().hex}-{name}'
 
     # HACK: This is so we don't have to modify a bunch of binaries...it's ugly!
     # Check if we have a GUID for this addon, if not then make one.
-    if ext in ['.xpi', '.jar', '.zip'] and not filename.endswith('unopenable.xpi'):
+    if ext in ['.xpi', '.jar', '.zip'] and name not in ['unopenable.xpi']:
         with zipfile.ZipFile(filename) as zip_in:
             with zipfile.ZipFile(temp_file, 'w') as zip_out:
                 for info in zip_in.infolist():
