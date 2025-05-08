@@ -5203,7 +5203,7 @@ msgstr "Para esos momentos en los que necesitas disparar rayos láser usando un 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:389
 msgid "Search Firefox by easily accessing your open tabs, bookmarks, and history."
-msgstr "Busc en Firefox accediendo fácilmente a tus pestañas abiertas, marcadores e historial."
+msgstr "Buscá en Firefox accediendo fácilmente a tus pestañas abiertas, marcadores e historial."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:392
