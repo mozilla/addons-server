@@ -4954,7 +4954,7 @@ msgstr "Yeniden yönlendirilmeden, doğrudan erişmek istediğiniz web sitesine 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:275
 msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
-msgstr ""
+msgstr "WhatsApp artık web’de. Okunmamış iletilerle ilgili rozet bildirimi almak için Firefox’un araç çubuğu panelinden WhatsApp’a erişin."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:278
