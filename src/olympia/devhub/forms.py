@@ -821,13 +821,17 @@ class SingleCategoryForm(forms.Form):
         # Clear any old categor[y|ies]
         AddonCategory.objects.filter(addon=self.addon).delete()
         # Add new categor[y|ies]
+        saved = set()
         for app in CATEGORIES.keys():
             category = CATEGORIES[app].get(
                 self.addon.type, {}).get(category_slug, None)
             if category:
                 # FIXME: Not yet the correct fix, but gets 12 tests passing
                 Category.from_static_category(category, save=True)
-                AddonCategory(addon=self.addon, category_id=category.id).save()
+                if category.id not in saved:
+                    print('saving', self.addon, app, category.id)
+                    saved.add(category.id)
+                    AddonCategory(addon=self.addon, category_id=category.id).save()
         # Remove old, outdated categories cache on the model.
         del self.addon.all_categories
 
