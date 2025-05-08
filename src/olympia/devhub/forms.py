@@ -817,6 +817,9 @@ class SingleCategoryForm(forms.Form):
                 (self.addon.is_featured(app) for app in amo.APP_USAGE))
 
     def save(self):
+        # FIXME: This method is quite different than what's in master. A big problem
+        # with it is multiple categories can be saved, as was in problem in
+        # test_submit_categories_set()
         category_slug = self.cleaned_data['category']
         # Clear any old categor[y|ies]
         AddonCategory.objects.filter(addon=self.addon).delete()
