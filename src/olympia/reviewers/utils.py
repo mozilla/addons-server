@@ -32,6 +32,7 @@ from olympia.reviewers.models import (
 )
 from olympia.users.utils import get_task_user
 from olympia.versions.models import Version, VersionReviewerFlags
+from typing_extensions import TypedDict
 
 
 log = olympia.core.logger.getLogger('z.mailer')
@@ -1883,3 +1884,58 @@ class ReviewUnlisted(ReviewBase):
         if self.data['versions']:
             # if these are listed versions then the addon status may need updating
             self.addon.update_status(self.user)
+
+class ReviewStats:
+    class VersionReviewStatDict(TypedDict):
+        id: int
+        start: datetime
+        end: datetime
+        reasons: list['NeedsHumanReview.REASONS']
+
+    def manually_reviewed_versions(self, start_date: datetime = None, end_date: datetime = None):
+        qs = Version.objects.manually_reviewed_versions().filter(
+            promoted_versions__isnull=False,
+        )
+        if start_date is not None:
+            qs = qs.filter(created__gte=start_date)
+        if end_date is not None:
+            qs = qs.filter(created__lte=end_date)
+        return qs.distinct()
+
+    def _nhr_for_version(self, version: Version):
+        return list(
+            NeedsHumanReview.objects.filter(version=version).values_list('reason', flat=True)
+        )
+
+    def time_to_review_versions(
+            self,
+            versions: list[Version] = None,
+    ) -> list[VersionReviewStatDict]:
+        visited_ids = set()
+        results = []
+        for version in versions:
+            if version in visited_ids:
+                continue
+
+            reasons = self._nhr_for_version(version)
+
+            while NeedsHumanReview.REASONS.INHERITANCE in reasons:
+                # Don't process inherited versions
+                visited_ids.add(version.id)
+                # Get the previous version until we get a non-inherited version
+                version = version.previous_version
+                reasons = self._nhr_for_version(version)
+
+            visited_ids.add(version.id)
+
+            start = version.created
+            end = version.human_review_date
+
+            results.append(self.VersionReviewStatDict(
+                id=version.id,
+                start=start,
+                end=end,
+                reasons=reasons,
+            ))
+
+        return results
