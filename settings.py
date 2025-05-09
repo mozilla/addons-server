@@ -171,3 +171,9 @@ if get_version_json().get('target') != 'production' and DEBUG:
     }
 
 MEMCACHE_MIN_SERVER_COUNT = 1
+
+GOOGLE_APPLICATION_CREDENTIALS_BIGQUERY = env(
+    'GOOGLE_APPLICATION_CREDENTIALS_BIGQUERY',
+    # Set default path to the path explicitly gitignored.
+    default=path('google-application-credentials.json'),
+)
