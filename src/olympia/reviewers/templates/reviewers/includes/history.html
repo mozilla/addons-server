@@ -22,6 +22,11 @@
               </details>
             {% endif %}
           {% endif %}
+          <ul>
+          {% for policy_text in record.details.policy_texts %}
+            <li class="light history-comment">{{ policy_text }}</li>
+          {% endfor %}
+          </ul>
           {# <pre> rather than <div> so that white space is preserved on copy #}
           <pre class="light history-comment">{{ record.details.comments }}</pre>
           {% if record.details.reason %}
