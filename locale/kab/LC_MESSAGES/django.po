@@ -5775,12 +5775,12 @@ msgstr "Isiɣzaf n Tbaḍnit d Tɣellist"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1015
 msgid "Essential add-ons"
-msgstr ""
+msgstr "Izegrar ixataṛen"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1017
 msgid "Reddit extensions"
-msgstr ""
+msgstr "Isiɣzaf Reddit"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1019 src/olympia/discovery/strings.jinja2:1021 src/olympia/discovery/strings.jinja2:1023
@@ -5962,52 +5962,52 @@ msgstr "Wali ugar n usumer n terbaεt n usnulfu"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1111
 msgid "Social media extensions"
-msgstr ""
+msgstr "Isiɣzaf n yizeḍwa inmettiyen"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1113
 msgid "See more social media staff picks"
-msgstr ""
+msgstr "Wali ugar n yisiɣzaf n yizeḍwa inmettiyen i d-tefren tarbaɛt"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1116
 msgid "Top download managers"
-msgstr ""
+msgstr "Imsefraken n usadar afellay"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1118
 msgid "See more download manager staff picks"
-msgstr ""
+msgstr "Wali ugar n yisiɣzaf i usefrek n yisadaren sɣur terbaεt"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1121
 msgid "Accessibility extensions"
-msgstr ""
+msgstr "Isiɣzaf n tuffart"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1123
 msgid "See more accessibility staff picks"
-msgstr ""
+msgstr "Wali ugar n yisiɣzaf i d-tefren terbaεt"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1126
 msgid "Extension starter pack"
-msgstr ""
+msgstr "Isiɣzaf n usenker"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1128
 msgid "See more starter extension staff picks"
-msgstr ""
+msgstr "Wali ugar n yisiɣzaf i usker n usuqel yettwafernen sɣur terbaεt"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1131
 msgid "Twitch extensions"
-msgstr ""
+msgstr "Isiɣzaf Twitch"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1133
 msgid "See more Twitch extension staff picks"
-msgstr ""
+msgstr "Wali ugar n yisiɣzaf i Twitch n usuqel yettwafernen sɣur terbaεt"
 
 #: src/olympia/files/models.py:319
 msgid "Unreviewed"
@@ -6029,7 +6029,7 @@ msgstr "Ur izmir ara ad isleḍ afaylu ameskan."
 #: src/olympia/files/utils.py:319
 #, python-brace-format
 msgid "Lowest supported \"strict_min_version\" is {min_version}."
-msgstr ""
+msgstr "Azal adday yettusefraken i \"strict_min_version\" d {min_version}."
 
 #: src/olympia/files/utils.py:350
 #, python-brace-format
