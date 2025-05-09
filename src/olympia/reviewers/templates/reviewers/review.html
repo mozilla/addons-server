@@ -32,12 +32,12 @@
 
 </hgroup>
 
-{% if promoted_group %}
+{% if promoted_groups %}
 {# Technically could be just pending approval, but that doesn't matter for this message. #}
 <p class="is_promoted">
-  This is a {{ promoted_group.name }} add-on.
-  {% if (amo.promoted.PROMOTED_GROUP_CHOICES.RECOMMENDED in promoted_group.group_id and not action_allowed_for(request.user, amo.permissions.ADDONS_RECOMMENDED_REVIEW)) or
-        (promoted_group.admin_review|python_any and not action_allowed_for(request.user, amo.permissions.REVIEWS_ADMIN)) %}
+  This is a {{ promoted_groups.name }} add-on.
+  {% if (amo.promoted.PROMOTED_GROUP_CHOICES.RECOMMENDED in promoted_groups.group_id and not action_allowed_for(request.user, amo.permissions.ADDONS_RECOMMENDED_REVIEW)) or
+        (promoted_groups.admin_review|python_any and not action_allowed_for(request.user, amo.permissions.REVIEWS_ADMIN)) %}
     You don't have permission to review it.
   {% endif %}
 </p>
@@ -128,12 +128,12 @@
     </div>
   </div>
 
-  {% if promoted_group %}
+  {% if promoted_groups %}
     {# Technically could be just pending approval, but that doesn't matter for this message. #}
     <p class="is_promoted">
-      This is a {{ promoted_group.name }} add-on.
-      {% if (amo.promoted.PROMOTED_GROUP_CHOICES.RECOMMENDED in promoted_group.group_id and not action_allowed_for(request.user, amo.permissions.ADDONS_RECOMMENDED_REVIEW)) or
-            (promoted_group.admin_review|python_any and not action_allowed_for(request.user, amo.permissions.REVIEWS_ADMIN)) %}
+      This is a {{ promoted_groups.name }} add-on.
+      {% if (amo.promoted.PROMOTED_GROUP_CHOICES.RECOMMENDED in promoted_groups.group_id and not action_allowed_for(request.user, amo.permissions.ADDONS_RECOMMENDED_REVIEW)) or
+            (promoted_groups.admin_review|python_any and not action_allowed_for(request.user, amo.permissions.REVIEWS_ADMIN)) %}
         You don't have permission to review it.
       {% endif %}
     </p>
