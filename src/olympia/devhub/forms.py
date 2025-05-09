@@ -802,39 +802,28 @@ class SingleCategoryForm(forms.Form):
         self.addon = kw.pop('addon')
         self.request = kw.pop('request', None)
         if len(self.addon.all_categories) > 0:
-            kw['initial'] = {'category': self.addon.all_categories[0].slug}
+            kw['initial'] = {'category': self.addon.all_categories[0].id}
         super(SingleCategoryForm, self).__init__(*args, **kw)
 
-        sorted_cats = sorted(CATEGORIES_NO_APP[self.addon.type].items(),
+        # Hack because we know this is only used for Static Themes that only
+        # support Thunderbird.  Hoping to unify per-app categories in the meantime.
+        app = amo.THUNDERBIRD
+        sorted_cats = sorted(CATEGORIES[app.id][self.addon.type].items(),
                              key=lambda slug_cat: slug_cat[0])
         self.fields['category'].choices = [
-            (slug, c.name) for slug, c in sorted_cats]
+            (c.id, c.name) for _, c in sorted_cats]
 
-        # If this add-on is featured for any application, category changes are
+        # If this add-on is featured for this application, category changes are
         # forbidden.
         if not acl.action_allowed(self.request, amo.permissions.ADDONS_EDIT):
-            self.disabled = any(
-                (self.addon.is_featured(app) for app in amo.APP_USAGE))
+            self.disabled = self.addon.is_featured(app)
 
     def save(self):
-        # FIXME: This method is quite different than what's in master. A big problem
-        # with it is multiple categories can be saved, as was in problem in
-        # test_submit_categories_set()
-        category_slug = self.cleaned_data['category']
+        category_id = self.cleaned_data['category']
         # Clear any old categor[y|ies]
         AddonCategory.objects.filter(addon=self.addon).delete()
-        # Add new categor[y|ies]
-        saved = set()
-        for app in CATEGORIES.keys():
-            category = CATEGORIES[app].get(
-                self.addon.type, {}).get(category_slug, None)
-            if category:
-                # FIXME: Not yet the correct fix, but gets 12 tests passing
-                Category.from_static_category(category, save=True)
-                if category.id not in saved:
-                    print('saving', self.addon, app, category.id)
-                    saved.add(category.id)
-                    AddonCategory(addon=self.addon, category_id=category.id).save()
+        # Add new category
+        AddonCategory(addon=self.addon, category_id=category_id).save()
         # Remove old, outdated categories cache on the model.
         del self.addon.all_categories
 
