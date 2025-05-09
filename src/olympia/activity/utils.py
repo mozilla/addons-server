@@ -268,6 +268,8 @@ def notify_about_activity_log(
     else:
         comments = unescape(comments)
 
+    policy_texts = (note.details or {}).get('policy_texts', [])
+
     type_of_sender = type_of_user(note.user, version)
     sender_name = (
         ADDON_REVIEWER_NAME
@@ -280,14 +282,15 @@ def notify_about_activity_log(
     addon_authors = set(addon.authors.all()) - {note.user}
 
     author_context_dict = {
-        'name': addon.name,
-        'number': version.version,
         'author': sender_name,
         'comments': comments,
+        'email_reason': 'you are listed as an author of this add-on',
         'has_attachment': hasattr(note, 'attachmentlog'),
+        'name': addon.name,
+        'number': version.version,
+        'policy_texts': policy_texts,
         'url': absolutify(addon.get_dev_url('versions')),
         'SITE_URL': settings.SITE_URL,
-        'email_reason': 'you are listed as an author of this add-on',
     }
 
     # Not being localised because we don't know the recipients locale.
