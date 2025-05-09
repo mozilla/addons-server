@@ -1145,12 +1145,12 @@ msgstr "Lqem yettuzmel tikkelt-nniḍen"
 #: src/olympia/constants/activity.py:862
 #, python-brace-format
 msgid "{addon} force-disabled"
-msgstr ""
+msgstr "{addon} ḥettem asensi"
 
 #: src/olympia/constants/activity.py:873
 #, python-brace-format
 msgid "{addon} force-enabled"
-msgstr ""
+msgstr "ḥettem armad"
 
 #: src/olympia/constants/activity.py:902
 #, python-brace-format
@@ -2081,7 +2081,7 @@ msgstr "Sser JWT"
 #: src/olympia/devhub/forms.py:1515
 #, python-brace-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
-msgstr ""
+msgstr "Ma ulac aɣilif, tekki ɣef tqeffalt n usentem akken ad ternuḍ tasarut API i useqdac <strong>{name}</strong>."
 
 #: src/olympia/devhub/forms.py:1521
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
@@ -2342,7 +2342,7 @@ msgstr "Talɣut inek n usesteb tettwaḥwi ihi ur tezgi d tameɣtut."
 
 #: src/olympia/devhub/views.py:2068
 msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
-msgstr ""
+msgstr "Ḥrez tisura inek API d tibaḍniyin udiɣ ur tent-beṭṭu ara akken wiyaḍ, ula akked imttekkiyen n Mozilla."
 
 #: src/olympia/devhub/views.py:2085
 msgid "New API key created"
@@ -2358,11 +2358,11 @@ msgstr "Senqed tansa imayl"
 
 #: src/olympia/devhub/views.py:2158
 msgid "Send another email"
-msgstr ""
+msgstr "Azen imayl niḍen"
 
 #: src/olympia/devhub/views.py:2191
 msgid "Your email has been verified"
-msgstr ""
+msgstr "Imayl-ik yettwasenqed"
 
 #: src/olympia/devhub/widgets.py:81
 msgid "My add-on doesn't fit into any of the categories"
@@ -2374,11 +2374,11 @@ msgstr "Amtawa n uzuzer n uzegrir n Firefox"
 
 #: src/olympia/devhub/templates/devhub/base.html:43
 msgid "Help us make things better!"
-msgstr ""
+msgstr "All-aneɣ ad nerr lecɣal igerrez ugar"
 
 #: src/olympia/devhub/templates/devhub/base.html:44
 msgid "Take our quick survey"
-msgstr ""
+msgstr "Err-d ɣef aḥedqis-nnef fessusen"
 
 #. {0} is an application, like Firefox.
 #: src/olympia/devhub/templates/devhub/index.html:21 src/olympia/templates/base.html:17
@@ -2493,11 +2493,11 @@ msgstr "Addad:"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:12
 msgid "Your email address is verified."
-msgstr ""
+msgstr "Tansa n yimayl-ik tettwasenqed."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:16
 msgid "Please verify your email."
-msgstr ""
+msgstr "Ttxil-k, senqed tansa-k n yimayl."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:20
 msgid "Could not verify email address. The verification link has expired."
@@ -2513,7 +2513,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:34
 msgid "Success!"
-msgstr ""
+msgstr "Ifuk!"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:35
 #, python-format
@@ -2547,7 +2547,7 @@ msgstr "Ar"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:60
 msgid "Subject"
-msgstr ""
+msgstr "Asentel"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:61 src/olympia/devhub/templates/devhub/versions/list.html:186 src/olympia/devhub/templates/devhub/versions/list.html:204
 #: src/olympia/devhub/templates/devhub/versions/list.html:230
@@ -2560,7 +2560,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:91
 msgid "Refresh results"
-msgstr ""
+msgstr "Smiren igmaḍ"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:101
 #, python-format
@@ -5261,7 +5261,7 @@ msgstr "D ayen, timseɛra n textilin n useqdec. Asiɣzef-a uḥric ad ak-d-yefk 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:495
 msgid "Get grammar help anywhere you write on the web — social media, email, docs, and more."
-msgstr ""
+msgstr "Faṛes tagnit seg tallelt n tjerrumt yal tikkelt ara taruḍ deg web — izeḍwa n tmetti, imaylen, isemliyen, atg."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5525,12 +5525,12 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:701
 msgid "Save images easily — just grab them from your current tab."
-msgstr ""
+msgstr "Sekles tugniwin s wudem fessusen — awi-d kan tugniwin ɣer yiccer-ik amiran."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:704
 msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title & more."
-msgstr ""
+msgstr "Faṛes tagnit seg tuṭṭfa n yicarren-ik gar ifassen-ik — mdel iccaren usligen, sdukel isfuyla, nɣel azwel n yiccer, d wayen niḍen."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:722
@@ -5575,7 +5575,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:863
 msgid "Advanced reader for aggregating all of your RSS/Atom/RDF sources."
-msgstr ""
+msgstr "Imeɣri leqqayen i usdukel n meṛṛa tiɣbula-ik RSS/Atom/RDF."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:881
@@ -5615,7 +5615,7 @@ msgstr "Uɣal ɣer tallit tafessast — makken igmaḍ ufrinen n unadi ttbanen-d
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:911
 msgid "Get the mouse scrollbar you've always wanted — specify width and color."
-msgstr ""
+msgstr "Afeggag n udrurem i tbeqquḍ yal tikkelt — fren tuzert-is akked yini i tebɣiḍ."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:923
