@@ -10,6 +10,7 @@ from django.utils.http import urlencode
 
 import django_tables2 as tables
 import markupsafe
+import waffle
 
 import olympia.core.logger
 from olympia import amo
@@ -534,6 +535,8 @@ class ReviewHelper:
             )
             can_approve_multiple = False
 
+        use_policies = waffle.switch_is_active('policy_selection_rather_than_reasons')
+
         # Definitions for all actions.
         actions['public'] = {
             'method': self.handler.approve_latest_version,
@@ -551,7 +554,10 @@ class ReviewHelper:
                 and (is_appropriate_reviewer or not self.human_review)
                 and not version_is_blocked
             ),
-            'allows_reasons': not is_static_theme,
+            'allows_reasons': not is_static_theme and not use_policies,
+            'enforcement_actions': (
+                not is_static_theme and use_policies and (DECISION_ACTIONS.AMO_APPROVE,)
+            ),
             'resolves_cinder_jobs': True,
             'requires_reasons': False,
             'requires_reasons_for_cinder_jobs': False,
@@ -576,10 +582,13 @@ class ReviewHelper:
                 and version_is_unreviewed
                 and is_appropriate_reviewer
             ),
-            'allows_reasons': True,
+            'allows_reasons': not use_policies,
+            'enforcement_actions': (
+                use_policies and (DECISION_ACTIONS.AMO_DISABLE_ADDON,)
+            ),
             'resolves_cinder_jobs': True,
-            'requires_reasons': not is_static_theme,
-            'requires_reasons_for_cinder_jobs': True,
+            'requires_reasons': not is_static_theme and not use_policies,
+            'requires_reasons_for_cinder_jobs': not use_policies,
         }
         actions['approve_content'] = {
             'method': self.handler.approve_content,
@@ -625,7 +634,8 @@ class ReviewHelper:
                 'The comments will be sent to the developer.'
             ),
             'available': (can_approve_multiple),
-            'allows_reasons': not is_static_theme,
+            'allows_reasons': not is_static_theme and not use_policies,
+            'enforcement_actions': (use_policies and (DECISION_ACTIONS.AMO_APPROVE,)),
             'resolves_cinder_jobs': True,
             'requires_reasons': False,
             'requires_reasons_for_cinder_jobs': False,
@@ -641,10 +651,13 @@ class ReviewHelper:
                 'The comments will be sent to the developer.'
             ),
             'available': can_reject_multiple,
-            'allows_reasons': True,
+            'allows_reasons': not use_policies,
+            'enforcement_actions': (
+                use_policies and (DECISION_ACTIONS.AMO_DISABLE_ADDON,)
+            ),
             'resolves_cinder_jobs': True,
-            'requires_reasons': not is_static_theme,
-            'requires_reasons_for_cinder_jobs': True,
+            'requires_reasons': not is_static_theme and not use_policies,
+            'requires_reasons_for_cinder_jobs': not use_policies,
         }
         actions['unreject_latest_version'] = {
             'method': self.handler.unreject_latest_version,
@@ -760,7 +773,8 @@ class ReviewHelper:
                 and is_reviewer
                 and (not any(promoted_group.admin_review) or is_appropriate_reviewer)
             ),
-            'allows_reasons': not is_static_theme,
+            'allows_reasons': not is_static_theme and not use_policies,
+            'enforcement_actions': use_policies,
             'requires_reasons': False,
         }
         actions['request_admin_review'] = {
@@ -811,10 +825,13 @@ class ReviewHelper:
             'available': (
                 addon_is_not_disabled_or_deleted and is_appropriate_admin_reviewer
             ),
-            'allows_reasons': True,
+            'allows_reasons': not use_policies,
+            'enforcement_actions': (
+                use_policies and (DECISION_ACTIONS.AMO_DISABLE_ADDON,)
+            ),
             'resolves_cinder_jobs': True,
-            'requires_reasons': not is_static_theme,
-            'requires_reasons_for_cinder_jobs': True,
+            'requires_reasons': not is_static_theme and not use_policies,
+            'requires_reasons_for_cinder_jobs': not use_policies,
             'can_attach': False,
         }
         actions['resolve_reports_job'] = {
@@ -828,7 +845,11 @@ class ReviewHelper:
             'available': is_reviewer and has_unresolved_abuse_report_jobs,
             'comments': False,
             'resolves_cinder_jobs': True,
-            'requires_policies': True,
+            'enforcement_actions': (
+                DECISION_ACTIONS.AMO_APPROVE,
+                DECISION_ACTIONS.AMO_IGNORE,
+                DECISION_ACTIONS.AMO_CLOSED_NO_ACTION,
+            ),
         }
         actions['resolve_appeal_job'] = {
             'method': self.handler.resolve_appeal_job,
@@ -984,6 +1005,7 @@ class ReviewBase:
         Not used by resolve_appeal_job."""
         # footgun: if action_completed=True then we don't call log_action here
         assert not log_action_kw or action_completed
+        decision_metadata = decision_metadata or {}
         reasons = (
             self.data.get('reasons', [])
             if self.review_action and self.review_action.get('allows_reasons')
@@ -994,8 +1016,12 @@ class ReviewBase:
             for reason in reasons
             if getattr(reason, 'cinder_policy', None)
         ]
-        if self.review_action and self.review_action.get('requires_policies'):
+        if self.review_action and self.review_action.get('enforcement_actions'):
             policies.extend(self.data.get('cinder_policies', []))
+        if 'policy_values' in self.data:
+            decision_metadata[ContentDecision.POLICY_DYNAMIC_VALUES] = self.data[
+                'policy_values'
+            ]
 
         cinder_action = getattr(activity_action, 'cinder_action', None)
         if not cinder_action and policies:
@@ -1003,7 +1029,11 @@ class ReviewBase:
                 # If there isn't a cinder_action from the activity action already, get
                 # it from the policy. There should only be one in the list as form
                 # validation raises for multiple cinder actions.
-                (actions := self.get_decision_actions_from_policies(policies))
+                (
+                    actions := CinderPolicy.get_decision_actions_from_policies(
+                        policies, for_entity=Addon
+                    )
+                )
                 and actions[0].value
             )
         assert cinder_action
@@ -1016,7 +1046,7 @@ class ReviewBase:
             'action_date': datetime.now() if action_completed else None,
             'notes': self.data.get('comments', ''),
             'reviewer_user': self.user,
-            'metadata': decision_metadata or {},
+            'metadata': decision_metadata,
         }
 
         decisions = []
@@ -1109,23 +1139,6 @@ class ReviewBase:
         # the post_save signal was not triggered so let's recheck the due date
         # explicitly.
         version.reset_due_date()
-
-    def get_decision_actions_from_policies(self, policies):
-        actions = CinderPolicy.get_decision_actions_from_policies(
-            policies, for_entity=Addon
-        )
-        # Until https://mozilla-hub.atlassian.net/browse/AMOENG-672 completes the
-        # integration we don't want to accidentally disable addons based on the actions
-        # linked to reviewreasons, so filter out all but the approve/ignore actions
-        return [
-            action
-            for action in actions
-            if action
-            in (
-                *DECISION_ACTIONS.NON_OFFENDING.values,
-                DECISION_ACTIONS.AMO_CLOSED_NO_ACTION,
-            )
-        ]
 
     def log_action(
         self,
@@ -1230,6 +1243,11 @@ class ReviewBase:
                 contentdecision__appeal_job=job
             ).distinct()
             # notify cinder
+            decision_metadata = (
+                {ContentDecision.POLICY_DYNAMIC_VALUES: self.data['policy_values']}
+                if 'policy_values' in self.data
+                else {}
+            )
             decision = ContentDecision.objects.create(
                 addon=self.addon,
                 action=previous_action_id,
@@ -1238,6 +1256,7 @@ class ReviewBase:
                 reviewer_user=self.user,
                 cinder_job=job,
                 override_of=job.final_decision,
+                metadata=decision_metadata,
             )
             decision.policies.set(list(previous_policies))
             decision.target_versions.set(previous_versions)

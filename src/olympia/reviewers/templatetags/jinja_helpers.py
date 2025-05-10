@@ -1,5 +1,8 @@
 import datetime
 
+from django.utils.html import escape
+from django.utils.safestring import mark_safe
+
 import jinja2
 from django_jinja import library
 
@@ -70,3 +73,14 @@ def format_score(value):
 @library.filter
 def to_dom_id(string):
     return string.replace('.', '_')
+
+
+@library.filter
+def render_text_with_input_fields(policy):
+    class WrapKey(dict):
+        def __missing__(self, key):
+            # django.utils.html.escape doesn't escape quotes
+            key = key.replace('"', '&quot;')
+            return f'<input placeholder="{key}" name="policy-value-{policy.id}-{key}">'
+
+    return mark_safe(escape(policy.text).format_map(WrapKey({})))

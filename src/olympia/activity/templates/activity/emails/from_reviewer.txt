@@ -4,6 +4,11 @@ A reviewer at addons.mozilla.org is contacting you regarding version {{ number }
 
 {{ author }} wrote:
 
+{% for policytext in policy_texts %}
+    {# Policies text may contain HTML entities, this is a text email so we consider that safe #}
+    - {{ policytext|safe }}
+{% endfor %}
+
 {{ comments|safe }}
 
 {% if has_attachment %}
@@ -14,6 +19,6 @@ To respond, please reply to this email or visit {{ url }}.
 
 Thank you for your attention.
 
--- 
+--
 Mozilla Add-ons
 {{ SITE_URL }}
