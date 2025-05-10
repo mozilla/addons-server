@@ -1585,7 +1585,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
             status=201,
         )
 
-        assert cinder_instance.workflow_recreate(notes='foo', job=cinder_job) == '2'
+        assert cinder_instance.workflow_recreate(reasoning='foo', job=cinder_job) == '2'
         assert json.loads(responses.calls[0].request.body)['reasoning'] == 'foo'
 
         self._check_post_queue_move_test(
@@ -1605,7 +1605,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
 
         assert (
             cinder_instance.workflow_recreate(
-                notes='foo', job=cinder_job, from_2nd_level=True
+                reasoning='foo', job=cinder_job, from_2nd_level=True
             )
             == '3'
         )
@@ -1652,7 +1652,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
             json={'job_id': '2'},
             status=201,
         )
-        assert cinder_instance.workflow_recreate(notes=None, job=cinder_job) == '2'
+        assert cinder_instance.workflow_recreate(reasoning=None, job=cinder_job) == '2'
         assert NeedsHumanReview.objects.count() == 2
         assert ActivityLog.objects.count() == 0
 
@@ -1699,7 +1699,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
             json={'job_id': '2'},
             status=201,
         )
-        assert cinder_instance.workflow_recreate(notes='', job=cinder_job) == '2'
+        assert cinder_instance.workflow_recreate(reasoning='', job=cinder_job) == '2'
 
         assert listed_version.addon.reload().status == amo.STATUS_APPROVED
         assert not listed_version.reload().needshumanreview_set.exists()
@@ -1751,7 +1751,7 @@ class TestCinderAddonHandledByLegal(TestCinderAddon):
             status=201,
         )
 
-        assert cinder_instance.workflow_recreate(notes='foo', job=cinder_job) == '2'
+        assert cinder_instance.workflow_recreate(reasoning='foo', job=cinder_job) == '2'
 
         # Check that we've not inadvertently changed the status
         assert listed_version.addon.reload().status == amo.STATUS_APPROVED

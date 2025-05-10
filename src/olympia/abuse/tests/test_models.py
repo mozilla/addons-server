@@ -1027,7 +1027,7 @@ class TestCinderJob(TestCase):
     def _test_handle_job_recreated(self, *, resolvable_in_reviewer_tools):
         addon = addon_factory()
         decision = ContentDecision.objects.create(
-            action=DECISION_ACTIONS.AMO_ESCALATE_ADDON, addon=addon, notes='blah'
+            action=DECISION_ACTIONS.AMO_ESCALATE_ADDON, addon=addon, reasoning='blah'
         )
         job = CinderJob.objects.create(
             job_id='1234', target_addon=addon, decision=decision
@@ -1063,7 +1063,7 @@ class TestCinderJob(TestCase):
         )
 
         decision = ContentDecision.objects.create(
-            action=DECISION_ACTIONS.AMO_ESCALATE_ADDON, addon=addon, notes='blah'
+            action=DECISION_ACTIONS.AMO_ESCALATE_ADDON, addon=addon, reasoning='blah'
         )
         old_job = CinderJob.objects.create(
             job_id='1234', target_addon=addon, decision=decision
@@ -1108,7 +1108,7 @@ class TestCinderJob(TestCase):
         )
 
         decision = ContentDecision.objects.create(
-            action=DECISION_ACTIONS.AMO_ESCALATE_ADDON, addon=addon, notes='blah'
+            action=DECISION_ACTIONS.AMO_ESCALATE_ADDON, addon=addon, reasoning='blah'
         )
         old_job = CinderJob.objects.create(
             job_id='1234', target_addon=addon, decision=decision
@@ -1148,7 +1148,7 @@ class TestCinderJob(TestCase):
     def test_handle_job_recreated_appeal(self):
         addon = addon_factory()
         decision = ContentDecision.objects.create(
-            action=DECISION_ACTIONS.AMO_ESCALATE_ADDON, addon=addon, notes='blah'
+            action=DECISION_ACTIONS.AMO_ESCALATE_ADDON, addon=addon, reasoning='blah'
         )
         appeal_job = CinderJob.objects.create(
             job_id='1234', target_addon=addon, decision=decision
@@ -1159,7 +1159,7 @@ class TestCinderJob(TestCase):
             decision=ContentDecision.objects.create(
                 action=DECISION_ACTIONS.AMO_APPROVE,
                 addon=addon,
-                notes='its okay',
+                reasoning='its okay',
                 appeal_job=appeal_job,
             ),
         )
@@ -1201,7 +1201,8 @@ class TestCinderJob(TestCase):
             )
         assert cinder_job.decision.cinder_id == '12345'
         assert cinder_job.decision.action == DECISION_ACTIONS.AMO_BAN_USER
-        assert cinder_job.decision.notes == 'teh notes'
+        assert cinder_job.decision.private_notes == 'teh notes'
+        assert cinder_job.decision.reasoning == ''
         assert cinder_job.decision.user == target
         assert action_mock.call_count == 1
         assert notify_mock.call_count == 1
@@ -1231,7 +1232,8 @@ class TestCinderJob(TestCase):
             )
         assert cinder_job.decision.cinder_id == '12345'
         assert cinder_job.decision.action == DECISION_ACTIONS.AMO_BAN_USER
-        assert cinder_job.decision.notes == 'teh notes'
+        assert cinder_job.decision.private_notes == 'teh notes'
+        assert cinder_job.decision.reasoning == ''
         assert cinder_job.decision.user == target
         assert action_mock.call_count == 1
         assert notify_mock.call_count == 1
@@ -1258,7 +1260,8 @@ class TestCinderJob(TestCase):
         cinder_job.reload()
         assert cinder_job.decision
         assert cinder_job.decision.action == DECISION_ACTIONS.AMO_ESCALATE_ADDON
-        assert cinder_job.decision.notes == 'blah'
+        assert cinder_job.decision.private_notes == 'blah'
+        assert cinder_job.decision.reasoning == ''
 
         new_job = cinder_job.forwarded_to_job
         assert new_job
@@ -1296,7 +1299,8 @@ class TestCinderJob(TestCase):
             )
         assert cinder_job.decision.cinder_id == '12345'
         assert cinder_job.decision.action == DECISION_ACTIONS.AMO_DISABLE_ADDON
-        assert cinder_job.decision.notes == 'teh notes'
+        assert cinder_job.decision.private_notes == 'teh notes'
+        assert cinder_job.decision.reasoning == ''
         assert cinder_job.decision.addon == target
         assert action_mock.call_count == 1
         assert notify_mock.call_count == 1
@@ -2843,7 +2847,7 @@ class TestContentDecision(TestCase):
         decision.policies.add(
             CinderPolicy.objects.create(name='policy', uuid='12345678')
         )
-        decision.update(notes='some review text')
+        decision.update(reasoning='some review text')
 
         decision.report_to_cinder(
             CinderJob.get_entity_helper(
@@ -3140,7 +3144,7 @@ class TestContentDecision(TestCase):
         decision = ContentDecision.objects.create(
             addon=addon,
             action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
-            notes='some review text',
+            reasoning='some review text',
             reviewer_user=self.reviewer_user,
         )
         CinderJob.objects.create(decision=decision)
@@ -3177,7 +3181,7 @@ class TestContentDecision(TestCase):
         decision = ContentDecision.objects.create(
             addon=addon,
             action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
-            notes='some review text',
+            reasoning='some review text',
             reviewer_user=self.reviewer_user,
         )
         decision.target_versions.set([addon.current_version])
@@ -3215,7 +3219,7 @@ class TestContentDecision(TestCase):
         decision = ContentDecision.objects.create(
             addon=addon,
             action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
-            notes='some review text',
+            reasoning='some review text',
             reviewer_user=self.reviewer_user,
             metadata={
                 'delayed_rejection_date': (
@@ -3256,7 +3260,7 @@ class TestContentDecision(TestCase):
         decision = ContentDecision.objects.create(
             addon=addon,
             action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
-            notes='some review text',
+            reasoning='some review text',
             reviewer_user=self.reviewer_user,
             metadata={
                 'delayed_rejection_date': (
@@ -3322,7 +3326,7 @@ class TestContentDecision(TestCase):
             addon=addon,
             action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
             action_date=datetime.now(),
-            notes='some review text',
+            reasoning='some review text',
             reviewer_user=self.reviewer_user,
         )
         policies = [CinderPolicy.objects.create(name='policy', uuid='12345678')]
@@ -3377,7 +3381,7 @@ class TestContentDecision(TestCase):
         decision = ContentDecision.objects.create(
             addon=addon,
             action=DECISION_ACTIONS.AMO_LEGAL_FORWARD,
-            notes='some reasoning',
+            reasoning='some reasoning',
             reviewer_user=self.reviewer_user,
         )
         cinder_job = CinderJob.objects.create(job_id='999', decision=decision)
@@ -3522,7 +3526,7 @@ class TestContentDecision(TestCase):
             addon=addon_factory(users=[user_factory()]),
             action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
             action_date=datetime.now(),
-            notes='some review text',
+            reasoning='some review text',
             reviewer_user=self.reviewer_user,
         )
         log_entry = ActivityLog.objects.create(
@@ -3564,7 +3568,7 @@ class TestContentDecision(TestCase):
         assert requeue.action == DECISION_ACTIONS.AMO_REQUEUE
         self.assertCloseToNow(requeue.action_date)
         assert requeue.override_of == decision
-        assert requeue.notes == 'go!'
+        assert requeue.private_notes == 'go!'
         assert requeue.reviewer_user == user
         assert requeue.cinder_job == job
         assert NeedsHumanReview.objects.filter(

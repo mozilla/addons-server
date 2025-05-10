@@ -12,7 +12,7 @@ from django.db import models
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.functional import cached_property
-from django.utils.html import format_html, mark_safe
+from django.utils.html import format_html, format_html_join, mark_safe
 from django.utils.translation import gettext, ngettext
 
 import olympia.core.logger
@@ -836,16 +836,21 @@ class ActivityLog(ModelBase):
         try:
             kw = {
                 'addon': addon,
-                'rating': rating,
-                'version': version,
                 'collection': collection,
+                'file': file_,
+                'group': group,
+                'rating': rating,
+                'status': status,
                 'tag': tag,
                 'user': user,
                 'user_responsible': user_responsible,
-                'group': group,
-                'file': file_,
-                'status': status,
+                'version': version,
             }
+            # Add a special 'target' keyword argument containing everything
+            # that we found in arguments, formatted.
+            kw['target'] = format_html_join(
+                ' ', '{}', ([v] for k, v in kw.items() if k != 'user_responsible' and v)
+            )
             return format_html(str(format), *arguments, **kw)
         except (AttributeError, KeyError, IndexError):
             log.warning('%d contains garbage data' % (self.id or 0))

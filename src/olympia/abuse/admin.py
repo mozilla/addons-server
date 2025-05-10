@@ -456,7 +456,8 @@ class ContentDecisionAdmin(AMOModelAdmin):
         'action',
         'action_date',
         'cinder_id',
-        'notes',
+        'reasoning',
+        'private_notes',
         'policies',
         'appeal_job',
     )

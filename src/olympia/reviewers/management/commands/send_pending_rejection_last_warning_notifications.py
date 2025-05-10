@@ -100,7 +100,7 @@ class Command(BaseCommand):
                 action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
             )
         )
-        decision.notes = relevant_activity_log.details.get('comments', '')
+        decision.reasoning = relevant_activity_log.details.get('comments', '')
         action_helper = ContentActionRejectVersionDelayed(decision)
         action_helper.notify_owners(
             log_entry_id=relevant_activity_log.id,

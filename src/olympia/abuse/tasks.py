@@ -218,7 +218,9 @@ def handle_escalate_action(*, job_pk, from_2nd_level=False):
         old_job.target, resolved_in_reviewer_tools=True
     )
     job_id = entity_helper.workflow_recreate(
-        notes=old_job.final_decision.notes, job=old_job, from_2nd_level=from_2nd_level
+        reasoning=old_job.final_decision.reasoning,
+        job=old_job,
+        from_2nd_level=from_2nd_level,
     )
 
     old_job.handle_job_recreated(new_job_id=job_id, resolvable_in_reviewer_tools=True)
@@ -230,7 +232,7 @@ def handle_forward_to_legal_action(*, decision_pk):
     decision = ContentDecision.objects.get(id=decision_pk)
     old_job = getattr(decision, 'cinder_job', None)
     entity_helper = CinderAddonHandledByLegal(decision.addon)
-    job_id = entity_helper.workflow_recreate(notes=decision.notes, job=old_job)
+    job_id = entity_helper.workflow_recreate(reasoning=decision.reasoning, job=old_job)
 
     if old_job:
         old_job.handle_job_recreated(

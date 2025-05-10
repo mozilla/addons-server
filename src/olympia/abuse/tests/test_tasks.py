@@ -720,7 +720,7 @@ def test_report_decision_to_cinder_and_notify_with_job():
         addon=abuse_report.addon,
         action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
         action_date=datetime.now(),
-        notes='some review text',
+        reasoning='some review text',
         cinder_job=cinder_job,
     )
     decision.policies.add(cinder_policy)
@@ -762,7 +762,7 @@ def test_report_decision_to_cinder_and_notify():
         addon=addon_factory(),
         action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
         action_date=datetime.now(),
-        notes='some review text',
+        reasoning='some review text',
     )
     decision.policies.add(cinder_policy)
     ActivityLog.objects.create(
@@ -806,7 +806,7 @@ def test_report_decision_to_cinder_and_notify_exception(
         addon=addon_factory(),
         action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
         action_date=datetime.now(),
-        notes='some review text',
+        reasoning='some review text',
     )
     statsd_incr_mock.reset_mock()
 
@@ -1141,7 +1141,7 @@ def do_handle_escalate_action(*, from_2nd_level, expected_nhr_reason):
     user_factory(id=settings.TASK_USER_ID)
     addon = addon_factory()
     decision = ContentDecision.objects.create(
-        action=DECISION_ACTIONS.AMO_ESCALATE_ADDON, addon=addon, notes='blah'
+        action=DECISION_ACTIONS.AMO_ESCALATE_ADDON, addon=addon, reasoning='blah'
     )
     job = CinderJob.objects.create(job_id='1234', target_addon=addon, decision=decision)
     report = AbuseReport.objects.create(guid=addon.guid, cinder_job=job)

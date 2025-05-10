@@ -1266,7 +1266,7 @@ class TestReviewForm(TestCase):
             forwarded_to_job=cinder_job_forwarded,
             decision=ContentDecision.objects.create(
                 action=DECISION_ACTIONS.AMO_ESCALATE_ADDON,
-                notes='Why o why',
+                private_notes='Why o why',
                 addon=self.addon,
             ),
         )

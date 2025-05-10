@@ -1014,7 +1014,7 @@ class ReviewBase:
             'addon': self.addon,
             'action': cinder_action,
             'action_date': datetime.now() if action_completed else None,
-            'notes': self.data.get('comments', ''),
+            'reasoning': self.data.get('comments', ''),
             'reviewer_user': self.user,
             'metadata': decision_metadata or {},
         }
@@ -1208,7 +1208,7 @@ class ReviewBase:
             sign_file(self.file)
 
     def process_comment(self):
-        self.log_action(amo.LOG.COMMENT_VERSION)
+        self.log_action(amo.LOG.REVIEWER_PRIVATE_COMMENT)
 
     def resolve_reports_job(self):
         if self.data.get('cinder_jobs_to_resolve', ()):
@@ -1234,7 +1234,7 @@ class ReviewBase:
                 addon=self.addon,
                 action=previous_action_id,
                 action_date=datetime.now(),
-                notes=self.data.get('comments', ''),
+                reasoning=self.data.get('comments', ''),
                 reviewer_user=self.user,
                 cinder_job=job,
                 override_of=job.final_decision,

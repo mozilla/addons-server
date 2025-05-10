@@ -229,7 +229,7 @@ class CinderEntity:
         a keyword argument."""
         pass
 
-    def workflow_recreate(self, *, notes, job=None, from_2nd_level=False):
+    def workflow_recreate(self, *, reasoning, job=None, from_2nd_level=False):
         """Recreate a job in a queue."""
         raise NotImplementedError
 
@@ -422,9 +422,9 @@ class CinderAddon(CinderEntity):
                 ],
             }
 
-    def workflow_recreate(self, *, notes, job=None, from_2nd_level=False):
+    def workflow_recreate(self, *, reasoning, job=None, from_2nd_level=False):
         """Recreate a job in a queue."""
-        job_id = self.report(report=None, reporter=None, message=notes)
+        job_id = self.report(report=None, reporter=None, message=reasoning)
         if job:
             self.post_queue_move(job=job, from_2nd_level=from_2nd_level)
         return job_id
