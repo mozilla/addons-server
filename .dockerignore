@@ -35,6 +35,7 @@ docs/_build
 docs/_gh-pages
 docs/api/_build
 local_settings.py
+google-application-credentials.json
 MANIFEST
 node_modules
 pip-log.txt
