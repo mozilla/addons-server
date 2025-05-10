@@ -383,7 +383,7 @@ msgstr "Amiḍan yesra i yisem n uskan send ad yettwarnu am umeskar."
 
 #: src/olympia/addons/serializers.py:1237
 msgid "This slug cannot be used. Please choose another."
-msgstr "Anegzum-a ur yezmir ara ad yettuseqdec. Ma ulac aγili; fren wayeḍ-nniḍen."
+msgstr "Anegzum-a ur yezmir ara ad yettuseqdec. Ma ulac aɣilif, fren wayeḍ-nniḍen."
 
 #: src/olympia/addons/utils.py:39
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -2334,7 +2334,7 @@ msgstr "Aceggir yettwasuter."
 
 #: src/olympia/devhub/views.py:1947
 msgid "You must provide further details to proceed."
-msgstr "Ilaq ugar n talγut akken ad tkemleḍ."
+msgstr "Ilaq ugar n talɣut akken ad tkemleḍ."
 
 #: src/olympia/devhub/views.py:2049
 msgid "Your old credentials were revoked and are no longer valid."
@@ -2768,8 +2768,8 @@ msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
 "ons."
 msgstr ""
-"MA yella γur-k asebter nniḍen i uzegrir inek, sekcem tansa yines. Ma yella asmel inek yeb yettusuqel ar deqs n tutlayin, tisuqilin yemgaraden n wurti-agi zemrent ad ttwarnunt. Urti-agi "
-"yettwaseqdackani yizegrar yettwasnen."
+"Ma yella ɣur-k⋅m asebter nniḍen i uzegrir-inek⋅inem, sekcem tansa-ines. Ma yella asmel-inek⋅inem web yettusuqel ar deqs n tutlayin, tisuqilin yemgaraden n wurti-a zemrent ad ttwarnunt. Urti-a "
+"yettwaseqdac kan i yisiɣzaf yettwasnen."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:96 src/olympia/devhub/templates/devhub/addons/edit/describe.html:260
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:84 src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:174
