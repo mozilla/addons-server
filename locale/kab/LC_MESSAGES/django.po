@@ -2686,7 +2686,7 @@ msgstr "Imeskaren"
 
 #: src/olympia/devhub/templates/devhub/addons/owner.html:24
 msgid "About author roles"
-msgstr "Γef temlilin"
+msgstr "Ɣef temlilin"
 
 #: src/olympia/devhub/templates/devhub/addons/owner.html:48
 msgid "Authors pending confirmation"
@@ -2956,7 +2956,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:10
 #, python-brace-format
 msgid "Add-on Media for {0}"
-msgstr "Allal n teγwal n uzegrir i {0}"
+msgstr "Allal n teɣwal n uzegrir i {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:15
 msgid "Add-on icon"
@@ -3100,11 +3100,11 @@ msgstr "Ikayaden imuta"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:9 src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:67
 msgid "Security Tests"
-msgstr "Ikayaden n tγellist"
+msgstr "Ikayaden n tɣellist"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:13 src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:80
 msgid "Extension Tests"
-msgstr "Ikayaden n usiγzef"
+msgstr "Ikayaden n usiɣzef"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:17 src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:93
 msgid "Localization Tests"
@@ -3629,7 +3629,7 @@ msgstr "Uɣal"
 
 #: src/olympia/devhub/templates/devhub/api/key.html:21
 msgid "API Credentials"
-msgstr "Talγut n usesteb i API"
+msgstr "Talɣut n usesteb i API"
 
 #: src/olympia/devhub/templates/devhub/emails/api_key_confirmation.ltxt:12
 #, python-format
@@ -4012,7 +4012,7 @@ msgstr "Qebleɣ Mozilla ad tseqdec umlan-inu akken yella deg %(link_open)stserti
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:48
 msgid "Sign Up"
-msgstr "Ffeγ"
+msgstr "Ffeɣ"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:52
 msgid "Thanks!"
@@ -4024,7 +4024,7 @@ msgstr "Ma yella ur tsentmeḍ ara ajerred-ik ɣer tebratt n isallen icudden ɣe
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:3
 msgid "Resources"
-msgstr "Tiγbula"
+msgstr "Tiɣbula"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:9
 msgid "WebExtensions API"
@@ -4121,7 +4121,7 @@ msgstr "Ablug"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html:39
 msgid "Sign Out"
-msgstr "Ffeγ"
+msgstr "Ffeɣ"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html:41
 msgid "No Photo"
@@ -4269,7 +4269,7 @@ msgstr "Sali-d akaram..."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:125 src/olympia/discovery/serializers.py:102
 msgid "by"
-msgstr "sγur"
+msgstr "sɣur"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:139
 msgid "Leave a reply"
@@ -4400,8 +4400,8 @@ msgstr[1] "{0} tuccḍiwin"
 #, python-brace-format
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] "{0} alγu"
-msgstr[1] "{0} ilɣa"
+msgstr[0] "{0} n ulɣu"
+msgstr[1] "{0} n yilɣa"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -6669,11 +6669,11 @@ msgstr "Izegrar"
 
 #: src/olympia/templates/photon-footer.html:4
 msgid "Go to Mozilla's homepage"
-msgstr "Ddu γer usebter agejdan n Mozilla"
+msgstr "Ddu ɣer usebter agejdan n Mozilla"
 
 #: src/olympia/templates/photon-footer.html:11
 msgid "About"
-msgstr "Γef"
+msgstr "Ɣef"
 
 #: src/olympia/templates/photon-footer.html:12
 msgid "Firefox Add-ons Blog"
