@@ -23,7 +23,7 @@ msgstr "Välj en fil..."
 
 #: static/js/common/upload-addon.js:82
 msgid "Your add-on should end with .zip, .xpi or .crx"
-msgstr "Ditt tillägg bör sluta med .zip, .xpi, eller .crx"
+msgstr "Ditt tillägg bör sluta med .zip, .xpi eller .crx"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: static/js/common/upload-addon.js:118
