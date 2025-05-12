@@ -1263,7 +1263,7 @@ class TestQueueBasics(QueueTest):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        expected = ['Add-on', 'Type', 'Due Date', 'Flags']
+        expected = ['Add-on', 'Due Date', 'Reasons', 'Flags', 'Type']
         assert [pq(th).text() for th in doc('#addon-queue tr th')[1:]] == (expected)
 
     def test_no_results(self):
@@ -1604,7 +1604,13 @@ class TestExtensionQueue(QueueTest):
             self.addons['Pending One'],
         ]
         self.expected_versions = self.get_expected_versions(self.expected_addons)
-        self._test_results()
+        doc = self._test_results()
+        rows = doc('#addon-queue tr.addon-row')
+        for row in rows:
+            assert (
+                NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED.display
+                in row.text_content()
+            )
 
     def test_promoted_addon_in_pre_review_group_does_show_up(self):
         self.generate_files()
@@ -1629,7 +1635,13 @@ class TestExtensionQueue(QueueTest):
         self.addons['Pending One'].current_version.update(due_date=self.days_ago(0))
         self.addons['Pending Two'].current_version.update(due_date=self.days_ago(-1))
 
-        self._test_results()
+        doc = self._test_results()
+        rows = doc('#addon-queue tr.addon-row')
+        for row in rows:
+            assert (
+                NeedsHumanReview.REASONS.BELONGS_TO_PROMOTED_GROUP.display
+                in row.text_content()
+            )
 
     def test_static_theme_filtered_out(self):
         self.generate_files(auto_approve_disabled=True)
@@ -1760,7 +1772,22 @@ class TestExtensionQueue(QueueTest):
             NeedsHumanReview.objects.create(
                 version=version, reason=NeedsHumanReview.REASONS.DEVELOPER_REPLY
             )
-        self._test_results()
+        doc = self._test_results()
+        rows = doc('#addon-queue tr.addon-row')
+        assert (
+            NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION.display
+            in rows[0].text_content()
+        )
+        assert (
+            NeedsHumanReview.REASONS.DEVELOPER_REPLY.display in rows[1].text_content()
+        )
+        assert (
+            NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION.display
+            in rows[1].text_content()
+        )
+        assert (
+            NeedsHumanReview.REASONS.DEVELOPER_REPLY.display in rows[2].text_content()
+        )
 
     def test_different_due_dates_correct_one_is_shown_when_filtering(self):
         self.url += '?due_date_reasons=needs_human_review_developer_reply'

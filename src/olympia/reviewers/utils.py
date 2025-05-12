@@ -6,6 +6,7 @@ from django.contrib.humanize.templatetags.humanize import naturaltime
 from django.core.files.base import ContentFile
 from django.db.models import Count, F, Q
 from django.urls import reverse
+from django.utils.html import format_html, format_html_join
 from django.utils.http import urlencode
 
 import django_tables2 as tables
@@ -109,8 +110,10 @@ class PendingManualApprovalQueueTable(AddonQueueTable):
     url_suffix = r'^extension$'
     permission = amo.permissions.ADDONS_REVIEW
 
+    reasons = tables.Column(verbose_name='Reasons', empty_values=(), orderable=False)
+
     class Meta(AddonQueueTable.Meta):
-        fields = ('addon_name', 'addon_type', 'due_date', 'flags')
+        fields = ('addon_name', 'due_date', 'reasons', 'flags', 'addon_type')
         exclude = ('last_human_review',)
         orderable = True
 
@@ -157,6 +160,20 @@ class PendingManualApprovalQueueTable(AddonQueueTable):
             f'{markupsafe.escape(naturaltime(due_date))}</span>'
         )
 
+    def render_reasons(self, record):
+        return format_html(
+            '<ul class="reasons">{}</ul>',
+            format_html_join(
+                '',
+                '<li>{}</li>',
+                [
+                    (entry.display,)
+                    for entry in NeedsHumanReview.REASONS.entries
+                    if getattr(record, entry.annotation, None)
+                ],
+            ),
+        )
+
     @classmethod
     def default_order_by(cls):
         # We want to display the add-ons which have earliest due date at the top by
@@ -177,6 +194,7 @@ class ThemesQueueTable(PendingManualApprovalQueueTable):
         exclude = (
             'addon_type',
             'last_human_review',
+            'reasons',
         )
 
     @classmethod
