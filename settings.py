@@ -175,5 +175,5 @@ MEMCACHE_MIN_SERVER_COUNT = 1
 GOOGLE_APPLICATION_CREDENTIALS_BIGQUERY = env(
     'GOOGLE_APPLICATION_CREDENTIALS_BIGQUERY',
     # Set default path to the path explicitly gitignored.
-    default=path('google-application-credentials.json'),
+    default=path('private/google-application-credentials.json'),
 )
