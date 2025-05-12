@@ -153,7 +153,7 @@ services:
     mem_limit: 2g
 
   redis:
-    image: redis:6.2-bookworm@sha256:c628c49a6ce4a68bfbd548d7957d3d52b2267a4cd4b4a16779a1ca0cd1126527
+    image: redis:8.0-bookworm@sha256:a4b90e7079b67c41bdf4ca6f9d87197079e4c1c3273b7f489a74f2687d85a05e
     volumes:
       - data_redis:/data
 
