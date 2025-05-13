@@ -1347,7 +1347,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         Group.objects.get(name=self.ActionClass.stakeholder_acl_group_name).users.add(
             stakeholder
         )
-        self.decision.update(reasoning='Bad things!')
+        self.decision.update(private_notes='', reasoning='Bad things!')
 
         # the addon is not promoted
         assert self.addon.publicly_promoted_groups == []
@@ -1361,6 +1361,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         assert mail.outbox[0].recipients() == [stakeholder.email]
         assert mail.outbox[0].subject == f'teh reason issued for {self.addon.name}'
         assert 'Bad things!' in mail.outbox[0].body
+        assert 'Private notes:' not in mail.outbox[0].body
         assert (
             f'teh reason for versions:\n{listed_version.version}' in mail.outbox[0].body
         )
@@ -1385,6 +1386,29 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         action.notify_stakeholders('teh reason')
         assert len(mail.outbox) == 2  # still two
 
+    def test_notify_stakeholders_with_private_notes(self):
+        stakeholder = user_factory()
+        self.decision.target_versions.set([self.version])
+        action = self.ActionClass(self.decision)
+        assert len(mail.outbox) == 0
+        listed_version = self.version
+        listed_version.file.update(is_signed=True)
+        unlisted_version = version_factory(
+            addon=self.addon, channel=amo.CHANNEL_UNLISTED, file_kw={'is_signed': True}
+        )
+        Group.objects.get(name=self.ActionClass.stakeholder_acl_group_name).users.add(
+            stakeholder
+        )
+        self.decision.update(private_notes='These are the private notes.')
+
+        # make the addon promoted
+        self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED)
+        action.notify_stakeholders('teh reason')
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].recipients() == [stakeholder.email]
+        assert mail.outbox[0].subject == f'teh reason issued for {self.addon.name}'
+        assert 'Private notes:' in mail.outbox[0].body
+        assert 'These are the private notes.' in mail.outbox[0].body
 
 class TestContentActionCollection(BaseTestContentAction, TestCase):
     ActionClass = ContentActionDeleteCollection

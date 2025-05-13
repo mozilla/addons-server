@@ -423,6 +423,7 @@ class ContentActionRejectVersion(ContentActionDisableAddon):
             context_dict = {
                 'rejection_type': rejection_type,
                 'version_list': ', '.join(ver.version for ver in versions),
+                'private_notes': self.decision.private_notes,
                 'reasoning': self.decision.reasoning,
                 'review_urls': review_urls,
                 'target_url': self.target.get_absolute_url()

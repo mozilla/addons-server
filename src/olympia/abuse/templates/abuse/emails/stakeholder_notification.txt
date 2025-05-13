@@ -1,7 +1,13 @@
 {{ rejection_type }} for versions:
 {{ version_list }}
 
+Reasoning:
 {{ reasoning }}
+
+{% if private_notes %}
+Private notes:
+{{ private_notes }}
+{% endif %}
 
 {{ review_urls }}
 {{ target_url }}
