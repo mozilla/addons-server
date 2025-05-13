@@ -3197,7 +3197,7 @@ class TestContentDecision(TestCase):
         assert not NeedsHumanReview.objects.filter(
             is_active=True, reason=NeedsHumanReview.REASONS.CINDER_ESCALATION
         ).exists()
-        new_job = CinderJob.objects.latest()
+        new_job = CinderJob.objects.first()
         assert not new_job.resolvable_in_reviewer_tools
 
         decision.send_notifications()
