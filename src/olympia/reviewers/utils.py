@@ -1234,6 +1234,8 @@ class ReviewBase:
 
     def resolve_appeal_job(self):
         # It's possible to have multiple appeal jobs, so handle them seperately.
+        version = self.version
+        self.version = None
         for job in self.data.get('cinder_jobs_to_resolve', ()):
             # collect all the policies we made decisions under
             previous_policies = CinderPolicy.objects.filter(
@@ -1244,9 +1246,9 @@ class ReviewBase:
             previous_action_id = min(
                 decision.action for decision in job.appealed_decisions.all()
             )
-            previous_versions = Version.unfiltered.filter(
-                contentdecision__appeal_job=job
-            ).distinct()
+            previous_versions = list(
+                Version.unfiltered.filter(contentdecision__appeal_job=job).distinct()
+            )
             # notify cinder
             decision = ContentDecision.objects.create(
                 addon=self.addon,
@@ -1264,6 +1266,7 @@ class ReviewBase:
                 versions=previous_versions,
                 decisions=[decision],
                 policies=previous_policies,
+                **({'version': version} if not previous_versions else {}),
             )
             log_entry = decision.execute_action()
             self.update_queue_history(log_entry)
