@@ -1393,7 +1393,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         assert len(mail.outbox) == 0
         listed_version = self.version
         listed_version.file.update(is_signed=True)
-        unlisted_version = version_factory(
+        version_factory(
             addon=self.addon, channel=amo.CHANNEL_UNLISTED, file_kw={'is_signed': True}
         )
         Group.objects.get(name=self.ActionClass.stakeholder_acl_group_name).users.add(
@@ -1409,6 +1409,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         assert mail.outbox[0].subject == f'teh reason issued for {self.addon.name}'
         assert 'Private notes:' in mail.outbox[0].body
         assert 'These are the private notes.' in mail.outbox[0].body
+
 
 class TestContentActionCollection(BaseTestContentAction, TestCase):
     ActionClass = ContentActionDeleteCollection
