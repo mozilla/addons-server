@@ -54,7 +54,7 @@ msgstr "Nieprawidłowa wartość"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:10 src/olympia/abuse/templates/abuse/appeal.html:15
 msgid "Appeal reviewer decision"
-msgstr ""
+msgstr "Odwołanie od decyzji recenzenta"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:16
 #, python-brace-format
@@ -77,6 +77,7 @@ msgstr "Dziękujemy za Twoje zgłoszenie."
 msgid ""
 "We have already reviewed a similar appeal from another reporter, and have reversed our prior decision. We have taken action against the content and/or account holder in accordance with our policies."
 msgstr ""
+"Rozpatrzyliśmy już podobne odwołanie od innego zgłaszającego i zmieniliśmy naszą wcześniejszą decyzję. Podjęliśmy działania przeciwko treści i/lub właścicielowi konta zgodnie z naszymi zasadami."
 
 #: src/olympia/abuse/templates/abuse/appeal.html:38
 msgid "Because the decision you are appealing has already been overturned, your appeal will not be processed."
@@ -96,7 +97,7 @@ msgstr "Cześć,"
 
 #: src/olympia/abuse/templates/abuse/emails/base_reporter.txt:7
 msgid "Mozilla Add-ons Team"
-msgstr ""
+msgstr "Zespół Dodatków Mozilli"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_approve.txt:8
 #, python-format
@@ -109,6 +110,13 @@ msgid ""
 "\n"
 "Thank you for your attention.\n"
 msgstr ""
+"\n"
+"Dziękujemy za twoje zgłoszenie o %(name)s na Dodatkach Mozilli i za podanie dodatkowych informacji na temat Twoich obaw.\n"
+"\n"
+"Po przejrzeniu twojego odwołania ustaliliśmy, że poprzednia decyzja, zgodnie z którą ta treść nie narusza zasad Mozilli (%(policy_document_url)s), była prawidłowa. Na podstawie tego ustalenia odrzuciliśmy twoje odwołanie i nie podejmiemy żadnych działań przeciwko kontu ani treści.\n"
+"%(manual_reasoning_text)s.\n"
+"\n"
+"Dziękujemy za uwagę.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown.txt:5
 #, python-format
@@ -118,6 +126,10 @@ msgid ""
 "\n"
 "After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, we have removed the content, and notified the user of our action.\n"
 msgstr ""
+"\n"
+"Dziękujemy za twoje zgłoszenie o %(name)s na Dodatkach Mozilli i za podanie dodatkowych informacji na temat Twoich obaw.\n"
+"\n"
+"Po przejrzeniu twojego odwołania ustaliliśmy, że poprzednia decyzja, zgodnie z którą ta treść nie narusza zasad Mozilli (%(policy_document_url)s), była nieprawidłowa. Na podstawie tego ustalenia usunęliśmy treści i powiadomiliśmy użytkownika o naszym działaniu.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown_delayed.txt:5
 #, python-format
@@ -127,6 +139,10 @@ msgid ""
 "\n"
 "After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, we have requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
 msgstr ""
+"\n"
+"Dziękujemy za twoje zgłoszenie o %(name)s na Dodatkach Mozilli i za podanie dodatkowych informacji na temat Twoich obaw.\n"
+"\n"
+"Po przejrzeniu twojego odwołania ustaliliśmy, że poprzednia decyzja, zgodnie z którą ta treść nie narusza zasad Mozilli (%(policy_document_url)s), była nieprawidłowa. Na podstawie tego ustalenia poprosiliśmy dewelopera o wprowadzenie zmian. Jeśli treść nie zostanie zaktualizowana, aby skorygować naruszenie, usuniemy ją.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:5
 #, python-format
@@ -136,6 +152,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it does not violate Mozilla's policies (%(policy_document_url)s).  It will therefore not be subject to any moderation action.\n"
 msgstr ""
+"\n"
+"Dziękujemy za twoje zgłoszenie o %(name)s na %(target_url)s.\n"
+"\n"
+"Przejrzeliśmy twoje zgłoszenie i kwestionowaną treść, i ustaliliśmy, że nie narusza zasad Mozilli (%(policy_document_url)s).  Zatem nie będzie podlegać żadnym działaniom moderacyjnym.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:7
 #, python-format
@@ -143,6 +163,8 @@ msgid ""
 "You have the right to appeal this decision within 6 months from the date of this email. See %(appeal_url)s for details on the appeal process, including how to file an appeal for this specific "
 "decision."
 msgstr ""
+"Masz prawo odwołać się od tej decyzji w ciągu sześciu miesięcy od daty tego e-maila. Zobacz %(appeal_url)s, aby uzyskać szczegółowe informacje na temat procesu odwoławczego, w tym jak złożyć "
+"odwołanie od tej konkretnej decyzji."
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_addon.txt:5
 #, python-format
@@ -152,6 +174,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
+"\n"
+"Dziękujemy za twoje zgłoszenie o następującym dodatku na Dodatkach Mozilli: %(name)s.\n"
+"\n"
+"Przejrzeliśmy twoje zgłoszenie i kwestionowaną treść, i ustaliliśmy, że narusza zasady Mozilli (%(policy_document_url)s), zatem usunęliśmy treści.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_addon_delayed.txt:5
 #, python-format
