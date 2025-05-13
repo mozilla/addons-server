@@ -9,7 +9,6 @@ import pytest
 import responses
 from celery.exceptions import Retry
 from freezegun import freeze_time
-from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
@@ -30,7 +29,6 @@ from ..models import AbuseReport, CinderJob, CinderPolicy, ContentDecision
 from ..tasks import (
     appeal_to_cinder,
     flag_high_abuse_reports_addons_according_to_review_tier,
-    handle_escalate_action,
     report_decision_to_cinder_and_notify,
     report_to_cinder,
     sync_cinder_policies,
@@ -1135,52 +1133,3 @@ class TestSyncCinderPolicies(TestCase):
             'amo-approve',
             'amo-ban-user',
         ]
-
-
-def do_handle_escalate_action(*, from_2nd_level, expected_nhr_reason):
-    user_factory(id=settings.TASK_USER_ID)
-    addon = addon_factory()
-    decision = ContentDecision.objects.create(
-        action=DECISION_ACTIONS.AMO_ESCALATE_ADDON, addon=addon, reasoning='blah'
-    )
-    job = CinderJob.objects.create(job_id='1234', target_addon=addon, decision=decision)
-    report = AbuseReport.objects.create(guid=addon.guid, cinder_job=job)
-    assert not job.resolvable_in_reviewer_tools
-    responses.add(
-        responses.POST,
-        f'{settings.CINDER_SERVER_URL}create_report',
-        json={'job_id': '5678'},
-        status=201,
-    )
-
-    handle_escalate_action(job_pk=job.pk, from_2nd_level=from_2nd_level)
-
-    job.reload()
-    new_job = job.forwarded_to_job
-    assert new_job.job_id == '5678'
-    assert list(new_job.forwarded_from_jobs.all()) == [job]
-    assert new_job.resolvable_in_reviewer_tools
-    assert new_job.target_addon == addon
-    assert report.reload().cinder_job == new_job
-    assert json.loads(responses.calls[0].request.body)['reasoning'] == 'blah'
-    assert (
-        addon.current_version.reload().needshumanreview_set.get().reason
-        == expected_nhr_reason
-    )
-
-
-@pytest.mark.django_db
-@override_switch('dsa-cinder-forwarded-review', active=True)
-def test_handle_escalate_action():
-    do_handle_escalate_action(
-        from_2nd_level=False,
-        expected_nhr_reason=NeedsHumanReview.REASONS.CINDER_ESCALATION,
-    )
-
-
-@pytest.mark.django_db
-def test_handle_escalate_action_from_2nd_level():
-    do_handle_escalate_action(
-        from_2nd_level=True,
-        expected_nhr_reason=NeedsHumanReview.REASONS.SECOND_LEVEL_REQUEUE,
-    )

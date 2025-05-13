@@ -4162,7 +4162,6 @@ class TestReviewHelper(TestReviewHelperBase):
 
         # And check that the job was resolved in the way we expected
         assert job.reload().decision.action == DECISION_ACTIONS.AMO_LEGAL_FORWARD
-        assert job.forwarded_to_job == CinderJob.objects.get(job_id='5678')
 
         # is cleared
         assert not NeedsHumanReview.objects.filter(

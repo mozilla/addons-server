@@ -906,9 +906,7 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
         new_cinder_job = CinderJob.objects.get(job_id='1234-xyz')
         assert new_cinder_job != self.cinder_job
         assert new_cinder_job.job_id == '1234-xyz'
-        # The old cinder_job should have a reference to the new job
-        assert self.cinder_job.reload().forwarded_to_job == new_cinder_job
-        # And the reports should now be part of the new job instead
+        # The reports should now be part of the new job instead
         assert self.abuse_report_auth.reload().cinder_job == new_cinder_job
         assert self.abuse_report_no_auth.reload().cinder_job == new_cinder_job
         request_body = json.loads(responses.calls[0].request.body)
