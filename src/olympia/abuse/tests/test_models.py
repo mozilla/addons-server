@@ -62,7 +62,6 @@ from ..models import (
     CinderAppeal,
     CinderJob,
     CinderPolicy,
-    CinderQueueMove,
     ContentDecision,
 )
 
@@ -1319,9 +1318,10 @@ class TestCinderJob(TestCase):
         nhr = NeedsHumanReview.objects.get()
         assert nhr.reason == NeedsHumanReview.REASONS.CINDER_ESCALATION
         assert nhr.version == addon.current_version
-        assert CinderQueueMove.objects.filter(
-            cinder_job=cinder_job, to_queue='amo-env-addon-infringement', notes='notes!'
-        ).exists()
+        assert cinder_job.decision.notes == 'notes!'
+        assert cinder_job.decision.action == DECISION_ACTIONS.AMO_ESCALATE
+        assert cinder_job.decision.cinder_job == cinder_job
+        assert cinder_job.decision.addon == cinder_job.target_addon
 
     def test_process_queue_move_out_of_reviewer_handled(self):
         # Not yet implemented, so just check it's silently ignored
@@ -1339,9 +1339,6 @@ class TestCinderJob(TestCase):
         assert cinder_job.resolvable_in_reviewer_tools is True
         assert len(mail.outbox) == 0
         assert NeedsHumanReview.objects.count() == 1
-        assert CinderQueueMove.objects.filter(
-            cinder_job=cinder_job, to_queue='amo-env-listings', notes='out'
-        ).exists()
 
     def test_process_queue_move_other_queue_movement(self):
         # we don't need to about these other queue moves, so just check it's silently
@@ -1354,9 +1351,6 @@ class TestCinderJob(TestCase):
         assert not cinder_job.resolvable_in_reviewer_tools
         assert len(mail.outbox) == 0
         assert NeedsHumanReview.objects.count() == 0
-        assert CinderQueueMove.objects.filter(
-            cinder_job=cinder_job, to_queue='amo-env-some-other-queue', notes='?'
-        ).exists()
 
     def test_all_abuse_reports(self):
         job = CinderJob.objects.create(job_id='fake_job_id')
@@ -1522,14 +1516,20 @@ class TestCinderJob(TestCase):
     def test_clear_needs_human_review_flags_forwarded_moved_queue(self):
         job = self._setup_clear_needs_human_review_flags()
         # if the job is forwarded, we make sure that there are no other forwarded jobs
-        CinderQueueMove.objects.create(cinder_job=job, to_queue='wherever')
+        job.decision.update(action=DECISION_ACTIONS.AMO_ESCALATE)
+        ContentDecision.objects.create(
+            cinder_job=job, addon=job.target_addon, action=DECISION_ACTIONS.AMO_APPROVE
+        )
 
         other_forward = CinderJob.objects.create(
             job_id='3',
             target_addon=job.target_addon,
             resolvable_in_reviewer_tools=True,
         )
-        CinderQueueMove.objects.create(cinder_job=other_forward, to_queue='whoever')
+        ContentDecision.objects.create(
+            cinder_job=other_forward, addon=job.target_addon,
+            action=DECISION_ACTIONS.AMO_ESCALATE
+        )
         job.clear_needs_human_review_flags()
         assert self._nhr_exists(NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION)
         assert self._nhr_exists(NeedsHumanReview.REASONS.CINDER_ESCALATION)
