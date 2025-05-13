@@ -242,9 +242,9 @@ class REQUEST_SUPER_REVIEW(_LOG):
     obsolete = True
 
 
-class COMMENT_VERSION(_LOG):
+class REVIEWER_PRIVATE_COMMENT(_LOG):
     id = 49
-    format = '{addon} {version} reviewer comment.'
+    format = '{target} reviewer comment.'
     short = 'Commented'
     keep = True
     review_queue = True

@@ -57,19 +57,30 @@ class ContentAction:
             )
 
     def log_action(self, activity_log_action, *extra_args, extra_details=None):
+        user_kw = (
+            {'user': self.decision.reviewer_user} if self.decision.reviewer_user else {}
+        )
+        if self.decision.private_notes:
+            # If the decision contained private notes, add a separate action
+            # for them.
+            log_create(
+                amo.LOG.REVIEWER_PRIVATE_COMMENT,
+                self.target,
+                self.decision,
+                **user_kw,
+                details={
+                    'comments': self.decision.private_notes,
+                },
+            )
         return log_create(
             activity_log_action,
             self.target,
             self.decision,
             *(self.decision.policies.all()),
             *extra_args,
-            **(
-                {'user': self.decision.reviewer_user}
-                if self.decision.reviewer_user
-                else {}
-            ),
+            **user_kw,
             details={
-                'comments': self.decision.notes,
+                'comments': self.decision.reasoning,
                 **(
                     {'policy_texts': self.decision.get_policy_texts()}
                     if not self.decision.has_policy_text_in_comments
@@ -122,7 +133,7 @@ class ContentAction:
             'is_third_party_initiated': self.decision.is_third_party_initiated,
             # It's a plain-text email so we're safe to include comments without escaping
             # them - we don't want ', etc, rendered as html entities.
-            'manual_reasoning_text': mark_safe(self.decision.notes or ''),
+            'manual_reasoning_text': mark_safe(self.decision.reasoning or ''),
             # It's a plain-text email so we're safe to include the name without escaping
             'name': mark_safe(target_name),
             'policy_document_url': POLICY_DOCUMENT_URL,
@@ -208,7 +219,7 @@ class ContentAction:
                     # It's a plain-text email so we're safe to include comments without
                     # escaping them - we don't want ', etc, rendered as html entities.
                     context_dict['manual_reasoning_text'] = mark_safe(
-                        self.decision.notes or ''
+                        self.decision.reasoning or ''
                     )
                 if self.decision.can_be_appealed(
                     is_reporter=True, abuse_report=abuse_report
@@ -412,7 +423,8 @@ class ContentActionRejectVersion(ContentActionDisableAddon):
             context_dict = {
                 'rejection_type': rejection_type,
                 'version_list': ', '.join(ver.version for ver in versions),
-                'notes': self.decision.notes,
+                'private_notes': self.decision.private_notes,
+                'reasoning': self.decision.reasoning,
                 'review_urls': review_urls,
                 'target_url': self.target.get_absolute_url()
                 if self.target.get_url_path()
