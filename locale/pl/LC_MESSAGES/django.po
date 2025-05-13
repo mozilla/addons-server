@@ -381,7 +381,7 @@ msgstr "Jeden autor może wystąpić tylko raz."
 
 #: src/olympia/addons/serializers.py:959 src/olympia/devhub/forms.py:422
 msgid "The account needs a display name before it can be added as an author."
-msgstr ""
+msgstr "To konto wymaga ustawienia wyświetlanej nazwy, by mogło być dodane jako autor."
 
 #: src/olympia/addons/serializers.py:1237
 msgid "This slug cannot be used. Please choose another."
@@ -394,7 +394,7 @@ msgstr "Nazwy dodatków nie mogą zawierać znaków towarowych Mozilli lub Firef
 #: src/olympia/addons/utils.py:130
 #, python-brace-format
 msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
-msgstr ""
+msgstr "Wersja {version_string} musi być wyższa, niż poprzednia zatwierdzona wersja {previous_version_string}."
 
 #: src/olympia/addons/validators.py:41
 msgid "Both `license` and `custom_license` cannot be provided together."
@@ -1226,7 +1226,7 @@ msgstr ""
 
 #: src/olympia/constants/activity.py:1071
 msgid "Content rejected automatically after delay expired"
-msgstr ""
+msgstr "Treść odrzucona automatycznie po upływie terminu"
 
 #: src/olympia/constants/activity.py:1196
 #, python-brace-format
@@ -1235,7 +1235,7 @@ msgstr ""
 
 #: src/olympia/constants/activity.py:1197
 msgid "Pending rejection changed"
-msgstr ""
+msgstr "Oczekujące odrzucenie zmienione"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -3853,7 +3853,7 @@ msgstr "Potwierdzam przeczytanie i akceptuję Umowę oraz Zasady i reguły"
 
 #: src/olympia/devhub/templates/devhub/includes/agreement.html:16
 msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr ""
+msgstr "Twoje konto wymaga ustawienia wyświetlanej nazwy, aby użytkownicy wiedzieli, od kogo pochodzi Twój dodatek. Wprowadź ją poniżej."
 
 #: src/olympia/devhub/templates/devhub/includes/agreement.html:36
 #, python-brace-format
