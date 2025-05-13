@@ -1014,6 +1014,11 @@ class ReviewBase:
             'addon': self.addon,
             'action': cinder_action,
             'action_date': datetime.now() if action_completed else None,
+            # Note: there is only a single field for comments in reviewer tools
+            # regardless of whether the comments are intended to be shared with
+            # the developer or kept private. We use `reasoning` field on the
+            # decision to store that comment in both cases, the decision action
+            # will then determine whether that `reasoning` is exposed or not.
             'reasoning': self.data.get('comments', ''),
             'reviewer_user': self.user,
             'metadata': decision_metadata or {},
