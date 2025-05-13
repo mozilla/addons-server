@@ -285,7 +285,7 @@ msgstr "Przekroczono maksymalną liczbę kategorii na aplikację ({MAX_CATEGORIE
 
 #: src/olympia/addons/fields.py:62
 msgid "The \"other\" category cannot be combined with another category"
-msgstr ""
+msgstr "Kategoria „inne” nie może być łączona z inną kategorią"
 
 #: src/olympia/addons/fields.py:76 src/olympia/addons/serializers.py:1257
 msgid "Invalid category name."
@@ -298,7 +298,7 @@ msgstr "Domena URL musi być jedną z [{domains}]."
 
 #: src/olympia/addons/fields.py:125 src/olympia/devhub/forms.py:278
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
-msgstr ""
+msgstr "Ścieżka URL dla sponsorów GitHub musi zawierać /sponsors/."
 
 #: src/olympia/addons/fields.py:128 src/olympia/devhub/forms.py:281
 msgid "URLs must start with https://."
@@ -320,15 +320,15 @@ msgstr "Nieprawidłowe lub uszkodzone archiwum."
 
 #: src/olympia/addons/fields.py:267
 msgid "Invalid app specified"
-msgstr ""
+msgstr "Podano nieprawidłową aplikację"
 
 #: src/olympia/addons/fields.py:285
 msgid "Unknown max app version specified"
-msgstr ""
+msgstr "Podano nieznaną maksymalną wersję aplikacji"
 
 #: src/olympia/addons/fields.py:297
 msgid "Unknown min app version specified"
-msgstr ""
+msgstr "Podano nieznaną minimalną wersję aplikacji"
 
 #: src/olympia/addons/fields.py:307 src/olympia/addons/fields.py:325 src/olympia/addons/serializers.py:625
 #, python-format
@@ -354,7 +354,7 @@ msgstr "Wbudowanych licencji nie można aktualizować."
 
 #: src/olympia/addons/serializers.py:501
 msgid "Upload is not valid."
-msgstr ""
+msgstr "Przesłanie jest nieprawidłowe."
 
 #: src/olympia/addons/serializers.py:517
 msgid "File is already disabled."
@@ -377,7 +377,7 @@ msgstr "Wersja {version_string} już istnieje."
 
 #: src/olympia/addons/serializers.py:559
 msgid "Listed versions cannot be submitted while add-on is disabled."
-msgstr ""
+msgstr "Wymienione wersje nie mogą być dodane, jeśli dodatek jest zablokowany."
 
 #: src/olympia/addons/serializers.py:600
 #, python-format
@@ -388,6 +388,8 @@ msgstr "%(addon_type_plural)s nie są wspierane przez %(app_name)s"
 #, python-format
 msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
 msgstr ""
+"Nieprawidłowy zakres wersji. W przypadku przeglądarki Firefox dla systemu Android możesz wybrać tylko zakres, który zaczyna się od wersji %(max)s lub wyższej, lub kończy się niższą niż wersja "
+"%(min)s."
 
 #: src/olympia/addons/serializers.py:888
 msgid "Add-ons need at least one owner."
@@ -440,7 +442,7 @@ msgstr "Licencje niestandardowe nie są obsługiwane w przypadku motywów."
 
 #: src/olympia/addons/validators.py:132
 msgid "This field is required for add-ons with listed versions."
-msgstr ""
+msgstr "To pole jest wymagane dla dodatków z wymienionymi wersjami."
 
 #: src/olympia/addons/validators.py:158
 #, python-brace-format
