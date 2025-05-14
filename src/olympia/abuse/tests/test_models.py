@@ -2901,6 +2901,54 @@ class TestContentDecision(TestCase):
         assert 'An attachment was provided.' not in mail.outbox[0].body
         assert 'To respond or view the file,' not in mail.outbox[0].body
 
+    def test_execute_action_disable_addon_from_cinder_without_private_notes(self):
+        addon = addon_factory(users=[user_factory()])
+        decision = ContentDecision.objects.create(
+            addon=addon,
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            reviewer_user=None,
+        )
+        policy = CinderPolicy.objects.create(
+            uuid='1234',
+            name='Bad policy',
+            text='This is bad',
+            parent=CinderPolicy.objects.create(
+                uuid='p4r3nt',
+                name='Parent',
+                text='Parent policy text',
+            ),
+        )
+        decision.policies.add(policy)
+        assert decision.action_date is None
+        decision.execute_action()
+        self._test_execute_action_disable_addon_outcome(decision)
+        assert 'Parent, specifically Bad policy: This is bad' in mail.outbox[0].body
+
+    def test_execute_action_disable_addon_from_cinder_with_private_notes(self):
+        addon = addon_factory(users=[user_factory()])
+        decision = ContentDecision.objects.create(
+            addon=addon,
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            reviewer_user=None,
+            private_notes='some private notes',
+        )
+        policy = CinderPolicy.objects.create(
+            uuid='1234',
+            name='Bad policy',
+            text='This is bad',
+            parent=CinderPolicy.objects.create(
+                uuid='p4r3nt',
+                name='Parent',
+                text='Parent policy text',
+            ),
+        )
+        decision.policies.add(policy)
+        assert decision.action_date is None
+        decision.execute_action()
+        self._test_execute_action_disable_addon_outcome(decision)
+        assert 'Parent, specifically Bad policy: This is bad' in mail.outbox[0].body
+        assert 'some private notes' not in mail.outbox[0].body
+
     def _test_execute_action_reject_version_outcome(self, decision):
         decision.send_notifications()
         assert 'appeal' in mail.outbox[0].body
