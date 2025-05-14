@@ -1338,7 +1338,11 @@ class ContentDecision(ModelBase):
             return
 
         action_helper = self.get_action_helper()
-        log_entry = self.activities.last()
+        # We want the very last activity recorded, it should contain the
+        # policies and version information. In particular we want to avoid the
+        # extra one that could be recorded earlier with just the private
+        # notes, as it does not contain policy information.
+        log_entry = self.activities.order_by('pk').last()
         has_attachment = AttachmentLog.objects.filter(
             activity_log__contentdecisionlog__decision=self
         ).exists()
