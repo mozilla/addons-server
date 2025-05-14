@@ -1391,7 +1391,9 @@ class ContentDecision(ModelBase):
             return
 
         action_helper = self.get_action_helper()
-        log_entry = self.activities.last()
+        log_entry = self.activities.exclude(
+            action=amo.LOG.REVIEWER_PRIVATE_COMMENT.id
+        ).last()
         has_attachment = AttachmentLog.objects.filter(
             activity_log__contentdecisionlog__decision=self
         ).exists()
