@@ -1734,7 +1734,7 @@ msgstr "注目"
 
 #: src/olympia/constants/promoted.py:159
 msgid "Partner"
-msgstr ""
+msgstr "パートナー"
 
 #: src/olympia/constants/reviewers.py:21
 msgid "No Reputation"
@@ -2363,11 +2363,11 @@ msgstr "Firefox アドオン配布規約"
 
 #: src/olympia/devhub/templates/devhub/base.html:43
 msgid "Help us make things better!"
-msgstr ""
+msgstr "改善にご協力ください。"
 
 #: src/olympia/devhub/templates/devhub/base.html:44
 msgid "Take our quick survey"
-msgstr ""
+msgstr "簡単なアンケートに答える"
 
 #. {0} is an application, like Firefox.
 #: src/olympia/devhub/templates/devhub/index.html:21 src/olympia/templates/base.html:17
