@@ -40,7 +40,7 @@ class PromotedGroupManager(ManagerBase):
         return self.all_for(addon=addon).filter(group_id__in=approved_promotions)
 
 
-class PromotedGroup(models.Model):
+class PromotedGroup(ModelBase):
     """A promotion group defining the promotion rules for add-ons.
     NOTE: This model replaces the legacy PromotedClass and its constants
     """

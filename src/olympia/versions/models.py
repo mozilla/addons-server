@@ -1240,7 +1240,7 @@ class VersionReviewerFlags(ModelBase):
         ]
 
 
-class VersionProvenance(models.Model):
+class VersionProvenance(ModelBase):
     version = models.ForeignKey(Version, primary_key=True, on_delete=models.CASCADE)
     source = models.PositiveSmallIntegerField(choices=amo.UPLOAD_SOURCE_CHOICES)
     client_info = models.CharField(max_length=255, null=True, default=None)
@@ -1453,7 +1453,7 @@ models.signals.pre_save.connect(
 )
 
 
-class ApplicationsVersions(models.Model):
+class ApplicationsVersions(ModelBase):
     id = PositiveAutoField(primary_key=True)
     application = models.PositiveIntegerField(
         choices=amo.APPS_CHOICES, db_column='application_id'

@@ -289,7 +289,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     # These are the fields that will be cleared on UserProfile.delete()
     # last_login_ip is kept, to be deleted later, in line with our data
     # retention policies: https://github.com/mozilla/addons-server/issues/14494
-    ANONYMIZED_FIELDS = (
+    _pii_fields = (
         'auth_id',
         'averagerating',
         'biography',
@@ -622,13 +622,9 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             self.update(picture_type=None)
 
     def anonymize_user(self):
-        fields = {
-            field_name: self._meta.get_field(field_name)
-            for field_name in self.ANONYMIZED_FIELDS
-        }
         log.info('Anonymizing user %s', self.pk)
-        for field_name, field in fields.items():
-            setattr(self, field_name, field.get_default())
+        for field in self._pii_fields:
+            setattr(self, field.name, field.get_default())
         self.delete_picture()
 
     def _prepare_delete_email(self):

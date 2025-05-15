@@ -20,6 +20,7 @@ topics/third-party
 topics/blocklist
 topics/environments
 topics/runbooks/index
+topics/data/index
 ```
 
 ## Archived Contents

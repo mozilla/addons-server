@@ -420,6 +420,7 @@ class ModelBase(SaveUpdateMixin, models.Model):
     * Adds automatic created and modified fields to the model.
     * Fetches all translations in one subsequent query during initialization.
     """
+    _pii_fields: list[str] = []
 
     created = models.DateTimeField(default=timezone.now, editable=False, blank=True)
     modified = models.DateTimeField(auto_now=True)
