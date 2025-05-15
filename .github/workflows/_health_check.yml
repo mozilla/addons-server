@@ -1,0 +1,131 @@
+name: Health check
+
+run-name: |
+  ref: ${{ github.ref_name }} |
+  environment: ${{ inputs.environment }} |
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        description: The environment to run the health check in
+        type: string
+        required: false
+      notify:
+        description: Whether to notify the user of the health check outcome
+        type: boolean
+        required: false
+    outputs:
+      outcome:
+        description: The outcome of the health check
+        value: ${{ jobs.health_check.outputs.outcome}}
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: The environment to run the health check in
+        type: choice
+        required: true
+        options:
+          - production
+          - staging
+          - development
+          - host
+      notify:
+        description: Whether to notify the user of the health check outcome
+        type: boolean
+        required: false
+
+env:
+  health_check_file: health_check.json
+  health_check_blocks_file: health_check_blocks.json
+
+jobs:
+  health_check:
+    runs-on: ubuntu-latest
+
+    outputs:
+      outcome: ${{ steps.health_check.outcome }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: 3.12
+
+      - name: Set waffle switch dummy-monitor-fails to true
+        if: inputs.environment == 'host'
+        uses: ./.github/actions/run-docker
+        with:
+          version: local
+          run: |
+            ./manage.py waffle_switch dummy-monitor-fails on
+
+      - name: Run health check
+        continue-on-error: true
+        id: health_check
+        shell: bash
+        run: |
+          ./scripts/health_check.py \
+          --env ${{ inputs.environment }} \
+          --verbose \
+          --output ${{ env.health_check_file }}
+
+
+      - name: Should notify?
+        id: should_notify
+        shell: bash
+        run: |
+          outcome="${{ steps.health_check.outcome }}"
+          notify="${{ inputs.notify }}"
+          environment="${{ inputs.environment }}"
+          result=false
+
+          if [[ "$outcome" == 'failure' && "$notify" == 'true' && "$environment" != 'host' ]]; then
+            result=true
+          fi
+
+          echo "result=$result" >> "$GITHUB_OUTPUT"
+
+      - name: Set message blocks
+        id: blocks
+        if: steps.should_notify.outputs.result == 'true'
+        shell: bash
+        run: |
+          if [ ! -f "${{ env.health_check_file }}" ]; then
+            echo "Health check file not found"
+            exit 1
+          fi
+
+          # Create the message blocks file
+          ./scripts/health_check_blocks.py \
+          --input "${{ env.health_check_file }}" \
+          --output "${{ env.health_check_blocks_file }}"
+
+          # Multiline output needs to use a delimiter to be passed to
+          # the GITHUB_OUTPUT file.
+          blocks=$(cat "${{ env.health_check_blocks_file }}")
+          echo "blocks<<EOF"$'\n'"$blocks"$'\n'EOF >> "$GITHUB_OUTPUT"
+          cat "$GITHUB_OUTPUT"
+
+      - name: Notify Failure
+        if: steps.should_notify.outputs.result == 'true'
+        uses: mozilla/addons/.github/actions/slack@main
+        with:
+          slack_token: ${{ secrets.SLACK_TOKEN }}
+          payload: |
+            {
+              "channel": "${{ secrets.SLACK_ADDONS_PRODUCTION_CHANNEL }}",
+              "blocks": ${{ toJson(steps.blocks.outputs.blocks) }},
+              "text": "[${{ inputs.environment }}] Health check ${{ steps.health_check.outcome }}",
+              # Don't unfurl links or media
+              "unfurl_links": false,
+              "unfurl_media": false,
+            }
+
+      - name: Exit with outcome
+        shell: bash
+        run: |
+          if [[ "${{ steps.health_check.outcome }}" == 'failure' ]]; then
+            exit 1
+          fi
