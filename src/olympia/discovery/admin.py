@@ -189,7 +189,35 @@ class DiscoveryPromotedGroup(PromotedGroup):
         proxy = True
 
 
-DISCOVERY_ADDON_FIELDS = ['__str__', 'addon', 'guid', 'has_promotions']
+class AddonPromotionFilter(admin.SimpleListFilter):
+    title = 'Promotion'
+    parameter_name = 'promotion'
+
+    def lookups(self, request, model_admin):
+        return [
+            ('promoted', 'Promoted'),
+            ('not_promoted', 'Not Promoted'),
+        ]
+
+    def queryset(self, request, queryset):
+        is_null = self.value() != 'promoted'
+        if self.value():
+            return queryset.filter(promotedaddon__isnull=is_null)
+
+
+class AddonPromotedGroupFilter(admin.AllValuesFieldListFilter):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.title = 'promoted group'
+
+
+class AddonApprovalFilter(admin.AllValuesFieldListFilter):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.title = 'approval'
+
+
+DISCOVERY_ADDON_FIELDS = ['__str__', 'guid', 'addon', 'is_promoted']
 
 
 class DiscoveryAddonAdmin(AMOModelAdmin):
@@ -201,8 +229,19 @@ class DiscoveryAddonAdmin(AMOModelAdmin):
     ]
     fields = DISCOVERY_ADDON_FIELDS
     readonly_fields = DISCOVERY_ADDON_FIELDS
-    list_display = DISCOVERY_ADDON_FIELDS
-    search_fields = ('guid',)
+    list_display = [field for field in DISCOVERY_ADDON_FIELDS if field != 'addon']
+    search_fields = (
+        'slug__startswith',
+        'guid__startswith',
+    )
+    list_filter = (
+        AddonPromotionFilter,
+        ('promotedaddon__promoted_group__name', AddonPromotedGroupFilter),
+        (
+            '_current_version__promoted_versions__promoted_group__name',
+            AddonApprovalFilter,
+        ),
+    )
 
     def get_queryset(self, request):
         qset = Addon.unfiltered.all().only_translations()
@@ -223,10 +262,10 @@ class DiscoveryAddonAdmin(AMOModelAdmin):
     def has_add_permission(self, request, obj=None):
         return False
 
-    def has_promotions(self, obj):
-        return obj.has_promotions
+    def is_promoted(self, obj):
+        return obj.is_promoted
 
-    has_promotions.boolean = True
+    is_promoted.boolean = True
 
 
 admin.site.register(DiscoveryAddon, DiscoveryAddonAdmin)
