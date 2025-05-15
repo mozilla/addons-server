@@ -2,6 +2,7 @@ from collections.abc import Mapping
 from datetime import datetime, timedelta
 from itertools import chain
 
+from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 from django.db import models
 from django.db.models import Exists, OuterRef, Q
@@ -173,38 +174,87 @@ class CinderJob(ModelBase):
         return reporter
 
     @classmethod
-    def handle_already_removed(cls, abuse_report):
+    def should_auto_resolve(cls, abuse_report, is_handled_by_reviewers):
+        target = abuse_report.target
+        is_disabled = (
+            getattr(target, 'deleted', False)
+            or getattr(target, 'banned', False)
+            or getattr(target, 'status', -1) == amo.STATUS_DISABLED
+        )
+        version_qs = Version.objects.filter(addon__guid=abuse_report.guid)
+        is_reviewed_and_okay = (
+            # it's a reviewer handled report/job
+            is_handled_by_reviewers
+            # not for a legal reason
+            and abuse_report.reason != AbuseReport.REASONS.ILLEGAL
+            # there's a reported version
+            and abuse_report.addon_version
+            # the reported version exists
+            and (
+                reported_version := version_qs.filter(
+                    version=abuse_report.addon_version
+                ).first()
+            )
+            # and it's already reviewed by a human
+            and reported_version.human_review_date
+        ) or (
+            # it's a reviewer handled report/job
+            is_handled_by_reviewers
+            # not for a legal reason
+            and abuse_report.reason != AbuseReport.REASONS.ILLEGAL
+            # no specific version reported
+            and not abuse_report.addon_version
+            # there is a current_version
+            and (
+                current_version := version_qs.filter(
+                    addon___current_version_id=models.F('id')
+                ).first()
+            )
+            # and it's already reviewed by a human
+            and current_version.human_review_date
+        )
+
+        return is_disabled or is_reviewed_and_okay
+
+    @classmethod
+    def handle_already_moderated(cls, abuse_report):
         entity_helper = cls.get_entity_helper(
             abuse_report.target,
             addon_version_string=abuse_report.addon_version,
             resolved_in_reviewer_tools=False,
+        )
+        # create a job to link the abuse report and decision
+        # Note: we don't create the job in Cinder, just the decision
+        job = CinderJob.objects.create()
+        abuse_report.update(cinder_job=job)
+        action = DECISION_ACTIONS.AMO_CLOSED_NO_ACTION
+        policies = list(
+            CinderPolicy.objects.filter(enforcement_actions__contains=action.api_value)
         )
         decision = ContentDecision.objects.create(
             addon=abuse_report.addon,
             rating=abuse_report.rating,
             collection=abuse_report.collection,
             user=abuse_report.user,
-            action=DECISION_ACTIONS.AMO_CLOSED_NO_ACTION,
+            action=action,
             action_date=datetime.now(),
+            reviewer_user_id=settings.TASK_USER_ID,
             cinder_id=entity_helper.create_decision(
-                action=DECISION_ACTIONS.AMO_CLOSED_NO_ACTION.api_value,
+                action=action.api_value,
                 reasoning='',
-                policy_uuids=(),
+                policy_uuids=[p.uuid for p in policies],
             ),
+            cinder_job=job,
         )
+        decision.policies.set(policies)
         decision.get_action_helper().notify_reporters(
             reporter_abuse_reports=[abuse_report], is_appeal=False
         )
 
     @classmethod
     def report(cls, abuse_report):
-        target = abuse_report.target
-        if (
-            getattr(target, 'deleted', False)
-            or getattr(target, 'banned', False)
-            or getattr(target, 'status', -1) == amo.STATUS_DISABLED
-        ):
-            cls.handle_already_removed(abuse_report)
+        if cls.should_auto_resolve(abuse_report, abuse_report.is_handled_by_reviewers):
+            cls.handle_already_moderated(abuse_report)
             return
         report_entity = CinderReport(abuse_report)
         reporter_entity = cls.get_cinder_reporter(abuse_report)
@@ -397,6 +447,13 @@ class AbuseReportManager(ManagerBase):
         return Q(
             not_addon | current_or_version_exists,
             reason__in=AbuseReport.REASONS.INDIVIDUALLY_ACTIONABLE_REASONS.values,
+        )
+
+    @classmethod
+    def was_auto_resolved_q(cls):
+        return Q(
+            cinder_job__decisions__action=DECISION_ACTIONS.AMO_CLOSED_NO_ACTION,
+            cinder_job__decisions__reviewer_user_id=settings.TASK_USER_ID,
         )
 
 
