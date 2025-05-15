@@ -339,8 +339,11 @@ class CinderJob(ModelBase):
             entity_helper = CinderJob.get_entity_helper(
                 self.target, resolved_in_reviewer_tools=True
             )
-            entity_helper.post_queue_move(job=self)
             self.update(resolvable_in_reviewer_tools=True)
+            if self.should_auto_resolve() and (report := self.abusereport_set.first()):
+                self.handle_already_moderated(report, entity_helper)
+            else:
+                entity_helper.post_queue_move(job=self)
         elif self.resolvable_in_reviewer_tools:
             # now not escalated
             log.debug(
