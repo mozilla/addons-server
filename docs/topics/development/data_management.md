@@ -124,3 +124,62 @@ create a new empty volume for you and mysql will recreate the database.
 
 > NOTE: removing the data volume will remove the actual data! You can and should save a backup before doing this
 > if you want to keep the data.
+
+## Migrations
+
+### Squashing migrations
+
+The easiest way to squash migrations is to focus on a single app at a time and
+find a linear sequence of migrations that do not have any external dependencies.
+
+1) Run migration graph
+
+    ```bash
+    ./manage.py migrationgraph {app_label} > graph.md
+    ```
+
+    This will output some text and a mermaid snippet modeling the migration depdendencies.
+    Open this with a mermaid previewer/renderer (https://marketplace.cursorapi.com/items?itemName=bierner.markdown-mermaid)
+
+    It will look like this:
+
+    ![alt text](../../_static/images/migration_graph_mermaid.png)
+
+2) Find a linear sequence of migrations that do not have any external dependencies.
+
+    Notice that addons 0002 through 0009 only depend on each other. 9 depends on 8, 8 on 7, etc.
+    This is a linear sequence of migrations that do not have any external dependencies.
+
+3) Squash the migrations
+
+    ```bash
+    ./manage.py squashmigrations {app_label} {start_number} {end_number}
+    ```
+
+    In our case start_number is 0002 and end_number is 0009.
+
+    ```bash
+    ./manage.py squashmigrations addons 0002 0009
+    ```
+
+    This will squash the migrations into a single migration before the start migration.
+
+    > NOTE: This is not a perfect science. If any of the migrations have custom functions or
+    > other custom logic, you may need to manually adjust the squashed migration.
+
+4) Run the migrations
+
+    ```bash
+    ./manage.py migrate
+    ```
+
+    > NOTE: It is important that you run all apps when migrating, to ensure that other apps
+    > that might depend on one of the squashed migrations reference the new squashed migraiton instead.
+    > This should not happen due to our filter at the beginning, but better safe than sorry.
+
+    You should expect no migrations to be applied, because we are squashing discrete migraitons into a single migration
+    that should result in the exact same database schema.
+
+> NOTE: Do not delete the old migrations in the same patch as squashing. First land the squashed patch.
+> This should go through CI and be deployed to production first. Then after we have ensured the migration
+> is registered and run on all of our databases without any problems, then you can delete the old migrations.
