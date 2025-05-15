@@ -52,7 +52,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           sleep 10
-          gh workflow --ref ${{ github.ref }} run health_check.yml
+          gh workflow run health_check.yml --ref ${{ github.ref }}
 
       - name: Notify Recovery
         if: needs.health_check.result == 'success' && github.event_name == 'workflow_dispatch'
