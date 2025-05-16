@@ -5887,7 +5887,7 @@ msgstr "Zakładne dodanki"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1020
 msgid "Declutter your desktop"
-msgstr ""
+msgstr "Waš desktop zrumowaś"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1022 src/olympia/discovery/strings.jinja2:1024 src/olympia/discovery/strings.jinja2:1026

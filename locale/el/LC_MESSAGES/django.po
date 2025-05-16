@@ -5923,7 +5923,7 @@ msgstr "Απαραίτητα πρόσθετα"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1020
 msgid "Declutter your desktop"
-msgstr ""
+msgstr "Τακτοποιήστε την επιφάνεια εργασίας σας"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1022 src/olympia/discovery/strings.jinja2:1024 src/olympia/discovery/strings.jinja2:1026
@@ -6155,12 +6155,12 @@ msgstr "Περισσότερες επιλογές συντακτών για επ
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1144
 msgid "Gaming & media extensions"
-msgstr ""
+msgstr "Επεκτάσεις παιχνιδιών και πολυμέσων"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1146
 msgid "See more staff picks"
-msgstr ""
+msgstr "Περισσότερες επιλογές συντακτών"
 
 #: src/olympia/files/models.py:319
 msgid "Unreviewed"

@@ -5867,7 +5867,7 @@ msgstr "Nepogrešljivi dodatki"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1020
 msgid "Declutter your desktop"
-msgstr ""
+msgstr "Razčistite namizje"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1022 src/olympia/discovery/strings.jinja2:1024 src/olympia/discovery/strings.jinja2:1026
@@ -6099,12 +6099,12 @@ msgstr "Več osebno izbranih razširitev za Twitch"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1144
 msgid "Gaming & media extensions"
-msgstr ""
+msgstr "Razširitve za igre in predstavnost"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1146
 msgid "See more staff picks"
-msgstr ""
+msgstr "Več izbora osebja"
 
 #: src/olympia/files/models.py:319
 msgid "Unreviewed"
