@@ -120,6 +120,15 @@ jobs:
       - name: Exit with outcome
         shell: bash
         run: |
-          if [[ "${{ steps.health_check.outcome }}" == 'failure' ]]; then
+          environment="${{ inputs.environment }}"
+          outcome="${{ steps.health_check.outcome }}"
+
+          if [[ "$environment" == 'host' && "$outcome" != "failure" ]]; then
+            echo "Health check should fail on host environment to simulate a real failure"
+            exit 1
+          fi
+
+          if [[ "$environment" != 'host' && "$outcome" == "failure" ]]; then
+            echo "Health check should not fail on a live environment, that is a real failure!"
             exit 1
           fi
