@@ -8,6 +8,7 @@ from django.core import mail
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage as storage
 from django.test.utils import override_settings
+from django.db import transaction
 from django.urls import reverse
 
 import pytest
@@ -16,6 +17,7 @@ from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.abuse.models import AbuseReport, CinderJob, CinderPolicy, ContentDecision
+from olympia.activity import log_create
 from olympia.activity.models import (
     ActivityLog,
     ActivityLogToken,
@@ -1384,7 +1386,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self.helper.set_data(self.get_data())
         self.helper.handler.record_decision(amo.LOG.APPROVE_VERSION)
         decision = ContentDecision.objects.get()
-        mock_report.assert_called_once_with(decision_id=decision.id)
+        mock_report.assert_called_once_with(decision_id=decision.id, notify_owners=True)
         assert not decision.cinder_job
 
         # With 'cinder_jobs_to_resolve', report_decision_to_cinder_and_notify the
@@ -1397,8 +1399,8 @@ class TestReviewHelper(TestReviewHelperBase):
         job_decision1, job_decision2 = ContentDecision.objects.all()[1:]
         mock_report.assert_has_calls(
             [
-                call(decision_id=job_decision1.id),
-                call(decision_id=job_decision2.id),
+                call(decision_id=job_decision1.id, notify_owners=True),
+                call(decision_id=job_decision2.id, notify_owners=True),
             ]
         )
         assert job_decision1.cinder_job == cinder_job1
@@ -3858,21 +3860,28 @@ class TestReviewHelper(TestReviewHelperBase):
             status=201,
         )
 
+        # Save current db state, we'll roll back there after each iteration.
+        sid = transaction.savepoint()
+
         with (
             patch(
                 'olympia.reviewers.utils.report_decision_to_cinder_and_notify.delay'
             ) as report_task_mock,
-            patch.object(self.helper.handler, 'log_action') as reviewer_log_mock,
-            patch('olympia.abuse.actions.log_create') as content_action_log_mock,
+            patch.object(
+                self.helper.handler, 'log_action', wraps=self.helper.handler.log_action
+            ) as reviewer_log_mock,
+            patch(
+                'olympia.abuse.actions.log_create', wraps=log_create
+            ) as content_action_log_mock,
         ):
-            reviewer_log_mock.return_value = None
-            content_action_log_mock.return_value = None
             for action_name, action in resolves_actions.items():
                 self.helper.handler.review_action = all_actions[action_name]
                 action['method']()
 
                 decision = ContentDecision.objects.get()
-                report_task_mock.assert_called_once_with(decision_id=decision.id)
+                report_task_mock.assert_called_once_with(
+                    decision_id=decision.id, notify_owners=True
+                )
                 report_task_mock.reset_mock()
                 if not actions[action_name].get('uses_content_action', False):
                     reviewer_log_mock.assert_called_once()
@@ -3892,10 +3901,12 @@ class TestReviewHelper(TestReviewHelperBase):
                 )
                 assert job.decision == decision
 
-                decision.delete()
                 reviewer_log_mock.reset_mock()
                 content_action_log_mock.reset_mock()
                 self.helper.handler.version = self.review_version
+
+                # Clean up any changes to start next iteration fresh.
+                transaction.savepoint_rollback(sid)
 
     def test_record_decision_called_everywhere_checkbox_shown_listed(self):
         self.grant_permission(self.user, 'Reviews:Admin')
@@ -3940,7 +3951,7 @@ class TestReviewHelper(TestReviewHelperBase):
                 },
             }
         )
-        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_DISABLED)
+        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
         assert self.addon.status == amo.STATUS_APPROVED
         self._record_decision_called_everywhere_checkbox_shown(
             {
@@ -4029,7 +4040,7 @@ class TestReviewHelper(TestReviewHelperBase):
                 },
             }
         )
-        self.setup_data(amo.STATUS_DISABLED, file_status=amo.STATUS_DISABLED)
+        self.setup_data(amo.STATUS_DISABLED, file_status=amo.STATUS_APPROVED)
         self._record_decision_called_everywhere_checkbox_shown(
             {
                 'approve_multiple_versions': {
