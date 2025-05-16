@@ -7,9 +7,9 @@ from django.utils.html import conditional_escape, format_html
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext
 
-from olympia import promoted
+from olympia import amo, promoted
 from olympia.addons.models import Addon
-from olympia.amo.admin import AMOModelAdmin
+from olympia.amo.admin import AMOModelAdmin, ExclusiveMultiSelectFieldListFilter
 from olympia.amo.reverse import reverse
 from olympia.amo.templatetags.jinja_helpers import vite_asset
 from olympia.discovery.models import DiscoveryItem
@@ -205,16 +205,31 @@ class AddonPromotionFilter(admin.SimpleListFilter):
             return queryset.filter(promotedaddon__isnull=is_null)
 
 
-class AddonPromotedGroupFilter(admin.AllValuesFieldListFilter):
+class AddonPromotedGroupFilter(ExclusiveMultiSelectFieldListFilter):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.title = 'promoted group'
 
 
-class AddonApprovalFilter(admin.AllValuesFieldListFilter):
+class AddonApprovalFilter(ExclusiveMultiSelectFieldListFilter):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.title = 'approval'
+
+
+class AddonPromotionApplicationFilter(admin.SimpleListFilter):
+    title = 'Application'
+    parameter_name = 'application'
+
+    def lookups(self, request, model_admin):
+        return [
+            (amo.ANDROID.id, amo.ANDROID.pretty),
+            (amo.FIREFOX.id, amo.FIREFOX.pretty),
+        ]
+
+    def queryset(self, request, queryset):
+        if self.value():
+            return queryset.filter(promotedaddon__application_id=self.value())
 
 
 DISCOVERY_ADDON_FIELDS = ['__str__', 'guid', 'addon', 'is_promoted']
@@ -241,6 +256,8 @@ class DiscoveryAddonAdmin(AMOModelAdmin):
             '_current_version__promoted_versions__promoted_group__name',
             AddonApprovalFilter,
         ),
+        'type',
+        AddonPromotionApplicationFilter,
     )
 
     def get_queryset(self, request):
