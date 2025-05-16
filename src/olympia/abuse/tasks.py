@@ -120,7 +120,7 @@ def appeal_to_cinder(
 
 @retryable_task
 @use_primary_db
-def report_decision_to_cinder_and_notify(*, decision_id):
+def report_decision_to_cinder_and_notify(*, decision_id, notify_owners=True):
     decision = ContentDecision.objects.get(id=decision_id)
     entity_helper = CinderJob.get_entity_helper(
         decision.target,
@@ -128,7 +128,7 @@ def report_decision_to_cinder_and_notify(*, decision_id):
     )
     decision.report_to_cinder(entity_helper)
     # We've already executed the action in the reviewer tools
-    decision.send_notifications()
+    decision.send_notifications(notify_owners=notify_owners)
 
 
 @retryable_task

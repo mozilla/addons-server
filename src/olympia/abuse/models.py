@@ -1331,7 +1331,7 @@ class ContentDecision(ModelBase):
             second_level=True,
         )
 
-    def send_notifications(self):
+    def send_notifications(self, *, notify_owners=True):
         from olympia.activity.models import AttachmentLog
 
         if not self.action_date:
@@ -1381,9 +1381,10 @@ class ContentDecision(ModelBase):
         else:
             extra_context = {}
 
-        action_helper.notify_owners(
-            log_entry_id=getattr(log_entry, 'id', None), extra_context=extra_context
-        )
+        if notify_owners:
+            action_helper.notify_owners(
+                log_entry_id=getattr(log_entry, 'id', None), extra_context=extra_context
+            )
 
     def get_target_review_url(self):
         return reverse('reviewers.decision_review', kwargs={'decision_id': self.id})
