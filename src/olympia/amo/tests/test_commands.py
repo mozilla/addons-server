@@ -894,7 +894,7 @@ class TestGenerateModelDiagrams(TestCase):
         assert docs_path.exists()
         assert docs_path.is_dir()
 
-        global_files = ['graph.dot', 'graph.png', 'index.md']
+        global_files = ['graph.dot', 'index.md']
 
         for path, dirs, files in docs_path.walk():
             # In the top level we only expect dirs and global files
