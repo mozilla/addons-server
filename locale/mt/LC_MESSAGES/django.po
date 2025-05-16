@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-05-14 17:04+0000\n"
+"POT-Creation-Date: 2025-05-16 17:37+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4431,7 +4431,7 @@ msgid "Essential add-ons"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Reddit extensions"
+msgid "Declutter your desktop"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4614,6 +4614,14 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "See more Twitch extension staff picks"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "Gaming & media extensions"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more staff picks"
 msgstr ""
 
 msgid "Unreviewed"
