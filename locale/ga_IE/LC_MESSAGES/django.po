@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=5; plural=n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n<11 ? 3 : 4;\n"
 "Generated-By: Pontoon\n"
 
-#: src/olympia/abuse/actions.py:193
+#: src/olympia/abuse/actions.py:204
 #, python-brace-format
 msgid "Mozilla Add-ons: {} [{}]"
 msgstr ""
@@ -34,11 +34,11 @@ msgstr ""
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr ""
 
-#: src/olympia/abuse/models.py:1098
+#: src/olympia/abuse/models.py:1048
 msgid "User profile"
 msgstr ""
 
-#: src/olympia/abuse/models.py:1441
+#: src/olympia/abuse/models.py:1393
 #, python-brace-format
 msgid "\"{}\" for {}"
 msgstr ""
@@ -290,7 +290,7 @@ msgstr ""
 msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr ""
 
-#: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:756 src/olympia/files/utils.py:755 src/olympia/reviewers/forms.py:348
+#: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:756 src/olympia/files/utils.py:755 src/olympia/reviewers/forms.py:347
 #, fuzzy
 msgid "Invalid or broken archive."
 msgstr "Cartlann neamhbhailí."
@@ -6338,12 +6338,12 @@ msgstr ""
 msgid "Rated %(rating)s out of 5 stars"
 msgstr ""
 
-#: src/olympia/reviewers/forms.py:334
+#: src/olympia/reviewers/forms.py:333
 #, python-brace-format
 msgid "Unsupported file type, please upload a file {extensions}."
 msgstr ""
 
-#: src/olympia/reviewers/forms.py:340
+#: src/olympia/reviewers/forms.py:339
 msgid "File too large."
 msgstr ""
 

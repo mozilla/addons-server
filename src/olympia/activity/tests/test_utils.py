@@ -536,7 +536,7 @@ class TestLogAndNotify(TestCase):
         self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted', 'Addon Reviewers')
 
         # One from the reviewer.
-        self._create(amo.LOG.COMMENT_VERSION, self.reviewer)
+        self._create(amo.LOG.REVIEWER_PRIVATE_COMMENT, self.reviewer)
         # One from the developer.  So the developer is on the 'thread'
         self._create(amo.LOG.DEVELOPER_REPLY_VERSION, self.developer)
         action = amo.LOG.DEVELOPER_REPLY_VERSION

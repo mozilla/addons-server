@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "Generated-By: Pontoon\n"
 
-#: src/olympia/abuse/actions.py:193
+#: src/olympia/abuse/actions.py:204
 #, python-brace-format
 msgid "Mozilla Add-ons: {} [{}]"
 msgstr "Doplnky Mozilly: {} [{}]"
@@ -34,11 +34,11 @@ msgstr "Dôvod odvolania"
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr "Vysvetlite, prečo si myslíte, že toto rozhodnutie bolo urobené omylom a/alebo nie je v súlade s platnými zásadami alebo zákonmi."
 
-#: src/olympia/abuse/models.py:1098
+#: src/olympia/abuse/models.py:1048
 msgid "User profile"
 msgstr "Používateľský profil"
 
-#: src/olympia/abuse/models.py:1441
+#: src/olympia/abuse/models.py:1393
 #, python-brace-format
 msgid "\"{}\" for {}"
 msgstr "\"{}\" pre {}"
@@ -328,7 +328,7 @@ msgstr "Licencia s hodnotu atribútu slug={value} neexistuje."
 msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr "Nepodporovaný typ súboru. Nahrajte prosím súbor s archívom ({extensions})."
 
-#: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:756 src/olympia/files/utils.py:755 src/olympia/reviewers/forms.py:348
+#: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:756 src/olympia/files/utils.py:755 src/olympia/reviewers/forms.py:347
 msgid "Invalid or broken archive."
 msgstr "Neplatný alebo poškodený archív."
 
@@ -6334,12 +6334,12 @@ msgstr "Ohodnotené {0} z 5 hviezdičiek"
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Ohodnotené %(rating)s z 5 hviezdičiek"
 
-#: src/olympia/reviewers/forms.py:334
+#: src/olympia/reviewers/forms.py:333
 #, python-brace-format
 msgid "Unsupported file type, please upload a file {extensions}."
 msgstr "Nepodporovaný typ súboru, nahrajte súbor {extensions}."
 
-#: src/olympia/reviewers/forms.py:340
+#: src/olympia/reviewers/forms.py:339
 msgid "File too large."
 msgstr "Súbor je príliš veľký."
 

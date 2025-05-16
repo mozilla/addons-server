@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Pontoon\n"
 
-#: src/olympia/abuse/actions.py:193
+#: src/olympia/abuse/actions.py:204
 #, python-brace-format
 msgid "Mozilla Add-ons: {} [{}]"
 msgstr "Mozilla アドオン: {} [{}]"
@@ -34,11 +34,11 @@ msgstr "上告理由"
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr "この決定が誤ってなされた、または適用される方針もしくは法律に合致していないと考える理由を説明してください。"
 
-#: src/olympia/abuse/models.py:1098
+#: src/olympia/abuse/models.py:1048
 msgid "User profile"
 msgstr "ユーザープロファイル"
 
-#: src/olympia/abuse/models.py:1441
+#: src/olympia/abuse/models.py:1393
 #, python-brace-format
 msgid "\"{}\" for {}"
 msgstr ""
@@ -285,7 +285,7 @@ msgstr "slug={value} のライセンスは存在しません。"
 msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr "非対応のファイル形式です。アーカイブファイル ({extensions}) をアップロードしてください。"
 
-#: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:756 src/olympia/files/utils.py:755 src/olympia/reviewers/forms.py:348
+#: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:756 src/olympia/files/utils.py:755 src/olympia/reviewers/forms.py:347
 msgid "Invalid or broken archive."
 msgstr "不正または壊れたアーカイブです。"
 
@@ -1734,7 +1734,7 @@ msgstr "注目"
 
 #: src/olympia/constants/promoted.py:159
 msgid "Partner"
-msgstr ""
+msgstr "パートナー"
 
 #: src/olympia/constants/reviewers.py:21
 msgid "No Reputation"
@@ -2363,11 +2363,11 @@ msgstr "Firefox アドオン配布規約"
 
 #: src/olympia/devhub/templates/devhub/base.html:43
 msgid "Help us make things better!"
-msgstr ""
+msgstr "改善にご協力ください。"
 
 #: src/olympia/devhub/templates/devhub/base.html:44
 msgid "Take our quick survey"
-msgstr ""
+msgstr "簡単なアンケートに答える"
 
 #. {0} is an application, like Firefox.
 #: src/olympia/devhub/templates/devhub/index.html:21 src/olympia/templates/base.html:17
@@ -6222,12 +6222,12 @@ msgstr "5 つ星中 {0}つの評価を受けています"
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "5 つ星中 %(rating)s つの評価を受けています"
 
-#: src/olympia/reviewers/forms.py:334
+#: src/olympia/reviewers/forms.py:333
 #, python-brace-format
 msgid "Unsupported file type, please upload a file {extensions}."
 msgstr ""
 
-#: src/olympia/reviewers/forms.py:340
+#: src/olympia/reviewers/forms.py:339
 msgid "File too large."
 msgstr ""
 

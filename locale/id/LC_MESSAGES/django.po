@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Pontoon\n"
 
-#: src/olympia/abuse/actions.py:193
+#: src/olympia/abuse/actions.py:204
 #, python-brace-format
 msgid "Mozilla Add-ons: {} [{}]"
 msgstr "Pengaya Mozilla: {} [{}]"
@@ -34,11 +34,11 @@ msgstr "Alasan banding"
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr "Silakan jelaskan mengapa Anda meyakini keputusan ini salah, dan/atau tidak sejalan dengan kebijakan atau hukum yang berlaku."
 
-#: src/olympia/abuse/models.py:1098
+#: src/olympia/abuse/models.py:1048
 msgid "User profile"
 msgstr "Profil pengguna"
 
-#: src/olympia/abuse/models.py:1441
+#: src/olympia/abuse/models.py:1393
 #, python-brace-format
 msgid "\"{}\" for {}"
 msgstr "\"{}\" untuk {}"
@@ -297,7 +297,7 @@ msgstr "Lisensi dengan slug={value} tidak ada."
 msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr "Tipe berkas tidak didukung, sila unggah berkas arsip lainnya ({extensions})."
 
-#: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:756 src/olympia/files/utils.py:755 src/olympia/reviewers/forms.py:348
+#: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:756 src/olympia/files/utils.py:755 src/olympia/reviewers/forms.py:347
 msgid "Invalid or broken archive."
 msgstr "Arsip rusak atau tidak valid."
 
@@ -6311,12 +6311,12 @@ msgstr "Peringkat {0} dari 5 bintang"
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Peringkat %(rating)s dari 5 bintang"
 
-#: src/olympia/reviewers/forms.py:334
+#: src/olympia/reviewers/forms.py:333
 #, python-brace-format
 msgid "Unsupported file type, please upload a file {extensions}."
 msgstr ""
 
-#: src/olympia/reviewers/forms.py:340
+#: src/olympia/reviewers/forms.py:339
 msgid "File too large."
 msgstr ""
 

@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 "Generated-By: Pontoon\n"
 
-#: src/olympia/abuse/actions.py:193
+#: src/olympia/abuse/actions.py:204
 #, python-brace-format
 msgid "Mozilla Add-ons: {} [{}]"
 msgstr "Dodanki Mozilla: {} [{}]"
@@ -34,11 +34,11 @@ msgstr "Pśicyna za pśeśiwjenje"
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr "Pšosym wujasniśo, cogodla se mysliśo, až jo se womólnje rozsuźiło, a/abo płaśiwym pšawidłam abo płaśiwej kazni wótpowědujo."
 
-#: src/olympia/abuse/models.py:1098
+#: src/olympia/abuse/models.py:1048
 msgid "User profile"
 msgstr "Wužywaŕski profil"
 
-#: src/olympia/abuse/models.py:1441
+#: src/olympia/abuse/models.py:1393
 #, python-brace-format
 msgid "\"{}\" for {}"
 msgstr "„{}“ za {}"
@@ -330,7 +330,7 @@ msgstr "Licenca ze slug={value} njeeksistěrujo."
 msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr "Njepódpěrany datajowy typ, pšosym nagrajśo archiwowu dataju ({extensions})."
 
-#: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:756 src/olympia/files/utils.py:755 src/olympia/reviewers/forms.py:348
+#: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:756 src/olympia/files/utils.py:755 src/olympia/reviewers/forms.py:347
 msgid "Invalid or broken archive."
 msgstr "Njepłaśiwy abo wobškóźony archiw."
 
@@ -6359,12 +6359,12 @@ msgstr "Z {0} z 5 gwězdkow pógódnośony"
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Z %(rating)s z 5 gwězdkow pógódnośony"
 
-#: src/olympia/reviewers/forms.py:334
+#: src/olympia/reviewers/forms.py:333
 #, python-brace-format
 msgid "Unsupported file type, please upload a file {extensions}."
 msgstr "Njepódpěrany datajowy typ, pšosym nagrajśo dataju {extensions}."
 
-#: src/olympia/reviewers/forms.py:340
+#: src/olympia/reviewers/forms.py:339
 msgid "File too large."
 msgstr "Dataja jo pśewjelika."
 

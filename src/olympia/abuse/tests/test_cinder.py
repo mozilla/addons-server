@@ -1308,26 +1308,6 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         # The add-on does not get flagged again while the appeal is ongoing.
         assert addon.current_version.needshumanreview_set.count() == 0
 
-    def test_report_with_ongoing_forwarded_appeal(self):
-        addon = self._create_dummy_target()
-        job = CinderJob.objects.create(job_id='1234-xyz')
-        CinderJob.objects.create(forwarded_to_job=job)
-        job.appealed_decisions.add(
-            ContentDecision.objects.create(
-                addon=addon,
-                cinder_id='1234-decision',
-                action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
-            )
-        )
-        # Trigger switch_is_active to ensure it's cached to make db query
-        # count more predictable.
-        waffle.switch_is_active('dsa-abuse-reports-review')
-        self._test_report(addon)
-        cinder_instance = self.CinderClass(addon)
-        cinder_instance.post_report(job)
-        # The add-on does not get flagged again while the appeal is ongoing.
-        assert addon.current_version.needshumanreview_set.count() == 0
-
     def test_create_decision(self):
         target = self._create_dummy_target()
 
@@ -1585,7 +1565,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
             status=201,
         )
 
-        assert cinder_instance.workflow_recreate(notes='foo', job=cinder_job) == '2'
+        assert cinder_instance.workflow_recreate(reasoning='foo', job=cinder_job) == '2'
         assert json.loads(responses.calls[0].request.body)['reasoning'] == 'foo'
 
         self._check_post_queue_move_test(
@@ -1605,7 +1585,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
 
         assert (
             cinder_instance.workflow_recreate(
-                notes='foo', job=cinder_job, from_2nd_level=True
+                reasoning='foo', job=cinder_job, from_2nd_level=True
             )
             == '3'
         )
@@ -1652,7 +1632,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
             json={'job_id': '2'},
             status=201,
         )
-        assert cinder_instance.workflow_recreate(notes=None, job=cinder_job) == '2'
+        assert cinder_instance.workflow_recreate(reasoning=None, job=cinder_job) == '2'
         assert NeedsHumanReview.objects.count() == 2
         assert ActivityLog.objects.count() == 0
 
@@ -1699,7 +1679,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
             json={'job_id': '2'},
             status=201,
         )
-        assert cinder_instance.workflow_recreate(notes='', job=cinder_job) == '2'
+        assert cinder_instance.workflow_recreate(reasoning='', job=cinder_job) == '2'
 
         assert listed_version.addon.reload().status == amo.STATUS_APPROVED
         assert not listed_version.reload().needshumanreview_set.exists()
@@ -1751,7 +1731,7 @@ class TestCinderAddonHandledByLegal(TestCinderAddon):
             status=201,
         )
 
-        assert cinder_instance.workflow_recreate(notes='foo', job=cinder_job) == '2'
+        assert cinder_instance.workflow_recreate(reasoning='foo', job=cinder_job) == '2'
 
         # Check that we've not inadvertently changed the status
         assert listed_version.addon.reload().status == amo.STATUS_APPROVED

@@ -450,7 +450,7 @@ class TestReviewLog(ReviewerTest):
         )
 
     def test_comment_logs(self):
-        self.make_an_approval(amo.LOG.COMMENT_VERSION)
+        self.make_an_approval(amo.LOG.REVIEWER_PRIVATE_COMMENT)
         response = self.client.get(self.url)
         assert response.status_code == 200
         assert pq(response.content)('#log-listing tbody td').eq(1).html().strip() == (
@@ -2654,7 +2654,7 @@ class TestReview(ReviewBase):
         assert response.status_code == 302
         assert len(mail.outbox) == 0
 
-        comment_version = amo.LOG.COMMENT_VERSION
+        comment_version = amo.LOG.REVIEWER_PRIVATE_COMMENT
         assert ActivityLog.objects.filter(action=comment_version.id).count() == 1
 
     @mock.patch('olympia.reviewers.utils.report_decision_to_cinder_and_notify.delay')

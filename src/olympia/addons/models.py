@@ -1623,7 +1623,7 @@ class Addon(OnChangeMixin, ModelBase):
         return []
 
     @cached_property
-    def has_promotions(self):
+    def is_promoted(self):
         return bool(self.promoted_groups(currently_approved=False))
 
     @property

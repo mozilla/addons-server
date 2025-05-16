@@ -1070,7 +1070,12 @@ class ReviewBase:
             'addon': self.addon,
             'action': cinder_action,
             'action_date': datetime.now() if action_completed else None,
-            'notes': self.data.get('comments', ''),
+            # Note: there is only a single field for comments in reviewer tools
+            # regardless of whether the comments are intended to be shared with
+            # the developer or kept private. We use `reasoning` field on the
+            # decision to store that comment in both cases, the decision action
+            # will then determine whether that `reasoning` is exposed or not.
+            'reasoning': self.data.get('comments', ''),
             'reviewer_user': self.user,
             'metadata': decision_metadata,
         }
@@ -1251,7 +1256,7 @@ class ReviewBase:
             sign_file(self.file)
 
     def process_comment(self):
-        self.log_action(amo.LOG.COMMENT_VERSION)
+        self.log_action(amo.LOG.REVIEWER_PRIVATE_COMMENT)
 
     def resolve_reports_job(self):
         if self.data.get('cinder_jobs_to_resolve', ()):
@@ -1259,6 +1264,8 @@ class ReviewBase:
 
     def resolve_appeal_job(self):
         # It's possible to have multiple appeal jobs, so handle them seperately.
+        version = self.version
+        self.version = None
         for job in self.data.get('cinder_jobs_to_resolve', ()):
             # collect all the policies we made decisions under
             policies = list(
@@ -1269,9 +1276,9 @@ class ReviewBase:
             previous_action_id = min(
                 decision.action for decision in job.appealed_decisions.all()
             )
-            previous_versions = Version.unfiltered.filter(
-                contentdecision__appeal_job=job
-            ).distinct()
+            previous_versions = list(
+                Version.unfiltered.filter(contentdecision__appeal_job=job).distinct()
+            )
 
             metadata = {}
             for mtda in job.appealed_decisions.all().values_list('metadata', flat=True):
@@ -1295,7 +1302,7 @@ class ReviewBase:
                 addon=self.addon,
                 action=previous_action_id,
                 action_date=datetime.now(),
-                notes=self.data.get('comments', ''),
+                reasoning=self.data.get('comments', ''),
                 reviewer_user=self.user,
                 cinder_job=job,
                 override_of=job.final_decision,
@@ -1308,6 +1315,7 @@ class ReviewBase:
                 versions=previous_versions,
                 decisions=[decision],
                 policies=policies,
+                **({'version': version} if not previous_versions else {}),
             )
             log_entry = decision.execute_action()
             self.update_queue_history(log_entry)

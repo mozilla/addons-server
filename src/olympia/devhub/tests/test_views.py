@@ -661,7 +661,7 @@ class TestActivityFeed(TestCase):
         core.set_user(self.action_user)
         ActivityLog.objects.create(action, self.addon, self.version)
 
-    def add_hidden_log(self, action=amo.LOG.COMMENT_VERSION):
+    def add_hidden_log(self, action=amo.LOG.REVIEWER_PRIVATE_COMMENT):
         self.add_log(action=action)
 
     def test_feed_hidden(self):

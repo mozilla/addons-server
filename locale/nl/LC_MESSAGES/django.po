@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Pontoon\n"
 
-#: src/olympia/abuse/actions.py:193
+#: src/olympia/abuse/actions.py:204
 #, python-brace-format
 msgid "Mozilla Add-ons: {} [{}]"
 msgstr "Mozilla-add-ons: {} [{}]"
@@ -34,11 +34,11 @@ msgstr "Reden van bezwaar"
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr "Leg uit waarom u denkt dat deze beslissing ten onrechte is genomen en/of niet in overeenstemming is met het toepasselijke beleid of de toepasselijke wet."
 
-#: src/olympia/abuse/models.py:1098
+#: src/olympia/abuse/models.py:1048
 msgid "User profile"
 msgstr "Gebruikersprofiel"
 
-#: src/olympia/abuse/models.py:1441
+#: src/olympia/abuse/models.py:1393
 #, python-brace-format
 msgid "\"{}\" for {}"
 msgstr "‘{}’ voor {}"
@@ -329,7 +329,7 @@ msgstr "Licentie met slug={value} bestaat niet."
 msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr "Niet-ondersteund bestandstype, upload een archiefbestand ({extensions})."
 
-#: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:756 src/olympia/files/utils.py:755 src/olympia/reviewers/forms.py:348
+#: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:756 src/olympia/files/utils.py:755 src/olympia/reviewers/forms.py:347
 msgid "Invalid or broken archive."
 msgstr "Ongeldig of beschadigd archief."
 
@@ -6343,12 +6343,12 @@ msgstr "Waardering {0} van 5 sterren"
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Waardering %(rating)s van 5 sterren"
 
-#: src/olympia/reviewers/forms.py:334
+#: src/olympia/reviewers/forms.py:333
 #, python-brace-format
 msgid "Unsupported file type, please upload a file {extensions}."
 msgstr "Niet-ondersteund bestandstype, upload een bestand {extensions}."
 
-#: src/olympia/reviewers/forms.py:340
+#: src/olympia/reviewers/forms.py:339
 msgid "File too large."
 msgstr "Bestand te groot."
 

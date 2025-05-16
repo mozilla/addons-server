@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Pontoon\n"
 
-#: src/olympia/abuse/actions.py:193
+#: src/olympia/abuse/actions.py:204
 #, python-brace-format
 msgid "Mozilla Add-ons: {} [{}]"
 msgstr "Shtesa Mozilla: {} [{}]"
@@ -34,11 +34,11 @@ msgstr "Arsyeja për ankim"
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr "Ju lutemi, shpjegoni pse besoni se ky vendim qe marrë gabimisht dhe/ose nuk përkon me rregullat apo ligjet që i takojnë."
 
-#: src/olympia/abuse/models.py:1098
+#: src/olympia/abuse/models.py:1048
 msgid "User profile"
 msgstr "Profil përdoruesi"
 
-#: src/olympia/abuse/models.py:1441
+#: src/olympia/abuse/models.py:1393
 #, python-brace-format
 msgid "\"{}\" for {}"
 msgstr "\"{}\" për {}"
@@ -329,7 +329,7 @@ msgstr "S’ka licencë me slug={value}."
 msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr "Lloj i pambuluar kartele, ju lutemi, ngarkoni një kartelë arkivi ({extensions})."
 
-#: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:756 src/olympia/files/utils.py:755 src/olympia/reviewers/forms.py:348
+#: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:756 src/olympia/files/utils.py:755 src/olympia/reviewers/forms.py:347
 msgid "Invalid or broken archive."
 msgstr "Arkiv i pavlefshëm ose i dëmtuar."
 
@@ -6342,12 +6342,12 @@ msgstr "Vlerësuar me {0} nga 5 yje të mundshëm"
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Vlerësuar me %(rating)s yje nga 5 të mundshëm"
 
-#: src/olympia/reviewers/forms.py:334
+#: src/olympia/reviewers/forms.py:333
 #, python-brace-format
 msgid "Unsupported file type, please upload a file {extensions}."
 msgstr "Lloj i pambuluar kartele, ju lutemi, ngarkoni një kartelë {extensions}."
 
-#: src/olympia/reviewers/forms.py:340
+#: src/olympia/reviewers/forms.py:339
 msgid "File too large."
 msgstr "Kartelë shumë e madhe."
 

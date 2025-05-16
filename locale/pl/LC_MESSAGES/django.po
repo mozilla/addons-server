@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "Generated-By: Pontoon\n"
 
-#: src/olympia/abuse/actions.py:193
+#: src/olympia/abuse/actions.py:204
 #, python-brace-format
 msgid "Mozilla Add-ons: {} [{}]"
 msgstr "Dodatki Mozilli: {} [{}]"
@@ -34,11 +34,11 @@ msgstr "Powód odwołania"
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr "Wyjaśnij dlaczego uważasz, że ta decyzja była błędna i/lub jest niezgodna z obowiązującymi politykami lub prawem."
 
-#: src/olympia/abuse/models.py:1098
+#: src/olympia/abuse/models.py:1048
 msgid "User profile"
 msgstr "Profil użytkownika"
 
-#: src/olympia/abuse/models.py:1441
+#: src/olympia/abuse/models.py:1393
 #, python-brace-format
 msgid "\"{}\" for {}"
 msgstr ""
@@ -54,7 +54,7 @@ msgstr "Nieprawidłowa wartość"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:10 src/olympia/abuse/templates/abuse/appeal.html:15
 msgid "Appeal reviewer decision"
-msgstr ""
+msgstr "Odwołanie od decyzji recenzenta"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:16
 #, python-brace-format
@@ -77,6 +77,7 @@ msgstr "Dziękujemy za Twoje zgłoszenie."
 msgid ""
 "We have already reviewed a similar appeal from another reporter, and have reversed our prior decision. We have taken action against the content and/or account holder in accordance with our policies."
 msgstr ""
+"Rozpatrzyliśmy już podobne odwołanie od innego zgłaszającego i zmieniliśmy naszą wcześniejszą decyzję. Podjęliśmy działania przeciwko treści i/lub właścicielowi konta zgodnie z naszymi zasadami."
 
 #: src/olympia/abuse/templates/abuse/appeal.html:38
 msgid "Because the decision you are appealing has already been overturned, your appeal will not be processed."
@@ -96,7 +97,7 @@ msgstr "Cześć,"
 
 #: src/olympia/abuse/templates/abuse/emails/base_reporter.txt:7
 msgid "Mozilla Add-ons Team"
-msgstr ""
+msgstr "Zespół Dodatków Mozilli"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_approve.txt:8
 #, python-format
@@ -109,6 +110,13 @@ msgid ""
 "\n"
 "Thank you for your attention.\n"
 msgstr ""
+"\n"
+"Dziękujemy za twoje zgłoszenie o %(name)s na Dodatkach Mozilli i za podanie dodatkowych informacji na temat Twoich obaw.\n"
+"\n"
+"Po przejrzeniu twojego odwołania ustaliliśmy, że poprzednia decyzja, zgodnie z którą ta treść nie narusza zasad Mozilli (%(policy_document_url)s), była prawidłowa. Na podstawie tego ustalenia odrzuciliśmy twoje odwołanie i nie podejmiemy żadnych działań przeciwko kontu ani treści.\n"
+"%(manual_reasoning_text)s.\n"
+"\n"
+"Dziękujemy za uwagę.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown.txt:5
 #, python-format
@@ -118,6 +126,10 @@ msgid ""
 "\n"
 "After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, we have removed the content, and notified the user of our action.\n"
 msgstr ""
+"\n"
+"Dziękujemy za twoje zgłoszenie o %(name)s na Dodatkach Mozilli i za podanie dodatkowych informacji na temat Twoich obaw.\n"
+"\n"
+"Po przejrzeniu twojego odwołania ustaliliśmy, że poprzednia decyzja, zgodnie z którą ta treść nie narusza zasad Mozilli (%(policy_document_url)s), była nieprawidłowa. Na podstawie tego ustalenia usunęliśmy treści i powiadomiliśmy użytkownika o naszym działaniu.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown_delayed.txt:5
 #, python-format
@@ -127,6 +139,10 @@ msgid ""
 "\n"
 "After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, we have requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
 msgstr ""
+"\n"
+"Dziękujemy za twoje zgłoszenie o %(name)s na Dodatkach Mozilli i za podanie dodatkowych informacji na temat Twoich obaw.\n"
+"\n"
+"Po przejrzeniu twojego odwołania ustaliliśmy, że poprzednia decyzja, zgodnie z którą ta treść nie narusza zasad Mozilli (%(policy_document_url)s), była nieprawidłowa. Na podstawie tego ustalenia poprosiliśmy dewelopera o wprowadzenie zmian. Jeśli treść nie zostanie zaktualizowana, aby skorygować naruszenie, usuniemy ją.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:5
 #, python-format
@@ -136,6 +152,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it does not violate Mozilla's policies (%(policy_document_url)s).  It will therefore not be subject to any moderation action.\n"
 msgstr ""
+"\n"
+"Dziękujemy za twoje zgłoszenie o %(name)s na %(target_url)s.\n"
+"\n"
+"Przejrzeliśmy twoje zgłoszenie i kwestionowaną treść, i ustaliliśmy, że nie narusza zasad Mozilli (%(policy_document_url)s).  Zatem nie będzie podlegać żadnym działaniom moderacyjnym.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:7
 #, python-format
@@ -143,6 +163,8 @@ msgid ""
 "You have the right to appeal this decision within 6 months from the date of this email. See %(appeal_url)s for details on the appeal process, including how to file an appeal for this specific "
 "decision."
 msgstr ""
+"Masz prawo odwołać się od tej decyzji w ciągu sześciu miesięcy od daty tego e-maila. Zobacz %(appeal_url)s, aby uzyskać szczegółowe informacje na temat procesu odwoławczego, w tym jak złożyć "
+"odwołanie od tej konkretnej decyzji."
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_addon.txt:5
 #, python-format
@@ -152,6 +174,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
+"\n"
+"Dziękujemy za twoje zgłoszenie o następującym dodatku na Dodatkach Mozilli: %(name)s.\n"
+"\n"
+"Przejrzeliśmy twoje zgłoszenie i kwestionowaną treść, i ustaliliśmy, że narusza zasady Mozilli (%(policy_document_url)s), zatem usunęliśmy treści.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_addon_delayed.txt:5
 #, python-format
@@ -259,7 +285,7 @@ msgstr "Przekroczono maksymalną liczbę kategorii na aplikację ({MAX_CATEGORIE
 
 #: src/olympia/addons/fields.py:62
 msgid "The \"other\" category cannot be combined with another category"
-msgstr ""
+msgstr "Kategoria „inne” nie może być łączona z inną kategorią"
 
 #: src/olympia/addons/fields.py:76 src/olympia/addons/serializers.py:1257
 msgid "Invalid category name."
@@ -272,7 +298,7 @@ msgstr "Domena URL musi być jedną z [{domains}]."
 
 #: src/olympia/addons/fields.py:125 src/olympia/devhub/forms.py:278
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
-msgstr ""
+msgstr "Ścieżka URL dla sponsorów GitHub musi zawierać /sponsors/."
 
 #: src/olympia/addons/fields.py:128 src/olympia/devhub/forms.py:281
 msgid "URLs must start with https://."
@@ -288,21 +314,21 @@ msgstr ""
 msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr "Nieobsługiwany typ pliku. Prześlij plik archiwum ({extensions})."
 
-#: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:756 src/olympia/files/utils.py:755 src/olympia/reviewers/forms.py:348
+#: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:756 src/olympia/files/utils.py:755 src/olympia/reviewers/forms.py:347
 msgid "Invalid or broken archive."
 msgstr "Nieprawidłowe lub uszkodzone archiwum."
 
 #: src/olympia/addons/fields.py:267
 msgid "Invalid app specified"
-msgstr ""
+msgstr "Podano nieprawidłową aplikację"
 
 #: src/olympia/addons/fields.py:285
 msgid "Unknown max app version specified"
-msgstr ""
+msgstr "Podano nieznaną maksymalną wersję aplikacji"
 
 #: src/olympia/addons/fields.py:297
 msgid "Unknown min app version specified"
-msgstr ""
+msgstr "Podano nieznaną minimalną wersję aplikacji"
 
 #: src/olympia/addons/fields.py:307 src/olympia/addons/fields.py:325 src/olympia/addons/serializers.py:625
 #, python-format
@@ -328,7 +354,7 @@ msgstr "Wbudowanych licencji nie można aktualizować."
 
 #: src/olympia/addons/serializers.py:501
 msgid "Upload is not valid."
-msgstr ""
+msgstr "Przesłanie jest nieprawidłowe."
 
 #: src/olympia/addons/serializers.py:517
 msgid "File is already disabled."
@@ -351,7 +377,7 @@ msgstr "Wersja {version_string} już istnieje."
 
 #: src/olympia/addons/serializers.py:559
 msgid "Listed versions cannot be submitted while add-on is disabled."
-msgstr ""
+msgstr "Wymienione wersje nie mogą być dodane, jeśli dodatek jest zablokowany."
 
 #: src/olympia/addons/serializers.py:600
 #, python-format
@@ -362,6 +388,8 @@ msgstr "%(addon_type_plural)s nie są wspierane przez %(app_name)s"
 #, python-format
 msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
 msgstr ""
+"Nieprawidłowy zakres wersji. W przypadku przeglądarki Firefox dla systemu Android możesz wybrać tylko zakres, który zaczyna się od wersji %(max)s lub wyższej, lub kończy się niższą niż wersja "
+"%(min)s."
 
 #: src/olympia/addons/serializers.py:888
 msgid "Add-ons need at least one owner."
@@ -381,7 +409,7 @@ msgstr "Jeden autor może wystąpić tylko raz."
 
 #: src/olympia/addons/serializers.py:959 src/olympia/devhub/forms.py:422
 msgid "The account needs a display name before it can be added as an author."
-msgstr ""
+msgstr "To konto wymaga ustawienia wyświetlanej nazwy, by mogło być dodane jako autor."
 
 #: src/olympia/addons/serializers.py:1237
 msgid "This slug cannot be used. Please choose another."
@@ -394,7 +422,7 @@ msgstr "Nazwy dodatków nie mogą zawierać znaków towarowych Mozilli lub Firef
 #: src/olympia/addons/utils.py:130
 #, python-brace-format
 msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
-msgstr ""
+msgstr "Wersja {version_string} musi być wyższa, niż poprzednia zatwierdzona wersja {previous_version_string}."
 
 #: src/olympia/addons/validators.py:41
 msgid "Both `license` and `custom_license` cannot be provided together."
@@ -414,7 +442,7 @@ msgstr "Licencje niestandardowe nie są obsługiwane w przypadku motywów."
 
 #: src/olympia/addons/validators.py:132
 msgid "This field is required for add-ons with listed versions."
-msgstr ""
+msgstr "To pole jest wymagane dla dodatków z wymienionymi wersjami."
 
 #: src/olympia/addons/validators.py:158
 #, python-brace-format
@@ -1226,7 +1254,7 @@ msgstr ""
 
 #: src/olympia/constants/activity.py:1071
 msgid "Content rejected automatically after delay expired"
-msgstr ""
+msgstr "Treść odrzucona automatycznie po upływie terminu"
 
 #: src/olympia/constants/activity.py:1196
 #, python-brace-format
@@ -1235,7 +1263,7 @@ msgstr ""
 
 #: src/olympia/constants/activity.py:1197
 msgid "Pending rejection changed"
-msgstr ""
+msgstr "Oczekujące odrzucenie zmienione"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -3853,7 +3881,7 @@ msgstr "Potwierdzam przeczytanie i akceptuję Umowę oraz Zasady i reguły"
 
 #: src/olympia/devhub/templates/devhub/includes/agreement.html:16
 msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr ""
+msgstr "Twoje konto wymaga ustawienia wyświetlanej nazwy, aby użytkownicy wiedzieli, od kogo pochodzi Twój dodatek. Wprowadź ją poniżej."
 
 #: src/olympia/devhub/templates/devhub/includes/agreement.html:36
 #, python-brace-format
@@ -6361,12 +6389,12 @@ msgstr "Oceniono na {0} z 5 możliwych gwiazdek"
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Oceniony jako %(rating)s/5"
 
-#: src/olympia/reviewers/forms.py:334
+#: src/olympia/reviewers/forms.py:333
 #, python-brace-format
 msgid "Unsupported file type, please upload a file {extensions}."
 msgstr ""
 
-#: src/olympia/reviewers/forms.py:340
+#: src/olympia/reviewers/forms.py:339
 msgid "File too large."
 msgstr ""
 

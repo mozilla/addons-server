@@ -292,7 +292,9 @@ class TestActivity(HubTest):
 
     def test_hidden(self):
         version = Version.objects.create(addon=self.addon)
-        ActivityLog.objects.create(amo.LOG.COMMENT_VERSION, self.addon, version)
+        ActivityLog.objects.create(
+            amo.LOG.REVIEWER_PRIVATE_COMMENT, self.addon, version
+        )
         res = self.get_response(addon=self.addon.id)
         key = RssKey.objects.get()
         res = self.get_response(privaterss=key.key)

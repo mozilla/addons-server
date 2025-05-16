@@ -93,12 +93,6 @@ class CinderJob(ModelBase):
         to=Addon, blank=True, null=True, on_delete=models.deletion.SET_NULL
     )
     resolvable_in_reviewer_tools = models.BooleanField(default=None, null=True)
-    forwarded_to_job = models.ForeignKey(
-        to='self',
-        null=True,
-        on_delete=models.SET_NULL,
-        related_name='forwarded_from_jobs',
-    )
 
     objects = CinderJobManager()
 
@@ -256,45 +250,6 @@ class CinderJob(ModelBase):
             reporter_abuse_reports=appellants, is_appeal=True
         )
 
-    def handle_job_recreated(self, *, new_job_id, resolvable_in_reviewer_tools):
-        from olympia.reviewers.models import NeedsHumanReview
-
-        new_job, created = CinderJob.objects.update_or_create(
-            job_id=new_job_id,
-            defaults={
-                'resolvable_in_reviewer_tools': resolvable_in_reviewer_tools,
-                'target_addon': self.target_addon,
-            },
-        )
-        # If this forward has been combined with an existing non-forwarded job we need
-        # to clear the NHR for reason:ABUSE_ADDON_VIOLATION, because it now has a NHR
-        # for reason:CINDER_ESCALATION.
-        if not created and not new_job.forwarded_from_jobs.exists():
-            has_unresolved_abuse_report_jobs = (
-                self.__class__.objects.for_addon(new_job.target_addon)
-                .exclude(
-                    id=new_job.id,
-                    forwarded_from_jobs__isnull=True,
-                    appealed_decisions__isnull=True,
-                )
-                .unresolved()
-                .resolvable_in_reviewer_tools()
-                .exists()
-            )
-            # But only if there aren't other jobs that should legitimately have a NHR
-            # for reason:ABUSE_ADDON_VIOLATION
-            if not has_unresolved_abuse_report_jobs:
-                NeedsHumanReview.objects.filter(
-                    version__addon_id=new_job.target_addon.id,
-                    is_active=True,
-                    reason=NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION,
-                ).update(is_active=False)
-                new_job.target_addon.update_all_due_dates()
-        # Update our fks to connected objects
-        AbuseReport.objects.filter(cinder_job=self).update(cinder_job=new_job)
-        ContentDecision.objects.filter(appeal_job=self).update(appeal_job=new_job)
-        self.update(forwarded_to_job=new_job)
-
     def process_decision(
         self,
         *,
@@ -319,7 +274,9 @@ class CinderJob(ModelBase):
             user=getattr(abuse_report_or_decision, 'user', None),
             cinder_id=decision_cinder_id,
             action=decision_action,
-            notes=decision_notes[: ContentDecision._meta.get_field('notes').max_length],
+            private_notes=decision_notes[
+                : ContentDecision._meta.get_field('reasoning').max_length
+            ],
             override_of=self.final_decision,
             cinder_job=self,
         )
@@ -377,14 +334,6 @@ class CinderJob(ModelBase):
                 decisions__overridden_by__isnull=True,
             ).exists()
             reasons = {NeedsHumanReview.REASONS.SECOND_LEVEL_REQUEUE}
-        elif self.forwarded_from_jobs.exists():
-            has_unresolved_jobs_with_similar_reason = base_unresolved_jobs_qs.filter(
-                forwarded_from_jobs__isnull=False
-            ).exists()
-            reasons = {
-                NeedsHumanReview.REASONS.CINDER_ESCALATION,
-                NeedsHumanReview.REASONS.CINDER_APPEAL_ESCALATION,
-            }
         elif self.queue_moves.exists():
             has_unresolved_jobs_with_similar_reason = base_unresolved_jobs_qs.filter(
                 queue_moves__id__gt=0
@@ -972,7 +921,8 @@ class ContentDecision(ModelBase):
     action = models.PositiveSmallIntegerField(choices=DECISION_ACTIONS.choices)
     cinder_id = models.CharField(max_length=36, default=None, null=True, unique=True)
     action_date = models.DateTimeField(null=True, db_column='date')
-    notes = models.TextField(max_length=1000, blank=True)
+    reasoning = models.TextField(max_length=1000, blank=True)
+    private_notes = models.TextField(max_length=1000, blank=True)
     policies = models.ManyToManyField(to='abuse.CinderPolicy')
     appeal_job = models.ForeignKey(
         to='abuse.CinderJob',
@@ -1284,7 +1234,7 @@ class ContentDecision(ModelBase):
         ):
             create_decision_kw = {
                 'action': DECISION_ACTIONS.for_value(self.action).api_value,
-                'reasoning': self.notes,
+                'reasoning': self.reasoning,
                 'policy_uuids': list(self.policies.values_list('uuid', flat=True)),
             }
 
@@ -1368,7 +1318,7 @@ class ContentDecision(ModelBase):
             reviewer_user=user,
             override_of=self,
             action_date=datetime.now(),
-            notes=notes,
+            private_notes=notes,
             cinder_job=job,
         )
 
@@ -1388,7 +1338,9 @@ class ContentDecision(ModelBase):
             return
 
         action_helper = self.get_action_helper()
-        log_entry = self.activities.last()
+        log_entry = self.activities.exclude(
+            action=amo.LOG.REVIEWER_PRIVATE_COMMENT.id
+        ).last()
         has_attachment = AttachmentLog.objects.filter(
             activity_log__contentdecisionlog__decision=self
         ).exists()
