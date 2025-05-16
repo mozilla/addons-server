@@ -553,7 +553,7 @@ class ReviewHelper:
             )
             can_approve_multiple = False
 
-        use_policies = waffle.switch_is_active('policy_selection_rather_than_reasons')
+        use_policies = waffle.switch_is_active('cinder_policy_review_reasons_enabled')
 
         # Definitions for all actions.
         actions['public'] = {

@@ -438,7 +438,7 @@ class TestReviewForm(TestCase):
         assert form.is_valid(), form.errors
         assert not form.errors
 
-    @override_switch('policy_selection_rather_than_reasons', active=True)
+    @override_switch('cinder_policy_review_reasons_enabled', active=True)
     def test_comments_optional_for_actions_with_enforcement_actions(self):
         policy = CinderPolicy.objects.create(
             uuid='xxx',
@@ -459,7 +459,7 @@ class TestReviewForm(TestCase):
             assert form.is_valid(), form.errors
             assert not form.errors
 
-    @override_switch('policy_selection_rather_than_reasons', active=True)
+    @override_switch('cinder_policy_review_reasons_enabled', active=True)
     def test_policy_values_parsed(self):
         self.grant_permission(self.request.user, 'Addons:Review')
         self.addon.update(status=amo.STATUS_NOMINATED)
@@ -1475,7 +1475,7 @@ class TestReviewForm(TestCase):
             enforcement_actions=[DECISION_ACTIONS.AMO_APPROVE.api_value],
         )
         self.file.update(status=amo.STATUS_AWAITING_REVIEW)
-        with override_switch('policy_selection_rather_than_reasons', active=True):
+        with override_switch('cinder_policy_review_reasons_enabled', active=True):
             self.grant_permission(self.request.user, 'Addons:Review')
             form = self.get_form()
 

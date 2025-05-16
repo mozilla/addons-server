@@ -12,5 +12,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        CreateWaffleSwitch('policy_selection_rather_than_reasons')
+        CreateWaffleSwitch('cinder_policy_review_reasons_enabled')
     ]

@@ -1017,7 +1017,7 @@ class TestReviewHelper(TestReviewHelperBase):
         )
         assert expected == actions
 
-    @override_switch('policy_selection_rather_than_reasons', active=True)
+    @override_switch('cinder_policy_review_reasons_enabled', active=True)
     def test_actions_with_use_policies_enabled(self):
         self.grant_permission(self.user, 'Addons:Review')
         self.grant_permission(self.user, 'Reviews:Admin')
@@ -1183,7 +1183,7 @@ class TestReviewHelper(TestReviewHelperBase):
         )
         report_mock.assert_called_once()
 
-    @override_switch('policy_selection_rather_than_reasons', active=True)
+    @override_switch('cinder_policy_review_reasons_enabled', active=True)
     def test_record_decision_saves_placeholder_values_for_policies(self):
         self.grant_permission(self.user, 'Addons:Review')
         self.helper = self.get_helper()

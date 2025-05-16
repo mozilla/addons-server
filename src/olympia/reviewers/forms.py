@@ -624,7 +624,7 @@ class ReviewForm(forms.Form):
     def __init__(self, *args, **kw):
         self.helper = kw.pop('helper')
         super().__init__(*args, **kw)
-        if waffle.switch_is_active('policy_selection_rather_than_reasons'):
+        if waffle.switch_is_active('cinder_policy_review_reasons_enabled'):
             # When we're using policies reviewers shouldn't need to write as much
             self.fields['comments'].widget = forms.Textarea(attrs={'rows': 2})
         if any(action.get('delayable') for action in self.helper.actions.values()):

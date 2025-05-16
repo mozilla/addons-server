@@ -3031,7 +3031,7 @@ class TestReview(ReviewBase):
             # 21. blocklist
             # 22. cinderjob exists
             # 23. fetch promoted groups of current version
-            # 24. waffle switch for policy_selection_rather_than_reasons
+            # 24. waffle switch for cinder_policy_review_reasons_enabled
             # 25. fetch promoted groups of current version (repeated)
             # 26. addonreusedguid
             # 27. abuse reports count against user or addon
@@ -4829,7 +4829,7 @@ class TestReview(ReviewBase):
             assert version.pending_rejection
             self.assertCloseToNow(version.pending_rejection, now=in_the_future)
 
-    @override_switch('policy_selection_rather_than_reasons', active=True)
+    @override_switch('cinder_policy_review_reasons_enabled', active=True)
     def test_reject_with_policy_selection(self):
         responses.add(
             responses.POST,
@@ -6371,7 +6371,7 @@ class TestReview(ReviewBase):
         assert len(items) == MAX_MOCK + 1  # + 1 for the overflow li
         assert '...' in items[-1].text_content()
 
-    @override_switch('policy_selection_rather_than_reasons', active=True)
+    @override_switch('cinder_policy_review_reasons_enabled', active=True)
     def test_comments_when_using_policies_rather_than_reasons(self):
         response = self.client.get(self.url)
         doc = pq(response.content)
@@ -6379,7 +6379,7 @@ class TestReview(ReviewBase):
         assert doc('.review-comments textarea[rows="2"]')
         assert not doc('.review-comments details[open] textarea')
 
-        with override_switch('policy_selection_rather_than_reasons', active=False):
+        with override_switch('cinder_policy_review_reasons_enabled', active=False):
             response = self.client.get(self.url)
             doc = pq(response.content)
             assert doc('.review-comments textarea')

@@ -200,7 +200,7 @@
               {% endfor %}
             </div>
             <div class="review-comments data-toggle" data-value="{{ actions_comments|join(' ') }}">
-              <details{% if not waffle.switch('policy_selection_rather_than_reasons') %} open{% endif %}>
+              <details{% if not waffle.switch('cinder_policy_review_reasons_enabled') %} open{% endif %}>
                 <summary><label for="id_comments">{{ form.comments.label }}</label></summary>
                 {{ form.comments }}
               </details>
