@@ -6119,12 +6119,12 @@ msgstr "Dalšne wót sobuźěłaśerjow wubrane rozšyrjenja Twitch pokazaś"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1144
 msgid "Gaming & media extensions"
-msgstr ""
+msgstr "Grajne a medijowe rozšyrjenja"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1146
 msgid "See more staff picks"
-msgstr ""
+msgstr "Dalšne wót sobuźěłaśerjow wubrane rozšyrjenja se woglědaś"
 
 #: src/olympia/files/models.py:319
 msgid "Unreviewed"
