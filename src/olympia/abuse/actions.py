@@ -438,9 +438,15 @@ class ContentActionRejectVersion(ContentActionDisableAddon):
         if not self.decision.reviewer_user:
             # This action should only be used by reviewer tools, not cinder webhook
             raise NotImplementedError
+        if not self.target_versions.exclude(
+            file__status=amo.STATUS_DISABLED, file__original_status=amo.STATUS_NULL
+        ).exists():
+            return None
+
         for version in self.target_versions:
+            now = datetime.now()
             version.file.update(
-                datestatuschanged=datetime.now(),
+                datestatuschanged=now,
                 status=amo.STATUS_DISABLED,
                 original_status=amo.STATUS_NULL,
                 status_disabled_reason=File.STATUS_DISABLED_REASONS.NONE,
@@ -504,6 +510,12 @@ class ContentActionRejectVersionDelayed(ContentActionRejectVersion):
         if not self.decision.reviewer_user:
             # This action should only be used by reviewer tools, not cinder webhook
             raise NotImplementedError
+
+        if not self.target_versions.exclude(
+            reviewerflags__pending_rejection=self.delayed_rejection_date,
+            reviewerflags__pending_content_rejection=self.content_review,
+        ).exists():
+            return None
 
         for version in self.target_versions:
             # (Re)set pending_rejection.
