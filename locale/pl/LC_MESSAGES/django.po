@@ -1657,7 +1657,7 @@ msgstr "Ogólne"
 
 #: src/olympia/constants/licenses.py:15
 msgid "Mozilla Public License 2.0"
-msgstr ""
+msgstr "Mozilla Public License 2.0"
 
 #: src/olympia/constants/licenses.py:22
 msgid "Apache License 2.0"
@@ -2569,7 +2569,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:34
 msgid "Success!"
-msgstr ""
+msgstr "Udało się!"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:35
 #, python-format
@@ -2577,6 +2577,8 @@ msgid ""
 "An email with a confirmation link has been sent to your email address: %(email)s. Please click the link to confirm your email address. If you did not receive the email, please check your spam "
 "folder."
 msgstr ""
+"Wiadomość e-mail z odnośnikiem potwierdzającym została wysłana na Twój adres e-mail: %(email)s. Kliknij odnośnik, aby potwierdzić swój adres e-mail. Jeśli nie otrzymałeś wiadomości e-mail, sprawdź "
+"folder ze spamem."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:39
 #, python-format
