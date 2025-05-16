@@ -277,7 +277,7 @@ class Validator(object):
             # from the file itself.
             try:
                 addon_data = parse_addon(file_, minimal=True)
-                is_webextension = addon_data['is_webextension']
+                is_webextension = addon_data.get('is_webextension', False) # Double check
                 is_experiment = addon_data.get('is_experiment', False) # Double check
                 is_mozilla_signed = addon_data.get(
                     'is_mozilla_signed_extension', False)

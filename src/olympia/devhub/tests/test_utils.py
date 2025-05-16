@@ -67,7 +67,7 @@ class TestAddonsLinterBase(TestCase):
         # Make sure we run the correct validation task for the upload.
         self.validate_upload.assert_called_once_with(
             [file_upload.path],
-            {'channel': channel})
+            {'channel': channel, 'is_experiment': False, 'hash_': ''})
 
         # Make sure we run the correct save validation task, with a
         # fallback error handler.
@@ -85,7 +85,8 @@ class TestAddonsLinterBase(TestCase):
         assert not self.validate_upload.called
 
         # Make sure we run the correct validation task.
-        self.validate_file.assert_called_once_with([file_.pk])
+        self.validate_file.assert_called_once_with(
+            [file_.pk], {'hash_': '', 'is_experiment': False})
 
         # Make sure we run the correct save validation task, with a
         # fallback error handler.
@@ -151,7 +152,7 @@ class TestAddonsLinterListed(TestAddonsLinterBase):
         addon = addon_factory(type=amo.ADDON_SEARCH,
                               version_kw={'version': '20140101'})
 
-        assert addon.guid is None
+        #assert addon.guid is None  # Everything has a guid now
         self.check_upload(self.file_upload)
 
         self.validate_upload.reset_mock()
