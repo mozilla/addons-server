@@ -7,8 +7,8 @@ from django.conf import settings
 from django.core import mail
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage as storage
-from django.test.utils import override_settings
 from django.db import transaction
+from django.test.utils import override_settings
 from django.urls import reverse
 
 import pytest
