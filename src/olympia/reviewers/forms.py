@@ -26,7 +26,10 @@ from olympia.access import acl
 from olympia.addons.models import Addon
 from olympia.amo.forms import AMOModelForm
 from olympia.constants.abuse import DECISION_ACTIONS
-from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
+from olympia.constants.reviewers import (
+    POLICY_VALUE_PATTERN_REGEX,
+    REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT,
+)
 from olympia.files.utils import SafeZip
 from olympia.ratings.models import Rating
 from olympia.ratings.permissions import user_can_delete_rating
@@ -589,20 +592,18 @@ class ReviewForm(forms.Form):
                     )
 
         # Add in any dynamic placeholder values for the cinder policies
-        # see jinja_helpers.render_text_with_input_fields for name format
-        if policies := {
-            str(p.id): p for p in self.cleaned_data.get('cinder_policies', [])
-        }:
+        if self.cleaned_data.get('cinder_policies', []):
+            policy_dict = {
+                str(p.id): p for p in self.cleaned_data.get('cinder_policies', [])
+            }
             policy_values = defaultdict(dict)
             for key, value in self.data.items():
-                if (
-                    key.startswith('policy-value-')
-                    and (split_1 := key.split('policy-value-', 1))
-                    and (id_and_placeholder := html.unescape(split_1[1]))
-                    and len(split_2 := id_and_placeholder.split('-', 1)) == 2
-                    and (policy := policies.get(split_2[0]))
+                if (match := POLICY_VALUE_PATTERN_REGEX.match(key)) and (
+                    policy := policy_dict.get(match['id'])
                 ):
-                    policy_values[policy.uuid][split_2[1]] = value
+                    policy_values[policy.uuid][match['placeholder']] = html.unescape(
+                        value
+                    )
             self.cleaned_data['policy_values'] = policy_values
 
         return self.cleaned_data
@@ -693,19 +694,15 @@ class ReviewForm(forms.Form):
         ]
 
         # Set the queryset for reasons based on the add-on type.
-        self.fields['reasons'].queryset = (
-            ReviewActionReason.objects.filter(
-                is_active=True,
-                addon_type__in=[
-                    amo.ADDON_ANY,
-                    amo.ADDON_STATICTHEME
-                    if self.helper.addon.type == amo.ADDON_STATICTHEME
-                    else amo.ADDON_EXTENSION,
-                ],
-            )
-            .exclude(canned_response='')
-            .select_related('cinder_policy__parent')
-        )
+        self.fields['reasons'].queryset = ReviewActionReason.objects.filter(
+            is_active=True,
+            addon_type__in=[
+                amo.ADDON_ANY,
+                amo.ADDON_STATICTHEME
+                if self.helper.addon.type == amo.ADDON_STATICTHEME
+                else amo.ADDON_EXTENSION,
+            ],
+        ).exclude(canned_response='')
 
         # Add actions from the helper into the action widget so we can access
         # them in create_option.

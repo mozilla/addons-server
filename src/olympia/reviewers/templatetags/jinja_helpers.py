@@ -8,6 +8,7 @@ from django_jinja import library
 
 from olympia.access import acl
 from olympia.amo.templatetags.jinja_helpers import new_context
+from olympia.constants.reviewers import POLICY_VALUE_PATTERN
 from olympia.ratings.permissions import user_can_delete_rating
 from olympia.reviewers.templatetags import assay
 
@@ -81,6 +82,7 @@ def render_text_with_input_fields(policy):
         def __missing__(self, key):
             # django.utils.html.escape doesn't escape quotes
             key = key.replace('"', '&quot;')
-            return f'<input placeholder="{key}" name="policy-value-{policy.id}-{key}">'
+            name = POLICY_VALUE_PATTERN.format(id=policy.id, placeholder=key)
+            return f'<input placeholder="{key}" name="{name}">'
 
     return mark_safe(escape(policy.text).format_map(WrapKey({})))
