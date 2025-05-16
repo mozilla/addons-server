@@ -132,7 +132,7 @@ class TestDiscoveryAddonAdmin(TestCase):
         self.grant_permission(user, 'Discovery:Edit')
         self.client.force_login(user)
 
-        with self.assertNumQueries(8):
+        with self.assertNumQueries(10):
             # 1. select current user
             # 2. savepoint (because we're in tests)
             # 3. select groups
@@ -142,6 +142,7 @@ class TestDiscoveryAddonAdmin(TestCase):
             # 6. prefetch add-ons
             # 7. select translations for add-ons from 7.
             # 8. check if addon has promoted groups
+            # 9/10. fetch promoted groups
             response = self.client.get(self.list_url, follow=True)
 
         assert response.status_code == 200
@@ -151,7 +152,7 @@ class TestDiscoveryAddonAdmin(TestCase):
         addon_factory(name='FooBâr')
         # throw in a promoted addon that doesn't have a current_version
         addon_factory(name='FooBâr', version_kw={'channel': amo.CHANNEL_UNLISTED})
-        with self.assertNumQueries(10):
+        with self.assertNumQueries(12):
             self.client.get(self.list_url, follow=True)
 
     def test_can_edit_with_discovery_edit_permission(self):

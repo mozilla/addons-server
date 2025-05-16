@@ -19,6 +19,7 @@ from olympia.amo.admin import AMOModelAdmin, DateRangeFilter
 from olympia.amo.forms import AMOModelForm
 from olympia.amo.templatetags.jinja_helpers import vite_asset
 from olympia.amo.utils import send_mail
+from olympia.discovery.admin import DiscoveryAddon
 from olympia.files.models import File
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import NeedsHumanReview
@@ -249,6 +250,7 @@ class AddonAdmin(AMOModelAdmin):
         'id',
         'created',
         'activity',
+        'discovery_addon',
         'average_rating',
         'bayesian_rating',
         'guid',
@@ -273,6 +275,7 @@ class AddonAdmin(AMOModelAdmin):
                     'type',
                     'status',
                     'activity',
+                    'discovery_addon',
                 ),
             },
         ),
@@ -514,6 +517,16 @@ class AddonAdmin(AMOModelAdmin):
                 )
         except AddonReviewerFlags.DoesNotExist:
             pass
+
+    @admin.display(description='Discovery Addon')
+    def discovery_addon(self, obj):
+        url = reverse(
+            'admin:{}_{}_change'.format(
+                DiscoveryAddon._meta.app_label, DiscoveryAddon._meta.model_name
+            ),
+            args=[obj.pk],
+        )
+        return format_html('<a href="{}">Discovery Addon</a>', url)
 
 
 class FrozenAddonAdmin(AMOModelAdmin):

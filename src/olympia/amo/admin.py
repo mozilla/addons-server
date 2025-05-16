@@ -6,6 +6,7 @@ from collections import OrderedDict
 from django import forms
 from django.contrib import admin
 from django.contrib.admin.options import IncorrectLookupParameters
+from django.contrib.admin.utils import reverse_field_path
 from django.contrib.admin.views.main import (
     ERROR_FLAG,
     PAGE_VAR,
@@ -684,3 +685,76 @@ class MultipleRelatedListFilter(admin.SimpleListFilter):
                     cl.get_query_string(remove=[self.parameter_name])[1:]
                 ),
             }
+
+
+class MultiSelectFieldListFilter(admin.FieldListFilter):
+    """Allows multiple fields to be selected in a list filter.
+    Returns objects with any of the selected filters.
+    """
+
+    def expected_parameters(self):
+        return [self.lookup_kwarg]
+
+    def __init__(self, field, request, params, model, model_admin, field_path):
+        self.lookup_kwarg = field_path + '__in'
+
+        super().__init__(field, request, params, model, model_admin, field_path)
+
+        # If none are selected, reset
+        self.lookup_val = self.used_parameters.get(self.lookup_kwarg, [])
+        if self.lookup_val == ['']:
+            self.lookup_val = []
+
+        self.empty_value_display = model_admin.get_empty_value_display()
+        parent_model, _ = reverse_field_path(model, field_path)
+        queryset = (
+            model_admin.get_queryset(request)
+            if model == parent_model
+            else parent_model._default_manager.all()
+        )
+
+        self.lookup_choices = queryset.distinct().values_list(field.name, flat=True)
+
+    def choices(self, changelist):
+        yield {
+            'selected': not self.lookup_val,
+            'query_string': changelist.get_query_string(remove=[self.lookup_kwarg]),
+            'display': 'All',
+        }
+
+        for choice in self.lookup_choices:
+            choice = str(choice)
+            selected_values = (
+                [value for value in self.lookup_val if value != choice]
+                if choice in self.lookup_val
+                else self.lookup_val + [choice]
+            )
+
+            if selected_values:
+                yield {
+                    'selected': choice in self.lookup_val,
+                    'query_string': changelist.get_query_string(
+                        {self.lookup_kwarg: ','.join(selected_values)}
+                    ),
+                    'display': choice,
+                }
+            else:
+                yield {
+                    'selected': choice in self.lookup_val,
+                    'query_string': changelist.get_query_string(
+                        remove=[self.lookup_kwarg]
+                    ),
+                    'display': choice,
+                }
+
+
+class ExclusiveMultiSelectFieldListFilter(MultiSelectFieldListFilter):
+    """An exclusive version of MultiSelectFieldListFilter.
+    An object must be part of all selected filters to be returned.
+    """
+
+    def queryset(self, request, queryset):
+        if self.lookup_val:
+            for val in self.lookup_val:
+                queryset = queryset.filter(**{self.field_path: val})
+        return queryset

@@ -7,9 +7,9 @@ from django.utils.html import conditional_escape, format_html
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext
 
-from olympia import promoted
+from olympia import amo, promoted
 from olympia.addons.models import Addon
-from olympia.amo.admin import AMOModelAdmin
+from olympia.amo.admin import AMOModelAdmin, ExclusiveMultiSelectFieldListFilter
 from olympia.amo.reverse import reverse
 from olympia.amo.templatetags.jinja_helpers import vite_asset
 from olympia.discovery.models import DiscoveryItem
@@ -189,7 +189,50 @@ class DiscoveryPromotedGroup(PromotedGroup):
         proxy = True
 
 
-DISCOVERY_ADDON_FIELDS = ['__str__', 'addon', 'guid', 'has_promotions']
+class AddonPromotionFilter(admin.SimpleListFilter):
+    title = 'Promotion'
+    parameter_name = 'promotion'
+
+    def lookups(self, request, model_admin):
+        return [
+            ('promoted', 'Promoted'),
+            ('not_promoted', 'Not Promoted'),
+        ]
+
+    def queryset(self, request, queryset):
+        is_null = self.value() != 'promoted'
+        if self.value():
+            return queryset.filter(promotedaddon__isnull=is_null)
+
+
+class AddonPromotedGroupFilter(ExclusiveMultiSelectFieldListFilter):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.title = 'promoted group'
+
+
+class AddonApprovalFilter(ExclusiveMultiSelectFieldListFilter):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.title = 'approval'
+
+
+class AddonPromotionApplicationFilter(admin.SimpleListFilter):
+    title = 'Application'
+    parameter_name = 'application'
+
+    def lookups(self, request, model_admin):
+        return [
+            (amo.ANDROID.id, amo.ANDROID.pretty),
+            (amo.FIREFOX.id, amo.FIREFOX.pretty),
+        ]
+
+    def queryset(self, request, queryset):
+        if self.value():
+            return queryset.filter(promotedaddon__application_id=self.value())
+
+
+DISCOVERY_ADDON_FIELDS = ['__str__', 'guid', 'addon', 'is_promoted']
 
 
 class DiscoveryAddonAdmin(AMOModelAdmin):
@@ -201,8 +244,21 @@ class DiscoveryAddonAdmin(AMOModelAdmin):
     ]
     fields = DISCOVERY_ADDON_FIELDS
     readonly_fields = DISCOVERY_ADDON_FIELDS
-    list_display = DISCOVERY_ADDON_FIELDS
-    search_fields = ('guid',)
+    list_display = [field for field in DISCOVERY_ADDON_FIELDS if field != 'addon']
+    search_fields = (
+        'slug__startswith',
+        'guid__startswith',
+    )
+    list_filter = (
+        AddonPromotionFilter,
+        ('promotedaddon__promoted_group__name', AddonPromotedGroupFilter),
+        (
+            '_current_version__promoted_versions__promoted_group__name',
+            AddonApprovalFilter,
+        ),
+        'type',
+        AddonPromotionApplicationFilter,
+    )
 
     def get_queryset(self, request):
         qset = Addon.unfiltered.all().only_translations()
@@ -223,10 +279,10 @@ class DiscoveryAddonAdmin(AMOModelAdmin):
     def has_add_permission(self, request, obj=None):
         return False
 
-    def has_promotions(self, obj):
-        return obj.has_promotions
+    def is_promoted(self, obj):
+        return obj.is_promoted
 
-    has_promotions.boolean = True
+    is_promoted.boolean = True
 
 
 admin.site.register(DiscoveryAddon, DiscoveryAddonAdmin)
