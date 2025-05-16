@@ -64,6 +64,7 @@ const config = defineConfig([
     ignores: [
       // Don't lint vendored files
       'static/js/lib/**',
+      'docs/_static/**',
       // This file is beyond saving and is not used.
       'scripts/rewrite.js',
     ],

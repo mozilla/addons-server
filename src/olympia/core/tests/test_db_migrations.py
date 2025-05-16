@@ -2,7 +2,7 @@
 # test with mocks for the state and schema editor, passing current app state.
 from unittest import mock
 
-from django.apps.registry import apps
+from django.apps import apps
 
 import pytest
 from waffle.models import Switch

@@ -30,6 +30,7 @@ extensions = [
     'sphinx.ext.doctest',
     'sphinx.ext.todo',
     'sphinx.ext.coverage',
+    'sphinx.ext.graphviz',
     'extensions.src_role',
     'sphinxcontrib.httpdomain',
     'sphinxcontrib.jquery',
@@ -239,4 +240,13 @@ nitpick_ignore = [
     ('http:obj', 'string|null'),
     ('http:obj', 'array|null'),
     ('http:obj', 'int|null'),
+]
+
+# Graphviz configuration
+graphviz_output_format = 'png'
+
+# Add custom JS for pan/zoom on Graphviz diagrams
+html_js_files = [
+    'panzoom.min.js',
+    'panzoom-graphviz.js',
 ]

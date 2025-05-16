@@ -1,0 +1,16 @@
+# {{ name }}
+
+```{toctree}
+:maxdepth: 2
+
+{% for name in models %}
+{{ name }}
+{% endfor %}
+```
+
+```{graphviz} graph.dot
+:caption: "Click on the diagram to pan/zoom"
+:align: center
+:class: panzoom-graph
+```
+
