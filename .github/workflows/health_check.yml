@@ -1,9 +1,7 @@
 name: Health Check
 
 on:
-  # Run the workflow test on push events
-  push:
-  # Run the main workflow on workflow_dispatch or schedule
+  repository_dispatch:
   workflow_dispatch:
   schedule:
     # Every 5 minutes
@@ -13,93 +11,58 @@ env:
   health_check_file: health_check.json
   health_check_blocks_file: health_check_blocks.json
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   context:
     runs-on: ubuntu-latest
-    outputs:
-      matrix: ${{ steps.context.outputs.matrix }}
     steps:
-      - name: Set Context
-        id: context
-        shell: bash
-        run: |
-          is_test="${{ github.event_name == 'push' }}"
-          if [[ "${is_test}" == "true" ]]; then
-            matrix='["host"]'
-          else
-            matrix='["dev","stage","prod"]'
-          fi
-
-          echo "is_test=${is_test}" >> "$GITHUB_OUTPUT"
-          echo "matrix=${matrix}" >> "$GITHUB_OUTPUT"
-          cat "$GITHUB_OUTPUT"
+      - uses: actions/checkout@v4
+      - id: context
+        uses: ./.github/actions/context
 
   health_check:
-    needs: context
-    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        environment: ${{ fromJson(needs.context.outputs.matrix) }}
+        environment:
+          - dev
+          - stage
+          - prod
 
+    uses: ./.github/workflows/_health_check.yml
+    secrets: inherit
+    with:
+      environment: ${{ matrix.environment }}
+      notify: ${{ github.event_name == 'schedule' }}
+
+  post_health_check:
+    if: always()
+    needs: health_check
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
-        with:
-          python-version: 3.12
-
-      - name: Set waffle switch dummy-monitor-fails to true
-        if: matrix.environment == 'host'
-        uses: ./.github/actions/run-docker
-        with:
-          version: local
-          run: |
-            ./manage.py waffle_switch dummy-monitor-fails on
-
-      - name: Run health check
-        continue-on-error: true
-        id: health_check
+      - name: Retry Health Check
+        if: needs.health_check.result == 'failure'
         shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
-          ./scripts/health_check.py \
-          --env ${{ matrix.environment }} \
-          --verbose \
-          --output ${{ env.health_check_file }}
+          sleep 10
+          gh workflow run health_check.yml --ref ${{ github.ref }}
 
-      - name: Set message blocks
-        id: blocks
-        if: steps.health_check.outcome == 'failure'
-        shell: bash
-        run: |
-          if [ ! -f ${{ env.health_check_file }} ]; then
-            echo "Health check file is missing from previous step"
-            exit 1
-          fi
-
-          # Create the message blocks file
-          ./scripts/health_check_blocks.py \
-          --input "${{ env.health_check_file }}" \
-          --output "${{ env.health_check_blocks_file }}"
-          # Multiline output needs to use a delimiter to be passed to
-          # the GITHUB_OUTPUT file.
-          blocks=$(cat "${{ env.health_check_blocks_file }}")
-          echo "blocks<<EOF"$'\n'"$blocks"$'\n'EOF >> "$GITHUB_OUTPUT"
-          cat "$GITHUB_OUTPUT"
-
-      - uses: mozilla/addons/.github/actions/slack@main
-        if: |
-          github.event_name == 'schedule' &&
-          steps.health_check.outcome == 'failure'
+      - name: Notify Recovery
+        if: needs.health_check.result == 'success' && github.event_name == 'workflow_dispatch'
+        uses: mozilla/addons/.github/actions/slack@main
         with:
           slack_token: ${{ secrets.SLACK_TOKEN }}
           payload: |
             {
               "channel": "${{ secrets.SLACK_ADDONS_PRODUCTION_CHANNEL }}",
-              "blocks": ${{ toJson(steps.blocks.outputs.blocks) }},
-              "text": "Health check failed",
-              # Don't unfurl links or media
-              "unfurl_links": false,
-              "unfurl_media": false,
+              "text": ":white_check_mark: Health check has recovered",
             }
+
 

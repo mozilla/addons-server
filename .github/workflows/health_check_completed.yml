@@ -28,12 +28,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Context
-        id: context
-        uses: ./.github/actions/context
-
       - uses: mozilla/addons/.github/actions/slack-workflow-notification@main
         with:
           slack_token: ${{ secrets.SLACK_TOKEN }}
