@@ -161,6 +161,7 @@ def test_flag_high_abuse_reports_addons_according_to_review_tier():
         addon_version=with_dsa_report.current_version.version,
         reason=AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE,
     )
+    auto_moderated_job = CinderJob.objects.create()
 
     flagged = [
         addon_factory_with_abuse_reports(
@@ -178,6 +179,15 @@ def test_flag_high_abuse_reports_addons_according_to_review_tier():
             is_active=False,
         ).version.addon,
         addon_factory_with_abuse_reports(
+            name='B tier, individually actionable, but auto-moderated',
+            average_daily_users=200,
+            abuse_reports_count=2,
+            abuse_reports_kwargs={
+                'reason': AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE,
+                'cinder_job': auto_moderated_job,
+            },
+        ),
+        addon_factory_with_abuse_reports(
             name='B tier with a report a week old',
             average_daily_users=200,
             abuse_reports_count=2,
@@ -185,6 +195,14 @@ def test_flag_high_abuse_reports_addons_according_to_review_tier():
     ]
     # Still exactly (to the second) within the window we care about.
     AbuseReport.objects.filter(guid=flagged[-1].guid).update(created=days_ago(14))
+
+    # Create the auto-resolve decision
+    ContentDecision.objects.create(
+        cinder_job=auto_moderated_job,
+        addon=flagged[-2],
+        reviewer_user_id=settings.TASK_USER_ID,
+        action=DECISION_ACTIONS.AMO_CLOSED_NO_ACTION,
+    )
 
     # Pretend all files were signed otherwise they would not get flagged.
     File.objects.update(is_signed=True)
@@ -222,6 +240,7 @@ def test_flag_high_abuse_reports_addons_according_to_review_tier():
         datetime(2023, 6, 30, 11, 0),
         datetime(2023, 7, 3, 11, 0),
         datetime(2023, 7, 4, 11, 0),
+        datetime(2023, 7, 5, 11, 0),
     ]
 
 

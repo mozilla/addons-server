@@ -717,7 +717,7 @@ class ContentActionIgnore(AnyTargetMixin, NoActionMixin, ContentAction):
     # no appeal template because no appeals possible
 
 
-class ContentActionAlreadyRemoved(AnyTargetMixin, NoActionMixin, ContentAction):
+class ContentActionAlreadyModerated(AnyTargetMixin, NoActionMixin, ContentAction):
     description = 'Content is already moderated, disabled or deleted, so no action'
     reporter_template_path = 'abuse/emails/reporter_moderated_ignore.txt'
     # no appeal template because no appeals possible
@@ -741,7 +741,7 @@ CONTENT_ACTION_FROM_DECISION_ACTION = defaultdict(
         DECISION_ACTIONS.AMO_APPROVE: ContentActionApproveNoAction,
         DECISION_ACTIONS.AMO_APPROVE_VERSION: ContentActionApproveInitialDecision,
         DECISION_ACTIONS.AMO_IGNORE: ContentActionIgnore,
-        DECISION_ACTIONS.AMO_CLOSED_NO_ACTION: ContentActionAlreadyRemoved,
+        DECISION_ACTIONS.AMO_CLOSED_NO_ACTION: ContentActionAlreadyModerated,
         DECISION_ACTIONS.AMO_LEGAL_FORWARD: ContentActionForwardToLegal,
         DECISION_ACTIONS.AMO_CHANGE_PENDING_REJECTION_DATE: (
             ContentActionChangePendingRejectionDate

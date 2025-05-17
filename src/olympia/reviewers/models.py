@@ -854,7 +854,8 @@ class UsageTier(ModelBase):
         abuse_reports_count_qs = (
             AbuseReport.objects.values('guid')
             .filter(
-                ~AbuseReport.objects.__class__.is_individually_actionable_q(),
+                ~AbuseReport.objects.is_individually_actionable_q()
+                | AbuseReport.objects.was_auto_resolved_q(),
                 guid=OuterRef('guid'),
                 created__gte=datetime.now() - timedelta(days=14),
             )
