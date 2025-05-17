@@ -2096,7 +2096,7 @@ msgstr "คุณไม่มีข้อมูลประจำตัว API �
 
 #: src/olympia/devhub/forms.py:1549
 msgid "Something went wrong, please contact developer support."
-msgstr ""
+msgstr "มีบางอย่างผิดพลาด โปรดติดต่อฝ่ายสนับสนุนนักพัฒนา"
 
 #: src/olympia/devhub/tasks.py:178
 msgid "Invalid or corrupt add-on file."
