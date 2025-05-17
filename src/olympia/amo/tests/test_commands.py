@@ -6,6 +6,7 @@ from importlib import import_module
 from pathlib import Path
 from unittest import mock
 
+from django.apps import apps
 from django.conf import settings
 from django.core import mail
 from django.core.management import call_command
@@ -867,3 +868,44 @@ class TestCheckLocalesCompletionRate(TestCase):
             )
         )
         assert expected_below_but_special in mail.outbox[0].body
+
+
+class TestGenerateModelDiagrams(TestCase):
+    def result(self, tmp_dir):
+        with override_settings(ROOT=tmp_dir):
+            call_command('generate_model_diagrams')
+        return Path(tmp_dir)
+
+    def test_cleans_docs_dir(self):
+        tmp_dir = Path(tempfile.mkdtemp())
+
+        file_path = tmp_dir / 'docs' / 'topics' / 'models' / 'text.txt'
+        file_path.parent.mkdir(parents=True)
+        file_path.touch()
+
+        assert file_path.exists()
+        self.result(tmp_dir)
+        assert not file_path.exists()
+
+    def test_generates_docs(self):
+        tmp_dir = self.result(tempfile.mkdtemp())
+        docs_path = tmp_dir / 'docs' / 'topics' / 'models'
+
+        assert docs_path.exists()
+        assert docs_path.is_dir()
+
+        global_files = ['graph.dot', 'index.md']
+
+        for path, dirs, files in docs_path.walk():
+            # In the top level we only expect dirs and global files
+            if len(dirs) > 0:
+                assert sorted(files) == sorted(global_files)
+                continue
+
+            # in each app dir, we expect the global files plus model specific files
+            app_name = path.name
+            app = apps.get_app_config(app_name)
+            models = app.get_models()
+
+            expected_model_files = [model.__name__ + '.md' for model in models]
+            assert sorted(files) == sorted(expected_model_files + global_files)

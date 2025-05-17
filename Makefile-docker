@@ -70,8 +70,12 @@ lint: ## lint the code
 
 lint-codestyle: lint
 
+.PHONY: docs_pre_build
+docs_pre_build:
+	./manage.py generate_model_diagrams
+
 .PHONY: docs
-docs: ## build the documentation
+docs: docs_pre_build ## build the documentation
 	$(MAKE) -C docs html SPHINXOPTS='-nW'
 
 .PHONY: djshell

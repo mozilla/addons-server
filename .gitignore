@@ -33,6 +33,7 @@ docker/artifacts/*
 docs/_build
 docs/_gh-pages
 docs/api/_build
+docs/topics/models
 local_settings.py
 MANIFEST
 node_modules
