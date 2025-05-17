@@ -2188,7 +2188,7 @@ class MigratedLWT(OnChangeMixin, ModelBase):
         ]
 
 
-class AddonCategory(models.Model):
+class AddonCategory(ModelBase):
     id = PositiveAutoField(primary_key=True)
     addon = models.ForeignKey(Addon, on_delete=models.CASCADE)
     category_id = models.PositiveIntegerField()
@@ -2254,7 +2254,7 @@ class UnfilteredAddonUserManagerForRelations(AddonUserManager):
         super().__init__(include_deleted=include_deleted)
 
 
-class AddonUser(OnChangeMixin, SaveUpdateMixin, models.Model):
+class AddonUser(OnChangeMixin, ModelBase):
     id = PositiveAutoField(primary_key=True)
     addon = models.ForeignKey(Addon, on_delete=models.CASCADE)
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
@@ -2317,7 +2317,7 @@ models.signals.post_delete.connect(
 )
 
 
-class AddonUserPendingConfirmation(OnChangeMixin, SaveUpdateMixin, models.Model):
+class AddonUserPendingConfirmation(OnChangeMixin, ModelBase):
     id = PositiveAutoField(primary_key=True)
     addon = models.ForeignKey(Addon, on_delete=models.CASCADE)
     user = user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
@@ -2477,7 +2477,7 @@ class DeniedSlug(ModelBase):
         return slug.isdigit() or cls.objects.filter(name=slug).exists()
 
 
-class FrozenAddon(models.Model):
+class FrozenAddon(ModelBase):
     """Add-ons in this table never get a hotness score."""
 
     id = PositiveAutoField(primary_key=True)
