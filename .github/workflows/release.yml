@@ -1,0 +1,40 @@
+name: Release
+description: Create a release
+
+on:
+  workflow_dispatch:
+    inputs:
+      author:
+        description: The person responsible for facilitating the release.
+        required: true
+        type: choice
+        options:
+          - kevinmind
+          - diox
+          - eviljeff
+      tag:
+        description: 'Release date YYYY.MM.DD Also used to generate the tag name.'
+        required: true
+        type: string
+      cherry_picks:
+        description: Cherry picks to include in the release. (comma separated) e.g abc123,def456
+        required: false
+        type: string
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.10
+
+      - name: Create Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          ./scripts/create_release.py "${{ inputs.tag }}" \
+            --author "${{ inputs.author }}" \
+            --cherry-picks "${{ inputs.cherry_picks }}"
