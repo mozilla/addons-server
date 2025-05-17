@@ -1,4 +1,6 @@
+import html
 import zipfile
+from collections import defaultdict
 from datetime import datetime, timedelta
 
 from django import forms
@@ -15,14 +17,19 @@ from django.utils.html import format_html, format_html_join
 from django.utils.translation import gettext
 
 import markupsafe
+import waffle
 
 import olympia.core.logger
 from olympia import amo, ratings
 from olympia.abuse.models import CinderJob, CinderPolicy, ContentDecision
 from olympia.access import acl
+from olympia.addons.models import Addon
 from olympia.amo.forms import AMOModelForm
 from olympia.constants.abuse import DECISION_ACTIONS
-from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
+from olympia.constants.reviewers import (
+    POLICY_VALUE_PATTERN_REGEX,
+    REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT,
+)
 from olympia.files.utils import SafeZip
 from olympia.ratings.models import Rating
 from olympia.ratings.permissions import user_can_delete_rating
@@ -104,22 +111,10 @@ class NumberInput(widgets.Input):
     input_type = 'number'
 
 
-class VersionsChoiceField(ModelMultipleChoiceField):
-    """
-    Widget to use together with VersionsChoiceWidget to display the list of
-    versions used by review page for some actions.
-    """
-
-    def label_from_instance(self, obj):
-        """Return the object instead of transforming into a label at this stage
-        so that it's available in the widget."""
-        return obj
-
-
 class VersionsChoiceWidget(forms.SelectMultiple):
     """
-    Widget to use together with VersionsChoiceField to display the list of
-    versions used by review page for some actions.
+    Widget to use together with WidgetRenderedModelMultipleChoiceField to display the
+    list of versions used by review page for some actions.
     """
 
     actions_filters = {
@@ -307,6 +302,37 @@ class CinderJobsWidget(forms.CheckboxSelectMultiple):
         )
 
 
+class CinderPolicyWidget(forms.CheckboxSelectMultiple):
+    """
+    Widget to use together with a WidgetRenderedModelMultipleChoiceField to display
+    select elements with additional attribute to allow toggling.
+    """
+
+    def create_option(
+        self, name, value, label, selected, index, subindex=None, attrs=None
+    ):
+        obj = label
+        label = str(obj)
+        attrs = attrs or {}
+        actions_on_policy = {
+            DECISION_ACTIONS.for_api_value(action).value
+            for action in obj.enforcement_actions
+            if DECISION_ACTIONS.has_api_value(action)
+        }
+        actions = (
+            reviewer_action
+            for reviewer_action, defn in self.helper_actions.items()
+            # show this policy for this action if there any common enforcement actions
+            if (ha_ea := defn.get('enforcement_actions', ()))
+            and actions_on_policy.intersection(ha_ea)
+        )
+        attrs['class'] = 'data-toggle'
+        attrs['data-value'] = ' '.join(actions)
+        return super().create_option(
+            name, value, label, selected, index, subindex, attrs
+        )
+
+
 class ActionChoiceWidget(forms.RadioSelect):
     """
     Widget to add boilerplate_text to action options.
@@ -382,7 +408,7 @@ class ReviewForm(forms.Form):
         required=True, widget=forms.Textarea(), label='Comments:'
     )
     action = forms.ChoiceField(required=True, widget=ActionChoiceWidget)
-    versions = VersionsChoiceField(
+    versions = WidgetRenderedModelMultipleChoiceField(
         # The <select> is displayed/hidden dynamically depending on the action
         # so it needs the data-toggle class (data-value attribute is set later
         # during __init__). VersionsChoiceWidget takes care of adding that to
@@ -443,13 +469,13 @@ class ReviewForm(forms.Form):
         queryset=CinderJob.objects.none(),
         widget=CinderJobsWidget(attrs={'class': 'data-toggle-hide'}),
     )
-
-    cinder_policies = forms.ModelMultipleChoiceField(
+    # queryset and widget are set later in __init__
+    cinder_policies = WidgetRenderedModelMultipleChoiceField(
         # queryset is set later in __init__
         queryset=CinderPolicy.objects.none(),
         required=True,
         label='Choose one or more policies:',
-        widget=widgets.CheckboxSelectMultiple,
+        widget=CinderPolicyWidget(),
     )
     appeal_action = forms.MultipleChoiceField(
         required=False,
@@ -469,8 +495,11 @@ class ReviewForm(forms.Form):
                 self.fields['versions'].required = True
             if not action.get('requires_reasons', False):
                 self.fields['reasons'].required = False
-            if not action.get('requires_policies'):
+            if not action.get('enforcement_actions'):
                 self.fields['cinder_policies'].required = False
+            else:
+                # we no longer strictly require comments with cinder policies
+                self.fields['comments'].required = False
             if self.data.get('cinder_jobs_to_resolve'):
                 # if a cinder job is being resolved we need a review reason
                 if action.get('requires_reasons_for_cinder_jobs'):
@@ -507,8 +536,9 @@ class ReviewForm(forms.Form):
         if self.cleaned_data.get('cinder_jobs_to_resolve') and self.cleaned_data.get(
             'cinder_policies'
         ):
-            actions = self.helper.handler.get_decision_actions_from_policies(
-                self.cleaned_data.get('cinder_policies')
+            actions = CinderPolicy.get_decision_actions_from_policies(
+                self.cleaned_data.get('cinder_policies'),
+                for_entity=Addon,
             )
             if len(actions) == 0:
                 self.add_error(
@@ -560,6 +590,21 @@ class ReviewForm(forms.Form):
                         ),
                     )
 
+        # Add in any dynamic placeholder values for the cinder policies
+        if self.cleaned_data.get('cinder_policies', []):
+            policy_dict = {
+                str(p.id): p for p in self.cleaned_data.get('cinder_policies', [])
+            }
+            policy_values = defaultdict(dict)
+            for key, value in self.data.items():
+                if (match := POLICY_VALUE_PATTERN_REGEX.match(key)) and (
+                    policy := policy_dict.get(match['id'])
+                ):
+                    policy_values[policy.uuid][match['placeholder']] = html.unescape(
+                        value
+                    )
+            self.cleaned_data['policy_values'] = policy_values
+
         return self.cleaned_data
 
     def clean_delayed_rejection_date(self):
@@ -578,6 +623,9 @@ class ReviewForm(forms.Form):
     def __init__(self, *args, **kw):
         self.helper = kw.pop('helper')
         super().__init__(*args, **kw)
+        if waffle.switch_is_active('cinder_policy_review_reasons_enabled'):
+            # When we're using policies reviewers shouldn't need to write as much
+            self.fields['comments'].widget = forms.Textarea(attrs={'rows': 2})
         if any(action.get('delayable') for action in self.helper.actions.values()):
             # Default delayed rejection date should be
             # REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT days in the
@@ -667,7 +715,10 @@ class ReviewForm(forms.Form):
         # Set the queryset for policies to show as options
         self.fields['cinder_policies'].queryset = CinderPolicy.objects.filter(
             expose_in_reviewer_tools=True
-        )
+        ).select_related('parent')
+
+        # Pass on the reviewer tools actions so we can set the show/hide on policies
+        self.fields['cinder_policies'].widget.helper_actions = self.helper.actions
 
     @property
     def unreviewed_files(self):

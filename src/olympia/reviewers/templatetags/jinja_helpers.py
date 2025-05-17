@@ -1,10 +1,14 @@
 import datetime
 
+from django.utils.html import escape
+from django.utils.safestring import mark_safe
+
 import jinja2
 from django_jinja import library
 
 from olympia.access import acl
 from olympia.amo.templatetags.jinja_helpers import new_context
+from olympia.constants.reviewers import POLICY_VALUE_PATTERN
 from olympia.ratings.permissions import user_can_delete_rating
 from olympia.reviewers.templatetags import assay
 
@@ -70,3 +74,15 @@ def format_score(value):
 @library.filter
 def to_dom_id(string):
     return string.replace('.', '_')
+
+
+@library.filter
+def render_text_with_input_fields(policy):
+    class WrapKey(dict):
+        def __missing__(self, key):
+            # django.utils.html.escape doesn't escape quotes
+            key = key.replace('"', '&quot;')
+            name = POLICY_VALUE_PATTERN.format(id=policy.id, placeholder=key)
+            return f'<input placeholder="{key}" name="{name}">'
+
+    return mark_safe(escape(policy.text).format_map(WrapKey({})))
