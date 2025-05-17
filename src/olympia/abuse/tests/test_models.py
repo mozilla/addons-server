@@ -3146,6 +3146,37 @@ class TestContentDecision(TestCase):
             f'than {new_pending_rejection}'
         ) in mail.outbox[0].body
 
+    def test_send_notifications_without_notifying_owners(self):
+        addon_developer = user_factory()
+        addon = addon_factory(users=[addon_developer])
+        reporter = user_factory()
+        abuse_report = AbuseReport.objects.create(
+            guid=addon.guid,
+            reason=AbuseReport.REASONS.ILLEGAL,
+            reporter=reporter,
+            cinder_job=CinderJob.objects.create(
+                target_addon=addon,
+                resolvable_in_reviewer_tools=True,
+                decision=ContentDecision.objects.create(
+                    cinder_id='4815162342-lost',
+                    action_date=self.days_ago(1),
+                    action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+                    addon=addon,
+                    reviewer_user=self.reviewer_user,
+                ),
+            ),
+        )
+        decision = abuse_report.cinder_job.decisions.get()
+        decision.send_notifications(notify_owners=False)
+        assert len(mail.outbox) == 1  # No email to owner
+        assert mail.outbox[0].to == [reporter.email]
+        mail.outbox = []
+
+        decision.send_notifications(notify_owners=True)
+        assert len(mail.outbox) == 2
+        assert mail.outbox[0].to == [reporter.email]
+        assert mail.outbox[1].to == [addon_developer.email]
+
     def test_resolve_job_forwarded(self):
         addon_developer = user_factory()
         addon = addon_factory(users=[addon_developer])
