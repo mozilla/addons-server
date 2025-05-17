@@ -158,7 +158,7 @@ services:
       - data_redis:/data
 
   rabbitmq:
-    image: rabbitmq:3.12@sha256:4dc5d5a5076f7c458b7f3468e2282f329a8911cc3c31c4ed4aefcedb27917da2
+    image: rabbitmq:3.13@sha256:d6e87da6063886270086ebeb2b7559715067ba25af67281d92765b7d4424785c
     hostname: olympia
     expose:
       - "5672"
