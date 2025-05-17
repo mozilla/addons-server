@@ -16,6 +16,7 @@ from olympia import amo, core
 from olympia.abuse.models import AbuseReport
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import AddonUser
+from olympia.amo.templatetags.jinja_helpers import format_datetime
 from olympia.amo.tests import (
     TestCase,
     addon_factory,
@@ -50,6 +51,21 @@ class TestUserAdmin(TestCase):
         # Preload content type for Add-on so that it's done before we check
         # SQL queries
         ContentType.objects.get_for_model(UserProfile)
+
+    def test_list(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Users:Edit')
+        self.client.force_login(user)
+        banned_date = self.days_ago(1)
+        banned_user = user_factory(banned=banned_date)
+        response = self.client.get(self.list_url)
+        assert response.status_code == 200
+        doc = pq(response.content.decode('utf-8'))
+        assert str(banned_user) in doc('#result_list').text()
+        assert str(banned_user.email) in doc('#result_list').text()
+        assert format_datetime(banned_user.banned) in doc('#result_list').text()
+        assert str(user) in doc('#result_list').text()
+        assert str(user.email) in doc('#result_list').text()
 
     def test_search_by_email_simple(self):
         user = user_factory(email='someone@mozilla.com')
