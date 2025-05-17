@@ -5859,7 +5859,7 @@ msgstr "Mejorar la experiencia en Twitch."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1001
 msgid "Re-take control of Twitter/X and customize your experience."
-msgstr ""
+msgstr "Volvé a tomar control de Twitter/X y personalizá tu experiencia."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1004
@@ -6135,7 +6135,7 @@ msgstr ""
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1144
 msgid "Gaming & media extensions"
-msgstr ""
+msgstr "Extensiones de juegos y medios"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1146
