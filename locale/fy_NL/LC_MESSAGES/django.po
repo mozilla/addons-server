@@ -5873,7 +5873,7 @@ msgstr "Essinsjele add-ons"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1020
 msgid "Declutter your desktop"
-msgstr ""
+msgstr "Rêd dyn buroblêd op"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1022 src/olympia/discovery/strings.jinja2:1024 src/olympia/discovery/strings.jinja2:1026
@@ -6105,12 +6105,12 @@ msgstr "Mear stêfkarren foar Twitch-útwreidingen besjen"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1144
 msgid "Gaming & media extensions"
-msgstr ""
+msgstr "Spul- en media-útwreidingen"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1146
 msgid "See more staff picks"
-msgstr ""
+msgstr "Mear stêfkarren besjen"
 
 #: src/olympia/files/models.py:319
 msgid "Unreviewed"
