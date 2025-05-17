@@ -242,6 +242,15 @@ class VersionManager(ManagerBase):
             )
         return reasons
 
+    def manually_reviewed_versions(self):
+        """Returns a queryset of versions that underwent a completed manual review."""
+        return self.filter(
+            human_review_date__isnull=False
+        ).filter(
+            Q(autoapprovalsummary__isnull=True) |
+            Q(autoapprovalsummary__verdict=amo.NOT_AUTO_APPROVED) |
+            Q(autoapprovalsummary__verdict=amo.AUTO_APPROVED, autoapprovalsummary__confirmed=True)
+        ).select_related('addon')
 
 class UnfilteredVersionManagerForRelations(VersionManager):
     """Like VersionManager, but defaults to include deleted objects.
