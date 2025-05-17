@@ -3586,9 +3586,8 @@ msgstr ""
 "emphasis\">node</span> y <span class=\"tech-emphasis\">npm</span>)."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:62
-#, fuzzy
 msgid "Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified, or otherwise machine-generated."
-msgstr "<span class=\"instruction-emphasis\">Nota:</span> Los archivos fuente (aparte de las bibliotecas de código abierto de terceros) no se pueden transpilar, ofuscar, minimizar o generar por máquinas."
+msgstr "Los archivos fuente (salvo las bibliotecas de terceros de código abierto) no se pueden transpilar, concatenar, minificar ni generar mecánicamente de ninguna otra forma."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:67
 #, python-format
@@ -3821,6 +3820,13 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Hola,\n"
+"\n"
+"Tu correo electrónico ha sido verificado correctamente.\n"
+"\n"
+"Saludos,\n"
+"\n"
+"El equipo de complementos de Mozilla"
 
 #: src/olympia/devhub/templates/devhub/emails/verify-email-requested.ltxt:12
 #, python-format
@@ -3838,6 +3844,18 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Hola,\n"
+"\n"
+"Estás recibiendo este mensaje porque haz solicitado verificar tu correo electrónico.\n"
+"Para finalizar este proceso, haz clic en el siguiente enlace:\n"
+"\n"
+"%(confirmation_link)s\n"
+"\n"
+"Si no lo has solicitado, por favor notifícalo a amo-admins@mozilla.com.\n"
+"\n"
+"Saludos,\n"
+"\n"
+"El equipo de complementos de Mozilla"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:6 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:4
 msgid "Invisible"
@@ -3990,6 +4008,8 @@ msgstr "Firma de versión pendiente"
 #: src/olympia/devhub/templates/devhub/includes/done_unlisted.html:3
 msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
+"¡Has terminado! ✨ Se te notificará por correo electrónico cuando el archivo firmado esté listo para ser descargado desde el Centro de Desarrolladores. Si no ves un correo electrónico después de 24 "
+"horas, revisa tu carpeta de spam."
 
 #: src/olympia/devhub/templates/devhub/includes/license_form.html:5 src/olympia/devhub/templates/devhub/versions/edit.html:83
 msgid "License"
@@ -4026,11 +4046,8 @@ msgid "End-User License Agreement"
 msgstr "Acuerdo de licencia final de usuario"
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:4
-#, fuzzy
 msgid "Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
-msgstr ""
-"Por favor, elige una licencia apropiada para los derechos que garantizas en el código fuente.\n"
-"                  Solo es útil para complementos listados."
+msgstr "Por favor, ten en cuenta que un EULA no es lo mismo que una licencia de código, como la GPL o la MPL. Solo es relevante para los complementos listados."
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:21
 msgid "Privacy Policy"
@@ -4061,6 +4078,8 @@ msgstr "Crea extensiones y temas mejor integrados"
 #: src/olympia/devhub/templates/devhub/new-landing/components/banner.html:7 src/olympia/devhub/templates/devhub/new-landing/components/overview.html:5
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr ""
+"Tanto si eres nuevo en el desarrollo de extensiones, como si estás puliendo o portando una extensión o tema existente, o creando una solución empresarial personalizada, tenemos los recursos para "
+"ayudarte."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/banner.html:13
 msgid "Visit the Firefox Extension Workshop"
@@ -4473,6 +4492,8 @@ msgid ""
 "The latest approved version of this %(promoted_group_name)s add-on cannot be deleted or disabled because the previous version was not approved for %(promoted_group_name)s promotion. Please contact "
 "AMO Admins if you need help with this."
 msgstr ""
+"La última versión aprobada de este complemento %(promoted_group_name)s no se puede eliminar ni desactivar porque la versión anterior no fue aprobada para la promoción de %(promoted_group_name)s. "
+"Ponte en contacto con los administradores de AMO si necesitas ayuda con esto."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:309 src/olympia/devhub/templates/devhub/versions/list.html:335
 msgid "Hide Add-on"
@@ -4740,7 +4761,7 @@ msgstr "Recarga automáticamente las pestañas según los intervalos de tiempo q
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:128 src/olympia/discovery/strings.jinja2:941
 msgid "Keep parts of your online life separated into color-coded and cookie separated tabs. Now integrated with Mozilla VPN for an extra layer of privacy."
-msgstr ""
+msgstr "Mantén partes de tu vida en línea separadas en pestañas codificadas por colores y separadas por cookies. Ahora integrado con Mozilla VPN para una capa adicional de privacidad."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5155,15 +5176,15 @@ msgstr "Selecciona el texto de cualquier sitio web y haz clic con el botón dere
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:371
-#, fuzzy
 msgid "Gain an Amazon edge. When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
-msgstr "Si el producto que estás buscando en distintas tiendas online, está también disponible en Amazon, solo tendrás que hacer clic en un botón para verlo en Amazon."
+msgstr ""
+"Gana ventaja en Amazon. Al mirar las páginas de productos en otras tiendas en línea, si también está disponible en Amazon puedes simplemente hacer clic en un botón para comprobar su publicación en "
+"Amazon."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:374
-#, fuzzy
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr "Dispone de muchas opciones para gestionar pestañas: cierre de pestañas duplicadas, fusión de ventanas, copia de títulos de pestañas y mucho más."
+msgstr "Disfruta del máximo control de pestañas — cierra pestañas duplicadas, fusiona ventanas, copia el título de la pestaña y mucho más."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:377
@@ -5250,9 +5271,8 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:425 src/olympia/discovery/strings.jinja2:827
-#, fuzzy
 msgid "Only allow web content to run from sites you trust. Surf securely."
-msgstr "Solo permite que el contenido web se ejecute desde sitios web de confianza."
+msgstr "Permita que sólo se ejecuten contenidos web de sitios en los que confías. Navega con seguridad."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5309,9 +5329,8 @@ msgstr "¿El volumen de un sitio web es demasiado bajo? ¿O demasiado alto? Soun
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:458
-#, fuzzy
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
-msgstr "Realiza extraordinarios cambios visuales (elimina anuncios o contenido desagradable) en cualquier página web que desees imprimir."
+msgstr "Edita una página web antes de imprimirla. Realiza cambios visuales radicales — elimina anuncios o contenido desagradable — en cualquier página web que desees imprimir."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:461
@@ -7046,6 +7065,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
+"El siguiente autor ha sido añadido a tu complemento %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
 #: src/olympia/users/templates/users/emails/author_added_confirmation.ltxt:12
 #, python-format
@@ -7083,6 +7105,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
+"El siguiente autor ha sido cambiado en tu complemento %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
 #: src/olympia/users/templates/users/emails/author_removed.ltxt:3
 #, python-format
@@ -7091,6 +7116,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s )"
 msgstr ""
+"El siguiente autor ha sido eliminado del complemento %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s )"
 
 #: src/olympia/users/templates/users/emails/user_deleted.ltxt:9
 #, python-format
@@ -7109,7 +7137,7 @@ msgstr ""
 #: src/olympia/versions/models.py:1175
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
-msgstr ""
+msgstr "Retraso-rechazado, programado para %s"
 
 #: src/olympia/versions/models.py:1180
 msgid "Auto-approved, Confirmed"
