@@ -520,85 +520,85 @@ msgstr "نصب‌ها و کاربران روزانه از {0} تا {1}"
 #: static/js/stats/csv_keys.js:141
 #, python-brace-format
 msgid "Downloads, last {0} days"
-msgstr ""
+msgstr "بارگیری‌ها، {0} روز گذشته"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/stats/csv_keys.js:143
 #, python-brace-format
 msgid "Downloads from {0} to {1}"
-msgstr ""
+msgstr "بارگیری‌ها از {0} تا {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:147
 #, python-brace-format
 msgid "Daily Users, last {0} days"
-msgstr ""
+msgstr "کاربران روزانه، {0} روز گذشته"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/stats/csv_keys.js:149
 #, python-brace-format
 msgid "Daily Users from {0} to {1}"
-msgstr ""
+msgstr "کاربران روزانه از {0} تا {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:153
 #, python-brace-format
 msgid "Applications, last {0} days"
-msgstr ""
+msgstr "برنامه‌ها، {0} روز گذشته"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/stats/csv_keys.js:155
 #, python-brace-format
 msgid "Applications from {0} to {1}"
-msgstr ""
+msgstr "برنامه‌ها از {0} تا {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:159
 #, python-brace-format
 msgid "Countries, last {0} days"
-msgstr ""
+msgstr "کشورها، {0} روز گذشته"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/stats/csv_keys.js:161
 #, python-brace-format
 msgid "Countries from {0} to {1}"
-msgstr ""
+msgstr "کشورها از {0} تا {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:165
 #, python-brace-format
 msgid "Platforms, last {0} days"
-msgstr ""
+msgstr "سکوها، {0} روز گذشته"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/stats/csv_keys.js:167
 #, python-brace-format
 msgid "Platforms from {0} to {1}"
-msgstr ""
+msgstr "سکوها از {0} تا {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:171
 #, python-brace-format
 msgid "Languages, last {0} days"
-msgstr ""
+msgstr "زبان‌ها، {0} روز گذشته"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/stats/csv_keys.js:173
 #, python-brace-format
 msgid "Languages from {0} to {1}"
-msgstr ""
+msgstr "زبان‌ها از {0} تا {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:177
 #, python-brace-format
 msgid "Add-on Versions, last {0} days"
-msgstr ""
+msgstr "نسخه‌های افزودنی، {0} روز گذشته"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/stats/csv_keys.js:179
 #, python-brace-format
 msgid "Add-on Versions from {0} to {1}"
-msgstr ""
+msgstr "نسخه‌های افزودنی از {0} تا {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:183
