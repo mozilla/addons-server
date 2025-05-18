@@ -134,6 +134,7 @@ msgstr "یادداشت‌های مربوط به نسخه را باجزئیات �
 #: static/js/common/upload-addon.js:654
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
+"اگر افزودنی شما برای آزمایش کامل به یک حساب کاربریِ یک وبگاه احتیاج دارد، در یادداشت‌هایی که برای بازبینان می‌نویسید، یک نام کاربری و گذرواژه نیز درج کنید (این کار در مرحله بعدی قابل انجام است)."
 
 #: static/js/common/upload-addon.js:660
 msgid "Add-on submission checklist"
@@ -148,6 +149,8 @@ msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
+"اسکریپت‌های کوچک‌شده، متصل‌شده یا در غیر این صورت تولید‌شده توسط ماشین (به‌استثنای کتابخانه‌های شناخته‌شده) باید کد منبع خود را به‌طور جداگانه برای بررسی ارسال کنند. برای پرهیز از رد شدن، اطمینان "
+"حاصل کنید که از قسمت بارگذاری کد منبع استفاده می‌کنید."
 
 #: static/js/common/upload-addon.js:684
 msgid "The validation process found these issues that can lead to rejections:"
