@@ -5864,7 +5864,7 @@ msgstr "Nevyhnutné doplnky"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1020
 msgid "Declutter your desktop"
-msgstr ""
+msgstr "Upracte si pracovnú plochu"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1022 src/olympia/discovery/strings.jinja2:1024 src/olympia/discovery/strings.jinja2:1026
@@ -6096,12 +6096,12 @@ msgstr "Ďalšie tipy od znalcov na rozšírenia pre Twitch"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1144
 msgid "Gaming & media extensions"
-msgstr ""
+msgstr "Rozšírenia pre hry a médiá"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1146
 msgid "See more staff picks"
-msgstr ""
+msgstr "Ďalšie tipy od znalcov"
 
 #: src/olympia/files/models.py:319
 msgid "Unreviewed"
