@@ -5897,7 +5897,7 @@ msgstr "Необходимые дополнения"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1020
 msgid "Declutter your desktop"
-msgstr ""
+msgstr "Наведите порядок на своем рабочем столе"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1022 src/olympia/discovery/strings.jinja2:1024 src/olympia/discovery/strings.jinja2:1026
@@ -6129,12 +6129,12 @@ msgstr "Больше расширений для Twitch, отобранных н
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1144
 msgid "Gaming & media extensions"
-msgstr ""
+msgstr "Расширения для игр и медиа"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1146
 msgid "See more staff picks"
-msgstr ""
+msgstr "Больше средств, отобранных нашими сотрудниками"
 
 #: src/olympia/files/models.py:319
 msgid "Unreviewed"
