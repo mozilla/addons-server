@@ -19,7 +19,7 @@ msgstr "اشکالی در تماس با سرویس‌دهنده به‌وجود 
 
 #: static/js/common/upload-addon.js:78
 msgid "Select a file..."
-msgstr "یک فایل را انتخاب کنید..."
+msgstr "پرونده‌ای را انتخاب کنید..."
 
 #: static/js/common/upload-addon.js:82
 #, fuzzy
@@ -28,9 +28,9 @@ msgstr "افزودنی‌های شما باید با zip, .xpi, .crx. یا xml. 
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: static/js/common/upload-addon.js:118
-#, fuzzy, python-brace-format, python-format
+#, python-brace-format, python-format
 msgid "{0}% complete"
-msgstr "‏{0}% تکمیل شده است"
+msgstr "‏{0}٪ تکمیل شده است"
 
 #: static/js/common/upload-addon.js:122
 #, python-brace-format
@@ -44,7 +44,7 @@ msgstr "انصراف"
 #: static/js/common/upload-addon.js:189
 #, python-brace-format
 msgid "Uploading {0}"
-msgstr "در حال آپلود {0}"
+msgstr "در حال بارگذاری {0}"
 
 #: static/js/common/upload-addon.js:229
 #, python-brace-format
@@ -53,7 +53,7 @@ msgstr "خطا با {0}"
 
 #: static/js/common/upload-addon.js:237
 msgid "Please make sure to report any linting related issues on GitHub"
-msgstr ""
+msgstr "لطفاً هرگونه مشکل دربارهٔ فرآیند خطایابی کُد را در گیت‌هاب گزارش کنید"
 
 #: static/js/common/upload-addon.js:248
 #, python-brace-format
@@ -90,11 +90,11 @@ msgstr "یک پاسخ خالی از سرور دریافت شد، وضعیت: {0}
 
 #: static/js/common/upload-addon.js:403
 msgid "Your extension has to be compatible with at least one application."
-msgstr ""
+msgstr "افزونهٔ شما باید دست‌کم با یک برنامه سازگار باشد."
 
 #: static/js/common/upload-addon.js:473
 msgid "Unexpected server error while validating."
-msgstr "خطای غیر منتظره در هنگام اعتبار سنجی."
+msgstr "خطای غیرمنتظره در هنگام اعتبارسنجی."
 
 #: static/js/common/upload-addon.js:519
 msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
@@ -129,7 +129,7 @@ msgstr "افزونه شما بدون خطا یا اخطار، اعتبار سن�
 
 #: static/js/common/upload-addon.js:651
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr ""
+msgstr "یادداشت‌های مربوط به نسخه را باجزئیات بیفزایید (این می‌تواند در مرحله بعدی انجام شود)."
 
 #: static/js/common/upload-addon.js:654
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
