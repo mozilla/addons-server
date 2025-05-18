@@ -154,16 +154,16 @@ msgstr ""
 
 #: static/js/common/upload-addon.js:684
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr ""
+msgstr "فرایند اعتبارسنجی این مشکلات را پیدا کرد که می‌توانند باعث رد شدن بشوند:"
 
 #: static/js/common/upload-base.js:69
 msgid "The filetype you uploaded isn't recognized."
-msgstr ""
+msgstr "نوع پرونده‌ای که بارگذاری کرده‌اید شناخته‌شده نیست."
 
 #: static/js/common/upload-base.js:79 static/js/zamboni/global.js:569
 #, python-brace-format
 msgid "Your file exceeds the maximum size of {0}."
-msgstr ""
+msgstr "پروندهٔ شما بزرگتر از بیشینه اندازهٔ {0} است."
 
 #: static/js/common/upload-base.js:105
 msgid "You cancelled the upload."
@@ -175,12 +175,12 @@ msgstr "تصاویر بایستی یکی از موارد PNG یا JPG باشد."
 
 #: static/js/common/upload-image.js:106
 msgid "Videos must be in WebM."
-msgstr "فیلم بایستی WebM باشد."
+msgstr "فیلم باید در قالب WebM باشد."
 
 #: static/js/stats/chart.js:298
 #, python-brace-format
 msgid "Week of {0}"
-msgstr ""
+msgstr "هفتهٔ {0}"
 
 #: static/js/stats/chart.js:307
 #, python-brace-format
@@ -204,14 +204,14 @@ msgstr[0] "{0} افزونه"
 msgstr[1] "{0} افزونه"
 
 #: static/js/stats/chart.js:325
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{0} collection"
 msgid_plural "{0} collections"
 msgstr[0] "{0} مجموعه"
 msgstr[1] "{0} مجموعه"
 
 #: static/js/stats/chart.js:331
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{0} review"
 msgid_plural "{0} reviews"
 msgstr[0] "{0} بررسی"
@@ -354,19 +354,19 @@ msgstr ""
 
 #: static/js/stats/csv_keys.js:57 static/js/stats/csv_keys.js:59
 msgid "Detail Page"
-msgstr ""
+msgstr "صفحه جزئیات"
 
 #: static/js/stats/csv_keys.js:58 static/js/stats/csv_keys.js:60
 msgid "Detail Page (bottom)"
-msgstr ""
+msgstr "صفحه جزئیات (در پایین)"
 
 #: static/js/stats/csv_keys.js:61
 msgid "Detail Page (Development Channel)"
-msgstr ""
+msgstr "صفحه جزئیات (کانال توسعه)"
 
 #: static/js/stats/csv_keys.js:62 static/js/stats/csv_keys.js:63 static/js/stats/csv_keys.js:64
 msgid "Often Used With"
-msgstr ""
+msgstr "اغلب در استفاده همراه با"
 
 #: static/js/stats/csv_keys.js:65 static/js/stats/csv_keys.js:66
 msgid "Others By Author"
@@ -382,7 +382,7 @@ msgstr ""
 
 #: static/js/stats/csv_keys.js:71
 msgid "Meet the Developer"
-msgstr ""
+msgstr "آشنایی با توسعه‌دهنده"
 
 #: static/js/stats/csv_keys.js:72
 msgid "User Profile"
@@ -470,39 +470,39 @@ msgstr ""
 
 #: static/js/stats/csv_keys.js:119
 msgid "Mozilla"
-msgstr ""
+msgstr "موزیلا"
 
 #: static/js/stats/csv_keys.js:120
 msgid "Thunderbird"
-msgstr ""
+msgstr "تاندربرد"
 
 #: static/js/stats/csv_keys.js:121
 msgid "Sunbird"
-msgstr ""
+msgstr "سان‌برد"
 
 #: static/js/stats/csv_keys.js:122
 msgid "SeaMonkey"
-msgstr ""
+msgstr "سی‌مانکی"
 
 #: static/js/stats/csv_keys.js:123
 msgid "Fennec"
-msgstr ""
+msgstr "فنک"
 
 #: static/js/stats/csv_keys.js:124
 msgid "Android"
-msgstr ""
+msgstr "اندروید"
 
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:129
 #, python-brace-format
 msgid "Downloads and Daily Users, last {0} days"
-msgstr ""
+msgstr "بارگیری‌ها و کاربران روزانه، {0} روز گذشته"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/stats/csv_keys.js:131
 #, python-brace-format
 msgid "Downloads and Daily Users from {0} to {1}"
-msgstr ""
+msgstr "بارگیری‌ها و کاربران روزانه از {0} تا {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:135
@@ -514,7 +514,7 @@ msgstr ""
 #: static/js/stats/csv_keys.js:137
 #, python-brace-format
 msgid "Installs and Daily Users from {0} to {1}"
-msgstr ""
+msgstr "نصب‌ها و کاربران روزانه از {0} تا {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:141
