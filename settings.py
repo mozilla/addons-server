@@ -64,6 +64,7 @@ if os.environ.get('OLYMPIA_DEPS', '') == 'development':
     INSTALLED_APPS += (
         'debug_toolbar',
         'dbbackup',
+        'django_model_info.apps.DjangoModelInfoConfig',
     )
     MIDDLEWARE = insert_debug_toolbar_middleware(MIDDLEWARE)
 

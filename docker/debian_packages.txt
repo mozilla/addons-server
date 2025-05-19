@@ -22,3 +22,6 @@ gettext
 librsvg2-bin
 # Use pngcrush to optimize the PNGs uploaded by developers
 pngcrush
+# pygraphviz is required to graph our ORM models
+graphviz
+libgraphviz-dev

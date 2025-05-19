@@ -1,0 +1,28 @@
+# {{ name }}
+
+## Details
+
+{{ description }}
+
+| Property | Value |
+|----------|-------|
+| Name | {{ name }} |
+| Table | {{ db_table }} |
+
+## Fields
+
+| Field | Type | Nullable | Blankable |
+|-------|------|----------|-----------|
+{% for field in fields %}
+| {{ field.name }} | {{ field.type }} | {{ field.null }} | {{ field.blank }} |
+{% endfor %}
+
+{% if constraints %}
+## Constraints
+
+| Name | SQL |
+|-------|------|
+{% for constraint in constraints %}
+| {{ constraint.name }} | {{ constraint.sql }} |
+{% endfor %}
+{% endif %}

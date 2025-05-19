@@ -33,6 +33,8 @@ export default {
     "jquery-pjax",
     "highcharts",
     "source-map",
+    // Used in docs
+    "panzoom",
   ],
   ignore: [
     // Disable rules causing errors

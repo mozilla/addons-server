@@ -283,6 +283,12 @@ class VersionCreateError(ValueError):
 
 
 class Version(OnChangeMixin, ModelBase):
+    """
+    A version is a unique iteration of an add-on.
+    Versions are created for a specific channel and
+    relate to a specific uploaded XPI file.
+    """
+
     id = PositiveAutoField(primary_key=True)
     addon = models.ForeignKey(
         'addons.Addon', related_name='versions', on_delete=models.CASCADE
