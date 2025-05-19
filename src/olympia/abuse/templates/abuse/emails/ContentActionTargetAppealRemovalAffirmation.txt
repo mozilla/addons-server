@@ -2,7 +2,8 @@ Hello,
 
 Previously, your {{ type }} was suspended/removed from Mozilla Add-ons, based on a finding that you had violated Mozilla's policies.
 
-After reviewing your appeal, we determined that the previous decision, that your {{ type }} violates Mozilla's policies, was correct. {% if manual_reasoning_text %}{{ manual_reasoning_text }}. {% endif %}Based on that determination, we have denied your appeal, and will not reinstate your {{ type }}.
+After reviewing your appeal, we determined that it did not provide sufficient basis to overturn our earlier finding that your {{ type }} violates Mozilla's policies. {% if manual_reasoning_text %}{{ manual_reasoning_text }}. {% endif %}Based on that determination, we have denied your appeal, and will not reinstate your {{ type }}.
+{% if is_addon_enabled %}If you submit a new version of this add-on (or have already done so), that version will be evaluated separately.{% endif %}
 
 {% if has_attachment %}
 An attachment was provided. {% if dev_url %}To respond or view the file, visit {{ dev_url }}.{% endif %}
@@ -16,3 +17,6 @@ Thank you.
 --
 Mozilla Add-ons Team
 {{ SITE_URL }}
+
+
+
