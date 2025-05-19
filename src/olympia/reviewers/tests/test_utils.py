@@ -17,7 +17,6 @@ from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.abuse.models import AbuseReport, CinderJob, CinderPolicy, ContentDecision
-from olympia.abuse.tasks import report_decision_to_cinder_and_notify
 from olympia.activity import log_create
 from olympia.activity.models import (
     ActivityLog,
@@ -3985,7 +3984,7 @@ class TestReviewHelper(TestReviewHelperBase):
                 assert job.decision == decision
 
                 reviewer_log_mock.reset_mock()
-                content_action_log_mock.reset_mock()
+                content_action_log_spy.reset_mock()
                 self.helper.handler.version = self.review_version
 
                 # Clean up any changes to start next iteration fresh.
