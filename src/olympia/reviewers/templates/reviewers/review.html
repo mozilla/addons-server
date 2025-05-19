@@ -192,10 +192,20 @@
         </div>
 
         <div class="review-actions-comments-reasons">
-          <div class="review-actions-comments data-toggle review-comments" data-value="{{ actions_comments|join(' ') }}">
-            <label for="id_comments">{{ form.comments.label }}</label>
-            {{ form.comments }}
-            {{ form.comments.errors }}
+
+          <div class="review-actions-comments">
+            <div class="policy-texts data-toggle" data-value="{{ actions_policies|join(' ') }}">
+              {% for policy in cinder_policies %}
+                <div id="policy-text-{{ policy.id }}" hidden>{{ policy|render_text_with_input_fields }}</div>
+              {% endfor %}
+            </div>
+            <div class="review-comments data-toggle" data-value="{{ actions_comments|join(' ') }}">
+              <details{% if not waffle.switch('cinder_policy_review_reasons_enabled') %} open{% endif %}>
+                <summary><label for="id_comments">{{ form.comments.label }}</label></summary>
+                {{ form.comments }}
+              </details>
+              {{ form.comments.errors }}
+            </div>
           </div>
           <div class="data-toggle review-actions-reasons"
             data-value="{{ actions_reasons|join(' ') }}">
