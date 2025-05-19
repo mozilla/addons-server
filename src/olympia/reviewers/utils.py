@@ -1142,7 +1142,12 @@ class ReviewBase:
                 # already carried out, we are just resolving multiple jobs with
                 # the same action. We need to attach the extra "no-op"
                 # decisions to the log_entry to have proper records.
+                log_entry.set_arguments(
+                    [log_entry.arguments[0], decision, *log_entry.arguments[1:]]
+                )
+                del log_entry.arguments
                 log_entry.contentdecision_set.add(decision)
+                log_entry.save()
             report_decision_to_cinder_and_notify.delay(
                 decision_id=decision.id, notify_owners=notify_owners
             )
