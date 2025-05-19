@@ -5881,7 +5881,7 @@ msgstr "Elengedhetetlen kiegészítők"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1020
 msgid "Declutter your desktop"
-msgstr ""
+msgstr "Távolítsa el a zavaró tényezőket az asztalról"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1022 src/olympia/discovery/strings.jinja2:1024 src/olympia/discovery/strings.jinja2:1026
@@ -6113,12 +6113,12 @@ msgstr "További Twitch kiegészítők a stáb választásában"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1144
 msgid "Gaming & media extensions"
-msgstr ""
+msgstr "Játékos és médiakiegészítők"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1146
 msgid "See more staff picks"
-msgstr ""
+msgstr "További, stáb által javasolt kiegészítők megtekintése"
 
 #: src/olympia/files/models.py:319
 msgid "Unreviewed"
