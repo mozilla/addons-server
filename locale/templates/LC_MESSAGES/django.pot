@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-05-16 17:37+0000\n"
+"POT-Creation-Date: 2025-05-19 09:41+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -340,7 +340,7 @@ msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr ""
 
 #: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:756
-#: src/olympia/files/utils.py:755 src/olympia/reviewers/forms.py:347
+#: src/olympia/files/utils.py:755 src/olympia/reviewers/forms.py:373
 msgid "Invalid or broken archive."
 msgstr ""
 
@@ -1421,7 +1421,7 @@ msgstr ""
 msgid "(Deleted)"
 msgstr ""
 
-#: src/olympia/constants/base.py:129 src/olympia/constants/reviewers.py:67
+#: src/olympia/constants/base.py:129 src/olympia/constants/reviewers.py:69
 msgid "Extension"
 msgstr ""
 
@@ -1453,7 +1453,7 @@ msgstr ""
 msgid "Deprecated LWT"
 msgstr ""
 
-#: src/olympia/constants/base.py:137 src/olympia/constants/reviewers.py:68
+#: src/olympia/constants/base.py:137 src/olympia/constants/reviewers.py:70
 msgid "Theme"
 msgstr ""
 
@@ -1946,43 +1946,43 @@ msgstr ""
 msgid "Partner"
 msgstr ""
 
-#: src/olympia/constants/reviewers.py:21
+#: src/olympia/constants/reviewers.py:23
 msgid "No Reputation"
 msgstr ""
 
-#: src/olympia/constants/reviewers.py:22
+#: src/olympia/constants/reviewers.py:24
 msgid "Good (1)"
 msgstr ""
 
-#: src/olympia/constants/reviewers.py:23
+#: src/olympia/constants/reviewers.py:25
 msgid "Very Good (2)"
 msgstr ""
 
-#: src/olympia/constants/reviewers.py:24
+#: src/olympia/constants/reviewers.py:26
 msgid "Excellent (3)"
 msgstr ""
 
-#: src/olympia/constants/reviewers.py:39
+#: src/olympia/constants/reviewers.py:41
 msgid "Request More Info"
 msgstr ""
 
-#: src/olympia/constants/reviewers.py:40
+#: src/olympia/constants/reviewers.py:42
 msgid "Flag"
 msgstr ""
 
-#: src/olympia/constants/reviewers.py:41
+#: src/olympia/constants/reviewers.py:43
 msgid "Duplicate"
 msgstr ""
 
-#: src/olympia/constants/reviewers.py:42
+#: src/olympia/constants/reviewers.py:44
 msgid "Reject"
 msgstr ""
 
-#: src/olympia/constants/reviewers.py:43
+#: src/olympia/constants/reviewers.py:45
 msgid "Approve"
 msgstr ""
 
-#: src/olympia/constants/reviewers.py:66
+#: src/olympia/constants/reviewers.py:68
 msgid "All"
 msgstr ""
 
@@ -7001,12 +7001,12 @@ msgstr ""
 msgid "Rated %(rating)s out of 5 stars"
 msgstr ""
 
-#: src/olympia/reviewers/forms.py:333
+#: src/olympia/reviewers/forms.py:359
 #, python-brace-format
 msgid "Unsupported file type, please upload a file {extensions}."
 msgstr ""
 
-#: src/olympia/reviewers/forms.py:339
+#: src/olympia/reviewers/forms.py:365
 msgid "File too large."
 msgstr ""
 
@@ -7027,7 +7027,7 @@ msgid ""
 "%(date)s</span>"
 msgstr ""
 
-#: src/olympia/reviewers/templates/reviewers/review.html:304
+#: src/olympia/reviewers/templates/reviewers/review.html:314
 msgid "<strong>Warning!</strong> Another user may be viewing this page before you."
 msgstr ""
 
