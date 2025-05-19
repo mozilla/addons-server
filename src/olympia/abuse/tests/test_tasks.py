@@ -732,7 +732,12 @@ def test_report_decision_to_cinder_and_notify_with_job():
         user=user_factory(),
     )
 
-    with mock.patch('olympia.abuse.tasks.statsd.incr') as statsd_incr_mock:
+    with (
+        mock.patch('olympia.abuse.tasks.statsd.incr') as statsd_incr_mock,
+        mock.patch.object(
+            ContentDecision, 'send_notifications'
+        ) as send_notifications_mock,
+    ):
         report_decision_to_cinder_and_notify.delay(decision_id=decision.id)
 
     request = responses.calls[0].request
@@ -745,6 +750,9 @@ def test_report_decision_to_cinder_and_notify_with_job():
     assert statsd_incr_mock.call_args[0] == (
         'abuse.tasks.report_decision_to_cinder_and_notify.success',
     )
+
+    assert send_notifications_mock.call_count == 1
+    assert send_notifications_mock.call_args.kwargs == {'notify_owners': True}
 
 
 @pytest.mark.django_db
@@ -773,7 +781,12 @@ def test_report_decision_to_cinder_and_notify():
         user=user_factory(),
     )
 
-    with mock.patch('olympia.abuse.tasks.statsd.incr') as statsd_incr_mock:
+    with (
+        mock.patch('olympia.abuse.tasks.statsd.incr') as statsd_incr_mock,
+        mock.patch.object(
+            ContentDecision, 'send_notifications'
+        ) as send_notifications_mock,
+    ):
         report_decision_to_cinder_and_notify.delay(decision_id=decision.id)
 
     request = responses.calls[0].request
@@ -786,6 +799,60 @@ def test_report_decision_to_cinder_and_notify():
     assert statsd_incr_mock.call_args[0] == (
         'abuse.tasks.report_decision_to_cinder_and_notify.success',
     )
+
+    assert send_notifications_mock.call_count == 1
+    assert send_notifications_mock.call_args.kwargs == {'notify_owners': True}
+
+
+@pytest.mark.django_db
+def test_report_decision_to_cinder_and_notify_dont_notify_owners():
+    responses.add(
+        responses.POST,
+        f'{settings.CINDER_SERVER_URL}create_decision',
+        json={'uuid': uuid.uuid4().hex},
+        status=201,
+    )
+    cinder_policy = CinderPolicy.objects.create(name='policy', uuid='12345678')
+    decision = ContentDecision.objects.create(
+        addon=addon_factory(),
+        action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+        action_date=datetime.now(),
+        reasoning='some review text',
+    )
+    decision.policies.add(cinder_policy)
+    ActivityLog.objects.create(
+        amo.LOG.FORCE_DISABLE,
+        decision.addon,
+        decision.addon.current_version,
+        decision,
+        cinder_policy,
+        details={'comments': 'some review text'},
+        user=user_factory(),
+    )
+
+    with (
+        mock.patch('olympia.abuse.tasks.statsd.incr') as statsd_incr_mock,
+        mock.patch.object(
+            ContentDecision, 'send_notifications'
+        ) as send_notifications_mock,
+    ):
+        report_decision_to_cinder_and_notify.delay(
+            decision_id=decision.id, notify_owners=False
+        )
+
+    request = responses.calls[0].request
+    request_body = json.loads(request.body)
+    assert request_body['policy_uuids'] == ['12345678']
+    assert request_body['reasoning'] == 'some review text'
+    assert request_body['entity']['id'] == str(decision.addon_id)
+
+    assert statsd_incr_mock.call_count == 1
+    assert statsd_incr_mock.call_args[0] == (
+        'abuse.tasks.report_decision_to_cinder_and_notify.success',
+    )
+
+    assert send_notifications_mock.call_count == 1
+    assert send_notifications_mock.call_args.kwargs == {'notify_owners': False}
 
 
 @pytest.mark.django_db
