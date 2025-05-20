@@ -17,6 +17,3 @@ Thank you.
 --
 Mozilla Add-ons Team
 {{ SITE_URL }}
-
-
-
