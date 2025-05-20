@@ -19,6 +19,9 @@ def test_set_config():
     assert Config.objects.get(key='key').value == 'value 2'
 
 
+# This test fails when run in the full test group, but not when run in isolation like
+# `pytest run src/olympia/zadmin`. Likely a problem with a mock or patch getting left
+# in place during some previous test.
 def test_assert_cache_requests_helper():
     with assert_cache_requests(1):
         cache.get('foobar')
