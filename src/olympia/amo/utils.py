@@ -18,8 +18,7 @@ import unicodedata
 from mimetypes import guess_extension
 from urllib.parse import (
     ParseResult,
-    parse_qsl,
-    unquote_to_bytes,
+    unquote,
     urlencode as urllib_urlencode,
 )
 
@@ -31,7 +30,7 @@ from django.core.files.storage import FileSystemStorage, default_storage as stor
 from django.core.paginator import EmptyPage, InvalidPage, Paginator as DjangoPaginator
 from django.core.validators import MaxLengthValidator, ValidationError, validate_slug
 from django.forms.fields import Field
-from django.http import HttpResponse
+from django.http import HttpResponse, QueryDict
 from django.http.response import HttpResponseRedirectBase
 from django.template import engines, loader
 from django.urls import reverse
@@ -94,16 +93,17 @@ def urlparams(url_, hash=None, **query):
 
     fragment = hash if hash is not None else url.fragment
 
-    # Use dict(parse_qsl) so we don't get lists of values.
-    query_dict = dict(parse_qsl(force_str(url.query))) if url.query else {}
-    query_dict.update(
-        (k, force_bytes(v) if v is not None else v) for k, v in query.items()
-    )
-    query_string = urlencode(
-        [(k, unquote_to_bytes(v)) for k, v in query_dict.items() if v is not None]
-    )
+    # Use a QueryDict to keep all values for a given key, e.g. foo=one&foo=two.
+    query_dict = QueryDict(url.query, mutable=True)
+    # Don't use .update(), as it would append a new value instead of replacing.
+    for k, v in query.items():
+        if v is not None:
+            query_dict[k] = unquote(str(v))
+        elif k in query_dict:
+            del query_dict[k]
+
     result = ParseResult(
-        url.scheme, url.netloc, url.path, url.params, query_string, fragment
+        url.scheme, url.netloc, url.path, url.params, query_dict.urlencode(), fragment
     )
     return result.geturl()
 
