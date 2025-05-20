@@ -1359,13 +1359,15 @@ class ContentDecision(ModelBase):
                 if log_entry
                 else []
             )
+            is_addon_enabled = self.addon and not (
+                details.get('is_addon_being_disabled') or self.addon.is_disabled
+            )
             extra_context = {
                 'auto_approval': is_auto_approval,
                 'delayed_rejection_days': details.get('delayed_rejection_days'),
                 'details': details,
                 'is_addon_being_blocked': details.get('is_addon_being_blocked'),
-                'is_addon_disabled': details.get('is_addon_being_disabled')
-                or getattr(self.target, 'is_disabled', False),
+                'is_addon_enabled': is_addon_enabled,
                 'version_list': ', '.join(ver_str for ver_str in version_numbers),
                 'has_attachment': has_attachment,
                 'dev_url': absolutify(self.target.get_dev_url('versions'))

@@ -228,17 +228,21 @@ class BaseTestContentAction:
         assert self.decision.reasoning in mail_item.body
         assert self.decision.private_notes not in mail_item.body
 
-    def _test_owner_affirmation_email(self, subject):
+    def _test_owner_affirmation_email(self, subject, should_allow_uploads=False):
         mail_item = mail.outbox[0]
-        self._check_owner_email(mail_item, subject, 'was correct')
+        self._check_owner_email(mail_item, subject, 'not provide sufficient basis')
         assert 'right to appeal' not in mail_item.body
         notes = f'{self.decision.reasoning}. ' if self.decision.reasoning else ''
-        assert f' was correct. {notes}Based on that determination' in (mail_item.body)
+        assert f' policies. {notes}Based on that determination' in (mail_item.body)
         assert '&#x27;' not in mail_item.body
         if isinstance(self.decision.target, Addon):
             # Verify we used activity mail for Addon related target emails
             log_token = ActivityLogToken.objects.get()
             assert log_token.uuid.hex in mail_item.reply_to[0]
+        if should_allow_uploads:
+            assert 'If you submit a new version' in mail_item.body
+        else:
+            assert 'If you submit a new version' not in mail_item.body
 
     def _test_owner_restore_email(self, subject):
         mail_item = mail.outbox[0]
@@ -1331,6 +1335,23 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         self.decision = ContentDecision.objects.get(id=self.decision.id)
         assert not self.decision.target_versions.filter(file__is_signed=True).exists()
         assert action.should_hold_action() is False
+
+    def test_target_appeal_decline(self):
+        self.version.file.update(status=amo.STATUS_DISABLED)
+        ActivityLog.objects.all().delete()
+        action = ContentActionTargetAppealRemovalAffirmation(self.decision)
+        assert action.process_action() is None
+
+        self.version.file.reload()
+        assert self.version.file.status == amo.STATUS_DISABLED
+        assert ActivityLog.objects.count() == 0
+        assert len(mail.outbox) == 0
+
+        self.cinder_job.notify_reporters(action)
+        action.notify_owners(extra_context={'is_addon_enabled': True})
+        self._test_owner_affirmation_email(
+            f'Mozilla Add-ons: {self.addon.name}', should_allow_uploads=True
+        )
 
     def test_notify_stakeholders(self):
         stakeholder = user_factory()
