@@ -108,3 +108,6 @@ ENV LESS_BIN /deps/node_modules/.bin/lessc
 ENV UGLIFY_BIN /deps/node_modules/.bin/uglifyjs
 ENV ADDONS_LINTER_BIN /deps/node_modules/.bin/addons-linter
 RUN npm cache clean -f && npm install -g n && /deps/bin/n 16
+
+# Compile locales
+RUN DJANGO_SETTINGS_MODULE='settings_local' locale/compile-mo.sh locale
