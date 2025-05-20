@@ -368,3 +368,22 @@ class ImageUploadRestrictionMiddleware(object):
         response = self.get_response(request)
 
         return response
+
+
+class CacheUnauthenticatedViews(object):
+    """Adds cache-control header to the response for unauthenticated GET/HEAD requests"""
+
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        response = self.get_response(request)
+
+        # Only add cache-control if it's a GET/HEAD request, and they're not logged in.
+        if (
+            (request.method == 'GET' or request.method == 'HEAD')
+            and (not request.user or not request.user.is_authenticated)
+        ):
+            response['Cache-Control'] = "max-age={0}".format(settings.CACHE_CONTROL_MAX_AGE)
+
+        return response
