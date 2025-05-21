@@ -37,7 +37,7 @@ jobs:
         run: docker compose exec web bash -c "sed -i 's/TX_ISOLATION = /transaction_isolation = /' /usr/local/lib/python3.6/site-packages/django/db/backends/mysql/base.py"
 
       - name: Run tests
-        run: docker compose exec web bash -c 'python -m pytest --junitxml=src/test_report36.xml -m "not es_tests" src/olympia/'
+        run: docker compose exec web bash -c 'python -m pytest --junitxml=src/test_report36.xml src/olympia/'
 
       - name: Publish test results
         uses: EnricoMi/publish-unit-test-result-action@v2
