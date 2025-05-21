@@ -202,7 +202,7 @@ class AddonPromotionFilter(admin.SimpleListFilter):
     def queryset(self, request, queryset):
         is_null = self.value() != 'promoted'
         if self.value():
-            return queryset.filter(promotedaddon__isnull=is_null)
+            return queryset.filter(promotedaddon__isnull=is_null).distinct()
 
 
 class AddonPromotedGroupFilter(ExclusiveMultiSelectFieldListFilter):
