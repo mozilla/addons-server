@@ -1119,10 +1119,10 @@ class ReviewBase:
                 self.update_queue_history(log_entry)
 
         for decision in decisions:
-            # If there are multiple decisions, only one should really be
-            # executed completely and log an activity, the rest are no-op that
-            # we just need for record-keeping purposes. We will only notify the
-            # owners for that "complete" one.
+            # If there are multiple decisions, in theory only one should really
+            # be executed completely and log an activity, the rest should be
+            # no-op that we just need for record-keeping purposes. We will only
+            # notify the owners for that "complete" one.
             notify_owners = action_completed
             log_entry_for_decision = decision.execute_action()
             if log_entry_for_decision:
