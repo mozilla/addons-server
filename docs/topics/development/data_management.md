@@ -60,8 +60,10 @@ make initialize INIT_SKIP_INDEX=true
 This will skip the recreation of the elasticsearch index. This can be useful in CI or if you specifically
 want to avoid touching the previous elasticsearch index.
 
-> NOTE: if your database is modified significantly and you don't re-index elasticsearch you could end up with
-> a broken addons-frontend.
+```{admonition} Note
+If your database is modified significantly and you don't re-index elasticsearch you could end up with
+a broken addons-frontend.
+```
 
 ## Data seeding
 
@@ -122,64 +124,99 @@ make down && make docker_mysqld_volume_remove
 This will stop the containers and remove the `mysqld` data volume from docker. The next time you run `make up` it will
 create a new empty volume for you and mysql will recreate the database.
 
-> NOTE: removing the data volume will remove the actual data! You can and should save a backup before doing this
-> if you want to keep the data.
+```{admonition} Note
+Removing the data volume will remove the actual data! You can and should save a backup before doing this
+if you want to keep the data.
+```
 
 ## Migrations
 
+(squashing-migrations)=
 ### Squashing migrations
 
-The easiest way to squash migrations is to focus on a single app at a time and
-find a linear sequence of migrations that do not have any external dependencies.
+Squashing migrations makes our app run faster as fewer migration scripts need to be loaded/executed
+to get the correct database state. Additionally over time migrations modify the database state.
+Once those changes have been made the operations can be suqashed into a smaller set of operations
+that can run in a single migration.
 
-1) Run migration graph
+The overall process for squashing migrations should look something like this:
 
-    ```bash
-    ./manage.py migrationgraph {app_label} > graph.md
-    ```
+1) identify a set of mgirations that can be squashed
+2) create a migration at the end of the chain that effectively replicates the logic of the squashable set
 
-    This will output some text and a mermaid snippet modeling the migration depdendencies.
-    Open this with a mermaid previewer/renderer (https://marketplace.cursorapi.com/items?itemName=bierner.markdown-mermaid)
-
-    It will look like this:
-
-    ![alt text](../../_static/images/migration_graph_mermaid.png)
-
-2) Find a linear sequence of migrations that do not have any external dependencies.
-
-    Notice that addons 0002 through 0009 only depend on each other. 9 depends on 8, 8 on 7, etc.
-    This is a linear sequence of migrations that do not have any external dependencies.
-
-3) Squash the migrations
+    This can be done via the management console:
 
     ```bash
     ./manage.py squashmigrations {app_label} {start_number} {end_number}
     ```
 
-    In our case start_number is 0002 and end_number is 0009.
-
-    ```bash
-    ./manage.py squashmigrations addons 0002 0009
+    ```{admonition} Important
+    Do not delete the old migrations in the same patch as squashing. First land the squashed patch.
+    This should go through CI and be deployed to production first. Then after we have ensured the migration
+    is registered and run on all of our databases without any problems, then you can delete the old migrations.
     ```
 
-    This will squash the migrations into a single migration before the start migration.
+3) Verify the migrations locally
 
-    > NOTE: This is not a perfect science. If any of the migrations have custom functions or
-    > other custom logic, you may need to manually adjust the squashed migration.
+    Run your migration against a clean master database, this is as close to the production environment as possible locally. On latest master, run:
 
-4) Run the migrations
+    ```bash
+    make up CLEAN_INIT=true
+    ```
+
+    ```{admonition} Note
+    Squashing migrations is not a perfect science. If any of the migrations have custom functions or
+    other custom logic, you may need to manually adjust the squashed migration to make it work.
+    ```
+
+    Run the migrations from a shell:
 
     ```bash
     ./manage.py migrate
     ```
 
-    > NOTE: It is important that you run all apps when migrating, to ensure that other apps
-    > that might depend on one of the squashed migrations reference the new squashed migraiton instead.
-    > This should not happen due to our filter at the beginning, but better safe than sorry.
+    You should expect no actual changes to the database, because the new migration should not
+    have made any changes relative to the migrations it is squashing. If the migration script fails
+    or if any changes are made to the database, something is wrong and you should not proceed.
 
-    You should expect no migrations to be applied, because we are squashing discrete migraitons into a single migration
-    that should result in the exact same database schema.
+4) deploy the app with this new migration to all environments (this ensure the new migration is registered and marked as ran in the various DBs)
+5) remove the now irrelevant set of squashable migrations leaving only the new squashed migration
 
-> NOTE: Do not delete the old migrations in the same patch as squashing. First land the squashed patch.
-> This should go through CI and be deployed to production first. Then after we have ensured the migration
-> is registered and run on all of our databases without any problems, then you can delete the old migrations.
+  When deleting old migrations, double check that no other migrations depend on them.
+  Follow the same testing steps as above to verify the removed migrations do not impact the migration
+  graph and that migrations can be run successfully without changing the database state.
+
+#### Visualizing migrations
+
+Run migration graph from the management console to visualize migraitons for an app.
+
+```bash
+./manage.py migrationgraph {app_label} > graph.md
+```
+
+This will output some text and a mermaid snippet modeling the migration depdendencies.
+Open this with a mermaid previewer/renderer (https://marketplace.cursorapi.com/items?itemName=bierner.markdown-mermaid)
+
+It will look like this:
+
+![alt text](../../_static/images/migration_graph_mermaid.png)
+
+Additionally, migration graphs are published in our model docs and can viewed for each app
+
+#### Squashing Linear Migrations
+
+The easiest migrations to squash are linear. They belong to a single app and
+each migration in the sequence only depends on the previous migration in the same sequence.
+
+Linear migrations can be identified most easily using model graph (see above)
+
+1) Find a linear sequence of migrations that do not have any external dependencies.
+
+    In the example above, notice that addons 0002 through 0009 only depend on each other.
+    9 depends on 8, 8 on 7, etc. This is a linear sequence of migrations
+    that do not have any external dependencies.
+
+2) Squash the migrations
+
+    Follow steps specified in the [squashing-migrations](#squashing-migrations) section.
+
