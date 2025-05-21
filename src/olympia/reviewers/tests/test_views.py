@@ -2689,7 +2689,9 @@ class TestReview(ReviewBase):
         )
         assert activity_log_qs.count() == 1
         decision = ContentDecision.objects.get()
-        resolve_mock.assert_called_once_with(decision_id=decision.id)
+        resolve_mock.assert_called_once_with(
+            decision_id=decision.id, notify_owners=True
+        )
         assert decision.activities.all().get() == activity_log_qs.get()
         assert decision.action == DECISION_ACTIONS.AMO_IGNORE
         self.assertCloseToNow(decision.action_date)
@@ -2779,7 +2781,7 @@ class TestReview(ReviewBase):
         activity_log_qs = ActivityLog.objects.filter(action=amo.LOG.REQUEST_LEGAL.id)
         assert activity_log_qs.count() == 1
         decision = ContentDecision.objects.last()
-        report_mock.assert_called_once_with(decision_id=decision.id)
+        report_mock.assert_called_once_with(decision_id=decision.id, notify_owners=True)
         assert decision.activities.all().get() == activity_log_qs.get()
         assert decision.action == DECISION_ACTIONS.AMO_LEGAL_FORWARD
         self.assertCloseToNow(decision.action_date)
@@ -6244,7 +6246,9 @@ class TestReview(ReviewBase):
         assert self.get_addon().status == amo.STATUS_DISABLED
         log_entry = ActivityLog.objects.get(action=amo.LOG.FORCE_DISABLE.id)
         decision = ContentDecision.objects.get()
-        mock_resolve_task.assert_called_once_with(decision_id=decision.id)
+        mock_resolve_task.assert_called_once_with(
+            decision_id=decision.id, notify_owners=True
+        )
         assert decision.activities.all().get() == log_entry
         assert decision.action == DECISION_ACTIONS.AMO_DISABLE_ADDON
         self.assertCloseToNow(decision.action_date)
@@ -6283,7 +6287,9 @@ class TestReview(ReviewBase):
 
         log_entry = ActivityLog.objects.get(action=amo.LOG.APPROVE_VERSION.id)
         decision = ContentDecision.objects.get()
-        mock_resolve_task.assert_called_once_with(decision_id=decision.id)
+        mock_resolve_task.assert_called_once_with(
+            decision_id=decision.id, notify_owners=True
+        )
         assert decision.activities.all().get() == log_entry
         assert decision.action == DECISION_ACTIONS.AMO_APPROVE_VERSION
         self.assertCloseToNow(decision.action_date)

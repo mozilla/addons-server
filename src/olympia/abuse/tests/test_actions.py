@@ -451,6 +451,12 @@ class TestContentActionUser(BaseTestContentAction, TestCase):
         assert len(mail.outbox) == 3
         self._test_reporter_takedown_email(subject)
 
+    def test_already_banned(self):
+        self.user.update(banned=self.days_ago(42))
+        action = self.ActionClass(self.decision)
+        assert action.process_action() is None
+        assert ActivityLog.objects.count() == 0
+
     def test_ban_user_after_reporter_appeal(self):
         original_job = CinderJob.objects.create(
             job_id='original',
@@ -658,6 +664,13 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
         assert not ActivityLog.objects.filter(
             action=amo.LOG.REVIEWER_PRIVATE_COMMENT.id
         ).exists()
+
+    def test_already_disabled(self):
+        self.decision.update(action=self.takedown_decision_action)
+        self.addon.update(status=amo.STATUS_DISABLED)
+        action = self.ActionClass(self.decision)
+        assert action.process_action() is None
+        assert ActivityLog.objects.count() == 0
 
     def test_execute_action(self):
         subject = self._test_disable_addon()
@@ -1097,6 +1110,96 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
             action=amo.LOG.REVIEWER_PRIVATE_COMMENT.id
         ).exists()
 
+    def test_already_disabled(self):
+        self.decision.update(
+            action=self.takedown_decision_action, reviewer_user=user_factory()
+        )
+        self.version.file.update(status=amo.STATUS_DISABLED)
+        self.old_version.file.update(status=amo.STATUS_DISABLED)
+        action = self.ActionClass(self.decision)
+        assert action.process_action() is None
+        assert ActivityLog.objects.count() == 0
+
+    def test_already_disabled_delayed_rejection(self):
+        in_the_future = datetime.now() + timedelta(days=14, hours=1)
+        self.decision.update(
+            action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
+            metadata={
+                'delayed_rejection_date': in_the_future.isoformat(),
+                'content_review': True,
+            },
+            reviewer_user=user_factory(),
+        )
+        self.version.file.update(status=amo.STATUS_DISABLED)
+        self.old_version.file.update(status=amo.STATUS_DISABLED)
+        action = self.ActionClass(self.decision)
+        assert action.process_action() is None
+        assert ActivityLog.objects.count() == 0
+
+    def test_already_delayed_rejected_delayed_rejection(self):
+        in_the_future = datetime.now() + timedelta(days=14, hours=1)
+        self.decision.update(
+            action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
+            metadata={
+                'delayed_rejection_date': in_the_future.isoformat(),
+                'content_review': True,
+            },
+            reviewer_user=user_factory(),
+        )
+        for version in (self.version, self.old_version):
+            VersionReviewerFlags.objects.create(
+                version=version,
+                pending_rejection=in_the_future,
+                pending_rejection_by=self.decision.reviewer_user,
+                pending_content_rejection=True,
+            )
+        action = ContentActionRejectVersionDelayed(self.decision)
+        assert action.process_action() is None
+        assert ActivityLog.objects.count() == 0
+
+    def test_already_delayed_different_review_type_rejected_delayed_rejection(self):
+        in_the_future = datetime.now() + timedelta(days=14, hours=1)
+        for version in (self.version, self.old_version):
+            VersionReviewerFlags.objects.create(
+                version=version,
+                pending_rejection=in_the_future,
+                pending_rejection_by=user_factory(),
+                pending_content_rejection=True,
+            )
+        self.test_execute_action_delayed()
+
+    def test_already_partially_disabled(self):
+        # If only one version is disabled, the rejection is applied and
+        # recorded normally.
+        self.version.file.update(status=amo.STATUS_DISABLED)
+        subject = self._test_reject_version(content_review=False)
+        assert len(mail.outbox) == 3
+        self._test_reporter_takedown_email(subject)
+
+    def test_already_partially_disabled_delayed_rejection(self):
+        # If only one version is disabled, the delayed rejection is applied and
+        # recorded normally.
+        self.version.file.update(status=amo.STATUS_DISABLED)
+        self.test_execute_action_delayed()
+
+    def test_already_disabled_by_developer(self):
+        # If versions were disabled by the developer, that doesn't prevent the
+        # rejection from being applied and recorded.
+        self.version.is_user_disabled = True
+        self.old_version.is_user_disabled = True
+        ActivityLog.objects.all().delete()
+        subject = self._test_reject_version(content_review=False)
+        assert len(mail.outbox) == 3
+        self._test_reporter_takedown_email(subject)
+
+    def test_already_disabled_by_developer_delayed_rejection(self):
+        # If versions were disabled by the developer, that doesn't prevent the
+        # delayed rejection from being applied and recorded.
+        self.version.is_user_disabled = True
+        self.old_version.is_user_disabled = True
+        ActivityLog.objects.all().delete()
+        self.test_execute_action_delayed()
+
     def test_execute_action(self):
         subject = self._test_reject_version(content_review=False)
         assert len(mail.outbox) == 3
@@ -1139,6 +1242,10 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
     def _test_reject_version_delayed(
         self, *, content_review, expected_emails_from_action=0
     ):
+        original_statuses = {
+            version.file.pk: version.file.status
+            for version in (self.old_version, self.version)
+        }
         in_the_future = datetime.now() + timedelta(days=14, hours=1)
         self.decision.update(
             action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
@@ -1164,7 +1271,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         )
         assert self.addon.reload().status == amo.STATUS_APPROVED
         for version in (self.old_version, self.version):
-            assert version.file.status == amo.STATUS_APPROVED
+            assert version.file.status == original_statuses.get(version.file.pk)
             version_flags = VersionReviewerFlags.objects.filter(version=version).get()
             self.assertCloseToNow(version_flags.pending_rejection, now=in_the_future)
             assert version_flags.pending_rejection_by == reviewer
@@ -1481,6 +1588,13 @@ class TestContentActionCollection(BaseTestContentAction, TestCase):
             action=amo.LOG.REVIEWER_PRIVATE_COMMENT.id
         ).exists()
 
+    def test_already_deleted(self):
+        self.decision.update(action=DECISION_ACTIONS.AMO_DELETE_COLLECTION)
+        self.collection.delete()
+        action = self.ActionClass(self.decision)
+        assert action.process_action() is None
+        assert ActivityLog.objects.count() == 0
+
     def test_delete_collection(self):
         subject = self._test_delete_collection()
         assert len(mail.outbox) == 3
@@ -1648,6 +1762,14 @@ class TestContentActionRating(BaseTestContentAction, TestCase):
         assert not ActivityLog.objects.filter(
             action=amo.LOG.REVIEWER_PRIVATE_COMMENT.id
         ).exists()
+
+    def test_already_deleted(self):
+        self.decision.update(action=DECISION_ACTIONS.AMO_DELETE_RATING)
+        self.rating.delete()
+        ActivityLog.objects.all().delete()
+        action = self.ActionClass(self.decision)
+        assert action.process_action() is None
+        assert ActivityLog.objects.count() == 0
 
     def test_delete_rating(self):
         subject = self._test_delete_rating()

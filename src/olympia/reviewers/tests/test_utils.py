@@ -7,6 +7,7 @@ from django.conf import settings
 from django.core import mail
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage as storage
+from django.db import transaction
 from django.test.utils import override_settings
 from django.urls import reverse
 
@@ -16,6 +17,7 @@ from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.abuse.models import AbuseReport, CinderJob, CinderPolicy, ContentDecision
+from olympia.activity import log_create
 from olympia.activity.models import (
     ActivityLog,
     ActivityLogToken,
@@ -1373,19 +1375,25 @@ class TestReviewHelper(TestReviewHelperBase):
         ) == list(ReviewActionReason.objects.filter(**{query_string: decision2.id}))
 
     @patch('olympia.reviewers.utils.report_decision_to_cinder_and_notify.delay')
-    def test_record_decision_calls_report_decision_to_cinder_and_notify(
-        self, mock_report
+    def test_record_decision_calls_report_decision_to_cinder_and_notify_no_jobs(
+        self, report_decision_to_cinder_and_notify_spy
     ):
-        cinder_job1 = CinderJob.objects.create(job_id='1')
-        cinder_job2 = CinderJob.objects.create(job_id='2')
-
         # Without 'cinder_jobs_to_resolve', report_decision_to_cinder_and_notify the
         # decision created is not linked to any job
         self.helper.set_data(self.get_data())
         self.helper.handler.record_decision(amo.LOG.APPROVE_VERSION)
         decision = ContentDecision.objects.get()
-        mock_report.assert_called_once_with(decision_id=decision.id)
+        report_decision_to_cinder_and_notify_spy.assert_called_once_with(
+            decision_id=decision.id, notify_owners=True
+        )
         assert not decision.cinder_job
+
+    @patch('olympia.reviewers.utils.report_decision_to_cinder_and_notify.delay')
+    def test_record_decision_calls_report_decision_to_cinder_and_notify_multiple_jobs(
+        self, report_decision_to_cinder_and_notify_spy
+    ):
+        cinder_job1 = CinderJob.objects.create(job_id='1')
+        cinder_job2 = CinderJob.objects.create(job_id='2')
 
         # With 'cinder_jobs_to_resolve', report_decision_to_cinder_and_notify the
         # decision created is linked to a job
@@ -1394,15 +1402,91 @@ class TestReviewHelper(TestReviewHelperBase):
         )
         self.helper.handler.record_decision(amo.LOG.APPROVE_VERSION)
 
-        job_decision1, job_decision2 = ContentDecision.objects.all()[1:]
-        mock_report.assert_has_calls(
+        job_decision1, job_decision2 = ContentDecision.objects.all()
+        report_decision_to_cinder_and_notify_spy.assert_has_calls(
             [
-                call(decision_id=job_decision1.id),
-                call(decision_id=job_decision2.id),
+                call(decision_id=job_decision1.id, notify_owners=True),
+                call(decision_id=job_decision2.id, notify_owners=True),
             ]
         )
         assert job_decision1.cinder_job == cinder_job1
         assert job_decision2.cinder_job == cinder_job2
+
+    @patch('olympia.reviewers.utils.report_decision_to_cinder_and_notify.delay')
+    def test_disable_calls_report_decision_to_cinder_and_notify_multiple_jobs(
+        self, report_decision_to_cinder_and_notify_spy
+    ):
+        cinder_job1 = CinderJob.objects.create(job_id='1')
+        cinder_job2 = CinderJob.objects.create(job_id='2')
+
+        self.grant_permission(self.user, 'Reviews:Admin')
+        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
+        self.helper.handler.data['cinder_jobs_to_resolve'] = [cinder_job1, cinder_job2]
+        self.helper.handler.disable_addon()
+
+        job_decision1, job_decision2 = ContentDecision.objects.all()
+        report_decision_to_cinder_and_notify_spy.assert_has_calls(
+            [
+                call(decision_id=job_decision1.id, notify_owners=True),
+                # We don't notify the owners on the second decision since it's
+                # going to be the same result.
+                call(decision_id=job_decision2.id, notify_owners=False),
+            ]
+        )
+        assert job_decision1.cinder_job == cinder_job1
+        assert job_decision2.cinder_job == cinder_job2
+
+        # We record 1 activity, but linked to both decisions.
+        assert ActivityLog.objects.filter(action=amo.LOG.FORCE_DISABLE.id).count() == 1
+        activity = ActivityLog.objects.filter(action=amo.LOG.FORCE_DISABLE.id).get()
+        assert set(activity.contentdecision_set.all()) == {job_decision1, job_decision2}
+        assert activity.arguments == [
+            self.addon,
+            job_decision2,
+            job_decision1,
+            self.addon.versions.get(),
+        ]
+
+    @patch('olympia.reviewers.utils.report_decision_to_cinder_and_notify.delay')
+    def test_reject_multiple_calls_report_decision_to_cinder_and_notify_multiple_jobs(
+        self, report_decision_to_cinder_and_notify_spy
+    ):
+        cinder_job1 = CinderJob.objects.create(job_id='1')
+        cinder_job2 = CinderJob.objects.create(job_id='2')
+
+        self.grant_permission(self.user, 'Reviews:Admin')
+        version_factory(addon=self.addon)
+        extra_version = version_factory(addon=self.addon)
+        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
+        self.helper.handler.data['cinder_jobs_to_resolve'] = [cinder_job1, cinder_job2]
+        self.helper.handler.data['versions'] = self.addon.versions.exclude(
+            pk=extra_version.pk
+        )
+
+        self.helper.handler.reject_multiple_versions()
+
+        job_decision1, job_decision2 = ContentDecision.objects.all()
+        report_decision_to_cinder_and_notify_spy.assert_has_calls(
+            [
+                call(decision_id=job_decision1.id, notify_owners=True),
+                # We don't notify the owners on the second decision since it's
+                # going to be the same result.
+                call(decision_id=job_decision2.id, notify_owners=False),
+            ]
+        )
+        assert job_decision1.cinder_job == cinder_job1
+        assert job_decision2.cinder_job == cinder_job2
+
+        # We record 1 activity, but linked to both decisions.
+        assert ActivityLog.objects.filter(action=amo.LOG.REJECT_VERSION.id).count() == 1
+        activity = ActivityLog.objects.filter(action=amo.LOG.REJECT_VERSION.id).get()
+        assert set(activity.contentdecision_set.all()) == {job_decision1, job_decision2}
+        assert activity.arguments == [
+            self.addon,
+            job_decision2,
+            job_decision1,
+            *self.addon.versions.exclude(pk=extra_version.pk),
+        ]
 
     def test_send_reviewer_reply(self):
         self.setup_data(amo.STATUS_APPROVED)
@@ -3858,29 +3942,36 @@ class TestReviewHelper(TestReviewHelperBase):
             status=201,
         )
 
+        # Save current db state, we'll roll back there after each iteration.
+        sid = transaction.savepoint()
+
         with (
             patch(
                 'olympia.reviewers.utils.report_decision_to_cinder_and_notify.delay'
             ) as report_task_mock,
-            patch.object(self.helper.handler, 'log_action') as reviewer_log_mock,
-            patch('olympia.abuse.actions.log_create') as content_action_log_mock,
+            patch.object(
+                self.helper.handler, 'log_action', wraps=self.helper.handler.log_action
+            ) as reviewer_log_mock,
+            patch(
+                'olympia.abuse.actions.log_create', wraps=log_create
+            ) as content_action_log_spy,
         ):
-            reviewer_log_mock.return_value = None
-            content_action_log_mock.return_value = None
             for action_name, action in resolves_actions.items():
                 self.helper.handler.review_action = all_actions[action_name]
                 action['method']()
 
                 decision = ContentDecision.objects.get()
-                report_task_mock.assert_called_once_with(decision_id=decision.id)
+                report_task_mock.assert_called_once_with(
+                    decision_id=decision.id, notify_owners=True
+                )
                 report_task_mock.reset_mock()
                 if not actions[action_name].get('uses_content_action', False):
                     reviewer_log_mock.assert_called_once()
                     activity_class = reviewer_log_mock.call_args.args[0]
-                    content_action_log_mock.assert_not_called()
+                    content_action_log_spy.assert_not_called()
                 else:
-                    content_action_log_mock.assert_called_once()
-                    activity_class = content_action_log_mock.call_args[0][0]
+                    content_action_log_spy.assert_called_once()
+                    activity_class = content_action_log_spy.call_args[0][0]
                     reviewer_log_mock.assert_not_called()
                 assert (
                     getattr(activity_class, 'hide_developer', False)
@@ -3892,10 +3983,12 @@ class TestReviewHelper(TestReviewHelperBase):
                 )
                 assert job.decision == decision
 
-                decision.delete()
                 reviewer_log_mock.reset_mock()
-                content_action_log_mock.reset_mock()
+                content_action_log_spy.reset_mock()
                 self.helper.handler.version = self.review_version
+
+                # Clean up any changes to start next iteration fresh.
+                transaction.savepoint_rollback(sid)
 
     def test_record_decision_called_everywhere_checkbox_shown_listed(self):
         self.grant_permission(self.user, 'Reviews:Admin')
@@ -3940,7 +4033,7 @@ class TestReviewHelper(TestReviewHelperBase):
                 },
             }
         )
-        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_DISABLED)
+        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
         assert self.addon.status == amo.STATUS_APPROVED
         self._record_decision_called_everywhere_checkbox_shown(
             {
@@ -4029,7 +4122,7 @@ class TestReviewHelper(TestReviewHelperBase):
                 },
             }
         )
-        self.setup_data(amo.STATUS_DISABLED, file_status=amo.STATUS_DISABLED)
+        self.setup_data(amo.STATUS_DISABLED, file_status=amo.STATUS_APPROVED)
         self._record_decision_called_everywhere_checkbox_shown(
             {
                 'approve_multiple_versions': {

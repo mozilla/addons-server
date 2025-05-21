@@ -1117,17 +1117,40 @@ class ReviewBase:
             )
             if update_queue_history:
                 self.update_queue_history(log_entry)
+
         for decision in decisions:
-            log_entry = decision.execute_action()
-            if not action_completed:
-                ReviewActionReasonLog.objects.bulk_create(
-                    ReviewActionReasonLog(reason=reason, activity_log=log_entry)
-                    for reason in reasons
+            # If there are multiple decisions, in theory only one should really
+            # be executed completely and log an activity, the rest should be
+            # no-op that we just need for record-keeping purposes. We will only
+            # notify the owners for that "complete" one.
+            notify_owners = action_completed
+            log_entry_for_decision = decision.execute_action()
+            if log_entry_for_decision:
+                notify_owners = True
+                log_entry = log_entry_for_decision
+                if not action_completed:
+                    ReviewActionReasonLog.objects.bulk_create(
+                        ReviewActionReasonLog(reason=reason, activity_log=log_entry)
+                        for reason in reasons
+                    )
+                    self.log_attachment(log_entry)
+                    if update_queue_history:
+                        self.update_queue_history(log_entry)
+            elif log_entry:
+                # decision.execute_action() explicitly returned None but we
+                # already have a log_entry: that means this decision was
+                # already carried out, we are just resolving multiple jobs with
+                # the same action. We need to attach the extra "no-op"
+                # decisions to the log_entry to have proper records.
+                log_entry.set_arguments(
+                    [log_entry.arguments[0], decision, *log_entry.arguments[1:]]
                 )
-                self.log_attachment(log_entry)
-                if update_queue_history:
-                    self.update_queue_history(log_entry)
-            report_decision_to_cinder_and_notify.delay(decision_id=decision.id)
+                del log_entry.arguments
+                log_entry.contentdecision_set.add(decision)
+                log_entry.save()
+            report_decision_to_cinder_and_notify.delay(
+                decision_id=decision.id, notify_owners=notify_owners
+            )
 
     def clear_all_needs_human_review_flags_in_channel(self, mad_too=True):
         """Clear needs_human_review flags on all versions in the same channel.
