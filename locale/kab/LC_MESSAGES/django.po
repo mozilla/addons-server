@@ -6284,7 +6284,7 @@ msgstr "<strong>%(reason)s</strong> <span class=\"light\">Yettwasezmel sɣuṛ %
 
 #: src/olympia/reviewers/templates/reviewers/review.html:314
 msgid "<strong>Warning!</strong> Another user may be viewing this page before you."
-msgstr ""
+msgstr "<strong>Ɣur-k⋅m!</strong> Aseqdac niḍen yezmer ad iwali asebter-a uqbel-ik⋅im."
 
 #: src/olympia/reviewers/templates/reviewers/includes/user_ratings_list.html:5
 #, python-format
