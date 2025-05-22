@@ -6265,7 +6265,7 @@ msgstr ""
 
 #: src/olympia/reviewers/forms.py:365
 msgid "File too large."
-msgstr ""
+msgstr "Afaylu ɣezzif aṭas."
 
 #: src/olympia/reviewers/templates/reviewers/moderationlog_detail.html:11
 #, python-format
