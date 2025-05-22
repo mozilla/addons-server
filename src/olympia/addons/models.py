@@ -739,7 +739,7 @@ class Addon(OnChangeMixin, ModelBase):
 
     def language_ascii(self):
         lang = trans_real.to_language(self.default_locale)
-        return settings.LANGUAGES.get(lang)
+        return settings.LANGUAGES_DICT.get(lang)
 
     @property
     def valid_file_statuses(self):

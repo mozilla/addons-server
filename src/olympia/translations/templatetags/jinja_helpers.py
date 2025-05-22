@@ -59,7 +59,7 @@ def truncate(s, length=255, killwords=True, end='...'):
 def l10n_menu(context, default_locale='en-us', remove_locale_url=''):
     """Generates the locale menu for zamboni l10n."""
     default_locale = default_locale.lower()
-    languages = dict((i.lower(), j) for i, j in settings.LANGUAGES.items())
+    languages = dict((i.lower(), j) for i, j in settings.LANGUAGES_DICT.items())
     c = dict(context.items())
     if 'addon' in c:
         remove_locale_url = c['addon'].get_dev_url('remove-locale')

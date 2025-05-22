@@ -151,7 +151,7 @@ class TranslationSerializerField(fields.Field):
                 value_too_short = False
         else:
             for locale, string in value.items():
-                if locale.lower() not in settings.LANGUAGES:
+                if locale.lower() not in settings.LANGUAGES_DICT:
                     raise ValidationError(
                         self.error_messages['unknown_locale'].format(
                             lang_code=repr(locale)))

@@ -769,7 +769,7 @@ class TestRankingScenarios(ESTestCase):
         # 'mn', instead it will return an object with the default_locale for
         # this addon.
         assert 'mn' not in SEARCH_LANGUAGE_TO_ANALYZER
-        assert 'mn' in settings.LANGUAGES
+        assert 'mn' in settings.LANGUAGES_DICT
         self._check_scenario(u'foobar unique francais', (
             [u'Foobar unique francais', 6.648044],
         ), lang='mn', expected_lang='fr')
@@ -780,7 +780,7 @@ class TestRankingScenarios(ESTestCase):
         # instead it will return an object with the default_locale for this
         # addon.
         assert 'ca' in SEARCH_LANGUAGE_TO_ANALYZER
-        assert 'ca' in settings.LANGUAGES
+        assert 'ca' in settings.LANGUAGES_DICT
         self._check_scenario(u'foobar unique francais', (
             [u'Foobar unique francais', 5.700276],
         ), lang='ca', expected_lang='fr')

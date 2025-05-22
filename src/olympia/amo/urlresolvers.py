@@ -100,13 +100,13 @@ class Prefixer(object):
         lang, dash, territory = first_lower.partition('-')
 
         # Check language-territory first.
-        if first_lower in settings.LANGUAGES:
+        if first_lower in settings.LANGUAGES_DICT:
             if second in amo.APPS:
                 return first, second, rest
             else:
                 return first, '', first_rest
         # And check just language next.
-        elif dash and lang in settings.LANGUAGES:
+        elif dash and lang in settings.LANGUAGES_DICT:
             first = lang
             if second in amo.APPS:
                 return first, second, rest

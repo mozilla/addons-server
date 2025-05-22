@@ -173,9 +173,10 @@ SHORTER_LANGUAGES = {
 }
 
 # Override Django's built-in with our native names
-LANGUAGES = {
+LANGUAGES_DICT = {
     locale.lower(): value['native']
     for locale, value in LANGUAGE_MAPPING.items()}
+LANGUAGES = tuple(LANGUAGES_DICT.items())
 
 LANGUAGE_URL_MAP = {
     locale.lower(): locale

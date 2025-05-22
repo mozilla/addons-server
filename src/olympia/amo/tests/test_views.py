@@ -28,7 +28,7 @@ from olympia.users.models import UserProfile
 
 
 @pytest.mark.django_db
-@pytest.mark.parametrize('locale', list(settings.LANGUAGES))
+@pytest.mark.parametrize('locale', list(settings.LANGUAGES_DICT))
 def test_locale_switcher(client, locale):
     response = client.get('/{}/firefox/'.format(locale))
     assert response.status_code == 200

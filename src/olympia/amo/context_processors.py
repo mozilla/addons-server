@@ -21,7 +21,7 @@ def static_url(request):
 
 def i18n(request):
     lang = get_language()
-    return {'LANGUAGES': settings.LANGUAGES,
+    return {'LANGUAGES': settings.LANGUAGES_DICT,
             'LANG': settings.LANGUAGE_URL_MAP.get(lang) or lang,
             'DIR': 'rtl' if get_language_bidi() else 'ltr'}
 
