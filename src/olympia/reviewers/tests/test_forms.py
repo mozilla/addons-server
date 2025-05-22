@@ -1211,6 +1211,7 @@ class TestReviewForm(TestCase):
             'reason': AbuseReport.REASONS.POLICY_VIOLATION,
         }
         cinder_job_2_reports = CinderJob.objects.create(
+            created=datetime(2025, 5, 22, 11, 27, 42, 123456),
             job_id='2 reports',
             resolvable_in_reviewer_tools=True,
             target_addon=self.addon,
@@ -1239,6 +1240,7 @@ class TestReviewForm(TestCase):
             addon_version='1.2',
         )
         cinder_job_appeal = CinderJob.objects.create(
+            created=datetime(2025, 5, 6, 1, 24, 2, 194875),
             job_id='appeal',
             resolvable_in_reviewer_tools=True,
             target_addon=self.addon,
@@ -1257,17 +1259,20 @@ class TestReviewForm(TestCase):
         )
 
         cinder_job_forwarded = CinderJob.objects.create(
+            created=datetime(2025, 4, 8, 15, 16, 3, 550090),
             job_id='forwarded',
             resolvable_in_reviewer_tools=True,
             target_addon=self.addon,
         )
         ContentDecision.objects.create(
+            created=datetime(2025, 5, 23, 22, 54, 4, 270060),
             action=DECISION_ACTIONS.AMO_REQUEUE,
             private_notes='Why o why',
             addon=self.addon,
             cinder_job=cinder_job_forwarded,
         )
         CinderQueueMove.objects.create(
+            created=datetime(2025, 5, 22, 11, 42, 5, 541216),
             cinder_job=cinder_job_forwarded,
             notes='Zee de zee',
             to_queue='amo-env-content-infringment',
@@ -1315,7 +1320,10 @@ class TestReviewForm(TestCase):
         doc = pq(content)
         label_0 = doc('label[for="id_cinder_jobs_to_resolve_0"]')
         assert label_0.text() == (
-            '[Forwarded] "DSA: It violates Mozilla\'s Add-on Policies"\n'
+            '(Created on April 8, 2025, 3:16 p.m.) '
+            '[Forwarded on May 22, 2025, 11:42 a.m.] '
+            '[Requeued on May 23, 2025, 10:54 p.m.] '
+            '"DSA: It violates Mozilla\'s Add-on Policies"\n'
             'Reasoning: Zee de zee; Why o why\n\n'
             'Show detail on 1 reports\n'
             'v[<script>alert()</script>]: ddd'
@@ -1324,6 +1332,7 @@ class TestReviewForm(TestCase):
         assert '&lt;script&gt;alert()&lt;/script&gt' in content  # should be escaped
         label_1 = doc('label[for="id_cinder_jobs_to_resolve_1"]')
         assert label_1.text() == (
+            '(Created on May 6, 2025, 1:24 a.m.) '
             '[Appeal] "DSA: It violates Mozilla\'s Add-on Policies"\n'
             'Developer Appeal: some justification\n'
             'Reporter Appeal: some other justification\n\n'
@@ -1332,6 +1341,7 @@ class TestReviewForm(TestCase):
         )
         label_2 = doc('label[for="id_cinder_jobs_to_resolve_2"]')
         assert label_2.text() == (
+            '(Created on May 22, 2025, 11:27 a.m.) '
             '"DSA: It violates Mozilla\'s Add-on Policies"\n\n'
             'Show detail on 2 reports\n<no message>\nbbb'
         )
