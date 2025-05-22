@@ -530,7 +530,7 @@ msgstr "Nowu drastwu zapódaś"
 
 #: src/olympia/amo/context_processors.py:76 src/olympia/constants/base.py:84 src/olympia/devhub/templatetags/jinja_helpers.py:32 src/olympia/templates/photon-footer.html:14
 msgid "Developer Hub"
-msgstr "Wuwijarski rožk"
+msgstr "Wuwijaŕski rožk"
 
 #: src/olympia/amo/context_processors.py:79 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:20 src/olympia/devhub/views.py:2074
 msgid "Manage API Keys"
@@ -798,7 +798,7 @@ msgstr "Njepłaśiwy pk abo njepłaśiwe adresowe mě „%s“ - objekt njeeksis
 
 #: src/olympia/api/models.py:148
 msgid "Confirmation for developer API keys"
-msgstr "Wobkšuśenje za wuwijarske API-kluce"
+msgstr "Wobkšuśenje za wuwijaŕske API-kluce"
 
 #: src/olympia/api/throttling.py:113
 msgid "You have submitted this form too many times recently. Please try again after some time."
@@ -2159,11 +2159,11 @@ msgstr "Njepłaśiwa abo wobškóźona dodankowa dataja."
 
 #: src/olympia/devhub/tasks.py:370
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
-msgstr "Waš wuwijarski API-kluc jo so w zapódanej dataji namakał. Aby se wašo konto šćitało, se kluc wótwołajo."
+msgstr "Waš wuwijaŕski API-kluc jo so w zapódanej dataji namakał. Aby se wašo konto šćitało, se kluc wótwołajo."
 
 #: src/olympia/devhub/tasks.py:377
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
-msgstr "Wuwijarski API-kluc sobuawtora jo se w zapódanej dataji namakał. Aby se waš dodanl šćitał, se kluc wótwołajo."
+msgstr "Wuwijaŕski API-kluc sobuawtora jo se w zapódanej dataji namakał. Aby se waš dodanl šćitał, se kluc wótwołajo."
 
 #: src/olympia/devhub/tasks.py:644
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
@@ -2481,7 +2481,7 @@ msgstr "Pśeglědowański program za dodanki"
 
 #: src/olympia/devhub/templates/devhub/nav.html:54
 msgid "Development Add-ons"
-msgstr "Wuwijarske dodanki"
+msgstr "Wuwijaŕske dodanki"
 
 #: src/olympia/devhub/templates/devhub/nav.html:58
 msgid "Community & Support"
@@ -2501,7 +2501,7 @@ msgstr "Dalšne resurse"
 
 #: src/olympia/devhub/templates/devhub/search.html:6
 msgid "Search Developer Docs"
-msgstr "Wuwijarske dokumenty pśepytowaś"
+msgstr "Wuwijaŕske dokumenty pśepytowaś"
 
 #: src/olympia/devhub/templates/devhub/search.html:8
 msgid "Search"
@@ -2987,7 +2987,7 @@ msgstr "Techniske drobnostki za {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:22
 msgid "Developer Comments"
-msgstr "Wuwijarske komentary"
+msgstr "Wuwijaŕske komentary"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:24
 msgid ""
@@ -3955,7 +3955,7 @@ msgstr "abo <a href=\"{0}\">Pśetergnuś</a>"
 
 #: src/olympia/devhub/templates/devhub/includes/agreement.html:42
 msgid "More information on Developer Accounts"
-msgstr "Dalšne informacije wó wuwijarskich kontach"
+msgstr "Dalšne informacije wó wuwijaŕskich kontach"
 
 #: src/olympia/devhub/templates/devhub/includes/android_compatibility_modal.html:3
 msgid "Firefox for Android compatibility"

@@ -384,7 +384,7 @@ msgstr "Bok drobnostkow (dołojce)"
 
 #: static/js/stats/csv_keys.js:61
 msgid "Detail Page (Development Channel)"
-msgstr "Bok drobnostkow (wuwijarski kanal)"
+msgstr "Bok drobnostkow (wuwijaŕski kanal)"
 
 #: static/js/stats/csv_keys.js:62 static/js/stats/csv_keys.js:63 static/js/stats/csv_keys.js:64
 msgid "Often Used With"
