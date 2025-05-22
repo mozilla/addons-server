@@ -172,10 +172,11 @@ SHORTER_LANGUAGES = {
     'en': 'en-US', 'ga': 'ga-IE', 'pt': 'pt-PT', 'sv': 'sv-SE', 'zh': 'zh-CN'
 }
 
-# Override Django's built-in with our native names
+# Override Django's built-in with our native names (some code still needs a dict)
 LANGUAGES_DICT = {
     locale.lower(): value['native']
     for locale, value in LANGUAGE_MAPPING.items()}
+# See https://github.com/mozilla/addons-server/commit/d8d00370ab05d1296c7e585ac70944cc4bf45ea2
 LANGUAGES = tuple(LANGUAGES_DICT.items())
 
 LANGUAGE_URL_MAP = {
