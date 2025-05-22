@@ -276,11 +276,7 @@ class CinderJobsWidget(forms.CheckboxSelectMultiple):
             *(decision.private_notes for decision in requeued_decisions),
         ]
         internal_notes = (
-            (
-                (
-                    f'Reasoning: {"; ".join(notes for notes in forwarded_or_requeued_notes)}',
-                ),
-            )
+            ((f'Reasoning: {"; ".join(forwarded_or_requeued_notes)}',),)
             if forwarded_or_requeued_notes
             else ()
         )
