@@ -6093,12 +6093,12 @@ msgstr "Další vybraná rozšíření pro Twitch"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1144
 msgid "Gaming & media extensions"
-msgstr "Rozšíření pro hraní her a médií"
+msgstr "Rozšíření pro hraní her a média"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1146
 msgid "See more staff picks"
-msgstr "Zobrazit další výběr zaměstnanců"
+msgstr "Zobrazit další výběr od zaměstnanců"
 
 #: src/olympia/files/models.py:319
 msgid "Unreviewed"
