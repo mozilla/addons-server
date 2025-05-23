@@ -202,6 +202,22 @@ def test_urlparams():
     assert s == url
 
 
+def test_urlparams_multiple_values():
+    url = 'https://example.com/?foo=one&foo=two'
+    assert (
+        utils.urlparams(url, bar='extra')
+        == 'https://example.com/?foo=one&foo=two&bar=extra'
+    )
+
+    # Replacing value for existing param with multiple values
+    url = 'https://example.com/?foo=one&foo=two'
+    assert utils.urlparams(url, foo='newvalue') == 'https://example.com/?foo=newvalue'
+
+    # Removing existing param with multiple values
+    url = 'https://example.com/?foo=one&foo=two'
+    assert utils.urlparams(url, foo=None) == 'https://example.com/'
+
+
 def test_urlparams_unicode():
     url = '/xx?evil=reco\ufffd\ufffd\ufffd\u02f5'
     utils.urlparams(url)
@@ -226,8 +242,8 @@ def test_urlparams_returns_safe_string():
     s = render('{{ "https://foo.com/"|urlparams(param="a%20b") }}', {})
     assert s == 'https://foo.com/?param=a+b'
 
-    s = render('{{ "https://foo.com/"|urlparams(param="%AAA") }}', {})
-    assert s == 'https://foo.com/?param=%AAA'
+    s = render('{{ "https://foo.com/"|urlparams(param="%40something") }}', {})
+    assert s == 'https://foo.com/?param=%40something'
 
     string = render(
         '{{ unsafe_url|urlparams }}',
