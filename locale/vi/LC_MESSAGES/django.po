@@ -5859,7 +5859,7 @@ msgstr "Tiện ích mở rộng cần thiết"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1020
 msgid "Declutter your desktop"
-msgstr ""
+msgstr "Dọn dẹp desktop của bạn"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1022 src/olympia/discovery/strings.jinja2:1024 src/olympia/discovery/strings.jinja2:1026
@@ -6091,12 +6091,12 @@ msgstr "Xem thêm các tiện ích Twitch được lựa chọn bởi biên tậ
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1144
 msgid "Gaming & media extensions"
-msgstr ""
+msgstr "Tiện ích mở rộng trò chơi & đa phương tiện"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1146
 msgid "See more staff picks"
-msgstr ""
+msgstr "Xem thêm lựa chọn của biên tập viên"
 
 #: src/olympia/files/models.py:319
 msgid "Unreviewed"
