@@ -25,6 +25,7 @@ from olympia.abuse.models import CinderJob, CinderPolicy, ContentDecision
 from olympia.access import acl
 from olympia.addons.models import Addon
 from olympia.amo.forms import AMOModelForm
+from olympia.amo.templatetags.jinja_helpers import format_datetime
 from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.reviewers import (
     POLICY_VALUE_PATTERN_REGEX,
@@ -245,13 +246,15 @@ class CinderJobsWidget(forms.CheckboxSelectMultiple):
         # label_from_instance() on WidgetRenderedModelMultipleChoiceField returns the
         # full object, not a label, this is what makes this work.
         obj = label
-        forwarded_notes = [
-            *obj.queue_moves.values_list('notes', flat=True),
-            *obj.decisions.filter(action=DECISION_ACTIONS.AMO_REQUEUE).values_list(
-                'private_notes', flat=True
-            ),
-        ]
         is_appeal = obj.is_appeal
+        queue_moves = list(obj.queue_moves.order_by('-created'))
+        requeued_decisions = list(
+            obj.decisions.filter(action=DECISION_ACTIONS.AMO_REQUEUE).order_by(
+                '-created'
+            )
+        )
+        forwarded = queue_moves[0].created if queue_moves else None
+        requeued = requeued_decisions[0].created if requeued_decisions else None
         reports = obj.all_abuse_reports
         reasons_set = {
             (report.REASONS.for_value(report.reason).display,) for report in reports
@@ -263,18 +266,22 @@ class CinderJobsWidget(forms.CheckboxSelectMultiple):
             )
             for report in reports
         )
-        forwarded = (
-            ((f'Reasoning: {"; ".join(notes for notes in forwarded_notes)}',),)
-            if forwarded_notes
+        forwarded_or_requeued_notes = [
+            *(move.notes for move in queue_moves),
+            *(decision.private_notes for decision in requeued_decisions),
+        ]
+        internal_notes = (
+            ((f'Reasoning: {"; ".join(forwarded_or_requeued_notes)}',),)
+            if forwarded_or_requeued_notes
             else ()
         )
         appeals = (
-            (appeal_text_obj.text, appeal_text_obj.reporter_report is not None)
+            (appeal_obj.text, appeal_obj.reporter_report is not None)
             for appealed_decision in obj.appealed_decisions.all()
-            for appeal_text_obj in appealed_decision.appeals.all()
+            for appeal_obj in appealed_decision.appeals.all()
         )
         subtexts_gen = [
-            *forwarded,
+            *internal_notes,
             *(
                 (f'{"Reporter" if is_reporter else "Developer"} Appeal: {text}',)
                 for text, is_reporter in appeals
@@ -282,11 +289,17 @@ class CinderJobsWidget(forms.CheckboxSelectMultiple):
         ]
 
         label = format_html(
-            '{}{}{}<br/><span>{}</span>'
+            '(Created on {}) {}{}{}{}<br/><span>{}</span>'
             '<details><summary>Show detail on {} reports</summary><ul>{}</ul>'
             '</details>',
+            format_datetime(obj.created),
             '[Appeal] ' if is_appeal else '',
-            '[Forwarded] ' if forwarded else '',
+            format_html('[Forwarded on {}] ', format_datetime(forwarded))
+            if forwarded
+            else '',
+            format_html('[Requeued on {}] ', format_datetime(requeued))
+            if requeued
+            else '',
             format_html_join(', ', '"{}"', reasons_set),
             format_html_join('', '{}<br/>', subtexts_gen),
             len(reports),
