@@ -36,6 +36,16 @@ jobs:
       - name: Patch Django
         run: docker compose exec web bash -c "sed -i 's/TX_ISOLATION = /transaction_isolation = /' /usr/local/lib/python3.6/site-packages/django/db/backends/mysql/base.py"
 
+      - name: Run ratings tests in isolation
+        run: docker compose exec web bash -c 'python -m pytest --junitxml=src/test_report37.xml src/olympia/ratings'
+
+      - name: Publish test results
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: always()
+        with:
+          check_name: "Ratings Test Results"
+          files: src/test_report37.xml
+
       - name: Run tests
         run: docker compose exec web bash -c 'python -m pytest --junitxml=src/test_report36.xml src/olympia/'
 
