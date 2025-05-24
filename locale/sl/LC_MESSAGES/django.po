@@ -480,7 +480,7 @@ msgstr "Ta vrsta dodatkov ne omogoča združljivosti po meri."
 
 #: src/olympia/addons/validators.py:332
 msgid "This endpoint is not valid for Themes."
-msgstr "Ta končna točka ni veljavna za Teme."
+msgstr "Ta končna točka ni veljavna za teme."
 
 #: src/olympia/addons/templates/addons/includes/dashboard_tabs.html:4 src/olympia/devhub/templates/devhub/nav.html:15 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:19
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html:16
@@ -5662,7 +5662,7 @@ msgstr "Uredite spletno stran pred tiskanjem. Odstranite oglase in vso neželeno
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:866
 msgid "Advanced reader for aggregating all of your RSS/Atom/RDF sources."
-msgstr "Napreden bralnik za združevanje vseh vaših virov RSS/Atom/RDF."
+msgstr "Napreden bralnik, ki združuje vse vaše vire RSS/Atom/RDF."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:884
@@ -5702,7 +5702,7 @@ msgstr "Vrnite se v preprostejše čase – ko so najustreznejši zadetki iskanj
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:914
 msgid "Get the mouse scrollbar you've always wanted — specify width and color."
-msgstr "Pridobite drsnik miške, kot ste ga vedno želeli – določite širino in barvo."
+msgstr "Imejte drsni trak, kot ste si ga vedno želeli – izberite si širino in barvo."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:926
@@ -5787,7 +5787,7 @@ msgstr "Izboljšajte svojo igričarsko izkušnjo na Steamu."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:977
 msgid "Thumbs-up to bringing back thumbs-down."
-msgstr "Palec gor za vrnitev Palec dol."
+msgstr "Palec gor za vrnitev palca dol."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:980
@@ -5837,7 +5837,7 @@ msgstr "Prevedite besedilo, ne da bi zapustili stran, na kateri ste (deluje tudi
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1007
 msgid "Change the color of Firefox to match every website you visit."
-msgstr "Spremenite barvo Firefoxa, da se bo ujemala z vsakim spletnim mestom, ki ga obiščete."
+msgstr "Naj se barva Firefoxa prilagodi vsakemu spletnemu mestu, ki ga obiščete."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1010
@@ -6104,7 +6104,7 @@ msgstr "Razširitve za igre in predstavnost"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1146
 msgid "See more staff picks"
-msgstr "Več izbora osebja"
+msgstr "Več izborov osebja"
 
 #: src/olympia/files/models.py:319
 msgid "Unreviewed"
