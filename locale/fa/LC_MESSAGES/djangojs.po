@@ -190,7 +190,7 @@ msgstr[0] "{0} بارگیری‌"
 msgstr[1] "{0} بارگیری‌"
 
 #: static/js/stats/chart.js:313
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{0} user"
 msgid_plural "{0} users"
 msgstr[0] "{0} کاربر"
