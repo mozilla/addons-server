@@ -1095,13 +1095,17 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.file.status == amo.STATUS_APPROVED
         assert self.file.datestatuschanged.date() > yesterday.date()
         assert self.file.approval_date > yesterday
+        assert self.file.status_disabled_reason == File.STATUS_DISABLED_REASONS.NONE
+        assert self.file.original_status == amo.STATUS_NULL
 
     def test_set_file_not_approved(self):
-        self.file.update(datestatuschanged=yesterday)
+        self.file.update(datestatuschanged=yesterday, status=amo.STATUS_AWAITING_REVIEW)
         self.helper.handler.set_file(amo.STATUS_DISABLED, self.review_version.file)
 
         assert self.review_version.file.status == amo.STATUS_DISABLED
         assert not self.review_version.file.approval_date
+        assert self.file.status_disabled_reason == File.STATUS_DISABLED_REASONS.NONE
+        assert self.file.original_status == amo.STATUS_AWAITING_REVIEW
 
     def test_logs(self):
         self.helper.set_data({'comments': 'something'})
@@ -4325,10 +4329,12 @@ class TestReviewHelper(TestReviewHelperBase):
 
         assert old_version.file.reload().status == amo.STATUS_DISABLED
         assert self.review_version.file.reload().status == amo.STATUS_DISABLED
-        assert old_version.file.original_status == amo.STATUS_NULL
-        assert self.review_version.file.original_status == amo.STATUS_NULL
-        assert old_version.file.original_status == File.STATUS_DISABLED_REASONS.NONE
-        assert self.review_version.file.original_status == (
+        assert old_version.file.original_status == amo.STATUS_DISABLED
+        assert self.review_version.file.original_status == amo.STATUS_DISABLED
+        assert (
+            old_version.file.status_disabled_reason == File.STATUS_DISABLED_REASONS.NONE
+        )
+        assert self.review_version.file.status_disabled_reason == (
             File.STATUS_DISABLED_REASONS.NONE
         )
 

@@ -1119,6 +1119,71 @@ class TestCinderJob(TestCase):
         assert notify_mock.call_count == 1
         assert list(cinder_job.decision.policies.all()) == [policy_a, policy_b]
 
+    def test_process_decision_sets_target_versions_for_reject_version_appeals(self):
+        cinder_job = CinderJob.objects.create(job_id='1234')
+        target = addon_factory()
+        policy_a = CinderPolicy.objects.create(uuid='123-45', name='aaa', text='AAA')
+        ContentDecision.objects.create(
+            addon=target,
+            appeal_job=cinder_job,
+            action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
+        ).target_versions.add(target.current_version)
+
+        with (
+            mock.patch.object(
+                ContentActionTargetAppealApprove, 'process_action'
+            ) as action_mock,
+            mock.patch.object(
+                ContentActionTargetAppealApprove, 'notify_owners'
+            ) as notify_mock,
+        ):
+            action_mock.return_value = None
+            cinder_job.process_decision(
+                decision_cinder_id='12345',
+                decision_action=DECISION_ACTIONS.AMO_APPROVE.value,
+                decision_notes='',
+                policy_ids=['123-45'],
+            )
+        assert cinder_job.decision.cinder_id == '12345'
+        assert cinder_job.decision.action == DECISION_ACTIONS.AMO_APPROVE
+        assert cinder_job.decision.addon == target
+        assert cinder_job.decision.target_versions.get() == target.current_version
+        assert action_mock.call_count == 1
+        assert notify_mock.call_count == 1
+        assert list(cinder_job.decision.policies.all()) == [policy_a]
+
+    def test_process_decision_overrides_action_for_reject_version_appeals(self):
+        cinder_job = CinderJob.objects.create(job_id='1234')
+        target = addon_factory()
+        policy_a = CinderPolicy.objects.create(uuid='123-45', name='aaa', text='AAA')
+        ContentDecision.objects.create(
+            addon=target,
+            appeal_job=cinder_job,
+            action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
+        )
+
+        with (
+            mock.patch.object(
+                ContentActionTargetAppealRemovalAffirmation, 'process_action'
+            ) as action_mock,
+            mock.patch.object(
+                ContentActionTargetAppealRemovalAffirmation, 'notify_owners'
+            ) as notify_mock,
+        ):
+            action_mock.return_value = None
+            cinder_job.process_decision(
+                decision_cinder_id='12345',
+                decision_action=DECISION_ACTIONS.AMO_DISABLE_ADDON.value,
+                decision_notes='',
+                policy_ids=['123-45'],
+            )
+        assert cinder_job.decision.cinder_id == '12345'
+        assert cinder_job.decision.action == DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
+        assert cinder_job.decision.addon == target
+        assert action_mock.call_count == 1
+        assert notify_mock.call_count == 1
+        assert list(cinder_job.decision.policies.all()) == [policy_a]
+
     @override_switch('dsa-cinder-forwarded-review', active=True)
     def test_process_queue_move_into_reviewer_handled(self):
         addon = addon_factory(file_kw={'is_signed': True})
@@ -1716,6 +1781,21 @@ class TestContentDecisionCanBeAppealed(TestCase):
         )
         self.decision.update(appeal_job=appeal_job)
         assert appeal_job.decision.can_be_appealed(is_reporter=False)
+
+    def test_author_cant_appeal_own_appeal(self):
+        appeal_job = CinderJob.objects.create(
+            job_id='fake_appeal_job_id',
+            decision=ContentDecision.objects.create(
+                cinder_id='fake_appeal_decision_id',
+                action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+                addon=self.addon,
+                action_date=datetime.now(),
+            ),
+        )
+        self.decision.update(
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON, appeal_job=appeal_job
+        )
+        assert not appeal_job.decision.can_be_appealed(is_reporter=False)
 
 
 class TestCinderPolicy(TestCase):

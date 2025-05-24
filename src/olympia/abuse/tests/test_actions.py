@@ -697,6 +697,12 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
     def _test_approve_appeal_or_override(self, ContentActionClass):
         self.addon.update(status=amo.STATUS_DISABLED)
         ActivityLog.objects.all().delete()
+        ContentDecision.objects.create(
+            appeal_job=self.cinder_job,
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            action_date=datetime.now(),
+            addon=self.addon,
+        ).target_versions.set(self.decision.target_versions.all())
         action = ContentActionClass(self.decision)
         activity = action.process_action()
 
@@ -1035,6 +1041,8 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         self.another_version.file.update(status=amo.STATUS_APPROVED)
 
     def _test_reject_version(self, *, content_review, expected_emails_from_action=0):
+        old_version_original_status = self.old_version.file.status
+        version_original_status = self.version.file.status
         self.decision.update(
             action=self.takedown_decision_action,
             metadata={'content_review': content_review},
@@ -1055,8 +1063,12 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
             else amo.LOG.REJECT_VERSION
         )
         assert self.addon.reload().status == amo.STATUS_APPROVED
-        for version in (self.old_version, self.version):
+        for version, original_status in (
+            (self.old_version, old_version_original_status),
+            (self.version, version_original_status),
+        ):
             assert version.file.reload().status == amo.STATUS_DISABLED
+            assert version.file.original_status == original_status
             version_flags = VersionReviewerFlags.objects.filter(version=version).get()
             assert version_flags.pending_rejection is None
             assert version_flags.pending_rejection_by is None
@@ -1096,6 +1108,47 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         assert 'Bad policy: This is bad thing' in mail_item.body
         assert 'Affected versions: 2.3, 3.45' in mail_item.body
         return subject
+
+    def _test_approve_appeal_or_override(self, ContentActionClass):
+        self.old_version.file.update(
+            status=amo.STATUS_DISABLED, original_status=amo.STATUS_APPROVED
+        )
+        # set-up where version.file doesn't have an original_status for some reason
+        self.version.file.update(status=amo.STATUS_DISABLED)
+        ContentDecision.objects.create(
+            appeal_job=self.cinder_job,
+            action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
+            action_date=datetime.now(),
+            addon=self.addon,
+        ).target_versions.set(self.decision.target_versions.all())
+        ActivityLog.objects.all().delete()
+        action = ContentActionClass(self.decision)
+        activity = action.process_action()
+
+        # safe fallback to AWAITING_REVIEW when original_status not defined
+        assert self.version.file.reload().status == amo.STATUS_AWAITING_REVIEW
+        # but otherwise should restore the original status
+        assert self.old_version.file.reload().status == amo.STATUS_APPROVED
+        assert activity.log == amo.LOG.UNREJECT_VERSION
+        assert activity.arguments == [
+            self.addon,
+            self.decision,
+            self.policy,
+            self.version,
+            self.old_version,
+        ]
+        assert activity.user == self.task_user
+        assert ActivityLog.objects.count() == 2
+        second_activity = ActivityLog.objects.exclude(pk=activity.pk).get()
+        assert second_activity.log == amo.LOG.REVIEWER_PRIVATE_COMMENT
+        assert second_activity.arguments == [self.addon, self.decision]
+        assert second_activity.user == self.task_user
+        assert second_activity.details == {'comments': self.decision.private_notes}
+        assert len(mail.outbox) == 0
+
+        self.cinder_job.notify_reporters(action)
+        action.notify_owners()
+        self._test_owner_restore_email(f'Mozilla Add-ons: {self.addon.name}')
 
     def test_log_action_no_notes(self):
         self.decision.update(
