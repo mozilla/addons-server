@@ -28,7 +28,7 @@ class Group(ModelBase):
         return self.name
 
 
-class GroupUser(models.Model):
+class GroupUser(ModelBase):
     id = PositiveAutoField(primary_key=True)
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
     user = models.ForeignKey('users.UserProfile', on_delete=models.CASCADE)
