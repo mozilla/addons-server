@@ -187,6 +187,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
 msgstr ""
+"\n"
+"Dziękujemy za twoje zgłoszenie o następującym dodatku w serwisie Dodatki Mozilli: %(name)s.\n"
+"\n"
+"Przejrzeliśmy twoje zgłoszenie i kwestionowaną treść, i ustaliliśmy, że narusza zasady Mozilli (%(policy_document_url)s), zatem poprosiliśmy dewelopera o wprowadzenie zmian. Jeśli treść nie zostanie zaktualizowana, aby skorygować naruszenie, usuniemy ją.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_collection.txt:5
 #, python-format
@@ -196,6 +200,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
+"\n"
+"Dziękujemy za twoje zgłoszenie o następującej kolekcji w serwisie Dodatki Mozilli: %(name)s.\n"
+"\n"
+"Przejrzeliśmy twoje zgłoszenie i kwestionowaną treść, i ustaliliśmy, że narusza zasady Mozilli (%(policy_document_url)s), zatem usunęliśmy treści.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_rating.txt:5
 #, python-format
@@ -205,6 +213,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
+"\n"
+"Dziękujemy za twoje zgłoszenie o następującej ocenie w serwisie Dodatki Mozilli: %(name)s.\n"
+"\n"
+"Przejrzeliśmy twoje zgłoszenie i kwestionowaną treść, i ustaliliśmy, że narusza zasady Mozilli (%(policy_document_url)s), zatem usunęliśmy treści.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_user.txt:5
 #, python-format
@@ -214,6 +226,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
+"\n"
+"Dziękujemy za twoje zgłoszenie o następującym profilu użytkownika w serwisie Dodatki Mozilli: %(name)s.\n"
+"\n"
+"Przejrzeliśmy twoje zgłoszenie i kwestionowaną treść, i ustaliliśmy, że narusza zasady Mozilli (%(policy_document_url)s), zatem usunęliśmy treści.\n"
 
 #: src/olympia/accounts/serializers.py:152 src/olympia/bandwagon/serializers.py:98
 msgid "No links are allowed."
@@ -246,9 +262,8 @@ msgid "Notification [%s] does not exist"
 msgstr "Powiadomienie [%s] nie istnieje"
 
 #: src/olympia/activity/models.py:42
-#, fuzzy
 msgid "Add-ons Review Team"
-msgstr "Przewodnik recenzenta dodatków"
+msgstr "Zespół ds. recenzji dodatków"
 
 #: src/olympia/activity/models.py:738
 msgid "Review"
@@ -307,7 +322,7 @@ msgstr "Adresy URL muszą zaczynać się od https://."
 #: src/olympia/addons/fields.py:187
 #, python-brace-format
 msgid "License with slug={value} does not exist."
-msgstr ""
+msgstr "Licencja ze slug={value} nie istnieje."
 
 #: src/olympia/addons/fields.py:210
 #, python-brace-format
@@ -333,7 +348,7 @@ msgstr "Podano nieznaną minimalną wersję aplikacji"
 #: src/olympia/addons/fields.py:307 src/olympia/addons/fields.py:325 src/olympia/addons/serializers.py:625
 #, python-format
 msgid "Can not override compatibility information set in the manifest for this application (%s)"
-msgstr ""
+msgstr "Nie można zastąpić informacji o kompatybilności ustawionych w manifeście dla tej aplikacji (%s)"
 
 #: src/olympia/addons/fields.py:375
 #, python-format
@@ -426,7 +441,7 @@ msgstr "Wersja {version_string} musi być wyższa, niż poprzednia zatwierdzona 
 
 #: src/olympia/addons/validators.py:41
 msgid "Both `license` and `custom_license` cannot be provided together."
-msgstr ""
+msgstr "Pola `license` i `custom_license` nie mogą być wypełnione jednocześnie."
 
 #: src/olympia/addons/validators.py:64
 msgid "This field, or custom_license, is required for listed versions."
@@ -463,11 +478,11 @@ msgstr "Źródło nie może być zmienione, gdyż zostało zatwierdzone przez Mo
 
 #: src/olympia/addons/validators.py:315
 msgid "This type of add-on does not allow custom compatibility."
-msgstr ""
+msgstr "Ten typ dodatku nie zapewnia niestandardowej kompatybilności."
 
 #: src/olympia/addons/validators.py:332
 msgid "This endpoint is not valid for Themes."
-msgstr ""
+msgstr "Ten punkt końcowy nie jest poprawny dla motywów."
 
 #: src/olympia/addons/templates/addons/includes/dashboard_tabs.html:4 src/olympia/devhub/templates/devhub/nav.html:15 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:19
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html:16
