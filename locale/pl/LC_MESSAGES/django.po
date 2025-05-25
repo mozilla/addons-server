@@ -584,7 +584,7 @@ msgstr "Musi mieć co najmniej jednego właściciela."
 #: src/olympia/amo/validators.py:90
 #, python-format
 msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
-msgstr ""
+msgstr "To pole może być użyte tylko do linkowania do zewnętrznych stron internetowych. Adresy URL w %(domain)s nie są dozwolone."
 
 #: src/olympia/amo/templates/amo/403.html:3
 msgid "Not allowed"
@@ -1122,7 +1122,7 @@ msgstr ""
 
 #: src/olympia/constants/activity.py:632
 msgid "Notes for reviewers changed"
-msgstr ""
+msgstr "Zmieniono informacje dla recenzentów"
 
 #: src/olympia/constants/activity.py:640
 #, python-brace-format
@@ -1192,9 +1192,8 @@ msgid "{addon} {version} automatically created and signed from {0}."
 msgstr ""
 
 #: src/olympia/constants/activity.py:854
-#, fuzzy
 msgid "Version re-signed"
-msgstr "Wersja %s została ponownie włączona."
+msgstr "Wersja ponownie podpisana"
 
 #: src/olympia/constants/activity.py:862
 #, python-brace-format
@@ -1213,12 +1212,12 @@ msgstr ""
 
 #: src/olympia/constants/activity.py:903
 msgid "Un-rejected"
-msgstr ""
+msgstr "Cofnięto odrzucenie"
 
 #: src/olympia/constants/activity.py:941
 #, python-brace-format
 msgid "Reply to {rating} for {addon} written."
-msgstr ""
+msgstr "Napisano odpowiedź do opinii {rating} dla dodatku {addon}."
 
 #: src/olympia/constants/activity.py:958
 #, python-brace-format
