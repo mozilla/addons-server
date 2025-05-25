@@ -1776,9 +1776,8 @@ msgid "Not Promoted"
 msgstr "Promuj"
 
 #: src/olympia/constants/promoted.py:82
-#, fuzzy
 msgid "Recommended"
-msgstr "Skomentowano"
+msgstr "Polecane"
 
 #: src/olympia/constants/promoted.py:113
 msgid "By Firefox"
@@ -3660,9 +3659,8 @@ msgid "Select a header image for your theme"
 msgstr "Wybierz obraz nagłówka dla swojego motywu"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:42
-#, fuzzy
 msgid "Recommended height: 200 pixels"
-msgstr "Wysokość obrazu powinna wynosić 200 pikseli"
+msgstr "Zalecana wysokość: 200 pikseli"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:43
 msgid "6.9MB max"
@@ -4046,9 +4044,8 @@ msgid "Community forum"
 msgstr "Społeczność i wsparcie"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:22
-#, fuzzy
 msgid "Extensions Developers Newsletter"
-msgstr "Tworzenie rozszerzeń"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:23
 msgid "Stay up-to-date on news and events for Firefox extension developers."
@@ -4100,7 +4097,7 @@ msgstr "Przycisk „Pobierz dodatek”"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:28
 msgid "Recommended Extensions program"
-msgstr ""
+msgstr "Program Polecanych rozszerzeń"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:33
 msgid "Contribute"
@@ -5895,9 +5892,8 @@ msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1014
-#, fuzzy
 msgid "See all extensions"
-msgstr "Przejrzyj wszystkie rozszerzenia"
+msgstr "Wyświetl wszystkie rozszerzenia"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1016
@@ -5921,26 +5917,23 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1029
-#, fuzzy
 msgid "Recommended extensions"
-msgstr "Skomentowano"
+msgstr "Polecane rozszerzenia"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1031
-#, fuzzy
 msgid "See more recommended extensions"
-msgstr "Przejrzyj wszystkie rozszerzenia"
+msgstr "Więcej polecanych rozszerzeń"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1034
 msgid "Popular themes"
-msgstr ""
+msgstr "Popularne motywy"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1036
-#, fuzzy
 msgid "See more popular themes"
-msgstr "Wybierz kolory swojego motywu"
+msgstr "Więcej popularnych motywów"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1039
@@ -5950,9 +5943,8 @@ msgstr "Przejrzyj wszystkie rozszerzenia"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1041
-#, fuzzy
 msgid "See more recommended privacy extensions"
-msgstr "Przejrzyj wszystkie rozszerzenia"
+msgstr "Więcej polecanych rozszerzeń do ochrony prywatności"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1044
@@ -5968,14 +5960,13 @@ msgstr "Przejrzyj wszystkie rozszerzenia"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1049
-#, fuzzy
 msgid "Recommended themes"
-msgstr "Skomentowano"
+msgstr "Polecane motywy"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1051
 msgid "See more recommended themes"
-msgstr ""
+msgstr "Więcej polecanych motywów"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1054
@@ -6014,7 +6005,7 @@ msgstr "Przejrzyj wszystkie rozszerzenia"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1069
 msgid "Tab managers"
-msgstr ""
+msgstr "Menedżery kart"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1071
@@ -6058,15 +6049,13 @@ msgstr "wg wersji dodatku"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1089
-#, fuzzy
 msgid "Trending themes"
-msgstr "Skomentowano"
+msgstr "Motywy na czasie"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1091
-#, fuzzy
 msgid "See more trending themes"
-msgstr "Wybierz kolory swojego motywu"
+msgstr "Więcej motywów na czasie"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1094 src/olympia/discovery/strings.jinja2:1139
