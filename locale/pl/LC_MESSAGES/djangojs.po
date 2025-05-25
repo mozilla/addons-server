@@ -241,12 +241,12 @@ msgstr[1] "{0} zwroty"
 msgstr[2] "{0} zwrotów"
 
 #: static/js/stats/chart.js:352
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{0} install"
 msgid_plural "{0} installs"
-msgstr[0] "Instalacje: {0}"
-msgstr[1] "Instalacje: {0}"
-msgstr[2] "Instalacje: {0}"
+msgstr[0] "{0} instalacja"
+msgstr[1] "{0} instalacje"
+msgstr[2] "{0} instalacji"
 
 #: static/js/stats/chart.js:453 static/js/stats/csv_keys.js:3 static/js/stats/csv_keys.js:109
 msgid "Downloads"
