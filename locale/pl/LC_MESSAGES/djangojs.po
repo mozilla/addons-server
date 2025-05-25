@@ -185,20 +185,20 @@ msgid "Week of {0}"
 msgstr "Tydzień: {0}"
 
 #: static/js/stats/chart.js:307
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] "{0} pobrań"
-msgstr[1] " pobrań"
-msgstr[2] " pobrań"
+msgstr[0] "{0} pobranie"
+msgstr[1] "{0} pobrania"
+msgstr[2] "{0} pobrań"
 
 #: static/js/stats/chart.js:313
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] "{0} użytkowników"
-msgstr[1] "użytkownicy: {0}"
-msgstr[2] "użytkownicy: {0}"
+msgstr[0] "{0} użytkownik"
+msgstr[1] "{0} użytkowników"
+msgstr[2] "{0} użytkowników"
 
 #: static/js/stats/chart.js:319
 #, fuzzy, python-brace-format
