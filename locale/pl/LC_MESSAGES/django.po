@@ -2274,7 +2274,7 @@ msgstr "Sprawdzanie dodatku"
 #: src/olympia/devhub/views.py:644
 #, python-brace-format
 msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
-msgstr ""
+msgstr "<a href=\"{link}\">Aby móc przesyłać rozszerzenia, w ustawieniach konta włącz uwierzytelnianie dwuetapowe.</a>"
 
 #: src/olympia/devhub/views.py:1012
 msgid "Icons must be either PNG or JPG."
@@ -4045,7 +4045,7 @@ msgstr "Społeczność i wsparcie"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:22
 msgid "Extensions Developers Newsletter"
-msgstr ""
+msgstr "Newsletter Mozilli dla twórców rozszerzeń"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:23
 msgid "Stay up-to-date on news and events for Firefox extension developers."
@@ -5883,7 +5883,7 @@ msgstr ""
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1010
 msgid "Extensions are like apps for Firefox."
-msgstr ""
+msgstr "Rozszerzenia są jak aplikacje dla Firefoksa."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1012
@@ -5898,7 +5898,7 @@ msgstr "Wyświetl wszystkie rozszerzenia"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1016
 msgid "Privacy & Security extensions"
-msgstr ""
+msgstr "Rozszerzenia związane z prywatnością i bezpieczeństwem"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1018
@@ -5937,9 +5937,8 @@ msgstr "Więcej popularnych motywów"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1039
-#, fuzzy
 msgid "Enhanced privacy extensions"
-msgstr "Przejrzyj wszystkie rozszerzenia"
+msgstr "Rozszerzenia zwiększające prywatność"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1041
@@ -5948,15 +5947,13 @@ msgstr "Więcej polecanych rozszerzeń do ochrony prywatności"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1044
-#, fuzzy
 msgid "Popular extensions"
-msgstr "Rozszerzenia"
+msgstr "Popularne rozszerzenia"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1046
-#, fuzzy
 msgid "See more popular extensions"
-msgstr "Przejrzyj wszystkie rozszerzenia"
+msgstr "Więcej popularnych rozszerzeń"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1049
@@ -6017,13 +6014,13 @@ msgstr "Przejrzyj wszystkie rozszerzenia"
 #: src/olympia/discovery/strings.jinja2:1074
 #, python-brace-format
 msgid "“{tag}” tagged extensions"
-msgstr ""
+msgstr "Rozszerzenia oznaczone etykietą „{tag}”"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1076
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "See more extensions tagged \"{tag}\""
-msgstr "Przejrzyj wszystkie rozszerzenia"
+msgstr "Więcej rozszerzeń oznaczonych etykietą „{tag}”"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1079
@@ -6069,15 +6066,13 @@ msgstr "Więcej najwyżej ocenianych motywów"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1099
-#, fuzzy
 msgid "Trending extensions"
-msgstr "Skomentowano"
+msgstr "Rozszerzenia na czasie"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1101
-#, fuzzy
 msgid "See more trending extensions"
-msgstr "Przejrzyj wszystkie rozszerzenia"
+msgstr "Więcej rozszerzeń na czasie"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1104
@@ -6092,9 +6087,8 @@ msgstr "Przejrzyj wszystkie rozszerzenia"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1109
-#, fuzzy
 msgid "Creativity extensions"
-msgstr "Skomentowano"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1111
@@ -6155,7 +6149,7 @@ msgstr ""
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1144
 msgid "Gaming & media extensions"
-msgstr ""
+msgstr "Rozszerzenia do gier i multimediów"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1146
@@ -6284,9 +6278,9 @@ msgid "The locale of an existing dictionary/language pack cannot be changed"
 msgstr ""
 
 #: src/olympia/files/utils.py:1006
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Unsupported file type, please upload a supported file {extensions}."
-msgstr "Nieobsługiwany typ pliku, wczytaj plik spakowany {extensions}."
+msgstr "Nieobsługiwany typ pliku, wczytaj obsługiwany plik {extensions}."
 
 #: src/olympia/files/utils.py:1015
 msgid "Unexpected error."
@@ -6408,7 +6402,7 @@ msgstr "Oceniony jako %(rating)s/5"
 #: src/olympia/reviewers/forms.py:372
 #, python-brace-format
 msgid "Unsupported file type, please upload a file {extensions}."
-msgstr ""
+msgstr "Nieobsługiwany typ pliku, wczytaj plik {extensions}."
 
 #: src/olympia/reviewers/forms.py:378
 msgid "File too large."
