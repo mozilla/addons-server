@@ -52,7 +52,7 @@ msgstr "Błąd z {0}"
 
 #: static/js/common/upload-addon.js:237
 msgid "Please make sure to report any linting related issues on GitHub"
-msgstr ""
+msgstr "Prosimy zgłaszać wszelkie problemy związane z naszym walidatorem na GitHub"
 
 #: static/js/common/upload-addon.js:248
 #, python-brace-format
@@ -201,12 +201,12 @@ msgstr[1] "{0} użytkowników"
 msgstr[2] "{0} użytkowników"
 
 #: static/js/stats/chart.js:319
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
-msgstr[0] "{0} dodatków"
-msgstr[1] "Dodatki: {0}"
-msgstr[2] "Dodatki: {0}"
+msgstr[0] "{0} dodatek"
+msgstr[1] "{0} dodatki"
+msgstr[2] "{0} dodatków"
 
 #: static/js/stats/chart.js:325
 #, fuzzy, python-brace-format
@@ -564,15 +564,15 @@ msgstr "Programy od {0} do {1} dni"
 
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:159
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Countries, last {0} days"
-msgstr "Dotacje — ostatnie {0} dni"
+msgstr "Kraje — ostatnie {0} dni"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/stats/csv_keys.js:161
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Countries from {0} to {1}"
-msgstr "Dotacje od {0} do {1}"
+msgstr "Kraje od {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:165
@@ -881,20 +881,20 @@ msgid "Image changes being processed"
 msgstr "Przetwarzanie zmian obrazu…"
 
 #: static/js/zamboni/global.js:463
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
-msgstr[0] "Pozostał <b>{0}</b> znak."
-msgstr[1] "Pozostały <b>{0}</b> znaki."
-msgstr[2] "Pozostały <b>{0}</b> znaków."
+msgstr[0] "<b>{0}</b> znak"
+msgstr[1] "<b>{0}</b> znaki"
+msgstr[2] "<b>{0}</b> znaków"
 
 #: static/js/zamboni/global.js:472
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
-msgstr[0] "Pozostał <b>{0}</b> znak."
-msgstr[1] "Pozostały <b>{0}</b> znaki."
-msgstr[2] "Pozostały <b>{0}</b> znaków."
+msgstr[0] "Pozostał <b>{0}</b> znak"
+msgstr[1] "Pozostały <b>{0}</b> znaki"
+msgstr[2] "Pozostało <b>{0}</b> znaków"
 
 #: static/js/zamboni/init.js:12
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
