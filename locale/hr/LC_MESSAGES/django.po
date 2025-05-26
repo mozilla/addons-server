@@ -3986,11 +3986,11 @@ msgstr "Resursi"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:9
 msgid "WebExtensions API"
-msgstr "API Web-proširenja"
+msgstr "API za web proširenja"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:18
 msgid "Web-Ext: build & test extensions"
-msgstr "Web-Ext: izgradnje i proširenja za testiranje"
+msgstr "Web-Ext: razvijaj i testiraj proširenja"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:25
 msgid "Promote"
@@ -4491,7 +4491,7 @@ msgstr "Organiziraj kartice grupirajući ih u boje na temelju URL uzoraka."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:68
 msgid "Stop malicious websites from using your computer power to mine for cryptocurrency."
-msgstr "Zaustavi zlonamjerne web-stranice da koriste tvoje računalo za rudarenje kriptovaluta."
+msgstr "Zaustavi zlonamjerne web stranice da koriste tvoje računalo za rudarenje kriptovaluta."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4576,7 +4576,7 @@ msgstr "Nema potrebe stalno pisati istu stvar. Spremi često pisani tekst i umet
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:116 src/olympia/discovery/strings.jinja2:770
 msgid "Get more screen space by removing ads from your web-based inbox."
-msgstr ""
+msgstr "Oslobodi prostor na ekranu uklanjanjem oglasa iz svog web poštanskog sandučića."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:119
@@ -4637,7 +4637,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:149 src/olympia/discovery/strings.jinja2:758
 msgid "Add encrypted security to any site that supports HTTPS. Browse securely."
-msgstr "Dodaj šifriranu sigurnost bilo kojoj web-stranici koja podržava HTTPS. Pregledaj web sigurno."
+msgstr "Dodaj šifriranu sigurnost bilo kojoj web stranici koja podržava HTTPS. Pregledaj web sigurno."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:152
