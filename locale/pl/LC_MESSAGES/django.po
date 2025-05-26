@@ -1394,9 +1394,8 @@ msgid "Extensions"
 msgstr "Rozszerzenia"
 
 #: src/olympia/constants/base.py:144
-#, fuzzy
 msgid "Deprecated Complete Themes"
-msgstr "Kompletne motywy"
+msgstr ""
 
 #: src/olympia/constants/base.py:145
 msgid "Dictionaries"
@@ -2700,7 +2699,7 @@ msgstr[2] "<b>{0}</b> motywów"
 #: src/olympia/devhub/templates/devhub/addons/edit.html:3 src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:31 src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:2
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:38
 msgid "Edit Product Page"
-msgstr ""
+msgstr "Edytuj stronę produktu"
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html:13 src/olympia/devhub/templates/devhub/includes/macros.html:14 src/olympia/ratings/models.py:107
 #: src/olympia/translations/templates/translations/all-locales.html:6
@@ -2720,9 +2719,9 @@ msgid "Preview still being generated - come back later or refresh the page."
 msgstr "Nadal trwa generowanie podglądu — wróć później lub odśwież stronę."
 
 #: src/olympia/devhub/templates/devhub/addons/invitation.html:3 src/olympia/users/utils.py:98
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Author invitation for {addon_name}"
-msgstr "Dotacje dla dodatku {addon}."
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/invitation.html:18
 #, python-brace-format
