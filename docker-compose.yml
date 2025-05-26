@@ -115,7 +115,7 @@ services:
     image: memcached:1.5.16@sha256:9258aa018bce5300ba3548aba19e95612508b43e6587462c6e22b5ac6a35d5a9
 
   mysqld:
-    image: mysql:8.0@sha256:bf577825b52ab281d6281fb281eabbfdc73507eda8f2c2745790251533ef0306
+    image: mysql:8.4@sha256:2764fe573c51062d1eadd39a78cc60aa85359bffec2451b7a9660f531bcfb53e
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
       - MYSQL_DATABASE=olympia
