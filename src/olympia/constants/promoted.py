@@ -158,6 +158,8 @@ PARTNER = PromotedClass(
     id=PROMOTED_GROUP_CHOICES.PARTNER,
     name=_('Partner'),
     api_name=PROMOTED_GROUP_CHOICES.PARTNER.api_value,
+    listed_pre_review=True,
+    unlisted_pre_review=True,
     high_profile=True,
     high_profile_rating=True,
 )
