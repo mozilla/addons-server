@@ -16,22 +16,6 @@ on:
         type: boolean
         required: false
 
-  workflow_dispatch:
-    inputs:
-      environment:
-        description: The environment to run the health check in
-        type: choice
-        required: true
-        options:
-          - production
-          - staging
-          - development
-          - host
-      notify:
-        description: Whether to notify the user of the health check outcome
-        type: boolean
-        required: false
-
 env:
   health_check_file: health_check.json
   health_check_blocks_file: health_check_blocks.json
