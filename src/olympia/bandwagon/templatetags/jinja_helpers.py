@@ -1,5 +1,5 @@
 from django.template import loader
-from django.utils.translation import ugettext
+from django.utils.translation import gettext
 
 import jinja2
 
@@ -65,10 +65,10 @@ def favorites_widget(context, addon, condensed=False):
         is_favorite = addon.id in request.user.favorite_addons
         faved_class = 'faved' if is_favorite else ''
 
-        unfaved_text = '' if condensed else ugettext('Add to favorites')
+        unfaved_text = '' if condensed else gettext('Add to favorites')
         faved_text = (
-            ugettext('Favorite') if condensed else
-            ugettext('Remove from favorites'))
+            gettext('Favorite') if condensed else
+            gettext('Remove from favorites'))
 
         add_url = reverse('collections.alter',
                           args=[request.user.id, 'favorites', 'add'])

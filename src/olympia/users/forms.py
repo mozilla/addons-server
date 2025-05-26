@@ -4,7 +4,7 @@ import re
 from django import forms
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
-from django.utils.translation import ugettext, ugettext_lazy as _
+from django.utils.translation import gettext, gettext_lazy as _
 
 import six
 
@@ -46,7 +46,7 @@ class UserDeleteForm(forms.Form):
         user_email = self.request.user.email
         if not user_email == self.cleaned_data['email']:
             raise forms.ValidationError(
-                ugettext('Email must be {email}.').format(email=user_email))
+                gettext('Email must be {email}.').format(email=user_email))
 
     def clean(self):
         amouser = self.request.user
@@ -97,7 +97,7 @@ class UserEditForm(forms.ModelForm):
         super(UserEditForm, self).__init__(*args, **kwargs)
 
         errors = {
-            'invalid': ugettext(
+            'invalid': gettext(
                 'This URL has an invalid format. Valid URLs look like '
                 'http://example.com/my_page.')}
         self.fields['homepage'].error_messages = errors
@@ -157,7 +157,7 @@ class UserEditForm(forms.ModelForm):
         name = self.cleaned_data['display_name']
         if DeniedName.blocked(name):
             raise forms.ValidationError(
-                ugettext('This display name cannot be used.'))
+                gettext('This display name cannot be used.'))
         return name
 
     def clean_email(self):
@@ -174,13 +174,13 @@ class UserEditForm(forms.ModelForm):
         if (photo.content_type not in amo.IMG_TYPES or
                 not image_check.is_image()):
             raise forms.ValidationError(
-                ugettext('Images must be either PNG or JPG.'))
+                gettext('Images must be either PNG or JPG.'))
 
         if image_check.is_animated():
-            raise forms.ValidationError(ugettext('Images cannot be animated.'))
+            raise forms.ValidationError(gettext('Images cannot be animated.'))
 
         if photo.size > settings.MAX_PHOTO_UPLOAD_SIZE:
-            msg = ugettext('Please use images smaller than %dMB.')
+            msg = gettext('Please use images smaller than %dMB.')
             size_in_mb = settings.MAX_PHOTO_UPLOAD_SIZE / 1024 / 1024
             raise forms.ValidationError(msg % size_in_mb)
 
@@ -191,7 +191,7 @@ class UserEditForm(forms.ModelForm):
         normalized = clean_nl(six.text_type(biography))
         if has_links(normalized):
             # There's some links, we don't want them.
-            raise forms.ValidationError(ugettext('No links are allowed.'))
+            raise forms.ValidationError(gettext('No links are allowed.'))
         return biography
 
     def save(self, log_for_developer=True):
@@ -263,7 +263,7 @@ class AdminUserEditForm(UserEditForm):
     def clean_anonymize(self):
         if (self.cleaned_data['anonymize'] and
                 self.changed_fields() != set(['anonymize'])):
-            raise forms.ValidationError(ugettext(
+            raise forms.ValidationError(gettext(
                 'To anonymize, enter a reason for the change but do not '
                 'change any other field.'))
         return self.cleaned_data['anonymize']

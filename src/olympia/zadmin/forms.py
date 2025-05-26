@@ -2,7 +2,7 @@ from django import forms
 from django.conf import settings
 from django.forms import ModelForm
 from django.forms.models import BaseModelFormSet, modelformset_factory
-from django.utils.translation import ugettext
+from django.utils.translation import gettext
 
 import olympia.core.logger
 
@@ -100,7 +100,7 @@ class FileStatusForm(ModelForm):
         changed = not self.cleaned_data['status'] == self.instance.status
         if changed and self.instance.version.deleted:
             raise forms.ValidationError(
-                ugettext('Deleted versions can`t be changed.'))
+                gettext('Deleted versions can`t be changed.'))
         return self.cleaned_data['status']
 
 

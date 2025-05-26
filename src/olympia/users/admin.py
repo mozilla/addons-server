@@ -11,7 +11,7 @@ from django.http import (
     HttpResponseRedirect)
 from django.utils.encoding import force_text
 from django.utils.html import format_html, format_html_join
-from django.utils.translation import ugettext, ugettext_lazy as _
+from django.utils.translation import gettext, gettext_lazy as _
 
 from olympia import amo
 from olympia.abuse.models import AbuseReport
@@ -129,7 +129,7 @@ class UserAdmin(admin.ModelAdmin):
         obj.ban_and_disable_related_content()
         kw = {'user': force_text(obj)}
         self.message_user(
-            request, ugettext('The user "%(user)s" has been banned.' % kw))
+            request, gettext('The user "%(user)s" has been banned.' % kw))
         return HttpResponseRedirect('../')
 
     def delete_picture_view(self, request, object_id, extra_context=None):
@@ -147,7 +147,7 @@ class UserAdmin(admin.ModelAdmin):
         obj.delete_picture()
         kw = {'user': force_text(obj)}
         self.message_user(
-            request, ugettext(
+            request, gettext(
                 'The picture belonging to user "%(user)s" has been deleted.' %
                 kw))
         return HttpResponseRedirect('../')
@@ -160,7 +160,7 @@ class UserAdmin(admin.ModelAdmin):
             users.append(force_text(obj))
         kw = {'users': u', '.join(users)}
         self.message_user(
-            request, ugettext('The users "%(users)s" have been banned.' % kw))
+            request, gettext('The users "%(users)s" have been banned.' % kw))
     ban_action.short_description = _('Ban selected users')
 
     def picture_img(self, obj):

@@ -13,7 +13,7 @@ from django.urls import reverse
 from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.encoding import python_2_unicode_compatible
-from django.utils.translation import ugettext
+from django.utils.translation import gettext
 
 import jinja2
 import six
@@ -470,10 +470,10 @@ class ActivityLog(ModelBase):
                 arguments.remove(arg)
             if isinstance(arg, Rating) and not rating:
                 rating = self.f(u'<a href="{0}">{1}</a>',
-                                arg.get_url_path(), ugettext('Review'))
+                                arg.get_url_path(), gettext('Review'))
                 arguments.remove(arg)
             if isinstance(arg, Version) and not version:
-                text = ugettext('Version {0}')
+                text = gettext('Version {0}')
                 if arg.channel == amo.RELEASE_CHANNEL_LISTED:
                     version = self.f(u'<a href="{1}">%s</a>' % text,
                                      arg.version, arg.get_url_path())
@@ -514,7 +514,7 @@ class ActivityLog(ModelBase):
                 # superset of STATUS_CHOICES_ADDON, and we need to handle all
                 # statuses.
                 if isinstance(arg, int) and arg in amo.STATUS_CHOICES_PERSONA:
-                    status = ugettext(amo.STATUS_CHOICES_PERSONA[arg])
+                    status = gettext(amo.STATUS_CHOICES_PERSONA[arg])
                 else:
                     # It's not an int or not one of the choices, so assume it's
                     # a string or an unknown int we want to display as-is.

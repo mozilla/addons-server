@@ -3,7 +3,7 @@ from django.contrib.auth.signals import user_logged_in
 from django.core import signing
 from django.utils.crypto import constant_time_compare
 from django.utils.encoding import smart_text
-from django.utils.translation import ugettext
+from django.utils.translation import gettext
 
 import jwt
 
@@ -56,14 +56,14 @@ class WebTokenAuthentication(BaseAuthentication):
 
         if len(auth_header) == 1:
             msg = {
-                'detail': ugettext('Invalid Authorization header. '
+                'detail': gettext('Invalid Authorization header. '
                                    'No credentials provided.'),
                 'code': 'ERROR_INVALID_HEADER'
             }
             raise exceptions.AuthenticationFailed(msg)
         elif len(auth_header) > 2:
             msg = {
-                'detail': ugettext('Invalid Authorization header. Credentials '
+                'detail': gettext('Invalid Authorization header. Credentials '
                                    'string should not contain spaces.'),
                 'code': 'ERROR_INVALID_HEADER',
             }
@@ -93,13 +93,13 @@ class WebTokenAuthentication(BaseAuthentication):
                 max_age=settings.SESSION_COOKIE_AGE or None)
         except signing.SignatureExpired:
             msg = {
-                'detail': ugettext('Signature has expired.'),
+                'detail': gettext('Signature has expired.'),
                 'code': 'ERROR_SIGNATURE_EXPIRED',
             }
             raise exceptions.AuthenticationFailed(msg)
         except signing.BadSignature:
             msg = {
-                'detail': ugettext('Error decoding signature.'),
+                'detail': gettext('Error decoding signature.'),
                 'code': 'ERROR_DECODING_SIGNATURE'
             }
             raise exceptions.AuthenticationFailed(msg)
@@ -182,16 +182,16 @@ class JWTKeyAuthentication(JSONWebTokenAuthentication):
                 # Re-raise to deal with them properly.
                 raise exc
             except TypeError:
-                msg = ugettext('Wrong type for one or more keys in payload')
+                msg = gettext('Wrong type for one or more keys in payload')
                 raise exceptions.AuthenticationFailed(msg)
             except jwt.ExpiredSignature:
-                msg = ugettext('Signature has expired.')
+                msg = gettext('Signature has expired.')
                 raise exceptions.AuthenticationFailed(msg)
             except jwt.DecodeError:
-                msg = ugettext('Error decoding signature.')
+                msg = gettext('Error decoding signature.')
                 raise exceptions.AuthenticationFailed(msg)
             except jwt.InvalidTokenError:
-                msg = ugettext('Invalid JWT Token.')
+                msg = gettext('Invalid JWT Token.')
                 raise exceptions.AuthenticationFailed(msg)
             # Note: AuthenticationFailed can also be raised directly from our
             # jwt_decode_handler.
@@ -243,11 +243,11 @@ class JWTKeyAuthentication(JSONWebTokenAuthentication):
             return None
 
         if len(auth) == 1:
-            msg = ugettext('Invalid Authorization header. '
+            msg = gettext('Invalid Authorization header. '
                            'No credentials provided.')
             raise exceptions.AuthenticationFailed(msg)
         elif len(auth) > 2:
-            msg = ugettext('Invalid Authorization header. Credentials string '
+            msg = gettext('Invalid Authorization header. Credentials string '
                            'should not contain spaces.')
             raise exceptions.AuthenticationFailed(msg)
 

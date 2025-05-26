@@ -11,7 +11,7 @@ from django.core.files.storage import default_storage as storage
 from django.db import models
 from django.utils.encoding import force_text, python_2_unicode_compatible
 from django.utils.functional import cached_property
-from django.utils.translation import ugettext
+from django.utils.translation import gettext
 
 import jinja2
 import six
@@ -456,7 +456,7 @@ class Version(OnChangeMixin, ModelBase):
     @property
     def status(self):
         return [
-            f.STATUS_CHOICES.get(f.status, ugettext('[status:%s]') % f.status)
+            f.STATUS_CHOICES.get(f.status, gettext('[status:%s]') % f.status)
             for f in self.all_files]
 
     @property
@@ -873,7 +873,7 @@ class ApplicationsVersions(models.Model):
     def __str__(self):
         if (self.version.is_compatible_by_default and
                 self.version.is_compatible_app(amo.APP_IDS[self.application])):
-            return ugettext(u'{app} {min} and later').format(
+            return gettext('{app} {min} and later').format(
                 app=self.get_application_display(),
                 min=self.min
             )

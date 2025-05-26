@@ -1,7 +1,7 @@
 from collections import defaultdict
 
 from django.utils.encoding import force_bytes
-from django.utils.translation import ugettext, ungettext
+from django.utils.translation import gettext, ngettext
 
 import jinja2
 import six
@@ -37,7 +37,7 @@ def dev_page_title(context, title=None, addon=None):
     if addon:
         title = u'%s :: %s' % (title, addon.name)
     else:
-        devhub = ugettext('Developer Hub')
+        devhub = gettext('Developer Hub')
         title = '%s :: %s' % (title, devhub) if title else devhub
     return page_title(context, title)
 
@@ -46,7 +46,7 @@ def dev_page_title(context, title=None, addon=None):
 @jinja2.contextfunction
 def docs_page_title(context, title=None):
     """Wrapper for docs page titles."""
-    devhub = ugettext('Add-on Documentation :: Developer Hub')
+    devhub = gettext('Add-on Documentation :: Developer Hub')
     title = '%s :: %s' % (title, devhub) if title else devhub
     return page_title(context, title)
 
@@ -104,10 +104,10 @@ def log_action_class(action_id):
 def summarize_validation(validation):
     """Readable summary of add-on validation results."""
     # L10n: first parameter is the number of errors
-    errors = ungettext('{0} error', '{0} errors',
+    errors = ngettext('{0} error', '{0} errors',
                        validation.errors).format(validation.errors)
     # L10n: first parameter is the number of warnings
-    warnings = ungettext('{0} warning', '{0} warnings',
+    warnings = ngettext('{0} warning', '{0} warnings',
                          validation.warnings).format(validation.warnings)
     return "%s, %s" % (errors, warnings)
 

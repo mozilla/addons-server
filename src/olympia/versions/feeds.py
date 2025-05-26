@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404
 from django.utils.feedgenerator import DefaultFeed
-from django.utils.translation import ugettext
+from django.utils.translation import gettext
 
 from olympia import amo
 from olympia.addons.models import Addon
@@ -57,7 +57,7 @@ class VersionsRss(BaseFeed):
 
     def title(self, addon):
         """Title for the feed"""
-        return ugettext(u'%s Version History' % addon.name)
+        return gettext('%s Version History' % addon.name)
 
     def link(self, addon):
         """Link for the feed"""
@@ -65,7 +65,7 @@ class VersionsRss(BaseFeed):
 
     def description(self, addon):
         """Description for the feed"""
-        return ugettext('Version History with Changelogs')
+        return gettext('Version History with Changelogs')
 
     def items(self, obj):
         """Return the Versions for this Addon to be output as RSS <item>'s"""

@@ -6,7 +6,7 @@ from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_list_or_404, get_object_or_404, redirect
 from django.utils.cache import patch_cache_control
 from django.utils.decorators import method_decorator
-from django.utils.translation import ugettext
+from django.utils.translation import gettext
 from django.views.decorators.cache import cache_control, cache_page
 from django.views.decorators.vary import vary_on_headers
 
@@ -333,7 +333,7 @@ def report_abuse(request, addon):
     form = AbuseForm(request.POST or None, request=request)
     if request.method == "POST" and form.is_valid():
         send_abuse_report(request, addon, form.cleaned_data['text'])
-        messages.success(request, ugettext('Abuse reported.'))
+        messages.success(request, gettext('Abuse reported.'))
         return http.HttpResponseRedirect(addon.get_url_path())
     else:
         return render(request, 'addons/report_abuse_full.html',

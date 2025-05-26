@@ -10,7 +10,7 @@ from django.db.models import Q
 from django.forms.models import BaseModelFormSet, modelformset_factory
 from django.forms.widgets import RadioSelect
 from django.utils.safestring import mark_safe
-from django.utils.translation import ugettext, ugettext_lazy as _
+from django.utils.translation import gettext, gettext_lazy as _
 
 import jinja2
 import six
@@ -71,14 +71,14 @@ class BaseAuthorFormSet(BaseModelFormSet):
                                   if not f.cleaned_data.get('DELETE', False)]))
         if not any(d['role'] == amo.AUTHOR_ROLE_OWNER for d in data):
             raise forms.ValidationError(
-                ugettext('Must have at least one owner.'))
+                gettext('Must have at least one owner.'))
         if not any(d['listed'] for d in data):
             raise forms.ValidationError(
-                ugettext('At least one author must be listed.'))
+                gettext('At least one author must be listed.'))
         users = [d['user'].id for d in data]
         if sorted(users) != sorted(set(users)):
             raise forms.ValidationError(
-                ugettext('An author can only be listed once.'))
+                gettext('An author can only be listed once.'))
 
 
 AuthorFormSet = modelformset_factory(AddonUser, formset=BaseAuthorFormSet,
@@ -96,7 +96,7 @@ class DeleteForm(forms.Form):
     def clean_slug(self):
         data = self.cleaned_data
         if not data['slug'] == self.addon.slug:
-            raise forms.ValidationError(ugettext('Slug incorrect.'))
+            raise forms.ValidationError(gettext('Slug incorrect.'))
 
 
 class LicenseRadioSelect(forms.RadioSelect):
@@ -124,7 +124,7 @@ class LicenseRadioSelect(forms.RadioSelect):
         license = self.choices[index][1]
 
         if hasattr(license, 'url') and license.url:
-            details = link % (license.url, ugettext('Details'))
+            details = link % (license.url, gettext('Details'))
             context['label'] = mark_safe(
                 six.text_type(context['label']) + ' ' + details)
         if hasattr(license, 'icons'):
@@ -170,7 +170,7 @@ class LicenseForm(AMOModelForm):
         cs = [(x.builtin, x) for x in licenses]
         if not self.cc_licenses:
             # creative commons licenses don't have an 'other' option.
-            cs.append((License.OTHER, ugettext('Other')))
+            cs.append((License.OTHER, gettext('Other')))
         self.fields['builtin'].choices = cs
         if (self.version and
                 self.version.channel == amo.RELEASE_CHANNEL_UNLISTED):
@@ -182,7 +182,7 @@ class LicenseForm(AMOModelForm):
 
     def clean_name(self):
         name = self.cleaned_data['name']
-        return name.strip() or ugettext('Custom License')
+        return name.strip() or gettext('Custom License')
 
     def clean(self):
         data = self.cleaned_data
@@ -190,7 +190,7 @@ class LicenseForm(AMOModelForm):
             return data
         elif data['builtin'] == License.OTHER and not data['text']:
             raise forms.ValidationError(
-                ugettext('License text is required when choosing Other.'))
+                gettext('License text is required when choosing Other.'))
         return data
 
     def get_context(self):
@@ -309,13 +309,13 @@ class WithSourceMixin(object):
                     valid_extensions_string = u'(%s)' % u', '.join(
                         VALID_SOURCE_EXTENSIONS)
                     raise forms.ValidationError(
-                        ugettext(
+                        gettext(
                             'Unsupported file type, please upload an archive '
                             'file {extensions}.'.format(
                                 extensions=valid_extensions_string)))
             except (zipfile.BadZipfile, tarfile.ReadError, IOError, EOFError):
                 raise forms.ValidationError(
-                    ugettext('Invalid or broken archive.'))
+                    gettext('Invalid or broken archive.'))
         return source
 
 
@@ -423,7 +423,7 @@ class CompatForm(forms.ModelForm):
         min_ = self.cleaned_data.get('min')
         max_ = self.cleaned_data.get('max')
         if not (min_ and max_ and min_.version_int <= max_.version_int):
-            raise forms.ValidationError(ugettext('Invalid version range.'))
+            raise forms.ValidationError(gettext('Invalid version range.'))
         return self.cleaned_data
 
 
@@ -479,7 +479,7 @@ class BaseCompatFormSet(BaseModelFormSet):
             for form in self.forms:
                 form.data = self.data
             raise forms.ValidationError(
-                ugettext('Need at least one compatible application.'))
+                gettext('Need at least one compatible application.'))
 
 
 CompatFormSet = modelformset_factory(
@@ -538,8 +538,8 @@ class NewUploadForm(forms.Form):
                 acl.action_allowed(self.request,
                                    amo.permissions.REVIEWS_ADMIN)):
             raise forms.ValidationError(
-                ugettext(u'There was an error with your upload. '
-                         u'Please try again.'))
+                gettext('There was an error with your upload. '
+                         'Please try again.'))
 
     def clean(self):
         if not self.errors:
@@ -555,19 +555,19 @@ class NewUploadForm(forms.Form):
                 if existing_versions.exists():
                     version = existing_versions[0]
                     if version.deleted:
-                        msg = ugettext(
-                            u'Version {version} was uploaded before and '
-                            u'deleted.')
+                        msg = gettext(
+                            'Version {version} was uploaded before and '
+                            'deleted.')
                     elif version.unreviewed_files:
                         next_url = reverse('devhub.submit.version.details',
                                            args=[self.addon.slug, version.pk])
                         msg = jinja2.Markup('%s <a href="%s">%s</a>' % (
-                            ugettext(u'Version {version} already exists.'),
+                            gettext('Version {version} already exists.'),
                             next_url,
-                            ugettext(u'Continue with existing upload instead?')
+                            gettext('Continue with existing upload instead?')
                         ))
                     else:
-                        msg = ugettext(u'Version {version} already exists.')
+                        msg = gettext('Version {version} already exists.')
                     raise forms.ValidationError(
                         msg.format(version=parsed_data['version']))
             self.cleaned_data['parsed_data'] = parsed_data
@@ -593,11 +593,11 @@ class SourceForm(WithSourceMixin, forms.ModelForm):
         has_source = self.data.get('has_source')  # Not cleaned yet.
         if has_source == 'yes' and not source:
             raise forms.ValidationError(
-                ugettext(u'You have not uploaded a source file.'))
+                gettext('You have not uploaded a source file.'))
         elif has_source == 'no' and source:
             raise forms.ValidationError(
-                ugettext(u'Source file uploaded but you indicated no source '
-                         u'was needed.'))
+                gettext('Source file uploaded but you indicated no source '
+                         'was needed.'))
         # At this point we know we can proceed with the actual archive
         # validation.
         return super(SourceForm, self).clean_source()
@@ -833,7 +833,7 @@ class SingleCategoryForm(forms.Form):
 
     def clean_category(self):
         if getattr(self, 'disabled', False) and self.cleaned_data['category']:
-            raise forms.ValidationError(ugettext(
+            raise forms.ValidationError(gettext(
                 'Categories cannot be changed while your add-on is featured.'))
 
         return self.cleaned_data['category']

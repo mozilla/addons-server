@@ -1,6 +1,6 @@
 from django import http, shortcuts
 from django.db.transaction import non_atomic_requests
-from django.utils.translation import ugettext
+from django.utils.translation import gettext
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import condition
@@ -46,12 +46,12 @@ def setup_viewer(request, file_obj):
 
     if is_user_a_reviewer:
         data['file_link'] = {
-            'text': ugettext('Back to review'),
+            'text': gettext('Back to review'),
             'url': reverse('reviewers.review', args=[addon.slug])
         }
     else:
         data['file_link'] = {
-            'text': ugettext('Back to add-on'),
+            'text': gettext('Back to add-on'),
             'url': reverse('addons.detail', args=[addon.pk])
         }
     return data

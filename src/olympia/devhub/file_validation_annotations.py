@@ -4,7 +4,7 @@ from defusedxml import minidom
 from defusedxml.common import DefusedXmlException
 from xml.parsers.expat import ExpatError
 
-from django.utils.translation import ugettext
+from django.utils.translation import gettext
 
 from olympia import amo
 from olympia.lib.akismet.models import AkismetReport
@@ -39,9 +39,9 @@ def annotate_legacy_addon_restrictions(path, results, parsed_data, error=True):
     # We can be broad here. Search plugins are not validated through this
     # path and as of right now (Jan 2019) there aren't any legacy type
     # add-ons allowed to submit anymore.
-    msg = ugettext('Legacy extensions are no longer supported in Thunderbird.')
+    msg = gettext('Legacy extensions are no longer supported in Thunderbird.')
 
-    description = ugettext('Legacy extensions are no longer supported in ATN.')
+    description = gettext('Legacy extensions are no longer supported in ATN.')
 
     # `parsed_data` only contains the most minimal amount of data because
     # we aren't in the right context. Let's explicitly fetch the add-ons
@@ -91,7 +91,7 @@ def annotate_webext_incompatibilities(results, file_, addon, version_string,
     if is_webextension and not was_webextension:
         results['is_upgrade_to_webextension'] = True
 
-        msg = ugettext(
+        msg = gettext(
             'We allow and encourage an upgrade but you cannot reverse '
             'this process. Once your users have the WebExtension '
             'installed, they will not be able to install a legacy add-on.')
@@ -101,8 +101,8 @@ def annotate_webext_incompatibilities(results, file_, addon, version_string,
 
 
 def annotate_akismet_spam_check(results, akismet_results):
-    msg = ugettext(u'[{field}] The text in the "{field}" field has been '
-                   u'flagged as spam.')
+    msg = gettext('[{field}] The text in the "{field}" field has been '
+                   'flagged as spam.')
     error_if_spam = waffle.switch_is_active('akismet-addon-action')
     for (comment_type, report_result) in akismet_results:
         if error_if_spam and report_result in (

@@ -5,7 +5,7 @@ from __future__ import absolute_import
 from collections import namedtuple
 from inspect import isclass
 
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 
 __all__ = ('LOG', 'LOG_BY_ID', 'LOG_KEEP',)

@@ -13,7 +13,7 @@ from django.urls import reverse
 from django.utils.encoding import force_bytes, force_text
 from django.utils.html import format_html
 from django.utils.http import is_safe_url
-from django.utils.translation import ugettext, ugettext_lazy as _
+from django.utils.translation import gettext, gettext_lazy as _
 
 import six
 import waffle
@@ -474,10 +474,10 @@ class AccountViewSet(RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin,
 
     def perform_destroy(self, instance):
         if instance.is_developer:
-            raise serializers.ValidationError(ugettext(
-                u'Developers of add-ons or themes cannot delete their '
-                u'account. You must delete all add-ons and themes linked to '
-                u'this account, or transfer them to other users.'))
+            raise serializers.ValidationError(gettext(
+                'Developers of add-ons or themes cannot delete their '
+                'account. You must delete all add-ons and themes linked to '
+                'this account, or transfer them to other users.'))
         return super(AccountViewSet, self).perform_destroy(instance)
 
     def destroy(self, request, *args, **kwargs):

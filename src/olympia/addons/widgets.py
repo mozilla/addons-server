@@ -4,7 +4,7 @@ from django import forms
 from django.utils.encoding import force_text
 from django.utils.html import conditional_escape, format_html
 from django.utils.safestring import mark_safe
-from django.utils.translation import ugettext
+from django.utils.translation import gettext
 
 from olympia.addons.models import Category
 
@@ -68,7 +68,7 @@ class CategoriesSelectMultiple(forms.CheckboxSelectMultiple):
         miscs = Category.objects.filter(misc=True).values_list('id', flat=True)
         for c in self.choices:
             if c[0] in miscs:
-                msg = ugettext(
+                msg = gettext(
                     'My add-on doesn\'t fit into any of the categories')
                 other = (c[0], msg)
             else:

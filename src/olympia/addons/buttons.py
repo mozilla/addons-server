@@ -1,6 +1,6 @@
 from django.template.loader import render_to_string
 from django.utils.translation import (
-    pgettext_lazy, ugettext, ugettext_lazy as _)
+    pgettext_lazy, gettext, gettext_lazy as _)
 
 import jinja2
 import six
@@ -147,9 +147,9 @@ class InstallButton(object):
             download_url = file.get_url_path(self.src, attachment=True)
 
         if platform == amo.PLATFORM_ALL.id:
-            text, os = ugettext('Download Now'), None
+            text, os = gettext('Download Now'), None
         else:
-            text, os = ugettext('Download'), amo.PLATFORMS[platform]
+            text, os = gettext('Download'), amo.PLATFORMS[platform]
 
         return text, url, download_url, os
 
@@ -184,7 +184,7 @@ class PersonaInstallButton(InstallButton):
     def links(self):
         return [
             Link(
-                ugettext(u'Add to {0}').format(six.text_type(self.app.pretty)),
+                gettext('Add to {0}').format(six.text_type(self.app.pretty)),
                 reverse('addons.detail', args=[amo.PERSONAS_ADDON_ID])
             )
         ]

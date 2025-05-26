@@ -7,7 +7,7 @@ from django.db.transaction import non_atomic_requests
 from django.http import (
     Http404, HttpResponsePermanentRedirect, HttpResponseRedirect)
 from django.shortcuts import get_object_or_404, redirect
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from django.views.decorators.cache import cache_page
 
 

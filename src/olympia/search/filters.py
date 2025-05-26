@@ -1,7 +1,7 @@
 from django.utils import translation
 from django.utils.encoding import force_text
 from django.utils.http import urlsafe_base64_decode
-from django.utils.translation import ugettext
+from django.utils.translation import gettext
 
 import colorgram
 from elasticsearch_dsl import Q, query
@@ -43,7 +43,7 @@ class AddonQueryParam(object):
         if self.is_valid(value):
             return value
         raise ValueError(
-            ugettext('Invalid "%s" parameter.' % self.query_param)
+            gettext('Invalid "%s" parameter.' % self.query_param)
         )
 
     def is_valid(self, value):
@@ -58,7 +58,7 @@ class AddonQueryParam(object):
         value = self.reverse_dict.get(value.lower())
         if value is None:
             raise ValueError(
-                ugettext('Invalid "%s" parameter.' % self.query_param)
+                gettext('Invalid "%s" parameter.' % self.query_param)
             )
         return value
 
@@ -96,10 +96,10 @@ class AddonAppVersionQueryParam(AddonQueryParam):
             high = version_int(appversion + 'a')
             if low < version_int('10.0'):
                 raise ValueError(
-                    ugettext('Invalid "%s" parameter.' % self.query_param)
+                    gettext('Invalid "%s" parameter.' % self.query_param)
                 )
             return app, low, high
-        raise ValueError(ugettext(
+        raise ValueError(gettext(
             'Invalid combination of "%s" and "%s" parameters.' % (
                 AddonAppQueryParam.query_param,
                 self.query_param)))
@@ -160,7 +160,7 @@ class AddonGuidQueryParam(AddonQueryParam):
         if value.startswith('rta:') and '@' not in value:
             if not switch_is_active('return-to-amo'):
                 raise ValueError(
-                    ugettext('Return To AMO is currently disabled')
+                    gettext('Return To AMO is currently disabled')
                 )
             try:
                 # We need to keep force_text on the input because
@@ -171,7 +171,7 @@ class AddonGuidQueryParam(AddonQueryParam):
                     raise ValueError()
             except (TypeError, ValueError):
                 raise ValueError(
-                    ugettext(
+                    gettext(
                         'Invalid Return To AMO guid (not in base64url format?)'
                     )
                 )
@@ -182,7 +182,7 @@ class AddonGuidQueryParam(AddonQueryParam):
             # ReviewedContentFilter.
             if not DiscoveryItem.objects.filter(addon__guid=value).exists():
                 raise ValueError(
-                    ugettext(
+                    gettext(
                         'Invalid Return To AMO guid (not a curated add-on)'
                     )
                 )
@@ -258,7 +258,7 @@ class AddonCategoryQueryParam(AddonQueryParam):
             types = AddonTypeQueryParam(self.request).get_value()
             self.reverse_dict = [CATEGORIES[app][type_] for type_ in types]
         except KeyError:
-            raise ValueError(ugettext(
+            raise ValueError(gettext(
                 'Invalid combination of "%s", "%s" and "%s" parameters.' % (
                     AddonAppQueryParam.query_param,
                     AddonTypeQueryParam.query_param,
@@ -279,7 +279,7 @@ class AddonCategoryQueryParam(AddonQueryParam):
             value = reverse_dict.get(query_value)
             if value is None:
                 raise ValueError(
-                    ugettext('Invalid "%s" parameter.' % self.query_param)
+                    gettext('Invalid "%s" parameter.' % self.query_param)
                 )
             values.append(value)
         return values
@@ -758,7 +758,7 @@ class SearchQueryFilter(BaseFilterBackend):
 
         if len(search_query) > self.MAX_QUERY_LENGTH:
             raise serializers.ValidationError(
-                ugettext('Maximum query length exceeded.')
+                gettext('Maximum query length exceeded.')
             )
 
         return self.apply_search_query(search_query, qs, sort_param)

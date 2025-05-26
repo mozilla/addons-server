@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
 from django.utils.http import urlquote
-from django.utils.translation import get_language, get_language_bidi, ugettext
+from django.utils.translation import get_language, get_language_bidi, gettext
 
 import waffle
 
@@ -35,7 +35,7 @@ def global_settings(request):
     tools_links = []
     context = {}
 
-    tools_title = ugettext('Tools')
+    tools_title = gettext('Tools')
     is_reviewer = False
 
     # We're using `getattr` here because `request.user` can be missing,
@@ -43,48 +43,48 @@ def global_settings(request):
     if getattr(request, 'user', AnonymousUser()).is_authenticated:
         is_reviewer = acl.is_user_any_kind_of_reviewer(request.user)
 
-        account_links.append({'text': ugettext('My Profile'),
+        account_links.append({'text': gettext('My Profile'),
                               'href': request.user.get_url_path()})
 
-        account_links.append({'text': ugettext('Account Settings'),
+        account_links.append({'text': gettext('Account Settings'),
                               'href': reverse('users.edit')})
         account_links.append({
-            'text': ugettext('My Collections'),
+            'text': gettext('My Collections'),
             'href': reverse('collections.list')})
 
         if request.user.favorite_addons:
             account_links.append(
-                {'text': ugettext('My Favorites'),
+                {'text': gettext('My Favorites'),
                  'href': reverse('collections.detail',
                                  args=[request.user.id, 'favorites'])})
 
         account_links.append({
-            'text': ugettext('Log out'),
+            'text': gettext('Log out'),
             'href': reverse('devhub.logout') + '?to=' + urlquote(request.path),
         })
 
         if request.user.is_developer:
-            tools_links.append({'text': ugettext('Manage My Submissions'),
+            tools_links.append({'text': gettext('Manage My Submissions'),
                                 'href': reverse('devhub.addons')})
         tools_links.append(
-            {'text': ugettext('Submit a New Add-on'),
+            {'text': gettext('Submit a New Add-on'),
              'href': reverse('devhub.submit.agreement')})
         tools_links.append(
-            {'text': ugettext('Submit a New Theme'),
+            {'text': gettext('Submit a New Theme'),
              'href': reverse('devhub.submit.agreement')})
         tools_links.append(
-            {'text': ugettext('Developer Hub'),
+            {'text': gettext('Developer Hub'),
              'href': reverse('devhub.index')})
         tools_links.append(
-            {'text': ugettext('Manage API Keys'),
+            {'text': gettext('Manage API Keys'),
              'href': reverse('devhub.api_key')}
         )
 
         if is_reviewer:
-            tools_links.append({'text': ugettext('Reviewer Tools'),
+            tools_links.append({'text': gettext('Reviewer Tools'),
                                 'href': reverse('reviewers.dashboard')})
         if acl.action_allowed(request, amo.permissions.ANY_ADMIN):
-            tools_links.append({'text': ugettext('Admin Tools'),
+            tools_links.append({'text': gettext('Admin Tools'),
                                 'href': reverse('zadmin.index')})
 
         context['user'] = request.user

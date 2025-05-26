@@ -1,5 +1,5 @@
 from django import forms
-from django.utils.translation import ugettext, ugettext_lazy as _
+from django.utils.translation import gettext, gettext_lazy as _
 
 import six
 
@@ -105,7 +105,7 @@ class CollectionForm(forms.ModelForm):
     def clean_name(self):
         name = self.cleaned_data['name']
         if DeniedName.blocked(name):
-            raise forms.ValidationError(ugettext('This name cannot be used.'))
+            raise forms.ValidationError(gettext('This name cannot be used.'))
         return name
 
     def clean_description(self):
@@ -113,7 +113,7 @@ class CollectionForm(forms.ModelForm):
         normalized = clean_nl(description)
         if has_links(normalized):
             # There's some links, we don't want them.
-            raise forms.ValidationError(ugettext('No links are allowed.'))
+            raise forms.ValidationError(gettext('No links are allowed.'))
         return description
 
     def clean_slug(self):
@@ -125,7 +125,7 @@ class CollectionForm(forms.ModelForm):
         author = self.initial['author']
         if author.collections.filter(slug=slug).count():
             raise forms.ValidationError(
-                ugettext('This url is already in use by another collection'))
+                gettext('This url is already in use by another collection'))
 
         return slug
 

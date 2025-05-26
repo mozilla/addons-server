@@ -6,7 +6,7 @@ from django.contrib import admin
 from django.core import validators
 from django.urls import resolve
 from django.utils.html import format_html
-from django.utils.translation import ugettext, ugettext_lazy as _
+from django.utils.translation import gettext, gettext_lazy as _
 
 from olympia import amo
 from olympia.access import acl
@@ -155,7 +155,7 @@ class ReplacementAddonAdmin(admin.ModelAdmin):
         try:
             slug = models.Addon.objects.get(guid=obj.guid).slug
         except models.Addon.DoesNotExist:
-            slug = ugettext(u'- Add-on not on AMO -')
+            slug = gettext('- Add-on not on AMO -')
         return slug
 
     def has_module_permission(self, request):

@@ -3,7 +3,7 @@ import uuid
 from django.conf import settings
 from django.db.models import Q
 from django.forms import ValidationError
-from django.utils.translation import ugettext
+from django.utils.translation import gettext
 
 import waffle
 from celery import chain
@@ -128,7 +128,7 @@ def limit_validation_results(validation):
                                        for msg in messages)
                        else None)
 
-        message = ugettext(
+        message = gettext(
             'Validation generated too many errors/warnings so %s '
             'messages were truncated. After addressing the visible '
             'messages, you\'ll be able to see the others.') % leftover_count

@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.admin.utils import flatten_fieldsets
 from django.shortcuts import get_object_or_404
 from django.utils.html import format_html
-from django.utils.translation import ugettext, ugettext_lazy as _
+from django.utils.translation import gettext, gettext_lazy as _
 
 from .models import AkismetReport
 from .tasks import submit_to_akismet
@@ -113,7 +113,7 @@ class AkismetAdmin(admin.ModelAdmin):
             submit_to_akismet.delay(report_ids, True)
             messages.append(
                 # L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-                ugettext('%s Ham reports submitted as Spam') % len(report_ids))
+                gettext('%s Ham reports submitted as Spam') % len(report_ids))
         else:
             qs = qs.filter(reported=False, result__in=[
                 AkismetReport.DEFINITE_SPAM, AkismetReport.MAYBE_SPAM])
@@ -121,7 +121,7 @@ class AkismetAdmin(admin.ModelAdmin):
             submit_to_akismet.delay(report_ids, False)
             messages.append(
                 # L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-                ugettext('%s Spam reports submitted as Ham') % len(report_ids))
+                gettext('%s Spam reports submitted as Ham') % len(report_ids))
 
         total_count -= len(report_ids)
         if total_count:

@@ -6,7 +6,7 @@ from django.core.exceptions import PermissionDenied
 from django.db.models import Q
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_object_or_404
-from django.utils.translation import ugettext, ugettext_lazy as _lazy
+from django.utils.translation import gettext, gettext_lazy as _lazy
 
 import six
 
@@ -213,15 +213,15 @@ def initial_data_from_request(request):
 
 def collection_message(request, collection, option):
     if option == 'add':
-        title = ugettext('Collection created!')
-        msg = ugettext(
+        title = gettext('Collection created!')
+        msg = gettext(
             'Your new collection is shown below. You can '
             '<a href="%(url)s">edit additional settings</a> if you\'d '
             'like.'
         ) % {'url': collection.edit_url()}
     elif option == 'update':
-        title = ugettext('Collection updated!')
-        msg = ugettext(
+        title = gettext('Collection updated!')
+        msg = gettext(
             '<a href="%(url)s">View your collection</a> to see the changes.'
         ) % {'url': collection.get_url_path()}
     else:

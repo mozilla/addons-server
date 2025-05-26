@@ -1,4 +1,4 @@
-from django.utils.translation import ugettext
+from django.utils.translation import gettext
 
 import jinja2
 
@@ -33,8 +33,8 @@ def flag(context, addon):
     """unreviewed/featuredaddon flag heading."""
     status = statusflags(context, addon)
     msg = {
-        'unreviewed': ugettext('Not Reviewed'),
-        'featuredaddon': ugettext('Featured')}
+        'unreviewed': gettext('Not Reviewed'),
+        'featuredaddon': gettext('Featured')}
     if status:
         return jinja2.Markup(u'<h5 class="flag">%s</h5>' % msg[status])
     else:

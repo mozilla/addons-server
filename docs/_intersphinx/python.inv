@@ -1173,7 +1173,7 @@ cookielib.DefaultCookiePolicy.strict_ns_domain attribute library/cookielib.html
 Py_Finalize cfunction c-api/init.html
 xml.dom.Element.setAttribute method library/xml.dom.html
 PyUnicode_FromEncodedObject cfunction c-api/unicode.html
-gettext.NullTranslations.ungettext method library/gettext.html
+gettext.NullTranslations.ngettext method library/gettext.html
 CGIHTTPServer.CGIHTTPRequestHandler class library/cgihttpserver.html
 Queue.Queue class library/queue.html
 curses.ascii.isalpha function library/curses.ascii.html
@@ -2916,7 +2916,7 @@ difflib.unified_diff function library/difflib.html
 imageop.backward_compatible data library/imageop.html
 os.F_OK data library/os.html
 logging.handlers.SocketHandler.makePickle method library/logging.html
-gettext.GNUTranslations.ugettext method library/gettext.html
+gettext.GNUTranslations.gettext method library/gettext.html
 asynchat.simple_producer class library/asynchat.html
 PyUnicode_Join cfunction c-api/unicode.html
 filecmp.dircmp.common_dirs attribute library/filecmp.html
@@ -3076,7 +3076,7 @@ cookielib.Cookie.has_nonstandard_attr method library/cookielib.html
 doctest.UnexpectedException.exc_info attribute library/doctest.html
 pstats.Stats.dump_stats method library/profile.html
 al.newconfig function library/al.html
-gettext.GNUTranslations.ungettext method library/gettext.html
+gettext.GNUTranslations.ngettext method library/gettext.html
 object.__gt__ method reference/datamodel.html
 formatter.writer.new_margin method library/formatter.html
 PyDateTime_DATE_GET_SECOND cfunction c-api/datetime.html
@@ -3824,7 +3824,7 @@ email.message.Message.set_param method library/email.message.html
 aetypes.Boolean class library/aetypes.html
 asynchat.fifo.push method library/asynchat.html
 PySlice_GetIndicesEx cfunction c-api/slice.html
-gettext.NullTranslations.ugettext method library/gettext.html
+gettext.NullTranslations.gettext method library/gettext.html
 inspect.trace function library/inspect.html
 types.NotImplementedType data library/types.html
 socket.socket.sendto method library/socket.html

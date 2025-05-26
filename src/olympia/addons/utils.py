@@ -10,7 +10,7 @@ from django.conf import settings
 from django.core.cache import cache
 from django.db.models import Q
 from django.forms import ValidationError
-from django.utils.translation import ugettext
+from django.utils.translation import gettext
 
 import six
 import waffle
@@ -128,7 +128,7 @@ def verify_mozilla_trademark(name, user, form=None):
                         name.endswith(' for {}'.format(symbol))))
 
             if violates_trademark:
-                raise forms.ValidationError(ugettext(
+                raise forms.ValidationError(gettext(
                     u'Add-on names cannot contain the Mozilla or '
                     u'Firefox trademarks.'))
 

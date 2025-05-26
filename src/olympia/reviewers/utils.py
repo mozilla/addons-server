@@ -7,7 +7,7 @@ from django.conf import settings
 from django.contrib.humanize.templatetags.humanize import naturaltime
 from django.template import loader
 from django.utils import translation
-from django.utils.translation import ugettext, ugettext_lazy as _, ungettext
+from django.utils.translation import gettext, gettext_lazy as _, ngettext
 
 import django_tables2 as tables
 import jinja2
@@ -92,18 +92,18 @@ class ReviewerQueueTable(tables.Table, ItemStateTable):
             r = _('moments ago')
         elif record.waiting_time_hours == 0:
             # L10n: first argument is number of minutes
-            r = ungettext(
-                u'{0} minute', u'{0} minutes',
+            r = ngettext(
+                '{0} minute', '{0} minutes',
                 record.waiting_time_min).format(record.waiting_time_min)
         elif record.waiting_time_days == 0:
             # L10n: first argument is number of hours
-            r = ungettext(
-                u'{0} hour', u'{0} hours',
+            r = ngettext(
+                '{0} hour', '{0} hours',
                 record.waiting_time_hours).format(record.waiting_time_hours)
         else:
             # L10n: first argument is number of days
-            r = ungettext(
-                u'{0} day', u'{0} days',
+            r = ngettext(
+                '{0} day', '{0} days',
                 record.waiting_time_days).format(record.waiting_time_days)
         return jinja2.escape(r)
 
@@ -140,7 +140,7 @@ class ViewUnlistedAllListTable(tables.Table, ItemStateTable):
 
     def render_review_date(self, record):
         if record.review_version_num is None:
-            return ugettext('No Reviews')
+            return gettext('No Reviews')
         return safe_substitute(
             u'<span class="addon-review-text">'
             u'<a href="#"><em>%s</em> on %s</a></span>',

@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.core.files.storage import default_storage
-from django.utils.translation import ugettext
+from django.utils.translation import gettext
 
 import six
 
@@ -102,20 +102,20 @@ class UserProfileSerializer(PublicUserProfileSerializer):
         if has_links(clean_nl(six.text_type(value))):
             # There's some links, we don't want them.
             raise serializers.ValidationError(
-                ugettext(u'No links are allowed.'))
+                gettext('No links are allowed.'))
         return value
 
     def validate_display_name(self, value):
         if DeniedName.blocked(value):
             raise serializers.ValidationError(
-                ugettext(u'This display name cannot be used.'))
+                gettext('This display name cannot be used.'))
         return value
 
     def validate_homepage(self, value):
         if settings.DOMAIN.lower() in value.lower():
             raise serializers.ValidationError(
-                ugettext(u'The homepage field can only be used to link to '
-                         u'external websites.')
+                gettext('The homepage field can only be used to link to '
+                         'external websites.')
             )
         return value
 
@@ -125,15 +125,15 @@ class UserProfileSerializer(PublicUserProfileSerializer):
         if (value.content_type not in amo.IMG_TYPES or
                 not image_check.is_image()):
             raise serializers.ValidationError(
-                ugettext(u'Images must be either PNG or JPG.'))
+                gettext('Images must be either PNG or JPG.'))
 
         if image_check.is_animated():
             raise serializers.ValidationError(
-                ugettext(u'Images cannot be animated.'))
+                gettext('Images cannot be animated.'))
 
         if value.size > settings.MAX_PHOTO_UPLOAD_SIZE:
             raise serializers.ValidationError(
-                ugettext(u'Please use images smaller than %dMB.' %
+                gettext('Please use images smaller than %dMB.' %
                          (settings.MAX_PHOTO_UPLOAD_SIZE / 1024 / 1024 - 1)))
         return value
 

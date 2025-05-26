@@ -1,7 +1,7 @@
 from django import http
 from django.db.models import Q
 from django.db.transaction import non_atomic_requests
-from django.utils.translation import ugettext
+from django.utils.translation import gettext
 from django.views.decorators.vary import vary_on_headers
 
 import six
@@ -220,7 +220,7 @@ def _build_suggestions(request, cat, suggester):
                 if q_ in name_ or word_matches:
                     results.append({
                         'id': a.id,
-                        'name': ugettext(u'{0} Add-ons').format(a.pretty),
+                        'name': gettext('{0} Add-ons').format(a.pretty),
                         'url': locale_url(a.short),
                         'cls': 'app ' + a.short
                     })
@@ -435,7 +435,7 @@ def category_sidebar(request, form_data, aggregations):
 
     rv = []
     cat_params = {'cat': None}
-    all_label = ugettext(u'All Add-ons')
+    all_label = gettext('All Add-ons')
 
     rv = [FacetLink(all_label, {'atype': None, 'cat': None}, not qatype)]
 
@@ -466,7 +466,7 @@ def version_sidebar(request, form_data, aggregations):
     # L10n: {0} is an application, such as Firefox. This means "any version of
     # Firefox."
     rv = [FacetLink(
-        ugettext(u'Any {0}').format(app), {'appver': 'any'}, not appver)]
+        gettext('Any {0}').format(app), {'appver': 'any'}, not appver)]
     vs = [dict_from_int(f['key']) for f in aggregations['appversions']]
 
     # Insert the filtered app version even if it's not a facet.
@@ -501,7 +501,7 @@ def platform_sidebar(request, form_data):
         app_platforms.append(selected)
 
     # L10n: "All Systems" means show everything regardless of platform.
-    rv = [FacetLink(ugettext(u'All Systems'), {'platform': ALL.shortname},
+    rv = [FacetLink(gettext('All Systems'), {'platform': ALL.shortname},
                     selected == ALL)]
     for platform in app_platforms:
         rv.append(FacetLink(platform.name, {'platform': platform.shortname},
@@ -512,7 +512,7 @@ def platform_sidebar(request, form_data):
 def tag_sidebar(request, form_data, aggregations):
     qtag = form_data.get('tag')
     tags = [facet['key'] for facet in aggregations['tags']]
-    rv = [FacetLink(ugettext(u'All Tags'), {'tag': None}, not qtag)]
+    rv = [FacetLink(gettext('All Tags'), {'tag': None}, not qtag)]
     rv += [FacetLink(tag, {'tag': tag}, tag == qtag) for tag in tags]
 
     if qtag and qtag not in tags:

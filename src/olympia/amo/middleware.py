@@ -16,7 +16,7 @@ from django.middleware import common
 from django.utils.cache import patch_cache_control, patch_vary_headers
 from django.utils.deprecation import MiddlewareMixin
 from django.utils.encoding import force_text, iri_to_uri
-from django.utils.translation import activate, ugettext_lazy as _
+from django.utils.translation import activate, gettext_lazy as _
 
 from rest_framework import permissions
 from six.moves.urllib.parse import quote

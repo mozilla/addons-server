@@ -23,7 +23,7 @@ from django.core.files.storage import (
 from django.template.defaultfilters import filesizeformat
 from django.utils.encoding import force_text
 from django.utils.jslex import JsLexer
-from django.utils.translation import ugettext
+from django.utils.translation import gettext
 
 import flufl.lock
 import rdflib
@@ -480,21 +480,21 @@ class ManifestJSONExtractor(object):
 
         if self.guid is None:
             raise forms.ValidationError(
-                ugettext('GUID is required for Thunderbird Mail Extensions, including Themes.')
+                gettext('GUID is required for Thunderbird Mail Extensions, including Themes.')
             )
         if not isinstance(self.guid, str):
             raise forms.ValidationError(
-                ugettext('GUID must be a string')
+                gettext('GUID must be a string')
             )
         # FIXME: There probably should be this check.... but it brings test fails from 12 up to 37.
         #if not amo.ADDON_GUID_PATTERN.match(self.guid):
         #    raise forms.ValidationError(
-        #        ugettext('Bad GUID, yo')
+        #        gettext('Bad GUID, yo')
         #    )
 
         if (self.is_experiment or self.is_theme_experiment) and not self.strict_max_version:
             raise forms.ValidationError(
-                ugettext('A "strict_max_version" is required for Thunderbird Mail Experiments, including Theme Experiments.')
+                gettext('A "strict_max_version" is required for Thunderbird Mail Experiments, including Theme Experiments.')
             )
 
         # If a minimum strict version is specified, it needs to be higher
@@ -505,17 +505,17 @@ class ManifestJSONExtractor(object):
             self.strict_min_version and vint(self.strict_min_version) <
             vint(amo.DEFAULT_WEBEXT_MIN_VERSION_THUNDERBIRD))
         if unsupported_no_matter_what:
-            msg = ugettext('Lowest supported "strict_min_version" is 60.0.')
+            msg = gettext('Lowest supported "strict_min_version" is 60.0.')
             raise forms.ValidationError(msg)
 
         # Minimum version check for manifest version 3
         if (self.manifest_version == 3 and
             (not self.strict_min_version or vint(self.strict_min_version) < vint(amo.DEFAULT_MANIFEST_V3_MIN_VERSION))):
-            raise forms.ValidationError(ugettext('Manifest v3 requires a "strict_min_version" of at least 128.0.'))
+            raise forms.ValidationError(gettext('Manifest v3 requires a "strict_min_version" of at least 128.0.'))
 
         # Manifest version 3 does not support 'applications', only 'browser_specific_settings'!
         if self.manifest_version == 3 and self.get('applications'):
-            raise forms.ValidationError(ugettext('Manifest v3 does not support "applications" key. Please use "browser_specific_settings" instead.'))
+            raise forms.ValidationError(gettext('Manifest v3 does not support "applications" key. Please use "browser_specific_settings" instead.'))
 
         couldnt_find_version = False
         for app, default_min_version in apps:
@@ -626,7 +626,7 @@ def extract_search(content):
             return dom.getElementsByTagName(tag)[0].childNodes[0].wholeText
         except (IndexError, AttributeError):
             raise forms.ValidationError(
-                ugettext('Could not parse uploaded file, missing or empty '
+                gettext('Could not parse uploaded file, missing or empty '
                          '<%s> element') % tag)
 
     # Only catch basic errors, most of that validation already happened in
@@ -635,9 +635,9 @@ def extract_search(content):
         dom = minidom.parse(content)
     except DefusedXmlException:
         raise forms.ValidationError(
-            ugettext('OpenSearch: XML Security error.'))
+            gettext('OpenSearch: XML Security error.'))
     except ExpatError:
-        raise forms.ValidationError(ugettext('OpenSearch: XML Parse Error.'))
+        raise forms.ValidationError(gettext('OpenSearch: XML Parse Error.'))
 
     return {
         'name': _text('ShortName'),
@@ -653,7 +653,7 @@ def parse_search(fileorpath, addon=None):
         raise
     except Exception:
         log.error('OpenSearch parse error', exc_info=True)
-        raise forms.ValidationError(ugettext('Could not parse uploaded file.'))
+        raise forms.ValidationError(gettext('Could not parse uploaded file.'))
 
     return {'guid': None,
             'type': amo.ADDON_SEARCH,
@@ -729,7 +729,7 @@ def archive_member_validator(archive, member):
     filesize = getattr(member, 'file_size', getattr(member, 'size', None))
 
     if filename is None or filesize is None:
-        raise forms.ValidationError(ugettext('Unsupported archive type.'))
+        raise forms.ValidationError(gettext('Unsupported archive type.'))
 
     try:
         force_text(filename)
@@ -739,7 +739,7 @@ def archive_member_validator(archive, member):
         log.error('Extraction error, invalid file name encoding in '
                   'archive: %s' % archive)
         # L10n: {0} is the name of the invalid file.
-        msg = ugettext(
+        msg = gettext(
             'Invalid file name in archive. Please make sure '
             'all filenames are utf-8 or latin1 encoded.')
         raise forms.ValidationError(msg.format(filename))
@@ -748,7 +748,7 @@ def archive_member_validator(archive, member):
         log.error('Extraction error, invalid file name (%s) in '
                   'archive: %s' % (filename, archive))
         # L10n: {0} is the name of the invalid file.
-        msg = ugettext('Invalid file name in archive: {0}')
+        msg = gettext('Invalid file name in archive: {0}')
         raise forms.ValidationError(msg.format(filename))
 
     if filesize > settings.FILE_UNZIP_SIZE_LIMIT:
@@ -756,7 +756,7 @@ def archive_member_validator(archive, member):
                   '%s' % (archive, filename, filesize))
         # L10n: {0} is the name of the invalid file.
         raise forms.ValidationError(
-            ugettext(
+            gettext(
                 'File exceeding size limit in archive: {0}'
             ).format(filename))
 
@@ -830,7 +830,7 @@ class SafeZip(object):
             if size != info.file_size:
                 log.error('Extraction error, uncompressed size: %s, %s not %s'
                           % (self.source, size, info.file_size))
-                raise forms.ValidationError(ugettext('Invalid archive.'))
+                raise forms.ValidationError(gettext('Invalid archive.'))
 
     def extract_to_dest(self, dest):
         """Extracts the zip file to a directory."""
@@ -913,7 +913,7 @@ def extract_extension_to_dest(source, dest=None, force_fsync=False):
         if tempdir is not None:
             rm_local_tmp_dir(tempdir)
         raise forms.ValidationError(
-            ugettext('Invalid or broken archive.'))
+            gettext('Invalid or broken archive.'))
     return target
 
 
@@ -1003,11 +1003,11 @@ def parse_xpi(xpi, addon=None, minimal=False, user=None):
         else:
             err, strerror = e.args
         log.error('I/O error({0}): {1}'.format(err, strerror))
-        raise forms.ValidationError(ugettext(
+        raise forms.ValidationError(gettext(
             'Could not parse the manifest file.'))
     except Exception:
         log.error('XPI parse error', exc_info=True)
-        raise forms.ValidationError(ugettext(
+        raise forms.ValidationError(gettext(
             'Could not parse the manifest file.'))
 
     if minimal:
@@ -1028,7 +1028,7 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
     if addon and not guid and is_webextension:
         xpi_info['guid'] = guid = addon.guid
     if not guid and not is_webextension:
-        raise forms.ValidationError(ugettext('Could not find an add-on ID.'))
+        raise forms.ValidationError(gettext('Could not find an add-on ID.'))
 
     if guid:
         current_user = core.get_user()
@@ -1039,7 +1039,7 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
             deleted_guid_clashes = Addon.unfiltered.filter(guid=guid)
 
         if addon and addon.guid != guid:
-            msg = ugettext(
+            msg = gettext(
                 'The add-on ID in your manifest.json or install.rdf (%s) '
                 'does not match the ID of your add-on on AMO (%s)')
             raise forms.ValidationError(msg % (guid, addon.guid))
@@ -1050,20 +1050,20 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
              DeniedGuid.objects.filter(guid=guid).exists() or
              # Deleted add-ons that don't belong to the uploader.
              deleted_guid_clashes.exists())):
-            raise forms.ValidationError(ugettext('Duplicate add-on ID found.'))
+            raise forms.ValidationError(gettext('Duplicate add-on ID found.'))
     if len(xpi_info['version']) > 32:
         raise forms.ValidationError(
-            ugettext('Version numbers should have fewer than 32 characters.'))
+            gettext('Version numbers should have fewer than 32 characters.'))
     if not VERSION_RE.match(xpi_info['version']):
         raise forms.ValidationError(
-            ugettext('Version numbers should only contain letters, numbers, '
+            gettext('Version numbers should only contain letters, numbers, '
                      'and these punctuation characters: +*.-_.'))
 
     if is_webextension and xpi_info.get('type') == amo.ADDON_STATICTHEME:
         max_size = settings.MAX_STATICTHEME_SIZE
         if xpi_file and os.path.getsize(xpi_file.name) > max_size:
             raise forms.ValidationError(
-                ugettext(u'Maximum size for WebExtension themes is {0}.')
+                gettext('Maximum size for WebExtension themes is {0}.')
                 .format(filesizeformat(max_size)))
 
     if xpi_file:
@@ -1076,19 +1076,19 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
     # Parse the file to get and validate package data with the addon.
     if not acl.submission_allowed(user, xpi_info):
         raise forms.ValidationError(
-            ugettext(u'You cannot submit this type of add-on'))
+            gettext('You cannot submit this type of add-on'))
 
     if not addon and not system_addon_submission_allowed(
             user, xpi_info):
         guids = ' or '.join(
                 '"' + guid + '"' for guid in amo.SYSTEM_ADDON_GUIDS)
         raise forms.ValidationError(
-            ugettext(u'You cannot submit an add-on with a guid ending '
-                     u'%s' % guids))
+            gettext('You cannot submit an add-on with a guid ending '
+                     '%s' % guids))
 
     if not mozilla_signed_extension_submission_allowed(user, xpi_info):
         raise forms.ValidationError(
-            ugettext(u'You cannot submit a Mozilla Signed Extension'))
+            gettext('You cannot submit a Mozilla Signed Extension'))
 
     return xpi_info
 
@@ -1121,7 +1121,7 @@ def parse_addon(pkg, addon=None, user=None, minimal=False):
         valid_extensions_string = u'(%s)' % u', '.join(
             amo.VALID_ADDON_FILE_EXTENSIONS)
         raise UnsupportedFileType(
-            ugettext(
+            gettext(
                 'Unsupported file type, please upload an a supported '
                 'file {extensions}.'.format(
                     extensions=valid_extensions_string)))
@@ -1130,11 +1130,11 @@ def parse_addon(pkg, addon=None, user=None, minimal=False):
         if user is None:
             # This should never happen and means there is a bug in
             # addons-server itself.
-            raise forms.ValidationError(ugettext('Unexpected error.'))
+            raise forms.ValidationError(gettext('Unexpected error.'))
 
         # FIXME: do the checks depending on user here.
         if addon and addon.type != parsed['type']:
-            msg = ugettext(
+            msg = gettext(
                 'The type (%s) does not match the type of your add-on on '
                 'AMO (%s)')
             raise forms.ValidationError(msg % (parsed['type'], addon.type))

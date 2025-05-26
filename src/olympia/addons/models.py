@@ -18,7 +18,7 @@ from django.dispatch import receiver
 from django.utils import translation
 from django.utils.encoding import force_text, python_2_unicode_compatible
 from django.utils.functional import cached_property
-from django.utils.translation import trans_real, ugettext_lazy as _
+from django.utils.translation import trans_real, gettext_lazy as _
 
 import six
 

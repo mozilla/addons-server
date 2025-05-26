@@ -11,7 +11,7 @@ from django.core.exceptions import PermissionDenied
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect
-from django.utils.translation import ugettext
+from django.utils.translation import gettext
 from django.views.decorators.cache import never_cache
 
 import six
@@ -168,86 +168,86 @@ def dashboard(request):
                 pending_queue, extension_reviewer, theme_reviewer)
 
         header = (
-            ugettext('Static Themes and Legacy Add-ons')
+            gettext('Static Themes and Legacy Add-ons')
             if extension_reviewer and theme_reviewer
-            else ugettext('Static Themes') if theme_reviewer
-            else ugettext('Legacy Add-ons'))
+            else gettext('Static Themes') if theme_reviewer
+            else gettext('Legacy Add-ons'))
         sections[header] = [(
-            ugettext('New ({0})').format(full_review_queue.count()),
+            gettext('New ({0})').format(full_review_queue.count()),
             reverse('reviewers.queue_nominated')
         ), (
-            ugettext('Updates ({0})').format(pending_queue.count()),
+            gettext('Updates ({0})').format(pending_queue.count()),
             reverse('reviewers.queue_pending')
         ), (
-            ugettext('Performance'),
+            gettext('Performance'),
             reverse('reviewers.performance')
         ), (
-            ugettext('Review Log'),
+            gettext('Review Log'),
             reverse('reviewers.reviewlog')
         )]
         if view_all or extension_reviewer:
             sections[header].append(
-                (ugettext('Add-on Review Guide'),
+                (gettext('Add-on Review Guide'),
                  'https://wiki.mozilla.org/Add-ons/Reviewers/Guide'))
         if view_all or theme_reviewer:
             sections[header].append(
-                (ugettext('Theme Review Guide'),
+                (gettext('Theme Review Guide'),
                  'https://wiki.mozilla.org/Add-ons/Reviewers/Themes/'
                  'Guidelines'))
     if view_all or acl.action_allowed(
             request, amo.permissions.ADDONS_POST_REVIEW):
-        sections[ugettext('Auto-Approved Add-ons')] = [(
-            ugettext('Auto Approved Add-ons ({0})').format(
+        sections[gettext('Auto-Approved Add-ons')] = [(
+            gettext('Auto Approved Add-ons ({0})').format(
                 AutoApprovalSummary.get_auto_approved_queue(
                     admin_reviewer=admin_reviewer).count()),
             reverse('reviewers.queue_auto_approved')
         ), (
-            ugettext('Performance'),
+            gettext('Performance'),
             reverse('reviewers.performance')
         ), (
-            ugettext('Add-on Review Log'),
+            gettext('Add-on Review Log'),
             reverse('reviewers.reviewlog')
         ), (
-            ugettext('Review Guide'),
+            gettext('Review Guide'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide'
         )]
     if view_all or acl.action_allowed(
             request, amo.permissions.ADDONS_CONTENT_REVIEW):
-        sections[ugettext('Content Review')] = [(
-            ugettext('Content Review ({0})').format(
+        sections[gettext('Content Review')] = [(
+            gettext('Content Review ({0})').format(
                 AutoApprovalSummary.get_content_review_queue(
                     admin_reviewer=admin_reviewer).count()),
             reverse('reviewers.queue_content_review')
         ), (
-            ugettext('Performance'),
+            gettext('Performance'),
             reverse('reviewers.performance')
         )]
     if view_all or acl.action_allowed(
             request, amo.permissions.RATINGS_MODERATE):
-        sections[ugettext('User Ratings Moderation')] = [(
-            ugettext('Ratings Awaiting Moderation ({0})').format(
+        sections[gettext('User Ratings Moderation')] = [(
+            gettext('Ratings Awaiting Moderation ({0})').format(
                 Rating.objects.all().to_moderate().count()),
             reverse('reviewers.queue_moderated')
         ), (
-            ugettext('Moderated Review Log'),
+            gettext('Moderated Review Log'),
             reverse('reviewers.ratings_moderation_log')
         ), (
-            ugettext('Moderation Guide'),
+            gettext('Moderation Guide'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide/Moderation'
         )]
     if view_all or acl.action_allowed(
             request, amo.permissions.ADDONS_REVIEW_UNLISTED):
-        sections[ugettext('Unlisted Add-ons')] = [(
-            ugettext('All Unlisted Add-ons'),
+        sections[gettext('Unlisted Add-ons')] = [(
+            gettext('All Unlisted Add-ons'),
             reverse('reviewers.unlisted_queue_all')
         ), (
-            ugettext('Review Guide'),
+            gettext('Review Guide'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide'
         )]
     if view_all or acl.action_allowed(
             request, amo.permissions.ADDON_REVIEWER_MOTD_EDIT):
-        sections[ugettext('Announcement')] = [(
-            ugettext('Update message of the day'),
+        sections[gettext('Announcement')] = [(
+            gettext('Update message of the day'),
             reverse('reviewers.motd')
         )]
     if view_all or acl.action_allowed(
@@ -259,8 +259,8 @@ def dashboard(request):
                 disabled_by_user=False)
             .order_by('addonreviewerflags__pending_info_request'))
 
-        sections[ugettext('Admin Tools')] = [(
-            ugettext('Expired Information Requests ({0})'.format(
+        sections[gettext('Admin Tools')] = [(
+            gettext('Expired Information Requests ({0})'.format(
                 expired.count())),
             reverse('reviewers.queue_expired_info_requests')
         )]
@@ -577,7 +577,7 @@ def queue_moderated(request):
             amo.messages.error(
                 request,
                 ' '.join(
-                    e.as_text() or ugettext('An unknown error occurred')
+                    e.as_text() or gettext('An unknown error occurred')
                     for e in reviews_formset.errors))
         return redirect(reverse('reviewers.queue_moderated'))
 
@@ -783,7 +783,7 @@ def review(request, addon, channel=None):
 
     if not settings.ALLOW_SELF_REVIEWS and addon.has_author(request.user):
         amo.messages.warning(
-            request, ugettext('Self-reviews are not allowed.'))
+            request, gettext('Self-reviews are not allowed.'))
         return redirect(reverse('reviewers.queue'))
 
     # Get the current info request state to set as the default.
@@ -829,7 +829,7 @@ def review(request, addon, channel=None):
     if request.method == 'POST' and form.is_valid():
         form.helper.process()
         amo.messages.success(
-            request, ugettext('Review successfully processed.'))
+            request, gettext('Review successfully processed.'))
         clear_reviewing_cache(addon.id)
         return redirect(redirect_url)
 
@@ -978,7 +978,7 @@ def review_viewing(request):
             is_user = 1
         else:
             currently_viewing = settings.TASK_USER_ID
-            current_name = ugettext('Review lock limit reached')
+            current_name = gettext('Review lock limit reached')
             is_user = 2
     else:
         current_name = UserProfile.objects.get(pk=currently_viewing).name
@@ -1142,16 +1142,16 @@ def policy_viewer(request, addon, eula_or_privacy, page_title, long_title):
 @addon_view_factory(qs=Addon.unfiltered.all)
 def eula(request, addon):
     return policy_viewer(request, addon, addon.eula,
-                         page_title=ugettext('{addon} :: EULA'),
-                         long_title=ugettext('End-User License Agreement'))
+                         page_title=gettext('{addon} :: EULA'),
+                         long_title=gettext('End-User License Agreement'))
 
 
 @login_required
 @addon_view_factory(qs=Addon.unfiltered.all)
 def privacy(request, addon):
     return policy_viewer(request, addon, addon.privacy_policy,
-                         page_title=ugettext('{addon} :: Privacy Policy'),
-                         long_title=ugettext('Privacy Policy'))
+                         page_title=gettext('{addon} :: Privacy Policy'),
+                         long_title=gettext('Privacy Policy'))
 
 
 @any_reviewer_required

@@ -14,7 +14,7 @@ from django.utils.functional import lazy
 from django.utils.html import format_html as django_format_html
 from django.utils.safestring import mark_safe
 from django.utils.translation import (
-    get_language, to_locale, trim_whitespace, ugettext)
+    get_language, to_locale, trim_whitespace, gettext)
 
 import jinja2
 import six
@@ -141,7 +141,7 @@ def sidebar(app):
 
     Type = collections.namedtuple('Type', 'id name url')
     base = urlresolvers.reverse('home')
-    types = [Type(99, ugettext('Collections'), base + 'collections/')]
+    types = [Type(99, gettext('Collections'), base + 'collections/')]
 
     shown_types = {
         amo.ADDON_PERSONA: urlresolvers.reverse('browse.personas'),
@@ -150,7 +150,7 @@ def sidebar(app):
         amo.ADDON_THEME: urlresolvers.reverse('browse.themes'),
     }
     titles = dict(amo.ADDON_TYPES)
-    titles[amo.ADDON_DICT] = ugettext('Dictionaries & Language Packs')
+    titles[amo.ADDON_DICT] = gettext('Dictionaries & Language Packs')
     for type_, url in shown_types.items():
         if type_ in app.types:
             types.append(Type(type_, titles[type_], url))
@@ -207,9 +207,9 @@ def numberfmt(num, format=None):
 def page_name(app=None):
     """Determine the correct page name for the given app (or no app)."""
     if app:
-        return ugettext(u'Add-ons for {0}').format(app.pretty)
+        return gettext('Add-ons for {0}').format(app.pretty)
     else:
-        return ugettext('Add-ons')
+        return gettext('Add-ons')
 
 
 @library.global_function
@@ -280,7 +280,7 @@ def license_link(license):
         return ''
 
     if not getattr(license, 'builtin', True):
-        return ugettext('Custom License')
+        return gettext('Custom License')
 
     template = loader.get_template('amo/license_link.html')
     return jinja2.Markup(template.render({'license': license}))
@@ -311,7 +311,7 @@ def timesince(time):
         return u''
     ago = defaultfilters.timesince(time)
     # L10n: relative time in the past, like '4 days ago'
-    return ugettext(u'{0} ago').format(ago)
+    return gettext('{0} ago').format(ago)
 
 
 @library.global_function

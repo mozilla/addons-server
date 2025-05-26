@@ -4,7 +4,7 @@ from django.db.models import Prefetch, Q
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.encoding import force_text
-from django.utils.translation import ugettext
+from django.utils.translation import gettext
 
 from rest_framework import serializers
 from rest_framework.decorators import action
@@ -106,7 +106,7 @@ def flag(request, addon, review_id):
     if review.user_id == request.user.id:
         raise DjangoPermissionDenied
     if not review.body:
-        return {'msg': ugettext('This rating can\'t be flagged because it has '
+        return {'msg': gettext('This rating can\'t be flagged because it has '
                                 'no review text.')}
     data = {'rating': review_id, 'user': request.user.id}
     try:
@@ -118,7 +118,7 @@ def flag(request, addon, review_id):
     if form.is_valid():
         form.save()
         Rating.objects.filter(id=review_id).update(editorreview=True)
-        return {'msg': ugettext('Thanks; this review has been flagged '
+        return {'msg': gettext('Thanks; this review has been flagged '
                                 'for reviewer approval.')}
     else:
         return json_view.error(form.errors)

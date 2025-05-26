@@ -17,7 +17,7 @@ from django.utils import timezone
 from django.utils.crypto import salted_hmac
 from django.utils.encoding import force_text, python_2_unicode_compatible
 from django.utils.functional import cached_property, lazy
-from django.utils.translation import ugettext
+from django.utils.translation import gettext
 
 import olympia.core.logger
 
@@ -81,7 +81,7 @@ class UserEmailField(forms.EmailField):
         try:
             return UserProfile.objects.get(email=value)
         except UserProfile.DoesNotExist:
-            raise forms.ValidationError(ugettext('No user with that email.'))
+            raise forms.ValidationError(gettext('No user with that email.'))
 
     def widget_attrs(self, widget):
         lazy_reverse = lazy(reverse, str)
@@ -373,7 +373,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         if self.display_name:
             return force_text(self.display_name)
         else:
-            return ugettext('Firefox user {id}').format(id=self.id)
+            return gettext('Firefox user {id}').format(id=self.id)
 
     welcome_name = name
 
@@ -502,13 +502,13 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         return self.special_collection(
             amo.COLLECTION_MOBILE,
             defaults={'slug': 'mobile', 'listed': False,
-                      'name': ugettext('My Mobile Add-ons')})
+                      'name': gettext('My Mobile Add-ons')})
 
     def favorites_collection(self):
         return self.special_collection(
             amo.COLLECTION_FAVORITES,
             defaults={'slug': 'favorites', 'listed': False,
-                      'name': ugettext('My Favorite Add-ons')})
+                      'name': gettext('My Favorite Add-ons')})
 
     def special_collection(self, type_, defaults):
         from olympia.bandwagon.models import Collection

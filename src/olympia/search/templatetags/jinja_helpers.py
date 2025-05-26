@@ -1,5 +1,5 @@
 from django.utils.html import escape
-from django.utils.translation import ugettext
+from django.utils.translation import gettext
 
 import jinja2
 
@@ -25,11 +25,11 @@ def showing(query, pager):
     query = escape(query)
 
     if query:
-        showing = ugettext(
-            u'Showing {0} - {1} of {2} results for <strong>{3}</strong>'
+        showing = gettext(
+            'Showing {0} - {1} of {2} results for <strong>{3}</strong>'
         ).format(*(format_opts + (query,)))
     else:
-        showing = ugettext(
-            u'Showing {0} - {1} of {2} results').format(*format_opts)
+        showing = gettext(
+            'Showing {0} - {1} of {2} results').format(*format_opts)
 
     return jinja2.Markup(showing)

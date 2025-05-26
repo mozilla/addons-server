@@ -3,7 +3,7 @@ from django.db import models
 from django.http import QueryDict
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.html import conditional_escape, format_html
-from django.utils.translation import ugettext
+from django.utils.translation import gettext
 
 import six
 
@@ -87,19 +87,19 @@ class DiscoveryItem(ModelBase):
                 # the template first, via '%'.
                 u'<a href="{0}?%(query)s">{1} {2} {3}</a>' % {
                     'query': self.build_querystring()},
-                url, addon_name, ugettext(u'by'), authors)
+                url, addon_name, gettext('by'), authors)
 
-            value = conditional_escape(ugettext(self.custom_heading)).replace(
-                u'{start_sub_heading}', u'<span>').replace(
-                u'{end_sub_heading}', u'</span>').replace(
-                u'{addon_name}', addon_link)
+            value = conditional_escape(gettext(self.custom_heading)).replace(
+                '{start_sub_heading}', '<span>').replace(
+                '{end_sub_heading}', '</span>').replace(
+                '{addon_name}', addon_link)
         else:
             value = format_html(
                 # The query string should not be encoded twice, so we add it to
                 # the template first, via '%'.
-                u'{0} <span>{1} <a href="{2}?%(query)s">{3}</a></span>' % {
+                '{0} <span>{1} <a href="{2}?%(query)s">{3}</a></span>' % {
                     'query': self.build_querystring()},
-                addon_name, ugettext(u'by'), url, authors)
+                addon_name, gettext('by'), url, authors)
         return value
 
     @property
@@ -109,7 +109,7 @@ class DiscoveryItem(ModelBase):
         returned by the disco pane API.
         """
         if self.custom_description:
-            value = ugettext(self.custom_description)
+            value = gettext(self.custom_description)
         else:
             addon = self.addon
             if addon.type == amo.ADDON_EXTENSION and addon.summary:

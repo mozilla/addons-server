@@ -1,5 +1,5 @@
 from django.template.loader import get_template
-from django.utils.translation import ugettext
+from django.utils.translation import gettext
 
 import jinja2
 
@@ -17,7 +17,7 @@ def stars(num, large=False):
     # check for 0.0 incase None was cast to a float. Should
     # be safe since lowest rating you can give is 1.0
     if num is None or num == 0.0:
-        return ugettext('Not yet rated')
+        return gettext('Not yet rated')
     else:
         num = min(5, int(round(num)))
         t = get_template('ratings/impala/reviews_rating.html')

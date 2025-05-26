@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404
 from django.utils.encoding import force_bytes
-from django.utils.translation import ugettext, ugettext_lazy as _
+from django.utils.translation import gettext, gettext_lazy as _
 
 import six
 from six.moves.urllib_parse import quote, urljoin
@@ -67,7 +67,7 @@ class CategoriesRss(AddonFeedMixin, BaseFeed):
 
     def title(self, category):
         """Title for the feed as a whole"""
-        name = category.name if category else ugettext('Extensions')
+        name = category.name if category else gettext('Extensions')
         return u'%s :: %s' % (name, page_name(self.request.APP))
 
     def link(self, category):
@@ -78,9 +78,9 @@ class CategoriesRss(AddonFeedMixin, BaseFeed):
         """Description for the feed as a whole"""
         if category:
             # L10n: %s is a category name.
-            return ugettext(u'%s Add-ons') % category.name
+            return gettext('%s Add-ons') % category.name
         else:
-            return ugettext('Extensions')
+            return gettext('Extensions')
 
     def items(self, category):
         """Return the Addons for this Category to be output as RSS <item>'s"""
@@ -100,9 +100,9 @@ class ExtensionCategoriesRss(CategoriesRss):
         """Description for the feed as a whole."""
         if category:
             # L10n: %s is a category name.
-            return ugettext(u'%s Add-ons') % category.name
+            return gettext('%s Add-ons') % category.name
         else:
-            return ugettext('Extensions')
+            return gettext('Extensions')
 
 
 class ThemeCategoriesRss(CategoriesRss):
@@ -115,7 +115,7 @@ class ThemeCategoriesRss(CategoriesRss):
         """Description for the feed as a whole."""
         if category:
             # L10n: %s is a category name.
-            return ugettext(u'%s Themes') % category.name
+            return gettext('%s Themes') % category.name
         else:
             return self.title
 
@@ -130,7 +130,7 @@ class FeaturedRss(AddonFeedMixin, BaseFeed):
 
     def title(self):
         """Title for the feed"""
-        return ugettext('Featured Add-ons :: %s') % page_name(self.app)
+        return gettext('Featured Add-ons :: %s') % page_name(self.app)
 
     def link(self):
         """Link for the feed"""
@@ -139,7 +139,7 @@ class FeaturedRss(AddonFeedMixin, BaseFeed):
     def description(self):
         """Description for the feed"""
         # L10n: %s is an app name.
-        return ugettext(
+        return gettext(
             'Here\'s a few of our favorite add-ons to help you get'
             ' started customizing %s.') % self.appname
 
@@ -158,12 +158,12 @@ class SearchToolsRss(AddonFeedMixin, BaseFeed):
         """Description of this feed."""
         if self.category:
             # L10n: %s is a category name.
-            return ugettext(
-                u'Search tools relating to %s') % self.category.name
+            return gettext(
+                'Search tools relating to %s') % self.category.name
         elif self.show_featured:
-            return ugettext('Search tools and search-related extensions')
+            return gettext('Search tools and search-related extensions')
         else:
-            return ugettext('Search tools')
+            return gettext('Search tools')
 
     def get_object(self, request, category=None):
         if category:
@@ -209,7 +209,7 @@ class SearchToolsRss(AddonFeedMixin, BaseFeed):
 
     def title(self):
         """Title for the feed as a whole"""
-        base = ugettext('Search Tools')
+        base = gettext('Search Tools')
         if self.category:
             base = u'%s :: %s' % (self.category.name, base)
         return u'%s :: %s' % (base, page_name(self.request.APP))

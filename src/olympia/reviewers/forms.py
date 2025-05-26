@@ -6,7 +6,7 @@ from django.db.models import Q
 from django.forms import widgets
 from django.forms.models import (
     BaseModelFormSet, ModelMultipleChoiceField, modelformset_factory)
-from django.utils.translation import get_language, ugettext, ugettext_lazy as _
+from django.utils.translation import get_language, gettext, gettext_lazy as _
 
 import six
 
@@ -62,14 +62,14 @@ class ReviewLogForm(forms.Form):
 
         # L10n: start, as in "start date"
         self.fields['start'].widget.attrs = {
-            'placeholder': ugettext('start'), 'size': 10}
+            'placeholder': gettext('start'), 'size': 10}
 
         # L10n: end, as in "end date"
         self.fields['end'].widget.attrs = {
-            'size': 10, 'placeholder': ugettext('end')}
+            'size': 10, 'placeholder': gettext('end')}
 
         # L10n: Description of what can be searched for
-        search_ph = ugettext('add-on, reviewer or comment')
+        search_ph = gettext('add-on, reviewer or comment')
         self.fields['search'].widget.attrs = {'placeholder': search_ph,
                                               'size': 30}
 
@@ -351,7 +351,7 @@ class ReviewForm(forms.Form):
         # For the canned responses, we're starting with an empty one, which
         # will be hidden via CSS.
         canned_choices = [
-            ['', [('', ugettext('Choose a canned response...'))]]]
+            ['', [('', gettext('Choose a canned response...'))]]]
 
         canned_type = (
             amo.CANNED_RESPONSE_THEME

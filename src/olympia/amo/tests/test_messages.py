@@ -4,7 +4,7 @@ import django.contrib.messages as django_messages
 from django.contrib.messages.storage import default_storage
 from django.http import HttpRequest
 from django.template import loader
-from django.utils.translation import ugettext
+from django.utils.translation import gettext
 
 import pytest
 
@@ -54,9 +54,9 @@ def test_l10n_dups():
     request = HttpRequest()
     setattr(request, '_messages', default_storage(request))
 
-    info(request, ugettext('Title'), ugettext('Body'))
-    info(request, ugettext('Title'), ugettext('Body'))
-    info(request, ugettext('Another Title'), ugettext('Another Body'))
+    info(request, gettext('Title'), gettext('Body'))
+    info(request, gettext('Title'), gettext('Body'))
+    info(request, gettext('Another Title'), gettext('Another Body'))
 
     storage = django_messages.get_messages(request)
     assert len(storage) == 2, 'Too few or too many messages recorded.'

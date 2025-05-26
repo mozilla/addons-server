@@ -5,7 +5,7 @@ from functools import total_ordering
 
 from django.urls import reverse
 from django.utils.encoding import force_bytes, python_2_unicode_compatible
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 import six
 

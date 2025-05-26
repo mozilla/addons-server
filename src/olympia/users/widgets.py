@@ -1,7 +1,7 @@
 from django import forms
 from django.template import loader
 from django.utils.safestring import mark_safe
-from django.utils.translation import ugettext
+from django.utils.translation import gettext
 
 import six
 
@@ -35,7 +35,7 @@ class NotificationsSelectMultiple(forms.CheckboxSelectMultiple):
 
             if (hasattr(self.form_instance, 'choices_status') and
                     self.form_instance.choices_status.get(idx)):
-                notes.append(u'<sup class="msg">%s</sup>' % ugettext('new'))
+                notes.append(u'<sup class="msg">%s</sup>' % gettext('new'))
 
             cb = forms.CheckboxInput(
                 cb_attrs, check_test=lambda value: value in str_values)

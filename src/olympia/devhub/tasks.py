@@ -18,7 +18,7 @@ from django.core.validators import ValidationError
 from django.db import transaction
 from django.template import loader
 from django.utils.encoding import force_text
-from django.utils.translation import ugettext
+from django.utils.translation import gettext
 
 import celery
 
@@ -355,12 +355,12 @@ def check_for_api_keys_in_file(results, upload):
                         log.info('Developer API key for user %s found in '
                                  'submission.' % key.user)
                         if key.user == upload.user:
-                            msg = ugettext('Your developer API key was found '
+                            msg = gettext('Your developer API key was found '
                                            'in the submitted file. To protect '
                                            'your account, the key will be '
                                            'revoked.')
                         else:
-                            msg = ugettext('The developer API key of a '
+                            msg = gettext('The developer API key of a '
                                            'coauthor was found in the '
                                            'submitted file. To protect your '
                                            'add-on, the key will be revoked.')
@@ -706,8 +706,8 @@ def send_welcome_email(addon_pk, emails, context, **kw):
 
 def send_api_key_revocation_email(emails):
     log.info(u'[1@None] Sending API key revocation email to %s.' % emails)
-    subject = ugettext(
-        u'Mozilla Security Notice: Your AMO API credentials have been revoked')
+    subject = gettext(
+        'Mozilla Security Notice: Your AMO API credentials have been revoked')
     template = loader.get_template(
         'devhub/email/submission_api_key_revocation.txt')
     context = {

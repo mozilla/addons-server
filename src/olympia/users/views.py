@@ -5,7 +5,7 @@ from operator import attrgetter
 from django import http
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_list_or_404, get_object_or_404, redirect
-from django.utils.translation import ugettext
+from django.utils.translation import gettext
 from django.views.decorators.cache import never_cache
 
 import olympia.core.logger
@@ -70,12 +70,12 @@ def ajax(request):
     email = request.GET.get('q', '').strip()
 
     if not email:
-        data.update(message=ugettext('An email address is required.'))
+        data.update(message=gettext('An email address is required.'))
         return data
 
     user = UserProfile.objects.filter(email=email)
 
-    msg = ugettext('A user with that email address does not exist.')
+    msg = gettext('A user with that email address does not exist.')
 
     if user:
         data.update(status=1, id=user[0].id, name=user[0].name)
@@ -91,7 +91,7 @@ def delete(request):
     if request.method == 'POST':
         form = forms.UserDeleteForm(request.POST, request=request)
         if form.is_valid():
-            messages.success(request, ugettext('Profile Deleted'))
+            messages.success(request, gettext('Profile Deleted'))
             amouser.delete()
             response = http.HttpResponseRedirect(reverse('home'))
             logout_user(request, response)
@@ -117,7 +117,7 @@ def delete_photo(request, user_id):
         user.save()
         log.debug(u'User (%s) deleted photo' % user)
         tasks.delete_photo.delay(user.picture_path)
-        messages.success(request, ugettext('Photo Deleted'))
+        messages.success(request, gettext('Photo Deleted'))
         redirect = (
             reverse('users.admin_edit', kwargs={'user_id': user.id})
             if not_mine else reverse('users.edit')
@@ -138,14 +138,14 @@ def edit(request):
         form = forms.UserEditForm(request.POST, request.FILES, request=request,
                                   instance=amouser)
         if form.is_valid():
-            messages.success(request, ugettext('Profile Updated'))
+            messages.success(request, gettext('Profile Updated'))
             form.save()
             return redirect('users.edit')
         else:
             messages.error(
                 request,
-                ugettext('Errors Found'),
-                ugettext('There were errors in the changes you made. '
+                gettext('Errors Found'),
+                gettext('There were errors in the changes you made. '
                          'Please correct them and resubmit.'))
     else:
         form = forms.UserEditForm(instance=amouser, request=request)
@@ -163,7 +163,7 @@ def admin_edit(request, user):
                                        request=request, instance=user)
         if form.is_valid():
             form.save()
-            messages.success(request, ugettext('Profile Updated'))
+            messages.success(request, gettext('Profile Updated'))
             return http.HttpResponseRedirect(reverse('zadmin.index'))
     else:
         form = forms.AdminUserEditForm(instance=user, request=request)
@@ -257,7 +257,7 @@ def report_abuse(request, user):
     form = AbuseForm(request.POST or None, request=request)
     if request.method == 'POST' and form.is_valid():
         send_abuse_report(request, user, form.cleaned_data['text'])
-        messages.success(request, ugettext('User reported.'))
+        messages.success(request, gettext('User reported.'))
     else:
         return render(request, 'users/report_abuse_full.html',
                       {'profile': user, 'abuse_form': form})

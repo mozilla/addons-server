@@ -1,5 +1,5 @@
 from django.core.serializers import serialize as object_serialize
-from django.utils.translation import ugettext, ugettext_lazy as _
+from django.utils.translation import gettext, gettext_lazy as _
 
 import six
 import waffle
@@ -49,7 +49,7 @@ class CollectionAkismetSpamValidator(object):
             # transaction will be rolled back because of the ValidationError.
             if raise_if_spam:
                 save_akismet_report.delay(object_serialize("json", reports))
-                raise serializers.ValidationError(ugettext(
+                raise serializers.ValidationError(gettext(
                     'The text entered has been flagged as spam.'))
 
 
@@ -91,27 +91,27 @@ class CollectionSerializer(serializers.ModelSerializer):
                     for locale, sub_value in six.iteritems(value)}
         if value.strip() == u'':
             raise serializers.ValidationError(
-                ugettext(u'Name cannot be empty.'))
+                gettext('Name cannot be empty.'))
         if DeniedName.blocked(value):
             raise serializers.ValidationError(
-                ugettext(u'This name cannot be used.'))
+                gettext('This name cannot be used.'))
         return value
 
     def validate_description(self, value):
         if has_links(clean_nl(six.text_type(value))):
             # There's some links, we don't want them.
             raise serializers.ValidationError(
-                ugettext(u'No links are allowed.'))
+                gettext('No links are allowed.'))
         return value
 
     def validate_slug(self, value):
         slug_validator(
             value, lower=False,
-            message=ugettext(u'The custom URL must consist of letters, '
-                             u'numbers, underscores or hyphens.'))
+            message=gettext('The custom URL must consist of letters, '
+                             'numbers, underscores or hyphens.'))
         if DeniedName.blocked(value):
             raise serializers.ValidationError(
-                ugettext(u'This custom URL cannot be used.'))
+                gettext('This custom URL cannot be used.'))
 
         return value
 

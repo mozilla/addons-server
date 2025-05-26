@@ -6,7 +6,7 @@ from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.forms.formsets import BaseFormSet, formset_factory
 from django.utils.encoding import force_text
-from django.utils.translation import ugettext, ugettext_lazy as _, ungettext
+from django.utils.translation import gettext, gettext_lazy as _, ngettext
 
 import waffle
 from six.moves.urllib_parse import urlsplit
@@ -45,11 +45,11 @@ def clean_addon_slug(slug, instance):
 
     if slug != instance.slug:
         if Addon.objects.filter(slug=slug).exists():
-            raise forms.ValidationError(ugettext(
+            raise forms.ValidationError(gettext(
                 'This slug is already in use. Please choose another.'))
         if DeniedSlug.blocked(slug):
-            msg = ugettext(u'The slug cannot be "%(slug)s". '
-                           u'Please choose another.')
+            msg = gettext('The slug cannot be "%(slug)s". '
+                           'Please choose another.')
             raise forms.ValidationError(msg % {'slug': slug})
 
     return slug
@@ -68,7 +68,7 @@ def clean_tags(request, tags):
               .filter(tag_text__in=target, denied=True))
     if denied:
         # L10n: {0} is a single tag or a comma-separated list of tags.
-        msg = ungettext('Invalid tag: {0}', 'Invalid tags: {0}',
+        msg = ngettext('Invalid tag: {0}', 'Invalid tags: {0}',
                         len(denied)).format(', '.join(denied))
         raise forms.ValidationError(msg)
 
@@ -77,7 +77,7 @@ def clean_tags(request, tags):
     if not acl.action_allowed(request, amo.permissions.ADDONS_EDIT):
         if restricted:
             # L10n: {0} is a single tag or a comma-separated list of tags.
-            msg = ungettext('"{0}" is a reserved tag and cannot be used.',
+            msg = ngettext('"{0}" is a reserved tag and cannot be used.',
                             '"{0}" are reserved tags and cannot be used.',
                             len(restricted)).format('", "'.join(restricted))
             raise forms.ValidationError(msg)
@@ -87,18 +87,18 @@ def clean_tags(request, tags):
 
     if total > max_tags:
         num = total - max_tags
-        msg = ungettext('You have {0} too many tags.',
+        msg = ngettext('You have {0} too many tags.',
                         'You have {0} too many tags.', num).format(num)
         raise forms.ValidationError(msg)
 
     if any(t for t in target if len(t) > max_len):
         raise forms.ValidationError(
-            ugettext(
+            gettext(
                 'All tags must be %s characters or less after invalid '
                 'characters are removed.' % max_len))
 
     if any(t for t in target if len(t) < min_len):
-        msg = ungettext('All tags must be at least {0} character.',
+        msg = ngettext('All tags must be at least {0} character.',
                         'All tags must be at least {0} characters.',
                         min_len).format(min_len)
         raise forms.ValidationError(msg)
@@ -134,7 +134,7 @@ class AkismetSpamCheckFormMixin(object):
             addon=self.instance,
             data=data,
             existing_data=existing_data)
-        error_msg = ugettext('The text entered has been flagged as spam.')
+        error_msg = gettext('The text entered has been flagged as spam.')
         error_if_spam = waffle.switch_is_active('akismet-addon-action')
         for prop, report in reports:
             is_spam = report.is_spam
@@ -216,19 +216,19 @@ class CategoryForm(forms.Form):
         max_cat = amo.MAX_CATEGORIES
 
         if getattr(self, 'disabled', False) and total:
-            raise forms.ValidationError(ugettext(
+            raise forms.ValidationError(gettext(
                 'Categories cannot be changed while your add-on is featured '
                 'for this application.'))
         if total > max_cat:
             # L10n: {0} is the number of categories.
-            raise forms.ValidationError(ungettext(
+            raise forms.ValidationError(ngettext(
                 'You can have only {0} category.',
                 'You can have only {0} categories.',
                 max_cat).format(max_cat))
 
         has_misc = list(filter(lambda x: x.misc, categories))
         if has_misc and total > 1:
-            raise forms.ValidationError(ugettext(
+            raise forms.ValidationError(gettext(
                 'The miscellaneous category cannot be combined with '
                 'additional categories.'))
 
@@ -347,7 +347,7 @@ class AdditionalDetailsForm(AddonFormBase):
         if self.cleaned_data['contributions']:
             hostname = urlsplit(self.cleaned_data['contributions']).hostname
             if not hostname.endswith(amo.VALID_CONTRIBUTION_DOMAINS):
-                raise forms.ValidationError(ugettext(
+                raise forms.ValidationError(gettext(
                     'URL domain must be one of [%s], or a subdomain.'
                 ) % ', '.join(amo.VALID_CONTRIBUTION_DOMAINS))
         return self.cleaned_data['contributions']
@@ -365,7 +365,7 @@ class AdditionalDetailsForm(AddonFormBase):
                   .values_list('id', flat=True))
             missing = [k for k, v in fields.items() if v not in qs]
             if missing:
-                raise forms.ValidationError(ugettext(
+                raise forms.ValidationError(gettext(
                     'Before changing your default locale you must have a '
                     'name, summary, and description in that locale. '
                     'You are missing %s.') % ', '.join(map(repr, missing)))

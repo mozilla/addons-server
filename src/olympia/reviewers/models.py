@@ -9,7 +9,7 @@ from django.db import models
 from django.db.models import Q, Sum
 from django.template import loader
 from django.utils.encoding import python_2_unicode_compatible
-from django.utils.translation import ugettext, ugettext_lazy as _
+from django.utils.translation import gettext, gettext_lazy as _
 
 import six
 
@@ -998,10 +998,10 @@ class AutoApprovalSummary(ModelBase):
         """Return a generator of strings representing the a verdict_info
         (as computed by calculate_verdict()) in human-readable form."""
         mapping = {
-            'is_locked': ugettext('Is locked by a reviewer.'),
-            'has_auto_approval_disabled': ugettext(
+            'is_locked': gettext('Is locked by a reviewer.'),
+            'has_auto_approval_disabled': gettext(
                 'Has auto-approval disabled flag set.'),
-            'has_sensitive_data_access': ugettext('Has sensitive data access flag set.')
+            'has_sensitive_data_access': gettext('Has sensitive data access flag set.')
         }
         return (mapping[key] for key, value in sorted(verdict_info.items())
                 if value)

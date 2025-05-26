@@ -4,7 +4,7 @@ import six
 from six.moves.urllib.parse import unquote
 
 from django import forms
-from django.utils.translation import ugettext, ugettext_lazy as _
+from django.utils.translation import gettext, gettext_lazy as _
 
 from bleach.linkifier import TLDS
 
@@ -79,6 +79,6 @@ class RatingFlagForm(forms.ModelForm):
         elif data.get('flag') == RatingFlag.OTHER:
             self.add_error(
                 'note',
-                ugettext(u'A short explanation must be provided when '
-                         u'selecting "Other" as a flag reason.'))
+                gettext('A short explanation must be provided when '
+                        'selecting "Other" as a flag reason.'))
         return data

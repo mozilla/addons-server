@@ -2,7 +2,7 @@ import datetime
 
 from django.conf import settings
 from django.utils.encoding import force_text
-from django.utils.translation import ugettext, ugettext_lazy as _, ungettext
+from django.utils.translation import gettext, gettext_lazy as _, ngettext
 
 import jinja2
 import six
@@ -36,19 +36,19 @@ def file_compare(file_obj, version):
 def file_review_status(addon, file):
     if file.status == amo.STATUS_DISABLED:
         if file.reviewed is not None:
-            return ugettext(u'Rejected')
+            return gettext('Rejected')
         # Can't assume that if the reviewed date is missing its
         # unreviewed.  Especially for versions.
         else:
-            return ugettext(u'Rejected or Unreviewed')
+            return gettext('Rejected or Unreviewed')
     return file.STATUS_CHOICES.get(
-        file.status, ugettext('[status:%s]') % file.status)
+        file.status, gettext('[status:%s]') % file.status)
 
 
 @library.global_function
 def version_status(addon, version):
     if version.deleted:
-        return ugettext(u'Deleted')
+        return gettext('Deleted')
     return ','.join(six.text_type(s) for s in version.status)
 
 
@@ -84,10 +84,10 @@ def queue_tabnav(context):
         if got_extension_review or got_theme_review:
             tabnav.extend((
                 ('nominated', 'queue_nominated',
-                 (ugettext('New ({0})')
+                 (gettext('New ({0})')
                   .format(counts['nominated']))),
                 ('pending', 'queue_pending',
-                 (ungettext('Update ({0})',
+                 (ngettext('Update ({0})',
                             'Updates ({0})',
                             counts['pending'])
                   .format(counts['pending']))),
@@ -95,7 +95,7 @@ def queue_tabnav(context):
         if acl.action_allowed(request, amo.permissions.RATINGS_MODERATE):
             tabnav.append(
                 ('moderated', 'queue_moderated',
-                 (ungettext('Rating Review ({0})',
+                 (ngettext('Rating Review ({0})',
                             'Rating Reviews ({0})',
                             counts['moderated'])
                   .format(counts['moderated']))),
@@ -104,7 +104,7 @@ def queue_tabnav(context):
         if acl.action_allowed(request, amo.permissions.ADDONS_POST_REVIEW):
             tabnav.append(
                 ('auto_approved', 'queue_auto_approved',
-                 (ungettext('Auto Approved ({0})',
+                 (ngettext('Auto Approved ({0})',
                             'Auto Approved ({0})',
                             counts['auto_approved'])
                   .format(counts['auto_approved']))),
@@ -113,7 +113,7 @@ def queue_tabnav(context):
         if acl.action_allowed(request, amo.permissions.ADDONS_CONTENT_REVIEW):
             tabnav.append(
                 ('content_review', 'queue_content_review',
-                 (ungettext('Content Review ({0})',
+                 (ngettext('Content Review ({0})',
                             'Content Review ({0})',
                             counts['content_review'])
                   .format(counts['content_review']))),
@@ -122,14 +122,14 @@ def queue_tabnav(context):
         if acl.action_allowed(request, amo.permissions.REVIEWS_ADMIN):
             tabnav.append(
                 ('expired_info_requests', 'queue_expired_info_requests',
-                 (ungettext('Expired Info Request ({0})',
+                 (ngettext('Expired Info Request ({0})',
                             'Expired Info Requests ({0})',
                             counts['expired_info_requests'])
                   .format(counts['expired_info_requests']))),
             )
     else:
         tabnav = [
-            ('all', 'unlisted_queue_all', ugettext('All Unlisted Add-ons'))
+            ('all', 'unlisted_queue_all', gettext('All Unlisted Add-ons'))
         ]
 
     return tabnav

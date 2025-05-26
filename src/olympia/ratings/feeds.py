@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404
-from django.utils.translation import ugettext
+from django.utils.translation import gettext
 from six.moves.urllib.parse import quote
 
 from olympia.addons.models import Addon
@@ -20,7 +20,7 @@ class RatingsRss(BaseFeed):
 
     def title(self, addon):
         """Title for the feed"""
-        return ugettext(u'Reviews for %s') % addon.name
+        return gettext('Reviews for %s') % addon.name
 
     def link(self, addon):
         """Link for the feed"""
@@ -28,7 +28,7 @@ class RatingsRss(BaseFeed):
 
     def description(self, addon):
         """Description for the feed"""
-        return ugettext('Review History for this Addon')
+        return gettext('Review History for this Addon')
 
     def items(self, addon):
         """Return the Ratings for this Addon to be output as RSS <item>'s"""
@@ -46,7 +46,7 @@ class RatingsRss(BaseFeed):
         title = ''
         if getattr(rating, 'rating', None):
             # L10n: This describes the number of stars given out of 5
-            title = ugettext('Rated %d out of 5 stars') % rating.rating
+            title = gettext('Rated %d out of 5 stars') % rating.rating
         return title
 
     def item_description(self, rating):
