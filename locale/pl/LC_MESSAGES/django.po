@@ -1681,19 +1681,19 @@ msgstr ""
 
 #: src/olympia/constants/licenses.py:36
 msgid "GNU General Public License v3.0 only"
-msgstr ""
+msgstr "Tylko GNU General Public License v3.0"
 
 #: src/olympia/constants/licenses.py:43
 msgid "GNU Lesser General Public License v2.1 only"
-msgstr ""
+msgstr "Tylko GNU Lesser General Public License v2.1"
 
 #: src/olympia/constants/licenses.py:50
 msgid "GNU Lesser General Public License v3.0 only"
-msgstr ""
+msgstr "Tylko GNU Lesser General Public License v3.0"
 
 #: src/olympia/constants/licenses.py:57
 msgid "GNU Affero General Public License v3.0 only"
-msgstr ""
+msgstr "Tylko GNU Affero General Public License v3.0"
 
 #: src/olympia/constants/licenses.py:64
 msgid "MIT License"
@@ -3572,7 +3572,7 @@ msgstr "Maksymalny dopuszczalny rozmiar pliku wynosi %(max_size)s."
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:72
 #, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
-msgstr ""
+msgstr "Aby uzyskać więcej informacji, zapoznaj się z artykułem <a %(a_attrs)s>Przesyłanie kodu źródłowego</a> w serwisie Firefox Extension Workshop."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:77
 msgid "Upload source code:"
@@ -3903,6 +3903,9 @@ msgid ""
 "Did you test your extension to ensure it works as expected on Firefox for Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" "
 "href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
 msgstr ""
+"Czy przetestowano rozszerzenie, aby upewnić się, że działa poprawnie w Firefoksie na Androida? Jeśli nie, zapoznaj się z artykułem <a target=\"_blank\" rel=\"noopener noreferrer\" "
+"href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">Tworzenie rozszerzeń dla Firefoksa na Androida</a>, aby uzyskać wskazówki dotyczące "
+"testowania przed wysłaniem."
 
 #: src/olympia/devhub/templates/devhub/includes/android_compatibility_modal.html:6
 msgid "Yes, I’ve tested my extension with Firefox for Android"
@@ -7119,7 +7122,7 @@ msgstr ""
 
 #: src/olympia/versions/models.py:1198
 msgid "Disabled by Developer"
-msgstr ""
+msgstr "Wyłączone przez dewelopera"
 
 #: src/olympia/versions/models.py:1556
 #, python-brace-format
