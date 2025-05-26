@@ -482,6 +482,10 @@ class ManifestJSONExtractor(object):
             raise forms.ValidationError(
                 ugettext('GUID is required for Thunderbird Mail Extensions, including Themes.')
             )
+        if not isinstance(self.guid, str):
+            raise forms.ValidationError(
+                ugettext('GUID must be a string')
+            )
 
         if (self.is_experiment or self.is_theme_experiment) and not self.strict_max_version:
             raise forms.ValidationError(
