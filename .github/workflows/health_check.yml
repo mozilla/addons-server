@@ -19,9 +19,7 @@ jobs:
   context:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - id: context
-        uses: ./.github/actions/context
+      - uses: mozilla/addons/.github/actions/context@main
 
   health_check:
     strategy:
@@ -32,7 +30,7 @@ jobs:
           - stage
           - prod
 
-    uses: ./.github/workflows/_health_check.yml
+    uses: mozilla/addons-server/.github/workflows/_health_check.yml@${{ github.ref }}
     secrets: inherit
     with:
       environment: ${{ matrix.environment }}
@@ -43,8 +41,6 @@ jobs:
     needs: health_check
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-
       - name: Retry Health Check
         if: needs.health_check.result == 'failure'
         shell: bash
