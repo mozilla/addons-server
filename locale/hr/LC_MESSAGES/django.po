@@ -4652,7 +4652,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:158
 msgid "Screenshot webpages, make edits, and share."
-msgstr "Snimaj web-stranice, uredi i dijeli ih."
+msgstr "Snimaj snimke web stranica, uredi i dijeli ih."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:161
@@ -4708,9 +4708,8 @@ msgstr "Koristi pokrete mišem za zatvaranje kartica, kretanje po stranicama i j
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:191
-#, fuzzy
 msgid "See thumbnail images alongside your search returns."
-msgstr "Uživaj u sličicama web-stranica pored rezultata pretrage."
+msgstr "Uživaj u sličicama web stranica pored rezultata pretrage."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:194
@@ -4894,7 +4893,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:299
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
-msgstr "Pretvori cijelu web-stranicu na željeni jezik – sa samo jednim pritiskom gumba."
+msgstr "Prevedi cijelu web stranicu na željeni jezik – s jednim pritiskom gumba."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:302
@@ -4924,7 +4923,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:317
 msgid "Create general and website-specific notes to review later."
-msgstr "Sastavi opće napomene i napomene za web-stranicu za kasniji pregled."
+msgstr "Sastavi opće i za web stranicu specifične napomene za kasniji pregled."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5229,7 +5228,7 @@ msgstr "Dobij gramatičku pomoć gdje god pišeš na webu – društveni mediji,
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:498 src/olympia/discovery/strings.jinja2:674
 msgid "Read with more clarity and ease. Remove the clutter around text on web pages."
-msgstr "Čitaj jasnije i lakše. Ukloni nered oko teksta na web-stranicama."
+msgstr "Čitaj jasnije i lakše. Ukloni nered oko teksta na web stranicama."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5262,7 +5261,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:516 src/olympia/discovery/strings.jinja2:701
 msgid "Customize shades of light and dark to make web pages more visually pleasing."
-msgstr "Prilagodi svijetle i tamne nijanse kako bi web-stranice bile vizualno ugodnije."
+msgstr "Prilagodi svijetle i tamne nijanse kako bi web stranice bile vizualno ugodnije."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5522,7 +5521,7 @@ msgstr "Jednostavan način prilagođavanja veličine teksta bilo koje stranice i
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:836
 msgid "Enjoy thumbnail images of websites alongside your search returns."
-msgstr "Uživaj u sličicama web-stranica pored rezultata pretrage."
+msgstr "Uživaj u sličicama web stranica pored rezultata pretrage."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:842
