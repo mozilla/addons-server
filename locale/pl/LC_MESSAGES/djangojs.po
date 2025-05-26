@@ -636,39 +636,39 @@ msgstr "Źródła pobierania od {0} do {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:195
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Download Mediums, last {0} days"
-msgstr "Liczba pobrań — ostatnie {0} dni"
+msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/stats/csv_keys.js:197
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Download Mediums from {0} to {1}"
-msgstr "Liczba pobrań od {0} do {1} dni"
+msgstr ""
 
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:201
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Download Contents, last {0} days"
-msgstr "Źródła pobierania — ostatnie {0} dni"
+msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/stats/csv_keys.js:203
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Download Contents from {0} to {1}"
-msgstr "Liczba pobrań od {0} do {1} dni"
+msgstr ""
 
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:207
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Download Campaigns, last {0} days"
-msgstr "Liczba pobrań — ostatnie {0} dni"
+msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/stats/csv_keys.js:209
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Download Campaigns from {0} to {1}"
-msgstr "Liczba pobrań od {0} do {1} dni"
+msgstr ""
 
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:213

@@ -3576,7 +3576,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:67
 #, python-format
 msgid "The maximum file size accepted is %(max_size)s."
-msgstr ""
+msgstr "Maksymalny dopuszczalny rozmiar pliku wynosi %(max_size)s."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:72
 #, python-format
@@ -3614,7 +3614,7 @@ msgstr "Użyj poniższych pól, aby przesłać pakiet dodatku. Po przesłaniu pl
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:34
 #, python-format
 msgid "The maximum file size accepted is %(max_size)s. If your add-on is larger than %(max_size)s, it will fail validation."
-msgstr ""
+msgstr "Maksymalny dopuszczalny rozmiar pliku to %(max_size)s. Jeśli Twój dodatek jest większy niż %(max_size)s, nie przejdzie walidacji."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:59
 #, fuzzy
@@ -4485,9 +4485,8 @@ msgstr "Wykonuj odwrotne wyszukiwanie obrazów przy użyciu wielu wyszukiwarek."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:14 src/olympia/discovery/strings.jinja2:776
-#, fuzzy
 msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr "Prosta konfiguracja umożliwia przejęcie kontroli nad wyświetlanymi reklamami i sposobami śledzenia Cię w Internecie."
+msgstr ""
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5338,9 +5337,8 @@ msgstr "Zabezpiecz się przed najsprytniejszymi usługami śledzącymi."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:470
-#, fuzzy
 msgid "Search with enhanced tracker blocking, smart encryption, and other privacy benefits."
-msgstr "Zyskaj większe bezpieczeństwo podczas wyszukiwania dzięki blokowaniu usług śledzących, wyszukiwaniu prywatnemu i innym podstawowym funkcjom."
+msgstr ""
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:476
@@ -6866,7 +6864,7 @@ msgstr ""
 
 #: src/olympia/templates/photon-footer.html:52
 msgid "Privacy"
-msgstr ""
+msgstr "Prywatność"
 
 #: src/olympia/templates/photon-footer.html:53
 msgid "Cookies"
