@@ -1837,30 +1837,28 @@ msgid "All"
 msgstr ""
 
 #: src/olympia/constants/scanners.py:24
-#, fuzzy
 msgid "No action"
-msgstr "Więcej działań"
+msgstr "Brak działań"
 
 #: src/olympia/constants/scanners.py:25
 msgid "Flag for human review"
-msgstr ""
+msgstr "Zgłoś do recenzji przez człowieka"
 
 #: src/olympia/constants/scanners.py:26
-#, fuzzy
 msgid "Delay auto-approval"
-msgstr "Wyłącz automatyczne zatwierdzanie"
+msgstr "Opóźnij automatyczną akceptację"
 
 #: src/olympia/constants/scanners.py:27
 msgid "Delay auto-approval indefinitely"
-msgstr ""
+msgstr "Odrocz automatyczne zatwierdzenie na czas nieokreślony"
 
 #: src/olympia/constants/scanners.py:29
 msgid "Delay auto-approval indefinitely and add restrictions"
-msgstr ""
+msgstr "Odrocz automatyczne zatwierdzanie na czas nieokreślony i dodaj ograniczenia"
 
 #: src/olympia/constants/scanners.py:32
 msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
-msgstr ""
+msgstr "Odrocz automatyczne zatwierdzanie na czas nieokreślony i dodaj ograniczenia do przyszłych zatwierdzeń"
 
 #: src/olympia/constants/scanners.py:42 src/olympia/files/utils.py:1025
 msgid "Unknown"
@@ -1868,15 +1866,15 @@ msgstr "Nieznane"
 
 #: src/olympia/constants/scanners.py:43
 msgid "True positive"
-msgstr ""
+msgstr "Prawdziwie pozytywne"
 
 #: src/olympia/constants/scanners.py:44
 msgid "False positive"
-msgstr ""
+msgstr "Fałszywie pozytywne"
 
 #: src/olympia/constants/scanners.py:45
 msgid "Inconclusive"
-msgstr ""
+msgstr "Niejednoznaczne"
 
 #: src/olympia/constants/scanners.py:56
 #, fuzzy
@@ -1885,24 +1883,23 @@ msgstr "Nowsze"
 
 #: src/olympia/constants/scanners.py:57
 msgid "Running"
-msgstr ""
+msgstr "Uruchomione"
 
 #: src/olympia/constants/scanners.py:58
 msgid "Aborted"
-msgstr ""
+msgstr "Przerwano"
 
 #: src/olympia/constants/scanners.py:59
 msgid "Aborting"
-msgstr ""
+msgstr "Przerywanie"
 
 #: src/olympia/constants/scanners.py:60
-#, fuzzy
 msgid "Completed"
-msgstr "Niekompletny"
+msgstr "Ukończone"
 
 #: src/olympia/constants/scanners.py:61
 msgid "Scheduled"
-msgstr ""
+msgstr "Zaplanowane"
 
 #: src/olympia/core/apps.py:214
 msgid "Core"
@@ -1969,7 +1966,7 @@ msgstr "Zanim zmienisz domyślną lokalizację na inną, musi być dla nowej lok
 
 #: src/olympia/devhub/forms.py:392
 msgid "Users can not be added directly"
-msgstr ""
+msgstr "Nie można dodać użytkowników bezpośrednio"
 
 #: src/olympia/devhub/forms.py:457
 msgid "Must have at least one owner."
@@ -2045,9 +2042,8 @@ msgid "Override failed validation"
 msgstr "Zastąp nieudane sprawdzenie"
 
 #: src/olympia/devhub/forms.py:1054
-#, fuzzy
 msgid "Need to select at least one application."
-msgstr "Musi być określony przynajmniej jeden kompatybilny program."
+msgstr "Należy wybrać co najmniej jedną aplikację."
 
 #: src/olympia/devhub/forms.py:1059
 msgid "You have submitted too many uploads recently. Please try again after some time."
@@ -3233,9 +3229,8 @@ msgid "Delete"
 msgstr "Usuń"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:30
-#, fuzzy
 msgid "Edit details on this add-on's product page"
-msgstr "Edytuj szczegóły motywu."
+msgstr "Edytuj szczegóły na stronie tego dodatku"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:37
 #, fuzzy
@@ -3304,9 +3299,8 @@ msgid "Cancel and Disable Version"
 msgstr "Anuluj i wyłącz wersję"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html:35
-#, fuzzy
 msgid "Are you sure you wish to cancel and disable version?"
-msgstr "Czy na pewno chcesz usunąć tę wersję?"
+msgstr "Czy na pewno chcesz anulować i wyłączyć tę wersję?"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html:40
 msgid "Yes, Cancel"
@@ -3398,7 +3392,7 @@ msgstr "Czy jest coś, o czym powinni pamiętać nasi recenzenci podczas sprawdz
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:213 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:27
 msgid "Remember"
-msgstr ""
+msgstr "Zachowaj"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:214 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:28
 #, python-format
@@ -3437,7 +3431,7 @@ msgstr "Sposób dystrybucji tej wersji"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html:10
 msgid "To get started, select how you would like to distribute this version."
-msgstr ""
+msgstr "Aby rozpocząć, wybierz sposób dystrybucji tej wersji."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html:19
 #, python-format
@@ -4005,9 +3999,8 @@ msgid "Whether you’re new to extension development, polishing up or porting an
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/banner.html:13
-#, fuzzy
 msgid "Visit the Firefox Extension Workshop"
-msgstr "Rozszerzenia"
+msgstr "Odwiedź Firefox Extension Workshop"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:4
 msgid "Connect with us"
