@@ -2744,7 +2744,7 @@ msgstr "Akceptuję"
 
 #: src/olympia/devhub/templates/devhub/addons/invitation.html:24
 msgid "Decline"
-msgstr ""
+msgstr "Odrzuć"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:53 src/olympia/devhub/templates/devhub/addons/owner.html:5 src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:3
 msgid "Manage Authors & License"
@@ -2764,7 +2764,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/owner.html:49
 msgid "Authors that have been added to this add-on but haven't confirmed."
-msgstr ""
+msgstr "Autorzy, którzy zostali dodani do tego dodatku, ale nie potwierdzili."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:96 src/olympia/devhub/templates/devhub/addons/edit/describe.html:260
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:84 src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:174 src/olympia/devhub/templates/devhub/addons/owner.html:78
@@ -2785,9 +2785,8 @@ msgid "Close"
 msgstr "Zamknij"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:5
-#, fuzzy
 msgid "Additional Details"
-msgstr "Szczegółowe dane dodatku"
+msgstr "Dodatkowe szczegóły"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:8 src/olympia/devhub/templates/devhub/addons/edit/describe.html:10
 #: src/olympia/devhub/templates/devhub/addons/edit/media.html:6 src/olympia/devhub/templates/devhub/addons/edit/technical.html:9 src/olympia/devhub/templates/devhub/addons/submit/describe.html:61
@@ -2807,7 +2806,7 @@ msgstr "Etykiety"
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:20
 #, python-brace-format
 msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
-msgstr ""
+msgstr "Tagi pomagają użytkownikom znaleźć twój dodatek. Możesz mieć maksymalnie {0} tagów. Wybierz tylko tagi, które dotyczą twojego dodatku."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:28
 #, python-brace-format
@@ -3311,13 +3310,12 @@ msgid "Are you sure you wish to cancel and disable version?"
 msgstr "Czy na pewno chcesz usunąć tę wersję?"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html:40
-#, fuzzy
 msgid "Yes, Cancel"
-msgstr "Anuluj"
+msgstr "Tak, anuluj"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html:41
 msgid "No, don't cancel"
-msgstr ""
+msgstr "Nie, nie anuluj"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:16
 msgid "Name and Summary:"
@@ -6535,7 +6533,7 @@ msgstr ""
 
 #: src/olympia/signing/views.py:275
 msgid "No uploaded file for that add-on and version."
-msgstr ""
+msgstr "Brak przesłanego pliku dla tego dodatku i wersji."
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:4
 msgid "Overview"
@@ -6550,9 +6548,8 @@ msgid "by Medium"
 msgstr ""
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:17
-#, fuzzy
 msgid "by Content"
-msgstr "Zawartość"
+msgstr ""
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:20
 msgid "by Campaign"
@@ -6832,7 +6829,7 @@ msgstr ""
 
 #: src/olympia/templates/photon-footer.html:16
 msgid "Community Blog"
-msgstr ""
+msgstr "Blog społeczności"
 
 #: src/olympia/templates/photon-footer.html:17
 msgid "Forum"
@@ -6844,23 +6841,23 @@ msgstr "Zgłoś błąd"
 
 #: src/olympia/templates/photon-footer.html:19
 msgid "Review Guide"
-msgstr ""
+msgstr "Wytyczne pisania recenzji"
 
 #: src/olympia/templates/photon-footer.html:24 src/olympia/templates/photon-footer.html:37
 msgid "Browsers"
-msgstr ""
+msgstr "Przeglądarki"
 
 #: src/olympia/templates/photon-footer.html:27
 msgid "Desktop"
-msgstr ""
+msgstr "Na komputery"
 
 #: src/olympia/templates/photon-footer.html:29
 msgid "Enterprise"
-msgstr ""
+msgstr "Dla firm"
 
 #: src/olympia/templates/photon-footer.html:34
 msgid "Products"
-msgstr ""
+msgstr "Produkty"
 
 #: src/olympia/templates/photon-footer.html:52
 msgid "Privacy"
