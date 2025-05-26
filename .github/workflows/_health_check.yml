@@ -1,4 +1,4 @@
-name: Health check
+name: Run Health check
 
 run-name: |
   ref: ${{ github.ref_name }} |
