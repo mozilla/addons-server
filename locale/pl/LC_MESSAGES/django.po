@@ -572,14 +572,12 @@ msgid "URLs are not allowed."
 msgstr "Adresy URL nie są dozwolone."
 
 #: src/olympia/amo/validators.py:17
-#, fuzzy
 msgid "Must contain at least one printable character."
-msgstr "Musi mieć co najmniej jednego właściciela."
+msgstr "Musi mieć co najmniej jeden drukowalny znak."
 
 #: src/olympia/amo/validators.py:51
-#, fuzzy
 msgid "Ensure this field contains at least one letter or number character."
-msgstr "Musi mieć co najmniej jednego właściciela."
+msgstr "Upewnij się, że to pole zawiera co najmniej jedną literę lub cyfrę."
 
 #: src/olympia/amo/validators.py:90
 #, python-format
@@ -743,11 +741,11 @@ msgstr "Nie znaleziono prawidłowej sesji użytkownika odpowiadającej podanemu 
 
 #: src/olympia/api/authentication.py:122
 msgid "Access token refresh failed; user needs to login to FxA again."
-msgstr ""
+msgstr "Odświeżenie tokenu dostępu nie powiodło się. Proszę ponownie zalogować się do FxA."
 
 #: src/olympia/api/authentication.py:187
 msgid "Wrong type for one or more keys in payload"
-msgstr ""
+msgstr "Nieprawidłowy typ dla jednego lub więcej kluczy w ładunku"
 
 #: src/olympia/api/authentication.py:190
 msgid "Signature has expired."
@@ -1118,7 +1116,7 @@ msgstr "Odpowiedź recenzenta"
 #: src/olympia/constants/activity.py:631
 #, python-brace-format
 msgid "Notes for reviewers changed for {addon} {version}."
-msgstr ""
+msgstr "Informacje dla recenzentów zmienione dla {addon} {version}."
 
 #: src/olympia/constants/activity.py:632
 msgid "Notes for reviewers changed"
@@ -1172,9 +1170,8 @@ msgid "{addon} {version} content reject scheduled."
 msgstr "Odrzucono zawartość dodatku {addon} {version}."
 
 #: src/olympia/constants/activity.py:829
-#, fuzzy
 msgid "Content reject scheduled"
-msgstr "Odrzucono zawartość"
+msgstr "Zaplanowano odrzucenie treści"
 
 #: src/olympia/constants/activity.py:841
 #, fuzzy, python-brace-format
@@ -1411,7 +1408,7 @@ msgstr ""
 
 #: src/olympia/constants/base.py:147
 msgid "Language Packs"
-msgstr ""
+msgstr "Pakiety językowe"
 
 #: src/olympia/constants/base.py:148
 msgid "Deprecated Language Packs (Add-on)"
@@ -1713,7 +1710,7 @@ msgstr ""
 
 #: src/olympia/constants/licenses.py:85
 msgid "Mozilla Public License 1.1"
-msgstr ""
+msgstr "Mozilla Public License 1.1"
 
 #: src/olympia/constants/licenses.py:93 src/olympia/constants/licenses.py:229
 msgid "All Rights Reserved"
@@ -1745,27 +1742,27 @@ msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 #: src/olympia/constants/licenses.py:162
 msgid "Creative Commons Attribution 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution 4.0"
 
 #: src/olympia/constants/licenses.py:172
 msgid "Creative Commons Attribution-NonCommercial 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial 4.0"
 
 #: src/olympia/constants/licenses.py:182
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
 
 #: src/olympia/constants/licenses.py:192
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
 
 #: src/olympia/constants/licenses.py:202
 msgid "Creative Commons Attribution-NoDerivs 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NoDerivs 4.0"
 
 #: src/olympia/constants/licenses.py:212
 msgid "Creative Commons Attribution-ShareAlike 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-ShareAlike 4.0"
 
 #: src/olympia/constants/licenses.py:222
 msgid "The Unlicense"
@@ -2055,7 +2052,7 @@ msgstr "Musi być określony przynajmniej jeden kompatybilny program."
 
 #: src/olympia/devhub/forms.py:1059
 msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr ""
+msgstr "Ostatnio przesłano zbyt wiele plików. Spróbuj ponownie za jakiś czas."
 
 #: src/olympia/devhub/forms.py:1108 src/olympia/signing/views.py:156
 #, python-brace-format
@@ -2082,9 +2079,8 @@ msgid "No"
 msgstr "Nie"
 
 #: src/olympia/devhub/forms.py:1172
-#, fuzzy
 msgid "You have not uploaded a source file."
-msgstr "Nie można przetworzyć przesłanego pliku."
+msgstr "Nie przesłano pliku źródłowego."
 
 #: src/olympia/devhub/forms.py:1175
 msgid "Source file uploaded but you indicated no source was needed."
@@ -4038,9 +4034,8 @@ msgid "Matrix"
 msgstr "Matrix"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:18
-#, fuzzy
 msgid "Community forum"
-msgstr "Społeczność i wsparcie"
+msgstr "Forum społeczności"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:22
 msgid "Extensions Developers Newsletter"
@@ -4128,7 +4123,7 @@ msgstr "Zobacz jak"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/get_involved.html:9
 msgid "Get involved"
-msgstr ""
+msgstr "Dołącz do nas"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/get_involved.html:11
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
@@ -5902,12 +5897,12 @@ msgstr "Rozszerzenia związane z prywatnością i bezpieczeństwem"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1018
 msgid "Essential add-ons"
-msgstr ""
+msgstr "Niezbędne dodatki"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1020
 msgid "Declutter your desktop"
-msgstr ""
+msgstr "Uporządkuj swój pulpit"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1022 src/olympia/discovery/strings.jinja2:1024 src/olympia/discovery/strings.jinja2:1026
@@ -5967,7 +5962,7 @@ msgstr "Więcej polecanych motywów"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1054
 msgid "Strong password managers"
-msgstr ""
+msgstr "Silne menedżery haseł"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1056
@@ -5978,7 +5973,7 @@ msgstr "Przejrzyj wszystkie rozszerzenia"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1059
 msgid "Translation tools"
-msgstr ""
+msgstr "Narzędzia do tłumaczenia"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1061
@@ -6035,7 +6030,7 @@ msgstr "Przejrzyj wszystkie rozszerzenia"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1084
 msgid "YouTube customization"
-msgstr ""
+msgstr "Personalizowanie YouTube"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1086
@@ -6138,7 +6133,7 @@ msgstr ""
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1134
 msgid "Twitch extensions"
-msgstr ""
+msgstr "Rozszerzenia Twitch"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1136
@@ -6229,7 +6224,7 @@ msgstr ""
 
 #: src/olympia/files/utils.py:857
 msgid "Invalid or corrupted file."
-msgstr ""
+msgstr "Nieprawidłowy lub uszkodzony plik."
 
 #: src/olympia/files/utils.py:897
 #, fuzzy, python-format
@@ -6405,7 +6400,7 @@ msgstr "Nieobsługiwany typ pliku, wczytaj plik {extensions}."
 
 #: src/olympia/reviewers/forms.py:378
 msgid "File too large."
-msgstr ""
+msgstr "Plik jest za duży."
 
 #: src/olympia/reviewers/templates/reviewers/moderationlog_detail.html:11
 #, python-format
@@ -6875,11 +6870,11 @@ msgstr ""
 
 #: src/olympia/templates/photon-footer.html:53
 msgid "Cookies"
-msgstr ""
+msgstr "Ciasteczka"
 
 #: src/olympia/templates/photon-footer.html:54
 msgid "Legal"
-msgstr ""
+msgstr "Kwestie prawne"
 
 #: src/olympia/templates/photon-footer.html:57
 msgid ""
@@ -6948,9 +6943,8 @@ msgid "Delete Locale"
 msgstr "Usuń lokalizację"
 
 #: src/olympia/users/forms.py:24
-#, fuzzy
 msgid "IP Address"
-msgstr "Adres e-mail"
+msgstr "Adres IP"
 
 #: src/olympia/users/forms.py:26
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
@@ -6958,7 +6952,7 @@ msgstr ""
 
 #: src/olympia/users/forms.py:37
 msgid "You can only enter one, either IP Address or Network."
-msgstr ""
+msgstr "Możesz wprowadzić tylko jedno, albo adres IP, albo sieć."
 
 #: src/olympia/users/models.py:82
 msgid "No user with that email."
@@ -6979,7 +6973,7 @@ msgstr "Wiele zgłoszeń naruszających nasze zasady zostało wysłanych z twoje
 
 #: src/olympia/users/models.py:957
 msgid "Email Pattern"
-msgstr ""
+msgstr "Wzorzec adresu e-mail"
 
 #: src/olympia/users/models.py:960
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
