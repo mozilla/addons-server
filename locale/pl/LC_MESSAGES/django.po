@@ -2588,11 +2588,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:49
 msgid "<strong>Email history:</strong> The table below shows all emails we have attempted to send to you in the last 2 days."
-msgstr ""
+msgstr "<strong>Historia wiadomości e-mail:</strong> Poniższa tabela zawiera listę wszystkich wiadomości e-mail, które próbowaliśmy do Ciebie wysłać w ciągu ostatnich 2 dni."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:57
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:58 src/olympia/stats/templates/stats/popup.html:12
 msgid "From"
@@ -2604,7 +2604,7 @@ msgstr "Do"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:60
 msgid "Subject"
-msgstr ""
+msgstr "Temat"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:61 src/olympia/devhub/templates/devhub/versions/list.html:186 src/olympia/devhub/templates/devhub/versions/list.html:204
 #: src/olympia/devhub/templates/devhub/versions/list.html:230
@@ -2613,11 +2613,11 @@ msgstr "Status"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:87
 msgid "We have not found any email records for you in the last 2 days."
-msgstr ""
+msgstr "Nie wysłano do Ciebie znaleziono żadnych wiadomości e-mail w ciągu ostatnich 2 dni."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:91
 msgid "Refresh results"
-msgstr ""
+msgstr "Odśwież wyniki"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:101
 #, python-format
@@ -4246,9 +4246,8 @@ msgid "Source code"
 msgstr "Kod źródłowy"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:121
-#, fuzzy
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
-msgstr "Jeśli twój dodatek zawiera komponenty binarne lub zaciemniony kod, udostępnij go tutaj recenzentom."
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html:1
 #, python-brace-format
@@ -4622,9 +4621,8 @@ msgstr "Czy szukana strona jest niedostępna? Wyszukaj zarchiwizowaną lub zbufo
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:98 src/olympia/discovery/strings.jinja2:740
-#, fuzzy
 msgid "Hover over an image to magnify it."
-msgstr "Po prostu umieść kursor myszy nad obrazem, aby go powiększyć."
+msgstr "Umieść kursor myszy nad obrazem, aby go powiększyć."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4646,9 +4644,8 @@ msgstr "Powstrzymaj usługi śledzące i otrzymuj informacje na ich temat."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:110 src/olympia/discovery/strings.jinja2:833
-#, fuzzy
 msgid "Leave a clean digital trail. Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr "Spraw, by Firefox zapominał dane witryn, takie jak ciasteczka i pliki lokalne, ale tylko dla wybranych przez Ciebie domen."
+msgstr ""
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4694,9 +4691,8 @@ msgstr "Uzyskaj dodatkową warstwę ochrony przed śledzeniem podczas przegląda
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:134
-#, fuzzy
 msgid "Read ePub files right in Firefox—increase font size, page dimensions, and more."
-msgstr "Ciesz się plikami ePub bezpośrednio w Firefoksie — zwiększaj rozmiar tekstu, wymiary stron i nie tylko."
+msgstr ""
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5484,9 +5480,8 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:572
-#, fuzzy
 msgid "Automatically replace derogatory words across the web."
-msgstr "Automatycznie wymazuj ciasteczka po zamknięciu karty."
+msgstr ""
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:575
