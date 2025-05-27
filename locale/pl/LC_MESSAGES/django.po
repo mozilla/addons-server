@@ -379,6 +379,8 @@ msgstr "Plik jest już wyłączony."
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
+"Najnowsza zatwierdzona wersja tego dodatku %s nie może zostać usunięta, ponieważ poprzednia wersja nie została zatwierdzona do promocji %s. Skontaktuj się z administratorami AMO, jeśli potrzebujesz "
+"pomocy w tej sprawie."
 
 #: src/olympia/addons/serializers.py:536
 #, python-brace-format
@@ -1672,11 +1674,11 @@ msgstr "Mozilla Public License 2.0"
 
 #: src/olympia/constants/licenses.py:22
 msgid "Apache License 2.0"
-msgstr ""
+msgstr "Licencja Apache 2.0"
 
 #: src/olympia/constants/licenses.py:29
 msgid "GNU General Public License v2.0 only"
-msgstr ""
+msgstr "Tylko GNU General Public License v2.0"
 
 #: src/olympia/constants/licenses.py:36
 msgid "GNU General Public License v3.0 only"
@@ -1696,15 +1698,15 @@ msgstr "Tylko GNU Affero General Public License v3.0"
 
 #: src/olympia/constants/licenses.py:64
 msgid "MIT License"
-msgstr ""
+msgstr "Licencja MIT"
 
 #: src/olympia/constants/licenses.py:71
 msgid "ISC License"
-msgstr ""
+msgstr "Licencja ISC"
 
 #: src/olympia/constants/licenses.py:78
 msgid "BSD 2-Clause \"Simplified\" License"
-msgstr ""
+msgstr "Licencja BSD 2-Clause \"Simplified\""
 
 #: src/olympia/constants/licenses.py:85
 msgid "Mozilla Public License 1.1"
@@ -1764,12 +1766,11 @@ msgstr "Creative Commons Attribution-ShareAlike 4.0"
 
 #: src/olympia/constants/licenses.py:222
 msgid "The Unlicense"
-msgstr ""
+msgstr "Unlicense"
 
 #: src/olympia/constants/promoted.py:76
-#, fuzzy
 msgid "Not Promoted"
-msgstr "Promuj"
+msgstr ""
 
 #: src/olympia/constants/promoted.py:82
 msgid "Recommended"
@@ -2716,21 +2717,21 @@ msgstr "Nadal trwa generowanie podglądu — wróć później lub odśwież stro
 #: src/olympia/devhub/templates/devhub/addons/invitation.html:3 src/olympia/users/utils.py:98
 #, python-brace-format
 msgid "Author invitation for {addon_name}"
-msgstr ""
+msgstr "Zaproszenie do autorstwa dodatku {addon_name}"
 
 #: src/olympia/devhub/templates/devhub/addons/invitation.html:18
 #, python-brace-format
 msgid "You have been invited to become an author of {addon_name}."
-msgstr ""
+msgstr "Zostałeś zaproszony do zostania autorem dodatku {addon_name}."
 
 #: src/olympia/devhub/templates/devhub/addons/invitation.html:21
 msgid "Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website. "
-msgstr ""
+msgstr "Przyjęcie zaproszenia umożliwi ci dostęp do edycji dodatku i twoje imię może zostać wyświetlone na liście autorów na stronie internetowej. "
 
 #: src/olympia/devhub/templates/devhub/addons/invitation.html:22
 #, python-brace-format
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
-msgstr ""
+msgstr "Kliknij przycisk Akceptuj poniżej, aby potwierdzić dodanie jako autor dodatku {addon_name}."
 
 #: src/olympia/devhub/templates/devhub/addons/invitation.html:24 src/olympia/devhub/templates/devhub/includes/agreement.html:34
 msgid "Accept"
@@ -2754,7 +2755,7 @@ msgstr "Informacje o rolach autora"
 
 #: src/olympia/devhub/templates/devhub/addons/owner.html:48
 msgid "Authors pending confirmation"
-msgstr ""
+msgstr "Oczekiwanie na potwierdzenie autorów"
 
 #: src/olympia/devhub/templates/devhub/addons/owner.html:49
 msgid "Authors that have been added to this add-on but haven't confirmed."
@@ -3141,7 +3142,7 @@ msgstr "Więcej informacji o licencji Creative Commons"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/invisible_channel_warning.html:2
 msgid "Your add-on is currently set to \"Invisible\"."
-msgstr ""
+msgstr "Twój dodatek jest obecnie ustawiony jako „Niewidoczny”."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/invisible_channel_warning.html:3
 msgid "While in this state, \"On your own\" is the only distribution method available."
