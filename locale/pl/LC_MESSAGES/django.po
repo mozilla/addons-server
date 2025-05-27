@@ -3505,7 +3505,7 @@ msgstr "Recenzenci dodatków Mozilli muszą być w stanie odczytać i odtworzyć
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:21
 msgid "Do you use any of the following in your extension?"
-msgstr ""
+msgstr "Czy używasz któregoś z poniższych w swoim rozszerzeniu?"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:27
 msgid "Code generators or minifiers"
@@ -5328,7 +5328,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:485 src/olympia/discovery/strings.jinja2:830
 msgid "Stop wasting valuable memory space with inactive tabs."
-msgstr ""
+msgstr "Przestań marnować cenną przestrzeń pamięci na nieaktywne karty."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:488
@@ -5757,7 +5757,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:959
 msgid "Effective blocker against all types of ads."
-msgstr ""
+msgstr "Skuteczny bloker wszystkich typów reklam."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:962
@@ -6080,7 +6080,7 @@ msgstr ""
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1129
 msgid "Extension starter pack"
-msgstr ""
+msgstr "Pakiet startowy rozszerzeń"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1131
