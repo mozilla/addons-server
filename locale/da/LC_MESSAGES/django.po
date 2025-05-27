@@ -809,11 +809,11 @@ msgstr "Denne tilføjelse er allerede en del af samlingen"
 
 #: src/olympia/blocklist/models.py:188
 msgid "Blocked"
-msgstr ""
+msgstr "Blokeret"
 
 #: src/olympia/blocklist/models.py:188
 msgid "Restricted"
-msgstr ""
+msgstr "Begrænset"
 
 #: src/olympia/constants/activity.py:25
 #, python-brace-format
@@ -987,7 +987,7 @@ msgstr "{0} {1} tilføjet."
 #: src/olympia/constants/activity.py:335
 #, python-brace-format
 msgid "{user} role changed to {0} for {addon}."
-msgstr ""
+msgstr "{user} rolle blev ændret til {0} for {addon}."
 
 #: src/olympia/constants/activity.py:346
 #, python-brace-format
@@ -5598,7 +5598,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:932
 msgid "Make Firefox change colors based on time of day."
-msgstr ""
+msgstr "Få Firefox til at skifte farve alt efter tiden på dagen."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:935
