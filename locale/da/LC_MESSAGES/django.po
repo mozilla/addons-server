@@ -596,12 +596,15 @@ msgstr ""
 #: src/olympia/amo/templates/amo/403.html:26
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
 msgstr ""
+"Hvis du har konfigureret din browser til at deaktivere 'Referer'-headere, skal du genaktivere dem, i det mindste for dette websted, eller for HTTPS-forbindelser eller for 'same-origin'-requests."
 
 #: src/olympia/amo/templates/amo/403.html:36
 msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
 "parties."
 msgstr ""
+"Du får vist denne meddelelse, fordi dette websted kræver en CSRF-cookie, når du indsender formularer. Denne cookie er påkrævet af sikkerhedsmæssige årsager for at sikre, at din browser ikke bliver "
+"kapret af tredjeparter."
 
 #: src/olympia/amo/templates/amo/404.html:3
 msgid "Not Found"
@@ -723,7 +726,7 @@ msgstr ""
 
 #: src/olympia/api/authentication.py:108
 msgid "Valid user session not found matching the provided session key."
-msgstr ""
+msgstr "Gyldig brugersession blev ikke fundet, der matcher den angivne sessionsnøgle."
 
 #: src/olympia/api/authentication.py:122
 msgid "Access token refresh failed; user needs to login to FxA again."
@@ -908,7 +911,7 @@ msgstr "Godkendt"
 #: src/olympia/constants/activity.py:159
 #, python-brace-format
 msgid "{addon} {version} given preliminary review."
-msgstr ""
+msgstr "{addon} {version} har fået en foreløbig gennemgang."
 
 #: src/olympia/constants/activity.py:160
 msgid "Preliminarily approved"
@@ -1037,7 +1040,7 @@ msgstr "Adgangskode ændret."
 #: src/olympia/constants/activity.py:408
 #, python-brace-format
 msgid "{addon} {version} approved but waiting to be made public."
-msgstr ""
+msgstr "{addon} {version} godkendt, men venter på at blive offentliggjort."
 
 #: src/olympia/constants/activity.py:409
 msgid "Approved but waiting"
@@ -1210,7 +1213,7 @@ msgstr "Afventende afvisning ryddet"
 #: src/olympia/constants/activity.py:1006
 #, python-brace-format
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
-msgstr ""
+msgstr "{user_responsible} ændrede {addon}-slug fra {0} til {1}."
 
 #: src/olympia/constants/activity.py:1007
 msgid "Add-on slug changed"
@@ -1652,35 +1655,35 @@ msgstr "Mozilla Public License 2.0"
 
 #: src/olympia/constants/licenses.py:22
 msgid "Apache License 2.0"
-msgstr ""
+msgstr "Apache-licens 2.0"
 
 #: src/olympia/constants/licenses.py:29
 msgid "GNU General Public License v2.0 only"
-msgstr ""
+msgstr "Kun GNU General Public License v2.0"
 
 #: src/olympia/constants/licenses.py:36
 msgid "GNU General Public License v3.0 only"
-msgstr ""
+msgstr "Kun GNU General Public License v3.0"
 
 #: src/olympia/constants/licenses.py:43
 msgid "GNU Lesser General Public License v2.1 only"
-msgstr ""
+msgstr "Kun GNU Lesser General Public License v2.1"
 
 #: src/olympia/constants/licenses.py:50
 msgid "GNU Lesser General Public License v3.0 only"
-msgstr ""
+msgstr "Kun GNU Lesser General Public License v3.0"
 
 #: src/olympia/constants/licenses.py:57
 msgid "GNU Affero General Public License v3.0 only"
-msgstr ""
+msgstr "Kun GNU Affero General Public License v3.0"
 
 #: src/olympia/constants/licenses.py:64
 msgid "MIT License"
-msgstr ""
+msgstr "MIT-licens"
 
 #: src/olympia/constants/licenses.py:71
 msgid "ISC License"
-msgstr ""
+msgstr "ISC-licens"
 
 #: src/olympia/constants/licenses.py:78
 msgid "BSD 2-Clause \"Simplified\" License"
