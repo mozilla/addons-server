@@ -2455,7 +2455,7 @@ msgstr "więcej dodatków…"
 
 #: src/olympia/devhub/templates/devhub/nav.html:36 src/olympia/devhub/templates/devhub/new-landing/components/navigation.html:21 src/olympia/templates/photon-footer.html:13
 msgid "Extension Workshop"
-msgstr ""
+msgstr "Extension Workshop"
 
 #: src/olympia/devhub/templates/devhub/nav.html:38 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:7
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html:24
@@ -2539,7 +2539,7 @@ msgstr "Sprawdzono w dniu:"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:3
 msgid "Email Address Verification"
-msgstr ""
+msgstr "Weryfikacja adresu e-mail"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:63 src/olympia/devhub/templates/devhub/includes/addon_details.html:90 src/olympia/devhub/templates/devhub/verify_email.html:10
 msgid "Status:"
@@ -2547,15 +2547,15 @@ msgstr "Status:"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:12
 msgid "Your email address is verified."
-msgstr ""
+msgstr "Twój adres e-mail został zweryfikowany."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:16
 msgid "Please verify your email."
-msgstr ""
+msgstr "Proszę zweryfikować swój adres e-mail."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:20
 msgid "Could not verify email address. The verification link has expired."
-msgstr ""
+msgstr "Nie można było zweryfikować adresu e-mail. Link weryfikacyjny wygasł."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:24
 msgid "We are sending an email to you, please be patient... <div class=\"loader\"></div> The page will automatically refresh."
@@ -3485,7 +3485,7 @@ msgstr "Edytuj wersję {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:59
 msgid "As a reminder, your add-on is subject to manual review at any time."
-msgstr ""
+msgstr "Przypominamy, że twój dodatek może zostać w każdej chwili poddany ręcznemu sprawdzeniu."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:64
 msgid "Go to My Submissions"
@@ -3497,7 +3497,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:11
 msgid "Do You Need to Submit Source Code?"
-msgstr ""
+msgstr "Czy musisz przesłać kod źródłowy?"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:15
 msgid "Mozilla’s add-on reviewers need to be able to read and reproduce the code in your extension. If they can’t, your extension may be rejected."
@@ -3509,7 +3509,7 @@ msgstr "Czy używasz któregoś z poniższych w swoim rozszerzeniu?"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:27
 msgid "Code generators or minifiers"
-msgstr ""
+msgstr "Generatory kodu lub minifikatory"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:29
 msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
@@ -3525,7 +3525,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:43
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
-msgstr ""
+msgstr "Nie musisz przesyłać kodu źródłowego i możesz przejść do następnego kroku."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:49
 msgid "You must submit your extension's source code."
@@ -6502,11 +6502,11 @@ msgstr "Przegląd"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:11
 msgid "by Source"
-msgstr "wg źródła"
+msgstr "według źródła"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:14
 msgid "by Medium"
-msgstr ""
+msgstr "według sposobu pobrania"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:17
 msgid "by Content"
@@ -6522,19 +6522,19 @@ msgstr "Dzienni użytkownicy"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:29
 msgid "by Add-on Version"
-msgstr "wg wersji dodatku"
+msgstr "według wersji dodatku"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:32
 msgid "by Application"
-msgstr "wg programu"
+msgstr "według programu"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:35
 msgid "by Language"
-msgstr "wg języka"
+msgstr "według języka"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:38
 msgid "by Platform"
-msgstr "wg platformy"
+msgstr "według platformy"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:41
 msgid "by Country"
@@ -6592,7 +6592,7 @@ msgstr "resetuj przybliżenie"
 
 #: src/olympia/stats/templates/stats/stats.html:55
 msgid "Group by:"
-msgstr "Grupuj wg:"
+msgstr "Grupuj według:"
 
 #: src/olympia/stats/templates/stats/stats.html:57
 msgid "day"
@@ -6654,7 +6654,7 @@ msgstr "Ten panel jest obecnie <b>nieupubliczniony</b>."
 
 #: src/olympia/stats/templates/stats/reports/apps.html:3
 msgid "Application usage by Date"
-msgstr "Użycie programu wg daty"
+msgstr "Użycie programu według daty"
 
 #: src/olympia/stats/templates/stats/reports/campaigns.html:3
 #, fuzzy
@@ -6667,17 +6667,16 @@ msgid "About tracking external sources..."
 msgstr "O śledzeniu zewnętrznych źródeł…"
 
 #: src/olympia/stats/templates/stats/reports/contents.html:3
-#, fuzzy
 msgid "Download contents by Date"
-msgstr "Źródła pobierania wg daty"
+msgstr "Pobrane treści według daty"
 
 #: src/olympia/stats/templates/stats/reports/countries.html:3
 msgid "User countries by Date"
-msgstr "Kraj użytkowników wg daty"
+msgstr "Kraj użytkowników według daty"
 
 #: src/olympia/stats/templates/stats/reports/downloads.html:3
 msgid "Downloaded by Date"
-msgstr "Pobrane wg daty"
+msgstr "Pobrane według daty"
 
 #: src/olympia/stats/templates/stats/reports/locales.html:3
 msgid "User languages by Date"
