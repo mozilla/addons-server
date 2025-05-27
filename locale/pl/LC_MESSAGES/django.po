@@ -3226,18 +3226,16 @@ msgid "Edit details on this add-on's product page"
 msgstr "Edytuj szczegóły na stronie tego dodatku"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:37
-#, fuzzy
 msgid "Upload a new version of this add-on"
-msgstr "Prześlij nową wersję tego dodatku."
+msgstr "Prześlij nową wersję tego dodatku"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:38
 msgid "New Version"
 msgstr "Nowa wersja"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:45
-#, fuzzy
 msgid "Daily statistics on downloads and users"
-msgstr "Dzienne statystyki pobrań i użytkowników."
+msgstr "Dzienne statystyki pobrań i użytkowników"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:46
 msgid "Statistics"
@@ -3936,7 +3934,7 @@ msgstr "Sortuj wg:"
 
 #: src/olympia/devhub/templates/devhub/includes/macros.html:5
 msgid "Some Markdown supported."
-msgstr ""
+msgstr "Obsługiwane są niektóre znaczniki Markdown."
 
 #: src/olympia/devhub/templates/devhub/includes/macros.html:55
 msgid "Remove this application"
@@ -3944,12 +3942,12 @@ msgstr "Usuń ten program"
 
 #. {0} is the maximum number of add-on categories allowed
 #: src/olympia/devhub/templates/devhub/includes/macros.html:66
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Select a category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
 msgstr[0] "Wybierz kategorię dla tego dodatku:"
-msgstr[1] "Wybierz kategorię dla tego dodatku:"
-msgstr[2] "Wybierz kategorię dla tego dodatku:"
+msgstr[1] "Wybierz <b>do {0}</b> kategorii dla tego dodatku:"
+msgstr[2] "Wybierz <b>do {0}</b> kategorii dla tego dodatku:"
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:3
 msgid "End-User License Agreement"
@@ -4108,9 +4106,8 @@ msgid "Connect with thousands of developers and discover more ways you can contr
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/get_involved.html:16
-#, fuzzy
 msgid "Learn more about the developer community"
-msgstr "Dowiedz się więcej o zasadach sprawdzania kodu źródłowego."
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:47 src/olympia/devhub/templates/devhub/versions/list.html:22
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
@@ -4158,14 +4155,12 @@ msgid "User Photo"
 msgstr "Zdjęcie użytkownika"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html:42
-#, fuzzy
 msgid "Profile"
-msgstr "Mój profil"
+msgstr "Profil"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html:46
-#, fuzzy
 msgid "Submit or Manage Extensions"
-msgstr "Prześlij nową wersję"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html:3
 msgid "Customize Firefox"
