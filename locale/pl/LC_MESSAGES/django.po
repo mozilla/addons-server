@@ -1620,7 +1620,7 @@ msgstr ""
 
 #: src/olympia/constants/categories.py:293
 msgid "Download Firefox themes that are interesting, creative, and unique."
-msgstr ""
+msgstr "Pobierz motywy Firefoksa, które są interesujące, kreatywne i wyjątkowe."
 
 #: src/olympia/constants/categories.py:298
 msgid "Scenery"
@@ -1660,7 +1660,7 @@ msgstr "Witryny"
 
 #: src/olympia/constants/categories.py:336
 msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
-msgstr ""
+msgstr "Pobierz motywy Firefoksa, które oddają istotę sieci — urzekające, niezwykłe i wyjątkowe."
 
 #: src/olympia/constants/categories.py:341 src/olympia/constants/categories.py:342
 msgid "General"
@@ -2724,7 +2724,7 @@ msgstr "Przyjęcie zaproszenia umożliwi ci dostęp do edycji dodatku i twoje im
 #: src/olympia/devhub/templates/devhub/addons/invitation.html:22
 #, python-brace-format
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
-msgstr "Kliknij przycisk Akceptuj poniżej, aby potwierdzić dodanie jako autor dodatku {addon_name}."
+msgstr "Kliknij przycisk Akceptuj poniżej, aby potwierdzić dodanie do autorstwa dodatku {addon_name}."
 
 #: src/olympia/devhub/templates/devhub/addons/invitation.html:24 src/olympia/devhub/templates/devhub/includes/agreement.html:34
 msgid "Accept"
@@ -3501,7 +3501,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:15
 msgid "Mozilla’s add-on reviewers need to be able to read and reproduce the code in your extension. If they can’t, your extension may be rejected."
-msgstr ""
+msgstr "Recenzenci dodatków Mozilli muszą być w stanie odczytać i odtworzyć kod w twoim rozszerzeniu. Jeśli nie będą w stanie tego zrobić, twoje rozszerzenie może zostać odrzucone."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:21
 msgid "Do you use any of the following in your extension?"
@@ -6463,7 +6463,7 @@ msgstr "Nie można znaleźć dodatku o identyfikatorze „{}”."
 
 #: src/olympia/signing/views.py:73
 msgid "You do not own this add-on."
-msgstr ""
+msgstr "Nie jesteś właścicielem tego dodatku."
 
 #: src/olympia/signing/views.py:137
 #, python-format
@@ -6632,7 +6632,7 @@ msgstr "Inny przedział…"
 
 #: src/olympia/stats/templates/stats/stats.html:94
 msgid "Sorry, the statistics are temporarily unavailable."
-msgstr ""
+msgstr "Przepraszamy, statystyki są tymczasowo niedostępne."
 
 #: src/olympia/stats/templates/stats/stats.html:100
 msgid "Loading the latest data&hellip;"
@@ -6672,9 +6672,8 @@ msgid "Download contents by Date"
 msgstr "Źródła pobierania wg daty"
 
 #: src/olympia/stats/templates/stats/reports/countries.html:3
-#, fuzzy
 msgid "User countries by Date"
-msgstr "Języki użytkownika wg daty"
+msgstr "Kraj użytkowników wg daty"
 
 #: src/olympia/stats/templates/stats/reports/downloads.html:3
 msgid "Downloaded by Date"
