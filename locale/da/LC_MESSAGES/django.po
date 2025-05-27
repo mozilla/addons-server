@@ -2848,7 +2848,7 @@ msgstr "Tilføjelsens URL"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:59 src/olympia/devhub/templates/devhub/addons/edit/describe.html:88
 msgid "Choose a short, unique URL slug for your add-on."
-msgstr ""
+msgstr "Vælg en kort, unik URL-slug til din tilføjelse."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:69
 msgid "View Listing"
@@ -2990,7 +2990,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:25
 msgid "Select an icon for your add-on:"
-msgstr ""
+msgstr "Vælg et ikon til din tilføjelse:"
 
 #. The size of the icon
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:37
@@ -3021,7 +3021,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:64
 msgid "Upload a Custom Icon..."
-msgstr ""
+msgstr "Upload et selvvalgt ikon..."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:73
 msgid "PNG and JPG supported."
@@ -3041,11 +3041,11 @@ msgstr "Skærmbilleder"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:100
 msgid "Please provide at least one screen shot of your add-on:"
-msgstr ""
+msgstr "Angiv mindst ét skærmbillede af din tilføjelse:"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:125
 msgid "Please provide a caption for this screenshot:"
-msgstr ""
+msgstr "Angiv venligst en billedtekst til dette skærmbillede:"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:141
 msgid "Add a Screenshot..."
