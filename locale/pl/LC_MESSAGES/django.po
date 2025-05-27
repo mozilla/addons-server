@@ -3930,7 +3930,7 @@ msgstr "Wybierz licencję odpowiednią dla praw, których udzielasz do kodu źr�
 
 #: src/olympia/devhub/templates/devhub/includes/listing_header.html:2
 msgid "Sort by:"
-msgstr "Sortuj wg:"
+msgstr "Sortuj według:"
 
 #: src/olympia/devhub/templates/devhub/includes/macros.html:5
 msgid "Some Markdown supported."
@@ -4660,9 +4660,8 @@ msgstr "Zarządzaj otwartymi kartami na schludnym pasku bocznym."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:122 src/olympia/discovery/strings.jinja2:875
-#, fuzzy
 msgid "Avoid sneaky trackers and restrictions. Disguise your navigation by cloaking the identity of your browser and operating system."
-msgstr "Ukryj ślady swojej nawigacji, kamuflując tożsamość przeglądarki i systemu operacyjnego."
+msgstr "Unikaj podstępnych elementów śledzących i ograniczeń. Ukryj swoją nawigację, maskując tożsamość swojej przeglądarki i systemu operacyjnego."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4696,9 +4695,8 @@ msgstr "Odtwarzaj filmy domyślnie w najwyższej jakości, wyłączaj adnotacje 
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:140
-#, fuzzy
 msgid "Track the trackers. Get a glimpse into who's tracking you with just a click."
-msgstr "Uzyskaj wgląd jednym kliknięciem w usługi, które Cię śledzą."
+msgstr "Śledź elementy śledzące. Zobacz, kto cię śledzi jednym kliknięciem."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:143
@@ -5254,9 +5252,8 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:443
-#, fuzzy
 msgid "Find an interesting image on the web? Want to learn more about it?"
-msgstr "Widzisz interesujący obraz w Internecie? Użyj dodatku TinEye, aby zbadać jego pochodzenie."
+msgstr "Widzisz ciekawy obraz w sieci? Chcesz dowiedzieć się o nim więcej?"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:446
@@ -5946,9 +5943,8 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1064
-#, fuzzy
 msgid "Social streaming"
-msgstr "Sieci społecznościowe"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1066
@@ -5980,7 +5976,7 @@ msgstr "Więcej rozszerzeń oznaczonych etykietą „{tag}”"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1079
 msgid "Elite ad blockers"
-msgstr ""
+msgstr "Elitarne blokery reklam"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1081
@@ -6463,7 +6459,7 @@ msgstr "Nie można znaleźć dodatku o identyfikatorze „{}”."
 
 #: src/olympia/signing/views.py:73
 msgid "You do not own this add-on."
-msgstr "Nie jesteś właścicielem tego dodatku."
+msgstr "Nie należysz do właścicieli tego dodatku."
 
 #: src/olympia/signing/views.py:137
 #, python-format
@@ -6680,16 +6676,15 @@ msgstr "Pobrane według daty"
 
 #: src/olympia/stats/templates/stats/reports/locales.html:3
 msgid "User languages by Date"
-msgstr "Języki użytkownika wg daty"
+msgstr "Języki użytkowników według daty"
 
 #: src/olympia/stats/templates/stats/reports/mediums.html:3
-#, fuzzy
 msgid "Download mediums by Date"
-msgstr "Pobrane wg daty"
+msgstr "Sposoby pobrania według daty"
 
 #: src/olympia/stats/templates/stats/reports/os.html:3
 msgid "Platform usage by Date"
-msgstr "Użycie platformy wg daty"
+msgstr "Użycie platformy według daty"
 
 #: src/olympia/stats/templates/stats/reports/overview.html:9
 #, fuzzy, python-brace-format
@@ -6731,15 +6726,15 @@ msgstr "Więcej platform&hellip;"
 
 #: src/olympia/stats/templates/stats/reports/sources.html:3
 msgid "Download sources by Date"
-msgstr "Źródła pobierania wg daty"
+msgstr "Źródła pobierania według daty"
 
 #: src/olympia/stats/templates/stats/reports/statuses.html:3
 msgid "Add-on Status by Date"
-msgstr "Status dodatku wg daty"
+msgstr "Status dodatku według daty"
 
 #: src/olympia/stats/templates/stats/reports/usage.html:3
 msgid "Daily Users by Date"
-msgstr "Dzienni użytkownicy wg daty"
+msgstr "Dzienni użytkownicy według daty"
 
 #: src/olympia/stats/templates/stats/reports/usage.html:6
 msgid "What are daily users?"
@@ -6751,11 +6746,11 @@ msgid ""
 "down by add-on version, operating system, add-on status, application, and locale. </p>"
 msgstr ""
 "<h2>Kim są dzienni użytkownicy?</h2> <p>Dodatki pobrane z tej strony sprawdzają dostępność aktualizacji raz dziennie. Całkowita liczba aktualizacji stanowi liczbę aktywnych dziennych użytkowników. "
-"Liczba dziennych użytkowników może być podzielona wg wersji dodatku, systemu operacyjnego, statusu dodatku, programu i języka.</p>"
+"Liczba dziennych użytkowników może być podzielona według wersji dodatku, systemu operacyjnego, statusu dodatku, programu i języka.</p>"
 
 #: src/olympia/stats/templates/stats/reports/versions.html:3
 msgid "Application versions by Date"
-msgstr "Wersje programu wg daty"
+msgstr "Wersje programu według daty"
 
 #: src/olympia/templates/base.html:9
 msgid "Mozilla Add-ons"
