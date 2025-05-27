@@ -1354,7 +1354,7 @@ msgstr "Rozszerzenie"
 
 #: src/olympia/constants/base.py:130
 msgid "Deprecated Complete Theme"
-msgstr ""
+msgstr "Wycofany kompletny motyw"
 
 #: src/olympia/constants/base.py:131
 msgid "Dictionary"
@@ -1362,7 +1362,7 @@ msgstr "Słownik"
 
 #: src/olympia/constants/base.py:132
 msgid "Deprecated Search Engine"
-msgstr ""
+msgstr "Wycofana wyszukiwarka"
 
 #: src/olympia/constants/base.py:133
 msgid "Language Pack"
@@ -1370,15 +1370,15 @@ msgstr "Pakiet językowy"
 
 #: src/olympia/constants/base.py:134
 msgid "Deprecated Language Pack (Add-on)"
-msgstr ""
+msgstr "Wycofany pakiet językowy (dodatek)"
 
 #: src/olympia/constants/base.py:135
 msgid "Deprecated Plugin"
-msgstr ""
+msgstr "Wycofana wtyczka"
 
 #: src/olympia/constants/base.py:136
 msgid "Deprecated LWT"
-msgstr ""
+msgstr "Wycofane LWT"
 
 #: src/olympia/constants/base.py:137 src/olympia/constants/reviewers.py:70
 msgid "Theme"
@@ -1386,7 +1386,7 @@ msgstr "Motyw"
 
 #: src/olympia/constants/base.py:138
 msgid "Deprecated Site Permission"
-msgstr ""
+msgstr "Wycofane uprawnienia strony"
 
 #: src/olympia/constants/base.py:143 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:10
 msgid "Extensions"
@@ -1394,7 +1394,7 @@ msgstr "Rozszerzenia"
 
 #: src/olympia/constants/base.py:144
 msgid "Deprecated Complete Themes"
-msgstr ""
+msgstr "Wycofane kompletne motywy"
 
 #: src/olympia/constants/base.py:145
 msgid "Dictionaries"
@@ -1402,7 +1402,7 @@ msgstr "Słowniki"
 
 #: src/olympia/constants/base.py:146
 msgid "Deprecated Search Tools"
-msgstr ""
+msgstr "Wycofane narzędzia wyszukiwania"
 
 #: src/olympia/constants/base.py:147
 msgid "Language Packs"
@@ -1410,15 +1410,15 @@ msgstr "Pakiety językowe"
 
 #: src/olympia/constants/base.py:148
 msgid "Deprecated Language Packs (Add-on)"
-msgstr ""
+msgstr "Wycofane pakiety językowe (dodatek)"
 
 #: src/olympia/constants/base.py:149
 msgid "Deprecated Plugins"
-msgstr ""
+msgstr "Wycofane wtyczki"
 
 #: src/olympia/constants/base.py:150
 msgid "Deprecated LWTs"
-msgstr ""
+msgstr "Wycofane LWT"
 
 #: src/olympia/constants/base.py:151 src/olympia/devhub/templates/devhub/nav.html:43 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:11
 msgid "Themes"
@@ -1426,7 +1426,7 @@ msgstr "Motywy"
 
 #: src/olympia/constants/base.py:152
 msgid "Deprecated Site Permissions"
-msgstr ""
+msgstr "Wycofane uprawnienia strony"
 
 #: src/olympia/constants/categories.py:68
 msgid "Alerts & Updates"
@@ -2139,7 +2139,7 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py:1521
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr ""
+msgstr "Link potwierdzający zostanie wysłany na twój adres e-mail. Po potwierdzeniu swoje klucze API znajdziesz na tej stronie."
 
 #: src/olympia/devhub/forms.py:1538
 msgid "You don't have any API credentials."
@@ -2147,7 +2147,7 @@ msgstr "Nie masz poświadczeń API."
 
 #: src/olympia/devhub/forms.py:1549
 msgid "Something went wrong, please contact developer support."
-msgstr ""
+msgstr "Wystąpił problem, skontaktuj się z pomocą techniczną dla deweloperów."
 
 #: src/olympia/devhub/tasks.py:178
 msgid "Invalid or corrupt add-on file."
@@ -2242,11 +2242,11 @@ msgstr "Nazwa adresu URL była niepoprawna. Dodatek nie został usunięty."
 
 #: src/olympia/devhub/views.py:462
 msgid "Invitation accepted."
-msgstr ""
+msgstr "Zaproszenie przyjęte."
 
 #: src/olympia/devhub/views.py:465
 msgid "Invitation declined."
-msgstr ""
+msgstr "Zaproszenie odrzucone."
 
 #: src/olympia/devhub/views.py:533
 #, python-brace-format
@@ -6013,9 +6013,8 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1081
-#, fuzzy
 msgid "See more ad blocker staff picks"
-msgstr "Przejrzyj wszystkie rozszerzenia"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1084
@@ -6024,9 +6023,8 @@ msgstr "Personalizowanie YouTube"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1086
-#, fuzzy
 msgid "See more YouTube extension staff picks"
-msgstr "wg wersji dodatku"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1089
@@ -6076,9 +6074,8 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1111
-#, fuzzy
 msgid "See more creativity staff picks"
-msgstr "wg wersji dodatku"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1114
