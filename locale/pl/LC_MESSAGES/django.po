@@ -798,9 +798,8 @@ msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Nieprawidłowy pk lub ciąg słów „%s” — obiekt nie istnieje."
 
 #: src/olympia/api/models.py:148
-#, fuzzy
 msgid "Confirmation for developer API keys"
-msgstr "Więcej informacji o licencji Creative Commons"
+msgstr ""
 
 #: src/olympia/api/throttling.py:113
 msgid "You have submitted this form too many times recently. Please try again after some time."
@@ -1167,23 +1166,22 @@ msgid "{addon} was migrated from a lightweight theme."
 msgstr "Dodatek {addon} został zmigrowany z lekkiego motywu."
 
 #: src/olympia/constants/activity.py:828
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{addon} {version} content reject scheduled."
-msgstr "Odrzucono zawartość dodatku {addon} {version}."
+msgstr ""
 
 #: src/olympia/constants/activity.py:829
 msgid "Content reject scheduled"
 msgstr "Zaplanowano odrzucenie treści"
 
 #: src/olympia/constants/activity.py:841
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{addon} {version} reject scheduled."
-msgstr "Dodatek {addon} {version} został odrzucony."
+msgstr ""
 
 #: src/olympia/constants/activity.py:842
-#, fuzzy
 msgid "Rejection scheduled"
-msgstr "Termin prośby o informacje"
+msgstr ""
 
 #: src/olympia/constants/activity.py:853
 #, python-brace-format
@@ -1566,7 +1564,7 @@ msgstr "Okolicznościowe"
 
 #: src/olympia/constants/categories.py:220
 msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
-msgstr ""
+msgstr "Pobierz motywy Firefoksa dla niszowych zainteresowań i tematów. Ta kategoria obejmuje motywy sportowe, święta, cele filantropijne, narodowości, i wiele innych."
 
 #: src/olympia/constants/categories.py:227
 msgid "Fashion"
@@ -1877,9 +1875,8 @@ msgid "Inconclusive"
 msgstr "Niejednoznaczne"
 
 #: src/olympia/constants/scanners.py:56
-#, fuzzy
 msgid "New"
-msgstr "Nowsze"
+msgstr ""
 
 #: src/olympia/constants/scanners.py:57
 msgid "Running"
@@ -2282,16 +2279,16 @@ msgstr "Obraz musi mieć dokładnie {0} pikseli szerokości i {1} pikseli wysoko
 
 #: src/olympia/devhub/views.py:1048
 msgid "Image dimensions must be in the ratio 4:3."
-msgstr ""
+msgstr "Wymiary obrazu muszą być w proporcjach 4:3."
 
 #: src/olympia/devhub/views.py:1056
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Icon must be at least {0} pixels wide and tall."
-msgstr "Obraz musi mieć dokładnie {0} pikseli szerokości i {1} pikseli wysokości."
+msgstr "Ikona musi mieć przynajmniej {0} pikseli szerokości i wysokości."
 
 #: src/olympia/devhub/views.py:1061
 msgid "Icon must be square (same width and height)."
-msgstr ""
+msgstr "Ikona musi być kwadratowa (taka sama szerokość i wysokość)."
 
 #: src/olympia/devhub/views.py:1067
 msgid "There was an error uploading your preview."
@@ -2436,7 +2433,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/base.html:44
 msgid "Take our quick survey"
-msgstr ""
+msgstr "Weź udział w naszej krótkiej ankiecie"
 
 #. {0} is an application, like Firefox.
 #: src/olympia/devhub/templates/devhub/index.html:21 src/olympia/templates/base.html:17
@@ -2458,9 +2455,8 @@ msgid "more add-ons..."
 msgstr "więcej dodatków…"
 
 #: src/olympia/devhub/templates/devhub/nav.html:36 src/olympia/devhub/templates/devhub/new-landing/components/navigation.html:21 src/olympia/templates/photon-footer.html:13
-#, fuzzy
 msgid "Extension Workshop"
-msgstr "Rozszerzenia"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/nav.html:38 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:7
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html:24
@@ -2472,9 +2468,8 @@ msgid "Extension Development"
 msgstr "Tworzenie rozszerzeń"
 
 #: src/olympia/devhub/templates/devhub/nav.html:45 src/olympia/templates/photon-footer.html:15
-#, fuzzy
 msgid "Developer Policies"
-msgstr "Aktualności"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/nav.html:52 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:19
 msgid "Add-on Validator"
@@ -2627,7 +2622,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/verify_email.html:101
 #, python-format
 msgid "If you encounter issues, please see our <a %(a_attrs)s>troubleshooting suggestions</a> on Firefox Extension Workshop."
-msgstr ""
+msgstr "Jeśli napotkasz problemy, zapoznaj się z naszymi <a %(a_attrs)s>sugestiami dotyczącymi rozwiązywania problemów</a> w serwisie Firefox Extension Workshop."
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html:4 src/olympia/devhub/templates/devhub/addons/activity.html:17
 msgid "Recent Activity for My Add-ons"
@@ -3500,9 +3495,8 @@ msgid "Go to My Submissions"
 msgstr "Przejdź do sekcji Moje zgłoszenia"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:3
-#, fuzzy
 msgid "Source Code Upload"
-msgstr "Kod źródłowy"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:11
 msgid "Do You Need to Submit Source Code?"
@@ -3541,9 +3535,8 @@ msgid "You must submit your extension's source code."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:51
-#, fuzzy
 msgid "Your source code must include:"
-msgstr "Przesłano kod źródłowy"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:56
 msgid "Step-by-step build instructions to create an exact copy of the add-on code, in a README file in your source code or in the reviewer notes on the next page."
@@ -3609,9 +3602,8 @@ msgid "The maximum file size accepted is %(max_size)s. If your add-on is larger 
 msgstr "Maksymalny dopuszczalny rozmiar pliku to %(max_size)s. Jeśli Twój dodatek jest większy niż %(max_size)s, nie przejdzie walidacji."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:59
-#, fuzzy
 msgid "Which applications is this version compatible with?"
-msgstr "Z którymi systemami ten plik jest kompatybilny?"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:66
 msgid "Administrative overrides"
@@ -3891,9 +3883,8 @@ msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "lub <a href=\"{0}\">Anuluj</a>"
 
 #: src/olympia/devhub/templates/devhub/includes/agreement.html:42
-#, fuzzy
 msgid "More information on Developer Accounts"
-msgstr "Więcej informacji o licencji Creative Commons"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/android_compatibility_modal.html:3
 msgid "Firefox for Android compatibility"
@@ -3967,9 +3958,8 @@ msgid "End-User License Agreement"
 msgstr "Licencja użytkownika"
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:4
-#, fuzzy
 msgid "Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
-msgstr "Wybierz licencję odpowiednią dla praw, których udzielasz do kodu źródłowego.Dotyczy tylko wyświetlanych dodatków."
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:21
 msgid "Privacy Policy"
@@ -5958,9 +5948,8 @@ msgstr "Silne menedżery haseł"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1056
-#, fuzzy
 msgid "See more password manager staff picks"
-msgstr "Przejrzyj wszystkie rozszerzenia"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1059
@@ -5969,9 +5958,8 @@ msgstr "Narzędzia do tłumaczenia"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1061
-#, fuzzy
 msgid "See more translation tool staff picks"
-msgstr "wg wersji dodatku"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1064
@@ -5981,9 +5969,8 @@ msgstr "Sieci społecznościowe"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1066
-#, fuzzy
 msgid "See more social streaming staff picks"
-msgstr "Przejrzyj wszystkie rozszerzenia"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1069

@@ -1958,7 +1958,7 @@ msgstr "Odredi korisnički ugovor o licenci za svoj dodatak:"
 
 #: src/olympia/devhub/forms.py:684
 msgid "This add-on has a Privacy Policy"
-msgstr "Ovaj dodatak sadrži pravila o privatnosti"
+msgstr "Ovaj dodatak ima politiku privatnosti"
 
 #: src/olympia/devhub/forms.py:689
 msgid "Please specify your add-on's Privacy Policy:"
@@ -3313,7 +3313,7 @@ msgstr "Odaberi licencu, koja je primjerena za prava koja daješ."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:194
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
-msgstr "Ako tvoj dodatak prenosi bilo koje podatke s računala korisnika, moraš navesti pravila o privatnosti, koja objašnjavaju, koji se podaci šalju i kako se koriste."
+msgstr "Ako tvoj dodatak prenosi bilo koje podatke s računala korisnika, moraš navesti politiku privatnosti, koja objašnjava, koji se podaci šalju i kako se koriste."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:207 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:21
 msgid "Notes to Reviewer:"
@@ -3896,11 +3896,13 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:21
 msgid "Privacy Policy"
-msgstr "Zaštita Privatnosti"
+msgstr "Politika privatnosti"
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:22
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
 msgstr ""
+"Ako tvoj dodatak prenosi bilo koje podatke s računala korisnika, moraš navesti politiku privatnosti, koja objašnjava, koji se podaci šalju i kako se koriste. To je relevantno samo za navedene "
+"dodatke."
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html:3
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code other than known libraries, upload its sources for review."
