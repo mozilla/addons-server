@@ -2281,9 +2281,8 @@ msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr "Obraz musi mieć dokładnie {0} pikseli szerokości i {1} pikseli wysokości."
 
 #: src/olympia/devhub/views.py:1048
-#, fuzzy
 msgid "Image dimensions must be in the ratio 4:3."
-msgstr "Obrazy muszą być w formacie PNG lub JPG."
+msgstr ""
 
 #: src/olympia/devhub/views.py:1056
 #, fuzzy, python-brace-format
@@ -3436,7 +3435,7 @@ msgstr "Aby rozpocząć, wybierz sposób dystrybucji tej wersji."
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html:19
 #, python-format
 msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing</a> on Firefox Extension Workshop."
-msgstr ""
+msgstr "Więcej informacji na temat tych opcji można znaleźć w artykule <a %(a_attrs)s>Dystrybucja i podpisywanie dodatków</a> w serwisie Firefox Extension Workshop."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html:24
 #, python-format
@@ -3475,6 +3474,8 @@ msgstr "Strona dodatku będzie skuteczniejsza, jeśli dodasz szczegółowy opis.
 msgid ""
 "You can attract users to your extension by adding a detailed description and screenshots to your listing. Get help <a %(a_attrs)s>creating an appealing listing</a> on Firefox Extension Workshop."
 msgstr ""
+"Możesz przyciągnąć użytkowników do swojego rozszerzenia, dodając szczegółowy opis i zrzuty ekranu do swojej oferty. Uzyskaj pomoc <a %(a_attrs)s>w tworzeniu atrakcyjnego wpisu</a> w serwisie Firefox"
+" Extension Workshop."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:43
 msgid "Manage Listing"
@@ -5991,9 +5992,8 @@ msgstr "Menedżery kart"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1071
-#, fuzzy
 msgid "See more tab management staff picks"
-msgstr "Przejrzyj wszystkie rozszerzenia"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1074
@@ -6064,9 +6064,8 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1106
-#, fuzzy
 msgid "See more Steam staff picks"
-msgstr "Przejrzyj wszystkie rozszerzenia"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1109
@@ -6091,7 +6090,7 @@ msgstr ""
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1119
 msgid "Top download managers"
-msgstr ""
+msgstr "Najpopularniejsze menedżery pobierania"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1121
@@ -6101,7 +6100,7 @@ msgstr ""
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1124
 msgid "Accessibility extensions"
-msgstr ""
+msgstr "Rozszerzenia dostępności"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1126
