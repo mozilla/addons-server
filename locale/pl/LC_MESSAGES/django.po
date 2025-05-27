@@ -1501,6 +1501,8 @@ msgstr "Prywatność i bezpieczeństwo"
 #: src/olympia/constants/categories.py:144
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
 msgstr ""
+"Pobierz rozszerzenia Firefoksa do prywatnego i bezpiecznego przeglądania. Ta kategoria obejmuje rozszerzenia blokujące irytujące reklamy, zapobiegające śledzeniu, zarządzające przekierowaniami i nie"
+" tylko."
 
 #: src/olympia/constants/categories.py:152
 msgid "Search Tools"
@@ -1516,7 +1518,7 @@ msgstr "Zakupy"
 
 #: src/olympia/constants/categories.py:163
 msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
-msgstr ""
+msgstr "Pobierz rozszerzenia do Firefoksa, które pomogą Ci w zakupach online, dzięki narzędziom do wyszukiwania kuponów, ofert, analizowania recenzji i nie tylko."
 
 #: src/olympia/constants/categories.py:170
 msgid "Social & Communication"
@@ -1541,6 +1543,8 @@ msgstr "Narzędzia twórców witryn"
 #: src/olympia/constants/categories.py:190
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr ""
+"Pobierz rozszerzenia Firefoksa, które oferują narzędzia do tworzenia stron internetowych. Kategoria ta obejmuje rozszerzenia dla GitHub, przełączanie agenta użytkownika, zarządzanie ciasteczkami i "
+"inne."
 
 #: src/olympia/constants/categories.py:198 src/olympia/constants/categories.py:290 src/olympia/devhub/forms.py:592
 msgid "Other"
@@ -1548,7 +1552,7 @@ msgstr "Inny"
 
 #: src/olympia/constants/categories.py:201
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
-msgstr ""
+msgstr "Pobierz rozszerzenia do Firefoksa, które potrafią być nieprzewidywalne i kreatywne, a jednocześnie przydatne do nietypowych zadań."
 
 #: src/olympia/constants/categories.py:209
 msgid "Abstract"
@@ -1608,7 +1612,7 @@ msgstr "Muzyka"
 
 #: src/olympia/constants/categories.py:273
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
-msgstr ""
+msgstr "Pobierz motywy Firefoksa dla zainteresowań muzycznych i artystów. Ta kategoria obejmuje popularne zespoły, takie jak Nirvana i BTS, instrumenty, teledyski i wiele więcej."
 
 #: src/olympia/constants/categories.py:281
 msgid "Nature"
@@ -1616,7 +1620,7 @@ msgstr "Natura"
 
 #: src/olympia/constants/categories.py:283
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
-msgstr ""
+msgstr "Pobierz motywy Firefoksa ze zwierzętami i naturalnymi krajobrazami. Ta kategoria obejmuje kwiaty, zachody słońca, lisy, pory roku, planety, kocięta, ptaki i wiele innych."
 
 #: src/olympia/constants/categories.py:293
 msgid "Download Firefox themes that are interesting, creative, and unique."
@@ -1628,7 +1632,7 @@ msgstr "Krajobrazy"
 
 #: src/olympia/constants/categories.py:300
 msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
-msgstr ""
+msgstr "Pobierz motywy Firefoksa, które przedstawiają środowisko i świat przyrody. Ta kategoria obejmuje zachody słońca, plaże, ilustracje, panoramy miast i wiele więcej."
 
 #: src/olympia/constants/categories.py:307
 msgid "Seasonal"
@@ -1636,7 +1640,7 @@ msgstr "Sezonowe"
 
 #: src/olympia/constants/categories.py:309
 msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
-msgstr ""
+msgstr "Pobierz motywy Firefoksa na wszystkie cztery pory roku — jesień, zimę, wiosnę i lato. Jesienne liście, ośnieżone szczyty górskie, słoneczne letnie dni i wiosenne kwiaty."
 
 #: src/olympia/constants/categories.py:316
 msgid "Solid"
@@ -1652,7 +1656,7 @@ msgstr "Sportowe"
 
 #: src/olympia/constants/categories.py:327
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
-msgstr ""
+msgstr "Pobierz motywy Firefoksa, które przedstawiają różne sporty. Ta kategoria obejmuje flagi państw, drużyny sportowe, piłkę nożną, hokej i wiele innych."
 
 #: src/olympia/constants/categories.py:334
 msgid "Websites"
@@ -1946,7 +1950,7 @@ msgstr "Kategoria „Ogólne” nie może być łączona z innymi kategoriami."
 #: src/olympia/devhub/forms.py:272
 #, python-format
 msgid "URL domain must be one of [%s]."
-msgstr ""
+msgstr "Domena URL musi być jedną z [%s]."
 
 #: src/olympia/devhub/forms.py:288
 #, python-brace-format
