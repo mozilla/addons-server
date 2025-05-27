@@ -624,15 +624,15 @@ msgstr "Filhentningskilder fra {0} til {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:195
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Download Mediums, last {0} days"
-msgstr "Filhentninger, de seneste {0} dage"
+msgstr "Filhentningsmedier, de seneste {0} dage"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/stats/csv_keys.js:197
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Download Mediums from {0} to {1}"
-msgstr "Filhentninger fra {0} til {1}"
+msgstr "Filhentningsmedier fra {0} til {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:201
@@ -648,15 +648,15 @@ msgstr "Filhentninger fra {0} til {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:207
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Download Campaigns, last {0} days"
-msgstr "Filhentninger, de seneste {0} dage"
+msgstr "Filhentningskampagner, de seneste {0} dage"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/stats/csv_keys.js:209
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Download Campaigns from {0} to {1}"
-msgstr "Filhentninger fra {0} til {1}"
+msgstr "Filhentningskampagner fra {0} til {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:213

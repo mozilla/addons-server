@@ -374,7 +374,7 @@ msgstr ""
 #: src/olympia/addons/serializers.py:536
 #, python-brace-format
 msgid "Version {version_string} was uploaded before and deleted."
-msgstr ""
+msgstr "Version {version_string} blev uploadet tidligere og slettet."
 
 #: src/olympia/addons/serializers.py:539
 #, python-brace-format
@@ -471,7 +471,7 @@ msgstr ""
 
 #: src/olympia/addons/validators.py:332
 msgid "This endpoint is not valid for Themes."
-msgstr ""
+msgstr "Dette slutpunkt er ikke gyldigt for temaer."
 
 #: src/olympia/addons/templates/addons/includes/dashboard_tabs.html:4 src/olympia/devhub/templates/devhub/nav.html:15 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:19
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html:16
@@ -590,6 +590,8 @@ msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
 "browser is not being hijacked by third parties."
 msgstr ""
+"Du får vist denne meddelelse, fordi dette HTTPS-websted kræver, at en 'Referer header' sendes af din webbrowser, men ingen blev sendt. Denne header er påkrævet af sikkerhedsmæssige årsager for at "
+"sikre, at din browser ikke bliver kapret af tredjeparter."
 
 #: src/olympia/amo/templates/amo/403.html:26
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
