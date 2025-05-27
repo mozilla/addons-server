@@ -1775,7 +1775,7 @@ msgstr ""
 
 #: src/olympia/constants/promoted.py:159
 msgid "Partner"
-msgstr ""
+msgstr "Partner"
 
 #: src/olympia/constants/reviewers.py:23
 msgid "No Reputation"
@@ -1902,7 +1902,7 @@ msgstr "Open Search-tilføjelser er {blog_link_open}ikke længere understøttet 
 #: src/olympia/devhub/file_validation_annotations.py:105
 #, python-brace-format
 msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr ""
+msgstr "Manifest V3 understøttes i øjeblikket ikke til upload. {start_href}Læs mere om supporttidslinjen{end_href}."
 
 #: src/olympia/devhub/forms.py:85
 msgid "This slug is already in use. Please choose another."
@@ -1923,7 +1923,7 @@ msgstr[1] "Du kan kun have {0} kategorier."
 
 #: src/olympia/devhub/forms.py:206
 msgid "The miscellaneous category cannot be combined with additional categories."
-msgstr ""
+msgstr "Diverse-kategorien kan ikke kombineres med andre kategorier."
 
 #: src/olympia/devhub/forms.py:272
 #, python-format
@@ -2030,7 +2030,7 @@ msgstr ""
 #: src/olympia/devhub/forms.py:1108 src/olympia/signing/views.py:156
 #, python-brace-format
 msgid "Version {version} was uploaded before and deleted."
-msgstr ""
+msgstr "Version {version} blev uploadet tidligere og slettet."
 
 #: src/olympia/devhub/forms.py:1117 src/olympia/devhub/forms.py:1123 src/olympia/signing/views.py:158
 #, python-brace-format
@@ -2082,7 +2082,7 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py:1435
 msgid "Confirm email address"
-msgstr ""
+msgstr "Bekræft mailadresse"
 
 #: src/olympia/devhub/forms.py:1436
 msgid "Generate new credentials"
@@ -2130,7 +2130,7 @@ msgstr ""
 
 #: src/olympia/devhub/tasks.py:178
 msgid "Invalid or corrupt add-on file."
-msgstr ""
+msgstr "Ugyldig eller ødelagt tilføjelsesfil."
 
 #: src/olympia/devhub/tasks.py:370
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
@@ -2201,7 +2201,7 @@ msgstr "Brugeranmeldelser"
 
 #: src/olympia/devhub/views.py:371
 msgid "Add-on cannot be deleted. Disable this add-on instead."
-msgstr ""
+msgstr "Tilføjelse kan ikke slettes. Deaktiver denne tilføjelse i stedet."
 
 #: src/olympia/devhub/views.py:382
 msgid "Theme deleted."
@@ -2406,11 +2406,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/base.html:43
 msgid "Help us make things better!"
-msgstr ""
+msgstr "Hjælp os med at gøre ting bedre!"
 
 #: src/olympia/devhub/templates/devhub/base.html:44
 msgid "Take our quick survey"
-msgstr ""
+msgstr "Deltag i en hurtig undersøgelse"
 
 #. {0} is an application, like Firefox.
 #: src/olympia/devhub/templates/devhub/index.html:21 src/olympia/templates/base.html:17
@@ -2487,7 +2487,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/suppressed_email.html:8
 msgid "Learn more"
-msgstr ""
+msgstr "Læs mere"
 
 #: src/olympia/devhub/templates/devhub/validate_addon.html:12
 msgid "Use the field below to upload your add-on package."
@@ -2517,7 +2517,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:3
 msgid "Email Address Verification"
-msgstr ""
+msgstr "Bekræftelse af mailadresse"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:63 src/olympia/devhub/templates/devhub/includes/addon_details.html:90 src/olympia/devhub/templates/devhub/verify_email.html:10
 msgid "Status:"
@@ -2525,27 +2525,27 @@ msgstr "Status:"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:12
 msgid "Your email address is verified."
-msgstr ""
+msgstr "Din mailadresse er bekræftet."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:16
 msgid "Please verify your email."
-msgstr ""
+msgstr "Bekræft venligst din mailadresse."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:20
 msgid "Could not verify email address. The verification link has expired."
-msgstr ""
+msgstr "Kunne ikke bekræfte mailadressen. Bekræftelseslinket er udløbet."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:24
 msgid "We are sending an email to you, please be patient... <div class=\"loader\"></div> The page will automatically refresh."
-msgstr ""
+msgstr "Vi sender en mail til dig, vær tålmodig... <div class=\"loader\"></div> Siden vil automatisk blive opdateret."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:30
 msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again later."
-msgstr ""
+msgstr "Det tager længere tid end forventet at bekræfte leveringen af din bekræftelsesmail. Prøv igen senere."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:34
 msgid "Success!"
-msgstr ""
+msgstr "Fuldført!"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:35
 #, python-format
@@ -2553,6 +2553,7 @@ msgid ""
 "An email with a confirmation link has been sent to your email address: %(email)s. Please click the link to confirm your email address. If you did not receive the email, please check your spam "
 "folder."
 msgstr ""
+"En mail med et bekræftelseslink er blevet sendt til din mailadresse: %(email)s. Klik på linket for at bekræfte din mailadresse. Hvis du ikke har modtaget mailen, bedes du tjekke din spam-mappe."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:39
 #, python-format
@@ -2560,10 +2561,12 @@ msgid ""
 "The provided code is invalid, unauthorized, expired or incomplete. Please use the link in the email sent to your email address %(email)s. If the code is still not working, please request a new "
 "email."
 msgstr ""
+"Den angivne kode er ugyldig, uautoriseret, udløbet eller ukomplet. Brug venligst linket i den mail, der er sendt til din mailadresse %(email)s. Hvis koden stadig ikke virker, bedes du anmode om en "
+"ny mail."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:49
 msgid "<strong>Email history:</strong> The table below shows all emails we have attempted to send to you in the last 2 days."
-msgstr ""
+msgstr "<strong>Mail-historik:</strong> Tabellen nedenfor viser alle mails, vi har forsøgt at sende til dig i de sidste 2 dage."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:57
 msgid "Date"
@@ -2588,7 +2591,7 @@ msgstr "Status"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:87
 msgid "We have not found any email records for you in the last 2 days."
-msgstr ""
+msgstr "Vi har ikke fundet nogen mail-data for dig i de sidste 2 dage."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:91
 msgid "Refresh results"
