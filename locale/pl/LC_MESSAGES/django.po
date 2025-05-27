@@ -2716,7 +2716,7 @@ msgstr "Zaproszenie do autorstwa dodatku {addon_name}"
 #: src/olympia/devhub/templates/devhub/addons/invitation.html:18
 #, python-brace-format
 msgid "You have been invited to become an author of {addon_name}."
-msgstr "Zostałeś zaproszony do zostania autorem dodatku {addon_name}."
+msgstr "Otrzymano zaproszenie dodania do autorstwa dodatku {addon_name}."
 
 #: src/olympia/devhub/templates/devhub/addons/invitation.html:21
 msgid "Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website. "
