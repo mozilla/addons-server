@@ -4005,13 +4005,12 @@ msgid "Twitter"
 msgstr "Twitter"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:10
-#, fuzzy
 msgid "For developers"
-msgstr "Autor"
+msgstr "Dla programistów"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:11
 msgid "For end users"
-msgstr ""
+msgstr "Dla użytkowników"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:17
 msgid "Matrix"
@@ -4030,7 +4029,6 @@ msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:32 src/olympia/devhub/templates/devhub/new-landing/components/connect.html:33
-#, fuzzy
 msgid "Email Address"
 msgstr "Adres e-mail"
 
@@ -4040,9 +4038,8 @@ msgid "I’m okay with Mozilla handling my info as explained in this %(link_open
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:48
-#, fuzzy
 msgid "Sign Up"
-msgstr "Wyloguj się"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:52
 msgid "Thanks!"
@@ -4057,9 +4054,8 @@ msgid "Resources"
 msgstr "Zasoby"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:9
-#, fuzzy
 msgid "WebExtensions API"
-msgstr "WebExtension"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:18
 msgid "Web-Ext: build & test extensions"
@@ -4178,9 +4174,8 @@ msgid "Customize Firefox"
 msgstr "Dostosuj Firefoksa"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html:11
-#, fuzzy
 msgid "Learn how to make an extension"
-msgstr "Dowiedz się, jak utworzyć dodatek"
+msgstr "Dowiedz się, jak utworzyć rozszerzenie"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/submit_or_manage_extension.html:4
 msgid "Ready to submit or manage your extension?"
