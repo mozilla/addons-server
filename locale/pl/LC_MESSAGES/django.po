@@ -1944,9 +1944,9 @@ msgid "The miscellaneous category cannot be combined with additional categories.
 msgstr "Kategoria „Ogólne” nie może być łączona z innymi kategoriami."
 
 #: src/olympia/devhub/forms.py:272
-#, fuzzy, python-format
+#, python-format
 msgid "URL domain must be one of [%s]."
-msgstr "Domena adresu URL musi być typu [%s] lub być poddomeną."
+msgstr ""
 
 #: src/olympia/devhub/forms.py:288
 #, python-brace-format
@@ -2249,7 +2249,7 @@ msgstr "Zaproszenie odrzucone."
 #: src/olympia/devhub/views.py:533
 #, python-brace-format
 msgid "A confirmation email has been sent to {email}"
-msgstr ""
+msgstr "Wiadomość z potwierdzeniem została wysłana na adres {email}"
 
 #: src/olympia/devhub/views.py:550 src/olympia/devhub/views.py:1157
 msgid "Changes successfully saved."
@@ -2273,9 +2273,9 @@ msgid "Icons cannot be animated."
 msgstr "Nie można używać animowanych ikon."
 
 #: src/olympia/devhub/views.py:1044
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
-msgstr "Obraz musi mieć dokładnie {0} pikseli szerokości i {1} pikseli wysokości."
+msgstr "Obraz musi mieć przynajmniej {0} pikseli szerokości i {1} pikseli wysokości."
 
 #: src/olympia/devhub/views.py:1048
 msgid "Image dimensions must be in the ratio 4:3."
@@ -2324,9 +2324,8 @@ msgid "Header area background"
 msgstr "Tło obszaru nagłówka"
 
 #: src/olympia/devhub/views.py:1421
-#, fuzzy
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
-msgstr "Kolor tła obszaru nagłówka, wyświetlany w części nagłówka, która nie jest zakryta lub widoczna poprzez obraz nagłówka. Pole manifestu: accentcolor."
+msgstr "Kolor tła obszaru nagłówka, wyświetlany w części nagłówka, która nie jest zakryta lub widoczna poprzez obraz nagłówka. Pole manifestu:  frame."
 
 #: src/olympia/devhub/views.py:1429
 msgid "Header area text and icons"
@@ -2381,7 +2380,7 @@ msgstr ""
 
 #: src/olympia/devhub/views.py:1576
 msgid "Add-on uploads are temporarily unavailable"
-msgstr ""
+msgstr "Możliwość przesyłania dodatków jest tymczasowo niedostępna"
 
 #: src/olympia/devhub/views.py:1945
 msgid "Review requested."
@@ -5560,7 +5559,7 @@ msgstr "Dziesiątki niesamowitych emoji na każdą okazję — zawsze wystarczy 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:617
 msgid "Mask your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr ""
+msgstr "Zamaskuj swój adres e-mail. Firefox Relay chroni Twoją tożsamość i zapobiega niechcianej poczcie."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:621
@@ -5699,7 +5698,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:905
 msgid "Begone, annoying cookie warnings!"
-msgstr ""
+msgstr "Precz, denerwujące ostrzeżenia o ciasteczkach!"
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:911
@@ -6517,7 +6516,7 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:17
 msgid "by Content"
-msgstr ""
+msgstr "według zawartości"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:20
 msgid "by Campaign"
@@ -6545,7 +6544,7 @@ msgstr "wg platformy"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:41
 msgid "by Country"
-msgstr ""
+msgstr "według kraju"
 
 #: src/olympia/stats/templates/stats/popup.html:2 src/olympia/stats/templates/stats/popup.html:8 src/olympia/stats/templates/stats/stats.html:180
 msgid "close"
