@@ -6391,7 +6391,7 @@ msgstr ""
 
 #: src/olympia/scanners/models.py:135
 msgid "Human-readable name"
-msgstr ""
+msgstr "Nazwa czytelna dla człowieka"
 
 #: src/olympia/scanners/models.py:139
 msgid "Human readable description for the scanner rule"
@@ -6399,7 +6399,7 @@ msgstr ""
 
 #: src/olympia/scanners/models.py:172
 msgid "Yara rules should have a definition"
-msgstr ""
+msgstr "Zasady Yara powinny zawierać definicję"
 
 #: src/olympia/scanners/models.py:179
 msgid "The name of the rule in the definition should match the name of the scanner rule"
@@ -6407,7 +6407,7 @@ msgstr ""
 
 #: src/olympia/scanners/models.py:187
 msgid "Only one Yara rule is allowed in the definition"
-msgstr ""
+msgstr "W definicji dopuszcza się tylko jedną regułę Yara"
 
 #: src/olympia/scanners/models.py:195
 #, python-format
@@ -6776,7 +6776,7 @@ msgstr "Wszystko o…"
 
 #: src/olympia/templates/photon-footer.html:12
 msgid "Firefox Add-ons Blog"
-msgstr ""
+msgstr "Blog dodatków do Firefoksa"
 
 #: src/olympia/templates/photon-footer.html:16
 msgid "Community Blog"

@@ -86,7 +86,7 @@ msgstr "Da den beslutning, du appellerer imod, allerede er blevet omgjort, vil d
 
 #: src/olympia/abuse/templates/abuse/appeal.html:42
 msgid "The decision you are appealing has already been overridden by a new decision, so this decision can't be appealed."
-msgstr ""
+msgstr "Den afgørelse, du anker, er allerede blevet tilsidesat af en ny afgørelse, så denne afgørelse kan ikke ankes."
 
 #: src/olympia/abuse/templates/abuse/appeal.html:44
 msgid "This decision can't be appealed."
@@ -111,6 +111,13 @@ msgid ""
 "\n"
 "Thank you for your attention.\n"
 msgstr ""
+"\n"
+"Tak for din rapport om %(name)s på Mozilla Tilføjelser og for at give flere oplysninger om dine bekymringer.\n"
+"\n"
+"Efter at have gennemgået din appel har vi fastslået, at vores tidligere beslutning om, at dette indhold ikke overtræder Mozillas politikker (%(policy_document_url)s), var korrekt. Baseret på denne beslutning har vi afvist din appel og vil ikke tage nogen skridt mod kontoen eller indholdet.\n"
+"%(manual_reasoning_text)s.\n"
+"\n"
+"Tak for din opmærksomhed.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown.txt:5
 #, python-format
@@ -146,6 +153,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it does not violate Mozilla's policies (%(policy_document_url)s).  It will therefore not be subject to any moderation action.\n"
 msgstr ""
+"\n"
+"Tak for din rapport om %(name)s på %(target_url)s.\n"
+"\n"
+"Vi har gennemgået din rapport og det pågældende indhold og fundet ud af, at det ikke overtræder Mozillas politikker (%(policy_document_url)s).  Det vil derfor ikke være genstand for nogen moderationshandling.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:7
 #, python-format
@@ -683,11 +694,11 @@ msgstr "Nogle funktioner er midlertidig deaktiveret mens vi udfører vedligehold
 
 #: src/olympia/amo/templates/amo/submissions_disabled.html:3
 msgid "Add-on uploads temporarily disabled"
-msgstr ""
+msgstr "Upload af tilføjelser er midlertidigt deaktiveret"
 
 #: src/olympia/amo/templates/amo/submissions_disabled.html:13
 msgid "Add-on uploads have been temporarily disabled. Please check back later."
-msgstr ""
+msgstr "Upload af tilføjelser er midlertidigt deaktiveret. Prøv igen senere."
 
 #: src/olympia/amo/templatetags/jinja_helpers.py:147
 #, python-brace-format
