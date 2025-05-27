@@ -1195,17 +1195,17 @@ msgstr "Wersja ponownie podpisana"
 #: src/olympia/constants/activity.py:862
 #, python-brace-format
 msgid "{addon} force-disabled"
-msgstr ""
+msgstr "Wymuszono wyłączenie dodatku {addon}"
 
 #: src/olympia/constants/activity.py:873
 #, python-brace-format
 msgid "{addon} force-enabled"
-msgstr ""
+msgstr "Wymuszono włączenie dodatku {addon}"
 
 #: src/olympia/constants/activity.py:902
 #, python-brace-format
 msgid "{addon} {version} un-rejected."
-msgstr ""
+msgstr "Cofnięto odrzucenie dodatku {addon} {version}."
 
 #: src/olympia/constants/activity.py:903
 msgid "Un-rejected"
@@ -1484,7 +1484,7 @@ msgstr "Narzędzia językowe"
 
 #: src/olympia/constants/categories.py:126
 msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
-msgstr ""
+msgstr "Pobierz rozszerzenia Firefoksa, które oferują wsparcie językowe, takie jak sprawdzanie gramatyki, wyszukiwanie słów, tłumaczenie tekstu, zamianę tekstu na mowę i inne."
 
 #: src/olympia/constants/categories.py:133
 msgid "Photos, Music & Videos"
@@ -2425,7 +2425,7 @@ msgstr "Umowa dotycząca dystrybucji dodatków Firefoksa"
 
 #: src/olympia/devhub/templates/devhub/base.html:43
 msgid "Help us make things better!"
-msgstr ""
+msgstr "Pomóż nam ulepszać rzeczy!"
 
 #: src/olympia/devhub/templates/devhub/base.html:44
 msgid "Take our quick survey"
@@ -2506,7 +2506,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/suppressed_email.html:8
 msgid "Learn more"
-msgstr ""
+msgstr "Dowiedz się więcej"
 
 #: src/olympia/devhub/templates/devhub/validate_addon.html:12
 msgid "Use the field below to upload your add-on package."
@@ -2556,11 +2556,11 @@ msgstr "Nie można było zweryfikować adresu e-mail. Link weryfikacyjny wygasł
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:24
 msgid "We are sending an email to you, please be patient... <div class=\"loader\"></div> The page will automatically refresh."
-msgstr ""
+msgstr "Wysyłamy do ciebie wiadomość e-mail, prosimy o cierpliwość... <div class=\"loader\"></div> Strona zostanie automatycznie odświeżona."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:30
 msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again later."
-msgstr ""
+msgstr "Potwierdzenie dostarczenia e-maila weryfikacyjnego trwa dłużej niż oczekiwano. Spróbuj ponownie później."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:34
 msgid "Success!"
@@ -2581,6 +2581,8 @@ msgid ""
 "The provided code is invalid, unauthorized, expired or incomplete. Please use the link in the email sent to your email address %(email)s. If the code is still not working, please request a new "
 "email."
 msgstr ""
+"Podany kod jest nieprawidłowy, nieautoryzowany, wygasł lub jest niekompletny. Proszę skorzystać z linku w wiadomości e-mail wysłanej na adres %(email)s. Jeśli kod nadal nie działa, poproś o nową "
+"wiadomość."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:49
 msgid "<strong>Email history:</strong> The table below shows all emails we have attempted to send to you in the last 2 days."
