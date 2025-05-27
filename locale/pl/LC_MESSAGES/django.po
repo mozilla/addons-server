@@ -2396,7 +2396,7 @@ msgstr "Twoje stare poświadczenia zostały odwołane i nie są już ważne."
 
 #: src/olympia/devhub/views.py:2068
 msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
-msgstr ""
+msgstr "Zachowaj poufność swoich kluczy API i nigdy nie udostępniaj ich nikomu, łącznie z współtwórcami Mozilli."
 
 #: src/olympia/devhub/views.py:2085
 msgid "New API key created"
@@ -2408,15 +2408,15 @@ msgstr "Klucz API został odwołany"
 
 #: src/olympia/devhub/views.py:2156
 msgid "Verify email"
-msgstr ""
+msgstr "Zweryfikuj adres e-mail"
 
 #: src/olympia/devhub/views.py:2158
 msgid "Send another email"
-msgstr ""
+msgstr "Wyślij kolejny e-mail"
 
 #: src/olympia/devhub/views.py:2191
 msgid "Your email has been verified"
-msgstr ""
+msgstr "Twój adres e-mail został zweryfikowany"
 
 #: src/olympia/devhub/widgets.py:81
 msgid "My add-on doesn't fit into any of the categories"
