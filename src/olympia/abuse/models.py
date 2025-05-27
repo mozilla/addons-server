@@ -259,6 +259,20 @@ class CinderJob(ModelBase):
         policy_ids,
     ):
         """This is called for cinder originated decisions only."""
+        # appeals on REJECT_VERSION_ADDON need target_versions redefining.
+        if appealed_ids := self.appealed_decisions.filter(
+            action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
+        ).values_list('id', flat=True):
+            target_versions = Version.objects.filter(
+                contentdecision__id__in=appealed_ids
+            ).no_transforms()
+            # Also, if the decision was made in Cinder it'll be sent as DISABLE_ADDON
+            if decision_action == DECISION_ACTIONS.AMO_DISABLE_ADDON:
+                # but it's really the same action as before
+                decision_action = DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
+        else:
+            target_versions = None
+
         # We need either an AbuseReport or ContentDecision for the target props
         abuse_report_or_decision = (
             self.appealed_decisions.first() or self.abusereport_set.first()
@@ -284,6 +298,8 @@ class CinderJob(ModelBase):
             uuid__in=policy_ids
         ).without_parents_if_their_children_are_present()
         decision.policies.add(*policies)
+        if target_versions:
+            decision.target_versions.set(target_versions)
 
         # no need to report - it came from Cinder
         decision.execute_action()
@@ -1141,6 +1157,15 @@ class ContentDecision(ModelBase):
                 not is_reporter
                 and not self.appeal_job
                 and self.action in DECISION_ACTIONS.APPEALABLE_BY_AUTHOR
+                and (
+                    # either not a decision on a job
+                    not self.cinder_job
+                    # or the job has no appealled decisions
+                    # or the appealled decisions are not takedowns
+                    or not self.cinder_job.appealed_decisions.filter(
+                        action__in=DECISION_ACTIONS.APPEALABLE_BY_AUTHOR.values
+                    )
+                )
             )
         )
         return base_criteria and user_criteria

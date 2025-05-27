@@ -969,10 +969,12 @@ class ReviewBase:
         file.datestatuschanged = datetime.now()
         if status == amo.STATUS_APPROVED:
             file.approval_date = datetime.now()
-        file.status = status
         if status == amo.STATUS_DISABLED:
+            file.original_status = file.status
+        else:
             file.original_status = amo.STATUS_NULL
-            file.status_disabled_reason = File.STATUS_DISABLED_REASONS.NONE
+        file.status_disabled_reason = File.STATUS_DISABLED_REASONS.NONE
+        file.status = status
         file.save()
 
     def set_promoted(self, versions=None):
@@ -1682,7 +1684,7 @@ class ReviewBase:
 
         self.set_file(amo.STATUS_AWAITING_REVIEW, self.version.file)
         self.log_action(amo.LOG.UNREJECT_VERSION)
-        self.addon.update_status(self.user)
+        self.addon.update_status()
 
     def confirm_multiple_versions(self):
         raise NotImplementedError  # only implemented for unlisted below.
@@ -1975,4 +1977,4 @@ class ReviewUnlisted(ReviewBase):
 
         if self.data['versions']:
             # if these are listed versions then the addon status may need updating
-            self.addon.update_status(self.user)
+            self.addon.update_status()

@@ -439,7 +439,8 @@ class ContentActionRejectVersion(ContentActionDisableAddon):
             # This action should only be used by reviewer tools, not cinder webhook
             raise NotImplementedError
         if not self.target_versions.exclude(
-            file__status=amo.STATUS_DISABLED, file__original_status=amo.STATUS_NULL
+            file__status=amo.STATUS_DISABLED,
+            file__status_disabled_reason=File.STATUS_DISABLED_REASONS.NONE,
         ).exists():
             return None
 
@@ -448,7 +449,7 @@ class ContentActionRejectVersion(ContentActionDisableAddon):
             version.file.update(
                 datestatuschanged=now,
                 status=amo.STATUS_DISABLED,
-                original_status=amo.STATUS_NULL,
+                original_status=version.file.status,
                 status_disabled_reason=File.STATUS_DISABLED_REASONS.NONE,
             )
             # (Re)set pending_rejection.
@@ -662,15 +663,46 @@ class ContentActionTargetAppealApprove(
     def process_action(self):
         target = self.target
         log_entry = None
-        if isinstance(target, Addon) and target.status == amo.STATUS_DISABLED:
-            target_versions = list(
+        if isinstance(target, Addon):
+            appealed = self.decision.cinder_job.appealed_decisions
+            target_versions = (
                 self.target_versions.no_transforms()
                 .only('pk', 'version')
                 .order_by('-pk')
             )
-            target.force_enable(skip_activity_log=True)
+            if target.status == amo.STATUS_DISABLED and appealed.filter(
+                action=DECISION_ACTIONS.AMO_DISABLE_ADDON
+            ):
+                # it was a disable action that was appealed
+                target_versions = list(target_versions)
+                target.force_enable(skip_activity_log=True)
+                activity_log_action = amo.LOG.FORCE_ENABLE
+            elif appealed.filter(action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON):
+                # otherwise it was a reject action that was appealed
+                target_versions = list(
+                    target_versions.filter(
+                        # we only need to unreject disabled versions we rejected
+                        file__status=amo.STATUS_DISABLED,
+                        file__status_disabled_reason=File.STATUS_DISABLED_REASONS.NONE,
+                    ).only('pk', 'version', 'file')
+                )
+                for version in target_versions:
+                    version.file.update(
+                        datestatuschanged=datetime.now(),
+                        status=(
+                            # safeguard against original_status not being valid
+                            version.file.original_status
+                            if version.file.original_status in amo.STATUS_CHOICES_FILE
+                            else amo.STATUS_AWAITING_REVIEW
+                        ),
+                        original_status=amo.STATUS_NULL,
+                    )
+                target.update_status()
+                activity_log_action = amo.LOG.UNREJECT_VERSION
+            else:
+                return
             log_entry = self.log_action(
-                amo.LOG.FORCE_ENABLE,
+                activity_log_action,
                 *target_versions,
                 extra_details={
                     'versions': [version.version for version in target_versions]
