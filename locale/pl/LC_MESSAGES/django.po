@@ -1556,7 +1556,7 @@ msgstr "Abstrakcyjne"
 
 #: src/olympia/constants/categories.py:211
 msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
-msgstr ""
+msgstr "Pobierz artystyczne i koncepcyjne motywy Firefoksa. Ta kategoria obejmuje kolorowe palety i kształty, fantastyczne krajobrazy, zabawne koty, psychodeliczne kwiaty."
 
 #: src/olympia/constants/categories.py:218
 msgid "Causes"
@@ -1580,7 +1580,7 @@ msgstr "Film i TV"
 
 #: src/olympia/constants/categories.py:237
 msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
-msgstr ""
+msgstr "Pobierz motywy Firefoksa z filmami i telewizją. Ta kategoria obejmuje anime takie jak Uchiha Madara, filmy takie jak Matrix, seriale (Gra o tron) i wiele innych."
 
 #: src/olympia/constants/categories.py:246
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
@@ -3535,19 +3535,19 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:51
 msgid "Your source code must include:"
-msgstr ""
+msgstr "Twój kod źródłowy musi zawierać:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:56
 msgid "Step-by-step build instructions to create an exact copy of the add-on code, in a README file in your source code or in the reviewer notes on the next page."
-msgstr ""
+msgstr "Instrukcje krok po kroku tworzenia dokładnej kopii kodu dodatku, znajdujące się w pliku README w kodzie źródłowym lub w informacjach dla recenzenta na następnej stronie."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:57
 msgid "A build script that executes all necessary technical steps."
-msgstr ""
+msgstr "Skrypt wykonujący wszystkie niezbędne kroki techniczne."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:58
 msgid "Operating system and build environment requirements."
-msgstr ""
+msgstr "Wymagania dotyczące systemu operacyjnego i środowiska kompilacji."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:59
 msgid "The required version and installation instructions of any programs used in the build process (such as <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis\">npm</span>)."
@@ -3887,7 +3887,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/android_compatibility_modal.html:3
 msgid "Firefox for Android compatibility"
-msgstr ""
+msgstr "Kompatybilność z Firefoksem na Androida"
 
 #: src/olympia/devhub/templates/devhub/includes/android_compatibility_modal.html:4
 msgid ""
@@ -3900,11 +3900,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/android_compatibility_modal.html:6
 msgid "Yes, I’ve tested my extension with Firefox for Android"
-msgstr ""
+msgstr "Tak, testowałem moje rozszerzenie z przeglądarką Firefox na Androida"
 
 #: src/olympia/devhub/templates/devhub/includes/android_compatibility_modal.html:7
 msgid "No, I have not tested"
-msgstr ""
+msgstr "Nie, nie testowałem"
 
 #: src/olympia/devhub/templates/devhub/includes/blog_posts.html:3
 msgid "Developer News"
@@ -3915,9 +3915,8 @@ msgid "View the blog &#9658;"
 msgstr "Zobacz blog &#9658;"
 
 #: src/olympia/devhub/templates/devhub/includes/done_unlisted.html:1
-#, fuzzy
 msgid "Version Signature Pending"
-msgstr "Podpisano wersję"
+msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/done_unlisted.html:3
 msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
