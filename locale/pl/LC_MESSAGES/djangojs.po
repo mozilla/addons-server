@@ -662,7 +662,7 @@ msgstr "Pobrane treści od {0} do {1}"
 #: static/js/stats/csv_keys.js:207
 #, python-brace-format
 msgid "Download Campaigns, last {0} days"
-msgstr ""
+msgstr "Kampanie pobierania, ostatnie {0} dni"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/stats/csv_keys.js:209

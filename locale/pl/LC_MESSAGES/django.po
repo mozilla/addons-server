@@ -1768,7 +1768,7 @@ msgstr "Unlicense"
 
 #: src/olympia/constants/promoted.py:76
 msgid "Not Promoted"
-msgstr ""
+msgstr "Niepromowane"
 
 #: src/olympia/constants/promoted.py:82
 msgid "Recommended"
@@ -1780,19 +1780,19 @@ msgstr "Od Firefoksa"
 
 #: src/olympia/constants/promoted.py:131
 msgid "Spotlight"
-msgstr ""
+msgstr "Spotlight"
 
 #: src/olympia/constants/promoted.py:142
 msgid "Strategic"
-msgstr ""
+msgstr "Strategiczne"
 
 #: src/olympia/constants/promoted.py:149
 msgid "Notable"
-msgstr ""
+msgstr "Znaczące"
 
 #: src/olympia/constants/promoted.py:159
 msgid "Partner"
-msgstr ""
+msgstr "Współpraca"
 
 #: src/olympia/constants/reviewers.py:23
 msgid "No Reputation"
@@ -1832,7 +1832,7 @@ msgstr "Zatwierdzenie"
 
 #: src/olympia/constants/reviewers.py:68
 msgid "All"
-msgstr ""
+msgstr "Wszystkie"
 
 #: src/olympia/constants/scanners.py:24
 msgid "No action"
@@ -1876,7 +1876,7 @@ msgstr "Niejednoznaczne"
 
 #: src/olympia/constants/scanners.py:56
 msgid "New"
-msgstr ""
+msgstr "Nowe"
 
 #: src/olympia/constants/scanners.py:57
 msgid "Running"

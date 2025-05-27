@@ -1013,12 +1013,12 @@ msgstr "{addon} er nu udgivet under {0}."
 #: src/olympia/constants/activity.py:353
 #, python-brace-format
 msgid "{addon} policy changed."
-msgstr ""
+msgstr "Politik for {addon} ændret."
 
 #: src/olympia/constants/activity.py:360
 #, python-brace-format
 msgid "{addon} icon or previews changed."
-msgstr ""
+msgstr "Ikon eller forhåndsvisning for {addon} ændret."
 
 #: src/olympia/constants/activity.py:367
 #, python-brace-format
@@ -1038,11 +1038,11 @@ msgstr ""
 #: src/olympia/constants/activity.py:392
 #, python-brace-format
 msgid "Authors emailed about compatibility of {version}."
-msgstr ""
+msgstr "Udvikler tilsendt mail om kompatibilitet af {version}."
 
 #: src/olympia/constants/activity.py:397
 msgid "Email sent to Author about add-on compatibility."
-msgstr ""
+msgstr "Mail sendt til udvikler om tilføjelseskompatibilitet."
 
 #: src/olympia/constants/activity.py:402
 msgid "Password changed."
@@ -1055,7 +1055,7 @@ msgstr "{addon} {version} godkendt, men venter på at blive offentliggjort."
 
 #: src/olympia/constants/activity.py:409
 msgid "Approved but waiting"
-msgstr ""
+msgstr "Godkendt men afventende"
 
 #: src/olympia/constants/activity.py:417
 msgid "Account updated."
@@ -1431,6 +1431,8 @@ msgstr "Påmindelser & opdateringer"
 #: src/olympia/constants/categories.py:70
 msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
 msgstr ""
+"Hent Firefox-udvidelser, der hjælper dig med at holde dig opdateret, holde styr på opgaver og forbedre effektiviteten. Find udvidelser, der genindlæser faneblade, håndterer produktivitet, og meget "
+"mere."
 
 #: src/olympia/constants/categories.py:78
 msgid "Appearance"
