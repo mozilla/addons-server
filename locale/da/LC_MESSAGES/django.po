@@ -280,7 +280,7 @@ msgstr "Tilføjelse"
 
 #: src/olympia/addons/decorators.py:78 src/olympia/amo/templates/amo/submissions_disabled.html:8
 msgid "Add-on uploads are temporarily unavailable."
-msgstr ""
+msgstr "Upload af tilføjelser er midlertidigt utilgængelig."
 
 #: src/olympia/addons/fields.py:56
 #, python-brace-format
@@ -2358,7 +2358,7 @@ msgstr ""
 
 #: src/olympia/devhub/views.py:1576
 msgid "Add-on uploads are temporarily unavailable"
-msgstr ""
+msgstr "Upload af tilføjelser er midlertidigt utilgængelig"
 
 #: src/olympia/devhub/views.py:1945
 msgid "Review requested."
@@ -6514,7 +6514,7 @@ msgstr "Tilpas…"
 
 #: src/olympia/stats/templates/stats/stats.html:94
 msgid "Sorry, the statistics are temporarily unavailable."
-msgstr ""
+msgstr "Beklager, statistikken er midlertidigt utilgængelig."
 
 #: src/olympia/stats/templates/stats/stats.html:100
 msgid "Loading the latest data&hellip;"

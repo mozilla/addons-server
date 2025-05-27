@@ -1600,7 +1600,7 @@ msgstr "Wakacje"
 
 #: src/olympia/constants/categories.py:264
 msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
-msgstr ""
+msgstr "Pobierz motywy Firefoksa ze świętami. Ta kategoria obejmuje Boże Narodzenie, Halloween, Święto Dziękczynienia, Dzień Świętego Patryka, Wielkanoc, Czwartego Lipca i inne."
 
 #: src/olympia/constants/categories.py:271
 msgid "Music"
@@ -2133,7 +2133,7 @@ msgstr "Klucz tajny JWT"
 #: src/olympia/devhub/forms.py:1515
 #, python-brace-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
-msgstr ""
+msgstr "Kliknij przycisk potwierdzenia poniżej, aby wygenerować dane uwierzytelniające API dla użytkownika <strong>{name}</strong>."
 
 #: src/olympia/devhub/forms.py:1521
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
@@ -2332,27 +2332,24 @@ msgid "Header area text and icons"
 msgstr "Tekst i ikony w obszarze nagłówka"
 
 #: src/olympia/devhub/views.py:1431
-#, fuzzy
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
-msgstr "Kolor tekstu i ikon w obszarze nagłówka z wyjątkiem aktywnej karty. Pole manifestu: textcolor."
+msgstr "Kolor tekstu i ikon w obszarze nagłówka z wyjątkiem aktywnej karty. Pole manifestu:  tab_background_text."
 
 #: src/olympia/devhub/views.py:1438
 msgid "Toolbar area background"
 msgstr "Tło obszaru paska narzędzi"
 
 #: src/olympia/devhub/views.py:1440
-#, fuzzy
 msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
-msgstr "Kolor tła paska nawigacji, paska zakładek i wybranej karty. Pole manifestu: toolbar."
+msgstr "Kolor tła paska nawigacji, paska zakładek i wybranej karty.  Pole manifestu:  toolbar."
 
 #: src/olympia/devhub/views.py:1447
 msgid "Toolbar area text and icons"
 msgstr "Tekst i ikony w obszarze paska narzędzi"
 
 #: src/olympia/devhub/views.py:1449
-#, fuzzy
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
-msgstr "Kolor tekstu i ikon na pasku narzędzi i aktywnej karcie. Pole manifestu: toolbar_text."
+msgstr "Kolor tekstu i ikon na pasku narzędzi i aktywnej karcie. Pole manifestu:  bookmark_text."
 
 #: src/olympia/devhub/views.py:1456
 msgid "Toolbar field area background"
@@ -2372,11 +2369,11 @@ msgstr "Kolor tekstu w polach na pasku narzędzi, takich jak pasek adresu URL. P
 
 #: src/olympia/devhub/views.py:1475
 msgid "Tab highlight"
-msgstr ""
+msgstr "Podświetlenie karty"
 
 #: src/olympia/devhub/views.py:1477
 msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
-msgstr ""
+msgstr "Kolor podświetlenia aktywnej karty. Zaimplementowany jako obramowanie wokół karty w Firefox 89+ i linia nad kartą w starszych Firefoksach. Pole manifestu:  tab_line."
 
 #: src/olympia/devhub/views.py:1576
 msgid "Add-on uploads are temporarily unavailable"
