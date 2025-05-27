@@ -2506,7 +2506,7 @@ msgstr "Szukaj"
 #: src/olympia/devhub/templates/devhub/suppressed_email.html:4
 #, python-format
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
-msgstr ""
+msgstr "Odkryliśmy, że Twój adres e-mail „%(email)s” nie może odbierać wiadomości e-mail od nas. Zaktualizuj swój adres e-mail na taki, który może odbierać od nas wiadomości."
 
 #: src/olympia/devhub/templates/devhub/suppressed_email.html:8
 msgid "Learn more"
