@@ -63,7 +63,7 @@ msgstr "Tanaḍt {0}"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:20
 msgid "Thank you. Your appeal has been recorded."
-msgstr ""
+msgstr "Tanemmirt. Yettwasekles ussuter-ik⋅im."
 
 #: src/olympia/abuse/templates/abuse/appeal.html:31 src/olympia/amo/templates/amo/fake_fxa_authorization.html:21
 msgid "OK"
@@ -248,7 +248,7 @@ msgstr "Azegrir"
 
 #: src/olympia/addons/decorators.py:78 src/olympia/amo/templates/amo/submissions_disabled.html:8
 msgid "Add-on uploads are temporarily unavailable."
-msgstr ""
+msgstr "Asali n uzegrir ur yezmir ara ad yili i kra n wakud."
 
 #: src/olympia/addons/fields.py:56
 #, python-brace-format
