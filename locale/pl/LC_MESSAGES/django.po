@@ -1576,7 +1576,7 @@ msgstr "Moda"
 
 #: src/olympia/constants/categories.py:229
 msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
-msgstr ""
+msgstr "Pobierz motywy Firefoksa, które celebrują styl we wszystkich formach — wzory, kwiaty, tekstury, modele i wiele innych."
 
 #: src/olympia/constants/categories.py:235
 msgid "Film and TV"
@@ -1588,7 +1588,7 @@ msgstr "Pobierz motywy Firefoksa z filmami i telewizją. Ta kategoria obejmuje a
 
 #: src/olympia/constants/categories.py:246
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
-msgstr ""
+msgstr "Pobierz motywy Firefoksa z motywem przeglądarki Firefox. Ta kategoria obejmuje kolorowe, różnorodne przedstawienia logo Firefoksa, w tym bardziej ogólne motywy lisa."
 
 #: src/olympia/constants/categories.py:253
 msgid "Foxkeh"
@@ -1596,7 +1596,7 @@ msgstr "Foxkeh"
 
 #: src/olympia/constants/categories.py:255
 msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
-msgstr ""
+msgstr "Pobierz motywy Firefoksa z japońskim Firefoksem. Ta kategoria obejmuje motywy przedstawiające uroczą maskotkę Foxkeh w różnych pozach i różnorodnych krajobrazach."
 
 #: src/olympia/constants/categories.py:262
 msgid "Holiday"
@@ -1648,7 +1648,7 @@ msgstr "Proste"
 
 #: src/olympia/constants/categories.py:318
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
-msgstr ""
+msgstr "Pobierz motywy Firefoksa z jednolitymi i gradientowymi kolorami, aby spersonalizować swoją przeglądarkę. Ta kategoria obejmuje odważne czerwienie, pastele, delikatne szarości i wiele innych."
 
 #: src/olympia/constants/categories.py:325
 msgid "Sports"
@@ -3985,7 +3985,7 @@ msgstr "Dowiedz się więcej o zasadach sprawdzania kodu źródłowego."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/banner.html:4
 msgid "Build best-in-class extensions and themes"
-msgstr ""
+msgstr "Twórz najlepsze w swojej klasie rozszerzenia i motywy"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/banner.html:7 src/olympia/devhub/templates/devhub/new-landing/components/overview.html:5
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
