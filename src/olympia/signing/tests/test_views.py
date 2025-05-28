@@ -45,9 +45,11 @@ class BaseUploadVersionTestMixin(SigningAPITestMixin):
         super(BaseUploadVersionTestMixin, self).setUp()
         self.guid = '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}'
         addon_factory(
-            guid=self.guid, file_kw={'is_webextension': True},
+            status=amo.STATUS_PUBLIC,
             version_kw={'version': '2.1.072'},
-            users=[self.user])
+            file_kw={'is_webextension': True},
+            users=[self.user],
+            guid=self.guid)
 
         self.view = VersionView.as_view()
 
