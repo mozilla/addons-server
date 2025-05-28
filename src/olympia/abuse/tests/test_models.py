@@ -685,52 +685,6 @@ class TestAbuseReportManager(TestCase):
             listed_deleted_version_report,
         }
 
-    def test_was_auto_resolved_q(self):
-        addon = addon_factory()
-        task_user = user_factory(pk=settings.TASK_USER_ID)
-        # no decision; not auto resolved
-        AbuseReport.objects.create(
-            guid=addon.guid, cinder_job=CinderJob.objects.create()
-        )
-        # different action
-        AbuseReport.objects.create(
-            guid=addon.guid,
-            cinder_job=CinderJob.objects.create(
-                decision=ContentDecision.objects.create(
-                    addon=addon,
-                    action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
-                    reviewer_user=task_user,
-                )
-            ),
-        )
-        # not the task user - was a manual action
-        AbuseReport.objects.create(
-            guid=addon.guid,
-            cinder_job=CinderJob.objects.create(
-                decision=ContentDecision.objects.create(
-                    addon=addon,
-                    action=DECISION_ACTIONS.AMO_CLOSED_NO_ACTION,
-                    reviewer_user=user_factory(),
-                )
-            ),
-        )
-
-        auto_resolved = AbuseReport.objects.create(
-            guid=addon.guid,
-            cinder_job=CinderJob.objects.create(
-                decision=ContentDecision.objects.create(
-                    addon=addon,
-                    action=DECISION_ACTIONS.AMO_CLOSED_NO_ACTION,
-                    reviewer_user=task_user,
-                )
-            ),
-        )
-
-        assert (
-            AbuseReport.objects.filter(AbuseReportManager.was_auto_resolved_q()).get()
-            == auto_resolved
-        )
-
 
 class TestCinderJobManager(TestCase):
     def test_for_addon(self):

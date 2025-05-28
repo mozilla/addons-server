@@ -449,13 +449,6 @@ class AbuseReportManager(ManagerBase):
             reason__in=AbuseReport.REASONS.INDIVIDUALLY_ACTIONABLE_REASONS.values,
         )
 
-    @classmethod
-    def was_auto_resolved_q(cls):
-        return Q(
-            cinder_job__decisions__action=DECISION_ACTIONS.AMO_CLOSED_NO_ACTION,
-            cinder_job__decisions__reviewer_user_id=settings.TASK_USER_ID,
-        )
-
 
 class AbuseReport(ModelBase):
     # Note: those choices don't need to be translated for now, the
