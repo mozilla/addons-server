@@ -20,7 +20,7 @@ from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
-    addon_factory, reverse_ns, TestCase, developer_factory)
+    addon_factory, reverse_ns, TestCase, developer_factory, fix_webext_fixture)
 from olympia.api.tests.utils import APIKeyAuthTestMixin
 from olympia.applications.models import AppVersion
 from olympia.files.models import File, FileUpload
@@ -69,7 +69,7 @@ class BaseUploadVersionTestMixin(SigningAPITestMixin):
 
     def create_version(self, version):
         response = self.request('PUT', self.url(self.guid, version), version)
-        assert response.status_code in [201, 202]
+        assert response.status_code in [201, 202], response.content.decode()
 
     def xpi_filepath(self, addon, version):
         return os.path.join(
@@ -84,17 +84,18 @@ class BaseUploadVersionTestMixin(SigningAPITestMixin):
         if url is None:
             url = self.url(addon, version)
 
-        with open(filename, 'rb') as upload:
-            data = {'upload': upload}
-            if method == 'POST' and version:
-                data['version'] = version
-            if channel:
-                data['channel'] = channel
+        with fix_webext_fixture(filename, guid=self.guid) as filename:
+            with open(filename, 'rb') as upload:
+                data = {'upload': upload}
+                if method == 'POST' and version:
+                    data['version'] = version
+                if channel:
+                    data['channel'] = channel
 
-            return getattr(self.client, method.lower())(
-                url, data,
-                HTTP_AUTHORIZATION=self.authorization(),
-                format='multipart', **(extra_kwargs or {}))
+                return getattr(self.client, method.lower())(
+                    url, data,
+                    HTTP_AUTHORIZATION=self.authorization(),
+                    format='multipart', **(extra_kwargs or {}))
 
     def make_admin(self, user):
         admin_group = Group.objects.create(name='Admin', rules='*:*')
@@ -835,14 +836,15 @@ class TestCheckVersion(BaseUploadVersionTestMixin, TestCase):
         self.user = UserProfile.objects.create(
             read_dev_agreement=datetime.now())
         self.api_key = self.create_api_key(self.user, 'bar')
-        response = self.request('PUT', addon='@create-version', version='1.0')
+        response = self.request('PUT', addon=self.guid, version='1.0')
+        print(response.content.decode())
         assert response.status_code == 201, response.content.decode('utf-8')
         upload = FileUpload.objects.latest()
 
         # Check that the user that created the upload can access it properly.
         response = self.get(
             self.url('@create-version', '1.0', upload.uuid.hex))
-        assert response.status_code == 200
+        assert response.status_code == 200, response.content.decode()
         assert 'processed' in response.data
 
         # This will create a version for the add-on from the fixture with the

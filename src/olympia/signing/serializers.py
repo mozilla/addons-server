@@ -45,6 +45,7 @@ class FileUploadSerializer(serializers.ModelSerializer):
         ]
 
     def __init__(self, *args, **kwargs):
+        print('file upload serializer', args, kwargs)
         self.version = kwargs.pop('version', None)
         super(FileUploadSerializer, self).__init__(*args, **kwargs)
 
