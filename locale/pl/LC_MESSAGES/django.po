@@ -5394,7 +5394,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:522 src/olympia/discovery/strings.jinja2:695
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
-msgstr ""
+msgstr "Zmień wygląd swojej przeglądarki. Łatwo zaprojektuj własne motywy wizualne, aby Firefox wyglądał tak, jak chcesz."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:525
@@ -6203,7 +6203,7 @@ msgstr "Numer wersji powinien zawierać tylko litery, cyfry i następujące znak
 #: src/olympia/files/utils.py:926
 #, python-brace-format
 msgid "Maximum size for WebExtension themes is {0}."
-msgstr ""
+msgstr "Maksymalny rozmiar motywów WebExtension wynosi {0}."
 
 #: src/olympia/files/utils.py:939
 msgid "You cannot submit this type of add-on"
