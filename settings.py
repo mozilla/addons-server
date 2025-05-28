@@ -44,7 +44,8 @@ SITE_URL = os.environ.get('OLYMPIA_SITE_URL') or 'http://localhost:8000'
 DOMAIN = SERVICES_DOMAIN = urlparse(SITE_URL).netloc
 SERVICES_URL = SITE_URL
 
-ALLOWED_HOSTS = ALLOWED_HOSTS + [SERVICES_DOMAIN]
+# FIXME: Remove 'localhost' before deployment, just added for a round of local testing
+ALLOWED_HOSTS = ALLOWED_HOSTS + [SERVICES_DOMAIN, 'localhost']
 
 # Default AMO user id to use for tasks (from users.json fixture in zadmin).
 TASK_USER_ID = 10968
