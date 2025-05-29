@@ -2469,7 +2469,7 @@ msgstr "Tworzenie rozszerzeń"
 
 #: src/olympia/devhub/templates/devhub/nav.html:45 src/olympia/templates/photon-footer.html:15
 msgid "Developer Policies"
-msgstr ""
+msgstr "Zasady programistów"
 
 #: src/olympia/devhub/templates/devhub/nav.html:52 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:19
 msgid "Add-on Validator"
@@ -3806,27 +3806,24 @@ msgstr "Ostatnia aktualizacja:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:57
-#, fuzzy
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
-msgstr "Wyświetlany w tej witrynie po pomyślnym sprawdzeniu kodu. Automatyczne aktualizacje są obsługiwane przez tę witrynę."
+msgstr "Wyświetlany w tej witrynie po pomyślnym sprawdzeniu kodu. Automatyczne aktualizacje są obsługiwane przez tę witrynę"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:69
 msgid "Listed Version:"
 msgstr "Najnowsza wersja:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:71
-#, fuzzy
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
-msgstr "To jest wersja dodatku, która zostanie zainstalowana, jeśli ktoś kliknie przycisk instalowania na stronie addons.mozilla.org."
+msgstr "To jest wersja dodatku, która zostanie zainstalowana, jeśli ktoś kliknie przycisk instalowania na stronie addons.mozilla.org"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:80
 msgid "Next Listed Version:"
 msgstr "Następna najnowsza wersja:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:82
-#, fuzzy
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
-msgstr "To jest najnowsza przesłana wersja, jednak nie jest jeszcze dostępna na stronie."
+msgstr "To jest najnowsza przesłana wersja, jednak nie jest jeszcze dostępna na stronie"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:100 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:66
 #: src/olympia/devhub/templates/devhub/versions/list.html:26
@@ -3971,9 +3968,8 @@ msgstr ""
 "wyświetlanych dodatków."
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html:3
-#, fuzzy
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code other than known libraries, upload its sources for review."
-msgstr "Jeśli twój dodatek zawiera komponenty binarne lub zaciemniony kod inny niż znane biblioteki, wgraj jego kod źródłowy do sprawdzenia."
+msgstr "Jeśli twój dodatek zawiera zminimalizowany, skonsolidowany lub w inny sposób wygenerowany maszynowo kod inny niż znane biblioteki, wgraj jego kod źródłowy do sprawdzenia."
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html:5
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
@@ -3990,6 +3986,8 @@ msgstr "Twórz najlepsze w swojej klasie rozszerzenia i motywy"
 #: src/olympia/devhub/templates/devhub/new-landing/components/banner.html:7 src/olympia/devhub/templates/devhub/new-landing/components/overview.html:5
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr ""
+"Niezależnie od tego, czy dopiero zaczynasz tworzyć rozszerzenia, udoskonalasz lub przenosisz istniejące rozszerzenie lub motyw, czy też tworzysz niestandardowe rozwiązanie dla przedsiębiorstwa, mamy"
+" zasoby, które Cię wesprą."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/banner.html:13
 msgid "Visit the Firefox Extension Workshop"
@@ -4038,7 +4036,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:48
 msgid "Sign Up"
-msgstr ""
+msgstr "Utwórz konto"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:52
 msgid "Thanks!"
@@ -4163,7 +4161,7 @@ msgstr "Profil"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html:46
 msgid "Submit or Manage Extensions"
-msgstr ""
+msgstr "Prześlij lub zarządzaj rozszerzeniami"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html:3
 msgid "Customize Firefox"
@@ -4460,7 +4458,7 @@ msgstr "Wykonuj odwrotne wyszukiwanie obrazów przy użyciu wielu wyszukiwarek."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:14 src/olympia/discovery/strings.jinja2:776
 msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr ""
+msgstr "Blokowanie reklam i ochrona prywatności. Prosta konfiguracja umożliwia przejęcie kontroli nad wyświetlanymi reklamami i sposobami śledzenia Cię w Internecie."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.

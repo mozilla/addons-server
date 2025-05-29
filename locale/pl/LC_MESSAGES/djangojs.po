@@ -854,7 +854,7 @@ msgstr "Data"
 
 #: static/js/stats/topchart.js:108
 msgid "Other"
-msgstr "Inny"
+msgstr "Inne"
 
 #: static/js/zamboni/devhub.js:300
 msgid "Changes Saved"
