@@ -50,7 +50,7 @@ msgstr "कृपया सुनिश्चित करें कि इस �
 
 #: src/olympia/abuse/serializers.py:241 src/olympia/abuse/serializers.py:257 src/olympia/addons/fields.py:51 src/olympia/addons/fields.py:257
 msgid "Invalid value"
-msgstr ""
+msgstr "अवैध मान"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:10 src/olympia/abuse/templates/abuse/appeal.html:15
 msgid "Appeal reviewer decision"
@@ -220,7 +220,6 @@ msgid "Notification [%s] does not exist"
 msgstr "अधिसूचना [%s] मौजूद नहीं है"
 
 #: src/olympia/activity/models.py:42
-#, fuzzy
 msgid "Add-ons Review Team"
 msgstr "ऐड-ऑन रिव्यू गाइड"
 
@@ -327,7 +326,7 @@ msgstr ""
 
 #: src/olympia/addons/serializers.py:501
 msgid "Upload is not valid."
-msgstr ""
+msgstr "अपलोड मान्य नहीं है."
 
 #: src/olympia/addons/serializers.py:517
 msgid "File is already disabled."
