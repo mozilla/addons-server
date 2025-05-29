@@ -902,68 +902,89 @@ class TestCinderJob(TestCase):
         assert isinstance(entity, CinderUser)
         assert entity.user == authenticated_user
 
-    def test_should_auto_resolve(self):
+    def test_should_auto_resolve_removed(self):
+        job = CinderJob.objects.create(resolvable_in_reviewer_tools=False)
         abuse_report = AbuseReport.objects.create(
             collection=collection_factory(),
             reason=AbuseReport.REASONS.ILLEGAL,
             reporter_email='some@email.com',
+            cinder_job=job,
         )
-        assert not CinderJob.should_auto_resolve(abuse_report, False)
+        assert not job.should_auto_resolve()
         abuse_report.collection.update(deleted=True)
-        assert CinderJob.should_auto_resolve(abuse_report, False)
+        assert job.should_auto_resolve()
 
         abuse_report.update(collection=None, user=user_factory())
-        assert not CinderJob.should_auto_resolve(abuse_report, False)
+        assert not job.should_auto_resolve()
         abuse_report.user.update(banned=datetime.now())
-        assert CinderJob.should_auto_resolve(abuse_report, False)
+        assert job.should_auto_resolve()
 
         abuse_report.update(
             user=None,
             rating=Rating.objects.create(user=abuse_report.user, addon=addon_factory()),
         )
-        assert not CinderJob.should_auto_resolve(abuse_report, False)
+        assert not job.should_auto_resolve()
         abuse_report.rating.update(deleted=True)
-        assert CinderJob.should_auto_resolve(abuse_report, False)
+        assert job.should_auto_resolve()
 
         addon = abuse_report.rating.addon
         abuse_report.update(rating=None, guid=addon.guid)
-        assert not CinderJob.should_auto_resolve(abuse_report, False)
+        assert not job.should_auto_resolve()
         addon.update(status=amo.STATUS_DISABLED)
-        del abuse_report.addon
-        assert CinderJob.should_auto_resolve(abuse_report, False)
+        assert job.should_auto_resolve()
 
         # reset
         abuse_report.addon.update(status=amo.STATUS_APPROVED)
-        assert not CinderJob.should_auto_resolve(abuse_report, False)
+        assert not job.should_auto_resolve()
 
+    def test_should_auto_resolve_human_reviewed(self):
+        addon = addon_factory()
+        job = CinderJob.objects.create(
+            target_addon=addon, resolvable_in_reviewer_tools=True
+        )
         abuse_already_moderated = {
             'reason': AbuseReport.REASONS.POLICY_VIOLATION,
             'location': AbuseReport.LOCATION.ADDON,
             'addon_version': None,
         }
+        abuse_report = AbuseReport.objects.create(
+            guid=addon.guid,
+            reporter_email='some@email.com',
+            cinder_job=job,
+            **abuse_already_moderated,
+        )
         addon.current_version.update(human_review_date=datetime.now())
         abuse_report.update(**abuse_already_moderated)
         # first, success case for non addon version specified
-        assert CinderJob.should_auto_resolve(abuse_report, True)
+        assert job.should_auto_resolve()
 
         # not a reviewer handled report/job
-        assert not CinderJob.should_auto_resolve(abuse_report, False)
+        job.update(resolvable_in_reviewer_tools=False)
+        assert not job.should_auto_resolve()
 
         # for a legal reason
         abuse_report.update(
             **{**abuse_already_moderated, 'reason': AbuseReport.REASONS.ILLEGAL}
         )
-        assert not CinderJob.should_auto_resolve(abuse_report, True)
+        job.update(resolvable_in_reviewer_tools=True)
+        assert not job.should_auto_resolve()
+
+        # other non-legal reasons are fine though
+        abuse_report.update(
+            **{**abuse_already_moderated, 'reason': AbuseReport.REASONS.SOMETHING_ELSE}
+        )
+        assert job.should_auto_resolve()
 
         # no current_version
         abuse_report.update(**abuse_already_moderated)
         addon.update(_current_version=None)
-        assert not CinderJob.should_auto_resolve(abuse_report, True)
+        assert not job.should_auto_resolve()
 
-        # not already reviewed by a human
+        # or if not already reviewed by a human
         addon.update_version()
+        assert addon._current_version
         addon.current_version.update(human_review_date=None)
-        assert not CinderJob.should_auto_resolve(abuse_report, True)
+        assert not job.should_auto_resolve()
 
         # success case for addon version specified
         version = version_factory(
@@ -974,22 +995,52 @@ class TestCinderJob(TestCase):
         abuse_already_moderated['addon_version'] = version.version
         abuse_report.update(**abuse_already_moderated)
         addon.current_version.update(human_review_date=datetime.now())
-        assert CinderJob.should_auto_resolve(abuse_report, True)
+        assert job.should_auto_resolve()
 
-        # addon version doesn't exist
+        # addon version doesn't exist - falls back to current_version
         abuse_report.update(
             **{**abuse_already_moderated, 'addon_version': 'some-missing-version'}
         )
-        assert not CinderJob.should_auto_resolve(abuse_report, True)
+        assert job.should_auto_resolve()
 
-        # not already reviewed by a human
+        # if exists, but not already reviewed by a human, it fails
         abuse_report.update(**abuse_already_moderated)
         version.update(human_review_date=None)
-        assert not CinderJob.should_auto_resolve(abuse_report, True)
+        assert not job.should_auto_resolve()
 
         # and double-check that was the cause
         version.update(human_review_date=datetime.now())
-        assert CinderJob.should_auto_resolve(abuse_report, True)
+        assert job.should_auto_resolve()
+
+    def test_should_auto_resolve_job_with_multiple_reports(self):
+        # For an incoming reports it's an edge case to have multiple reports in a job,
+        # but for a forwarded job it's pretty common.
+        addon = addon_factory(version_kw={'human_review_date': datetime.now()})
+        version = version_factory(addon=addon, human_review_date=datetime.now())
+        job = CinderJob.objects.create(
+            target_addon=addon, resolvable_in_reviewer_tools=True
+        )
+        abuse_already_moderated = {
+            'guid': addon.guid,
+            'reporter_email': 'some@email.com',
+            'cinder_job': job,
+            'reason': AbuseReport.REASONS.POLICY_VIOLATION,
+            'location': AbuseReport.LOCATION.ADDON,
+            'addon_version': None,
+        }
+        old_report = AbuseReport.objects.create(**abuse_already_moderated)
+        AbuseReport.objects.create(**abuse_already_moderated)
+
+        # both reports are for the add-on, so should be okay
+        assert job.should_auto_resolve()
+
+        # update the old report so it's for a specific version
+        old_report.update(addon_version=version.version)
+        assert job.should_auto_resolve()
+
+        # but should fail to auto-resolve if the older version meet criteria
+        old_report.update(reason=AbuseReport.REASONS.ILLEGAL)
+        assert not job.should_auto_resolve()
 
     def test_report(self):
         addon = addon_factory()
@@ -1026,20 +1077,26 @@ class TestCinderJob(TestCase):
         assert not cinder_job.resolvable_in_reviewer_tools
 
     def check_report_with_already_moderated_content(self, abuse_report):
+        job_id = '1234-xyz'
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}create_decision',
+            f'{settings.CINDER_SERVER_URL}create_report',
+            json={'job_id': job_id},
+            status=201,
+        )
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}jobs/{job_id}/decision',
             json={'uuid': uuid.uuid4().hex},
             status=201,
         )
-        assert not CinderJob.objects.exists()
         policy = CinderPolicy.objects.create(
             uuid='123',
             enforcement_actions=[DECISION_ACTIONS.AMO_CLOSED_NO_ACTION.api_value],
         )
 
         CinderJob.report(abuse_report)
-        assert CinderJob.objects.exists()
+        assert CinderJob.objects.count() == 1
         assert len(mail.outbox) == 1
         assert mail.outbox[0].to == ['some@email.com']
         assert 'already assessed' in mail.outbox[0].body
@@ -1071,7 +1128,7 @@ class TestCinderJob(TestCase):
         self.check_report_with_already_moderated_content(abuse_report)
 
     def test_report_with_deleted_collection(self):
-        collection = collection_factory()
+        collection = collection_factory(author=user_factory())
         abuse_report = AbuseReport.objects.create(
             collection=collection,
             reason=AbuseReport.REASONS.ILLEGAL,
@@ -1115,6 +1172,25 @@ class TestCinderJob(TestCase):
             reporter_email='some@email.com',
             addon_version=version.version,
         )
+        self.check_report_with_already_moderated_content(abuse_report)
+
+    def test_report_with_addon_already_moderated_existing_job(self):
+        addon = addon_factory()
+        AbuseReport.objects.create(
+            guid=addon.guid,
+            reason=AbuseReport.REASONS.POLICY_VIOLATION,
+            location=AbuseReport.LOCATION.ADDON,
+            cinder_job=CinderJob.objects.create(
+                target_addon=addon, job_id='1234-xyz', resolvable_in_reviewer_tools=True
+            ),
+        )
+        abuse_report = AbuseReport.objects.create(
+            guid=addon.guid,
+            reason=AbuseReport.REASONS.POLICY_VIOLATION,
+            location=AbuseReport.LOCATION.ADDON,
+            reporter_email='some@email.com',
+        )
+        addon.current_version.update(human_review_date=datetime.now())
         self.check_report_with_already_moderated_content(abuse_report)
 
     def test_report_resolvable_in_reviewer_tools(self):
