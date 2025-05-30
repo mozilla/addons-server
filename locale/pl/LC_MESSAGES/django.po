@@ -3605,7 +3605,7 @@ msgstr "Maksymalny dopuszczalny rozmiar pliku to %(max_size)s. Jeśli Twój doda
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:59
 msgid "Which applications is this version compatible with?"
-msgstr ""
+msgstr "Z którymi aplikacjami jest kompatybilna ta wersja?"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:66
 msgid "Administrative overrides"
