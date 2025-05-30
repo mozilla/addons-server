@@ -2090,7 +2090,7 @@ msgstr ""
 #: src/olympia/devhub/forms.py:1358
 #, python-brace-format
 msgid "On this site. <span class=\"helptext\">Your submission is publicly listed on {site_domain}.</span>"
-msgstr ""
+msgstr "Na tej stronie. <span class=\"helptext\">Przesłane materiały będą publicznie dostępne na stronie {site_domain}.</span>"
 
 #: src/olympia/devhub/forms.py:1365
 #, python-brace-format
