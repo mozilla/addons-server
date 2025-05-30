@@ -6006,7 +6006,7 @@ msgstr ""
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1146
 msgid "See more staff picks"
-msgstr ""
+msgstr "Se flere af medarbejdernes valg"
 
 #: src/olympia/files/models.py:319
 msgid "Unreviewed"
