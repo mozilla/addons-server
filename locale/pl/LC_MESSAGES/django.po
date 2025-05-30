@@ -5044,9 +5044,8 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:329 src/olympia/discovery/strings.jinja2:689
-#, fuzzy
 msgid "Enjoy music from 30,000+ radio stations from all over the globe."
-msgstr "Uzyskaj dostęp do ponad 20 000 stacji radiowych na całym świecie."
+msgstr "Ciesz się muzyką z ponad 30 000 stacji radiowych na całym świecie."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5246,7 +5245,7 @@ msgstr "Czy korzystasz z sieci VPN? Twój adres IP może wyciec. Zapobiegnij tem
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:440
 msgid "Close annoying pop-ups with a simple click."
-msgstr ""
+msgstr "Zamykaj irytujące wyskakujące okna jednym kliknięciem."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:443
@@ -5639,9 +5638,8 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:836
-#, fuzzy
 msgid "Enjoy thumbnail images of websites alongside your search returns."
-msgstr "Wyświetlać miniatury obrazów wraz z wynikami wyszukiwania."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:842
@@ -6125,20 +6123,20 @@ msgstr ""
 #: src/olympia/files/utils.py:350
 #, python-brace-format
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
-msgstr ""
+msgstr "Nieznana „strict_min_version” {appver} dla aplikacji {app}"
 
 #: src/olympia/files/utils.py:364
 #, python-brace-format
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
-msgstr ""
+msgstr "Nieznana „strict_max_version” {appver} dla aplikacji {app}"
 
 #: src/olympia/files/utils.py:542
 msgid "Unsupported compression method in archive."
-msgstr ""
+msgstr "Nieobsługiwana metoda kompresji w archiwum."
 
 #: src/olympia/files/utils.py:545
 msgid "Unsupported archive type."
-msgstr ""
+msgstr "Nieobsługiwany typ archiwum."
 
 #: src/olympia/files/utils.py:554
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
