@@ -2098,6 +2098,8 @@ msgid ""
 "On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
 "on manifest’s <a {a_attrs}>update_url</a> is provided, as this is the URL where Firefox finds updates for automatic deployment to your users.</span>"
 msgstr ""
+"Na własną rękę. <span class=\"helptext\">Po podpisaniu pliku przez Mozillę możesz pobrać plik .xpi ze Strefy autora i rozpowszechnić go wśród odbiorców. Upewnij się, że w manifeście dodatku podany "
+"jest parametr <a {a_attrs}>update_link</a>, ponieważ jest to adres URL, pod którym Firefox znajduje aktualizacje do automatycznego wdrożenia u użytkowników.</span>"
 
 #: src/olympia/devhub/forms.py:1404 src/olympia/devhub/templates/devhub/includes/agreement.html:15
 msgid "Display Name"
