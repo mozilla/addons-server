@@ -5840,7 +5840,7 @@ msgstr "Rozszerzenia są jak aplikacje dla Firefoksa."
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1012
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
-msgstr ""
+msgstr "Dodają funkcje do Firefoksa, aby przeglądanie było szybsze, bezpieczniejsze lub po prostu zabawniejsze."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1014
