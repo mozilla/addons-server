@@ -6115,7 +6115,7 @@ msgstr ""
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1129
 msgid "Extension starter pack"
-msgstr ""
+msgstr "Paquete inicial de extensiones"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1131
