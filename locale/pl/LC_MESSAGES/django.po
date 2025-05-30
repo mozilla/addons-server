@@ -539,7 +539,7 @@ msgstr "Zarządzaj kluczami API"
 
 #: src/olympia/amo/context_processors.py:85
 msgid "Reviewer Tools"
-msgstr "Strefa recenzenta"
+msgstr "Narzędzia recenzenta"
 
 #: src/olympia/amo/context_processors.py:91
 msgid "Admin Tools"
@@ -1548,7 +1548,7 @@ msgstr ""
 
 #: src/olympia/constants/categories.py:198 src/olympia/constants/categories.py:290 src/olympia/devhub/forms.py:592
 msgid "Other"
-msgstr "Inny"
+msgstr "Inne"
 
 #: src/olympia/constants/categories.py:201
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
@@ -7061,19 +7061,19 @@ msgstr ""
 #: src/olympia/versions/models.py:1181
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
-msgstr ""
+msgstr "Odrzucono z opóźnieniem, zaplanowano na %s"
 
 #: src/olympia/versions/models.py:1186
 msgid "Auto-approved, Confirmed"
-msgstr ""
+msgstr "Zatwierdzono automatycznie, potwierdzono"
 
 #: src/olympia/versions/models.py:1188
 msgid "Auto-approved, not Confirmed"
-msgstr ""
+msgstr "Zatwierdzono automatycznie, nie potwierdzono"
 
 #: src/olympia/versions/models.py:1191
 msgid "Approved, Manual"
-msgstr ""
+msgstr "Zatwierdzono, osobiście"
 
 #: src/olympia/versions/models.py:1198
 msgid "Disabled by Developer"
