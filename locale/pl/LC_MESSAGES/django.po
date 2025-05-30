@@ -3144,11 +3144,11 @@ msgstr "Twój dodatek jest obecnie ustawiony jako „Niewidoczny”."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/invisible_channel_warning.html:3
 msgid "While in this state, \"On your own\" is the only distribution method available."
-msgstr ""
+msgstr "W tym stanie jedyną dostępną metodą dystrybucji jest „Na własną rękę”."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/source_file_input.html:12
 msgid "You cannot change attached sources because this version has been reviewed by Mozilla."
-msgstr ""
+msgstr "Załączone źródła nie mogą być zmienione, gdyż ta wersja została już zatwierdzona przez Mozillę."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:5 src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:53
 msgid "General Tests"
@@ -3210,9 +3210,8 @@ msgid "Actions"
 msgstr "Czynności"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:11
-#, fuzzy
 msgid "Resume the submission process for this add-on"
-msgstr "Wznów proces zamieszczania dodatku."
+msgstr "Wznów proces zamieszczania dodatku"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:12
 msgid "Resume"
@@ -3498,7 +3497,7 @@ msgstr "Przejdź do sekcji Moje zgłoszenia"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:3
 msgid "Source Code Upload"
-msgstr ""
+msgstr "Prześlij kod źródłowy"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:11
 msgid "Do You Need to Submit Source Code?"
