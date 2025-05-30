@@ -4520,9 +4520,8 @@ msgstr "Uprość użycie i zsynchronizuj wszystkie dane logowania do różnych w
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:44 src/olympia/discovery/strings.jinja2:743
-#, fuzzy
 msgid "Effective, lightweight ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr "Lekkie i skuteczne narzędzie do blokowania reklam. uBlock Origin stosuje tysiące filtrów zawartości bez nadmiernego zużywania pamięci."
+msgstr "Skuteczny i lekkie narzędzie do blokowania reklam. uBlock Origin stosuje tysiące filtrów zawartości bez nadmiernego zużywania pamięci."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4537,9 +4536,8 @@ msgstr "Zaznacz dowolny tekst i kliknij prawym przyciskiem myszy, aby szybko wys
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:53
-#, fuzzy
 msgid "Enjoy visual bookmarks. Access your favorite sites from a tile layout."
-msgstr "Uzyskaj dostęp do ulubionych witryn w układzie kafelków."
+msgstr ""
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:56
@@ -4689,9 +4687,8 @@ msgstr "Czytaj pliki ePub bezpośrednio w Firefoksie — zwiększaj rozmiar teks
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:137 src/olympia/discovery/strings.jinja2:869
-#, fuzzy
 msgid "Play YouTube videos by default in the highest quality, turn off annotations, and more."
-msgstr "Odtwarzaj filmy domyślnie w najwyższej jakości, wyłączaj adnotacje i nie tylko."
+msgstr "Odtwarzaj filmy na Youtube domyślnie w najwyższej jakości, wyłączaj adnotacje i nie tylko."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:140
@@ -4749,9 +4746,8 @@ msgstr "Przeglądaj Internet z ukrytą tożsamością — dzięki temu dodatkowi
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:170
-#, fuzzy
 msgid "Enjoy visual bookmarks. Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr "Uzyskaj dostęp do ulubionych witryny, ostatnio zamkniętych zakładek itp. — a wszystko to przy użyciu niesamowitego układu kafelków."
+msgstr ""
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:173
@@ -5010,9 +5006,8 @@ msgstr "Zablokuj wyszukiwarkom możliwość sprawdzania, które wyniki wyszukiwa
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:311
-#, fuzzy
 msgid "Download YouTube videos and/or audio."
-msgstr "Pobieraj filmy i/lub pliki dźwiękowe."
+msgstr "Pobieraj filmy i/lub pliki dźwiękowe z YouTube."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:314
