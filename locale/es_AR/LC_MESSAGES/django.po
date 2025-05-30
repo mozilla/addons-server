@@ -5809,7 +5809,7 @@ msgstr "Eliminá el formato del texto copiado al portapapeles."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:971
 msgid "Fingerprinting privacy protection."
-msgstr ""
+msgstr "Protección de privacidad mediante huellas digitales."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:974
