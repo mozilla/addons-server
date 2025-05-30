@@ -6202,18 +6202,16 @@ msgid "You cannot submit this type of add-on"
 msgstr "Nie można przesłać dodatku tego typu"
 
 #: src/olympia/files/utils.py:943
-#, fuzzy
 msgid "You cannot submit an add-on using an ID ending with this suffix"
-msgstr "Nie można przesłać dodatku z GUID kończącym się %s"
+msgstr ""
 
 #: src/olympia/files/utils.py:948
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Nie można przesłać podpisanego rozszerzenia Mozilla"
 
 #: src/olympia/files/utils.py:952
-#, fuzzy
 msgid "You cannot submit a language pack"
-msgstr "Nie można przesłać podpisanego rozszerzenia Mozilla"
+msgstr ""
 
 #: src/olympia/files/utils.py:961
 msgid "The locale of an existing dictionary/language pack cannot be changed"
@@ -6229,9 +6227,9 @@ msgid "Unexpected error."
 msgstr "Nieoczekiwany błąd."
 
 #: src/olympia/files/utils.py:1020
-#, fuzzy, python-format
+#, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
-msgstr "<em:type> w pliku install.rdf (%s) nie pasuje do typu dodatku na AMO (%s)"
+msgstr ""
 
 #: src/olympia/files/views.py:83 src/olympia/signing/views.py:128
 msgid "Missing \"upload\" key in multipart file data."
@@ -6274,9 +6272,9 @@ msgstr ""
 #, python-brace-format
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Tekst recenzji nie może zawierać słowa: „{0}”"
+msgstr[1] "Tekst recenzji nie może zawierać słów: „{0}”"
+msgstr[2] "Tekst recenzji nie może zawierać słów: „{0}”"
 
 #: src/olympia/ratings/serializers.py:119
 msgid "This field is required."
@@ -6426,9 +6424,9 @@ msgstr ""
 
 #: src/olympia/search/filters.py:49 src/olympia/search/filters.py:62 src/olympia/search/filters.py:95 src/olympia/search/filters.py:158 src/olympia/search/filters.py:198
 #: src/olympia/search/filters.py:344 src/olympia/search/filters.py:455
-#, fuzzy, python-format
+#, python-format
 msgid "Invalid \"%s\" parameter."
-msgstr "Nieprawidłowy zakres wersji."
+msgstr "Nieprawidłowy parametr \"%s\"."
 
 #: src/olympia/search/filters.py:202 src/olympia/search/filters.py:322
 #, python-format
@@ -6639,18 +6637,16 @@ msgid "Previous"
 msgstr "Wstecz"
 
 #: src/olympia/stats/templates/stats/stats.html:165
-#, fuzzy
 msgid "This dashboard is <b>private</b>."
-msgstr "Ten panel jest obecnie <b>nieupubliczniony</b>."
+msgstr "Ten panel jest <b>nieupubliczniony</b>."
 
 #: src/olympia/stats/templates/stats/reports/apps.html:3
 msgid "Application usage by Date"
 msgstr "Użycie programu według daty"
 
 #: src/olympia/stats/templates/stats/reports/campaigns.html:3
-#, fuzzy
 msgid "Download campaigns by Date"
-msgstr "Źródła pobierania wg daty"
+msgstr ""
 
 #: src/olympia/stats/templates/stats/reports/campaigns.html:7 src/olympia/stats/templates/stats/reports/contents.html:7 src/olympia/stats/templates/stats/reports/mediums.html:7
 #: src/olympia/stats/templates/stats/reports/sources.html:7
@@ -6682,9 +6678,9 @@ msgid "Platform usage by Date"
 msgstr "Użycie platformy według daty"
 
 #: src/olympia/stats/templates/stats/reports/overview.html:9
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "<b>{0}</b> Weekly Downloads"
-msgstr "<b>{0}</b> pobrań"
+msgstr ""
 
 #: src/olympia/stats/templates/stats/reports/overview.html:11 src/olympia/stats/templates/stats/reports/overview.html:15
 msgid "Loading..."
