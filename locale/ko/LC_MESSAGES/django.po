@@ -1197,7 +1197,7 @@ msgstr "거부되지 않음"
 #: src/olympia/constants/activity.py:941
 #, python-brace-format
 msgid "Reply to {rating} for {addon} written."
-msgstr ""
+msgstr "{addon}에 대해 작성된 {rating}에 답변하세요."
 
 #: src/olympia/constants/activity.py:958
 #, python-brace-format
@@ -1211,40 +1211,40 @@ msgstr "보류 중인 거부가 삭제됨"
 #: src/olympia/constants/activity.py:1006
 #, python-brace-format
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
-msgstr ""
+msgstr "{user_responsible}님이 {addon}의 슬러그를 {0}에서 {1}로 변경하였습니다."
 
 #: src/olympia/constants/activity.py:1007
 msgid "Add-on slug changed"
-msgstr ""
+msgstr "부가 기능 슬러그 변경됨"
 
 #: src/olympia/constants/activity.py:1014
 #, python-brace-format
 msgid "Collection {collection} deleted by moderator"
-msgstr ""
+msgstr "{collection} 컬렉션이 관리자에 의해 삭제됨"
 
 #: src/olympia/constants/activity.py:1020
 #, python-brace-format
 msgid "Collection {collection} un-deleted by moderator"
-msgstr ""
+msgstr "{collection} 컬렉션이 관리자에 의해 삭제 취소됨"
 
 #: src/olympia/constants/activity.py:1029
 #, python-brace-format
 msgid "Review {rating} for {addon} un-deleted."
-msgstr ""
+msgstr "{addon}에 대한 {rating} 리뷰가 삭제되지 않았습니다."
 
 #: src/olympia/constants/activity.py:1058
 #, python-brace-format
 msgid "{addon} {version} rejected automatically after delay expired."
-msgstr ""
+msgstr "{addon}{version}이 보류 기간 만류 후 자동 반려 처리 되었습니다."
 
 #: src/olympia/constants/activity.py:1059
 msgid "Rejected automatically after delay expired"
-msgstr ""
+msgstr "보류 기간 만료 후 자동 반려 처리됨"
 
 #: src/olympia/constants/activity.py:1070
 #, python-brace-format
 msgid "{addon} {version} content rejected automatically after delay expired."
-msgstr ""
+msgstr "{addon} {version} 컨텐츠가 보류 기간 만료로 자동 반려되었습니다."
 
 #: src/olympia/constants/activity.py:1071
 msgid "Content rejected automatically after delay expired"
@@ -1253,11 +1253,11 @@ msgstr "지연으로 만료되어 자동으로 콘텐츠가 거부됨"
 #: src/olympia/constants/activity.py:1196
 #, python-brace-format
 msgid "{addon} {version} pending rejection changed."
-msgstr ""
+msgstr "{addon} {version} 보류 중인 반려가 변경되었습니다."
 
 #: src/olympia/constants/activity.py:1197
 msgid "Pending rejection changed"
-msgstr ""
+msgstr "보류 중인 반려 상태 변경됨"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -1369,7 +1369,7 @@ msgstr "테마"
 
 #: src/olympia/constants/base.py:138
 msgid "Deprecated Site Permission"
-msgstr ""
+msgstr "더 이상 사용되지 않는 사이트 권한"
 
 #: src/olympia/constants/base.py:143 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:10
 msgid "Extensions"
@@ -1393,7 +1393,7 @@ msgstr "언어 팩"
 
 #: src/olympia/constants/base.py:148
 msgid "Deprecated Language Packs (Add-on)"
-msgstr ""
+msgstr "더 이상 사용되지 않는 언어 팩(부가 기능)"
 
 #: src/olympia/constants/base.py:149
 msgid "Deprecated Plugins"
@@ -1653,39 +1653,39 @@ msgstr "Mozilla Public License 2.0"
 
 #: src/olympia/constants/licenses.py:22
 msgid "Apache License 2.0"
-msgstr ""
+msgstr "Apache License 2.0"
 
 #: src/olympia/constants/licenses.py:29
 msgid "GNU General Public License v2.0 only"
-msgstr ""
+msgstr "GNU General Public License v2.0 전용"
 
 #: src/olympia/constants/licenses.py:36
 msgid "GNU General Public License v3.0 only"
-msgstr ""
+msgstr "GNU General Public License v3.0 전용"
 
 #: src/olympia/constants/licenses.py:43
 msgid "GNU Lesser General Public License v2.1 only"
-msgstr ""
+msgstr "GNU Lesser General Public License v2.1 전용"
 
 #: src/olympia/constants/licenses.py:50
 msgid "GNU Lesser General Public License v3.0 only"
-msgstr ""
+msgstr "GNU Lesser General Public License v3.0 전용"
 
 #: src/olympia/constants/licenses.py:57
 msgid "GNU Affero General Public License v3.0 only"
-msgstr ""
+msgstr "GNU Affero General Public License v3.0 전용"
 
 #: src/olympia/constants/licenses.py:64
 msgid "MIT License"
-msgstr ""
+msgstr "MIT 라이선스"
 
 #: src/olympia/constants/licenses.py:71
 msgid "ISC License"
-msgstr ""
+msgstr "ISC 라이선스"
 
 #: src/olympia/constants/licenses.py:78
 msgid "BSD 2-Clause \"Simplified\" License"
-msgstr ""
+msgstr "BSD 2-Clause \"Simplified\" 라이선스"
 
 #: src/olympia/constants/licenses.py:85
 msgid "Mozilla Public License 1.1"
@@ -1721,31 +1721,31 @@ msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 #: src/olympia/constants/licenses.py:162
 msgid "Creative Commons Attribution 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution 4.0"
 
 #: src/olympia/constants/licenses.py:172
 msgid "Creative Commons Attribution-NonCommercial 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial 4.0"
 
 #: src/olympia/constants/licenses.py:182
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
 
 #: src/olympia/constants/licenses.py:192
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
 
 #: src/olympia/constants/licenses.py:202
 msgid "Creative Commons Attribution-NoDerivs 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NoDerivs 4.0"
 
 #: src/olympia/constants/licenses.py:212
 msgid "Creative Commons Attribution-ShareAlike 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-ShareAlike 4.0"
 
 #: src/olympia/constants/licenses.py:222
 msgid "The Unlicense"
-msgstr ""
+msgstr "라이선스 없음"
 
 #: src/olympia/constants/promoted.py:76
 msgid "Not Promoted"
@@ -1773,7 +1773,7 @@ msgstr "주목할 만한"
 
 #: src/olympia/constants/promoted.py:159
 msgid "Partner"
-msgstr ""
+msgstr "파트너"
 
 #: src/olympia/constants/reviewers.py:23
 msgid "No Reputation"
@@ -1923,9 +1923,9 @@ msgid "The miscellaneous category cannot be combined with additional categories.
 msgstr "기타 카테고리는 다른 카테고리와 결합할 수 없습니다."
 
 #: src/olympia/devhub/forms.py:272
-#, fuzzy, python-format
+#, python-format
 msgid "URL domain must be one of [%s]."
-msgstr "URL 도메인은 [%s]중에 하나이거나 하위 도메인이어야 합니다."
+msgstr "URL 도메인은 [%s] 중 하나여야 합니다."
 
 #: src/olympia/devhub/forms.py:288
 #, python-brace-format
@@ -2078,7 +2078,7 @@ msgstr "표시 이름"
 
 #: src/olympia/devhub/forms.py:1435
 msgid "Confirm email address"
-msgstr ""
+msgstr "이메일 주소 확인하기"
 
 #: src/olympia/devhub/forms.py:1436
 msgid "Generate new credentials"
@@ -2101,7 +2101,7 @@ msgstr "JWT 발급자"
 msgid ""
 "To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
 "href=\"{docs_url}\">API documentation</a>."
-msgstr ""
+msgstr "API 요청을 하려면 <a href=\"{jwt_url}\">JSON 웹 토큰(JWT)</a>을 인증 헤더로 보내야 합니다. <a href=\"{docs_url}\">API 문서</a>에 안내되어 있는 바에 따라 모든 요청에 대해 JWT를 생성해야 합니다."
 
 #: src/olympia/devhub/forms.py:1494
 msgid "JWT secret"
@@ -2110,7 +2110,7 @@ msgstr "JWT 시크릿"
 #: src/olympia/devhub/forms.py:1515
 #, python-brace-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
-msgstr ""
+msgstr "<strong>{name}</strong> 사용자에 대한 API 자격 증명을 생성하려면 아래 확인 버튼을 클릭하세요."
 
 #: src/olympia/devhub/forms.py:1521
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
@@ -2122,7 +2122,7 @@ msgstr "API 자격 증명이 없습니다."
 
 #: src/olympia/devhub/forms.py:1549
 msgid "Something went wrong, please contact developer support."
-msgstr ""
+msgstr "문제가 발생했습니다. 개발자 지원팀에 문의하세요."
 
 #: src/olympia/devhub/tasks.py:178
 msgid "Invalid or corrupt add-on file."
@@ -2148,7 +2148,7 @@ msgstr "검사 과정에서 너무 많은 오류/경고가 발생했으며 %s개
 #: src/olympia/devhub/utils.py:207
 #, python-brace-format
 msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
-msgstr ""
+msgstr "이 부가 기능은 테마가 아닙니다. <a href=\"{link}\">새 부가 기능 등록</a> 페이지에서 확장 기능을 등록할 수 있습니다."
 
 #: src/olympia/devhub/views.py:114
 msgid "Updated"
@@ -2239,7 +2239,7 @@ msgstr "부가 기능 검사"
 #: src/olympia/devhub/views.py:644
 #, python-brace-format
 msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
-msgstr ""
+msgstr "<a href=\"{link}\">확장 기능을 제출하려면 계정에 2단계 인증을 추가하세요.</a>"
 
 #: src/olympia/devhub/views.py:1012
 msgid "Icons must be either PNG or JPG."
@@ -2250,9 +2250,9 @@ msgid "Icons cannot be animated."
 msgstr "움직이는 아이콘은 사용할 수 없습니다."
 
 #: src/olympia/devhub/views.py:1044
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
-msgstr "이미지 크기는 가로 {0} 픽셀 세로 {1} 픽셀로 정확히 맞춰야 합니다."
+msgstr "이미지 크기는 가로 {0} 픽셀 세로 {1} 픽셀 이상이어야 합니다."
 
 #: src/olympia/devhub/views.py:1048
 msgid "Image dimensions must be in the ratio 4:3."
@@ -2275,7 +2275,7 @@ msgstr "미리보기 업로드 도중 오류가 있었습니다."
 #, python-format
 msgid ""
 "The latest approved version of this %s add-on cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
-msgstr ""
+msgstr "최신 승인된 %s 부기 기능 버전은 이전 버전이 %s 프로모션으로 승인되지 않았기 때문에 삭제하거나 비활성화 할 수 없습니다. 만약 도움이 필요하시면 AMO 관리자에게 연락주시기 바랍니다."
 
 #: src/olympia/devhub/views.py:1220
 #, python-format
@@ -2357,7 +2357,7 @@ msgstr ""
 
 #: src/olympia/devhub/views.py:1576
 msgid "Add-on uploads are temporarily unavailable"
-msgstr ""
+msgstr "부가 기능 업로드가 일시적으로 불가능함"
 
 #: src/olympia/devhub/views.py:1945
 msgid "Review requested."
@@ -2373,7 +2373,7 @@ msgstr "귀하의 이전 자격 증명이 철회되었으며 더 이상 유효�
 
 #: src/olympia/devhub/views.py:2068
 msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
-msgstr ""
+msgstr "API 비밀 키를 Mozilla 기여자를 포함하여 다른 누구와도 공유하지 말고 안전하게 보관하시기 바랍니다."
 
 #: src/olympia/devhub/views.py:2085
 msgid "New API key created"
@@ -2389,7 +2389,7 @@ msgstr "이메일 확인"
 
 #: src/olympia/devhub/views.py:2158
 msgid "Send another email"
-msgstr ""
+msgstr "다른 이메일 보내기"
 
 #: src/olympia/devhub/views.py:2191
 msgid "Your email has been verified"
@@ -2405,11 +2405,11 @@ msgstr "Firefox 부가 기능 배포 계약"
 
 #: src/olympia/devhub/templates/devhub/base.html:43
 msgid "Help us make things better!"
-msgstr ""
+msgstr "개선할 수 있도록 도와주세요!"
 
 #: src/olympia/devhub/templates/devhub/base.html:44
 msgid "Take our quick survey"
-msgstr ""
+msgstr "간단한 설문 참여"
 
 #. {0} is an application, like Firefox.
 #: src/olympia/devhub/templates/devhub/index.html:21 src/olympia/templates/base.html:17
@@ -2482,7 +2482,7 @@ msgstr "검색"
 #: src/olympia/devhub/templates/devhub/suppressed_email.html:4
 #, python-format
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
-msgstr ""
+msgstr "\"%(email)s\" 이메일 주소는 저희가 보내는 메일을 받을 수 없는 것으로 확인되었습니다. 이메일 수신이 가능한 다른 메일 주소로 변경해 주세요."
 
 #: src/olympia/devhub/templates/devhub/suppressed_email.html:8
 msgid "Learn more"
@@ -2524,23 +2524,23 @@ msgstr "상태:"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:12
 msgid "Your email address is verified."
-msgstr ""
+msgstr "이메일 주소가 인증되었습니다."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:16
 msgid "Please verify your email."
-msgstr ""
+msgstr "이메일 주소를 인증해 주세요."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:20
 msgid "Could not verify email address. The verification link has expired."
-msgstr ""
+msgstr "이메일 주소를 인증할 수 없습니다. 인증 링크가 만료되었습니다."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:24
 msgid "We are sending an email to you, please be patient... <div class=\"loader\"></div> The page will automatically refresh."
-msgstr ""
+msgstr "이메일을 보내는 중이니 잠시만 기다려 주십시오... <div class=\"loader\"></div> 페이지는 자동으로 새로고침 됩니다."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:30
 msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again later."
-msgstr ""
+msgstr "인증 메일의 전송을 확인하는데 예상보다 시간이 걸리고 있습니다. 잠시 후 다시 시도해 주십시오."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:34
 msgid "Success!"
