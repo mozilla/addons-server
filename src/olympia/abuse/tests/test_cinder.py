@@ -219,6 +219,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
             description='Sôme description',
             privacy_policy='Söme privacy policy',
             version_kw={'release_notes': 'Søme release notes'},
+            requires_payment=True,
         )
         message = ' bad addon!'
         cinder_addon = self.CinderClass(addon)
@@ -242,6 +243,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                 'privacy_policy': 'Söme privacy policy',
                 'promoted': '',
                 'release_notes': 'Søme release notes',
+                'requires_payment': True,
                 'slug': addon.slug,
                 'summary': str(addon.summary),
                 'support_email': str(addon.support_email),
@@ -407,6 +409,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                 'privacy_policy': 'Söme privacy policy',
                 'promoted': 'Recommended',
                 'release_notes': 'Søme release notes',
+                'requires_payment': False,
                 'slug': addon.slug,
                 'summary': str(addon.summary),
                 'support_email': str(addon.support_email),
@@ -474,6 +477,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                 'privacy_policy': 'Söme privacy policy',
                 'promoted': 'Notable',
                 'release_notes': 'Søme release notes',
+                'requires_payment': False,
                 'slug': addon.slug,
                 'summary': str(addon.summary),
                 'support_email': str(addon.support_email),
@@ -761,6 +765,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                 'privacy_policy': '',
                 'promoted': '',
                 'release_notes': '',
+                'requires_payment': False,
                 'slug': addon.slug,
                 'summary': str(addon.summary),
                 'support_email': None,
@@ -855,6 +860,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                 'privacy_policy': '',
                 'promoted': '',
                 'release_notes': '',
+                'requires_payment': False,
                 'slug': addon.slug,
                 'summary': str(addon.summary),
                 'support_email': None,
