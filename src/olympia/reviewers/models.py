@@ -1024,7 +1024,7 @@ def update_due_date_for_needs_human_review_change(
         instance.version.reset_due_date()
 
 
-class QueueCount(models.Model):
+class QueueCount(ModelBase):
     date = models.DateField(auto_now_add=True)
     name = models.CharField(max_length=255)
     value = models.IntegerField()
