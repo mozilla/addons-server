@@ -1468,7 +1468,7 @@ msgstr "Kanały, wiadomości i blogi"
 
 #: src/olympia/constants/categories.py:108
 msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
-msgstr ""
+msgstr "Pobierz rozszerzenia Firefoksa, które usuwają zbędne elementy, umożliwiając bycie na bieżąco z mediami społecznościowymi, nadrób blogi i kanały RSS, zmniejszaj zmęczenie oczu i nie tylko."
 
 #: src/olympia/constants/categories.py:115
 msgid "Games & Entertainment"
@@ -6036,7 +6036,7 @@ msgstr ""
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1114
 msgid "Social media extensions"
-msgstr ""
+msgstr "Rozszerzenia mediów społecznościowych"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1116
@@ -6940,9 +6940,8 @@ msgstr ""
 "łącze do Powiadomienia o prywatności, które wyjaśnia, jak postępujemy z Twoimi informacjami."
 
 #: src/olympia/users/models.py:1262
-#, fuzzy
 msgid "User Restriction History"
-msgstr "Zamknij historię sprawdzania"
+msgstr ""
 
 #: src/olympia/users/notifications.py:27
 msgid "an add-on developer replies to my review"
