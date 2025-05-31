@@ -602,9 +602,9 @@ django-extensions==3.2.3 \
 django-multidb-router==0.10 \
     --hash=sha256:6802bbfce3a0dac343f93a290df12a9979aed99b350bc0148a7430353efae8b6 \
     --hash=sha256:a10bf4b664465090a5f2e8543dd1491eaf8dde7c551270e546324454e7280964
-django-recaptcha==4.0.0 \
-    --hash=sha256:0d912d5c7c009df4e47accd25029133d47a74342dbd2a8edc2877b6bffa971a3 \
-    --hash=sha256:5316438f97700c431d65351470d1255047e3f2cd9af0f2f13592b637dad9213e
+django-recaptcha==4.1.0 \
+    --hash=sha256:463aa65967e973de466b28ce8e8b6abb2faffb1ce0c7faa1bf0e5b041e0497cb \
+    --hash=sha256:73097b958733f65b729d4e4630c51fc2bf147aca6f026017d18898dfc25cb4c5
 django-statsd-mozilla==0.4.0 \
     --hash=sha256:81084f3d426f5184f0a0f1dbfe035cc26b66f041d2184559d916a228d856f0d3 \
     --hash=sha256:0d87cb63de8107279cbb748caad9aa74c6a44e7e96ccc5dbf07b89f77285a4b8
