@@ -1,8 +1,8 @@
 Hello,
 
-Thank you for your report about {{ name }}, at {{ target_url }} that appeared to violate our policies.
+Thank you for your report about {{ name }}, at {{ target_url }}.
 
-As this content has already been moderated before your report was reviewed, your report will not be processed.
+This content was already assessed in a prior review, and any violations that were found have either been addressed, or are currently being resolved. Because our moderation team has already reviewed this content, your report will not be processed.
 
 Thank you for your attention.
 
