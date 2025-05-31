@@ -5874,7 +5874,7 @@ msgstr "Shtesa thelbësore"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1020
 msgid "Declutter your desktop"
-msgstr ""
+msgstr "Sistemoni desktopin tuaj"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1022 src/olympia/discovery/strings.jinja2:1024 src/olympia/discovery/strings.jinja2:1026
@@ -6106,12 +6106,12 @@ msgstr "Shihni më tepër zgjerime Twitch të zgjedhura nga stafi"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1144
 msgid "Gaming & media extensions"
-msgstr ""
+msgstr "Zgjerime për lojëra & media"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1146
 msgid "See more staff picks"
-msgstr ""
+msgstr "Shihni më tepër zgjedhje nga stafi"
 
 #: src/olympia/files/models.py:319
 msgid "Unreviewed"
