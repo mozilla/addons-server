@@ -223,6 +223,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
+"\n"
+"Mozilla 부가 기능의 %(name)s 사용자 프로필을 신고해 주셔서 감사합니다.\n"
+"\n"
+"신고 내용과 문제의 콘텐츠를 검토한 결과 Mozilla 정책 (%(policy_document_url)s)을 위반하는 것으로 판단되어 해당 콘텐츠를 삭제했습니다.\n"
 
 #: src/olympia/accounts/serializers.py:152 src/olympia/bandwagon/serializers.py:98
 msgid "No links are allowed."
@@ -1068,7 +1072,7 @@ msgstr "{addon}이 목록에서 제거되었습니다."
 #: src/olympia/constants/activity.py:560
 #, python-brace-format
 msgid "Add-on id {0} with GUID {1} has been deleted"
-msgstr ""
+msgstr "GUID {1}에 해당하는 부가 기능 id {0}가 삭제됨"
 
 #: src/olympia/constants/activity.py:567 src/olympia/constants/activity.py:573
 #, python-brace-format
@@ -1096,7 +1100,7 @@ msgstr "검토자 코멘트"
 #: src/olympia/constants/activity.py:631
 #, python-brace-format
 msgid "Notes for reviewers changed for {addon} {version}."
-msgstr ""
+msgstr "{addon} {version}의 검토자 메모가 변경되었습니다."
 
 #: src/olympia/constants/activity.py:632
 msgid "Notes for reviewers changed"
@@ -1168,9 +1172,8 @@ msgid "{addon} {version} automatically created and signed from {0}."
 msgstr "{addon} {version} 자동으로 생성되고 서명됨{0}."
 
 #: src/olympia/constants/activity.py:854
-#, fuzzy
 msgid "Version re-signed"
-msgstr "%s 버전이 다시 활성화되었습니다."
+msgstr "버전 재서명됨"
 
 #: src/olympia/constants/activity.py:862
 #, python-brace-format
@@ -1185,7 +1188,7 @@ msgstr "{addon} 강제 활성화"
 #: src/olympia/constants/activity.py:902
 #, python-brace-format
 msgid "{addon} {version} un-rejected."
-msgstr ""
+msgstr "{addon} {version} 버전이 거부되지 않았습니다."
 
 #: src/olympia/constants/activity.py:903
 msgid "Un-rejected"
