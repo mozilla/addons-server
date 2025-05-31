@@ -5863,7 +5863,7 @@ msgstr "Miore la tô esperience su Twitch."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1001
 msgid "Re-take control of Twitter/X and customize your experience."
-msgstr ""
+msgstr "Torne a vê il control di Twitter/X e personalize la tô esperience."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1004
@@ -5903,7 +5903,7 @@ msgstr "Components adizionâi essenziâi"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1020
 msgid "Declutter your desktop"
-msgstr ""
+msgstr "Gjave vie il disordin dal to scritori"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1022 src/olympia/discovery/strings.jinja2:1024 src/olympia/discovery/strings.jinja2:1026
@@ -6135,12 +6135,12 @@ msgstr "Scuvierç altris estensions par Twitch sieltis dal nestri organic"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1144
 msgid "Gaming & media extensions"
-msgstr ""
+msgstr "Estensions pai zûcs e pai contignûts multimediâi"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1146
 msgid "See more staff picks"
-msgstr ""
+msgstr "Viôt altris sieltis dal nestri organic"
 
 #: src/olympia/files/models.py:319
 msgid "Unreviewed"
