@@ -41,7 +41,7 @@ msgstr "Profil użytkownika"
 #: src/olympia/abuse/models.py:1421
 #, python-brace-format
 msgid "\"{}\" for {}"
-msgstr ""
+msgstr "\"{}\" dla {}"
 
 #: src/olympia/abuse/serializers.py:32
 #, python-brace-format
