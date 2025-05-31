@@ -2551,18 +2551,18 @@ msgstr "성공!"
 msgid ""
 "An email with a confirmation link has been sent to your email address: %(email)s. Please click the link to confirm your email address. If you did not receive the email, please check your spam "
 "folder."
-msgstr ""
+msgstr "인증 링크가 포함된 메일이 %(email)s 메일 주소로 전송되었습니다. 메일 주소 인증을 위해 링크를 클릭해주세요. 메일을 받지 못했다면 스펨 메일함을 확인해주세요."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:39
 #, python-format
 msgid ""
 "The provided code is invalid, unauthorized, expired or incomplete. Please use the link in the email sent to your email address %(email)s. If the code is still not working, please request a new "
 "email."
-msgstr ""
+msgstr "제공된 코드는 유효하지 않거나 권한이 없거나 만료되었거나 불완전합니다. %(email)s 이메일로 전송된 메일의 링크를 이용해주세요. 그래도 코드가 작동하지 않으면 새 이메일을 요청해주세요."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:49
 msgid "<strong>Email history:</strong> The table below shows all emails we have attempted to send to you in the last 2 days."
-msgstr ""
+msgstr "<strong>이메일 기록:</strong> 아래 표는 지난 2일 동안 보내려고 시도한 모든 이메일입니다."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:57
 msgid "Date"
@@ -2596,7 +2596,7 @@ msgstr "결과 새로 고침"
 #: src/olympia/devhub/templates/devhub/verify_email.html:101
 #, python-format
 msgid "If you encounter issues, please see our <a %(a_attrs)s>troubleshooting suggestions</a> on Firefox Extension Workshop."
-msgstr ""
+msgstr "문제가 발생하면 Firefox 확장 기능 워크샵의 <a %(a_attrs)s>문제 해결 제안</a>을 참조하세요."
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html:4 src/olympia/devhub/templates/devhub/addons/activity.html:17
 msgid "Recent Activity for My Add-ons"
@@ -2671,9 +2671,8 @@ msgid "Preview"
 msgstr "미리보기"
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html:31
-#, fuzzy
 msgid "Preview of listed version"
-msgstr "다른 버전 보기"
+msgstr "나열된 버전 미리보기"
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html:32 src/olympia/devhub/templates/devhub/addons/submit/done.html:15
 msgid "Preview still being generated - come back later or refresh the page."
@@ -2733,13 +2732,12 @@ msgid "Save Changes"
 msgstr "변경사항 저장"
 
 #: src/olympia/devhub/templates/devhub/addons/owner.html:95
-#, fuzzy
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
-"<p>부가 기능 제작자엔 3가지 종류가 있습니다:</p> <ul> <li><b>소유자:</b> 다른 제작자의 추가와 삭제 및 부가 기능 전시에 사용되는 모든 항목의 관리 권한 보유</li> <li><b>개발자:</b> 다른 제작자의 추가 기능 및 결제 관련 권한을 제외한 권한 보유</li> <li><b>참관인:</b> 부가 기능의 설정 및 통계를 조회할"
-" 수 있지만 변경 불가</li> </ul>"
+"<p>부가 기능은 여러 명의 제작자가 있을 수 있고 2가지 가능한 역할이 있습니다:</p> <ul> <li><b>소유자:</b> 다른 제작자 추가와 삭제를 포함한 부가 기능 목록의 모든 부분을 관리할 수 있습니다.</li> <li><b>개발자:</b> 다른 작성자 추가와 삭제를 제외하고 부가 기능 목록의 모든 부분을 관리할 수 있습니다.</li> "
+"</ul>"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:34 src/olympia/devhub/templates/devhub/addons/owner.html:102
 msgid "Close"
@@ -2756,9 +2754,9 @@ msgid "Edit"
 msgstr "편집"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:15
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Additional Details for {0}"
-msgstr "{0} 부가 기능 세부 설명"
+msgstr "{0}에 대한 추가 세부 사항"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:19
 msgid "Tags"
@@ -2772,7 +2770,7 @@ msgstr "태그는 사용자가 추가 기능을 찾는 데 도움이 됩니다. 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:28
 #, python-brace-format
 msgid "Limit {0} tags."
-msgstr ""
+msgstr "태그는 {0}개까지로 제한됩니다."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:39
 msgid "Contributions URL"
@@ -2822,9 +2820,9 @@ msgstr "부가 기능 설명"
 
 #. {0} is the addon name
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:18
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Describe {0}"
-msgstr "부가 기능 설명"
+msgstr "{0}에 대해 설명해주세요."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:22
 msgid "Name and Summary"
@@ -2969,7 +2967,7 @@ msgstr "화이트보드"
 msgid ""
 "The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that may"
 " help. This whiteboard is also editable by reviewers."
-msgstr ""
+msgstr "화이트 보드는 버전에 관계없이 부가 기능과 관련된 정보를 검토자에게 제공하는 곳입니다. 부가 기능을 테스트하는 방법과 도움이 될만한 추가적인 정보를 제공해 주세요. 이 화이트보드는 검토자가 편집할 수 있습니다."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:10
 #, python-brace-format
@@ -3067,9 +3065,8 @@ msgid "Continue"
 msgstr "계속"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:2
-#, fuzzy
 msgid "Can others share your Add-on, as long as you're given credit?"
-msgstr "인증받은 사람에 한해 테마를 공유하게 할까요?"
+msgstr "인증받은 사람에 한해 부가 기능을 다른 사람이 공유할 수 있나요?"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:17
 #, fuzzy
@@ -3568,9 +3565,8 @@ msgid "The maximum file size accepted is %(max_size)s. If your add-on is larger 
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:59
-#, fuzzy
 msgid "Which applications is this version compatible with?"
-msgstr "이 파일과 호환되는 플랫폼은 무엇인가요?"
+msgstr "이 버전과 호환되는 앱은 무엇인가요?"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:66
 msgid "Administrative overrides"
@@ -3601,9 +3597,8 @@ msgid "Theme name"
 msgstr "테마 이름"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:37
-#, fuzzy
 msgid "Select a header image for your theme"
-msgstr "테마의 상단 이미지를 선택하세요."
+msgstr "테마의 헤더 이미지 선택"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:42
 msgid "Recommended height: 200 pixels"
@@ -3626,9 +3621,8 @@ msgid "Select a different header image"
 msgstr "다른 상단 이미지 선택"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:55
-#, fuzzy
 msgid "Select colors for your theme"
-msgstr "테마에 사용할 색을 설정하세요."
+msgstr "테마 색상 선택"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:67
 msgid "optional"
