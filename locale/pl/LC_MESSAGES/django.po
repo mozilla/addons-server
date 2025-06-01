@@ -6757,7 +6757,7 @@ msgstr "Dodatki"
 
 #: src/olympia/templates/photon-footer.html:4
 msgid "Go to Mozilla's homepage"
-msgstr ""
+msgstr "Strona domowa Mozilli"
 
 #: src/olympia/templates/photon-footer.html:11
 msgid "About"
