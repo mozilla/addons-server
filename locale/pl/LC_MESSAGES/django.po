@@ -283,7 +283,7 @@ msgstr "Uwaga do opinii"
 
 #: src/olympia/activity/views.py:134
 msgid "Request content length is too large."
-msgstr ""
+msgstr "Długość żądania jest za duża."
 
 #: src/olympia/activity/tests/test_constants.py:21 src/olympia/devhub/templates/devhub/addons/activity.html:60
 msgid "Add-on"
