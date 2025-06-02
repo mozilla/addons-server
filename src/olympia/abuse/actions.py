@@ -405,30 +405,41 @@ class ContentActionRejectVersion(ContentActionDisableAddon):
             template = loader.get_template(self.stakeholder_template_path)
             versions = list(
                 self.target_versions.order_by('id').values_list(
-                    'version', 'channel', named=True
+                    'id', 'version', 'channel', named=True
                 )
             )
-            if any(ver.channel == amo.CHANNEL_LISTED for ver in versions):
-                review_urls = absolutify(
-                    reverse('reviewers.review', args=['listed', self.target.id])
+            review_urls = []
+            for arg, channel in amo.CHANNEL_CHOICES_LOOKUP.items():
+                if any(ver.channel == channel for ver in versions):
+                    review_urls += [
+                        absolutify(
+                            reverse('reviewers.review', args=[arg, self.target.id])
+                        )
+                    ]
+            new_current_version = (
+                self.target.versions.filter(
+                    channel=amo.CHANNEL_LISTED, file__status=amo.STATUS_APPROVED
                 )
-            else:
-                review_urls = ''
-            if any(ver.channel == amo.CHANNEL_UNLISTED for ver in versions):
-                if review_urls:
-                    review_urls += ' | '
-                review_urls += absolutify(
-                    reverse('reviewers.review', args=['unlisted', self.target.id])
-                )
+                .exclude(id__in=(ver.id for ver in versions))
+                .order_by('created')
+                .last()
+            )
             context_dict = {
-                'rejection_type': rejection_type,
-                'version_list': ', '.join(ver.version for ver in versions),
+                'new_current_version': new_current_version,
                 'private_notes': self.decision.private_notes,
                 'reasoning': self.decision.reasoning,
-                'review_urls': review_urls,
+                'rejection_type': rejection_type,
+                'review_urls': ' | '.join(reversed(review_urls)),
                 'target_url': self.target.get_absolute_url()
                 if self.target.get_url_path()
                 else '',
+                'type': self.decision.get_target_display(),
+                'version_list_listed': ', '.join(
+                    vr.version for vr in versions if vr.channel == amo.CHANNEL_LISTED
+                ),
+                'version_list_unlisted': ', '.join(
+                    vr.version for vr in versions if vr.channel == amo.CHANNEL_UNLISTED
+                ),
             }
             subject = f'{rejection_type} issued for {self.decision.get_target_name()}'
             message = template.render(context_dict)

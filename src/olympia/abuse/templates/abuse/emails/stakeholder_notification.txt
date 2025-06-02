@@ -1,5 +1,6 @@
 {{ rejection_type }} for versions:
-{{ version_list }}
+[Listed] {{ version_list_listed }}
+[Unlisted] {{ version_list_unlisted }}
 
 Reasoning:
 {{ reasoning }}
@@ -7,6 +8,14 @@ Reasoning:
 {% if private_notes %}
 Private notes:
 {{ private_notes }}
+{% endif %}
+
+{% if version_list_listed %}
+  {% if new_current_version %}
+  {{ new_current_version.version }} will be the new current version of the {{ type }}; first approved {{ new_current_version.file.approval_date|date:"Y-m-d" }}.
+  {% else %}
+  The add-on will no longer be publicly viewable on AMO.
+  {% endif %}
 {% endif %}
 
 {{ review_urls }}
