@@ -3882,7 +3882,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/android_compatibility_modal.html:7
 msgid "No, I have not tested"
-msgstr ""
+msgstr "Uhu, ur t-skeydeɣ ara"
 
 #: src/olympia/devhub/templates/devhub/includes/blog_posts.html:3
 msgid "Developer News"
@@ -6017,7 +6017,7 @@ msgstr ""
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1146
 msgid "See more staff picks"
-msgstr ""
+msgstr "Wali ugar n yisiɣzaf i yettwafernen sɣur tarbaɛt"
 
 #: src/olympia/files/models.py:319
 msgid "Unreviewed"
@@ -6158,7 +6158,7 @@ msgstr "Tasarut \"upload\" ulac-itt deg ufaylu n yisefka multipart ."
 
 #: src/olympia/files/views.py:89
 msgid "Missing \"channel\" arg."
-msgstr ""
+msgstr "Ixuṣṣ ufakul n \"ubadu\"."
 
 #: src/olympia/ratings/models.py:363
 msgid "Spam or otherwise non-review content"
@@ -6193,8 +6193,8 @@ msgstr ""
 #, python-brace-format
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Aḍris n usenqed ur yezmir ara ad yesɛu awal: \"{0}\""
+msgstr[1] "Aḍris n usenqed ur yezmir ara ad yesɛu awlen: \"{0}\""
 
 #: src/olympia/ratings/serializers.py:119
 msgid "This field is required."
@@ -6261,7 +6261,7 @@ msgstr "Yettwasezmel %(rating)s ɣef 5 n yetran"
 #: src/olympia/reviewers/forms.py:372
 #, python-brace-format
 msgid "Unsupported file type, please upload a file {extensions}."
-msgstr ""
+msgstr "Anaw n ufaylu ur ittusefrak ara, ma ulac aɣilif sali afaylu {extensions}."
 
 #: src/olympia/reviewers/forms.py:378
 msgid "File too large."
