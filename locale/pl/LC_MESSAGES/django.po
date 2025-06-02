@@ -6163,7 +6163,7 @@ msgstr "Niewłaściwe archiwum."
 
 #: src/olympia/files/utils.py:852
 msgid "No manifest.json found"
-msgstr ""
+msgstr "Nie znaleziono pliku manifest.json"
 
 #: src/olympia/files/utils.py:857
 msgid "Invalid or corrupted file."
