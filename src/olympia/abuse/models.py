@@ -180,27 +180,24 @@ class CinderJob(ModelBase):
             or getattr(target, 'banned', False)
             or getattr(target, 'status', -1) == amo.STATUS_DISABLED
         )
-        versions = (
-            {
-                v.version: v
-                for v in Version.objects.filter(addon=self.target_addon).values_list(
-                    'version', 'human_review_date', named=True
-                )
-            }
-            if self.target_addon
-            else {}
+        reports = list(
+            self.abusereport_set.values_list('reason', 'addon_version', named=True)
         )
+        version_qs = Version.objects.filter(
+            addon=self.target_addon,
+            version__in=[
+                report.addon_version for report in reports if report.addon_version
+            ],
+        ).values_list('version', 'human_review_date', named=True)
+        versions = {v.version: v for v in version_qs} if self.target_addon else {}
         current_version = getattr(target, 'current_version', None) or Version()
-        reports_qs = self.abusereport_set.values_list(
-            'reason', 'addon_version', named=True
-        )
         is_human_reviewed = (
             # it's not an appeal job
             not self.is_appeal
             # it's a reviewer handled report/job
             and self.resolvable_in_reviewer_tools
             # there are reports
-            and (reports := list(reports_qs))
+            and reports
             # none are for a legal reason
             and all(report.reason != AbuseReport.REASONS.ILLEGAL for report in reports)
             # all reported versions are human_reviewed already, or current version is
