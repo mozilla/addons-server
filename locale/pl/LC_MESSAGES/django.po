@@ -6198,7 +6198,7 @@ msgstr "Nie można przesłać dodatku tego typu"
 
 #: src/olympia/files/utils.py:943
 msgid "You cannot submit an add-on using an ID ending with this suffix"
-msgstr ""
+msgstr "Nie można przesłać dodatku, używając identyfikatora kończącego się tym sufiksem"
 
 #: src/olympia/files/utils.py:948
 msgid "You cannot submit a Mozilla Signed Extension"
@@ -6999,6 +6999,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
+"Następujący autor został dodany do Twojego dodatku %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
 #: src/olympia/users/templates/users/emails/author_added_confirmation.ltxt:12
 #, python-format
@@ -7024,6 +7027,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
+"Następujący autor został zmieniony w Twoim dodatku %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
 #: src/olympia/users/templates/users/emails/author_removed.ltxt:3
 #, python-format
@@ -7032,6 +7038,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s )"
 msgstr ""
+"Następujący autor został usunięty z dodatku %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s )"
 
 #: src/olympia/users/templates/users/emails/user_deleted.ltxt:9
 #, python-format
