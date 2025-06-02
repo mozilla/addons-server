@@ -393,7 +393,6 @@ class ManifestJSONExtractor(object):
                 json_string += token
 
         self.data = json.loads(json_string)
-        print('loaded em data', self.data)
 
     def get(self, key, default=None):
         return self.data.get(key, default)
@@ -480,7 +479,6 @@ class ManifestJSONExtractor(object):
             )
 
         if self.guid is None:
-            print('guid is None, bro')
             raise forms.ValidationError(
                 gettext('GUID is required for Thunderbird Mail Extensions, including Themes.')
             )
@@ -765,7 +763,6 @@ def archive_member_validator(archive, member):
 
 class SafeZip(object):
     def __init__(self, source, mode='r', force_fsync=False):
-        print(f'SafeZip {source!r}')
         self.source = source
         self.info_list = None
         self.mode = mode

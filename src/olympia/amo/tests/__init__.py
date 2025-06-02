@@ -631,10 +631,6 @@ def _get_created(created):
 def addon_factory(
         status=amo.STATUS_PUBLIC, version_kw=None, file_kw=None, **kw):
     version_kw = version_kw or {}
-    print(f'status: {status!r}')
-    print(f'version_kw: {version_kw!r}')
-    print(f'file_kw: {file_kw!r}')
-    print(f'kw: {kw!r}')
 
     # Disconnect signals until the last save.
     post_save.disconnect(addon_update_search_index, sender=Addon,
@@ -681,11 +677,9 @@ def addon_factory(
 
     # Save 1.
     with translation.override(default_locale):
-        print('save 1', kwargs)
         addon = Addon.objects.create(type=type_, **kwargs)
 
     # Save 2.
-    print('save 2', version_kw)
     version = version_factory(file_kw, addon=addon, **version_kw)
     if addon.type == amo.ADDON_PERSONA:
         addon._current_version = version
@@ -732,7 +726,6 @@ def addon_factory(
     if 'nomination' in version_kw:
         # If a nomination date was set on the version, then it might have been
         # erased at post_save by addons.models.watch_status()
-        print('gonna save once more')
         version.save()
 
     return addon

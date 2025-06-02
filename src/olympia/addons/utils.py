@@ -229,7 +229,6 @@ def build_static_theme_xpi_from_lwt(lwt, upload_zip):
 
     # build zip with manifest and background file
     with zipfile.ZipFile(upload_zip, 'w', zipfile.ZIP_DEFLATED) as dest:
-        print('writing da manifest', manifest)
         dest.writestr('manifest.json', json.dumps(manifest))
         dest.write(lwt.persona.header_path, arcname=lwt.persona.header)
 
@@ -311,5 +310,4 @@ def build_webext_dictionary_from_legacy(addon, destination):
         }
 
         # Write manifest.json we just build.
-        print('gonna write this manifest', manifest)
         new_zip.writestr('manifest.json', json.dumps(manifest))
