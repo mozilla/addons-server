@@ -5480,7 +5480,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:581 src/olympia/discovery/strings.jinja2:881
 msgid "Skip over sponsored portions of YouTube videos."
-msgstr ""
+msgstr "Pomijaj sponsorowane części filmów na YouTube."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:584
@@ -5531,7 +5531,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:610
 msgid "Goodbye, annoying cookie warnings!"
-msgstr ""
+msgstr "Żegnajcie irytujące ostrzeżenia o ciasteczkach!"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:613
