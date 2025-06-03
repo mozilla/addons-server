@@ -3956,7 +3956,7 @@ msgstr "Licencja użytkownika"
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:4
 msgid "Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Należy pamiętać, że EULA nie jest tym samym, co licencja kodu, taka jak GPL lub MPL. Dotyczy ona tylko wymienionych dodatków."
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:21
 msgid "Privacy Policy"
@@ -5463,12 +5463,12 @@ msgstr ""
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:572
 msgid "Automatically replace derogatory words across the web."
-msgstr ""
+msgstr "Automatycznie zastępuj obraźliwe słowa w Internecie."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:575
 msgid "Block all ads—video, pop-ups, banners & more."
-msgstr ""
+msgstr "Blokuj wszystkie reklamy — wideo, wyskakujące okna, banery i nie tylko."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5509,13 +5509,13 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:598 src/olympia/discovery/strings.jinja2:902
 msgid "Thousands of GIFs at your fingertips."
-msgstr ""
+msgstr "Tysiące GIF-ów na wyciągnięcie ręki."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:601 src/olympia/discovery/strings.jinja2:908
 msgid "The easiest way to manage YouTube subscriptions."
-msgstr ""
+msgstr "Najłatwiejszy sposób zarządzania subskrypcjami YouTube."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:604
@@ -5618,13 +5618,12 @@ msgstr "Odkryj nowy sposób nawigacji przy użyciu ponad 50 przydatnych gestów 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:797
 msgid "Customize the look of any website. Shift colors, page backgrounds & more."
-msgstr ""
+msgstr "Personalizuj wygląd dowolnej witryny. Przełączaj kolory, tła stron i nie tylko."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:806
-#, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages & more."
-msgstr "Używaj gestów myszą, aby zamykać karty, przechodzić do poprzedniej strony, wczytywać stronę ponownie itp."
+msgstr "Użyj gestów myszy do zamykania kart, nawigowania po stronach i nie tylko."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:809
@@ -5659,22 +5658,22 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:890
 msgid "Removes those long tracking parameters from Google search result URL's."
-msgstr ""
+msgstr "Usuwa długie parametry śledzenia z adresów URL wyników wyszukiwania z Google."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:893
 msgid "Get weather updates directly from Firefox."
-msgstr ""
+msgstr "Otrzymuj aktualne informacje o pogodzie bezpośrednio z Firefoksa."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:896
 msgid "Manage your time better with a browser clock that charts work intervals."
-msgstr ""
+msgstr "Zarządzaj swoim czasem lepiej dzięki zegarowi w przeglądarce, który śledzi godziny pracy."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:899
 msgid "Tired of that \"Video paused. Continue watching?\" message? Listen to your favorite music uninterrupted on YouTube."
-msgstr ""
+msgstr "Męczy cię wiadomość „Film wstrzymany. Kontynuuj oglądanie?”? Słuchaj swojej ulubionej muzyki bez przerw na YouTube."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:905
@@ -5724,7 +5723,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:947
 msgid "Remove clutter from your Twitter."
-msgstr ""
+msgstr "Usuń niepotrzebne treści ze swojego Twittera."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:950
@@ -6403,11 +6402,11 @@ msgstr "W definicji dopuszcza się tylko jedną regułę Yara"
 #: src/olympia/scanners/models.py:195
 #, python-format
 msgid "The definition is not valid: %(error)s"
-msgstr ""
+msgstr "Definicja jest nieprawidłowa: %(error)s"
 
 #: src/olympia/scanners/models.py:201
 msgid "An error occurred when compiling the definition"
-msgstr ""
+msgstr "Wystąpił błąd podczas kompilowania definicji"
 
 #: src/olympia/scanners/models.py:212
 msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
@@ -6498,7 +6497,7 @@ msgstr "według zawartości"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:20
 msgid "by Campaign"
-msgstr ""
+msgstr "według kampanii"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:26
 msgid "Daily Users"
