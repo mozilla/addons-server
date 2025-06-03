@@ -6674,7 +6674,7 @@ msgstr "Użycie platformy według daty"
 #: src/olympia/stats/templates/stats/reports/overview.html:9
 #, python-brace-format
 msgid "<b>{0}</b> Weekly Downloads"
-msgstr ""
+msgstr "<b>{0}</b> pobrań tygodniowo"
 
 #: src/olympia/stats/templates/stats/reports/overview.html:11 src/olympia/stats/templates/stats/reports/overview.html:15
 msgid "Loading..."
