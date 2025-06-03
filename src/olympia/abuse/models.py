@@ -2,6 +2,7 @@ from collections.abc import Mapping
 from datetime import datetime, timedelta
 from itertools import chain
 
+from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 from django.db import models
 from django.db.models import Exists, OuterRef, Q
@@ -172,40 +173,62 @@ class CinderJob(ModelBase):
             )
         return reporter
 
-    @classmethod
-    def handle_already_removed(cls, abuse_report):
-        entity_helper = cls.get_entity_helper(
-            abuse_report.target,
-            addon_version_string=abuse_report.addon_version,
-            resolved_in_reviewer_tools=False,
-        )
-        decision = ContentDecision.objects.create(
-            addon=abuse_report.addon,
-            rating=abuse_report.rating,
-            collection=abuse_report.collection,
-            user=abuse_report.user,
-            action=DECISION_ACTIONS.AMO_CLOSED_NO_ACTION,
-            action_date=datetime.now(),
-            cinder_id=entity_helper.create_decision(
-                action=DECISION_ACTIONS.AMO_CLOSED_NO_ACTION.api_value,
-                reasoning='',
-                policy_uuids=(),
-            ),
-        )
-        decision.get_action_helper().notify_reporters(
-            reporter_abuse_reports=[abuse_report], is_appeal=False
-        )
-
-    @classmethod
-    def report(cls, abuse_report):
-        target = abuse_report.target
-        if (
+    def should_auto_resolve(self):
+        target = self.target
+        is_disabled = (
             getattr(target, 'deleted', False)
             or getattr(target, 'banned', False)
             or getattr(target, 'status', -1) == amo.STATUS_DISABLED
-        ):
-            cls.handle_already_removed(abuse_report)
-            return
+        )
+        reports = list(
+            self.abusereport_set.values_list('reason', 'addon_version', named=True)
+        )
+        version_qs = Version.objects.filter(
+            addon=self.target_addon,
+            version__in=[
+                report.addon_version for report in reports if report.addon_version
+            ],
+        ).values_list('version', 'human_review_date', named=True)
+        versions = {v.version: v for v in version_qs} if self.target_addon else {}
+        current_version = getattr(target, 'current_version', None) or Version()
+        is_human_reviewed = (
+            # it's not an appeal job
+            not self.is_appeal
+            # it's a reviewer handled report/job
+            and self.resolvable_in_reviewer_tools
+            # there are reports
+            and reports
+            # none are for a legal reason
+            and all(report.reason != AbuseReport.REASONS.ILLEGAL for report in reports)
+            # all reported versions are human_reviewed already, or current version is
+            and all(
+                versions.get(report.addon_version, current_version).human_review_date
+                for report in reports
+            )
+        )
+        return is_disabled or is_human_reviewed
+
+    def handle_already_moderated(self, abuse_report, entity_helper):
+        decision = ContentDecision.objects.create(
+            addon=(self.target_addon if self.target_addon_id else abuse_report.addon),
+            rating=getattr(abuse_report, 'rating', None),
+            collection=getattr(abuse_report, 'collection', None),
+            user=getattr(abuse_report, 'user', None),
+            action=DECISION_ACTIONS.AMO_CLOSED_NO_ACTION,
+            action_date=datetime.now(),
+            reviewer_user_id=settings.TASK_USER_ID,
+            cinder_job=self,
+        )
+        decision.policies.set(
+            CinderPolicy.objects.filter(
+                enforcement_actions__contains=decision.action.api_value
+            )
+        )
+        decision.report_to_cinder(entity_helper)
+        self.notify_reporters(decision.get_action_helper())
+
+    @classmethod
+    def report(cls, abuse_report):
         report_entity = CinderReport(abuse_report)
         reporter_entity = cls.get_cinder_reporter(abuse_report)
         entity_helper = cls.get_entity_helper(
@@ -225,18 +248,22 @@ class CinderJob(ModelBase):
                 },
             )
             abuse_report.update(cinder_job=cinder_job)
-        # Additional context can take a while, so it is reported outside the
-        # atomic() block so that the transaction can be committed quickly,
-        # ensuring the CinderJob exists as soon as possible (we need it to
-        # process any decisions). We don't need the database anymore at this
-        # point anyway.
-        try:
-            entity_helper.report_additional_context()
-        except RequestException as exc:
-            # we don't these additional requests to be retried, so reraise
-            raise ConnectionError from exc
+        if cinder_job.should_auto_resolve():
+            cinder_job.handle_already_moderated(abuse_report, entity_helper)
+            # if we are auto resolving this we don't need the additional context
+        else:
+            # Additional context can take a while, so it is reported outside the
+            # atomic() block so that the transaction can be committed quickly,
+            # ensuring the CinderJob exists as soon as possible (we need it to
+            # process any decisions). We don't need the database anymore at this
+            # point anyway.
+            try:
+                entity_helper.report_additional_context()
+            except RequestException as exc:
+                # we don't these additional requests to be retried, so reraise
+                raise ConnectionError from exc
 
-        entity_helper.post_report(job=cinder_job)
+            entity_helper.post_report(job=cinder_job)
 
     def notify_reporters(self, action_helper):
         action_helper.notify_reporters(
