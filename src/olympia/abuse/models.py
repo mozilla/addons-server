@@ -1297,7 +1297,7 @@ class ContentDecision(ModelBase):
             if release_hold or not action_helper.should_hold_action():
                 # We set the action_date because .can_be_appealed depends on it
                 self.action_date = datetime.now()
-                log_entry = action_helper.process_action()
+                log_entry = action_helper.process_action(release_hold=release_hold)
                 # But only save it afterwards in case process_action failed
                 self.save(update_fields=('action_date',))
             else:

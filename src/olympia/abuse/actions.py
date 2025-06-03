@@ -95,7 +95,7 @@ class ContentAction:
         without further checks, and true if it should be held for further review."""
         return False
 
-    def process_action(self):
+    def process_action(self, release_hold=False):
         """This method should return an activity log instance for the action,
         if available."""
         raise NotImplementedError
@@ -242,7 +242,7 @@ class AnyTargetMixin:
 
 
 class NoActionMixin:
-    def process_action(self):
+    def process_action(self, release_hold=False):
         return None
 
 
@@ -279,7 +279,7 @@ class ContentActionBanUser(ContentAction):
             )
         )
 
-    def process_action(self):
+    def process_action(self, release_hold=False):
         if not self.target.banned:
             UserProfile.objects.filter(
                 pk=self.target.pk
@@ -353,7 +353,7 @@ class ContentActionDisableAddon(ContentAction):
             .order_by('-pk')
         )
 
-    def process_action(self):
+    def process_action(self, release_hold=False):
         if self.target.status != amo.STATUS_DISABLED:
             # Set target_versions before executing the action, since the
             # queryset depends on the file statuses.
@@ -434,7 +434,7 @@ class ContentActionRejectVersion(ContentActionDisableAddon):
             message = template.render(context_dict)
             send_mail(subject, message, recipient_list=recipients)
 
-    def process_action(self):
+    def process_action(self, release_hold=False):
         if not self.decision.reviewer_user:
             # This action should only be used by reviewer tools, not cinder webhook
             raise NotImplementedError
@@ -483,12 +483,13 @@ class ContentActionRejectVersionDelayed(ContentActionRejectVersion):
 
     def __init__(self, decision):
         super().__init__(decision)
+
         if 'delayed_rejection_date' in self.decision.metadata:
             self.delayed_rejection_date = datetime.fromisoformat(
                 self.decision.metadata.get('delayed_rejection_date')
             )
             self.delayed_rejection_days = (
-                self.delayed_rejection_date - datetime.now()
+                self.delayed_rejection_date - self.decision.created
             ).days
         else:
             # Will fail later if we try to use it to log/process the action,
@@ -507,10 +508,16 @@ class ContentActionRejectVersionDelayed(ContentActionRejectVersion):
 
     # should_hold_action as ContentActionRejectVersion
 
-    def process_action(self):
+    def process_action(self, release_hold=False):
         if not self.decision.reviewer_user:
             # This action should only be used by reviewer tools, not cinder webhook
             raise NotImplementedError
+
+        if release_hold:
+            # When releasing a held delayed rejection decision, push the
+            # delayed rejection date forward to give developers the same amount
+            # of time the reviewer originally intended to give them.
+            self.delayed_rejection_date += datetime.now() - self.decision.created
 
         if (
             not self.target_versions.exclude(
@@ -557,7 +564,7 @@ class ContentActionRejectVersionDelayed(ContentActionRejectVersion):
 class ContentActionForwardToLegal(ContentAction):
     valid_targets = (Addon,)
 
-    def process_action(self):
+    def process_action(self, release_hold=False):
         from olympia.abuse.tasks import handle_forward_to_legal_action
 
         handle_forward_to_legal_action.delay(decision_pk=self.decision.id)
@@ -584,7 +591,7 @@ class ContentActionDeleteCollection(ContentAction):
             not self.target.deleted and self.target.author_id == settings.TASK_USER_ID
         )
 
-    def process_action(self):
+    def process_action(self, release_hold=False):
         if not self.target.deleted:
             self.target.delete(clear_slug=False)
             return self.log_action(amo.LOG.COLLECTION_DELETED)
@@ -617,7 +624,7 @@ class ContentActionDeleteRating(ContentAction):
             )
         )
 
-    def process_action(self):
+    def process_action(self, release_hold=False):
         if not self.target.deleted:
             self.target.delete(skip_activity_log=True, clear_flags=False)
             return self.log_action(
@@ -660,7 +667,7 @@ class ContentActionTargetAppealApprove(
             qs = self.decision.target_versions.all()
         return qs
 
-    def process_action(self):
+    def process_action(self, release_hold=False):
         target = self.target
         log_entry = None
         if isinstance(target, Addon):
