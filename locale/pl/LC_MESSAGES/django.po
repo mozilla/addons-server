@@ -7054,6 +7054,15 @@ msgid ""
 "\n"
 "Mozilla Add-ons Team"
 msgstr ""
+"Cześć,\n"
+"\n"
+"Otrzymujesz tę wiadomość, ponieważ Twoje konto użytkownika %(name)s na %(site_url)s zostało usunięte. Mogło to nastąpić automatycznie, jeśli niedawno usunięto konto Mozilli.\n"
+"\n"
+"Jeśli konto nie zostało usunięte przez Ciebie, lub uważasz, że nieautoryzowana osoba uzyskała dostęp do twojego konta, odpowiedz na tego e-maila. W przeciwnym razie nie musisz podejmować żadnych dalszych działań.\n"
+"\n"
+"Pozdrawiamy,\n"
+"\n"
+"Zespół Dodatków Mozilli"
 
 #: src/olympia/versions/models.py:1181
 #, python-format
