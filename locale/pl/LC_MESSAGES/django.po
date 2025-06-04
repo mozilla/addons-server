@@ -6636,7 +6636,7 @@ msgstr "Użycie programu według daty"
 
 #: src/olympia/stats/templates/stats/reports/campaigns.html:3
 msgid "Download campaigns by Date"
-msgstr ""
+msgstr "Kampanie pobrania według daty"
 
 #: src/olympia/stats/templates/stats/reports/campaigns.html:7 src/olympia/stats/templates/stats/reports/contents.html:7 src/olympia/stats/templates/stats/reports/mediums.html:7
 #: src/olympia/stats/templates/stats/reports/sources.html:7
