@@ -7957,9 +7957,10 @@ class TestHeldDecisionReview(ReviewerTest):
             name='Approve',
             enforcement_actions=[DECISION_ACTIONS.AMO_APPROVE.api_value],
         )
-        # CinderJob.objects.create(cinder)
         self.url = reverse('reviewers.decision_review', args=(self.decision.id,))
-        self.login_as_admin()
+        self.user = user_factory()
+        self.grant_permission(self.user, 'Addons:HighImpactApprove')
+        self.client.force_login(self.user)
 
     def _test_review_page_addon(self):
         response = self.client.get(self.url)
@@ -8123,7 +8124,7 @@ class TestHeldDecisionReview(ReviewerTest):
         self.assertCloseToNow(override.action_date)
         assert override.override_of == self.decision
 
-    def test_non_admin_cannot_access(self):
+    def test_non_second_level_approver_cannot_access(self):
         self.login_as_reviewer()
         response = self.client.get(self.url)
         assert response.status_code == 403

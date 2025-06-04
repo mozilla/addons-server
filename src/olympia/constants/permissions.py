@@ -49,6 +49,8 @@ ADDONS_RECOMMENDED_REVIEW = AclPermission('Addons', 'RecommendedReview')
 ADDONS_TRIAGE_DELAYED = AclPermission('Addons', 'TriageDelayed')
 # Can see add-ons with all due dates in the queue, rather than just upcoming ones
 ADDONS_ALL_DUE_DATES = AclPermission('Addons', 'AllDueDates')
+# Can view/make choices in 2nd level approval queue
+ADDONS_HIGH_IMPACT_APPROVE = AclPermission('Addons', 'HighImpactApprove')
 
 # Can edit all collections.
 COLLECTIONS_EDIT = AclPermission('Collections', 'Edit')
