@@ -621,7 +621,7 @@ class TestDashboard(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 403
 
-    def test_admin_all_permissions(self):
+    def test_super_admin_all_permissions(self):
         # Create a lot of add-ons to test the queue counts.
         user_factory(pk=settings.TASK_USER_ID)
         # Recommended extensions
@@ -679,8 +679,6 @@ class TestDashboard(TestCase):
         AutoApprovalSummary.objects.create(
             version=addon1.current_version, verdict=amo.AUTO_APPROVED
         )
-        admins_group = Group.objects.create(name='Admins', rules='*:*')
-        GroupUser.objects.create(user=self.user, group=admins_group)
 
         # Pending addon
         addon_factory(name='Pending Addön', status=amo.STATUS_NOMINATED)
@@ -725,10 +723,13 @@ class TestDashboard(TestCase):
             action=DECISION_ACTIONS.AMO_DISABLE_ADDON, addon=addon1
         )
 
+        admins_group = Group.objects.create(name='Admins', rules='*:*')
+        GroupUser.objects.create(user=self.user, group=admins_group)
+
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert len(doc('.dashboard h3')) == 7  # All sections are present.
+        assert len(doc('.dashboard h3')) == 8  # All sections are present.
         expected_links = [
             reverse('reviewers.queue_extension'),
             reverse('reviewers.reviewlog'),
@@ -766,7 +767,7 @@ class TestDashboard(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert len(doc('.dashboard h3')) == 7  # All sections are present.
+        assert len(doc('.dashboard h3')) == 8  # All sections are present.
         expected_links = [
             reverse('reviewers.queue_extension'),
             reverse('reviewers.reviewlog'),
