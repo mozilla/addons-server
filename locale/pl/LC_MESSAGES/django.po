@@ -4470,16 +4470,14 @@ msgstr "Czy masz mnóstwo otwartych kart? Uporządkuj je na schludnym pasku bocz
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:20 src/olympia/discovery/strings.jinja2:764
-#, fuzzy
 msgid "Stop Facebook tracking. Isolate your Facebook identity into a separate “container” to prevent Facebook from tracking you around the web."
-msgstr "Umieść swoją tożsamość na Facebooku w oddzielnym „kontenerze”, który utrudnia Facebookowi śledzenie Twoich ruchów w Internecie."
+msgstr "Zatrzymaj śledzenie przez Facebooka. Odizoluj swoją tożsamość na Facebooku w osobnym „kontenerze”, aby uniemożliwić Facebookowi śledzenie twoich ruchów w Internecie."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:23 src/olympia/discovery/strings.jinja2:818
-#, fuzzy
 msgid "Simplify search by highlighting text on any web page to search the phrase from an array of engines."
-msgstr "Po prostu zaznacz tekst na dowolnej stronie internetowej, aby wyszukać frazę w różnych wyszukiwarkach."
+msgstr ""
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4501,15 +4499,13 @@ msgstr "Widzisz interesujący obraz i chcesz uzyskać więcej informacji? Wypró
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:35 src/olympia/discovery/strings.jinja2:737
-#, fuzzy
 msgid "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr "Działa z serwisami YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope i setkami innych serwisów wideo."
+msgstr ""
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:38
-#, fuzzy
 msgid "Up your emoji game. Dozens of amazing emojis for every occasion—always just a click away."
-msgstr "Dziesiątki niesamowitych emoji na każdą okazję — zawsze wystarczy jedno kliknięcie."
+msgstr ""
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:41
@@ -4642,7 +4638,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:113 src/olympia/discovery/strings.jinja2:803
 msgid "No need to write the same thing over and over. Save frequently-entered text to paste anytime."
-msgstr ""
+msgstr "Nie ma potrzeby pisania tego samego w kółko. Zapisz często wprowadzany tekst, aby wkleić go w dowolnym momencie."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
