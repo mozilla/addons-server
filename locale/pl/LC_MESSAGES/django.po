@@ -7018,6 +7018,18 @@ msgid ""
 "Kind regards,\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Witaj %(author_name)s,\n"
+"\n"
+"Zapraszamy cię do dołączenia do autorstwa dodatku %(addon_name)s na stronie %(domain)s. Akceptacja zaproszenia umożliwi ci edycję tego dodatku oraz może spowodować wyświetlenie twojego imienia na liście autorów na stronie.\n"
+"\n"
+"Aby odpowiedzieć na zaproszenie i dołączyć do autorstwa dodatku %(addon_name)s, kliknij w poniższy link.\n"
+"\n"
+"%(author_confirmation_link)s\n"
+"\n"
+"Jeżeli otrzymanie tego zaproszenia było dla ciebie niespodzianką, prosimy o kontakt poprzez wysłanie wiadomości e-mail na adres amo-admins@mozilla.com.\n"
+"\n"
+"Z wyrazami szacunku,\n"
+"Zespół Dodatków Mozilli"
 
 #: src/olympia/users/templates/users/emails/author_changed.ltxt:3
 #, python-format
