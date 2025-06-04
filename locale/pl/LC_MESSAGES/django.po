@@ -6346,7 +6346,7 @@ msgstr "<dd>%(review_author)s</dd>"
 #: src/olympia/reviewers/templates/reviewers/queue.html:48
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s"
-msgstr ""
+msgstr "przez %(user)s dnia %(date)s %(stars)s"
 
 #: src/olympia/reviewers/templates/reviewers/queue.html:59
 #, python-format
