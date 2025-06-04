@@ -3323,16 +3323,13 @@ class TestContentDecision(TestCase):
 
     def test_execute_action_reject_version_delayed(self):
         addon = addon_factory(users=[user_factory()])
+        in_fourteen_days = datetime.now() + timedelta(days=14, minutes=3)
         decision = ContentDecision.objects.create(
             addon=addon,
             action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
             reasoning='some review text',
             reviewer_user=self.reviewer_user,
-            metadata={
-                'delayed_rejection_date': (
-                    datetime.now() + timedelta(days=14, minutes=1)
-                ).isoformat()
-            },
+            metadata={'delayed_rejection_date': in_fourteen_days.isoformat()},
         )
         decision.target_versions.set([addon.current_version])
         NeedsHumanReview.objects.create(
@@ -3357,6 +3354,7 @@ class TestContentDecision(TestCase):
         assert 'appeal' not in mail.outbox[0].body
         assert 'some review text' in mail.outbox[0].body
         assert '14 day(s)' in mail.outbox[0].body
+        assert addon.current_version.reviewerflags.pending_rejection == in_fourteen_days
 
     def test_execute_action_reject_version_delayed_held(self):
         addon = addon_factory(users=[user_factory()], file_kw={'is_signed': True})
@@ -3364,14 +3362,17 @@ class TestContentDecision(TestCase):
         self.make_addon_promoted(
             addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
         )
+        some_time_ago = self.days_ago(13)
+        little_over_fourteen_days = timedelta(days=14, minutes=1)
         decision = ContentDecision.objects.create(
             addon=addon,
             action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
             reasoning='some review text',
             reviewer_user=self.reviewer_user,
+            created=some_time_ago,
             metadata={
                 'delayed_rejection_date': (
-                    datetime.now() + timedelta(days=14, minutes=1)
+                    some_time_ago + little_over_fourteen_days
                 ).isoformat()
             },
         )
@@ -3389,6 +3390,10 @@ class TestContentDecision(TestCase):
 
         decision.execute_action(release_hold=True)
         self._test_execute_action_reject_version_delayed_outcome(decision)
+        self.assertCloseToNow(
+            version.reviewerflags.pending_rejection,
+            now=datetime.now() + little_over_fourteen_days,
+        )
 
     def test_send_notifications_change_pending_rejection_date(self):
         addon = addon_factory(users=[user_factory(email='author@example.com')])
