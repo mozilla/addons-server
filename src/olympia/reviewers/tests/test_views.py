@@ -31,7 +31,6 @@ from olympia.access import acl
 from olympia.access.models import Group, GroupUser
 from olympia.activity.models import ActivityLog, AttachmentLog
 from olympia.addons.models import (
-    UPCOMING_DUE_DATE_CUT_OFF_DAYS_CONFIG_DEFAULT,
     Addon,
     AddonApprovalsCounter,
     AddonReviewerFlags,
@@ -1688,20 +1687,17 @@ class TestExtensionQueue(QueueTest):
                 self.addons[addon].current_version.needshumanreview_set.create(
                     reason=NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
                 )
+        _, _, due_date_cut_off_default = amo.config_keys.UPCOMING_DUE_DATE_CUT_OFF_DAYS
         self.addons['Nominated One'].current_version.update(
             due_date=get_review_due_date(
                 starting=datetime.now()
-                + timedelta(
-                    days=UPCOMING_DUE_DATE_CUT_OFF_DAYS_CONFIG_DEFAULT, seconds=1
-                )
+                + timedelta(days=due_date_cut_off_default, seconds=1)
             )
         )
         self.addons['Pending Two'].current_version.update(
             due_date=get_review_due_date(
                 starting=datetime.now()
-                + timedelta(
-                    days=UPCOMING_DUE_DATE_CUT_OFF_DAYS_CONFIG_DEFAULT, seconds=2
-                )
+                + timedelta(days=due_date_cut_off_default, seconds=2)
             )
         )
 
@@ -6609,7 +6605,7 @@ class TestReviewerMOTD(ReviewerTest):
             reverse('reviewers.save_motd'), {'motd': 'I am the keymaster.'}
         )
         assert response.status_code == 302
-        assert get_config('reviewers_review_motd') == 'I am the keymaster.'
+        assert get_config(amo.config_keys.REVIEWERS_MOTD) == 'I am the keymaster.'
 
     def test_form_errors(self):
         self.login_as_admin()

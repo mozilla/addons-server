@@ -2,6 +2,7 @@
 Miscellaneous helpers that make Django compatible with AMO.
 """
 
+from olympia.constants import config_keys  # noqa
 from olympia.constants import permissions  # noqa
 from olympia.constants import promoted  # noqa
 from olympia.constants.activity import (  # noqa

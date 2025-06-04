@@ -437,7 +437,9 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             return False
         last_agreement_change_config = None
         try:
-            last_agreement_change_config = get_config('last_dev_agreement_change_date')
+            last_agreement_change_config = get_config(
+                amo.config_keys.LAST_DEV_AGREEMENT_CHANGE_DATE
+            )
             change_config_date = datetime.strptime(
                 last_agreement_change_config, '%Y-%m-%d %H:%M'
             )

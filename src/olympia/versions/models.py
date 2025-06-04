@@ -593,14 +593,9 @@ class Version(OnChangeMixin, ModelBase):
             .exclude(pk=version.pk)
             .exists()
         ):
-            try:
-                INITIAL_DELAY_FOR_UNLISTED = int(
-                    get_config('INITIAL_DELAY_FOR_UNLISTED')
-                )
-            except (ValueError, TypeError):
-                INITIAL_DELAY_FOR_UNLISTED = 0
+            initial_delay = get_config(amo.config_keys.INITIAL_DELAY_FOR_UNLISTED)
             auto_approval_delay_for_unlisted = addon.created + timedelta(
-                seconds=INITIAL_DELAY_FOR_UNLISTED
+                seconds=initial_delay
             )
             if datetime.now() < auto_approval_delay_for_unlisted:
                 addon.set_auto_approval_delay_if_higher_than_existing(

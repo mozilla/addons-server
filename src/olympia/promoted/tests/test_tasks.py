@@ -20,7 +20,7 @@ from ..tasks import NOTABLE_TIER_SLUG, add_high_adu_extensions_to_notable
 @pytest.mark.django_db
 def test_add_high_adu_extensions_to_notable_tier_absent_or_no_threshold():
     user_factory(pk=settings.TASK_USER_ID)
-    set_config(amo.EXTRA_REVIEW_TARGET_PER_DAY_CONFIG_KEY, 999)
+    set_config(amo.config_keys.EXTRA_REVIEW_TARGET_PER_DAY, 999)
 
     extension_with_high_adu = addon_factory(
         average_daily_users=42, file_kw={'is_signed': True}
@@ -55,7 +55,7 @@ def test_add_high_adu_extensions_to_notable():
     )
     # arbitrary target per day
     target_per_day = 12
-    set_config(amo.EXTRA_REVIEW_TARGET_PER_DAY_CONFIG_KEY, target_per_day)
+    set_config(amo.config_keys.EXTRA_REVIEW_TARGET_PER_DAY, target_per_day)
 
     extension_with_low_adu = addon_factory(
         average_daily_users=lower_adu_threshold - 1, file_kw={'is_signed': True}

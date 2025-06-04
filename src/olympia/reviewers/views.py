@@ -115,7 +115,7 @@ from .utils import (
 
 
 def context(**kw):
-    ctx = {'motd': get_config('reviewers_review_motd')}
+    ctx = {'motd': get_config(amo.config_keys.REVIEWERS_MOTD)}
     ctx.update(kw)
     return ctx
 
@@ -293,7 +293,7 @@ def dashboard(request):
 @permission_required(amo.permissions.ADDON_REVIEWER_MOTD_EDIT)
 def motd(request):
     form = None
-    form = MOTDForm(initial={'motd': get_config('reviewers_review_motd')})
+    form = MOTDForm(initial={'motd': get_config(amo.config_keys.REVIEWERS_MOTD)})
     data = context(form=form)
     return TemplateResponse(request, 'reviewers/motd.html', context=data)
 
