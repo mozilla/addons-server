@@ -20,7 +20,13 @@ class FileValidationInline(admin.StackedInline):
 
 class WebextPermissionInline(admin.StackedInline):
     model = WebextPermission
-    fields = ('permissions', 'optional_permissions', 'host_permissions')
+    fields = (
+        'permissions',
+        'optional_permissions',
+        'host_permissions',
+        'data_collection_permissions',
+        'optional_data_collection_permissions',
+    )
     readonly_fields = fields
     can_delete = False
     view_on_site = False

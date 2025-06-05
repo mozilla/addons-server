@@ -572,17 +572,23 @@ class TestParseXpi(amo.tests.AMOPaths, TestCase):
 
     def test_parse_optional_permissions(self):
         parsed = self.parse(filename='webextension_no_id.xpi')
-        print(parsed)
         assert len(parsed['optional_permissions'])
         assert parsed['optional_permissions'] == ['cookies', 'https://optional.com/']
 
     def test_parse_host_permissions(self):
         parsed = self.parse(filename='webextension_mv3.xpi')
-        print(parsed)
         assert len(parsed['host_permissions'])
         assert parsed['host_permissions'] == [
             '*://example.com/*',
             '*://mozilla.com/*',
+        ]
+
+    def test_parse_data_collection_permissions(self):
+        parsed = self.parse(filename='webextension_data_collection.xpi')
+        assert parsed['data_collection_permissions'] == ['none']
+        assert parsed['optional_data_collection_permissions'] == [
+            'technicalAndInteraction',
+            'personallyIdentifyingInfo',
         ]
 
     def test_parse_apps(self):
@@ -1494,6 +1500,25 @@ class TestFileFromUpload(UploadMixin, TestCase):
         upload = self.upload('webextension.xpi')
         file_ = File.from_upload(upload, self.version, parsed_data=self.parsed_data)
         assert os.path.exists(file_.file.path)
+
+    def test_data_collection_permissions(self):
+        upload = self.upload('webextension_data_collection.xpi')
+        with self.root_storage.open(upload.file_path, 'rb') as upload_file:
+            parsed_data = parse_addon(upload_file, user=user_factory())
+        assert len(parsed_data['data_collection_permissions']) == 1
+        assert len(parsed_data['optional_data_collection_permissions']) == 2
+        file_ = File.from_upload(upload, self.version, parsed_data=parsed_data)
+        permissions = WebextPermission.objects.get(file=file_)
+        assert (
+            permissions.data_collection_permissions
+            == parsed_data['data_collection_permissions']
+            == ['none']
+        )
+        assert (
+            permissions.optional_data_collection_permissions
+            == parsed_data['optional_data_collection_permissions']
+            == ['technicalAndInteraction', 'personallyIdentifyingInfo']
+        )
 
 
 class TestZip(TestCase, amo.tests.AMOPaths):
