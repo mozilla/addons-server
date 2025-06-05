@@ -525,7 +525,7 @@ msgstr "Tijekom održavanja naših web stranica, neke su funkcije privremeno dea
 
 #: src/olympia/amo/utils.py:1112
 msgid "URLs are not allowed."
-msgstr "URL-ovi nisu dozvoljeni."
+msgstr "URL-ovi nisu dopušteni."
 
 #: src/olympia/amo/validators.py:17
 msgid "Must contain at least one printable character."
@@ -538,7 +538,7 @@ msgstr "Provjeri da ovo polje sadrži barem jedno slovo ili broj."
 #: src/olympia/amo/validators.py:90
 #, python-format
 msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
-msgstr "Ovo se polje može koristiti samo za povezivanje s vanjskim web stranicama. URL-ovi na %(domain)s nisu dozvoljeni."
+msgstr "Ovo se polje može koristiti samo za povezivanje s vanjskim web stranicama. URL-ovi na %(domain)s nisu dopušteni."
 
 #: src/olympia/amo/templates/amo/403.html:3
 msgid "Not allowed"
@@ -4140,7 +4140,7 @@ msgstr "Kompatibilnost"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:37
 msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
-msgstr "Podešavanje informacija o aplikaciji ovdje omogućit će korisnicima da instaliraju tvoj dodatak čak i ako instalacijski manifest u paketu ukazuje na to da je dodatak nekompatibilan."
+msgstr "Podešavanje informacija o aplikaciji ovdje će korisnicima dopustiti da instaliraju tvoj dodatak čak i ako instalacijski manifest u paketu ukazuje na to da je dodatak nekompatibilan."
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:55
 msgid "Add Another Application&hellip;"
@@ -5108,7 +5108,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:425 src/olympia/discovery/strings.jinja2:827
 msgid "Only allow web content to run from sites you trust. Surf securely."
-msgstr ""
+msgstr "Dopusti pokretanje web sadržaja samo s web stranica kojima vjeruješ. Surfaj sigurno."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -6287,7 +6287,7 @@ msgstr ""
 
 #: src/olympia/scanners/models.py:187
 msgid "Only one Yara rule is allowed in the definition"
-msgstr ""
+msgstr "U definiciji je dopušteno samo jedno Yara pravilo"
 
 #: src/olympia/scanners/models.py:195
 #, python-format
