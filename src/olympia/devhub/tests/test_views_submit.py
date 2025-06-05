@@ -1423,7 +1423,7 @@ class TestStaticThemeSubmitDetails(DetailsPageMixin, TestSubmitBase):
         if not minimal:
             describe_form.update({'support_url': 'http://stackoverflow.com',
                                   'support_email': 'black@hole.org'})
-        cat_form = {'category': 'abstract'}
+        cat_form = {'category': 320}
         license_form = {'license-builtin': 11}
         result.update(describe_form)
         result.update(cat_form)

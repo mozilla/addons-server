@@ -803,6 +803,7 @@ class SingleCategoryForm(forms.Form):
         self.request = kw.pop('request', None)
         if len(self.addon.all_categories) > 0:
             kw['initial'] = {'category': self.addon.all_categories[0].id}
+            print('inittial', kw['initial'])
         super(SingleCategoryForm, self).__init__(*args, **kw)
 
         # Hack because we know this is only used for Static Themes that only
@@ -812,6 +813,7 @@ class SingleCategoryForm(forms.Form):
                              key=lambda slug_cat: slug_cat[0])
         self.fields['category'].choices = [
             (c.id, c.name) for _, c in sorted_cats]
+        print('choices', self.fields['category'].choices)
 
         # If this add-on is featured for this application, category changes are
         # forbidden.

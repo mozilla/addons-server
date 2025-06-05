@@ -1659,7 +1659,7 @@ class TestEditDescribeStaticThemeListed(StaticMixin, BaseTestEditDescribe,
     def get_dict(self, **kw):
         result = {'name': 'new name', 'slug': 'test_slug',
                   'summary': 'new summary', 'description': 'new description',
-                  'category': 'abstract'}
+                  'category': 320}
         result.update(**kw)
         return result
 
@@ -1729,7 +1729,7 @@ class TestEditDescribeStaticThemeListed(StaticMixin, BaseTestEditDescribe,
         addon_cats = self.get_addon().categories.values_list('id', flat=True)
         assert 'category' not in response.context['cat_form'].errors
         # This add-on's categories should change.
-        assert sorted(addon_cats) == [300, 400, 1300]
+        assert sorted(addon_cats) == [320]
 
     def test_edit_categories_disable_creatured(self):
         """Ensure that other forms are okay when disabling category changes."""
