@@ -1685,7 +1685,7 @@ class TestEditDescribeStaticThemeListed(StaticMixin, BaseTestEditDescribe,
             self.describe_edit_url, self.get_dict(category='firefox'))
         category_ids_new = [cat.id for cat in self.get_addon().all_categories]
         # Only ever one category for Static Themes
-        assert category_ids_new == [308, 408]
+        assert category_ids_new == [300, 400]
         # Check we didn't delete the Category object too!
         assert category_desktop.reload()
         assert category_android.reload()
