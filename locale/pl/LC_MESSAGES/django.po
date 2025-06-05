@@ -270,12 +270,12 @@ msgid "Review"
 msgstr "Opinia"
 
 #: src/olympia/activity/models.py:816 src/olympia/devhub/templates/devhub/versions/list.html:41
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Version {0}"
 msgid_plural "Versions {0}"
 msgstr[0] "Wersja {0}"
-msgstr[1] "Wersja {0}"
-msgstr[2] "Wersja {0}"
+msgstr[1] "Wersje {0}"
+msgstr[2] "Wersje {0}"
 
 #: src/olympia/activity/serializers.py:46
 msgid "Review note"
