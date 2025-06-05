@@ -4759,9 +4759,8 @@ msgstr "Przekształć wszystkie otwarte karty w listę, aby łatwo nimi zarządz
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:179 src/olympia/discovery/strings.jinja2:722
-#, fuzzy
 msgid "Robust download management. Check the state of your downloads through a status bar, download history page, and more."
-msgstr "Sprawdź stan pobierania plików przy użyciu paska stanu, strony historii pobierania i nie tylko."
+msgstr ""
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:182
