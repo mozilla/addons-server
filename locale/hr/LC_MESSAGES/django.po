@@ -525,7 +525,7 @@ msgstr "Tijekom održavanja naših web stranica, neke su funkcije privremeno dea
 
 #: src/olympia/amo/utils.py:1112
 msgid "URLs are not allowed."
-msgstr ""
+msgstr "URL-ovi nisu dozvoljeni."
 
 #: src/olympia/amo/validators.py:17
 msgid "Must contain at least one printable character."
@@ -542,15 +542,15 @@ msgstr "Ovo se polje može koristiti samo za povezivanje s vanjskim web stranica
 
 #: src/olympia/amo/templates/amo/403.html:3
 msgid "Not allowed"
-msgstr "Nije dozvoljeno"
+msgstr "Nije dopušteno"
 
 #: src/olympia/amo/templates/amo/403.html:8
 msgid "Oops! Not allowed."
-msgstr "Ups! Nije dozvoljeno."
+msgstr "Ups! Nije dopušteno."
 
 #: src/olympia/amo/templates/amo/403.html:10
 msgid "You tried to do something that you weren't allowed to."
-msgstr "Pokušavaš nešto učiniti što ti nije dozvoljeno."
+msgstr "Pokušao/la si nešto učiniti što ti nije bilo dopušteno."
 
 #: src/olympia/amo/templates/amo/403.html:18
 msgid ""
