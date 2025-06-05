@@ -831,7 +831,7 @@ class SingleCategoryForm(forms.Form):
 
     def clean_category(self):
         if getattr(self, 'disabled', False) and self.cleaned_data['category']:
-            raise forms.ValidationError(ugettext(
+            raise forms.ValidationError(gettext(
                 'Categories cannot be changed while your add-on is featured.'))
 
         return self.cleaned_data['category']
