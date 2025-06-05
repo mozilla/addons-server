@@ -1452,7 +1452,7 @@ class TestStaticThemeSubmitDetails(DetailsPageMixin, TestSubmitBase):
         assert addon.name == 'Test name'
         assert addon.slug == 'testname'
         assert addon.summary == 'Hello!'
-        assert addon.all_categories[0].id == 300
+        assert addon.all_categories[0].id == 320
 
         # Test add-on log activity.
         log_items = ActivityLog.objects.for_addons(addon)
