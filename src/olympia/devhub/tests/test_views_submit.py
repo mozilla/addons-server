@@ -1490,7 +1490,7 @@ class TestStaticThemeSubmitDetails(DetailsPageMixin, TestSubmitBase):
         self.client.post(self.url, self.get_dict(category=320))
         category_ids_new = [cat.id for cat in self.get_addon().all_categories]
         # Only ever one category for Static Themes
-        assert category_ids_new == [300, 400] # FIXME: This was [320]
+        assert category_ids_new == [320]
 
     def test_creative_commons_licenses(self):
         response = self.client.get(self.url)
