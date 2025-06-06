@@ -215,6 +215,10 @@ class File(OnChangeMixin, ModelBase):
             if file_.manifest_version > 2
             else []
         )
+        data_collection_permissions = parsed_data.get('data_collection_permissions', [])
+        optional_data_collection_permissions = parsed_data.get(
+            'optional_data_collection_permissions', []
+        )
 
         # devtools_page isn't in permissions block but treated as one
         # if a custom devtools page is added by an addon
@@ -224,11 +228,21 @@ class File(OnChangeMixin, ModelBase):
         # Add content_scripts host matches too.
         for script in parsed_data.get('content_scripts', []):
             permissions.extend(script.get('matches', []))
-        if permissions or optional_permissions or host_permissions:
+        if any(
+            [
+                permissions,
+                optional_permissions,
+                host_permissions,
+                data_collection_permissions,
+                optional_data_collection_permissions,
+            ]
+        ):
             WebextPermission.objects.create(
                 permissions=permissions,
                 optional_permissions=optional_permissions,
                 host_permissions=host_permissions,
+                data_collection_permissions=data_collection_permissions,
+                optional_data_collection_permissions=optional_data_collection_permissions,
                 file=file_,
             )
 
@@ -657,6 +671,8 @@ class WebextPermission(ModelBase):
     permissions = models.JSONField(default=dict)
     optional_permissions = models.JSONField(default=dict)
     host_permissions = models.JSONField(default=dict)
+    data_collection_permissions = models.JSONField(default=dict)
+    optional_data_collection_permissions = models.JSONField(default=dict)
     file = models.OneToOneField(
         'File', related_name='_webext_permissions', on_delete=models.CASCADE
     )

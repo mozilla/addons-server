@@ -441,6 +441,12 @@ class ManifestJSONExtractor:
                         'permissions': self.get('permissions', []),
                         'host_permissions': self.get('host_permissions', []),
                         'content_scripts': self.get('content_scripts', []),
+                        'data_collection_permissions': self.gecko.get(
+                            'data_collection_permissions', {}
+                        ).get('required', []),
+                        'optional_data_collection_permissions': self.gecko.get(
+                            'data_collection_permissions', {}
+                        ).get('optional', []),
                     }
                 )
 
