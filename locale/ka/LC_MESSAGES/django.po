@@ -4756,7 +4756,7 @@ msgstr "შეამოწმეთ მეთვალყურეები. თ
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:143
 msgid "Change your proxy server and surf the web through self-defined proxy settings."
-msgstr "შეცვალეთ პროქსი-სერვერი და დაუკავშირდით ინტერნეტს საკუთარი მითითებული პარამეტრებით."
+msgstr "შეცვალეთ შუამავალი სერვერი და დაუკავშირდით ინტერნეტს საკუთარი მითითებული პარამეტრებით."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:146
