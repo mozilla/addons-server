@@ -1440,6 +1440,48 @@ class TestCinderJob(TestCase):
             cinder_job=cinder_job, to_queue='amo-env-some-other-queue', notes='?'
         ).exists()
 
+    @override_switch('dsa-cinder-forwarded-review', active=True)
+    def test_process_queue_move_with_addon_already_moderated(self):
+        addon = addon_factory()
+        job = CinderJob.objects.create(
+            target_addon=addon, job_id='1234-xyz', resolvable_in_reviewer_tools=True
+        )
+        policy = CinderPolicy.objects.create(
+            uuid='123',
+            enforcement_actions=[DECISION_ACTIONS.AMO_CLOSED_NO_ACTION.api_value],
+        )
+        AbuseReport.objects.create(
+            guid=addon.guid,
+            reason=AbuseReport.REASONS.SOMETHING_ELSE,
+            location=AbuseReport.LOCATION.AMO,
+            cinder_job=job,
+        )
+        AbuseReport.objects.create(
+            guid=addon.guid,
+            reason=AbuseReport.REASONS.POLICY_VIOLATION,
+            reporter_email='some@email.com',
+            cinder_job=job,
+        )
+        addon.current_version.update(human_review_date=datetime.now())
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}jobs/{job.job_id}/decision',
+            json={'uuid': uuid.uuid4().hex},
+            status=201,
+        )
+
+        job.process_queue_move(new_queue='amo-env-addon-infringement', notes='notes!')
+        assert not NeedsHumanReview.objects.exists()
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].to == ['some@email.com']
+        assert 'already assessed' in mail.outbox[0].body
+        assert ContentDecision.objects.exists()
+        decision = ContentDecision.objects.get()
+        assert decision.action == DECISION_ACTIONS.AMO_CLOSED_NO_ACTION
+        self.assertCloseToNow(decision.action_date)
+        assert decision.cinder_job == CinderJob.objects.get()
+        assert decision.policies.get() == policy
+
     def test_all_abuse_reports(self):
         job = CinderJob.objects.create(job_id='fake_job_id')
         # no abuse reports
