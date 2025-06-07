@@ -1269,11 +1269,16 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
             stakeholder
         )
         self.version.file.update(is_signed=True)
+        self.another_version.file.update(approval_date=datetime(2025, 2, 3))
         self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED)
         self._test_reject_version(content_review=False, expected_emails_from_action=1)
         assert len(mail.outbox) == 4
         assert mail.outbox[0].recipients() == [stakeholder.email]
         assert mail.outbox[0].subject == f'Rejection issued for {self.addon.name}'
+        assert (
+            f'{self.another_version.version} will be the new current version of the '
+            'Extension; first approved 2025-02-03.' in mail.outbox[0].body
+        )
 
     def test_execute_action_after_reporter_appeal(self):
         original_job = CinderJob.objects.create(
@@ -1401,6 +1406,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
             stakeholder
         )
         self.version.file.update(is_signed=True)
+        self.another_version.file.update(approval_date=datetime(2025, 2, 3))
         self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED)
         self._test_reject_version_delayed(
             content_review=False, expected_emails_from_action=1
@@ -1410,6 +1416,10 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         assert (
             mail.outbox[0].subject
             == f'14 day delayed rejection issued for {self.addon.name}'
+        )
+        assert (
+            f'{self.another_version.version} will be the new current version of the '
+            'Extension; first approved 2025-02-03.' in mail.outbox[0].body
         )
 
     def test_execute_action_delayed_after_reporter_appeal(self):
@@ -1527,6 +1537,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
             stakeholder
         )
         self.decision.update(private_notes='', reasoning='Bad things!')
+        self.another_version.file.update(approval_date=datetime(2025, 1, 2))
 
         # the addon is not promoted
         assert self.addon.publicly_promoted_groups == []
@@ -1537,33 +1548,68 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED)
         action.notify_stakeholders('teh reason')
         assert len(mail.outbox) == 1
+        body = mail.outbox[0].body
         assert mail.outbox[0].recipients() == [stakeholder.email]
         assert mail.outbox[0].subject == f'teh reason issued for {self.addon.name}'
-        assert 'Bad things!' in mail.outbox[0].body
-        assert 'Private notes:' not in mail.outbox[0].body
+        assert 'Bad things!' in body
+        assert 'Private notes:' not in body
         assert (
-            f'teh reason for versions:\n{listed_version.version}' in mail.outbox[0].body
+            f'teh reason for versions:\n'
+            f'[Listed] {listed_version.version}\n'
+            '[Unlisted] \n' in body
         )
-        assert f'/review-listed/{self.addon.id}' in mail.outbox[0].body
-        assert f'/review-unlisted/{self.addon.id}' not in mail.outbox[0].body
-        assert self.addon.get_absolute_url() in mail.outbox[0].body
+        assert f'/review-listed/{self.addon.id}' in body
+        assert f'/review-unlisted/{self.addon.id}' not in body
+        assert self.addon.get_absolute_url() in body
+
+        assert (
+            f'{self.another_version.version} will be the new current version of the '
+            'Extension; first approved 2025-01-02' in body
+        )
 
         # an unlisted version should result in second link to the unlisted review page
         self.decision.target_versions.add(unlisted_version)
         action.notify_stakeholders('teh reason')
         assert len(mail.outbox) == 2  # another email
+        body = mail.outbox[1].body
         assert (
             'teh reason for versions:\n'
-            f'{listed_version.version}, {unlisted_version.version}'
-        ) in mail.outbox[1].body
-        assert f'/review-listed/{self.addon.id} | ' in mail.outbox[1].body
-        assert f'/review-unlisted/{self.addon.id}' in mail.outbox[1].body
+            f'[Listed] {listed_version.version}\n'
+            f'[Unlisted] {unlisted_version.version}\n'
+        ) in body
+        assert f'/review-listed/{self.addon.id} | ' in body
+        assert f'/review-unlisted/{self.addon.id}' in body
+        assert (
+            f'{self.another_version.version} will be the new current version of the '
+            'Extension; first approved 2025-01-02.' in body
+        )
+
+        # if the listed version(s) affected are the last approved versions indicate that
+        self.another_version.file.update(status=amo.STATUS_DISABLED)
+        self.old_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        action.notify_stakeholders('teh reason')
+        assert len(mail.outbox) == 3  # another email
+        body = mail.outbox[2].body
+        assert (
+            'teh reason for versions:\n'
+            f'[Listed] {listed_version.version}\n'
+            f'[Unlisted] {unlisted_version.version}\n'
+        ) in body
+        assert 'The add-on will no longer be publicly viewable on AMO.' in body
+
+        # if no listed versions are affected we don't mention about the current version
+        self.decision.target_versions.set([unlisted_version])
+        action.notify_stakeholders('teh reason')
+        assert len(mail.outbox) == 4  # another email
+        body = mail.outbox[3].body
+        assert 'will be the current' not in body
+        assert 'no longer' not in body
 
         # And check that if no versions were signed we don't send an email
         listed_version.file.update(is_signed=False)
         unlisted_version.file.update(is_signed=False)
         action.notify_stakeholders('teh reason')
-        assert len(mail.outbox) == 2  # still two
+        assert len(mail.outbox) == 4
 
     def test_notify_stakeholders_with_private_notes(self):
         stakeholder = user_factory()
