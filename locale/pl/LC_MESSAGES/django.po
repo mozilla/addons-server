@@ -1181,7 +1181,7 @@ msgstr ""
 
 #: src/olympia/constants/activity.py:842
 msgid "Rejection scheduled"
-msgstr ""
+msgstr "Zaplanowano odrzucenie"
 
 #: src/olympia/constants/activity.py:853
 #, python-brace-format
