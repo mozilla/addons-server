@@ -1476,7 +1476,7 @@ msgstr "Gry i rozrywka"
 
 #: src/olympia/constants/categories.py:117
 msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
-msgstr ""
+msgstr "Pobierz rozszerzenia Firefoksa, aby zwiększyć przyjemność z rozrywki. Ta kategoria zawiera rozszerzenia, które mogą poprawić jakość grania, kontrolować odtwarzanie wideo i nie tylko."
 
 #: src/olympia/constants/categories.py:124
 msgid "Language Support"
@@ -2080,12 +2080,12 @@ msgstr "Nie przesłano pliku źródłowego."
 
 #: src/olympia/devhub/forms.py:1175
 msgid "Source file uploaded but you indicated no source was needed."
-msgstr ""
+msgstr "Plik źródłowy został przesłany, choć zaznaczono, że źródła nie są potrzebne."
 
 #: src/olympia/devhub/forms.py:1239
 #, python-brace-format
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
-msgstr ""
+msgstr "Upewnij się, że nazwa i podsumowanie łącznie mają maksymalnie {limit_value} znaków (ich długość wynosi {show_value})."
 
 #: src/olympia/devhub/forms.py:1358
 #, python-brace-format
@@ -2177,7 +2177,7 @@ msgstr "Sprawdzenie wygenerowało zbyt dużo błędów/ostrzeżeń, zatem przyci
 #: src/olympia/devhub/utils.py:207
 #, python-brace-format
 msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
-msgstr ""
+msgstr "Ten dodatek nie jest motywem. Użyj strony <a href=\"{link}\">Prześlij nowy dodatek</a>, aby przesłać rozszerzenia."
 
 #: src/olympia/devhub/views.py:114
 msgid "Updated"
