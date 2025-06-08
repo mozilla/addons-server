@@ -357,7 +357,7 @@ msgstr "Slike morajo biti manjše od %d MB"
 
 #: src/olympia/addons/models.py:2270 src/olympia/addons/models.py:2327 src/olympia/constants/base.py:66
 msgid "Listed"
-msgstr "Na seznamu"
+msgstr "Javno viden"
 
 #: src/olympia/addons/models.py:2505
 msgid "Add-on and collection paths need to end with \"/\""
@@ -392,7 +392,7 @@ msgstr "Različica {version_string} že obstaja."
 
 #: src/olympia/addons/serializers.py:559
 msgid "Listed versions cannot be submitted while add-on is disabled."
-msgstr "Navedenih različic ni mogoče predložiti, ko je dodatek onemogočen."
+msgstr "Javno vidnih različic ni mogoče predložiti, ko je dodatek onemogočen."
 
 #: src/olympia/addons/serializers.py:600
 #, python-format
@@ -443,7 +443,7 @@ msgstr "'license' in 'custom_license' ne moreta biti istočasno določeni."
 
 #: src/olympia/addons/validators.py:64
 msgid "This field, or custom_license, is required for listed versions."
-msgstr "To polje ali custom_license je obvezno za navedene različice."
+msgstr "To polje ali custom_license je obvezno za javno vidne različice."
 
 #: src/olympia/addons/validators.py:91
 msgid "Wrong add-on type for this license."
@@ -455,12 +455,12 @@ msgstr "Za teme licence po meri niso podprte."
 
 #: src/olympia/addons/validators.py:132
 msgid "This field is required for add-ons with listed versions."
-msgstr "To polje je obvezno za dodatke z navedenimi različicami."
+msgstr "To polje je obvezno za dodatke z javno vidnimi različicami."
 
 #: src/olympia/addons/validators.py:158
 #, python-brace-format
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
-msgstr "Za ustvarjanje navedene različice je treba nastaviti metapodatke dodatka: {missing_addon_metadata}."
+msgstr "Za ustvarjanje javno vidne različice je treba nastaviti metapodatke dodatka: {missing_addon_metadata}."
 
 #: src/olympia/addons/validators.py:272
 msgid "A GUID must be specified in the manifest."
@@ -1075,7 +1075,7 @@ msgstr "{addon} pregledan."
 #: src/olympia/constants/activity.py:536
 #, python-brace-format
 msgid "{addon} unlisted."
-msgstr "Nenaveden {addon}."
+msgstr "{addon} ni več javno viden."
 
 #. L10n: {0} is the add-on GUID.
 #: src/olympia/constants/activity.py:560
@@ -1314,7 +1314,7 @@ msgstr "Izbrisano"
 
 #: src/olympia/constants/base.py:65
 msgid "Unlisted"
-msgstr "Nenaveden"
+msgstr "Nenaveden na seznamu"
 
 #: src/olympia/constants/base.py:85
 msgid "Signing API"
@@ -1620,7 +1620,7 @@ msgstr "Naravne lepote"
 
 #: src/olympia/constants/categories.py:300
 msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
-msgstr "Prenesite teme za Firefox, ki prikazujejo okolje in naravo. Ta kategorija vključuje sončne zahode, plaže, ilustracije, mestne obzorja in drugo."
+msgstr "Prenesite teme za Firefox, ki prikazujejo okolje in naravo. V tej kategoriji najdete sončne zahode, plaže, ilustracije, mestna obzorja in drugo."
 
 #: src/olympia/constants/categories.py:307
 msgid "Seasonal"
@@ -1965,7 +1965,7 @@ msgstr "Mora imeti vsaj enega lastnika."
 
 #: src/olympia/devhub/forms.py:459
 msgid "At least one author must be listed."
-msgstr "Naveden mora biti vsaj en avtor"
+msgstr "Naveden mora biti vsaj en avtor."
 
 #: src/olympia/devhub/forms.py:507
 msgid "Slug incorrect."
@@ -2699,7 +2699,7 @@ msgstr "Predogled"
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html:31
 msgid "Preview of listed version"
-msgstr "Predogled navedene različice"
+msgstr "Predogled javno vidne različice"
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html:32 src/olympia/devhub/templates/devhub/addons/submit/done.html:15
 msgid "Preview still being generated - come back later or refresh the page."
@@ -2813,7 +2813,7 @@ msgstr "Prednastavljena območna nastavitev"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:56
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
-msgstr "Informacije o dodatku so prikazane v tem jeziku, razen če jih preglasite s prevodom v določen jezik. Velja samo za dodatke na seznamu."
+msgstr "Informacije o dodatku so prikazane v tem jeziku, razen če jih preglasite s prevodom v določen jezik. Velja samo za javno vidne dodatke."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:72
 msgid "Homepage"
@@ -2823,7 +2823,7 @@ msgstr "Domača stran"
 msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
 "ons."
-msgstr "Če ima vaš dodatek drugo domačo stran, sem vnesite njen naslov. Če je vaša spletna stran prevedena v druge jezike, lahko dodate prevode tega polja. Velja samo za dodatke na seznamu."
+msgstr "Če ima vaš dodatek drugo domačo stran, sem vnesite njen naslov. Če je vaša spletna stran prevedena v druge jezike, lahko dodate prevode tega polja. Velja samo za javno vidne dodatke."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:96 src/olympia/devhub/templates/devhub/addons/edit/describe.html:260
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:84 src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:174
@@ -2898,7 +2898,7 @@ msgstr "Poskusno?"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:158
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
-msgstr "Če je vaš dodatek preskusen ali kako drugače ni pripravljen za splošno uporabo. Dodatek bo naveden, ampak z zmanjšano vidljivostjo."
+msgstr "Če je vaš dodatek preskusen ali kako drugače ni pripravljen za splošno uporabo.  Dodatek bo javno viden, a z zmanjšano vidljivostjo. "
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:163
 msgid "This add-on is experimental."
@@ -2940,7 +2940,7 @@ msgstr "E-pošta"
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
 " for listed add-ons."
-msgstr "Če želite prikazati e-poštni naslov za podporo, ga vnesite sem. Če za različne jezike uporabljate različne naslove, lahko dodate prevode tega polja. Velja samo za dodatke na seznamu."
+msgstr "Če želite prikazati e-poštni naslov za podporo, ga vnesite sem. Če za različne jezike uporabljate različne naslove, lahko dodate prevode tega polja. Velja samo za javno vidne dodatke."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:234
 msgid "Website"
@@ -2951,7 +2951,7 @@ msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
 "listed add-ons."
 msgstr ""
-"Če ima vaš dodatek spletno stran ali forum za podporo, sem vnesite naslov. Če je vaša spletna stran prevedena v druge jezike, lahko dodate prevode tega polja. Velja samo za dodatke na seznamu."
+"Če ima vaš dodatek spletno stran ali forum za podporo, sem vnesite naslov. Če je vaša spletna stran prevedena v druge jezike, lahko dodate prevode tega polja. Velja samo za javno vidne dodatke."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/media.html:3
 msgid "Images"
@@ -2977,7 +2977,7 @@ msgid ""
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
 "Karkoli, kar bi končni uporabniki še želeli izvedeti in kar ni primerno za vključitev v povzetek dodatka ali v njegov opis. Sem lahko na primer vključite seznam znanih večjih napak, informacije o "
-"tem, kako prijaviti napako, predviden datum izida nove različice itd. Velja samo za dodatke na seznamu."
+"tem, kako prijaviti napako, predviden datum izida nove različice itd. Velja samo za javno vidne dodatke."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:46
 msgid "Universally unique identifier"
@@ -3016,7 +3016,7 @@ msgstr "Sličica za dodatek"
 msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
 "relevant for listed add-ons."
-msgstr "Prenesite ikono dodatka ali pa jo izberite s seznama. Ikona je skoraj vedno prikazana poleg dodatka. Prenesene ikone morajo biti v formatu .png ali .jpg. Velja samo za dodatke na seznamu."
+msgstr "Prenesite ikono dodatka ali pa jo izberite s seznama. Ikona je skoraj vedno prikazana poleg dodatka. Prenesene ikone morajo biti v formatu .png ali .jpg. Velja samo za javno vidne dodatke."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:25
 msgid "Select an icon for your add-on:"
@@ -3178,7 +3178,7 @@ msgstr "Vrh"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:1
 msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
-msgstr "Izbris dodatka bo trajno izbrisal vse različice in datoteke, ki ste jih oddali za ta dodatek (na seznamu ali objavljen drugje)."
+msgstr "Izbris dodatka bo trajno izbrisal vse različice in datoteke, ki ste jih oddali za ta dodatek (javno viden ali objavljen drugje)."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:6
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
@@ -3350,7 +3350,7 @@ msgstr "Ta dodatek je poskusen"
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:126
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
-"To možnost označite, če je vaš dodatek preskusen ali kako drugače ni pripravljen za splošno uporabo. Dodatek bo naveden, ampak z zmanjšano vidljivostjo. To nastavitev lahko kasneje spremenite."
+"To možnost označite, če je vaš dodatek preskusen ali kako drugače ni pripravljen za splošno uporabo.  Dodatek bo javno viden, a z zmanjšano vidljivostjo.  To nastavitev lahko kasneje spremenite."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:151
 msgid "Support email:"
@@ -3870,7 +3870,7 @@ msgstr "Po opravljenem pregledu kode gostovan na tej strani. Za samodejne posodo
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:69
 msgid "Listed Version:"
-msgstr "Navedena različica:"
+msgstr "Javno vidna različica:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:71
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
@@ -3878,7 +3878,7 @@ msgstr "To je različica dodatka, ki se bo namestila, ko uporabnik klikne gumb N
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:80
 msgid "Next Listed Version:"
-msgstr "Naslednja navedena različica:"
+msgstr "Naslednja javno vidna različica:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:82
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
@@ -3907,7 +3907,7 @@ msgstr "Ogled vseh"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:40
 msgid "Listed Review Page"
-msgstr "Stran za pregled navedenih dodatkov"
+msgstr "Stran za pregled javno vidnih dodatkov"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:42
 msgid "Unlisted Review Page"
@@ -3984,7 +3984,7 @@ msgstr "Licenca"
 
 #: src/olympia/devhub/templates/devhub/includes/license_form.html:6
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
-msgstr "Izberite ustrezno licenco za pravice, ki jih podeljujete za svojo izvorno kodo. Velja samo za dodatke na seznamu."
+msgstr "Izberite ustrezno licenco za pravice, ki jih podeljujete za svojo izvorno kodo. Velja samo za javno vidne dodatke."
 
 #: src/olympia/devhub/templates/devhub/includes/listing_header.html:2
 msgid "Sort by:"
@@ -4014,7 +4014,7 @@ msgstr "Licenčni dogovor za končnega uporabnika"
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:4
 msgid "Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
-msgstr "Upoštevajte, da licenca EULA ni isto kot kodna licenca, kot sta GPL ali MPL. Pomembna je samo za dodatke na seznamu."
+msgstr "Upoštevajte, da licenca EULA ni isto kot kodna licenca, kot sta GPL ali MPL. Pomembna je samo za javno vidne dodatke."
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:21
 msgid "Privacy Policy"
@@ -4023,8 +4023,7 @@ msgstr "Izjava o zasebnosti"
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:22
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
 msgstr ""
-"Če vaš dodatek pošilja podatke iz uporabnikovega računalnika, je zahtevan pravilnik o zasebnosti, ki razlaga, kateri podatki se pošiljajo in kako se jih uporablja.\n"
-"                To velja samo za navedene dodatke."
+"Če vaš dodatek pošilja podatke iz uporabnikovega računalnika, je zahtevan pravilnik o zasebnosti, ki razlaga, kateri podatki se pošiljajo in kako se jih uporablja. Velja samo za javno vidne dodatke."
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html:3
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code other than known libraries, upload its sources for review."
@@ -4381,7 +4380,7 @@ msgstr "{label_open}Nevidno:{label_close} Ne bo vključeno v zadetke iskanja in 
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:178
 msgid "Listed versions"
-msgstr "Navedene različice"
+msgstr "Javno vidne različice"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:185
 msgid "Currently on AMO"
@@ -6483,11 +6482,11 @@ msgstr "Neveljaven ID dodatka v spletnem naslovu ali paketu"
 
 #: src/olympia/signing/views.py:211
 msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."
-msgstr "Naštetih različic ne morete dodati kompletu dodatkov v stanje \"Neviden\"."
+msgstr "Javno vidnih različic ne morete dodati kompletu dodatkov, nastavljenemu kot \"neviden\"."
 
 #: src/olympia/signing/views.py:220
 msgid "You cannot add a listed version to this add-on via the API due to missing metadata. Please submit via the website"
-msgstr "Navedene različice tega dodatka ne morete dodati prek API-ja, ker manjkajo metapodatki. Prosim za oddajo preko spletne strani"
+msgstr "Javno vidne različice tega dodatka ne morete dodati prek API-ja, ker manjkajo metapodatki. Oddajte ga prek spletne strani"
 
 #: src/olympia/signing/views.py:275
 msgid "No uploaded file for that add-on and version."
