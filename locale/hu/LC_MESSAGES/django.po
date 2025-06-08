@@ -6347,7 +6347,7 @@ msgstr[1] "{num} értékelés"
 
 #: src/olympia/ratings/templates/ratings/impala/reviews_link.html:12 src/olympia/ratings/templates/ratings/reviews_link.html:17 src/olympia/ratings/templatetags/jinja_helpers.py:13
 msgid "Not yet rated"
-msgstr "Még nem osztályozott"
+msgstr "Még nem értékelt"
 
 #: src/olympia/ratings/templates/ratings/reviews_rating.html:1
 #, python-brace-format

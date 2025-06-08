@@ -28,11 +28,11 @@ msgstr "Virheellinen sähköpostiosoite."
 
 #: src/olympia/abuse/forms.py:61
 msgid "Reason for appeal"
-msgstr ""
+msgstr "Valituksen syy"
 
 #: src/olympia/abuse/forms.py:63
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
-msgstr ""
+msgstr "Selitä, miksi uskot tämän päätöksen olleen virheellinen ja/tai se ei ole sovellettavan käytännön tai lain mukainen."
 
 #: src/olympia/abuse/models.py:1094
 msgid "User profile"
@@ -54,7 +54,7 @@ msgstr "Virheellinen arvo"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:10 src/olympia/abuse/templates/abuse/appeal.html:15
 msgid "Appeal reviewer decision"
-msgstr ""
+msgstr "Valituksen katselmoijan päätös"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:16
 #, python-brace-format
@@ -63,7 +63,7 @@ msgstr "Päätös {0}"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:20
 msgid "Thank you. Your appeal has been recorded."
-msgstr ""
+msgstr "Kiitos. Valituksesi on rekisteröity."
 
 #: src/olympia/abuse/templates/abuse/appeal.html:31 src/olympia/amo/templates/amo/fake_fxa_authorization.html:21
 msgid "OK"
@@ -71,7 +71,7 @@ msgstr "OK"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:33 src/olympia/abuse/templates/abuse/appeal.html:41
 msgid "Thank you for your report."
-msgstr ""
+msgstr "Kiitos raportistasi."
 
 #: src/olympia/abuse/templates/abuse/appeal.html:37
 msgid ""
@@ -88,7 +88,7 @@ msgstr ""
 
 #: src/olympia/abuse/templates/abuse/appeal.html:44
 msgid "This decision can't be appealed."
-msgstr ""
+msgstr "Tästä päätöksestä ei voi valittaa."
 
 #: src/olympia/abuse/templates/abuse/emails/base_reporter.txt:1
 msgid "Hello,"
@@ -220,16 +220,15 @@ msgid "Notification [%s] does not exist"
 msgstr "Ilmoitusta [%s] ei ole olemassa"
 
 #: src/olympia/activity/models.py:42
-#, fuzzy
 msgid "Add-ons Review Team"
-msgstr "Ei vielä lisäosa-arvioita."
+msgstr "Lisäosien katselmointitiimi"
 
 #: src/olympia/activity/models.py:738
 msgid "Review"
 msgstr "Arvio"
 
 #: src/olympia/activity/models.py:816 src/olympia/devhub/templates/devhub/versions/list.html:41
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Version {0}"
 msgid_plural "Versions {0}"
 msgstr[0] "Versio {0}"
@@ -254,11 +253,11 @@ msgstr "Lisäosien lähetykset eivät ole tilapäisesti käytettävissä."
 #: src/olympia/addons/fields.py:56
 #, python-brace-format
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
-msgstr ""
+msgstr "Luokkien enimmäismäärä sovellusta kohden ({MAX_CATEGORIES}) ylitetty"
 
 #: src/olympia/addons/fields.py:62
 msgid "The \"other\" category cannot be combined with another category"
-msgstr ""
+msgstr "Luokkaa \"muut\" ei voi yhdistää toiseen luokkaan"
 
 #: src/olympia/addons/fields.py:76 src/olympia/addons/serializers.py:1257
 msgid "Invalid category name."
@@ -267,11 +266,11 @@ msgstr "Virheellinen luokan nimi."
 #: src/olympia/addons/fields.py:116
 #, python-brace-format
 msgid "URL domain must be one of [{domains}]."
-msgstr ""
+msgstr "URL-verkkotunnuksen on oltava jokin seuraavista: [{domains}]."
 
 #: src/olympia/addons/fields.py:125 src/olympia/devhub/forms.py:278
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
-msgstr ""
+msgstr "GitHub-sponsoreiden URL-polun on sisällettävä /sponsors/."
 
 #: src/olympia/addons/fields.py:128 src/olympia/devhub/forms.py:281
 msgid "URLs must start with https://."
@@ -285,7 +284,7 @@ msgstr ""
 #: src/olympia/addons/fields.py:210
 #, python-brace-format
 msgid "Unsupported file type, please upload an archive file ({extensions})."
-msgstr ""
+msgstr "Tiedostotyyppiä ei tueta, lataa arkistotiedosto ({extensions})."
 
 #: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:756 src/olympia/files/utils.py:761 src/olympia/reviewers/forms.py:386
 msgid "Invalid or broken archive."
@@ -311,7 +310,7 @@ msgstr ""
 #: src/olympia/addons/fields.py:375
 #, python-format
 msgid "Images must be smaller than %dMB"
-msgstr ""
+msgstr "Kuvien on oltava pienempiä kuin %d Mt"
 
 #: src/olympia/addons/models.py:2270 src/olympia/addons/models.py:2327 src/olympia/constants/base.py:66
 msgid "Listed"
@@ -323,7 +322,7 @@ msgstr ""
 
 #: src/olympia/addons/serializers.py:306
 msgid "Built in licenses can not be updated."
-msgstr ""
+msgstr "Sisäänrakennettuja lisenssejä ei voi päivittää."
 
 #: src/olympia/addons/serializers.py:501
 msgid "Upload is not valid."
@@ -331,7 +330,7 @@ msgstr "Lähetys ei ole kelvollinen."
 
 #: src/olympia/addons/serializers.py:517
 msgid "File is already disabled."
-msgstr ""
+msgstr "Tiedosto on jo poistettu käytöstä."
 
 #: src/olympia/addons/serializers.py:521 src/olympia/addons/views.py:738
 #, python-format
