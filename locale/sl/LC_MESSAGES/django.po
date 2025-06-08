@@ -1592,7 +1592,7 @@ msgstr "Dopust in počitnice"
 
 #: src/olympia/constants/categories.py:264
 msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
-msgstr "Prenesite Firefoxove teme s prazniki. Ta kategorija vključuje božič, noč čarovnic, zahvalni dan, dan sv. Patrika, veliko noč, 4. julij in druge."
+msgstr "Prenesite praznične teme za Firefox. V tej kategoriji najdete božične, velikonočne, teme za noč čarovnic, dan svetega Patrika in druge."
 
 #: src/olympia/constants/categories.py:271
 msgid "Music"
@@ -1636,7 +1636,7 @@ msgstr "Enobarvne"
 
 #: src/olympia/constants/categories.py:318
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
-msgstr "Prenesite Firefoxove teme z enobarvnimi in prelivajočimi se barvami in prilagodite svoj brskalnik. Ta kategorija vključuje krepke rdeče, pastelne, nežne sive in še veliko več."
+msgstr "Prilagodite si Firefox z enobarvnimi in prelivajočimi se temami. Ta kategorija vključuje krepke rdeče, pastelne, nežne sive in mnoge druge odtenke."
 
 #: src/olympia/constants/categories.py:325
 msgid "Sports"
@@ -5656,7 +5656,7 @@ msgstr "Shranite celotne strani – vključno s slikami in slogi – kot eno dat
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:857
 msgid "Edit a web page before printing. Remove ads or any unwanted content."
-msgstr "Uredite spletno stran pred tiskanjem. Odstranite oglase in vso neželeno vsebino."
+msgstr "Uredite spletno stran pred tiskanjem. Odstranite oglase in drugo neželeno vsebino."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:866
@@ -5801,7 +5801,7 @@ msgstr "Blokirajte si spletne strani, ki vam kradejo čas – popolnoma ali samo
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:986
 msgid "Easily summarize emails, docs, articles, and video transcripts in English across the web — without sacrificing your privacy."
-msgstr "Preprosto povzemite e-poštna sporočila, dokumentacijo, članke in zapise videoposnetkov v angleščini po spletu – ne da bi žrtvovali svojo zasebnost."
+msgstr "Preprosto povzemite e-poštna sporočila, dokumentacijo, članke in prepise videoposnetkov v angleščini s spleta – ne da bi žrtvovali zasebnost."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:989
