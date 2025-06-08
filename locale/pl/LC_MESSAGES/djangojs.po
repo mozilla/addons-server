@@ -911,7 +911,7 @@ msgstr "Strona została wyświetlona po raz pierwszy przez {name}."
 
 #: static/js/zamboni/reviewers.js:266
 msgid "Review page polling failed."
-msgstr ""
+msgstr "Odpytywanie strony recenzji nie powiodło się."
 
 #: static/js/zamboni/reviewers.js:554
 #, python-brace-format
