@@ -318,7 +318,7 @@ msgstr "Listattu"
 
 #: src/olympia/addons/models.py:2505
 msgid "Add-on and collection paths need to end with \"/\""
-msgstr ""
+msgstr "Lisäosien ja kokoelmapolkujen lopussa on oltava \"/\""
 
 #: src/olympia/addons/serializers.py:306
 msgid "Built in licenses can not be updated."
@@ -340,16 +340,16 @@ msgstr ""
 #: src/olympia/addons/serializers.py:536
 #, python-brace-format
 msgid "Version {version_string} was uploaded before and deleted."
-msgstr ""
+msgstr "Versio {version_string} lähetettiin aiemmin ja poistettiin."
 
 #: src/olympia/addons/serializers.py:539
 #, python-brace-format
 msgid "Version {version_string} already exists."
-msgstr ""
+msgstr "Versio {version_string} on jo olemassa."
 
 #: src/olympia/addons/serializers.py:559
 msgid "Listed versions cannot be submitted while add-on is disabled."
-msgstr ""
+msgstr "Listattuja versioita ei voi lähettää, kun lisäosa on poistettu käytöstä."
 
 #: src/olympia/addons/serializers.py:600
 #, python-format
@@ -363,7 +363,7 @@ msgstr ""
 
 #: src/olympia/addons/serializers.py:888
 msgid "Add-ons need at least one owner."
-msgstr ""
+msgstr "Lisäosat tarvitsevat vähintään yhden omistajan."
 
 #: src/olympia/addons/serializers.py:903
 msgid "Add-ons need at least one listed author."
@@ -421,7 +421,7 @@ msgstr ""
 
 #: src/olympia/addons/validators.py:272
 msgid "A GUID must be specified in the manifest."
-msgstr ""
+msgstr "GUID on määritettävä manifestissa."
 
 #: src/olympia/addons/validators.py:276
 msgid "GUID mismatch between the URL and manifest."
@@ -951,7 +951,7 @@ msgstr ""
 #: src/olympia/constants/activity.py:346
 #, python-brace-format
 msgid "{addon} is now licensed under {0}."
-msgstr ""
+msgstr "{addon} on nyt lisensoitu lisenssillä {0}."
 
 #: src/olympia/constants/activity.py:353
 #, python-brace-format
@@ -1033,7 +1033,7 @@ msgstr ""
 #: src/olympia/constants/activity.py:567 src/olympia/constants/activity.py:573
 #, python-brace-format
 msgid "{file} was signed."
-msgstr ""
+msgstr "{file} allekirjoitettiin."
 
 #: src/olympia/constants/activity.py:614
 #, python-brace-format
@@ -1110,9 +1110,8 @@ msgid "{addon} {version} content reject scheduled."
 msgstr "{addon} {version} sisältö hylättiin."
 
 #: src/olympia/constants/activity.py:829
-#, fuzzy
 msgid "Content reject scheduled"
-msgstr "Sisältö hylätty"
+msgstr "Sisällön hylkäys ajoitettu"
 
 #: src/olympia/constants/activity.py:841
 #, fuzzy, python-brace-format
@@ -1121,7 +1120,7 @@ msgstr "{addon} {version} hylättiin."
 
 #: src/olympia/constants/activity.py:842
 msgid "Rejection scheduled"
-msgstr ""
+msgstr "Hylkäys ajoitettu"
 
 #: src/olympia/constants/activity.py:853
 #, python-brace-format
@@ -1294,9 +1293,8 @@ msgid "Extension"
 msgstr "Laajennus"
 
 #: src/olympia/constants/base.py:130
-#, fuzzy
 msgid "Deprecated Complete Theme"
-msgstr "Täydelliset teemat"
+msgstr "Vanhennettu kokonainen teema"
 
 #: src/olympia/constants/base.py:131
 msgid "Dictionary"
@@ -1304,7 +1302,7 @@ msgstr "Oikolukusanasto"
 
 #: src/olympia/constants/base.py:132
 msgid "Deprecated Search Engine"
-msgstr ""
+msgstr "Vanhennettu hakukone"
 
 #: src/olympia/constants/base.py:133
 msgid "Language Pack"
@@ -1312,15 +1310,15 @@ msgstr "Kielipaketti"
 
 #: src/olympia/constants/base.py:134
 msgid "Deprecated Language Pack (Add-on)"
-msgstr ""
+msgstr "Vanhennettu kielipaketti (lisäosa)"
 
 #: src/olympia/constants/base.py:135
 msgid "Deprecated Plugin"
-msgstr ""
+msgstr "Vanhennettu liitännäinen"
 
 #: src/olympia/constants/base.py:136
 msgid "Deprecated LWT"
-msgstr ""
+msgstr "Vanhennettu LWT"
 
 #: src/olympia/constants/base.py:137 src/olympia/constants/reviewers.py:70
 msgid "Theme"
@@ -1328,16 +1326,15 @@ msgstr "Teema"
 
 #: src/olympia/constants/base.py:138
 msgid "Deprecated Site Permission"
-msgstr ""
+msgstr "Vanhennettu sivusto-oikeus"
 
 #: src/olympia/constants/base.py:143 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:10
 msgid "Extensions"
 msgstr "Laajennukset"
 
 #: src/olympia/constants/base.py:144
-#, fuzzy
 msgid "Deprecated Complete Themes"
-msgstr "Täydelliset teemat"
+msgstr "Vanhennetut kokonaiset teemat"
 
 #: src/olympia/constants/base.py:145
 msgid "Dictionaries"
@@ -1345,7 +1342,7 @@ msgstr "Oikolukusanastot"
 
 #: src/olympia/constants/base.py:146
 msgid "Deprecated Search Tools"
-msgstr ""
+msgstr "Vanhennetut hakutyökalut"
 
 #: src/olympia/constants/base.py:147
 msgid "Language Packs"
@@ -1353,15 +1350,15 @@ msgstr "Kielipaketit"
 
 #: src/olympia/constants/base.py:148
 msgid "Deprecated Language Packs (Add-on)"
-msgstr ""
+msgstr "Vanhennetut kielipaketit (lisäosa)"
 
 #: src/olympia/constants/base.py:149
 msgid "Deprecated Plugins"
-msgstr ""
+msgstr "Vanhennetut liitännäiset"
 
 #: src/olympia/constants/base.py:150
 msgid "Deprecated LWTs"
-msgstr ""
+msgstr "Vanhennetut LWT:t"
 
 #: src/olympia/constants/base.py:151 src/olympia/devhub/templates/devhub/nav.html:43 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:11
 msgid "Themes"
@@ -1369,7 +1366,7 @@ msgstr "Teemat"
 
 #: src/olympia/constants/base.py:152
 msgid "Deprecated Site Permissions"
-msgstr ""
+msgstr "Vanhennetut sivusto-oikeudet"
 
 #: src/olympia/constants/categories.py:68
 msgid "Alerts & Updates"
