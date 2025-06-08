@@ -998,7 +998,7 @@ msgstr "{0} rivi {1} sarake {2}"
 #: static/js/zamboni/validator.js:339
 #, python-brace-format
 msgid "{0} line {1}"
-msgstr ""
+msgstr "{0} rivi {1}"
 
 #: static/js/zamboni/validator.js:376
 msgid "Add-on failed validation."
