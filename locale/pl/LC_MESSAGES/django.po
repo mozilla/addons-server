@@ -430,7 +430,7 @@ msgstr "To konto wymaga ustawienia wyświetlanej nazwy, by mogło być dodane ja
 
 #: src/olympia/addons/serializers.py:1237
 msgid "This slug cannot be used. Please choose another."
-msgstr ""
+msgstr "Ten ciąg dodatku nie może być użyty. Proszę wybrać inny."
 
 #: src/olympia/addons/utils.py:39
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -1228,11 +1228,11 @@ msgstr ""
 #: src/olympia/constants/activity.py:1006
 #, python-brace-format
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
-msgstr ""
+msgstr "{user_responsible} zmienił/a ciąg dodatku {addon} z {0} na {1}."
 
 #: src/olympia/constants/activity.py:1007
 msgid "Add-on slug changed"
-msgstr ""
+msgstr "Zmieniono ciąg dodatku"
 
 #: src/olympia/constants/activity.py:1014
 #, python-brace-format
@@ -1927,7 +1927,7 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py:85
 msgid "This slug is already in use. Please choose another."
-msgstr "Ten ciąg słów jest już używany. Wybierz inny."
+msgstr "Ten ciąg dodatku jest już używany. Proszę wybrać inny."
 
 #: src/olympia/devhub/forms.py:88
 #, python-format
@@ -5114,9 +5114,8 @@ msgstr "Jeśli podczas przeglądania stron produktu w różnych sklepach online 
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:374
-#, fuzzy
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr "Tak wiele opcji kontroli nad kartami — zamykanie zduplikowanych kart, scalanie okien, kopiowanie tytułu karty itp."
+msgstr "Ciesz się pełną kontrolą nad kartami — zamykaj zduplikowane karty, scalaj okna, kopiuj tytuł karty i wiele więcej."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:377
@@ -5597,7 +5596,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:707
 msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title & more."
-msgstr ""
+msgstr "Ciesz się pełną kontrolą nad kartami — zamykaj zduplikowane karty, scalaj okna, kopiuj tytuł karty i wiele więcej."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:725
