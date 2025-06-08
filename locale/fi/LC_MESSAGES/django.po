@@ -80,7 +80,7 @@ msgstr ""
 
 #: src/olympia/abuse/templates/abuse/appeal.html:38
 msgid "Because the decision you are appealing has already been overturned, your appeal will not be processed."
-msgstr ""
+msgstr "Koska päätös, josta olet valittamassa, on jo kumottu, valitustasi ei käsitellä."
 
 #: src/olympia/abuse/templates/abuse/appeal.html:42
 msgid "The decision you are appealing has already been overridden by a new decision, so this decision can't be appealed."
@@ -292,7 +292,7 @@ msgstr "Virheellinen tai rikkinäinen arkisto."
 
 #: src/olympia/addons/fields.py:267
 msgid "Invalid app specified"
-msgstr ""
+msgstr "Virheellinen sovellus määritetty"
 
 #: src/olympia/addons/fields.py:285
 msgid "Unknown max app version specified"
@@ -404,11 +404,11 @@ msgstr ""
 
 #: src/olympia/addons/validators.py:91
 msgid "Wrong add-on type for this license."
-msgstr ""
+msgstr "Väärä lisäosatyyppi tälle lisenssille."
 
 #: src/olympia/addons/validators.py:98
 msgid "Custom licenses are not supported for themes."
-msgstr ""
+msgstr "Mukautettuja lisenssejä ei tueta teemoille."
 
 #: src/olympia/addons/validators.py:132
 msgid "This field is required for add-ons with listed versions."
@@ -1930,11 +1930,11 @@ msgstr "Muu lisenssi"
 
 #: src/olympia/devhub/forms.py:570
 msgid "Provide the text of your license."
-msgstr ""
+msgstr "Kirjoita lisenssisi teksti."
 
 #: src/olympia/devhub/forms.py:620
 msgid "License text is required when choosing Other."
-msgstr ""
+msgstr "Lisenssiteksti on pakollinen, kun valitset Muu-vaihtoehdon."
 
 #: src/olympia/devhub/forms.py:676
 msgid "This add-on has an End-User License Agreement"
@@ -2390,9 +2390,8 @@ msgid "more add-ons..."
 msgstr "lisää lisäosia..."
 
 #: src/olympia/devhub/templates/devhub/nav.html:36 src/olympia/devhub/templates/devhub/new-landing/components/navigation.html:21 src/olympia/templates/photon-footer.html:13
-#, fuzzy
 msgid "Extension Workshop"
-msgstr "Laajennukset"
+msgstr "Laajennustyöpaja"
 
 #: src/olympia/devhub/templates/devhub/nav.html:38 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:7
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html:24
@@ -3148,7 +3147,7 @@ msgstr "Poista"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:30
 msgid "Edit details on this add-on's product page"
-msgstr ""
+msgstr "Muokkaa tietoja tämän lisäosan tuotesivulla"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:37
 msgid "Upload a new version of this add-on"
@@ -3181,7 +3180,7 @@ msgstr "Näytä viimeisimmät muutokset"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html:9
 msgid "This add-on is missing some required information before it can be submitted for publication."
-msgstr ""
+msgstr "Tästä lisäosasta puuttuu joitakin pakollisia tietoja, ennen kuin sen voi lähettää julkaistavaksi."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html:13
 msgid "This add-on doesn't have any versions."
@@ -3415,9 +3414,8 @@ msgid "Go to My Submissions"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:3
-#, fuzzy
 msgid "Source Code Upload"
-msgstr "Lähdekoodi ladattu"
+msgstr "Lähdekoodin lähetys"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:11
 msgid "Do You Need to Submit Source Code?"
@@ -3428,9 +3426,8 @@ msgid "Mozilla’s add-on reviewers need to be able to read and reproduce the co
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:21
-#, fuzzy
 msgid "Do you use any of the following in your extension?"
-msgstr "Käytätkö jotain seuraavista?"
+msgstr "Käytätkö jotain seuraavista laajennuksessasi?"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:27
 msgid "Code generators or minifiers"
@@ -3450,11 +3447,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:43
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
-msgstr ""
+msgstr "Sinun ei tarvitse lähettää lähdekoodia, ja olet valmis siirtymään seuraavaan vaiheeseen."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:49
 msgid "You must submit your extension's source code."
-msgstr ""
+msgstr "Sinun on lähetettävä laajennuksesi lähdekoodi."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:51
 msgid "Your source code must include:"
@@ -3483,7 +3480,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:67
 #, python-format
 msgid "The maximum file size accepted is %(max_size)s."
-msgstr ""
+msgstr "Suurin hyväksytty tiedostokoko on %(max_size)s."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:72
 #, python-format
@@ -3533,9 +3530,8 @@ msgid "Administrative overrides"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:79
-#, fuzzy
 msgid "Create a Theme Version"
-msgstr "Suositellut teemat"
+msgstr "Luo teemaversio"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:85
 msgid "Create a Theme"
@@ -3601,9 +3597,8 @@ msgid "Uploading Theme"
 msgstr "Lupaavat teemat"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:108
-#, fuzzy
 msgid "Finish Theme"
-msgstr "%s teemat"
+msgstr "Viimeistele teema"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:116
 msgid "Back"
@@ -3906,7 +3901,7 @@ msgstr "Lue lisää lähdekoodin katselmointikäytännöstä."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/banner.html:4
 msgid "Build best-in-class extensions and themes"
-msgstr ""
+msgstr "Luo luokkansa parhaita laajennuksia ja teemoja"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/banner.html:7 src/olympia/devhub/templates/devhub/new-landing/components/overview.html:5
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
@@ -4110,7 +4105,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/submit_or_manage_extension.html:11
 msgid "Register for a developer account or log in to the Developer Hub"
-msgstr ""
+msgstr "Rekisteröidy kehittäjätili tai kirjaudu sisään kehittäjäkeskukseen"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:5
 #, python-brace-format
@@ -4251,9 +4246,8 @@ msgid ""
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:178
-#, fuzzy
 msgid "Listed versions"
-msgstr "Beetaversio {0}"
+msgstr "Listatut versiot"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:185
 msgid "Currently on AMO"
