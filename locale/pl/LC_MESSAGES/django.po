@@ -559,7 +559,7 @@ msgstr "Błąd podczas weryfikacji danych wejściowych, spróbuj ponownie."
 
 #: src/olympia/amo/fields.py:90 src/olympia/amo/fields.py:97
 msgid "Enter a valid IP4 or IP6 network."
-msgstr ""
+msgstr "Wprowadź prawidłowy adres sieci IP4 lub IP6."
 
 #: src/olympia/amo/fields.py:96
 msgid "CIDR"
