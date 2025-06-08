@@ -396,7 +396,7 @@ msgstr ""
 
 #: src/olympia/addons/validators.py:41
 msgid "Both `license` and `custom_license` cannot be provided together."
-msgstr ""
+msgstr "Sekä `license` ja `custom_license` eivät ole käytettävissä yhdessä."
 
 #: src/olympia/addons/validators.py:64
 msgid "This field, or custom_license, is required for listed versions."
@@ -1177,12 +1177,12 @@ msgstr ""
 #: src/olympia/constants/activity.py:1014
 #, python-brace-format
 msgid "Collection {collection} deleted by moderator"
-msgstr ""
+msgstr "Kokoelma {collection} on poistettu moderaattorin toimesta"
 
 #: src/olympia/constants/activity.py:1020
 #, python-brace-format
 msgid "Collection {collection} un-deleted by moderator"
-msgstr ""
+msgstr "Kokoelman {collection} poistaminen on peruttu moderaattorin toimesta"
 
 #: src/olympia/constants/activity.py:1029
 #, python-brace-format
