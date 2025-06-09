@@ -9,6 +9,8 @@ from unittest.mock import ANY, patch
 from django.core.files.base import ContentFile
 from django.core.management import call_command
 
+from waffle.testutils import override_switch
+
 from olympia import amo
 from olympia.activity.models import ActivityLog, IPLog
 from olympia.addons.models import Addon
@@ -79,6 +81,7 @@ class TestCreateSuperUser(TestCase):
         }
 
 
+@override_switch('enable-addons-hard-deletion', active=True)
 class TestClearOldUserData(TestCase):
     def create_ip_log(self, user):
         # Note: this is a dummy log that doesn't have store_ip=True on
@@ -372,6 +375,25 @@ class TestClearOldUserData(TestCase):
         assert not old_not_deleted.email
         assert not Addon.unfiltered.filter(id=old_not_deleted_addon.id).exists()
         assert not Addon.unfiltered.filter(id=no_longer_owner_addon.id).exists()
+
+    @override_switch('enable-addons-hard-deletion', active=False)
+    def test_waffle_off(self):
+        old_date = self.days_ago((365 * 7) + 1)
+        old_user = user_factory(deleted=True, fxa_id='dfdf')
+        old_user.update(modified=old_date)
+        self.create_ip_log(old_user)
+        old_user_addon = addon_factory(users=[old_user], status=amo.STATUS_DELETED)
+        call_command('clear_old_user_data')
+        old_user.reload()
+        assert old_user.last_login_ip == ''
+        assert old_user.deleted is True
+        assert not old_user.email
+        assert not old_user.fxa_id
+        assert old_user.modified == old_date
+        assert not IPLog.objects.filter(activity_log__user=old_user).exists()
+
+        # Waffle switch is off so we kept the add-on data.
+        assert Addon.unfiltered.filter(pk=old_user_addon.pk).exists()
 
 
 class TestMigrateUserPhotos(TestCase):
