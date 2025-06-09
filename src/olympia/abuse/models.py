@@ -180,15 +180,25 @@ class CinderJob(ModelBase):
             or getattr(target, 'banned', False)
             or getattr(target, 'status', -1) == amo.STATUS_DISABLED
         )
+        # _abusereports is set in the auto_resolve_reports command for efficiency
         reports = list(
-            self.abusereport_set.values_list('reason', 'addon_version', named=True)
+            getattr(
+                self,
+                '_abusereports',
+                self.abusereport_set.values_list('reason', 'addon_version', named=True),
+            )
         )
-        version_qs = Version.objects.filter(
-            addon=self.target_addon,
-            version__in=[
-                report.addon_version for report in reports if report.addon_version
-            ],
-        ).values_list('version', 'human_review_date', named=True)
+        # _addon_versions is set in the auto_resolve_reports command for efficiency
+        version_qs = getattr(
+            self,
+            '_addon_versions',
+            Version.objects.filter(
+                addon=self.target_addon,
+                version__in=[
+                    report.addon_version for report in reports if report.addon_version
+                ],
+            ).values_list('version', 'human_review_date', named=True),
+        )
         versions = {v.version: v for v in version_qs} if self.target_addon else {}
         current_version = getattr(target, 'current_version', None) or Version()
         is_human_reviewed = (

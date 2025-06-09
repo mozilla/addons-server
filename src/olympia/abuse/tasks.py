@@ -230,3 +230,14 @@ def handle_forward_to_legal_action(*, decision_pk):
         # Update fks to connected objects
         AbuseReport.objects.filter(cinder_job=old_job).update(cinder_job=new_job)
         ContentDecision.objects.filter(appeal_job=old_job).update(appeal_job=new_job)
+
+
+@task
+@use_primary_db
+def handle_already_moderated(*, job_pk):
+    job = CinderJob.objects.get(pk=job_pk)
+    entity_helper = CinderJob.get_entity_helper(
+        job.target, resolved_in_reviewer_tools=True
+    )
+    job.handle_already_moderated(job.abusereport_set.first(), entity_helper)
+    job.clear_needs_human_review_flags()
