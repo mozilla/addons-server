@@ -1228,7 +1228,7 @@ msgstr "Oczekujące odrzucenie zostało wyczyszczone"
 #: src/olympia/constants/activity.py:1006
 #, python-brace-format
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
-msgstr "{user_responsible} zmienił/a ciąg dodatku {addon} z {0} na {1}."
+msgstr "Ciąg dodatku {addon} został zmieniony przez {user_responsible} z {0} na {1}."
 
 #: src/olympia/constants/activity.py:1007
 msgid "Add-on slug changed"
