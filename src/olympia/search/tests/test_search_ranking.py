@@ -1046,16 +1046,29 @@ class TestRankingScenarios(ESTestCase):
         )
 
     def test_scenario_promoted(self):
-        # Other than their promoted status, the 4 addons have the same data
-        self._check_scenario(
-            'strip',
-            (
-                ['Stripy Dog 1', 2921],  # recommended
-                ['Stripy Dog 2', 2921],  # line
-                ['Stripy Dog 3', 584],  # spotlight (no boost)
-                ['Stripy Dog 4', 584],  # not promoted
-            ),
-        )
+        # Other than their promoted status, the 4 "Stripy Dog x" addons have
+        # the same data.
+        url = reverse_ns('addon-search', api_version='v5')
+        params = {'lang': 'en-US', 'q': 'strip'}
+        response = self.client.get(url, params)
+        assert response.status_code == 200
+        data = json.loads(force_str(response.content))
+        results = data['results']
+        assert len(results) == 4
+
+        # First 2 should be either Stripy Dog 1 or Stripy Dog 2, which are
+        # recommended and line, respectively.
+        assert results[0]['name']['en-US'] in ('Stripy Dog 1', 'Stripy Dog 2')
+        assert int(results[0]['_score']) == 2921
+        assert results[1]['name']['en-US'] in ('Stripy Dog 1', 'Stripy Dog 2')
+        assert int(results[1]['_score']) == 2921
+
+        # Next 2 should be either Stripy Dog 3 or Stripy Dog 4, which are
+        # spotlight (no search boost) and no promoted, respectively.
+        assert results[2]['name']['en-US'] in ('Stripy Dog 3', 'Stripy Dog 4')
+        assert int(results[2]['_score']) == 584
+        assert results[3]['name']['en-US'] in ('Stripy Dog 3', 'Stripy Dog 4')
+        assert int(results[3]['_score']) == 584
 
     def test_scenario_minimum_should_match_trigrams(self):
         # With minimum_should_match set to 66% or less, "xyeta" would match
