@@ -1168,7 +1168,7 @@ msgstr "Dodatek {addon} został zmigrowany z lekkiego motywu."
 #: src/olympia/constants/activity.py:828
 #, python-brace-format
 msgid "{addon} {version} content reject scheduled."
-msgstr ""
+msgstr "Zaplanowano odrzucenie treści dodatku {addon} {version}."
 
 #: src/olympia/constants/activity.py:829
 msgid "Content reject scheduled"
@@ -1177,7 +1177,7 @@ msgstr "Zaplanowano odrzucenie treści"
 #: src/olympia/constants/activity.py:841
 #, python-brace-format
 msgid "{addon} {version} reject scheduled."
-msgstr ""
+msgstr "Zaplanowano odrzucenie dodatku {addon} {version}."
 
 #: src/olympia/constants/activity.py:842
 msgid "Rejection scheduled"
@@ -1186,7 +1186,7 @@ msgstr "Zaplanowano odrzucenie"
 #: src/olympia/constants/activity.py:853
 #, python-brace-format
 msgid "{addon} {version} automatically created and signed from {0}."
-msgstr ""
+msgstr "{addon} {version} został automatycznie stworzony i podpisany z {0}."
 
 #: src/olympia/constants/activity.py:854
 msgid "Version re-signed"
@@ -1219,11 +1219,11 @@ msgstr "Napisano odpowiedź do opinii {rating} dla dodatku {addon}."
 #: src/olympia/constants/activity.py:958
 #, python-brace-format
 msgid "{addon} {version} pending rejection cleared."
-msgstr ""
+msgstr "Oczekujące odrzucenie {addon} {version} zostało wyczyszczone."
 
 #: src/olympia/constants/activity.py:959
 msgid "Pending rejection cleared"
-msgstr ""
+msgstr "Oczekujące odrzucenie zostało wyczyszczone"
 
 #: src/olympia/constants/activity.py:1006
 #, python-brace-format
@@ -1270,7 +1270,7 @@ msgstr "Treść odrzucona automatycznie po upływie terminu"
 #: src/olympia/constants/activity.py:1196
 #, python-brace-format
 msgid "{addon} {version} pending rejection changed."
-msgstr ""
+msgstr "Oczekujące odrzucenie {addon} {version} zostało zmienione."
 
 #: src/olympia/constants/activity.py:1197
 msgid "Pending rejection changed"
@@ -3478,9 +3478,8 @@ msgid "Manage Listing"
 msgstr "Zarządzaj stroną dodatku"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:47
-#, fuzzy
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, concatenated or otherwise machine-generated code."
-msgstr "Możesz również edytować tę wersję, aby dodać informacje o wersji lub kod źródłowy, jeśli zgłoszenie zawiera zminimalizowany, zaciemniony lub skompilowany kod."
+msgstr "Możesz również edytować tę wersję, aby dodać informacje o wersji lub kod źródłowy, jeśli zgłoszenie zawiera zminimalizowany, skonsolidowany, lub w inny sposób wygenerowany maszynowo kod."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:52
 #, python-brace-format
