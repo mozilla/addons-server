@@ -271,6 +271,11 @@ def dashboard(request):
                 ),
                 reverse('reviewers.queue_pending_rejection'),
             ),
+        ]
+    if view_all or acl.action_allowed_for(
+        request.user, amo.permissions.ADDONS_HIGH_IMPACT_APPROVE
+    ):
+        sections['2nd Level Approval'] = [
             (
                 'Held Decisions for 2nd Level Approval ({0})'.format(
                     queue_counts['queue_decisions']
@@ -1265,7 +1270,7 @@ def queue_decisions(request, tab):
     )
 
 
-@permission_or_tools_listed_view_required(amo.permissions.REVIEWS_ADMIN)
+@permission_or_tools_listed_view_required(amo.permissions.ADDONS_HIGH_IMPACT_APPROVE)
 def decision_review(request, decision_id):
     decision = get_object_or_404(ContentDecision, pk=decision_id)
     form = HeldDecisionReviewForm(
