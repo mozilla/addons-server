@@ -3874,7 +3874,7 @@ msgstr "Loppukäyttäjän lisenssisopimus"
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:4
 msgid "Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Huomaa, että EULA-loppukäyttäjäsopimus ei ole sama asia kuin koodilisenssi, kuten GPL tai MPL. Se koskee vain listattuja lisäosia."
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:21
 msgid "Privacy Policy"
@@ -3882,7 +3882,7 @@ msgstr "Tietosuojakäytäntö"
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:22
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Jos lisäosasi lähettää tietoja käyttäjän tietokoneelta, vaaditaan tietosuojakäytäntö, jossa selitetään, mitä tietoja lähetetään ja miten tietoja käytetään. Se koskee vain listattuja lisäosia."
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html:3
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code other than known libraries, upload its sources for review."
@@ -3970,7 +3970,7 @@ msgstr "Mainosta"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:27
 msgid "\"Get The Add-on\" button"
-msgstr ""
+msgstr "\"Hanki lisäosa\"-painike"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:28
 msgid "Recommended Extensions program"
@@ -4014,7 +4014,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/get_involved.html:16
 msgid "Learn more about the developer community"
-msgstr ""
+msgstr "Lue lisää kehittäjäyhteisöstä"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:47 src/olympia/devhub/templates/devhub/versions/list.html:22
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
@@ -4157,7 +4157,7 @@ msgstr "Tiedosto {file_id}"
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html:5
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
-msgstr ""
+msgstr "Luotu %(created)s ja tilaksi asetettu %(status)s %(status_date)s"
 
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html:9
 #, python-format
@@ -4215,9 +4215,8 @@ msgid "Reply"
 msgstr "Vastaa"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:155
-#, fuzzy
 msgid "Listing visibility"
-msgstr "Näkyvyys"
+msgstr "Listausnäkyvyys"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:163
 #, python-brace-format
@@ -4591,12 +4590,12 @@ msgstr ""
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:140
 msgid "Track the trackers. Get a glimpse into who's tracking you with just a click."
-msgstr ""
+msgstr "Seuraa seuraimia. Saat yhdellä napsautuksella käsityksen siitä, kuka tai mikä seuraa sinua."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:143
 msgid "Change your proxy server and surf the web through self-defined proxy settings."
-msgstr ""
+msgstr "Vaihda välityspalvelinta ja surffaa verkossa itse määrittämiesi välityspalvelinasetusten avulla."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:146
@@ -4612,7 +4611,7 @@ msgstr "Käytä salattua yhteyttä millä tahansa HTTPS:ää tukevalla sivustoll
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:152
 msgid "Get the best coupons automatically applied to your shopping cart at checkout."
-msgstr ""
+msgstr "Saat parhaat kupongit automaattisesti ostoskoriisi verkkokaupan kassalla."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:155
@@ -4627,7 +4626,7 @@ msgstr "Ota kuvakaappauksia verkkosivuista, tee muokkauksia ja jaa niitä."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:161
 msgid "A superior Windows-only downloader tool."
-msgstr ""
+msgstr "Erinomainen lataustyökalu vain Windowsille."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:164
@@ -4736,7 +4735,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:224
 msgid "Block time-wasting sites so you can focus on the task at hand."
-msgstr ""
+msgstr "Estä aikaa vievät sivustot, jotta voit keskittyä käsillä olevaan tehtävään."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:227
@@ -5000,7 +4999,7 @@ msgstr "Nauti oudosta koulutuksesta. Lataa satunnainen Wikipedia-artikkeli aina,
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:380
 msgid "Configure new tab pages to display custom background colors and images."
-msgstr ""
+msgstr "Määritä uuden välilehden sivu näyttämään mukautettuja taustavärejä ja -kuvia."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:383
@@ -5040,7 +5039,7 @@ msgstr "Keskity katsomaasi himmentämällä kaikki muu paitsi videosoitin."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:404
 msgid "Modify your bookmarks through an easily accessible panel."
-msgstr ""
+msgstr "Muokkaa kirjanmerkkejäsi helposti käytettävän paneelin kautta."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:407
@@ -5050,7 +5049,7 @@ msgstr "Tallenna salasanat turvallisesti ja kirjaudu sisään automaattisesti tu
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:410
 msgid "A simple ad blocker focused on displaying just the content you want."
-msgstr ""
+msgstr "Yksinkertainen mainostenesto, joka keskittyy näyttämään vain haluamasi sisällön."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:413
@@ -5417,17 +5416,17 @@ msgstr ""
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:627
 msgid "Bring back the ability to see thumbs down!"
-msgstr ""
+msgstr "Palauta alapeukut!"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:630
 msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
-msgstr ""
+msgstr "Kuuntele musiikkia YouTubessa ilman ärsyttäviä \"Video keskeytetty. Jatketaanko katselua?\"-keskeytyksiä."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:634
 msgid "Change the way the web looks."
-msgstr ""
+msgstr "Muuta verkon ulkoasua."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:637
@@ -5437,12 +5436,12 @@ msgstr ""
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:649
 msgid "Changes the color of Firefox to match the appearance of any website."
-msgstr ""
+msgstr "Muuttaa Firefoxin värin vastaamaan minkä tahansa verkkosivuston ulkoasua."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:659
 msgid "Protect your privacy against a unique form of JavaScript “fingerprinting”."
-msgstr ""
+msgstr "Suojaa yksityisyyttäsi ainutlaatuiselta JavaScript-yksilöinniltä."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:665
@@ -5452,7 +5451,7 @@ msgstr "Joillakin verkkosivustoilla on vaikeuksia toistaa videoita Androidilla. 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:686
 msgid "Find an interesting pic on the web? Use TinEye to discover its origins."
-msgstr ""
+msgstr "Löysitkö mielenkiintoisen kuvan verkosta? Käytä TinEye-palvelua selvittääksesi kuvan alkuperän."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:704
@@ -5577,7 +5576,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:944
 msgid "Put restrictions on distracting, time-wasting websites."
-msgstr ""
+msgstr "Aseta rajoituksia häiritseville ja aikaa vieville verkkosivustoille."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:947
@@ -5662,7 +5661,7 @@ msgstr "Käsittele GDPR-suostumuslomakkeet automaattisesti."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:995
 msgid "Block malicious websites from port scanning."
-msgstr ""
+msgstr "Estä haitallisten verkkosivustojen porttiskannaus."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:998
@@ -5672,17 +5671,17 @@ msgstr "Paranna Twitch-kokemustasi."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1001
 msgid "Re-take control of Twitter/X and customize your experience."
-msgstr ""
+msgstr "Ota Twitter/X takaisin hallintaasi ja mukauta käyttökokemustasi."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1004
 msgid "Translate text without leaving the page you're on (PDF compatible)."
-msgstr ""
+msgstr "Käännä tekstiä poistumatta sivulta, jolla olet (PDF-yhteensopiva)."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1007
 msgid "Change the color of Firefox to match every website you visit."
-msgstr ""
+msgstr "Vaihda Firefoxin väri vastaamaan jokaista vierailemaasi verkkosivustoa."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1010
@@ -6254,16 +6253,16 @@ msgstr ""
 
 #: src/olympia/scanners/models.py:187
 msgid "Only one Yara rule is allowed in the definition"
-msgstr ""
+msgstr "Määrityksessä sallitaan vain yksi Yara-sääntö"
 
 #: src/olympia/scanners/models.py:195
 #, python-format
 msgid "The definition is not valid: %(error)s"
-msgstr ""
+msgstr "Määritys ei ole kelvollinen: %(error)s"
 
 #: src/olympia/scanners/models.py:201
 msgid "An error occurred when compiling the definition"
-msgstr ""
+msgstr "Määrityksen koostamisessa tapahtui virhe"
 
 #: src/olympia/scanners/models.py:212
 msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
@@ -6275,9 +6274,9 @@ msgstr ""
 
 #: src/olympia/search/filters.py:49 src/olympia/search/filters.py:62 src/olympia/search/filters.py:95 src/olympia/search/filters.py:158 src/olympia/search/filters.py:198
 #: src/olympia/search/filters.py:344 src/olympia/search/filters.py:455
-#, fuzzy, python-format
+#, python-format
 msgid "Invalid \"%s\" parameter."
-msgstr "Virheellinen versioalue."
+msgstr "Virheellinen \"%s\"-parametri."
 
 #: src/olympia/search/filters.py:202 src/olympia/search/filters.py:322
 #, python-format
