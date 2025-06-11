@@ -851,7 +851,7 @@ msgstr "Tiedosto {file} lisätty lisäosan {addon} versioon {version}."
 #: src/olympia/constants/activity.py:141
 #, python-brace-format
 msgid "File {0} deleted from {version} of {addon}."
-msgstr ""
+msgstr "Tiedosto {0} poistettu lisäosan {addon} versiosta {version}."
 
 #: src/olympia/constants/activity.py:147
 #, python-brace-format
@@ -1805,11 +1805,11 @@ msgstr "Tuntematon"
 
 #: src/olympia/constants/scanners.py:43
 msgid "True positive"
-msgstr ""
+msgstr "Todellinen positiivinen"
 
 #: src/olympia/constants/scanners.py:44
 msgid "False positive"
-msgstr ""
+msgstr "Väärä positiivinen"
 
 #: src/olympia/constants/scanners.py:45
 msgid "Inconclusive"
@@ -1988,7 +1988,7 @@ msgstr ""
 #: src/olympia/devhub/forms.py:1108 src/olympia/signing/views.py:156
 #, python-brace-format
 msgid "Version {version} was uploaded before and deleted."
-msgstr ""
+msgstr "Versio {version} lähetettiin aiemmin ja poistettiin."
 
 #: src/olympia/devhub/forms.py:1117 src/olympia/devhub/forms.py:1123 src/olympia/signing/views.py:158
 #, python-brace-format
@@ -2143,11 +2143,11 @@ msgstr ""
 
 #: src/olympia/devhub/views.py:220
 msgid "Add-on Updates"
-msgstr ""
+msgstr "Lisäosapäivitykset"
 
 #: src/olympia/devhub/views.py:221
 msgid "Add-on Status"
-msgstr ""
+msgstr "Lisäosan tila"
 
 #: src/olympia/devhub/views.py:222
 msgid "User Collections"
@@ -2159,7 +2159,7 @@ msgstr ""
 
 #: src/olympia/devhub/views.py:371
 msgid "Add-on cannot be deleted. Disable this add-on instead."
-msgstr ""
+msgstr "Lisäosaa ei voi poistaa. Poista sen sijaan tämä lisäosa käytöstä."
 
 #: src/olympia/devhub/views.py:382
 msgid "Theme deleted."
@@ -2201,7 +2201,7 @@ msgstr "Lisäosan kelpuutus"
 #: src/olympia/devhub/views.py:644
 #, python-brace-format
 msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
-msgstr ""
+msgstr "<a href=\"{link}\">Lisää tilillesi kaksivaiheinen todennus, jotta voit lähettää laajennuksia.</a>"
 
 #: src/olympia/devhub/views.py:1012
 msgid "Icons must be either PNG or JPG."
@@ -2704,9 +2704,8 @@ msgid "Close"
 msgstr "Sulje"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:5
-#, fuzzy
 msgid "Additional Details"
-msgstr "Lisäresursseja"
+msgstr "Lisätiedot"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:8 src/olympia/devhub/templates/devhub/addons/edit/describe.html:10
 #: src/olympia/devhub/templates/devhub/addons/edit/media.html:6 src/olympia/devhub/templates/devhub/addons/edit/technical.html:9 src/olympia/devhub/templates/devhub/addons/submit/describe.html:61
@@ -2715,9 +2714,9 @@ msgid "Edit"
 msgstr "Muokkaa"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:15
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Additional Details for {0}"
-msgstr "{0}in lisäosat"
+msgstr "Lisäosan {0} lisätiedot"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:19
 msgid "Tags"
@@ -2819,7 +2818,7 @@ msgstr "Näytä tuotesivu"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:107 src/olympia/devhub/templates/devhub/addons/submit/describe.html:91
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
-msgstr ""
+msgstr "Tämän yhteenvedon tulisi selittää selkeästi, mitä lisäosasi tekee. Se näkyy listauksissa ja hauissa, ja arvioijat käyttävät sitä lisäosasi testaamiseen."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:128
 msgid "Description"
@@ -2831,7 +2830,7 @@ msgstr "Onko kokeellinen?"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:158
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
-msgstr ""
+msgstr "Jos lisäosasi on kokeellinen tai ei muuten ole valmis yleiseen käyttöön.  Lisäosa listataan, mutta sen näkyvyys on rajoitettu. "
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:163
 msgid "This add-on is experimental."
@@ -2847,15 +2846,15 @@ msgstr "Vaatiiko maksusuoritusta?"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:171 src/olympia/devhub/templates/devhub/addons/submit/describe.html:139
 msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
-msgstr ""
+msgstr "Valitse tämä ruutu, jos tämän lisäosan keskeisimmät ominaisuudet edellyttävät jonkinlaista maksua etukäteen tai kokeilujakson jälkeen toimiakseen."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:176 src/olympia/devhub/templates/devhub/addons/submit/describe.html:135
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
-msgstr ""
+msgstr "Tämä lisäosa vaatii maksun, maksuttomia/ei-vapaita palveluita tai ohjelmistoja tai lisälaitteistoa."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:179
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
-msgstr ""
+msgstr "Tämä lisäosa ei vaadi lisämaksuja, maksullisia palveluita tai ohjelmistoja tai lisälaitteistoa."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:187
 msgid "Categories"
@@ -2863,7 +2862,7 @@ msgstr "Luokat"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:188
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
-msgstr ""
+msgstr "Luokat ovat käyttäjien ensisijainen tapa selata lisäosia. Valitse lisäosasi toiminnallisuuteen sopivat luokat näkyvyyden parantamiseksi."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:211
 msgid "Email"
@@ -3303,7 +3302,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:213 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:27
 msgid "Remember"
-msgstr ""
+msgstr "Muista"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:214 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:28
 #, python-format
@@ -3740,13 +3739,12 @@ msgid "This is the version of your add-on that will be installed if someone clic
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:80
-#, fuzzy
 msgid "Next Listed Version:"
-msgstr "Löydä lisäosia"
+msgstr "Seuraava listattu versio:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:82
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
-msgstr ""
+msgstr "Tämä on uusin lähetetty versio, mutta se ei ole vielä julkaistu sivustolla"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:100 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:66
 #: src/olympia/devhub/templates/devhub/versions/list.html:26
@@ -3856,7 +3854,7 @@ msgstr "Järjestys:"
 
 #: src/olympia/devhub/templates/devhub/includes/macros.html:5
 msgid "Some Markdown supported."
-msgstr ""
+msgstr "Jotkin Markdown-merkinnät ovat tuettu."
 
 #: src/olympia/devhub/templates/devhub/includes/macros.html:55
 msgid "Remove this application"
@@ -3864,11 +3862,11 @@ msgstr "Poista tämä sovellus"
 
 #. {0} is the maximum number of add-on categories allowed
 #: src/olympia/devhub/templates/devhub/includes/macros.html:66
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Select a category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
-msgstr[0] "Näytä tämän lisäosan kaikki arviot"
-msgstr[1] "Näytä tämän lisäosan kaikki arviot"
+msgstr[0] "Valitse luokka tälle lisäosalle:"
+msgstr[1] "Valitse <b>enintään {0}</b> luokkaa tälle lisäosalle:"
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:3
 msgid "End-User License Agreement"
