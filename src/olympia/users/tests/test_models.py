@@ -834,6 +834,9 @@ class TestUserProfile(TestCase):
         hash2 = user.get_session_auth_hash()
         assert hash1 != hash2
 
+        user.update(deleted=True)
+        assert user.get_session_auth_hash() is None
+
     def test_has_read_developer_agreement(self):
         set_config('last_dev_agreement_change_date', '2019-06-12 00:00')
         after_change = datetime(2019, 6, 12) + timedelta(days=1)

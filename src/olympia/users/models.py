@@ -236,7 +236,9 @@ class UserQuerySet(BaseQuerySet):
             # To delete their photo, avoid delete_picture() that updates
             # picture_type immediately.
             delete_photo.delay(user.pk, banned=user.banned)
-        return self.bulk_update(users, fields=('auth_id', 'banned', 'deleted', 'modified'))
+        return self.bulk_update(
+            users, fields=('auth_id', 'banned', 'deleted', 'modified')
+        )
 
     def unban_and_reenable_related_content(self, *, skip_activity_log=False):
         """Admin method to unban users and restore their content that was
@@ -459,11 +461,10 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     def get_session_auth_hash(self):
         """Return a hash used to invalidate sessions of users when necessary.
 
-        Can return None if auth_id is not set on this user."""
-        if self.auth_id is None:
-            # Old user that has not re-logged since we introduced that field,
-            # return None, it won't be used by django session invalidation
-            # mechanism.
+        Can return None if auth_id is not set on this user, which effectively
+        invalidates the session automatically as auth_id has a non-None default
+        value."""
+        if self.auth_id is None or self.deleted:
             return None
         # Mimic what the AbstractBaseUser implementation does, but with our
         # own custom field instead of password, which we don't have.
