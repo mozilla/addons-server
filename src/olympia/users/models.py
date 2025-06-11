@@ -232,10 +232,11 @@ class UserQuerySet(BaseQuerySet):
             )
             user.banned = user.modified = datetime.now()
             user.deleted = True
+            user.auth_id = None  # Reset user sessions
             # To delete their photo, avoid delete_picture() that updates
             # picture_type immediately.
             delete_photo.delay(user.pk, banned=user.banned)
-        return self.bulk_update(users, fields=('banned', 'deleted', 'modified'))
+        return self.bulk_update(users, fields=('auth_id', 'banned', 'deleted', 'modified'))
 
     def unban_and_reenable_related_content(self, *, skip_activity_log=False):
         """Admin method to unban users and restore their content that was

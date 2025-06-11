@@ -201,6 +201,7 @@ class TestUserProfile(TestCase):
             lambda local_path, content_type: os.path.basename(local_path)
         )
         user_sole = user_factory(
+            auth_id=123456789,
             email='sole@foo.baa',
             fxa_id='13579',
             last_login_ip='127.0.0.1',
@@ -215,6 +216,7 @@ class TestUserProfile(TestCase):
         addon_sole_file = addon_sole.current_version.file
         self.setup_user_to_be_have_content_disabled(user_sole)
         user_multi = user_factory(
+            auth_id=987654321,
             email='multi@foo.baa',
             fxa_id='24680',
             last_login_ip='127.0.0.2',
@@ -329,7 +331,7 @@ class TestUserProfile(TestCase):
         self.assertCloseToNow(user_sole.banned)
         self.assertCloseToNow(user_sole.modified)
         assert user_sole.email == 'sole@foo.baa'
-        assert user_sole.auth_id
+        assert user_sole.auth_id is None
         assert user_sole.fxa_id == '13579'
         assert user_sole.last_login_ip == '127.0.0.1'
         assert user_sole.averagerating == 4.4
@@ -343,7 +345,7 @@ class TestUserProfile(TestCase):
         self.assertCloseToNow(user_multi.banned)
         self.assertCloseToNow(user_multi.modified)
         assert user_multi.email == 'multi@foo.baa'
-        assert user_multi.auth_id
+        assert user_multi.auth_id is None
         assert user_multi.fxa_id == '24680'
         assert user_multi.last_login_ip == '127.0.0.2'
         assert user_multi.averagerating == 2.2
@@ -354,6 +356,8 @@ class TestUserProfile(TestCase):
         assert user_multi.read_dev_agreement
 
         assert not user_innocent.deleted
+        assert not user_innocent.banned
+        assert user_innocent.auth_id
         assert user_innocent.ratings.exists()
 
         return {
