@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-06-06 15:21+0000\n"
+"POT-Creation-Date: 2025-06-11 18:31+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3572,7 +3572,6 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:50
 #: src/olympia/devhub/templates/devhub/includes/listing_header.html:14
-#: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:15
 msgid "More"
 msgstr ""
 
@@ -4429,55 +4428,43 @@ msgstr ""
 msgid "Connect with us"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:8
-msgid "Twitter"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:10
-msgid "For developers"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:11
-msgid "For end users"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:17
+#: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:9
 msgid "Matrix"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:18
+#: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:10
 msgid "Community forum"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:22
+#: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:14
 msgid "Extensions Developers Newsletter"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:23
+#: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:15
 msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:32
-#: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:33
+#: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:24
+#: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:25
 msgid "Email Address"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:39
+#: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:31
 #, python-format
 msgid ""
 "I’m okay with Mozilla handling my info as explained in this "
 "%(link_open)sPrivacy Notice%(link_close)s."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:48
+#: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:40
 msgid "Sign Up"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:52
+#: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:44
 msgid "Thanks!"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:53
+#: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:45
 msgid ""
 "If you haven’t previously confirmed a subscription to a Mozilla-related "
 "newsletter you may have to do so. Please check your inbox or your spam filter"

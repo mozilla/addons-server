@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-06-06 15:21+0000\n"
+"POT-Creation-Date: 2025-06-11 18:31+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -3150,16 +3150,6 @@ msgid "Visit the Firefox Extension Workshop"
 msgstr "Екстензије"
 
 msgid "Connect with us"
-msgstr ""
-
-msgid "Twitter"
-msgstr ""
-
-#, fuzzy
-msgid "For developers"
-msgstr "Аутор"
-
-msgid "For end users"
 msgstr ""
 
 msgid "Matrix"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  messages.pootle\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-06-06 15:21+0000\n"
+"POT-Creation-Date: 2025-06-11 18:31+0000\n"
 "PO-Revision-Date: 2013-11-07 07:24+0000\n"
 "Last-Translator: Julen <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -3111,16 +3111,6 @@ msgid "Visit the Firefox Extension Workshop"
 msgstr "Hedapenak"
 
 msgid "Connect with us"
-msgstr ""
-
-msgid "Twitter"
-msgstr ""
-
-#, fuzzy
-msgid "For developers"
-msgstr "Garatzailea"
-
-msgid "For end users"
 msgstr ""
 
 msgid "Matrix"
