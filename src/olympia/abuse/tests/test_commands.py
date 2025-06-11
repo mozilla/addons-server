@@ -13,7 +13,7 @@ from olympia.amo.tests import TestCase, addon_factory, user_factory, version_fac
 from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.reviewers.models import NeedsHumanReview
 
-from ..models import AbuseReport, CinderJob, CinderQueueMove
+from ..models import AbuseReport, CinderJob, CinderQueueMove, ContentDecision
 
 
 @pytest.mark.django_db
@@ -157,6 +157,7 @@ class TestAutoResolveReports(TestCase):
             cinder_job=job_forwarded,
         )
         CinderQueueMove.objects.create(cinder_job=job_forwarded)
+
         addon2 = addon_factory(version_kw={'human_review_date': datetime.now()})
         job_legal_reason = CinderJob.objects.create(
             job_id='legal', resolvable_in_reviewer_tools=True, target_addon=addon2
@@ -167,7 +168,26 @@ class TestAutoResolveReports(TestCase):
             reason=AbuseReport.REASONS.ILLEGAL,
         )
         CinderQueueMove.objects.create(cinder_job=job_legal_reason)
-        assert CinderJob.objects.unresolved().count() == 2
+
+        addon3 = addon_factory(version_kw={'human_review_date': datetime.now()})
+        job_appeal = CinderJob.objects.create(
+            job_id='appeal', resolvable_in_reviewer_tools=True, target_addon=addon3
+        )
+        job_appealed = CinderJob.objects.create(
+            job_id='appealled',
+            decision=ContentDecision.objects.create(
+                addon=addon3,
+                action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+                appeal_job=job_appeal,
+            ),
+        )
+        AbuseReport.objects.create(
+            guid=addon3.guid,
+            cinder_job=job_appealed,
+        )
+        CinderQueueMove.objects.create(cinder_job=job_appeal)
+
+        assert CinderJob.objects.unresolved().count() == 3
         responses.add(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}jobs/{job_forwarded.job_id}/decision',
@@ -178,10 +198,14 @@ class TestAutoResolveReports(TestCase):
             reason=NeedsHumanReview.REASONS.CINDER_ESCALATION,
             version=addon1.current_version,
         )
+
         call_command('auto_resolve_reports')
 
-        assert CinderJob.objects.unresolved().count() == 1
-        assert CinderJob.objects.unresolved().get() == job_legal_reason
+        assert CinderJob.objects.unresolved().count() == 2
+        assert list(CinderJob.objects.unresolved().all()) == [
+            job_legal_reason,
+            job_appeal,
+        ]
         assert job_forwarded.reload().decision
         assert job_forwarded.decision.action == DECISION_ACTIONS.AMO_CLOSED_NO_ACTION
         # NHR should be cleared.
