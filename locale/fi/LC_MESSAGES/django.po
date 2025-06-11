@@ -6245,7 +6245,7 @@ msgstr ""
 
 #: src/olympia/scanners/models.py:172
 msgid "Yara rules should have a definition"
-msgstr ""
+msgstr "Yara-säännöillä tulisi olla määritys"
 
 #: src/olympia/scanners/models.py:179
 msgid "The name of the rule in the definition should match the name of the scanner rule"
@@ -6281,7 +6281,7 @@ msgstr "Virheellinen \"%s\"-parametri."
 #: src/olympia/search/filters.py:202 src/olympia/search/filters.py:322
 #, python-format
 msgid "Invalid combination of \"%s\" and \"%s\" parameters."
-msgstr ""
+msgstr "Parametrien \"%s\" ja \"%s\" yhdistelmä on virheellinen."
 
 #: src/olympia/search/filters.py:264
 msgid "Return To AMO is currently disabled"
@@ -6302,16 +6302,16 @@ msgstr "Lisäosaa ID:llä \"{}\" ei löydy."
 
 #: src/olympia/signing/views.py:73
 msgid "You do not own this add-on."
-msgstr ""
+msgstr "Et omista tätä lisäosaa."
 
 #: src/olympia/signing/views.py:137
 #, python-format
 msgid "You cannot add versions to an add-on that has status: %s."
-msgstr ""
+msgstr "Et voi lisätä versioita lisäosaan, jonka tila on: %s."
 
 #: src/olympia/signing/views.py:146
 msgid "Version does not match the manifest file."
-msgstr ""
+msgstr "Versio ei vastaa manifestitiedostoa."
 
 #: src/olympia/signing/views.py:173
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
@@ -6419,7 +6419,7 @@ msgstr "Tilastot lisäosalle {0}"
 
 #: src/olympia/stats/templates/stats/stats.html:38
 msgid "Statistics Dashboard"
-msgstr ""
+msgstr "Tilastojen kojelauta"
 
 #: src/olympia/stats/templates/stats/stats.html:45
 msgid "Controls:"
@@ -6471,7 +6471,7 @@ msgstr "Muokattu..."
 
 #: src/olympia/stats/templates/stats/stats.html:94
 msgid "Sorry, the statistics are temporarily unavailable."
-msgstr ""
+msgstr "Tilastot eivät ole tilapäisesti käytettävissä."
 
 #: src/olympia/stats/templates/stats/stats.html:100
 msgid "Loading the latest data&hellip;"
@@ -6487,14 +6487,12 @@ msgid "Previous"
 msgstr "Edellinen"
 
 #: src/olympia/stats/templates/stats/stats.html:165
-#, fuzzy
 msgid "This dashboard is <b>private</b>."
-msgstr "Tämä kojelauta on tällä hetkellä <b>yksityinen</b>."
+msgstr "Tämä kojelauta on <b>yksityinen</b>."
 
 #: src/olympia/stats/templates/stats/reports/apps.html:3
-#, fuzzy
 msgid "Application usage by Date"
-msgstr "Sovellusversiot päivittäin"
+msgstr "Sovelluksen käyttö päivämäärän mukaan"
 
 #: src/olympia/stats/templates/stats/reports/campaigns.html:3
 #, fuzzy
@@ -6706,7 +6704,7 @@ msgstr ""
 #: src/olympia/translations/templates/translations/trans-menu.html:16 src/olympia/translations/templates/translations/trans-menu.html:29
 #, python-format
 msgid "%(title)s <em>&middot; %(lang)s</em>"
-msgstr ""
+msgstr "%(title)s <em>&middot; %(lang)s</em>"
 
 #: src/olympia/translations/templates/translations/trans-menu.html:20
 msgid "Existing Locales"
