@@ -4010,7 +4010,7 @@ msgstr "Newsletter Mozilli dla twórców rozszerzeń"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:15
 msgid "Stay up-to-date on news and events for Firefox extension developers."
-msgstr ""
+msgstr "Bądź na bieżąco z nowościami i wydarzeniami dla twórców rozszerzeń dla Firefoksa."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:24 src/olympia/devhub/templates/devhub/new-landing/components/connect.html:25
 msgid "Email Address"
@@ -4298,17 +4298,17 @@ msgid "Listing visibility"
 msgstr "Widoczność dodatku"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:163
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
-msgstr "{label_open}Widoczne:{label_close} widoczne dla wszystkich w witrynie {site_url} i dostępne w wynikach wyszukiwania oraz spisach."
+msgstr "{label_open}Widoczne:{label_close} Widoczne dla wszystkich w witrynie {site_url} i dostępne w wynikach wyszukiwania oraz na stronach produktów."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:171
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
 msgstr ""
-"{label_open}Niewidoczny:{label_close} Dodatek nie będzie uwzględniany w wynikach wyszukiwania, a strona dodatku będzie informować o jego wyłączeniu. Zgłoszenia nowych wersji do spisu nie będą "
-"akceptowane w tym stanie."
+"{label_open}Niewidoczne:{label_close} Dodatek nie będzie uwzględniany w wynikach wyszukiwania, a strona dodatku będzie informować o jego wyłączeniu. Zgłoszenia nowych wersji nie będą akceptowane w "
+"tym stanie."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:178
 msgid "Listed versions"
@@ -4495,9 +4495,8 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:41
-#, fuzzy
 msgid "Password management simplified. Sync all your logins across devices with one password to rule them all."
-msgstr "Uprość użycie i zsynchronizuj wszystkie dane logowania do różnych witryn przy użyciu jednego hasła."
+msgstr ""
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4691,9 +4690,8 @@ msgstr "Zyskaj nowe wrażenia podczas oglądania, dostosowując szybkość filmu
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:149 src/olympia/discovery/strings.jinja2:758
-#, fuzzy
 msgid "Add encrypted security to any site that supports HTTPS. Browse securely."
-msgstr "Dodaj zaszyfrowane zabezpieczenia do dowolnej witryny obsługującej protokół HTTPS."
+msgstr "Dodaj zaszyfrowane zabezpieczenia do dowolnej witryny obsługującej protokół HTTPS. Przeglądaj bezpiecznie."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:152
@@ -4813,9 +4811,8 @@ msgstr "Spraw, by czytany tekst był bardziej atrakcyjny, usuwając przeszkadzaj
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:215 src/olympia/discovery/strings.jinja2:794
-#, fuzzy
 msgid "Right-click and drag links you want open in new tabs."
-msgstr "Kliknij prawym przyciskiem myszy i przeciągnij nad odnośnikami, które chcesz otworzyć w nowych kartach."
+msgstr ""
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:218
@@ -6420,7 +6417,7 @@ msgid "Maximum query length exceeded."
 msgstr "Przekroczono maksymalna długość zapytania."
 
 #: src/olympia/signing/views.py:54
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Could not find Add-on with ID \"{}\"."
 msgstr "Nie można znaleźć dodatku o identyfikatorze „{}”."
 
