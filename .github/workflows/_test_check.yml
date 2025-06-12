@@ -39,9 +39,8 @@ jobs:
     outputs:
       is_fork: ${{ steps.context.outputs.is_fork }}
     steps:
-      - uses: actions/checkout@v4
       - id: context
-        uses: ./.github/actions/context
+        uses: mozilla/addons/.github/actions/context@main
 
   test_check:
     runs-on: ubuntu-latest

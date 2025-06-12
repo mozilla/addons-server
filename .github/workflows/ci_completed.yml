@@ -36,9 +36,8 @@ jobs:
       env: ci
 
     steps:
-      - uses: actions/checkout@v4
       - id: context
-        uses: ./.github/actions/context
+        uses: mozilla/addons/.github/actions/context@main
       - id: ref
         shell: bash
         run: |

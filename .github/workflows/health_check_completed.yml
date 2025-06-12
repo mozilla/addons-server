@@ -16,11 +16,9 @@ jobs:
       is_fork: ${{ steps.context.outputs.is_fork }}
 
     steps:
-      - uses: actions/checkout@v4
-
       - name: Context
         id: context
-        uses: ./.github/actions/context
+        uses: mozilla/addons/.github/actions/context@main
 
   health_check_failure_notification:
     needs: context

@@ -39,10 +39,9 @@ jobs:
       docker_version: ${{ steps.context.outputs.docker_version }}
 
     steps:
-      - uses: actions/checkout@v4
       - name: Set context
         id: context
-        uses: ./.github/actions/context
+        uses: mozilla/addons/.github/actions/context@main
 
   actionlint:
     permissions:
@@ -69,7 +68,7 @@ jobs:
       - name: Login to Dockerhub
         if: needs.context.outputs.is_fork == 'false'
         id: docker_hub
-        uses: ./.github/actions/login-docker
+        uses: mozilla/addons/.github/actions/login-docker@main
         with:
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_PASS }}
@@ -216,7 +215,7 @@ jobs:
 
       - name: Login to Dockerhub
         id: docker_hub
-        uses: ./.github/actions/login-docker
+        uses: mozilla/addons/.github/actions/login-docker@main
         with:
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_PASS }}
@@ -242,13 +241,18 @@ jobs:
       contents: 'read'
       id-token: 'write'
 
+    env:
+      registry: us-docker.pkg.dev
+      image: moz-fx-amo-prod/amo-prod/addons-server
+
     steps:
       - uses: actions/checkout@v4
 
       - name: Login to GAR
         id: docker_gar
-        uses: ./.github/actions/login-gar
+        uses: mozilla/addons/.github/actions/login-gar@main
         with:
+          registry: ${{ env.registry }}
           service_account: ${{ secrets.GAR_PUSHER_SERVICE_ACCOUNT_EMAIL }}
           workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
 
@@ -256,7 +260,7 @@ jobs:
         id: build
         uses: ./.github/actions/build-docker
         with:
-          registry: ${{ steps.docker_gar.outputs.registry }}
-          image: ${{ steps.docker_gar.outputs.image }}
+          registry: ${{ env.registry }}
+          image: ${{ env.image }}
           version: ${{ needs.context.outputs.docker_version }}
           push: true
