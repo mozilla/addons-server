@@ -1,6 +1,7 @@
 from collections.abc import Mapping
 from datetime import datetime, timedelta
 from itertools import chain
+from string import Formatter
 
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
@@ -908,10 +909,6 @@ class CinderPolicy(ModelBase):
     class Meta:
         verbose_name_plural = 'Cinder Policies'
 
-    class DictKeyAsDefault(dict):
-        def __missing__(self, key):
-            return f'{{{key}}}'
-
     def __str__(self):
         return self.full_name()
 
@@ -922,9 +919,13 @@ class CinderPolicy(ModelBase):
 
     def full_text(self, *, text=None, values=None):
         if text is None:
-            text = self.text
-        if isinstance(values, Mapping):
-            text = text.format_map(self.DictKeyAsDefault(**values))
+            if isinstance(values, Mapping):
+                text = ''.join(
+                    (txt or '') + (values.get(key, f'{{{key}}}') if key else '')
+                    for txt, key in self.get_text_formatter_pairs()
+                )
+            else:
+                text = self.text
         return f'{self.full_name()}: {text}'
 
     @classmethod
@@ -948,6 +949,9 @@ class CinderPolicy(ModelBase):
             )
         }
         return list(actions)
+
+    def get_text_formatter_pairs(self):
+        return [(text, key) for text, key, _, _ in Formatter().parse(self.text)]
 
 
 class ContentDecisionManager(ManagerBase):

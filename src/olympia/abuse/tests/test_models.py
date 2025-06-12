@@ -2125,12 +2125,6 @@ class TestCinderPolicy(TestCase):
             child_policy.full_text(text='Canned Response')
             == 'Parent Policy, specifically Child Policy: Canned Response'
         )
-        assert (
-            child_policy.full_text(
-                text='Canned Response with {TOKEN}', values={'TOKEN': 'magic'}
-            )
-            == 'Parent Policy, specifically Child Policy: Canned Response with magic'
-        )
 
     def test_get_full_texts(self):
         parent_policy = CinderPolicy.objects.create(
@@ -2226,6 +2220,18 @@ class TestCinderPolicy(TestCase):
         ) == [
             DECISION_ACTIONS.AMO_BAN_USER,
             DECISION_ACTIONS.AMO_APPROVE,
+        ]
+
+    def test_get_text_formatter_pairs(self):
+        policy = CinderPolicy.objects.create(
+            name='Child Policy',
+            text='Child {FOO} Description {BAR}?',
+            uuid='child-uuid',
+        )
+        assert policy.get_text_formatter_pairs() == [
+            ('Child ', 'FOO'),
+            (' Description ', 'BAR'),
+            ('?', None),
         ]
 
 

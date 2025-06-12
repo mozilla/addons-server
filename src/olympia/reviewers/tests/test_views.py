@@ -4848,7 +4848,7 @@ class TestReview(ReviewBase):
                 DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value,
                 'some-other-action',
             ],
-            text='Policy with {PLACEHOLDER} and {another}',
+            text='Policy with {PLACEHOLDER} and {another} not {MISSING}',
         )
         old_version = self.version
         NeedsHumanReview.objects.create(version=old_version)
@@ -4867,8 +4867,8 @@ class TestReview(ReviewBase):
                 'cinder_policies': [policy.id],
                 'versions': [old_version.pk, self.version.pk],
                 'delayed_rejection': 'False',
-                f'policy-value-{policy.id}-PLACEHOLDER': 'bad things',
-                f'policy-value-{policy.id}-another': 'stuff!',
+                f'policy_values_{policy.id}_PLACEHOLDER': 'bad things',
+                f'policy_values_{policy.id}_another': 'stuff!',
             },
         )
 
@@ -4889,8 +4889,48 @@ class TestReview(ReviewBase):
         }
         alog = ActivityLog.objects.filter(contentdecisionlog__decision=decision).get()
         assert alog.details['policy_texts'] == [
-            'Bad thing: Policy with bad things and stuff!'
+            'Bad thing: Policy with bad things and stuff! not {MISSING}'
         ]
+
+    @override_switch('cinder_policy_review_reasons_enabled', active=True)
+    def test_form_error_persists_placeholder_values(self):
+        policy = CinderPolicy.objects.create(
+            uuid='123-reject',
+            name='Bad thing',
+            expose_in_reviewer_tools=True,
+            enforcement_actions=[
+                DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value,
+                'some-other-action',
+            ],
+            text='Policy with {PLACEHOLDER} and {another} not {MISSING}',
+        )
+        self.version = version_factory(addon=self.addon, version='3.0')
+        GroupUser.objects.filter(user=self.reviewer).all().delete()
+        self.grant_permission(self.reviewer, 'Addons:Review')
+
+        response = self.client.post(
+            self.url,
+            {
+                'action': 'reject_multiple_versions',
+                'comments': 'multireject!',
+                'cinder_policies': [policy.id],
+                # not sending versions - should be an error
+                'delayed_rejection': 'False',
+                f'policy_values_{policy.id}_PLACEHOLDER': 'bad things',
+                f'policy_values_{policy.id}_another': 'stuff!',
+            },
+        )
+
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#id_policy_values_0').attr.name == (
+            f'policy_values_{policy.id}_PLACEHOLDER'
+        )
+        assert doc('#id_policy_values_0').attr.value == 'bad things'
+        assert doc('#id_policy_values_1').attr.name == (
+            f'policy_values_{policy.id}_another'
+        )
+        assert doc('#id_policy_values_1').attr.value == 'stuff!'
 
     def test_change_pending_rejection_date(self):
         self.grant_permission(self.reviewer, 'Addons:Review,Reviews:Admin')
@@ -6423,13 +6463,13 @@ class TestReview(ReviewBase):
         assert doc(f'#policy-text-{policy_dynamic.id}').text() == 'Policy with and'
         assert doc(f'#policy-text-{policy_dynamic.id} input')
         assert doc(f'#policy-text-{policy_dynamic.id} input').eq(0).attr['name'] == (
-            f'policy-value-{policy_dynamic.id}-PLACEHOLDER'
+            f'policy_values_{policy_dynamic.id}_PLACEHOLDER'
         )
         assert doc(f'#policy-text-{policy_dynamic.id} input').eq(1).attr['name'] == (
-            f'policy-value-{policy_dynamic.id}-"EDGE&case '
+            f'policy_values_{policy_dynamic.id}_"EDGE&case '
         )
         # pyquery is escaping the name - check it's encoded in the raw html
-        assert f'"policy-value-{policy_dynamic.id}-&quot;EDGE&amp;case "'.encode() in (
+        assert f'"policy_values_{policy_dynamic.id}_&quot;EDGE&amp;case "'.encode() in (
             response.content
         )
 
