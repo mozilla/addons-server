@@ -6370,7 +6370,7 @@ msgstr "Zasady Yara powinny zawierać definicję"
 
 #: src/olympia/scanners/models.py:179
 msgid "The name of the rule in the definition should match the name of the scanner rule"
-msgstr ""
+msgstr "Nazwa reguły w definicji powinna odpowiadać nazwie reguły skanera"
 
 #: src/olympia/scanners/models.py:187
 msgid "Only one Yara rule is allowed in the definition"
@@ -6435,14 +6435,12 @@ msgid "Version does not match the manifest file."
 msgstr "Wersja nie pasuje do pliku manifestu."
 
 #: src/olympia/signing/views.py:173
-#, fuzzy
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
-msgstr "Określ GUID dodatku w manifeście, jeśli jest dłuższy niż 64 znaki."
+msgstr "Określ ID dodatku w manifeście, jeśli jest dłuższy niż 64 znaki."
 
 #: src/olympia/signing/views.py:187
-#, fuzzy
 msgid "Invalid Add-on ID in URL or package"
-msgstr "Nieprawidłowy GUID w adresie URL"
+msgstr ""
 
 #: src/olympia/signing/views.py:211
 msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."
@@ -6909,11 +6907,9 @@ msgstr ""
 "łącze do Powiadomienia o prywatności, które wyjaśnia, jak postępujemy z Twoimi informacjami."
 
 #: src/olympia/users/models.py:1211
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr ""
-"Przed rozpoczęciem przeczytaj i zaakceptuj Umowę dotyczącą dystrybucji dodatków Firefoksa, a także nasze Zasady i reguły sprawdzania. Umowa dotycząca dystrybucji dodatków Firefoksa zawiera również "
-"łącze do Powiadomienia o prywatności, które wyjaśnia, jak postępujemy z Twoimi informacjami."
 
 #: src/olympia/users/models.py:1262
 msgid "User Restriction History"
