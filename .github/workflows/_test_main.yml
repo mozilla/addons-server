@@ -6,6 +6,8 @@ run-name: |
   digest: ${{ inputs.digest }} |
   splits: ${{ inputs.splits }} |
 
+permissions: {}
+
 on:
   workflow_call:
     inputs:

@@ -2,8 +2,11 @@ name: Health Check Completed
 
 on:
   workflow_run:
-    workflows: Health Check
+    workflows:
+      - Health Check
     types: [completed]
+
+permissions: {}
 
 jobs:
   context:

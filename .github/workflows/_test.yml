@@ -5,6 +5,8 @@ run-name: |
   version: ${{ inputs.version }} |
   digest: ${{ inputs.digest }} |
 
+permissions: {}
+
 on:
   workflow_call:
     inputs:

@@ -2,8 +2,11 @@ name: CI Completed
 
 on:
   workflow_run:
-    workflows: CI
+    workflows:
+      - CI
     types: [completed]
+
+permissions: {}
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event_name}}-${{ github.ref}}

@@ -7,6 +7,8 @@ on:
     # Every 5 minutes
     - cron: '*/5 * * * *'
 
+permissions: {}
+
 env:
   health_check_file: health_check.json
   health_check_blocks_file: health_check_blocks.json

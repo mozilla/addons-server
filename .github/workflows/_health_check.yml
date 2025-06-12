@@ -4,6 +4,8 @@ run-name: |
   ref: ${{ github.ref_name }} |
   environment: ${{ inputs.environment }} |
 
+permissions: {}
+
 on:
   workflow_call:
     inputs:
