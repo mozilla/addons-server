@@ -40,7 +40,7 @@ jobs:
       is_fork: ${{ steps.context.outputs.is_fork }}
     steps:
       - id: context
-        uses: mozilla/addons/.github/actions/context@main
+        uses: mozilla/addons/.github/actions/context@f1d4daa008d908d52815aa41257db39b8cdef958
 
   test_check:
     runs-on: ubuntu-latest
@@ -62,6 +62,9 @@ jobs:
           - production
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
       - name: ${{ matrix.version == 'local' && 'Uncached Build' || 'Pull' }} Check
         id: build
         continue-on-error: true
@@ -79,10 +82,11 @@ jobs:
       - name: Verify build
         id: verify
         shell: bash
+        env:
+          version: ${{ matrix.version }}
+          target: ${{ matrix.target }}
+          outcome: ${{ steps.build.outcome }}
         run: |
-          version="${{ matrix.version }}"
-          target="${{ matrix.target }}"
-          outcome="${{ steps.build.outcome }}"
           if [[ "$version" != "local" && "$target" == "development" && "$outcome" == "success" ]]; then
             echo "Non local images must run in production mode"
             exit 1
@@ -99,9 +103,11 @@ jobs:
 
   test_make_docker_configuration:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
       - uses: actions/setup-node@v4
       - name: Install dependencies
         shell: bash
@@ -126,6 +132,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Create failure
         id: failure
@@ -139,8 +147,10 @@ jobs:
 
       - name: Verify failure
         if: always()
+        env:
+          outcome: ${{ steps.failure.outcome }}
         run: |
-          if [[ "${{ steps.failure.outcome }}" != "failure" ]]; then
+          if [[ "$outcome" != "failure" ]]; then
             echo "Expected failure"
             exit 1
           fi
@@ -149,6 +159,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
       - name: Check (special characters in command)
         uses: ./.github/actions/run-docker
         with:
@@ -163,6 +176,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
       - uses: ./.github/actions/run-docker
         with:
           version: ${{ inputs.version }}

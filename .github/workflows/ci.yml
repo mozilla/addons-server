@@ -41,16 +41,24 @@ jobs:
     steps:
       - name: Set context
         id: context
-        uses: mozilla/addons/.github/actions/context@main
+        uses: mozilla/addons/.github/actions/context@f1d4daa008d908d52815aa41257db39b8cdef958
 
-  actionlint:
+  test_actions:
     permissions:
       contents: 'read'
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        target: [actionlint, zizmor]
     steps:
       - uses: actions/checkout@v4
-      - name: Run actionlint
-        run: make actionlint
+        with:
+          persist-credentials: false
+
+      - name: Run ${{ matrix.target }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: make ${{ matrix.target }}
 
   build:
     name: ${{ needs.context.outputs.is_fork == 'true' && 'Skip' || 'Build' }}  CI Image
@@ -64,11 +72,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Login to Dockerhub
         if: needs.context.outputs.is_fork == 'false'
         id: docker_hub
-        uses: mozilla/addons/.github/actions/login-docker@main
+        uses: mozilla/addons/.github/actions/login-docker@f1d4daa008d908d52815aa41257db39b8cdef958
         with:
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_PASS }}
@@ -89,6 +99,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
       - uses: actions/configure-pages@v5
 
       - name: Build Docs
@@ -138,6 +151,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          persist-credentials: true
           fetch-depth: 0
           ref: ${{ github.event.pull_request.head.ref }}
           repository: ${{ github.event.pull_request.head.repo.full_name }}
@@ -155,11 +169,11 @@ jobs:
           github.event_name == 'push' ||
           github.event_name == 'pull_request'
         shell: bash
+        env:
+          is_fork: ${{ needs.context.outputs.is_fork }}
+          is_default_branch: ${{ needs.context.outputs.is_default_branch }}
+          is_push: ${{ github.event_name == 'push' }}
         run: |
-          is_fork="${{ needs.context.outputs.is_fork }}"
-          is_default_branch="${{ needs.context.outputs.is_default_branch }}"
-          is_push="${{ github.event_name == 'push' }}"
-
           if [[ "$is_fork" == 'true' ]]; then
             cat <<'EOF'
               Github actions are not authorized to push from workflows triggered by forks.
@@ -212,10 +226,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Login to Dockerhub
         id: docker_hub
-        uses: mozilla/addons/.github/actions/login-docker@main
+        uses: mozilla/addons/.github/actions/login-docker@f1d4daa008d908d52815aa41257db39b8cdef958
         with:
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_PASS }}
@@ -247,10 +263,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Login to GAR
         id: docker_gar
-        uses: mozilla/addons/.github/actions/login-gar@main
+        uses: mozilla/addons/.github/actions/login-gar@f1d4daa008d908d52815aa41257db39b8cdef958
         with:
           registry: ${{ env.registry }}
           service_account: ${{ secrets.GAR_PUSHER_SERVICE_ACCOUNT_EMAIL }}
@@ -264,3 +282,60 @@ jobs:
           image: ${{ env.image }}
           version: ${{ needs.context.outputs.docker_version }}
           push: true
+
+
+  notification:
+    runs-on: ubuntu-latest
+    needs: [context, push_dockerhub, push_gar]
+    strategy:
+      matrix:
+        include:
+          -
+            result: ${{ needs.push_dockerhub.result }}
+            ref: ${{ github.event.head_commit.message }}
+            ref_link: ${{ github.event.head_commit.url }}
+          -
+            result: ${{ needs.push_gar.result }}
+            ref: ${{ github.event.release.name }}
+            ref_link: ${{ github.event.release.html_url }}
+
+    env:
+      event: ${{ github.event_name }}
+      workflow_id: ${{ github.run_id }}
+      workflow_url: ${{ format('{0}/{1}/actions/runs/{2}', github.server_url, github.repository, github.run_id) }}
+      actor: ${{ github.event.sender.login }}
+      repo_url: ${{ github.server_url }}/${{ github.repository }}
+      env: ci
+
+    steps:
+      - name: Emoji
+        id: emoji
+        env:
+          result: ${{ matrix.result }}
+        run: |
+
+          if [[ "$result" == "success" ]]; then
+            emoji=":white_check_mark:"
+          elif [[ "$result" == "skipped" ]]; then
+            emoji=":github-actions-cancelled:"
+          else
+            emoji=":x:"
+          fi
+
+          echo "emoji=$emoji" >> "$GITHUB_OUTPUT"
+          cat "$GITHUB_OUTPUT"
+
+      # - name: Slack Notification
+      #   uses: mozilla/addons/.github/actions/slack-workflow-notification@f1d4daa008d908d52815aa41257db39b8cdef958
+      #   with:
+      #     slack_token: ${{ secrets.SLACK_TOKEN }}
+      #     slack_channel: ${{ vars.SLACK_ADDONS_PRODUCTION_CHANNEL }}
+      #     emoji: ${{ steps.emoji.outputs.emoji }}
+      #     actor: ${{ env.actor }}
+      #     conclusion: ${{ matrix.result }}
+      #     workflow_id: ${{ env.workflow_id }}
+      #     workflow_url: ${{ env.workflow_url }}
+      #     event: ${{ env.event }}
+      #     env: ${{ env.env }}
+      #     ref: ${{ matrix.ref }}
+      #     ref_link: ${{ matrix.ref_link }}
