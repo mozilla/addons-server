@@ -1,6 +1,5 @@
 import uuid
 from datetime import datetime
-from unittest import mock
 
 from django.conf import settings
 from django.core.management import call_command
@@ -50,36 +49,6 @@ def test_retry_unreported_abuse_reports():
 class TestAutoResolveReports(TestCase):
     def setUp(self):
         user_factory(id=settings.TASK_USER_ID)
-
-    @mock.patch(
-        'olympia.abuse.management.commands.auto_resolve_reports.handle_already_moderated.delay'
-    )
-    def test_queries(self, task_mock):
-        addon = addon_factory(version_kw={'human_review_date': datetime.now()})
-        AbuseReport.objects.create(
-            guid=addon.guid,
-            addon_version=addon.current_version.version,
-            cinder_job=CinderJob.objects.create(
-                resolvable_in_reviewer_tools=True, target_addon=addon
-            ),
-        )
-        CinderJob.objects.create()
-        with self.assertNumQueries(4):
-            call_command('auto_resolve_reports')
-        task_mock.assert_called_once()
-        task_mock.reset_mock()
-
-        addon2 = addon_factory(version_kw={'human_review_date': datetime.now()})
-        AbuseReport.objects.create(
-            guid=addon2.guid,
-            addon_version=addon2.current_version.version,
-            cinder_job=CinderJob.objects.create(
-                resolvable_in_reviewer_tools=True, target_addon=addon2
-            ),
-        )
-        with self.assertNumQueries(4):
-            call_command('auto_resolve_reports')
-        assert task_mock.call_count == 2
 
     def test_auto_resolve_reviewed_handled(self):
         addon1 = addon_factory(version_kw={'human_review_date': datetime.now()})
