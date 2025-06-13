@@ -343,9 +343,9 @@ rich==14.0.0 \
     --hash=sha256:1c9491e1951aac09caffd42f448ee3d04e58923ffe14993f6e83068dc395d7e0 \
     --hash=sha256:82f1bc23a6a21ebca4ae0c45af9bdbc492ed20231dcb63f297d6d1021a9d5725
 # networkx is required by django-model-info
-networkx==3.4.2 \
-    --hash=sha256:307c3669428c5362aab27c8a1260aa8f47c4e91d3891f48be0141738d8d053e1 \
-    --hash=sha256:df5d4365b724cf81b8c6a7312509d0c22386097011ad1abe274afd5e9d3bbc5f
+networkx==3.5 \
+    --hash=sha256:0030d386a9a06dee3565298b4a734b68589749a544acbb6c412dc9e2489ec6ec \
+    --hash=sha256:d4c6f9cf81f52d69230866796b82afbccdec3db7ae4fbd1b65ea750feed50037
 # pydot is required by django-model-info
 pydot==4.0.0 \
     --hash=sha256:12f16493337cade2f7631b87c8ccd299ba2e251f3ee5d0732a058df2887afe97 \
