@@ -6396,11 +6396,11 @@ msgstr "Wersija %(version)s &middot; %(created)s <span class=\"light\">&middot;%
 
 #: src/olympia/scanners/models.py:128
 msgid "This is the exact name of the rule used by a scanner."
-msgstr "To jo eksaktne mě pšawidła, kótarež se pśez skanner wužywa."
+msgstr "To jo eksaktne mě pšawidła, kótarež se pśez scanner wužywa."
 
 #: src/olympia/scanners/models.py:132
 msgid "Human-readable name for the scanner rule"
-msgstr "Wót cłowjeka cytajobne mě za skannerowe pšawidło"
+msgstr "Wót cłowjeka cytajobne mě za scannerowe pšawidło"
 
 #: src/olympia/scanners/models.py:135
 msgid "Human-readable name"
@@ -6408,7 +6408,7 @@ msgstr "Wót cłowjeka cytajobne mě"
 
 #: src/olympia/scanners/models.py:139
 msgid "Human readable description for the scanner rule"
-msgstr "Wót cłowjeka cytajobne wopisanje za skannerowe pšawidło"
+msgstr "Wót cłowjeka cytajobne wopisanje za scannerowe pšawidło"
 
 #: src/olympia/scanners/models.py:172
 msgid "Yara rules should have a definition"
@@ -6416,7 +6416,7 @@ msgstr "Pšawidła Yara měli definiciju měś."
 
 #: src/olympia/scanners/models.py:179
 msgid "The name of the rule in the definition should match the name of the scanner rule"
-msgstr "Mě pšawidła w definiciji měło mjenoju skannerowego pšawidła wótpowědowaś"
+msgstr "Mě pšawidła w definiciji měło mjenoju scannerowego pšawidła wótpowědowaś"
 
 #: src/olympia/scanners/models.py:187
 msgid "Only one Yara rule is allowed in the definition"
@@ -6433,7 +6433,7 @@ msgstr "Pśi kompilěrowanju definicije jo se zmólka nastała."
 
 #: src/olympia/scanners/models.py:212
 msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
-msgstr "Gaž to jo znjemóžnjone, skannerowe wuslědki z toś tym pšawidłom zwězane njejsu a akcija so njewuwjeźo."
+msgstr "Gaž to jo znjemóžnjone, scannerowe wuslědki z toś tym pšawidłom zwězane njejsu a akcija so njewuwjeźo."
 
 #: src/olympia/scanners/models.py:382
 msgid "Run this rule on add-ons that have been force-disabled as well."
