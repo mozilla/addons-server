@@ -5,6 +5,8 @@ run-name: |
   version: ${{ inputs.version }} |
   digest: ${{ inputs.digest }} |
 
+permissions: {}
+
 on:
   workflow_call:
     inputs:
@@ -54,6 +56,9 @@ jobs:
             run: make lint-codestyle
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
       - name: Test (${{ matrix.name }})
         uses: ./.github/actions/run-docker
         with:
