@@ -637,9 +637,7 @@ class AutoApprovalSummary(ModelBase):
         except AddonApprovalsCounter.DoesNotExist:
             content_review = None
         INITIAL_AUTO_APPROVAL_DELAY_FOR_LISTED = get_config(
-            'INITIAL_AUTO_APPROVAL_DELAY_FOR_LISTED',
-            default=24 * 60 * 60,
-            int_value=True,
+            amo.config_keys.INITIAL_AUTO_APPROVAL_DELAY_FOR_LISTED
         )
         return (
             not is_langpack

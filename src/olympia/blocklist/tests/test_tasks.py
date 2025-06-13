@@ -10,6 +10,7 @@ from django.test.testcases import TransactionTestCase
 
 import pytest
 
+from olympia import amo
 from olympia.amo.tests import (
     addon_factory,
     block_factory,
@@ -18,8 +19,6 @@ from olympia.amo.tests import (
 )
 from olympia.blocklist.mlbf import MLBF
 from olympia.constants.blocklist import (
-    MLBF_BASE_ID_CONFIG_KEY,
-    MLBF_TIME_CONFIG_KEY,
     BlockListAction,
 )
 from olympia.zadmin.models import get_config, set_config
@@ -31,7 +30,7 @@ from ..tasks import (
     process_blocklistsubmission,
     upload_filter,
 )
-from ..utils import datetime_to_ts
+from ..utils import datetime_to_ts, get_mlbf_base_id_config_key
 
 
 def test_cleanup_old_files():
@@ -224,7 +223,7 @@ class TestUploadMLBFToRemoteSettings(TestCase):
 
         assert self.mocks['complete_session'].called
         assert (
-            mock.call(MLBF_TIME_CONFIG_KEY, self.generation_time, json_value=True)
+            mock.call(amo.config_keys.BLOCKLIST_MLBF_TIME, self.generation_time)
         ) in self.mocks['set_config'].call_args_list
 
         for block_type in block_types:
@@ -235,17 +234,12 @@ class TestUploadMLBFToRemoteSettings(TestCase):
                 # we can remove this and start writing to the new plural key.
                 assert (
                     mock.call(
-                        MLBF_BASE_ID_CONFIG_KEY(block_type, compat=True),
+                        get_mlbf_base_id_config_key(block_type, compat=True),
                         self.generation_time,
-                        json_value=True,
                     )
                 ) in self.mocks['set_config'].call_args_list
             assert (
-                mock.call(
-                    MLBF_BASE_ID_CONFIG_KEY(block_type),
-                    self.generation_time,
-                    json_value=True,
-                )
+                mock.call(get_mlbf_base_id_config_key(block_type), self.generation_time)
             ) in self.mocks['set_config'].call_args_list
 
     def test_upload_blocked_filter(self):
@@ -272,7 +266,8 @@ class TestUploadMLBFToRemoteSettings(TestCase):
         upload_filter(self.generation_time, actions=[])
 
         assert (
-            get_config(MLBF_BASE_ID_CONFIG_KEY(BlockType.BLOCKED, compat=True)) is None
+            get_config(get_mlbf_base_id_config_key(BlockType.BLOCKED, compat=True))
+            is None
         )
         # If there is no base filter id, then we pass none and let the task
         # figure out what to do with that information.
@@ -282,9 +277,8 @@ class TestUploadMLBFToRemoteSettings(TestCase):
         )
 
         set_config(
-            MLBF_BASE_ID_CONFIG_KEY(BlockType.BLOCKED, compat=True),
+            get_mlbf_base_id_config_key(BlockType.BLOCKED, compat=True),
             self.generation_time,
-            json_value=True,
         )
         upload_filter(self.generation_time, actions=[])
 
@@ -377,7 +371,7 @@ class TestUploadMLBFToRemoteSettings(TestCase):
 
         assert self.mocks['complete_session'].called
         assert (
-            mock.call(MLBF_TIME_CONFIG_KEY, self.generation_time, json_value=True)
+            mock.call(amo.config_keys.BLOCKLIST_MLBF_TIME, self.generation_time)
             in self.mocks['set_config'].call_args_list
         )
 
@@ -407,7 +401,7 @@ class TestUploadMLBFToRemoteSettings(TestCase):
         assert self.mocks['records'].call_count == 1
         assert self.mocks['complete_session'].call_count == 1
         assert (
-            mock.call(MLBF_TIME_CONFIG_KEY, self.generation_time, json_value=True)
+            mock.call(amo.config_keys.BLOCKLIST_MLBF_TIME, self.generation_time)
             in self.mocks['set_config'].call_args_list
         )
         assert (

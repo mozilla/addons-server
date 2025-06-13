@@ -3,6 +3,7 @@ import json
 from django.db import models
 
 import olympia.core.logger
+from olympia import amo
 
 
 log = olympia.core.logger.getLogger('z.zadmin')
@@ -21,23 +22,36 @@ class Config(models.Model):
         return self.key
 
 
-def get_config(key, default=None, *, json_value=False, int_value=False):
+def get_config(key):
+    if isinstance(key, tuple):
+        key, val_type, default = key
+    else:
+        val_type = str
+        default = None
+    assert key in amo.config_keys.KEYS
+
     try:
         value = Config.objects.get(key=key).value
     except Config.DoesNotExist:
-        value = default
+        return default
     try:
-        if json_value:
+        if val_type is json:
             value = json.loads(value)
-        elif int_value:
+        elif val_type is int:
             value = int(value)
+        return value
     except (TypeError, ValueError):
         log.error('[%s] config key appears to not be set correctly (%s)', key, value)
-        value = default
-    return value
+        return default
 
 
-def set_config(conf, value, *, json_value=False):
-    cf, created = Config.objects.get_or_create(key=conf)
-    cf.value = value if not json_value else json.dumps(value)
+def set_config(key, value):
+    if isinstance(key, tuple):
+        key, val_type, _ = key
+    else:
+        val_type = str
+    assert key in amo.config_keys.KEYS
+
+    cf, _ = Config.objects.get_or_create(key=key)
+    cf.value = value if val_type is not json else json.dumps(value)
     cf.save()

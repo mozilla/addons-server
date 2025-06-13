@@ -70,11 +70,6 @@ REASON_ADDON_TYPE_CHOICES = {
     ADDON_STATICTHEME: _('Theme'),
 }
 
-
-# Target number of reviews each task that adds extra versions to the review
-# queue will add per day.
-EXTRA_REVIEW_TARGET_PER_DAY_CONFIG_KEY = 'extra-review-target-per-day'
-
 POLICY_VALUE_PATTERN = 'policy-value-{id}-{placeholder}'
 POLICY_VALUE_PATTERN_REGEX = re.compile(
     POLICY_VALUE_PATTERN.format(id=r'(?P<id>\d+)', placeholder=r'(?P<placeholder>.+)')

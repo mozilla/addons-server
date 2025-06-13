@@ -18,7 +18,6 @@ from olympia.constants.abuse import (
     ILLEGAL_CATEGORIES,
     ILLEGAL_SUBCATEGORIES,
 )
-from olympia.constants.reviewers import EXTRA_REVIEW_TARGET_PER_DAY_CONFIG_KEY
 from olympia.files.models import File
 from olympia.reviewers.models import NeedsHumanReview, ReviewActionReason, UsageTier
 from olympia.versions.models import Version
@@ -47,7 +46,7 @@ def addon_factory_with_abuse_reports(*, abuse_reports_count, **kwargs):
 @pytest.mark.django_db
 def test_flag_high_abuse_reports_addons_according_to_review_tier():
     user_factory(pk=settings.TASK_USER_ID)
-    set_config(EXTRA_REVIEW_TARGET_PER_DAY_CONFIG_KEY, '1')
+    set_config(amo.config_keys.EXTRA_REVIEW_TARGET_PER_DAY, '1')
     # Create some usage tiers and add add-ons in them for the task to do
     # something. The ones missing a lower, upper, or abuse report threshold
     # don't do anything for this test.
@@ -209,7 +208,7 @@ def test_flag_high_abuse_reports_addons_according_to_review_tier():
             == 1
         ), f'Addon {addon} should have been flagged'
 
-    # We've set EXTRA_REVIEW_TARGET_PER_DAY_CONFIG_KEY so that there would be
+    # We've set amo.config_keys.EXTRA_REVIEW_TARGET_PER_DAY so that there would be
     # one review per day after . Since we've frozen time on a Wednesday,
     # we should get: Friday, Monday (skipping week-end), Tuesday.
     due_dates = (

@@ -1384,7 +1384,9 @@ def _submit_distribution(request, addon, next_view):
         context={
             'addon': addon,
             'distribution_form': form,
-            'submit_notification_warning': get_config('submit_notification_warning'),
+            'submit_notification_warning': get_config(
+                amo.config_keys.SUBMIT_NOTIFICATION_WARNING
+            ),
             'submit_page': 'version' if addon else 'addon',
         },
     )
@@ -1579,7 +1581,7 @@ def _submit_upload(
     submit_notification_warning = (
         warning
         if not flag.is_active(request)
-        else get_config('submit_notification_warning')
+        else get_config(amo.config_keys.SUBMIT_NOTIFICATION_WARNING)
     )
     if not submit_notification_warning and addon:
         # If we're not showing the generic submit notification warning, show
@@ -1592,7 +1594,7 @@ def _submit_upload(
             channel == amo.CHANNEL_UNLISTED and any(promoted_group.unlisted_pre_review)
         ):
             submit_notification_warning = get_config(
-                'submit_notification_warning_pre_review'
+                amo.config_keys.SUBMIT_NOTIFICATION_WARNING_PRE_REVIEW
             )
     if addon and addon.type == amo.ADDON_STATICTHEME:
         wizard_url = reverse(

@@ -289,3 +289,16 @@ def delete_versions_from_blocks(guids, submission):
             block.delete()
 
     return blocks
+
+
+def get_mlbf_base_id_config_key(block_type, compat: bool = False):
+    """
+    We use compat to return the old singular config key for hard blocks.
+    This allows us to migrate writes to the new plural key right now without
+    losing access to the old existing key when deploying this patch.
+    """
+    from olympia.blocklist.models import BlockType
+
+    if compat and block_type == BlockType.BLOCKED:
+        return amo.config_keys.BLOCKLIST_MLBF_BASE_ID
+    return getattr(amo.config_keys, f'BLOCKLIST_MLBF_BASE_ID_{block_type.name.upper()}')
