@@ -192,10 +192,8 @@ class CinderJob(ModelBase):
         versions = {v.version: v for v in version_qs} if self.target_addon else {}
         current_version = getattr(target, 'current_version', None) or Version()
         is_human_reviewed = (
-            # it's not an appeal job
-            not self.is_appeal
             # it's a reviewer handled report/job
-            and self.resolvable_in_reviewer_tools
+            self.resolvable_in_reviewer_tools
             # there are reports
             and reports
             # none are for a legal reason
@@ -206,7 +204,7 @@ class CinderJob(ModelBase):
                 for report in reports
             )
         )
-        return is_disabled or is_human_reviewed
+        return not self.is_appeal and (is_disabled or is_human_reviewed)
 
     def handle_already_moderated(self, abuse_report, entity_helper):
         decision = ContentDecision.objects.create(

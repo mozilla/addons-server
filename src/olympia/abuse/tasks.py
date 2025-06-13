@@ -230,3 +230,21 @@ def handle_forward_to_legal_action(*, decision_pk):
         # Update fks to connected objects
         AbuseReport.objects.filter(cinder_job=old_job).update(cinder_job=new_job)
         ContentDecision.objects.filter(appeal_job=old_job).update(appeal_job=new_job)
+
+
+@task
+@use_primary_db
+def auto_resolve_job(*, job_pk):
+    job = CinderJob.objects.get(pk=job_pk)
+    if job.should_auto_resolve():
+        # if it should be auto resolved, fire a task to resolve it
+        log.info(
+            'Found job#%s to auto resolve for addon#%s.',
+            job.id,
+            job.target_addon_id,
+        )
+        entity_helper = CinderJob.get_entity_helper(
+            job.target, resolved_in_reviewer_tools=True
+        )
+        job.handle_already_moderated(job.abusereport_set.first(), entity_helper)
+        job.clear_needs_human_review_flags()
