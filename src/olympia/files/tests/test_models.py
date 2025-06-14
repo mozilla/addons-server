@@ -398,6 +398,57 @@ class TestFile(TestCase, amo.tests.AMOPaths):
             'laststring!',
         ]
 
+    def test_data_collection_permissions(self):
+        file_ = File.objects.get(pk=67442)
+        data_collection_permissions = [
+            'iamstring',
+            'iamnutherstring',
+            {'iamadict': 'hmm'},
+            ['iamalistinalist', 'indeedy'],
+            13,
+            'laststring!',
+            'iamstring',
+            'iamnutherstring',
+            'laststring!',
+            None,
+        ]
+        WebextPermission.objects.create(
+            data_collection_permissions=data_collection_permissions, file=file_
+        )
+
+        # Strings only please.No duplicates.
+        assert file_.data_collection_permissions == [
+            'iamstring',
+            'iamnutherstring',
+            'laststring!',
+        ]
+
+    def test_optional_data_collection_permissions(self):
+        file_ = File.objects.get(pk=67442)
+        optional_data_collection_permissions = [
+            'iamstring',
+            'iamnutherstring',
+            {'iamadict': 'hmm'},
+            ['iamalistinalist', 'indeedy'],
+            13,
+            'laststring!',
+            'iamstring',
+            'iamnutherstring',
+            'laststring!',
+            None,
+        ]
+        WebextPermission.objects.create(
+            optional_data_collection_permissions=optional_data_collection_permissions,
+            file=file_,
+        )
+
+        # Strings only please.No duplicates.
+        assert file_.optional_data_collection_permissions == [
+            'iamstring',
+            'iamnutherstring',
+            'laststring!',
+        ]
+
     def test_has_been_validated_returns_false_when_no_validation(self):
         file = File()
         assert not file.has_been_validated

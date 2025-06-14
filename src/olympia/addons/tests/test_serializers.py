@@ -147,6 +147,14 @@ class AddonSerializerOutputTestMixin:
         assert result_file['permissions'] == file_.permissions
         assert result_file['optional_permissions'] == file_.optional_permissions
         assert result_file['host_permissions'] == file_.host_permissions
+        assert (
+            result_file['data_collection_permissions']
+            == file_.data_collection_permissions
+        )
+        assert (
+            result_file['optional_data_collection_permissions']
+            == file_.optional_data_collection_permissions
+        )
 
         assert data['edit_url'] == absolutify(
             self.addon.get_dev_url('versions.edit', args=[version.pk], prefix_only=True)
@@ -699,6 +707,11 @@ class AddonSerializerOutputTestMixin:
         permissions = ['bookmarks', 'random permission']
         optional_permissions = ['cookies', 'optional permission']
         host_permissions = ['*://example.com/*', '*://mozilla.com/*']
+        data_collection_permissions = ['none']
+        optional_data_collection_permissions = [
+            'technicalAndInteraction',
+            'personallyIdentifyingInfo',
+        ]
 
         # Give one of the versions some webext permissions to test that.
         WebextPermission.objects.create(
@@ -706,6 +719,8 @@ class AddonSerializerOutputTestMixin:
             permissions=permissions,
             optional_permissions=optional_permissions,
             host_permissions=host_permissions,
+            data_collection_permissions=data_collection_permissions,
+            optional_data_collection_permissions=optional_data_collection_permissions,
         )
 
         result = self.serialize()
@@ -718,6 +733,14 @@ class AddonSerializerOutputTestMixin:
             == optional_permissions
         )
         assert result['current_version']['file']['host_permissions'] == host_permissions
+        assert (
+            result['current_version']['file']['data_collection_permissions']
+            == data_collection_permissions
+        )
+        assert (
+            result['current_version']['file']['optional_data_collection_permissions']
+            == optional_data_collection_permissions
+        )
 
     def test_is_restart_required(self):
         self.addon = addon_factory()
@@ -1459,7 +1482,7 @@ class TestVersionSerializerOutput(TestCase):
             optional_permissions=optional_permissions, file=self.version.file
         )
         result = self.serialize()
-        assert result['file']['optional_permissions'] == (optional_permissions)
+        assert result['file']['optional_permissions'] == optional_permissions
 
     def test_file_host_permissions(self):
         self.version = addon_factory().current_version
@@ -1473,7 +1496,31 @@ class TestVersionSerializerOutput(TestCase):
             host_permissions=host_permissions, file=self.version.file
         )
         result = self.serialize()
-        assert result['file']['host_permissions'] == (host_permissions)
+        assert result['file']['host_permissions'] == host_permissions
+
+    def test_file_data_collection_permissions(self):
+        self.version = addon_factory().current_version
+        result = self.serialize()
+        # No permissions.
+        assert result['file']['data_collection_permissions'] == []
+        assert result['file']['optional_data_collection_permissions'] == []
+
+        self.version = addon_factory().current_version
+        data_collection_permissions = ['foo']
+        optional_data_collection_permissions = ['bar']
+        WebextPermission.objects.create(
+            data_collection_permissions=data_collection_permissions,
+            optional_data_collection_permissions=optional_data_collection_permissions,
+            file=self.version.file,
+        )
+        result = self.serialize()
+        assert (
+            result['file']['data_collection_permissions'] == data_collection_permissions
+        )
+        assert (
+            result['file']['optional_data_collection_permissions']
+            == optional_data_collection_permissions
+        )
 
     def test_version_files_or_file(self):
         self.version = addon_factory().current_version
