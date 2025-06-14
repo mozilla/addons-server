@@ -13,23 +13,17 @@ from django.utils.encoding import force_str
 from django_statsd.clients import statsd
 
 import olympia.core.logger
+from olympia import amo
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import SafeStorage
-from olympia.constants.blocklist import (
-    MLBF_BASE_ID_CONFIG_KEY,
-    MLBF_TIME_CONFIG_KEY,
-    REMOTE_SETTINGS_COLLECTION_MLBF,
-    BlockListAction,
-)
+from olympia.constants.blocklist import REMOTE_SETTINGS_COLLECTION_MLBF, BlockListAction
 from olympia.lib.remote_settings import RemoteSettings
 from olympia.zadmin.models import get_config, set_config
 
 from .mlbf import MLBF
 from .models import BlocklistSubmission, BlockType
-from .utils import (
-    datetime_to_ts,
-)
+from .utils import datetime_to_ts, get_mlbf_base_id_config_key
 
 
 log = olympia.core.logger.getLogger('z.amo.blocklist')
@@ -133,8 +127,7 @@ def upload_filter(generation_time: str, actions: List[str] = None):
     # This will help us identify stale records that should be cleaned up.
     for block_type in BlockType:
         base_filter_id = get_config(
-            MLBF_BASE_ID_CONFIG_KEY(block_type, compat=True),
-            json_value=True,
+            get_mlbf_base_id_config_key(block_type, compat=True)
         )
         # If there is an existing base filter id, we need to keep track of it
         if base_filter_id is not None:
@@ -202,7 +195,7 @@ def upload_filter(generation_time: str, actions: List[str] = None):
     # and including deletions can we commit the session and update
     # the config with the new timestamps.
     server.complete_session()
-    set_config(MLBF_TIME_CONFIG_KEY, generation_time, json_value=True)
+    set_config(amo.config_keys.BLOCKLIST_MLBF_TIME, generation_time)
 
     # Update the base_filter_id for uploaded filters.
     for block_type in filters_to_upload:
@@ -212,14 +205,10 @@ def upload_filter(generation_time: str, actions: List[str] = None):
         # we can remove this and start writing to the new plural key.
         if block_type == BlockType.BLOCKED:
             set_config(
-                MLBF_BASE_ID_CONFIG_KEY(block_type, compat=True),
-                generation_time,
-                json_value=True,
+                get_mlbf_base_id_config_key(block_type, compat=True), generation_time
             )
 
-        set_config(
-            MLBF_BASE_ID_CONFIG_KEY(block_type), generation_time, json_value=True
-        )
+        set_config(get_mlbf_base_id_config_key(block_type), generation_time)
 
     cleanup_old_files.delay(base_filter_id=oldest_base_filter_id)
     statsd.incr('blocklist.tasks.upload_filter.reset_collection')

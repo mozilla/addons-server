@@ -11,10 +11,10 @@ from filtercascade import FilterCascade
 from filtercascade.fileformats import HashAlgorithm
 
 import olympia.core.logger
+from olympia import amo
 from olympia.amo.utils import SafeStorage
 from olympia.blocklist.models import BlockType, BlockVersion
 from olympia.blocklist.utils import datetime_to_ts
-from olympia.constants.blocklist import BASE_REPLACE_THRESHOLD_KEY
 from olympia.versions.models import Version
 from olympia.zadmin.models import get_config
 
@@ -23,7 +23,7 @@ log = olympia.core.logger.getLogger('z.amo.blocklist')
 
 
 def get_base_replace_threshold():
-    return get_config(BASE_REPLACE_THRESHOLD_KEY, int_value=True, default=5_000)
+    return get_config(amo.config_keys.BLOCKLIST_BASE_REPLACE_THRESHOLD)
 
 
 def ordered_diff_lists(

@@ -6,6 +6,7 @@ from django.conf import settings
 from elasticsearch_dsl.response.hit import Hit
 from rest_framework import serializers
 
+from olympia import amo
 from olympia.amo.utils import BaseModelSerializerAndFormMixin
 from olympia.zadmin.models import get_config
 
@@ -91,5 +92,5 @@ class SiteStatusSerializer(serializers.BaseSerializer):
     def to_representation(self, obj):
         return {
             'read_only': settings.READ_ONLY,
-            'notice': get_config('site_notice'),
+            'notice': get_config(amo.config_keys.SITE_NOTICE),
         }

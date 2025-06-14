@@ -11,6 +11,7 @@ import responses
 from freezegun import freeze_time
 from waffle.testutils import override_switch
 
+from olympia import amo
 from olympia.amo.tests import (
     TestCase,
     addon_factory,
@@ -28,13 +29,8 @@ from olympia.blocklist.cron import (
 from olympia.blocklist.mlbf import MLBF
 from olympia.blocklist.models import Block, BlocklistSubmission, BlockType, BlockVersion
 from olympia.blocklist.tasks import upload_filter
-from olympia.blocklist.utils import datetime_to_ts
-from olympia.constants.blocklist import (
-    BASE_REPLACE_THRESHOLD_KEY,
-    MLBF_BASE_ID_CONFIG_KEY,
-    MLBF_TIME_CONFIG_KEY,
-    BlockListAction,
-)
+from olympia.blocklist.utils import datetime_to_ts, get_mlbf_base_id_config_key
+from olympia.constants.blocklist import BlockListAction
 from olympia.zadmin.models import set_config
 
 
@@ -321,7 +317,7 @@ class TestUploadToRemoteSettings(TestCase):
         self,
         expected_actions: List[BlockListAction],
     ):
-        set_config(BASE_REPLACE_THRESHOLD_KEY, 1)
+        set_config(amo.config_keys.BLOCKLIST_BASE_REPLACE_THRESHOLD, 1)
         upload_mlbf_to_remote_settings()
 
         # Generation time is set to current time so we can load the MLBF.
@@ -576,13 +572,13 @@ class TestTimeMethods(TestCase):
 
     def test_get_last_generation_time(self):
         assert get_last_generation_time() is None
-        set_config(MLBF_TIME_CONFIG_KEY, 1)
+        set_config(amo.config_keys.BLOCKLIST_MLBF_TIME, 1)
         assert get_last_generation_time() == 1
 
     def test_get_base_generation_time(self):
         for block_type in BlockType:
             assert get_base_generation_time(block_type) is None
-            set_config(MLBF_BASE_ID_CONFIG_KEY(block_type, compat=True), 123)
+            set_config(get_mlbf_base_id_config_key(block_type, compat=True), 123)
             assert get_base_generation_time(block_type) == 123
 
 
