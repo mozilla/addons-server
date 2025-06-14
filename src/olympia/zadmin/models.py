@@ -2,13 +2,14 @@ import json
 
 from django.db import models
 
+from olympia.amo.models import ModelBase
 import olympia.core.logger
 
 
 log = olympia.core.logger.getLogger('z.zadmin')
 
 
-class Config(models.Model):
+class Config(ModelBase):
     """Sitewide settings."""
 
     key = models.CharField(max_length=255, primary_key=True)

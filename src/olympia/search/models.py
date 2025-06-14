@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from olympia.amo.models import ModelBase
 
 
 class ReindexingManager(models.Manager):
@@ -36,7 +37,7 @@ class ReindexingManager(models.Manager):
             return [index]
 
 
-class Reindexing(models.Model):
+class Reindexing(ModelBase):
     start_date = models.DateTimeField(default=timezone.now)
     old_index = models.CharField(max_length=255, null=True)
     new_index = models.CharField(max_length=255)
