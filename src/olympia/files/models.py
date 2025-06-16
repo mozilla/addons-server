@@ -276,53 +276,44 @@ class File(OnChangeMixin, ModelBase):
     def addon(self):
         return self.version.addon
 
-    @cached_property
-    def permissions(self):
+    def _permissions_wrapper(self, prop):
+        """Wrapper around `self._webext_permissions.<prop>` meant to be used in
+        a cached_property, filtering out any non-strings and duplicated
+        permissions, as well as handling edge case where the related
+        WebextPermission object does not exist gracefully."""
         try:
-            # Filter out any errant non-strings included in the manifest JSON.
-            # Remove any duplicate permissions.
-            permissions = set()
-            permissions = [
-                p
-                for p in self._webext_permissions.permissions
-                if isinstance(p, str) and not (p in permissions or permissions.add(p))
+            # We want to preserve order, so we can't just do list(set()) or
+            # something along those lines.
+            seen = set()
+            return [
+                permission
+                for permission in getattr(self._webext_permissions, prop)
+                if isinstance(permission, str)
+                and not (permission in seen or seen.add(permission))
             ]
-            return permissions
 
         except WebextPermission.DoesNotExist:
             return []
+
+    @cached_property
+    def permissions(self):
+        return self._permissions_wrapper('permissions')
 
     @cached_property
     def optional_permissions(self):
-        try:
-            # Filter out any errant non-strings included in the manifest JSON.
-            # Remove any duplicate optional permissions.
-            permissions = set()
-            permissions = [
-                p
-                for p in self._webext_permissions.optional_permissions
-                if isinstance(p, str) and not (p in permissions or permissions.add(p))
-            ]
-            return permissions
-
-        except WebextPermission.DoesNotExist:
-            return []
+        return self._permissions_wrapper('optional_permissions')
 
     @cached_property
     def host_permissions(self):
-        try:
-            # Filter out any errant non-strings included in the manifest JSON.
-            # Remove any duplicate host permissions.
-            permissions = set()
-            permissions = [
-                p
-                for p in self._webext_permissions.host_permissions
-                if isinstance(p, str) and not (p in permissions or permissions.add(p))
-            ]
-            return permissions
+        return self._permissions_wrapper('host_permissions')
 
-        except WebextPermission.DoesNotExist:
-            return []
+    @cached_property
+    def data_collection_permissions(self):
+        return self._permissions_wrapper('data_collection_permissions')
+
+    @cached_property
+    def optional_data_collection_permissions(self):
+        return self._permissions_wrapper('optional_data_collection_permissions')
 
     def get_review_status_display(self):
         # Like .get_file_status_display but with logic to make the status more accurate
