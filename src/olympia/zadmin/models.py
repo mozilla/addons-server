@@ -1,5 +1,3 @@
-import json
-
 from django.db import models
 
 import olympia.core.logger
@@ -22,36 +20,30 @@ class Config(models.Model):
         return self.key
 
 
-def get_config(key):
-    if isinstance(key, tuple):
-        key, val_type, default = key
-    else:
-        val_type = str
-        default = None
-    assert key in amo.config_keys.KEYS
+def get_config(config_key):
+    if not hasattr(config_key, 'key'):
+        config_key = amo.config_keys.ConfigKey(config_key)
+    assert config_key.key in amo.config_keys.KEYS
 
     try:
-        value = Config.objects.get(key=key).value
+        value = Config.objects.get(key=config_key.key).value
+        return config_key.load(value)
     except Config.DoesNotExist:
-        return default
-    try:
-        if val_type is json:
-            value = json.loads(value)
-        elif val_type is int:
-            value = int(value)
-        return value
+        pass
     except (TypeError, ValueError):
-        log.error('[%s] config key appears to not be set correctly (%s)', key, value)
-        return default
+        log.error(
+            '[%s] config key appears to not be set correctly (%s)',
+            config_key.key,
+            value,
+        )
+    return config_key.default
 
 
-def set_config(key, value):
-    if isinstance(key, tuple):
-        key, val_type, _ = key
-    else:
-        val_type = str
-    assert key in amo.config_keys.KEYS
+def set_config(config_key, value):
+    if not hasattr(config_key, 'key'):
+        config_key = amo.config_keys.ConfigKey(config_key)
+    assert config_key.key in amo.config_keys.KEYS
 
-    cf, _ = Config.objects.get_or_create(key=key)
-    cf.value = value if val_type is not json else json.dumps(value)
+    cf, _ = Config.objects.get_or_create(key=config_key.key)
+    cf.value = config_key.dump(value)
     cf.save()
