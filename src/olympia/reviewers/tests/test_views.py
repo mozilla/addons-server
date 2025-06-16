@@ -1687,17 +1687,17 @@ class TestExtensionQueue(QueueTest):
                 self.addons[addon].current_version.needshumanreview_set.create(
                     reason=NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
                 )
-        _, _, due_date_cut_off_default = amo.config_keys.UPCOMING_DUE_DATE_CUT_OFF_DAYS
+        due_date_cutoff_default = amo.config_keys.UPCOMING_DUE_DATE_CUT_OFF_DAYS.default
         self.addons['Nominated One'].current_version.update(
             due_date=get_review_due_date(
                 starting=datetime.now()
-                + timedelta(days=due_date_cut_off_default, seconds=1)
+                + timedelta(days=due_date_cutoff_default, seconds=1)
             )
         )
         self.addons['Pending Two'].current_version.update(
             due_date=get_review_due_date(
                 starting=datetime.now()
-                + timedelta(days=due_date_cut_off_default, seconds=2)
+                + timedelta(days=due_date_cutoff_default, seconds=2)
             )
         )
 

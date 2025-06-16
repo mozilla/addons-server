@@ -15,7 +15,7 @@ from PIL import Image, ImageChops
 
 from olympia import amo
 from olympia.amo.tests import root_storage
-from olympia.zadmin.models import Config
+from olympia.zadmin.models import set_config
 
 from ..utils import (
     AdditionalBackground,
@@ -275,8 +275,7 @@ def test_get_staggered_review_due_date_generator_default_initial_starting_date()
 @freeze_time('2023-05-16 11:00')
 @pytest.mark.django_db
 def test_get_staggered_review_due_date_generator_custom_config():
-    key, _, _ = amo.config_keys.EXTRA_REVIEW_TARGET_PER_DAY
-    Config.objects.create(key=key, value='4')
+    set_config(amo.config_keys.EXTRA_REVIEW_TARGET_PER_DAY.key, 4)
     generator = get_staggered_review_due_date_generator()
     due = next(generator)
     assert due == datetime(2023, 5, 19, 11, 0)
@@ -292,8 +291,7 @@ def test_get_staggered_review_due_date_generator_custom_config():
 @freeze_time('2023-05-16 11:00')
 @pytest.mark.django_db
 def test_get_staggered_review_due_date_generator_garbage_config(log_mock):
-    key, _, _ = amo.config_keys.EXTRA_REVIEW_TARGET_PER_DAY
-    Config.objects.create(key=key, value='lolweird')
+    set_config(amo.config_keys.EXTRA_REVIEW_TARGET_PER_DAY, 'lolweird')
     generator = get_staggered_review_due_date_generator()
 
     # Falls back on arbitrary default (8), logging an error. So next due date
