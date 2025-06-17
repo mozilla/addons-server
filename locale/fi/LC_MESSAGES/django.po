@@ -360,7 +360,7 @@ msgstr "%(addon_type_plural)s eivät ole tuettuja sovelluksessa %(app_name)s"
 #: src/olympia/addons/serializers.py:657 src/olympia/devhub/forms.py:910
 #, python-format
 msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
-msgstr ""
+msgstr "Virheellinen versioalue. Firefoxin Android-versiossa voit valita vain alueen, joka alkaa versiolla %(max)s tai uudemmalla tai päättyy versiota %(min)s alempaan versioon."
 
 #: src/olympia/addons/serializers.py:906
 msgid "Add-ons need at least one owner."
@@ -471,7 +471,7 @@ msgstr "Kirjaudu ulos"
 
 #: src/olympia/amo/context_processors.py:59 src/olympia/devhub/templates/devhub/addons/dashboard.html:4
 msgid "Manage My Submissions"
-msgstr ""
+msgstr "Hallitse lähettämiäsi lisäosia"
 
 #: src/olympia/amo/context_processors.py:65 src/olympia/devhub/templates/devhub/addons/dashboard.html:24 src/olympia/devhub/templates/devhub/addons/submit/base.html:8
 #: src/olympia/devhub/templates/devhub/nav.html:28 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:97
@@ -557,6 +557,8 @@ msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
 "browser is not being hijacked by third parties."
 msgstr ""
+"Näet tämän viestin, koska tämä HTTPS-sivusto vaatii verkkoselaimeltasi viittausotsakkeen (Referer header), mutta sellaista ei lähetetty. Otsake vaaditaan turvallisuussyistä; sen varmistamiseksi, "
+"ettei kolmannet osapuolet ole kaapanneet selaintasi."
 
 #: src/olympia/amo/templates/amo/403.html:26
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
