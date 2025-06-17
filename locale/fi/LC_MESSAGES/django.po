@@ -354,7 +354,7 @@ msgstr "Listattuja versioita ei voi lähettää, kun lisäosa on poistettu käyt
 #: src/olympia/addons/serializers.py:618
 #, python-format
 msgid "%(addon_type_plural)s are not supported by %(app_name)s"
-msgstr ""
+msgstr "%(addon_type_plural)s eivät ole tuettuja sovelluksessa %(app_name)s"
 
 #: src/olympia/addons/serializers.py:657 src/olympia/devhub/forms.py:910
 #, python-format
@@ -437,7 +437,7 @@ msgstr ""
 
 #: src/olympia/addons/validators.py:332
 msgid "This endpoint is not valid for Themes."
-msgstr ""
+msgstr "Tämä päätepiste ei ole kelvollinen teemoille."
 
 #: src/olympia/addons/templates/addons/includes/dashboard_tabs.html:4 src/olympia/devhub/templates/devhub/nav.html:15 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:19
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html:16
@@ -637,11 +637,11 @@ msgstr "Jotkin toiminnot tällä sivulla ovat väliaikaisesti pois käytöstä s
 
 #: src/olympia/amo/templates/amo/submissions_disabled.html:3
 msgid "Add-on uploads temporarily disabled"
-msgstr ""
+msgstr "Lisäosien lähetys on tilapäisesti poistettu käytöstä"
 
 #: src/olympia/amo/templates/amo/submissions_disabled.html:13
 msgid "Add-on uploads have been temporarily disabled. Please check back later."
-msgstr ""
+msgstr "Lisäosien lähetys on tilapäisesti poistettu käytöstä. Tarkista tilanne myöhemmin uudelleen."
 
 #: src/olympia/amo/templatetags/jinja_helpers.py:147
 #, python-brace-format
@@ -809,7 +809,7 @@ msgstr ""
 #: src/olympia/constants/activity.py:76
 #, python-brace-format
 msgid "Contributions for {addon}."
-msgstr ""
+msgstr "Kontribuutiot lisäosaan {addon}."
 
 #: src/olympia/constants/activity.py:81
 #, python-brace-format
@@ -1578,7 +1578,7 @@ msgstr "Vuodenajat"
 
 #: src/olympia/constants/categories.py:309
 msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
-msgstr ""
+msgstr "Lataa Firefox-teemoja kaikille neljälle vuodenajalle – syksylle, talvelle, keväälle ja kesälle. Syksyn lehdet, lumiset vuorenhuiput, aurinkoiset kesäpäivät ja kevätkukat."
 
 #: src/olympia/constants/categories.py:316
 msgid "Solid"
@@ -1586,7 +1586,7 @@ msgstr "Tasaväriset"
 
 #: src/olympia/constants/categories.py:318
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
-msgstr ""
+msgstr "Lataa Firefox-teemoja, jotka sisältävät yhden värin ja liukuvärejä, ja personoi selaintasi. Tähän luokkaan kuuluvat rohkeat punaiset, pastellisävyt, pehmeät harmaat ja paljon muuta."
 
 #: src/olympia/constants/categories.py:325
 msgid "Sports"
@@ -1594,7 +1594,7 @@ msgstr "Urheilu"
 
 #: src/olympia/constants/categories.py:327
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
-msgstr ""
+msgstr "Lataa Firefox-teemoja, jotka sisältävät erilaisia urheilulajeja. Tähän luokkaan kuuluvat maiden liput, urheilujoukkueet, jalkapallo, jääkiekko ja paljon muuta."
 
 #: src/olympia/constants/categories.py:334
 msgid "Websites"
@@ -1787,21 +1787,20 @@ msgid "Flag for human review"
 msgstr "Merkitse ihmisten arvioitavaksi"
 
 #: src/olympia/constants/scanners.py:26
-#, fuzzy
 msgid "Delay auto-approval"
-msgstr "Poista käytöstä automaattinen hyväksyminen"
+msgstr "Viivästä automaattista hyväksyntää"
 
 #: src/olympia/constants/scanners.py:27
 msgid "Delay auto-approval indefinitely"
-msgstr ""
+msgstr "Viivästä automaattista hyväksyntää toistaiseksi"
 
 #: src/olympia/constants/scanners.py:29
 msgid "Delay auto-approval indefinitely and add restrictions"
-msgstr ""
+msgstr "Viivästä automaattista hyväksyntää toistaiseksi ja lisää rajoituksia"
 
 #: src/olympia/constants/scanners.py:32
 msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
-msgstr ""
+msgstr "Viivästä automaattista hyväksyntää toistaiseksi ja lisää rajoituksia tuleville hyväksynnöille"
 
 #: src/olympia/constants/scanners.py:42 src/olympia/files/utils.py:1031
 msgid "Unknown"
@@ -1850,11 +1849,11 @@ msgstr ""
 #: src/olympia/devhub/feeds.py:52
 #, python-format
 msgid "Recent Changes for %s"
-msgstr ""
+msgstr "Lisäosan %s viimeaikaiset muutokset"
 
 #: src/olympia/devhub/feeds.py:54
 msgid "Recent Changes for My Add-ons"
-msgstr ""
+msgstr "Omien lisäosien viimeaikaiset muutokset"
 
 #: src/olympia/devhub/file_validation_annotations.py:55
 #, python-brace-format
@@ -2001,7 +2000,7 @@ msgstr "Versio {version} on jo olemassa."
 
 #: src/olympia/devhub/forms.py:1119
 msgid "Continue with existing upload instead?"
-msgstr ""
+msgstr "Jatketaanko sen sijaan olemassa olevalla lähetyksellä?"
 
 #: src/olympia/devhub/forms.py:1157 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:7 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:22
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:37
@@ -2143,7 +2142,7 @@ msgstr "Kaikki lisäosani"
 
 #: src/olympia/devhub/views.py:219
 msgid "All Activity"
-msgstr ""
+msgstr "Kaikki toiminta"
 
 #: src/olympia/devhub/views.py:220
 msgid "Add-on Updates"
@@ -2159,7 +2158,7 @@ msgstr "Käyttäjän kokoelmat"
 
 #: src/olympia/devhub/views.py:223
 msgid "User Reviews"
-msgstr ""
+msgstr "Käyttäjien arvostelut"
 
 #: src/olympia/devhub/views.py:371
 msgid "Add-on cannot be deleted. Disable this add-on instead."
@@ -2352,7 +2351,7 @@ msgstr "Vahvista sähköpostiosoite"
 
 #: src/olympia/devhub/views.py:2160
 msgid "Send another email"
-msgstr ""
+msgstr "Lähetä toinen sähköposti"
 
 #: src/olympia/devhub/views.py:2193
 msgid "Your email has been verified"
@@ -2586,7 +2585,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html:70
 msgid "Activity"
-msgstr ""
+msgstr "Toiminta"
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html:81 src/olympia/devhub/templates/devhub/addons/dashboard.html:33 src/olympia/devhub/templates/devhub/addons/dashboard.html:34
 msgid "Subscribe to this feed"
@@ -3338,7 +3337,7 @@ msgstr "Kerro käyttäjille mitä uutta ja mitä muutoksia tässä versiossa on.
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:17
 msgid "These notes will appear on the detail page."
-msgstr ""
+msgstr "Nämä muistiinpanot näkyvät tietosivulla."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html:3 src/olympia/devhub/templates/devhub/addons/submit/distribute.html:9
 msgid "How to Distribute this Version"
@@ -3346,7 +3345,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html:10
 msgid "To get started, select how you would like to distribute this version."
-msgstr ""
+msgstr "Aloita valitsemalla, miten haluat jakaa tämän version."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html:19
 #, python-format
@@ -3394,9 +3393,8 @@ msgid ""
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:43
-#, fuzzy
 msgid "Manage Listing"
-msgstr "Muuta asetuksia."
+msgstr "Hallitse listausta"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:47
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, concatenated or otherwise machine-generated code."
@@ -3525,7 +3523,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:59
 msgid "Which applications is this version compatible with?"
-msgstr ""
+msgstr "Minkä sovellusten kanssa tämä versio on yhteensopiva?"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:66
 msgid "Administrative overrides"
@@ -3709,7 +3707,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:28
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
-msgstr ""
+msgstr "Lisäosasi näkyy galleriassamme ja käyttäjät saavat automaattisia päivityksiä."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:30
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.com."
@@ -4071,18 +4069,16 @@ msgid "Profile"
 msgstr "Profiili"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html:46
-#, fuzzy
 msgid "Submit or Manage Extensions"
-msgstr "Lisää uusi versio"
+msgstr "Lähetä tai hallinnoi laajennuksia"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html:3
 msgid "Customize Firefox"
 msgstr "Muokkaa Firefoxia"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html:11
-#, fuzzy
 msgid "Learn how to make an extension"
-msgstr "Opi kuinka tehdä lisäosa"
+msgstr "Opi tekemään laajennus"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/submit_or_manage_extension.html:4
 msgid "Ready to submit or manage your extension?"
@@ -4239,7 +4235,7 @@ msgstr "Listatut versiot"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:185
 msgid "Currently on AMO"
-msgstr ""
+msgstr "Tällä hetkellä AMO:ssa"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:187 src/olympia/devhub/templates/devhub/versions/list.html:205 src/olympia/devhub/templates/devhub/versions/list.html:231
 msgid "Validation"
@@ -4687,7 +4683,7 @@ msgstr "Näe esikatselukuvat hakutulosten ohessa."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:194
 msgid "Make the web easier on the eyes by darkening its display."
-msgstr ""
+msgstr "Tee verkosta miellyttävämpi silmille tummentamalla näkymää."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4703,7 +4699,7 @@ msgstr "Mukauta minkä tahansa sivuston ulkoasua. Aseta käänteisiä värejä, 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:203
 msgid "Customize your new tab page to display a preferred number of tiles, background image, and more."
-msgstr ""
+msgstr "Mukauta Uusi välilehti -sivua näyttämään haluamasi määrä ruutuja, taustakuva ja paljon muuta."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:206
