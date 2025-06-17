@@ -18,7 +18,6 @@ from olympia.addons.models import DeletedPreviewFile, DisabledAddonContent
 from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.utils import image_size
-from olympia.constants.reviewers import EXTRA_REVIEW_TARGET_PER_DAY_CONFIG_KEY
 from olympia.files.models import File
 from olympia.reviewers.models import NeedsHumanReview, UsageTier
 from olympia.users.models import UserProfile
@@ -258,7 +257,7 @@ def test_update_addon_hotness():
 @pytest.mark.django_db
 def test_flag_high_hotness_according_to_review_tier():
     user_factory(pk=settings.TASK_USER_ID)
-    set_config(EXTRA_REVIEW_TARGET_PER_DAY_CONFIG_KEY, '1')
+    set_config(amo.config_keys.EXTRA_REVIEW_TARGET_PER_DAY, '1')
     # Create some usage tiers and add add-ons in them for the task to do
     # something. The ones missing a lower, upper, or growth threshold don't
     # do anything. Also, tiers need to have a lower adu threshold above
@@ -383,7 +382,7 @@ def test_flag_high_hotness_according_to_review_tier():
             == 1
         )
 
-    # We've set EXTRA_REVIEW_TARGET_PER_DAY_CONFIG_KEY so that there would be
+    # We've set amo.config_keys.EXTRA_REVIEW_TARGET_PER_DAY so that there would be
     # one review per day after . Since we've frozen time on a Wednesday,
     # we should get: Friday, Monday (skipping week-end), Tuesday.
     due_dates = (

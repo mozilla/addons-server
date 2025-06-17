@@ -4,17 +4,14 @@ import waffle
 from django_statsd.clients import statsd
 
 import olympia.core.logger
-from olympia.constants.blocklist import (
-    MLBF_BASE_ID_CONFIG_KEY,
-    MLBF_TIME_CONFIG_KEY,
-    BlockListAction,
-)
+from olympia import amo
+from olympia.constants.blocklist import BlockListAction
 from olympia.zadmin.models import get_config
 
 from .mlbf import MLBF
 from .models import Block, BlocklistSubmission, BlockType
 from .tasks import process_blocklistsubmission, upload_filter
-from .utils import datetime_to_ts
+from .utils import datetime_to_ts, get_mlbf_base_id_config_key
 
 
 log = olympia.core.logger.getLogger('z.cron')
@@ -25,13 +22,11 @@ def get_generation_time():
 
 
 def get_last_generation_time():
-    return get_config(MLBF_TIME_CONFIG_KEY, None, json_value=True)
+    return get_config(amo.config_keys.BLOCKLIST_MLBF_TIME)
 
 
 def get_base_generation_time(block_type: BlockType):
-    return get_config(
-        MLBF_BASE_ID_CONFIG_KEY(block_type, compat=True), None, json_value=True
-    )
+    return get_config(get_mlbf_base_id_config_key(block_type, compat=True))
 
 
 def get_blocklist_last_modified_time():

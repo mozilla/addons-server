@@ -15,7 +15,6 @@ from olympia import amo, core
 from olympia.activity.models import ActivityLog, AddonLog
 from olympia.addons import models as addons_models
 from olympia.addons.models import (
-    UPCOMING_DUE_DATE_CUT_OFF_DAYS_CONFIG_KEY,
     Addon,
     AddonApprovalsCounter,
     AddonCategory,
@@ -3764,13 +3763,13 @@ class TestExtensionsQueues(TestCase):
         }
         assert set(addons) == due_dates_within_2_days
         # the upcoming days config can be overriden
-        set_config(UPCOMING_DUE_DATE_CUT_OFF_DAYS_CONFIG_KEY, '10')
+        set_config(amo.config_keys.UPCOMING_DUE_DATE_CUT_OFF_DAYS, '10')
         addons = Addon.unfiltered.get_queryset_for_pending_queues(
             admin_reviewer=True, show_only_upcoming=True
         )
         assert set(addons) == set(expected_addons)
         # an invalid config value will default back to 2 again
-        set_config(UPCOMING_DUE_DATE_CUT_OFF_DAYS_CONFIG_KEY, '10.')
+        set_config(amo.config_keys.UPCOMING_DUE_DATE_CUT_OFF_DAYS, '10.')
         addons = Addon.unfiltered.get_queryset_for_pending_queues(
             admin_reviewer=True, show_only_upcoming=True
         )

@@ -1,8 +1,7 @@
-import json
-
 from django.db import models
 
 import olympia.core.logger
+from olympia import amo
 
 
 log = olympia.core.logger.getLogger('z.zadmin')
@@ -21,23 +20,30 @@ class Config(models.Model):
         return self.key
 
 
-def get_config(key, default=None, *, json_value=False, int_value=False):
+def get_config(config_key):
+    if not hasattr(config_key, 'key'):
+        config_key = amo.config_keys.ConfigKey(config_key)
+    assert config_key.key in amo.config_keys.KEYS
+
     try:
-        value = Config.objects.get(key=key).value
+        value = Config.objects.get(key=config_key.key).value
+        return config_key.load(value)
     except Config.DoesNotExist:
-        value = default
-    try:
-        if json_value:
-            value = json.loads(value)
-        elif int_value:
-            value = int(value)
+        pass
     except (TypeError, ValueError):
-        log.error('[%s] config key appears to not be set correctly (%s)', key, value)
-        value = default
-    return value
+        log.error(
+            '[%s] config key appears to not be set correctly (%s)',
+            config_key.key,
+            value,
+        )
+    return config_key.default
 
 
-def set_config(conf, value, *, json_value=False):
-    cf, created = Config.objects.get_or_create(key=conf)
-    cf.value = value if not json_value else json.dumps(value)
+def set_config(config_key, value):
+    if not hasattr(config_key, 'key'):
+        config_key = amo.config_keys.ConfigKey(config_key)
+    assert config_key.key in amo.config_keys.KEYS
+
+    cf, _ = Config.objects.get_or_create(key=config_key.key)
+    cf.value = config_key.dump(value)
     cf.save()
