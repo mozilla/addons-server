@@ -77,6 +77,7 @@ msgstr "Kiitos raportistasi."
 msgid ""
 "We have already reviewed a similar appeal from another reporter, and have reversed our prior decision. We have taken action against the content and/or account holder in accordance with our policies."
 msgstr ""
+"Olemme jo käsitelleet toisen henkilön tekemän vastaavan valituksen ja peruneet aiemman päätöksemme. Olemme ryhtyneet toimenpiteisiin sisältöä ja/tai tilinomistajaa vastaan käytäntöjemme mukaisesti."
 
 #: src/olympia/abuse/templates/abuse/appeal.html:38
 msgid "Because the decision you are appealing has already been overturned, your appeal will not be processed."
@@ -84,7 +85,7 @@ msgstr "Koska päätös, josta olet valittamassa, on jo kumottu, valitustasi ei 
 
 #: src/olympia/abuse/templates/abuse/appeal.html:42
 msgid "The decision you are appealing has already been overridden by a new decision, so this decision can't be appealed."
-msgstr ""
+msgstr "Päätös, josta valitat, on jo kumottu uudella päätöksellä, joten tästä päätöksestä ei voi valittaa."
 
 #: src/olympia/abuse/templates/abuse/appeal.html:44
 msgid "This decision can't be appealed."
