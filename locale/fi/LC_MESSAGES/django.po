@@ -5419,7 +5419,7 @@ msgstr "Aikaan perustuva teemanvaihtaja. Saat Firefoxin vaihtamaan värejä kell
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:624
 msgid "Declutter your Twitter experience."
-msgstr ""
+msgstr "Siivoa Twitter-kokemuksesi."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:627
@@ -5719,7 +5719,7 @@ msgstr "Olennaiset lisäosat"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1020
 msgid "Declutter your desktop"
-msgstr ""
+msgstr "Siivoa työpöytäsi"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1022 src/olympia/discovery/strings.jinja2:1024 src/olympia/discovery/strings.jinja2:1026
