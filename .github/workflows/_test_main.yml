@@ -6,6 +6,8 @@ run-name: |
   digest: ${{ inputs.digest }} |
   splits: ${{ inputs.splits }} |
 
+permissions: {}
+
 on:
   workflow_call:
     inputs:
@@ -56,14 +58,15 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Calculate splits
         id: result
         shell: bash
+        env:
+          splits: ${{ inputs.splits }}
         run: |
-          # Construct the matrix input for test_main using the groups count
-          # the matrix.group should be an array of numbers from 0 to ${{ inputs.splits }}
-          splits="${{ inputs.splits }}"
           # the matrix group should be indexed from 1 to splits + 1
           n=$((splits + 1))
           matrix=$(jq -n -c --arg n "$n" '[range(1;($n|tonumber))]')
@@ -88,6 +91,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Test (test_matrix)
         uses: ./.github/actions/run-docker
@@ -116,6 +121,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - uses: actions/download-artifact@v4
         with:

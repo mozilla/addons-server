@@ -22,6 +22,8 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event_name}}-${{ github.ref}}
   cancel-in-progress: true
 
+permissions: {}
+
 env:
   docs_artifact: docs
 
@@ -37,19 +39,27 @@ jobs:
       docker_version: ${{ steps.context.outputs.docker_version }}
 
     steps:
-      - uses: actions/checkout@v4
       - name: Set context
         id: context
-        uses: ./.github/actions/context
+        uses: mozilla/addons/.github/actions/context@f1d4daa008d908d52815aa41257db39b8cdef958
 
-  actionlint:
+  test_actions:
     permissions:
       contents: 'read'
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [actionlint, zizmor]
     steps:
       - uses: actions/checkout@v4
-      - name: Run actionlint
-        run: make actionlint
+        with:
+          persist-credentials: false
+
+      - name: Run ${{ matrix.target }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: make ${{ matrix.target }}
 
   build:
     name: ${{ needs.context.outputs.is_fork == 'true' && 'Skip' || 'Build' }}  CI Image
@@ -63,11 +73,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Login to Dockerhub
         if: needs.context.outputs.is_fork == 'false'
         id: docker_hub
-        uses: ./.github/actions/login-docker
+        uses: mozilla/addons/.github/actions/login-docker@f1d4daa008d908d52815aa41257db39b8cdef958
         with:
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_PASS }}
@@ -88,6 +100,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
       - uses: actions/configure-pages@v5
 
       - name: Build Docs
@@ -137,6 +152,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          persist-credentials: true
           fetch-depth: 0
           ref: ${{ github.event.pull_request.head.ref }}
           repository: ${{ github.event.pull_request.head.repo.full_name }}
@@ -154,11 +170,11 @@ jobs:
           github.event_name == 'push' ||
           github.event_name == 'pull_request'
         shell: bash
+        env:
+          is_fork: ${{ needs.context.outputs.is_fork }}
+          is_default_branch: ${{ needs.context.outputs.is_default_branch }}
+          is_push: ${{ github.event_name == 'push' }}
         run: |
-          is_fork="${{ needs.context.outputs.is_fork }}"
-          is_default_branch="${{ needs.context.outputs.is_default_branch }}"
-          is_push="${{ github.event_name == 'push' }}"
-
           if [[ "$is_fork" == 'true' ]]; then
             cat <<'EOF'
               Github actions are not authorized to push from workflows triggered by forks.
@@ -211,10 +227,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Login to Dockerhub
         id: docker_hub
-        uses: ./.github/actions/login-docker
+        uses: mozilla/addons/.github/actions/login-docker@f1d4daa008d908d52815aa41257db39b8cdef958
         with:
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_PASS }}
@@ -240,13 +258,20 @@ jobs:
       contents: 'read'
       id-token: 'write'
 
+    env:
+      registry: us-docker.pkg.dev
+      image: moz-fx-amo-prod/amo-prod/addons-server
+
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Login to GAR
         id: docker_gar
-        uses: ./.github/actions/login-gar
+        uses: mozilla/addons/.github/actions/login-gar@f1d4daa008d908d52815aa41257db39b8cdef958
         with:
+          registry: ${{ env.registry }}
           service_account: ${{ secrets.GAR_PUSHER_SERVICE_ACCOUNT_EMAIL }}
           workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
 
@@ -254,7 +279,71 @@ jobs:
         id: build
         uses: ./.github/actions/build-docker
         with:
-          registry: ${{ steps.docker_gar.outputs.registry }}
-          image: ${{ steps.docker_gar.outputs.image }}
+          registry: ${{ env.registry }}
+          image: ${{ env.image }}
           version: ${{ needs.context.outputs.docker_version }}
           push: true
+
+
+  notification:
+    runs-on: ubuntu-latest
+    name: Notification (${{ matrix.name }})
+    if: always()
+    needs: [context, push_dockerhub, push_gar]
+    strategy:
+      matrix:
+        include:
+          -
+            name: Push Dockerhub
+            result: ${{ needs.push_dockerhub.result }}
+            ref: ${{ github.event.head_commit.message }}
+            ref_link: ${{ github.event.head_commit.url }}
+          -
+            name: Push GAR
+            result: ${{ needs.push_gar.result }}
+            ref: ${{ github.event.release.name }}
+            ref_link: ${{ github.event.release.html_url }}
+
+    env:
+      event: ${{ github.event_name }}
+      workflow_id: ${{ github.run_id }}
+      workflow_url: ${{ format('{0}/{1}/actions/runs/{2}', github.server_url, github.repository, github.run_id) }}
+      actor: ${{ github.event.sender.login }}
+      repo_url: ${{ github.server_url }}/${{ github.repository }}
+      env: ci
+
+    steps:
+      - name: Notification Context
+        id: context
+        env:
+          result: ${{ matrix.result }}
+        run: |
+          dry_run="${{ contains(needs.*.result, 'skipped') }}"
+
+          if [[ "$result" == "success" ]]; then
+            emoji=":white_check_mark:"
+          elif [[ "$result" == "cancelled" ]]; then
+            emoji=":github-actions-cancelled:"
+          else
+            emoji=":x:"
+          fi
+
+          echo "dry_run=$dry_run" >> "$GITHUB_OUTPUT"
+          echo "emoji=$emoji" >> "$GITHUB_OUTPUT"
+          cat "$GITHUB_OUTPUT"
+
+      - name: Slack Notification
+        uses: mozilla/addons/.github/actions/slack-workflow-notification@10f7096e6b20007d59425e7309d3326519785bda
+        with:
+          slack_token: ${{ secrets.SLACK_TOKEN }}
+          slack_channel: ${{ vars.SLACK_ADDONS_PRODUCTION_CHANNEL }}
+          emoji: ${{ steps.context.outputs.emoji }}
+          actor: ${{ env.actor }}
+          conclusion: ${{ matrix.result }}
+          workflow_id: ${{ env.workflow_id }}
+          workflow_url: ${{ env.workflow_url }}
+          event: ${{ env.event }}
+          env: ${{ env.env }}
+          ref: ${{ matrix.ref }}
+          ref_link: ${{ matrix.ref_link }}
+          dry_run: ${{ steps.context.outputs.dry_run }}

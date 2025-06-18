@@ -7,6 +7,8 @@ on:
     # Every 5 minutes
     - cron: '*/5 * * * *'
 
+permissions: {}
+
 env:
   health_check_file: health_check.json
   health_check_blocks_file: health_check_blocks.json
@@ -18,10 +20,12 @@ concurrency:
 jobs:
   context:
     runs-on: ubuntu-latest
+    outputs:
+      is_fork: ${{ steps.context.outputs.is_fork }}
     steps:
-      - uses: actions/checkout@v4
-      - id: context
-        uses: ./.github/actions/context
+      - name: Context
+        id: context
+        uses: mozilla/addons/.github/actions/context@f1d4daa008d908d52815aa41257db39b8cdef958
 
   health_check:
     strategy:
@@ -33,36 +37,59 @@ jobs:
           - prod
 
     uses: ./.github/workflows/_health_check.yml
-    secrets: inherit
+    secrets:
+      SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
     with:
       environment: ${{ matrix.environment }}
       notify: ${{ github.event_name == 'schedule' }}
 
   post_health_check:
     if: always()
-    needs: health_check
+    needs: [context, health_check]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Retry Health Check
         if: needs.health_check.result == 'failure'
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
+          ref: ${{ github.ref }}
         run: |
           sleep 10
-          gh workflow run health_check.yml --ref ${{ github.ref }}
+          gh workflow run health_check.yml --ref "${ref}"
 
       - name: Notify Recovery
         if: needs.health_check.result == 'success' && github.event_name == 'workflow_dispatch'
-        uses: mozilla/addons/.github/actions/slack@main
+        uses: mozilla/addons/.github/actions/slack@f1d4daa008d908d52815aa41257db39b8cdef958
         with:
           slack_token: ${{ secrets.SLACK_TOKEN }}
           payload: |
             {
-              "channel": "${{ secrets.SLACK_ADDONS_PRODUCTION_CHANNEL }}",
+              "channel": "${{ vars.SLACK_ADDONS_PRODUCTION_CHANNEL }}",
               "text": ":white_check_mark: Health check has recovered",
             }
+
+      - name: Notify Failure
+        if: |
+          needs.context.outputs.is_fork == 'false' &&
+          github.event_name == 'schedule' &&
+          needs.health_check.result == 'failure'
+        uses: mozilla/addons/.github/actions/slack-workflow-notification@f1d4daa008d908d52815aa41257db39b8cdef958
+        with:
+          slack_token: ${{ secrets.SLACK_TOKEN }}
+          slack_channel: ${{ vars.SLACK_ADDONS_PRODUCTION_CHANNEL }}
+          emoji: ':x:'
+          actor: ${{ vars.SLACK_ACTOR }}
+          conclusion: ${{ needs.health_check.result }}
+          workflow_id: ${{ github.run_id }}
+          workflow_url: ${{ format('{0}/actions/runs/{1}', github.event.repository.html_url, github.run_id) }}
+          event: ${{ github.event_name }}
+          env: ci
+          ref: ${{ github.ref }}
+          ref_link: ${{ github.event.repository.html_url }}
 
 

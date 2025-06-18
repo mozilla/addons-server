@@ -92,16 +92,6 @@ It is split to its own workflow because it runs via a matrix strategy and spins 
 Reusable actions are like reusable workflows but they do not run on their own runner,
 but directly as a step in a given workflow runner container.
 
-(actions_context)=
-#### context
-
-[link](../../../.github/actions/context/action.yml)
-
-This action provides additional context based on the _github_ context object. Most importantly it helps us determine
-if we are running on a fork or if various meta events (releast_tag, release_master) match the current context.
-These contextual values are relevent globally and should return the same values no matter where context is called,
-so context runs as an action and accepts no inputs.
-
 (actions_build_docker)=
 #### build-docker
 
@@ -119,23 +109,6 @@ based on context.
 The main action to run our docker compose project. This action is configurable to run a specified command, with specified services,
 and even configurable compose file. Importantly this action will pull an image via the digest or version, and if it cannot find the image
 will build it locally to run the current state of the codebase.
-
-(actions_login_docker)=
-#### login-docker
-
-[link](../../../.github/actions/login-docker/action.yml)
-
-Login to dockerhub to push the publically available docker image. This action authenticates using repository secrets so cannot
-be used in forks. It also returns the registry and image properties expected by dockerhub in the tag.
-
-(actions_login_ga)=
-#### login-gar
-
-[link](../../../.github/actions/login-gar/action.yml)
-
-Login to [GAR][gar_link] (Google Artifact Registry) to push the production docker image.
-This action authenticates using repository secrets so cannot be used in forks.
-It also returns the registry and image properties expected by dockerhub in the tag.
 
 ### Actions vs Workflows
 
@@ -169,7 +142,7 @@ another workflow with the same parameters and expectations.
 
 ### github object contents depend on the event triggering the workflow
 
-One of the reasons we have the {ref}`context action <actions_context>` is because the information embedded in the github
+One of the reasons we have the context action is because the information embedded in the github
 object depends on the event that triggered a workflow, making finding a certain piece of information depend on the 'context'.
 Be careful using the github object directly as you must consider many edge cases. Consult the context action and potentially
 introduce an important contextual value their so it can be made consistent across different contexts.
@@ -196,7 +169,7 @@ not rely on secrets or have fallback behaviour in place.
 
 ### use context action to define global context
 
-Most global context should be defined in the {ref}`context <actions_context>` action instead of directly in workflows.
+Most global context should be defined in the context action instead of directly in workflows.
 
 ### prevent invalid workflow configurations
 

@@ -43,7 +43,7 @@ runs:
 
     - name: Docker meta
       id: meta
-      uses: docker/metadata-action@v5
+      uses: docker/metadata-action@902fa8ec7d6ecbf8d84d538b9b233a880e428804
       with:
         bake-target: web
         images: ${{ inputs.registry }}/${{ inputs.image }}
@@ -62,17 +62,22 @@ runs:
         DOCKER_ANNOTATIONS_FILE: ${{ steps.meta.outputs.bake-file-annotations }}
         DOCKER_METADATA_FILE: ${{ steps.context.outputs.metadata_file }}
         DOCKER_PUSH: ${{ inputs.push }}
+        version: ${{ steps.meta.outputs.version }}
+        git_sha: ${{ steps.context.outputs.git_sha }}
+        git_build_url: ${{ steps.context.outputs.git_build_url }}
       run: |
         make build \
-          DOCKER_VERSION="${{ steps.meta.outputs.version }}" \
-          DOCKER_COMMIT="${{ steps.context.outputs.git_sha }}" \
-          DOCKER_BUILD="${{ steps.context.outputs.git_build_url }}"
+          DOCKER_VERSION="$version" \
+          DOCKER_COMMIT="$git_sha" \
+          DOCKER_BUILD="$git_build_url"
 
     - name: Get image digest
       id: build_meta
       shell: bash
+      env:
+        metadata_file: ${{ steps.context.outputs.metadata_file }}
       run: |
-        metadata=$(cat ${{ steps.context.outputs.metadata_file }})
+        metadata=$(cat $metadata_file)
         echo "digest=$(echo $metadata | jq -r '.web."containerimage.digest"')" >> $GITHUB_OUTPUT
         echo "tag=$(echo $metadata | jq -r '.web."image.name"')" >> $GITHUB_OUTPUT
         cat $GITHUB_OUTPUT
