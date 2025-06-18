@@ -48,6 +48,7 @@ jobs:
       contents: 'read'
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         target: [actionlint, zizmor]
     steps:
@@ -286,15 +287,19 @@ jobs:
 
   notification:
     runs-on: ubuntu-latest
+    name: Notification (${{ matrix.name }})
+    if: always()
     needs: [context, push_dockerhub, push_gar]
     strategy:
       matrix:
         include:
           -
+            name: Push Dockerhub
             result: ${{ needs.push_dockerhub.result }}
             ref: ${{ github.event.head_commit.message }}
             ref_link: ${{ github.event.head_commit.url }}
           -
+            name: Push GAR
             result: ${{ needs.push_gar.result }}
             ref: ${{ github.event.release.name }}
             ref_link: ${{ github.event.release.html_url }}
@@ -308,34 +313,37 @@ jobs:
       env: ci
 
     steps:
-      - name: Emoji
-        id: emoji
+      - name: Notification Context
+        id: context
         env:
           result: ${{ matrix.result }}
         run: |
+          dry_run="${{ contains(needs.*.result, 'skipped') }}"
 
           if [[ "$result" == "success" ]]; then
             emoji=":white_check_mark:"
-          elif [[ "$result" == "skipped" ]]; then
+          elif [[ "$result" == "cancelled" ]]; then
             emoji=":github-actions-cancelled:"
           else
             emoji=":x:"
           fi
 
+          echo "dry_run=$dry_run" >> "$GITHUB_OUTPUT"
           echo "emoji=$emoji" >> "$GITHUB_OUTPUT"
           cat "$GITHUB_OUTPUT"
 
-      # - name: Slack Notification
-      #   uses: mozilla/addons/.github/actions/slack-workflow-notification@f1d4daa008d908d52815aa41257db39b8cdef958
-      #   with:
-      #     slack_token: ${{ secrets.SLACK_TOKEN }}
-      #     slack_channel: ${{ vars.SLACK_ADDONS_PRODUCTION_CHANNEL }}
-      #     emoji: ${{ steps.emoji.outputs.emoji }}
-      #     actor: ${{ env.actor }}
-      #     conclusion: ${{ matrix.result }}
-      #     workflow_id: ${{ env.workflow_id }}
-      #     workflow_url: ${{ env.workflow_url }}
-      #     event: ${{ env.event }}
-      #     env: ${{ env.env }}
-      #     ref: ${{ matrix.ref }}
-      #     ref_link: ${{ matrix.ref_link }}
+      - name: Slack Notification
+        uses: mozilla/addons/.github/actions/slack-workflow-notification@10f7096e6b20007d59425e7309d3326519785bda
+        with:
+          slack_token: ${{ secrets.SLACK_TOKEN }}
+          slack_channel: ${{ vars.SLACK_ADDONS_PRODUCTION_CHANNEL }}
+          emoji: ${{ steps.context.outputs.emoji }}
+          actor: ${{ env.actor }}
+          conclusion: ${{ matrix.result }}
+          workflow_id: ${{ env.workflow_id }}
+          workflow_url: ${{ env.workflow_url }}
+          event: ${{ env.event }}
+          env: ${{ env.env }}
+          ref: ${{ matrix.ref }}
+          ref_link: ${{ matrix.ref_link }}
+          dry_run: ${{ steps.context.outputs.dry_run }}
