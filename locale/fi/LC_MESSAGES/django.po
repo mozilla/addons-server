@@ -306,7 +306,7 @@ msgstr "Tuntematon sovelluksen vähimmäisversio määritetty"
 #: src/olympia/addons/fields.py:307 src/olympia/addons/fields.py:325 src/olympia/addons/serializers.py:643
 #, python-format
 msgid "Can not override compatibility information set in the manifest for this application (%s)"
-msgstr ""
+msgstr "Manifestissa asetettuja yhteensopivuustietoja ei voida ohittaa tälle sovellukselle (%s)"
 
 #: src/olympia/addons/fields.py:375
 #, python-format
@@ -393,7 +393,7 @@ msgstr "Lisäosan nimi ei voi sisältää Mozillan tai Firefoxin tavaramerkkejä
 #: src/olympia/addons/utils.py:130
 #, python-brace-format
 msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
-msgstr ""
+msgstr "Version {version_string} on oltava uudempi kuin edellinen hyväksytty versio {previous_version_string}."
 
 #: src/olympia/addons/validators.py:41
 msgid "Both `license` and `custom_license` cannot be provided together."
@@ -795,19 +795,19 @@ msgstr "Lisäosan {addon} kuvausta on muutettu."
 #: src/olympia/constants/activity.py:49
 #, python-brace-format
 msgid "Categories edited for {addon}."
-msgstr ""
+msgstr "Luokkia muokattu lisäosalle {addon}."
 
 #. L10n: {0} is the user role.
 #: src/olympia/constants/activity.py:57
 #, python-brace-format
 msgid "{user} ({0}) added to {addon}."
-msgstr ""
+msgstr "{user} ({0}) lisätty lisäosalle {addon}."
 
 #. L10n: {0} is the user role.
 #: src/olympia/constants/activity.py:67
 #, python-brace-format
 msgid "{user} ({0}) removed from {addon}."
-msgstr ""
+msgstr "{user} ({0}) poistettu lisäosalta {addon}."
 
 #: src/olympia/constants/activity.py:76
 #, python-brace-format
@@ -828,7 +828,7 @@ msgstr "{addon} otettu käyttöön."
 #: src/olympia/constants/activity.py:96
 #, python-brace-format
 msgid "{addon} status changed to {status}."
-msgstr ""
+msgstr "{addon} tilaksi asetettu {status}."
 
 #: src/olympia/constants/activity.py:103
 #, python-brace-format
@@ -868,7 +868,7 @@ msgstr "Hyväksytty"
 #: src/olympia/constants/activity.py:159
 #, python-brace-format
 msgid "{addon} {version} given preliminary review."
-msgstr ""
+msgstr "{addon} {version} on saanut alustavan katselmoinnin."
 
 #: src/olympia/constants/activity.py:160
 msgid "Preliminarily approved"
@@ -908,7 +908,7 @@ msgstr ""
 
 #: src/olympia/constants/activity.py:218
 msgid "More information requested"
-msgstr ""
+msgstr "Lisätietoja pyydetty"
 
 #: src/olympia/constants/activity.py:236
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
@@ -937,7 +937,7 @@ msgstr "{addon} poistettu kokoelmasta {collection}."
 #: src/olympia/constants/activity.py:286
 #, python-brace-format
 msgid "{rating} for {addon} written."
-msgstr ""
+msgstr "{rating} lisäosalle {addon} kirjoitettu."
 
 #. L10n: {0} is the application, {1} is the version of the app
 #: src/olympia/constants/activity.py:327
@@ -969,7 +969,7 @@ msgstr "{addon} {version} hylättiin."
 #: src/olympia/constants/activity.py:367
 #, python-brace-format
 msgid "{rating} for {addon} approved."
-msgstr ""
+msgstr "{rating} lisäosalle {addon} hyväksytty."
 
 #: src/olympia/constants/activity.py:378
 #, python-brace-format
@@ -1131,9 +1131,8 @@ msgid "{addon} {version} automatically created and signed from {0}."
 msgstr ""
 
 #: src/olympia/constants/activity.py:854
-#, fuzzy
 msgid "Version re-signed"
-msgstr "Versio %s otettu käyttöön uudelleen."
+msgstr "Versio uudelleen allekirjoitettu"
 
 #: src/olympia/constants/activity.py:862
 #, python-brace-format
@@ -6118,14 +6117,14 @@ msgstr ""
 #: src/olympia/ratings/models.py:411
 #, python-format
 msgid "%(value)s contains a non-alphanumeric character."
-msgstr ""
+msgstr "%(value)s sisältää muun kuin aakkosnumeerisen merkin."
 
 #: src/olympia/ratings/serializers.py:90
 #, python-brace-format
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Arvion teksti ei saa sisältää sanaa \"{0}\""
+msgstr[1] "Arvion teksti ei saa sisältää seuraavia sanoja \"{0}\""
 
 #: src/olympia/ratings/serializers.py:119
 msgid "This field is required."
@@ -6215,12 +6214,12 @@ msgstr ""
 
 #: src/olympia/reviewers/templates/reviewers/review.html:314
 msgid "<strong>Warning!</strong> Another user may be viewing this page before you."
-msgstr ""
+msgstr "<strong>Varoitus!</strong> Toinen käyttäjä saattaa tarkastella tätä sivua ennen sinua."
 
 #: src/olympia/reviewers/templates/reviewers/includes/user_ratings_list.html:5
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"
-msgstr ""
+msgstr "%(user)s %(date)s [%(ip_address)s]"
 
 #: src/olympia/reviewers/templates/reviewers/includes/version.html:5
 #, python-format
@@ -6728,7 +6727,7 @@ msgstr "Hylkää muutokset"
 #: src/olympia/translations/templates/translations/trans-menu.html:56
 #, python-brace-format
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
-msgstr ""
+msgstr "Haluatko varmasti poistaa kaikki <b>{0}</b> käännöstä? Tätä ei voi perua."
 
 #: src/olympia/translations/templates/translations/trans-menu.html:61
 msgid "Delete Locale"
@@ -6740,7 +6739,7 @@ msgstr "IP-osoite"
 
 #: src/olympia/users/forms.py:26
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
-msgstr ""
+msgstr "Anna kelvollinen IPv4- tai IPv6-osoite, esim. 127.0.0.1. Muunnetaan /32-verkoksi."
 
 #: src/olympia/users/forms.py:37
 msgid "You can only enter one, either IP Address or Network."
@@ -6773,7 +6772,7 @@ msgstr ""
 
 #: src/olympia/users/models.py:971
 msgid "The email address used for your account is not allowed for submissions."
-msgstr ""
+msgstr "Tililläsi käytettyä sähköpostiosoitetta ei sallita lähetyksiin."
 
 #: src/olympia/users/models.py:1050
 msgid ""
