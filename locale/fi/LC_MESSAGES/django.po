@@ -280,7 +280,7 @@ msgstr "URL-osoitteiden alussa on oltava https://."
 #: src/olympia/addons/fields.py:187
 #, python-brace-format
 msgid "License with slug={value} does not exist."
-msgstr ""
+msgstr "Lisenssiä, jossa slug={value}, ei ole olemassa."
 
 #: src/olympia/addons/fields.py:210
 #, python-brace-format
@@ -384,7 +384,7 @@ msgstr "Tili tarvitsee näyttönimen, ennen kuin se voidaan lisätä tekijäksi.
 
 #: src/olympia/addons/serializers.py:1255
 msgid "This slug cannot be used. Please choose another."
-msgstr ""
+msgstr "Tätä osoitemuotoa ei voi käyttää. Valitse toinen."
 
 #: src/olympia/addons/utils.py:39
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -5384,7 +5384,7 @@ msgstr "Helpoin tapa hallita YouTube-tilauksia."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:604
 msgid "Get the mouse scrollbar you've always wanted—specify width and color."
-msgstr ""
+msgstr "Hanki unelmiesi hiiren vierityspalkki – määritä leveys ja väri."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5510,7 +5510,7 @@ msgstr "Muokkaa verkkosivua ennen tulostamista. Poista mainokset tai muu ei-toiv
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:866
 msgid "Advanced reader for aggregating all of your RSS/Atom/RDF sources."
-msgstr ""
+msgstr "Edistynyt lukija kaikkien haluamiesi RSS-/Atom-/RDF-lähteiden kokoamiseen."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:884
@@ -5545,12 +5545,12 @@ msgstr "Menkää pois, inhottavat evästevaroitukset!"
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:911
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
-msgstr ""
+msgstr "Palaa yksinkertaisempaan aikaan – aikaan, jolloin hakutulokset näkyivät mainosten yläpuolella (Google- ja Bing-hakukoneiden yhteensopivuus)."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:914
 msgid "Get the mouse scrollbar you've always wanted — specify width and color."
-msgstr ""
+msgstr "Hanki unelmiesi hiiren vierityspalkki – määritä leveys ja väri."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:926
@@ -5570,7 +5570,7 @@ msgstr "Laita Firefox vaihtamaan värejä vuorokaudenajan mukaan."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:935
 msgid "Eliminate YouTube distractions. Remove related and recommended video suggestions, comments & more."
-msgstr ""
+msgstr "Poista YouTuben häiriötekijät. Poista aiheeseen liittyvät ja suositellut videoehdotukset, kommentit ja paljon muuta."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:938
@@ -5635,7 +5635,7 @@ msgstr "Paranna pelikokemustasi Steamissa."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:977
 msgid "Thumbs-up to bringing back thumbs-down."
-msgstr ""
+msgstr "Peukkua \"peukku alas\"-äänten palauttamiselle."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:980
@@ -5645,17 +5645,17 @@ msgstr "Käännä verkkosivustoja Firefoxissa — yksityisesti — ilman pilvipa
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:983
 msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
-msgstr ""
+msgstr "Estä aikaa vievät verkkosivustot. Estä ne kokonaan tai vain haluamillasi ajanjaksoilla."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:986
 msgid "Easily summarize emails, docs, articles, and video transcripts in English across the web — without sacrificing your privacy."
-msgstr ""
+msgstr "Tiivistä helposti sähköposteja, dokumentteja, artikkeleita ja videoiden litterointeja englanniksi kaikkialla verkossa – yksityisyyttäsi uhraamatta."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:989
 msgid "You’re in control. Turn off VPN when a website won’t work and set different locations for different websites. Windows only."
-msgstr ""
+msgstr "Sinä olet ohjaksissa. Poista VPN käytöstä, kun verkkosivusto ei toimi, ja aseta eri sijainnit eri verkkosivustoille. Vain Windowsille."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:992
@@ -5974,21 +5974,21 @@ msgstr "Manifest-tiedoston jäsentäminen epäonnistui."
 #: src/olympia/files/utils.py:319
 #, python-brace-format
 msgid "Lowest supported \"strict_min_version\" is {min_version}."
-msgstr ""
+msgstr "Alhaisin tuettu \"strict_min_version\" on {min_version}."
 
 #: src/olympia/files/utils.py:350
 #, python-brace-format
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
-msgstr ""
+msgstr "Tuntematon \"strict_min_version\" {appver} sovellukselle {app}"
 
 #: src/olympia/files/utils.py:364
 #, python-brace-format
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
-msgstr ""
+msgstr "Tuntematon \"strict_max_version\" {appver} sovellukselle {app}"
 
 #: src/olympia/files/utils.py:548
 msgid "Unsupported compression method in archive."
-msgstr ""
+msgstr "Arkiston pakkausmenetelmää ei tueta."
 
 #: src/olympia/files/utils.py:551
 msgid "Unsupported archive type."
@@ -5996,7 +5996,7 @@ msgstr "Arkistotyyppiä ei tueta."
 
 #: src/olympia/files/utils.py:560
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
-msgstr ""
+msgstr "Virheellinen tiedostonimi arkistossa. Varmista, että kaikki tiedostonimet on koodattu UTF-8- tai Latin1-merkistöllä."
 
 #. L10n: {0} is the name of the invalid file.
 #: src/olympia/files/utils.py:574
@@ -6008,11 +6008,11 @@ msgstr "Virheellinen tiedostonimi arkistossa: {0}"
 #: src/olympia/files/utils.py:582
 #, python-brace-format
 msgid "File exceeding size limit in archive: {0}"
-msgstr ""
+msgstr "Tiedosto ylittää kokorajoituksen arkistossa: {0}"
 
 #: src/olympia/files/utils.py:602
 msgid "This archive contains a forbidden special file (symbolic / hard link or device / block file)"
-msgstr ""
+msgstr "Tämä arkisto sisältää kielletyn erikoistiedoston (symbolisen / kovan linkin tai laite- / lohkotiedoston)"
 
 #: src/olympia/files/utils.py:637
 msgid "Uncompressed size is too large"
@@ -6076,7 +6076,7 @@ msgstr ""
 #: src/olympia/files/utils.py:1012
 #, python-brace-format
 msgid "Unsupported file type, please upload a supported file {extensions}."
-msgstr ""
+msgstr "Tiedostotyyppiä ei tueta, lataa tuettu tiedostotyyppi {extensions}."
 
 #: src/olympia/files/utils.py:1021
 msgid "Unexpected error."
@@ -6085,7 +6085,7 @@ msgstr "Odottamaton virhe."
 #: src/olympia/files/utils.py:1026
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
-msgstr ""
+msgstr "Tyyppi (%s) ei vastaa AMO:ssa olevan lisäosan tyyppiä (%s)"
 
 #: src/olympia/files/views.py:83 src/olympia/signing/views.py:128
 msgid "Missing \"upload\" key in multipart file data."
@@ -6319,7 +6319,7 @@ msgstr "Versio ei vastaa manifestitiedostoa."
 
 #: src/olympia/signing/views.py:173
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
-msgstr ""
+msgstr "Määritä lisäosan ID-tunnus manifestissa, jos se on yli 64 merkkiä pitkä."
 
 #: src/olympia/signing/views.py:187
 msgid "Invalid Add-on ID in URL or package"
@@ -6327,11 +6327,11 @@ msgstr "Virheellinen lisäosan ID-tunnus URL-osoitteessa tai paketissa"
 
 #: src/olympia/signing/views.py:211
 msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."
-msgstr ""
+msgstr "Et voi lisätä listattuja versioita lisäosaan, jonka tila on \"Näkymätön\"."
 
 #: src/olympia/signing/views.py:220
 msgid "You cannot add a listed version to this add-on via the API due to missing metadata. Please submit via the website"
-msgstr ""
+msgstr "Et voi lisätä tähän lisäosaan listattua versiota API:n kautta puuttuvien metatietojen vuoksi. Lähetä verkkosivuston kautta"
 
 #: src/olympia/signing/views.py:275
 msgid "No uploaded file for that add-on and version."
@@ -6339,7 +6339,7 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:4
 msgid "Overview"
-msgstr ""
+msgstr "Yhteenveto"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:11
 msgid "by Source"
@@ -6765,7 +6765,7 @@ msgstr "Anna kelvollinen IPv4- tai IPv6-CIDR-verkkoalue, esim. 127.0.0.1/28"
 
 #: src/olympia/users/models.py:849
 msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
-msgstr ""
+msgstr "Sijainnistasi on lähetetty useita käytäntöjämme rikkovia lähetyksiä. IP-osoite on estetty."
 
 #: src/olympia/users/models.py:961
 msgid "Email Pattern"
@@ -6774,6 +6774,8 @@ msgstr "Sähköpostiosoitteen kaava"
 #: src/olympia/users/models.py:964
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr ""
+"Kirjoita estettävän sähköpostiosoitteen koko muoto tai käytä Unix-tyylisiä jokerimerkkejä, esim. \"*@example.com\". Jos haluat estää verkkotunnuksen mukaan lukien aliverkkotunnukset, lisää toinen "
+"merkintä, esim. \"*@*.example.com\"."
 
 #: src/olympia/users/models.py:971
 msgid "The email address used for your account is not allowed for submissions."
