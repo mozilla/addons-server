@@ -347,6 +347,6 @@ networkx==3.4.2 \
     --hash=sha256:307c3669428c5362aab27c8a1260aa8f47c4e91d3891f48be0141738d8d053e1 \
     --hash=sha256:df5d4365b724cf81b8c6a7312509d0c22386097011ad1abe274afd5e9d3bbc5f
 # pydot is required by django-model-info
-pydot==4.0.0 \
-    --hash=sha256:12f16493337cade2f7631b87c8ccd299ba2e251f3ee5d0732a058df2887afe97 \
-    --hash=sha256:cf86e13a6cfe2a96758a9702537f77e0ac1368db8ef277b4d3b34473ea425c97
+pydot==4.0.1 \
+    --hash=sha256:869c0efadd2708c0be1f916eb669f3d664ca684bc57ffb7ecc08e70d5e93fee6 \
+    --hash=sha256:c2148f681c4a33e08bf0e26a9e5f8e4099a82e0e2a068098f32ce86577364ad5
