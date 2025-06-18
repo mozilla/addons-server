@@ -2971,7 +2971,7 @@ msgstr "64x64 px"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:48
 msgid "Used in add-on detail pages."
-msgstr ""
+msgstr "Käytetään lisäosien tietosivuilla."
 
 #. The size of the icon
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:56
@@ -3065,7 +3065,7 @@ msgstr "Lisätietoja Creative Commons -lisensseistä"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/invisible_channel_warning.html:2
 msgid "Your add-on is currently set to \"Invisible\"."
-msgstr ""
+msgstr "Lisäosasi on tällä hetkellä asetettu tilaan \"Invisible\" (\"Näkymätön\")."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/invisible_channel_warning.html:3
 msgid "While in this state, \"On your own\" is the only distribution method available."
@@ -3124,7 +3124,7 @@ msgstr "Poista lisäosa"
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:17
 #, python-brace-format
 msgid "Enter the following text to confirm your decision: {slug}"
-msgstr ""
+msgstr "Vahvista päätöksesi kirjoittamalla seuraava teksti: {slug}"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:25
 msgid "Please tell us why you are deleting your add-on:"
@@ -3292,11 +3292,11 @@ msgstr "Lisenssi:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:170
 msgid "Please choose a license appropriate for the rights you grant."
-msgstr ""
+msgstr "Valitse myöntämiisi oikeuksiin soveltuva lisenssi."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:194
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
-msgstr ""
+msgstr "Jos lisäosasi lähettää tietoja käyttäjän tietokoneelta, vaaditaan tietosuojakäytäntö, jossa selitetään, mitä tietoja lähetetään ja miten tietoja käytetään."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:207 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:21
 msgid "Notes to Reviewer:"
@@ -3304,7 +3304,7 @@ msgstr "Huomiot tarkastajalle:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:210 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:24
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
-msgstr ""
+msgstr "Onko jotain, mitä katselmointia suorittavien tulisi pitää mielessä tätä lisäosaa katselmoidessaan?"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:213 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:27
 msgid "Remember"
@@ -3319,12 +3319,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:224 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:38
 msgid "These notes will only be visible to you and our reviewers."
-msgstr ""
+msgstr "Nämä muistiinpanot näkyvät vain sinulle ja katselmointia suorittaville."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:229 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:42
-#, fuzzy
 msgid "Submit Version"
-msgstr "Lisää uusi lisäosa"
+msgstr "Lähetä versio"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:7
 msgid "Describe Version"
@@ -3365,9 +3364,8 @@ msgid "Submission Complete"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:10
-#, fuzzy
 msgid "Version Submitted"
-msgstr "Versiokommentit"
+msgstr "Versio lähetetty"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:14
 #, fuzzy
@@ -3702,7 +3700,7 @@ msgstr "Näkymätön"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:24
 msgid "Please complete your add-on by adding a version or missing metadata."
-msgstr ""
+msgstr "Viimeistele lisäosasi lisäämällä versio tai puuttuvat metatiedot."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:25
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
@@ -3714,7 +3712,7 @@ msgstr "Lisäosasi näkyy galleriassamme ja käyttäjät saavat automaattisia p�
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:30
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.com."
-msgstr ""
+msgstr "Sivuston ylläpitäjä on poistanut lisäosasi käytöstä, eikä sitä enää näytetä galleriassamme. Jos sinulla on kysyttävää, lähetä sähköpostia osoitteeseen amo-admins@mozilla.com."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:34
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
@@ -3741,7 +3739,7 @@ msgstr "Listattu versio:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:71
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
-msgstr ""
+msgstr "Tämä on lisäosasi versio, joka asennetaan, jos joku napsauttaa Asenna-painiketta osoitteessa addons.mozilla.org"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:80
 msgid "Next Listed Version:"
@@ -3787,7 +3785,7 @@ msgstr "Ylläpitäjän hallinta"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:53
 msgid "View Statistics Dashboard"
-msgstr ""
+msgstr "Näytä tilastojen kojelauta"
 
 #: src/olympia/devhub/templates/devhub/includes/agreement.html:8
 msgid "Review Policies and Rules"
@@ -3799,7 +3797,7 @@ msgstr "Olen lukenut ja hyväksynyt tämän sopimuksen, sekä säännöt ja käy
 
 #: src/olympia/devhub/templates/devhub/includes/agreement.html:16
 msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr ""
+msgstr "Tilillesi on asetettava näyttönimi, jotta käyttäjät tietävät, keneltä lisäosa on peräisin. Kirjoita nimi alle."
 
 #: src/olympia/devhub/templates/devhub/includes/agreement.html:36
 #, python-brace-format
@@ -3941,7 +3939,7 @@ msgstr "Sähköpostiosoite"
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:31
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
-msgstr ""
+msgstr "Minulle käy, että Mozilla käsittelee tietojani tässä %(link_open)stietosuojakäytännössä%(link_close)s kuvatulla tavalla."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:40
 #, fuzzy
@@ -4284,7 +4282,7 @@ msgstr "Tämän version poistaminen poistaa pysyvästi:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:277
 msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
-msgstr ""
+msgstr "<strong>Tärkeää:</strong> Kun versio on poistettu, et voi lähettää uutta versiota samalla versionumerolla."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:283
 msgid "Are you sure you wish to delete this version?"
@@ -4438,7 +4436,7 @@ msgstr "Korosta mikä tahansa teksti ja napsauta hiiren kakkospainiketta suoritt
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:53
 msgid "Enjoy visual bookmarks. Access your favorite sites from a tile layout."
-msgstr ""
+msgstr "Nauti visuaalisista kirjanmerkeistä. Käytä suosikkisivustojasi laatta-asettelun kautta."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:56
@@ -4448,7 +4446,7 @@ msgstr "Lisää automaattisesti Britannica-faktoja hakutuloksiin."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:59
 msgid "Block annoying ads and annotations from appearing on YouTube."
-msgstr ""
+msgstr "Estä ärsyttävien mainosten ja merkintöjen näkyminen YouTubessa."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:62
@@ -4469,7 +4467,7 @@ msgstr "Estä haitallisia verkkosivustoja käyttämästä tietokoneesi tehoja kr
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:71 src/olympia/discovery/strings.jinja2:677
 msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
-msgstr ""
+msgstr "Ota vastaan kielioppiapua missä tahansa verkossa kirjoittaessasi – sosiaalisessa mediassa, sähköpostissa, asiakirjoissa ja muualla."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4485,7 +4483,7 @@ msgstr "Käännöksiä vaivatta. Korosta teksti millä tahansa verkkosivulla —
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:80
 msgid "Tap academic wisdom. Access 10+ million research papers for free."
-msgstr ""
+msgstr "Hyödynnä akateemista viisautta. Käytä yli 10 miljoonaa tutkimusta ilmaiseksi."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:83
@@ -4502,7 +4500,7 @@ msgstr "Tummenna sivu videosoittimen ympäriltä, niin voit keskittyä katseluun
 #: src/olympia/discovery/strings.jinja2:89
 #, python-format
 msgid "Ecosia uses 80% of its search profits to fund tree-planting programs around the world. Put Ecosia right into Firefox search"
-msgstr ""
+msgstr "Ecosia käyttää 80 prosenttia hakutuloista puidenistutusohjelmien rahoittamiseen ympäri maailmaa. Lisää Ecosia Firefoxin hakuun"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:92 src/olympia/discovery/strings.jinja2:95
@@ -4542,7 +4540,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:113 src/olympia/discovery/strings.jinja2:803
 msgid "No need to write the same thing over and over. Save frequently-entered text to paste anytime."
-msgstr ""
+msgstr "Ei tarvetta kirjoittaa samaa asiaa kerta toisensa jälkeen. Tallenna usein kirjoitettu teksti liitettäväksi milloin tahansa."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
