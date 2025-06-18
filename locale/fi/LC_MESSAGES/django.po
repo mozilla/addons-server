@@ -297,11 +297,11 @@ msgstr "Virheellinen sovellus määritetty"
 
 #: src/olympia/addons/fields.py:285
 msgid "Unknown max app version specified"
-msgstr ""
+msgstr "Tuntematon sovelluksen enimmäisversio määritetty"
 
 #: src/olympia/addons/fields.py:297
 msgid "Unknown min app version specified"
-msgstr ""
+msgstr "Tuntematon sovelluksen vähimmäisversio määritetty"
 
 #: src/olympia/addons/fields.py:307 src/olympia/addons/fields.py:325 src/olympia/addons/serializers.py:643
 #, python-format
@@ -401,7 +401,7 @@ msgstr "Sekä `license` ja `custom_license` eivät ole käytettävissä yhdessä
 
 #: src/olympia/addons/validators.py:64
 msgid "This field, or custom_license, is required for listed versions."
-msgstr ""
+msgstr "Tämä kenttä, tai custom_license, on pakollinen listattuja versioita varten."
 
 #: src/olympia/addons/validators.py:91
 msgid "Wrong add-on type for this license."
@@ -413,12 +413,12 @@ msgstr "Mukautettuja lisenssejä ei tueta teemoille."
 
 #: src/olympia/addons/validators.py:132
 msgid "This field is required for add-ons with listed versions."
-msgstr ""
+msgstr "Tämä kenttä on pakollinen lisäosille, joiden versiot on listattu."
 
 #: src/olympia/addons/validators.py:158
 #, python-brace-format
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
-msgstr ""
+msgstr "Lisäosan metatiedot on asetettava listatun version luomiseksi: {missing_addon_metadata}."
 
 #: src/olympia/addons/validators.py:272
 msgid "A GUID must be specified in the manifest."
@@ -426,15 +426,15 @@ msgstr "GUID on määritettävä manifestissa."
 
 #: src/olympia/addons/validators.py:276
 msgid "GUID mismatch between the URL and manifest."
-msgstr ""
+msgstr "URL:n ja manifestin välinen GUID-ristiriita."
 
 #: src/olympia/addons/validators.py:291
 msgid "Source cannot be changed because this version has been reviewed by Mozilla."
-msgstr ""
+msgstr "Lähdettä ei voi muuttaa, koska Mozilla on katselmoinut tämän version."
 
 #: src/olympia/addons/validators.py:315
 msgid "This type of add-on does not allow custom compatibility."
-msgstr ""
+msgstr "Tämän tyyppinen lisäosa ei salli mukautettua yhteensopivuutta."
 
 #: src/olympia/addons/validators.py:332
 msgid "This endpoint is not valid for Themes."
@@ -683,7 +683,7 @@ msgstr ""
 
 #: src/olympia/api/authentication.py:108
 msgid "Valid user session not found matching the provided session key."
-msgstr ""
+msgstr "Annettua istuntoavainta vastaavaa kelvollista käyttäjäistuntoa ei löytynyt."
 
 #: src/olympia/api/authentication.py:122
 msgid "Access token refresh failed; user needs to login to FxA again."
@@ -747,7 +747,7 @@ msgstr "Vahvistus kehittäjäliittymäavaimille"
 
 #: src/olympia/api/throttling.py:113
 msgid "You have submitted this form too many times recently. Please try again after some time."
-msgstr ""
+msgstr "Olet lähettänyt tämän lomakkeen liian monta kertaa äskettäin. Yritä uudelleen jonkin ajan kuluttua."
 
 #: src/olympia/bandwagon/serializers.py:72
 msgid "This custom URL is already in use by another one of your collections."
@@ -759,7 +759,7 @@ msgstr "Tätä nimeä ei voi käyttää."
 
 #: src/olympia/bandwagon/serializers.py:105
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
-msgstr ""
+msgstr "Mukautetun URL-osoitteen on koostuttava kirjaimista, numeroista, alaviivoista tai yhdysviivoista."
 
 #: src/olympia/bandwagon/serializers.py:113
 msgid "This custom URL cannot be used."
@@ -1493,7 +1493,7 @@ msgstr "Sekalaiset"
 
 #: src/olympia/constants/categories.py:201
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
-msgstr ""
+msgstr "Lataa Firefox-laajennuksia, jotka voivat olla arvaamattomia ja luovia, mutta silti hyödyllisiä omituisiin tehtäviin."
 
 #: src/olympia/constants/categories.py:209
 msgid "Abstract"
@@ -1501,7 +1501,7 @@ msgstr "Abstraktit"
 
 #: src/olympia/constants/categories.py:211
 msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
-msgstr ""
+msgstr "Lataa Firefoxin taiteellisia ja käsitteellisiä teemoja. Tähän luokkaan kuuluvat värikkäät paletit ja muodot, fantasiamaisemat, leikkisät kissat ja psykedeeliset kukat."
 
 #: src/olympia/constants/categories.py:218
 msgid "Causes"
@@ -1529,7 +1529,7 @@ msgstr ""
 
 #: src/olympia/constants/categories.py:246
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
-msgstr ""
+msgstr "Lataa Firefox-teemoja Firefox-selainteemalla. Tähän luokkaan kuuluu värikkäitä ja monipuolisia Firefox-logon kuvauksia, mukaan lukien yleisempiä kettuaiheisia teemoja."
 
 #: src/olympia/constants/categories.py:253
 msgid "Foxkeh"
