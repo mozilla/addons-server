@@ -38,10 +38,26 @@ jobs:
       is_release_tag: ${{ steps.context.outputs.is_release_tag }}
       docker_version: ${{ steps.context.outputs.docker_version }}
 
+      short_sha: ${{ steps.git.outputs.short_sha }}
+      short_message: ${{ steps.git.outputs.short_message }}
+
     steps:
       - name: Set context
         id: context
         uses: mozilla/addons/.github/actions/context@f1d4daa008d908d52815aa41257db39b8cdef958
+
+      - name: Git
+        id: git
+        env:
+          sha: ${{ github.sha }}
+          message: ${{ github.event.head_commit.message}}
+        run: |
+          short_sha=$(echo "${sha}" | cut -c1-7)
+          short_message=$(echo "${message}" | tr -d '\n' | tr -dc '[:print:]' | cut -c1-140)
+
+          echo "short_sha=${short_sha}" >> "$GITHUB_OUTPUT"
+          echo "short_message=${short_message}" >> "$GITHUB_OUTPUT"
+          cat "$GITHUB_OUTPUT"
 
   test_actions:
     permissions:
@@ -296,8 +312,8 @@ jobs:
           -
             name: Push Dockerhub
             result: ${{ needs.push_dockerhub.result }}
-            ref: ${{ github.event.head_commit.message }}
-            ref_link: ${{ github.event.head_commit.url }}
+            ref: ${{ format('{0} {1}', needs.context.outputs.short_sha, needs.context.outputs.short_message) }}
+            ref_link: ${{ github.event.compare }}
           -
             name: Push GAR
             result: ${{ needs.push_gar.result }}
@@ -318,12 +334,15 @@ jobs:
         env:
           result: ${{ matrix.result }}
         run: |
-          dry_run="${{ contains(needs.*.result, 'skipped') }}"
+          dry_run=false
+          emoji=":x:"
 
           if [[ "$result" == "success" ]]; then
             emoji=":white_check_mark:"
           elif [[ "$result" == "cancelled" ]]; then
             emoji=":github-actions-cancelled:"
+          elif [[ "$result" == "skipped" ]]; then
+            dry_run=true
           else
             emoji=":x:"
           fi
