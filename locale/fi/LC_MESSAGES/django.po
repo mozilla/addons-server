@@ -4546,7 +4546,7 @@ msgstr "Ei tarvetta kirjoittaa samaa asiaa kerta toisensa jälkeen. Tallenna use
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:116 src/olympia/discovery/strings.jinja2:770
 msgid "Get more screen space by removing ads from your web-based inbox."
-msgstr ""
+msgstr "Hanki lisää näyttötilaa poistamalla mainokset selainpohjaisesta postilaatikostasi."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:119
@@ -4580,13 +4580,13 @@ msgstr "Hyödynnä ylimääräistä seurantasuojaa, kun selaat verkkosivuja."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:134
 msgid "Read ePub files right in Firefox—increase font size, page dimensions, and more."
-msgstr ""
+msgstr "Lue ePub-tiedostoja suoraan Firefoxissa – suurenna fonttikokoa, sivun mittoja ja paljon muuta."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:137 src/olympia/discovery/strings.jinja2:869
 msgid "Play YouTube videos by default in the highest quality, turn off annotations, and more."
-msgstr ""
+msgstr "Toista YouTube-videoita oletuksena parhaalla mahdollisella laadulla, poista merkinnät käytöstä ja paljon muuta."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:140
@@ -4632,17 +4632,17 @@ msgstr "Erinomainen lataustyökalu vain Windowsille."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:164
 msgid "Find out who's tracking you and where they may be sharing your information."
-msgstr ""
+msgstr "Ota selvää, kuka tai mikä taho seuraa sinua ja minne tietojasi saatetaan jakaa."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:167
 msgid "Surf anonymously. Browse the web with disguised identity—even appear as if you're browsing from another country."
-msgstr ""
+msgstr "Surffaa anonyymisti. Selaa verkkoa peitellyllä identiteetillä – voit jopa vaikuttaa siltä kuin selaisit toisesta maasta."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:170
 msgid "Enjoy visual bookmarks. Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr ""
+msgstr "Nauti visuaalisista kirjanmerkeistä. Käytä suosikkisivustojasi, äskettäin suljettuja välilehtiä ja paljon muuta – kaikki upean laatta-asettelun avulla."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:173
@@ -4664,7 +4664,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:182
 msgid "Save information from the internet to OneNote so you can edit, annotate, and more."
-msgstr ""
+msgstr "Tallenna tietoja Internetistä OneNoteen, jotta voit muokata, tehdä merkintöjä ja paljon muuta."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:185
@@ -4726,7 +4726,7 @@ msgstr "Napsauta hiiren kakkospainikkeella ja vedä linkkejä, jotka haluat avat
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:218
 msgid "Access recently closed tabs by right-clicking the icon in your toolbar."
-msgstr ""
+msgstr "Palaa äskettäin suljettuihin välilehtiin napsauttamalla hiiren kakkospainikkeella kuvaketta työkalupalkissa."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:221
@@ -4792,7 +4792,7 @@ msgstr "Lataa verkosta löytämiäsi kuvia."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:257
 msgid "Restrict access to inappropriate or undesired content with a filter."
-msgstr ""
+msgstr "Rajoita pääsyä sopimattomaan tai ei-toivottuun sisältöön suodattimella."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:260
@@ -4802,7 +4802,7 @@ msgstr "Avaa uusi välilehti nykyisen välilehden oikealle puolelle, ei välileh
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:263
 msgid "Conquer spam. Use clever temporary email addresses to remain anonymous and avoid spam."
-msgstr ""
+msgstr "Kukista roskaposti. Käytä väliaikaisia sähköpostiosoitteita pysyäksesi anonyymina ja välttääksesi roskapostia."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:266
@@ -5065,7 +5065,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:419
 msgid "Track productivity. Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
-msgstr ""
+msgstr "Seuraa tuottavuutta. Mittaa tietokoneella tai tietyissä työsovelluksissa, kuten Trello, JIRA, Basecamp, GitHub ja monissa muissa, viettämääsi aikaa."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:422
@@ -5107,9 +5107,8 @@ msgstr "Sulje ärsyttävät ponnahdusikkunat yhdellä napsautuksella."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:443
-#, fuzzy
 msgid "Find an interesting image on the web? Want to learn more about it?"
-msgstr "Löysitkö mielenkiintoisen kuvan verkosta? Käytä TinEye-palvelua löytääksesi kuvan alkuperän."
+msgstr "Löysitkö mielenkiintoisen kuvan verkosta? Haluatko lisätietoja siitä?"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:446
@@ -5254,7 +5253,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:528
 msgid "Use speech recognition to enable voice search on Google, Yahoo, and DuckDuckGo."
-msgstr ""
+msgstr "Käytä puheentunnistusta ottaaksesi käyttöön äänihaun Googlessa, Yahoossa ja DuckDuckGossa."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:531
