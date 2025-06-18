@@ -1525,7 +1525,7 @@ msgstr "Elokuva ja TV"
 
 #: src/olympia/constants/categories.py:237
 msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
-msgstr ""
+msgstr "Lataa Firefox-teemoja, joissa on elokuvien ja television vaikutus. Tähän luokkaan kuuluvat animet, kuten Uchiha Madara, elokuvat, kuten Matrix, ohjelmat (Game of Thrones) ja paljon muuta."
 
 #: src/olympia/constants/categories.py:246
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
@@ -1553,7 +1553,7 @@ msgstr "Musiikki"
 
 #: src/olympia/constants/categories.py:273
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
-msgstr ""
+msgstr "Lataa Firefox-teemoja musiikillisille kiinnostuksen kohteille ja artisteille. Tähän luokkaan kuuluu suosittuja bändejä, kuten Nirvana ja BTS, soittimia, musiikkivideoita ja paljon muuta."
 
 #: src/olympia/constants/categories.py:281
 msgid "Nature"
@@ -1561,7 +1561,7 @@ msgstr "Luonto"
 
 #: src/olympia/constants/categories.py:283
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
-msgstr ""
+msgstr "Lataa Firefox-teemoja, joissa on eläimiä ja luonnonmaisemia. Tähän luokkaan kuuluvat kukat, auringonlaskut, ketut, vuodenajat, planeetat, kissanpennut, linnut ja paljon muuta."
 
 #: src/olympia/constants/categories.py:293
 msgid "Download Firefox themes that are interesting, creative, and unique."
@@ -1573,7 +1573,7 @@ msgstr "Maisema"
 
 #: src/olympia/constants/categories.py:300
 msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
-msgstr ""
+msgstr "Lataa Firefox-teemoja, jotka kuvaavat ympäristöä ja luontoa. Tähän luokkaan kuuluvat auringonlaskut, rannat, kuvitukset, kaupunkisiluetit ja paljon muuta."
 
 #: src/olympia/constants/categories.py:307
 msgid "Seasonal"
@@ -1617,7 +1617,7 @@ msgstr "Mozillan julkinen lisenssi 2.0 (MPL)"
 
 #: src/olympia/constants/licenses.py:22
 msgid "Apache License 2.0"
-msgstr ""
+msgstr "Apache-lisenssi 2.0"
 
 #: src/olympia/constants/licenses.py:29
 msgid "GNU General Public License v2.0 only"
@@ -1685,27 +1685,27 @@ msgstr "Creative Commons Nimeä-JaaSamoin 3.0"
 
 #: src/olympia/constants/licenses.py:162
 msgid "Creative Commons Attribution 4.0"
-msgstr ""
+msgstr "Creative Commons Nimeä 4.0"
 
 #: src/olympia/constants/licenses.py:172
 msgid "Creative Commons Attribution-NonCommercial 4.0"
-msgstr ""
+msgstr "Creative Commons Nimeä-EiKaupallinen 4.0"
 
 #: src/olympia/constants/licenses.py:182
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
-msgstr ""
+msgstr "Creative Commons Nimeä-EiKaupallinen-EiMuutoksia 4.0"
 
 #: src/olympia/constants/licenses.py:192
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
-msgstr ""
+msgstr "Creative Commons Nimeä-EiKaupallinen-JaaSamoin 4.0"
 
 #: src/olympia/constants/licenses.py:202
 msgid "Creative Commons Attribution-NoDerivs 4.0"
-msgstr ""
+msgstr "Creative Commons Nimeä-EiMuutoksia 4.0"
 
 #: src/olympia/constants/licenses.py:212
 msgid "Creative Commons Attribution-ShareAlike 4.0"
-msgstr ""
+msgstr "Creative Commons Nimeä-JaaSamoin 4.0"
 
 #: src/olympia/constants/licenses.py:222
 msgid "The Unlicense"
@@ -1989,7 +1989,7 @@ msgstr "On valittava vähintään yksi sovellus."
 
 #: src/olympia/devhub/forms.py:1059
 msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr ""
+msgstr "Olet lähettänyt liian useasti äskettäin. Yritä uudelleen jonkin ajan kuluttua."
 
 #: src/olympia/devhub/forms.py:1108 src/olympia/signing/views.py:156
 #, python-brace-format
@@ -2026,7 +2026,7 @@ msgstr ""
 #: src/olympia/devhub/forms.py:1239
 #, python-brace-format
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
-msgstr ""
+msgstr "Varmista, että nimi ja yhteenveto sisältävät yhteensä enintään {limit_value} merkkiä (niillä on {show_value})."
 
 #: src/olympia/devhub/forms.py:1358
 #, python-brace-format
@@ -2078,7 +2078,7 @@ msgstr "JWT-salaisuus"
 #: src/olympia/devhub/forms.py:1515
 #, python-brace-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
-msgstr ""
+msgstr "Luo API-kirjautumistiedot käyttäjälle <strong>{name}</strong> napsauttamalla alla olevaa vahvistuspainiketta."
 
 #: src/olympia/devhub/forms.py:1521
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
@@ -2098,7 +2098,7 @@ msgstr "Virheellinen tai rikkinäinen lisäosatiedosto."
 
 #: src/olympia/devhub/tasks.py:370
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
-msgstr ""
+msgstr "Sinulle kuuluva kehittäjän API-avain löytyi lähetetystä tiedostosta. Tilisi suojaamiseksi avain kumotaan."
 
 #: src/olympia/devhub/tasks.py:377
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
@@ -2106,7 +2106,7 @@ msgstr ""
 
 #: src/olympia/devhub/tasks.py:647
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
-msgstr ""
+msgstr "Mozillan tietoturvailmoitus: AMO API -kirjautumistiedot on kumottu"
 
 #: src/olympia/devhub/utils.py:86
 #, python-format
