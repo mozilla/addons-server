@@ -384,8 +384,25 @@ class ContentActionRejectVersion(ContentActionDisableAddon):
     def should_hold_action(self):
         return (
             super().should_hold_action()
-            and self.target_versions.filter(file__is_signed=True).exists()
+            # Only hold rejections for 2nd level approval if...
+            # At least one of the version was listed and signed already...
+            and self.target_versions.filter(
+                channel=amo.CHANNEL_LISTED, file__is_signed=True
+            ).exists()
+            # And no remaining public listed versions exists (pending rejection
+            # don't count) - i.e., going through with the rejection would make
+            # the listing go away.
+            and not self.remaining_public_listed_versions()
+            .exclude(reviewerflags__pending_rejection__isnull=False)
+            .exists()
         )
+
+    def remaining_public_listed_versions(self):
+        """Return all versions belonging to the add-on that are public and
+        listed except for those this action would reject."""
+        return self.target.versions.filter(
+            channel=amo.CHANNEL_LISTED, file__status=amo.STATUS_APPROVED
+        ).exclude(id__in=self.target_versions)
 
     def notify_stakeholders(self, rejection_type):
         if (
@@ -417,12 +434,7 @@ class ContentActionRejectVersion(ContentActionDisableAddon):
                         )
                     ]
             new_current_version = (
-                self.target.versions.filter(
-                    channel=amo.CHANNEL_LISTED, file__status=amo.STATUS_APPROVED
-                )
-                .exclude(id__in=(ver.id for ver in versions))
-                .order_by('created')
-                .last()
+                self.remaining_public_listed_versions().order_by('created').last()
             )
             context_dict = {
                 'new_current_version': new_current_version,

@@ -1498,6 +1498,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         assert action.should_hold_action() is False
 
         self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED)
+        self.decision.target_versions.add(self.another_version)
         assert self.decision.target_versions.filter(file__is_signed=True).exists()
         assert action.should_hold_action() is True
 
@@ -1505,6 +1506,44 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         self.decision = ContentDecision.objects.get(id=self.decision.id)
         assert not self.decision.target_versions.filter(file__is_signed=True).exists()
         assert action.should_hold_action() is False
+
+    def test_should_hold_action_some_versions_remain(self):
+        self.decision.update(action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON)
+        self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED)
+        self.version.file.update(is_signed=True)
+
+        # While there are more public listed versions that wouldn't be affected
+        # the rejection can go through without being held.
+        action = self.ActionClass(self.decision)
+        assert action.remaining_public_listed_versions().exists()
+        assert action.should_hold_action() is False
+
+        # If that last remaining version is unlisted, suddenly we do hold the
+        # rejection - no public listed versions would remain if that went
+        # through.
+        self.another_version.update(channel=amo.CHANNEL_UNLISTED)
+        assert not action.remaining_public_listed_versions().exists()
+        assert action.should_hold_action() is True
+
+        # If that last remaining version is listed but not public, then we have
+        # to hold the rejection once more, since no public listed versions
+        # would remain once again.
+        self.another_version.update(channel=amo.CHANNEL_LISTED)
+        self.another_version.file.update(status=amo.STATUS_DISABLED)
+        assert not action.remaining_public_listed_versions().exists()
+        assert action.should_hold_action() is True
+
+        # If that version is public but pending rejection we still have to hold
+        # the rejection.
+        self.another_version.file.update(status=amo.STATUS_APPROVED)
+        VersionReviewerFlags.objects.create(
+            version=self.another_version,
+            pending_rejection=datetime.now(),
+            pending_rejection_by=user_factory(),
+            pending_content_rejection=False,
+        )
+        assert action.remaining_public_listed_versions().exists()
+        assert action.should_hold_action() is True
 
     def test_target_appeal_decline(self):
         self.version.file.update(status=amo.STATUS_DISABLED)
