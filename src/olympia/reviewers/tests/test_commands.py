@@ -557,6 +557,25 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         assert nhr.reason == NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
         assert nhr.is_active
 
+    def test_disapproves_is_promoted_but_decision_waiting_for_2nd_level_exists(self):
+        self.version.autoapprovalsummary = AutoApprovalSummary(
+            is_promoted_prereview=True
+        )
+        decision = ContentDecision.objects.create(
+            addon=self.addon, action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
+        )
+        decision.target_versions.add(self.version)
+        command = auto_approve.Command()
+        command.disapprove(self.version)
+        assert not self.version.needshumanreview_set.filter(is_active=True).exists()
+
+        # Once the decision gets approved at the 2nd level, if the version is
+        # still awaiting review, we flag it as normal.
+        decision.update(action_date=datetime.now())
+        command = auto_approve.Command()
+        command.disapprove(self.version)
+        assert self.version.needshumanreview_set.filter(is_active=True).exists()
+
     def test_prevent_multiple_runs_in_parallel(self):
         # Create a lock manually, the command should exit immediately without
         # doing anything.

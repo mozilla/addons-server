@@ -218,11 +218,20 @@ class Command(BaseCommand):
         # could leave the review queue and re-enter it multiple times.
         for key in verdicts_to_reasons:
             reason = verdicts_to_reasons[key]
-            if not version.pending_rejection and (
-                getattr(version.autoapprovalsummary, key)
-                and not version.needshumanreview_set.filter(
-                    reason=reason, is_active=True
-                ).exists()
+            was_not_auto_approved_because_of_that_reason = getattr(
+                version.autoapprovalsummary, key
+            )
+            has_decision_waiting_for_2nd_level_approval = (
+                version.contentdecision_set.awaiting_action().exists()
+            )
+            already_has_same_active_nhr = version.needshumanreview_set.filter(
+                reason=reason, is_active=True
+            ).exists()
+            if (
+                was_not_auto_approved_because_of_that_reason
+                and not version.pending_rejection
+                and not has_decision_waiting_for_2nd_level_approval
+                and not already_has_same_active_nhr
             ):
                 NeedsHumanReview.objects.create(version=version, reason=reason)
 
