@@ -4751,7 +4751,7 @@ msgstr "Etsi ja selvitä rikkinäiset kirjanmerkit, kaksoiskappaleet jne."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:233
 msgid "Get things done with a helpful to-do list that syncs across devices."
-msgstr ""
+msgstr "Hoida asioita hyödyllisen tehtävälistan avulla, joka synkronoituu eri laitteiden välillä."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:236
@@ -5124,12 +5124,12 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:452 src/olympia/discovery/strings.jinja2:683
 msgid "Learn where any website's server is geographically located. Be an informed web traveler."
-msgstr ""
+msgstr "Ota selvää, missä minkä tahansa verkkosivuston palvelin sijaitsee maantieteellisesti. Ole tietoinen verkkomatkailija."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:455
 msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? SoundFixer can help."
-msgstr ""
+msgstr "Korjaa ärsyttävä ääni. Onko verkkosivuston äänenvoimakkuus liian hiljainen? Liian kova? SoundFixer voi auttaa."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:458
@@ -5139,7 +5139,7 @@ msgstr "Muokkaa verkkosivua ennen tulostamista. Tee visuaalisia muokkauksia — 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:461
 msgid "Track Amazon pricing history. Make smart shopping decisions by receiving alerts for price changes on Amazon products you're interested in."
-msgstr ""
+msgstr "Seuraa Amazonin hinnoitteluhistoriaa. Tee älykkäitä ostopäätöksiä vastaanottamalla ilmoituksia sinua kiinnostavien Amazon-tuotteiden hintamuutoksista."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5161,7 +5161,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:476
 msgid "Simplify tabs. Organize your many open tabs in a tidy vertical sidebar."
-msgstr ""
+msgstr "Yksinkertaista välilehtiä. Järjestä avoimet välilehdet siistiin pystysuoraan sivupalkkiin."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:479
@@ -5177,7 +5177,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:485 src/olympia/discovery/strings.jinja2:830
 msgid "Stop wasting valuable memory space with inactive tabs."
-msgstr ""
+msgstr "Lopeta arvokkaan keskusmuistin tuhlaaminen passiivisiin välilehtiin."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:488
@@ -5192,7 +5192,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:495
 msgid "Get grammar help anywhere you write on the web — social media, email, docs, and more."
-msgstr ""
+msgstr "Ota vastaan kielioppiapua missä tahansa verkossa kirjoittaessasi – sosiaalisessa mediassa, sähköpostissa, asiakirjoissa ja muualla."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5258,7 +5258,7 @@ msgstr "Käytä puheentunnistusta ottaaksesi käyttöön äänihaun Googlessa, Y
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:531
 msgid "Track products and get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
-msgstr ""
+msgstr "Seuraa tuotteita ja vastaanota ilmoitus, kun sinua kiinnostavien tuotteiden hinnat laskevat Amazonissa, Best Buyssa, eBayssa, Home Depotissa ja Walmartissa."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5270,7 +5270,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:537 src/olympia/discovery/strings.jinja2:887
 msgid "Get a more advanced search page on Firefox for Android."
-msgstr ""
+msgstr "Hanki edistynyt hakusivu Firefoxin Android-versiolle."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:540
@@ -5334,7 +5334,7 @@ msgstr "Estä kaikki mainokset — videot, ponnahdusikkunat, bannerit ja muut."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:578 src/olympia/discovery/strings.jinja2:839
 msgid "Watch streaming media with friends and family anywhere."
-msgstr ""
+msgstr "Katso suoratoistomediaa ystävien ja perheen kanssa missä tahansa."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5456,12 +5456,12 @@ msgstr "Löysitkö mielenkiintoisen kuvan verkosta? Käytä TinEye-palvelua selv
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:704
 msgid "Save images easily — just grab them from your current tab."
-msgstr ""
+msgstr "Tallenna kuvat helposti – nappaa ne vain nykyiseltä välilehdeltäsi."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:707
 msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title & more."
-msgstr ""
+msgstr "Nauti äärimmäisestä välilehtien hallinnasta – sulje välilehtien kaksoiskappaleet, yhdistä ikkunat, kopioi välilehden otsikko ja paljon muuta."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:725
@@ -5531,7 +5531,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:899
 msgid "Tired of that \"Video paused. Continue watching?\" message? Listen to your favorite music uninterrupted on YouTube."
-msgstr ""
+msgstr "Oletko kyllästynyt \"Video keskeytetty. Jatketaanko katselua?\"-viestiin? Kuuntele suosikkimusiikkiasi keskeytyksettä YouTubessa."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:905
@@ -5571,7 +5571,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:938
 msgid "Take emojis with you everywhere on the web."
-msgstr ""
+msgstr "Ota emojit mukaasi kaikkialle verkkoon."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:944
@@ -5636,7 +5636,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:980
 msgid "Translate websites in Firefox — privately — without using the cloud."
-msgstr ""
+msgstr "Käännä verkkosivustoja Firefoxissa — yksityisesti — ilman pilvipalvelua."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:983
@@ -6059,7 +6059,7 @@ msgstr ""
 
 #: src/olympia/files/utils.py:954
 msgid "You cannot submit a Mozilla Signed Extension"
-msgstr ""
+msgstr "Et voi lähettää Mozillan allekirjoittamaa laajennusta"
 
 #: src/olympia/files/utils.py:958
 msgid "You cannot submit a language pack"
@@ -6149,11 +6149,11 @@ msgstr "Tätä versiota lisäosasta ei ole olemassa tai se ei ole julkinen."
 
 #: src/olympia/ratings/serializers.py:270
 msgid "You can't leave a review on your own add-on."
-msgstr ""
+msgstr "Et voi jättää arviota omasta lisäosastasi."
 
 #: src/olympia/ratings/serializers.py:285
 msgid "You can't leave more than one review for the same version of an add-on."
-msgstr ""
+msgstr "Et voi jättää kuin yhden arvion samasta lisäosan versiosta."
 
 #: src/olympia/ratings/serializers.py:317
 #, python-brace-format
