@@ -1536,7 +1536,7 @@ msgstr "Foxkeh"
 
 #: src/olympia/constants/categories.py:255
 msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
-msgstr ""
+msgstr "Lataa Firefox-teemoja japanilaisella Firefoxilla. Tämä luokka sisältää teemoja, jotka kuvaavat söpöä Foxkeh-maskottia erilaisissa asennoissa erilaisissa maisemissa."
 
 #: src/olympia/constants/categories.py:262
 msgid "Holiday"
@@ -1544,7 +1544,7 @@ msgstr "Loma"
 
 #: src/olympia/constants/categories.py:264
 msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
-msgstr ""
+msgstr "Lataa Firefox-teemoja, joissa on juhlapäiviä. Tähän luokkaan kuuluvat joulu, halloween, kiitospäivä, Pyhän Patrickin päivä, pääsiäinen, itsenäisyyspäivä ja paljon muuta."
 
 #: src/olympia/constants/categories.py:271
 msgid "Music"
@@ -1604,7 +1604,7 @@ msgstr "Verkkosivustot"
 
 #: src/olympia/constants/categories.py:336
 msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
-msgstr ""
+msgstr "Lataa Firefox-teemoja, jotka vangitsevat verkon ytimen – kiehtovia, epätavallisia ja omaleimaisia."
 
 #: src/olympia/constants/categories.py:341 src/olympia/constants/categories.py:342
 msgid "General"
@@ -1860,12 +1860,12 @@ msgstr "Omien lisäosien viimeaikaiset muutokset"
 #: src/olympia/devhub/file_validation_annotations.py:55
 #, python-brace-format
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
-msgstr ""
+msgstr "Open Search -lisäosia {blog_link_open}ei enää tueta AMO:ssa{blog_link_close}. Voit luoda {doc_link_open}hakulaajennuksen sen sijaan{doc_link_close}."
 
 #: src/olympia/devhub/file_validation_annotations.py:105
 #, python-brace-format
 msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr ""
+msgstr "Manifestin versiota 3 ei tällä hetkellä tueta lähetystä varten. {start_href}Lue lisää tuen aikajanasta{end_href}."
 
 #: src/olympia/devhub/forms.py:85
 msgid "This slug is already in use. Please choose another."
@@ -2321,7 +2321,7 @@ msgstr ""
 
 #: src/olympia/devhub/views.py:1578
 msgid "Add-on uploads are temporarily unavailable"
-msgstr ""
+msgstr "Lisäosien lähetykset eivät ole tilapäisesti käytettävissä"
 
 #: src/olympia/devhub/views.py:1947
 msgid "Review requested."
@@ -2329,7 +2329,7 @@ msgstr "Tarkastusta tarvitaan."
 
 #: src/olympia/devhub/views.py:1949
 msgid "You must provide further details to proceed."
-msgstr ""
+msgstr "Sinun on annettava lisätietoja jatkaaksesi."
 
 #: src/olympia/devhub/views.py:2051
 msgid "Your old credentials were revoked and are no longer valid."
@@ -2337,7 +2337,7 @@ msgstr "Vanhat kirjautumistietosi on kumottu, eivätkä ne ole enää voimassa."
 
 #: src/olympia/devhub/views.py:2070
 msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
-msgstr ""
+msgstr "Pidä API-avaimesi salassa; älä koskaan jaa niitä kenenkään kanssa, mukaan lukien Mozillan avustajien."
 
 #: src/olympia/devhub/views.py:2087
 msgid "New API key created"
@@ -2447,6 +2447,7 @@ msgstr "Etsi"
 #, python-format
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
 msgstr ""
+"Olemme havainneet, että sähköpostiosoitteesi \"%(email)s\" ei voi vastaanottaa meiltä sähköposteja. Päivitä sähköpostiosoitteesi sellaiseen osoitteeseen, johon voit vastaanottaa sähköposteja meiltä."
 
 #: src/olympia/devhub/templates/devhub/suppressed_email.html:8
 msgid "Learn more"
@@ -2500,11 +2501,11 @@ msgstr "Sähköpostiosoitetta ei voitu vahvistaa. Vahvistuslinkki on vanhentunut
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:24
 msgid "We are sending an email to you, please be patient... <div class=\"loader\"></div> The page will automatically refresh."
-msgstr ""
+msgstr "Lähetämme sinulle sähköpostia, ole kärsivällinen... <div class=\"loader\"></div> Sivu päivittyy automaattisesti."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:30
 msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again later."
-msgstr ""
+msgstr "Vahvistussähköpostin toimituksen vahvistaminen kestää odotettua kauemmin. Yritä myöhemmin uudelleen."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:34
 msgid "Success!"
@@ -2516,6 +2517,8 @@ msgid ""
 "An email with a confirmation link has been sent to your email address: %(email)s. Please click the link to confirm your email address. If you did not receive the email, please check your spam "
 "folder."
 msgstr ""
+"Vahvistuslinkin sisältävä sähköpostiviesti on lähetetty sähköpostiosoitteeseesi: %(email)s. Vahvista sähköpostiosoitteesi napsauttamalla linkkiä. Jos et saanut sähköpostia, tarkista "
+"roskapostikansiosi."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:39
 #, python-format
@@ -2523,6 +2526,8 @@ msgid ""
 "The provided code is invalid, unauthorized, expired or incomplete. Please use the link in the email sent to your email address %(email)s. If the code is still not working, please request a new "
 "email."
 msgstr ""
+"Annettu koodi on virheellinen, luvaton, vanhentunut tai puutteellinen. Käytä sähköpostiosoitteeseesi %(email)s lähetetyssä sähköpostissa olevaa linkkiä. Jos koodi ei vieläkään toimi, pyydä uusi "
+"sähköposti."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:49
 msgid "<strong>Email history:</strong> The table below shows all emails we have attempted to send to you in the last 2 days."
@@ -2560,17 +2565,17 @@ msgstr "Päivitä tulokset"
 #: src/olympia/devhub/templates/devhub/verify_email.html:101
 #, python-format
 msgid "If you encounter issues, please see our <a %(a_attrs)s>troubleshooting suggestions</a> on Firefox Extension Workshop."
-msgstr ""
+msgstr "Jos kohtaat ongelmia, katso <a %(a_attrs)s>vianetsintäehdotuksemme</a> Firefox-laajennusten työpajassa."
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html:4 src/olympia/devhub/templates/devhub/addons/activity.html:17
 msgid "Recent Activity for My Add-ons"
-msgstr ""
+msgstr "Omien lisäosien viimeaikainen toiminta"
 
 #. first parameter is the name of an Addon
 #: src/olympia/devhub/templates/devhub/addons/activity.html:15
 #, python-brace-format
 msgid "Recent Activity for {0}"
-msgstr ""
+msgstr "Lisäosan {0} viimeaikainen toiminta"
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html:33
 #, python-format
@@ -2643,7 +2648,7 @@ msgstr "Beetaversio {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html:32 src/olympia/devhub/templates/devhub/addons/submit/done.html:15
 msgid "Preview still being generated - come back later or refresh the page."
-msgstr ""
+msgstr "Esikatselua luodaan edelleen - palaa myöhemmin tai päivitä sivu."
 
 #: src/olympia/devhub/templates/devhub/addons/invitation.html:3 src/olympia/users/utils.py:98
 #, python-brace-format
@@ -2730,7 +2735,7 @@ msgstr "Tunnisteet"
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:20
 #, python-brace-format
 msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
-msgstr ""
+msgstr "Tunnisteet auttavat käyttäjiä löytämään lisäosasi. Sinulla voi olla enintään {0} tunnistetta. Valitse vain tunnisteet, jotka ovat olennaisia lisäosasi kannalta."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:28
 #, python-brace-format
@@ -3251,7 +3256,7 @@ msgstr "Lisäosan osoite:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:56 src/olympia/devhub/templates/devhub/addons/submit/describe.html:77
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
-msgstr ""
+msgstr "Käytä URL-osoitteessa vain kirjaimia, numeroita, alaviivoja ja viivoja."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:67
 msgid "Name:"
@@ -3315,6 +3320,8 @@ msgid ""
 "If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
 "%(policy_requirements_open)spolicy requirements%(policy_requirements_close)s."
 msgstr ""
+"Jos lähetit lähdekoodin, mutta et sisällyttänyt ohjeita, sinun on annettava ohjeet tässä. Anna vaiheittaiset koostamisohjeet luodaksesi tarkan kopion lisäosan koodista "
+"%(policy_requirements_open)skäytäntövaatimusten%(policy_requirements_close)s mukaisesti."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:224 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:38
 msgid "These notes will only be visible to you and our reviewers."
@@ -3373,7 +3380,7 @@ msgstr "Versiokommentit"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:19
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
-msgstr ""
+msgstr "Valmis! Tämä versio on saatavilla, kun se on läpäissyt katselmoinnin. Saat ilmoituksen, kun se on katselmoitu."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:24
 #, python-format
@@ -3407,7 +3414,7 @@ msgstr "Muokkaa versiota {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:59
 msgid "As a reminder, your add-on is subject to manual review at any time."
-msgstr ""
+msgstr "Muistutuksena, että lisäosasi voidaan katselmoida manuaalisesti milloin tahansa."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:64
 msgid "Go to My Submissions"
@@ -3463,7 +3470,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:57
 msgid "A build script that executes all necessary technical steps."
-msgstr ""
+msgstr "Koostamisskripti, joka suorittaa kaikki tarvittavat tekniset vaiheet."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:58
 msgid "Operating system and build environment requirements."
@@ -3519,7 +3526,7 @@ msgstr "Siirtämisen jälkeen tiedostollesi tehdään automaattisesti joukko kel
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:34
 #, python-format
 msgid "The maximum file size accepted is %(max_size)s. If your add-on is larger than %(max_size)s, it will fail validation."
-msgstr ""
+msgstr "Suurin hyväksytty tiedostokoko on %(max_size)s. Jos lisäosasi on suurempi kuin %(max_size)s, sen vahvistus epäonnistuu."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:59
 msgid "Which applications is this version compatible with?"
@@ -3919,9 +3926,8 @@ msgid "Matrix"
 msgstr "Matrix"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:10
-#, fuzzy
 msgid "Community forum"
-msgstr "Yhteisö ja tuki"
+msgstr "Yhteisökeskus"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:14
 msgid "Extensions Developers Newsletter"
@@ -3988,7 +3994,7 @@ msgstr "Kirjoita hieman koodia"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:39
 msgid "Help make add-ons better by contributing your coding skills."
-msgstr ""
+msgstr "Auta parantamaan lisäosia jakamalla koodaustaitojasi."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:43
 msgid "Get started"
