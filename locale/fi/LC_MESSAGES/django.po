@@ -569,6 +569,8 @@ msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
 "parties."
 msgstr ""
+"Näet tämän viestin, koska tämä sivusto vaatii CSRF-evästeen lomakkeiden lähettämisen yhteydessä. Tämä eväste on pakollinen turvallisuussyistä; sen varmistamiseksi, etteivät kolmannet osapuolet ole "
+"kaapanneet selaintasi."
 
 #: src/olympia/amo/templates/amo/404.html:3
 msgid "Not Found"
@@ -1174,7 +1176,7 @@ msgstr ""
 
 #: src/olympia/constants/activity.py:1007
 msgid "Add-on slug changed"
-msgstr ""
+msgstr "Lisäosan osoitemuoto muuttui"
 
 #: src/olympia/constants/activity.py:1014
 #, python-brace-format
@@ -1919,7 +1921,7 @@ msgstr "Ainakin yksi tekijä tulee olla listattu."
 
 #: src/olympia/devhub/forms.py:507
 msgid "Slug incorrect."
-msgstr ""
+msgstr "Osoitemuoto on virheellinen."
 
 #: src/olympia/devhub/forms.py:542 src/olympia/devhub/templates/devhub/versions/edit.html:88
 msgid "Details"
@@ -1960,7 +1962,7 @@ msgstr "Määritä lisäosasi yksityisyyskäytäntö:"
 #: src/olympia/devhub/forms.py:724
 #, python-brace-format
 msgid "Unsupported file type, please upload an archive file {extensions}."
-msgstr ""
+msgstr "Tiedostotyyppiä ei tueta, lataa arkistotiedosto {extensions}."
 
 #: src/olympia/devhub/forms.py:768
 msgid "View current"
@@ -2804,6 +2806,8 @@ msgid ""
 "The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
 "characters and a minimum length of 2 characters for each."
 msgstr ""
+"Yhteenvedon tulee selittää selkeästi ja ytimekkäästi, mitä lisäosasi tekee. Sekä nimi että yhteenveto näkyvät tuotesivulla ja hakutuloksissa. Niiden yhteenlaskettu enimmäispituus on 70 merkkiä ja "
+"vähimmäispituus 2 merkkiä kummallekin."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:43 src/olympia/devhub/templates/devhub/addons/edit/describe.html:105 src/olympia/devhub/templates/devhub/addons/submit/describe.html:30
 msgid "Summary"
@@ -2815,7 +2819,7 @@ msgstr "Lisäosan URL"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:59 src/olympia/devhub/templates/devhub/addons/edit/describe.html:88
 msgid "Choose a short, unique URL slug for your add-on."
-msgstr ""
+msgstr "Valitse lisäosallesi lyhyt, yksilöllinen URL-osoitemuoto."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:69
 msgid "View Listing"
