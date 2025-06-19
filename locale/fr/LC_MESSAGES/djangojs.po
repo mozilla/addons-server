@@ -35,8 +35,8 @@ msgstr "Le nom de votre module doit se terminer par .zip, .xpi, .crx, .jar ou .x
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
-msgid "{0}%% complete"
-msgstr "{0}%% terminé"
+msgid "{0}% complete"
+msgstr "{0} % terminé"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
 msgid "{0} of {1}"
