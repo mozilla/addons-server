@@ -438,6 +438,7 @@ class ContentActionRejectVersion(ContentActionDisableAddon):
             )
             context_dict = {
                 'new_current_version': new_current_version,
+                'policy_texts': self.decision.get_policy_texts(),
                 'private_notes': self.decision.private_notes,
                 'reasoning': self.decision.reasoning,
                 'rejection_type': rejection_type,

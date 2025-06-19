@@ -2,6 +2,14 @@
 [Listed] {{ version_list_listed }}
 [Unlisted] {{ version_list_unlisted }}
 
+{% if policy_texts %}
+Policies:
+{% for policytext in policy_texts %}
+    {# Policies text may contain HTML entities, this is a text email so we consider that safe #}
+    - {{ policytext|safe }}
+{% endfor %}
+{% endif %}
+
 Reasoning:
 {{ reasoning }}
 

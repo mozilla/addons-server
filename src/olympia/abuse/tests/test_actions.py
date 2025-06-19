@@ -1674,6 +1674,40 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         assert 'Private notes:' in mail.outbox[0].body
         assert 'These are the private notes.' in mail.outbox[0].body
 
+    def test_notify_stakeholders_with_policy_texts(self):
+        stakeholder = user_factory()
+        self.decision.target_versions.set([self.version])
+        action = self.ActionClass(self.decision)
+        assert len(mail.outbox) == 0
+        listed_version = self.version
+        listed_version.file.update(is_signed=True)
+        version_factory(
+            addon=self.addon, channel=amo.CHANNEL_UNLISTED, file_kw={'is_signed': True}
+        )
+        Group.objects.get(name=self.ActionClass.stakeholder_acl_group_name).users.add(
+            stakeholder
+        )
+        self.policy.update(text='Some reason why we can`t do {THIS}.')
+        self.decision.update(
+            metadata={
+                ContentDecision.POLICY_DYNAMIC_VALUES: {
+                    self.policy.uuid: {'THIS': 'that'}
+                }
+            }
+        )
+
+        # make the addon promoted
+        self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED)
+        action.notify_stakeholders('teh reason')
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].recipients() == [stakeholder.email]
+        assert mail.outbox[0].subject == f'teh reason issued for {self.addon.name}'
+        assert 'Policies:' in mail.outbox[0].body
+        assert (
+            'Parent Policy, specifically Bad policy: Some reason why we can`t do that.'
+            in mail.outbox[0].body
+        )
+
 
 class TestContentActionCollection(BaseTestContentAction, TestCase):
     ActionClass = ContentActionDeleteCollection
