@@ -4384,6 +4384,8 @@ msgid ""
 "The latest approved version of this %(promoted_group_name)s add-on cannot be deleted or disabled because the previous version was not approved for %(promoted_group_name)s promotion. Please contact "
 "AMO Admins if you need help with this."
 msgstr ""
+"Najnowsza zatwierdzona wersja tego dodatku %(promoted_group_name)s nie może zostać usunięta ani wyłączona, ponieważ poprzednia wersja nie została zatwierdzona do promocji %(promoted_group_name)s. "
+"Skontaktuj się z administratorami AMO, jeśli potrzebujesz pomocy w tej sprawie."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:309 src/olympia/devhub/templates/devhub/versions/list.html:335
 msgid "Hide Add-on"
