@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-06-19 11:38+0000\n"
+"POT-Creation-Date: 2025-06-19 16:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,11 +40,11 @@ msgid ""
 "does not align with the applicable policy or law."
 msgstr ""
 
-#: src/olympia/abuse/models.py:1092
+#: src/olympia/abuse/models.py:1096
 msgid "User profile"
 msgstr ""
 
-#: src/olympia/abuse/models.py:1449
+#: src/olympia/abuse/models.py:1453
 #, python-brace-format
 msgid "\"{}\" for {}"
 msgstr ""
@@ -340,7 +340,7 @@ msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr ""
 
 #: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:756
-#: src/olympia/files/utils.py:761 src/olympia/reviewers/forms.py:386
+#: src/olympia/files/utils.py:761 src/olympia/reviewers/forms.py:383
 msgid "Invalid or broken archive."
 msgstr ""
 
@@ -1421,7 +1421,7 @@ msgstr ""
 msgid "(Deleted)"
 msgstr ""
 
-#: src/olympia/constants/base.py:129 src/olympia/constants/reviewers.py:69
+#: src/olympia/constants/base.py:129 src/olympia/constants/reviewers.py:67
 msgid "Extension"
 msgstr ""
 
@@ -1453,7 +1453,7 @@ msgstr ""
 msgid "Deprecated LWT"
 msgstr ""
 
-#: src/olympia/constants/base.py:137 src/olympia/constants/reviewers.py:70
+#: src/olympia/constants/base.py:137 src/olympia/constants/reviewers.py:68
 msgid "Theme"
 msgstr ""
 
@@ -1946,43 +1946,43 @@ msgstr ""
 msgid "Partner"
 msgstr ""
 
-#: src/olympia/constants/reviewers.py:23
+#: src/olympia/constants/reviewers.py:21
 msgid "No Reputation"
 msgstr ""
 
-#: src/olympia/constants/reviewers.py:24
+#: src/olympia/constants/reviewers.py:22
 msgid "Good (1)"
 msgstr ""
 
-#: src/olympia/constants/reviewers.py:25
+#: src/olympia/constants/reviewers.py:23
 msgid "Very Good (2)"
 msgstr ""
 
-#: src/olympia/constants/reviewers.py:26
+#: src/olympia/constants/reviewers.py:24
 msgid "Excellent (3)"
 msgstr ""
 
-#: src/olympia/constants/reviewers.py:41
+#: src/olympia/constants/reviewers.py:39
 msgid "Request More Info"
 msgstr ""
 
-#: src/olympia/constants/reviewers.py:42
+#: src/olympia/constants/reviewers.py:40
 msgid "Flag"
 msgstr ""
 
-#: src/olympia/constants/reviewers.py:43
+#: src/olympia/constants/reviewers.py:41
 msgid "Duplicate"
 msgstr ""
 
-#: src/olympia/constants/reviewers.py:44
+#: src/olympia/constants/reviewers.py:42
 msgid "Reject"
 msgstr ""
 
-#: src/olympia/constants/reviewers.py:45
+#: src/olympia/constants/reviewers.py:43
 msgid "Approve"
 msgstr ""
 
-#: src/olympia/constants/reviewers.py:68
+#: src/olympia/constants/reviewers.py:66
 msgid "All"
 msgstr ""
 
@@ -6988,12 +6988,12 @@ msgstr ""
 msgid "Rated %(rating)s out of 5 stars"
 msgstr ""
 
-#: src/olympia/reviewers/forms.py:372
+#: src/olympia/reviewers/forms.py:369
 #, python-brace-format
 msgid "Unsupported file type, please upload a file {extensions}."
 msgstr ""
 
-#: src/olympia/reviewers/forms.py:378
+#: src/olympia/reviewers/forms.py:375
 msgid "File too large."
 msgstr ""
 
@@ -7014,7 +7014,7 @@ msgid ""
 "%(date)s</span>"
 msgstr ""
 
-#: src/olympia/reviewers/templates/reviewers/review.html:314
+#: src/olympia/reviewers/templates/reviewers/review.html:312
 msgid "<strong>Warning!</strong> Another user may be viewing this page before you."
 msgstr ""
 
