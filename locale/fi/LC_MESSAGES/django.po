@@ -144,6 +144,8 @@ msgid ""
 "You have the right to appeal this decision within 6 months from the date of this email. See %(appeal_url)s for details on the appeal process, including how to file an appeal for this specific "
 "decision."
 msgstr ""
+"Sinulla on oikeus valittaa tästä päätöksestä kuuden kuukauden kuluessa tämän sähköpostin päivämäärästä. Katso lisätietoja valitusprosessista, mukaan lukien ohjeet valituksen tekemiseen tästä "
+"päätöksestä, osoitteesta %(appeal_url)s."
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_addon.txt:5
 #, python-format
@@ -677,11 +679,11 @@ msgstr "Toinen runko"
 
 #: src/olympia/api/authentication.py:64 src/olympia/api/authentication.py:247
 msgid "Invalid Authorization header. No credentials provided."
-msgstr ""
+msgstr "Virheellinen Authorization-otsake. Kirjautumistietoja ei annettu."
 
 #: src/olympia/api/authentication.py:72 src/olympia/api/authentication.py:251
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
-msgstr ""
+msgstr "Virheellinen Authorization-otsake. Kirjautumistietojen ei tule sisältää välilyöntejä."
 
 #: src/olympia/api/authentication.py:108
 msgid "Valid user session not found matching the provided session key."
@@ -976,7 +978,7 @@ msgstr "{rating} lisäosalle {addon} hyväksytty."
 #: src/olympia/constants/activity.py:378
 #, python-brace-format
 msgid "Review {rating} for {addon} deleted."
-msgstr ""
+msgstr "Arvostelu {rating} lisäosalle {addon} poistettu."
 
 #: src/olympia/constants/activity.py:386
 #, python-brace-format
@@ -3851,7 +3853,7 @@ msgstr "Versiokommentit"
 
 #: src/olympia/devhub/templates/devhub/includes/done_unlisted.html:3
 msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
-msgstr ""
+msgstr "Valmis! ✨ Saat sähköposti-ilmoituksen, kun allekirjoitettu tiedosto on ladattavissa kehittäjäkeskuksesta. Jos et näe sähköpostia 24 tunnin kuluessa, tarkista roskapostikansiosi."
 
 #: src/olympia/devhub/templates/devhub/includes/license_form.html:5 src/olympia/devhub/templates/devhub/versions/edit.html:83
 msgid "License"
@@ -3859,7 +3861,7 @@ msgstr "Lisenssi"
 
 #: src/olympia/devhub/templates/devhub/includes/license_form.html:6
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Valitse lisenssi, joka sopii lähdekoodillesi myöntämiisi oikeuksiin. Tämä koskee vain listattuja lisäosia."
 
 #: src/olympia/devhub/templates/devhub/includes/listing_header.html:2
 msgid "Sort by:"
@@ -4096,7 +4098,7 @@ msgstr "Oletko valmis lähettämään tai hallinnoimaan laajennustasi?"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/submit_or_manage_extension.html:7
 msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
-msgstr ""
+msgstr "Kirjaudu sisään kehittäjäkeskukseen lähettääksesi tai hallitaksesi laajennuksia sekä teemoja."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/submit_or_manage_extension.html:11
 msgid "Register for a developer account or log in to the Developer Hub"
@@ -5709,7 +5711,7 @@ msgstr "Selaa kaikkia laajennuksia"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1018
 msgid "Anti-tracking extensions"
-msgstr ""
+msgstr "Seurantaa estävät laajennukset"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1020
@@ -5719,7 +5721,7 @@ msgstr "Olennaiset lisäosat"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1022
 msgid "Steam extensions"
-msgstr ""
+msgstr "Steam-laajennukset"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1024 src/olympia/discovery/strings.jinja2:1026 src/olympia/discovery/strings.jinja2:1028
@@ -6401,7 +6403,7 @@ msgstr "Päivitä"
 
 #: src/olympia/stats/templates/stats/report.html:7
 msgid "Export"
-msgstr ""
+msgstr "Vie"
 
 #. {0} is an add-on name, {1} is an app name (like Firefox)
 #: src/olympia/stats/templates/stats/stats.html:17
