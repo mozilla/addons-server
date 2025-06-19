@@ -5864,7 +5864,7 @@ msgstr "Wšykne rozšyrjenja pokazaś"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1018
 msgid "Anti-tracking extensions"
-msgstr ""
+msgstr "Rozšyrjenja pśeśiwo slědowanju"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1020
@@ -5874,7 +5874,7 @@ msgstr "Zakładne dodanki"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1022
 msgid "Steam extensions"
-msgstr ""
+msgstr "Rozšyrjenja Steam"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1024 src/olympia/discovery/strings.jinja2:1026 src/olympia/discovery/strings.jinja2:1028
