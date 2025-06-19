@@ -1334,6 +1334,7 @@ class ContentDecision(ModelBase):
                 self.save(update_fields=('action_date',))
             else:
                 log_entry = action_helper.hold_action()
+                action_helper.notify_2nd_level_approvers()
 
         log_entry = log_entry or self.activities.first()
 
@@ -1368,9 +1369,6 @@ class ContentDecision(ModelBase):
             self.update(cinder_job=job)
         ContentDecision.objects.create(
             addon=self.addon,
-            rating=self.rating,
-            collection=self.collection,
-            user=self.user,
             action=DECISION_ACTIONS.AMO_REQUEUE,
             reviewer_user=user,
             override_of=self,
