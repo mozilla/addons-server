@@ -6089,7 +6089,7 @@ msgstr "Nie można przetworzyć pliku manifestu."
 #: src/olympia/files/utils.py:319
 #, python-brace-format
 msgid "Lowest supported \"strict_min_version\" is {min_version}."
-msgstr ""
+msgstr "Najniższa obsługiwana wartość „strict_min_version” to {min_version}."
 
 #: src/olympia/files/utils.py:350
 #, python-brace-format
@@ -6157,7 +6157,7 @@ msgstr "Znaleziono zduplikowane ID dodatku."
 #: src/olympia/files/utils.py:917
 #, python-brace-format
 msgid "Version numbers should have at most {max_length} characters."
-msgstr ""
+msgstr "Numer wersji powinien zawierać najwyżej {max_length} znaki."
 
 #: src/olympia/files/utils.py:923
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
@@ -6182,7 +6182,7 @@ msgstr "Nie można przesłać podpisanego rozszerzenia Mozilla"
 
 #: src/olympia/files/utils.py:958
 msgid "You cannot submit a language pack"
-msgstr ""
+msgstr "Nie można przesłać pakietu językowego"
 
 #: src/olympia/files/utils.py:967
 msgid "The locale of an existing dictionary/language pack cannot be changed"
@@ -6200,7 +6200,7 @@ msgstr "Nieoczekiwany błąd."
 #: src/olympia/files/utils.py:1026
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
-msgstr ""
+msgstr "Typ (%s) nie pasuje do typu dodatku na AMO (%s)"
 
 #: src/olympia/files/views.py:83 src/olympia/signing/views.py:128
 msgid "Missing \"upload\" key in multipart file data."
@@ -6208,7 +6208,7 @@ msgstr "Brak klucza „upload” w danych wieloczęściowego pliku."
 
 #: src/olympia/files/views.py:89
 msgid "Missing \"channel\" arg."
-msgstr ""
+msgstr "Brak argumentu „channel”."
 
 #: src/olympia/ratings/models.py:363
 msgid "Spam or otherwise non-review content"
@@ -6237,7 +6237,7 @@ msgstr ""
 #: src/olympia/ratings/models.py:411
 #, python-format
 msgid "%(value)s contains a non-alphanumeric character."
-msgstr ""
+msgstr "%(value)s zawiera znak niealfanumeryczny."
 
 #: src/olympia/ratings/serializers.py:90
 #, python-brace-format
@@ -6402,7 +6402,7 @@ msgstr "Nieprawidłowy parametr \"%s\"."
 #: src/olympia/search/filters.py:202 src/olympia/search/filters.py:322
 #, python-format
 msgid "Invalid combination of \"%s\" and \"%s\" parameters."
-msgstr ""
+msgstr "Nieprawidłowa kombinacja parametrów \"%s\" i \"%s\"."
 
 #: src/olympia/search/filters.py:264
 msgid "Return To AMO is currently disabled"
@@ -6428,7 +6428,7 @@ msgstr "Nie należysz do właścicieli tego dodatku."
 #: src/olympia/signing/views.py:137
 #, python-format
 msgid "You cannot add versions to an add-on that has status: %s."
-msgstr ""
+msgstr "Nie można dodać wersji do dodatku, który ma status: %s."
 
 #: src/olympia/signing/views.py:146
 msgid "Version does not match the manifest file."
