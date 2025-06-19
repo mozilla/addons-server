@@ -469,12 +469,14 @@ class TestReviewForm(TestCase):
             name='ok',
             expose_in_reviewer_tools=True,
             enforcement_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value],
+            text='Blah blah {SOME-PLACEHOLDER} blah blah.',
         )
         unselected_policy = CinderPolicy.objects.create(
             uuid='yyy',
             name='not okay',
             expose_in_reviewer_tools=True,
             enforcement_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value],
+            text='policy text {UNSELECTED}',
         )
         form = self.get_form()
         assert not form.is_bound
@@ -486,22 +488,26 @@ class TestReviewForm(TestCase):
         assert form.is_bound
         assert form.is_valid(), form.errors
         assert 'policy_values' in form.cleaned_data
-        assert form.cleaned_data['policy_values'] == {}
+        assert form.cleaned_data['policy_values'] == {
+            'xxx': {'SOME-PLACEHOLDER': None},
+            'yyy': {'UNSELECTED': None},
+        }
 
         data = {
             'action': 'reject',
             'cinder_policies': [policy.id],
-            f'policy-value-{policy.id}-SOME-PLACEHOLDER': 'some value?',
+            f'policy_values_{policy.id}_SOME-PLACEHOLDER': 'some value?',
             # Include some data that will be ignored
-            f'policy-value-{unselected_policy.id}-DOESNT_EXIST': 'not selected',
-            f'policy-value-{policy.id}': 'not_in_the_correct_format',
+            f'policy_values_{unselected_policy.id}_UNSELECTED': 'not selected',
+            f'policy_values_{policy.id}': 'does-not-exist',
         }
         form = self.get_form(data=data)
         assert form.is_bound
         assert form.is_valid(), form.errors
         assert 'policy_values' in form.cleaned_data
         assert form.cleaned_data['policy_values'] == {
-            'xxx': {'SOME-PLACEHOLDER': 'some value?'}
+            'xxx': {'SOME-PLACEHOLDER': 'some value?'},
+            'yyy': {'UNSELECTED': None},
         }
 
     def test_appeal_action_require_with_resolve_appeal_job(self):
@@ -1498,6 +1504,45 @@ class TestReviewForm(TestCase):
         assert label_1.attr['data-value'] == 'reject reject_multiple_versions'
         assert label_2.attr['class'] == 'data-toggle'
         assert label_2.attr['data-value'] == 'public'
+
+    def test_policy_values_fields(self):
+        policy_0 = CinderPolicy.objects.create(
+            uuid='4-rejections',
+            name='for rejections',
+            expose_in_reviewer_tools=True,
+            enforcement_actions=[
+                DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value,
+                'some-other-action',
+            ],
+            text='Something {THIS} and {<THAT_"}?',
+        )
+        policy_1 = CinderPolicy.objects.create(
+            uuid='4-approve',
+            name='for approving',
+            expose_in_reviewer_tools=True,
+            enforcement_actions=[DECISION_ACTIONS.AMO_APPROVE.api_value],
+            text='No placeholders here',
+        )
+        self.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        with override_switch('cinder_policy_review_reasons_enabled', active=True):
+            self.grant_permission(self.request.user, 'Addons:Review')
+            form = self.get_form()
+
+        content = str(form['policy_values'])
+        doc = pq(content)
+        div_0 = doc(f'#policy-text-{policy_0.id}')
+        div_1 = doc(f'#policy-text-{policy_1.id}')
+
+        assert 'hidden' in div_0[0].attrib
+        assert div_0.html() == (
+            f'Something <input type="text" name="policy_values_{policy_0.id}_THIS"'
+            ' placeholder="THIS" id="id_policy_values_0"/>\n\n '
+            f'and <input type="text" name="policy_values_{policy_0.id}_&lt;THAT_&quot;"'
+            ' placeholder="&lt;THAT_&quot;" id="id_policy_values_1"/>\n\n'
+            '?'
+        )
+        assert 'hidden' in div_1[0].attrib
+        assert div_1.html() == ('No placeholders here')
 
 
 class TestHeldDecisionReviewForm(TestCase):

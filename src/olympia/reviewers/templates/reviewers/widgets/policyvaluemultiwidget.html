@@ -1,0 +1,5 @@
+{% for policy, text_widgets in policies %}
+<div id="policy-text-{{policy.id}}" hidden>{% spaceless %}
+    {% for text, widget in text_widgets %}{{ text }}{% if widget %}{% include widget.template_name %}{% endif %}{% endfor %}
+{% endspaceless %}</div>
+{% endfor %}

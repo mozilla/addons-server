@@ -1,5 +1,3 @@
-import re
-
 from django.utils.translation import gettext_lazy as _
 
 from .base import ADDON_ANY, ADDON_EXTENSION, ADDON_STATICTHEME
@@ -69,8 +67,3 @@ REASON_ADDON_TYPE_CHOICES = {
     ADDON_EXTENSION: _('Extension'),
     ADDON_STATICTHEME: _('Theme'),
 }
-
-POLICY_VALUE_PATTERN = 'policy-value-{id}-{placeholder}'
-POLICY_VALUE_PATTERN_REGEX = re.compile(
-    POLICY_VALUE_PATTERN.format(id=r'(?P<id>\d+)', placeholder=r'(?P<placeholder>.+)')
-)

@@ -27,10 +27,7 @@ from olympia.addons.models import Addon
 from olympia.amo.forms import AMOModelForm
 from olympia.amo.templatetags.jinja_helpers import format_datetime
 from olympia.constants.abuse import DECISION_ACTIONS
-from olympia.constants.reviewers import (
-    POLICY_VALUE_PATTERN_REGEX,
-    REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT,
-)
+from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
 from olympia.files.utils import SafeZip
 from olympia.ratings.models import Rating
 from olympia.ratings.permissions import user_can_delete_rating
@@ -409,6 +406,72 @@ class DelayedRejectionDateWidget(forms.DateTimeInput):
         super().__init__(attrs, format)
 
 
+class PolicyValueMultiWidget(forms.MultiWidget):
+    template_name = 'reviewers/widgets/policyvaluemultiwidget.html'
+
+    def decompress(self, value):
+        if not value:
+            return [None for _ in self.widgets]
+        return [pl_val for pl_vals in value.values() for pl_val in pl_vals]
+
+    def get_context(self, name, value, attrs):
+        context = super().get_context(name, value, attrs)
+        # the subwidgets are in a consistent order - reverse so we can pop them off
+        rvsubwidgets = list(reversed(context.get('widget', {}).get('subwidgets', [])))
+        # swap out the placeholder for the subwidget context for the render
+        context['policies'] = [
+            (policy, [(txt, rvsubwidgets.pop() if key else None) for txt, key in pairs])
+            for policy, pairs in self.policies
+        ]
+        return context
+
+
+class PolicyValueMultiValueField(forms.MultiValueField):
+    def __init__(self, queryset, **kw):
+        self.queryset = queryset
+        super().__init__(self.fields, **kw)
+
+    def _get_queryset(self):
+        return self._queryset
+
+    def _set_queryset(self, queryset):
+        self._queryset = None if queryset is None else queryset.all()
+        self.fields = []
+        self.widget.widgets_names = []
+        self.widget.widgets = []
+
+        # get the policy text split into text, placeholder pairs
+        self.widget.policies = [
+            (policy, policy.get_text_formatter_pairs())
+            for policy in self._queryset or []
+        ]
+        # then add a field and widget for each placeholder
+        for policy, pairs in self.widget.policies:
+            for _, placeholder in pairs:
+                if not placeholder:
+                    continue
+                field = forms.CharField(required=self.required)
+                # set some properties on the instances to use in compress
+                field.placeholder = placeholder
+                field.policy = policy
+                self.fields.append(field)
+                self.widget.widgets_names.append(f'_{policy.id}_{placeholder}')
+                self.widget.widgets.append(
+                    forms.TextInput(attrs={'placeholder': placeholder})
+                )
+
+    queryset = property(_get_queryset, _set_queryset)
+
+    def compress(self, data_list):
+        data_list = data_list or [None for _ in self.fields]
+        policy_values = defaultdict(dict)
+        for field, value in zip(self.fields, data_list):
+            policy_values[field.policy.uuid][field.placeholder] = (
+                html.unescape(value) if value else value
+            )
+        return policy_values
+
+
 class ReviewForm(forms.Form):
     # Hack to restore behavior from pre Django 1.10 times.
     # Django 1.10 enabled `required` rendering for required widgets. That
@@ -495,6 +558,13 @@ class ReviewForm(forms.Form):
         label='Choose how to resolve appeal:',
         choices=(('deny', 'Deny Appeal(s)'),),
         widget=widgets.CheckboxSelectMultiple,
+    )
+    policy_values = PolicyValueMultiValueField(
+        required=False,
+        require_all_fields=False,
+        widget=PolicyValueMultiWidget(widgets={}),
+        # queryset is set later in __init__
+        queryset=CinderPolicy.objects.none(),
     )
 
     def is_valid(self):
@@ -603,20 +673,17 @@ class ReviewForm(forms.Form):
                         ),
                     )
 
-        # Add in any dynamic placeholder values for the cinder policies
-        if self.cleaned_data.get('cinder_policies', []):
-            policy_dict = {
-                str(p.id): p for p in self.cleaned_data.get('cinder_policies', [])
+        if 'policy_values' in self.cleaned_data:
+            # We only want to include placeholder values from selected policies
+            selected_policy_uuids = [
+                p.uuid for p in self.cleaned_data.get('cinder_policies', [])
+            ]
+            self.cleaned_data['policy_values'] = {
+                uuid: (
+                    vals if uuid in selected_policy_uuids else {k: None for k in vals}
+                )
+                for uuid, vals in self.cleaned_data['policy_values'].items()
             }
-            policy_values = defaultdict(dict)
-            for key, value in self.data.items():
-                if (match := POLICY_VALUE_PATTERN_REGEX.match(key)) and (
-                    policy := policy_dict.get(match['id'])
-                ):
-                    policy_values[policy.uuid][match['placeholder']] = html.unescape(
-                        value
-                    )
-            self.cleaned_data['policy_values'] = policy_values
 
         return self.cleaned_data
 
@@ -732,6 +799,8 @@ class ReviewForm(forms.Form):
 
         # Pass on the reviewer tools actions so we can set the show/hide on policies
         self.fields['cinder_policies'].widget.helper_actions = self.helper.actions
+
+        self.fields['policy_values'].queryset = self.fields['cinder_policies'].queryset
 
     @property
     def unreviewed_files(self):

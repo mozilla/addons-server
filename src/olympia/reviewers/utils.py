@@ -1047,9 +1047,13 @@ class ReviewBase:
         if self.review_action and self.review_action.get('enforcement_actions'):
             policies.extend(self.data.get('cinder_policies', []))
             if 'policy_values' in self.data:
-                decision_metadata[ContentDecision.POLICY_DYNAMIC_VALUES] = self.data[
-                    'policy_values'
-                ]
+                # We want to strip out empty values -
+                # both where the reviewer has provided no value, and unselected policies
+                decision_metadata[ContentDecision.POLICY_DYNAMIC_VALUES] = {
+                    uuid_: trimmed
+                    for uuid_, vals in self.data['policy_values'].items()
+                    if (trimmed := {k: v for k, v in vals.items() if v})
+                }
 
         cinder_action = getattr(activity_action, 'cinder_action', None)
         if not cinder_action and policies:

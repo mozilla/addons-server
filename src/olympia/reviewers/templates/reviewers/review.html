@@ -195,9 +195,7 @@
 
           <div class="review-actions-comments">
             <div class="policy-texts data-toggle" data-value="{{ actions_policies|join(' ') }}">
-              {% for policy in cinder_policies %}
-                <div id="policy-text-{{ policy.id }}" hidden>{{ policy|render_text_with_input_fields }}</div>
-              {% endfor %}
+              {{ form.policy_values }}
             </div>
             <div class="review-comments data-toggle" data-value="{{ actions_comments|join(' ') }}">
               <details{% if not waffle.switch('cinder_policy_review_reasons_enabled') %} open{% endif %}>

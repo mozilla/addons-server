@@ -755,7 +755,6 @@ def review(request, addon, channel=None):
         auto_approval_info=auto_approval_info,
         base_version_pk=base_version_pk,
         channel=channel,
-        cinder_policies=form.fields['cinder_policies'].queryset,
         content_review=content_review,
         count=count,
         flags=flags,
