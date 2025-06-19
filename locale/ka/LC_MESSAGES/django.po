@@ -5849,7 +5849,7 @@ msgstr "ყველა გაფართოების ნახვა"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1018
 msgid "Anti-tracking extensions"
-msgstr ""
+msgstr "გაფართოებები თვალთვალის წინააღმდეგ"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1020
@@ -5859,7 +5859,7 @@ msgstr "აუცილებელი დამატებები"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1022
 msgid "Steam extensions"
-msgstr ""
+msgstr "Steam-ის გაფართოებები"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1024 src/olympia/discovery/strings.jinja2:1026 src/olympia/discovery/strings.jinja2:1028
