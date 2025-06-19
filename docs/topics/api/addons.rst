@@ -543,6 +543,8 @@ This endpoint allows you to fetch a single version belonging to a specific add-o
     :>json array file.optional_permissions[]: Array of the optional webextension permissions for this File, as strings. Empty for non-webextensions.
     :>json array file.host_permissions[]: Array of the host permissions for this File, as strings. Empty for non-webextensions.
     :>json array file.permissions[]: Array of the webextension permissions for this File, as strings. Empty for non-webextensions.
+    :>json array file.data_collection_permissions[]: Array of the data collection permissions for this File, as strings. Empty for non-webextensions.
+    :>json array file.optional_data_collection_permissions[]: Array of the optional data collection permissions for this File, as strings. Empty for non-webextensions.
     :>json int file.size: The size for the file, in bytes.
     :>json int file.status: The :ref:`status <version-detail-status>` for the file.
     :>json string file.url: The (absolute) URL to download the file.

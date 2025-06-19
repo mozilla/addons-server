@@ -4,6 +4,8 @@ from django.core.management.base import BaseCommand
 from django.db.models import Q
 from django.db.transaction import atomic
 
+import waffle
+
 import olympia.core.logger
 from olympia import amo
 from olympia.activity.models import IPLog
@@ -37,13 +39,6 @@ class Command(BaseCommand):
         users = list(UserProfile.objects.filter(seven_year_q | one_day_q, deleted=True))
         user_restrictions = UserRestrictionHistory.objects.filter(user__in=users)
 
-        addonuser_qs = AddonUser.objects.filter(user__in=users)
-        addons_qs = Addon.unfiltered.filter(
-            status__in=(amo.STATUS_DELETED, amo.STATUS_DISABLED),
-            addonuser__in=addonuser_qs,
-        )
-        addon_ids = list(addons_qs.values_list('id', flat=True))
-
         with atomic():
             log.info('Clearing %s for %d users', profile_clear.keys(), len(users))
             for user in users:
@@ -57,5 +52,11 @@ class Command(BaseCommand):
             ip_logs = IPLog.objects.filter(activity_log__user__in=users)
             ip_logs.delete()
 
-        if addon_ids:
-            delete_addons.delay(addon_ids, with_deleted=True)
+        if waffle.switch_is_active('enable-addons-hard-deletion'):
+            addonuser_qs = AddonUser.objects.filter(user__in=users)
+            addons_qs = Addon.unfiltered.filter(
+                status__in=(amo.STATUS_DELETED, amo.STATUS_DISABLED),
+                addonuser__in=addonuser_qs,
+            )
+            if addon_ids := list(addons_qs.values_list('id', flat=True)):
+                delete_addons.delay(addon_ids, with_deleted=True)

@@ -15,30 +15,32 @@ on:
         description: 'Release date YYYY.MM.DD Also used to generate the tag name.'
         required: true
 
+permissions: {}
+
 jobs:
   draft_release:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
       - name: Create Release Draft
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.event.inputs.tag }}
+          push_hero: ${{ github.event.inputs.push_hero }}
+          event_name: ${{ github.event_name }}
         shell: bash
         run: |
-          if [ -z "${{ github.event.inputs.tag }}" ]; then
+          if [ -z "$tag" ]; then
             echo "Tag is required"
             exit 1
           fi
 
-          if [ -z "${{ github.event.inputs.push_hero }}" ]; then
+          if [ -z "$push_hero" ]; then
             echo "Push hero is required"
             exit 1
-          fi
-
-          # Format current date as YYYY.MM.DD
-
-          if [[ "${{ github.event_name}}" == 'workflow_dispatch' ]]; then
-            tag="${{ github.event.inputs.tag }}"
           fi
 
           # Validate the tag is formatted correctly YYYY.MM.DD or YYYY.MM.DD-X
@@ -72,8 +74,8 @@ jobs:
           # Cat the file ../release-template.md
           template=$(cat .github/release-template.md)
 
-          # Replace {{GITHUB_USER}} in template with ${{ github.event.inputs.push_hero }}
-          template=${template//\{\{GITHUB_USER\}\}/${{ github.event.inputs.push_hero }}}
+          # Replace {{GITHUB_USER}} in template with <push_hero>
+          template=${template//\{\{GITHUB_USER\}\}/$push_hero}
 
           # Replace {{PREVIOUS_TAG}} in template with $previous_tag
           template=${template//\{\{PREVIOUS_TAG\}\}/$previous_tag}

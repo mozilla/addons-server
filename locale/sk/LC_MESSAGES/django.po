@@ -34,11 +34,11 @@ msgstr "Dôvod odvolania"
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr "Vysvetlite, prečo si myslíte, že toto rozhodnutie bolo urobené omylom a/alebo nie je v súlade s platnými zásadami alebo zákonmi."
 
-#: src/olympia/abuse/models.py:1094
+#: src/olympia/abuse/models.py:1092
 msgid "User profile"
 msgstr "Používateľský profil"
 
-#: src/olympia/abuse/models.py:1451
+#: src/olympia/abuse/models.py:1449
 #, python-brace-format
 msgid "\"{}\" for {}"
 msgstr "\"{}\" pre {}"
@@ -301,7 +301,7 @@ msgstr "Bol prekročený maximálny počet kategórií na aplikáciu ({MAX_CATEG
 msgid "The \"other\" category cannot be combined with another category"
 msgstr "Kategóriu \"Iné\" nie je možné kombinovať s inou kategóriou"
 
-#: src/olympia/addons/fields.py:76 src/olympia/addons/serializers.py:1257
+#: src/olympia/addons/fields.py:76 src/olympia/addons/serializers.py:1275
 msgid "Invalid category name."
 msgstr "Neplatný názov kategórie."
 
@@ -344,7 +344,7 @@ msgstr "Bola zadaná neznáma maximálna verzia aplikácie"
 msgid "Unknown min app version specified"
 msgstr "Bola zadaná neznáma minimálna verzia aplikácie"
 
-#: src/olympia/addons/fields.py:307 src/olympia/addons/fields.py:325 src/olympia/addons/serializers.py:625
+#: src/olympia/addons/fields.py:307 src/olympia/addons/fields.py:325 src/olympia/addons/serializers.py:643
 #, python-format
 msgid "Can not override compatibility information set in the manifest for this application (%s)"
 msgstr "Nie je možné prepísať informácie o kompatibilite nastavené v manifeste pre túto aplikáciu (%s)"
@@ -354,76 +354,76 @@ msgstr "Nie je možné prepísať informácie o kompatibilite nastavené v manif
 msgid "Images must be smaller than %dMB"
 msgstr "Obrázky musia byť menšie ako %dMB"
 
-#: src/olympia/addons/models.py:2270 src/olympia/addons/models.py:2327 src/olympia/constants/base.py:66
+#: src/olympia/addons/models.py:2260 src/olympia/addons/models.py:2317 src/olympia/constants/base.py:66
 msgid "Listed"
 msgstr "V zozname"
 
-#: src/olympia/addons/models.py:2505
+#: src/olympia/addons/models.py:2495
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr "Cesta k doplnkom a kolekciám musí končiť znakom \"/\""
 
-#: src/olympia/addons/serializers.py:306
+#: src/olympia/addons/serializers.py:324
 msgid "Built in licenses can not be updated."
 msgstr "Vstavané licencie nie je možné aktualizovať."
 
-#: src/olympia/addons/serializers.py:501
+#: src/olympia/addons/serializers.py:519
 msgid "Upload is not valid."
 msgstr "Odoslanie nie je platné."
 
-#: src/olympia/addons/serializers.py:517
+#: src/olympia/addons/serializers.py:535
 msgid "File is already disabled."
 msgstr "Súbor je už zakázaný."
 
-#: src/olympia/addons/serializers.py:521 src/olympia/addons/views.py:738
+#: src/olympia/addons/serializers.py:539 src/olympia/addons/views.py:738
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr "Najnovšia schválená verzia doplnku %s sa nedá odstrániť, pretože predchádzajúca verzia %s nebola schválená na zverejnenie. Ak s tým potrebujete pomôcť, kontaktujte správcov stránok AMO."
 
-#: src/olympia/addons/serializers.py:536
+#: src/olympia/addons/serializers.py:554
 #, python-brace-format
 msgid "Version {version_string} was uploaded before and deleted."
 msgstr "Verzia {version_string} už bola v minulosti nahraná a odstránená."
 
-#: src/olympia/addons/serializers.py:539
+#: src/olympia/addons/serializers.py:557
 #, python-brace-format
 msgid "Version {version_string} already exists."
 msgstr "Verzia {version_string} už existuje."
 
-#: src/olympia/addons/serializers.py:559
+#: src/olympia/addons/serializers.py:577
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr "Verejné verzie nie je možné odoslať, kým je doplnok zakázaný."
 
-#: src/olympia/addons/serializers.py:600
+#: src/olympia/addons/serializers.py:618
 #, python-format
 msgid "%(addon_type_plural)s are not supported by %(app_name)s"
 msgstr "%(addon_type_plural)s nie sú podporované aplikáciou %(app_name)s"
 
-#: src/olympia/addons/serializers.py:639 src/olympia/devhub/forms.py:910
+#: src/olympia/addons/serializers.py:657 src/olympia/devhub/forms.py:910
 #, python-format
 msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
 msgstr "Neplatný rozsah verzií. Pre Firefox pre Android si môžete vybrať iba rozsah, ktorý začína verziou %(max)s alebo vyššou, alebo končí nižšou ako verziou %(min)s."
 
-#: src/olympia/addons/serializers.py:888
+#: src/olympia/addons/serializers.py:906
 msgid "Add-ons need at least one owner."
 msgstr "Doplnky potrebujú aspoň jedného vlastníka."
 
-#: src/olympia/addons/serializers.py:903
+#: src/olympia/addons/serializers.py:921
 msgid "Add-ons need at least one listed author."
 msgstr "Doplnky potrebujú aspoň jedného uvedeného autora."
 
-#: src/olympia/addons/serializers.py:935
+#: src/olympia/addons/serializers.py:953
 msgid "Account not found."
 msgstr "Účet nebol nájdený."
 
-#: src/olympia/addons/serializers.py:948 src/olympia/devhub/forms.py:410 src/olympia/devhub/forms.py:480
+#: src/olympia/addons/serializers.py:966 src/olympia/devhub/forms.py:410 src/olympia/devhub/forms.py:480
 msgid "An author can only be present once."
 msgstr "Autor môže byť prítomný iba raz."
 
-#: src/olympia/addons/serializers.py:959 src/olympia/devhub/forms.py:422
+#: src/olympia/addons/serializers.py:977 src/olympia/devhub/forms.py:422
 msgid "The account needs a display name before it can be added as an author."
 msgstr "Účet musí mať zobrazený názov, aby ho bolo možné pridať ako autora."
 
-#: src/olympia/addons/serializers.py:1237
+#: src/olympia/addons/serializers.py:1255
 msgid "This slug cannot be used. Please choose another."
 msgstr "Tento slug (časť URL adresy) sa nedá použiť. Vyberte si prosím iný."
 
@@ -528,7 +528,7 @@ msgstr "Pridať novú tému vzhľadu"
 msgid "Developer Hub"
 msgstr "Centrum pre vývojárov"
 
-#: src/olympia/amo/context_processors.py:79 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:20 src/olympia/devhub/views.py:2074
+#: src/olympia/amo/context_processors.py:79 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:20 src/olympia/devhub/views.py:2076
 msgid "Manage API Keys"
 msgstr "Spravovať kľúče API"
 
@@ -931,7 +931,7 @@ msgstr "Predbežne schválený"
 msgid "{addon} {version} rejected."
 msgstr "Doplnok {addon} {version} zamietnutý."
 
-#: src/olympia/constants/activity.py:172 src/olympia/files/models.py:331
+#: src/olympia/constants/activity.py:172 src/olympia/files/models.py:322
 msgid "Rejected"
 msgstr "Zamietnutý"
 
@@ -1310,7 +1310,7 @@ msgstr "Čaká na kontrolu"
 msgid "Disabled by Mozilla"
 msgstr "Zakázaný Mozillou"
 
-#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1196
+#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1191
 msgid "Deleted"
 msgstr "Odstránené"
 
@@ -2320,99 +2320,99 @@ msgstr "Verzia %s bola opätovne povolená."
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "Pri nahrávaní kontrola zlyhala a preto jej výsledky nemusia byť kompletné. Venujte tomu preto pri kontrole zvláštnu pozornosť."
 
-#: src/olympia/devhub/views.py:1419
+#: src/olympia/devhub/views.py:1421
 msgid "Header area background"
 msgstr "Pozadie oblasti hlavičky"
 
-#: src/olympia/devhub/views.py:1421
+#: src/olympia/devhub/views.py:1423
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
 msgstr "Farba pozadia oblasti hlavičky zobrazená v časti hlavičky, ktorá nie je zakrytá alebo je viditeľná cez obrázok hlavičky. Pole v manifeste:  frame."
 
-#: src/olympia/devhub/views.py:1429
+#: src/olympia/devhub/views.py:1431
 msgid "Header area text and icons"
 msgstr "Text a ikony v oblasti hlavičky"
 
-#: src/olympia/devhub/views.py:1431
+#: src/olympia/devhub/views.py:1433
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
 msgstr "Farba textu a ikon v oblasti hlavičky okrem aktívnej karty. Pole v manifeste:  tab_background_text."
 
-#: src/olympia/devhub/views.py:1438
+#: src/olympia/devhub/views.py:1440
 msgid "Toolbar area background"
 msgstr "Pozadie oblasti panela s nástrojmi"
 
-#: src/olympia/devhub/views.py:1440
+#: src/olympia/devhub/views.py:1442
 msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
 msgstr "Farba pozadia pre navigačný panel, panel so záložkami a aktívnu kartu. Pole v manifeste:  toolbar."
 
-#: src/olympia/devhub/views.py:1447
+#: src/olympia/devhub/views.py:1449
 msgid "Toolbar area text and icons"
 msgstr "Text a ikony oblasti panela s nástrojmi"
 
-#: src/olympia/devhub/views.py:1449
+#: src/olympia/devhub/views.py:1451
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
 msgstr "Farba textu a ikon na paneli s nástrojmi a na aktívnej karte. Pole v manifeste:  bookmark_text."
 
-#: src/olympia/devhub/views.py:1456
+#: src/olympia/devhub/views.py:1458
 msgid "Toolbar field area background"
 msgstr "Pozadie poľa v oblasti panela s nástrojmi"
 
-#: src/olympia/devhub/views.py:1458
+#: src/olympia/devhub/views.py:1460
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
 msgstr "Farba pozadia polí na paneli s nástrojmi, ako je napríklad panel s adresou URL. Pole v manifeste:  toolbar_field."
 
-#: src/olympia/devhub/views.py:1465
+#: src/olympia/devhub/views.py:1467
 msgid "Toolbar field area text"
 msgstr "Text poľa v oblasti panela s nástrojmi"
 
-#: src/olympia/devhub/views.py:1467
+#: src/olympia/devhub/views.py:1469
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "Farba textu v poliach na paneli s nástrojmi, ako je napríklad panel s adresou URL. Pole v manifeste:  toolbar_field_text."
 
-#: src/olympia/devhub/views.py:1475
+#: src/olympia/devhub/views.py:1477
 msgid "Tab highlight"
 msgstr "Zvýraznenie karty"
 
-#: src/olympia/devhub/views.py:1477
+#: src/olympia/devhub/views.py:1479
 msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
 msgstr "Farba zvýraznenia aktívnej karty. Implementované ako okraj okolo karty vo Firefoxe 89+ a čiara nad kartou v starších prehliadačoch Firefox. Pole v manifest:  tab_line."
 
-#: src/olympia/devhub/views.py:1576
+#: src/olympia/devhub/views.py:1578
 msgid "Add-on uploads are temporarily unavailable"
 msgstr "Nahrávanie doplnkov je dočasne nedostupné"
 
-#: src/olympia/devhub/views.py:1945
+#: src/olympia/devhub/views.py:1947
 msgid "Review requested."
 msgstr "Vyžaduje sa kontrola."
 
-#: src/olympia/devhub/views.py:1947
+#: src/olympia/devhub/views.py:1949
 msgid "You must provide further details to proceed."
 msgstr "Pre pokračovanie musíte poskytnúť ďalšie detaily."
 
-#: src/olympia/devhub/views.py:2049
+#: src/olympia/devhub/views.py:2051
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Vaše staré prihlasovacie údaje boli odvolané a už nie sú platné."
 
-#: src/olympia/devhub/views.py:2068
+#: src/olympia/devhub/views.py:2070
 msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
 msgstr "Udržujte svoje kľúče API v tajnosti a nikdy ich s nikým nezdieľajte, vrátane prispievateľov Mozilly."
 
-#: src/olympia/devhub/views.py:2085
+#: src/olympia/devhub/views.py:2087
 msgid "New API key created"
 msgstr "Nový kľúč API bol vytvorený"
 
-#: src/olympia/devhub/views.py:2096
+#: src/olympia/devhub/views.py:2098
 msgid "API key revoked"
 msgstr "Kľúč API bol zneplatnený"
 
-#: src/olympia/devhub/views.py:2156
+#: src/olympia/devhub/views.py:2158
 msgid "Verify email"
 msgstr "Overiť e‑mailovú adresu"
 
-#: src/olympia/devhub/views.py:2158
+#: src/olympia/devhub/views.py:2160
 msgid "Send another email"
 msgstr "Odoslať nový e‑mail"
 
-#: src/olympia/devhub/views.py:2191
+#: src/olympia/devhub/views.py:2193
 msgid "Your email has been verified"
 msgstr "Váš e‑mail bol overený"
 
@@ -4477,55 +4477,55 @@ msgstr[2] "{0} upozornení"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:2 src/olympia/discovery/strings.jinja2:728
+#: src/olympia/discovery/strings.jinja2:2 src/olympia/discovery/strings.jinja2:730
 msgid "Block invisible trackers and spying ads that follow you around the web."
 msgstr "Blokujte neviditeľné sledovacie prvky a reklamy, ktoré vás pri prehliadaní sledujú."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:5 src/olympia/discovery/strings.jinja2:821
+#: src/olympia/discovery/strings.jinja2:5 src/olympia/discovery/strings.jinja2:823
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
 msgstr "Úplne nová stránka novej karty - s upraviteľným pozadím, počasím a ďalšími vymoženosťami."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:8 src/olympia/discovery/strings.jinja2:731
+#: src/olympia/discovery/strings.jinja2:8 src/olympia/discovery/strings.jinja2:733
 msgid "Highlight any text, right-click, and translate instantly."
 msgstr "Zvýraznite akýkoľvek text, kliknite pravým tlačidlom myši a okamžite prekladajte do iného jazyka."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:11 src/olympia/discovery/strings.jinja2:815
+#: src/olympia/discovery/strings.jinja2:11 src/olympia/discovery/strings.jinja2:817
 msgid "Perform reverse image searches from an array of engines."
 msgstr "Vykonajte spätné vyhľadávanie obrázkov pomocou množstva vyhľadávačov."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:14 src/olympia/discovery/strings.jinja2:776
+#: src/olympia/discovery/strings.jinja2:14 src/olympia/discovery/strings.jinja2:778
 msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
 msgstr "Blokovanie reklám a ochrana súkromia. Jednoduché nastavenie vám umožňuje prevziať kontrolu nad reklamami, ktoré sa vám zobrazujú, a nad tým, ako ste sledovaní na internete."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:17 src/olympia/discovery/strings.jinja2:779
+#: src/olympia/discovery/strings.jinja2:17 src/olympia/discovery/strings.jinja2:781
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr "Máte veľa otvorených kariet? Usporiadajte si ich v prehľadnom bočnom paneli."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:20 src/olympia/discovery/strings.jinja2:764
+#: src/olympia/discovery/strings.jinja2:20 src/olympia/discovery/strings.jinja2:766
 msgid "Stop Facebook tracking. Isolate your Facebook identity into a separate “container” to prevent Facebook from tracking you around the web."
 msgstr "Zastavte sledovanie Facebooku. Izolujte svoju identitu na Facebooku do samostatného „kontajnera“, aby ste zabránili Facebooku sledovať vás na webe."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:23 src/olympia/discovery/strings.jinja2:818
+#: src/olympia/discovery/strings.jinja2:23 src/olympia/discovery/strings.jinja2:820
 msgid "Simplify search by highlighting text on any web page to search the phrase from an array of engines."
 msgstr "Zjednodušte vyhľadávanie zvýraznením textu na ľubovoľnej webovej stránke, aby ste mohli vyhľadávať frázu z rôznych nástrojov."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:26 src/olympia/discovery/strings.jinja2:755
+#: src/olympia/discovery/strings.jinja2:26 src/olympia/discovery/strings.jinja2:757
 msgid "Instant weather updates from around the world."
 msgstr "Okamžité aktualizácie počasia z celého sveta."
 
@@ -4536,13 +4536,13 @@ msgstr "Vyberte si stránku, ktorú chcete vidieť pri otvorení novej karty."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:32 src/olympia/discovery/strings.jinja2:734
+#: src/olympia/discovery/strings.jinja2:32 src/olympia/discovery/strings.jinja2:736
 msgid "See an interesting picture on the web and want to learn more about it? Try this image search tool."
 msgstr "Vidíte na webe zaujímavý obrázok a chcete sa o ňom dozvedieť viac? Vyskúšajte tento nástroj na vyhľadávanie obrázkov."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:35 src/olympia/discovery/strings.jinja2:737
+#: src/olympia/discovery/strings.jinja2:35 src/olympia/discovery/strings.jinja2:739
 msgid "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
 msgstr "Sťahujte videá s ľahkosťou. Funguje so službami YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope a stovkami ďalších stránok s videom."
 
@@ -4558,13 +4558,13 @@ msgstr "Zjednodušená správa hesiel. Synchronizujte všetky svoje prihlasovaci
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:44 src/olympia/discovery/strings.jinja2:743
+#: src/olympia/discovery/strings.jinja2:44 src/olympia/discovery/strings.jinja2:745
 msgid "Effective, lightweight ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr "Efektívny a rýchly nástroj na blokovanie reklám. uBlock Origin nasadzuje tisíce filtrov obsahu bez toho, aby zaberal veľa pamäte."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:47 src/olympia/discovery/strings.jinja2:749
+#: src/olympia/discovery/strings.jinja2:47 src/olympia/discovery/strings.jinja2:751
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr "Používajte sadu nových funkcií pre YouTube, napríklad režim kina, blokovanie reklám, ovládanie automatického prehrávania a ďalšie."
 
@@ -4605,13 +4605,13 @@ msgstr "Zastavte škodlivé webové stránky vo využívaní výkonu vášho po�
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:71 src/olympia/discovery/strings.jinja2:677
+#: src/olympia/discovery/strings.jinja2:71 src/olympia/discovery/strings.jinja2:679
 msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
 msgstr "Získajte pomoc s gramatikou kdekoľvek na webe – sociálne médiá, e‑mail, dokumenty a ďalšie."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:74 src/olympia/discovery/strings.jinja2:761
+#: src/olympia/discovery/strings.jinja2:74 src/olympia/discovery/strings.jinja2:763
 msgid "Display current worldwide times in Firefox's status bar."
 msgstr "Zobrazte aktuálne celosvetové časy v stavovom riadku Firefoxu."
 
@@ -4632,7 +4632,7 @@ msgstr "Prispôsobte si gestá myši. Objavte nový spôsob navigácie s viac ak
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:86 src/olympia/discovery/strings.jinja2:872
+#: src/olympia/discovery/strings.jinja2:86 src/olympia/discovery/strings.jinja2:874
 msgid "Darken the page around video players for a focused viewing experience."
 msgstr "Stmavte stránku okolo prehrávačov videa, aby ste získali sústredený zážitok zo sledovania."
 
@@ -4649,13 +4649,13 @@ msgstr "Je stránka, ktorú hľadáte, nedostupná? Vyhľadajte jej archivovanú
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:98 src/olympia/discovery/strings.jinja2:740
+#: src/olympia/discovery/strings.jinja2:98 src/olympia/discovery/strings.jinja2:742
 msgid "Hover over an image to magnify it."
 msgstr "Umiestnite kurzor myši na obrázok a zväčšite ho."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:101 src/olympia/discovery/strings.jinja2:812
+#: src/olympia/discovery/strings.jinja2:101 src/olympia/discovery/strings.jinja2:814
 msgid "Automatically erase cookies after you close a tab."
 msgstr "Automaticky vymaže súbory cookie po zatvorení karty."
 
@@ -4666,25 +4666,25 @@ msgstr "Jednoduchý spôsob, ako upraviť veľkosť textu ľubovoľnej stránky 
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:107 src/olympia/discovery/strings.jinja2:773
+#: src/olympia/discovery/strings.jinja2:107 src/olympia/discovery/strings.jinja2:775
 msgid "Stop trackers in their tracks and learn more about them."
 msgstr "Zastavte sledovačov pri stopovaní a zistite o nich viac."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:110 src/olympia/discovery/strings.jinja2:833
+#: src/olympia/discovery/strings.jinja2:110 src/olympia/discovery/strings.jinja2:835
 msgid "Leave a clean digital trail. Make Firefox forget website data like cookies and local storage, but only for domains you choose."
 msgstr "Zanechajte čistú digitálnu stopu. Nechajte Firefox zabudnúť na údaje webových stránok, ako sú súbory cookie a lokálne úložisko, ale iba pre domény, ktoré si vyberiete."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:113 src/olympia/discovery/strings.jinja2:803
+#: src/olympia/discovery/strings.jinja2:113 src/olympia/discovery/strings.jinja2:805
 msgid "No need to write the same thing over and over. Save frequently-entered text to paste anytime."
 msgstr "Netreba písať to isté stále dookola. Uložte si často zadávaný text, ktorý následne môžete kedykoľvek vložiť."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:116 src/olympia/discovery/strings.jinja2:770
+#: src/olympia/discovery/strings.jinja2:116 src/olympia/discovery/strings.jinja2:772
 msgid "Get more screen space by removing ads from your web-based inbox."
 msgstr "Získajte viac miesta na obrazovke odstránením reklám zo svojej e‑mailovej schránky na webe."
 
@@ -4695,25 +4695,25 @@ msgstr "Spravujte svoje otvorené karty na prehľadnom bočnom paneli."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:122 src/olympia/discovery/strings.jinja2:875
+#: src/olympia/discovery/strings.jinja2:122 src/olympia/discovery/strings.jinja2:877
 msgid "Avoid sneaky trackers and restrictions. Disguise your navigation by cloaking the identity of your browser and operating system."
 msgstr "Vyhnite sa záludným sledovačom a obmedzeniam. Zamaskujte svoj pohyb maskovaním identity vášho prehliadača a operačného systému."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:125 src/olympia/discovery/strings.jinja2:767
+#: src/olympia/discovery/strings.jinja2:125 src/olympia/discovery/strings.jinja2:769
 msgid "Automatically reload tabs based on time intervals you set."
 msgstr "Automaticky znova načítajte karty na základe časových intervalov, ktoré nastavíte."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:128 src/olympia/discovery/strings.jinja2:941
+#: src/olympia/discovery/strings.jinja2:128 src/olympia/discovery/strings.jinja2:943
 msgid "Keep parts of your online life separated into color-coded and cookie separated tabs. Now integrated with Mozilla VPN for an extra layer of privacy."
 msgstr "Udržujte časti svojho online života oddelené na farebne odlíšené karty a karty oddelené od súborov cookie. Teraz integrované s Mozilla VPN pre ďalšiu vrstvu ochrany súkromia."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:131 src/olympia/discovery/strings.jinja2:752
+#: src/olympia/discovery/strings.jinja2:131 src/olympia/discovery/strings.jinja2:754
 msgid "Gain an additional layer of tracking protection as you browse the web."
 msgstr "Získajte ďalšiu vrstvu ochrany pred sledovaním pri prehliadaní webu."
 
@@ -4724,7 +4724,7 @@ msgstr "Čítajte súbory ePub priamo vo Firefoxe – zväčšite veľkosť pís
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:137 src/olympia/discovery/strings.jinja2:869
+#: src/olympia/discovery/strings.jinja2:137 src/olympia/discovery/strings.jinja2:871
 msgid "Play YouTube videos by default in the highest quality, turn off annotations, and more."
 msgstr "Prehrávajte videá YouTube predvolene v najvyššej kvalite, vypnite anotácie a podobne."
 
@@ -4745,7 +4745,7 @@ msgstr "Vylepšite si zážitok zo sledovania úpravou rýchlosti videa a ďalš
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:149 src/olympia/discovery/strings.jinja2:758
+#: src/olympia/discovery/strings.jinja2:149 src/olympia/discovery/strings.jinja2:760
 msgid "Add encrypted security to any site that supports HTTPS. Browse securely."
 msgstr "Pridajte šifrované zabezpečenie na všetky stránky, ktoré podporujú HTTPS. Prehliadajte bezpečne."
 
@@ -4791,13 +4791,13 @@ msgstr "Určite vlastnú domovskú stránku pre svoje nové karty."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:176 src/olympia/discovery/strings.jinja2:800
+#: src/olympia/discovery/strings.jinja2:176 src/olympia/discovery/strings.jinja2:802
 msgid "Convert all your open tabs into a list to easily manage them and speed up Firefox."
 msgstr "Preveďte všetky svoje otvorené karty na zoznam, aby ste ich mohli jednoducho spravovať a zrýchliť Firefox."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:179 src/olympia/discovery/strings.jinja2:722
+#: src/olympia/discovery/strings.jinja2:179 src/olympia/discovery/strings.jinja2:724
 msgid "Robust download management. Check the state of your downloads through a status bar, download history page, and more."
 msgstr "Robustný správca sťahovania. Skontrolujte stav sťahovania prostredníctvom stavového riadka, stránky histórie sťahovania a ďalších."
 
@@ -4828,7 +4828,7 @@ msgstr "Uľahčite očiam pre prehliadaní webu stmavením displeja."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:197 src/olympia/discovery/strings.jinja2:719
+#: src/olympia/discovery/strings.jinja2:197 src/olympia/discovery/strings.jinja2:721
 msgid "Block all pop-ups by default, then decide which ones you'd like to open."
 msgstr "V predvolenom nastavení blokujte všetky kontextové okná a potom sa rozhodnite, ktoré z nich chcete otvoriť."
 
@@ -4859,7 +4859,7 @@ msgstr "Vylepšite si zážitok z čítania. Urobte text, ktorý čítate, prí�
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:215 src/olympia/discovery/strings.jinja2:794
+#: src/olympia/discovery/strings.jinja2:215 src/olympia/discovery/strings.jinja2:796
 msgid "Right-click and drag links you want open in new tabs."
 msgstr "Kliknite pravým tlačidlom myši a potiahnite odkazy, ktoré chcete otvoriť na nových kartách."
 
@@ -4900,7 +4900,7 @@ msgstr "Sledujte historické ceny, nájdite konkurenčné produkty, spoznajte ho
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:239 src/olympia/discovery/strings.jinja2:716
+#: src/olympia/discovery/strings.jinja2:239 src/olympia/discovery/strings.jinja2:718
 msgid "Make it your YouTube. Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
 msgstr "Urobte z toho svoj YouTube. Prehrávajte videá vo vyskakovacom okne, zobrazujte reklamy iba v rámci odoberaných kanálov, snímajte snímky obrazovky videa a ešte oveľa viac."
 
@@ -4981,7 +4981,7 @@ msgstr "Skontrolujte svoje obľúbené kanály RSS na jednej stránke."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:287 src/olympia/discovery/strings.jinja2:713
+#: src/olympia/discovery/strings.jinja2:287 src/olympia/discovery/strings.jinja2:715
 msgid "Enable night mode for a better viewing experience."
 msgstr "Povoľte nočný režim pre lepší zážitok zo sledovania."
 
@@ -5037,13 +5037,13 @@ msgstr "Vytvárajte si všeobecné poznámky alebo poznámky pre špecifické we
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:320 src/olympia/discovery/strings.jinja2:692
+#: src/olympia/discovery/strings.jinja2:320 src/olympia/discovery/strings.jinja2:694
 msgid "Phone-like scrolling for your desktop. Features \"grab-n-drag\" style mouse movement."
 msgstr "Rolovanie na počítači ako v telefóne. Obsahuje pohyb myši v štýle „uchop-a-ťahaj“."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:323 src/olympia/discovery/strings.jinja2:863
+#: src/olympia/discovery/strings.jinja2:323 src/olympia/discovery/strings.jinja2:865
 msgid "Clear your browser cache with a click or keystroke."
 msgstr "Vymažte vyrovnávaciu pamäť prehliadača jediným kliknutím alebo stlačením klávesu."
 
@@ -5054,13 +5054,13 @@ msgstr "Zvýraznite text na webových stránkach, aby ste si ho uložili a mali 
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:329 src/olympia/discovery/strings.jinja2:689
+#: src/olympia/discovery/strings.jinja2:329 src/olympia/discovery/strings.jinja2:691
 msgid "Enjoy music from 30,000+ radio stations from all over the globe."
 msgstr "Vychutnajte si hudbu z viac ako 30 000 rozhlasových staníc z celého sveta."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:332 src/olympia/discovery/strings.jinja2:860
+#: src/olympia/discovery/strings.jinja2:332 src/olympia/discovery/strings.jinja2:862
 msgid "Save bandwidth by just streaming the audio from YouTube clips."
 msgstr "Šetrite šírku pásma streamovaním iba zvuku z klipov YouTube."
 
@@ -5071,13 +5071,13 @@ msgstr "Premeňte slová na krásne nadpisy a texty nad obrázkami."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:338 src/olympia/discovery/strings.jinja2:710
+#: src/olympia/discovery/strings.jinja2:338 src/olympia/discovery/strings.jinja2:712
 msgid "Automatically navigate to the secure version of a website if it's available."
 msgstr "Automaticky prejdite na zabezpečenú verziu webovej lokality, ak je k dispozícii."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:341 src/olympia/discovery/strings.jinja2:791
+#: src/olympia/discovery/strings.jinja2:341 src/olympia/discovery/strings.jinja2:793
 msgid "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
 msgstr "Vymažte históriu prehliadania. Zadajte vlastný počet dní, počas ktorých sa má história prehliadača uchovávať pred jej automatickým vymazaním."
 
@@ -5103,7 +5103,7 @@ msgstr "Hľadajte súkromne jediným kliknutím."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:359 src/olympia/discovery/strings.jinja2:824
+#: src/olympia/discovery/strings.jinja2:359 src/olympia/discovery/strings.jinja2:826
 msgid "Put an end to tab hijacking. Don't let clicked links take control of your current tab and load content you didn't ask for."
 msgstr "Skoncujte s únosmi kariet. Nedovoľte, aby kliknuté odkazy prevzali kontrolu nad vašou aktuálnou kartou a načítali obsah, o ktorý ste nepožiadali."
 
@@ -5214,13 +5214,13 @@ msgstr "Uložte si svoje obľúbené veci na web. Zostrihajte obsah, ako sú čl
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:425 src/olympia/discovery/strings.jinja2:827
+#: src/olympia/discovery/strings.jinja2:425 src/olympia/discovery/strings.jinja2:829
 msgid "Only allow web content to run from sites you trust. Surf securely."
 msgstr "Povoľte spustenie webového obsahu iba zo stránok, ktorým dôverujete. Surfujte bezpečne."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:428 src/olympia/discovery/strings.jinja2:698
+#: src/olympia/discovery/strings.jinja2:428 src/olympia/discovery/strings.jinja2:700
 msgid "Take full control of the cookies you've accumulated while browsing."
 msgstr "Prevezmite plnú kontrolu nad súbormi cookie, ktoré ste nazhromaždili počas prehliadania."
 
@@ -5231,7 +5231,7 @@ msgstr "Automaticky odstráni históriu prehliadania pre webové stránky, ktor�
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:434 src/olympia/discovery/strings.jinja2:788
+#: src/olympia/discovery/strings.jinja2:434 src/olympia/discovery/strings.jinja2:790
 msgid "Password-protect your personal bookmarks."
 msgstr "Zabezpečte svoje záložky pomocou hesla."
 
@@ -5262,7 +5262,7 @@ msgstr "Využite možnosť sťahovať video a/alebo zvuk vo viacerých formátoc
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:452 src/olympia/discovery/strings.jinja2:683
+#: src/olympia/discovery/strings.jinja2:452 src/olympia/discovery/strings.jinja2:685
 msgid "Learn where any website's server is geographically located. Be an informed web traveler."
 msgstr "Zistite, kde sa geograficky nachádza server ktorejkoľvek webovej lokality. Buďte informovaným webovým cestovateľom."
 
@@ -5283,13 +5283,13 @@ msgstr "Sledujte históriu cien Amazonu. Robte inteligentné nákupné rozhodnut
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:464 src/olympia/discovery/strings.jinja2:854
+#: src/olympia/discovery/strings.jinja2:464 src/olympia/discovery/strings.jinja2:856
 msgid "Adjust browser audio settings with extreme clarity."
 msgstr "Upravte nastavenia zvuku prehliadača s extrémnou čistotou."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:467 src/olympia/discovery/strings.jinja2:680
+#: src/olympia/discovery/strings.jinja2:467 src/olympia/discovery/strings.jinja2:682
 msgid "Defend yourself against the sneakiest trackers."
 msgstr "Bráňte sa pred tými najzáludnejšími sledovačmi."
 
@@ -5315,7 +5315,7 @@ msgstr "Jednoduchým kliknutím myši môžete sledovať videá na celej obrazov
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:485 src/olympia/discovery/strings.jinja2:830
+#: src/olympia/discovery/strings.jinja2:485 src/olympia/discovery/strings.jinja2:832
 msgid "Stop wasting valuable memory space with inactive tabs."
 msgstr "Prestaňte plytvať cenným miestom v pamäti neaktívnymi kartami."
 
@@ -5336,19 +5336,19 @@ msgstr "Získajte pomoc s gramatikou kdekoľvek na webe — sociálne médiá, e
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:498 src/olympia/discovery/strings.jinja2:674
+#: src/olympia/discovery/strings.jinja2:498 src/olympia/discovery/strings.jinja2:676
 msgid "Read with more clarity and ease. Remove the clutter around text on web pages."
 msgstr "Čítajte s väčšou jasnosťou a ľahkosťou. Odstráňte neporiadok okolo textu na webových stránkach."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:501 src/olympia/discovery/strings.jinja2:671
+#: src/olympia/discovery/strings.jinja2:501 src/olympia/discovery/strings.jinja2:673
 msgid "Block ads and get enhanced protection against malware and ad tracking."
 msgstr "Blokujte reklamy a získajte rozšírenú ochranu pred malvérom a sledovaním pomocou reklám."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:504 src/olympia/discovery/strings.jinja2:851
+#: src/olympia/discovery/strings.jinja2:504 src/olympia/discovery/strings.jinja2:853
 msgid "Enjoy multi-threading download support. Automatically detect different types of media available for download."
 msgstr "Užite si viacvláknovú podporu sťahovania. Automaticky zisťuje rôzne typy médií dostupných na stiahnutie."
 
@@ -5369,19 +5369,19 @@ msgstr "Užite si výhody silnej správy hesiel."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:516 src/olympia/discovery/strings.jinja2:701
+#: src/olympia/discovery/strings.jinja2:516 src/olympia/discovery/strings.jinja2:703
 msgid "Customize shades of light and dark to make web pages more visually pleasing."
 msgstr "Prispôsobte si odtiene svetla a tmy, aby boli webové stránky vizuálne príjemnejšie."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:519 src/olympia/discovery/strings.jinja2:848
+#: src/olympia/discovery/strings.jinja2:519 src/olympia/discovery/strings.jinja2:850
 msgid "Block distracting websites. Simply list the sites you want the extension to block. Instant discipline!"
 msgstr "Blokujte rušivé webové stránky. Jednoducho uveďte stránky, ktoré chcete, aby rozšírenie blokovalo. Okamžitá disciplína!"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:522 src/olympia/discovery/strings.jinja2:695
+#: src/olympia/discovery/strings.jinja2:522 src/olympia/discovery/strings.jinja2:697
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
 msgstr "Zmeňte vzhľad prehliadača. Jednoducho navrhnite svoje vlastné vizuálne motívy, aby Firefox vyzeral tak, ako chcete."
 
@@ -5402,13 +5402,13 @@ msgstr "Sledujte produkty a získajte upozornenia, keď klesnú ceny položiek, 
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:534 src/olympia/discovery/strings.jinja2:668
+#: src/olympia/discovery/strings.jinja2:534 src/olympia/discovery/strings.jinja2:670
 msgid "Turn the web dark or select a custom color scheme to visually tailor the internet to your own taste."
 msgstr "Stmavte web alebo si vyberte vlastnú farebnú schému, aby ste si internet vizuálne prispôsobili svojmu vkusu."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:537 src/olympia/discovery/strings.jinja2:887
+#: src/olympia/discovery/strings.jinja2:537 src/olympia/discovery/strings.jinja2:889
 msgid "Get a more advanced search page on Firefox for Android."
 msgstr "Získajte pokročilejšiu stránku vyhľadávania vo Firefoxe pre Android."
 
@@ -5434,7 +5434,7 @@ msgstr "Vymažte súbory cookie, históriu prehliadania a súbory vo vyrovnávac
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:555 src/olympia/discovery/strings.jinja2:782
+#: src/olympia/discovery/strings.jinja2:555 src/olympia/discovery/strings.jinja2:784
 msgid "Remove tracking elements from web links."
 msgstr "Odstráňte prvky sledovania z webových odkazov."
 
@@ -5445,13 +5445,13 @@ msgstr "Získajte automaticky vyplnené priečinky so záložkami informačného
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:561 src/olympia/discovery/strings.jinja2:845
+#: src/olympia/discovery/strings.jinja2:561 src/olympia/discovery/strings.jinja2:847
 msgid "Easily organize tons of open tabs."
 msgstr "Jednoducho organizujte veľa otvorených kariet."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:564 src/olympia/discovery/strings.jinja2:785
+#: src/olympia/discovery/strings.jinja2:564 src/olympia/discovery/strings.jinja2:787
 msgid "Create and customize tab groups."
 msgstr "Vytvárajte a prispôsobujte skupiny kariet."
 
@@ -5472,13 +5472,13 @@ msgstr "Blokujte všetky reklamy – video, kontextové okná, bannery a ďalši
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:578 src/olympia/discovery/strings.jinja2:839
+#: src/olympia/discovery/strings.jinja2:578 src/olympia/discovery/strings.jinja2:841
 msgid "Watch streaming media with friends and family anywhere."
 msgstr "Sledujte streamované médiá s priateľmi a rodinou kdekoľvek."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:581 src/olympia/discovery/strings.jinja2:881
+#: src/olympia/discovery/strings.jinja2:581 src/olympia/discovery/strings.jinja2:883
 msgid "Skip over sponsored portions of YouTube videos."
 msgstr "Preskočte sponzorované časti videí YouTube."
 
@@ -5489,31 +5489,31 @@ msgstr "Nechajte si webové stránky prečítať nahlas. Podporovaných je viac 
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:587 src/olympia/discovery/strings.jinja2:878
+#: src/olympia/discovery/strings.jinja2:587 src/olympia/discovery/strings.jinja2:880
 msgid "Double-click any word to instantly see its definition."
 msgstr "Dvakrát kliknite na ľubovoľné slovo, aby ste okamžite videli jeho definíciu."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:592 src/olympia/discovery/strings.jinja2:920
+#: src/olympia/discovery/strings.jinja2:592 src/olympia/discovery/strings.jinja2:922
 msgid "Save batches of tabs as convenient bookmarks."
 msgstr "Uložte niekoľko kariet naraz do pohodlných záložiek."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:595 src/olympia/discovery/strings.jinja2:923
+#: src/olympia/discovery/strings.jinja2:595 src/olympia/discovery/strings.jinja2:925
 msgid "Tabs and bookmarks neatly organized in a Firefox side view."
 msgstr "Karty a záložky prehľadne usporiadané v bočnom pohľade Firefoxu."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:598 src/olympia/discovery/strings.jinja2:902
+#: src/olympia/discovery/strings.jinja2:598 src/olympia/discovery/strings.jinja2:904
 msgid "Thousands of GIFs at your fingertips."
 msgstr "Tisíce obrázkov GIF na dosah ruky."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:601 src/olympia/discovery/strings.jinja2:908
+#: src/olympia/discovery/strings.jinja2:601 src/olympia/discovery/strings.jinja2:910
 msgid "The easiest way to manage YouTube subscriptions."
 msgstr "Najjednoduchší spôsob správy odberov v službe YouTube."
 
@@ -5524,7 +5524,7 @@ msgstr "Získajte posúvač myši, aký ste vždy chceli – zadefinujte si jeho
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:607 src/olympia/discovery/strings.jinja2:917
+#: src/olympia/discovery/strings.jinja2:607 src/olympia/discovery/strings.jinja2:919
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
 msgstr "Ukladajte a obnovujte karty. Zahŕňa funkcie automatického ukladania a synchronizácie v cloude."
 
@@ -5584,517 +5584,517 @@ msgid "Protect your privacy against a unique form of JavaScript “fingerprintin
 msgstr "Chráňte svoje súkromie pred jedinečnou formou JavaScriptových „odtlačkov prstov“."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:665
+#: src/olympia/discovery/strings.jinja2:667
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Niektoré webové stránky majú problémy s prehrávaním videí v systéme Android. Tu je oprava."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:686
+#: src/olympia/discovery/strings.jinja2:688
 msgid "Find an interesting pic on the web? Use TinEye to discover its origins."
 msgstr "Našli ste na webe zaujímavý obrázok? Použite TinEye, ktorý vám pomôže zistiť jeho pôvod."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:704
+#: src/olympia/discovery/strings.jinja2:706
 msgid "Save images easily — just grab them from your current tab."
 msgstr "Ukladajte obrázky jednoducho — jednoducho ich uchopte z aktuálnej karty."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:707
+#: src/olympia/discovery/strings.jinja2:709
 msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title & more."
 msgstr "Užite si dokonalé ovládanie kariet — zatvorte duplicitné karty, zlúčte okná, skopírujte názov karty a ďalšie."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:725
+#: src/olympia/discovery/strings.jinja2:727
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
 msgstr "Čítajte súbory ePUB priamo vo Firefoxe – zväčšite veľkosť písma, rozmery stránky a ďalšie."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:746
+#: src/olympia/discovery/strings.jinja2:748
 msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configurations."
 msgstr "Prispôsobte si gestá myši. Objavte nové spôsoby navigácie s viac ako 50 konfiguráciami."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:797
+#: src/olympia/discovery/strings.jinja2:799
 msgid "Customize the look of any website. Shift colors, page backgrounds & more."
 msgstr "Prispôsobte vzhľad akejkoľvek webovej stránky. Zmeňte si farby, pozadie stránky a či ďalšie položky."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:806
+#: src/olympia/discovery/strings.jinja2:808
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "Pomocou gest myši zatvárajte karty, prechádzajte stránkami a podobne."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:809
+#: src/olympia/discovery/strings.jinja2:811
 msgid "A simple way to adjust the size of any page's text — or even enlarge the page itself."
 msgstr "Jednoduchý spôsob, ako upraviť veľkosť textu ľubovoľnej stránky — alebo dokonca zväčšiť samotnú stránku."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:836
+#: src/olympia/discovery/strings.jinja2:838
 msgid "Enjoy thumbnail images of websites alongside your search returns."
 msgstr "Vychutnajte si miniatúrne obrázky webových stránok spolu s výsledkami vyhľadávania."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:842
+#: src/olympia/discovery/strings.jinja2:844
 msgid "Save an entire web page — including images and styling — as a single HTML file."
 msgstr "Uložte celú webovú stránku vrátane obrázkov a štýlu ako jeden súbor HTML."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:857
+#: src/olympia/discovery/strings.jinja2:859
 msgid "Edit a web page before printing. Remove ads or any unwanted content."
 msgstr "Pred tlačou si upravte webovú stránku. Odstráňte reklamy alebo akýkoľvek nechcený obsah."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:866
+#: src/olympia/discovery/strings.jinja2:868
 msgid "Advanced reader for aggregating all of your RSS/Atom/RDF sources."
 msgstr "Pokročilá čítačka na agregáciu všetkých vašich zdrojov RSS/Atom/RDF."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:884
+#: src/olympia/discovery/strings.jinja2:886
 msgid "Web pages read aloud. 40+ languages supported."
 msgstr "Nechajte si webové stránky prečítať nahlas. Podporovaných je viac ako 40 jazykov."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:890
+#: src/olympia/discovery/strings.jinja2:892
 msgid "Removes those long tracking parameters from Google search result URL's."
 msgstr "Odstraňujte tie dlhé parametre sledovania z adries URL výsledkov vyhľadávania Google."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:893
+#: src/olympia/discovery/strings.jinja2:895
 msgid "Get weather updates directly from Firefox."
 msgstr "Získajte aktuálne informácie o počasí priamo z Firefoxu."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:896
+#: src/olympia/discovery/strings.jinja2:898
 msgid "Manage your time better with a browser clock that charts work intervals."
 msgstr "Spravujte si čas lepšie pomocou hodín v prehliadači, ktoré zobrazujú pracovné intervaly."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:899
+#: src/olympia/discovery/strings.jinja2:901
 msgid "Tired of that \"Video paused. Continue watching?\" message? Listen to your favorite music uninterrupted on YouTube."
 msgstr "Už vás nebavia správy typu „Video pozastavené. Pokračovať v pozeraní?“? Počúvajte svoju obľúbenú hudbu na YouTube bez prerušení."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:905
+#: src/olympia/discovery/strings.jinja2:907
 msgid "Begone, annoying cookie warnings!"
 msgstr "Zbohom otravné upozornenia na cookies!"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:911
+#: src/olympia/discovery/strings.jinja2:913
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
 msgstr "Vráťte sa do jednoduchšieho obdobia – keď vaše najlepšie výsledky vyhľadávania stáli nad reklamami (kompatibilné s vyhľadávacími nástrojmi Google a Bing)."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:914
+#: src/olympia/discovery/strings.jinja2:916
 msgid "Get the mouse scrollbar you've always wanted — specify width and color."
 msgstr "Získajte posuvníky, aké ste vždy chceli — zadefinujte si ich šírku a farbu."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:926
+#: src/olympia/discovery/strings.jinja2:928
 msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
 msgstr "Zamaskujte svoj e‑mail, aby ste ochránili svoju identitu a zabránili nevyžiadanej pošte. Vďaka novinkám je používanie služby Firefox Relay ešte jednoduchšie."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:929
+#: src/olympia/discovery/strings.jinja2:931
 msgid "Instantly translate any selected text on web pages."
 msgstr "Okamžite preložte akýkoľvek vybraný text na webových stránkach."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:932
+#: src/olympia/discovery/strings.jinja2:934
 msgid "Make Firefox change colors based on time of day."
 msgstr "Nechajte Firefox meniť farby podľa dennej doby."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:935
+#: src/olympia/discovery/strings.jinja2:937
 msgid "Eliminate YouTube distractions. Remove related and recommended video suggestions, comments & more."
 msgstr "Odstráňte rozptýlenie na YouTube. Odstráňte súvisiace a odporúčané návrhy videí, komentáre a ďalšie."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:938
+#: src/olympia/discovery/strings.jinja2:940
 msgid "Take emojis with you everywhere on the web."
 msgstr "Vezmite si emotikony všade so sebou na webe."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:944
+#: src/olympia/discovery/strings.jinja2:946
 msgid "Put restrictions on distracting, time-wasting websites."
 msgstr "Obmedzte rušivé webové stránky, na ktorých strácate čas."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:947
+#: src/olympia/discovery/strings.jinja2:949
 msgid "Remove clutter from your Twitter."
 msgstr "Odstráňte neporiadok zo svojho Twitteru."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:950
+#: src/olympia/discovery/strings.jinja2:952
 msgid "Customize YouTube to taste."
 msgstr "Prispôsobte si YouTube podľa chuti."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:953
+#: src/olympia/discovery/strings.jinja2:955
 msgid "Delete browsing data directly from the browser toolbar."
 msgstr "Vymažte údaje prehliadania priamo z panela s nástrojmi prehliadača."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:956
+#: src/olympia/discovery/strings.jinja2:958
 msgid "Get RSS feed auto-updates direct to your bookmark folders."
 msgstr "Získajte automatické aktualizácie informačného kanála RSS priamo do priečinkov so záložkami."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:959
+#: src/olympia/discovery/strings.jinja2:961
 msgid "Effective blocker against all types of ads."
 msgstr "Účinné blokovanie všetkých typov reklám."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:962
+#: src/olympia/discovery/strings.jinja2:964
 msgid "Mass download manager makes extreme downloading extremely easy."
 msgstr "Správca hromadného sťahovania výrazne uľahčuje extrémne sťahovanie."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:965
+#: src/olympia/discovery/strings.jinja2:967
 msgid "Remove ads & receive better protection against malware."
 msgstr "Odstráňte reklamy a získajte lepšiu ochranu pred škodlivým softvérom."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:968
+#: src/olympia/discovery/strings.jinja2:970
 msgid "Remove formatting from copied Clipboard text."
 msgstr "Odstráňte formátovanie zo skopírovaného textu zo schránky."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:971
+#: src/olympia/discovery/strings.jinja2:973
 msgid "Fingerprinting privacy protection."
 msgstr "Ochrana súkromia pre snímaním odtlačkov prehliadača."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:974
+#: src/olympia/discovery/strings.jinja2:976
 msgid "Enhance your gaming experience on Steam."
 msgstr "Vylepšite svoj herný zážitok v službe Steam."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:977
+#: src/olympia/discovery/strings.jinja2:979
 msgid "Thumbs-up to bringing back thumbs-down."
 msgstr "Palec hore po návrat palca dole."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:980
+#: src/olympia/discovery/strings.jinja2:982
 msgid "Translate websites in Firefox — privately — without using the cloud."
 msgstr "Prekladajte webové stránky vo Firefoxe — súkromne — bez použitia cloudu."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:983
+#: src/olympia/discovery/strings.jinja2:985
 msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
 msgstr "Blokujte webové stránky, ktoré vás oberajú o čas. Zablokujte ich úplne alebo len v časových rámcoch podľa vášho výberu."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:986
+#: src/olympia/discovery/strings.jinja2:988
 msgid "Easily summarize emails, docs, articles, and video transcripts in English across the web — without sacrificing your privacy."
 msgstr "Jednoducho zosumarizujte e‑maily, dokumenty, články a prepisy videí v angličtine na webe – bez toho, aby ste obetovali svoje súkromie."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:989
+#: src/olympia/discovery/strings.jinja2:991
 msgid "You’re in control. Turn off VPN when a website won’t work and set different locations for different websites. Windows only."
 msgstr "Všetko máte pod kontrolou. Keď webová stránka nefunguje, vypnite sieť VPN alebo si nastavte rôzne lokality pre rôzne webové stránky. Iba pre Windows."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:992
+#: src/olympia/discovery/strings.jinja2:994
 msgid "Automatically handle GDPR consent forms."
 msgstr "Automaticky spracovávajte formuláre súhlasu s GDPR."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:995
+#: src/olympia/discovery/strings.jinja2:997
 msgid "Block malicious websites from port scanning."
 msgstr "Blokujte skenovanie portov škodlivými webovými stránkami."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:998
+#: src/olympia/discovery/strings.jinja2:1000
 msgid "Enhance your Twitch experience."
 msgstr "Vylepšite svoj zážitok zo služby Twitch."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1001
+#: src/olympia/discovery/strings.jinja2:1003
 msgid "Re-take control of Twitter/X and customize your experience."
 msgstr "Znovu prevezmite kontrolu nad Twitterom/X a prispôsobte si svoje prostredie."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1004
+#: src/olympia/discovery/strings.jinja2:1006
 msgid "Translate text without leaving the page you're on (PDF compatible)."
 msgstr "Prekladajte text bez opustenia stránky, na ktorej sa nachádzate (kompatibilné s PDF)."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1007
+#: src/olympia/discovery/strings.jinja2:1009
 msgid "Change the color of Firefox to match every website you visit."
 msgstr "Zmeňte farbu Firefoxu tak, aby zodpovedala webovej stránke, na ktorej práve ste."
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1010
+#: src/olympia/discovery/strings.jinja2:1012
 msgid "Extensions are like apps for Firefox."
 msgstr "Rozšírenia sú ako aplikácie pre Firefox."
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1012
+#: src/olympia/discovery/strings.jinja2:1014
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
 msgstr "Pridávajú do Firefoxu funkcie, vďaka čomu je prehliadanie rýchlejšie, bezpečnejšie či zábavnejšie."
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1014
+#: src/olympia/discovery/strings.jinja2:1016
 msgid "See all extensions"
 msgstr "Zobraziť všetky rozšírenia"
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1016
-msgid "Privacy & Security extensions"
-msgstr "Rozšírenia zamerané na bezpečnosť a súkromie"
+#: src/olympia/discovery/strings.jinja2:1018
+msgid "Anti-tracking extensions"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1018
+#: src/olympia/discovery/strings.jinja2:1020
 msgid "Essential add-ons"
 msgstr "Nevyhnutné doplnky"
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1020
-msgid "Declutter your desktop"
-msgstr "Upracte si pracovnú plochu"
+#: src/olympia/discovery/strings.jinja2:1022
+msgid "Steam extensions"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1022 src/olympia/discovery/strings.jinja2:1024 src/olympia/discovery/strings.jinja2:1026
+#: src/olympia/discovery/strings.jinja2:1024 src/olympia/discovery/strings.jinja2:1026 src/olympia/discovery/strings.jinja2:1028
 msgid "See staff picks"
 msgstr "Pozrite si tipy od znalcov"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1029
+#: src/olympia/discovery/strings.jinja2:1031
 msgid "Recommended extensions"
 msgstr "Odporúčané rozšírenia"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1031
+#: src/olympia/discovery/strings.jinja2:1033
 msgid "See more recommended extensions"
 msgstr "Pozrite si ďalšie odporúčané rozšírenia"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1034
+#: src/olympia/discovery/strings.jinja2:1036
 msgid "Popular themes"
 msgstr "Populárne témy vzhľadu"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1036
+#: src/olympia/discovery/strings.jinja2:1038
 msgid "See more popular themes"
 msgstr "Ďalšie populárne témy vzhľadu"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1039
+#: src/olympia/discovery/strings.jinja2:1041
 msgid "Enhanced privacy extensions"
 msgstr "Rozšírenia zamerané na zvýšenie súkromia"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1041
+#: src/olympia/discovery/strings.jinja2:1043
 msgid "See more recommended privacy extensions"
 msgstr "Ďalšie odporúčané rozšírenia pre ochranu súkromia"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1044
+#: src/olympia/discovery/strings.jinja2:1046
 msgid "Popular extensions"
 msgstr "Populárne rozšírenia"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1046
+#: src/olympia/discovery/strings.jinja2:1048
 msgid "See more popular extensions"
 msgstr "Ďalšie populárne rozšírenia"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1049
+#: src/olympia/discovery/strings.jinja2:1051
 msgid "Recommended themes"
 msgstr "Odporúčané témy vzhľadu"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1051
+#: src/olympia/discovery/strings.jinja2:1053
 msgid "See more recommended themes"
 msgstr "Ďalšie odporúčané témy vzhľadu"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1054
+#: src/olympia/discovery/strings.jinja2:1056
 msgid "Strong password managers"
 msgstr "Silní správcovia hesiel"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1056
+#: src/olympia/discovery/strings.jinja2:1058
 msgid "See more password manager staff picks"
 msgstr "Ďalšie tipy od znalcov pre správcu hesiel"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1059
+#: src/olympia/discovery/strings.jinja2:1061
 msgid "Translation tools"
 msgstr "Nástroje na prekladanie"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1061
+#: src/olympia/discovery/strings.jinja2:1063
 msgid "See more translation tool staff picks"
 msgstr "Pozrite si ďalšie tipy od prekladateľov"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1064
+#: src/olympia/discovery/strings.jinja2:1066
 msgid "Social streaming"
 msgstr "Streamovanie na sociálnych sieťach"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1066
+#: src/olympia/discovery/strings.jinja2:1068
 msgid "See more social streaming staff picks"
 msgstr "Ďalšie tipy od znalcov pre streamovanie na sociálnych sieťach"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1069
+#: src/olympia/discovery/strings.jinja2:1071
 msgid "Tab managers"
 msgstr "Správcovia kariet"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1071
+#: src/olympia/discovery/strings.jinja2:1073
 msgid "See more tab management staff picks"
 msgstr "Ďalšie tipy od znalcov pre správu kariet"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1074
+#: src/olympia/discovery/strings.jinja2:1076
 #, python-brace-format
 msgid "“{tag}” tagged extensions"
 msgstr "Rozšírenia so značkou “{tag}”."
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1076
+#: src/olympia/discovery/strings.jinja2:1078
 #, python-brace-format
 msgid "See more extensions tagged \"{tag}\""
 msgstr "Ďalšie rozšírenia so značkou \"{tag}\""
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1079
+#: src/olympia/discovery/strings.jinja2:1081
 msgid "Elite ad blockers"
 msgstr "Elitné blokovanie reklám"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1081
+#: src/olympia/discovery/strings.jinja2:1083
 msgid "See more ad blocker staff picks"
 msgstr "Ďalšie tipy od znalcov na blokovanie reklám"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1084
+#: src/olympia/discovery/strings.jinja2:1086
 msgid "YouTube customization"
 msgstr "Prispôsobenie YouTube"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1086
+#: src/olympia/discovery/strings.jinja2:1088
 msgid "See more YouTube extension staff picks"
 msgstr "Ďalšie tipy na rozšírenia pre YouTube"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1089
+#: src/olympia/discovery/strings.jinja2:1091
 msgid "Trending themes"
 msgstr "Populárne témy"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1091
+#: src/olympia/discovery/strings.jinja2:1093
 msgid "See more trending themes"
 msgstr "Ďalšie populárne témy vzhľadu"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1094 src/olympia/discovery/strings.jinja2:1139
+#: src/olympia/discovery/strings.jinja2:1096 src/olympia/discovery/strings.jinja2:1141
 msgid "Top rated themes"
 msgstr "Najlepšie hodnotené témy"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1096 src/olympia/discovery/strings.jinja2:1141
+#: src/olympia/discovery/strings.jinja2:1098 src/olympia/discovery/strings.jinja2:1143
 msgid "See more top rated themes"
 msgstr "Ďalšie najlepšie hodnotené témy vzhľadu"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1099
+#: src/olympia/discovery/strings.jinja2:1101
 msgid "Trending extensions"
 msgstr "Populárne rozšírenia"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1101
+#: src/olympia/discovery/strings.jinja2:1103
 msgid "See more trending extensions"
 msgstr "Ďalšie populárne rozšírenia"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1104
+#: src/olympia/discovery/strings.jinja2:1106
 msgid "Steam enhancers"
 msgstr "Vylepšenia pre platformu Steam"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1106
+#: src/olympia/discovery/strings.jinja2:1108
 msgid "See more Steam staff picks"
 msgstr "Ďalšie tipy od znalcov pre platformu Steam"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1109
+#: src/olympia/discovery/strings.jinja2:1111
 msgid "Creativity extensions"
 msgstr "Rozšírenia pre kreativitu"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1111
+#: src/olympia/discovery/strings.jinja2:1113
 msgid "See more creativity staff picks"
 msgstr "Ďalšie tipy od znalcov pre kreativitu"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1114
+#: src/olympia/discovery/strings.jinja2:1116
 msgid "Social media extensions"
 msgstr "Rozšírenia zamerané na sociálne médiá"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1116
+#: src/olympia/discovery/strings.jinja2:1118
 msgid "See more social media staff picks"
 msgstr "Ďalšie tipy od znalcov pre sociálne médiá"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1119
+#: src/olympia/discovery/strings.jinja2:1121
 msgid "Top download managers"
 msgstr "Najlepší správcovia sťahovania"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1121
+#: src/olympia/discovery/strings.jinja2:1123
 msgid "See more download manager staff picks"
 msgstr "Ďalšie tipy od znalcov pre správcov sťahovania"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1124
+#: src/olympia/discovery/strings.jinja2:1126
 msgid "Accessibility extensions"
 msgstr "Rozšírenia pre zjednodušenie ovládania"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1126
+#: src/olympia/discovery/strings.jinja2:1128
 msgid "See more accessibility staff picks"
 msgstr "Ďalšie tipy od znalcov na rozšírenia pre zjednodušenie ovládania"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1129
+#: src/olympia/discovery/strings.jinja2:1131
 msgid "Extension starter pack"
 msgstr "Štartovací balíček rozšírení"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1131
+#: src/olympia/discovery/strings.jinja2:1133
 msgid "See more starter extension staff picks"
 msgstr "Ďalšie tipy od znalcov na štartovacie rozšírenia"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1134
+#: src/olympia/discovery/strings.jinja2:1136
 msgid "Twitch extensions"
 msgstr "Rozšírenia pre Twitch"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1136
+#: src/olympia/discovery/strings.jinja2:1138
 msgid "See more Twitch extension staff picks"
 msgstr "Ďalšie tipy od znalcov na rozšírenia pre Twitch"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1144
+#: src/olympia/discovery/strings.jinja2:1146
 msgid "Gaming & media extensions"
 msgstr "Rozšírenia pre hry a médiá"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1146
+#: src/olympia/discovery/strings.jinja2:1148
 msgid "See more staff picks"
 msgstr "Ďalšie tipy od znalcov"
 
-#: src/olympia/files/models.py:333
+#: src/olympia/files/models.py:324
 msgid "Unreviewed"
 msgstr "Neskontrolované"
 
-#: src/olympia/files/models.py:336
+#: src/olympia/files/models.py:327
 #, python-format
 msgid "[status:%s]"
 msgstr "[status:%s]"
@@ -6890,34 +6890,34 @@ msgstr "Môžete zadať iba jednu adresu IP alebo sieť."
 msgid "No user with that email."
 msgstr "Používateľ s touto e‑mailovou adresou neexistuje."
 
-#: src/olympia/users/models.py:581
+#: src/olympia/users/models.py:585
 #, python-brace-format
 msgid "Firefox user {id}"
 msgstr "Používateľ Firefoxu - {id}"
 
-#: src/olympia/users/models.py:841
+#: src/olympia/users/models.py:845
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "Zadajte platný rozsah siete IPv4 alebo IPv6 CIDR, napr. 127.0.0.1/28"
 
-#: src/olympia/users/models.py:845
+#: src/olympia/users/models.py:849
 msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
 msgstr "Z vašej lokality bolo odoslaných viacero príspevkov porušujúcich naše pravidlá. Adresa IP bola zablokovaná."
 
-#: src/olympia/users/models.py:957
+#: src/olympia/users/models.py:961
 msgid "Email Pattern"
 msgstr "Formát e‑mailovej adresy"
 
-#: src/olympia/users/models.py:960
+#: src/olympia/users/models.py:964
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr ""
 "Zadajte celý e‑mail, ktorý má byť zablokovaný, alebo použite zástupné znaky v štýle unix, napr. \"*@example.com\". Ak potrebujete zablokovať doménu vrátane subdomén, pridajte druhú položku, napr. "
 "\"*@*.example.com\"."
 
-#: src/olympia/users/models.py:967
+#: src/olympia/users/models.py:971
 msgid "The email address used for your account is not allowed for submissions."
 msgstr "E‑mailová adresa použitá pre váš účet nemá povolené odosielanie príspevkov."
 
-#: src/olympia/users/models.py:1046
+#: src/olympia/users/models.py:1050
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
 "restrictions\" instead."
@@ -6925,7 +6925,7 @@ msgstr ""
 "Zadajte úplnú jednorazovú e‑mailovú doménu, ktorá má byť zablokovaná. Zástupné znaky nie sú podporované: ak ich potrebujete alebo potrebujete zadať celú e‑mailovú adresu a nielen časť domény, "
 "použite namiesto toho položku „Obmedzenia na e‑mailové adresy“."
 
-#: src/olympia/users/models.py:1197
+#: src/olympia/users/models.py:1201
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
 " which explains how we handle your information."
@@ -6933,12 +6933,12 @@ msgstr ""
 "Skôr ako začnete, prečítajte si a prijmite našu Distribučnú zmluvu pre doplnky Firefoxu, ako aj naše Zásady a pravidlá kontroly. Distribučná zmluva pre doplnky Firefoxu tiež odkazuje na naše "
 "Vyhlásenie o ochrane osobných údajov, ktoré vysvetľuje, ako narábame s vašimi informáciami."
 
-#: src/olympia/users/models.py:1211
+#: src/olympia/users/models.py:1215
 #, python-brace-format
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr "Navštívte {url} a prečítajte si našu Dohodu o distribúcií doplnkov pre Firefox, ako aj naše Zásady a pravidlá kontroly a následne ich akceptujte."
 
-#: src/olympia/users/models.py:1262
+#: src/olympia/users/models.py:1266
 msgid "User Restriction History"
 msgstr "História obmedzení používateľov"
 
@@ -7075,33 +7075,33 @@ msgstr ""
 "\n"
 "Tím doplnkov Mozilly"
 
-#: src/olympia/versions/models.py:1181
+#: src/olympia/versions/models.py:1176
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
 msgstr "Oneskorené odmietnutie, naplánované pre %s"
 
-#: src/olympia/versions/models.py:1186
+#: src/olympia/versions/models.py:1181
 msgid "Auto-approved, Confirmed"
 msgstr "Automaticky schválený, potvrdený"
 
-#: src/olympia/versions/models.py:1188
+#: src/olympia/versions/models.py:1183
 msgid "Auto-approved, not Confirmed"
 msgstr "Automaticky schválený, nepotvrdený"
 
-#: src/olympia/versions/models.py:1191
+#: src/olympia/versions/models.py:1186
 msgid "Approved, Manual"
 msgstr "Schválený, manuálne"
 
-#: src/olympia/versions/models.py:1198
+#: src/olympia/versions/models.py:1193
 msgid "Disabled by Developer"
 msgstr "Zakázaný vývojárom"
 
-#: src/olympia/versions/models.py:1556
+#: src/olympia/versions/models.py:1551
 #, python-brace-format
 msgid "{app} {min} and later"
 msgstr "{app} {min} a vyššie"
 
-#: src/olympia/versions/models.py:1683
+#: src/olympia/versions/models.py:1678
 #, python-brace-format
 msgid "The install origin {origin} is not permitted."
 msgstr "Pôvod inštalácie {origin} nie je povolený."

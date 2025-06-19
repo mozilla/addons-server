@@ -390,6 +390,14 @@ class AddonIndexer:
                         'permissions': {'type': 'keyword', 'index': False},
                         'optional_permissions': {'type': 'keyword', 'index': False},
                         'host_permissions': {'type': 'keyword', 'index': False},
+                        'data_collection_permissions': {
+                            'type': 'keyword',
+                            'index': False,
+                        },
+                        'optional_data_collection_permissions': {
+                            'type': 'keyword',
+                            'index': False,
+                        },
                     },
                 },
                 'license': {
@@ -549,6 +557,12 @@ class AddonIndexer:
                         'permissions': version_obj.file.permissions,
                         'optional_permissions': version_obj.file.optional_permissions,
                         'host_permissions': version_obj.file.host_permissions,
+                        'data_collection_permissions': (
+                            version_obj.file.data_collection_permissions
+                        ),
+                        'optional_data_collection_permissions': (
+                            version_obj.file.optional_data_collection_permissions
+                        ),
                     }
                 ],
                 'reviewed': (

@@ -933,8 +933,10 @@ class TestCinderJob(TestCase):
         addon.update(status=amo.STATUS_DISABLED)
         assert job.should_auto_resolve()
 
-        # reset
-        abuse_report.addon.update(status=amo.STATUS_APPROVED)
+        # appeal jobs are excluded though - they could be appealling the removal
+        ContentDecision.objects.create(
+            addon=addon, action=DECISION_ACTIONS.AMO_DISABLE_ADDON, appeal_job=job
+        )
         assert not job.should_auto_resolve()
 
     def test_should_auto_resolve_human_reviewed(self):

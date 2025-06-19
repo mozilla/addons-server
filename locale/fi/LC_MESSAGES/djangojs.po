@@ -322,11 +322,11 @@ msgstr "LIsäosien Hallinta Promootio"
 
 #: static/js/stats/csv_keys.js:45
 msgid "Add-ons Manager Featured"
-msgstr ""
+msgstr "Lisäosien hallinta Esittelyssä"
 
 #: static/js/stats/csv_keys.js:46
 msgid "Add-ons Manager Learn More"
-msgstr ""
+msgstr "Lisäosien hallinta Lue lisää"
 
 #: static/js/stats/csv_keys.js:47
 msgid "Search Suggestions"
@@ -338,11 +338,11 @@ msgstr "Hakutulokset"
 
 #: static/js/stats/csv_keys.js:49 static/js/stats/csv_keys.js:50 static/js/stats/csv_keys.js:51
 msgid "Homepage Promo"
-msgstr ""
+msgstr "Etusivun mainos"
 
 #: static/js/stats/csv_keys.js:52 static/js/stats/csv_keys.js:53
 msgid "Homepage Featured"
-msgstr ""
+msgstr "Etusivu Esittelyssä"
 
 #: static/js/stats/csv_keys.js:54 static/js/stats/csv_keys.js:55
 msgid "Homepage Up and Coming"
@@ -354,15 +354,15 @@ msgstr "Suosituimpien kotisivu"
 
 #: static/js/stats/csv_keys.js:57 static/js/stats/csv_keys.js:59
 msgid "Detail Page"
-msgstr "Yksityiskohtainen sivu"
+msgstr "Tietosivu"
 
 #: static/js/stats/csv_keys.js:58 static/js/stats/csv_keys.js:60
 msgid "Detail Page (bottom)"
-msgstr ""
+msgstr "Tietosivu (alaosa)"
 
 #: static/js/stats/csv_keys.js:61
 msgid "Detail Page (Development Channel)"
-msgstr ""
+msgstr "Tietosivu (kehityskanava)"
 
 #: static/js/stats/csv_keys.js:62 static/js/stats/csv_keys.js:63 static/js/stats/csv_keys.js:64
 msgid "Often Used With"
@@ -406,23 +406,23 @@ msgstr "Kokoelmat"
 
 #: static/js/stats/csv_keys.js:78 static/js/stats/csv_keys.js:79
 msgid "Category Landing Featured Carousel"
-msgstr ""
+msgstr "Luokka Laskeutuminen Esittelyssä Karuselli"
 
 #: static/js/stats/csv_keys.js:80 static/js/stats/csv_keys.js:81
 msgid "Category Landing Top Rated"
-msgstr ""
+msgstr "Luokka Laskeutuminen Parhaiten arvioidut"
 
 #: static/js/stats/csv_keys.js:82 static/js/stats/csv_keys.js:83
 msgid "Category Landing Most Popular"
-msgstr ""
+msgstr "Luokka Laskeutuminen Suosituimmat"
 
 #: static/js/stats/csv_keys.js:84 static/js/stats/csv_keys.js:85
 msgid "Category Landing Recently Added"
-msgstr ""
+msgstr "Luokka Laskeutuminen Äskettäin lisätty"
 
 #: static/js/stats/csv_keys.js:86 static/js/stats/csv_keys.js:87
 msgid "Browse Listing Featured Sort"
-msgstr ""
+msgstr "Selaa listausta Esittelyssä Lajittele"
 
 #: static/js/stats/csv_keys.js:88 static/js/stats/csv_keys.js:89
 msgid "Browse Listing Users Sort"
@@ -450,7 +450,7 @@ msgstr "Selaa Listaus Päivitetty Järjestele"
 
 #: static/js/stats/csv_keys.js:100 static/js/stats/csv_keys.js:101
 msgid "Browse Listing Up and Coming Sort"
-msgstr ""
+msgstr "Selaa listaus Tulevat tulokkaat Lajittele"
 
 #: static/js/stats/csv_keys.js:105
 msgid "Total Amount Contributed"

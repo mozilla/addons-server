@@ -52,9 +52,9 @@
         data-readonly="{{ settings.READ_ONLY|json }}"
         {% block bodyattrs %}{% endblock %}>
 
-    <div id="main-wrapper"> 
+    <div id="main-wrapper">
       {% block site_notice %}
-        {% set admin_message = get_config('site_notice') %}
+        {% set admin_message = get_config(amo.config_keys.SITE_NOTICE) %}
         {% if admin_message or settings.READ_ONLY %}
           <div id="site-notice">
             {% if admin_message %}

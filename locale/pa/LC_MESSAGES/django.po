@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-06-11 18:31+0000\n"
+"POT-Creation-Date: 2025-06-19 11:38+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4597,7 +4597,7 @@ msgid "See all extensions"
 msgstr "ਸਾਰੇ ਐਡ-ਆਨਾਂ ਦੀ ਝਲਕ ਵੇਖੋ"
 
 #. editorial content for the secondary hero shelves.
-msgid "Privacy & Security extensions"
+msgid "Anti-tracking extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4605,7 +4605,7 @@ msgid "Essential add-ons"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Declutter your desktop"
+msgid "Steam extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.

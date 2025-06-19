@@ -91,15 +91,15 @@ pytest==8.4.0 \
 pytest-django==4.11.1 \
     --hash=sha256:1b63773f648aa3d8541000c26929c1ea63934be1cfa674c76436966d73fe6a10 \
     --hash=sha256:a949141a1ee103cb0e7a20f1451d355f83f5e4a5d07bdd4dcfdd1fd0ff227991
-pytest-xdist==3.6.1 \
-    --hash=sha256:9ed4adfb68a016610848639bb7e02c9352d5d9f03d04809919e2dafc3be4cca7 \
-    --hash=sha256:ead156a4db231eec769737f57668ef58a2084a34b2e55c4a8fa20d861107300d
+pytest-xdist==3.7.0 \
+    --hash=sha256:7d3fbd255998265052435eb9daa4e99b62e6fb9cfb6efd1f858d4d8c0c7f0ca0 \
+    --hash=sha256:f9248c99a7c15b7d2f90715df93610353a485827bc06eefb6566d23f6400f126
 pytest-forked==1.6.0 \
     --hash=sha256:4dafd46a9a600f65d822b8f605133ecf5b3e1941ebb3588e943b4e3eb71a5a3f \
     --hash=sha256:810958f66a91afb1a1e2ae83089d8dc1cd2437ac96b12963042fbb9fb4d16af0
-freezegun==1.5.1 \
-    --hash=sha256:b29dedfcda6d5e8e083ce71b2b542753ad48cfec44037b3fc79702e2980a89e9 \
-    --hash=sha256:bf111d7138a8abe55ab48a71755673dbaa4ab87f4cff5634a4442dfec34c15f1
+freezegun==1.5.2 \
+    --hash=sha256:5aaf3ba229cda57afab5bd311f0108d86b6fb119ae89d2cd9c43ec8c1733c85b \
+    --hash=sha256:a54ae1d2f9c02dbf42e02c18a3ab95ab4295818b549a34dac55592d72a905181
 responses==0.25.7 \
     --hash=sha256:8ebae11405d7a5df79ab6fd54277f6f2bc29b2d002d0dd2d5c632594d1ddcedb \
     --hash=sha256:92ca17416c90fe6b35921f52179bff29332076bb32694c0df02dcac2c6bc043c

@@ -67,8 +67,3 @@ REASON_ADDON_TYPE_CHOICES = {
     ADDON_EXTENSION: _('Extension'),
     ADDON_STATICTHEME: _('Theme'),
 }
-
-
-# Target number of reviews each task that adds extra versions to the review
-# queue will add per day.
-EXTRA_REVIEW_TARGET_PER_DAY_CONFIG_KEY = 'extra-review-target-per-day'

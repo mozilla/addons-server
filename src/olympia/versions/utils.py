@@ -10,9 +10,9 @@ from django.utils.encoding import force_str
 
 from PIL import Image
 
+from olympia import amo
 from olympia.amo.utils import convert_svg_to_png
 from olympia.constants.reviewers import (
-    EXTRA_REVIEW_TARGET_PER_DAY_CONFIG_KEY,
     REVIEWER_STANDARD_REVIEW_TIME,
 )
 from olympia.core import logger
@@ -168,9 +168,7 @@ def get_staggered_review_due_date_generator(
     due_date = starting + timedelta(days=initial_days_delay)
 
     if target_per_day is None:
-        target_per_day = get_config(
-            EXTRA_REVIEW_TARGET_PER_DAY_CONFIG_KEY, int_value=True, default=8
-        )
+        target_per_day = get_config(amo.config_keys.EXTRA_REVIEW_TARGET_PER_DAY)
     stagger = 24 / target_per_day
 
     while True:

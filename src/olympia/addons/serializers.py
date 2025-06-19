@@ -103,6 +103,10 @@ class FileSerializer(AMOModelSerializer):
     permissions = serializers.ListField(child=serializers.CharField())
     optional_permissions = serializers.ListField(child=serializers.CharField())
     host_permissions = serializers.ListField(child=serializers.CharField())
+    data_collection_permissions = serializers.ListField(child=serializers.CharField())
+    optional_data_collection_permissions = serializers.ListField(
+        child=serializers.CharField()
+    )
     is_restart_required = serializers.SerializerMethodField()
     is_webextension = serializers.SerializerMethodField()
 
@@ -122,6 +126,8 @@ class FileSerializer(AMOModelSerializer):
             'permissions',
             'optional_permissions',
             'host_permissions',
+            'data_collection_permissions',
+            'optional_data_collection_permissions',
         )
 
     def get_url(self, obj):
@@ -158,6 +164,8 @@ class LanguageToolFileSerializer(FileSerializer):
     permissions = serializers.SerializerMethodField()
     optional_permissions = serializers.SerializerMethodField()
     host_permissions = serializers.SerializerMethodField()
+    data_collection_permissions = serializers.SerializerMethodField()
+    optional_data_collection_permissions = serializers.SerializerMethodField()
 
     def get_permissions(self, obj):
         # Language tools are not "real" webextensions, they don't have
@@ -172,6 +180,16 @@ class LanguageToolFileSerializer(FileSerializer):
     def get_host_permissions(self, obj):
         # Language tools are not "real" webextensions, they don't have
         # host permissions.
+        return []
+
+    def get_data_collection_permissions(self, obj):
+        # Language tools are not "real" webextensions, they don't have
+        # data collection permissions.
+        return []
+
+    def get_optional_data_collection_permissions(self, obj):
+        # Language tools are not "real" webextensions, they don't have
+        # optional data collection permissions.
         return []
 
 
@@ -1450,11 +1468,16 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
             strict_compatibility=data.get('strict_compatibility', False),
             version=obj,
         )
+        # Set cached properties for permissions (can't be set in __init__).
         file_.permissions = data.get(
             'permissions', data.get('webext_permissions_list', [])
         )
         file_.optional_permissions = data.get('optional_permissions', [])
         file_.host_permissions = data.get('host_permissions', [])
+        file_.data_collection_permissions = data.get('data_collection_permissions', [])
+        file_.optional_data_collection_permissions = data.get(
+            'optional_data_collection_permissions', []
+        )
         return file_
 
     def fake_version_object(self, obj, data, channel):

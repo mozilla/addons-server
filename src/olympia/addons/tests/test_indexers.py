@@ -176,6 +176,8 @@ class TestAddonIndexer(TestCase):
             'permissions',
             'optional_permissions',
             'host_permissions',
+            'data_collection_permissions',
+            'optional_data_collection_permissions',
         )
         assert set(files_mapping.keys()) == set(expected_file_keys)
 
@@ -268,6 +270,10 @@ class TestAddonIndexer(TestCase):
         permissions = ['bookmarks', 'random permission']
         optional_permissions = ['cookies', 'optional permission']
         host_permissions = ['https://example.com', 'https://mozilla.com']
+        data_collection_permissions = ['none']
+        optional_data_collection_permissions = [
+            'technicalAndInteraction',
+        ]
         version = self.addon.current_version
         # Add a bunch of things to it to test different scenarios.
         version.license = License.objects.create(name='My licensé', builtin=3)
@@ -277,6 +283,10 @@ class TestAddonIndexer(TestCase):
                 permissions=permissions,
                 optional_permissions=optional_permissions,
                 host_permissions=host_permissions,
+                data_collection_permissions=data_collection_permissions,
+                optional_data_collection_permissions=(
+                    optional_data_collection_permissions
+                ),
             )
         ]
         version.save()
@@ -324,6 +334,13 @@ class TestAddonIndexer(TestCase):
         assert extracted_file['permissions'] == permissions
         assert extracted_file['optional_permissions'] == optional_permissions
         assert extracted_file['host_permissions'] == host_permissions
+        assert (
+            extracted_file['data_collection_permissions'] == data_collection_permissions
+        )
+        assert (
+            extracted_file['optional_data_collection_permissions']
+            == optional_data_collection_permissions
+        )
 
     def test_version_compatibility_with_strict_compatibility_enabled(self):
         version = self.addon.current_version

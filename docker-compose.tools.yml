@@ -1,6 +1,18 @@
+name: test_actions
+
 services:
-  actionlint:
-    image: rhysd/actionlint:1.7.7@sha256:887a259a5a534f3c4f36cb02dca341673c6089431057242cdc931e9f133147e9
+  base:
+    image: scratch
     working_dir: /workdir
     volumes:
-      - .//:/workdir
+      - .:/workdir
+
+  actionlint:
+    extends: base
+    image: rhysd/actionlint:1.7.7@sha256:887a259a5a534f3c4f36cb02dca341673c6089431057242cdc931e9f133147e9
+
+  zizmor:
+    extends: base
+    image: ghcr.io/zizmorcore/zizmor:latest@sha256:ecb5e81e47bdb9e61ffa26b3def736ef4a6842d25e106986fd9dc579da0c9a68
+    environment:
+      - GH_TOKEN

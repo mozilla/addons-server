@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-06-11 18:31+0000\n"
+"POT-Creation-Date: 2025-06-19 11:38+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -4882,16 +4882,16 @@ msgid "See all extensions"
 msgstr "Browse all add-ons"
 
 #. editorial content for the secondary hero shelves.
-msgid "Privacy & Security extensions"
-msgstr "Privacy & Security extensions"
+msgid "Anti-tracking extensions"
+msgstr "Anti-tracking extensions"
 
 #. editorial content for the secondary hero shelves.
 msgid "Essential add-ons"
 msgstr "Essential add-ons"
 
 #. editorial content for the secondary hero shelves.
-msgid "Declutter your desktop"
-msgstr "Declutter your desktop"
+msgid "Steam extensions"
+msgstr "Steam extensions"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
