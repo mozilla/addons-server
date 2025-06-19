@@ -127,6 +127,7 @@ class TestAutoResolveReports(TestCase):
         )
         CinderQueueMove.objects.create(cinder_job=job_forwarded)
 
+        # the following jobs shouldn't be auto resolved
         addon2 = addon_factory(version_kw={'human_review_date': datetime.now()})
         job_legal_reason = CinderJob.objects.create(
             job_id='legal', resolvable_in_reviewer_tools=True, target_addon=addon2
@@ -156,7 +157,26 @@ class TestAutoResolveReports(TestCase):
         )
         CinderQueueMove.objects.create(cinder_job=job_appeal)
 
-        assert CinderJob.objects.unresolved().count() == 3
+        addon4 = addon_factory(version_kw={'human_review_date': datetime.now()})
+        job_second_level = CinderJob.objects.create(
+            job_id='2nd level', resolvable_in_reviewer_tools=True, target_addon=addon4
+        )
+        ContentDecision.objects.create(
+            cinder_job=job_second_level,
+            addon=addon4,
+            action=DECISION_ACTIONS.AMO_REQUEUE,
+            override_of=ContentDecision.objects.create(
+                cinder_job=job_second_level,
+                addon=addon4,
+                action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            ),
+        )
+        AbuseReport.objects.create(
+            guid=addon4.guid,
+            cinder_job=job_second_level,
+        )
+
+        assert CinderJob.objects.unresolved().count() == 4
         responses.add(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}jobs/{job_forwarded.job_id}/decision',
@@ -170,10 +190,11 @@ class TestAutoResolveReports(TestCase):
 
         call_command('auto_resolve_reports')
 
-        assert CinderJob.objects.unresolved().count() == 2
+        assert CinderJob.objects.unresolved().count() == 3
         assert list(CinderJob.objects.unresolved().all()) == [
             job_legal_reason,
             job_appeal,
+            job_second_level,
         ]
         assert job_forwarded.reload().decision
         assert job_forwarded.decision.action == DECISION_ACTIONS.AMO_CLOSED_NO_ACTION
