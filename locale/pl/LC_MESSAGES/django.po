@@ -2867,6 +2867,8 @@ msgid ""
 "The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
 "characters and a minimum length of 2 characters for each."
 msgstr ""
+"Podsumowanie powinno jasno i zwięźle wyjaśniać, co robi Twój dodatek. Zarówno nazwa, jak i podsumowanie pojawią się na stronie produktu i w wynikach wyszukiwania. Łączna długość każdego z nich "
+"wynosi maksymalnie 70 znaków, a minimalna długość to 2 znaki."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:43 src/olympia/devhub/templates/devhub/addons/edit/describe.html:105 src/olympia/devhub/templates/devhub/addons/submit/describe.html:30
 msgid "Summary"
@@ -4019,7 +4021,7 @@ msgstr "Adres e-mail"
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:31
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
-msgstr ""
+msgstr "Pozwalam Mozilli wykorzystywać moje informacje w sposób opisany w %(link_open)szasadach ochrony prywatności%(link_close)s."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:40
 msgid "Sign Up"
@@ -5705,7 +5707,7 @@ msgstr "Usuń niepotrzebne treści ze swojego Twittera."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:952
 msgid "Customize YouTube to taste."
-msgstr ""
+msgstr "Dostosuj YouTube według własnego uznania."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:955
@@ -5730,7 +5732,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:967
 msgid "Remove ads & receive better protection against malware."
-msgstr ""
+msgstr "Usuń reklamy i uzyskaj lepszą ochronę przed złośliwym oprogramowaniem."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:970
@@ -5755,17 +5757,17 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:982
 msgid "Translate websites in Firefox — privately — without using the cloud."
-msgstr ""
+msgstr "Tłumacz strony internetowe w przeglądarce — prywatnie — bez korzystania z chmury."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:985
 msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
-msgstr ""
+msgstr "Blokuj strony internetowe marnujące czas. Blokuj je całkowicie lub tylko w wybranych przez siebie przedziałach czasowych."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:988
 msgid "Easily summarize emails, docs, articles, and video transcripts in English across the web — without sacrificing your privacy."
-msgstr ""
+msgstr "Łatwe streszczanie wiadomości e-mail, dokumentów, artykułów i transkrypcji filmów w języku angielskim w całym Internecie — bez narażania swojej prywatności."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:991
@@ -5775,12 +5777,12 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:994
 msgid "Automatically handle GDPR consent forms."
-msgstr ""
+msgstr "Automatyczna obsługa formularzy zgody RODO."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:997
 msgid "Block malicious websites from port scanning."
-msgstr ""
+msgstr "Blokuj skanowanie portów przez złośliwe witryny."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1000
