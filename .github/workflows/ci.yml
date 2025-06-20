@@ -38,25 +38,46 @@ jobs:
       is_release_tag: ${{ steps.context.outputs.is_release_tag }}
       docker_version: ${{ steps.context.outputs.docker_version }}
 
-      short_sha: ${{ steps.git.outputs.short_sha }}
-      short_message: ${{ steps.git.outputs.short_message }}
+      git_ref: ${{ steps.git.outputs.git_ref }}
+      git_ref_link: ${{ steps.git.outputs.git_ref_link }}
 
     steps:
       - name: Set context
         id: context
         uses: mozilla/addons/.github/actions/context@f1d4daa008d908d52815aa41257db39b8cdef958
 
-      - name: Git
+      - name: Git Reference
         id: git
         env:
           sha: ${{ github.sha }}
-          message: ${{ github.event.head_commit.message}}
+          event_name: ${{ github.event_name }}
+          pr_title: ${{ github.event.pull_request.title }}
+          pr_link: ${{ github.event.pull_request.html_url}}
+          push_title: ${{ github.event.head_commit.message }}
+          push_link: ${{ github.event.head_commit.url }}
+          release_title: ${{ github.event.release.name }}
+          release_link: ${{ github.event.release.html_url }}
+          git_url: ${{ github.server_url }}/${{ github.repository }}
         run: |
           short_sha=$(echo "${sha}" | cut -c1-7)
-          short_message=$(echo "${message}" | tr -d '\n' | tr -dc '[:print:]' | cut -c1-140)
 
-          echo "short_sha=${short_sha}" >> "$GITHUB_OUTPUT"
-          echo "short_message=${short_message}" >> "$GITHUB_OUTPUT"
+          git_ref="no ref"
+          git_ref_link="${git_url}"
+
+          if [[ "${event_name}" == "pull_request" ]]; then
+            git_ref="${pr_title}"
+            git_ref_link="${pr_link}"
+          elif [[ "${event_name}" == "push" ]]; then
+            git_ref="${short_sha} (${push_title}...)"
+            git_ref_link="${push_link}"
+          elif [[ "${event_name}" == "release" ]]; then
+            git_ref="${release_title}"
+            git_ref_link="${release_link}"
+          fi
+
+          git_ref=$(echo -e "${git_ref}" | head -n1 | tr -dc '[:print:]')
+          echo "git_ref=${git_ref}" >> "$GITHUB_OUTPUT"
+          echo "git_ref_link=${git_ref_link}" >> "$GITHUB_OUTPUT"
           cat "$GITHUB_OUTPUT"
 
   test_actions:
@@ -312,15 +333,11 @@ jobs:
       matrix:
         include:
           -
-            name: Push Dockerhub
-            result: ${{ needs.push_dockerhub.result }}
-            ref: ${{ format('{0} {1}', needs.context.outputs.short_sha, needs.context.outputs.short_message) }}
-            ref_link: ${{ github.event.compare }}
+            name: Master Build
+            dry_run: ${{ needs.context.outputs.is_release_master != 'true' }}
           -
-            name: Push GAR
-            result: ${{ needs.push_gar.result }}
-            ref: ${{ github.event.release.name }}
-            ref_link: ${{ github.event.release.html_url }}
+            name: Release Build
+            dry_run: ${{ needs.context.outputs.is_release_tag != 'true' }}
 
     env:
       event: ${{ github.event_name }}
@@ -329,27 +346,22 @@ jobs:
       actor: ${{ github.event.sender.login }}
       repo_url: ${{ github.server_url }}/${{ github.repository }}
       env: ci
+      result: ${{ needs.push_gar.result }}
+      ref: ${{ needs.context.outputs.git_ref }}
+      ref_link: ${{ needs.context.outputs.git_ref_link }}
 
     steps:
       - name: Notification Context
         id: context
-        env:
-          result: ${{ matrix.result }}
         run: |
-          dry_run=false
           emoji=":x:"
 
           if [[ "$result" == "success" ]]; then
             emoji=":white_check_mark:"
           elif [[ "$result" == "cancelled" ]]; then
             emoji=":github-actions-cancelled:"
-          elif [[ "$result" == "skipped" ]]; then
-            dry_run=true
-          else
-            emoji=":x:"
           fi
 
-          echo "dry_run=$dry_run" >> "$GITHUB_OUTPUT"
           echo "emoji=$emoji" >> "$GITHUB_OUTPUT"
           cat "$GITHUB_OUTPUT"
 
@@ -360,11 +372,11 @@ jobs:
           slack_channel: ${{ vars.SLACK_ADDONS_PRODUCTION_CHANNEL }}
           emoji: ${{ steps.context.outputs.emoji }}
           actor: ${{ env.actor }}
-          conclusion: ${{ matrix.result }}
+          conclusion: ${{ env.result }}
           workflow_id: ${{ env.workflow_id }}
           workflow_url: ${{ env.workflow_url }}
           event: ${{ env.event }}
           env: ${{ env.env }}
-          ref: ${{ matrix.ref }}
-          ref_link: ${{ matrix.ref_link }}
-          dry_run: ${{ steps.context.outputs.dry_run }}
+          ref: ${{ env.ref }}
+          ref_link: ${{ env.ref_link }}
+          dry_run: ${{ matrix.dry_run }}
