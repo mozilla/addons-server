@@ -2140,7 +2140,7 @@ class TestPersonaModel(TestCase):
             assert data['name'] == six.text_type(self.persona.addon.name)
             assert data['accentcolor'] == '#8d8d97'
             assert data['textcolor'] == '#ffffff'
-            assert data['category'] == 'Abstract'
+            assert data['category'] == 'Abstrait'
             assert data['author'] == 'persona_author'
             assert data['description'] == six.text_type(self.addon.description)
 
@@ -2179,7 +2179,7 @@ class TestPersonaModel(TestCase):
             assert data['name'] == six.text_type(self.persona.addon.name)
             assert data['accentcolor'] == '#8d8d97'
             assert data['textcolor'] == '#ffffff'
-            assert data['category'] == 'Abstract'
+            assert data['category'] == 'Abstrait'
             assert data['author'] == 'persona_author'
             assert data['description'] == six.text_type(self.addon.description)
 
