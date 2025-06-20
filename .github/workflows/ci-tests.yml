@@ -36,6 +36,9 @@ jobs:
       - name: Patch Django
         run: docker compose exec web bash -c "sed -i 's/TX_ISOLATION = /transaction_isolation = /' /usr/local/lib/python3.6/site-packages/django/db/backends/mysql/base.py"
 
+      - name: Compile mo files
+        run: docker compose exec web /code/locale/compile-mo.sh locale
+
       - name: Run ratings tests in isolation
         run: docker compose exec web bash -c 'python -m pytest --junitxml=src/test_report37.xml src/olympia/ratings'
 
