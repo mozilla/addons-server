@@ -80,13 +80,13 @@ class TestTranslationFormMixin(TestCase):
             # message with a data-lang="en-us" attribute, it's not a bug.
             expected = (
                 u'<ul class="errorlist">'
-                u'<li data-lang="en-us">Ce champ est obligatoire.</li>'
+                u'<li data-lang="en-us">Champ nécessaire.</li>'
                 u'</ul>')
             assert form.errors['name'].as_ul() == expected
             # default_locale is a normal field so data-lang is absent.
             expected = (
                 u'<ul class="errorlist">'
-                u'<li>Ce champ est obligatoire.</li>'
+                u'<li>Champ nécessaire.</li>'
                 u'</ul>')
             assert form.errors['default_locale'].as_ul() == expected
 
@@ -95,13 +95,13 @@ class TestTranslationFormMixin(TestCase):
             form.add_error('default_locale', u'Errôr about default_locale')
             expected = (
                 u'<ul class="errorlist">'
-                u'<li data-lang="en-us">Ce champ est obligatoire.</li>'
+                u'<li data-lang="en-us">Champ nécessaire.</li>'
                 u'<li>Errör about name</li>'
                 u'</ul>')
             assert form.errors['name'].as_ul() == expected
             expected = (
                 u'<ul class="errorlist">'
-                u'<li>Ce champ est obligatoire.</li>'
+                u'<li>Champ nécessaire.</li>'
                 u'<li>Errôr about default_locale</li>'
                 u'</ul>')
             assert form.errors['default_locale'].as_ul() == expected
