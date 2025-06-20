@@ -175,11 +175,17 @@ run_js_tests: ## Run the JavaScript test suite (requires compiled/compressed ass
 watch_js_tests: ## Run+watch the JavaScript test suite (requires compiled/compressed assets).
 	npm run test:watch
 
-.PHONY: format
-format: ## Autoformat our codebase.
+.PHONY: formatjs
+formatjs: ## Autoformat our js and css files
 	npm run fix
+
+.PHONY: formatpy
+formatpy: ## Autoformat our python files.
 	ruff check --fix-only .
 	ruff format .
+
+.PHONY: format
+format: formatjs formatpy ## Autoformat our codebase.
 
 .PHONY: extract_locales
 extract_locales: ## extracts and merges translation strings
