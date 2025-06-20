@@ -236,7 +236,7 @@ class TestFileViewer(TestCase):
             res = self.viewer.read_file()
             assert res == ''
             assert (
-                self.viewer.selected['msg'] == 'File size is over the limit of 5 בתים.')
+                self.viewer.selected['msg'] ==   'גודל הקובץ חורג מהמגבלה של 5 בתים.')
 
     @patch.object(settings, 'FILE_UNZIP_SIZE_LIMIT', 5)
     def test_contents_size(self):
