@@ -1512,7 +1512,7 @@ msgstr "Aatteet"
 
 #: src/olympia/constants/categories.py:220
 msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
-msgstr ""
+msgstr "Lataa Firefox-teemoja tiettyihin kiinnostuksen kohteisiin ja aiheisiin. Tähän luokkaan kuuluvat urheiluteemat, juhlapäivät, hyväntekeväisyyskohteet, kansallisuudet ja paljon muuta."
 
 #: src/olympia/constants/categories.py:227
 msgid "Fashion"
@@ -2119,7 +2119,7 @@ msgstr ""
 #: src/olympia/devhub/utils.py:207
 #, python-brace-format
 msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
-msgstr ""
+msgstr "Tämä lisäosa ei ole teema. Lähetä laajennuksia <a href=\"{link}\">Lähetä uusi lisäosa</a> -sivun kautta."
 
 #: src/olympia/devhub/views.py:114
 msgid "Updated"
@@ -2934,7 +2934,7 @@ msgstr "UUID"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:49
 msgid "The UUID of your add-on is specified in its install manifest and uniquely identifies it. You cannot change your UUID once it has been submitted."
-msgstr ""
+msgstr "Lisäosasi UUID on määritetty lisäosan asennusmanifestissa ja se yksilöi lisäosan. Et voi muuttaa UUID:tä lähettämisen jälkeen."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:60 src/olympia/devhub/templates/devhub/addons/edit/technical.html:61
 msgid "Whiteboard"
@@ -2960,6 +2960,8 @@ msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
 "relevant for listed add-ons."
 msgstr ""
+"Lähetä lisäosan kuvake tai valitse jokin meidän kuvakkeistamme. Kuvake näkyy lähes kaikkialla, missä lisäosasi on. Lähetettyjen kuvien on oltava jokin seuraavista kuvatyypeistä: .png, .jpg. Tämä "
+"koskee vain listattuja lisäosia."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:25
 msgid "Select an icon for your add-on:"
@@ -3688,6 +3690,13 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Hei\n"
+"\n"
+"Sähköpostiosoitteesi on vahvistettu onnistuneesti.\n"
+"\n"
+"Ystävällisin terveisin\n"
+"\n"
+"Mozilla-lisäosien tiimi"
 
 #: src/olympia/devhub/templates/devhub/emails/verify-email-requested.ltxt:12
 #, python-format
@@ -3705,6 +3714,18 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Hei\n"
+"\n"
+"Saat tämän viestin, koska pyysit sähköpostiosoitteesi vahvistamista.\n"
+"Viimeistele prosessi napsauttamalla alla olevaa linkkiä:\n"
+"\n"
+"%(confirmation_link)s\n"
+"\n"
+"Jos et pyytänyt vahvistusta, ilmoita asiasta osoitteeseen amo-admins@mozilla.com.\n"
+"\n"
+"Ystävällisin terveisin\n"
+"\n"
+"Mozilla-lisäosien tiimi"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:6 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:4
 msgid "Invisible"
