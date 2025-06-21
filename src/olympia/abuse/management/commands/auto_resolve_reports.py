@@ -10,7 +10,9 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         job_ids = (
-            CinderJob.objects.unresolved().resolvable_in_reviewer_tools()
+            CinderJob.objects.filter(
+                decisions__isnull=True
+            ).resolvable_in_reviewer_tools()
         ).values_list('id', flat=True)
         self.stdout.write(f'{len(job_ids)} unresolved CinderJobs in reviewer tools')
 
