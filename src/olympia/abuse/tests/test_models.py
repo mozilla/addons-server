@@ -31,6 +31,7 @@ from olympia.constants.abuse import (
     ILLEGAL_CATEGORIES,
     ILLEGAL_SUBCATEGORIES,
 )
+from olympia.constants.permissions import ADDONS_HIGH_IMPACT_APPROVE
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.core import set_user
 from olympia.ratings.models import Rating
@@ -3146,6 +3147,7 @@ class TestContentDecision(TestCase):
         assert 'appeal' in mail.outbox[0].body
 
     def test_execute_action_ban_user_held(self):
+        self.grant_permission(user_factory(), ':'.join(ADDONS_HIGH_IMPACT_APPROVE))
         user = user_factory(email='superstarops@mozilla.com')
         decision = ContentDecision.objects.create(
             user=user,
@@ -3160,6 +3162,9 @@ class TestContentDecision(TestCase):
             action=amo.LOG.HELD_ACTION_ADMIN_USER_BANNED.id
         ).get()
         assert alog.contentdecisionlog_set.get().decision == decision
+        assert mail.outbox.pop().subject == (
+            'A new item has entered the second level approval queue'
+        )
         decision.send_notifications()
         assert len(mail.outbox) == 0
 
@@ -3187,6 +3192,7 @@ class TestContentDecision(TestCase):
         assert 'appeal' in mail.outbox[0].body
 
     def test_execute_action_disable_addon_held(self):
+        self.grant_permission(user_factory(), ':'.join(ADDONS_HIGH_IMPACT_APPROVE))
         addon = addon_factory(users=[user_factory()])
         self.make_addon_promoted(
             addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
@@ -3209,6 +3215,9 @@ class TestContentDecision(TestCase):
             file=ContentFile('Pseudo File', name='attachment.txt'),
         )
         assert alog.contentdecisionlog_set.get().decision == decision
+        assert mail.outbox.pop().subject == (
+            'A new item has entered the second level approval queue'
+        )
         decision.send_notifications()
         assert len(mail.outbox) == 0
 
@@ -3290,6 +3299,7 @@ class TestContentDecision(TestCase):
         assert VersionReviewerFlags.objects.filter(version=version).exists()
 
     def test_execute_action_reject_version_held(self):
+        self.grant_permission(user_factory(), ':'.join(ADDONS_HIGH_IMPACT_APPROVE))
         addon = addon_factory(users=[user_factory()], file_kw={'is_signed': True})
         version = addon.current_version
         self.make_addon_promoted(
@@ -3318,6 +3328,9 @@ class TestContentDecision(TestCase):
         AttachmentLog.objects.create(
             activity_log=alog,
             file=ContentFile('Pseudo File', name='attachment.txt'),
+        )
+        assert mail.outbox.pop().subject == (
+            'A new item has entered the second level approval queue'
         )
         decision.send_notifications()
         assert len(mail.outbox) == 0
@@ -3407,6 +3420,7 @@ class TestContentDecision(TestCase):
         assert addon.current_version.reviewerflags.pending_rejection == in_fourteen_days
 
     def test_execute_action_reject_version_delayed_held(self):
+        self.grant_permission(user_factory(), ':'.join(ADDONS_HIGH_IMPACT_APPROVE))
         addon = addon_factory(users=[user_factory()], file_kw={'is_signed': True})
         version = addon.current_version
         self.make_addon_promoted(
@@ -3435,6 +3449,9 @@ class TestContentDecision(TestCase):
             action=amo.LOG.HELD_ACTION_REJECT_VERSIONS_DELAYED.id
         ).get()
         assert alog.contentdecisionlog_set.get().decision == decision
+        assert mail.outbox.pop().subject == (
+            'A new item has entered the second level approval queue'
+        )
         decision.send_notifications()
         assert len(mail.outbox) == 0
 
@@ -3627,6 +3644,7 @@ class TestContentDecision(TestCase):
         assert 'appeal' in mail.outbox[0].body
 
     def test_execute_action_delete_collection_held(self):
+        self.grant_permission(user_factory(), ':'.join(ADDONS_HIGH_IMPACT_APPROVE))
         collection = collection_factory(author=self.task_user)
         decision = ContentDecision.objects.create(
             collection=collection,
@@ -3641,6 +3659,9 @@ class TestContentDecision(TestCase):
             action=amo.LOG.HELD_ACTION_COLLECTION_DELETED.id
         ).get()
         assert alog.contentdecisionlog_set.get().decision == decision
+        assert mail.outbox.pop().subject == (
+            'A new item has entered the second level approval queue'
+        )
         decision.send_notifications()
         assert len(mail.outbox) == 0
 
@@ -3668,6 +3689,7 @@ class TestContentDecision(TestCase):
         assert 'appeal' in mail.outbox[0].body
 
     def test_execute_action_delete_rating_held(self):
+        self.grant_permission(user_factory(), ':'.join(ADDONS_HIGH_IMPACT_APPROVE))
         user = user_factory()
         addon = addon_factory(users=[user])
         rating = Rating.objects.create(
@@ -3696,6 +3718,9 @@ class TestContentDecision(TestCase):
             action=amo.LOG.HELD_ACTION_DELETE_RATING.id
         ).get()
         assert alog.contentdecisionlog_set.get().decision == decision
+        assert mail.outbox.pop().subject == (
+            'A new item has entered the second level approval queue'
+        )
         decision.send_notifications()
         assert len(mail.outbox) == 0
 

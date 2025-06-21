@@ -19,6 +19,7 @@ from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import send_mail
 from olympia.bandwagon.models import Collection
 from olympia.constants.abuse import DECISION_ACTIONS
+from olympia.constants.permissions import ADDONS_HIGH_IMPACT_APPROVE
 from olympia.files.models import File
 from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
@@ -38,6 +39,9 @@ class ContentAction:
     # No reporter emails will be sent while the paths are set to None
     reporter_template_path = None
     reporter_appeal_template_path = None
+    second_level_notification_template_path = (
+        'abuse/emails/second_level_notification.txt'
+    )
 
     def __init__(self, decision):
         self.decision = decision
@@ -235,6 +239,25 @@ class ContentAction:
                     )
                 message = template.render(context_dict)
                 send_mail(subject, message, recipient_list=[email_address])
+
+    def notify_2nd_level_approvers(self):
+        groups_qs = Group.objects.filter(
+            rules__icontains=':'.join(ADDONS_HIGH_IMPACT_APPROVE)
+        )
+        recipients = [
+            user.email for user in UserProfile.objects.filter(groups__in=groups_qs)
+        ]
+        if not recipients:
+            # no recipients, nothing to do
+            return
+        template = loader.get_template(self.second_level_notification_template_path)
+        approval_url = absolutify(
+            reverse('reviewers.decision_review', args=[self.decision.id])
+        )
+        context_dict = {'approval_url': approval_url}
+        subject = 'A new item has entered the second level approval queue'
+        message = template.render(context_dict)
+        send_mail(subject, message, recipient_list=recipients)
 
 
 class AnyTargetMixin:
