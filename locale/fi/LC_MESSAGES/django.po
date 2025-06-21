@@ -5011,7 +5011,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:368
 msgid "Highlight text from any website and right-click to search YouTube for related media."
-msgstr ""
+msgstr "Korosta teksti miltä tahansa verkkosivustolta ja napsauta hiiren kakkospainikkeella etsiäksesi YouTubesta aiheeseen liittyvää mediaa."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:371
