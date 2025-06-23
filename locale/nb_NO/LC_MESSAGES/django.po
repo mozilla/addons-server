@@ -3873,7 +3873,7 @@ msgstr "Lisens"
 
 #: src/olympia/devhub/templates/devhub/includes/license_form.html:6
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Velg en lisens som passer til rettighetene du gir på kildekoden din. Den er kun relevant for oppførte tillegg."
 
 #: src/olympia/devhub/templates/devhub/includes/listing_header.html:2
 msgid "Sort by:"
@@ -3910,6 +3910,7 @@ msgstr "Personvernerklæring"
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:22
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
 msgstr ""
+"Hvis tillegget ditt overfører data fra brukerens datamaskin, kreves det en personvernerklæring som forklarer hvilke data som sendes og hvordan de brukes. Dette er kun relevant for oppførte tillegg."
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html:3
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code other than known libraries, upload its sources for review."
@@ -3921,15 +3922,17 @@ msgstr "Ta med instruksjoner for hvordan du kan reprodusere den endelige tillegg
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html:9
 msgid "Read more about the source code review policy."
-msgstr ""
+msgstr "Les mer om retningslinjene for gjennomgang av kildekode."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/banner.html:4
 msgid "Build best-in-class extensions and themes"
-msgstr ""
+msgstr "Utvikle utvidelser og temaer i toppklassen"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/banner.html:7 src/olympia/devhub/templates/devhub/new-landing/components/overview.html:5
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr ""
+"Enten du er nybegynner innen utvidelsesutvikling, finpusser eller porterer en eksisterende utvidelse eller et tema, eller lager en tilpasset bedriftsløsning, har vi ressursene som skal til for å "
+"støtte deg."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/banner.html:13
 msgid "Visit the Firefox Extension Workshop"
@@ -3953,7 +3956,7 @@ msgstr "Nyhetsbrev for tilleggsutviklere"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:15
 msgid "Stay up-to-date on news and events for Firefox extension developers."
-msgstr ""
+msgstr "Hold deg oppdatert om nyheter og arrangementer for utviklere av Firefox-utvidelser."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:24 src/olympia/devhub/templates/devhub/new-landing/components/connect.html:25
 msgid "Email Address"
@@ -4107,7 +4110,7 @@ msgstr "Klar til å sende inn eller behandle utvidelsen din?"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/submit_or_manage_extension.html:7
 msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
-msgstr ""
+msgstr "Logg på utviklersenteret for å sende inn eller behandle utvidelser og temaer."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/submit_or_manage_extension.html:11
 msgid "Register for a developer account or log in to the Developer Hub"
@@ -6133,7 +6136,7 @@ msgstr ""
 
 #: src/olympia/ratings/models.py:363
 msgid "Spam or otherwise non-review content"
-msgstr ""
+msgstr "Spam eller annet innhold som ikke er anmeldt"
 
 #: src/olympia/ratings/models.py:364
 msgid "Inappropriate language/dialog"
