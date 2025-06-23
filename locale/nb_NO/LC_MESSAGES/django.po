@@ -1525,7 +1525,7 @@ msgstr "Mote"
 
 #: src/olympia/constants/categories.py:229
 msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
-msgstr ""
+msgstr "Last ned Firefox-temaer som hyller stil i alle former — mønstre, blomster, teksturer, modeller og mer."
 
 #: src/olympia/constants/categories.py:235
 msgid "Film and TV"
@@ -1745,7 +1745,7 @@ msgstr ""
 
 #: src/olympia/constants/promoted.py:159
 msgid "Partner"
-msgstr ""
+msgstr "Partner"
 
 #: src/olympia/constants/reviewers.py:21
 msgid "No Reputation"
@@ -2517,7 +2517,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:34
 msgid "Success!"
-msgstr ""
+msgstr "Suksess!"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:35
 #, python-format
@@ -2539,11 +2539,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:57
 msgid "Date"
-msgstr ""
+msgstr "Dato"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:58 src/olympia/stats/templates/stats/popup.html:12
 msgid "From"
-msgstr ""
+msgstr "Fra"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:59 src/olympia/stats/templates/stats/popup.html:18
 msgid "To"
