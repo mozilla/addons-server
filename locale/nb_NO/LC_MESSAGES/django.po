@@ -1553,7 +1553,7 @@ msgstr "Ferie"
 
 #: src/olympia/constants/categories.py:264
 msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
-msgstr ""
+msgstr "Last ned Firefox-temaer med høytider. Denne kategorien inkluderer jul, halloween, thanksgiving, St. Patricks Day, påske, fjerde juli og mer."
 
 #: src/olympia/constants/categories.py:271
 msgid "Music"
@@ -1561,7 +1561,7 @@ msgstr "Musikk"
 
 #: src/olympia/constants/categories.py:273
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
-msgstr ""
+msgstr "Last ned Firefox-temaer for musikalske interesser og artister. Denne kategorien inkluderer populære band som Nirvana og BTS, instrumenter, musikkvideoer og mye mer."
 
 #: src/olympia/constants/categories.py:281
 msgid "Nature"
@@ -1569,11 +1569,11 @@ msgstr "Natur"
 
 #: src/olympia/constants/categories.py:283
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
-msgstr ""
+msgstr "Last ned Firefox-temaer med dyr og naturlandskap. Denne kategorien inkluderer blomster, solnedganger, rever, årstider, planeter, kattunger, fugler og mer."
 
 #: src/olympia/constants/categories.py:293
 msgid "Download Firefox themes that are interesting, creative, and unique."
-msgstr ""
+msgstr "Last ned Firefox-temaer som er interessante, kreative og unike."
 
 #: src/olympia/constants/categories.py:298
 msgid "Scenery"
@@ -1581,7 +1581,7 @@ msgstr "Landskap"
 
 #: src/olympia/constants/categories.py:300
 msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
-msgstr ""
+msgstr "Last ned Firefox-temaer som fokuserer på miljøet og naturen. Denne kategorien inkluderer solnedganger, strender, illustrasjoner, bysilhuetter og mer."
 
 #: src/olympia/constants/categories.py:307
 msgid "Seasonal"
@@ -1613,7 +1613,7 @@ msgstr "Nettsteder"
 
 #: src/olympia/constants/categories.py:336
 msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
-msgstr ""
+msgstr "Last ned Firefox-temaer som fanger essensen av nettet — fengslende, uvanlige og særegne."
 
 #: src/olympia/constants/categories.py:341 src/olympia/constants/categories.py:342
 msgid "General"
@@ -1808,9 +1808,8 @@ msgid "Delay auto-approval indefinitely and add restrictions"
 msgstr "Utsett automatisk godkjenning på ubestemt tid og legg til begrensninger"
 
 #: src/olympia/constants/scanners.py:32
-#, fuzzy
 msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
-msgstr "Utsett automatisk godkjenning på ubestemt tid og legg til begrensninger"
+msgstr "Utsett automatisk godkjenning på ubestemt tid og legg til begrensninger for fremtidige godkjenninger"
 
 #: src/olympia/constants/scanners.py:42 src/olympia/files/utils.py:1031
 msgid "Unknown"
@@ -3822,7 +3821,7 @@ msgstr "Jeg har lest og godtatt denne avtalen, reglene og retningslinjene"
 
 #: src/olympia/devhub/templates/devhub/includes/agreement.html:16
 msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr ""
+msgstr "Kontoen din må angi et visningsnavn slik at brukerne vet hvem tillegget ditt kommer fra. Skriv inn et nedenfor."
 
 #: src/olympia/devhub/templates/devhub/includes/agreement.html:36
 #, python-brace-format
@@ -3849,7 +3848,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/android_compatibility_modal.html:7
 msgid "No, I have not tested"
-msgstr ""
+msgstr "Nei, jeg har ikke testet"
 
 #: src/olympia/devhub/templates/devhub/includes/blog_posts.html:3
 msgid "Developer News"
@@ -6140,15 +6139,15 @@ msgstr "Spam eller annet innhold som ikke er anmeldt"
 
 #: src/olympia/ratings/models.py:364
 msgid "Inappropriate language/dialog"
-msgstr ""
+msgstr "Upassende språk/dialog"
 
 #: src/olympia/ratings/models.py:365
 msgid "Misplaced bug report or support request"
-msgstr ""
+msgstr "Feilplassert feilrapport eller kundestøttehenvendelse"
 
 #: src/olympia/ratings/models.py:366
 msgid "Other (please specify)"
-msgstr ""
+msgstr "Annen (oppgi)"
 
 #: src/olympia/ratings/models.py:370
 msgid "Auto-flagged due to word match"
@@ -6382,7 +6381,7 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:11
 msgid "by Source"
-msgstr ""
+msgstr "etter kilde"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:14
 msgid "by Medium"
@@ -6402,19 +6401,19 @@ msgstr "Daglige brukere"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:29
 msgid "by Add-on Version"
-msgstr ""
+msgstr "etter tilleggsversjon"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:32
 msgid "by Application"
-msgstr ""
+msgstr "etter applikasjon"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:35
 msgid "by Language"
-msgstr ""
+msgstr "etter språk"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:38
 msgid "by Platform"
-msgstr ""
+msgstr "etter plattform"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:41
 msgid "by Country"
@@ -6426,7 +6425,7 @@ msgstr "lukk"
 
 #: src/olympia/stats/templates/stats/popup.html:7
 msgid "Custom Date Range"
-msgstr ""
+msgstr "Tilpasset datoperiode"
 
 #: src/olympia/stats/templates/stats/popup.html:25
 msgid "Update"
@@ -6434,81 +6433,81 @@ msgstr "Oppdater"
 
 #: src/olympia/stats/templates/stats/report.html:7
 msgid "Export"
-msgstr ""
+msgstr "Eksporter"
 
 #. {0} is an add-on name, {1} is an app name (like Firefox)
 #: src/olympia/stats/templates/stats/stats.html:17
 #, python-brace-format
 msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
-msgstr ""
+msgstr "{0} :: Statistikkpanel :: Tillegg for {1}"
 
 #: src/olympia/stats/templates/stats/stats.html:19
 #, python-brace-format
 msgid "{0} :: Statistics Dashboard"
-msgstr ""
+msgstr "{0} :: Statistikkpanel"
 
 #: src/olympia/stats/templates/stats/stats.html:21
 #, python-brace-format
 msgid "Statistics Dashboard :: Add-ons for {0}"
-msgstr ""
+msgstr "Statistikkpanel :: Tillegg for {0}"
 
 #. {0} is an add-on name
 #: src/olympia/stats/templates/stats/stats.html:32 src/olympia/stats/templates/stats/stats.html:35
 #, python-brace-format
 msgid "Statistics for {0}"
-msgstr ""
+msgstr "Statistikk for {0}"
 
 #: src/olympia/stats/templates/stats/stats.html:38
 msgid "Statistics Dashboard"
-msgstr ""
+msgstr "Statistikkpanel"
 
 #: src/olympia/stats/templates/stats/stats.html:45
 msgid "Controls:"
-msgstr ""
+msgstr "Kontroller:"
 
 #: src/olympia/stats/templates/stats/stats.html:48
 msgid "reset zoom"
-msgstr ""
+msgstr "tilbakestill zoom"
 
 #: src/olympia/stats/templates/stats/stats.html:55
 msgid "Group by:"
-msgstr ""
+msgstr "Grupper etter:"
 
 #: src/olympia/stats/templates/stats/stats.html:57
 msgid "day"
-msgstr ""
+msgstr "dag"
 
 #: src/olympia/stats/templates/stats/stats.html:60
 msgid "week"
-msgstr ""
+msgstr "uke"
 
 #: src/olympia/stats/templates/stats/stats.html:63
 msgid "month"
-msgstr ""
+msgstr "måned"
 
 #: src/olympia/stats/templates/stats/stats.html:69
 msgid "For last:"
-msgstr ""
+msgstr "De siste:"
 
 #: src/olympia/stats/templates/stats/stats.html:72
 msgid "7 days"
-msgstr ""
+msgstr "7 dager"
 
 #: src/olympia/stats/templates/stats/stats.html:75
 msgid "30 days"
-msgstr ""
+msgstr "30 dager"
 
 #: src/olympia/stats/templates/stats/stats.html:78
 msgid "90 days"
-msgstr ""
+msgstr "90 dager"
 
 #: src/olympia/stats/templates/stats/stats.html:81
 msgid "365 days"
-msgstr ""
+msgstr "365 dager"
 
 #: src/olympia/stats/templates/stats/stats.html:84
 msgid "Custom..."
-msgstr ""
+msgstr "Annet…"
 
 #: src/olympia/stats/templates/stats/stats.html:94
 msgid "Sorry, the statistics are temporarily unavailable."
@@ -6516,12 +6515,12 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/stats.html:100
 msgid "Loading the latest data&hellip;"
-msgstr ""
+msgstr "Laster inn de nyeste dataene &hellip;"
 
 #: src/olympia/stats/templates/stats/reports/overview.html:27 src/olympia/stats/templates/stats/reports/overview.html:39 src/olympia/stats/templates/stats/reports/overview.html:51
 #: src/olympia/stats/templates/stats/stats.html:132
 msgid "No data available."
-msgstr ""
+msgstr "Ingen data tilgjengelig."
 
 #: src/olympia/stats/templates/stats/stats.html:154
 msgid "Previous"
@@ -6533,7 +6532,7 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/reports/apps.html:3
 msgid "Application usage by Date"
-msgstr ""
+msgstr "Programbruk etter dato"
 
 #: src/olympia/stats/templates/stats/reports/campaigns.html:3
 msgid "Download campaigns by Date"
@@ -6542,7 +6541,7 @@ msgstr "Last ned kampanjer etter dato"
 #: src/olympia/stats/templates/stats/reports/campaigns.html:7 src/olympia/stats/templates/stats/reports/contents.html:7 src/olympia/stats/templates/stats/reports/mediums.html:7
 #: src/olympia/stats/templates/stats/reports/sources.html:7
 msgid "About tracking external sources..."
-msgstr ""
+msgstr "Om sporing av eksterne kilder..."
 
 #: src/olympia/stats/templates/stats/reports/contents.html:3
 msgid "Download contents by Date"
@@ -6554,11 +6553,11 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/reports/downloads.html:3
 msgid "Downloaded by Date"
-msgstr ""
+msgstr "Lastet ned etter dato"
 
 #: src/olympia/stats/templates/stats/reports/locales.html:3
 msgid "User languages by Date"
-msgstr ""
+msgstr "Brukerspråk etter dato"
 
 #: src/olympia/stats/templates/stats/reports/mediums.html:3
 msgid "Download mediums by Date"
@@ -6566,7 +6565,7 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/reports/os.html:3
 msgid "Platform usage by Date"
-msgstr ""
+msgstr "Plattformbruk etter dato"
 
 #: src/olympia/stats/templates/stats/reports/overview.html:9
 #, python-brace-format
@@ -6575,12 +6574,12 @@ msgstr "<b>{0}</b> ukentlige nedlastinger"
 
 #: src/olympia/stats/templates/stats/reports/overview.html:11 src/olympia/stats/templates/stats/reports/overview.html:15
 msgid "Loading..."
-msgstr ""
+msgstr "Laster …"
 
 #: src/olympia/stats/templates/stats/reports/overview.html:14
 #, python-brace-format
 msgid "<b>{0}</b> Average Daily Users"
-msgstr ""
+msgstr "<b>{0}</b> Gjennomsnittlig daglige brukere"
 
 #: src/olympia/stats/templates/stats/reports/overview.html:21
 msgid "Top Applications"
