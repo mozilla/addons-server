@@ -237,7 +237,7 @@ msgid "Review"
 msgstr "Omtale"
 
 #: src/olympia/activity/models.py:816 src/olympia/devhub/templates/devhub/versions/list.html:41
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Version {0}"
 msgid_plural "Versions {0}"
 msgstr[0] "Versjon {0}"
@@ -288,7 +288,7 @@ msgstr "Nettadresser må begynne med https://."
 #: src/olympia/addons/fields.py:187
 #, python-brace-format
 msgid "License with slug={value} does not exist."
-msgstr ""
+msgstr "Lisensen med slug={value} finnes ikke."
 
 #: src/olympia/addons/fields.py:210
 #, python-brace-format
@@ -301,7 +301,7 @@ msgstr "Ugyldig eller ødelagt arkiv."
 
 #: src/olympia/addons/fields.py:267
 msgid "Invalid app specified"
-msgstr ""
+msgstr "Ugyldig app spesifisert"
 
 #: src/olympia/addons/fields.py:285
 msgid "Unknown max app version specified"
