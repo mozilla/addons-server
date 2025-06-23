@@ -6626,6 +6626,8 @@ msgid ""
 "<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
 "down by add-on version, operating system, add-on status, application, and locale. </p>"
 msgstr ""
+"<h2>Hva er daglige brukere?</h2> <p> Tillegg som lastes ned fra dette nettstedet sjekker etter oppdateringer én gang per dag. Det totale antallet av disse oppdateringspingene kalles aktive daglige "
+"brukere. Daglige brukere kan deles inn etter tilleggsversjon, operativsystem, tilleggsstatus, program og språk.</p>"
 
 #: src/olympia/stats/templates/stats/reports/versions.html:3
 msgid "Application versions by Date"
