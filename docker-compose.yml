@@ -172,7 +172,7 @@ services:
       - data_rabbitmq:/var/lib/rabbitmq
 
   autograph:
-    image: mozilla/autograph:7.5.0@sha256:abdbf39aa49cdba46c1910defaf60e03196340def5e9c51308816ad32bc0542f
+    image: mozilla/autograph:7.5.1@sha256:269df5109f578ade3b67860948e1d63e1fde9ab275a5cf22ef29fdfd48f259c9
     command: /go/bin/autograph -c /data/autograph/autograph_localdev_config.yaml
     volumes:
       - data_autograph:/data/autograph
