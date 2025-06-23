@@ -1540,7 +1540,7 @@ msgstr "Film og TV"
 
 #: src/olympia/constants/categories.py:237
 msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
-msgstr "Last ned Firefox-tema med filmar og TV. Denne kategorien inkluderer anime som Uchiha Madara, filmar som The Matrix, show (Game of Thrones) og meir."
+msgstr "Last ned Firefox-tema med filmar og TV. Denne kategorien inkluderer anime som Uchiha Madara, filmar som The Matrix, og seriar som Game of Thrones, og meir."
 
 #: src/olympia/constants/categories.py:246
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
