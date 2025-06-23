@@ -6583,43 +6583,43 @@ msgstr "<b>{0}</b> Gjennomsnittlig daglige brukere"
 
 #: src/olympia/stats/templates/stats/reports/overview.html:21
 msgid "Top Applications"
-msgstr ""
+msgstr "Beste program"
 
 #: src/olympia/stats/templates/stats/reports/overview.html:25
 msgid "See more applications&hellip;"
-msgstr ""
+msgstr "Vis flere program&hellip;"
 
 #: src/olympia/stats/templates/stats/reports/overview.html:33
 msgid "Top Languages"
-msgstr ""
+msgstr "Ledende språk"
 
 #: src/olympia/stats/templates/stats/reports/overview.html:37
 msgid "See more languages&hellip;"
-msgstr ""
+msgstr "Vis flere språk&hellip;"
 
 #: src/olympia/stats/templates/stats/reports/overview.html:45
 msgid "Top Platforms"
-msgstr ""
+msgstr "Ledende plattformer"
 
 #: src/olympia/stats/templates/stats/reports/overview.html:49
 msgid "See more platforms&hellip;"
-msgstr ""
+msgstr "Vis flere plattformer&hellip;"
 
 #: src/olympia/stats/templates/stats/reports/sources.html:3
 msgid "Download sources by Date"
-msgstr ""
+msgstr "Last ned kildekode etter dato"
 
 #: src/olympia/stats/templates/stats/reports/statuses.html:3
 msgid "Add-on Status by Date"
-msgstr ""
+msgstr "Status for tillegg etter dato"
 
 #: src/olympia/stats/templates/stats/reports/usage.html:3
 msgid "Daily Users by Date"
-msgstr ""
+msgstr "Daglige brukere etter dato"
 
 #: src/olympia/stats/templates/stats/reports/usage.html:6
 msgid "What are daily users?"
-msgstr ""
+msgstr "Hva er daglige brukere?"
 
 #: src/olympia/stats/templates/stats/reports/usage.html:10
 msgid ""
