@@ -6125,7 +6125,7 @@ msgstr ""
 
 #: src/olympia/files/views.py:83 src/olympia/signing/views.py:128
 msgid "Missing \"upload\" key in multipart file data."
-msgstr ""
+msgstr "Mangler «upload»-nøkkel i flerdelte fildata."
 
 #: src/olympia/files/views.py:89
 msgid "Missing \"channel\" arg."
