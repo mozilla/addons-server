@@ -2547,11 +2547,11 @@ msgstr "Fra"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:59 src/olympia/stats/templates/stats/popup.html:18
 msgid "To"
-msgstr ""
+msgstr "Til"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:60
 msgid "Subject"
-msgstr ""
+msgstr "Emne"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:61 src/olympia/devhub/templates/devhub/versions/list.html:186 src/olympia/devhub/templates/devhub/versions/list.html:204
 #: src/olympia/devhub/templates/devhub/versions/list.html:230
@@ -2651,7 +2651,7 @@ msgstr "Forhåndsvisning av listede versjoner"
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html:32 src/olympia/devhub/templates/devhub/addons/submit/done.html:15
 msgid "Preview still being generated - come back later or refresh the page."
-msgstr ""
+msgstr "Forhåndsvisningen genereres fortsatt – kom tilbake senere eller oppdater siden."
 
 #: src/olympia/devhub/templates/devhub/addons/invitation.html:3 src/olympia/users/utils.py:98
 #, python-brace-format
@@ -2665,7 +2665,7 @@ msgstr "Du har blitt invitert til å bli opphavsmann av {addon_name}."
 
 #: src/olympia/devhub/templates/devhub/addons/invitation.html:21
 msgid "Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website. "
-msgstr "Godkjenning av invitasjonen vil gi deg tilgang til å redigere tillegget, og navnet ditt kan vises i listen over opphavsmenn på nettstedet."
+msgstr "Godkjenning av invitasjonen vil gi deg tilgang til å redigere tillegget, og navnet ditt kan vises i listen over opphavsmenn på nettstedet. "
 
 #: src/olympia/devhub/templates/devhub/addons/invitation.html:22
 #, python-brace-format
@@ -5806,9 +5806,8 @@ msgstr "Vis flere anbefalte utvidelser"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1061
-#, fuzzy
 msgid "Translation tools"
-msgstr "Fane-organisering og verktøy"
+msgstr "Oversettelsesverktøy"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1063
@@ -5818,9 +5817,8 @@ msgstr "Vis flere populære utvidelser"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1066
-#, fuzzy
 msgid "Social streaming"
-msgstr "Sosiale nettverk"
+msgstr "Sosial strømming"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1068
@@ -5999,7 +5997,7 @@ msgstr ""
 #: src/olympia/files/models.py:327
 #, python-format
 msgid "[status:%s]"
-msgstr ""
+msgstr "[status:%s]"
 
 #: src/olympia/files/utils.py:84
 msgid "This upload has already been submitted."
@@ -6034,19 +6032,19 @@ msgstr ""
 
 #: src/olympia/files/utils.py:560
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
-msgstr ""
+msgstr "Ugyldig filnavn i arkivet. Sørg for at alle filnavn er kodet i utf-8 eller latin1."
 
 #. L10n: {0} is the name of the invalid file.
 #: src/olympia/files/utils.py:574
 #, python-brace-format
 msgid "Invalid file name in archive: {0}"
-msgstr ""
+msgstr "Ugyldig filnavn i arkivet: {0}"
 
 #. L10n: {0} is the name of the invalid file.
 #: src/olympia/files/utils.py:582
 #, python-brace-format
 msgid "File exceeding size limit in archive: {0}"
-msgstr ""
+msgstr "Filen overskrider størrelsesgrensen i arkivet: {0}"
 
 #: src/olympia/files/utils.py:602
 msgid "This archive contains a forbidden special file (symbolic / hard link or device / block file)"
@@ -6058,7 +6056,7 @@ msgstr ""
 
 #: src/olympia/files/utils.py:669
 msgid "Invalid archive."
-msgstr ""
+msgstr "Ugyldig arkiv."
 
 #: src/olympia/files/utils.py:858
 msgid "No manifest.json found"
@@ -6075,7 +6073,7 @@ msgstr ""
 
 #: src/olympia/files/utils.py:911
 msgid "Duplicate add-on ID found."
-msgstr ""
+msgstr "Duplikat tilleggs-ID funnet."
 
 #: src/olympia/files/utils.py:917
 #, python-brace-format
@@ -6084,12 +6082,12 @@ msgstr ""
 
 #: src/olympia/files/utils.py:923
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
-msgstr ""
+msgstr "Versjonsnumre skal bare inneholde bokstaver, tall og disse tegnsettingstegnene: +*.-_."
 
 #: src/olympia/files/utils.py:932
 #, python-brace-format
 msgid "Maximum size for WebExtension themes is {0}."
-msgstr ""
+msgstr "Maksimal størrelse for WebExtension-tema er {0}."
 
 #: src/olympia/files/utils.py:945
 msgid "You cannot submit this type of add-on"
@@ -6101,7 +6099,7 @@ msgstr ""
 
 #: src/olympia/files/utils.py:954
 msgid "You cannot submit a Mozilla Signed Extension"
-msgstr ""
+msgstr "Du kan ikke sende inn en Mozilla-signert utvidelse"
 
 #: src/olympia/files/utils.py:958
 msgid "You cannot submit a language pack"
@@ -6118,7 +6116,7 @@ msgstr ""
 
 #: src/olympia/files/utils.py:1021
 msgid "Unexpected error."
-msgstr ""
+msgstr "Uventet feil."
 
 #: src/olympia/files/utils.py:1026
 #, python-format
