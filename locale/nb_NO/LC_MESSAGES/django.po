@@ -111,6 +111,13 @@ msgid ""
 "\n"
 "Thank you for your attention.\n"
 msgstr ""
+"\n"
+"Takk for rapporten din om %(name)s på Mozilla-tillegg, og for at du gir mer informasjon om bekymringene dine.\n"
+"\n"
+"Etter å ha gjennomgått anken din, har vi konkludert med at den forrige avgjørelsen om at dette innholdet ikke bryter med Mozillas retningslinjer (%(policy_document_url)s), var korrekt. Basert på denne avgjørelsen har vi avvist anken din, og vi vil ikke iverksette noen tiltak mot kontoen eller innholdet.\n"
+"%(manual_reasoning_text)s.\n"
+"\n"
+"Takk for oppmerksomheten din.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown.txt:5
 #, python-format
@@ -1533,11 +1540,11 @@ msgstr "Film og TV"
 
 #: src/olympia/constants/categories.py:237
 msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
-msgstr ""
+msgstr "Last ned Firefox-temaer med filmer og TV. Denne kategorien inkluderer anime som Uchiha Madara, filmer som The Matrix, serier som Game of Thrones og mer."
 
 #: src/olympia/constants/categories.py:246
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
-msgstr ""
+msgstr "Last ned Firefox-temaer med Firefox-nettleser-temaet. Denne kategorien inneholder fargerike og varierte skildringer av Firefox-logoen, inkludert mer generelle revetemaer."
 
 #: src/olympia/constants/categories.py:253
 msgid "Foxkeh"
@@ -1545,7 +1552,7 @@ msgstr "Foxkeh"
 
 #: src/olympia/constants/categories.py:255
 msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
-msgstr ""
+msgstr "Last ned Firefox-temaer med japansk Firefox. Denne kategorien inkluderer temaer som viser den søte Foxkeh-maskoten i forskjellige positurer i forskjellige landskap."
 
 #: src/olympia/constants/categories.py:262
 msgid "Holiday"
@@ -6631,11 +6638,11 @@ msgstr ""
 
 #: src/olympia/stats/templates/stats/reports/versions.html:3
 msgid "Application versions by Date"
-msgstr ""
+msgstr "Programversjoner etter dato"
 
 #: src/olympia/templates/base.html:9
 msgid "Mozilla Add-ons"
-msgstr ""
+msgstr "Mozilla-tillegg"
 
 #: src/olympia/templates/base.html:83
 msgid "Back to Add-ons"
@@ -6715,11 +6722,11 @@ msgstr ""
 #: src/olympia/templates/user_login.html:24
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
-msgstr ""
+msgstr "<a href=\"%(reg)s\">Registrer deg</a> eller <a href=\"%(login)s\">logg inn</a>"
 
 #: src/olympia/templates/includes/forms.html:2
 msgid "Required fields"
-msgstr ""
+msgstr "Obligatoriske felt"
 
 #: src/olympia/templates/includes/forms.html:10
 msgid "(optional)"
@@ -6727,7 +6734,7 @@ msgstr "(valgfritt)"
 
 #: src/olympia/templates/includes/lang_switcher.html:2
 msgid "Other languages"
-msgstr ""
+msgstr "Andre språk"
 
 #: src/olympia/templates/includes/lang_switcher.html:13
 msgid "Go"
@@ -6737,7 +6744,7 @@ msgstr "Gå"
 #: src/olympia/translations/templates/translations/trans-menu.html:7
 #, python-format
 msgid "Localize for: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
-msgstr ""
+msgstr "Oversett til: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
 
 #: src/olympia/translations/templates/translations/trans-menu.html:16 src/olympia/translations/templates/translations/trans-menu.html:29
 #, python-format
