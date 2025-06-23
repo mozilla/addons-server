@@ -5760,7 +5760,7 @@ msgstr "浏览所有扩展"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1018
 msgid "Anti-tracking extensions"
-msgstr ""
+msgstr "反跟踪扩展"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1020
@@ -5770,7 +5770,7 @@ msgstr "必备附加组件"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1022
 msgid "Steam extensions"
-msgstr ""
+msgstr "Steam 扩展"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1024 src/olympia/discovery/strings.jinja2:1026 src/olympia/discovery/strings.jinja2:1028
