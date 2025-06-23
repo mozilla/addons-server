@@ -2063,7 +2063,7 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py:1436
 msgid "Generate new credentials"
-msgstr ""
+msgstr "Generer nye innloggingsdetaljer"
 
 #: src/olympia/devhub/forms.py:1437
 msgid "Revoke and regenerate credentials"
@@ -2095,7 +2095,7 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py:1521
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr ""
+msgstr "En bekreftelseslenke vil bli sendt til e-postadressen din. Etter bekreftelse finner du API-nøklene dine på denne siden."
 
 #: src/olympia/devhub/forms.py:1538
 msgid "You don't have any API credentials."
