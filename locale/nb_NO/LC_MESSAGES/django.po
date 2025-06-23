@@ -234,7 +234,7 @@ msgstr "Omtale"
 msgid "Version {0}"
 msgid_plural "Versions {0}"
 msgstr[0] "Versjon {0}"
-msgstr[1] "Versjon {0}"
+msgstr[1] "Versjoner {0}"
 
 #: src/olympia/activity/serializers.py:46
 msgid "Review note"
@@ -328,11 +328,11 @@ msgstr ""
 
 #: src/olympia/addons/serializers.py:519
 msgid "Upload is not valid."
-msgstr ""
+msgstr "Opplastingen er ugyldig."
 
 #: src/olympia/addons/serializers.py:535
 msgid "File is already disabled."
-msgstr ""
+msgstr "Filen er allerede deaktivert."
 
 #: src/olympia/addons/serializers.py:539 src/olympia/addons/views.py:738
 #, python-format
@@ -369,7 +369,7 @@ msgstr "Tillegg trenger minst én eier."
 
 #: src/olympia/addons/serializers.py:921
 msgid "Add-ons need at least one listed author."
-msgstr ""
+msgstr "Tillegg skal ha minst en oppført utvikler."
 
 #: src/olympia/addons/serializers.py:953
 msgid "Account not found."
@@ -526,7 +526,7 @@ msgstr "Noen funksjoner er midlertidig utilgjengelig mens vi utfører rutinemess
 
 #: src/olympia/amo/utils.py:1112
 msgid "URLs are not allowed."
-msgstr ""
+msgstr "URL-er er ikke tillatt."
 
 #: src/olympia/amo/validators.py:17
 msgid "Must contain at least one printable character."
@@ -784,7 +784,7 @@ msgstr "Dette tillegget er allerede en del av samlingen"
 
 #: src/olympia/blocklist/models.py:188
 msgid "Blocked"
-msgstr ""
+msgstr "Blokkert"
 
 #: src/olympia/blocklist/models.py:188
 msgid "Restricted"
@@ -1321,7 +1321,7 @@ msgstr ""
 
 #: src/olympia/constants/base.py:133
 msgid "Language Pack"
-msgstr ""
+msgstr "Språkpakke"
 
 #: src/olympia/constants/base.py:134
 msgid "Deprecated Language Pack (Add-on)"
@@ -1361,7 +1361,7 @@ msgstr ""
 
 #: src/olympia/constants/base.py:147
 msgid "Language Packs"
-msgstr ""
+msgstr "Språkpakker"
 
 #: src/olympia/constants/base.py:148
 msgid "Deprecated Language Packs (Add-on)"
@@ -1501,7 +1501,7 @@ msgstr "Annet"
 
 #: src/olympia/constants/categories.py:201
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
-msgstr ""
+msgstr "Last ned Firefox-utvidelser som kan være uforutsigbare og kreative, men som er nyttige for disse uvanlige oppgavene."
 
 #: src/olympia/constants/categories.py:209
 msgid "Abstract"
@@ -1509,7 +1509,7 @@ msgstr "Abstrakt"
 
 #: src/olympia/constants/categories.py:211
 msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
-msgstr ""
+msgstr "Last ned kunstneriske og konseptuelle temaer for Firefox. Denne kategorien inkluderer fargerike paletter og former, fantasilandskap, lekne katter og psykedeliske blomster."
 
 #: src/olympia/constants/categories.py:218
 msgid "Causes"
@@ -1517,7 +1517,7 @@ msgstr "Formål"
 
 #: src/olympia/constants/categories.py:220
 msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
-msgstr ""
+msgstr "Last ned Firefox-temaer for nisjeinteresser og emner. Denne kategorien inkluderer sportstemaer, høytider, filantropiske formål, nasjonaliteter og mye mer."
 
 #: src/olympia/constants/categories.py:227
 msgid "Fashion"
