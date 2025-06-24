@@ -6337,7 +6337,7 @@ msgstr ""
 
 #: src/olympia/scanners/models.py:382
 msgid "Run this rule on add-ons that have been force-disabled as well."
-msgstr ""
+msgstr "Kjør denne regelen også på tillegg som har blitt tvangsdeaktivert."
 
 #: src/olympia/search/filters.py:49 src/olympia/search/filters.py:62 src/olympia/search/filters.py:95 src/olympia/search/filters.py:158 src/olympia/search/filters.py:198
 #: src/olympia/search/filters.py:344 src/olympia/search/filters.py:455
