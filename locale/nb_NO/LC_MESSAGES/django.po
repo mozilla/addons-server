@@ -625,7 +625,7 @@ msgstr "E-post:"
 
 #: src/olympia/amo/templates/amo/fake_fxa_authorization.html:20
 msgid "Two-factor authentication"
-msgstr "To-faktorautentisering"
+msgstr "Tofaktorautentisering"
 
 #. abbreviation of 'previous'
 #: src/olympia/amo/templates/amo/paginator.html:5 src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:49
@@ -2225,7 +2225,7 @@ msgstr "Valider utvidelsen"
 #: src/olympia/devhub/views.py:644
 #, python-brace-format
 msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
-msgstr "<a href=\"{link}\">Legg til tofaktor-verifisering på kontoen din for å sende inn utvidelser.</a>"
+msgstr "<a href=\"{link}\">Legg til tofaktorautentisering på kontoen din for å sende inn utvidelser.</a>"
 
 #: src/olympia/devhub/views.py:1012
 msgid "Icons must be either PNG or JPG."
