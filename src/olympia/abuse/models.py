@@ -217,6 +217,7 @@ class CinderJob(ModelBase):
             action_date=datetime.now(),
             reviewer_user_id=settings.TASK_USER_ID,
             cinder_job=self,
+            override_of=self.final_decision,
         )
         decision.policies.set(
             CinderPolicy.objects.filter(
