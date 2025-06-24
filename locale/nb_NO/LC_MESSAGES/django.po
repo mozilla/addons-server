@@ -4464,12 +4464,12 @@ msgstr "Last ned videoer enkelt. Fungerer med YouTube, Facebook, Vimeo, Twitch, 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:38
 msgid "Up your emoji game. Dozens of amazing emojis for every occasion—always just a click away."
-msgstr ""
+msgstr "Bli bedre på emojier. Massevis av fantastiske emojier for enhver anledning – bare et klikk unna."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:41
 msgid "Password management simplified. Sync all your logins across devices with one password to rule them all."
-msgstr ""
+msgstr "Forenklet passordhåndtering. Synkroniser alle påloggingene dine på tvers av enheter med ett passord for å styre dem alle."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
