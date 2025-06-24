@@ -5838,9 +5838,8 @@ msgstr "Sterke passordbehandlere"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1058
-#, fuzzy
 msgid "See more password manager staff picks"
-msgstr "Vis flere anbefalte utvidelser"
+msgstr "Se flere av de ansattes anbefalinger for passordbehandlere"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1061
@@ -5849,9 +5848,8 @@ msgstr "Oversettelsesverktøy"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1063
-#, fuzzy
 msgid "See more translation tool staff picks"
-msgstr "Vis flere populære utvidelser"
+msgstr "Se flere av de ansattes anbefalinger for oversettelsesverktøyet"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1066
@@ -5860,9 +5858,8 @@ msgstr "Sosial strømming"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1068
-#, fuzzy
 msgid "See more social streaming staff picks"
-msgstr "Vis flere populære utvidelser"
+msgstr "Se flere av de ansattes anbefalinger for sosiale strømmetjenester"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1071
@@ -5879,29 +5876,28 @@ msgstr "Vis flere anbefalte utvidelser"
 #: src/olympia/discovery/strings.jinja2:1076
 #, python-brace-format
 msgid "“{tag}” tagged extensions"
-msgstr ""
+msgstr "«{tag}»-merkede utvidelser"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1078
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "See more extensions tagged \"{tag}\""
-msgstr "Vis flere populære utvidelser"
+msgstr "Se flere utvidelser merket med «{tag}»"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1081
 msgid "Elite ad blockers"
-msgstr ""
+msgstr "Kraftige annonseblokkere"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1083
-#, fuzzy
 msgid "See more ad blocker staff picks"
-msgstr "Vis flere anbefalte utvidelser"
+msgstr "Se flere anbefalinger fra ansatte innen annonseblokkering"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1086
 msgid "YouTube customization"
-msgstr ""
+msgstr "YouTube-tilpasning"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1088
@@ -5911,33 +5907,28 @@ msgstr "Vis flere populære utvidelser"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1091
-#, fuzzy
 msgid "Trending themes"
-msgstr "Anbefalte tema"
+msgstr "Populære tema"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1093
-#, fuzzy
 msgid "See more trending themes"
-msgstr "Vis flere populære tema"
+msgstr "Se flere populære tema"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1096 src/olympia/discovery/strings.jinja2:1141
-#, fuzzy
 msgid "Top rated themes"
-msgstr "Anbefalte tema"
+msgstr "Høyest vurderte tema"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1098 src/olympia/discovery/strings.jinja2:1143
-#, fuzzy
 msgid "See more top rated themes"
-msgstr "Vis flere populære tema"
+msgstr "Se flere høyest vurderte tema"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1101
-#, fuzzy
 msgid "Trending extensions"
-msgstr "Anbefalte tema"
+msgstr "Populære utvidelser"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1103
