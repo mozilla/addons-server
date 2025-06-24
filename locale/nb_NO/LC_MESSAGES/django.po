@@ -660,11 +660,11 @@ msgstr "Noen funksjoner på denne siden er midlertidig avslått mens vi utfører
 
 #: src/olympia/amo/templates/amo/submissions_disabled.html:3
 msgid "Add-on uploads temporarily disabled"
-msgstr ""
+msgstr "Opplasting av tillegg er midlertidig deaktivert"
 
 #: src/olympia/amo/templates/amo/submissions_disabled.html:13
 msgid "Add-on uploads have been temporarily disabled. Please check back later."
-msgstr ""
+msgstr "Opplasting av tillegg er midlertidig deaktivert. Kom tilbake senere."
 
 #: src/olympia/amo/templatetags/jinja_helpers.py:147
 #, python-brace-format
@@ -744,17 +744,17 @@ msgstr "Språkkoden «{lang_code}» er ugyldig."
 
 #: src/olympia/api/fields.py:92
 msgid "You must provide an object of {{lang-code:value}}."
-msgstr ""
+msgstr "Du må oppgi et objekt av typen {{lang-code:value}}."
 
 #: src/olympia/api/fields.py:94
 #, python-brace-format
 msgid "A value in the default locale of \"{lang_code}\" is required."
-msgstr ""
+msgstr "En verdi i standardspråkinnstillingen «{lang_code}» er obligatorisk."
 
 #: src/olympia/api/fields.py:97
 #, python-brace-format
 msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
-msgstr ""
+msgstr "En verdi i standardspråkinnstillingen «{lang_code}» er nødvendig hvis andre oversettelser er angitt."
 
 #: src/olympia/api/fields.py:386
 #, python-format
@@ -767,7 +767,7 @@ msgstr "Bekreftelse for API-nøkler for utviklere"
 
 #: src/olympia/api/throttling.py:113
 msgid "You have submitted this form too many times recently. Please try again after some time."
-msgstr ""
+msgstr "Du har sendt inn dette skjemaet for mange ganger i det siste. Prøv igjen om en stund."
 
 #: src/olympia/bandwagon/serializers.py:72
 msgid "This custom URL is already in use by another one of your collections."
@@ -1215,7 +1215,7 @@ msgstr ""
 #: src/olympia/constants/activity.py:1058
 #, python-brace-format
 msgid "{addon} {version} rejected automatically after delay expired."
-msgstr ""
+msgstr "{addon} {version} ble automatisk avvist etter at forsinkelsen utløp."
 
 #: src/olympia/constants/activity.py:1059
 msgid "Rejected automatically after delay expired"
@@ -1224,7 +1224,7 @@ msgstr "Avvist automatisk etter at forsinkelsen er utløpt"
 #: src/olympia/constants/activity.py:1070
 #, python-brace-format
 msgid "{addon} {version} content rejected automatically after delay expired."
-msgstr ""
+msgstr "{addon} {version} innhold ble automatisk avvist etter at forsinkelsen var utløpt."
 
 #: src/olympia/constants/activity.py:1071
 msgid "Content rejected automatically after delay expired"
@@ -4811,7 +4811,7 @@ msgstr "Få ting gjort med en nyttig oppgaveliste som synkroniseres på tvers av
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:236
 msgid "Track historical pricing, find competing products, know the seller's ratings, and more."
-msgstr ""
+msgstr "Spor historiske priser, finn konkurrerende produkter, få vite selgerens vurderinger og mer."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4822,7 +4822,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:242
 msgid "Get in-depth engagement and traffic information for any website."
-msgstr ""
+msgstr "Få dyptgående informasjon om engasjement og trafikk for ethvert nettsted."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:245
@@ -4948,7 +4948,7 @@ msgstr "En avansert leser for å samle alle RSS-/Atom-/RDF-kildene dine."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:317
 msgid "Create general and website-specific notes to review later."
-msgstr ""
+msgstr "Lag generelle og nettstedsspesifikke notater for senere gjennomgang."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4982,7 +4982,7 @@ msgstr "Spar båndbredde ved å bare streame lyden fra YouTube-klipp."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:335
 msgid "Turn words into beautiful headlines and image overlay text."
-msgstr ""
+msgstr "Gjør ord om til vakre overskrifter og tekst med bildeoverlegg."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5055,12 +5055,12 @@ msgstr "Dra nytte av en merkelig utdanning. Last inn en tilfeldig Wikipedia-arti
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:380
 msgid "Configure new tab pages to display custom background colors and images."
-msgstr ""
+msgstr "Konfigurer nye fane-sider for å vise egne bakgrunnsfarger og bilder."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:383
 msgid "Meet an adorable kitty with every new tab. Give it a scratch behind the ear and see what happens."
-msgstr ""
+msgstr "Møt en søt kattunge med hver nye fane. Klø den bak øret og se hva som skjer."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:386
@@ -5075,37 +5075,37 @@ msgstr ""
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:392
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
-msgstr ""
+msgstr "Mange åpne faner? Hopp over rullingen og søk via hurtigtaster."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:395
 msgid "Stop redirects so you can access the site you want—faster."
-msgstr ""
+msgstr "Stopp omdirigeringer slik at du får tilgang til nettstedet du ønsker — raskere."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:398
 msgid "Adds show/hide ability to all password fields."
-msgstr ""
+msgstr "Legger til muligheten for å vise/skjule i alle passordfelt."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:401
 msgid "Focus on what you're watching by dimming everything but the video player."
-msgstr ""
+msgstr "Fokuser på hva du ser på ved å dimme alt utenom videospilleren."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:404
 msgid "Modify your bookmarks through an easily accessible panel."
-msgstr ""
+msgstr "Endre bokmerkene dine via et lett tilgjengelig panel."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:407
 msgid "Store passwords securely and sign in automatically to known websites."
-msgstr ""
+msgstr "Lagre passord sikkert og logg inn automatisk på kjente nettsteder."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:410
 msgid "A simple ad blocker focused on displaying just the content you want."
-msgstr ""
+msgstr "En enkel annonseblokkering som fokuserer på å vise bare innholdet du ønsker."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:413
@@ -5137,7 +5137,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:428 src/olympia/discovery/strings.jinja2:700
 msgid "Take full control of the cookies you've accumulated while browsing."
-msgstr ""
+msgstr "Ta full kontroll over infokapslene du har samlet mens du surfer."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:431
@@ -5148,12 +5148,12 @@ msgstr "Slett nettleserloggen automatisk for nettsteder du velger."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:434 src/olympia/discovery/strings.jinja2:790
 msgid "Password-protect your personal bookmarks."
-msgstr ""
+msgstr "Passordbeskytt dine personlige bokmerker."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:437
 msgid "Do you use a VPN? Your IP address may leak. Put a stop to that by disabling WebRTC."
-msgstr ""
+msgstr "Bruker du VPN? IP-adressen din kan lekke. Stopp dette ved å deaktivere WebRTC."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:440
@@ -5162,14 +5162,13 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:443
-#, fuzzy
 msgid "Find an interesting image on the web? Want to learn more about it?"
-msgstr "Ser du et interessant bilde på nettet og du vil lære mer om det? Prøv dette bildesøkeverktøyet."
+msgstr "Funnet et interessant bilde på nettet? Vil du lære mer om det?"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:446
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
-msgstr ""
+msgstr "Dra bare tekst, bilder eller lenker for å utføre handlinger som kopiering, åpning, søk og mer."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:449
@@ -6884,11 +6883,11 @@ msgstr ""
 
 #: src/olympia/users/notifications.py:69
 msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
-msgstr ""
+msgstr "hold deg oppdatert med nyheter og hendelser som er relevant for tilleggsutviklere (inkludert nyhetsbrevet about:addons)"
 
 #: src/olympia/users/notifications.py:81
 msgid "my add-on's compatibility cannot be upgraded"
-msgstr ""
+msgstr "mitt tilleggs kompatibilitet kan ikke oppgraderes"
 
 #: src/olympia/users/notifications.py:90
 msgid "my add-on is reviewed by a reviewer"
@@ -6896,11 +6895,11 @@ msgstr "mitt tillegg er gjennomgått av en gjennomgangsperson"
 
 #: src/olympia/users/notifications.py:99
 msgid "Mozilla needs to contact me about my individual add-on"
-msgstr ""
+msgstr "Mozilla trenger å kontakte meg om mitt tillegget mitt"
 
 #: src/olympia/users/notifications.py:105
 msgid "User Notifications"
-msgstr ""
+msgstr "Brukervarsler"
 
 #: src/olympia/users/utils.py:91
 msgid "An author has been added to your add-on"
@@ -7005,7 +7004,7 @@ msgstr ""
 #: src/olympia/versions/models.py:1551
 #, python-brace-format
 msgid "{app} {min} and later"
-msgstr ""
+msgstr "{app} {min} og senere"
 
 #: src/olympia/versions/models.py:1678
 #, python-brace-format
