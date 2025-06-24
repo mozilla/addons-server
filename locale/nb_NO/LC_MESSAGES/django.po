@@ -5488,42 +5488,42 @@ msgstr "Lytt til musikk på YouTube uten de irriterende avbruddene av «Videoen 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:634
 msgid "Change the way the web looks."
-msgstr ""
+msgstr "Endre hvordan nettet ser ut."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:637
 msgid "Customize YouTube to taste. Give it a new look, new features & filter only the content you want."
-msgstr ""
+msgstr "Tilpass YouTube etter din smak. Gi det et nytt utseende, nye funksjoner og filtrer bare innholdet du ønsker."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:649
 msgid "Changes the color of Firefox to match the appearance of any website."
-msgstr ""
+msgstr "Endrer fargen på Firefox slik at den matcher utseendet på et nettsted."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:659
 msgid "Protect your privacy against a unique form of JavaScript “fingerprinting”."
-msgstr ""
+msgstr "Beskytt personvernet ditt mot en unik form for JavaScript-«fingeravtrykk»."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:667
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
-msgstr ""
+msgstr "Noen nettsteder har problemer med å spille av videoer på Android. Her er en løsning."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:688
 msgid "Find an interesting pic on the web? Use TinEye to discover its origins."
-msgstr ""
+msgstr "Finner du et interessant bilde på nettet? Bruk TinEye til å finne ut hvor det kommer fra."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:706
 msgid "Save images easily — just grab them from your current tab."
-msgstr ""
+msgstr "Lagre bilder enkelt — hent dem fra den nåværende fanen."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:709
 msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title & more."
-msgstr ""
+msgstr "Nyt ultimat kontroll over faner — lukk dupliserte faner, slå sammen vinduer, kopier fanetittelen og mer."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:727
@@ -5734,17 +5734,17 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1003
 msgid "Re-take control of Twitter/X and customize your experience."
-msgstr ""
+msgstr "Ta tilbake kontrollen over Twitter/X og tilpass opplevelsen din."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1006
 msgid "Translate text without leaving the page you're on (PDF compatible)."
-msgstr ""
+msgstr "Oversett tekst uten å forlate siden du er på (PDF-kompatibel)."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1009
 msgid "Change the color of Firefox to match every website you visit."
-msgstr ""
+msgstr "Endre fargen på Firefox slik at den matcher alle nettstedene du besøker."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1012
@@ -5764,22 +5764,22 @@ msgstr "Se alle utvidelser"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1018
 msgid "Anti-tracking extensions"
-msgstr ""
+msgstr "Anti-sporingsutvidelser"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1020
 msgid "Essential add-ons"
-msgstr ""
+msgstr "Viktige tillegg"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1022
 msgid "Steam extensions"
-msgstr ""
+msgstr "Steam-utvidelser"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1024 src/olympia/discovery/strings.jinja2:1026 src/olympia/discovery/strings.jinja2:1028
 msgid "See staff picks"
-msgstr ""
+msgstr "Se de ansattes valg"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1031
@@ -5794,7 +5794,7 @@ msgstr "Vis flere anbefalte utvidelser"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1036
 msgid "Popular themes"
-msgstr ""
+msgstr "Populære temaer"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1038
@@ -5808,9 +5808,8 @@ msgstr "Forbedret personvernutvidelser"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1043
-#, fuzzy
 msgid "See more recommended privacy extensions"
-msgstr "Vis flere anbefalte utvidelser"
+msgstr "Vis flere anbefalte personvern-utvidelser"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1046
@@ -5830,12 +5829,12 @@ msgstr "Anbefalte tema"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1053
 msgid "See more recommended themes"
-msgstr ""
+msgstr "Se flere anbefalte tema"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1056
 msgid "Strong password managers"
-msgstr ""
+msgstr "Sterke passordbehandlere"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1058
@@ -5868,7 +5867,7 @@ msgstr "Vis flere populære utvidelser"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1071
 msgid "Tab managers"
-msgstr ""
+msgstr "Fanebehandlere"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1073
