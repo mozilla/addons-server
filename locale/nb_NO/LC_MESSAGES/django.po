@@ -5315,34 +5315,34 @@ msgstr "Oppbevar personlige notater hvor som helst på nettet. Bruk ganske enkel
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:528
 msgid "Use speech recognition to enable voice search on Google, Yahoo, and DuckDuckGo."
-msgstr ""
+msgstr "Bruk talegjenkjenning for å slå på talesøk på Google, Yahoo og DuckDuckGo."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:531
 msgid "Track products and get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
-msgstr ""
+msgstr "Spor produkter og få beskjed når prisene faller på varer du er interessert i hos Amazon, Best Buy, eBay, Home Depot og Walmart."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:534 src/olympia/discovery/strings.jinja2:670
 msgid "Turn the web dark or select a custom color scheme to visually tailor the internet to your own taste."
-msgstr ""
+msgstr "Gjør nettet mørkt eller velg et tilpasset fargevalg for å visuelt skreddersy internett etter din egen smak."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:537 src/olympia/discovery/strings.jinja2:889
 msgid "Get a more advanced search page on Firefox for Android."
-msgstr ""
+msgstr "Få en mer avansert søkeside på Firefox for Android."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:540
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
-msgstr ""
+msgstr "Noen nettsteder har problemer med å spille av videoer i Firefox for Android. Denne utvidelsen gir en løsning."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:546
 msgid "Select, sort, and run your downloads faster."
-msgstr ""
+msgstr "Velg, sorter og kjør nedlastingene dine raskere."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:549
@@ -5358,24 +5358,24 @@ msgstr "Slett infokapsler, surfehistorikk og hurtigbufrede filer med bare et enk
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:555 src/olympia/discovery/strings.jinja2:784
 msgid "Remove tracking elements from web links."
-msgstr ""
+msgstr "Fjern sporingselementer fra lenker på nettet."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:558
 msgid "Get auto-populated RSS feed bookmark folders."
-msgstr ""
+msgstr "Få automatisk utfylte bokmerkemapper for informasjonskanaler (RSS-feeder)."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:561 src/olympia/discovery/strings.jinja2:847
 msgid "Easily organize tons of open tabs."
-msgstr ""
+msgstr "Organiser enkelt tonnevis av åpne faner."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:564 src/olympia/discovery/strings.jinja2:787
 msgid "Create and customize tab groups."
-msgstr ""
+msgstr "Opprett og tilpass fanegrupper."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:567
@@ -5390,24 +5390,24 @@ msgstr "Erstatt automatisk nedsettende ord på nettet."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:575
 msgid "Block all ads—video, pop-ups, banners & more."
-msgstr ""
+msgstr "Blokker alle annonser — video, sprettoppvinduer, bannere og mer."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:578 src/olympia/discovery/strings.jinja2:841
 msgid "Watch streaming media with friends and family anywhere."
-msgstr ""
+msgstr "Se strømmemedier med venner og familie hvor som helst."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:581 src/olympia/discovery/strings.jinja2:883
 msgid "Skip over sponsored portions of YouTube videos."
-msgstr ""
+msgstr "Hopp over sponsede deler av YouTube-videoer."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:584
 msgid "Have web pages read aloud to you. 40+ languages supported."
-msgstr ""
+msgstr "Få nettsider lest høyt for deg. Støtter over 40 språk."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
