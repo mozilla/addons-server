@@ -2525,7 +2525,7 @@ msgstr "Vi sender deg en e-post, vær tålmodig … <div class=\"loader\"></div>
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:30
 msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again later."
-msgstr ""
+msgstr "Det tar lengre tid enn forventet å bekrefte leveringen av bekreftelses-e-posten din. Prøv på nytt senere."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:34
 msgid "Success!"
@@ -2537,6 +2537,7 @@ msgid ""
 "An email with a confirmation link has been sent to your email address: %(email)s. Please click the link to confirm your email address. If you did not receive the email, please check your spam "
 "folder."
 msgstr ""
+"En e-post med en bekreftelseslenke er sendt til e-postadressen din: %(email)s. Klikk på lenken for å bekrefte e-postadressen din. Hvis du ikke mottok e-posten, kan du sjekke søppelpostmappen din."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:39
 #, python-format
@@ -2544,10 +2545,12 @@ msgid ""
 "The provided code is invalid, unauthorized, expired or incomplete. Please use the link in the email sent to your email address %(email)s. If the code is still not working, please request a new "
 "email."
 msgstr ""
+"Den oppgitte koden er ugyldig, uautorisert, utløpt eller ufullstendig. Bruk lenken i e-posten som ble sendt til e-postadressen din %(email)s. Hvis koden fortsatt ikke fungerer, kan du be om en ny "
+"e-post."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:49
 msgid "<strong>Email history:</strong> The table below shows all emails we have attempted to send to you in the last 2 days."
-msgstr ""
+msgstr "<strong>E-posthistorikk:</strong> Tabellen nedenfor viser alle e-poster vi har forsøkt å sende til deg de siste 2 dagene."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:57
 msgid "Date"
@@ -2572,7 +2575,7 @@ msgstr "Status"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:87
 msgid "We have not found any email records for you in the last 2 days."
-msgstr ""
+msgstr "Vi har ikke funnet noen e-postoppføringer for deg de siste 2 dagene."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:91
 msgid "Refresh results"
@@ -3145,11 +3148,11 @@ msgstr "Topp"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:1
 msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
-msgstr ""
+msgstr "Hvis du sletter tillegget ditt, slettes alle versjoner og filer du har sendt inn for dette tillegget permanent, enten de er oppført eller ikke."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:6
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
-msgstr ""
+msgstr "Tilleggs-ID-en kan ikke gjenopprettes og vil for alltid være ubrukelig for innsending."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:2 src/olympia/devhub/templates/devhub/versions/list.html:250 src/olympia/devhub/templates/devhub/versions/list.html:254
 msgid "Delete Add-on"
@@ -3278,6 +3281,8 @@ msgid ""
 "Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
 "submission process is complete."
 msgstr ""
+"Advarsel: Du har navn-/sammendragsverdier i andre språkinnstillinger som automatisk blir beskjært for å få plass under grensen på %(max_length)s tegn.  For å redigere disse, gå til Rediger "
+"produktside etter at innsendingsprosessen er fullført."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:52 src/olympia/devhub/templates/devhub/addons/submit/describe.html:73
 msgid "Add-on URL:"
@@ -3384,17 +3389,17 @@ msgstr "Hvordan du distribuerer denne versjonen"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html:10
 msgid "To get started, select how you would like to distribute this version."
-msgstr ""
+msgstr "For å komme i gang, velg hvordan du vil distribuere denne versjonen."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html:19
 #, python-format
 msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing</a> on Firefox Extension Workshop."
-msgstr ""
+msgstr "Du kan lære mer om disse alternativene ved å lese <a %(a_attrs)s>Distribusjon og signering av tillegg</a> på Firefox Extension Workshop."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html:24
 #, python-format
 msgid "All add-ons must comply with <a %(a_attrs)s>Mozilla’s Add-on Policies</a> and are subject to manual review at any time after submission."
-msgstr ""
+msgstr "Alle tillegg må overholde <a %(a_attrs)s>Mozillas retningslinjer for tillegg</a> og kan gjennomgås manuelt når som helst etter innsending."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:4
 msgid "Submission Complete"
@@ -3418,6 +3423,8 @@ msgid ""
 "You’re done! ✨ You will receive a confirmation email when this version is published on %(site_domain)s. Note that it may take up to 24 hours before publication occurs, or longer if your add-on is "
 "selected for manual review. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
+"Du er ferdig! ✨ Du vil motta en bekreftelses-e-post når denne versjonen er publisert på %(site_domain)s. Merk at det kan ta opptil 24 timer før publisering skjer, eller lenger hvis tillegget ditt er"
+" valgt for manuell gjennomgang. Hvis du ikke ser en e-post etter 24 timer, kan du sjekke søppelpostmappen din."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:31
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
@@ -3428,6 +3435,8 @@ msgstr "Oppføringen din blir mer vellykket ved å legge til en detaljert beskri
 msgid ""
 "You can attract users to your extension by adding a detailed description and screenshots to your listing. Get help <a %(a_attrs)s>creating an appealing listing</a> on Firefox Extension Workshop."
 msgstr ""
+"Du kan tiltrekke brukere til utvidelsen din ved å legge til en detaljert beskrivelse og skjermbilder i oppføringen din. Få hjelp med å <a %(a_attrs)s>lage en tiltalende oppføring</a> på Firefox "
+"Extension Workshop."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:43
 msgid "Manage Listing"
@@ -3435,7 +3444,7 @@ msgstr "Behandle oppføring"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:47
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, concatenated or otherwise machine-generated code."
-msgstr ""
+msgstr "Du kan også redigere denne versjonen for å legge til versjonsnotater eller kildekode hvis innsendingen din inneholder minimert, sammenkoblet eller på annen måte maskingenerert kode."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:52
 #, python-brace-format
@@ -3444,7 +3453,7 @@ msgstr "Rediger versjon {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:59
 msgid "As a reminder, your add-on is subject to manual review at any time."
-msgstr ""
+msgstr "Som en påminnelse, kan tillegget ditt når som helst gjennomgås manuelt."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:64
 msgid "Go to My Submissions"
@@ -3463,13 +3472,12 @@ msgid "Mozilla’s add-on reviewers need to be able to read and reproduce the co
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:21
-#, fuzzy
 msgid "Do you use any of the following in your extension?"
-msgstr "Bruker du noe av følgende?"
+msgstr "Bruker du noe av det følgende i utvidelsen din?"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:27
 msgid "Code generators or minifiers"
-msgstr ""
+msgstr "Kodegeneratorer eller minifikatorer"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:29
 msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
@@ -3480,9 +3488,8 @@ msgid "Web template engines, both for HTML and CSS"
 msgstr "Nettmalmotorer, både for HTML og CSS"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:32
-#, fuzzy
 msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the extension"
-msgstr "Ethvert annet verktøy som håndterer kode eller filer, bruker prosessering og genererer kode eller fil(er) som inkluderes i tillegget"
+msgstr "Ethvert annet verktøy som tar kode eller filer, bruker behandling og genererer kode eller fil(er) som skal inkluderes i utvidelsen"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:43
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
@@ -3490,12 +3497,11 @@ msgstr "Du trenger ikke å sende inn kildekode, og du er klar for neste steg."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:49
 msgid "You must submit your extension's source code."
-msgstr ""
+msgstr "Du må sende inn kildekoden for utvidelsen din."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:51
-#, fuzzy
 msgid "Your source code must include:"
-msgstr "Kildekode lastet opp"
+msgstr "Kildekoden din må inneholde:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:56
 msgid "Step-by-step build instructions to create an exact copy of the add-on code, in a README file in your source code or in the reviewer notes on the next page."
@@ -3511,7 +3517,7 @@ msgstr "Krav til operativsystem og byggemiljø."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:59
 msgid "The required version and installation instructions of any programs used in the build process (such as <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis\">npm</span>)."
-msgstr ""
+msgstr "Den nødvendige versjonen og installasjonsinstruksjonene for alle programmer som brukes i byggeprosessen (som <span class=\"tech-emphasis\">node</span> og <span class=\"tech-emphasis\">npm</span>)."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:62
 msgid "Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified, or otherwise machine-generated."
