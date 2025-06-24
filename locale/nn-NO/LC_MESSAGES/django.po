@@ -1171,12 +1171,12 @@ msgstr ""
 
 #: src/olympia/constants/activity.py:903
 msgid "Un-rejected"
-msgstr ""
+msgstr "Ikkje-avvist"
 
 #: src/olympia/constants/activity.py:941
 #, python-brace-format
 msgid "Reply to {rating} for {addon} written."
-msgstr ""
+msgstr "Svar på {rating} skriven for {addon}."
 
 #: src/olympia/constants/activity.py:958
 #, python-brace-format
