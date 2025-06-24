@@ -1177,16 +1177,16 @@ msgstr "Ikke-avvist"
 #: src/olympia/constants/activity.py:941
 #, python-brace-format
 msgid "Reply to {rating} for {addon} written."
-msgstr ""
+msgstr "Svar på {rating} skrevet for {addon}."
 
 #: src/olympia/constants/activity.py:958
 #, python-brace-format
 msgid "{addon} {version} pending rejection cleared."
-msgstr ""
+msgstr "{addon} {version} ventende avvisning fjernet."
 
 #: src/olympia/constants/activity.py:959
 msgid "Pending rejection cleared"
-msgstr ""
+msgstr "Ventende avvisning fjernet"
 
 #: src/olympia/constants/activity.py:1006
 #, python-brace-format
@@ -1200,7 +1200,7 @@ msgstr ""
 #: src/olympia/constants/activity.py:1014
 #, python-brace-format
 msgid "Collection {collection} deleted by moderator"
-msgstr ""
+msgstr "Samling {collection} slettet av moderator"
 
 #: src/olympia/constants/activity.py:1020
 #, python-brace-format
