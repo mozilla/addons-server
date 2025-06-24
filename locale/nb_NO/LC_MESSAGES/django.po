@@ -1324,7 +1324,7 @@ msgstr "Ordbok"
 
 #: src/olympia/constants/base.py:132
 msgid "Deprecated Search Engine"
-msgstr ""
+msgstr "Foreldet søkemotor"
 
 #: src/olympia/constants/base.py:133
 msgid "Language Pack"
@@ -1332,11 +1332,11 @@ msgstr "Språkpakke"
 
 #: src/olympia/constants/base.py:134
 msgid "Deprecated Language Pack (Add-on)"
-msgstr ""
+msgstr "Foreldet språkpakke (tillegg)"
 
 #: src/olympia/constants/base.py:135
 msgid "Deprecated Plugin"
-msgstr ""
+msgstr "Foreldet programtillegg"
 
 #: src/olympia/constants/base.py:136
 msgid "Deprecated LWT"
@@ -1348,7 +1348,7 @@ msgstr "Tema"
 
 #: src/olympia/constants/base.py:138
 msgid "Deprecated Site Permission"
-msgstr ""
+msgstr "Foreldet nettstedstillatelse"
 
 #: src/olympia/constants/base.py:143 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:10
 msgid "Extensions"
@@ -1364,7 +1364,7 @@ msgstr "Ordbøker"
 
 #: src/olympia/constants/base.py:146
 msgid "Deprecated Search Tools"
-msgstr ""
+msgstr "Foreldete søkeverktøy"
 
 #: src/olympia/constants/base.py:147
 msgid "Language Packs"
@@ -1372,11 +1372,11 @@ msgstr "Språkpakker"
 
 #: src/olympia/constants/base.py:148
 msgid "Deprecated Language Packs (Add-on)"
-msgstr ""
+msgstr "Foreldete språkpakker (tillegg)"
 
 #: src/olympia/constants/base.py:149
 msgid "Deprecated Plugins"
-msgstr ""
+msgstr "Foreldet programtillegg"
 
 #: src/olympia/constants/base.py:150
 msgid "Deprecated LWTs"
@@ -1388,7 +1388,7 @@ msgstr "Temaer"
 
 #: src/olympia/constants/base.py:152
 msgid "Deprecated Site Permissions"
-msgstr ""
+msgstr "Foreldete nettstedstillatelser"
 
 #: src/olympia/constants/categories.py:68
 msgid "Alerts & Updates"
@@ -1628,47 +1628,47 @@ msgstr "Generelt"
 
 #: src/olympia/constants/licenses.py:15
 msgid "Mozilla Public License 2.0"
-msgstr ""
+msgstr "Mozilla Public License 2.0"
 
 #: src/olympia/constants/licenses.py:22
 msgid "Apache License 2.0"
-msgstr ""
+msgstr "Apache License 2.0"
 
 #: src/olympia/constants/licenses.py:29
 msgid "GNU General Public License v2.0 only"
-msgstr ""
+msgstr "Kun GNU General Public License v2.0"
 
 #: src/olympia/constants/licenses.py:36
 msgid "GNU General Public License v3.0 only"
-msgstr ""
+msgstr "Kun GNU General Public License v3.0"
 
 #: src/olympia/constants/licenses.py:43
 msgid "GNU Lesser General Public License v2.1 only"
-msgstr ""
+msgstr "Kun GNU Lesser General Public License v2.1"
 
 #: src/olympia/constants/licenses.py:50
 msgid "GNU Lesser General Public License v3.0 only"
-msgstr ""
+msgstr "Kun GNU Lesser General Public License v3.0"
 
 #: src/olympia/constants/licenses.py:57
 msgid "GNU Affero General Public License v3.0 only"
-msgstr ""
+msgstr "Kun GNU Affero General Public License v3.0"
 
 #: src/olympia/constants/licenses.py:64
 msgid "MIT License"
-msgstr ""
+msgstr "MIT License"
 
 #: src/olympia/constants/licenses.py:71
 msgid "ISC License"
-msgstr ""
+msgstr "ISC License"
 
 #: src/olympia/constants/licenses.py:78
 msgid "BSD 2-Clause \"Simplified\" License"
-msgstr ""
+msgstr "BSD 2-Clause \"Simplified\" License"
 
 #: src/olympia/constants/licenses.py:85
 msgid "Mozilla Public License 1.1"
-msgstr ""
+msgstr "Mozilla Public License 1.1"
 
 #: src/olympia/constants/licenses.py:93 src/olympia/constants/licenses.py:229
 msgid "All Rights Reserved"
@@ -1700,31 +1700,31 @@ msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 #: src/olympia/constants/licenses.py:162
 msgid "Creative Commons Attribution 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution 4.0"
 
 #: src/olympia/constants/licenses.py:172
 msgid "Creative Commons Attribution-NonCommercial 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial 4.0"
 
 #: src/olympia/constants/licenses.py:182
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
 
 #: src/olympia/constants/licenses.py:192
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
 
 #: src/olympia/constants/licenses.py:202
 msgid "Creative Commons Attribution-NoDerivs 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NoDerivs 4.0"
 
 #: src/olympia/constants/licenses.py:212
 msgid "Creative Commons Attribution-ShareAlike 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution-ShareAlike 4.0"
 
 #: src/olympia/constants/licenses.py:222
 msgid "The Unlicense"
-msgstr ""
+msgstr "The Unlicense"
 
 #: src/olympia/constants/promoted.py:76
 msgid "Not Promoted"
@@ -1748,7 +1748,7 @@ msgstr "Strategisk"
 
 #: src/olympia/constants/promoted.py:149
 msgid "Notable"
-msgstr ""
+msgstr "Bemerkelsesverdig"
 
 #: src/olympia/constants/promoted.py:159
 msgid "Partner"
@@ -1879,7 +1879,7 @@ msgstr "Open Search-tillegg støttes ikke lenger {blog_link_open}på AMO{blog_li
 #: src/olympia/devhub/file_validation_annotations.py:105
 #, python-brace-format
 msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr ""
+msgstr "Manifest V3 støttes for øyeblikket ikke for opplasting. {start_href}Les mer om tidslinjen for støtte{end_href}."
 
 #: src/olympia/devhub/forms.py:85
 msgid "This slug is already in use. Please choose another."
@@ -1903,9 +1903,9 @@ msgid "The miscellaneous category cannot be combined with additional categories.
 msgstr "Diverse-kategorien kan ikke kombineres med andre kategorier."
 
 #: src/olympia/devhub/forms.py:272
-#, fuzzy, python-format
+#, python-format
 msgid "URL domain must be one of [%s]."
-msgstr "URL-domene må være et av [%s], eller et underdomene."
+msgstr "URL-domene må være et av [%s]."
 
 #: src/olympia/devhub/forms.py:288
 #, python-brace-format
@@ -2044,7 +2044,7 @@ msgstr "Forsikre deg om at navn og sammendrag er på maksimalt {limit_value} teg
 #: src/olympia/devhub/forms.py:1358
 #, python-brace-format
 msgid "On this site. <span class=\"helptext\">Your submission is publicly listed on {site_domain}.</span>"
-msgstr ""
+msgstr "På dette nettstedet. <span class=\"helptext\">Bidraget ditt er offentlig oppført på {site_domain}.</span>"
 
 #: src/olympia/devhub/forms.py:1365
 #, python-brace-format
