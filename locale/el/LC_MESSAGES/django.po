@@ -1673,12 +1673,12 @@ msgstr ""
 
 #: src/olympia/constants/categories.py:316
 msgid "Solid"
-msgstr "Συμπαγή"
+msgstr "Αμιγή χρώματα"
 
 #: src/olympia/constants/categories.py:318
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
 msgstr ""
-"Κάντε λήψη θεμάτων για το Firefox με συμπαγή χρώματα και διαβαθμίσεις χρωμάτων για να εξατομικεύσετε το πρόγραμμα περιήγησης σας. Αυτή η κατηγορία περιέχει θέματα με τολμηρά κόκκινα, παστέλ, απαλά "
+"Κάντε λήψη θεμάτων για το Firefox με αμιγή χρώματα και διαβαθμίσεις χρωμάτων για να εξατομικεύσετε το πρόγραμμα περιήγησης σας. Αυτή η κατηγορία περιέχει θέματα με τολμηρά κόκκινα, παστέλ, απαλά "
 "γκρι και πολλά άλλα."
 
 #: src/olympia/constants/categories.py:325
