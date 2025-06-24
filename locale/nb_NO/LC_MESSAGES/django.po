@@ -795,7 +795,7 @@ msgstr "Blokkert"
 
 #: src/olympia/blocklist/models.py:188
 msgid "Restricted"
-msgstr ""
+msgstr "Begrenset"
 
 #: src/olympia/constants/activity.py:25
 #, python-brace-format
@@ -2052,6 +2052,8 @@ msgid ""
 "On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
 "on manifest’s <a {a_attrs}>update_url</a> is provided, as this is the URL where Firefox finds updates for automatic deployment to your users.</span>"
 msgstr ""
+"På egenhånd. <span class=\"helptext\">Etter at innsendingen din er signert av Mozilla, kan du laste ned .xpi-filen fra utviklerhuben og distribuere den til målgruppen din. Sørg for at "
+"tilleggsmanifestets <a {a_attrs}>update_url</a> er oppgitt, da dette er URL-en der Firefox finner oppdateringer for automatisk distribusjon til brukerne dine.</span>"
 
 #: src/olympia/devhub/forms.py:1404 src/olympia/devhub/templates/devhub/includes/agreement.html:15
 msgid "Display Name"
@@ -2059,7 +2061,7 @@ msgstr "Visningsnavn"
 
 #: src/olympia/devhub/forms.py:1435
 msgid "Confirm email address"
-msgstr ""
+msgstr "Bekreft e-postadresse"
 
 #: src/olympia/devhub/forms.py:1436
 msgid "Generate new credentials"
@@ -2067,7 +2069,7 @@ msgstr "Generer nye innloggingsdetaljer"
 
 #: src/olympia/devhub/forms.py:1437
 msgid "Revoke and regenerate credentials"
-msgstr ""
+msgstr "Tilbakekalle og generere legitimasjon på nytt"
 
 #: src/olympia/devhub/forms.py:1438
 msgid "Revoke"
@@ -2083,6 +2085,8 @@ msgid ""
 "To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
 "href=\"{docs_url}\">API documentation</a>."
 msgstr ""
+"For å gjøre API-forandringer, send en <a href=\"{jwt_url}\">JSON Web token (JWT)</a> som authorization-header. Du må lage en JWT for hver forespørsel som beskrevet i <a href=\"{docs_url}\">API-"
+"dokumentasjonen</a>."
 
 #: src/olympia/devhub/forms.py:1494
 msgid "JWT secret"
@@ -2091,7 +2095,7 @@ msgstr "JWT-hemmelighet"
 #: src/olympia/devhub/forms.py:1515
 #, python-brace-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
-msgstr ""
+msgstr "Klikk på bekreftelsesknappen nedenfor for å generere API-legitimasjon for bruker <strong>{name}</strong>."
 
 #: src/olympia/devhub/forms.py:1521
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
@@ -2103,7 +2107,7 @@ msgstr "Du har ingen API-innloggingsopplysninger."
 
 #: src/olympia/devhub/forms.py:1549
 msgid "Something went wrong, please contact developer support."
-msgstr ""
+msgstr "Noe gikk galt. Kontakt utviklerstøtte."
 
 #: src/olympia/devhub/tasks.py:178
 msgid "Invalid or corrupt add-on file."
@@ -2570,12 +2574,12 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:91
 msgid "Refresh results"
-msgstr ""
+msgstr "Oppdater resultat"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:101
 #, python-format
 msgid "If you encounter issues, please see our <a %(a_attrs)s>troubleshooting suggestions</a> on Firefox Extension Workshop."
-msgstr ""
+msgstr "Hvis du støter på problemer, kan du se våre <a %(a_attrs)s>feilsøkingsforslag</a> på Firefox Extension Workshop."
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html:4 src/olympia/devhub/templates/devhub/addons/activity.html:17
 msgid "Recent Activity for My Add-ons"
@@ -2746,12 +2750,12 @@ msgstr "Stikkord"
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:20
 #, python-brace-format
 msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
-msgstr ""
+msgstr "Stikkord (tagger) hjelper brukere med å finne tillegget ditt. Du kan ha maksimalt {0} stikkord. Velg bare stikkord som er relevante for tillegget ditt."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:28
 #, python-brace-format
 msgid "Limit {0} tags."
-msgstr ""
+msgstr "Begrens {0} stikkord."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:39
 msgid "Contributions URL"
@@ -2767,7 +2771,7 @@ msgstr "Standardspråk"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:56
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Informasjon om tillegget ditt vises i denne språkinnstillingen med mindre du overstyrer den med en språkspesifikk oversettelse. Dette er bare relevant for oppførte tillegg."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:72
 msgid "Homepage"
@@ -2778,6 +2782,8 @@ msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
 "ons."
 msgstr ""
+"Hvis tillegget ditt har en annen hjemmeside, skriver du inn adressen her. Hvis nettstedet ditt er lokalisert til andre språk, kan flere oversettelser av dette feltet legges til. Det er bare relevant"
+" for oppførte tillegg."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:96 src/olympia/devhub/templates/devhub/addons/edit/describe.html:260
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:84 src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:174
@@ -2814,6 +2820,8 @@ msgid ""
 "The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
 "characters and a minimum length of 2 characters for each."
 msgstr ""
+"Sammendraget bør forklare hva tillegget ditt gjør, tydelig og konsist. Både navnet og sammendraget vil vises på produktsiden din og i søkeresultatene. De har en samlet maksimal lengde på 70 tegn og "
+"en minimumslengde på 2 tegn for hver."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:43 src/olympia/devhub/templates/devhub/addons/edit/describe.html:105 src/olympia/devhub/templates/devhub/addons/submit/describe.html:30
 msgid "Summary"
@@ -2893,6 +2901,8 @@ msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
 " for listed add-ons."
 msgstr ""
+"Hvis du ønsker å vise en e-postadresse for kundestøttehenvendelser, skriver du den inn her. Hvis du har forskjellige adresser for hvert språk, kan flere oversettelser av dette feltet legges til. Det"
+" er bare relevant for oppførte tillegg."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:234
 msgid "Website"
@@ -2903,6 +2913,8 @@ msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
 "listed add-ons."
 msgstr ""
+"Hvis tillegget ditt har et brukerstøttenettsted eller forum, skriver du inn adressen her. Hvis nettstedet ditt er lokalisert til andre språk, kan flere oversettelser av dette feltet legges til. Det "
+"er bare relevant for oppførte tillegg."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/media.html:3
 msgid "Images"
@@ -2927,6 +2939,8 @@ msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
+"All informasjon sluttbrukere måtte ønske å vite som ikke nødvendigvis er relevant for tilleggssammendraget eller beskrivelsen. Vanlige bruksområder inkluderer opplisting av kjente større feil, "
+"informasjon om hvordan man rapporterer feil, forventet utgivelsesdato for en ny versjon osv. Dette er bare relevant for oppførte tillegg."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:46
 msgid "Universally unique identifier"
@@ -2938,7 +2952,7 @@ msgstr "UUID"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:49
 msgid "The UUID of your add-on is specified in its install manifest and uniquely identifies it. You cannot change your UUID once it has been submitted."
-msgstr ""
+msgstr "UUID-en til tillegget ditt er spesifisert i installasjonsmanifestet og identifiserer det unikt. Du kan ikke endre UUID-en din når den er sendt inn."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:60 src/olympia/devhub/templates/devhub/addons/edit/technical.html:61
 msgid "Whiteboard"
@@ -2949,6 +2963,8 @@ msgid ""
 "The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that may"
 " help. This whiteboard is also editable by reviewers."
 msgstr ""
+"Denne oppslagstavlen er for å utveksle informasjon som er relevant for tillegget ditt, uansett versjon, til gjennomgangspersoner. Bruk denne til å gi ulike måter å teste tillegget på, og eventuelt "
+"ytterlegge informasjon som kan hjelpe til. Denne tavlen er også redigerbar av gjennomgangspersoner."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:10
 #, python-brace-format
@@ -2964,6 +2980,8 @@ msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
 "relevant for listed add-ons."
 msgstr ""
+"Last opp et ikon for tillegget ditt, eller velg et av våre. Ikonet vises nesten overalt hvor tillegget ditt er. Opplastede bilder må være av en av følgende bildetyper: .png, .jpg. Dette er bare "
+"relevant for oppførte tillegg."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:25
 msgid "Select an icon for your add-on:"
@@ -2976,7 +2994,7 @@ msgstr "32x32px"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:39
 msgid "Used in listings of add-ons, like search results."
-msgstr ""
+msgstr "Brukes i lister over tillegg, som søkeresultater."
 
 #. The size of the icon
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:47
@@ -2994,7 +3012,7 @@ msgstr "128x128px"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:57
 msgid "Will be the standard in future add-on detail pages."
-msgstr ""
+msgstr "Vil bli standarden på fremtidige detaljsider for tillegg."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:64
 msgid "Upload a Custom Icon..."
@@ -3038,7 +3056,7 @@ msgstr "Minimumsstørrelse er 1000x750, og et forhold på 4:3 er påkrevd."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:155
 msgid "Having screenshots in your product page greatly increases its chances of being installed."
-msgstr ""
+msgstr "Å ha skjermbilder på produktsiden din øker sterkt sjansen for installasjoner."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:182 src/olympia/devhub/templates/devhub/addons/submit/distribute.html:30
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:85 src/olympia/devhub/templates/devhub/addons/submit/upload.html:99
@@ -3063,7 +3081,7 @@ msgstr "Ja, så lenge de deler likt"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:44
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
-msgstr ""
+msgstr "Lisensgiveren tillater andre å distribuere avledede verk kun under samme lisens eller en som er kompatibel med den som regulerer lisensgiverens verk."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:57
 msgid "Your Add-on will be released under the following license:"
@@ -3079,15 +3097,15 @@ msgstr "Mer informasjon om Creative Commons-lisenser"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/invisible_channel_warning.html:2
 msgid "Your add-on is currently set to \"Invisible\"."
-msgstr ""
+msgstr "Tillegget ditt er for øyeblikket satt til «Usynlig»."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/invisible_channel_warning.html:3
 msgid "While in this state, \"On your own\" is the only distribution method available."
-msgstr ""
+msgstr "I denne tilstanden er «På egenhånd» den eneste tilgjengelige distribusjonsmetoden."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/source_file_input.html:12
 msgid "You cannot change attached sources because this version has been reviewed by Mozilla."
-msgstr ""
+msgstr "Du kan ikke endre vedlagte kilder fordi denne versjonen har blitt gjennomgått av Mozilla."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:5 src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:53
 msgid "General Tests"
@@ -6198,7 +6216,7 @@ msgstr ""
 
 #: src/olympia/ratings/serializers.py:270
 msgid "You can't leave a review on your own add-on."
-msgstr ""
+msgstr "Du kan ikke legge igjen en anmeldelse på ditt eget tillegg."
 
 #: src/olympia/ratings/serializers.py:285
 msgid "You can't leave more than one review for the same version of an add-on."
