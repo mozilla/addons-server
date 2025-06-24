@@ -3951,7 +3951,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html:3
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code other than known libraries, upload its sources for review."
-msgstr ""
+msgstr "Hvis tillegget ditt inneholder minimert, sammenkoblet eller på annen måte maskingenerert kode utover kjente biblioteker, last opp kildekoden for gjennomgang."
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html:5
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
@@ -6348,7 +6348,7 @@ msgstr "Ugyldig parameter «%s»."
 #: src/olympia/search/filters.py:202 src/olympia/search/filters.py:322
 #, python-format
 msgid "Invalid combination of \"%s\" and \"%s\" parameters."
-msgstr ""
+msgstr "Ugyldig kombinasjon av parameterne «%s» og «%s»."
 
 #: src/olympia/search/filters.py:264
 msgid "Return To AMO is currently disabled"
