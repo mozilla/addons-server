@@ -1205,7 +1205,7 @@ msgstr "Samling {collection} slettet av moderator"
 #: src/olympia/constants/activity.py:1020
 #, python-brace-format
 msgid "Collection {collection} un-deleted by moderator"
-msgstr ""
+msgstr "Samling {collection} gjenopprettet av moderator"
 
 #: src/olympia/constants/activity.py:1029
 #, python-brace-format
@@ -1219,7 +1219,7 @@ msgstr ""
 
 #: src/olympia/constants/activity.py:1059
 msgid "Rejected automatically after delay expired"
-msgstr ""
+msgstr "Avvist automatisk etter at forsinkelsen er utløpt"
 
 #: src/olympia/constants/activity.py:1070
 #, python-brace-format
@@ -2280,7 +2280,7 @@ msgstr "Versjon %s slått på igjen."
 
 #: src/olympia/devhub/views.py:1251
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
-msgstr ""
+msgstr "Denne opplastingen mislyktes i valideringen og kan mangle fullstendige valideringsresultater. Vær forsiktig når du vurderer den."
 
 #: src/olympia/devhub/views.py:1421
 msgid "Header area background"
@@ -2296,7 +2296,7 @@ msgstr "Tekst og ikoner for topptekstområdet"
 
 #: src/olympia/devhub/views.py:1433
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
-msgstr ""
+msgstr "Fargen på teksten og ikonene i topptekstområdet, bortsett fra den aktive fanen. Manifestfelt:  tab_background_text."
 
 #: src/olympia/devhub/views.py:1440
 msgid "Toolbar area background"
@@ -2321,7 +2321,7 @@ msgstr "Bakgrunn for feltområdet for verktøylinjen"
 
 #: src/olympia/devhub/views.py:1460
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
-msgstr ""
+msgstr "Bakgrunnsfargen for felt i verktøylinjen, for eksempel adresselinjen. Manifestfelt:  toolbar_field."
 
 #: src/olympia/devhub/views.py:1467
 msgid "Toolbar field area text"
@@ -2329,7 +2329,7 @@ msgstr "Tekst på feltområdet i verktøylinjen"
 
 #: src/olympia/devhub/views.py:1469
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
-msgstr ""
+msgstr "Fargen på tekst i felt i verktøylinjen, for eksempel adresselinjen. Manifestfelt:  toolbar_field_text."
 
 #: src/olympia/devhub/views.py:1477
 msgid "Tab highlight"
@@ -3169,7 +3169,7 @@ msgstr "Handlinger"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:11
 msgid "Resume the submission process for this add-on"
-msgstr ""
+msgstr "Fortsett innsendingsprosessen for dette tillegget"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:12
 msgid "Resume"
@@ -3185,7 +3185,7 @@ msgstr "Slett"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:30
 msgid "Edit details on this add-on's product page"
-msgstr ""
+msgstr "Rediger detaljer på produktsiden for dette tillegget"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:37
 msgid "Upload a new version of this add-on"
@@ -3197,7 +3197,7 @@ msgstr "Ny versjon"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:45
 msgid "Daily statistics on downloads and users"
-msgstr ""
+msgstr "Daglig statistikk over nedlastinger og brukere"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:46
 msgid "Statistics"
@@ -3258,7 +3258,7 @@ msgstr "Ja, avbryt"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html:41
 msgid "No, don't cancel"
-msgstr ""
+msgstr "Nei, ikke avbryt"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:16
 msgid "Name and Summary:"
@@ -3309,6 +3309,8 @@ msgstr "Dette tillegget er eksperimentelt"
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:126
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
+"Kryss av for dette alternativet hvis tillegget ditt er eksperimentelt eller ikke klart for generell bruk.  Tillegget vil bli oppført, men vil ha redusert synlighet.  Du kan endre denne innstillingen"
+" senere."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:151
 msgid "Support email:"
@@ -3328,7 +3330,7 @@ msgstr "Velg en lisens som er passer med rettighetene du gir."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:194
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
-msgstr ""
+msgstr "Hvis tillegget ditt overfører data fra brukerens datamaskin, kreves det en personvernerklæring som forklarer hvilke data som sendes og hvordan de brukes."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:207 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:21
 msgid "Notes to Reviewer:"
@@ -3348,6 +3350,8 @@ msgid ""
 "If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
 "%(policy_requirements_open)spolicy requirements%(policy_requirements_close)s."
 msgstr ""
+"Hvis du sendte inn kildekoden, men ikke inkluderte instruksjoner, må du oppgi dem her. Skriv inn trinnvise byggeinstruksjoner for å lage en nøyaktig kopi av tilleggskoden, i henhold til "
+"%(policy_requirements_open)spolicy-krav%(policy_requirements_close)s."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:224 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:38
 msgid "These notes will only be visible to you and our reviewers."
@@ -3405,7 +3409,7 @@ msgstr "Forhåndsvisning av innsendt versjon"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:19
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
-msgstr ""
+msgstr "Du er ferdig! Denne versjonen vil være tilgjengelig etter at den er godkjent. Du vil bli varslet når den er godkjent."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:24
 #, python-format
@@ -3416,7 +3420,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:31
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
-msgstr ""
+msgstr "Oppføringen din blir mer vellykket ved å legge til en detaljert beskrivelse. Gjør oppføringen klar for publisering:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:36
 #, python-format
@@ -3472,7 +3476,7 @@ msgstr "Verktøy som kombinerer flere filer i en enkelt fil, for eksempel <span 
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:31
 msgid "Web template engines, both for HTML and CSS"
-msgstr ""
+msgstr "Nettmalmotorer, både for HTML og CSS"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:32
 #, fuzzy
@@ -3498,11 +3502,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:57
 msgid "A build script that executes all necessary technical steps."
-msgstr ""
+msgstr "Et byggeskript som utfører alle nødvendige tekniske trinn."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:58
 msgid "Operating system and build environment requirements."
-msgstr ""
+msgstr "Krav til operativsystem og byggemiljø."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:59
 msgid "The required version and installation instructions of any programs used in the build process (such as <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis\">npm</span>)."
@@ -3548,7 +3552,7 @@ msgstr "Last opp versjon"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:30
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
-msgstr ""
+msgstr "Bruk feltene nedenfor for å laste opp tilleggspakken din. Etter opplasting vil en serie automatiserte valideringstester kjøres på filen din."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:34
 #, python-format
@@ -3557,7 +3561,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:59
 msgid "Which applications is this version compatible with?"
-msgstr ""
+msgstr "Hvilke program er denne versjonen kompatibel med?"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:66
 msgid "Administrative overrides"
@@ -3755,11 +3759,11 @@ msgstr "Fullfør tillegget ditt ved å legge til en versjon eller manglende meta
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:25
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
-msgstr ""
+msgstr "Du vil motta en e-post når gjennomgangen er fullført. Inntil da er ikke tillegget ditt oppført i galleriet vårt, men du kan få tilgang til det direkte fra detaljsiden. "
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:28
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
-msgstr ""
+msgstr "Tillegget ditt vises i galleriet vårt, og brukerne mottar automatiske oppdateringer."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:30
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.com."
@@ -3768,6 +3772,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:34
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
+"Tillegget ditt vil ikke bli inkludert i søkeresultatene, og oppføringssiden vil indikere at du har deaktivert det. Nye versjonsinnsendinger for oppføring vil ikke bli akseptert i denne tilstanden."
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:41 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:85
@@ -3827,7 +3832,7 @@ msgstr "Gjennomgangsside for listede"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:42
 msgid "Unlisted Review Page"
-msgstr ""
+msgstr "Gjennomgangsside for ikke-oppført"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:46
 msgid "Admin Manage"
@@ -4139,7 +4144,7 @@ msgstr "Logg på utviklersenteret for å sende inn eller behandle utvidelser og 
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/submit_or_manage_extension.html:11
 msgid "Register for a developer account or log in to the Developer Hub"
-msgstr ""
+msgstr "Registrer deg for en utviklerkonto eller logg deg på Developer Hub"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:5
 #, python-brace-format
@@ -4162,7 +4167,7 @@ msgstr "Kompatibilitet"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:37
 msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
-msgstr ""
+msgstr "Hvis du justerer programinformasjonen her, kan brukere installere tillegget ditt selv om installasjonsmanifestet i pakken indikerer at tillegget er inkompatibelt."
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:55
 msgid "Add Another Application&hellip;"
@@ -4437,7 +4442,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:26 src/olympia/discovery/strings.jinja2:757
 msgid "Instant weather updates from around the world."
-msgstr ""
+msgstr "Øyeblikkelige væroppdateringer fra hele verden."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:29
@@ -4454,7 +4459,7 @@ msgstr "Ser du et interessant bilde på nettet og du vil lære mer om det? Prøv
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:35 src/olympia/discovery/strings.jinja2:739
 msgid "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr ""
+msgstr "Last ned videoer enkelt. Fungerer med YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope og hundrevis av andre videosider."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:38
