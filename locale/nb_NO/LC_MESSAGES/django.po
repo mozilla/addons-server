@@ -827,7 +827,7 @@ msgstr "{user} ({0}) er lagt til i {addon}."
 #: src/olympia/constants/activity.py:67
 #, python-brace-format
 msgid "{user} ({0}) removed from {addon}."
-msgstr ""
+msgstr "{user} ({0}) fjernet fra {addon}."
 
 #: src/olympia/constants/activity.py:76
 #, python-brace-format
@@ -933,6 +933,7 @@ msgstr "Mer informasjon er forespurt"
 #: src/olympia/constants/activity.py:236
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
+"Dette tillegget har blitt flagget for administratorgjennomgang. Det er fortsatt i vår gjennomgangskø, men det må gjennomgåes av en av våre administratorer. Gjennomgangen kan ta lengre tid en vanlig."
 
 #: src/olympia/constants/activity.py:258
 #, python-brace-format
@@ -1051,7 +1052,7 @@ msgstr "{addon} ikke oppført."
 #: src/olympia/constants/activity.py:560
 #, python-brace-format
 msgid "Add-on id {0} with GUID {1} has been deleted"
-msgstr ""
+msgstr "Tilleggs-ID {0} med GUID {1} er slettet"
 
 #: src/olympia/constants/activity.py:567 src/olympia/constants/activity.py:573
 #, python-brace-format
@@ -1079,11 +1080,11 @@ msgstr "Svar fra gjennomgåingsperson"
 #: src/olympia/constants/activity.py:631
 #, python-brace-format
 msgid "Notes for reviewers changed for {addon} {version}."
-msgstr ""
+msgstr "Merknader for gjennomgangspersoner endret for {addon} {version}."
 
 #: src/olympia/constants/activity.py:632
 msgid "Notes for reviewers changed"
-msgstr ""
+msgstr "Merknad for gjennomgangspersoner endret"
 
 #: src/olympia/constants/activity.py:640
 #, python-brace-format
@@ -1148,7 +1149,7 @@ msgstr "Avslag planlagt"
 #: src/olympia/constants/activity.py:853
 #, python-brace-format
 msgid "{addon} {version} automatically created and signed from {0}."
-msgstr ""
+msgstr "{addon} {version} automatisk opprettet og signert fra {0}."
 
 #: src/olympia/constants/activity.py:854
 msgid "Version re-signed"
@@ -1157,21 +1158,21 @@ msgstr "Versjon er signert på nytt"
 #: src/olympia/constants/activity.py:862
 #, python-brace-format
 msgid "{addon} force-disabled"
-msgstr ""
+msgstr "{addon} tvangsdeaktivert"
 
 #: src/olympia/constants/activity.py:873
 #, python-brace-format
 msgid "{addon} force-enabled"
-msgstr ""
+msgstr "{addon} tvangsaktivert"
 
 #: src/olympia/constants/activity.py:902
 #, python-brace-format
 msgid "{addon} {version} un-rejected."
-msgstr ""
+msgstr "{addon} {version} ikke-avvist."
 
 #: src/olympia/constants/activity.py:903
 msgid "Un-rejected"
-msgstr ""
+msgstr "Ikke-avvist"
 
 #: src/olympia/constants/activity.py:941
 #, python-brace-format
