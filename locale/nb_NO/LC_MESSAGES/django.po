@@ -5305,12 +5305,12 @@ msgstr "Blokker distraherende nettsteder. Bare oppgi nettstedene du vil at utvid
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:522 src/olympia/discovery/strings.jinja2:697
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
-msgstr ""
+msgstr "Endre utseendet på nettleseren din. Design enkelt dine egne visuelle temaer for å få Firefox til å se ut som du ønsker."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:525
 msgid "Keep personal notes anywhere on the web. Simply use a sidebar to attach notes on specific web pages."
-msgstr ""
+msgstr "Oppbevar personlige notater hvor som helst på nettet. Bruk ganske enkelt en sidestolpen for å legge ved notater på bestemte nettsider."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:528
