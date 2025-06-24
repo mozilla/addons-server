@@ -5932,14 +5932,13 @@ msgstr "Populære utvidelser"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1103
-#, fuzzy
 msgid "See more trending extensions"
-msgstr "Vis flere anbefalte utvidelser"
+msgstr "Se flere populære utvidelser"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1106
 msgid "Steam enhancers"
-msgstr ""
+msgstr "Steam-forbedringer"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1108
@@ -5949,9 +5948,8 @@ msgstr "Vis flere populære utvidelser"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1111
-#, fuzzy
 msgid "Creativity extensions"
-msgstr "Anbefalte tema"
+msgstr "Kreativitetsutvidelser"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1113
@@ -5962,7 +5960,7 @@ msgstr "Vis flere populære utvidelser"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1116
 msgid "Social media extensions"
-msgstr ""
+msgstr "Utvidelser for sosiale media"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1118
@@ -5982,7 +5980,7 @@ msgstr ""
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1126
 msgid "Accessibility extensions"
-msgstr ""
+msgstr "Tilgjengelighetsutvidelser"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1128
@@ -5992,7 +5990,7 @@ msgstr ""
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1131
 msgid "Extension starter pack"
-msgstr ""
+msgstr "Startpakke for utvidelser"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1133
@@ -6002,7 +6000,7 @@ msgstr ""
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1136
 msgid "Twitch extensions"
-msgstr ""
+msgstr "Twitch-utvidelser"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1138
@@ -6012,16 +6010,16 @@ msgstr ""
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1146
 msgid "Gaming & media extensions"
-msgstr ""
+msgstr "Spill- og medieutvidelser"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1148
 msgid "See more staff picks"
-msgstr ""
+msgstr "Se flere ansattes valg"
 
 #: src/olympia/files/models.py:324
 msgid "Unreviewed"
-msgstr ""
+msgstr "Ikke gjennomgått"
 
 #: src/olympia/files/models.py:327
 #, python-format
@@ -6030,7 +6028,7 @@ msgstr "[status:%s]"
 
 #: src/olympia/files/utils.py:84
 msgid "This upload has already been submitted."
-msgstr ""
+msgstr "Denne opplastingen er allerede sendt inn."
 
 #: src/olympia/files/utils.py:186 src/olympia/files/utils.py:870
 msgid "Could not parse the manifest file."
@@ -6039,7 +6037,7 @@ msgstr "Kunne ikke analysere manifestfilen."
 #: src/olympia/files/utils.py:319
 #, python-brace-format
 msgid "Lowest supported \"strict_min_version\" is {min_version}."
-msgstr ""
+msgstr "Den lavest støttede «strict_min_version» er {min_version}."
 
 #: src/olympia/files/utils.py:350
 #, python-brace-format
@@ -6053,11 +6051,11 @@ msgstr "Ukjent «strict_max_version» {appver} for {app}"
 
 #: src/olympia/files/utils.py:548
 msgid "Unsupported compression method in archive."
-msgstr ""
+msgstr "Ustøttet komprimeringsmetode i arkivet."
 
 #: src/olympia/files/utils.py:551
 msgid "Unsupported archive type."
-msgstr ""
+msgstr "Arkivtypen støttes ikke."
 
 #: src/olympia/files/utils.py:560
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
@@ -6077,7 +6075,7 @@ msgstr "Filen overskrider størrelsesgrensen i arkivet: {0}"
 
 #: src/olympia/files/utils.py:602
 msgid "This archive contains a forbidden special file (symbolic / hard link or device / block file)"
-msgstr ""
+msgstr "Dette arkivet inneholder en forbudt spesialfil (symbolsk/hard lenke- eller enhets-/blokkfil)"
 
 #: src/olympia/files/utils.py:637
 msgid "Uncompressed size is too large"
@@ -6294,44 +6292,44 @@ msgstr ""
 #: src/olympia/reviewers/templates/reviewers/includes/version.html:5
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-msgstr ""
+msgstr "Versjon %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
 #: src/olympia/scanners/models.py:128
 msgid "This is the exact name of the rule used by a scanner."
-msgstr ""
+msgstr "Dette er det nøyaktige navnet på regelen som brukes av en skanner."
 
 #: src/olympia/scanners/models.py:132
 msgid "Human-readable name for the scanner rule"
-msgstr ""
+msgstr "Menneskelesbart navn for skannerregelen"
 
 #: src/olympia/scanners/models.py:135
 msgid "Human-readable name"
-msgstr ""
+msgstr "Menneskelesbart navn"
 
 #: src/olympia/scanners/models.py:139
 msgid "Human readable description for the scanner rule"
-msgstr ""
+msgstr "Menneskelesbart beskrivelse av skannerregelen"
 
 #: src/olympia/scanners/models.py:172
 msgid "Yara rules should have a definition"
-msgstr ""
+msgstr "Yara-regler må ha en definisjon"
 
 #: src/olympia/scanners/models.py:179
 msgid "The name of the rule in the definition should match the name of the scanner rule"
-msgstr ""
+msgstr "Navnet på regelen i definisjonen skal samsvare med navnet på skannerregelen"
 
 #: src/olympia/scanners/models.py:187
 msgid "Only one Yara rule is allowed in the definition"
-msgstr ""
+msgstr "Bare én Yara-regel er tillatt i definisjonen"
 
 #: src/olympia/scanners/models.py:195
 #, python-format
 msgid "The definition is not valid: %(error)s"
-msgstr ""
+msgstr "Definisjonen er ikke gyldig: %(error)s"
 
 #: src/olympia/scanners/models.py:201
 msgid "An error occurred when compiling the definition"
-msgstr ""
+msgstr "Det oppsto en feil under kompilering av definisjonen"
 
 #: src/olympia/scanners/models.py:212
 msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
