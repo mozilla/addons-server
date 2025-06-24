@@ -5413,77 +5413,77 @@ msgstr "Få nettsider lest høyt for deg. Støtter over 40 språk."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:587 src/olympia/discovery/strings.jinja2:880
 msgid "Double-click any word to instantly see its definition."
-msgstr ""
+msgstr "Dobbeltklikk på et hvilket som helst ord for å umiddelbart se definisjonen."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:592 src/olympia/discovery/strings.jinja2:922
 msgid "Save batches of tabs as convenient bookmarks."
-msgstr ""
+msgstr "Lagre grupper med faner som praktiske bokmerker."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:595 src/olympia/discovery/strings.jinja2:925
 msgid "Tabs and bookmarks neatly organized in a Firefox side view."
-msgstr ""
+msgstr "Faner og bokmerker pent organisert i en sidevisning av Firefox."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:598 src/olympia/discovery/strings.jinja2:904
 msgid "Thousands of GIFs at your fingertips."
-msgstr ""
+msgstr "Tusenvis av GIF-er lett tilgjengelig."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:601 src/olympia/discovery/strings.jinja2:910
 msgid "The easiest way to manage YouTube subscriptions."
-msgstr ""
+msgstr "Den enkleste måten å behandle YouTube-abonnementer."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:604
 msgid "Get the mouse scrollbar you've always wanted—specify width and color."
-msgstr ""
+msgstr "Få musens rullefelt du alltid har ønsket deg — angi bredde og farge."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:607 src/olympia/discovery/strings.jinja2:919
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
-msgstr ""
+msgstr "Lagre og gjenopprett faner. Inkluderer automatisk lagring og sky-synkroniseringsfunksjoner."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:610
 msgid "Goodbye, annoying cookie warnings!"
-msgstr ""
+msgstr "Farvel, irriterende infokapseladvarsler!"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:613
 msgid "All your emoji needs—always just a click away."
-msgstr ""
+msgstr "Alle emojiene du trenger — alltid bare et klikk unna."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:617
 msgid "Mask your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr ""
+msgstr "Skjul e-postadressen din. Firefox Relay beskytter identiteten din og forhindrer søppelpost."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:621
 msgid "Time-based theme changer. Make Firefox change colors as the time of day changes."
-msgstr ""
+msgstr "Tidsbasert temaveksler. Få Firefox til å endre farger når tiden på dagen endres."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:624
 msgid "Declutter your Twitter experience."
-msgstr ""
+msgstr "Rydd opp i Twitter-opplevelsen din."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:627
 msgid "Bring back the ability to see thumbs down!"
-msgstr ""
+msgstr "Få tilbake muligheten til å se tommelen ned!"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:630
 msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
-msgstr ""
+msgstr "Lytt til musikk på YouTube uten de irriterende avbruddene av «Videoen satt på pause. Fortsett å se?»."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:634
