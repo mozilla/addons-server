@@ -4051,7 +4051,7 @@ msgstr "Informative su la riservatece"
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:22
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
 msgstr ""
-"Se il to component adizionâl al trasmet e al tire dongje dâts dal computer dal utent, e covente une informative su la riservatece che e spieghi ce dâts che a vegnin inviâts e cemût che a vignaran "
+"Se il to component adizionâl al trasmet e al tire sù dâts dal computer dal utent, e covente une informative su la riservatece che e spieghi ce dâts che a vegnin inviâts e cemût che a vignaran "
 "doprâts. Al è impuartant dome pai components adizionâi publics."
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html:3
