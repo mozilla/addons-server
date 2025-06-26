@@ -4927,12 +4927,12 @@ msgstr "Gå direkte til nettstedet du vil komme til uten å bli omdirigert."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:275
 msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
-msgstr ""
+msgstr "WhatsApp på nettet. Få tilgang til WhatsApp fra Firefox' verktøylinjepanel for å få varsel om uleste tråder."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:278
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
-msgstr ""
+msgstr "Begrens Firefox fra å få tilgang til nettsteder du definerer. Et flott verktøy for å utøve selvdisiplin på nett."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:281
@@ -4973,12 +4973,12 @@ msgstr "Konverter en hel nettside til ditt ønskede språk—med et klikk."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:302
 msgid "Instantly display all links from a web page in new tabs."
-msgstr ""
+msgstr "Vis alle lenker fra en nettside umiddelbart i nye faner."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:305
 msgid "Strip away redirect pages and URL tracking parameters from web links. Works automatically."
-msgstr ""
+msgstr "Fjern omdirigeringssider og URL-sporingsparametere fra nettlenker. Fungerer automatisk."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:308
@@ -5095,7 +5095,7 @@ msgstr "Få fordeler på Amazon. Hvis du viser produktsider i andre nettbutikker
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:374
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr ""
+msgstr "Nyt ultimat kontroll over faner — lukk dupliserte faner, slå sammen vinduer, kopier fanetittelen og mer."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:377
@@ -5761,7 +5761,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:994
 msgid "Automatically handle GDPR consent forms."
-msgstr ""
+msgstr "Håndter GDPR-samtykkeskjemaer automatisk."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:997
