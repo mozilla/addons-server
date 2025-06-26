@@ -3965,7 +3965,7 @@ msgstr "Fjern denne applikasjonen"
 
 #. {0} is the maximum number of add-on categories allowed
 #: src/olympia/devhub/templates/devhub/includes/macros.html:66
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Select a category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
 msgstr[0] "Velg en kategori for dette tillegget:"
@@ -4249,7 +4249,7 @@ msgstr "Kildekode"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:121
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
-msgstr ""
+msgstr "Hvis tillegget ditt inneholder minimert, sammenkoblet eller på annen måte maskingenerert kode, må du gjøre kildekoden tilgjengelig her for gjennomgang."
 
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html:1
 #, python-brace-format
@@ -4321,13 +4321,15 @@ msgstr "Synlighet i oppføring"
 #: src/olympia/devhub/templates/devhub/versions/list.html:163
 #, python-brace-format
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
-msgstr ""
+msgstr "{label_open}Synlig:{label_close} Synlig for alle på {site_url} og inkludert i søkeresultater og produktsider."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:171
 #, python-brace-format
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
 msgstr ""
+"{label_open}Usynlig:{label_close} Vil ikke bli inkludert i søkeresultatene, og produktsiden vil indikere at du har deaktivert den. Innsendinger av nye versjoner for produktet vil ikke bli akseptert "
+"i denne tilstanden."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:178
 msgid "Listed versions"
@@ -6868,11 +6870,13 @@ msgstr "Flere innsendinger som bryter med retningslinjene våre er sendt fra din
 
 #: src/olympia/users/models.py:961
 msgid "Email Pattern"
-msgstr ""
+msgstr "E-postmønster"
 
 #: src/olympia/users/models.py:964
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr ""
+"Skriv inn hele e-postadressen som skal blokkeres, eller bruk jokertegn i unix-stil, f.eks. «*@example.com». Hvis du trenger å blokkere et domene inkludert underdomener, legg til en ny oppføring, "
+"f.eks. «*@*.example.com»."
 
 #: src/olympia/users/models.py:971
 msgid "The email address used for your account is not allowed for submissions."
