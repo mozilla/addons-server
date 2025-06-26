@@ -6320,7 +6320,7 @@ msgstr "av %(user)s den %(date)s %(stars)s"
 #: src/olympia/reviewers/templates/reviewers/queue.html:59
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
-msgstr ""
+msgstr "<strong>%(reason)s</strong> <span class=\"light\">Flagget av %(user)s den %(date)s</span>"
 
 #: src/olympia/reviewers/templates/reviewers/review.html:312
 msgid "<strong>Warning!</strong> Another user may be viewing this page before you."
@@ -6882,7 +6882,7 @@ msgstr ""
 
 #: src/olympia/users/models.py:971
 msgid "The email address used for your account is not allowed for submissions."
-msgstr ""
+msgstr "E-postadressen som brukes for kontoen din er ikke tillatt for innsendinger."
 
 #: src/olympia/users/models.py:1050
 msgid ""
