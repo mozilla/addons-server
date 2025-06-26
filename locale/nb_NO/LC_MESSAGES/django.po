@@ -6390,11 +6390,11 @@ msgstr "Ugyldig kombinasjon av parameterne «%s» og «%s»."
 
 #: src/olympia/search/filters.py:264
 msgid "Return To AMO is currently disabled"
-msgstr "Gå tilbake til AMO er for øyeblikket deaktivert"
+msgstr "Return To AMO er for øyeblikket deaktivert"
 
 #: src/olympia/search/filters.py:273
 msgid "Invalid Return To AMO guid (not in base64url format?)"
-msgstr ""
+msgstr "Ugyldig Return To AMO-guide (ikke i base64url-format?)"
 
 #: src/olympia/search/filters.py:934
 msgid "Maximum query length exceeded."
@@ -6432,15 +6432,15 @@ msgstr "Du kan ikke legge til oppførte versjoner i et tillegg som er satt til t
 
 #: src/olympia/signing/views.py:220
 msgid "You cannot add a listed version to this add-on via the API due to missing metadata. Please submit via the website"
-msgstr ""
+msgstr "Du kan ikke legge til en oppført versjon til dette tillegget via API-et på grunn av manglende metadata. Send inn via nettstedet"
 
 #: src/olympia/signing/views.py:275
 msgid "No uploaded file for that add-on and version."
-msgstr ""
+msgstr "Ingen opplastede filer for det tillegget og den versjonen."
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:4
 msgid "Overview"
-msgstr ""
+msgstr "Oversikt"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:11
 msgid "by Source"
@@ -6448,7 +6448,7 @@ msgstr "etter kilde"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:14
 msgid "by Medium"
-msgstr ""
+msgstr "etter medier"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:17
 msgid "by Content"
@@ -6456,7 +6456,7 @@ msgstr "etter innhold"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:20
 msgid "by Campaign"
-msgstr ""
+msgstr "etter kampanje"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:26
 msgid "Daily Users"
@@ -6480,7 +6480,7 @@ msgstr "etter plattform"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:41
 msgid "by Country"
-msgstr ""
+msgstr "etter land"
 
 #: src/olympia/stats/templates/stats/popup.html:2 src/olympia/stats/templates/stats/popup.html:8 src/olympia/stats/templates/stats/stats.html:180
 msgid "close"
@@ -6574,7 +6574,7 @@ msgstr "Annet…"
 
 #: src/olympia/stats/templates/stats/stats.html:94
 msgid "Sorry, the statistics are temporarily unavailable."
-msgstr ""
+msgstr "Beklager, statistikken er midlertidig utilgjengelig."
 
 #: src/olympia/stats/templates/stats/stats.html:100
 msgid "Loading the latest data&hellip;"
@@ -6608,11 +6608,11 @@ msgstr "Om sporing av eksterne kilder..."
 
 #: src/olympia/stats/templates/stats/reports/contents.html:3
 msgid "Download contents by Date"
-msgstr ""
+msgstr "Last ned innhold etter dato"
 
 #: src/olympia/stats/templates/stats/reports/countries.html:3
 msgid "User countries by Date"
-msgstr ""
+msgstr "Brukerland etter dato"
 
 #: src/olympia/stats/templates/stats/reports/downloads.html:3
 msgid "Downloaded by Date"
@@ -6624,7 +6624,7 @@ msgstr "Brukerspråk etter dato"
 
 #: src/olympia/stats/templates/stats/reports/mediums.html:3
 msgid "Download mediums by Date"
-msgstr ""
+msgstr "Last ned medier etter dato"
 
 #: src/olympia/stats/templates/stats/reports/os.html:3
 msgid "Platform usage by Date"
@@ -6715,7 +6715,7 @@ msgstr "Utvidelser"
 
 #: src/olympia/templates/photon-footer.html:4
 msgid "Go to Mozilla's homepage"
-msgstr ""
+msgstr "Gå til Mozillas hjemmeside"
 
 #: src/olympia/templates/photon-footer.html:11
 msgid "About"
@@ -6723,11 +6723,11 @@ msgstr "Om"
 
 #: src/olympia/templates/photon-footer.html:12
 msgid "Firefox Add-ons Blog"
-msgstr ""
+msgstr "Firefox tilleggsblogg"
 
 #: src/olympia/templates/photon-footer.html:16
 msgid "Community Blog"
-msgstr ""
+msgstr "Fellesskaps-blogg"
 
 #: src/olympia/templates/photon-footer.html:17
 msgid "Forum"
@@ -6739,11 +6739,11 @@ msgstr "Rapporter en feil"
 
 #: src/olympia/templates/photon-footer.html:19
 msgid "Review Guide"
-msgstr ""
+msgstr "Retningslinjer for gjennomgang"
 
 #: src/olympia/templates/photon-footer.html:24 src/olympia/templates/photon-footer.html:37
 msgid "Browsers"
-msgstr ""
+msgstr "Nettlesere"
 
 #: src/olympia/templates/photon-footer.html:27
 msgid "Desktop"
@@ -6751,29 +6751,31 @@ msgstr "Datamaskin"
 
 #: src/olympia/templates/photon-footer.html:29
 msgid "Enterprise"
-msgstr ""
+msgstr "Virksomhet"
 
 #: src/olympia/templates/photon-footer.html:34
 msgid "Products"
-msgstr ""
+msgstr "Produkter"
 
 #: src/olympia/templates/photon-footer.html:52
 msgid "Privacy"
-msgstr ""
+msgstr "Personvern"
 
 #: src/olympia/templates/photon-footer.html:53
 msgid "Cookies"
-msgstr ""
+msgstr "Infokapsler"
 
 #: src/olympia/templates/photon-footer.html:54
 msgid "Legal"
-msgstr ""
+msgstr "Juridisk"
 
 #: src/olympia/templates/photon-footer.html:57
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
 "Commons Attribution Share-Alike License v3.0</a> or any later version."
 msgstr ""
+"Med mindre annet er <a href=\"https://www.mozilla.org/about/legal/\">angitt</a>, er innholdet på dette nettstedet lisensiert under <a href=\"https://creativecommons.org/licenses/by-"
+"sa/3.0/\">Creative Commons Navngivelse-del-på-samme-vilkår-lisens v3.0</a> eller en senere versjon."
 
 #: src/olympia/templates/user_login.html:24
 #, python-format
@@ -6805,15 +6807,15 @@ msgstr "Oversett til: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
 #: src/olympia/translations/templates/translations/trans-menu.html:16 src/olympia/translations/templates/translations/trans-menu.html:29
 #, python-format
 msgid "%(title)s <em>&middot; %(lang)s</em>"
-msgstr ""
+msgstr "%(title)s <em>&middot; %(lang)s</em>"
 
 #: src/olympia/translations/templates/translations/trans-menu.html:20
 msgid "Existing Locales"
-msgstr ""
+msgstr "Eksisterende språk"
 
 #: src/olympia/translations/templates/translations/trans-menu.html:23
 msgid "New Locales"
-msgstr ""
+msgstr "Nye språk"
 
 #. {0} is a language name, like 'French'
 #: src/olympia/translations/templates/translations/trans-menu.html:42
