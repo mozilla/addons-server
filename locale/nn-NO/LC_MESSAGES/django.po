@@ -1748,7 +1748,7 @@ msgstr "Strategisk"
 
 #: src/olympia/constants/promoted.py:149
 msgid "Notable"
-msgstr ""
+msgstr "Verdt å leggje merke til"
 
 #: src/olympia/constants/promoted.py:159
 msgid "Partner"

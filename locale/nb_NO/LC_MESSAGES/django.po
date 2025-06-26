@@ -6821,37 +6821,37 @@ msgstr "Nye språk"
 #: src/olympia/translations/templates/translations/trans-menu.html:42
 #, python-brace-format
 msgid "You have unsaved changes in the <b>{0}</b> locale. Would you like to save your changes before switching locales?"
-msgstr ""
+msgstr "Du har endringer på språket <b>{0}</b> som ikke er lagret. Vil du lagre dine endringen innen du skifter språk?"
 
 #: src/olympia/translations/templates/translations/trans-menu.html:49
 msgid "Discard Changes"
-msgstr ""
+msgstr "Forkast endringer"
 
 #. {0} is a language name, like 'French'
 #: src/olympia/translations/templates/translations/trans-menu.html:56
 #, python-brace-format
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
-msgstr ""
+msgstr "Er du sikker på at du vil fjerne alle <b>{0}</b> oversettelser? Dette kan ikke angres."
 
 #: src/olympia/translations/templates/translations/trans-menu.html:61
 msgid "Delete Locale"
-msgstr ""
+msgstr "Slett språk"
 
 #: src/olympia/users/forms.py:24
 msgid "IP Address"
-msgstr ""
+msgstr "IP-adresse"
 
 #: src/olympia/users/forms.py:26
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
-msgstr ""
+msgstr "Skriv inn en gyldig IPv4- eller IPv6-adresse, f.eks. 127.0.0.1. Vil bli konvertert til et /32-nettverk."
 
 #: src/olympia/users/forms.py:37
 msgid "You can only enter one, either IP Address or Network."
-msgstr ""
+msgstr "Du kan bare angi én, enten IP-adresse eller nettverk."
 
 #: src/olympia/users/models.py:82
 msgid "No user with that email."
-msgstr ""
+msgstr "Ingen bruker med den e-postadressen."
 
 #: src/olympia/users/models.py:585
 #, python-brace-format
@@ -6859,13 +6859,12 @@ msgid "Firefox user {id}"
 msgstr "Firefox-bruker {id}"
 
 #: src/olympia/users/models.py:845
-#, fuzzy
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
-msgstr "Skriv inn et gyldig IP4- eller IP6-nettverk."
+msgstr "Skriv inn et gyldig IPv4 eller IPv6 CIDR-nettverksområde, f.eks. 127.0.0.1/28"
 
 #: src/olympia/users/models.py:849
 msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
-msgstr ""
+msgstr "Flere innsendinger som bryter med retningslinjene våre er sendt fra din posisjon. IP-adressen er blokkert."
 
 #: src/olympia/users/models.py:961
 msgid "Email Pattern"
