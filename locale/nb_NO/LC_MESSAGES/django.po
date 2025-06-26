@@ -5571,9 +5571,8 @@ msgstr "Les ePUB-filer rett i Firefox — øk skriftstørrelse, sidedimensjoner 
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:748
-#, fuzzy
 msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configurations."
-msgstr "Tilpass musebevegelser. Oppdag en ny måte å navigere med over 50 konfigurasjoner."
+msgstr "Tilpass musebevegelser. Oppdag nye måter å navigere på med over 50 konfigurasjoner."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:799
@@ -5588,37 +5587,37 @@ msgstr "Bruk musebevegelser til å lukke faner, navigere på sider og mer."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:811
 msgid "A simple way to adjust the size of any page's text — or even enlarge the page itself."
-msgstr ""
+msgstr "En enkel måte å justere størrelsen på sidens tekst — eller til og med forstørre selve siden."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:838
 msgid "Enjoy thumbnail images of websites alongside your search returns."
-msgstr ""
+msgstr "Se miniatyrbilder av nettsteder sammen med søkeresultatene dine."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:844
 msgid "Save an entire web page — including images and styling — as a single HTML file."
-msgstr ""
+msgstr "Lagre en hel nettside — inkludert grafikk og stilsett — som en enkelt HTML-fil."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:859
 msgid "Edit a web page before printing. Remove ads or any unwanted content."
-msgstr ""
+msgstr "Rediger en nettside før utskrift. Fjern annonser eller uønsket innhold."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:868
 msgid "Advanced reader for aggregating all of your RSS/Atom/RDF sources."
-msgstr ""
+msgstr "Avansert leser for å samle alle dine RSS-/Atom-/RDF-informasjonskanaler."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:886
 msgid "Web pages read aloud. 40+ languages supported."
-msgstr ""
+msgstr "Nettsider lest høyt. Støtter over 40 språk."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:892
 msgid "Removes those long tracking parameters from Google search result URL's."
-msgstr ""
+msgstr "Fjerner de lange sporingsparameterne fra nettadressene til Googles søkeresultater."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:895
@@ -5628,82 +5627,82 @@ msgstr "Få væroppdateringer direkte fra Firefox."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:898
 msgid "Manage your time better with a browser clock that charts work intervals."
-msgstr ""
+msgstr "Styr tiden din bedre med en nettleserklokke som kartlegger arbeidsintervaller."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:901
 msgid "Tired of that \"Video paused. Continue watching?\" message? Listen to your favorite music uninterrupted on YouTube."
-msgstr ""
+msgstr "Lei av meldingen «Videoen satt på pause. Fortsetter du å se?»? Lytt til favorittmusikken din uten avbrudd på YouTube."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:907
 msgid "Begone, annoying cookie warnings!"
-msgstr ""
+msgstr "Farvel, irriterende infokapseladvarsler!"
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:913
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
-msgstr ""
+msgstr "Gå tilbake til en enklere tid — da de beste søkeresultatene dine sto over annonsene (kompatibel med Google og Bing-søkemotorer)."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:916
 msgid "Get the mouse scrollbar you've always wanted — specify width and color."
-msgstr ""
+msgstr "Få musens rullefelt du alltid har ønsket deg — angi bredde og farge."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:928
 msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
-msgstr ""
+msgstr "Skjul e-posten din for å beskytte identiteten din og forhindre søppelpost. Nye oppdateringer gjør Firefox Relay enda enklere å bruke."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:931
 msgid "Instantly translate any selected text on web pages."
-msgstr ""
+msgstr "Oversett umiddelbart all valgt tekst på nettsider."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:934
 msgid "Make Firefox change colors based on time of day."
-msgstr ""
+msgstr "Få Firefox til å endre farger basert på tid på dagen."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:937
 msgid "Eliminate YouTube distractions. Remove related and recommended video suggestions, comments & more."
-msgstr ""
+msgstr "Fjern YouTube-distraksjoner. Fjern relaterte og anbefalte videoforslag, kommentarer og mer."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:940
 msgid "Take emojis with you everywhere on the web."
-msgstr ""
+msgstr "Ta med deg emojier overalt på nettet."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:946
 msgid "Put restrictions on distracting, time-wasting websites."
-msgstr ""
+msgstr "Sett begrensninger på distraherende, tidssløsende nettsteder."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:949
 msgid "Remove clutter from your Twitter."
-msgstr ""
+msgstr "Fjern rot fra din Twitter."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:952
 msgid "Customize YouTube to taste."
-msgstr ""
+msgstr "Tilpass YouTube etter smak."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:955
 msgid "Delete browsing data directly from the browser toolbar."
-msgstr ""
+msgstr "Slett nettleserdata direkte fra nettleserverktøylinjen."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:958
 msgid "Get RSS feed auto-updates direct to your bookmark folders."
-msgstr ""
+msgstr "Få automatiske RSS-informasjonskanaloppdateringer direkte til bokmerkemappene dine."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:961
 msgid "Effective blocker against all types of ads."
-msgstr ""
+msgstr "Effektiv blokkering mot alle typer annonser."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:964
