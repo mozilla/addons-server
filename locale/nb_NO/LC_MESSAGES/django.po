@@ -6907,11 +6907,11 @@ msgstr "Brukerbegrensningshistorikk"
 
 #: src/olympia/users/notifications.py:27
 msgid "an add-on developer replies to my review"
-msgstr ""
+msgstr "en tilleggsutvikler svarer på min vurdering"
 
 #: src/olympia/users/notifications.py:36
 msgid "new add-ons or Firefox features are available"
-msgstr ""
+msgstr "nye tillegg eller Firefox-funksjoner er tilgjengelig"
 
 #: src/olympia/users/notifications.py:45
 msgid "my add-on's compatibility is upgraded successfully"
