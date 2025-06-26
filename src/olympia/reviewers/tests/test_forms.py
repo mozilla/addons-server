@@ -25,8 +25,10 @@ from olympia.amo.tests import (
     user_factory,
     version_factory,
 )
+from olympia.bandwagon.models import Collection
 from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.files.models import File
+from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version, VersionReviewerFlags
 
@@ -1565,6 +1567,54 @@ class TestHeldDecisionReviewForm(TestCase):
         )
         form = HeldDecisionReviewForm({'choice': 'yes'}, decision=decision)
         assert not form.is_valid()
+
+    def test_choices_addon(self):
+        decision = ContentDecision.objects.create(
+            addon=addon_factory(),
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            action_date=None,
+        )
+        form = HeldDecisionReviewForm(decision=decision)
+        assert form.fields['choice'].choices == [
+            ('yes', 'Proceed with action'),
+            ('cancel', 'Cancel and enqueue in Reviewer Tools')
+        ]
+
+    def test_choices_user(self):
+        decision = ContentDecision.objects.create(
+            user=user_factory(),
+            action=DECISION_ACTIONS.AMO_BAN_USER,
+            action_date=None,
+        )
+        form = HeldDecisionReviewForm(decision=decision)
+        assert form.fields['choice'].choices == [
+            ('yes', 'Proceed with action'),
+            ('no', 'Approve content instead')
+        ]
+
+    def test_choices_rating(self):
+        decision = ContentDecision.objects.create(
+            rating=Rating.objects.create(user=user_factory(), addon=addon_factory()),
+            action=DECISION_ACTIONS.AMO_DELETE_RATING,
+            action_date=None,
+        )
+        form = HeldDecisionReviewForm(decision=decision)
+        assert form.fields['choice'].choices == [
+            ('yes', 'Proceed with action'),
+            ('no', 'Approve content instead')
+        ]
+
+    def test_choices_user(self):
+        decision = ContentDecision.objects.create(
+            collection=Collection.objects.create(),
+            action=DECISION_ACTIONS.AMO_BAN_USER,
+            action_date=None,
+        )
+        form = HeldDecisionReviewForm(decision=decision)
+        assert form.fields['choice'].choices == [
+            ('yes', 'Proceed with action'),
+            ('no', 'Approve content instead')
+        ]
 
 
 def test_review_queue_filter_form_due_date_reasons():

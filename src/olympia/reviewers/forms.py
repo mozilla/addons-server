@@ -27,7 +27,7 @@ from olympia.addons.models import Addon
 from olympia.amo.forms import AMOModelForm
 from olympia.amo.templatetags.jinja_helpers import format_datetime
 from olympia.constants.abuse import DECISION_ACTIONS
-from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
+from olympia.constants.reviewers import HELD_DECISION_CHOICES, REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
 from olympia.files.utils import SafeZip
 from olympia.ratings.models import Rating
 from olympia.ratings.permissions import user_can_delete_rating
@@ -893,10 +893,7 @@ class HeldDecisionReviewForm(forms.Form):
         widget=CinderJobsWidget(),
         disabled=True,
     )
-    choice = forms.ChoiceField(
-        choices=(('yes', 'Proceed with action'), ('no', 'Approve content instead')),
-        widget=forms.RadioSelect,
-    )
+    choice = forms.ChoiceField(widget=forms.RadioSelect)
     comments = forms.CharField(required=False)
 
     def __init__(self, *args, **kw):
@@ -909,9 +906,9 @@ class HeldDecisionReviewForm(forms.Form):
             self.fields['cinder_job'].queryset = self.cinder_jobs_qs
             self.fields['cinder_job'].initial = [job.id for job in self.cinder_jobs_qs]
         if self.decision.addon:
-            self.fields['choice'].choices += (
-                ('cancel', 'Cancel and enqueue in Reviewer Tools'),
-            )
+            self.fields['choice'].choices = HELD_DECISION_CHOICES.ADDON
+        else:
+            self.fields['choice'].choices = HELD_DECISION_CHOICES.OTHER
 
     def clean(self):
         super().clean()

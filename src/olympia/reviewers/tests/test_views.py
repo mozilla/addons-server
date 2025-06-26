@@ -8012,16 +8012,13 @@ class TestHeldDecisionReview(ReviewerTest):
         assert 'Add-on disable' in doc('tr.decision-action td').html()
         assert 'Bad Things' in doc('tr.decision-policies td').html()
         assert 'Proceed with action' == doc('[for="id_choice_0"]').text()
-        assert 'Approve content instead' == doc('[for="id_choice_1"]').text()
+        assert 'Cancel and enqueue in Reviewer Tools' == doc('[for="id_choice_1"]').text()
         assert 'Affected versions' in doc.text()
         assert self.version.version in doc.text()
         return doc
 
     def test_review_page_addon_no_job(self):
-        doc = self._test_review_page_addon()
-        assert (
-            'Cancel and enqueue in Reviewer Tools' == doc('[for="id_choice_2"]').text()
-        )
+        self._test_review_page_addon()
 
     def test_review_page_addon_with_job(self):
         CinderJob.objects.create(
@@ -8059,27 +8056,12 @@ class TestHeldDecisionReview(ReviewerTest):
         assert addon.reload().status == amo.STATUS_DISABLED
         self.assertCloseToNow(self.decision.reload().action_date)
 
-    def test_approve_addon_instead(self):
-        addon = self.decision.addon
-        assert addon.status == amo.STATUS_APPROVED
-        responses.add(
-            responses.POST,
-            f'{settings.CINDER_SERVER_URL}decisions/{self.decision.cinder_id}/override/',
-            json={'uuid': '5678'},
-            status=200,
-        )
-
-        response = self.client.post(self.url, {'choice': 'no'})
-
-        assert response.status_code == 302
-        assert addon.reload().status == amo.STATUS_APPROVED
-        assert self.decision.reload().action == DECISION_ACTIONS.AMO_DISABLE_ADDON
-        assert self.decision.action_date is None
-
-        override = ContentDecision.objects.get(cinder_id='5678')
-        assert override.action == DECISION_ACTIONS.AMO_APPROVE
-        self.assertCloseToNow(override.action_date)
-        assert override.override_of == self.decision
+    def test_approve_addon_is_not_possible(self):
+        response = self.client.get(self.url)
+        assert response.context_data['form'].fields['choice'].choices == [
+            ('yes', 'Proceed with action'),
+            ('cancel', 'Cancel and enqueue in Reviewer Tools')
+        ]
 
     def test_cancel_addon_with_job(self):
         addon = self.decision.addon
