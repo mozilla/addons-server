@@ -5943,9 +5943,8 @@ msgstr "Fanebehandlere"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1073
-#, fuzzy
 msgid "See more tab management staff picks"
-msgstr "Vis flere anbefalte utvidelser"
+msgstr "Se flere fanebehandlingsutvidelser utvalgt av ansatte"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1076
@@ -5976,9 +5975,8 @@ msgstr "YouTube-tilpasning"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1088
-#, fuzzy
 msgid "See more YouTube extension staff picks"
-msgstr "Vis flere populære utvidelser"
+msgstr "Se flere YouTube-utvidelseser utvalgt av ansatte"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1091
@@ -6018,7 +6016,7 @@ msgstr "Steam-forbedringer"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1108
 msgid "See more Steam staff picks"
-msgstr "Se flere Steam-utvidelser utvalgt av de ansatte"
+msgstr "Se flere Steam-utvidelser utvalgt av ansatte"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1111
@@ -6028,7 +6026,7 @@ msgstr "Kreativitetsutvidelser"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1113
 msgid "See more creativity staff picks"
-msgstr "Se flere kreativitetstillegg utvalgt av de ansatte"
+msgstr "Se flere kreativitetstillegg utvalgt av ansatte"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1116
@@ -6038,7 +6036,7 @@ msgstr "Utvidelser for sosiale media"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1118
 msgid "See more social media staff picks"
-msgstr ""
+msgstr "Se flere utvidelser for sosiale media utvalgt av ansatte"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1121
@@ -6048,7 +6046,7 @@ msgstr "Beste nedlastingsbehandlere"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1123
 msgid "See more download manager staff picks"
-msgstr ""
+msgstr "Se flere nedlastingsbehandlere utvalgt av ansatte"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1126
