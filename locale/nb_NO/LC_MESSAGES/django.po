@@ -3507,7 +3507,7 @@ msgstr "Kildekoden din må inneholde:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:56
 msgid "Step-by-step build instructions to create an exact copy of the add-on code, in a README file in your source code or in the reviewer notes on the next page."
-msgstr ""
+msgstr "Steg-for-steg-byggeinstruksjoner for å lage en nøyaktig kopi av tilleggskoden, i en README-fil i kildekoden eller i anmeldernotatene på neste side."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:57
 msgid "A build script that executes all necessary technical steps."
@@ -3594,7 +3594,7 @@ msgstr "Temagenerator"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:14
 msgid "Warning: the following manifest properties that your most recent version upload used in its manifest are unsupported in this wizard and will be ignored:"
-msgstr ""
+msgstr "Advarsel: Følgende manifestegenskaper som den nyeste versjonen du lastet opp brukte i manifestet, støttes ikke i denne veiviseren og vil bli ignorert:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:25
 msgid "Theme name"
@@ -3693,6 +3693,14 @@ msgid ""
 "\n"
 "%(url)s"
 msgstr ""
+"Følgende API-nøkkel ble lagt til kontoen din:\n"
+"\n"
+"%(key)s\n"
+"\n"
+"Hvis du mener at denne nøkkelen ble opprettet ved en feil, kan du fjerne nøkkelen og\n"
+"deaktivere tilgang på følgende sted:\n"
+"\n"
+"%(url)s"
 
 #: src/olympia/devhub/templates/devhub/emails/revoked-key-email.ltxt:8
 #, python-format
@@ -3706,6 +3714,14 @@ msgid ""
 "\n"
 "%(url)s"
 msgstr ""
+"API-nøkkelen ble tilbakekalt fra kontoen din:\n"
+"\n"
+"%(key)s\n"
+"\n"
+"Hvis du mener at denne nøkkelen ble tilbakekalt ved en feiltakelse, kan du opprette en ny\n"
+"på følgende sted:\n"
+"\n"
+"%(url)s"
 
 #: src/olympia/devhub/templates/devhub/emails/submission_api_key_revocation.txt:9
 #, python-format
@@ -3740,6 +3756,13 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Hallo,\n"
+"\n"
+"e-postadressen din ble bekreftet.\n"
+"\n"
+"Hilsen,\n"
+"\n"
+"Mozilla-tilleggsteamet"
 
 #: src/olympia/devhub/templates/devhub/emails/verify-email-requested.ltxt:12
 #, python-format
@@ -3757,6 +3780,18 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Hei,\n"
+"\n"
+"Du mottar denne meldingen fordi du ba om å bekrefte e-postadressen din.\n"
+"For å fullføre denne prosessen, klikk på lenken nedenfor:\n"
+"\n"
+"%(confirmation_link)s\n"
+"\n"
+"Hvis du ikke ba om dette, gi beskjed til amo-admins@mozilla.com.\n"
+"\n"
+"Med vennlig hilsen,\n"
+"\n"
+"Mozilla Add-ons-teamet"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:6 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:4
 msgid "Invisible"
@@ -3776,7 +3811,7 @@ msgstr "Tillegget ditt vises i galleriet vårt, og brukerne mottar automatiske o
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:30
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.com."
-msgstr ""
+msgstr "Tillegget ditt ble deaktivert av en nettstedsadministrator og vises ikke lenger i galleriet vårt. Hvis du har spørsmål, kan du sende en e-post til amo-admins@mozilla.com."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:34
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
@@ -3796,7 +3831,7 @@ msgstr "Sist oppdatert:"
 #. {0} is a date. dennis-ignore: E201,E202,W202
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:57
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
-msgstr ""
+msgstr "Oppført på dette nettstedet etter bestått kodegjennomgang. Automatiske oppdateringer håndteres av dette nettstedet"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:69
 msgid "Listed Version:"
@@ -3874,17 +3909,19 @@ msgstr "Mer informasjon om utviklerkontoer"
 
 #: src/olympia/devhub/templates/devhub/includes/android_compatibility_modal.html:3
 msgid "Firefox for Android compatibility"
-msgstr ""
+msgstr "Firefox for Android-kompatibilitet"
 
 #: src/olympia/devhub/templates/devhub/includes/android_compatibility_modal.html:4
 msgid ""
 "Did you test your extension to ensure it works as expected on Firefox for Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" "
 "href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
 msgstr ""
+"Har du testet utvidelsen din for å sikre at den fungerer som forventet på Firefox for Android? Hvis ikke, kan du se <a target=\"_blank\" rel=\"noopener noreferrer\" "
+"href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">Utvikling av utvidelser for Firefox Android</a> for testveiledning før du sender den inn."
 
 #: src/olympia/devhub/templates/devhub/includes/android_compatibility_modal.html:6
 msgid "Yes, I’ve tested my extension with Firefox for Android"
-msgstr ""
+msgstr "Ja, jeg har testet utvidelsen min med Firefox for Android"
 
 #: src/olympia/devhub/templates/devhub/includes/android_compatibility_modal.html:7
 msgid "No, I have not tested"
@@ -3904,7 +3941,7 @@ msgstr "Versjonsignering venter"
 
 #: src/olympia/devhub/templates/devhub/includes/done_unlisted.html:3
 msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
-msgstr ""
+msgstr "Du er ferdig! ✨ Du vil bli varslet via e-post når den signerte filen er klar til å lastes ned fra utviklerhuben. Hvis du ikke ser en e-post innen 24 timer, kan du sjekke søppelpostmappen din."
 
 #: src/olympia/devhub/templates/devhub/includes/license_form.html:5 src/olympia/devhub/templates/devhub/versions/edit.html:83
 msgid "License"
@@ -3920,7 +3957,7 @@ msgstr "Sorter etter:"
 
 #: src/olympia/devhub/templates/devhub/includes/macros.html:5
 msgid "Some Markdown supported."
-msgstr ""
+msgstr "Noe Markdown støttes."
 
 #: src/olympia/devhub/templates/devhub/includes/macros.html:55
 msgid "Remove this application"
@@ -3932,7 +3969,7 @@ msgstr "Fjern denne applikasjonen"
 msgid "Select a category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
 msgstr[0] "Velg en kategori for dette tillegget:"
-msgstr[1] "Velg en kategori for dette tillegget:"
+msgstr[1] "Velg <b>opptil {0}</b> kategorier for dette tillegget:"
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:3
 msgid "End-User License Agreement"
@@ -3940,7 +3977,7 @@ msgstr "Sluttbrukerlisens"
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:4
 msgid "Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Vær oppmerksom på at en EULA ikke er det samme som en kodelisens, som for eksempel GPL eller MPL. Den er kun relevant for oppførte tilleggsprogrammer."
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:21
 msgid "Privacy Policy"
