@@ -5784,7 +5784,7 @@ msgstr "Blokker nettsteder som sløser med tid. Blokker dem helt eller bare i ti
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:988
 msgid "Easily summarize emails, docs, articles, and video transcripts in English across the web — without sacrificing your privacy."
-msgstr ""
+msgstr "Oppsummer enkelt e-poster, dokumenter, artikler og videotranskripsjoner på engelsk på nettet – uten å ofre personvernet ditt."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:991
@@ -6017,9 +6017,8 @@ msgstr "Steam-forbedringer"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1108
-#, fuzzy
 msgid "See more Steam staff picks"
-msgstr "Vis flere populære utvidelser"
+msgstr "Se flere Steam-utvidelser utvalgt av de ansatte"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1111
@@ -6028,9 +6027,8 @@ msgstr "Kreativitetsutvidelser"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1113
-#, fuzzy
 msgid "See more creativity staff picks"
-msgstr "Vis flere populære utvidelser"
+msgstr "Se flere kreativitetstillegg utvalgt av de ansatte"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1116
