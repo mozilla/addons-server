@@ -4747,7 +4747,7 @@ msgstr "Surf anonymt. Surf på nettet med skjult identitet — få det til og me
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:170
 msgid "Enjoy visual bookmarks. Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr "Kos deg med visuelle bokmerker. Få tilgang til favorittsider, nylig lukkede faner og mer — alt fra et nydelig paneloppsett."
+msgstr "Bedre oversikt med visuelle bokmerker. Få tilgang til favorittsidene dine, nylig lukkede faner og mer med en vakker rutevisning."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:173
@@ -4764,7 +4764,7 @@ msgstr "Konverter alle dine åpne faner til en liste for enkelt å behandle de o
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:179 src/olympia/discovery/strings.jinja2:724
 msgid "Robust download management. Check the state of your downloads through a status bar, download history page, and more."
-msgstr ""
+msgstr "Robust nedlastingsbehandling. Sjekk statusen til nedlastingene dine via en statuslinje, nedlastingshistorikkside og mer."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:182
@@ -4779,7 +4779,7 @@ msgstr "Stopp annonsesporing når du klikker på Google- og Yandex-søkeresultat
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:188
 msgid "Use mouse gestures to close tabs, navigate pages, and more."
-msgstr ""
+msgstr "Bruk musebevegelser til å lukke faner, navigere på sider og mer."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:191
@@ -4805,7 +4805,7 @@ msgstr "Tilpass utseendet til ethvert nettsted. Endre farger, sidebakgrunner og 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:203
 msgid "Customize your new tab page to display a preferred number of tiles, background image, and more."
-msgstr ""
+msgstr "Tilpass ny fane-siden for å vise et foretrukket antall ruter, bakgrunnsbilde og mer."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:206
@@ -4815,7 +4815,7 @@ msgstr "Lagre passord sikkert og få tilgang til dem på flere enheter."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:209
 msgid "Know where you go on the web. Get the country location of the websites you visit. Be an informed internet traveler."
-msgstr ""
+msgstr "Kjenn ruten din på nettet. Få vite om landet til alle nettsteder du besøker. Vær en informert internettreisende."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:212
@@ -4826,7 +4826,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:215 src/olympia/discovery/strings.jinja2:796
 msgid "Right-click and drag links you want open in new tabs."
-msgstr ""
+msgstr "Høyreklikk og dra lenkene du vil åpne i nye faner."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:218
@@ -4867,7 +4867,7 @@ msgstr "Spor historiske priser, finn konkurrerende produkter, få vite selgerens
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:239 src/olympia/discovery/strings.jinja2:718
 msgid "Make it your YouTube. Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
-msgstr ""
+msgstr "Gjør den til din YouTube. Spill av videoer i et sprettoppvindu, se bare annonser i kanaler du abonnerer på, ta skjermbilder av videoer og mye mer."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:242
@@ -4882,7 +4882,7 @@ msgstr "Gir Wikipedia et nytt og moderne utseende."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:248
 msgid "Use mouse gestures to get to things done quicker."
-msgstr ""
+msgstr "Bruk musebevegelser for å få ting gjort raskere."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:251
@@ -4907,17 +4907,17 @@ msgstr "Åpne en ny fane til høyre for din nåværende fane, ikke i slutten av 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:263
 msgid "Conquer spam. Use clever temporary email addresses to remain anonymous and avoid spam."
-msgstr ""
+msgstr "Bekjemp spam. Bruk smarte midlertidige e-postadresser for å forbli anonym og unngå spam."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:266
 msgid "A direct path to customizing the built-in privacy settings in Firefox."
-msgstr ""
+msgstr "En direkte vei til å tilpasse de innebygde personverninnstillingene i Firefox."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:269
 msgid "Get instant translations by highlighting text and clicking the button that pops up."
-msgstr ""
+msgstr "Få umiddelbare oversettelser ved å markere tekst og klikke på knappen som dukker opp."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:272
