@@ -5707,17 +5707,17 @@ msgstr "Effektiv blokkering mot alle typer annonser."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:964
 msgid "Mass download manager makes extreme downloading extremely easy."
-msgstr ""
+msgstr "Mass download manager gjør ekstrem nedlasting ekstremt enkelt."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:967
 msgid "Remove ads & receive better protection against malware."
-msgstr ""
+msgstr "Fjern annonser og få bedre beskyttelse mot skadeprogram."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:970
 msgid "Remove formatting from copied Clipboard text."
-msgstr ""
+msgstr "Fjern formatering fra kopiert tekst på utklippstavlen."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:973
@@ -5727,17 +5727,17 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:976
 msgid "Enhance your gaming experience on Steam."
-msgstr ""
+msgstr "Forbedre spillopplevelsen din på Steam."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:979
 msgid "Thumbs-up to bringing back thumbs-down."
-msgstr ""
+msgstr "Tommel opp for å bringe tilbake «tommelen ned»."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:982
 msgid "Translate websites in Firefox — privately — without using the cloud."
-msgstr ""
+msgstr "Oversett nettsteder i Firefox — privat — uten å bruke skyen."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:985
@@ -6320,12 +6320,12 @@ msgstr ""
 
 #: src/olympia/reviewers/templates/reviewers/review.html:312
 msgid "<strong>Warning!</strong> Another user may be viewing this page before you."
-msgstr ""
+msgstr "<strong>Advarsel!</strong> En annen bruker kan se denne siden før deg."
 
 #: src/olympia/reviewers/templates/reviewers/includes/user_ratings_list.html:5
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"
-msgstr ""
+msgstr "%(user)s den %(date)s [%(ip_address)s]"
 
 #: src/olympia/reviewers/templates/reviewers/includes/version.html:5
 #, python-format
@@ -6371,7 +6371,7 @@ msgstr "Det oppsto en feil under kompilering av definisjonen"
 
 #: src/olympia/scanners/models.py:212
 msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
-msgstr ""
+msgstr "Når det ikke er merket av for dette alternativet, vil ikke skannerresultatene være bundet til denne regelen, og handlingen vil ikke bli utført."
 
 #: src/olympia/scanners/models.py:382
 msgid "Run this rule on add-ons that have been force-disabled as well."
@@ -6390,7 +6390,7 @@ msgstr "Ugyldig kombinasjon av parameterne «%s» og «%s»."
 
 #: src/olympia/search/filters.py:264
 msgid "Return To AMO is currently disabled"
-msgstr ""
+msgstr "Gå tilbake til AMO er for øyeblikket deaktivert"
 
 #: src/olympia/search/filters.py:273
 msgid "Invalid Return To AMO guid (not in base64url format?)"
@@ -6398,37 +6398,37 @@ msgstr ""
 
 #: src/olympia/search/filters.py:934
 msgid "Maximum query length exceeded."
-msgstr ""
+msgstr "Maksimal spørrelengde overskredet."
 
 #: src/olympia/signing/views.py:54
 #, python-brace-format
 msgid "Could not find Add-on with ID \"{}\"."
-msgstr ""
+msgstr "Finner ikke tillegget med ID-en «{}»."
 
 #: src/olympia/signing/views.py:73
 msgid "You do not own this add-on."
-msgstr ""
+msgstr "Du eier ikke dette tillegget."
 
 #: src/olympia/signing/views.py:137
 #, python-format
 msgid "You cannot add versions to an add-on that has status: %s."
-msgstr ""
+msgstr "Du kan ikke legge til versjoner i et tillegg som har statusen %s."
 
 #: src/olympia/signing/views.py:146
 msgid "Version does not match the manifest file."
-msgstr ""
+msgstr "Versjonen samsvarer ikke med manifestfilen."
 
 #: src/olympia/signing/views.py:173
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
-msgstr ""
+msgstr "Oppgi tilleggs-ID-en din i manifestet hvis den er lengre enn 64 tegn."
 
 #: src/olympia/signing/views.py:187
 msgid "Invalid Add-on ID in URL or package"
-msgstr ""
+msgstr "Ugyldig tilleggs-ID i URL eller pakke"
 
 #: src/olympia/signing/views.py:211
 msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."
-msgstr ""
+msgstr "Du kan ikke legge til oppførte versjoner i et tillegg som er satt til tilstanden «usynlig»."
 
 #: src/olympia/signing/views.py:220
 msgid "You cannot add a listed version to this add-on via the API due to missing metadata. Please submit via the website"
