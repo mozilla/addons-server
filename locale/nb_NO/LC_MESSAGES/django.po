@@ -6036,7 +6036,7 @@ msgstr "Utvidelser for sosiale media"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1118
 msgid "See more social media staff picks"
-msgstr "Se flere utvidelser for sosiale media utvalgt av ansatte"
+msgstr "Se flere utvidelser for sosiale medier utvalgt av ansatte"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1121
@@ -6056,7 +6056,7 @@ msgstr "Tilgjengelighetsutvidelser"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1128
 msgid "See more accessibility staff picks"
-msgstr ""
+msgstr "Se flere tilgjengelighetsutvidelser utvalgt av ansatte"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1131
@@ -6066,7 +6066,7 @@ msgstr "Startpakke for utvidelser"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1133
 msgid "See more starter extension staff picks"
-msgstr ""
+msgstr "Se flere utvidelsesstartpakker utvalgt av ansatte"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1136
@@ -6076,7 +6076,7 @@ msgstr "Twitch-utvidelser"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1138
 msgid "See more Twitch extension staff picks"
-msgstr ""
+msgstr "Se flere Twitch-utvidelser utvalgt av ansatte"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1146
