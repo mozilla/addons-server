@@ -5759,7 +5759,7 @@ msgstr "Fjern formatering fra kopiert tekst på utklippstavlen."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:973
 msgid "Fingerprinting privacy protection."
-msgstr ""
+msgstr "Personvernbeskyttelse med fingeravtrykksporing."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:976
