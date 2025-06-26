@@ -6281,8 +6281,8 @@ msgstr "En kort forklaring må gis når du velger «Annet» som flaggårsak."
 #, python-brace-format
 msgid "{num} review"
 msgid_plural "{num} reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{num} omtale"
+msgstr[1] "{num} omtaler"
 
 #: src/olympia/ratings/templates/ratings/impala/reviews_link.html:12 src/olympia/ratings/templates/ratings/reviews_link.html:17 src/olympia/ratings/templatetags/jinja_helpers.py:13
 msgid "Not yet rated"
@@ -6291,12 +6291,12 @@ msgstr "Ikke rangert ennå"
 #: src/olympia/ratings/templates/ratings/reviews_rating.html:1
 #, python-brace-format
 msgid "Rated {0} out of 5 stars"
-msgstr ""
+msgstr "Vurdert til {0} av 5 stjerner"
 
 #: src/olympia/ratings/templates/ratings/reviews_rating.html:4
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
-msgstr ""
+msgstr "Vurdert til %(rating)s av 5 stjerner"
 
 #: src/olympia/reviewers/forms.py:369
 #, python-brace-format
@@ -6895,11 +6895,13 @@ msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
 " which explains how we handle your information."
 msgstr ""
+"Før du starter, les og godta vår distribusjonsavtale for Firefox-tillegg, samt våre retningslinjer og regler for omtaler. Distribusjonsavtalen for Firefox-tillegg lenker også til vår "
+"personvernerklæring som forklarer hvordan vi håndterer informasjonen din."
 
 #: src/olympia/users/models.py:1215
 #, python-brace-format
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
-msgstr ""
+msgstr "Les og godta vår distribusjonsavtale for Firefox-tillegg samt våre retningslinjer og regler for omtaler ved å besøke {url}"
 
 #: src/olympia/users/models.py:1266
 msgid "User Restriction History"
@@ -6915,11 +6917,11 @@ msgstr "nye tillegg eller Firefox-funksjoner er tilgjengelig"
 
 #: src/olympia/users/notifications.py:45
 msgid "my add-on's compatibility is upgraded successfully"
-msgstr ""
+msgstr "kompatibiliteten til tillegget mitt er oppgradert"
 
 #: src/olympia/users/notifications.py:54
 msgid "someone writes a review of my add-on"
-msgstr ""
+msgstr "noen skriver en omtale av mitt tillegg"
 
 #: src/olympia/users/notifications.py:69
 msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
@@ -6960,6 +6962,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
+"Følgende opphavsmann er lagt til ditt tillegg %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
 #: src/olympia/users/templates/users/emails/author_added_confirmation.ltxt:12
 #, python-format
@@ -6997,6 +7002,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
+"Følgende opphavsmann er endret på ditt tillegg %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
 #: src/olympia/users/templates/users/emails/author_removed.ltxt:3
 #, python-format
@@ -7005,6 +7013,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s )"
 msgstr ""
+"Følgende opphavsmann er fjernet fra ditt tillegg %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s )"
 
 #: src/olympia/users/templates/users/emails/user_deleted.ltxt:9
 #, python-format
@@ -7019,27 +7030,36 @@ msgid ""
 "\n"
 "Mozilla Add-ons Team"
 msgstr ""
+"Hei,\n"
+"\n"
+"Du mottar denne meldingen fordi brukerkontoen din %(name)s på %(site_url)s er slettet. Dette kan ha blitt gjort automatisk hvis du nylig slettet Mozilla-kontoen din.\n"
+"\n"
+"Hvis du ikke gjorde dette, eller tror at en uautorisert person har fått tilgang til kontoen din, kan du svare på denne e-posten. Ellers er det ingen ytterligere tiltak å gjøre.\n"
+"\n"
+"Med vennlig hilsen,\n"
+"\n"
+"Mozilla tilleggsteamet"
 
 #: src/olympia/versions/models.py:1176
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
-msgstr ""
+msgstr "Forsinket avvist, planlagt til %s"
 
 #: src/olympia/versions/models.py:1181
 msgid "Auto-approved, Confirmed"
-msgstr ""
+msgstr "Autogodkjent, bekreftet"
 
 #: src/olympia/versions/models.py:1183
 msgid "Auto-approved, not Confirmed"
-msgstr ""
+msgstr "Autogodkjent, ikke bekreftet"
 
 #: src/olympia/versions/models.py:1186
 msgid "Approved, Manual"
-msgstr ""
+msgstr "Godkjent, manuell"
 
 #: src/olympia/versions/models.py:1193
 msgid "Disabled by Developer"
-msgstr ""
+msgstr "Deaktivert av utvikler"
 
 #: src/olympia/versions/models.py:1551
 #, python-brace-format
@@ -7049,4 +7069,4 @@ msgstr "{app} {min} og senere"
 #: src/olympia/versions/models.py:1678
 #, python-brace-format
 msgid "The install origin {origin} is not permitted."
-msgstr ""
+msgstr "Installasjonsopprinnelsen {origin} er ikke tillatt."
