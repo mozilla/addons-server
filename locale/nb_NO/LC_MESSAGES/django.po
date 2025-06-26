@@ -127,6 +127,10 @@ msgid ""
 "\n"
 "After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, we have removed the content, and notified the user of our action.\n"
 msgstr ""
+"\n"
+"Takk for rapporten din om %(name)s på Mozilla-tillegg, og for at du gir mer informasjon om bekymringene dine.\n"
+"\n"
+"Etter å ha gjennomgått anken din, har vi fastslått at vår tidligere avgjørelse om at dette innholdet ikke bryter med Mozillas retningslinjer (%(policy_document_url)s), var feil. Basert på denne avgjørelsen har vi fjernet innholdet og varslet brukeren om tiltaket vårt.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown_delayed.txt:5
 #, python-format
@@ -136,6 +140,10 @@ msgid ""
 "\n"
 "After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, we have requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
 msgstr ""
+"\n"
+"Takk for rapporten din om %(name)s på Mozilla-tillegg, og for at du gir mer informasjon om bekymringene dine.\n"
+"\n"
+"Etter å ha gjennomgått anken din, har vi fastslått at vår tidligere avgjørelse om at dette innholdet ikke bryter med Mozillas retningslinjer (%(policy_document_url)s), var feil. Basert på denne avgjørelsen har vi bedt utvikleren om å gjøre endringer. Hvis de ikke oppdaterer innholdet sitt for å rette opp overtredelsen, vil vi fjerne det.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:5
 #, python-format
@@ -145,6 +153,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it does not violate Mozilla's policies (%(policy_document_url)s).  It will therefore not be subject to any moderation action.\n"
 msgstr ""
+"\n"
+"Takk for rapporten din om %(name)s, på %(target_url)s.\n"
+"\n"
+"Vi har gjennomgått rapporten din og det aktuelle innholdet, og funnet at den ikke bryter med Mozillas retningslinjer (%(policy_document_url)s).  Den vil derfor ikke bli gjenstand for noen modereringstiltak.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:7
 #, python-format
@@ -152,6 +164,7 @@ msgid ""
 "You have the right to appeal this decision within 6 months from the date of this email. See %(appeal_url)s for details on the appeal process, including how to file an appeal for this specific "
 "decision."
 msgstr ""
+"Du har rett til å anke denne avgjørelsen innen 6 måneder fra datoen for denne e-posten. Se %(appeal_url)s for detaljer om ankeprosessen, inkludert hvordan du anker denne spesifikke avgjørelsen."
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_addon.txt:5
 #, python-format
@@ -161,6 +174,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
+"\n"
+"Takk for rapporten din om følgende tillegg på Mozilla-tillegg: %(name)s.\n"
+"\n"
+"Vi har gjennomgått rapporten din og det aktuelle innholdet, og funnet at det bryter med Mozillas retningslinjer (%(policy_document_url)s), og har derfor fjernet innholdet.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_addon_delayed.txt:5
 #, python-format
@@ -170,6 +187,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
 msgstr ""
+"\n"
+"Takk for rapporten din om følgende tillegg på Mozilla-tillegg: %(name)s.\n"
+"\n"
+"Vi har gjennomgått rapporten din og det aktuelle innholdet, og funnet at det bryter med Mozillas retningslinjer (%(policy_document_url)s), og har derfor bedt utvikleren om å gjøre endringer. Hvis de ikke oppdaterer innholdet sitt for å rette opp overtredelsen, vil vi fjerne det.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_collection.txt:5
 #, python-format
@@ -179,6 +200,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
+"\n"
+"Takk for rapporten din om følgende samling på Mozilla-tillegg: %(name)s.\n"
+"\n"
+"Vi har gjennomgått rapporten din og det aktuelle innholdet, og funnet at det bryter med Mozillas retningslinjer (%(policy_document_url)s), og har derfor fjernet innholdet.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_rating.txt:5
 #, python-format
@@ -188,6 +213,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
+"\n"
+"Takk for din rapport om følgende vurdering av Mozilla-tillegg: %(name)s.\n"
+"\n"
+"Vi har gjennomgått rapporten din og det aktuelle innholdet, og funnet at det bryter med Mozillas retningslinjer (%(policy_document_url)s), og har derfor fjernet innholdet.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_user.txt:5
 #, python-format
@@ -197,6 +226,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
+"\n"
+"Takk for rapporten din om følgende brukerprofil på Mozilla-tillegg: %(name)s.\n"
+"\n"
+"Vi har gjennomgått rapporten din og det aktuelle innholdet, og funnet at det bryter med Mozillas retningslinjer (%(policy_document_url)s), og har derfor fjernet innholdet.\n"
 
 #: src/olympia/accounts/serializers.py:152 src/olympia/bandwagon/serializers.py:98
 msgid "No links are allowed."
@@ -4820,7 +4853,7 @@ msgstr "Kjenn ruten din på nettet. Få vite om landet til alle nettsteder du be
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:212
 msgid "Enhance your reading experience. Make the text you're reading more appealing by removing the clutter around it."
-msgstr ""
+msgstr "Forbedre leseopplevelsen din. Gjør teksten du leser mer tiltalende ved å fjerne rotet rundt den."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4836,7 +4869,7 @@ msgstr "Åpne nylig lukkede faner ved å høyreklikke på ikonet på verktøylin
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:221
 msgid "Inspire productivity. Modify your new tab page to display a beautiful background, set your daily focus, and more."
-msgstr ""
+msgstr "Inspirer produktiviteten. Endre den ny fane-siden din til å vise en vakker bakgrunn, sette ditt daglige fokus og mer."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:224
@@ -5044,7 +5077,7 @@ msgstr "Naviger automatisk til den sikre versjonen av et nettsted hvis det er ti
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:341 src/olympia/discovery/strings.jinja2:793
 msgid "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
-msgstr ""
+msgstr "Slett din navigasjonshistorikk. Angi et egendefinert antall dager for å beholde nettleserhistorikken før den slettes automatisk."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:344
@@ -5746,7 +5779,7 @@ msgstr "Oversett nettsteder i Firefox — privat — uten å bruke skyen."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:985
 msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
-msgstr ""
+msgstr "Blokker nettsteder som sløser med tid. Blokker dem helt eller bare i tidsrammer du velger."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:988
@@ -5756,7 +5789,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:991
 msgid "You’re in control. Turn off VPN when a website won’t work and set different locations for different websites. Windows only."
-msgstr ""
+msgstr "Du har kontrollen. Slå av VPN når et nettsted ikke fungerer, og angi forskjellige plasseringer for forskjellige nettsteder. Kun Windows."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:994
@@ -5766,12 +5799,12 @@ msgstr "Håndter GDPR-samtykkeskjemaer automatisk."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:997
 msgid "Block malicious websites from port scanning."
-msgstr ""
+msgstr "Blokker ondsinnede nettsteder fra portskanning."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1000
 msgid "Enhance your Twitch experience."
-msgstr ""
+msgstr "Gjør Twitch-opplevelsen din bedre."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1003
@@ -6012,7 +6045,7 @@ msgstr ""
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1121
 msgid "Top download managers"
-msgstr ""
+msgstr "Beste nedlastingsbehandlere"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1123
@@ -6121,7 +6154,7 @@ msgstr "Dette arkivet inneholder en forbudt spesialfil (symbolsk/hard lenke- ell
 
 #: src/olympia/files/utils.py:637
 msgid "Uncompressed size is too large"
-msgstr ""
+msgstr "Den ukomprimerte størrelsen er for stor"
 
 #: src/olympia/files/utils.py:669
 msgid "Invalid archive."
@@ -6129,16 +6162,16 @@ msgstr "Ugyldig arkiv."
 
 #: src/olympia/files/utils.py:858
 msgid "No manifest.json found"
-msgstr ""
+msgstr "Ingen manifest.json funnet"
 
 #: src/olympia/files/utils.py:863
 msgid "Invalid or corrupted file."
-msgstr ""
+msgstr "Ugyldig eller skadet fil."
 
 #: src/olympia/files/utils.py:903
 #, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
-msgstr ""
+msgstr "Tilleggs-ID-en i manifest.json-filen din (%s) samsvarer ikke med ID-en til tillegget ditt på AMO (%s)"
 
 #: src/olympia/files/utils.py:911
 msgid "Duplicate add-on ID found."
@@ -6147,7 +6180,7 @@ msgstr "Duplikat tilleggs-ID funnet."
 #: src/olympia/files/utils.py:917
 #, python-brace-format
 msgid "Version numbers should have at most {max_length} characters."
-msgstr ""
+msgstr "Versjonsnumre skal inneholde maksimalt {max_length} tegn."
 
 #: src/olympia/files/utils.py:923
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
@@ -6164,7 +6197,7 @@ msgstr "Du kan ikke sende inn denne typen utvidelse"
 
 #: src/olympia/files/utils.py:949
 msgid "You cannot submit an add-on using an ID ending with this suffix"
-msgstr ""
+msgstr "Du kan ikke sende inn et tillegg med en ID som slutter med dette suffikset"
 
 #: src/olympia/files/utils.py:954
 msgid "You cannot submit a Mozilla Signed Extension"
@@ -6176,12 +6209,12 @@ msgstr "Du kan ikke sende inn en språkpakke"
 
 #: src/olympia/files/utils.py:967
 msgid "The locale of an existing dictionary/language pack cannot be changed"
-msgstr ""
+msgstr "Språket til en eksisterende ordbok/språkpakke kan ikke endres"
 
 #: src/olympia/files/utils.py:1012
 #, python-brace-format
 msgid "Unsupported file type, please upload a supported file {extensions}."
-msgstr ""
+msgstr "Filtypen støttes ikke. Last opp en støttet filtype {extensions}."
 
 #: src/olympia/files/utils.py:1021
 msgid "Unexpected error."
@@ -6242,7 +6275,7 @@ msgstr "Feltet er obligatorisk."
 
 #: src/olympia/ratings/serializers.py:131
 msgid "You can't change the add-on of a review once it has been created."
-msgstr ""
+msgstr "Du kan ikke endre tillegget når en gjennomgang er opprettet."
 
 #: src/olympia/ratings/serializers.py:204
 msgid "You can't reply to a review that is already a reply."
@@ -6301,7 +6334,7 @@ msgstr "Vurdert til %(rating)s av 5 stjerner"
 #: src/olympia/reviewers/forms.py:369
 #, python-brace-format
 msgid "Unsupported file type, please upload a file {extensions}."
-msgstr "Filtypen støttes ikke. Last opp en fil {extensions}."
+msgstr "Filtypen støttes ikke. Last opp en filtype {extensions}."
 
 #: src/olympia/reviewers/forms.py:375
 msgid "File too large."
