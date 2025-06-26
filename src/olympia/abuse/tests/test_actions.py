@@ -27,6 +27,7 @@ from olympia.amo.tests import (
     version_factory,
 )
 from olympia.constants.abuse import DECISION_ACTIONS
+from olympia.constants.permissions import ADDONS_HIGH_IMPACT_APPROVE
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.core import set_user
 from olympia.files.models import File
@@ -398,6 +399,22 @@ class BaseTestContentAction:
         ).details['policy_texts'] == [
             'Parent Policy, specifically Bad policy: This is a Térrible thing'
         ]
+
+    def test_notify_2nd_level_approvers(self):
+        self.ActionClass(self.decision).notify_2nd_level_approvers()
+        assert len(mail.outbox) == 0
+
+        user = user_factory()
+        self.grant_permission(user, ':'.join(ADDONS_HIGH_IMPACT_APPROVE))
+        self.ActionClass(self.decision).notify_2nd_level_approvers()
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].subject == (
+            'A new item has entered the second level approval queue'
+        )
+        assert mail.outbox[0].to == [user.email]
+        assert reverse('reviewers.decision_review', args=[self.decision.id]) in (
+            mail.outbox[0].body
+        )
 
 
 class TestContentActionUser(BaseTestContentAction, TestCase):
