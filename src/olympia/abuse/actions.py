@@ -761,7 +761,7 @@ class ContentActionTargetAppealApprove(
             elif self.previous_decisions.filter(
                 action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON
             ).exists():
-                for version in self.data['versions']:
+                for version in target_versions:
                     VersionReviewerFlags.objects.update_or_create(
                         version=version,
                         defaults={

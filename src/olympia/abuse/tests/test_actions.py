@@ -270,7 +270,7 @@ class BaseTestContentAction:
         self._test_approve_appeal_or_override(ContentActionTargetAppealApprove)
         assert 'After reviewing your appeal' in mail.outbox[0].body
 
-    def test_approve_override(self):
+    def test_approve_override_success(self):
         self.decision.update(override_of=self.past_negative_decision)
         self._test_approve_appeal_or_override(ContentActionOverrideApprove)
         assert 'After reviewing your appeal' not in mail.outbox[0].body
@@ -1173,6 +1173,45 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         self.cinder_job.notify_reporters(action)
         action.notify_owners()
         self._test_owner_restore_email(f'Mozilla Add-ons: {self.addon.name}')
+
+    def test_approve_override_success_for_delayed_reject(self):
+        for version in self.past_negative_decision.target_versions.all():
+            VersionReviewerFlags.objects.create(
+                version=version,
+                pending_rejection=datetime.now(),
+                pending_rejection_by=self.task_user,
+                pending_content_rejection=False,
+            )
+        self.past_negative_decision.update(
+            action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON
+        )
+        self.decision.update(override_of=self.past_negative_decision)
+        self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        self.old_version.file.update(status=amo.STATUS_APPROVED)
+        ActivityLog.objects.all().delete()
+        action = ContentActionOverrideApprove(self.decision)
+        activity = action.process_action()
+
+        assert self.version.file.reload().status == amo.STATUS_AWAITING_REVIEW
+        assert self.old_version.file.reload().status == amo.STATUS_APPROVED
+        assert self.version.reviewerflags.reload().pending_rejection is None
+        assert self.old_version.reviewerflags.reload().pending_rejection is None
+        assert activity.log == amo.LOG.CLEAR_PENDING_REJECTION
+        assert activity.arguments == [
+            self.addon,
+            self.decision,
+            self.policy,
+            self.version,
+            self.old_version,
+        ]
+        assert activity.user == self.task_user
+        assert ActivityLog.objects.count() == 2
+        second_activity = ActivityLog.objects.exclude(pk=activity.pk).get()
+        assert second_activity.log == amo.LOG.REVIEWER_PRIVATE_COMMENT
+        assert second_activity.arguments == [self.addon, self.decision]
+        assert second_activity.user == self.task_user
+        assert second_activity.details == {'comments': self.decision.private_notes}
+        assert len(mail.outbox) == 0
 
     def test_log_action_no_notes(self):
         self.decision.update(
