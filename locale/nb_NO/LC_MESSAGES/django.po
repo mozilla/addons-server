@@ -6190,7 +6190,7 @@ msgstr "Uventet feil."
 #: src/olympia/files/utils.py:1026
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
-msgstr ""
+msgstr "Typen (%s) samsvarer ikke med typen tillegg på AMO (%s)"
 
 #: src/olympia/files/views.py:83 src/olympia/signing/views.py:128
 msgid "Missing \"upload\" key in multipart file data."
@@ -6198,7 +6198,7 @@ msgstr "Mangler «upload»-nøkkel i flerdelte fildata."
 
 #: src/olympia/files/views.py:89
 msgid "Missing \"channel\" arg."
-msgstr ""
+msgstr "Mangler «channel»-argument."
 
 #: src/olympia/ratings/models.py:363
 msgid "Spam or otherwise non-review content"
@@ -6218,27 +6218,27 @@ msgstr "Annen (oppgi)"
 
 #: src/olympia/ratings/models.py:370
 msgid "Auto-flagged due to word match"
-msgstr ""
+msgstr "Automatisk flagget på grunn av ordtreff"
 
 #: src/olympia/ratings/models.py:371
 msgid "Auto-flagged due to user restriction"
-msgstr ""
+msgstr "Automatisk flagget på grunn av brukerbegrensning"
 
 #: src/olympia/ratings/models.py:411
 #, python-format
 msgid "%(value)s contains a non-alphanumeric character."
-msgstr ""
+msgstr "%(value)s inneholder et ikke-alfanumerisk tegn."
 
 #: src/olympia/ratings/serializers.py:90
 #, python-brace-format
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Anmeldelsesteksten kan ikke inneholde ordet: «{0}»"
+msgstr[1] "Anmeldelsesteksten kan ikke inneholde noen av ordene: «{0}»"
 
 #: src/olympia/ratings/serializers.py:119
 msgid "This field is required."
-msgstr ""
+msgstr "Feltet er obligatorisk."
 
 #: src/olympia/ratings/serializers.py:131
 msgid "You can't change the add-on of a review once it has been created."
@@ -6254,7 +6254,7 @@ msgstr ""
 
 #: src/olympia/ratings/serializers.py:261
 msgid "This version of the add-on doesn't exist or isn't public."
-msgstr ""
+msgstr "Denne versjonen av tillegget finnes ikke eller er ikke offentlig."
 
 #: src/olympia/ratings/serializers.py:270
 msgid "You can't leave a review on your own add-on."
