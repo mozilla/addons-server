@@ -5173,7 +5173,7 @@ msgstr "Κάντε εύκολα αναζήτηση στη Wikipedia, επιση�
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:365
 msgid "Find what you're looking for within a specific domain."
-msgstr "Βρείτε αυτό που ψάχνετε σε ένα συγκεκριμένο τομέα."
+msgstr "Βρείτε αυτό που ψάχνετε σε έναν συγκεκριμένο τομέα."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:368
@@ -6428,7 +6428,7 @@ msgstr "Έκδοση %(version)s &middot; %(created)s <span class=\"light\">&mid
 
 #: src/olympia/scanners/models.py:128
 msgid "This is the exact name of the rule used by a scanner."
-msgstr "Αυτό είναι το ακριβές όνομα του κανόνα που χρησιμοποιείται από ένα σαρωτή."
+msgstr "Αυτό είναι το ακριβές όνομα του κανόνα που χρησιμοποιείται από έναν σαρωτή."
 
 #: src/olympia/scanners/models.py:132
 msgid "Human-readable name for the scanner rule"
