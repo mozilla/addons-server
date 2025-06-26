@@ -327,11 +327,11 @@ msgstr "Listet"
 
 #: src/olympia/addons/models.py:2495
 msgid "Add-on and collection paths need to end with \"/\""
-msgstr ""
+msgstr "Søkesti for tillegg og samling må slutte med «/»"
 
 #: src/olympia/addons/serializers.py:324
 msgid "Built in licenses can not be updated."
-msgstr ""
+msgstr "Innebygde lisenser kan ikke oppdateres."
 
 #: src/olympia/addons/serializers.py:519
 msgid "Upload is not valid."
@@ -345,30 +345,32 @@ msgstr "Filen er allerede deaktivert."
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
+"Den siste godkjente versjonen av dette %s-tillegget kan ikke slettes fordi den forrige versjonen ikke ble godkjent for %s-kampanjen. Ta kontakt med AMO-administratorer hvis du trenger hjelp med "
+"dette."
 
 #: src/olympia/addons/serializers.py:554
 #, python-brace-format
 msgid "Version {version_string} was uploaded before and deleted."
-msgstr ""
+msgstr "Versjon {version_string} er lastet opp tidligere og slettet."
 
 #: src/olympia/addons/serializers.py:557
 #, python-brace-format
 msgid "Version {version_string} already exists."
-msgstr ""
+msgstr "Versjon {version_string} finnes allerede."
 
 #: src/olympia/addons/serializers.py:577
 msgid "Listed versions cannot be submitted while add-on is disabled."
-msgstr ""
+msgstr "Oppførte versjoner kan ikke sendes inn mens tillegget er deaktivert."
 
 #: src/olympia/addons/serializers.py:618
 #, python-format
 msgid "%(addon_type_plural)s are not supported by %(app_name)s"
-msgstr ""
+msgstr "%(addon_type_plural)s støttes ikke av %(app_name)s"
 
 #: src/olympia/addons/serializers.py:657 src/olympia/devhub/forms.py:910
 #, python-format
 msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
-msgstr ""
+msgstr "Ugyldig versjonsområde. For Firefox for Android kan du bare velge et område som starter med versjon %(max)s eller høyere, eller slutter med versjon lavere enn %(min)s."
 
 #: src/olympia/addons/serializers.py:906
 msgid "Add-ons need at least one owner."
@@ -392,7 +394,7 @@ msgstr "Kontoen trenger et visningsnavn før den kan legges til som opphavsmann.
 
 #: src/olympia/addons/serializers.py:1255
 msgid "This slug cannot be used. Please choose another."
-msgstr ""
+msgstr "Denne sluggen kan ikke brukes. Velg en annen."
 
 #: src/olympia/addons/utils.py:39
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -401,15 +403,15 @@ msgstr "Tilleggsnavn kan ikke inneholde varemerkene Mozilla eller Firefox."
 #: src/olympia/addons/utils.py:130
 #, python-brace-format
 msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
-msgstr ""
+msgstr "Versjon {version_string} må være høyere enn den forrige godkjente versjonen {previous_version_string}."
 
 #: src/olympia/addons/validators.py:41
 msgid "Both `license` and `custom_license` cannot be provided together."
-msgstr ""
+msgstr "Både «license» og «custom_license» kan ikke oppgis sammen."
 
 #: src/olympia/addons/validators.py:64
 msgid "This field, or custom_license, is required for listed versions."
-msgstr ""
+msgstr "Dette feltet, eller custom_license, er obligatorisk for oppførte versjoner."
 
 #: src/olympia/addons/validators.py:91
 msgid "Wrong add-on type for this license."
@@ -417,16 +419,16 @@ msgstr "Feil type tillegg for denne lisensen."
 
 #: src/olympia/addons/validators.py:98
 msgid "Custom licenses are not supported for themes."
-msgstr ""
+msgstr "Tilpassede lisenser støttes ikke for temaer."
 
 #: src/olympia/addons/validators.py:132
 msgid "This field is required for add-ons with listed versions."
-msgstr ""
+msgstr "Dette feltet er obligatorisk for tillegg med oppførte versjoner."
 
 #: src/olympia/addons/validators.py:158
 #, python-brace-format
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
-msgstr ""
+msgstr "Metadata for tillegg må angis for å opprette en oppført versjon: {missing_addon_metadata}."
 
 #: src/olympia/addons/validators.py:272
 msgid "A GUID must be specified in the manifest."
@@ -438,15 +440,15 @@ msgstr "GUID-uoverensstemmelse mellom URL og manifest."
 
 #: src/olympia/addons/validators.py:291
 msgid "Source cannot be changed because this version has been reviewed by Mozilla."
-msgstr ""
+msgstr "Kilden kan ikke endres fordi denne versjonen har blitt gjennomgått av Mozilla."
 
 #: src/olympia/addons/validators.py:315
 msgid "This type of add-on does not allow custom compatibility."
-msgstr ""
+msgstr "Denne typen tillegg tillater ikke tilpasset kompatibilitet."
 
 #: src/olympia/addons/validators.py:332
 msgid "This endpoint is not valid for Themes."
-msgstr ""
+msgstr "Dette endepunktet er ikke gyldig for temaer."
 
 #: src/olympia/addons/templates/addons/includes/dashboard_tabs.html:4 src/olympia/devhub/templates/devhub/nav.html:15 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:19
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html:16
@@ -1191,11 +1193,11 @@ msgstr "Ventende avvisning fjernet"
 #: src/olympia/constants/activity.py:1006
 #, python-brace-format
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
-msgstr ""
+msgstr "{user_responsible} endret {addon}-sluggen fra {0} til {1}."
 
 #: src/olympia/constants/activity.py:1007
 msgid "Add-on slug changed"
-msgstr ""
+msgstr "Tilleggs-sluggen er endret"
 
 #: src/olympia/constants/activity.py:1014
 #, python-brace-format
@@ -1210,7 +1212,7 @@ msgstr "Samling {collection} gjenopprettet av moderator"
 #: src/olympia/constants/activity.py:1029
 #, python-brace-format
 msgid "Review {rating} for {addon} un-deleted."
-msgstr ""
+msgstr "Omtale {rating} for {addon} er ikke lenger slettet."
 
 #: src/olympia/constants/activity.py:1058
 #, python-brace-format
@@ -1233,7 +1235,7 @@ msgstr "Innhold avvises automatisk etter at forsinkelsen var utløpt"
 #: src/olympia/constants/activity.py:1196
 #, python-brace-format
 msgid "{addon} {version} pending rejection changed."
-msgstr ""
+msgstr "{addon} {version} ventende avvisning endret."
 
 #: src/olympia/constants/activity.py:1197
 msgid "Pending rejection changed"
@@ -3469,7 +3471,7 @@ msgstr "Trenger du å sende inn kildekode?"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:15
 msgid "Mozilla’s add-on reviewers need to be able to read and reproduce the code in your extension. If they can’t, your extension may be rejected."
-msgstr ""
+msgstr "Mozillas tilleggs-gjennomgangspersoner må kunne lese og gjengi koden i utvidelsen din. Hvis de ikke kan det, kan utvidelsen din bli avvist."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:21
 msgid "Do you use any of the following in your extension?"
