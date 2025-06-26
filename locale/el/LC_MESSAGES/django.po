@@ -4077,7 +4077,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html:3
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code other than known libraries, upload its sources for review."
-msgstr "Αν το πρόσθετό σας περιέχει ελαχιστοποιημένο, συνενωμένο ή γραμμένο από μηχανή κώδικα εκτός από γνωστές βιβλιοθήκες, ανεβάστε τις πηγές του προς αξιολόγηση."
+msgstr "Αν το πρόσθετό σας περιέχει ελαχιστοποιημένο, συνενωμένο ή γραμμένο από μηχανή κώδικα εκτός από γνωστές βιβλιοθήκες, μεταφορτώστε τις πηγές του προς αξιολόγηση."
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html:5
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
