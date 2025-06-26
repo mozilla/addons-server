@@ -714,25 +714,30 @@ class ContentActionTargetAppealApprove(
             qs = self.decision.target_versions.all()
         return qs
 
+    @property
+    def previous_decisions(self):
+        """Queryset with previous decisions made that this action would revert."""
+        return self.decision.cinder_job.appealed_decisions
+
     def process_action(self, release_hold=False):
         target = self.target
         log_entry = None
         if isinstance(target, Addon):
-            appealed = self.decision.cinder_job.appealed_decisions
             target_versions = (
                 self.target_versions.no_transforms()
                 .only('pk', 'version')
                 .order_by('-pk')
             )
-            if target.status == amo.STATUS_DISABLED and appealed.filter(
+            if self.previous_decisions.filter(
                 action=DECISION_ACTIONS.AMO_DISABLE_ADDON
-            ):
-                # it was a disable action that was appealed
+            ).exists():
                 target_versions = list(target_versions)
-                target.force_enable(skip_activity_log=True)
+                if target.status == amo.STATUS_DISABLED:
+                    target.force_enable(skip_activity_log=True)
                 activity_log_action = amo.LOG.FORCE_ENABLE
-            elif appealed.filter(action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON):
-                # otherwise it was a reject action that was appealed
+            elif self.previous_decisions.filter(
+                action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
+            ).exists():
                 target_versions = list(
                     target_versions.filter(
                         # we only need to unreject disabled versions we rejected
@@ -753,6 +758,19 @@ class ContentActionTargetAppealApprove(
                     )
                 target.update_status()
                 activity_log_action = amo.LOG.UNREJECT_VERSION
+            elif self.previous_decisions.filter(
+                action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON
+            ).exists():
+                for version in self.data['versions']:
+                    VersionReviewerFlags.objects.update_or_create(
+                        version=version,
+                        defaults={
+                            'pending_rejection': None,
+                            'pending_rejection_by': None,
+                            'pending_content_rejection': None,
+                        },
+                    )
+                activity_log_action = amo.LOG.CLEAR_PENDING_REJECTION
             else:
                 return
             log_entry = self.log_action(
@@ -791,6 +809,18 @@ class ContentActionTargetAppealApprove(
 
 class ContentActionOverrideApprove(ContentActionTargetAppealApprove):
     description = 'Reported content is within policy, after override'
+
+    @property
+    def previous_decisions(self):
+        """Queryset with previous decisions made that this action would revert."""
+        # We want a queryset to be able to filter later, so create one from the
+        # overriden instance, or just return an empty one.
+        qs = self.decision.__class__.objects.all()
+        return (
+            qs.filter(pk=self.decision.override_of.pk)
+            if self.decision.override_of
+            else qs.none()
+        )
 
 
 class ContentActionApproveNoAction(AnyTargetMixin, NoActionMixin, ContentAction):
