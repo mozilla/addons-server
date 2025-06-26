@@ -616,8 +616,8 @@ msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
 "parties."
 msgstr ""
-"Βλέπετε αυτό το μήνυμα επειδή αυτός ο ιστότοπος απαιτεί ένα cookie CSRF κατά την υποβολή αιτήσεων. Αυτό το cookie απαιτείται για λόγους ασφαλείας, για να διασφαλιστεί ότι το πρόγραμμα περιήγησής σας"
-" δε θα καταχραστεί από τρίτους."
+"Βλέπετε αυτό το μήνυμα επειδή αυτός ο ιστότοπος απαιτεί ένα cookie CSRF κατά την υποβολή φορμών. Αυτό το cookie απαιτείται για λόγους ασφαλείας, ώστε να διασφαλιστεί ότι κανένας τρίτος δεν θα "
+"καταλάβει το πρόγραμμα περιήγησής σας."
 
 #: src/olympia/amo/templates/amo/404.html:3
 msgid "Not Found"
