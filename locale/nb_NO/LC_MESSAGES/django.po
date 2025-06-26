@@ -6267,7 +6267,7 @@ msgstr "Du kan ikke legge igjen mer enn én omtale for den samme versjonen av et
 #: src/olympia/ratings/serializers.py:317
 #, python-brace-format
 msgid "Invalid flag [{}] - must be one of [{}]"
-msgstr ""
+msgstr "Ugyldig flagg [{}] – må være ett av [{}]"
 
 #: src/olympia/ratings/serializers.py:329
 msgid "This rating can't be flagged because it has no review text."
@@ -6275,7 +6275,7 @@ msgstr ""
 
 #: src/olympia/ratings/serializers.py:338
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr ""
+msgstr "En kort forklaring må gis når du velger «Annet» som flaggårsak."
 
 #: src/olympia/ratings/templates/ratings/reviews_link.html:13
 #, python-brace-format
@@ -6301,11 +6301,11 @@ msgstr ""
 #: src/olympia/reviewers/forms.py:369
 #, python-brace-format
 msgid "Unsupported file type, please upload a file {extensions}."
-msgstr ""
+msgstr "Filtypen støttes ikke. Last opp en fil {extensions}."
 
 #: src/olympia/reviewers/forms.py:375
 msgid "File too large."
-msgstr ""
+msgstr "Filen er for stor."
 
 #: src/olympia/reviewers/templates/reviewers/moderationlog_detail.html:11
 #, python-format
@@ -6315,7 +6315,7 @@ msgstr "<dd>%(review_author)s</dd>"
 #: src/olympia/reviewers/templates/reviewers/queue.html:48
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s"
-msgstr ""
+msgstr "av %(user)s den %(date)s %(stars)s"
 
 #: src/olympia/reviewers/templates/reviewers/queue.html:59
 #, python-format
