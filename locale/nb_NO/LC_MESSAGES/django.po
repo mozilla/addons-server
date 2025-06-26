@@ -5116,7 +5116,7 @@ msgstr "For de øyeblikkene du trenger å fyre lasere ut av en katt."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:389
 msgid "Search Firefox by easily accessing your open tabs, bookmarks, and history."
-msgstr ""
+msgstr "Søk i Firefox ved å enkelt få tilgang til åpne faner, bokmerker og historikk."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:392
@@ -5156,28 +5156,28 @@ msgstr "En enkel annonseblokkering som fokuserer på å vise bare innholdet du �
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:413
 msgid "Track Amazon pricing history. Make informed shopping decisions."
-msgstr ""
+msgstr "Følg prisutviklingen på Amazon. Ta velinformerte kjøpsbeslutninger."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:416
 msgid "Shop with confidence. This extension provides an extra check to ensure you're shopping on a site that's been vetted for reliability."
-msgstr ""
+msgstr "Handle med trygghet. Denne utvidelsen gir en ekstra kontroll for å sikre at du handler på et nettsted som er vurdert som pålitelig."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:419
 msgid "Track productivity. Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
-msgstr ""
+msgstr "Spor produktiviteten. Mål hvor mye tid du bruker på datamaskinen, eller på spesifikke jobbapper som Trello, JIRA, Basecamp, GitHub og mange flere."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:422
 msgid "Save your favorite stuff on the web. Clip content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
-msgstr ""
+msgstr "Lagre favorittmaterialene dine på nettet. Klipp ut innhold som artikler, videoer, bilder og mer for å lagre og bruke det til individuelle prosjekter eller teamsamarbeid i sanntid."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:425 src/olympia/discovery/strings.jinja2:829
 msgid "Only allow web content to run from sites you trust. Surf securely."
-msgstr ""
+msgstr "Tillat bare at nettinnhold kjøres fra nettsteder du stoler på. Surf sikkert."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5204,7 +5204,7 @@ msgstr "Bruker du VPN? IP-adressen din kan lekke. Stopp dette ved å deaktivere 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:440
 msgid "Close annoying pop-ups with a simple click."
-msgstr ""
+msgstr "Lukk irriterende sprettoppvinduer med et enkelt klikk."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:443
@@ -5219,23 +5219,23 @@ msgstr "Dra bare tekst, bilder eller lenker for å utføre handlinger som kopier
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:449
 msgid "Harness the ability to download video and/or audio in multiple formats."
-msgstr ""
+msgstr "Utnytt muligheten til å laste ned video og/eller lyd i flere formater."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:452 src/olympia/discovery/strings.jinja2:685
 msgid "Learn where any website's server is geographically located. Be an informed web traveler."
-msgstr ""
+msgstr "Lær hvor en nettsides server er geografisk plassert. Vær en informert nettreisende."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:455
 msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? SoundFixer can help."
-msgstr ""
+msgstr "Fiks irriterende lyd. Er volumet på et nettsted for lavt? For høyt? SoundFixer kan hjelpe."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:458
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
-msgstr ""
+msgstr "Rediger en nettside før utskrift. Gjør omfattende visuelle endringer — fjern annonser eller upassende innhold — på en hvilken som helst nettside du vil skrive ut."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:461
@@ -5252,17 +5252,17 @@ msgstr "Juster nettleserens lydinnstillinger veldig presist."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:467 src/olympia/discovery/strings.jinja2:682
 msgid "Defend yourself against the sneakiest trackers."
-msgstr ""
+msgstr "Beskytt deg mot de slueste sporerne."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:470
 msgid "Search with enhanced tracker blocking, smart encryption, and other privacy benefits."
-msgstr ""
+msgstr "Søk med forbedret sporingsblokkering, smart kryptering og andre personvernfordeler."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:476
 msgid "Simplify tabs. Organize your many open tabs in a tidy vertical sidebar."
-msgstr ""
+msgstr "Forenkle faner. Organiser de mange åpne fanene dine i en ryddig vertikal sidestolpe."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:479
@@ -5272,7 +5272,7 @@ msgstr "Slett uønskede infokapsler automatisk. Tilbyr hvit- og svartelistestøt
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:482
 msgid "With a simple click of the mouse you can watch videos in full screen glory."
-msgstr ""
+msgstr "Med et enkelt museklikk kan du se videoer i fullskjermsformat."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5567,7 +5567,7 @@ msgstr "Nyt ultimat kontroll over faner — lukk dupliserte faner, slå sammen v
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:727
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
-msgstr ""
+msgstr "Les ePUB-filer rett i Firefox — øk skriftstørrelse, sidedimensjoner og mer."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:748
@@ -5578,12 +5578,12 @@ msgstr "Tilpass musebevegelser. Oppdag en ny måte å navigere med over 50 konfi
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:799
 msgid "Customize the look of any website. Shift colors, page backgrounds & more."
-msgstr ""
+msgstr "Tilpass utseendet til ethvert nettsted. Endre farger, sidebakgrunner og mer."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:808
 msgid "Use mouse gestures to close tabs, navigate pages & more."
-msgstr ""
+msgstr "Bruk musebevegelser til å lukke faner, navigere på sider og mer."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:811
