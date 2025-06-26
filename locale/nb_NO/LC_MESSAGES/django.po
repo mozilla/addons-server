@@ -305,16 +305,16 @@ msgstr "Ugyldig app spesifisert"
 
 #: src/olympia/addons/fields.py:285
 msgid "Unknown max app version specified"
-msgstr ""
+msgstr "Ukjent maksimum appversjon angitt"
 
 #: src/olympia/addons/fields.py:297
 msgid "Unknown min app version specified"
-msgstr ""
+msgstr "Ukjent minimum app-versjon angitt"
 
 #: src/olympia/addons/fields.py:307 src/olympia/addons/fields.py:325 src/olympia/addons/serializers.py:643
 #, python-format
 msgid "Can not override compatibility information set in the manifest for this application (%s)"
-msgstr ""
+msgstr "Kan ikke overstyre kompatibilitetsinformasjonen som er angitt i manifestet for denne applikasjonen (%s)"
 
 #: src/olympia/addons/fields.py:375
 #, python-format
