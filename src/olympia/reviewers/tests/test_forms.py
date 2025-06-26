@@ -1577,7 +1577,7 @@ class TestHeldDecisionReviewForm(TestCase):
         form = HeldDecisionReviewForm(decision=decision)
         assert form.fields['choice'].choices == [
             ('yes', 'Proceed with action'),
-            ('cancel', 'Cancel and enqueue in Reviewer Tools')
+            ('cancel', 'Cancel and enqueue in Reviewer Tools'),
         ]
 
     def test_choices_user(self):
@@ -1589,7 +1589,7 @@ class TestHeldDecisionReviewForm(TestCase):
         form = HeldDecisionReviewForm(decision=decision)
         assert form.fields['choice'].choices == [
             ('yes', 'Proceed with action'),
-            ('no', 'Approve content instead')
+            ('no', 'Approve content instead'),
         ]
 
     def test_choices_rating(self):
@@ -1601,19 +1601,19 @@ class TestHeldDecisionReviewForm(TestCase):
         form = HeldDecisionReviewForm(decision=decision)
         assert form.fields['choice'].choices == [
             ('yes', 'Proceed with action'),
-            ('no', 'Approve content instead')
+            ('no', 'Approve content instead'),
         ]
 
-    def test_choices_user(self):
+    def test_choices_collection(self):
         decision = ContentDecision.objects.create(
             collection=Collection.objects.create(),
-            action=DECISION_ACTIONS.AMO_BAN_USER,
+            action=DECISION_ACTIONS.AMO_DELETE_COLLECTION,
             action_date=None,
         )
         form = HeldDecisionReviewForm(decision=decision)
         assert form.fields['choice'].choices == [
             ('yes', 'Proceed with action'),
-            ('no', 'Approve content instead')
+            ('no', 'Approve content instead'),
         ]
 
 

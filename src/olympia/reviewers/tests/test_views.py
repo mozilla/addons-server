@@ -8012,7 +8012,9 @@ class TestHeldDecisionReview(ReviewerTest):
         assert 'Add-on disable' in doc('tr.decision-action td').html()
         assert 'Bad Things' in doc('tr.decision-policies td').html()
         assert 'Proceed with action' == doc('[for="id_choice_0"]').text()
-        assert 'Cancel and enqueue in Reviewer Tools' == doc('[for="id_choice_1"]').text()
+        assert (
+            'Cancel and enqueue in Reviewer Tools' == doc('[for="id_choice_1"]').text()
+        )
         assert 'Affected versions' in doc.text()
         assert self.version.version in doc.text()
         return doc
@@ -8060,7 +8062,7 @@ class TestHeldDecisionReview(ReviewerTest):
         response = self.client.get(self.url)
         assert response.context_data['form'].fields['choice'].choices == [
             ('yes', 'Proceed with action'),
-            ('cancel', 'Cancel and enqueue in Reviewer Tools')
+            ('cancel', 'Cancel and enqueue in Reviewer Tools'),
         ]
 
     def test_cancel_addon_with_job(self):

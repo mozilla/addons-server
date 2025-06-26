@@ -27,7 +27,10 @@ from olympia.addons.models import Addon
 from olympia.amo.forms import AMOModelForm
 from olympia.amo.templatetags.jinja_helpers import format_datetime
 from olympia.constants.abuse import DECISION_ACTIONS
-from olympia.constants.reviewers import HELD_DECISION_CHOICES, REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
+from olympia.constants.reviewers import (
+    HELD_DECISION_CHOICES,
+    REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT,
+)
 from olympia.files.utils import SafeZip
 from olympia.ratings.models import Rating
 from olympia.ratings.permissions import user_can_delete_rating
