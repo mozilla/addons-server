@@ -6866,7 +6866,7 @@ msgstr "nye tillegg eller Firefox-funksjonar er tilgjengelege"
 
 #: src/olympia/users/notifications.py:45
 msgid "my add-on's compatibility is upgraded successfully"
-msgstr "tilleggskompatibilitetn til innlegget mitt har blitt oppgradert"
+msgstr "kompatibiliteten til tillegget mitt er oppgradert"
 
 #: src/olympia/users/notifications.py:54
 msgid "someone writes a review of my add-on"
