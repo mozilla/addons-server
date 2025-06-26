@@ -12,12 +12,18 @@ from PIL import Image
 
 import olympia.core.logger
 from olympia import amo
+from olympia.activity.models import ActivityLog, VersionLog
+from olympia.activity.utils import notify_about_activity_log
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import SafeStorage, extract_colors_from_image, pngcrush_image
 from olympia.devhub.tasks import resize_image
 from olympia.files.models import File
 from olympia.files.utils import get_background_images
+from olympia.lib.crypto.tasks import duplicate_addon_version
+from olympia.users.models import UserProfile
+from olympia.users.utils import get_task_user
+from olympia.versions.compare import VersionString
 from olympia.versions.models import Version, VersionPreview
 
 from .utils import (
@@ -271,3 +277,67 @@ def hard_delete_versions(version_ids, **kw):
     for version in versions:
         with transaction.atomic():
             version.delete(hard=True)
+
+
+@task
+def duplicate_addon_version_for_rollback(*, version_pk, new_version_number, user_pk):
+    task_user = get_task_user()
+    new_version_number = VersionString(new_version_number)
+    old_version = Version.unfiltered.get(id=version_pk)
+    user = UserProfile.objects.get(id=user_pk)
+
+    text = f'Rolling back addon {old_version.addon}, to version {old_version.version}'
+    log.info(f'Starting: {text}')
+    version = duplicate_addon_version(old_version, new_version_number, user)
+    if not version:
+        log_entry = ActivityLog.objects.create(
+            amo.LOG.VERSION_ROLLBACK_FAILED,
+            old_version.addon,
+            old_version,
+            user=task_user,
+            details={
+                # The comment is not translated on purpose, to behave like regular human
+                # approval does.
+                'comments': f'{text} failed.\n'
+                'Please create and submit a new version manually.'
+            },
+        )
+        version = old_version
+    else:
+        version.update(human_review_date=old_version.human_review_date)
+
+        if old_version.source:
+            version.source.save(
+                os.path.basename(old_version.source.name), old_version.source.file
+            )
+            version.save(update_fields=('source',))
+
+        # associate all activity from old_version to new_version
+        VersionLog.objects.bulk_create(
+            VersionLog(version=version, activity_log=vl.activity_log)
+            for vl in VersionLog.objects.filter(version=old_version)
+        )
+
+        # Now log and notify the developers of that add-on.
+        # Any exception should have caused an early return before reaching this point.
+        log_entry = ActivityLog.objects.create(
+            amo.LOG.VERSION_ROLLBACK,
+            version.addon,
+            version,
+            old_version.version,
+            user=task_user,
+            details={
+                # The comment is not translated on purpose, to behave like regular human
+                # approval does.
+                'comments': f'{text} by re-publishing as {new_version_number}, '
+                'successfull!\n'
+                'Keep in mind that, like any submission, reviewers may look into this '
+                'version in the future and determine that it requires changes or '
+                'should be taken down.\r\n\r\nThank you!'
+            },
+        )
+        VersionLog.objects.create(activity_log=log_entry, version=old_version)
+
+    notify_about_activity_log(
+        version.addon, version, log_entry, perm_setting='individual_contact'
+    )

@@ -1202,6 +1202,22 @@ class CHANGE_PENDING_REJECTION(_LOG):
     # Not hidden to developers.
 
 
+class VERSION_ROLLBACK(_LOG):
+    # takes add-on, version, VersionString
+    id = 204
+    format = _('{addon} {version} created, to rollback from {0}.')
+    short = _('Version rollback')
+    review_queue = True
+
+
+class VERSION_ROLLBACK_FAILED(_LOG):
+    # takes add-on, version
+    id = 205
+    format = _('{addon} rollback from {version} failed.')
+    short = _('Version rollback failure')
+    review_queue = True
+
+
 LOGS = [x for x in vars().values() if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 # Make sure there's no duplicate IDs.
 assert len(LOGS) == len({log.id for log in LOGS})

@@ -68,7 +68,7 @@ def update_version_in_json_manifest(content, new_version_number):
     return json.dumps(json_data, indent=2)
 
 
-def copy_bumping_version_number(src, dst, new_version_number):
+def copy_xpi_with_new_version_number(src, dst, new_version_number):
     """Copy a xpi while bumping its version number in the manifest."""
     # We can't modify the contents of a zipfile in-place, so instead of copying
     # the old zip file and modifying it, we open the old one, copy the contents
@@ -117,9 +117,7 @@ def bump_and_resign_addons(addon_ids):
             bump_addon_version(old_version)
 
 
-def bump_addon_version(old_version):
-    mail_subject, mail_message = MAIL_COSE_SUBJECT, MAIL_COSE_MESSAGE
-    task_user = get_task_user()
+def duplicate_addon_version(old_version, new_version_number, user):
     addon = old_version.addon
     old_file_obj = old_version.file
     carryover_groups = [
@@ -136,9 +134,6 @@ def bump_addon_version(old_version):
         )
         return
 
-    log.info(f'Bumping addon {old_version.addon}, version {old_version}')
-    bumped_version_number = get_new_version_number(old_version.version)
-
     if not old_file_obj.file or not os.path.isfile(old_file_obj.file.path):
         log.info(f'File {old_file_obj.pk} does not exist, skip')
         return
@@ -149,30 +144,24 @@ def bump_addon_version(old_version):
 
     try:
         # Copy the original file to a new FileUpload.
-        task_user = get_task_user()
-        # last login ip should already be set in the database even on the
-        # task user, but in case it's not, like in tests/local envs, set it
-        # on the instance, forcing it to be localhost, that should be
-        # enough for our needs.
-        task_user.last_login_ip = '127.0.0.1'
         original_author = addon.authors.first()
         upload = FileUpload.objects.create(
             addon=addon,
-            version=bumped_version_number,
-            user=task_user,
-            channel=amo.CHANNEL_LISTED,
+            version=new_version_number,
+            user=user,
+            channel=old_version.channel,
             source=amo.UPLOAD_SOURCE_GENERATED,
-            ip_address=task_user.last_login_ip,
+            ip_address=user.last_login_ip,
             validation=old_validation,
         )
-        upload.name = f'{upload.uuid.hex}_{bumped_version_number}.zip'
+        upload.name = f'{upload.uuid.hex}_{new_version_number}.zip'
         upload.path = upload.generate_path('.zip')
         upload.valid = True
         upload.save()
 
         # Create the xpi with the bumped version number.
-        copy_bumping_version_number(
-            old_file_obj.file.path, upload.file_path, bumped_version_number
+        copy_xpi_with_new_version_number(
+            old_file_obj.file.path, upload.file_path, new_version_number
         )
 
         # Parse the add-on. We use the original author of the add-on, not
@@ -189,7 +178,7 @@ def bump_addon_version(old_version):
                 upload,
                 old_version.addon,
                 compatibility=old_version.compatible_apps,
-                channel=amo.CHANNEL_LISTED,
+                channel=old_version.channel,
                 parsed_data=parsed_data,
             )
 
@@ -211,9 +200,27 @@ def bump_addon_version(old_version):
         log.exception(f'Failed re-signing file {old_file_obj.pk}', exc_info=True)
         # Next loop iteration will clear the task queue.
         return
+    return new_version
+
+
+def bump_addon_version(old_version):
+    mail_subject, mail_message = MAIL_COSE_SUBJECT, MAIL_COSE_MESSAGE
+    task_user = get_task_user()
+    # last login ip should already be set in the database even on the
+    # task user, but in case it's not, like in tests/local envs, set it
+    # on the instance, forcing it to be localhost, that should be
+    # enough for our needs.
+    task_user.last_login_ip = '127.0.0.1'
+    bumped_version_number = get_new_version_number(old_version.version)
+
+    log.info(f'Bumping addon {old_version.addon}, version {old_version}')
+    new_version = duplicate_addon_version(old_version, bumped_version_number, task_user)
+    if not new_version:
+        return
 
     # Now notify the developers of that add-on. Any exception should have
     # caused an early return before reaching this point.
+    addon = old_version.addon
     ActivityLog.objects.create(
         amo.LOG.VERSION_RESIGNED,
         addon,

@@ -782,6 +782,7 @@ CELERY_TASK_ROUTES = {
     'olympia.users.tasks.resize_photo': {'queue': 'amo'},
     'olympia.users.tasks.update_user_ratings_task': {'queue': 'amo'},
     'olympia.versions.tasks.delete_preview_files': {'queue': 'amo'},
+    'olympia.versions.tasks.duplicate_addon_version_for_rollback': {'queue': 'amo'},
     # 'Default' queue. In theory shouldn't be used, it's mostly a fallback.
     'celery.accumulate': {'queue': 'default'},
     'celery.backend_cleanup': {'queue': 'default'},
