@@ -5348,7 +5348,7 @@ msgstr "Blokker annonser og få forbedret beskyttelse mot skadelig programvare o
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:504 src/olympia/discovery/strings.jinja2:853
 msgid "Enjoy multi-threading download support. Automatically detect different types of media available for download."
-msgstr ""
+msgstr "Få støtte for flertrådede nedlastinger. Oppdag automatisk ulike typer medier som er tilgjengelige for nedlasting."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:507
@@ -6279,11 +6279,11 @@ msgstr "Du kan ikke endre tillegget når en gjennomgang er opprettet."
 
 #: src/olympia/ratings/serializers.py:204
 msgid "You can't reply to a review that is already a reply."
-msgstr ""
+msgstr "Du kan ikke svare på en omtale som allerede er et svar."
 
 #: src/olympia/ratings/serializers.py:248
 msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr ""
+msgstr "Du kan ikke endre versjonen av tillegget som er gjennomgått når gjennomgangen er opprettet."
 
 #: src/olympia/ratings/serializers.py:261
 msgid "This version of the add-on doesn't exist or isn't public."
@@ -6304,7 +6304,7 @@ msgstr "Ugyldig flagg [{}] – må være ett av [{}]"
 
 #: src/olympia/ratings/serializers.py:329
 msgid "This rating can't be flagged because it has no review text."
-msgstr ""
+msgstr "Denne vurderingen kan ikke flagges fordi den ikke har noen anmeldelsestekst."
 
 #: src/olympia/ratings/serializers.py:338
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
@@ -6628,7 +6628,7 @@ msgstr "Forrige"
 
 #: src/olympia/stats/templates/stats/stats.html:165
 msgid "This dashboard is <b>private</b>."
-msgstr ""
+msgstr "Dette oversikten er <b>privat</b>."
 
 #: src/olympia/stats/templates/stats/reports/apps.html:3
 msgid "Application usage by Date"
@@ -6922,6 +6922,8 @@ msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
 "restrictions\" instead."
 msgstr ""
+"Skriv inn hele domenenavnet for engangs-e-postadresser som skal blokkeres. Jokertegn støttes ikke – hvis du trenger det, eller ønsker å matche hele e-postadressen og ikke bare domenedelen, bruk "
+"heller «E-post brukerbegrensning»."
 
 #: src/olympia/users/models.py:1201
 msgid ""
