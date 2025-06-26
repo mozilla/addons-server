@@ -405,7 +405,7 @@ msgstr "Versjon {version_string} må vere høgare enn den tidlegare godkjende ve
 
 #: src/olympia/addons/validators.py:41
 msgid "Both `license` and `custom_license` cannot be provided together."
-msgstr "Både «lisens» og «tilpassa_lisens» kan ikkje leverast saman."
+msgstr "Både «license» og «custom_license» kan ikkje leverast saman."
 
 #: src/olympia/addons/validators.py:64
 msgid "This field, or custom_license, is required for listed versions."
@@ -1167,7 +1167,7 @@ msgstr "{addon} tvangsaktivert"
 #: src/olympia/constants/activity.py:902
 #, python-brace-format
 msgid "{addon} {version} un-rejected."
-msgstr ""
+msgstr "{addon} {version} ikkje-avvist."
 
 #: src/olympia/constants/activity.py:903
 msgid "Un-rejected"
@@ -1181,20 +1181,20 @@ msgstr "Svar på {rating} skriven for {addon}."
 #: src/olympia/constants/activity.py:958
 #, python-brace-format
 msgid "{addon} {version} pending rejection cleared."
-msgstr ""
+msgstr "{addon} {version} ventande avvisning fjerna."
 
 #: src/olympia/constants/activity.py:959
 msgid "Pending rejection cleared"
-msgstr ""
+msgstr "Ventande avvising fjerna"
 
 #: src/olympia/constants/activity.py:1006
 #, python-brace-format
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
-msgstr ""
+msgstr "{user_responsible} endra {addon}-sluggen frå {0} til {1}."
 
 #: src/olympia/constants/activity.py:1007
 msgid "Add-on slug changed"
-msgstr ""
+msgstr "Tilleggs-sluggen er endra"
 
 #: src/olympia/constants/activity.py:1014
 #, python-brace-format
@@ -1204,26 +1204,26 @@ msgstr "Samling {collection} sletta av moderator"
 #: src/olympia/constants/activity.py:1020
 #, python-brace-format
 msgid "Collection {collection} un-deleted by moderator"
-msgstr ""
+msgstr "Samling {collection} gjenoppretta av moderator"
 
 #: src/olympia/constants/activity.py:1029
 #, python-brace-format
 msgid "Review {rating} for {addon} un-deleted."
-msgstr ""
+msgstr "Omtale {rating} for {addon} er ikkje lenger sletta."
 
 #: src/olympia/constants/activity.py:1058
 #, python-brace-format
 msgid "{addon} {version} rejected automatically after delay expired."
-msgstr ""
+msgstr "{addon} {version} vart automatisk avvist etter at forseinkinga gjekk ut."
 
 #: src/olympia/constants/activity.py:1059
 msgid "Rejected automatically after delay expired"
-msgstr ""
+msgstr "Avvist automatisk etter at forseinkinga er gått ut"
 
 #: src/olympia/constants/activity.py:1070
 #, python-brace-format
 msgid "{addon} {version} content rejected automatically after delay expired."
-msgstr ""
+msgstr "{addon} {version} innhald vart automatisk avvist etter at forseinkinga var gått ut."
 
 #: src/olympia/constants/activity.py:1071
 msgid "Content rejected automatically after delay expired"
@@ -1232,7 +1232,7 @@ msgstr ""
 #: src/olympia/constants/activity.py:1196
 #, python-brace-format
 msgid "{addon} {version} pending rejection changed."
-msgstr ""
+msgstr "{addon} {version} ventande avvising endra."
 
 #: src/olympia/constants/activity.py:1197
 msgid "Pending rejection changed"
