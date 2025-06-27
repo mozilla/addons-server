@@ -5518,7 +5518,7 @@ msgstr "Δημιουργήστε και προσαρμόστε ομάδες κα
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:567
 msgid "Save an entire web page—including images and styling—as a single HTML file."
-msgstr "Αποθήκευση ολόκληρης ιστοσελίδας — μαζί με τις εικόνες και το στυλ της — σε αρχείο HTML."
+msgstr "Αποθηκεύστε μια ολόκληρη ιστοσελίδα —μαζί με τις εικόνες και τη μορφοποίησή της— σε ένα αρχείο HTML."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:572
@@ -5696,7 +5696,7 @@ msgstr "Απολαύστε μικρογραφίες ιστοτόπων δίπλ�
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:844
 msgid "Save an entire web page — including images and styling — as a single HTML file."
-msgstr "Αποθήκευση ολόκληρης ιστοσελίδας — μαζί με τις εικόνες και το στυλ της — σε αρχείο HTML."
+msgstr "Αποθηκεύστε μια ολόκληρη ιστοσελίδα —μαζί με τις εικόνες και τη μορφοποίησή της— σε ένα αρχείο HTML."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:859
