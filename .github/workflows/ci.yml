@@ -339,44 +339,26 @@ jobs:
             name: Release Build
             dry_run: ${{ needs.context.outputs.is_release_tag != 'true' }}
 
-    env:
-      event: ${{ github.event_name }}
-      workflow_id: ${{ github.run_id }}
-      workflow_url: ${{ format('{0}/{1}/actions/runs/{2}', github.server_url, github.repository, github.run_id) }}
-      actor: ${{ github.event.sender.login }}
-      repo_url: ${{ github.server_url }}/${{ github.repository }}
-      env: ci
-      result: ${{ needs.push_gar.result }}
-      ref: ${{ needs.context.outputs.git_ref }}
-      ref_link: ${{ needs.context.outputs.git_ref_link }}
-
     steps:
-      - name: Notification Context
-        id: context
-        run: |
-          emoji=":x:"
 
-          if [[ "$result" == "success" ]]; then
-            emoji=":white_check_mark:"
-          elif [[ "$result" == "cancelled" ]]; then
-            emoji=":github-actions-cancelled:"
-          fi
-
-          echo "emoji=$emoji" >> "$GITHUB_OUTPUT"
-          cat "$GITHUB_OUTPUT"
-
-      - name: Slack Notification
-        uses: mozilla/addons/.github/actions/slack-workflow-notification@10f7096e6b20007d59425e7309d3326519785bda
-        with:
-          slack_token: ${{ secrets.SLACK_TOKEN }}
-          slack_channel: ${{ vars.SLACK_ADDONS_PRODUCTION_CHANNEL }}
-          emoji: ${{ steps.context.outputs.emoji }}
-          actor: ${{ env.actor }}
-          conclusion: ${{ env.result }}
-          workflow_id: ${{ env.workflow_id }}
-          workflow_url: ${{ env.workflow_url }}
-          event: ${{ env.event }}
-          env: ${{ env.env }}
-          ref: ${{ env.ref }}
-          ref_link: ${{ env.ref_link }}
-          dry_run: ${{ matrix.dry_run }}
+    - name: Slack Notification
+      uses: mozilla/addons/.github/actions/slack-workflow-notification@d29de6a2f1890252d787932c3600966fa5f22f66
+      with:
+        slack_token: ${{ secrets.SLACK_TOKEN }}
+        slack_channel: ${{ vars.SLACK_ADDONS_PRODUCTION_CHANNEL }}
+        conclusion: "${{ needs.push_gar.result }}"
+        text: "${{ needs.context.outputs.git_ref }}"
+        text_link: "${{ needs.context.outputs.git_ref_link }}"
+        context: |
+          {
+            "actor": "${{ github.event.sender.login }}",
+            "event": "${{ github.event_name }}",
+            "env": "ci",
+            "repo": "${{ github.repository }}"
+          }
+        links: |
+          {
+            "${{ github.run_id }}": "${{ format('{0}/{1}/actions/runs/{2}', github.server_url, github.repository, github.run_id) }}",
+            "${{ github.repository }}": "${{ github.server_url }}/${{ github.repository }}"
+          }
+        dry_run: ${{ matrix.dry_run }}
