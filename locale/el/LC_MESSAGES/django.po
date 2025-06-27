@@ -2125,7 +2125,7 @@ msgid ""
 "on manifest’s <a {a_attrs}>update_url</a> is provided, as this is the URL where Firefox finds updates for automatic deployment to your users.</span>"
 msgstr ""
 "Σε δικό σας ιστότοπο. <span class=\"helptext\">Αφού υπογραφτεί η υποβολή σας από τη Mozilla, μπορείτε να κάνετε λήψη του αρχείου .xpi από το Κέντρο προγραμματιστών και να το διανείμετε στο κοινό "
-"σας. Bεβαιωθείτε ότι το αρχείο δήλωσης του προσθέτου σας περιέχει το <a {a_attrs}>update_url</a>, καθώς το Firefox θα χρησιμοποιεί αυτό το URL για να βρει ενημερώσεις και να τις διανείμει αυτόματα "
+"σας. Βεβαιωθείτε ότι το αρχείο δήλωσης του προσθέτου σας περιέχει το <a {a_attrs}>update_url</a>, καθώς το Firefox θα χρησιμοποιεί αυτό το URL για να βρει ενημερώσεις και να τις διανείμει αυτόματα "
 "στους χρήστες σας.</span>"
 
 #: src/olympia/devhub/forms.py:1404 src/olympia/devhub/templates/devhub/includes/agreement.html:15
