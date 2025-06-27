@@ -5411,7 +5411,7 @@ msgstr "Απολαύστε την υποστήριξη λήψεων με πολ�
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:507
 msgid "Save images easily—just grab them from your current tab."
-msgstr "Εύκολη αποθήκευση εικόνων — απλά \"αρπάξτε\" τις από την τρέχουσα καρτέλα σας."
+msgstr "Εύκολη αποθήκευση εικόνων· «αρπάξτε» τες απλώς από την τρέχουσα καρτέλα σας."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:510
@@ -5727,7 +5727,7 @@ msgstr "Διαχειριστείτε καλύτερα τον χρόνο σας �
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:901
 msgid "Tired of that \"Video paused. Continue watching?\" message? Listen to your favorite music uninterrupted on YouTube."
-msgstr "Σας κούρασε το παράθυρο \"Το βίντεο διακόπηκε. Συνέχεια παρακολούθησης;\"; Ακούστε την αγαπημένη σας μουσική χωρίς διακοπή στο YouTube."
+msgstr "Σας κούρασε το μήνυμα «Το βίντεο διακόπηκε. Συνέχεια παρακολούθησης;»; Ακούστε την αγαπημένη σας μουσική χωρίς διακοπή στο YouTube."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:907
@@ -6171,12 +6171,12 @@ msgstr "Η ελάχιστη υποστηριζόμενη «strict_min_version» 
 #: src/olympia/files/utils.py:350
 #, python-brace-format
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
-msgstr "Άγνωστο \"strict_min_version\" {appver} για {app}"
+msgstr "Άγνωστο «strict_min_version» {appver} για το {app}"
 
 #: src/olympia/files/utils.py:364
 #, python-brace-format
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
-msgstr "Άγνωστο \"strict_max_version\" {appver} για το {app}"
+msgstr "Άγνωστο «strict_max_version» {appver} για το {app}"
 
 #: src/olympia/files/utils.py:548
 msgid "Unsupported compression method in archive."
