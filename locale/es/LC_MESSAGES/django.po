@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-06-26 09:27+0000\n"
+"POT-Creation-Date: 2025-06-27 12:53+0000\n"
 "PO-Revision-Date: 2024-01-15 13:27+0000\n"
 "Last-Translator: Bund10z <abu.avila@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -1362,9 +1362,6 @@ msgstr ""
 
 msgid "The Unlicense"
 msgstr ""
-
-msgid "Not Promoted"
-msgstr "No promocionado"
 
 msgid "Recommended"
 msgstr "Recomendado"
