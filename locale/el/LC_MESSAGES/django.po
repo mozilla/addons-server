@@ -4935,7 +4935,7 @@ msgstr "Πάρτε παραγωγική έμπνευση. Τροποποιήστ
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:224
 msgid "Block time-wasting sites so you can focus on the task at hand."
-msgstr "Αποκλείστε ιστοτόπους που αναλώνουν το χρόνο σας ώστε να συγκεντρώνεστε στην εργασία σας."
+msgstr "Αποκλείστε ιστοτόπους που αναλώνουν τον χρόνο σας ώστε να συγκεντρώνεστε στην εργασία σας."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:227
@@ -5264,7 +5264,7 @@ msgstr "Κάντε τις αγορές σας με αυτοπεποίθηση. �
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:419
 msgid "Track productivity. Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
-msgstr "Εποπτεία παραγωγικότητας. Μετρήστε το χρόνο που ξοδεύετε στον υπολογιστή ή σε συγκεκριμένες εφαρμογές, όπως τα Trello, JIRA, Basecamp, GitHub και πολλά άλλα."
+msgstr "Εποπτεία παραγωγικότητας. Μετρήστε τον χρόνο που ξοδεύετε στον υπολογιστή ή σε συγκεκριμένες εφαρμογές, όπως τα Trello, JIRA, Basecamp, GitHub και πολλά άλλα."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:422
@@ -5726,7 +5726,7 @@ msgstr "Λάβετε ενημερώσεις καιρού απευθείας απ
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:898
 msgid "Manage your time better with a browser clock that charts work intervals."
-msgstr "Διαχειριστείτε καλύτερα το χρόνο σας με ένα ρολόι που χαρτογραφεί τα διαστήματα εργασίας."
+msgstr "Διαχειριστείτε καλύτερα τον χρόνο σας με ένα ρολόι που χαρτογραφεί τα διαστήματα εργασίας."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:901
