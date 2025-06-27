@@ -602,8 +602,8 @@ msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
 "browser is not being hijacked by third parties."
 msgstr ""
-"Βλέπετε αυτό το μήνυμα επειδή αυτός ο ιστότοπος HTTPS απαιτεί μια 'κεφαλίδα Referer' που θα αποσταλεί από το πρόγραμμα περιήγησης σας, αλλά καμία δεν έχει σταλεί. Αυτή η κεφαλίδα απαιτείται για "
-"λόγους ασφαλείας, για να διασφαλιστεί ότι το πρόγραμμα περιήγησης σας δεν θα απαγορευτεί από τρίτους."
+"Βλέπετε αυτό το μήνυμα επειδή αυτός ο ιστότοπος HTTPS απαιτεί μια «κεφαλίδα Referer» που θα αποσταλεί από το πρόγραμμα περιήγησής σας, αλλά καμία δεν έχει σταλεί. Αυτή η κεφαλίδα απαιτείται για "
+"λόγους ασφαλείας, ώστε να διασφαλιστεί ότι το πρόγραμμα περιήγησής σας δεν καταληφθεί από τρίτους."
 
 #: src/olympia/amo/templates/amo/403.html:26
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
