@@ -1,10 +1,9 @@
 from django.contrib import admin
-from django.db.models import Prefetch, Q
+from django.db.models import Prefetch
 from django.forms.models import modelformset_factory
 
 from olympia.addons.models import Addon
 from olympia.amo.admin import AMOModelAdmin
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.hero.models import PrimaryHero
 from olympia.versions.models import Version
 
@@ -106,9 +105,7 @@ class PromotedAddonAdminInline(admin.TabularInline):
             kwargs['help_text'] = db_field.help_text
             return SlugOrPkChoiceField(**kwargs)
         if db_field.name == 'promoted_group':
-            kwargs['queryset'] = PromotedGroup.objects.filter(
-                ~Q(group_id=PROMOTED_GROUP_CHOICES.NOT_PROMOTED)
-            )
+            kwargs['queryset'] = PromotedGroup.objects.all()
         return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
     def has_delete_permission(self, request, obj=None):

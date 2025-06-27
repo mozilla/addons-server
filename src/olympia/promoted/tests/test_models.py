@@ -126,22 +126,12 @@ class TestPromotedGroup(TestCase):
 
     def test_str_method(self):
         # Ensure the __str__ method returns the name
-        for const_group in PROMOTED_GROUPS_BY_ID.values():
-            pg = PromotedGroup.objects.get(group_id=const_group.id)
-            self.assertEqual(str(pg), const_group.name)
-
-    def test_boolean_representation(self):
-        promoted_group = PromotedGroup.objects.create(
-            group_id=PROMOTED_GROUP_CHOICES.NOT_PROMOTED,
-            name='Test',
-            api_name='test',
-        )
-        assert str(promoted_group) == 'Test'
-        assert bool(promoted_group) is False
+        for pg in PromotedGroup.objects.all():
+            self.assertEqual(str(pg), pg.name)
 
     def test_get_active_or_badged_promoted_groups(self):
         active_groups = PromotedGroup.active_groups()
-        assert len(active_groups) == 7
+        assert len(active_groups) == 6
         badged_groups = PromotedGroup.badged_groups()
         assert len(badged_groups) == 2
 

@@ -11,17 +11,14 @@ def add_promoted_for_each_recommended(apps, schema_editor):
     DiscoveryItem = apps.get_model('discovery', 'DiscoveryItem')
     PromotedAddon = apps.get_model('promoted', 'PromotedAddon')
     for disco in DiscoveryItem.objects.all():
-        group_id = (
-            PROMOTED_GROUP_CHOICES.RECOMMENDED
-            if disco.recommendable
-            else PROMOTED_GROUP_CHOICES.NOT_PROMOTED
-        )
-        promoted, _ = PromotedAddon.objects.get_or_create(
-            addon=disco.addon, group_id=group_id
-        )
-        if hasattr(disco, 'primaryhero'):
-            disco.primaryhero.promoted_addon = promoted
-            disco.primaryhero.save()
+        if disco.recommendable:
+            group_id = PROMOTED_GROUP_CHOICES.RECOMMENDED
+            promoted, _ = PromotedAddon.objects.get_or_create(
+                addon=disco.addon, group_id=group_id
+            )
+            if hasattr(disco, 'primaryhero'):
+                disco.primaryhero.promoted_addon = promoted
+                disco.primaryhero.save()
 
 
 class Migration(migrations.Migration):
