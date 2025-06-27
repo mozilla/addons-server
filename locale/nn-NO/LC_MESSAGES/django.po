@@ -5079,7 +5079,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:395
 msgid "Stop redirects so you can access the site you want—faster."
-msgstr ""
+msgstr "Stopp omdirigeringar slik at du får tilgang til nettstaden du ønskjer — raskare."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:398
@@ -5640,7 +5640,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:952
 msgid "Customize YouTube to taste."
-msgstr ""
+msgstr "Tilpass YouTube etter smak."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:955
@@ -6046,7 +6046,7 @@ msgstr ""
 
 #: src/olympia/files/utils.py:551
 msgid "Unsupported archive type."
-msgstr ""
+msgstr "Arkivtypen er ikkje støtta."
 
 #: src/olympia/files/utils.py:560
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
@@ -6082,7 +6082,7 @@ msgstr ""
 
 #: src/olympia/files/utils.py:863
 msgid "Invalid or corrupted file."
-msgstr ""
+msgstr "Ugyldig eller skada fil."
 
 #: src/olympia/files/utils.py:903
 #, fuzzy, python-format
