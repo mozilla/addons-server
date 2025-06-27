@@ -1659,7 +1659,8 @@ msgstr "Τοπία"
 #: src/olympia/constants/categories.py:300
 msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
 msgstr ""
-"Κάντε λήψη θεμάτων για το Firefox, που απεικονίζουν το περιβάλλον και το φυσικό κόσμο. Αυτή η κατηγορία περιέχει θέματα με ηλιοβασιλέματα, παραλίες, εικονογραφήσεις, ορίζοντες πόλεων και πολλά άλλα."
+"Κάντε λήψη θεμάτων για το Firefox, που απεικονίζουν το περιβάλλον και τον φυσικό κόσμο. Αυτή η κατηγορία περιέχει θέματα με ηλιοβασιλέματα, παραλίες, εικονογραφήσεις, ορίζοντες πόλεων και πολλά "
+"άλλα."
 
 #: src/olympia/constants/categories.py:307
 msgid "Seasonal"
