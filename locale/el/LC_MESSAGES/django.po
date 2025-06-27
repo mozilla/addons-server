@@ -1884,7 +1884,7 @@ msgstr "Καθυστέρηση αυτόματης έγκρισης"
 
 #: src/olympia/constants/scanners.py:27
 msgid "Delay auto-approval indefinitely"
-msgstr "Καθυστέρηση αυτόματης έγκρισης επ 'αόριστον"
+msgstr "Καθυστέρηση αυτόματης έγκρισης επ' αόριστον"
 
 #: src/olympia/constants/scanners.py:29
 msgid "Delay auto-approval indefinitely and add restrictions"
