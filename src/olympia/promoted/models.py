@@ -116,15 +116,6 @@ class PromotedGroup(models.Model):
     )
     objects = PromotedGroupManager()
 
-    def __bool__(self):
-        """
-        When we use a PromotedGroup in a boolean context, we should treat NOT_PROMOTED
-        as falsey. This is how the rest of the code base expects it. Eventually,
-        we should consider deprectaing the NOT_PROMOTED group which could yield
-        the same result via a database query simply not returning a promoted group.
-        """
-        return bool(self.group_id != PROMOTED_GROUP_CHOICES.NOT_PROMOTED)
-
     def save(self, *args, **kwargs):
         # Obsolete, never used in production, only there to prevent us from re-using
         # the ids. Both these classes used to have specific properties set that were

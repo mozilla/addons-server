@@ -11,7 +11,7 @@ def delete_verified_sponsored_promoted_usage(apps, schema_editor):
             PROMOTED_GROUP_CHOICES.VERIFIED,
             PROMOTED_GROUP_CHOICES.SPONSORED,
         )
-    ).update(group_id=PROMOTED_GROUP_CHOICES.NOT_PROMOTED)
+    ).delete()
     PromotedApproval.objects.filter(group_id__in=(
             PROMOTED_GROUP_CHOICES.VERIFIED,
             PROMOTED_GROUP_CHOICES.SPONSORED,

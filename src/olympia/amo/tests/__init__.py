@@ -55,7 +55,6 @@ from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
 from olympia.blocklist.models import Block, BlockType, BlockVersion
 from olympia.constants.categories import CATEGORIES
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.files.models import File
 from olympia.promoted.models import (
     PromotedAddon,
@@ -589,8 +588,6 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
         """
         Promotes the addon for the group in the given apps, or all if none are given.
         """
-        if group_id == PROMOTED_GROUP_CHOICES.NOT_PROMOTED:
-            return
 
         promoted_group = PromotedGroup.objects.get(group_id=group_id)
 
@@ -738,7 +735,7 @@ def addon_factory(status=amo.STATUS_APPROVED, version_kw=None, file_kw=None, **k
         addon = Addon.objects.create(type=type_, **kwargs)
 
     # Save 2.
-    if promoted_group_id and promoted_group_id != PROMOTED_GROUP_CHOICES.NOT_PROMOTED:
+    if promoted_group_id:
         group = PromotedGroup.objects.get(group_id=promoted_group_id)
         for app in amo.APP_USAGE:
             PromotedAddon.objects.create(

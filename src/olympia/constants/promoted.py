@@ -7,7 +7,6 @@ from olympia.constants import applications
 
 
 PROMOTED_GROUP_CHOICES = APIChoices(
-    ('NOT_PROMOTED', 0, 'Not Promoted'),
     ('RECOMMENDED', 1, 'Recommended'),
     ('LINE', 4, 'By Firefox'),
     ('SPOTLIGHT', 5, 'Spotlight'),
@@ -69,13 +68,6 @@ class PromotedClass(_PromotedSuperClass):
     def __bool__(self):
         return bool(self.id)
 
-
-# Obsolete with transition to DB-Based PromotedGroups.
-NOT_PROMOTED = PromotedClass(
-    id=PROMOTED_GROUP_CHOICES.NOT_PROMOTED,
-    name=_('Not Promoted'),
-    api_name=PROMOTED_GROUP_CHOICES.NOT_PROMOTED.api_value,
-)
 
 RECOMMENDED = PromotedClass(
     id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
@@ -170,7 +162,6 @@ PARTNER = PromotedClass(
 # If this list changes, we should update the relevant PromotedGroup instances
 # via a data migration to add/remove the "active" field.
 PROMOTED_GROUPS = [
-    NOT_PROMOTED,
     RECOMMENDED,
     LINE,
     SPOTLIGHT,

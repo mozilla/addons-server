@@ -20,9 +20,8 @@ class TestQueueCount(TestCase):
         user_factory(pk=settings.TASK_USER_ID)
 
     def _test_expected_count(self, date):
-        # We are recording every queue, plus drilling down in every promoted
-        # group, minus the special not promoted group.
-        expected_count = len(reviewer_tables_registry) + len(PROMOTED_GROUPS) - 1
+        # We are recording every queue, plus drilling down in every promoted group
+        expected_count = len(reviewer_tables_registry) + len(PROMOTED_GROUPS)
         assert QueueCount.objects.filter(date=date).count() == expected_count
 
     def test_empty(self):
