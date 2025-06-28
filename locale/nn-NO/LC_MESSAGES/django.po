@@ -2747,7 +2747,7 @@ msgstr "Taggar"
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:20
 #, python-brace-format
 msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
-msgstr ""
+msgstr "Stikkord (taggar) hjelper brukarar med å finne tillegget ditt. Du kan ha maksimalt {0} stikkord. Vel berre stikkord som er relevante for tillegget ditt."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:28
 #, python-brace-format
@@ -2760,7 +2760,7 @@ msgstr "Bidrags-URL"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:40
 msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
-msgstr ""
+msgstr "Om du ønskjer å be om pengebidrag frå brukarane dine, spesifiser ei side der dei kan gjere det."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:55 src/olympia/translations/templates/translations/trans-menu.html:13
 msgid "Default Locale"
@@ -2768,7 +2768,7 @@ msgstr "Standardspråk"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:56
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Informasjon om tillegget ditt blir vist i denne språkinnstillinga med mindre du overstyrer henne med ei språkspesifikk omsetjing. Dette er berre relevant for oppførte tillegg."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:72
 msgid "Homepage"
@@ -2996,9 +2996,8 @@ msgid "128x128px"
 msgstr "128x128 pikslar"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:57
-#, fuzzy
 msgid "Will be the standard in future add-on detail pages."
-msgstr "Vert nytta i detaljsider for utvidingar."
+msgstr "Vil bli standarden på framtidige detaljsider for tillegg."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:64
 msgid "Upload a Custom Icon..."
