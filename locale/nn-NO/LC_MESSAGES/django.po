@@ -2658,7 +2658,7 @@ msgstr "Førehandsvising av oppførte versjonar"
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html:32 src/olympia/devhub/templates/devhub/addons/submit/done.html:15
 msgid "Preview still being generated - come back later or refresh the page."
-msgstr ""
+msgstr "Førehandsvisninga blir framleis generert – kom tilbake seinare eller oppdater sida."
 
 #: src/olympia/devhub/templates/devhub/addons/invitation.html:3 src/olympia/users/utils.py:98
 #, python-brace-format
