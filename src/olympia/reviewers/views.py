@@ -52,6 +52,7 @@ from olympia.api.permissions import (
 )
 from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.reviewers import (
+    HELD_DECISION_CHOICES,
     MAX_VERSIONS_SHOWN_INLINE,
     REVIEWS_PER_PAGE,
     REVIEWS_PER_PAGE_MAX,
@@ -1278,10 +1279,10 @@ def decision_review(request, decision_id):
     if form.is_valid():
         data = form.cleaned_data
         match data.get('choice'):
-            case 'yes':
+            case HELD_DECISION_CHOICES.YES:
                 decision.execute_action(release_hold=True)
                 decision.send_notifications()
-            case 'no':
+            case HELD_DECISION_CHOICES.NO:
                 new_decision = ContentDecision.objects.create(
                     addon=decision.addon,
                     rating=decision.rating,
@@ -1300,7 +1301,7 @@ def decision_review(request, decision_id):
                 new_decision.execute_action(release_hold=True)
                 new_decision.target_versions.set(decision.target_versions.all())
                 report_decision_to_cinder_and_notify.delay(decision_id=new_decision.id)
-            case 'cancel':
+            case HELD_DECISION_CHOICES.CANCEL:
                 decision.requeue_held_action(
                     user=request.user, notes=data.get('comments', '')
                 )
