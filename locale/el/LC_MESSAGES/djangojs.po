@@ -398,7 +398,7 @@ msgstr "Διαμοιρασμός"
 
 #: static/js/stats/csv_keys.js:76
 msgid "Category Pages"
-msgstr "Σελίδες κατηγορίας"
+msgstr "Σελίδες κατηγοριών"
 
 #: static/js/stats/csv_keys.js:77
 msgid "Collections"
