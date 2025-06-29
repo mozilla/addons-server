@@ -2649,7 +2649,7 @@ msgstr "Κατάσταση"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:87
 msgid "We have not found any email records for you in the last 2 days."
-msgstr "Δεν έχουμε βρει καμία καταγραφή email για εσάς τις δύο τελευταίες ημέρες."
+msgstr "Δεν βρήκαμε καμία καταχώρηση email για εσάς τις δύο τελευταίες ημέρες."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:91
 msgid "Refresh results"
