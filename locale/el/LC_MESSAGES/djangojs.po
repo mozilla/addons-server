@@ -97,7 +97,7 @@ msgstr "Απρόσμενο σφάλμα διακομιστή κατά την ε�
 
 #: static/js/common/upload-addon.js:519
 msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
-msgstr "Επισημάνθηκε ρητά ως συμβατή με το Firefox για Android στο αρχείο δήλωσης"
+msgstr "Επισημάνθηκε ρητά ως συμβατό με το Firefox για Android στο αρχείο δήλωσης"
 
 #: static/js/common/upload-addon.js:561
 #, python-brace-format
