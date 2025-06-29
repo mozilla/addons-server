@@ -1031,7 +1031,7 @@ msgstr[1] "{0} σημειώσεις"
 
 #: static/js/zamboni/validator.js:494
 msgid "Validation task could not complete or completed with errors"
-msgstr "Η διεργασία επικύρωσης δεν ολοκληρώθηκε ή ολοκληρώθηκε με σφάλματα"
+msgstr "Δεν ήταν δυνατή η ολοκλήρωση της διεργασίας επικύρωσης ή ολοκληρώθηκε με σφάλματα"
 
 #: static/js/zamboni/validator.js:517
 msgid "Internal server error"
