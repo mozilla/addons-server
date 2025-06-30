@@ -813,14 +813,10 @@ class ContentActionOverrideApprove(ContentActionTargetAppealApprove):
     @property
     def previous_decisions(self):
         """Queryset with previous decisions made that this action would revert."""
-        # We want a queryset to be able to filter later, so create one from the
-        # overriden instance, or just return an empty one.
-        qs = self.decision.__class__.objects.all()
-        return (
-            qs.filter(pk=self.decision.override_of.pk)
-            if self.decision.override_of
-            else qs.none()
-        )
+        # If there is no overriden decision this will be an impossible query
+        # returning nothing, which is what we want here since this class is
+        # specific to overrides actions.
+        return self.decision.__class__.objects.filter(pk=self.decision.override_of_id)
 
 
 class ContentActionApproveNoAction(AnyTargetMixin, NoActionMixin, ContentAction):
