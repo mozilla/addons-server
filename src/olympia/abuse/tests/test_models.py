@@ -1294,11 +1294,12 @@ class TestCinderJob(TestCase):
         parent_policy = CinderPolicy.objects.create(
             uuid='678-90', name='bbb', text='BBB'
         )
-        policy = CinderPolicy.objects.create(
+        CinderPolicy.objects.create(
             uuid='123-45', name='aaa', text='AAA', parent=parent_policy
         )
         ContentDecision.objects.create(
-            cinder_id='12345', action=DECISION_ACTIONS.AMO_BAN_USER.value,
+            cinder_id='12345',
+            action=DECISION_ACTIONS.AMO_BAN_USER.value,
             user=target,
             cinder_job=cinder_job,
         )

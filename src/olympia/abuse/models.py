@@ -313,7 +313,7 @@ class CinderJob(ModelBase):
         # exists.
         decision, created = ContentDecision.objects.get_or_create(
             cinder_id=decision_cinder_id,
-            defaults = {
+            defaults={
                 'addon': (
                     self.target_addon
                     if self.target_addon_id
@@ -328,7 +328,7 @@ class CinderJob(ModelBase):
                 ],
                 'override_of': self.final_decision,
                 'cinder_job': self,
-            }
+            },
         )
         if created:
             policies = CinderPolicy.objects.filter(
