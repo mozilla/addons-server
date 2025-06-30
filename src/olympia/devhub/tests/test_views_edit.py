@@ -1669,6 +1669,8 @@ class TestEditDescribeStaticThemeListed(StaticMixin, BaseTestEditDescribe,
             self.describe_edit_url, self.get_dict(category='firefox'))
         assert response.context['addon'].all_categories == (
             self.get_addon().all_categories)
+        # FIXME: So presumably this should also be [308, 408], but it's []
+        assert [cat.id for cat in self.get_addon().all_categories] == []
 
         addon_cats = self.get_addon().categories.values_list('id', flat=True)
         assert sorted(addon_cats) == [308, 408]
