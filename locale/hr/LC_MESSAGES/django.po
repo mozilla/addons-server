@@ -1739,7 +1739,7 @@ msgstr "Značajno"
 
 #: src/olympia/constants/promoted.py:151
 msgid "Partner"
-msgstr ""
+msgstr "Partner"
 
 #: src/olympia/constants/reviewers.py:23
 msgid "No Reputation"
@@ -2048,7 +2048,7 @@ msgstr "Prikazano ime"
 
 #: src/olympia/devhub/forms.py:1435
 msgid "Confirm email address"
-msgstr ""
+msgstr "Potvrdi e-mail adresu"
 
 #: src/olympia/devhub/forms.py:1436
 msgid "Generate new credentials"
