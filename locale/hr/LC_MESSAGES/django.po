@@ -5715,17 +5715,17 @@ msgstr "Pogledaj sva proširenja"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1018
 msgid "Anti-tracking extensions"
-msgstr ""
+msgstr "Proširenja protiv praćenja"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1020
 msgid "Essential add-ons"
-msgstr ""
+msgstr "Važni dodaci"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1022
 msgid "Steam extensions"
-msgstr ""
+msgstr "Steam proširenja"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1024 src/olympia/discovery/strings.jinja2:1026 src/olympia/discovery/strings.jinja2:1028
@@ -5942,27 +5942,27 @@ msgstr "Početni paket proširenja"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1133
 msgid "See more starter extension staff picks"
-msgstr ""
+msgstr "Pogledaj izbor naših zaposlenika za početni paket proširenja"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1136
 msgid "Twitch extensions"
-msgstr ""
+msgstr "Twitch proširenja"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1138
 msgid "See more Twitch extension staff picks"
-msgstr ""
+msgstr "Pogledaj izbor naših zaposlenika za daljnja Twitch proširenja"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1146
 msgid "Gaming & media extensions"
-msgstr ""
+msgstr "Proširenja za igre i medije"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1148
 msgid "See more staff picks"
-msgstr ""
+msgstr "Pogledaj daljnji izbor naših zaposlenika"
 
 #: src/olympia/files/models.py:324
 msgid "Unreviewed"
@@ -5975,7 +5975,7 @@ msgstr "[status:%s]"
 
 #: src/olympia/files/utils.py:84
 msgid "This upload has already been submitted."
-msgstr ""
+msgstr "Ovaj je prijenos već poslan."
 
 #: src/olympia/files/utils.py:186 src/olympia/files/utils.py:870
 msgid "Could not parse the manifest file."
@@ -6056,7 +6056,7 @@ msgstr "Brojevi verzija smiju imati do {max_length} znakova."
 
 #: src/olympia/files/utils.py:923
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
-msgstr ""
+msgstr "Brojevi verzija smiju sadržavati samo slova, brojke i ove znakove interpunkcije: +*.-_."
 
 #: src/olympia/files/utils.py:932
 #, python-brace-format
@@ -6081,7 +6081,7 @@ msgstr "Ne možeš poslati jezični paket"
 
 #: src/olympia/files/utils.py:967
 msgid "The locale of an existing dictionary/language pack cannot be changed"
-msgstr ""
+msgstr "Jezik postojećeg rječnika/jezičnog paketa se ne može promijeniti"
 
 #: src/olympia/files/utils.py:1012
 #, python-brace-format
@@ -6095,7 +6095,7 @@ msgstr "Neočekivana greška."
 #: src/olympia/files/utils.py:1026
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
-msgstr ""
+msgstr "Vrsta (%s) ne odgovara vrsti tvog dodatka na AMO-u (%s)"
 
 #: src/olympia/files/views.py:83 src/olympia/signing/views.py:128
 msgid "Missing \"upload\" key in multipart file data."
@@ -6123,11 +6123,11 @@ msgstr "Ostalo (navedi)"
 
 #: src/olympia/ratings/models.py:370
 msgid "Auto-flagged due to word match"
-msgstr ""
+msgstr "Automatski označeno zbog podudaranja riječi"
 
 #: src/olympia/ratings/models.py:371
 msgid "Auto-flagged due to user restriction"
-msgstr ""
+msgstr "Automatski označeno zbog korisničkog ograničenja"
 
 #: src/olympia/ratings/models.py:411
 #, python-format
