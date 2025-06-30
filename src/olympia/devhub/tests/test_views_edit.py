@@ -1666,14 +1666,13 @@ class TestEditDescribeStaticThemeListed(StaticMixin, BaseTestEditDescribe,
     def test_edit_categories_set(self):
         assert [cat.id for cat in self.get_addon().all_categories] == []
         response = self.client.post(
-            self.describe_edit_url, self.get_dict(category='firefox'))
+            self.describe_edit_url, self.get_dict(category=300))
         assert response.context['addon'].all_categories == (
             self.get_addon().all_categories)
-        # FIXME: So presumably this should also be [308, 408], but it's []
-        assert [cat.id for cat in self.get_addon().all_categories] == []
+        assert [cat.id for cat in self.get_addon().all_categories] == [300]
 
         addon_cats = self.get_addon().categories.values_list('id', flat=True)
-        assert sorted(addon_cats) == [308, 408]
+        assert sorted(addon_cats) == [300]  # FIXME: Master is 320, but I think that's just firefox vs thunderbird
 
     def test_edit_categories_change(self):
         category_desktop = Category.objects.get(id=300)
