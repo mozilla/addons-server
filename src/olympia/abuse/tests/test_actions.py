@@ -57,6 +57,12 @@ from ..models import AbuseReport, CinderAppeal, CinderJob, CinderPolicy, Content
 class BaseTestContentAction:
     def setUp(self):
         addon = addon_factory()
+        self.past_negative_decision = ContentDecision.objects.create(
+            cinder_id='4815162342',
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            addon=addon,
+            action_date=datetime.now(),
+        )
         self.decision = ContentDecision.objects.create(
             cinder_id='ab89',
             action=DECISION_ACTIONS.AMO_APPROVE,
@@ -255,13 +261,17 @@ class BaseTestContentAction:
         assert self.decision.private_notes not in mail_item.body
 
     def _test_approve_appeal_or_override(ContentActionClass):
+        # Common things that we expect to happen after a successful appeal or
+        # override of a negative action.
         raise NotImplementedError
 
     def test_approve_appeal_success(self):
+        self.past_negative_decision.update(appeal_job=self.cinder_job)
         self._test_approve_appeal_or_override(ContentActionTargetAppealApprove)
         assert 'After reviewing your appeal' in mail.outbox[0].body
 
-    def test_approve_override(self):
+    def test_approve_override_success(self):
+        self.decision.update(override_of=self.past_negative_decision)
         self._test_approve_appeal_or_override(ContentActionOverrideApprove)
         assert 'After reviewing your appeal' not in mail.outbox[0].body
 
@@ -425,6 +435,9 @@ class TestContentActionUser(BaseTestContentAction, TestCase):
         self.user = user_factory(display_name='<b>Bad Hørse</b>')
         self.cinder_job.abusereport_set.update(user=self.user, guid=None)
         self.decision.update(addon=None, user=self.user)
+        self.past_negative_decision.update(
+            addon=None, user=self.user, action=DECISION_ACTIONS.AMO_BAN_USER
+        )
 
     def _test_ban_user(self):
         self.decision.update(action=DECISION_ACTIONS.AMO_BAN_USER)
@@ -614,6 +627,12 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
         self.cinder_job.abusereport_set.update(guid=self.addon.guid)
         self.decision.update(addon=self.addon)
         self.decision.target_versions.set((self.version, self.old_version))
+        self.past_negative_decision.update(
+            addon=self.addon, action=self.takedown_decision_action
+        )
+        self.past_negative_decision.target_versions.set(
+            (self.version, self.old_version)
+        )
 
     def test_addon_version_has_target_versions(self):
         # if the decision has target_versions, then the most recent target
@@ -714,12 +733,6 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
     def _test_approve_appeal_or_override(self, ContentActionClass):
         self.addon.update(status=amo.STATUS_DISABLED)
         ActivityLog.objects.all().delete()
-        ContentDecision.objects.create(
-            appeal_job=self.cinder_job,
-            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
-            action_date=datetime.now(),
-            addon=self.addon,
-        ).target_versions.set(self.decision.target_versions.all())
         action = ContentActionClass(self.decision)
         activity = action.process_action()
 
@@ -1049,7 +1062,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
     ActionClass = ContentActionRejectVersion
     activity_log_action = amo.LOG.REJECT_VERSION
     disable_snippet = 'versions of your Extension have been disabled'
-    takedown_decision_action = DECISION_ACTIONS.AMO_DISABLE_ADDON
+    takedown_decision_action = DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
 
     def setUp(self):
         super().setUp()
@@ -1132,12 +1145,6 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         )
         # set-up where version.file doesn't have an original_status for some reason
         self.version.file.update(status=amo.STATUS_DISABLED)
-        ContentDecision.objects.create(
-            appeal_job=self.cinder_job,
-            action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
-            action_date=datetime.now(),
-            addon=self.addon,
-        ).target_versions.set(self.decision.target_versions.all())
         ActivityLog.objects.all().delete()
         action = ContentActionClass(self.decision)
         activity = action.process_action()
@@ -1166,6 +1173,45 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         self.cinder_job.notify_reporters(action)
         action.notify_owners()
         self._test_owner_restore_email(f'Mozilla Add-ons: {self.addon.name}')
+
+    def test_approve_override_success_for_delayed_reject(self):
+        for version in self.past_negative_decision.target_versions.all():
+            VersionReviewerFlags.objects.create(
+                version=version,
+                pending_rejection=datetime.now(),
+                pending_rejection_by=self.task_user,
+                pending_content_rejection=False,
+            )
+        self.past_negative_decision.update(
+            action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON
+        )
+        self.decision.update(override_of=self.past_negative_decision)
+        self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        self.old_version.file.update(status=amo.STATUS_APPROVED)
+        ActivityLog.objects.all().delete()
+        action = ContentActionOverrideApprove(self.decision)
+        activity = action.process_action()
+
+        assert self.version.file.reload().status == amo.STATUS_AWAITING_REVIEW
+        assert self.old_version.file.reload().status == amo.STATUS_APPROVED
+        assert self.version.reviewerflags.reload().pending_rejection is None
+        assert self.old_version.reviewerflags.reload().pending_rejection is None
+        assert activity.log == amo.LOG.CLEAR_PENDING_REJECTION
+        assert activity.arguments == [
+            self.addon,
+            self.decision,
+            self.policy,
+            self.version,
+            self.old_version,
+        ]
+        assert activity.user == self.task_user
+        assert ActivityLog.objects.count() == 2
+        second_activity = ActivityLog.objects.exclude(pk=activity.pk).get()
+        assert second_activity.log == amo.LOG.REVIEWER_PRIVATE_COMMENT
+        assert second_activity.arguments == [self.addon, self.decision]
+        assert second_activity.user == self.task_user
+        assert second_activity.details == {'comments': self.decision.private_notes}
+        assert len(mail.outbox) == 0
 
     def test_log_action_no_notes(self):
         self.decision.update(
@@ -1739,6 +1785,11 @@ class TestContentActionCollection(BaseTestContentAction, TestCase):
         )
         self.cinder_job.abusereport_set.update(collection=self.collection, guid=None)
         self.decision.update(addon=None, collection=self.collection)
+        self.past_negative_decision.update(
+            addon=None,
+            collection=self.collection,
+            action=DECISION_ACTIONS.AMO_DELETE_COLLECTION,
+        )
 
     def _test_delete_collection(self):
         self.decision.update(action=DECISION_ACTIONS.AMO_DELETE_COLLECTION)
@@ -1903,6 +1954,9 @@ class TestContentActionRating(BaseTestContentAction, TestCase):
         )
         self.cinder_job.abusereport_set.update(rating=self.rating, guid=None)
         self.decision.update(addon=None, rating=self.rating)
+        self.past_negative_decision.update(
+            addon=None, rating=self.rating, action=DECISION_ACTIONS.AMO_DELETE_RATING
+        )
         ActivityLog.objects.all().delete()
 
     def _test_delete_rating(self):

@@ -1,5 +1,7 @@
 from django.utils.translation import gettext_lazy as _
 
+from extended_choices import Choices
+
 from .base import ADDON_ANY, ADDON_EXTENSION, ADDON_STATICTHEME
 
 
@@ -67,3 +69,11 @@ REASON_ADDON_TYPE_CHOICES = {
     ADDON_EXTENSION: _('Extension'),
     ADDON_STATICTHEME: _('Theme'),
 }
+
+HELD_DECISION_CHOICES = Choices(
+    ('YES', 'yes', 'Proceed with action'),
+    ('NO', 'no', 'Approve content instead'),
+    ('CANCEL', 'cancel', 'Cancel and enqueue in Reviewer Tools'),
+)
+HELD_DECISION_CHOICES.add_subset('ADDON', ('YES', 'CANCEL'))
+HELD_DECISION_CHOICES.add_subset('OTHER', ('YES', 'NO'))
