@@ -5627,7 +5627,7 @@ msgstr "Αλλάξτε την εμφάνιση του διαδικτύου."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:637
 msgid "Customize YouTube to taste. Give it a new look, new features & filter only the content you want."
-msgstr "Προσαρμόστε το YouTube στις δικές ανάγκες. Δώστε μια νέα εμφάνιση, νέες λειτουργίες & φιλτράρετε μόνο το περιεχόμενο που θέλετε."
+msgstr "Προσαρμόστε το YouTube στις δικές ανάγκες. Δώστε μια νέα εμφάνιση, νέες λειτουργίες και φιλτράρετε μόνο το περιεχόμενο που θέλετε."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:649
