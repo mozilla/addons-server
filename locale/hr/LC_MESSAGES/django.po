@@ -6208,11 +6208,11 @@ msgstr "Ocijenjeno s %(rating)s od 5 zvjezdica"
 #: src/olympia/reviewers/forms.py:372
 #, python-brace-format
 msgid "Unsupported file type, please upload a file {extensions}."
-msgstr ""
+msgstr "Nepodržana vrsta datoteke, prenesi datoteku {extensions}."
 
 #: src/olympia/reviewers/forms.py:378
 msgid "File too large."
-msgstr ""
+msgstr "Datoteka je prevelika."
 
 #: src/olympia/reviewers/templates/reviewers/moderationlog_detail.html:11
 #, python-format
@@ -6231,7 +6231,7 @@ msgstr "<strong>%(reason)s</strong> <span class=\"light\">Označeno od %(user)s,
 
 #: src/olympia/reviewers/templates/reviewers/review.html:312
 msgid "<strong>Warning!</strong> Another user may be viewing this page before you."
-msgstr ""
+msgstr "<strong>Upozorenje!</strong> Jedan drugi korisnik možda pregledava ovu stranicu prije tebe."
 
 #: src/olympia/reviewers/templates/reviewers/includes/user_ratings_list.html:5
 #, python-format
@@ -6245,27 +6245,27 @@ msgstr "Verzija %(version)s &middot; %(created)s <span class=\"light\">&middot; 
 
 #: src/olympia/scanners/models.py:128
 msgid "This is the exact name of the rule used by a scanner."
-msgstr ""
+msgstr "Ovo je jednako ime pravila koje koristi skener."
 
 #: src/olympia/scanners/models.py:132
 msgid "Human-readable name for the scanner rule"
-msgstr ""
+msgstr "Ljudski čitljivo ime pravila skenera"
 
 #: src/olympia/scanners/models.py:135
 msgid "Human-readable name"
-msgstr ""
+msgstr "Ljudski čitljivo ime"
 
 #: src/olympia/scanners/models.py:139
 msgid "Human readable description for the scanner rule"
-msgstr ""
+msgstr "Ljudski čitljiv opis za pravilo skenera"
 
 #: src/olympia/scanners/models.py:172
 msgid "Yara rules should have a definition"
-msgstr ""
+msgstr "Yara pravila trebaju imati definiciju"
 
 #: src/olympia/scanners/models.py:179
 msgid "The name of the rule in the definition should match the name of the scanner rule"
-msgstr ""
+msgstr "Ime pravila u definiciji trebao bi odgovarati imenu pravila skenera"
 
 #: src/olympia/scanners/models.py:187
 msgid "Only one Yara rule is allowed in the definition"
@@ -6282,11 +6282,11 @@ msgstr "Došlo je do greške prilikom kompiliranja definicije"
 
 #: src/olympia/scanners/models.py:212
 msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
-msgstr ""
+msgstr "Ako je neoznačeno, rezultati skeniranja neće biti vezani za ovo pravilo i radnja se neće izvršiti."
 
 #: src/olympia/scanners/models.py:382
 msgid "Run this rule on add-ons that have been force-disabled as well."
-msgstr ""
+msgstr "Pokreni ovo pravilo i na dodacima koji su prisilno deaktivirani."
 
 #: src/olympia/search/filters.py:49 src/olympia/search/filters.py:62 src/olympia/search/filters.py:95 src/olympia/search/filters.py:158 src/olympia/search/filters.py:198
 #: src/olympia/search/filters.py:344 src/olympia/search/filters.py:455
@@ -6339,7 +6339,7 @@ msgstr "Neispravna ID oznaka dodatka u URL-u ili paket"
 
 #: src/olympia/signing/views.py:211
 msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."
-msgstr ""
+msgstr "Ne možeš dodati navedene verzije dodatku čije je stanje postavljeno na „Nevidljivo”."
 
 #: src/olympia/signing/views.py:220
 msgid "You cannot add a listed version to this add-on via the API due to missing metadata. Please submit via the website"
