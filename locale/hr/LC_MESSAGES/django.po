@@ -6343,11 +6343,11 @@ msgstr "Ne možeš dodati navedene verzije dodatku čije je stanje postavljeno n
 
 #: src/olympia/signing/views.py:220
 msgid "You cannot add a listed version to this add-on via the API due to missing metadata. Please submit via the website"
-msgstr ""
+msgstr "Ne možeš dodati navedenu verziju ovom dodatku putem API-a, jer nedostaju metapodaci. Pošalji putem web stranice"
 
 #: src/olympia/signing/views.py:275
 msgid "No uploaded file for that add-on and version."
-msgstr ""
+msgstr "Nema prenesene datoteke za taj dodatak i verziju."
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:4
 msgid "Overview"
