@@ -286,7 +286,9 @@ def duplicate_addon_version_for_rollback(*, version_pk, new_version_number, user
     old_version = Version.unfiltered.get(id=version_pk)
     user = UserProfile.objects.get(id=user_pk)
 
-    text = f'Rolling back addon {old_version.addon}, to version {old_version.version}'
+    text = (
+        f'Rolling back add-on "{old_version.addon}", to version "{old_version.version}"'
+    )
     log.info(f'Starting: {text}')
     version = duplicate_addon_version(old_version, new_version_number, user)
     if not version:
@@ -329,7 +331,7 @@ def duplicate_addon_version_for_rollback(*, version_pk, new_version_number, user
             details={
                 # The comment is not translated on purpose, to behave like regular human
                 # approval does.
-                'comments': f'{text} by re-publishing as {new_version_number}, '
+                'comments': f'{text} by re-publishing as "{new_version_number}", '
                 'successfull!\n'
                 'Keep in mind that, like any submission, reviewers may look into this '
                 'version in the future and determine that it requires changes or '

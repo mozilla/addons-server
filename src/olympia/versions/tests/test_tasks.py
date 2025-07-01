@@ -699,8 +699,8 @@ class TestDuplicateAddonVersionForRollback(TestCase):
         assert mail.outbox[0].to == [self.user.email]
         assert mail.outbox[0].subject == f'Mozilla Add-ons: Rændom add-on {new.version}'
         assert (
-            f'Rolling back addon {new.addon_id}: Rændom add-on, to version 0.0.1 '
-            f'by re-publishing as {new.version}, successfull' in mail.outbox[0].body
+            f'Rolling back add-on "{new.addon_id}: Rændom add-on", to version "0.0.1" '
+            f'by re-publishing as "{new.version}", successfull' in mail.outbox[0].body
         )
 
     @mock.patch('olympia.lib.crypto.tasks.sign_file')
@@ -758,6 +758,6 @@ class TestDuplicateAddonVersionForRollback(TestCase):
         assert mail.outbox[0].to == [self.user.email]
         assert mail.outbox[0].subject == 'Mozilla Add-ons: Rændom add-on 0.0.1'
         assert (
-            f'Rolling back addon {self.rollback_version.addon_id}: Rændom add-on, to '
-            f'version 0.0.1 failed.' in mail.outbox[0].body
+            f'Rolling back add-on "{self.rollback_version.addon_id}: Rændom add-on", '
+            f'to version "0.0.1" failed.' in mail.outbox[0].body
         )
