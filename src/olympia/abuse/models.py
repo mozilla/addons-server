@@ -285,7 +285,8 @@ class CinderJob(ModelBase):
         decision_notes,
         policy_ids,
     ):
-        """This is called for cinder originated decisions only."""
+        """Process a decision as sent by the webhook. If a decision with that
+        `decision_cinder_id` already exists, do nothing."""
         # appeals on REJECT_VERSION_ADDON need target_versions redefining.
         if appealed_ids := self.appealed_decisions.filter(
             action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
@@ -304,33 +305,43 @@ class CinderJob(ModelBase):
         abuse_report_or_decision = (
             self.appealed_decisions.first() or self.abusereport_set.first()
         )
-        decision = ContentDecision.objects.create(
-            addon=(
-                self.target_addon
-                if self.target_addon_id
-                else abuse_report_or_decision.addon
-            ),
-            rating=getattr(abuse_report_or_decision, 'rating', None),
-            collection=getattr(abuse_report_or_decision, 'collection', None),
-            user=getattr(abuse_report_or_decision, 'user', None),
+        # It's possible we already have created the decision - in particular
+        # for overrides created in AMO, we call Cinder API to create the
+        # override but then also receive that same decision through the webhook
+        # without knowing it came from us in the first place. So we use
+        # get_or_create() and bail if a decision with that cinder_id already
+        # exists.
+        decision, created = ContentDecision.objects.get_or_create(
             cinder_id=decision_cinder_id,
-            action=decision_action,
-            private_notes=decision_notes[
-                : ContentDecision._meta.get_field('reasoning').max_length
-            ],
-            override_of=self.final_decision,
-            cinder_job=self,
+            defaults={
+                'addon': (
+                    self.target_addon
+                    if self.target_addon_id
+                    else abuse_report_or_decision.addon
+                ),
+                'rating': getattr(abuse_report_or_decision, 'rating', None),
+                'collection': getattr(abuse_report_or_decision, 'collection', None),
+                'user': getattr(abuse_report_or_decision, 'user', None),
+                'action': decision_action,
+                'private_notes': decision_notes[
+                    : ContentDecision._meta.get_field('reasoning').max_length
+                ],
+                'override_of': self.final_decision,
+                'cinder_job': self,
+            },
         )
-        policies = CinderPolicy.objects.filter(
-            uuid__in=policy_ids
-        ).without_parents_if_their_children_are_present()
-        decision.policies.add(*policies)
-        if target_versions:
-            decision.target_versions.set(target_versions)
+        if created:
+            policies = CinderPolicy.objects.filter(
+                uuid__in=policy_ids
+            ).without_parents_if_their_children_are_present()
+            decision.policies.add(*policies)
+            if target_versions:
+                decision.target_versions.set(target_versions)
 
-        # no need to report - it came from Cinder
-        decision.execute_action()
-        decision.send_notifications()
+            # no need to report - it came from Cinder
+            decision.execute_action()
+            decision.send_notifications()
+        return created
 
     def process_queue_move(self, *, new_queue, notes):
         CinderQueueMove.objects.create(cinder_job=self, notes=notes, to_queue=new_queue)

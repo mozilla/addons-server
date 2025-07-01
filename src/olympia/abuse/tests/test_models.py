@@ -1272,7 +1272,7 @@ class TestCinderJob(TestCase):
             mock.patch.object(ContentActionBanUser, 'notify_owners') as notify_mock,
         ):
             action_mock.return_value = None
-            cinder_job.process_decision(
+            assert cinder_job.process_decision(
                 decision_cinder_id='12345',
                 decision_action=DECISION_ACTIONS.AMO_BAN_USER.value,
                 decision_notes='teh notes',
@@ -1286,6 +1286,40 @@ class TestCinderJob(TestCase):
         assert action_mock.call_count == 1
         assert notify_mock.call_count == 1
         assert list(cinder_job.decision.policies.all()) == [policy]
+
+    def test_process_decision_decision_already_exists(self):
+        cinder_job = CinderJob.objects.create(job_id='1234')
+        target = user_factory()
+        AbuseReport.objects.create(user=target, cinder_job=cinder_job)
+        parent_policy = CinderPolicy.objects.create(
+            uuid='678-90', name='bbb', text='BBB'
+        )
+        CinderPolicy.objects.create(
+            uuid='123-45', name='aaa', text='AAA', parent=parent_policy
+        )
+        ContentDecision.objects.create(
+            cinder_id='12345',
+            action=DECISION_ACTIONS.AMO_BAN_USER.value,
+            user=target,
+            cinder_job=cinder_job,
+        )
+
+        with (
+            mock.patch.object(ContentActionBanUser, 'process_action') as action_mock,
+            mock.patch.object(ContentActionBanUser, 'notify_owners') as notify_mock,
+        ):
+            action_mock.return_value = None
+            # Shouldn't fail.
+            assert not cinder_job.process_decision(
+                decision_cinder_id='12345',
+                decision_action=DECISION_ACTIONS.AMO_BAN_USER.value,
+                decision_notes='teh notes',
+                policy_ids=['123-45', '678-90'],
+            )
+        # Shouldn't execute the action or notify, we already processed this
+        # decision.
+        assert action_mock.call_count == 0
+        assert notify_mock.call_count == 0
 
     def test_process_decision_for_legal_reviewed_job(self):
         """An add-on forwarded to the legal queue for review will be a job that may not

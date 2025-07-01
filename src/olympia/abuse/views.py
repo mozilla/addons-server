@@ -251,12 +251,14 @@ def process_webhook_payload_decision(payload):
         )
         raise CinderWebhookError(f'Payload invalid: {reason}')
 
-    cinder_job.process_decision(
+    created = cinder_job.process_decision(
         decision_cinder_id=source.get('decision', {}).get('id'),
         decision_action=enforcement_actions[0],
         decision_notes=payload.get('notes') or '',
         policy_ids=policy_ids,
     )
+    if not created:
+        raise CinderWebhookIgnoredError('Decision already exists')
 
 
 def process_webhook_payload_job_actioned(payload):
