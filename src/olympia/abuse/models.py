@@ -341,6 +341,7 @@ class CinderJob(ModelBase):
             # no need to report - it came from Cinder
             decision.execute_action()
             decision.send_notifications()
+        return created
 
     def process_queue_move(self, *, new_queue, notes):
         CinderQueueMove.objects.create(cinder_job=self, notes=notes, to_queue=new_queue)

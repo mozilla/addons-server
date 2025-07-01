@@ -1272,7 +1272,7 @@ class TestCinderJob(TestCase):
             mock.patch.object(ContentActionBanUser, 'notify_owners') as notify_mock,
         ):
             action_mock.return_value = None
-            cinder_job.process_decision(
+            assert cinder_job.process_decision(
                 decision_cinder_id='12345',
                 decision_action=DECISION_ACTIONS.AMO_BAN_USER.value,
                 decision_notes='teh notes',
@@ -1310,7 +1310,7 @@ class TestCinderJob(TestCase):
         ):
             action_mock.return_value = None
             # Shouldn't fail.
-            cinder_job.process_decision(
+            assert not cinder_job.process_decision(
                 decision_cinder_id='12345',
                 decision_action=DECISION_ACTIONS.AMO_BAN_USER.value,
                 decision_notes='teh notes',

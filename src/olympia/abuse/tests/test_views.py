@@ -1276,6 +1276,29 @@ class TestCinderWebhook(TestCase):
         assert response.status_code == 201
         assert response.data == {'amo': {'received': True, 'handled': True}}
 
+    def test_process_decision_decision_already_exists(self):
+        abuse_report = self._setup_reports()
+        addon_factory(guid=abuse_report.guid)
+        req = self.get_request(data=self.get_data())
+        with mock.patch.object(CinderJob, 'process_decision') as process_mock:
+            process_mock.return_value = False
+            response = cinder_webhook(req)
+            process_mock.assert_called()
+            process_mock.assert_called_with(
+                decision_cinder_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
+                decision_action=DECISION_ACTIONS.AMO_DISABLE_ADDON.value,
+                decision_notes='some notes',
+                policy_ids=['f73ad527-54ed-430c-86ff-80e15e2a352b'],
+            )
+        assert response.status_code == 200
+        assert response.data == {
+            'amo': {
+                'received': True,
+                'handled': False,
+                'not_handled_reason': 'Decision already exists',
+            }
+        }
+
     def test_process_decision_called_for_appeal_confirm_approve(
         self, filename='reporter_appeal_confirm_approve.json'
     ):
