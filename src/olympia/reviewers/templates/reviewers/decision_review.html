@@ -52,7 +52,7 @@
       <th>Policies</th>
       <td>
         <ul>
-          {% for policy in decision.policies.all() %}
+          {% for policy in decision.get_policy_texts() %}
             <li>{{ policy }}</li>
           {% endfor %}
         </ul>
@@ -61,7 +61,10 @@
     <tr class="decision-notes">
       <th>Notes from moderator/reviewer</th>
       <td>
-        {{ decision.notes }}
+        {{ decision.reasoning }}
+      </td>
+      <td>
+        {{ decision.private_notes }}
       </td>
     </tr>
   </table>

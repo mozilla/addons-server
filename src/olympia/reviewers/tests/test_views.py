@@ -7979,16 +7979,23 @@ class TestHeldDecisionReview(ReviewerTest):
     def setUp(self):
         super().setUp()
 
+        policy = CinderPolicy.objects.create(
+            uuid='1', name='Bad', text='Things like {FOO}'
+        )
         self.decision = ContentDecision.objects.create(
             action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
             addon=addon_factory(),
             cinder_id='1234',
+            # private and reasoning wouldn't usually exist together but testing both
+            private_notes='Seakret deets',
+            reasoning='Pooblik deets',
+            metadata={
+                ContentDecision.POLICY_DYNAMIC_VALUES: {policy.uuid: {'FOO': 'baa'}}
+            },
         )
         self.version = self.decision.addon.current_version
         self.decision.target_versions.set([self.version])
-        self.decision.policies.add(
-            CinderPolicy.objects.create(uuid='1', name='Bad Things')
-        )
+        self.decision.policies.add(policy)
         CinderPolicy.objects.create(
             uuid='2',
             name='Approve',
@@ -8010,8 +8017,10 @@ class TestHeldDecisionReview(ReviewerTest):
             doc('tr.decision-created a').attr('href').endswith(self.decision.cinder_id)
         )
         assert 'Add-on disable' in doc('tr.decision-action td').html()
-        assert 'Bad Things' in doc('tr.decision-policies td').html()
+        assert 'Bad: Things like baa' in doc('tr.decision-policies td').html()
         assert 'Proceed with action' == doc('[for="id_choice_0"]').text()
+        assert 'Pooblik deets' in doc('.decision-notes td').eq(0).html()
+        assert 'Seakret deets' in doc('.decision-notes td').eq(1).html()
         assert (
             'Cancel and enqueue in Reviewer Tools' == doc('[for="id_choice_1"]').text()
         )
@@ -8042,8 +8051,10 @@ class TestHeldDecisionReview(ReviewerTest):
             doc('tr.decision-created a').attr('href').endswith(self.decision.cinder_id)
         )
         assert 'User ban' in doc('tr.decision-action td').html()
-        assert 'Bad Things' in doc('tr.decision-policies td').html()
+        assert 'Bad: Things like baa' in doc('tr.decision-policies td').html()
         assert 'Proceed with action' == doc('[for="id_choice_0"]').text()
+        assert 'Pooblik deets' in doc('.decision-notes td').eq(0).html()
+        assert 'Seakret deets' in doc('.decision-notes td').eq(1).html()
         assert 'Approve content instead' == doc('[for="id_choice_1"]').text()
         assert 'Forward to Reviewer Tools' not in doc.text()
         assert 'Affected versions' not in doc.text()
