@@ -1288,11 +1288,11 @@ msgstr "Wycofanie wersji"
 #: src/olympia/constants/activity.py:1216
 #, python-brace-format
 msgid "{addon} rollback from {version} failed."
-msgstr ""
+msgstr "Nie udało się wycofać dodatku {addon} z wersji {version}."
 
 #: src/olympia/constants/activity.py:1217
 msgid "Version rollback failure"
-msgstr ""
+msgstr "Niepowodzenie wycofania wersji"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -1510,7 +1510,7 @@ msgstr "Zdjęcia, muzyka i filmy"
 
 #: src/olympia/constants/categories.py:135
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
-msgstr ""
+msgstr "Pobierz rozszerzenia Firefoksa, które poprawiają jakość zdjęć, muzyki i wideo. Rozszerzenia w tej kategorii modyfikują dźwięk i wideo, umożliwiają odwrotne wyszukiwanie obrazów i nie tylko."
 
 #: src/olympia/constants/categories.py:142
 msgid "Privacy & Security"
@@ -1536,7 +1536,7 @@ msgstr "Zakupy"
 
 #: src/olympia/constants/categories.py:163
 msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
-msgstr "Pobierz rozszerzenia do Firefoksa, które pomogą Ci w zakupach online, dzięki narzędziom do wyszukiwania kuponów, ofert, analizowania recenzji i nie tylko."
+msgstr "Pobierz rozszerzenia Firefoksa, które pomogą Ci w zakupach online, dzięki narzędziom do wyszukiwania kuponów, ofert, analizowania recenzji i nie tylko."
 
 #: src/olympia/constants/categories.py:170
 msgid "Social & Communication"
@@ -1570,7 +1570,7 @@ msgstr "Inne"
 
 #: src/olympia/constants/categories.py:201
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
-msgstr "Pobierz rozszerzenia do Firefoksa, które potrafią być nieprzewidywalne i kreatywne, a jednocześnie przydatne do nietypowych zadań."
+msgstr "Pobierz rozszerzenia Firefoksa, które potrafią być nieprzewidywalne i kreatywne, a jednocześnie przydatne do nietypowych zadań."
 
 #: src/olympia/constants/categories.py:209
 msgid "Abstract"
