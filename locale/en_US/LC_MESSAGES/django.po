@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-01 14:27+0000\n"
+"POT-Creation-Date: 2025-07-02 09:38+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1042,6 +1042,20 @@ msgstr "{addon} {version} pending rejection changed."
 
 msgid "Pending rejection changed"
 msgstr "Pending rejection changed"
+
+#, python-brace-format
+msgid "{addon} {version} created, to rollback from {0}."
+msgstr "{addon} {version} created, to rollback from {0}."
+
+msgid "Version rollback"
+msgstr "Version rollback"
+
+#, python-brace-format
+msgid "{addon} rollback from {version} failed."
+msgstr "{addon} rollback from {version} failed."
+
+msgid "Version rollback failure"
+msgstr "Version rollback failure"
 
 msgid "Firefox"
 msgstr "Firefox"
