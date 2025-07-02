@@ -17,7 +17,13 @@ from olympia.versions.models import Version
 class PromotedGroupQuerySet(BaseQuerySet):
     def __getattr__(self, attribute):
         if hasattr(self.model, attribute):
-            return self.values_list(attribute, flat=True)
+            # Iterating over self here is better than doing a
+            # .values_list(attribute, flat=True) everytime since the queryset
+            # results will be cached if accessed multiple times for different
+            # properties. There is a slight cost in instantiating the
+            # PromotedGroup objects for add-ons with multiple of them but it's
+            # negligible and fairly rare.
+            return [getattr(obj, attribute) for obj in self]
         raise AttributeError(f'PromotedGroup has no attribute: {attribute}')
 
     @property
