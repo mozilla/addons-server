@@ -1259,20 +1259,20 @@ msgstr "已變更等待退回"
 #: src/olympia/constants/activity.py:1208
 #, python-brace-format
 msgid "{addon} {version} created, to rollback from {0}."
-msgstr ""
+msgstr "已建立 {addon} {version} 以從 {0} 降版。"
 
 #: src/olympia/constants/activity.py:1209
 msgid "Version rollback"
-msgstr ""
+msgstr "降版"
 
 #: src/olympia/constants/activity.py:1216
 #, python-brace-format
 msgid "{addon} rollback from {version} failed."
-msgstr ""
+msgstr "{addon} 從 {version} 降版失敗。"
 
 #: src/olympia/constants/activity.py:1217
 msgid "Version rollback failure"
-msgstr ""
+msgstr "降版失敗"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
