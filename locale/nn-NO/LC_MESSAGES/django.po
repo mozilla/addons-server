@@ -1241,20 +1241,20 @@ msgstr "Ventande avslag endra"
 #: src/olympia/constants/activity.py:1208
 #, python-brace-format
 msgid "{addon} {version} created, to rollback from {0}."
-msgstr ""
+msgstr "{addon} {version} oppretta, for å tilbakerulle frå {0}."
 
 #: src/olympia/constants/activity.py:1209
 msgid "Version rollback"
-msgstr ""
+msgstr "Tilbakerulling av versjon"
 
 #: src/olympia/constants/activity.py:1216
 #, python-brace-format
 msgid "{addon} rollback from {version} failed."
-msgstr ""
+msgstr "Tilbakerulling av {addon} frå {version} var mislykka."
 
 #: src/olympia/constants/activity.py:1217
 msgid "Version rollback failure"
-msgstr ""
+msgstr "Feil med tilbakerulling av versjon"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -2538,7 +2538,7 @@ msgstr "Vi sender ein e-post til deg, vêr tolmodig... <div class=\"loader\"></d
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:30
 msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again later."
-msgstr ""
+msgstr "Det tek lengre tid enn forventa å bekrefte leveringa av stadfestings e-posten din. Prøv på nytt seinare."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:34
 msgid "Success!"
