@@ -1,17 +1,33 @@
+import json
 import os
+import zipfile
 from base64 import b64encode
+from datetime import datetime
 from unittest import mock
 
 from django.conf import settings
+from django.core import mail
+from django.core.files import temp
+from django.core.files.base import File as DjangoFile
 from django.utils.encoding import force_str
 
 import pytest
 
 from olympia import amo
-from olympia.amo.tests import addon_factory, root_storage, version_factory
-from olympia.versions.models import Version, VersionPreview
-from olympia.versions.tasks import (
+from olympia.activity.models import ActivityLog
+from olympia.amo.tests import (
+    TestCase,
+    addon_factory,
+    create_default_webext_appversion,
+    root_storage,
+    user_factory,
+    version_factory,
+)
+
+from ..models import Version, VersionPreview
+from ..tasks import (
     UI_FIELDS,
+    duplicate_addon_version_for_rollback,
     generate_static_theme_preview,
     hard_delete_versions,
 )
@@ -611,3 +627,137 @@ def test_hard_delete_task():
     assert Version.unfiltered.count() == 2
     hard_delete_versions.delay([version1.pk, version2.pk])
     assert Version.unfiltered.count() == 0
+
+
+class TestDuplicateAddonVersionForRollback(TestCase):
+    def setUp(self):
+        create_default_webext_appversion()
+        user_factory(id=settings.TASK_USER_ID)
+        self.user = user_factory()
+        addon = addon_factory(
+            name='Rændom add-on',
+            guid='@webextension-guid',
+            version_kw={
+                'version': '0.0.1',
+                'created': datetime(2019, 4, 1),
+                'min_app_version': '48.0',
+                'max_app_version': '*',
+                'approval_notes': 'Hey reviewers, this is for you',
+                'human_review_date': datetime(2025, 1, 1),
+            },
+            file_kw={'filename': 'webextension.xpi'},
+            users=[self.user],
+        )
+        self.rollback_version = addon.current_version
+        self.setup_source()
+
+        version_factory(addon=addon)
+        assert Version.unfiltered.count() == 2
+
+    def setup_source(self):
+        self.source_content = ('foo', 'a' * (2**21))
+        with temp.NamedTemporaryFile(
+            suffix='.zip', dir=temp.gettempdir()
+        ) as source_file:
+            with zipfile.ZipFile(source_file, 'w') as zip_file:
+                zip_file.writestr(*self.source_content)
+            source_file.seek(0)
+            self.rollback_version.source.save(
+                os.path.basename(source_file.name), DjangoFile(source_file)
+            )
+            self.rollback_version.save()
+        assert self.rollback_version.source
+
+    def check_activity(self, new):
+        al = ActivityLog.objects.get(action=amo.LOG.VERSION_ROLLBACK.id)
+        assert set(al.versionlog_set.values_list('version', flat=True)) == {
+            new.id,
+            self.rollback_version.id,
+        }
+
+    def check_compatiblity(self, new):
+        assert new.apps.get().min.version == '48.0'
+        assert new.apps.get().max.version == '*'
+
+    def check_source(self, new):
+        assert new.source
+        with zipfile.ZipFile(new.source) as source:
+            content = source.read(self.source_content[0])
+            assert content == self.source_content[1].encode()
+
+    def check_version_fields(self, new):
+        assert new.approval_notes == 'Hey reviewers, this is for you'
+        assert new.human_review_date == self.rollback_version.human_review_date
+        self.assertCloseToNow(new.created)
+
+    def check_new_xpi(self, new):
+        with zipfile.ZipFile(new.file.file.path) as zipf:
+            assert json.loads(zipf.read('manifest.json'))['version'] == new.version
+
+    def check_email(self, new):
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].to == [self.user.email]
+        assert mail.outbox[0].subject == f'Mozilla Add-ons: Rændom add-on {new.version}'
+        assert (
+            f'Rolling back add-on "{new.addon_id}: Rændom add-on", to version "0.0.1" '
+            f'by re-publishing as "{new.version}", successfull' in mail.outbox[0].body
+        )
+
+    @mock.patch('olympia.lib.crypto.tasks.sign_file')
+    def _test_rollback_success(self, sign_file_mock):
+        new_version_number = '123'
+
+        duplicate_addon_version_for_rollback.delay(
+            version_pk=self.rollback_version.pk,
+            new_version_number=new_version_number,
+            user_pk=self.user.pk,
+        )
+
+        assert self.rollback_version.addon.versions.count() == 3
+        new_version = Version.objects.first()
+        if self.rollback_version.channel == amo.CHANNEL_LISTED:
+            assert self.rollback_version.addon.reload().current_version == new_version
+        assert new_version.version == new_version_number
+        sign_file_mock.assert_called_once()
+
+        self.check_activity(new_version)
+        self.check_compatiblity(new_version)
+        self.check_source(new_version)
+        self.check_version_fields(new_version)
+        self.check_new_xpi(new_version)
+        self.check_email(new_version)
+        return new_version
+
+    def test_listed(self):
+        self._test_rollback_success()
+
+    def test_unlisted(self):
+        self.rollback_version.update(channel=amo.CHANNEL_UNLISTED)
+        new_version = self._test_rollback_success()
+        assert new_version.channel == amo.CHANNEL_UNLISTED
+
+    @mock.patch('olympia.lib.crypto.tasks.sign_file')
+    def test_missing_file(self, sign_file_mock):
+        new_version_number = '123'
+        self.rollback_version.file.update(file='')
+
+        duplicate_addon_version_for_rollback.delay(
+            version_pk=self.rollback_version.pk,
+            new_version_number=new_version_number,
+            user_pk=self.user.pk,
+        )
+
+        assert self.rollback_version.addon.versions.count() == 2
+        sign_file_mock.assert_not_called()
+
+        al = ActivityLog.objects.get(action=amo.LOG.VERSION_ROLLBACK_FAILED.id)
+        assert set(al.versionlog_set.values_list('version', flat=True)) == {
+            self.rollback_version.id,
+        }
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].to == [self.user.email]
+        assert mail.outbox[0].subject == 'Mozilla Add-ons: Rændom add-on 0.0.1'
+        assert (
+            f'Rolling back add-on "{self.rollback_version.addon_id}: Rændom add-on", '
+            f'to version "0.0.1" failed.' in mail.outbox[0].body
+        )

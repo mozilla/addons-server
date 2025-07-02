@@ -542,7 +542,7 @@ class TestTasks(TestCase):
         new_file = new_version.file
         assert new_version.version == '0.0.2resigned1'
         # We mocked sign_file(), but the new file on disk should have been
-        # written by copy_bumping_version_number() in sign_addons().
+        # written by copy_xpi_with_new_version_number() in sign_addons().
         assert new_file.file.path
         assert os.path.exists(new_file.file.path)
         with zipfile.ZipFile(new_file.file.path) as zipf:
