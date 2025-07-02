@@ -1281,7 +1281,7 @@ msgstr "Η εκκρεμής απόρριψη άλλαξε"
 #: src/olympia/constants/activity.py:1208
 #, python-brace-format
 msgid "{addon} {version} created, to rollback from {0}."
-msgstr ""
+msgstr "Το {addon} {version} δημιουργήθηκε, για επαναφορά από το {0}."
 
 #: src/olympia/constants/activity.py:1209
 msgid "Version rollback"
@@ -1290,7 +1290,7 @@ msgstr "Επαναφορά έκδοσης"
 #: src/olympia/constants/activity.py:1216
 #, python-brace-format
 msgid "{addon} rollback from {version} failed."
-msgstr ""
+msgstr "Η επαναφορά του {addon} από το {version} απέτυχε."
 
 #: src/olympia/constants/activity.py:1217
 msgid "Version rollback failure"
