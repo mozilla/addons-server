@@ -85,12 +85,16 @@ class TestPromotedGroupQuerySet(TestCase):
         self.addon = addon_factory()
         self.promotion1 = PromotedAddon.objects.create(
             addon=self.addon,
-            promoted_group=PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.NOTABLE),
-            application_id=applications.FIREFOX.id
+            promoted_group=PromotedGroup.objects.get(
+                group_id=PROMOTED_GROUP_CHOICES.NOTABLE
+            ),
+            application_id=applications.FIREFOX.id,
         )
         self.promotion2 = PromotedAddon.objects.create(
             addon=self.addon,
-            promoted_group=PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED),
+            promoted_group=PromotedGroup.objects.get(
+                group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+            ),
             application_id=applications.FIREFOX.id,
         )
 
