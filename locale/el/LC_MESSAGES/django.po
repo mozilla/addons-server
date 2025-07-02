@@ -1285,7 +1285,7 @@ msgstr ""
 
 #: src/olympia/constants/activity.py:1209
 msgid "Version rollback"
-msgstr ""
+msgstr "Επαναφορά έκδοσης"
 
 #: src/olympia/constants/activity.py:1216
 #, python-brace-format
@@ -1294,7 +1294,7 @@ msgstr ""
 
 #: src/olympia/constants/activity.py:1217
 msgid "Version rollback failure"
-msgstr ""
+msgstr "Αποτυχία επαναφοράς έκδοσης"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
