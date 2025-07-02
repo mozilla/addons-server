@@ -85,7 +85,9 @@ def test_review_scenario(
     )
     version = addon.versions.get()
     # Get the review helper.
-    helper = ReviewHelper(addon=addon, version=version, user=user_factory())
+    helper = ReviewHelper(
+        addon=addon, version=version, user=user_factory(), channel=amo.CHANNEL_LISTED
+    )
     assert isinstance(helper.handler, review_class)
     helper.set_data({'comments': 'testing review scenarios'})
     # Run the action (approve_latest_version, reject_latest_version).

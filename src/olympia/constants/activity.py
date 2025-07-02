@@ -1218,6 +1218,26 @@ class VERSION_ROLLBACK_FAILED(_LOG):
     review_queue = True
 
 
+class ENABLE_AUTO_APPROVAL(_LOG):
+    id = 206
+    format = '{addon} auto-approval enabled.'
+    short = 'Auto-Approval enabled'
+    keep = True
+    reviewer_review_action = True
+    review_queue = True
+    hide_developer = True
+
+
+class DISABLE_AUTO_APPROVAL(_LOG):
+    id = 207
+    format = '{addon} auto-approval disabled.'
+    short = 'Auto-Approval disabled'
+    keep = True
+    reviewer_review_action = True
+    review_queue = True
+    hide_developer = True
+
+
 LOGS = [x for x in vars().values() if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 # Make sure there's no duplicate IDs.
 assert len(LOGS) == len({log.id for log in LOGS})

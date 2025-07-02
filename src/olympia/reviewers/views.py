@@ -516,6 +516,7 @@ def review(request, addon, channel=None):
         user=request.user,
         content_review=content_review,
         human_review=True,
+        channel=channel,
     )
     form = ReviewForm(
         request.POST if request.method == 'POST' else None,
@@ -715,6 +716,8 @@ def review(request, addon, channel=None):
         amo.LOG.REQUEST_ADMIN_REVIEW_THEME.id,
         amo.LOG.CLEAR_ADMIN_REVIEW_THEME.id,
         amo.LOG.REQUEST_LEGAL.id,
+        amo.LOG.ENABLE_AUTO_APPROVAL.id,
+        amo.LOG.DISABLE_AUTO_APPROVAL.id,
     )
     important_changes_log = ActivityLog.objects.filter(
         action__in=addon_important_changes_actions,

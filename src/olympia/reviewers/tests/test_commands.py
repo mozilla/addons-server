@@ -312,7 +312,12 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         assert review_helper_mock.call_count == 1
         assert review_helper_mock.call_args == (
             (),
-            {'addon': self.addon, 'version': self.version, 'human_review': False},
+            {
+                'addon': self.addon,
+                'version': self.version,
+                'human_review': False,
+                'channel': self.version.channel,
+            },
         )
         assert review_helper_mock().actions['public']['method'].call_count == 1
         assert statsd_incr_mock.call_count == 1

@@ -147,6 +147,7 @@ class TestReviewHelperBase(TestCase):
             user=self.user,
             human_review=human_review,
             content_review=content_review,
+            channel=getattr(self.review_version, 'channel', amo.CHANNEL_LISTED),
         )
 
     def check_log_count(self, id, user=None):
@@ -585,7 +586,9 @@ class TestReviewHelper(TestReviewHelperBase):
             == expected
         )
 
-        # you need admin review permission
+        # You need admin review permission. Also because it's a promoted add-on
+        # despite being admin you don't get the enable/disable auto-approval
+        # action.
         self.grant_permission(self.user, 'Reviews:Admin')
         expected = [
             'public',
@@ -669,6 +672,7 @@ class TestReviewHelper(TestReviewHelperBase):
             'change_or_clear_pending_rejection_multiple_versions',
             'clear_needs_human_review_multiple_versions',
             'set_needs_human_review_multiple_versions',
+            'disable_auto_approval',
             'reply',
             'disable_addon',
             'request_legal_review',
@@ -810,6 +814,7 @@ class TestReviewHelper(TestReviewHelperBase):
             'change_or_clear_pending_rejection_multiple_versions',
             'clear_needs_human_review_multiple_versions',
             'set_needs_human_review_multiple_versions',
+            'disable_auto_approval',
             'reply',
             'disable_addon',
             'request_legal_review',
@@ -837,6 +842,7 @@ class TestReviewHelper(TestReviewHelperBase):
             'change_or_clear_pending_rejection_multiple_versions',
             'clear_needs_human_review_multiple_versions',
             'set_needs_human_review_multiple_versions',
+            'disable_auto_approval',
             'reply',
             'disable_addon',
             'request_legal_review',
@@ -873,6 +879,7 @@ class TestReviewHelper(TestReviewHelperBase):
         expected = [
             'change_or_clear_pending_rejection_multiple_versions',
             'clear_needs_human_review_multiple_versions',
+            'disable_auto_approval',
             'reply',
             'enable_addon',
             'request_legal_review',
@@ -906,6 +913,7 @@ class TestReviewHelper(TestReviewHelperBase):
             'change_or_clear_pending_rejection_multiple_versions',
             'clear_needs_human_review_multiple_versions',
             'set_needs_human_review_multiple_versions',
+            'disable_auto_approval',
             'reply',
             'disable_addon',
             'request_legal_review',
@@ -968,6 +976,7 @@ class TestReviewHelper(TestReviewHelperBase):
             'change_or_clear_pending_rejection_multiple_versions',
             'clear_needs_human_review_multiple_versions',
             'set_needs_human_review_multiple_versions',
+            'disable_auto_approval',
             'reply',
             'request_legal_review',
             'comment',

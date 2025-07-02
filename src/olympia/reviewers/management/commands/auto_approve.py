@@ -179,6 +179,7 @@ class Command(BaseCommand):
             addon=version.addon,
             version=version,
             human_review=False,
+            channel=version.channel,
         )
         approve_action = helper.actions.get('public')
         if not approve_action:

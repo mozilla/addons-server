@@ -365,6 +365,7 @@ class ReviewHelper:
         user=None,
         content_review=False,
         human_review=True,
+        channel,
     ):
         self.handler = None
         self.required = {}
@@ -379,7 +380,7 @@ class ReviewHelper:
             user = get_task_user()
         self.human_review = human_review
         self.user = user
-        self.set_review_handler()
+        self.set_review_handler(channel)
         self.actions = self.get_actions()
 
     @property
@@ -389,9 +390,9 @@ class ReviewHelper:
     def set_data(self, data):
         self.handler.set_data(data)
 
-    def set_review_handler(self):
+    def set_review_handler(self, channel):
         """Set the handler property."""
-        if self.version and self.version.channel == amo.CHANNEL_UNLISTED:
+        if channel == amo.CHANNEL_UNLISTED:
             self.handler = ReviewUnlisted(
                 addon=self.addon,
                 version=self.version,
@@ -492,6 +493,16 @@ class ReviewHelper:
         addon_is_reviewable = (
             addon_is_not_disabled_or_deleted and self.addon.status != amo.STATUS_NULL
         ) or addon_is_incomplete_and_version_is_unlisted
+        auto_approval_is_disabled = (
+            self.addon.auto_approval_disabled
+            if self.handler.channel == amo.CHANNEL_LISTED
+            else self.addon.auto_approval_disabled_unlisted
+        )
+        addon_requires_pre_review = any(
+            promoted_group.listed_pre_review
+            if version_is_listed
+            else promoted_group.unlisted_pre_review
+        )
         version_is_unreviewed = self.version and self.version.is_unreviewed
         version_was_rejected = bool(
             self.version
@@ -785,6 +796,24 @@ class ReviewHelper:
             'minimal': True,
             'available': addon_is_not_disabled and is_appropriate_reviewer,
         }
+        actions['enable_auto_approval'] = {
+            'method': self.handler.enable_auto_approval,
+            'label': 'Enable auto-approval',
+            'details': 'Enable auto-approval of versions in this channel.',
+            'available': auto_approval_is_disabled
+            and not addon_requires_pre_review
+            and is_appropriate_admin_reviewer,
+        }
+        actions['disable_auto_approval'] = {
+            'method': self.handler.disable_auto_approval,
+            'label': 'Disable auto-approval',
+            'details': 'Disable auto-approval of versions in this channel.',
+            'available': (
+                not auto_approval_is_disabled
+                and not addon_requires_pre_review
+                and is_appropriate_admin_reviewer
+            ),
+        }
         actions['reply'] = {
             'method': self.handler.reviewer_reply,
             'label': 'Reviewer reply',
@@ -929,6 +958,7 @@ class ReviewHelper:
 
 class ReviewBase:
     review_action = None  # set via ReviewHelper.process
+    channel = amo.CHANNEL_LISTED  # overridden by ReviewUnlisted
 
     def __init__(
         self,
@@ -1818,6 +1848,38 @@ class ReviewBase:
         self.clear_all_needs_human_review_flags_in_channel()
         self.record_decision(amo.LOG.REQUEST_LEGAL, action_completed=False)
 
+    def enable_auto_approval(self):
+        auto_approval_disabled_key = (
+            'auto_approval_disabled'
+            if self.channel == amo.CHANNEL_LISTED
+            else 'auto_approval_disabled_unlisted'
+        )
+        self.file = None
+        self.version = None
+        AddonReviewerFlags.objects.update_or_create(
+            addon=self.addon,
+            defaults={auto_approval_disabled_key: False},
+        )
+        self.log_action(
+            amo.LOG.ENABLE_AUTO_APPROVAL, extra_details={'channel': self.channel}
+        )
+
+    def disable_auto_approval(self):
+        auto_approval_disabled_key = (
+            'auto_approval_disabled'
+            if self.channel == amo.CHANNEL_LISTED
+            else 'auto_approval_disabled_unlisted'
+        )
+        self.file = None
+        self.version = None
+        AddonReviewerFlags.objects.update_or_create(
+            addon=self.addon,
+            defaults={auto_approval_disabled_key: True},
+        )
+        self.log_action(
+            amo.LOG.DISABLE_AUTO_APPROVAL, extra_details={'channel': self.channel}
+        )
+
 
 class ReviewAddon(ReviewBase):
     set_addon_status = True
@@ -1846,6 +1908,8 @@ class ReviewFiles(ReviewBase):
 
 
 class ReviewUnlisted(ReviewBase):
+    channel = amo.CHANNEL_UNLISTED
+
     def _approve_version(self, version):
         assert version.channel == amo.CHANNEL_UNLISTED
         assert not version.is_blocked

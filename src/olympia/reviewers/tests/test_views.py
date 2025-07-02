@@ -3811,167 +3811,6 @@ class TestReview(ReviewBase):
         self.addon.delete()
         self.test_admin_block_actions()
 
-    def test_disable_auto_approval_as_admin(self):
-        self.login_as_admin()
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert doc('#disable_auto_approval')
-        elem = doc('#disable_auto_approval')[0]
-        assert 'hidden' not in elem.getparent().attrib.get('class', '')
-
-        assert doc('#enable_auto_approval')
-        elem = doc('#enable_auto_approval')[0]
-        assert 'hidden' in elem.getparent().attrib.get('class', '')
-
-        # Still present for dictionaries
-        self.addon.update(type=amo.ADDON_DICT)
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert doc('#disable_auto_approval')
-        assert doc('#enable_auto_approval')
-
-        # They should be absent on static themes, which are not auto-approved.
-        self.addon.update(type=amo.ADDON_STATICTHEME)
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert not doc('#disable_auto_approval')
-        assert not doc('#enable_auto_approval')
-
-    def test_enable_auto_approve_button_disabled_for_promoted(self):
-        self.login_as_admin()
-        # Recommended is listed_pre_review=True so auto approval is disabled
-        self.make_addon_promoted(
-            self.addon, group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
-        )
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert doc('#auto_approval_disabled')
-        elem = doc('#auto_approval_disabled')[0]
-        assert 'hidden' not in elem.getparent().attrib.get('class', '')
-        assert elem.text == 'Listed Auto-Approval Disabled by Promoted group'
-        assert elem.attrib.get('class', '') == 'disabled'
-        assert not doc('#enable_auto_approval')
-        assert not doc('#disable_auto_approval')
-
-        # Strategic is listed_pre_review=False so auto approval isn't disabled
-        self.addon.promotedaddon.all().delete()
-        self.make_addon_promoted(self.addon, group_id=PROMOTED_GROUP_CHOICES.STRATEGIC)
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert not doc('#auto_approval_disabled')
-        assert doc('#enable_auto_approval')
-        assert doc('#disable_auto_approval')
-
-    def test_enable_unlisted_auto_approve_button_disabled_for_promoted(self):
-        self.login_as_admin()
-        unlisted_url = reverse('reviewers.review', args=['unlisted', self.addon.pk])
-        # Notable is unlisted_pre_review=True so auto approval is disabled
-        self.make_addon_promoted(self.addon, group_id=PROMOTED_GROUP_CHOICES.NOTABLE)
-        response = self.client.get(unlisted_url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert doc('#auto_approval_disabled_unlisted')
-        elem = doc('#auto_approval_disabled_unlisted')[0]
-        assert 'hidden' not in elem.getparent().attrib.get('class', '')
-        assert elem.text == 'Unlisted Auto-Approval Disabled by Promoted group'
-        assert elem.attrib.get('class', '') == 'disabled'
-        assert not doc('#enable_auto_approval_unlisted')
-        assert not doc('#disable_auto_approval_unlisted')
-
-        # Recommended is unlisted_pre_review=False so auto approval isn't disabled
-        self.addon.promotedaddon.all().delete()
-        self.make_addon_promoted(
-            self.addon, group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
-        )
-        response = self.client.get(unlisted_url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert not doc('#auto_approval_disabled_unlisted')
-        assert doc('#enable_auto_approval_unlisted')
-        assert doc('#disable_auto_approval_unlisted')
-
-    def test_disable_auto_approval_unlisted_as_admin(self):
-        self.login_as_admin()
-        unlisted_url = reverse('reviewers.review', args=['unlisted', self.addon.pk])
-        response = self.client.get(unlisted_url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert doc('#disable_auto_approval_unlisted')
-        elem = doc('#disable_auto_approval_unlisted')[0]
-        assert 'hidden' not in elem.getparent().attrib.get('class', '')
-
-        assert doc('#enable_auto_approval_unlisted')
-        elem = doc('#enable_auto_approval_unlisted')[0]
-        assert 'hidden' in elem.getparent().attrib.get('class', '')
-
-        # Still present for dictionaries
-        self.addon.update(type=amo.ADDON_DICT)
-        response = self.client.get(unlisted_url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert doc('#disable_auto_approval_unlisted')
-        assert doc('#enable_auto_approval_unlisted')
-
-        # They should be absent on static themes, which are not auto-approved.
-        self.addon.update(type=amo.ADDON_STATICTHEME)
-        response = self.client.get(unlisted_url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert not doc('#disable_auto_approval_unlisted')
-        assert not doc('#enable_auto_approval_unlisted')
-
-    def test_enable_auto_approval_as_admin(self):
-        self.login_as_admin()
-        AddonReviewerFlags.objects.create(addon=self.addon, auto_approval_disabled=True)
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert doc('#disable_auto_approval')
-        elem = doc('#disable_auto_approval')[0]
-        assert 'hidden' in elem.getparent().attrib.get('class', '')
-
-        assert doc('#enable_auto_approval')
-        elem = doc('#enable_auto_approval')[0]
-        assert 'hidden' not in elem.getparent().attrib.get('class', '')
-
-        # They should be absent on static themes, which are not auto-approved.
-        self.addon.update(type=amo.ADDON_STATICTHEME)
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert not doc('#disable_auto_approval')
-        assert not doc('#enable_auto_approval')
-
-    def test_enable_auto_approval_unlisted_as_admin(self):
-        self.login_as_admin()
-        AddonReviewerFlags.objects.create(
-            addon=self.addon, auto_approval_disabled_unlisted=True
-        )
-        unlisted_url = reverse('reviewers.review', args=['unlisted', self.addon.pk])
-        response = self.client.get(unlisted_url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert doc('#disable_auto_approval_unlisted')
-        elem = doc('#disable_auto_approval_unlisted')[0]
-        assert 'hidden' in elem.getparent().attrib.get('class', '')
-
-        assert doc('#enable_auto_approval_unlisted')
-        elem = doc('#enable_auto_approval_unlisted')[0]
-        assert 'hidden' not in elem.getparent().attrib.get('class', '')
-
-        # They should be absent on static themes, which are not auto-approved.
-        self.addon.update(type=amo.ADDON_STATICTHEME)
-        response = self.client.get(unlisted_url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert not doc('#disable_auto_approval_unlisted')
-        assert not doc('#enable_auto_approval_unlisted')
-
     def test_disable_auto_approval_until_next_approval_unlisted_as_admin(self):
         self.login_as_admin()
         AddonReviewerFlags.objects.create(
@@ -5614,6 +5453,7 @@ class TestReview(ReviewBase):
             'change_or_clear_pending_rejection_multiple_versions',
             'clear_needs_human_review_multiple_versions',
             'set_needs_human_review_multiple_versions',
+            'disable_auto_approval',
             'reply',
             'disable_addon',
             'request_legal_review',
@@ -5643,6 +5483,7 @@ class TestReview(ReviewBase):
         ) == [
             'reject_multiple_versions',
             'set_needs_human_review_multiple_versions',
+            'disable_auto_approval',
             'reply',
             'disable_addon',
             'request_legal_review',
@@ -5657,12 +5498,6 @@ class TestReview(ReviewBase):
             'disable_addon',
         ]
 
-        assert (
-            doc('.data-toggle.review-files')[0].attrib['data-value'] == 'disable_addon'
-        )
-        assert (
-            doc('.data-toggle.review-tested')[0].attrib['data-value'] == 'disable_addon'
-        )
         assert doc('.data-toggle.review-delayed-rejection')[0].attrib[
             'data-value'
         ].split(' ') == [

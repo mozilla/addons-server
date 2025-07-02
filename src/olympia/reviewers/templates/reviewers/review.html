@@ -139,7 +139,9 @@
     </p>
   {% endif %}
 
-  <input type="hidden" name="version_pk" value="{{ version.pk }}"/>
+  {% if version %}
+    <input type="hidden" name="version_pk" value="{{ version.pk }}"/>
+  {% endif %}
   {{ form.version_pk.errors }}
   {% if form.errors.__all__ %}
     {{ form.errors.__all__ }}
@@ -373,25 +375,11 @@
         </li>
       {% else %}
         {% if addon.type in (amo.ADDON_EXTENSION, amo.ADDON_LPAPP, amo.ADDON_DICT) %}
-          {% if channel == amo.CHANNEL_LISTED and addon.promoted_groups(currently_approved=False).listed_pre_review|python_any %}
+          {% if channel == amo.CHANNEL_LISTED and promoted_groups.listed_pre_review|python_any %}
           <li>
             <button id="auto_approval_disabled" class="disabled" disabled type="button">Listed Auto-Approval Disabled by Promoted group</button>
           </li>
           {% elif channel == amo.CHANNEL_LISTED %}
-          <li {% if addon.auto_approval_disabled %}class="hidden"{% endif %}>
-            <button data-api-url="{{ drf_url('reviewers-addon-flags', addon.pk) }}"
-                    data-api-method="patch"
-                    data-api-data="{&quot;auto_approval_disabled&quot;: true}"
-                    data-toggle-button-selector="#enable_auto_approval"
-                    id="disable_auto_approval" class="toggle" type="button">Disable Listed Auto-Approval</button>
-          </li>
-          <li {% if not addon.auto_approval_disabled %}class="hidden"{% endif %}>
-            <button data-api-url="{{ drf_url('reviewers-addon-flags', addon.pk) }}"
-                    data-api-method="patch"
-                    data-api-data="{&quot;auto_approval_disabled&quot;: false}"
-                    data-toggle-button-selector="#disable_auto_approval"
-                    id="enable_auto_approval" class="toggle" type="button">Enable Listed Auto-Approval</button>
-          </li>
           <li {% if addon.auto_approval_disabled_until_next_approval %}class="hidden"{% endif %}>
             <button data-api-url="{{ drf_url('reviewers-addon-flags', addon.pk) }}"
                     data-api-method="patch"
@@ -406,25 +394,11 @@
                     data-toggle-button-selector="#disable_auto_approval_until_next_approval"
                     id="enable_auto_approval_until_next_approval" class="toggle" type="button">Enable Listed Auto-Approval Before Next Manual Approval</button>
           </li>
-          {% elif channel == amo.CHANNEL_UNLISTED and addon.promoted_groups(currently_approved=False).unlisted_pre_review|python_any %}
+          {% elif channel == amo.CHANNEL_UNLISTED and promoted_groups.unlisted_pre_review|python_any %}
           <li>
             <button id="auto_approval_disabled_unlisted" class="disabled" disabled type="button">Unlisted Auto-Approval Disabled by Promoted group</button>
           </li>
           {% elif channel == amo.CHANNEL_UNLISTED %}
-          <li {% if addon.auto_approval_disabled_unlisted %}class="hidden"{% endif %}>
-            <button data-api-url="{{ drf_url('reviewers-addon-flags', addon.pk) }}"
-                    data-api-method="patch"
-                    data-api-data="{&quot;auto_approval_disabled_unlisted&quot;: true}"
-                    data-toggle-button-selector="#enable_auto_approval_unlisted"
-                    id="disable_auto_approval_unlisted" class="toggle" type="button">Disable Unlisted Auto-Approval</button>
-          </li>
-          <li {% if not addon.auto_approval_disabled_unlisted %}class="hidden"{% endif %}>
-            <button data-api-url="{{ drf_url('reviewers-addon-flags', addon.pk) }}"
-                    data-api-method="patch"
-                    data-api-data="{&quot;auto_approval_disabled_unlisted&quot;: false}"
-                    data-toggle-button-selector="#disable_auto_approval_unlisted"
-                    id="enable_auto_approval_unlisted" class="toggle" type="button">Enable Unlisted Auto-Approval</button>
-          </li>
           <li {% if addon.auto_approval_disabled_until_next_approval_unlisted %}class="hidden"{% endif %}>
             <button data-api-url="{{ drf_url('reviewers-addon-flags', addon.pk) }}"
                     data-api-method="patch"
