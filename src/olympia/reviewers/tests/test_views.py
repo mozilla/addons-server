@@ -3000,7 +3000,7 @@ class TestReview(ReviewBase):
             str(author.get_role_display()),
             self.addon,
         )
-        with self.assertNumQueries(64):
+        with self.assertNumQueries(61):
             # FIXME: obviously too high, but it's a starting point.
             # Potential further optimizations:
             # - Remove trivial... and not so trivial duplicates
@@ -3024,53 +3024,52 @@ class TestReview(ReviewBase):
             # 13. latest versions translations
             # 14. latest version in channel not disabled + file
             # 15. latest version in channel not disabled translations
-            # 16/17. promoted info for the add-on
-            # 18/19. version reviewer flags
-            # 20. version autoapprovalsummary
-            # 21. blocklist
-            # 22. cinderjob exists
-            # 23. fetch promoted groups of current version
-            # 24. waffle switch for cinder_policy_review_reasons_enabled
-            # 25. fetch promoted groups of current version (repeated)
-            # 26. addonreusedguid
-            # 27. abuse reports count against user or addon
-            # 28. low ratings count
-            # 29. base version pk for comparison
-            # 30. count of all versions in channel
-            # 31. paginated list of versions in channel
-            # 32. scanner results for paginated list of versions
-            # 33. translations for paginated list of versions
-            # 34. applications versions for paginated list of versions
-            # 35. activity log for paginated list of versions
-            # 36. unreviewed versions in other channel
-            # 37. count versions needing human review on other pages
-            # 38. count versions needing human review by mad on other pages
-            # 39. count versions pending rejection on other pages
-            # 40. versionreviewer flags exists to find out if pending rejection
-            # 41. fetch promoted groups of current version (repeated)
-            # 42. whiteboard
-            # 43. count add-ons the user is a developer of
-            # 44. something to do with due_date?
-            # 45. reviewer subscriptions for listed
-            # 46. reviewer subscriptions for unlisted
-            # 47. config for motd
-            # 48. release savepoint (?)
-            # 49. select users by role for this add-on (?)
-            # 50. config for site notice
-            # 51. fetch promoted groups of current version (repeated)?
-            # 52. other add-ons with same guid
-            # 53. translations for... (?! id=1)
-            # 54. important activity log about the add-on
-            # 55. user for the activity (from the ActivityLog foreignkey)
-            # 56. user for the activity (from the ActivityLog arguments)
-            # 57. add-on for the activity
-            # 58. translation for the add-on for the activity
-            # 59. waffle switch enable-activity-log-attachments
-            # 60. select all versions in channel for versions dropdown widget
-            # 61. cinder policies for the policy dropdown
-            # 62. reviewer reasons for the reason dropdown
-            # 63. cinder policies for the policy dropdown (repeated)
-            # 64. unresolved DSA related abuse reports
+            # 16. promoted groups
+            # 17  version reviewer flags for current version
+            # 18. version reviewer flags for latest version
+            # 19. version autoapprovalsummary
+            # 20. blocklist
+            # 21. cinderjob exists
+            # 22. fetch promoted groups of current version
+            # 23. waffle switch for cinder_policy_review_reasons_enabled
+            # 24. addonreusedguid
+            # 25. abuse reports count against user or addon
+            # 26. low ratings count
+            # 27. base version pk for comparison
+            # 28. count of all versions in channel
+            # 29. paginated list of versions in channel
+            # 30. scanner results for paginated list of versions
+            # 31. translations for paginated list of versions
+            # 32. applications versions for paginated list of versions
+            # 33. activity log for paginated list of versions
+            # 34. unreviewed versions in other channel
+            # 35. count versions needing human review on other pages
+            # 36. count versions needing human review by mad on other pages
+            # 37. count versions pending rejection on other pages
+            # 38. versionreviewer flags exists to find out if pending rejection
+            # 39. fetch promoted groups of current version (repeated)
+            # 40. whiteboard
+            # 41. count add-ons the user is a developer of
+            # 42. something to do with due_date?
+            # 43. reviewer subscriptions for listed
+            # 44. reviewer subscriptions for unlisted
+            # 45. config for motd
+            # 46. release savepoint (?)
+            # 47. select users by role for this add-on (?)
+            # 48. config for site notice
+            # 49. fetch promoted groups of current version (repeated)?
+            # 50. other add-ons with same guid
+            # 51. translations for... (?! id=1)
+            # 52. important activity log about the add-on
+            # 53. user for the activity (from the ActivityLog foreignkey)
+            # 54. user for the activity (from the ActivityLog arguments)
+            # 55. add-on for the activity
+            # 56. translation for the add-on for the activity
+            # 57. waffle switch enable-activity-log-attachments
+            # 58. select all versions in channel for versions dropdown widget
+            # 59. reviewer reasons for the reason dropdown
+            # 60. cinder policies for the policy dropdown
+            # 61. unresolved DSA related abuse reports
             response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -6000,7 +5999,7 @@ class TestReview(ReviewBase):
                     results={'matchedRules': [customs_rule.name]},
                 )
 
-        with self.assertNumQueries(65):
+        with self.assertNumQueries(62):
             # See test_item_history_pagination() for more details about the
             # queries count. What's important here is that the extra versions
             # and scanner results don't cause extra queries.

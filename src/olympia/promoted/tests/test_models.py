@@ -80,6 +80,34 @@ class TestPromotedGroupManager(TestCase):
         assert self.promoted_group not in PromotedGroup.objects.approved_for(self.addon)
 
 
+class TestPromotedGroupQuerySet(TestCase):
+    def setUp(self):
+        self.addon = addon_factory()
+        self.promotion1 = PromotedAddon.objects.create(
+            addon=self.addon,
+            promoted_group=PromotedGroup.objects.get(
+                group_id=PROMOTED_GROUP_CHOICES.NOTABLE
+            ),
+            application_id=applications.FIREFOX.id,
+        )
+        self.promotion2 = PromotedAddon.objects.create(
+            addon=self.addon,
+            promoted_group=PromotedGroup.objects.get(
+                group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+            ),
+            application_id=applications.FIREFOX.id,
+        )
+
+    def test_getattr(self):
+        promoted_groups = self.addon.promoted_groups(currently_approved=False)
+        with self.assertNumQueries(1):
+            assert promoted_groups.listed_pre_review == [True, True]
+        with self.assertNumQueries(0):
+            assert set(promoted_groups.unlisted_pre_review) == {False, True}
+        with self.assertNumQueries(0):
+            assert set(promoted_groups.badged) == {False, True}
+
+
 class TestPromotedGroup(TestCase):
     def test_promoted_group_data_is_derived_from_promoted_groups(self):
         # Loop over all groups from PROMOTED_GROUPS_BY_ID to ensure complete coverage
