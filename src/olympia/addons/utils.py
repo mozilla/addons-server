@@ -127,31 +127,6 @@ class DeleteTokenSigner(TimestampSigner):
         return token_payload['addon_id'] == addon_id
 
 
-def validate_version_number_is_gt_latest_signed_listed_version(addon, version_string):
-    """Returns an error string if `version_string` isn't greater than the current
-    approved listed version. Doesn't apply to langpacks."""
-    if (
-        addon
-        and addon.type != amo.ADDON_LPAPP
-        and (
-            latest_version_string := addon.versions(manager='unfiltered_for_relations')
-            .filter(channel=amo.CHANNEL_LISTED, file__is_signed=True)
-            .order_by('created')
-            .values_list('version', flat=True)
-            .last()
-        )
-        and latest_version_string >= version_string
-    ):
-        msg = gettext(
-            'Version {version_string} must be greater than the previous approved '
-            'version {previous_version_string}.'
-        )
-        return msg.format(
-            version_string=version_string,
-            previous_version_string=latest_version_string,
-        )
-
-
 def remove_icons(addon):
     for size in amo.ADDON_ICON_SIZES + ('original',):
         filepath = addon.get_icon_path(size)

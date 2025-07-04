@@ -57,6 +57,10 @@ from olympia.versions.models import (
     Version,
     VersionPreview,
 )
+from olympia.versions.utils import (
+    validate_version_number_does_not_exist,
+    validate_version_number_is_gt_latest_signed_listed_version,
+)
 
 from .fields import (
     CategoriesSerializerField,
@@ -79,11 +83,7 @@ from .models import (
     ReplacementAddon,
 )
 from .tasks import resize_icon, resize_preview
-from .utils import (
-    fetch_translations_from_addon,
-    get_translation_differences,
-    validate_version_number_is_gt_latest_signed_listed_version,
-)
+from .utils import fetch_translations_from_addon, get_translation_differences
 from .validators import (
     AddonDefaultLocaleValidator,
     AddonMetadataValidator,
@@ -545,25 +545,14 @@ class DeveloperVersionSerializer(VersionSerializer):
                 raise exceptions.ValidationError(msg)
         return disable
 
-    def _check_for_existing_versions(self, version_string):
-        # Make sure we don't already have this version.
-        existing_versions = Version.unfiltered.filter(
-            addon=self.addon, version=version_string
-        )
-        if existing_versions.exists():
-            if existing_versions[0].deleted:
-                msg = gettext(
-                    'Version {version_string} was uploaded before and deleted.'
-                )
-            else:
-                msg = gettext('Version {version_string} already exists.')
-            raise Conflict({'version': [msg.format(version_string=version_string)]})
-
     def validate(self, data):
         if not self.instance:
             version_string = self.parsed_data.get('version')
             if self.addon:
-                self._check_for_existing_versions(version_string)
+                if error_msg := (
+                    validate_version_number_does_not_exist(self.addon, version_string)
+                ):
+                    raise Conflict({'version': [error_msg]})
 
                 if data['upload'].channel == amo.CHANNEL_LISTED:
                     if error_message := (

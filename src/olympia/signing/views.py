@@ -14,9 +14,6 @@ from olympia import amo
 from olympia.access import acl
 from olympia.addons.decorators import require_submissions_enabled
 from olympia.addons.models import Addon
-from olympia.addons.utils import (
-    validate_version_number_is_gt_latest_signed_listed_version,
-)
 from olympia.amo.decorators import use_primary_db
 from olympia.api.authentication import JWTKeyAuthentication
 from olympia.api.throttling import addon_submission_throttles
@@ -26,6 +23,9 @@ from olympia.files.models import FileUpload
 from olympia.files.utils import parse_addon
 from olympia.versions import views as version_views
 from olympia.versions.models import Version
+from olympia.versions.utils import (
+    validate_version_number_is_gt_latest_signed_listed_version,
+)
 
 from .serializers import SigningFileUploadSerializer
 
