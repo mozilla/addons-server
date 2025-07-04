@@ -4945,9 +4945,9 @@ class TestReview(ReviewBase):
         self.test_block_multiple_versions()
 
     def test_important_changes_log(self):
-        # Activity logs related to user changes should be displayed.
-        # Create an activy log for each of the following: user addition, role
-        # change and deletion.
+        # Activity logs related to authorship and specific reviewer/admin
+        # changes applying to the entire add-on should be shown in important
+        # changes log section.
         author = self.addon.addonuser_set.get()
         core.set_user(author.user)
         expected_activities = [
@@ -4980,6 +4980,22 @@ class TestReview(ReviewBase):
                 self.addon,
                 details={'comments': 'Some comment at force enabling'},
             ),
+            ActivityLog.objects.create(
+                amo.LOG.ENABLE_AUTO_APPROVAL,
+                self.addon,
+                details={
+                    'channel': amo.CHANNEL_LISTED,
+                    'comments': 'enabled auto-approval on listed',
+                },
+            ),
+            ActivityLog.objects.create(
+                amo.LOG.DISABLE_AUTO_APPROVAL,
+                self.addon,
+                details={
+                    'channel': amo.CHANNEL_UNLISTED,
+                    'comments': 'disabled auto-approval on unlisted',
+                },
+            ),
         ]
 
         response = self.client.get(self.url)
@@ -4995,11 +5011,13 @@ class TestReview(ReviewBase):
             amo.LOG.REQUEST_LEGAL.id,
             amo.LOG.FORCE_DISABLE.id,
             amo.LOG.FORCE_ENABLE.id,
+            amo.LOG.ENABLE_AUTO_APPROVAL.id,
+            amo.LOG.DISABLE_AUTO_APPROVAL.id,
         ]
 
         # Make sure the logs are displayed in the page.
         important_changes = doc('#important-changes-history table.activity tr')
-        assert len(important_changes) == 6
+        assert len(important_changes) == len(actions)
 
         for i, activity in enumerate(expected_activities):
             change = doc(f'#important-changes-history .activity tr:nth-child({i + 1})')
@@ -5012,6 +5030,11 @@ class TestReview(ReviewBase):
             else:
                 assert activity.to_string('reviewer')
                 assert activity.to_string('reviewer') in change.html()
+
+        change_text = doc('#important-changes-history .activity tr:nth-child(7)').text()
+        assert change_text.startswith('Auto-Approval enabled (Listed)')
+        change_text = doc('#important-changes-history .activity tr:nth-child(8)').text()
+        assert change_text.startswith('Auto-Approval disabled (Unlisted)')
 
     def test_important_changes_log_with_versions_attached(self):
         version1 = self.addon.versions.get()
