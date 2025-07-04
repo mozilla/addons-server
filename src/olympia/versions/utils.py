@@ -190,15 +190,12 @@ def validate_version_number_does_not_exist(addon, version_string):
     """Returns an error string if `version_string` already exists for any version of
     this add-on."""
     from .models import Version
+
     # Make sure we don't already have this version.
-    existing_versions = Version.unfiltered.filter(
-        addon=addon, version=version_string
-    )
+    existing_versions = Version.unfiltered.filter(addon=addon, version=version_string)
     if existing_versions.exists():
         if existing_versions[0].deleted:
-            msg = gettext(
-                'Version {version_string} was uploaded before and deleted.'
-            )
+            msg = gettext('Version {version_string} was uploaded before and deleted.')
         else:
             msg = gettext('Version {version_string} already exists.')
         return msg.format(version_string=version_string)
@@ -227,20 +224,3 @@ def validate_version_number_is_gt_latest_signed_listed_version(addon, version_st
             version_string=version_string,
             previous_version_string=latest_version_string,
         )
-
-
-def get_rollbackable_versions(addon, channel):
-    # Needs to be an extension
-    if addon.type != amo.ADDON_EXTENSION:
-        return []
-    versions_qs = addon.versions.filter(
-        channel=channel, file__status=amo.STATUS_APPROVED
-    ).order_by('created')
-    if channel != amo.CHANNEL_LISTED:
-        # You can't rollback to the latest approved version
-        versions_qs = versions_qs[1:]
-    else:
-        # and we currently limit choices to the prior version only for listed
-        versions_qs = versions_qs[1:1]
-
-    return list(versions_qs)

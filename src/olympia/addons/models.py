@@ -27,6 +27,7 @@ from django.utils import translation
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _, trans_real
 
+import waffle
 from django_statsd.clients import statsd
 
 import olympia.core.logger
@@ -2020,6 +2021,17 @@ class Addon(OnChangeMixin, ModelBase):
             .no_transforms()
         ):
             version.reset_due_date(should_have_due_date=False)
+
+    def rollbackable_versions_qs(self, channel):
+        # Needs to be an extension
+        if not self.type == amo.ADDON_EXTENSION or not waffle.switch_is_active(
+            'version-rollback'
+        ):
+            return Version.objects.none()
+        qs = self.versions.filter(channel=channel, file__status=amo.STATUS_APPROVED)
+        # You can't rollback to the latest approved version
+        qs = qs.exclude(id=qs.values('id')[:1])
+        return qs.order_by('-created')
 
 
 dbsignals.pre_save.connect(save_signal, sender=Addon, dispatch_uid='addon_translations')
