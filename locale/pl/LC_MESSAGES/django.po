@@ -4176,7 +4176,7 @@ msgstr "Dowiedz się, jak utworzyć rozszerzenie"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/submit_or_manage_extension.html:4
 msgid "Ready to submit or manage your extension?"
-msgstr ""
+msgstr "Chcesz przesłać lub zarządzać swoim rozszerzeniem?"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/submit_or_manage_extension.html:7
 msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
@@ -5853,7 +5853,7 @@ msgstr ""
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1024 src/olympia/discovery/strings.jinja2:1026 src/olympia/discovery/strings.jinja2:1028
 msgid "See staff picks"
-msgstr ""
+msgstr "Nasze propozycje"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1031
@@ -5943,7 +5943,7 @@ msgstr "Menedżery kart"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1073
 msgid "See more tab management staff picks"
-msgstr ""
+msgstr "Nasze propozycje menedżerów kart"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1076
