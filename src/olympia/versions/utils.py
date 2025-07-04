@@ -7,6 +7,7 @@ from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.utils.encoding import force_str
+from django.utils.translation import gettext
 
 from PIL import Image
 
@@ -183,3 +184,63 @@ def get_staggered_review_due_date_generator(
         # future), so fake the starting date from now on to prevent that check
         # above from triggering an additional unwanted delay.
         starting = due_date
+
+
+def validate_version_number_does_not_exist(addon, version_string):
+    """Returns an error string if `version_string` already exists for any version of
+    this add-on."""
+    from .models import Version
+    # Make sure we don't already have this version.
+    existing_versions = Version.unfiltered.filter(
+        addon=addon, version=version_string
+    )
+    if existing_versions.exists():
+        if existing_versions[0].deleted:
+            msg = gettext(
+                'Version {version_string} was uploaded before and deleted.'
+            )
+        else:
+            msg = gettext('Version {version_string} already exists.')
+        return msg.format(version_string=version_string)
+
+
+def validate_version_number_is_gt_latest_signed_listed_version(addon, version_string):
+    """Returns an error string if `version_string` isn't greater than the current
+    approved listed version. Doesn't apply to langpacks."""
+    if (
+        addon
+        and addon.type != amo.ADDON_LPAPP
+        and (
+            latest_version_string := addon.versions(manager='unfiltered_for_relations')
+            .filter(channel=amo.CHANNEL_LISTED, file__is_signed=True)
+            .order_by('created')
+            .values_list('version', flat=True)
+            .last()
+        )
+        and latest_version_string >= version_string
+    ):
+        msg = gettext(
+            'Version {version_string} must be greater than the previous approved '
+            'version {previous_version_string}.'
+        )
+        return msg.format(
+            version_string=version_string,
+            previous_version_string=latest_version_string,
+        )
+
+
+def get_rollbackable_versions(addon, channel):
+    # Needs to be an extension
+    if addon.type != amo.ADDON_EXTENSION:
+        return []
+    versions_qs = addon.versions.filter(
+        channel=channel, file__status=amo.STATUS_APPROVED
+    ).order_by('created')
+    if channel != amo.CHANNEL_LISTED:
+        # You can't rollback to the latest approved version
+        versions_qs = versions_qs[1:]
+    else:
+        # and we currently limit choices to the prior version only for listed
+        versions_qs = versions_qs[1:1]
+
+    return list(versions_qs)
