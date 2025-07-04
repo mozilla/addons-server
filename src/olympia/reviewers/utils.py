@@ -365,6 +365,11 @@ class ReviewHelper:
         user=None,
         content_review=False,
         human_review=True,
+        # channel corresponds to the channel the reviewer is looking at in the
+        # case of a human review, and it then determines which handler class to
+        # use and which actions are available, even if there are no versions in
+        # that channel. Callers that do not care about that can pass
+        # channel=None.
         channel,
     ):
         self.handler = None
