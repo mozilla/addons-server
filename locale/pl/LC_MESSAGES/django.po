@@ -5838,7 +5838,7 @@ msgstr "Wyświetl wszystkie rozszerzenia"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1018
 msgid "Anti-tracking extensions"
-msgstr ""
+msgstr "Rozszerzenia zapobiegające śledzeniu"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1020
