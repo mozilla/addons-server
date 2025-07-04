@@ -4969,9 +4969,8 @@ msgstr "Odwrotne wyszukiwanie obrazów z wykorzystaniem możliwości wielu wyszu
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:293
-#, fuzzy
 msgid "A more efficient way to save bookmarks if you use multiple bookmark folders."
-msgstr "Lepszy sposób zapisywania zakładek, jeśli używasz wielu folderów zakładek."
+msgstr "Bardziej efektywny sposób zapisywania zakładek, jeśli używasz wielu folderów zakładek."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:296
@@ -4991,9 +4990,8 @@ msgstr "Natychmiast wyświetlaj wszystkie odnośniki w nowych kartach."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:305
-#, fuzzy
 msgid "Strip away redirect pages and URL tracking parameters from web links. Works automatically."
-msgstr "Usuwaj strony przekierowujące i parametry śledzenia z adresów URL."
+msgstr "Usuwaj strony przekierowujące i parametry śledzenia z adresów URL. Działa automatycznie."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:308
@@ -5848,7 +5846,7 @@ msgstr "Niezbędne dodatki"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1022
 msgid "Steam extensions"
-msgstr ""
+msgstr "Rozszerzenia dla Steam"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1024 src/olympia/discovery/strings.jinja2:1026 src/olympia/discovery/strings.jinja2:1028
@@ -5965,7 +5963,7 @@ msgstr "Elitarne blokery reklam"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1083
 msgid "See more ad blocker staff picks"
-msgstr ""
+msgstr "Nasze propozycje blokerów reklam"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1086
@@ -6015,7 +6013,7 @@ msgstr ""
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1108
 msgid "See more Steam staff picks"
-msgstr ""
+msgstr "Nasze propozycje rozszerzeń dla Steam"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1111
@@ -6164,9 +6162,9 @@ msgid "Invalid or corrupted file."
 msgstr "Nieprawidłowy lub uszkodzony plik."
 
 #: src/olympia/files/utils.py:903
-#, fuzzy, python-format
+#, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
-msgstr "Identyfikator dodatku w pliku manifest.json lub install.rdf (%s) nie pasuje do identyfikatora dodatku na AMO (%s)"
+msgstr "Identyfikator dodatku w pliku manifest.json (%s) nie pasuje do identyfikatora dodatku na AMO (%s)"
 
 #: src/olympia/files/utils.py:911
 msgid "Duplicate add-on ID found."
