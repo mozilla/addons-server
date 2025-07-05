@@ -2319,6 +2319,8 @@ msgstr "Wystąpił błąd podczas przesyłania obrazu."
 msgid ""
 "The latest approved version of this %s add-on cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
+"Najnowsza zatwierdzona wersja tego dodatku %s nie może zostać usunięta ani zablokowana, ponieważ poprzednia wersja nie została zatwierdzona do promocji %s. Skontaktuj się z administratorami AMO, "
+"jeśli potrzebujesz pomocy w tej sprawie."
 
 #: src/olympia/devhub/views.py:1220
 #, python-format
@@ -4696,9 +4698,8 @@ msgstr "Śledź elementy śledzące. Zobacz, kto cię śledzi jednym kliknięcie
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:143
-#, fuzzy
 msgid "Change your proxy server and surf the web through self-defined proxy settings."
-msgstr "Surfuj po Internecie przy użyciu samodzielnie zdefiniowanych ustawień serwera proxy."
+msgstr "Zmień serwer proxy i surfuj po sieci przy użyciu samodzielnie zdefiniowanych ustawień serwera proxy."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:146
