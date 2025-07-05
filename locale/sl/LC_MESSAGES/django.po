@@ -1275,16 +1275,16 @@ msgstr "{addon} {version} ustvarjen za povrnitev z {0}."
 
 #: src/olympia/constants/activity.py:1209
 msgid "Version rollback"
-msgstr "Povrnitev različice"
+msgstr "Vrnitev prejšnje različice"
 
 #: src/olympia/constants/activity.py:1216
 #, python-brace-format
 msgid "{addon} rollback from {version} failed."
-msgstr "Povrnitev dodatka {addon} z {version} ni uspela."
+msgstr "Povrnitev dodatka {addon} z različice {version} ni uspela."
 
 #: src/olympia/constants/activity.py:1217
 msgid "Version rollback failure"
-msgstr "Povrnitev različice ni uspela"
+msgstr "Vrnitev prejšnje različice ni uspela"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
