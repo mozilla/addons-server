@@ -1263,12 +1263,12 @@ msgstr ""
 
 #: src/olympia/constants/activity.py:1209
 msgid "Version rollback"
-msgstr ""
+msgstr "版本回滚"
 
 #: src/olympia/constants/activity.py:1216
 #, python-brace-format
 msgid "{addon} rollback from {version} failed."
-msgstr ""
+msgstr "将 {addon} 从 {version} 回滚失败。"
 
 #: src/olympia/constants/activity.py:1217
 msgid "Version rollback failure"
