@@ -1277,12 +1277,12 @@ msgstr "Byl vytvořen doplněk {addon} {version} pro vrácení zpět z {0}."
 
 #: src/olympia/constants/activity.py:1209
 msgid "Version rollback"
-msgstr "Rollback verze"
+msgstr "Navrácení verze"
 
 #: src/olympia/constants/activity.py:1216
 #, python-brace-format
 msgid "{addon} rollback from {version} failed."
-msgstr "Rollback doplňku {addon} od verze {version} selhal."
+msgstr "Navrácení verze doplňku {addon} z verze {version} selhalo."
 
 #: src/olympia/constants/activity.py:1217
 msgid "Version rollback failure"
