@@ -69,3 +69,5 @@ CINDER_QUEUE_PREFIX = 'amo-'
 # In Cinder prod the only registered webhook is for AMO prod, so all IDs should be
 # unique - and we want the 400 error.
 CINDER_UNIQUE_IDS = True
+
+SWAGGER_UI_ENABLED = True
