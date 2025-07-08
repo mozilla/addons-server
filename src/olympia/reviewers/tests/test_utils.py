@@ -147,6 +147,7 @@ class TestReviewHelperBase(TestCase):
             user=self.user,
             human_review=human_review,
             content_review=content_review,
+            channel=getattr(self.review_version, 'channel', amo.CHANNEL_LISTED),
         )
 
     def check_log_count(self, id, user=None):
@@ -585,7 +586,9 @@ class TestReviewHelper(TestReviewHelperBase):
             == expected
         )
 
-        # you need admin review permission
+        # You need admin review permission. Also because it's a promoted add-on
+        # despite being admin you don't get the enable/disable auto-approval
+        # action.
         self.grant_permission(self.user, 'Reviews:Admin')
         expected = [
             'public',
@@ -669,6 +672,7 @@ class TestReviewHelper(TestReviewHelperBase):
             'change_or_clear_pending_rejection_multiple_versions',
             'clear_needs_human_review_multiple_versions',
             'set_needs_human_review_multiple_versions',
+            'disable_auto_approval',
             'reply',
             'disable_addon',
             'request_legal_review',
@@ -810,6 +814,7 @@ class TestReviewHelper(TestReviewHelperBase):
             'change_or_clear_pending_rejection_multiple_versions',
             'clear_needs_human_review_multiple_versions',
             'set_needs_human_review_multiple_versions',
+            'disable_auto_approval',
             'reply',
             'disable_addon',
             'request_legal_review',
@@ -837,6 +842,7 @@ class TestReviewHelper(TestReviewHelperBase):
             'change_or_clear_pending_rejection_multiple_versions',
             'clear_needs_human_review_multiple_versions',
             'set_needs_human_review_multiple_versions',
+            'disable_auto_approval',
             'reply',
             'disable_addon',
             'request_legal_review',
@@ -873,6 +879,7 @@ class TestReviewHelper(TestReviewHelperBase):
         expected = [
             'change_or_clear_pending_rejection_multiple_versions',
             'clear_needs_human_review_multiple_versions',
+            'disable_auto_approval',
             'reply',
             'enable_addon',
             'request_legal_review',
@@ -906,6 +913,7 @@ class TestReviewHelper(TestReviewHelperBase):
             'change_or_clear_pending_rejection_multiple_versions',
             'clear_needs_human_review_multiple_versions',
             'set_needs_human_review_multiple_versions',
+            'disable_auto_approval',
             'reply',
             'disable_addon',
             'request_legal_review',
@@ -968,6 +976,7 @@ class TestReviewHelper(TestReviewHelperBase):
             'change_or_clear_pending_rejection_multiple_versions',
             'clear_needs_human_review_multiple_versions',
             'set_needs_human_review_multiple_versions',
+            'disable_auto_approval',
             'reply',
             'request_legal_review',
             'comment',
@@ -1086,6 +1095,94 @@ class TestReviewHelper(TestReviewHelperBase):
         assert actions['approve_multiple_versions']['enforcement_actions'] == (
             DECISION_ACTIONS.AMO_APPROVE,
         )
+
+    def test_actions_auto_approval_disabled(self):
+        self.grant_permission(self.user, 'Addons:Review')
+        self.grant_permission(self.user, 'Reviews:Admin')
+        expected = [
+            'reject_multiple_versions',
+            'change_or_clear_pending_rejection_multiple_versions',
+            'clear_needs_human_review_multiple_versions',
+            'set_needs_human_review_multiple_versions',
+            'enable_auto_approval',
+            'reply',
+            'disable_addon',
+            'request_legal_review',
+            'comment',
+        ]
+        AddonReviewerFlags.objects.create(addon=self.addon, auto_approval_disabled=True)
+        actions = list(
+            self.get_review_actions(
+                addon_status=amo.STATUS_APPROVED,
+                file_status=amo.STATUS_APPROVED,
+            ).keys()
+        )
+        assert expected == actions
+
+        self.make_addon_unlisted(self.addon)
+        self.review_version.reload()
+
+    def test_actions_auto_approval_disabled_unlisted(self):
+        self.grant_permission(self.user, 'Addons:Review')
+        self.grant_permission(self.user, 'Addons:ReviewUnlisted')
+        self.grant_permission(self.user, 'Reviews:Admin')
+        self.make_addon_unlisted(self.addon)
+        self.review_version.reload()
+
+        # This doesn't affect unlisted.
+        AddonReviewerFlags.objects.create(addon=self.addon, auto_approval_disabled=True)
+
+        expected = [
+            'approve_multiple_versions',
+            'reject_multiple_versions',
+            'unreject_multiple_versions',
+            'block_multiple_versions',
+            'confirm_multiple_versions',
+            'change_or_clear_pending_rejection_multiple_versions',
+            'clear_needs_human_review_multiple_versions',
+            'set_needs_human_review_multiple_versions',
+            # We're looking at unlisted, so the action that should be available
+            # is to disable auto-approval, since it's still enabled for that
+            # channel.
+            'disable_auto_approval',
+            'reply',
+            'disable_addon',
+            'request_legal_review',
+            'comment',
+        ]
+        actions = list(
+            self.get_review_actions(
+                addon_status=amo.STATUS_APPROVED,
+                file_status=amo.STATUS_APPROVED,
+            ).keys()
+        )
+        assert expected == actions
+
+        self.addon.reviewerflags.update(auto_approval_disabled_unlisted=True)
+
+        expected = [
+            'approve_multiple_versions',
+            'reject_multiple_versions',
+            'unreject_multiple_versions',
+            'block_multiple_versions',
+            'confirm_multiple_versions',
+            'change_or_clear_pending_rejection_multiple_versions',
+            'clear_needs_human_review_multiple_versions',
+            'set_needs_human_review_multiple_versions',
+            # Now it flipped.
+            'enable_auto_approval',
+            'reply',
+            'disable_addon',
+            'request_legal_review',
+            'comment',
+        ]
+        actions = list(
+            self.get_review_actions(
+                addon_status=amo.STATUS_APPROVED,
+                file_status=amo.STATUS_APPROVED,
+            ).keys()
+        )
+        assert expected == actions
 
     def test_set_file(self):
         self.file.update(datestatuschanged=yesterday)
@@ -4556,6 +4653,88 @@ class TestReviewHelper(TestReviewHelperBase):
             assert entry.original_due_date
             self.assertCloseToNow(entry.exit_date)
             assert entry.review_decision_log
+
+    def test_enable_auto_approval(self):
+        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
+        AddonReviewerFlags.objects.create(addon=self.addon, auto_approval_disabled=True)
+        self.helper.handler.enable_auto_approval()
+        assert not self.addon.reviewerflags.reload().auto_approval_disabled
+        activity_log_qs = ActivityLog.objects.filter(
+            action=amo.LOG.ENABLE_AUTO_APPROVAL.id
+        )
+        assert activity_log_qs.count() == 1
+        activity = activity_log_qs.get()
+        assert activity.arguments == [self.addon]
+        assert activity.details == {
+            'channel': amo.CHANNEL_LISTED,
+            'comments': 'foo',
+            'human_review': True,
+        }
+
+    def test_enable_auto_approval_unlisted(self):
+        self.setup_data(
+            amo.STATUS_APPROVED,
+            file_status=amo.STATUS_APPROVED,
+            channel=amo.CHANNEL_UNLISTED,
+        )
+        AddonReviewerFlags.objects.create(
+            addon=self.addon, auto_approval_disabled_unlisted=True
+        )
+        self.helper.handler.enable_auto_approval()
+        assert not self.addon.reviewerflags.reload().auto_approval_disabled_unlisted
+        activity_log_qs = ActivityLog.objects.filter(
+            action=amo.LOG.ENABLE_AUTO_APPROVAL.id
+        )
+        assert activity_log_qs.count() == 1
+        activity = activity_log_qs.get()
+        assert activity.arguments == [self.addon]
+        assert activity.details == {
+            'channel': amo.CHANNEL_UNLISTED,
+            'comments': 'foo',
+            'human_review': True,
+        }
+
+    def test_disable_auto_approval(self):
+        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
+        self.helper.handler.disable_auto_approval()
+        self.addon.reviewerflags.reload()
+        assert self.addon.reviewerflags.auto_approval_disabled
+        # We only touch the channel the reviewer was looking at.
+        assert not self.addon.reviewerflags.auto_approval_disabled_unlisted
+        activity_log_qs = ActivityLog.objects.filter(
+            action=amo.LOG.DISABLE_AUTO_APPROVAL.id
+        )
+        assert activity_log_qs.count() == 1
+        activity = activity_log_qs.get()
+        assert activity.arguments == [self.addon]
+        assert activity.details == {
+            'channel': amo.CHANNEL_LISTED,
+            'comments': 'foo',
+            'human_review': True,
+        }
+
+    def test_disable_auto_approval_unlisted(self):
+        self.setup_data(
+            amo.STATUS_APPROVED,
+            file_status=amo.STATUS_APPROVED,
+            channel=amo.CHANNEL_UNLISTED,
+        )
+        self.helper.handler.disable_auto_approval()
+        self.addon.reviewerflags.reload()
+        assert self.addon.reviewerflags.auto_approval_disabled_unlisted
+        # We only touch the channel the reviewer was looking at.
+        assert not self.addon.reviewerflags.auto_approval_disabled
+        activity_log_qs = ActivityLog.objects.filter(
+            action=amo.LOG.DISABLE_AUTO_APPROVAL.id
+        )
+        assert activity_log_qs.count() == 1
+        activity = activity_log_qs.get()
+        assert activity.arguments == [self.addon]
+        assert activity.details == {
+            'channel': amo.CHANNEL_UNLISTED,
+            'comments': 'foo',
+            'human_review': True,
+        }
 
 
 @override_settings(ENABLE_ADDON_SIGNING=True)

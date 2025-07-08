@@ -1,6 +1,9 @@
 <tr>
   <th>
     {{ record.log.short|default }}
+    {% if record.details and record.details.channel %}
+      ({{ amo.CHANNEL_CHOICES.get(record.details.channel) }})
+    {% endif %}
   </th>
   <td class="record-container">
       <div>

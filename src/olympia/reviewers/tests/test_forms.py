@@ -60,7 +60,10 @@ class TestReviewForm(TestCase):
             data=data,
             files=files,
             helper=ReviewHelper(
-                addon=self.addon, version=self.version, user=self.request.user
+                addon=self.addon,
+                version=self.version,
+                user=self.request.user,
+                channel=self.version.channel,
             ),
         )
 
@@ -103,6 +106,7 @@ class TestReviewForm(TestCase):
             'change_or_clear_pending_rejection_multiple_versions',
             'clear_needs_human_review_multiple_versions',
             'set_needs_human_review_multiple_versions',
+            'disable_auto_approval',
             'reply',
             'disable_addon',
             'request_legal_review',
@@ -142,6 +146,7 @@ class TestReviewForm(TestCase):
             'change_or_clear_pending_rejection_multiple_versions',
             'clear_needs_human_review_multiple_versions',
             'set_needs_human_review_multiple_versions',
+            'disable_auto_approval',
             'reply',
             'disable_addon',
             'request_legal_review',
@@ -171,6 +176,7 @@ class TestReviewForm(TestCase):
             'change_or_clear_pending_rejection_multiple_versions',
             'clear_needs_human_review_multiple_versions',
             'set_needs_human_review_multiple_versions',
+            'disable_auto_approval',
             'reply',
             'request_legal_review',
             'comment',
@@ -201,6 +207,7 @@ class TestReviewForm(TestCase):
             'change_or_clear_pending_rejection_multiple_versions',
             'clear_needs_human_review_multiple_versions',
             'set_needs_human_review_multiple_versions',
+            'disable_auto_approval',
             'reply',
             'disable_addon',
             'request_legal_review',
@@ -215,6 +222,7 @@ class TestReviewForm(TestCase):
         assert list(actions.keys()) == [
             'change_or_clear_pending_rejection_multiple_versions',
             'clear_needs_human_review_multiple_versions',
+            'disable_auto_approval',
             'reply',
             'enable_addon',
             'request_legal_review',

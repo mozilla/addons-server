@@ -68,7 +68,9 @@ class Command(BaseCommand):
                 addon,
             )
             return
-        helper = ReviewHelper(addon=addon, version=latest_version, human_review=False)
+        helper = ReviewHelper(
+            addon=addon, version=latest_version, human_review=False, channel=None
+        )
         relevant_activity_logs = ActivityLog.objects.for_versions(versions).filter(
             action__in=(
                 amo.LOG.REJECT_CONTENT_DELAYED.id,
