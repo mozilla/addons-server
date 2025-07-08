@@ -46,13 +46,14 @@ jobs:
   context:
     runs-on: ubuntu-latest
     outputs:
-      notify: ${{ inputs.notify == 'true' && 'true' || 'false' }}
+      notify: ${{ steps.environment.outputs.notify }}
       environment: ${{ steps.environment.outputs.environment }}
 
     steps:
       - name: Environment
         id: environment
         env:
+          notify: ${{ inputs.notify }}
           environment: ${{ inputs.environment }}
         run: |
           if [[ "$environment" == "prod" ]]; then
@@ -64,6 +65,8 @@ jobs:
           else
             environment="host"
           fi
+
+          echo "notify=$notify" >> "$GITHUB_OUTPUT"
           echo "environment=$environment" >> "$GITHUB_OUTPUT"
           cat "$GITHUB_OUTPUT"
 
