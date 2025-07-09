@@ -1278,11 +1278,11 @@ msgstr "Modificât refudament in spiete"
 #: src/olympia/constants/activity.py:1208
 #, python-brace-format
 msgid "{addon} {version} created, to rollback from {0}."
-msgstr ""
+msgstr "{addon} {version} creade pal ripristinament di {0}."
 
 #: src/olympia/constants/activity.py:1209
 msgid "Version rollback"
-msgstr ""
+msgstr "Ripristinament version"
 
 #: src/olympia/constants/activity.py:1216
 #, python-brace-format
