@@ -6224,7 +6224,7 @@ msgstr "הערך %(value)s מכיל תו שאינו אות או מספר."
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
 msgstr[0] "טקסט הסקירה אינו יכול להכיל את המילה: ״{0}״"
-msgstr[1] "טקסט הסקירה אינו יכול להכיל אף אחד מהמילים: ״{0}״"
+msgstr[1] "טקסט הסקירה אינו יכול להכיל אף אחת מהמילים: ״{0}״"
 
 #: src/olympia/ratings/serializers.py:119
 msgid "This field is required."
