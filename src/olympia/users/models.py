@@ -648,7 +648,6 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             'subject': f'Your account on {site_url} has been deleted',
             'message': email_msg,
             'recipient_list': [str(self.email)],
-            'reply_to': ['amo-admins+deleted@mozilla.com'],
         }
 
     def should_send_delete_email(self):

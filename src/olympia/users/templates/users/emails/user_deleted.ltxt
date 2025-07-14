@@ -2,8 +2,6 @@
 
 You’re receiving this message because your user account {{ name }} on {{ site_url }} has been deleted. This could have been done automatically if you recently deleted your Mozilla account.
 
-If you didn’t do this or believe an unauthorized person has accessed your account, please reply to this email. Otherwise, there’s no further action to take.
-
 Regards,
 
 Mozilla Add-ons Team{% endblocktrans %}
