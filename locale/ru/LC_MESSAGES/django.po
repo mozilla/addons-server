@@ -3887,7 +3887,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:30
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery."
-msgstr ""
+msgstr "Ваше дополнение было отключено администратором сайта и больше не показывается в нашей галерее."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:33
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
@@ -7110,6 +7110,13 @@ msgid ""
 "\n"
 "Mozilla Add-ons Team"
 msgstr ""
+"Добрый день!\n"
+"\n"
+"Вы получили это сообщение, так как ваш аккаунт %(name)s на %(site_url)s был удалён. Это могло быть сделано автоматически, если вы недавно удалили свой аккаунт Mozilla.\n"
+"\n"
+"С уважением,\n"
+"\n"
+"Команда дополнений Mozilla"
 
 #: src/olympia/versions/models.py:1176
 #, python-format
