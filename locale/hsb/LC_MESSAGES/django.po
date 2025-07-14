@@ -3875,7 +3875,7 @@ msgstr "Waš přidatk so w našej galeriji pokazuje a wužiwarjo awtomatiske akt
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:30
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery."
-msgstr ""
+msgstr "Waš přidatk je so wot sydłoweho administratora znjemóžnił a so hižo w našej galeriji njepokazuje."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:33
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
