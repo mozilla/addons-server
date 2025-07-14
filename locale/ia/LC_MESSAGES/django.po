@@ -7076,6 +7076,13 @@ msgid ""
 "\n"
 "Mozilla Add-ons Team"
 msgstr ""
+"Hallo,\n"
+"\n"
+"Tu recipe iste message perque tu conto de usator %(name)s sur %(site_url)s ha essite delite. Isto poterea haber evenite automaticamente si tu recentemente deleva tu Conto Mozilla.\n"
+"\n"
+"Cordialmente,\n"
+"\n"
+"Le equipa de Mozilla Add-ons"
 
 #: src/olympia/versions/models.py:1176
 #, python-format
