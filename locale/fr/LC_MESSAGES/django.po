@@ -3910,7 +3910,7 @@ msgstr "Votre module est affiché dans notre galerie et les utilisateurs reçoiv
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:30
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery."
-msgstr ""
+msgstr "Votre module a été désactivé par un administrateur du site et n’est plus affiché dans notre galerie."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:33
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
@@ -7143,6 +7143,13 @@ msgid ""
 "\n"
 "Mozilla Add-ons Team"
 msgstr ""
+"Bonjour,\n"
+"\n"
+"Vous recevez ce message car votre compte utilisateur %(name)s sur %(site_url)s a été supprimé. Cette action a pu être effectuée automatiquement si vous avez récemment supprimé votre compte Mozilla.\n"
+"\n"
+"Cordialement,\n"
+"\n"
+"L’équipe Mozilla Add-ons"
 
 #: src/olympia/versions/models.py:1176
 #, python-format

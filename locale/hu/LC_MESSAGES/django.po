@@ -3870,7 +3870,7 @@ msgstr "A kiegészítő megjelenik a galériában és a felhasználók automatik
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:30
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery."
-msgstr ""
+msgstr "A kiegészítőt egy oldal adminisztrátora letiltotta, ezért nem jelenik meg a galériánkban."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:33
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
@@ -7092,6 +7092,13 @@ msgid ""
 "\n"
 "Mozilla Add-ons Team"
 msgstr ""
+"Üdv,\n"
+"\n"
+"Ezt az üzenetet azért kapja, mert a(z) %(site_url)s oldalon lévő %(name)s felhasználói fiókját törölték. Ez automatikusan is megtörténhetett, ha nemrég törölte a Mozilla-fiókját.\n"
+"\n"
+"Üdvözlettel,\n"
+"\n"
+"A Mozilla Kiegészítők csapata"
 
 #: src/olympia/versions/models.py:1176
 #, python-format
