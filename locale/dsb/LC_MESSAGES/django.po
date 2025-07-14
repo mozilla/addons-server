@@ -3875,7 +3875,7 @@ msgstr "Waš dodank pokazujo se w našej galeriji a wužywarje dostawaju awtomat
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:30
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery."
-msgstr ""
+msgstr "Waš dodank jo se znjemóžnił wót sedłowego administratora znjemóžnił a se wěcej w našej galeriji njepokazujo."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:33
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
@@ -7103,6 +7103,13 @@ msgid ""
 "\n"
 "Mozilla Add-ons Team"
 msgstr ""
+"Witaj,\n"
+"\n"
+"Dostawaśo toś tu powěźeńku, dokulaž wašo wužywaŕske konto %(name)s na %(site_url)s jo se wualšowało. To móžo se awtomatiski staś, jolic sćo njedawno wulašował swójo konto Mozilla.\n"
+"\n"
+"Póstrowy,\n"
+"\n"
+"Team Mozilla Add-ons"
 
 #: src/olympia/versions/models.py:1176
 #, python-format

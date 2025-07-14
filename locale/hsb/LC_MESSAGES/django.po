@@ -7103,6 +7103,13 @@ msgid ""
 "\n"
 "Mozilla Add-ons Team"
 msgstr ""
+"Witaj,\n"
+"\n"
+"Dóstawaće tutu zdźělenku, dokelž waše wužiwarske konto %(name)s na %(site_url)s je so zhašało. To móže so awtomatisce stać, jeli sće njedawno swoje konto Mozilla zhašał.\n"
+"\n"
+"Postrowy,\n"
+"\n"
+"Team Mozilla Add-ons"
 
 #: src/olympia/versions/models.py:1176
 #, python-format
