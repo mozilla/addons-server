@@ -3859,7 +3859,7 @@ msgstr "Sua extensão será exibido em nossa galeria e os usuários receberão 
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:30
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery."
-msgstr ""
+msgstr "Sua extensão foi desativada por um administrador do site e não será mais exibida em nossa galeria."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:33
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
@@ -7079,6 +7079,13 @@ msgid ""
 "\n"
 "Mozilla Add-ons Team"
 msgstr ""
+"Olá,\n"
+"\n"
+"Você recebeu esta mensagem porque sua conta de usuário %(name)s em %(site_url)s foi excluída. Isso pode ter sido feito automaticamente caso você tenha excluído recentemente sua conta Mozilla.\n"
+"\n"
+"Atenciosamente,\n"
+"\n"
+"Equipe Mozilla Add-ons"
 
 #: src/olympia/versions/models.py:1176
 #, python-format

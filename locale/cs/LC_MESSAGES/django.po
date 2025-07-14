@@ -3858,7 +3858,7 @@ msgstr "Váš doplněk je zobrazen v naší galerii a uživatelé k němu získ�
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:30
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery."
-msgstr ""
+msgstr "Váš doplněk byl zakázán správcem webu a již není zobrazen v naší galerii."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:33
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
@@ -7074,6 +7074,13 @@ msgid ""
 "\n"
 "Mozilla Add-ons Team"
 msgstr ""
+"Ahoj,\n"
+"\n"
+"Tuto zprávu jste obdrželi, protože váš uživatelský účet %(name)s na %(site_url)s byl smazán. Pokud jste svůj účet Mozilla nedávno smazali, mohlo to být provedeno automaticky.\n"
+"\n"
+"S pozdravem,\n"
+"\n"
+"Tým serveru Doplňky Mozilly"
 
 #: src/olympia/versions/models.py:1176
 #, python-format
