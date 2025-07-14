@@ -7083,11 +7083,11 @@ msgid ""
 msgstr ""
 "Pozdravljeni,\n"
 "\n"
-"To sporočilo ste prejeli, ker je bil vaš uporabniški račun %(name)s na %(site_url)s izbrisan. To bi se lahko zgodilo samodejno, če ste pred kratkim izbrisali svoj račun pri Mozilli.\n"
+"to sporočilo ste prejeli, ker je bil vaš uporabniški račun %(name)s na %(site_url)s izbrisan. To se je morda zgodilo samodejno, če ste pred kratkim izbrisali svoj račun Mozilla.\n"
 "\n"
 "Pozdrav,\n"
 "\n"
-"Ekipa za dodatke Mozille"
+"ekipa za dodatke Mozille"
 
 #: src/olympia/versions/models.py:1176
 #, python-format

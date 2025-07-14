@@ -3908,7 +3908,7 @@ msgstr "Το πρόσθετό σας εμφανίζεται στη συλλογ�
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:30
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery."
-msgstr ""
+msgstr "Το πρόσθετό σας απενεργοποιήθηκε από έναν διαχειριστή του ιστοτόπου και δεν εμφανίζεται πλέον στη συλλογή μας."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:33
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
