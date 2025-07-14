@@ -3866,7 +3866,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:30
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery."
-msgstr ""
+msgstr "Your add-on was disabled by a site administrator and is no longer shown in our gallery."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:33
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
@@ -7077,6 +7077,13 @@ msgid ""
 "\n"
 "Mozilla Add-ons Team"
 msgstr ""
+"Hello,\n"
+"\n"
+"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted. This could have been done automatically if you recently deleted your Mozilla account.\n"
+"\n"
+"Regards,\n"
+"\n"
+"Mozilla Add-ons Team"
 
 #: src/olympia/versions/models.py:1176
 #, python-format
