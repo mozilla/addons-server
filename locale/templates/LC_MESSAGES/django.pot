@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-08 10:03+0000\n"
+"POT-Creation-Date: 2025-07-14 13:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2775,8 +2775,8 @@ msgstr ""
 msgid "Email Address Verification"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html:63
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html:90
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:62
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:89
 #: src/olympia/devhub/templates/devhub/verify_email.html:10
 msgid "Status:"
 msgstr ""
@@ -4206,10 +4206,10 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:30
 msgid ""
 "Your add-on was disabled by a site administrator and is no longer shown in "
-"our gallery. If you have any questions, please email amo-admins@mozilla.com."
+"our gallery."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html:34
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:33
 msgid ""
 "Your add-on won't be included in search results, and its listing page will "
 "indicate you disabled it. New version submissions for listing won't be "
@@ -4217,53 +4217,53 @@ msgid ""
 msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html:41
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:40
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:85
 msgid "Created:"
 msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html:47
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:46
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:81
 msgid "Last Updated:"
 msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html:57
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:56
 msgid ""
 "Listed on this site after passing code review. Automatic updates are handled "
 "by this site"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html:69
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:68
 msgid "Listed Version:"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html:71
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:70
 msgid ""
 "This is the version of your add-on that will be installed if someone clicks "
 "the Install button on addons.mozilla.org"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html:80
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:79
 msgid "Next Listed Version:"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html:82
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:81
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html:100
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:99
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:66
 #: src/olympia/devhub/templates/devhub/versions/list.html:26
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html:106
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:105
 msgid "Latest Version:"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html:108
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:107
 msgid "This is the newest uploaded unlisted version"
 msgstr ""
 
@@ -7598,39 +7598,39 @@ msgstr ""
 msgid "Firefox user {id}"
 msgstr ""
 
-#: src/olympia/users/models.py:845
+#: src/olympia/users/models.py:844
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr ""
 
-#: src/olympia/users/models.py:849
+#: src/olympia/users/models.py:848
 msgid ""
 "Multiple submissions violating our policies have been sent from your "
 "location. The IP address has been blocked."
 msgstr ""
 
-#: src/olympia/users/models.py:961
+#: src/olympia/users/models.py:960
 msgid "Email Pattern"
 msgstr ""
 
-#: src/olympia/users/models.py:964
+#: src/olympia/users/models.py:963
 msgid ""
 "Enter full email that should be blocked or use unix-style wildcards, e.g. "
 "\"*@example.com\". If you need to block a domain incl subdomains, add a "
 "second entry, e.g. \"*@*.example.com\"."
 msgstr ""
 
-#: src/olympia/users/models.py:971
+#: src/olympia/users/models.py:970
 msgid "The email address used for your account is not allowed for submissions."
 msgstr ""
 
-#: src/olympia/users/models.py:1050
+#: src/olympia/users/models.py:1049
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not "
 "supported: if you need those, or need to match against the entire email and "
 "not just the domain part, use \"Email user restrictions\" instead."
 msgstr ""
 
-#: src/olympia/users/models.py:1201
+#: src/olympia/users/models.py:1200
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution "
 "Agreement as well as our Review Policies and Rules. The Firefox Add-on "
@@ -7638,14 +7638,14 @@ msgid ""
 " handle your information."
 msgstr ""
 
-#: src/olympia/users/models.py:1215
+#: src/olympia/users/models.py:1214
 #, python-brace-format
 msgid ""
 "Please read and accept our Firefox Add-on Distribution Agreement as well as "
 "our Review Policies and Rules by visiting {url}"
 msgstr ""
 
-#: src/olympia/users/models.py:1266
+#: src/olympia/users/models.py:1265
 msgid "User Restriction History"
 msgstr ""
 
@@ -7747,7 +7747,7 @@ msgid ""
 "%(author_name)s ( %(author_url)s )"
 msgstr ""
 
-#: src/olympia/users/templates/users/emails/user_deleted.ltxt:9
+#: src/olympia/users/templates/users/emails/user_deleted.ltxt:7
 #, python-format
 msgid ""
 "Hello,\n"
@@ -7755,10 +7755,6 @@ msgid ""
 "You’re receiving this message because your user account %(name)s on "
 "%(site_url)s has been deleted. This could have been done automatically if you"
 " recently deleted your Mozilla account.\n"
-"\n"
-"If you didn’t do this or believe an unauthorized person has accessed your "
-"account, please reply to this email. Otherwise, there’s no further action to "
-"take.\n"
 "\n"
 "Regards,\n"
 "\n"
