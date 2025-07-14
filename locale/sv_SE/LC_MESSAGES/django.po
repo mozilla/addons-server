@@ -3871,7 +3871,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:30
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery."
-msgstr ""
+msgstr "Ditt tillägg har inaktiverats av en webbplatsadministratör och visas inte längre i vårt galleri."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:33
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
@@ -7088,6 +7088,13 @@ msgid ""
 "\n"
 "Mozilla Add-ons Team"
 msgstr ""
+"Hej,\n"
+"\n"
+"Du får det här meddelandet eftersom ditt användarkonto %(name)s på %(site_url)s har tagits bort. Detta kan ha gjorts automatiskt om du nyligen tog bort ditt Mozilla-konto.\n"
+"\n"
+"Hälsningar,\n"
+"\n"
+"Mozillas tilläggsteam"
 
 #: src/olympia/versions/models.py:1176
 #, python-format
