@@ -6986,6 +6986,13 @@ msgid ""
 "\n"
 "Mozilla Add-ons Team"
 msgstr ""
+"嗨，\n"
+"\n"
+"您會收到這封信是因為您在 %(site_url)s 的 %(name)s 帳號已經刪除。若您近期刪除了 Mozilla 帳號，就會連帶自動刪除本帳號。\n"
+"\n"
+"感謝您，\n"
+"\n"
+"Mozilla Add-ons 團隊"
 
 #: src/olympia/versions/models.py:1176
 #, python-format
