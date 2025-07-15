@@ -3798,7 +3798,7 @@ msgstr "您的附加元件已公開陳列在網站上，使用者將接收自動
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:30
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery."
-msgstr ""
+msgstr "您的附加元件被網站管理員停用，已從網站下架。"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:33
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
