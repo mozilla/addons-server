@@ -3862,7 +3862,7 @@ msgstr "Jo add-on wurdt werjûn yn ús galery en brûkers ûntfange automatyske 
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:30
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery."
-msgstr ""
+msgstr "Jo add-on is útskeakele troch in websitebehearder en wurdt net mear werjûn yn ús galery."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:33
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
