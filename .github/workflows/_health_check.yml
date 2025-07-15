@@ -105,10 +105,7 @@ jobs:
 
       - name: Set message blocks
         id: blocks
-        if: |
-          steps.health_check.outcome == 'failure' &&
-          needs.context.outputs.notify == 'true' &&
-          needs.context.outputs.environment != 'host'
+        if: steps.health_check.outcome == 'failure'
         shell: bash
         run: |
           if [ ! -f "$health_check_file" ]; then
@@ -129,7 +126,7 @@ jobs:
 
       - name: Notify Failure
         if: steps.blocks.outcome == 'success'
-        uses: mozilla/addons/.github/actions/slack@f1d4daa008d908d52815aa41257db39b8cdef958
+        uses: mozilla/addons/.github/actions/slack@0e9caffce5be5662446a83a878e1d7812af3b618
         with:
           slack_token: ${{ secrets.SLACK_TOKEN }}
           payload: |
@@ -141,6 +138,7 @@ jobs:
               "unfurl_links": false,
               "unfurl_media": false,
             }
+          dry_run: ${{ !(needs.context.outputs.environment != 'host' && needs.context.outputs.notify == 'true') }}
 
       - name: Exit with outcome
         shell: bash
