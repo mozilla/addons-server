@@ -3762,7 +3762,7 @@ msgstr ""
 "%(key)s\n"
 "\n"
 "Jeli sej mysliće, zo tutón kluč je so zmylnje wutworił, móžeće kluč wotstronić a\n"
-"přistup na tutym městnje znjemóžnić:\n"
+"přistup k tutomu městnu znjemóžnić:\n"
 "\n"
 "%(url)s"
 
