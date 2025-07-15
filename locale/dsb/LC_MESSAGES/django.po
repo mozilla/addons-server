@@ -3763,7 +3763,7 @@ msgstr ""
 "%(key)s\n"
 "\n"
 "Jolic se mysliśo, až toś ten kluc jo se womólnje napórał, móžośo kluc wótwónoźeś a\n"
-"pśistup na toś tom městnje znjemóžniś:\n"
+"pśistup k toś tomu městnoju znjemóžniś:\n"
 "\n"
 "%(url)s"
 
