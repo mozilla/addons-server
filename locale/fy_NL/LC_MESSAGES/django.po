@@ -7084,6 +7084,13 @@ msgid ""
 "\n"
 "Mozilla Add-ons Team"
 msgstr ""
+"Hallo,\n"
+"\n"
+"Jo ûntfange dit berjocht omdat jo brûkersaccount %(name)s op %(site_url)s fuortsmiten is. Dit koe automatysk bard wêze as jo koartlyn jo Mozilla-account fuortsmiten hawwe.\n"
+"\n"
+"Groetnis,\n"
+"\n"
+"Mozilla Add-onsteam"
 
 #: src/olympia/versions/models.py:1176
 #, python-format
