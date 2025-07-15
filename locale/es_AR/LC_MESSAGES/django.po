@@ -7114,6 +7114,13 @@ msgid ""
 "\n"
 "Mozilla Add-ons Team"
 msgstr ""
+"Hola,\n"
+"\n"
+"Estás recibiendo este mensaje porque tu cuenta de usuario %(name)s en %(site_url)s fue eliminada. Esto podría haberse hecho automáticamente si recientemente eliminaste tu cuenta de Mozilla.\n"
+"\n"
+"Saludos,\n"
+"\n"
+"Equipo de complementos de Mozilla"
 
 #: src/olympia/versions/models.py:1176
 #, python-format
