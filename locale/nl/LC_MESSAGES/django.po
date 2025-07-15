@@ -7088,11 +7088,11 @@ msgid ""
 msgstr ""
 "Hallo,\n"
 "\n"
-"U ontvangt dit bericht omdat uw gebruikersaccount %(name)s op %(site_url)s is verwijderd. Dit had automatisch kunnen gebeuren als u onlangs uw Mozilla-account hebt verwijderd.\n"
+"U ontvangt dit bericht omdat uw gebruikersaccount %(name)s op %(site_url)s is verwijderd. Dit kan automatisch zijn gebeurd als u onlangs uw Mozilla-account hebt verwijderd.\n"
 "\n"
 "Groeten,\n"
 "\n"
-"Mozilla-add-onsteam"
+"Mozilla Add-onsteam"
 
 #: src/olympia/versions/models.py:1176
 #, python-format
