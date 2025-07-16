@@ -3767,6 +3767,15 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Bonjour,\n"
+"\n"
+"Vous recevez ce message car vous avez demandé de nouvelles clés d’API pour %(domain)s. Afin de recevoir ces clés, veuillez cliquer sur le lien ci-dessous :\n"
+"\n"
+"%(api_key_confirmation_link)s\n"
+"\n"
+"Cordialement,\n"
+"\n"
+"L’équipe des modules complémentaires de Mozilla"
 
 #: src/olympia/devhub/templates/devhub/emails/new-key-email.ltxt:8
 #, python-format
@@ -3847,7 +3856,7 @@ msgstr ""
 "\n"
 "Cordialement,\n"
 "\n"
-"L’équipe Mozilla Add-ons"
+"L’équipe des modules complémentaires de Mozilla"
 
 #: src/olympia/devhub/templates/devhub/emails/verify-email-requested.ltxt:10
 #, python-format
@@ -7067,6 +7076,16 @@ msgid ""
 "Kind regards,\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Bienvenue %(author_name)s,\n"
+"\n"
+"Vous avez été invité·e à faire partie des auteurs de %(addon_name)s sur %(domain)s. En acceptant cette invitation, vous aurez accès à la modification du module complémentaire, et vous pourrez afficher votre nom dans la liste des auteurs sur le site web.\n"
+"\n"
+"Cliquez sur le lien ci-dessous si vous acceptez votre ajout aux auteurs de %(addon_name)s.\n"
+"\n"
+"%(author_confirmation_link)s\n"
+"\n"
+"Bien à vous,\n"
+"L’équipe des modules complémentaires de Mozilla"
 
 #: src/olympia/users/templates/users/emails/author_changed.ltxt:3
 #, python-format
