@@ -3718,8 +3718,6 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
-"Hallo, u ontvangt dit bericht omdat u nieuwe ontwikkelaars-API-sleutels hebt opgevraagd voor %(domain)s. Klik op de onderstaande koppeling om dit proces te voltooien: %(api_key_confirmation_link)s "
-"Groeten, Het Mozilla Add-ons-team"
 
 #: src/olympia/devhub/templates/devhub/emails/new-key-email.ltxt:8
 #, python-format
