@@ -3713,6 +3713,8 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Pozdravljeni, To sporočilo ste prejeli, ker ste zahtevali nove ključe API za razvijalce za %(domain)s. Za dokončanje tega postopka kliknite spodnjo povezavo: %(api_key_confirmation_link)s Pozdrav, "
+"Ekipa za dodatke Mozilla"
 
 #: src/olympia/devhub/templates/devhub/emails/new-key-email.ltxt:8
 #, python-format
@@ -3811,6 +3813,8 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Pozdravljeni, To sporočilo ste prejeli, ker ste zahtevali potrditev vašega e-poštnega naslova. Da dokončate ta postopek, kliknite spodnjo povezavo: %(confirmation_link)s Pozdrav, Ekipa Dodatkov "
+"Mozilla"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:6 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:4
 msgid "Invisible"
@@ -7005,6 +7009,9 @@ msgid ""
 "Kind regards,\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Pozdravljeni, %(author_name)s, povabljeni ste, da postanete avtor dodatka %(addon_name)s na %(domain)s. S sprejemom povabila boste dobili dostop za urejanje dodatka, vaše ime pa se bo morda "
+"prikazalo na seznamu avtorjev na spletni strani.  Kliknite spodnjo povezavo in odgovorite, če želite biti dodani kot avtor za %(addon_name)s.  %(author_confirmation_link)s Lep pozdrav, Ekipa "
+"Dodatkov Mozilla"
 
 #: src/olympia/users/templates/users/emails/author_changed.ltxt:3
 #, python-format

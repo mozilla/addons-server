@@ -3714,6 +3714,8 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Olá, você recebeu esta mensagem porque solicitou novas chaves de API do desenvolvedor para %(domain)s. Para concluir este processo, clique no link abaixo: %(api_key_confirmation_link)s "
+"Atenciosamente, a equipe de extensões da Mozilla"
 
 #: src/olympia/devhub/templates/devhub/emails/new-key-email.ltxt:8
 #, python-format
@@ -3812,6 +3814,8 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Olá, você recebeu esta mensagem porque solicitou que o seu email fosse verificado. Para concluir este processo, clique no link abaixo: %(confirmation_link)s Atenciosamente, A equipe de extensões da "
+"Mozilla"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:6 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:4
 msgid "Invisible"
@@ -7003,6 +7007,8 @@ msgid ""
 "Kind regards,\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Olá %(author_name)s, Você foi convidado a se tornar um autor de %(addon_name)s em %(domain)s. Aceitar o convite lhe dará acesso para editar a extensão e pode mostrar seu nome na lista de autores no "
+"site.  Clique no link abaixo para responder caso queira ser adicionado como um autor de %(addon_name)s.  %(author_confirmation_link)s Atenciosamente, a equipe do Mozilla Add-ons"
 
 #: src/olympia/users/templates/users/emails/author_changed.ltxt:3
 #, python-format

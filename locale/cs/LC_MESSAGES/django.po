@@ -3716,6 +3716,8 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Dobrý den, tuto zprávu jste obdrželi, protože jste požádali o nové vývojářské API klíče pro doménu %(domain)s. Pro dokončení tohoto procesu prosím klepněte na odkaz níže: "
+"%(api_key_confirmation_link)s S pozdravem tým Mozilla Doplňky"
 
 #: src/olympia/devhub/templates/devhub/emails/new-key-email.ltxt:8
 #, python-format
@@ -3812,6 +3814,8 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Dobrý den, tuto zprávu jste obdrželi, protože jste požádali o ověření své e-mailové adresy. Pro dokončení tohoto procesu prosím klepněte na odkaz níže: %(confirmation_link)s S pozdravem, tým Mozilla"
+" Doplňky"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:6 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:4
 msgid "Invisible"
@@ -6999,6 +7003,9 @@ msgid ""
 "Kind regards,\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Zdravím vás %(author_name)s! Byl jste pozván, abyste se stal(a) autorem doplňku %(addon_name)s na %(domain)s. Přijetím nabídky budete mít možnost doplněk upravovat a v seznamu autorů na stránce "
+"doplňku se může začít zobrazovat vaše jméno.  Pokud chcete být přidán jako autor doplňku %(addon_name)s, klepněte na odkaz níže.  %(author_confirmation_link)s S pozdravem, tým serveru Doplňky "
+"Mozilly"
 
 #: src/olympia/users/templates/users/emails/author_changed.ltxt:3
 #, python-format
