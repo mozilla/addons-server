@@ -77,26 +77,28 @@ msgstr "Vă mulțumim pentru raport."
 msgid ""
 "We have already reviewed a similar appeal from another reporter, and have reversed our prior decision. We have taken action against the content and/or account holder in accordance with our policies."
 msgstr ""
+"Am analizat deja o contestație similară din partea unui alt raportor și am anulat decizia anterioară. Am luat măsuri împotriva titularului de conținut și/sau al contului în conformitate cu "
+"politicile noastre."
 
 #: src/olympia/abuse/templates/abuse/appeal.html:38
 msgid "Because the decision you are appealing has already been overturned, your appeal will not be processed."
-msgstr ""
+msgstr "Decizia pe care o contestați a fost deja anulată. Contestația nu va fi procesată."
 
 #: src/olympia/abuse/templates/abuse/appeal.html:42
 msgid "The decision you are appealing has already been overridden by a new decision, so this decision can't be appealed."
-msgstr ""
+msgstr "Decizia pe care o contestați a fost deja anulată de o nouă decizie, prin urmare, această decizie nu poate fi contestată."
 
 #: src/olympia/abuse/templates/abuse/appeal.html:44
 msgid "This decision can't be appealed."
-msgstr ""
+msgstr "Decizia nu poate fi contestată."
 
 #: src/olympia/abuse/templates/abuse/emails/base_reporter.txt:1
 msgid "Hello,"
-msgstr ""
+msgstr "Salut!"
 
 #: src/olympia/abuse/templates/abuse/emails/base_reporter.txt:7
 msgid "Mozilla Add-ons Team"
-msgstr ""
+msgstr "Echipa Suplimente Mozilla"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_approve.txt:8
 #, python-format
@@ -109,6 +111,13 @@ msgid ""
 "\n"
 "Thank you for your attention.\n"
 msgstr ""
+"\n"
+"Vă mulțumim pentru raportul despre %(name)s pe Suplimente Mozilla și pentru că ne-ați oferit mai multe informații despre preocupările dvs.\n"
+"\n"
+"După analizarea contestației, am stabilit că decizia anterioară, conform căreia conținutul nu încalcă politicile Mozilla (%(policy_document_url)s), a fost corectă. În baza acestei determinări, v-am respins contestația și nu vom lua nicio măsură împotriva contului sau a conținutului.\n"
+"%(manual_reasoning_text)s.\n"
+"\n"
+"Vă mulțumim pentru atenția acordată.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown.txt:5
 #, python-format
@@ -118,6 +127,10 @@ msgid ""
 "\n"
 "After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, we have removed the content, and notified the user of our action.\n"
 msgstr ""
+"\n"
+"Vă mulțumim pentru raportul despre %(name)s pe Suplimente Mozilla și pentru că ne-ați oferit mai multe informații despre preocupările dvs.\n"
+"\n"
+"După analizarea contestației, am stabilit că decizia anterioară, conform căreia conținutul nu încalcă politicile Mozilla (%(policy_document_url)s), a fost incorectă. În baza acestei determinări, am eliminat conținutul și am informat utilizatorul cu privire la măsurile luate.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown_delayed.txt:5
 #, python-format
@@ -127,6 +140,10 @@ msgid ""
 "\n"
 "After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, we have requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
 msgstr ""
+"\n"
+"Vă mulțumim pentru raportul despre %(name)s pe Suplimente Mozilla și pentru că ne-ați oferit mai multe informații despre preocupările dvs.\n"
+"\n"
+"După analizarea contestației, am stabilit că decizia anterioară, conform căreia conținutul nu încalcă politicile Mozilla (%(policy_document_url)s), a fost incorectă. În baza acestei determinări, am cerut dezvoltatorului să aducă modificări. Dacă nu își actualizează conținutul ca să corecteze încălcarea, îl vom elimina.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:5
 #, python-format
