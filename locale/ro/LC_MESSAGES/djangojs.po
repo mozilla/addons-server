@@ -22,9 +22,8 @@ msgid "Select a file..."
 msgstr "Selectează un fișier..."
 
 #: static/js/common/upload-addon.js:82
-#, fuzzy
 msgid "Your add-on should end with .zip, .xpi or .crx"
-msgstr "Suplimentul trebuie să aibă extensia .zip, .xpi, .crx sau .xml"
+msgstr "Suplimentul trebuie să aibă extensia .zip, .xpi sau .crx"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: static/js/common/upload-addon.js:118
@@ -92,7 +91,7 @@ msgstr "S-a primit un răspuns gol de la server; stare: {0}"
 
 #: static/js/common/upload-addon.js:403
 msgid "Your extension has to be compatible with at least one application."
-msgstr ""
+msgstr "Extensia trebuie să fie compatibilă cu cel puțin o aplicație."
 
 #: static/js/common/upload-addon.js:473
 msgid "Unexpected server error while validating."
@@ -100,7 +99,7 @@ msgstr "Eroare neașteptată de server la validare."
 
 #: static/js/common/upload-addon.js:519
 msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
-msgstr ""
+msgstr "Marcat explicit în manifest că este compatibil cu Firefox pentru Android"
 
 #: static/js/common/upload-addon.js:561
 #, python-brace-format

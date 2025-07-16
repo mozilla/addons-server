@@ -16,15 +16,15 @@ msgstr ""
 #: src/olympia/abuse/actions.py:208
 #, python-brace-format
 msgid "Mozilla Add-ons: {} [{}]"
-msgstr ""
+msgstr "Suplimente Mozilla: {} [{}]"
 
 #: src/olympia/abuse/forms.py:30
 msgid "Email address"
-msgstr ""
+msgstr "Adresă de e-mail"
 
 #: src/olympia/abuse/forms.py:45
 msgid "Invalid email provided."
-msgstr ""
+msgstr "Adresă de e-mail nevalidă."
 
 #: src/olympia/abuse/forms.py:61
 msgid "Reason for appeal"
@@ -41,7 +41,7 @@ msgstr ""
 #: src/olympia/abuse/models.py:1463
 #, python-brace-format
 msgid "\"{}\" for {}"
-msgstr ""
+msgstr "\"{}\" pentru {}"
 
 #: src/olympia/abuse/serializers.py:32
 #, python-brace-format
@@ -50,20 +50,20 @@ msgstr "Te rugăm să te asiguri că acest câmp nu are mai mult de {max_length}
 
 #: src/olympia/abuse/serializers.py:241 src/olympia/abuse/serializers.py:257 src/olympia/addons/fields.py:51 src/olympia/addons/fields.py:257
 msgid "Invalid value"
-msgstr ""
+msgstr "Valoare nevalidă"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:10 src/olympia/abuse/templates/abuse/appeal.html:15
 msgid "Appeal reviewer decision"
-msgstr ""
+msgstr "Contestă decizia recenzorului"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:16
 #, python-brace-format
 msgid "Decision {0}"
-msgstr ""
+msgstr "Decizia {0}"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:20
 msgid "Thank you. Your appeal has been recorded."
-msgstr ""
+msgstr "Vă mulțumim. Contestația a fost înregistrată."
 
 #: src/olympia/abuse/templates/abuse/appeal.html:31 src/olympia/amo/templates/amo/fake_fxa_authorization.html:21
 msgid "OK"
@@ -71,7 +71,7 @@ msgstr "OK"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:33 src/olympia/abuse/templates/abuse/appeal.html:41
 msgid "Thank you for your report."
-msgstr ""
+msgstr "Vă mulțumim pentru raport."
 
 #: src/olympia/abuse/templates/abuse/appeal.html:37
 msgid ""
