@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-14 13:58+0000\n"
+"POT-Creation-Date: 2025-07-16 08:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4090,7 +4090,7 @@ msgstr ""
 msgid "API Credentials"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/emails/api_key_confirmation.ltxt:12
+#: src/olympia/devhub/templates/devhub/emails/api_key_confirmation.ltxt:10
 #, python-format
 msgid ""
 "Hello,\n"
@@ -4100,8 +4100,6 @@ msgid ""
 "%(domain)s. To finish this process, please click on the link below:\n"
 "\n"
 "%(api_key_confirmation_link)s\n"
-"\n"
-"If you didn't request this, please notify amo-admins@mozilla.com.\n"
 "\n"
 "Regards,\n"
 "\n"
@@ -4164,7 +4162,7 @@ msgid ""
 "The Mozilla Add-ons Team"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/emails/verify-email-requested.ltxt:12
+#: src/olympia/devhub/templates/devhub/emails/verify-email-requested.ltxt:10
 #, python-format
 msgid ""
 "Hello,\n"
@@ -4173,8 +4171,6 @@ msgid ""
 "To finish this process, please click on the link below:\n"
 "\n"
 "%(confirmation_link)s\n"
-"\n"
-"If you didn't request this, please notify amo-admins@mozilla.com.\n"
 "\n"
 "Regards,\n"
 "\n"
@@ -7708,7 +7704,7 @@ msgid ""
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
 
-#: src/olympia/users/templates/users/emails/author_added_confirmation.ltxt:12
+#: src/olympia/users/templates/users/emails/author_added_confirmation.ltxt:10
 #, python-format
 msgid ""
 "Greetings %(author_name)s,\n"
@@ -7721,9 +7717,6 @@ msgid ""
 "%(addon_name)s.\n"
 "\n"
 "%(author_confirmation_link)s\n"
-"\n"
-"If you didn't expect to receive this invitation, please send an email to amo-"
-"admins@mozilla.com.\n"
 "\n"
 "Kind regards,\n"
 "The Mozilla Add-ons Team"
