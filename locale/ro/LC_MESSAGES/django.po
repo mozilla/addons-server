@@ -32,7 +32,7 @@ msgstr "Motiv contestație"
 
 #: src/olympia/abuse/forms.py:63
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
-msgstr "Vă rugăm să ne explicați de ce credeți că decizia este greșită și/sau nu se aliniază cu politica sau legea aplicabilă."
+msgstr "Te rugăm să ne explici de ce crezi că decizia este greșită și/sau nu se aliniază cu politica sau legea aplicabilă."
 
 #: src/olympia/abuse/models.py:1108
 msgid "User profile"
@@ -63,7 +63,7 @@ msgstr "Decizia {0}"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:20
 msgid "Thank you. Your appeal has been recorded."
-msgstr "Vă mulțumim. Contestația a fost înregistrată."
+msgstr "Mulțumim! Contestația a fost înregistrată."
 
 #: src/olympia/abuse/templates/abuse/appeal.html:31 src/olympia/amo/templates/amo/fake_fxa_authorization.html:21
 msgid "OK"
@@ -71,7 +71,7 @@ msgstr "OK"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:33 src/olympia/abuse/templates/abuse/appeal.html:41
 msgid "Thank you for your report."
-msgstr "Vă mulțumim pentru raport."
+msgstr "Mulțumim pentru raport!"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:37
 msgid ""
@@ -112,9 +112,9 @@ msgid ""
 "Thank you for your attention.\n"
 msgstr ""
 "\n"
-"Vă mulțumim pentru raportul despre %(name)s pe Suplimente Mozilla și pentru că ne-ați oferit mai multe informații despre preocupările dvs.\n"
+"Îți mulțumim pentru raportul despre %(name)s pe Suplimente Mozilla și pentru că ne-ai oferit mai multe informații despre preocupările tale.\n"
 "\n"
-"După analizarea contestației, am stabilit că decizia anterioară, conform căreia conținutul nu încalcă politicile Mozilla (%(policy_document_url)s), a fost corectă. În baza acestei determinări, v-am respins contestația și nu vom lua nicio măsură împotriva contului sau a conținutului.\n"
+"După analizarea contestației, am stabilit că decizia anterioară, conform căreia conținutul nu încalcă politicile Mozilla (%(policy_document_url)s), a fost corectă. În baza acestei determinări, ți-am respins contestația și nu vom lua nicio măsură împotriva contului sau a conținutului.\n"
 "%(manual_reasoning_text)s.\n"
 "\n"
 "Vă mulțumim pentru atenția acordată.\n"
@@ -128,7 +128,7 @@ msgid ""
 "After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, we have removed the content, and notified the user of our action.\n"
 msgstr ""
 "\n"
-"Vă mulțumim pentru raportul despre %(name)s pe Suplimente Mozilla și pentru că ne-ați oferit mai multe informații despre preocupările dvs.\n"
+"Îți mulțumim pentru raportul despre %(name)s pe Suplimente Mozilla și pentru că ne-ai oferit mai multe informații despre preocupările tale.\n"
 "\n"
 "După analizarea contestației, am stabilit că decizia anterioară, conform căreia conținutul nu încalcă politicile Mozilla (%(policy_document_url)s), a fost incorectă. În baza acestei determinări, am eliminat conținutul și am informat utilizatorul cu privire la măsurile luate.\n"
 
@@ -1122,7 +1122,7 @@ msgstr "Notele pentru revizori au fost modificate pentru {addon} {version}."
 
 #: src/olympia/constants/activity.py:632
 msgid "Notes for reviewers changed"
-msgstr ""
+msgstr "Au fost modificate notele pentru revizori"
 
 #: src/olympia/constants/activity.py:640
 #, python-brace-format
@@ -2911,7 +2911,7 @@ msgstr "Afișează pagina produsului"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:107 src/olympia/devhub/templates/devhub/addons/submit/describe.html:91
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
-msgstr "Rezumatul trebuie să explice clar ce face suplimentul. Va fi afișat în listări și căutări și va fi utilizat de recenzenți la testarea suplimentului."
+msgstr "Rezumatul trebuie să explice clar ce face suplimentul. Va fi afișat în listări și căutări și va fi utilizat de revizori la testarea suplimentului."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:128
 msgid "Description"
@@ -3028,6 +3028,8 @@ msgid ""
 "The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that may"
 " help. This whiteboard is also editable by reviewers."
 msgstr ""
+"Tabla albă vă permite să oferiți revizorilor informații relevate despre supliment, indiferent de versiune. Folosește-o ca să indici modalități de testare a suplimentului și orice informații "
+"adiționale utile. Poate fi editată și de revizori."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:10
 #, python-brace-format
@@ -3405,11 +3407,11 @@ msgstr "Dacă suplimentul tău transmite orice date de pe calculatorul utilizato
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:207 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:21
 msgid "Notes to Reviewer:"
-msgstr "Note către recenzent:"
+msgstr "Note către revizor:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:210 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:24
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
-msgstr "E ceva de care recenzenții noștri ar trebui să țină cont la analizarea acestui supliment?"
+msgstr "E ceva de care revizorii noștri ar trebui să țină cont la analizarea acestui supliment?"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:213 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:27
 msgid "Remember"
@@ -3426,7 +3428,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:224 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:38
 msgid "These notes will only be visible to you and our reviewers."
-msgstr "Notele vor fi vizibile numai pentru tine și recenzenții noștri."
+msgstr "Notele vor fi vizibile numai pentru tine și revizorii noștri."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:229 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:42
 msgid "Submit Version"
@@ -3530,7 +3532,7 @@ msgstr "Trebuie să depui codul sursă?"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:15
 msgid "Mozilla’s add-on reviewers need to be able to read and reproduce the code in your extension. If they can’t, your extension may be rejected."
-msgstr ""
+msgstr "Revizorii de suplimente Mozilla trebuie să poată citi și reproduce codul din extensie. Dacă nu o pot face, e posibil să ți se respingă extensia."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:21
 #, fuzzy
@@ -3568,9 +3570,8 @@ msgid "Your source code must include:"
 msgstr "Cod sursă încărcat"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:56
-#, fuzzy
 msgid "Step-by-step build instructions to create an exact copy of the add-on code, in a README file in your source code or in the reviewer notes on the next page."
-msgstr "Instrucțiuni de compilare pas cu pas pentru crearea unei copii exacte a codului suplimentului."
+msgstr "Instrucțiuni de compilare pas cu pas pentru crearea unei copii exacte a codului suplimentului, în fișierul README din codul tău sursă sau în notele revizorului de pe pagina următoare."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:57
 msgid "A build script that executes all necessary technical steps."
@@ -4028,7 +4029,7 @@ msgstr "Dacă suplimentul conține cod minificat, legat în lanț sau generat al
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html:5
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
-msgstr "Te rugăm să incluzi instrucțiuni despre reproducerea fișierului final al suplimentului, fie într-un fișier README, fie în Notele către recenzor pentru această versiune."
+msgstr "Te rugăm să incluzi instrucțiuni despre reproducerea fișierului final al suplimentului, fie într-un fișier README, fie în Notele către revizor pentru această versiune."
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html:9
 msgid "Read more about the source code review policy."
@@ -4274,11 +4275,11 @@ msgstr "Starea aprobării"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:106
 msgid "Notes for Reviewers"
-msgstr "Note pentru recenzenți"
+msgstr "Note pentru revizori"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:107
 msgid "Optionally, enter any information that may be useful to the Reviewer of this add-on, such as test account information."
-msgstr "Introdu opțional orice informații care ar putea fi utile recenzorului pentru acestui supliment, cum ar fi datele contului de testare."
+msgstr "Introdu opțional orice informații care ar putea fi utile revizorului pentru acest supliment, cum ar fi datele contului de testare."
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:120
 msgid "Source code"
@@ -4286,7 +4287,7 @@ msgstr "Cod sursă"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:121
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
-msgstr "Dacă suplimentul conține cod minificat, legat în lanțuri sau generat altminteri de mașini, fă sursa disponibilă aici pentru recenzori."
+msgstr "Dacă suplimentul conține cod minificat, legat în lanțuri sau generat altminteri de mașini, fă sursa disponibilă aici pentru revizori."
 
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html:1
 #, fuzzy, python-brace-format
@@ -7000,7 +7001,7 @@ msgstr "compatibilitatea suplimentului meu nu poate fi actualizată"
 
 #: src/olympia/users/notifications.py:90
 msgid "my add-on is reviewed by a reviewer"
-msgstr "suplimentul meu este analizat de un recenzent"
+msgstr "suplimentul meu este verificat de un revizor"
 
 #: src/olympia/users/notifications.py:99
 msgid "Mozilla needs to contact me about my individual add-on"
