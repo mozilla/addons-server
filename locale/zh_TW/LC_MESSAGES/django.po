@@ -6930,6 +6930,17 @@ msgid ""
 "Kind regards,\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"%(author_name)s 您好，\n"
+"\n"
+"有人邀請您成為 %(domain)s 上「%(addon_name)s」的作者。接受此邀請函後就會提供您權限，並且可能會在網站上將您列為該套件的作者之一。\n"
+"\n"
+"請點擊下列鏈結回覆您是否要成為「%(addon_name)s」的作者。\n"
+"\n"
+"%(author_confirmation_link)s\n"
+"\n"
+"祝順利\n"
+"\n"
+"Mozilla 附加元件管理團隊"
 
 #: src/olympia/users/templates/users/emails/author_changed.ltxt:3
 #, python-format
