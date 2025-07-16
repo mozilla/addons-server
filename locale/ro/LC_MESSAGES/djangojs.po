@@ -122,9 +122,9 @@ msgstr[2] "Suplimentul tău fost validat fără nicio eroare și cu {0} de avert
 #, python-brace-format
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] "Suplimentul tău a fost validat fără nicio eroare și cu {0} mesaj."
-msgstr[1] "Suplimentul tău a fost validat fără nicio eroare și cu {0} mesaje."
-msgstr[2] "Suplimentul tău a fost validat fără nicio eroare și cu {0} de mesaje."
+msgstr[0] "Suplimentul a fost validat fără nicio eroare și cu {0} mesaj."
+msgstr[1] "Suplimentul a fost validat fără nicio eroare și cu {0} mesaje."
+msgstr[2] "Suplimentul a fost validat fără nicio eroare și cu {0} de mesaje."
 
 #: static/js/common/upload-addon.js:590
 msgid "Your add-on was validated with no errors or warnings."

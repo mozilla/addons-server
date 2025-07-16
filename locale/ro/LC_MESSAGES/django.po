@@ -28,15 +28,15 @@ msgstr "Adresă de e-mail nevalidă."
 
 #: src/olympia/abuse/forms.py:61
 msgid "Reason for appeal"
-msgstr ""
+msgstr "Motiv contestație"
 
 #: src/olympia/abuse/forms.py:63
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
-msgstr ""
+msgstr "Vă rugăm să ne explicați de ce credeți că decizia este greșită și/sau nu se aliniază cu politica sau legea aplicabilă."
 
 #: src/olympia/abuse/models.py:1108
 msgid "User profile"
-msgstr ""
+msgstr "Profil utilizator"
 
 #: src/olympia/abuse/models.py:1463
 #, python-brace-format
@@ -314,21 +314,21 @@ msgstr "Domeniul URL trebuie să fie unul dintre [{domains}]."
 
 #: src/olympia/addons/fields.py:125 src/olympia/devhub/forms.py:278
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
-msgstr ""
+msgstr "Calea URL pentru sponsorii GitHub trebuie să conțină /sponsori/."
 
 #: src/olympia/addons/fields.py:128 src/olympia/devhub/forms.py:281
 msgid "URLs must start with https://."
-msgstr ""
+msgstr "URL-urile trebuie să înceapă cu https://."
 
 #: src/olympia/addons/fields.py:187
 #, python-brace-format
 msgid "License with slug={value} does not exist."
-msgstr ""
+msgstr "Licența cu slug={value} nu există."
 
 #: src/olympia/addons/fields.py:210
 #, python-brace-format
 msgid "Unsupported file type, please upload an archive file ({extensions})."
-msgstr ""
+msgstr "Tip de fișier neacceptat. Încărcați un fișier tip arhivă ({extensions})."
 
 #: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:756 src/olympia/files/utils.py:761 src/olympia/reviewers/forms.py:386
 msgid "Invalid or broken archive."
@@ -336,25 +336,25 @@ msgstr "Arhivă nevalidă sau coruptă."
 
 #: src/olympia/addons/fields.py:267
 msgid "Invalid app specified"
-msgstr ""
+msgstr "A fost specificată o aplicație nevalidă"
 
 #: src/olympia/addons/fields.py:285
 msgid "Unknown max app version specified"
-msgstr ""
+msgstr "Versiunea maximă a aplicației specificate este necunoscută"
 
 #: src/olympia/addons/fields.py:297
 msgid "Unknown min app version specified"
-msgstr ""
+msgstr "Versiunea minimă a aplicației specificate este necunoscută"
 
 #: src/olympia/addons/fields.py:307 src/olympia/addons/fields.py:325 src/olympia/addons/serializers.py:643
 #, python-format
 msgid "Can not override compatibility information set in the manifest for this application (%s)"
-msgstr ""
+msgstr "Nu se pot suprascrie informațiile de compatibilitate setate în manifest pentru această aplicație (%s)"
 
 #: src/olympia/addons/fields.py:375
 #, python-format
 msgid "Images must be smaller than %dMB"
-msgstr ""
+msgstr "Imaginile trebuie să fie mai mici de %dMB"
 
 #: src/olympia/addons/models.py:2260 src/olympia/addons/models.py:2317 src/olympia/constants/base.py:66
 msgid "Listed"
@@ -362,43 +362,44 @@ msgstr "Listat"
 
 #: src/olympia/addons/models.py:2495
 msgid "Add-on and collection paths need to end with \"/\""
-msgstr ""
+msgstr "Căile către suplimente și colecții trebuie să se termine cu „/”"
 
 #: src/olympia/addons/serializers.py:324
 msgid "Built in licenses can not be updated."
-msgstr ""
+msgstr "Licențele încorporate nu pot fi actualizate."
 
 #: src/olympia/addons/serializers.py:519
 msgid "Upload is not valid."
-msgstr ""
+msgstr "Încărcarea nu este validă."
 
 #: src/olympia/addons/serializers.py:535
 msgid "File is already disabled."
-msgstr ""
+msgstr "Fișierul este deja dezactivat."
 
 #: src/olympia/addons/serializers.py:539 src/olympia/addons/views.py:738
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
+"Ultima versiune aprobată a acestui supliment %s nu poate fi ștearsă deoarece versiunea anterioară nu a fost aprobată pentru recomandare %s. Contactează administratorii AMO dacă ai nevoie de ajutor."
 
 #: src/olympia/addons/serializers.py:554
 #, python-brace-format
 msgid "Version {version_string} was uploaded before and deleted."
-msgstr ""
+msgstr "Versiunea {version_string} a mai fost încărcată și apoi ștearsă."
 
 #: src/olympia/addons/serializers.py:557
 #, python-brace-format
 msgid "Version {version_string} already exists."
-msgstr ""
+msgstr "Versiunea {version_string} există deja."
 
 #: src/olympia/addons/serializers.py:577
 msgid "Listed versions cannot be submitted while add-on is disabled."
-msgstr ""
+msgstr "Versiunile enumerate nu pot fi trimise cât timp suplimentul este dezactivat."
 
 #: src/olympia/addons/serializers.py:618
 #, python-format
 msgid "%(addon_type_plural)s are not supported by %(app_name)s"
-msgstr ""
+msgstr "%(addon_type_plural)s nu sunt acceptate de %(app_name)s"
 
 #: src/olympia/addons/serializers.py:657 src/olympia/devhub/forms.py:910
 #, python-format
