@@ -906,7 +906,7 @@ msgstr "Versiunea {0} a fost ștearsă din {addon}."
 #: src/olympia/constants/activity.py:129
 #, python-brace-format
 msgid "File {file} added to {version} of {addon}."
-msgstr ""
+msgstr "Fișierul {file} a fost adăugat la {version} a {addon}."
 
 #: src/olympia/constants/activity.py:141
 #, python-brace-format
@@ -1006,7 +1006,7 @@ msgstr "{0} {1} adăugat."
 #: src/olympia/constants/activity.py:335
 #, python-brace-format
 msgid "{user} role changed to {0} for {addon}."
-msgstr ""
+msgstr "Rolul {user} a fost modificat în {0} pentru {addon}."
 
 #: src/olympia/constants/activity.py:346
 #, python-brace-format
@@ -1019,9 +1019,9 @@ msgid "{addon} policy changed."
 msgstr "Politică {addon} modificată."
 
 #: src/olympia/constants/activity.py:360
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{addon} icon or previews changed."
-msgstr "Pictograma {addon} modificată."
+msgstr "Pictograma sau previzualizările {addon} au fost modificate."
 
 #: src/olympia/constants/activity.py:367
 #, python-brace-format
@@ -1065,9 +1065,9 @@ msgid "Account updated."
 msgstr "Cont actualizat."
 
 #: src/olympia/constants/activity.py:422
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Account {user} deleted."
-msgstr "Cont actualizat."
+msgstr "Contul {user} a fost șters."
 
 #: src/olympia/constants/activity.py:493
 #, python-brace-format
@@ -1256,25 +1256,25 @@ msgstr ""
 
 #: src/olympia/constants/activity.py:1059
 msgid "Rejected automatically after delay expired"
-msgstr ""
+msgstr "Respins automat după expirarea întârzierii"
 
 #: src/olympia/constants/activity.py:1070
 #, python-brace-format
 msgid "{addon} {version} content rejected automatically after delay expired."
-msgstr ""
+msgstr "Conținutul {addon} {version} a fost respins automat după ce a expirat întârzierea."
 
 #: src/olympia/constants/activity.py:1071
 msgid "Content rejected automatically after delay expired"
-msgstr ""
+msgstr "Conținut respins automat după expirarea întârzierii"
 
 #: src/olympia/constants/activity.py:1196
 #, python-brace-format
 msgid "{addon} {version} pending rejection changed."
-msgstr ""
+msgstr "A fost modificată respingerea pendentă a {addon} {version}."
 
 #: src/olympia/constants/activity.py:1197
 msgid "Pending rejection changed"
-msgstr ""
+msgstr "Respingere pendentă modificată"
 
 #: src/olympia/constants/activity.py:1208
 #, python-brace-format
