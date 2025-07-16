@@ -2119,6 +2119,8 @@ msgid ""
 "On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
 "on manifest’s <a {a_attrs}>update_url</a> is provided, as this is the URL where Firefox finds updates for automatic deployment to your users.</span>"
 msgstr ""
+"Pe cont propriu. <span class=\"helptext\">După ce suplimentul este semnat de Mozilla, poți descărca fișierul .xpi din Hub-ul dezvoltatorilor și îl poți distribui publicului. Asigură-te că este "
+"furnizat <a {a_attrs}>update_url</a> al manifestului suplimentului pentru că este adresa URL la care Firefox găsește actualizări pentru implementarea automată pentru utilizatorii tăi.</span>"
 
 #: src/olympia/devhub/forms.py:1404 src/olympia/devhub/templates/devhub/includes/agreement.html:15
 msgid "Display Name"
@@ -2126,7 +2128,7 @@ msgstr "Nume afișat"
 
 #: src/olympia/devhub/forms.py:1435
 msgid "Confirm email address"
-msgstr ""
+msgstr "Confirmă adresa de e-mail"
 
 #: src/olympia/devhub/forms.py:1436
 msgid "Generate new credentials"
@@ -2150,6 +2152,8 @@ msgid ""
 "To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
 "href=\"{docs_url}\">API documentation</a>."
 msgstr ""
+"Pentru cereri API, trimite un <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> ca antet de autorzare. Va trebui să generezi un JWT pentru fiecare cerere, conform explicațiilor din <a "
+"href=\"{docs_url}\">documentația API</a>."
 
 #: src/olympia/devhub/forms.py:1494
 msgid "JWT secret"
@@ -2158,7 +2162,7 @@ msgstr "Secret JWT"
 #: src/olympia/devhub/forms.py:1515
 #, python-brace-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
-msgstr ""
+msgstr "Dă clic pe butonul de confirmare de mai jos ca să generezi datele de autentificare API ale utilizatorului <strong>{name}</strong>."
 
 #: src/olympia/devhub/forms.py:1521
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
@@ -2170,7 +2174,7 @@ msgstr "Nu ai nicio acreditare API."
 
 #: src/olympia/devhub/forms.py:1549
 msgid "Something went wrong, please contact developer support."
-msgstr ""
+msgstr "Ceva nu a funcționat. Te rugăm să contactezi asistența pentru dezvoltatori."
 
 #: src/olympia/devhub/tasks.py:178
 msgid "Invalid or corrupt add-on file."
@@ -2196,7 +2200,7 @@ msgstr "Validarea a generat prea multe erori/avertismente, așa că %s (de) mesa
 #: src/olympia/devhub/utils.py:207
 #, python-brace-format
 msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
-msgstr ""
+msgstr "Suplimentul nu este o temă. Folosește pagina <a href=\"{link}\">Depunere supliment nou</a> ca să timiți extensii."
 
 #: src/olympia/devhub/views.py:114
 msgid "Updated"
