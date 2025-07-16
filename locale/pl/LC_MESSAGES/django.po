@@ -5547,7 +5547,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:627
 msgid "Bring back the ability to see thumbs down!"
-msgstr ""
+msgstr "Przywróć możliwość wyświetlania kciuka w dół!"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:630

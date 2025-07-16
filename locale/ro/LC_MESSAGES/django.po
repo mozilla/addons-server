@@ -54,7 +54,7 @@ msgstr "Valoare nevalidă"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:10 src/olympia/abuse/templates/abuse/appeal.html:15
 msgid "Appeal reviewer decision"
-msgstr "Contestă decizia recenzorului"
+msgstr "Contestă decizia revizorului"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:16
 #, python-brace-format
@@ -539,7 +539,7 @@ msgstr "Gestionează cheile API"
 
 #: src/olympia/amo/context_processors.py:85
 msgid "Reviewer Tools"
-msgstr "Instrumente pentru recenzori"
+msgstr "Instrumente pentru revizori"
 
 #: src/olympia/amo/context_processors.py:91
 msgid "Admin Tools"
@@ -970,6 +970,8 @@ msgstr "S-au cerut mai multe informații"
 #: src/olympia/constants/activity.py:236
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
+"Suplimentul a fost marcat pentru revizuire de către un administrator. Încă se află în coada de așteptare, dar va trebui verificat de unul dintre revizorii noștri administratori. Revizuirea poate "
+"dura mai mult decât de obicei."
 
 #: src/olympia/constants/activity.py:258
 #, python-brace-format
@@ -1088,7 +1090,7 @@ msgstr "{addon} nelistat."
 #: src/olympia/constants/activity.py:560
 #, python-brace-format
 msgid "Add-on id {0} with GUID {1} has been deleted"
-msgstr ""
+msgstr "Suplimentul cu ID {0} și GUID {1} a fost șters"
 
 #: src/olympia/constants/activity.py:567 src/olympia/constants/activity.py:573
 #, python-brace-format
@@ -1107,16 +1109,16 @@ msgstr "Răspunsul dezvoltatorului"
 #: src/olympia/constants/activity.py:623
 #, python-brace-format
 msgid "Reply by reviewer on {addon} {version}."
-msgstr "Răspunsul recenzentului pentru {addon} {version}."
+msgstr "Răspunsul revizorului pentru {addon} {version}."
 
 #: src/olympia/constants/activity.py:624
 msgid "Reviewer Reply"
-msgstr "Răspunsul recenzentului"
+msgstr "Răspunsul revizorului"
 
 #: src/olympia/constants/activity.py:631
 #, python-brace-format
 msgid "Notes for reviewers changed for {addon} {version}."
-msgstr ""
+msgstr "Notele pentru revizori au fost modificate pentru {addon} {version}."
 
 #: src/olympia/constants/activity.py:632
 msgid "Notes for reviewers changed"

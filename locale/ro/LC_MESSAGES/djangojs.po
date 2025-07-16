@@ -136,7 +136,7 @@ msgstr "Include note detaliate despre versiune (se poate face la pasul următor)
 
 #: static/js/common/upload-addon.js:654
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
-msgstr "Dacă suplimentul necesită un cont pe un site web ca să fie testat pe deplin, include un nume de utilizator de testare și o parolă în Notele către recenzent (se poate face în etapa următoare)."
+msgstr "Dacă suplimentul necesită un cont pe un site web ca să fie testat pe deplin, include un nume de utilizator de testare și o parolă în Notele către revizor (se poate face în etapa următoare)."
 
 #: static/js/common/upload-addon.js:660
 msgid "Add-on submission checklist"
@@ -928,7 +928,7 @@ msgstr "Note privind versiunea"
 
 #: static/js/zamboni/reviewers.js:579
 msgid "Notes for Reviewers"
-msgstr "Note pentru recenzenți"
+msgstr "Note pentru revizori"
 
 #: static/js/zamboni/reviewers.js:586
 msgid "No version notes found"
@@ -977,7 +977,7 @@ msgstr "Temă"
 
 #: static/js/zamboni/themes_review_templates.js:45
 msgid "Reviewer"
-msgstr "Recenzent"
+msgstr "Revizor"
 
 #: static/js/zamboni/themes_review_templates.js:47
 msgid "Status"
