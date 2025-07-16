@@ -405,18 +405,20 @@ msgstr "%(addon_type_plural)s nu sunt acceptate de %(app_name)s"
 #, python-format
 msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
 msgstr ""
+"Interval de versiune nevalid. Pentru Firefox pentru Android, puteți alege numai un interval care începe cu versiunea %(max)s sau una superioară sau se termină cu una mai mică decât versiunea "
+"%(min)s."
 
 #: src/olympia/addons/serializers.py:906
 msgid "Add-ons need at least one owner."
-msgstr ""
+msgstr "Suplimentele au nevoie de cel puțin un proprietar."
 
 #: src/olympia/addons/serializers.py:921
 msgid "Add-ons need at least one listed author."
-msgstr ""
+msgstr "Suplimentele au nevoie de cel puțin un autor listat."
 
 #: src/olympia/addons/serializers.py:953
 msgid "Account not found."
-msgstr ""
+msgstr "Contul nu a fost găsit."
 
 #: src/olympia/addons/serializers.py:966 src/olympia/devhub/forms.py:410 src/olympia/devhub/forms.py:480
 msgid "An author can only be present once."
@@ -428,7 +430,7 @@ msgstr "Contul are nevoie de o denumire de afișat înainte de a putea fi adăug
 
 #: src/olympia/addons/serializers.py:1255
 msgid "This slug cannot be used. Please choose another."
-msgstr ""
+msgstr "Slug-ul nu poate fi folosit. Vă rugăm să alegeți altul."
 
 #: src/olympia/addons/utils.py:39
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -437,52 +439,52 @@ msgstr "Denumirile suplimentelor nu pot conține mărci comerciale Mozilla sau F
 #: src/olympia/addons/utils.py:130
 #, python-brace-format
 msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
-msgstr ""
+msgstr "Versiunea {version_string} trebuie să fie superioară versiunii anterioare aprobate {previous_version_string}."
 
 #: src/olympia/addons/validators.py:41
 msgid "Both `license` and `custom_license` cannot be provided together."
-msgstr ""
+msgstr "Nu pot fi specificate împreună și `license`, și `custom_license`."
 
 #: src/olympia/addons/validators.py:64
 msgid "This field, or custom_license, is required for listed versions."
-msgstr ""
+msgstr "Acest câmp, sau custom_license, este obligatoriu pentru versiunile listate."
 
 #: src/olympia/addons/validators.py:91
 msgid "Wrong add-on type for this license."
-msgstr ""
+msgstr "Tip de supliment greșit pentru această licență."
 
 #: src/olympia/addons/validators.py:98
 msgid "Custom licenses are not supported for themes."
-msgstr ""
+msgstr "Licențele personalizate nu sunt acceptate pentru teme."
 
 #: src/olympia/addons/validators.py:132
 msgid "This field is required for add-ons with listed versions."
-msgstr ""
+msgstr "Acest câmp este obligatoriu pentru suplimente cu versiuni listate."
 
 #: src/olympia/addons/validators.py:158
 #, python-brace-format
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
-msgstr ""
+msgstr "Trebuie setate metadatele suplimentelor pentru a crea o versiune listată: {missing_addon_metadata}."
 
 #: src/olympia/addons/validators.py:272
 msgid "A GUID must be specified in the manifest."
-msgstr ""
+msgstr "Trebuie specificat un GUID în manifest."
 
 #: src/olympia/addons/validators.py:276
 msgid "GUID mismatch between the URL and manifest."
-msgstr ""
+msgstr "Corelare GUID absentă între URL și manifest."
 
 #: src/olympia/addons/validators.py:291
 msgid "Source cannot be changed because this version has been reviewed by Mozilla."
-msgstr ""
+msgstr "Sursa nu poate fi schimbată deoarece această versiune a fost revizuită de Mozilla."
 
 #: src/olympia/addons/validators.py:315
 msgid "This type of add-on does not allow custom compatibility."
-msgstr ""
+msgstr "Acest tip de supliment nu permite compatibilitatea personalizată."
 
 #: src/olympia/addons/validators.py:332
 msgid "This endpoint is not valid for Themes."
-msgstr ""
+msgstr "Acest endpoint nu este valabil pentru Teme."
 
 #: src/olympia/addons/templates/addons/includes/dashboard_tabs.html:4 src/olympia/devhub/templates/devhub/nav.html:15 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:19
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html:16
@@ -569,7 +571,7 @@ msgstr "Unele funcționalități sunt dezactivate temporar, cât efectuăm într
 
 #: src/olympia/amo/utils.py:1112
 msgid "URLs are not allowed."
-msgstr ""
+msgstr "Nu se permit URL-uri."
 
 #: src/olympia/amo/validators.py:17
 msgid "Must contain at least one printable character."
@@ -652,16 +654,15 @@ msgstr ""
 
 #: src/olympia/amo/templates/amo/fake_fxa_authorization.html:4
 msgid "Register or Log in"
-msgstr ""
+msgstr "Înregistrați-vă sau conectați-vă"
 
 #: src/olympia/amo/templates/amo/fake_fxa_authorization.html:19
-#, fuzzy
 msgid "Email:"
-msgstr "E-mail"
+msgstr "E-mail:"
 
 #: src/olympia/amo/templates/amo/fake_fxa_authorization.html:20
 msgid "Two-factor authentication"
-msgstr ""
+msgstr "Autentificare cu doi factori"
 
 #. abbreviation of 'previous'
 #: src/olympia/amo/templates/amo/paginator.html:5 src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:49
@@ -696,11 +697,11 @@ msgstr "Unele funcționalități de pe această pagină sunt dezactivate tempora
 
 #: src/olympia/amo/templates/amo/submissions_disabled.html:3
 msgid "Add-on uploads temporarily disabled"
-msgstr ""
+msgstr "Încărcările de suplimente sunt dezactivate temporar"
 
 #: src/olympia/amo/templates/amo/submissions_disabled.html:13
 msgid "Add-on uploads have been temporarily disabled. Please check back later."
-msgstr ""
+msgstr "Încărcările de suplimente au fost dezactivate temporar. Vă rugăm să reveniți mai târziu."
 
 #: src/olympia/amo/templatetags/jinja_helpers.py:147
 #, python-brace-format
@@ -739,11 +740,11 @@ msgstr "Antet de autorizare nevalid. Șirul datelor de autentificare nu trebuie 
 
 #: src/olympia/api/authentication.py:108
 msgid "Valid user session not found matching the provided session key."
-msgstr ""
+msgstr "Nu a fost găsită o sesiune de utilizator validă care să corespundă cheii de sesiune furnizate."
 
 #: src/olympia/api/authentication.py:122
 msgid "Access token refresh failed; user needs to login to FxA again."
-msgstr ""
+msgstr "Reîmprospătarea jetonului de acces a eșuat; utilizatorul trebuie să se autentifice din nou în FxA."
 
 #: src/olympia/api/authentication.py:187
 msgid "Wrong type for one or more keys in payload"
@@ -771,26 +772,26 @@ msgstr "Nu s-a găsit adresa de e-mail."
 
 #: src/olympia/api/exceptions.py:16
 msgid "Unavailable for legal reasons."
-msgstr ""
+msgstr "Indisponibil din motive legale."
 
 #: src/olympia/api/fields.py:91
 #, python-brace-format
 msgid "The language code \"{lang_code}\" is invalid."
-msgstr ""
+msgstr "Codul de limbă „{lang_code}” este nevalid."
 
 #: src/olympia/api/fields.py:92
 msgid "You must provide an object of {{lang-code:value}}."
-msgstr ""
+msgstr "Trebuie specificat un obiect {{lang-code:value}}."
 
 #: src/olympia/api/fields.py:94
 #, python-brace-format
 msgid "A value in the default locale of \"{lang_code}\" is required."
-msgstr ""
+msgstr "Este necesară o valoare în limba implicită „{lang_code}”."
 
 #: src/olympia/api/fields.py:97
 #, python-brace-format
 msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
-msgstr ""
+msgstr "Este necesară o valoare în limba implicită „{lang_code}” dacă sunt setate alte traduceri."
 
 #: src/olympia/api/fields.py:386
 #, python-format
@@ -803,7 +804,7 @@ msgstr "Confirmare pentru cheile API de dezvoltator"
 
 #: src/olympia/api/throttling.py:113
 msgid "You have submitted this form too many times recently. Please try again after some time."
-msgstr ""
+msgstr "Ați trimis acest formular de prea multe ori în ultima vreme. Încercați din nou după un timp."
 
 #: src/olympia/bandwagon/serializers.py:72
 msgid "This custom URL is already in use by another one of your collections."
@@ -827,11 +828,11 @@ msgstr "Acest supliment deja face parte din colecție"
 
 #: src/olympia/blocklist/models.py:188
 msgid "Blocked"
-msgstr ""
+msgstr "Blocat"
 
 #: src/olympia/blocklist/models.py:188
 msgid "Restricted"
-msgstr ""
+msgstr "Restricționat"
 
 #: src/olympia/constants/activity.py:25
 #, python-brace-format
@@ -857,13 +858,13 @@ msgstr "Categorii editate pentru {addon}."
 #: src/olympia/constants/activity.py:57
 #, python-brace-format
 msgid "{user} ({0}) added to {addon}."
-msgstr ""
+msgstr "{user} ({0}) adăugat la {addon}."
 
 #. L10n: {0} is the user role.
 #: src/olympia/constants/activity.py:67
 #, python-brace-format
 msgid "{user} ({0}) removed from {addon}."
-msgstr ""
+msgstr "{user} ({0}) eliminat din {addon}."
 
 #: src/olympia/constants/activity.py:76
 #, python-brace-format
