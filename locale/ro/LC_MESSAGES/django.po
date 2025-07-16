@@ -141,7 +141,7 @@ msgid ""
 "After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, we have requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
 msgstr ""
 "\n"
-"Vă mulțumim pentru raportul despre %(name)s pe Suplimente Mozilla și pentru că ne-ați oferit mai multe informații despre preocupările dvs.\n"
+"Îți mulțumim pentru raportul despre %(name)s pe Suplimente Mozilla și pentru că ne-ai oferit mai multe informații despre preocupările tale.\n"
 "\n"
 "După analizarea contestației, am stabilit că decizia anterioară, conform căreia conținutul nu încalcă politicile Mozilla (%(policy_document_url)s), a fost incorectă. În baza acestei determinări, am cerut dezvoltatorului să aducă modificări. Dacă nu își actualizează conținutul ca să corecteze încălcarea, îl vom elimina.\n"
 
@@ -154,7 +154,7 @@ msgid ""
 "We reviewed your report and the content in question, and found that it does not violate Mozilla's policies (%(policy_document_url)s).  It will therefore not be subject to any moderation action.\n"
 msgstr ""
 "\n"
-"Vă mulțumim pentru raportul despre %(name)s, de la %(target_url)s.\n"
+"Îți mulțumim pentru raportul despre %(name)s, de la %(target_url)s.\n"
 "\n"
 "Am analizat raportul și conținutul în cauză și am constatat că nu încalcă politicile Mozilla (%(policy_document_url)s).  Prin urmare, nu va fi supus niciunei măsuri de moderare.\n"
 
@@ -176,7 +176,7 @@ msgid ""
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
 "\n"
-"Vă mulțumim pentru raportul despre următorul supliment de pe Suplimente Mozilla: %(name)s.\n"
+"Îți mulțumim pentru raportul despre următorul supliment de pe Suplimente Mozilla: %(name)s.\n"
 "\n"
 "Am analizat raportul și conținutul în cauză și am constatat că încalcă politicile Mozilla (%(policy_document_url)s). Prin urmare, am eliminat conținutul.\n"
 
@@ -189,7 +189,7 @@ msgid ""
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
 msgstr ""
 "\n"
-"Vă mulțumim pentru raportul despre următorul supliment de pe Suplimente Mozilla: %(name)s.\n"
+"îți mulțumim pentru raportul despre următorul supliment de pe Suplimente Mozilla: %(name)s.\n"
 "\n"
 "Am analizat raportul și conținutul în cauză și am constatat că încalcă politicile Mozilla (%(policy_document_url)s). Prin urmare, i-am cerut dezvoltatorului să aducă modificări. Dacă nu își actualizează conținutul în sensul corectării încălcării, îl vom elimina.\n"
 
@@ -202,7 +202,7 @@ msgid ""
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
 "\n"
-"Vă mulțumim pentru raportul despre următoarea colecție de pe Suplimente Mozilla: %(name)s.\n"
+"Îți mulțumim pentru raportul despre următoarea colecție de pe Suplimente Mozilla: %(name)s.\n"
 "\n"
 "Am analizat raportul și conținutul în cauză și am constatat că încalcă politicile Mozilla (%(policy_document_url)s). Prin urmare, am eliminat conținutul.\n"
 
@@ -215,7 +215,7 @@ msgid ""
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
 "\n"
-"Vă mulțumim pentru raportul despre următoarea evaluare de pe Suplimente Mozilla: %(name)s.\n"
+"Îți mulțumim pentru raportul despre următoarea evaluare de pe Suplimente Mozilla: %(name)s.\n"
 "\n"
 "Am analizat raportul și conținutul în cauză și am constatat că încalcă politicile Mozilla (%(policy_document_url)s). Prin urmare, am eliminat conținutul.\n"
 
@@ -228,7 +228,7 @@ msgid ""
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
 "\n"
-"Vă mulțumim pentru raportul despre următorul utilizator de pe Suplimente Mozilla: %(name)s.\n"
+"Îți mulțumim pentru raportul despre următorul utilizator de pe Suplimente Mozilla: %(name)s.\n"
 "\n"
 "Am analizat raportul și conținutul în cauză și am constatat că încalcă politicile Mozilla (%(policy_document_url)s). Prin urmare, am eliminat conținutul.\n"
 
@@ -328,7 +328,7 @@ msgstr "Licența cu slug={value} nu există."
 #: src/olympia/addons/fields.py:210
 #, python-brace-format
 msgid "Unsupported file type, please upload an archive file ({extensions})."
-msgstr "Tip de fișier neacceptat. Încărcați un fișier tip arhivă ({extensions})."
+msgstr "Tip de fișier neacceptat. Încarcă un fișier tip arhivă ({extensions})."
 
 #: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:756 src/olympia/files/utils.py:761 src/olympia/reviewers/forms.py:386
 msgid "Invalid or broken archive."
@@ -430,7 +430,7 @@ msgstr "Contul are nevoie de o denumire de afișat înainte de a putea fi adăug
 
 #: src/olympia/addons/serializers.py:1255
 msgid "This slug cannot be used. Please choose another."
-msgstr "Slug-ul nu poate fi folosit. Vă rugăm să alegeți altul."
+msgstr "Slug-ul nu poate fi folosit. Te rugăm să alegi altul."
 
 #: src/olympia/addons/utils.py:39
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -654,7 +654,7 @@ msgstr ""
 
 #: src/olympia/amo/templates/amo/fake_fxa_authorization.html:4
 msgid "Register or Log in"
-msgstr "Înregistrați-vă sau conectați-vă"
+msgstr "Întregistrare sau conectare"
 
 #: src/olympia/amo/templates/amo/fake_fxa_authorization.html:19
 msgid "Email:"
@@ -701,7 +701,7 @@ msgstr "Încărcările de suplimente sunt dezactivate temporar"
 
 #: src/olympia/amo/templates/amo/submissions_disabled.html:13
 msgid "Add-on uploads have been temporarily disabled. Please check back later."
-msgstr "Încărcările de suplimente au fost dezactivate temporar. Vă rugăm să reveniți mai târziu."
+msgstr "Încărcările de suplimente au fost dezactivate temporar. Te rugăm să revii mai târziu."
 
 #: src/olympia/amo/templatetags/jinja_helpers.py:147
 #, python-brace-format
@@ -1187,45 +1187,44 @@ msgstr "Respingere programată"
 #: src/olympia/constants/activity.py:853
 #, python-brace-format
 msgid "{addon} {version} automatically created and signed from {0}."
-msgstr ""
+msgstr "{addon} {version} a fost creat automat și semnat de la {0}."
 
 #: src/olympia/constants/activity.py:854
-#, fuzzy
 msgid "Version re-signed"
-msgstr "Versiune %s reactivată."
+msgstr "Versiune resemnată"
 
 #: src/olympia/constants/activity.py:862
 #, python-brace-format
 msgid "{addon} force-disabled"
-msgstr ""
+msgstr "{addon} dezactivat forțat"
 
 #: src/olympia/constants/activity.py:873
 #, python-brace-format
 msgid "{addon} force-enabled"
-msgstr ""
+msgstr "{addon} activat forțat"
 
 #: src/olympia/constants/activity.py:902
 #, python-brace-format
 msgid "{addon} {version} un-rejected."
-msgstr ""
+msgstr "{addon} {version} nerespins."
 
 #: src/olympia/constants/activity.py:903
 msgid "Un-rejected"
-msgstr ""
+msgstr "Nerespins"
 
 #: src/olympia/constants/activity.py:941
 #, python-brace-format
 msgid "Reply to {rating} for {addon} written."
-msgstr ""
+msgstr "Răspuns la {rating} pentru {addon} scris."
 
 #: src/olympia/constants/activity.py:958
 #, python-brace-format
 msgid "{addon} {version} pending rejection cleared."
-msgstr ""
+msgstr "Respingerea pendentă a {addon} {version} a fost ștearsă."
 
 #: src/olympia/constants/activity.py:959
 msgid "Pending rejection cleared"
-msgstr ""
+msgstr "Respingere pendentă ștearsă"
 
 #: src/olympia/constants/activity.py:1006
 #, python-brace-format
