@@ -616,7 +616,7 @@ class AddonRegionalRestrictionsAdmin(AMOModelAdmin):
         send_mail(
             f'Regional Restriction {action} for Add-on',
             message,
-            recipient_list=('amo-admins@mozilla.com',),
+            recipient_list=('amo-notifications+regionrestrict@mozilla.com',),
         )
 
     def delete_model(self, request, obj):

@@ -1005,7 +1005,7 @@ class TestAddonRegionalRestrictionsAdmin(TestCase):
             f'Regional restriction for addon "Thíng" '
             f"[{restriction.addon.id}] added: ['DE', 'BR']"
         )
-        assert mail.outbox[0].to == ['amo-admins@mozilla.com']
+        assert mail.outbox[0].to == ['amo-notifications+regionrestrict@mozilla.com']
 
     def test_can_edit(self):
         addon = addon_factory(name='Thíng')
@@ -1039,7 +1039,7 @@ class TestAddonRegionalRestrictionsAdmin(TestCase):
             f'Regional restriction for addon "Thíng" '
             f"[{restriction.addon.id}] changed: ['DE', 'BR']"
         )
-        assert mail.outbox[0].to == ['amo-admins@mozilla.com']
+        assert mail.outbox[0].to == ['amo-notifications+regionrestrict@mozilla.com']
 
     def test_can_delete(self):
         restriction = AddonRegionalRestrictions.objects.create(
@@ -1059,7 +1059,7 @@ class TestAddonRegionalRestrictionsAdmin(TestCase):
             f'Regional restriction for addon "Thíng" '
             f"[{restriction.addon.id}] deleted: ['FR']"
         )
-        assert mail.outbox[0].to == ['amo-admins@mozilla.com']
+        assert mail.outbox[0].to == ['amo-notifications+regionrestrict@mozilla.com']
 
 
 class TestAddonBrowserMappingAdmin(TestCase):
