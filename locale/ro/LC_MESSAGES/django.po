@@ -153,6 +153,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it does not violate Mozilla's policies (%(policy_document_url)s).  It will therefore not be subject to any moderation action.\n"
 msgstr ""
+"\n"
+"Vă mulțumim pentru raportul despre %(name)s, de la %(target_url)s.\n"
+"\n"
+"Am analizat raportul și conținutul în cauză și am constatat că nu încalcă politicile Mozilla (%(policy_document_url)s).  Prin urmare, nu va fi supus niciunei măsuri de moderare.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:7
 #, python-format
@@ -160,6 +164,8 @@ msgid ""
 "You have the right to appeal this decision within 6 months from the date of this email. See %(appeal_url)s for details on the appeal process, including how to file an appeal for this specific "
 "decision."
 msgstr ""
+"Aveți dreptul să contestați această decizie în termen de 6 luni de la data prezentului mesaj pe e-mail. A se vedea %(appeal_url)s pentru detalii despre procedura de contestare, inclusiv despre cum "
+"să depuneți o contestație împotriva acestei decizii specifice."
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_addon.txt:5
 #, python-format
@@ -169,6 +175,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
+"\n"
+"Vă mulțumim pentru raportul despre următorul supliment de pe Suplimente Mozilla: %(name)s.\n"
+"\n"
+"Am analizat raportul și conținutul în cauză și am constatat că încalcă politicile Mozilla (%(policy_document_url)s). Prin urmare, am eliminat conținutul.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_addon_delayed.txt:5
 #, python-format
@@ -178,6 +188,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
 msgstr ""
+"\n"
+"Vă mulțumim pentru raportul despre următorul supliment de pe Suplimente Mozilla: %(name)s.\n"
+"\n"
+"Am analizat raportul și conținutul în cauză și am constatat că încalcă politicile Mozilla (%(policy_document_url)s). Prin urmare, i-am cerut dezvoltatorului să aducă modificări. Dacă nu își actualizează conținutul în sensul corectării încălcării, îl vom elimina.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_collection.txt:5
 #, python-format
@@ -187,6 +201,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
+"\n"
+"Vă mulțumim pentru raportul despre următoarea colecție de pe Suplimente Mozilla: %(name)s.\n"
+"\n"
+"Am analizat raportul și conținutul în cauză și am constatat că încalcă politicile Mozilla (%(policy_document_url)s). Prin urmare, am eliminat conținutul.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_rating.txt:5
 #, python-format
@@ -196,6 +214,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
+"\n"
+"Vă mulțumim pentru raportul despre următoarea evaluare de pe Suplimente Mozilla: %(name)s.\n"
+"\n"
+"Am analizat raportul și conținutul în cauză și am constatat că încalcă politicile Mozilla (%(policy_document_url)s). Prin urmare, am eliminat conținutul.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_user.txt:5
 #, python-format
@@ -205,6 +227,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
+"\n"
+"Vă mulțumim pentru raportul despre următorul utilizator de pe Suplimente Mozilla: %(name)s.\n"
+"\n"
+"Am analizat raportul și conținutul în cauză și am constatat că încalcă politicile Mozilla (%(policy_document_url)s). Prin urmare, am eliminat conținutul.\n"
 
 #: src/olympia/accounts/serializers.py:152 src/olympia/bandwagon/serializers.py:98
 msgid "No links are allowed."
@@ -237,9 +263,8 @@ msgid "Notification [%s] does not exist"
 msgstr "Notificarea [%s] nu există"
 
 #: src/olympia/activity/models.py:42
-#, fuzzy
 msgid "Add-ons Review Team"
-msgstr "Ghid de recenzare pentru suplimente"
+msgstr "Echipa de revizuire a suplimentelor"
 
 #: src/olympia/activity/models.py:738
 msgid "Review"
@@ -259,7 +284,7 @@ msgstr "Notă de recenzie"
 
 #: src/olympia/activity/views.py:134
 msgid "Request content length is too large."
-msgstr ""
+msgstr "Conținutul cererii este prea lung."
 
 #: src/olympia/activity/tests/test_constants.py:21 src/olympia/devhub/templates/devhub/addons/activity.html:60
 msgid "Add-on"
@@ -267,25 +292,25 @@ msgstr "Supliment"
 
 #: src/olympia/addons/decorators.py:78 src/olympia/amo/templates/amo/submissions_disabled.html:8
 msgid "Add-on uploads are temporarily unavailable."
-msgstr ""
+msgstr "Încărcările de suplimente nu sunt disponibile temporar."
 
 #: src/olympia/addons/fields.py:56
 #, python-brace-format
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
-msgstr ""
+msgstr "Numărul maxim de categorii per aplicație ({MAX_CATEGORIES}) a fost depășit"
 
 #: src/olympia/addons/fields.py:62
 msgid "The \"other\" category cannot be combined with another category"
-msgstr ""
+msgstr "Categoria „altele” nu poate fi combinată cu o altă categorie"
 
 #: src/olympia/addons/fields.py:76 src/olympia/addons/serializers.py:1275
 msgid "Invalid category name."
-msgstr ""
+msgstr "Denumire categorie nevalidă."
 
 #: src/olympia/addons/fields.py:116
 #, python-brace-format
 msgid "URL domain must be one of [{domains}]."
-msgstr ""
+msgstr "Domeniul URL trebuie să fie unul dintre [{domains}]."
 
 #: src/olympia/addons/fields.py:125 src/olympia/devhub/forms.py:278
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
