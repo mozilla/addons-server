@@ -3901,17 +3901,15 @@ msgstr "Devi completare questo componente aggiuntivo inserendo un numero di vers
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:25
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
-msgstr ""
-"Quando la revisione sarà completata riceverai un’email di notifica. Fino ad allora il componente aggiuntivo non apparirà nelle pagine elenco del sito, ma sarà comunque accessibile dalla sua pagina "
-"su AMO."
+msgstr "Quando la revisione sarà completata riceverai un’email di notifica. Fino ad allora il componente aggiuntivo non apparirà nella galleria, ma sarà comunque accessibile dalla sua pagina su AMO."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:28
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
-msgstr "Il componente aggiuntivo è visualizzato nelle pagine elenco del sito e gli aggiornamenti automatici sono attivi."
+msgstr "Il componente aggiuntivo è visualizzato nella galleria e gli aggiornamenti automatici sono attivi."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:30
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery."
-msgstr ""
+msgstr "Il componente aggiuntivo è stato disattivato da un amministratore e non è più visualizzato nella galleria."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:33
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
@@ -4524,7 +4522,7 @@ msgstr "Nascondi il componente aggiuntivo"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:312
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
-msgstr "Se scegli di nascondere il componente aggiuntivo, esso non verrà più visualizzato nelle gallerie di AMO e gli utenti che lo hanno installato non riceveranno più gli aggiornamenti."
+msgstr "Se scegli di nascondere il componente aggiuntivo, questo non verrà più visualizzato nella galleria e gli utenti che lo hanno installato non riceveranno più gli aggiornamenti."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:319
 msgid "The files awaiting review will be disabled and you will need to upload new versions."
@@ -7141,6 +7139,13 @@ msgid ""
 "\n"
 "Mozilla Add-ons Team"
 msgstr ""
+"Ciao,\n"
+"\n"
+"Ti inviamo questo messaggio perché il tuo account utente %(name)s su %(site_url)s è stato eliminato. Questo potrebbe essere avvenuto automaticamente se hai eliminato di recente il tuo account Mozilla.\n"
+"\n"
+"Saluti,\n"
+"\n"
+"Il team Mozilla Add-ons"
 
 #: src/olympia/versions/models.py:1176
 #, python-format

@@ -3867,7 +3867,7 @@ msgstr "თქვენი დამატება შეტანილია 
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:30
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery."
-msgstr ""
+msgstr "თქვენი დამატება შეზღუდა საიტის ხელმძღვანელობამ და აღარ იქნება ღიად გამოდებული საიტზე."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:33
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
@@ -7082,6 +7082,13 @@ msgid ""
 "\n"
 "Mozilla Add-ons Team"
 msgstr ""
+"გამარჯობა,\n"
+"\n"
+"ეს შეტყობინება იმიტომ მიიღეთ, რომ თქვენი ანგარიში %(name)s წაშლილია საიტებზე %(site_url)s. ეს თავისთავად მოხდებოდა, თუ ახლახან წაშალეთ Mozilla-ანგარიში.\n"
+"\n"
+"პატივისცემით,\n"
+"\n"
+"Mozilla, დამატებების გუნდი"
 
 #: src/olympia/versions/models.py:1176
 #, python-format
