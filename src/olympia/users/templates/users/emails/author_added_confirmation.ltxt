@@ -6,7 +6,5 @@ Click on the link below to respond if you want to be added as an author for {{ a
 
 {{ author_confirmation_link }}
 
-If you didn't expect to receive this invitation, please send an email to amo-admins@mozilla.com.
-
 Kind regards,
 The Mozilla Add-ons Team{% endblocktrans %}
