@@ -3540,9 +3540,8 @@ msgid "Mozilla’s add-on reviewers need to be able to read and reproduce the co
 msgstr "Revizorii de suplimente Mozilla trebuie să poată citi și reproduce codul din extensie. Dacă nu o pot face, e posibil să ți se respingă extensia."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:21
-#, fuzzy
 msgid "Do you use any of the following in your extension?"
-msgstr "Folosești vreuna dintre uneltele următoare?"
+msgstr "Folosești vreuna dintre extensiile următoare?"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:27
 msgid "Code generators or minifiers"
@@ -3557,9 +3556,8 @@ msgid "Web template engines, both for HTML and CSS"
 msgstr "Motoare de șabloane web, atât pentru HTML, cât și pentru CSS"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:32
-#, fuzzy
 msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the extension"
-msgstr "Orice altă unealtă care ia cod sau fișiere, aplică procesarea și generează un cod sau fișier(e) de inclus în supliment"
+msgstr "Orice alt instrument care ia cod sau fișiere, aplică procesarea și generează un cod sau fișier(e) de inclus în extensie"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:43
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
@@ -6043,39 +6041,33 @@ msgstr "Vezi mai multe instrumente de traducere"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1091
-#, fuzzy
 msgid "Trending themes"
-msgstr "Teme recomandate"
+msgstr "Teme în tendințe"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1093
-#, fuzzy
 msgid "See more trending themes"
-msgstr "Vezi mai multe teme recomandate"
+msgstr "Vezi mai multe teme în tendințe"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1096 src/olympia/discovery/strings.jinja2:1141
-#, fuzzy
 msgid "Top rated themes"
-msgstr "Teme recomandate"
+msgstr "Teme cu cele mai bune recenzii"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1098 src/olympia/discovery/strings.jinja2:1143
-#, fuzzy
 msgid "See more top rated themes"
-msgstr "Vezi mai multe teme recomandate"
+msgstr "Vezi mai multe teme cu cele mai bune recenzii"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1101
-#, fuzzy
 msgid "Trending extensions"
-msgstr "Teme recomandate"
+msgstr "Extensii în tendințe"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1103
-#, fuzzy
 msgid "See more trending extensions"
-msgstr "Vezi mai multe extensii recomandate"
+msgstr "Vezi mai multe extensii în tendințe"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1106
@@ -6090,15 +6082,13 @@ msgstr "Vezi mai multe extensii populare"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1111
-#, fuzzy
 msgid "Creativity extensions"
-msgstr "Teme recomandate"
+msgstr "Extensii de creativitate"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1113
-#, fuzzy
 msgid "See more creativity staff picks"
-msgstr "Vezi mai multe instrumente de traducere"
+msgstr "Vezi mai multe extensii de creativitate alese de echipă"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1116
