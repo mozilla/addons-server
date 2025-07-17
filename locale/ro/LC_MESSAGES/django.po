@@ -1385,7 +1385,7 @@ msgstr "Motor de căutare învechit"
 
 #: src/olympia/constants/base.py:133
 msgid "Language Pack"
-msgstr ""
+msgstr "Pachet lingvistic"
 
 #: src/olympia/constants/base.py:134
 msgid "Deprecated Language Pack (Add-on)"
@@ -1405,7 +1405,7 @@ msgstr "Temă"
 
 #: src/olympia/constants/base.py:138
 msgid "Deprecated Site Permission"
-msgstr ""
+msgstr "Permisiune site perimată"
 
 #: src/olympia/constants/base.py:143 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:10
 msgid "Extensions"
@@ -1425,7 +1425,7 @@ msgstr "Instrumente de căutare învechite"
 
 #: src/olympia/constants/base.py:147
 msgid "Language Packs"
-msgstr ""
+msgstr "Pachete lingvistice"
 
 #: src/olympia/constants/base.py:148
 msgid "Deprecated Language Packs (Add-on)"
@@ -1445,7 +1445,7 @@ msgstr "Teme"
 
 #: src/olympia/constants/base.py:152
 msgid "Deprecated Site Permissions"
-msgstr ""
+msgstr "Permisiuni site perimate"
 
 #: src/olympia/constants/categories.py:68
 msgid "Alerts & Updates"
@@ -1698,39 +1698,39 @@ msgstr "Mozilla Public License 2.0"
 
 #: src/olympia/constants/licenses.py:22
 msgid "Apache License 2.0"
-msgstr ""
+msgstr "Apache License 2.0"
 
 #: src/olympia/constants/licenses.py:29
 msgid "GNU General Public License v2.0 only"
-msgstr ""
+msgstr "Numai GNU General Public License v2.0"
 
 #: src/olympia/constants/licenses.py:36
 msgid "GNU General Public License v3.0 only"
-msgstr ""
+msgstr "Numai GNU General Public License v3.0"
 
 #: src/olympia/constants/licenses.py:43
 msgid "GNU Lesser General Public License v2.1 only"
-msgstr ""
+msgstr "Numai GNU Lesser General Public License v2.1"
 
 #: src/olympia/constants/licenses.py:50
 msgid "GNU Lesser General Public License v3.0 only"
-msgstr ""
+msgstr "Numai GNU Lesser General Public License v3.0"
 
 #: src/olympia/constants/licenses.py:57
 msgid "GNU Affero General Public License v3.0 only"
-msgstr ""
+msgstr "Numai GNU Affero General Public License v3.0"
 
 #: src/olympia/constants/licenses.py:64
 msgid "MIT License"
-msgstr ""
+msgstr "Licență MIT"
 
 #: src/olympia/constants/licenses.py:71
 msgid "ISC License"
-msgstr ""
+msgstr "Licență ISC"
 
 #: src/olympia/constants/licenses.py:78
 msgid "BSD 2-Clause \"Simplified\" License"
-msgstr ""
+msgstr "Licență BSD 2-Clause \"Simplified\""
 
 #: src/olympia/constants/licenses.py:85
 msgid "Mozilla Public License 1.1"
@@ -1766,15 +1766,15 @@ msgstr "Creative Commons cu atribuire, distribuire în condiții identice 3.0"
 
 #: src/olympia/constants/licenses.py:162
 msgid "Creative Commons Attribution 4.0"
-msgstr ""
+msgstr "Creative Commons Attribution 4.0"
 
 #: src/olympia/constants/licenses.py:172
 msgid "Creative Commons Attribution-NonCommercial 4.0"
-msgstr ""
+msgstr "Creative Commons atribuire necomercială 4.0"
 
 #: src/olympia/constants/licenses.py:182
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 4.0"
-msgstr ""
+msgstr "Creative Commons atribuire necomercială, fără lucrări derivate 4.0"
 
 #: src/olympia/constants/licenses.py:192
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
@@ -1814,7 +1814,7 @@ msgstr ""
 
 #: src/olympia/constants/promoted.py:151
 msgid "Partner"
-msgstr ""
+msgstr "Partener"
 
 #: src/olympia/constants/reviewers.py:23
 msgid "No Reputation"
@@ -1873,14 +1873,12 @@ msgid "Delay auto-approval indefinitely"
 msgstr "Întârzie aprobarea automată pe termen nelimitat"
 
 #: src/olympia/constants/scanners.py:29
-#, fuzzy
 msgid "Delay auto-approval indefinitely and add restrictions"
-msgstr "Întârzie aprobarea automată pe termen nelimitat"
+msgstr "Întârzie aprobarea automată pe termen nelimitat și adaugă restricții"
 
 #: src/olympia/constants/scanners.py:32
-#, fuzzy
 msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
-msgstr "Întârzie aprobarea automată pe termen nelimitat"
+msgstr "Întârzie aprobarea automată pe termen nelimitat și adaugă restricții pentru aprobări viitoare"
 
 #: src/olympia/constants/scanners.py:42 src/olympia/files/utils.py:1031
 msgid "Unknown"
@@ -1968,9 +1966,9 @@ msgid "The miscellaneous category cannot be combined with additional categories.
 msgstr "Categoria de diverse nu poate fi combinată cu categorii suplimentare."
 
 #: src/olympia/devhub/forms.py:272
-#, fuzzy, python-format
+#, python-format
 msgid "URL domain must be one of [%s]."
-msgstr "Domeniul URL trebuie să fie unul dintre domeniile [%s] sau un subdomeniu."
+msgstr "Domeniul URL trebuie să fie unul dintre [%s]."
 
 #: src/olympia/devhub/forms.py:288
 #, python-brace-format
@@ -2290,7 +2288,7 @@ msgstr "Validează suplimentul"
 #: src/olympia/devhub/views.py:644
 #, python-brace-format
 msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
-msgstr ""
+msgstr "<a href=\"{link}\">Adaugă autentificarea cu doi factori în cont ca să poți trimite extensii.</a>"
 
 #: src/olympia/devhub/views.py:1012
 msgid "Icons must be either PNG or JPG."
@@ -2407,7 +2405,7 @@ msgstr "Culoarea de evidențiere a filei active. Implementată ca un chenar în 
 
 #: src/olympia/devhub/views.py:1578
 msgid "Add-on uploads are temporarily unavailable"
-msgstr ""
+msgstr "Încărcările de suplimente sunt momentan indisponibile"
 
 #: src/olympia/devhub/views.py:1947
 msgid "Review requested."
@@ -2423,7 +2421,7 @@ msgstr "Datele tale anterioare de autentificare au fost revocate și nu mai sunt
 
 #: src/olympia/devhub/views.py:2070
 msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
-msgstr ""
+msgstr "Ține-ți cheile API secrete și nu le împărtăși cu nimeni niciodată, inclusiv colaboratorilor Mozilla."
 
 #: src/olympia/devhub/views.py:2087
 msgid "New API key created"
@@ -2439,11 +2437,11 @@ msgstr "Verifică adresa de e-mail"
 
 #: src/olympia/devhub/views.py:2160
 msgid "Send another email"
-msgstr ""
+msgstr "Trimite alt mail"
 
 #: src/olympia/devhub/views.py:2193
 msgid "Your email has been verified"
-msgstr ""
+msgstr "Adresa ta de e-mail a fost verificată"
 
 #: src/olympia/devhub/widgets.py:81
 msgid "My add-on doesn't fit into any of the categories"
@@ -2455,11 +2453,11 @@ msgstr "Acord de distribuție pentru suplimente Firefox"
 
 #: src/olympia/devhub/templates/devhub/base.html:43
 msgid "Help us make things better!"
-msgstr ""
+msgstr "Ajută-ne să îmbunătățim!"
 
 #: src/olympia/devhub/templates/devhub/base.html:44
 msgid "Take our quick survey"
-msgstr ""
+msgstr "Participă la sondajul nostru scurt"
 
 #. {0} is an application, like Firefox.
 #: src/olympia/devhub/templates/devhub/index.html:21 src/olympia/templates/base.html:17
@@ -2532,7 +2530,7 @@ msgstr "Caută"
 #: src/olympia/devhub/templates/devhub/suppressed_email.html:4
 #, python-format
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
-msgstr ""
+msgstr "Am descoperit că adresa ta de e-mail „%(email)s” nu poate primi mesaje de la noi. Actualizează-ți adresa de e-mail cu una care poate primi mesaje de la noi."
 
 #: src/olympia/devhub/templates/devhub/suppressed_email.html:8
 msgid "Learn more"
@@ -2574,19 +2572,19 @@ msgstr "Stare:"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:12
 msgid "Your email address is verified."
-msgstr ""
+msgstr "Adresa ta de e-mail este verificată."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:16
 msgid "Please verify your email."
-msgstr ""
+msgstr "Te rugăm să îți verifici adresa de e-mail."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:20
 msgid "Could not verify email address. The verification link has expired."
-msgstr ""
+msgstr "Adresa de e-mail nu a putut fi verificată. Linkul de verificare a expirat."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:24
 msgid "We are sending an email to you, please be patient... <div class=\"loader\"></div> The page will automatically refresh."
-msgstr ""
+msgstr "Îți trimitem un mesaj pe e-mail. Te rugăm să ai răbdare... <div class=\"loader\"></div> Pagina se va reîmprospăta automat."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:30
 msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again later."
