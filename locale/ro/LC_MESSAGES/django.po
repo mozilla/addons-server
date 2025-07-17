@@ -3221,7 +3221,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:6
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
-msgstr ""
+msgstr "ID-ul suplimentului nu poate fi restaurat și va fi inutilizabil pentru trimitere."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:2 src/olympia/devhub/templates/devhub/versions/list.html:250 src/olympia/devhub/templates/devhub/versions/list.html:254
 msgid "Delete Add-on"
@@ -3324,14 +3324,12 @@ msgid "Cancel and Disable Version"
 msgstr "Anulează și dezactivează versiunea"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html:35
-#, fuzzy
 msgid "Are you sure you wish to cancel and disable version?"
-msgstr "Sigur vrei să ștergi această versiune?"
+msgstr "Sigur vrei să anulezi și să dezactivezi această versiune?"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html:40
-#, fuzzy
 msgid "Yes, Cancel"
-msgstr "Anulează"
+msgstr "Da, anulează"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html:41
 msgid "No, don't cancel"
@@ -3462,12 +3460,12 @@ msgstr "Cum să fie distribuită această versiune"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html:10
 msgid "To get started, select how you would like to distribute this version."
-msgstr ""
+msgstr "Pentru a începe, selectează modul în care vrei să distribuiți această versiune."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html:19
 #, python-format
 msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing</a> on Firefox Extension Workshop."
-msgstr ""
+msgstr "Poți afla mai multe despre aceste opțiuni citind secțiunea <a %(a_attrs)s>Distribuția și semnarea suplimentelor</a> din atelierul de extensii Firefox."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html:24
 #, python-format
