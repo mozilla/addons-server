@@ -179,7 +179,7 @@
                     "totalStrings": 1755
                 },
                 {
-                    "approvedStrings": 959,
+                    "approvedStrings": 1725,
                     "locale": {
                         "code": "fi",
                         "name": "Finnish"
@@ -195,7 +195,7 @@
                     "totalStrings": 1695
                 },
                 {
-                    "approvedStrings": 1052,
+                    "approvedStrings": 1725,
                     "locale": {
                         "code": "nb-NO",
                         "name": "Norwegian Bokmål"

@@ -1316,6 +1316,7 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
             'de': 'Meine Beispielerweiterung',
             'en-US': 'Notify link clicks i18n',
             'ja': 'リンクを通知する',
+            'nb-NO': 'Varsling ved trykk på lenke i18n',
             'nl': 'Meld klikken op hyperlinks',
             'sv-SE': 'Meld klikken op hyperlinks',
         }
