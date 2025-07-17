@@ -2325,7 +2325,7 @@ msgstr "A apărut o eroare la încărcarea previzualizării tale."
 msgid ""
 "The latest approved version of this %s add-on cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
-"Ultima versiune aprobată a acestui supliment %s nu poate fi ștearsă sau dezactivată deoarece versiunea precedentă nu a fost aprobată pentru %s promovare. Contactează administratorii AMO dacă ai "
+"Ultima versiune aprobată a acestui supliment %s nu poate fi ștearsă sau dezactivată deoarece versiunea precedentă nu a fost aprobată pentru promovare %s. Contactează administratorii AMO dacă ai "
 "nevoie de ajutor în acest sens."
 
 #: src/olympia/devhub/views.py:1220
@@ -3470,7 +3470,7 @@ msgstr "Poți afla mai multe despre aceste opțiuni citind secțiunea <a %(a_att
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html:24
 #, python-format
 msgid "All add-ons must comply with <a %(a_attrs)s>Mozilla’s Add-on Policies</a> and are subject to manual review at any time after submission."
-msgstr ""
+msgstr "Toate suplimentele trebuie să respecte <a %(a_attrs)s>Politicile Mozilla privind extensiile</a> și pot fi revizuite manual oricând după trimitere."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:4
 msgid "Submission Complete"
@@ -3569,9 +3569,8 @@ msgid "You must submit your extension's source code."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:51
-#, fuzzy
 msgid "Your source code must include:"
-msgstr "Cod sursă încărcat"
+msgstr "Codul sursă trebuie să includă:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:56
 msgid "Step-by-step build instructions to create an exact copy of the add-on code, in a README file in your source code or in the reviewer notes on the next page."
@@ -3602,12 +3601,12 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:67
 #, python-format
 msgid "The maximum file size accepted is %(max_size)s."
-msgstr ""
+msgstr "Dimensiunea maximă acceptată a fișierului este %(max_size)s."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:72
 #, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
-msgstr ""
+msgstr "Pentru mai multe informații, te rugăm să citești secțiunea <a %(a_attrs)s>Trimiterea codului sursă</a> în atelierul de extensii Firefox."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:77
 msgid "Upload source code:"
@@ -3640,7 +3639,7 @@ msgstr "Folosește câmpurile de mai jos ca să încarci pachetul suplimentului.
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:34
 #, python-format
 msgid "The maximum file size accepted is %(max_size)s. If your add-on is larger than %(max_size)s, it will fail validation."
-msgstr ""
+msgstr "Dimensiunea maximă acceptată a fișierului este %(max_size)s. Dacă suplimentul este mai mare decât %(max_size)s, validarea va eșua."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:59
 msgid "Which applications is this version compatible with?"
@@ -3740,6 +3739,16 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Bună,\n"
+"\n"
+"Primești acest mesaj deoarece ai solicitat chei API noi pentru dezvoltatori pentru\n"
+"%(domain)s. To finish this process, please click on the link below:\n"
+"\n"
+"%(api_key_confirmation_link)s\n"
+"\n"
+"Cu respect,\n"
+"\n"
+"Echipa Suplimente Mozilla"
 
 #: src/olympia/devhub/templates/devhub/emails/new-key-email.ltxt:8
 #, python-format
@@ -3816,6 +3825,13 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Bună,\n"
+"\n"
+"Adresa de e-mail a fost verificată cu succes.\n"
+"\n"
+"Cu respect,\n"
+"\n"
+"Echipa Suplimente Mozilla"
 
 #: src/olympia/devhub/templates/devhub/emails/verify-email-requested.ltxt:10
 #, python-format
@@ -3831,6 +3847,16 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Bună,\n"
+"\n"
+"Primești acest mesaj deoarece ai solicitat verificarea adresei de e-mail.\n"
+"Pentru finalizarea procesului, te rugăm să dai clic pe linkul de mai jos:\n"
+"\n"
+"%(confirmation_link)s\n"
+"\n"
+"Cu respect,\n"
+"\n"
+"Echipa Suplimente Mozilla"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:6 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:4
 msgid "Invisible"
@@ -4007,12 +4033,12 @@ msgstr "Elimină această aplicație"
 
 #. {0} is the maximum number of add-on categories allowed
 #: src/olympia/devhub/templates/devhub/includes/macros.html:66
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Select a category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
 msgstr[0] "Selectează o categorie pentru acest supliment:"
-msgstr[1] "Selectează o categorie pentru acest supliment:"
-msgstr[2] "Selectează o categorie pentru acest supliment:"
+msgstr[1] ""
+msgstr[2] "Select <b>up to {0}</b> categories for this add-on:"
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:3
 msgid "End-User License Agreement"
@@ -4055,9 +4081,8 @@ msgstr ""
 "să te susținem."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/banner.html:13
-#, fuzzy
 msgid "Visit the Firefox Extension Workshop"
-msgstr "Intră în atelierul de extensii"
+msgstr "Intră în atelierul de extensii Firefox"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:4
 msgid "Connect with us"
@@ -4068,9 +4093,8 @@ msgid "Matrix"
 msgstr "Matrice"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:10
-#, fuzzy
 msgid "Community forum"
-msgstr "Comunitate și asistență"
+msgstr "Forumul comunității"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:14
 msgid "Extensions Developers Newsletter"
@@ -4299,9 +4323,9 @@ msgid "If your add-on contains minified, concatenated or otherwise machine-gener
 msgstr "Dacă suplimentul conține cod minificat, legat în lanțuri sau generat altminteri de mașini, fă sursa disponibilă aici pentru revizori."
 
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html:1
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "File {file_id}"
-msgstr "Fișier {file_id} ({platform})"
+msgstr "Fișier {file_id}"
 
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html:5
 #, python-format
@@ -4451,6 +4475,8 @@ msgid ""
 "The latest approved version of this %(promoted_group_name)s add-on cannot be deleted or disabled because the previous version was not approved for %(promoted_group_name)s promotion. Please contact "
 "AMO Admins if you need help with this."
 msgstr ""
+"Ultima versiune aprobată a acestui supliment %(promoted_group_name)s nu poate fi ștearsă sau dezactivată deoarece versiunea precedentă nu a fost aprobată pentru promovare %(promoted_group_name)s. "
+"Contactează administratorii AMO dacă ai nevoie de ajutor în acest sens."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:309 src/olympia/devhub/templates/devhub/versions/list.html:335
 msgid "Hide Add-on"
