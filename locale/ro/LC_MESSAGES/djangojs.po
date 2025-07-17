@@ -620,7 +620,7 @@ msgstr "Starea suplimentului, ultimele {0} zile"
 #: static/js/stats/csv_keys.js:185
 #, python-brace-format
 msgid "Add-on Status from {0} to {1}"
-msgstr "Starea suplimentului din {0} până în {1}"
+msgstr "Starea suplimentului de la {0} până la {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:189
@@ -632,7 +632,7 @@ msgstr "Sursele de descărcare, ultimele {0} zile"
 #: static/js/stats/csv_keys.js:191
 #, python-brace-format
 msgid "Download Sources from {0} to {1}"
-msgstr "Sursele de descărcare din {0} până în {1}"
+msgstr "Surse de descărcare de la {0} până la {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:195
