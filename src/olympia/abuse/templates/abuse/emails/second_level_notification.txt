@@ -1,3 +1,1 @@
-Lo and behold! A fresh contender has triumphantly emerged and now awaits its fate in the hallowed halls of Second-Level Approval, where only the wisest of stewards may pass judgment. The scrolls declare that you, brave soul, must now render thine decision and seal its fate!
-
 {{ approval_url }}
