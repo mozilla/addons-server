@@ -271,7 +271,7 @@ msgid "Review"
 msgstr "Scrie o recenzie"
 
 #: src/olympia/activity/models.py:816 src/olympia/devhub/templates/devhub/versions/list.html:41
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Version {0}"
 msgid_plural "Versions {0}"
 msgstr[0] "Versiunea {0}"
@@ -1229,7 +1229,7 @@ msgstr "Respingere pendentă ștearsă"
 #: src/olympia/constants/activity.py:1006
 #, python-brace-format
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
-msgstr ""
+msgstr "{user_responsible} a modificat slugul {addon} de la {0} la {1}."
 
 #: src/olympia/constants/activity.py:1007
 msgid "Add-on slug changed"
