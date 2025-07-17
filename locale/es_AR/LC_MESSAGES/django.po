@@ -3739,6 +3739,16 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Hola,\n"
+"\n"
+"Recibiste este mensaje porque pediste nuevas claves de API de desarrollador para\n"
+"%(domain)s. Para terminar este proceso, hacé clic en el enlace siguiente:\n"
+"\n"
+"%(api_key_confirmation_link)s\n"
+"\n"
+"Saludos,\n"
+"\n"
+"El equipo de complementos de Mozilla"
 
 #: src/olympia/devhub/templates/devhub/emails/new-key-email.ltxt:8
 #, python-format
@@ -3837,6 +3847,16 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Hola,\n"
+"\n"
+"Estás recibiendo este mensaje porque pediste verificar tu correo electrónico.\n"
+"Para terminar este proceso, por favor hacé clic en el siguiente enlace:\n"
+"\n"
+"%(confirmation_link)s\n"
+"\n"
+"Saludos,\n"
+"\n"
+"El equipo de complementos de Mozilla"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:6 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:4
 msgid "Invisible"
@@ -3858,7 +3878,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:30
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery."
-msgstr ""
+msgstr "Tu complemento fue deshabilitado por un administrador del sitio y ya no aparece en nuestra galería."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:33
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
@@ -7038,6 +7058,16 @@ msgid ""
 "Kind regards,\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Saludos %(author_name)s,\n"
+"\n"
+"Te invitaron a convertirte en autor de %(addon_name)s en %(domain)s. Aceptar la invitación te dará acceso para editar el complemento y puede mostrar tu nombre en la lista de autores en el sitio web.\n"
+"\n"
+"Hacé clic en el enlace siguiente para responder si querés ser agregado como autor de%(addon_name)s.\n"
+"\n"
+"%(author_confirmation_link)s\n"
+"\n"
+"Saludos cordiales,\n"
+"El equipo de complementos de Mozilla"
 
 #: src/olympia/users/templates/users/emails/author_changed.ltxt:3
 #, python-format
