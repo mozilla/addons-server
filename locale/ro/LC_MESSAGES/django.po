@@ -1233,17 +1233,17 @@ msgstr ""
 
 #: src/olympia/constants/activity.py:1007
 msgid "Add-on slug changed"
-msgstr ""
+msgstr "Slugul suplimentului a fost modificat"
 
 #: src/olympia/constants/activity.py:1014
 #, python-brace-format
 msgid "Collection {collection} deleted by moderator"
-msgstr ""
+msgstr "Colecția {collection} a fost ștearsă de moderator"
 
 #: src/olympia/constants/activity.py:1020
 #, python-brace-format
 msgid "Collection {collection} un-deleted by moderator"
-msgstr ""
+msgstr "Colecția {collection} a fost restaurată de moderator"
 
 #: src/olympia/constants/activity.py:1029
 #, python-brace-format

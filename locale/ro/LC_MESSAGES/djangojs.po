@@ -108,7 +108,7 @@ msgstr "Validarea {0} s-a terminat"
 
 #: static/js/common/upload-addon.js:568
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr "Timpul pentru validarea suplimentului a expirat; suplimentul va fi recenzat manual."
+msgstr "Timpul pentru validarea suplimentului a expirat; suplimentul va fi revizuit manual."
 
 #: static/js/common/upload-addon.js:573
 #, python-brace-format
@@ -144,7 +144,7 @@ msgstr "Listă de verificare cu propunerile de suplimente"
 
 #: static/js/common/upload-addon.js:664
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr "Te rugăm să verifici următoarele puncte înainte de finalizarea propunerii. Acest lucru va minimiza întârzierile sau neînțelegerile în timpul procedurii de recenzie:"
+msgstr "Te rugăm să verifici următoarele puncte înainte de finalizarea propunerii. Acest lucru va minimiza întârzierile sau neînțelegerile în timpul procedurii de revizuire:"
 
 #: static/js/common/upload-addon.js:671
 msgid ""
