@@ -531,7 +531,7 @@ msgstr "Trimite o temă nouă"
 
 #: src/olympia/amo/context_processors.py:76 src/olympia/constants/base.py:84 src/olympia/devhub/templatetags/jinja_helpers.py:32 src/olympia/templates/photon-footer.html:14
 msgid "Developer Hub"
-msgstr "Hubul dezvoltatorilor"
+msgstr "Centrul dezvoltatorilor"
 
 #: src/olympia/amo/context_processors.py:79 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:20 src/olympia/devhub/views.py:2076
 msgid "Manage API Keys"
@@ -2116,7 +2116,7 @@ msgid ""
 "On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
 "on manifest’s <a {a_attrs}>update_url</a> is provided, as this is the URL where Firefox finds updates for automatic deployment to your users.</span>"
 msgstr ""
-"Pe cont propriu. <span class=\"helptext\">După ce suplimentul este semnat de Mozilla, poți descărca fișierul .xpi din Hub-ul dezvoltatorilor și îl poți distribui publicului. Asigură-te că este "
+"Pe cont propriu. <span class=\"helptext\">După ce suplimentul este semnat de Mozilla, poți descărca fișierul .xpi din Centrul dezvoltatorilor și îl poți distribui publicului. Asigură-te că este "
 "furnizat <a {a_attrs}>update_url</a> al manifestului suplimentului pentru că este adresa URL la care Firefox găsește actualizări pentru implementarea automată pentru utilizatorii tăi.</span>"
 
 #: src/olympia/devhub/forms.py:1404 src/olympia/devhub/templates/devhub/includes/agreement.html:15
@@ -2472,7 +2472,7 @@ msgstr "Revenire la pagina de start DevHub"
 #. Text in small tag is smaller and on its own line.
 #: src/olympia/devhub/templates/devhub/nav.html:4
 msgid "<small>Add-on</small> Developer Hub"
-msgstr "Hubul dezvoltatorilor de <small>suplimente</small>"
+msgstr "Centrul dezvoltatorilor de <small>suplimente</small>"
 
 #: src/olympia/devhub/templates/devhub/nav.html:21
 msgid "more add-ons..."
@@ -2588,11 +2588,11 @@ msgstr "Îți trimitem un mesaj pe e-mail. Te rugăm să ai răbdare... <div cla
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:30
 msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again later."
-msgstr ""
+msgstr "Confirmarea livrării mesajului de verificare pe e-mail durează mai mult decât am anticipat. Te rugăm să încerci din nou mai târziu."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:34
 msgid "Success!"
-msgstr ""
+msgstr "Succes!"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:35
 #, python-format
@@ -2600,6 +2600,8 @@ msgid ""
 "An email with a confirmation link has been sent to your email address: %(email)s. Please click the link to confirm your email address. If you did not receive the email, please check your spam "
 "folder."
 msgstr ""
+"A fost trimis un mesaj cu un link de confirmare la adresa ta de e-mail: %(email)s. Te rugăm să dai clic pe link pentru a confirma adresa de e-mail. Dacă nu ai primit mesajul pe e-mail, te rugăm să "
+"verifici în dosarul de spam."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:39
 #, python-format
@@ -2607,6 +2609,8 @@ msgid ""
 "The provided code is invalid, unauthorized, expired or incomplete. Please use the link in the email sent to your email address %(email)s. If the code is still not working, please request a new "
 "email."
 msgstr ""
+"Codul furnizat este nevalid, neautorizat, expirat sau incomplet. Te rugăm să folosești linkul din mesajul trimis la adresa ta de e-mail %(email)s. Dacă tot nu funcționează codul, te rugăm să "
+"soliciți retrimiterea unui mesaj pe e-mail."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:49
 msgid "<strong>Email history:</strong> The table below shows all emails we have attempted to send to you in the last 2 days."
@@ -3848,7 +3852,7 @@ msgstr "Suplimentul tău este afișat în galeria noastră și utilizatorii prim
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:30
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery."
-msgstr ""
+msgstr "Suplimentul a fost dezactivat de un administrator al site-ului și nu mai este afișat în galeria noastră."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:33
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
@@ -3946,21 +3950,24 @@ msgstr "Mai multe informații despre conturile de dezvoltatori"
 
 #: src/olympia/devhub/templates/devhub/includes/android_compatibility_modal.html:3
 msgid "Firefox for Android compatibility"
-msgstr ""
+msgstr "Compatibilitate Firefox pentru Android"
 
 #: src/olympia/devhub/templates/devhub/includes/android_compatibility_modal.html:4
 msgid ""
 "Did you test your extension to ensure it works as expected on Firefox for Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" "
 "href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
 msgstr ""
+"Ai testat extensia pentru a te asigura că funcționează conform așteptărilor pe Firefox pentru Android? Dacă nu, te rugăm să consulți <a target=\"_blank\" rel=\"noopener noreferrer\" "
+"href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">Dezvoltarea extensiilor pentru Firefox Android</a> pentru îndrumări de testare înainte de "
+"a o trimite."
 
 #: src/olympia/devhub/templates/devhub/includes/android_compatibility_modal.html:6
 msgid "Yes, I’ve tested my extension with Firefox for Android"
-msgstr ""
+msgstr "Da, am testat extensia cu Firefox pentru Android"
 
 #: src/olympia/devhub/templates/devhub/includes/android_compatibility_modal.html:7
 msgid "No, I have not tested"
-msgstr ""
+msgstr "Nu, nu am testat-o"
 
 #: src/olympia/devhub/templates/devhub/includes/blog_posts.html:3
 msgid "Developer News"
@@ -3977,6 +3984,8 @@ msgstr "În așteptarea semnării versiunii"
 #: src/olympia/devhub/templates/devhub/includes/done_unlisted.html:3
 msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
+"Ai terminat! ✨ Vei fi notificat(ă) prin e-mail când fișierul semnat va fi gata de descărcare din Centrul dezvoltatorilor. Dacă nu primești un mesaj pe e-mail după 24 de ore, te rugăm să verifici "
+"dosarul de spam."
 
 #: src/olympia/devhub/templates/devhub/includes/license_form.html:5 src/olympia/devhub/templates/devhub/versions/edit.html:83
 msgid "License"
@@ -4182,7 +4191,7 @@ msgstr "Propune prima ta temă"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html:8
 msgid "Add-on Developer Hub"
-msgstr "Hubul dezvoltatorilor de suplimente"
+msgstr "Centrul dezvoltatorilor de suplimente"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html:27
 msgid "Support"
@@ -4226,11 +4235,11 @@ msgstr "Ești gata să trimiți sau să îți gestionezi extensia?"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/submit_or_manage_extension.html:7
 msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
-msgstr "Conectează-te pe centrul dezvoltatorilor ca să trimiți sau să gestionezi extensii și teme."
+msgstr "Autentifică-te pe centrul dezvoltatorilor ca să trimiți sau să gestionezi extensii și teme."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/submit_or_manage_extension.html:11
 msgid "Register for a developer account or log in to the Developer Hub"
-msgstr "Creează un cont de dezvoltator sau conectează-te pe centrul dezvoltatorilor"
+msgstr "Creează-ți un cont de dezvoltator sau autentifică-te pe centrul dezvoltatorilor"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:5
 #, python-brace-format
