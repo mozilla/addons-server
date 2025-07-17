@@ -1408,7 +1408,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
             responses.POST,
             f'{settings.CINDER_SERVER_URL}decisions/{overridden_decision_id}/override/',
             json={'uuid': cinder_id},
-            status=200,
+            status=201,
         )
         responses.add(
             responses.POST,

@@ -169,9 +169,7 @@ class CinderEntity:
         else:
             raise HTTPError(response.content)
 
-    def _send_create_decision(
-        self, url, data, action, reasoning, policy_uuids, *, success_code=201
-    ):
+    def _send_create_decision(self, url, data, action, reasoning, policy_uuids):
         data = {
             **data,
             'reasoning': self.get_str(reasoning),
@@ -186,7 +184,7 @@ class CinderEntity:
             ),
         }
         response = requests.post(url, json=data, headers=self.get_cinder_http_headers())
-        if response.status_code == success_code:
+        if response.status_code == 201:
             return response.json().get('uuid')
         else:
             raise HTTPError(response.content)
@@ -212,7 +210,7 @@ class CinderEntity:
         # https://lindie.app/share/6a21d831b39351d7c6fe898f6d22619af62dde98/PLAT-1834
         # implements the same parameters for overrides
         return self._send_create_decision(
-            url, {}, None, reasoning, policy_uuids, success_code=200
+            url, {}, None, reasoning, policy_uuids
         )
 
     def close_job(self, *, job_id):
