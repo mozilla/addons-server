@@ -1253,7 +1253,7 @@ msgstr ""
 #: src/olympia/constants/activity.py:1058
 #, python-brace-format
 msgid "{addon} {version} rejected automatically after delay expired."
-msgstr ""
+msgstr "{addon} {version} respins automat după expirarea întârzierii."
 
 #: src/olympia/constants/activity.py:1059
 msgid "Rejected automatically after delay expired"
@@ -1280,20 +1280,20 @@ msgstr "Respingere pendentă modificată"
 #: src/olympia/constants/activity.py:1208
 #, python-brace-format
 msgid "{addon} {version} created, to rollback from {0}."
-msgstr ""
+msgstr "{addon} {version} creată, pentru revenire la versiunea anterioară de la {0}."
 
 #: src/olympia/constants/activity.py:1209
 msgid "Version rollback"
-msgstr ""
+msgstr "Revenire la versiune"
 
 #: src/olympia/constants/activity.py:1216
 #, python-brace-format
 msgid "{addon} rollback from {version} failed."
-msgstr ""
+msgstr "Revenirea {addon} de la {version} a eșuat."
 
 #: src/olympia/constants/activity.py:1217
 msgid "Version rollback failure"
-msgstr ""
+msgstr "Revenirea la versiune a eșuat"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -1782,7 +1782,7 @@ msgstr ""
 
 #: src/olympia/constants/licenses.py:202
 msgid "Creative Commons Attribution-NoDerivs 4.0"
-msgstr ""
+msgstr "Creative Commons atribuire - fără lucrări derivate 4.0"
 
 #: src/olympia/constants/licenses.py:212
 msgid "Creative Commons Attribution-ShareAlike 4.0"
@@ -2480,7 +2480,7 @@ msgstr "mai multe suplimente..."
 
 #: src/olympia/devhub/templates/devhub/nav.html:36 src/olympia/devhub/templates/devhub/new-landing/components/navigation.html:21 src/olympia/templates/photon-footer.html:13
 msgid "Extension Workshop"
-msgstr "Atelier de lucru pentru extensii"
+msgstr "Atelier de extensii"
 
 #: src/olympia/devhub/templates/devhub/nav.html:38 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:7
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html:24
@@ -2614,11 +2614,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:49
 msgid "<strong>Email history:</strong> The table below shows all emails we have attempted to send to you in the last 2 days."
-msgstr ""
+msgstr "<strong>Istoric e-mail:</strong> Tabelul de mai jos prezintă toate mesajele pe e-mail pe care am încercat să ți le trimitem în ultimele 2 zile."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:57
 msgid "Date"
-msgstr ""
+msgstr "Dată"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:58 src/olympia/stats/templates/stats/popup.html:12
 msgid "From"
@@ -2630,7 +2630,7 @@ msgstr "Până în"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:60
 msgid "Subject"
-msgstr ""
+msgstr "Subiect"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:61 src/olympia/devhub/templates/devhub/versions/list.html:186 src/olympia/devhub/templates/devhub/versions/list.html:204
 #: src/olympia/devhub/templates/devhub/versions/list.html:230
@@ -2639,16 +2639,16 @@ msgstr "Stare"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:87
 msgid "We have not found any email records for you in the last 2 days."
-msgstr ""
+msgstr "Nu am găsit nicio înregistrare de e-mailuri pentru tine în ultimele 2 zile."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:91
 msgid "Refresh results"
-msgstr ""
+msgstr "Reîmprospătează rezultatele"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:101
 #, python-format
 msgid "If you encounter issues, please see our <a %(a_attrs)s>troubleshooting suggestions</a> on Firefox Extension Workshop."
-msgstr ""
+msgstr "Dacă întâmpini probleme, consultă <a %(a_attrs)s>sugestiile de depanare</a> din atelierul de extensii Firefox."
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html:4 src/olympia/devhub/templates/devhub/addons/activity.html:17
 msgid "Recent Activity for My Add-ons"
@@ -2821,7 +2821,7 @@ msgstr "Etichete"
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:20
 #, python-brace-format
 msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
-msgstr ""
+msgstr "Etichetele ajută utilizatorii să îți găsească suplimentul. Ai dreptul la maxim {0} etichete. Alegele numai pe cele relevante pentru suplimentul tău."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:28
 #, python-brace-format
@@ -3176,7 +3176,7 @@ msgstr "Când este în această stare, singura metodă de distribuție disponibi
 
 #: src/olympia/devhub/templates/devhub/addons/includes/source_file_input.html:12
 msgid "You cannot change attached sources because this version has been reviewed by Mozilla."
-msgstr ""
+msgstr "Nu poți modifica sursele atașate pentru că versiunea a fost verificată de Mozilla."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:5 src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:53
 msgid "General Tests"
@@ -3213,11 +3213,8 @@ msgid "Top"
 msgstr "Sus"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:1
-#, fuzzy
 msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
-msgstr ""
-"Ștergerea suplimentului va șterge definitiv toate versiunile și fișierele pe care le-ai depus pentru acest supliment, listat sau nu. ID-ul suplimentului va fi în continuare atașat la contul tău, așa"
-" că ceilalți nu vor putea să trimită versiuni folosind același ID."
+msgstr "Ștergerea suplimentului va șterge definitiv toate versiunile și fișierele pe care le-ai depus pentru acest supliment, listat sau nu."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:6
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
@@ -3494,6 +3491,8 @@ msgid ""
 "You’re done! ✨ You will receive a confirmation email when this version is published on %(site_domain)s. Note that it may take up to 24 hours before publication occurs, or longer if your add-on is "
 "selected for manual review. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
+"Ați terminat! ✨ Vei primi un mesaj de confirmare pe e-mail când această versiune va fi publicată pe %(site_domain)s. Reține că poate dura până la 24 de ore până la publicare sau mai mult dacă "
+"suplimentul este selectat pentru revizuire manuală. Dacă nu primești un mesaj pe e-mail după 24 de ore, te rugăm să verifici dosarul de spam."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:31
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
@@ -3504,6 +3503,8 @@ msgstr "Listarea ta va avea un succes mai mare dacă adaugi o descriere detaliat
 msgid ""
 "You can attract users to your extension by adding a detailed description and screenshots to your listing. Get help <a %(a_attrs)s>creating an appealing listing</a> on Firefox Extension Workshop."
 msgstr ""
+"Poți atrage utilizatori către extensia ta adăugând o descriere detaliată și capturi de ecran la listare. Obțineți ajutor pentru <a %(a_attrs)s>crearea unei listări atractive</a> în atelierul de "
+"extensii Firefox."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:43
 msgid "Manage Listing"
@@ -3982,7 +3983,7 @@ msgid ""
 "href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
 msgstr ""
 "Ai testat extensia pentru a te asigura că funcționează conform așteptărilor pe Firefox pentru Android? Dacă nu, te rugăm să consulți <a target=\"_blank\" rel=\"noopener noreferrer\" "
-"href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">Dezvoltarea extensiilor pentru Firefox Android</a> pentru îndrumări de testare înainte de "
+"href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">Dezvoltarea de extensii pentru Firefox Android</a> pentru îndrumări de testare înainte de "
 "a o trimite."
 
 #: src/olympia/devhub/templates/devhub/includes/android_compatibility_modal.html:6
