@@ -10,6 +10,9 @@ ENV SWIG_FEATURES="-D__x86_64__"
 ENV OLYMPIA_UID=9500
 RUN useradd -u ${OLYMPIA_UID} -s /sbin/nologin olympia
 
+# Update the main repositories to the archived repository
+RUN echo "deb http://archive.debian.org/debian stretch main contrib non-free" > /etc/apt/sources.list
+
 # Add nodesource repository and requirements
 ADD docker/nodesource.gpg.key /etc/pki/gpg/GPG-KEY-nodesource
 RUN apt-get update && apt-get install -y \
@@ -20,43 +23,39 @@ RUN cat /etc/pki/gpg/GPG-KEY-nodesource | apt-key add -
 ADD docker/debian-stretch-nodesource-repo /etc/apt/sources.list.d/nodesource.list
 ADD docker/debian-stretch-backports-repo /etc/apt/sources.list.d/backports.list
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y --allow-downgrades \
+        # Downgrades
+        libssl1.1=1.1.0l-1~deb9u1 \
         # General (dev-) dependencies
-        bash-completion                  \
-        build-essential                  \
-        curl                             \
-        libcap-dev                       \
-        libjpeg-dev                      \
-        libpcre3-dev                     \
-        libsasl2-dev                     \
-        libxml2-dev                      \
-        libxslt-dev                      \
-        locales                          \
-        zlib1g-dev                       \
-        libffi-dev                       \
-        libmagic-dev                     \
-        libssl-dev                       \
-        nodejs                           \
-        uuid-dev                         \
+        bash-completion \
+        build-essential \
+        curl \
+        libjpeg-dev \
+        libsasl2-dev \
+        libxml2-dev \
+        libxslt-dev \
+        locales \
+        zlib1g-dev \
+        libffi-dev \
+        libssl-dev \
+        libmagic-dev \
+        nodejs \
         # Git, because we're using git-checkout dependencies
-        git                              \
+        git \
         # Dependencies for mysql-python
-        mysql-client                     \
-        default-libmysqlclient-dev       \
-        swig                             \
-        gettext                          \
+        mysql-client \
+        default-libmysqlclient-dev \
+        swig \
+        gettext \
         # Use rsvg-convert to render our static theme previews
-        librsvg2-bin                     \
+        librsvg2-bin \
         # Use pngcrush to optimize the PNGs uploaded by developers
-        pngcrush                         \
+        pngcrush \
+        # our makefile and ui-tests require uuid to be installed
+        uuid \
         # Use libmaxmind for speedy geoip lookups
         libmaxminddb0                    \
         libmaxminddb-dev                 \
-    && rm -rf /var/lib/apt/lists/*
-
-RUN apt-get update && apt-get -t stretch-backports install -y \
-        # For git-based files storage backend
-        libgit2-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Compile required locale
