@@ -234,6 +234,7 @@ jobs:
     uses: ./.github/workflows/_health_check.yml
     with:
       environment: host
+      slack_channel: ${{ vars.SLACK_ADDONS_PRODUCTION_CHANNEL }}
 
   test:
     needs: build
@@ -326,7 +327,7 @@ jobs:
   notification:
     runs-on: ubuntu-latest
     name: Notification (${{ matrix.name }})
-    if: always()
+    if: needs.context.outputs.is_fork == 'false' && always()
     needs: [context, push_dockerhub, push_gar]
     strategy:
       matrix:
