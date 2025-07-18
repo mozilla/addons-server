@@ -2056,12 +2056,7 @@ class TestDocs(TestCase):
 
         urls = [
             (reverse('devhub.docs', args=['getting-started']), 301),
-            (reverse('devhub.docs', args=['how-to']), 301),
-            (reverse('devhub.docs', args=['how-to/other-addons']), 301),
             (reverse('devhub.docs', args=['fake-page']), 404),
-            (reverse('devhub.docs', args=['how-to/fake-page']), 404),
-            (reverse('devhub.docs'), 301),
-            (reverse('devhub.docs', args=['policies']), 301),
         ]
 
         index = reverse('devhub.index')

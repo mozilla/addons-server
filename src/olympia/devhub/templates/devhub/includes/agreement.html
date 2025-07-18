@@ -1,28 +1,35 @@
 <form method="post">
   {% if not agreement_form.has_error('__all__') %}
   <p>
-    {% trans agreement_url=url('devhub.docs', 'policies/agreement'), policies_url=url('devhub.docs', 'policies'), faq_url=url('devhub.docs', 'policies/faq'), a_attrs='target="_blank" rel="noopener noreferrer"' %}
-      Before starting, please read and accept our <a {{ a_attrs }} href="{{ agreement_url }}">Firefox Add-on Distribution Agreement</a> as well as our <a {{ a_attrs }} href="{{ policies_url }}">Review Policies and Rules</a>, and our <a {{ a_attrs }} href="{{ faq_url }}">FAQ</a>. The Firefox Add-on Distribution Agreement also links to our Privacy Notice which explains how we handle your information.
+    {% trans faq_url=url('devhub.docs', 'policies/faq'), a_attrs='target="_blank" rel="noopener noreferrer"' %}
+    Before starting, please read and accept our Firefox Add-on Distribution Agreement, our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice which explains how we handle your information.
     {% endtrans %}
   </p>
   <ul class="agreement-links">
     <li>
       <label for="{{ agreement_form.distribution_agreement.id_for_label }}">
         {{ agreement_form.distribution_agreement }}
-        {{ _('Firefox Add-on Distribution Agreement') }}
+        <a href="{{ url('devhub.docs', 'policies/agreement') }}" target="_blank" rel="noopener noreferrer">
+          {{ _('Firefox Add-on Distribution Agreement') }}
+        </a>
       </label>
       {{ agreement_form.distribution_agreement.errors }}
     </li>
     <li>
       <label for="{{ agreement_form.review_policy.id_for_label }}">
         {{ agreement_form.review_policy }}
-        {{ _('Review Policies and Rules') }}
+        <a href="{{ url('devhub.docs', 'policies') }}" target="_blank" rel="noopener noreferrer">
+          {{ _('Review Policies and Rules') }}
+        </a>
       </label>
       {{ agreement_form.review_policy.errors }}
     </li>
   </ul>
   <p>
     {{ _('I have read and accept this Agreement and the Rules and Policies') }}.
+    <a href="{{ url('devhub.docs', 'policies/faq') }}" target="_blank" rel="noopener noreferrer">
+      {{ _('Frequently Asked Questions') }}
+    </a>
   </p>
 
   {% if 'display_name' in agreement_form.fields %}
