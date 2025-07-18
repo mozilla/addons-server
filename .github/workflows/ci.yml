@@ -44,7 +44,7 @@ jobs:
     steps:
       - name: Set context
         id: context
-        uses: mozilla/addons/.github/actions/context@2406c44b0b624bcf6b9b2a8a6368c32ada25af66
+        uses: mozilla/addons/.github/actions/context@aa3c320008a837a8faa40badb88006421f63efdb
 
       - name: Git Reference
         id: git
@@ -116,7 +116,7 @@ jobs:
       - name: Login to Dockerhub
         if: needs.context.outputs.is_fork == 'false'
         id: docker_hub
-        uses: mozilla/addons/.github/actions/login-docker@2406c44b0b624bcf6b9b2a8a6368c32ada25af66
+        uses: mozilla/addons/.github/actions/login-docker@aa3c320008a837a8faa40badb88006421f63efdb
         with:
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_PASS }}
@@ -271,7 +271,7 @@ jobs:
 
       - name: Login to Dockerhub
         id: docker_hub
-        uses: mozilla/addons/.github/actions/login-docker@2406c44b0b624bcf6b9b2a8a6368c32ada25af66
+        uses: mozilla/addons/.github/actions/login-docker@aa3c320008a837a8faa40badb88006421f63efdb
         with:
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_PASS }}
@@ -308,7 +308,7 @@ jobs:
 
       - name: Login to GAR
         id: docker_gar
-        uses: mozilla/addons/.github/actions/login-gar@2406c44b0b624bcf6b9b2a8a6368c32ada25af66
+        uses: mozilla/addons/.github/actions/login-gar@aa3c320008a837a8faa40badb88006421f63efdb
         with:
           registry: ${{ env.registry }}
           service_account: ${{ secrets.GAR_PUSHER_SERVICE_ACCOUNT_EMAIL }}
@@ -322,7 +322,6 @@ jobs:
           image: ${{ env.image }}
           version: ${{ needs.context.outputs.docker_version }}
           push: true
-
 
   notification:
     runs-on: ubuntu-latest
@@ -342,7 +341,7 @@ jobs:
     steps:
 
     - name: Slack Notification
-      uses: mozilla/addons/.github/actions/slack-workflow-notification@2406c44b0b624bcf6b9b2a8a6368c32ada25af66
+      uses: mozilla/addons/.github/actions/slack-workflow-notification@aa3c320008a837a8faa40badb88006421f63efdb
       with:
         slack_token: ${{ secrets.SLACK_TOKEN }}
         slack_channel: ${{ vars.SLACK_ADDONS_PRODUCTION_CHANNEL }}
