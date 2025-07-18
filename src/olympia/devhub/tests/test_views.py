@@ -2061,6 +2061,7 @@ class TestDocs(TestCase):
             (reverse('devhub.docs', args=['fake-page']), 404),
             (reverse('devhub.docs', args=['how-to/fake-page']), 404),
             (reverse('devhub.docs'), 301),
+            (reverse('devhub.docs', args=['policies']), 301),
         ]
 
         index = reverse('devhub.index')
