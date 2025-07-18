@@ -10,6 +10,7 @@ from django.db import IntegrityError
 from django.utils import translation
 
 import pytest
+from waffle.testutils import override_switch
 
 from olympia import amo, core
 from olympia.activity.models import ActivityLog, AddonLog
@@ -1992,6 +1993,65 @@ class TestAddonModels(TestCase):
         assert addon.approved_applications_for(
             PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.LINE)
         ) == [amo.FIREFOX]
+
+    def test_rollbackable_versions_qs_unavailable(self):
+        def get_rvs(channel):
+            return list(addon.rollbackable_versions_qs(channel=channel))
+
+        addon = addon_factory()
+        version_factory(addon=addon)
+        version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
+        version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
+
+        with override_switch('version-rollback', active=False):
+            assert get_rvs(amo.CHANNEL_LISTED) == []
+            assert get_rvs(amo.CHANNEL_UNLISTED) == []
+
+        with override_switch('version-rollback', active=True):
+            assert get_rvs(amo.CHANNEL_LISTED) != []
+            assert get_rvs(amo.CHANNEL_UNLISTED) != []
+
+            addon.update(type=amo.ADDON_STATICTHEME)
+            assert get_rvs(amo.CHANNEL_LISTED) == []
+            assert get_rvs(amo.CHANNEL_UNLISTED) == []
+
+    @override_switch('version-rollback', active=True)
+    def test_rollbackable_versions_qs(self):
+        def get_rvs(channel):
+            return list(addon.rollbackable_versions_qs(channel=channel))
+
+        addon = addon_factory()
+        assert get_rvs(amo.CHANNEL_LISTED) == []
+        assert get_rvs(amo.CHANNEL_UNLISTED) == []
+
+        version1 = addon.current_version
+        version2 = version_factory(addon=addon)
+        version3 = version_factory(addon=addon)
+        assert version3 == addon.reload().current_version
+        assert get_rvs(amo.CHANNEL_LISTED) == [version2, version1]
+        assert get_rvs(amo.CHANNEL_UNLISTED) == []
+
+        version2.file.update(status=amo.STATUS_DISABLED)
+        assert get_rvs(amo.CHANNEL_LISTED) == [version1]
+        assert get_rvs(amo.CHANNEL_UNLISTED) == []
+
+        version1.file.update(status=amo.STATUS_DISABLED)
+        assert get_rvs(amo.CHANNEL_LISTED) == []
+        assert get_rvs(amo.CHANNEL_UNLISTED) == []
+
+        self.make_addon_unlisted(addon)
+        File.objects.filter(version__addon=addon).update(status=amo.STATUS_APPROVED)
+        assert addon.reload().current_version is None
+        assert get_rvs(amo.CHANNEL_LISTED) == []
+        assert get_rvs(amo.CHANNEL_UNLISTED) == [version2, version1]
+
+        version2.file.update(status=amo.STATUS_DISABLED)
+        assert get_rvs(amo.CHANNEL_LISTED) == []
+        assert get_rvs(amo.CHANNEL_UNLISTED) == [version1]
+
+        version1.file.update(status=amo.STATUS_DISABLED)
+        assert get_rvs(amo.CHANNEL_LISTED) == []
+        assert get_rvs(amo.CHANNEL_UNLISTED) == []
 
 
 class TestAddonUser(TestCase):
