@@ -1472,9 +1472,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 SITEMAP_DEBUG_AVAILABLE = False
 
-CINDER_SERVER_URL = env(
-    'CINDER_SERVER_URL', default='https://mozilla-staging.cinderapp.com/api/v1/'
-)
+CINDER_SERVER_URL = env('CINDER_SERVER_URL', default=None)
 CINDER_API_TOKEN = env('CINDER_API_TOKEN', default=None)
 CINDER_WEBHOOK_TOKEN = env('CINDER_WEBHOOK_TOKEN', default=None)
 CINDER_QUEUE_PREFIX = 'amo-dev-'
