@@ -42,6 +42,7 @@ jobs:
     with:
       environment: ${{ matrix.environment }}
       notify: ${{ github.event_name == 'schedule' }}
+      slack_channel: ${{ vars.SLACK_ADDONS_PRODUCTION_CHANNEL }}
 
   post_health_check:
     if: always()
