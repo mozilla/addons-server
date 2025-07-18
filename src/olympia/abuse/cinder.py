@@ -184,10 +184,8 @@ class CinderEntity:
             ),
         }
         response = requests.post(url, json=data, headers=self.get_cinder_http_headers())
-        if response.status_code == 201:
-            return response.json().get('uuid')
-        else:
-            raise HTTPError(response.content)
+        response.raise_for_status()
+        return response.json().get('uuid')
 
     def create_decision(self, *, action, reasoning, policy_uuids):
         if self.type is None:
@@ -209,9 +207,7 @@ class CinderEntity:
         # TODO: send action too once
         # https://lindie.app/share/6a21d831b39351d7c6fe898f6d22619af62dde98/PLAT-1834
         # implements the same parameters for overrides
-        return self._send_create_decision(
-            url, {}, None, reasoning, policy_uuids
-        )
+        return self._send_create_decision(url, {}, None, reasoning, policy_uuids)
 
     def close_job(self, *, job_id):
         url = f'{settings.CINDER_SERVER_URL}jobs/{job_id}/cancel'
