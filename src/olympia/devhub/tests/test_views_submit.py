@@ -161,7 +161,9 @@ class TestAddonSubmitAgreement(TestSubmitBase):
         }
         doc = pq(response.content)
         for id_ in form.errors.keys():
-            selector = 'li input#id_%s + a + .errorlist' % id_
+            selector = (
+                'ul.agreement-links li label[for="id_%s"] + ul.errorlist li' % id_
+            )
             assert doc(selector).text() == 'This field is required.'
 
     def test_read_dev_agreement_skip(self):

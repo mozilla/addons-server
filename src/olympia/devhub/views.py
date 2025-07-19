@@ -72,7 +72,6 @@ from olympia.reviewers.forms import PublicWhiteboardForm
 from olympia.reviewers.models import Whiteboard
 from olympia.reviewers.utils import ReviewHelper
 from olympia.users.models import (
-    DeveloperAgreementRestriction,
     SuppressedEmailVerification,
 )
 from olympia.users.tasks import send_suppressed_email_confirmation
@@ -1952,26 +1951,33 @@ def request_review(request, addon_id, addon):
 
 
 def docs(request, doc_name=None):
+    def mdn_url(doc):
+        return MDN_BASE + doc
+
+    def ext_url(doc):
+        return settings.EXTENSION_WORKSHOP_URL + doc
+
     mdn_docs = {
         None: '',
-        'getting-started': '',
-        'reference': '',
-        'how-to': '',
-        'how-to/getting-started': '',
-        'how-to/extension-development': '#Extensions',
-        'how-to/other-addons': '#Other_types_of_add-ons',
-        'how-to/thunderbird-mobile': '#Application-specific',
-        'how-to/theme-development': '#Themes',
-        'themes': '/Themes/Background',
-        'themes/faq': '/Themes/Background/FAQ',
-        'policies': '/AMO/Policy',
-        'policies/reviews': '/AMO/Policy/Reviews',
-        'policies/contact': '/AMO/Policy/Contact',
-        'policies/agreement': '/AMO/Policy/Agreement',
+        'getting-started': mdn_url(''),
+        'reference': mdn_url(''),
+        'how-to': mdn_url(''),
+        'how-to/getting-started': mdn_url(''),
+        'how-to/extension-development': mdn_url('#Extensions'),
+        'how-to/other-addons': mdn_url('#Other_types_of_add-ons'),
+        'how-to/thunderbird-mobile': mdn_url('#Application-specific'),
+        'how-to/theme-development': mdn_url('#Themes'),
+        'themes': mdn_url('/Themes/Background'),
+        'themes/faq': mdn_url('/Themes/Background/FAQ'),
+        'policies': ext_url('/documentation/publish/add-on-policies'),
+        'policies/faq': ext_url('/documentation/publish/add-on-policies-faq'),
+        'policies/agreement': ext_url(
+            '/documentation/publish/firefox-add-on-distribution-agreement'
+        ),
     }
 
     if doc_name in mdn_docs:
-        return redirect(MDN_BASE + mdn_docs[doc_name], permanent=True)
+        return redirect(mdn_docs[doc_name], permanent=True)
 
     raise http.Http404()
 
@@ -2009,7 +2015,11 @@ def render_agreement(request, template, next_step, **extra_context):
         # potential errors highlighted)
         context = {
             'agreement_form': form,
-            'agreement_message': str(DeveloperAgreementRestriction.error_message),
+            'agreement_link': absolutify(
+                reverse('devhub.docs', args=['policies/agreement'])
+            ),
+            'policies_link': absolutify(reverse('devhub.docs', args=['policies'])),
+            'faq_link': absolutify(reverse('devhub.docs', args=['policies/faq'])),
         }
         context.update(extra_context)
         return TemplateResponse(request, template, context=context)
