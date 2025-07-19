@@ -3521,7 +3521,7 @@ msgstr "Editează versiunea {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:59
 msgid "As a reminder, your add-on is subject to manual review at any time."
-msgstr ""
+msgstr "Îți reamintim că extensia poate fi revizuită manual oricând."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:64
 msgid "Go to My Submissions"
@@ -3565,7 +3565,7 @@ msgstr "Nu este nevoie să depui codul sursă și ești gata pentru pasul următ
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:49
 msgid "You must submit your extension's source code."
-msgstr ""
+msgstr "Trebuie să trimiți codul-sursă al extensiei."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:51
 msgid "Your source code must include:"
@@ -4024,7 +4024,7 @@ msgstr "Sortează după:"
 
 #: src/olympia/devhub/templates/devhub/includes/macros.html:5
 msgid "Some Markdown supported."
-msgstr ""
+msgstr "Markdown parțial acceptat."
 
 #: src/olympia/devhub/templates/devhub/includes/macros.html:55
 msgid "Remove this application"
@@ -4745,7 +4745,7 @@ msgstr "Reîncarcă automat filele în baza intervalelor de timp setate de tine.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:128 src/olympia/discovery/strings.jinja2:943
 msgid "Keep parts of your online life separated into color-coded and cookie separated tabs. Now integrated with Mozilla VPN for an extra layer of privacy."
-msgstr ""
+msgstr "Păstrează părți ale vieții tale online separate în file codificate pe culori și cookie-uri separate. Acum integrat cu Mozilla VPN pentru un nivel suplimentar de confidențialitate."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5374,7 +5374,7 @@ msgstr "Treci rapid prin brambureala acordurilor TOS tipice. Această extensie i
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:495
 msgid "Get grammar help anywhere you write on the web — social media, email, docs, and more."
-msgstr ""
+msgstr "Obține ajutor gramatical oriunde scrii pe web — pe rețelele sociale, e-mail, documente și multe altele."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5545,13 +5545,13 @@ msgstr "Salvează loturi de file ca marcaje convenabile."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:595 src/olympia/discovery/strings.jinja2:925
 msgid "Tabs and bookmarks neatly organized in a Firefox side view."
-msgstr ""
+msgstr "File și marcaje organizate bine într-o vizualizare laterală Firefox."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:598 src/olympia/discovery/strings.jinja2:904
 msgid "Thousands of GIFs at your fingertips."
-msgstr ""
+msgstr "Mii de GIF-uri la îndemână."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
