@@ -7024,6 +7024,16 @@ msgid ""
 "Kind regards,\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Salute %(author_name)s,\n"
+"\n"
+"Tu ha essite invitate a devenir un autor de %(addon_name)s sur %(domain)s. Le acceptation del invitation te dara accesso a rediger le additivo e potera monstrar tu nomine in le lista de autores sur le sito web.\n"
+"\n"
+"Responde cliccante le ligamine infra si tu desira devenir autor pro %(addon_name)s..\n"
+"\n"
+"%(author_confirmation_link)s\n"
+"\n"
+"Salutationes amical,\n"
+"Le equipa del additivos de Mozilla"
 
 #: src/olympia/users/templates/users/emails/author_changed.ltxt:3
 #, python-format
