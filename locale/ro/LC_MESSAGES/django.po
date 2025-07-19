@@ -3738,14 +3738,14 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
-"Bună,\n"
+"Salut,\n"
 "\n"
-"Primești acest mesaj deoarece ai solicitat chei API noi pentru dezvoltatori pentru\n"
+"Primești acest mesaj pentru că ai solicitat chei API noi pentru dezvoltatori pentru\n"
 "%(domain)s. To finish this process, please click on the link below:\n"
 "\n"
 "%(api_key_confirmation_link)s\n"
 "\n"
-"Cu respect,\n"
+"Salutări,\n"
 "\n"
 "Echipa Suplimente Mozilla"
 
@@ -3846,14 +3846,14 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
-"Bună,\n"
+"Salut,\n"
 "\n"
-"Primești acest mesaj deoarece ai solicitat verificarea adresei de e-mail.\n"
+"Primești acest mesaj pentru că ai solicitat verificarea adresei de e-mail.\n"
 "Pentru finalizarea procesului, te rugăm să dai clic pe linkul de mai jos:\n"
 "\n"
 "%(confirmation_link)s\n"
 "\n"
-"Cu respect,\n"
+"Salutări,\n"
 "\n"
 "Echipa Suplimente Mozilla"
 
@@ -5831,47 +5831,47 @@ msgstr "Traduci site-uri web în Firefox — în mod privat — fără a utiliza
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:985
 msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
-msgstr ""
+msgstr "Blochează site-urile web care te fac să pierzi timpul. Blochează-le complet sau doar pentru intervalele de timp alese de tine."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:988
 msgid "Easily summarize emails, docs, articles, and video transcripts in English across the web — without sacrificing your privacy."
-msgstr ""
+msgstr "Faci ușor rezumate de mesaje e-mail, documente, articole și transcrieri video în limba engleză pe web — fără a-ți compromite confidențialitatea."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:991
 msgid "You’re in control. Turn off VPN when a website won’t work and set different locations for different websites. Windows only."
-msgstr ""
+msgstr "Tu deții controlul. Dezactivează VPN-ul atunci când nu funcționează un site web și setează locații diferite pentru site-uri web diferite. Numai pentru Windows."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:994
 msgid "Automatically handle GDPR consent forms."
-msgstr ""
+msgstr "Gestionezi automat formularele de consimțământ GDPR."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:997
 msgid "Block malicious websites from port scanning."
-msgstr ""
+msgstr "Blochezi scanarea porturilor pe site-urile web rău intenționate."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1000
 msgid "Enhance your Twitch experience."
-msgstr ""
+msgstr "Îmbunătățește-ți experiența Twitch."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1003
 msgid "Re-take control of Twitter/X and customize your experience."
-msgstr ""
+msgstr "Preia din nou controlul asupra Twitter/X și personalizează-ți experiența."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1006
 msgid "Translate text without leaving the page you're on (PDF compatible)."
-msgstr ""
+msgstr "Tradu text fără să ieși de pe pagină (compatibil cu PDF)."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1009
 msgid "Change the color of Firefox to match every website you visit."
-msgstr ""
+msgstr "Schimbă culoarea Firefox ca să se potrivească cu fiecare site web pe care intri."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1012
@@ -5891,7 +5891,7 @@ msgstr "Vezi toate extensiile"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1018
 msgid "Anti-tracking extensions"
-msgstr ""
+msgstr "Extensii anti-urmărire"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1020
@@ -5901,12 +5901,12 @@ msgstr ""
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1022
 msgid "Steam extensions"
-msgstr ""
+msgstr "Extensii Steam"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1024 src/olympia/discovery/strings.jinja2:1026 src/olympia/discovery/strings.jinja2:1028
 msgid "See staff picks"
-msgstr ""
+msgstr "Vezi recomandările echipei"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1031
@@ -5997,7 +5997,7 @@ msgstr "Vezi mai multe extensii populare"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1071
 msgid "Tab managers"
-msgstr ""
+msgstr "Manageri de file"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1073
