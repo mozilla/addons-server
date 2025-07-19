@@ -3824,11 +3824,11 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
-"Bună,\n"
+"Salut,\n"
 "\n"
 "Adresa de e-mail a fost verificată cu succes.\n"
 "\n"
-"Cu respect,\n"
+"Salutări,\n"
 "\n"
 "Echipa Suplimente Mozilla"
 
@@ -6510,7 +6510,7 @@ msgstr "Nu deții acest supliment."
 #: src/olympia/signing/views.py:137
 #, python-format
 msgid "You cannot add versions to an add-on that has status: %s."
-msgstr ""
+msgstr "Nu poți adăuga versiuni la un supliment cu starea: %s."
 
 #: src/olympia/signing/views.py:146
 msgid "Version does not match the manifest file."
@@ -6526,15 +6526,15 @@ msgstr "ID-ul nevalid al suplimentului în URL sau pachet"
 
 #: src/olympia/signing/views.py:211
 msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."
-msgstr ""
+msgstr "Nu poți adăuga versiuni listate la un supliment setat în starea de „invizibil”."
 
 #: src/olympia/signing/views.py:220
 msgid "You cannot add a listed version to this add-on via the API due to missing metadata. Please submit via the website"
-msgstr ""
+msgstr "Nu poți adăuga o versiune listată la acest supliment prin API din cauză că lipsesc metadate. Te rugăm să transmiți prin intermediul site-ului"
 
 #: src/olympia/signing/views.py:275
 msgid "No uploaded file for that add-on and version."
-msgstr ""
+msgstr "Nu există niciun fișier încărcat pentru acel supliment și acea versiune."
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:4
 msgid "Overview"
@@ -6813,7 +6813,7 @@ msgstr "Suplimente"
 
 #: src/olympia/templates/photon-footer.html:4
 msgid "Go to Mozilla's homepage"
-msgstr ""
+msgstr "Du-te pe pagina de start Mozilla"
 
 #: src/olympia/templates/photon-footer.html:11
 msgid "About"
@@ -6821,11 +6821,11 @@ msgstr "Despre"
 
 #: src/olympia/templates/photon-footer.html:12
 msgid "Firefox Add-ons Blog"
-msgstr ""
+msgstr "Blog suplimente Firefox"
 
 #: src/olympia/templates/photon-footer.html:16
 msgid "Community Blog"
-msgstr ""
+msgstr "Blogul comunității"
 
 #: src/olympia/templates/photon-footer.html:17
 msgid "Forum"
@@ -6837,41 +6837,43 @@ msgstr "Raportează o defecțiune"
 
 #: src/olympia/templates/photon-footer.html:19
 msgid "Review Guide"
-msgstr ""
+msgstr "Ghid pentru revizori"
 
 #: src/olympia/templates/photon-footer.html:24 src/olympia/templates/photon-footer.html:37
 msgid "Browsers"
-msgstr ""
+msgstr "Browsere"
 
 #: src/olympia/templates/photon-footer.html:27
 msgid "Desktop"
-msgstr ""
+msgstr "Desktop"
 
 #: src/olympia/templates/photon-footer.html:29
 msgid "Enterprise"
-msgstr ""
+msgstr "Întreprindere"
 
 #: src/olympia/templates/photon-footer.html:34
 msgid "Products"
-msgstr ""
+msgstr "Produse"
 
 #: src/olympia/templates/photon-footer.html:52
 msgid "Privacy"
-msgstr ""
+msgstr "Confidențialitate"
 
 #: src/olympia/templates/photon-footer.html:53
 msgid "Cookies"
-msgstr ""
+msgstr "Cookie-uri"
 
 #: src/olympia/templates/photon-footer.html:54
 msgid "Legal"
-msgstr ""
+msgstr "Mențiuni legale"
 
 #: src/olympia/templates/photon-footer.html:57
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
 "Commons Attribution Share-Alike License v3.0</a> or any later version."
 msgstr ""
+"Cu excepția cazurilor când <a href=\"https://www.mozilla.org/about/legal/\">se specifică altfel</a>, conținutul de pe acest site este sub licența <a href=\"https://creativecommons.org/licenses/by-"
+"sa/3.0/\">Creative Commons Attribution Share-Alike v3.0</a> sau orice versiune ulterioară."
 
 #: src/olympia/templates/user_login.html:24
 #, python-format
@@ -6961,7 +6963,7 @@ msgstr "Introdu un interval valid de rețea CIDR IPv6 sau IPv6, de ex. 127.0.0.1
 
 #: src/olympia/users/models.py:848
 msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
-msgstr ""
+msgstr "Din locația ta au fost realizate mai multe trimiteri care încalcă politicile noastre. Adresa IP a fost blocată."
 
 #: src/olympia/users/models.py:960
 msgid "Email Pattern"
@@ -6970,10 +6972,12 @@ msgstr "Model de e-mail"
 #: src/olympia/users/models.py:963
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr ""
+"Introdu adresa de e-mail completă care ar trebui blocată sau folosește caractere generice de tip Unix, de ex. „*@exemplu.com”. Dacă trebuie să blochezi un domeniu, inclusiv subdomeniile, adaugă o a "
+"doua intrare, de ex. „*@*.exemplu.com”."
 
 #: src/olympia/users/models.py:970
 msgid "The email address used for your account is not allowed for submissions."
-msgstr ""
+msgstr "Adresa de e-mail pe care ai folosit-o pentru contul tău nu are permisiunea să trimită."
 
 #: src/olympia/users/models.py:1049
 msgid ""
@@ -7055,6 +7059,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
+"La suplimentul tău a fost adăugat următorul autor %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
 #: src/olympia/users/templates/users/emails/author_added_confirmation.ltxt:10
 #, python-format
@@ -7070,6 +7077,16 @@ msgid ""
 "Kind regards,\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Salut, %(author_name)s, \n"
+"\n"
+"Ai fost invitat(ă) să devii autor %(addon_name)s pe %(domain)s. Dacă accepți invitația, vei primi acces pentru editarea suplimentului și este posibil ca numele tău să apară în lista de autori pe site-ul web.\n"
+"\n"
+"Dă clic pe linkul de mai jos ca să răspunzi dacă vrei să fii adăugat(ă) ca autor pentru %(addon_name)s.\n"
+"\n"
+"%(author_confirmation_link)s\n"
+"\n"
+"Salutări,\n"
+"Echipa de suplimente Mozilla"
 
 #: src/olympia/users/templates/users/emails/author_changed.ltxt:3
 #, python-format
@@ -7078,6 +7095,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
+"În suplimentul tău a fost modificat următorul autor %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
 #: src/olympia/users/templates/users/emails/author_removed.ltxt:3
 #, python-format
@@ -7086,6 +7106,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s )"
 msgstr ""
+"Următorul autor a fost eliminat din supliment %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s )"
 
 #: src/olympia/users/templates/users/emails/user_deleted.ltxt:7
 #, python-format
@@ -7098,27 +7121,34 @@ msgid ""
 "\n"
 "Mozilla Add-ons Team"
 msgstr ""
+"Salut,\n"
+"\n"
+"Ai primit acest mesaj deoarece contul tău de utilizator %(name)s de pe %(site_url)s a fost șters. Este posibil să fi fost automat dacă ți-ai șters recent contul Mozilla.\n"
+"\n"
+"Salutări,\n"
+"\n"
+"Echipa Suplimente Mozilla"
 
 #: src/olympia/versions/models.py:1176
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
-msgstr ""
+msgstr "Respins cu întârziere, programat pentru %s"
 
 #: src/olympia/versions/models.py:1181
 msgid "Auto-approved, Confirmed"
-msgstr ""
+msgstr "Aprobat automat, confirmat"
 
 #: src/olympia/versions/models.py:1183
 msgid "Auto-approved, not Confirmed"
-msgstr ""
+msgstr "Aprobat automat, neconfirmat"
 
 #: src/olympia/versions/models.py:1186
 msgid "Approved, Manual"
-msgstr ""
+msgstr "Aprobat, manual"
 
 #: src/olympia/versions/models.py:1193
 msgid "Disabled by Developer"
-msgstr ""
+msgstr "Dezactivat de către dezvoltator"
 
 #: src/olympia/versions/models.py:1551
 #, python-brace-format
@@ -7128,4 +7158,4 @@ msgstr "{app} {min} și versiunile ulterioare"
 #: src/olympia/versions/models.py:1678
 #, python-brace-format
 msgid "The install origin {origin} is not permitted."
-msgstr ""
+msgstr "Originea instalării {origin} nu este permisă."
