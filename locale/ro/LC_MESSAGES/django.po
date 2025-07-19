@@ -5557,23 +5557,23 @@ msgstr "Mii de GIF-uri la îndemână."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:601 src/olympia/discovery/strings.jinja2:910
 msgid "The easiest way to manage YouTube subscriptions."
-msgstr ""
+msgstr "Cel mai ușor mod de a gestiona abonamentele YouTube."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:604
 msgid "Get the mouse scrollbar you've always wanted—specify width and color."
-msgstr ""
+msgstr "Obține bara de derulare pe care ați dorit-o dintotdeauna — specifică lățimea și culoarea."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:607 src/olympia/discovery/strings.jinja2:919
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
-msgstr ""
+msgstr "Salvezi și restaurezi file. Include funcții de salvare automată și sincronizare în cloud."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:610
 msgid "Goodbye, annoying cookie warnings!"
-msgstr ""
+msgstr "Gata cu avertismentele enervante despre cookie-uri!"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:613
@@ -5584,47 +5584,47 @@ msgstr "Excelează în jocul emojiurilor. Zeci de emojiuri pentru orice ocazie�
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:617
 msgid "Mask your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr ""
+msgstr "Ascunde-ți adresa de e-mail. Firefox Relay îți protejează identitatea și previne primirea de mesaje nesolicitate."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:621
 msgid "Time-based theme changer. Make Firefox change colors as the time of day changes."
-msgstr ""
+msgstr "Schimbarea temelor în funcție de oră. Setează Firefox să schimbe culorile de la o oră la alta."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:624
 msgid "Declutter your Twitter experience."
-msgstr ""
+msgstr "Ordonează-ți experiența pe Twitter."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:627
 msgid "Bring back the ability to see thumbs down!"
-msgstr ""
+msgstr "Restaurează posibilitatea de a vedea degetul mare în jos!"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:630
 msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
-msgstr ""
+msgstr "Ascultă muzică pe YouTube fără întreruperi enervante de tipul „Videoclip întrerupt. Continui vizionarea?”."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:634
 msgid "Change the way the web looks."
-msgstr ""
+msgstr "Schimbă aspectul webului."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:637
 msgid "Customize YouTube to taste. Give it a new look, new features & filter only the content you want."
-msgstr ""
+msgstr "Personalizează YouTube după preferințe. Dă-i un aspect nou, funcționalități noi și filtrează doar conținutul dorit."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:649
 msgid "Changes the color of Firefox to match the appearance of any website."
-msgstr ""
+msgstr "Schimbă culorile Firefox ca să se potrivească cu aspectul oricărui site web."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:659
 msgid "Protect your privacy against a unique form of JavaScript “fingerprinting”."
-msgstr ""
+msgstr "Proteză-ți confidențialitatea împotriva unei forme unice de „amprentare digitală” în JavaScript."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:667
@@ -5634,17 +5634,17 @@ msgstr "Unele site-uri web întâmpină dificultăți la redarea videoclipurilor
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:688
 msgid "Find an interesting pic on the web? Use TinEye to discover its origins."
-msgstr ""
+msgstr "Ai găsit o imagine interesantă pe web? Folosește TinEye ca să descoperi de unde provine."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:706
 msgid "Save images easily — just grab them from your current tab."
-msgstr ""
+msgstr "Salvezi ușor imagini — pur și simplu le iei din fila actuală."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:709
 msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title & more."
-msgstr ""
+msgstr "Bucură-te de controlul absolut asupra filelor — închide file duplicat, îmbină ferestre, copiază titluri de file și multe altele."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:727
@@ -5661,7 +5661,7 @@ msgstr "Personalizează gesturile din mouse. Descoperă un mod nou de navigare c
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:799
 msgid "Customize the look of any website. Shift colors, page backgrounds & more."
-msgstr ""
+msgstr "Personalizezi aspectul oricărui site web. Schimbi culori, fundaluri de pagini și multe altele."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:808
@@ -5672,7 +5672,7 @@ msgstr "Folosește gesturile din mouse pentru închiderea filelor, navigarea pri
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:811
 msgid "A simple way to adjust the size of any page's text — or even enlarge the page itself."
-msgstr ""
+msgstr "Un mod simplu de ajustare a mărimii textului pe orice pagină — sau chiar pentru mărirea paginii."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:838
@@ -5687,7 +5687,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:859
 msgid "Edit a web page before printing. Remove ads or any unwanted content."
-msgstr ""
+msgstr "Editezi o pagină web înainte de scoatere la imprimantă. Elimini reclame sau orice conținut nedorit."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:868
