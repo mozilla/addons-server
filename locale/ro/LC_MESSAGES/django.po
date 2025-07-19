@@ -5682,7 +5682,7 @@ msgstr "Bucură-te de imagini miniaturale ale site-urilor web alături de rezult
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:844
 msgid "Save an entire web page — including images and styling — as a single HTML file."
-msgstr ""
+msgstr "Salvează o pagină web întreagă — inclusiv imagini și stil — într-un singur fișier HTML."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:859
@@ -5692,7 +5692,7 @@ msgstr "Editezi o pagină web înainte de scoatere la imprimantă. Elimini recla
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:868
 msgid "Advanced reader for aggregating all of your RSS/Atom/RDF sources."
-msgstr ""
+msgstr "Un lector avansat pentru agregarea tuturor surselor tale RSS/Atom/RDF."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:886
@@ -5719,67 +5719,67 @@ msgstr "Gestionează-ți mai bine timpul cu un ceas de browser care prezintă in
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:901
 msgid "Tired of that \"Video paused. Continue watching?\" message? Listen to your favorite music uninterrupted on YouTube."
-msgstr ""
+msgstr "Te-ai săturat de mesajul „Videoclipul a fost întrerupt. Continui vizionarea?”? Ascultă muzica preferată fără întreruperi pe YouTube."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:907
 msgid "Begone, annoying cookie warnings!"
-msgstr ""
+msgstr "Să dispară avertismentele enervante despre cookie-uri!"
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:913
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
-msgstr ""
+msgstr "Revii la vremuri mai simple — când primele rezultate ale căutării stăteau deasupra anunțurilor (compatibil cu motoarele de căutare Google și Bing)."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:916
 msgid "Get the mouse scrollbar you've always wanted — specify width and color."
-msgstr ""
+msgstr "Obține bara de derulare pe care ați dorit-o dintotdeauna — specifică lățimea și culoarea."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:928
 msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
-msgstr ""
+msgstr "Maschează-ți adresa de e-mail ca să îți protejezi identitatea și să previ primirea de mesaje nedorite. Noile actualizări fac Firefox Relay și mai ușor de utilizat."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:931
 msgid "Instantly translate any selected text on web pages."
-msgstr ""
+msgstr "Traduci instant orice text selectat pe paginile web."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:934
 msgid "Make Firefox change colors based on time of day."
-msgstr ""
+msgstr "Setezi Firefox să schimbe culorile în funcție de ora din zi."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:937
 msgid "Eliminate YouTube distractions. Remove related and recommended video suggestions, comments & more."
-msgstr ""
+msgstr "Elimină distragerile atenției de pe YouTube. Elimină sugestiile, comentariile, videoclipurile recomandate și altele asemenea."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:940
 msgid "Take emojis with you everywhere on the web."
-msgstr ""
+msgstr "Ia emoji-urile cu tine oriunde pe web."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:946
 msgid "Put restrictions on distracting, time-wasting websites."
-msgstr ""
+msgstr "Pune restricții pe site-urile web care distrag atenția și care te fac să pierzi timpul."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:949
 msgid "Remove clutter from your Twitter."
-msgstr ""
+msgstr "Elimină dezordinea de pe Twitter."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:952
 msgid "Customize YouTube to taste."
-msgstr ""
+msgstr "Personalizează YouTube după preferințe."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:955
 msgid "Delete browsing data directly from the browser toolbar."
-msgstr ""
+msgstr "Ștergi datele de navigare direct din bara de instrumente a browserului."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:958
@@ -5790,12 +5790,12 @@ msgstr "Obții dosare de marcaje de fluxuri RSS populate automat."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:961
 msgid "Effective blocker against all types of ads."
-msgstr ""
+msgstr "Blochează eficient toate tipurile de reclame."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:964
 msgid "Mass download manager makes extreme downloading extremely easy."
-msgstr ""
+msgstr "Managerul de descărcare în masă face descărcările extreme extrem de ușoare."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:967
@@ -5806,27 +5806,27 @@ msgstr "Blochezi reclame și obții o protecție sporită împotriva softurilor 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:970
 msgid "Remove formatting from copied Clipboard text."
-msgstr ""
+msgstr "Elimină formatarea din textul copiat în clipboard."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:973
 msgid "Fingerprinting privacy protection."
-msgstr ""
+msgstr "Protecția confidențialității împotriva amprentării digitale."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:976
 msgid "Enhance your gaming experience on Steam."
-msgstr ""
+msgstr "Îmbunătățește-ți experiența de joc pe Steam."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:979
 msgid "Thumbs-up to bringing back thumbs-down."
-msgstr ""
+msgstr "Degetul mare în sus pentru a readuce degetul mare în jos."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:982
 msgid "Translate websites in Firefox — privately — without using the cloud."
-msgstr ""
+msgstr "Traduci site-uri web în Firefox — în mod privat — fără a utiliza cloudul."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:985
@@ -6290,7 +6290,7 @@ msgstr "Cheie de „încărcare” lipsă în datele fișierului multiparte."
 
 #: src/olympia/files/views.py:89
 msgid "Missing \"channel\" arg."
-msgstr ""
+msgstr "Argument „canal” lipsă."
 
 #: src/olympia/ratings/models.py:363
 msgid "Spam or otherwise non-review content"
@@ -6310,24 +6310,24 @@ msgstr "Altele (te rugăm să specifici)"
 
 #: src/olympia/ratings/models.py:370
 msgid "Auto-flagged due to word match"
-msgstr ""
+msgstr "Semnalat automat din cauza potrivirii cuvintelor"
 
 #: src/olympia/ratings/models.py:371
 msgid "Auto-flagged due to user restriction"
-msgstr ""
+msgstr "Semnalat automat din cauza restricțiilor utilizatorului"
 
 #: src/olympia/ratings/models.py:411
 #, python-format
 msgid "%(value)s contains a non-alphanumeric character."
-msgstr ""
+msgstr "%(value)s conține un caracter non-alfanumeric."
 
 #: src/olympia/ratings/serializers.py:90
 #, python-brace-format
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
-msgstr[0] ""
+msgstr[0] "Textul recenziei nu poate conține cuvântul: „{0}”"
 msgstr[1] ""
-msgstr[2] ""
+msgstr[2] "Textul recenziei nu poate conține niciunul dintre cuvintele: „{0}”"
 
 #: src/olympia/ratings/serializers.py:119
 msgid "This field is required."
@@ -6395,11 +6395,11 @@ msgstr "Evaluată cu %(rating)s din 5 stele"
 #: src/olympia/reviewers/forms.py:372
 #, python-brace-format
 msgid "Unsupported file type, please upload a file {extensions}."
-msgstr ""
+msgstr "Tip de fișier nesuportat. Te rugăm să încarci un fișier {extensions}."
 
 #: src/olympia/reviewers/forms.py:378
 msgid "File too large."
-msgstr ""
+msgstr "Fișier prea mare."
 
 #: src/olympia/reviewers/templates/reviewers/moderationlog_detail.html:11
 #, python-format
@@ -6409,7 +6409,7 @@ msgstr "<dd>%(review_author)s</dd>"
 #: src/olympia/reviewers/templates/reviewers/queue.html:48
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s"
-msgstr ""
+msgstr "de către %(user)s la data de %(date)s %(stars)s"
 
 #: src/olympia/reviewers/templates/reviewers/queue.html:59
 #, python-format
@@ -6418,7 +6418,7 @@ msgstr "<strong>%(reason)s</strong> <span class=\"light\">Semnalat de %(user)s l
 
 #: src/olympia/reviewers/templates/reviewers/review.html:314
 msgid "<strong>Warning!</strong> Another user may be viewing this page before you."
-msgstr ""
+msgstr "<strong>Avertisment!</strong> Este posibil ca un alt utilizator să fi vizualizat pagina înaintea ta."
 
 #: src/olympia/reviewers/templates/reviewers/includes/user_ratings_list.html:5
 #, python-format
@@ -6436,15 +6436,15 @@ msgstr "Aceasta este denumirea exactă a regulii folosite de un scaner."
 
 #: src/olympia/scanners/models.py:132
 msgid "Human-readable name for the scanner rule"
-msgstr ""
+msgstr "Denumire lizibilă pentru oameni a regulii scanerului"
 
 #: src/olympia/scanners/models.py:135
 msgid "Human-readable name"
-msgstr ""
+msgstr "Denumire lizibilă pentru oameni"
 
 #: src/olympia/scanners/models.py:139
 msgid "Human readable description for the scanner rule"
-msgstr ""
+msgstr "Descriere lizibilă pentru oameni a regulii scanerului"
 
 #: src/olympia/scanners/models.py:172
 msgid "Yara rules should have a definition"
@@ -6505,7 +6505,7 @@ msgstr "Nu am găsit niciun supliment cu ID „{}”."
 
 #: src/olympia/signing/views.py:73
 msgid "You do not own this add-on."
-msgstr ""
+msgstr "Nu deții acest supliment."
 
 #: src/olympia/signing/views.py:137
 #, python-format
