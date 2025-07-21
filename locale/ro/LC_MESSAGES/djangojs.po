@@ -144,7 +144,7 @@ msgstr "Listă de verificare cu propunerile de suplimente"
 
 #: static/js/common/upload-addon.js:664
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr "Te rugăm să verifici următoarele puncte înainte de finalizarea propunerii. Acest lucru va minimiza întârzierile sau neînțelegerile în timpul procedurii de revizuire:"
+msgstr "Te rugăm să verifici următoarele puncte înainte de finalizarea propunerii. Se vor minimiza întârzierile sau neînțelegerile în timpul procedurii de revizuire:"
 
 #: static/js/common/upload-addon.js:671
 msgid ""

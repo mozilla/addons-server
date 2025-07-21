@@ -1248,7 +1248,7 @@ msgstr "Colecția {collection} a fost restaurată de moderator"
 #: src/olympia/constants/activity.py:1029
 #, python-brace-format
 msgid "Review {rating} for {addon} un-deleted."
-msgstr ""
+msgstr "Ștergerea revizuirii {rating} pentru {addon} a fost anulată."
 
 #: src/olympia/constants/activity.py:1058
 #, python-brace-format
@@ -1778,7 +1778,7 @@ msgstr "Creative Commons atribuire necomercială, fără lucrări derivate 4.0"
 
 #: src/olympia/constants/licenses.py:192
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 4.0"
-msgstr ""
+msgstr "Creative Commons Atribuire necomercială - partajare similare 4.0"
 
 #: src/olympia/constants/licenses.py:202
 msgid "Creative Commons Attribution-NoDerivs 4.0"
@@ -1786,7 +1786,7 @@ msgstr "Creative Commons atribuire - fără lucrări derivate 4.0"
 
 #: src/olympia/constants/licenses.py:212
 msgid "Creative Commons Attribution-ShareAlike 4.0"
-msgstr ""
+msgstr "Creative Commons Atribuire - partajare similare 4.0"
 
 #: src/olympia/constants/licenses.py:222
 msgid "The Unlicense"
@@ -5283,9 +5283,8 @@ msgstr "Închide ferestrele contextuale sâcâitoare dintr-un simplu clic."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:443
-#, fuzzy
 msgid "Find an interesting image on the web? Want to learn more about it?"
-msgstr "Ai găsit o imagine interesantă pe web? Folosește TinEye ca să descoperi de unde provine."
+msgstr "Ai găsit o imagine interesantă pe web? Vrei să afli mai multe despre ea?"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:446
@@ -5572,9 +5571,8 @@ msgstr "Gata cu avertismentele enervante despre cookie-uri!"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:613
-#, fuzzy
 msgid "All your emoji needs—always just a click away."
-msgstr "Excelează în jocul emojiurilor. Zeci de emojiuri pentru orice ocazie—mereu la un clic distanță."
+msgstr "Toate emoji-urile de care ai nevoie — mereu la un clic distanță."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:617
@@ -5643,15 +5641,13 @@ msgstr "Bucură-te de controlul absolut asupra filelor — închide file duplica
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:727
-#, fuzzy
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
-msgstr "Citește fișiere ePub direct în Firefox—poți mări fonturile, dimensiunile paginilor și multe altele."
+msgstr "Citește fișiere ePUB direct în Firefox — mărește dimensiunea fontului, dimensiunile paginii și multe altele."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:748
-#, fuzzy
 msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configurations."
-msgstr "Personalizează gesturile din mouse. Descoperă un mod nou de navigare cu peste 50 de configurații."
+msgstr "Personalizezi gesturile din mouse. Descoperi noi modalități de navigare cu peste 50 de configurații."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:799
@@ -5660,9 +5656,8 @@ msgstr "Personalizezi aspectul oricărui site web. Schimbi culori, fundaluri de 
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:808
-#, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages & more."
-msgstr "Folosește gesturile din mouse pentru închiderea filelor, navigarea prin pagini și multe altele."
+msgstr "Folosești gesturi din mouse pentru închiderea filelor, navigarea prin pagini și multe altele."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:811
@@ -5691,15 +5686,13 @@ msgstr "Un lector avansat pentru agregarea tuturor surselor tale RSS/Atom/RDF."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:886
-#, fuzzy
 msgid "Web pages read aloud. 40+ languages supported."
-msgstr "Ascultă conținutul paginilor web. Suport pentru peste 40 de limbi."
+msgstr "Asculți conținutul paginilor web. Suport pentru peste 40 de limbi."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:892
-#, fuzzy
 msgid "Removes those long tracking parameters from Google search result URL's."
-msgstr "Elimină acei parametri de urmărire lungi și urâți din adresele URL ale rezultatelor la căutările pe Google."
+msgstr "Elimină acei parametri de urmărire lungi din adresele URL ale rezultatelor la căutările pe Google."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:895
@@ -5778,9 +5771,8 @@ msgstr "Ștergi datele de navigare direct din bara de instrumente a browserului.
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:958
-#, fuzzy
 msgid "Get RSS feed auto-updates direct to your bookmark folders."
-msgstr "Obții dosare de marcaje de fluxuri RSS populate automat."
+msgstr "Obții actualizări automate ale fluxurilor RSS direct în dosarele de marcaje."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:961
@@ -5794,9 +5786,8 @@ msgstr "Managerul de descărcare în masă face descărcările extreme extrem de
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:967
-#, fuzzy
 msgid "Remove ads & receive better protection against malware."
-msgstr "Blochezi reclame și obții o protecție sporită împotriva softurilor malițioase și a urmăririi prin reclame."
+msgstr "Blochezi reclame și obții o protecție sporită împotriva softurilor malițioase."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:970
@@ -5891,7 +5882,7 @@ msgstr "Extensii anti-urmărire"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1020
 msgid "Essential add-ons"
-msgstr ""
+msgstr "Suplimente esențiale"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1022
@@ -5930,9 +5921,8 @@ msgstr "Extensii care sporesc confidențialitatea"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1043
-#, fuzzy
 msgid "See more recommended privacy extensions"
-msgstr "Vezi mai multe extensii recomandate"
+msgstr "Vezi mai multe extensii recomandate pentru confidențialitate"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1046
@@ -5956,15 +5946,13 @@ msgstr "Vezi mai multe teme recomandate"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1056
-#, fuzzy
 msgid "Strong password managers"
-msgstr "Managere de parole recomandate"
+msgstr "Manageri de parole puternice"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1058
-#, fuzzy
 msgid "See more password manager staff picks"
-msgstr "Vezi mai multe extensii recomandate"
+msgstr "Vezi mai multe extensii pentru gestionarea parolelor recomandate de echipă"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1061
@@ -5973,9 +5961,8 @@ msgstr "Instrumente de traducere"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1063
-#, fuzzy
 msgid "See more translation tool staff picks"
-msgstr "Vezi mai multe instrumente de traducere"
+msgstr "Vezi mai multe instrumente de traducere recomandate de echipă"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1066
