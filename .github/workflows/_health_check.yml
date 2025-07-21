@@ -138,7 +138,7 @@ jobs:
           cat "$GITHUB_OUTPUT"
 
       - name: Notify Failure
-        if: steps.blocks.outcome == 'success' && needs.context.outputs.slack_channel
+        if: steps.blocks.outcome == 'success' && needs.context.outputs.slack_channel != ''
         uses: mozilla/addons/.github/actions/slack@aa3c320008a837a8faa40badb88006421f63efdb
         with:
           slack_token: ${{ secrets.SLACK_TOKEN }}
