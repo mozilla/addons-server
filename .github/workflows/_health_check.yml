@@ -17,6 +17,10 @@ on:
         description: Whether to notify the user of the health check outcome
         type: boolean
         required: false
+      slack_channel:
+        description: The Slack channel to send notifications to
+        type: string
+        required: false
     secrets:
       SLACK_TOKEN:
         description: The Slack token to use for notifications
@@ -37,6 +41,10 @@ on:
         description: Whether to notify the user of the health check outcome
         type: boolean
         required: false
+      slack_channel:
+        description: The Slack channel to send notifications to
+        type: string
+        required: false
 
 env:
   health_check_file: health_check.json
@@ -46,6 +54,7 @@ jobs:
   context:
     runs-on: ubuntu-latest
     outputs:
+      slack_channel: ${{ steps.environment.outputs.slack_channel }}
       notify: ${{ steps.environment.outputs.notify }}
       environment: ${{ steps.environment.outputs.environment }}
 
@@ -55,6 +64,7 @@ jobs:
         env:
           notify: ${{ inputs.notify }}
           environment: ${{ inputs.environment }}
+          slack_channel: ${{ inputs.slack_channel }}
         run: |
           if [[ "$environment" == "prod" ]]; then
             environment="prod"
@@ -66,8 +76,11 @@ jobs:
             environment="host"
           fi
 
-          echo "notify=$notify" >> "$GITHUB_OUTPUT"
-          echo "environment=$environment" >> "$GITHUB_OUTPUT"
+          {
+            echo "notify=$notify"
+            echo "slack_channel=$slack_channel"
+            echo "environment=$environment"
+          } >> "$GITHUB_OUTPUT"
           cat "$GITHUB_OUTPUT"
 
   health_check:
@@ -125,13 +138,13 @@ jobs:
           cat "$GITHUB_OUTPUT"
 
       - name: Notify Failure
-        if: steps.blocks.outcome == 'success'
+        if: steps.blocks.outcome == 'success' && needs.context.outputs.slack_channel != ''
         uses: mozilla/addons/.github/actions/slack@aa3c320008a837a8faa40badb88006421f63efdb
         with:
           slack_token: ${{ secrets.SLACK_TOKEN }}
           payload: |
             {
-              "channel": "${{ vars.SLACK_ADDONS_PRODUCTION_CHANNEL }}",
+              "channel": "${{ needs.context.outputs.slack_channel }}",
               "blocks": ${{ toJson(steps.blocks.outputs.blocks) }},
               "text": "[${{ needs.context.outputs.environment }}] Health check ${{ steps.health_check.outcome }}",
               # Don't unfurl links or media
