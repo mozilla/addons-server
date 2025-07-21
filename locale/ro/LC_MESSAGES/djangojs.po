@@ -114,9 +114,9 @@ msgstr "Timpul pentru validarea suplimentului a expirat; suplimentul va fi reviz
 #, python-brace-format
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] "Suplimentul tău fost validat fără nicio eroare și cu {0} avertizare."
-msgstr[1] "Suplimentul tău fost validat fără nicio eroare și cu {0} avertizări."
-msgstr[2] "Suplimentul tău fost validat fără nicio eroare și cu {0} de avertizări."
+msgstr[0] "Suplimentul a fost validat fără nicio eroare și cu {0} avertizare."
+msgstr[1] "Suplimentul a fost validat fără nicio eroare și cu {0} avertizări."
+msgstr[2] "Suplimentul a fost validat fără nicio eroare și cu {0} de avertizări."
 
 #: static/js/common/upload-addon.js:582
 #, python-brace-format

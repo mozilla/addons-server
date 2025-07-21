@@ -71,7 +71,7 @@ msgstr "OK"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:33 src/olympia/abuse/templates/abuse/appeal.html:41
 msgid "Thank you for your report."
-msgstr "Mulțumim pentru raport!"
+msgstr "Îți mulțumim pentru raport."
 
 #: src/olympia/abuse/templates/abuse/appeal.html:37
 msgid ""
@@ -189,7 +189,7 @@ msgid ""
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
 msgstr ""
 "\n"
-"îți mulțumim pentru raportul despre următorul supliment de pe Suplimente Mozilla: %(name)s.\n"
+"Îți mulțumim pentru raportul despre următorul supliment de pe Suplimente Mozilla: %(name)s.\n"
 "\n"
 "Am analizat raportul și conținutul în cauză și am constatat că încalcă politicile Mozilla (%(policy_document_url)s). Prin urmare, i-am cerut dezvoltatorului să aducă modificări. Dacă nu își actualizează conținutul în sensul corectării încălcării, îl vom elimina.\n"
 
