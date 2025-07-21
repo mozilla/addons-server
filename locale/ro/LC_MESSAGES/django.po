@@ -5966,15 +5966,13 @@ msgstr "Vezi mai multe instrumente de traducere recomandate de echipă"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1066
-#, fuzzy
 msgid "Social streaming"
-msgstr "Rețele sociale"
+msgstr "Distribuire pe rețele sociale"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1068
-#, fuzzy
 msgid "See more social streaming staff picks"
-msgstr "Vezi mai multe extensii populare"
+msgstr "Vezi mai multe extensii de distribuire pe rețele sociale recomandate de echipă"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1071
@@ -5983,9 +5981,8 @@ msgstr "Manageri de file"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1073
-#, fuzzy
 msgid "See more tab management staff picks"
-msgstr "Vezi mai multe extensii recomandate"
+msgstr "Vezi mai multe extensii pentru gestionarea filelor recomandate de echipă"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1076
@@ -6006,20 +6003,18 @@ msgstr "Blocatoare de reclame de elită"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1083
-#, fuzzy
 msgid "See more ad blocker staff picks"
-msgstr "Vezi mai multe extensii recomandate"
+msgstr "Vezi mai multe extensii de blocare a reclamelor recomandate de echipă"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1086
 msgid "YouTube customization"
-msgstr ""
+msgstr "Personalizare YouTube"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1088
-#, fuzzy
 msgid "See more YouTube extension staff picks"
-msgstr "Vezi mai multe instrumente de traducere"
+msgstr "Vezi mai multe extensii pentru YouTube recomandate de echipă"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1091
@@ -6058,9 +6053,8 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1108
-#, fuzzy
 msgid "See more Steam staff picks"
-msgstr "Vezi mai multe extensii populare"
+msgstr "Vezi mai multe extensii Steam recomandate de echipă"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1111
@@ -6075,66 +6069,66 @@ msgstr "Vezi mai multe extensii de creativitate alese de echipă"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1116
 msgid "Social media extensions"
-msgstr ""
+msgstr "Extensii pentru rețele sociale"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1118
 msgid "See more social media staff picks"
-msgstr ""
+msgstr "Vezi mai multe extensii pentru rețelele sociale recomandate de echipă"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1121
 msgid "Top download managers"
-msgstr ""
+msgstr "Cele mai bune instrumente pentru gestionarea descărcărilor"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1123
 msgid "See more download manager staff picks"
-msgstr ""
+msgstr "Vezi mai multe instrumente pentru gestionarea descărcărilor recomandate de echipă"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1126
 msgid "Accessibility extensions"
-msgstr ""
+msgstr "Extensii de accesibilitate"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1128
 msgid "See more accessibility staff picks"
-msgstr ""
+msgstr "Vezi mai multe extensii pentru accesibilitate recomandate de echipă"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1131
 msgid "Extension starter pack"
-msgstr ""
+msgstr "Pachet starter de extensii"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1133
 msgid "See more starter extension staff picks"
-msgstr ""
+msgstr "Vezi mai multe extensii starter recomandate de echipă"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1136
 msgid "Twitch extensions"
-msgstr ""
+msgstr "Extensii Twitch"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1138
 msgid "See more Twitch extension staff picks"
-msgstr ""
+msgstr "Vezi mai multe extensii pentru Twitch recomandate de echipă"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1146
 msgid "Gaming & media extensions"
-msgstr ""
+msgstr "Extensii pentru jocuri și multimedia"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1148
 msgid "See more staff picks"
-msgstr ""
+msgstr "Vezi mai multe extensii recomandate de echipă"
 
 #: src/olympia/files/models.py:324
 msgid "Unreviewed"
-msgstr ""
+msgstr "Nerevizuit"
 
 #: src/olympia/files/models.py:327
 #, python-format
@@ -6143,7 +6137,7 @@ msgstr "[status:%s]"
 
 #: src/olympia/files/utils.py:84
 msgid "This upload has already been submitted."
-msgstr ""
+msgstr "Încărcarea a fost deja trimisă."
 
 #: src/olympia/files/utils.py:186 src/olympia/files/utils.py:870
 msgid "Could not parse the manifest file."
@@ -6152,7 +6146,7 @@ msgstr "Nu s-a reușit analizarea fișierului manifest."
 #: src/olympia/files/utils.py:319
 #, python-brace-format
 msgid "Lowest supported \"strict_min_version\" is {min_version}."
-msgstr ""
+msgstr "Cea mai mică valoare „strict_min_version\" acceptată este {min_version}."
 
 #: src/olympia/files/utils.py:350
 #, python-brace-format
@@ -6160,13 +6154,13 @@ msgid "Unknown \"strict_min_version\" {appver} for {app}"
 msgstr "„strict_min_version\" {appver} necunoscută pentru {app}"
 
 #: src/olympia/files/utils.py:364
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
-msgstr "„strict_min_version\" {appver} necunoscută pentru {app}"
+msgstr "Valoare „strict_max_version\" necunoscută {appver} pentru {app}"
 
 #: src/olympia/files/utils.py:548
 msgid "Unsupported compression method in archive."
-msgstr ""
+msgstr "Metodă de compresie neacceptată în arhivă."
 
 #: src/olympia/files/utils.py:551
 msgid "Unsupported archive type."
@@ -6190,7 +6184,7 @@ msgstr "Fișier care depășește limita de mărime în arhiva: {0}"
 
 #: src/olympia/files/utils.py:602
 msgid "This archive contains a forbidden special file (symbolic / hard link or device / block file)"
-msgstr ""
+msgstr "Arhiva conține un fișier special interzis (link simbolic/fizic sau fișier de dispozitiv/bloc)"
 
 #: src/olympia/files/utils.py:637
 msgid "Uncompressed size is too large"
@@ -6202,16 +6196,16 @@ msgstr "Arhivă nevalidă."
 
 #: src/olympia/files/utils.py:858
 msgid "No manifest.json found"
-msgstr ""
+msgstr "Niciun manifest.json găsit"
 
 #: src/olympia/files/utils.py:863
 msgid "Invalid or corrupted file."
-msgstr ""
+msgstr "Fișier nevalid sau corupt."
 
 #: src/olympia/files/utils.py:903
-#, fuzzy, python-format
+#, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
-msgstr "ID-ul suplimentului din manifest.json sau install.rdf (%s) nu corespunde ID-ului dat suplimentului pe AMO (%s)"
+msgstr "ID-ul suplimentului din manifest.json (%s) nu corespunde ID-ului dat suplimentului pe AMO (%s)"
 
 #: src/olympia/files/utils.py:911
 msgid "Duplicate add-on ID found."
@@ -6220,7 +6214,7 @@ msgstr "S-a depistat un ID de supliment duplicat."
 #: src/olympia/files/utils.py:917
 #, python-brace-format
 msgid "Version numbers should have at most {max_length} characters."
-msgstr ""
+msgstr "Numerele versiunilor trebuie să aibă maxim {max_length} caractere."
 
 #: src/olympia/files/utils.py:923
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
@@ -6236,9 +6230,8 @@ msgid "You cannot submit this type of add-on"
 msgstr "Nu poți trimite acest tip de supliment"
 
 #: src/olympia/files/utils.py:949
-#, fuzzy
 msgid "You cannot submit an add-on using an ID ending with this suffix"
-msgstr "Nu poți trimite un supliment cu un ID care se termină în %s"
+msgstr "Nu poți trimite un supliment cu un ID care se termină în acest sufix"
 
 #: src/olympia/files/utils.py:954
 msgid "You cannot submit a Mozilla Signed Extension"
@@ -6250,7 +6243,7 @@ msgstr "Nu poți trimite un pachet lingvistic"
 
 #: src/olympia/files/utils.py:967
 msgid "The locale of an existing dictionary/language pack cannot be changed"
-msgstr ""
+msgstr "Limba unui dicționar/pachet lingvistic existent nu poate fi modificată"
 
 #: src/olympia/files/utils.py:1012
 #, python-brace-format
@@ -6340,9 +6333,9 @@ msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Nu poți posta mai mult de o recenzie pentru aceeași versiune a unui supliment."
 
 #: src/olympia/ratings/serializers.py:317
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Invalid flag [{}] - must be one of [{}]"
-msgstr "Marcaj nevalid [%s] - trebuie să fie unul dintre [%s]"
+msgstr "Marcaj nevalid [{}] - trebuie să fie unul dintre [{}]"
 
 #: src/olympia/ratings/serializers.py:329
 msgid "This rating can't be flagged because it has no review text."
@@ -6939,9 +6932,8 @@ msgid "Firefox user {id}"
 msgstr "Utilizator Firefox {id}"
 
 #: src/olympia/users/models.py:844
-#, fuzzy
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
-msgstr "Introdu un interval valid de rețea CIDR IPv6 sau IPv6, de ex. 127.0.0.1/28"
+msgstr "Introdu un interval valid de rețea CIDR IPv4 sau IPv6, de ex. 127.0.0.1/28"
 
 #: src/olympia/users/models.py:848
 msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
