@@ -43,5 +43,6 @@ Please delete anything that isn't relevant to your patch.
   - use `##` headers so you get the description and a line break to easily know when one screenshot ends and another starts
   - specify an absolute width value on the html tag and set height to auto, otherwise it distorts the image and makes it too big `<img width=450" height="auto ... />`
   - make the screenshots focus on the main part of the screen you want to represent so the reviewer doesn't have to scroll much to see the relevant part and get lost between the images.
+  - Add a short description below the header and above the image explaining what the reviewer is looking at. What should they expect and how is it different than what is currently on master?
 
 - [ ] Add or update relevant [docs](../docs/) reflecting the changes made.
