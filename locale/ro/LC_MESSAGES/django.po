@@ -3308,8 +3308,8 @@ msgstr[2] "<strong>{0}</strong> de descărcări săptămânale"
 msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> utilizator activ"
-msgstr[1] "<strong>{0}</strong> utilizatori activi"
-msgstr[2] "<strong>{0}</strong> de utilizatori activi"
+msgstr[1] ""
+msgstr[2] "<strong>{0}</strong> (de) utilizatori activi"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html:4
 msgid "Submit a New Version"
@@ -3584,18 +3584,14 @@ msgid "Operating system and build environment requirements."
 msgstr "Cerințe pentru sistemul de operare și mediul de compilare."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:59
-#, fuzzy
 msgid "The required version and installation instructions of any programs used in the build process (such as <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis\">npm</span>)."
 msgstr ""
-"Detaliile (inclusiv versiunea necesară și instrucțiuni de instalare) oricăror programe utilizate în procesul de compilare (de exemplu: <span class=\"tech-emphasis\">nod</span> și versiunea <span "
-"class=\"tech-emphasis\">npm</span> utilizată)."
+"Versiunea necesară și instrucțiunile de instalare ale oricăror programe utilizate în procesul de compilare (cum ar fi <span class=\"tech-emphasis\">node</span> și <span class=\"tech-"
+"emphasis\">npm</span>)."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:62
-#, fuzzy
 msgid "Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified, or otherwise machine-generated."
-msgstr ""
-"<span class=\"instruction-emphasis\">Notă:</span> Fișierele sursă (în afara bibliotecilor de la terți cu sursă deschisă) nu pot fi transcompilate, legate în lanț, minificate sau generate altminteri "
-"de mașini."
+msgstr "Fișierele-sursă (cu excepția bibliotecilor terțe cu sursă deschisă) nu pot fi transpilate, concatenate, minimizate sau generate automat în alt mod."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:67
 #, python-format
@@ -4854,9 +4850,8 @@ msgstr "Folosește gesturile din mouse pentru închiderea filelor, navigarea pri
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:191
-#, fuzzy
 msgid "See thumbnail images alongside your search returns."
-msgstr "Bucură-te de imagini miniaturale ale site-urilor web alături de rezultatele căutărilor tale."
+msgstr "Vezi imagini miniatură alături de rezultatele căutării."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:194
