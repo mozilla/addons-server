@@ -4919,7 +4919,7 @@ msgstr "Reîncarcă automat filele la anumite intervale de timp."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:230
 msgid "Find and resolve broken bookmarks, duplicates, and more."
-msgstr "Caută și repară marcaje defecte, dubluri și multe altele."
+msgstr "Caută și repară marcaje defecte, duplicate și multe altele."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:233
@@ -5165,7 +5165,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:374
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr "Bucură-te de controlul absolut asupra filelor—închidere de file duplicat, fuzionare de ferestre, copiere de titluri de file și multe altele."
+msgstr "Bucură-te de controlul absolut asupra filelor—închidere de file duplicate, fuzionare de ferestre, copiere de titluri de file și multe altele."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:377
@@ -5638,7 +5638,7 @@ msgstr "Salvezi ușor imagini — pur și simplu le iei din fila actuală."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:709
 msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title & more."
-msgstr "Bucură-te de controlul absolut asupra filelor — închide file duplicat, îmbină ferestre, copiază titluri de file și multe altele."
+msgstr "Bucură-te de controlul absolut asupra filelor — închide file duplicate, îmbină ferestre, copiază titluri de file și multe altele."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:727
