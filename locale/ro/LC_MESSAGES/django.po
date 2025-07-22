@@ -430,7 +430,7 @@ msgstr "Contul are nevoie de o denumire de afișat înainte de a putea fi adăug
 
 #: src/olympia/addons/serializers.py:1255
 msgid "This slug cannot be used. Please choose another."
-msgstr "Slug-ul nu poate fi folosit. Te rugăm să alegi altul."
+msgstr "Slugul nu poate fi folosit. Te rugăm să alegi altul."
 
 #: src/olympia/addons/utils.py:39
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -1191,7 +1191,7 @@ msgstr "{addon} {version} a fost creat automat și semnat de la {0}."
 
 #: src/olympia/constants/activity.py:854
 msgid "Version re-signed"
-msgstr "Versiune resemnată"
+msgstr "Versiune re-semnată"
 
 #: src/olympia/constants/activity.py:862
 #, python-brace-format
