@@ -3152,11 +3152,11 @@ msgstr "Tillegget ditt er for tida sett til «Usynleg»."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/invisible_channel_warning.html:3
 msgid "While in this state, \"On your own\" is the only distribution method available."
-msgstr ""
+msgstr "I denne tilstanden er «På eiga hand» den einaste tilgjengelege distribusjonsmetoden."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/source_file_input.html:12
 msgid "You cannot change attached sources because this version has been reviewed by Mozilla."
-msgstr ""
+msgstr "Du kan ikkje endre vedlagde kjelder fordi denne versjonen har vorte gjennomgått av Mozilla."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:5 src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:53
 msgid "General Tests"
@@ -3194,11 +3194,11 @@ msgstr "Øvst"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:1
 msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
-msgstr ""
+msgstr "Om du slettar tillegget ditt, slettar ein alle versjonar og filer du har sendt inn for dette tillegget permanent, anten dei er oppførte eller ikkje."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:6
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
-msgstr ""
+msgstr "Tillegg-ID-en kan ikkje gjenopprettast og vil for alltid vere ubrukeleg for innsending."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:2 src/olympia/devhub/templates/devhub/versions/list.html:250 src/olympia/devhub/templates/devhub/versions/list.html:254
 msgid "Delete Add-on"
@@ -3234,9 +3234,8 @@ msgid "Delete"
 msgstr "Slett"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:30
-#, fuzzy
 msgid "Edit details on this add-on's product page"
-msgstr "Rediger detaljar for listinga av dette temaet."
+msgstr "Rediger detaljer på produktsida for dette tillegget"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:37
 msgid "Upload a new version of this add-on"
@@ -3328,6 +3327,8 @@ msgid ""
 "Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
 "submission process is complete."
 msgstr ""
+"Åtvaring: Du har namne-/samandragsverdiar i andre språkinnstillingar som automatisk blir skore til for å få plass under grensa på %(max_length)s teikn.  For å redigere desse, gå til Rediger "
+"produktside etter at innsendingsprosessen er fullført."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:52 src/olympia/devhub/templates/devhub/addons/submit/describe.html:73
 msgid "Add-on URL:"
