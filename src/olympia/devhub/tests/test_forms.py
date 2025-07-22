@@ -1490,7 +1490,7 @@ class TestRollbackVersionForm(TestCase):
         uv2 = version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
         version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
         form = forms.RollbackVersionForm(addon=addon)
-        assert form.fields['channel'].initial is None
+        assert form.fields['channel'].initial is amo.CHANNEL_UNLISTED
         assert form.fields['unlisted_version'].required is True
         assert form.listed_version == lv2
         assert [str(lab) for _, lab in form.fields['unlisted_version'].choices] == [

@@ -888,6 +888,8 @@ class TestVersion(TestCase):
         assert not modal(f'{channel_selector}[value="{amo.CHANNEL_LISTED}"]').attr(
             'checked'
         )
+        # and disable it
+        assert modal(f'{channel_selector}[disabled]').length == 2
         assert modal(channel_selector).length == 2
         assert (
             modal('#listed_version_for_rollback').text()
@@ -918,6 +920,8 @@ class TestVersion(TestCase):
         assert not modal(f'{channel_selector}[value="{amo.CHANNEL_LISTED}"]').attr(
             'checked'
         )
+        # and they're enabled
+        assert modal(f'{channel_selector}[disabled]').length == 0
         assert modal(channel_selector).length == 2
         assert modal('#listed_version_for_rollback').text() == listed_version.version
         assert 'Choose version' in modal.html()
@@ -939,10 +943,6 @@ class TestVersion(TestCase):
             'rollback_form',
             'new_version_string',
             [f'Version {data["new_version_string"]} already exists.'],
-        )
-        assert (
-            'There was an error with your rollback request.'
-            in pq(response.content).html()
         )
 
         data['new_version_string'] = second_version.version + '.1'
