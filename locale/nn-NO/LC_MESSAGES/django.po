@@ -127,6 +127,10 @@ msgid ""
 "\n"
 "After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, we have removed the content, and notified the user of our action.\n"
 msgstr ""
+"\n"
+"Takk for rapporten din om %(name)s på Mozilla-tillegg, og for at du gir meir informasjon om bekymringane dine.\n"
+"\n"
+"Etter å ha gått gjennom anken din, har vi slått fast at den tidlegare avgjerda vår om at dette innhaldet ikkje bryt med Mozillas retningslinjer (%(policy_document_url)s), var feil. Basert på denne avgjersla har vi fjerna innhaldet og varsla brukaren om tiltaket vårt.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown_delayed.txt:5
 #, python-format
@@ -136,6 +140,10 @@ msgid ""
 "\n"
 "After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, we have requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
 msgstr ""
+"\n"
+"Takk for rapporten din om %(name)s på Mozilla-tillegg, og for at du gir meir informasjon om bekymringane dine.\n"
+"\n"
+"Etter å ha gått gjennom anken din, har vi slått fast at den tidlegare avgjerda vår om at dette innhaldet ikkje bryt med Mozillas retningslinjer (%(policy_document_url)s), var feil. Basert på denne avgjersla har vi bedt utviklaren om å gjere endringar. Om dei ikkje oppdaterer innhaldet sitt for å rette opp regelbrotet, vil vi fjerne det.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:5
 #, python-format
