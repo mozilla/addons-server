@@ -400,7 +400,7 @@ msgstr "%(addon_type_plural)s er ikkje støtta av %(app_name)s"
 #: src/olympia/addons/serializers.py:657 src/olympia/devhub/forms.py:910
 #, python-format
 msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
-msgstr ""
+msgstr "Ugyldig versjonsområde. For Firefox for Android kan du berre velje eit område som startar med versjon %(max)s eller høgare, eller sluttar med versjon lågare enn %(min)s."
 
 #: src/olympia/addons/serializers.py:906
 msgid "Add-ons need at least one owner."
@@ -799,7 +799,7 @@ msgstr "Stadfesting for API-nøklar for utviklarar"
 
 #: src/olympia/api/throttling.py:113
 msgid "You have submitted this form too many times recently. Please try again after some time."
-msgstr ""
+msgstr "Du har sendt inn dette skjemaet for mange gongar i det siste. Prøv igjen om ei stund."
 
 #: src/olympia/bandwagon/serializers.py:72
 msgid "This custom URL is already in use by another one of your collections."
@@ -965,6 +965,8 @@ msgstr "Det er bedt om meir informasjon"
 #: src/olympia/constants/activity.py:236
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
+"Dette tillegget har vorte flagget for administratorgjennomgang. Det er framleis i gjennomgangskøen vår, men det må gåast gjennom av ein av administratorane våre. Gjennomgangen kan ta lengre tid ein "
+"vanleg."
 
 #: src/olympia/constants/activity.py:258
 #, python-brace-format
@@ -1259,7 +1261,7 @@ msgstr "{addon} {version} innhald vart automatisk avvist etter at forseinkinga v
 
 #: src/olympia/constants/activity.py:1071
 msgid "Content rejected automatically after delay expired"
-msgstr ""
+msgstr "Innhald blir automatisk avvist etter at forseinkinga er utgått"
 
 #: src/olympia/constants/activity.py:1196
 #, python-brace-format
@@ -2581,7 +2583,7 @@ msgstr "Vellykka!"
 msgid ""
 "An email with a confirmation link has been sent to your email address: %(email)s. Please click the link to confirm your email address. If you did not receive the email, please check your spam "
 "folder."
-msgstr ""
+msgstr "Ein e-post med ei stadfestingslenke er send til e-postadressa di: %(email)s. Klikk på lenka for å stadfeste e-postadressa di. Om du ikkje fekk e-posten, kan du sjekke søppelpostmappa di."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:39
 #, python-format
@@ -2589,6 +2591,8 @@ msgid ""
 "The provided code is invalid, unauthorized, expired or incomplete. Please use the link in the email sent to your email address %(email)s. If the code is still not working, please request a new "
 "email."
 msgstr ""
+"Den oppgitte koden er ugyldig, uautorisert, utgåttt eller ufullstendig. Bruk lenka i e-posten som vart send til e-postadressa di %(email)s. Viss koden framleis ikkje fungerer, kan du be om ein ny "
+"e-post."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:49
 msgid "<strong>Email history:</strong> The table below shows all emails we have attempted to send to you in the last 2 days."
@@ -2626,7 +2630,7 @@ msgstr "Oppdater resultat"
 #: src/olympia/devhub/templates/devhub/verify_email.html:101
 #, python-format
 msgid "If you encounter issues, please see our <a %(a_attrs)s>troubleshooting suggestions</a> on Firefox Extension Workshop."
-msgstr ""
+msgstr "Om du støyter på problem, kan du sjå <a %(a_attrs)s>feilsøkingsforslaga</a> våre på Firefox Extension Workshop."
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html:4 src/olympia/devhub/templates/devhub/addons/activity.html:17
 msgid "Recent Activity for My Add-ons"
@@ -2829,6 +2833,8 @@ msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
 "ons."
 msgstr ""
+"Viss tillegget ditt har ei anna nettside, skriv du inn adressa her. Viss nettstaden din er lokalisert til andre språk, kan fleire omsetjingar av dette feltet leggjast til. Det er berre relevant for "
+"oppførte tillegg."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:96 src/olympia/devhub/templates/devhub/addons/edit/describe.html:260
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:84 src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:174
