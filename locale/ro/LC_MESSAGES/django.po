@@ -1540,7 +1540,7 @@ msgstr "Cumpărături"
 
 #: src/olympia/constants/categories.py:163
 msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
-msgstr "Descarcă extensii Firefox care îți pot îmbunătăți experiența de cumpărături online cu unelte de găsit cupoane și oferte, de analiză a recenziilor și multe altele."
+msgstr "Descarcă extensii Firefox care îți pot îmbunătăți experiența de cumpărături online cu instrumente de găsit cupoane și oferte, de analiză a recenziilor și multe altele."
 
 #: src/olympia/constants/categories.py:170
 msgid "Social & Communication"
@@ -1549,8 +1549,8 @@ msgstr "Social și comunicare"
 #: src/olympia/constants/categories.py:172
 msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
 msgstr ""
-"Descarcă extensii Firefox pentru a-ți îmbunătăți experiența pe rețelele sociale și în aplicațiile de mesagerie instantanee. Această categorie include notificări îmbunătățite pentru file, unelte de "
-"descărcat videoclipuri și multe altele."
+"Descarcă extensii Firefox pentru a-ți îmbunătăți experiența pe rețelele sociale și în aplicațiile de mesagerie instantanee. Această categorie include notificări îmbunătățite pentru file, instrumente"
+" de descărcat videoclipuri și multe altele."
 
 #: src/olympia/constants/categories.py:179
 msgid "Tabs"
@@ -1566,7 +1566,8 @@ msgstr "Dezvoltare web"
 
 #: src/olympia/constants/categories.py:190
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
-msgstr "Descarcă extensii Firefox care includ unelte de dezvoltare web. Această categorie include extensii pentru GitHub, comutarea agentului utilizator, gestionarea cookie-urilor și multe altele."
+msgstr ""
+"Descarcă extensii Firefox care includ instrumente de dezvoltare web. Această categorie include extensii pentru GitHub, comutarea agentului utilizator, gestionarea cookie-urilor și multe altele."
 
 #: src/olympia/constants/categories.py:198 src/olympia/constants/categories.py:290 src/olympia/devhub/forms.py:592
 msgid "Other"
@@ -3549,7 +3550,7 @@ msgstr "Generatoare de cod sau minificatoare"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:29
 msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
-msgstr "Unelte care combină mai multe fișiere într-unul singur, precum <span class=\"tech-emphasis\">webpack</span>"
+msgstr "Instrumente care combină mai multe fișiere într-unul singur, precum <span class=\"tech-emphasis\">webpack</span>"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:31
 msgid "Web template engines, both for HTML and CSS"
@@ -4898,7 +4899,7 @@ msgstr "Dă clic dreapta și trage linkuri pe care vrei să le deschizi în file
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:218
 msgid "Access recently closed tabs by right-clicking the icon in your toolbar."
-msgstr "Accesează file închise recent prin clic dreapta pe pictograma din bara ta de unelte."
+msgstr "Accesează file închise recent prin clic dreapta pe pictograma din bara ta de instrumente."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:221
@@ -4994,7 +4995,7 @@ msgstr "Mergi direct la site-ul web pe care vrei să intri fără să fii redire
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:275
 msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
-msgstr "WhatsApp pe web. Accesează WhatsApp din panoul barei de unelte din Firefox ca să primești notificări în insignă pentru conversații necitite."
+msgstr "WhatsApp pe web. Accesează WhatsApp din panoul barei de instrumente din Firefox ca să primești notificări în insignă pentru conversații necitite."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:278
