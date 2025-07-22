@@ -153,6 +153,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it does not violate Mozilla's policies (%(policy_document_url)s).  It will therefore not be subject to any moderation action.\n"
 msgstr ""
+"\n"
+"Takk for rapporten din om %(name)s, på %(target_url)s.\n"
+"\n"
+"Vi har gått gjennom rapporten din og det aktuelle innhaldet, og funne at han ikkje bryt med Mozillas retningslinjer (%(policy_document_url)s).  Han vil derfor ikkje verte utsett for modereringstiltak.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:7
 #, python-format
