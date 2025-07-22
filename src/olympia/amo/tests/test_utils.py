@@ -37,6 +37,7 @@ from olympia.amo.utils import (
     walkfiles,
 )
 from olympia.constants.abuse import REPORTED_MEDIA_BACKUP_EXPIRATION_DAYS
+from olympia.core.languages import LANGUAGES_NOT_IN_BABEL
 
 
 pytestmark = pytest.mark.django_db
@@ -235,26 +236,19 @@ def test_set_writable_cached_property():
     assert callme.call_count == 1
 
 
-@pytest.mark.parametrize('lang', settings.AMO_LANGUAGES.keys())
+@pytest.mark.parametrize('lang', settings.AMO_LANGUAGES)
 def test_get_locale_from_lang(lang):
     """Make sure all languages in settings.AMO_LANGUAGES can be resolved."""
     locale = get_locale_from_lang(lang)
-
-    ignored_languages = ('cak',)
-    long_languages = ('ast', 'dsb', 'fur', 'hsb', 'kab')
-    expected_language = (
-        lang[:3]
-        if lang in long_languages
-        else (lang[:2] if lang not in ignored_languages else 'en')
-    )
+    lang_split = lang.split('-')
 
     assert isinstance(locale, Locale)
-    assert locale.language == expected_language
+    assert locale.language == (
+        lang_split[0] if lang not in LANGUAGES_NOT_IN_BABEL else 'en'
+    )
 
-    separator = '-' if '-' in lang else '_' if '_' in lang else None
-
-    if separator:
-        territory = lang.split(separator)[1]
+    if '-' in lang and lang not in LANGUAGES_NOT_IN_BABEL:
+        territory = lang_split[1]
         assert locale.territory == territory
 
 

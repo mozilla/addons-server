@@ -20,6 +20,7 @@ from responses import registries
 
 from olympia.amo.management import BaseDataCommand, storage_structure
 from olympia.amo.tests import TestCase, user_factory
+from olympia.core.languages import PROD_LANGUAGES
 from olympia.users.models import UserProfile
 
 
@@ -725,6 +726,7 @@ class TestMonitorsCommand(BaseTestDataCommand):
         )
 
 
+@override_settings(AMO_LANGUAGES=PROD_LANGUAGES)
 class TestCheckLocalesCompletionRate(TestCase):
     expected_special_locales = (
         'de',
@@ -844,8 +846,8 @@ class TestCheckLocalesCompletionRate(TestCase):
             + '\n- '.join(
                 sorted(
                     [
-                        f'{data["english"]} [{locale}]'
-                        for locale, data in settings.AMO_LANGUAGES.items()
+                        f'{settings.ALL_LANGUAGES[locale]["english"]} [{locale}]'
+                        for locale in settings.AMO_LANGUAGES
                         if locale not in self.expected_special_locales
                         and locale != settings.LANGUAGE_CODE
                     ]
@@ -861,7 +863,7 @@ class TestCheckLocalesCompletionRate(TestCase):
             + '\n- '.join(
                 sorted(
                     [
-                        f'{settings.AMO_LANGUAGES[locale]["english"]} [{locale}]'
+                        f'{settings.ALL_LANGUAGES[locale]["english"]} [{locale}]'
                         for locale in self.expected_special_locales
                     ]
                 )

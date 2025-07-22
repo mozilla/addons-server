@@ -49,6 +49,7 @@ class MiddlewareTest(TestCase):
             '/addon/1?lang=fr': '/fr/firefox/addon/1',
             '/firefox?lang=fr': '/fr/firefox/',
             '/developers?lang=fr': '/fr/developers',
+            '/firefox?lang=cak': '/cak/firefox/',
         }
 
         for path, location in redirections.items():

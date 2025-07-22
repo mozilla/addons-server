@@ -1101,7 +1101,7 @@ class Addon(OnChangeMixin, ModelBase):
         lang = settings.LANGUAGE_URL_MAP.get(
             trans_real.to_language(self.default_locale)
         )
-        return settings.AMO_LANGUAGES.get(lang, {}).get('native')
+        return settings.ALL_LANGUAGES.get(lang, {}).get('native')
 
     @property
     def valid_file_statuses(self):

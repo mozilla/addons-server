@@ -5,6 +5,8 @@ import os
 import socket
 from datetime import datetime
 
+from django.utils.functional import lazy
+
 import environ
 import sentry_sdk
 from corsheaders.defaults import default_headers
@@ -178,7 +180,7 @@ TIME_ZONE = 'UTC'
 LANGUAGE_CODE = 'en-US'
 
 # Accepted locales / languages.
-from olympia.core.languages import AMO_LANGUAGES  # noqa
+from olympia.core.languages import ALL_LANGUAGES, AMO_LANGUAGES  # noqa
 
 # Bidirectional languages.
 LANGUAGES_BIDI = ('ar', 'fa', 'he', 'ur')
@@ -193,12 +195,26 @@ SHORTER_LANGUAGES = {
     'zh': 'zh-CN',
 }
 
-# Override Django's built-in with our native names
-LANGUAGES = [
-    (locale.lower(), value['native']) for locale, value in AMO_LANGUAGES.items()
-]
 
-LANGUAGE_URL_MAP = {locale.lower(): locale for locale in AMO_LANGUAGES}
+def get_django_languages():
+    return [
+        (lang.lower(), names['native'])
+        for lang, names in ALL_LANGUAGES.items()
+        if lang in AMO_LANGUAGES
+    ]
+
+
+# Override Django's built-in with our native names
+# lazy because we can override AMO_LANGUAGES
+LANGUAGES = lazy(get_django_languages, list)()
+
+
+def get_language_url_map():
+    return {locale.lower(): locale for locale in AMO_LANGUAGES}
+
+
+# lazy because we can override AMO_LANGUAGES
+LANGUAGE_URL_MAP = lazy(get_language_url_map, dict)()
 
 LOCALE_PATHS = (path('locale'),)
 
