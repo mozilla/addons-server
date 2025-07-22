@@ -3654,6 +3654,15 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"您好，\n"
+"\n"
+"您收到此邮件是因为您为 %(domain)s 申请了新的开发者 API 密钥。请点击下方链接完成操作：\n"
+"\n"
+"%(api_key_confirmation_link)s\n"
+"\n"
+"此致，\n"
+"\n"
+"Mozilla 附加组件团队"
 
 #: src/olympia/devhub/templates/devhub/emails/new-key-email.ltxt:8
 #, python-format
@@ -3749,6 +3758,15 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"您好，\n"
+"\n"
+"您收到此邮件是因为您申请了邮箱验证。请点击下方链接完成操作：\n"
+"\n"
+"%(confirmation_link)s\n"
+"\n"
+"此致，\n"
+"\n"
+"Mozilla 附加组件团队"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:6 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:4
 msgid "Invisible"
@@ -3768,7 +3786,7 @@ msgstr "您的附加组件已经展示在我们的展示库中，并且用户会
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:30
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery."
-msgstr ""
+msgstr "您的附加组件已被网站管理员禁用，不再在我们的应用商店中展示。"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:33
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
@@ -6908,6 +6926,16 @@ msgid ""
 "Kind regards,\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"您好，%(author_name)s：\n"
+"\n"
+"您已获邀成为 %(addon_name)s 在 %(domain)s 上的协作作者。接受邀请后，您将获得编辑该附加组件的权限，且您的名字可能会出现在网站公开的作者名单中。\n"
+"\n"
+"若确认加入，请点击下方链接响应邀请：\n"
+"\n"
+"%(author_confirmation_link)s\n"
+"\n"
+"此致，\n"
+"Mozilla 附加组件团队"
 
 #: src/olympia/users/templates/users/emails/author_changed.ltxt:3
 #, python-format
@@ -6942,6 +6970,12 @@ msgid ""
 "\n"
 "Mozilla Add-ons Team"
 msgstr ""
+"您好，\n"
+"\n"
+"您收到此通知，是因为您在 %(site_url)s 的账户 %(name)s 已被删除。若您近期注销了 Mozilla 账号，此操作可能已自动触发。\n"
+"\n"
+"此致，\n"
+"Mozilla 附加组件团队"
 
 #: src/olympia/versions/models.py:1176
 #, python-format
