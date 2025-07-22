@@ -4820,7 +4820,7 @@ msgstr "Bucură-te de marcaje vizuale. Accesezi site-uri favorite, file închise
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:173
 msgid "Designate a custom home page for your new tabs."
-msgstr "Desemnează o pagină de start personalizată pentru noile tale file."
+msgstr "Definește o pagină de start personalizată pentru filele noi."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
