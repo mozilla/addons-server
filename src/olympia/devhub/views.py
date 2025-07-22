@@ -1308,24 +1308,19 @@ def version_list(request, addon_id, addon):
         request.POST if was_rollback_submit else None, addon=addon
     )
 
-    if was_rollback_submit:
-        if rollback_form.is_valid():
-            duplicate_addon_version_for_rollback.delay(
-                version_pk=rollback_form.cleaned_data['version'].pk,
-                new_version_number=rollback_form.cleaned_data['new_version_string'],
-                user_pk=request.user.pk,
-            )
-            messages.success(
-                request,
-                gettext("Rollback submitted. You'll be notified when it's approved"),
-            )
-            # we posted to #version-rollback so an error reopens the form, but we want
-            # success to go to the list proper, so append `#` to clear the fragment.
-            return redirect(addon.get_dev_url('versions') + '#')
-        else:
-            messages.error(
-                request, gettext('There was an error with your rollback request.')
-            )
+    if was_rollback_submit and rollback_form.is_valid():
+        duplicate_addon_version_for_rollback.delay(
+            version_pk=rollback_form.cleaned_data['version'].pk,
+            new_version_number=rollback_form.cleaned_data['new_version_string'],
+            user_pk=request.user.pk,
+        )
+        messages.success(
+            request,
+            gettext("Rollback submitted. You'll be notified when it's approved"),
+        )
+        # we posted to #version-rollback so an error reopens the form, but we want
+        # success to go to the list proper, so append `#` to clear the fragment.
+        return redirect(addon.get_dev_url('versions') + '#')
 
     data = {
         'addon': addon,

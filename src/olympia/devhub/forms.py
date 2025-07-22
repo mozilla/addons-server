@@ -1627,11 +1627,15 @@ class RollbackVersionForm(forms.Form):
         if not self.listed_count and self.unlisted_count:
             # if there is no listed option, we default to unlisted
             channel.initial = amo.CHANNEL_UNLISTED
-        if not self.unlisted_count:
+            channel.widget.attrs = {'disabled': True}
+        elif not self.unlisted_count and self.listed_count:
             unlisted.required = False
-            if self.listed_count:
-                # if there is a listed option, we default to that channel
-                channel.initial = amo.CHANNEL_LISTED
+            # if there is a listed option, we default to that channel
+            channel.initial = amo.CHANNEL_LISTED
+            channel.widget.attrs = {'disabled': True}
+        elif self.listed_count or self.unlisted_count:
+            # otherwise we default to the most recently used channel
+            channel.initial = self.addon.versions.first().channel
         # Also, in the template, we hide the selector if there is only one channel,
         # using a hidden input
 
