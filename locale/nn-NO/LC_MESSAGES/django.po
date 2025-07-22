@@ -163,7 +163,7 @@ msgstr ""
 msgid ""
 "You have the right to appeal this decision within 6 months from the date of this email. See %(appeal_url)s for details on the appeal process, including how to file an appeal for this specific "
 "decision."
-msgstr ""
+msgstr "Du har rett til å anke denne avgjerda innan 6 månadar frå datoen for denne e-posten. Sjå %(appeal_url)s for detaljar om ankeprosessen, inkludert korleis du ankar denne spesifikke avgjerda."
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_addon.txt:5
 #, python-format
@@ -173,6 +173,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
+"\n"
+"Takk for rapporten din om følgjande tillegg på Mozilla-tillegg: %(name)s.\n"
+"\n"
+"Vi har gått gjennom rapporten din og det aktuelle innhaldet, og funne at det bryt med Mozillas retningslinjer (%(policy_document_url)s), og har derfor fjerna innhaldet.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_addon_delayed.txt:5
 #, python-format
@@ -182,6 +186,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
 msgstr ""
+"\n"
+"Takk for rapporten din om følgjande tillegg på Mozilla-tillegg: %(name)s.\n"
+"\n"
+"Vi har gått gjennom rapporten din og det aktuelle innhaldet, og funne at det bryt med Mozillas retningslinjer (%(policy_document_url)s), og har derfor bedt utviklaren om å gjere endringar. Om dei ikkje oppdaterer innhaldet sitt for å rette opp regelbrotet, vil vi fjerne det.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_collection.txt:5
 #, python-format
@@ -191,6 +199,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
+"\n"
+"Takk for rapporten din om følgjande samling på Mozilla-tillegg: %(name)s.\n"
+"\n"
+"Vi har gått gjennom rapporten din og det aktuelle innhaldet, og funne at det bryt med Mozillas retningslinjer (%(policy_document_url)s), og har derfor fjerna innhaldet.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_rating.txt:5
 #, python-format
@@ -200,6 +212,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
+"\n"
+"Takk for rapporten din om følgjande vurdering av Mozilla-tillegg: %(name)s.\n"
+"\n"
+"Vi har gått gjennom rapporten din og det aktuelle innhaldet, og funne at det bryt med Mozillas retningslinjer (%(policy_document_url)s), og har derfor fjerna innhaldet.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_user.txt:5
 #, python-format
@@ -209,6 +225,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
+"\n"
+"Takk for rapporten din om følgjande brukerprofil på Mozilla-tillegg: %(name)s.\n"
+"\n"
+"Vi har gått gjennom rapporten din og det aktuelle innhaldet, og funne at det bryter med Mozillas retningslinjer (%(policy_document_url)s), og har derfor fjerna innhaldet.\n"
 
 #: src/olympia/accounts/serializers.py:152 src/olympia/bandwagon/serializers.py:98
 msgid "No links are allowed."
