@@ -2871,6 +2871,8 @@ msgid ""
 "The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
 "characters and a minimum length of 2 characters for each."
 msgstr ""
+"Samandraget bør forklare kva tillegget ditt gjer, tydeleg og konsist. Både namnet og samandraget vil visast på produktsida di og i søkjeresultata. Dei har ei samla maksimal lengde på 70 teikn og ei "
+"minimumslengde på 2 teikn for kvar."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:43 src/olympia/devhub/templates/devhub/addons/edit/describe.html:105 src/olympia/devhub/templates/devhub/addons/submit/describe.html:30
 msgid "Summary"
@@ -2950,6 +2952,8 @@ msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
 " for listed add-ons."
 msgstr ""
+"Om du ønskjer å vise ei e-postadresse for kundestøtteførespurnadar, skriv du den inn her. Om du har ulike adresser for kvart språk, kan fleire omsetjingar av dette feltet leggjast til. Det er berre "
+"relevant for oppførte tillegg."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:234
 msgid "Website"
@@ -2960,6 +2964,8 @@ msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
 "listed add-ons."
 msgstr ""
+"Viss tillegget ditt har ein brukarstøttenettstad eller forum, skriv du inn adressa her. Viss nettstaden din er lokalisert til andre språk, kan fleire omsetjingar av dette feltet leggjast til. Det er"
+" berre relevant for oppførte tillegg."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/media.html:3
 msgid "Images"
@@ -2984,6 +2990,8 @@ msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
+"All informasjon sluttbrukarar måtte ønskje å vite som ikkje nødvendigvis er relevant for tilleggssamandraget eller beskrivinga. Vanlege bruksområde inkluderer opplisting av kjende større feil, "
+"informasjon om korleis ein rapporterer feil, forventa utgivingsdato for ein ny versjon osb. Dette er berre relevant for oppførte tillegg."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:46
 msgid "Universally unique identifier"
@@ -2995,7 +3003,7 @@ msgstr "UUID"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:49
 msgid "The UUID of your add-on is specified in its install manifest and uniquely identifies it. You cannot change your UUID once it has been submitted."
-msgstr ""
+msgstr "UUID-en til tillegget ditt er spesifisert i installasjonsmanifestet og identifiserer det unikt. Du kan ikkje endre UUID-en din når han er sendt inn."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:60 src/olympia/devhub/templates/devhub/addons/edit/technical.html:61
 msgid "Whiteboard"
@@ -3023,6 +3031,8 @@ msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
 "relevant for listed add-ons."
 msgstr ""
+"Last opp eit ikon for tillegget ditt, eller vel eit av våre. Ikonet blir nesten overalt vist der tillegget ditt er. Opplasta bilde må vere av ein av følgjande bildetypar: .png, .jpg. Dette er berre "
+"relevant for oppførte tillegg."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:25
 msgid "Select an icon for your add-on:"
@@ -3097,7 +3107,7 @@ msgstr "Minimumsstørrelse er 1000x750, og eit forhold på 4:3 er påkravd."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:155
 msgid "Having screenshots in your product page greatly increases its chances of being installed."
-msgstr ""
+msgstr "Å ha skjermbilete på produktsida di aukar sterkt sjansen for installasjonar."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:182 src/olympia/devhub/templates/devhub/addons/submit/distribute.html:30
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:85 src/olympia/devhub/templates/devhub/addons/submit/upload.html:99
@@ -3122,7 +3132,7 @@ msgstr "Ja, så lenge dei deler likt"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:44
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
-msgstr ""
+msgstr "Lisensgivaren tillèt andre å distribuere avleidde verk berre under same lisens eller ein som er kompatibel med den som regulerer verka til lisensgivaren."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:57
 msgid "Your Add-on will be released under the following license:"
