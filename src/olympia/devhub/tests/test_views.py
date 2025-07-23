@@ -2061,15 +2061,19 @@ class TestDocs(TestCase):
             (reverse('devhub.docs', args=['fake-page']), 404),
             (reverse('devhub.docs', args=['how-to/fake-page']), 404),
             (reverse('devhub.docs'), 301),
+            (reverse('devhub.docs', args=['policies']), 301),
         ]
 
         index = reverse('devhub.index')
 
-        for url in urls:
-            response = self.client.get(url[0])
-            assert response.status_code == url[1]
+        for [url, status_code] in urls:
+            response = self.client.get(url)
+            assert response.status_code == status_code
 
-            if url[1] == 302:  # Redirect to the index page
+            if status_code == 301:
+                assert 'utm_referrer=amo' in response.url
+
+            if status_code == 302:  # Redirect to the index page
                 self.assert3xx(response, index)
 
 

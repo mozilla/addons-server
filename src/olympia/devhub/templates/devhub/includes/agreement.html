@@ -1,7 +1,9 @@
 <form method="post">
   {% if not agreement_form.has_error('__all__') %}
   <p>
-    {{ agreement_message }}
+    {% trans faq_url=url('devhub.docs', 'policies/faq'), a_attrs='target="_blank" rel="noopener noreferrer"' %}
+    Before starting, please read and accept our Firefox Add-on Distribution Agreement, Review Policies and Rules and our <a {{ a_attrs }} href="{{ faq_url }}">Frequently Asked Questions</a>. The Firefox Add-on Distribution Agreement also links to our Privacy Notice which explains how we handle your information.
+    {% endtrans %}
   </p>
   <ul class="agreement-links">
     <li>{{ agreement_form.distribution_agreement }}<a href="{{ url('devhub.docs', 'policies/agreement') }}" target="_blank" rel="noopener noreferrer">{{ _('Firefox Add-on Distribution Agreement') }}</a> {{ agreement_form.distribution_agreement.errors }}</li>
