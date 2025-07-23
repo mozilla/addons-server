@@ -7104,6 +7104,13 @@ msgid ""
 "\n"
 "Mozilla Add-ons Team"
 msgstr ""
+"Mandi,\n"
+"\n"
+"tu âs ricevût chest messaç parcè che il to account utent %(name)s su %(site_url)s al è stât eliminât. Al è pussibil che al sedi sucedût in automatic tal câs che tu vedis eliminât di resint il to account Mozilla.\n"
+"\n"
+"Salûts cordiâi,\n"
+"\n"
+"il grup dai components adizionâi di Mozilla"
 
 #: src/olympia/versions/models.py:1176
 #, python-format
