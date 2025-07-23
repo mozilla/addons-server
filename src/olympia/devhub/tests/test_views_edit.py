@@ -321,7 +321,25 @@ class BaseTestEditDescribe(BaseTestEdit):
         assert str(addon.name) == data['name']
         assert str(addon.summary) == data['summary']
 
+        # check we logged the changes
+        alogs = ActivityLog.objects.filter(action=amo.LOG.EDIT_ADDON_PROPERTY.id)
+        assert alogs.count() == 2
+        name_log, summ_log = list(
+            ActivityLog.objects.filter(action=amo.LOG.EDIT_ADDON_PROPERTY.id)
+        )
+        assert name_log.arguments == [self.addon, 'name']
+        assert name_log.details == {
+            'added': ['new name'],
+            'removed': ['Delicious Bookmarks'],
+        }
+        assert summ_log.arguments == [self.addon, 'summary']
+        assert summ_log.details == {
+            'added': ['new summary'],
+            'removed': ['Delicious Bookmarks is the official'],
+        }
+
         # Now repeat, but we won't be changing either name or summary
+        alogs.delete()
         AddonApprovalsCounter.approve_content_for_addon(addon=addon)
         assert AddonApprovalsCounter.objects.get(addon=addon).last_content_review
         data['description'] = 'its a totally new description!'
@@ -332,6 +350,10 @@ class BaseTestEditDescribe(BaseTestEdit):
 
         # Still keeps its date this time, so no new content review
         assert AddonApprovalsCounter.objects.get(addon=addon).last_content_review
+        # no changes logged for name or summary this time
+        assert not ActivityLog.objects.filter(
+            action=amo.LOG.EDIT_ADDON_PROPERTY.id
+        ).exists()
         # And metadata was updated
         assert str(addon.description) == data['description']
 

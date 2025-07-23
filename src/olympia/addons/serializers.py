@@ -80,6 +80,7 @@ from .models import (
 from .tasks import resize_icon, resize_preview
 from .utils import (
     fetch_translations_from_addon,
+    get_translation_differences,
     validate_version_number_is_gt_latest_signed_listed_version,
 )
 from .validators import (
@@ -1298,7 +1299,7 @@ class AddonSerializer(AMOModelSerializer):
             remove_icons(self.instance)
             self.instance.update(icon_type='')
 
-    def log(self, instance, validated_data):
+    def log(self, instance, validated_data, changes):
         validated_data = {**validated_data}  # we want to modify it, so take a copy
         user = self.context['request'].user
 
@@ -1319,6 +1320,15 @@ class AddonSerializer(AMOModelSerializer):
             # version is always a new object, and not a property either
             validated_data.pop('version')
 
+        for field in changes:
+            ActivityLog.objects.create(
+                amo.LOG.EDIT_ADDON_PROPERTY,
+                instance,
+                field,
+                details={**changes.get(field, {})},
+                user=user,
+            )
+            validated_data.pop(field)
         if validated_data:
             ActivityLog.objects.create(
                 amo.LOG.EDIT_PROPERTIES,
@@ -1356,6 +1366,7 @@ class AddonSerializer(AMOModelSerializer):
             if instance.has_listed_versions()
             else None
         )
+        changes = {}
 
         old_slug = instance.slug
 
@@ -1363,10 +1374,11 @@ class AddonSerializer(AMOModelSerializer):
             self._save_icon(validated_data['icon'])
         instance = super().update(instance, validated_data)
 
-        if old_metadata is not None and old_metadata != fetch_translations_from_addon(
-            instance, fields_to_review
+        if old_metadata is not None and old_metadata != (
+            new_metadata := fetch_translations_from_addon(instance, fields_to_review)
         ):
             statsd.incr('addons.submission.metadata_content_review_triggered')
+            changes = get_translation_differences(old_metadata, new_metadata)
             AddonApprovalsCounter.reset_content_for_addon(addon=instance)
         if 'all_categories' in validated_data:
             del instance.all_categories  # super.update will have set it.
@@ -1386,7 +1398,7 @@ class AddonSerializer(AMOModelSerializer):
                 amo.LOG.ADDON_SLUG_CHANGED, instance, old_slug, instance.slug
             )
 
-        self.log(instance, validated_data)
+        self.log(instance, validated_data, changes)
         return instance
 
 
