@@ -532,7 +532,7 @@ msgstr "Utviklerhubb"
 
 #: src/olympia/amo/context_processors.py:79 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:20 src/olympia/devhub/views.py:2076
 msgid "Manage API Keys"
-msgstr "Administrer API nøkler"
+msgstr "Behandle API nøkler"
 
 #: src/olympia/amo/context_processors.py:85
 msgid "Reviewer Tools"
