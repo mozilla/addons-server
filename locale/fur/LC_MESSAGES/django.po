@@ -3880,7 +3880,7 @@ msgstr "Il to component adizionâl al è visualizât te nestre galarie e i utent
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:30
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery."
-msgstr ""
+msgstr "Il to component adizionâl al è stât disativât di un aministradôr e nol ven plui mostrât te galarie."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:33
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
@@ -7060,6 +7060,16 @@ msgid ""
 "Kind regards,\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Mandi %(author_name)s,\n"
+"\n"
+"tu âs ricevût un invît par deventâ un dai autôrs di %(addon_name)s su %(domain)s. Se tu acetis l’invît tu podarâs modificâ il component adizionâl e il to non al podarès vignî fûr sul sît web te liste dai autôrs.\n"
+"\n"
+"Se tu lu desideris, par zontâti come autôr/autore di %(addon_name)s, fâs clic sul colegament di conferme chi sot.\n"
+"\n"
+"%(author_confirmation_link)s\n"
+"\n"
+"Salûts cordiâi,\n"
+"Il grup dai components adizionâi di Mozilla"
 
 #: src/olympia/users/templates/users/emails/author_changed.ltxt:3
 #, python-format
