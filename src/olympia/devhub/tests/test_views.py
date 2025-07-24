@@ -2054,22 +2054,39 @@ class TestDocs(TestCase):
         assert '/en-US/developers/docs/te' == reverse('devhub.docs', args=['te'])
         assert '/en-US/developers/docs/te/st', reverse('devhub.docs', args=['te/st'])
 
+        self.client.force_login(user_factory(read_dev_agreement=None))
+        response = self.client.get(reverse('devhub.submit.agreement'))
+        doc = pq(response.content)
+
+        # Extract the last part of the docs URL path as the "name" for each link.
+        links = [
+            a.attr['href'].rstrip('/').split('/developers/docs/', 1)[-1] or ''
+            for a in doc('a').items()
+            if '/developers/docs/' in a.attr['href']
+        ]
+
+        assert len(links) == 3
+
         urls = [
-            (reverse('devhub.docs', args=['getting-started']), 301),
-            (reverse('devhub.docs', args=['how-to']), 301),
-            (reverse('devhub.docs', args=['how-to/other-addons']), 301),
-            (reverse('devhub.docs', args=['fake-page']), 404),
-            (reverse('devhub.docs', args=['how-to/fake-page']), 404),
+            # None link
             (reverse('devhub.docs'), 301),
+            # Valid links
+            *[(reverse('devhub.docs', args=[link]), 301) for link in links],
+            # Invalid links
+            (reverse('devhub.docs', args=['fake-page']), 404),
+            *[(reverse('devhub.docs', args=[f'fake-{link}']), 404) for link in links],
         ]
 
         index = reverse('devhub.index')
 
-        for url in urls:
-            response = self.client.get(url[0])
-            assert response.status_code == url[1]
+        for [url, status_code] in urls:
+            response = self.client.get(url)
+            assert response.status_code == status_code
 
-            if url[1] == 302:  # Redirect to the index page
+            if status_code == 301:
+                assert 'utm_referrer=amo' in response.url
+
+            if status_code == 302:  # Redirect to the index page
                 self.assert3xx(response, index)
 
 
