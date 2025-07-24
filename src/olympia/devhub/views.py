@@ -2,7 +2,7 @@ import datetime
 import os
 import time
 from copy import deepcopy
-from urllib.parse import quote
+from urllib.parse import quote, urlencode, urljoin
 from uuid import UUID, uuid4
 
 from django import forms as django_forms, http
@@ -72,7 +72,6 @@ from olympia.reviewers.forms import PublicWhiteboardForm
 from olympia.reviewers.models import Whiteboard
 from olympia.reviewers.utils import ReviewHelper
 from olympia.users.models import (
-    DeveloperAgreementRestriction,
     SuppressedEmailVerification,
 )
 from olympia.users.tasks import send_suppressed_email_confirmation
@@ -1952,26 +1951,38 @@ def request_review(request, addon_id, addon):
 
 
 def docs(request, doc_name=None):
+    def get_url(base, doc_path=None):
+        base_url = urljoin(base, doc_path)
+        query = urlencode({'utm_referrer': 'amo'})
+        return f'{base_url}?{query}'
+
+    def mdn_url(doc_path):
+        return get_url(MDN_BASE, doc_path)
+
+    def ext_url(doc_path):
+        return get_url(settings.EXTENSION_WORKSHOP_URL, doc_path)
+
     mdn_docs = {
-        None: '',
-        'getting-started': '',
-        'reference': '',
-        'how-to': '',
-        'how-to/getting-started': '',
-        'how-to/extension-development': '#Extensions',
-        'how-to/other-addons': '#Other_types_of_add-ons',
-        'how-to/thunderbird-mobile': '#Application-specific',
-        'how-to/theme-development': '#Themes',
-        'themes': '/Themes/Background',
-        'themes/faq': '/Themes/Background/FAQ',
-        'policies': '/AMO/Policy',
-        'policies/reviews': '/AMO/Policy/Reviews',
-        'policies/contact': '/AMO/Policy/Contact',
-        'policies/agreement': '/AMO/Policy/Agreement',
+        None: mdn_url(''),
+        'getting-started': mdn_url(''),
+        'reference': mdn_url(''),
+        'how-to': mdn_url(''),
+        'how-to/getting-started': mdn_url(''),
+        'how-to/extension-development': mdn_url('#Extensions'),
+        'how-to/other-addons': mdn_url('#Other_types_of_add-ons'),
+        'how-to/thunderbird-mobile': mdn_url('#Application-specific'),
+        'how-to/theme-development': mdn_url('#Themes'),
+        'themes': mdn_url('/Themes/Background'),
+        'themes/faq': mdn_url('/Themes/Background/FAQ'),
+        'policies': ext_url('/documentation/publish/add-on-policies'),
+        'policies/faq': ext_url('/documentation/publish/add-on-policies-faq'),
+        'policies/agreement': ext_url(
+            '/documentation/publish/firefox-add-on-distribution-agreement'
+        ),
     }
 
     if doc_name in mdn_docs:
-        return redirect(MDN_BASE + mdn_docs[doc_name], permanent=True)
+        return redirect(mdn_docs[doc_name], permanent=True)
 
     raise http.Http404()
 
@@ -2009,7 +2020,6 @@ def render_agreement(request, template, next_step, **extra_context):
         # potential errors highlighted)
         context = {
             'agreement_form': form,
-            'agreement_message': str(DeveloperAgreementRestriction.error_message),
         }
         context.update(extra_context)
         return TemplateResponse(request, template, context=context)
