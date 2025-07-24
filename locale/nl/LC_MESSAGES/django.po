@@ -3937,6 +3937,8 @@ msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement, Review Policies and Rules and our <a %(a_attrs)s href=\"%(faq_url)s\">Frequently Asked Questions</a>. The Firefox "
 "Add-on Distribution Agreement also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
+"Lees en accepteer voordat u begint onze Firefox-add-on-distributieovereenkomst, beoordelingsbeleid en -regels, en onze <a %(a_attrs)s href=\"%(faq_url)s\">veelgestelde vragen</a>. De Firefox-add-on-"
+"distributieovereenkomst verwijst ook naar onze Privacyverklaring, die uitlegt hoe we met uw gegevens omgaan."
 
 #: src/olympia/devhub/templates/devhub/includes/agreement.html:10
 msgid "Review Policies and Rules"
