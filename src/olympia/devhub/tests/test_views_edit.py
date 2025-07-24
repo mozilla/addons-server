@@ -321,22 +321,29 @@ class BaseTestEditDescribe(BaseTestEdit):
         assert str(addon.name) == data['name']
         assert str(addon.summary) == data['summary']
 
-        # check we logged the changes
-        alogs = ActivityLog.objects.filter(action=amo.LOG.EDIT_ADDON_PROPERTY.id)
-        assert alogs.count() == 2
-        name_log, summ_log = list(
-            ActivityLog.objects.filter(action=amo.LOG.EDIT_ADDON_PROPERTY.id)
-        )
-        assert name_log.arguments == [self.addon, 'name']
-        assert name_log.details == {
-            'added': ['new name'],
-            'removed': ['Delicious Bookmarks'],
-        }
-        assert summ_log.arguments == [self.addon, 'summary']
-        assert summ_log.details == {
-            'added': ['new summary'],
-            'removed': ['Delicious Bookmarks is the official'],
-        }
+        if self.listed:
+            # check we logged the changes
+            alogs = ActivityLog.objects.filter(action=amo.LOG.EDIT_ADDON_PROPERTY.id)
+            assert alogs.count() == 2
+            name_log, summ_log = list(
+                ActivityLog.objects.filter(action=amo.LOG.EDIT_ADDON_PROPERTY.id)
+            )
+            if name_log.arguments[1] != 'name':
+                # The order isn't deterministic, it doesn't matter, so just switch em.
+                name_log, summ_log = summ_log, name_log
+            assert name_log.arguments == [self.addon, 'name']
+            assert name_log.details == {
+                'added': ['new name'],
+                'removed': ['Delicious Bookmarks'],
+            }
+            assert summ_log.arguments == [self.addon, 'summary']
+            assert summ_log.details == {
+                'added': ['new summary'],
+                'removed': ['Delicious Bookmarks is the official'],
+            }
+        else:
+            alogs = ActivityLog.objects.filter(action=amo.LOG.EDIT_PROPERTIES.id)
+            assert alogs.count() == 1
 
         # Now repeat, but we won't be changing either name or summary
         alogs.delete()

@@ -2264,6 +2264,9 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         summ_log, name_log = list(
             ActivityLog.objects.filter(action=amo.LOG.EDIT_ADDON_PROPERTY.id)
         )
+        if name_log.arguments[1] != 'name':
+            # The order isn't deterministic, it doesn't matter, so just switch em.
+            name_log, summ_log = summ_log, name_log
         assert name_log.arguments == [self.addon, 'name']
         assert name_log.details == {
             'added': [patch_data['name']['en-US']],
@@ -2574,6 +2577,9 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         summ_log, name_log = list(
             ActivityLog.objects.filter(action=amo.LOG.EDIT_ADDON_PROPERTY.id)
         )
+        if name_log.arguments[1] != 'name':
+            # The order isn't deterministic, it doesn't matter, so just switch em.
+            name_log, summ_log = summ_log, name_log
         assert name_log.arguments == [self.addon, 'name']
         assert name_log.details == {'added': ['new name'], 'removed': [old_name]}
         assert summ_log.arguments == [self.addon, 'summary']
