@@ -3990,7 +3990,7 @@ msgstr "Son Kullanıcı Lisans Anlaşması"
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:4
 msgid "Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "SKLA’nın kod lisanslarıyla (örn. GPL, MPL) aynı şey olmadığını lütfen unutmayın. SKLA sadece listelenen eklentiler için gereklidir."
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:21
 msgid "Privacy Policy"
@@ -4521,7 +4521,7 @@ msgstr "Videoları kolayca indirin. YouTube, Facebook, Vimeo, Twitch, Dailymotio
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:38
 msgid "Up your emoji game. Dozens of amazing emojis for every occasion—always just a click away."
-msgstr ""
+msgstr "Emojilerini bambaşka bir seviyeye taşıyın. Her durum için onlarca harika emoji her zaman bir tık uzağında."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:41
