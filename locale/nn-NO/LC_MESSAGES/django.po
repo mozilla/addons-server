@@ -3474,13 +3474,15 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:31
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
-msgstr ""
+msgstr "Oppføringa di blir meir vellykka ved å leggje til ei detaljert beskriving. Gjer oppføringa klar for publisering:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:36
 #, python-format
 msgid ""
 "You can attract users to your extension by adding a detailed description and screenshots to your listing. Get help <a %(a_attrs)s>creating an appealing listing</a> on Firefox Extension Workshop."
 msgstr ""
+"Du kan tiltrekkje brukarar til utvidinga di ved å leggje til ei detaljert beskriving og skjermbilde i oppføringa di. Få hjelp med å <a %(a_attrs)s>lage ei tiltalande oppføring</a> på Firefox "
+"Extension Workshop."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:43
 msgid "Manage Listing"
@@ -3513,7 +3515,7 @@ msgstr "Treng du å sende inn kjeldekode?"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:15
 msgid "Mozilla’s add-on reviewers need to be able to read and reproduce the code in your extension. If they can’t, your extension may be rejected."
-msgstr ""
+msgstr "Mozillas tilleggs-vurderarar må kunne lese og gi att koden i utvidinga di. Om dei ikkje kan det, kan utvidinga di bli avvist."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:21
 msgid "Do you use any of the following in your extension?"
@@ -3549,11 +3551,11 @@ msgstr "Kjeldekoden din må innehalde:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:56
 msgid "Step-by-step build instructions to create an exact copy of the add-on code, in a README file in your source code or in the reviewer notes on the next page."
-msgstr ""
+msgstr "Steg- For-steg-byggjeinstruksjonar for å lage ein nøyaktig kopi av tilleggskoden, i ei README-fil i kjeldekoden eller i vurderarnotata på neste side."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:57
 msgid "A build script that executes all necessary technical steps."
-msgstr ""
+msgstr "Eit byggjeskript som utfører alle nødvendige tekniske steg."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:58
 msgid "Operating system and build environment requirements."
