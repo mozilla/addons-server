@@ -3881,6 +3881,9 @@ msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement, Review Policies and Rules and our <a %(a_attrs)s href=\"%(faq_url)s\">Frequently Asked Questions</a>. The Firefox "
 "Add-on Distribution Agreement also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
+"Przed rozpoczęciem prosimy o zapoznanie się i zaakceptowanie naszej Umowy o dystrybucji dodatków do przeglądarki Firefox, Zasad i Regulaminu Recenzowania oraz przeczytanie <a %(a_attrs)s "
+"href=\"%(faq_url)s\">Najczęściej zadawanych pytań</a>. Umowa o dystrybucji dodatków do przeglądarki Firefox zawiera również link do naszej Polityki prywatności, która wyjaśnia, jak przetwarzamy "
+"Twoje dane."
 
 #: src/olympia/devhub/templates/devhub/includes/agreement.html:10
 msgid "Review Policies and Rules"
@@ -3901,7 +3904,7 @@ msgstr "lub <a href=\"{0}\">Anuluj</a>"
 
 #: src/olympia/devhub/templates/devhub/includes/agreement.html:44
 msgid "More information on Developer Accounts"
-msgstr ""
+msgstr "Dodatkowe informacje na temat kont programistów"
 
 #: src/olympia/devhub/templates/devhub/includes/android_compatibility_modal.html:3
 msgid "Firefox for Android compatibility"
