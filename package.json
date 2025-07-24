@@ -31,7 +31,7 @@
     "jszip": "3.10.1",
     "less": "4.3.0",
     "netmask": "2.0.2",
-    "source-map": "0.7.4",
+    "source-map": "0.7.6",
     "timeago.js": "^4.0.2",
     "underscore": "1.13.7"
   },
