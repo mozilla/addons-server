@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-16 08:42+0000\n"
+"POT-Creation-Date: 2025-07-24 12:38+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2906,6 +2906,12 @@ msgid "Admin Manage"
 msgstr ""
 
 msgid "View Statistics Dashboard"
+msgstr ""
+
+#, python-format
+msgid ""
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement, Review Policies and Rules and our <a %(a_attrs)s href=\"%(faq_url)s\">Frequently Asked Questions</a>. The Firefox "
+"Add-on Distribution Agreement also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
 
 #, fuzzy

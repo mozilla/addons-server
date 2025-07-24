@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-16 08:42+0000\n"
+"POT-Creation-Date: 2025-07-24 12:38+0000\n"
 "PO-Revision-Date: 2024-01-15 13:27+0000\n"
 "Last-Translator: Bund10z <abu.avila@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -3037,6 +3037,12 @@ msgstr "Gestión del administrador"
 
 msgid "View Statistics Dashboard"
 msgstr "Ver el panel de estadísticas"
+
+#, python-format
+msgid ""
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement, Review Policies and Rules and our <a %(a_attrs)s href=\"%(faq_url)s\">Frequently Asked Questions</a>. The Firefox "
+"Add-on Distribution Agreement also links to our Privacy Notice which explains how we handle your information."
+msgstr ""
 
 msgid "Review Policies and Rules"
 msgstr "Normas y políticas de revisión"

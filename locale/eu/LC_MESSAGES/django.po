@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  messages.pootle\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-16 08:42+0000\n"
+"POT-Creation-Date: 2025-07-24 12:38+0000\n"
 "PO-Revision-Date: 2013-11-07 07:24+0000\n"
 "Last-Translator: Julen <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -3013,6 +3013,12 @@ msgid "Admin Manage"
 msgstr "Kudeatu"
 
 msgid "View Statistics Dashboard"
+msgstr ""
+
+#, python-format
+msgid ""
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement, Review Policies and Rules and our <a %(a_attrs)s href=\"%(faq_url)s\">Frequently Asked Questions</a>. The Firefox "
+"Add-on Distribution Agreement also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
 
 #, fuzzy
