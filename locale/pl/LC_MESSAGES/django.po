@@ -6932,7 +6932,7 @@ msgstr ""
 #: src/olympia/users/models.py:1214
 #, python-brace-format
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
-msgstr ""
+msgstr "Prosimy o przeczytanie i zaakceptowanie naszej Umowy o dystrybucji dodatków do przeglądarki Firefox, a także Zasad i Regulaminu Recenzowania, znajdujących się na stronie {url}"
 
 #: src/olympia/users/models.py:1265
 msgid "User Restriction History"
