@@ -3361,6 +3361,8 @@ msgstr "Denne utvidinga er eksperimentell"
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:126
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
+"Kryss av for dette alternativet viss tillegget ditt er eksperimentelt eller ikkje klart for generell bruk.  Tillegget vil bli oppført, men vil ha redusert synlegheit.  Du kan endre denne "
+"innstillinga seinare."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:151
 msgid "Support email:"
@@ -3400,6 +3402,8 @@ msgid ""
 "If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
 "%(policy_requirements_open)spolicy requirements%(policy_requirements_close)s."
 msgstr ""
+"Om du sende inn kjeldekoden, men ikkje inkluderte instruksjonar, må du oppgi dei her. Skriv inn stegvise byggjeinstruksjonar for å lage ein nøyaktig kopi av tilleggskoden, i samsvar med "
+"%(policy_requirements_open)spolicy-krav%(policy_requirements_close)s."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:224 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:38
 msgid "These notes will only be visible to you and our reviewers."
@@ -3436,7 +3440,7 @@ msgstr "For å kome i gang vel du korleis du vil distribuere denne versjonen."
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html:19
 #, python-format
 msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing</a> on Firefox Extension Workshop."
-msgstr ""
+msgstr "Du kan lære meir om desse alternativa ved å lese <a %(a_attrs)s>Distribusjon og signering av tillegg</a> på Firefox Extension Workshop."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html:24
 #, python-format
