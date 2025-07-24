@@ -331,16 +331,21 @@ class BaseTestEditDescribe(BaseTestEdit):
             if name_log.arguments[1] != 'name':
                 # The order isn't deterministic, it doesn't matter, so just switch em.
                 name_log, summ_log = summ_log, name_log
-            assert name_log.arguments == [self.addon, 'name']
-            assert name_log.details == {
-                'added': ['new name'],
-                'removed': ['Delicious Bookmarks'],
-            }
-            assert summ_log.arguments == [self.addon, 'summary']
-            assert summ_log.details == {
-                'added': ['new summary'],
-                'removed': ['Delicious Bookmarks is the official'],
-            }
+            assert name_log.arguments == [
+                self.addon,
+                'name',
+                json.dumps({'removed': ['Delicious Bookmarks'], 'added': ['new name']}),
+            ]
+            assert summ_log.arguments == [
+                self.addon,
+                'summary',
+                json.dumps(
+                    {
+                        'removed': ['Delicious Bookmarks is the official'],
+                        'added': ['new summary'],
+                    }
+                ),
+            ]
         else:
             alogs = ActivityLog.objects.filter(action=amo.LOG.EDIT_PROPERTIES.id)
             assert alogs.count() == 1

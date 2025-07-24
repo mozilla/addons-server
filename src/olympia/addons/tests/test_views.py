@@ -1992,11 +1992,11 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         ).get()
         assert alog.user == self.user
         assert alog.action == amo.LOG.EDIT_ADDON_PROPERTY.id
-        assert alog.arguments == [self.addon, 'summary']
-        assert alog.details == {
-            'removed': [original_summary],
-            'added': ['summary update!'],
-        }
+        assert alog.arguments == [
+            self.addon,
+            'summary',
+            json.dumps({'removed': [original_summary], 'added': ['summary update!']}),
+        ]
         return data
 
     @override_settings(API_THROTTLING=False)
@@ -2267,16 +2267,26 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         if name_log.arguments[1] != 'name':
             # The order isn't deterministic, it doesn't matter, so just switch em.
             name_log, summ_log = summ_log, name_log
-        assert name_log.arguments == [self.addon, 'name']
-        assert name_log.details == {
-            'added': [patch_data['name']['en-US']],
-            'removed': [original_data['name']],
-        }
-        assert summ_log.arguments == [self.addon, 'summary']
-        assert summ_log.details == {
-            'added': [patch_data['summary']['en-US']],
-            'removed': [original_data['summary']],
-        }
+        assert name_log.arguments == [
+            self.addon,
+            'name',
+            json.dumps(
+                {
+                    'removed': [original_data['name']],
+                    'added': [patch_data['name']['en-US']],
+                }
+            ),
+        ]
+        assert summ_log.arguments == [
+            self.addon,
+            'summary',
+            json.dumps(
+                {
+                    'removed': [original_data['summary']],
+                    'added': [patch_data['summary']['en-US']],
+                }
+            ),
+        ]
 
         alog = ActivityLog.objects.exclude(
             action__in=(
@@ -2556,7 +2566,7 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         )
 
     def test_metadata_change_triggers_content_review(self):
-        old_name = self.addon.name
+        old_name = str(self.addon.name)
         AddonApprovalsCounter.approve_content_for_addon(addon=self.addon)
         assert AddonApprovalsCounter.objects.get(addon=self.addon).last_content_review
 
@@ -2580,10 +2590,16 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         if name_log.arguments[1] != 'name':
             # The order isn't deterministic, it doesn't matter, so just switch em.
             name_log, summ_log = summ_log, name_log
-        assert name_log.arguments == [self.addon, 'name']
-        assert name_log.details == {'added': ['new name'], 'removed': [old_name]}
-        assert summ_log.arguments == [self.addon, 'summary']
-        assert summ_log.details == {'added': ['summary nouveau'], 'removed': []}
+        assert name_log.arguments == [
+            self.addon,
+            'name',
+            json.dumps({'removed': [old_name], 'added': ['new name']}),
+        ]
+        assert summ_log.arguments == [
+            self.addon,
+            'summary',
+            json.dumps({'removed': [], 'added': ['summary nouveau']}),
+        ]
 
     def test_metadata_change_same_content(self):
         AddonApprovalsCounter.approve_content_for_addon(addon=self.addon)

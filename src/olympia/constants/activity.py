@@ -1239,7 +1239,7 @@ class DISABLE_AUTO_APPROVAL(_LOG):
 
 
 class EDIT_ADDON_PROPERTY(_LOG):
-    """Expects: addon, field"""
+    """Expects: addon, field. 3rd arg is a json blob."""
 
     id = 208
     action_class = 'edit'

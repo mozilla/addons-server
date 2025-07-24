@@ -1,4 +1,5 @@
 import copy
+import json
 import re
 
 from django.core.exceptions import ValidationError as DjangoValidationError
@@ -1320,12 +1321,12 @@ class AddonSerializer(AMOModelSerializer):
             # version is always a new object, and not a property either
             validated_data.pop('version')
 
-        for field in changes:
+        for field, addedremoved in changes.items():
             ActivityLog.objects.create(
                 amo.LOG.EDIT_ADDON_PROPERTY,
                 instance,
                 field,
-                details={**changes.get(field, {})},
+                json.dumps(addedremoved),
                 user=user,
             )
             validated_data.pop(field)
