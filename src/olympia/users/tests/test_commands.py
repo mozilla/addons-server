@@ -2,12 +2,13 @@ import io
 import json
 import os
 import re
+import tempfile
 import uuid
 from ipaddress import IPv4Address
 from unittest.mock import ANY, patch
 
 from django.core.files.base import ContentFile
-from django.core.management import call_command
+from django.core.management import CommandError, call_command
 
 from waffle.testutils import override_switch
 
@@ -17,7 +18,11 @@ from olympia.addons.models import Addon
 from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.amo.utils import SafeStorage
 from olympia.users.management.commands.createsuperuser import Command as CreateSuperUser
-from olympia.users.models import UserProfile, UserRestrictionHistory
+from olympia.users.models import (
+    DisposableEmailDomainRestriction,
+    UserProfile,
+    UserRestrictionHistory,
+)
 
 
 @patch('olympia.users.management.commands.createsuperuser.input')
@@ -473,3 +478,128 @@ class TestMigrateUserPhotos(TestCase):
         self.test_migrate()
         # Running the migration command again shouldn't do anything.
         call_command('migrate_user_photos')
+
+
+class TestBulkAddDisposableEmailDomains(TestCase):
+    def test_missing_file_raises_command_error(self):
+        """Test that the command raises CommandError if the file does not exist"""
+
+        for file, message in [
+            (None, 'Error: the following arguments are required: file'),
+            ('none', 'File none does not exist'),
+        ]:
+            with self.assertRaises(CommandError) as e:
+                args = ['bulk_add_disposable_domains']
+                if file:
+                    args.append(file)
+                call_command(*args)
+            assert message == e.exception.args[0]
+
+    def test_valid_file_triggers_bulk_add(self):
+        """Test that a valid CSV file triggers
+        the bulk_add_disposable_email_domains task
+        and creates DisposableDomainRestriction objects.
+        """
+
+        csv_content = (
+            'Domain,Provider\n'
+            'mailfast.pro,incognitomail.co\n'
+            'foo.com,mail.tm\n'
+            'mailpro.live,incognitomail.co\n'
+        )
+
+        with tempfile.NamedTemporaryFile(mode='w+', delete=False, suffix='.csv') as tmp:
+            tmp.write(csv_content)
+            tmp.flush()
+            tmp_path = tmp.name
+
+        assert DisposableEmailDomainRestriction.objects.count() == 0
+
+        call_command('bulk_add_disposable_domains', tmp_path)
+
+        expected = [
+            ('mailfast.pro', 'incognitomail.co'),
+            ('foo.com', 'mail.tm'),
+            ('mailpro.live', 'incognitomail.co'),
+        ]
+        for domain, provider in expected:
+            assert DisposableEmailDomainRestriction.objects.filter(
+                domain=domain, reason=f'Disposable email domain of {provider}'
+            ).exists()
+
+        assert DisposableEmailDomainRestriction.objects.count() == len(expected)
+
+        os.remove(tmp_path)
+
+    def test_file_with_missing_columns(self):
+        """Test that rows with missing columns are ignored or handled gracefully."""
+        csv_content = (
+            'Domain,Provider\n'
+            'mailfast.pro,incognitomail.co\n'
+            ',mail.tm\n'  # Missing domain
+            'mailpro.live,incognitomail.co\n'
+        )
+
+        with tempfile.NamedTemporaryFile(mode='w+', delete=False, suffix='.csv') as tmp:
+            tmp.write(csv_content)
+            tmp.flush()
+            tmp_path = tmp.name
+
+        assert DisposableEmailDomainRestriction.objects.count() == 0
+
+        call_command('bulk_add_disposable_domains', tmp_path)
+
+        expected = [
+            ('mailfast.pro', 'incognitomail.co'),
+            ('mailpro.live', 'incognitomail.co'),
+        ]
+        for domain, provider in expected:
+            assert DisposableEmailDomainRestriction.objects.filter(
+                domain=domain, reason=f'Disposable email domain of {provider}'
+            ).exists()
+
+        assert not DisposableEmailDomainRestriction.objects.filter(domain='').exists()
+        assert DisposableEmailDomainRestriction.objects.count() == len(expected)
+
+        os.remove(tmp_path)
+
+    def test_file_with_header_only(self):
+        """Test that a file with only a header row does not trigger any additions."""
+        csv_content = 'Domain,Provider\n'
+
+        with tempfile.NamedTemporaryFile(mode='w+', delete=False, suffix='.csv') as tmp:
+            tmp.write(csv_content)
+            tmp.flush()
+            tmp_path = tmp.name
+
+        call_command('bulk_add_disposable_domains', tmp_path)
+
+        assert DisposableEmailDomainRestriction.objects.count() == 0
+
+        os.remove(tmp_path)
+
+    @patch('olympia.users.management.commands.bulk_add_disposable_domains.logger')
+    @patch(
+        'olympia.users.management.commands.bulk_add_disposable_domains.bulk_add_disposable_email_domains'
+    )
+    def test_bulk_add_result_is_printed(self, mock_bulk_add, mock_logger):
+        """result of bulk_add_disposable_email_domains task logged."""
+        fake_result = 'Task completed successfully'
+        mock_bulk_add.apply.return_value = fake_result
+
+        csv_content = (
+            'Domain,Provider\n'
+            'mailfast.pro,incognitomail.co\n'
+            'mailpro.live,incognitomail.co\n'
+        )
+
+        with tempfile.NamedTemporaryFile(mode='w+', delete=False, suffix='.csv') as tmp:
+            tmp.write(csv_content)
+            tmp.flush()
+            tmp_path = tmp.name
+
+        try:
+            call_command('bulk_add_disposable_domains', tmp_path)
+            mock_logger.info.assert_called_with(fake_result)
+        finally:
+            os.remove(tmp_path)
