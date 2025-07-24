@@ -3445,7 +3445,7 @@ msgstr "Du kan lære meir om desse alternativa ved å lese <a %(a_attrs)s>Distri
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html:24
 #, python-format
 msgid "All add-ons must comply with <a %(a_attrs)s>Mozilla’s Add-on Policies</a> and are subject to manual review at any time after submission."
-msgstr ""
+msgstr "Alle tillegg må rette seg etter <a %(a_attrs)s>Mozillas retningslinjer for tillegg</a> og kan gåast gjennom manuelt når som helst etter innsending."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:4
 msgid "Submission Complete"
@@ -3469,6 +3469,8 @@ msgid ""
 "You’re done! ✨ You will receive a confirmation email when this version is published on %(site_domain)s. Note that it may take up to 24 hours before publication occurs, or longer if your add-on is "
 "selected for manual review. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
+"Du er ferdig! ✨ Du vil få ei stadfesting på e-post når denne versjonen er publisert på %(site_domain)s. Merk at det kan ta opptil 24 timar før publisering skjer, eller lenger viss tillegget ditt er "
+"valt for manuell gjennomgang. Om du ikkje ser ein e-post etter 24 timar, kan du sjekke søppelpostmappa di."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:31
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
