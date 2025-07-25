@@ -3710,6 +3710,16 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Hei,\n"
+"\n"
+"Du får denne meldinga fordi du ba om nye API-nøklar for utviklarar for\n"
+"%(domain)s. Klikk på lenka nedanfor for å fullføre denne prosessen:\n"
+"\n"
+"%(api_key_confirmation_link)s\n"
+"\n"
+"Helsing, \n"
+"\n"
+"Mozilla-tilleggsteamet"
 
 #: src/olympia/devhub/templates/devhub/emails/new-key-email.ltxt:8
 #, python-format
@@ -3744,6 +3754,14 @@ msgid ""
 "\n"
 "%(url)s"
 msgstr ""
+"API-nøkkelen vart tilbakekalt frå kontoen din:\n"
+"\n"
+"%(key)s\n"
+"\n"
+"Om du meinar at denne nøkkelen vart tilbakekalt ved ein feil, kan du opprette ein ny\n"
+"på følgjande stad:\n"
+"\n"
+"%(url)s"
 
 #: src/olympia/devhub/templates/devhub/emails/submission_api_key_revocation.txt:9
 #, python-format
@@ -3811,7 +3829,7 @@ msgstr "Fullfør tillegget ditt ved å leggje til ein versjon eller manglande me
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:25
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
-msgstr ""
+msgstr "Du vil få ein e-post når gjennomgangen er fullført. Inntil då er ikkje tillegget ditt oppført i galleriet vårt, men du kan få tilgang til det direkte frå detaljsida. "
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:28
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
