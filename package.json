@@ -45,7 +45,7 @@
     "dotenv": "^16.4.7",
     "eslint": "^9.28.0",
     "eslint-config-prettier": "^10.1.5",
-    "eslint-plugin-prettier": "^5.2.6",
+    "eslint-plugin-prettier": "^5.5.3",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "glob": "^11.0.2",
     "globals": "^15.14.0",
