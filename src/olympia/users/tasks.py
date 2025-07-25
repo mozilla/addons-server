@@ -230,9 +230,6 @@ def bulk_add_disposable_email_domains(entries: list[tuple[str, str]], batch_size
     processed_domains = []
     records_iter = iter(records)
 
-    if not isinstance(batch_size, int) or batch_size <= 0:
-        raise ValueError('batch_size must be a positive integer')
-
     while batch := list(itertools.islice(records_iter, batch_size)):
         created_objects = DisposableEmailDomainRestriction.objects.bulk_create(
             batch,

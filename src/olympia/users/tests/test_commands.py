@@ -513,9 +513,9 @@ class TestBulkAddDisposableEmailDomains(TestCase):
             tmp.flush()
             tmp_path = tmp.name
 
-        assert DisposableEmailDomainRestriction.objects.count() == 0
+            assert DisposableEmailDomainRestriction.objects.count() == 0
 
-        call_command('bulk_add_disposable_domains', tmp_path)
+            call_command('bulk_add_disposable_domains', tmp_path)
 
         expected = [
             ('mailfast.pro', 'incognitomail.co'),
@@ -528,8 +528,6 @@ class TestBulkAddDisposableEmailDomains(TestCase):
             ).exists()
 
         assert DisposableEmailDomainRestriction.objects.count() == len(expected)
-
-        os.remove(tmp_path)
 
     def test_file_with_missing_columns(self):
         """Test that rows with missing columns are ignored or handled gracefully."""
@@ -545,9 +543,9 @@ class TestBulkAddDisposableEmailDomains(TestCase):
             tmp.flush()
             tmp_path = tmp.name
 
-        assert DisposableEmailDomainRestriction.objects.count() == 0
+            assert DisposableEmailDomainRestriction.objects.count() == 0
 
-        call_command('bulk_add_disposable_domains', tmp_path)
+            call_command('bulk_add_disposable_domains', tmp_path)
 
         expected = [
             ('mailfast.pro', 'incognitomail.co'),
@@ -561,8 +559,6 @@ class TestBulkAddDisposableEmailDomains(TestCase):
         assert not DisposableEmailDomainRestriction.objects.filter(domain='').exists()
         assert DisposableEmailDomainRestriction.objects.count() == len(expected)
 
-        os.remove(tmp_path)
-
     def test_file_with_header_only(self):
         """Test that a file with only a header row does not trigger any additions."""
         csv_content = 'Domain,Provider\n'
@@ -572,11 +568,8 @@ class TestBulkAddDisposableEmailDomains(TestCase):
             tmp.flush()
             tmp_path = tmp.name
 
-        call_command('bulk_add_disposable_domains', tmp_path)
-
-        assert DisposableEmailDomainRestriction.objects.count() == 0
-
-        os.remove(tmp_path)
+            call_command('bulk_add_disposable_domains', tmp_path)
+            assert DisposableEmailDomainRestriction.objects.count() == 0
 
     @patch('olympia.users.management.commands.bulk_add_disposable_domains.logger')
     @patch(
@@ -598,8 +591,5 @@ class TestBulkAddDisposableEmailDomains(TestCase):
             tmp.flush()
             tmp_path = tmp.name
 
-        try:
             call_command('bulk_add_disposable_domains', tmp_path)
             mock_logger.info.assert_called_with(fake_result)
-        finally:
-            os.remove(tmp_path)

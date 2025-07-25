@@ -11,7 +11,7 @@ logger = logger.getLogger('z.users')
 
 
 class Command(BaseCommand):
-    help = 'Bulk add disposable email domains (no-op)'
+    help = 'Bulk add disposable email domains'
 
     def add_arguments(self, parser):
         parser.add_argument('file', type=str)
