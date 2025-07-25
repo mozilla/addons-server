@@ -1606,6 +1606,7 @@ class RollbackVersionForm(forms.Form):
         coerce=int,
         widget=forms.RadioSelect(),
     )
+    listed_version = forms.TypedChoiceField(choices=(), coerce=int, required=False)
     unlisted_version = forms.ModelChoiceField(
         queryset=Version.objects.none(), empty_label=gettext('Choose version')
     )
@@ -1614,13 +1615,19 @@ class RollbackVersionForm(forms.Form):
     def __init__(self, *args, **kwargs):
         self.addon = kwargs.pop('addon')
         super().__init__(*args, **kwargs)
+        listed = self.fields['listed_version']
         unlisted = self.fields['unlisted_version']
         channel = self.fields['channel']
 
         listed_queryset = self.addon.rollbackable_versions_qs(amo.CHANNEL_LISTED)
         self.listed_count = listed_queryset.count()
         # We currently only allow rolling back to a single listed version.
-        self.listed_version = listed_queryset.first() if self.listed_count else None
+        if self.listed_count:
+            listed_version_obj = listed_queryset.first()
+            listed.choices = ((listed_version_obj.id, listed_version_obj),)
+        else:
+            listed.choices = ((None, 'No appropriate version available'),)
+
         unlisted.queryset = self.addon.rollbackable_versions_qs(amo.CHANNEL_UNLISTED)
         self.unlisted_count = unlisted.queryset.count()
 
@@ -1655,10 +1662,15 @@ class RollbackVersionForm(forms.Form):
             raise forms.ValidationError(error)
         return new_version_string
 
+    def clean_listed_version(self):
+        version_pk, version_obj = self.fields['listed_version'].choices[0]
+        self.cleaned_data['listed_version'] = version_obj if version_pk else None
+        return self.cleaned_data['listed_version']
+
     def clean(self):
         data = super().clean()
         data['version'] = (
-            self.listed_version
+            data.get('listed_version')
             if data.get('channel') == amo.CHANNEL_LISTED
             else data.get('unlisted_version')
             if data.get('channel') == amo.CHANNEL_UNLISTED

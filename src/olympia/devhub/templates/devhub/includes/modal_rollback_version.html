@@ -20,9 +20,10 @@
         {% endif %}
         {% if has_listed_versions %}
         <tr id="listed-version-row">
-        <td><label>{{ _('Version') }}</label></td>
+        <td><label for="id_listed_version">{{ _('Version') }}</label></td>
         <td>
-            <span id="listed_version_for_rollback">{{ rollback_form.listed_version or _('No appropriate version available') }}</span>
+            {{ rollback_form.listed_version }}
+            {{ rollback_form.listed_version.errors }}
         </td>
         </tr>
         {% endif %}

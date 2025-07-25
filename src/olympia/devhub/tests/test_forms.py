@@ -1468,7 +1468,9 @@ class TestRollbackVersionForm(TestCase):
             v2.version,
             v1.version,
         ]
-        assert form.listed_version is None
+        assert form.fields['listed_version'].choices == [
+            (None, 'No appropriate version available')
+        ]
 
     def test_no_unlisted_version_choices(self):
         """No listed version choices should default the channel to unlisted, and make
@@ -1479,7 +1481,7 @@ class TestRollbackVersionForm(TestCase):
         form = forms.RollbackVersionForm(addon=addon)
         assert form.fields['channel'].initial == amo.CHANNEL_LISTED
         assert form.fields['unlisted_version'].required is False
-        assert form.listed_version == v2
+        assert form.fields['listed_version'].choices == [(v2.id, v2)]
 
     def test_listed_and_unlisted_version_choices(self):
         """Both listed and unlisted version choices should be available."""
@@ -1492,7 +1494,7 @@ class TestRollbackVersionForm(TestCase):
         form = forms.RollbackVersionForm(addon=addon)
         assert form.fields['channel'].initial is amo.CHANNEL_UNLISTED
         assert form.fields['unlisted_version'].required is True
-        assert form.listed_version == lv2
+        assert form.fields['listed_version'].choices == [(lv2.id, lv2)]
         assert [str(lab) for _, lab in form.fields['unlisted_version'].choices] == [
             'Choose version',
             uv2.version,
@@ -1585,17 +1587,27 @@ class TestRollbackVersionForm(TestCase):
         }
         # test we're selecting the listed channel
         form = forms.RollbackVersionForm(data, addon=addon)
-        assert form.listed_version == lv1
+        assert form.fields['listed_version'].choices == [(lv1.id, lv1)]
         assert form.is_valid(), form.errors
-        # the listed version is added as the chosen version
-        assert form.clean() == {**data, 'unlisted_version': uv1, 'version': lv1}
+        # the listed version is added, and as the chosen version
+        assert form.clean() == {
+            **data,
+            'unlisted_version': uv1,
+            'listed_version': lv1,
+            'version': lv1,
+        }
 
         # repeat with unlisted
         data['channel'] = amo.CHANNEL_UNLISTED
         form = forms.RollbackVersionForm(data, addon=addon)
         assert form.is_valid(), form.errors
         # the selected unlisted version is added as the chosen version
-        assert form.clean() == {**data, 'unlisted_version': uv1, 'version': uv1}
+        assert form.clean() == {
+            **data,
+            'unlisted_version': uv1,
+            'listed_version': lv1,
+            'version': uv1,
+        }
 
         # and when we select listed but there is no listed version availble: error
         data['channel'] = amo.CHANNEL_LISTED
