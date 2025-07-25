@@ -4521,7 +4521,7 @@ msgstr "Videoları kolayca indirin. YouTube, Facebook, Vimeo, Twitch, Dailymotio
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:38
 msgid "Up your emoji game. Dozens of amazing emojis for every occasion—always just a click away."
-msgstr "Emojilerini bambaşka bir seviyeye taşıyın. Her durum için onlarca harika emoji her zaman bir tık uzağında."
+msgstr "Emojilerinizi bambaşka bir seviyeye taşıyın. Her durum için onlarca harika emoji her zaman bir tık uzağınızda."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:41
