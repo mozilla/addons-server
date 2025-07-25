@@ -3818,6 +3818,16 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Hei,\n"
+"\n"
+"Du får denne meldinga fordi du ba om å stadfeste e-postadressa di.\n"
+"For å fullføre denne prosessen, klikk på lenka nedanfor:\n"
+"\n"
+"%(confirmation_link)s\n"
+"\n"
+"Helsing,\n"
+"\n"
+"Mozilla tilleggsteamet"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:6 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:4
 msgid "Invisible"
@@ -3837,11 +3847,12 @@ msgstr "Tillegget ditt blir vist i galleriet vårt, og brukarane får automatisk
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:30
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery."
-msgstr ""
+msgstr "Tillegget ditt vart deaktivert av ein nettstadadministrator og visast ikkje lenger i galleriet vårt."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:33
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
+"Tillegget ditt vil ikkje bli inkludert i søkjeresultata, og oppføringssida vil indikere at du har deaktivert det. Nye versjonsinnsendingar for oppføring vil ikkje bli aksepterte i denne tilstanden."
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:40 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:85
@@ -3856,7 +3867,7 @@ msgstr "Sist oppdatert:"
 #. {0} is a date. dennis-ignore: E201,E202,W202
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:56
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
-msgstr ""
+msgstr "Oppført på denne nettstaden etter bestått kodegjennomgang. Automatiske oppdateringar blir handsama av denne nettstaden"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:68
 msgid "Listed Version:"
