@@ -3869,7 +3869,7 @@ msgstr "檢視統計資訊儀錶板"
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement, Review Policies and Rules and our <a %(a_attrs)s href=\"%(faq_url)s\">Frequently Asked Questions</a>. The Firefox "
 "Add-on Distribution Agreement also links to our Privacy Notice which explains how we handle your information."
-msgstr ""
+msgstr "開始前，請先閱讀並接受我們的 Firefox 附加元件發行同意書、審核規則與政策，還有<a %(a_attrs)s href=\"%(faq_url)s\">常見問題集</a>。Firefox 附加元件發行同意書當中亦包含我們的隱私權公告，解釋我們會如何處理您的資訊。"
 
 #: src/olympia/devhub/templates/devhub/includes/agreement.html:10
 msgid "Review Policies and Rules"
