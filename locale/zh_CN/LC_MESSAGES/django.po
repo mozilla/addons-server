@@ -3865,7 +3865,7 @@ msgstr "查看统计数据面板"
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement, Review Policies and Rules and our <a %(a_attrs)s href=\"%(faq_url)s\">Frequently Asked Questions</a>. The Firefox "
 "Add-on Distribution Agreement also links to our Privacy Notice which explains how we handle your information."
-msgstr ""
+msgstr "开始前，请先阅读并接受我们的 Firefox 附加组件分发协议、审核政策和规则，以及我们的<a %(a_attrs)s href=\"%(faq_url)s\">常见问题</a>。Firefox 附加组件分发协议也与我们的隐私声明相关联，后者阐述了我们处理您信息的方式。"
 
 #: src/olympia/devhub/templates/devhub/includes/agreement.html:10
 msgid "Review Policies and Rules"
