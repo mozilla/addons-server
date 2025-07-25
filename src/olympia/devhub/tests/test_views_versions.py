@@ -842,7 +842,8 @@ class TestVersion(TestCase):
         # we hide the channel selector, because there are no other channels
         assert modal('input[name="channel"]').attr('type') == 'hidden'
         assert modal('input[name="channel"]').attr('value') == str(amo.CHANNEL_LISTED)
-        assert modal('#listed_version_for_rollback').text() == first_version.version
+        assert modal('select option').length == 1
+        assert modal('select option')[0].text == first_version.version
         # and the select for unlisted versions is not present
         assert 'Choose version' not in modal.html()
 
@@ -861,7 +862,7 @@ class TestVersion(TestCase):
         channel_input = modal('input[name="channel"]')
         assert channel_input.attr('type') == 'hidden'
         assert channel_input.attr('value') == str(amo.CHANNEL_UNLISTED)
-        assert modal('#listed_version_for_rollback').length == 0
+        assert modal('#id_listed_version').length == 0
         assert 'Choose version' in modal.html()
         assert modal('select option').length == 2
         assert modal('select option')[0].text == 'Choose version'
@@ -891,12 +892,13 @@ class TestVersion(TestCase):
         # and disable it
         assert modal(f'{channel_selector}[disabled]').length == 2
         assert modal(channel_selector).length == 2
+        assert modal('#id_listed_version option').length == 1
         assert (
-            modal('#listed_version_for_rollback').text()
+            modal('#id_listed_version option').text()
             == 'No appropriate version available'
         )
         assert 'Choose version' in modal.html()
-        assert modal('select option').length == 2
+        assert modal('#id_unlisted_version option').length == 2
 
     @override_switch('version-rollback', active=True)
     def test_version_rollback_form_both_channels(self):
@@ -914,7 +916,8 @@ class TestVersion(TestCase):
         # this time we show the channel selector, because there are both channels
         channel_selector = 'input[name="channel"]'
         assert modal(channel_selector).attr('type') == 'radio'
-        assert not modal(f'{channel_selector}[value="{amo.CHANNEL_UNLISTED}"]').attr(
+        # and preselect unlisted because it's the most recent channel for a version
+        assert modal(f'{channel_selector}[value="{amo.CHANNEL_UNLISTED}"]').attr(
             'checked'
         )
         assert not modal(f'{channel_selector}[value="{amo.CHANNEL_LISTED}"]').attr(
@@ -923,8 +926,10 @@ class TestVersion(TestCase):
         # and they're enabled
         assert modal(f'{channel_selector}[disabled]').length == 0
         assert modal(channel_selector).length == 2
-        assert modal('#listed_version_for_rollback').text() == listed_version.version
+        assert modal('#id_listed_version option').length == 1
+        assert modal('#id_listed_version option').text() == listed_version.version
         assert 'Choose version' in modal.html()
+        assert modal('#id_unlisted_version option').length == 2
 
     @override_switch('version-rollback', active=True)
     def test_version_rollback_submit(self):
