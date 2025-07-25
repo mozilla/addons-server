@@ -4771,7 +4771,7 @@ msgstr "Add encrypted security to any site that supports HTTPS. Browse securely.
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:152
 msgid "Get the best coupons automatically applied to your shopping cart at checkout."
-msgstr "Get the best coupons automatically applied to your shopping cart at checkout."
+msgstr "Get the best coupons automatically applied to your shopping basket at checkout."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:155
