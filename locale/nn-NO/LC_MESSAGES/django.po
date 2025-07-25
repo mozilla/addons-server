@@ -3928,6 +3928,8 @@ msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement, Review Policies and Rules and our <a %(a_attrs)s href=\"%(faq_url)s\">Frequently Asked Questions</a>. The Firefox "
 "Add-on Distribution Agreement also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
+"Før du startar, les og godta distribusjonsavtalen vår for Firefox-tillegg, gjennomgangspolicyar og reglar og dei <a %(a_attrs)s href=\"%(faq_url)s\">ofte stilte spørsmåla</a> våre. "
+"Distribusjonsavtalen for Firefox-tillegg lenker også til personvernfråsegna vår som forklarar korleis vi handsamar informasjonen din."
 
 #: src/olympia/devhub/templates/devhub/includes/agreement.html:10
 msgid "Review Policies and Rules"
@@ -3939,7 +3941,7 @@ msgstr "Eg har lese og godteke denne avtalen, reglane og retningslinjene"
 
 #: src/olympia/devhub/templates/devhub/includes/agreement.html:18
 msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr ""
+msgstr "Kontoen din må angi eit visingsnamn slik at brukarane veit kven tillegget kjem frå. Skriv inn eit nedanfor."
 
 #: src/olympia/devhub/templates/devhub/includes/agreement.html:38
 #, python-brace-format
