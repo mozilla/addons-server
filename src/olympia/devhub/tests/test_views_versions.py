@@ -10,6 +10,7 @@ from django.core.files.base import File as DjangoFile
 from django.urls import reverse
 
 from pyquery import PyQuery as pq
+from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
@@ -719,7 +720,7 @@ class TestVersion(TestCase):
             amo.LOG.REVIEWER_REPLY_VERSION, v2.addon, v2, user=self.user
         )
 
-        with self.assertNumQueries(40):
+        with self.assertNumQueries(41):
             # 1. SAVEPOINT
             # 2. the add-on
             # 3. translations for that add-on (default transformer)
@@ -759,6 +760,7 @@ class TestVersion(TestCase):
             # 36. check on user being an author (dupe)
             # 38. waffle switch
             # 39-40. promotion group queries
+            # 41. (not in order) version-rollback waffle check
             response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -811,6 +813,160 @@ class TestVersion(TestCase):
         assert file_status_tds('span.distribution-tag-unlisted').length == 1
         # Extra tags in the headers too
         assert doc('h3 span.distribution-tag-listed').length == 2
+
+    @override_switch('version-rollback', active=True)
+    def test_version_rollback_form_not_available(self):
+        first_version = self.addon.current_version
+        second_version = version_factory(addon=self.addon)
+        first_version.file.update(status=amo.STATUS_DISABLED)
+        assert self.addon.current_version == second_version
+
+        response = self.client.get(self.url)
+        # no versions available for rollback, so the button and form isn't available
+        doc = pq(response.content)
+        assert doc('a.button.version-rollback').length == 0
+        assert doc('#modal-rollback-version').length == 0
+
+    @override_switch('version-rollback', active=True)
+    def test_version_rollback_form_listed_only(self):
+        first_version = self.addon.current_version
+        second_version = version_factory(addon=self.addon)
+        assert self.addon.current_version == second_version
+
+        # if there is a version available for rollback, the button and form are present
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert doc('a.button.version-rollback').length == 1
+        modal = doc('#modal-rollback-version')
+        assert modal.length == 1
+        # we hide the channel selector, because there are no other channels
+        assert modal('input[name="channel"]').attr('type') == 'hidden'
+        assert modal('input[name="channel"]').attr('value') == str(amo.CHANNEL_LISTED)
+        assert modal('select option').length == 1
+        assert modal('select option')[0].text == first_version.version
+        # and the select for unlisted versions is not present
+        assert 'Choose version' not in modal.html()
+
+    @override_switch('version-rollback', active=True)
+    def test_version_rollback_form_unlisted_only(self):
+        first_version = self.addon.current_version
+        version_factory(addon=self.addon)
+        self.make_addon_unlisted(self.addon)
+
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert doc('a.button.version-rollback').length == 1
+        modal = doc('#modal-rollback-version')
+        assert modal.length == 1
+        # similarly, we hide the channel selector, because there are no listed versions
+        channel_input = modal('input[name="channel"]')
+        assert channel_input.attr('type') == 'hidden'
+        assert channel_input.attr('value') == str(amo.CHANNEL_UNLISTED)
+        assert modal('#id_listed_version').length == 0
+        assert 'Choose version' in modal.html()
+        assert modal('select option').length == 2
+        assert modal('select option')[0].text == 'Choose version'
+        assert modal('select option')[1].text == first_version.version
+
+    @override_switch('version-rollback', active=True)
+    def test_version_rollback_form_listed_but_not_appropriate(self):
+        version_factory(addon=self.addon, channel=amo.CHANNEL_UNLISTED)
+        version_factory(addon=self.addon, channel=amo.CHANNEL_UNLISTED)
+
+        # with both channels available, but no appropriate listed version
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert doc('a.button.version-rollback').length == 1
+        modal = doc('#modal-rollback-version')
+        assert modal.length == 1
+        # this time we show the channel selector, because there are both channels
+        channel_selector = 'input[name="channel"]'
+        assert modal(channel_selector).attr('type') == 'radio'
+        # but default to unlisted, because there are no listed versions to rollback to
+        assert modal(f'{channel_selector}[value="{amo.CHANNEL_UNLISTED}"]').attr(
+            'checked'
+        )
+        assert not modal(f'{channel_selector}[value="{amo.CHANNEL_LISTED}"]').attr(
+            'checked'
+        )
+        # and disable it
+        assert modal(f'{channel_selector}[disabled]').length == 2
+        assert modal(channel_selector).length == 2
+        assert modal('#id_listed_version option').length == 1
+        assert (
+            modal('#id_listed_version option').text()
+            == 'No appropriate version available'
+        )
+        assert 'Choose version' in modal.html()
+        assert modal('#id_unlisted_version option').length == 2
+
+    @override_switch('version-rollback', active=True)
+    def test_version_rollback_form_both_channels(self):
+        listed_version = self.addon.current_version
+        version_factory(addon=self.addon)
+        version_factory(addon=self.addon, channel=amo.CHANNEL_UNLISTED)
+        version_factory(addon=self.addon, channel=amo.CHANNEL_UNLISTED)
+
+        # with both channels available with multiple versions
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert doc('a.button.version-rollback').length == 1
+        modal = doc('#modal-rollback-version')
+        assert modal.length == 1
+        # this time we show the channel selector, because there are both channels
+        channel_selector = 'input[name="channel"]'
+        assert modal(channel_selector).attr('type') == 'radio'
+        # and preselect unlisted because it's the most recent channel for a version
+        assert modal(f'{channel_selector}[value="{amo.CHANNEL_UNLISTED}"]').attr(
+            'checked'
+        )
+        assert not modal(f'{channel_selector}[value="{amo.CHANNEL_LISTED}"]').attr(
+            'checked'
+        )
+        # and they're enabled
+        assert modal(f'{channel_selector}[disabled]').length == 0
+        assert modal(channel_selector).length == 2
+        assert modal('#id_listed_version option').length == 1
+        assert modal('#id_listed_version option').text() == listed_version.version
+        assert 'Choose version' in modal.html()
+        assert modal('#id_unlisted_version option').length == 2
+
+    @override_switch('version-rollback', active=True)
+    def test_version_rollback_submit(self):
+        first_version = self.addon.current_version
+        second_version = version_factory(
+            addon=self.addon, file_kw={'status': amo.STATUS_APPROVED}
+        )
+        data = {
+            'channel': amo.CHANNEL_LISTED,
+            'new_version_string': second_version.version,
+            'rollback-submit': '',
+        }
+        response = self.client.post(self.url, data)
+        self.assertFormError(
+            response,
+            'rollback_form',
+            'new_version_string',
+            [f'Version {data["new_version_string"]} already exists.'],
+        )
+
+        data['new_version_string'] = second_version.version + '.1'
+        with mock.patch(
+            'olympia.devhub.views.duplicate_addon_version_for_rollback.delay'
+        ) as mock_rollback_task:
+            response = self.client.post(self.url, data)
+            self.assert3xx(response, self.url, 302)
+            mock_rollback_task.assert_called_once_with(
+                version_pk=first_version.pk,
+                new_version_number=data['new_version_string'],
+                user_pk=self.user.pk,
+            )
+
+        response = self.client.get(self.url)
+        assert (
+            "Rollback submitted. You'll be notified when it's approved"
+            in pq(response.content).text()
+        )
 
 
 class TestVersionEditBase(TestCase):

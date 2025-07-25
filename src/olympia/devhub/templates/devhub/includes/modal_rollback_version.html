@@ -1,0 +1,55 @@
+<div id="modal-rollback-version" class="modal modal-rollback">
+    <h3>{{ _('Roll back to a previous version') }}</h3>
+    <div>
+        {% trans addon_type=addon.get_type_display() %}Users of this {{ addon_type }} will roll back to the previous version you choose.{% endtrans %}
+        <a href="">{{ _('Learn more') }}</a>
+    </div>
+
+    <form method="post" action="#rollback-version">
+        <table>
+        {% if has_listed_versions and has_unlisted_versions %}
+        <tr>
+        <td><label for="id_channel">{{ _('Distribution channel') }}</label></td>
+        <td>
+            {{ rollback_form.channel }}
+            {{ rollback_form.channel.errors }}
+        </td>
+        </tr>
+        {% else %}
+        <input type="hidden" name="channel" value="{{ rollback_form.channel.value() }}">
+        {% endif %}
+        {% if has_listed_versions %}
+        <tr id="listed-version-row">
+        <td><label for="id_listed_version">{{ _('Version') }}</label></td>
+        <td>
+            {{ rollback_form.listed_version }}
+            {{ rollback_form.listed_version.errors }}
+        </td>
+        </tr>
+        {% endif %}
+        {% if has_unlisted_versions %}
+        <tr id="unlisted-version-row">
+        <td><label for="id_unlisted_version">{{ _('Version') }}</label></td>
+        <td>
+            {{ rollback_form.unlisted_version }}
+            {{ rollback_form.unlisted_version.errors }}
+        </td>
+        </tr>
+        {% endif %}
+        <tr>
+        <td><label for="id_new_version_string">{{ _('New version number') }}</label></td>
+        <td>
+            {{ rollback_form.new_version_string }}
+            {{ rollback_form.new_version_string.errors }}
+        </td>
+        </tr>
+        </table>
+        {{ rollback_form.non_field_errors() }}
+        {% csrf_token %}
+        <div class="modal-actions">
+        <button type="submit" class="submit" name="rollback-submit">{{ _('Roll back') }}</button>
+        <a href="#" class="close">{{ _('Cancel') }}</a>
+        </div>
+
+    </form>
+</div>

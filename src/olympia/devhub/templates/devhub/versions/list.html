@@ -211,19 +211,30 @@
       </div>
     {% endif %}
 
-    <h3>{{ _('Other versions') }}</h3>
+    {% set other_versions_header_text =_('Other versions') %}
   {% else %}
-    <h3>{{ _('All versions') }}</h3>
+    {% set other_versions_header_text =_('All versions') %}
   {% endif %}
-  <div class="item" id="version-list"
-       data-stats="{{ url('devhub.versions.stats', addon.slug) }}">
-    <div class="item_wrapper">
+  <div id="other-versions-header">
+    <h3>{{ other_versions_header_text }}</h3>
+
+    <div class="version-buttons">
+      {% if can_rollback %}
+      <div>
+        <a href="#rollback-version" class="button version-rollback">{{ _('Rollback to a previous version') }}</a>
+      </div>
+      {% endif %}
       {% if can_submit %}
       <div>
         {% set version_upload_url = url('devhub.submit.version', addon.slug) %}
         <a href="{{ version_upload_url }}" class="button version-upload">{{ _('Upload a New Version') }}</a>
       </div>
       {% endif %}
+    </div>
+  </div>
+  <div class="item" id="version-list"
+       data-stats="{{ url('devhub.versions.stats', addon.slug) }}">
+    <div class="item_wrapper">
       <table>
         <tr>
           <th>{{ _('Version') }}</th>
@@ -302,6 +313,10 @@
       <a href="#" class="close">{{ _('Cancel') }}</a>
     </p>
   </div>
+
+  {% if can_rollback %}
+  {% include "devhub/includes/modal_rollback_version.html" %}}
+  {% endif %}
 
   {% if has_listed_versions %}
   {% if not addon.disabled_by_user and not addon.is_disabled %}

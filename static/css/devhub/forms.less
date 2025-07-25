@@ -280,3 +280,38 @@ a.remove:hover {
     display: block;
     width: 100%;
 }
+
+#other-versions-header {
+    display:flex;
+    justify-content: space-between;
+
+    .version-buttons {
+        display: flex;
+        gap: 1em;
+    }
+
+    .button.version-rollback {
+        background-color: white;
+        color: #5784bf;
+        border-color: #5784bf;
+        border-style: solid;
+        border-width: 1px;
+    }
+}
+
+#modal-rollback-version {
+    td {
+        width: 15em;
+        padding-bottom: 1em;
+
+        > * {
+            box-sizing: border-box;
+            width: 100%;
+        }
+    }
+
+    .close {
+        margin: 2em;
+        font-weight: bolder;
+    }
+}
