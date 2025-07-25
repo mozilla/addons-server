@@ -3723,6 +3723,14 @@ msgid ""
 "\n"
 "%(url)s"
 msgstr ""
+"Følgjande API-nøkkel vart lagt til kontoen din:\n"
+"\n"
+"%(key)s\n"
+"\n"
+"Om du meinar at denne nøkkelen vart oppretta ved en feil, kan du fjerne nøkkelen og\n"
+"deaktivere tilgang på følgjande stad:\n"
+"\n"
+"%(url)s"
 
 #: src/olympia/devhub/templates/devhub/emails/revoked-key-email.ltxt:8
 #, python-format
