@@ -3961,6 +3961,8 @@ msgid ""
 "Did you test your extension to ensure it works as expected on Firefox for Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" "
 "href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
 msgstr ""
+"Har du testa utvidinga di for å sikre at ho fungerer som venta på Firefox for Android? Om ikkje, kan du sjå <a target=\"_blank\" rel=\"noopener noreferrer\" "
+"href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">Utvikling av utvidingar for Firefox Android</a> for testrettleiing før du sender den inn."
 
 #: src/olympia/devhub/templates/devhub/includes/android_compatibility_modal.html:6
 msgid "Yes, I’ve tested my extension with Firefox for Android"
@@ -3984,7 +3986,7 @@ msgstr "Versjonsignering ventar"
 
 #: src/olympia/devhub/templates/devhub/includes/done_unlisted.html:3
 msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
-msgstr ""
+msgstr "Du er ferdig! ✨ Du vil bli varsla via e-post når den signerte fila er klar for å bli lasta ned frå utviklarhuben. Om du ikkje ser ein e-post innan 24 timar, kan du sjekke søppelpostmappa di."
 
 #: src/olympia/devhub/templates/devhub/includes/license_form.html:5 src/olympia/devhub/templates/devhub/versions/edit.html:83
 msgid "License"
@@ -3992,7 +3994,7 @@ msgstr "Lisens"
 
 #: src/olympia/devhub/templates/devhub/includes/license_form.html:6
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Vel ein lisens som passar til rettane du gir på kjeldekoden din. Han er berre relevant for oppførte tillegg."
 
 #: src/olympia/devhub/templates/devhub/includes/listing_header.html:2
 msgid "Sort by:"
@@ -4046,7 +4048,7 @@ msgstr "Les meir om vurderingspraksisen for kjeldekode."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/banner.html:4
 msgid "Build best-in-class extensions and themes"
-msgstr ""
+msgstr "Utvikle utvidingar og tema i toppklasse"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/banner.html:7 src/olympia/devhub/templates/devhub/new-landing/components/overview.html:5
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
