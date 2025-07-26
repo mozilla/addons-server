@@ -6415,7 +6415,7 @@ msgstr "Definisjonen er ikke gyldig: %(error)s"
 
 #: src/olympia/scanners/models.py:201
 msgid "An error occurred when compiling the definition"
-msgstr "Det oppsto en feil under kompilering av definisjonen"
+msgstr "Det oppstod en feil under kompilering av definisjonen"
 
 #: src/olympia/scanners/models.py:212
 msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
