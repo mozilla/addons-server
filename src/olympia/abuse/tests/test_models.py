@@ -3034,7 +3034,9 @@ class TestContentDecision(TestCase):
             assert request_body['policy_uuids'] == ['12345678']
             assert request_body['reasoning'] == 'some review text'
             assert 'entity' not in request_body
-            assert 'enforcement_actions_slugs' not in request_body
+            assert request_body['enforcement_actions_slugs'] == [
+                decision.action.api_value
+            ]
         else:
             assert create_decision_response.call_count == 0
             assert create_job_decision_response.call_count == 0

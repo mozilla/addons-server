@@ -174,14 +174,8 @@ class CinderEntity:
             **data,
             'reasoning': self.get_str(reasoning),
             'policy_uuids': policy_uuids,
-            **(
-                {
-                    'enforcement_actions_slugs': [action],
-                    'enforcement_actions_update_strategy': 'set',
-                }
-                if action is not None
-                else {}
-            ),
+            'enforcement_actions_slugs': [action],
+            'enforcement_actions_update_strategy': 'set',
         }
         response = requests.post(url, json=data, headers=self.get_cinder_http_headers())
         response.raise_for_status()
@@ -204,10 +198,7 @@ class CinderEntity:
 
     def create_override_decision(self, *, action, reasoning, policy_uuids, decision_id):
         url = f'{settings.CINDER_SERVER_URL}decisions/{decision_id}/override/'
-        # TODO: send action too once
-        # https://lindie.app/share/6a21d831b39351d7c6fe898f6d22619af62dde98/PLAT-1834
-        # implements the same parameters for overrides
-        return self._send_create_decision(url, {}, None, reasoning, policy_uuids)
+        return self._send_create_decision(url, {}, action, reasoning, policy_uuids)
 
     def close_job(self, *, job_id):
         url = f'{settings.CINDER_SERVER_URL}jobs/{job_id}/cancel'

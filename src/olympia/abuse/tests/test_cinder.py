@@ -1428,8 +1428,8 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         )
         request = responses.calls[0].request
         request_body = json.loads(request.body)
-        assert b'enforcement_actions_slugs' not in request.body
-        assert b'enforcement_actions_update_strategy' not in request.body
+        assert request_body['enforcement_actions_slugs'] == ['amo-reject-version-addon']
+        assert request_body['enforcement_actions_update_strategy'] == 'set'
         assert request_body['policy_uuids'] == ['12345678']
         assert request_body['reasoning'] == 'some review text'
         assert 'entity' not in request_body
