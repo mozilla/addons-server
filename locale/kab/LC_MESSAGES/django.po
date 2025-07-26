@@ -3735,6 +3735,13 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Azul,\n"
+"\n"
+"Imayl-ik⋅im yettwasenqed akken iwata.\n"
+"\n"
+"Tanemmirt,\n"
+"\n"
+"Tarbaɛt n yizegrar n Mozilla"
 
 #: src/olympia/devhub/templates/devhub/emails/verify-email-requested.ltxt:10
 #, python-format
