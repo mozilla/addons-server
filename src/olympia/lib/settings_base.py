@@ -825,6 +825,7 @@ CELERY_TASK_ROUTES = {
     },
     'olympia.users.tasks.sync_suppressed_emails_task': {'queue': 'cron'},
     'olympia.users.tasks.send_suppressed_email_confirmation': {'queue': 'devhub'},
+    'olympia.users.tasks.bulk_add_disposable_email_domains': {'queue': 'devhub'},
     # Reviewers.
     'olympia.reviewers.tasks.recalculate_post_review_weight': {'queue': 'reviewers'},
     # Admin.
