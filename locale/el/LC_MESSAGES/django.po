@@ -3762,6 +3762,16 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Γεια σας,\n"
+"\n"
+"Λαμβάνετε αυτό το μήνυμα επειδή ζητήσατε νέα κλειδιά API προγραμματιστή για το\n"
+"%(domain)s. Για να ολοκληρώσετε αυτήν τη διαδικασία, κάντε κλικ στον παρακάτω σύνδεσμο:\n"
+"\n"
+"%(api_key_confirmation_link)s\n"
+"\n"
+"Με εκτίμηση,\n"
+"\n"
+"Η ομάδα των Προσθέτων Mozilla"
 
 #: src/olympia/devhub/templates/devhub/emails/new-key-email.ltxt:8
 #, python-format
@@ -7066,6 +7076,16 @@ msgid ""
 "Kind regards,\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Γεια σας %(author_name)s,\n"
+"\n"
+"Έχετε προσκληθεί να γίνετε δημιουργός του %(addon_name)s στο %(domain)s. Αν αποδεχτείτε την πρόσκληση, θα μπορείτε να επεξεργαστείτε το πρόσθετο και το όνομά σας ενδέχεται να εμφανιστεί στη λίστα δημιουργών στον ιστότοπο.\n"
+"\n"
+"Κάντε κλικ στον παρακάτω σύνδεσμο για να απαντήσετε αν θέλετε να προστεθείτε ως δημιουργός για το %(addon_name)s.\n"
+"\n"
+"%(author_confirmation_link)s\n"
+"\n"
+"Με εκτίμηση,\n"
+"Η ομάδα προσθέτων της Mozilla"
 
 #: src/olympia/users/templates/users/emails/author_changed.ltxt:3
 #, python-format
