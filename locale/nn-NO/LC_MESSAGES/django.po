@@ -5470,7 +5470,7 @@ msgstr "Opprett og tilpass fanegrupper."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:567
 msgid "Save an entire web page—including images and styling—as a single HTML file."
-msgstr ""
+msgstr "Lagre ei heil nettside — inkludert grafikk og stilsett — som ei enkelt HTML-fil."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:572
@@ -5480,30 +5480,30 @@ msgstr "Erstatt automatisk nedsettande ord på nettet."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:575
 msgid "Block all ads—video, pop-ups, banners & more."
-msgstr ""
+msgstr "Blokker alle annonsar — video, sprettoppvindauge, banner og meir."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:578 src/olympia/discovery/strings.jinja2:841
 msgid "Watch streaming media with friends and family anywhere."
-msgstr ""
+msgstr "Sjå strøymemedium med vennar og familie kvar som helst."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:581 src/olympia/discovery/strings.jinja2:883
 msgid "Skip over sponsored portions of YouTube videos."
-msgstr ""
+msgstr "Hopp over sponsa delar av YouTube-videoar."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:584
 msgid "Have web pages read aloud to you. 40+ languages supported."
-msgstr ""
+msgstr "Få nettsider lesne høgt for deg. Støttar over 40 språk."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:587 src/olympia/discovery/strings.jinja2:880
 msgid "Double-click any word to instantly see its definition."
-msgstr ""
+msgstr "Dobbeltklikk på kva ord som helst for å straks sjå definisjonen."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
