@@ -4053,6 +4053,8 @@ msgstr "Utvikle utvidingar og tema i toppklasse"
 #: src/olympia/devhub/templates/devhub/new-landing/components/banner.html:7 src/olympia/devhub/templates/devhub/new-landing/components/overview.html:5
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr ""
+"Anten du er nybyrjar innan utvidingsutvikling, finpussar eller porterer ei eksisterande utviding eller eit tema, eller lagar ei tilpassa bedriftsløysing, har vi ressursane som skal til for å støtte "
+"deg."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/banner.html:13
 msgid "Visit the Firefox Extension Workshop"
@@ -4235,7 +4237,7 @@ msgstr "Logg inn på Developer Hub for sende inn eller handsame utvidingar og te
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/submit_or_manage_extension.html:11
 msgid "Register for a developer account or log in to the Developer Hub"
-msgstr ""
+msgstr "Registrer deg for ein utviklarkonto eller logg deg på Developer Hub"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:5
 #, python-brace-format
@@ -4258,7 +4260,7 @@ msgstr "Kompatibilitet"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:37
 msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
-msgstr ""
+msgstr "Om du justerer programinformasjonen her, kan brukarar installere tillegget ditt sjølv om installasjonsmanifestet i pakken indikerer at tillegget er inkompatibelt."
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:55
 msgid "Add Another Application&hellip;"
@@ -4294,7 +4296,7 @@ msgstr "Kjeldekode"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:121
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
-msgstr ""
+msgstr "Viss tillegget ditt inneheld minimert, samankopla eller på annan måte maskingenerert kode, må du gjere kjeldekoden tilgjengeleg her for gjennomgang."
 
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html:1
 #, python-brace-format
