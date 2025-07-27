@@ -5527,7 +5527,7 @@ msgstr "Tusenvis av GIF-ar lett tilgjengeleg."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:601 src/olympia/discovery/strings.jinja2:910
 msgid "The easiest way to manage YouTube subscriptions."
-msgstr ""
+msgstr "Den enklaste måten å handsame YouTube-abonnement."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:604
