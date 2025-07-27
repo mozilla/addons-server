@@ -303,7 +303,7 @@ class NoURLsTranslation(PureTranslation):
         )
 
 
-class TranslationSequence(models.Model):
+class TranslationSequence(ModelBase):
     """
     The translations_seq table, so migrations will create it during testing.
     """
