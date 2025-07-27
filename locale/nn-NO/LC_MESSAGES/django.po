@@ -4954,7 +4954,7 @@ msgstr "Opne ei ny fane til høgre for gjeldande fane, ikkje i slutten av fanera
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:263
 msgid "Conquer spam. Use clever temporary email addresses to remain anonymous and avoid spam."
-msgstr ""
+msgstr "Nedkjemp spam. Bruk smarte mellombelse e-postadresser for å halde fram med å vere anonym og unngå spam."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:266
