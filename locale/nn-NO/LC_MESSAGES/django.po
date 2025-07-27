@@ -5509,19 +5509,19 @@ msgstr "Dobbeltklikk på kva ord som helst for å straks sjå definisjonen."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:592 src/olympia/discovery/strings.jinja2:922
 msgid "Save batches of tabs as convenient bookmarks."
-msgstr ""
+msgstr "Lagre grupper med faner som praktiske bokmerke."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:595 src/olympia/discovery/strings.jinja2:925
 msgid "Tabs and bookmarks neatly organized in a Firefox side view."
-msgstr ""
+msgstr "Faner og bokmerke fint organiserte i ei sidevising av Firefox."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:598 src/olympia/discovery/strings.jinja2:904
 msgid "Thousands of GIFs at your fingertips."
-msgstr ""
+msgstr "Tusenvis av GIF-ar lett tilgjengeleg."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
