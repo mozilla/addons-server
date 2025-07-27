@@ -4452,6 +4452,8 @@ msgid ""
 "The latest approved version of this %(promoted_group_name)s add-on cannot be deleted or disabled because the previous version was not approved for %(promoted_group_name)s promotion. Please contact "
 "AMO Admins if you need help with this."
 msgstr ""
+"Den siste godkjende versjonen av dette %(promoted_group_name)s-tillegget kan ikkje slettast eller deaktiverast fordi den førre versjonen ikkje vart godkjend for %(promoted_group_name)s-kampanjen. Ta"
+" kontakt med AMO-administratorar om du treng hjelp med dette."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:309 src/olympia/devhub/templates/devhub/versions/list.html:335
 msgid "Hide Add-on"
@@ -4513,7 +4515,7 @@ msgstr "Utfør omvendt bildesøk frå ei rekkje ulike søkjemotorar."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:14 src/olympia/discovery/strings.jinja2:778
 msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr ""
+msgstr "Annonseblokkering og personvernvern. Eit enkelt oppsett lèt deg ta kontroll over annonsane du ser og korleis du blir spora på internett."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4525,13 +4527,13 @@ msgstr "Har du tonnevis av opne faner? Organiser dei i eit ryddig sidepanel."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:20 src/olympia/discovery/strings.jinja2:766
 msgid "Stop Facebook tracking. Isolate your Facebook identity into a separate “container” to prevent Facebook from tracking you around the web."
-msgstr ""
+msgstr "Stopp Facebook-sporing. Isoler Facebook-identiteten din i ein eigen «behaldar» for å forhindre at Facebook sporar deg rundt på nettet."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:23 src/olympia/discovery/strings.jinja2:820
 msgid "Simplify search by highlighting text on any web page to search the phrase from an array of engines."
-msgstr ""
+msgstr "Forenkle søket ved å markere tekst på kva nettside som helst for å søkje etter frasen frå ei rekkje søkjemotorar."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4554,12 +4556,12 @@ msgstr "Ser du eit interessant bilde på nettet og du vil lære meir om det? Pr�
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:35 src/olympia/discovery/strings.jinja2:739
 msgid "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr ""
+msgstr "Last ned videoar enkelt. Fungerer med YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope og hundrevis av andre videosider."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:38
 msgid "Up your emoji game. Dozens of amazing emojis for every occasion—always just a click away."
-msgstr ""
+msgstr "Bli betre på emojiar. Massevis av fantastiske emojiar for alle høve – berre eit klikk unna."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:41
@@ -4570,7 +4572,7 @@ msgstr "Forenkla passordhandsaming. Synkroniser alle innloggingane dine mellom e
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:44 src/olympia/discovery/strings.jinja2:745
 msgid "Effective, lightweight ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr ""
+msgstr "Effektiv og lett annonseblokkering. uBlock Origin brukar tusenvis av innhaldsfilter utan å bruke mykje minne."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4633,7 +4635,7 @@ msgstr "Enkle omsettingar. Marker tekst på kva nettside som helst – eller vel
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:80
 msgid "Tap academic wisdom. Access 10+ million research papers for free."
-msgstr ""
+msgstr "Få akademisk visdom. Få tilgang til over 10 millionar forskingsartiklar gratis."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:83
@@ -4707,7 +4709,7 @@ msgstr "Handter dei opne fanene dine i ein ryddig sidestolpe."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:122 src/olympia/discovery/strings.jinja2:877
 msgid "Avoid sneaky trackers and restrictions. Disguise your navigation by cloaking the identity of your browser and operating system."
-msgstr ""
+msgstr "Unngå snikande sporarar og restriksjonar. Skjul navigasjonen din ved å skjule identiteten til nettlesaren og operativsystemet ditt."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4719,7 +4721,7 @@ msgstr "Oppdater automatisk faner basert på tidsintervaller du spesifiserer."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:128 src/olympia/discovery/strings.jinja2:943
 msgid "Keep parts of your online life separated into color-coded and cookie separated tabs. Now integrated with Mozilla VPN for an extra layer of privacy."
-msgstr ""
+msgstr "Hald delar av nettlivet ditt skilt i fargekoda og infokapsel-separerte faner. No integrert med Mozilla VPN for eit ekstra lag med personvern."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4860,12 +4862,12 @@ msgstr "Lagre passord sikkert og få tilgang til dei på fleire einingar."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:209
 msgid "Know where you go on the web. Get the country location of the websites you visit. Be an informed internet traveler."
-msgstr ""
+msgstr "Kjenn ruta di på nettet. Få vite om landet til alle nettstadar du besøkjer. Ver ein informert internettreisande."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:212
 msgid "Enhance your reading experience. Make the text you're reading more appealing by removing the clutter around it."
-msgstr ""
+msgstr "Forbetre leseopplevinga di. Gjer teksten du les meir tiltalande ved å fjerne rotet rundt han."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
