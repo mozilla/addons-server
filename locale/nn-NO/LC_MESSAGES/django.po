@@ -5568,22 +5568,22 @@ msgstr "Rydd opp i Twitter-opplevinga di."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:627
 msgid "Bring back the ability to see thumbs down!"
-msgstr ""
+msgstr "Få tilbake høvet til å sjå tommelen ned!"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:630
 msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
-msgstr ""
+msgstr "Lytt til musikk på YouTube utan dei irriterande avbrota av «Videoen sett på pause. Hald fram med å sjå?»."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:634
 msgid "Change the way the web looks."
-msgstr ""
+msgstr "Endre korleis nettet ser ut."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:637
 msgid "Customize YouTube to taste. Give it a new look, new features & filter only the content you want."
-msgstr ""
+msgstr "Tilpass YouTube etter din smak. Gi det ein ny utsjånad, nye funksjonar og filtrer berre innhaldet du ønskjer."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:649
@@ -5593,22 +5593,22 @@ msgstr "Endrar fargen på Firefox for å matche utsjånaden på ein nettstad."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:659
 msgid "Protect your privacy against a unique form of JavaScript “fingerprinting”."
-msgstr ""
+msgstr "Ta vare på personvernet ditt mot ei unik form for JavaScript-«fingeravtrykk»."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:667
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
-msgstr ""
+msgstr "Nokre nettstadar har problem med å spele av videoar på Android. Her er ei løysing."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:688
 msgid "Find an interesting pic on the web? Use TinEye to discover its origins."
-msgstr ""
+msgstr "Finn du eit interessant bilde på nettet? Bruk TinEye til å finne ut kvar det kjem frå."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:706
 msgid "Save images easily — just grab them from your current tab."
-msgstr ""
+msgstr "Lagre bilde enkelt — hent dei frå gjeldande fane."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:709
@@ -5618,7 +5618,7 @@ msgstr "Nyt ultimate fanekontroll – lat att dupliserte faner, slå saman vinda
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:727
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
-msgstr ""
+msgstr "Les ePUB-filer rett i Firefox — auk skriftstorleik og sidedimensjonar, med meir."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:748
