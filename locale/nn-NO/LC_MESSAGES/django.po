@@ -5532,13 +5532,13 @@ msgstr "Den enklaste måten å handsame YouTube-abonnement."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:604
 msgid "Get the mouse scrollbar you've always wanted—specify width and color."
-msgstr ""
+msgstr "Få muserullefeltet du alltid har ønskt deg—spesifiser breidde og farge."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:607 src/olympia/discovery/strings.jinja2:919
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
-msgstr ""
+msgstr "Lagre og gjenopprett faner. Inkluderer automatisk lagring og sky-synkroniseringsfunksjonar."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:610
@@ -5548,22 +5548,22 @@ msgstr "Farvel, irriterande infokapsel-åtvaringar!"
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:613
 msgid "All your emoji needs—always just a click away."
-msgstr ""
+msgstr "Alle emojiane du treng — alltid berre eit klikk unna."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:617
 msgid "Mask your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr ""
+msgstr "Skjul e-postadressa di. Firefox Relay vernar identiteten din og forhindrar søppelpost."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:621
 msgid "Time-based theme changer. Make Firefox change colors as the time of day changes."
-msgstr ""
+msgstr "Tidsbasert temavekslar. Få Firefox til å endre fargar når tida på dagen blir endra."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:624
 msgid "Declutter your Twitter experience."
-msgstr ""
+msgstr "Rydd opp i Twitter-opplevinga di."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:627
