@@ -5255,17 +5255,17 @@ msgstr "Brukar du VPN? Ip-adressa di kan leke. Stopp dette ved å deaktivere Web
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:440
 msgid "Close annoying pop-ups with a simple click."
-msgstr ""
+msgstr "Lat att irriterande sprettoppvindauge med eit enkelt klikk."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:443
 msgid "Find an interesting image on the web? Want to learn more about it?"
-msgstr ""
+msgstr "Funne eit interessant bilde på nettet? Vil du lære meir om det?"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:446
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
-msgstr ""
+msgstr "Dra berre tekst, bilde eller lenker for å utføre handlingar som kopiering, opning, søk og meir."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:449
@@ -5276,17 +5276,17 @@ msgstr "Utnytt høvet til å laste ned video og/eller lyd i fleire format."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:452 src/olympia/discovery/strings.jinja2:685
 msgid "Learn where any website's server is geographically located. Be an informed web traveler."
-msgstr ""
+msgstr "Lær kvar serveren til ei nettside er geografisk plassert. Ver ein informert nettreisande."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:455
 msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? SoundFixer can help."
-msgstr ""
+msgstr "Fiks irriterande lyd. Er volumet på ein nettstad for lågt? For høgt? SoundFixer kan hjelpe."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:458
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
-msgstr ""
+msgstr "Rediger ei nettside før utskrift. Gjer omfattande visuelle endringar — fjern annonsar eller upassande innhald — på kva nettside som helst du vil skrive ut."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:461
@@ -5303,17 +5303,17 @@ msgstr "Juster lydinnstillingane til nettlesaren veldig presist."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:467 src/olympia/discovery/strings.jinja2:682
 msgid "Defend yourself against the sneakiest trackers."
-msgstr ""
+msgstr "Vern deg mot dei mest slue sporerarane."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:470
 msgid "Search with enhanced tracker blocking, smart encryption, and other privacy benefits."
-msgstr ""
+msgstr "Søk med forbetra sporingsblokkering, smart kryptering og andre personvernfordelar."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:476
 msgid "Simplify tabs. Organize your many open tabs in a tidy vertical sidebar."
-msgstr ""
+msgstr "Forenkle faner. Organiser dei mange opne fanene dine i ein ryddig vertikal sidestolpe."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:479
@@ -5323,7 +5323,7 @@ msgstr "Slett uønskte infokapslar automatisk. Tilbyr kvit- og svartelistestøtt
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:482
 msgid "With a simple click of the mouse you can watch videos in full screen glory."
-msgstr ""
+msgstr "Med eit enkelt museklikk kan du sjå videoar i fullskjermsformat."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
