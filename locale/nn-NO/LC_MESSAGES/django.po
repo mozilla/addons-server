@@ -4914,12 +4914,12 @@ msgstr "Spor historiske prisar, finn konkurrerande produkt, få vite vurderingan
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:239 src/olympia/discovery/strings.jinja2:718
 msgid "Make it your YouTube. Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
-msgstr ""
+msgstr "Gjer han til din YouTube. Spel av videoar i eit popup-vindauge, sjå berre annonsar i kanalar du abonnerer på, ta skjermbilde av videoar og mykje meir."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:242
 msgid "Get in-depth engagement and traffic information for any website."
-msgstr ""
+msgstr "Få djuptgåande informasjon om engasjement og trafikk for alle nettstadar."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:245
@@ -4929,7 +4929,7 @@ msgstr "Gir Wikipedia ein ny og moderne utsjånad."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:248
 msgid "Use mouse gestures to get to things done quicker."
-msgstr ""
+msgstr "Bruk muserørsler for å få ting gjort raskare."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:251
