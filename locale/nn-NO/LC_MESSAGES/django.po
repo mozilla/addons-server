@@ -5405,18 +5405,18 @@ msgstr "Oppbevar personlege notat kvar som helst på nettet. Bruk ganske enkelt 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:528
 msgid "Use speech recognition to enable voice search on Google, Yahoo, and DuckDuckGo."
-msgstr ""
+msgstr "Bruk talegjenkjenning for å slå på talesøk på Google, Yahoo og DuckDuckGo."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:531
 msgid "Track products and get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
-msgstr ""
+msgstr "Spor produkt og få beskjed når prisane fell på varer du er interessert i hos Amazon, Best Buy, eBay, Home Depot og Walmart."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:534 src/olympia/discovery/strings.jinja2:670
 msgid "Turn the web dark or select a custom color scheme to visually tailor the internet to your own taste."
-msgstr ""
+msgstr "Gjer nettet mørkt eller vel eit tilpassa fargeval for å visuelt skreddarsy nettet etter din eigen smak."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5427,7 +5427,7 @@ msgstr "Få ei meir avansert søkeside på Firefox for Android."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:540
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
-msgstr ""
+msgstr "Nokre nettstadar har problem med å spele av videoar i Firefox for Android. Denne utvidinga har ei løysing."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:546
