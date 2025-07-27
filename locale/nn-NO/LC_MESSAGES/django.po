@@ -5356,51 +5356,51 @@ msgstr "Les med større klarheit og lettheit. Fjern rotet rundt tekst på nettsi
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:501 src/olympia/discovery/strings.jinja2:673
 msgid "Block ads and get enhanced protection against malware and ad tracking."
-msgstr ""
+msgstr "Blokker annonsar og få forbetra vern mot skadeleg programvare og annonsesporing."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:504 src/olympia/discovery/strings.jinja2:853
 msgid "Enjoy multi-threading download support. Automatically detect different types of media available for download."
-msgstr ""
+msgstr "Få støtte for fleirtråda nedlastingar. Oppdag automatisk ulike typar medium som er tilgjengelege for nedlasting."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:507
 msgid "Save images easily—just grab them from your current tab."
-msgstr ""
+msgstr "Lagre bilde enkelt — hent dei frå den gjeldande fana."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:510
 msgid "Measure web pages. Draw a digital ruler across any web page to check height, width, and alignment of page elements."
-msgstr ""
+msgstr "Mål nettsider. Teikn ein digital linjal over kva nettside som helst for å sjekke høgd, breidd og justering av sideelement."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:513
 msgid "Enjoy the benefits of strong password management."
-msgstr ""
+msgstr "Dra nytte av fordelane med sterk passordhandsaming."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:516 src/olympia/discovery/strings.jinja2:703
 msgid "Customize shades of light and dark to make web pages more visually pleasing."
-msgstr ""
+msgstr "Tilpass nyansar av lyse og mørke for å gjere nettsider meir visuelt tiltalande."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:519 src/olympia/discovery/strings.jinja2:850
 msgid "Block distracting websites. Simply list the sites you want the extension to block. Instant discipline!"
-msgstr ""
+msgstr "Blokker distraherande nettstadar. Berre oppgi nettstadane du vil at utvidinga skal blokkere. Snarleg disiplin!"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:522 src/olympia/discovery/strings.jinja2:697
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
-msgstr ""
+msgstr "Endre utsjånaden på nettlesaren din. Design enkelt dine eigne visuelle tema for å få Firefox til å sjå ut som du ønskjer."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:525
 msgid "Keep personal notes anywhere on the web. Simply use a sidebar to attach notes on specific web pages."
-msgstr ""
+msgstr "Oppbevar personlege notat kvar som helst på nettet. Bruk ganske enkelt ein sidestolpe for å leggje ved notat på visse nettsider."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:528
