@@ -5217,18 +5217,18 @@ msgstr "Handle trygt. Denne utvidinga gir ein ekstra sjekk for å sikre at du ha
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:419
 msgid "Track productivity. Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
-msgstr ""
+msgstr "Spor produktiviteten. Mål kor mykje tid du brukar på datamaskina, eller på spesifikke jobbappar som Trello, JIRA, Basecamp, GitHub og mange fleire."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:422
 msgid "Save your favorite stuff on the web. Clip content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
-msgstr ""
+msgstr "Lagre favorittmaterialane dine på nettet. Klipp ut innhald som artiklar, videoar, bilde og meir for å lagre og bruke det til individuelle prosjekt eller teamsamarbeid i sanntid."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:425 src/olympia/discovery/strings.jinja2:829
 msgid "Only allow web content to run from sites you trust. Surf securely."
-msgstr ""
+msgstr "Tillat berre at nettinnhald blir køyrt frå nettstadar du stolar på. Surf sikkert."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5250,7 +5250,7 @@ msgstr "Passordbeskytt dei personlege bokmerka dine."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:437
 msgid "Do you use a VPN? Your IP address may leak. Put a stop to that by disabling WebRTC."
-msgstr ""
+msgstr "Brukar du VPN? Ip-adressa di kan leke. Stopp dette ved å deaktivere WebRTC."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:440
