@@ -5334,23 +5334,23 @@ msgstr "Slutt med å sløse bort verdifull minneplass med uverksame faner."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:488
 msgid "Save complete pages—or just portions—as a single HTML file."
-msgstr ""
+msgstr "Lagre heile sider — eller berre delar — som éi enkel HTML-fil."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:491
 msgid "Cut through the nonsense of typical TOS agreements. This clever extension helps you quickly understand what you’re being asked to agree to."
-msgstr ""
+msgstr "Skjer gjennom tullet med typiske tenestevilkårsavtalar (TOS). Denne smarte utvidinga hjelper deg raskt å forstå kva du blir bede om å godta."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:495
 msgid "Get grammar help anywhere you write on the web — social media, email, docs, and more."
-msgstr ""
+msgstr "Få grammatikkhjelp kvar som helst du skriv på nettet — sosiale medium, e-post, dokument, og meir."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:498 src/olympia/discovery/strings.jinja2:676
 msgid "Read with more clarity and ease. Remove the clutter around text on web pages."
-msgstr ""
+msgstr "Les med større klarheit og lettheit. Fjern rotet rundt tekst på nettsider."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
