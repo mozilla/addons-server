@@ -5437,7 +5437,7 @@ msgstr "Vel, sorter og køyr nedlastingane dine raskare."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:549
 msgid "Get weather updates right in the browser."
-msgstr ""
+msgstr "Få vêroppdateringar direkte i nettlesaren."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:552
@@ -5448,24 +5448,24 @@ msgstr "Slett infokapslar, surfehistorikk og snøggbufra filer med berre eitt en
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:555 src/olympia/discovery/strings.jinja2:784
 msgid "Remove tracking elements from web links."
-msgstr ""
+msgstr "Fjern sporingselement frå lenker på nettet."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:558
 msgid "Get auto-populated RSS feed bookmark folders."
-msgstr ""
+msgstr "Få automatisk utfylte bokmerkemapper for informasjonskanalar (RSS-feedar)."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:561 src/olympia/discovery/strings.jinja2:847
 msgid "Easily organize tons of open tabs."
-msgstr ""
+msgstr "Organiser enkelt tonnevis av opne faner."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:564 src/olympia/discovery/strings.jinja2:787
 msgid "Create and customize tab groups."
-msgstr ""
+msgstr "Opprett og tilpass fanegrupper."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:567
