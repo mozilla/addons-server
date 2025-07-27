@@ -4873,7 +4873,7 @@ msgstr "Forbetre leseopplevinga di. Gjer teksten du les meir tiltalande ved å f
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:215 src/olympia/discovery/strings.jinja2:796
 msgid "Right-click and drag links you want open in new tabs."
-msgstr ""
+msgstr "Høgreklikk og dra lenkene du vil opne i nye faner."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:218
@@ -4883,7 +4883,7 @@ msgstr "Opne nyleg attlatne faner ved å høgreklikke på ikonet på verktøylin
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:221
 msgid "Inspire productivity. Modify your new tab page to display a beautiful background, set your daily focus, and more."
-msgstr ""
+msgstr "Inspirer produktiviteten. Endre den nye fanesida di for å vise ein vakker bakgrunn, angi det daglege fokuset ditt, og meir."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:224
@@ -4908,7 +4908,7 @@ msgstr "Få ting gjort med ei nyttig oppgåveliste som synkroniserer på tvers a
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:236
 msgid "Track historical pricing, find competing products, know the seller's ratings, and more."
-msgstr ""
+msgstr "Spor historiske prisar, finn konkurrerande produkt, få vite vurderingane til seljaren og meir."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
