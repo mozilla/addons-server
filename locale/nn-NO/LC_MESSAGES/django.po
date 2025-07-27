@@ -5623,32 +5623,32 @@ msgstr "Les ePUB-filer rett i Firefox — auk skriftstorleik og sidedimensjonar,
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:748
 msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configurations."
-msgstr ""
+msgstr "Tilpass muserørsler. Oppdag nye måtar å navigere på med over 50 konfigurasjonar."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:799
 msgid "Customize the look of any website. Shift colors, page backgrounds & more."
-msgstr ""
+msgstr "Tilpass utsjånaden til alle nettstadar. Endre fargar, sidebakgrunnar, og meir."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:808
 msgid "Use mouse gestures to close tabs, navigate pages & more."
-msgstr ""
+msgstr "Bruk muserørsler til å late att faner, navigere på sider, og meir."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:811
 msgid "A simple way to adjust the size of any page's text — or even enlarge the page itself."
-msgstr ""
+msgstr "Ein enkel måte å justere storleiken på teksten til sida — eller til og med forstørre sjølve sida."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:838
 msgid "Enjoy thumbnail images of websites alongside your search returns."
-msgstr ""
+msgstr "Sjå miniatyrbilde av nettstadar saman med søkjeresultata dine."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:844
 msgid "Save an entire web page — including images and styling — as a single HTML file."
-msgstr ""
+msgstr "Lagre ei heil nettside — inkludert grafikk og stilsett — som ei enkel HTML-fil."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:859

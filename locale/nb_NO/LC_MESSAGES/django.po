@@ -5649,7 +5649,7 @@ msgstr "Se miniatyrbilder av nettsteder sammen med søkeresultatene dine."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:844
 msgid "Save an entire web page — including images and styling — as a single HTML file."
-msgstr "Lagre en hel nettside — inkludert grafikk og stilsett — som en enkelt HTML-fil."
+msgstr "Lagre en hel nettside — inkludert grafikk og stilsett — som en enkel HTML-fil."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:859
