@@ -4959,12 +4959,12 @@ msgstr "Nedkjemp spam. Bruk smarte mellombelse e-postadresser for å halde fram 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:266
 msgid "A direct path to customizing the built-in privacy settings in Firefox."
-msgstr ""
+msgstr "Ein direkte veg for å tilpasse dei innebygde personverninnstillingane i Firefox."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:269
 msgid "Get instant translations by highlighting text and clicking the button that pops up."
-msgstr ""
+msgstr "Få direkte omsetjingar ved å markere tekst og klikke på knappen som dukkar opp."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:272
@@ -4974,12 +4974,12 @@ msgstr "Gå direkte til nettstaden du vil ha tilgang til, utan å bli omdirigert
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:275
 msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
-msgstr ""
+msgstr "WhatsApp på nettet. Få tilgang til WhatsApp frå verktøylinjepanelet til Firefox for å få varsel om ulesne trådar."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:278
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
-msgstr ""
+msgstr "Avgrens Firefox frå å få tilgang til nettstadar du definerer. Eit flott verktøy for å utøve sjølvdisiplin på nettet."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:281
@@ -5020,12 +5020,12 @@ msgstr "Konverter ei heil nettside til ditt ønskte språk—med eit klikk."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:302
 msgid "Instantly display all links from a web page in new tabs."
-msgstr ""
+msgstr "Vis alle lenkjer frå ei nettside, med ein gong i nye faner."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:305
 msgid "Strip away redirect pages and URL tracking parameters from web links. Works automatically."
-msgstr ""
+msgstr "Fjern omdirigeringssider og URL-sporingsparameter frå nettlenker. Fungerer automatisk."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:308
@@ -5045,7 +5045,7 @@ msgstr "Ein avansert lesar for å samle alle RSS-/Atom-/RDF-kjeldene dine."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:317
 msgid "Create general and website-specific notes to review later."
-msgstr ""
+msgstr "Lag generelle og nettstadspesifikke notat for seinare gjennomgang."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5079,7 +5079,7 @@ msgstr "Spar bandbreidde ved å berre strøyme lyden frå YouTube-klipp."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:335
 msgid "Turn words into beautiful headlines and image overlay text."
-msgstr ""
+msgstr "Gjer ord om til vakre overskrifter og tekst med bildeoverlegg."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
