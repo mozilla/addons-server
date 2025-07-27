@@ -5091,7 +5091,7 @@ msgstr "Naviger automatisk til den sikre versjonen av ein nettstad, viss han er 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:341 src/olympia/discovery/strings.jinja2:793
 msgid "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
-msgstr ""
+msgstr "Slett navigasjonshistorikken din. Angi eit eigendefinert antal dagar for å behalde nettlesarhistorikken før han blir automatisk sletta."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:344
@@ -5152,12 +5152,12 @@ msgstr "Dra nytte av ei merkeleg utdanning. Last inn ein tilfeldig Wikipedia-art
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:380
 msgid "Configure new tab pages to display custom background colors and images."
-msgstr ""
+msgstr "Konfigurer nye fane-sider for å vise eigne bakgrunnsfargar og bilde."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:383
 msgid "Meet an adorable kitty with every new tab. Give it a scratch behind the ear and see what happens."
-msgstr ""
+msgstr "Møt ein søt kattunge med kvar nye fane. Klø han bak øyret og sjå kva som skjer."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:386
@@ -5167,12 +5167,12 @@ msgstr "For dei augneblinkane du treng å fyre laserar ut av ein katt."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:389
 msgid "Search Firefox by easily accessing your open tabs, bookmarks, and history."
-msgstr ""
+msgstr "Søk i Firefox ved å enkelt få tilgang til opne faner, bokmerke og historikk."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:392
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
-msgstr ""
+msgstr "Mange opne faner? Hopp over rullinga og søk via hurtigtastar."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:395
@@ -5182,12 +5182,12 @@ msgstr "Stopp omdirigeringar slik at du får tilgang til nettstaden du ønskjer 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:398
 msgid "Adds show/hide ability to all password fields."
-msgstr ""
+msgstr "Legg til moglegheita vise/skjule i alle passordfelt."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:401
 msgid "Focus on what you're watching by dimming everything but the video player."
-msgstr ""
+msgstr "Fokus på kva du ser på ved å dimme alt utanom videospelaren."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:404
@@ -5197,7 +5197,7 @@ msgstr "Endre bokmerka dine via eit lett tilgjengeleg panel."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:407
 msgid "Store passwords securely and sign in automatically to known websites."
-msgstr ""
+msgstr "Lagre passord sikkert og logg inn automatisk på kjende nettstadar."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:410
@@ -5207,12 +5207,12 @@ msgstr "Ein enkel annonsblokkerar fokusert på å berre vise innhaldet du vil sj
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:413
 msgid "Track Amazon pricing history. Make informed shopping decisions."
-msgstr ""
+msgstr "Følg prisutviklinga på Amazon. Ta velinformerte kjøpsavgjerder."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:416
 msgid "Shop with confidence. This extension provides an extra check to ensure you're shopping on a site that's been vetted for reliability."
-msgstr ""
+msgstr "Handle trygt. Denne utvidinga gir ein ekstra sjekk for å sikre at du handlar på ein nettstad som er kontrollert for pålitelegheit."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:419
