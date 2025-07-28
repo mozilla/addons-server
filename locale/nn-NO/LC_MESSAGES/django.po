@@ -6090,12 +6090,12 @@ msgstr "Twitch-tillegg"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1138
 msgid "See more Twitch extension staff picks"
-msgstr ""
+msgstr "Sjå fleire Twitch-utvidingar utvalde av tilsette"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1146
 msgid "Gaming & media extensions"
-msgstr ""
+msgstr "Spel- og medieutvidingar"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1148
@@ -6113,7 +6113,7 @@ msgstr "[status: %s]"
 
 #: src/olympia/files/utils.py:84
 msgid "This upload has already been submitted."
-msgstr ""
+msgstr "Denne opplastinga er allereie sendt inn."
 
 #: src/olympia/files/utils.py:186 src/olympia/files/utils.py:870
 msgid "Could not parse the manifest file."
@@ -6122,21 +6122,21 @@ msgstr "Kunne ikkje tolke manifest-fila."
 #: src/olympia/files/utils.py:319
 #, python-brace-format
 msgid "Lowest supported \"strict_min_version\" is {min_version}."
-msgstr ""
+msgstr "Den lågast støtta «strict_min_version» er {min_version}."
 
 #: src/olympia/files/utils.py:350
 #, python-brace-format
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
-msgstr ""
+msgstr "Ukjend «strict_min_version» {appver} for {app}"
 
 #: src/olympia/files/utils.py:364
 #, python-brace-format
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
-msgstr ""
+msgstr "Ukjend «strict_max_version» {appver} for {app}"
 
 #: src/olympia/files/utils.py:548
 msgid "Unsupported compression method in archive."
-msgstr ""
+msgstr "Ustøtta komprimeringsmetode i arkivet."
 
 #: src/olympia/files/utils.py:551
 msgid "Unsupported archive type."
@@ -6144,7 +6144,7 @@ msgstr "Arkivtypen er ikkje støtta."
 
 #: src/olympia/files/utils.py:560
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
-msgstr ""
+msgstr "Ugyldig filnamn i arkivet. Sørg for at alle filnamn er koda i utf-8 eller latin1."
 
 #. L10n: {0} is the name of the invalid file.
 #: src/olympia/files/utils.py:574
@@ -6156,7 +6156,7 @@ msgstr "Ugyldig filnamn i arkivet: {0}"
 #: src/olympia/files/utils.py:582
 #, python-brace-format
 msgid "File exceeding size limit in archive: {0}"
-msgstr ""
+msgstr "Fila overskrid storleiksgrensa i arkivet: {0}"
 
 #: src/olympia/files/utils.py:602
 msgid "This archive contains a forbidden special file (symbolic / hard link or device / block file)"
