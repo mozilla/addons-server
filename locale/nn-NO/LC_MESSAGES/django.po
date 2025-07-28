@@ -6894,7 +6894,7 @@ msgstr "Skriv inn ei gyldig IPv4- eller IPv6-adresse, t.d. 127.0.0.1. Vil bli ko
 
 #: src/olympia/users/forms.py:37
 msgid "You can only enter one, either IP Address or Network."
-msgstr ""
+msgstr "Du kan berre angi éi, anten Ip-adresse eller nettverk."
 
 #: src/olympia/users/models.py:82
 msgid "No user with that email."
@@ -6906,13 +6906,12 @@ msgid "Firefox user {id}"
 msgstr "Firefox-brukar {id}"
 
 #: src/olympia/users/models.py:844
-#, fuzzy
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
-msgstr "Skriv inn eit gyldig IP4- eller IP6-nettverk."
+msgstr "Skriv inn eit gyldig IPv4 eller IPv6 CIDR-nettverksområde, t.d. 127.0.0.1/28"
 
 #: src/olympia/users/models.py:848
 msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
-msgstr ""
+msgstr "Fleire innsendingar som bryt med retningslinjene våre er sende frå posisjonen din. Ip-adressa er blokkert."
 
 #: src/olympia/users/models.py:960
 msgid "Email Pattern"
@@ -6921,27 +6920,33 @@ msgstr "E-postmønster"
 #: src/olympia/users/models.py:963
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr ""
+"Skriv inn heile e-postadressa som skal blokkerast, eller bruk jokerteikn i unix-stil, t.d. «@example.com». Om du treng å blokkere eit domene inkludert underdomene, legg til ei ny oppføring, t.d. "
+"«@*.example.com»."
 
 #: src/olympia/users/models.py:970
 msgid "The email address used for your account is not allowed for submissions."
-msgstr ""
+msgstr "E-postadressa som blir brukt for kontoen din er ikkje tillaten for innsendingar."
 
 #: src/olympia/users/models.py:1049
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
 "restrictions\" instead."
 msgstr ""
+"Skriv inn heile domenenamnet for eingongs-e-postadresser som skal blokkerast. Jokerteikn blir ikkje støtta – om du treng det, eller ønskjer å matche heile e-postadressa og ikkje berre domenedelen, "
+"bruk heller «E-post brukaravgrensing»."
 
 #: src/olympia/users/models.py:1200
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
 " which explains how we handle your information."
 msgstr ""
+"Før du startar, les og godta distribusjonsavtalen vår for Firefox-tillegg, og dessutan retningslinjene og reglane våre for omtalar. Distribusjonsavtalen for Firefox-tillegg lenkar også til "
+"personvernerklæringa vår som forklarar korleis vi handsamar informasjonen din."
 
 #: src/olympia/users/models.py:1214
 #, python-brace-format
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
-msgstr ""
+msgstr "Les og godta distribusjonsavtalen vår for Firefox-tillegg og dessutan retningslinjene og reglane våre for vurderingar ved å besøkje {url}"
 
 #: src/olympia/users/models.py:1265
 msgid "User Restriction History"
@@ -7002,6 +7007,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
+"Følgjande opphavsmann er lagt til i tillegget ditt %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
 #: src/olympia/users/templates/users/emails/author_added_confirmation.ltxt:10
 #, python-format
@@ -7025,6 +7033,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
+"Følgjande opphavsmann er endra på tillegget ditt %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
 #: src/olympia/users/templates/users/emails/author_removed.ltxt:3
 #, python-format
