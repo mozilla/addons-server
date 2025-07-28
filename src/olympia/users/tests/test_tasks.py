@@ -430,35 +430,29 @@ class TestBulkAddDisposableEmailDomains(TestCase):
         # Ensure that the task runs with 2 batches by default
         self.batch_size = len(self.entries) // 2
 
-    def _assert_count(self, count):
-        assert DisposableEmailDomainRestriction.objects.count() == count
-
-    def _assert_result(self, result, outcome):
-        assert result.status == outcome
-
     def test_bulk_add_disposable_email_domains_success(self):
-        self._assert_count(0)
+        assert DisposableEmailDomainRestriction.objects.count() == 0
 
         result = bulk_add_disposable_email_domains.apply(
             args=[self.entries, self.batch_size]
         )
 
-        self._assert_result(result, 'SUCCESS')
-        self._assert_count(len(self.entries))
+        assert result.status == 'SUCCESS'
+        assert DisposableEmailDomainRestriction.objects.count() == len(self.entries)
 
     def test_bulk_add_disposable_email_domains_skips_duplicate_entries(self):
         [domain, provider] = self.entries[0]
         DisposableEmailDomainRestriction.objects.create(
             domain=domain, reason=f'Disposable email domain of {provider}'
         )
-        self._assert_count(1)
+        assert DisposableEmailDomainRestriction.objects.count() == 1
 
         result = bulk_add_disposable_email_domains.apply(
             args=[self.entries, self.batch_size]
         )
 
-        self._assert_result(result, 'SUCCESS')
-        self._assert_count(len(self.entries))
+        assert result.status == 'SUCCESS'
+        assert DisposableEmailDomainRestriction.objects.count() == len(self.entries)
 
     def test_zero_batch_size_raises_error(self):
         with pytest.raises(ValueError):

@@ -6,11 +6,11 @@ import tempfile
 import uuid
 from ipaddress import IPv4Address
 from unittest.mock import ANY, patch
-from celery.result import EagerResult
 
 from django.core.files.base import ContentFile
 from django.core.management import CommandError, call_command
 
+from celery.result import EagerResult
 from waffle.testutils import override_switch
 
 from olympia import amo
@@ -575,7 +575,6 @@ class TestBulkAddDisposableEmailDomains(TestCase):
     @patch('olympia.users.management.commands.bulk_add_disposable_domains.logger')
     def test_bulk_add_result_is_printed(self, mock_logger):
         """result of bulk_add_disposable_email_domains task logged."""
-        fake_result = 'Task completed successfully'
 
         csv_content = (
             'Domain,Provider\n'
