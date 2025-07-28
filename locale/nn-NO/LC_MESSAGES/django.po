@@ -5957,15 +5957,14 @@ msgstr "Fanehandterarar"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1073
-#, fuzzy
 msgid "See more tab management staff picks"
-msgstr "Vis fleire tilrådde utvidingar"
+msgstr "Sjå fleire fanebehandlingsutvidingar valde av tilsette"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1076
 #, python-brace-format
 msgid "“{tag}” tagged extensions"
-msgstr ""
+msgstr "«{tag}»-merkte utvidingar"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1078
@@ -5980,9 +5979,8 @@ msgstr "Kraftfulle annonseblokkerarar"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1083
-#, fuzzy
 msgid "See more ad blocker staff picks"
-msgstr "Vis fleire tilrådde utvidingar"
+msgstr "Sjå fleire tilrådingar frå tilsette innan annonseblokkering"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1086
@@ -6067,12 +6065,12 @@ msgstr "Sjå fleire nedlastingshandsamarar utvalde av tilsette"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1126
 msgid "Accessibility extensions"
-msgstr ""
+msgstr "Utvidingar for tilgjengelegheit"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1128
 msgid "See more accessibility staff picks"
-msgstr ""
+msgstr "Sjå fleire utvidingar for tilgjengelegheit utvalde av tilsette"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1131
@@ -6082,7 +6080,7 @@ msgstr "Startpakke for utvidingar"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1133
 msgid "See more starter extension staff picks"
-msgstr ""
+msgstr "Sjå fleire utvidingsstartpakkar utvalde av tilsette"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1136
