@@ -1,4 +1,5 @@
 import datetime
+import json
 import os
 import time
 from copy import deepcopy
@@ -918,6 +919,15 @@ def addons_section(request, addon_id, addon, section, editable=False):
                 if section == 'media':
                     ActivityLog.objects.create(amo.LOG.CHANGE_MEDIA, addon)
                 else:
+                    metadata_changes = getattr(main_form, 'metadata_changes', {})
+                    for field, addedremoved in metadata_changes.items():
+                        ActivityLog.objects.create(
+                            amo.LOG.EDIT_ADDON_PROPERTY,
+                            addon,
+                            field,
+                            json.dumps(addedremoved),
+                        )
+
                     ActivityLog.objects.create(amo.LOG.EDIT_PROPERTIES, addon)
 
                 if valid_slug != addon.slug:

@@ -28,7 +28,7 @@ class CREATE_ADDON(_LOG):
 
 
 class EDIT_PROPERTIES(_LOG):
-    """Expects: addon"""
+    """Expects: addon. Consider using EDIT_ADDON_PROPERTY instead"""
 
     id = 2
     action_class = 'edit'
@@ -1236,6 +1236,15 @@ class DISABLE_AUTO_APPROVAL(_LOG):
     reviewer_review_action = True
     review_queue = True
     hide_developer = True
+
+
+class EDIT_ADDON_PROPERTY(_LOG):
+    """Expects: addon, field. 3rd arg is a json blob."""
+
+    id = 208
+    action_class = 'edit'
+    format = _('{addon} {0} property edited.')
+    show_user_to_developer = True
 
 
 LOGS = [x for x in vars().values() if isclass(x) and issubclass(x, _LOG) and x != _LOG]
