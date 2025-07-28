@@ -869,6 +869,12 @@ class IPNetworkUserRestriction(RestrictionAbstractBaseModel):
 
     class Meta:
         db_table = 'users_user_network_restriction'
+        constraints = [
+            models.UniqueConstraint(
+                fields=('network', 'restriction_type'),
+                name='network_restriction_type_uniq',
+            )
+        ]
 
     def __str__(self):
         return str(self.network)
@@ -990,6 +996,12 @@ class EmailUserRestriction(RestrictionAbstractBaseModel, NormalizeEmailMixin):
 
     class Meta:
         db_table = 'users_user_email_restriction'
+        constraints = [
+            models.UniqueConstraint(
+                fields=('email_pattern', 'restriction_type'),
+                name='email_pattern_restriction_type_uniq',
+            )
+        ]
 
     def __str__(self):
         return str(self.email_pattern)
@@ -1077,7 +1089,6 @@ class EmailUserRestriction(RestrictionAbstractBaseModel, NormalizeEmailMixin):
 
 class DisposableEmailDomainRestriction(RestrictionAbstractBaseModel):
     domain = models.CharField(
-        unique=True,
         max_length=255,
         help_text=_(
             'Enter full disposable email domain that should be '
@@ -1091,6 +1102,12 @@ class DisposableEmailDomainRestriction(RestrictionAbstractBaseModel):
 
     class Meta:
         db_table = 'users_disposable_email_domain_restriction'
+        constraints = [
+            models.UniqueConstraint(
+                fields=('domain', 'restriction_type'),
+                name='domain_restriction_type_uniq',
+            )
+        ]
 
     def __str__(self):
         return str(self.domain)
