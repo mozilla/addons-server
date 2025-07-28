@@ -6381,48 +6381,48 @@ msgstr "Versjon %(version)s &middot; %(created)s <span class=\"light\">&middot; 
 
 #: src/olympia/scanners/models.py:128
 msgid "This is the exact name of the rule used by a scanner."
-msgstr ""
+msgstr "Dette er det nøyaktige namnet på regelen som blir brukt av ein skannar."
 
 #: src/olympia/scanners/models.py:132
 msgid "Human-readable name for the scanner rule"
-msgstr ""
+msgstr "Menneskelesbart namn for skannarregelen"
 
 #: src/olympia/scanners/models.py:135
 msgid "Human-readable name"
-msgstr ""
+msgstr "Menneskelesbart namn"
 
 #: src/olympia/scanners/models.py:139
 msgid "Human readable description for the scanner rule"
-msgstr ""
+msgstr "Menneskelesbar skildring av skannarregelen"
 
 #: src/olympia/scanners/models.py:172
 msgid "Yara rules should have a definition"
-msgstr ""
+msgstr "Yara-reglar må ha ein definisjon"
 
 #: src/olympia/scanners/models.py:179
 msgid "The name of the rule in the definition should match the name of the scanner rule"
-msgstr ""
+msgstr "Namnet på regelen i definisjonen skal samsvare med namnet på skannarregelen"
 
 #: src/olympia/scanners/models.py:187
 msgid "Only one Yara rule is allowed in the definition"
-msgstr ""
+msgstr "Berre éin Yara-regel er tillaten i definisjonen"
 
 #: src/olympia/scanners/models.py:195
 #, python-format
 msgid "The definition is not valid: %(error)s"
-msgstr ""
+msgstr "Definisjonen er ikkje gyldig: %(error)s"
 
 #: src/olympia/scanners/models.py:201
 msgid "An error occurred when compiling the definition"
-msgstr ""
+msgstr "Det oppstod ein feil under kompilering av definisjonen"
 
 #: src/olympia/scanners/models.py:212
 msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
-msgstr ""
+msgstr "Når det ikkje er merkt av for dette alternativet, vil ikkje skannarresultata vere bundne til denne regelen, og handlinga vil ikkje bli utført."
 
 #: src/olympia/scanners/models.py:382
 msgid "Run this rule on add-ons that have been force-disabled as well."
-msgstr ""
+msgstr "Køyr denne regelen også på tillegg som har vorte tvangsdeaktivert."
 
 #: src/olympia/search/filters.py:49 src/olympia/search/filters.py:62 src/olympia/search/filters.py:95 src/olympia/search/filters.py:158 src/olympia/search/filters.py:198
 #: src/olympia/search/filters.py:344 src/olympia/search/filters.py:455

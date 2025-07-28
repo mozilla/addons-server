@@ -6394,7 +6394,7 @@ msgstr "Menneskelesbart navn"
 
 #: src/olympia/scanners/models.py:139
 msgid "Human readable description for the scanner rule"
-msgstr "Menneskelesbart beskrivelse av skannerregelen"
+msgstr "Menneskelesbar beskrivelse av skannerregelen"
 
 #: src/olympia/scanners/models.py:172
 msgid "Yara rules should have a definition"
