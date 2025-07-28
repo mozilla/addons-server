@@ -6433,19 +6433,19 @@ msgstr "Ugyldig parameter «%s»."
 #: src/olympia/search/filters.py:202 src/olympia/search/filters.py:322
 #, python-format
 msgid "Invalid combination of \"%s\" and \"%s\" parameters."
-msgstr ""
+msgstr "Ugyldig kombinasjon av parametrane «%s» og «%s»."
 
 #: src/olympia/search/filters.py:264
 msgid "Return To AMO is currently disabled"
-msgstr ""
+msgstr "Return To AMO er akkurat no deaktivert"
 
 #: src/olympia/search/filters.py:273
 msgid "Invalid Return To AMO guid (not in base64url format?)"
-msgstr ""
+msgstr "Ugyldig Return To AMO-guide (ikkje i base64url-format?)"
 
 #: src/olympia/search/filters.py:934
 msgid "Maximum query length exceeded."
-msgstr ""
+msgstr "Maksimal spørjelengd overskriden."
 
 #: src/olympia/signing/views.py:54
 #, python-brace-format
@@ -6459,7 +6459,7 @@ msgstr "Du eig ikkje dette tillegget."
 #: src/olympia/signing/views.py:137
 #, python-format
 msgid "You cannot add versions to an add-on that has status: %s."
-msgstr ""
+msgstr "Du kan ikkje leggje til versjonar i eit tillegg som har statusen %s."
 
 #: src/olympia/signing/views.py:146
 msgid "Version does not match the manifest file."
@@ -6467,7 +6467,7 @@ msgstr "Versjonen passar ikkje med manifest-fila."
 
 #: src/olympia/signing/views.py:173
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
-msgstr ""
+msgstr "Oppgi tillegg-ID-en din i manifestet om han er lengre enn 64 teikn."
 
 #: src/olympia/signing/views.py:187
 msgid "Invalid Add-on ID in URL or package"
@@ -6475,15 +6475,15 @@ msgstr "Ugyldig tillegs-ID i URL eller pakke"
 
 #: src/olympia/signing/views.py:211
 msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."
-msgstr ""
+msgstr "Du kan ikkje leggje til oppførte versjonar i eit tillegg som er sett til tilstanden «usynleg»."
 
 #: src/olympia/signing/views.py:220
 msgid "You cannot add a listed version to this add-on via the API due to missing metadata. Please submit via the website"
-msgstr ""
+msgstr "Du kan ikkje leggje til ein oppført versjon til dette tillegget via API-et på grunn av manglande metadata. Send inn via nettstaden"
 
 #: src/olympia/signing/views.py:275
 msgid "No uploaded file for that add-on and version."
-msgstr ""
+msgstr "Ingen opplasta filer for det tillegget og den versjonen."
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:4
 msgid "Overview"
@@ -6621,7 +6621,7 @@ msgstr "Tilpassa…"
 
 #: src/olympia/stats/templates/stats/stats.html:94
 msgid "Sorry, the statistics are temporarily unavailable."
-msgstr ""
+msgstr "Beklagar, statistikken er mellombels utilgjengeleg."
 
 #: src/olympia/stats/templates/stats/stats.html:100
 msgid "Loading the latest data&hellip;"
@@ -6637,9 +6637,8 @@ msgid "Previous"
 msgstr "Førre"
 
 #: src/olympia/stats/templates/stats/stats.html:165
-#, fuzzy
 msgid "This dashboard is <b>private</b>."
-msgstr "Dette dashbordet er for tida <b>privat</b>."
+msgstr "Denne oversikta er <b>privat</b>."
 
 #: src/olympia/stats/templates/stats/reports/apps.html:3
 msgid "Application usage by Date"

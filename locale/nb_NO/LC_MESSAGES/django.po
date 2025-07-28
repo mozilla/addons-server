@@ -6639,7 +6639,7 @@ msgstr "Forrige"
 
 #: src/olympia/stats/templates/stats/stats.html:165
 msgid "This dashboard is <b>private</b>."
-msgstr "Dette oversikten er <b>privat</b>."
+msgstr "Denne oversikten er <b>privat</b>."
 
 #: src/olympia/stats/templates/stats/reports/apps.html:3
 msgid "Application usage by Date"
