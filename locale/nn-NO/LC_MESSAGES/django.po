@@ -5768,17 +5768,17 @@ msgstr "Fjern annonsar og få betre vern mot skadeprogram."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:970
 msgid "Remove formatting from copied Clipboard text."
-msgstr ""
+msgstr "Fjern formatering frå kopiert utklippstavletekst."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:973
 msgid "Fingerprinting privacy protection."
-msgstr ""
+msgstr "Personvern med fingeravtrykkssporing."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:976
 msgid "Enhance your gaming experience on Steam."
-msgstr ""
+msgstr "Forbetre spelopplevinga di på Steam."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:979
