@@ -5783,22 +5783,22 @@ msgstr "Forbetre spelopplevinga di på Steam."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:979
 msgid "Thumbs-up to bringing back thumbs-down."
-msgstr ""
+msgstr "Tommel opp for å få tilbake «tommelen ned»."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:982
 msgid "Translate websites in Firefox — privately — without using the cloud."
-msgstr ""
+msgstr "Omset nettstader i Firefox — privat — utan å bruke skya."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:985
 msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
-msgstr ""
+msgstr "Blokkar nettstadar som sløsar med tid. Blokker dei heilt eller berre i tidsrammer du vel."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:988
 msgid "Easily summarize emails, docs, articles, and video transcripts in English across the web — without sacrificing your privacy."
-msgstr ""
+msgstr "Samanfatt enkelt e-postar, dokument, artiklar og videotranskripsjonar på engelsk på nettet – utan å ofre personvernet ditt."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:991
@@ -5823,7 +5823,7 @@ msgstr "Gjer Twitch-opplevinga di betre."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1003
 msgid "Re-take control of Twitter/X and customize your experience."
-msgstr ""
+msgstr "Ta tilbake kontrollen over Twitter/X og tilpass opplevinga di."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1006
@@ -5853,7 +5853,7 @@ msgstr "Vis alle utvidingar"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1018
 msgid "Anti-tracking extensions"
-msgstr ""
+msgstr "Anti-sporingsutvidingar"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1020
@@ -5863,7 +5863,7 @@ msgstr "Viktige tillegg"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1022
 msgid "Steam extensions"
-msgstr ""
+msgstr "Steam-utvidingar"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1024 src/olympia/discovery/strings.jinja2:1026 src/olympia/discovery/strings.jinja2:1028
@@ -5927,9 +5927,8 @@ msgstr "Sterke passordhandsamarar"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1058
-#, fuzzy
 msgid "See more password manager staff picks"
-msgstr "Vis fleire tilrådde utvidingar"
+msgstr "Sjå fleire av tilrådingane til dei tilsette for passordbehandlarar"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1061
@@ -5938,9 +5937,8 @@ msgstr "Omsettingsverktøy"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1063
-#, fuzzy
 msgid "See more translation tool staff picks"
-msgstr "etter utvidingsversjon"
+msgstr "Sjå fleire av tilrådingane til dei tilsette for omsetjingsverktøyet"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1066
