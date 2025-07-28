@@ -5668,7 +5668,7 @@ msgstr "Få nettsider lesne høgt for deg. Over 40 språk støtta."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:892
 msgid "Removes those long tracking parameters from Google search result URL's."
-msgstr ""
+msgstr "Fjernar dei lange sporingsparametrane frå nettadressene til Googles søkjeresultat."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:895
@@ -5678,12 +5678,12 @@ msgstr "Få vêroppdateringar direkte fra Firefox."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:898
 msgid "Manage your time better with a browser clock that charts work intervals."
-msgstr ""
+msgstr "Styr tida di betre med ei nettlesarklokke som kartlegg arbeidsintervall."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:901
 msgid "Tired of that \"Video paused. Continue watching?\" message? Listen to your favorite music uninterrupted on YouTube."
-msgstr ""
+msgstr "Lei av meldinga «Videoen sett på pause. Held du fram med å sjå?»? Lytt til favorittmusikken din utan avbrot på YouTube."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:907
@@ -5693,7 +5693,7 @@ msgstr "Forsvinn, irriterande infokapsel-åtvaringar!"
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:913
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
-msgstr ""
+msgstr "Gå tilbake til ei enklare tid — då dei beste søkjeresultata dine stod over annonsane (kompatibel med Google og Bing-søkjemotorar)."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:916
@@ -5703,17 +5703,17 @@ msgstr "Få muserullefeltet du alltid har ønskt deg – spesifiser breidde og f
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:928
 msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
-msgstr ""
+msgstr "Skjul e-posten din for å verne identiteten din og forhindre søppelpost. Nye oppdateringar gjer Firefox Relay endå enklare å bruke."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:931
 msgid "Instantly translate any selected text on web pages."
-msgstr ""
+msgstr "Omset straks all vald tekst på nettsider."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:934
 msgid "Make Firefox change colors based on time of day."
-msgstr ""
+msgstr "Få Firefox til å endre fargar basert på tid på dagen."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:937
