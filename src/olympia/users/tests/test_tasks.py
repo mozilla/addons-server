@@ -7,6 +7,7 @@ from unittest import mock
 
 from django.conf import settings
 from django.core import mail
+from django.db.utils import OperationalError
 from django.urls import reverse
 
 import pytest
@@ -21,10 +22,12 @@ from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.utils import SafeStorage
 from olympia.users.models import (
     BannedUserContent,
+    DisposableEmailDomainRestriction,
     SuppressedEmail,
     SuppressedEmailVerification,
 )
 from olympia.users.tasks import (
+    bulk_add_disposable_email_domains,
     delete_photo,
     resize_photo,
     send_suppressed_email_confirmation,
@@ -414,3 +417,56 @@ class TestSendSuppressedEmailConfirmation(TestCase):
             verification.reload().status
             == SuppressedEmailVerification.STATUS_CHOICES.Pending
         )
+
+
+class TestBulkAddDisposableEmailDomains(TestCase):
+    def setUp(self):
+        self.user_profile = user_factory()
+        self.entries = [
+            (f'test-{i}-{j}.com', f'provider-{i}')
+            for i in range(10)
+            for j in range(100)
+        ]
+        # Ensure that the task runs with 2 batches by default
+        self.batch_size = len(self.entries) // 2
+
+    def test_bulk_add_disposable_email_domains_success(self):
+        assert DisposableEmailDomainRestriction.objects.count() == 0
+
+        result = bulk_add_disposable_email_domains.apply(
+            args=[self.entries, self.batch_size]
+        )
+
+        assert result.status == 'SUCCESS'
+        assert DisposableEmailDomainRestriction.objects.count() == len(self.entries)
+
+    def test_bulk_add_disposable_email_domains_skips_duplicate_entries(self):
+        [domain, provider] = self.entries[0]
+        DisposableEmailDomainRestriction.objects.create(
+            domain=domain, reason=f'Disposable email domain of {provider}'
+        )
+        assert DisposableEmailDomainRestriction.objects.count() == 1
+
+        result = bulk_add_disposable_email_domains.apply(
+            args=[self.entries, self.batch_size]
+        )
+
+        assert result.status == 'SUCCESS'
+        assert DisposableEmailDomainRestriction.objects.count() == len(self.entries)
+
+    def test_zero_batch_size_raises_error(self):
+        with pytest.raises(ValueError):
+            bulk_add_disposable_email_domains.apply(args=[self.entries, 0])
+
+    def test_retries_on_db_timeout(self):
+        def always_raise_operational_error(*args, **kwargs):
+            raise OperationalError()
+
+        with mock.patch(
+            'olympia.users.tasks.DisposableEmailDomainRestriction.objects.bulk_create',
+            side_effect=always_raise_operational_error,
+        ):
+            with pytest.raises(Retry):
+                bulk_add_disposable_email_domains.apply(
+                    args=[self.entries, self.batch_size]
+                ).get()
