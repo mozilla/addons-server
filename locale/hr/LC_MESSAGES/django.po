@@ -4883,7 +4883,7 @@ msgstr "Aktiviraj noćni način rada za bolji prikaz."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:290
 msgid "Reverse image search by leveraging the power of multiple search providers."
-msgstr ""
+msgstr "Obrnuto pretraživanje slika pomoću više pružatelja usluga pretraživanja."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:293
