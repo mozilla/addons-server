@@ -6206,22 +6206,20 @@ msgid "You cannot submit this type of add-on"
 msgstr "Du kan ikkje sende inn denne typen av utviding"
 
 #: src/olympia/files/utils.py:949
-#, fuzzy
 msgid "You cannot submit an add-on using an ID ending with this suffix"
-msgstr "Du kan ikkje sende inn ei utviding med ein guid som sluttar med %s"
+msgstr "Du kan ikkje sende inn eit tillegg med ein ID som sluttar med dette suffikset"
 
 #: src/olympia/files/utils.py:954
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Du kan ikkje sende inn ei Mozilla-signert utviding"
 
 #: src/olympia/files/utils.py:958
-#, fuzzy
 msgid "You cannot submit a language pack"
-msgstr "Du kan ikkje sende inn ei Mozilla-signert utviding"
+msgstr "Du kan ikkje sende inn ein språkpakke"
 
 #: src/olympia/files/utils.py:967
 msgid "The locale of an existing dictionary/language pack cannot be changed"
-msgstr ""
+msgstr "Språket til ei eksisterande ordbok/språkpakke kan ikkje endrast"
 
 #: src/olympia/files/utils.py:1012
 #, python-brace-format
@@ -6233,17 +6231,17 @@ msgid "Unexpected error."
 msgstr "Uventa feil."
 
 #: src/olympia/files/utils.py:1026
-#, fuzzy, python-format
+#, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
-msgstr "<em:type> i install.rdf (%s) din, matchar ikkje med di utvidingstype i AMO (%s)"
+msgstr "Typen (%s) samsvarar ikkje med typen tillegg på AMO (%s)"
 
 #: src/olympia/files/views.py:83 src/olympia/signing/views.py:128
 msgid "Missing \"upload\" key in multipart file data."
-msgstr ""
+msgstr "Manglar «upload»-nøkkel i fleirdelte fildata."
 
 #: src/olympia/files/views.py:89
 msgid "Missing \"channel\" arg."
-msgstr ""
+msgstr "Manglar «channel»-argument."
 
 #: src/olympia/ratings/models.py:363
 msgid "Spam or otherwise non-review content"
@@ -6255,7 +6253,7 @@ msgstr "Upassande språk/innhald"
 
 #: src/olympia/ratings/models.py:365
 msgid "Misplaced bug report or support request"
-msgstr ""
+msgstr "Feilplassert feilrapport eller kundestøtteførespurnad"
 
 #: src/olympia/ratings/models.py:366
 msgid "Other (please specify)"
@@ -6263,11 +6261,11 @@ msgstr "Anna (ver snill og spesifiser)"
 
 #: src/olympia/ratings/models.py:370
 msgid "Auto-flagged due to word match"
-msgstr ""
+msgstr "Automatisk flagga på grunn av ordtreff"
 
 #: src/olympia/ratings/models.py:371
 msgid "Auto-flagged due to user restriction"
-msgstr ""
+msgstr "Automatisk flagga på grunn av brukaravgrensing"
 
 #: src/olympia/ratings/models.py:411
 #, python-format
