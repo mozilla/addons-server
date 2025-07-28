@@ -5718,22 +5718,22 @@ msgstr "Få Firefox til å endre fargar basert på tid på dagen."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:937
 msgid "Eliminate YouTube distractions. Remove related and recommended video suggestions, comments & more."
-msgstr ""
+msgstr "Fjern YouTube-distraksjonar. Fjern relaterte og tilrådde videoforslag, kommentarar, og meir."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:940
 msgid "Take emojis with you everywhere on the web."
-msgstr ""
+msgstr "Ta med deg emojiar overalt på nettet."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:946
 msgid "Put restrictions on distracting, time-wasting websites."
-msgstr ""
+msgstr "Set avgrensingar på distraherande, tidssløsande nettstadar."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:949
 msgid "Remove clutter from your Twitter."
-msgstr ""
+msgstr "Fjern rot frå Twitter-kontoen din."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:952
@@ -5743,27 +5743,27 @@ msgstr "Tilpass YouTube etter smak."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:955
 msgid "Delete browsing data directly from the browser toolbar."
-msgstr ""
+msgstr "Slett nettlesardata direkte frå nettlesarverktøylinja."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:958
 msgid "Get RSS feed auto-updates direct to your bookmark folders."
-msgstr ""
+msgstr "Få automatiske RSS-informasjonskanaloppdateringar direkte til bokmerkemappene dine."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:961
 msgid "Effective blocker against all types of ads."
-msgstr ""
+msgstr "Effektiv blokkering mot alle typar annonsar."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:964
 msgid "Mass download manager makes extreme downloading extremely easy."
-msgstr ""
+msgstr "Mass download manager gjer ekstrem nedlasting ekstremt enkelt."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:967
 msgid "Remove ads & receive better protection against malware."
-msgstr ""
+msgstr "Fjern annonsar og få betre vern mot skadeprogram."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:970
