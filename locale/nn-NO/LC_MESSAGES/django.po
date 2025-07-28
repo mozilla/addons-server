@@ -6100,7 +6100,7 @@ msgstr "Spel- og medieutvidingar"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1148
 msgid "See more staff picks"
-msgstr ""
+msgstr "Sjå fleire val av tilsette"
 
 #: src/olympia/files/models.py:324
 msgid "Unreviewed"
@@ -6160,11 +6160,11 @@ msgstr "Fila overskrid storleiksgrensa i arkivet: {0}"
 
 #: src/olympia/files/utils.py:602
 msgid "This archive contains a forbidden special file (symbolic / hard link or device / block file)"
-msgstr ""
+msgstr "Dette arkivet inneheld ei forboden spesialfil (symbolsk/hard lenkje- eller einings-/blokkfil)"
 
 #: src/olympia/files/utils.py:637
 msgid "Uncompressed size is too large"
-msgstr ""
+msgstr "Den ukomprimerte storleiken er for stor"
 
 #: src/olympia/files/utils.py:669
 msgid "Invalid archive."
@@ -6172,16 +6172,16 @@ msgstr "Ugyldig arkiv."
 
 #: src/olympia/files/utils.py:858
 msgid "No manifest.json found"
-msgstr ""
+msgstr "Fann ingen manifest.json"
 
 #: src/olympia/files/utils.py:863
 msgid "Invalid or corrupted file."
 msgstr "Ugyldig eller skada fil."
 
 #: src/olympia/files/utils.py:903
-#, fuzzy, python-format
+#, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
-msgstr "Utvidings-ID i manifest.json eller install.rdf (%s) matchar passar ikkje med ID-en for utvidinga di på AMO (%s)"
+msgstr "Tilleggs-ID-en i manifest.json-fila di (%s) samsvarar ikkje med ID-en til tillegget ditt på AMO (%s)"
 
 #: src/olympia/files/utils.py:911
 msgid "Duplicate add-on ID found."
@@ -6190,16 +6190,16 @@ msgstr "Dobbel utvidings-ID funne."
 #: src/olympia/files/utils.py:917
 #, python-brace-format
 msgid "Version numbers should have at most {max_length} characters."
-msgstr ""
+msgstr "Versjonsnummer skal innehalde maksimalt {max_length} teikn."
 
 #: src/olympia/files/utils.py:923
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
-msgstr ""
+msgstr "Versjonsnummer skal berre innehalde bokstavar, tal og desse teiknsetjingsteikna: +*.-_."
 
 #: src/olympia/files/utils.py:932
 #, python-brace-format
 msgid "Maximum size for WebExtension themes is {0}."
-msgstr ""
+msgstr "Maksimal storleik for Webextension-tema er {0}."
 
 #: src/olympia/files/utils.py:945
 msgid "You cannot submit this type of add-on"
