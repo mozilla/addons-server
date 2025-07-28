@@ -205,6 +205,9 @@ def send_suppressed_email_confirmation(suppressed_email_verification_id):
     autoretry_for=(OperationalError, InterfaceError), max_retries=5, retry_backoff=True
 )
 def bulk_add_disposable_email_domains(entries: list[tuple[str, str]], batch_size=1000):
+    if not isinstance(batch_size, int) or batch_size <= 0:
+        raise ValueError('batch_size must be a positive integer')
+
     task_log.info(f'Adding {len(entries)} disposable email domains')
 
     records = []
@@ -228,9 +231,9 @@ def bulk_add_disposable_email_domains(entries: list[tuple[str, str]], batch_size
         return
 
     processed_domains = []
-    records_iter = iter(records)
 
-    while batch := list(itertools.islice(records_iter, batch_size)):
+    for i in range(0, len(records), batch_size):
+        batch = records[i : i + batch_size]
         created_objects = DisposableEmailDomainRestriction.objects.bulk_create(
             batch,
             batch_size,
