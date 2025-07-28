@@ -6,6 +6,7 @@ import tempfile
 import uuid
 from ipaddress import IPv4Address
 from unittest.mock import ANY, patch
+from celery.result import EagerResult
 
 from django.core.files.base import ContentFile
 from django.core.management import CommandError, call_command
@@ -572,13 +573,9 @@ class TestBulkAddDisposableEmailDomains(TestCase):
             assert DisposableEmailDomainRestriction.objects.count() == 0
 
     @patch('olympia.users.management.commands.bulk_add_disposable_domains.logger')
-    @patch(
-        'olympia.users.management.commands.bulk_add_disposable_domains.bulk_add_disposable_email_domains'
-    )
-    def test_bulk_add_result_is_printed(self, mock_bulk_add, mock_logger):
+    def test_bulk_add_result_is_printed(self, mock_logger):
         """result of bulk_add_disposable_email_domains task logged."""
         fake_result = 'Task completed successfully'
-        mock_bulk_add.apply.return_value = fake_result
 
         csv_content = (
             'Domain,Provider\n'
@@ -592,4 +589,6 @@ class TestBulkAddDisposableEmailDomains(TestCase):
             tmp_path = tmp.name
 
             call_command('bulk_add_disposable_domains', tmp_path)
-            mock_logger.info.assert_called_with(fake_result)
+            result = mock_logger.info.call_args[0][0]
+            assert isinstance(result, EagerResult)
+            assert result.state == 'SUCCESS'
