@@ -4,6 +4,8 @@ import tempfile
 import urllib.parse
 
 from django.conf import settings
+from django.core.exceptions import ValidationError
+from django.db.utils import InterfaceError, OperationalError
 from django.urls import reverse
 from django.utils.translation import gettext
 
@@ -24,6 +26,7 @@ from olympia.amo.utils import (
 
 from .models import (
     BannedUserContent,
+    DisposableEmailDomainRestriction,
     SuppressedEmail,
     SuppressedEmailVerification,
     UserProfile,
@@ -196,3 +199,53 @@ def send_suppressed_email_confirmation(suppressed_email_verification_id):
     )
 
     verification.save()
+
+
+@task(
+    autoretry_for=(OperationalError, InterfaceError), max_retries=5, retry_backoff=True
+)
+def bulk_add_disposable_email_domains(entries: list[tuple[str, str]], batch_size=1000):
+    if not isinstance(batch_size, int) or batch_size <= 0:
+        raise ValueError('batch_size must be a positive integer')
+
+    task_log.info(f'Adding {len(entries)} disposable email domains')
+
+    records = []
+    errors = []
+
+    for entry in entries:
+        [domain, provider] = entry
+        record = DisposableEmailDomainRestriction(
+            domain=domain,
+            reason=f'Disposable email domain of {provider}',
+        )
+
+        try:
+            record.full_clean()
+            records.append(record)
+        except ValidationError as e:
+            errors.append(e)
+
+    if not records:
+        task_log.info('No valid entries provided')
+        return
+
+    processed_domains = []
+
+    for i in range(0, len(records), batch_size):
+        batch = records[i : i + batch_size]
+        created_objects = DisposableEmailDomainRestriction.objects.bulk_create(
+            batch,
+            batch_size,
+            ignore_conflicts=True,
+        )
+        processed_domains.extend(created_objects)
+        task_log.info(
+            f'Successfully processed {len(created_objects)} '
+            f'of {len(batch)} domains in this batch'
+        )
+
+    task_log.info(
+        f'Processed {len(processed_domains)} domains: '
+        f'{[obj.domain for obj in processed_domains]}'
+    )
