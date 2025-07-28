@@ -6736,6 +6736,8 @@ msgid ""
 "<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
 "down by add-on version, operating system, add-on status, application, and locale. </p>"
 msgstr ""
+"<h2>Kva er daglege brukarar?</h2> <p> Tillegg som blir lasta ned frå denne nettstaden sjekkar etter oppdateringar éin gong per dag. Det samla talet av desse oppdateringspinga blir kalla aktive "
+"daglege brukarar. Daglege brukarar kan delast inn etter tilleggsversjon, operativsystem, tilleggsstatus, program og språk.</p>"
 
 #: src/olympia/stats/templates/stats/reports/versions.html:3
 msgid "Application versions by Date"
@@ -6819,6 +6821,8 @@ msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
 "Commons Attribution Share-Alike License v3.0</a> or any later version."
 msgstr ""
+"Med mindre anna er <a href=\"https://www.mozilla.org/about/legal/\">oppgitt</a>, er innhaldet på denne nettstaden lisensiert under <a href=\"https://creativecommons.org/licenses/by-"
+"sa/3.0/\">Creative Commons Namngivings-del-på-same-vilkår-lisens v3.0</a> eller ein seinare versjon."
 
 #: src/olympia/templates/user_login.html:24
 #, python-format
@@ -6864,7 +6868,7 @@ msgstr "Nye språk"
 #: src/olympia/translations/templates/translations/trans-menu.html:42
 #, python-brace-format
 msgid "You have unsaved changes in the <b>{0}</b> locale. Would you like to save your changes before switching locales?"
-msgstr ""
+msgstr "Du har endringar i språket <b>{0}</b> som ikkje er lagra. Vil du lagre endringane dine før du skiftar språk?"
 
 #: src/olympia/translations/templates/translations/trans-menu.html:49
 msgid "Discard Changes"
@@ -6874,7 +6878,7 @@ msgstr "Ignorer endringar"
 #: src/olympia/translations/templates/translations/trans-menu.html:56
 #, python-brace-format
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
-msgstr ""
+msgstr "Er du sikker på at du vil fjerne alle <b>{0}</b> omsetjingar? Dette kan ikkje angrast."
 
 #: src/olympia/translations/templates/translations/trans-menu.html:61
 msgid "Delete Locale"
@@ -6886,7 +6890,7 @@ msgstr "IP-adresse"
 
 #: src/olympia/users/forms.py:26
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
-msgstr ""
+msgstr "Skriv inn ei gyldig IPv4- eller IPv6-adresse, t.d. 127.0.0.1. Vil bli konvertert til eit /32-nettverk."
 
 #: src/olympia/users/forms.py:37
 msgid "You can only enter one, either IP Address or Network."
