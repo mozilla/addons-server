@@ -615,7 +615,6 @@ class TestBulkAddDisposableEmailDomains(TestCase):
             ('foo.com', 'mail.tm'),
             ('mailpro.live', 'incognitomail.co'),
         ]
-        breakpoint()
         for domain, provider in expected:
             assert DisposableEmailDomainRestriction.objects.filter(
                 domain=domain, reason=f'Disposable email domain of {provider}'
