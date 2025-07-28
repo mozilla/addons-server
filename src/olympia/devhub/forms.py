@@ -35,6 +35,7 @@ from olympia.addons.models import (
 )
 from olympia.addons.utils import (
     fetch_translations_from_addon,
+    get_translation_differences,
     remove_icons,
     validate_version_number_is_gt_latest_signed_listed_version,
     verify_mozilla_trademark,
@@ -134,15 +135,17 @@ class AddonFormBase(TranslationFormMixin, AMOModelForm):
             else {}
         )
         obj = super().save(*args, **kwargs)
-        if not metadata_content_review:
-            return obj
-        new_data = fetch_translations_from_addon(
-            obj, self.fields_to_trigger_content_review
-        )
-        if existing_data != new_data:
-            # flag for content review
-            statsd.incr('devhub.metadata_content_review_triggered')
-            AddonApprovalsCounter.reset_content_for_addon(addon=obj)
+        if metadata_content_review:
+            new_data = fetch_translations_from_addon(
+                obj, self.fields_to_trigger_content_review
+            )
+            if existing_data != new_data:
+                self.metadata_changes = get_translation_differences(
+                    existing_data, new_data
+                )
+                # flag for content review
+                statsd.incr('devhub.metadata_content_review_triggered')
+                AddonApprovalsCounter.reset_content_for_addon(addon=obj)
         return obj
 
 

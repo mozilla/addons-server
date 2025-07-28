@@ -1961,6 +1961,7 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         self.statsd_incr_mock = self.patch('olympia.addons.serializers.statsd.incr')
 
     def test_basic(self):
+        original_summary = str(self.addon.summary)
         response = self.request(data={'summary': {'en-US': 'summary update!'}})
         self.addon.reload()
         assert response.status_code == 200, response.content
@@ -1990,8 +1991,12 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
             )
         ).get()
         assert alog.user == self.user
-        assert alog.action == amo.LOG.EDIT_PROPERTIES.id
-        assert alog.details == ['summary']
+        assert alog.action == amo.LOG.EDIT_ADDON_PROPERTY.id
+        assert alog.arguments == [
+            self.addon,
+            'summary',
+            json.dumps({'removed': [original_summary], 'added': ['summary update!']}),
+        ]
         return data
 
     @override_settings(API_THROTTLING=False)
@@ -2212,6 +2217,10 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
     def test_set_extra_data(self):
         self.addon.description = 'Existing description'
         self.addon.save()
+        original_data = {
+            'name': str(self.addon.name),
+            'summary': str(self.addon.summary),
+        }
         patch_data = {
             'developer_comments': {'en-US': 'comments'},
             'homepage': {'en-US': 'https://my.home.page/'},
@@ -2251,17 +2260,48 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         assert addon.support_email == 'email@me.me'
         assert data['support_url']['url'] == {'en-US': 'https://my.home.page/support/'}
         assert addon.support_url == 'https://my.home.page/support/'
+
+        summ_log, name_log = list(
+            ActivityLog.objects.filter(action=amo.LOG.EDIT_ADDON_PROPERTY.id)
+        )
+        if name_log.arguments[1] != 'name':
+            # The order isn't deterministic, it doesn't matter, so just switch em.
+            name_log, summ_log = summ_log, name_log
+        assert name_log.arguments == [
+            self.addon,
+            'name',
+            json.dumps(
+                {
+                    'removed': [original_data['name']],
+                    'added': [patch_data['name']['en-US']],
+                }
+            ),
+        ]
+        assert summ_log.arguments == [
+            self.addon,
+            'summary',
+            json.dumps(
+                {
+                    'removed': [original_data['summary']],
+                    'added': [patch_data['summary']['en-US']],
+                }
+            ),
+        ]
+
         alog = ActivityLog.objects.exclude(
             action__in=(
                 amo.LOG.ADD_VERSION.id,
                 amo.LOG.LOG_IN.id,
                 amo.LOG.LOG_IN_API_TOKEN.id,
                 amo.LOG.ADDON_SLUG_CHANGED.id,
+                amo.LOG.EDIT_ADDON_PROPERTY.id,
             )
         ).get()
         assert alog.user == self.user
         assert alog.action == amo.LOG.EDIT_PROPERTIES.id
-        assert alog.details == list(patch_data.keys())
+        assert alog.details == [
+            prop for prop in patch_data if prop not in ('name', 'summary')
+        ]
 
     def test_set_disabled(self):
         response = self.request(
@@ -2500,7 +2540,7 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
 
     def _test_metadata_content_review(self):
         response = self.request(
-            data={'name': {'en-US': 'new name'}, 'summary': {'en-US': 'new summary'}},
+            data={'name': {'en-US': 'new name'}, 'summary': {'fr': 'summary nouveau'}},
         )
         assert response.status_code == 200
 
@@ -2526,6 +2566,7 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         )
 
     def test_metadata_change_triggers_content_review(self):
+        old_name = str(self.addon.name)
         AddonApprovalsCounter.approve_content_for_addon(addon=self.addon)
         assert AddonApprovalsCounter.objects.get(addon=self.addon).last_content_review
 
@@ -2539,6 +2580,26 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         self.statsd_incr_mock.assert_any_call(
             'addons.submission.metadata_content_review_triggered'
         )
+        assert (
+            ActivityLog.objects.filter(action=amo.LOG.EDIT_ADDON_PROPERTY.id).count()
+            == 2
+        )
+        summ_log, name_log = list(
+            ActivityLog.objects.filter(action=amo.LOG.EDIT_ADDON_PROPERTY.id)
+        )
+        if name_log.arguments[1] != 'name':
+            # The order isn't deterministic, it doesn't matter, so just switch em.
+            name_log, summ_log = summ_log, name_log
+        assert name_log.arguments == [
+            self.addon,
+            'name',
+            json.dumps({'removed': [old_name], 'added': ['new name']}),
+        ]
+        assert summ_log.arguments == [
+            self.addon,
+            'summary',
+            json.dumps({'removed': [], 'added': ['summary nouveau']}),
+        ]
 
     def test_metadata_change_same_content(self):
         AddonApprovalsCounter.approve_content_for_addon(addon=self.addon)
@@ -2547,7 +2608,7 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         ).last_content_review
         assert old_content_review
         self.addon.name = {'en-US': 'new name'}
-        self.addon.summary = {'en-US': 'new summary'}
+        self.addon.summary = {'en-US': str(self.addon.summary), 'fr': 'summary nouveau'}
         self.addon.save()
 
         self._test_metadata_content_review()
