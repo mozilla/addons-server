@@ -98,7 +98,7 @@ msgstr "Hallo,"
 
 #: src/olympia/abuse/templates/abuse/emails/base_reporter.txt:7
 msgid "Mozilla Add-ons Team"
-msgstr "Mozillas tilleggsteam"
+msgstr "Mozilla-tilleggsteamet"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_approve.txt:8
 #, python-format
@@ -3802,7 +3802,7 @@ msgstr ""
 "\n"
 "Beste helsing,\n"
 "\n"
-"Mozillas tilleggsteam"
+"Mozilla-tilleggsteamet"
 
 #: src/olympia/devhub/templates/devhub/emails/verify-email-requested.ltxt:10
 #, python-format
@@ -3827,7 +3827,7 @@ msgstr ""
 "\n"
 "Helsing,\n"
 "\n"
-"Mozilla tilleggsteamet"
+"Mozilla-tilleggsteamet"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:6 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:4
 msgid "Invisible"
@@ -7025,6 +7025,16 @@ msgid ""
 "Kind regards,\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Hei %(author_name)s,\n"
+"\n"
+"Du er blitt invitert til å bli opphavsmann av %(addon_name)s på %(domain)s. Om du godtar invitasjonen, kan du redigere tillegget og kanskje vise namnet ditt i lista over opphavsmenn på nettstaden.\n"
+"\n"
+"Klikk på lenka nedanfor for å svare om du vil bli lagt til som opphavsmann for %(addon_name)s.\n"
+"\n"
+"%(author_confirmation_link)s\n"
+"\n"
+"Helsing\n"
+"Mozilla-tilleggsteamet"
 
 #: src/olympia/users/templates/users/emails/author_changed.ltxt:3
 #, python-format
@@ -7044,6 +7054,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s )"
 msgstr ""
+"Følgjande opphavsmann er fjerna frå dtillegget ditt %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s )"
 
 #: src/olympia/users/templates/users/emails/user_deleted.ltxt:7
 #, python-format
@@ -7056,11 +7069,18 @@ msgid ""
 "\n"
 "Mozilla Add-ons Team"
 msgstr ""
+"Hei,\n"
+"\n"
+"Du får denne meldinga fordi brukarkontoen din %(name)s på %(site_url)s er sletta. Dette kan ha blitt gjort automatisk viss du nyleg sletta Mozilla-kontoen din.\n"
+"\n"
+"Med vennleg helsing,\n"
+"\n"
+"Mozilla-tilleggsteamet"
 
 #: src/olympia/versions/models.py:1176
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
-msgstr ""
+msgstr "Forsinka avvist, planlagt til %s"
 
 #: src/olympia/versions/models.py:1181
 msgid "Auto-approved, Confirmed"
@@ -7086,4 +7106,4 @@ msgstr "{app} {min} og nyare"
 #: src/olympia/versions/models.py:1678
 #, python-brace-format
 msgid "The install origin {origin} is not permitted."
-msgstr ""
+msgstr "Installasjonsopphavet {origin} er ikkje tillate."
