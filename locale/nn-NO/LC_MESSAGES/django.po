@@ -6270,7 +6270,7 @@ msgstr "Automatisk flagga på grunn av brukaravgrensing"
 #: src/olympia/ratings/models.py:411
 #, python-format
 msgid "%(value)s contains a non-alphanumeric character."
-msgstr ""
+msgstr "%(value)s inneheld eit ikkje-alfanumerisk teikn."
 
 #: src/olympia/ratings/serializers.py:90
 #, python-brace-format
