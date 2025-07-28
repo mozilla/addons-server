@@ -1,4 +1,5 @@
 import uuid
+from collections import defaultdict
 
 from django import forms
 from django.core.files.storage import default_storage as storage
@@ -89,10 +90,25 @@ def compute_last_updated(addon):
 
 
 def fetch_translations_from_addon(addon, properties):
-    translation_ids_gen = (getattr(addon, prop + '_id', None) for prop in properties)
-    translation_ids = [id_ for id_ in translation_ids_gen if id_]
+    translation_ids_gen = (
+        (prop, getattr(addon, prop + '_id', None)) for prop in properties
+    )
+    translation_ids = {id_: prop for prop, id_ in translation_ids_gen if id_}
     # Just get all the values together to make it simplier
-    return {str(value) for value in Translation.objects.filter(id__in=translation_ids)}
+    out = defaultdict(set)
+    for trans in Translation.objects.filter(id__in=translation_ids):
+        out[translation_ids.get(trans.id, '_')].add(str(trans))
+    return out
+
+
+def get_translation_differences(old_, new_):
+    out = {}
+    for field in list({*old_, *new_}):
+        removed = list(old_[field] - new_[field])
+        added = list(new_[field] - old_[field])
+        if removed or added:
+            out[field] = {'removed': removed, 'added': added}
+    return out
 
 
 class DeleteTokenSigner(TimestampSigner):
