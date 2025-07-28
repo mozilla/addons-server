@@ -28,7 +28,7 @@ class Command(BaseCommand):
             for row in reader:
                 if len(row) >= 2:
                     domain, provider = row[0], row[1]
-                    records.append((domain, provider))
+                    records.append((domain.strip(), provider.strip()))
 
         result = bulk_add_disposable_email_domains.apply(args=[records])
         logger.info(result)

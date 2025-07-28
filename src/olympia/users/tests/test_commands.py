@@ -591,3 +591,32 @@ class TestBulkAddDisposableEmailDomains(TestCase):
             result = mock_logger.info.call_args[0][0]
             assert isinstance(result, EagerResult)
             assert result.state == 'SUCCESS'
+
+    def test_trims_domains_of_whitespace(self):
+        """Test that domains with whitespace are trimmed."""
+        csv_content = (
+            'Domain,Provider\n'
+            ' mailfast.pro  ,incognitomail.co\n'
+            'foo.com,mail.tm\n'
+            'mailpro.live,incognitomail.co\n'
+        )
+
+        with tempfile.NamedTemporaryFile(mode='w+', delete=False, suffix='.csv') as tmp:
+            tmp.write(csv_content)
+            tmp.flush()
+            tmp_path = tmp.name
+
+            assert DisposableEmailDomainRestriction.objects.count() == 0
+
+            call_command('bulk_add_disposable_domains', tmp_path)
+
+        expected = [
+            ('mailfast.pro', 'incognitomail.co'),
+            ('foo.com', 'mail.tm'),
+            ('mailpro.live', 'incognitomail.co'),
+        ]
+        breakpoint()
+        for domain, provider in expected:
+            assert DisposableEmailDomainRestriction.objects.filter(
+                domain=domain, reason=f'Disposable email domain of {provider}'
+            ).exists()
