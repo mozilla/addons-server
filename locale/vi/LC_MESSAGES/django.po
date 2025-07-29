@@ -3714,6 +3714,16 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Xin chào,\n"
+"\n"
+"Bạn nhận được thông báo này vì bạn đã yêu cầu khóa API nhà phát triển mới cho\n"
+"%(domain)s. Để hoàn tất quá trình này, vui lòng nhấp vào liên kết bên dưới:\n"
+"\n"
+"%(api_key_confirmation_link)s\n"
+"\n"
+"Trân trọng,\n"
+"\n"
+"Nhóm tiện ích mở rộng Mozilla"
 
 #: src/olympia/devhub/templates/devhub/emails/new-key-email.ltxt:8
 #, python-format
@@ -3812,6 +3822,16 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Xin chào,\n"
+"\n"
+"Bạn nhận được thông báo này vì bạn đã yêu cầu xác minh email của bạn.\n"
+"Để hoàn tất quá trình này, vui lòng nhấp vào liên kết bên dưới:\n"
+"\n"
+"%(confirmation_link)s\n"
+"\n"
+"Trân trọng,\n"
+"\n"
+"Nhóm tiện ích mở rộng Mozilla"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:6 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:4
 msgid "Invisible"
@@ -3833,7 +3853,7 @@ msgstr "Tiện ích của bạn được hiển thị trong trang trưng bày c�
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:30
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery."
-msgstr ""
+msgstr "Tiện ích mở rộng của bạn đã bị quản trị viên trang web vô hiệu hóa và không còn hiển thị trong thư viện của chúng tôi nữa."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:33
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
@@ -5834,7 +5854,7 @@ msgstr "Xem tất cả các tiện ích mở rộng"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1018
 msgid "Anti-tracking extensions"
-msgstr ""
+msgstr "Tiện ích mở rộng chống theo dõi"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1020
@@ -5844,7 +5864,7 @@ msgstr "Tiện ích mở rộng cần thiết"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1022
 msgid "Steam extensions"
-msgstr ""
+msgstr "Tiện ích mở rộng Steam"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1024 src/olympia/discovery/strings.jinja2:1026 src/olympia/discovery/strings.jinja2:1028
@@ -7006,6 +7026,16 @@ msgid ""
 "Kind regards,\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Xin chào %(author_name)s,\n"
+"\n"
+"Bạn đã được mời trở thành tác giả của %(addon_name)s trên %(domain)s. Chấp nhận lời mời sẽ cung cấp cho bạn quyền truy cập để chỉnh sửa tiện ích và có thể hiển thị tên của bạn trong danh sách tác giả trên trang web.\n"
+"\n"
+"Nhấp vào liên kết bên dưới để trả lời nếu bạn muốn được thêm làm tác giả cho %(addon_name)s.\n"
+"\n"
+"%(author_confirmation_link)s\n"
+"\n"
+"Trân trọng,\n"
+"Nhóm tiện ích mở rộng của Mozilla"
 
 #: src/olympia/users/templates/users/emails/author_changed.ltxt:3
 #, python-format
@@ -7040,6 +7070,13 @@ msgid ""
 "\n"
 "Mozilla Add-ons Team"
 msgstr ""
+"Xin chào,\n"
+"\n"
+"Bạn nhận được thông báo này vì tài khoản người dùng của bạn %(name)s trên %(site_url)s đã bị xoá. Điều này có thể được thực hiện tự động nếu gần đây bạn đã xóa tài khoản Mozilla của mình.\n"
+"\n"
+"Trân trọng,\n"
+"\n"
+"Nhóm tiện ích mở rộng Mozilla"
 
 #: src/olympia/versions/models.py:1176
 #, python-format
