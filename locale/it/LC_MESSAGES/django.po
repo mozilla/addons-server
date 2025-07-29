@@ -1299,7 +1299,7 @@ msgstr "Ripristino versione non riuscito"
 #: src/olympia/constants/activity.py:1246
 #, python-brace-format
 msgid "{addon} {0} property edited."
-msgstr ""
+msgstr "Sono state modificate le proprietà di {addon} {0}."
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
