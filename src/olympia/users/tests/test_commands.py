@@ -625,99 +625,90 @@ class TestBulkAddDisposableEmailDomains(TestCase):
 
 class TestRestrictBannedUsers(TestCase):
     def test_basic(self):
-        expected_not_restricted = user_factory()
-        expected_restricted = user_factory(banned=self.days_ago(42), deleted=True)
+        not_banned = user_factory()
+        banned = user_factory(banned=self.days_ago(42), deleted=True)
         assert not EmailUserRestriction.objects.filter(
-            email_pattern=expected_not_restricted.email
+            email_pattern=not_banned.email
         ).exists()
         call_command('process_users', task='restrict_banned_users')
 
         assert not EmailUserRestriction.objects.filter(
-            email_pattern=expected_not_restricted.email
+            email_pattern=not_banned.email
         ).exists()
         assert (
-            EmailUserRestriction.objects.filter(
-                email_pattern=expected_restricted.email
-            ).count()
-            == 2
+            EmailUserRestriction.objects.filter(email_pattern=banned.email).count() == 2
         )
         restriction = EmailUserRestriction.objects.filter(
-            email_pattern=expected_restricted.email,
+            email_pattern=banned.email,
             restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION,
         ).get()
         assert (
             restriction.reason
-            == f'Automatically added because of user {expected_restricted.pk} ban (backfill)'
+            == f'Automatically added because of user {banned.pk} ban (backfill)'
         )
         restriction = EmailUserRestriction.objects.filter(
-            email_pattern=expected_restricted.email,
+            email_pattern=banned.email,
             restriction_type=RESTRICTION_TYPES.RATING,
         ).get()
         assert (
             restriction.reason
-            == f'Automatically added because of user {expected_restricted.pk} ban (backfill)'
+            == f'Automatically added because of user {banned.pk} ban (backfill)'
         )
 
     def test_ignores_dupes_other_restriction_types(self):
-        expected_restricted = user_factory(banned=self.days_ago(42), deleted=True)
+        banned = user_factory(banned=self.days_ago(42), deleted=True)
         EmailUserRestriction.objects.create(
-            email_pattern=expected_restricted.email,
+            email_pattern=banned.email,
             restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL,
         )
         call_command('process_users', task='restrict_banned_users')
         assert (
-            EmailUserRestriction.objects.filter(
-                email_pattern=expected_restricted.email
-            ).count()
-            == 3
+            EmailUserRestriction.objects.filter(email_pattern=banned.email).count() == 3
         )
         restriction = EmailUserRestriction.objects.filter(
-            email_pattern=expected_restricted.email,
+            email_pattern=banned.email,
             restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION,
         ).get()
         assert (
             restriction.reason
-            == f'Automatically added because of user {expected_restricted.pk} ban (backfill)'
+            == f'Automatically added because of user {banned.pk} ban (backfill)'
         )
         restriction = EmailUserRestriction.objects.filter(
-            email_pattern=expected_restricted.email,
+            email_pattern=banned.email,
             restriction_type=RESTRICTION_TYPES.RATING,
         ).get()
         assert (
             restriction.reason
-            == f'Automatically added because of user {expected_restricted.pk} ban (backfill)'
+            == f'Automatically added because of user {banned.pk} ban (backfill)'
         )
 
     def test_do_not_create_dupes_same_restriction_type(self):
-        expected_restricted = user_factory(banned=self.days_ago(42), deleted=True)
+        banned = user_factory(banned=self.days_ago(42), deleted=True)
         EmailUserRestriction.objects.create(
-            email_pattern=expected_restricted.email,
+            email_pattern=banned.email,
             restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION,
             reason='Already exists',
         )
         call_command('process_users', task='restrict_banned_users')
         assert (
-            EmailUserRestriction.objects.filter(
-                email_pattern=expected_restricted.email
-            ).count()
-            == 2
+            EmailUserRestriction.objects.filter(email_pattern=banned.email).count() == 2
         )
         restriction = EmailUserRestriction.objects.filter(
-            email_pattern=expected_restricted.email,
+            email_pattern=banned.email,
             restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION,
         ).get()
         assert restriction.reason == 'Already exists'
         restriction = EmailUserRestriction.objects.filter(
-            email_pattern=expected_restricted.email,
+            email_pattern=banned.email,
             restriction_type=RESTRICTION_TYPES.RATING,
         ).get()
         assert (
             restriction.reason
-            == f'Automatically added because of user {expected_restricted.pk} ban (backfill)'
+            == f'Automatically added because of user {banned.pk} ban (backfill)'
         )
 
     def test_normalization(self):
-        expected_restricted = user_factory(
+        banned = user_factory(
             email='foo.bar+alice@example.com', banned=self.days_ago(42), deleted=True
         )
         call_command('process_users', task='restrict_banned_users')
@@ -727,5 +718,5 @@ class TestRestrictBannedUsers(TestCase):
         ).get()
         assert (
             restriction.reason
-            == f'Automatically added because of user {expected_restricted.pk} ban (backfill)'
+            == f'Automatically added because of user {banned.pk} ban (backfill)'
         )

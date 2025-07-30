@@ -16,7 +16,7 @@ from django.contrib.auth.signals import user_logged_in
 from django.core import validators
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.db import models
-from django.db.models import F, Value
+from django.db.models import F, Q, Value
 from django.db.models.functions import Collate
 from django.template import loader
 from django.templatetags.static import static
