@@ -216,7 +216,7 @@ class TestUserProfile(TestCase):
         self.setup_user_to_be_have_content_disabled(user_sole)
         user_multi = user_factory(
             auth_id=987654321,
-            email='multi@foo.baa',
+            email='multi.addons@foo.baa',
             fxa_id='24680',
             last_login_ip='127.0.0.2',
             averagerating=2.2,
@@ -234,6 +234,14 @@ class TestUserProfile(TestCase):
         self.setup_user_to_be_have_content_disabled(user_multi)
 
         Rating.objects.create(user=user_innocent, addon=addon_multi, rating=5)
+
+        # Add existing EmailUserRestriction for user sole email, it should not
+        # matter, we shouldn't add a duplicate.
+        EmailUserRestriction.objects.create(
+            email_pattern=user_sole.email,
+            restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION,
+            reason='Already exists',
+        )
 
         # Now that everything is set up, disable/delete related content.
         UserProfile.objects.filter(
@@ -343,7 +351,7 @@ class TestUserProfile(TestCase):
         assert user_multi.deleted
         self.assertCloseToNow(user_multi.banned)
         self.assertCloseToNow(user_multi.modified)
-        assert user_multi.email == 'multi@foo.baa'
+        assert user_multi.email == 'multi.addons@foo.baa'
         assert user_multi.auth_id is None
         assert user_multi.fxa_id == '24680'
         assert user_multi.last_login_ip == '127.0.0.2'
@@ -358,6 +366,50 @@ class TestUserProfile(TestCase):
         assert not user_innocent.banned
         assert user_innocent.auth_id
         assert user_innocent.ratings.exists()
+        assert not EmailUserRestriction.objects.filter(
+            email_pattern=user_innocent.email
+        ).exists()
+
+        assert (
+            EmailUserRestriction.objects.filter(
+                email_pattern='multiaddons@foo.baa',  # Normalized
+            ).count()
+            == 2
+        )
+        restriction = EmailUserRestriction.objects.filter(
+            email_pattern='multiaddons@foo.baa',  # Normalized
+            restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION,
+        ).get()
+        assert (
+            restriction.reason
+            == f'Automatically added because of user {user_multi.pk} ban'
+        )
+        restriction = EmailUserRestriction.objects.filter(
+            email_pattern='multiaddons@foo.baa',  # Normalized
+            restriction_type=RESTRICTION_TYPES.RATING,
+        ).get()
+        assert (
+            restriction.reason
+            == f'Automatically added because of user {user_multi.pk} ban'
+        )
+
+        assert (
+            EmailUserRestriction.objects.filter(email_pattern=user_sole.email).count()
+            == 2
+        )
+        restriction = EmailUserRestriction.objects.filter(
+            email_pattern=user_sole.email,
+            restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION,
+        ).get()
+        assert restriction.reason == 'Already exists'
+        restriction = EmailUserRestriction.objects.filter(
+            email_pattern=user_sole.email,
+            restriction_type=RESTRICTION_TYPES.RATING,
+        ).get()
+        assert (
+            restriction.reason
+            == f'Automatically added because of user {user_sole.pk} ban'
+        )
 
         return {
             'user_innocent': user_innocent,
@@ -426,6 +478,9 @@ class TestUserProfile(TestCase):
         # users so skip checking the resized version (picture_path), it's
         # tested in another test below.
 
+        # We shouldn't have any email restrictions left.
+        assert not EmailUserRestriction.objects.exists()
+
     @mock.patch('olympia.users.models.download_file_contents_from_backup_storage')
     @mock.patch('olympia.users.models.backup_storage_enabled', lambda: True)
     def test_unban_and_restore_banned_content_single(
@@ -461,6 +516,11 @@ class TestUserProfile(TestCase):
         assert self.storage.exists(user_sole.picture_path_original)
         assert self.storage.exists(user_sole.picture_path)
 
+        # We shouldn't have any email restrictions left for the unbanned user.
+        assert not EmailUserRestriction.objects.filter(
+            email_pattern=user_sole.email
+        ).exists()
+
         # user_multi was not touched.
         user_multi.reload()
         assert user_multi.deleted
@@ -476,6 +536,12 @@ class TestUserProfile(TestCase):
         )
         assert not self.storage.exists(user_multi.picture_path_original)
         assert not self.storage.exists(user_multi.picture_path)
+
+        # We should still have any email restrictions left for the banned user,
+        # with normalized email.
+        assert EmailUserRestriction.objects.filter(
+            email_pattern='multiaddons@foo.baa'
+        ).exists()
 
     @mock.patch('olympia.users.models.download_file_contents_from_backup_storage')
     @mock.patch('olympia.users.models.backup_storage_enabled', lambda: False)
