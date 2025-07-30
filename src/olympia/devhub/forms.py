@@ -1608,7 +1608,9 @@ class RollbackVersionForm(forms.Form):
     )
     listed_version = forms.TypedChoiceField(choices=(), coerce=int, required=False)
     unlisted_version = forms.ModelChoiceField(
-        queryset=Version.objects.none(), empty_label=gettext('Choose version')
+        queryset=Version.objects.none(),
+        empty_label=gettext('Choose version'),
+        required=False,
     )
     new_version_string = forms.CharField(max_length=255)
 
@@ -1636,7 +1638,6 @@ class RollbackVersionForm(forms.Form):
             channel.initial = amo.CHANNEL_UNLISTED
             channel.widget.attrs = {'disabled': True}
         elif not self.unlisted_count and self.listed_count:
-            unlisted.required = False
             # if there is a listed option, we default to that channel
             channel.initial = amo.CHANNEL_LISTED
             channel.widget.attrs = {'disabled': True}
