@@ -70,6 +70,14 @@ def get_anonymized_username():
     return f'anonymous-{force_str(binascii.b2a_hex(os.urandom(16)))}'
 
 
+RESTRICTION_TYPES = Choices(
+    ('ADDON_SUBMISSION', 1, 'Add-on Submission'),
+    ('ADDON_APPROVAL', 2, 'Add-on Approval'),
+    ('RATING', 3, 'Rating'),
+    ('RATING_MODERATE', 4, 'Rating Flag for Moderation'),
+)
+
+
 class UserEmailField(forms.ModelChoiceField):
     """
     Field to use for ForeignKeys to UserProfile, to use email instead of pk.
@@ -130,6 +138,21 @@ class UserQuerySet(BaseQuerySet):
         users = self.all()
         BannedUserContent.objects.bulk_create(
             [BannedUserContent(user=user) for user in users], ignore_conflicts=True
+        )
+        EmailUserRestriction.objects.bulk_create(
+            [
+                EmailUserRestriction(
+                    email_pattern=EmailUserRestriction.normalize_email(user.email),
+                    restriction_type=restriction_type,
+                    reason=f'Automatically added because of user {user.pk} ban',
+                )
+                for user in users
+                for restriction_type in [
+                    RESTRICTION_TYPES.ADDON_SUBMISSION,
+                    RESTRICTION_TYPES.RATING,
+                ]
+            ],
+            ignore_conflicts=True,
         )
 
         # Collect affected addons
@@ -252,6 +275,9 @@ class UserQuerySet(BaseQuerySet):
             user.deleted = False
             user.banned = None
             user.save()
+            EmailUserRestriction.objects.filter(
+                email_pattern=EmailUserRestriction.normalize_email(user.email)
+            ).delete()
 
 
 class UserManager(BaseUserManager, ManagerBase):
@@ -772,14 +798,6 @@ class DeniedName(ModelBase):
         )
 
 
-RESTRICTION_TYPES = Choices(
-    ('ADDON_SUBMISSION', 1, 'Add-on Submission'),
-    ('ADDON_APPROVAL', 2, 'Add-on Approval'),
-    ('RATING', 3, 'Rating'),
-    ('RATING_MODERATE', 4, 'Rating Flag for Moderation'),
-)
-
-
 class RestrictionAbstractBase:
     """Base class for restrictions."""
 
@@ -1022,21 +1040,37 @@ class EmailUserRestriction(RestrictionAbstractBaseModel, NormalizeEmailMixin):
         Return whether the specified email should be allowed to submit add-ons.
         """
         email = cls.normalize_email(email)
-        restrictions = EmailUserRestriction.objects.all().filter(
+        base_qs = EmailUserRestriction.objects.all().filter(
             restriction_type=restriction_type
         )
 
-        for restriction in restrictions:
-            if fnmatchcase(email, restriction.email_pattern):
-                # The following log statement is used by foxsec-pipeline.
-                log.info(
-                    'Restricting request from %s %s (%s)',
-                    'email',
-                    email,
-                    'email_pattern=%s' % restriction.email_pattern,
-                    extra={'sensitive': True},
-                )
-                return False
+        # We should have relatively few restrictions with actual patterns, so
+        # we can grab them all from the database to see if they match without
+        # worrying about performance impact, but we can have a lot more with
+        # just the raw email, so test against those with a specific query to
+        # avoid loading all of them.
+        should_be_restricted = base_qs.filter(email_pattern=email).exists()
+        if not should_be_restricted:
+            complex_restrictions = base_qs.filter(
+                Q(email_pattern__contains='?')
+                | Q(email_pattern__contains='*')
+                | Q(email_pattern__contains='[')
+            )
+            for restriction in complex_restrictions:
+                if fnmatchcase(email, restriction.email_pattern):
+                    should_be_restricted = True
+                    break
+
+        if should_be_restricted:
+            # The following log statement is used by foxsec-pipeline.
+            log.info(
+                'Restricting request from %s %s (%s)',
+                'email',
+                email,
+                'email_pattern=%s' % restriction.email_pattern,
+                extra={'sensitive': True},
+            )
+            return False
 
         return True
 
