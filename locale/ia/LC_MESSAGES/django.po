@@ -1294,7 +1294,7 @@ msgstr "Falta de retrocession ab version"
 #: src/olympia/constants/activity.py:1246
 #, python-brace-format
 msgid "{addon} {0} property edited."
-msgstr ""
+msgstr "Proprietates de {addon} {0} modificate."
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -3938,6 +3938,8 @@ msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement, Review Policies and Rules and our <a %(a_attrs)s href=\"%(faq_url)s\">Frequently Asked Questions</a>. The Firefox "
 "Add-on Distribution Agreement also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
+"Ante initiar, lege e accepta le accordo de distribution pro le additivos de Firefox, le regulamento e le lineas guida pro le revision, e consulta le <a %(a_attrs)s href=\"%(faq_url)s\">demandas plus"
+" frequente</a>. Le accordo de distribution pro le additivos de Firefox alsi face referentia a nostre informativa sur le confidentialitate, que explica como nos gere tu informationes personal."
 
 #: src/olympia/devhub/templates/devhub/includes/agreement.html:10
 msgid "Review Policies and Rules"
