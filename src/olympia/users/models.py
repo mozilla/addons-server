@@ -1061,8 +1061,8 @@ class EmailUserRestriction(RestrictionAbstractBaseModel, NormalizeEmailMixin):
         # worrying about performance impact, but we can have a lot more with
         # just the raw email, so test against those with a specific query to
         # avoid loading all of them.
-        should_be_restricted = base_qs.filter(email_pattern=email).exists()
-        if not should_be_restricted:
+        matching_restriction = base_qs.filter(email_pattern=email).first()
+        if not matching_restriction:
             complex_restrictions = base_qs.filter(
                 Q(email_pattern__contains='?')
                 | Q(email_pattern__contains='*')
@@ -1070,16 +1070,16 @@ class EmailUserRestriction(RestrictionAbstractBaseModel, NormalizeEmailMixin):
             )
             for restriction in complex_restrictions:
                 if fnmatchcase(email, restriction.email_pattern):
-                    should_be_restricted = True
+                    matching_restriction = restriction
                     break
 
-        if should_be_restricted:
+        if matching_restriction:
             # The following log statement is used by foxsec-pipeline.
             log.info(
                 'Restricting request from %s %s (%s)',
                 'email',
                 email,
-                'email_pattern=%s' % restriction.email_pattern,
+                'email_pattern=%s' % matching_restriction.email_pattern,
                 extra={'sensitive': True},
             )
             return False

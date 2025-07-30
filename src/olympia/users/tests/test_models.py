@@ -1217,7 +1217,7 @@ class TestEmailUserRestriction(TestCase):
             request.user.email, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
         )
 
-    def test_blocked_email(self):
+    def test_restricted_email(self):
         EmailUserRestriction.objects.create(email_pattern='foo@bar.com')
         request = RequestFactory().get('/')
         request.user = user_factory(email='foo@bar.com')
