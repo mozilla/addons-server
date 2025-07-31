@@ -567,6 +567,7 @@ class DeniedNameAdmin(AMOModelAdmin):
 
 @admin.register(IPNetworkUserRestriction)
 class IPNetworkUserRestrictionAdmin(AMOModelAdmin):
+    actions = ['delete_selected']
     list_display = ('network', 'restriction_type', 'reason')
     list_filter = ('restriction_type',)
     search_fields = ('=network',)
@@ -578,6 +579,7 @@ class IPNetworkUserRestrictionAdmin(AMOModelAdmin):
 
 @admin.register(EmailUserRestriction)
 class EmailUserRestrictionAdmin(AMOModelAdmin):
+    actions = ['delete_selected']
     list_display = ('email_pattern', 'restriction_type', 'reason')
     list_filter = ('restriction_type',)
     search_fields = ('^email_pattern',)
@@ -588,6 +590,7 @@ class EmailUserRestrictionAdmin(AMOModelAdmin):
 
 @admin.register(DisposableEmailDomainRestriction)
 class DisposableEmailDomainRestrictionAdmin(AMOModelAdmin):
+    actions = ['delete_selected']
     list_display = ('domain', 'restriction_type', 'reason')
     list_filter = ('restriction_type',)
     search_fields = ('^domain',)
