@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-28 12:30+0000\n"
+"POT-Creation-Date: 2025-08-01 09:09+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -325,14 +325,6 @@ msgid ""
 "Admins if you need help with this."
 msgstr ""
 
-#, python-brace-format
-msgid "Version {version_string} was uploaded before and deleted."
-msgstr ""
-
-#, python-brace-format
-msgid "Version {version_string} already exists."
-msgstr ""
-
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr ""
 
@@ -367,12 +359,6 @@ msgid "This slug cannot be used. Please choose another."
 msgstr ""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
-msgstr ""
-
-#, python-brace-format
-msgid ""
-"Version {version_string} must be greater than the previous approved version "
-"{previous_version_string}."
 msgstr ""
 
 msgid "Both `license` and `custom_license` cannot be provided together."
@@ -1907,6 +1893,12 @@ msgstr "Nemam nalog."
 msgid "Something went wrong, please contact developer support."
 msgstr ""
 
+msgid "Choose version"
+msgstr ""
+
+msgid "You must select a channel and version to rollback to."
+msgstr ""
+
 #, fuzzy
 msgid "Invalid or corrupt add-on file."
 msgstr "Nevažeća arhiva."
@@ -2057,6 +2049,9 @@ msgid ""
 msgstr ""
 "Otpremanje nije prošlo validaciju, i možda ne sadrži potpune rezultate "
 "validacije. Molimo Vas, dobro proverite prilikom pregledavanja."
+
+msgid "Rollback submitted. You'll be notified when it's approved"
+msgstr ""
 
 msgid "Header area background"
 msgstr ""
@@ -3560,6 +3555,27 @@ msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
 msgstr[0] "Izaberite <b>do {0}</b> {1} kategoriju za ovaj dodatak:"
 msgstr[1] "Izaberite <b>do {0}</b> {1} kategoriju za ovaj dodatak:"
 
+msgid "Roll back to a previous version"
+msgstr ""
+
+#, python-format
+msgid ""
+"Users of this %(addon_type)s will roll back to the previous version you "
+"choose."
+msgstr ""
+
+msgid "Distribution channel"
+msgstr ""
+
+msgid "Version"
+msgstr "Verzija"
+
+msgid "New version number"
+msgstr ""
+
+msgid "Roll back"
+msgstr ""
+
 msgid "End-User License Agreement"
 msgstr "Ugovor o licenci softvera za krajnjeg korisnika (EULA)"
 
@@ -3938,11 +3954,11 @@ msgstr "Starije verzije"
 msgid "All versions"
 msgstr "Starije verzije"
 
+msgid "Rollback to a previous version"
+msgstr ""
+
 msgid "Upload a New Version"
 msgstr "Postavi novu verziju"
-
-msgid "Version"
-msgstr "Verzija"
 
 #, python-brace-format
 msgid "Delete Version {version}"
@@ -6389,4 +6405,18 @@ msgstr "{app} {min} i kasnije"
 
 #, python-brace-format
 msgid "The install origin {origin} is not permitted."
+msgstr ""
+
+#, python-brace-format
+msgid "Version {version_string} was uploaded before and deleted."
+msgstr ""
+
+#, python-brace-format
+msgid "Version {version_string} already exists."
+msgstr ""
+
+#, python-brace-format
+msgid ""
+"Version {version_string} must be greater than the previous approved version "
+"{previous_version_string}."
 msgstr ""

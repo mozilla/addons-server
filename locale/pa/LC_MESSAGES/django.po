@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-28 12:30+0000\n"
+"POT-Creation-Date: 2025-08-01 09:09+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -279,14 +279,6 @@ msgstr ""
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
 
-#, python-brace-format
-msgid "Version {version_string} was uploaded before and deleted."
-msgstr ""
-
-#, python-brace-format
-msgid "Version {version_string} already exists."
-msgstr ""
-
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr ""
 
@@ -318,10 +310,6 @@ msgid "This slug cannot be used. Please choose another."
 msgstr ""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
-msgstr ""
-
-#, python-brace-format
-msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
 msgstr ""
 
 msgid "Both `license` and `custom_license` cannot be provided together."
@@ -1678,6 +1666,12 @@ msgstr "ਮੇਰੇ ਕੋਲ ਖਾਤਾ ਨਹੀਂ ਹੈ।"
 msgid "Something went wrong, please contact developer support."
 msgstr ""
 
+msgid "Choose version"
+msgstr ""
+
+msgid "You must select a channel and version to rollback to."
+msgstr ""
+
 #, fuzzy
 msgid "Invalid or corrupt add-on file."
 msgstr "ਗਲਤ ਅਕਾਈਵ।"
@@ -1810,6 +1804,9 @@ msgstr "ਵਰਜਨ %s ਅਯੋਗ ਹੋਇਆ।"
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "ਇਸ ਅੱਪਲੋਡ ਦੀ ਪ੍ਰਮਾਣਿਕਤਾ ਫ਼ੇਲ੍ਹ ਹੋਈ ਅਤੇ ਹੋ ਸਕਦਾ ਮੁਕੰਮਲ ਪ੍ਰਮਾਣਿਕਤਾ ਨਤੀਜਿਆਂ ਦੀ ਘਾਟ ਹੋਵੇ। ਕਿਰਪਾ ਕਰਕੇ ਪੂਰਾ ਧਿਆਨ ਦੇਵੋ ਜਦੋਂ ਇਸ ਦੀ ਸਮੀਖਿਆ ਕਰ ਰਹੇ ਹੋਵੋ।"
+
+msgid "Rollback submitted. You'll be notified when it's approved"
+msgstr ""
 
 msgid "Header area background"
 msgstr ""
@@ -3121,6 +3118,25 @@ msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
 msgstr[0] "ਇਸ ਐਡ-ਆਨ ਲਈ <b>{0} ਤੱਕ</b> {1} ਸੰਗ੍ਰਹਿ ਚੁਣੋ:"
 msgstr[1] "ਇਸ ਐਡ-ਆਨ ਲਈ <b>{0} ਤੱਕ</b> {1} ਸੰਗ੍ਰਹਿ ਚੁਣੋ:"
 
+msgid "Roll back to a previous version"
+msgstr ""
+
+#, python-format
+msgid "Users of this %(addon_type)s will roll back to the previous version you choose."
+msgstr ""
+
+msgid "Distribution channel"
+msgstr ""
+
+msgid "Version"
+msgstr "ਵਰਜਨ"
+
+msgid "New version number"
+msgstr ""
+
+msgid "Roll back"
+msgstr ""
+
 msgid "End-User License Agreement"
 msgstr "ਅੰਤ-ਉਪਭੋਗੀ ਲਾਇਸੰਸ ਸਮਝੌਤਾ"
 
@@ -3445,11 +3461,11 @@ msgstr "ਪੁਰਾਣੇ ਵਰਜਨ"
 msgid "All versions"
 msgstr "ਪੁਰਾਣੇ ਵਰਜਨ"
 
+msgid "Rollback to a previous version"
+msgstr ""
+
 msgid "Upload a New Version"
 msgstr "ਨਵਾਂ ਵਰਜਨ ਅੱਪਲੋਡ ਕਰੋ"
-
-msgid "Version"
-msgstr "ਵਰਜਨ"
 
 #, python-brace-format
 msgid "Delete Version {version}"
@@ -5603,4 +5619,16 @@ msgstr "{app} {min} and ਬਾਅਦ"
 
 #, python-brace-format
 msgid "The install origin {origin} is not permitted."
+msgstr ""
+
+#, python-brace-format
+msgid "Version {version_string} was uploaded before and deleted."
+msgstr ""
+
+#, python-brace-format
+msgid "Version {version_string} already exists."
+msgstr ""
+
+#, python-brace-format
+msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
 msgstr ""

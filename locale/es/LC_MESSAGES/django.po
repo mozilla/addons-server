@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-28 12:30+0000\n"
+"POT-Creation-Date: 2025-08-01 09:09+0000\n"
 "PO-Revision-Date: 2024-01-15 13:27+0000\n"
 "Last-Translator: Bund10z <abu.avila@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -288,14 +288,6 @@ msgstr ""
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
 
-#, python-brace-format
-msgid "Version {version_string} was uploaded before and deleted."
-msgstr ""
-
-#, python-brace-format
-msgid "Version {version_string} already exists."
-msgstr ""
-
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr ""
 
@@ -327,10 +319,6 @@ msgstr ""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Los nombres de complementos no pueden incluir las marcas Mozilla o Firefox."
-
-#, python-brace-format
-msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
-msgstr ""
 
 msgid "Both `license` and `custom_license` cannot be provided together."
 msgstr ""
@@ -1668,6 +1656,12 @@ msgstr "No tienes credenciales API."
 msgid "Something went wrong, please contact developer support."
 msgstr ""
 
+msgid "Choose version"
+msgstr ""
+
+msgid "You must select a channel and version to rollback to."
+msgstr ""
+
 msgid "Invalid or corrupt add-on file."
 msgstr "Archivo de complemento no válido o corrupto."
 
@@ -1798,6 +1792,9 @@ msgstr "Versión %s reactivada."
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "Esta subida ha fallado la validación y puede carecer de resultados de validación completos. Revísala con atención."
+
+msgid "Rollback submitted. You'll be notified when it's approved"
+msgstr ""
 
 msgid "Header area background"
 msgstr "Fondo del área del título"
@@ -3114,6 +3111,25 @@ msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
 msgstr[0] "Selecciona una categoría para este complemento:"
 msgstr[1] "Selecciona una categoría para este complemento:"
 
+msgid "Roll back to a previous version"
+msgstr ""
+
+#, python-format
+msgid "Users of this %(addon_type)s will roll back to the previous version you choose."
+msgstr ""
+
+msgid "Distribution channel"
+msgstr ""
+
+msgid "Version"
+msgstr "Versión"
+
+msgid "New version number"
+msgstr ""
+
+msgid "Roll back"
+msgstr ""
+
 msgid "End-User License Agreement"
 msgstr "Acuerdo de licencia final de usuario"
 
@@ -3425,11 +3441,11 @@ msgstr "Otras versiones"
 msgid "All versions"
 msgstr "Todas las versiones"
 
+msgid "Rollback to a previous version"
+msgstr ""
+
 msgid "Upload a New Version"
 msgstr "Enviar una nueva versión"
-
-msgid "Version"
-msgstr "Versión"
 
 #, python-brace-format
 msgid "Delete Version {version}"
@@ -5626,4 +5642,16 @@ msgstr "{app} {min} y posterior"
 
 #, python-brace-format
 msgid "The install origin {origin} is not permitted."
+msgstr ""
+
+#, python-brace-format
+msgid "Version {version_string} was uploaded before and deleted."
+msgstr ""
+
+#, python-brace-format
+msgid "Version {version_string} already exists."
+msgstr ""
+
+#, python-brace-format
+msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
 msgstr ""

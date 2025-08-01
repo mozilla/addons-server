@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-28 12:30+0000\n"
+"POT-Creation-Date: 2025-08-01 09:09+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -331,14 +331,6 @@ msgstr "File is already disabled."
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 
-#, python-brace-format
-msgid "Version {version_string} was uploaded before and deleted."
-msgstr "Version {version_string} was uploaded before and deleted."
-
-#, python-brace-format
-msgid "Version {version_string} already exists."
-msgstr "Version {version_string} already exists."
-
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr "Listed versions cannot be submitted while add-on is disabled."
 
@@ -371,10 +363,6 @@ msgstr "This slug cannot be used. Please choose another."
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Add-on names cannot contain the Mozilla or Firefox trademarks."
-
-#, python-brace-format
-msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
-msgstr "Version {version_string} must be greater than the previous approved version {previous_version_string}."
 
 msgid "Both `license` and `custom_license` cannot be provided together."
 msgstr "Both `license` and `custom_license` cannot be provided together."
@@ -1746,6 +1734,12 @@ msgstr "You don't have any API credentials."
 msgid "Something went wrong, please contact developer support."
 msgstr "Something went wrong, please contact developer support."
 
+msgid "Choose version"
+msgstr "Choose version"
+
+msgid "You must select a channel and version to rollback to."
+msgstr "You must select a channel and version to rollback to."
+
 #, fuzzy
 msgid "Invalid or corrupt add-on file."
 msgstr "Invalid archive."
@@ -1881,6 +1875,9 @@ msgstr "Version %s re-enabled."
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
+
+msgid "Rollback submitted. You'll be notified when it's approved"
+msgstr "Rollback submitted. You'll be notified when it's approved"
 
 #, fuzzy
 msgid "Header area background"
@@ -3302,6 +3299,25 @@ msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
 msgstr[0] "Select <b>up to {0}</b> {1} category for this add-on:"
 msgstr[1] "Select <b>up to {0}</b> {1} category for this add-on:"
 
+msgid "Roll back to a previous version"
+msgstr "Roll back to a previous version"
+
+#, python-format
+msgid "Users of this %(addon_type)s will roll back to the previous version you choose."
+msgstr "Users of this %(addon_type)s will roll back to the previous version you choose."
+
+msgid "Distribution channel"
+msgstr "Distribution channel"
+
+msgid "Version"
+msgstr "Version"
+
+msgid "New version number"
+msgstr "New version number"
+
+msgid "Roll back"
+msgstr "Roll back"
+
 msgid "End-User License Agreement"
 msgstr "End-User License Agreement"
 
@@ -3631,11 +3647,11 @@ msgstr "Older versions"
 msgid "All versions"
 msgstr "Older versions"
 
+msgid "Rollback to a previous version"
+msgstr "Rollback to a previous version"
+
 msgid "Upload a New Version"
 msgstr "Upload a New Version"
-
-msgid "Version"
-msgstr "Version"
 
 #, python-brace-format
 msgid "Delete Version {version}"
@@ -5931,3 +5947,15 @@ msgstr "{app} {min} and later"
 #, python-brace-format
 msgid "The install origin {origin} is not permitted."
 msgstr "The install origin {origin} is not permitted."
+
+#, python-brace-format
+msgid "Version {version_string} was uploaded before and deleted."
+msgstr "Version {version_string} was uploaded before and deleted."
+
+#, python-brace-format
+msgid "Version {version_string} already exists."
+msgstr "Version {version_string} already exists."
+
+#, python-brace-format
+msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
+msgstr "Version {version_string} must be greater than the previous approved version {previous_version_string}."

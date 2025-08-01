@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  messages.pootle\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-07-28 12:30+0000\n"
+"POT-Creation-Date: 2025-08-01 09:09+0000\n"
 "PO-Revision-Date: 2013-11-07 07:24+0000\n"
 "Last-Translator: Julen <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -286,14 +286,6 @@ msgstr ""
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
 
-#, python-brace-format
-msgid "Version {version_string} was uploaded before and deleted."
-msgstr ""
-
-#, python-brace-format
-msgid "Version {version_string} already exists."
-msgstr ""
-
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr ""
 
@@ -324,10 +316,6 @@ msgid "This slug cannot be used. Please choose another."
 msgstr ""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
-msgstr ""
-
-#, python-brace-format
-msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
 msgstr ""
 
 msgid "Both `license` and `custom_license` cannot be provided together."
@@ -1670,6 +1658,12 @@ msgstr ""
 msgid "Something went wrong, please contact developer support."
 msgstr ""
 
+msgid "Choose version"
+msgstr ""
+
+msgid "You must select a channel and version to rollback to."
+msgstr ""
+
 #, fuzzy
 msgid "Invalid or corrupt add-on file."
 msgstr "Artxibo baliogabea."
@@ -1801,6 +1795,9 @@ msgid "Version %s re-enabled."
 msgstr ""
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
+msgstr ""
+
+msgid "Rollback submitted. You'll be notified when it's approved"
 msgstr ""
 
 msgid "Header area background"
@@ -3094,6 +3091,25 @@ msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
 msgstr[0] "Hautatu gehienez ere %s(r)en hiru kategoria zure gehigarriarentzat"
 msgstr[1] "Hautatu gehienez ere %s(r)en hiru kategoria zure gehigarriarentzat"
 
+msgid "Roll back to a previous version"
+msgstr ""
+
+#, python-format
+msgid "Users of this %(addon_type)s will roll back to the previous version you choose."
+msgstr ""
+
+msgid "Distribution channel"
+msgstr ""
+
+msgid "Version"
+msgstr "Bertsioa"
+
+msgid "New version number"
+msgstr ""
+
+msgid "Roll back"
+msgstr ""
+
 msgid "End-User License Agreement"
 msgstr "Azken Erabiltzailearen Lizentzia-kontratua"
 
@@ -3415,11 +3431,11 @@ msgstr "Onartutako bertsioak"
 msgid "All versions"
 msgstr "Ikusi bertsio guztiak"
 
+msgid "Rollback to a previous version"
+msgstr ""
+
 msgid "Upload a New Version"
 msgstr "Igo bertsio berria"
-
-msgid "Version"
-msgstr "Bertsioa"
 
 # %s is the version number.
 #, python-brace-format
@@ -5572,4 +5588,16 @@ msgstr ""
 
 #, python-brace-format
 msgid "The install origin {origin} is not permitted."
+msgstr ""
+
+#, python-brace-format
+msgid "Version {version_string} was uploaded before and deleted."
+msgstr ""
+
+#, python-brace-format
+msgid "Version {version_string} already exists."
+msgstr ""
+
+#, python-brace-format
+msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
 msgstr ""
