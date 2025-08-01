@@ -607,6 +607,34 @@ function initVersions() {
     },
   });
 
+  if ($('#modal-rollback-version').length) {
+    let $modalRollback = $('#modal-rollback-version').modal('.version-rollback', {
+      width: 600
+    });
+    if (window.location.hash === '#rollback-version') {
+      $modalRollback.render();
+    }
+
+    let channel_inputs = $('#id_channel input'),
+        listed_version_row = $('#listed-version-row'),
+        unlisted_version_row = $('#unlisted-version-row');
+
+    channel_inputs.change(function () {
+      listed_version_row.hide();
+      unlisted_version_row.hide();
+      channel_inputs.each(function (index, element) {
+        let $radio = $(element);
+        if ($radio.val() == '2' && $radio.prop('checked')) {
+          listed_version_row.show();
+        }
+        if ($radio.val() == '1' && $radio.prop('checked')) {
+          unlisted_version_row.show();
+        }
+      });
+    })
+    .change();
+  }
+
   function addToReviewHistory(json, historyContainer, reverseOrder) {
     let empty_note = historyContainer.children('.review-entry-empty');
     json.forEach(function (note) {

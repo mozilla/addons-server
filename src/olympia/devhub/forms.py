@@ -37,7 +37,6 @@ from olympia.addons.utils import (
     fetch_translations_from_addon,
     get_translation_differences,
     remove_icons,
-    validate_version_number_is_gt_latest_signed_listed_version,
     verify_mozilla_trademark,
 )
 from olympia.amo.fields import HttpHttpsOnlyURLField, ReCaptchaField
@@ -71,6 +70,10 @@ from olympia.versions.models import (
     ApplicationsVersions,
     License,
     Version,
+)
+from olympia.versions.utils import (
+    validate_version_number_does_not_exist,
+    validate_version_number_is_gt_latest_signed_listed_version,
 )
 
 
@@ -1582,3 +1585,103 @@ class APIKeyForm(forms.Form):
             'credentials_generated': credentials_generated,
             'confirmation_created': confirmation_created,
         }
+
+
+class RollbackVersionForm(forms.Form):
+    """
+    Form to rollback a version to a previous one.
+    """
+
+    channel = forms.TypedChoiceField(
+        choices=(
+            (
+                amo.CHANNEL_LISTED,
+                mark_safe('<span class="distribution-tag-listed">AMO</span>'),
+            ),
+            (
+                amo.CHANNEL_UNLISTED,
+                mark_safe('<span class="distribution-tag-unlisted">Self</span>'),
+            ),
+        ),
+        coerce=int,
+        widget=forms.RadioSelect(),
+    )
+    listed_version = forms.TypedChoiceField(choices=(), coerce=int, required=False)
+    unlisted_version = forms.ModelChoiceField(
+        queryset=Version.objects.none(),
+        empty_label=gettext('Choose version'),
+        required=False,
+    )
+    new_version_string = forms.CharField(max_length=255)
+
+    def __init__(self, *args, **kwargs):
+        self.addon = kwargs.pop('addon')
+        super().__init__(*args, **kwargs)
+        listed = self.fields['listed_version']
+        unlisted = self.fields['unlisted_version']
+        channel = self.fields['channel']
+
+        listed_queryset = self.addon.rollbackable_versions_qs(amo.CHANNEL_LISTED)
+        self.listed_count = listed_queryset.count()
+        # We currently only allow rolling back to a single listed version.
+        if self.listed_count:
+            listed_version_obj = listed_queryset.first()
+            listed.choices = ((listed_version_obj.id, listed_version_obj),)
+        else:
+            listed.choices = ((None, 'No appropriate version available'),)
+
+        unlisted.queryset = self.addon.rollbackable_versions_qs(amo.CHANNEL_UNLISTED)
+        self.unlisted_count = unlisted.queryset.count()
+
+        if not self.listed_count and self.unlisted_count:
+            # if there is no listed option, we default to unlisted
+            channel.initial = amo.CHANNEL_UNLISTED
+            channel.widget.attrs = {'disabled': True}
+        elif not self.unlisted_count and self.listed_count:
+            # if there is a listed option, we default to that channel
+            channel.initial = amo.CHANNEL_LISTED
+            channel.widget.attrs = {'disabled': True}
+        elif self.listed_count or self.unlisted_count:
+            # otherwise we default to the most recently used channel
+            channel.initial = self.addon.versions.first().channel
+        # Also, in the template, we hide the selector if there is only one channel,
+        # using a hidden input
+
+    def clean_new_version_string(self):
+        new_version_string = self.cleaned_data.get('new_version_string')
+        channel = self.cleaned_data.get('channel')
+        if error := validate_version_number_does_not_exist(
+            self.addon, new_version_string
+        ):
+            raise forms.ValidationError(error)
+
+        if channel == amo.CHANNEL_LISTED and (
+            error := validate_version_number_is_gt_latest_signed_listed_version(
+                self.addon, new_version_string
+            )
+        ):
+            raise forms.ValidationError(error)
+        return new_version_string
+
+    def clean_listed_version(self):
+        version_pk, version_obj = self.fields['listed_version'].choices[0]
+        self.cleaned_data['listed_version'] = version_obj if version_pk else None
+        return self.cleaned_data['listed_version']
+
+    def clean(self):
+        data = super().clean()
+        data['version'] = (
+            data.get('listed_version')
+            if data.get('channel') == amo.CHANNEL_LISTED
+            else data.get('unlisted_version')
+            if data.get('channel') == amo.CHANNEL_UNLISTED
+            else None
+        )
+        if not data['version']:
+            raise forms.ValidationError(
+                gettext('You must select a channel and version to rollback to.')
+            )
+        return data
+
+    def can_rollback(self):
+        return bool(self.listed_count + self.unlisted_count)

@@ -84,6 +84,7 @@ from olympia.users.utils import (
     send_addon_author_remove_mail,
 )
 from olympia.versions.models import Version
+from olympia.versions.tasks import duplicate_addon_version_for_rollback
 from olympia.versions.utils import get_next_version_number
 from olympia.zadmin.models import get_config
 
@@ -1302,13 +1303,33 @@ def version_list(request, addon_id, addon):
     )
     versions = amo_utils.paginate(request, qs)
     is_admin = acl.action_allowed_for(request.user, amo.permissions.REVIEWS_ADMIN)
+    was_rollback_submit = request.method == 'POST' and 'rollback-submit' in request.POST
+    rollback_form = forms.RollbackVersionForm(
+        request.POST if was_rollback_submit else None, addon=addon
+    )
+
+    if was_rollback_submit and rollback_form.is_valid():
+        duplicate_addon_version_for_rollback.delay(
+            version_pk=rollback_form.cleaned_data['version'].pk,
+            new_version_number=rollback_form.cleaned_data['new_version_string'],
+            user_pk=request.user.pk,
+        )
+        messages.success(
+            request,
+            gettext("Rollback submitted. You'll be notified when it's approved"),
+        )
+        # we posted to #version-rollback so an error reopens the form, but we want
+        # success to go to the list proper, so append `#` to clear the fragment.
+        return redirect(addon.get_dev_url('versions') + '#')
 
     data = {
         'addon': addon,
         'can_request_review': addon.can_request_review(),
+        'can_rollback': rollback_form.can_rollback(),
+        'can_submit': not addon.is_disabled,
         'comments_maxlength': CommentLog._meta.get_field('comments').max_length,
         'is_admin': is_admin,
-        'can_submit': not addon.is_disabled,
+        'rollback_form': rollback_form,
         'session_id': request.session.session_key,
         'versions': versions,
     }

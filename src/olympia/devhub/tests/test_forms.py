@@ -22,6 +22,7 @@ from olympia.amo.tests import (
     get_random_ip,
     req_factory_factory,
     user_factory,
+    version_factory,
 )
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.utils import rm_local_tmp_dir
@@ -1448,3 +1449,188 @@ class TestAPIKeyForm(TestCase):
         confirmation = APIKeyConfirmation.objects.get(user=self.user)
         assert confirmation.token is not None
         assert confirmation.user == self.user
+
+
+@override_switch('version-rollback', active=True)
+class TestRollbackVersionForm(TestCase):
+    def test_no_listed_version_choices(self):
+        """No listed version choices should default the channel to unlisted, and make
+        listed version choices not required."""
+        addon = addon_factory(version_kw={'channel': amo.CHANNEL_UNLISTED})
+        v1 = addon.versions.get()
+        v2 = version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
+        version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
+        form = forms.RollbackVersionForm(addon=addon)
+        assert form.fields['channel'].initial == amo.CHANNEL_UNLISTED
+        assert [str(lab) for _, lab in form.fields['unlisted_version'].choices] == [
+            'Choose version',
+            v2.version,
+            v1.version,
+        ]
+        assert form.fields['listed_version'].choices == [
+            (None, 'No appropriate version available')
+        ]
+
+    def test_no_unlisted_version_choices(self):
+        """No listed version choices should default the channel to unlisted, and make
+        listed version choices not required."""
+        addon = addon_factory()
+        v2 = version_factory(addon=addon)
+        version_factory(addon=addon)
+        form = forms.RollbackVersionForm(addon=addon)
+        assert form.fields['channel'].initial == amo.CHANNEL_LISTED
+        assert form.fields['listed_version'].choices == [(v2.id, v2)]
+
+    def test_listed_and_unlisted_version_choices(self):
+        """Both listed and unlisted version choices should be available."""
+        addon = addon_factory()
+        lv2 = version_factory(addon=addon)
+        version_factory(addon=addon)
+        uv1 = version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
+        uv2 = version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
+        version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
+        form = forms.RollbackVersionForm(addon=addon)
+        assert form.fields['channel'].initial is amo.CHANNEL_UNLISTED
+        assert form.fields['listed_version'].choices == [(lv2.id, lv2)]
+        assert [str(lab) for _, lab in form.fields['unlisted_version'].choices] == [
+            'Choose version',
+            uv2.version,
+            uv1.version,
+        ]
+
+    def test_clean_new_version_string_for_existing_versions(self):
+        def check_already_exists_error(version):
+            form = forms.RollbackVersionForm(
+                {**data, 'new_version_string': version.version}, addon=addon
+            )
+            assert not form.is_valid()
+            assert form.errors == {
+                'new_version_string': [
+                    f'Version {version.version} already exists.'
+                    if not version.deleted
+                    else f'Version {version.version} was uploaded before and deleted.'
+                ]
+            }
+
+        addon = addon_factory()
+        lv1 = addon.current_version
+        lv1.delete()
+        lv2 = version_factory(addon=addon)
+        lv3 = version_factory(addon=addon)
+        uv1 = version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
+        uv1.delete()
+        uv2 = version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
+        uv3 = version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
+
+        data = {
+            'channel': amo.CHANNEL_LISTED,
+            'unlisted_version': uv2.id,
+        }
+        for version in (lv1, lv2, lv3, uv1, uv2, uv3):
+            check_already_exists_error(version)
+        data['channel'] = amo.CHANNEL_UNLISTED
+        for version in (lv1, lv2, lv3, uv1, uv2, uv3):
+            check_already_exists_error(version)
+
+    def test_clean_new_version_string_for_listed_greater_than_existing(self):
+        addon = addon_factory(
+            version_kw={'version': '1.29'}, file_kw={'is_signed': True}
+        )
+        addon.current_version.delete()  # deleted shouldn't matter, just it was signed
+        version_factory(addon=addon)
+        version_factory(addon=addon, version='1.31.0')
+        version_factory(
+            addon=addon,
+            channel=amo.CHANNEL_UNLISTED,
+            version='1.28',
+            file_kw={'is_signed': True},
+        )
+        uv2 = version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
+        version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
+
+        # 1.3 is not greater than 1.29
+        version_string = '1.3'
+        data = {
+            'channel': amo.CHANNEL_LISTED,
+            'unlisted_version': uv2.id,
+            'new_version_string': version_string,
+        }
+
+        form = forms.RollbackVersionForm(data, addon=addon)
+        assert not form.is_valid()
+        assert form.errors == {
+            'new_version_string': [
+                f'Version {version_string} must be greater than the previous approved '
+                f'version 1.29.'
+            ]
+        }
+
+        # There are no restrictions on greater/less than for unlisted
+        form = forms.RollbackVersionForm(
+            {**data, 'channel': amo.CHANNEL_UNLISTED}, addon=addon
+        )
+        assert form.is_valid()
+
+    def test_clean_adds_version(self):
+        addon = addon_factory()
+        lv1 = addon.current_version
+        version_factory(addon=addon)
+        uv1 = version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
+        version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
+        data = {
+            'channel': amo.CHANNEL_LISTED,
+            'unlisted_version': uv1.id,
+            'new_version_string': '111111',
+        }
+        # test we're selecting the listed channel
+        form = forms.RollbackVersionForm(data, addon=addon)
+        assert form.fields['listed_version'].choices == [(lv1.id, lv1)]
+        assert form.is_valid(), form.errors
+        # the listed version is added, and as the chosen version
+        assert form.clean() == {
+            **data,
+            'unlisted_version': uv1,
+            'listed_version': lv1,
+            'version': lv1,
+        }
+
+        # repeat with unlisted
+        data['channel'] = amo.CHANNEL_UNLISTED
+        form = forms.RollbackVersionForm(data, addon=addon)
+        assert form.is_valid(), form.errors
+        # the selected unlisted version is added as the chosen version
+        assert form.clean() == {
+            **data,
+            'unlisted_version': uv1,
+            'listed_version': lv1,
+            'version': uv1,
+        }
+
+        # and when we select listed but there is no listed version availble: error
+        data['channel'] = amo.CHANNEL_LISTED
+        lv1.delete()
+        form = forms.RollbackVersionForm(data, addon=addon)
+        assert not form.is_valid()
+        assert form.errors == {
+            '__all__': ['You must select a channel and version to rollback to.'],
+        }
+
+    def test_can_rollback(self):
+        addon = addon_factory()
+        lv2 = version_factory(addon=addon)
+        version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
+        uv2 = version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
+        form = forms.RollbackVersionForm(addon=addon)
+        assert form.can_rollback() is True
+
+        with override_switch('version-rollback', active=False):
+            form = forms.RollbackVersionForm(addon=addon)
+            assert form.can_rollback() is False
+
+        lv2.file.update(status=amo.STATUS_DISABLED)
+        form = forms.RollbackVersionForm(addon=addon)
+        assert form.can_rollback() is True
+
+        uv2.file.update(status=amo.STATUS_DISABLED)
+        form = forms.RollbackVersionForm(addon=addon)
+        assert form.can_rollback() is False
