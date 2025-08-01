@@ -2127,7 +2127,7 @@ msgstr "某些東西怪怪的，請聯絡開發者技術支援團隊。"
 
 #: src/olympia/devhub/forms.py:1612
 msgid "Choose version"
-msgstr ""
+msgstr "選擇版本"
 
 #: src/olympia/devhub/forms.py:1682
 msgid "You must select a channel and version to rollback to."
