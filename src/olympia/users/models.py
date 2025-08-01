@@ -16,7 +16,7 @@ from django.contrib.auth.signals import user_logged_in
 from django.core import validators
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.db import models
-from django.db.models import F, Value
+from django.db.models import F, Q, Value
 from django.db.models.functions import Collate
 from django.template import loader
 from django.templatetags.static import static
@@ -68,6 +68,14 @@ def generate_auth_id():
 def get_anonymized_username():
     """Gets an anonymized username."""
     return f'anonymous-{force_str(binascii.b2a_hex(os.urandom(16)))}'
+
+
+RESTRICTION_TYPES = Choices(
+    ('ADDON_SUBMISSION', 1, 'Add-on Submission'),
+    ('ADDON_APPROVAL', 2, 'Add-on Approval'),
+    ('RATING', 3, 'Rating'),
+    ('RATING_MODERATE', 4, 'Rating Flag for Moderation'),
+)
 
 
 class UserEmailField(forms.ModelChoiceField):
@@ -130,6 +138,21 @@ class UserQuerySet(BaseQuerySet):
         users = self.all()
         BannedUserContent.objects.bulk_create(
             [BannedUserContent(user=user) for user in users], ignore_conflicts=True
+        )
+        EmailUserRestriction.objects.bulk_create(
+            [
+                EmailUserRestriction(
+                    email_pattern=EmailUserRestriction.normalize_email(user.email),
+                    restriction_type=restriction_type,
+                    reason=f'Automatically added because of user {user.pk} ban',
+                )
+                for user in users
+                for restriction_type in [
+                    RESTRICTION_TYPES.ADDON_SUBMISSION,
+                    RESTRICTION_TYPES.RATING,
+                ]
+            ],
+            ignore_conflicts=True,
         )
 
         # Collect affected addons
@@ -252,6 +275,9 @@ class UserQuerySet(BaseQuerySet):
             user.deleted = False
             user.banned = None
             user.save()
+            EmailUserRestriction.objects.filter(
+                email_pattern=EmailUserRestriction.normalize_email(user.email)
+            ).delete()
 
 
 class UserManager(BaseUserManager, ManagerBase):
@@ -772,14 +798,6 @@ class DeniedName(ModelBase):
         )
 
 
-RESTRICTION_TYPES = Choices(
-    ('ADDON_SUBMISSION', 1, 'Add-on Submission'),
-    ('ADDON_APPROVAL', 2, 'Add-on Approval'),
-    ('RATING', 3, 'Rating'),
-    ('RATING_MODERATE', 4, 'Rating Flag for Moderation'),
-)
-
-
 class RestrictionAbstractBase:
     """Base class for restrictions."""
 
@@ -851,6 +869,12 @@ class IPNetworkUserRestriction(RestrictionAbstractBaseModel):
 
     class Meta:
         db_table = 'users_user_network_restriction'
+        constraints = [
+            models.UniqueConstraint(
+                fields=('network', 'restriction_type'),
+                name='network_restriction_type_uniq',
+            )
+        ]
 
     def __str__(self):
         return str(self.network)
@@ -972,6 +996,12 @@ class EmailUserRestriction(RestrictionAbstractBaseModel, NormalizeEmailMixin):
 
     class Meta:
         db_table = 'users_user_email_restriction'
+        constraints = [
+            models.UniqueConstraint(
+                fields=('email_pattern', 'restriction_type'),
+                name='email_pattern_restriction_type_uniq',
+            )
+        ]
 
     def __str__(self):
         return str(self.email_pattern)
@@ -1022,28 +1052,43 @@ class EmailUserRestriction(RestrictionAbstractBaseModel, NormalizeEmailMixin):
         Return whether the specified email should be allowed to submit add-ons.
         """
         email = cls.normalize_email(email)
-        restrictions = EmailUserRestriction.objects.all().filter(
+        base_qs = EmailUserRestriction.objects.all().filter(
             restriction_type=restriction_type
         )
 
-        for restriction in restrictions:
-            if fnmatchcase(email, restriction.email_pattern):
-                # The following log statement is used by foxsec-pipeline.
-                log.info(
-                    'Restricting request from %s %s (%s)',
-                    'email',
-                    email,
-                    'email_pattern=%s' % restriction.email_pattern,
-                    extra={'sensitive': True},
-                )
-                return False
+        # We should have relatively few restrictions with actual patterns, so
+        # we can grab them all from the database to see if they match without
+        # worrying about performance impact, but we can have a lot more with
+        # just the raw email, so test against those with a specific query to
+        # avoid loading all of them.
+        matching_restriction = base_qs.filter(email_pattern=email).first()
+        if not matching_restriction:
+            complex_restrictions = base_qs.filter(
+                Q(email_pattern__contains='?')
+                | Q(email_pattern__contains='*')
+                | Q(email_pattern__contains='[')
+            )
+            for restriction in complex_restrictions:
+                if fnmatchcase(email, restriction.email_pattern):
+                    matching_restriction = restriction
+                    break
+
+        if matching_restriction:
+            # The following log statement is used by foxsec-pipeline.
+            log.info(
+                'Restricting request from %s %s (%s)',
+                'email',
+                email,
+                'email_pattern=%s' % matching_restriction.email_pattern,
+                extra={'sensitive': True},
+            )
+            return False
 
         return True
 
 
 class DisposableEmailDomainRestriction(RestrictionAbstractBaseModel):
     domain = models.CharField(
-        unique=True,
         max_length=255,
         help_text=_(
             'Enter full disposable email domain that should be '
@@ -1057,6 +1102,12 @@ class DisposableEmailDomainRestriction(RestrictionAbstractBaseModel):
 
     class Meta:
         db_table = 'users_disposable_email_domain_restriction'
+        constraints = [
+            models.UniqueConstraint(
+                fields=('domain', 'restriction_type'),
+                name='domain_restriction_type_uniq',
+            )
+        ]
 
     def __str__(self):
         return str(self.domain)
