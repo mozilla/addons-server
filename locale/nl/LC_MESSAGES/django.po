@@ -2153,11 +2153,11 @@ msgstr "Er is iets misgegaan, neem contact op met ondersteuning voor ontwikkelaa
 
 #: src/olympia/devhub/forms.py:1612
 msgid "Choose version"
-msgstr ""
+msgstr "Versie kiezen"
 
 #: src/olympia/devhub/forms.py:1682
 msgid "You must select a channel and version to rollback to."
-msgstr ""
+msgstr "U moet een kanaal en een versie selecteren om naar terug te draaien."
 
 #: src/olympia/devhub/tasks.py:178
 msgid "Invalid or corrupt add-on file."
@@ -2335,7 +2335,7 @@ msgstr "De validatie van deze upload is mislukt en er ontbreken mogelijk volledi
 
 #: src/olympia/devhub/views.py:1319
 msgid "Rollback submitted. You'll be notified when it's approved"
-msgstr ""
+msgstr "Terugdraaien ingediend. U ontvangt bericht als deze is goedgekeurd"
 
 #: src/olympia/devhub/views.py:1451
 msgid "Header area background"
@@ -4032,16 +4032,16 @@ msgstr[1] "Selecteer <b>tot {0}</b> categorieën voor deze add-on:"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:2
 msgid "Roll back to a previous version"
-msgstr ""
+msgstr "Terugkeren naar een vorige versie"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:4
 #, python-format
 msgid "Users of this %(addon_type)s will roll back to the previous version you choose."
-msgstr ""
+msgstr "Gebruikers van dit %(addon_type)s zullen teruggaan naar de vorige gekozen versie."
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:12
 msgid "Distribution channel"
-msgstr ""
+msgstr "Distributiekanaal"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:23 src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:32
 #: src/olympia/devhub/templates/devhub/versions/list.html:240
@@ -4050,11 +4050,11 @@ msgstr "Versie"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:40
 msgid "New version number"
-msgstr ""
+msgstr "Nieuw versienummer"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:50
 msgid "Roll back"
-msgstr ""
+msgstr "Terugdraaien"
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:3
 msgid "End-User License Agreement"
@@ -4447,7 +4447,7 @@ msgstr "Alle versies"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:224
 msgid "Rollback to a previous version"
-msgstr ""
+msgstr "Terugdraaien naar een vorige versie"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:230
 msgid "Upload a New Version"

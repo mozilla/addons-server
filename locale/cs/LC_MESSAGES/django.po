@@ -2153,11 +2153,11 @@ msgstr "Něco se pokazilo. Kontaktujte prosím podporu pro vývojáře."
 
 #: src/olympia/devhub/forms.py:1612
 msgid "Choose version"
-msgstr ""
+msgstr "Vyberte verzi"
 
 #: src/olympia/devhub/forms.py:1682
 msgid "You must select a channel and version to rollback to."
-msgstr ""
+msgstr "Musíte vybrat kanál a verzi, ke které se chcete vrátit."
 
 #: src/olympia/devhub/tasks.py:178
 msgid "Invalid or corrupt add-on file."
@@ -2335,7 +2335,7 @@ msgstr "Při nahrávání selhala kontrola a výsledky kontroly tak mohou být n
 
 #: src/olympia/devhub/views.py:1319
 msgid "Rollback submitted. You'll be notified when it's approved"
-msgstr ""
+msgstr "Vrácení změny bylo odesláno. Až bude schválena, budete upozorněni"
 
 #: src/olympia/devhub/views.py:1451
 msgid "Header area background"
@@ -4025,16 +4025,16 @@ msgstr[2] "Zvolte <b>maximálně {0}</b> kategorií pro tento doplněk:"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:2
 msgid "Roll back to a previous version"
-msgstr ""
+msgstr "Návrat k předchozí verzi"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:4
 #, python-format
 msgid "Users of this %(addon_type)s will roll back to the previous version you choose."
-msgstr ""
+msgstr "Uživatelé tohoto doplňku %(addon_type)s se vrátí k předchozí verzi, kterou zvolíte."
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:12
 msgid "Distribution channel"
-msgstr ""
+msgstr "Distribuční kanál"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:23 src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:32
 #: src/olympia/devhub/templates/devhub/versions/list.html:240
@@ -4043,11 +4043,11 @@ msgstr "Verze"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:40
 msgid "New version number"
-msgstr ""
+msgstr "Nové číslo verze"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:50
 msgid "Roll back"
-msgstr ""
+msgstr "Vrátit změny"
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:3
 msgid "End-User License Agreement"
@@ -4436,7 +4436,7 @@ msgstr "Všechny verze"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:224
 msgid "Rollback to a previous version"
-msgstr ""
+msgstr "Rollback k předchozí verzi"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:230
 msgid "Upload a New Version"
