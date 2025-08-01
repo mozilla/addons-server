@@ -1,0 +1,25 @@
+{
+  "name": "Addons-Server Devcontainer",
+  "image": "mcr.microsoft.com/devcontainers/base:bullseye",
+  "workspaceFolder": "/workspaces/addons-server",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/addons-server,type=bind",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker": {
+      "version": "latest",
+      "enableNonRootDocker": "true",
+      "moby": "true"
+    }
+  },
+  "forwardPorts": [80],
+  "appPort": [80],
+  "portsAttributes": {
+    "80": {
+      "label": "Addons-Server",
+      "onAutoForward": "notify",
+      "protocol": "http",
+      "requireLocalPort": true,
+      "elevateIfNeeded": true
+    }
+  },
+  "postStartCommand": "make up"
+}

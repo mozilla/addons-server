@@ -7,6 +7,7 @@ Welcome to the development section of the **addons-server** documentation. This 
 
 setup_and_configuration
 building_and_running_services
+devcontainer
 makefile_commands
 testing_and_quality_assurance
 data_management
