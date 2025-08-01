@@ -2157,11 +2157,11 @@ msgstr "Что-то пошло не так, пожалуйста, обратит
 
 #: src/olympia/devhub/forms.py:1612
 msgid "Choose version"
-msgstr ""
+msgstr "Выберите версию"
 
 #: src/olympia/devhub/forms.py:1682
 msgid "You must select a channel and version to rollback to."
-msgstr ""
+msgstr "Вы должны выбрать канал и версию для отката."
 
 #: src/olympia/devhub/tasks.py:178
 msgid "Invalid or corrupt add-on file."
@@ -2339,7 +2339,7 @@ msgstr "Это загрузка не прошла валидацию и в не�
 
 #: src/olympia/devhub/views.py:1319
 msgid "Rollback submitted. You'll be notified when it's approved"
-msgstr ""
+msgstr "Откат отправлен. Вы получите уведомление, когда он будет одобрен"
 
 #: src/olympia/devhub/views.py:1451
 msgid "Header area background"
@@ -4054,16 +4054,16 @@ msgstr[2] "Выберите категорию для этих дополнен�
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:2
 msgid "Roll back to a previous version"
-msgstr ""
+msgstr "Откатиться к предыдущей версии"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:4
 #, python-format
 msgid "Users of this %(addon_type)s will roll back to the previous version you choose."
-msgstr ""
+msgstr "Пользователи этого %(addon_type)s смогут откатиться к предыдущей выбранной вами версии."
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:12
 msgid "Distribution channel"
-msgstr ""
+msgstr "Канал распространения"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:23 src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:32
 #: src/olympia/devhub/templates/devhub/versions/list.html:240
@@ -4072,11 +4072,11 @@ msgstr "Версия"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:40
 msgid "New version number"
-msgstr ""
+msgstr "Новый номер версии"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:50
 msgid "Roll back"
-msgstr ""
+msgstr "Откатить"
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:3
 msgid "End-User License Agreement"
@@ -4470,7 +4470,7 @@ msgstr "Все версии"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:224
 msgid "Rollback to a previous version"
-msgstr ""
+msgstr "Откат к предыдущей версии"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:230
 msgid "Upload a New Version"
