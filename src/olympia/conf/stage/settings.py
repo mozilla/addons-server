@@ -1,5 +1,6 @@
 # ruff: noqa: F405
 from olympia.lib.settings_base import *  # noqa
+from olympia.core.languages import PROD_LANGUAGES
 
 
 ENGAGE_ROBOTS = False
@@ -70,3 +71,5 @@ REMOTE_SETTINGS_WRITER_URL = env(
 CINDER_QUEUE_PREFIX = 'amo-stage-'
 
 ENABLE_ADMIN_MLBF_UPLOAD = True
+
+AMO_LANGUAGES = PROD_LANGUAGES

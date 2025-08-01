@@ -60,6 +60,7 @@ from rest_framework.utils.formatting import lazy_format
 
 from olympia.amo.urlresolvers import linkify_with_outgoing
 from olympia.constants.abuse import REPORTED_MEDIA_BACKUP_EXPIRATION_DAYS
+from olympia.core.languages import LANGUAGES_NOT_IN_BABEL
 from olympia.core.logger import getLogger
 from olympia.lib import unicodehelper
 from olympia.translations.fields import LocaleErrorMessage
@@ -759,11 +760,11 @@ def get_locale_from_lang(lang):
     """Pass in a language ('en-US') get back a Locale object courtesy of
     Babel.  Use this to figure out currencies, bidi, names, etc."""
     # Special fake language can just act like English for formatting and such.
-    # Do the same for 'cak' because it's not in http://cldr.unicode.org/ and
+    # Do the same for languages not in http://cldr.unicode.org/ and
     # therefore not supported by Babel - trying to fake the class leads to a
     # rabbit hole of more errors because we need valid locale data on disk, to
     # get decimal formatting, plural rules etc.
-    if not lang or lang in ('cak',):
+    if not lang or lang in LANGUAGES_NOT_IN_BABEL:
         lang = 'en'
     return Locale.parse(translation.to_locale(lang))
 

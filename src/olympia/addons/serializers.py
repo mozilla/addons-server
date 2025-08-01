@@ -2,6 +2,7 @@ import copy
 import json
 import re
 
+from django.conf import settings
 from django.core.exceptions import ValidationError as DjangoValidationError
 from django.core.files import File as DjangoFile
 from django.urls import reverse
@@ -43,7 +44,6 @@ from olympia.constants.promoted import (
     PROMOTED_GROUP_CHOICES,
     PROMOTED_GROUPS_BY_ID,
 )
-from olympia.core.languages import AMO_LANGUAGES
 from olympia.files.models import File, FileUpload
 from olympia.files.utils import DuplicateAddonID, parse_addon
 from olympia.promoted.models import PromotedGroup
@@ -1005,7 +1005,7 @@ class AddonSerializer(AMOModelSerializer):
     )
     current_version = CurrentVersionSerializer(read_only=True)
     default_locale = serializers.ChoiceField(
-        choices=list(AMO_LANGUAGES), required=False
+        choices=settings.AMO_LANGUAGES, required=False
     )
     description = TranslationSerializerField(required=False)
     developer_comments = TranslationSerializerField(required=False)

@@ -78,6 +78,7 @@ class Command(BaseCommand):
     def find_locales_below_and_above_threshold(self):
         locales_below_threshold = set()
         locales_above_threshold = set()
+        locales_already_on_amo = set(settings.AMO_LANGUAGES)
         seen_locales = defaultdict(int)
         data = self.fetch_data()
         for project, project_data in data.items():
@@ -95,7 +96,7 @@ class Command(BaseCommand):
                     locales_below_threshold.add(locale)
                 # If we see a language above threshold but not already enabled
                 # in production, add it to the relevant set.
-                elif locale not in settings.AMO_LANGUAGES:
+                elif locale not in locales_already_on_amo:
                     self.stdout.write(
                         f'✅ {self.pretty_locale_name(locale)} is above threshold '
                         f'({completion}%) in {project}'
@@ -106,7 +107,6 @@ class Command(BaseCommand):
         # Use the ones we already have enabled in production, in case somehow
         # a locale would disappear completely from pontoon and still be enabled
         # on our side.
-        locales_already_on_amo = set(settings.AMO_LANGUAGES.keys())
         for locale in locales_already_on_amo | locales_above_threshold:
             if (
                 locale != settings.LANGUAGE_CODE

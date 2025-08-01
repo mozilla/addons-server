@@ -1,5 +1,7 @@
 # ruff: noqa: F405
 from olympia.lib.settings_base import *  # noqa
+from olympia.core.languages import PROD_LANGUAGES
+
 
 ALLOWED_HOSTS = [
     '.amo.prod.webservices.mozgcp.net',
@@ -69,3 +71,5 @@ CINDER_QUEUE_PREFIX = 'amo-'
 # In Cinder prod the only registered webhook is for AMO prod, so all IDs should be
 # unique - and we want the 400 error.
 CINDER_UNIQUE_IDS = True
+
+AMO_LANGUAGES = PROD_LANGUAGES
