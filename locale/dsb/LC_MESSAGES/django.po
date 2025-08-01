@@ -2159,11 +2159,11 @@ msgstr "Něco njejo se raźiło, pšosym stajśo se z wuwijaŕskeju pódpěru do
 
 #: src/olympia/devhub/forms.py:1612
 msgid "Choose version"
-msgstr ""
+msgstr "Wersiju wubraś"
 
 #: src/olympia/devhub/forms.py:1682
 msgid "You must select a channel and version to rollback to."
-msgstr ""
+msgstr "Musyśo kanal a wersiju wubraś, do kótarejež se ma slědk kulnuś."
 
 #: src/olympia/devhub/tasks.py:178
 msgid "Invalid or corrupt add-on file."
@@ -2341,7 +2341,7 @@ msgstr "Toś to nagraśe njejo pśeglědanje wobstało a njama snaź žedne dopo
 
 #: src/olympia/devhub/views.py:1319
 msgid "Rollback submitted. You'll be notified when it's approved"
-msgstr ""
+msgstr "Slědkkulnjenje zapódane. Dostawaśo powěźeńku, gaž jo pśizwólone"
 
 #: src/olympia/devhub/views.py:1451
 msgid "Header area background"
@@ -4043,16 +4043,16 @@ msgstr[3] "Wubjeŕśo <b>až do {0}</b> kategorijow za toś ten dodank:"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:2
 msgid "Roll back to a previous version"
-msgstr ""
+msgstr "Do pjerwjejšneje wersije slědk kulnuś"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:4
 #, python-format
 msgid "Users of this %(addon_type)s will roll back to the previous version you choose."
-msgstr ""
+msgstr "Wužywarje toś togo %(addon_type)s se do pjerwjejšneje wersije, kótaruž wuběraśo, slědk kula."
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:12
 msgid "Distribution channel"
-msgstr ""
+msgstr "Rozdźěleński kanal"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:23 src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:32
 #: src/olympia/devhub/templates/devhub/versions/list.html:240
@@ -4061,11 +4061,11 @@ msgstr "Wersija"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:40
 msgid "New version number"
-msgstr ""
+msgstr "Nowy wersijowy numer"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:50
 msgid "Roll back"
-msgstr ""
+msgstr "Slědk kulnuś"
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:3
 msgid "End-User License Agreement"
@@ -4456,7 +4456,7 @@ msgstr "Wšykne wersije"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:224
 msgid "Rollback to a previous version"
-msgstr ""
+msgstr "Slědkkulnjenje do pjerwjejšneje wersije"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:230
 msgid "Upload a New Version"

@@ -2160,7 +2160,7 @@ msgstr "Wersiju wubrać"
 
 #: src/olympia/devhub/forms.py:1682
 msgid "You must select a channel and version to rollback to."
-msgstr ""
+msgstr "Dyrbiće kanal a wersiju wubrać, do kotrejež so ma wróćo kulić."
 
 #: src/olympia/devhub/tasks.py:178
 msgid "Invalid or corrupt add-on file."
@@ -2338,7 +2338,7 @@ msgstr "Tute nahraće njeje přepruwowanje wobstało a nima snano žane dospołn
 
 #: src/olympia/devhub/views.py:1319
 msgid "Rollback submitted. You'll be notified when it's approved"
-msgstr ""
+msgstr "Wróćokulenje zapodate. Dóstawaće zdźělenku, hdyž je schwalene"
 
 #: src/olympia/devhub/views.py:1451
 msgid "Header area background"
