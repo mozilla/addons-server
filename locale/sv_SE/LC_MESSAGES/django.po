@@ -2148,11 +2148,11 @@ msgstr "Något gick fel, kontakta utvecklarsupporten."
 
 #: src/olympia/devhub/forms.py:1612
 msgid "Choose version"
-msgstr ""
+msgstr "Välj version"
 
 #: src/olympia/devhub/forms.py:1682
 msgid "You must select a channel and version to rollback to."
-msgstr ""
+msgstr "Du måste välja en kanal och version att återställa till."
 
 #: src/olympia/devhub/tasks.py:178
 msgid "Invalid or corrupt add-on file."
@@ -2330,7 +2330,7 @@ msgstr "Denna uppladdning har misslyckats med validering och kan sakna fullstän
 
 #: src/olympia/devhub/views.py:1319
 msgid "Rollback submitted. You'll be notified when it's approved"
-msgstr ""
+msgstr "Återställning har skickats. Du får ett meddelande när den har godkänts."
 
 #: src/olympia/devhub/views.py:1451
 msgid "Header area background"
@@ -4038,16 +4038,16 @@ msgstr[1] "Välj <b>upp till {0}</b> kategorier för detta tillägg:"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:2
 msgid "Roll back to a previous version"
-msgstr ""
+msgstr "Återställ till en tidigare version"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:4
 #, python-format
 msgid "Users of this %(addon_type)s will roll back to the previous version you choose."
-msgstr ""
+msgstr "Användare av detta %(addon_type)s kommer att återställa till den tidigare versionen du valt."
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:12
 msgid "Distribution channel"
-msgstr ""
+msgstr "Distributionskanal"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:23 src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:32
 #: src/olympia/devhub/templates/devhub/versions/list.html:240
@@ -4056,11 +4056,11 @@ msgstr "Version"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:40
 msgid "New version number"
-msgstr ""
+msgstr "Nytt versionsnummer"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:50
 msgid "Roll back"
-msgstr ""
+msgstr "Återställ"
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:3
 msgid "End-User License Agreement"
@@ -4452,7 +4452,7 @@ msgstr "Alla versioner"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:224
 msgid "Rollback to a previous version"
-msgstr ""
+msgstr "Återställ till en tidigare version"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:230
 msgid "Upload a New Version"
