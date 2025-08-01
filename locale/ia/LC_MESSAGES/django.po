@@ -2159,7 +2159,7 @@ msgstr "Eliger version"
 
 #: src/olympia/devhub/forms.py:1682
 msgid "You must select a channel and version to rollback to."
-msgstr ""
+msgstr "Tu debe seliger un canal e version a que regreder."
 
 #: src/olympia/devhub/tasks.py:178
 msgid "Invalid or corrupt add-on file."
@@ -2337,7 +2337,7 @@ msgstr "Le validation de iste incargamento ha fallite e le resultatos del valida
 
 #: src/olympia/devhub/views.py:1319
 msgid "Rollback submitted. You'll be notified when it's approved"
-msgstr ""
+msgstr "Regression inviate. Te sera notificate quando illo sera approbate."
 
 #: src/olympia/devhub/views.py:1451
 msgid "Header area background"
@@ -4027,12 +4027,12 @@ msgstr[1] "Selige <b>usque {0}</b> categorias pro iste additivo:"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:2
 msgid "Roll back to a previous version"
-msgstr ""
+msgstr "Retornar a un previe version"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:4
 #, python-format
 msgid "Users of this %(addon_type)s will roll back to the previous version you choose."
-msgstr ""
+msgstr "Le usatores de iste %(addon_type)s retornara al previe version que tu seligera."
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:12
 msgid "Distribution channel"
@@ -4049,7 +4049,7 @@ msgstr "Nove numero de version"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:50
 msgid "Roll back"
-msgstr ""
+msgstr "Regreder"
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:3
 msgid "End-User License Agreement"
@@ -4442,7 +4442,7 @@ msgstr "Tote le versiones"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:224
 msgid "Rollback to a previous version"
-msgstr ""
+msgstr "Regreder a un previe version"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:230
 msgid "Upload a New Version"
