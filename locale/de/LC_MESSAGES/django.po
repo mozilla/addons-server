@@ -2167,11 +2167,11 @@ msgstr "Etwas ist schiefgegangen, bitte wenden Sie sich an den Entwickler-Suppor
 
 #: src/olympia/devhub/forms.py:1612
 msgid "Choose version"
-msgstr ""
+msgstr "Version auswählen"
 
 #: src/olympia/devhub/forms.py:1682
 msgid "You must select a channel and version to rollback to."
-msgstr ""
+msgstr "Sie müssen einen Kanal und eine Version auswählen, auf die zurückgesetzt werden soll."
 
 #: src/olympia/devhub/tasks.py:178
 msgid "Invalid or corrupt add-on file."
@@ -2349,7 +2349,7 @@ msgstr "Dieser Upload hat die Validierung nicht bestanden und hat möglicherweis
 
 #: src/olympia/devhub/views.py:1319
 msgid "Rollback submitted. You'll be notified when it's approved"
-msgstr ""
+msgstr "Zurücksetzung abgesendet. Sie werden benachrichtigt, wenn sie freigeschaltet wird"
 
 #: src/olympia/devhub/views.py:1451
 msgid "Header area background"
@@ -4050,16 +4050,16 @@ msgstr[1] "Wählen Sie <b>bis zu {0}</b> Kategorien für dieses Add-on:"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:2
 msgid "Roll back to a previous version"
-msgstr ""
+msgstr "Auf eine vorherige Version zurücksetzen"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:4
 #, python-format
 msgid "Users of this %(addon_type)s will roll back to the previous version you choose."
-msgstr ""
+msgstr "Benutzer dieses %(addon_type)s werden auf die vorherige Version Ihrer Wahl zurückgesetzt."
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:12
 msgid "Distribution channel"
-msgstr ""
+msgstr "Distributionskanal"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:23 src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:32
 #: src/olympia/devhub/templates/devhub/versions/list.html:240
@@ -4068,11 +4068,11 @@ msgstr "Version"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:40
 msgid "New version number"
-msgstr ""
+msgstr "Neue Versionsnummer"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:50
 msgid "Roll back"
-msgstr ""
+msgstr "Zurücksetzen"
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:3
 msgid "End-User License Agreement"
@@ -4466,7 +4466,7 @@ msgstr "Alle Versionen"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:224
 msgid "Rollback to a previous version"
-msgstr ""
+msgstr "Auf eine vorherige Version zurücksetzen"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:230
 msgid "Upload a New Version"
