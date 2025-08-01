@@ -2149,11 +2149,11 @@ msgstr "Noko gjekk gale. Ta kontakt med utviklarstøtta."
 
 #: src/olympia/devhub/forms.py:1612
 msgid "Choose version"
-msgstr ""
+msgstr "Vel versjon"
 
 #: src/olympia/devhub/forms.py:1682
 msgid "You must select a channel and version to rollback to."
-msgstr ""
+msgstr "Du må velje ein kanal og versjon å gå tilbake til."
 
 #: src/olympia/devhub/tasks.py:178
 msgid "Invalid or corrupt add-on file."
@@ -2331,7 +2331,7 @@ msgstr "Denne opplastinga har mislykkast ved validering og kan mangle fullstendi
 
 #: src/olympia/devhub/views.py:1319
 msgid "Rollback submitted. You'll be notified when it's approved"
-msgstr ""
+msgstr "Tilbakestilling send. Du får beskjed når ho er godkjend"
 
 #: src/olympia/devhub/views.py:1451
 msgid "Header area background"
@@ -4020,7 +4020,7 @@ msgstr[1] "Vel <b>opp til {0}</b> kategoriar for dette tillegget:"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:2
 msgid "Roll back to a previous version"
-msgstr ""
+msgstr "Gå tilbake til ein tidlegare versjon"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:4
 #, python-format
