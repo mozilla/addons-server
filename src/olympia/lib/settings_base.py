@@ -197,10 +197,12 @@ SHORTER_LANGUAGES = {
 
 
 def get_django_languages():
+    from django.conf import settings
+
     return [
         (lang.lower(), names['native'])
         for lang, names in ALL_LANGUAGES.items()
-        if lang in AMO_LANGUAGES
+        if lang in settings.AMO_LANGUAGES
     ]
 
 
@@ -210,7 +212,9 @@ LANGUAGES = lazy(get_django_languages, list)()
 
 
 def get_language_url_map():
-    return {locale.lower(): locale for locale in AMO_LANGUAGES}
+    from django.conf import settings
+
+    return {locale.lower(): locale for locale in settings.AMO_LANGUAGES}
 
 
 # lazy because we can override AMO_LANGUAGES
