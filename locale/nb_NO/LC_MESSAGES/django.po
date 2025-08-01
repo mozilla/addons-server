@@ -2151,11 +2151,11 @@ msgstr "Noe gikk galt. Kontakt utviklerstøtte."
 
 #: src/olympia/devhub/forms.py:1612
 msgid "Choose version"
-msgstr ""
+msgstr "Velg versjon"
 
 #: src/olympia/devhub/forms.py:1682
 msgid "You must select a channel and version to rollback to."
-msgstr ""
+msgstr "Du må velge en kanal og versjon du vil rulle tilbake til."
 
 #: src/olympia/devhub/tasks.py:178
 msgid "Invalid or corrupt add-on file."
@@ -2333,7 +2333,7 @@ msgstr "Denne opplastingen mislyktes i valideringen og kan mangle fullstendige v
 
 #: src/olympia/devhub/views.py:1319
 msgid "Rollback submitted. You'll be notified when it's approved"
-msgstr ""
+msgstr "Tilbakerulling sendt. Du vil bli varslet når den er godkjent"
 
 #: src/olympia/devhub/views.py:1451
 msgid "Header area background"
