@@ -2154,11 +2154,11 @@ msgstr "Der is wat misgien, nim kontakt op mei stipe foar ûntwikkelers."
 
 #: src/olympia/devhub/forms.py:1612
 msgid "Choose version"
-msgstr ""
+msgstr "Ferzje kieze"
 
 #: src/olympia/devhub/forms.py:1682
 msgid "You must select a channel and version to rollback to."
-msgstr ""
+msgstr "Jo moatte in kanaal en in ferzje selektearje om nei werom te gean."
 
 #: src/olympia/devhub/tasks.py:178
 msgid "Invalid or corrupt add-on file."
@@ -2336,7 +2336,7 @@ msgstr "De falidaasje fan dizze oplaad is mislearre en der ûntbrekke mooglik fo
 
 #: src/olympia/devhub/views.py:1319
 msgid "Rollback submitted. You'll be notified when it's approved"
-msgstr ""
+msgstr "Weromdraaien yntsjinne. Jo wurde op de hichte brocht as dizze goedkard is"
 
 #: src/olympia/devhub/views.py:1451
 msgid "Header area background"
@@ -4030,16 +4030,16 @@ msgstr[1] "Selektearje <b>oant {0}</b> kategoryen foar dizze add-on:"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:2
 msgid "Roll back to a previous version"
-msgstr ""
+msgstr "Weromgean nei in foarige ferzje"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:4
 #, python-format
 msgid "Users of this %(addon_type)s will roll back to the previous version you choose."
-msgstr ""
+msgstr "Brûkers fan dit %(addon_type)s sille weromgean nei de foarige keazen ferzje."
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:12
 msgid "Distribution channel"
-msgstr ""
+msgstr "Distribúsjekanaal"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:23 src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:32
 #: src/olympia/devhub/templates/devhub/versions/list.html:240
@@ -4048,11 +4048,11 @@ msgstr "Ferzje"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:40
 msgid "New version number"
-msgstr ""
+msgstr "Nij ferzjenûmer"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:50
 msgid "Roll back"
-msgstr ""
+msgstr "Weromgean"
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:3
 msgid "End-User License Agreement"
