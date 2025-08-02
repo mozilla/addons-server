@@ -5627,7 +5627,7 @@ msgstr "Ta vare på personvernet ditt mot ei unik form for JavaScript-«fingerav
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:667
 msgid "Automatically deny cookie pop-up tracking requests."
-msgstr ""
+msgstr "Avvis automatisk sporingsførespurnadar frå sprettopp-vindauge for informasjonskapslar."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:673
@@ -5892,7 +5892,7 @@ msgstr "Viktige tillegg"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1028
 msgid "Declutter your desktop"
-msgstr ""
+msgstr "Rydd opp på skrivebordet ditt"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1030 src/olympia/discovery/strings.jinja2:1032 src/olympia/discovery/strings.jinja2:1034
