@@ -1260,11 +1260,11 @@ msgstr ""
 #: src/olympia/constants/activity.py:1208
 #, python-brace-format
 msgid "{addon} {version} created, to rollback from {0}."
-msgstr ""
+msgstr "{addon} {version} đã được tạo, để quay lại phiên bản {0}."
 
 #: src/olympia/constants/activity.py:1209
 msgid "Version rollback"
-msgstr ""
+msgstr "Quay lại phiên bản trước"
 
 #: src/olympia/constants/activity.py:1216
 #, python-brace-format
@@ -2150,11 +2150,11 @@ msgstr "Đã xảy ra lỗi, vui lòng liên hệ với bộ phận hỗ trợ n
 
 #: src/olympia/devhub/forms.py:1612
 msgid "Choose version"
-msgstr ""
+msgstr "Chọn phiên bản"
 
 #: src/olympia/devhub/forms.py:1682
 msgid "You must select a channel and version to rollback to."
-msgstr ""
+msgstr "Bạn phải chọn kênh và phiên bản để quay lại."
 
 #: src/olympia/devhub/tasks.py:178
 msgid "Invalid or corrupt add-on file."
@@ -2332,7 +2332,7 @@ msgstr "Quá trình tải lên này không được xác thực và có thể th
 
 #: src/olympia/devhub/views.py:1319
 msgid "Rollback submitted. You'll be notified when it's approved"
-msgstr ""
+msgstr "Đã gửi yêu cầu quay lại phiên bản trước. Bạn sẽ được thông báo khi yêu cầu được chấp thuận."
 
 #: src/olympia/devhub/views.py:1451
 msgid "Header area background"
@@ -4022,16 +4022,16 @@ msgstr[0] "Chọn một danh mục cho tiện ích mở rộng này:"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:2
 msgid "Roll back to a previous version"
-msgstr ""
+msgstr "Quay lại phiên bản trước đó"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:4
 #, python-format
 msgid "Users of this %(addon_type)s will roll back to the previous version you choose."
-msgstr ""
+msgstr "Người dùng %(addon_type)s này sẽ quay lại phiên bản trước đó mà bạn chọn."
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:12
 msgid "Distribution channel"
-msgstr ""
+msgstr "Kênh phân phối"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:23 src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:32
 #: src/olympia/devhub/templates/devhub/versions/list.html:240
@@ -4040,7 +4040,7 @@ msgstr "Phiên bản"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:40
 msgid "New version number"
-msgstr ""
+msgstr "Số phiên bản mới"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:50
 msgid "Roll back"
@@ -4436,7 +4436,7 @@ msgstr "Tất cả phiên bản"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:224
 msgid "Rollback to a previous version"
-msgstr ""
+msgstr "Quay lại phiên bản trước đó"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:230
 msgid "Upload a New Version"
