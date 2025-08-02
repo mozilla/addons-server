@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-01 12:45+0000\n"
+"POT-Creation-Date: 2025-08-02 02:51+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1158,6 +1158,7 @@ msgstr ""
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
 #, fuzzy
 msgid "Privacy & Security"
 msgstr "Política de privacidade"
@@ -4442,6 +4443,10 @@ msgstr ""
 msgid "Protect your privacy against a unique form of JavaScript “fingerprinting”."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Automatically deny cookie pop-up tracking requests."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr ""
@@ -4648,15 +4653,11 @@ msgid "See all extensions"
 msgstr "Navegar em todos os extras"
 
 #. editorial content for the secondary hero shelves.
-msgid "Anti-tracking extensions"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
 msgid "Essential add-ons"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Steam extensions"
+msgid "Declutter your desktop"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
