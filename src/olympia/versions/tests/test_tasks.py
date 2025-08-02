@@ -703,8 +703,9 @@ class TestDuplicateAddonVersionForRollback(TestCase):
             f'by re-publishing as "{new.version}", successfull' in mail.outbox[0].body
         )
 
+    @mock.patch('olympia.versions.tasks.statsd.incr')
     @mock.patch('olympia.lib.crypto.tasks.sign_file')
-    def _test_rollback_success(self, sign_file_mock):
+    def _test_rollback_success(self, sign_file_mock, statsd_mock):
         new_version_number = '123'
 
         duplicate_addon_version_for_rollback.delay(
@@ -719,6 +720,9 @@ class TestDuplicateAddonVersionForRollback(TestCase):
             assert self.rollback_version.addon.reload().current_version == new_version
         assert new_version.version == new_version_number
         sign_file_mock.assert_called_once()
+
+        # we log many statsd pings creating a version, this the one we expect
+        assert statsd_mock.call_args_list[-2][0] == ('versions.tasks.rollback.success',)
 
         self.check_activity(new_version)
         self.check_compatiblity(new_version)
@@ -736,8 +740,9 @@ class TestDuplicateAddonVersionForRollback(TestCase):
         new_version = self._test_rollback_success()
         assert new_version.channel == amo.CHANNEL_UNLISTED
 
+    @mock.patch('olympia.versions.tasks.statsd.incr')
     @mock.patch('olympia.lib.crypto.tasks.sign_file')
-    def test_missing_file(self, sign_file_mock):
+    def test_missing_file(self, sign_file_mock, statsd_mock):
         new_version_number = '123'
         self.rollback_version.file.update(file='')
 
@@ -749,6 +754,8 @@ class TestDuplicateAddonVersionForRollback(TestCase):
 
         assert self.rollback_version.addon.versions.count() == 2
         sign_file_mock.assert_not_called()
+
+        assert statsd_mock.call_args_list[0][0] == ('versions.tasks.rollback.failure',)
 
         al = ActivityLog.objects.get(action=amo.LOG.VERSION_ROLLBACK_FAILED.id)
         assert set(al.versionlog_set.values_list('version', flat=True)) == {

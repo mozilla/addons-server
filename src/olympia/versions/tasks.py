@@ -8,6 +8,7 @@ from django.conf import settings
 from django.db import transaction
 from django.template import loader
 
+from django_statsd.clients import statsd
 from PIL import Image
 
 import olympia.core.logger
@@ -305,6 +306,7 @@ def duplicate_addon_version_for_rollback(*, version_pk, new_version_number, user
             },
         )
         version = old_version
+        statsd.incr('versions.tasks.rollback.failure')
     else:
         version.update(human_review_date=old_version.human_review_date)
 
@@ -339,6 +341,7 @@ def duplicate_addon_version_for_rollback(*, version_pk, new_version_number, user
             },
         )
         VersionLog.objects.create(activity_log=log_entry, version=old_version)
+        statsd.incr('versions.tasks.rollback.success')
 
     notify_about_activity_log(
         version.addon, version, log_entry, perm_setting='individual_contact'
