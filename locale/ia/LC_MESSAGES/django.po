@@ -5635,7 +5635,7 @@ msgstr "Protege tu confidentialitate contra un forma exclusive de “detection d
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:667
 msgid "Automatically deny cookie pop-up tracking requests."
-msgstr ""
+msgstr "Automaticamente negar requestas de traciamento per cookie bandiera."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:673
@@ -5900,7 +5900,7 @@ msgstr "Additivos essential"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1028
 msgid "Declutter your desktop"
-msgstr ""
+msgstr "Reordina tu scriptorio"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1030 src/olympia/discovery/strings.jinja2:1032 src/olympia/discovery/strings.jinja2:1034
