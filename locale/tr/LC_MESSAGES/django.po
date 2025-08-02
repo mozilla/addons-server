@@ -2155,11 +2155,11 @@ msgstr "Bir hata oluştu. Lütfen geliştirici desteğiyle iletişime geçin."
 
 #: src/olympia/devhub/forms.py:1612
 msgid "Choose version"
-msgstr ""
+msgstr "Sürüm seçin"
 
 #: src/olympia/devhub/forms.py:1682
 msgid "You must select a channel and version to rollback to."
-msgstr ""
+msgstr "Geri dönülecek kanalı ve sürümü seçmelisiniz."
 
 #: src/olympia/devhub/tasks.py:178
 msgid "Invalid or corrupt add-on file."
@@ -2337,7 +2337,7 @@ msgstr "Bu yükleme doğrulamadan geçemedi. Tam doğrulama sonuçları eksik ol
 
 #: src/olympia/devhub/views.py:1319
 msgid "Rollback submitted. You'll be notified when it's approved"
-msgstr ""
+msgstr "Geri döndürme gönderildi. Onaylandığında bilgilendirileceksiniz"
 
 #: src/olympia/devhub/views.py:1451
 msgid "Header area background"
@@ -3989,7 +3989,7 @@ msgstr[1] "Bu eklenti için <b>en fazla {0}</b> kategori seçin:"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:2
 msgid "Roll back to a previous version"
-msgstr ""
+msgstr "Önceki bir sürüme dön"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:4
 #, python-format
@@ -3998,7 +3998,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:12
 msgid "Distribution channel"
-msgstr ""
+msgstr "Dağıtım kanalı"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:23 src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:32
 #: src/olympia/devhub/templates/devhub/versions/list.html:240
@@ -4007,11 +4007,11 @@ msgstr "Sürüm"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:40
 msgid "New version number"
-msgstr ""
+msgstr "Yeni sürüm numarası"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:50
 msgid "Roll back"
-msgstr ""
+msgstr "Geri dön"
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:3
 msgid "End-User License Agreement"
@@ -4399,7 +4399,7 @@ msgstr "Tüm sürümler"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:224
 msgid "Rollback to a previous version"
-msgstr ""
+msgstr "Önceki bir sürüme geri dön"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:230
 msgid "Upload a New Version"
