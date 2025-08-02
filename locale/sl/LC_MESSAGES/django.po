@@ -5632,7 +5632,7 @@ msgstr "Zaščitite svojo zasebnost pred edinstveno obliko \"sledenja prstnemu o
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:667
 msgid "Automatically deny cookie pop-up tracking requests."
-msgstr ""
+msgstr "Samodejno zavračajte zahteve po sledenju pojavnih piškotkov."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:673
@@ -5897,7 +5897,7 @@ msgstr "Nepogrešljivi dodatki"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1028
 msgid "Declutter your desktop"
-msgstr ""
+msgstr "Razčistite namizje"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1030 src/olympia/discovery/strings.jinja2:1032 src/olympia/discovery/strings.jinja2:1034
