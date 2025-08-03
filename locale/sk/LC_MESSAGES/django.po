@@ -2154,11 +2154,11 @@ msgstr "Niečo sa pokazilo, kontaktujte podporu pre vývojárov."
 
 #: src/olympia/devhub/forms.py:1612
 msgid "Choose version"
-msgstr ""
+msgstr "Vyberte verziu"
 
 #: src/olympia/devhub/forms.py:1682
 msgid "You must select a channel and version to rollback to."
-msgstr ""
+msgstr "Musíte vybrať kanál a verziu, na ktorú sa chcete vrátiť."
 
 #: src/olympia/devhub/tasks.py:178
 msgid "Invalid or corrupt add-on file."
@@ -2335,7 +2335,7 @@ msgstr "Pri nahrávaní kontrola zlyhala a preto jej výsledky nemusia byť komp
 
 #: src/olympia/devhub/views.py:1319
 msgid "Rollback submitted. You'll be notified when it's approved"
-msgstr ""
+msgstr "Vrátenie verzie bolo odoslané. Po jeho schválení dostanete upozornenie."
 
 #: src/olympia/devhub/views.py:1451
 msgid "Header area background"
@@ -4026,7 +4026,7 @@ msgstr[2] "Vyberte <b>najviac {0}</b> kategórií pre tento doplnok:"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:2
 msgid "Roll back to a previous version"
-msgstr ""
+msgstr "Vrátiť sa k predchádzajúcej verzii"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:4
 #, python-format
@@ -4035,7 +4035,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:12
 msgid "Distribution channel"
-msgstr ""
+msgstr "Distribučný kanál"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:23 src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:32
 #: src/olympia/devhub/templates/devhub/versions/list.html:240
@@ -4044,11 +4044,11 @@ msgstr "Verzia"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:40
 msgid "New version number"
-msgstr ""
+msgstr "Číslo novej verzie"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:50
 msgid "Roll back"
-msgstr ""
+msgstr "Vrátiť späť"
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:3
 msgid "End-User License Agreement"
@@ -4439,7 +4439,7 @@ msgstr "Všetky verzie"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:224
 msgid "Rollback to a previous version"
-msgstr ""
+msgstr "Vrátenie sa k predchádzajúcej verzii"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:230
 msgid "Upload a New Version"
