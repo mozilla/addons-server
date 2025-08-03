@@ -5628,7 +5628,7 @@ msgstr "Beskytt personvernet ditt mot en unik form for JavaScript-«fingeravtryk
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:667
 msgid "Automatically deny cookie pop-up tracking requests."
-msgstr ""
+msgstr "Avvis automatisk sporingsforespørsler fra sprettopp-vindu for infokapsler."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:673
