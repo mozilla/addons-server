@@ -717,11 +717,11 @@ msgstr "Alt corp"
 
 #: src/olympia/api/authentication.py:64 src/olympia/api/authentication.py:247
 msgid "Invalid Authorization header. No credentials provided."
-msgstr "Antet de autorizare nevalid. Nu s-au furnizat date de autentificare."
+msgstr "Antet de autorizare nevalid. Nu s-au furnizat credențiale."
 
 #: src/olympia/api/authentication.py:72 src/olympia/api/authentication.py:251
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
-msgstr "Antet de autorizare nevalid. Șirul datelor de autentificare nu trebuie să conțină spații."
+msgstr "Antet de autorizare nevalid. Șirul credențialelor nu trebuie să conțină spații."
 
 #: src/olympia/api/authentication.py:108
 msgid "Valid user session not found matching the provided session key."
@@ -2121,11 +2121,11 @@ msgstr "Confirmă adresa de e-mail"
 
 #: src/olympia/devhub/forms.py:1442
 msgid "Generate new credentials"
-msgstr "Generează date de autentificare noi"
+msgstr "Generează credențiale noi"
 
 #: src/olympia/devhub/forms.py:1443
 msgid "Revoke and regenerate credentials"
-msgstr "Revocă și regenerează datele de autentificare"
+msgstr "Revocă și regenerează credențialele"
 
 #: src/olympia/devhub/forms.py:1444
 msgid "Revoke"
@@ -2159,7 +2159,7 @@ msgstr "Ți se va trimite pe adresa de e-mail un link de confirmare. După confi
 
 #: src/olympia/devhub/forms.py:1544
 msgid "You don't have any API credentials."
-msgstr "Nu ai nicio acreditare API."
+msgstr "Nu ai credențiale pentru API."
 
 #: src/olympia/devhub/forms.py:1555
 msgid "Something went wrong, please contact developer support."
