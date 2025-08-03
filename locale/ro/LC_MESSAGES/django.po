@@ -2151,7 +2151,7 @@ msgstr "Secret JWT"
 #: src/olympia/devhub/forms.py:1521
 #, python-brace-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
-msgstr "Dă clic pe butonul de confirmare de mai jos ca să generezi datele de autentificare API ale utilizatorului <strong>{name}</strong>."
+msgstr "Te rugăm să dai clic pe butonul de confirmare de mai jos pentru a genera credențiale pentru API în cazul utilizatorului <strong>{name}</strong>."
 
 #: src/olympia/devhub/forms.py:1527
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
@@ -2187,7 +2187,7 @@ msgstr "Am găsit în fișierul trimis cheia API pentru dezvoltatori aparținân
 
 #: src/olympia/devhub/tasks.py:647
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
-msgstr "Notificare de securitate Mozilla: Datele tale de autentificare AMO API au fost revocate"
+msgstr "Notificare de securitate Mozilla: Credențialele pentru API-ul AMO au fost revocate"
 
 #: src/olympia/devhub/utils.py:86
 #, python-format
@@ -2421,7 +2421,7 @@ msgstr "Trebuie să furnizezi detalii suplimentare pentru a continua."
 
 #: src/olympia/devhub/views.py:2092
 msgid "Your old credentials were revoked and are no longer valid."
-msgstr "Datele tale anterioare de autentificare au fost revocate și nu mai sunt valide."
+msgstr "Credențialele tale vechi au fost revocate și nu mai sunt valide."
 
 #: src/olympia/devhub/views.py:2111
 msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
@@ -3722,7 +3722,7 @@ msgstr "Înapoi"
 
 #: src/olympia/devhub/templates/devhub/api/key.html:21
 msgid "API Credentials"
-msgstr "Date de autentificare API"
+msgstr "Credențiale pentru API"
 
 #: src/olympia/devhub/templates/devhub/emails/api_key_confirmation.ltxt:10
 #, python-format
