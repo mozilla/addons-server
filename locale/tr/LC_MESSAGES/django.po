@@ -5852,7 +5852,7 @@ msgstr "Temel eklentiler"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1028
 msgid "Declutter your desktop"
-msgstr ""
+msgstr "Masaüstünüzdeki dağınıklığı giderin"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1030 src/olympia/discovery/strings.jinja2:1032 src/olympia/discovery/strings.jinja2:1034
