@@ -5158,7 +5158,7 @@ msgstr "Oprește apariția reclamelor în rezultatele căutărilor."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:347 src/olympia/discovery/strings.jinja2:353
 msgid "Store passwords securely and sign in to known websites automatically."
-msgstr "Stochează parolele în siguranță și te autentifici automat pe site-urile cunoscute."
+msgstr "Stochează parolele în siguranță și autentifică-te automat pe site-urile cunoscute."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:350
@@ -5256,7 +5256,7 @@ msgstr "Modifică-ți marcajele dintr-un panou ușor accesibil."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:407
 msgid "Store passwords securely and sign in automatically to known websites."
-msgstr "Stochează parolele în siguranță și te autentifici automat pe site-urile cunoscute."
+msgstr "Stochează parolele în siguranță și autentifică-te automat pe site-urile cunoscute."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:410
