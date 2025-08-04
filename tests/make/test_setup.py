@@ -330,3 +330,15 @@ class TestMakeDirs(BaseTestClass):
             mock.call(os.path.join(root, dir), exist_ok=True)
             for dir in ['deps', 'site-static', 'static-build', 'storage']
         ]
+
+class TestSiteUrl(BaseTestClass):
+    def test_default_site_url(self):
+        main()
+        self.assert_set_env_file_called_with(SITE_URL='http://olympia.test')
+
+    @override_env(CODESPACE_NAME='test')
+    def test_codespace_site_url(self):
+        main()
+        self.assert_set_env_file_called_with(
+            SITE_URL='https://test-80.githubpreview.dev'
+        )
