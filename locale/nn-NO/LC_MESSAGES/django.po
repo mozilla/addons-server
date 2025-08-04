@@ -2142,7 +2142,7 @@ msgstr "Ei stadfestingslenkje vil bli sendt til e-postadressa di. Etter stadfest
 
 #: src/olympia/devhub/forms.py:1544
 msgid "You don't have any API credentials."
-msgstr "Du har ingena API-inloggingsopplysningar"
+msgstr "Du har ingen API-innloggingsopplysningar."
 
 #: src/olympia/devhub/forms.py:1555
 msgid "Something went wrong, please contact developer support."
@@ -3697,7 +3697,7 @@ msgstr "Tilbake"
 
 #: src/olympia/devhub/templates/devhub/api/key.html:21
 msgid "API Credentials"
-msgstr "API-inloggingsopplysningar"
+msgstr "API-innloggingsopplysningar"
 
 #: src/olympia/devhub/templates/devhub/emails/api_key_confirmation.ltxt:10
 #, python-format
