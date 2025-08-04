@@ -615,24 +615,43 @@ function initVersions() {
       $modalRollback.render();
     }
 
-    let channel_inputs = $('#id_channel input'),
-        listed_version_row = $('#listed-version-row'),
-        unlisted_version_row = $('#unlisted-version-row');
+    let $channelInputs = $('#id_channel input'),
+        $listedVersionRow = $('#listed-version-row'),
+        $unlistedVersionRow = $('#unlisted-version-row'),
+        $listedVersionSelect = $('#id_listed_version'),
+        $unlistedVersionSelect = $('#id_unlisted_version');
 
-    channel_inputs.change(function () {
-      listed_version_row.hide();
-      unlisted_version_row.hide();
-      channel_inputs.each(function (index, element) {
-        let $radio = $(element);
+    const explainerUpdate = function (event) {
+      const explainer = $('#rollback-explainer-row');
+      const $target = $(event.target);
+      const currentVersion = $target.parent().data('current-version');
+      let selectedVersion = 'm.m';
+      if ($target.val()) {
+        selectedVersion = $('#' + event.target.id + ' option:selected').text()
+      }
+      const formatted = explainer.data('template').replace('[n.n]', '[' + currentVersion + ']').replace('[m.m]', '[' + selectedVersion + ']');
+      explainer.text(formatted);
+    };
+
+    $listedVersionSelect.on('change', explainerUpdate);
+    $unlistedVersionSelect.on('change', explainerUpdate);
+
+    $channelInputs.on('change', function () {
+      $listedVersionRow.hide();
+      $unlistedVersionRow.hide();
+      $channelInputs.each(function (index, element) {
+        const $radio = $(element);
         if ($radio.val() == '2' && $radio.prop('checked')) {
-          listed_version_row.show();
+          $listedVersionRow.show();
+          $listedVersionSelect.trigger('change');
         }
         if ($radio.val() == '1' && $radio.prop('checked')) {
-          unlisted_version_row.show();
+          $unlistedVersionRow.show();
+          $unlistedVersionSelect.trigger('change');
         }
       });
     })
-    .change();
+    .trigger('change');
   }
 
   function addToReviewHistory(json, historyContainer, reverseOrder) {
