@@ -770,7 +770,7 @@ msgstr "Należy określić obiekt {{lang-code:value}}."
 #: src/olympia/api/fields.py:94
 #, python-brace-format
 msgid "A value in the default locale of \"{lang_code}\" is required."
-msgstr ""
+msgstr "Wymagane jest podanie wartości w domyślnej lokalizacji „{lang_code}”."
 
 #: src/olympia/api/fields.py:97
 #, python-brace-format
@@ -1519,7 +1519,7 @@ msgstr "Narzędzia wyszukiwania"
 
 #: src/olympia/constants/categories.py:154
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
-msgstr ""
+msgstr "Pobierz rozszerzenia Firefoksa do wyszukiwania i wpisywania fraz. Ta kategoria obejmuje rozszerzenia, które podświetlają i przeszukują tekst, wyszukują adresy IP/domeny i wiele więcej."
 
 #: src/olympia/constants/categories.py:161
 msgid "Shopping"
