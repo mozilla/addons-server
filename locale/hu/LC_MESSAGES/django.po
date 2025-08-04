@@ -5648,7 +5648,7 @@ msgstr "Védje meg a magánszféráját a JavaScript „ujjlenyomat-készítés�
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:667
 msgid "Automatically deny cookie pop-up tracking requests."
-msgstr ""
+msgstr "A sütik felugró ablakainak nyomkövetési kérésének automatikus megtagadása."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:673
@@ -5913,7 +5913,7 @@ msgstr "Elengedhetetlen kiegészítők"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1028
 msgid "Declutter your desktop"
-msgstr ""
+msgstr "Távolítsa el a zavaró tényezőket az asztalról"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1030 src/olympia/discovery/strings.jinja2:1032 src/olympia/discovery/strings.jinja2:1034
