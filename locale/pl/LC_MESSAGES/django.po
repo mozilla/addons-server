@@ -775,7 +775,7 @@ msgstr "Wymagane jest podanie wartości w domyślnej lokalizacji „{lang_code}
 #: src/olympia/api/fields.py:97
 #, python-brace-format
 msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
-msgstr ""
+msgstr "Wymagane jest podanie wartości w domyślnej lokalizacji „{lang_code}” jeśli ustawiono inne tłumaczenia."
 
 #: src/olympia/api/fields.py:386
 #, python-format
@@ -5520,7 +5520,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:587 src/olympia/discovery/strings.jinja2:886
 msgid "Double-click any word to instantly see its definition."
-msgstr ""
+msgstr "Kliknij dwukrotnie dowolne słowo, aby natychmiast wyświetlić jego definicję."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5532,7 +5532,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:595 src/olympia/discovery/strings.jinja2:931
 msgid "Tabs and bookmarks neatly organized in a Firefox side view."
-msgstr ""
+msgstr "Przejrzyście zorganizowane karty i zakładki w panelu bocznym Firefoksa."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
