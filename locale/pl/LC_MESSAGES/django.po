@@ -784,7 +784,7 @@ msgstr "Nieprawidłowy pk lub ciąg słów „%s” — obiekt nie istnieje."
 
 #: src/olympia/api/models.py:148
 msgid "Confirmation for developer API keys"
-msgstr ""
+msgstr "Potwierdzenie utworzenia kluczy API"
 
 #: src/olympia/api/throttling.py:113
 msgid "You have submitted this form too many times recently. Please try again after some time."
