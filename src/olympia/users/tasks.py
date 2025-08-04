@@ -25,8 +25,10 @@ from olympia.amo.utils import (
 )
 
 from .models import (
+    RESTRICTION_TYPES,
     BannedUserContent,
     DisposableEmailDomainRestriction,
+    EmailUserRestriction,
     SuppressedEmail,
     SuppressedEmailVerification,
     UserProfile,
@@ -35,6 +37,33 @@ from .utils import assert_socket_labs_settings_defined
 
 
 task_log = olympia.core.logger.getLogger('z.task')
+
+
+@task
+@use_primary_db
+def restrict_banned_users(ids, **kw):
+    task_log.info(
+        '[1@None] Restricting banned users %d-%d [%d].',
+        ids[0],
+        ids[-1],
+        len(ids),
+    )
+    users = UserProfile.objects.filter(banned__isnull=False, pk__in=ids)
+    EmailUserRestriction.objects.bulk_create(
+        [
+            EmailUserRestriction(
+                email_pattern=EmailUserRestriction.normalize_email(user.email),
+                restriction_type=restriction_type,
+                reason=f'Automatically added because of user {user.pk} ban (backfill)',
+            )
+            for user in users
+            for restriction_type in [
+                RESTRICTION_TYPES.ADDON_SUBMISSION,
+                RESTRICTION_TYPES.RATING,
+            ]
+        ],
+        ignore_conflicts=True,
+    )
 
 
 @task
