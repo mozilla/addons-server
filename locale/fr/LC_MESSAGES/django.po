@@ -1286,7 +1286,7 @@ msgstr "Échec du rétablissement de la version"
 #: src/olympia/constants/activity.py:1246
 #, python-brace-format
 msgid "{addon} {0} property edited."
-msgstr ""
+msgstr "{addon} {0} propriété modifiée."
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -2370,7 +2370,7 @@ msgstr "Cet envoi a échoué à la validation, et pourrait n’avoir aucun résu
 
 #: src/olympia/devhub/views.py:1319
 msgid "Rollback submitted. You'll be notified when it's approved"
-msgstr ""
+msgstr "Rétablissement demandé. Vous recevrez une notification une fois approuvé"
 
 #: src/olympia/devhub/views.py:1451
 msgid "Header area background"
@@ -3875,6 +3875,16 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Bonjour,\n"
+"\n"
+"Vous recevez ce message car vous avez demandé à vérifier votre adresse e-mail.\n"
+"Pour terminer ce processus, veuillez cliquer sur le lien ci-dessous :\n"
+"\n"
+"%(confirmation_link)s\n"
+"\n"
+"Cordialement,\n"
+"\n"
+"L’équipe des modules complémentaires de Mozilla"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:6 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:4
 msgid "Invisible"
@@ -3976,6 +3986,9 @@ msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement, Review Policies and Rules and our <a %(a_attrs)s href=\"%(faq_url)s\">Frequently Asked Questions</a>. The Firefox "
 "Add-on Distribution Agreement also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
+"Avant de commencer, veuillez lire et accepter l’accord de distribution de modules complémentaires Firefox, les politiques et règles de révision, et notre <a %(a_attrs)s href=\"%(faq_url)s\">foire "
+"aux questions</a>. L’accord de distribution des modules complémentaires Firefox possède un lien vers notre politique de confidentialité qui explique comment nous gérons les informations vous "
+"concernant."
 
 #: src/olympia/devhub/templates/devhub/includes/agreement.html:10
 msgid "Review Policies and Rules"
@@ -4067,16 +4080,16 @@ msgstr[1] "Sélectionnez <b>jusqu’à {0}</b> catégories pour ce module :"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:2
 msgid "Roll back to a previous version"
-msgstr ""
+msgstr "Revenir à une version précédente"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:4
 #, python-format
 msgid "Users of this %(addon_type)s will roll back to the previous version you choose."
-msgstr ""
+msgstr "Les utilisateurs de ce %(addon_type)s vont revenir à la version précédente que vous avez choisie."
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:12
 msgid "Distribution channel"
-msgstr ""
+msgstr "Canal de distribution"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:23 src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:32
 #: src/olympia/devhub/templates/devhub/versions/list.html:240
@@ -4085,11 +4098,11 @@ msgstr "Version"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:40
 msgid "New version number"
-msgstr ""
+msgstr "Nouveau numéro de version"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:50
 msgid "Roll back"
-msgstr ""
+msgstr "Rétablir"
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:3
 msgid "End-User License Agreement"
@@ -4485,7 +4498,7 @@ msgstr "Toutes les versions"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:224
 msgid "Rollback to a previous version"
-msgstr ""
+msgstr "Revenir à une version précédente"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:230
 msgid "Upload a New Version"
@@ -5683,7 +5696,7 @@ msgstr "Protégez votre vie privée contre une forme unique de « détection d�
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:667
 msgid "Automatically deny cookie pop-up tracking requests."
-msgstr ""
+msgstr "Refusez automatiquement les pop-ups de demande de cookies de pistage."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:673
@@ -5948,7 +5961,7 @@ msgstr "Modules indispensables"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1028
 msgid "Declutter your desktop"
-msgstr ""
+msgstr "Désencombrez votre bureau"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1030 src/olympia/discovery/strings.jinja2:1032 src/olympia/discovery/strings.jinja2:1034
