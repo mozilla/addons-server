@@ -139,7 +139,7 @@ jobs:
 
       - name: Notify Failure
         if: steps.blocks.outcome == 'success' && needs.context.outputs.slack_channel != ''
-        uses: mozilla/addons/.github/actions/slack@aa3c320008a837a8faa40badb88006421f63efdb
+        uses: mozilla/addons/.github/actions/slack@f748fdc2c8057ad7b574521a60c182939f2ee687
         with:
           slack_token: ${{ secrets.SLACK_TOKEN }}
           payload: |
