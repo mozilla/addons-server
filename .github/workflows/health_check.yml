@@ -25,7 +25,7 @@ jobs:
     steps:
       - name: Context
         id: context
-        uses: mozilla/addons/.github/actions/context@aa3c320008a837a8faa40badb88006421f63efdb
+        uses: mozilla/addons/.github/actions/context@f748fdc2c8057ad7b574521a60c182939f2ee687
 
   health_check:
     strategy:
@@ -66,7 +66,7 @@ jobs:
           gh workflow run health_check.yml --ref "${ref}"
 
       - name: Notify Recovery
-        uses: mozilla/addons/.github/actions/slack@aa3c320008a837a8faa40badb88006421f63efdb
+        uses: mozilla/addons/.github/actions/slack@
         with:
           slack_token: ${{ secrets.SLACK_TOKEN }}
           payload: |
@@ -77,7 +77,7 @@ jobs:
           dry_run: ${{ !(needs.health_check.result == 'success' && github.event_name == 'workflow_dispatch') }}
 
       - name: Notify Failure
-        uses: mozilla/addons/.github/actions/slack-workflow-notification@aa3c320008a837a8faa40badb88006421f63efdb
+        uses: mozilla/addons/.github/actions/slack-workflow-notification@
         with:
           slack_token: ${{ secrets.SLACK_TOKEN }}
           slack_channel: ${{ vars.SLACK_ADDONS_PRODUCTION_CHANNEL }}
