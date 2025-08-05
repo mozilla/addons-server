@@ -16,11 +16,11 @@ msgstr ""
 #: src/olympia/abuse/actions.py:208
 #, python-brace-format
 msgid "Mozilla Add-ons: {} [{}]"
-msgstr ""
+msgstr "Мозила Добавки: : {} [{}]"
 
 #: src/olympia/abuse/forms.py:30
 msgid "Email address"
-msgstr ""
+msgstr "Имейл адрес"
 
 #: src/olympia/abuse/forms.py:45
 msgid "Invalid email provided."
