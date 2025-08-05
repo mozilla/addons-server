@@ -44,7 +44,7 @@ jobs:
     steps:
       - name: Set context
         id: context
-        uses: mozilla/addons/.github/actions/context@aa3c320008a837a8faa40badb88006421f63efdb
+        uses: mozilla/addons/.github/actions/context@f748fdc2c8057ad7b574521a60c182939f2ee687
 
       - name: Git Reference
         id: git
@@ -116,7 +116,7 @@ jobs:
       - name: Login to Dockerhub
         if: needs.context.outputs.is_fork == 'false'
         id: docker_hub
-        uses: mozilla/addons/.github/actions/login-docker@aa3c320008a837a8faa40badb88006421f63efdb
+        uses: mozilla/addons/.github/actions/login-docker@f748fdc2c8057ad7b574521a60c182939f2ee687
         with:
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_PASS }}
@@ -272,7 +272,7 @@ jobs:
 
       - name: Login to Dockerhub
         id: docker_hub
-        uses: mozilla/addons/.github/actions/login-docker@aa3c320008a837a8faa40badb88006421f63efdb
+        uses: mozilla/addons/.github/actions/login-docker@f748fdc2c8057ad7b574521a60c182939f2ee687
         with:
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_PASS }}
@@ -309,7 +309,7 @@ jobs:
 
       - name: Login to GAR
         id: docker_gar
-        uses: mozilla/addons/.github/actions/login-gar@aa3c320008a837a8faa40badb88006421f63efdb
+        uses: mozilla/addons/.github/actions/login-gar@f748fdc2c8057ad7b574521a60c182939f2ee687
         with:
           registry: ${{ env.registry }}
           service_account: ${{ secrets.GAR_PUSHER_SERVICE_ACCOUNT_EMAIL }}
@@ -342,7 +342,7 @@ jobs:
     steps:
 
     - name: Slack Notification
-      uses: mozilla/addons/.github/actions/slack-workflow-notification@aa3c320008a837a8faa40badb88006421f63efdb
+      uses: mozilla/addons/.github/actions/slack-workflow-notification@f748fdc2c8057ad7b574521a60c182939f2ee687
       with:
         slack_token: ${{ secrets.SLACK_TOKEN }}
         slack_channel: ${{ vars.SLACK_ADDONS_PRODUCTION_CHANNEL }}
