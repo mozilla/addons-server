@@ -20,6 +20,7 @@ from olympia.constants.scanners import (
     COMPLETED,
     CUSTOMS,
     MAD,
+    NARC,
     NEW,
     RUNNING,
     SCHEDULED,
@@ -38,6 +39,7 @@ from olympia.scanners.tasks import (
     call_mad_api,
     mark_yara_query_rule_as_completed_or_aborted,
     run_customs,
+    run_narc,
     run_scanner,
     run_yara,
     run_yara_query_rule,
@@ -243,6 +245,459 @@ class TestRunCustoms(TestCase):
 
         assert not run_scanner_mock.called
         assert returned_results == self.results
+
+
+class TestRunNarc(UploadMixin, TestCase):
+    def setUp(self):
+        super().setUp()
+        self.upload = self.get_upload('webextension.xpi')
+        self.upload.user.update(display_name='Fôo')
+        self.results = {
+            **amo.VALIDATOR_SKELETON_RESULTS,
+        }
+        assert len(ScannerResult.objects.all()) == 0
+
+    @mock.patch('olympia.scanners.tasks.statsd.incr')
+    def test_run(self, incr_mock):
+        # This rule will match all strings, we have a user and an xpi so there
+        # should be 2 matches.
+        rule = ScannerRule.objects.create(
+            name='always_match_rule',
+            scanner=NARC,
+            definition='.*',
+        )
+
+        received_results = run_narc(self.results, self.upload.pk)
+
+        scanner_results = ScannerResult.objects.all()
+        assert len(scanner_results) == 1
+        narc_result = scanner_results[0]
+        assert narc_result.scanner == NARC
+        assert narc_result.upload == self.upload
+        assert len(narc_result.results) == 2
+        assert narc_result.results == [
+            {
+                'meta': {
+                    'span': [0, 21],
+                    'locale': None,
+                    'source': 'xpi',
+                    'string': 'My WebExtension Addon',
+                    'pattern': '.*',
+                    'trigger': 'upload',
+                },
+                'rule': 'always_match_rule',
+            },
+            {
+                'meta': {
+                    'span': [0, 3],
+                    'locale': None,
+                    'source': 'author',
+                    'string': 'Fôo',
+                    'pattern': '.*',
+                    'trigger': 'upload',
+                },
+                'rule': 'always_match_rule',
+            },
+        ]
+        assert incr_mock.called
+        assert incr_mock.call_count == 3
+        incr_mock.assert_has_calls(
+            [
+                mock.call('devhub.narc.has_matches'),
+                mock.call(f'devhub.narc.rule.{rule.id}.match'),
+                mock.call('devhub.narc.success'),
+            ]
+        )
+        assert received_results == self.results
+
+    @mock.patch('olympia.scanners.tasks.statsd.incr')
+    def test_run_db_translation_match_only(self, incr_mock):
+        addon = addon_factory(guid='@webextension-guid')  # Has to match xpi.
+        addon.name = {
+            'fr': 'Päin au chocolat',
+            'de': 'German päin',
+            'en-US': 'Chocolatine',
+        }
+        addon.save()
+        self.upload.update(addon=addon)
+        rule = ScannerRule.objects.create(
+            name='match_the_pain',
+            scanner=NARC,
+            definition=r'Päin.*',  # Case is ignored.
+        )
+        incr_mock.reset_mock()
+
+        received_results = run_narc(self.results, self.upload.pk)
+
+        scanner_results = ScannerResult.objects.all()
+        assert len(scanner_results) == 1
+        narc_result = scanner_results[0]
+        assert narc_result.scanner == NARC
+        assert narc_result.upload == self.upload
+        assert len(narc_result.results) == 2
+        assert narc_result.results == [
+            {
+                'meta': {
+                    'span': [7, 11],
+                    'locale': 'de',
+                    'source': 'db_addon',
+                    'string': 'German päin',
+                    'pattern': 'Päin.*',
+                    'trigger': 'upload',
+                },
+                'rule': 'match_the_pain',
+            },
+            {
+                'meta': {
+                    'span': [0, 16],
+                    'locale': 'fr',
+                    'source': 'db_addon',
+                    'string': 'Päin au chocolat',
+                    'pattern': 'Päin.*',
+                    'trigger': 'upload',
+                },
+                'rule': 'match_the_pain',
+            },
+        ]
+        assert incr_mock.called
+        assert incr_mock.call_count == 3
+        incr_mock.assert_has_calls(
+            [
+                mock.call('devhub.narc.has_matches'),
+                mock.call(f'devhub.narc.rule.{rule.id}.match'),
+                mock.call('devhub.narc.success'),
+            ]
+        )
+        assert received_results == self.results
+
+    @mock.patch('olympia.scanners.tasks.statsd.incr')
+    def test_run_xpi_match_only(self, incr_mock):
+        rule = ScannerRule.objects.create(
+            name='always_match_rule',
+            scanner=NARC,
+            definition='^My WebExtension.*$',
+        )
+
+        received_results = run_narc(self.results, self.upload.pk)
+
+        scanner_results = ScannerResult.objects.all()
+        assert len(scanner_results) == 1
+        narc_result = scanner_results[0]
+        assert narc_result.scanner == NARC
+        assert narc_result.upload == self.upload
+        assert len(narc_result.results) == 1
+        assert narc_result.results == [
+            {
+                'meta': {
+                    'span': [0, 21],
+                    'locale': None,
+                    'source': 'xpi',
+                    'string': 'My WebExtension Addon',
+                    'pattern': '^My WebExtension.*$',
+                    'trigger': 'upload',
+                },
+                'rule': 'always_match_rule',
+            },
+        ]
+        assert incr_mock.called
+        assert incr_mock.call_count == 3
+        incr_mock.assert_has_calls(
+            [
+                mock.call('devhub.narc.has_matches'),
+                mock.call(f'devhub.narc.rule.{rule.id}.match'),
+                mock.call('devhub.narc.success'),
+            ]
+        )
+        assert received_results == self.results
+
+    @mock.patch('olympia.scanners.tasks.statsd.incr')
+    def test_run_multiple_authors_match(self, incr_mock):
+        addon = addon_factory(guid='@webextension-guid')  # Has to match xpi.
+        user1 = user_factory(display_name='Foo')
+        user2 = user_factory(display_name='FooBar')
+        user3 = user_factory(display_name='Alice Foo')
+        addon.authors.add(user1)
+        addon.authors.add(user2)
+        addon.authors.add(user3)
+        self.upload.update(addon=addon)
+        rule = ScannerRule.objects.create(
+            name='match_the_fool',
+            scanner=NARC,
+            definition=r'^foo',  # Case is ignored.
+        )
+        incr_mock.reset_mock()
+
+        received_results = run_narc(self.results, self.upload.pk)
+
+        scanner_results = ScannerResult.objects.all()
+        assert len(scanner_results) == 1
+        narc_result = scanner_results[0]
+        assert narc_result.scanner == NARC
+        assert narc_result.upload == self.upload
+        assert len(narc_result.results) == 2
+        assert narc_result.results == [
+            {
+                'meta': {
+                    'span': [0, 3],
+                    'locale': None,
+                    'source': 'author',
+                    'string': 'Foo',
+                    'pattern': '^foo',
+                    'trigger': 'upload',
+                },
+                'rule': 'match_the_fool',
+            },
+            {
+                'meta': {
+                    'span': [0, 3],
+                    'locale': None,
+                    'source': 'author',
+                    'string': 'FooBar',
+                    'pattern': '^foo',
+                    'trigger': 'upload',
+                },
+                'rule': 'match_the_fool',
+            },
+        ]
+        assert incr_mock.called
+        assert incr_mock.call_count == 3
+        incr_mock.assert_has_calls(
+            [
+                mock.call('devhub.narc.has_matches'),
+                mock.call(f'devhub.narc.rule.{rule.id}.match'),
+                mock.call('devhub.narc.success'),
+            ]
+        )
+        assert received_results == self.results
+
+    @mock.patch('olympia.scanners.tasks.statsd.incr')
+    def test_run_uploader_match(self, incr_mock):
+        self.upload.user.update(display_name='Fool')
+        rule = ScannerRule.objects.create(
+            name='match_the_fool',
+            scanner=NARC,
+            definition=r'^Foo.*',
+        )
+
+        received_results = run_narc(self.results, self.upload.pk)
+
+        scanner_results = ScannerResult.objects.all()
+        assert len(scanner_results) == 1
+        narc_result = scanner_results[0]
+        assert narc_result.scanner == NARC
+        assert narc_result.upload == self.upload
+        assert len(narc_result.results) == 1
+        assert narc_result.results == [
+            {
+                'meta': {
+                    'span': [0, 4],
+                    'locale': None,
+                    'source': 'author',
+                    'string': 'Fool',
+                    'pattern': '^Foo.*',
+                    'trigger': 'upload',
+                },
+                'rule': 'match_the_fool',
+            },
+        ]
+        assert incr_mock.called
+        assert incr_mock.call_count == 3
+        incr_mock.assert_has_calls(
+            [
+                mock.call('devhub.narc.has_matches'),
+                mock.call(f'devhub.narc.rule.{rule.id}.match'),
+                mock.call('devhub.narc.success'),
+            ]
+        )
+        assert received_results == self.results
+
+    @mock.patch('olympia.scanners.tasks.statsd.incr')
+    def test_run_multiple_matching_rules(self, incr_mock):
+        rule1 = ScannerRule.objects.create(
+            name='match_the_beginning',
+            scanner=NARC,
+            definition=r'^My.*',
+        )
+        rule2 = ScannerRule.objects.create(
+            name='match_the_end',
+            scanner=NARC,
+            definition=r'WebExtension Addon$',
+        )
+
+        received_results = run_narc(self.results, self.upload.pk)
+
+        scanner_results = ScannerResult.objects.all()
+        assert len(scanner_results) == 1
+        narc_result = scanner_results[0]
+        assert narc_result.scanner == NARC
+        assert narc_result.upload == self.upload
+        assert len(narc_result.results) == 2
+        assert narc_result.results == [
+            {
+                'meta': {
+                    'span': [0, 21],
+                    'locale': None,
+                    'source': 'xpi',
+                    'string': 'My WebExtension Addon',
+                    'pattern': '^My.*',
+                    'trigger': 'upload',
+                },
+                'rule': 'match_the_beginning',
+            },
+            {
+                'meta': {
+                    'span': [3, 21],
+                    'locale': None,
+                    'source': 'xpi',
+                    'string': 'My WebExtension Addon',
+                    'pattern': 'WebExtension Addon$',
+                    'trigger': 'upload',
+                },
+                'rule': 'match_the_end',
+            },
+        ]
+        assert incr_mock.called
+        assert incr_mock.call_count == 4
+        incr_mock.assert_has_calls(
+            [
+                mock.call('devhub.narc.has_matches'),
+                mock.call(f'devhub.narc.rule.{rule1.id}.match'),
+                mock.call(f'devhub.narc.rule.{rule2.id}.match'),
+                mock.call('devhub.narc.success'),
+            ]
+        )
+        assert received_results == self.results
+
+    @mock.patch('olympia.scanners.tasks.statsd.incr')
+    def test_run_no_rule(self, incr_mock):
+        received_results = run_narc(self.results, self.upload.pk)
+        scanner_results = ScannerResult.objects.all()
+        assert len(scanner_results[0].results) == 0
+        assert incr_mock.called
+        assert incr_mock.call_count == 1
+        incr_mock.assert_has_calls(
+            [
+                mock.call('devhub.narc.success'),
+            ]
+        )
+        assert received_results == self.results
+
+    @mock.patch('olympia.scanners.tasks.statsd.incr')
+    def test_run_inactive_rule_ignored(self, incr_mock):
+        rule1 = ScannerRule.objects.create(
+            name='match_the_beginning_inactive',
+            scanner=NARC,
+            definition=r'^My.*',
+            is_active=False,
+        )
+        rule2 = ScannerRule.objects.create(
+            name='match_the_end',
+            scanner=NARC,
+            definition=r'WebExtension Addon$',
+        )
+
+        received_results = run_narc(self.results, self.upload.pk)
+
+        scanner_results = ScannerResult.objects.all()
+        assert len(scanner_results) == 1
+        narc_result = scanner_results[0]
+        assert narc_result.scanner == NARC
+        assert narc_result.upload == self.upload
+        assert len(narc_result.results) == 1
+        assert narc_result.results == [
+            {
+                'meta': {
+                    'span': [3, 21],
+                    'locale': None,
+                    'source': 'xpi',
+                    'string': 'My WebExtension Addon',
+                    'pattern': 'WebExtension Addon$',
+                    'trigger': 'upload',
+                },
+                'rule': 'match_the_end',
+            },
+        ]
+        assert incr_mock.called
+        assert incr_mock.call_count == 3
+        incr_mock.assert_has_calls(
+            [
+                mock.call('devhub.narc.has_matches'),
+                mock.call(f'devhub.narc.rule.{rule2.id}.match'),
+                mock.call('devhub.narc.success'),
+            ]
+        )
+        assert received_results == self.results
+
+    @mock.patch('olympia.scanners.tasks.statsd.incr')
+    def test_run_no_match(self, incr_mock):
+        rule = ScannerRule.objects.create(
+            name='does_not_match',
+            scanner=NARC,
+            definition=r'^something*',
+        )
+
+        received_results = run_narc(self.results, self.upload.pk)
+
+        scanner_results = ScannerResult.objects.all()
+        assert len(scanner_results) == 1
+        narc_result = scanner_results[0]
+        assert narc_result.scanner == NARC
+        assert narc_result.upload == self.upload
+        assert len(narc_result.results) == 0
+        assert incr_mock.called
+        assert incr_mock.call_count == 1
+        incr_mock.assert_has_calls(
+            [
+                mock.call('devhub.narc.success'),
+            ]
+        )
+        assert received_results == self.results
+
+    @mock.patch('olympia.scanners.tasks._run_narc')
+    @mock.patch('olympia.scanners.tasks.statsd.incr')
+    def test_run_does_not_raise_with_waffle(self, incr_mock, _run_narc_mock):
+        self.create_switch('ignore-exceptions-in-scanner-tasks', active=True)
+        _run_narc_mock.side_effect = RuntimeError()
+        received_results = run_narc(self.results, self.upload.pk)
+
+        assert incr_mock.called
+        assert incr_mock.call_count == 1
+        incr_mock.assert_called_with('devhub.narc.failure')
+        assert received_results == self.results
+
+    @mock.patch('olympia.scanners.tasks._run_narc')
+    @mock.patch('olympia.scanners.tasks.statsd.incr')
+    def test_throws_errors(self, incr_mock, _run_narc_mock):
+        _run_narc_mock.side_effect = RuntimeError()
+        # task is decorated with `@validation_task`, which gracefully handles
+        # exceptions, but without the waffle switch to ignore exceptions in
+        # scanner tasks we should fail validation.
+        received_results = run_narc(self.results, self.upload.pk)
+
+        assert incr_mock.called
+        assert incr_mock.call_count == 1
+        incr_mock.assert_called_with('devhub.narc.failure')
+        # We have affected validation results.
+        assert received_results != self.results
+        assert received_results['errors'] == 1
+        assert received_results['success'] is False
+
+    @mock.patch('olympia.scanners.tasks.statsd.incr')
+    def test_does_not_run_when_validation_results_contain_errors(self, incr_mock):
+        # run_narc is a validation task and therefore shouldn't run if the
+        # validation results contain some errors.
+        self.results.update({'errors': 1})
+        rule = ScannerRule.objects.create(
+            name='always_match_rule',
+            scanner=NARC,
+            definition=r'.*',
+        )
+
+        received_results = run_narc(self.results, self.upload.pk)
+
+        assert not ScannerResult.objects.exists()
+        assert not incr_mock.called
+        assert received_results == self.results
 
 
 class TestRunYara(UploadMixin, TestCase):

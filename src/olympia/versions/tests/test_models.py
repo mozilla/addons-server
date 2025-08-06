@@ -2490,25 +2490,6 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         scanners_result.refresh_from_db()
         assert scanners_result.version == version
 
-    def test_does_nothing_when_no_scanner_is_enabled(self):
-        self.create_switch('enable-customs', active=False)
-        self.create_switch('enable-yara', active=False)
-        scanners_result = ScannerResult.objects.create(
-            upload=self.upload, scanner=CUSTOMS
-        )
-        assert scanners_result.version is None
-
-        Version.from_upload(
-            self.upload,
-            self.addon,
-            amo.CHANNEL_LISTED,
-            selected_apps=[self.selected_app],
-            parsed_data=self.dummy_parsed_data,
-        )
-
-        scanners_result.refresh_from_db()
-        assert scanners_result.version is None
-
     def test_auto_approval_not_disabled_if_not_restricted(self):
         self.upload.user.update(last_login_ip='10.0.0.42')
         # Set a submission time restriction: it shouldn't matter.

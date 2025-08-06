@@ -1,4 +1,6 @@
+import itertools
 import os
+import re
 import uuid
 
 from django.conf import settings
@@ -12,21 +14,24 @@ from requests.packages.urllib3.util import Retry
 
 import olympia.core.logger
 from olympia import amo
+from olympia.addons.models import Addon
 from olympia.amo.celery import create_chunked_tasks_signatures, task
 from olympia.amo.decorators import use_primary_db
+from olympia.amo.utils import attach_trans_dict
 from olympia.constants.scanners import (
     ABORTED,
     ABORTING,
     COMPLETED,
     CUSTOMS,
     MAD,
+    NARC,
     RUNNING,
     SCANNERS,
     YARA,
 )
 from olympia.devhub.tasks import validation_task
 from olympia.files.models import FileUpload
-from olympia.files.utils import SafeZip
+from olympia.files.utils import SafeZip, parse_xpi
 from olympia.versions.models import Version
 
 from .models import (
@@ -153,6 +158,114 @@ def run_customs(results, upload_pk):
         api_url=settings.CUSTOMS_API_URL,
         api_key=settings.CUSTOMS_API_KEY,
     )
+
+
+@validation_task
+def run_narc(results, upload_pk):
+    """
+    Run the narc scanner on a FileUpload and store the results.
+
+    This task is intended to be run as part of the submission process only. Use
+    update_narc_results() task instead to update results from a Version instance
+    after the submission process.
+
+    - `results` are the validation results passed in the validation chain. This
+       task is a validation task, which is why it must receive the validation
+       results as first argument.
+    - `upload_pk` is the FileUpload ID.
+    """
+    log.info('Starting narc task for FileUpload %s.', upload_pk)
+
+    try:
+        upload = FileUpload.objects.get(pk=upload_pk)
+        scanner_result = _run_narc(upload=upload, version=None)
+    except Exception as exc:
+        statsd.incr('devhub.narc.failure')
+        log.exception(
+            'Error in scanner "narc" task for FileUpload %s.', upload_pk, exc_info=True
+        )
+        if not waffle.switch_is_active('ignore-exceptions-in-scanner-tasks'):
+            raise exc
+    else:
+        statsd.incr('devhub.narc.success')
+    log.info('Ending scanner "narc" task for FileUpload %s.', upload_pk)
+    return results
+
+
+@task
+def run_narc_on_version(version):
+    # FIXME: call me whenever name changes in db.
+    # FIXME: call me whenever display name from an author changes.
+    _run_narc(upload=None, version=version)
+
+
+def _run_narc(*, upload, version):
+    scanner_result = (
+        ScannerResult(upload=upload, scanner=NARC)
+        if upload
+        else ScannerResult.objects.get(scanner=NARC, version=version)
+    )
+    rules = ScannerRule.objects.filter(
+        scanner=NARC, is_active=True, definition__isnull=False
+    ).exclude(definition='')
+    if scanner_result.pk:
+        # Reset existing matched rules and results completely when running the
+        # scanner - inefficient but reliable.
+        scanner_result.matched_rules.clear()
+        scanner_result.results = []
+    values_from_db = {}
+    values_from_authors = set()
+    if addon := upload.addon if upload else version.addon:
+        # If we have an add-on instance, find all translations for the name in
+        # the database as well as the display names from its authors.
+        attach_trans_dict(Addon, [addon], fields=[addon._meta.get_field('name')])
+        values_from_db = dict(addon.translations[addon.name_id])
+        values_from_authors.update(
+            addon.authors.all().values_list('display_name', flat=True)
+        )
+    if upload:
+        values_from_authors.add(upload.user.display_name)
+
+    # Find all translations from the XPI - if we get a string, that means there
+    # were no translations to find, build a simple dict for ease of use later.
+    xpi = upload or version.file.file
+    xpi_info = parse_xpi(xpi, addon=addon, bypass_trademark_checks=True)
+    values_from_xpi = Addon.resolve_webext_translations(xpi_info, xpi).get('name', {})
+    if isinstance(values_from_xpi, str):
+        default_locale = addon.default_locale if addon else None
+        values_from_xpi = {default_locale: values_from_xpi}
+
+    for rule in rules:
+        # Look at every source of data with every rule.
+        for source, (locale, value) in itertools.chain(
+            zip(itertools.repeat('xpi'), values_from_xpi.items()),
+            zip(itertools.repeat('db_addon'), values_from_db.items()),
+            zip(
+                itertools.repeat('author'),
+                ((None, value) for value in sorted(values_from_authors)),
+            ),
+        ):
+            if match := re.search(str(rule.definition), str(value), re.I):
+                scanner_result.results.append(
+                    {
+                        'rule': rule.name,
+                        'meta': {
+                            'trigger': 'upload' if upload else 'version',
+                            'locale': locale,
+                            'source': source,
+                            'pattern': match.re.pattern,
+                            'string': match.string,
+                            'span': match.span(),
+                        },
+                    }
+                )
+
+    scanner_result.save()
+    if scanner_result.has_matches:
+        statsd.incr('devhub.narc.has_matches')
+    for scanner_rule in scanner_result.matched_rules.all():
+        statsd.incr(f'devhub.narc.rule.{scanner_rule.id}.match')
+    return scanner_result
 
 
 @validation_task

@@ -537,12 +537,7 @@ class Version(OnChangeMixin, ModelBase):
 
         version_uploaded.send(instance=version, sender=Version)
 
-        if (
-            waffle.switch_is_active('enable-yara')
-            or waffle.switch_is_active('enable-customs')
-            or waffle.switch_is_active('enable-wat')
-        ):
-            ScannerResult.objects.filter(upload_id=upload.id).update(version=version)
+        ScannerResult.objects.filter(upload_id=upload.id).update(version=version)
 
         # Generate a preview and icon for listed static themes
         if addon.type == amo.ADDON_STATICTHEME and channel == amo.CHANNEL_LISTED:

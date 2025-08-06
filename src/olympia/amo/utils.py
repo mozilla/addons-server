@@ -953,19 +953,23 @@ class SafeStorage(FileSystemStorage):
             self.delete(dn)
 
 
-def attach_trans_dict(model, objs):
-    """Put all translations from all non-deferred translated fields from objs
-    into a translations dict on each instance."""
+def attach_trans_dict(model, objs, fields=None):
+    """Put all translations from either all or specified non-deferred
+    translated fields from objs into a translations dict on each instance.
+
+    fields defaults to None to fetch from all known translated fields on the
+    model, or a list of field objects."""
     # Get the ids of all the translations we need to fetch.
     try:
         deferred_fields = objs[0].get_deferred_fields()
     except IndexError:
         return
-    fields = [
-        field
-        for field in model._meta.translated_fields
-        if field.attname not in deferred_fields
-    ]
+    if fields is None:
+        fields = [
+            field
+            for field in model._meta.translated_fields
+            if field.attname not in deferred_fields
+        ]
     ids = [
         getattr(obj, field.attname)
         for field in fields
