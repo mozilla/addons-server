@@ -2160,7 +2160,7 @@ msgstr "Wystąpił problem, skontaktuj się z pomocą techniczną dla deweloper�
 
 #: src/olympia/devhub/forms.py:1612
 msgid "Choose version"
-msgstr ""
+msgstr "Wybierz wersję"
 
 #: src/olympia/devhub/forms.py:1682
 msgid "You must select a channel and version to rollback to."
@@ -3480,6 +3480,8 @@ msgid ""
 "You’re done! ✨ You will receive a confirmation email when this version is published on %(site_domain)s. Note that it may take up to 24 hours before publication occurs, or longer if your add-on is "
 "selected for manual review. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
+"Gotowe! ✨ Otrzymasz e-mail z potwierdzeniem, gdy ta wersja zostanie opublikowana w %(site_domain)s. Pamiętaj, że publikacja może potrwać do 24 godzin lub dłużej, jeśli Twój dodatek zostanie wybrany "
+"do ręcznej weryfikacji. Jeśli po 24 godzinach nie otrzymasz e-maila, sprawdź folder ze spamem."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:31
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
@@ -3944,7 +3946,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/done_unlisted.html:3
 msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
-msgstr ""
+msgstr "Gotowe! ✨ Otrzymasz powiadomienie e-mailem, gdy podpisany plik będzie gotowy do pobrania ze Strefy autora. Jeśli nie otrzymasz wiadomości e-mail po 24 godzinach, sprawdź folder ze spamem."
 
 #: src/olympia/devhub/templates/devhub/includes/license_form.html:5 src/olympia/devhub/templates/devhub/versions/edit.html:83
 msgid "License"
@@ -3986,7 +3988,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:12
 msgid "Distribution channel"
-msgstr ""
+msgstr "Kanał dystrybucji"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:23 src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:32
 #: src/olympia/devhub/templates/devhub/versions/list.html:240
@@ -3995,7 +3997,7 @@ msgstr "Wersja"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:40
 msgid "New version number"
-msgstr ""
+msgstr "Nowy numer wersji"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:50
 msgid "Roll back"
@@ -4217,11 +4219,11 @@ msgstr "Chcesz przesłać lub zarządzać swoim rozszerzeniem?"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/submit_or_manage_extension.html:7
 msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
-msgstr ""
+msgstr "Zaloguj się do Strefy autora, aby przesłać rozszerzenia i motywy lub nimi zarządzać."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/submit_or_manage_extension.html:11
 msgid "Register for a developer account or log in to the Developer Hub"
-msgstr ""
+msgstr "Utwórz konto programisty lub zaloguj się do Strefy autora"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:5
 #, python-brace-format
