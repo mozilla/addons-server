@@ -161,6 +161,7 @@ def disable_versions_for_block(block, submission):
         if ver.addon == block.addon
         and ver.id in submission.changed_version_ids
         and ver.file.status != amo.STATUS_DISABLED
+        and ver.deleted is False
     ]
     if versions_to_reject:
         review.set_data(
@@ -173,14 +174,15 @@ def disable_versions_for_block(block, submission):
         )
         review.auto_reject_multiple_versions()
 
-    for version in block.addon_versions:
-        # Clear active NeedsHumanReview on all blocked versions, we consider
-        # that the admin looked at them before blocking (don't limit to
-        # versions we are rejecting, which is only a subset).
-        review.clear_specific_needs_human_review_flags(version)
+    if human_review:
+        for version in block.addon_versions:
+            # Clear active NeedsHumanReview on all blocked versions, if a human has
+            # reviewed we consider that the admin looked at them before blocking (don't
+            # limit to versions we are rejecting, which is only a subset).
+            review.clear_specific_needs_human_review_flags(version)
 
 
-def save_versions_to_blocks(guids, submission):
+def save_versions_to_blocks(guids, submission, *, overwrite_block_metadata=True):
     from olympia.addons.models import GuidAlreadyDeniedError
 
     from .models import Block, BlockVersion
@@ -192,10 +194,13 @@ def save_versions_to_blocks(guids, submission):
         change = bool(block.id)
         if change:
             block.modified = modified_datetime
+            should_override_block_metadata = overwrite_block_metadata
+        else:
+            should_override_block_metadata = True
         block.updated_by = submission.updated_by
-        if submission.reason is not None:
+        if submission.reason is not None and should_override_block_metadata:
             block.reason = submission.reason
-        if submission.url is not None:
+        if submission.url is not None and should_override_block_metadata:
             block.url = submission.url
         block.average_daily_users_snapshot = block.current_adu
         # And now update the BlockVersion instances - instances to add first
@@ -230,7 +235,7 @@ def save_versions_to_blocks(guids, submission):
         block_activity_log_save(
             block,
             change=change,
-            submission_obj=submission if submission.id else None,
+            submission_obj=submission,
         )
         disable_versions_for_block(block, submission)
         if submission.disable_addon:

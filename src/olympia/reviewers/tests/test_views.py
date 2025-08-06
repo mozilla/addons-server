@@ -3808,7 +3808,8 @@ class TestReview(ReviewBase):
         # Use the id for the review page url because deleting the add-on will
         # delete the slug as well.
         self.url = reverse('reviewers.review', args=[self.addon.id])
-        self.addon.delete()
+        self.addon.update(status=amo.STATUS_DELETED)
+        self.addon.versions.update(deleted=True)
         self.test_admin_block_actions()
 
     def test_disable_auto_approval_until_next_approval_unlisted_as_admin(self):

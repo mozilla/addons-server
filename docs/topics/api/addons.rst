@@ -416,6 +416,7 @@ Delete
 This endpoint allows an add-on to be deleted.
 Because add-on deletion is an irreversible and destructive action an additional token must be retrieved beforehand, and passed as a parameter to the delete endpoint.
 Deleting the add-on will permanently delete all versions and files submitted for this add-on, listed or not.
+All versions will be soft-blocked (restricted), which will disable and prevent any further installation in Firefox. Existing users can choose to re-enable the add-on.
 The add-on ID (``guid``) cannot be restored and will forever be unusable for submission.
 
     .. note::
@@ -736,7 +737,7 @@ Version Delete
 
 .. _version-delete:
 
-This endpoint allows a version to be deleted.
+This endpoint allows a version to be deleted. The version will be soft-blocked (restricted), which will disable and prevent any further installation in Firefox. Existing users can choose to re-enable the add-on.
 
     .. note::
         This API requires :doc:`authentication <auth>`, and for the user to be an author of the add-on.

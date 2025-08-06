@@ -3,6 +3,7 @@ import os
 import tempfile
 from unittest import mock
 
+from django.conf import settings
 from django.core.management import call_command
 from django.core.management.base import CommandError
 
@@ -11,15 +12,17 @@ from olympia.amo.tests import (
     PromotedAddon,
     TestCase,
     addon_factory,
+    user_factory,
     version_factory,
 )
 from olympia.applications.models import AppVersion
+from olympia.blocklist.models import Block, BlockType, BlockVersion
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.versions.compare import version_int
 from olympia.versions.management.commands.force_min_android_compatibility import (
     Command as ForceMinAndroidCompatibility,
 )
-from olympia.versions.models import ApplicationsVersions
+from olympia.versions.models import ApplicationsVersions, Version
 
 
 class TestForceMinAndroidCompatibility(TestCase):
@@ -519,3 +522,66 @@ class TestBumpMinAndroidCompatibility(TestCase):
                 assert version.compatible_apps[
                     amo.ANDROID
                 ].min.version_int < version_int(new_min_android_ga_version)
+
+
+class TestProcessVersions(TestCase):
+    def test_block_old_deleted_versions(self):
+        user_factory(pk=settings.TASK_USER_ID)
+        deleted_addon = addon_factory(
+            status=amo.STATUS_DELETED,
+            version_kw={'deleted': True},
+            file_kw={'status': amo.STATUS_DISABLED},
+        )
+        addon_with_two_versions = addon_factory(
+            version_kw={'deleted': True}, file_kw={'status': amo.STATUS_DISABLED}
+        )
+        version_factory(
+            addon=addon_with_two_versions,
+            deleted=True,
+            file_kw={'status': amo.STATUS_DISABLED},
+        )
+        # should be ignored:
+        blocked_addon = addon_factory(
+            version_kw={'deleted': True}, file_kw={'status': amo.STATUS_DISABLED}
+        )
+        existing_block = Block.objects.create(
+            guid=blocked_addon.guid, updated_by=user_factory()
+        )
+        BlockVersion.objects.create(
+            block=existing_block,
+            version=blocked_addon.versions(manager='unfiltered_for_relations').get(),
+        )
+        addon_factory()
+        assert (
+            Version.unfiltered.filter(deleted=True, blockversion__id=None).count() == 3
+        )
+
+        call_command(
+            'process_versions', task='block_old_deleted_versions', with_deleted=True
+        )
+
+        new_blocks = list(Block.objects.exclude(id=existing_block.id))
+        assert len(new_blocks) == 2
+        assert new_blocks[0].guid == addon_with_two_versions.guid
+        assert (
+            new_blocks[0].blockversion_set.all()[1].version
+            == addon_with_two_versions.versions(
+                manager='unfiltered_for_relations'
+            ).all()[0]
+        )
+        assert (
+            new_blocks[0].blockversion_set.all()[0].version
+            == addon_with_two_versions.versions(
+                manager='unfiltered_for_relations'
+            ).all()[1]
+        )
+        assert new_blocks[1].guid == deleted_addon.guid
+        assert (
+            new_blocks[1].blockversion_set.get().version
+            == deleted_addon.versions(manager='unfiltered_for_relations').get()
+        )
+
+        assert (
+            BlockVersion.objects.filter(block_type=BlockType.SOFT_BLOCKED).count() == 3
+        )
+        assert BlockVersion.objects.filter(block_type=BlockType.BLOCKED).count() == 1

@@ -379,8 +379,13 @@ class TestBlocklistSubmissionAdmin(TestCase):
 
         addon = addon_factory(guid='guid@')
         ver = addon.current_version
-        ver_deleted = version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
-        ver_deleted.delete()  # shouldn't affect it's inclusion in the choices
+        # being deleted shouldn't affect it's inclusion in the choices
+        ver_deleted = version_factory(
+            addon=addon,
+            channel=amo.CHANNEL_UNLISTED,
+            deleted=True,
+            file_kw={'status': amo.STATUS_DISABLED},
+        )
         ver_unlisted = version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
         # these next two versions shouldn't be possible choices
         ver_add_subm = version_factory(addon=addon)
@@ -444,8 +449,13 @@ class TestBlocklistSubmissionAdmin(TestCase):
 
         addon = addon_factory(guid='guid@', average_daily_users=100)
         ver = addon.current_version
-        ver_deleted = version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
-        ver_deleted.delete()  # shouldn't affect it's status
+        # being deleted shouldn't affect it's status
+        ver_deleted = version_factory(
+            addon=addon,
+            channel=amo.CHANNEL_UNLISTED,
+            deleted=True,
+            file_kw={'status': amo.STATUS_DISABLED},
+        )
         # these next three versions shouldn't be possible choices
         ver_add_subm = version_factory(addon=addon)
         add_submission = BlocklistSubmission.objects.create(
@@ -515,8 +525,12 @@ class TestBlocklistSubmissionAdmin(TestCase):
         self.client.force_login(user)
 
         addon = addon_factory(guid='guid@', average_daily_users=100)
-        ver_deleted = version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
-        ver_deleted.delete()  # shouldn't affect it's status
+        version_factory(
+            addon=addon,
+            channel=amo.CHANNEL_UNLISTED,
+            deleted=True,
+            file_kw={'status': amo.STATUS_DISABLED},
+        )
         # these next three versions shouldn't be possible choices
         ver_add_subm = version_factory(addon=addon)
         add_submission = BlocklistSubmission.objects.create(
@@ -567,8 +581,12 @@ class TestBlocklistSubmissionAdmin(TestCase):
         self.client.force_login(user)
 
         addon = addon_factory(guid='guid@', average_daily_users=100)
-        ver_deleted = version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
-        ver_deleted.delete()  # shouldn't affect it's status
+        version_factory(
+            addon=addon,
+            channel=amo.CHANNEL_UNLISTED,
+            deleted=True,
+            file_kw={'status': amo.STATUS_DISABLED},
+        )
         # these next three versions shouldn't be possible choices
         ver_add_subm = version_factory(addon=addon)
         add_submission = BlocklistSubmission.objects.create(
@@ -621,7 +639,8 @@ class TestBlocklistSubmissionAdmin(TestCase):
         deleted_addon = addon_factory(version_kw={'version': '1.2.5'})
         deleted_addon_version = deleted_addon.current_version
         NeedsHumanReview.objects.create(version=deleted_addon_version)
-        deleted_addon.delete()
+        deleted_addon.update(status=amo.STATUS_DELETED)
+        deleted_addon_version.update(deleted=True)
         deleted_addon.addonguid.update(guid='guid@')
         addon = addon_factory(
             guid='guid@', name='Danger Danger', version_kw={'version': '1.2a'}
@@ -2098,8 +2117,9 @@ class TestBlocklistSubmissionAdmin(TestCase):
         deleted_addon = addon_factory(guid='guid@', version_kw={'version': '1.2.5'})
         version = deleted_addon.current_version
         NeedsHumanReview.objects.create(version=version)
-        deleted_addon.delete()
-        assert deleted_addon.status == amo.STATUS_DELETED
+        deleted_addon.update(status=amo.STATUS_DELETED)
+        version.update(deleted=True)
+        version.file.update(status=amo.STATUS_DISABLED)
         assert not DeniedGuid.objects.filter(guid=deleted_addon.guid).exists()
 
         response = self.client.get(self.submission_url + '?guids=guid@', follow=True)
@@ -2145,8 +2165,8 @@ class TestBlocklistSubmissionAdmin(TestCase):
 
         deleted_addon = addon_factory(guid='guid@', version_kw={'version': '1.2.5'})
         version = deleted_addon.current_version
-        deleted_addon.delete()
-        assert deleted_addon.status == amo.STATUS_DELETED
+        deleted_addon.update(status=amo.STATUS_DELETED)
+        version.update(deleted=True)
         deleted_addon.deny_resubmission()
         assert DeniedGuid.objects.filter(guid=deleted_addon.guid).exists()
 
@@ -2737,8 +2757,7 @@ class TestBlockAdminDelete(TestCase):
             changed_version_ids=[ver_del_subm.id],
             action=BlocklistSubmission.ACTIONS.DELETE,
         )
-        ver_deleted = version_factory(addon=other_addon)
-        ver_deleted.delete()  # shouldn't affect it's status
+        ver_deleted = version_factory(addon=other_addon, deleted=True)
         ver_block = version_factory(addon=other_addon)
         ver_soft_block = version_factory(addon=other_addon)
         block_factory(

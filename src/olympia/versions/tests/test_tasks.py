@@ -23,6 +23,7 @@ from olympia.amo.tests import (
     user_factory,
     version_factory,
 )
+from olympia.blocklist.models import Block, BlockType, BlockVersion
 
 from ..models import Version, VersionPreview
 from ..tasks import (
@@ -30,6 +31,7 @@ from ..tasks import (
     duplicate_addon_version_for_rollback,
     generate_static_theme_preview,
     hard_delete_versions,
+    soft_block_versions,
 )
 
 
@@ -768,3 +770,65 @@ class TestDuplicateAddonVersionForRollback(TestCase):
             f'Rolling back add-on "{self.rollback_version.addon_id}: Rændom add-on", '
             f'to version "0.0.1" failed.' in mail.outbox[0].body
         )
+
+
+@pytest.mark.django_db
+def test_soft_block_versions():
+    developer = user_factory()
+    user_factory(pk=settings.TASK_USER_ID)
+    # addon with a deleted version that isn't blocked
+    addon_with_one_version = addon_factory(
+        users=[developer],
+        version_kw={'deleted': True},
+        file_kw={'status': amo.STATUS_DISABLED},
+    )
+    # The second version is in an usual state deleted, but the file hasn't been set to
+    # disabled. We should silently soft block as normal
+    addon_with_two_versions = addon_factory(
+        users=[developer], version_kw={'deleted': True}
+    )
+    version_factory(
+        addon=addon_with_two_versions,
+        deleted=True,
+        file_kw={'status': amo.STATUS_DISABLED},
+    )
+    partially_blocked_addon = addon_factory(users=[developer])
+    existing_block = Block.objects.create(
+        guid=partially_blocked_addon.guid, updated_by=user_factory(), reason='something'
+    )
+    BlockVersion.objects.create(
+        block=existing_block, version=partially_blocked_addon.current_version
+    )
+    other_version_on_partialy_blocked_addon = version_factory(
+        addon=partially_blocked_addon, deleted=True
+    )
+
+    versions = [
+        addon_with_one_version.versions(manager='unfiltered_for_relations').get(),
+        addon_with_two_versions.versions(manager='unfiltered_for_relations').all()[0],
+        addon_with_two_versions.versions(manager='unfiltered_for_relations').all()[1],
+        partially_blocked_addon,
+        # should be ignored:
+        other_version_on_partialy_blocked_addon,
+    ]
+
+    soft_block_versions.delay(version_ids=[ver.id for ver in versions])
+
+    new_blocks = list(Block.objects.exclude(id=existing_block.id))
+    assert len(new_blocks) == 2
+    assert new_blocks[0].guid == addon_with_two_versions.guid
+    assert new_blocks[0].blockversion_set.all()[1].version == versions[1]
+    assert new_blocks[0].blockversion_set.all()[0].version == versions[2]
+    assert new_blocks[0].reason == 'Version deleted'
+    assert new_blocks[1].guid == addon_with_one_version.guid
+    assert new_blocks[1].blockversion_set.get().version == versions[0]
+    assert new_blocks[0].reason == 'Version deleted'
+
+    assert existing_block.blockversion_set.count() == 2
+    assert other_version_on_partialy_blocked_addon.blockversion.block == existing_block
+    assert existing_block.reason == 'something'  # not updated
+
+    assert BlockVersion.objects.filter(block_type=BlockType.SOFT_BLOCKED).count() == 4
+    assert BlockVersion.objects.filter(block_type=BlockType.BLOCKED).count() == 1
+
+    assert len(mail.outbox) == 0

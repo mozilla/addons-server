@@ -41,7 +41,7 @@ from olympia.amo.tests import (
 from olympia.amo.tests.test_models import BasePreviewMixin
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
-from olympia.blocklist.models import Block, BlocklistSubmission
+from olympia.blocklist.models import Block, BlocklistSubmission, BlockType, BlockVersion
 from olympia.constants.categories import CATEGORIES
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.devhub.models import RssKey
@@ -598,7 +598,7 @@ class TestAddonModels(TestCase):
         addon_count = Addon.unfiltered.count()
         addon = Addon.objects.get(pk=addon_id)
         guid = addon.guid
-        addon.delete('bye')
+        addon.delete(msg='bye')
         assert addon_count == Addon.unfiltered.count()  # Soft deletion.
         assert addon.status == amo.STATUS_DELETED
         assert addon.slug is None
@@ -686,7 +686,7 @@ class TestAddonModels(TestCase):
         # The addon status will have been changed when we deleted the version,
         # and the instance should be the same, so we shouldn't need to reload.
         assert addon.status == amo.STATUS_NULL
-        addon.delete(None)
+        addon.delete(msg=None)
         assert len(mail.outbox) == 0
         assert Addon.unfiltered.count() == (count - 1)
 
@@ -696,7 +696,7 @@ class TestAddonModels(TestCase):
         a = Addon.objects.get(pk=3615)
         a.status = 0
         a.save()
-        a.delete('oh looky here')
+        a.delete(msg='oh looky here')
         assert len(mail.outbox) == 1
         assert count == Addon.unfiltered.count()
 
@@ -1331,7 +1331,7 @@ class TestAddonModels(TestCase):
     def delete(self):
         addon = Addon.objects.get(id=3615)
         assert len(mail.outbox) == 0
-        addon.delete('so long and thanks for all the fish')
+        addon.delete(msg='so long and thanks for all the fish')
         assert len(mail.outbox) == 1
 
     def test_delete_to(self):
@@ -2620,6 +2620,9 @@ class TestAddonDueDate(TestCase):
 
 
 class TestAddonDelete(TestCase):
+    def setUp(self):
+        user_factory(pk=settings.TASK_USER_ID)
+
     def test_cascades(self):
         addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
 
@@ -2666,6 +2669,34 @@ class TestAddonDelete(TestCase):
         version.delete()
         addon.delete()
         assert Addon.unfiltered.filter(pk=addon.pk).exists()
+
+    def test_delete_soft_blocks_all_versions(self):
+        developer = user_factory()
+        addon = addon_factory(users=[developer])
+        version = addon.current_version
+        deleted_version = version_factory(addon=addon, deleted=True)
+        hard_blocked_version = version_factory(
+            addon=addon, file_kw={'status': amo.STATUS_DISABLED}
+        )
+        block = Block.objects.create(guid=addon.guid, updated_by=developer)
+        BlockVersion.objects.create(block=block, version=hard_blocked_version)
+
+        addon.delete(send_delete_email=False)
+
+        assert Block.objects.count() == 1
+        assert set(block.blockversion_set.values_list('version', flat=True)) == {
+            version.id,
+            deleted_version.id,
+            hard_blocked_version.id,
+        }
+        assert (
+            block.blockversion_set.filter(block_type=BlockType.SOFT_BLOCKED).count()
+            == 2
+        )
+        assert (
+            hard_blocked_version.blockversion.reload().block_type == BlockType.BLOCKED
+        )
+        assert len(mail.outbox) == 0
 
 
 class TestUpdateStatus(TestCase):

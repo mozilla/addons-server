@@ -640,8 +640,8 @@ class Version(OnChangeMixin, ModelBase):
         return reverse('addons.versions', args=[self.addon.slug])
 
     def delete(self, hard=False):
-        # To avoid a circular import
-        from .tasks import delete_preview_files
+        # To avoid a circular imports
+        from .tasks import delete_preview_files, soft_block_versions
 
         log.info('Version deleted: %r (%s)', self, self.id)
         activity.log_create(amo.LOG.DELETE_VERSION, self.addon, str(self.version))
@@ -678,6 +678,8 @@ class Version(OnChangeMixin, ModelBase):
 
             for preview_pk in previews_pks:
                 delete_preview_files.delay(preview_pk)
+
+            soft_block_versions.delay(version_ids=[self.id])
 
     @property
     def is_user_disabled(self):
