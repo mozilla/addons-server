@@ -2165,11 +2165,11 @@ msgstr "რაღაც ხარვეზი წარმოიშვა, გ�
 
 #: src/olympia/devhub/forms.py:1612
 msgid "Choose version"
-msgstr ""
+msgstr "აირჩიეთ ვერსია"
 
 #: src/olympia/devhub/forms.py:1682
 msgid "You must select a channel and version to rollback to."
-msgstr ""
+msgstr "უნდა მიუთითოთ არხი და ვერსია დასაბრუნებლად."
 
 #: src/olympia/devhub/tasks.py:178
 msgid "Invalid or corrupt add-on file."
@@ -2345,7 +2345,7 @@ msgstr "ატვირთვის დამოწმება ვერ მო
 
 #: src/olympia/devhub/views.py:1319
 msgid "Rollback submitted. You'll be notified when it's approved"
-msgstr ""
+msgstr "დასაბრუნებელი წარდგენილია. გეცნობებათ დამოწმებისთანავე"
 
 #: src/olympia/devhub/views.py:1451
 msgid "Header area background"
@@ -4032,16 +4032,16 @@ msgstr[1] "მიუთითეთ <b>არაუმეტეს {0}</b> კ�
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:2
 msgid "Roll back to a previous version"
-msgstr ""
+msgstr "უკან დაბრუნება წინა ვერსიაზე"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:4
 #, python-format
 msgid "Users of this %(addon_type)s will roll back to the previous version you choose."
-msgstr ""
+msgstr "მომხმარებლები, რომელთაც უყენიათ %(addon_type)s, დაბრუნდებიან თქვენ მიერ მითითებულ წინა ვერსიაზე."
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:12
 msgid "Distribution channel"
-msgstr ""
+msgstr "გავრცელების არხი"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:23 src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:32
 #: src/olympia/devhub/templates/devhub/versions/list.html:240
@@ -4050,11 +4050,11 @@ msgstr "ვერსია"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:40
 msgid "New version number"
-msgstr ""
+msgstr "ახალი ვერსიის ნომერი"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:50
 msgid "Roll back"
-msgstr ""
+msgstr "უკან დაბრუნება"
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:3
 msgid "End-User License Agreement"
@@ -4445,7 +4445,7 @@ msgstr "ყველა ვერსია"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:224
 msgid "Rollback to a previous version"
-msgstr ""
+msgstr "დაბრუნება წინა ვერსიაზე"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:230
 msgid "Upload a New Version"
@@ -5638,7 +5638,7 @@ msgstr "დაიცავით პირადულობა JavaScript-ი�
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:667
 msgid "Automatically deny cookie pop-up tracking requests."
-msgstr ""
+msgstr "ფუნთუშების ამომხტომი მეთვალყურე მოთხოვნების თვითუარყოფა."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:673
@@ -5903,7 +5903,7 @@ msgstr "აუცილებელი დამატებები"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1028
 msgid "Declutter your desktop"
-msgstr ""
+msgstr "მოაწესრიგეთ სამუშაო ეკრანი"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1030 src/olympia/discovery/strings.jinja2:1032 src/olympia/discovery/strings.jinja2:1034
