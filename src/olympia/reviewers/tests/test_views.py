@@ -5972,7 +5972,13 @@ class TestReview(ReviewBase):
         block_reason = 'Very bad addon!'
         blockversion.delete()
         block.update(reason=block_reason)
-        block_activity_log_save(obj=block, change=False)
+        block_activity_log_save(
+            obj=block,
+            change=False,
+            submission_obj=BlocklistSubmission(
+                changed_version_ids=[blockversion.version_id]
+            ),
+        )
         response = self.client.get(self.url)
         span = pq(response.content)('#versions-history .blocked-version')
         assert span.text() == '🛑 Hard-Blocked'
