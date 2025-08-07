@@ -700,7 +700,7 @@ class TestDuplicateAddonVersionForRollback(TestCase):
         assert mail.outbox[0].subject == f'Mozilla Add-ons: Rændom add-on {new.version}'
         assert (
             f'Rolling back add-on "{new.addon_id}: Rændom add-on", to version "0.0.1" '
-            f'by re-publishing as "{new.version}", successfull' in mail.outbox[0].body
+            f'by re-publishing as "{new.version}" successfull' in mail.outbox[0].body
         )
 
     @mock.patch('olympia.versions.tasks.statsd.incr')
