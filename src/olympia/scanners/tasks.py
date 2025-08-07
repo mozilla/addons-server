@@ -193,17 +193,29 @@ def run_narc(results, upload_pk):
 
 
 @task
-def run_narc_on_version(version):
-    # FIXME: call me whenever name changes in db.
-    # FIXME: call me whenever display name from an author changes.
-    _run_narc(upload=None, version=version)
+@use_primary_db
+def run_narc_on_version(version_pk):
+    log.info('Starting narc task for Version %s.', version_pk)
+    try:
+        version = Version.unfiltered.get(pk=version_pk)
+        scanner_result = _run_narc(upload=None, version=version)
+    except Exception as exc:
+        statsd.incr('devhub.narc.failure')
+        log.exception(
+            'Error in scanner "narc" task for Version %s.', version_pk, exc_info=True
+        )
+        # Not part of the submission process, so we can always raise.
+        raise exc
+    else:
+        statsd.incr('devhub.narc.success')
+    log.info('Ending scanner "narc" task for Version %s.', version_pk)
 
 
 def _run_narc(*, upload, version):
     scanner_result = (
         ScannerResult(upload=upload, scanner=NARC)
         if upload
-        else ScannerResult.objects.get(scanner=NARC, version=version)
+        else ScannerResult.objects.get_or_create(scanner=NARC, version=version)[0]
     )
     rules = ScannerRule.objects.filter(
         scanner=NARC, is_active=True, definition__isnull=False
@@ -214,6 +226,7 @@ def _run_narc(*, upload, version):
         scanner_result.matched_rules.clear()
         scanner_result.results = []
     values_from_db = {}
+    values_from_xpi = {}
     values_from_authors = set()
     if addon := upload.addon if upload else version.addon:
         # If we have an add-on instance, find all translations for the name in
@@ -228,12 +241,14 @@ def _run_narc(*, upload, version):
 
     # Find all translations from the XPI - if we get a string, that means there
     # were no translations to find, build a simple dict for ease of use later.
-    xpi = upload or version.file.file
-    xpi_info = parse_xpi(xpi, addon=addon, bypass_trademark_checks=True)
-    values_from_xpi = Addon.resolve_webext_translations(xpi_info, xpi).get('name', {})
-    if isinstance(values_from_xpi, str):
-        default_locale = addon.default_locale if addon else None
-        values_from_xpi = {default_locale: values_from_xpi}
+    if xpi := upload or version.file.file:
+        xpi_info = parse_xpi(xpi, addon=addon, bypass_trademark_checks=True)
+        values_from_xpi = Addon.resolve_webext_translations(xpi_info, xpi).get(
+            'name', {}
+        )
+        if isinstance(values_from_xpi, str):
+            default_locale = addon.default_locale if addon else None
+            values_from_xpi = {default_locale: values_from_xpi}
 
     for rule in rules:
         # Look at every source of data with every rule.

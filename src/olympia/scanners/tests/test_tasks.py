@@ -28,6 +28,7 @@ from olympia.constants.scanners import (
 )
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadMixin
+from olympia.files.utils import parse_addon
 from olympia.scanners.models import (
     ScannerQueryResult,
     ScannerQueryRule,
@@ -40,6 +41,7 @@ from olympia.scanners.tasks import (
     mark_yara_query_rule_as_completed_or_aborted,
     run_customs,
     run_narc,
+    run_narc_on_version,
     run_scanner,
     run_yara,
     run_yara_query_rule,
@@ -274,6 +276,8 @@ class TestRunNarc(UploadMixin, TestCase):
         narc_result = scanner_results[0]
         assert narc_result.scanner == NARC
         assert narc_result.upload == self.upload
+        assert narc_result.has_matches
+        assert list(narc_result.matched_rules.all()) == [rule]
         assert len(narc_result.results) == 2
         assert narc_result.results == [
             {
@@ -334,6 +338,8 @@ class TestRunNarc(UploadMixin, TestCase):
         narc_result = scanner_results[0]
         assert narc_result.scanner == NARC
         assert narc_result.upload == self.upload
+        assert narc_result.has_matches
+        assert list(narc_result.matched_rules.all()) == [rule]
         assert len(narc_result.results) == 2
         assert narc_result.results == [
             {
@@ -385,6 +391,8 @@ class TestRunNarc(UploadMixin, TestCase):
         narc_result = scanner_results[0]
         assert narc_result.scanner == NARC
         assert narc_result.upload == self.upload
+        assert narc_result.has_matches
+        assert list(narc_result.matched_rules.all()) == [rule]
         assert len(narc_result.results) == 1
         assert narc_result.results == [
             {
@@ -434,6 +442,8 @@ class TestRunNarc(UploadMixin, TestCase):
         narc_result = scanner_results[0]
         assert narc_result.scanner == NARC
         assert narc_result.upload == self.upload
+        assert narc_result.has_matches
+        assert list(narc_result.matched_rules.all()) == [rule]
         assert len(narc_result.results) == 2
         assert narc_result.results == [
             {
@@ -486,6 +496,8 @@ class TestRunNarc(UploadMixin, TestCase):
         narc_result = scanner_results[0]
         assert narc_result.scanner == NARC
         assert narc_result.upload == self.upload
+        assert narc_result.has_matches
+        assert list(narc_result.matched_rules.all()) == [rule]
         assert len(narc_result.results) == 1
         assert narc_result.results == [
             {
@@ -531,6 +543,8 @@ class TestRunNarc(UploadMixin, TestCase):
         narc_result = scanner_results[0]
         assert narc_result.scanner == NARC
         assert narc_result.upload == self.upload
+        assert narc_result.has_matches
+        assert list(narc_result.matched_rules.all()) == [rule1, rule2]
         assert len(narc_result.results) == 2
         assert narc_result.results == [
             {
@@ -567,12 +581,18 @@ class TestRunNarc(UploadMixin, TestCase):
             ]
         )
         assert received_results == self.results
+        return narc_result
 
     @mock.patch('olympia.scanners.tasks.statsd.incr')
     def test_run_no_rule(self, incr_mock):
         received_results = run_narc(self.results, self.upload.pk)
         scanner_results = ScannerResult.objects.all()
-        assert len(scanner_results[0].results) == 0
+        narc_result = scanner_results[0]
+        assert narc_result.scanner == NARC
+        assert narc_result.upload == self.upload
+        assert len(narc_result.results) == 0
+        assert not narc_result.has_matches
+        assert list(narc_result.matched_rules.all()) == []
         assert incr_mock.called
         assert incr_mock.call_count == 1
         incr_mock.assert_has_calls(
@@ -603,6 +623,8 @@ class TestRunNarc(UploadMixin, TestCase):
         narc_result = scanner_results[0]
         assert narc_result.scanner == NARC
         assert narc_result.upload == self.upload
+        assert narc_result.has_matches
+        assert list(narc_result.matched_rules.all()) == [rule2]
         assert len(narc_result.results) == 1
         assert narc_result.results == [
             {
@@ -644,6 +666,8 @@ class TestRunNarc(UploadMixin, TestCase):
         assert narc_result.scanner == NARC
         assert narc_result.upload == self.upload
         assert len(narc_result.results) == 0
+        assert not narc_result.has_matches
+        assert list(narc_result.matched_rules.all()) == []
         assert incr_mock.called
         assert incr_mock.call_count == 1
         incr_mock.assert_has_calls(
@@ -698,6 +722,134 @@ class TestRunNarc(UploadMixin, TestCase):
         assert not ScannerResult.objects.exists()
         assert not incr_mock.called
         assert received_results == self.results
+
+    @mock.patch('olympia.scanners.tasks.statsd.incr')
+    def test_run_on_version(self, incr_mock):
+        # Validate an upload first, make it match multiple rules.
+        narc_result = self.test_run_multiple_matching_rules()
+
+        # Deactivate the rules and create a new one, to make sure we are
+        # overridding the results when we do the new run.
+        ScannerRule.objects.update(is_active=False)
+        rule = ScannerRule.objects.create(
+            name='always_match_rule',
+            scanner=NARC,
+            definition=r'.*',
+        )
+
+        addon = addon_factory(
+            guid='@webextension-guid', name='My Fancy WebExtension Addon'
+        )
+        fake_user = user_factory()
+        parsed_data = parse_addon(self.upload, addon=addon, user=fake_user)
+        version = Version.from_upload(
+            self.upload,
+            addon,
+            amo.CHANNEL_LISTED,
+            selected_apps=[amo.FIREFOX.id],
+            parsed_data=parsed_data,
+        )
+        narc_result.update(version=version)
+        incr_mock.reset_mock()
+
+        run_narc_on_version(version.pk)
+
+        scanner_results = ScannerResult.objects.all()
+        assert len(scanner_results) == 1
+        narc_result = scanner_results[0]
+        assert narc_result.scanner == NARC
+        assert narc_result.upload == self.upload
+        assert narc_result.version == version
+        assert len(narc_result.results) == 2
+        assert narc_result.results == [
+            {
+                'meta': {
+                    'locale': 'en-US',
+                    'pattern': '.*',
+                    'source': 'xpi',
+                    'span': [
+                        0,
+                        21,
+                    ],
+                    'string': 'My WebExtension Addon',
+                    'trigger': 'version',
+                },
+                'rule': 'always_match_rule',
+            },
+            {
+                'meta': {
+                    'locale': 'en-us',
+                    'pattern': '.*',
+                    'source': 'db_addon',
+                    'span': [
+                        0,
+                        27,
+                    ],
+                    'string': 'My Fancy WebExtension Addon',
+                    'trigger': 'version',
+                },
+                'rule': 'always_match_rule',
+            },
+        ]
+        assert narc_result.has_matches
+        assert list(narc_result.matched_rules.all()) == [rule]
+        assert incr_mock.called
+        assert incr_mock.call_count == 3
+        incr_mock.assert_has_calls(
+            [
+                mock.call('devhub.narc.has_matches'),
+                mock.call(f'devhub.narc.rule.{rule.id}.match'),
+                mock.call('devhub.narc.success'),
+            ]
+        )
+
+    @mock.patch('olympia.scanners.tasks.statsd.incr')
+    def test_run_on_version_xpi_does_not_exist(self, incr_mock):
+        rule = ScannerRule.objects.create(
+            name='always_match_rule',
+            scanner=NARC,
+            definition=r'.*',
+        )
+
+        version = addon_factory(name='My Fancy WebExtension Addon').current_version
+        incr_mock.reset_mock()
+
+        run_narc_on_version(version.pk)
+
+        scanner_results = ScannerResult.objects.all()
+        assert len(scanner_results) == 1
+        narc_result = scanner_results[0]
+        assert narc_result.scanner == NARC
+        assert narc_result.upload is None
+        assert narc_result.version == version
+        assert len(narc_result.results) == 1
+        assert narc_result.results == [
+            {
+                'meta': {
+                    'locale': 'en-us',
+                    'pattern': '.*',
+                    'source': 'db_addon',
+                    'span': [
+                        0,
+                        27,
+                    ],
+                    'string': 'My Fancy WebExtension Addon',
+                    'trigger': 'version',
+                },
+                'rule': 'always_match_rule',
+            },
+        ]
+        assert narc_result.has_matches
+        assert list(narc_result.matched_rules.all()) == [rule]
+        assert incr_mock.called
+        assert incr_mock.call_count == 3
+        incr_mock.assert_has_calls(
+            [
+                mock.call('devhub.narc.has_matches'),
+                mock.call(f'devhub.narc.rule.{rule.id}.match'),
+                mock.call('devhub.narc.success'),
+            ]
+        )
 
 
 class TestRunYara(UploadMixin, TestCase):
