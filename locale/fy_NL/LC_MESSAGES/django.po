@@ -3208,7 +3208,7 @@ msgstr "Troch jo add-on fuort te smiten wurde alle ferzjes en bestannen dy’t j
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:6
 msgid "All versions will be Restricted, which will disable and prevent any further installation in Firefox. Existing users can choose to re-enable the add-on."
-msgstr ""
+msgstr "Alle ferzjes binne beheind, wat fierdere ynstallaasje yn Firefox útskeakelje en foarkomme sil. Besteande brûkers kinne derfoar kieze om de add-on opnij yn te skeakeljen."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:11
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
@@ -4475,13 +4475,15 @@ msgstr "Troch fuortsmiten fan dizze ferzje wurdt fuortsmiten:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:288
 msgid "Important:"
-msgstr ""
+msgstr "Wichtich:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:289
 msgid ""
 "Once a version has been deleted, you may not upload a new version with the same version number. The version will also be Restricted, which will disable and prevent any further installation in "
 "Firefox. Existing users can choose to re-enable the add-on."
 msgstr ""
+"As in ferzje ienris fuortsmiten is, meie jo gjin nije ferzje mear oplade mei itselde ferzjenûmer. De ferzje sil ek beheind wurde, wat fierdere ynstallaasje yn Firefox útskeakelet en foarkomt. "
+"Besteande brûkers kinne derfoar kieze om de add-on opnij yn te skeakeljen."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:296
 msgid "Are you sure you wish to delete this version?"
