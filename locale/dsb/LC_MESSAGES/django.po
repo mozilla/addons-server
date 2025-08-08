@@ -3219,7 +3219,7 @@ msgstr "Gaž swój dodank wulašujośo, se wšykne wersije a dataje wulašuju, k
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:6
 msgid "All versions will be Restricted, which will disable and prevent any further installation in Firefox. Existing users can choose to re-enable the add-on."
-msgstr ""
+msgstr "Wšykne wersije budu wobgranicowane, což dalšnu instalaciju w Firefox znjemóžnja a jej zajźujo. Eksistěrujuce wužywarje mógu dodank zasej zmóžniś."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:11
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
@@ -4492,6 +4492,8 @@ msgid ""
 "Once a version has been deleted, you may not upload a new version with the same version number. The version will also be Restricted, which will disable and prevent any further installation in "
 "Firefox. Existing users can choose to re-enable the add-on."
 msgstr ""
+"Gaž wersija jo wulašowana, njamóžośo nowu wersiju ze samskim numerom wersije nagraś. Wersija buźo teke wobgranicowana, což dalšnu instalaciju w Firefox znjemóžnja a jej zajźujo. Eksistěrujuce "
+"wužywarje mógu dodank zasej zmóžniś."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:296
 msgid "Are you sure you wish to delete this version?"
