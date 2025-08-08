@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-04 13:42+0000\n"
+"POT-Creation-Date: 2025-08-08 11:17+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -369,12 +369,12 @@ msgstr ""
 msgid "Images must be smaller than %dMB"
 msgstr ""
 
-#: src/olympia/addons/models.py:2272 src/olympia/addons/models.py:2329
+#: src/olympia/addons/models.py:2282 src/olympia/addons/models.py:2339
 #: src/olympia/constants/base.py:66
 msgid "Listed"
 msgstr ""
 
-#: src/olympia/addons/models.py:2507
+#: src/olympia/addons/models.py:2517
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr ""
 
@@ -1395,7 +1395,7 @@ msgstr ""
 msgid "Disabled by Mozilla"
 msgstr ""
 
-#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1191
+#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1193
 msgid "Deleted"
 msgstr ""
 
@@ -3116,8 +3116,8 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:174
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:32
 #: src/olympia/devhub/templates/devhub/versions/edit.html:134
-#: src/olympia/devhub/templates/devhub/versions/list.html:303
-#: src/olympia/devhub/templates/devhub/versions/list.html:352
+#: src/olympia/devhub/templates/devhub/versions/list.html:305
+#: src/olympia/devhub/templates/devhub/versions/list.html:354
 #: src/olympia/translations/templates/translations/trans-menu.html:50
 #: src/olympia/translations/templates/translations/trans-menu.html:62
 msgid "or"
@@ -3130,9 +3130,9 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:32
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:51
 #: src/olympia/devhub/templates/devhub/versions/edit.html:136
-#: src/olympia/devhub/templates/devhub/versions/list.html:303
-#: src/olympia/devhub/templates/devhub/versions/list.html:313
-#: src/olympia/devhub/templates/devhub/versions/list.html:352
+#: src/olympia/devhub/templates/devhub/versions/list.html:305
+#: src/olympia/devhub/templates/devhub/versions/list.html:315
+#: src/olympia/devhub/templates/devhub/versions/list.html:354
 #: src/olympia/translations/templates/translations/trans-menu.html:50
 #: src/olympia/translations/templates/translations/trans-menu.html:62
 msgid "Cancel"
@@ -3530,6 +3530,12 @@ msgid ""
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:6
+msgid ""
+"All versions will be Restricted, which will disable and prevent any further "
+"installation in Firefox. Existing users can choose to re-enable the add-on."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:11
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
 msgstr ""
 
@@ -4876,24 +4882,30 @@ msgid "Deleting this version will permanently delete:"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:288
-msgid ""
-"<strong>Important:</strong> Once a version has been deleted, you may not "
-"upload a new version with the same version number."
+msgid "Important:"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:294
+#: src/olympia/devhub/templates/devhub/versions/list.html:289
+msgid ""
+"Once a version has been deleted, you may not upload a new version with the "
+"same version number. The version will also be Restricted, which will disable "
+"and prevent any further installation in Firefox. Existing users can choose to"
+" re-enable the add-on."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/versions/list.html:296
 msgid "Are you sure you wish to delete this version?"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:299
+#: src/olympia/devhub/templates/devhub/versions/list.html:301
 msgid "Delete Version"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:301
+#: src/olympia/devhub/templates/devhub/versions/list.html:303
 msgid "Disable Version"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:308
+#: src/olympia/devhub/templates/devhub/versions/list.html:310
 #, python-format
 msgid ""
 "The latest approved version of this %(promoted_group_name)s add-on cannot be "
@@ -4902,24 +4914,24 @@ msgid ""
 " with this."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:324
-#: src/olympia/devhub/templates/devhub/versions/list.html:350
+#: src/olympia/devhub/templates/devhub/versions/list.html:326
+#: src/olympia/devhub/templates/devhub/versions/list.html:352
 msgid "Hide Add-on"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:327
+#: src/olympia/devhub/templates/devhub/versions/list.html:329
 msgid ""
 "Hiding your add-on will prevent it from appearing anywhere in our gallery and"
 " will stop users from receiving automatic updates."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:334
+#: src/olympia/devhub/templates/devhub/versions/list.html:336
 msgid ""
 "The files awaiting review will be disabled and you will need to upload new "
 "versions."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:341
+#: src/olympia/devhub/templates/devhub/versions/list.html:343
 msgid "Are you sure you wish to hide your add-on?"
 msgstr ""
 
@@ -7797,33 +7809,33 @@ msgid ""
 "Mozilla Add-ons Team"
 msgstr ""
 
-#: src/olympia/versions/models.py:1176
+#: src/olympia/versions/models.py:1178
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
 msgstr ""
 
-#: src/olympia/versions/models.py:1181
+#: src/olympia/versions/models.py:1183
 msgid "Auto-approved, Confirmed"
 msgstr ""
 
-#: src/olympia/versions/models.py:1183
+#: src/olympia/versions/models.py:1185
 msgid "Auto-approved, not Confirmed"
 msgstr ""
 
-#: src/olympia/versions/models.py:1186
+#: src/olympia/versions/models.py:1188
 msgid "Approved, Manual"
 msgstr ""
 
-#: src/olympia/versions/models.py:1193
+#: src/olympia/versions/models.py:1195
 msgid "Disabled by Developer"
 msgstr ""
 
-#: src/olympia/versions/models.py:1551
+#: src/olympia/versions/models.py:1553
 #, python-brace-format
 msgid "{app} {min} and later"
 msgstr ""
 
-#: src/olympia/versions/models.py:1678
+#: src/olympia/versions/models.py:1680
 #, python-brace-format
 msgid "The install origin {origin} is not permitted."
 msgstr ""

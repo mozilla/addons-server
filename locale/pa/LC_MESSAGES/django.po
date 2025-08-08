@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-04 13:42+0000\n"
+"POT-Creation-Date: 2025-08-08 11:17+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2474,6 +2474,9 @@ msgstr "  ਚੋਟੀ ਦੇ"
 msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
 msgstr ""
 
+msgid "All versions will be Restricted, which will disable and prevent any further installation in Firefox. Existing users can choose to re-enable the add-on."
+msgstr ""
+
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
 msgstr ""
 
@@ -3479,8 +3482,13 @@ msgstr "ਤੁਸੀਂ  ਆਪਣੇ ਐਡ-ਆਨ ਦਾ ਮੌਜੂਦਾ �
 msgid "Deleting this version will permanently delete:"
 msgstr "ਇਸ ਵਰਜਨ ਨੂੰ ਹਟਾਉਣਾ ਪੱਕੇ ਤੌਰ ਤੇ ਹਟਾ ਦੇਵੇਗਾ:"
 
-msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
-msgstr "<strong>ਜ਼ਰੂਰੀ:</strong> ਜੇਕਰ ਇੱਕ ਵਾਰ ਵਰਜਨ ਹਟਾ ਲਿਆ ਗਿਆ, ਹੋ ਸਕਦਾ ਤੁਸੀਂ ਉਸੇ ਵਰਜਨ ਨੰਬਰ ਨਾਲ ਨਵਾਂ ਵਰਜਨ ਅੱਪਲੋਡ ਨਹੀਂ ਕਰ ਪਾਓ।"
+msgid "Important:"
+msgstr ""
+
+msgid ""
+"Once a version has been deleted, you may not upload a new version with the same version number. The version will also be Restricted, which will disable and prevent any further installation in "
+"Firefox. Existing users can choose to re-enable the add-on."
+msgstr ""
 
 msgid "Are you sure you wish to delete this version?"
 msgstr "ਕੀ ਤੁਸੀਂ ਇਸ ਵਰਜਨ ਨੂੰ ਹਟਾਉਣ ਦੀ ਪੁਸ਼ਟੀ ਕਰਦੇ ਹੋ?"

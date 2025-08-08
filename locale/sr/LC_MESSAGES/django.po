@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-04 13:42+0000\n"
+"POT-Creation-Date: 2025-08-08 11:17+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -2487,6 +2487,9 @@ msgstr "Врх"
 msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
 msgstr ""
 
+msgid "All versions will be Restricted, which will disable and prevent any further installation in Firefox. Existing users can choose to re-enable the add-on."
+msgstr ""
+
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
 msgstr ""
 
@@ -3495,8 +3498,13 @@ msgstr "Ви ћете да избришете тренутну верзију д
 msgid "Deleting this version will permanently delete:"
 msgstr "Брисање ове верзије ће трајно обрисати:"
 
-msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
-msgstr "<strong>Важно:</strong> Када је једном верзија избрисана, не бисте требали поставити нову верзију са истим бројем."
+msgid "Important:"
+msgstr ""
+
+msgid ""
+"Once a version has been deleted, you may not upload a new version with the same version number. The version will also be Restricted, which will disable and prevent any further installation in "
+"Firefox. Existing users can choose to re-enable the add-on."
+msgstr ""
 
 msgid "Are you sure you wish to delete this version?"
 msgstr "Да ли сте сигурни да желите обрисати ову верзију?"

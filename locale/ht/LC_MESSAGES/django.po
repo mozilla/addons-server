@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-04 13:42+0000\n"
+"POT-Creation-Date: 2025-08-08 11:17+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2388,6 +2388,9 @@ msgstr ""
 msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
 msgstr ""
 
+msgid "All versions will be Restricted, which will disable and prevent any further installation in Firefox. Existing users can choose to re-enable the add-on."
+msgstr ""
+
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
 msgstr ""
 
@@ -3299,7 +3302,12 @@ msgstr ""
 msgid "Deleting this version will permanently delete:"
 msgstr ""
 
-msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
+msgid "Important:"
+msgstr ""
+
+msgid ""
+"Once a version has been deleted, you may not upload a new version with the same version number. The version will also be Restricted, which will disable and prevent any further installation in "
+"Firefox. Existing users can choose to re-enable the add-on."
 msgstr ""
 
 msgid "Are you sure you wish to delete this version?"
