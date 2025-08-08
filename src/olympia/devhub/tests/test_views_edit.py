@@ -393,7 +393,9 @@ class BaseTestEditDescribe(BaseTestEdit):
         response = self.client.post(self.describe_edit_url, data)
         if addon.current_version:
             assert run_narc_on_version_mock.delay.call_count == 1
-            assert run_narc_on_version_mock.delay.call_args[0] == (addon.current_version.pk,)
+            assert run_narc_on_version_mock.delay.call_args[0] == (
+                addon.current_version.pk,
+            )
         else:
             assert run_narc_on_version_mock.delay.call_count == 0
 
