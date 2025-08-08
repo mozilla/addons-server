@@ -3210,7 +3210,7 @@ msgstr "Deler tu additivo removera permanentemente tote le versiones e files que
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:6
 msgid "All versions will be Restricted, which will disable and prevent any further installation in Firefox. Existing users can choose to re-enable the add-on."
-msgstr "Tote le versiones es limitate, isto disactiva e impedi qualcunque ulterior installation in Firefox. Le usatores existente pote eliger de reactivar le additivo."
+msgstr "Tote le versiones sera limitate, isto disactivara e impedira qualcunque ulterior installation in Firefox. Le usatores existente pote eliger de reactivar le additivo."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:11
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
@@ -4478,6 +4478,8 @@ msgid ""
 "Once a version has been deleted, you may not upload a new version with the same version number. The version will also be Restricted, which will disable and prevent any further installation in "
 "Firefox. Existing users can choose to re-enable the add-on."
 msgstr ""
+"Un vice que un version ha essite delite, tu non pote cargar un nove version con le mesme numero de version. Le version sera alsi limitate, isto disactivara e impedira qualcunque ulterior "
+"installation in Firefox. Le usatores existente pote eliger de reactivar le additivo."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:296
 msgid "Are you sure you wish to delete this version?"
