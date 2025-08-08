@@ -3204,7 +3204,7 @@ msgstr "Hvis du sletter tillegget ditt, slettes alle versjoner og filer du har s
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:6
 msgid "All versions will be Restricted, which will disable and prevent any further installation in Firefox. Existing users can choose to re-enable the add-on."
-msgstr ""
+msgstr "Alle versjoner vil bli begrenset, noe som deaktiverer og hindrer videre installasjon i Firefox. Eksisterende brukere kan velge å aktivere tillegget på nytt."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:11
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
@@ -4466,13 +4466,15 @@ msgstr "Hvis du sletter denne versjonen vil du permanent slette:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:288
 msgid "Important:"
-msgstr ""
+msgstr "Viktig:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:289
 msgid ""
 "Once a version has been deleted, you may not upload a new version with the same version number. The version will also be Restricted, which will disable and prevent any further installation in "
 "Firefox. Existing users can choose to re-enable the add-on."
 msgstr ""
+"Når en versjon er slettet, kan du ikke laste opp en ny versjon med samme versjonsnummer. Versjonen vil også bli begrenset, noe som vil deaktivere og forhindre videre installasjon i Firefox. "
+"Eksisterende brukere kan velge å aktivere tillegg igjen."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:296
 msgid "Are you sure you wish to delete this version?"
