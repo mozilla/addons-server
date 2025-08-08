@@ -4527,7 +4527,7 @@ msgstr "Η διαγραφή αυτής της έκδοσης θα διαγράψ
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:288
 msgid "Important:"
-msgstr ""
+msgstr "Σημαντικό:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:289
 msgid ""
