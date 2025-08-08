@@ -282,23 +282,21 @@ class TestRunNarc(UploadMixin, TestCase):
         assert narc_result.results == [
             {
                 'meta': {
-                    'span': [0, 21],
-                    'locale': None,
-                    'source': 'xpi',
-                    'string': 'My WebExtension Addon',
-                    'pattern': '.*',
-                    'trigger': 'upload',
-                },
-                'rule': 'always_match_rule',
-            },
-            {
-                'meta': {
                     'span': [0, 3],
                     'locale': None,
                     'source': 'author',
                     'string': 'Fôo',
                     'pattern': '.*',
-                    'trigger': 'upload',
+                },
+                'rule': 'always_match_rule',
+            },
+            {
+                'meta': {
+                    'span': [0, 21],
+                    'locale': None,
+                    'source': 'xpi',
+                    'string': 'My WebExtension Addon',
+                    'pattern': '.*',
                 },
                 'rule': 'always_match_rule',
             },
@@ -349,7 +347,6 @@ class TestRunNarc(UploadMixin, TestCase):
                     'source': 'db_addon',
                     'string': 'German päin',
                     'pattern': 'Päin.*',
-                    'trigger': 'upload',
                 },
                 'rule': 'match_the_pain',
             },
@@ -360,7 +357,6 @@ class TestRunNarc(UploadMixin, TestCase):
                     'source': 'db_addon',
                     'string': 'Päin au chocolat',
                     'pattern': 'Päin.*',
-                    'trigger': 'upload',
                 },
                 'rule': 'match_the_pain',
             },
@@ -402,7 +398,6 @@ class TestRunNarc(UploadMixin, TestCase):
                     'source': 'xpi',
                     'string': 'My WebExtension Addon',
                     'pattern': '^My WebExtension.*$',
-                    'trigger': 'upload',
                 },
                 'rule': 'always_match_rule',
             },
@@ -453,18 +448,19 @@ class TestRunNarc(UploadMixin, TestCase):
                     'source': 'author',
                     'string': 'Foo',
                     'pattern': '^foo',
-                    'trigger': 'upload',
                 },
                 'rule': 'match_the_fool',
             },
             {
                 'meta': {
-                    'span': [0, 3],
                     'locale': None,
-                    'source': 'author',
-                    'string': 'FooBar',
                     'pattern': '^foo',
-                    'trigger': 'upload',
+                    'source': 'author',
+                    'span': [
+                        0,
+                        3,
+                    ],
+                    'string': 'FooBar',
                 },
                 'rule': 'match_the_fool',
             },
@@ -507,7 +503,6 @@ class TestRunNarc(UploadMixin, TestCase):
                     'source': 'author',
                     'string': 'Fool',
                     'pattern': '^Foo.*',
-                    'trigger': 'upload',
                 },
                 'rule': 'match_the_fool',
             },
@@ -549,25 +544,23 @@ class TestRunNarc(UploadMixin, TestCase):
         assert narc_result.results == [
             {
                 'meta': {
-                    'span': [0, 21],
-                    'locale': None,
-                    'source': 'xpi',
-                    'string': 'My WebExtension Addon',
-                    'pattern': '^My.*',
-                    'trigger': 'upload',
-                },
-                'rule': 'match_the_beginning',
-            },
-            {
-                'meta': {
                     'span': [3, 21],
                     'locale': None,
                     'source': 'xpi',
                     'string': 'My WebExtension Addon',
                     'pattern': 'WebExtension Addon$',
-                    'trigger': 'upload',
                 },
                 'rule': 'match_the_end',
+            },
+            {
+                'meta': {
+                    'span': [0, 21],
+                    'locale': None,
+                    'source': 'xpi',
+                    'string': 'My WebExtension Addon',
+                    'pattern': '^My.*',
+                },
+                'rule': 'match_the_beginning',
             },
         ]
         assert incr_mock.called
@@ -634,7 +627,6 @@ class TestRunNarc(UploadMixin, TestCase):
                     'source': 'xpi',
                     'string': 'My WebExtension Addon',
                     'pattern': 'WebExtension Addon$',
-                    'trigger': 'upload',
                 },
                 'rule': 'match_the_end',
             },
@@ -727,15 +719,8 @@ class TestRunNarc(UploadMixin, TestCase):
     def test_run_on_version(self, incr_mock):
         # Validate an upload first, make it match multiple rules.
         narc_result = self.test_run_multiple_matching_rules()
-
-        # Deactivate the rules and create a new one, to make sure we are
-        # overridding the results when we do the new run.
-        ScannerRule.objects.update(is_active=False)
-        rule = ScannerRule.objects.create(
-            name='always_match_rule',
-            scanner=NARC,
-            definition=r'.*',
-        )
+        assert len(narc_result.results) == 2
+        rules = list(narc_result.matched_rules.all())
 
         addon = addon_factory(
             guid='@webextension-guid', name='My Fancy WebExtension Addon'
@@ -760,45 +745,70 @@ class TestRunNarc(UploadMixin, TestCase):
         assert narc_result.scanner == NARC
         assert narc_result.upload == self.upload
         assert narc_result.version == version
-        assert len(narc_result.results) == 2
+        assert len(narc_result.results) == 4
         assert narc_result.results == [
             {
                 'meta': {
-                    'locale': 'en-US',
-                    'pattern': '.*',
-                    'source': 'xpi',
+                    'locale': 'en-us',
+                    'pattern': 'WebExtension Addon$',
+                    'source': 'db_addon',
                     'span': [
-                        0,
-                        21,
+                        9,
+                        27,
                     ],
-                    'string': 'My WebExtension Addon',
-                    'trigger': 'version',
+                    'string': 'My Fancy WebExtension Addon',
                 },
-                'rule': 'always_match_rule',
+                'rule': 'match_the_end',
             },
             {
                 'meta': {
                     'locale': 'en-us',
-                    'pattern': '.*',
+                    'pattern': '^My.*',
                     'source': 'db_addon',
                     'span': [
                         0,
                         27,
                     ],
                     'string': 'My Fancy WebExtension Addon',
-                    'trigger': 'version',
                 },
-                'rule': 'always_match_rule',
+                'rule': 'match_the_beginning',
+            },
+            {
+                'meta': {
+                    'locale': None,
+                    'pattern': 'WebExtension Addon$',
+                    'source': 'xpi',
+                    'span': [
+                        3,
+                        21,
+                    ],
+                    'string': 'My WebExtension Addon',
+                },
+                'rule': 'match_the_end',
+            },
+            {
+                'meta': {
+                    'locale': None,
+                    'pattern': '^My.*',
+                    'source': 'xpi',
+                    'span': [
+                        0,
+                        21,
+                    ],
+                    'string': 'My WebExtension Addon',
+                },
+                'rule': 'match_the_beginning',
             },
         ]
         assert narc_result.has_matches
-        assert list(narc_result.matched_rules.all()) == [rule]
+        assert set(narc_result.matched_rules.all()) == set(rules)
         assert incr_mock.called
-        assert incr_mock.call_count == 3
+        assert incr_mock.call_count == 4
         incr_mock.assert_has_calls(
             [
                 mock.call('devhub.narc.has_matches'),
-                mock.call(f'devhub.narc.rule.{rule.id}.match'),
+                mock.call(f'devhub.narc.rule.{rules[0].id}.match'),
+                mock.call(f'devhub.narc.rule.{rules[1].id}.match'),
                 mock.call('devhub.narc.success'),
             ]
         )
@@ -834,7 +844,6 @@ class TestRunNarc(UploadMixin, TestCase):
                         27,
                     ],
                     'string': 'My Fancy WebExtension Addon',
-                    'trigger': 'version',
                 },
                 'rule': 'always_match_rule',
             },
@@ -918,7 +927,6 @@ class TestRunYara(UploadMixin, TestCase):
         yara_result = yara_results[0]
         assert yara_result.upload == self.upload
         assert len(yara_result.results) == 1
-        print(yara_result.results[0])
         assert yara_result.results[0] == {
             'rule': rule.name,
             'tags': [],

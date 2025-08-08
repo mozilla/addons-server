@@ -1,4 +1,5 @@
 import itertools
+import json
 import os
 import re
 import uuid
@@ -220,11 +221,14 @@ def _run_narc(*, upload, version):
     rules = ScannerRule.objects.filter(
         scanner=NARC, is_active=True, definition__isnull=False
     ).exclude(definition='')
-    if scanner_result.pk:
-        # Reset existing matched rules and results completely when running the
-        # scanner - inefficient but reliable.
-        scanner_result.matched_rules.clear()
-        scanner_result.results = []
+    results = (
+        # Convert existing results to a list of strings to allow results to be
+        # hashed to avoid adding duplicates when re-scanning. See result.add()
+        # call below and the conversion back at the end before saving as well.
+        {json.dumps(result, sort_keys=True) for result in scanner_result.results}
+        if scanner_result.pk
+        else set()
+    )
     values_from_db = {}
     values_from_xpi = {}
     values_from_authors = set()
@@ -247,8 +251,7 @@ def _run_narc(*, upload, version):
             'name', {}
         )
         if isinstance(values_from_xpi, str):
-            default_locale = addon.default_locale if addon else None
-            values_from_xpi = {default_locale: values_from_xpi}
+            values_from_xpi = {None: values_from_xpi}
 
     for rule in rules:
         # Look at every source of data with every rule.
@@ -261,20 +264,23 @@ def _run_narc(*, upload, version):
             ),
         ):
             if match := re.search(str(rule.definition), str(value), re.I):
-                scanner_result.results.append(
-                    {
-                        'rule': rule.name,
-                        'meta': {
-                            'trigger': 'upload' if upload else 'version',
-                            'locale': locale,
-                            'source': source,
-                            'pattern': match.re.pattern,
-                            'string': match.string,
-                            'span': match.span(),
+                results.add(
+                    json.dumps(
+                        {
+                            'rule': rule.name,
+                            'meta': {
+                                'locale': locale,
+                                'source': source,
+                                'pattern': match.re.pattern,
+                                'string': match.string,
+                                'span': match.span(),
+                            },
                         },
-                    }
+                        sort_keys=True,
+                    )
                 )
 
+    scanner_result.results = [json.loads(result) for result in sorted(results)]
     scanner_result.save()
     if scanner_result.has_matches:
         statsd.incr('devhub.narc.has_matches')
