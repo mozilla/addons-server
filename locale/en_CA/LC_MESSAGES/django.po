@@ -1274,7 +1274,7 @@ msgstr "Version rollback failure"
 #: src/olympia/constants/activity.py:1246
 #, python-brace-format
 msgid "{addon} {0} property edited."
-msgstr ""
+msgstr "{addon} {0} property edited."
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -2146,11 +2146,11 @@ msgstr "Something went wrong, please contact developer support."
 
 #: src/olympia/devhub/forms.py:1612
 msgid "Choose version"
-msgstr ""
+msgstr "Choose version"
 
 #: src/olympia/devhub/forms.py:1682
 msgid "You must select a channel and version to rollback to."
-msgstr ""
+msgstr "You must select a channel and version to rollback to."
 
 #: src/olympia/devhub/tasks.py:178
 msgid "Invalid or corrupt add-on file."
