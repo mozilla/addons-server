@@ -346,3 +346,49 @@ def duplicate_addon_version_for_rollback(*, version_pk, new_version_number, user
     notify_about_activity_log(
         version.addon, version, log_entry, perm_setting='individual_contact'
     )
+
+
+@task
+@use_primary_db
+def soft_block_versions(version_ids, reason='Version deleted', **kw):
+    """Soft-blocks the specified add-on versions - used for after deletes"""
+    # To avoid circular imports
+    from olympia.blocklist.models import BlocklistSubmission, BlockType
+    from olympia.blocklist.utils import save_versions_to_blocks
+
+    try:
+        task_user = get_task_user()
+    except UserProfile.DoesNotExist:
+        log.info('Task user does not exist so we are running in a test, abort blocking')
+        return
+
+    # Requery the ids to check they're valid, and we don't soften an existing hard-block
+    versions = list(
+        Version.unfiltered.filter(
+            pk__in=version_ids, blockversion__id=None
+        ).values_list('addon__guid', 'id', named=True)
+    )
+    log.info(
+        '[%s@%s] Soft blocking deleted versions from id %s to id %s...'
+        % (
+            len(versions),
+            soft_block_versions.rate_limit,
+            version_ids[0],
+            version_ids[-1],
+        )
+    )
+
+    save_versions_to_blocks(
+        {version.addon__guid for version in versions},
+        BlocklistSubmission(
+            block_type=BlockType.SOFT_BLOCKED,
+            updated_by=task_user,
+            reason=reason,
+            signoff_state=BlocklistSubmission.SIGNOFF_STATES.PUBLISHED,
+            changed_version_ids=[ver.id for ver in versions],
+            # Either addon is already deleted, so this is redundant,
+            # or we're deleting single versions.
+            disable_addon=False,
+        ),
+        overwrite_block_metadata=False,
+    )

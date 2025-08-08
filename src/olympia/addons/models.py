@@ -844,7 +844,7 @@ class Addon(OnChangeMixin, ModelBase):
         return subject, email_msg
 
     @transaction.atomic
-    def delete(self, msg='', reason='', send_delete_email=True):
+    def delete(self, *, msg='', reason='', send_delete_email=True):
         # To avoid a circular import
         from olympia.versions import tasks as version_tasks
 
@@ -919,6 +919,16 @@ class Addon(OnChangeMixin, ModelBase):
 
             if send_delete_email:
                 send_mail(subject, email_msg, recipient_list=email_to)
+
+            all_versions = list(
+                self.versions(manager='unfiltered_for_relations').values_list(
+                    'id', flat=True
+                )
+            )
+            if all_versions:
+                version_tasks.soft_block_versions.delay(
+                    version_ids=all_versions, reason='Addon deleted'
+                )
         else:
             # Real deletion path.
             super().delete()

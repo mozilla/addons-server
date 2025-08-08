@@ -833,6 +833,7 @@ CELERY_TASK_ROUTES = {
     'olympia.scanners.tasks.call_mad_api': {'queue': 'devhub'},
     'olympia.scanners.tasks.run_customs': {'queue': 'devhub'},
     'olympia.scanners.tasks.run_yara': {'queue': 'devhub'},
+    'olympia.versions.tasks.soft_block_versions': {'queue': 'devhub'},
     # Crons.
     'olympia.addons.tasks.update_addon_average_daily_users': {'queue': 'cron'},
     'olympia.addons.tasks.update_addon_hotness': {'queue': 'cron'},

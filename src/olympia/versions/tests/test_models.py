@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 from unittest import mock
 
 from django.conf import settings
+from django.core import mail
 
 import pytest
 import waffle
@@ -24,7 +25,7 @@ from olympia.amo.tests import (
 from olympia.amo.tests.test_models import BasePreviewMixin
 from olympia.amo.utils import utc_millesecs_from_epoch
 from olympia.applications.models import AppVersion
-from olympia.blocklist.models import Block, BlockVersion
+from olympia.blocklist.models import Block, BlockType, BlockVersion
 from olympia.constants.promoted import (
     PROMOTED_GROUP_CHOICES,
     PROMOTED_GROUPS_BY_ID,
@@ -1768,6 +1769,45 @@ class TestVersion(AMOPaths, TestCase):
         AutoApprovalSummary.objects.create(version=self.version)
         assert self.version.get_review_status_display(False) == 'Approved'
         assert self.version.get_review_status_display(True) == 'Approved, Manual'
+
+    def test_delete_soft_blocks_version(self):
+        developer = user_factory()
+        addon = addon_factory(users=[developer])
+        version = addon.current_version
+
+        version.delete()
+
+        assert Block.objects.all()
+        block = Block.objects.get()
+        assert list(block.blockversion_set.values_list('version', flat=True)) == [
+            version.id
+        ]
+        assert (
+            block.blockversion_set.filter(block_type=BlockType.SOFT_BLOCKED).count()
+            == 1
+        )
+        assert len(mail.outbox) == 0
+
+    def test_delete_of_already_blocked_version_doesnt_soften_block(self):
+        addon = addon_factory()
+        hard_blocked_version = version_factory(
+            addon=addon, file_kw={'status': amo.STATUS_DISABLED}
+        )
+        block = Block.objects.create(guid=addon.guid, updated_by=user_factory())
+        BlockVersion.objects.create(
+            block=block,
+            version=hard_blocked_version,
+        )
+
+        hard_blocked_version.delete()
+
+        assert list(block.blockversion_set.values_list('version', flat=True)) == [
+            hard_blocked_version.id,
+        ]
+        assert (
+            hard_blocked_version.blockversion.reload().block_type == BlockType.BLOCKED
+        )
+        assert len(mail.outbox) == 0
 
 
 @pytest.mark.parametrize(

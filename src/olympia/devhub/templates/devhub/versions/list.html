@@ -285,10 +285,12 @@
         <li id="del-files"></li>
       </ul>
       <p class="highlight warning">
+      <strong>{{ _('Important:') }}</strong>
       {% trans %}
-        <strong>Important:</strong>
         Once a version has been deleted, you may not upload a new
         version with the same version number.
+        The version will also be Restricted, which will disable and prevent any further installation in Firefox.
+        Existing users can choose to re-enable the add-on.
       {% endtrans %}
       </p>
       <p>{{ _('Are you sure you wish to delete this version?') }}</p>
