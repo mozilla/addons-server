@@ -178,7 +178,7 @@ def run_narc(results, upload_pk):
 
     try:
         upload = FileUpload.objects.get(pk=upload_pk)
-        scanner_result = _run_narc(upload=upload, version=None)
+        _run_narc(upload=upload, version=None)
     except Exception as exc:
         statsd.incr('devhub.narc.failure')
         log.exception(
@@ -198,7 +198,7 @@ def run_narc_on_version(version_pk):
     log.info('Starting narc task for Version %s.', version_pk)
     try:
         version = Version.unfiltered.get(pk=version_pk)
-        scanner_result = _run_narc(upload=None, version=version)
+        _run_narc(upload=None, version=version)
     except Exception as exc:
         statsd.incr('devhub.narc.failure')
         log.exception(

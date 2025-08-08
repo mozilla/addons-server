@@ -604,7 +604,7 @@ class TestRunNarc(UploadMixin, TestCase):
 
     @mock.patch('olympia.scanners.tasks.statsd.incr')
     def test_run_inactive_rule_ignored(self, incr_mock):
-        rule1 = ScannerRule.objects.create(
+        ScannerRule.objects.create(
             name='match_the_beginning_inactive',
             scanner=NARC,
             definition=r'^My.*',
@@ -652,7 +652,7 @@ class TestRunNarc(UploadMixin, TestCase):
 
     @mock.patch('olympia.scanners.tasks.statsd.incr')
     def test_run_no_match(self, incr_mock):
-        rule = ScannerRule.objects.create(
+        ScannerRule.objects.create(
             name='does_not_match',
             scanner=NARC,
             definition=r'^something*',
@@ -711,7 +711,7 @@ class TestRunNarc(UploadMixin, TestCase):
         # run_narc is a validation task and therefore shouldn't run if the
         # validation results contain some errors.
         self.results.update({'errors': 1})
-        rule = ScannerRule.objects.create(
+        ScannerRule.objects.create(
             name='always_match_rule',
             scanner=NARC,
             definition=r'.*',

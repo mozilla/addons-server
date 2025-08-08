@@ -390,7 +390,7 @@ class BaseTestEditDescribe(BaseTestEdit):
         self.create_switch('enable-narc', active=True)
         data = self.get_dict()
         addon = self.get_addon()
-        response = self.client.post(self.describe_edit_url, data)
+        self.client.post(self.describe_edit_url, data)
         if addon.current_version:
             assert run_narc_on_version_mock.delay.call_count == 1
             assert run_narc_on_version_mock.delay.call_args[0] == (
