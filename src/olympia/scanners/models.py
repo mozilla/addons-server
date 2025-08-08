@@ -7,7 +7,6 @@ from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.functional import classproperty
-from django.utils.translation import gettext_lazy as _
 
 import yara
 
@@ -26,6 +25,7 @@ from olympia.constants.scanners import (
     DELAY_AUTO_APPROVAL_INDEFINITELY_AND_RESTRICT_FUTURE_APPROVALS,
     FLAG_FOR_HUMAN_REVIEW,
     MAD,
+    NARC,
     NEW,
     NO_ACTION,
     QUERY_RULE_STATES,
@@ -72,7 +72,7 @@ class AbstractScannerResult(ModelBase):
     def extract_rule_names(self):
         """This method parses the raw results and returns the (matched) rule
         names. Not all scanners have rules that necessarily match."""
-        if self.scanner == YARA:
+        if self.scanner in (NARC, YARA):
             return sorted({result['rule'] for result in self.results})
         if self.scanner == CUSTOMS and 'matchedRules' in self.results:
             return self.results['matchedRules']
@@ -125,18 +125,18 @@ class AbstractScannerResult(ModelBase):
 class AbstractScannerRule(ModelBase):
     name = models.CharField(
         max_length=200,
-        help_text=_('This is the exact name of the rule used by a scanner.'),
+        help_text='This is the exact name of the rule used by a scanner.',
     )
     pretty_name = models.CharField(
         default='',
-        help_text=_('Human-readable name for the scanner rule'),
+        help_text='Human-readable name for the scanner rule',
         max_length=255,
         blank=True,
-        verbose_name=_('Human-readable name'),
+        verbose_name='Human-readable name',
     )
     description = models.CharField(
         default='',
-        help_text=_('Human readable description for the scanner rule'),
+        help_text='Human readable description for the scanner rule',
         max_length=255,
         blank=True,
     )
@@ -165,17 +165,27 @@ class AbstractScannerRule(ModelBase):
     def clean(self):
         if self.scanner == YARA:
             self.clean_yara()
+        elif self.scanner == NARC:
+            self.clean_narc()
+
+    def clean_narc(self):
+        if not self.definition:
+            raise ValidationError({'definition': 'Narc rules should have a definition'})
+        try:
+            re.compile(self.definition)
+        except Exception as exc:
+            raise ValidationError(
+                {'definition': 'An error occurred when compiling the definition'}
+            ) from exc
 
     def clean_yara(self):
         if not self.definition:
-            raise ValidationError(
-                {'definition': _('Yara rules should have a definition')}
-            )
+            raise ValidationError({'definition': 'Yara rules should have a definition'})
 
         if f'rule {self.name}' not in self.definition:
             raise ValidationError(
                 {
-                    'definition': _(
+                    'definition': (
                         'The name of the rule in the definition should match '
                         'the name of the scanner rule'
                     )
@@ -184,7 +194,7 @@ class AbstractScannerRule(ModelBase):
 
         if len(re.findall(r'rule\s+.+?\s+{', self.definition)) > 1:
             raise ValidationError(
-                {'definition': _('Only one Yara rule is allowed in the definition')}
+                {'definition': 'Only one Yara rule is allowed in the definition'}
             )
 
         try:
@@ -192,13 +202,13 @@ class AbstractScannerRule(ModelBase):
         except yara.SyntaxError as syntaxError:
             raise ValidationError(
                 {
-                    'definition': _('The definition is not valid: %(error)s')
+                    'definition': 'The definition is not valid: %(error)s'
                     % {'error': syntaxError}
                 }
             ) from syntaxError
         except Exception as exc:
             raise ValidationError(
-                {'definition': _('An error occurred when compiling the definition')}
+                {'definition': 'An error occurred when compiling the definition'}
             ) from exc
 
 
@@ -208,7 +218,7 @@ class ScannerRule(AbstractScannerRule):
     )
     is_active = models.BooleanField(
         default=True,
-        help_text=_(
+        help_text=(
             'When unchecked, the scanner results will not be bound to this '
             'rule and the action will not be executed.'
         ),
@@ -379,7 +389,7 @@ class ScannerQueryRule(AbstractScannerRule):
     )
     run_on_disabled_addons = models.BooleanField(
         default=False,
-        help_text=_('Run this rule on add-ons that have been force-disabled as well.'),
+        help_text='Run this rule on add-ons that have been force-disabled as well.',
     )
     celery_group_result_id = models.UUIDField(default=None, null=True)
     task_count = models.PositiveIntegerField(default=0)

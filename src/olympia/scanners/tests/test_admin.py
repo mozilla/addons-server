@@ -310,6 +310,7 @@ class TestScannerResultAdmin(TestCase):
             ('wat', '?scanner__exact=2'),
             ('yara', '?scanner__exact=3'),
             ('mad', '?scanner__exact=4'),
+            ('narc', '?scanner__exact=5'),
             ('All', '?has_matched_rules=all'),
             (' With matched rules only', '?'),
             ('All', '?state=all'),
@@ -524,6 +525,8 @@ class TestScannerResultAdmin(TestCase):
             '&state=3&scanner__exact=3',
             f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
             '&state=3&scanner__exact=4',
+            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
+            '&state=3&scanner__exact=5',
             f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
             '&state=3&has_matched_rules=all',
             f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
@@ -1085,7 +1088,12 @@ class TestScannerRuleAdmin(TestCase):
         url = reverse('admin:scanners_scannerrule_add')
         response = self.client.get(url)
         select = pq(response.content)('#id_scanner')
-        assert len(select.children()) == 3
+        assert select.children().text().split() == [
+            '---------',
+            'customs',
+            'yara',
+            'narc',
+        ]
 
 
 class TestScannerQueryRuleAdmin(TestCase):

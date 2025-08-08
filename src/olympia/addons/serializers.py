@@ -8,6 +8,7 @@ from django.core.files import File as DjangoFile
 from django.urls import reverse
 from django.utils.translation import gettext
 
+import waffle
 from django_statsd.clients import statsd
 from rest_framework import exceptions, serializers
 
@@ -48,6 +49,7 @@ from olympia.files.models import File, FileUpload
 from olympia.files.utils import DuplicateAddonID, parse_addon
 from olympia.promoted.models import PromotedGroup
 from olympia.ratings.utils import get_grouped_ratings
+from olympia.scanners.tasks import run_narc_on_version
 from olympia.search.filters import AddonAppVersionQueryParam
 from olympia.tags.models import Tag
 from olympia.users.models import RESTRICTION_TYPES, EmailUserRestriction, UserProfile
@@ -1364,12 +1366,6 @@ class AddonSerializer(AMOModelSerializer):
             self._save_icon(validated_data['icon'])
         instance = super().update(instance, validated_data)
 
-        if old_metadata is not None and old_metadata != (
-            new_metadata := fetch_translations_from_addon(instance, fields_to_review)
-        ):
-            statsd.incr('addons.submission.metadata_content_review_triggered')
-            changes = get_translation_differences(old_metadata, new_metadata)
-            AddonApprovalsCounter.reset_content_for_addon(addon=instance)
         if 'all_categories' in validated_data:
             del instance.all_categories  # super.update will have set it.
             instance.set_categories(validated_data['all_categories'])
@@ -1387,6 +1383,22 @@ class AddonSerializer(AMOModelSerializer):
             ActivityLog.objects.create(
                 amo.LOG.ADDON_SLUG_CHANGED, instance, old_slug, instance.slug
             )
+
+        if old_metadata is not None and old_metadata != (
+            new_metadata := fetch_translations_from_addon(instance, fields_to_review)
+        ):
+            statsd.incr('addons.submission.metadata_content_review_triggered')
+            changes = get_translation_differences(old_metadata, new_metadata)
+            AddonApprovalsCounter.reset_content_for_addon(addon=instance)
+
+            if (
+                waffle.switch_is_active('enable-narc')
+                and 'name' in changes
+                and (
+                    version := instance.find_latest_version(channel=amo.CHANNEL_LISTED)
+                )
+            ):
+                run_narc_on_version.delay(version.pk)
 
         self.log(instance, validated_data, changes)
         return instance

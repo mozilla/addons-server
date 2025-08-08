@@ -167,6 +167,40 @@ class TestAttachTransDict(TestCase):
             }
         )
 
+    def test_specific_fields_only(self):
+        addon = addon_factory()
+        addon.description = {'fr': 'French Description', 'en-us': 'English Description'}
+        addon.name = {'de': 'German Næme', 'en-us': 'English Name'}
+        addon.save()
+        addon2 = addon_factory(
+            description='English 2 Description', homepage='https://example.com'
+        )
+        addon2.name = {
+            'fr': 'French 2 Name',
+            'en-us': 'English 2 Name',
+            'es-es': 'Spanish 2 Name',
+        }
+        addon2.save()
+        attach_trans_dict(
+            Addon,
+            [addon, addon2],
+            [Addon._meta.get_field('name'), Addon._meta.get_field('homepage')],
+        )
+        assert set(addon.translations.keys()) == {addon.name_id}
+        assert set(addon.translations[addon.name_id]) == {
+            ('en-us', 'English Name'),
+            ('de', 'German Næme'),
+        }
+        assert set(addon2.translations.keys()) == {addon2.name_id, addon2.homepage_id}
+        assert set(addon2.translations[addon2.name_id]) == {
+            ('es-es', 'Spanish 2 Name'),
+            ('en-us', 'English 2 Name'),
+            ('fr', 'French 2 Name'),
+        }
+        assert set(addon2.translations[addon2.homepage_id]) == {
+            ('en-us', 'https://example.com')
+        }
+
 
 def test_has_urls():
     content = 'a text <strong>without</strong> links'

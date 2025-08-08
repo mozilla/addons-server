@@ -8,8 +8,9 @@ CUSTOMS = 1
 _WAT = 2
 YARA = 3
 MAD = 4
+NARC = 5
 
-SCANNERS = {CUSTOMS: 'customs', _WAT: 'wat', YARA: 'yara', MAD: 'mad'}
+SCANNERS = {CUSTOMS: 'customs', _WAT: 'wat', YARA: 'yara', MAD: 'mad', NARC: 'narc'}
 
 # Action IDs are also used for severity (the higher, the more severe).
 # The field is a PositiveSmallIntegerField, it should go up to 65535.

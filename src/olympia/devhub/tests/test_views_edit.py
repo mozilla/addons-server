@@ -1,5 +1,6 @@
 import json
 import os
+from unittest import mock
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
@@ -381,6 +382,39 @@ class BaseTestEditDescribe(BaseTestEdit):
                 addon=addon
             ).last_content_review
             assert str(addon.summary) == data['summary']
+
+    @mock.patch('olympia.devhub.forms.run_narc_on_version')
+    def test_trigger_narc_on_name_change_if_waffle_is_active_if_listed_versions(
+        self, run_narc_on_version_mock
+    ):
+        self.create_switch('enable-narc', active=True)
+        data = self.get_dict()
+        addon = self.get_addon()
+        self.client.post(self.describe_edit_url, data)
+        if addon.current_version:
+            assert run_narc_on_version_mock.delay.call_count == 1
+            assert run_narc_on_version_mock.delay.call_args[0] == (
+                addon.current_version.pk,
+            )
+        else:
+            assert run_narc_on_version_mock.delay.call_count == 0
+
+    @mock.patch('olympia.devhub.forms.run_narc_on_version')
+    def test_dont_trigger_narc_if_name_does_not_change(self, run_narc_on_version_mock):
+        self.create_switch('enable-narc', active=True)
+        data = self.get_dict()
+        addon = self.get_addon()
+        data['name'] = str(addon.name)
+        response = self.client.post(self.describe_edit_url, data)
+        assert response.status_code == 200
+        assert run_narc_on_version_mock.delay.call_count == 0
+
+    @mock.patch('olympia.devhub.forms.run_narc_on_version')
+    def test_dont_trigger_narc_on_name_change_if_waffle_is_inactive(
+        self, run_narc_on_version_mock
+    ):
+        self.test_metadata_change_triggers_content_review()
+        assert run_narc_on_version_mock.delay.call_count == 0
 
     def test_edit_xss(self):
         """
