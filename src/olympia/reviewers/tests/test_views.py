@@ -3808,7 +3808,8 @@ class TestReview(ReviewBase):
         # Use the id for the review page url because deleting the add-on will
         # delete the slug as well.
         self.url = reverse('reviewers.review', args=[self.addon.id])
-        self.addon.delete()
+        self.addon.update(status=amo.STATUS_DELETED)
+        self.addon.versions.update(deleted=True)
         self.test_admin_block_actions()
 
     def test_disable_auto_approval_until_next_approval_unlisted_as_admin(self):
@@ -5971,7 +5972,13 @@ class TestReview(ReviewBase):
         block_reason = 'Very bad addon!'
         blockversion.delete()
         block.update(reason=block_reason)
-        block_activity_log_save(obj=block, change=False)
+        block_activity_log_save(
+            obj=block,
+            change=False,
+            submission_obj=BlocklistSubmission(
+                changed_version_ids=[blockversion.version_id]
+            ),
+        )
         response = self.client.get(self.url)
         span = pq(response.content)('#versions-history .blocked-version')
         assert span.text() == '🛑 Hard-Blocked'

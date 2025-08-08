@@ -137,6 +137,9 @@ class TestVersion(TestCase):
         assert doc('#modal-delete p').eq(0).text() == (
             'Deleting your add-on will permanently delete all versions and '
             'files you have submitted for this add-on, listed or not. '
+            'All versions will be Restricted, which will disable and prevent any '
+            'further installation in Firefox. '
+            'Existing users can choose to re-enable the add-on. '
             'The add-on ID cannot be restored and will forever be unusable '
             'for submission.'
         )
