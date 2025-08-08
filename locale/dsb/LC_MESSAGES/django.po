@@ -4485,7 +4485,7 @@ msgstr "Gaž lašujośo toś tu wersiju, wulašujośo na pśecej:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:288
 msgid "Important:"
-msgstr ""
+msgstr "Wažny:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:289
 msgid ""
