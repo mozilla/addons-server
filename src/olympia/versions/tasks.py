@@ -281,6 +281,7 @@ def hard_delete_versions(version_ids, **kw):
 
 
 @task
+@use_primary_db
 def duplicate_addon_version_for_rollback(*, version_pk, new_version_number, user_pk):
     task_user = get_task_user()
     new_version_number = VersionString(new_version_number)
