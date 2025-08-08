@@ -4425,7 +4425,7 @@ msgstr "Bu sürümü sildiğinizde bunlar kalıcı olarak silinir:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:288
 msgid "Important:"
-msgstr ""
+msgstr "Önemli:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:289
 msgid ""
@@ -4532,7 +4532,7 @@ msgstr "Facebook'un takibini durdurun. Facebook'un sizi web'de izlemesini önlem
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:23 src/olympia/discovery/strings.jinja2:826
 msgid "Simplify search by highlighting text on any web page to search the phrase from an array of engines."
-msgstr ""
+msgstr "Web sayfalarından seçtiğiniz metinleri çeşitli arama motorlarında aynı anda aratın."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5597,7 +5597,7 @@ msgstr "Benzersiz bir JavaScript “parmak izi” biçimine karşı gizliliğini
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:667
 msgid "Automatically deny cookie pop-up tracking requests."
-msgstr ""
+msgstr "Çerezlerin sizi takip etme isteklerini otomatik olarak reddedin."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:673
