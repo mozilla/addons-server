@@ -4441,7 +4441,7 @@ msgstr "Všechny verze"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:224
 msgid "Rollback to a previous version"
-msgstr "Rollback k předchozí verzi"
+msgstr "Vrátit se k předchozí verzi"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:230
 msgid "Upload a New Version"
