@@ -777,6 +777,35 @@ class UsageTier(ModelBase):
         'and an add-on in that tier has 10,000 users, it will be flagged after 200 '
         'reports.',
     )
+    ratings_ratio_threshold_before_flagging = models.IntegerField(
+        blank=True,
+        default=None,
+        null=True,
+        help_text='Percentage threshold of ratio between ratings over the past 2 weeks'
+        'to add-on usage before we start automatically flagging the add-on for human '
+        'review. '
+        'For example, if set to 5 and an add-on in that tier has 10,000 users, '
+        'it will be flagged after 500 ratings.',
+    )
+    abuse_reports_ratio_threshold_before_disabling = models.IntegerField(
+        blank=True,
+        default=None,
+        null=True,
+        help_text='Percentage threshold of ratio between non individually actionable '
+        'abuse reports over the past 2 weeks to add-on usage before we automatically '
+        'disable the add-on. '
+        'For example, if set to 4 and an add-on in that tier has 10,000 users, it will '
+        'be disabled after 400 reports.',
+    )
+    ratings_ratio_threshold_before_disabling = models.IntegerField(
+        blank=True,
+        default=None,
+        null=True,
+        help_text='Percentage threshold of ratio between ratings over the past 2 weeks'
+        'to add-on usage before we automatically disable the add-on. '
+        'For example, if set to 5 and an add-on in that tier has 10,000 users, '
+        'it will be disabled after 500 ratings.',
+    )
 
     class Meta:
         ordering = ('upper_adu_threshold',)
@@ -832,23 +861,29 @@ class UsageTier(ModelBase):
             **self.get_tier_boundaries(),
         )
 
-    def get_abuse_threshold_q_object(self):
+    def get_abuse_threshold_q_object(self, *, disable=False):
         """Return Q object containing filters to apply to find add-ons over the
         abuse threshold for that tier.
 
+        `disable` is a boolean - False for flagging threshold; True for disabling
+        threshold.
+
         Depends on the queryset being annotated with
         `abuse_reports_count=UsageTier.get_abuse_count_subquery()` first."""
+        threshold = (
+            self.abuse_reports_ratio_threshold_before_flagging
+            if not disable
+            else self.abuse_reports_ratio_threshold_before_disabling
+        ) or 0
         return Q(
-            abuse_reports_count__gte=F('average_daily_users')
-            * (self.abuse_reports_ratio_threshold_before_flagging or 0)
-            / 100,
+            abuse_reports_count__gte=F('average_daily_users') * threshold / 100,
             **self.get_tier_boundaries(),
         )
 
     @classmethod
     def get_abuse_count_subquery(cls):
         """Return the Subquery used to annotate `abuse_reports_count`. Needed
-        to use get_abuse_threshold_q_object()."""
+        to use get_abuse_threshold_q_object(disable=False)."""
         abuse_reports_count_qs = (
             AbuseReport.objects.values('guid')
             .filter(
@@ -861,6 +896,41 @@ class UsageTier(ModelBase):
             .order_by()
         )
         return abuse_reports_count_qs
+
+    def get_rating_threshold_q_object(self, *, disable=False):
+        """Return Q object containing filters to apply to find add-ons over the
+        rating threshold for that tier.
+
+         `disable` is a boolean - False for flagging threshold; True for disabling
+        threshold.
+
+        Depends on the queryset being annotated with
+        `ratings_count=UsageTier.get_rating_count_subquery()` first."""
+        threshold = (
+            self.ratings_ratio_threshold_before_flagging
+            if not disable
+            else self.ratings_ratio_threshold_before_disabling
+        ) or 0
+        return Q(
+            ratings_count__gte=F('average_daily_users') * threshold / 100,
+            **self.get_tier_boundaries(),
+        )
+
+    @classmethod
+    def get_rating_count_subquery(cls):
+        """Return the Subquery used to annotate `ratings_count`. Needed
+        to use get_rating_threshold_q_object()."""
+        ratings_count_qs = (
+            Rating.without_replies.values('addon_id')
+            .filter(
+                addon_id=OuterRef('id'),
+                created__gte=datetime.now() - timedelta(days=14),
+            )
+            .annotate(_ratings_count=Count('*'))
+            .values('_ratings_count')
+            .order_by()
+        )
+        return ratings_count_qs
 
 
 class ChoiceEntryWithNHRAnnotationPrefix(ChoiceEntry):
@@ -900,6 +970,7 @@ class NeedsHumanReview(ModelBase):
             'Re-enqueued in reviewer tools from 2nd level approval',
         ),
         ('ABUSE_REPORTS_THRESHOLD', 9, 'Over abuse reports threshold for usage tier'),
+        ('RATINGS_THRESHOLD', 17, 'Over ratings threshold for usage tier'),
         (
             'PENDING_REJECTION_SOURCES_PROVIDED',
             5,
