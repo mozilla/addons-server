@@ -4472,6 +4472,8 @@ msgid ""
 "Once a version has been deleted, you may not upload a new version with the same version number. The version will also be Restricted, which will disable and prevent any further installation in "
 "Firefox. Existing users can choose to re-enable the add-on."
 msgstr ""
+"Når ein versjon er sletta, kan du ikkje laste opp ein ny versjon med same versjonsnummer. Versjonen vil også bli avgrensa, noko som vil deaktivere og hindre vidare installasjon i Firefox. "
+"Eksisterande brukarar kan velje å aktivere tillegg igjen."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:296
 msgid "Are you sure you wish to delete this version?"
