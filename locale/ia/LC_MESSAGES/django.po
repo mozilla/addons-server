@@ -4471,7 +4471,7 @@ msgstr "Deler iste version delera permanentemente:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:288
 msgid "Important:"
-msgstr ""
+msgstr "Importante:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:289
 msgid ""
