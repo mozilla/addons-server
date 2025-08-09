@@ -1282,7 +1282,7 @@ msgstr "Niepowodzenie wycofania wersji"
 #: src/olympia/constants/activity.py:1246
 #, python-brace-format
 msgid "{addon} {0} property edited."
-msgstr ""
+msgstr "Edytowano właściwość {0} dodatku {addon}."
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -1535,7 +1535,7 @@ msgstr "Społecznościowe i komunikacyjne"
 
 #: src/olympia/constants/categories.py:172
 msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
-msgstr ""
+msgstr "Pobierz rozszerzenia Firefoksa, aby usprawnić media społecznościowe i komunikatory. Ta kategoria obejmuje ulepszone powiadomienia na kartach, programy do pobierania filmów i wiele innych."
 
 #: src/olympia/constants/categories.py:179
 msgid "Tabs"
