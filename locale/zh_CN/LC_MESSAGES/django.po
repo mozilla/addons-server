@@ -2132,7 +2132,7 @@ msgstr "选择版本"
 
 #: src/olympia/devhub/forms.py:1682
 msgid "You must select a channel and version to rollback to."
-msgstr ""
+msgstr "请选择回滚的目标通道和版本。"
 
 #: src/olympia/devhub/tasks.py:178
 msgid "Invalid or corrupt add-on file."
@@ -2308,7 +2308,7 @@ msgstr "本次上传校验失败，可能缺少完整校验结果。请在检查
 
 #: src/olympia/devhub/views.py:1319
 msgid "Rollback submitted. You'll be notified when it's approved"
-msgstr ""
+msgstr "已提交回滚。待获得批准后，您将收到通知"
 
 #: src/olympia/devhub/views.py:1451
 msgid "Header area background"
@@ -3157,7 +3157,7 @@ msgstr "删除附加组件的话，将会永久删除您为此附加组件提交
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:6
 msgid "All versions will be Restricted, which will disable and prevent any further installation in Firefox. Existing users can choose to re-enable the add-on."
-msgstr ""
+msgstr "所有版本都将受限（被禁用，且无法再在 Firefox 中安装），现有用户可以选择重新启用该附加组件。"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:11
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
@@ -3960,16 +3960,16 @@ msgstr[0] "为此附加组件选择一个分类："
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:2
 msgid "Roll back to a previous version"
-msgstr ""
+msgstr "回滚到先前版本"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:4
 #, python-format
 msgid "Users of this %(addon_type)s will roll back to the previous version you choose."
-msgstr ""
+msgstr "此%(addon_type)s的用户将回滚到您选择的先前版本。"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:12
 msgid "Distribution channel"
-msgstr ""
+msgstr "分发通道"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:23 src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:32
 #: src/olympia/devhub/templates/devhub/versions/list.html:240
@@ -3978,11 +3978,11 @@ msgstr "版本"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:40
 msgid "New version number"
-msgstr ""
+msgstr "新的版本号"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:50
 msgid "Roll back"
-msgstr ""
+msgstr "回滚"
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:3
 msgid "End-User License Agreement"
@@ -4367,7 +4367,7 @@ msgstr "所有版本"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:224
 msgid "Rollback to a previous version"
-msgstr ""
+msgstr "回滚到先前版本"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:230
 msgid "Upload a New Version"
@@ -4389,13 +4389,13 @@ msgstr "删除此版本将永久地删除："
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:288
 msgid "Important:"
-msgstr ""
+msgstr "重要提示："
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:289
 msgid ""
 "Once a version has been deleted, you may not upload a new version with the same version number. The version will also be Restricted, which will disable and prevent any further installation in "
 "Firefox. Existing users can choose to re-enable the add-on."
-msgstr ""
+msgstr "删除版本后，将无法再以相同版本号上传新版本。该版本也将受限（被禁用，且无法再在 Firefox 中安装），现有用户可以选择重新启用该附加组件。"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:296
 msgid "Are you sure you wish to delete this version?"
@@ -5557,7 +5557,7 @@ msgstr "保护您的隐私，免受特殊形式的 JavaScript 数字指纹跟踪
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:667
 msgid "Automatically deny cookie pop-up tracking requests."
-msgstr ""
+msgstr "自动拒绝 Cookie 弹窗的跟踪请求。"
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:673
@@ -5822,7 +5822,7 @@ msgstr "必备附加组件"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1028
 msgid "Declutter your desktop"
-msgstr ""
+msgstr "让桌面清爽整洁"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1030 src/olympia/discovery/strings.jinja2:1032 src/olympia/discovery/strings.jinja2:1034
