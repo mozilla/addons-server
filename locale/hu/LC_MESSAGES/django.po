@@ -3214,7 +3214,7 @@ msgstr "A kiegészítő törlése véglegesen törli az összes verziót, amelye
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:6
 msgid "All versions will be Restricted, which will disable and prevent any further installation in Firefox. Existing users can choose to re-enable the add-on."
-msgstr ""
+msgstr "Az összes verzió korlátozott lesz, ami letiltja és megakadályozza a további telepítést a Firefoxban. A meglévő felhasználók dönthetnek úgy, hogy újra engedélyezik a kiegészítőt."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:11
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
@@ -4486,13 +4486,15 @@ msgstr "A verzió törlése véglegesen törli:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:288
 msgid "Important:"
-msgstr ""
+msgstr "Fontos:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:289
 msgid ""
 "Once a version has been deleted, you may not upload a new version with the same version number. The version will also be Restricted, which will disable and prevent any further installation in "
 "Firefox. Existing users can choose to re-enable the add-on."
 msgstr ""
+"Ha egy verzió már törölt, akkor nem tölthet fel új verziót ugyanazzal a verziószámmal. A verzió korlátozott lesz, ami letiltja és megakadályozza a további telepítést a Firefoxban. A meglévő "
+"felhasználók dönthetnek úgy, hogy újra engedélyezik a kiegészítőt."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:296
 msgid "Are you sure you wish to delete this version?"
