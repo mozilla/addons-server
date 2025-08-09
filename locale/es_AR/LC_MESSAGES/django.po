@@ -4065,7 +4065,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:4
 #, python-format
 msgid "Users of this %(addon_type)s will roll back to the previous version you choose."
-msgstr ""
+msgstr "Los usuarios de este %(addon_type)s volverán a la versión anterior que elegiste."
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:12
 msgid "Distribution channel"
@@ -4501,13 +4501,15 @@ msgstr "Al borrar esta versión, se eliminará definitivamente:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:288
 msgid "Important:"
-msgstr ""
+msgstr "Importante:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:289
 msgid ""
 "Once a version has been deleted, you may not upload a new version with the same version number. The version will also be Restricted, which will disable and prevent any further installation in "
 "Firefox. Existing users can choose to re-enable the add-on."
 msgstr ""
+"Una vez que se eliminó una versión, no se puede cargar una nueva con el mismo número de versión. La versión también será restringida, lo que la deshabilitará y evitará cualquier instalación "
+"posterior en Firefox. Los usuarios existentes pueden elegir volver a habilitar el complemento."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:296
 msgid "Are you sure you wish to delete this version?"
