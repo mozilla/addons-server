@@ -6010,22 +6010,22 @@ msgstr "다운로드 관리자 직원 추천 더보기"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1132
 msgid "Accessibility extensions"
-msgstr ""
+msgstr "접근성 확장 기능"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1134
 msgid "See more accessibility staff picks"
-msgstr ""
+msgstr "접근성 직원 추천 더보기"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1137
 msgid "Extension starter pack"
-msgstr ""
+msgstr "확장 기능 스타터 팩"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1139
 msgid "See more starter extension staff picks"
-msgstr ""
+msgstr "스타터 확장 기능 직원 추천 더보기"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1142
@@ -6035,17 +6035,17 @@ msgstr ""
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1144
 msgid "See more Twitch extension staff picks"
-msgstr ""
+msgstr "Twitch 확장 기능 직원 추천 더보기"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1152
 msgid "Gaming & media extensions"
-msgstr ""
+msgstr "게임 및 미디어 확장 기능"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1154
 msgid "See more staff picks"
-msgstr ""
+msgstr "직원 추천 더보기"
 
 #: src/olympia/files/models.py:324
 msgid "Unreviewed"
