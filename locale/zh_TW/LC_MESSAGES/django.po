@@ -3157,7 +3157,7 @@ msgstr "刪除附加元件的話，將會永久刪除所有您曾為此附加元
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:6
 msgid "All versions will be Restricted, which will disable and prevent any further installation in Firefox. Existing users can choose to re-enable the add-on."
-msgstr "所有版本將受限制（被停用且無法再新安裝進任何 Firefox），現有已安裝的使用者仍可決定是否要重新啟用附加元件。"
+msgstr "所有版本將受限制（被停用且無法再新安裝進任何 Firefox），現有已安裝的使用者仍可決定是否要重新啟用。"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:11
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
@@ -4399,7 +4399,7 @@ msgstr "重要："
 msgid ""
 "Once a version has been deleted, you may not upload a new version with the same version number. The version will also be Restricted, which will disable and prevent any further installation in "
 "Firefox. Existing users can choose to re-enable the add-on."
-msgstr ""
+msgstr "刪除版本後，無法再上傳相同版本號的新版本。該版本也將受到限制（被停用且無法再新安裝進任何 Firefox），現有已安裝的使用者仍可決定是否要重新啟用。"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:296
 msgid "Are you sure you wish to delete this version?"
