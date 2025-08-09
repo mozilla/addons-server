@@ -3215,7 +3215,7 @@ msgstr "თქვენი დამატების წაშლით სა
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:6
 msgid "All versions will be Restricted, which will disable and prevent any further installation in Firefox. Existing users can choose to re-enable the add-on."
-msgstr ""
+msgstr "ყველა ვერსია შეიზღუდება, რის შედეგადაც გამოირთვება და შეწყდება მომავალი განახლებების ჩაყენება Firefox-ში. არსებულ მომხმარებლებს მაინც შეეძლებათ დამატების ხელახლა ჩართვა."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:11
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
@@ -4473,13 +4473,15 @@ msgstr "ამ ვერსიის წაშლით, სამუდამ�
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:288
 msgid "Important:"
-msgstr ""
+msgstr "გაითვალისწინეთ:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:289
 msgid ""
 "Once a version has been deleted, you may not upload a new version with the same version number. The version will also be Restricted, which will disable and prevent any further installation in "
 "Firefox. Existing users can choose to re-enable the add-on."
 msgstr ""
+"მას შემდეგ, რაც ვერსია წაიშლება, აღარ უნდა ატვირთოთ ახალი ვერსია იმავე ნომრით. აღნიშნული ვერსია აგრეთვე შეიზღუდება, რის შედეგადაც გამოირთვება და შეწყდება მომავალი განახლებების ჩაყენება Firefox-ში. "
+"არსებულ მომხმარებლებს მაინც შეეძლებათ დამატების ხელახლა ჩართვა."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:296
 msgid "Are you sure you wish to delete this version?"
