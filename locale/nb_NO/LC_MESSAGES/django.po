@@ -5381,7 +5381,7 @@ msgstr "Lagre hele sider — eller bare deler — som én enkelt HTML-fil."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:491
 msgid "Cut through the nonsense of typical TOS agreements. This clever extension helps you quickly understand what you’re being asked to agree to."
-msgstr "Skjær gjennom tullet med typiske tjenestevilkårsavtaler (TOS). Denne smarte utvidelsen hjelper deg raskt å forstå hva du blir bedt om å godta."
+msgstr "Kutt gjennom tullpratet i vanlige bruksvilkår-avtaler (TOS). Denne smarte utvidelsen hjelper deg raskt å forstå hva du faktisk blir bedt om å godta."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:495
