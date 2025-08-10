@@ -5780,7 +5780,7 @@ msgstr "გაასუფთავეთ YouTube ყურადღების
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:946
 msgid "Take emojis with you everywhere on the web."
-msgstr "თან წაიყოლეთ ემოჯები ყველგან, ვებსივრცეში."
+msgstr "თან გაიყოლეთ ემოჯები ყველგან, ვებსივრცეში."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:952
