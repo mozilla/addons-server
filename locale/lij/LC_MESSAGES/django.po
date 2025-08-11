@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-08 11:17+0000\n"
+"POT-Creation-Date: 2025-08-11 11:30+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4870,40 +4870,6 @@ msgstr ""
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-msgstr ""
-
-msgid "This is the exact name of the rule used by a scanner."
-msgstr ""
-
-msgid "Human-readable name for the scanner rule"
-msgstr ""
-
-msgid "Human-readable name"
-msgstr ""
-
-msgid "Human readable description for the scanner rule"
-msgstr ""
-
-msgid "Yara rules should have a definition"
-msgstr ""
-
-msgid "The name of the rule in the definition should match the name of the scanner rule"
-msgstr ""
-
-msgid "Only one Yara rule is allowed in the definition"
-msgstr ""
-
-#, python-format
-msgid "The definition is not valid: %(error)s"
-msgstr ""
-
-msgid "An error occurred when compiling the definition"
-msgstr ""
-
-msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
-msgstr ""
-
-msgid "Run this rule on add-ons that have been force-disabled as well."
 msgstr ""
 
 #, python-format
