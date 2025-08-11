@@ -236,7 +236,7 @@ def _run_narc(*, upload, version):
     if addon := upload.addon if upload else version.addon:
         # If we have an add-on instance, find all translations for the name in
         # the database as well as the display names from its authors.
-        attach_trans_dict(Addon, [addon], fields=[addon._meta.get_field('name')])
+        attach_trans_dict(Addon, [addon], field_names=['name'])
         values_from_db = dict(addon.translations[addon.name_id])
         values_from_authors.update(
             addon.authors.all().values_list('display_name', flat=True)

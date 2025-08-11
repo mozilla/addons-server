@@ -184,7 +184,7 @@ class TestAttachTransDict(TestCase):
         attach_trans_dict(
             Addon,
             [addon, addon2],
-            [Addon._meta.get_field('name'), Addon._meta.get_field('homepage')],
+            field_names=['name', 'homepage'],
         )
         assert set(addon.translations.keys()) == {addon.name_id}
         assert set(addon.translations[addon.name_id]) == {
