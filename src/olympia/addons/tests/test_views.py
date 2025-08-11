@@ -2601,6 +2601,41 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
             json.dumps({'removed': [], 'added': ['summary nouveau']}),
         ]
 
+    @mock.patch('olympia.addons.serializers.run_narc_on_version')
+    def test_trigger_narc_on_name_change_if_waffle_is_active(
+        self, run_narc_on_version_mock
+    ):
+        self.create_switch('enable-narc', active=True)
+        self._test_metadata_content_review()
+        version = self.addon.current_version
+        assert run_narc_on_version_mock.delay.call_count == 1
+        assert run_narc_on_version_mock.delay.call_args[0] == (version.pk,)
+
+    @mock.patch('olympia.addons.serializers.run_narc_on_version')
+    def test_dont_trigger_narc_if_name_does_not_change(self, run_narc_on_version_mock):
+        self.create_switch('enable-narc', active=True)
+        response = self.request(
+            data={'name': {'en-US': str(self.addon.name)}},
+        )
+        assert response.status_code == 200
+        assert run_narc_on_version_mock.delay.call_count == 0
+
+    @mock.patch('olympia.addons.serializers.run_narc_on_version')
+    def test_dont_trigger_narc_on_name_change_if_no_listed_versions(
+        self, run_narc_on_version_mock
+    ):
+        self.create_switch('enable-narc', active=True)
+        self.make_addon_unlisted(self.addon)
+        self._test_metadata_content_review()
+        assert run_narc_on_version_mock.delay.call_count == 0
+
+    @mock.patch('olympia.addons.serializers.run_narc_on_version')
+    def test_dont_trigger_narc_on_name_change_if_waffle_is_inactive(
+        self, run_narc_on_version_mock
+    ):
+        self._test_metadata_content_review()
+        assert run_narc_on_version_mock.delay.call_count == 0
+
     def test_metadata_change_same_content(self):
         AddonApprovalsCounter.approve_content_for_addon(addon=self.addon)
         old_content_review = AddonApprovalsCounter.objects.get(

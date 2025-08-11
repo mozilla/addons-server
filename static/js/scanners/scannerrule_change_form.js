@@ -5,19 +5,24 @@ const selectedScannerIsYara = (select) => {
   return select.options[select.selectedIndex].label === 'yara';
 };
 
+const selectedScannerIsNarc = (select) => {
+  return select.options[select.selectedIndex].label === 'narc';
+};
+
 const selectedScannerIsNone = (select) => {
   return select.options[select.selectedIndex].value === '';
 };
 
 // This function changes the visibility of the `definition` field depending on
-// the scanner that has been selected. Only "yara" rules have definitions for
-// now, so it is restricted to that. It also sets a default value when there is
-// no value yet and the scanner is "yara".
+// the scanner that has been selected. Only "yara" and "narc" rules have
+// definitions for now, so it is restricted to that. It also sets a default
+// value when there is no value yet and the scanner is "yara".
 const showOrHideDefinition = (select) => {
   const definition = document.querySelector('.field-definition');
   const isYara = selectedScannerIsYara(select);
+  const isNarc = selectedScannerIsNarc(select);
 
-  definition.style.display = isYara ? 'block' : 'none';
+  definition.style.display = isYara || isNarc ? 'block' : 'none';
 
   if (isYara) {
     const textarea = definition.querySelector('#id_definition');
@@ -81,7 +86,7 @@ definitionTextarea.addEventListener('input', (event) => {
   // This pattern matches strings like `rule some_rule_name {`.
   const matches = value.match(/rule\s+(.+?)\s+{/);
 
-  if (matches.length === 2) {
+  if (matches && matches.length === 2) {
     // The name of the rule is validated by the django app anyway so we only
     // need to pass the "raw" rule name to the input.
     nameInput.value = matches[1];

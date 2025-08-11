@@ -51,6 +51,7 @@ from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.devhub.widgets import CategoriesSelectMultiple, IconTypeSelect
 from olympia.files.models import FileUpload
 from olympia.files.utils import SafeTar, SafeZip, parse_addon
+from olympia.scanners.tasks import run_narc_on_version
 from olympia.tags.models import Tag
 from olympia.translations import LOCALES
 from olympia.translations.fields import LocaleErrorMessage, TransField, TransTextarea
@@ -149,6 +150,16 @@ class AddonFormBase(TranslationFormMixin, AMOModelForm):
                 # flag for content review
                 statsd.incr('devhub.metadata_content_review_triggered')
                 AddonApprovalsCounter.reset_content_for_addon(addon=obj)
+                if (
+                    waffle.switch_is_active('enable-narc')
+                    and 'name' in self.metadata_changes
+                    and (
+                        version := self.instance.find_latest_version(
+                            channel=amo.CHANNEL_LISTED
+                        )
+                    )
+                ):
+                    run_narc_on_version.delay(version.pk)
         return obj
 
 

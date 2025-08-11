@@ -832,6 +832,8 @@ CELERY_TASK_ROUTES = {
     'olympia.files.tasks.repack_fileupload': {'queue': 'devhub'},
     'olympia.scanners.tasks.call_mad_api': {'queue': 'devhub'},
     'olympia.scanners.tasks.run_customs': {'queue': 'devhub'},
+    'olympia.scanners.tasks.run_narc': {'queue': 'devhub'},
+    'olympia.scanners.tasks.run_narc_on_version': {'queue': 'devhub'},
     'olympia.scanners.tasks.run_yara': {'queue': 'devhub'},
     'olympia.versions.tasks.soft_block_versions': {'queue': 'devhub'},
     # Crons.

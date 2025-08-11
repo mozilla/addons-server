@@ -16,6 +16,7 @@ from olympia.constants.scanners import (
     CUSTOMS,
     FALSE_POSITIVE,
     MAD,
+    NARC,
     NEW,
     RUNNING,
     SCANNERS,
@@ -93,6 +94,16 @@ class TestScannerResultMixin:
         for rule in [rule1, rule2]:
             match = self.create_fake_yara_match(rule=rule)
             result.add_yara_result(rule=match.rule, tags=match.tags, meta=match.meta)
+
+        assert result.extract_rule_names() == [rule1, rule2]
+
+    def test_extract_rule_names_with_narc_results(self):
+        result = self.create_result(scanner=NARC)
+        rule1 = 'rule-1'
+        rule2 = 'rule-2'
+
+        for rule in [rule1, rule2]:
+            result.results.append({'rule': rule, 'meta': {'whatever': 'eh'}})
 
         assert result.extract_rule_names() == [rule1, rule2]
 
@@ -363,6 +374,22 @@ class TestScannerRuleMixin:
         assert str(result) == 'Fôo'
         result.pretty_name = 'Bär'
         assert str(result) == 'Bär'
+
+    def test_clean_raises_for_narc_rule_without_a_definition(self):
+        rule = self.model(name='some_rule', scanner=NARC)
+
+        with pytest.raises(ValidationError, match=r'should have a definition'):
+            rule.clean()
+
+    def test_clean_raises_for_narc_rule_that_doesnt_compile(self):
+        rule = self.model(
+            name='some_rule',
+            scanner=NARC,
+            definition=r'^test\Y',  # Invalid escape sequence in regexp
+        )
+
+        with pytest.raises(ValidationError, match=r'error occurred when compiling'):
+            rule.clean()
 
     def test_clean_raises_for_yara_rule_without_a_definition(self):
         rule = self.model(name='some_rule', scanner=YARA)
