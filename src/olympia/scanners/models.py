@@ -175,7 +175,7 @@ class AbstractScannerRule(ModelBase):
             re.compile(self.definition)
         except Exception as exc:
             raise ValidationError(
-                {'definition': 'An error occurred when compiling the definition'}
+                {'definition': 'An error occurred when compiling regular expression'}
             ) from exc
 
     def clean_yara(self):

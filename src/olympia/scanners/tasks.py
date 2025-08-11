@@ -213,6 +213,7 @@ def run_narc_on_version(version_pk):
 
 
 def _run_narc(*, upload, version):
+    assert upload or version
     scanner_result = (
         ScannerResult(upload=upload, scanner=NARC)
         if upload
