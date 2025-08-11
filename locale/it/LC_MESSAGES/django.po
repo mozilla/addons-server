@@ -3250,6 +3250,8 @@ msgstr "Eliminando il componente aggiuntivo, tutte le versioni e i file associat
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:6
 msgid "All versions will be Restricted, which will disable and prevent any further installation in Firefox. Existing users can choose to re-enable the add-on."
 msgstr ""
+"Tutte le versioni saranno soggette a limitazioni: il componente aggiuntivo verrà disattivato in Firefox e non sarà più possibile effettuare nuove installazioni. Gli utenti che avevano già installato"
+" il componente aggiuntivo potranno scegliere di riattivarlo."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:11
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
@@ -4537,6 +4539,8 @@ msgid ""
 "Once a version has been deleted, you may not upload a new version with the same version number. The version will also be Restricted, which will disable and prevent any further installation in "
 "Firefox. Existing users can choose to re-enable the add-on."
 msgstr ""
+"Una volta eliminata una versione, non sarà possibile caricarne una nuova con lo stesso numero di versione. Inoltre, la versione sarà soggetta a limitazioni: verrà disattivata in Firefox e non sarà "
+"più possibile effettuare nuove installazioni. Gli utenti che avevano già installato il componente aggiuntivo potranno scegliere di riattivarlo."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:296
 msgid "Are you sure you wish to delete this version?"
