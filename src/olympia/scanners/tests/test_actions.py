@@ -55,12 +55,55 @@ class TestActions(TestCase):
     def test_flags_a_version_for_human_review(self):
         version = version_factory(addon=addon_factory())
         assert not version.needshumanreview_set.filter(is_active=True).exists()
-        _flag_for_human_review(version=version, rule=None)
+        # We'll return True because there is an active scanner NHR (that we created).
+        assert _flag_for_human_review(version=version, rule=None)
         assert version.needshumanreview_set.filter(is_active=True).exists()
         assert (
             version.needshumanreview_set.get().reason
             == version.needshumanreview_set.model.REASONS.SCANNER_ACTION
         )
+
+    def test_does_not_flag_for_human_review_twice_still_active(self):
+        version = version_factory(addon=addon_factory())
+        nhr = version.needshumanreview_set.create(
+            reason=version.needshumanreview_set.model.REASONS.SCANNER_ACTION,
+            is_active=True,
+        )
+
+        # We'll return True because there is an active scanner NHR...
+        assert _flag_for_human_review(version=version, rule=None)
+
+        # ... But we haven't added an extra flag.
+        assert (
+            version.needshumanreview_set.filter(
+                reason=version.needshumanreview_set.model.REASONS.SCANNER_ACTION
+            ).count()
+            == 1
+        )
+
+        # The original one is still here and still active.
+        assert nhr.reload().is_active
+
+    def test_does_not_flag_for_human_review_twice_inactive(self):
+        version = version_factory(addon=addon_factory())
+        nhr = version.needshumanreview_set.create(
+            reason=version.needshumanreview_set.model.REASONS.SCANNER_ACTION,
+            is_active=False,
+        )
+
+        # We'll return False because there is a scanner NHR but it's inactive.
+        assert not _flag_for_human_review(version=version, rule=None)
+
+        # ... But we haven't added an extra flag.
+        assert (
+            version.needshumanreview_set.filter(
+                reason=version.needshumanreview_set.model.REASONS.SCANNER_ACTION
+            ).count()
+            == 1
+        )
+
+        # The original one is still here and still inactive.
+        assert not nhr.reload().is_active
 
     def test_delay_auto_approval(self):
         addon = addon_factory(file_kw={'status': amo.STATUS_AWAITING_REVIEW})
@@ -275,6 +318,53 @@ class TestActions(TestCase):
             == version.needshumanreview_set.model.REASONS.SCANNER_ACTION
         )
 
+    def test_delay_auto_approval_already_flagged_active(self):
+        addon = addon_factory(file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        version = addon.current_version
+        # Create an existing active flag.
+        version.needshumanreview_set.create(
+            reason=version.needshumanreview_set.model.REASONS.SCANNER_ACTION,
+            is_active=True,
+        )
+        assert addon.auto_approval_delayed_until is None
+        _delay_auto_approval(version=version, rule=None)
+        # Everything still happening as normal, an active flag doesn't prevent
+        # the action from running.
+        self.assertCloseToNow(
+            addon.auto_approval_delayed_until,
+            now=datetime.now() + timedelta(hours=24),
+        )
+        self.assertCloseToNow(
+            addon.auto_approval_delayed_until_unlisted,
+            now=datetime.now() + timedelta(hours=24),
+        )
+        assert version.needshumanreview_set.filter(is_active=True).exists()
+        self.assertCloseToNow(
+            version.due_date,
+            now=datetime.now() + timedelta(hours=24),
+        )
+        # We haven't flagged it multiple times.
+        assert version.needshumanreview_set.count() == 1
+
+    def test_delay_auto_approval_already_flagged_inactive(self):
+        addon = addon_factory(file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        version = addon.current_version
+        # Create an existing inactive flag.
+        version.needshumanreview_set.create(
+            reason=version.needshumanreview_set.model.REASONS.SCANNER_ACTION,
+            is_active=False,
+        )
+        assert addon.auto_approval_delayed_until is None
+        _delay_auto_approval(version=version, rule=None)
+        # An inactive scanner action NHR flag means we shouldn't execute the
+        # action.
+        assert not addon.auto_approval_delayed_until
+        assert not addon.auto_approval_delayed_until_unlisted
+
+        # We shouldn't re-flag either.
+        assert not version.needshumanreview_set.filter(is_active=True).exists()
+        assert not version.due_date
+
     def test_delay_auto_approval_indefinitely(self):
         addon = addon_factory(file_kw={'status': amo.STATUS_AWAITING_REVIEW})
         version = addon.current_version
@@ -329,6 +419,44 @@ class TestActions(TestCase):
             version.needshumanreview_set.get().reason
             == version.needshumanreview_set.model.REASONS.SCANNER_ACTION
         )
+
+    def test_delay_auto_approval_indefinitely_already_flagged_active(self):
+        addon = addon_factory(file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        version = addon.current_version
+        # Create an existing active flag.
+        version.needshumanreview_set.create(
+            reason=version.needshumanreview_set.model.REASONS.SCANNER_ACTION,
+            is_active=True,
+        )
+        assert addon.auto_approval_delayed_until is None
+        _delay_auto_approval_indefinitely(version=version, rule=None)
+        # Everything still happening as normal, an active flag doesn't prevent
+        # the action from running.
+        assert addon.auto_approval_delayed_until == datetime.max
+        assert addon.auto_approval_delayed_until_unlisted == datetime.max
+        assert version.needshumanreview_set.filter(is_active=True).exists()
+        assert version.due_date
+        # We haven't flagged it multiple times.
+        assert version.needshumanreview_set.count() == 1
+
+    def test_delay_auto_approval_indefinitely_already_flagged_inactive(self):
+        addon = addon_factory(file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        version = addon.current_version
+        # Create an existing inactive flag.
+        version.needshumanreview_set.create(
+            reason=version.needshumanreview_set.model.REASONS.SCANNER_ACTION,
+            is_active=False,
+        )
+        assert addon.auto_approval_delayed_until is None
+        _delay_auto_approval_indefinitely(version=version, rule=None)
+        # An inactive scanner action NHR flag means we shouldn't execute the
+        # action.
+        assert not addon.auto_approval_delayed_until
+        assert not addon.auto_approval_delayed_until_unlisted
+
+        # We shouldn't re-flag either.
+        assert not version.needshumanreview_set.filter(is_active=True).exists()
+        assert not version.due_date
 
     def test_delay_auto_approval_indefinitely_and_restrict(self):
         user1 = user_factory(last_login_ip='5.6.7.8')
@@ -602,6 +730,61 @@ class TestActions(TestCase):
                     f'Addon {addon.pk} Version {addon.current_version.pk}.'
                 )
 
+    def test_delay_auto_approval_indefinitely_and_restrict_already_flagged_active(self):
+        user = user_factory(last_login_ip='5.6.7.8')
+        addon = addon_factory(users=[user])
+        version = addon.current_version
+        # Create an existing active flag.
+        version.needshumanreview_set.create(
+            reason=version.needshumanreview_set.model.REASONS.SCANNER_ACTION,
+            is_active=True,
+        )
+        assert addon.auto_approval_delayed_until is None
+        _delay_auto_approval_indefinitely_and_restrict(version=version, rule=None)
+        # Everything still happening as normal, an active flag doesn't prevent
+        # the action from running.
+        assert addon.auto_approval_delayed_until == datetime.max
+        assert addon.auto_approval_delayed_until_unlisted == datetime.max
+        assert version.needshumanreview_set.filter(is_active=True).exists()
+        assert EmailUserRestriction.objects.filter(
+            email_pattern=user.email,
+            restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION,
+        ).exists()
+        assert IPNetworkUserRestriction.objects.filter(
+            network='5.6.7.8/32', restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
+        ).exists()
+        assert version.due_date
+        # We haven't flagged it multiple times.
+        assert version.needshumanreview_set.count() == 1
+
+    def test_delay_auto_approval_indefinitely_and_restrict_already_flagged_inactive(
+        self,
+    ):
+        user = user_factory(last_login_ip='5.6.7.8')
+        addon = addon_factory(users=[user])
+        version = addon.current_version
+        # Create an existing inactive flag.
+        version.needshumanreview_set.create(
+            reason=version.needshumanreview_set.model.REASONS.SCANNER_ACTION,
+            is_active=False,
+        )
+        assert addon.auto_approval_delayed_until is None
+        _delay_auto_approval_indefinitely_and_restrict(version=version, rule=None)
+        # An inactive scanner action NHR flag means we shouldn't execute the
+        # action.
+        assert not addon.auto_approval_delayed_until
+        assert not addon.auto_approval_delayed_until_unlisted
+        assert not EmailUserRestriction.objects.filter(
+            email_pattern=user.email
+        ).exists()
+        assert not IPNetworkUserRestriction.objects.filter(
+            network='5.6.7.8/32'
+        ).exists()
+
+        # We shouldn't re-flag either.
+        assert not version.needshumanreview_set.filter(is_active=True).exists()
+        assert not version.due_date
+
     def test_delay_auto_approval_indefinitely_and_restrict_future_approvals(self):
         user1 = user_factory(last_login_ip='5.6.7.8')
         user2 = user_factory(last_login_ip='')
@@ -672,6 +855,63 @@ class TestActions(TestCase):
         ).exists()
         assert not IPNetworkUserRestriction.objects.filter(network=None).exists()
         assert not IPNetworkUserRestriction.objects.filter(network='').exists()
+
+    def test_restrict_future_approvals_already_flagged_active(self):
+        user = user_factory(last_login_ip='5.6.7.8')
+        addon = addon_factory(users=[user])
+        version = addon.current_version
+        # Create an existing active flag.
+        version.needshumanreview_set.create(
+            reason=version.needshumanreview_set.model.REASONS.SCANNER_ACTION,
+            is_active=True,
+        )
+        assert addon.auto_approval_delayed_until is None
+        _delay_auto_approval_indefinitely_and_restrict_future_approvals(
+            version=version, rule=None
+        )
+        # Everything still happening as normal, an active flag doesn't prevent
+        # the action from running.
+        assert addon.auto_approval_delayed_until == datetime.max
+        assert addon.auto_approval_delayed_until_unlisted == datetime.max
+        assert version.needshumanreview_set.filter(is_active=True).exists()
+        assert EmailUserRestriction.objects.filter(
+            email_pattern=user.email,
+            restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL,
+        ).exists()
+        assert IPNetworkUserRestriction.objects.filter(
+            network='5.6.7.8/32', restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
+        ).exists()
+        assert version.due_date
+        # We haven't flagged it multiple times.
+        assert version.needshumanreview_set.count() == 1
+
+    def test_restrict_future_approvals_already_flagged_inactive(self):
+        user = user_factory(last_login_ip='5.6.7.8')
+        addon = addon_factory(users=[user])
+        version = addon.current_version
+        # Create an existing inactive flag.
+        version.needshumanreview_set.create(
+            reason=version.needshumanreview_set.model.REASONS.SCANNER_ACTION,
+            is_active=False,
+        )
+        assert addon.auto_approval_delayed_until is None
+        _delay_auto_approval_indefinitely_and_restrict_future_approvals(
+            version=version, rule=None
+        )
+        # An inactive scanner action NHR flag means we shouldn't execute the
+        # action.
+        assert not addon.auto_approval_delayed_until
+        assert not addon.auto_approval_delayed_until_unlisted
+        assert not EmailUserRestriction.objects.filter(
+            email_pattern=user.email
+        ).exists()
+        assert not IPNetworkUserRestriction.objects.filter(
+            network='5.6.7.8/32'
+        ).exists()
+
+        # We shouldn't re-flag either.
+        assert not version.needshumanreview_set.filter(is_active=True).exists()
+        assert not version.due_date
 
     def test_delay_auto_approval_indefinitely_and_restrict_nothing_to_restrict(self):
         addon = addon_factory()
@@ -874,6 +1114,16 @@ class TestRunAction(TestCase):
         ScannerResult.run_action(version)
 
         assert version.reviewerflags.needs_human_review_by_mad
+
+    def test_does_not_flag_for_human_review_by_mad_if_check_argument_is_false(self):
+        version = version_factory(addon=addon_factory())
+        results = {'scanners': {'customs': {'result_details': {'models_agree': False}}}}
+        ScannerResult.objects.create(version=version, scanner=MAD, results=results)
+
+        ScannerResult.run_action(version, check_mad_results=False)
+
+        with self.assertRaises(VersionReviewerFlags.DoesNotExist):
+            version.reviewerflags  # noqa: B018
 
     def test_does_not_flag_for_human_review_by_mad_when_score_is_okay(self):
         version = version_factory(addon=addon_factory())

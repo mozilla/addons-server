@@ -286,22 +286,7 @@ class ScannerResult(AbstractScannerResult):
         return self.state != UNKNOWN and self.scanner not in [MAD]
 
     @classmethod
-    def run_action(cls, version):
-        """Try to find and execute an action for a given version, based on the
-        scanner results and associated rules.
-
-        If an action is found, it is run synchronously from this method, not in
-        a task.
-        """
-        log.info('Checking rules and actions for version %s.', version.pk)
-
-        if version.addon.type != ADDON_EXTENSION:
-            log.info(
-                'Not running action(s) on version %s which belongs to a non-extension.',
-                version.pk,
-            )
-            return
-
+    def _check_mad_results(cls, version):
         try:
             mad_result = cls.objects.filter(version=version, scanner=MAD).get()
             customs = mad_result.results.get('scanners', {}).get('customs', {})
@@ -322,6 +307,26 @@ class ScannerResult(AbstractScannerResult):
         except cls.DoesNotExist:
             log.info('No MAD scanner result for version %s.', version.pk)
             pass
+
+    @classmethod
+    def run_action(cls, version, *, check_mad_results=True):
+        """Try to find and execute an action for a given version, based on the
+        scanner results and associated rules.
+
+        If an action is found, it is run synchronously from this method, not in
+        a task.
+        """
+        log.info('Checking rules and actions for version %s.', version.pk)
+
+        if version.addon.type != ADDON_EXTENSION:
+            log.info(
+                'Not running action(s) on version %s which belongs to a non-extension.',
+                version.pk,
+            )
+            return
+
+        if check_mad_results:
+            cls._check_mad_results(version)
 
         result_query_name = cls._meta.get_field('matched_rules').related_query_name()
 
