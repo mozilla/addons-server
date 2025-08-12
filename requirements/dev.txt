@@ -339,9 +339,9 @@ django-model-info==2024.11.5 \
     --hash=sha256:3ceffa8f9b8d6f98fef9e0d4bad7a6f35694315f3fdb30f21e687ecba79bc071 \
     --hash=sha256:fe8497cb71cd045b929d79548bf7f5f3f5261e15c8b585005d684838363d9f7d
 # rich is required by django-model-info
-rich==14.0.0 \
-    --hash=sha256:1c9491e1951aac09caffd42f448ee3d04e58923ffe14993f6e83068dc395d7e0 \
-    --hash=sha256:82f1bc23a6a21ebca4ae0c45af9bdbc492ed20231dcb63f297d6d1021a9d5725
+rich==14.1.0 \
+    --hash=sha256:536f5f1785986d6dbdea3c75205c473f970777b4a0d6c6dd1b696aa05a3fa04f \
+    --hash=sha256:e497a48b844b0320d45007cdebfeaeed8db2a4f4bcf49f15e455cfc4af11eaa8
 # networkx is required by django-model-info
 networkx==3.4.2 \
     --hash=sha256:307c3669428c5362aab27c8a1260aa8f47c4e91d3891f48be0141738d8d053e1 \
