@@ -4526,7 +4526,7 @@ msgstr "Supprimer cette version va effacer définitivement :"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:288
 msgid "Important:"
-msgstr ""
+msgstr "Important !"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:289
 msgid ""
