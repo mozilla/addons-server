@@ -2653,7 +2653,7 @@ msgstr "Reîmprospătează rezultatele"
 #: src/olympia/devhub/templates/devhub/verify_email.html:101
 #, python-format
 msgid "If you encounter issues, please see our <a %(a_attrs)s>troubleshooting suggestions</a> on Firefox Extension Workshop."
-msgstr "Dacă întâmpini probleme, consultă <a %(a_attrs)s>sugestiile de depanare</a> din atelierul de extensii Firefox."
+msgstr "Dacă întâmpini probleme, te rugăm să consulți <a %(a_attrs)s>sugestiile de depanare</a> din atelierul de extensii Firefox."
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html:4 src/olympia/devhub/templates/devhub/addons/activity.html:17
 msgid "Recent Activity for My Add-ons"
@@ -3500,7 +3500,7 @@ msgid ""
 "You’re done! ✨ You will receive a confirmation email when this version is published on %(site_domain)s. Note that it may take up to 24 hours before publication occurs, or longer if your add-on is "
 "selected for manual review. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
-"Ați terminat! ✨ Vei primi un mesaj de confirmare pe e-mail când această versiune va fi publicată pe %(site_domain)s. Reține că poate dura până la 24 de ore până la publicare sau mai mult dacă "
+"Ai terminat! ✨ Vei primi un mesaj de confirmare pe e-mail când această versiune va fi publicată pe %(site_domain)s. De reținut că poate dura până la 24 de ore până la publicare sau mai mult dacă "
 "suplimentul este selectat pentru revizuire manuală. Dacă nu primești un mesaj pe e-mail după 24 de ore, te rugăm să verifici dosarul de spam."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:31
@@ -3746,7 +3746,7 @@ msgstr ""
 "Salut,\n"
 "\n"
 "Primești acest mesaj pentru că ai solicitat chei API noi pentru dezvoltatori pentru\n"
-"%(domain)s. To finish this process, please click on the link below:\n"
+"%(domain)s. Pentru finalizarea procesului, te rugăm să dai clic pe linkul de mai jos:\n"
 "\n"
 "%(api_key_confirmation_link)s\n"
 "\n"
@@ -3961,6 +3961,8 @@ msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement, Review Policies and Rules and our <a %(a_attrs)s href=\"%(faq_url)s\">Frequently Asked Questions</a>. The Firefox "
 "Add-on Distribution Agreement also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
+"Înainte de a începe, te rugăm să citești și să accepți Acordul nostru de distribuire a suplimentelor Firefox, Politicile și regulile de revizuire și <a %(a_attrs)s href=\"%(faq_url)s\">Întrebările "
+"frecvente</a>. Acordul de distribuire a suplimentelor Firefox include și un link către Notificarea noastră privind confidențialitatea, care explică modul în care îți gestionăm informațiile."
 
 #: src/olympia/devhub/templates/devhub/includes/agreement.html:10
 msgid "Review Policies and Rules"
@@ -4161,7 +4163,8 @@ msgstr "Îți mulțumim!"
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:45
 msgid "If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us."
 msgstr ""
-"Dacă nu ai confirmat anterior un abonament la buletinul de știri despre Mozilla, este posibil să fie necesar să o faci. Caută un mesaj de la noi pe e-mail în mesaje primite sau în dosarul de spam."
+"Dacă nu ai confirmat anterior un abonament la buletinul de știri despre Mozilla, este posibil să fie necesar să o faci. Te rugăm să cauți un mesaj de la noi pe e-mail în mesaje primite sau în "
+"dosarul de spam."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:3
 msgid "Resources"
@@ -4518,8 +4521,8 @@ msgid ""
 "The latest approved version of this %(promoted_group_name)s add-on cannot be deleted or disabled because the previous version was not approved for %(promoted_group_name)s promotion. Please contact "
 "AMO Admins if you need help with this."
 msgstr ""
-"Ultima versiune aprobată a acestui supliment %(promoted_group_name)s nu poate fi ștearsă sau dezactivată deoarece versiunea precedentă nu a fost aprobată pentru promovare %(promoted_group_name)s. "
-"Contactează administratorii AMO dacă ai nevoie de ajutor în acest sens."
+"Ultima versiune aprobată a acestui supliment %(promoted_group_name)s nu poate fi ștearsă sau dezactivată deoarece versiunea precedentă nu a fost aprobată pentru promovare %(promoted_group_name)s. Te"
+" rugăm să contactezi administratorii AMO dacă ai nevoie de ajutor în acest sens."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:326 src/olympia/devhub/templates/devhub/versions/list.html:352
 msgid "Hide Add-on"
