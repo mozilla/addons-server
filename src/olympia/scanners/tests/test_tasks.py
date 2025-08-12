@@ -710,7 +710,7 @@ class TestRunNarc(UploadMixin, TestCase):
             definition=r'.*',
         )
 
-        received_results = run_narc(self.results, self.upload.pk)
+        run_narc(self.results, self.upload.pk)
 
         assert not ScannerResult.objects.exists()
         assert not incr_mock.called

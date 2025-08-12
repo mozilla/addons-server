@@ -1840,7 +1840,6 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         }
         response = self.request(**data)
         assert response.status_code == 201, response.content
-        version = Addon.objects.get().versions.get()
         assert run_narc_on_version_mock.delay.call_count == 0
 
     @mock.patch('olympia.addons.serializers.run_narc_on_version')
@@ -1883,7 +1882,6 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         }
         response = self.request(**data)
         assert response.status_code == 201, response.content
-        version = Addon.objects.get().versions.get()
         assert run_narc_on_version_mock.delay.call_count == 0
 
 
