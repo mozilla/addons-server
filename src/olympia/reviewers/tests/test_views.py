@@ -7787,11 +7787,12 @@ class TestHeldDecisionQueue(ReviewerTest):
             action=DECISION_ACTIONS.AMO_DELETE_RATING,
             rating=Rating.objects.create(addon=addon_factory(), user=user_factory()),
         )
-        self.user = user_factory()
-        self.grant_permission(self.user, 'Addons:HighImpactApprove')
-        self.client.force_login(self.user)
 
     def test_results(self):
+        user = user_factory()
+        self.grant_permission(user, 'Addons:HighImpactApprove')
+        self.client.force_login(user)
+
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)('#held-decision-queue')
