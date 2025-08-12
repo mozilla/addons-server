@@ -7787,9 +7787,9 @@ class TestHeldDecisionQueue(ReviewerTest):
             action=DECISION_ACTIONS.AMO_DELETE_RATING,
             rating=Rating.objects.create(addon=addon_factory(), user=user_factory()),
         )
-        user = user_factory()
-        self.grant_permission(user, 'Addons:HighImpactApprove')
-        self.client.force_login(user)
+        self.user = user_factory()
+        self.grant_permission(self.user, 'Addons:HighImpactApprove')
+        self.client.force_login(self.user)
 
     def test_results(self):
         response = self.client.get(self.url)
