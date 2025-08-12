@@ -4250,7 +4250,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html:1
 #, python-brace-format
 msgid "File {file_id}"
-msgstr ""
+msgstr "Fil {file_id}"
 
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html:5
 #, python-format
@@ -4272,7 +4272,7 @@ msgstr "Rediger denne version"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:67
 msgid "Re-enable Version"
-msgstr ""
+msgstr "Genaktiver version"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:73
 msgid "Review History"
@@ -4280,19 +4280,19 @@ msgstr "Anmeldelseshistorik"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:74
 msgid "Close Review History"
-msgstr ""
+msgstr "Luk gennemgangshistorik"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:107
 msgid "Request Review"
-msgstr ""
+msgstr "Anmod om gennemgang"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:118
 msgid "Loading Review History..."
-msgstr ""
+msgstr "Indlæser gennemgangshistorik..."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:119
 msgid "We had a problem retrieving review notes"
-msgstr ""
+msgstr "Vi havde et problem med at hente gennemgangsnoter"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:121
 msgid "Load older..."
