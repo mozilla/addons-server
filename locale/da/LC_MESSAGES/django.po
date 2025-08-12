@@ -2521,25 +2521,25 @@ msgstr "Læs mere"
 
 #: src/olympia/devhub/templates/devhub/validate_addon.html:12
 msgid "Use the field below to upload your add-on package."
-msgstr ""
+msgstr "Brug feltet nedenfor til at uploade din tilføjelsespakke."
 
 #: src/olympia/devhub/templates/devhub/validate_addon.html:15
 msgid "After upload, a series of automated validation tests will be run on your file."
-msgstr ""
+msgstr "Efter upload vil en række automatiske valideringstest blive kørt på din fil."
 
 #: src/olympia/devhub/templates/devhub/validate_addon.html:22
 msgid "Do you want your add-on to be distributed on this site?"
-msgstr ""
+msgstr "Ønsker du, at din tilføjelse skal distribueres på dette websted?"
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 #: src/olympia/devhub/templates/devhub/validation.html:5
 #, python-brace-format
 msgid "Validation Results for {0}"
-msgstr ""
+msgstr "Valideringsresultater for {0}"
 
 #: src/olympia/devhub/templates/devhub/validation.html:7
 msgid "Validation Results"
-msgstr ""
+msgstr "Valideringsresultater"
 
 #: src/olympia/devhub/templates/devhub/validation.html:19
 msgid "Validated at:"
@@ -3259,7 +3259,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html:13
 msgid "This add-on doesn't have any versions."
-msgstr ""
+msgstr "Denne tilføjelse har ingen versioner."
 
 #. {0} is the number of downloads.
 #: src/olympia/devhub/templates/devhub/addons/listing/macros.html:20
@@ -4229,7 +4229,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:93
 msgid "Approval Status"
-msgstr ""
+msgstr "Godkendelsesstatus"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:106
 msgid "Notes for Reviewers"
