@@ -380,7 +380,8 @@ msgstr "Fișierul este deja dezactivat."
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
-"Ultima versiune aprobată a acestui supliment %s nu poate fi ștearsă deoarece versiunea anterioară nu a fost aprobată pentru recomandare %s. Contactează administratorii AMO dacă ai nevoie de ajutor."
+"Ultima versiune aprobată a acestui supliment %s nu poate fi ștearsă deoarece versiunea anterioară nu a fost aprobată pentru recomandare %s. Te rugăm să contactezi administratorii AMO dacă ai nevoie "
+"de ajutor."
 
 #: src/olympia/addons/serializers.py:570
 msgid "Listed versions cannot be submitted while add-on is disabled."
@@ -618,7 +619,7 @@ msgid ""
 "href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>Ne pare rău, dar nu găsim ce cauți.</h1> <p> Pagina sau fișierul solicitat(ă) nu a fost găsit(ă) pe site-ul nostru. Se poate să fi dat clic pe un link neactualizat sau poate că ai tastat greșit "
-"adresa. </p> <ul> <li>Dacă ai tastat adresa, verifică încă o dată textul introdus.</li> <li> Dacă ai venit dând clic pe un link undeva, te rugăm %(open_bug_link)ssă raportezi o "
+"adresa. </p> <ul> <li>Dacă ai tastat adresa, te rugăm să verifici încă o dată textul introdus.</li> <li> Dacă ai venit dând clic pe un link undeva, te rugăm %(open_bug_link)ssă raportezi o "
 "problemă%(close_bug_link)s. Spune-ne de unde ai venit și ce căutai și ne vom strădui să o corectăm. </li> </ul> <p>Sau poți pur și simplu să treci la câteva dintre paginile populare de pe site-ul "
 "nostru.</p> <ul> <li>Ești interesat(ă) de <a href=\"%(rec)s\">o listă cu suplimente promovate</a>?</li> <li> Vrei să <a href=\"%(search)s\">cauți suplimente</a>? Poți merge <a href=\"%(search)s\">pe"
 " pagina de căutare</a> sau pur și simplu folosește câmpul de căutare de mai sus. </li> <li> Dacă preferi să o iei de la capăt, mergi pe <a href=\"%(home)s\">pagina principală de suplimente</a>. "
@@ -674,11 +675,11 @@ msgstr "Mentenanță în curs"
 
 #: src/olympia/amo/templates/amo/read-only.html:9
 msgid "This feature is temporarily disabled while we perform website maintenance. Please use your browser's Back button and try again a little later."
-msgstr "Această funcționalitate este dezactivată temporar cât realizăm mentenanță pe site. Te rugăm să folosești butonul Înapoi al browserului și să încerci din nou mai târziu."
+msgstr "Funcționalitatea este dezactivată temporar cât facem mentenanță pe site. Te rugăm să folosești butonul Înapoi al browserului și să încerci din nou mai târziu."
 
 #: src/olympia/amo/templates/amo/read-only.html:14
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
-msgstr "Unele funcționalități de pe această pagină sunt dezactivate temporar, cât efectuăm mentenanța pe site. Te rugăm încerci din nou puțin mai târziu."
+msgstr "Unele funcționalități de pe această pagină sunt dezactivate temporar, cât facem mentenanța pe site. Te rugăm încerci din nou puțin mai târziu."
 
 #: src/olympia/amo/templates/amo/submissions_disabled.html:3
 msgid "Add-on uploads temporarily disabled"
@@ -789,7 +790,7 @@ msgstr "Confirmare pentru cheile API de dezvoltator"
 
 #: src/olympia/api/throttling.py:113
 msgid "You have submitted this form too many times recently. Please try again after some time."
-msgstr "Ați trimis acest formular de prea multe ori în ultima vreme. Încercați din nou după un timp."
+msgstr "Ai trimis acest formular de prea multe ori în ultima vreme. Te rugăm să încerci din nou mai târziu."
 
 #: src/olympia/bandwagon/serializers.py:72
 msgid "This custom URL is already in use by another one of your collections."
@@ -2108,8 +2109,8 @@ msgid ""
 "On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
 "on manifest’s <a {a_attrs}>update_url</a> is provided, as this is the URL where Firefox finds updates for automatic deployment to your users.</span>"
 msgstr ""
-"Pe cont propriu. <span class=\"helptext\">După ce suplimentul este semnat de Mozilla, poți descărca fișierul .xpi din Centrul dezvoltatorilor și îl poți distribui publicului. Asigură-te că este "
-"furnizat <a {a_attrs}>update_url</a> al manifestului suplimentului pentru că este adresa URL la care Firefox găsește actualizări pentru implementarea automată pentru utilizatorii tăi.</span>"
+"Pe cont propriu. <span class=\"helptext\">După ce suplimentul este semnat de Mozilla, poți descărca fișierul .xpi din Centrul dezvoltatorilor și îl poți distribui publicului. Te rugăm să te asiguri "
+"că este furnizat <a {a_attrs}>update_url</a> al manifestului suplimentului pentru că este adresa URL la care Firefox găsește actualizări pentru implementarea automată pentru utilizatorii tăi.</span>"
 
 #: src/olympia/devhub/forms.py:1421 src/olympia/devhub/templates/devhub/includes/agreement.html:17
 msgid "Display Name"
@@ -2288,7 +2289,7 @@ msgstr "Validează suplimentul"
 #: src/olympia/devhub/views.py:645
 #, python-brace-format
 msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
-msgstr "<a href=\"{link}\">Adaugă autentificarea cu doi factori în cont ca să poți trimite extensii.</a>"
+msgstr "<a href=\"{link}\">Te rugăm să adaugi autentificarea cu doi factori în cont ca să poți trimite extensii.</a>"
 
 #: src/olympia/devhub/views.py:1022
 msgid "Icons must be either PNG or JPG."
@@ -2325,8 +2326,8 @@ msgstr "A apărut o eroare la încărcarea previzualizării tale."
 msgid ""
 "The latest approved version of this %s add-on cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
-"Ultima versiune aprobată a acestui supliment %s nu poate fi ștearsă sau dezactivată deoarece versiunea precedentă nu a fost aprobată pentru promovare %s. Contactează administratorii AMO dacă ai "
-"nevoie de ajutor în acest sens."
+"Ultima versiune aprobată a acestui supliment %s nu poate fi ștearsă sau dezactivată deoarece versiunea precedentă nu a fost aprobată pentru promovare %s. Te rugăm să contactezi administratorii AMO "
+"dacă ai nevoie de ajutor în acest sens."
 
 #: src/olympia/devhub/views.py:1230
 #, python-format
@@ -2345,7 +2346,7 @@ msgstr "Versiune %s reactivată."
 
 #: src/olympia/devhub/views.py:1261
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
-msgstr "Această încărcare nu a trecut validarea și se poate să nu aibă rezultate complete de validare. Te rugăm să dai dovadă de maximă precauție la recenzie."
+msgstr "Încărcarea nu a trecut validarea și se poate să nu aibă rezultate complete de validare. Te rugăm să dai dovadă de maximă precauție la recenzie."
 
 #: src/olympia/devhub/views.py:1319
 msgid "Rollback submitted. You'll be notified when it's approved"
@@ -2534,7 +2535,7 @@ msgstr "Caută"
 #: src/olympia/devhub/templates/devhub/suppressed_email.html:4
 #, python-format
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
-msgstr "Am descoperit că adresa ta de e-mail „%(email)s” nu poate primi mesaje de la noi. Actualizează-ți adresa de e-mail cu una care poate primi mesaje de la noi."
+msgstr "Am descoperit că adresa ta de e-mail „%(email)s” nu poate primi mesaje de la noi. Te rugăm să îți actualizezi adresa de e-mail cu una care poate primi mesaje de la noi."
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:5 src/olympia/devhub/templates/devhub/suppressed_email.html:8
 msgid "Learn more"
