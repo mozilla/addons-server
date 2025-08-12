@@ -18,6 +18,8 @@ from olympia.addons.models import Addon, AddonReviewerFlags
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import send_mail
 from olympia.bandwagon.models import Collection
+from olympia.blocklist.models import BlocklistSubmission, BlockType
+from olympia.blocklist.utils import save_versions_to_blocks
 from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.permissions import ADDONS_HIGH_IMPACT_APPROVE
 from olympia.files.models import File
@@ -608,6 +610,75 @@ class ContentActionRejectVersionDelayed(ContentActionRejectVersion):
         )
 
 
+class ContentActionBlockAddon(ContentActionDisableAddon):
+    description = 'Add-on has been (disabled and) blocked'
+
+    def should_hold_action(self):
+        return bool(
+            self.versions_block_will_affect.exists()
+            # is a high profile add-on
+            and any(self.target.promoted_groups(currently_approved=False).high_profile)
+        )
+
+    @property
+    def versions_block_will_affect(self):
+        """Return all versions that will be blocked by this action."""
+        return (
+            Version.unfiltered.filter(addon=self.target, blockversion__id__isnull=True)
+            .no_transforms()
+            .only('pk', 'version')
+            .order_by('-pk')
+        )
+
+    def process_action(self, release_hold=False):
+        if not self.decision.reviewer_user:
+            # For now this action should only be used automatically by scanners and
+            # monitoring tasks, not cinder webhook
+            raise NotImplementedError
+        versions = list(self.versions_block_will_affect)
+        if versions:
+            # Set target_versions before executing the action, since the
+            # queryset depends on the file statuses.
+            self.decision.target_versions.set(versions)
+            disable_too = self.target.status != amo.STATUS_DISABLED
+            if disable_too:
+                self.target.force_disable(skip_activity_log=True)
+            reason = (
+                (policy := self.decision.policies.first()) and policy.text
+            ) or 'Blocked'
+            save_versions_to_blocks(
+                [self.target.guid],
+                BlocklistSubmission(
+                    block_type=BlockType.SOFT_BLOCKED,
+                    updated_by=self.decision.reviewer_user,
+                    reason=reason,
+                    signoff_state=BlocklistSubmission.SIGNOFF_STATES.PUBLISHED,
+                    changed_version_ids=[ver.pk for ver in versions],
+                    # We're disabling the add-on above, so skip this.
+                    disable_addon=False,
+                ),
+                overwrite_block_metadata=False,
+            )
+            return (
+                self.log_action(
+                    amo.LOG.FORCE_DISABLE,
+                    extra_details={
+                        'is_addon_being_blocked': True,
+                        'is_addon_being_disabled': True,
+                    },
+                )
+                if disable_too
+                else None
+            )
+        return None
+
+    def hold_action(self):
+        if versions := list(self.versions_block_will_affect):
+            self.decision.target_versions.set(versions)
+            return self.log_action(amo.LOG.HELD_ACTION_FORCE_DISABLE)
+        return None
+
+
 class ContentActionForwardToLegal(ContentAction):
     valid_targets = (Addon,)
 
@@ -866,6 +937,7 @@ CONTENT_ACTION_FROM_DECISION_ACTION = defaultdict(
         DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON: (
             ContentActionRejectVersionDelayed
         ),
+        DECISION_ACTIONS.AMO_BLOCK_ADDON: ContentActionBlockAddon,
         DECISION_ACTIONS.AMO_DELETE_COLLECTION: ContentActionDeleteCollection,
         DECISION_ACTIONS.AMO_DELETE_RATING: ContentActionDeleteRating,
         DECISION_ACTIONS.AMO_APPROVE: ContentActionApproveNoAction,

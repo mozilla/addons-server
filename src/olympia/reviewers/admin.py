@@ -77,7 +77,7 @@ class UsageTierAdmin(AMOModelAdmin):
         'computed_number_of_addons_that_would_be_flagged_for_ratings',
         'abuse_reports_ratio_threshold_before_disabling',
         'computed_number_of_addons_that_would_be_disabled_for_abuse_reports',
-        'ratings_ratio_threshold_before_disabling'
+        'ratings_ratio_threshold_before_disabling',
         'computed_number_of_addons_that_would_be_disabled_for_ratings',
     )
     readonly_fields = (
