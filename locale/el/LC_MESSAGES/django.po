@@ -3248,6 +3248,8 @@ msgstr "Η διαγραφή του προσθέτου σας θα καταργή
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:6
 msgid "All versions will be Restricted, which will disable and prevent any further installation in Firefox. Existing users can choose to re-enable the add-on."
 msgstr ""
+"Όλες οι εκδόσεις θα γίνουν περιορισμένες, γεγονός που θα απενεργοποιήσει και θα εμποδίσει οποιαδήποτε περαιτέρω εγκατάσταση στο Firefox. Οι υπάρχοντες χρήστες μπορούν να ενεργοποιήσουν ξανά το "
+"πρόσθετο."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:11
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
@@ -4534,6 +4536,8 @@ msgid ""
 "Once a version has been deleted, you may not upload a new version with the same version number. The version will also be Restricted, which will disable and prevent any further installation in "
 "Firefox. Existing users can choose to re-enable the add-on."
 msgstr ""
+"Μόλις διαγραφεί μια έκδοση, δεν θα μπορείτε να μεταφορτώσετε μια νέα με τον ίδιο αριθμό έκδοσης. Επίσης, η έκδοση θα γίνει περιορισμένη, γεγονός που θα απενεργοποιήσει και θα εμποδίσει οποιαδήποτε "
+"περαιτέρω εγκατάσταση στο Firefox. Οι υπάρχοντες χρήστες μπορούν να ενεργοποιήσουν ξανά το πρόσθετο."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:296
 msgid "Are you sure you wish to delete this version?"
