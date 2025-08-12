@@ -1,4 +1,5 @@
 *.css.tmp
+.devcontainer/*
 *.egg-info
 *.js.tmp
 *.less.css
@@ -54,6 +55,10 @@ tmp/*
 # End of .gitignore. Please keep this in sync with the top section of .dockerignore
 
 # do not ignore the following files
+!.devcontainer/devcontainer.json
+!.devcontainer/docker-compose.yml
+!.devcontainer/Dockerfile
+!deps/.gitkeep
 !docker-compose.private.yml
 !docker-compose.tools.yml
 !private/README.md
