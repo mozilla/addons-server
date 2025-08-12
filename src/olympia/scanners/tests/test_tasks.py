@@ -714,6 +714,51 @@ class TestRunNarc(UploadMixin, TestCase):
 
         assert not ScannerResult.objects.exists()
         assert not incr_mock.called
+
+    @mock.patch('olympia.scanners.tasks.statsd.incr')
+    def test_run_ignores_guid_conflict(self, incr_mock):
+        # Create an add-on with the same guid as what's in the manifest of the
+        # xpi we're uploading: that should raise a DuplicateAddonID during
+        # validation, but narc should not trigger that and scan normally.
+        addon_factory(guid='@webextension-guid')
+        rule = ScannerRule.objects.create(
+            name='match_the_beginning',
+            scanner=NARC,
+            definition=r'^My.*$',
+        )
+        incr_mock.reset_mock()
+
+        received_results = run_narc(self.results, self.upload.pk)
+
+        scanner_results = ScannerResult.objects.all()
+        assert len(scanner_results) == 1
+        narc_result = scanner_results[0]
+        assert narc_result.scanner == NARC
+        assert narc_result.upload == self.upload
+        assert narc_result.has_matches
+        assert list(narc_result.matched_rules.all()) == [rule]
+        assert len(narc_result.results) == 1
+        assert narc_result.results == [
+            {
+                'meta': {
+                    'span': [0, 21],
+                    'locale': None,
+                    'source': 'xpi',
+                    'string': 'My WebExtension Addon',
+                    'pattern': '^My.*$',
+                },
+                'rule': 'match_the_beginning',
+            },
+        ]
+        assert incr_mock.called
+        assert incr_mock.call_count == 3
+        incr_mock.assert_has_calls(
+            [
+                mock.call('devhub.narc.has_matches'),
+                mock.call(f'devhub.narc.rule.{rule.id}.match'),
+                mock.call('devhub.narc.success'),
+            ]
+        )
         assert received_results == self.results
 
     @mock.patch('olympia.scanners.tasks.statsd.incr')

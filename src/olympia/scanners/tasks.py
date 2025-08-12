@@ -247,10 +247,8 @@ def _run_narc(*, upload, version):
     # Find all translations from the XPI - if we get a string, that means there
     # were no translations to find, build a simple dict for ease of use later.
     if xpi := upload or version.file.file:
-        xpi_info = parse_xpi(xpi, addon=addon, bypass_trademark_checks=True)
-        values_from_xpi = Addon.resolve_webext_translations(xpi_info, xpi).get(
-            'name', {}
-        )
+        data = parse_xpi(xpi, addon=addon, minimal=True, bypass_trademark_checks=True)
+        values_from_xpi = Addon.resolve_webext_translations(data, xpi).get('name', {})
         if isinstance(values_from_xpi, str):
             values_from_xpi = {None: values_from_xpi}
 
