@@ -1380,12 +1380,15 @@ class TestQueueBasics(QueueTest):
         assert response.status_code == 200
         doc = pq(response.content)
         links = doc('.tabnav li a').map(lambda i, e: e.attrib['href'])
-        expected.extend(
-            [
-                reverse('reviewers.queue_pending_rejection'),
-                reverse('reviewers.queue_decisions'),
-            ]
-        )
+        expected.append(reverse('reviewers.queue_pending_rejection'))
+        assert links == expected
+
+        self.grant_permission(self.user, 'Addons:HighImpactApprove')
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        links = doc('.tabnav li a').map(lambda i, e: e.attrib['href'])
+        expected.append(reverse('reviewers.queue_decisions'))
         assert links == expected
 
     @override_settings(DEBUG=True)
@@ -7784,9 +7787,12 @@ class TestHeldDecisionQueue(ReviewerTest):
             action=DECISION_ACTIONS.AMO_DELETE_RATING,
             rating=Rating.objects.create(addon=addon_factory(), user=user_factory()),
         )
-        self.login_as_admin()
 
     def test_results(self):
+        user = user_factory()
+        self.grant_permission(user, 'Addons:HighImpactApprove')
+        self.client.force_login(user)
+
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)('#held-decision-queue')
