@@ -644,8 +644,9 @@ class ContentActionBlockAddon(ContentActionDisableAddon):
             if disable_too:
                 self.target.force_disable(skip_activity_log=True)
             reason = (
-                (policy := self.decision.policies.first()) and policy.text
-            ) or 'Blocked'
+                "This add-on violates Mozilla's add-on policies by including or using "
+                'deceptive, misleading, or fraudulent activity or functionality'
+            )
             save_versions_to_blocks(
                 [self.target.guid],
                 BlocklistSubmission(

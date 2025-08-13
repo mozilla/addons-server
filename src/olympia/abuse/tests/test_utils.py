@@ -39,7 +39,7 @@ def test_reject_and_block_addons():
         block=Block.objects.create(
             guid=partially_blocked_addon.guid,
             updated_by=user_factory(),
-            reason='something',
+            reason='Something!',
         ),
         version=hard_blocked_version,
         block_type=BlockType.BLOCKED,
@@ -65,6 +65,9 @@ def test_reject_and_block_addons():
     assert partially_blocked_version.blockversion.block_type == BlockType.SOFT_BLOCKED
     # we didn't accidently downgrade the hard-blocked version
     assert hard_blocked_version.blockversion.block_type == BlockType.BLOCKED
+
+    assert normal_addon.block.reason.startswith("This add-on violates Mozilla's")
+    assert partially_blocked_addon.block.reason == 'Something!'
 
     # 3 decisions; 2 are immediately executed; one is recommended so held for 2nd level
     assert ContentDecision.objects.count() == 3
