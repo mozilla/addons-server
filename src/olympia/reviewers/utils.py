@@ -342,7 +342,7 @@ class HeldDecisionQueueTable:
     title = 'Held Decisions for 2nd Level Approval'
     name = 'queue_decisions'
     url_suffix = r'^held_decisions$'
-    permission = amo.permissions.REVIEWS_ADMIN
+    permission = amo.permissions.ADDONS_HIGH_IMPACT_APPROVE
     show_count_in_dashboard = True
     view_name = 'queue_decisions'
 
