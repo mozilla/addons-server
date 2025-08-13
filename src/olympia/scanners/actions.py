@@ -15,12 +15,25 @@ def _no_action(*, version, rule):
 
 
 def _flag_for_human_review(*, version, rule):
-    """Flag the version for human review."""
+    """Flag the version for human review if it hasn't been flagged by a scanner
+    already."""
     from olympia.reviewers.models import NeedsHumanReview
 
-    NeedsHumanReview.objects.create(
-        version=version, reason=NeedsHumanReview.REASONS.SCANNER_ACTION
-    )
+    # Check if the version has already been flagged by a scanner action.
+    # If it has not, then we just need to create a flag.
+    # (Can't use get_or_create(), there is no uniqueness constraint)
+    if not version.needshumanreview_set.filter(
+        reason=NeedsHumanReview.REASONS.SCANNER_ACTION
+    ).exists():
+        version.needshumanreview_set.create(
+            reason=NeedsHumanReview.REASONS.SCANNER_ACTION
+        )
+        return True
+    # If it has been flagged already... then return True only if one of the
+    # flags is active still.
+    return version.needshumanreview_set.filter(
+        reason=NeedsHumanReview.REASONS.SCANNER_ACTION, is_active=True
+    ).exists()
 
 
 def _delay_auto_approval(*, version, rule):
@@ -28,8 +41,11 @@ def _delay_auto_approval(*, version, rule):
 
     If delay was already set for either channel, only override it if the new
     delay is further in the future."""
-    # Always flag for human review.
-    _flag_for_human_review(version=version, rule=rule)
+    # Always try to flag for human review. If that returns False it means we
+    # already flagged before so we don't want to repeat the rest.
+    if not _flag_for_human_review(version=version, rule=rule):
+        return False
+
     in_twenty_four_hours = datetime.now() + timedelta(hours=24)
     version.addon.set_auto_approval_delay_if_higher_than_existing(in_twenty_four_hours)
     # When introducing a short auto-approval delay, reset the due date to match
@@ -38,14 +54,18 @@ def _delay_auto_approval(*, version, rule):
     # to being auto-approved.
     due_date = min(version.due_date or in_twenty_four_hours, in_twenty_four_hours)
     version.reset_due_date(due_date=due_date)
+    return True
 
 
 def _delay_auto_approval_indefinitely(*, version, rule):
     """Delay auto-approval for the whole add-on indefinitely."""
-    # Always flag for human review.
     from olympia.addons.models import AddonReviewerFlags
 
-    _flag_for_human_review(version=version, rule=rule)
+    # Always try to flag for human review. If that returns False it means we
+    # already flagged before so we don't want to repeat the rest.
+    if not _flag_for_human_review(version=version, rule=rule):
+        return False
+
     AddonReviewerFlags.objects.update_or_create(
         addon=version.addon,
         defaults={
@@ -53,6 +73,7 @@ def _delay_auto_approval_indefinitely(*, version, rule):
             'auto_approval_delayed_until_unlisted': datetime.max,
         },
     )
+    return True
 
 
 def _delay_auto_approval_indefinitely_and_restrict(
@@ -60,7 +81,10 @@ def _delay_auto_approval_indefinitely_and_restrict(
 ):
     """Delay auto-approval for the whole add-on indefinitely, and restricts the
     user(s) and their IP(s)."""
-    _delay_auto_approval_indefinitely(version=version, rule=rule)
+    # Always _delay_auto_approval_indefinitely() returns False it means we
+    # already flagged before so we don't want to repeat the rest.
+    if not _delay_auto_approval_indefinitely(version=version, rule=rule):
+        return False
 
     # Collect users and their IPs
     upload = (
@@ -104,12 +128,13 @@ def _delay_auto_approval_indefinitely_and_restrict(
             restriction_type=restriction_type,
             defaults=restriction_defaults,
         )
+    return True
 
 
 def _delay_auto_approval_indefinitely_and_restrict_future_approvals(*, version, rule):
     """Delay auto-approval for the whole add-on indefinitely, and restricts future
     approvals posted by the same user(s) and their IP(s)."""
-    _delay_auto_approval_indefinitely_and_restrict(
+    return _delay_auto_approval_indefinitely_and_restrict(
         version=version, rule=rule, restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
     )
 

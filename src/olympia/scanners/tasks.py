@@ -247,10 +247,8 @@ def _run_narc(*, upload, version):
     # Find all translations from the XPI - if we get a string, that means there
     # were no translations to find, build a simple dict for ease of use later.
     if xpi := upload or version.file.file:
-        xpi_info = parse_xpi(xpi, addon=addon, bypass_trademark_checks=True)
-        values_from_xpi = Addon.resolve_webext_translations(xpi_info, xpi).get(
-            'name', {}
-        )
+        data = parse_xpi(xpi, addon=addon, minimal=True, bypass_trademark_checks=True)
+        values_from_xpi = Addon.resolve_webext_translations(data, xpi).get('name', {})
         if isinstance(values_from_xpi, str):
             values_from_xpi = {None: values_from_xpi}
 
@@ -281,12 +279,23 @@ def _run_narc(*, upload, version):
                     )
                 )
 
-    scanner_result.results = [json.loads(result) for result in sorted(results)]
+    run_action = False
+    new_results = [json.loads(result) for result in sorted(results)]
+    if version and new_results != scanner_result.results:
+        # Scanner actions are normally triggered by auto-approve, but here
+        # we're re running the scanner on a version and found more results than
+        # when it ran on the upload. We don't know whether the action has
+        # already been triggered but in case it has we need to do it again.
+        run_action = True
+    scanner_result.results = new_results
     scanner_result.save()
     if scanner_result.has_matches:
         statsd.incr('devhub.narc.has_matches')
     for scanner_rule in scanner_result.matched_rules.all():
         statsd.incr(f'devhub.narc.rule.{scanner_rule.id}.match')
+    if version and run_action:
+        statsd.incr('devhub.narc.results_differ')
+        ScannerResult.run_action(version, check_mad_results=False)
     return scanner_result
 
 
