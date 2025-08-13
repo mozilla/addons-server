@@ -1255,7 +1255,7 @@ def review_version_redirect(request, addon, version):
     return redirect(url + page_param + f'#version-{to_dom_id(version)}')
 
 
-@permission_or_tools_listed_view_required(amo.permissions.REVIEWS_ADMIN)
+@permission_or_tools_listed_view_required(amo.permissions.ADDONS_HIGH_IMPACT_APPROVE)
 def queue_decisions(request, tab):
     TableObj = reviewer_tables_registry[tab]
     qs = TableObj.get_queryset(request)
