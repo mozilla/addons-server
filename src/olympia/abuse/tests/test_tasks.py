@@ -238,7 +238,7 @@ def test_flag_high_abuse_reports_addons_according_to_review_tier():
 @pytest.mark.django_db
 def test_block_high_abuse_reports_addons_according_to_review_tier():
     not_blocked, blocked = _high_abuse_reports_setup(
-        'abuse_reports_ratio_threshold_before_disabling'
+        'abuse_reports_ratio_threshold_before_blocking'
     )
     responses.add_callback(
         responses.POST,

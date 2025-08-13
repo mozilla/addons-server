@@ -75,18 +75,18 @@ class UsageTierAdmin(AMOModelAdmin):
         'computed_number_of_addons_that_would_be_flagged_for_abuse_reports',
         'ratings_ratio_threshold_before_flagging',
         'computed_number_of_addons_that_would_be_flagged_for_ratings',
-        'abuse_reports_ratio_threshold_before_disabling',
-        'computed_number_of_addons_that_would_be_disabled_for_abuse_reports',
-        'ratings_ratio_threshold_before_disabling',
-        'computed_number_of_addons_that_would_be_disabled_for_ratings',
+        'abuse_reports_ratio_threshold_before_blocking',
+        'computed_number_of_addons_that_would_be_blocked_for_abuse_reports',
+        'ratings_ratio_threshold_before_blocking',
+        'computed_number_of_addons_that_would_be_blocked_for_ratings',
     )
     readonly_fields = (
         'computed_growth_threshold_before_flagging',
         'computed_number_of_addons_that_would_be_flagged_for_growth',
         'computed_number_of_addons_that_would_be_flagged_for_abuse_reports',
         'computed_number_of_addons_that_would_be_flagged_for_ratings',
-        'computed_number_of_addons_that_would_be_disabled_for_abuse_reports',
-        'computed_number_of_addons_that_would_be_disabled_for_ratings',
+        'computed_number_of_addons_that_would_be_blocked_for_abuse_reports',
+        'computed_number_of_addons_that_would_be_blocked_for_ratings',
     )
 
     def computed_growth_threshold_before_flagging(self, obj):
@@ -108,22 +108,22 @@ class UsageTierAdmin(AMOModelAdmin):
             (
                 UsageTier.get_base_addons()
                 .alias(abuse_reports_count=UsageTier.get_abuse_count_subquery())
-                .filter(obj.get_abuse_threshold_q_object(disable=False))
+                .filter(obj.get_abuse_threshold_q_object(block=False))
                 .count()
             )
             if obj.abuse_reports_ratio_threshold_before_flagging
             else 0
         )
 
-    def computed_number_of_addons_that_would_be_disabled_for_abuse_reports(self, obj):
+    def computed_number_of_addons_that_would_be_blocked_for_abuse_reports(self, obj):
         return (
             (
                 UsageTier.get_base_addons()
                 .alias(abuse_reports_count=UsageTier.get_abuse_count_subquery())
-                .filter(obj.get_abuse_threshold_q_object(disable=True))
+                .filter(obj.get_abuse_threshold_q_object(block=True))
                 .count()
             )
-            if obj.abuse_reports_ratio_threshold_before_disabling
+            if obj.abuse_reports_ratio_threshold_before_blocking
             else 0
         )
 
@@ -132,22 +132,22 @@ class UsageTierAdmin(AMOModelAdmin):
             (
                 UsageTier.get_base_addons()
                 .alias(ratings_count=UsageTier.get_rating_count_subquery())
-                .filter(obj.get_rating_threshold_q_object(disable=False))
+                .filter(obj.get_rating_threshold_q_object(block=False))
                 .count()
             )
             if obj.ratings_ratio_threshold_before_flagging
             else 0
         )
 
-    def computed_number_of_addons_that_would_be_disabled_for_ratings(self, obj):
+    def computed_number_of_addons_that_would_be_blocked_for_ratings(self, obj):
         return (
             (
                 UsageTier.get_base_addons()
                 .alias(ratings_count=UsageTier.get_rating_count_subquery())
-                .filter(obj.get_rating_threshold_q_object(disable=True))
+                .filter(obj.get_rating_threshold_q_object(block=True))
                 .count()
             )
-            if obj.ratings_ratio_threshold_before_disabling
+            if obj.ratings_ratio_threshold_before_blocking
             else 0
         )
 

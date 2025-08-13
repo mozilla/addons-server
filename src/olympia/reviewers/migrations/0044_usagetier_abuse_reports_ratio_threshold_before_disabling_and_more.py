@@ -12,12 +12,12 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AddField(
             model_name='usagetier',
-            name='abuse_reports_ratio_threshold_before_disabling',
+            name='abuse_reports_ratio_threshold_before_blocking',
             field=models.IntegerField(blank=True, default=None, help_text='Percentage threshold of ratio between non individually actionable abuse reports over the past 2 weeks to add-on usage before we automatically disable the add-on. For example, if set to 4 and an add-on in that tier has 10,000 users, it will be disabled after 400 reports.', null=True),
         ),
         migrations.AddField(
             model_name='usagetier',
-            name='ratings_ratio_threshold_before_disabling',
+            name='ratings_ratio_threshold_before_blocking',
             field=models.IntegerField(blank=True, default=None, help_text='Percentage threshold of ratio between ratings over the past 2 weeksto add-on usage before we automatically disable the add-on. For example, if set to 5 and an add-on in that tier has 10,000 users, it will be disabled after 500 ratings.', null=True),
         ),
         migrations.AddField(

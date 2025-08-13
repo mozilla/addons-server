@@ -158,11 +158,11 @@ def flag_high_rating_addons_according_to_review_tier():
 
     # Need a ratings ratio threshold to be set for the tier.
     disabling_tiers = usage_tiers_qs.filter(
-        ratings_ratio_threshold_before_disabling__isnull=False
+        ratings_ratio_threshold_before_blocking__isnull=False
     )
     disabling_tier_filters = Q()
     for usage_tier in disabling_tiers:
-        disabling_tier_filters |= usage_tier.get_rating_threshold_q_object(disable=True)
+        disabling_tier_filters |= usage_tier.get_rating_threshold_q_object(block=True)
     if disabling_tier_filters:
         reject_and_block_addons(addons_qs.filter(disabling_tier_filters))
 
@@ -172,7 +172,7 @@ def flag_high_rating_addons_according_to_review_tier():
     )
     flagging_tier_filters = Q()
     for usage_tier in flagging_tiers:
-        flagging_tier_filters |= usage_tier.get_rating_threshold_q_object(disable=False)
+        flagging_tier_filters |= usage_tier.get_rating_threshold_q_object(block=False)
     if flagging_tier_filters:
         NeedsHumanReview.set_on_addons_latest_signed_versions(
             addons_qs.filter(flagging_tier_filters),

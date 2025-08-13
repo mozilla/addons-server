@@ -787,24 +787,24 @@ class UsageTier(ModelBase):
         'For example, if set to 5 and an add-on in that tier has 10,000 users, '
         'it will be flagged after 500 ratings.',
     )
-    abuse_reports_ratio_threshold_before_disabling = models.IntegerField(
+    abuse_reports_ratio_threshold_before_blocking = models.IntegerField(
         blank=True,
         default=None,
         null=True,
         help_text='Percentage threshold of ratio between non individually actionable '
         'abuse reports over the past 2 weeks to add-on usage before we automatically '
-        'disable the add-on. '
+        'disable and soft-block the add-on. '
         'For example, if set to 4 and an add-on in that tier has 10,000 users, it will '
-        'be disabled after 400 reports.',
+        'be blocked after 400 reports.',
     )
-    ratings_ratio_threshold_before_disabling = models.IntegerField(
+    ratings_ratio_threshold_before_blocking = models.IntegerField(
         blank=True,
         default=None,
         null=True,
         help_text='Percentage threshold of ratio between ratings over the past 2 weeks'
-        'to add-on usage before we automatically disable the add-on. '
+        'to add-on usage before we automatically disable and soft-block the add-on. '
         'For example, if set to 5 and an add-on in that tier has 10,000 users, '
-        'it will be disabled after 500 ratings.',
+        'it will be blocked after 500 ratings.',
     )
 
     class Meta:
@@ -861,19 +861,19 @@ class UsageTier(ModelBase):
             **self.get_tier_boundaries(),
         )
 
-    def get_abuse_threshold_q_object(self, *, disable=False):
+    def get_abuse_threshold_q_object(self, *, block=False):
         """Return Q object containing filters to apply to find add-ons over the
         abuse threshold for that tier.
 
-        `disable` is a boolean - False for flagging threshold; True for disabling
+        `block` is a boolean - False for flagging threshold; True for blocking
         threshold.
 
         Depends on the queryset being annotated with
         `abuse_reports_count=UsageTier.get_abuse_count_subquery()` first."""
         threshold = (
             self.abuse_reports_ratio_threshold_before_flagging
-            if not disable
-            else self.abuse_reports_ratio_threshold_before_disabling
+            if not block
+            else self.abuse_reports_ratio_threshold_before_blocking
         ) or 0
         return Q(
             abuse_reports_count__gte=F('average_daily_users') * threshold / 100,
@@ -883,7 +883,7 @@ class UsageTier(ModelBase):
     @classmethod
     def get_abuse_count_subquery(cls):
         """Return the Subquery used to annotate `abuse_reports_count`. Needed
-        to use get_abuse_threshold_q_object(disable=False)."""
+        to use get_abuse_threshold_q_object(block=False)."""
         abuse_reports_count_qs = (
             AbuseReport.objects.values('guid')
             .filter(
@@ -897,19 +897,19 @@ class UsageTier(ModelBase):
         )
         return abuse_reports_count_qs
 
-    def get_rating_threshold_q_object(self, *, disable=False):
+    def get_rating_threshold_q_object(self, *, block=False):
         """Return Q object containing filters to apply to find add-ons over the
         rating threshold for that tier.
 
-         `disable` is a boolean - False for flagging threshold; True for disabling
+         `block` is a boolean - False for flagging threshold; True for blocking
         threshold.
 
         Depends on the queryset being annotated with
         `ratings_count=UsageTier.get_rating_count_subquery()` first."""
         threshold = (
             self.ratings_ratio_threshold_before_flagging
-            if not disable
-            else self.ratings_ratio_threshold_before_disabling
+            if not block
+            else self.ratings_ratio_threshold_before_blocking
         ) or 0
         return Q(
             ratings_count__gte=F('average_daily_users') * threshold / 100,
