@@ -103,11 +103,21 @@ class Command(BaseCommand):
                     str(version.version),
                 )
 
+                # We want to execute `run_action()`/`run_narc()` only once.
+                summary_exists = AutoApprovalSummary.objects.filter(
+                    version=version
+                ).exists()
+
+                if waffle.switch_is_active('enable-narc'):
+                    if not summary_exists:
+                        # NARC scanner rules depend on the Add-on and can't be
+                        # run reliably at validation as it might not be
+                        # attached to the upload at that point. This needs to
+                        # run before run_action() and before auto-approval is
+                        # attempted.
+                        run_narc_on_version(version.pk)
+
                 if waffle.switch_is_active('run-action-in-auto-approve'):
-                    # We want to execute `run_action()` only once.
-                    summary_exists = AutoApprovalSummary.objects.filter(
-                        version=version
-                    ).exists()
                     if summary_exists:
                         log.info(
                             'Not running run_action() because it has '
