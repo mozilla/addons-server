@@ -83,6 +83,9 @@ class TestAvgDailyUserCountTestCase(TestCase):
         assert addon_without_count.average_daily_users == 0
 
     @mock.patch(
+        'olympia.addons.cron.flag_high_rating_addons_according_to_review_tier.si'
+    )
+    @mock.patch(
         'olympia.addons.cron.flag_high_abuse_reports_addons_according_to_review_tier.si'
     )
     @mock.patch('olympia.addons.cron.add_high_adu_extensions_to_notable.si')
@@ -94,6 +97,7 @@ class TestAvgDailyUserCountTestCase(TestCase):
         create_chunked_mock,
         add_high_adu_extensions_to_notable_mock,
         flag_high_abuse_reports_addons_according_to_review_tier_mock,
+        flag_high_rating_addons_according_to_review_tier_mock,
     ):
         create_chunked_mock.return_value = group([])
         addon = Addon.objects.get(pk=3615)
@@ -139,6 +143,7 @@ class TestAvgDailyUserCountTestCase(TestCase):
         assert (
             flag_high_abuse_reports_addons_according_to_review_tier_mock.call_count == 1
         )
+        assert flag_high_rating_addons_according_to_review_tier_mock.call_count == 1
 
 
 class TestUpdateAddonHotness(TestCase):

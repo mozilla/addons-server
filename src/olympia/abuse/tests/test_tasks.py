@@ -42,11 +42,8 @@ def addon_factory_with_abuse_reports(*, abuse_reports_count, **kwargs):
     return addon
 
 
-@freeze_time('2023-06-26 11:00')
-@pytest.mark.django_db
-def test_flag_high_abuse_reports_addons_according_to_review_tier():
+def _high_abuse_reports_setup(field):
     user_factory(pk=settings.TASK_USER_ID)
-    set_config(amo.config_keys.EXTRA_REVIEW_TARGET_PER_DAY, '1')
     # Create some usage tiers and add add-ons in them for the task to do
     # something. The ones missing a lower, upper, or abuse report threshold
     # don't do anything for this test.
@@ -60,19 +57,19 @@ def test_flag_high_abuse_reports_addons_according_to_review_tier():
         name='B tier',
         lower_adu_threshold=200,
         upper_adu_threshold=250,
-        abuse_reports_ratio_threshold_before_flagging=1,
+        **{field: 1},
     )
     UsageTier.objects.create(
         name='A tier',
         lower_adu_threshold=250,
         upper_adu_threshold=1000,
-        abuse_reports_ratio_threshold_before_flagging=2,
+        **{field: 2},
     )
     UsageTier.objects.create(
         name='S tier (no upper threshold)',
         lower_adu_threshold=1000,
         upper_adu_threshold=None,
-        abuse_reports_ratio_threshold_before_flagging=1,
+        **{field: 1},
     )
 
     not_flagged = [
@@ -118,15 +115,6 @@ def test_flag_high_abuse_reports_addons_according_to_review_tier():
             status=amo.STATUS_DISABLED,
             abuse_reports_count=3,
         ),
-        # Belongs to B tier but already flagged for human review
-        NeedsHumanReview.objects.create(
-            version=addon_factory_with_abuse_reports(
-                name='B tier already flagged',
-                average_daily_users=200,
-                abuse_reports_count=3,
-            ).current_version,
-            is_active=True,
-        ).version.addon,
         # only has reports that are individually actionable, so ignored
         addon_factory_with_abuse_reports(
             name='B tier, but all dsa reasons',
@@ -185,8 +173,30 @@ def test_flag_high_abuse_reports_addons_according_to_review_tier():
     # Still exactly (to the second) within the window we care about.
     AbuseReport.objects.filter(guid=flagged[-1].guid).update(created=days_ago(14))
 
+    return not_flagged, flagged
+
+
+@freeze_time('2023-06-26 11:00')
+@pytest.mark.django_db
+def test_flag_high_abuse_reports_addons_according_to_review_tier():
+    set_config(amo.config_keys.EXTRA_REVIEW_TARGET_PER_DAY, '1')
+    not_flagged, flagged = _high_abuse_reports_setup(
+        'abuse_reports_ratio_threshold_before_flagging'
+    )
+    not_flagged.append(
+        # Belongs to B tier but already flagged for human review
+        NeedsHumanReview.objects.create(
+            version=addon_factory_with_abuse_reports(
+                name='B tier already flagged',
+                average_daily_users=200,
+                abuse_reports_count=3,
+            ).current_version,
+            is_active=True,
+        ).version.addon
+    )
     # Pretend all files were signed otherwise they would not get flagged.
     File.objects.update(is_signed=True)
+
     flag_high_abuse_reports_addons_according_to_review_tier()
 
     for addon in not_flagged:
@@ -222,6 +232,37 @@ def test_flag_high_abuse_reports_addons_according_to_review_tier():
         datetime(2023, 7, 3, 11, 0),
         datetime(2023, 7, 4, 11, 0),
     ]
+
+
+@freeze_time('2023-06-26 11:00')
+@pytest.mark.django_db
+def test_block_high_abuse_reports_addons_according_to_review_tier():
+    not_blocked, blocked = _high_abuse_reports_setup(
+        'abuse_reports_ratio_threshold_before_blocking'
+    )
+    responses.add_callback(
+        responses.POST,
+        f'{settings.CINDER_SERVER_URL}create_decision',
+        callback=lambda r: (201, {}, json.dumps({'uuid': uuid.uuid4().hex})),
+    )
+
+    flag_high_abuse_reports_addons_according_to_review_tier()
+
+    for addon in not_blocked:
+        addon.reload()
+        assert not addon.block, f'Addon {addon} should not have been blocked'
+
+    for addon in blocked:
+        addon.reload()
+        assert addon.status == amo.STATUS_DISABLED, (
+            f'Addon {addon} should have been disabled'
+        )
+        assert addon.block, f'Addon {addon} should have have a block record'
+        assert (
+            not addon.versions(manager='unfiltered_for_relations')
+            .filter(blockversion__isnull=True)
+            .exists()
+        ), f'Addon {addon}s versions should have been blocked'
 
 
 @pytest.mark.django_db

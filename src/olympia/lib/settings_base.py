@@ -847,6 +847,9 @@ CELERY_TASK_ROUTES = {
     'olympia.addons.tasks.flag_high_hotness_according_to_review_tier': {
         'queue': 'cron'
     },
+    'olympia.ratings.tasks.flag_high_rating_addons_according_to_review_tier': {
+        'queue': 'cron'
+    },
     'olympia.users.tasks.sync_suppressed_emails_task': {'queue': 'cron'},
     'olympia.users.tasks.send_suppressed_email_confirmation': {'queue': 'devhub'},
     'olympia.users.tasks.bulk_add_disposable_email_domains': {'queue': 'devhub'},
