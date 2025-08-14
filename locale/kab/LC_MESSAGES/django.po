@@ -6834,7 +6834,7 @@ msgstr ""
 
 #: src/olympia/users/models.py:994
 msgid "The email address used for your account is not allowed for submissions."
-msgstr ""
+msgstr "Tansa n yimayl i yettwasqedcen i yumiḍan-ik ur tettwaqbal ara i tuzna."
 
 #: src/olympia/users/models.py:1094
 msgid ""
