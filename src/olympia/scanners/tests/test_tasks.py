@@ -826,6 +826,7 @@ class TestRunNarc(UploadMixin, TestCase):
         # Extra run shouldn't have caused duplicates.
         assert len(narc_result.results) == 1
         assert narc_result.has_matches
+        assert rules == list(narc_result.matched_rules.all())
         rule = narc_result.matched_rules.all()[0]
         assert incr_mock.called
         assert incr_mock.call_count == 3

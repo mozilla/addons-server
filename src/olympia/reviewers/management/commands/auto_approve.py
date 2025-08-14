@@ -21,6 +21,7 @@ from olympia.reviewers.models import (
 )
 from olympia.reviewers.utils import ReviewHelper
 from olympia.scanners.models import ScannerResult
+from olympia.scanners.tasks import run_narc_on_version
 from olympia.versions.models import Version
 
 
