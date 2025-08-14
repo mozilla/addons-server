@@ -2415,7 +2415,7 @@ msgstr "Revisión solicitada."
 
 #: src/olympia/devhub/views.py:1979
 msgid "You must provide further details to proceed."
-msgstr "Debes proporcionar más detalles para continuar."
+msgstr "Debes dar más detalles para continuar."
 
 #: src/olympia/devhub/views.py:2092
 msgid "Your old credentials were revoked and are no longer valid."
@@ -2751,7 +2751,7 @@ msgstr "Si aceptas la invitación podrás editar el complemento y puede que apar
 #: src/olympia/devhub/templates/devhub/addons/invitation.html:22
 #, python-brace-format
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
-msgstr "Haz clic en el botón Aceptar de más abajo para confirmar que quieres que se te añada como autor de {addon_name}."
+msgstr "Haz clic en el botón Aceptar a continuación para confirmar que quieres que se te añada como autor de {addon_name}."
 
 #: src/olympia/devhub/templates/devhub/addons/invitation.html:24 src/olympia/devhub/templates/devhub/includes/agreement.html:36
 msgid "Accept"
@@ -2849,7 +2849,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:72
 msgid "Homepage"
-msgstr "Inicio"
+msgstr "Pagina de inicio"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:74
 msgid ""
@@ -2966,7 +2966,7 @@ msgstr "Categorías"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:188
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
-msgstr "Las categorías son la forma principal de buscar complementos. Elige la que mejor se adapte a la funcionalidad de tu complemento para obtener mejores resultados."
+msgstr "Las categorías son la manera principal de buscar complementos. Elige la que mejor se adapte a la funcionalidad de tu complemento para obtener mejores resultados."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:211
 msgid "Email"
@@ -3241,7 +3241,7 @@ msgstr "El ID del complemento no se puede restaurar y será inutilizable para su
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:2 src/olympia/devhub/templates/devhub/versions/list.html:261 src/olympia/devhub/templates/devhub/versions/list.html:265
 msgid "Delete Add-on"
-msgstr "Borrar complemento"
+msgstr "Eliminar complemento"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:17
 #, python-brace-format
@@ -3266,11 +3266,11 @@ msgstr "Continuar"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:20
 msgid "Delete this add-on."
-msgstr "Borrar este complemento."
+msgstr "Eliminar este complemento."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:20
 msgid "Delete"
-msgstr "Borrar"
+msgstr "Eliminar"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:30
 msgid "Edit details on this add-on's product page"
@@ -3439,8 +3439,8 @@ msgid ""
 "If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
 "%(policy_requirements_open)spolicy requirements%(policy_requirements_close)s."
 msgstr ""
-"Si enviaste código fuente sin instrucciones, tienes que incluirlas ahora aquí. Escribe instrucciones paso a paso para crear una copia exacta del código del complemento y cumplir así con nuestros "
-"%(policy_requirements_open)srequisitios%(policy_requirements_close)s."
+"Si enviaste código fuente sin las instrucciones, tienes que incluirlas ahora aquí. Escribe instrucciones paso a paso para crear una copia exacta del código del complemento y cumplir así con nuestros"
+" %(policy_requirements_open)srequisitios%(policy_requirements_close)s."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:224 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:38
 msgid "These notes will only be visible to you and our reviewers."
@@ -3498,7 +3498,7 @@ msgstr "Vista previa de la versión enviada"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:19
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
-msgstr "¡Ya está! Esta versión estará disponible una vez revisada. Se te enviará una notificación cuando la revisen."
+msgstr "¡Listo! Esta versión estará disponible una vez revisada. Se te enviará una notificación cuando la revisen."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:24
 #, python-format
@@ -3523,7 +3523,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:43
 msgid "Manage Listing"
-msgstr "Gestionar lista"
+msgstr "Administrar lista"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:47
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, concatenated or otherwise machine-generated code."
@@ -4543,7 +4543,7 @@ msgstr "Ocultar complemento"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:329
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
-msgstr "Ocultar tu complemento prevendrá que aparezca en cualquier lugar de nuestra galería y no permitirá a los usuarios recibir actualizaciones automáticas."
+msgstr "Ocultar tu complemento evitará que aparezca en cualquier lugar de nuestra galería y no permitirá a los usuarios recibir actualizaciones automáticas."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:336
 msgid "The files awaiting review will be disabled and you will need to upload new versions."
@@ -5502,7 +5502,7 @@ msgstr "Rastrea productos y recibe notificaciones cuando bajen los precios de lo
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:534 src/olympia/discovery/strings.jinja2:676
 msgid "Turn the web dark or select a custom color scheme to visually tailor the internet to your own taste."
-msgstr "Pásate a la web oscura o selecciona un esquema de color personalizado para adaptar Internet de forma visual a tus propios gustos."
+msgstr "Pásate al modo oscuro en la web o selecciona un esquema de color personalizado para adaptar Internet de forma visual a tus propios gustos."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5518,7 +5518,7 @@ msgstr "Algunos sitios tienen problemas para reproducir vídeos en Firefox para 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:546
 msgid "Select, sort, and run your downloads faster."
-msgstr "Selecciona, ordena y ejecuta tus descargas más rápido."
+msgstr "Elige, ordena y ejecuta tus descargas más rápido."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:549
