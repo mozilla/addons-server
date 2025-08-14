@@ -17,6 +17,7 @@ from olympia.addons.tasks import (
 from olympia.amo.celery import create_chunked_tasks_signatures
 from olympia.amo.decorators import use_primary_db
 from olympia.promoted.tasks import add_high_adu_extensions_to_notable
+from olympia.ratings.tasks import flag_high_rating_addons_according_to_review_tier
 from olympia.stats.utils import (
     get_addons_and_average_daily_users_from_bigquery,
     get_addons_and_weekly_downloads_from_bigquery,
@@ -56,6 +57,7 @@ def update_addon_average_daily_users(chunk_size=250):
         )
         | add_high_adu_extensions_to_notable.si()
         | flag_high_abuse_reports_addons_according_to_review_tier.si()
+        | flag_high_rating_addons_according_to_review_tier.si()
     ).apply_async()
 
 

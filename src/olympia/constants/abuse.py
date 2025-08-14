@@ -27,6 +27,7 @@ DECISION_ACTIONS = APIChoicesWithDash(
     # in cinder - it is only performed by AMO Reviewers.
     ('AMO_CHANGE_PENDING_REJECTION_DATE', 14, 'Pending rejection date changed'),
     ('AMO_REQUEUE', 15, 'No action - internal requeue'),
+    ('AMO_BLOCK_ADDON', 16, 'Add-on disable and block'),
 )
 DECISION_ACTIONS.add_subset(
     'APPEALABLE_BY_AUTHOR',
@@ -49,6 +50,7 @@ DECISION_ACTIONS.add_subset(
         'AMO_DELETE_RATING',
         'AMO_DELETE_COLLECTION',
         'AMO_REJECT_VERSION_ADDON',
+        'AMO_BLOCK_ADDON',
     ),
 )
 DECISION_ACTIONS.add_subset(

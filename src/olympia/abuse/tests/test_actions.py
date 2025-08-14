@@ -26,11 +26,13 @@ from olympia.amo.tests import (
     user_factory,
     version_factory,
 )
+from olympia.blocklist.models import Block, BlockVersion
 from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.permissions import ADDONS_HIGH_IMPACT_APPROVE
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.core import set_user
 from olympia.files.models import File
+from olympia.promoted.models import PromotedGroup
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import ReviewActionReason
 from olympia.versions.models import VersionReviewerFlags
@@ -40,6 +42,7 @@ from ..actions import (
     ContentActionApproveInitialDecision,
     ContentActionApproveNoAction,
     ContentActionBanUser,
+    ContentActionBlockAddon,
     ContentActionDeleteCollection,
     ContentActionDeleteRating,
     ContentActionDisableAddon,
@@ -677,8 +680,8 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
             self.old_version,
         ]
         assert activity.user == self.task_user
-        assert ActivityLog.objects.count() == 2
-        second_activity = ActivityLog.objects.exclude(pk=activity.pk).get()
+        assert ActivityLog.objects.count() >= 2
+        second_activity = ActivityLog.objects.exclude(pk=activity.pk).first()
         assert second_activity.log == amo.LOG.REVIEWER_PRIVATE_COMMENT
         assert second_activity.arguments == [self.addon, self.decision]
         assert second_activity.user == self.task_user
@@ -696,7 +699,6 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
         self.decision.update(private_notes='', action=self.takedown_decision_action)
         action = self.ActionClass(self.decision)
         action.process_action()
-        assert ActivityLog.objects.count() == 1
         assert not ActivityLog.objects.filter(
             action=amo.LOG.REVIEWER_PRIVATE_COMMENT.id
         ).exists()
@@ -920,6 +922,13 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
             'comments': self.decision.reasoning,
             'versions': [self.version.version, self.old_version.version],
             'human_review': True,
+            **(
+                {
+                    'policy_texts': [self.policy.full_text()],
+                }
+                if not self.decision.has_policy_text_in_comments
+                else {}
+            ),
         }
 
     def test_forward_from_reviewers_no_job(self):
@@ -1770,6 +1779,107 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
             'Parent Policy, specifically Bad policy: Some reason why we can`t do that.'
             in mail.outbox[0].body
         )
+
+
+class TestContentActionBlockAddon(TestContentActionDisableAddon):
+    ActionClass = ContentActionBlockAddon
+    takedown_decision_action = DECISION_ACTIONS.AMO_DISABLE_ADDON
+
+    def setUp(self):
+        super().setUp()
+        self.decision.update(
+            reviewer_user=self.task_user,
+            metadata={ContentDecision.POLICY_DYNAMIC_VALUES: {}},
+        )
+        block = Block.objects.create(addon=self.addon, updated_by=self.task_user)
+        BlockVersion.objects.create(block=block, version=self.another_version)
+
+    def _check_block_activity_logs(self, block_activity, block_version_activity):
+        assert block_activity.log == amo.LOG.BLOCKLIST_BLOCK_EDITED
+        assert block_activity.arguments == [
+            self.addon,
+            self.addon.guid,
+            self.addon.block,
+        ]
+        assert block_activity.user == self.task_user
+
+        assert block_version_activity.log == amo.LOG.BLOCKLIST_VERSION_SOFT_BLOCKED
+        assert block_version_activity.arguments == [
+            self.version,
+            self.old_version,
+            self.addon.block,
+        ]
+        assert block_version_activity.user == self.task_user
+
+    def _test_disable_addon(self):
+        subject = super()._test_disable_addon()
+
+        assert ActivityLog.objects.count() == 4
+        block_activity = ActivityLog.objects.all()[3]
+        block_version_activity = ActivityLog.objects.all()[2]
+        self._check_block_activity_logs(block_activity, block_version_activity)
+        assert self.version.blockversion
+        assert self.old_version.blockversion
+
+        return subject
+
+    def test_already_disabled(self):
+        """For a block action, this shouldn't affect the block, only the disable"""
+        self.decision.update(action=self.takedown_decision_action)
+        self.addon.update(status=amo.STATUS_DISABLED)
+        File.objects.filter(version__addon=self.addon).update(
+            status=amo.STATUS_DISABLED
+        )
+        action = self.ActionClass(self.decision)
+        assert action.process_action() is None  # we don't have a disable activity
+        assert ActivityLog.objects.count() == 2
+        block_activity = ActivityLog.objects.all()[1]
+        block_version_activity = ActivityLog.objects.all()[0]
+        self._check_block_activity_logs(block_activity, block_version_activity)
+        assert self.version.blockversion
+        assert self.old_version.blockversion
+
+    def test_already_blocked(self):
+        self.decision.update(action=self.takedown_decision_action)
+        BlockVersion.objects.create(block=self.addon.block, version=self.version)
+        BlockVersion.objects.create(block=self.addon.block, version=self.old_version)
+        action = self.ActionClass(self.decision)
+        assert action.process_action() is None
+        assert ActivityLog.objects.count() == 0
+
+    def test_should_hold_action(self):
+        PromotedGroup.objects.get_or_create(
+            group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED, high_profile=True
+        )
+        self.decision.update(action=self.takedown_decision_action)
+        action = self.ActionClass(self.decision)
+        assert action.should_hold_action() is False
+
+        self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED)
+        assert action.should_hold_action() is True
+
+        # if one version is not blocked we still hold the action
+        BlockVersion.objects.create(block=self.addon.block, version=self.version)
+        assert action.should_hold_action() is True
+
+        BlockVersion.objects.create(block=self.addon.block, version=self.old_version)
+        assert action.should_hold_action() is False
+
+    def test_log_action_saves_policy_texts(self):
+        # update the policy with a placeholder.
+        self.policy.update(text='This is {JUDGEMENT} thing')
+        self.decision.update(
+            metadata={
+                ContentDecision.POLICY_DYNAMIC_VALUES: {
+                    self.policy.uuid: {'JUDGEMENT': 'a Térrible'}
+                }
+            }
+        )
+        assert self.ActionClass(self.decision).log_action(
+            amo.LOG.ADMIN_USER_UNBAN
+        ).details['policy_texts'] == [
+            'Parent Policy, specifically Bad policy: This is a Térrible thing'
+        ]
 
 
 class TestContentActionCollection(BaseTestContentAction, TestCase):

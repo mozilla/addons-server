@@ -23,6 +23,7 @@ from .models import (
     CinderPolicy,
     ContentDecision,
 )
+from .utils import reject_and_block_addons
 
 
 log = olympia.core.logger.getLogger('z.abuse')
@@ -30,28 +31,37 @@ log = olympia.core.logger.getLogger('z.abuse')
 
 @task
 def flag_high_abuse_reports_addons_according_to_review_tier():
-    usage_tiers = UsageTier.objects.filter(
+    usage_tiers_qs = UsageTier.objects.filter(
         # Tiers with no upper adu threshold are special cases with their own
         # way of flagging add-ons for review (either notable or promoted).
-        upper_adu_threshold__isnull=False,
-        # Need a abuse reports ratio threshold to be set for the tier.
-        abuse_reports_ratio_threshold_before_flagging__isnull=False,
+        upper_adu_threshold__isnull=False
+    )
+    addons_qs = UsageTier.get_base_addons().alias(
+        abuse_reports_count=UsageTier.get_abuse_count_subquery()
     )
 
-    tier_filters = Q()
-    for usage_tier in usage_tiers:
-        tier_filters |= usage_tier.get_abuse_threshold_q_object()
-    if not tier_filters:
-        return
+    # Need a abuse reports ratio threshold to be set for the tier.
+    disabling_tiers = usage_tiers_qs.filter(
+        abuse_reports_ratio_threshold_before_blocking__isnull=False
+    )
+    disabling_tier_filters = Q()
+    for usage_tier in disabling_tiers:
+        disabling_tier_filters |= usage_tier.get_abuse_threshold_q_object(block=True)
+    if disabling_tier_filters:
+        reject_and_block_addons(addons_qs.filter(disabling_tier_filters))
 
-    qs = (
-        UsageTier.get_base_addons()
-        .alias(abuse_reports_count=UsageTier.get_abuse_count_subquery())
-        .filter(tier_filters)
+    # Need a abuse reports ratio threshold to be set for the tier.
+    flagging_tiers = usage_tiers_qs.filter(
+        abuse_reports_ratio_threshold_before_flagging__isnull=False
     )
-    NeedsHumanReview.set_on_addons_latest_signed_versions(
-        qs, NeedsHumanReview.REASONS.ABUSE_REPORTS_THRESHOLD
-    )
+    flagging_tier_filters = Q()
+    for usage_tier in flagging_tiers:
+        flagging_tier_filters |= usage_tier.get_abuse_threshold_q_object(block=False)
+    if flagging_tier_filters:
+        NeedsHumanReview.set_on_addons_latest_signed_versions(
+            addons_qs.filter(flagging_tier_filters),
+            NeedsHumanReview.REASONS.ABUSE_REPORTS_THRESHOLD,
+        )
 
 
 def retryable_task(f):
