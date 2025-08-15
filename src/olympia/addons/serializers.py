@@ -1344,16 +1344,6 @@ class AddonSerializer(AMOModelSerializer):
         addon.version = self.fields['version'].create(
             {**validated_data.get('version', {}), 'addon': addon}
         )
-        # We scan uploads, but narc cares about add-on translations too, and
-        # the developer might have provided some that were not in the upload,
-        # so we have to trigger it again. This only matters if the initial
-        # version is listed, since that's when those translations matter.
-        if (
-            waffle.switch_is_active('enable-narc')
-            and 'name' in validated_data
-            and addon.version.channel == amo.CHANNEL_LISTED
-        ):
-            run_narc_on_version.delay(addon.version.pk)
         # When creating, always return the version we just created in the
         # representation. It uses <instance>.version.
         self.fields['version'].write_only = False

@@ -161,45 +161,13 @@ def run_customs(results, upload_pk):
     )
 
 
-@validation_task
-def run_narc(results, upload_pk):
-    """
-    Run the narc scanner on a FileUpload and store the results.
-
-    This task is intended to be run as part of the submission process only. Use
-    update_narc_results() task instead to update results from a Version instance
-    after the submission process.
-
-    - `results` are the validation results passed in the validation chain. This
-       task is a validation task, which is why it must receive the validation
-       results as first argument.
-    - `upload_pk` is the FileUpload ID.
-    """
-    log.info('Starting narc task for FileUpload %s.', upload_pk)
-
-    try:
-        upload = FileUpload.objects.get(pk=upload_pk)
-        _run_narc(upload=upload, version=None)
-    except Exception as exc:
-        statsd.incr('devhub.narc.failure')
-        log.exception(
-            'Error in scanner "narc" task for FileUpload %s.', upload_pk, exc_info=True
-        )
-        if not waffle.switch_is_active('ignore-exceptions-in-scanner-tasks'):
-            raise exc
-    else:
-        statsd.incr('devhub.narc.success')
-    log.info('Ending scanner "narc" task for FileUpload %s.', upload_pk)
-    return results
-
-
 @task
 @use_primary_db
 def run_narc_on_version(version_pk):
     log.info('Starting narc task for Version %s.', version_pk)
     try:
         version = Version.unfiltered.get(pk=version_pk)
-        _run_narc(upload=None, version=version)
+        _run_narc(version=version)
     except Exception as exc:
         statsd.incr('devhub.narc.failure')
         log.exception(
@@ -212,12 +180,9 @@ def run_narc_on_version(version_pk):
     log.info('Ending scanner "narc" task for Version %s.', version_pk)
 
 
-def _run_narc(*, upload, version):
-    assert upload or version
-    scanner_result = (
-        ScannerResult(upload=upload, scanner=NARC)
-        if upload
-        else ScannerResult.objects.get_or_create(scanner=NARC, version=version)[0]
+def _run_narc(*, version):
+    scanner_result, initial_run = ScannerResult.objects.get_or_create(
+        scanner=NARC, version=version
     )
     rules = ScannerRule.objects.filter(
         scanner=NARC, is_active=True, definition__isnull=False
@@ -227,30 +192,27 @@ def _run_narc(*, upload, version):
         # hashed to avoid adding duplicates when re-scanning. See result.add()
         # call below and the conversion back at the end before saving as well.
         {json.dumps(result, sort_keys=True) for result in scanner_result.results}
-        if scanner_result.pk
-        else set()
     )
     values_from_db = {}
     values_from_xpi = {}
-    values_from_authors = set()
-    if addon := upload.addon if upload else version.addon:
-        # If we have an add-on instance, find all translations for the name in
-        # the database as well as the display names from its authors.
-        attach_trans_dict(Addon, [addon], field_names=['name'])
-        values_from_db = dict(addon.translations[addon.name_id])
-        values_from_authors.update(
-            addon.authors.all().values_list('display_name', flat=True)
-        )
-    if upload:
-        values_from_authors.add(upload.user.display_name)
+    values_from_authors = []
+    addon = version.addon
+    attach_trans_dict(Addon, [addon], field_names=['name'])
+    values_from_db = dict(addon.translations[addon.name_id])
+    values_from_authors = list(
+        addon.authors.all().values_list('display_name', flat=True)
+    )
 
     # Find all translations from the XPI - if we get a string, that means there
     # were no translations to find, build a simple dict for ease of use later.
-    if xpi := upload or version.file.file:
-        data = parse_xpi(xpi, addon=addon, minimal=True, bypass_trademark_checks=True)
-        values_from_xpi = Addon.resolve_webext_translations(data, xpi).get('name', {})
-        if isinstance(values_from_xpi, str):
-            values_from_xpi = {None: values_from_xpi}
+    data = parse_xpi(
+        version.file.file, addon=addon, minimal=True, bypass_trademark_checks=True
+    )
+    values_from_xpi = Addon.resolve_webext_translations(data, version.file.file).get(
+        'name', {}
+    )
+    if isinstance(values_from_xpi, str):
+        values_from_xpi = {None: values_from_xpi}
 
     for rule in rules:
         # Look at every source of data with every rule.
@@ -281,11 +243,11 @@ def _run_narc(*, upload, version):
 
     run_action = False
     new_results = [json.loads(result) for result in sorted(results)]
-    if version and new_results != scanner_result.results:
+    if not initial_run and new_results != scanner_result.results:
         # Scanner actions are normally triggered by auto-approve, but here
         # we're re running the scanner on a version and found more results than
-        # when it ran on the upload. We don't know whether the action has
-        # already been triggered but in case it has we need to do it again.
+        # when it ran before. We don't know whether the action has already been
+        # triggered but in case it has we need to do it again.
         run_action = True
     scanner_result.results = new_results
     scanner_result.save()
