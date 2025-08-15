@@ -3202,7 +3202,7 @@ msgstr "Xóa tiện ích của bạn sẽ xóa vĩnh viễn tất cả các phi�
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:6
 msgid "All versions will be Restricted, which will disable and prevent any further installation in Firefox. Existing users can choose to re-enable the add-on."
-msgstr ""
+msgstr "Tất cả các phiên bản đều bị hạn chế và sẽ vô hiệu hóa, ngăn chặn mọi cài đặt tiếp theo trong Firefox. Người dùng hiện tại có thể chọn bật lại tiện ích."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:11
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
@@ -4472,6 +4472,8 @@ msgid ""
 "Once a version has been deleted, you may not upload a new version with the same version number. The version will also be Restricted, which will disable and prevent any further installation in "
 "Firefox. Existing users can choose to re-enable the add-on."
 msgstr ""
+"Sau khi một phiên bản đã bị xóa, bạn không thể tải lên phiên bản mới có cùng số phiên bản. Phiên bản đó cũng sẽ bị hạn chế và sẽ vô hiệu hóa, ngăn chặn mọi cài đặt tiếp theo trong Firefox. Người "
+"dùng hiện tại có thể chọn bật lại tiện ích."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:296
 msgid "Are you sure you wish to delete this version?"
@@ -5635,7 +5637,7 @@ msgstr "Bảo vệ sự riêng tư của bạn chống lại một hình thức 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:667
 msgid "Automatically deny cookie pop-up tracking requests."
-msgstr ""
+msgstr "Tự động từ chối pop-up cookie yêu cầu theo dõi."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:673
@@ -5900,7 +5902,7 @@ msgstr "Tiện ích mở rộng cần thiết"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1028
 msgid "Declutter your desktop"
-msgstr ""
+msgstr "Dọn dẹp desktop của bạn"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1030 src/olympia/discovery/strings.jinja2:1032 src/olympia/discovery/strings.jinja2:1034
