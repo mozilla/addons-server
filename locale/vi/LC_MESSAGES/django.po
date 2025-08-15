@@ -474,7 +474,7 @@ msgstr "Tiện ích của tôi"
 
 #: src/olympia/addons/templates/addons/includes/dashboard_tabs.html:6
 msgid "My Themes"
-msgstr "Giao diện của tôi"
+msgstr "Chủ đề của tôi"
 
 #: src/olympia/amo/context_processors.py:30 src/olympia/devhub/templates/devhub/nav.html:49 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:16
 msgid "Tools"
@@ -503,12 +503,12 @@ msgstr "Quản lý Bản Gửi lên của Tôi"
 #: src/olympia/amo/context_processors.py:65 src/olympia/devhub/templates/devhub/addons/dashboard.html:24 src/olympia/devhub/templates/devhub/addons/submit/base.html:8
 #: src/olympia/devhub/templates/devhub/nav.html:28 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:97
 msgid "Submit a New Add-on"
-msgstr "Gửi một tiện ích mới"
+msgstr "Tải lên một tiện ích mới"
 
 #: src/olympia/amo/context_processors.py:71 src/olympia/devhub/templates/devhub/addons/dashboard.html:28 src/olympia/devhub/templates/devhub/addons/submit/base.html:6
 #: src/olympia/devhub/templates/devhub/nav.html:30 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:98
 msgid "Submit a New Theme"
-msgstr "Gửi lên một Giao diện Mới"
+msgstr "Tải lên một chủ đề mới"
 
 #: src/olympia/amo/context_processors.py:76 src/olympia/constants/base.py:84 src/olympia/devhub/templatetags/jinja_helpers.py:32 src/olympia/templates/photon-footer.html:14
 msgid "Developer Hub"
@@ -4465,7 +4465,7 @@ msgstr "Xóa phiên bản này sẽ xóa vĩnh viễn:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:288
 msgid "Important:"
-msgstr ""
+msgstr "Quan trọng:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:289
 msgid ""
@@ -6790,7 +6790,7 @@ msgstr "Trình duyệt"
 
 #: src/olympia/templates/photon-footer.html:27
 msgid "Desktop"
-msgstr "Máy tính để bàn"
+msgstr "Máy tính"
 
 #: src/olympia/templates/photon-footer.html:29
 msgid "Enterprise"
