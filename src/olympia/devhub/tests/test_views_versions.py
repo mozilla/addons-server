@@ -850,10 +850,14 @@ class TestVersion(TestCase):
         # and the select for unlisted versions is not present
         assert 'Choose version' not in modal.html()
 
+        assert modal(
+            f'tr#listed-version-row td[data-current-version="{second_version.version}"]'
+        )
+
     @override_switch('version-rollback', active=True)
     def test_version_rollback_form_unlisted_only(self):
         first_version = self.addon.current_version
-        version_factory(addon=self.addon)
+        second_version = version_factory(addon=self.addon)
         self.make_addon_unlisted(self.addon)
 
         response = self.client.get(self.url)
@@ -870,6 +874,11 @@ class TestVersion(TestCase):
         assert modal('select option').length == 2
         assert modal('select option')[0].text == 'Choose version'
         assert modal('select option')[1].text == first_version.version
+
+        assert modal(
+            'tr#unlisted-version-row '
+            f'td[data-current-version="{second_version.version}"]'
+        )
 
     @override_switch('version-rollback', active=True)
     def test_version_rollback_form_listed_but_not_appropriate(self):
@@ -906,9 +915,11 @@ class TestVersion(TestCase):
     @override_switch('version-rollback', active=True)
     def test_version_rollback_form_both_channels(self):
         listed_version = self.addon.current_version
-        version_factory(addon=self.addon)
+        second_listed_version = version_factory(addon=self.addon)
         version_factory(addon=self.addon, channel=amo.CHANNEL_UNLISTED)
-        version_factory(addon=self.addon, channel=amo.CHANNEL_UNLISTED)
+        second_unlisted_version = version_factory(
+            addon=self.addon, channel=amo.CHANNEL_UNLISTED
+        )
 
         # with both channels available with multiple versions
         response = self.client.get(self.url)
@@ -933,6 +944,15 @@ class TestVersion(TestCase):
         assert modal('#id_listed_version option').text() == listed_version.version
         assert 'Choose version' in modal.html()
         assert modal('#id_unlisted_version option').length == 2
+
+        assert modal(
+            'tr#listed-version-row '
+            f'td[data-current-version="{second_listed_version.version}"]'
+        )
+        assert modal(
+            'tr#unlisted-version-row '
+            f'td[data-current-version="{second_unlisted_version.version}"]'
+        )
 
     @override_switch('version-rollback', active=True)
     def test_version_rollback_submit(self):
