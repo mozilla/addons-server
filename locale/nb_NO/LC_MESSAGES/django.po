@@ -2006,11 +2006,11 @@ msgstr "Spesifiser sluttbrukerlisensavtale for tillegget ditt:"
 
 #: src/olympia/devhub/forms.py:701
 msgid "This add-on has a Privacy Policy"
-msgstr "Denne utvidelsen har en personvernerklæring"
+msgstr "Denne utvidelsen har en personvernpraksis"
 
 #: src/olympia/devhub/forms.py:706
 msgid "Please specify your add-on's Privacy Policy:"
-msgstr "Oppgi utvidelsens personvernerklæring:"
+msgstr "Oppgi utvidelsens personvernpraksis:"
 
 #: src/olympia/devhub/forms.py:741
 #, python-brace-format
@@ -3392,7 +3392,7 @@ msgstr "Velg en lisens som er passer med rettighetene du gir."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:194
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
-msgstr "Hvis tillegget ditt overfører data fra brukerens datamaskin, kreves det en personvernerklæring som forklarer hvilke data som sendes og hvordan de brukes."
+msgstr "Hvis tillegget ditt overfører data fra brukerens datamaskin, kreves det en personvernpraksis som forklarer hvilke data som sendes og hvordan de brukes."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:207 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:21
 msgid "Notes to Reviewer:"
@@ -4062,12 +4062,12 @@ msgstr "Vær oppmerksom på at en EULA ikke er det samme som en kodelisens, som 
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:21
 msgid "Privacy Policy"
-msgstr "Personvernerklæring"
+msgstr "Personvernpraksis"
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:22
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
 msgstr ""
-"Hvis tillegget ditt overfører data fra brukerens datamaskin, kreves det en personvernerklæring som forklarer hvilke data som sendes og hvordan de brukes. Dette er kun relevant for oppførte tillegg."
+"Hvis tillegget ditt overfører data fra brukerens datamaskin, kreves det en personvernpraksis som forklarer hvilke data som sendes og hvordan de brukes. Dette er kun relevant for oppførte tillegg."
 
 #: src/olympia/devhub/templates/devhub/includes/source_form_field.html:3
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code other than known libraries, upload its sources for review."
