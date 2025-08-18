@@ -4,7 +4,8 @@ from datetime import datetime, timedelta
 from django.conf import settings
 from django.core.cache import cache
 from django.db import models
-from django.db.models import Avg, Count, F, OuterRef, Q
+from django.db.models import Avg, Count, OuterRef, Q
+from django.db.models.functions import Greatest
 from django.dispatch import receiver
 from django.template import loader
 from django.urls import reverse
@@ -876,7 +877,9 @@ class UsageTier(ModelBase):
             else self.abuse_reports_ratio_threshold_before_blocking
         ) or 0
         return Q(
-            abuse_reports_count__gte=F('average_daily_users') * threshold / 100,
+            abuse_reports_count__gte=Greatest('average_daily_users', 1)
+            * threshold
+            / 100,
             **self.get_tier_boundaries(),
         )
 
@@ -912,7 +915,7 @@ class UsageTier(ModelBase):
             else self.ratings_ratio_threshold_before_blocking
         ) or 0
         return Q(
-            ratings_count__gte=F('average_daily_users') * threshold / 100,
+            ratings_count__gte=Greatest('average_daily_users', 1) * threshold / 100,
             **self.get_tier_boundaries(),
         )
 
