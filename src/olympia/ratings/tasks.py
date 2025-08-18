@@ -173,6 +173,7 @@ def flag_high_rating_addons_according_to_review_tier():
     flagging_tier_filters = Q()
     for usage_tier in flagging_tiers:
         flagging_tier_filters |= usage_tier.get_rating_threshold_q_object(block=False)
+
     if flagging_tier_filters:
         NeedsHumanReview.set_on_addons_latest_signed_versions(
             addons_qs.filter(flagging_tier_filters),
