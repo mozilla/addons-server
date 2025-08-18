@@ -113,9 +113,10 @@ class Command(BaseCommand):
                     if not summary_exists:
                         # NARC scanner rules depend on the Add-on and can't be
                         # run reliably at validation as it might not be
-                        # attached to the upload at that point. This needs to
-                        # run before run_action() and before auto-approval is
-                        # attempted.
+                        # attached to the upload at that point.
+                        # This needs to be run before run_action() and before
+                        # auto-approval is attempted, and has to be triggered
+                        # synchronously (no .delay()).
                         run_narc_on_version(version.pk)
 
                 if waffle.switch_is_active('run-action-in-auto-approve'):
