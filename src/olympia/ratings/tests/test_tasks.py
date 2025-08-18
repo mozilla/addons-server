@@ -130,6 +130,11 @@ def _high_ratings_setup(threshold_field):
     # don't do anything for this test.
     UsageTier.objects.create(name='Not a tier with usage values')
     UsageTier.objects.create(
+        name='D tier (no lower threshold)',
+        upper_adu_threshold=100,
+        **{threshold_field: 200},
+    )
+    UsageTier.objects.create(
         name='C tier (no rating threshold)',
         lower_adu_threshold=100,
         upper_adu_threshold=200,
@@ -154,7 +159,13 @@ def _high_ratings_setup(threshold_field):
     )
 
     not_flagged = [
-        # Belongs to C tier, which doesn't have a growth threshold set.
+        # Belongs to D tier, below threshold since it has 0 ratings/users.
+        addon_factory(name='D tier empty addon', average_daily_users=0),
+        # Belongs to D tier, below threshold since it has 1 rating and 0 users.
+        addon_factory_with_ratings(
+            name='D tier addon below threshold', average_daily_users=0, ratings_count=1
+        ),
+        # Belongs to C tier, which doesn't have a ratings threshold set.
         addon_factory_with_ratings(
             name='C tier addon', average_daily_users=100, ratings_count=2
         ),
@@ -199,6 +210,9 @@ def _high_ratings_setup(threshold_field):
     ]
 
     flagged = [
+        addon_factory_with_ratings(
+            name='D tier addon with ratings', average_daily_users=0, ratings_count=2
+        ),
         addon_factory_with_ratings(
             name='B tier', average_daily_users=200, ratings_count=2
         ),
@@ -280,6 +294,7 @@ def test_flag_high_rating_addons_according_to_review_tier():
         datetime(2023, 6, 30, 11, 0),
         datetime(2023, 7, 3, 11, 0),
         datetime(2023, 7, 4, 11, 0),
+        datetime(2023, 7, 5, 11, 0),
     ]
 
 
