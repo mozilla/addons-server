@@ -80,6 +80,25 @@ jobs:
           echo "git_ref_link=${git_ref_link}" >> "$GITHUB_OUTPUT"
           cat "$GITHUB_OUTPUT"
 
+  devcontainer:
+    runs-on: ubuntu-latest
+    needs: context
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Build devcontainer
+        run: |
+          npm i -g @devcontainers/cli
+          devcontainer build \
+            --workspace-folder . \
+            --log-level trace
+
   test_actions:
     permissions:
       contents: 'read'
