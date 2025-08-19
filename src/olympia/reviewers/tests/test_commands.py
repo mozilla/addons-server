@@ -25,7 +25,7 @@ from olympia.amo.tests import (
 from olympia.amo.utils import days_ago
 from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
-from olympia.constants.scanners import DELAY_AUTO_APPROVAL, MAD, YARA
+from olympia.constants.scanners import DELAY_AUTO_APPROVAL, MAD, NARC, YARA
 from olympia.files.models import FileValidation
 from olympia.files.utils import lock
 from olympia.lib.crypto.signing import SigningError
@@ -590,6 +590,45 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         assert self.log_final_summary_mock.call_count == 0
         assert self.file.reload().status == amo.STATUS_AWAITING_REVIEW
 
+    @mock.patch(
+        'olympia.reviewers.management.commands.auto_approve.run_narc_on_version'
+    )
+    def test_does_not_execute_run_narc_on_version_when_switch_is_inactive(
+        self, run_narc_mock
+    ):
+        call_command('auto_approve')
+
+        assert run_narc_mock.call_count == 0
+
+    @mock.patch(
+        'olympia.reviewers.management.commands.auto_approve.run_narc_on_version'
+    )
+    def test_executes_run_narc_on_version_when_switch_is_active(self, run_narc_mock):
+        self.create_switch('enable-narc', active=True)
+
+        call_command('auto_approve')
+
+        assert run_narc_mock.call_count == 1
+        run_narc_mock.assert_called_with(self.version.pk)
+
+    @mock.patch(
+        'olympia.reviewers.management.commands.auto_approve.run_narc_on_version'
+    )
+    @mock.patch('olympia.reviewers.utils.sign_file')
+    def test_only_executes_run_narc_on_version_once(
+        self, sign_file_mock, run_narc_mock
+    ):
+        self.create_switch('enable-narc', active=True)
+        call_command('auto_approve')
+
+        assert run_narc_mock.call_count == 1
+        run_narc_mock.assert_called_with(self.version.pk)
+
+        run_narc_mock.reset_mock()
+        call_command('auto_approve')
+
+        assert run_narc_mock.call_count == 0
+
     @mock.patch.object(ScannerResult, 'run_action')
     def test_does_not_execute_run_action_when_switch_is_inactive(self, run_action_mock):
         call_command('auto_approve')
@@ -643,6 +682,54 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
             results=[{'rule': 'foo', 'tags': [], 'meta': {}}],
         )
         assert result.has_matches
+
+        call_command('auto_approve')
+        check_assertions()
+
+        call_command('auto_approve')  # Shouldn't matter if it's called twice.
+        check_assertions()
+
+    @mock.patch('olympia.scanners.tasks.parse_xpi')
+    @mock.patch('olympia.reviewers.utils.sign_file')
+    def test_run_action_delay_approval_with_run_narc(
+        self, sign_file_mock, parse_xpi_mock
+    ):
+        # Functional test making sure that the scanners _delay_auto_approval()
+        # action properly delays auto-approval on the version it's applied to,
+        # including when the scanner is narc (which is run in auto-approve).
+        def check_assertions():
+            assert self.version.scannerresults.count() == 1
+            result = self.version.scannerresults.get()
+            assert result.scanner == NARC
+            assert result.has_matches
+            assert result.results
+            assert list(result.matched_rules.all()) == [rule]
+
+            aps = self.version.autoapprovalsummary
+            assert aps.has_auto_approval_disabled
+
+            self.addon.refresh_from_db()
+            flags = self.addon.reviewerflags
+            assert flags.auto_approval_delayed_until
+
+            assert not sign_file_mock.called
+
+        self.create_switch('run-action-in-auto-approve', active=True)
+        self.create_switch('enable-narc', active=True)
+        rule = ScannerRule.objects.create(
+            is_active=True,
+            name='foo',
+            action=DELAY_AUTO_APPROVAL,
+            scanner=NARC,
+            definition='.*',  # Would match anything.
+        )
+        # Mock parse_xpi to avoid dealing with a real file. We return an empty
+        # (but present) default_locale to bypass resolve_webext_translations
+        # which wants a real file...
+        parse_xpi_mock.return_value = {
+            'default_locale': '',
+            'name': 'Foo',
+        }
 
         call_command('auto_approve')
         check_assertions()
