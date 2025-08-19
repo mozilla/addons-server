@@ -21,7 +21,13 @@ from olympia import amo, core
 from olympia.access.models import Group, GroupUser
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonUser
-from olympia.amo.tests import TestCase, addon_factory, collection_factory, user_factory
+from olympia.amo.tests import (
+    TestCase,
+    addon_factory,
+    collection_factory,
+    user_factory,
+    version_factory,
+)
 from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.amo.utils import SafeStorage
 from olympia.bandwagon.models import Collection
@@ -1537,6 +1543,57 @@ class TestOnChangeName(TestCase):
         assert self.index_addons_mock.delay.call_count == 1
         assert self.index_addons_mock.delay.call_args[0] == ([addon.pk],)
 
+    @mock.patch('olympia.scanners.tasks.run_narc_on_version')
+    def test_change_display_name_narc_enabled(self, run_narc_on_version_mock):
+        self.create_switch('enable-narc', active=True)
+        user = user_factory()
+        addon = addon_factory(users=[user])
+        user.update(display_name='Flôp')
+        assert run_narc_on_version_mock.delay.call_count == 1
+        assert run_narc_on_version_mock.delay.call_args[0] == (
+            addon.current_version.pk,
+        )
+
+    @mock.patch('olympia.scanners.tasks.run_narc_on_version')
+    def test_change_display_name_narc_disabled(self, run_narc_on_version_mock):
+        self.create_switch('enable-narc', active=False)
+        user = user_factory()
+        addon_factory(users=[user])
+        user.update(display_name='Flôp')
+        assert run_narc_on_version_mock.delay.call_count == 0
+
+    @mock.patch('olympia.scanners.tasks.run_narc_on_version')
+    def test_change_display_name_only_non_mozilla_disabled_addons_current_version(
+        self, run_narc_on_version_mock
+    ):
+        self.create_switch('enable-narc', active=True)
+        user = user_factory()
+        addon = addon_factory(users=[user])
+        addon2 = version_factory(
+            addon=addon_factory(users=[user], version_kw={'version': '1.0'}),
+            version='2.0',
+        ).addon
+        addon3 = addon_factory(
+            users=[user], disabled_by_user=True
+        )  # Should still be scanned
+
+        # Add some extra add-ons that are going to be ignored.
+        addon_factory(users=[user], status=amo.STATUS_DISABLED)
+        self.make_addon_unlisted(addon_factory(users=[user]))
+
+        user.update(display_name='Flôp')
+
+        assert run_narc_on_version_mock.delay.call_count == 3
+        assert run_narc_on_version_mock.delay.call_args_list[0][0] == (
+            addon.current_version.pk,
+        )
+        assert run_narc_on_version_mock.delay.call_args_list[1][0] == (
+            addon2.current_version.pk,
+        )
+        assert run_narc_on_version_mock.delay.call_args_list[2][0] == (
+            addon3.current_version.pk,
+        )
+
     def test_changes_something_else(self):
         user = user_factory()
         addon = addon_factory()
@@ -1545,6 +1602,12 @@ class TestOnChangeName(TestCase):
 
         user.update(last_login=self.days_ago(0))
         assert self.index_addons_mock.delay.call_count == 0
+
+    @mock.patch('olympia.scanners.tasks.run_narc_on_version')
+    def test_changes_something_else_narc_enabled(self, run_narc_on_version_mock):
+        self.create_switch('enable-narc', active=True)
+        self.test_changes_something_else()
+        assert run_narc_on_version_mock.call_count == 0
 
 
 def find_users(email):

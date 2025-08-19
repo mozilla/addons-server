@@ -2176,6 +2176,39 @@ class TestAddonUser(TestCase):
         assert user.addons.count() == 1
         assert addon.authors.count() == 1
 
+    @patch('olympia.scanners.tasks.run_narc_on_version')
+    def test_dont_run_narc_waffle_switch_off(self, run_narc_on_version_mock):
+        addon = addon_factory(users=[user_factory()])
+        addon.addonuser_set.create(user=user_factory())
+        assert run_narc_on_version_mock.delay.call_count == 0
+
+    @patch('olympia.scanners.tasks.run_narc_on_version')
+    def test_run_narc_new_author(self, run_narc_on_version_mock):
+        self.create_switch('enable-narc', active=True)
+        addon = addon_factory(users=[user_factory()])
+        addon.addonuser_set.create(user=user_factory())
+        assert run_narc_on_version_mock.delay.call_count == 1
+        assert run_narc_on_version_mock.delay.call_args[0] == (
+            addon.current_version.pk,
+        )
+
+    @patch('olympia.scanners.tasks.run_narc_on_version')
+    def test_dont_run_narc_first_author(self, run_narc_on_version_mock):
+        self.create_switch('enable-narc', active=True)
+        # Note: in "real" situation, the first author would have been added
+        # before the first Version, after creating the Addon.
+        addon = addon_factory()
+        addon.addonuser_set.create(user=user_factory())
+        assert run_narc_on_version_mock.delay.call_count == 0
+
+    @patch('olympia.scanners.tasks.run_narc_on_version')
+    def test_dont_run_narc_no_current_version(self, run_narc_on_version_mock):
+        self.create_switch('enable-narc', active=True)
+        addon = addon_factory(users=[user_factory()])
+        self.make_addon_unlisted(addon)
+        addon.addonuser_set.create(user=user_factory())
+        assert run_narc_on_version_mock.delay.call_count == 0
+
 
 class TestShouldRedirectToSubmitFlow(TestCase):
     fixtures = ['base/addon_3615']

@@ -2319,6 +2319,27 @@ class AddonUser(OnChangeMixin, SaveUpdateMixin, models.Model):
 def watch_addon_user(
     old_attr=None, new_attr=None, instance=None, sender=None, **kwargs
 ):
+    # For any new authors added after the first one, we want to re-run the
+    # narc scanner to take that author into account (no need to do it for the
+    # first one, the scan would happen anyway after creating the version when
+    # auto-approval is attempted, and doing it here might be too early).
+    is_new_author_besides_first_one = (
+        # We're adding an author
+        old_attr.get('id') is None
+        and instance.pk
+        # There was at least one other author before (i.e. this is the second
+        # or more author)
+        and instance.addon.addonuser_set.all().exclude(pk=instance.pk).exists()
+    )
+    version = instance.addon.current_version
+    if (
+        waffle.switch_is_active('enable-narc')
+        and version
+        and is_new_author_besides_first_one
+    ):
+        from olympia.scanners.tasks import run_narc_on_version
+
+        run_narc_on_version.delay(version.pk)
     instance.user.update_has_full_profile()
     # Update ES because authors is included.
     update_search_index(sender=sender, instance=instance.addon, **kwargs)
