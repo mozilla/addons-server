@@ -143,13 +143,12 @@ msgid "Please verify the following points before finalizing your submission. Thi
 msgstr "Проверете следните точки преди да изпратите добавката. Така ще бъдат намалени забавянията поради неясноти по време на процеса на преглед:"
 
 #: static/js/common/upload-addon.js:671
-#, fuzzy
 msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Изходният код на компилираните двоични файлове, минифицираните и замъглени скриптове (с изключение на известните библиотеки) трябва да бъде изпратен за рецензия отделно. Използвайте полето за "
-"изпращане на изходен код, за да избегнете отхвърляне на добавката ви."
+"Минимизирани, свързани или по друг начин машинно генерирани скриптове (с изключение на известните библиотеки) трябва да бъдат изпращани отделни източници за преглед. Уверете се, че използвате полето"
+" за качване на изходен код, за да избегнете отхвърляне на изпратеното."
 
 #: static/js/common/upload-addon.js:684
 msgid "The validation process found these issues that can lead to rejections:"
@@ -625,9 +624,9 @@ msgstr "Източници на изтегляния от {0} до {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:195
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Download Mediums, last {0} days"
-msgstr "Изтегляния за последните {0} дни"
+msgstr "Източник на изтеглянето, последните {0} дена"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/stats/csv_keys.js:197
@@ -649,15 +648,15 @@ msgstr "Изтегляне на съдържание от {0} до {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:207
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Download Campaigns, last {0} days"
-msgstr "Изтегляния за последните {0} дни"
+msgstr "Изтегляне на кампании за последните {0} дни"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/stats/csv_keys.js:209
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Download Campaigns from {0} to {1}"
-msgstr "Изтегляния от {0} до {1}"
+msgstr "Изтегляне на кампании от {0} до {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:213
