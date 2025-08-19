@@ -2325,8 +2325,9 @@ def watch_addon_user(
     # auto-approval is attempted, and doing it here might be too early).
     is_new_author_besides_first_one = (
         # We're adding an author
-        old_attr.get('id') is None
-        and instance.pk
+        instance.pk
+        and old_attr
+        and old_attr.get('id') is None
         # There was at least one other author before (i.e. this is the second
         # or more author)
         and instance.addon.addonuser_set.all().exclude(pk=instance.pk).exists()
