@@ -737,6 +737,16 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         call_command('auto_approve')  # Shouldn't matter if it's called twice.
         check_assertions()
 
+    @mock.patch('olympia.reviewers.utils.sign_file')
+    def test_run_narc_causes_broken_manifest_addon_to_be_ignored(self, sign_file_mock):
+        # Functional test making sure that an error when scanning does not
+        # break auto-approval entirely, instead the broken add-on is ignored.
+        # We're not providing a real XPI so this should raise when parsing.
+        self.create_switch('enable-narc', active=True)
+        call_command('auto_approve')
+        assert not sign_file_mock.called
+        self._check_stats({'total': 1, 'error': 1})
+
     def test_run_action_delay_approval_unlisted(self):
         self.version.update(channel=amo.CHANNEL_UNLISTED)
         self.test_run_action_delay_approval()
