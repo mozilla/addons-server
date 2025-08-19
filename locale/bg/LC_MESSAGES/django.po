@@ -396,11 +396,11 @@ msgstr ""
 
 #: src/olympia/addons/validators.py:98
 msgid "Custom licenses are not supported for themes."
-msgstr ""
+msgstr "Темите не поддуржат потребителски лицензи."
 
 #: src/olympia/addons/validators.py:132
 msgid "This field is required for add-ons with listed versions."
-msgstr ""
+msgstr "Това поле е задължително за добавки с изброени версии."
 
 #: src/olympia/addons/validators.py:158
 #, python-brace-format
