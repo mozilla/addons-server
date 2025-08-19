@@ -70,96 +70,112 @@ class UsageTierAdmin(AMOModelAdmin):
         'upper_adu_threshold',
         'growth_threshold_before_flagging',
         'computed_growth_threshold_before_flagging',
-        'computed_number_of_addons_that_would_be_flagged_for_growth',
+        'number_of_addons_that_would_be_flagged_for_growth',
         'abuse_reports_ratio_threshold_before_flagging',
-        'computed_number_of_addons_that_would_be_flagged_for_abuse_reports',
+        'number_of_addons_that_would_be_flagged_for_abuse_reports',
         'ratings_ratio_threshold_before_flagging',
-        'computed_number_of_addons_that_would_be_flagged_for_ratings',
+        'number_of_addons_that_would_be_flagged_for_ratings',
         'abuse_reports_ratio_threshold_before_blocking',
-        'computed_number_of_addons_that_would_be_blocked_for_abuse_reports',
+        'number_of_addons_that_would_be_blocked_for_abuse_reports',
         'ratings_ratio_threshold_before_blocking',
-        'computed_number_of_addons_that_would_be_blocked_for_ratings',
+        'number_of_addons_that_would_be_blocked_for_ratings',
     )
     readonly_fields = (
         'computed_growth_threshold_before_flagging',
-        'computed_number_of_addons_that_would_be_flagged_for_growth',
-        'computed_number_of_addons_that_would_be_flagged_for_abuse_reports',
-        'computed_number_of_addons_that_would_be_flagged_for_ratings',
-        'computed_number_of_addons_that_would_be_blocked_for_abuse_reports',
-        'computed_number_of_addons_that_would_be_blocked_for_ratings',
+        'number_of_addons_that_would_be_flagged_for_growth',
+        'number_of_addons_that_would_be_flagged_for_abuse_reports',
+        'number_of_addons_that_would_be_flagged_for_ratings',
+        'number_of_addons_that_would_be_blocked_for_abuse_reports',
+        'number_of_addons_that_would_be_blocked_for_ratings',
     )
 
     def computed_growth_threshold_before_flagging(self, obj):
         return obj.get_growth_threshold()
 
-    def computed_number_of_addons_that_would_be_flagged_for_growth(self, obj):
-        return (
-            (
-                UsageTier.get_base_addons()
-                .filter(obj.get_growth_threshold_q_object())
-                .count()
-            )
-            if obj.growth_threshold_before_flagging
-            else 0
+    def addons_sql_count_query(self, qs):
+        """Return a SQL COUNT(*) query from a queryset.
+
+        Only use to print specific safe queries in UsageTier admin, it does not
+        perform proper escaping and is not safe on arbitrary querysets.
+        """
+        sql_with_params = qs.only('id').query.sql_with_params()
+        # Django doesn't quote strings in sql_with_params() or str(query) since
+        # it expects the database to do it automatically when called with the
+        # proper API. We want to print the SQL though, not execute it, so we
+        # have to do it ourselves. For our purposes, just surrounding strings
+        # by double-quotes is enough here.
+        sql = sql_with_params[0] % tuple(
+            '"{}"'.format(p) if isinstance(p, (str,)) else p for p in sql_with_params[1]
+        )
+        # Similarly we have no way to directly print a COUNT(*) query without
+        # executing it, but we know we're only dealing with addons and we know
+        # what the SELECT part looks like so we can replace it.
+        return sql.replace(
+            'SELECT `addons`.`id`, "en-us" AS `__lang`', 'SELECT COUNT(*)'
         )
 
-    def computed_number_of_addons_that_would_be_flagged_for_abuse_reports(self, obj):
+    def number_of_addons_that_would_be_flagged_for_growth(self, obj):
         return (
-            (
+            self.addons_sql_count_query(
+                UsageTier.get_base_addons().filter(obj.get_growth_threshold_q_object())
+            )
+            if obj.growth_threshold_before_flagging
+            else ''
+        )
+
+    def number_of_addons_that_would_be_flagged_for_abuse_reports(self, obj):
+        return (
+            self.addons_sql_count_query(
                 UsageTier.get_base_addons()
                 .alias(abuse_reports_count=UsageTier.get_abuse_count_subquery())
                 .filter(obj.get_abuse_threshold_q_object(block=False))
-                .count()
             )
             if obj.abuse_reports_ratio_threshold_before_flagging
-            else 0
+            else ''
         )
 
-    def computed_number_of_addons_that_would_be_blocked_for_abuse_reports(self, obj):
+    def number_of_addons_that_would_be_blocked_for_abuse_reports(self, obj):
         return (
-            (
+            self.addons_sql_count_query(
                 UsageTier.get_base_addons()
                 .alias(abuse_reports_count=UsageTier.get_abuse_count_subquery())
                 .filter(obj.get_abuse_threshold_q_object(block=True))
-                .count()
             )
             if obj.abuse_reports_ratio_threshold_before_blocking
-            else 0
+            else ''
         )
 
-    def computed_number_of_addons_that_would_be_flagged_for_ratings(self, obj):
+    def number_of_addons_that_would_be_flagged_for_ratings(self, obj):
         return (
-            (
+            self.addons_sql_count_query(
                 UsageTier.get_base_addons()
                 .alias(ratings_count=UsageTier.get_rating_count_subquery())
                 .filter(obj.get_rating_threshold_q_object(block=False))
-                .count()
             )
             if obj.ratings_ratio_threshold_before_flagging
-            else 0
+            else ''
         )
 
-    def computed_number_of_addons_that_would_be_blocked_for_ratings(self, obj):
+    def number_of_addons_that_would_be_blocked_for_ratings(self, obj):
         return (
-            (
+            self.addons_sql_count_query(
                 UsageTier.get_base_addons()
                 .alias(ratings_count=UsageTier.get_rating_count_subquery())
                 .filter(obj.get_rating_threshold_q_object(block=True))
-                .count()
             )
             if obj.ratings_ratio_threshold_before_blocking
-            else 0
+            else ''
         )
 
     def get_form(self, request, obj=None, **kwargs):
         if obj:
             help_texts = {
-                'computed_growth_threshold_before_flagging': (
+                'growth_threshold_before_flagging': (
                     'Actual growth threshold above which we would flag add-ons in that '
                     'tier, as computed using the percentage defined above and the '
                     'current average growth of add-ons (currently {}) in that tier.'
                 ).format(obj.average_growth),
-                'computed_number_of_addons_that_would_be_flagged_for_growth': (
+                'number_of_addons_that_would_be_flagged_for_growth': (
                     'Number of add-ons that would be flagged for growth using the '
                     'percentage defined above, if the task ran now with the current '
                     'add-on growth values.'
