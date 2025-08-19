@@ -13,7 +13,7 @@ from olympia.users.models import UserProfile
 log = olympia.core.logger.getLogger('devhub')
 
 
-class RssKey(models.Model):
+class RssKey(ModelBase):
     id = PositiveAutoField(primary_key=True)
     key = models.UUIDField(
         db_column='rsskey', unique=True, null=True, default=uuid.uuid4
