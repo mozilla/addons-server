@@ -911,7 +911,7 @@ msgstr "{name} a vizualizat mai întâi această pagină."
 
 #: static/js/zamboni/reviewers.js:266
 msgid "Review page polling failed."
-msgstr ""
+msgstr "Interogarea paginii de recenzii a eșuat."
 
 #: static/js/zamboni/reviewers.js:554
 #, python-brace-format
