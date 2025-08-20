@@ -1395,7 +1395,9 @@ class AddonSerializer(AMOModelSerializer):
                 waffle.switch_is_active('enable-narc')
                 and 'name' in changes
                 and (
-                    version := instance.find_latest_version(channel=amo.CHANNEL_LISTED)
+                    version := instance.versions.filter(channel=amo.CHANNEL_LISTED)
+                    .not_rejected()
+                    .last()
                 )
             ):
                 run_narc_on_version.delay(version.pk)

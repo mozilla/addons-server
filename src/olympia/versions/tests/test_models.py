@@ -352,6 +352,38 @@ class TestVersionManagerLatestPublicCompatibleWith(TestCase):
         assert list(qs2) == list(qs)
 
 
+class TestVersionQuerySet(TestCase):
+    def test_not_rejected(self):
+        addon = addon_factory(version_kw={'version': '1.0'})
+        version1 = addon.current_version
+        version2 = version_factory(addon=addon, version='2.0')
+        assert list(addon.versions.all().not_rejected().order_by('pk')) == [
+            version1,
+            version2,
+        ]
+
+        version1.is_user_disabled = True
+        assert list(addon.versions.all().not_rejected().order_by('pk')) == [
+            version1,
+            version2,
+        ]
+
+        version1.is_user_disabled = False
+        version1.file.update(status=amo.STATUS_DISABLED)
+        assert list(addon.versions.all().not_rejected().order_by('pk')) == [version2]
+
+        version1.file.update(
+            status=amo.STATUS_DISABLED,
+            status_disabled_reason=version1.file.STATUS_DISABLED_REASONS.VERSION_DELETE,
+        )
+        assert list(
+            addon.versions(manager='unfiltered_for_relations')
+            .all()
+            .not_rejected()
+            .order_by('pk')
+        ) == [version1, version2]
+
+
 class TestVersionManager(TestCase):
     def test_version_hidden_from_related_manager_after_deletion(self):
         """Test that a version that has been deleted should be hidden from the

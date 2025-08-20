@@ -154,9 +154,11 @@ class AddonFormBase(TranslationFormMixin, AMOModelForm):
                     waffle.switch_is_active('enable-narc')
                     and 'name' in self.metadata_changes
                     and (
-                        version := self.instance.find_latest_version(
+                        version := self.instance.versions.filter(
                             channel=amo.CHANNEL_LISTED
                         )
+                        .not_rejected()
+                        .last()
                     )
                 ):
                     run_narc_on_version.delay(version.pk)

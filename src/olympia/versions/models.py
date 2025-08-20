@@ -29,6 +29,7 @@ from olympia.amo.decorators import use_primary_db
 from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import (
     BasePreview,
+    BaseQuerySet,
     LongNameIndex,
     ManagerBase,
     ModelBase,
@@ -82,7 +83,17 @@ VALID_SOURCE_EXTENSIONS = (
 )
 
 
+class VersionQuerySet(BaseQuerySet):
+    def not_rejected(self):
+        return self.exclude(
+            file__status=amo.STATUS_DISABLED,
+            file__status_disabled_reason=File.STATUS_DISABLED_REASONS.NONE,
+        )
+
+
 class VersionManager(ManagerBase):
+    _queryset_class = VersionQuerySet
+
     def __init__(self, include_deleted=False):
         ManagerBase.__init__(self)
         self.include_deleted = include_deleted

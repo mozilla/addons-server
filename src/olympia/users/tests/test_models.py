@@ -1573,13 +1573,14 @@ class TestOnChangeName(TestCase):
             addon=addon_factory(users=[user], version_kw={'version': '1.0'}),
             version='2.0',
         ).addon
-        addon3 = addon_factory(
-            users=[user], disabled_by_user=True
-        )  # Should still be scanned
+        addon3 = addon_factory(users=[user])
+        version_from_addon3 = addon3.current_version
+        addon3.current_version.is_user_disabled = True  # Should still be scanned
+        assert not addon3.current_version
 
         # Add some extra add-ons that are going to be ignored.
-        addon_factory(users=[user], status=amo.STATUS_DISABLED)
-        self.make_addon_unlisted(addon_factory(users=[user]))
+        addon_factory(name='Force disabled', users=[user]).force_disable()
+        self.make_addon_unlisted(addon_factory(name='Pure unlisted', users=[user]))
 
         user.update(display_name='Flôp')
 
@@ -1591,7 +1592,7 @@ class TestOnChangeName(TestCase):
             addon2.current_version.pk,
         )
         assert run_narc_on_version_mock.delay.call_args_list[2][0] == (
-            addon3.current_version.pk,
+            version_from_addon3.pk,
         )
 
     def test_changes_something_else(self):

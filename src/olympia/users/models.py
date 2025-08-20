@@ -16,7 +16,7 @@ from django.contrib.auth.signals import user_logged_in
 from django.core import validators
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.db import models
-from django.db.models import F, Q, Value
+from django.db.models import F, Max, Q, Value
 from django.db.models.functions import Collate
 from django.template import loader
 from django.templatetags.static import static
@@ -1375,15 +1375,31 @@ def watch_changes(old_attr=None, new_attr=None, instance=None, sender=None, **kw
             index_addons.delay(ids)
 
         if waffle.switch_is_active('enable-narc'):
-            # Re-run narc scanner on the current version of their non-disabled
-            # by Mozilla add-ons - this is a slightly larger set than the one
-            # used above for reindexing, as we want to include add-ons disabled
-            # by their developers, to scan them before they would be re-enabled
+            # Re-run narc scanner on the last non rejected version of their
+            # non-disabled by Mozilla add-ons - this is a slightly larger set
+            # than the one used above for reindexing, as we want to include
+            # add-ons and versions disabled by their developers, to scan them
+            # before they would be re-enabled.
             version_pks = (
                 instance.addons.not_disabled_by_mozilla()
-                .filter(_current_version__isnull=False)
-                .values_list('_current_version', flat=True)
-                .order_by('pk')
+                .annotate(
+                    last_version_id=Max(
+                        'versions',
+                        filter=Q(
+                            versions__channel=amo.CHANNEL_LISTED,
+                            versions__deleted=False,
+                        )
+                        & ~Q(
+                            versions__file__status=amo.STATUS_DISABLED,
+                            versions__file__status_disabled_reason=(
+                                File.STATUS_DISABLED_REASONS.NONE
+                            ),
+                        ),
+                    )
+                )
+                .exclude(last_version_id=None)
+                .values_list('last_version_id', flat=True)
+                .order_by('last_version_id')
             )
             for version_pk in version_pks:
                 run_narc_on_version.delay(version_pk)

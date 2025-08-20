@@ -2323,6 +2323,7 @@ def watch_addon_user(
     # narc scanner to take that author into account (no need to do it for the
     # first one, the scan would happen anyway after creating the version when
     # auto-approval is attempted, and doing it here might be too early).
+    addon = instance.addon
     is_new_author_besides_first_one = (
         # We're adding an author
         instance.pk
@@ -2330,9 +2331,9 @@ def watch_addon_user(
         and old_attr.get('id') is None
         # There was at least one other author before (i.e. this is the second
         # or more author)
-        and instance.addon.addonuser_set.all().exclude(pk=instance.pk).exists()
+        and addon.addonuser_set.all().exclude(pk=instance.pk).exists()
     )
-    version = instance.addon.current_version
+    version = addon.versions.filter(channel=amo.CHANNEL_LISTED).not_rejected().last()
     if (
         waffle.switch_is_active('enable-narc')
         and version
@@ -2343,7 +2344,7 @@ def watch_addon_user(
         run_narc_on_version.delay(version.pk)
     instance.user.update_has_full_profile()
     # Update ES because authors is included.
-    update_search_index(sender=sender, instance=instance.addon, **kwargs)
+    update_search_index(sender=sender, instance=addon, **kwargs)
 
 
 models.signals.post_delete.connect(

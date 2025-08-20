@@ -391,13 +391,29 @@ class BaseTestEditDescribe(BaseTestEdit):
         data = self.get_dict()
         addon = self.get_addon()
         self.client.post(self.describe_edit_url, data)
-        if addon.current_version:
+        if self.listed:
             assert run_narc_on_version_mock.delay.call_count == 1
             assert run_narc_on_version_mock.delay.call_args[0] == (
                 addon.current_version.pk,
             )
         else:
             assert run_narc_on_version_mock.delay.call_count == 0
+
+    @mock.patch('olympia.devhub.forms.run_narc_on_version')
+    def test_trigger_narc_on_name_change_if_listed_versions_not_rejected(
+        self, run_narc_on_version_mock
+    ):
+        if not self.listed:
+            return
+        self.create_switch('enable-narc', active=True)
+        data = self.get_dict()
+        addon = self.get_addon()
+        version = addon.current_version
+        addon.current_version.is_user_disabled = True
+        assert not addon.current_version
+        self.client.post(self.describe_edit_url, data)
+        assert run_narc_on_version_mock.delay.call_count == 1
+        assert run_narc_on_version_mock.delay.call_args[0] == (version.pk,)
 
     @mock.patch('olympia.devhub.forms.run_narc_on_version')
     def test_dont_trigger_narc_if_name_does_not_change(self, run_narc_on_version_mock):
