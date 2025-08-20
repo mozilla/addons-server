@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-14 12:10+0000\n"
+"POT-Creation-Date: 2025-08-20 09:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -369,12 +369,12 @@ msgstr ""
 msgid "Images must be smaller than %dMB"
 msgstr ""
 
-#: src/olympia/addons/models.py:2282 src/olympia/addons/models.py:2339
+#: src/olympia/addons/models.py:2282 src/olympia/addons/models.py:2361
 #: src/olympia/constants/base.py:66
 msgid "Listed"
 msgstr ""
 
-#: src/olympia/addons/models.py:2517
+#: src/olympia/addons/models.py:2539
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr ""
 
@@ -7591,48 +7591,48 @@ msgstr ""
 msgid "You can only enter one, either IP Address or Network."
 msgstr ""
 
-#: src/olympia/users/models.py:90
+#: src/olympia/users/models.py:91
 msgid "No user with that email."
 msgstr ""
 
-#: src/olympia/users/models.py:611
+#: src/olympia/users/models.py:612
 #, python-brace-format
 msgid "Firefox user {id}"
 msgstr ""
 
-#: src/olympia/users/models.py:862
+#: src/olympia/users/models.py:863
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr ""
 
-#: src/olympia/users/models.py:866
+#: src/olympia/users/models.py:867
 msgid ""
 "Multiple submissions violating our policies have been sent from your "
 "location. The IP address has been blocked."
 msgstr ""
 
-#: src/olympia/users/models.py:984
+#: src/olympia/users/models.py:985
 msgid "Email Pattern"
 msgstr ""
 
-#: src/olympia/users/models.py:987
+#: src/olympia/users/models.py:988
 msgid ""
 "Enter full email that should be blocked or use unix-style wildcards, e.g. "
 "\"*@example.com\". If you need to block a domain incl subdomains, add a "
 "second entry, e.g. \"*@*.example.com\"."
 msgstr ""
 
-#: src/olympia/users/models.py:994
+#: src/olympia/users/models.py:995
 msgid "The email address used for your account is not allowed for submissions."
 msgstr ""
 
-#: src/olympia/users/models.py:1094
+#: src/olympia/users/models.py:1095
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not "
 "supported: if you need those, or need to match against the entire email and "
 "not just the domain part, use \"Email user restrictions\" instead."
 msgstr ""
 
-#: src/olympia/users/models.py:1251
+#: src/olympia/users/models.py:1252
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution "
 "Agreement as well as our Review Policies and Rules. The Firefox Add-on "
@@ -7640,14 +7640,14 @@ msgid ""
 " handle your information."
 msgstr ""
 
-#: src/olympia/users/models.py:1265
+#: src/olympia/users/models.py:1266
 #, python-brace-format
 msgid ""
 "Please read and accept our Firefox Add-on Distribution Agreement as well as "
 "our Review Policies and Rules by visiting {url}"
 msgstr ""
 
-#: src/olympia/users/models.py:1316
+#: src/olympia/users/models.py:1317
 msgid "User Restriction History"
 msgstr ""
 
