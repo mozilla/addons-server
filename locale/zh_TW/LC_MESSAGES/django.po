@@ -790,7 +790,7 @@ msgstr "無法使用此自訂網址。"
 
 #: src/olympia/bandwagon/serializers.py:149
 msgid "This add-on already belongs to the collection"
-msgstr "此附加元件屬於收藏集"
+msgstr "此附加元件已加入收藏集"
 
 #: src/olympia/blocklist/models.py:188
 msgid "Blocked"
@@ -3945,7 +3945,7 @@ msgstr "請選擇您的原始碼要使用哪個條款釋出，此欄位僅與公
 
 #: src/olympia/devhub/templates/devhub/includes/listing_header.html:2
 msgid "Sort by:"
-msgstr "排序依照:"
+msgstr "排序依照："
 
 #: src/olympia/devhub/templates/devhub/includes/macros.html:5
 msgid "Some Markdown supported."
