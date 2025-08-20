@@ -892,7 +892,7 @@ class UsageTier(ModelBase):
             .filter(
                 ~AbuseReport.objects.__class__.is_individually_actionable_q(),
                 guid=OuterRef('guid'),
-                created__gte=datetime.now() - timedelta(days=14),
+                created__gte=datetime.now().date() - timedelta(days=14),
             )
             .annotate(guid_abuse_reports_count=Count('*'))
             .values('guid_abuse_reports_count')
@@ -927,7 +927,7 @@ class UsageTier(ModelBase):
             Rating.without_replies.values('addon_id')
             .filter(
                 addon_id=OuterRef('id'),
-                created__gte=datetime.now() - timedelta(days=14),
+                created__gte=datetime.now().date() - timedelta(days=14),
             )
             .annotate(_ratings_count=Count('*'))
             .values('_ratings_count')
