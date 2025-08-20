@@ -28,6 +28,7 @@ from django.utils.functional import cached_property
 from django.utils.translation import gettext, gettext_lazy as _
 
 import requests
+import waffle
 from extended_choices import Choices
 
 import olympia.core.logger
@@ -1367,10 +1368,25 @@ def watch_changes(old_attr=None, new_attr=None, instance=None, sender=None, **kw
     # are any.
     if 'username' in changes or 'display_name' in changes:
         from olympia.addons.tasks import index_addons
+        from olympia.scanners.tasks import run_narc_on_version
 
         ids = [addon.pk for addon in instance.get_addons_listed()]
         if ids:
             index_addons.delay(ids)
+
+        if waffle.switch_is_active('enable-narc'):
+            # Re-run narc scanner on the current version of their non-disabled
+            # by Mozilla add-ons - this is a slightly larger set than the one
+            # used above for reindexing, as we want to include add-ons disabled
+            # by their developers, to scan them before they would be re-enabled
+            version_pks = (
+                instance.addons.not_disabled_by_mozilla()
+                .filter(_current_version__isnull=False)
+                .values_list('_current_version', flat=True)
+                .order_by('pk')
+            )
+            for version_pk in version_pks:
+                run_narc_on_version.delay(version_pk)
 
 
 user_logged_in.connect(UserProfile.user_logged_in)
