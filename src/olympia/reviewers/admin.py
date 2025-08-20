@@ -68,6 +68,7 @@ class UsageTierAdmin(AMOModelAdmin):
         'name',
         'lower_adu_threshold',
         'upper_adu_threshold',
+        'disable_and_block_action_available',
         'growth_threshold_before_flagging',
         'computed_growth_threshold_before_flagging',
         'number_of_addons_that_would_be_flagged_for_growth',

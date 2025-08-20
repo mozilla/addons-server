@@ -1,11 +1,15 @@
+import json
+import uuid
 from datetime import datetime, timedelta
 from unittest import mock
 
 from django.conf import settings
 
 import pytest
+import responses
 
 from olympia import amo
+from olympia.abuse.models import ContentDecision
 from olympia.amo.tests import (
     TestCase,
     addon_factory,
@@ -13,21 +17,27 @@ from olympia.amo.tests import (
     version_factory,
     version_review_flags_factory,
 )
+from olympia.blocklist.models import Block, BlockType, BlockVersion
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.constants.scanners import (
     CUSTOMS,
     DELAY_AUTO_APPROVAL,
     DELAY_AUTO_APPROVAL_INDEFINITELY,
+    DISABLE_AND_BLOCK,
     FLAG_FOR_HUMAN_REVIEW,
     MAD,
     NO_ACTION,
     YARA,
 )
 from olympia.files.models import FileUpload
+from olympia.promoted.models import PromotedGroup
+from olympia.reviewers.models import UsageTier
 from olympia.scanners.actions import (
     _delay_auto_approval,
     _delay_auto_approval_indefinitely,
     _delay_auto_approval_indefinitely_and_restrict,
     _delay_auto_approval_indefinitely_and_restrict_future_approvals,
+    _disable_and_block,
     _flag_for_human_review,
     _flag_for_human_review_by_scanner,
     _no_action,
@@ -951,6 +961,105 @@ class TestActions(TestCase):
                 version=version, rule=None, scanner=CUSTOMS
             )
 
+    def test_disable_and_block(self):
+        responses.add_callback(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}create_decision',
+            callback=lambda r: (201, {}, json.dumps({'uuid': uuid.uuid4().hex})),
+        )
+
+        UsageTier.objects.create(
+            upper_adu_threshold=10000, disable_and_block_action_available=True
+        )
+        addon = addon_factory(average_daily_users=4242)
+        version1 = addon.current_version
+        version2 = version_factory(addon=addon)
+        _disable_and_block(version=version2, rule=None)
+        assert addon.reload().status == amo.STATUS_DISABLED
+        assert addon.block
+        assert version1.is_blocked
+        assert version1.file.reload().status == amo.STATUS_DISABLED
+        assert version1.blockversion.block_type == BlockType.SOFT_BLOCKED
+        assert version2.is_blocked
+        assert version2.file.reload().status == amo.STATUS_DISABLED
+        assert version2.blockversion.block_type == BlockType.SOFT_BLOCKED
+        assert ContentDecision.objects.count() == 1
+
+    @mock.patch('olympia.scanners.actions.reject_and_block_addons')
+    def test_disable_and_block_with_mock(self, reject_and_block_addons_mock):
+        UsageTier.objects.create(
+            upper_adu_threshold=10000, disable_and_block_action_available=True
+        )
+        addon = addon_factory(average_daily_users=4242)
+        _disable_and_block(version=addon.current_version, rule=None)
+        assert reject_and_block_addons_mock.call_count == 1
+        assert reject_and_block_addons_mock.call_args[0] == ([addon],)
+
+    def test_disable_and_block_second_level_approval(self):
+        responses.add_callback(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}create_decision',
+            callback=lambda r: (201, {}, json.dumps({'uuid': uuid.uuid4().hex})),
+        )
+
+        UsageTier.objects.create(
+            upper_adu_threshold=10000, disable_and_block_action_available=True
+        )
+        PromotedGroup.objects.get_or_create(
+            group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED, high_profile=True
+        )
+        addon = addon_factory(
+            average_daily_users=4242,
+            promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
+            version_kw={'promotion_approved': False},
+        )
+
+        version1 = addon.current_version
+        version2 = version_factory(addon=addon)
+        _disable_and_block(version=version2, rule=None)
+        assert addon.reload().status == amo.STATUS_APPROVED  # Not disabled yet
+        assert not addon.block
+        assert not version1.is_blocked
+        assert version1.file.reload().status == amo.STATUS_APPROVED  # Not disabled yet
+        assert not version2.is_blocked
+        assert version2.file.reload().status == amo.STATUS_APPROVED  # Not disabled yet
+        assert ContentDecision.objects.count() == 1
+        assert not ContentDecision.objects.get().action_date  # Action pending approval
+
+    def test_disable_and_block_not_available_for_that_tier(self):
+        tier = UsageTier.objects.create(lower_adu_threshold=1)
+        assert not tier.disable_and_block_action_available  # Default is False
+        addon = addon_factory(average_daily_users=1234)
+        assert addon.get_usage_tier() == tier
+        version = addon.current_version
+        _disable_and_block(version=version, rule=None)
+        # Should not have been disabled & blocked, disable_and_block_action_available
+        # is False.
+        assert addon.status == amo.STATUS_APPROVED
+        assert not Block.objects.exists()
+        assert not BlockVersion.objects.exists()
+        # Should have been flagged for review and auto-approval disabled as a
+        # fallback.
+        assert version.needshumanreview_set.filter(is_active=True).exists()
+        addon.reviewerflags.reload()
+        assert addon.auto_approval_delayed_until == datetime.max
+        assert addon.auto_approval_delayed_until_unlisted == datetime.max
+
+    def test_disable_and_block_no_usage_tier(self):
+        addon = addon_factory()
+        version = addon.current_version
+        _disable_and_block(version=version, rule=None)
+        # Should not have been disabled & blocked since it's not in any tier
+        assert addon.status == amo.STATUS_APPROVED
+        assert not Block.objects.exists()
+        assert not BlockVersion.objects.exists()
+        # Should have been flagged for review and auto-approval disabled as a
+        # fallback.
+        assert version.needshumanreview_set.filter(is_active=True).exists()
+        addon.reviewerflags.reload()
+        assert addon.auto_approval_delayed_until == datetime.max
+        assert addon.auto_approval_delayed_until_unlisted == datetime.max
+
 
 class TestRunAction(TestCase):
     def setUp(self):
@@ -1009,6 +1118,18 @@ class TestRunAction(TestCase):
         _delay_auto_approval_indefinitely_mock.assert_called_with(
             version=self.version, rule=self.scanner_rule
         )
+
+    @mock.patch('olympia.scanners.models._disable_and_block')
+    def test_runs_disable_and_block(self, _disable_and_block_mock):
+        self.scanner_rule.update(action=DISABLE_AND_BLOCK)
+
+        ScannerResult.run_action(self.version)
+
+        assert _disable_and_block_mock.call_count == 1
+        assert _disable_and_block_mock.call_args[1] == {
+            'version': self.version,
+            'rule': self.scanner_rule,
+        }
 
     @mock.patch('olympia.scanners.models._delay_auto_approval_indefinitely')
     def test_returns_for_non_extension_addons(

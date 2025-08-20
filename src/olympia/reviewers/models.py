@@ -807,6 +807,11 @@ class UsageTier(ModelBase):
         'For example, if set to 5 and an add-on in that tier has 10,000 users, '
         'it will be blocked after 500 ratings.',
     )
+    disable_and_block_action_available = models.BooleanField(
+        default=False,
+        help_text='Whether or not the "Force-disable and block" scanner action should'
+        'be available for add-ons belonging to that usage tier.',
+    )
 
     class Meta:
         ordering = ('upper_adu_threshold',)
@@ -816,8 +821,8 @@ class UsageTier(ModelBase):
 
     @classmethod
     def get_base_addons(cls):
-        """Return base queryset of add-ons we consider when we look at growth
-        thresholds.
+        """Return base queryset of add-ons we consider for functionality tied
+        to Usage Tiers.
 
         This is a classmethod, it is not specific to a particular tier."""
         return Addon.unfiltered.exclude(status=amo.STATUS_DISABLED).filter(
@@ -833,11 +838,16 @@ class UsageTier(ModelBase):
             filters['average_daily_users__lt'] = self.upper_adu_threshold
         return filters
 
+    def get_addons(self):
+        """Return add-ons considered as being part of that specific tier.
+
+        See get_base_addon() for additional filters being applied."""
+        return self.get_base_addons().filter(**self.get_tier_boundaries())
+
     @cached_property
     def average_growth(self):
         return (
-            self.get_base_addons()
-            .filter(**self.get_tier_boundaries())
+            self.get_addons()
             .aggregate(Avg('hotness', default=0))
             .get('hotness__avg', 0)
         )

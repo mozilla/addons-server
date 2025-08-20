@@ -23,6 +23,7 @@ from olympia.constants.scanners import (
     DELAY_AUTO_APPROVAL_INDEFINITELY,
     DELAY_AUTO_APPROVAL_INDEFINITELY_AND_RESTRICT,
     DELAY_AUTO_APPROVAL_INDEFINITELY_AND_RESTRICT_FUTURE_APPROVALS,
+    DISABLE_AND_BLOCK,
     FLAG_FOR_HUMAN_REVIEW,
     MAD,
     NARC,
@@ -42,6 +43,7 @@ from olympia.scanners.actions import (
     _delay_auto_approval_indefinitely,
     _delay_auto_approval_indefinitely_and_restrict,
     _delay_auto_approval_indefinitely_and_restrict_future_approvals,
+    _disable_and_block,
     _flag_for_human_review,
     _flag_for_human_review_by_scanner,
     _no_action,
@@ -362,6 +364,7 @@ class ScannerResult(AbstractScannerResult):
             DELAY_AUTO_APPROVAL_INDEFINITELY_AND_RESTRICT_FUTURE_APPROVALS: (
                 _delay_auto_approval_indefinitely_and_restrict_future_approvals
             ),
+            DISABLE_AND_BLOCK: _disable_and_block,
         }
 
         action_function = ACTION_FUNCTIONS.get(action_id, None)

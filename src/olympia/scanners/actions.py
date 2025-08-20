@@ -1,6 +1,7 @@
 import ipaddress
 from datetime import datetime, timedelta
 
+from olympia.abuse.utils import reject_and_block_addons
 from olympia.constants.scanners import MAD
 from olympia.users.models import (
     RESTRICTION_TYPES,
@@ -137,6 +138,21 @@ def _delay_auto_approval_indefinitely_and_restrict_future_approvals(*, version, 
     return _delay_auto_approval_indefinitely_and_restrict(
         version=version, rule=rule, restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
     )
+
+
+def _disable_and_block(*, version, rule):
+    """Force disable the whole add-on and block all its versions."""
+    # This is final, and meant as an aggressive last-resort, so there are no
+    # checks on whether or not the version has been flagged by a scanner
+    # before. Instead, we check the UsageTier the Addon belongs to, and only
+    # execute if the UsageTier allows it. If not, we delay auto approval
+    # instead (which would flag too).
+    addon = version.addon
+    usage_tier = addon.get_usage_tier()
+    if usage_tier and usage_tier.disable_and_block_action_available:
+        reject_and_block_addons([addon])
+    else:
+        _delay_auto_approval_indefinitely(version=version, rule=rule)
 
 
 def _flag_for_human_review_by_scanner(*, version, rule, scanner):

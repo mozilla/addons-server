@@ -2043,6 +2043,19 @@ class Addon(OnChangeMixin, ModelBase):
         qs = qs.exclude(id=qs.values('id')[:1])
         return qs.order_by('-created')
 
+    def get_usage_tier(self):
+        """Return the UsageTier instance the add-on is a part of, or None.
+
+        Note that UsageTier has additional filtering on top of just usage, so
+        it's possible for some add-ons to not be part of any UsageTier even if
+        their average_daily_users value would match one."""
+        from olympia.reviewers.models import UsageTier
+
+        for tier in UsageTier.objects.all():
+            if tier.get_addons().filter(pk=self.pk).exists():
+                return tier
+        return None
+
 
 dbsignals.pre_save.connect(save_signal, sender=Addon, dispatch_uid='addon_translations')
 
