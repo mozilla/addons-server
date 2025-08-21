@@ -117,7 +117,7 @@ msgstr ""
 "După analizarea contestației, am stabilit că decizia anterioară, conform căreia conținutul nu încalcă politicile Mozilla (%(policy_document_url)s), a fost corectă. În baza acestei determinări, ți-am respins contestația și nu vom lua nicio măsură împotriva contului sau a conținutului.\n"
 "%(manual_reasoning_text)s.\n"
 "\n"
-"Vă mulțumim pentru atenția acordată.\n"
+"Îți mulțumim pentru atenția acordată.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown.txt:5
 #, python-format
