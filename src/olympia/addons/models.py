@@ -1119,6 +1119,19 @@ class Addon(OnChangeMixin, ModelBase):
             return [amo.STATUS_APPROVED]
         return amo.VALID_FILE_STATUSES
 
+    def find_latest_non_rejected_listed_version(self):
+        """Return the latest non-deleted, non-rejected listed version of an
+        add-on, or None.
+
+        Can return a user-disabled or non-approved version.
+        """
+        return (
+            self.versions.filter(channel=amo.CHANNEL_LISTED)
+            .not_rejected()
+            .order_by('pk')
+            .last()
+        )
+
     def find_latest_public_listed_version(self):
         """Retrieve the latest public listed version of an addon.
 
@@ -2344,11 +2357,10 @@ def watch_addon_user(
         # or more author)
         and addon.addonuser_set.all().exclude(pk=instance.pk).exists()
     )
-    version = addon.versions.filter(channel=amo.CHANNEL_LISTED).not_rejected().last()
     if (
         waffle.switch_is_active('enable-narc')
-        and version
         and is_new_author_besides_first_one
+        and (version := addon.find_latest_non_rejected_listed_version())
     ):
         from olympia.scanners.tasks import run_narc_on_version
 
