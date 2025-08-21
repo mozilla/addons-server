@@ -1467,7 +1467,6 @@ class Addon(OnChangeMixin, ModelBase):
             ]
 
     @staticmethod
-    @timer
     def transformer(addons):
         if not addons:
             return
