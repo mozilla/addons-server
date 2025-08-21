@@ -2193,6 +2193,17 @@ class TestAddonUser(TestCase):
         )
 
     @patch('olympia.scanners.tasks.run_narc_on_version')
+    def test_run_narc_no_current_version(self, run_narc_on_version_mock):
+        self.create_switch('enable-narc', active=True)
+        addon = addon_factory(users=[user_factory()])
+        version = addon.current_version
+        version.is_user_disabled = True
+        assert not addon.current_version
+        addon.addonuser_set.create(user=user_factory())
+        assert run_narc_on_version_mock.delay.call_count == 1
+        assert run_narc_on_version_mock.delay.call_args[0] == (version.pk,)
+
+    @patch('olympia.scanners.tasks.run_narc_on_version')
     def test_dont_run_narc_first_author(self, run_narc_on_version_mock):
         self.create_switch('enable-narc', active=True)
         # Note: in "real" situation, the first author would have been added
@@ -2202,10 +2213,18 @@ class TestAddonUser(TestCase):
         assert run_narc_on_version_mock.delay.call_count == 0
 
     @patch('olympia.scanners.tasks.run_narc_on_version')
-    def test_dont_run_narc_no_current_version(self, run_narc_on_version_mock):
+    def test_dont_run_narc_no_listed_version(self, run_narc_on_version_mock):
         self.create_switch('enable-narc', active=True)
         addon = addon_factory(users=[user_factory()])
         self.make_addon_unlisted(addon)
+        addon.addonuser_set.create(user=user_factory())
+        assert run_narc_on_version_mock.delay.call_count == 0
+
+    @patch('olympia.scanners.tasks.run_narc_on_version')
+    def test_dont_run_narc_rejected_listed_version(self, run_narc_on_version_mock):
+        self.create_switch('enable-narc', active=True)
+        addon = addon_factory(users=[user_factory()])
+        addon.current_version.file.update(status=amo.STATUS_DISABLED)
         addon.addonuser_set.create(user=user_factory())
         assert run_narc_on_version_mock.delay.call_count == 0
 

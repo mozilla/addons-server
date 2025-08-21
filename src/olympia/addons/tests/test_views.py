@@ -2612,6 +2612,17 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         assert run_narc_on_version_mock.delay.call_args[0] == (version.pk,)
 
     @mock.patch('olympia.addons.serializers.run_narc_on_version')
+    def test_trigger_narc_on_name_change_on_user_disabled_version(
+        self, run_narc_on_version_mock
+    ):
+        self.create_switch('enable-narc', active=True)
+        version = self.addon.current_version
+        self.addon.current_version.is_user_disabled = True  # auto-saves
+        self._test_metadata_content_review()
+        assert run_narc_on_version_mock.delay.call_count == 1
+        assert run_narc_on_version_mock.delay.call_args[0] == (version.pk,)
+
+    @mock.patch('olympia.addons.serializers.run_narc_on_version')
     def test_dont_trigger_narc_if_name_does_not_change(self, run_narc_on_version_mock):
         self.create_switch('enable-narc', active=True)
         response = self.request(
