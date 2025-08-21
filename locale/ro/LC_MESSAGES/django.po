@@ -3848,7 +3848,7 @@ msgstr "Aceasta este versiunea suplimentului tău care va fi instalată dacă ci
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:79
 msgid "Next Listed Version:"
-msgstr "Următoarea versiune listată:"
+msgstr "Următoarea versiune din listă:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:81
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
