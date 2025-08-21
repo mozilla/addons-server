@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-21 09:58+0000\n"
+"POT-Creation-Date: 2025-08-21 10:31+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -1433,58 +1433,6 @@ msgid "Approve"
 msgstr "Одобри"
 
 msgid "All"
-msgstr ""
-
-#, fuzzy
-msgid "No action"
-msgstr "Још опција:"
-
-msgid "Flag for human review"
-msgstr ""
-
-#, fuzzy
-msgid "Delay auto-approval"
-msgstr "Статус дозволе"
-
-msgid "Delay auto-approval indefinitely"
-msgstr ""
-
-msgid "Delay auto-approval indefinitely and add restrictions"
-msgstr ""
-
-msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
-msgstr ""
-
-msgid "Unknown"
-msgstr "Непознато"
-
-msgid "True positive"
-msgstr ""
-
-msgid "False positive"
-msgstr ""
-
-msgid "Inconclusive"
-msgstr ""
-
-#, fuzzy
-msgid "New"
-msgstr "Новије"
-
-msgid "Running"
-msgstr ""
-
-msgid "Aborted"
-msgstr ""
-
-msgid "Aborting"
-msgstr ""
-
-#, fuzzy
-msgid "Completed"
-msgstr "Недовршено"
-
-msgid "Scheduled"
 msgstr ""
 
 msgid "Core"
@@ -4983,6 +4931,9 @@ msgstr ""
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr ""
+
+msgid "Unknown"
+msgstr "Непознато"
 
 msgid "Missing \"upload\" key in multipart file data."
 msgstr ""

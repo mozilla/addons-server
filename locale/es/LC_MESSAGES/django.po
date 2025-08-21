@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-21 09:58+0000\n"
+"POT-Creation-Date: 2025-08-21 10:31+0000\n"
 "PO-Revision-Date: 2024-01-15 13:27+0000\n"
 "Last-Translator: Bund10z <abu.avila@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -1417,55 +1417,6 @@ msgstr "Aprobar"
 
 msgid "All"
 msgstr "Todos"
-
-msgid "No action"
-msgstr ""
-
-msgid "Flag for human review"
-msgstr "Marcar para revisión humana"
-
-msgid "Delay auto-approval"
-msgstr "Retrasar aprobación automática"
-
-msgid "Delay auto-approval indefinitely"
-msgstr "Retrasar la aprobación automática indefinidamente"
-
-msgid "Delay auto-approval indefinitely and add restrictions"
-msgstr "Retrasar la aprobación automática indefinidamente y agregar restricciones"
-
-#, fuzzy
-msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
-msgstr "Retrasar la aprobación automática indefinidamente"
-
-msgid "Unknown"
-msgstr "Desconocido"
-
-msgid "True positive"
-msgstr "Verdadero positivo"
-
-msgid "False positive"
-msgstr "Falso positivo"
-
-msgid "Inconclusive"
-msgstr "No concluyente"
-
-msgid "New"
-msgstr "Nuevo"
-
-msgid "Running"
-msgstr "Ejecutando"
-
-msgid "Aborted"
-msgstr "Cancelado"
-
-msgid "Aborting"
-msgstr "Cancelando"
-
-msgid "Completed"
-msgstr "Completado"
-
-msgid "Scheduled"
-msgstr "Programado"
 
 msgid "Core"
 msgstr "Core"
@@ -4987,6 +4938,9 @@ msgstr "Error inesperado."
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "El formato (%s) no se corresponde con la clasificación de tu complemento en AMO (%s)"
+
+msgid "Unknown"
+msgstr "Desconocido"
 
 msgid "Missing \"upload\" key in multipart file data."
 msgstr "Falta la clave \"upload\" en los datos del fichero multipart."

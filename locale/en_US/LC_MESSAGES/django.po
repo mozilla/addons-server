@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-21 09:58+0000\n"
+"POT-Creation-Date: 2025-08-21 10:31+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1483,61 +1483,6 @@ msgstr "Approve"
 
 msgid "All"
 msgstr "All"
-
-#, fuzzy
-msgid "No action"
-msgstr "More Actions:"
-
-#, fuzzy
-msgid "Flag for human review"
-msgstr "flag for human review"
-
-#, fuzzy
-msgid "Delay auto-approval"
-msgstr "Disable Auto-Approval"
-
-msgid "Delay auto-approval indefinitely"
-msgstr "Delay auto-approval indefinitely"
-
-#, fuzzy
-msgid "Delay auto-approval indefinitely and add restrictions"
-msgstr "Delay auto-approval indefinitely"
-
-#, fuzzy
-msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
-msgstr "Delay auto-approval indefinitely"
-
-msgid "Unknown"
-msgstr "Unknown"
-
-msgid "True positive"
-msgstr "True positive"
-
-msgid "False positive"
-msgstr "False positive"
-
-msgid "Inconclusive"
-msgstr "Inconclusive"
-
-#, fuzzy
-msgid "New"
-msgstr "Newer"
-
-msgid "Running"
-msgstr "Running"
-
-msgid "Aborted"
-msgstr "Aborted"
-
-msgid "Aborting"
-msgstr "Aborting"
-
-#, fuzzy
-msgid "Completed"
-msgstr "Incomplete"
-
-msgid "Scheduled"
-msgstr "Scheduled"
 
 msgid "Core"
 msgstr "Core"
@@ -5255,6 +5200,9 @@ msgstr "Unexpected error."
 #, fuzzy, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
+
+msgid "Unknown"
+msgstr "Unknown"
 
 msgid "Missing \"upload\" key in multipart file data."
 msgstr "Missing \"upload\" key in multipart file data."

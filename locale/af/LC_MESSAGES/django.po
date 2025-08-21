@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-21 09:58+0000\n"
+"POT-Creation-Date: 2025-08-21 10:31+0000\n"
 "Language: af\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1399,58 +1399,6 @@ msgid "Approve"
 msgstr ""
 
 msgid "All"
-msgstr ""
-
-#, fuzzy
-msgid "No action"
-msgstr "Meer keuses:"
-
-msgid "Flag for human review"
-msgstr ""
-
-#, fuzzy
-msgid "Delay auto-approval"
-msgstr "Laas bygewerk"
-
-msgid "Delay auto-approval indefinitely"
-msgstr ""
-
-msgid "Delay auto-approval indefinitely and add restrictions"
-msgstr ""
-
-msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
-msgstr ""
-
-msgid "Unknown"
-msgstr ""
-
-msgid "True positive"
-msgstr ""
-
-msgid "False positive"
-msgstr ""
-
-msgid "Inconclusive"
-msgstr ""
-
-#, fuzzy
-msgid "New"
-msgstr "Jongste"
-
-msgid "Running"
-msgstr ""
-
-msgid "Aborted"
-msgstr ""
-
-msgid "Aborting"
-msgstr ""
-
-#, fuzzy
-msgid "Completed"
-msgstr "Onvolledig"
-
-msgid "Scheduled"
 msgstr ""
 
 msgid "Core"
@@ -4878,6 +4826,9 @@ msgstr ""
 
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
+msgstr ""
+
+msgid "Unknown"
 msgstr ""
 
 msgid "Missing \"upload\" key in multipart file data."

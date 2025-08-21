@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-21 09:58+0000\n"
+"POT-Creation-Date: 2025-08-21 10:31+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -369,12 +369,12 @@ msgstr ""
 msgid "Images must be smaller than %dMB"
 msgstr ""
 
-#: src/olympia/addons/models.py:2282 src/olympia/addons/models.py:2362
+#: src/olympia/addons/models.py:2295 src/olympia/addons/models.py:2375
 #: src/olympia/constants/base.py:66
 msgid "Listed"
 msgstr ""
 
-#: src/olympia/addons/models.py:2540
+#: src/olympia/addons/models.py:2553
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr ""
 
@@ -1988,70 +1988,6 @@ msgstr ""
 
 #: src/olympia/constants/reviewers.py:68
 msgid "All"
-msgstr ""
-
-#: src/olympia/constants/scanners.py:25
-msgid "No action"
-msgstr ""
-
-#: src/olympia/constants/scanners.py:26
-msgid "Flag for human review"
-msgstr ""
-
-#: src/olympia/constants/scanners.py:27
-msgid "Delay auto-approval"
-msgstr ""
-
-#: src/olympia/constants/scanners.py:28
-msgid "Delay auto-approval indefinitely"
-msgstr ""
-
-#: src/olympia/constants/scanners.py:30
-msgid "Delay auto-approval indefinitely and add restrictions"
-msgstr ""
-
-#: src/olympia/constants/scanners.py:33
-msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
-msgstr ""
-
-#: src/olympia/constants/scanners.py:43 src/olympia/files/utils.py:1031
-msgid "Unknown"
-msgstr ""
-
-#: src/olympia/constants/scanners.py:44
-msgid "True positive"
-msgstr ""
-
-#: src/olympia/constants/scanners.py:45
-msgid "False positive"
-msgstr ""
-
-#: src/olympia/constants/scanners.py:46
-msgid "Inconclusive"
-msgstr ""
-
-#: src/olympia/constants/scanners.py:57
-msgid "New"
-msgstr ""
-
-#: src/olympia/constants/scanners.py:58
-msgid "Running"
-msgstr ""
-
-#: src/olympia/constants/scanners.py:59
-msgid "Aborted"
-msgstr ""
-
-#: src/olympia/constants/scanners.py:60
-msgid "Aborting"
-msgstr ""
-
-#: src/olympia/constants/scanners.py:61
-msgid "Completed"
-msgstr ""
-
-#: src/olympia/constants/scanners.py:62
-msgid "Scheduled"
 msgstr ""
 
 #: src/olympia/core/apps.py:214
@@ -6939,6 +6875,10 @@ msgstr ""
 #: src/olympia/files/utils.py:1026
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
+msgstr ""
+
+#: src/olympia/files/utils.py:1031
+msgid "Unknown"
 msgstr ""
 
 #: src/olympia/files/views.py:83 src/olympia/signing/views.py:128
