@@ -1,6 +1,3 @@
-from django.utils.translation import gettext_lazy as _
-
-
 CUSTOMS = 1
 # We do not use the WAT scanner anymore but we keep this constant for the model
 # definition. We shouldn't use this constant, though.
@@ -20,18 +17,21 @@ DELAY_AUTO_APPROVAL = 100
 DELAY_AUTO_APPROVAL_INDEFINITELY = 200
 DELAY_AUTO_APPROVAL_INDEFINITELY_AND_RESTRICT = 300
 DELAY_AUTO_APPROVAL_INDEFINITELY_AND_RESTRICT_FUTURE_APPROVALS = 400
+DISABLE_AND_BLOCK = 500
+
 
 ACTIONS = {
-    NO_ACTION: _('No action'),
-    FLAG_FOR_HUMAN_REVIEW: _('Flag for human review'),
-    DELAY_AUTO_APPROVAL: _('Delay auto-approval'),
-    DELAY_AUTO_APPROVAL_INDEFINITELY: _('Delay auto-approval indefinitely'),
-    DELAY_AUTO_APPROVAL_INDEFINITELY_AND_RESTRICT: _(
+    NO_ACTION: 'No action',
+    FLAG_FOR_HUMAN_REVIEW: 'Flag for human review',
+    DELAY_AUTO_APPROVAL: 'Delay auto-approval',
+    DELAY_AUTO_APPROVAL_INDEFINITELY: 'Delay auto-approval indefinitely',
+    DELAY_AUTO_APPROVAL_INDEFINITELY_AND_RESTRICT: (
         'Delay auto-approval indefinitely and add restrictions'
     ),
-    DELAY_AUTO_APPROVAL_INDEFINITELY_AND_RESTRICT_FUTURE_APPROVALS: _(
+    DELAY_AUTO_APPROVAL_INDEFINITELY_AND_RESTRICT_FUTURE_APPROVALS: (
         'Delay auto-approval indefinitely and add restrictions to future approvals'
     ),
+    DISABLE_AND_BLOCK: ('Force-disable and block'),
 }
 
 UNKNOWN = None
@@ -40,10 +40,10 @@ FALSE_POSITIVE = 2
 INCONCLUSIVE = 3
 
 RESULT_STATES = {
-    UNKNOWN: _('Unknown'),
-    TRUE_POSITIVE: _('True positive'),
-    FALSE_POSITIVE: _('False positive'),
-    INCONCLUSIVE: _('Inconclusive'),
+    UNKNOWN: 'Unknown',
+    TRUE_POSITIVE: 'True positive',
+    FALSE_POSITIVE: 'False positive',
+    INCONCLUSIVE: 'Inconclusive',
 }
 
 NEW = 1
@@ -54,12 +54,12 @@ ABORTING = 5
 SCHEDULED = 6
 
 QUERY_RULE_STATES = {
-    NEW: _('New'),
-    RUNNING: _('Running'),
-    ABORTED: _('Aborted'),
-    ABORTING: _('Aborting'),
-    COMPLETED: _('Completed'),
-    SCHEDULED: _('Scheduled'),
+    NEW: 'New',
+    RUNNING: 'Running',
+    ABORTED: 'Aborted',
+    ABORTING: 'Aborting',
+    COMPLETED: 'Completed',
+    SCHEDULED: 'Scheduled',
 }
 
 LABEL_BAD = 'bad'

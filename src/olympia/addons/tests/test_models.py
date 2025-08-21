@@ -54,7 +54,7 @@ from olympia.promoted.models import (
     PromotedGroup,
 )
 from olympia.ratings.models import Rating, RatingFlag
-from olympia.reviewers.models import NeedsHumanReview
+from olympia.reviewers.models import NeedsHumanReview, UsageTier
 from olympia.translations.models import (
     Translation,
     TranslationSequence,
@@ -2052,6 +2052,35 @@ class TestAddonModels(TestCase):
         version1.file.update(status=amo.STATUS_DISABLED)
         assert get_rvs(amo.CHANNEL_LISTED) == []
         assert get_rvs(amo.CHANNEL_UNLISTED) == []
+
+    def test_get_usage_tier(self):
+        a_tier = UsageTier.objects.create(upper_adu_threshold=1000)
+        b_tier = UsageTier.objects.create(
+            lower_adu_threshold=1001, upper_adu_threshold=10000
+        )
+        c_tier = UsageTier.objects.create(lower_adu_threshold=10001)
+        addon = addon_factory(average_daily_users=42)
+        assert addon.get_usage_tier() == a_tier
+        addon.update(average_daily_users=4242)
+        assert addon.get_usage_tier() == b_tier
+        addon.update(average_daily_users=424242)
+        assert addon.get_usage_tier() == c_tier
+
+    def test_get_usage_tier_edge_cases(self):
+        a_tier = UsageTier.objects.create(
+            lower_adu_threshold=100, upper_adu_threshold=1000
+        )
+        addon = addon_factory(average_daily_users=101)
+        assert addon.get_usage_tier() == a_tier
+
+        addon.update(type=amo.ADDON_STATICTHEME)
+        assert addon.get_usage_tier() is None
+
+        addon.update(status=amo.STATUS_DISABLED, type=amo.ADDON_EXTENSION)
+        assert addon.get_usage_tier() is None
+
+        addon.update(status=amo.STATUS_NOMINATED)
+        assert addon.get_usage_tier() == a_tier
 
 
 class TestAddonUser(TestCase):
