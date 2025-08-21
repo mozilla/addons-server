@@ -167,7 +167,8 @@ def run_narc_on_version(version_pk):
     log.info('Starting narc task for Version %s.', version_pk)
     try:
         version = Version.unfiltered.get(pk=version_pk)
-        _run_narc(version=version)
+        with statsd.timer('devhub.narc'):
+            _run_narc(version=version)
     except Exception as exc:
         statsd.incr('devhub.narc.failure')
         log.exception(
@@ -251,12 +252,16 @@ def _run_narc(*, version):
         run_action = True
     scanner_result.results = new_results
     scanner_result.save()
+    if initial_run:
+        statsd_suffix = ''
+    else:
+        statsd_suffix = '.rerun'
     if scanner_result.has_matches:
-        statsd.incr('devhub.narc.has_matches')
+        statsd.incr(f'devhub.narc{statsd_suffix}.has_matches')
     for scanner_rule in scanner_result.matched_rules.all():
-        statsd.incr(f'devhub.narc.rule.{scanner_rule.id}.match')
+        statsd.incr(f'devhub.narc{statsd_suffix}.rule.{scanner_rule.id}.match')
     if version and run_action:
-        statsd.incr('devhub.narc.results_differ')
+        statsd.incr(f'devhub.narc{statsd_suffix}.results_differ')
         ScannerResult.run_action(version, check_mad_results=False)
     return scanner_result
 

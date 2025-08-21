@@ -53,7 +53,6 @@ from olympia.amo.utils import (
     send_mail,
     slugify,
     sorted_groupby,
-    timer,
     to_language,
 )
 from olympia.constants.browsers import BROWSERS
@@ -1467,7 +1466,6 @@ class Addon(OnChangeMixin, ModelBase):
             ]
 
     @staticmethod
-    @timer
     def transformer(addons):
         if not addons:
             return

@@ -334,6 +334,13 @@ class TestRunNarc(UploadMixin, TestCase):
             ]
         )
 
+    @mock.patch('olympia.scanners.tasks.statsd.timer')
+    def test_calls_statsd_timer(self, timer_mock):
+        run_narc_on_version(self.version.pk)
+
+        assert timer_mock.call_count == 1
+        assert timer_mock.call_args[0] == ('devhub.narc',)
+
     @mock.patch('olympia.scanners.tasks.statsd.incr')
     def test_run_db_translation_match_only(self, incr_mock):
         self.addon.name = {
@@ -790,10 +797,10 @@ class TestRunNarc(UploadMixin, TestCase):
         assert incr_mock.call_count == 5
         incr_mock.assert_has_calls(
             [
-                mock.call('devhub.narc.has_matches'),
-                mock.call(f'devhub.narc.rule.{rules[0].id}.match'),
-                mock.call(f'devhub.narc.rule.{rules[1].id}.match'),
-                mock.call('devhub.narc.results_differ'),
+                mock.call('devhub.narc.rerun.has_matches'),
+                mock.call(f'devhub.narc.rerun.rule.{rules[0].id}.match'),
+                mock.call(f'devhub.narc.rerun.rule.{rules[1].id}.match'),
+                mock.call('devhub.narc.rerun.results_differ'),
                 mock.call('devhub.narc.success'),
             ]
         )
@@ -832,8 +839,8 @@ class TestRunNarc(UploadMixin, TestCase):
         assert incr_mock.call_count == 3
         incr_mock.assert_has_calls(
             [
-                mock.call('devhub.narc.has_matches'),
-                mock.call(f'devhub.narc.rule.{rule.id}.match'),
+                mock.call('devhub.narc.rerun.has_matches'),
+                mock.call(f'devhub.narc.rerun.rule.{rule.id}.match'),
                 mock.call('devhub.narc.success'),
             ]
         )

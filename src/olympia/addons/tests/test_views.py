@@ -587,20 +587,16 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
     @mock.patch('django_statsd.middleware.statsd.timing')
     def test_statsd_timings(self, statsd_timing_mock):
         self._test_url()
-        assert statsd_timing_mock.call_count == 4
+        assert statsd_timing_mock.call_count == 3
         assert (
             statsd_timing_mock.call_args_list[0][0][0]
-            == 'timer.olympia.addons.models.transformer'
-        )
-        assert (
-            statsd_timing_mock.call_args_list[1][0][0]
             == 'view.olympia.addons.views.AddonViewSet.GET'
         )
         assert (
-            statsd_timing_mock.call_args_list[2][0][0]
+            statsd_timing_mock.call_args_list[1][0][0]
             == 'view.olympia.addons.views.GET'
         )
-        assert statsd_timing_mock.call_args_list[3][0][0] == 'view.GET'
+        assert statsd_timing_mock.call_args_list[2][0][0] == 'view.GET'
 
     def test_detail_url_with_reviewers_in_the_url(self):
         self.addon.update(slug='something-reviewers')
