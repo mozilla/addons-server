@@ -2898,6 +2898,33 @@ class TestGetVersion(TestCase):
         # should still find the current one.
         assert self.addon.find_latest_public_listed_version() == self.version
 
+    def test_find_latest_non_rejected_listed_version(self):
+        assert (
+            self.addon.find_latest_non_rejected_listed_version()
+            == self.addon.current_version
+        )
+
+        new_version = version_factory(addon=self.addon)
+        assert self.addon.find_latest_non_rejected_listed_version() == new_version
+
+        new_version.is_user_disabled = True  # auto-saves
+        # No change
+        assert self.addon.find_latest_non_rejected_listed_version() == new_version
+
+        # If the version is rejected though, we skip it.
+        new_version.file.update(
+            status_disabled_reason=File.STATUS_DISABLED_REASONS.NONE
+        )
+        assert self.addon.find_latest_non_rejected_listed_version() == self.version
+
+    def test_find_latest_non_rejected_listed_version_no_deleted(self):
+        self.version.delete()
+        assert self.addon.find_latest_non_rejected_listed_version() is None
+
+    def test_find_latest_non_rejected_listed_version_no_listed(self):
+        self.make_addon_unlisted(self.addon)
+        assert self.addon.find_latest_non_rejected_listed_version() is None
+
 
 class TestAddonGetURLPath(TestCase):
     def test_get_url_path(self):
