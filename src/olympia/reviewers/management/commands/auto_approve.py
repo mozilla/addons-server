@@ -117,8 +117,10 @@ class Command(BaseCommand):
                         # attached to the upload at that point.
                         # This needs to be run before run_action() and before
                         # auto-approval is attempted, and has to be triggered
-                        # synchronously (no .delay()).
-                        run_narc_on_version(version.pk)
+                        # synchronously (no .delay()). In this case we pass
+                        # run_action_on_match=False since we're going to call
+                        # ScannerResult.run_action() below.
+                        run_narc_on_version(version.pk, run_action_on_match=False)
 
                 if waffle.switch_is_active('run-action-in-auto-approve'):
                     if summary_exists:
