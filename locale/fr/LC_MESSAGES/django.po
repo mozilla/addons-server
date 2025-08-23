@@ -1268,7 +1268,7 @@ msgstr "Rejet en attente modifié"
 #: src/olympia/constants/activity.py:1208
 #, python-brace-format
 msgid "{addon} {version} created, to rollback from {0}."
-msgstr ""
+msgstr "{addon} {version} créé, afin d’effectuer le rétablissement depuis {0}."
 
 #: src/olympia/constants/activity.py:1209
 msgid "Version rollback"
@@ -3187,6 +3187,8 @@ msgstr "Supprimer votre module complémentaire détruira définitivement toutes 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:6
 msgid "All versions will be Restricted, which will disable and prevent any further installation in Firefox. Existing users can choose to re-enable the add-on."
 msgstr ""
+"Toutes les versions seront restreintes, ce qui les désactivera et empêchera toute nouvelle installation dans Firefox. Les utilisateurs existants peuvent choisir de réactiver le module "
+"complémentaire."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:11
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
@@ -4469,6 +4471,8 @@ msgid ""
 "Once a version has been deleted, you may not upload a new version with the same version number. The version will also be Restricted, which will disable and prevent any further installation in "
 "Firefox. Existing users can choose to re-enable the add-on."
 msgstr ""
+"Une fois une version supprimée, vous ne pourrez plus envoyer de nouvelle version portant le même numéro. Cette version sera également restreinte, ce qui la désactivera et empêchera toute nouvelle "
+"installation dans Firefox. Les utilisateurs existants peuvent choisir de réactiver le module complémentaire."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:296
 msgid "Are you sure you wish to delete this version?"
