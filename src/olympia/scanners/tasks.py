@@ -163,12 +163,12 @@ def run_customs(results, upload_pk):
 
 @task
 @use_primary_db
-def run_narc_on_version(version_pk):
+def run_narc_on_version(version_pk, *, run_action_on_match=True):
     log.info('Starting narc task for Version %s.', version_pk)
     try:
         version = Version.unfiltered.get(pk=version_pk)
         with statsd.timer('devhub.narc'):
-            _run_narc(version=version)
+            _run_narc(version=version, run_action_on_match=run_action_on_match)
     except Exception as exc:
         statsd.incr('devhub.narc.failure')
         log.exception(
@@ -181,7 +181,7 @@ def run_narc_on_version(version_pk):
     log.info('Ending scanner "narc" task for Version %s.', version_pk)
 
 
-def _run_narc(*, version):
+def _run_narc(*, version, run_action_on_match):
     scanner_result, initial_run = ScannerResult.objects.get_or_create(
         scanner=NARC, version=version
     )
@@ -242,14 +242,13 @@ def _run_narc(*, version):
                     )
                 )
 
-    run_action = False
+    has_new_matches = False
     new_results = [json.loads(result) for result in sorted(results)]
-    if not initial_run and new_results != scanner_result.results:
-        # Scanner actions are normally triggered by auto-approve, but here
-        # we're re running the scanner on a version and found more results than
-        # when it ran before. We don't know whether the action has already been
-        # triggered but in case it has we need to do it again.
-        run_action = True
+    if new_results != scanner_result.results:
+        # Either we're scanning this version for the first time, or it's a new
+        # run following some change, but in any case we found new results. We
+        # might need to run ScannerResult.run_action() as a result, see below.
+        has_new_matches = True
     scanner_result.results = new_results
     scanner_result.save()
     if initial_run:
@@ -260,8 +259,9 @@ def _run_narc(*, version):
         statsd.incr(f'devhub.narc{statsd_suffix}.has_matches')
     for scanner_rule in scanner_result.matched_rules.all():
         statsd.incr(f'devhub.narc{statsd_suffix}.rule.{scanner_rule.id}.match')
-    if version and run_action:
+    if not initial_run and has_new_matches:
         statsd.incr(f'devhub.narc{statsd_suffix}.results_differ')
+    if run_action_on_match and has_new_matches:
         ScannerResult.run_action(version, check_mad_results=False)
     return scanner_result
 
