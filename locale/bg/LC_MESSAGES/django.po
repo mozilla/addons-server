@@ -96,7 +96,7 @@ msgstr "Здравейте,"
 
 #: src/olympia/abuse/templates/abuse/emails/base_reporter.txt:7
 msgid "Mozilla Add-ons Team"
-msgstr ""
+msgstr "Екип на Mozilla Добавки"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_approve.txt:8
 #, python-format
@@ -143,6 +143,8 @@ msgid ""
 "You have the right to appeal this decision within 6 months from the date of this email. See %(appeal_url)s for details on the appeal process, including how to file an appeal for this specific "
 "decision."
 msgstr ""
+"Имате право да обжалвате това решение в 6-месечен срок от датата на този имейл. Вижте %(appeal_url)s за подробности относно процеса на обжалване, включително как да подаде жалба на това конкретно "
+"решение."
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_addon.txt:5
 #, python-format
@@ -320,7 +322,7 @@ msgstr "В списъка"
 
 #: src/olympia/addons/models.py:2563
 msgid "Add-on and collection paths need to end with \"/\""
-msgstr ""
+msgstr "Пътищата на добавките и списъка трябва да завършват с „/“"
 
 #: src/olympia/addons/serializers.py:328
 msgid "Built in licenses can not be updated."
@@ -332,7 +334,7 @@ msgstr "Качването не е валидно."
 
 #: src/olympia/addons/serializers.py:539
 msgid "File is already disabled."
-msgstr ""
+msgstr "Файлът вече е деактивиран."
 
 #: src/olympia/addons/serializers.py:543 src/olympia/addons/views.py:738
 #, python-format
@@ -425,7 +427,7 @@ msgstr ""
 
 #: src/olympia/addons/validators.py:332
 msgid "This endpoint is not valid for Themes."
-msgstr ""
+msgstr "Тази крайна точка не е валидна за теми."
 
 #: src/olympia/addons/templates/addons/includes/dashboard_tabs.html:4 src/olympia/devhub/templates/devhub/nav.html:15 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:19
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html:16
@@ -512,7 +514,7 @@ msgstr "Някои възможности са временно изключен
 
 #: src/olympia/amo/utils.py:1114
 msgid "URLs are not allowed."
-msgstr ""
+msgstr "URL адресите не са разрешени."
 
 #: src/olympia/amo/validators.py:17
 msgid "Must contain at least one printable character."
@@ -549,7 +551,7 @@ msgstr ""
 
 #: src/olympia/amo/templates/amo/403.html:26
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
-msgstr ""
+msgstr "Ако сте настроили четеца си да деактивира заглавките „Referer“, моля, включете ги отново поне за този сайт, за HTTPS връзки или за заявки „same-origin“."
 
 #: src/olympia/amo/templates/amo/403.html:36
 msgid ""
