@@ -8,3 +8,7 @@
     */
     visibility: hidden;
 }
+
+.field-formatted_definition .flex-container {
+    overflow: auto;
+}
