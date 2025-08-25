@@ -609,7 +609,8 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         call_command('auto_approve')
 
         assert run_narc_mock.call_count == 1
-        run_narc_mock.assert_called_with(self.version.pk)
+        assert run_narc_mock.call_args[0] == (self.version.pk,)
+        assert run_narc_mock.call_args[1] == {'run_action_on_match': False}
 
     @mock.patch(
         'olympia.reviewers.management.commands.auto_approve.run_narc_on_version'
@@ -622,7 +623,8 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         call_command('auto_approve')
 
         assert run_narc_mock.call_count == 1
-        run_narc_mock.assert_called_with(self.version.pk)
+        assert run_narc_mock.call_args[0] == (self.version.pk,)
+        assert run_narc_mock.call_args[1] == {'run_action_on_match': False}
 
         run_narc_mock.reset_mock()
         call_command('auto_approve')

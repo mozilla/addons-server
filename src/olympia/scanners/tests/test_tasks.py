@@ -848,6 +848,115 @@ class TestRunNarc(UploadMixin, TestCase):
         # We didn't retrigger the action since the first run (no new matches).
         assert run_action_mock.call_count == 0
 
+    @mock.patch('olympia.scanners.tasks.statsd.incr')
+    @mock.patch.object(ScannerResult, 'run_action')
+    def test_run_action_initial_run(self, run_action_mock, incr_mock):
+        rule = ScannerRule.objects.create(
+            name='always_match_rule',
+            scanner=NARC,
+            definition='^My WebExtension.*$',
+        )
+
+        run_narc_on_version(self.version.pk)
+
+        scanner_results = ScannerResult.objects.all()
+        assert len(scanner_results) == 1
+        narc_result = scanner_results[0]
+        assert narc_result.scanner == NARC
+        assert narc_result.upload is None
+        assert narc_result.version == self.version
+        assert narc_result.has_matches
+        assert list(narc_result.matched_rules.all()) == [rule]
+        assert len(narc_result.results) == 1
+        assert narc_result.results == [
+            {
+                'meta': {
+                    'span': [0, 21],
+                    'locale': None,
+                    'source': 'xpi',
+                    'string': 'My WebExtension Addon',
+                    'pattern': '^My WebExtension.*$',
+                },
+                'rule': 'always_match_rule',
+            },
+        ]
+        assert incr_mock.called
+        assert incr_mock.call_count == 3
+        incr_mock.assert_has_calls(
+            [
+                mock.call('devhub.narc.has_matches'),
+                mock.call(f'devhub.narc.rule.{rule.id}.match'),
+                mock.call('devhub.narc.success'),
+            ]
+        )
+
+        assert run_action_mock.call_count == 1
+        assert run_action_mock.call_args[0] == (self.version,)
+        assert run_action_mock.call_args[1] == {'check_mad_results': False}
+
+    @mock.patch('olympia.scanners.tasks.statsd.incr')
+    @mock.patch.object(ScannerResult, 'run_action')
+    def test_no_run_action_if_no_results(self, run_action_mock, incr_mock):
+        run_narc_on_version(self.version.pk)
+
+        scanner_results = ScannerResult.objects.all()
+        assert len(scanner_results) == 1
+        narc_result = scanner_results[0]
+        assert narc_result.scanner == NARC
+        assert narc_result.upload is None
+        assert narc_result.version == self.version
+        assert not narc_result.has_matches
+        assert not narc_result.matched_rules.all().exists()
+        assert narc_result.results == []
+        assert incr_mock.call_count == 1
+        assert incr_mock.call_args[0] == ('devhub.narc.success',)
+
+        assert run_action_mock.call_count == 0
+
+    @mock.patch('olympia.scanners.tasks.statsd.incr')
+    @mock.patch.object(ScannerResult, 'run_action')
+    def test_no_run_action_if_parameter_is_passed(self, run_action_mock, incr_mock):
+        rule = ScannerRule.objects.create(
+            name='always_match_rule',
+            scanner=NARC,
+            definition='^My WebExtension.*$',
+        )
+
+        run_narc_on_version(self.version.pk, run_action_on_match=False)
+
+        scanner_results = ScannerResult.objects.all()
+        assert len(scanner_results) == 1
+        narc_result = scanner_results[0]
+        assert narc_result.scanner == NARC
+        assert narc_result.upload is None
+        assert narc_result.version == self.version
+        assert narc_result.has_matches
+        assert list(narc_result.matched_rules.all()) == [rule]
+        assert len(narc_result.results) == 1
+        assert narc_result.results == [
+            {
+                'meta': {
+                    'span': [0, 21],
+                    'locale': None,
+                    'source': 'xpi',
+                    'string': 'My WebExtension Addon',
+                    'pattern': '^My WebExtension.*$',
+                },
+                'rule': 'always_match_rule',
+            },
+        ]
+        assert incr_mock.called
+        assert incr_mock.call_count == 3
+        incr_mock.assert_has_calls(
+            [
+                mock.call('devhub.narc.has_matches'),
+                mock.call(f'devhub.narc.rule.{rule.id}.match'),
+                mock.call('devhub.narc.success'),
+            ]
+        )
+
+        assert run_action_mock.call_count == 0
+
 
 class TestRunYara(UploadMixin, TestCase):
     def setUp(self):
