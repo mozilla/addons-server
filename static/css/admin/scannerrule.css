@@ -8,3 +8,8 @@
     */
     visibility: hidden;
 }
+
+.field-formatted_definition .readonly pre {
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
+}
