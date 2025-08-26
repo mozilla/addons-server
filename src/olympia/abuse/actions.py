@@ -801,8 +801,13 @@ class ContentActionTargetAppealApprove(
                 .order_by('-pk')
             )
             if self.previous_decisions.filter(
-                action=DECISION_ACTIONS.AMO_DISABLE_ADDON
+                action__in=(
+                    DECISION_ACTIONS.AMO_DISABLE_ADDON,
+                    DECISION_ACTIONS.AMO_BLOCK_ADDON,
+                )
             ).exists():
+                # FIXME: we should also automatically revert the block if the
+                # previous decision was AMO_BLOCK_ADDON.
                 target_versions = list(target_versions)
                 if target.status == amo.STATUS_DISABLED:
                     target.force_enable(skip_activity_log=True)

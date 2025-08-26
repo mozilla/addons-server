@@ -37,6 +37,10 @@ DECISION_ACTIONS.add_subset(
         'AMO_DELETE_RATING',
         'AMO_DELETE_COLLECTION',
         'AMO_REJECT_VERSION_ADDON',
+        # Note: AMO_BLOCK_ADDON is appealable, but at the moment the blocking
+        # part can't be automatically reverted by a successful appeal and has
+        # to be done manually.
+        'AMO_BLOCK_ADDON',
     ),
 )
 DECISION_ACTIONS.add_subset(
