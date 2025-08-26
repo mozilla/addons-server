@@ -448,7 +448,9 @@ def test_normalize_string_for_name_checks(value, expected):
     ],
 )
 def test_normalize_string_for_name_checks_with_specific_category(value, expected):
-    assert normalize_string_for_name_checks(value, categories_to_strip=('P',)) == expected
+    assert (
+        normalize_string_for_name_checks(value, categories_to_strip=('P',)) == expected
+    )
 
 
 @pytest.mark.parametrize(
