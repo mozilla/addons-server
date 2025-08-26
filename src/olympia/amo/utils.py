@@ -472,7 +472,9 @@ def slugify(s, ok=SLUG_OK, lower=True, spaces=False, delimiter='-'):
     return new.lower() if lower else new
 
 
-def normalize_string_for_name_checks(value):
+def normalize_string_for_name_checks(
+    value, categories_to_strip=('Z', 'P', 'M', 'C', 'S')
+):
     """Normalizes a unicode string to perform name checks on it.
 
     * decomposes unicode characters (also applying compatibility decomposition
@@ -484,7 +486,7 @@ def normalize_string_for_name_checks(value):
     strip_table = dict.fromkeys(
         i
         for i in range(sys.maxunicode)
-        if unicodedata.category(chr(i))[0] in ('Z', 'P', 'M', 'C', 'S')
+        if unicodedata.category(chr(i))[0] in categories_to_strip
         or chr(i) in OneOrMorePrintableCharacterValidator.special_blank_characters
     )
     value = unicodedata.normalize('NFKD', force_str(value))

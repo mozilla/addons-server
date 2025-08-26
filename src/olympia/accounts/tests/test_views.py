@@ -1480,13 +1480,25 @@ class TestAccountViewSetUpdate(TestCase):
         response = self.patch(data={'display_name': '\x7f\u20df'})
         assert response.status_code == 400
         assert json.loads(force_str(response.content)) == {
-            'display_name': ['Must contain at least one printable character.']
+            'display_name': [
+                'Ensure this field contains at least one letter or number character.'
+            ]
         }
 
         response = self.patch(data={'display_name': '\u2800\u3164\u115f\u1160\uffa0'})
         assert response.status_code == 400
         assert json.loads(force_str(response.content)) == {
-            'display_name': ['Must contain at least one printable character.']
+            'display_name': [
+                'Ensure this field contains at least one letter or number character.'
+            ]
+        }
+
+        response = self.patch(data={'display_name': '+++'})
+        assert response.status_code == 400
+        assert json.loads(force_str(response.content)) == {
+            'display_name': [
+                'Ensure this field contains at least one letter or number character.'
+            ]
         }
 
         response = self.patch(data={'display_name': 'a\x7f'})
