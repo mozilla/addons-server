@@ -1783,11 +1783,15 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
 
 class TestContentActionBlockAddon(TestContentActionDisableAddon):
     ActionClass = ContentActionBlockAddon
-    takedown_decision_action = DECISION_ACTIONS.AMO_DISABLE_ADDON
+    takedown_decision_action = DECISION_ACTIONS.AMO_BLOCK_ADDON
 
     def setUp(self):
         super().setUp()
         self.decision.update(
+            reviewer_user=self.task_user,
+            metadata={ContentDecision.POLICY_DYNAMIC_VALUES: {}},
+        )
+        self.past_negative_decision.update(
             reviewer_user=self.task_user,
             metadata={ContentDecision.POLICY_DYNAMIC_VALUES: {}},
         )
