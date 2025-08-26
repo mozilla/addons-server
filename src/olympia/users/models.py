@@ -48,7 +48,7 @@ from olympia.amo.utils import (
     download_file_contents_from_backup_storage,
     id_to_path,
 )
-from olympia.amo.validators import OneOrMorePrintableCharacterValidator
+from olympia.amo.validators import OneOrMoreLetterOrNumberCharacterValidator
 from olympia.api.utils import APIChoices
 from olympia.files.models import File
 from olympia.translations.query import order_by_translation
@@ -344,7 +344,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         blank=True,
         validators=[
             validators.MinLengthValidator(2),
-            OneOrMorePrintableCharacterValidator(),
+            OneOrMoreLetterOrNumberCharacterValidator(),
         ],
     )
 

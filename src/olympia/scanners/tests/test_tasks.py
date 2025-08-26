@@ -288,8 +288,53 @@ class TestRunNarc(UploadMixin, TestCase):
         assert narc_result.version == self.version
         assert narc_result.has_matches
         assert list(narc_result.matched_rules.all()) == [rule]
-        assert len(narc_result.results) == 3
+        assert len(narc_result.results) == 6
         assert narc_result.results == [
+            {
+                'meta': {
+                    'is_normalized': True,
+                    'locale': 'en-us',
+                    'pattern': '.*',
+                    'source': 'db_addon',
+                    'span': [
+                        0,
+                        24,
+                    ],
+                    'string': 'MyFancyWebExtensionAddon',
+                    'original_string': 'My Fancy WebExtension Addon',
+                },
+                'rule': 'always_match_rule',
+            },
+            {
+                'meta': {
+                    'is_normalized': True,
+                    'locale': None,
+                    'pattern': '.*',
+                    'source': 'author',
+                    'span': [
+                        0,
+                        3,
+                    ],
+                    'string': 'Foo',
+                    'original_string': 'Fôo',
+                },
+                'rule': 'always_match_rule',
+            },
+            {
+                'meta': {
+                    'is_normalized': True,
+                    'locale': None,
+                    'pattern': '.*',
+                    'source': 'xpi',
+                    'span': [
+                        0,
+                        19,
+                    ],
+                    'string': 'MyWebExtensionAddon',
+                    'original_string': 'My WebExtension Addon',
+                },
+                'rule': 'always_match_rule',
+            },
             {
                 'meta': {
                     'locale': 'en-us',
@@ -466,8 +511,20 @@ class TestRunNarc(UploadMixin, TestCase):
         assert narc_result.version == self.version
         assert narc_result.has_matches
         assert list(narc_result.matched_rules.all()) == [rule]
-        assert len(narc_result.results) == 2
+        assert len(narc_result.results) == 3
         assert narc_result.results == [
+            {
+                'meta': {
+                    'is_normalized': True,
+                    'span': [0, 3],
+                    'locale': None,
+                    'source': 'author',
+                    'pattern': '^foo',
+                    'string': 'Foo',
+                    'original_string': 'Fôo',
+                },
+                'rule': 'match_the_fool',
+            },
             {
                 'meta': {
                     'span': [0, 3],
@@ -504,10 +561,12 @@ class TestRunNarc(UploadMixin, TestCase):
 
     @mock.patch('olympia.scanners.tasks.statsd.incr')
     def test_run_multiple_matching_rules(self, incr_mock):
+        # Note that those rules contain whitespace so they won't create
+        # additional results for normalized variants.
         rule1 = ScannerRule.objects.create(
             name='match_the_beginning',
             scanner=NARC,
-            definition=r'^My.*',
+            definition=r'^My\s.*',
         )
         rule2 = ScannerRule.objects.create(
             name='match_the_end',
@@ -543,7 +602,7 @@ class TestRunNarc(UploadMixin, TestCase):
             {
                 'meta': {
                     'locale': 'en-us',
-                    'pattern': '^My.*',
+                    'pattern': r'^My\s.*',
                     'source': 'db_addon',
                     'span': [
                         0,
@@ -569,7 +628,7 @@ class TestRunNarc(UploadMixin, TestCase):
                     'locale': None,
                     'source': 'xpi',
                     'string': 'My WebExtension Addon',
-                    'pattern': '^My.*',
+                    'pattern': r'^My\s.*',
                 },
                 'rule': 'match_the_beginning',
             },
@@ -741,7 +800,7 @@ class TestRunNarc(UploadMixin, TestCase):
             {
                 'meta': {
                     'locale': 'en-us',
-                    'pattern': '^My.*',
+                    'pattern': r'^My\s.*',
                     'source': 'db_addon',
                     'span': [
                         0,
@@ -754,7 +813,7 @@ class TestRunNarc(UploadMixin, TestCase):
             {
                 'meta': {
                     'locale': 'fr',
-                    'pattern': '^My.*',
+                    'pattern': r'^My\s.*',
                     'source': 'db_addon',
                     'span': [
                         0,
@@ -780,7 +839,7 @@ class TestRunNarc(UploadMixin, TestCase):
             {
                 'meta': {
                     'locale': None,
-                    'pattern': '^My.*',
+                    'pattern': r'^My\s.*',
                     'source': 'xpi',
                     'span': [
                         0,

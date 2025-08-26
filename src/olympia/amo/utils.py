@@ -10,8 +10,8 @@ import operator
 import os
 import re
 import shutil
-import string
 import subprocess
+import sys
 import tempfile
 import time
 import unicodedata
@@ -59,6 +59,7 @@ from rest_framework.utils.encoders import JSONEncoder
 from rest_framework.utils.formatting import lazy_format
 
 from olympia.amo.urlresolvers import linkify_with_outgoing
+from olympia.amo.validators import OneOrMorePrintableCharacterValidator
 from olympia.constants.abuse import REPORTED_MEDIA_BACKUP_EXPIRATION_DAYS
 from olympia.core.languages import LANGUAGES_NOT_IN_BABEL
 from olympia.core.logger import getLogger
@@ -471,19 +472,24 @@ def slugify(s, ok=SLUG_OK, lower=True, spaces=False, delimiter='-'):
     return new.lower() if lower else new
 
 
-def normalize_string(value, strip_punctuation=False):
-    """Normalizes a unicode string.
+def normalize_string_for_name_checks(value):
+    """Normalizes a unicode string to perform name checks on it.
 
-    * decomposes unicode characters
-    * strips whitespaces, newlines and tabs
-    * optionally removes puncutation
+    * decomposes unicode characters (also applying compatibility decomposition
+      to replace letter equivalents)
+    * strips all whitespace, punctuation, mark, control, symbol & special
+      invisible characters (since the string was decomposed, this should also
+      remove a bunch of accents)
     """
-    value = unicodedata.normalize('NFD', force_str(value))
-    value = value.encode('utf-8', 'ignore')
-
-    if strip_punctuation:
-        value = value.translate(None, force_bytes(string.punctuation))
-    return force_str(b' '.join(value.split()))
+    strip_table = dict.fromkeys(
+        i
+        for i in range(sys.maxunicode)
+        if unicodedata.category(chr(i))[0] in ('Z', 'P', 'M', 'C', 'S')
+        or chr(i) in OneOrMorePrintableCharacterValidator.special_blank_characters
+    )
+    value = unicodedata.normalize('NFKD', force_str(value))
+    value = value.translate(strip_table)
+    return value
 
 
 def slug_validator(slug, message=validate_slug.message):
