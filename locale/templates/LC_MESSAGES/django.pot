@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-21 12:35+0000\n"
+"POT-Creation-Date: 2025-08-26 15:51+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -440,7 +440,7 @@ msgstr ""
 msgid "This slug cannot be used. Please choose another."
 msgstr ""
 
-#: src/olympia/addons/utils.py:40
+#: src/olympia/addons/utils.py:48
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
 
@@ -595,7 +595,7 @@ msgid ""
 "We'll be back to full capacity shortly."
 msgstr ""
 
-#: src/olympia/amo/utils.py:1114
+#: src/olympia/amo/utils.py:1122
 msgid "URLs are not allowed."
 msgstr ""
 
@@ -603,11 +603,11 @@ msgstr ""
 msgid "Must contain at least one printable character."
 msgstr ""
 
-#: src/olympia/amo/validators.py:51
+#: src/olympia/amo/validators.py:62
 msgid "Ensure this field contains at least one letter or number character."
 msgstr ""
 
-#: src/olympia/amo/validators.py:90
+#: src/olympia/amo/validators.py:101
 #, python-format
 msgid ""
 "This field can only be used to link to external websites. URLs on %(domain)s "
