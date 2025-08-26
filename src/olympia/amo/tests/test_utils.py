@@ -32,6 +32,7 @@ from olympia.amo.utils import (
     get_locale_from_lang,
     id_to_path,
     is_safe_url,
+    normalize_string_for_name_checks,
     pngcrush_image,
     utc_millesecs_from_epoch,
     walkfiles,
@@ -409,6 +410,21 @@ class TestIsSafeUrl(TestCase):
         request = RequestFactory().get('/')
         assert is_safe_url('https://mozilla.com', request)
         assert not is_safe_url('https://mozilla.com:7000', request)
+
+
+@pytest.mark.parametrize(
+    'value, expected',
+    [
+        ('foo ', 'foo'),
+        ('bär', 'bar'),
+        ('b+är', 'bar'),
+        ('Ali.ce', 'Alice'),
+        ('Ⓖ𝑜𝕒𝔩', 'Goal'),
+        ('Arg, Ⓖ𝑜𝕒𝔩+ 1', 'ArgGoal1'),
+    ],
+)
+def test_normalize_string_for_name_checks(value, expected):
+    assert normalize_string_for_name_checks(value) == expected
 
 
 @pytest.mark.parametrize(
