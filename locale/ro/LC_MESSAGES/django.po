@@ -718,11 +718,11 @@ msgstr "Alt corp"
 
 #: src/olympia/api/authentication.py:64 src/olympia/api/authentication.py:247
 msgid "Invalid Authorization header. No credentials provided."
-msgstr "Antet de autorizare nevalid. Nu s-au furnizat credențiale."
+msgstr "Antet de autorizare nevalid. Nu s-au furnizat date de autentificare."
 
 #: src/olympia/api/authentication.py:72 src/olympia/api/authentication.py:251
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
-msgstr "Antet de autorizare nevalid. Șirul credențialelor nu trebuie să conțină spații."
+msgstr "Antet de autorizare nevalid. Șirul datelor de autentificare nu trebuie să conțină spații."
 
 #: src/olympia/api/authentication.py:108
 msgid "Valid user session not found matching the provided session key."
@@ -2058,11 +2058,11 @@ msgstr "Confirmă adresa de e-mail"
 
 #: src/olympia/devhub/forms.py:1452
 msgid "Generate new credentials"
-msgstr "Generează credențiale noi"
+msgstr "Generează date de autentificare noi"
 
 #: src/olympia/devhub/forms.py:1453
 msgid "Revoke and regenerate credentials"
-msgstr "Revocă și regenerează credențialele"
+msgstr "Revocă și regenerează datele de autentificare"
 
 #: src/olympia/devhub/forms.py:1454
 msgid "Revoke"
@@ -2088,7 +2088,7 @@ msgstr "Secret JWT"
 #: src/olympia/devhub/forms.py:1531
 #, python-brace-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
-msgstr "Te rugăm să dai clic pe butonul de confirmare de mai jos pentru a genera credențiale pentru API în cazul utilizatorului <strong>{name}</strong>."
+msgstr "Te rugăm să dai clic pe butonul de confirmare de mai jos pentru a genera datele de autentificare API ale utilizatorului <strong>{name}</strong>."
 
 #: src/olympia/devhub/forms.py:1537
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
@@ -2096,7 +2096,7 @@ msgstr "Ți se va trimite pe adresa de e-mail un link de confirmare. După confi
 
 #: src/olympia/devhub/forms.py:1554
 msgid "You don't have any API credentials."
-msgstr "Nu ai credențiale pentru API."
+msgstr "Nu ai date de autentificare API."
 
 #: src/olympia/devhub/forms.py:1565
 msgid "Something went wrong, please contact developer support."
@@ -2124,7 +2124,7 @@ msgstr "Am găsit în fișierul trimis cheia API pentru dezvoltatori aparținân
 
 #: src/olympia/devhub/tasks.py:647
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
-msgstr "Notificare de securitate Mozilla: Credențialele pentru API-ul AMO au fost revocate"
+msgstr "Notificare de securitate Mozilla: Datele de autentificare pentru API-ul AMO au fost revocate"
 
 #: src/olympia/devhub/utils.py:86
 #, python-format
@@ -2358,7 +2358,7 @@ msgstr "Trebuie să furnizezi detalii suplimentare pentru a continua."
 
 #: src/olympia/devhub/views.py:2092
 msgid "Your old credentials were revoked and are no longer valid."
-msgstr "Credențialele tale vechi au fost revocate și nu mai sunt valide."
+msgstr "Datele tale vechi de autentificare au fost revocate și nu mai sunt valide."
 
 #: src/olympia/devhub/views.py:2111
 msgid "Keep your API keys secret and never share them with anyone, including Mozilla contributors."
@@ -3663,7 +3663,7 @@ msgstr "Înapoi"
 
 #: src/olympia/devhub/templates/devhub/api/key.html:21
 msgid "API Credentials"
-msgstr "Credențiale pentru API"
+msgstr "Date de autentificare API"
 
 #: src/olympia/devhub/templates/devhub/emails/api_key_confirmation.ltxt:10
 #, python-format
@@ -3747,10 +3747,10 @@ msgid ""
 msgstr ""
 "Dragă dezvoltator de suplimente,\n"
 "\n"
-"Am observat că credențialele tale secrete pentru API-ul AMO sunt incluse într-un supliment trimis la addons.mozilla.org. Pentru a-ți proteja contul și suplimentul/suplimentele, am revocat credențialele divulgate.\n"
-"Poți genera noi credențiale pentru API la %(api_keys_url)s\n"
+"Am observat că datele tale secrete de autentificare pentru API-ul AMO sunt incluse într-un supliment trimis la addons.mozilla.org. Pentru a-ți proteja contul și suplimentul/suplimentele, am revocat datele de autentificare divulgate.\n"
+"Poți genera date de autentificare noi pentru API la %(api_keys_url)s\n"
 "\n"
-"Te rugăm să te asiguri să nu îți dezvălui niciodată credențialele nimănui. Nu le include niciodată în depozite publice, în suplimente sau orice locuri publice. Te încurajăm să îți analizezi depozitele de cod și extensiile și să elimini orice referință înspre credențialele AMO.\n"
+"Te rugăm să te asiguri că nu îți dezvălui niciodată nimănui datele de autentificare. Nu le include niciodată în depozite publice, în suplimente sau orice locuri publice. Te încurajăm să îți analizezi depozitele de cod și extensiile și să elimini orice referință înspre datele de autentificare AMO.\n"
 "\n"
 "Îți mulțumim,\n"
 "Echipa de suplimente Mozilla"
