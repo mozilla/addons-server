@@ -421,6 +421,9 @@ class TestIsSafeUrl(TestCase):
         ('Ali.ce', 'Alice'),
         ('Ⓖ𝑜𝕒𝔩', 'Goal'),
         ('Arg, Ⓖ𝑜𝕒𝔩+ 1', 'ArgGoal1'),
+        ('\u2800', ''),
+        ('Something\x7f\u20dfFishy', 'SomethingFishy'),
+        ('Something\ufffcVery\U0001d140Fishy', 'SomethingVeryFishy'),
     ],
 )
 def test_normalize_string_for_name_checks(value, expected):
