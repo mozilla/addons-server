@@ -334,8 +334,8 @@ def duplicate_addon_version_for_rollback(*, version_pk, new_version_number, user
                 # The comment is not translated on purpose, to behave like regular human
                 # approval does.
                 'comments': f'{text} by re-publishing as "{new_version_number}" '
-                'successfull!\n'
-                'Users with auto update enabled will be automatically upgraded to this '
+                'successful!\n'
+                'Users with auto-update enabled will be automatically upgraded to this '
                 'version. Keep in mind that, like any submission, reviewers may look '
                 'into this version in the future and determine that it requires '
                 'changes or should be taken down.\r\n'
