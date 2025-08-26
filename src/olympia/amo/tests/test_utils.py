@@ -32,6 +32,7 @@ from olympia.amo.utils import (
     get_locale_from_lang,
     id_to_path,
     is_safe_url,
+    normalize_string_for_name_checks,
     pngcrush_image,
     utc_millesecs_from_epoch,
     walkfiles,
@@ -409,6 +410,47 @@ class TestIsSafeUrl(TestCase):
         request = RequestFactory().get('/')
         assert is_safe_url('https://mozilla.com', request)
         assert not is_safe_url('https://mozilla.com:7000', request)
+
+
+@pytest.mark.parametrize(
+    'value, expected',
+    [
+        ('foo ', 'foo'),
+        ('bär', 'bar'),
+        ('b+är', 'bar'),
+        ('Ali.ce', 'Alice'),
+        ('Ⓖ𝑜𝕒𝔩', 'Goal'),
+        ('Arg, Ⓖ𝑜𝕒𝔩+ 1', 'ArgGoal1'),
+        ('\u2800', ''),
+        ('Something\x7f\u20dfFishy', 'SomethingFishy'),
+        ('Something\ufffcVery\U0001d140Fishy', 'SomethingVeryFishy'),
+    ],
+)
+def test_normalize_string_for_name_checks(value, expected):
+    assert normalize_string_for_name_checks(value) == expected
+
+
+@pytest.mark.parametrize(
+    'value, expected',
+    [
+        ('foo ', 'foo '),  # Whitespace is now kept
+        ('bär', 'bär'),  # Accent (Mark) is now kept, we've decomposed the ä
+        ('b+är', 'b+är'),  # Symbol and Accent are now kept, we've decomposed the ä
+        ('Ali.ce', 'Alice'),  # Puncutation is gone
+        ('Ⓖ𝑜𝕒𝔩', 'Goal'),  # Still normalized
+        ('Arg, Ⓖ𝑜𝕒𝔩+ 1', 'Arg Goal+ 1'),  # Still normalized without punctuation
+        ('\u2800', ''),  # Still gone because it's a special invisible char
+        # Kept control char/mark
+        ('Something\x7f\u20dfFishy', 'Something\x7f\u20dfFishy'),
+        # We always remove special invisible chars even though they are not
+        # part of the allowed categories
+        ('Something\ufffcVery\U0001d140Fishy', 'SomethingVeryFishy'),
+    ],
+)
+def test_normalize_string_for_name_checks_with_specific_category(value, expected):
+    assert (
+        normalize_string_for_name_checks(value, categories_to_strip=('P',)) == expected
+    )
 
 
 @pytest.mark.parametrize(

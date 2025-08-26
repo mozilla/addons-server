@@ -18,7 +18,7 @@ from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.celery import create_chunked_tasks_signatures, task
 from olympia.amo.decorators import use_primary_db
-from olympia.amo.utils import attach_trans_dict
+from olympia.amo.utils import attach_trans_dict, normalize_string_for_name_checks
 from olympia.constants.scanners import (
     ABORTED,
     ABORTING,
@@ -216,6 +216,8 @@ def _run_narc(*, version, run_action_on_match):
         values_from_xpi = {None: values_from_xpi}
 
     for rule in rules:
+        definition = re.compile(str(rule.definition), re.I)
+
         # Look at every source of data with every rule.
         for source, (locale, value) in itertools.chain(
             zip(itertools.repeat('xpi'), values_from_xpi.items()),
@@ -225,22 +227,26 @@ def _run_narc(*, version, run_action_on_match):
                 ((None, value) for value in sorted(values_from_authors)),
             ),
         ):
-            if match := re.search(str(rule.definition), str(value), re.I):
-                results.add(
-                    json.dumps(
-                        {
-                            'rule': rule.name,
-                            'meta': {
-                                'locale': locale,
-                                'source': source,
-                                'pattern': match.re.pattern,
-                                'string': match.string,
-                                'span': match.span(),
-                            },
+            value = str(value)
+            variants = [(value, False)]
+            if (normalized_value := normalize_string_for_name_checks(value)) != value:
+                variants.append((normalized_value, True))
+            for variant, is_normalized in variants:
+                if match := definition.search(variant):
+                    result = {
+                        'rule': rule.name,
+                        'meta': {
+                            'locale': locale,
+                            'source': source,
+                            'pattern': match.re.pattern,
+                            'string': match.string,
+                            'span': match.span(),
                         },
-                        sort_keys=True,
-                    )
-                )
+                    }
+                    if is_normalized:
+                        result['meta']['is_normalized'] = True
+                        result['meta']['original_string'] = value
+                    results.add(json.dumps(result, sort_keys=True))
 
     has_new_matches = False
     new_results = [json.loads(result) for result in sorted(results)]

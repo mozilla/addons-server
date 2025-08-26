@@ -18,7 +18,7 @@ from olympia.amo.utils import (
 from olympia.api.fields import HttpHttpsOnlyURLField
 from olympia.api.serializers import AMOModelSerializer, SiteStatusSerializer
 from olympia.api.utils import is_gate_active
-from olympia.api.validators import OneOrMorePrintableCharacterAPIValidator
+from olympia.api.validators import OneOrMoreLetterOrNumberCharacterAPIValidator
 from olympia.users import notifications
 from olympia.users.models import DeniedName, UserProfile
 from olympia.users.utils import upload_picture
@@ -106,7 +106,7 @@ class SelfUserProfileSerializer(FullUserProfileSerializer):
     display_name = serializers.CharField(
         min_length=2,
         max_length=50,
-        validators=[OneOrMorePrintableCharacterAPIValidator()],
+        validators=[OneOrMoreLetterOrNumberCharacterAPIValidator()],
     )
     picture_upload = serializers.ImageField(use_url=True, write_only=True)
     permissions = serializers.SerializerMethodField()

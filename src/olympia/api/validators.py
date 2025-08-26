@@ -3,11 +3,13 @@ from django.core.exceptions import ValidationError as DjangoValidationError
 from rest_framework import exceptions
 
 from olympia.amo.utils import verify_no_urls
-from olympia.amo.validators import OneOrMorePrintableCharacterValidator
+from olympia.amo.validators import OneOrMoreLetterOrNumberCharacterValidator
 
 
-class OneOrMorePrintableCharacterAPIValidator(OneOrMorePrintableCharacterValidator):
-    """Like OneOrMorePrintableCharacterValidator, but for the API - raises
+class OneOrMoreLetterOrNumberCharacterAPIValidator(
+    OneOrMoreLetterOrNumberCharacterValidator
+):
+    """Like OneOrMoreLetterOrNumberCharacterValidator, but for the API - raises
     a DRF ValidationError instead of a django one."""
 
     def __call__(self, value):

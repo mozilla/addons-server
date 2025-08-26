@@ -399,6 +399,8 @@ RESERVED_ADDON_GUIDS = (
     '@tests.mozilla.org',
 )
 
+# Names we don't allow unless you have permission. Need to be lowercase,
+# see verify_mozilla_trademark()
 MOZILLA_TRADEMARK_SYMBOLS = ('mozilla', 'firefox')
 
 # If you add/remove any sources, update the docs: /api/download_sources.html

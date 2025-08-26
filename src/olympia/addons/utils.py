@@ -8,7 +8,10 @@ from django.utils.translation import gettext
 
 from olympia import amo, core
 from olympia.access.acl import action_allowed_for
-from olympia.amo.utils import normalize_string, verify_condition_with_locales
+from olympia.amo.utils import (
+    normalize_string_for_name_checks,
+    verify_condition_with_locales,
+)
 from olympia.translations.models import Translation
 
 
@@ -27,11 +30,16 @@ def verify_mozilla_trademark(name, user, *, form=None):
     )
 
     def _check(name):
-        name = normalize_string(name, strip_punctuation=True).lower()
+        fully_normalized_name = normalize_string_for_name_checks(name).lower()
+        name_without_punctuation = normalize_string_for_name_checks(
+            name, categories_to_strip=('P')
+        ).lower()
 
         for symbol in amo.MOZILLA_TRADEMARK_SYMBOLS:
-            violates_trademark = name.count(symbol) > 1 or (
-                name.count(symbol) >= 1 and not name.endswith(f' for {symbol}')
+            symbol_count = fully_normalized_name.count(symbol)
+            violates_trademark = symbol_count > 1 or (
+                symbol_count >= 1
+                and not name_without_punctuation.endswith(f' for {symbol}')
             )
 
             if violates_trademark:

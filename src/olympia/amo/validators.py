@@ -20,7 +20,7 @@ class OneOrMorePrintableCharacterValidator:
     # but we allow it to be punctuation or symbol. So we want either a
     # (L)etter, (N)umber, (P)unctuation, or (S)ymbol
     # (Not (M)ark, (C)ontrol or (Z)-spaces/separators)
-    unicode_categories = ('L', 'N', 'P', 'S')
+    valid_unicode_categories = ('L', 'N', 'P', 'S')
 
     # Those characters are considered (L)etter or (S)ymbol but are shown empty
     # or blank, so we consider them not printable for this validator.
@@ -31,12 +31,23 @@ class OneOrMorePrintableCharacterValidator:
         '\u115f',  # U+115F HANGUL CHOSEONG FILLER
         '\u1160',  # U+1160 HANGUL JUNGSEONG FILLER
         '\uffa0',  # U+FFA0 HALFWIDTH HANGUL FILLER
+        '\ufffc',  # U+FFFC OBJECT REPLACEMENT CHARACTER
+        '\U0001d000',  # U+1D000 GLAGOLITIC CAPITAL LETTER BUKY
+        '\U0001d0f0',  # U+1D0F0 GLAGOLITIC SMALL LETTER YERU
+        '\U0001d100',  # U+1D100 GLAGOLITIC CAPITAL LETTER AZU
+        '\U0001d129',  # U+1D129 GLAGOLITIC SMALL LETTER YUS
+        '\U0001d130',  # U+1D130 GLAGOLITIC CAPITAL LETTER IZHITSA
+        '\U0001d13f',  # U+1D13F GLAGOLITIC SMALL LETTER YAT
+        '\U0001d140',  # U+1D140 GLAGOLITIC CAPITAL LETTER FITA
+        '\U0001d145',  # U+1D145 GLAGOLITIC SMALL LETTER FITA
+        '\U0001d150',  # U+1D150 MUSICAL SYMBOL BEGIN BEAM
+        '\U0001d159',  # U+1D159 MUSICAL SYMBOL NULL NOTEHEAD
     )
 
     def __call__(self, value):
         for character in value:
             if (
-                unicodedata.category(character)[0] in self.unicode_categories
+                unicodedata.category(character)[0] in self.valid_unicode_categories
                 and character not in self.special_blank_characters
             ):
                 return
@@ -51,7 +62,7 @@ class OneOrMoreLetterOrNumberCharacterValidator(OneOrMorePrintableCharacterValid
     message = _('Ensure this field contains at least one letter or number character.')
 
     # We want at least a (L)etter or (N)umber for the value to be valid.
-    unicode_categories = ('L', 'N')
+    valid_unicode_categories = ('L', 'N')
 
 
 class CreateOnlyValidator:
