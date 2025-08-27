@@ -107,6 +107,9 @@ class AbstractScannerResult(ModelBase):
                 res[item['rule']].append(
                     {'filename': item.get('meta', {}).get('filename', '???')}
                 )
+        elif self.scanner == NARC:
+            for item in self.results:
+                res[item['rule']].append(item.get('meta', {}))
         elif self.scanner == CUSTOMS:
             scanMap = self.results.get('scanMap', {}).copy()
             for filename, rules in scanMap.items():

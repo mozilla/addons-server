@@ -28,13 +28,15 @@
       {% for item in rule.files_and_data %}
         <li>
         {% if file_id and item.filename %}
-        <span>
+        <div>
           <a href="{% assay_url addon_guid addon_version filepath=item.filename %}">
             {{ item.filename }}
           </a>
-        </span>
-        {% else %}
+        </div>
+        {% elif 'filename' in item %}
           {{ item.filename }}
+        {% else %}
+          {{ item|format_scanners_data }}
         {% endif %}
         </li>
         {% if display_data and item.data %}
