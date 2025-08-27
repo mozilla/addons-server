@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  messages.pootle\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-26 15:51+0000\n"
+"POT-Creation-Date: 2025-08-27 12:17+0000\n"
 "PO-Revision-Date: 2013-11-07 07:24+0000\n"
 "Last-Translator: Julen <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -3046,8 +3046,11 @@ msgstr[1] "Hautatu gehienez ere %s(r)en hiru kategoria zure gehigarriarentzat"
 msgid "Roll back to a previous version"
 msgstr ""
 
+msgid "Users of this extension will roll back to the previous version you choose."
+msgstr ""
+
 #, python-format
-msgid "Users of this %(addon_type)s will roll back to the previous version you choose."
+msgid "Current Version [%(current_version_number)s] will roll back to Version [%(selected_version_number)s]"
 msgstr ""
 
 msgid "Distribution channel"

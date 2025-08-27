@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-26 15:51+0000\n"
+"POT-Creation-Date: 2025-08-27 12:17+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2679,7 +2679,7 @@ msgid ""
 " us."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:5
+#: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:8
 #: src/olympia/devhub/templates/devhub/suppressed_email.html:8
 msgid "Learn more"
 msgstr ""
@@ -3064,7 +3064,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:87
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:177
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:32
-#: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:51
+#: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:59
 #: src/olympia/devhub/templates/devhub/versions/edit.html:136
 #: src/olympia/devhub/templates/devhub/versions/list.html:305
 #: src/olympia/devhub/templates/devhub/versions/list.html:315
@@ -4341,28 +4341,32 @@ msgstr[1] ""
 msgid "Roll back to a previous version"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:4
-#, python-format
-msgid ""
-"Users of this %(addon_type)s will roll back to the previous version you "
-"choose."
+#: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:7
+msgid "Users of this extension will roll back to the previous version you choose."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:12
+#: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:13
+#, python-format
+msgid ""
+"Current Version [%(current_version_number)s] will roll back to Version "
+"[%(selected_version_number)s]"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:19
 msgid "Distribution channel"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:23
-#: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:32
+#: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:31
+#: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:40
 #: src/olympia/devhub/templates/devhub/versions/list.html:240
 msgid "Version"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:40
+#: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:48
 msgid "New version number"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:50
+#: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:58
 msgid "Roll back"
 msgstr ""
 

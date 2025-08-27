@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-26 15:51+0000\n"
+"POT-Creation-Date: 2025-08-27 12:17+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2938,8 +2938,11 @@ msgstr[1] ""
 msgid "Roll back to a previous version"
 msgstr ""
 
+msgid "Users of this extension will roll back to the previous version you choose."
+msgstr ""
+
 #, python-format
-msgid "Users of this %(addon_type)s will roll back to the previous version you choose."
+msgid "Current Version [%(current_version_number)s] will roll back to Version [%(selected_version_number)s]"
 msgstr ""
 
 msgid "Distribution channel"
