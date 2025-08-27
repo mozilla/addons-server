@@ -3904,12 +3904,12 @@ msgstr "退回到先前版本"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:7
 msgid "Users of this extension will roll back to the previous version you choose."
-msgstr ""
+msgstr "此擴充套件的使用者，將退回到您選擇的舊版本。"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:13
 #, python-format
 msgid "Current Version [%(current_version_number)s] will roll back to Version [%(selected_version_number)s]"
-msgstr ""
+msgstr "目前版本 [%(current_version_number)s] 將退回到版本 [%(selected_version_number)s]"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:19
 msgid "Distribution channel"
