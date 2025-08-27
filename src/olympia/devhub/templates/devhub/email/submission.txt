@@ -6,11 +6,9 @@ For more information about the review process and policies, please visit https:/
 
 ********
 
-********
-
 Add-ons help personalize the Email experience for millions of users who have installed Thunderbird, and we want to help make your users happy! 
 
-Have a question about add-ons or the add-on review process? You can join the add-on reviewers IRC channel at #tb-addon-reviewer on irc.mozilla.org or Email the add-on reviewers at: Tb-addon-reviewers@lists.thunderbird.net
+Have a question about add-ons, the add-on review process or want to stay up-to-date with news from the add-ons community? Check out our community channels: https://developer.thunderbird.net/add-ons/community.
 
 If you are interested in getting more involved with Thunderbird and want to help keep the add-ons ecosystem safe and healthy, please consider becoming a volunteer add-on reviewer. You can apply at: https://goo.gl/forms/1VkkaKJ0Mm39ph692 
 
