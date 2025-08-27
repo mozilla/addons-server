@@ -250,7 +250,7 @@ class TestScannerResultMixin:
         rule = self.rule_model.objects.create(name='foobar', scanner=NARC)
         result.results = [
             {
-                'rule': 'foobar',
+                'rule': rule.name,
                 'meta': {
                     'locale': None,
                     'source': 'something',
