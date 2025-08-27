@@ -3987,7 +3987,7 @@ msgstr "Do předchadneje wersije wróćo kulić"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:7
 msgid "Users of this extension will roll back to the previous version you choose."
-msgstr ""
+msgstr "Wužiwarjo tutoho rozšěrjenja so do předchadneje wersije, kotruž wuběraće, wróćo kula."
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:13
 #, python-format
