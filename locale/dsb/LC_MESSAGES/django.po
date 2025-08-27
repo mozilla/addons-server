@@ -3988,12 +3988,12 @@ msgstr "Do pjerwjejšneje wersije slědk kulnuś"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:7
 msgid "Users of this extension will roll back to the previous version you choose."
-msgstr ""
+msgstr "Wužywarje toś togo rozšyrjenja se do pjerwjejšneje wersije, kótaruž wuběraśo, slědk kula."
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:13
 #, python-format
 msgid "Current Version [%(current_version_number)s] will roll back to Version [%(selected_version_number)s]"
-msgstr ""
+msgstr "Aktualna wersija [%(current_version_number)s] se do wersije [%(selected_version_number)s] slědk kula"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:19
 msgid "Distribution channel"
