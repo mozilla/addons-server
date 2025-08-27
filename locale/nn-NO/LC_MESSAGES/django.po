@@ -3965,12 +3965,12 @@ msgstr "Gå tilbake til ein tidlegare versjon"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:7
 msgid "Users of this extension will roll back to the previous version you choose."
-msgstr ""
+msgstr "Brukarar av denne utvidinga vil gå tilbake til den førre versjonen du valde."
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:13
 #, python-format
 msgid "Current Version [%(current_version_number)s] will roll back to Version [%(selected_version_number)s]"
-msgstr ""
+msgstr "Gjeldande versjon [%(current_version_number)s] vil bli tilbakestilt til versjon [%(selected_version_number)s]"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:19
 msgid "Distribution channel"
