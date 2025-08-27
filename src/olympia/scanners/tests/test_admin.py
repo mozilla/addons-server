@@ -1891,9 +1891,9 @@ class FormattedMatchedRulesWithFilesAndData(TestCase):
 
         content = formatted_matched_rules_with_files_and_data(result, display_data=True)
         doc = pq(content)
-        assert len(doc('td > ul > li')) == 2
-        assert doc('td > ul > li').eq(0).text() == ''
-        li = doc('td > ul > li').eq(1)
+        assert len(doc('td > details > ul > li')) == 2
+        assert doc('td > details > ul > li').eq(0).text() == ''
+        li = doc('td > details > ul > li').eq(1)
         assert li.attr('class') == 'extra_data'
         assert li.html().strip() == format_scanners_data(
             result.get_files_and_data_by_matched_rules()[rule.name][0]['data']

@@ -24,6 +24,7 @@
       <a class="rule-link" href="{% url rule_change_urlname rule.pk %}" title="{{ rule.description }} ">{{ rule.name }}</a>
     </td>
     <td>
+      {% if display_data %}<details>{% endif %}
       <ul>
       {% for item in rule.files_and_data %}
         <li>
@@ -49,6 +50,7 @@
         <li>…and {{ rule.files_not_shown }} more files</li>
       {% endif %}
       </ul>
+      {% if display_data %}</details>{% endif %}
     </td>
   </tr>
   {% endfor %}
