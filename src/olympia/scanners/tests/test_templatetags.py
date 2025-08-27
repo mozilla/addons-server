@@ -35,8 +35,8 @@ def test_format_scanners_data_simple_list():
 
 def test_format_scanners_data_simple_dict():
     expected = """<dl>
-<dt>&lt;b&gt;fôo&lt;/b&gt;:</dt><dd>bar</dd>
-<dt>more:</dt><dd>xxx</dd>
+<div><dt>&lt;b&gt;fôo&lt;/b&gt;:</dt><dd>bar</dd></div>
+<div><dt>more:</dt><dd>xxx</dd></div>
 </dl>"""
     assert format_scanners_data({'<b>fôo</b>': 'bar', 'more': 'xxx'}) == expected
 
@@ -50,19 +50,19 @@ def test_format_scanners_data_complex():
     expected_url = 'http://testserver/en-US/reviewers/review/@welp'
     expected = """<ul>
 <li><dl>
-<dt>THIS IS:</dt><dd><ul>
+<div><dt>THIS IS:</dt><dd><ul>
 <li>Sparta</li>
 <li>!</li>
-</ul></dd>
+</ul></dd></div>
 </dl></li>
 <li><dl>
-<dt>WITNESSME:</dt><dd><dl>
-<dt>ratio:</dt><dd>45.68%</dd>
-<dt>blah:</dt><dd>something</dd>
-</dl></dd>
+<div><dt>WITNESSME:</dt><dd><dl>
+<div><dt>ratio:</dt><dd>45.68%</dd></div>
+<div><dt>blah:</dt><dd>something</dd></div>
+</dl></dd></div>
 </dl></li>
 <li><dl>
-<dt>extensionId:</dt><dd><a href="{expected_url}">@welp</a></dd>
+<div><dt>extensionId:</dt><dd><a href="{expected_url}">@welp</a></dd></div>
 </dl></li>
 </ul>""".format(expected_url=expected_url)
     assert format_scanners_data(data) == expected
