@@ -334,11 +334,14 @@ def duplicate_addon_version_for_rollback(*, version_pk, new_version_number, user
             details={
                 # The comment is not translated on purpose, to behave like regular human
                 # approval does.
-                'comments': f'{text} by re-publishing as "{new_version_number}", '
-                'successfull!\n'
-                'Keep in mind that, like any submission, reviewers may look into this '
-                'version in the future and determine that it requires changes or '
-                'should be taken down.\r\n\r\nThank you!'
+                'comments': f'{text} by re-publishing as "{new_version_number}" '
+                'successful!\n'
+                'Users with auto-update enabled will be automatically upgraded to this '
+                'version. Keep in mind that, like any submission, reviewers may look '
+                'into this version in the future and determine that it requires '
+                'changes or should be taken down.\r\n'
+                '\r\n'
+                'Thank you!'
             },
         )
         VersionLog.objects.create(activity_log=log_entry, version=old_version)
