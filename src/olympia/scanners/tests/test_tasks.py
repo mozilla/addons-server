@@ -292,7 +292,7 @@ class TestRunNarc(UploadMixin, TestCase):
         assert narc_result.results == [
             {
                 'meta': {
-                    'is_normalized': True,
+                    'variant': 'normalized',
                     'locale': 'en-us',
                     'pattern': '.*',
                     'source': 'db_addon',
@@ -307,7 +307,20 @@ class TestRunNarc(UploadMixin, TestCase):
             },
             {
                 'meta': {
-                    'is_normalized': True,
+                    'locale': 'en-us',
+                    'pattern': '.*',
+                    'source': 'db_addon',
+                    'span': [
+                        0,
+                        27,
+                    ],
+                    'string': 'My Fancy WebExtension Addon',
+                },
+                'rule': 'always_match_rule',
+            },
+            {
+                'meta': {
+                    'variant': 'normalized',
                     'locale': None,
                     'pattern': '.*',
                     'source': 'author',
@@ -322,7 +335,7 @@ class TestRunNarc(UploadMixin, TestCase):
             },
             {
                 'meta': {
-                    'is_normalized': True,
+                    'variant': 'normalized',
                     'locale': None,
                     'pattern': '.*',
                     'source': 'xpi',
@@ -332,19 +345,6 @@ class TestRunNarc(UploadMixin, TestCase):
                     ],
                     'string': 'MyWebExtensionAddon',
                     'original_string': 'My WebExtension Addon',
-                },
-                'rule': 'always_match_rule',
-            },
-            {
-                'meta': {
-                    'locale': 'en-us',
-                    'pattern': '.*',
-                    'source': 'db_addon',
-                    'span': [
-                        0,
-                        27,
-                    ],
-                    'string': 'My Fancy WebExtension Addon',
                 },
                 'rule': 'always_match_rule',
             },
@@ -365,6 +365,104 @@ class TestRunNarc(UploadMixin, TestCase):
                     'source': 'xpi',
                     'string': 'My WebExtension Addon',
                     'pattern': '.*',
+                },
+                'rule': 'always_match_rule',
+            },
+        ]
+        assert incr_mock.called
+        assert incr_mock.call_count == 3
+        incr_mock.assert_has_calls(
+            [
+                mock.call('devhub.narc.has_matches'),
+                mock.call(f'devhub.narc.rule.{rule.id}.match'),
+                mock.call('devhub.narc.success'),
+            ]
+        )
+
+    @mock.patch('olympia.scanners.tasks.statsd.incr')
+    def test_run_normalized_match(self, incr_mock):
+        self.addon.name = 'My\u2800 Fäncy WebExtension 𝕒ddon'
+        self.addon.save()
+
+        rule = ScannerRule.objects.create(
+            name='always_match_rule',
+            scanner=NARC,
+            definition='MyFancyWebExtensionAddon',
+        )
+
+        run_narc_on_version(self.version.pk)
+
+        scanner_results = ScannerResult.objects.all()
+        assert len(scanner_results) == 1
+        narc_result = scanner_results[0]
+        assert narc_result.scanner == NARC
+        assert narc_result.upload is None
+        assert narc_result.version == self.version
+        assert narc_result.has_matches
+        assert list(narc_result.matched_rules.all()) == [rule]
+        assert len(narc_result.results) == 1
+        assert narc_result.results == [
+            {
+                'meta': {
+                    'locale': 'en-us',
+                    'original_string': 'My⠀ Fäncy WebExtension 𝕒ddon',
+                    'pattern': 'MyFancyWebExtensionAddon',
+                    'source': 'db_addon',
+                    'span': [
+                        0,
+                        24,
+                    ],
+                    'string': 'MyFancyWebExtensionaddon',
+                    'variant': 'normalized',
+                },
+                'rule': 'always_match_rule',
+            },
+        ]
+        assert incr_mock.called
+        assert incr_mock.call_count == 3
+        incr_mock.assert_has_calls(
+            [
+                mock.call('devhub.narc.has_matches'),
+                mock.call(f'devhub.narc.rule.{rule.id}.match'),
+                mock.call('devhub.narc.success'),
+            ]
+        )
+
+    @mock.patch('olympia.scanners.tasks.statsd.incr')
+    def test_run_homoglyph_match(self, incr_mock):
+        self.addon.name = 'My\u2800 Fäncy W\u0435bExtѐnsion addon'
+        self.addon.save()
+
+        rule = ScannerRule.objects.create(
+            name='always_match_rule',
+            scanner=NARC,
+            definition='MyFancyWebExtensionAddon',
+        )
+
+        run_narc_on_version(self.version.pk)
+
+        scanner_results = ScannerResult.objects.all()
+        assert len(scanner_results) == 1
+        narc_result = scanner_results[0]
+        assert narc_result.scanner == NARC
+        assert narc_result.upload is None
+        assert narc_result.version == self.version
+        assert narc_result.has_matches
+        assert list(narc_result.matched_rules.all()) == [rule]
+        assert len(narc_result.results) == 1
+        assert narc_result.results == [
+            {
+                'meta': {
+                    'locale': 'en-us',
+                    'original_string': 'My⠀ Fäncy WеbExtѐnsion addon',
+                    'pattern': 'MyFancyWebExtensionAddon',
+                    'source': 'db_addon',
+                    'span': [
+                        0,
+                        24,
+                    ],
+                    'string': 'myfancywebextensionaddon',
+                    'variant': 'homoglyph',
                 },
                 'rule': 'always_match_rule',
             },
@@ -515,7 +613,7 @@ class TestRunNarc(UploadMixin, TestCase):
         assert narc_result.results == [
             {
                 'meta': {
-                    'is_normalized': True,
+                    'variant': 'normalized',
                     'span': [0, 3],
                     'locale': None,
                     'source': 'author',

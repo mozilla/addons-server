@@ -29,6 +29,7 @@ from olympia.amo.utils import (
     create_signed_url_for_file_backup,
     download_file_contents_from_backup_storage,
     extract_colors_from_image,
+    generate_lowercase_homoglyphs_variants_for_string,
     get_locale_from_lang,
     id_to_path,
     is_safe_url,
@@ -451,6 +452,22 @@ def test_normalize_string_for_name_checks_with_specific_category(value, expected
     assert (
         normalize_string_for_name_checks(value, categories_to_strip=('P',)) == expected
     )
+
+
+@pytest.mark.parametrize(
+    'value, expected',
+    [
+        ('aBc', {'abc'}),
+        ('\u0430bc', {'abc'}),
+        ('l\u04300', {'iao', 'lao'}),
+        ('𝐪1lt', {'qiit', 'qilt', 'qlit', 'qllt'}),
+        ('bеta', {'beta'}),
+        ('ТЕСТ0n1𝓀', {'tectonik', 'tectonlk'}),
+        ('ТЄСТ0n1к', {'tectonik', 'tectonlk'}),
+    ],
+)
+def test_generate_lowercase_homoglyphs_variants_for_string(value, expected):
+    assert generate_lowercase_homoglyphs_variants_for_string(value) == expected
 
 
 @pytest.mark.parametrize(

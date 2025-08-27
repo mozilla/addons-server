@@ -9,6 +9,7 @@ from django.utils.translation import gettext
 from olympia import amo, core
 from olympia.access.acl import action_allowed_for
 from olympia.amo.utils import (
+    generate_lowercase_homoglyphs_variants_for_string,
     normalize_string_for_name_checks,
     verify_condition_with_locales,
 )
@@ -30,24 +31,28 @@ def verify_mozilla_trademark(name, user, *, form=None):
     )
 
     def _check(name):
-        fully_normalized_name = normalize_string_for_name_checks(name).lower()
         name_without_punctuation = normalize_string_for_name_checks(
             name, categories_to_strip=('P')
         ).lower()
 
-        for symbol in amo.MOZILLA_TRADEMARK_SYMBOLS:
-            symbol_count = fully_normalized_name.count(symbol)
-            violates_trademark = symbol_count > 1 or (
-                symbol_count >= 1
-                and not name_without_punctuation.endswith(f' for {symbol}')
-            )
+        variants = generate_lowercase_homoglyphs_variants_for_string(
+            normalize_string_for_name_checks(name)
+        )
 
-            if violates_trademark:
-                raise forms.ValidationError(
-                    gettext(
-                        'Add-on names cannot contain the Mozilla or Firefox trademarks.'
-                    )
+        for variant in variants:
+            for symbol in amo.MOZILLA_TRADEMARK_SYMBOLS:
+                symbol_count = variant.count(symbol)
+                violates_trademark = symbol_count > 1 or (
+                    symbol_count >= 1
+                    and not name_without_punctuation.endswith(f' for {symbol}')
                 )
+
+                if violates_trademark:
+                    raise forms.ValidationError(
+                        gettext(
+                            'Add-on names cannot contain the Mozilla or Firefox trademarks.'
+                        )
+                    )
 
     if not skip_trademark_check:
         verify_condition_with_locales(
