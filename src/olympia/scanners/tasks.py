@@ -18,7 +18,11 @@ from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.celery import create_chunked_tasks_signatures, task
 from olympia.amo.decorators import use_primary_db
-from olympia.amo.utils import attach_trans_dict, normalize_string_for_name_checks
+from olympia.amo.utils import (
+    attach_trans_dict,
+    generate_lowercase_homoglyphs_variants_for_string,
+    normalize_string_for_name_checks,
+)
 from olympia.constants.scanners import (
     ABORTED,
     ABORTING,
@@ -228,10 +232,21 @@ def _run_narc(*, version, run_action_on_match):
             ),
         ):
             value = str(value)
-            variants = [(value, False)]
+            variants = [(value, None)]
             if (normalized_value := normalize_string_for_name_checks(value)) != value:
-                variants.append((normalized_value, True))
-            for variant, is_normalized in variants:
+                variants.append((normalized_value, 'normalized'))
+            homoglyph_variants = generate_lowercase_homoglyphs_variants_for_string(
+                normalized_value
+            )
+            if homoglyph_variants:
+                variants.extend(
+                    (homoglyph_variant, 'homoglyph')
+                    for homoglyph_variant in homoglyph_variants
+                    if homoglyph_variant != value.lower()
+                    and homoglyph_variant != normalized_value.lower()
+                )
+
+            for variant, variant_type in variants:
                 if match := definition.search(variant):
                     result = {
                         'rule': rule.name,
@@ -243,8 +258,8 @@ def _run_narc(*, version, run_action_on_match):
                             'span': match.span(),
                         },
                     }
-                    if is_normalized:
-                        result['meta']['is_normalized'] = True
+                    if variant_type is not None:
+                        result['meta']['variant'] = variant_type
                         result['meta']['original_string'] = value
                     results.add(json.dumps(result, sort_keys=True))
 

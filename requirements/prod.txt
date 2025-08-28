@@ -799,6 +799,9 @@ cachetools==5.5.2 \
 sqlparse==0.5.3 \
     --hash=sha256:09f67787f56a0b16ecdbde1bfc7f5d9c3371ca683cfeaa8e6ff60b4807ec9272 \
     --hash=sha256:cf2196ed3418f3ba5de6af7e82c694a9fbdbfecccdfc72e281548517081f16ca
+homoglyphs-fork==2.1.1 \
+    --hash=sha256:42b8e77e82fff9eaa63422e3ff3149daa0c8ecc03fb2381e6aae5a961c3104c2 \
+    --hash=sha256:d0994a1f5fa74b6bd0a25e714eb527a43335c80d0e86abf6f099d0e108dc94bd
 yara-python==4.5.4 \
     --hash=sha256:0b9de86fbe8a646c0644df9e1396d6941dc6ed0f89be2807e6c52ab39161fd9f \
     --hash=sha256:0e762e6c5b47ddf30b0128ba723da46fcc2aa7959a252748497492cb452d1c84 \

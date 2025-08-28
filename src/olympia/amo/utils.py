@@ -46,6 +46,7 @@ from django.utils.translation import gettext
 
 import basket
 import colorgram
+import homoglyphs_fork
 import html5lib
 import markupsafe
 import pytz
@@ -492,6 +493,37 @@ def normalize_string_for_name_checks(
     value = unicodedata.normalize('NFKD', force_str(value))
     value = value.translate(strip_table)
     return value
+
+
+def generate_lowercase_homoglyphs_variants_for_string(value):
+    """Generates a set of lowercase homoglyph variants for a given string.
+
+    Value passed as argument is a string that is expected to have gone through
+    normalization to remove characters we don't want first, see
+    normalize_string_for_name_checks().
+    """
+    # These are not normally considered confusables, but we think they should.
+    additional_replacements = {
+        'e': ('Э', '℈', 'Є', '€', 'Ꞓ'),
+        'k': ('ĸ', 'κ', 'к', 'қ', 'ҝ', 'ҟ', 'ҡ', 'ᴋ'),
+        'm': ('ʍ', 'м', 'ᴍ'),
+        'o': ('Ѻ', 'ѻ'),
+    }
+    additional_replacement_table = dict(
+        itertools.chain(
+            *(
+                list(zip(map(ord, letters), itertools.repeat(ord(replacement))))
+                for replacement, letters in additional_replacements.items()
+            )
+        )
+    )
+    value = value.translate(additional_replacement_table)
+    homoglyphs = homoglyphs_fork.Homoglyphs(
+        languages={'en'},
+        strategy=homoglyphs_fork.STRATEGY_LOAD,
+        ascii_range=range(ord('A'), ord('z') + 1),
+    )
+    return {variant.lower() for variant in homoglyphs.to_ascii(value)}
 
 
 def slug_validator(slug, message=validate_slug.message):
