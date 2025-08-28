@@ -521,7 +521,7 @@ def generate_lowercase_homoglyphs_variants_for_string(value):
     homoglyphs = homoglyphs_fork.Homoglyphs(
         languages={'en'},
         strategy=homoglyphs_fork.STRATEGY_LOAD,
-        ascii_range=range(ord('A'), ord('z')),
+        ascii_range=range(ord('A'), ord('z') + 1),
     )
     return {variant.lower() for variant in homoglyphs.to_ascii(value)}
 

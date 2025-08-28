@@ -463,6 +463,7 @@ def test_normalize_string_for_name_checks_with_specific_category(value, expected
         ('𝐪1lt', {'qiit', 'qilt', 'qlit', 'qllt'}),
         ('bеta', {'beta'}),
         ('қѺʍѕ', {'koms'}),
+        ('Zoom', {'zoom'}),
         ('ТЕСТ0n1𝓀', {'tectonik', 'tectonlk'}),
         ('ТЄСТ0n1к', {'tectonik', 'tectonlk'}),
     ],
