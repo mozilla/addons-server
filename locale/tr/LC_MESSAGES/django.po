@@ -3655,6 +3655,16 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Merhaba,\n"
+"\n"
+"Bu iletiyi %(domain)s için yeni geliştirici API anahtarları talep ettiğiniz için alıyorsunuz.\n"
+"Bu işlemi tamamlamak için lütfen aşağıdaki bağlantıya tıklayın:\n"
+"\n"
+"%(api_key_confirmation_link)s\n"
+"\n"
+"Sevgiler,\n"
+"\n"
+"Mozilla Eklentileri Ekibi"
 
 #: src/olympia/devhub/templates/devhub/emails/new-key-email.ltxt:8
 #, python-format
@@ -3744,6 +3754,16 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Merhaba,\n"
+"\n"
+"Bu iletiyi e-postanızı doğrulama isteğinde bulunduğunuz için alıyorsunuz.\n"
+"Bu işlemi tamamlamak için lütfen aşağıdaki bağlantıya tıklayın:\n"
+"\n"
+"%(confirmation_link)s\n"
+"\n"
+"Sevgiler,\n"
+"\n"
+"Mozilla Eklentileri Ekibi"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:6 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:4
 msgid "Invisible"
@@ -3933,12 +3953,12 @@ msgstr "Önceki bir sürüme dön"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:7
 msgid "Users of this extension will roll back to the previous version you choose."
-msgstr ""
+msgstr "Bu uzantıyı kullananlar seçtiğiniz önceki sürüme geri dönecektir."
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:13
 #, python-format
 msgid "Current Version [%(current_version_number)s] will roll back to Version [%(selected_version_number)s]"
-msgstr ""
+msgstr "Mevcut sürüm [%(current_version_number)s], [%(selected_version_number)s] sürümüne geri döndürülecek"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:19
 msgid "Distribution channel"
