@@ -9,7 +9,7 @@ from .base import ADDON_ANY, ADDON_EXTENSION, ADDON_STATICTHEME
 REVIEWER_VIEWING_INTERVAL = 8  # How often we ping for "who's watching?"
 REVIEWER_REVIEW_LOCK_LIMIT = 3  # How many pages can a reviewer "watch"
 # Default delayed rejection period in days
-REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT = 14
+REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT = 30
 
 REVIEWER_STANDARD_REVIEW_TIME = 3  # How many (week)days we expect to review within
 REVIEWER_STANDARD_REPLY_TIME = 2  # How many (week)days we expect to reply within
