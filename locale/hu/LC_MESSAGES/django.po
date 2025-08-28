@@ -3984,12 +3984,12 @@ msgstr "Visszagörgetés egy korábbi verzióra"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:7
 msgid "Users of this extension will roll back to the previous version you choose."
-msgstr ""
+msgstr "A kiegészítő felhasználói vissza lesznek állítva az Ön által kiválasztott korábbi verzióra."
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:13
 #, python-format
 msgid "Current Version [%(current_version_number)s] will roll back to Version [%(selected_version_number)s]"
-msgstr ""
+msgstr "A jelenlegi verzió [%(current_version_number)s] vissza lesz állítva a(z) [%(selected_version_number)s] verzióra"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:19
 msgid "Distribution channel"
