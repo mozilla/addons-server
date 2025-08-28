@@ -1122,7 +1122,7 @@ class TestReviewForm(TestCase):
             'readonly': 'readonly',
         }
         assert form.fields['delayed_rejection_date'].initial == datetime(
-            2025, 2, 24, 13, 9
+            2025, 3, 12, 13, 9
         )
         content = str(form['delayed_rejection'])
         doc = pq(content)
@@ -1157,7 +1157,7 @@ class TestReviewForm(TestCase):
             'min': '2025-01-24T12:52',
         }
         assert form.fields['delayed_rejection_date'].initial == datetime(
-            2025, 2, 6, 13, 52
+            2025, 2, 22, 13, 52
         )
         content = str(form['delayed_rejection'])
         doc = pq(content)
