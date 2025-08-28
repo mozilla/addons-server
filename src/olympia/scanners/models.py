@@ -101,12 +101,25 @@ class AbstractScannerResult(ModelBase):
         return json.dumps(self.results, indent=2)
 
     def get_files_and_data_by_matched_rules(self):
+        """
+        Return results metadata from matched rules
+
+        This includes the filename that matched if applicable and the name of
+        the rule, but excluding info that would reveal the definition of the
+        rule itself, such as the pattern for NARC).
+        """
         res = defaultdict(list)
         if self.scanner == YARA:
             for item in self.results:
                 res[item['rule']].append(
                     {'filename': item.get('meta', {}).get('filename', '???')}
                 )
+        elif self.scanner == NARC:
+            for item in self.results:
+                meta = item.get('meta', {}).copy()
+                for field in ('pattern', 'span'):
+                    meta.pop(field, None)
+                res[item['rule']].append(meta)
         elif self.scanner == CUSTOMS:
             scanMap = self.results.get('scanMap', {}).copy()
             for filename, rules in scanMap.items():

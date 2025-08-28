@@ -24,17 +24,20 @@
       <a class="rule-link" href="{% url rule_change_urlname rule.pk %}" title="{{ rule.description }} ">{{ rule.name }}</a>
     </td>
     <td>
+      {% if display_data %}<details>{% endif %}
       <ul>
       {% for item in rule.files_and_data %}
         <li>
         {% if file_id and item.filename %}
-        <span>
+        <div>
           <a href="{% assay_url addon_guid addon_version filepath=item.filename %}">
             {{ item.filename }}
           </a>
-        </span>
-        {% else %}
+        </div>
+        {% elif 'filename' in item %}
           {{ item.filename }}
+        {% else %}
+          {{ item|format_scanners_data }}
         {% endif %}
         </li>
         {% if display_data and item.data %}
@@ -47,6 +50,7 @@
         <li>…and {{ rule.files_not_shown }} more files</li>
       {% endif %}
       </ul>
+      {% if display_data %}</details>{% endif %}
     </td>
   </tr>
   {% endfor %}

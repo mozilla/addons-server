@@ -864,7 +864,7 @@ table.activity tr:first-child {
 }
 
 .review-files .files .scanners-results .rule_name {
-  width: 15em;
+  width: 20ch;
 }
 
 .review-files .files .scanners-results th {
@@ -876,10 +876,25 @@ table.activity tr:first-child {
     vertical-align: top;
 }
 
-.review-files .files .scanners-results td > ul > li {
+.review-files .files .scanners-results td > details > ul > li > div,
+.review-files .files .scanners-results td dd:not(:has(dd)) {
+    /* only safe to apply nowrap when there is no nesting going on */
+    white-space: nowrap;
+}
+
+.review-files .files .scanners-results td dl {
+    border-left: 2px solid #999;
+    padding-left: 0.3em;
+}
+
+.review-files .files .scanners-results td dl,
+.review-files .files .scanners-results td dd,
+.review-files .files .scanners-results td div,
+.review-files .files .scanners-results td li {
+    max-width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    display: block;
 }
 
 .review-files .files .scanners-results td > ul > li.extra_data {
@@ -887,17 +902,19 @@ table.activity tr:first-child {
     white-space: normal;
 }
 
-.review-files .files .scanners-results td > ul > li.extra_data dl,
-.review-files .files .scanners-results td > ul > li.extra_data li {
+.review-files .files .scanners-results td > ul > li li:not(:has(*)) {
+    /* li with only text and no nested elements can be displayed inline */
     display: inline-block;
 }
+
 
 .review-files .files .scanners-results td dt,
 .review-files .files .scanners-results td dd {
     display: inline-block;
-    margin-top: 0;
     min-width: 34%;
-    padding-right: 0.5em;
+    padding: 0;
+    margin: 0;
+    vertical-align: top;
 }
 
 .review-files .files .scanners-results td dl {
