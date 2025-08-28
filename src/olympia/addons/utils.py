@@ -48,11 +48,10 @@ def verify_mozilla_trademark(name, user, *, form=None):
                 )
 
                 if violates_trademark:
-                    raise forms.ValidationError(
-                        gettext(
-                            'Add-on names cannot contain the Mozilla or Firefox trademarks.'
-                        )
+                    msg = gettext(
+                        'Add-on names cannot contain the Mozilla or Firefox trademarks.'
                     )
+                    raise forms.ValidationError(msg)
 
     if not skip_trademark_check:
         verify_condition_with_locales(
