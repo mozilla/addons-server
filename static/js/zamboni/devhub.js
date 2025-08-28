@@ -636,8 +636,28 @@ function initVersions() {
       explainer.text(formatted);
     };
 
+    const releaseNotesUpdate = function (event) {
+      const releaseNotes = $('#id_release_notes');
+      const $target = $(event.target);
+      if (releaseNotes.data('last-value') && releaseNotes.val() != releaseNotes.data('last-value')) {
+        // User has modified the field, don't overwrite it.
+        return;
+      }
+
+      let selectedVersion = 'm.m';
+      if ($target.val()) {
+        selectedVersion = $('#' + event.target.id + ' option:selected').text()
+      }
+      const formatted = releaseNotes.prop('defaultValue').replace('[m.m]', '[' + selectedVersion + ']');
+      releaseNotes.val(formatted);
+      releaseNotes.data('last-value', formatted);
+    }
+
+
     $listedVersionSelect.on('change', explainerUpdate);
     $unlistedVersionSelect.on('change', explainerUpdate);
+    $listedVersionSelect.on('change', releaseNotesUpdate);
+    $unlistedVersionSelect.on('change', releaseNotesUpdate);
 
     $channelInputs.on('change', function () {
       $listedVersionRow.hide();

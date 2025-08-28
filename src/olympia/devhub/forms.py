@@ -14,7 +14,7 @@ from django.urls import reverse
 from django.utils.functional import keep_lazy_text
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
-from django.utils.translation import gettext, gettext_lazy as _, ngettext
+from django.utils.translation import get_language, gettext, gettext_lazy as _, ngettext
 
 import waffle
 from django_statsd.clients import statsd
@@ -1627,6 +1627,13 @@ class RollbackVersionForm(forms.Form):
         required=False,
     )
     new_version_string = forms.CharField(max_length=255)
+    release_notes = forms.CharField(
+        widget=forms.Textarea(attrs={'rows': 2}),
+        max_length=255,
+        required=False,
+        label=gettext('Release notes'),
+        initial=gettext('Automatic rollback based on version [m.m].'),
+    )
 
     def __init__(self, *args, **kwargs):
         self.addon = kwargs.pop('addon')
@@ -1681,6 +1688,13 @@ class RollbackVersionForm(forms.Form):
         version_pk, version_obj = self.fields['listed_version'].choices[0]
         self.cleaned_data['listed_version'] = version_obj if version_pk else None
         return self.cleaned_data['listed_version']
+
+    def clean_release_notes(self):
+        notes = self.cleaned_data.get('release_notes', '').strip()
+        self.cleaned_data['release_notes'] = {self.addon.default_locale.lower(): None}
+        if notes:
+            self.cleaned_data['release_notes'][get_language()] = notes
+        return self.cleaned_data['release_notes']
 
     def clean(self):
         data = super().clean()

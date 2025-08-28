@@ -646,6 +646,7 @@ class TestDuplicateAddonVersionForRollback(TestCase):
                 'max_app_version': '*',
                 'approval_notes': 'Hey reviewers, this is for you',
                 'human_review_date': datetime(2025, 1, 1),
+                'release_notes': 'Some notes for 0.0.1',
             },
             file_kw={'filename': 'webextension.xpi'},
             users=[self.user],
@@ -690,6 +691,7 @@ class TestDuplicateAddonVersionForRollback(TestCase):
     def check_version_fields(self, new):
         assert new.approval_notes == 'Hey reviewers, this is for you'
         assert new.human_review_date == self.rollback_version.human_review_date
+        assert new.release_notes == 'Some new notes for 123'
         self.assertCloseToNow(new.created)
 
     def check_new_xpi(self, new):
@@ -714,6 +716,7 @@ class TestDuplicateAddonVersionForRollback(TestCase):
             version_pk=self.rollback_version.pk,
             new_version_number=new_version_number,
             user_pk=self.user.pk,
+            notes={'en-us': f'Some new notes for {new_version_number}'},
         )
 
         assert self.rollback_version.addon.versions.count() == 3
@@ -752,6 +755,7 @@ class TestDuplicateAddonVersionForRollback(TestCase):
             version_pk=self.rollback_version.pk,
             new_version_number=new_version_number,
             user_pk=self.user.pk,
+            notes={'en-us': f'Some new notes for {new_version_number}'},
         )
 
         assert self.rollback_version.addon.versions.count() == 2
