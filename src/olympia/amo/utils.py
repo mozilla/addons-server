@@ -506,6 +506,8 @@ def generate_lowercase_homoglyphs_variants_for_string(value):
     additional_replacements = {
         'e': ('Э', '℈', 'Є', '€', 'Ꞓ'),
         'k': ('ĸ', 'κ', 'к', 'қ', 'ҝ', 'ҟ', 'ҡ', 'ᴋ'),
+        'm': ('ʍ', 'м', 'ᴍ'),
+        'o': ('Ѻ', 'ѻ'),
     }
     additional_replacement_table = dict(
         itertools.chain(
