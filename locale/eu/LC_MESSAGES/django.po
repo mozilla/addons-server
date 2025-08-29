@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  messages.pootle\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-28 15:39+0000\n"
+"POT-Creation-Date: 2025-08-29 06:31+0000\n"
 "PO-Revision-Date: 2013-11-07 07:24+0000\n"
 "Last-Translator: Julen <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -1156,7 +1156,6 @@ msgstr "Argazkiak, musika eta bideoak"
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
 msgstr ""
 
-#. editorial content for the secondary hero shelves.
 msgid "Privacy & Security"
 msgstr "Pribatutasuna eta segurtasuna"
 
@@ -4085,10 +4084,6 @@ msgid "Find an interesting image on the web? Want to learn more about it?"
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
-msgstr ""
-
-#. editorial content for the discovery pane.
 msgid "Harness the ability to download video and/or audio in multiple formats."
 msgstr ""
 
@@ -4253,10 +4248,6 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Save an entire web page—including images and styling—as a single HTML file."
-msgstr ""
-
-#. editorial content for the discovery pane.
-msgid "Automatically replace derogatory words across the web."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4565,11 +4556,15 @@ msgid "See all extensions"
 msgstr "Arakatu gehigarri guztiak"
 
 #. editorial content for the secondary hero shelves.
+msgid "Anti-tracking extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
 msgid "Essential add-ons"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Declutter your desktop"
+msgid "Writing tools"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.

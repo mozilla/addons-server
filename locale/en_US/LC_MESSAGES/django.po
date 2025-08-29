@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-28 15:39+0000\n"
+"POT-Creation-Date: 2025-08-29 06:31+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1220,7 +1220,6 @@ msgstr "Photos, Music & Videos"
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
 msgstr "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
 
-#. editorial content for the secondary hero shelves.
 #, fuzzy
 msgid "Privacy & Security"
 msgstr "Privacy Policy"
@@ -4362,10 +4361,6 @@ msgid "Find an interesting image on the web? Want to learn more about it?"
 msgstr "Find an interesting image on the web? Use TinEye to explore its origins."
 
 #. editorial content for the discovery pane.
-msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
-msgstr "Just drag text, images, or links to perform actions like copy, open, search, and more."
-
-#. editorial content for the discovery pane.
 msgid "Harness the ability to download video and/or audio in multiple formats."
 msgstr "Harness the ability to download video and/or audio in multiple formats."
 
@@ -4546,11 +4541,6 @@ msgstr "Create and customize tab groups."
 #, fuzzy
 msgid "Save an entire web page—including images and styling—as a single HTML file."
 msgstr "Save complete pages—or just portions—as a single HTML file."
-
-#. editorial content for the discovery pane.
-#, fuzzy
-msgid "Automatically replace derogatory words across the web."
-msgstr "Automatically erase cookies after you close a tab."
 
 #. editorial content for the discovery pane.
 msgid "Block all ads—video, pop-ups, banners & more."
@@ -4874,12 +4864,16 @@ msgid "See all extensions"
 msgstr "Browse all add-ons"
 
 #. editorial content for the secondary hero shelves.
+msgid "Anti-tracking extensions"
+msgstr "Anti-tracking extensions"
+
+#. editorial content for the secondary hero shelves.
 msgid "Essential add-ons"
 msgstr "Essential add-ons"
 
 #. editorial content for the secondary hero shelves.
-msgid "Declutter your desktop"
-msgstr "Declutter your desktop"
+msgid "Writing tools"
+msgstr "Writing tools"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
