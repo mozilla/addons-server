@@ -42,7 +42,7 @@ from .models import (
     ScannerResult,
     ScannerRule,
 )
-from .tasks import run_yara_query_rule
+from .tasks import run_scanner_query_rule
 
 
 @admin.display(description='Matched Rules')
@@ -842,6 +842,8 @@ class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, AMOModelAdmin):
         '__str__',
         'scanner',
         'run_on_disabled_addons',
+        'run_on_specific_channel',
+        'run_on_current_version_only',
         'created',
         'state_with_actions',
         'completion_rate',
@@ -851,6 +853,8 @@ class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, AMOModelAdmin):
     fields = (
         'scanner',
         'run_on_disabled_addons',
+        'run_on_specific_channel',
+        'run_on_current_version_only',
         'state_with_actions',
         'name',
         'pretty_name',
@@ -901,7 +905,7 @@ class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, AMOModelAdmin):
             # right away before redirecting. Once it starts being processed the
             # task will switch it to RUNNING.
             rule.change_state_to(SCHEDULED)
-            run_yara_query_rule.delay(rule.pk)
+            run_scanner_query_rule.delay(rule.pk)
 
             messages.add_message(
                 request,

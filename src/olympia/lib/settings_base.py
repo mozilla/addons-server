@@ -855,11 +855,13 @@ CELERY_TASK_ROUTES = {
     # Reviewers.
     'olympia.reviewers.tasks.recalculate_post_review_weight': {'queue': 'reviewers'},
     # Admin.
-    'olympia.scanners.tasks.mark_yara_query_rule_as_completed_or_aborted': {
+    'olympia.scanners.tasks.mark_scanner_query_rule_as_completed_or_aborted': {
         'queue': 'zadmin'
     },
-    'olympia.scanners.tasks.run_yara_query_rule': {'queue': 'zadmin'},
-    'olympia.scanners.tasks.run_yara_query_rule_on_versions_chunk': {'queue': 'zadmin'},
+    'olympia.scanners.tasks.run_scanner_query_rule': {'queue': 'zadmin'},
+    'olympia.scanners.tasks.run_scanner_query_rule_on_versions_chunk': {
+        'queue': 'zadmin'
+    },
     'olympia.zadmin.tasks.celery_error': {'queue': 'zadmin'},
     'olympia.blocklist.tasks.upload_mlbf_to_remote_settings_task': {'queue': 'zadmin'},
 }
