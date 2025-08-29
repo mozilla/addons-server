@@ -4023,7 +4023,7 @@ msgstr "Επιστροφή σε προηγούμενη έκδοση"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:7
 msgid "Users of this extension will roll back to the previous version you choose."
-msgstr ""
+msgstr "Οι χρήστες αυτής της επέκτασης θα επιστρέψουν στην προηγούμενη έκδοση της επιλογής σας."
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:13
 #, python-format
