@@ -3134,7 +3134,7 @@ msgstr "Izbris dodatka bo trajno izbrisal vse različice in datoteke, ki ste jih
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:6
 msgid "All versions will be Restricted, which will disable and prevent any further installation in Firefox. Existing users can choose to re-enable the add-on."
-msgstr "Vse različice bodo omejene, kar bo onemogočilo in preprečilo kakršnokoli nadaljnjo namestitev Firefoxa. Obstoječi uporabniki se lahko odločijo, da bodo ponovno omogočili dodatek."
+msgstr "Vse različice bodo omejene, kar bo onemogočilo in preprečilo nadaljnje nameščanje v Firefox. Obstoječi uporabniki se lahko odločijo, da bodo dodatek ponovno omogočili."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:11
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
@@ -3970,12 +3970,12 @@ msgstr "Vrni na prejšnjo različico"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:7
 msgid "Users of this extension will roll back to the previous version you choose."
-msgstr "Uporabniki te razširitve bodo obnovili prejšnjo različico, ki jo boste izbrali."
+msgstr "Uporabniki te razširitve se bodo povrnili na prejšnjo različico, ki jo boste izbrali."
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:13
 #, python-format
 msgid "Current Version [%(current_version_number)s] will roll back to Version [%(selected_version_number)s]"
-msgstr "Trenutna različica [%(current_version_number)s] bo obnovljena na različico [%(selected_version_number)s]"
+msgstr "Trenutna različica [%(current_version_number)s] se bo povrnila na različico [%(selected_version_number)s]"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:19
 msgid "Distribution channel"
@@ -3992,7 +3992,7 @@ msgstr "Številka nove različice"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:58
 msgid "Roll back"
-msgstr "Vrni nazaj"
+msgstr "Povrni"
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:3
 msgid "End-User License Agreement"
@@ -4411,8 +4411,8 @@ msgid ""
 "Once a version has been deleted, you may not upload a new version with the same version number. The version will also be Restricted, which will disable and prevent any further installation in "
 "Firefox. Existing users can choose to re-enable the add-on."
 msgstr ""
-"Ko je različica enkrat izbrisana, ne morete naložiti nove različice z isto številko različice. Različica bo tudi Restricted, kar bo onemogočilo in preprečilo nadaljnjo namestitev Firefoxa. Obstoječi"
-" uporabniki se lahko odločijo, da bodo ponovno omogočili dodatek."
+"Potem ko je različica izbrisana, ne morete naložiti nove različice z isto številko. Različica bo tudi omejena, kar jo bo onemogočilo in preprečilo nadaljnje nameščanje v Firefox. Obstoječi "
+"uporabniki se lahko odločijo dodatek ponovno omogočiti."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:296
 msgid "Are you sure you wish to delete this version?"
@@ -5573,7 +5573,7 @@ msgstr "Zaščitite svojo zasebnost pred edinstveno obliko \"sledenja prstnemu o
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:658
 msgid "Automatically deny cookie pop-up tracking requests."
-msgstr "Samodejno zavračajte zahteve po sledenju pojavnih piškotkov."
+msgstr "Samodejno zavračajte zahteve pojavnih oken po sledenju s piškotki."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:667
