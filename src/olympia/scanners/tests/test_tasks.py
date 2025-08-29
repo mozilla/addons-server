@@ -430,7 +430,7 @@ class TestRunNarc(UploadMixin, TestCase):
 
     @mock.patch('olympia.scanners.tasks.statsd.incr')
     def test_run_homoglyph_match(self, incr_mock):
-        self.addon.name = 'My\u2800 Fäncy W\u0435bExtѐnsion addon'
+        self.addon.name = 'My\u2800 Fäncy W\u0435bEx\u0442ѐnsion addon'
         self.addon.save()
 
         rule = ScannerRule.objects.create(
@@ -454,7 +454,7 @@ class TestRunNarc(UploadMixin, TestCase):
             {
                 'meta': {
                     'locale': 'en-us',
-                    'original_string': 'My⠀ Fäncy WеbExtѐnsion addon',
+                    'original_string': 'My⠀ Fäncy WеbExтѐnsion addon',
                     'pattern': 'MyFancyWebExtensionAddon',
                     'source': 'db_addon',
                     'span': [

@@ -44,6 +44,8 @@ from ..utils import (
         ('F\u2800 i r \u0435 f o x', False, False),
         ('Fïrefox is great', False, False),
         ('Foobarfor Firefox!', False, False),
+        ('Mozilla', False, False),
+        ('Moziꙇꙇa', False, False),
         ('Better Privacy for Firefox!', True, False),
         ('Firefox awesome for Mozilla', False, False),
         ('Firefox awesome for Mozilla', True, True),
