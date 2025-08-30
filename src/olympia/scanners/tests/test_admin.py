@@ -1276,8 +1276,8 @@ class TestScannerQueryRuleAdmin(TestCase):
         assert field.text() == 'State:\nNew'
         assert not field.find('button')
 
-    @mock.patch('olympia.scanners.admin.run_yara_query_rule.delay')
-    def test_run_action(self, run_yara_query_rule_mock):
+    @mock.patch('olympia.scanners.admin.run_scanner_query_rule.delay')
+    def test_run_action(self, run_scanner_query_rule_mock):
         rule = ScannerQueryRule.objects.create(name='bar', scanner=YARA, state=NEW)
         response = self.client.post(
             reverse(
@@ -1288,8 +1288,8 @@ class TestScannerQueryRuleAdmin(TestCase):
         )
         assert response.status_code == 200
         assert response.redirect_chain == [(self.list_url, 302)]
-        assert run_yara_query_rule_mock.call_count == 1
-        assert run_yara_query_rule_mock.call_args[0] == (rule.pk,)
+        assert run_scanner_query_rule_mock.call_count == 1
+        assert run_scanner_query_rule_mock.call_args[0] == (rule.pk,)
         messages = list(response.context['messages'])
         assert len(messages) == 1
         assert f'Rule {rule.pk} has been successfully' in str(messages[0])
@@ -1328,8 +1328,8 @@ class TestScannerQueryRuleAdmin(TestCase):
         assert ScannerQueryResult.objects.count() == 1
         assert ScannerQueryResult.objects.get().version == version
 
-    @mock.patch('olympia.scanners.admin.run_yara_query_rule.delay')
-    def test_run_action_wrong_state(self, run_yara_query_rule_mock):
+    @mock.patch('olympia.scanners.admin.run_scanner_query_rule.delay')
+    def test_run_action_wrong_state(self, run_scanner_query_rule_mock):
         rule = ScannerQueryRule.objects.create(name='bar', scanner=YARA, state=ABORTING)
         response = self.client.post(
             reverse(
@@ -1340,7 +1340,7 @@ class TestScannerQueryRuleAdmin(TestCase):
         )
         assert response.status_code == 200
         assert response.redirect_chain == [(self.list_url, 302)]
-        assert run_yara_query_rule_mock.call_count == 0
+        assert run_scanner_query_rule_mock.call_count == 0
         messages = list(response.context['messages'])
         assert len(messages) == 1
         assert f'Rule {rule.pk} could not be queued' in str(messages[0])
