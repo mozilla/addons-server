@@ -4025,12 +4025,12 @@ msgstr "Revenir à une version précédente"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:7
 msgid "Users of this extension will roll back to the previous version you choose."
-msgstr ""
+msgstr "Les utilisateurs de cette extension vont revenir à la version précédente que vous avez choisie."
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:13
 #, python-format
 msgid "Current Version [%(current_version_number)s] will roll back to Version [%(selected_version_number)s]"
-msgstr ""
+msgstr "La version actuelle [%(current_version_number)s] sera restaurée à la version [%(selected_version_number)s]"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:19
 msgid "Distribution channel"
@@ -5899,7 +5899,7 @@ msgstr "Voir toutes les extensions"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1018
 msgid "Anti-tracking extensions"
-msgstr ""
+msgstr "Extensions contre le pistage"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1020
@@ -5909,7 +5909,7 @@ msgstr "Modules indispensables"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1022
 msgid "Writing tools"
-msgstr ""
+msgstr "Outils de rédaction"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1024 src/olympia/discovery/strings.jinja2:1026 src/olympia/discovery/strings.jinja2:1028
