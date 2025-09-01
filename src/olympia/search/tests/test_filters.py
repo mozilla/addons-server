@@ -126,7 +126,7 @@ class TestQueryFilter(FilterTestsBase):
                     {
                         'match': {
                             'name.trigrams': {
-                                'minimum_should_match': '67%',
+                                'minimum_should_match': '75%',
                                 'query': query,
                             }
                         }
@@ -294,7 +294,7 @@ class TestQueryFilter(FilterTestsBase):
                         'match': {
                             'name.trigrams': {
                                 'query': 'blah',
-                                'minimum_should_match': '67%',
+                                'minimum_should_match': '75%',
                             }
                         }
                     },
@@ -325,7 +325,7 @@ class TestQueryFilter(FilterTestsBase):
                         'match': {
                             'name.trigrams': {
                                 'query': 'search terms',
-                                'minimum_should_match': '67%',
+                                'minimum_should_match': '75%',
                             }
                         }
                     },
@@ -361,7 +361,7 @@ class TestQueryFilter(FilterTestsBase):
                         'match': {
                             'name.trigrams': {
                                 'query': 'this search query is too long.',
-                                'minimum_should_match': '67%',
+                                'minimum_should_match': '75%',
                             }
                         }
                     },
