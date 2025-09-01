@@ -9,7 +9,7 @@ import pytest
 import responses
 
 from olympia import amo
-from olympia.abuse.models import ContentDecision
+from olympia.abuse.models import CinderJob, ContentDecision
 from olympia.amo.tests import (
     TestCase,
     addon_factory,
@@ -18,6 +18,7 @@ from olympia.amo.tests import (
     version_review_flags_factory,
 )
 from olympia.blocklist.models import Block, BlockType, BlockVersion
+from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.constants.scanners import (
     CUSTOMS,
@@ -1056,6 +1057,36 @@ class TestActions(TestCase):
         # Should have been flagged for review and auto-approval disabled as a
         # fallback.
         assert version.needshumanreview_set.filter(is_active=True).exists()
+        addon.reviewerflags.reload()
+        assert addon.auto_approval_delayed_until == datetime.max
+        assert addon.auto_approval_delayed_until_unlisted == datetime.max
+
+    def test_disable_and_block_but_previous_successful_appeal(self):
+        UsageTier.objects.create(
+            upper_adu_threshold=10000, disable_and_block_action_available=True
+        )
+        addon = addon_factory(average_daily_users=4242)
+        version2 = version_factory(addon=addon)
+        appeal_decision = ContentDecision.objects.create(
+            addon=addon,
+            action=DECISION_ACTIONS.AMO_APPROVE,
+            cinder_job=CinderJob.objects.create(target_addon=addon),
+        )
+        ContentDecision.objects.create(
+            addon=addon,
+            action=DECISION_ACTIONS.AMO_BLOCK_ADDON,
+            appeal_job=appeal_decision.cinder_job,
+        )
+
+        _disable_and_block(version=version2, rule=None)
+
+        # Should not have been disabled & blocked because of the previous appeal.
+        assert addon.status == amo.STATUS_APPROVED
+        assert not Block.objects.exists()
+        assert not BlockVersion.objects.exists()
+        # Should have been flagged for review and auto-approval disabled as a
+        # fallback.
+        assert version2.needshumanreview_set.filter(is_active=True).exists()
         addon.reviewerflags.reload()
         assert addon.auto_approval_delayed_until == datetime.max
         assert addon.auto_approval_delayed_until_unlisted == datetime.max
