@@ -76,11 +76,14 @@ def download_file(request, file_id, download_type=None, **kwargs):
     """
 
     def is_appropriate_reviewer(addon, channel):
-        return (
-            acl.is_reviewer(request.user, addon)
-            if channel == amo.CHANNEL_LISTED
-            else acl.is_unlisted_addons_viewer_or_reviewer(request.user)
-        )
+        if channel == amo.CHANNEL_LISTED:
+            return (
+                acl.is_static_theme_reviewer(request.user)
+                if addon.type == amo.ADDON_STATICTHEME
+                else acl.is_listed_addons_viewer_or_reviewer(request.user)
+            )
+        else:
+            return acl.is_unlisted_addons_viewer_or_reviewer(request.user)
 
     file_ = get_object_or_404(File.objects, pk=file_id)
     # Include deleted add-ons in the queryset, we'll check for that below.
