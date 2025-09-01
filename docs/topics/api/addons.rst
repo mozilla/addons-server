@@ -25,6 +25,7 @@ This endpoint allows you to search through public add-ons.
     :query string author: Filter by exact (listed) author username or user id. Multiple author usernames or ids can be specified, separated by comma(s), in which case add-ons with at least one matching author are returned.
     :query string category: Filter by :ref:`category slug <category-list>`. ``app`` and ``type`` parameters need to be set, otherwise this parameter is ignored.
     :query string color: (Experimental) Filter by color in RGB hex format, trying to find themes that approximately match the specified color. Only works for static themes.
+    :query string created: Filter to add-on that have a creation date matching a :ref:`threshold value <addon-threshold-param>`. ``YYYY-MM-DD``, ``YYYY-MM-DDTHH:MM``, ``YYYY-MM-DDTHH:MM:SS`` or milliseconds timestamps are supported.
     :query string exclude_addons: Exclude add-ons by ``slug`` or ``id``. Multiple add-ons can be specified, separated by comma(s).
     :query string guid: Filter by exact add-on guid. Multiple guids can be specified, separated by comma(s), in which case any add-ons matching any of the guids will be returned.  As guids are unique there should be at most one add-on result per guid specified. For usage with Firefox, instead of separating multiple guids by comma(s), a single guid can be passed in base64url format, prefixed by the ``rta:`` string.
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
@@ -35,6 +36,7 @@ This endpoint allows you to search through public add-ons.
     :query string sort: The sort parameter. The available parameters are documented in the :ref:`table below <addon-search-sort>`.
     :query string tag: Filter by exact tag name. Multiple tag names can be specified, separated by comma(s), in which case add-ons containing *all* specified tags are returned. See :ref:`available tags <tag-list>`
     :query string type: Filter by :ref:`add-on type <addon-detail-type>`.  Multiple types can be specified, separated by comma(s), in which case add-ons that are any of the matching types are returned.
+    :query string updated: Filter to add-on that have a last updated date matching a :ref:`threshold value <addon-threshold-param>`. ``YYYY-MM-DD``, ``YYYY-MM-DDTHH:MM``, ``YYYY-MM-DDTHH:MM:SS`` or milliseconds timestamps are supported.
     :query string users: Filter to add-ons that have average daily users of a :ref:`threshold value <addon-threshold-param>`.
     :>json int count: The number of results for this query.
     :>json string next: The URL of the next page of results.
@@ -79,7 +81,7 @@ This endpoint allows you to search through public add-ons.
 
 .. _addon-threshold-param:
 
-    Threshold style parameters allow queries against numeric values using comparison.
+    Threshold style parameters allow queries against arbitrary values using comparison.
 
     The following is supported (examples for query parameter `foo`):
         * greater than ``foo__gt`` (example query: ?foo__gt=10.1)
