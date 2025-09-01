@@ -1,5 +1,6 @@
 import copy
 from contextlib import ExitStack
+from datetime import datetime, timedelta
 from unittest import mock
 
 from django.conf import settings
@@ -16,6 +17,7 @@ from olympia.accounts.tests.test_serializers import BaseTestUserMixin
 from olympia.addons.models import (
     Addon,
     AddonCategory,
+    AddonListingInfo,
     AddonUser,
     Preview,
     ReplacementAddon,
@@ -1106,6 +1108,20 @@ class TestAddonSerializerOutput(AddonSerializerOutputTestMixin, TestCase):
             self.addon.latest_unlisted_version, result['latest_unlisted_version']
         )
 
+    def test_is_noindexed(self):
+        self.addon = addon_factory()
+        result = self.serialize()
+
+        assert 'is_noindexed' in result
+        assert result['is_noindexed'] is False
+
+        AddonListingInfo.objects.create(
+            addon=self.addon,
+            noindex_until=datetime.now() + timedelta(days=1),
+        )
+        result = self.serialize()
+        assert result['is_noindexed'] is True
+
 
 class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
     serializer_class = ESAddonSerializer
@@ -1233,6 +1249,21 @@ class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
         self.addon = addon_factory(type=amo.ADDON_STATICTHEME, category=category)
         result = self.serialize()
         assert result['categories'] == [category_name]
+
+    def test_is_noindexed(self):
+        self.addon = addon_factory()
+        result = self.serialize()
+
+        assert 'is_noindexed' in result
+        assert result['is_noindexed'] is None
+
+        AddonListingInfo.objects.create(
+            addon=self.addon,
+            noindex_until=datetime.now() + timedelta(days=1),
+        )
+        result = self.serialize()
+        # ES result should always be None.
+        assert result['is_noindexed'] is None
 
 
 class TestVersionSerializerOutput(TestCase):

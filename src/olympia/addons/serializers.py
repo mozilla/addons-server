@@ -78,6 +78,7 @@ from .models import (
     Addon,
     AddonApprovalsCounter,
     AddonBrowserMapping,
+    AddonListingInfo,
     AddonUser,
     AddonUserPendingConfirmation,
     DeniedSlug,
@@ -1030,8 +1031,9 @@ class AddonSerializer(AMOModelSerializer):
         serializers.BooleanField(source='disabled_by_user', required=False),
         serializers.BooleanField(),
     )
-    is_source_public = serializers.SerializerMethodField()
     is_featured = serializers.SerializerMethodField()
+    is_noindexed = serializers.SerializerMethodField()
+    is_source_public = serializers.SerializerMethodField()
     name = TranslationSerializerField(
         required=False,
         validators=[
@@ -1104,6 +1106,7 @@ class AddonSerializer(AMOModelSerializer):
             'is_disabled',
             'is_experimental',
             'is_featured',
+            'is_noindexed',
             'is_source_public',
             'last_updated',
             'name',
@@ -1225,6 +1228,9 @@ class AddonSerializer(AMOModelSerializer):
 
     def get_is_source_public(self, obj):
         return False
+
+    def get_is_noindexed(self, obj):
+        return obj.is_listing_noindexed
 
     def run_validation(self, data=serializers.empty):
         # We want name and summary to be required fields so they're not cleared, but
@@ -1390,6 +1396,7 @@ class AddonSerializer(AMOModelSerializer):
             statsd.incr('addons.submission.metadata_content_review_triggered')
             changes = get_translation_differences(old_metadata, new_metadata)
             AddonApprovalsCounter.reset_content_for_addon(addon=instance)
+            AddonListingInfo.maybe_mark_as_noindexed(addon=instance)
 
             if (
                 waffle.switch_is_active('enable-narc')
@@ -1685,6 +1692,11 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
             )
 
         return bool(obj.promoted and is_recommended(obj))
+
+    # TODO: in the future, we might need to return the actual value but, for
+    # now, unconditionally return None to avoid extra queries.
+    def get_is_noindexed(self, obj):
+        return None
 
 
 class ESAddonAutoCompleteSerializer(ESAddonSerializer):

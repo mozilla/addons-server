@@ -3,7 +3,7 @@ import itertools
 import os
 import time
 import uuid
-from datetime import datetime
+from datetime import datetime, timedelta
 from urllib.parse import urlsplit
 
 from django.conf import settings
@@ -2067,6 +2067,14 @@ class Addon(OnChangeMixin, ModelBase):
                 return tier
         return None
 
+    @property
+    def is_listing_noindexed(self):
+        try:
+            noindex_until = self.addonlistinginfo.noindex_until
+        except Addon.addonlistinginfo.RelatedObjectDoesNotExist:
+            noindex_until = None
+        return noindex_until > datetime.now() if noindex_until else False
+
 
 dbsignals.pre_save.connect(save_signal, sender=Addon, dispatch_uid='addon_translations')
 
@@ -2674,3 +2682,28 @@ class DeletedPreviewFile(ModelBase):
     )
     preview = models.ForeignKey(Preview, on_delete=models.CASCADE)
     backup_name = models.CharField(max_length=75, default=None, null=True, blank=True)
+
+
+class AddonListingInfo(ModelBase):
+    """Model holding information related to the listing page of an Addon."""
+
+    addon = models.OneToOneField(
+        Addon, null=False, on_delete=models.CASCADE, unique=True
+    )
+    noindex_until = models.DateTimeField(blank=True, default=None, null=True)
+
+    @classmethod
+    def maybe_mark_as_noindexed(cls, addon):
+        # We only consider "recent" add-ons.
+        delta = datetime.now() - addon.created
+        if delta.days > get_config(
+            amo.config_keys.NOINDEX_ON_CONTENT_CHANGE_CUT_OFF_DAYS
+        ):
+            return
+
+        noindex_until = datetime.now() + timedelta(
+            days=get_config(amo.config_keys.NOINDEX_ON_CONTENT_CHANGE_DELAY)
+        )
+        cls.objects.update_or_create(
+            addon=addon, defaults={'noindex_until': noindex_until}
+        )

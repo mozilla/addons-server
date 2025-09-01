@@ -2643,6 +2643,21 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         self._test_metadata_content_review()
         assert run_narc_on_version_mock.delay.call_count == 0
 
+    def test_noindex_on_content_change(self):
+        # Make sure the add-on is recent enough.
+        self.addon.update(created=self.days_ago(1))
+        assert not self.addon.is_listing_noindexed
+        self._test_metadata_content_review()
+        self.addon.refresh_from_db()
+        assert self.addon.is_listing_noindexed
+
+    def test_noindex_on_content_change_skipped_for_old_addons(self):
+        self.addon.update(created=self.days_ago(91))
+        assert not self.addon.is_listing_noindexed
+        self._test_metadata_content_review()
+        self.addon.refresh_from_db()
+        assert not self.addon.is_listing_noindexed
+
     def test_metadata_change_same_content(self):
         AddonApprovalsCounter.approve_content_for_addon(addon=self.addon)
         old_content_review = AddonApprovalsCounter.objects.get(
