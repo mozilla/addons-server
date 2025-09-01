@@ -512,7 +512,7 @@ class TestRankingScenarios(ESTestCase):
             ),
         )
         amo.tests.addon_factory(
-            name='GrApple Yummy',
+            name='Gallery Yummy',
             type=amo.ADDON_EXTENSION,
             average_daily_users=1,
             weekly_downloads=1,
@@ -664,7 +664,7 @@ class TestRankingScenarios(ESTestCase):
         cls.refresh()
 
     def test_scenario_tabby_cat(self):
-        self._check_scenario('Tabby cat', (['Tabby Cat', 43336],))
+        self._check_scenario('Tabby cat', (['Tabby Cat', 43308],))
 
     def test_scenario_tabbycat(self):
         self._check_scenario(
@@ -672,13 +672,13 @@ class TestRankingScenarios(ESTestCase):
             (
                 ['Tabby Cat', 4622],
                 ['OneTab', 209],
-                ['Tab Mix Plus', 183],
+                ['Tab Mix Plus', 182],
                 ['FoxyTab', 179],
                 ['Authenticator', 161],
-                ['Tab Center Redux', 138],
+                ['Tab Center Redux', 137],
                 ['Open Bookmarks in New Tab', 127],
-                ['Open image in a new tab', 98],
-                ['Open Image in New Tab', 77],
+                ['Open image in a new tab', 97],
+                ['Open Image in New Tab', 76],
             ),
         )
 
@@ -686,15 +686,15 @@ class TestRankingScenarios(ESTestCase):
         self._check_scenario(
             'tabbbycat',
             (
-                ['Tabby Cat', 4622],
+                ['Tabby Cat', 858],
                 ['OneTab', 209],
-                ['Tab Mix Plus', 183],
+                ['Tab Mix Plus', 182],
                 ['FoxyTab', 179],
                 ['Authenticator', 161],
-                ['Tab Center Redux', 138],
+                ['Tab Center Redux', 137],
                 ['Open Bookmarks in New Tab', 127],
-                ['Open image in a new tab', 98],
-                ['Open Image in New Tab', 77],
+                ['Open image in a new tab', 97],
+                ['Open Image in New Tab', 76],
             ),
         )
 
@@ -702,15 +702,15 @@ class TestRankingScenarios(ESTestCase):
         self._check_scenario(
             'tabbicat',
             (
-                ['Tabby Cat', 859],
+                ['Tabby Cat', 858],
                 ['OneTab', 209],
-                ['Tab Mix Plus', 183],
+                ['Tab Mix Plus', 182],
                 ['FoxyTab', 179],
                 ['Authenticator', 161],
-                ['Tab Center Redux', 138],
+                ['Tab Center Redux', 137],
                 ['Open Bookmarks in New Tab', 127],
-                ['Open image in a new tab', 98],
-                ['Open Image in New Tab', 77],
+                ['Open image in a new tab', 97],
+                ['Open Image in New Tab', 76],
             ),
         )
 
@@ -718,19 +718,19 @@ class TestRankingScenarios(ESTestCase):
         # Tab Mix Plus and Redux DevTools used to be found in this test but we
         # now require all terms to be present through minimum_should_match on
         # the fuzzy name query (and they have nothing else to match).
-        self._check_scenario('tab center redux', (['Tab Center Redux', 10840],))
+        self._check_scenario('tab center redux', (['Tab Center Redux', 10832],))
 
     def test_scenario_websocket(self):
         # Should *not* find add-ons that simply mention 'Source', 'Persona',
         # or other words with just 'so' in their name.
-        self._check_scenario('websocket', (['Simple WebSocket Client', 1497],))
+        self._check_scenario('websocket', (['Simple WebSocket Client', 1495],))
 
     def test_scenario_open_image_new_tab(self):
         self._check_scenario(
             'Open Image in New Tab',
             (
-                ['Open Image in New Tab', 5577],
-                ['Open image in a new tab', 1740],
+                ['Open Image in New Tab', 5573],
+                ['Open image in a new tab', 1736],
             ),
         )
 
@@ -739,7 +739,7 @@ class TestRankingScenarios(ESTestCase):
         self._check_scenario(
             'CoinHive',
             (
-                ['Coinhive Blocker', 1523],
+                ['Coinhive Blocker', 1522],
                 ['NoMiners', 68],  # via description
                 # ['CoinBlock', 0],  # via prefix search
             ),
@@ -749,10 +749,10 @@ class TestRankingScenarios(ESTestCase):
         self._check_scenario(
             'Privacy',
             (
-                ['Privacy Badger', 2108],
-                ['Google Privacy', 1528],  # More users, summary
+                ['Privacy Badger', 2107],
+                ['Google Privacy', 1527],  # More users, summary
                 ['Privacy Settings', 1507],
-                ['Privacy Pass', 1439],
+                ['Privacy Pass', 1438],
                 ['Ghostery', 182],
                 ['Blur', 173],
             ),
@@ -767,7 +767,7 @@ class TestRankingScenarios(ESTestCase):
                 ['Firebug', 1324],
                 ['Firefinder for Firebug', 745],
                 ['Firebug Autocompleter', 576],
-                ['Fire Drag', 413],
+                ['Fire Drag', 192],
             ),
         )
 
@@ -790,20 +790,20 @@ class TestRankingScenarios(ESTestCase):
         self._check_scenario('Menu Wizzard', (['Menu Wizard', 1531],))  # (fuzzy, typo)
 
     def test_scenario_frame_demolition(self):
-        self._check_scenario('Frame Demolition', (['Frame Demolition', 4623],))
+        self._check_scenario('Frame Demolition', (['Frame Demolition', 4621],))
 
     def test_scenario_demolition(self):
         # Find "Frame Demolition" via a typo
-        self._check_scenario('Frame Demolition', (['Frame Demolition', 4623],))
+        self._check_scenario('Frame Demolition', (['Frame Demolition', 4621],))
 
     def test_scenario_restyle(self):
-        self._check_scenario('reStyle', (['reStyle', 4052],))
+        self._check_scenario('reStyle', (['reStyle', 4051],))
 
     def test_scenario_megaupload_downloadhelper(self):
         # Doesn't find "RapidShare DownloadHelper" anymore
         # since we now query by "MegaUpload AND DownloadHelper"
         self._check_scenario(
-            'MegaUpload DownloadHelper', (['MegaUpload DownloadHelper', 4772],)
+            'MegaUpload DownloadHelper', (['MegaUpload DownloadHelper', 4766],)
         )
 
     def test_scenario_downloadhelper(self):
@@ -812,26 +812,26 @@ class TestRankingScenarios(ESTestCase):
         self._check_scenario(
             'DownloadHelper',
             (
-                ['RapidShare DownloadHelper', 1691],
-                ['MegaUpload DownloadHelper', 1146],
-                ['Download Flash and Video', 285],
-                ['1-Click YouTube Video Download', 228],
-                ['DownThemAll!', 196],
+                ['RapidShare DownloadHelper', 1690],
+                ['MegaUpload DownloadHelper', 1145],
+                ['Download Flash and Video', 284],
+                ['1-Click YouTube Video Download', 227],
+                ['DownThemAll!', 195],
                 ['All Downloader Professional', 23],
             ),
         )
 
     def test_scenario_megaupload(self):
-        self._check_scenario('MegaUpload', (['MegaUpload DownloadHelper', 1219],))
+        self._check_scenario('MegaUpload', (['MegaUpload DownloadHelper', 1218],))
 
     def test_scenario_no_flash(self):
         self._check_scenario(
             'No Flash',
             (
-                ['No Flash', 7270],
-                ['Download Flash and Video', 1571],
-                ['YouTube Flash Player', 1376],
-                ['YouTube Flash Video Player', 1265],
+                ['No Flash', 7269],
+                ['Download Flash and Video', 1570],
+                ['YouTube Flash Player', 1374],
+                ['YouTube Flash Video Player', 1263],
             ),
         )
 
@@ -839,10 +839,10 @@ class TestRankingScenarios(ESTestCase):
         self._check_scenario(
             'no flash',
             (
-                ['No Flash', 7270],
-                ['Download Flash and Video', 1571],
-                ['YouTube Flash Player', 1376],
-                ['YouTube Flash Video Player', 1265],
+                ['No Flash', 7269],
+                ['Download Flash and Video', 1570],
+                ['YouTube Flash Player', 1374],
+                ['YouTube Flash Video Player', 1263],
             ),
         )
 
@@ -860,16 +860,16 @@ class TestRankingScenarios(ESTestCase):
     def test_scenario_disable_hello_pocket_reader_plus(self):
         self._check_scenario(
             'Disable Hello, Pocket & Reader+',
-            (['Disable Hello, Pocket & Reader+', 8693],),  # yeay!
+            (['Disable Hello, Pocket & Reader+', 8682],),  # yeay!
         )
 
     def test_scenario_grapple(self):
         """Making sure this scenario works via the API"""
-        self._check_scenario('grapple', (['GrApple Yummy', 222],))
+        self._check_scenario('gallery', (['Gallery Yummy', 226],))
 
     def test_scenario_delicious(self):
         """Making sure this scenario works via the API"""
-        self._check_scenario('delicious', (['Delicious Bookmarks', 248],))
+        self._check_scenario('delicious', (['Delicious Bookmarks', 247],))
 
     def test_scenario_name_fuzzy(self):
         # Fuzzy + minimum_should_match combination means we find these 3 (only
@@ -877,9 +877,9 @@ class TestRankingScenarios(ESTestCase):
         self._check_scenario(
             'opeb boocmarks tab',
             (
-                ['Open Bookmarks in New Tab', 1131],
-                ['Open image in a new tab', 206],
-                ['Open Image in New Tab', 162],
+                ['Open Bookmarks in New Tab', 609],
+                ['Open image in a new tab', 205],
+                ['Open Image in New Tab', 161],
             ),
         )
 
@@ -889,15 +889,15 @@ class TestRankingScenarios(ESTestCase):
         self._check_scenario(
             'merge windows',
             (
-                ['Merge Windows', 1207],
-                ['Merge All Windows', 410],
+                ['Merge Windows', 1206],
+                ['Merge All Windows', 409],
             ),
         )
 
         self._check_scenario(
             'merge all windows',
             (
-                ['Merge All Windows', 1284],
+                ['Merge All Windows', 1281],
                 ['Merge Windows', 188],
             ),
         )
@@ -907,7 +907,7 @@ class TestRankingScenarios(ESTestCase):
         self._check_scenario(
             'test addon test21',
             (
-                ['test addon test21', 1289],
+                ['test addon test21', 1288],
                 ['test addon test31', 184],
                 ['test addon test11', 174],
             ),
@@ -918,7 +918,7 @@ class TestRankingScenarios(ESTestCase):
         self._check_scenario(
             'Amazon 1-Click Lock',
             (
-                ['Amazon 1-Click Lock', 4818],
+                ['Amazon 1-Click Lock', 4812],
                 ['1-Click YouTube Video Download', 127],
             ),
         )
@@ -962,7 +962,7 @@ class TestRankingScenarios(ESTestCase):
         # match, the translation exists, it's even the default locale.
         self._check_scenario(
             'foobar unique francais',
-            (['Foobar unique francais', 1071],),
+            (['Foobar unique francais', 1069],),
             lang='fr',
         )
 
@@ -975,7 +975,7 @@ class TestRankingScenarios(ESTestCase):
         assert 'he' in settings.AMO_LANGUAGES
         self._check_scenario(
             'foobar unique francais',
-            (['Foobar unique francais', 1062],),
+            (['Foobar unique francais', 1061],),
             lang='he',
             expected_lang='fr',
         )
@@ -989,7 +989,7 @@ class TestRankingScenarios(ESTestCase):
         assert 'it' in settings.AMO_LANGUAGES
         self._check_scenario(
             'foobar unique francais',
-            (['Foobar unique francais', 1062],),
+            (['Foobar unique francais', 1061],),
             lang='it',
             expected_lang='fr',
         )
@@ -999,7 +999,7 @@ class TestRankingScenarios(ESTestCase):
         # Note that the name returned follows the language requested.
         self._check_scenario(
             'foobar unique francais',
-            (['Foobar unique english', 1062],),
+            (['Foobar unique english', 1061],),
             lang='en-US',
         )
 
@@ -1007,27 +1007,27 @@ class TestRankingScenarios(ESTestCase):
         self._check_scenario(
             'tab',
             (
-                ['Tabby Cat', 2427],
-                ['Tab Mix Plus', 994],
-                ['OneTab', 734],
-                ['Tab Center Redux', 690],
-                ['Open Bookmarks in New Tab', 636],
-                ['FoxyTab', 550],
+                ['Tabby Cat', 2424],
+                ['Tab Mix Plus', 993],
+                ['OneTab', 733],
+                ['Tab Center Redux', 689],
+                ['Open Bookmarks in New Tab', 635],
+                ['FoxyTab', 549],
                 ['Open image in a new tab', 523],
                 ['Open Image in New Tab', 409],
             ),
         )
 
     def test_scenario_wallet(self):
-        # Shouldn't be found: some add-ons have the word "all" which is
-        # close but not enough.
+        # Shouldn't be found: some add-ons have the word "all" or "gallery"
+        # which is close but not enough.
         self._check_scenario('wallet', ())
 
     def test_downloadthemall(self):
         self._check_scenario(
             'down them all',
             (
-                ['DownThemAll!', 3891],
+                ['DownThemAll!', 3859],
                 ['All Downloader Professional', 40],
             ),
         )
@@ -1036,11 +1036,11 @@ class TestRankingScenarios(ESTestCase):
         self._check_scenario(
             'download',
             (
-                ['Download Flash and Video', 1994],
-                ['1-Click YouTube Video Download', 1456],
-                ['RapidShare DownloadHelper', 850],
-                ['MegaUpload DownloadHelper', 641],
-                ['DownThemAll!', 413],
+                ['Download Flash and Video', 1993],
+                ['1-Click YouTube Video Download', 1455],
+                ['RapidShare DownloadHelper', 849],
+                ['MegaUpload DownloadHelper', 640],
+                ['DownThemAll!', 412],
                 ['All Downloader Professional', 129],
             ),
         )
