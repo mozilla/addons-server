@@ -5,6 +5,7 @@ import re
 import uuid
 
 from django.conf import settings
+from django.db.models import F
 
 import requests
 import waffle
@@ -171,8 +172,28 @@ def run_narc_on_version(version_pk, *, run_action_on_match=True):
     log.info('Starting narc task for Version %s.', version_pk)
     try:
         version = Version.unfiltered.get(pk=version_pk)
+        scanner_result, initial_run = ScannerResult.objects.get_or_create(
+            scanner=NARC, version=version
+        )
         with statsd.timer('devhub.narc'):
-            _run_narc(version=version, run_action_on_match=run_action_on_match)
+            scanner_result, has_new_matches = _run_narc(
+                version=version, scanner_result=scanner_result
+            )
+        scanner_result.save()
+
+        if initial_run:
+            statsd_suffix = ''
+        else:
+            statsd_suffix = '.rerun'
+        if scanner_result.has_matches:
+            statsd.incr(f'devhub.narc{statsd_suffix}.has_matches')
+        for scanner_rule in scanner_result.matched_rules.all():
+            statsd.incr(f'devhub.narc{statsd_suffix}.rule.{scanner_rule.id}.match')
+        if not initial_run and has_new_matches:
+            statsd.incr(f'devhub.narc{statsd_suffix}.results_differ')
+
+        if run_action_on_match and has_new_matches:
+            ScannerResult.run_action(version, check_mad_results=False)
     except Exception as exc:
         statsd.incr('devhub.narc.failure')
         log.exception(
@@ -185,13 +206,11 @@ def run_narc_on_version(version_pk, *, run_action_on_match=True):
     log.info('Ending scanner "narc" task for Version %s.', version_pk)
 
 
-def _run_narc(*, version, run_action_on_match):
-    scanner_result, initial_run = ScannerResult.objects.get_or_create(
-        scanner=NARC, version=version
-    )
-    rules = ScannerRule.objects.filter(
-        scanner=NARC, is_active=True, definition__isnull=False
-    ).exclude(definition='')
+def _run_narc(*, scanner_result, version, rules=None):
+    if not rules:
+        rules = ScannerRule.objects.filter(
+            scanner=NARC, is_active=True, definition__isnull=False
+        ).exclude(definition='')
     results = (
         # Convert existing results to a list of strings to allow results to be
         # hashed to avoid adding duplicates when re-scanning. See result.add()
@@ -271,20 +290,7 @@ def _run_narc(*, version, run_action_on_match):
         # might need to run ScannerResult.run_action() as a result, see below.
         has_new_matches = True
     scanner_result.results = new_results
-    scanner_result.save()
-    if initial_run:
-        statsd_suffix = ''
-    else:
-        statsd_suffix = '.rerun'
-    if scanner_result.has_matches:
-        statsd.incr(f'devhub.narc{statsd_suffix}.has_matches')
-    for scanner_rule in scanner_result.matched_rules.all():
-        statsd.incr(f'devhub.narc{statsd_suffix}.rule.{scanner_rule.id}.match')
-    if not initial_run and has_new_matches:
-        statsd.incr(f'devhub.narc{statsd_suffix}.results_differ')
-    if run_action_on_match and has_new_matches:
-        ScannerResult.run_action(version, check_mad_results=False)
-    return scanner_result
+    return scanner_result, has_new_matches
 
 
 @validation_task
@@ -376,22 +382,22 @@ def _run_yara_for_path(scanner_result, path, definition=None):
 
 @task
 @use_primary_db
-def mark_yara_query_rule_as_completed_or_aborted(query_rule_pk):
+def mark_scanner_query_rule_as_completed_or_aborted(query_rule_pk):
     """
     Mark a ScannerQueryRule as completed/aborted.
     """
     rule = ScannerQueryRule.objects.get(pk=query_rule_pk)
     try:
         if rule.state == RUNNING:
-            log.info('Marking Yara Query Rule %s as completed', rule.pk)
+            log.info('Marking Scanner Query Rule %s as completed', rule.pk)
             rule.change_state_to(COMPLETED)
         elif rule.state == ABORTING:
-            log.info('Marking Yara Query Rule %s as aborted', rule.pk)
+            log.info('Marking Scanner Query Rule %s as aborted', rule.pk)
             rule.change_state_to(ABORTED)
     except ImproperScannerQueryRuleStateError:
         log.error(
             'Not marking rule as completed or aborted for rule %s in '
-            'mark_yara_query_rule_as_completed_or_aborted, its state is '
+            'mark_scanner_query_rule_as_completed_or_aborted, its state is '
             '%s',
             rule.pk,
             rule.get_state_display(),
@@ -399,7 +405,7 @@ def mark_yara_query_rule_as_completed_or_aborted(query_rule_pk):
 
 
 @task
-def run_yara_query_rule(query_rule_pk):
+def run_scanner_query_rule(query_rule_pk):
     """
     Run a specific ScannerQueryRule on multiple Versions.
 
@@ -413,25 +419,29 @@ def run_yara_query_rule(query_rule_pk):
         rule.change_state_to(RUNNING)
     except ImproperScannerQueryRuleStateError:
         log.error(
-            'Not proceeding with run_yara_query_rule on rule %s because '
+            'Not proceeding with run_scanner_query_rule on rule %s because '
             'its state is %s',
             rule.pk,
             rule.get_state_display(),
         )
         return
-    log.info('Fetching versions for run_yara_query_rule on rule %s', rule.pk)
+    log.info('Fetching versions for run_scanner_query_rule on rule %s', rule.pk)
     # Build a huge list of all pks we're going to run the tasks on.
     qs = Version.unfiltered.filter(
         addon__type=amo.ADDON_EXTENSION, file__isnull=False
     ).exclude(file__file='')
     if not rule.run_on_disabled_addons:
         qs = qs.exclude(addon__status=amo.STATUS_DISABLED)
+    if rule.run_on_specific_channel:
+        qs = qs.filter(channel=rule.run_on_specific_channel)
+    if rule.run_on_current_version_only:
+        qs = qs.filter(pk=F('addon___current_version'))
     qs = qs.values_list('id', flat=True).order_by('-pk')
     # Build the workflow using a group of tasks dealing with 250 files at a
     # time, chained to a task that marks the query as completed.
     chunk_size = 250
     chunked_tasks = create_chunked_tasks_signatures(
-        run_yara_query_rule_on_versions_chunk,
+        run_scanner_query_rule_on_versions_chunk,
         list(qs),
         chunk_size,
         task_args=(query_rule_pk,),
@@ -443,11 +453,11 @@ def run_yara_query_rule(query_rule_pk):
     rule.update(
         task_count=len(chunked_tasks), celery_group_result_id=uuid.UUID(group_result.id)
     )
-    workflow = chunked_tasks | mark_yara_query_rule_as_completed_or_aborted.si(
+    workflow = chunked_tasks | mark_scanner_query_rule_as_completed_or_aborted.si(
         query_rule_pk
     )
     log.info(
-        'Running workflow of %s tasks for run_yara_query_rule on rule %s',
+        'Running workflow of %s tasks for run_scanner_query_rule on rule %s',
         len(chunked_tasks),
         rule.pk,
     )
@@ -457,14 +467,14 @@ def run_yara_query_rule(query_rule_pk):
 
 @task(ignore_result=False)  # We want the results to track completion rate.
 @use_primary_db
-def run_yara_query_rule_on_versions_chunk(version_pks, query_rule_pk):
+def run_scanner_query_rule_on_versions_chunk(version_pks, query_rule_pk):
     """
     Task to run a specific ScannerQueryRule on a list of versions.
 
     Needs the rule to be a the RUNNING state, otherwise does nothing.
     """
     log.info(
-        'Running Yara Query Rule %s on versions %s-%s.',
+        'Running Scanner Query Rule %s on versions %s-%s.',
         query_rule_pk,
         version_pks[0],
         version_pks[-1],
@@ -472,7 +482,7 @@ def run_yara_query_rule_on_versions_chunk(version_pks, query_rule_pk):
     rule = ScannerQueryRule.objects.get(pk=query_rule_pk)
     if rule.state != RUNNING:
         log.info(
-            'Not doing anything for Yara Query Rule %s on versions %s-%s '
+            'Not doing anything for Scanner Query Rule %s on versions %s-%s '
             'since rule state is %s.',
             query_rule_pk,
             version_pks[0],
@@ -488,21 +498,27 @@ def run_yara_query_rule_on_versions_chunk(version_pks, query_rule_pk):
                 .no_transforms()
                 .get(pk=version_pk)
             )
-            _run_yara_query_rule_on_version(version, rule)
+            _run_scanner_query_rule_on_version(version, rule)
         except Exception:
             log.exception(
-                'Error in run_yara_query_rule_on_version task for Version %s.',
+                'Error in run_scanner_query_rule_on_version task for Version %s.',
                 version_pk,
             )
 
 
-def _run_yara_query_rule_on_version(version, rule):
+def _run_scanner_query_rule_on_version(version, rule):
     """
     Run a specific ScannerQueryRule on a Version.
     """
     file_ = version.file
-    scanner_result = ScannerQueryResult(version=version, scanner=YARA)
-    _run_yara_for_path(scanner_result, file_.file.path, definition=rule.definition)
+    scanner_result = ScannerQueryResult(version=version, scanner=rule.scanner)
+    if rule.scanner == YARA:
+        _run_yara_for_path(scanner_result, file_.file.path, definition=rule.definition)
+    elif rule.scanner == NARC:
+        _run_narc(scanner_result=scanner_result, version=version, rules=[rule])
+    else:
+        raise NotImplementedError
+
     # Unlike ScannerResult, we only want to save ScannerQueryResult if there is
     # a match, there would be too many things to save otherwise and we don't
     # really care about non-matches.
