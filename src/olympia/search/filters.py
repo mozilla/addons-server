@@ -1,5 +1,5 @@
 import re
-from datetime import datetime
+from datetime import date, datetime
 
 from django.utils import translation
 from django.utils.encoding import force_str
@@ -141,12 +141,25 @@ class AddonThresholdQueryParam(AddonQueryParam):
         '__gte': 'gte',
         '': 'eq',
     }
+    valid_types = (int, float, str)
+
+    def convert_value(self, value):
+        if value.isdecimal():
+            converter = int
+        elif value.replace('.', '', 1).isdecimal():
+            converter = float
+        else:
+            converter = str
+        return converter(value)
 
     def get_value(self):
         _, sep, op = self.query_param.partition('__')
         if query_op := self.VALID_QUERY_OPERATORS.get(f'{sep}{op}'):
             try:
-                value = float(self.query_data.get(self.query_param, ''))
+                original_value = self.query_data.get(self.query_param, '')
+                value = self.convert_value(original_value)
+                if not isinstance(value, self.valid_types):
+                    raise ValueError()
                 return (
                     {'lte': value, 'gte': value}
                     if query_op == 'eq'
@@ -552,11 +565,33 @@ class AddonColorQueryParam(AddonQueryParam):
 class AddonRatingQueryParam(AddonThresholdQueryParam):
     query_param = 'ratings'
     es_field = 'ratings.average'
+    valid_types = (int, float)
 
 
 class AddonUsersQueryParam(AddonThresholdQueryParam):
     query_param = 'users'
     es_field = 'average_daily_users'
+    valid_types = (int,)
+
+
+class AddonCreatedQueryParam(AddonThresholdQueryParam):
+    query_param = 'created'
+    es_field = 'created'
+    valid_types = (int, datetime, date)
+
+    def convert_value(self, value):
+        if value.isdecimal():
+            return int(value)
+        return (
+            date.fromisoformat(value)
+            if len(value) == 10
+            else datetime.fromisoformat(value)
+        )
+
+
+class AddonUpdatedQueryParam(AddonCreatedQueryParam):
+    query_param = 'updated'
+    es_field = 'last_updated'
 
 
 class SearchQueryFilter(BaseFilterBackend):
@@ -958,6 +993,8 @@ class SearchParameterFilter(BaseFilterBackend):
         AddonTagQueryParam,
         AddonTypeQueryParam,
         *AddonUsersQueryParam.get_classes(),
+        *AddonCreatedQueryParam.get_classes(),
+        *AddonUpdatedQueryParam.get_classes(),
     ]
 
     def get_applicable_clauses(self, request):
