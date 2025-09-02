@@ -626,7 +626,7 @@ class TestRunNarc(UploadMixin, TestCase):
         addon = addon_factory(
             file_kw={'filename': 'webextension_with_no_name_in_manifest.xpi'}
         )
-        rule = ScannerRule.objects.create(
+        ScannerRule.objects.create(
             name='match_everything', scanner=NARC, definition='.*'
         )
         incr_mock.reset_mock()
@@ -641,7 +641,7 @@ class TestRunNarc(UploadMixin, TestCase):
         # If somehow an XPI with a entirely invalid manifest gets scanned we
         # shouldn't fail. Validation could have been bypassed by an admin.
         addon = addon_factory(file_kw={'filename': 'invalid_manifest_webextension.xpi'})
-        rule = ScannerRule.objects.create(
+        ScannerRule.objects.create(
             name='match_everything', scanner=NARC, definition='.*'
         )
         incr_mock.reset_mock()
