@@ -28,6 +28,7 @@ from olympia.addons.models import (
     Addon,
     AddonApprovalsCounter,
     AddonCategory,
+    AddonListingInfo,
     AddonUser,
     AddonUserPendingConfirmation,
     DeniedSlug,
@@ -150,6 +151,8 @@ class AddonFormBase(TranslationFormMixin, AMOModelForm):
                 # flag for content review
                 statsd.incr('devhub.metadata_content_review_triggered')
                 AddonApprovalsCounter.reset_content_for_addon(addon=obj)
+                AddonListingInfo.maybe_mark_as_noindexed(addon=obj)
+
                 if (
                     waffle.switch_is_active('enable-narc')
                     and 'name' in self.metadata_changes
@@ -159,6 +162,7 @@ class AddonFormBase(TranslationFormMixin, AMOModelForm):
                     )
                 ):
                     run_narc_on_version.delay(version.pk)
+
         return obj
 
 

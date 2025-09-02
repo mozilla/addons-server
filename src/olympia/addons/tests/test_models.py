@@ -20,6 +20,7 @@ from olympia.addons.models import (
     AddonApprovalsCounter,
     AddonCategory,
     AddonGUID,
+    AddonListingInfo,
     AddonRegionalRestrictions,
     AddonReviewerFlags,
     AddonUser,
@@ -4279,3 +4280,51 @@ class TestAddonRegionalRestrictions(TestCase):
         arr.excluded_regions = ['FR', 'BR', 'cn']
         arr.clean()
         assert arr.excluded_regions == ['FR', 'BR', 'CN']
+
+
+class TestAddonListingInfo(TestCase):
+    def test_is_listing_noindexed_without_info(self):
+        addon = addon_factory()
+        # This shouldn't raise any exception.
+        assert not addon.is_listing_noindexed
+
+    def test_is_listing_noindexed(self):
+        addon = addon_factory()
+        # No noindex date set.
+        info = AddonListingInfo.objects.create(addon=addon)
+        assert not addon.is_listing_noindexed
+        # Noindex date set in the past means the listing should not longer be
+        # noindexed.
+        info.update(noindex_until=datetime.now() - timedelta(days=1))
+        assert not addon.is_listing_noindexed
+        # Noindex date set after the current date.
+        info.update(noindex_until=datetime.now() + timedelta(days=1))
+        assert addon.is_listing_noindexed
+
+    def test_maybe_mark_as_noindexed_skipped_for_oldish_addons(self):
+        addon = addon_factory(created=self.days_ago(91))
+        AddonListingInfo.maybe_mark_as_noindexed(addon)
+        assert AddonListingInfo.objects.count() == 0
+        assert not addon.is_listing_noindexed
+
+    def test_maybe_mark_as_noindexed_creates_a_record(self):
+        addon = addon_factory(created=self.days_ago(1))
+        AddonListingInfo.maybe_mark_as_noindexed(addon)
+        assert AddonListingInfo.objects.count() == 1
+        assert addon.is_listing_noindexed
+
+    def test_maybe_mark_as_noindexed_updates_existing_record(self):
+        addon = addon_factory(created=self.days_ago(1))
+
+        AddonListingInfo.maybe_mark_as_noindexed(addon)
+        assert AddonListingInfo.objects.count() == 1
+        first_date = AddonListingInfo.objects.first().noindex_until
+        assert addon.is_listing_noindexed
+
+        AddonListingInfo.maybe_mark_as_noindexed(addon)
+        assert AddonListingInfo.objects.count() == 1
+        second_date = AddonListingInfo.objects.first().noindex_until
+        assert addon.is_listing_noindexed
+
+        # The existing record should have been updated with a newer date.
+        assert second_date > first_date

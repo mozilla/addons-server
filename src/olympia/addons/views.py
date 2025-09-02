@@ -285,7 +285,7 @@ class AddonViewSet(
             # translations because at least the addon name is likely to be
             # needed in most cases.
             qs = qs.only_translations()
-        return qs
+        return qs.select_related('addonlistinginfo')
 
     def get_serializer_class(self):
         # Override serializer to use serializer_class_for_developers if the author or

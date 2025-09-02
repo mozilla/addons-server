@@ -10,7 +10,7 @@ from django.urls import reverse
 import pytest
 
 from olympia import amo
-from olympia.addons.models import AddonCategory
+from olympia.addons.models import AddonCategory, AddonListingInfo
 from olympia.amo.reverse import override_url_prefix
 from olympia.amo.sitemap import (
     AccountSitemap,
@@ -56,7 +56,9 @@ class TestAddonSitemap(TestCase):
         self.addon_a = addon_a = addon_factory(slug='addon-a')
         self.addon_b = addon_b = addon_factory(slug='addon-b')
         addon_b.update(last_updated=datetime(2020, 1, 1, 1, 1, 1))
-        self.addon_c = addon_c = addon_factory(slug='addon-c')
+        # addon_c was noindexed before, but it should now appear in the sitemap.
+        self.addon_c = addon_c = addon_factory(slug='addon-c', created=self.days_ago(1))
+        AddonListingInfo.objects.create(addon=addon_c, noindex_until=self.days_ago(2))
         addon_factory(status=amo.STATUS_NOMINATED)  # shouldn't show up
         self.android_addon = addon_factory(
             version_kw={'application': amo.ANDROID.id}
@@ -64,6 +66,9 @@ class TestAddonSitemap(TestCase):
         self.make_addon_promoted(
             self.android_addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
         )
+        # addon_c is noindexed currently and shouldn't show up.
+        addon_d = addon_factory(slug='addon-d', created=self.days_ago(1))
+        AddonListingInfo.maybe_mark_as_noindexed(addon_d)
         self.expected = [
             it(addon_c.last_updated, reverse('addons.detail', args=[addon_c.slug]), 1),
             it(addon_a.last_updated, reverse('addons.detail', args=[addon_a.slug]), 1),

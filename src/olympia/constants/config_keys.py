@@ -70,4 +70,10 @@ SUBMIT_NOTIFICATION_WARNING_PRE_REVIEW = ConfigKey(
 
 UPCOMING_DUE_DATE_CUT_OFF_DAYS = IntConfigKey('upcoming-due-date-cut-off-days', 2)
 
+NOINDEX_ON_CONTENT_CHANGE_DELAY = IntConfigKey('noindex-on-content-change-delay', 7)
+
+NOINDEX_ON_CONTENT_CHANGE_CUT_OFF_DAYS = IntConfigKey(
+    'noindex-on-content-change-cut-off-days', 90
+)
+
 KEYS = [val.key for val in vars().values() if isinstance(val, ConfigKey)]
