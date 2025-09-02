@@ -4093,7 +4093,7 @@ msgstr "Sunt de acord ca Mozilla să îmi gestioneze informațiile, conform expl
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:40
 msgid "Sign Up"
-msgstr "Înscrie-te"
+msgstr "Înregistrează-te"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:44
 msgid "Thanks!"
