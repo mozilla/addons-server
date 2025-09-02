@@ -585,6 +585,73 @@ class TestRunNarc(UploadMixin, TestCase):
         return narc_result
 
     @mock.patch('olympia.scanners.tasks.statsd.incr')
+    def test_run_xpi_multiple_translations(self, incr_mock):
+        addon = addon_factory(file_kw={'filename': 'notify-link-clicks-i18n.xpi'})
+        rule = ScannerRule.objects.create(
+            name='match_in_japanese', scanner=NARC, definition='を通知'
+        )
+        incr_mock.reset_mock()
+
+        run_narc_on_version(addon.current_version.pk)
+
+        scanner_results = ScannerResult.objects.all()
+        assert len(scanner_results) == 1
+        narc_result = scanner_results[0]
+        assert narc_result.scanner == NARC
+        assert narc_result.upload is None
+        assert narc_result.version == addon.current_version
+        assert narc_result.has_matches
+        assert list(narc_result.matched_rules.all()) == [rule]
+        assert len(narc_result.results) == 1
+        assert narc_result.results == [
+            {
+                'meta': {
+                    'locale': 'ja',
+                    'pattern': 'を通知',
+                    'source': 'xpi',
+                    'span': [
+                        3,
+                        6,
+                    ],
+                    'string': 'リンクを通知する',
+                },
+                'rule': 'match_in_japanese',
+            },
+        ]
+
+    @mock.patch('olympia.scanners.tasks.statsd.incr')
+    def test_run_xpi_no_name(self, incr_mock):
+        # If somehow an XPI without a name gets scanned we shouldn't fail.
+        # Validation could have been bypassed by an admin.
+        addon = addon_factory(
+            file_kw={'filename': 'webextension_with_no_name_in_manifest.xpi'}
+        )
+        rule = ScannerRule.objects.create(
+            name='match_everything', scanner=NARC, definition='.*'
+        )
+        incr_mock.reset_mock()
+
+        run_narc_on_version(addon.current_version.pk)
+
+        scanner_results = ScannerResult.objects.all()
+        assert len(scanner_results) == 1
+
+    @mock.patch('olympia.scanners.tasks.statsd.incr')
+    def test_run_invalid_manifest_somehow(self, incr_mock):
+        # If somehow an XPI with a entirely invalid manifest gets scanned we
+        # shouldn't fail. Validation could have been bypassed by an admin.
+        addon = addon_factory(file_kw={'filename': 'invalid_manifest_webextension.xpi'})
+        rule = ScannerRule.objects.create(
+            name='match_everything', scanner=NARC, definition='.*'
+        )
+        incr_mock.reset_mock()
+
+        run_narc_on_version(addon.current_version.pk)
+
+        scanner_results = ScannerResult.objects.all()
+        assert len(scanner_results) == 1
+
+    @mock.patch('olympia.scanners.tasks.statsd.incr')
     def test_run_multiple_authors_match(self, incr_mock):
         user1 = user_factory(display_name='Foo')
         user2 = user_factory(display_name='FooBar')
