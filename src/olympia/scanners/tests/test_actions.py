@@ -962,7 +962,8 @@ class TestActions(TestCase):
                 version=version, rule=None, scanner=CUSTOMS
             )
 
-    def test_disable_and_block(self):
+    def do_disable_and_block(self, addon):
+        existing_decision_count = ContentDecision.objects.count()
         responses.add_callback(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}create_decision',
@@ -972,7 +973,6 @@ class TestActions(TestCase):
         UsageTier.objects.create(
             upper_adu_threshold=10000, disable_and_block_action_available=True
         )
-        addon = addon_factory(average_daily_users=4242)
         version1 = addon.current_version
         version2 = version_factory(addon=addon)
         _disable_and_block(version=version2, rule=None)
@@ -984,7 +984,10 @@ class TestActions(TestCase):
         assert version2.is_blocked
         assert version2.file.reload().status == amo.STATUS_DISABLED
         assert version2.blockversion.block_type == BlockType.SOFT_BLOCKED
-        assert ContentDecision.objects.count() == 1
+        assert ContentDecision.objects.count() == existing_decision_count + 1
+
+    def test_disable_and_block(self):
+        self.do_disable_and_block(addon_factory(average_daily_users=4242))
 
     @mock.patch('olympia.scanners.actions.reject_and_block_addons')
     def test_disable_and_block_with_mock(self, reject_and_block_addons_mock):
@@ -1090,6 +1093,44 @@ class TestActions(TestCase):
         addon.reviewerflags.reload()
         assert addon.auto_approval_delayed_until == datetime.max
         assert addon.auto_approval_delayed_until_unlisted == datetime.max
+
+    def test_disable_and_block_with_unsuccesful_appeal(self):
+        addon = addon_factory(average_daily_users=4242)
+        appeal_decision = ContentDecision.objects.create(
+            addon=addon,
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            cinder_job=CinderJob.objects.create(target_addon=addon),
+        )
+        ContentDecision.objects.create(
+            addon=addon,
+            action=DECISION_ACTIONS.AMO_BLOCK_ADDON,
+            appeal_job=appeal_decision.cinder_job,
+        )
+        self.do_disable_and_block(addon)
+
+    def test_disable_and_block_with_unresolved_appeal(self):
+        addon = addon_factory(average_daily_users=4242)
+        appeal_job = CinderJob.objects.create(target_addon=addon)
+        ContentDecision.objects.create(
+            addon=addon,
+            action=DECISION_ACTIONS.AMO_BLOCK_ADDON,
+            appeal_job=appeal_job,
+        )
+        self.do_disable_and_block(addon)
+
+    def test_disable_and_block_with_non_block_appeal(self):
+        addon = addon_factory(average_daily_users=4242)
+        appeal_decision = ContentDecision.objects.create(
+            addon=addon,
+            action=DECISION_ACTIONS.AMO_APPROVE,
+            cinder_job=CinderJob.objects.create(target_addon=addon),
+        )
+        ContentDecision.objects.create(
+            addon=addon,
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            appeal_job=appeal_decision.cinder_job,
+        )
+        self.do_disable_and_block(addon)
 
 
 class TestRunAction(TestCase):
