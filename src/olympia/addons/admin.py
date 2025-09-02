@@ -14,7 +14,7 @@ import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
 from olympia.activity.models import ActivityLog
-from olympia.addons.models import Addon, AddonReviewerFlags, AddonUser
+from olympia.addons.models import Addon, AddonListingInfo, AddonReviewerFlags, AddonUser
 from olympia.amo.admin import AMOModelAdmin, DateRangeFilter
 from olympia.amo.forms import AMOModelForm
 from olympia.amo.templatetags.jinja_helpers import vite_asset
@@ -36,6 +36,12 @@ log = olympia.core.logger.getLogger('z.addons.admin')
 class AddonReviewerFlagsInline(admin.TabularInline):
     model = AddonReviewerFlags
     verbose_name_plural = 'Reviewer Flags'
+    can_delete = False
+    view_on_site = False
+
+
+class AddonListingInfoInline(admin.TabularInline):
+    model = AddonListingInfo
     can_delete = False
     view_on_site = False
 
@@ -245,6 +251,7 @@ class AddonAdmin(AMOModelAdmin):
         AddonReviewerFlagsInline,
         AddonUserInline,
         FileInline,
+        AddonListingInfoInline,
     )
     readonly_fields = (
         'id',
