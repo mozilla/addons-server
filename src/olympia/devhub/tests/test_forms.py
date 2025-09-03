@@ -1606,8 +1606,9 @@ class TestRollbackVersionForm(TestCase):
             'version': uv1,
         }
 
-        # and when we select listed but there is no listed version availble: error
+        # and when we select listed but there is no listed version available: error
         data['channel'] = amo.CHANNEL_LISTED
+        del data['unlisted_version']
         lv1.delete()
         form = forms.RollbackVersionForm(data, addon=addon)
         assert not form.is_valid()

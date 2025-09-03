@@ -616,6 +616,7 @@ function initVersions() {
     }
 
     let $channelInputs = $('#id_channel input'),
+        $hiddenChannelInput = $('input[name="channel"][type="hidden"]'),
         $listedVersionRow = $('#listed-version-row'),
         $unlistedVersionRow = $('#unlisted-version-row'),
         $listedVersionSelect = $('#id_listed_version'),
@@ -652,6 +653,14 @@ function initVersions() {
       });
     })
     .trigger('change');
+
+    if ($hiddenChannelInput) {
+      if ($hiddenChannelInput.val() == '1') {
+        $unlistedVersionSelect.trigger('change');
+      } else {
+        $listedVersionSelect.trigger('change');
+      }
+    }
   }
 
   function addToReviewHistory(json, historyContainer, reverseOrder) {
