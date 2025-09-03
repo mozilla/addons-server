@@ -141,15 +141,14 @@ class AddonThresholdQueryParam(AddonQueryParam):
         '__gte': 'gte',
         '': 'eq',
     }
-    valid_types = (int, float, str)
+    valid_types = (int, float)
 
     def convert_value(self, value):
         if value.isdecimal():
             converter = int
-        elif value.replace('.', '', 1).isdecimal():
-            converter = float
         else:
-            converter = str
+            # Might trigger ValueError, that's fine.
+            converter = float
         return converter(value)
 
     def get_value(self):
