@@ -6581,6 +6581,30 @@ class TestAddonSearchView(ESTestCase):
         # should not be present.
         assert ids == [addon1.id]
 
+    def test_filter_by_created(self):
+        a_long_time_ago = self.days_ago(365)
+        some_time_ago = self.days_ago(42)
+        not_so_long_ago = self.days_ago(2)
+
+        expected_addon = addon_factory(created=some_time_ago)
+        addon_factory(created=a_long_time_ago)
+        addon_factory(created=not_so_long_ago)
+
+        self.refresh()
+
+        data = self.perform_search(
+            self.url,
+            {
+                'created__gt': int(a_long_time_ago.timestamp() * 1000),
+                'created__lt': not_so_long_ago.isoformat(),
+            },
+        )
+
+        ids = [result['id'] for result in data['results']]
+        # expected_addon will be the only addon returned because it has a
+        # created date in the range and the others don't.
+        assert ids == [expected_addon.id]
+
 
 class TestAddonAutoCompleteSearchView(ESTestCase):
     client_class = APITestClientSessionID
