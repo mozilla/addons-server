@@ -6,6 +6,7 @@ import uuid
 
 from django.conf import settings
 from django.db.models import F
+from django.forms import ValidationError
 
 import requests
 import waffle
@@ -229,14 +230,20 @@ def _run_narc(*, scanner_result, version, rules=None):
 
     # Find all translations from the XPI - if we get a string, that means there
     # were no translations to find, build a simple dict for ease of use later.
-    data = parse_xpi(
-        version.file.file, addon=addon, minimal=True, bypass_trademark_checks=True
-    )
+    try:
+        data = parse_xpi(
+            version.file.file, addon=addon, minimal=True, bypass_trademark_checks=True
+        )
+    except ValidationError:
+        # Something else should stop us if the manifest or the xpi itself is
+        # invalid, NARC shouldn't fail for that. This matters if validation was
+        # forced by an admin or something similar.
+        data = {}
     values_from_xpi = Addon.resolve_webext_translations(data, version.file.file).get(
         'name', {}
     )
-    if isinstance(values_from_xpi, str):
-        values_from_xpi = {None: values_from_xpi}
+    if values_from_xpi is None or isinstance(values_from_xpi, str):
+        values_from_xpi = {None: values_from_xpi or ''}
 
     for rule in rules:
         definition = re.compile(str(rule.definition), re.I)
