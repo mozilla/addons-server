@@ -302,7 +302,7 @@ msgstr "Numar massim di categoriis par aplicazion ({MAX_CATEGORIES}) superât"
 msgid "The \"other\" category cannot be combined with another category"
 msgstr "Nol è pussibil cumbinâ la categorie “altri” cuntune altre categorie"
 
-#: src/olympia/addons/fields.py:76 src/olympia/addons/serializers.py:1268
+#: src/olympia/addons/fields.py:76 src/olympia/addons/serializers.py:1274
 msgid "Invalid category name."
 msgstr "Non di categorie no valit."
 
@@ -311,11 +311,11 @@ msgstr "Non di categorie no valit."
 msgid "URL domain must be one of [{domains}]."
 msgstr "Il domini dal URL al scugne jessi un tra [{domains}]."
 
-#: src/olympia/addons/fields.py:125 src/olympia/devhub/forms.py:294
+#: src/olympia/addons/fields.py:125 src/olympia/devhub/forms.py:298
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
 msgstr "Il percors dal URL pai sponsors GitHub al scugne contignî /sponsors/."
 
-#: src/olympia/addons/fields.py:128 src/olympia/devhub/forms.py:297
+#: src/olympia/addons/fields.py:128 src/olympia/devhub/forms.py:301
 msgid "URLs must start with https://."
 msgstr "I URLs a scugnin scomençâ cun https://."
 
@@ -329,7 +329,7 @@ msgstr "La licence cun slug={value} no esist."
 msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr "Gjenar di file no supuartât. cjame in rêt un file archivi ({extensions})."
 
-#: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:772 src/olympia/files/utils.py:761 src/olympia/reviewers/forms.py:386
+#: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:776 src/olympia/files/utils.py:761 src/olympia/reviewers/forms.py:386
 msgid "Invalid or broken archive."
 msgstr "Archivi no valit o ruvinât."
 
@@ -345,7 +345,7 @@ msgstr "Specificade version massime di aplicazion no cognossude"
 msgid "Unknown min app version specified"
 msgstr "Specificade version minime di aplicazion no cognossude"
 
-#: src/olympia/addons/fields.py:307 src/olympia/addons/fields.py:325 src/olympia/addons/serializers.py:636
+#: src/olympia/addons/fields.py:307 src/olympia/addons/fields.py:325 src/olympia/addons/serializers.py:637
 #, python-format
 msgid "Can not override compatibility information set in the manifest for this application (%s)"
 msgstr "Nol è pussibil sorescrivi lis informazions di compatibilitât stabilidis tal manifest par cheste aplicazion (%s)"
@@ -355,68 +355,68 @@ msgstr "Nol è pussibil sorescrivi lis informazions di compatibilitât stabilidi
 msgid "Images must be smaller than %dMB"
 msgstr "Lis imagjins a scugnin jessi plui piçulis di %dMB"
 
-#: src/olympia/addons/models.py:2306 src/olympia/addons/models.py:2385 src/olympia/constants/base.py:66
+#: src/olympia/addons/models.py:2314 src/olympia/addons/models.py:2393 src/olympia/constants/base.py:66
 msgid "Listed"
 msgstr "Listât"
 
-#: src/olympia/addons/models.py:2563
+#: src/olympia/addons/models.py:2571
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr "I percors di components adizionâi e di racueltis a scugnin finî cul caratar “/”"
 
-#: src/olympia/addons/serializers.py:328
+#: src/olympia/addons/serializers.py:329
 msgid "Built in licenses can not be updated."
 msgstr "Nol è pussibil inzornâ lis licencis integradis."
 
-#: src/olympia/addons/serializers.py:523
+#: src/olympia/addons/serializers.py:524
 msgid "Upload is not valid."
 msgstr "Il cjariament in rêt nol è valit."
 
-#: src/olympia/addons/serializers.py:539
+#: src/olympia/addons/serializers.py:540
 msgid "File is already disabled."
 msgstr "Il file al è za disativât."
 
-#: src/olympia/addons/serializers.py:543 src/olympia/addons/views.py:738
+#: src/olympia/addons/serializers.py:544 src/olympia/addons/views.py:738
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
 "Nol è pussibil eliminâ la ultime version aprovade di chest component adizionâl %s parcè che chê di prime no jere stade aprovade pe promozion ae categorie %s. Par assistence contate un aministradôr "
 "di AMO."
 
-#: src/olympia/addons/serializers.py:570
+#: src/olympia/addons/serializers.py:571
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr "Nol è pussibil mandâ lis version listadis intant che il component adizionâl al è disativât."
 
-#: src/olympia/addons/serializers.py:611
+#: src/olympia/addons/serializers.py:612
 #, python-format
 msgid "%(addon_type_plural)s are not supported by %(app_name)s"
 msgstr "%(addon_type_plural)s no son supuartâts di %(app_name)s"
 
-#: src/olympia/addons/serializers.py:650 src/olympia/devhub/forms.py:926
+#: src/olympia/addons/serializers.py:651 src/olympia/devhub/forms.py:930
 #, python-format
 msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
 msgstr "Interval di versions no valit. Par Firefox par Android tu puedis selezionâ dome un interval che al tache cu la version %(max)s o superiôr o che al finìs cuntune version inferiôr a %(min)s."
 
-#: src/olympia/addons/serializers.py:899
+#: src/olympia/addons/serializers.py:900
 msgid "Add-ons need at least one owner."
 msgstr "I components adizionâi a àn bisugne di almancul un proprietari."
 
-#: src/olympia/addons/serializers.py:914
+#: src/olympia/addons/serializers.py:915
 msgid "Add-ons need at least one listed author."
 msgstr "I components adizionâi a àn bisugne di almancul un autôr listât."
 
-#: src/olympia/addons/serializers.py:946
+#: src/olympia/addons/serializers.py:947
 msgid "Account not found."
 msgstr "Account no cjatât."
 
-#: src/olympia/addons/serializers.py:959 src/olympia/devhub/forms.py:426 src/olympia/devhub/forms.py:496
+#: src/olympia/addons/serializers.py:960 src/olympia/devhub/forms.py:430 src/olympia/devhub/forms.py:500
 msgid "An author can only be present once."
 msgstr "Ogni autôr al pues vê dome une sole presince."
 
-#: src/olympia/addons/serializers.py:970 src/olympia/devhub/forms.py:438
+#: src/olympia/addons/serializers.py:971 src/olympia/devhub/forms.py:442
 msgid "The account needs a display name before it can be added as an author."
 msgstr "Par jessi zontât come autôr, l’account al à di jessi dotât di un non di visualizazion."
 
-#: src/olympia/addons/serializers.py:1248
+#: src/olympia/addons/serializers.py:1254
 msgid "This slug cannot be used. Please choose another."
 msgstr "Nol è pussibil doprâchest slug. Sielç un altri."
 
@@ -1561,7 +1561,7 @@ msgstr "Disvilup web"
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr "Discjame estensions par Firefox che a ufrissin struments pal disvilup dal web. In cheste categorie tu cjatarâs estensions par GitHub, cambi di agjent utent, gjestion dai cookies e tant altri."
 
-#: src/olympia/constants/categories.py:198 src/olympia/constants/categories.py:290 src/olympia/devhub/forms.py:608
+#: src/olympia/constants/categories.py:198 src/olympia/constants/categories.py:290 src/olympia/devhub/forms.py:612
 msgid "Other"
 msgstr "Altri"
 
@@ -1878,172 +1878,172 @@ msgstr "I components adizionâi Open Search {blog_link_open}no son plui supuart�
 msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
 msgstr "In chest moment nol è pussibil cjariâ in rêt estensions cun manifest V3. {start_href}Altris informazions sui timps previodûts pe implementazion{end_href}."
 
-#: src/olympia/devhub/forms.py:90
+#: src/olympia/devhub/forms.py:91
 msgid "This slug is already in use. Please choose another."
 msgstr "Chest slug al è za in ûs. Sielç un altri."
 
-#: src/olympia/devhub/forms.py:93
+#: src/olympia/devhub/forms.py:94
 #, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
 msgstr "Nol è pussibil che il slug al sedi “%(slug)s”. Sielç un altri."
 
 #. L10n: {0} is the number of categories.
-#: src/olympia/devhub/forms.py:212
+#: src/olympia/devhub/forms.py:216
 #, python-brace-format
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "Tu puedis vê dome {0} categorie."
 msgstr[1] "Tu puedis vê dome {0} categoriis."
 
-#: src/olympia/devhub/forms.py:222
+#: src/olympia/devhub/forms.py:226
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "Nol è pussibil cumbinâ la categorie Variis adun cun altris categoriis."
 
-#: src/olympia/devhub/forms.py:288
+#: src/olympia/devhub/forms.py:292
 #, python-format
 msgid "URL domain must be one of [%s]."
 msgstr "Il domini dal URL al scugne jessi un tra [%s]."
 
-#: src/olympia/devhub/forms.py:304
+#: src/olympia/devhub/forms.py:308
 #, python-brace-format
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] "Tu âs {0} etichete di masse."
 msgstr[1] "Tu âs {0} etichetis di masse."
 
-#: src/olympia/devhub/forms.py:323
+#: src/olympia/devhub/forms.py:327
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
 msgstr "Prime di podê cambiâ la tô lenghe predefinide tu scugnis vê un non, un somari e une descrizion in chê lenghe. In chest moment ti mancje %s."
 
-#: src/olympia/devhub/forms.py:408
+#: src/olympia/devhub/forms.py:412
 msgid "Users can not be added directly"
 msgstr "Impussibil zontâ utents in mût diret"
 
-#: src/olympia/devhub/forms.py:473
+#: src/olympia/devhub/forms.py:477
 msgid "Must have at least one owner."
 msgstr "Tu scugnis vê almancul un proprietari."
 
-#: src/olympia/devhub/forms.py:475
+#: src/olympia/devhub/forms.py:479
 msgid "At least one author must be listed."
 msgstr "Al scugne jessi presint almancul un autôr."
 
-#: src/olympia/devhub/forms.py:523
+#: src/olympia/devhub/forms.py:527
 msgid "Slug incorrect."
 msgstr "Slug sbaliât."
 
-#: src/olympia/devhub/forms.py:558 src/olympia/devhub/templates/devhub/versions/edit.html:88
+#: src/olympia/devhub/forms.py:562 src/olympia/devhub/templates/devhub/versions/edit.html:88
 msgid "Details"
 msgstr "Detais"
 
-#: src/olympia/devhub/forms.py:579
+#: src/olympia/devhub/forms.py:583
 msgid "What is your license's name?"
 msgstr "Cuâl isal il non de tô licence?"
 
-#: src/olympia/devhub/forms.py:581 src/olympia/devhub/forms.py:628
+#: src/olympia/devhub/forms.py:585 src/olympia/devhub/forms.py:632
 msgid "Custom License"
 msgstr "Licence personalizade"
 
-#: src/olympia/devhub/forms.py:586
+#: src/olympia/devhub/forms.py:590
 msgid "Provide the text of your license."
 msgstr "Furnìs il test de tô licence."
 
-#: src/olympia/devhub/forms.py:636
+#: src/olympia/devhub/forms.py:640
 msgid "License text is required when choosing Other."
 msgstr "Tu scugnis specificâ il test de licence se tu sielzis Altri."
 
-#: src/olympia/devhub/forms.py:692
+#: src/olympia/devhub/forms.py:696
 msgid "This add-on has an End-User License Agreement"
 msgstr "Chest component adizionâl al à une licence cul utent finâl (EULA)"
 
-#: src/olympia/devhub/forms.py:697
+#: src/olympia/devhub/forms.py:701
 msgid "Please specify your add-on's End-User License Agreement:"
 msgstr "Specifiche la licence cul utent finâl (EULA) di chest component adizionâl:"
 
-#: src/olympia/devhub/forms.py:700
+#: src/olympia/devhub/forms.py:704
 msgid "This add-on has a Privacy Policy"
 msgstr "Chest component adizionâl al à une informative su la riservatece"
 
-#: src/olympia/devhub/forms.py:705
+#: src/olympia/devhub/forms.py:709
 msgid "Please specify your add-on's Privacy Policy:"
 msgstr "Specifiche la informative su la riservatece dal to component adizionâl:"
 
-#: src/olympia/devhub/forms.py:740
+#: src/olympia/devhub/forms.py:744
 #, python-brace-format
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Gjenar di file no supuartât, cjame in rêt un file archivi {extensions}."
 
-#: src/olympia/devhub/forms.py:784
+#: src/olympia/devhub/forms.py:788
 msgid "View current"
 msgstr "Mestre version corinte"
 
-#: src/olympia/devhub/forms.py:907
+#: src/olympia/devhub/forms.py:911
 msgid "Invalid version range."
 msgstr "Interval di versions sbaliât."
 
-#: src/olympia/devhub/forms.py:1013
+#: src/olympia/devhub/forms.py:1017
 msgid "Need at least one compatible application."
 msgstr "E covente almancul une aplicazion compatibile."
 
-#: src/olympia/devhub/forms.py:1055 src/olympia/devhub/forms.py:1113
+#: src/olympia/devhub/forms.py:1059 src/olympia/devhub/forms.py:1117
 msgid "There was an error with your upload. Please try again."
 msgstr "Al è vignût fûr un erôr cul to cjariament in rêt. Torne prove."
 
-#: src/olympia/devhub/forms.py:1060
+#: src/olympia/devhub/forms.py:1064
 msgid "Override failed validation"
 msgstr "La sostituzion sfuarçade no à passât la convalide"
 
-#: src/olympia/devhub/forms.py:1070
+#: src/olympia/devhub/forms.py:1074
 msgid "Need to select at least one application."
 msgstr "Al covente selezionâ almancul une aplicazion."
 
-#: src/olympia/devhub/forms.py:1075
+#: src/olympia/devhub/forms.py:1079
 msgid "You have submitted too many uploads recently. Please try again after some time."
 msgstr "Tu âs mandât masse cjariaments in rêt di resint. Torne prove ca di un pôc di timp."
 
-#: src/olympia/devhub/forms.py:1124 src/olympia/signing/views.py:156
+#: src/olympia/devhub/forms.py:1128 src/olympia/signing/views.py:156
 #, python-brace-format
 msgid "Version {version} was uploaded before and deleted."
 msgstr "La version {version} e je stade za cjariade in rêt e po eliminade."
 
-#: src/olympia/devhub/forms.py:1133 src/olympia/devhub/forms.py:1139 src/olympia/signing/views.py:158
+#: src/olympia/devhub/forms.py:1137 src/olympia/devhub/forms.py:1143 src/olympia/signing/views.py:158
 #, python-brace-format
 msgid "Version {version} already exists."
 msgstr "La version {version} e esist bielzà."
 
-#: src/olympia/devhub/forms.py:1135
+#: src/olympia/devhub/forms.py:1139
 msgid "Continue with existing upload instead?"
 msgstr "Continuâ invezit cul cjariament in rêt esistent?"
 
-#: src/olympia/devhub/forms.py:1173 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:7 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:22
+#: src/olympia/devhub/forms.py:1177 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:7 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:22
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:37
 msgid "Yes"
 msgstr "Sì"
 
-#: src/olympia/devhub/forms.py:1173 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:13 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:28
+#: src/olympia/devhub/forms.py:1177 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:13 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:28
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:52
 msgid "No"
 msgstr "No"
 
-#: src/olympia/devhub/forms.py:1188
+#: src/olympia/devhub/forms.py:1192
 msgid "You have not uploaded a source file."
 msgstr "No tu âs cjariât in rêt un file sorzint."
 
-#: src/olympia/devhub/forms.py:1191
+#: src/olympia/devhub/forms.py:1195
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "Al è stât cjariât in rêt un file sorzint ma tu vevis indicât che nol coventave nissun file sorzint."
 
-#: src/olympia/devhub/forms.py:1255
+#: src/olympia/devhub/forms.py:1259
 #, python-brace-format
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
 msgstr "Verifiche che il non e il somari no suparin in dut {limit_value} caratars (a'nd àn {show_value})."
 
-#: src/olympia/devhub/forms.py:1374
+#: src/olympia/devhub/forms.py:1378
 #, python-brace-format
 msgid "On this site. <span class=\"helptext\">Your submission is publicly listed on {site_domain}.</span>"
 msgstr "Su chest sît. <span class=\"helptext\">Il to component adizionâl inviât al è listât in maniere publiche su {site_domain}.</span>"
 
-#: src/olympia/devhub/forms.py:1381
+#: src/olympia/devhub/forms.py:1385
 #, python-brace-format
 msgid ""
 "On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
@@ -2053,31 +2053,31 @@ msgstr ""
 "Siguriti di includi <a {a_attrs}>update_url</a> tal manifest dal component adizionâl, viodût che chest al è il URL là che Firefox al cjate i inzornaments pe distribuzion automatiche ai tiei "
 "utents.</span>"
 
-#: src/olympia/devhub/forms.py:1420 src/olympia/devhub/templates/devhub/includes/agreement.html:17
+#: src/olympia/devhub/forms.py:1424 src/olympia/devhub/templates/devhub/includes/agreement.html:17
 msgid "Display Name"
 msgstr "Non visualizât"
 
-#: src/olympia/devhub/forms.py:1451
+#: src/olympia/devhub/forms.py:1455
 msgid "Confirm email address"
 msgstr "Conferme la direzion e-mail"
 
-#: src/olympia/devhub/forms.py:1452
+#: src/olympia/devhub/forms.py:1456
 msgid "Generate new credentials"
 msgstr "Gjenere gnovis credenziâls"
 
-#: src/olympia/devhub/forms.py:1453
+#: src/olympia/devhub/forms.py:1457
 msgid "Revoke and regenerate credentials"
 msgstr "Revoche e torne a gjenerâ credenziâls"
 
-#: src/olympia/devhub/forms.py:1454
+#: src/olympia/devhub/forms.py:1458
 msgid "Revoke"
 msgstr "Revoche"
 
-#: src/olympia/devhub/forms.py:1493
+#: src/olympia/devhub/forms.py:1497
 msgid "JWT issuer"
 msgstr "Emitent JWT"
 
-#: src/olympia/devhub/forms.py:1500
+#: src/olympia/devhub/forms.py:1504
 #, python-brace-format
 msgid ""
 "To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
@@ -2086,32 +2086,32 @@ msgstr ""
 "Par doprâ lis API, fâs une domande includint un <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> tant che intestazion di autorizazion. Al coventarà creâ un gjeton JWT par ogni singule richieste, come "
 "specificât te <a href=\"{docs_url}\">documentazion des API</a>."
 
-#: src/olympia/devhub/forms.py:1510
+#: src/olympia/devhub/forms.py:1514
 msgid "JWT secret"
 msgstr "Segret JWT"
 
-#: src/olympia/devhub/forms.py:1531
+#: src/olympia/devhub/forms.py:1535
 #, python-brace-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
 msgstr "Fâs clic sul boton di conferme chi sot par gjenerâ lis credenziâls API pal utent <strong>{name}</strong>."
 
-#: src/olympia/devhub/forms.py:1537
+#: src/olympia/devhub/forms.py:1541
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
 msgstr "Un colegament di conferme ti vignarà inviât ae tô direzion e-mail. Dopo de conferme tu cjatarâs lis tôs clâfs API in cheste pagjine."
 
-#: src/olympia/devhub/forms.py:1554
+#: src/olympia/devhub/forms.py:1558
 msgid "You don't have any API credentials."
 msgstr "No tu âs nissune credenziâl API."
 
-#: src/olympia/devhub/forms.py:1565
+#: src/olympia/devhub/forms.py:1569
 msgid "Something went wrong, please contact developer support."
 msgstr "Alc al è lât strucj, contate il supuart pai svilupadôrs."
 
-#: src/olympia/devhub/forms.py:1622
+#: src/olympia/devhub/forms.py:1626
 msgid "Choose version"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1692
+#: src/olympia/devhub/forms.py:1696
 msgid "You must select a channel and version to rollback to."
 msgstr ""
 
@@ -6417,7 +6417,7 @@ msgstr "\"Torne su AMO\" in chest moment al è disativât"
 msgid "Invalid Return To AMO guid (not in base64url format?)"
 msgstr "GUID di \"Torne su AMO\" no valit (nol è in formât base64url?)"
 
-#: src/olympia/search/filters.py:934
+#: src/olympia/search/filters.py:932
 msgid "Maximum query length exceeded."
 msgstr "Superade la lungjece massime consintude de interogazion."
 

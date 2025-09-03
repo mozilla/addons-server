@@ -3,7 +3,6 @@ from collections import Counter
 from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.db import transaction
-from django.forms import ValidationError
 
 import waffle
 from django_statsd.clients import statsd
@@ -176,10 +175,6 @@ class Command(BaseCommand):
                 'Version %s was skipped because approval action was not available',
                 version,
             )
-            self.stats['error'] += 1
-        except ValidationError:
-            statsd.incr('reviewers.auto_approve.approve.failure')
-            log.info('Version %s was skipped because of a validation error', version)
             self.stats['error'] += 1
         except SigningError:
             statsd.incr('reviewers.auto_approve.approve.failure')

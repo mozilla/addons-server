@@ -300,7 +300,7 @@ msgstr "Oer it maksimaal oantal kategoryen per tapassing ({MAX_CATEGORIES})"
 msgid "The \"other\" category cannot be combined with another category"
 msgstr "De kategory ‘oerich’ kin net kombinearre wurde mei in oare kategory"
 
-#: src/olympia/addons/fields.py:76 src/olympia/addons/serializers.py:1268
+#: src/olympia/addons/fields.py:76 src/olympia/addons/serializers.py:1274
 msgid "Invalid category name."
 msgstr "Unjildige kategorynamme."
 
@@ -309,11 +309,11 @@ msgstr "Unjildige kategorynamme."
 msgid "URL domain must be one of [{domains}]."
 msgstr "Domein fan URL moat der ien fan [{domains}] wêze."
 
-#: src/olympia/addons/fields.py:125 src/olympia/devhub/forms.py:294
+#: src/olympia/addons/fields.py:125 src/olympia/devhub/forms.py:298
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
 msgstr "URL-paad foar GitHub-sponsors moat /sponsors/ befetsje."
 
-#: src/olympia/addons/fields.py:128 src/olympia/devhub/forms.py:297
+#: src/olympia/addons/fields.py:128 src/olympia/devhub/forms.py:301
 msgid "URLs must start with https://."
 msgstr "URL’s moatte begjinne mei https://."
 
@@ -327,7 +327,7 @@ msgstr "Lisinsje mei slug={value} bestiet net."
 msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr "Net-stipe bestânstype, laad in argyfbestân ({extensions}) op."
 
-#: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:772 src/olympia/files/utils.py:761 src/olympia/reviewers/forms.py:386
+#: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:776 src/olympia/files/utils.py:761 src/olympia/reviewers/forms.py:386
 msgid "Invalid or broken archive."
 msgstr "Unjildich of skansearre argyf."
 
@@ -343,7 +343,7 @@ msgstr "Unbekende maksimale app-ferzje opjûn"
 msgid "Unknown min app version specified"
 msgstr "Unbekende minimale app-ferzje opjûn"
 
-#: src/olympia/addons/fields.py:307 src/olympia/addons/fields.py:325 src/olympia/addons/serializers.py:636
+#: src/olympia/addons/fields.py:307 src/olympia/addons/fields.py:325 src/olympia/addons/serializers.py:637
 #, python-format
 msgid "Can not override compatibility information set in the manifest for this application (%s)"
 msgstr "Kin de kompatibiliteitsynformaasje ynsteld yn it manifest foar dizze tapassing net oerskriuwe (%s)"
@@ -353,68 +353,68 @@ msgstr "Kin de kompatibiliteitsynformaasje ynsteld yn it manifest foar dizze tap
 msgid "Images must be smaller than %dMB"
 msgstr "Ofbyldingen moatte lytser wêze as %dMB"
 
-#: src/olympia/addons/models.py:2306 src/olympia/addons/models.py:2385 src/olympia/constants/base.py:66
+#: src/olympia/addons/models.py:2314 src/olympia/addons/models.py:2393 src/olympia/constants/base.py:66
 msgid "Listed"
 msgstr "Fermeld"
 
-#: src/olympia/addons/models.py:2563
+#: src/olympia/addons/models.py:2571
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr "Paden nei add-ons en kolleksjes moatte mei ‘/’ einigje"
 
-#: src/olympia/addons/serializers.py:328
+#: src/olympia/addons/serializers.py:329
 msgid "Built in licenses can not be updated."
 msgstr "Ynboude lisinsjes kinne net bywurke wurde."
 
-#: src/olympia/addons/serializers.py:523
+#: src/olympia/addons/serializers.py:524
 msgid "Upload is not valid."
 msgstr "Oplaad is net jildich."
 
-#: src/olympia/addons/serializers.py:539
+#: src/olympia/addons/serializers.py:540
 msgid "File is already disabled."
 msgstr "Bestân is al útskeakele."
 
-#: src/olympia/addons/serializers.py:543 src/olympia/addons/views.py:738
+#: src/olympia/addons/serializers.py:544 src/olympia/addons/views.py:738
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
 "De nijste goedkarre ferzje fan dizze %s add-on kin net fuortsmiten of útskeakele wurde, omdat de foarige ferzje net goedkard is foar promoasje as %s. Nim kontakt op mei AMO-behearders as jo hjir "
 "help by nedich hawwe."
 
-#: src/olympia/addons/serializers.py:570
+#: src/olympia/addons/serializers.py:571
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr "Fermelde ferzjes kinne net yntsjinne wurde, wylst de add-on útskeakele is."
 
-#: src/olympia/addons/serializers.py:611
+#: src/olympia/addons/serializers.py:612
 #, python-format
 msgid "%(addon_type_plural)s are not supported by %(app_name)s"
 msgstr "%(addon_type_plural)s wurde net stipe troch %(app_name)s"
 
-#: src/olympia/addons/serializers.py:650 src/olympia/devhub/forms.py:926
+#: src/olympia/addons/serializers.py:651 src/olympia/devhub/forms.py:930
 #, python-format
 msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
 msgstr "Unjildich ferzjeberik. Foar Firefox foar Android meie jo allinnich in berik kieze dat begjint mei ferzje %(max)s of heger, of einiget mei leger as ferzje %(min)s."
 
-#: src/olympia/addons/serializers.py:899
+#: src/olympia/addons/serializers.py:900
 msgid "Add-ons need at least one owner."
 msgstr "Add-ons hawwe op syn minst ien eigener nedich."
 
-#: src/olympia/addons/serializers.py:914
+#: src/olympia/addons/serializers.py:915
 msgid "Add-ons need at least one listed author."
 msgstr "Add-ons hawwe op syn minst ien fermelde eigener nedich."
 
-#: src/olympia/addons/serializers.py:946
+#: src/olympia/addons/serializers.py:947
 msgid "Account not found."
 msgstr "Account net fûn."
 
-#: src/olympia/addons/serializers.py:959 src/olympia/devhub/forms.py:426 src/olympia/devhub/forms.py:496
+#: src/olympia/addons/serializers.py:960 src/olympia/devhub/forms.py:430 src/olympia/devhub/forms.py:500
 msgid "An author can only be present once."
 msgstr "In skriuwer kin mar ien kear fermeld wurde."
 
-#: src/olympia/addons/serializers.py:970 src/olympia/devhub/forms.py:438
+#: src/olympia/addons/serializers.py:971 src/olympia/devhub/forms.py:442
 msgid "The account needs a display name before it can be added as an author."
 msgstr "De account hat inskermnamme nedich foardat dizze as auteur tafoege wurde kin."
 
-#: src/olympia/addons/serializers.py:1248
+#: src/olympia/addons/serializers.py:1254
 msgid "This slug cannot be used. Please choose another."
 msgstr "Dizze identifikator kin net brûkt wurde. Kies in oare."
 
@@ -1549,7 +1549,7 @@ msgstr "Webûntwikkeling"
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr "Download Firefox-útwreidingen mei webûntwikkelhelpmiddelen. Dizze kategory omfettet útwreidingen foar GitHub, wikseljen fan user agent, cookiebehear, en mear."
 
-#: src/olympia/constants/categories.py:198 src/olympia/constants/categories.py:290 src/olympia/devhub/forms.py:608
+#: src/olympia/constants/categories.py:198 src/olympia/constants/categories.py:290 src/olympia/devhub/forms.py:612
 msgid "Other"
 msgstr "Oars"
 
@@ -1860,172 +1860,172 @@ msgstr "Open Search-add-ons wurde {blog_link_open}net mear stipe op AMO{blog_lin
 msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
 msgstr "Opladen fan Manifest v3 wurdt op dit stuit net stipe. {start_href}Mear ynfo oer de stipetiidsline{end_href}."
 
-#: src/olympia/devhub/forms.py:90
+#: src/olympia/devhub/forms.py:91
 msgid "This slug is already in use. Please choose another."
 msgstr "Dizze identifikator wurdt al brûkt. Kies in oar."
 
-#: src/olympia/devhub/forms.py:93
+#: src/olympia/devhub/forms.py:94
 #, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
 msgstr "De identifikator kin net ‘%(slug)s’ wêze. Kies in oar."
 
 #. L10n: {0} is the number of categories.
-#: src/olympia/devhub/forms.py:212
+#: src/olympia/devhub/forms.py:216
 #, python-brace-format
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "Jo kinne mar {0} kategory brûke."
 msgstr[1] "Jo kinne mar {0} kategoryen brûke."
 
-#: src/olympia/devhub/forms.py:222
+#: src/olympia/devhub/forms.py:226
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "De kategory ferskaat kin net mei ekstra kategoryen kombinearre wurde."
 
-#: src/olympia/devhub/forms.py:288
+#: src/olympia/devhub/forms.py:292
 #, python-format
 msgid "URL domain must be one of [%s]."
 msgstr "Domein fan URL moat der ien fan [%s] wêze."
 
-#: src/olympia/devhub/forms.py:304
+#: src/olympia/devhub/forms.py:308
 #, python-brace-format
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] "Jo hawwe {0} label te folle."
 msgstr[1] "Jo hawwe {0} labels te folle."
 
-#: src/olympia/devhub/forms.py:323
+#: src/olympia/devhub/forms.py:327
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
 msgstr "Eardat jo jo standertlocale wizigje, moatte jo in namme, gearfetting en beskriuwing foar dy locale yn jaan. %s ûntbrekt."
 
-#: src/olympia/devhub/forms.py:408
+#: src/olympia/devhub/forms.py:412
 msgid "Users can not be added directly"
 msgstr "Brûkers kinne net direkt tafoege wurde"
 
-#: src/olympia/devhub/forms.py:473
+#: src/olympia/devhub/forms.py:477
 msgid "Must have at least one owner."
 msgstr "Der moat op syn minst ien eigener wêze."
 
-#: src/olympia/devhub/forms.py:475
+#: src/olympia/devhub/forms.py:479
 msgid "At least one author must be listed."
 msgstr "Der moat op syn minst ien skriuwer fermeld wurde."
 
-#: src/olympia/devhub/forms.py:523
+#: src/olympia/devhub/forms.py:527
 msgid "Slug incorrect."
 msgstr "Koade net krekt."
 
-#: src/olympia/devhub/forms.py:558 src/olympia/devhub/templates/devhub/versions/edit.html:88
+#: src/olympia/devhub/forms.py:562 src/olympia/devhub/templates/devhub/versions/edit.html:88
 msgid "Details"
 msgstr "Details"
 
-#: src/olympia/devhub/forms.py:579
+#: src/olympia/devhub/forms.py:583
 msgid "What is your license's name?"
 msgstr "Wat is de namme fan jo lisinsje?"
 
-#: src/olympia/devhub/forms.py:581 src/olympia/devhub/forms.py:628
+#: src/olympia/devhub/forms.py:585 src/olympia/devhub/forms.py:632
 msgid "Custom License"
 msgstr "Oanpaste lisinsje"
 
-#: src/olympia/devhub/forms.py:586
+#: src/olympia/devhub/forms.py:590
 msgid "Provide the text of your license."
 msgstr "Jou de tekst fan jo lisinsje."
 
-#: src/olympia/devhub/forms.py:636
+#: src/olympia/devhub/forms.py:640
 msgid "License text is required when choosing Other."
 msgstr "As jo Oars kieze, is in lisinsjetekst fereaske."
 
-#: src/olympia/devhub/forms.py:692
+#: src/olympia/devhub/forms.py:696
 msgid "This add-on has an End-User License Agreement"
 msgstr "Dizze add-on hat in brûksrjochtoerienkomst"
 
-#: src/olympia/devhub/forms.py:697
+#: src/olympia/devhub/forms.py:701
 msgid "Please specify your add-on's End-User License Agreement:"
 msgstr "Jou de brûksrjochtoerienkomst fan jo add-on op:"
 
-#: src/olympia/devhub/forms.py:700
+#: src/olympia/devhub/forms.py:704
 msgid "This add-on has a Privacy Policy"
 msgstr "Dizze add-on hat in privacybelied"
 
-#: src/olympia/devhub/forms.py:705
+#: src/olympia/devhub/forms.py:709
 msgid "Please specify your add-on's Privacy Policy:"
 msgstr "Jou it privacybelied fan jo add-on op:"
 
-#: src/olympia/devhub/forms.py:740
+#: src/olympia/devhub/forms.py:744
 #, python-brace-format
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Net-stipe bestânstype, laad in argyfbestân {extensions} op."
 
-#: src/olympia/devhub/forms.py:784
+#: src/olympia/devhub/forms.py:788
 msgid "View current"
 msgstr "Aktuele werjaan"
 
-#: src/olympia/devhub/forms.py:907
+#: src/olympia/devhub/forms.py:911
 msgid "Invalid version range."
 msgstr "Unjildich ferzjeberik."
 
-#: src/olympia/devhub/forms.py:1013
+#: src/olympia/devhub/forms.py:1017
 msgid "Need at least one compatible application."
 msgstr "Der moat op syn minst ien kompatibele tapassing wêze."
 
-#: src/olympia/devhub/forms.py:1055 src/olympia/devhub/forms.py:1113
+#: src/olympia/devhub/forms.py:1059 src/olympia/devhub/forms.py:1117
 msgid "There was an error with your upload. Please try again."
 msgstr "Der is in flater bard wylst jo oplaad. Probearje it nochris."
 
-#: src/olympia/devhub/forms.py:1060
+#: src/olympia/devhub/forms.py:1064
 msgid "Override failed validation"
 msgstr "Mislearre falidaasje negearje"
 
-#: src/olympia/devhub/forms.py:1070
+#: src/olympia/devhub/forms.py:1074
 msgid "Need to select at least one application."
 msgstr "Jo moatte op syn minst ien tapassing selektearje."
 
-#: src/olympia/devhub/forms.py:1075
+#: src/olympia/devhub/forms.py:1079
 msgid "You have submitted too many uploads recently. Please try again after some time."
 msgstr "Jo hawwe koartlyn te folle oplaads yntsjinne. Probearje it nei in skoft opnij."
 
-#: src/olympia/devhub/forms.py:1124 src/olympia/signing/views.py:156
+#: src/olympia/devhub/forms.py:1128 src/olympia/signing/views.py:156
 #, python-brace-format
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Ferzje {version} is earder al opladen fuortsmiten."
 
-#: src/olympia/devhub/forms.py:1133 src/olympia/devhub/forms.py:1139 src/olympia/signing/views.py:158
+#: src/olympia/devhub/forms.py:1137 src/olympia/devhub/forms.py:1143 src/olympia/signing/views.py:158
 #, python-brace-format
 msgid "Version {version} already exists."
 msgstr "Ferzje {version} bestiet al."
 
-#: src/olympia/devhub/forms.py:1135
+#: src/olympia/devhub/forms.py:1139
 msgid "Continue with existing upload instead?"
 msgstr "Trochgean mei besteande oplaad?"
 
-#: src/olympia/devhub/forms.py:1173 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:7 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:22
+#: src/olympia/devhub/forms.py:1177 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:7 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:22
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:37
 msgid "Yes"
 msgstr "Ja"
 
-#: src/olympia/devhub/forms.py:1173 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:13 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:28
+#: src/olympia/devhub/forms.py:1177 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:13 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:28
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:52
 msgid "No"
 msgstr "Nee"
 
-#: src/olympia/devhub/forms.py:1188
+#: src/olympia/devhub/forms.py:1192
 msgid "You have not uploaded a source file."
 msgstr "Jo hawwe gjin boarnebestân opladen."
 
-#: src/olympia/devhub/forms.py:1191
+#: src/olympia/devhub/forms.py:1195
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "Boarnebestân opladen, mar jo hawwe oanjûn dat der gjin boarne nedich wie."
 
-#: src/olympia/devhub/forms.py:1255
+#: src/olympia/devhub/forms.py:1259
 #, python-brace-format
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
 msgstr "Soargje derfoar dat namme en gearfetting tegearre op syn heechst {limit_value} tekens bestiet (se hawwe no {show_value})."
 
-#: src/olympia/devhub/forms.py:1374
+#: src/olympia/devhub/forms.py:1378
 #, python-brace-format
 msgid "On this site. <span class=\"helptext\">Your submission is publicly listed on {site_domain}.</span>"
 msgstr "Op dizze website. <span class=\"helptext\">Jo ynstjoering wurdt iepenbier fermeld op {site_domain}.</span>"
 
-#: src/olympia/devhub/forms.py:1381
+#: src/olympia/devhub/forms.py:1385
 #, python-brace-format
 msgid ""
 "On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
@@ -2034,31 +2034,31 @@ msgstr ""
 "Sels. <span class=\"helptext\">Neidat jo ynstjoering ûndertekene is troch Mozilla, kinne jo it .xpi-bestân downloade yn de Untwikkelershub en dizze foar jo publyk beskikber stelle. Soargje derfoar "
 "dat yn it add-onmanifest de <a {a_attrs}>update_url</a> fermeld wurdt, omdat dit de URL is wêr’t Firefox fernijingen fynt foar automatyske ymplemintaasje by jo brûkers.</span>"
 
-#: src/olympia/devhub/forms.py:1420 src/olympia/devhub/templates/devhub/includes/agreement.html:17
+#: src/olympia/devhub/forms.py:1424 src/olympia/devhub/templates/devhub/includes/agreement.html:17
 msgid "Display Name"
 msgstr "Werjeftenamme"
 
-#: src/olympia/devhub/forms.py:1451
+#: src/olympia/devhub/forms.py:1455
 msgid "Confirm email address"
 msgstr "E-mailadres befêstigje"
 
-#: src/olympia/devhub/forms.py:1452
+#: src/olympia/devhub/forms.py:1456
 msgid "Generate new credentials"
 msgstr "Nije referinsjes generearje"
 
-#: src/olympia/devhub/forms.py:1453
+#: src/olympia/devhub/forms.py:1457
 msgid "Revoke and regenerate credentials"
 msgstr "Referinsjes ynlûke en opnij generearje"
 
-#: src/olympia/devhub/forms.py:1454
+#: src/olympia/devhub/forms.py:1458
 msgid "Revoke"
 msgstr "Ynlûke"
 
-#: src/olympia/devhub/forms.py:1493
+#: src/olympia/devhub/forms.py:1497
 msgid "JWT issuer"
 msgstr "JWT-útjouwer"
 
-#: src/olympia/devhub/forms.py:1500
+#: src/olympia/devhub/forms.py:1504
 #, python-brace-format
 msgid ""
 "To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
@@ -2067,32 +2067,32 @@ msgstr ""
 "Ferstjoer om API-oanfragen te dwaan in <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as de autorisaasjeheader. Jo moatte foar elke oanfraach in JWT generearje, lykas útlein yn de <a "
 "href=\"{docs_url}\">API-dokumintaasje</a>."
 
-#: src/olympia/devhub/forms.py:1510
+#: src/olympia/devhub/forms.py:1514
 msgid "JWT secret"
 msgstr "JWT-geheim"
 
-#: src/olympia/devhub/forms.py:1531
+#: src/olympia/devhub/forms.py:1535
 #, python-brace-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
 msgstr "Klik hjirûnder op de knop Befêstigje om nije API-kaaien foar brûker <strong>{name}</strong> te generearjen."
 
-#: src/olympia/devhub/forms.py:1537
+#: src/olympia/devhub/forms.py:1541
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
 msgstr "Der sil in befêstigingskeppeling nei jo e-mailadres ferstjoerd. Nei befêstiging fine jo jo API-kaaien op dizze side."
 
-#: src/olympia/devhub/forms.py:1554
+#: src/olympia/devhub/forms.py:1558
 msgid "You don't have any API credentials."
 msgstr "Jo hawwe gjin API-oanmeldgegevens."
 
-#: src/olympia/devhub/forms.py:1565
+#: src/olympia/devhub/forms.py:1569
 msgid "Something went wrong, please contact developer support."
 msgstr "Der is wat misgien, nim kontakt op mei stipe foar ûntwikkelers."
 
-#: src/olympia/devhub/forms.py:1622
+#: src/olympia/devhub/forms.py:1626
 msgid "Choose version"
 msgstr "Ferzje kieze"
 
-#: src/olympia/devhub/forms.py:1692
+#: src/olympia/devhub/forms.py:1696
 msgid "You must select a channel and version to rollback to."
 msgstr "Jo moatte in kanaal en in ferzje selektearje om nei werom te gean."
 
@@ -6389,7 +6389,7 @@ msgstr "Return To AMO is op dit stuit útskeakele"
 msgid "Invalid Return To AMO guid (not in base64url format?)"
 msgstr "Unjildige GUID foar Return To AMO (net yn base64url-yndieling?)"
 
-#: src/olympia/search/filters.py:934
+#: src/olympia/search/filters.py:932
 msgid "Maximum query length exceeded."
 msgstr "Maksimale lingte fan sykopdracht oerskreaun."
 

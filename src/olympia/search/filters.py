@@ -767,17 +767,15 @@ class SearchQueryFilter(BaseFilterBackend):
                                 }
                             }
                         },
-                        # For the trigrams query, we require at least 67% of
+                        # For the trigrams query, we require at least 75% of
                         # the trigrams to be present. minimum_should_match is
-                        # rounded down to the lowest integer, so picking 66%
-                        # would mean 3 trigrams in the query would only require
-                        # 1 matching trigram in the name: int(3*66/100) = 1.
-                        # 67% ensures 2 need to match.
+                        # rounded down to the lowest integer. See table at
+                        # https://github.com/mozilla/addons/issues/15807
                         {
                             'match': {
                                 'name.trigrams': {
                                     'query': search_query,
-                                    'minimum_should_match': '67%',
+                                    'minimum_should_match': '75%',
                                 }
                             }
                         },

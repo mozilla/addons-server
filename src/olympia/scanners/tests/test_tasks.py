@@ -38,13 +38,13 @@ from olympia.scanners.models import (
 from olympia.scanners.tasks import (
     _run_yara,
     call_mad_api,
-    mark_yara_query_rule_as_completed_or_aborted,
+    mark_scanner_query_rule_as_completed_or_aborted,
     run_customs,
     run_narc_on_version,
     run_scanner,
+    run_scanner_query_rule,
+    run_scanner_query_rule_on_versions_chunk,
     run_yara,
-    run_yara_query_rule,
-    run_yara_query_rule_on_versions_chunk,
 )
 from olympia.versions.models import Version
 
@@ -583,6 +583,73 @@ class TestRunNarc(UploadMixin, TestCase):
             ]
         )
         return narc_result
+
+    @mock.patch('olympia.scanners.tasks.statsd.incr')
+    def test_run_xpi_multiple_translations(self, incr_mock):
+        addon = addon_factory(file_kw={'filename': 'notify-link-clicks-i18n.xpi'})
+        rule = ScannerRule.objects.create(
+            name='match_in_japanese', scanner=NARC, definition='を通知'
+        )
+        incr_mock.reset_mock()
+
+        run_narc_on_version(addon.current_version.pk)
+
+        scanner_results = ScannerResult.objects.all()
+        assert len(scanner_results) == 1
+        narc_result = scanner_results[0]
+        assert narc_result.scanner == NARC
+        assert narc_result.upload is None
+        assert narc_result.version == addon.current_version
+        assert narc_result.has_matches
+        assert list(narc_result.matched_rules.all()) == [rule]
+        assert len(narc_result.results) == 1
+        assert narc_result.results == [
+            {
+                'meta': {
+                    'locale': 'ja',
+                    'pattern': 'を通知',
+                    'source': 'xpi',
+                    'span': [
+                        3,
+                        6,
+                    ],
+                    'string': 'リンクを通知する',
+                },
+                'rule': 'match_in_japanese',
+            },
+        ]
+
+    @mock.patch('olympia.scanners.tasks.statsd.incr')
+    def test_run_xpi_no_name(self, incr_mock):
+        # If somehow an XPI without a name gets scanned we shouldn't fail.
+        # Validation could have been bypassed by an admin.
+        addon = addon_factory(
+            file_kw={'filename': 'webextension_with_no_name_in_manifest.xpi'}
+        )
+        ScannerRule.objects.create(
+            name='match_everything', scanner=NARC, definition='.*'
+        )
+        incr_mock.reset_mock()
+
+        run_narc_on_version(addon.current_version.pk)
+
+        scanner_results = ScannerResult.objects.all()
+        assert len(scanner_results) == 1
+
+    @mock.patch('olympia.scanners.tasks.statsd.incr')
+    def test_run_invalid_manifest_somehow(self, incr_mock):
+        # If somehow an XPI with a entirely invalid manifest gets scanned we
+        # shouldn't fail. Validation could have been bypassed by an admin.
+        addon = addon_factory(file_kw={'filename': 'invalid_manifest_webextension.xpi'})
+        ScannerRule.objects.create(
+            name='match_everything', scanner=NARC, definition='.*'
+        )
+        incr_mock.reset_mock()
+
+        run_narc_on_version(addon.current_version.pk)
+
+        scanner_results = ScannerResult.objects.all()
+        assert len(scanner_results) == 1
 
     @mock.patch('olympia.scanners.tasks.statsd.incr')
     def test_run_multiple_authors_match(self, incr_mock):
@@ -1136,17 +1203,17 @@ class TestRunYara(UploadMixin, TestCase):
 
         received_results = run_yara(self.results, self.upload.pk)
 
-        yara_results = ScannerResult.objects.all()
-        assert len(yara_results) == 1
-        yara_result = yara_results[0]
-        assert yara_result.upload == self.upload
-        assert len(yara_result.results) == 2
-        assert yara_result.results[0] == {
+        scanner_results = ScannerResult.objects.all()
+        assert len(scanner_results) == 1
+        scanner_result = scanner_results[0]
+        assert scanner_result.upload == self.upload
+        assert len(scanner_result.results) == 2
+        assert scanner_result.results[0] == {
             'rule': rule.name,
             'tags': [],
             'meta': {'filename': 'index.js'},
         }
-        assert yara_result.results[1] == {
+        assert scanner_result.results[1] == {
             'rule': rule.name,
             'tags': [],
             'meta': {'filename': 'manifest.json'},
@@ -1463,7 +1530,7 @@ class TestRunYaraQueryRule(TestCase):
         super().setUp()
 
         self.version = addon_factory(
-            file_kw={'filename': 'webextension.xpi'}
+            name='WebExtension', file_kw={'filename': 'webextension.xpi'}
         ).current_version
 
         # This rule will match for all files in the xpi.
@@ -1530,7 +1597,7 @@ class TestRunYaraQueryRule(TestCase):
         )
 
         # Run the task.
-        run_yara_query_rule.delay(self.rule.pk)
+        run_scanner_query_rule.delay(self.rule.pk)
 
         assert ScannerQueryResult.objects.count() == len(included_versions)
         assert sorted(
@@ -1546,37 +1613,142 @@ class TestRunYaraQueryRule(TestCase):
     def test_run_on_disabled_addons(self):
         self.version.addon.update(status=amo.STATUS_DISABLED)
         self.rule.update(run_on_disabled_addons=True, state=SCHEDULED)
-        run_yara_query_rule.delay(self.rule.pk)
+        run_scanner_query_rule.delay(self.rule.pk)
 
         assert ScannerQueryResult.objects.count() == 1
         assert ScannerQueryResult.objects.get().version == self.version
         self.rule.reload()
         assert self.rule.state == COMPLETED
 
+    def test_run_on_current_version_only(self):
+        # Pretend we went through the admin, run on current version only.
+        self.rule.update(state=SCHEDULED, run_on_current_version_only=True)
+
+        # Similar to test_run_on_chunk() except it needs to find the versions
+        # by itself.
+        other_addon = addon_factory(
+            version_kw={'created': self.days_ago(1)},
+            file_kw={'filename': 'webextension.xpi'},
+        )
+        included_versions = [
+            self.version,
+            other_addon.current_version,
+        ]
+        # Ignored versions:
+        version_factory(
+            addon=other_addon,
+            channel=amo.CHANNEL_UNLISTED,
+            file_kw={'filename': 'webextension.xpi'},
+        )
+        (
+            version_factory(
+                addon=other_addon,
+                created=self.days_ago(42),
+                file_kw={'filename': 'webextension.xpi'},
+            ),
+        )
+        # Listed Webextension version belonging to mozilla disabled add-on.
+        addon_factory(
+            status=amo.STATUS_DISABLED, file_kw={'filename': 'webextension.xpi'}
+        )
+        # Listed extension without a File instance
+        addon_factory(
+            version_kw={'channel': amo.CHANNEL_LISTED, 'version': '42.42.42.42'}
+        )
+
+        # Run the task.
+        run_scanner_query_rule.delay(self.rule.pk)
+
+        assert ScannerQueryResult.objects.count() == len(included_versions)
+        assert sorted(
+            ScannerQueryResult.objects.values_list('version_id', flat=True)
+        ) == sorted(v.pk for v in included_versions)
+        self.rule.reload()
+        assert self.rule.state == COMPLETED
+        assert self.rule.task_count == 1
+        # We run tests in eager mode, so we can't retrieve the result for real,
+        # just make sure the id was set to something.
+        assert self.rule.celery_group_result_id is not None
+
+    def test_run_on_specific_channel(self):
+        # Pretend we went through the admin, run on unlisted channel only.
+        self.rule.update(state=SCHEDULED, run_on_specific_channel=amo.CHANNEL_UNLISTED)
+
+        # Similar to test_run_on_chunk() except it needs to find the versions
+        # by itself.
+        other_addon = addon_factory(
+            version_kw={'created': self.days_ago(1)},
+            file_kw={'filename': 'webextension.xpi'},
+        )
+        included_versions = [
+            # Only unlisted webextension version of this add-on.
+            addon_factory(
+                disabled_by_user=True,  # Doesn't matter.
+                version_kw={'channel': amo.CHANNEL_UNLISTED},
+                file_kw={'filename': 'webextension.xpi'},
+            ).versions.get(),
+            # Only unlisted webextension version of an add-on that has multiple
+            # versions.
+            version_factory(
+                addon=other_addon,
+                created=self.days_ago(42),
+                channel=amo.CHANNEL_UNLISTED,
+                file_kw={'filename': 'webextension.xpi'},
+            ),
+        ]
+        # Ignored versions:
+        # Listed Webextension version belonging to mozilla disabled add-on.
+        addon_factory(file_kw={'filename': 'webextension.xpi'})
+        # Unlisted extension without a File instance
+        Version.objects.create(
+            addon=other_addon, channel=amo.CHANNEL_UNLISTED, version='42.42.42.42'
+        )
+        # Unlisted extension with a File... but no File.file
+        File.objects.create(
+            manifest_version=2,
+            version=Version.objects.create(
+                addon=other_addon, channel=amo.CHANNEL_UNLISTED, version='43.43.43.43'
+            ),
+        )
+
+        # Run the task.
+        run_scanner_query_rule.delay(self.rule.pk)
+
+        assert ScannerQueryResult.objects.count() == len(included_versions)
+        assert sorted(
+            ScannerQueryResult.objects.values_list('version_id', flat=True)
+        ) == sorted(v.pk for v in included_versions)
+        self.rule.reload()
+        assert self.rule.state == COMPLETED
+        assert self.rule.task_count == 1
+        # We run tests in eager mode, so we can't retrieve the result for real,
+        # just make sure the id was set to something.
+        assert self.rule.celery_group_result_id is not None
+
     def test_run_not_new(self):
         self.rule.update(state=RUNNING)  # Not SCHEDULED.
-        run_yara_query_rule.delay(self.rule.pk)
+        run_scanner_query_rule.delay(self.rule.pk)
 
         # Nothing should have changed.
         assert ScannerQueryResult.objects.count() == 0
         self.rule.reload()
         assert self.rule.state == RUNNING
 
-    def test_mark_yara_query_rule_as_completed(self):
+    def test_mark_scanner_query_rule_as_completed(self):
         self.rule.update(state=RUNNING)
-        mark_yara_query_rule_as_completed_or_aborted(self.rule.pk)
+        mark_scanner_query_rule_as_completed_or_aborted(self.rule.pk)
         self.rule.reload()
         assert self.rule.state == COMPLETED
 
-    def test_mark_yara_query_rule_as_aborted(self):
+    def test_mark_scanner_query_rule_as_aborted(self):
         self.rule.update(state=ABORTING)
-        mark_yara_query_rule_as_completed_or_aborted(self.rule.pk)
+        mark_scanner_query_rule_as_completed_or_aborted(self.rule.pk)
         self.rule.reload()
         assert self.rule.state == ABORTED
 
     def test_run_on_chunk_aborting(self):
         self.rule.update(state=ABORTING)
-        run_yara_query_rule_on_versions_chunk([self.version.pk], self.rule.pk)
+        run_scanner_query_rule_on_versions_chunk([self.version.pk], self.rule.pk)
 
         assert ScannerQueryResult.objects.count() == 0
 
@@ -1587,7 +1759,7 @@ class TestRunYaraQueryRule(TestCase):
         # This shouldn't happen - if there are any tasks left, state should be
         # RUNNING or ABORTING, but let's make sure we handle it.
         self.rule.update(state=ABORTED)
-        run_yara_query_rule_on_versions_chunk([self.version.pk], self.rule.pk)
+        run_scanner_query_rule_on_versions_chunk([self.version.pk], self.rule.pk)
 
         assert ScannerQueryResult.objects.count() == 0
         self.rule.reload()
@@ -1595,7 +1767,7 @@ class TestRunYaraQueryRule(TestCase):
 
     def test_run_on_chunk(self):
         self.rule.update(state=RUNNING)  # Pretend we started running the rule.
-        run_yara_query_rule_on_versions_chunk([self.version.pk], self.rule.pk)
+        run_scanner_query_rule_on_versions_chunk([self.version.pk], self.rule.pk)
 
         yara_results = ScannerQueryResult.objects.all()
         assert len(yara_results) == 1
@@ -1619,13 +1791,13 @@ class TestRunYaraQueryRule(TestCase):
     def test_run_on_chunk_was_blocked(self):
         self.rule.update(state=RUNNING)  # Pretend we started running the rule.
         block_factory(addon=self.version.addon, updated_by=user_factory())
-        run_yara_query_rule_on_versions_chunk([self.version.pk], self.rule.pk)
+        run_scanner_query_rule_on_versions_chunk([self.version.pk], self.rule.pk)
 
-        yara_results = ScannerQueryResult.objects.all()
-        assert len(yara_results) == 1
-        yara_result = yara_results[0]
-        assert yara_result.version == self.version
-        assert yara_result.was_blocked
+        scanner_results = ScannerQueryResult.objects.all()
+        assert len(scanner_results) == 1
+        scanner_result = scanner_results[0]
+        assert scanner_result.version == self.version
+        assert scanner_result.was_blocked
 
     def test_run_on_chunk_not_blocked(self):
         self.rule.update(state=RUNNING)  # Pretend we started running the rule.
@@ -1642,13 +1814,13 @@ class TestRunYaraQueryRule(TestCase):
             addon=addon_factory(guid='@differentguid'),
             updated_by=user_factory(),
         )
-        run_yara_query_rule_on_versions_chunk([self.version.pk], self.rule.pk)
+        run_scanner_query_rule_on_versions_chunk([self.version.pk], self.rule.pk)
 
-        yara_results = ScannerQueryResult.objects.all()
-        assert len(yara_results) == 1
-        yara_result = yara_results[0]
-        assert yara_result.version == self.version
-        assert not yara_result.was_blocked
+        scanner_results = ScannerQueryResult.objects.all()
+        assert len(scanner_results) == 1
+        scanner_result = scanner_results[0]
+        assert scanner_result.version == self.version
+        assert not scanner_result.was_blocked
 
     def test_run_on_chunk_disabled(self):
         # Make sure it still works when a file has been disabled
@@ -1659,10 +1831,82 @@ class TestRunYaraQueryRule(TestCase):
         # Unlike "regular" ScannerRule/ScannerResult, for query stuff we don't
         # store a result instance if the version doesn't match the rule.
         self.rule.update(definition='rule always_false { condition: false }')
-        run_yara_query_rule_on_versions_chunk([self.version.pk], self.rule.pk)
+        run_scanner_query_rule_on_versions_chunk([self.version.pk], self.rule.pk)
         assert ScannerQueryResult.objects.count() == 0
         self.rule.reload()
         assert self.rule.state == NEW  # Not touched by this task.
+
+
+class TestRunNarcQueryRule(TestRunYaraQueryRule):
+    def setUp(self):
+        super().setUp()
+
+        # Make the test rule a NARC rule.
+        self.rule.update(
+            name='match_everything',
+            scanner=NARC,
+            definition='.*',
+            state=NEW,
+        )
+
+        # Just to be sure we're always starting fresh.
+        assert len(ScannerQueryResult.objects.all()) == 0
+
+    def test_run_on_chunk(self):
+        self.rule.update(state=RUNNING)  # Pretend we started running the rule.
+        run_scanner_query_rule_on_versions_chunk([self.version.pk], self.rule.pk)
+
+        scanner_results = ScannerQueryResult.objects.all()
+        assert len(scanner_results) == 1
+        scanner_result = scanner_results.get()
+        assert scanner_result.version == self.version
+        assert not scanner_result.was_blocked
+        assert len(scanner_result.results) == 3
+        assert scanner_result.results == [
+            {
+                'meta': {
+                    'locale': 'en-us',
+                    'pattern': '.*',
+                    'source': 'db_addon',
+                    'span': [
+                        0,
+                        12,
+                    ],
+                    'string': 'WebExtension',
+                },
+                'rule': 'match_everything',
+            },
+            {
+                'meta': {
+                    'locale': None,
+                    'original_string': 'My WebExtension Addon',
+                    'pattern': '.*',
+                    'source': 'xpi',
+                    'span': [
+                        0,
+                        19,
+                    ],
+                    'string': 'MyWebExtensionAddon',
+                    'variant': 'normalized',
+                },
+                'rule': 'match_everything',
+            },
+            {
+                'meta': {
+                    'locale': None,
+                    'pattern': '.*',
+                    'source': 'xpi',
+                    'span': [
+                        0,
+                        21,
+                    ],
+                    'string': 'My WebExtension Addon',
+                },
+                'rule': 'match_everything',
+            },
+        ]
+        self.rule.reload()
+        assert self.rule.state == RUNNING  # Not touched by this task.
 
 
 class TestCallMadApi(UploadMixin, TestCase):

@@ -300,7 +300,7 @@ msgstr "აჭარბებს კატეგორიების დას�
 msgid "The \"other\" category cannot be combined with another category"
 msgstr "„სხვა“ კატეგორია არ შეიძლება გაერთიანდეს განსხვავებულ კატეგორიასთან"
 
-#: src/olympia/addons/fields.py:76 src/olympia/addons/serializers.py:1268
+#: src/olympia/addons/fields.py:76 src/olympia/addons/serializers.py:1274
 msgid "Invalid category name."
 msgstr "კატეგორიის არასწორი სახელი."
 
@@ -309,11 +309,11 @@ msgstr "კატეგორიის არასწორი სახელ�
 msgid "URL domain must be one of [{domains}]."
 msgstr "მისამართების ჯგუფი უნდა იყოს რომელიმე [{domains}]."
 
-#: src/olympia/addons/fields.py:125 src/olympia/devhub/forms.py:294
+#: src/olympia/addons/fields.py:125 src/olympia/devhub/forms.py:298
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
 msgstr "GitHub-დამკვეთების ბმულში უნდა იყოს /sponsors/."
 
-#: src/olympia/addons/fields.py:128 src/olympia/devhub/forms.py:297
+#: src/olympia/addons/fields.py:128 src/olympia/devhub/forms.py:301
 msgid "URLs must start with https://."
 msgstr "ბმულების თავსართი უნდა იყოს https://."
 
@@ -327,7 +327,7 @@ msgstr "ლიცენზია დაბოლოებით {value} არ �
 msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr "მხარდაუჭერელი სახის ფაილი, გთხოვთ, ატვირთოთ არქივის სახით ({extensions})."
 
-#: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:772 src/olympia/files/utils.py:761 src/olympia/reviewers/forms.py:386
+#: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:776 src/olympia/files/utils.py:761 src/olympia/reviewers/forms.py:386
 msgid "Invalid or broken archive."
 msgstr "უმართებულო ან დაზიანებული არქივი."
 
@@ -343,7 +343,7 @@ msgstr "ვერსიის ზედა ზღვარი არასწო
 msgid "Unknown min app version specified"
 msgstr "ვერსიის ქვედა ზღვარი არასწორადაა მითითებული"
 
-#: src/olympia/addons/fields.py:307 src/olympia/addons/fields.py:325 src/olympia/addons/serializers.py:636
+#: src/olympia/addons/fields.py:307 src/olympia/addons/fields.py:325 src/olympia/addons/serializers.py:637
 #, python-format
 msgid "Can not override compatibility information set in the manifest for this application (%s)"
 msgstr "ვერ გადაეწერება თავსებადობის მითითებულ მონაცემებს მანიფესტში ამ აპლიკაციისთვის (%s)"
@@ -353,66 +353,66 @@ msgstr "ვერ გადაეწერება თავსებადო�
 msgid "Images must be smaller than %dMB"
 msgstr "სურათი უნდა იყოს არაუმეტეს %d მბ"
 
-#: src/olympia/addons/models.py:2306 src/olympia/addons/models.py:2385 src/olympia/constants/base.py:66
+#: src/olympia/addons/models.py:2314 src/olympia/addons/models.py:2393 src/olympia/constants/base.py:66
 msgid "Listed"
 msgstr "გამოქვეყნებულია"
 
-#: src/olympia/addons/models.py:2563
+#: src/olympia/addons/models.py:2571
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr "დამატებისა და კრებულის მისამართების დაბოლოება უნდა იყოს „/“"
 
-#: src/olympia/addons/serializers.py:328
+#: src/olympia/addons/serializers.py:329
 msgid "Built in licenses can not be updated."
 msgstr "ჩაშენებული ლიცენზიები ვერ განახლდება."
 
-#: src/olympia/addons/serializers.py:523
+#: src/olympia/addons/serializers.py:524
 msgid "Upload is not valid."
 msgstr "ატვირთვა არამართებულია."
 
-#: src/olympia/addons/serializers.py:539
+#: src/olympia/addons/serializers.py:540
 msgid "File is already disabled."
 msgstr "ფაილი უკვე ამორთულია."
 
-#: src/olympia/addons/serializers.py:543 src/olympia/addons/views.py:738
+#: src/olympia/addons/serializers.py:544 src/olympia/addons/views.py:738
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr "უახლესი დამოწმებული ვერსიის %s დამატება ვერ წაიშლება, ვინაიდან წინა ვერსია არ დამოწმებულა %s რეკლამისთვის. გთხოვთ, დაუკავშირდეთ AMO-ს ხელმძღვანელობას ამ საკითხზე დახმარებისთვის."
 
-#: src/olympia/addons/serializers.py:570
+#: src/olympia/addons/serializers.py:571
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr "გამოქვეყნებული ვერსიები ვერ გადაიგზავნება, როცა დამატება გათიშულია."
 
-#: src/olympia/addons/serializers.py:611
+#: src/olympia/addons/serializers.py:612
 #, python-format
 msgid "%(addon_type_plural)s are not supported by %(app_name)s"
 msgstr "%(addon_type_plural)s და %(app_name)s შეუთავსებლებია"
 
-#: src/olympia/addons/serializers.py:650 src/olympia/devhub/forms.py:926
+#: src/olympia/addons/serializers.py:651 src/olympia/devhub/forms.py:930
 #, python-format
 msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
 msgstr "ვერსიის უმართებულო თანრიგი. Firefox Android-ზე შეგიძლიათ აირჩიოთ თანრიგი მხოლოდ საწყისი ვერსიით არანაკლებ %(max)s, ანდა საბოლოო ვერსიით არაუმეტეს %(min)s."
 
-#: src/olympia/addons/serializers.py:899
+#: src/olympia/addons/serializers.py:900
 msgid "Add-ons need at least one owner."
 msgstr "დამატებას უნდა მიეთითოს, სულ მცირე, ერთი მფლობელი მაინც."
 
-#: src/olympia/addons/serializers.py:914
+#: src/olympia/addons/serializers.py:915
 msgid "Add-ons need at least one listed author."
 msgstr "დამატებას უნდა მიეთითოს, სულ მცირე, ერთი ავტორი მაინც."
 
-#: src/olympia/addons/serializers.py:946
+#: src/olympia/addons/serializers.py:947
 msgid "Account not found."
 msgstr "ანგარიში არ მოიძებნა."
 
-#: src/olympia/addons/serializers.py:959 src/olympia/devhub/forms.py:426 src/olympia/devhub/forms.py:496
+#: src/olympia/addons/serializers.py:960 src/olympia/devhub/forms.py:430 src/olympia/devhub/forms.py:500
 msgid "An author can only be present once."
 msgstr "ავტორი, მხოლოდ ერთხელ შეიძლება იყოს წარმოდგენილი."
 
-#: src/olympia/addons/serializers.py:970 src/olympia/devhub/forms.py:438
+#: src/olympia/addons/serializers.py:971 src/olympia/devhub/forms.py:442
 msgid "The account needs a display name before it can be added as an author."
 msgstr "ანგარიში საჭიროებს გამოსაჩენ სახელს, ავტორის დამატებამდე."
 
-#: src/olympia/addons/serializers.py:1248
+#: src/olympia/addons/serializers.py:1254
 msgid "This slug cannot be used. Please choose another."
 msgstr "ეს დაბოლოება ვერ იქნება გამოყენებული. გთხოვთ, შეარჩიოთ სხვა."
 
@@ -1557,7 +1557,7 @@ msgid "Download Firefox extensions that feature web development tools. This cate
 msgstr ""
 "ჩამოტვირთეთ Firefox-ის გაფართოებები, რომლებიც გააუმჯობესებს ვებშემუშავების ხელსაწყოებს. მოიცავს გაფართოებებს GitHub-ისთვის, მომხმარებლის წარმდგენის ცვლილებისთვის, ფუნთუშების მართვისთვის და სხვ."
 
-#: src/olympia/constants/categories.py:198 src/olympia/constants/categories.py:290 src/olympia/devhub/forms.py:608
+#: src/olympia/constants/categories.py:198 src/olympia/constants/categories.py:290 src/olympia/devhub/forms.py:612
 msgid "Other"
 msgstr "სხვა"
 
@@ -1871,172 +1871,172 @@ msgstr "Open-Search-დამატებები აღარაა {blog_link
 msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
 msgstr "V3 ვერსიის მანიფესტი, ამჟამად არაა მხარდაჭერილი, ასატვირთად. {start_href}იხილეთ ვრცლად მხარდაჭერის დროის გრაფიკის შესახებ{end_href}."
 
-#: src/olympia/devhub/forms.py:90
+#: src/olympia/devhub/forms.py:91
 msgid "This slug is already in use. Please choose another."
 msgstr "ეს დაბოლოება უკვე გამოიყენება. გთხოვთ, შეარჩიოთ სხვა."
 
-#: src/olympia/devhub/forms.py:93
+#: src/olympia/devhub/forms.py:94
 #, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
 msgstr "მისამართის დაბოლოება ვერ იქნება „%(slug)s“. გთხოვთ აარჩიოთ სხვა."
 
 #. L10n: {0} is the number of categories.
-#: src/olympia/devhub/forms.py:212
+#: src/olympia/devhub/forms.py:216
 #, python-brace-format
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "თქვენ მხოლოდ {0} კატეგორია გაქვთ."
 msgstr[1] "თქვენ მხოლოდ {0} კატეგორია გაქვთ."
 
-#: src/olympia/devhub/forms.py:222
+#: src/olympia/devhub/forms.py:226
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "კატეგორია „სხვადასხვა“, ვერ გაერთიანდება სხვა კატეგორიებთან."
 
-#: src/olympia/devhub/forms.py:288
+#: src/olympia/devhub/forms.py:292
 #, python-format
 msgid "URL domain must be one of [%s]."
 msgstr "მისამართების ჯგუფი უნდა იყოს რომელიმე [%s]."
 
-#: src/olympia/devhub/forms.py:304
+#: src/olympia/devhub/forms.py:308
 #, python-brace-format
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] "თქვენ დაშვებულზე {0}-ით მეტი ჭდე გაქვთ."
 msgstr[1] "თქვენ დაშვებულზე {0}-ით მეტი ჭდე გაქვთ."
 
-#: src/olympia/devhub/forms.py:323
+#: src/olympia/devhub/forms.py:327
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
 msgstr "ნაგულისხმევი ლოკალის შეცვლამდე, სახელი, შეჯამება და აღწერა ამ ლოკალზე უნდა გქონდეთ. ახლა გაკლიათ %s."
 
-#: src/olympia/devhub/forms.py:408
+#: src/olympia/devhub/forms.py:412
 msgid "Users can not be added directly"
 msgstr "მომხმარებლები პირდაპირ ვერ დაემატება"
 
-#: src/olympia/devhub/forms.py:473
+#: src/olympia/devhub/forms.py:477
 msgid "Must have at least one owner."
 msgstr "აუცილებელია, სულ მცირე ერთი მფლობელის მითითება მაინც."
 
-#: src/olympia/devhub/forms.py:475
+#: src/olympia/devhub/forms.py:479
 msgid "At least one author must be listed."
 msgstr "ერთი ავტორი მაინც უნდა იყოს მითითებული."
 
-#: src/olympia/devhub/forms.py:523
+#: src/olympia/devhub/forms.py:527
 msgid "Slug incorrect."
 msgstr "მისამართის დაბოლოება არასწორია."
 
-#: src/olympia/devhub/forms.py:558 src/olympia/devhub/templates/devhub/versions/edit.html:88
+#: src/olympia/devhub/forms.py:562 src/olympia/devhub/templates/devhub/versions/edit.html:88
 msgid "Details"
 msgstr "შესახებ"
 
-#: src/olympia/devhub/forms.py:579
+#: src/olympia/devhub/forms.py:583
 msgid "What is your license's name?"
 msgstr "რა არის თქვენი ლიცენზიის დასახელება?"
 
-#: src/olympia/devhub/forms.py:581 src/olympia/devhub/forms.py:628
+#: src/olympia/devhub/forms.py:585 src/olympia/devhub/forms.py:632
 msgid "Custom License"
 msgstr "საკუთარი"
 
-#: src/olympia/devhub/forms.py:586
+#: src/olympia/devhub/forms.py:590
 msgid "Provide the text of your license."
 msgstr "ლიცენზიის ტექსტის მითითება."
 
-#: src/olympia/devhub/forms.py:636
+#: src/olympia/devhub/forms.py:640
 msgid "License text is required when choosing Other."
 msgstr "საკუთარის არჩევის შემთხვევაში, საჭიროა ლიცენზიის ტექსტის მითითება."
 
-#: src/olympia/devhub/forms.py:692
+#: src/olympia/devhub/forms.py:696
 msgid "This add-on has an End-User License Agreement"
 msgstr "დამატება, სამომხმარებლო სალიცენზიო შეთანხმებითაა"
 
-#: src/olympia/devhub/forms.py:697
+#: src/olympia/devhub/forms.py:701
 msgid "Please specify your add-on's End-User License Agreement:"
 msgstr "გთხოვთ მიუთითოთ თქვენი დამატების სამომხმარებლო შეთანხმება:"
 
-#: src/olympia/devhub/forms.py:700
+#: src/olympia/devhub/forms.py:704
 msgid "This add-on has a Privacy Policy"
 msgstr "დამატება პირადი მონაცემების დაცვის დებულებითაა"
 
-#: src/olympia/devhub/forms.py:705
+#: src/olympia/devhub/forms.py:709
 msgid "Please specify your add-on's Privacy Policy:"
 msgstr "გთხოვთ მიუთითოთ თქვენი დამატების პირადი მონაცემების დაცვის დებულება:"
 
-#: src/olympia/devhub/forms.py:740
+#: src/olympia/devhub/forms.py:744
 #, python-brace-format
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "ამ სახის ფაილი არაა მხარდაჭერილი, გთხოვთ ატვირთოთ დაარქივებული ფაილი {extensions}."
 
-#: src/olympia/devhub/forms.py:784
+#: src/olympia/devhub/forms.py:788
 msgid "View current"
 msgstr "ამჟამინდელის ნახვა"
 
-#: src/olympia/devhub/forms.py:907
+#: src/olympia/devhub/forms.py:911
 msgid "Invalid version range."
 msgstr "ვერსიის არასწორი დიაპაზონი."
 
-#: src/olympia/devhub/forms.py:1013
+#: src/olympia/devhub/forms.py:1017
 msgid "Need at least one compatible application."
 msgstr "საჭიროა, სულ მცირე ერთი თავსებადი პროგრამა მაინც."
 
-#: src/olympia/devhub/forms.py:1055 src/olympia/devhub/forms.py:1113
+#: src/olympia/devhub/forms.py:1059 src/olympia/devhub/forms.py:1117
 msgid "There was an error with your upload. Please try again."
 msgstr "ატვირთვა ვერ მოხერხდა. გთხოვთ სცადოთ მოგვიანებით."
 
-#: src/olympia/devhub/forms.py:1060
+#: src/olympia/devhub/forms.py:1064
 msgid "Override failed validation"
 msgstr "წარუმატებელ დამოწმებაზე გადაწერა"
 
-#: src/olympia/devhub/forms.py:1070
+#: src/olympia/devhub/forms.py:1074
 msgid "Need to select at least one application."
 msgstr "საჭიროა, სულ მცირე ერთი პროგრამის არჩევა."
 
-#: src/olympia/devhub/forms.py:1075
+#: src/olympia/devhub/forms.py:1079
 msgid "You have submitted too many uploads recently. Please try again after some time."
 msgstr "ზედმეტად ბევრი ატვირთული მასალა წარადგინეთ ახლახან. გთხოვთ, მოითმინოთ და კვლავ სცადოთ ცოტა მოგვიანებით."
 
-#: src/olympia/devhub/forms.py:1124 src/olympia/signing/views.py:156
+#: src/olympia/devhub/forms.py:1128 src/olympia/signing/views.py:156
 #, python-brace-format
 msgid "Version {version} was uploaded before and deleted."
 msgstr "{version} ვერსია იყო ატვირთული და წაიშალა."
 
-#: src/olympia/devhub/forms.py:1133 src/olympia/devhub/forms.py:1139 src/olympia/signing/views.py:158
+#: src/olympia/devhub/forms.py:1137 src/olympia/devhub/forms.py:1143 src/olympia/signing/views.py:158
 #, python-brace-format
 msgid "Version {version} already exists."
 msgstr "{version} ვერსია უკვე არსებობს."
 
-#: src/olympia/devhub/forms.py:1135
+#: src/olympia/devhub/forms.py:1139
 msgid "Continue with existing upload instead?"
 msgstr "გაგრძელდეს მიმდინარე ატვირთვა?"
 
-#: src/olympia/devhub/forms.py:1173 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:7 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:22
+#: src/olympia/devhub/forms.py:1177 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:7 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:22
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:37
 msgid "Yes"
 msgstr "კი"
 
-#: src/olympia/devhub/forms.py:1173 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:13 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:28
+#: src/olympia/devhub/forms.py:1177 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:13 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:28
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:52
 msgid "No"
 msgstr "არა"
 
-#: src/olympia/devhub/forms.py:1188
+#: src/olympia/devhub/forms.py:1192
 msgid "You have not uploaded a source file."
 msgstr "თქვენ არ აგიტვირთავთ წყაროს ფაილი."
 
-#: src/olympia/devhub/forms.py:1191
+#: src/olympia/devhub/forms.py:1195
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "წყაროს ფაილი ატვირთულია, თუმცა მითითებული გაქვთ, რომ წყარო საჭირო არ იყო."
 
-#: src/olympia/devhub/forms.py:1255
+#: src/olympia/devhub/forms.py:1259
 #, python-brace-format
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
 msgstr "დარწმუნდით, რომ სახელი და შეჯამება ერთიანად არ აჭარბებს {limit_value} სიმბოლოს (ახლა არის {show_value})."
 
-#: src/olympia/devhub/forms.py:1374
+#: src/olympia/devhub/forms.py:1378
 #, python-brace-format
 msgid "On this site. <span class=\"helptext\">Your submission is publicly listed on {site_domain}.</span>"
 msgstr "ამ საიტზე. <span class=\"helptext\">თქვენ მიერ გადმოგზავნილი საჯაროდ აღინუსხება საიტზე {site_domain}.</span>"
 
-#: src/olympia/devhub/forms.py:1381
+#: src/olympia/devhub/forms.py:1385
 #, python-brace-format
 msgid ""
 "On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
@@ -2045,63 +2045,63 @@ msgstr ""
 "საკუთარზე. <span class=\"helptext\">გადმოგზავნილი დამოწმდება Mozilla-ს მიერ, შემდეგ შეძლებთ ჩამოტვირთოთ .xpi ფაილი Developer Hub-იდან და გაავრცელოთ მომხმარებლებში. გთხოვთ დარწმუნდეთ, რომ დამატების "
 "დებულების (manifest) <a {a_attrs}>update_url</a> მითითებულია, ვინაიდან ეს ის URL-ბმულია, რომლითაც Firefox მოიძიებს განახლებებს დასაყენებლად, თქვენი მომხმარებლებისთვის.</span>"
 
-#: src/olympia/devhub/forms.py:1420 src/olympia/devhub/templates/devhub/includes/agreement.html:17
+#: src/olympia/devhub/forms.py:1424 src/olympia/devhub/templates/devhub/includes/agreement.html:17
 msgid "Display Name"
 msgstr "გამოსაჩენი სახელი"
 
-#: src/olympia/devhub/forms.py:1451
+#: src/olympia/devhub/forms.py:1455
 msgid "Confirm email address"
 msgstr "ელფოსტის მისამართის დამოწმება"
 
-#: src/olympia/devhub/forms.py:1452
+#: src/olympia/devhub/forms.py:1456
 msgid "Generate new credentials"
 msgstr "ახალი მონაცემების შექმნა"
 
-#: src/olympia/devhub/forms.py:1453
+#: src/olympia/devhub/forms.py:1457
 msgid "Revoke and regenerate credentials"
 msgstr "მონაცემების უარყოფა და ხელახლა შექმნა"
 
-#: src/olympia/devhub/forms.py:1454
+#: src/olympia/devhub/forms.py:1458
 msgid "Revoke"
 msgstr "უარყოფა"
 
-#: src/olympia/devhub/forms.py:1493
+#: src/olympia/devhub/forms.py:1497
 msgid "JWT issuer"
 msgstr "JWT შემქმნელი"
 
-#: src/olympia/devhub/forms.py:1500
+#: src/olympia/devhub/forms.py:1504
 #, python-brace-format
 msgid ""
 "To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
 "href=\"{docs_url}\">API documentation</a>."
 msgstr "API-მოთხოვნებისთვის გაგზავნეთ <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> დამოწმების თავსართად. ყოველ ჯერზეა საჭირო წარმოიქმნას JWT, როგორც ახსნილია <a href=\"{docs_url}\">API-მასალებში</a>."
 
-#: src/olympia/devhub/forms.py:1510
+#: src/olympia/devhub/forms.py:1514
 msgid "JWT secret"
 msgstr "JWT საიდუმლო კოდი"
 
-#: src/olympia/devhub/forms.py:1531
+#: src/olympia/devhub/forms.py:1535
 #, python-brace-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
 msgstr "გთხოვთ, დაწკაპოთ დადასტურების ღილაკზე ქვემოთ API-მონაცემების შესაქმნელად მომხმარებლისთვის <strong>{name}</strong>."
 
-#: src/olympia/devhub/forms.py:1537
+#: src/olympia/devhub/forms.py:1541
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
 msgstr "დადასტურების ბმული გამოიგზავნება თქვენს ელფოსტაზე. დამოწმების შემდეგ API-გასაღებებს გამოჩნდება ამ გვერდზე."
 
-#: src/olympia/devhub/forms.py:1554
+#: src/olympia/devhub/forms.py:1558
 msgid "You don't have any API credentials."
 msgstr "თქვენ არ გაგაჩნიათ API მონაცემები."
 
-#: src/olympia/devhub/forms.py:1565
+#: src/olympia/devhub/forms.py:1569
 msgid "Something went wrong, please contact developer support."
 msgstr "რაღაც ხარვეზი წარმოიშვა, გთხოვთ შემმუშავებლის მხარდაჭერის გუნდს დაუკავშირდეთ."
 
-#: src/olympia/devhub/forms.py:1622
+#: src/olympia/devhub/forms.py:1626
 msgid "Choose version"
 msgstr "აირჩიეთ ვერსია"
 
-#: src/olympia/devhub/forms.py:1692
+#: src/olympia/devhub/forms.py:1696
 msgid "You must select a channel and version to rollback to."
 msgstr "უნდა მიუთითოთ არხი და ვერსია დასაბრუნებლად."
 
@@ -5838,7 +5838,7 @@ msgstr "ყველა გაფართოების ნახვა"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1018
 msgid "Anti-tracking extensions"
-msgstr ""
+msgstr "გაფართოებები თვალთვალის წინააღმდეგ"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1020
@@ -5848,7 +5848,7 @@ msgstr "აუცილებელი დამატებები"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1022
 msgid "Writing tools"
-msgstr ""
+msgstr "საწერი საშუალებები"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1024 src/olympia/discovery/strings.jinja2:1026 src/olympia/discovery/strings.jinja2:1028
@@ -6387,7 +6387,7 @@ msgstr "AMO-ზე დაბრუნება ამჟამად გათ�
 msgid "Invalid Return To AMO guid (not in base64url format?)"
 msgstr "AMO GUID-ზე არასწორი დაბრუნება (არ ეფუძნება base64url-სახეობას?)"
 
-#: src/olympia/search/filters.py:934
+#: src/olympia/search/filters.py:932
 msgid "Maximum query length exceeded."
 msgstr "მოთხოვნის სიგრძე აჭარბებს ზღვარს."
 

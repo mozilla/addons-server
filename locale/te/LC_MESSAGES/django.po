@@ -259,7 +259,7 @@ msgstr ""
 msgid "The \"other\" category cannot be combined with another category"
 msgstr ""
 
-#: src/olympia/addons/fields.py:76 src/olympia/addons/serializers.py:1268
+#: src/olympia/addons/fields.py:76 src/olympia/addons/serializers.py:1274
 msgid "Invalid category name."
 msgstr "చెల్లని వర్గం పేరు."
 
@@ -268,11 +268,11 @@ msgstr "చెల్లని వర్గం పేరు."
 msgid "URL domain must be one of [{domains}]."
 msgstr "URL డొమైన్ తప్పనిసరిగా [{domains}]లో ఒకటి అయి ఉండాలి."
 
-#: src/olympia/addons/fields.py:125 src/olympia/devhub/forms.py:294
+#: src/olympia/addons/fields.py:125 src/olympia/devhub/forms.py:298
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
 msgstr "GitHub స్పాన్సర్‌ల కోసం URL మార్గం తప్పనిసరిగా /sponsors/. ను కలిగి ఉండాలి."
 
-#: src/olympia/addons/fields.py:128 src/olympia/devhub/forms.py:297
+#: src/olympia/addons/fields.py:128 src/olympia/devhub/forms.py:301
 msgid "URLs must start with https://."
 msgstr "URLలు తప్పనిసరిగా https://తో ప్రారంభం కావాలి."
 
@@ -286,7 +286,7 @@ msgstr ""
 msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr ""
 
-#: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:772 src/olympia/files/utils.py:761 src/olympia/reviewers/forms.py:386
+#: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:776 src/olympia/files/utils.py:761 src/olympia/reviewers/forms.py:386
 msgid "Invalid or broken archive."
 msgstr "చెల్లని లేదా పాడైన ఆర్కైవ్."
 
@@ -302,7 +302,7 @@ msgstr ""
 msgid "Unknown min app version specified"
 msgstr ""
 
-#: src/olympia/addons/fields.py:307 src/olympia/addons/fields.py:325 src/olympia/addons/serializers.py:636
+#: src/olympia/addons/fields.py:307 src/olympia/addons/fields.py:325 src/olympia/addons/serializers.py:637
 #, python-format
 msgid "Can not override compatibility information set in the manifest for this application (%s)"
 msgstr ""
@@ -312,66 +312,66 @@ msgstr ""
 msgid "Images must be smaller than %dMB"
 msgstr ""
 
-#: src/olympia/addons/models.py:2306 src/olympia/addons/models.py:2385 src/olympia/constants/base.py:66
+#: src/olympia/addons/models.py:2314 src/olympia/addons/models.py:2393 src/olympia/constants/base.py:66
 msgid "Listed"
 msgstr "జాబితాచేయబడినవి"
 
-#: src/olympia/addons/models.py:2563
+#: src/olympia/addons/models.py:2571
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr ""
 
-#: src/olympia/addons/serializers.py:328
+#: src/olympia/addons/serializers.py:329
 msgid "Built in licenses can not be updated."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:523
+#: src/olympia/addons/serializers.py:524
 msgid "Upload is not valid."
 msgstr "అప్‌లోడ్ చెల్లదు."
 
-#: src/olympia/addons/serializers.py:539
+#: src/olympia/addons/serializers.py:540
 msgid "File is already disabled."
 msgstr "ఫైలు ఇప్పటికే అచేతనం చేయబడింది."
 
-#: src/olympia/addons/serializers.py:543 src/olympia/addons/views.py:738
+#: src/olympia/addons/serializers.py:544 src/olympia/addons/views.py:738
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:570
+#: src/olympia/addons/serializers.py:571
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:611
+#: src/olympia/addons/serializers.py:612
 #, python-format
 msgid "%(addon_type_plural)s are not supported by %(app_name)s"
 msgstr ""
 
-#: src/olympia/addons/serializers.py:650 src/olympia/devhub/forms.py:926
+#: src/olympia/addons/serializers.py:651 src/olympia/devhub/forms.py:930
 #, python-format
 msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:899
+#: src/olympia/addons/serializers.py:900
 msgid "Add-ons need at least one owner."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:914
+#: src/olympia/addons/serializers.py:915
 msgid "Add-ons need at least one listed author."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:946
+#: src/olympia/addons/serializers.py:947
 msgid "Account not found."
 msgstr "ఖాతా కనబడలేదు."
 
-#: src/olympia/addons/serializers.py:959 src/olympia/devhub/forms.py:426 src/olympia/devhub/forms.py:496
+#: src/olympia/addons/serializers.py:960 src/olympia/devhub/forms.py:430 src/olympia/devhub/forms.py:500
 msgid "An author can only be present once."
 msgstr "ఒక రచయిత ఒకసారి మాత్రమే ఉండగలరు."
 
-#: src/olympia/addons/serializers.py:970 src/olympia/devhub/forms.py:438
+#: src/olympia/addons/serializers.py:971 src/olympia/devhub/forms.py:442
 msgid "The account needs a display name before it can be added as an author."
 msgstr "ఖాతాను రచయితగా చేర్చే ముందు చూపించే పేరు తప్పనిసరి."
 
-#: src/olympia/addons/serializers.py:1248
+#: src/olympia/addons/serializers.py:1254
 msgid "This slug cannot be used. Please choose another."
 msgstr ""
 
@@ -1493,7 +1493,7 @@ msgstr "జాల అభివృద్ధి"
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr ""
 
-#: src/olympia/constants/categories.py:198 src/olympia/constants/categories.py:290 src/olympia/devhub/forms.py:608
+#: src/olympia/constants/categories.py:198 src/olympia/constants/categories.py:290 src/olympia/devhub/forms.py:612
 msgid "Other"
 msgstr "ఇతర"
 
@@ -1804,235 +1804,235 @@ msgstr ""
 msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:90
+#: src/olympia/devhub/forms.py:91
 msgid "This slug is already in use. Please choose another."
 msgstr "ఈ స్లగ్ ఇప్పటికే ఉపయోగంలో ఉంది. దయచేసి మరొకదాన్ని ఎంచుకోండి."
 
-#: src/olympia/devhub/forms.py:93
+#: src/olympia/devhub/forms.py:94
 #, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
 msgstr "స్లగ్ \"%(slug)s\"లా ఉండకూడదు. దయచేసి మరొకదాన్ని ఎంచుకోండి."
 
 #. L10n: {0} is the number of categories.
-#: src/olympia/devhub/forms.py:212
+#: src/olympia/devhub/forms.py:216
 #, python-brace-format
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "{0} వర్గం మాత్రమే ఉండాలి."
 msgstr[1] "{0} వర్గాలు మాత్రమే ఉండాలి."
 
-#: src/olympia/devhub/forms.py:222
+#: src/olympia/devhub/forms.py:226
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "ఇతర వర్గాలు అదనపు వర్గాలతో కలిపి ఉండరాదు."
 
-#: src/olympia/devhub/forms.py:288
+#: src/olympia/devhub/forms.py:292
 #, fuzzy, python-format
 msgid "URL domain must be one of [%s]."
 msgstr "URL డొమెయిను [%s]కి సంబంధించినది గీనీ, లేదా ఉపడొమెయిను గానీ అయి ఉండాలి."
 
-#: src/olympia/devhub/forms.py:304
+#: src/olympia/devhub/forms.py:308
 #, python-brace-format
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] "మీ వద్ద {0} ట్యాగు ఎక్కువ ఉంది."
 msgstr[1] "మీ వద్ద {0} ట్యాగులు ఎక్కువ ఉన్నాయి."
 
-#: src/olympia/devhub/forms.py:323
+#: src/olympia/devhub/forms.py:327
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
 msgstr "మీ అప్రమేయ లొకేలును మార్చడానికి ముందు మీకు ఆ భాషలో ఒక పేరు, సారాంశం, వివరణ ఉండాలి. మీరు %s‌ను మర్చిపోయారు."
 
-#: src/olympia/devhub/forms.py:408
+#: src/olympia/devhub/forms.py:412
 msgid "Users can not be added directly"
 msgstr "వాడుకరులను నేరుగా జోడించలేరు"
 
-#: src/olympia/devhub/forms.py:473
+#: src/olympia/devhub/forms.py:477
 msgid "Must have at least one owner."
 msgstr "కనీసం ఒక యజమాని ఉండాలి."
 
-#: src/olympia/devhub/forms.py:475
+#: src/olympia/devhub/forms.py:479
 msgid "At least one author must be listed."
 msgstr "కనీసం ఒక రచయిత తప్పనిసరిగా జాబితా చేయబడాలి."
 
-#: src/olympia/devhub/forms.py:523
+#: src/olympia/devhub/forms.py:527
 msgid "Slug incorrect."
 msgstr "తప్పు స్లగ్."
 
-#: src/olympia/devhub/forms.py:558 src/olympia/devhub/templates/devhub/versions/edit.html:88
+#: src/olympia/devhub/forms.py:562 src/olympia/devhub/templates/devhub/versions/edit.html:88
 msgid "Details"
 msgstr "వివరాలు"
 
-#: src/olympia/devhub/forms.py:579
+#: src/olympia/devhub/forms.py:583
 msgid "What is your license's name?"
 msgstr "మీ లైసెన్స్ పేరు ఏమిటి?"
 
-#: src/olympia/devhub/forms.py:581 src/olympia/devhub/forms.py:628
+#: src/olympia/devhub/forms.py:585 src/olympia/devhub/forms.py:632
 msgid "Custom License"
 msgstr "అభిమత లైసెన్సు"
 
-#: src/olympia/devhub/forms.py:586
+#: src/olympia/devhub/forms.py:590
 msgid "Provide the text of your license."
 msgstr "మీ లైసెన్స్ యొక్క టెక్స్ట్ ను అందించండి."
 
-#: src/olympia/devhub/forms.py:636
+#: src/olympia/devhub/forms.py:640
 msgid "License text is required when choosing Other."
 msgstr "ఇతర ఎంపిక చేసుకున్నప్పుడు లైసెన్సు పాఠ్యం తప్పనిసరి."
 
-#: src/olympia/devhub/forms.py:692
+#: src/olympia/devhub/forms.py:696
 msgid "This add-on has an End-User License Agreement"
 msgstr "ఈ పొడగింతకు అంతిమ-వాడుకరి లైసెన్స్ ఒప్పందం ఉంది"
 
-#: src/olympia/devhub/forms.py:697
+#: src/olympia/devhub/forms.py:701
 msgid "Please specify your add-on's End-User License Agreement:"
 msgstr "దయచేసి మీ పొడగింతకి అంతిమ-వాడుకరి లైసెన్స్ ఒప్పందాన్ని పేర్కొనండి:"
 
-#: src/olympia/devhub/forms.py:700
+#: src/olympia/devhub/forms.py:704
 msgid "This add-on has a Privacy Policy"
 msgstr "ఈ పొడిగింత గోప్యతా విధానాన్ని కలిగి ఉంది"
 
-#: src/olympia/devhub/forms.py:705
+#: src/olympia/devhub/forms.py:709
 msgid "Please specify your add-on's Privacy Policy:"
 msgstr "దయచేసి మీ పొడిగింత యొక్క గోప్యతా విధానాన్ని పేర్కొనండి:"
 
-#: src/olympia/devhub/forms.py:740
+#: src/olympia/devhub/forms.py:744
 #, python-brace-format
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "తోడ్పాటులేని ఫైలు రకం, దయచేసి ఆర్కయివ్ ఫైలు {extensions}ను ఎక్కించండి."
 
-#: src/olympia/devhub/forms.py:784
+#: src/olympia/devhub/forms.py:788
 msgid "View current"
 msgstr "ప్రస్తుతంది చూడండి"
 
-#: src/olympia/devhub/forms.py:907
+#: src/olympia/devhub/forms.py:911
 msgid "Invalid version range."
 msgstr "చెల్లని వెర్షను అవధి."
 
-#: src/olympia/devhub/forms.py:1013
+#: src/olympia/devhub/forms.py:1017
 msgid "Need at least one compatible application."
 msgstr "కనీసం ఒక అనుగుణ్య అనువర్తనం కావాలి."
 
-#: src/olympia/devhub/forms.py:1055 src/olympia/devhub/forms.py:1113
+#: src/olympia/devhub/forms.py:1059 src/olympia/devhub/forms.py:1117
 msgid "There was an error with your upload. Please try again."
 msgstr "మీ ఎక్కింపుతో ఏదో పొరపాటు జరిగింది. మళ్ళి ప్రయత్నించండి."
 
-#: src/olympia/devhub/forms.py:1060
+#: src/olympia/devhub/forms.py:1064
 msgid "Override failed validation"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1070
+#: src/olympia/devhub/forms.py:1074
 msgid "Need to select at least one application."
 msgstr "కనీసం ఒక అనువర్తనాన్నైనా ఎంచుకోవాలి."
 
-#: src/olympia/devhub/forms.py:1075
+#: src/olympia/devhub/forms.py:1079
 msgid "You have submitted too many uploads recently. Please try again after some time."
 msgstr "మీరు ఈమధ్య చాలా ఎక్కింపులను సమర్పించారు. దయచేసి కొంత సమయం తర్వాత మళ్ళీ ప్రయత్నించండి."
 
-#: src/olympia/devhub/forms.py:1124 src/olympia/signing/views.py:156
+#: src/olympia/devhub/forms.py:1128 src/olympia/signing/views.py:156
 #, python-brace-format
 msgid "Version {version} was uploaded before and deleted."
 msgstr "వెర్షను {version} ఇంతకుముందు ఎక్కించి, తొలగించబడింది."
 
-#: src/olympia/devhub/forms.py:1133 src/olympia/devhub/forms.py:1139 src/olympia/signing/views.py:158
+#: src/olympia/devhub/forms.py:1137 src/olympia/devhub/forms.py:1143 src/olympia/signing/views.py:158
 #, python-brace-format
 msgid "Version {version} already exists."
 msgstr "వెర్షను {version} ఇప్పటికే ఉంది."
 
-#: src/olympia/devhub/forms.py:1135
+#: src/olympia/devhub/forms.py:1139
 msgid "Continue with existing upload instead?"
 msgstr "బదులుగా ప్రస్తుత ఎక్కింపునే కొనసాగించాలా?"
 
-#: src/olympia/devhub/forms.py:1173 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:7 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:22
+#: src/olympia/devhub/forms.py:1177 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:7 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:22
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:37
 msgid "Yes"
 msgstr "అవును"
 
-#: src/olympia/devhub/forms.py:1173 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:13 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:28
+#: src/olympia/devhub/forms.py:1177 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:13 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:28
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:52
 msgid "No"
 msgstr "కాదు"
 
-#: src/olympia/devhub/forms.py:1188
+#: src/olympia/devhub/forms.py:1192
 msgid "You have not uploaded a source file."
 msgstr "మీరు మూల ఫైలును ఎక్కించలేదు."
 
-#: src/olympia/devhub/forms.py:1191
+#: src/olympia/devhub/forms.py:1195
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "మూల దస్త్రం ఎక్కించారు కానీ మీరు మూలం అవసరం లేదని సూచించారు."
 
-#: src/olympia/devhub/forms.py:1255
+#: src/olympia/devhub/forms.py:1259
 #, python-brace-format
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1374
+#: src/olympia/devhub/forms.py:1378
 #, python-brace-format
 msgid "On this site. <span class=\"helptext\">Your submission is publicly listed on {site_domain}.</span>"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1381
+#: src/olympia/devhub/forms.py:1385
 #, python-brace-format
 msgid ""
 "On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
 "on manifest’s <a {a_attrs}>update_url</a> is provided, as this is the URL where Firefox finds updates for automatic deployment to your users.</span>"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1420 src/olympia/devhub/templates/devhub/includes/agreement.html:17
+#: src/olympia/devhub/forms.py:1424 src/olympia/devhub/templates/devhub/includes/agreement.html:17
 msgid "Display Name"
 msgstr "ప్రదర్శన పేరు"
 
-#: src/olympia/devhub/forms.py:1451
+#: src/olympia/devhub/forms.py:1455
 msgid "Confirm email address"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1452
+#: src/olympia/devhub/forms.py:1456
 msgid "Generate new credentials"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1453
+#: src/olympia/devhub/forms.py:1457
 msgid "Revoke and regenerate credentials"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1454
+#: src/olympia/devhub/forms.py:1458
 msgid "Revoke"
 msgstr "ఉపసంహరించు"
 
-#: src/olympia/devhub/forms.py:1493
+#: src/olympia/devhub/forms.py:1497
 msgid "JWT issuer"
 msgstr "JWT జారీదారు"
 
-#: src/olympia/devhub/forms.py:1500
+#: src/olympia/devhub/forms.py:1504
 #, python-brace-format
 msgid ""
 "To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
 "href=\"{docs_url}\">API documentation</a>."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1510
+#: src/olympia/devhub/forms.py:1514
 msgid "JWT secret"
 msgstr "JWT రహస్యము"
 
-#: src/olympia/devhub/forms.py:1531
+#: src/olympia/devhub/forms.py:1535
 #, python-brace-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1537
+#: src/olympia/devhub/forms.py:1541
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
 msgstr "మీ ఈమెయిలు చిరునామాకు నిర్ధారణ లంకె పంపబడుతుంది. నిర్ధారణ తరువాత ఈ పేజీలో మీ API కీలు కనబడతాయి."
 
-#: src/olympia/devhub/forms.py:1554
+#: src/olympia/devhub/forms.py:1558
 msgid "You don't have any API credentials."
 msgstr "మీకు API క్రెడెన్షియల్లు లేవు."
 
-#: src/olympia/devhub/forms.py:1565
+#: src/olympia/devhub/forms.py:1569
 msgid "Something went wrong, please contact developer support."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1622
+#: src/olympia/devhub/forms.py:1626
 msgid "Choose version"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1692
+#: src/olympia/devhub/forms.py:1696
 msgid "You must select a channel and version to rollback to."
 msgstr ""
 
@@ -6234,7 +6234,7 @@ msgstr "AMO కి తిరిగి వెళ్ళు ప్రస్తు�
 msgid "Invalid Return To AMO guid (not in base64url format?)"
 msgstr ""
 
-#: src/olympia/search/filters.py:934
+#: src/olympia/search/filters.py:932
 msgid "Maximum query length exceeded."
 msgstr "ప్రశ్న గరిష్ట పొడవు మించిపోయింది."
 

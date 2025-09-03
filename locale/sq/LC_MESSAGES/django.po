@@ -302,7 +302,7 @@ msgstr "Është tejkaluar numër maksimum kategorish për aplikacion ({MAX_CATEG
 msgid "The \"other\" category cannot be combined with another category"
 msgstr "Kategoria “tjetër” s’mund të ndërthuret me një kategori tjetër"
 
-#: src/olympia/addons/fields.py:76 src/olympia/addons/serializers.py:1268
+#: src/olympia/addons/fields.py:76 src/olympia/addons/serializers.py:1274
 msgid "Invalid category name."
 msgstr "Emër i pavlefshëm drejtorie."
 
@@ -311,11 +311,11 @@ msgstr "Emër i pavlefshëm drejtorie."
 msgid "URL domain must be one of [{domains}]."
 msgstr "Përkatësia URL duhet të jetë një nga [{domains}]."
 
-#: src/olympia/addons/fields.py:125 src/olympia/devhub/forms.py:294
+#: src/olympia/addons/fields.py:125 src/olympia/devhub/forms.py:298
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
 msgstr "Shtegu URL për GitHub Sponsors duhet të përmbajë /sponsors/."
 
-#: src/olympia/addons/fields.py:128 src/olympia/devhub/forms.py:297
+#: src/olympia/addons/fields.py:128 src/olympia/devhub/forms.py:301
 msgid "URLs must start with https://."
 msgstr "URL-të duhet të fillojnë me https://."
 
@@ -329,7 +329,7 @@ msgstr "S’ka licencë me slug={value}."
 msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr "Lloj i pambuluar kartele, ju lutemi, ngarkoni një kartelë arkivi ({extensions})."
 
-#: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:772 src/olympia/files/utils.py:761 src/olympia/reviewers/forms.py:386
+#: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:776 src/olympia/files/utils.py:761 src/olympia/reviewers/forms.py:386
 msgid "Invalid or broken archive."
 msgstr "Arkiv i pavlefshëm ose i dëmtuar."
 
@@ -345,7 +345,7 @@ msgstr "U tregua version maksimum i panjohur i aplikacionit"
 msgid "Unknown min app version specified"
 msgstr "U tregua version minimum i panjohur i aplikacionit"
 
-#: src/olympia/addons/fields.py:307 src/olympia/addons/fields.py:325 src/olympia/addons/serializers.py:636
+#: src/olympia/addons/fields.py:307 src/olympia/addons/fields.py:325 src/olympia/addons/serializers.py:637
 #, python-format
 msgid "Can not override compatibility information set in the manifest for this application (%s)"
 msgstr "S’mund të anashkalohen hollësi përputhjeje të caktuar te manifesti për këtë aplikacion (%s)"
@@ -355,68 +355,68 @@ msgstr "S’mund të anashkalohen hollësi përputhjeje të caktuar te manifesti
 msgid "Images must be smaller than %dMB"
 msgstr "Figurat duhet të jenë më të vogla se %dMB"
 
-#: src/olympia/addons/models.py:2306 src/olympia/addons/models.py:2385 src/olympia/constants/base.py:66
+#: src/olympia/addons/models.py:2314 src/olympia/addons/models.py:2393 src/olympia/constants/base.py:66
 msgid "Listed"
 msgstr "E pranishme"
 
-#: src/olympia/addons/models.py:2563
+#: src/olympia/addons/models.py:2571
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr "Shtigjet për shtesa dhe koleksione lypset të përfundojnë me “/”"
 
-#: src/olympia/addons/serializers.py:328
+#: src/olympia/addons/serializers.py:329
 msgid "Built in licenses can not be updated."
 msgstr "Licencat e brendshme s’mund të përditësohen."
 
-#: src/olympia/addons/serializers.py:523
+#: src/olympia/addons/serializers.py:524
 msgid "Upload is not valid."
 msgstr "Ngarkimi s’është i vlefshëm."
 
-#: src/olympia/addons/serializers.py:539
+#: src/olympia/addons/serializers.py:540
 msgid "File is already disabled."
 msgstr "Kartela është e çaktivizuar tashmë."
 
-#: src/olympia/addons/serializers.py:543 src/olympia/addons/views.py:738
+#: src/olympia/addons/serializers.py:544 src/olympia/addons/views.py:738
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
 "Versioni më i ri i miratuar i kësaj shtese %s s’mund të fshihet, ngaqë versioni i mëparshëm s’qe miratuar për promovim në %s. Nëse ju duhet ndihmë për këtë, ju lutemi, lidhuni me Përgjegjësit e "
 "AMO-s."
 
-#: src/olympia/addons/serializers.py:570
+#: src/olympia/addons/serializers.py:571
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr "S’mund të parashtrohen versione për paraqitje teksa shtesa është e çaktivizuar."
 
-#: src/olympia/addons/serializers.py:611
+#: src/olympia/addons/serializers.py:612
 #, python-format
 msgid "%(addon_type_plural)s are not supported by %(app_name)s"
 msgstr "%(addon_type_plural)s nuk mbulohen nga %(app_name)s"
 
-#: src/olympia/addons/serializers.py:650 src/olympia/devhub/forms.py:926
+#: src/olympia/addons/serializers.py:651 src/olympia/devhub/forms.py:930
 #, python-format
 msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
 msgstr "Interval i pavlefshëm versionesh. Për Firefox-in për Android, mund të zgjidhni vetëm një interval që fillon me versionin %(max)s ose më sipër, ose përfundon me më të ulët se versioni %(min)s."
 
-#: src/olympia/addons/serializers.py:899
+#: src/olympia/addons/serializers.py:900
 msgid "Add-ons need at least one owner."
 msgstr "Shtesat lypin të paktën një pronar."
 
-#: src/olympia/addons/serializers.py:914
+#: src/olympia/addons/serializers.py:915
 msgid "Add-ons need at least one listed author."
 msgstr "Shtesat lypin të paraqitur të paktën një autor."
 
-#: src/olympia/addons/serializers.py:946
+#: src/olympia/addons/serializers.py:947
 msgid "Account not found."
 msgstr "S’u gjet llogari."
 
-#: src/olympia/addons/serializers.py:959 src/olympia/devhub/forms.py:426 src/olympia/devhub/forms.py:496
+#: src/olympia/addons/serializers.py:960 src/olympia/devhub/forms.py:430 src/olympia/devhub/forms.py:500
 msgid "An author can only be present once."
 msgstr "Një autor mund të jetë i pranishëm vetëm një herë."
 
-#: src/olympia/addons/serializers.py:970 src/olympia/devhub/forms.py:438
+#: src/olympia/addons/serializers.py:971 src/olympia/devhub/forms.py:442
 msgid "The account needs a display name before it can be added as an author."
 msgstr "Llogaria lypset të ketë një emër shfaqjeje, përpara se të mund të shtohet si një autor."
 
-#: src/olympia/addons/serializers.py:1248
+#: src/olympia/addons/serializers.py:1254
 msgid "This slug cannot be used. Please choose another."
 msgstr "Ky identifikues s’mund të përdoret. Ju lutemi, zgjidhni një tjetër."
 
@@ -1547,7 +1547,7 @@ msgstr "Zhvillim Web"
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr "Shkarkoni zgjerime Firefox-i që merren me mjete zhvillimi web. Kjo kategori përfshin zgjerime për punën në GitHub, këmbyes agjenti përdoruesi, administrim cookie-sh, etj."
 
-#: src/olympia/constants/categories.py:198 src/olympia/constants/categories.py:290 src/olympia/devhub/forms.py:608
+#: src/olympia/constants/categories.py:198 src/olympia/constants/categories.py:290 src/olympia/devhub/forms.py:612
 msgid "Other"
 msgstr "Tjetër"
 
@@ -1859,172 +1859,172 @@ msgstr "Shtesat Open Search {blog_link_open}s’mbulohen më në AMO{blog_link_c
 msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
 msgstr "Aktualisht nuk mbulohet ngarkimi për manifest V3. {start_href}Lexoni më tepër rreth rrjedhës kohore të mbulimit{end_href}."
 
-#: src/olympia/devhub/forms.py:90
+#: src/olympia/devhub/forms.py:91
 msgid "This slug is already in use. Please choose another."
 msgstr "Ky identifikues është i përdorur tashmë. Ju lutemi, zgjidhni një tjetër."
 
-#: src/olympia/devhub/forms.py:93
+#: src/olympia/devhub/forms.py:94
 #, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
 msgstr "Identifikuesi s’mund të jetë \"%(slug)s\". Ju lutemi, zgjidhni një tjetër."
 
 #. L10n: {0} is the number of categories.
-#: src/olympia/devhub/forms.py:212
+#: src/olympia/devhub/forms.py:216
 #, python-brace-format
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "Mund të keni vetëm {0} kategori."
 msgstr[1] "Mund të keni vetëm {0} kategori."
 
-#: src/olympia/devhub/forms.py:222
+#: src/olympia/devhub/forms.py:226
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "Kategoria Të ndryshme s’mund të ndërthuret me të tjera kategori."
 
-#: src/olympia/devhub/forms.py:288
+#: src/olympia/devhub/forms.py:292
 #, python-format
 msgid "URL domain must be one of [%s]."
 msgstr "Përkatësia e URL-së duhet të jetë një nga [%s]."
 
-#: src/olympia/devhub/forms.py:304
+#: src/olympia/devhub/forms.py:308
 #, python-brace-format
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] "Keni {0} etiketë të tepërt."
 msgstr[1] "Keni {0} etiketa të tepërta."
 
-#: src/olympia/devhub/forms.py:323
+#: src/olympia/devhub/forms.py:327
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
 msgstr "Para se të ndryshoni vendoren parazgjedhje duhet të keni një emër, një përmbledhje dhe një përshkrim në gjuhën e vendores. Ju mungon %s."
 
-#: src/olympia/devhub/forms.py:408
+#: src/olympia/devhub/forms.py:412
 msgid "Users can not be added directly"
 msgstr "Përdoruesit s’mund të shtohen drejtpërsëdrejti"
 
-#: src/olympia/devhub/forms.py:473
+#: src/olympia/devhub/forms.py:477
 msgid "Must have at least one owner."
 msgstr "Duhet të ketë të paktën një pronar."
 
-#: src/olympia/devhub/forms.py:475
+#: src/olympia/devhub/forms.py:479
 msgid "At least one author must be listed."
 msgstr "Duhet treguar të paktën një autor."
 
-#: src/olympia/devhub/forms.py:523
+#: src/olympia/devhub/forms.py:527
 msgid "Slug incorrect."
 msgstr "Identifikues i pasaktë."
 
-#: src/olympia/devhub/forms.py:558 src/olympia/devhub/templates/devhub/versions/edit.html:88
+#: src/olympia/devhub/forms.py:562 src/olympia/devhub/templates/devhub/versions/edit.html:88
 msgid "Details"
 msgstr "Hollësi"
 
-#: src/olympia/devhub/forms.py:579
+#: src/olympia/devhub/forms.py:583
 msgid "What is your license's name?"
 msgstr "Cili është emri i licencës suaj?"
 
-#: src/olympia/devhub/forms.py:581 src/olympia/devhub/forms.py:628
+#: src/olympia/devhub/forms.py:585 src/olympia/devhub/forms.py:632
 msgid "Custom License"
 msgstr "Licencë e Përshtatur"
 
-#: src/olympia/devhub/forms.py:586
+#: src/olympia/devhub/forms.py:590
 msgid "Provide the text of your license."
 msgstr "Jepni tekstin e licencës suaj."
 
-#: src/olympia/devhub/forms.py:636
+#: src/olympia/devhub/forms.py:640
 msgid "License text is required when choosing Other."
 msgstr "Teksti i licencës është i domosdoshëm kur zgjidhet Tjetër."
 
-#: src/olympia/devhub/forms.py:692
+#: src/olympia/devhub/forms.py:696
 msgid "This add-on has an End-User License Agreement"
 msgstr "Kjo shtesë ka një Marrëveshje Licence Përdoruesi të Thjeshtë"
 
-#: src/olympia/devhub/forms.py:697
+#: src/olympia/devhub/forms.py:701
 msgid "Please specify your add-on's End-User License Agreement:"
 msgstr "Ju lutemi, përcaktoni Marrëveshje Licence Përdoruesi të Thjeshtë të shtesës suaj:"
 
-#: src/olympia/devhub/forms.py:700
+#: src/olympia/devhub/forms.py:704
 msgid "This add-on has a Privacy Policy"
 msgstr "Kjo shtesë ka Rregulla Privatësi"
 
-#: src/olympia/devhub/forms.py:705
+#: src/olympia/devhub/forms.py:709
 msgid "Please specify your add-on's Privacy Policy:"
 msgstr "Ju lutemi, përcaktoni Rregullat e Privatësi për shtesën tuaj:"
 
-#: src/olympia/devhub/forms.py:740
+#: src/olympia/devhub/forms.py:744
 #, python-brace-format
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Lloj i pambuluar kartele, ju lutemi, ngarkoni një kartelë arkivi {extensions}."
 
-#: src/olympia/devhub/forms.py:784
+#: src/olympia/devhub/forms.py:788
 msgid "View current"
 msgstr "Shihni të tanishmen"
 
-#: src/olympia/devhub/forms.py:907
+#: src/olympia/devhub/forms.py:911
 msgid "Invalid version range."
 msgstr "Interval i pavlefshëm versioni."
 
-#: src/olympia/devhub/forms.py:1013
+#: src/olympia/devhub/forms.py:1017
 msgid "Need at least one compatible application."
 msgstr "Lyp të paktën një aplikacion të përputhshëm."
 
-#: src/olympia/devhub/forms.py:1055 src/olympia/devhub/forms.py:1113
+#: src/olympia/devhub/forms.py:1059 src/olympia/devhub/forms.py:1117
 msgid "There was an error with your upload. Please try again."
 msgstr "Pati një gabim me ngarkimin tuaj. Ju lutemi, riprovoni."
 
-#: src/olympia/devhub/forms.py:1060
+#: src/olympia/devhub/forms.py:1064
 msgid "Override failed validation"
 msgstr "Anashkaloje vleftësimin e dështuar"
 
-#: src/olympia/devhub/forms.py:1070
+#: src/olympia/devhub/forms.py:1074
 msgid "Need to select at least one application."
 msgstr "Lypset të përzgjidhet të paktën një aplikacion."
 
-#: src/olympia/devhub/forms.py:1075
+#: src/olympia/devhub/forms.py:1079
 msgid "You have submitted too many uploads recently. Please try again after some time."
 msgstr "Keni parashtruar ca si shumë ngarkime tani së fundi. Ju lutemi, riprovoni pas ca kohe."
 
-#: src/olympia/devhub/forms.py:1124 src/olympia/signing/views.py:156
+#: src/olympia/devhub/forms.py:1128 src/olympia/signing/views.py:156
 #, python-brace-format
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Versioni {version} qe ngarkuar më herët dhe është fshirë."
 
-#: src/olympia/devhub/forms.py:1133 src/olympia/devhub/forms.py:1139 src/olympia/signing/views.py:158
+#: src/olympia/devhub/forms.py:1137 src/olympia/devhub/forms.py:1143 src/olympia/signing/views.py:158
 #, python-brace-format
 msgid "Version {version} already exists."
 msgstr "Ka tashmë një version {version}."
 
-#: src/olympia/devhub/forms.py:1135
+#: src/olympia/devhub/forms.py:1139
 msgid "Continue with existing upload instead?"
 msgstr "Të vazhdohet me ngarkimin ekzistues?"
 
-#: src/olympia/devhub/forms.py:1173 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:7 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:22
+#: src/olympia/devhub/forms.py:1177 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:7 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:22
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:37
 msgid "Yes"
 msgstr "Po"
 
-#: src/olympia/devhub/forms.py:1173 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:13 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:28
+#: src/olympia/devhub/forms.py:1177 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:13 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:28
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:52
 msgid "No"
 msgstr "Jo"
 
-#: src/olympia/devhub/forms.py:1188
+#: src/olympia/devhub/forms.py:1192
 msgid "You have not uploaded a source file."
 msgstr "S’keni ngarkuar kartelë burim."
 
-#: src/olympia/devhub/forms.py:1191
+#: src/olympia/devhub/forms.py:1195
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "Kartela burim u ngarkua, por keni përcaktuar se s’lypset burim."
 
-#: src/olympia/devhub/forms.py:1255
+#: src/olympia/devhub/forms.py:1259
 #, python-brace-format
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
 msgstr "Garantoni që emri dhe përmbledhja tok të jenë e shumta {limit_value} shenja (janë {show_value})."
 
-#: src/olympia/devhub/forms.py:1374
+#: src/olympia/devhub/forms.py:1378
 #, python-brace-format
 msgid "On this site. <span class=\"helptext\">Your submission is publicly listed on {site_domain}.</span>"
 msgstr "Në këtë sajt. <span class=\"helptext\">Parashtrimi juaj shfaqet publikisht te {site_domain}.</span>"
 
-#: src/olympia/devhub/forms.py:1381
+#: src/olympia/devhub/forms.py:1385
 #, python-brace-format
 msgid ""
 "On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
@@ -2033,31 +2033,31 @@ msgstr ""
 "Ju vetë. <span class=\"helptext\">Pasi parashtrimi juaj të jetë pranuar nga Mozilla, mund të shkarkoni kartelën .xpi që nga Qendra e Zhvilluesve dhe ta jepni atë për publikun tuaj. Ju lutemi, "
 "sigurohuni se jepet <a {a_attrs}>update_url</a> e manifestit të shtesës, ngaqë kjo është URL-ja as ku Firefox-i gjen përditësimet për dhënie automatike përdoruesve tuaj.</span>"
 
-#: src/olympia/devhub/forms.py:1420 src/olympia/devhub/templates/devhub/includes/agreement.html:17
+#: src/olympia/devhub/forms.py:1424 src/olympia/devhub/templates/devhub/includes/agreement.html:17
 msgid "Display Name"
 msgstr "Emër në Ekran"
 
-#: src/olympia/devhub/forms.py:1451
+#: src/olympia/devhub/forms.py:1455
 msgid "Confirm email address"
 msgstr "Ripohoni adresën email"
 
-#: src/olympia/devhub/forms.py:1452
+#: src/olympia/devhub/forms.py:1456
 msgid "Generate new credentials"
 msgstr "Prodho kredenciale të reja"
 
-#: src/olympia/devhub/forms.py:1453
+#: src/olympia/devhub/forms.py:1457
 msgid "Revoke and regenerate credentials"
 msgstr "Shfuqizoji dhe riprodhoji kredencialet"
 
-#: src/olympia/devhub/forms.py:1454
+#: src/olympia/devhub/forms.py:1458
 msgid "Revoke"
 msgstr "Shfuqizoje"
 
-#: src/olympia/devhub/forms.py:1493
+#: src/olympia/devhub/forms.py:1497
 msgid "JWT issuer"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1500
+#: src/olympia/devhub/forms.py:1504
 #, python-brace-format
 msgid ""
 "To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
@@ -2066,32 +2066,32 @@ msgstr ""
 "Për të bërë kërkesa API, dërgoni një <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> si krye autorizimi. Do t’ju duhet të prodhoni një JWT për çdo kërkesë, siç shpjegohet te <a "
 "href=\"{docs_url}\">dokumentimi i API-it</a>."
 
-#: src/olympia/devhub/forms.py:1510
+#: src/olympia/devhub/forms.py:1514
 msgid "JWT secret"
 msgstr "E fshehtë JWT"
 
-#: src/olympia/devhub/forms.py:1531
+#: src/olympia/devhub/forms.py:1535
 #, python-brace-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
 msgstr "Ju lutemi, klikoni mbi butonin e ripohimit më poshtë që të prodhohen kredenciale API për përdoruesin <strong>{name}</strong>."
 
-#: src/olympia/devhub/forms.py:1537
+#: src/olympia/devhub/forms.py:1541
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
 msgstr "Te adresa juaj email do të dërgohet një lidhje ripohimi. Pas ripohimit, te kjo faqe do të gjeni kyçet tuaj për API-n."
 
-#: src/olympia/devhub/forms.py:1554
+#: src/olympia/devhub/forms.py:1558
 msgid "You don't have any API credentials."
 msgstr "S’keni kredenciale API."
 
-#: src/olympia/devhub/forms.py:1565
+#: src/olympia/devhub/forms.py:1569
 msgid "Something went wrong, please contact developer support."
 msgstr "Diç shkoi ters, ju lutemi, lidhuni me asistencën për zhvillues."
 
-#: src/olympia/devhub/forms.py:1622
+#: src/olympia/devhub/forms.py:1626
 msgid "Choose version"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1692
+#: src/olympia/devhub/forms.py:1696
 msgid "You must select a channel and version to rollback to."
 msgstr ""
 
@@ -6366,7 +6366,7 @@ msgstr "Kthimi te AMO hëpërhë është i çaktivizuar"
 msgid "Invalid Return To AMO guid (not in base64url format?)"
 msgstr "Kthim i Pavlefshëm te guid AMO (jo në format base64url?)"
 
-#: src/olympia/search/filters.py:934
+#: src/olympia/search/filters.py:932
 msgid "Maximum query length exceeded."
 msgstr "U tejkalua gjatësia maksimum e kërkesave."
 

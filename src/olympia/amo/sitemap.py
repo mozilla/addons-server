@@ -148,7 +148,9 @@ class AddonSitemap(Sitemap):
     def _cached_items(self):
         current_app = self._current_app
         addons_qs = Addon.objects.public().filter(
-            _current_version__apps__application=current_app.id
+            Q(addonlistinginfo__noindex_until__isnull=True)
+            | Q(addonlistinginfo__noindex_until__lte=datetime.datetime.now()),
+            _current_version__apps__application=current_app.id,
         )
 
         # android is currently limited to a small number of recommended addons, so get

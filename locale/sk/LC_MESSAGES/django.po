@@ -301,7 +301,7 @@ msgstr "Bol prekročený maximálny počet kategórií na aplikáciu ({MAX_CATEG
 msgid "The \"other\" category cannot be combined with another category"
 msgstr "Kategóriu \"Iné\" nie je možné kombinovať s inou kategóriou"
 
-#: src/olympia/addons/fields.py:76 src/olympia/addons/serializers.py:1268
+#: src/olympia/addons/fields.py:76 src/olympia/addons/serializers.py:1274
 msgid "Invalid category name."
 msgstr "Neplatný názov kategórie."
 
@@ -310,11 +310,11 @@ msgstr "Neplatný názov kategórie."
 msgid "URL domain must be one of [{domains}]."
 msgstr "Doména adresy URL musí byť jedna z [{domains}]."
 
-#: src/olympia/addons/fields.py:125 src/olympia/devhub/forms.py:294
+#: src/olympia/addons/fields.py:125 src/olympia/devhub/forms.py:298
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
 msgstr "Adresa URL pre sponzorov GitHub musí obsahovať /sponsors/."
 
-#: src/olympia/addons/fields.py:128 src/olympia/devhub/forms.py:297
+#: src/olympia/addons/fields.py:128 src/olympia/devhub/forms.py:301
 msgid "URLs must start with https://."
 msgstr "Webové adresy musia začínať https://."
 
@@ -328,7 +328,7 @@ msgstr "Licencia s hodnotu atribútu slug={value} neexistuje."
 msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr "Nepodporovaný typ súboru. Nahrajte prosím súbor s archívom ({extensions})."
 
-#: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:772 src/olympia/files/utils.py:761 src/olympia/reviewers/forms.py:386
+#: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:776 src/olympia/files/utils.py:761 src/olympia/reviewers/forms.py:386
 msgid "Invalid or broken archive."
 msgstr "Neplatný alebo poškodený archív."
 
@@ -344,7 +344,7 @@ msgstr "Bola zadaná neznáma maximálna verzia aplikácie"
 msgid "Unknown min app version specified"
 msgstr "Bola zadaná neznáma minimálna verzia aplikácie"
 
-#: src/olympia/addons/fields.py:307 src/olympia/addons/fields.py:325 src/olympia/addons/serializers.py:636
+#: src/olympia/addons/fields.py:307 src/olympia/addons/fields.py:325 src/olympia/addons/serializers.py:637
 #, python-format
 msgid "Can not override compatibility information set in the manifest for this application (%s)"
 msgstr "Nie je možné prepísať informácie o kompatibilite nastavené v manifeste pre túto aplikáciu (%s)"
@@ -354,66 +354,66 @@ msgstr "Nie je možné prepísať informácie o kompatibilite nastavené v manif
 msgid "Images must be smaller than %dMB"
 msgstr "Obrázky musia byť menšie ako %dMB"
 
-#: src/olympia/addons/models.py:2306 src/olympia/addons/models.py:2385 src/olympia/constants/base.py:66
+#: src/olympia/addons/models.py:2314 src/olympia/addons/models.py:2393 src/olympia/constants/base.py:66
 msgid "Listed"
 msgstr "V zozname"
 
-#: src/olympia/addons/models.py:2563
+#: src/olympia/addons/models.py:2571
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr "Cesta k doplnkom a kolekciám musí končiť znakom \"/\""
 
-#: src/olympia/addons/serializers.py:328
+#: src/olympia/addons/serializers.py:329
 msgid "Built in licenses can not be updated."
 msgstr "Vstavané licencie nie je možné aktualizovať."
 
-#: src/olympia/addons/serializers.py:523
+#: src/olympia/addons/serializers.py:524
 msgid "Upload is not valid."
 msgstr "Odoslanie nie je platné."
 
-#: src/olympia/addons/serializers.py:539
+#: src/olympia/addons/serializers.py:540
 msgid "File is already disabled."
 msgstr "Súbor je už zakázaný."
 
-#: src/olympia/addons/serializers.py:543 src/olympia/addons/views.py:738
+#: src/olympia/addons/serializers.py:544 src/olympia/addons/views.py:738
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr "Najnovšia schválená verzia doplnku %s sa nedá odstrániť, pretože predchádzajúca verzia %s nebola schválená na zverejnenie. Ak s tým potrebujete pomôcť, kontaktujte správcov stránok AMO."
 
-#: src/olympia/addons/serializers.py:570
+#: src/olympia/addons/serializers.py:571
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr "Verejné verzie nie je možné odoslať, kým je doplnok zakázaný."
 
-#: src/olympia/addons/serializers.py:611
+#: src/olympia/addons/serializers.py:612
 #, python-format
 msgid "%(addon_type_plural)s are not supported by %(app_name)s"
 msgstr "%(addon_type_plural)s nie sú podporované aplikáciou %(app_name)s"
 
-#: src/olympia/addons/serializers.py:650 src/olympia/devhub/forms.py:926
+#: src/olympia/addons/serializers.py:651 src/olympia/devhub/forms.py:930
 #, python-format
 msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
 msgstr "Neplatný rozsah verzií. Pre Firefox pre Android si môžete vybrať iba rozsah, ktorý začína verziou %(max)s alebo vyššou, alebo končí nižšou ako verziou %(min)s."
 
-#: src/olympia/addons/serializers.py:899
+#: src/olympia/addons/serializers.py:900
 msgid "Add-ons need at least one owner."
 msgstr "Doplnky potrebujú aspoň jedného vlastníka."
 
-#: src/olympia/addons/serializers.py:914
+#: src/olympia/addons/serializers.py:915
 msgid "Add-ons need at least one listed author."
 msgstr "Doplnky potrebujú aspoň jedného uvedeného autora."
 
-#: src/olympia/addons/serializers.py:946
+#: src/olympia/addons/serializers.py:947
 msgid "Account not found."
 msgstr "Účet nebol nájdený."
 
-#: src/olympia/addons/serializers.py:959 src/olympia/devhub/forms.py:426 src/olympia/devhub/forms.py:496
+#: src/olympia/addons/serializers.py:960 src/olympia/devhub/forms.py:430 src/olympia/devhub/forms.py:500
 msgid "An author can only be present once."
 msgstr "Autor môže byť prítomný iba raz."
 
-#: src/olympia/addons/serializers.py:970 src/olympia/devhub/forms.py:438
+#: src/olympia/addons/serializers.py:971 src/olympia/devhub/forms.py:442
 msgid "The account needs a display name before it can be added as an author."
 msgstr "Účet musí mať zobrazený názov, aby ho bolo možné pridať ako autora."
 
-#: src/olympia/addons/serializers.py:1248
+#: src/olympia/addons/serializers.py:1254
 msgid "This slug cannot be used. Please choose another."
 msgstr "Tento slug (časť URL adresy) sa nedá použiť. Vyberte si prosím iný."
 
@@ -1544,7 +1544,7 @@ msgstr "Tvorba webu"
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr "Stiahnite si rozšírenia pre Firefox, ktoré obsahujú nástroje na vývoj webu. Táto kategória zahŕňa rozšírenia pre GitHub, prepínanie používateľských agentov, správu súborov cookie a ďalšie."
 
-#: src/olympia/constants/categories.py:198 src/olympia/constants/categories.py:290 src/olympia/devhub/forms.py:608
+#: src/olympia/constants/categories.py:198 src/olympia/constants/categories.py:290 src/olympia/devhub/forms.py:612
 msgid "Other"
 msgstr "Iné"
 
@@ -1856,17 +1856,17 @@ msgstr "Doplnky Open Search už {blog_link_open}nie sú na AMO podporované{blog
 msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
 msgstr "Nahrávanie manifestu verzie 3 momentálne nie je podporované. {start_href}Prečítajte si viac plánoch na jeho podoru{end_href}."
 
-#: src/olympia/devhub/forms.py:90
+#: src/olympia/devhub/forms.py:91
 msgid "This slug is already in use. Please choose another."
 msgstr "Tento slug (časť URL adresy) sa už používa. Zvoľte iný."
 
-#: src/olympia/devhub/forms.py:93
+#: src/olympia/devhub/forms.py:94
 #, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
 msgstr "Slug (časť URL adresy) nemôže byť „%(slug)s“. Prosím, zvoľte iný slug."
 
 #. L10n: {0} is the number of categories.
-#: src/olympia/devhub/forms.py:212
+#: src/olympia/devhub/forms.py:216
 #, python-brace-format
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
@@ -1874,16 +1874,16 @@ msgstr[0] "Môžete mať len {0} kategóriu."
 msgstr[1] "Môžete mať len {0} kategórie."
 msgstr[2] "Môžete mať len {0} kategórií."
 
-#: src/olympia/devhub/forms.py:222
+#: src/olympia/devhub/forms.py:226
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "Kategória Rôzne nemôže byť kombinovaná s inými kategóriami."
 
-#: src/olympia/devhub/forms.py:288
+#: src/olympia/devhub/forms.py:292
 #, python-format
 msgid "URL domain must be one of [%s]."
 msgstr "Doména v URL adrese musí byť jedna z [%s]."
 
-#: src/olympia/devhub/forms.py:304
+#: src/olympia/devhub/forms.py:308
 #, python-brace-format
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
@@ -1891,139 +1891,139 @@ msgstr[0] "Máte o {0} značku naviac."
 msgstr[1] "Máte o {0} značky naviac."
 msgstr[2] "Máte o {0} značiek naviac."
 
-#: src/olympia/devhub/forms.py:323
+#: src/olympia/devhub/forms.py:327
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
 msgstr "Pred zmenou predvoleného jazyka musíte mať vyplnený názov, súhrn a popis v tomto jazyku. Zatiaľ nemáte vyplnené: %s."
 
-#: src/olympia/devhub/forms.py:408
+#: src/olympia/devhub/forms.py:412
 msgid "Users can not be added directly"
 msgstr "Používateľov nemožno pridať priamo"
 
-#: src/olympia/devhub/forms.py:473
+#: src/olympia/devhub/forms.py:477
 msgid "Must have at least one owner."
 msgstr "Musí mať aspoň jedného vlastníka."
 
-#: src/olympia/devhub/forms.py:475
+#: src/olympia/devhub/forms.py:479
 msgid "At least one author must be listed."
 msgstr "Musí byť uvedený aspoň jeden autor."
 
-#: src/olympia/devhub/forms.py:523
+#: src/olympia/devhub/forms.py:527
 msgid "Slug incorrect."
 msgstr "Nesprávny slug (časť URL adresy)."
 
-#: src/olympia/devhub/forms.py:558 src/olympia/devhub/templates/devhub/versions/edit.html:88
+#: src/olympia/devhub/forms.py:562 src/olympia/devhub/templates/devhub/versions/edit.html:88
 msgid "Details"
 msgstr "Podrobnosti"
 
-#: src/olympia/devhub/forms.py:579
+#: src/olympia/devhub/forms.py:583
 msgid "What is your license's name?"
 msgstr "Aký je názov vašej licencie?"
 
-#: src/olympia/devhub/forms.py:581 src/olympia/devhub/forms.py:628
+#: src/olympia/devhub/forms.py:585 src/olympia/devhub/forms.py:632
 msgid "Custom License"
 msgstr "Vlastná licencia"
 
-#: src/olympia/devhub/forms.py:586
+#: src/olympia/devhub/forms.py:590
 msgid "Provide the text of your license."
 msgstr "Zadajte text vašej licencie."
 
-#: src/olympia/devhub/forms.py:636
+#: src/olympia/devhub/forms.py:640
 msgid "License text is required when choosing Other."
 msgstr "Ak zvolíte položku Iná, musíte zadať text licencie."
 
-#: src/olympia/devhub/forms.py:692
+#: src/olympia/devhub/forms.py:696
 msgid "This add-on has an End-User License Agreement"
 msgstr "Tento doplnok obsahuje Licenčnú zmluvu pre koncového používateľa."
 
-#: src/olympia/devhub/forms.py:697
+#: src/olympia/devhub/forms.py:701
 msgid "Please specify your add-on's End-User License Agreement:"
 msgstr "Vyplňte pri vašom doplnku Licenčnú zmluvu pre koncového používateľa: "
 
-#: src/olympia/devhub/forms.py:700
+#: src/olympia/devhub/forms.py:704
 msgid "This add-on has a Privacy Policy"
 msgstr "Tento doplnok má Zásady ochrany osobných údajov"
 
-#: src/olympia/devhub/forms.py:705
+#: src/olympia/devhub/forms.py:709
 msgid "Please specify your add-on's Privacy Policy:"
 msgstr "Zadajte Zásady ochrany osobných údajov vášho doplnku:"
 
-#: src/olympia/devhub/forms.py:740
+#: src/olympia/devhub/forms.py:744
 #, python-brace-format
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Nepodporovaný typ súboru. Nahrajte prosím súbor s archívom pre {extensions}."
 
-#: src/olympia/devhub/forms.py:784
+#: src/olympia/devhub/forms.py:788
 msgid "View current"
 msgstr "Zobraziť aktuálne"
 
-#: src/olympia/devhub/forms.py:907
+#: src/olympia/devhub/forms.py:911
 msgid "Invalid version range."
 msgstr "Neplatný rozsah verzií."
 
-#: src/olympia/devhub/forms.py:1013
+#: src/olympia/devhub/forms.py:1017
 msgid "Need at least one compatible application."
 msgstr "Vyžaduje aspoň jednu kompatibilnú aplikáciu."
 
-#: src/olympia/devhub/forms.py:1055 src/olympia/devhub/forms.py:1113
+#: src/olympia/devhub/forms.py:1059 src/olympia/devhub/forms.py:1117
 msgid "There was an error with your upload. Please try again."
 msgstr "Pri odosielaní sa vyskytla chyba. Skúste to znova."
 
-#: src/olympia/devhub/forms.py:1060
+#: src/olympia/devhub/forms.py:1064
 msgid "Override failed validation"
 msgstr "Prepísať neúspešnú kontrolu"
 
-#: src/olympia/devhub/forms.py:1070
+#: src/olympia/devhub/forms.py:1074
 msgid "Need to select at least one application."
 msgstr "Musíte vybrať aspoň jednu aplikáciu."
 
-#: src/olympia/devhub/forms.py:1075
+#: src/olympia/devhub/forms.py:1079
 msgid "You have submitted too many uploads recently. Please try again after some time."
 msgstr "Odoslali ste príliš veľa doplnkov v krátkom čase. Skúste to znova po nejakom čase."
 
-#: src/olympia/devhub/forms.py:1124 src/olympia/signing/views.py:156
+#: src/olympia/devhub/forms.py:1128 src/olympia/signing/views.py:156
 #, python-brace-format
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Verzia {version} už bola v minulosti nahraná a odstránená."
 
-#: src/olympia/devhub/forms.py:1133 src/olympia/devhub/forms.py:1139 src/olympia/signing/views.py:158
+#: src/olympia/devhub/forms.py:1137 src/olympia/devhub/forms.py:1143 src/olympia/signing/views.py:158
 #, python-brace-format
 msgid "Version {version} already exists."
 msgstr "Verzia {version} už existuje."
 
-#: src/olympia/devhub/forms.py:1135
+#: src/olympia/devhub/forms.py:1139
 msgid "Continue with existing upload instead?"
 msgstr "Pokračovať namiesto toho so súčasným nahrávaním?"
 
-#: src/olympia/devhub/forms.py:1173 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:7 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:22
+#: src/olympia/devhub/forms.py:1177 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:7 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:22
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:37
 msgid "Yes"
 msgstr "Áno"
 
-#: src/olympia/devhub/forms.py:1173 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:13 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:28
+#: src/olympia/devhub/forms.py:1177 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:13 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:28
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:52
 msgid "No"
 msgstr "Nie"
 
-#: src/olympia/devhub/forms.py:1188
+#: src/olympia/devhub/forms.py:1192
 msgid "You have not uploaded a source file."
 msgstr "Nenahrali ste zdrojový kód."
 
-#: src/olympia/devhub/forms.py:1191
+#: src/olympia/devhub/forms.py:1195
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "Zdrojový súbor bol nahraný, ale uviedli ste, že nie je potrebný žiadny zdroj."
 
-#: src/olympia/devhub/forms.py:1255
+#: src/olympia/devhub/forms.py:1259
 #, python-brace-format
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
 msgstr "Uistite sa, že kombinácia názvu a súhrnu obsahuje maximálne {limit_value} znakov (teraz majú spolu {show_value} znakov)."
 
-#: src/olympia/devhub/forms.py:1374
+#: src/olympia/devhub/forms.py:1378
 #, python-brace-format
 msgid "On this site. <span class=\"helptext\">Your submission is publicly listed on {site_domain}.</span>"
 msgstr "Na tejto stránke. <span class=\"helptext\">Váš doplnok je verejne uvedený na stránkach {site_domain}.</span>"
 
-#: src/olympia/devhub/forms.py:1381
+#: src/olympia/devhub/forms.py:1385
 #, python-brace-format
 msgid ""
 "On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
@@ -2033,31 +2033,31 @@ msgstr ""
 "dispozícii aktualizačná adresa <a {a_attrs}>update_url</a> uvedená v manifeste doplnku, pretože toto je adresa URL, na ktorej bude Firefox hľadať aktualizácie na automatické nasadenie u vašich "
 "používateľov.</span>"
 
-#: src/olympia/devhub/forms.py:1420 src/olympia/devhub/templates/devhub/includes/agreement.html:17
+#: src/olympia/devhub/forms.py:1424 src/olympia/devhub/templates/devhub/includes/agreement.html:17
 msgid "Display Name"
 msgstr "Zobrazovaný názov"
 
-#: src/olympia/devhub/forms.py:1451
+#: src/olympia/devhub/forms.py:1455
 msgid "Confirm email address"
 msgstr "Potvrďte e‑mailovú adresu"
 
-#: src/olympia/devhub/forms.py:1452
+#: src/olympia/devhub/forms.py:1456
 msgid "Generate new credentials"
 msgstr "Generovať nové prihlasovacie údaje"
 
-#: src/olympia/devhub/forms.py:1453
+#: src/olympia/devhub/forms.py:1457
 msgid "Revoke and regenerate credentials"
 msgstr "Odvolať a obnoviť prihlasovacie údaje"
 
-#: src/olympia/devhub/forms.py:1454
+#: src/olympia/devhub/forms.py:1458
 msgid "Revoke"
 msgstr "Odvolať"
 
-#: src/olympia/devhub/forms.py:1493
+#: src/olympia/devhub/forms.py:1497
 msgid "JWT issuer"
 msgstr "Vydavateľ JWT"
 
-#: src/olympia/devhub/forms.py:1500
+#: src/olympia/devhub/forms.py:1504
 #, python-brace-format
 msgid ""
 "To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
@@ -2066,32 +2066,32 @@ msgstr ""
 "Ak chcete zadať požiadavky cez rozhranie API, odošlite ako autorizačnú hlavičku <a href=\"{jwt_url}\">JSON Web Token (JWT)</a>. Pre každú požiadavku budete musieť vygenerovať JWT, ako je vysvetlené "
 "v <a href=\"{docs_url}\">dokumentácii API</a>."
 
-#: src/olympia/devhub/forms.py:1510
+#: src/olympia/devhub/forms.py:1514
 msgid "JWT secret"
 msgstr "Kľúč JWT"
 
-#: src/olympia/devhub/forms.py:1531
+#: src/olympia/devhub/forms.py:1535
 #, python-brace-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
 msgstr "Kliknutím na tlačidlo potvrdenia nižšie vygenerujete prihlasovacie údaje k API pre používateľa <strong>{name}</strong>."
 
-#: src/olympia/devhub/forms.py:1537
+#: src/olympia/devhub/forms.py:1541
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
 msgstr "Na vašu e‑mailovú adresu bude odoslaný potvrdzovací odkaz. Po potvrdení nájdete svoje API kľúče na tejto stránke."
 
-#: src/olympia/devhub/forms.py:1554
+#: src/olympia/devhub/forms.py:1558
 msgid "You don't have any API credentials."
 msgstr "Nemáte žiadne prihlasovacie údaje k API."
 
-#: src/olympia/devhub/forms.py:1565
+#: src/olympia/devhub/forms.py:1569
 msgid "Something went wrong, please contact developer support."
 msgstr "Niečo sa pokazilo, kontaktujte podporu pre vývojárov."
 
-#: src/olympia/devhub/forms.py:1622
+#: src/olympia/devhub/forms.py:1626
 msgid "Choose version"
 msgstr "Vyberte verziu"
 
-#: src/olympia/devhub/forms.py:1692
+#: src/olympia/devhub/forms.py:1696
 msgid "You must select a channel and version to rollback to."
 msgstr "Musíte vybrať kanál a verziu, na ktorú sa chcete vrátiť."
 
@@ -5831,7 +5831,7 @@ msgstr "Zobraziť všetky rozšírenia"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1018
 msgid "Anti-tracking extensions"
-msgstr ""
+msgstr "Rozšírenia proti sledovaniu"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1020
@@ -5841,7 +5841,7 @@ msgstr "Nevyhnutné doplnky"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1022
 msgid "Writing tools"
-msgstr ""
+msgstr "Nástroje na písanie"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1024 src/olympia/discovery/strings.jinja2:1026 src/olympia/discovery/strings.jinja2:1028
@@ -6382,7 +6382,7 @@ msgstr "Návrat na AMO je momentálne zakázaný"
 msgid "Invalid Return To AMO guid (not in base64url format?)"
 msgstr "Neplatný guid pre návrat na AMO (nie je vo formáte base64url?)"
 
-#: src/olympia/search/filters.py:934
+#: src/olympia/search/filters.py:932
 msgid "Maximum query length exceeded."
 msgstr "Bola prekročená maximálna dĺžka dopytu."
 

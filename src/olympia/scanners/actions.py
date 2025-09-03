@@ -2,6 +2,7 @@ import ipaddress
 from datetime import datetime, timedelta
 
 from olympia.abuse.utils import reject_and_block_addons
+from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.scanners import MAD
 from olympia.users.models import (
     RESTRICTION_TYPES,
@@ -147,9 +148,21 @@ def _disable_and_block(*, version, rule):
     # before. Instead, we check the UsageTier the Addon belongs to, and only
     # execute if the UsageTier allows it. If not, we delay auto approval
     # instead (which would flag too).
+    from olympia.abuse.models import ContentDecision
+
     addon = version.addon
     usage_tier = addon.get_usage_tier()
-    if usage_tier and usage_tier.disable_and_block_action_available:
+    successful_appeal = ContentDecision.objects.filter(
+        addon=addon,
+        action__in=DECISION_ACTIONS.NON_OFFENDING.values,
+        cinder_job__appealed_decisions__action=DECISION_ACTIONS.AMO_BLOCK_ADDON,
+    )
+
+    if (
+        usage_tier
+        and usage_tier.disable_and_block_action_available
+        and not successful_appeal.exists()
+    ):
         reject_and_block_addons([addon])
     else:
         _delay_auto_approval_indefinitely(version=version, rule=rule)

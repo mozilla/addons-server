@@ -13,7 +13,12 @@ from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
-from olympia.addons.models import Addon, AddonApprovalsCounter, AddonCategory
+from olympia.addons.models import (
+    Addon,
+    AddonApprovalsCounter,
+    AddonCategory,
+    AddonListingInfo,
+)
 from olympia.amo.tests import (
     SQUOTE_ESCAPED,
     TestCase,
@@ -431,6 +436,19 @@ class BaseTestEditDescribe(BaseTestEdit):
     ):
         self.test_metadata_change_triggers_content_review()
         assert run_narc_on_version_mock.delay.call_count == 0
+
+    def test_noindex_on_content_change(self):
+        data = self.get_dict()
+        addon = self.get_addon()
+        # Make sure the add-on is recent enough.
+        addon.update(created=self.days_ago(1))
+        self.client.post(self.describe_edit_url, data)
+        if self.listed:
+            assert AddonListingInfo.objects.count() == 1
+            assert addon.is_listing_noindexed
+        else:
+            assert AddonListingInfo.objects.count() == 0
+            assert not addon.is_listing_noindexed
 
     def test_edit_xss(self):
         """

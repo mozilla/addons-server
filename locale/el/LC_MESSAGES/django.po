@@ -302,7 +302,7 @@ msgstr "Έχετε υπερβεί τον μέγιστο αριθμό κατηγ�
 msgid "The \"other\" category cannot be combined with another category"
 msgstr "Η κατηγορία «άλλα» δεν μπορεί να συνδυαστεί με κάποια άλλη κατηγορία"
 
-#: src/olympia/addons/fields.py:76 src/olympia/addons/serializers.py:1268
+#: src/olympia/addons/fields.py:76 src/olympia/addons/serializers.py:1274
 msgid "Invalid category name."
 msgstr "Μη έγκυρο όνομα κατηγορίας."
 
@@ -311,11 +311,11 @@ msgstr "Μη έγκυρο όνομα κατηγορίας."
 msgid "URL domain must be one of [{domains}]."
 msgstr "Ο τομέας του URL πρέπει να είναι ένας από τους [{domains}]."
 
-#: src/olympia/addons/fields.py:125 src/olympia/devhub/forms.py:294
+#: src/olympia/addons/fields.py:125 src/olympia/devhub/forms.py:298
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
 msgstr "Η διαδρομή URL για χορηγούς GitHub πρέπει να περιέχει το /sponsors/."
 
-#: src/olympia/addons/fields.py:128 src/olympia/devhub/forms.py:297
+#: src/olympia/addons/fields.py:128 src/olympia/devhub/forms.py:301
 msgid "URLs must start with https://."
 msgstr "Τα URL πρέπει να ξεκινούν με «https://»."
 
@@ -329,7 +329,7 @@ msgstr "Η άδεια με slug={value} δεν υπάρχει."
 msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr "Ο τύπος αρχείου δεν υποστηρίζεται, μεταφορτώστε ένα συμπιεσμένο αρχείο ({extensions})."
 
-#: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:772 src/olympia/files/utils.py:761 src/olympia/reviewers/forms.py:386
+#: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:776 src/olympia/files/utils.py:761 src/olympia/reviewers/forms.py:386
 msgid "Invalid or broken archive."
 msgstr "Άκυρο ή κατεστραμμένο αρχείο."
 
@@ -345,7 +345,7 @@ msgstr "Καθορίστηκε άγνωστη μέγιστη έκδοση εφα
 msgid "Unknown min app version specified"
 msgstr "Καθορίστηκε άγνωστη ελάχιστη έκδοση εφαρμογής"
 
-#: src/olympia/addons/fields.py:307 src/olympia/addons/fields.py:325 src/olympia/addons/serializers.py:636
+#: src/olympia/addons/fields.py:307 src/olympia/addons/fields.py:325 src/olympia/addons/serializers.py:637
 #, python-format
 msgid "Can not override compatibility information set in the manifest for this application (%s)"
 msgstr "Δεν είναι δυνατή η παράκαμψη των πληροφοριών συμβατότητας που έχουν οριστεί στο αρχείο δήλωσης για αυτήν την εφαρμογή (%s)"
@@ -355,69 +355,69 @@ msgstr "Δεν είναι δυνατή η παράκαμψη των πληροφ
 msgid "Images must be smaller than %dMB"
 msgstr "Οι εικόνες πρέπει να είναι μικρότερες από %dΜΒ"
 
-#: src/olympia/addons/models.py:2306 src/olympia/addons/models.py:2385 src/olympia/constants/base.py:66
+#: src/olympia/addons/models.py:2314 src/olympia/addons/models.py:2393 src/olympia/constants/base.py:66
 msgid "Listed"
 msgstr "Καταχωρημένο"
 
-#: src/olympia/addons/models.py:2563
+#: src/olympia/addons/models.py:2571
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr "Οι διαδρομές προσθέτων και συλλογών πρέπει να λήγουν με «/»"
 
-#: src/olympia/addons/serializers.py:328
+#: src/olympia/addons/serializers.py:329
 msgid "Built in licenses can not be updated."
 msgstr "Οι ενσωματωμένες άδειες δεν μπορούν να ενημερωθούν."
 
-#: src/olympia/addons/serializers.py:523
+#: src/olympia/addons/serializers.py:524
 msgid "Upload is not valid."
 msgstr "Η μεταφόρτωση δεν είναι έγκυρη."
 
-#: src/olympia/addons/serializers.py:539
+#: src/olympia/addons/serializers.py:540
 msgid "File is already disabled."
 msgstr "Το αρχείο είναι ήδη ανενεργό."
 
-#: src/olympia/addons/serializers.py:543 src/olympia/addons/views.py:738
+#: src/olympia/addons/serializers.py:544 src/olympia/addons/views.py:738
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
 "Δεν είναι δυνατή η διαγραφή της τελευταίας εγκεκριμένης έκδοσης του προσθέτου %s, καθώς η προηγούμενη έκδοση δεν είχε εγκριθεί για προώθηση %s. Επικοινωνήστε με τους διαχειριστές του AMO αν "
 "χρειάζεστε βοήθεια."
 
-#: src/olympia/addons/serializers.py:570
+#: src/olympia/addons/serializers.py:571
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr "Οι καταχωρημένες εκδόσεις δεν μπορούν να υποβληθούν, όσο το πρόσθετο είναι ανενεργό."
 
-#: src/olympia/addons/serializers.py:611
+#: src/olympia/addons/serializers.py:612
 #, python-format
 msgid "%(addon_type_plural)s are not supported by %(app_name)s"
 msgstr "Τα %(addon_type_plural)s δεν υποστηρίζονται από το %(app_name)s"
 
-#: src/olympia/addons/serializers.py:650 src/olympia/devhub/forms.py:926
+#: src/olympia/addons/serializers.py:651 src/olympia/devhub/forms.py:930
 #, python-format
 msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
 msgstr ""
 "Μη έγκυρο εύρος εκδόσεων. Για το Firefox για Android, μπορείτε να επιλέξετε μόνο ένα εύρος που ξεκινά με την έκδοση %(max)s ή νεότερη, ή που τελειώνει με κάποια έκδοση, παλαιότερη της %(min)s."
 
-#: src/olympia/addons/serializers.py:899
+#: src/olympia/addons/serializers.py:900
 msgid "Add-ons need at least one owner."
 msgstr "Τα πρόσθετα χρειάζονται τουλάχιστον έναν κάτοχο."
 
-#: src/olympia/addons/serializers.py:914
+#: src/olympia/addons/serializers.py:915
 msgid "Add-ons need at least one listed author."
 msgstr "Τα πρόσθετα χρειάζονται τουλάχιστον έναν καταχωρημένο δημιουργό."
 
-#: src/olympia/addons/serializers.py:946
+#: src/olympia/addons/serializers.py:947
 msgid "Account not found."
 msgstr "Ο λογαριασμός δεν βρέθηκε."
 
-#: src/olympia/addons/serializers.py:959 src/olympia/devhub/forms.py:426 src/olympia/devhub/forms.py:496
+#: src/olympia/addons/serializers.py:960 src/olympia/devhub/forms.py:430 src/olympia/devhub/forms.py:500
 msgid "An author can only be present once."
 msgstr "Ένας δημιουργός μπορεί να εμφανίζεται μόνο μια φορά."
 
-#: src/olympia/addons/serializers.py:970 src/olympia/devhub/forms.py:438
+#: src/olympia/addons/serializers.py:971 src/olympia/devhub/forms.py:442
 msgid "The account needs a display name before it can be added as an author."
 msgstr "Ο λογαριασμός χρειάζεται ένα εμφανιζόμενο όνομα για να μπορεί να προστεθεί ως δημιουργός."
 
-#: src/olympia/addons/serializers.py:1248
+#: src/olympia/addons/serializers.py:1254
 msgid "This slug cannot be used. Please choose another."
 msgstr "Δεν είναι δυνατή η χρήση αυτού του αναγνωριστικού URL. Επιλέξτε κάποιο άλλο."
 
@@ -1568,7 +1568,7 @@ msgstr ""
 "Κάντε λήψη επεκτάσεων του Firefox που προσφέρουν εργαλεία προγραμματισμού ιστού. Αυτή η κατηγορία περιέχει επεκτάσεις για το GitHub, την εναλλαγή πράκτορα χρήστη, τη διαχείριση cookie και πολλά "
 "άλλα."
 
-#: src/olympia/constants/categories.py:198 src/olympia/constants/categories.py:290 src/olympia/devhub/forms.py:608
+#: src/olympia/constants/categories.py:198 src/olympia/constants/categories.py:290 src/olympia/devhub/forms.py:612
 msgid "Other"
 msgstr "Άλλα"
 
@@ -1897,172 +1897,172 @@ msgstr "Τα πρόσθετα Open Search {blog_link_open}δεν υποστηρ�
 msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
 msgstr "Δεν υποστηρίζεται προς το παρόν η μεταφόρτωση για το Manifest V3. {start_href}Διαβάστε περισσότερα για το χρονοδιάγραμμα υποστήριξης{end_href}."
 
-#: src/olympia/devhub/forms.py:90
+#: src/olympia/devhub/forms.py:91
 msgid "This slug is already in use. Please choose another."
 msgstr "Αυτό το αναγνωριστικό URL χρησιμοποιείται ήδη. Επιλέξτε κάποιο άλλο."
 
-#: src/olympia/devhub/forms.py:93
+#: src/olympia/devhub/forms.py:94
 #, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
 msgstr "Το αναγνωριστικό URL δεν μπορεί να είναι «%(slug)s». Επιλέξτε κάποιο άλλο."
 
 #. L10n: {0} is the number of categories.
-#: src/olympia/devhub/forms.py:212
+#: src/olympia/devhub/forms.py:216
 #, python-brace-format
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "Μπορείτε να έχετε μόνο {0} κατηγορία."
 msgstr[1] "Μπορείτε να έχετε μόνο {0} κατηγορίες."
 
-#: src/olympia/devhub/forms.py:222
+#: src/olympia/devhub/forms.py:226
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "Η κατηγορία «Διάφορα» δεν μπορεί να συνδυαστεί με άλλες κατηγορίες."
 
-#: src/olympia/devhub/forms.py:288
+#: src/olympia/devhub/forms.py:292
 #, python-format
 msgid "URL domain must be one of [%s]."
 msgstr "Ο τομέας του URL πρέπει να είναι ένας από τους [%s]."
 
-#: src/olympia/devhub/forms.py:304
+#: src/olympia/devhub/forms.py:308
 #, python-brace-format
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] "Έχετε {0} πλεονάζουσα ετικέτα."
 msgstr[1] "Έχετε {0} πλεονάζουσες ετικέτες."
 
-#: src/olympia/devhub/forms.py:323
+#: src/olympia/devhub/forms.py:327
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
 msgstr "Πριν αλλάξετε την προεπιλεγμένη σας γλώσσα, πρέπει να έχετε ορίσει όνομα, περίληψη και περιγραφή σε αυτή. Λείπουν: %s."
 
-#: src/olympia/devhub/forms.py:408
+#: src/olympia/devhub/forms.py:412
 msgid "Users can not be added directly"
 msgstr "Δεν είναι δυνατή η απευθείας προσθήκη χρηστών"
 
-#: src/olympia/devhub/forms.py:473
+#: src/olympia/devhub/forms.py:477
 msgid "Must have at least one owner."
 msgstr "Θα πρέπει να υπάρχει τουλάχιστον ένας ιδιοκτήτης."
 
-#: src/olympia/devhub/forms.py:475
+#: src/olympia/devhub/forms.py:479
 msgid "At least one author must be listed."
 msgstr "Θα πρέπει να αναγράφεται τουλάχιστον ένας δημιουργός."
 
-#: src/olympia/devhub/forms.py:523
+#: src/olympia/devhub/forms.py:527
 msgid "Slug incorrect."
 msgstr "Εσφαλμένο αναγνωριστικό URL."
 
-#: src/olympia/devhub/forms.py:558 src/olympia/devhub/templates/devhub/versions/edit.html:88
+#: src/olympia/devhub/forms.py:562 src/olympia/devhub/templates/devhub/versions/edit.html:88
 msgid "Details"
 msgstr "Λεπτομέρειες"
 
-#: src/olympia/devhub/forms.py:579
+#: src/olympia/devhub/forms.py:583
 msgid "What is your license's name?"
 msgstr "Ποιο είναι το όνομα της άδειάς σας;"
 
-#: src/olympia/devhub/forms.py:581 src/olympia/devhub/forms.py:628
+#: src/olympia/devhub/forms.py:585 src/olympia/devhub/forms.py:632
 msgid "Custom License"
 msgstr "Προσαρμοσμένη άδεια"
 
-#: src/olympia/devhub/forms.py:586
+#: src/olympia/devhub/forms.py:590
 msgid "Provide the text of your license."
 msgstr "Παραθέστε το κείμενο της άδειάς σας."
 
-#: src/olympia/devhub/forms.py:636
+#: src/olympia/devhub/forms.py:640
 msgid "License text is required when choosing Other."
 msgstr "Απαιτείται το κείμενο της άδειας αν επιλέξατε «Άλλη»."
 
-#: src/olympia/devhub/forms.py:692
+#: src/olympia/devhub/forms.py:696
 msgid "This add-on has an End-User License Agreement"
 msgstr "Αυτό το πρόσθετο διαθέτει Άδεια χρήσης τελικού χρήστη"
 
-#: src/olympia/devhub/forms.py:697
+#: src/olympia/devhub/forms.py:701
 msgid "Please specify your add-on's End-User License Agreement:"
 msgstr "Καθορίστε τη συμφωνία άδειας τελικού χρήστη για το πρόσθετό σας:"
 
-#: src/olympia/devhub/forms.py:700
+#: src/olympia/devhub/forms.py:704
 msgid "This add-on has a Privacy Policy"
 msgstr "Αυτό το πρόσθετο διαθέτει Πολιτική απορρήτου"
 
-#: src/olympia/devhub/forms.py:705
+#: src/olympia/devhub/forms.py:709
 msgid "Please specify your add-on's Privacy Policy:"
 msgstr "Καθορίστε την πολιτική απορρήτου του προσθέτου σας:"
 
-#: src/olympia/devhub/forms.py:740
+#: src/olympia/devhub/forms.py:744
 #, python-brace-format
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Ο τύπος αρχείου δεν υποστηρίζεται, μεταφορτώστε ένα συμπιεσμένο αρχείο {extensions}."
 
-#: src/olympia/devhub/forms.py:784
+#: src/olympia/devhub/forms.py:788
 msgid "View current"
 msgstr "Προβολή τρέχοντος"
 
-#: src/olympia/devhub/forms.py:907
+#: src/olympia/devhub/forms.py:911
 msgid "Invalid version range."
 msgstr "Μη έγκυρο εύρος εκδόσεων."
 
-#: src/olympia/devhub/forms.py:1013
+#: src/olympia/devhub/forms.py:1017
 msgid "Need at least one compatible application."
 msgstr "Απαιτείται τουλάχιστον μία συμβατή εφαρμογή."
 
-#: src/olympia/devhub/forms.py:1055 src/olympia/devhub/forms.py:1113
+#: src/olympia/devhub/forms.py:1059 src/olympia/devhub/forms.py:1117
 msgid "There was an error with your upload. Please try again."
 msgstr "Προέκυψε σφάλμα με τη μεταφόρτωσή σας. Δοκιμάστε ξανά."
 
-#: src/olympia/devhub/forms.py:1060
+#: src/olympia/devhub/forms.py:1064
 msgid "Override failed validation"
 msgstr "Η παράκαμψη απέτυχε να επικυρωθεί"
 
-#: src/olympia/devhub/forms.py:1070
+#: src/olympia/devhub/forms.py:1074
 msgid "Need to select at least one application."
 msgstr "Πρέπει να επιλέξετε τουλάχιστον μια εφαρμογή."
 
-#: src/olympia/devhub/forms.py:1075
+#: src/olympia/devhub/forms.py:1079
 msgid "You have submitted too many uploads recently. Please try again after some time."
 msgstr "Έχετε κάνει πάρα πολλές μεταφορτώσεις πρόσφατα. Δοκιμάστε ξανά αργότερα."
 
-#: src/olympia/devhub/forms.py:1124 src/olympia/signing/views.py:156
+#: src/olympia/devhub/forms.py:1128 src/olympia/signing/views.py:156
 #, python-brace-format
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Η έκδοση {version} μεταφορτώθηκε στο παρελθόν και διαγράφηκε."
 
-#: src/olympia/devhub/forms.py:1133 src/olympia/devhub/forms.py:1139 src/olympia/signing/views.py:158
+#: src/olympia/devhub/forms.py:1137 src/olympia/devhub/forms.py:1143 src/olympia/signing/views.py:158
 #, python-brace-format
 msgid "Version {version} already exists."
 msgstr "Η έκδοση {version} υπάρχει ήδη."
 
-#: src/olympia/devhub/forms.py:1135
+#: src/olympia/devhub/forms.py:1139
 msgid "Continue with existing upload instead?"
 msgstr "Συνέχεια με την υπάρχουσα μεταφόρτωση;"
 
-#: src/olympia/devhub/forms.py:1173 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:7 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:22
+#: src/olympia/devhub/forms.py:1177 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:7 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:22
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:37
 msgid "Yes"
 msgstr "Ναι"
 
-#: src/olympia/devhub/forms.py:1173 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:13 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:28
+#: src/olympia/devhub/forms.py:1177 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:13 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:28
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:52
 msgid "No"
 msgstr "Όχι"
 
-#: src/olympia/devhub/forms.py:1188
+#: src/olympia/devhub/forms.py:1192
 msgid "You have not uploaded a source file."
 msgstr "Δεν έχετε μεταφορτώσει αρχείο πηγαίου κώδικα."
 
-#: src/olympia/devhub/forms.py:1191
+#: src/olympia/devhub/forms.py:1195
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "Μεταφορτώθηκε αρχείο πηγαίου κώδικα, αλλά υποδείξατε ότι δεν χρειαζόταν."
 
-#: src/olympia/devhub/forms.py:1255
+#: src/olympia/devhub/forms.py:1259
 #, python-brace-format
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
 msgstr "Βεβαιωθείτε ότι το όνομα και το επώνυμο μαζί είναι το πολύ {limit_value} χαρακτήρες (έχουν {show_value})."
 
-#: src/olympia/devhub/forms.py:1374
+#: src/olympia/devhub/forms.py:1378
 #, python-brace-format
 msgid "On this site. <span class=\"helptext\">Your submission is publicly listed on {site_domain}.</span>"
 msgstr "Σε αυτόν τον ιστότοπο. <span class=\"helptext\">Η υποβολή σας καταχωρείται δημόσια στο {site_domain}.</span>"
 
-#: src/olympia/devhub/forms.py:1381
+#: src/olympia/devhub/forms.py:1385
 #, python-brace-format
 msgid ""
 "On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
@@ -2072,31 +2072,31 @@ msgstr ""
 "σας. Βεβαιωθείτε ότι το αρχείο δήλωσης του προσθέτου σας περιέχει το <a {a_attrs}>update_url</a>, καθώς το Firefox θα χρησιμοποιεί αυτό το URL για να βρει ενημερώσεις και να τις διανείμει αυτόματα "
 "στους χρήστες σας.</span>"
 
-#: src/olympia/devhub/forms.py:1420 src/olympia/devhub/templates/devhub/includes/agreement.html:17
+#: src/olympia/devhub/forms.py:1424 src/olympia/devhub/templates/devhub/includes/agreement.html:17
 msgid "Display Name"
 msgstr "Εμφανιζόμενο όνομα"
 
-#: src/olympia/devhub/forms.py:1451
+#: src/olympia/devhub/forms.py:1455
 msgid "Confirm email address"
 msgstr "Επιβεβαίωση διεύθυνσης email"
 
-#: src/olympia/devhub/forms.py:1452
+#: src/olympia/devhub/forms.py:1456
 msgid "Generate new credentials"
 msgstr "Δημιουργία νέων διαπιστευτηρίων"
 
-#: src/olympia/devhub/forms.py:1453
+#: src/olympia/devhub/forms.py:1457
 msgid "Revoke and regenerate credentials"
 msgstr "Ανάκληση και εκ νέου δημιουργία διαπιστευτηρίων"
 
-#: src/olympia/devhub/forms.py:1454
+#: src/olympia/devhub/forms.py:1458
 msgid "Revoke"
 msgstr "Ανάκληση"
 
-#: src/olympia/devhub/forms.py:1493
+#: src/olympia/devhub/forms.py:1497
 msgid "JWT issuer"
 msgstr "Εκδότης JWT"
 
-#: src/olympia/devhub/forms.py:1500
+#: src/olympia/devhub/forms.py:1504
 #, python-brace-format
 msgid ""
 "To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
@@ -2105,32 +2105,32 @@ msgstr ""
 "Για να πραγματοποιήσετε αιτήματα API, στείλτε ένα <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> ως την κεφαλίδα εξουσιοδότησης. Θα πρέπει να δημιουργήσετε ένα JWT για κάθε αίτημα, όπως εξηγείται "
 "στην <a href=\"{docs_url}\">τεκμηρίωση API</a>."
 
-#: src/olympia/devhub/forms.py:1510
+#: src/olympia/devhub/forms.py:1514
 msgid "JWT secret"
 msgstr "Μυστικό JWT"
 
-#: src/olympia/devhub/forms.py:1531
+#: src/olympia/devhub/forms.py:1535
 #, python-brace-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
 msgstr "Κάντε κλικ στο παρακάτω κουμπί επιβεβαίωσης για να δημιουργήσετε διαπιστευτήρια API για τον χρήστη <strong>{name}</strong>."
 
-#: src/olympia/devhub/forms.py:1537
+#: src/olympia/devhub/forms.py:1541
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
 msgstr "Θα αποσταλεί ένας σύνδεσμος επιβεβαίωσης στη διεύθυνση email σας. Μετά την επιβεβαίωση, θα βρείτε τα κλειδιά API σε αυτήν τη σελίδα."
 
-#: src/olympia/devhub/forms.py:1554
+#: src/olympia/devhub/forms.py:1558
 msgid "You don't have any API credentials."
 msgstr "Δεν έχετε κανένα διαπιστευτήριο API."
 
-#: src/olympia/devhub/forms.py:1565
+#: src/olympia/devhub/forms.py:1569
 msgid "Something went wrong, please contact developer support."
 msgstr "Κάτι πήγε στραβά, επικοινωνήστε με την υποστήριξη προγραμματιστών."
 
-#: src/olympia/devhub/forms.py:1622
+#: src/olympia/devhub/forms.py:1626
 msgid "Choose version"
 msgstr "Επιλογή έκδοσης"
 
-#: src/olympia/devhub/forms.py:1692
+#: src/olympia/devhub/forms.py:1696
 msgid "You must select a channel and version to rollback to."
 msgstr "Πρέπει να επιλέξετε ένα κανάλι και μια έκδοση προς επιστροφή."
 
@@ -4028,7 +4028,7 @@ msgstr "Οι χρήστες αυτής της επέκτασης θα επιστ
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:13
 #, python-format
 msgid "Current Version [%(current_version_number)s] will roll back to Version [%(selected_version_number)s]"
-msgstr ""
+msgstr "Η τρέχουσα έκδοση [%(current_version_number)s] θα επιστρέψει στην έκδοση [%(selected_version_number)s]"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:19
 msgid "Distribution channel"
@@ -5893,7 +5893,7 @@ msgstr "Προβολή όλων των επεκτάσεων"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1018
 msgid "Anti-tracking extensions"
-msgstr ""
+msgstr "Επεκτάσεις κατά της καταγραφής"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1020
@@ -5903,7 +5903,7 @@ msgstr "Απαραίτητα πρόσθετα"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1022
 msgid "Writing tools"
-msgstr ""
+msgstr "Εργαλεία συγγραφής"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1024 src/olympia/discovery/strings.jinja2:1026 src/olympia/discovery/strings.jinja2:1028
@@ -6442,7 +6442,7 @@ msgstr "Η επιστροφή στο AMO είναι ανενεργή αυτήν 
 msgid "Invalid Return To AMO guid (not in base64url format?)"
 msgstr "Άκυρο guid επιστροφής στο AMO (δεν είναι σε μορφή base64url;)"
 
-#: src/olympia/search/filters.py:934
+#: src/olympia/search/filters.py:932
 msgid "Maximum query length exceeded."
 msgstr "Έχετε υπερβεί το μέγιστο μήκος ερωτήματος."
 

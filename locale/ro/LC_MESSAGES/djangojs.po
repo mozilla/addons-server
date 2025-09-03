@@ -300,7 +300,7 @@ msgstr "Recenzii scrise"
 
 #: static/js/stats/csv_keys.js:27
 msgid "User Signups"
-msgstr "Înscrieri de utilizatori"
+msgstr "Înregistrări de utilizatori"
 
 #: static/js/stats/csv_keys.js:30
 msgid "Subscribers"
@@ -758,13 +758,13 @@ msgstr "Recenzii scrise din {0} până în {1}"
 #: static/js/stats/csv_keys.js:255
 #, python-brace-format
 msgid "User Signups, last {0} days"
-msgstr "Înscrieri de utilizatori, ultimele {0} zile"
+msgstr "Înregistrări de utilizatori, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/stats/csv_keys.js:257
 #, python-brace-format
 msgid "User Signups from {0} to {1}"
-msgstr "Înscrieri de utilizatori din {0} până în {1}"
+msgstr "Înregistrări de utilizatori din {0} până în {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:261

@@ -11,6 +11,7 @@ from django.utils.functional import classproperty
 import yara
 
 import olympia.core.logger
+from olympia import amo
 from olympia.amo.models import ModelBase
 from olympia.constants.base import ADDON_EXTENSION
 from olympia.constants.scanners import (
@@ -402,8 +403,7 @@ class ImproperScannerQueryRuleStateError(ValueError):
 
 class ScannerQueryRule(AbstractScannerRule):
     scanner = models.PositiveSmallIntegerField(
-        choices=((YARA, 'yara'),),  # For now code search only allows yara.
-        default=YARA,
+        choices=((YARA, 'yara'), (NARC, 'narc')),
     )
     state = models.PositiveSmallIntegerField(
         choices=QUERY_RULE_STATES.items(), default=NEW
@@ -411,6 +411,20 @@ class ScannerQueryRule(AbstractScannerRule):
     run_on_disabled_addons = models.BooleanField(
         default=False,
         help_text='Run this rule on add-ons that have been force-disabled as well.',
+    )
+    run_on_current_version_only = models.BooleanField(
+        default=False,
+        help_text=(
+            'Run this rule on the latest currently publicly listed version of '
+            'each add-on only.'
+        ),
+    )
+    run_on_specific_channel = models.PositiveSmallIntegerField(
+        default=None,
+        null=True,
+        blank=True,
+        help_text='Run this rule on versions in the specific channel only.',
+        choices=[(None, '')] + list(amo.CHANNEL_CHOICES.items()),
     )
     celery_group_result_id = models.UUIDField(default=None, null=True)
     task_count = models.PositiveIntegerField(default=0)
