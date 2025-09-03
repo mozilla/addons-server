@@ -1,5 +1,5 @@
 import copy
-from datetime import timedelta
+from datetime import date, datetime, timedelta
 from unittest.mock import Mock, patch
 
 from django.test.client import RequestFactory
@@ -20,7 +20,9 @@ from olympia.constants.promoted import (
     PROMOTED_GROUP_CHOICES,
 )
 from olympia.search.filters import (
+    AddonCreatedQueryParam,
     AddonRatingQueryParam,
+    AddonUpdatedQueryParam,
     AddonUsersQueryParam,
     ReviewedContentFilter,
     SearchParameterFilter,
@@ -1137,52 +1139,25 @@ class TestSearchParameterFilter(FilterTestsBase):
             {'range': {'colors.ratio': {'gte': 0.25}}},
         ]
 
-    def _test_threshold_filter(self, param, es_field, ThresholdClass):
-        qs = self._filter(data={f'{param}__gt': '3.56'})
-        filter_ = qs['query']['bool']['filter']
-        assert len(filter_) == 1
-        assert filter_ == [
-            {'range': {es_field: {'gt': 3.56}}},
-        ]
-
-        qs = self._filter(data={f'{param}__lt': '3.56'})
-        filter_ = qs['query']['bool']['filter']
-        assert len(filter_) == 1
-        assert filter_ == [
-            {'range': {es_field: {'lt': 3.56}}},
-        ]
-
-        qs = self._filter(data={f'{param}__gte': '3.56'})
-        filter_ = qs['query']['bool']['filter']
-        assert len(filter_) == 1
-        assert filter_ == [
-            {'range': {es_field: {'gte': 3.56}}},
-        ]
-
-        qs = self._filter(data={f'{param}__lte': '3.56'})
-        filter_ = qs['query']['bool']['filter']
-        assert len(filter_) == 1
-        assert filter_ == [
-            {'range': {es_field: {'lte': 3.56}}},
-        ]
-
-        qs = self._filter(data={param: '3.56'})
-        filter_ = qs['query']['bool']['filter']
-        assert len(filter_) == 1
-        assert filter_ == [
-            {'range': {es_field: {'lte': 3.56, 'gte': 3.56}}},
-        ]
-
+    def _test_threshold_filter_validity(self, param, ThresholdClass):
         with self.assertRaises(serializers.ValidationError) as context:
-            qs = self._filter(data={param: ''})
+            self._filter(data={param: ''})
         assert context.exception.detail == [f'Invalid "{param}" parameter.']
 
         with self.assertRaises(serializers.ValidationError) as context:
-            qs = self._filter(data={f'{param}__lt': ''})
+            self._filter(data={param: '3.1.4'})
+        assert context.exception.detail == [f'Invalid "{param}" parameter.']
+
+        with self.assertRaises(serializers.ValidationError) as context:
+            self._filter(data={param: 'lol'})
+        assert context.exception.detail == [f'Invalid "{param}" parameter.']
+
+        with self.assertRaises(serializers.ValidationError) as context:
+            self._filter(data={f'{param}__lt': ''})
         assert context.exception.detail == [f'Invalid "{param}__lt" parameter.']
 
         with self.assertRaises(serializers.ValidationError) as context:
-            qs = self._filter(data={f'{param}__gt': '4a'})
+            self._filter(data={f'{param}__gt': '4a'})
         assert context.exception.detail == [f'Invalid "{param}__gt" parameter.']
 
         classes = ThresholdClass.get_classes()
@@ -1195,12 +1170,341 @@ class TestSearchParameterFilter(FilterTestsBase):
         ]
 
     def test_ratings_filter(self):
-        self._test_threshold_filter('ratings', 'ratings.average', AddonRatingQueryParam)
+        qs = self._filter(data={'ratings__gt': '3.56'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        assert filter_ == [
+            {'range': {'ratings.average': {'gt': 3.56}}},
+        ]
+
+        qs = self._filter(data={'ratings__lt': '3.56'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        assert filter_ == [
+            {'range': {'ratings.average': {'lt': 3.56}}},
+        ]
+
+        qs = self._filter(data={'ratings__gte': '3.56'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        assert filter_ == [
+            {'range': {'ratings.average': {'gte': 3.56}}},
+        ]
+
+        qs = self._filter(data={'ratings__lte': '3.56'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        assert filter_ == [
+            {'range': {'ratings.average': {'lte': 3.56}}},
+        ]
+
+        qs = self._filter(data={'ratings': '3.56'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        assert filter_ == [
+            {'range': {'ratings.average': {'lte': 3.56, 'gte': 3.56}}},
+        ]
+
+    def test_ratings_filter_validity(self):
+        self._test_threshold_filter_validity('ratings', AddonRatingQueryParam)
 
     def test_users_filter(self):
-        self._test_threshold_filter(
-            'users', 'average_daily_users', AddonUsersQueryParam
-        )
+        qs = self._filter(data={'users__gt': '1234'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        assert filter_ == [
+            {'range': {'average_daily_users': {'gt': 1234}}},
+        ]
+
+        qs = self._filter(data={'users__lt': '1234'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        assert filter_ == [
+            {'range': {'average_daily_users': {'lt': 1234}}},
+        ]
+
+        qs = self._filter(data={'users__gte': '1234'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        assert filter_ == [
+            {'range': {'average_daily_users': {'gte': 1234}}},
+        ]
+
+        qs = self._filter(data={'users__lte': '1234'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        assert filter_ == [
+            {'range': {'average_daily_users': {'lte': 1234}}},
+        ]
+
+        qs = self._filter(data={'users': '1234'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        assert filter_ == [
+            {'range': {'average_daily_users': {'lte': 1234, 'gte': 1234}}},
+        ]
+
+    def test_users_filter_validity(self):
+        self._test_threshold_filter_validity('users', AddonUsersQueryParam)
+        with self.assertRaises(serializers.ValidationError) as context:
+            self._filter(data={'users': '1.4567567'})
+        assert context.exception.detail == ['Invalid "users" parameter.']
+
+    def test_created_filter_timestamp(self):
+        qs = self._filter(data={'created__gt': '1735689600000'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        assert filter_ == [
+            {'range': {'created': {'gt': 1735689600000}}},
+        ]
+
+        qs = self._filter(data={'created__lt': '1735689600000'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        assert filter_ == [
+            {'range': {'created': {'lt': 1735689600000}}},
+        ]
+
+        qs = self._filter(data={'created__gte': '1735689600000'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        assert filter_ == [
+            {'range': {'created': {'gte': 1735689600000}}},
+        ]
+
+        qs = self._filter(data={'created__lte': '1735689600000'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        assert filter_ == [
+            {'range': {'created': {'lte': 1735689600000}}},
+        ]
+
+        qs = self._filter(data={'created': '1735689600000'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        assert filter_ == [
+            {'range': {'created': {'lte': 1735689600000, 'gte': 1735689600000}}},
+        ]
+
+    def test_created_filter_datetime(self):
+        qs = self._filter(data={'created__gt': '2025-01-01T12:05'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        assert filter_ == [
+            {'range': {'created': {'gt': datetime(2025, 1, 1, 12, 5)}}},
+        ]
+
+        qs = self._filter(data={'created__lt': '2025-01-01T12:05'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        assert filter_ == [
+            {'range': {'created': {'lt': datetime(2025, 1, 1, 12, 5)}}},
+        ]
+
+        qs = self._filter(data={'created__gte': '2025-01-01T12:05'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        assert filter_ == [
+            {'range': {'created': {'gte': datetime(2025, 1, 1, 12, 5)}}},
+        ]
+
+        qs = self._filter(data={'created__lte': '2025-01-01T12:05'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        assert filter_ == [
+            {'range': {'created': {'lte': datetime(2025, 1, 1, 12, 5)}}},
+        ]
+
+        qs = self._filter(data={'created': '2025-01-01T12:05'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        assert filter_ == [
+            {
+                'range': {
+                    'created': {
+                        'lte': datetime(2025, 1, 1, 12, 5),
+                        'gte': datetime(2025, 1, 1, 12, 5),
+                    }
+                }
+            },
+        ]
+
+    def test_created_filter_date(self):
+        qs = self._filter(data={'created__gt': '2025-01-01'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        assert filter_ == [
+            {'range': {'created': {'gt': date(2025, 1, 1)}}},
+        ]
+
+        qs = self._filter(data={'created__lt': '2025-01-01'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        assert filter_ == [
+            {'range': {'created': {'lt': date(2025, 1, 1)}}},
+        ]
+
+        qs = self._filter(data={'created__gte': '2025-01-01'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        assert filter_ == [
+            {'range': {'created': {'gte': date(2025, 1, 1)}}},
+        ]
+
+        qs = self._filter(data={'created__lte': '2025-01-01'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        assert filter_ == [
+            {'range': {'created': {'lte': date(2025, 1, 1)}}},
+        ]
+
+        qs = self._filter(data={'created': '2025-01-01'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        assert filter_ == [
+            {
+                'range': {
+                    'created': {
+                        'lte': date(2025, 1, 1),
+                        'gte': date(2025, 1, 1),
+                    }
+                }
+            },
+        ]
+
+    def test_created_filter_validity(self):
+        self._test_threshold_filter_validity('created', AddonCreatedQueryParam)
+        with self.assertRaises(serializers.ValidationError) as context:
+            self._filter(data={'created': '3.56'})
+        assert context.exception.detail == ['Invalid "created" parameter.']
+
+    def test_updated_filter_timestamp(self):
+        qs = self._filter(data={'updated__gt': '1735689600000'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        assert filter_ == [
+            {'range': {'last_updated': {'gt': 1735689600000}}},
+        ]
+
+        qs = self._filter(data={'updated__lt': '1735689600000'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        assert filter_ == [
+            {'range': {'last_updated': {'lt': 1735689600000}}},
+        ]
+
+        qs = self._filter(data={'updated__gte': '1735689600000'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        assert filter_ == [
+            {'range': {'last_updated': {'gte': 1735689600000}}},
+        ]
+
+        qs = self._filter(data={'updated__lte': '1735689600000'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        assert filter_ == [
+            {'range': {'last_updated': {'lte': 1735689600000}}},
+        ]
+
+        qs = self._filter(data={'updated': '1735689600000'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        assert filter_ == [
+            {'range': {'last_updated': {'lte': 1735689600000, 'gte': 1735689600000}}},
+        ]
+
+    def test_updated_filter_datetime(self):
+        qs = self._filter(data={'updated__gt': '2025-01-01T12:05'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        assert filter_ == [
+            {'range': {'last_updated': {'gt': datetime(2025, 1, 1, 12, 5)}}},
+        ]
+
+        qs = self._filter(data={'updated__lt': '2025-01-01T12:05'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        assert filter_ == [
+            {'range': {'last_updated': {'lt': datetime(2025, 1, 1, 12, 5)}}},
+        ]
+
+        qs = self._filter(data={'updated__gte': '2025-01-01T12:05'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        assert filter_ == [
+            {'range': {'last_updated': {'gte': datetime(2025, 1, 1, 12, 5)}}},
+        ]
+
+        qs = self._filter(data={'updated__lte': '2025-01-01T12:05'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        assert filter_ == [
+            {'range': {'last_updated': {'lte': datetime(2025, 1, 1, 12, 5)}}},
+        ]
+
+        qs = self._filter(data={'updated': '2025-01-01T12:05'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        assert filter_ == [
+            {
+                'range': {
+                    'last_updated': {
+                        'lte': datetime(2025, 1, 1, 12, 5),
+                        'gte': datetime(2025, 1, 1, 12, 5),
+                    }
+                }
+            },
+        ]
+
+    def test_updated_filter_date(self):
+        qs = self._filter(data={'updated__gt': '2025-01-01'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        assert filter_ == [
+            {'range': {'last_updated': {'gt': date(2025, 1, 1)}}},
+        ]
+
+        qs = self._filter(data={'updated__lt': '2025-01-01'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        assert filter_ == [
+            {'range': {'last_updated': {'lt': date(2025, 1, 1)}}},
+        ]
+
+        qs = self._filter(data={'updated__gte': '2025-01-01'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        assert filter_ == [
+            {'range': {'last_updated': {'gte': date(2025, 1, 1)}}},
+        ]
+
+        qs = self._filter(data={'updated__lte': '2025-01-01'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        assert filter_ == [
+            {'range': {'last_updated': {'lte': date(2025, 1, 1)}}},
+        ]
+
+        qs = self._filter(data={'updated': '2025-01-01'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        assert filter_ == [
+            {
+                'range': {
+                    'last_updated': {
+                        'lte': date(2025, 1, 1),
+                        'gte': date(2025, 1, 1),
+                    }
+                }
+            },
+        ]
+
+    def test_updated_filter_validity(self):
+        self._test_threshold_filter_validity('updated', AddonUpdatedQueryParam)
+        with self.assertRaises(serializers.ValidationError) as context:
+            self._filter(data={'updated': '3.56'})
+        assert context.exception.detail == ['Invalid "updated" parameter.']
 
 
 class TestCombinedFilter(FilterTestsBase):
