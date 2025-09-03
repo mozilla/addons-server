@@ -81,7 +81,7 @@ This endpoint allows you to search through public add-ons.
 
 .. _addon-threshold-param:
 
-    Threshold style parameters allow queries against arbitrary values using comparison.
+    Threshold style parameters allow queries against numeric or date-time values using comparison.
 
     The following is supported (examples for query parameter `foo`):
         * greater than ``foo__gt`` (example query: ?foo__gt=10.1)
