@@ -473,6 +473,21 @@ def slugify(s, ok=SLUG_OK, lower=True, spaces=False, delimiter='-'):
     return new.lower() if lower else new
 
 
+@functools.cache
+def build_characters_normalization_strip_table(categories_to_strip):
+    """Return a dict of characters to strip when normalizing strings, to be
+    used with <str>.translate().
+
+    Results are cached in memory as building the table can be quite slow.
+    """
+    return dict.fromkeys(
+        i
+        for i in range(sys.maxunicode)
+        if unicodedata.category(chr(i))[0] in categories_to_strip
+        or chr(i) in OneOrMorePrintableCharacterValidator.special_blank_characters
+    )
+
+
 def normalize_string_for_name_checks(
     value, categories_to_strip=('Z', 'P', 'M', 'C', 'S')
 ):
@@ -484,12 +499,7 @@ def normalize_string_for_name_checks(
       invisible characters (since the string was decomposed, this should also
       remove a bunch of accents)
     """
-    strip_table = dict.fromkeys(
-        i
-        for i in range(sys.maxunicode)
-        if unicodedata.category(chr(i))[0] in categories_to_strip
-        or chr(i) in OneOrMorePrintableCharacterValidator.special_blank_characters
-    )
+    strip_table = build_characters_normalization_strip_table(categories_to_strip)
     value = unicodedata.normalize('NFKD', force_str(value))
     value = value.translate(strip_table)
     return value

@@ -1021,7 +1021,12 @@ class Addon(OnChangeMixin, ModelBase):
 
     @classmethod
     def resolve_webext_translations(
-        cls, data, upload, use_default_locale_fallback=True
+        cls,
+        data,
+        upload,
+        *,
+        use_default_locale_fallback=True,
+        fields=('name', 'homepage', 'summary'),
     ):
         """Resolve all possible translations from an add-on.
 
@@ -1037,7 +1042,6 @@ class Addon(OnChangeMixin, ModelBase):
         # find_language might have expanded short to full locale, so update it.
         data['default_locale'] = default_locale
 
-        fields = ('name', 'homepage', 'summary')
         messages = extract_translations(upload)
 
         for field in fields:

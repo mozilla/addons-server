@@ -662,6 +662,57 @@ class TestRunNarc(UploadMixin, TestCase):
         assert len(scanner_results) == 1
 
     @mock.patch('olympia.scanners.tasks.statsd.incr')
+    def test_run_duplicate_values(self, incr_mock):
+        locales = sorted(('de', 'es-ES', 'fr', 'it', 'ja'))
+        # Make the addon name 'foo' in a bunch of locales except for one.
+        self.addon.name = {locale: 'foo' for locale in locales} | {'pl': 'extra'}
+        self.addon.save()
+        rule = ScannerRule.objects.create(
+            name='match_the_fool',
+            scanner=NARC,
+            definition=r'^foo$',
+        )
+
+        run_narc_on_version(self.version.pk)
+
+        scanner_results = ScannerResult.objects.all()
+        assert len(scanner_results) == 1
+        narc_result = scanner_results[0]
+        assert narc_result.scanner == NARC
+        assert narc_result.upload is None
+        assert narc_result.version == self.version
+        assert narc_result.has_matches
+        assert list(narc_result.matched_rules.all()) == [rule]
+        assert len(narc_result.results) == len(locales) + 1  # author matches.
+        assert narc_result.results[5] == {
+            'meta': {
+                'variant': 'normalized',
+                'span': [0, 3],
+                'locale': None,
+                'source': 'author',
+                'pattern': '^foo$',
+                'string': 'Foo',
+                'original_string': 'Fôo',
+            },
+            'rule': 'match_the_fool',
+        }
+
+        for result, locale in zip(narc_result.results[:1], locales):
+            assert result == {
+                'meta': {
+                    'locale': locale,
+                    'pattern': '^foo$',
+                    'source': 'db_addon',
+                    'span': [
+                        0,
+                        3,
+                    ],
+                    'string': 'foo',
+                },
+                'rule': 'match_the_fool',
+            }
+
+    @mock.patch('olympia.scanners.tasks.statsd.incr')
     def test_run_multiple_authors_match(self, incr_mock):
         user1 = user_factory(display_name='Foo')
         user2 = user_factory(display_name='FooBar')

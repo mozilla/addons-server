@@ -26,7 +26,7 @@ from olympia.amo.utils import days_ago
 from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.constants.scanners import DELAY_AUTO_APPROVAL, MAD, NARC, YARA
-from olympia.files.models import FileValidation
+from olympia.files.models import FileManifest, FileValidation
 from olympia.files.utils import lock
 from olympia.lib.crypto.signing import SigningError
 from olympia.ratings.models import Rating
@@ -691,11 +691,8 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         call_command('auto_approve')  # Shouldn't matter if it's called twice.
         check_assertions()
 
-    @mock.patch('olympia.scanners.tasks.parse_xpi')
     @mock.patch('olympia.reviewers.utils.sign_file')
-    def test_run_action_delay_approval_with_run_narc(
-        self, sign_file_mock, parse_xpi_mock
-    ):
+    def test_run_action_delay_approval_with_run_narc(self, sign_file_mock):
         # Functional test making sure that the scanners _delay_auto_approval()
         # action properly delays auto-approval on the version it's applied to,
         # including when the scanner is narc (which is run in auto-approve).
@@ -725,13 +722,11 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
             scanner=NARC,
             definition='.*',  # Would match anything.
         )
-        # Mock parse_xpi to avoid dealing with a real file. We return an empty
-        # (but present) default_locale to bypass resolve_webext_translations
-        # which wants a real file...
-        parse_xpi_mock.return_value = {
-            'default_locale': '',
+        # Fake file manifest data to avoid dealing with a real file. We want to
+        # avoid resolve_webext_translations() which wants a real file...
+        FileManifest.objects.create(file=self.version.file, manifest_data={
             'name': 'Foo',
-        }
+        })
 
         call_command('auto_approve')
         check_assertions()

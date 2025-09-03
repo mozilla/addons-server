@@ -3,10 +3,10 @@ import json
 import os
 import re
 import uuid
+from collections import defaultdict
 
 from django.conf import settings
 from django.db.models import F
-from django.forms import ValidationError
 
 import requests
 import waffle
@@ -37,8 +37,8 @@ from olympia.constants.scanners import (
     YARA,
 )
 from olympia.devhub.tasks import validation_task
-from olympia.files.models import FileUpload
-from olympia.files.utils import SafeZip, parse_xpi
+from olympia.files.models import FileManifest, FileUpload
+from olympia.files.utils import SafeZip
 from olympia.versions.models import Version
 
 from .models import (
@@ -172,7 +172,12 @@ def run_customs(results, upload_pk):
 def run_narc_on_version(version_pk, *, run_action_on_match=True):
     log.info('Starting narc task for Version %s.', version_pk)
     try:
-        version = Version.unfiltered.get(pk=version_pk)
+        version = (
+            Version.unfiltered.all()
+            .no_transforms()
+            .select_related('file__file_manifest')
+            .get(pk=version_pk)
+        )
         scanner_result, initial_run = ScannerResult.objects.get_or_create(
             scanner=NARC, version=version
         )
@@ -228,35 +233,47 @@ def _run_narc(*, scanner_result, version, rules=None):
         addon.authors.all().values_list('display_name', flat=True)
     )
 
-    # Find all translations from the XPI - if we get a string, that means there
-    # were no translations to find, build a simple dict for ease of use later.
+    # Because we're running on a Version, not a FileUpload, we should already
+    # have a FileManifest, so we don't even need to parse the XPI to grab the
+    # name.
     try:
-        data = parse_xpi(
-            version.file.file, addon=addon, minimal=True, bypass_trademark_checks=True
-        )
-    except ValidationError:
-        # Something else should stop us if the manifest or the xpi itself is
-        # invalid, NARC shouldn't fail for that. This matters if validation was
-        # forced by an admin or something similar.
+        manifest_data = version.file.file_manifest.manifest_data
+        data = {
+            'name': manifest_data.get('name'),
+            'default_locale': manifest_data.get('default_locale'),
+        }
+    except FileManifest.DoesNotExist:
+        # Something else should stop us if the FileManifest is absent, NARC
+        # shouldn't fail for that. This means validation was forced by an admin
+        # or something similar.
         data = {}
-    values_from_xpi = Addon.resolve_webext_translations(data, version.file.file).get(
-        'name', {}
-    )
+    # Find all translations from the XPI if necessary.
+    values_from_xpi = Addon.resolve_webext_translations(
+        data, version.file.file, fields=('name',)
+    ).get('name', {})
+    # If we didn't get a dict, we returned early without bothering to open the
+    # XPI because the name wasn't translated in the manifest. We still build
+    # a dict for ease of use later.
     if values_from_xpi is None or isinstance(values_from_xpi, str):
         values_from_xpi = {None: values_from_xpi or ''}
 
+    # Gather all values into a dict to avoid repeating the same costly search
+    # on duplicate values.
+    values = defaultdict(list)
+    for source, (locale, value) in itertools.chain(
+        zip(itertools.repeat('xpi'), values_from_xpi.items()),
+        zip(itertools.repeat('db_addon'), values_from_db.items()),
+        zip(
+            itertools.repeat('author'),
+            zip(itertools.repeat(None), sorted(values_from_authors)),
+        ),
+    ):
+        values[value].append({'source': source, 'locale': locale})
+
+    # Run each rule on the values we've accumulated.
     for rule in rules:
         definition = re.compile(str(rule.definition), re.I)
-
-        # Look at every source of data with every rule.
-        for source, (locale, value) in itertools.chain(
-            zip(itertools.repeat('xpi'), values_from_xpi.items()),
-            zip(itertools.repeat('db_addon'), values_from_db.items()),
-            zip(
-                itertools.repeat('author'),
-                ((None, value) for value in sorted(values_from_authors)),
-            ),
-        ):
+        for value, sources in values.items():
             value = str(value)
             variants = [(value, None)]
             if (normalized_value := normalize_string_for_name_checks(value)) != value:
@@ -274,20 +291,22 @@ def _run_narc(*, scanner_result, version, rules=None):
 
             for variant, variant_type in variants:
                 if match := definition.search(variant):
-                    result = {
-                        'rule': rule.name,
-                        'meta': {
-                            'locale': locale,
-                            'source': source,
-                            'pattern': match.re.pattern,
-                            'string': match.string,
-                            'span': match.span(),
-                        },
-                    }
-                    if variant_type is not None:
-                        result['meta']['variant'] = variant_type
-                        result['meta']['original_string'] = value
-                    results.add(json.dumps(result, sort_keys=True))
+                    span = tuple(match.span())
+                    for source_info in sources:
+                        result = {
+                            'rule': rule.name,
+                            'meta': {
+                                'locale': source_info['locale'],
+                                'source': source_info['source'],
+                                'pattern': rule.definition,
+                                'string': variant,
+                                'span': span,
+                            },
+                        }
+                        if variant_type is not None:
+                            result['meta']['variant'] = variant_type
+                            result['meta']['original_string'] = value
+                        results.add(json.dumps(result, sort_keys=True))
 
     has_new_matches = False
     new_results = [json.loads(result) for result in sorted(results)]
