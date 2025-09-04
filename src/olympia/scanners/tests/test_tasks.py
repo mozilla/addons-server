@@ -1,7 +1,9 @@
+import os
 from decimal import Decimal
 from unittest import mock
 
 from django.conf import settings
+from django.core.files import File as DjangoFile
 from django.test.utils import override_settings
 
 import requests
@@ -640,7 +642,15 @@ class TestRunNarc(UploadMixin, TestCase):
     def test_run_invalid_manifest_somehow(self, incr_mock):
         # If somehow an XPI with a entirely invalid manifest gets scanned we
         # shouldn't fail. Validation could have been bypassed by an admin.
-        addon = addon_factory(file_kw={'filename': 'invalid_manifest_webextension.xpi'})
+        addon = addon_factory()
+        file_ = addon.current_version.file
+        filepath = os.path.join(
+            settings.ROOT,
+            'src/olympia/files/fixtures/files/invalid_manifest_webextension.xpi',
+        )
+        with open(filepath, 'rb') as f:
+            file_.file = DjangoFile(filepath)
+            file_.save()
         ScannerRule.objects.create(
             name='match_everything', scanner=NARC, definition='.*'
         )

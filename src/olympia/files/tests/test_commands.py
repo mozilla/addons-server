@@ -6,8 +6,8 @@ from django.core.management import call_command
 
 from olympia import amo
 from olympia.addons.models import Addon
-from olympia.amo.tests import TestCase, addon_factory
-from olympia.files.models import File, FileManifest
+from olympia.amo.tests import TestCase
+from olympia.files.models import File
 from olympia.files.tests.test_models import UploadMixin
 from olympia.files.utils import parse_addon
 from olympia.users.models import UserProfile
@@ -56,4 +56,3 @@ class TestExtractHostPermissions(UploadMixin, TestCase):
         host_permissions = file_.host_permissions
         assert len(host_permissions) == 2
         assert host_permissions == pdata_host_permissions
-

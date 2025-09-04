@@ -6,7 +6,6 @@ from pathlib import Path
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
-from django.db import transaction
 
 import waffle
 
@@ -15,7 +14,7 @@ from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import StopWatch
 from olympia.devhub.tasks import validation_task
-from olympia.files.models import File, FileManifest, FileUpload, WebextPermission
+from olympia.files.models import File, FileUpload, WebextPermission
 from olympia.files.utils import (
     ManifestJSONExtractor,
     extract_zip,
