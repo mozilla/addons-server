@@ -608,6 +608,8 @@ function initVersions() {
   });
 
   if ($('#modal-rollback-version').length) {
+    const CHANNEL_UNLISTED = '1',
+          CHANNEL_LISTED = '2';
     let $modalRollback = $('#modal-rollback-version').modal('.version-rollback', {
       width: 600
     });
@@ -642,11 +644,11 @@ function initVersions() {
       $unlistedVersionRow.hide();
       $channelInputs.each(function (index, element) {
         const $radio = $(element);
-        if ($radio.val() == '2' && $radio.prop('checked')) {
+        if ($radio.val() == CHANNEL_LISTED && $radio.prop('checked')) {
           $listedVersionRow.show();
           $listedVersionSelect.trigger('change');
         }
-        if ($radio.val() == '1' && $radio.prop('checked')) {
+        if ($radio.val() == CHANNEL_UNLISTED && $radio.prop('checked')) {
           $unlistedVersionRow.show();
           $unlistedVersionSelect.trigger('change');
         }
@@ -655,9 +657,9 @@ function initVersions() {
     .trigger('change');
 
     if ($hiddenChannelInput) {
-      if ($hiddenChannelInput.val() == '1') {
+      if ($hiddenChannelInput.val() == CHANNEL_UNLISTED) {
         $unlistedVersionSelect.trigger('change');
-      } else {
+      } else if ($hiddenChannelInput.val() == CHANNEL_LISTED) {
         $listedVersionSelect.trigger('change');
       }
     }
