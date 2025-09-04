@@ -55,7 +55,7 @@ from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
 from olympia.blocklist.models import Block, BlockType, BlockVersion
 from olympia.constants.categories import CATEGORIES
-from olympia.files.models import File
+from olympia.files.models import File, FileManifest
 from olympia.promoted.models import (
     PromotedAddon,
     PromotedApproval,
@@ -866,6 +866,7 @@ def file_factory(**kw):
         with open(fixture_path, 'rb') as f:
             kw['file'] = DjangoFile(f)
             file_ = File.objects.create(**kw)
+            FileManifest.objects.create(file=file_)
     else:
         file_ = File.objects.create(**kw)
     return file_
