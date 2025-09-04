@@ -3720,6 +3720,15 @@ msgid ""
 "Thank you,\n"
 "The Mozilla Add-ons team"
 msgstr ""
+"Değerli eklenti geliştiricisi,\n"
+"\n"
+"Gizli AMO API kimlik bilgilerinizin addons.mozilla.org adresine gönderilen bir eklentiye dahil edildiğini fark ettik. Hesabınızı ve eklentilerinizi korumak için, sızan kimlik bilgilerini iptal ettik.\n"
+"Yeni API kimlik bilgilerini %(api_keys_url)s adresinden oluşturabilirsiniz.\n"
+"\n"
+"Kimlik bilgilerinizi asla kimseyle paylaşmayın. Bunları asla halka açık bir depoya, eklentiye veya başka bir halka açık yere eklemeyin. Kod depolarınızı ve uzantılarınızı gözden geçirerek AMO kimlik bilgilerinizi her yerden kaldırmanızı öneririz.\n"
+"\n"
+"Teşekkürler,\n"
+"Mozilla Eklentileri Ekibi"
 
 #: src/olympia/devhub/templates/devhub/emails/verify-email-completed.ltxt:7
 msgid ""
@@ -3862,6 +3871,8 @@ msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement, Review Policies and Rules and our <a %(a_attrs)s href=\"%(faq_url)s\">Frequently Asked Questions</a>. The Firefox "
 "Add-on Distribution Agreement also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
+"Başlamadan önce lütfen Firefox Eklenti Dağıtım Sözleşmesi’ni, İnceleme Politikaları ve Kuralları’nı ve <a %(a_attrs)s href=\"%(faq_url)s\">Sıkça Sorulan Sorular</a>’ı okuyup kabul edin. Firefox "
+"Eklenti Dağıtım Sözleşmesi’nde, bilgilerinizi nasıl işlediğimizi açıklayan Gizlilik Bildirimi’ne bir bağlantı da bulunmaktadır."
 
 #: src/olympia/devhub/templates/devhub/includes/agreement.html:10
 msgid "Review Policies and Rules"
@@ -3917,6 +3928,7 @@ msgstr "Sürüm imzası bekleniyor"
 #: src/olympia/devhub/templates/devhub/includes/done_unlisted.html:3
 msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
+"İşlem tamamlandı! ✨ İmzalı dosyanız Geliştirme Merkezi’nden indirilmeye hazır olduğunda e-posta ile bilgilendirileceksiniz. 24 saat içinde e-posta gelmezse lütfen spam klasörünüzü kontrol edin."
 
 #: src/olympia/devhub/templates/devhub/includes/license_form.html:5 src/olympia/devhub/templates/devhub/versions/edit.html:83
 msgid "License"
@@ -5095,7 +5107,7 @@ msgstr "Web sitelerindeki metinleri seçip sağ tıklayarak ilgili içeriği You
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:371
 msgid "Gain an Amazon edge. When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
-msgstr ""
+msgstr "Amazon’da avantaj kazanın. Diğer çevrimiçi mağazaların ürün sayfalarını incelerken, aynı ürün Amazon’da da mevcutsa bir düğmeye tıklayarak Amazon’daki sayfasını kontrol edebilirsiniz."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:374
@@ -6832,6 +6844,8 @@ msgstr "E-posta deseni"
 #: src/olympia/users/models.py:988
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr ""
+"Engellenmesi gereken tam e-posta adresini girin veya unix tarzı joker karakterleri kullanın (örn. “*@example.com”). Bir alan adını alt alan adlarıyla birlikte engellemeniz gerekiyorsa "
+"“*@*.example.com” şeklinde ikinci bir kayıt ekleyin."
 
 #: src/olympia/users/models.py:995
 msgid "The email address used for your account is not allowed for submissions."
@@ -6933,6 +6947,16 @@ msgid ""
 "Kind regards,\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Merhaba %(author_name)s,\n"
+"\n"
+"%(domain)s üzerinde %(addon_name)s eklentisinin yazarı olmaya davet edildiniz. Daveti kabul ettiğinizde eklentiyi düzenleme hakkına sahip olacaksınız ve adınız web sitesindeki yazarlar listesinde gösterilebilecektir.\n"
+"\n"
+"%(addon_name)s yazarı olarak eklenmek istiyorsanız aşağıdaki bağlantıya tıklayarak yanıt verin.\n"
+"\n"
+"%(author_confirmation_link)s\n"
+"\n"
+"Saygılarımızla,\n"
+"Mozilla Eklentileri Ekibi"
 
 #: src/olympia/users/templates/users/emails/author_changed.ltxt:3
 #, python-format
@@ -6967,6 +6991,13 @@ msgid ""
 "\n"
 "Mozilla Add-ons Team"
 msgstr ""
+"Merhaba,\n"
+"\n"
+"Bu mesajı almanızın nedeni %(site_url)s adresindeki %(name)s kullanıcı hesabınızın silinmiş olmasıdır. Yakın zamanda Mozilla hesabınızı sildiyseniz bu işlem otomatik olarak gerçekleştirilmiş olabilir.\n"
+"\n"
+"Saygılarımızla,\n"
+"\n"
+"Mozilla Eklentileri Ekibi"
 
 #: src/olympia/versions/models.py:1184
 #, python-format
