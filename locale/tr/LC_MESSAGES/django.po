@@ -3140,7 +3140,7 @@ msgstr "Eklentinizi silmek, bu eklenti için gönderdiğiniz tüm sürümleri ve
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:6
 msgid "All versions will be Restricted, which will disable and prevent any further installation in Firefox. Existing users can choose to re-enable the add-on."
-msgstr ""
+msgstr "Tüm sürümler “Kısıtlı” olarak ayarlanacak ve bundan sonra Firefox’a yüklenemeyeceklerdir. Mevcut kullanıcılar eklentiyi yeniden etkinleştirmeyi seçebilirler."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:11
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
