@@ -1623,7 +1623,7 @@ class RollbackVersionForm(forms.Form):
     listed_version = forms.TypedChoiceField(choices=(), coerce=int, required=False)
     unlisted_version = forms.ModelChoiceField(
         queryset=Version.objects.none(),
-        empty_label=gettext('Choose version'),
+        empty_label=_('Choose version'),
         required=False,
     )
     new_version_string = forms.CharField(max_length=255)
@@ -1631,8 +1631,8 @@ class RollbackVersionForm(forms.Form):
         widget=forms.Textarea(attrs={'rows': 2}),
         max_length=255,
         required=False,
-        label=gettext('Release notes'),
-        initial=gettext('Automatic rollback based on version [m.m].'),
+        label=_('Release notes'),
+        initial=_('Automatic rollback based on version [m.m].'),
     )
 
     def __init__(self, *args, **kwargs):
