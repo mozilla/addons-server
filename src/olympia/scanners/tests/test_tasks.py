@@ -649,7 +649,7 @@ class TestRunNarc(UploadMixin, TestCase):
             'src/olympia/files/fixtures/files/invalid_manifest_webextension.xpi',
         )
         with open(filepath, 'rb') as f:
-            file_.file = DjangoFile(filepath)
+            file_.file = DjangoFile(f)
             file_.save()
         ScannerRule.objects.create(
             name='match_everything', scanner=NARC, definition='.*'
