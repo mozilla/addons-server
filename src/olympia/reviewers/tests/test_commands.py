@@ -724,9 +724,12 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         )
         # Fake file manifest data to avoid dealing with a real file. We want to
         # avoid resolve_webext_translations() which wants a real file...
-        FileManifest.objects.create(file=self.version.file, manifest_data={
-            'name': 'Foo',
-        })
+        FileManifest.objects.create(
+            file=self.version.file,
+            manifest_data={
+                'name': 'Foo',
+            },
+        )
 
         call_command('auto_approve')
         check_assertions()
