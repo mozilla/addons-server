@@ -1213,32 +1213,32 @@ def test_extract_translations_simple():
 
 
 @pytestmark
-@mock.patch('olympia.files.utils.zipfile.ZipFile.read')
-def test_extract_translations_fail_silent_invalid_file(read_mock):
+def test_extract_translations_fail_silent_invalid_file():
     file_obj = amo.tests.addon_factory(
         file_kw={'filename': 'notify-link-clicks-i18n.xpi'}
     ).current_version.file
 
-    read_mock.side_effect = KeyError
+    with mock.patch('olympia.files.utils.zipfile.ZipFile.read') as read_mock:
+        read_mock.side_effect = KeyError
 
-    # Does not raise an exception
-    utils.extract_translations(file_obj)
-
-    read_mock.side_effect = IOError
-
-    # Does not raise an exception too
-    utils.extract_translations(file_obj)
-
-    # We don't fail on invalid JSON too, this is addons-linter domain
-    read_mock.side_effect = ValueError
-
-    utils.extract_translations(file_obj)
-
-    # But everything else...
-    read_mock.side_effect = TypeError
-
-    with pytest.raises(TypeError):
+        # Does not raise an exception
         utils.extract_translations(file_obj)
+
+        read_mock.side_effect = IOError
+
+        # Does not raise an exception too
+        utils.extract_translations(file_obj)
+
+        # We don't fail on invalid JSON too, this is addons-linter domain
+        read_mock.side_effect = ValueError
+
+        utils.extract_translations(file_obj)
+
+        # But everything else...
+        read_mock.side_effect = TypeError
+
+        with pytest.raises(TypeError):
+            utils.extract_translations(file_obj)
 
 
 def test_get_all_files():

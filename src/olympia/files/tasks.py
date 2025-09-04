@@ -6,7 +6,6 @@ from pathlib import Path
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
-from django.db import transaction
 
 import waffle
 
@@ -15,7 +14,7 @@ from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import StopWatch
 from olympia.devhub.tasks import validation_task
-from olympia.files.models import File, FileManifest, FileUpload, WebextPermission
+from olympia.files.models import File, FileUpload, WebextPermission
 from olympia.files.utils import (
     ManifestJSONExtractor,
     extract_zip,
@@ -115,19 +114,3 @@ def repack_fileupload(results, upload_pk):
     else:
         log.info('Not repackaging upload %s, it is not a zip file.', upload_pk)
     return results
-
-
-@task
-@use_primary_db
-def backfill_file_manifest(ids, **kw):
-    log.info(
-        '[%s@%s] Backfilling file manifest from id %s to id %s...'
-        % (len(ids), backfill_file_manifest.rate_limit, ids[0], ids[-1])
-    )
-    files = File.objects.filter(pk__in=ids).no_transforms()
-    for file_ in files:
-        try:
-            with transaction.atomic():
-                FileManifest.objects.create(file=file_)
-        except Exception as err:
-            log.error('Failed to backfill manifest for %s, error: %s' % (file_.pk, err))
