@@ -2067,11 +2067,11 @@ msgstr "選擇版本"
 
 #: src/olympia/devhub/forms.py:1634
 msgid "Release notes"
-msgstr ""
+msgstr "發行公告"
 
 #: src/olympia/devhub/forms.py:1635
 msgid "Automatic rollback based on version [m.m]."
-msgstr ""
+msgstr "自動退回版本 [m.m]。"
 
 #: src/olympia/devhub/forms.py:1710
 msgid "You must select a channel and version to rollback to."
@@ -3933,7 +3933,7 @@ msgstr "新版本號碼"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:54
 msgid "Release Notes"
-msgstr ""
+msgstr "發行公告"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:63
 msgid "Roll back"
