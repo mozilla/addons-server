@@ -2111,7 +2111,7 @@ msgstr "Versionshinweise"
 
 #: src/olympia/devhub/forms.py:1635
 msgid "Automatic rollback based on version [m.m]."
-msgstr ""
+msgstr "Automatisches Zurücksetzen basierend auf Version [m.m]."
 
 #: src/olympia/devhub/forms.py:1710
 msgid "You must select a channel and version to rollback to."
