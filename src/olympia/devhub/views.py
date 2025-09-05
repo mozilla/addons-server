@@ -1313,6 +1313,7 @@ def version_list(request, addon_id, addon):
             version_pk=rollback_form.cleaned_data['version'].pk,
             new_version_number=rollback_form.cleaned_data['new_version_string'],
             user_pk=request.user.pk,
+            notes=rollback_form.cleaned_data['release_notes'],
         )
         messages.success(
             request,

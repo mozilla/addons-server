@@ -954,6 +954,11 @@ class TestVersion(TestCase):
             f'td[data-current-version="{second_unlisted_version.version}"]'
         )
 
+        assert (
+            modal('textarea[name="release_notes"]').val()
+            == '\nAutomatic rollback based on version [m.m].'
+        )
+
     @override_switch('version-rollback', active=True)
     def test_version_rollback_submit(self):
         first_version = self.addon.current_version
@@ -964,6 +969,7 @@ class TestVersion(TestCase):
             'channel': amo.CHANNEL_LISTED,
             'new_version_string': second_version.version,
             'rollback-submit': '',
+            'release_notes': 'release notes!',
         }
         response = self.client.post(self.url, data)
         self.assertFormError(
@@ -983,11 +989,48 @@ class TestVersion(TestCase):
                 version_pk=first_version.pk,
                 new_version_number=data['new_version_string'],
                 user_pk=self.user.pk,
+                notes={'en-us': 'release notes!'},
             )
 
         response = self.client.get(self.url)
         assert (
             "Rollback submitted. You'll be notified when it's approved"
+            in pq(response.content).text()
+        )
+
+    @override_switch('version-rollback', active=True)
+    def test_version_rollback_submit_in_other_locale(self):
+        self.addon.update(default_locale='de')
+        with self.activate('fr'):
+            self.url = self.addon.get_dev_url('versions')
+        first_version = self.addon.current_version
+        second_version = version_factory(
+            addon=self.addon, file_kw={'status': amo.STATUS_APPROVED}
+        )
+        data = {
+            'channel': amo.CHANNEL_LISTED,
+            'new_version_string': second_version.version + '.1',
+            'rollback-submit': '',
+            'release_notes': 'lé release notes!',
+        }
+
+        with mock.patch(
+            'olympia.devhub.views.duplicate_addon_version_for_rollback.delay'
+        ) as mock_rollback_task:
+            response = self.client.post(self.url, data)
+            self.assert3xx(response, self.url, 302)
+            mock_rollback_task.assert_called_once_with(
+                version_pk=first_version.pk,
+                new_version_number=data['new_version_string'],
+                user_pk=self.user.pk,
+                # This is not great, because release notes will be empty in the default
+                # locale, but it's consistent with how the new version form works too.
+                notes={'fr': 'lé release notes!', 'de': None},
+            )
+
+        response = self.client.get(self.url)
+        assert (
+            'Rétablissement demandé. Vous recevrez une notification une fois approuvé'
             in pq(response.content).text()
         )
 

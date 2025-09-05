@@ -51,6 +51,11 @@
             {{ rollback_form.new_version_string.errors }}
         </td>
         </tr>
+        <tr><td colspan="3"><label for="id_release_notes">{{ _('Release Notes') }}</label></td></tr>
+        <tr><td colspan="3">
+            {{ rollback_form.release_notes }}
+            {{ rollback_form.release_notes.errors }}
+        </td></tr>
         </table>
         {{ rollback_form.non_field_errors() }}
         {% csrf_token %}

@@ -282,7 +282,9 @@ def hard_delete_versions(version_ids, **kw):
 
 @task
 @use_primary_db
-def duplicate_addon_version_for_rollback(*, version_pk, new_version_number, user_pk):
+def duplicate_addon_version_for_rollback(
+    *, version_pk, new_version_number, user_pk, notes
+):
     task_user = get_task_user()
     new_version_number = VersionString(new_version_number)
     old_version = Version.unfiltered.get(id=version_pk)
@@ -309,8 +311,10 @@ def duplicate_addon_version_for_rollback(*, version_pk, new_version_number, user
         version = old_version
         statsd.incr('versions.tasks.rollback.failure')
     else:
-        version.update(human_review_date=old_version.human_review_date)
-
+        version.human_review_date = old_version.human_review_date
+        if notes is not None:
+            version.release_notes = notes
+        version.save()
         if old_version.source:
             version.source.save(
                 os.path.basename(old_version.source.name), old_version.source.file

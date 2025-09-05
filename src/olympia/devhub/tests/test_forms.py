@@ -1593,6 +1593,7 @@ class TestRollbackVersionForm(TestCase):
             'unlisted_version': uv1,
             'listed_version': lv1,
             'version': lv1,
+            'release_notes': {'en-us': None},
         }
 
     def test_clean_adds_version_for_unlisted(self):
@@ -1615,6 +1616,7 @@ class TestRollbackVersionForm(TestCase):
             'unlisted_version': uv1,
             'listed_version': lv1,
             'version': uv1,
+            'release_notes': {'en-us': None},
         }
 
     def test_clean_errors_when_no_version_for_channel(self):
