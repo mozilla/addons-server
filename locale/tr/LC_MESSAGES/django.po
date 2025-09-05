@@ -4038,6 +4038,8 @@ msgstr "Mükemmel uzantılar ve temalar oluşturun"
 #: src/olympia/devhub/templates/devhub/new-landing/components/banner.html:7 src/olympia/devhub/templates/devhub/new-landing/components/overview.html:5
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr ""
+"İster uzantı geliştirmeye yeni başlıyor olun, ister mevcut bir uzantıyı veya temayı iyileştiriyor ya da uyarlıyor olun ya da özel bir kurumsal çözüm geliştiriyor olun, size destek olacak "
+"kaynaklarımız mevcut."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/banner.html:13
 msgid "Visit the Firefox Extension Workshop"
@@ -4415,6 +4417,8 @@ msgid ""
 "Once a version has been deleted, you may not upload a new version with the same version number. The version will also be Restricted, which will disable and prevent any further installation in "
 "Firefox. Existing users can choose to re-enable the add-on."
 msgstr ""
+"Bir sürüm silindikten sonra aynı sürüm numarasıyla yeni bir sürüm yükleyemezsiniz. Silinen sürüm “Kısıtlı” olarak ayarlanacak, devre dışı bırakılacak ve artık Firefox’a yüklenemeyecektir. Mevcut "
+"kullanıcılar eklentiyi yeniden etkinleştirmeyi seçebilir."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:296
 msgid "Are you sure you wish to delete this version?"
@@ -6868,6 +6872,8 @@ msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
 "restrictions\" instead."
 msgstr ""
+"Engellenmesini istediğiniz tek kullanımlık e-posta alan adını girin. Joker karakterler desteklenmez: Joker karakter kullanmanız gerekiyorsa veya yalnızca alan adıyla değil de e-postanın tamamıyla "
+"eşleştirme yapmanız gerekiyorsa “E-posta kullanıcı kısıtlamaları”nı kullanın."
 
 #: src/olympia/users/models.py:1252
 msgid ""
