@@ -2097,7 +2097,7 @@ msgstr "Uitgaveopmerkingen"
 
 #: src/olympia/devhub/forms.py:1635
 msgid "Automatic rollback based on version [m.m]."
-msgstr "Automatische rollback gebaseerd op versie [m.m]."
+msgstr ""
 
 #: src/olympia/devhub/forms.py:1710
 msgid "You must select a channel and version to rollback to."
