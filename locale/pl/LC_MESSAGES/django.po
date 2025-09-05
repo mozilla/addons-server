@@ -5261,7 +5261,7 @@ msgstr "Wprowadzaj dowolne zmiany wizualne — usuwaj reklamy lub niesmaczną za
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:458
 msgid "Track Amazon pricing history. Make smart shopping decisions by receiving alerts for price changes on Amazon products you're interested in."
-msgstr ""
+msgstr "Monitoruj historię cen na Amazon. Podejmuj mądre decyzje zakupowe, otrzymując alerty o zmianach cen produktów na Amazon, którymi jesteś zainteresowany."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5305,7 +5305,7 @@ msgstr "Przestań marnować cenną przestrzeń pamięci na nieaktywne karty."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:485
 msgid "Save complete pages—or just portions—as a single HTML file."
-msgstr ""
+msgstr "Zapisuj całe strony lub ich fragmenty jako pojedynczy plik HTML."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:488
