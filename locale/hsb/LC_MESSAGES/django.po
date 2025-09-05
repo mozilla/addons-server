@@ -2096,11 +2096,11 @@ msgstr "Wersiju wubrać"
 
 #: src/olympia/devhub/forms.py:1634
 msgid "Release notes"
-msgstr ""
+msgstr "Wersijowe informacije"
 
 #: src/olympia/devhub/forms.py:1635
 msgid "Automatic rollback based on version [m.m]."
-msgstr ""
+msgstr "Awtomatiska wróćoinstalacija na zakładźe wersije [m.m]."
 
 #: src/olympia/devhub/forms.py:1710
 msgid "You must select a channel and version to rollback to."
@@ -4016,7 +4016,7 @@ msgstr "Nowe wersijowe čisło"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:54
 msgid "Release Notes"
-msgstr ""
+msgstr "Wersijowe informacije"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:63
 msgid "Roll back"
