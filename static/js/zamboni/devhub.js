@@ -624,40 +624,29 @@ function initVersions() {
         $listedVersionSelect = $('#id_listed_version'),
         $unlistedVersionSelect = $('#id_unlisted_version');
 
-    const explainerUpdate = function (event) {
-      const explainer = $('#rollback-explainer-row');
-      const $target = $(event.target);
+    const explainerAndReleaseNotesUpdate = function (event) {
+      const $explainer = $('#rollback-explainer-row'),
+            $releaseNotes = $('#id_release_notes'),
+            $target = $(event.target);
+
       const currentVersion = $target.parent().data('current-version');
       let selectedVersion = 'm.m';
       if ($target.val()) {
         selectedVersion = $('#' + event.target.id + ' option:selected').text()
       }
-      const formatted = explainer.data('template').replace('[n.n]', '[' + currentVersion + ']').replace('[m.m]', '[' + selectedVersion + ']');
-      explainer.text(formatted);
+      const formatted = $explainer.data('template').replace('[n.n]', '[' + currentVersion + ']').replace('[m.m]', '[' + selectedVersion + ']');
+      $explainer.text(formatted);
+
+      if (!$releaseNotes.data('last-value') || $releaseNotes.val() == $releaseNotes.data('last-value')) {
+        // If user has modified the field, don't overwrite it.
+        const formattedNotes = $releaseNotes.prop('defaultValue').replace('[m.m]', '[' + selectedVersion + ']');
+        $releaseNotes.val(formattedNotes);
+        $releaseNotes.data('last-value', formattedNotes);
+      }
     };
 
-    const releaseNotesUpdate = function (event) {
-      const releaseNotes = $('#id_release_notes');
-      const $target = $(event.target);
-      if (releaseNotes.data('last-value') && releaseNotes.val() != releaseNotes.data('last-value')) {
-        // User has modified the field, don't overwrite it.
-        return;
-      }
-
-      let selectedVersion = 'm.m';
-      if ($target.val()) {
-        selectedVersion = $('#' + event.target.id + ' option:selected').text()
-      }
-      const formatted = releaseNotes.prop('defaultValue').replace('[m.m]', '[' + selectedVersion + ']');
-      releaseNotes.val(formatted);
-      releaseNotes.data('last-value', formatted);
-    }
-
-
-    $listedVersionSelect.on('change', explainerUpdate);
-    $unlistedVersionSelect.on('change', explainerUpdate);
-    $listedVersionSelect.on('change', releaseNotesUpdate);
-    $unlistedVersionSelect.on('change', releaseNotesUpdate);
+    $listedVersionSelect.on('change', explainerAndReleaseNotesUpdate);
+    $unlistedVersionSelect.on('change', explainerAndReleaseNotesUpdate);
 
     $channelInputs.on('change', function () {
       $listedVersionRow.hide();
