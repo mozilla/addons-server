@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-05 10:32+0000\n"
+"POT-Creation-Date: 2025-09-05 11:10+0000\n"
 "PO-Revision-Date: 2024-01-15 13:27+0000\n"
 "Last-Translator: Bund10z <abu.avila@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -1610,6 +1610,12 @@ msgstr ""
 msgid "Choose version"
 msgstr ""
 
+msgid "Release notes"
+msgstr ""
+
+msgid "Automatic rollback based on version [m.m]."
+msgstr ""
+
 msgid "You must select a channel and version to rollback to."
 msgstr ""
 
@@ -3082,6 +3088,9 @@ msgid "Version"
 msgstr "Versión"
 
 msgid "New version number"
+msgstr ""
+
+msgid "Release Notes"
 msgstr ""
 
 msgid "Roll back"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  messages.pootle\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-05 10:32+0000\n"
+"POT-Creation-Date: 2025-09-05 11:10+0000\n"
 "PO-Revision-Date: 2013-11-07 07:24+0000\n"
 "Last-Translator: Julen <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -1609,6 +1609,12 @@ msgstr ""
 msgid "Choose version"
 msgstr ""
 
+msgid "Release notes"
+msgstr ""
+
+msgid "Automatic rollback based on version [m.m]."
+msgstr ""
+
 msgid "You must select a channel and version to rollback to."
 msgstr ""
 
@@ -3059,6 +3065,9 @@ msgid "Version"
 msgstr "Bertsioa"
 
 msgid "New version number"
+msgstr ""
+
+msgid "Release Notes"
 msgstr ""
 
 msgid "Roll back"

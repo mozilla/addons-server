@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-05 10:32+0000\n"
+"POT-Creation-Date: 2025-09-05 11:10+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -555,7 +555,7 @@ msgstr ""
 
 #: src/olympia/amo/context_processors.py:79
 #: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:20
-#: src/olympia/devhub/views.py:2117
+#: src/olympia/devhub/views.py:2118
 msgid "Manage API Keys"
 msgstr ""
 
@@ -2267,7 +2267,15 @@ msgstr ""
 msgid "Choose version"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1696
+#: src/olympia/devhub/forms.py:1634
+msgid "Release notes"
+msgstr ""
+
+#: src/olympia/devhub/forms.py:1635
+msgid "Automatic rollback based on version [m.m]."
+msgstr ""
+
+#: src/olympia/devhub/forms.py:1710
 msgid "You must select a channel and version to rollback to."
 msgstr ""
 
@@ -2460,120 +2468,120 @@ msgid ""
 "Please take due care when reviewing it."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1319
+#: src/olympia/devhub/views.py:1320
 msgid "Rollback submitted. You'll be notified when it's approved"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1451
+#: src/olympia/devhub/views.py:1452
 msgid "Header area background"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1453
+#: src/olympia/devhub/views.py:1454
 msgid ""
 "The color of the header area background, displayed in the part of the header "
 "not covered or visible through the header image. Manifest field:  frame."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1461
+#: src/olympia/devhub/views.py:1462
 msgid "Header area text and icons"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1463
+#: src/olympia/devhub/views.py:1464
 msgid ""
 "The color of the text and icons in the header area, except the active tab. "
 "Manifest field:  tab_background_text."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1470
+#: src/olympia/devhub/views.py:1471
 msgid "Toolbar area background"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1472
+#: src/olympia/devhub/views.py:1473
 msgid ""
 "The background color for the navigation bar, the bookmarks bar, and the "
 "active tab.  Manifest field:  toolbar."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1479
+#: src/olympia/devhub/views.py:1480
 msgid "Toolbar area text and icons"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1481
+#: src/olympia/devhub/views.py:1482
 msgid ""
 "The color of the text and icons in the toolbar and the active tab. Manifest "
 "field:  bookmark_text."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1488
+#: src/olympia/devhub/views.py:1489
 msgid "Toolbar field area background"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1490
+#: src/olympia/devhub/views.py:1491
 msgid ""
 "The background color for fields in the toolbar, such as the URL bar. Manifest"
 " field:  toolbar_field."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1497
+#: src/olympia/devhub/views.py:1498
 msgid "Toolbar field area text"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1499
+#: src/olympia/devhub/views.py:1500
 msgid ""
 "The color of text in fields in the toolbar, such as the URL bar. Manifest "
 "field:  toolbar_field_text."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1507
+#: src/olympia/devhub/views.py:1508
 msgid "Tab highlight"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1509
+#: src/olympia/devhub/views.py:1510
 msgid ""
 "The highlight color of the active tab. Implemented as a border around the tab"
 " on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:"
 "  tab_line."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1608
+#: src/olympia/devhub/views.py:1609
 msgid "Add-on uploads are temporarily unavailable"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1977
+#: src/olympia/devhub/views.py:1978
 msgid "Review requested."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1979
+#: src/olympia/devhub/views.py:1980
 msgid "You must provide further details to proceed."
 msgstr ""
 
-#: src/olympia/devhub/views.py:2092
+#: src/olympia/devhub/views.py:2093
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr ""
 
-#: src/olympia/devhub/views.py:2111
+#: src/olympia/devhub/views.py:2112
 msgid ""
 "Keep your API keys secret and never share them with anyone, including Mozilla"
 " contributors."
 msgstr ""
 
-#: src/olympia/devhub/views.py:2128
+#: src/olympia/devhub/views.py:2129
 msgid "New API key created"
 msgstr ""
 
-#: src/olympia/devhub/views.py:2139
+#: src/olympia/devhub/views.py:2140
 msgid "API key revoked"
 msgstr ""
 
-#: src/olympia/devhub/views.py:2199
+#: src/olympia/devhub/views.py:2200
 msgid "Verify email"
 msgstr ""
 
-#: src/olympia/devhub/views.py:2201
+#: src/olympia/devhub/views.py:2202
 msgid "Send another email"
 msgstr ""
 
-#: src/olympia/devhub/views.py:2234
+#: src/olympia/devhub/views.py:2235
 msgid "Your email has been verified"
 msgstr ""
 
@@ -3062,7 +3070,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:87
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:177
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:32
-#: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:59
+#: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:64
 #: src/olympia/devhub/templates/devhub/versions/edit.html:136
 #: src/olympia/devhub/templates/devhub/versions/list.html:305
 #: src/olympia/devhub/templates/devhub/versions/list.html:315
@@ -4364,7 +4372,11 @@ msgstr ""
 msgid "New version number"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:58
+#: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:54
+msgid "Release Notes"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:63
 msgid "Roll back"
 msgstr ""
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-05 10:32+0000\n"
+"POT-Creation-Date: 2025-09-05 11:10+0000\n"
 "Language: af\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1593,6 +1593,12 @@ msgstr ""
 msgid "Choose version"
 msgstr ""
 
+msgid "Release notes"
+msgstr ""
+
+msgid "Automatic rollback based on version [m.m]."
+msgstr ""
+
 msgid "You must select a channel and version to rollback to."
 msgstr ""
 
@@ -3016,6 +3022,9 @@ msgid "Version"
 msgstr "Weergawe"
 
 msgid "New version number"
+msgstr ""
+
+msgid "Release Notes"
 msgstr ""
 
 msgid "Roll back"

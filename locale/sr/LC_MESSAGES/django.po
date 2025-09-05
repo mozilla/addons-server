@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-05 10:32+0000\n"
+"POT-Creation-Date: 2025-09-05 11:10+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -1630,6 +1630,12 @@ msgstr ""
 msgid "Choose version"
 msgstr ""
 
+msgid "Release notes"
+msgstr ""
+
+msgid "Automatic rollback based on version [m.m]."
+msgstr ""
+
 msgid "You must select a channel and version to rollback to."
 msgstr ""
 
@@ -3097,6 +3103,9 @@ msgid "Version"
 msgstr "Верзија"
 
 msgid "New version number"
+msgstr ""
+
+msgid "Release Notes"
 msgstr ""
 
 msgid "Roll back"
