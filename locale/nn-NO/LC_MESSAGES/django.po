@@ -6887,7 +6887,7 @@ msgid ""
 " which explains how we handle your information."
 msgstr ""
 "Før du startar, les og godta distribusjonsavtalen vår for Firefox-tillegg, og dessutan retningslinjene og reglane våre for omtalar. Distribusjonsavtalen for Firefox-tillegg lenkar også til "
-"personvernerklæringa vår som forklarar korleis vi handsamar informasjonen din."
+"personvernfråsegna vår som forklarar korleis vi handsamar informasjonen din."
 
 #: src/olympia/users/models.py:1266
 #, python-brace-format
