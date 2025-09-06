@@ -2095,7 +2095,7 @@ msgstr "Opombe ob izdaji"
 
 #: src/olympia/devhub/forms.py:1635
 msgid "Automatic rollback based on version [m.m]."
-msgstr "Samodejno povrnitev na podlagi različice [m.m]."
+msgstr "Samodejna povrnitev na podlagi različice [m.m]."
 
 #: src/olympia/devhub/forms.py:1710
 msgid "You must select a channel and version to rollback to."
@@ -2276,7 +2276,7 @@ msgstr "Ta prenos ni opravil preverjanja veljavnosti in morda rezultati preverja
 
 #: src/olympia/devhub/views.py:1320
 msgid "Rollback submitted. You'll be notified when it's approved"
-msgstr "Povrnitev poslana. Ko bo odobren, boste obveščeni"
+msgstr "Vrnitev na prejšnjo različico poslana. Ko bo odobrena, boste obveščeni"
 
 #: src/olympia/devhub/views.py:1452
 msgid "Header area background"
@@ -5805,7 +5805,7 @@ msgstr "Samodejno obdelajte obrazce za soglasje GDPR."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:997
 msgid "Block malicious websites from port scanning."
-msgstr "Preprečite zlonamernim spletnim mestom pregled vrat."
+msgstr "Preprečite zlonamernim spletnim mestom skeniranje vrat."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1000
