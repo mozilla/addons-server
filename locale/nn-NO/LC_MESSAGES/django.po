@@ -3878,7 +3878,7 @@ msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement, Review Policies and Rules and our <a %(a_attrs)s href=\"%(faq_url)s\">Frequently Asked Questions</a>. The Firefox "
 "Add-on Distribution Agreement also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
-"Før du startar, les og godta distribusjonsavtalen vår for Firefox-tillegg, gjennomgangspolicyar og reglar og dei <a %(a_attrs)s href=\"%(faq_url)s\">ofte stilte spørsmåla</a> våre. "
+"Før du startar, les og godta distribusjonsavtalen vår for Firefox-tillegg, gjennomgangspraksisar og reglar og dei <a %(a_attrs)s href=\"%(faq_url)s\">ofte stilte spørsmåla</a> våre. "
 "Distribusjonsavtalen for Firefox-tillegg lenker også til personvernfråsegna vår som forklarar korleis vi handsamar informasjonen din."
 
 #: src/olympia/devhub/templates/devhub/includes/agreement.html:10
@@ -4071,7 +4071,7 @@ msgstr "E-postadresse"
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:31
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
-msgstr "Eg forstår korleis Mozilla handsamar mine personlege data, som forklart i denne %(link_open)spersonvernerklæringa%(link_close)s."
+msgstr "Eg forstår korleis Mozilla handsamar dei personlege dataa mine, som forklart i denne %(link_open)spersonvernfråsegna%(link_close)s."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:40
 msgid "Sign Up"
