@@ -1251,21 +1251,21 @@ msgstr ""
 
 #: src/olympia/constants/activity.py:1209
 msgid "Version rollback"
-msgstr ""
+msgstr "이전 버전으로 복구"
 
 #: src/olympia/constants/activity.py:1216
 #, python-brace-format
 msgid "{addon} rollback from {version} failed."
-msgstr ""
+msgstr "{version} 에서 {addon} 으로 복구에 실패했습니다."
 
 #: src/olympia/constants/activity.py:1217
 msgid "Version rollback failure"
-msgstr ""
+msgstr "이전 버전 복구 실패"
 
 #: src/olympia/constants/activity.py:1246
 #, python-brace-format
 msgid "{addon} {0} property edited."
-msgstr ""
+msgstr "{addon} {0} 속성이 편집 되었습니다."
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -2066,7 +2066,7 @@ msgstr "문제가 발생했습니다. 개발자 지원팀에 문의하세요."
 
 #: src/olympia/devhub/forms.py:1626
 msgid "Choose version"
-msgstr ""
+msgstr "버전 선택"
 
 #: src/olympia/devhub/forms.py:1634
 msgid "Release notes"
@@ -2078,7 +2078,7 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py:1710
 msgid "You must select a channel and version to rollback to."
-msgstr ""
+msgstr "복구할 채널과 버전을 선택해야 합니다."
 
 #: src/olympia/devhub/tasks.py:178
 msgid "Invalid or corrupt add-on file."
@@ -2254,7 +2254,7 @@ msgstr "업로드한 파일의 검사 작업에 실패했으므로 완전한 검
 
 #: src/olympia/devhub/views.py:1320
 msgid "Rollback submitted. You'll be notified when it's approved"
-msgstr ""
+msgstr "복구가 제출하였습니다. 완료되면 알림을 받게 됩니다"
 
 #: src/olympia/devhub/views.py:1452
 msgid "Header area background"
@@ -2269,18 +2269,16 @@ msgid "Header area text and icons"
 msgstr "헤더 영역 텍스트 및 아이콘"
 
 #: src/olympia/devhub/views.py:1464
-#, fuzzy
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
-msgstr "탭 부분의 글자색입니다."
+msgstr "활성 탭을 제외하고 헤더 영역에 표시될 텍스트와 아이콘의 색상입니다. 매니페스트 필드:  tab_background_text."
 
 #: src/olympia/devhub/views.py:1471
 msgid "Toolbar area background"
 msgstr "도구 모음 영역 배경"
 
 #: src/olympia/devhub/views.py:1473
-#, fuzzy
 msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
-msgstr "탭 부분의 글자색입니다."
+msgstr "탐색 메뉴와 북마크바, 활성 탭의 배경색입니다.  매니페스트 필드:  도구 모음."
 
 #: src/olympia/devhub/views.py:1480
 msgid "Toolbar area text and icons"
@@ -4323,7 +4321,7 @@ msgstr "삭제하면 이 버전은 다시는 복구할 수 없습니다:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:288
 msgid "Important:"
-msgstr ""
+msgstr "중요:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:289
 msgid ""
