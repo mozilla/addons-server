@@ -2067,7 +2067,7 @@ msgstr "选择版本"
 
 #: src/olympia/devhub/forms.py:1634
 msgid "Release notes"
-msgstr ""
+msgstr "发行说明"
 
 #: src/olympia/devhub/forms.py:1635
 msgid "Automatic rollback based on version [m.m]."
