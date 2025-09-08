@@ -71,7 +71,11 @@ def update_addon_average_daily_users(data, **kw):
             # BigQuery, so we may be receiving the same guid multiple times in
             # different cases. We want to avoid accidentally overwriting the
             # value in the database, so we force an exact match here.
-            addon = Addon.unfiltered.get(guid=Collate(Value(addon_guid), 'utf8mb4_bin'))
+            addon = (
+                Addon.unfiltered.all()
+                .no_transforms()
+                .get(guid=Collate(Value(addon_guid), 'utf8mb4_bin'))
+            )
         except Addon.DoesNotExist:
             # The processing input comes from metrics which might be out of
             # date in regards to currently existing add-ons
@@ -79,7 +83,9 @@ def update_addon_average_daily_users(data, **kw):
             log.info(m % (count, addon_guid))
             continue
 
-        addon.update(average_daily_users=int(float(count)))
+        average_daily_users = int(float(count))
+        if addon.average_daily_users != average_daily_users:
+            addon.update(average_daily_users=average_daily_users)
 
 
 @task
@@ -425,7 +431,11 @@ def update_addon_weekly_downloads(data):
 
     for hashed_guid, count in data:
         try:
-            addon = Addon.objects.get(addonguid__hashed_guid=hashed_guid)
+            addon = (
+                Addon.unfiltered.all()
+                .no_transforms()
+                .get(addonguid__hashed_guid=hashed_guid)
+            )
         except Addon.DoesNotExist:
             # The processing input comes from metrics which might be out of
             # date in regards to currently existing add-ons.
@@ -437,7 +447,9 @@ def update_addon_weekly_downloads(data):
             )
             continue
 
-        addon.update(weekly_downloads=int(float(count)))
+        weekly_downloads = int(float(count))
+        if addon.weekly_downloads != weekly_downloads:
+            addon.update(weekly_downloads=weekly_downloads)
 
 
 @task
