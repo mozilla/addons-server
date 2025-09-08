@@ -432,7 +432,7 @@ def update_addon_weekly_downloads(data):
     for hashed_guid, count in data:
         try:
             addon = (
-                Addon.unfiltered.all()
+                Addon.objects.all()
                 .no_transforms()
                 .get(addonguid__hashed_guid=hashed_guid)
             )
