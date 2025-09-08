@@ -1418,6 +1418,7 @@ VERIFY_FXA_ACCESS_TOKEN = True
 # syntax is: job_and_method_name: full.package.path
 CRON_JOBS = {
     'addon_last_updated': 'olympia.addons.cron',
+    'flag_high_rating_addons': 'olympia.ratings.cron',
     'gc': 'olympia.amo.cron',
     'process_blocklistsubmissions': 'olympia.blocklist.cron',
     'record_reviewer_queues_counts': 'olympia.reviewers.cron',
