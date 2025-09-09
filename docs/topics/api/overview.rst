@@ -479,6 +479,7 @@ These are `v5` specific changes - `v4` changes apply also.
 * 2025-06-26: added ``data_collection_permissions`` and ``optional_data_collection_permissions`` to the version detail endpoint (and therefore addons/search as well). https://github.com/mozilla/addons/issues/15620
 * 2025-09-01: added ``is_noindexed`` to the add-on detail/search endpoint. https://github.com/mozilla/addons/issues/15808
 * 2025-09-01: added ``created`` and ``updated`` query parameters to addon search api. https://github.com/mozilla/addons/issues/15814
+* 2025-09-18: added /rollback endpoint to version detail api. https://github.com/mozilla/addons/issues/15696
 
 .. _`#11380`: https://github.com/mozilla/addons-server/issues/11380/
 .. _`#11379`: https://github.com/mozilla/addons-server/issues/11379/
