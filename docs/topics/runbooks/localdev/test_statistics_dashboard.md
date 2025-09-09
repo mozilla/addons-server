@@ -16,7 +16,7 @@ your local addon will need to use a matching `guid`.
 Open a django shell `make djshell` and run the following:
 
 - pk: the database id of the addon you want to use
-- guid: the guid from the [list][enabled_dev_guids] you want to use (e.g. `@facebook-container`)
+- guid: the guid from the [list][enabled_dev_guids] you want to use (e.g. `@contain-facebook`)
 
 ```python
 addon = Addon.objects.get(pk=<pg>)
