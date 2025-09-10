@@ -2094,11 +2094,11 @@ msgstr "Ferzje kieze"
 
 #: src/olympia/devhub/forms.py:1634
 msgid "Release notes"
-msgstr ""
+msgstr "Utjefteopmerkingen"
 
 #: src/olympia/devhub/forms.py:1635
 msgid "Automatic rollback based on version [m.m]."
-msgstr ""
+msgstr "Automatysk tebekrol basearre op ferzje [m.m]."
 
 #: src/olympia/devhub/forms.py:1710
 msgid "You must select a channel and version to rollback to."
@@ -3982,12 +3982,12 @@ msgstr "Weromgean nei in foarige ferzje"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:7
 msgid "Users of this extension will roll back to the previous version you choose."
-msgstr ""
+msgstr "Brûkers fan dit útwreiding sille weromgean nei de foarige keazen ferzje."
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:13
 #, python-format
 msgid "Current Version [%(current_version_number)s] will roll back to Version [%(selected_version_number)s]"
-msgstr ""
+msgstr "Aktuele ferzje [%(current_version_number)s] sil weromgean nei ferzje [%(selected_version_number)s]"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:19
 msgid "Distribution channel"
@@ -4004,7 +4004,7 @@ msgstr "Nij ferzjenûmer"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:54
 msgid "Release Notes"
-msgstr ""
+msgstr "Utjefteopmerkingen"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:63
 msgid "Roll back"
@@ -5852,7 +5852,7 @@ msgstr "Alle útwreidingen besjen"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1018
 msgid "Anti-tracking extensions"
-msgstr ""
+msgstr "Anti-trackingútwreidingen"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1020
@@ -5862,7 +5862,7 @@ msgstr "Essinsjele add-ons"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1022
 msgid "Writing tools"
-msgstr ""
+msgstr "Skriuwhelpmiddelen"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1024 src/olympia/discovery/strings.jinja2:1026 src/olympia/discovery/strings.jinja2:1028
