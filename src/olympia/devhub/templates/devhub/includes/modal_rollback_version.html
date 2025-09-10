@@ -29,7 +29,7 @@
         {% if has_listed_versions %}
         <tr id="listed-version-row">
         <td><label for="id_listed_version">{{ _('Version') }}</label></td>
-        <td data-current-version="{{ addon.current_version.version }}">
+        <td data-current-version="{{ current_version.version }}">
             {{ rollback_form.listed_version }}
             {{ rollback_form.listed_version.errors }}
         </td>
@@ -38,7 +38,7 @@
         {% if has_unlisted_versions %}
         <tr id="unlisted-version-row">
         <td><label for="id_unlisted_version">{{ _('Version') }}</label></td>
-        <td data-current-version="{{ addon.find_latest_version(channel=amo.CHANNEL_UNLISTED).version }}">
+        <td data-current-version="{{ latest_approved_unlisted_version_number }}">
             {{ rollback_form.unlisted_version }}
             {{ rollback_form.unlisted_version.errors }}
         </td>

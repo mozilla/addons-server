@@ -1,3 +1,4 @@
+import itertools
 import os
 import tarfile
 import zipfile
@@ -1601,6 +1602,33 @@ class APIKeyForm(forms.Form):
         }
 
 
+class LimitedModelChoiceField(forms.ModelChoiceField):
+    limit_choice_count = 100  # django docs suggest 100 is the max you should use
+
+    def __init__(self, queryset, *, limit_choice_count, **kwargs):
+        self.limit_choice_count = limit_choice_count
+        super().__init__(queryset, **kwargs)
+
+    def _set_queryset(self, queryset):
+        if hasattr(self, '_choices'):
+            del self._choices
+        super()._set_queryset(queryset)
+
+    queryset = property(forms.ModelChoiceField._get_queryset, _set_queryset)
+
+    def _get_choices(self):
+        # If self._choices is set, we called this before.
+        if hasattr(self, '_choices'):
+            return self._choices
+
+        count = self.limit_choice_count + (1 if self.empty_label else 0)
+        # We need to limit the choices, but we can't slice the queryset.
+        self._choices = list(itertools.islice(self.iterator(self), count))
+        return self._choices
+
+    choices = property(_get_choices, forms.ModelChoiceField._set_choices)
+
+
 class RollbackVersionForm(forms.Form):
     """
     Form to rollback a version to a previous one.
@@ -1620,11 +1648,18 @@ class RollbackVersionForm(forms.Form):
         coerce=int,
         widget=forms.RadioSelect(),
     )
-    listed_version = forms.TypedChoiceField(choices=(), coerce=int, required=False)
-    unlisted_version = forms.ModelChoiceField(
+    listed_version = LimitedModelChoiceField(
+        queryset=Version.objects.none(),
+        empty_label=_('No appropriate version available'),
+        required=False,
+        # We currently only allow rolling back to a single listed version.
+        limit_choice_count=1,
+    )
+    unlisted_version = LimitedModelChoiceField(
         queryset=Version.objects.none(),
         empty_label=_('Choose version'),
         required=False,
+        limit_choice_count=25,
     )
     new_version_string = forms.CharField(max_length=255)
     release_notes = forms.CharField(
@@ -1642,29 +1677,32 @@ class RollbackVersionForm(forms.Form):
         unlisted = self.fields['unlisted_version']
         channel = self.fields['channel']
 
-        listed_queryset = self.addon.rollbackable_versions_qs(amo.CHANNEL_LISTED)
-        self.listed_count = listed_queryset.count()
-        # We currently only allow rolling back to a single listed version.
-        if self.listed_count:
-            listed_version_obj = listed_queryset.first()
-            listed.choices = ((listed_version_obj.id, listed_version_obj),)
-        else:
-            listed.choices = ((None, 'No appropriate version available'),)
+        listed.queryset = self.addon.rollbackable_versions_qs(
+            amo.CHANNEL_LISTED
+        ).no_transforms()
+        self.has_listed = bool(len(listed.choices) - 1)  # Skip empty_label
 
-        unlisted.queryset = self.addon.rollbackable_versions_qs(amo.CHANNEL_UNLISTED)
-        self.unlisted_count = unlisted.queryset.count()
+        if self.has_listed:
+            # drop empty label
+            listed.choices.pop(0)
+            self.empty_label = None
 
-        if not self.listed_count and self.unlisted_count:
+        unlisted.queryset = self.addon.rollbackable_versions_qs(
+            amo.CHANNEL_UNLISTED
+        ).no_transforms()
+        self.has_unlisted = bool(len(unlisted.choices) - 1)  # Skip empty_label
+
+        if not self.has_listed and self.has_unlisted:
             # if there is no listed option, we default to unlisted
             channel.initial = amo.CHANNEL_UNLISTED
             channel.disabled = True
-        elif not self.unlisted_count and self.listed_count:
+        elif not self.has_unlisted and self.has_listed:
             # if there is a listed option, we default to that channel
             channel.initial = amo.CHANNEL_LISTED
             channel.disabled = True
-        elif self.listed_count or self.unlisted_count:
+        elif self.has_listed or self.has_unlisted:
             # otherwise we default to the most recently used channel
-            channel.initial = self.addon.versions.first().channel
+            channel.initial = self.addon.versions.values_list('channel', flat=True)[0]
         # Also, in the template, we hide the selector if there is only one channel,
         # using a hidden input
 
@@ -1683,11 +1721,6 @@ class RollbackVersionForm(forms.Form):
         ):
             raise forms.ValidationError(error)
         return new_version_string
-
-    def clean_listed_version(self):
-        version_pk, version_obj = self.fields['listed_version'].choices[0]
-        self.cleaned_data['listed_version'] = version_obj if version_pk else None
-        return self.cleaned_data['listed_version']
 
     def clean_release_notes(self):
         notes = self.cleaned_data.get('release_notes', '').strip()
@@ -1712,4 +1745,4 @@ class RollbackVersionForm(forms.Form):
         return data
 
     def can_rollback(self):
-        return bool(self.listed_count + self.unlisted_count)
+        return self.has_listed or self.has_unlisted
