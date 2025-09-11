@@ -2071,6 +2071,8 @@ msgid ""
 "To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
 "href=\"{docs_url}\">API documentation</a>."
 msgstr ""
+"Aby tworzyć żądania API, wyślij <a href=\"{jwt_url}\">token internetowy JSON (JWT)</a> jako nagłówek autoryzacji. Nagłówek JWT będzie trzeba generować dla każdego żądania zgodnie z wyjaśnieniem w <a"
+" href=\"{docs_url}\">dokumentacji interfejsu API</a>."
 
 #: src/olympia/devhub/forms.py:1514
 msgid "JWT secret"
@@ -2766,7 +2768,7 @@ msgstr "Tagi pomagają użytkownikom znaleźć twój dodatek. Możesz mieć maks
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:28
 #, python-brace-format
 msgid "Limit {0} tags."
-msgstr ""
+msgstr "Maksymalnie {0} tagów."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:39
 msgid "Contributions URL"
