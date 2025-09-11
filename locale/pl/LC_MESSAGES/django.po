@@ -5638,7 +5638,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:886
 msgid "Web pages read aloud. 40+ languages supported."
-msgstr ""
+msgstr "Strony internetowe czytane na głos. Obsługiwane jest ponad 40 języków."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:892
