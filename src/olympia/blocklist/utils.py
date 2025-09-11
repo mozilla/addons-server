@@ -113,7 +113,7 @@ def block_activity_log_delete(obj, deleted, *, submission_obj=None, delete_user=
         amo.LOG.BLOCKLIST_VERSION_UNBLOCKED,
         *((Version, version_id) for version_id in changed_version_ids),
         obj,
-        user=obj.updated_by,
+        user=submission_obj.updated_by if submission_obj else delete_user,
     )
 
     if submission_obj and submission_obj.signoff_by:
