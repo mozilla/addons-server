@@ -2763,12 +2763,12 @@ msgstr "Etykiety"
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:20
 #, python-brace-format
 msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
-msgstr "Tagi pomagają użytkownikom znaleźć twój dodatek. Możesz mieć maksymalnie {0} tagów. Wybierz tylko tagi, które dotyczą twojego dodatku."
+msgstr "Etykiety pomagają użytkownikom znaleźć twój dodatek. Możesz mieć maksymalnie {0} etykiet. Wybierz tylko te etykiety, które dotyczą twojego dodatku."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:28
 #, python-brace-format
 msgid "Limit {0} tags."
-msgstr "Maksymalnie {0} tagów."
+msgstr "Maksymalnie {0} etykiet."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:39
 msgid "Contributions URL"
@@ -4722,7 +4722,7 @@ msgstr "Stosuj automatycznie najlepsze kupony do koszyka podczas realizacji tran
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:155
 msgid "Change the way you surf Reddit by using tags and more."
-msgstr "Zmień sposób przeglądania serwisu Reddit przy użyciu znaczników i nie tylko."
+msgstr "Zmień sposób przeglądania serwisu Reddit przy użyciu etykiet i innych funkcji."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:158
