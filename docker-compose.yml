@@ -97,7 +97,7 @@ services:
       start_period: 10s
 
   nginx:
-    image: nginx:1.27-bookworm@sha256:5ed8fcc66f4ed123c1b2560ed708dc148755b6e4cbd8b943fab094f2c6bfa91e
+    image: nginx:1.29-bookworm@sha256:dc53c8f25a10f9109190ed5b59bda2d707a3bde0e45857ce9e1efaa32ff9cbc1
     <<: *env
     volumes:
       - data_nginx:/etc/nginx/templates
