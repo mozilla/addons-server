@@ -8,6 +8,7 @@ from django.utils.cache import patch_cache_control
 from django.utils.decorators import method_decorator
 from django.utils.translation import gettext
 
+import waffle
 from drf_spectacular.utils import extend_schema, extend_schema_view
 from elasticsearch_dsl import Q, Search, query
 from rest_framework import exceptions, serializers, status
@@ -75,6 +76,7 @@ from olympia.users.utils import (
     send_addon_author_remove_mail,
 )
 from olympia.versions.models import Version
+from olympia.versions.tasks import duplicate_addon_version_for_rollback
 
 from .decorators import addon_view_factory, require_submissions_enabled
 from .indexers import AddonIndexer
@@ -101,6 +103,7 @@ from .serializers import (
     PreviewSerializer,
     ReplacementAddonSerializer,
     StaticCategorySerializer,
+    VersionRollbackSerializer,
     VersionSerializer,
 )
 from .utils import (
@@ -742,6 +745,26 @@ class AddonVersionViewSet(
             raise exceptions.ValidationError(msg)
 
         return super().destroy(request, *args, **kwargs)
+
+    @action(methods=('post',), detail=True)
+    def rollback(self, request, *args, **kwargs):
+        if not waffle.switch_is_active('version-rollback'):
+            raise http.Http404
+        instance = self.get_object()
+        serializer = VersionRollbackSerializer(instance, data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        duplicate_addon_version_for_rollback.delay(
+            version_pk=instance.pk,
+            new_version_number=serializer.validated_data.get('version'),
+            user_pk=request.user.pk,
+            notes=serializer.validated_data.get('release_notes'),
+        )
+
+        return Response(
+            {'msg': "Rollback submitted. You'll be notified when it's approved."},
+            status=status.HTTP_202_ACCEPTED,
+        )
 
 
 class AddonPreviewViewSet(

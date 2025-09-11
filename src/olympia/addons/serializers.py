@@ -1847,3 +1847,62 @@ class AddonBrowserMappingSerializer(AMOModelSerializer):
             'addon_guid',
             'extension_id',
         )
+
+
+class VersionRollbackSerializer(DeveloperVersionSerializer):
+    new_version_string = serializers.CharField(
+        max_length=255, required=True, source='version'
+    )
+    release_notes = TranslationSerializerField(required=False)
+
+    class Meta:
+        model = Version
+        validators = ()
+        fields = (
+            'new_version_string',
+            'release_notes',
+        )
+        writeable_fields = fields
+        read_only_fields = ()
+
+    def validate_new_version_string(self, new_version_string):
+        if error := validate_version_number_does_not_exist(
+            self.instance.addon, new_version_string
+        ):
+            raise exceptions.ValidationError(error)
+
+        if self.instance.channel == amo.CHANNEL_LISTED and (
+            error := validate_version_number_is_gt_latest_signed_listed_version(
+                self.instance.addon, new_version_string
+            )
+        ):
+            raise exceptions.ValidationError(error)
+        return new_version_string
+
+    def validate(self, data):
+        existing = self.instance
+        available = existing.addon.rollbackable_versions_qs(existing.channel)
+
+        if not available.exists():
+            raise exceptions.ValidationError(
+                gettext('There is no rollback available in this channel.')
+            )
+
+        if (
+            existing.channel == amo.CHANNEL_LISTED
+            and (first := available.first())
+            and existing != first
+        ):
+            # For listed versions, only the latest but one version can be rolled back.
+            raise exceptions.ValidationError(
+                gettext('Rollback is only available for version %s in this channel.')
+                % first.version
+            )
+        elif existing.channel == amo.CHANNEL_UNLISTED and existing not in available:
+            raise exceptions.ValidationError(
+                gettext(
+                    'Only approved versions can be rolled back, except the most recent '
+                    'version.'
+                )
+            )
+        return data

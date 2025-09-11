@@ -4816,6 +4816,172 @@ class TestVersionViewSetDeleteJWTAuth(TestVersionViewSetDelete):
     client_class = APITestClientJWT
 
 
+@override_switch('version-rollback', active=True)
+class TestVersionViewSetRollback(TestCase):
+    client_class = APITestClientSessionID
+
+    def setUp(self):
+        super().setUp()
+        self.user = user_factory(read_dev_agreement=self.days_ago(0))
+        self.addon = addon_factory(
+            users=(self.user,),
+            guid='@webextension-guid',
+            version_kw={'version': '0.0.0.991'},
+        )
+        self.first_version = self.addon.current_version
+        self.second_version = version_factory(addon=self.addon, version='0.0.0.992')
+        self.current_version = version_factory(addon=self.addon, version='0.0.0.993')
+        self.url = reverse_ns(
+            'addon-version-rollback',
+            kwargs={'addon_pk': self.addon.slug, 'pk': self.second_version.id},
+            api_version='v5',
+        )
+        self.client.login_api(self.user)
+
+    @override_switch('version-rollback', active=False)
+    def test_not_available(self):
+        response = self.client.post(self.url)
+        assert response.status_code == 404
+
+    def test_no_versions_available(self):
+        self.first_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        self.second_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+
+        response = self.client.post(self.url, data={'new_version_string': '0.0.0.994'})
+        assert response.status_code == 400
+        assert response.data == {
+            'non_field_errors': ['There is no rollback available in this channel.']
+        }
+
+    def test_cannot_rollback_from_older_listed_version(self):
+        self.url = reverse_ns(
+            'addon-version-rollback',
+            kwargs={'addon_pk': self.addon.slug, 'pk': self.first_version.id},
+            api_version='v5',
+        )
+
+        response = self.client.post(self.url, data={'new_version_string': '0.0.0.994'})
+        assert response.status_code == 400
+        assert response.data == {
+            'non_field_errors': [
+                'Rollback is only available for version '
+                f'{self.second_version.version} in this channel.'
+            ]
+        }
+
+    def test_cannot_rollback_from_unapproved_version(self):
+        self.second_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+
+        response = self.client.post(self.url, data={'new_version_string': '0.0.0.994'})
+        assert response.status_code == 400
+        assert response.data == {
+            'non_field_errors': [
+                'Rollback is only available for version '
+                f'{self.first_version.version} in this channel.'
+            ]
+        }
+
+        self.make_addon_unlisted(self.addon)
+        response = self.client.post(self.url, data={'new_version_string': '0.0.0.994'})
+        assert response.status_code == 400
+        assert response.data == {
+            'non_field_errors': [
+                'Only approved versions can be rolled back, except the most '
+                'recent version.'
+            ]
+        }
+
+    def test_new_version_string_must_be_unique(self):
+        self.grant_permission(self.user, 'API:BypassThrottling')
+        self.first_version.delete()  # deleted shouldn't matter
+        # the version number should be unique across channels
+        unlisted_version = version_factory(
+            channel=amo.CHANNEL_UNLISTED, addon=self.addon
+        )
+
+        for version in (self.second_version, self.current_version, unlisted_version):
+            response = self.client.post(
+                self.url, data={'new_version_string': version.version}
+            )
+            assert response.status_code == 400
+            assert response.data == {
+                'new_version_string': [f'Version {version.version} already exists.']
+            }
+
+        response = self.client.post(
+            self.url, data={'new_version_string': self.first_version.version}
+        )
+        assert response.status_code == 400
+        assert response.data == {
+            'new_version_string': [
+                f'Version {self.first_version.version} was uploaded before and deleted.'
+            ]
+        }
+
+    def test_clean_new_version_string_for_listed_greater_than_existing(self):
+        self.current_version.file.update(is_signed=True)
+        self.current_version.delete()  # deleted shouldn't matter
+        self.url = reverse_ns(
+            'addon-version-rollback',
+            kwargs={'addon_pk': self.addon.slug, 'pk': self.first_version.id},
+            api_version='v5',
+        )
+
+        new_version_string = self.second_version.version + '.1'
+        response = self.client.post(
+            self.url, data={'new_version_string': new_version_string}
+        )
+        assert response.status_code == 400
+        assert response.data == {
+            'new_version_string': [
+                f'Version {new_version_string} must be greater than the previous '
+                f'approved version {self.current_version.version}.'
+            ]
+        }
+
+        # There are no restrictions on greater/less than for unlisted though.
+        self.make_addon_unlisted(self.addon)
+        with mock.patch(
+            'olympia.addons.views.duplicate_addon_version_for_rollback.delay'
+        ) as mock_rollback_task:
+            response = self.client.post(
+                self.url, data={'new_version_string': new_version_string}
+            )
+            assert response.status_code == 202
+            mock_rollback_task.assert_called()
+
+    def test_no_new_version_string_provided(self):
+        response = self.client.post(self.url)
+        assert response.status_code == 400
+        assert response.data == {'new_version_string': ['This field is required.']}
+
+    def test_rollback_success(self):
+        user_factory(id=settings.TASK_USER_ID)
+        assert self.addon.versions.count() == 3
+        new_version_string = self.second_version.version + '.1'
+        with mock.patch(
+            'olympia.addons.views.duplicate_addon_version_for_rollback.delay'
+        ) as mock_rollback_task:
+            response = self.client.post(
+                self.url,
+                data={
+                    'new_version_string': new_version_string,
+                    'release_notes': {'en-us': 'release notes!', 'fr': 'lé!'},
+                },
+            )
+            assert response.status_code == 202
+            assert response.data == {
+                'msg': "Rollback submitted. You'll be notified when it's approved."
+            }
+
+            mock_rollback_task.assert_called_once_with(
+                version_pk=self.second_version.pk,
+                new_version_number=new_version_string,
+                user_pk=self.user.pk,
+                notes={'en-us': 'release notes!', 'fr': 'lé!'},
+            )
+
+
 class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
     client_class = APITestClientSessionID
 
