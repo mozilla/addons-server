@@ -59,11 +59,11 @@ msgstr ""
 #: src/olympia/abuse/templates/abuse/appeal.html:16
 #, python-brace-format
 msgid "Decision {0}"
-msgstr ""
+msgstr "Решение {0}"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:20
 msgid "Thank you. Your appeal has been recorded."
-msgstr ""
+msgstr "Благодарим ви. Обжалването ви е записано."
 
 #: src/olympia/abuse/templates/abuse/appeal.html:31 src/olympia/amo/templates/amo/fake_fxa_authorization.html:21
 msgid "OK"
@@ -77,14 +77,15 @@ msgstr "Благодарим ви за доклада."
 msgid ""
 "We have already reviewed a similar appeal from another reporter, and have reversed our prior decision. We have taken action against the content and/or account holder in accordance with our policies."
 msgstr ""
+"Вече прегледахме подобно обжалване от друг докладчик и отменихме предишното си решение. Предприели сме действия срещу съдържанието и/или собственика на сметката в съответствие с нашите политики."
 
 #: src/olympia/abuse/templates/abuse/appeal.html:38
 msgid "Because the decision you are appealing has already been overturned, your appeal will not be processed."
-msgstr ""
+msgstr "Тъй като обжалваното решение вече е отменено, вашата жалба няма да бъде обработена."
 
 #: src/olympia/abuse/templates/abuse/appeal.html:42
 msgid "The decision you are appealing has already been overridden by a new decision, so this decision can't be appealed."
-msgstr ""
+msgstr "Решението, което обжалвате вече е отменено с ново решение, така че не подлежи на обжалване."
 
 #: src/olympia/abuse/templates/abuse/appeal.html:44
 msgid "This decision can't be appealed."
@@ -222,9 +223,8 @@ msgid "Notification [%s] does not exist"
 msgstr "Известието [%s] не съществува"
 
 #: src/olympia/activity/models.py:42
-#, fuzzy
 msgid "Add-ons Review Team"
-msgstr "Рецензия на добавката"
+msgstr "Екип за преглед на добавки"
 
 #: src/olympia/activity/models.py:738
 msgid "Review"
