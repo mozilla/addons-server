@@ -4716,7 +4716,7 @@ msgstr "Lasă urme digitale curate. Fă Firefox să uite datele site-urilor web,
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:113 src/olympia/discovery/strings.jinja2:805
 msgid "No need to write the same thing over and over. Save frequently-entered text to paste anytime."
-msgstr "Nu este nevoie să scrii același lucru iar și iar. Salvează textele introduse frecvent și lipeștele în orice moment."
+msgstr "Nu este nevoie să scrii același lucru iar și iar. Salvează textele introduse frecvent și inserează-le în orice moment."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
