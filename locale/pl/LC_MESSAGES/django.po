@@ -424,16 +424,16 @@ msgstr "Ten ciąg dodatku nie może być użyty. Proszę wybrać inny."
 
 #: src/olympia/addons/serializers.py:1888
 msgid "There is no rollback available in this channel."
-msgstr ""
+msgstr "W tym kanale nie ma możliwości wycofania wersji."
 
 #: src/olympia/addons/serializers.py:1898
 #, python-format
 msgid "Rollback is only available for version %s in this channel."
-msgstr ""
+msgstr "Funkcja wycofania w tym kanale jest dostępna wyłącznie dla wersji %s."
 
 #: src/olympia/addons/serializers.py:1904
 msgid "Only approved versions can be rolled back, except the most recent version."
-msgstr ""
+msgstr "Można wycofać tylko zatwierdzone wersje, z wyjątkiem wersji najnowszej."
 
 #: src/olympia/addons/utils.py:52
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -2118,11 +2118,11 @@ msgstr "Informacje o wydaniu"
 
 #: src/olympia/devhub/forms.py:1635
 msgid "Automatic rollback based on version [m.m]."
-msgstr ""
+msgstr "Automatyczne wycofywanie na podstawie wersji [m.m]."
 
 #: src/olympia/devhub/forms.py:1710
 msgid "You must select a channel and version to rollback to."
-msgstr ""
+msgstr "Musisz wybrać kanał i wersję, do której chcesz cofnąć wersję."
 
 #: src/olympia/devhub/tasks.py:178
 msgid "Invalid or corrupt add-on file."
@@ -2300,7 +2300,7 @@ msgstr "Nie powiodła się weryfikacja tego zgłoszenia i może brakować pełny
 
 #: src/olympia/devhub/views.py:1320
 msgid "Rollback submitted. You'll be notified when it's approved"
-msgstr ""
+msgstr "Wycofanie zostało przesłane. Powiadomimy Cię, gdy zostanie zatwierdzone"
 
 #: src/olympia/devhub/views.py:1452
 msgid "Header area background"
@@ -3941,7 +3941,7 @@ msgstr[2] "Wybierz <b>do {0}</b> kategorii dla tego dodatku:"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:2
 msgid "Roll back to a previous version"
-msgstr ""
+msgstr "Wycofaj do poprzedniej wersji"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:7
 msgid "Users of this extension will roll back to the previous version you choose."
@@ -3971,7 +3971,7 @@ msgstr "Informacje o wydaniu"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:63
 msgid "Roll back"
-msgstr ""
+msgstr "Wycofaj"
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:3
 msgid "End-User License Agreement"
