@@ -420,16 +420,16 @@ msgstr "Te reglete ni mogoče uporabiti. Izberite drugačno."
 
 #: src/olympia/addons/serializers.py:1888
 msgid "There is no rollback available in this channel."
-msgstr ""
+msgstr "V tem kanalu ni na voljo povratka."
 
 #: src/olympia/addons/serializers.py:1898
 #, python-format
 msgid "Rollback is only available for version %s in this channel."
-msgstr ""
+msgstr "Povrnitev je na voljo samo za različico %s v tem kanalu."
 
 #: src/olympia/addons/serializers.py:1904
 msgid "Only approved versions can be rolled back, except the most recent version."
-msgstr ""
+msgstr "Povrni se lahko samo odobrene različice, razen najnovejše."
 
 #: src/olympia/addons/utils.py:52
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."

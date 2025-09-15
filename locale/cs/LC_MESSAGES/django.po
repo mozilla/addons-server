@@ -420,16 +420,16 @@ msgstr "Tento slug (část adresy URL) se nedá použít. Zvolte si prosím jin�
 
 #: src/olympia/addons/serializers.py:1888
 msgid "There is no rollback available in this channel."
-msgstr ""
+msgstr "V tomto kanálu není žádná změna dostupná."
 
 #: src/olympia/addons/serializers.py:1898
 #, python-format
 msgid "Rollback is only available for version %s in this channel."
-msgstr ""
+msgstr "Rollback je dostupný pouze pro verzi %s v tomto kanálu."
 
 #: src/olympia/addons/serializers.py:1904
 msgid "Only approved versions can be rolled back, except the most recent version."
-msgstr ""
+msgstr "Pouze schválené verze mohou být vráceny zpět, s výjimkou nejnovější verze."
 
 #: src/olympia/addons/utils.py:52
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
