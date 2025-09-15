@@ -382,7 +382,9 @@ class TestDeleteVersionsFromBlocks(TestCase):
         version_factory(addon=addon)
         user = user_factory()
         block_factory(guid=addon.guid, updated_by=self.task_user)
-        changed_version_ids = list(addon.versions.values_list('pk', flat=True))
+        changed_version_ids = list(
+            addon.versions.values_list('pk', flat=True).order_by('pk')
+        )
         submission = BlocklistSubmission.objects.create(
             action=BlocklistSubmission.ACTIONS.DELETE,
             input_guids=addon.guid,
@@ -402,13 +404,15 @@ class TestDeleteVersionsFromBlocks(TestCase):
         activity_block_deleted = ActivityLog.objects.filter(
             action=amo.LOG.BLOCKLIST_BLOCK_DELETED.id
         ).get()
-        activity_block_deleted.arguments[0] == addon
-        activity_block_deleted.user == user
+        assert activity_block_deleted.arguments[0] == addon
+        assert activity_block_deleted.user == user
         activity_version_unblocked = ActivityLog.objects.filter(
             action=amo.LOG.BLOCKLIST_VERSION_UNBLOCKED.id
         ).get()
-        activity_version_unblocked.arguments[0:1] == changed_version_ids
-        activity_version_unblocked.user == user
+        assert activity_version_unblocked.arguments[0:2] == list(
+            addon.versions.order_by('pk')
+        )
+        assert activity_version_unblocked.user == user
 
     def test_activity_attributed_to_user_deleting_the_block_with_signoff(self):
         addon = addon_factory()
@@ -416,7 +420,9 @@ class TestDeleteVersionsFromBlocks(TestCase):
         user = user_factory()
         signoffer = user_factory()
         block_factory(guid=addon.guid, updated_by=self.task_user)
-        changed_version_ids = list(addon.versions.values_list('pk', flat=True))
+        changed_version_ids = list(
+            addon.versions.values_list('pk', flat=True).order_by('pk')
+        )
         submission = BlocklistSubmission.objects.create(
             action=BlocklistSubmission.ACTIONS.DELETE,
             input_guids=addon.guid,
@@ -437,15 +443,17 @@ class TestDeleteVersionsFromBlocks(TestCase):
         activity_block_deleted = ActivityLog.objects.filter(
             action=amo.LOG.BLOCKLIST_BLOCK_DELETED.id
         ).get()
-        activity_block_deleted.arguments[0] == addon
-        activity_block_deleted.user == user
+        assert activity_block_deleted.arguments[0] == addon
+        assert activity_block_deleted.user == user
         activity_version_unblocked = ActivityLog.objects.filter(
             action=amo.LOG.BLOCKLIST_VERSION_UNBLOCKED.id
         ).get()
-        activity_version_unblocked.arguments[0:1] == changed_version_ids
-        activity_version_unblocked.user == user
+        assert activity_version_unblocked.arguments[0:2] == list(
+            addon.versions.order_by('pk')
+        )
+        assert activity_version_unblocked.user == user
         activity_signoff = ActivityLog.objects.filter(
             action=amo.LOG.BLOCKLIST_SIGNOFF.id
         ).get()
-        activity_version_unblocked.arguments[0] == addon
-        activity_version_unblocked.user == signoffer
+        assert activity_signoff.arguments[0] == addon
+        assert activity_signoff.user == signoffer
