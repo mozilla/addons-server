@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-05 11:10+0000\n"
+"POT-Creation-Date: 2025-09-15 10:52+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -390,7 +390,7 @@ msgstr ""
 msgid "File is already disabled."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:544 src/olympia/addons/views.py:738
+#: src/olympia/addons/serializers.py:544 src/olympia/addons/views.py:741
 #, python-format
 msgid ""
 "The latest approved version of this %s add-on cannot be deleted because the "
@@ -438,6 +438,19 @@ msgstr ""
 
 #: src/olympia/addons/serializers.py:1254
 msgid "This slug cannot be used. Please choose another."
+msgstr ""
+
+#: src/olympia/addons/serializers.py:1888
+msgid "There is no rollback available in this channel."
+msgstr ""
+
+#: src/olympia/addons/serializers.py:1898
+#, python-format
+msgid "Rollback is only available for version %s in this channel."
+msgstr ""
+
+#: src/olympia/addons/serializers.py:1904
+msgid "Only approved versions can be rolled back, except the most recent version."
 msgstr ""
 
 #: src/olympia/addons/utils.py:52

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-05 11:10+0000\n"
+"POT-Creation-Date: 2025-09-15 10:52+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -303,6 +303,16 @@ msgid "The account needs a display name before it can be added as an author."
 msgstr ""
 
 msgid "This slug cannot be used. Please choose another."
+msgstr ""
+
+msgid "There is no rollback available in this channel."
+msgstr ""
+
+#, python-format
+msgid "Rollback is only available for version %s in this channel."
+msgstr ""
+
+msgid "Only approved versions can be rolled back, except the most recent version."
 msgstr ""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
