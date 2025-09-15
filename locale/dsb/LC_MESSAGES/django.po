@@ -423,16 +423,16 @@ msgstr "Adresowe mě njedajo se wužywaś. Pšosym wubjeŕśo druge."
 
 #: src/olympia/addons/serializers.py:1888
 msgid "There is no rollback available in this channel."
-msgstr ""
+msgstr "W toś tom kanalu slědkkulnenje njejo k dispoziciji."
 
 #: src/olympia/addons/serializers.py:1898
 #, python-format
 msgid "Rollback is only available for version %s in this channel."
-msgstr ""
+msgstr "Slědkkulnjenje jo jano za wersiju %s w toś tom kanalu k dispoziciji."
 
 #: src/olympia/addons/serializers.py:1904
 msgid "Only approved versions can be rolled back, except the most recent version."
-msgstr ""
+msgstr "Jano pśizwólone wersije daju se slědk kulnuś, mimo nejnowšeje wersije."
 
 #: src/olympia/addons/utils.py:52
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
