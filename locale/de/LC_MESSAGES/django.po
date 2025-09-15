@@ -429,7 +429,7 @@ msgstr ""
 
 #: src/olympia/addons/serializers.py:1904
 msgid "Only approved versions can be rolled back, except the most recent version."
-msgstr ""
+msgstr "Nur freigeschaltete Versionen können zurückgesetzt werden, außer die neueste Version."
 
 #: src/olympia/addons/utils.py:52
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
