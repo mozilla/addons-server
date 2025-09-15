@@ -771,7 +771,7 @@ See :ref:`version create <version-list>` - the second version in the list - for 
         This API accepts both version ids and version numbers in the URL. If the version number passed does not contain any dot characters (``.``) it would be considered an ``id``. To avoid this and force a lookup by version number, add a ``v`` prefix to it.
 
     .. warning::
-        Any versions awaiting review in the same channel will be disabled as part of the rollback.
+        For the listed channel, if there is a version awaiting review in the listed channel it will be disabled as part of the rollback.
 
 
 .. http:post:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/(int:id|string:version_number)/rollback/
