@@ -422,7 +422,7 @@ msgstr "Deze identificator kan niet worden gebruikt. Kies een andere."
 
 #: src/olympia/addons/serializers.py:1888
 msgid "There is no rollback available in this channel."
-msgstr "Er is geen terugdraaiactie beschikbaar in dit kanaal."
+msgstr ""
 
 #: src/olympia/addons/serializers.py:1898
 #, python-format
