@@ -751,6 +751,37 @@ This endpoint allows a version to be deleted. The version will be soft-blocked (
 .. http:delete:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/(int:id|string:version_number)/
 
 
+----------------
+Version Rollback
+----------------
+
+.. _version-rollback:
+
+This endpoint allows an already approved version to be immediately re-created with a new version number, to rollback a problematic version.
+
+The latest version in each channel is unavailable for rollback (or you wouldn't be rolling back anything); also, for listed channel, is limited to the previous approved version.
+The rollback is asynchronous; you will be notified by email when it's complete (or failed).
+
+See :ref:`version create <version-list>` - the second version in the list - for the listed version available for rollback.  Call the endpoint with ``?all_with_unlisted`` for all the unlisted versions, ignoring the first version and any versions that are not ``file.status == public``.
+
+    .. note::
+        This API requires :doc:`authentication <auth>`, and for the user to be an author of the add-on.
+
+    .. note::
+        This API accepts both version ids and version numbers in the URL. If the version number passed does not contain any dot characters (``.``) it would be considered an ``id``. To avoid this and force a lookup by version number, add a ``v`` prefix to it.
+
+    .. warning::
+        For the listed channel, if there is a version awaiting review in the listed channel it will be disabled as part of the rollback.
+
+
+.. http:post:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/(int:id|string:version_number)/rollback/
+
+    .. _version-rollback-request:
+
+    :<json string new_version_string: The new version number (required).  It must be unique across all channels, and for listed versions, higher than all previously signed versions.
+    :<json object|null release_notes: The release notes for this version (See :ref:`translated fields <api-overview-translations>`).
+
+
 --------------
 Preview Create
 --------------
