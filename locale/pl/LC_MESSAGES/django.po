@@ -3945,12 +3945,12 @@ msgstr "Wycofaj do poprzedniej wersji"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:7
 msgid "Users of this extension will roll back to the previous version you choose."
-msgstr ""
+msgstr "Wersja tego rozszerzenia zostanie cofnięta jego użytkownikom do wybranej poprzedniej wersji."
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:13
 #, python-format
 msgid "Current Version [%(current_version_number)s] will roll back to Version [%(selected_version_number)s]"
-msgstr ""
+msgstr "Bieżąca wersja [%(current_version_number)s] zostanie wycofana do wersji [%(selected_version_number)s]"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:19
 msgid "Distribution channel"
@@ -4365,7 +4365,7 @@ msgstr "Wszystkie wersje"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:224
 msgid "Rollback to a previous version"
-msgstr ""
+msgstr "Wycofaj do poprzedniej wersji"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:230
 msgid "Upload a New Version"
