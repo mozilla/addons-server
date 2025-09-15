@@ -5861,7 +5861,7 @@ msgstr "Összes kiegészítő megtekintése"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1018
 msgid "Anti-tracking extensions"
-msgstr ""
+msgstr "Követés elleni kiegészítők"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1020
@@ -5871,7 +5871,7 @@ msgstr "Elengedhetetlen kiegészítők"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1022
 msgid "Writing tools"
-msgstr ""
+msgstr "Íróeszközök"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1024 src/olympia/discovery/strings.jinja2:1026 src/olympia/discovery/strings.jinja2:1028
