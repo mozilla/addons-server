@@ -380,7 +380,7 @@ msgstr "Tätä osoitemuotoa ei voi käyttää. Valitse toinen."
 
 #: src/olympia/addons/serializers.py:1888
 msgid "There is no rollback available in this channel."
-msgstr ""
+msgstr "Tässä kanavassa ei ole palautusmahdollisuutta."
 
 #: src/olympia/addons/serializers.py:1898
 #, python-format
@@ -1227,7 +1227,7 @@ msgstr ""
 
 #: src/olympia/constants/activity.py:1209
 msgid "Version rollback"
-msgstr ""
+msgstr "Version palautus"
 
 #: src/olympia/constants/activity.py:1216
 #, python-brace-format
@@ -1236,7 +1236,7 @@ msgstr ""
 
 #: src/olympia/constants/activity.py:1217
 msgid "Version rollback failure"
-msgstr ""
+msgstr "Version palautus epäonnistui"
 
 #: src/olympia/constants/activity.py:1246
 #, python-brace-format
@@ -2048,7 +2048,7 @@ msgstr "Jokin meni pieleen, ota yhteys kehittäjätukeen."
 
 #: src/olympia/devhub/forms.py:1626
 msgid "Choose version"
-msgstr ""
+msgstr "Valitse versio"
 
 #: src/olympia/devhub/forms.py:1634
 msgid "Release notes"
@@ -2060,7 +2060,7 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py:1710
 msgid "You must select a channel and version to rollback to."
-msgstr ""
+msgstr "Sinun on valittava kanava ja versio, johon haluat palata."
 
 #: src/olympia/devhub/tasks.py:178
 msgid "Invalid or corrupt add-on file."
@@ -2617,9 +2617,8 @@ msgid "Preview"
 msgstr "Esikatselu"
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html:31
-#, fuzzy
 msgid "Preview of listed version"
-msgstr "Beetaversio {0}"
+msgstr "Listatun version esikatselu"
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html:32 src/olympia/devhub/templates/devhub/addons/submit/done.html:15
 msgid "Preview still being generated - come back later or refresh the page."
@@ -3332,7 +3331,7 @@ msgstr "Nämä muistiinpanot näkyvät tietosivulla."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html:3 src/olympia/devhub/templates/devhub/addons/submit/distribute.html:9
 msgid "How to Distribute this Version"
-msgstr ""
+msgstr "Kuinka jaella tätä versiota"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html:10
 msgid "To get started, select how you would like to distribute this version."
@@ -3421,7 +3420,7 @@ msgstr "Käytätkö jotain seuraavista laajennuksessasi?"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:27
 msgid "Code generators or minifiers"
-msgstr ""
+msgstr "Koodigeneraattorit tai -minifikaattorit"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:29
 msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
@@ -3872,7 +3871,7 @@ msgstr[1] "Valitse <b>enintään {0}</b> luokkaa tälle lisäosalle:"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:2
 msgid "Roll back to a previous version"
-msgstr ""
+msgstr "Palaa edelliseen versioon"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:7
 msgid "Users of this extension will roll back to the previous version you choose."
@@ -3885,7 +3884,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:19
 msgid "Distribution channel"
-msgstr ""
+msgstr "Jakelukanava"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:31 src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:40
 #: src/olympia/devhub/templates/devhub/versions/list.html:240
@@ -3894,15 +3893,15 @@ msgstr "Versio"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:48
 msgid "New version number"
-msgstr ""
+msgstr "Uusi versionumero"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:54
 msgid "Release Notes"
-msgstr ""
+msgstr "Julkaisutiedot"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:63
 msgid "Roll back"
-msgstr ""
+msgstr "Palaa takaisin"
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:3
 msgid "End-User License Agreement"
@@ -4313,7 +4312,7 @@ msgstr "Tämän version poistaminen poistaa pysyvästi:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:288
 msgid "Important:"
-msgstr ""
+msgstr "Tärkeää:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:289
 msgid ""
@@ -4768,7 +4767,7 @@ msgstr "Palaa äskettäin suljettuihin välilehtiin napsauttamalla hiiren kakkos
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:221
 msgid "Inspire productivity. Modify your new tab page to display a beautiful background, set your daily focus, and more."
-msgstr ""
+msgstr "Lisää tuottavuutta. Muokkaa uutta välilehteä kauniilla taustalla, aseta päivittäinen keskittyminen ja paljon muuta."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:224
@@ -4793,7 +4792,7 @@ msgstr "Hoida asioita hyödyllisen tehtävälistan avulla, joka synkronoituu eri
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:236
 msgid "Track historical pricing, find competing products, know the seller's ratings, and more."
-msgstr ""
+msgstr "Seuraa hinnankehitystä, löydä kilpailevia tuotteita, tutustu myyjän arvioihin ja paljon muuta."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4854,7 +4853,7 @@ msgstr "Hanki käännöksiä välittömästi korostamalla haluamasi tekstin ja n
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:272
 msgid "Go straight to the website you want to access without being redirected in between."
-msgstr ""
+msgstr "Siirry suoraan haluamallesi verkkosivustolle ilman uudelleenohjauksia."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:275
@@ -4936,7 +4935,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:320 src/olympia/discovery/strings.jinja2:694
 msgid "Phone-like scrolling for your desktop. Features \"grab-n-drag\" style mouse movement."
-msgstr ""
+msgstr "Puhelimen kaltainen vieritys työpöydällesi. Sisältää \"Nappaa ja vedä\" -tyylisen hiiren liikkeen."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5007,7 +5006,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:362
 msgid "Easily perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
-msgstr ""
+msgstr "Tee Wikipedia-haku korostamalla tekstiä miltä tahansa verkkosivulta ja napsauttamalla hiiren kakkospainikkeella."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:365
@@ -5062,7 +5061,7 @@ msgstr "Paljon avoimia välilehtiä? Lopeta vierittäminen ja hae pikanäppäimi
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:395
 msgid "Stop redirects so you can access the site you want—faster."
-msgstr ""
+msgstr "Lopeta uudelleenohjaukset, jotta pääset haluamallesi sivustolle – nopeammin."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:398
@@ -5628,7 +5627,7 @@ msgstr "Poista selaustiedot suoraan selaimen työkalupalkista."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:958
 msgid "Get RSS feed auto-updates direct to your bookmark folders."
-msgstr ""
+msgstr "RSS-syötteiden automaattiset päivitykset suoraan kirjanmerkkikansioihisi."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:961
@@ -5733,7 +5732,7 @@ msgstr "Selaa kaikkia laajennuksia"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1018
 msgid "Anti-tracking extensions"
-msgstr ""
+msgstr "Seurantaa estävät laajennukset"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1020
@@ -5743,7 +5742,7 @@ msgstr "Olennaiset lisäosat"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1022
 msgid "Writing tools"
-msgstr ""
+msgstr "Kirjoitustyökalut"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1024 src/olympia/discovery/strings.jinja2:1026 src/olympia/discovery/strings.jinja2:1028
