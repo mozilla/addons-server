@@ -571,6 +571,9 @@ class Version(OnChangeMixin, ModelBase):
             )
             reviewer_flags_defaults[flag] = True
 
+            # FIXME: add activity log here indicating we disabled auto-approval
+            # because we hit a restriction.
+
         if reviewer_flags_defaults:
             AddonReviewerFlags.objects.update_or_create(
                 addon=addon, defaults=reviewer_flags_defaults

@@ -881,6 +881,21 @@ class IPNetworkUserRestriction(RestrictionAbstractBaseModel):
         return str(self.network)
 
     @classmethod
+    def network_from_ip(cls, ip):
+        """
+        Return the smallest meaningful network to restrict from an IP
+        """
+        ip_object = ipaddress.ip_address(ip)
+        # For IPv4, restrict the /32, i.e. the exact IP.
+        # For IPv6, restrict the /64, otherwise the restriction would be
+        # trivial to bypass. We pass strict=False to ip_network() to make the
+        # ipaddress module ignore the hosts bits from the ip after the prefix
+        # length is applied.
+        prefix_len = 32 if ip_object.version == 4 else 64
+        network = ipaddress.ip_network((ip, prefix_len), strict=False)
+        return network
+
+    @classmethod
     def allow_submission(cls, request):
         """
         Return whether the specified request should be allowed to submit add-ons.
