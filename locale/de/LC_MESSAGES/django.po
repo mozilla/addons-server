@@ -420,12 +420,12 @@ msgstr "Dieser Adressname kann nicht verwendet werden. Bitte wählen Sie einen a
 
 #: src/olympia/addons/serializers.py:1888
 msgid "There is no rollback available in this channel."
-msgstr ""
+msgstr "Für diesen Channel ist kein Zurücksetzen verfügbar."
 
 #: src/olympia/addons/serializers.py:1898
 #, python-format
 msgid "Rollback is only available for version %s in this channel."
-msgstr ""
+msgstr "Zurücksetzen ist in diesem Kanal nur für Version %s verfügbar."
 
 #: src/olympia/addons/serializers.py:1904
 msgid "Only approved versions can be rolled back, except the most recent version."
