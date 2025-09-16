@@ -28,6 +28,8 @@ updates:
   open-pull-requests-limit: 99
   cooldown:
     default-days: 7
+    exclude:
+      - addons-linter
 - package-ecosystem: pip
   directory: "/requirements"
   schedule:
