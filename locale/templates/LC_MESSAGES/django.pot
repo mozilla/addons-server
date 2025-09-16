@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-16 09:45+0000\n"
+"POT-Creation-Date: 2025-09-16 12:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1408,7 +1408,7 @@ msgstr ""
 msgid "Disabled by Mozilla"
 msgstr ""
 
-#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1199
+#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1211
 msgid "Deleted"
 msgstr ""
 
@@ -7574,29 +7574,29 @@ msgid ""
 "location. The IP address has been blocked."
 msgstr ""
 
-#: src/olympia/users/models.py:985
+#: src/olympia/users/models.py:1000
 msgid "Email Pattern"
 msgstr ""
 
-#: src/olympia/users/models.py:988
+#: src/olympia/users/models.py:1003
 msgid ""
 "Enter full email that should be blocked or use unix-style wildcards, e.g. "
 "\"*@example.com\". If you need to block a domain incl subdomains, add a "
 "second entry, e.g. \"*@*.example.com\"."
 msgstr ""
 
-#: src/olympia/users/models.py:995
+#: src/olympia/users/models.py:1010
 msgid "The email address used for your account is not allowed for submissions."
 msgstr ""
 
-#: src/olympia/users/models.py:1095
+#: src/olympia/users/models.py:1110
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not "
 "supported: if you need those, or need to match against the entire email and "
 "not just the domain part, use \"Email user restrictions\" instead."
 msgstr ""
 
-#: src/olympia/users/models.py:1252
+#: src/olympia/users/models.py:1267
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution "
 "Agreement as well as our Review Policies and Rules. The Firefox Add-on "
@@ -7604,14 +7604,14 @@ msgid ""
 " handle your information."
 msgstr ""
 
-#: src/olympia/users/models.py:1266
+#: src/olympia/users/models.py:1281
 #, python-brace-format
 msgid ""
 "Please read and accept our Firefox Add-on Distribution Agreement as well as "
 "our Review Policies and Rules by visiting {url}"
 msgstr ""
 
-#: src/olympia/users/models.py:1317
+#: src/olympia/users/models.py:1332
 msgid "User Restriction History"
 msgstr ""
 
@@ -7724,33 +7724,33 @@ msgid ""
 "Mozilla Add-ons Team"
 msgstr ""
 
-#: src/olympia/versions/models.py:1184
+#: src/olympia/versions/models.py:1196
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
 msgstr ""
 
-#: src/olympia/versions/models.py:1189
+#: src/olympia/versions/models.py:1201
 msgid "Auto-approved, Confirmed"
 msgstr ""
 
-#: src/olympia/versions/models.py:1191
+#: src/olympia/versions/models.py:1203
 msgid "Auto-approved, not Confirmed"
 msgstr ""
 
-#: src/olympia/versions/models.py:1194
+#: src/olympia/versions/models.py:1206
 msgid "Approved, Manual"
 msgstr ""
 
-#: src/olympia/versions/models.py:1201
+#: src/olympia/versions/models.py:1213
 msgid "Disabled by Developer"
 msgstr ""
 
-#: src/olympia/versions/models.py:1559
+#: src/olympia/versions/models.py:1571
 #, python-brace-format
 msgid "{app} {min} and later"
 msgstr ""
 
-#: src/olympia/versions/models.py:1686
+#: src/olympia/versions/models.py:1698
 #, python-brace-format
 msgid "The install origin {origin} is not permitted."
 msgstr ""
