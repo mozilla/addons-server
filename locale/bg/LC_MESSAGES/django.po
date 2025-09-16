@@ -54,7 +54,7 @@ msgstr "Недействителна стойност"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:10 src/olympia/abuse/templates/abuse/appeal.html:15
 msgid "Appeal reviewer decision"
-msgstr ""
+msgstr "Обжалване на решението на рецензента"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:16
 #, python-brace-format
@@ -407,7 +407,7 @@ msgstr ""
 
 #: src/olympia/addons/validators.py:91
 msgid "Wrong add-on type for this license."
-msgstr ""
+msgstr "Грешен вид добавка за този лиценз."
 
 #: src/olympia/addons/validators.py:98
 msgid "Custom licenses are not supported for themes."
@@ -432,7 +432,7 @@ msgstr ""
 
 #: src/olympia/addons/validators.py:291
 msgid "Source cannot be changed because this version has been reviewed by Mozilla."
-msgstr ""
+msgstr "Източникът не може да бъде променян, защото тази версия е прегледана от Mozilla."
 
 #: src/olympia/addons/validators.py:315
 msgid "This type of add-on does not allow custom compatibility."
@@ -723,9 +723,8 @@ msgid "Invalid JWT Token."
 msgstr "Недействителен токен на JWT."
 
 #: src/olympia/api/authentication.py:274
-#, fuzzy
 msgid "Invalid token or hash."
-msgstr "Невалиден обхват на версиите."
+msgstr "Невалиден токен или хаш."
 
 #: src/olympia/api/authentication.py:278
 msgid "Email address not found."
@@ -760,9 +759,8 @@ msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr ""
 
 #: src/olympia/api/models.py:148
-#, fuzzy
 msgid "Confirmation for developer API keys"
-msgstr "Поискана е повече информация"
+msgstr ""
 
 #: src/olympia/api/throttling.py:113
 msgid "You have submitted this form too many times recently. Please try again after some time."
