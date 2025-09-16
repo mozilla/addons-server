@@ -420,7 +420,7 @@ msgstr "Tento slug (část adresy URL) se nedá použít. Zvolte si prosím jin�
 
 #: src/olympia/addons/serializers.py:1888
 msgid "There is no rollback available in this channel."
-msgstr "V tomto kanálu není žádná změna dostupná."
+msgstr "Vrácení verze není v tomto kanále dostupné."
 
 #: src/olympia/addons/serializers.py:1898
 #, python-format
