@@ -63,8 +63,7 @@ def block_activity_log_save(obj, *, change, submission_obj):
         )
 
 
-def block_activity_log_delete(obj, deleted, *, submission_obj=None, delete_user=None):
-    assert submission_obj or delete_user
+def block_activity_log_delete(obj, deleted, *, submission_obj):
     addon_versions = {ver.id: ver.version for ver in obj.addon_versions}
     blocked_versions = (
         sorted(ver.version for ver in obj.addon_versions if ver.is_blocked)
@@ -97,26 +96,25 @@ def block_activity_log_delete(obj, deleted, *, submission_obj=None, delete_user=
         else amo.LOG.BLOCKLIST_BLOCK_DELETED
     )
 
-    if submission_obj:
-        details['signoff_state'] = submission_obj.SIGNOFF_STATES.for_value(
-            submission_obj.signoff_state
-        ).display
-        if submission_obj.signoff_by:
-            details['signoff_by'] = submission_obj.signoff_by.id
+    details['signoff_state'] = submission_obj.SIGNOFF_STATES.for_value(
+        submission_obj.signoff_state
+    ).display
+    if submission_obj.signoff_by:
+        details['signoff_by'] = submission_obj.signoff_by.id
 
     log_create(
         *[action, *([obj.addon] if obj.addon else []), obj.guid, obj],
         details=details,
-        user=submission_obj.updated_by if submission_obj else delete_user,
+        user=submission_obj.updated_by,
     )
     log_create(
         amo.LOG.BLOCKLIST_VERSION_UNBLOCKED,
         *((Version, version_id) for version_id in changed_version_ids),
         obj,
-        user=obj.updated_by,
+        user=submission_obj.updated_by,
     )
 
-    if submission_obj and submission_obj.signoff_by:
+    if submission_obj.signoff_by:
         args = [
             amo.LOG.BLOCKLIST_SIGNOFF,
             *([obj.addon] if obj.addon else []),
@@ -282,7 +280,7 @@ def delete_versions_from_blocks(guids, submission):
         block_activity_log_delete(
             block,
             deleted=should_delete,
-            submission_obj=submission if submission.id else None,
+            submission_obj=submission,
         )
         if should_delete:
             block.delete()

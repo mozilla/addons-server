@@ -18,7 +18,12 @@ from olympia.amo.tests import (
 )
 
 from ..models import Block, BlocklistSubmission, BlockType
-from ..utils import datetime_to_ts, disable_versions_for_block, save_versions_to_blocks
+from ..utils import (
+    datetime_to_ts,
+    delete_versions_from_blocks,
+    disable_versions_for_block,
+    save_versions_to_blocks,
+)
 
 
 def test_datetime_to_ts():
@@ -366,3 +371,89 @@ class TestSaveVersionsToBlocks(TestCase):
         assert (
             version2.blockversion.reload().block_type == BlockType.BLOCKED  # Untouched.
         )
+
+
+class TestDeleteVersionsFromBlocks(TestCase):
+    def setUp(self):
+        self.task_user = user_factory(pk=settings.TASK_USER_ID, display_name='Mozilla')
+
+    def test_activity_attributed_to_user_deleting_the_block(self):
+        addon = addon_factory()
+        version_factory(addon=addon)
+        user = user_factory()
+        block_factory(guid=addon.guid, updated_by=self.task_user)
+        changed_version_ids = list(
+            addon.versions.values_list('pk', flat=True).order_by('pk')
+        )
+        submission = BlocklistSubmission.objects.create(
+            action=BlocklistSubmission.ACTIONS.DELETE,
+            input_guids=addon.guid,
+            reason='some reason',
+            url=None,
+            updated_by=user,
+            block_type=BlockType.BLOCKED,
+            changed_version_ids=changed_version_ids,
+            signoff_state=BlocklistSubmission.SIGNOFF_STATES.PUBLISHED,
+        )
+        ActivityLog.objects.all().delete()
+        delete_versions_from_blocks([addon.guid], submission)
+        for version in addon.versions.all():
+            assert not version.is_blocked
+
+        assert ActivityLog.objects.count() == 2
+        activity_block_deleted = ActivityLog.objects.filter(
+            action=amo.LOG.BLOCKLIST_BLOCK_DELETED.id
+        ).get()
+        assert activity_block_deleted.arguments[0] == addon
+        assert activity_block_deleted.user == user
+        activity_version_unblocked = ActivityLog.objects.filter(
+            action=amo.LOG.BLOCKLIST_VERSION_UNBLOCKED.id
+        ).get()
+        assert activity_version_unblocked.arguments[0:2] == list(
+            addon.versions.order_by('pk')
+        )
+        assert activity_version_unblocked.user == user
+
+    def test_activity_attributed_to_user_deleting_the_block_with_signoff(self):
+        addon = addon_factory()
+        version_factory(addon=addon)
+        user = user_factory()
+        signoffer = user_factory()
+        block_factory(guid=addon.guid, updated_by=self.task_user)
+        changed_version_ids = list(
+            addon.versions.values_list('pk', flat=True).order_by('pk')
+        )
+        submission = BlocklistSubmission.objects.create(
+            action=BlocklistSubmission.ACTIONS.DELETE,
+            input_guids=addon.guid,
+            reason='some reason',
+            url=None,
+            updated_by=user,
+            block_type=BlockType.BLOCKED,
+            changed_version_ids=changed_version_ids,
+            signoff_state=BlocklistSubmission.SIGNOFF_STATES.PUBLISHED,
+            signoff_by=signoffer,
+        )
+        ActivityLog.objects.all().delete()
+        delete_versions_from_blocks([addon.guid], submission)
+        for version in addon.versions.all():
+            assert not version.is_blocked
+
+        assert ActivityLog.objects.count() == 3
+        activity_block_deleted = ActivityLog.objects.filter(
+            action=amo.LOG.BLOCKLIST_BLOCK_DELETED.id
+        ).get()
+        assert activity_block_deleted.arguments[0] == addon
+        assert activity_block_deleted.user == user
+        activity_version_unblocked = ActivityLog.objects.filter(
+            action=amo.LOG.BLOCKLIST_VERSION_UNBLOCKED.id
+        ).get()
+        assert activity_version_unblocked.arguments[0:2] == list(
+            addon.versions.order_by('pk')
+        )
+        assert activity_version_unblocked.user == user
+        activity_signoff = ActivityLog.objects.filter(
+            action=amo.LOG.BLOCKLIST_SIGNOFF.id
+        ).get()
+        assert activity_signoff.arguments[0] == addon
+        assert activity_signoff.user == signoffer
