@@ -2108,7 +2108,7 @@ msgstr "Něco njejo se raźiło, pšosym stajśo se z wuwijaŕskeju pódpěru do
 
 #: src/olympia/devhub/forms.py:1653
 msgid "No appropriate version available"
-msgstr ""
+msgstr "Žedna pśigódna wersija k dispoziciji"
 
 #: src/olympia/devhub/forms.py:1660
 msgid "Choose version"
