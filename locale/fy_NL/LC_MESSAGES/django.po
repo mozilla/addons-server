@@ -420,16 +420,16 @@ msgstr "Dizze identifikator kin net brûkt wurde. Kies in oare."
 
 #: src/olympia/addons/serializers.py:1888
 msgid "There is no rollback available in this channel."
-msgstr ""
+msgstr "Der is gjin weromdraaiferzje beskikber yn dit kanaal."
 
 #: src/olympia/addons/serializers.py:1898
 #, python-format
 msgid "Rollback is only available for version %s in this channel."
-msgstr ""
+msgstr "Weromdraaien is allinnich beskikber foar ferzje %s yn dit kanaal."
 
 #: src/olympia/addons/serializers.py:1904
 msgid "Only approved versions can be rolled back, except the most recent version."
-msgstr ""
+msgstr "Allinnich goedkarde ferzjes kinne weromdraaid wurde, útsein de meast resinte ferzje."
 
 #: src/olympia/addons/utils.py:52
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
