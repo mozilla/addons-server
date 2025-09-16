@@ -2133,7 +2133,7 @@ msgstr "Si è verificato un errore, contatta il supporto per gli sviluppatori."
 
 #: src/olympia/devhub/forms.py:1653
 msgid "No appropriate version available"
-msgstr ""
+msgstr "Non è disponibile una versione adatta"
 
 #: src/olympia/devhub/forms.py:1660
 msgid "Choose version"
