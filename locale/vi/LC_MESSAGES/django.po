@@ -420,16 +420,16 @@ msgstr "Không thể sử dụng slug này. Vui lòng chọn slug khác."
 
 #: src/olympia/addons/serializers.py:1888
 msgid "There is no rollback available in this channel."
-msgstr ""
+msgstr "Không có tùy chọn khôi phục nào khả dụng trong kênh này."
 
 #: src/olympia/addons/serializers.py:1898
 #, python-format
 msgid "Rollback is only available for version %s in this channel."
-msgstr ""
+msgstr "Tính năng khôi phục chỉ khả dụng cho phiên bản %s trong kênh này."
 
 #: src/olympia/addons/serializers.py:1904
 msgid "Only approved versions can be rolled back, except the most recent version."
-msgstr ""
+msgstr "Chỉ những phiên bản đã được chấp thuận mới có thể được khôi phục, ngoại trừ phiên bản mới nhất."
 
 #: src/olympia/addons/utils.py:52
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -2103,11 +2103,11 @@ msgstr "Chọn phiên bản"
 
 #: src/olympia/devhub/forms.py:1634
 msgid "Release notes"
-msgstr ""
+msgstr "Ghi chú phát hành"
 
 #: src/olympia/devhub/forms.py:1635
 msgid "Automatic rollback based on version [m.m]."
-msgstr ""
+msgstr "Tự động khôi phục dựa trên phiên bản [m.m]."
 
 #: src/olympia/devhub/forms.py:1710
 msgid "You must select a channel and version to rollback to."
@@ -4009,7 +4009,7 @@ msgstr "Số phiên bản mới"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:54
 msgid "Release Notes"
-msgstr ""
+msgstr "Ghi chú phát hành"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:63
 msgid "Roll back"
