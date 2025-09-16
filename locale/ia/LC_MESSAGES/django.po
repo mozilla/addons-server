@@ -2104,7 +2104,7 @@ msgstr "Alco errate eveniva, contacta supporto del disveloppatores."
 
 #: src/olympia/devhub/forms.py:1653
 msgid "No appropriate version available"
-msgstr ""
+msgstr "Nulle version appropriate disponibile"
 
 #: src/olympia/devhub/forms.py:1660
 msgid "Choose version"
