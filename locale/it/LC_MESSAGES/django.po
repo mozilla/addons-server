@@ -423,16 +423,16 @@ msgstr "Questo slug non può essere utilizzato. Scegline un altro."
 
 #: src/olympia/addons/serializers.py:1888
 msgid "There is no rollback available in this channel."
-msgstr ""
+msgstr "In questo canale non è disponibile alcun ripristino."
 
 #: src/olympia/addons/serializers.py:1898
 #, python-format
 msgid "Rollback is only available for version %s in this channel."
-msgstr ""
+msgstr "In questo canale il ripristino è disponibile solo per la versione %s."
 
 #: src/olympia/addons/serializers.py:1904
 msgid "Only approved versions can be rolled back, except the most recent version."
-msgstr ""
+msgstr "È possibile eseguire il ripristino solo delle versioni approvate, ad eccezione della versione più recente."
 
 #: src/olympia/addons/utils.py:52
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
