@@ -1387,6 +1387,6 @@ rpds-py==0.19.0 \
 jsonschema-specifications==2025.4.1 \
     --hash=sha256:4653bffbd6584f7de83a67e0d620ef16900b390ddc7939d56684d6c81e33f1af \
     --hash=sha256:630159c9f4dbea161a6a2205c3011cc4f18ff381b189fff48bb39b9bf26ae608
-drf-spectacular-sidecar==2025.6.1 \
-    --hash=sha256:c7c4768c03faa3d2f7afacd1464f67732e7d6866d2cf2e8f649175c27318745c \
-    --hash=sha256:ee6752c73d712265a61b9e2ca6f71c3b2bd89f30f39cf9f8cda98e7f371fcbcf
+drf-spectacular-sidecar==2025.9.1 \
+    --hash=sha256:8e80625209b8a23ff27616db305b9ab71c2e2d1069dacd99720a9c11e429af50 \
+    --hash=sha256:da2aa45da48fff76de7a1e357b84d1eb0b9df40ca89ec19d5fe94ad1037bb3c8
