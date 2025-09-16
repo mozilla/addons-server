@@ -2097,7 +2097,7 @@ msgstr "Något gick fel, kontakta utvecklarsupporten."
 
 #: src/olympia/devhub/forms.py:1653
 msgid "No appropriate version available"
-msgstr ""
+msgstr "Ingen lämplig version tillgänglig"
 
 #: src/olympia/devhub/forms.py:1660
 msgid "Choose version"
