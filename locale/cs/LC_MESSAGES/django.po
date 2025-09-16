@@ -425,7 +425,7 @@ msgstr "Vrácení verze není v tomto kanále dostupné."
 #: src/olympia/addons/serializers.py:1898
 #, python-format
 msgid "Rollback is only available for version %s in this channel."
-msgstr "Rollback je dostupný pouze pro verzi %s v tomto kanálu."
+msgstr "Vrácení verze je v tomto kanále k dispozici pouze pro verzi %s."
 
 #: src/olympia/addons/serializers.py:1904
 msgid "Only approved versions can be rolled back, except the most recent version."
@@ -2114,7 +2114,7 @@ msgstr "Poznámky k vydání"
 
 #: src/olympia/devhub/forms.py:1670
 msgid "Automatic rollback based on version [m.m]."
-msgstr "Automatické vrácení zpět na základě verze [m.m]."
+msgstr "Automatické vrácení změn na základě verze [m.m]."
 
 #: src/olympia/devhub/forms.py:1743
 msgid "You must select a channel and version to rollback to."
