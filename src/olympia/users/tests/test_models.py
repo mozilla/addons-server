@@ -1,6 +1,6 @@
 import os.path
 from datetime import date, datetime, timedelta
-from ipaddress import IPv4Address
+from ipaddress import IPv4Address, IPv4Network, IPv6Network
 from unittest import mock
 
 from django import forms
@@ -1156,6 +1156,20 @@ class TestIPNetworkUserRestriction(TestCase):
             channel=amo.CHANNEL_LISTED,
         )
         assert not IPNetworkUserRestriction.allow_auto_approval(upload)
+
+    def test_network_from_ip(self):
+        assert IPNetworkUserRestriction.network_from_ip('192.168.0.1') == IPv4Network(
+            '192.168.0.1/32'
+        )
+        assert IPNetworkUserRestriction.network_from_ip(
+            '2001:0db8:85a3:0000:0000:8a2e:0370:7334'
+        ) == IPv6Network('2001:0db8:85a3::/64')
+
+    def test_network_from_ip_blank(self):
+        with self.assertRaises(ValueError):
+            IPNetworkUserRestriction.network_from_ip(None)
+        with self.assertRaises(ValueError):
+            IPNetworkUserRestriction.network_from_ip('')
 
 
 class TestDisposableEmailDomainRestriction(TestCase):
