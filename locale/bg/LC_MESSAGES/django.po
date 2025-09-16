@@ -760,7 +760,7 @@ msgstr ""
 
 #: src/olympia/api/models.py:148
 msgid "Confirmation for developer API keys"
-msgstr ""
+msgstr "Потвърждение за ключове за API за разработчици"
 
 #: src/olympia/api/throttling.py:113
 msgid "You have submitted this form too many times recently. Please try again after some time."
@@ -775,13 +775,12 @@ msgid "This name cannot be used."
 msgstr "Това име не може да бъде използвано."
 
 #: src/olympia/bandwagon/serializers.py:105
-#, fuzzy
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
-msgstr "Въведете валидно име, състоящо се то букви, цифри, долни черти или тирета."
+msgstr "Персонализираният URL адрес трябва да се състои от букви, цифри, долни черти или тирета."
 
 #: src/olympia/bandwagon/serializers.py:113
 msgid "This custom URL cannot be used."
-msgstr ""
+msgstr "Този потребителски URL адрес не може да бъде използван."
 
 #: src/olympia/bandwagon/serializers.py:149
 msgid "This add-on already belongs to the collection"
@@ -789,7 +788,7 @@ msgstr "Добавката вече се принадлежи към този с
 
 #: src/olympia/blocklist/models.py:188
 msgid "Blocked"
-msgstr ""
+msgstr "Забраняване"
 
 #: src/olympia/blocklist/models.py:188
 msgid "Restricted"
