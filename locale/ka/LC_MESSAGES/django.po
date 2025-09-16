@@ -2112,7 +2112,7 @@ msgstr "რაღაც ხარვეზი წარმოიშვა, გ�
 
 #: src/olympia/devhub/forms.py:1653
 msgid "No appropriate version available"
-msgstr ""
+msgstr "შესაბამისი ვერსია არაა ხელმისაწვდომი"
 
 #: src/olympia/devhub/forms.py:1660
 msgid "Choose version"
