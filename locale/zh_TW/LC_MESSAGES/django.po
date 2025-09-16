@@ -2076,7 +2076,7 @@ msgstr "某些東西怪怪的，請聯絡開發者技術支援團隊。"
 
 #: src/olympia/devhub/forms.py:1653
 msgid "No appropriate version available"
-msgstr ""
+msgstr "無適當版本可以使用"
 
 #: src/olympia/devhub/forms.py:1660
 msgid "Choose version"

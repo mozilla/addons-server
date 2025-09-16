@@ -2106,7 +2106,7 @@ msgstr "Что-то пошло не так, пожалуйста, обратит
 
 #: src/olympia/devhub/forms.py:1653
 msgid "No appropriate version available"
-msgstr ""
+msgstr "Подходящая версия недоступна"
 
 #: src/olympia/devhub/forms.py:1660
 msgid "Choose version"
