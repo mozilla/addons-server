@@ -1329,6 +1329,12 @@ def version_list(request, addon_id, addon):
         'can_rollback': rollback_form.can_rollback(),
         'can_submit': not addon.is_disabled,
         'comments_maxlength': CommentLog._meta.get_field('comments').max_length,
+        'latest_approved_unlisted_version_number': rollback_form.can_rollback()
+        and addon.versions.filter(
+            channel=amo.CHANNEL_UNLISTED, file__status=amo.STATUS_APPROVED
+        )
+        .values_list('version', flat=True)
+        .first(),
         'is_admin': is_admin,
         'rollback_form': rollback_form,
         'session_id': request.session.session_key,

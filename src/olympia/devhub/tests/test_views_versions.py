@@ -823,8 +823,18 @@ class TestVersion(TestCase):
         second_version = version_factory(addon=self.addon)
         first_version.file.update(status=amo.STATUS_DISABLED)
         assert self.addon.current_version == second_version
+        version_factory(
+            addon=self.addon,
+            channel=amo.CHANNEL_UNLISTED,
+            file_kw={'status': amo.STATUS_DISABLED},
+        )
+        version_factory(addon=self.addon, channel=amo.CHANNEL_UNLISTED)
 
-        response = self.client.get(self.url)
+        with self.assertNumQueries(45):
+            # see test_pending_activity_count for the query breakdown
+            # + 2 more for the 2 extra versions (not good, but the current state)
+            # + 2 more for the listed and unlisted rollback queries
+            response = self.client.get(self.url)
         # no versions available for rollback, so the button and form isn't available
         doc = pq(response.content)
         assert doc('a.button.version-rollback').length == 0
@@ -922,7 +932,13 @@ class TestVersion(TestCase):
         )
 
         # with both channels available with multiple versions
-        response = self.client.get(self.url)
+        with self.assertNumQueries(47):
+            # see test_pending_activity_count & test_version_rollback_form_not_available
+            # for the baseline when there no versions available.  We expect 2 more
+            # queries here:
+            # - one to fetch the channel for the latest version created.
+            # - one for the latest unlisted version.
+            response = self.client.get(self.url)
         doc = pq(response.content)
         assert doc('a.button.version-rollback').length == 1
         modal = doc('#modal-rollback-version')
@@ -967,6 +983,7 @@ class TestVersion(TestCase):
         )
         data = {
             'channel': amo.CHANNEL_LISTED,
+            'listed_version': first_version.id,
             'new_version_string': second_version.version,
             'rollback-submit': '',
             'release_notes': 'release notes!',
@@ -1009,6 +1026,7 @@ class TestVersion(TestCase):
         )
         data = {
             'channel': amo.CHANNEL_LISTED,
+            'listed_version': first_version.id,
             'new_version_string': second_version.version + '.1',
             'rollback-submit': '',
             'release_notes': 'lé release notes!',

@@ -1468,7 +1468,7 @@ class TestRollbackVersionForm(TestCase):
             v1.version,
         ]
         assert form.fields['listed_version'].choices == [
-            (None, 'No appropriate version available')
+            ('', 'No appropriate version available')
         ]
 
     def test_no_unlisted_version_choices(self):
@@ -1479,7 +1479,9 @@ class TestRollbackVersionForm(TestCase):
         version_factory(addon=addon)
         form = forms.RollbackVersionForm(addon=addon)
         assert form.fields['channel'].initial == amo.CHANNEL_LISTED
-        assert form.fields['listed_version'].choices == [(v2.id, v2)]
+        assert [str(lab) for _, lab in form.fields['listed_version'].choices] == [
+            v2.version,
+        ]
 
     def test_listed_and_unlisted_version_choices(self):
         """Both listed and unlisted version choices should be available."""
@@ -1491,7 +1493,9 @@ class TestRollbackVersionForm(TestCase):
         version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
         form = forms.RollbackVersionForm(addon=addon)
         assert form.fields['channel'].initial is amo.CHANNEL_UNLISTED
-        assert form.fields['listed_version'].choices == [(lv2.id, lv2)]
+        assert [str(lab) for _, lab in form.fields['listed_version'].choices] == [
+            lv2.version,
+        ]
         assert [str(lab) for _, lab in form.fields['unlisted_version'].choices] == [
             'Choose version',
             uv2.version,
@@ -1524,6 +1528,7 @@ class TestRollbackVersionForm(TestCase):
 
         data = {
             'channel': amo.CHANNEL_LISTED,
+            'listed_version': lv2.id,
             'unlisted_version': uv2.id,
         }
         for version in (lv1, lv2, lv3, uv1, uv2, uv3):
@@ -1537,7 +1542,7 @@ class TestRollbackVersionForm(TestCase):
             version_kw={'version': '1.29'}, file_kw={'is_signed': True}
         )
         addon.current_version.delete()  # deleted shouldn't matter, just it was signed
-        version_factory(addon=addon)
+        lv2 = version_factory(addon=addon)
         version_factory(addon=addon, version='1.31.0')
         version_factory(
             addon=addon,
@@ -1552,6 +1557,7 @@ class TestRollbackVersionForm(TestCase):
         version_string = '1.3'
         data = {
             'channel': amo.CHANNEL_LISTED,
+            'listed_version': lv2.id,
             'unlisted_version': uv2.id,
             'new_version_string': version_string,
         }
@@ -1579,12 +1585,15 @@ class TestRollbackVersionForm(TestCase):
         version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
         data = {
             'channel': amo.CHANNEL_LISTED,
+            'listed_version': lv1.id,
             'unlisted_version': uv1.id,
             'new_version_string': '111111',
         }
         # test we're selecting the listed channel
         form = forms.RollbackVersionForm(data, addon=addon)
-        assert form.fields['listed_version'].choices == [(lv1.id, lv1)]
+        assert [str(lab) for _, lab in form.fields['listed_version'].choices] == [
+            lv1.version,
+        ]
         assert form.is_valid(), form.errors
         # the listed version is added, and as the chosen version
         assert form.clean() == {
@@ -1604,6 +1613,7 @@ class TestRollbackVersionForm(TestCase):
         version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
         data = {
             'channel': amo.CHANNEL_UNLISTED,
+            'listed_version': lv1.id,
             'unlisted_version': uv1.id,
             'new_version_string': '111111',
         }
