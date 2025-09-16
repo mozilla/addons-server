@@ -2102,7 +2102,7 @@ msgstr "Er is iets misgegaan, neem contact op met ondersteuning voor ontwikkelaa
 
 #: src/olympia/devhub/forms.py:1653
 msgid "No appropriate version available"
-msgstr ""
+msgstr "Geen juiste versie beschikbaar"
 
 #: src/olympia/devhub/forms.py:1660
 msgid "Choose version"
