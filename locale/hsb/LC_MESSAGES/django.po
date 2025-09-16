@@ -2105,7 +2105,7 @@ msgstr "Něšto je so nimokuliło, prošu stajće so z wuwiwarskej podpěru do z
 
 #: src/olympia/devhub/forms.py:1653
 msgid "No appropriate version available"
-msgstr ""
+msgstr "Žana přihódna wersija k dispoziciji"
 
 #: src/olympia/devhub/forms.py:1660
 msgid "Choose version"
