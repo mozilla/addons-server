@@ -1,4 +1,3 @@
-import ipaddress
 from datetime import datetime, timedelta
 
 from olympia.abuse.utils import reject_and_block_addons
@@ -78,16 +77,7 @@ def _delay_auto_approval_indefinitely(*, version, rule):
     return True
 
 
-def _delay_auto_approval_indefinitely_and_restrict(
-    *, version, rule, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
-):
-    """Delay auto-approval for the whole add-on indefinitely, and restricts the
-    user(s) and their IP(s)."""
-    # Always _delay_auto_approval_indefinitely() returns False it means we
-    # already flagged before so we don't want to repeat the rest.
-    if not _delay_auto_approval_indefinitely(version=version, rule=rule):
-        return False
-
+def _restrict_future_approvals(*, version, rule, restriction_type):
     # Collect users and their IPs
     upload = (
         version.addon.fileupload_set.all()
@@ -117,19 +107,27 @@ def _delay_auto_approval_indefinitely_and_restrict(
         )
 
     for ip in ips:
-        ip_object = ipaddress.ip_address(ip)
-        # For IPv4, restrict the /32, i.e. the exact IP.
-        # For IPv6, restrict the /64, otherwise the restriction would be
-        # trivial to bypass. We pass strict=False to ip_network() to make the
-        # ipaddress module ignore the hosts bits from the ip after the prefix
-        # length is applied.
-        prefix_len = 32 if ip_object.version == 4 else 64
-        network = ipaddress.ip_network((ip, prefix_len), strict=False)
+        network = IPNetworkUserRestriction.network_from_ip(ip)
         IPNetworkUserRestriction.objects.get_or_create(
             network=network,
             restriction_type=restriction_type,
             defaults=restriction_defaults,
         )
+
+
+def _delay_auto_approval_indefinitely_and_restrict(
+    *, version, rule, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
+):
+    """Delay auto-approval for the whole add-on indefinitely, and restricts the
+    user(s) and their IP(s)."""
+    # Always _delay_auto_approval_indefinitely() returns False it means we
+    # already flagged before so we don't want to repeat the rest.
+    if not _delay_auto_approval_indefinitely(version=version, rule=rule):
+        return False
+
+    _restrict_future_approvals(
+        version=version, rule=rule, restriction_type=restriction_type
+    )
     return True
 
 
@@ -163,6 +161,11 @@ def _disable_and_block(*, version, rule):
         and usage_tier.disable_and_block_action_available
         and not successful_appeal.exists()
     ):
+        _restrict_future_approvals(
+            version=version,
+            rule=rule,
+            restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL,
+        )
         reject_and_block_addons([addon])
     else:
         _delay_auto_approval_indefinitely(version=version, rule=rule)

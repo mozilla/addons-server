@@ -570,6 +570,18 @@ class Version(OnChangeMixin, ModelBase):
                 else 'auto_approval_disabled_unlisted'
             )
             reviewer_flags_defaults[flag] = True
+            activity.log_create(
+                amo.LOG.DISABLE_AUTO_APPROVAL,
+                addon,
+                details={
+                    'channel': version.channel,
+                    'comments': (
+                        f'{version.get_channel_display()} auto-approval automatically '
+                        'disabled because of a restriction'
+                    ),
+                },
+                user=get_task_user(),
+            )
 
         if reviewer_flags_defaults:
             AddonReviewerFlags.objects.update_or_create(

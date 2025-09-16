@@ -986,15 +986,27 @@ class TestActions(TestCase):
         assert version2.blockversion.block_type == BlockType.SOFT_BLOCKED
         assert ContentDecision.objects.count() == existing_decision_count + 1
 
+        for author in addon.authors.all():
+            assert EmailUserRestriction.objects.filter(
+                email_pattern=author.email,
+                restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL,
+            ).exists()
+            network = IPNetworkUserRestriction.network_from_ip(author.last_login_ip)
+            assert IPNetworkUserRestriction.objects.filter(
+                network=network, restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
+            ).exists()
+
     def test_disable_and_block(self):
-        self.do_disable_and_block(addon_factory(average_daily_users=4242))
+        user = user_factory(last_login_ip='172.16.0.1')
+        self.do_disable_and_block(addon_factory(average_daily_users=4242, users=[user]))
 
     @mock.patch('olympia.scanners.actions.reject_and_block_addons')
     def test_disable_and_block_with_mock(self, reject_and_block_addons_mock):
         UsageTier.objects.create(
             upper_adu_threshold=10000, disable_and_block_action_available=True
         )
-        addon = addon_factory(average_daily_users=4242)
+        user = user_factory(last_login_ip='172.16.0.1')
+        addon = addon_factory(average_daily_users=4242, users=[user])
         _disable_and_block(version=addon.current_version, rule=None)
         assert reject_and_block_addons_mock.call_count == 1
         assert reject_and_block_addons_mock.call_args[0] == ([addon],)
@@ -1033,7 +1045,8 @@ class TestActions(TestCase):
     def test_disable_and_block_not_available_for_that_tier(self):
         tier = UsageTier.objects.create(lower_adu_threshold=1)
         assert not tier.disable_and_block_action_available  # Default is False
-        addon = addon_factory(average_daily_users=1234)
+        user = user_factory(last_login_ip='172.16.0.1')
+        addon = addon_factory(average_daily_users=1234, users=[user])
         assert addon.get_usage_tier() == tier
         version = addon.current_version
         _disable_and_block(version=version, rule=None)
@@ -1048,9 +1061,13 @@ class TestActions(TestCase):
         addon.reviewerflags.reload()
         assert addon.auto_approval_delayed_until == datetime.max
         assert addon.auto_approval_delayed_until_unlisted == datetime.max
+        # We didn't add restrictions.
+        assert not EmailUserRestriction.objects.exists()
+        assert not IPNetworkUserRestriction.objects.exists()
 
     def test_disable_and_block_no_usage_tier(self):
-        addon = addon_factory()
+        user = user_factory(last_login_ip='172.16.0.1')
+        addon = addon_factory(users=[user])
         version = addon.current_version
         _disable_and_block(version=version, rule=None)
         # Should not have been disabled & blocked since it's not in any tier
@@ -1063,12 +1080,16 @@ class TestActions(TestCase):
         addon.reviewerflags.reload()
         assert addon.auto_approval_delayed_until == datetime.max
         assert addon.auto_approval_delayed_until_unlisted == datetime.max
+        # We didn't add restrictions.
+        assert not EmailUserRestriction.objects.exists()
+        assert not IPNetworkUserRestriction.objects.exists()
 
     def test_disable_and_block_but_previous_successful_appeal(self):
         UsageTier.objects.create(
             upper_adu_threshold=10000, disable_and_block_action_available=True
         )
-        addon = addon_factory(average_daily_users=4242)
+        user = user_factory(last_login_ip='172.16.0.1')
+        addon = addon_factory(average_daily_users=4242, users=[user])
         version2 = version_factory(addon=addon)
         appeal_decision = ContentDecision.objects.create(
             addon=addon,
@@ -1093,9 +1114,13 @@ class TestActions(TestCase):
         addon.reviewerflags.reload()
         assert addon.auto_approval_delayed_until == datetime.max
         assert addon.auto_approval_delayed_until_unlisted == datetime.max
+        # We didn't add restrictions.
+        assert not EmailUserRestriction.objects.exists()
+        assert not IPNetworkUserRestriction.objects.exists()
 
     def test_disable_and_block_with_unsuccesful_appeal(self):
-        addon = addon_factory(average_daily_users=4242)
+        user = user_factory(last_login_ip='172.16.0.1')
+        addon = addon_factory(average_daily_users=4242, users=[user])
         appeal_decision = ContentDecision.objects.create(
             addon=addon,
             action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
@@ -1109,7 +1134,8 @@ class TestActions(TestCase):
         self.do_disable_and_block(addon)
 
     def test_disable_and_block_with_unresolved_appeal(self):
-        addon = addon_factory(average_daily_users=4242)
+        user = user_factory(last_login_ip='172.16.0.1')
+        addon = addon_factory(average_daily_users=4242, users=[user])
         appeal_job = CinderJob.objects.create(target_addon=addon)
         ContentDecision.objects.create(
             addon=addon,
@@ -1119,7 +1145,8 @@ class TestActions(TestCase):
         self.do_disable_and_block(addon)
 
     def test_disable_and_block_with_non_block_appeal(self):
-        addon = addon_factory(average_daily_users=4242)
+        user = user_factory(last_login_ip='172.16.0.1')
+        addon = addon_factory(average_daily_users=4242, users=[user])
         appeal_decision = ContentDecision.objects.create(
             addon=addon,
             action=DECISION_ACTIONS.AMO_APPROVE,

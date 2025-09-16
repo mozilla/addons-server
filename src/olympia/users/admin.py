@@ -147,6 +147,8 @@ class UserAdmin(AMOModelAdmin):
         'picture_img',
         'ratings_authorship',
         'restriction_history_for_this_user',
+        'currently_matching_exact_email_restrictions',
+        'currently_matching_exact_ip_restrictions',
     )
     fieldsets = (
         (
@@ -196,13 +198,22 @@ class UserAdmin(AMOModelAdmin):
                     'last_login',
                     'last_known_activity_time',
                     'activity',
-                    'restriction_history_for_this_user',
                     'last_login_ip',
                     'known_ip_adresses',
                     'banned',
                     'notes',
-                    'bypass_upload_restrictions',
                     'has_active_api_key',
+                )
+            },
+        ),
+        (
+            'Restrictions',
+            {
+                'fields': (
+                    'restriction_history_for_this_user',
+                    'currently_matching_exact_email_restrictions',
+                    'currently_matching_exact_ip_restrictions',
+                    'bypass_upload_restrictions',
                 )
             },
         ),
@@ -504,6 +515,17 @@ class UserAdmin(AMOModelAdmin):
 
     def restriction_history_for_this_user(self, obj):
         return related_content_link(obj, UserRestrictionHistory, 'user')
+
+    def currently_matching_exact_email_restrictions(self, obj):
+        return related_content_link(
+            None, EmailUserRestriction, 'email_pattern', identifier=obj.email
+        )
+
+    def currently_matching_exact_ip_restrictions(self, obj):
+        network = IPNetworkUserRestriction.network_from_ip(obj.last_login_ip)
+        return related_content_link(
+            None, IPNetworkUserRestriction, 'network', identifier=network
+        )
 
     def history_for_this_user(self, obj):
         return related_content_link(obj, UserHistory, 'user')

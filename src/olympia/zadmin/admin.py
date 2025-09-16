@@ -11,7 +11,12 @@ from . import models
 
 
 def related_content_link(
-    obj, related_class, related_field, related_manager='objects', text=None
+    obj,
+    related_class,
+    related_field,
+    related_manager='objects',
+    text=None,
+    identifier=None,
 ):
     """
     Return a link to the admin changelist for the instances of related_class
@@ -20,11 +25,15 @@ def related_content_link(
     url = 'admin:{}_{}_changelist'.format(
         related_class._meta.app_label, related_class._meta.model_name
     )
+    if identifier is None:
+        identifier = obj.pk
     if text is None:
-        qs = getattr(related_class, related_manager).filter(**{related_field: obj})
+        qs = getattr(related_class, related_manager).filter(
+            **{related_field: identifier}
+        )
         text = qs.count()
     return format_html(
-        '<a href="{}?{}={}">{}</a>', reverse(url), related_field, obj.pk, text
+        '<a href="{}?{}={}">{}</a>', reverse(url), related_field, identifier, text
     )
 
 

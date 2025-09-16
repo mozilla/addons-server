@@ -2575,6 +2575,11 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             parsed_data=self.dummy_parsed_data,
         )
         assert not AddonReviewerFlags.objects.filter(addon=self.addon).exists()
+        assert (
+            not ActivityLog.objects.for_addons(self.addon)
+            .filter(action=amo.LOG.DISABLE_AUTO_APPROVAL.id)
+            .exists()
+        )
 
     def test_auto_approval_disabled_if_restricted_by_email(self):
         EmailUserRestriction.objects.create(
@@ -2590,6 +2595,23 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             parsed_data=self.dummy_parsed_data,
         )
         assert self.addon.auto_approval_disabled
+        assert not self.addon.auto_approval_disabled_unlisted
+        assert (
+            ActivityLog.objects.for_addons(self.addon)
+            .filter(action=amo.LOG.DISABLE_AUTO_APPROVAL.id)
+            .exists()
+        )
+        activity_log = (
+            ActivityLog.objects.for_addons(self.addon)
+            .filter(action=amo.LOG.DISABLE_AUTO_APPROVAL.id)
+            .get()
+        )
+        assert activity_log.details['channel'] == amo.CHANNEL_LISTED
+        assert (
+            activity_log.details['comments']
+            == 'Listed auto-approval automatically disabled because of a restriction'
+        )
+        assert activity_log.user == get_task_user()
 
     def test_auto_approval_disabled_if_restricted_by_ip(self):
         self.upload.user.update(last_login_ip='10.0.0.42')
@@ -2606,6 +2628,22 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         )
         assert self.addon.auto_approval_disabled
         assert not self.addon.auto_approval_disabled_unlisted
+        assert (
+            ActivityLog.objects.for_addons(self.addon)
+            .filter(action=amo.LOG.DISABLE_AUTO_APPROVAL.id)
+            .exists()
+        )
+        activity_log = (
+            ActivityLog.objects.for_addons(self.addon)
+            .filter(action=amo.LOG.DISABLE_AUTO_APPROVAL.id)
+            .get()
+        )
+        assert activity_log.details['channel'] == amo.CHANNEL_LISTED
+        assert (
+            activity_log.details['comments']
+            == 'Listed auto-approval automatically disabled because of a restriction'
+        )
+        assert activity_log.user == get_task_user()
 
     def test_auto_approval_disabled_for_unlisted_if_restricted_by_ip(self):
         self.upload.user.update(last_login_ip='10.0.0.42')
@@ -2622,6 +2660,22 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         )
         assert not self.addon.auto_approval_disabled
         assert self.addon.auto_approval_disabled_unlisted
+        assert (
+            ActivityLog.objects.for_addons(self.addon)
+            .filter(action=amo.LOG.DISABLE_AUTO_APPROVAL.id)
+            .exists()
+        )
+        activity_log = (
+            ActivityLog.objects.for_addons(self.addon)
+            .filter(action=amo.LOG.DISABLE_AUTO_APPROVAL.id)
+            .get()
+        )
+        assert activity_log.details['channel'] == amo.CHANNEL_UNLISTED
+        assert (
+            activity_log.details['comments']
+            == 'Unlisted auto-approval automatically disabled because of a restriction'
+        )
+        assert activity_log.user == get_task_user()
 
     def test_dont_record_install_origins_when_waffle_switch_is_off(self):
         # Switch should be off by default.

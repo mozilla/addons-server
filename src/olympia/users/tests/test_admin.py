@@ -502,15 +502,17 @@ class TestUserAdmin(TestCase):
         # We want to see absolutely everything, so make our user a superadmin.
         self.grant_permission(user, '*:*')
         self.client.force_login(user)
-        with self.assertNumQueries(21):
+        with self.assertNumQueries(23):
             # - 4 savepoint/release
             # - 2 current logged in user & groups
             # - 2 target user & groups
             # - 1 banned user content instance
-            # - 8 related content counts
+            # - 6 related content counts
             #     (collections, addons, ratings, activity, abuse reports by
-            #      this user, abuse reports against this user,
-            #      restriction history, user history for email changes)
+            #      this user, abuse reports against this user)
+            # - 4 restrictions related counts
+            #     (restriction history, user history for email changes,
+            #      exact email restrictions, exact ip restrictions)
             # - 1 last activity date
             # - 1 known activity ips
             # - 1 api key
