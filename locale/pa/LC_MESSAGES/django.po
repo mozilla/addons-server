@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-15 10:52+0000\n"
+"POT-Creation-Date: 2025-09-16 09:45+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1622,6 +1622,9 @@ msgid "You don't have any API credentials."
 msgstr "ਮੇਰੇ ਕੋਲ ਖਾਤਾ ਨਹੀਂ ਹੈ।"
 
 msgid "Something went wrong, please contact developer support."
+msgstr ""
+
+msgid "No appropriate version available"
 msgstr ""
 
 msgid "Choose version"

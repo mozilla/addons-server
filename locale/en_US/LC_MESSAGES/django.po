@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-15 10:52+0000\n"
+"POT-Creation-Date: 2025-09-16 09:45+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1688,6 +1688,9 @@ msgstr "You don't have any API credentials."
 
 msgid "Something went wrong, please contact developer support."
 msgstr "Something went wrong, please contact developer support."
+
+msgid "No appropriate version available"
+msgstr "No appropriate version available"
 
 msgid "Choose version"
 msgstr "Choose version"

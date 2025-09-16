@@ -6,143 +6,117 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2025-09-16 09:46+0000\n"
 "Language: is\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n%10!=1 || n%100==11);\n"
 "Generated-By: Pontoon\n"
 
-#: static/js/common/upload-addon.js:54 static/js/common/upload-image.js:136
 msgid "There was a problem contacting the server."
 msgstr "Vandamál kom upp við að hafa samband við netþjóninn."
 
-#: static/js/common/upload-addon.js:78
 msgid "Select a file..."
 msgstr "Veldu skrá..."
 
-#: static/js/common/upload-addon.js:82
 msgid "Your add-on should end with .zip, .xpi or .crx"
 msgstr "Nafn viðbótar ætti að enda á .zip, .xpi or .crx"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#: static/js/common/upload-addon.js:118
-#, python-brace-format, python-format
+#, python-format, python-brace-format
 msgid "{0}% complete"
 msgstr "{0}% lokið"
 
-#: static/js/common/upload-addon.js:122
 #, python-brace-format
 msgid "{0} of {1}"
 msgstr "{0} af {1}"
 
-#: static/js/common/upload-addon.js:166
 msgid "Cancel"
 msgstr "Hætta við"
 
-#: static/js/common/upload-addon.js:189
 #, python-brace-format
 msgid "Uploading {0}"
 msgstr "Sendi inn {0}"
 
-#: static/js/common/upload-addon.js:229
 #, python-brace-format
 msgid "Error with {0}"
 msgstr "Villa með {0}"
 
-#: static/js/common/upload-addon.js:237
 msgid "Please make sure to report any linting related issues on GitHub"
 msgstr "Endilega tilkynntu um vandamál tengd 'linting' á GitHub"
 
-#: static/js/common/upload-addon.js:248
 #, python-brace-format
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] "Viðbótin þín féll á fullgildingu með {0} villu."
 msgstr[1] "Viðbótin þín féll á fullgildingu með {0} villum."
 
-#: static/js/common/upload-addon.js:266
 #, python-brace-format
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;og {0} í viðbót"
 msgstr[1] "&hellip;og {0} í viðbót"
 
-#: static/js/common/upload-addon.js:287 static/js/common/upload-addon.js:705
 msgid "See full validation report"
 msgstr "Sjá alla fullgildingarskýrsluna"
 
-#: static/js/common/upload-addon.js:300
 #, python-brace-format
 msgid "Validating {0}"
 msgstr "Fullgilda {0}"
 
-#: static/js/common/upload-addon.js:350
 #, python-brace-format
 msgid "Your add-on exceeds the maximum size of {0}."
 msgstr "Viðbótin þín fer yfir hámarksstærðina {0}."
 
-#: static/js/common/upload-addon.js:358
 #, python-brace-format
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Fékk autt svar frá netþjóninum; staða: {0}"
 
-#: static/js/common/upload-addon.js:403
 msgid "Your extension has to be compatible with at least one application."
 msgstr "Forritsaukinn þinn verður að vera samhæfður við að minnsta kosti eitt forrit."
 
-#: static/js/common/upload-addon.js:473
 msgid "Unexpected server error while validating."
 msgstr "Upp kom óvænt villa í netþjóni við fullgildingu."
 
-#: static/js/common/upload-addon.js:519
 msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
 msgstr "Merkt sérstaklega sem samhæft við Firefox fyrir Android í upplýsingaskránni"
 
-#: static/js/common/upload-addon.js:561
 #, python-brace-format
 msgid "Finished validating {0}"
 msgstr "Lauk við að fullgilda {0}"
 
-#: static/js/common/upload-addon.js:568
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr "Fullgilding viðbótarinnar þinnar féll á tímamörkum, það þarf að yfirfara hana handvirkt."
 
-#: static/js/common/upload-addon.js:573
 #, python-brace-format
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] "Viðbótin þín var fullgilt með engum villum og {0} aðvörun."
 msgstr[1] "Viðbótin þín var fullgilt með engum villum og {0} aðvörunum."
 
-#: static/js/common/upload-addon.js:582
 #, python-brace-format
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] "Viðbótin þín var fullgilt með engum villum og {0} skilaboðum."
 msgstr[1] "Viðbótin þín var fullgilt með engum villum og {0} skilaboðum."
 
-#: static/js/common/upload-addon.js:590
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "Viðbótin þín var fullgilt með engum villum eða aðvörunum."
 
-#: static/js/common/upload-addon.js:651
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Láttu ítarlegar athugasemdir við útgáfuna fylgja (þetta er hægt að gera í næsta skrefi)."
 
-#: static/js/common/upload-addon.js:654
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr "Ef viðbótin þín krefst innskráningar á vefsíðu til að prófa að fullu, láttu þá notandanafn og lykilorð í prófinu fylgja athugasemdunum til umsagnaraðila (það er hægt að gera í næsta skrefi)."
 
-#: static/js/common/upload-addon.js:660
 msgid "Add-on submission checklist"
 msgstr "Gátlisti við innsendingu viðbóta"
 
-#: static/js/common/upload-addon.js:664
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Staðfestu eftirfarandi atriði áður en þú lýkur við skilin. Þetta mun lágmarka tafir eða misskilning meðan á yfirferðarferlinu stendur:"
 
-#: static/js/common/upload-addon.js:671
 msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
@@ -150,887 +124,707 @@ msgstr ""
 "Samþjappaðar, samtengdar eða á annan hátt vélbúnar skriftur (að undanskildum þekktum aðgerðasöfnum) þurfa að hafa frumkóða sinn lagðann fram sérstaklega til yfirferðar. Gakktu úr skugga um að þú "
 "notir reitinn til að senda inn frumkóðann til að forðast að innsendingu þinni verði hafnað."
 
-#: static/js/common/upload-addon.js:684
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Fullgildingarferlið fann þessi vandamál sem geta leitt til höfnunar:"
 
-#: static/js/common/upload-base.js:69
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Skráartegundin sem þú sendir inn er ekki þekkt."
 
-#: static/js/common/upload-base.js:79 static/js/zamboni/global.js:569
 #, python-brace-format
 msgid "Your file exceeds the maximum size of {0}."
 msgstr "Skráin þín fer yfir hámarksstærðina {0}."
 
-#: static/js/common/upload-base.js:105
 msgid "You cancelled the upload."
 msgstr "Þú hættir við innsendinguna."
 
-#: static/js/common/upload-image.js:102
 msgid "Images must be either PNG or JPG."
 msgstr "Myndir verða að vera annað hvort PNG eða JPG."
 
-#: static/js/common/upload-image.js:106
 msgid "Videos must be in WebM."
 msgstr "Myndskeið verða að vera í WebM."
 
-#: static/js/stats/chart.js:298
 #, python-brace-format
 msgid "Week of {0}"
 msgstr "Vika {0}"
 
-#: static/js/stats/chart.js:307
 #, python-brace-format
 msgid "{0} download"
 msgid_plural "{0} downloads"
 msgstr[0] "{0} niðurhal"
 msgstr[1] "{0} niðurhöl"
 
-#: static/js/stats/chart.js:313
 #, python-brace-format
 msgid "{0} user"
 msgid_plural "{0} users"
 msgstr[0] "{0} notandi"
 msgstr[1] "{0} notendur"
 
-#: static/js/stats/chart.js:319
 #, python-brace-format
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
 msgstr[0] "{0} viðbót"
 msgstr[1] "{0} viðbætur"
 
-#: static/js/stats/chart.js:325
 #, python-brace-format
 msgid "{0} collection"
 msgid_plural "{0} collections"
 msgstr[0] "{0} safn"
 msgstr[1] "{0} söfn"
 
-#: static/js/stats/chart.js:331
 #, python-brace-format
 msgid "{0} review"
 msgid_plural "{0} reviews"
 msgstr[0] "{0} umsögn"
 msgstr[1] "{0} umsagnir"
 
-#: static/js/stats/chart.js:340
 #, python-brace-format
 msgid "{0} sale"
 msgid_plural "{0} sales"
 msgstr[0] "{0} sala"
 msgstr[1] "{0} sölur"
 
-#: static/js/stats/chart.js:346
 #, python-brace-format
 msgid "{0} refund"
 msgid_plural "{0} refunds"
 msgstr[0] "{0} endurgreiðsla"
 msgstr[1] "{0} endurgreiðslur"
 
-#: static/js/stats/chart.js:352
 #, python-brace-format
 msgid "{0} install"
 msgid_plural "{0} installs"
 msgstr[0] "{0} uppsetning"
 msgstr[1] "{0} uppsetningar"
 
-#: static/js/stats/chart.js:453 static/js/stats/csv_keys.js:3 static/js/stats/csv_keys.js:109
 msgid "Downloads"
 msgstr "Sótt gögn"
 
-#: static/js/stats/chart.js:465 static/js/stats/csv_keys.js:6 static/js/stats/csv_keys.js:110
 msgid "Daily Users"
 msgstr "Daglegir notendur"
 
-#: static/js/stats/chart.js:498
 msgid "Amount, in USD"
 msgstr "Upphæð, í USD"
 
-#: static/js/stats/chart.js:510 static/js/stats/csv_keys.js:104
 msgid "Number of Contributions"
 msgstr "Fjöldi framlaga"
 
-#: static/js/stats/chart.js:537
 msgid "More Info..."
 msgstr "Nánari upplýsingar..."
 
 #. L10n: {0} is an ISO-formatted date.
-#: static/js/stats/chart.js:543
 #, python-brace-format
 msgid "Details for {0}"
 msgstr "Upplýsingar um {0}"
 
-#: static/js/stats/csv_keys.js:9
 msgid "Collections Created"
 msgstr "Söfn búin til"
 
-#: static/js/stats/csv_keys.js:12
 msgid "Add-ons in Use"
 msgstr "Viðbætur í notkun"
 
-#: static/js/stats/csv_keys.js:15
 msgid "Add-ons Created"
 msgstr "Viðbætur búnar til"
 
-#: static/js/stats/csv_keys.js:18
 msgid "Add-ons Downloaded"
 msgstr "Viðbætur sóttar"
 
-#: static/js/stats/csv_keys.js:21
 msgid "Add-ons Updated"
 msgstr "Viðbætur uppfærðar"
 
-#: static/js/stats/csv_keys.js:24
 msgid "Reviews Written"
 msgstr "Umsagnir skrifaðar"
 
-#: static/js/stats/csv_keys.js:27
 msgid "User Signups"
 msgstr "Nýskráningar notenda"
 
-#: static/js/stats/csv_keys.js:30
 msgid "Subscribers"
 msgstr "Áskrifendur"
 
-#: static/js/stats/csv_keys.js:33
 msgid "Ratings"
 msgstr "Einkunnir"
 
-#: static/js/stats/csv_keys.js:36 static/js/stats/csv_keys.js:114
 msgid "Sales"
 msgstr "Sala"
 
-#: static/js/stats/csv_keys.js:39 static/js/stats/csv_keys.js:113
 msgid "Installs"
 msgstr "Uppsetningar"
 
-#: static/js/stats/csv_keys.js:42
 msgid "Unknown"
 msgstr "Óþekkt"
 
-#: static/js/stats/csv_keys.js:43
 msgid "Add-ons Manager"
 msgstr "Viðbótastjóri"
 
-#: static/js/stats/csv_keys.js:44
 msgid "Add-ons Manager Promo"
 msgstr "Kynningarefni í viðbótastjóra"
 
-#: static/js/stats/csv_keys.js:45
 msgid "Add-ons Manager Featured"
 msgstr "Sérvalið í viðbótastjóra"
 
-#: static/js/stats/csv_keys.js:46
 msgid "Add-ons Manager Learn More"
 msgstr "Frekari upplýsingar um viðbótastjóra"
 
-#: static/js/stats/csv_keys.js:47
 msgid "Search Suggestions"
 msgstr "Leitartillögur"
 
-#: static/js/stats/csv_keys.js:48
 msgid "Search Results"
 msgstr "Leitarniðurstöður"
 
-#: static/js/stats/csv_keys.js:49 static/js/stats/csv_keys.js:50 static/js/stats/csv_keys.js:51
 msgid "Homepage Promo"
 msgstr "Heimasíða kynningarefni"
 
-#: static/js/stats/csv_keys.js:52 static/js/stats/csv_keys.js:53
 msgid "Homepage Featured"
 msgstr "Heimasíða úrvalsefni"
 
-#: static/js/stats/csv_keys.js:54 static/js/stats/csv_keys.js:55
 msgid "Homepage Up and Coming"
 msgstr "Nýtt og væntanlegt á heimasíðu"
 
-#: static/js/stats/csv_keys.js:56
 msgid "Homepage Most Popular"
 msgstr "Vinsælast á heimasíðu"
 
-#: static/js/stats/csv_keys.js:57 static/js/stats/csv_keys.js:59
 msgid "Detail Page"
 msgstr "Ítarleg síða"
 
-#: static/js/stats/csv_keys.js:58 static/js/stats/csv_keys.js:60
 msgid "Detail Page (bottom)"
 msgstr "Ítarleg síða (neðst)"
 
-#: static/js/stats/csv_keys.js:61
 msgid "Detail Page (Development Channel)"
 msgstr "Ítarleg síða (þróunarrás)"
 
-#: static/js/stats/csv_keys.js:62 static/js/stats/csv_keys.js:63 static/js/stats/csv_keys.js:64
 msgid "Often Used With"
 msgstr "Oft notað með"
 
-#: static/js/stats/csv_keys.js:65 static/js/stats/csv_keys.js:66
 msgid "Others By Author"
 msgstr "Annað frá höfundinum"
 
-#: static/js/stats/csv_keys.js:67 static/js/stats/csv_keys.js:68
 msgid "Dependencies"
 msgstr "Kerfiskröfur"
 
-#: static/js/stats/csv_keys.js:69 static/js/stats/csv_keys.js:70
 msgid "Upsell"
 msgstr "Selja dýrara"
 
-#: static/js/stats/csv_keys.js:71
 msgid "Meet the Developer"
 msgstr "Kynnstu höfundinum"
 
-#: static/js/stats/csv_keys.js:72
 msgid "User Profile"
 msgstr "Notandasnið"
 
-#: static/js/stats/csv_keys.js:73
 msgid "Version History"
 msgstr "Útgáfuferill"
 
-#: static/js/stats/csv_keys.js:75
 msgid "Sharing"
 msgstr "Deiling"
 
-#: static/js/stats/csv_keys.js:76
 msgid "Category Pages"
 msgstr "Flokkasíður"
 
-#: static/js/stats/csv_keys.js:77
 msgid "Collections"
 msgstr "Söfn"
 
-#: static/js/stats/csv_keys.js:78 static/js/stats/csv_keys.js:79
 msgid "Category Landing Featured Carousel"
 msgstr "Flokkur í úrvalshringekju á fyrstu síðu"
 
-#: static/js/stats/csv_keys.js:80 static/js/stats/csv_keys.js:81
 msgid "Category Landing Top Rated"
 msgstr "Flokkur í hæstu einkunn á fyrstu síðu"
 
-#: static/js/stats/csv_keys.js:82 static/js/stats/csv_keys.js:83
 msgid "Category Landing Most Popular"
 msgstr "Flokkur í vinsælasta á fyrstu síðu"
 
-#: static/js/stats/csv_keys.js:84 static/js/stats/csv_keys.js:85
 msgid "Category Landing Recently Added"
 msgstr "Flokkur í nýlega bætt við á fyrstu síðu"
 
-#: static/js/stats/csv_keys.js:86 static/js/stats/csv_keys.js:87
 msgid "Browse Listing Featured Sort"
 msgstr "Röðun eftir úrvalsefni við skoðun lista"
 
-#: static/js/stats/csv_keys.js:88 static/js/stats/csv_keys.js:89
 msgid "Browse Listing Users Sort"
 msgstr "Röðun eftir notendum við skoðun lista"
 
-#: static/js/stats/csv_keys.js:90 static/js/stats/csv_keys.js:91
 msgid "Browse Listing Rating Sort"
 msgstr "Röðun eftir einkunn við skoðun lista"
 
-#: static/js/stats/csv_keys.js:92 static/js/stats/csv_keys.js:93
 msgid "Browse Listing Created Sort"
 msgstr "Röðun eftir hvenær bíð til við skoðun lista"
 
-#: static/js/stats/csv_keys.js:94 static/js/stats/csv_keys.js:95
 msgid "Browse Listing Name Sort"
 msgstr "Röðun eftir nafni við skoðun lista"
 
-#: static/js/stats/csv_keys.js:96 static/js/stats/csv_keys.js:97
 msgid "Browse Listing Popular Sort"
 msgstr "Röðun eftir vinsældum við skoðun lista"
 
-#: static/js/stats/csv_keys.js:98 static/js/stats/csv_keys.js:99
 msgid "Browse Listing Updated Sort"
 msgstr "Röðun eftir uppfærslu við skoðun lista"
 
-#: static/js/stats/csv_keys.js:100 static/js/stats/csv_keys.js:101
 msgid "Browse Listing Up and Coming Sort"
 msgstr "Röðun eftir væntanlegu við skoðun lista"
 
-#: static/js/stats/csv_keys.js:105
 msgid "Total Amount Contributed"
 msgstr "Samtals framlagt"
 
-#: static/js/stats/csv_keys.js:106
 msgid "Average Contribution"
 msgstr "Meðalframlag"
 
-#: static/js/stats/csv_keys.js:115
 msgid "Usage"
 msgstr "Notkun"
 
-#: static/js/stats/csv_keys.js:118
 msgid "Firefox"
 msgstr "Firefox"
 
-#: static/js/stats/csv_keys.js:119
 msgid "Mozilla"
 msgstr "Mozilla"
 
-#: static/js/stats/csv_keys.js:120
 msgid "Thunderbird"
 msgstr "Thunderbird"
 
-#: static/js/stats/csv_keys.js:121
 msgid "Sunbird"
 msgstr "Sunbird"
 
-#: static/js/stats/csv_keys.js:122
 msgid "SeaMonkey"
 msgstr "SeaMonkey"
 
-#: static/js/stats/csv_keys.js:123
 msgid "Fennec"
 msgstr "Fennec"
 
-#: static/js/stats/csv_keys.js:124
 msgid "Android"
 msgstr "Android"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:129
 #, python-brace-format
 msgid "Downloads and Daily Users, last {0} days"
 msgstr "Niðurhal og daglegir notendur, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:131
 #, python-brace-format
 msgid "Downloads and Daily Users from {0} to {1}"
 msgstr "Niðurhal og daglegir notendur frá {0} til {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:135
 #, python-brace-format
 msgid "Installs and Daily Users, last {0} days"
 msgstr "Uppsetningar og daglegir notendur, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:137
 #, python-brace-format
 msgid "Installs and Daily Users from {0} to {1}"
 msgstr "Uppsetningar og daglegir notendur frá {0} til {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:141
 #, python-brace-format
 msgid "Downloads, last {0} days"
 msgstr "Niðurhal, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:143
 #, python-brace-format
 msgid "Downloads from {0} to {1}"
 msgstr "Niðurhal frá {0} í {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:147
 #, python-brace-format
 msgid "Daily Users, last {0} days"
 msgstr "Daglegir notendur, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:149
 #, python-brace-format
 msgid "Daily Users from {0} to {1}"
 msgstr "Daglegir notendur frá {0} til {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:153
 #, python-brace-format
 msgid "Applications, last {0} days"
 msgstr "Forrit, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:155
 #, python-brace-format
 msgid "Applications from {0} to {1}"
 msgstr "Forrit frá {0} til {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:159
 #, python-brace-format
 msgid "Countries, last {0} days"
 msgstr "Lönd, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:161
 #, python-brace-format
 msgid "Countries from {0} to {1}"
 msgstr "Lönd frá {0} til {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:165
 #, python-brace-format
 msgid "Platforms, last {0} days"
 msgstr "Stýrikerfi, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:167
 #, python-brace-format
 msgid "Platforms from {0} to {1}"
 msgstr "Stýrikerfi frá {0} til {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:171
 #, python-brace-format
 msgid "Languages, last {0} days"
 msgstr "Tungumál, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:173
 #, python-brace-format
 msgid "Languages from {0} to {1}"
 msgstr "Tungumál frá {0} til {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:177
 #, python-brace-format
 msgid "Add-on Versions, last {0} days"
 msgstr "Útgáfur viðbótar, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:179
 #, python-brace-format
 msgid "Add-on Versions from {0} to {1}"
 msgstr "Útgáfur viðbótar frá {0} til {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:183
 #, python-brace-format
 msgid "Add-on Status, last {0} days"
 msgstr "Staða viðbótar, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:185
 #, python-brace-format
 msgid "Add-on Status from {0} to {1}"
 msgstr "Staða viðbótar frá {0} til {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:189
 #, python-brace-format
 msgid "Download Sources, last {0} days"
 msgstr "Niðurhal grunnkóða, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:191
 #, python-brace-format
 msgid "Download Sources from {0} to {1}"
 msgstr "Niðurhal grunnkóða frá {0} til {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:195
 #, python-brace-format
 msgid "Download Mediums, last {0} days"
 msgstr "Niðurhal gagnamiðla, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:197
 #, python-brace-format
 msgid "Download Mediums from {0} to {1}"
 msgstr "Niðurhal gagnamiðla frá {0} til {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:201
 #, python-brace-format
 msgid "Download Contents, last {0} days"
 msgstr "Niðurhal á efni, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:203
 #, python-brace-format
 msgid "Download Contents from {0} to {1}"
 msgstr "Niðurhal á efni frá {0} til {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:207
 #, python-brace-format
 msgid "Download Campaigns, last {0} days"
 msgstr "Niðurhalsherferðir, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:209
 #, python-brace-format
 msgid "Download Campaigns from {0} to {1}"
 msgstr "Niðurhalsherferðir frá {0} til {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:213
 #, python-brace-format
 msgid "Contributions, last {0} days"
 msgstr "Framlög, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:215
 #, python-brace-format
 msgid "Contributions from {0} to {1}"
 msgstr "Framlög frá {0} til {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:219
 #, python-brace-format
 msgid "Site Metrics, last {0} days"
 msgstr "Vefmælingar, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:221
 #, python-brace-format
 msgid "Site Metrics from {0} to {1}"
 msgstr "Vefmælingar frá {0} til {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:225
 #, python-brace-format
 msgid "Add-ons in Use, last {0} days"
 msgstr "Viðbætur í notkun, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:227
 #, python-brace-format
 msgid "Add-ons in Use from {0} to {1}"
 msgstr "Viðbætur í notkun frá {0} til {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:231
 #, python-brace-format
 msgid "Add-ons Downloaded, last {0} days"
 msgstr "Viðbætur sóttar, síðustu {0} dagar"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:233
 #, python-brace-format
 msgid "Add-ons Downloaded from {0} to {1}"
 msgstr "Viðbætur sóttar frá {0} til {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:237
 #, python-brace-format
 msgid "Add-ons Created, last {0} days"
 msgstr "Viðbætur búnar til, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:239
 #, python-brace-format
 msgid "Add-ons Created from {0} to {1}"
 msgstr "Viðbætur búnar til frá {0} til {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:243
 #, python-brace-format
 msgid "Add-ons Updated, last {0} days"
 msgstr "Viðbætur uppfærðar, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:245
 #, python-brace-format
 msgid "Add-ons Updated from {0} to {1}"
 msgstr "Viðbætur uppfærðar frá {0} til {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:249
 #, python-brace-format
 msgid "Reviews Written, last {0} days"
 msgstr "Umsagnir skrifaðar, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:251
 #, python-brace-format
 msgid "Reviews Written from {0} to {1}"
 msgstr "Umsagnir skrifaðar frá {0} til {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:255
 #, python-brace-format
 msgid "User Signups, last {0} days"
 msgstr "Nýskráningar notenda, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:257
 #, python-brace-format
 msgid "User Signups from {0} to {1}"
 msgstr "Nýskráningar notenda frá {0} til {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:261
 #, python-brace-format
 msgid "Collections Created, last {0} days"
 msgstr "Söfn búin til, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:263
 #, python-brace-format
 msgid "Collections Created from {0} to {1}"
 msgstr "Söfn búin til frá {0} til {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:267
 #, python-brace-format
 msgid "Subscribers, last {0} days"
 msgstr "Áskrifendur, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:269
 #, python-brace-format
 msgid "Subscribers from {0} to {1}"
 msgstr "Áskrifendur frá {0} til {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:273
 #, python-brace-format
 msgid "Ratings, last {0} days"
 msgstr "Einkunnir, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:275
 #, python-brace-format
 msgid "Ratings from {0} to {1}"
 msgstr "Einkunnir frá {0} til {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:279
 #, python-brace-format
 msgid "Sales, last {0} days"
 msgstr "Sala, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:281
 #, python-brace-format
 msgid "Sales from {0} to {1}"
 msgstr "Sala frá {0} til {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:285
 #, python-brace-format
 msgid "Installs, last {0} days"
 msgstr "Uppsetningar, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:287
 #, python-brace-format
 msgid "Installs from {0} to {1}"
 msgstr "Uppsetningar frá {0} til {1}"
 
 #. L10n: {0} and {1} are integers.
-#: static/js/stats/csv_keys.js:293
 #, python-brace-format
 msgid "<b>{0}</b> in last {1} days"
 msgstr "<b>{0}</b> síðustu {1} daga"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:295 static/js/stats/csv_keys.js:301
 #, python-brace-format
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "<b>{0}</b> frá {1} til {2}"
 
 #. L10n: {0} and {1} are integers.
-#: static/js/stats/csv_keys.js:299
 #, python-brace-format
 msgid "<b>{0}</b> average in last {1} days"
 msgstr "<b>{0}</b> meðaltal síðustu {1} daga"
 
-#: static/js/stats/overview.js:18
 msgid "No data available."
 msgstr "Engin gögn tiltæk."
 
-#: static/js/stats/table.js:84
 msgid "Date"
 msgstr "Dagsetning"
 
-#: static/js/stats/topchart.js:108
 msgid "Other"
 msgstr "Annað"
 
-#: static/js/zamboni/devhub.js:300
 msgid "Changes Saved"
 msgstr "Breytingar vistaðar"
 
-#: static/js/zamboni/devhub.js:316
 msgid "Enter a new author's email address"
 msgstr "Settu inn tölvupóstfang nýs höfundar"
 
-#: static/js/zamboni/devhub.js:440
 msgid "There was an error uploading your file."
 msgstr "Villa kom upp við að senda inn skrána þína."
 
-#: static/js/zamboni/devhub.js:596
 #, python-brace-format
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} skrá"
 msgstr[1] "{files} skrár"
 
-#: static/js/zamboni/devhub.js:1196
 msgid "Image changes being processed"
 msgstr "Myndbreytingar eru í vinnslu"
 
-#: static/js/zamboni/global.js:463
 #, python-brace-format
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> stafur"
 msgstr[1] "<b>{0}</b> stafir"
 
-#: static/js/zamboni/global.js:472
 #, python-brace-format
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "<b>{0}</b> stafur eftir"
 msgstr[1] "<b>{0}</b> stafir eftir"
 
-#: static/js/zamboni/init.js:12
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "Þessi eiginleiki er tímabundið óvirkur meðan við sinnum viðhaldi á vefsvæðinu. Athugaðu aftur aðeins síðar."
 
-#: static/js/zamboni/l10n.js:164
 msgid "Remove this localization"
 msgstr "Fjarlægja þessa staðfærslu"
 
-#: static/js/zamboni/reviewers.js:258
 #, python-brace-format
 msgid "{name} was viewing this page first."
 msgstr "{name} skoðaði þessa síðu fyrst."
 
-#: static/js/zamboni/reviewers.js:266
 msgid "Review page polling failed."
 msgstr "Vöktun yfirferðarsíðu mistókst."
 
-#: static/js/zamboni/reviewers.js:554
 #, python-brace-format
 msgid "{name} was viewing this add-on first."
 msgstr "{name} var að skoða þessa viðbót fyrst."
 
-#: static/js/zamboni/reviewers.js:567 static/js/zamboni/reviewers.js:593
 msgid "Loading&hellip;"
 msgstr "Hleð inn&hellip;"
 
-#: static/js/zamboni/reviewers.js:572
 msgid "Version Notes"
 msgstr "Útgáfuskýringar"
 
-#: static/js/zamboni/reviewers.js:579
 msgid "Notes for Reviewers"
 msgstr "Athugasemdir fyrir umsagnaraðila"
 
-#: static/js/zamboni/reviewers.js:586
 msgid "No version notes found"
 msgstr "Engar útgáfuskýringar fundust"
 
-#: static/js/zamboni/reviewers.js:598
 msgid "Review Text"
 msgstr "Yfirfara texta"
 
-#: static/js/zamboni/reviewers.js:605
 msgid "Review notes found"
 msgstr "Yfirferðarskýringar fundust"
 
-#: static/js/zamboni/static_theme.js:217
 #, python-brace-format
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "Hámarksstærð innsendinga er {0} - veldu minni bakgrunnsmynd."
 
-#: static/js/zamboni/themes_review.js:199
 msgid "Requested Info"
 msgstr "Umbeðnar upplýsingar"
 
-#: static/js/zamboni/themes_review.js:200
 msgid "Flagged"
 msgstr "Flaggað"
 
-#: static/js/zamboni/themes_review.js:201
 msgid "Duplicate"
 msgstr "Tvítaka"
 
-#: static/js/zamboni/themes_review.js:202
 msgid "Rejected"
 msgstr "Hafnað"
 
-#: static/js/zamboni/themes_review.js:203
 msgid "Approved"
 msgstr "Samþykkt"
 
-#: static/js/zamboni/themes_review.js:492
 msgid "No results found"
 msgstr "Engar niðurstöður fundust"
 
-#: static/js/zamboni/themes_review_templates.js:43
 msgid "Theme"
 msgstr "Þema"
 
-#: static/js/zamboni/themes_review_templates.js:45
 msgid "Reviewer"
 msgstr "Höfundur umsagnar"
 
-#: static/js/zamboni/themes_review_templates.js:47
 msgid "Status"
 msgstr "Staða"
 
-#: static/js/zamboni/validator.js:89
 msgid "All tests passed successfully."
 msgstr "Stóðst öll próf."
 
-#: static/js/zamboni/validator.js:92 static/js/zamboni/validator.js:388
 msgid "These tests were not run."
 msgstr "Þessi próf voru ekki keyrð."
 
-#: static/js/zamboni/validator.js:155 static/js/zamboni/validator.js:177
 msgid "Tests"
 msgstr "Prófanir"
 
-#: static/js/zamboni/validator.js:259 static/js/zamboni/validator.js:492 static/js/zamboni/validator.js:516
 msgid "Error"
 msgstr "Villa"
 
-#: static/js/zamboni/validator.js:259
 msgid "Warning"
 msgstr "Aðvörun"
 
-#: static/js/zamboni/validator.js:332
 #, python-brace-format
 msgid "{0} line {1} column {2}"
 msgstr "{0} lína {1} dálkur {2}"
 
-#: static/js/zamboni/validator.js:339
 #, python-brace-format
 msgid "{0} line {1}"
 msgstr "{0} lína {1}"
 
-#: static/js/zamboni/validator.js:376
 msgid "Add-on failed validation."
 msgstr "Viðbót féll á fullgildingu."
 
-#: static/js/zamboni/validator.js:378
 msgid "Add-on passed validation."
 msgstr "Viðbót stóðst fullgildingu."
 
-#: static/js/zamboni/validator.js:391
 #, python-brace-format
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "Villa"
 msgstr[1] ", %n villur."
 
-#: static/js/zamboni/validator.js:394
 #, python-brace-format
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} aðvörun"
 msgstr[1] "{0} aðvaranir"
 
-#: static/js/zamboni/validator.js:397
 #, python-brace-format
 msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] "{0} tilkynning"
 msgstr[1] "{0} tilkynningar"
 
-#: static/js/zamboni/validator.js:494
 msgid "Validation task could not complete or completed with errors"
 msgstr "Fullgildingarferlinu var ekki hægt að ljúka eða að því lauk með villumeldingum"
 
-#: static/js/zamboni/validator.js:517
 msgid "Internal server error"
 msgstr "Innri villa í netþjóni"
