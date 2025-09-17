@@ -11,6 +11,8 @@ updates:
   directory: "/"
   schedule:
     interval: weekly
+    exclude:
+      - mozilla/*    
   open-pull-requests-limit: 99
   cooldown:
     default-days: 7
@@ -18,6 +20,8 @@ updates:
   directory: "/"
   schedule:
     interval: weekly
+    exclude:
+      - mozilla/*
   open-pull-requests-limit: 99
   cooldown:
     default-days: 7
