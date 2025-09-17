@@ -149,6 +149,7 @@ class UserAdmin(AMOModelAdmin):
         'restriction_history_for_this_user',
         'currently_matching_exact_email_restrictions',
         'currently_matching_exact_ip_restrictions',
+        'username',
     )
     fieldsets = (
         (
@@ -630,6 +631,7 @@ class UserRestrictionHistoryAdmin(AMOModelAdmin):
         'user_link',
         'last_login_ip',
         'created',
+        'user',
     )
     list_display = (
         'created',

@@ -256,6 +256,7 @@ class AddonAdmin(AMOModelAdmin):
     readonly_fields = (
         'id',
         'created',
+        'type',
         'activity',
         'discovery_addon',
         'average_rating',

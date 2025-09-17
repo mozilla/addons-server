@@ -64,7 +64,19 @@ class FileAdmin(AMOModelAdmin):
     readonly_fields = (
         'id',
         'created',
+        'version',
+        'size',
+        'hash',
+        'original_hash',
         'file_download_url',
+        'manifest_version',
+        'cert_serial_num',
+        'original_status',
+        'status_disabled_reason',
+        'strict_compatibility',
+        'is_signed',
+        'is_experiment',
+        'is_mozilla_signed_extension',
     )
 
     fieldsets = (
