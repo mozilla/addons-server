@@ -489,7 +489,9 @@ class TestUserAdmin(TestCase):
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
         response = self.client.post(
-            self.detail_url, {'display_name': 'foo', 'email': self.user.email}, follow=True
+            self.detail_url,
+            {'display_name': 'foo', 'email': self.user.email},
+            follow=True,
         )
         assert response.status_code == 200
         assert self.user.reload().display_name == 'foo'
