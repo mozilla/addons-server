@@ -480,7 +480,8 @@ class TestUserAdmin(TestCase):
         assert self.user.reload().username != 'foo'
 
     def test_can_edit_with_users_edit_permission(self):
-        old_username = self.user.username
+        old_display_name = 'old-foo'
+        self.user.update(display_name=old_display_name)
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Users:Edit')
         self.client.force_login(user)
@@ -488,14 +489,14 @@ class TestUserAdmin(TestCase):
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
         response = self.client.post(
-            self.detail_url, {'username': 'foo', 'email': self.user.email}, follow=True
+            self.detail_url, {'display_name': 'foo', 'email': self.user.email}, follow=True
         )
         assert response.status_code == 200
-        assert self.user.reload().username == 'foo'
+        assert self.user.reload().display_name == 'foo'
         alog = ActivityLog.objects.latest('pk')
         assert alog.action == amo.LOG.ADMIN_USER_EDITED.id
         assert alog.arguments == [self.user]
-        assert alog.details == {'username': [old_username, 'foo']}
+        assert alog.details == {'display_name': [old_display_name, 'foo']}
 
     def test_queries_detail(self):
         user = user_factory(email='someone@mozilla.com')

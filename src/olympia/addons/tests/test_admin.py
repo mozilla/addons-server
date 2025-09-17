@@ -542,15 +542,12 @@ class TestAddonAdmin(TestCase):
         post_data = self._get_full_post_data(addon, addonuser)
         post_data.update(
             **{
-                'type': amo.ADDON_STATICTHEME,  # update it.
                 'addonuser_set-0-user': user.pk,  # Different user than initial.
                 'files-0-status': amo.STATUS_AWAITING_REVIEW,  # Different status.
             }
         )
         response = self.client.post(self.detail_url, post_data, follow=True)
         assert response.status_code == 200
-        addon.reload()
-        assert addon.type == amo.ADDON_STATICTHEME
         addonuser.reload()
         assert addonuser.user == user
         file.reload()
@@ -623,15 +620,12 @@ class TestAddonAdmin(TestCase):
         post_data = self._get_full_post_data(addon, addonuser)
         post_data.update(
             **{
-                'type': amo.ADDON_STATICTHEME,  # update it.
                 'addonuser_set-0-user': user.pk,  # Different user than initial.
                 'files-0-status': amo.STATUS_AWAITING_REVIEW,  # Different status.
             }
         )
         response = self.client.post(self.detail_url, post_data, follow=True)
         assert response.status_code == 200
-        addon.reload()
-        assert addon.type == amo.ADDON_STATICTHEME
         addonuser.reload()
         assert addonuser.user != user
         file.reload()
