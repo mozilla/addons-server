@@ -5,21 +5,35 @@ updates:
   schedule:
     interval: weekly
   open-pull-requests-limit: 99
+  cooldown:
+    default-days: 7
 - package-ecosystem: "docker-compose"
   directory: "/"
   schedule:
     interval: weekly
   open-pull-requests-limit: 99
+  cooldown:
+    default-days: 7
+    exclude:
+      - "mozilla/*"
 - package-ecosystem: "github-actions"
   directory: "/"
   schedule:
     interval: weekly
   open-pull-requests-limit: 99
+  cooldown:
+    default-days: 7
+    exclude:
+      - "mozilla/*"
 - package-ecosystem: "npm"
   directory: "/"
   schedule:
     interval: daily
   open-pull-requests-limit: 99
+  cooldown:
+    default-days: 7
+    exclude:
+      - addons-linter
 - package-ecosystem: pip
   directory: "/requirements"
   schedule:
@@ -34,6 +48,8 @@ updates:
           - billiard
           - kombu
   open-pull-requests-limit: 99
+  cooldown:
+    default-days: 7
   ignore:
   - dependency-name: django
     versions:
