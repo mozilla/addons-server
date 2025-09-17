@@ -415,16 +415,16 @@ msgstr "短网址不可用，请另选。"
 
 #: src/olympia/addons/serializers.py:1888
 msgid "There is no rollback available in this channel."
-msgstr ""
+msgstr "此更新通道中没有可供回滚的版本。"
 
 #: src/olympia/addons/serializers.py:1898
 #, python-format
 msgid "Rollback is only available for version %s in this channel."
-msgstr ""
+msgstr "此更新通道中仅版本 %s 可回滚。"
 
 #: src/olympia/addons/serializers.py:1904
 msgid "Only approved versions can be rolled back, except the most recent version."
-msgstr ""
+msgstr "除最新版本外，只有获批准的版本可回滚。"
 
 #: src/olympia/addons/utils.py:52
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -2076,7 +2076,7 @@ msgstr "出了点问题，请联系开发者支持人员。"
 
 #: src/olympia/devhub/forms.py:1653
 msgid "No appropriate version available"
-msgstr ""
+msgstr "无合适版本可用"
 
 #: src/olympia/devhub/forms.py:1660
 msgid "Choose version"

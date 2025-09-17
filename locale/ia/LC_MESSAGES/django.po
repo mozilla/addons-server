@@ -421,16 +421,16 @@ msgstr "Iste alias breve non pote esser usate. Elige un altero."
 
 #: src/olympia/addons/serializers.py:1888
 msgid "There is no rollback available in this channel."
-msgstr ""
+msgstr "In iste canal non es disponibile alcun retro-rolamento."
 
 #: src/olympia/addons/serializers.py:1898
 #, python-format
 msgid "Rollback is only available for version %s in this channel."
-msgstr ""
+msgstr "Le retro-rolamento es solo disponibile pro le version %s in iste canal."
 
 #: src/olympia/addons/serializers.py:1904
 msgid "Only approved versions can be rolled back, except the most recent version."
-msgstr ""
+msgstr "Solo le versiones approbate pote esser retro-rolate, salvo los plus recente."
 
 #: src/olympia/addons/utils.py:52
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
