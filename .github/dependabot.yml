@@ -12,7 +12,7 @@ updates:
   schedule:
     interval: weekly
     exclude:
-      - mozilla/*    
+      - "mozilla/*"
   open-pull-requests-limit: 99
   cooldown:
     default-days: 7
@@ -21,7 +21,7 @@ updates:
   schedule:
     interval: weekly
     exclude:
-      - mozilla/*
+      - "mozilla/*"
   open-pull-requests-limit: 99
   cooldown:
     default-days: 7
