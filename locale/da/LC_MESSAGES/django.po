@@ -2100,11 +2100,11 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py:1660
 msgid "Choose version"
-msgstr ""
+msgstr "Vælg version"
 
 #: src/olympia/devhub/forms.py:1669
 msgid "Release notes"
-msgstr ""
+msgstr "Udgivelsesnoter"
 
 #: src/olympia/devhub/forms.py:1670
 msgid "Automatic rollback based on version [m.m]."
@@ -3933,7 +3933,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:54
 msgid "Release Notes"
-msgstr ""
+msgstr "Udgivelsesnoter"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:63
 msgid "Roll back"
@@ -4345,7 +4345,7 @@ msgstr "Sletning af denne version vil permanent slette:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:288
 msgid "Important:"
-msgstr ""
+msgstr "Vigtigt:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:289
 msgid ""
@@ -6264,7 +6264,7 @@ msgstr ""
 
 #: src/olympia/reviewers/forms.py:378
 msgid "File too large."
-msgstr ""
+msgstr "Filen er for stor."
 
 #: src/olympia/reviewers/templates/reviewers/moderationlog_detail.html:11
 #, python-format
