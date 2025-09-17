@@ -3166,7 +3166,7 @@ msgstr "Smazáním doplňku trvale odstraníte všechny jeho verze a soubory, kt
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:6
 msgid "All versions will be Restricted, which will disable and prevent any further installation in Firefox. Existing users can choose to re-enable the add-on."
-msgstr "Všechny verze budou omezeny, což znemožní nebo znemožní další instalace Firefoxu. Stávající uživatelé mohou doplněk znovu povolit."
+msgstr "Všechny verze budou omezeny, což zakáže a zabrání další instalaci ve Firefoxu. Stávající uživatelé mohou doplněk znovu povolit."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:11
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
