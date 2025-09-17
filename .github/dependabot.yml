@@ -11,20 +11,20 @@ updates:
   directory: "/"
   schedule:
     interval: weekly
-    exclude:
-      - "mozilla/*"
   open-pull-requests-limit: 99
   cooldown:
     default-days: 7
+    exclude:
+      - "mozilla/*"
 - package-ecosystem: "github-actions"
   directory: "/"
   schedule:
     interval: weekly
-    exclude:
-      - "mozilla/*"
   open-pull-requests-limit: 99
   cooldown:
     default-days: 7
+    exclude:
+      - "mozilla/*"
 - package-ecosystem: "npm"
   directory: "/"
   schedule:
