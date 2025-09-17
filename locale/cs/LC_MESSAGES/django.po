@@ -3899,7 +3899,7 @@ msgid ""
 "Add-on Distribution Agreement also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
 "Než začnete, přečtěte si prosím podmínky distribuce doplňků pro Firefox, pravidla recenzí a <a %(a_attrs)s href=\"%(faq_url)s\">často kladené otázky</a>. Dohoda o distribuci doplňků pro Firefox také"
-" odkazuje na naše Zásady ochrany osobních údajů, které vysvětluje, jak nakládáme s vašimi informacemi."
+" odkazuje na naše Zásady ochrany osobních údajů, které vysvětlují, jak nakládáme s vašimi informacemi."
 
 #: src/olympia/devhub/templates/devhub/includes/agreement.html:10
 msgid "Review Policies and Rules"
