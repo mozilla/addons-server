@@ -46,7 +46,7 @@ class AddonListingInfoInline(admin.TabularInline):
     view_on_site = False
 
 
-class AddonUserBase:
+class AddonUserInline(admin.TabularInline):
     model = AddonUser
     raw_id_fields = (
         'addon',
@@ -66,14 +66,6 @@ class AddonUserBase:
             return ''
 
     user_profile_link.short_description = 'User Profile'
-
-
-class AddonUserAdmin(AddonUserBase, AMOModelAdmin):
-    pass
-
-
-class AddonUserInline(AddonUserBase, admin.TabularInline):
-    pass
 
 
 class FileInlineChecks(admin.checks.InlineModelAdminChecks):
@@ -653,4 +645,3 @@ admin.site.register(models.DeniedGuid)
 admin.site.register(models.Addon, AddonAdmin)
 admin.site.register(models.FrozenAddon, FrozenAddonAdmin)
 admin.site.register(models.ReplacementAddon, ReplacementAddonAdmin)
-admin.site.register(models.AddonUser, AddonUserAdmin)
