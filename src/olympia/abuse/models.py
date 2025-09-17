@@ -24,6 +24,7 @@ from olympia.bandwagon.models import Collection
 from olympia.constants.abuse import (
     APPEAL_EXPIRATION_DAYS,
     DECISION_ACTIONS,
+    DECISION_SOURCES,
     ILLEGAL_CATEGORIES,
     ILLEGAL_SUBCATEGORIES,
 )
@@ -284,6 +285,7 @@ class CinderJob(ModelBase):
         decision_action,
         decision_notes,
         policy_ids,
+        job_queue,
     ):
         """Process a decision as sent by the webhook. If a decision with that
         `decision_cinder_id` already exists, do nothing."""
@@ -328,6 +330,7 @@ class CinderJob(ModelBase):
                 ],
                 'override_of': self.final_decision,
                 'cinder_job': self,
+                'from_job_queue': job_queue,
             },
         )
         if created:
@@ -1033,6 +1036,7 @@ class ContentDecision(ModelBase):
     # dedicated field
     metadata = models.JSONField(default=dict)
     POLICY_DYNAMIC_VALUES = 'policy-dynamic-values'
+    from_job_queue = models.CharField(max_length=64, null=True)
 
     objects = ContentDecisionManager()
 
@@ -1112,6 +1116,19 @@ class ContentDecision(ModelBase):
     @property
     def is_third_party_initiated(self):
         return bool(self.cinder_job and self.cinder_job.all_abuse_reports)
+
+    @property
+    def source(self):
+        from .cinder import CinderAddonHandledByLegal
+
+        if self.reviewer_user_id == settings.TASK_USER_ID:
+            return DECISION_SOURCES.AUTOMATION
+        elif self.reviewer_user_id:
+            return DECISION_SOURCES.REVIEWER
+        elif self.from_job_queue == CinderAddonHandledByLegal.queue:
+            return DECISION_SOURCES.LEGAL
+        else:
+            return DECISION_SOURCES.TASKUS
 
     def get_action_helper(self):
         # Base case when it's a new decision, that wasn't an appeal

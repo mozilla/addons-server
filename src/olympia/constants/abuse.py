@@ -1,3 +1,5 @@
+from enum import StrEnum
+
 from olympia.api.utils import APIChoicesWithDash, APIChoicesWithNone
 
 
@@ -350,3 +352,10 @@ ILLEGAL_SUBCATEGORIES_BY_CATEGORY = {
         ILLEGAL_SUBCATEGORIES.OTHER,
     ],
 }
+
+
+class DECISION_SOURCES(StrEnum):
+    AUTOMATION = 'Automation'
+    REVIEWER = 'AMO Reviewer'
+    LEGAL = 'Legal'
+    TASKUS = 'TaskUs'
