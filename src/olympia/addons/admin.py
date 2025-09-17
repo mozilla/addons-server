@@ -52,6 +52,7 @@ class AddonUserBase:
         'addon',
         'user',
     )
+    fields = ('addon', 'user', 'role', 'listed', 'position', 'user_profile_link',)
     readonly_fields = ('user_profile_link',)
     extra = 0
 
@@ -69,7 +70,7 @@ class AddonUserBase:
 
 
 class AddonUserAdmin(AddonUserBase, AMOModelAdmin):
-    pass
+    readonly_fields = AddonUserBase.readonly_fields + ('addon', 'user',)
 
 
 class AddonUserInline(AddonUserBase, admin.TabularInline):
