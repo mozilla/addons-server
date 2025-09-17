@@ -15,6 +15,7 @@ from django.utils.encoding import force_str
 from django.utils.translation import trim_whitespace
 
 import freezegun
+import markupsafe
 import pytest
 import responses
 from pyquery import PyQuery as pq
@@ -1050,6 +1051,7 @@ class TestAPIKeyPage(TestCase):
         )
         patch = mock.patch('olympia.devhub.forms.APIKey.new_jwt_credentials')
         with patch as mock_creator:
+            mock_creator.return_value.key = 'fake-new-jwt-key'
             response = self.client.post(
                 self.url, data={'action': APIKeyForm.ACTION_CHOICES.generate}
             )
@@ -1060,6 +1062,7 @@ class TestAPIKeyPage(TestCase):
         assert message.to == [self.user.email]
         assert message.subject == 'New API key created'
         assert reverse('devhub.api_key') in message.body
+        assert 'fake-new-jwt-key' in message.body
 
         self.assert3xx(response, self.url)
 
@@ -1076,11 +1079,15 @@ class TestAPIKeyPage(TestCase):
             },
         )
         assert APIKey.objects.filter(user=self.user).exists()
+        apikey = APIKey.objects.filter(user=self.user).get()
         assert len(mail.outbox) == 1
         message = mail.outbox[0]
         assert message.to == [self.user.email]
         assert message.subject == 'New API key created'
         assert reverse('devhub.api_key') in message.body
+        assert apikey.key in message.body
+        assert str(apikey) not in message.body
+        assert markupsafe.escape(apikey) not in message.body
 
         confirmation.reload()
         assert confirmation.confirmed_once
@@ -1201,6 +1208,9 @@ class TestAPIKeyPage(TestCase):
         assert 'revoked' in mail.outbox[0].body
         message = mail.outbox[0]
         assert message.to == [self.user.email]
+        assert old_key.key in message.body
+        assert str(old_key) not in message.body
+        assert markupsafe.escape(old_key) not in message.body
         assert not APIKey.objects.filter(user=self.user, is_active=True).exists()
         assert not APIKeyConfirmation.objects.filter(user=self.user).exists()
 

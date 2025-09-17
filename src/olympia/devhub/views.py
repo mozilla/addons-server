@@ -2104,7 +2104,7 @@ def api_key(request):
         if result.get('credentials_generated'):
             new_credentials = form.credentials
             log.info(f'new JWT key created: {new_credentials}')
-            send_key_change_email(request.user.email, new_credentials)
+            send_key_change_email(request.user.email, new_credentials.key)
 
         if result.get('confirmation_created'):
             form.confirmation.send_confirmation_email()
