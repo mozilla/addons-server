@@ -51,10 +51,21 @@ GIT_AUTHOR_EMAIL: $GIT_AUTHOR_EMAIL
 GIT_COMMITTER_NAME: $GIT_COMMITTER_NAME
 GIT_COMMITTER_EMAIL: $GIT_COMMITTER_EMAIL
 
-This script passes arguments directly to Git commands. We can pass --dry-mode to test this script
-Without actually committing or pushing. Make sure to only pass arguments supported on both commit and push..
+This script passes arguments directly to Git commands. We can pass --dry-run to test this script.
+Without actually committing or pushing. Make sure to only pass arguments supported on both commit
+and push.
+
 ARGS: $@
 """
 
 git commit -am "$MESSAGE" "$@"
+
+
+if [[ "$@" =~ '--dry-run' ]]; then
+  info """
+    Skipping 'git push' because '--dry-run' is in ARGS so we should not have git credentials.
+  """
+  exit 0
+fi
+
 git push "$@"
