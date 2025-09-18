@@ -419,16 +419,16 @@ msgstr "Ez a SEO webcím nem használható. Válasszon egy másikat."
 
 #: src/olympia/addons/serializers.py:1888
 msgid "There is no rollback available in this channel."
-msgstr ""
+msgstr "Nem érhető el visszagörgetés ennél a csatornánál."
 
 #: src/olympia/addons/serializers.py:1898
 #, python-format
 msgid "Rollback is only available for version %s in this channel."
-msgstr ""
+msgstr "A visszagörgetés csak a csatorna %s verziójához érhető el."
 
 #: src/olympia/addons/serializers.py:1904
 msgid "Only approved versions can be rolled back, except the most recent version."
-msgstr ""
+msgstr "Csak a jóváhagyott verziók görgethetők vissza, a legfrissebb verzió kivételével."
 
 #: src/olympia/addons/utils.py:52
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -2108,7 +2108,7 @@ msgstr "Valamilyen hiba történt, lépjen kapcsolatba a fejlesztői támogatás
 
 #: src/olympia/devhub/forms.py:1653
 msgid "No appropriate version available"
-msgstr ""
+msgstr "Nem áll rendelkezésre megfelelő verzió"
 
 #: src/olympia/devhub/forms.py:1660
 msgid "Choose version"
@@ -2116,11 +2116,11 @@ msgstr "Verzió kiválasztása"
 
 #: src/olympia/devhub/forms.py:1669
 msgid "Release notes"
-msgstr ""
+msgstr "Kiadási megjegyzések"
 
 #: src/olympia/devhub/forms.py:1670
 msgid "Automatic rollback based on version [m.m]."
-msgstr ""
+msgstr "Automatikus visszagörgetés a(z) [m.m] verzió alapján."
 
 #: src/olympia/devhub/forms.py:1743
 msgid "You must select a channel and version to rollback to."
@@ -4030,7 +4030,7 @@ msgstr "Új verziószám"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:54
 msgid "Release Notes"
-msgstr ""
+msgstr "Kiadási megjegyzések"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:63
 msgid "Roll back"
