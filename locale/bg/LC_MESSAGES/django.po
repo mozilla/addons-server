@@ -6587,9 +6587,8 @@ msgid "User languages by Date"
 msgstr "Езици по дата"
 
 #: src/olympia/stats/templates/stats/reports/mediums.html:3
-#, fuzzy
 msgid "Download mediums by Date"
-msgstr "Потребители дневно по дата"
+msgstr "Източник на изтеглянето по дата"
 
 #: src/olympia/stats/templates/stats/reports/os.html:3
 msgid "Platform usage by Date"

@@ -630,15 +630,15 @@ msgstr "Източник на изтеглянето, последните {0} �
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/stats/csv_keys.js:197
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Download Mediums from {0} to {1}"
-msgstr "Изтегляния от {0} до {1}"
+msgstr "Източник на изтеглянето от {0} до {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:201
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Download Contents, last {0} days"
-msgstr "Източник на изтеглянето, последните {0} дена"
+msgstr "Съдържание на изтеглянето, последните {0} дена"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/stats/csv_keys.js:203
