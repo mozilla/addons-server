@@ -2324,7 +2324,7 @@ msgstr ""
 
 #: src/olympia/devhub/views.py:1984
 msgid "Review requested."
-msgstr ""
+msgstr "Поискана е проверка."
 
 #: src/olympia/devhub/views.py:1986
 msgid "You must provide further details to proceed."
