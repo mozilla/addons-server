@@ -2112,11 +2112,11 @@ msgstr "Versjonsnotat"
 
 #: src/olympia/devhub/forms.py:1670
 msgid "Automatic rollback based on version [m.m]."
-msgstr "Automatisk tilbakestilling basert på versjon [m.m]."
+msgstr "Automatisk tilbakerulling basert på versjon [m.m]."
 
 #: src/olympia/devhub/forms.py:1743
 msgid "You must select a channel and version to rollback to."
-msgstr "Du må velge en kanal og versjon å gå tilbake til."
+msgstr "Du må velge en kanal og versjon du vil rulle tilbake til."
 
 #: src/olympia/devhub/tasks.py:178
 msgid "Invalid or corrupt add-on file."
@@ -2294,7 +2294,7 @@ msgstr "Denne opplastingen mislyktes i valideringen og kan mangle fullstendige v
 
 #: src/olympia/devhub/views.py:1320
 msgid "Rollback submitted. You'll be notified when it's approved"
-msgstr "Tilbakestilling sendt. Du får beskjed når den er godkjent"
+msgstr "Tilbakerulling sendt. Du får beskjed når den er godkjent"
 
 #: src/olympia/devhub/views.py:1458
 msgid "Header area background"
@@ -4410,7 +4410,7 @@ msgstr "Alle versjoner"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:224
 msgid "Rollback to a previous version"
-msgstr "Gå tilbake til en tidligere versjon"
+msgstr "Rull tilbake til en tidligere versjon"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:230
 msgid "Upload a New Version"
