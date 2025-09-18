@@ -426,7 +426,7 @@ msgstr "Полето GUID трябва да бъде попълнено в ма�
 
 #: src/olympia/addons/validators.py:276
 msgid "GUID mismatch between the URL and manifest."
-msgstr ""
+msgstr "Несъответствие на GUID между адреса и манифеста."
 
 #: src/olympia/addons/validators.py:291
 msgid "Source cannot be changed because this version has been reviewed by Mozilla."
@@ -690,7 +690,7 @@ msgstr "Друго тяло"
 
 #: src/olympia/api/authentication.py:64 src/olympia/api/authentication.py:247
 msgid "Invalid Authorization header. No credentials provided."
-msgstr "Невалидно удостоверяване. Не са предоставени данни за вход."
+msgstr "Недействително удостоверяване. Не са предоставени данни за вход."
 
 #: src/olympia/api/authentication.py:72 src/olympia/api/authentication.py:251
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
