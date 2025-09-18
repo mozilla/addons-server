@@ -913,7 +913,7 @@ msgstr "Бележки към изданието"
 
 #: static/js/zamboni/reviewers.js:579
 msgid "Notes for Reviewers"
-msgstr "Бележки за рецензенти"
+msgstr "Бележка към преглеждащите"
 
 #: static/js/zamboni/reviewers.js:586
 msgid "No version notes found"

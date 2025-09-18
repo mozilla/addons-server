@@ -694,7 +694,7 @@ msgstr "Недействително удостоверяване. Не са п�
 
 #: src/olympia/api/authentication.py:72 src/olympia/api/authentication.py:251
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
-msgstr ""
+msgstr "Недействителна заглавка Authorization. Низът с данни за вход не трябва да съдържа интервали."
 
 #: src/olympia/api/authentication.py:108
 msgid "Valid user session not found matching the provided session key."
@@ -735,7 +735,7 @@ msgstr "Не е достъпно по правни причини."
 #: src/olympia/api/fields.py:91
 #, python-brace-format
 msgid "The language code \"{lang_code}\" is invalid."
-msgstr ""
+msgstr "Кодът на езика „{lang_code}“ е недействителен."
 
 #: src/olympia/api/fields.py:92
 msgid "You must provide an object of {{lang-code:value}}."
@@ -952,7 +952,7 @@ msgstr "{addon} премахната от {collection}."
 #: src/olympia/constants/activity.py:286
 #, python-brace-format
 msgid "{rating} for {addon} written."
-msgstr ""
+msgstr "{rating} за {addon} написан."
 
 #. L10n: {0} is the application, {1} is the version of the app
 #: src/olympia/constants/activity.py:327
@@ -964,7 +964,7 @@ msgstr "{0} {1} добавена."
 #: src/olympia/constants/activity.py:335
 #, python-brace-format
 msgid "{user} role changed to {0} for {addon}."
-msgstr ""
+msgstr "ролята на {user} сменена на {0} за {addon}."
 
 #: src/olympia/constants/activity.py:346
 #, python-brace-format
@@ -1023,9 +1023,9 @@ msgid "Account updated."
 msgstr "Сметката е обновена."
 
 #: src/olympia/constants/activity.py:422
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Account {user} deleted."
-msgstr "Сметката е обновена."
+msgstr "Профилът {user} е премахнат."
 
 #: src/olympia/constants/activity.py:493
 #, python-brace-format
@@ -1046,7 +1046,7 @@ msgstr "{addon} скрита."
 #: src/olympia/constants/activity.py:560
 #, python-brace-format
 msgid "Add-on id {0} with GUID {1} has been deleted"
-msgstr ""
+msgstr "Добавка с id {0} и GUID {1} е премахната"
 
 #: src/olympia/constants/activity.py:567 src/olympia/constants/activity.py:573
 #, python-brace-format
@@ -1065,7 +1065,7 @@ msgstr "Отговор на разработчика"
 #: src/olympia/constants/activity.py:623
 #, python-brace-format
 msgid "Reply by reviewer on {addon} {version}."
-msgstr ""
+msgstr "Отговор от рецензент на {addon} {version}."
 
 #: src/olympia/constants/activity.py:624
 msgid "Reviewer Reply"
@@ -1074,11 +1074,11 @@ msgstr "Отговор на рецензента"
 #: src/olympia/constants/activity.py:631
 #, python-brace-format
 msgid "Notes for reviewers changed for {addon} {version}."
-msgstr ""
+msgstr "Променена бележка към преглеждащите на {addon} {version}."
 
 #: src/olympia/constants/activity.py:632
 msgid "Notes for reviewers changed"
-msgstr ""
+msgstr "Променена бележка към преглеждащите"
 
 #: src/olympia/constants/activity.py:640
 #, python-brace-format
@@ -4212,7 +4212,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:106
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "Бележка към преглеждащите"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:107
 msgid "Optionally, enter any information that may be useful to the Reviewer of this add-on, such as test account information."
