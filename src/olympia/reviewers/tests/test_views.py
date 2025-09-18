@@ -7809,15 +7809,17 @@ class TestHeldDecisionQueue(ReviewerTest):
         assert doc('tr.held-item').attr('id') == self.addon_decision.get_reference_id(
             short=True
         )
+        assert doc('tr.held-item').attr('class') == 'held-item TASKUS'
         assert (
             doc('tr.held-item td div').attr('class')
             == 'app-icon ed-sprite-action-target-Extension'
         )
         assert doc('tr.held-item td div').attr('title') == 'Extension'
-        assert doc('tr.held-item td').eq(1).text() == str(
+        assert doc('tr.held-item td').eq(1).text() == 'TaskUs'
+        assert doc('tr.held-item td').eq(2).text() == str(
             self.addon_decision.addon.name
         )
-        assert doc('tr.held-item td').eq(2).text() == 'Add-on disable'
+        assert doc('tr.held-item td').eq(3).text() == 'Add-on disable'
 
         # But overridden decisions should not be present, even if not actioned
         ContentDecision.objects.create(
@@ -7882,7 +7884,9 @@ class TestHeldDecisionReview(ReviewerTest):
         doc = pq(response.content)('.entity-type-Extension')
 
         assert f'Extension Decision for {self.decision.addon.name}' in doc.html()
+        assert doc('h2').attr('class') == 'held-item TASKUS'
         assert f'Extension: {self.decision.addon_id}' in doc.html()
+        assert 'TaskUs' == doc('.decision-source td').text()
         assert (
             doc('tr.decision-created a').attr('href').endswith(self.decision.cinder_id)
         )
@@ -7905,7 +7909,22 @@ class TestHeldDecisionReview(ReviewerTest):
         CinderJob.objects.create(
             target_addon=self.decision.addon, decision=self.decision
         )
-        self.test_review_page_addon_no_job()
+        self._test_review_page_addon()
+
+    def test_review_page_addon_from_amo_reviewer(self):
+        self.decision.update(reviewer_user=self.user)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)('.entity-type-Extension')
+
+        assert f'Extension Decision for {self.decision.addon.name}' in doc.html()
+        assert doc('h2').attr('class') == 'held-item REVIEWER'
+        assert f'Extension: {self.decision.addon_id}' in doc.html()
+        assert 'Reviewer' in doc('.decision-source td').text()
+        assert (
+            doc('.decision-source td a').attr('href').endswith(self.user.get_url_path())
+        )
+        assert 'Add-on disable' in doc('tr.decision-action td').html()
 
     def test_review_page_user(self):
         self.decision.update(
@@ -7916,7 +7935,9 @@ class TestHeldDecisionReview(ReviewerTest):
         doc = pq(response.content)('.entity-type-User')
 
         assert f'User profile Decision for {self.decision.user.name}' in doc.html()
+        assert doc('h2').attr('class') == 'held-item TASKUS'
         assert f'User profile: {self.decision.user_id}' in doc.html()
+        assert 'TaskUs' == doc('.decision-source td').text()
         assert (
             doc('tr.decision-created a').attr('href').endswith(self.decision.cinder_id)
         )

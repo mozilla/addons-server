@@ -1490,3 +1490,35 @@ table.abuse_reports {
 .review-held-action-form #id_comments:disabled {
     background-color: lightgray;
 }
+
+@decision-source-color-LEGAL: orange;
+@decision-source-color-REVIEWER: blue;
+@decision-source-color-TASKUS: green;
+@decision-source-color-AUTOMATION: brown;
+
+.decision-source-mixin(@color) {
+    background-color: lighten(@color, 40%);
+
+    td.decision-source, ~table span.decision-source {
+        font-weight: bold;
+        color: @color;
+    }
+}
+
+#held-decision-queue, #review-held-action {
+    .held-item.LEGAL {
+        .decision-source-mixin(@decision-source-color-LEGAL);
+    }
+
+    .held-item.REVIEWER {
+        .decision-source-mixin(@decision-source-color-REVIEWER);
+    }
+
+    .held-item.TASKUS {
+        .decision-source-mixin(@decision-source-color-TASKUS);
+    }
+
+    .held-item.AUTOMATION {
+        .decision-source-mixin(@decision-source-color-AUTOMATION);
+    }
+}

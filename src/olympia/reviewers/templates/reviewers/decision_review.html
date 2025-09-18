@@ -10,10 +10,10 @@
 
 {% block content %}
 
-<div class="primary entity-type-{{ decision.get_target_display() }}"
+<div id="review-held-action" class="primary entity-type-{{ decision.get_target_display() }}"
      role="main" data-id="{{ decision.target.id }}"
 >
-  <h2>
+  <h2 class="held-item {{ decision.source.name }}">
     <span class="app-icon ed-sprite-action-target-{{ decision.get_target_display() }}" title="{{ decision.get_target_display() }}"></span>
     {{ decision.get_target_display() }} Decision for {{ decision.get_target_name() }}
   </h2>
@@ -21,6 +21,10 @@
     <tr class="entity-id">
       <th>Target ID</th>
       <td>{{ decision.get_target_display() }}: {{ decision.target.id }}</td>
+    </tr>
+    <tr class="decision-source">
+      <th>Decision source</th>
+      <td><span class="decision-source">{{ decision.source }}</span>{% if decision.source == 'AMO Reviewer' %} by {{ decision.reviewer_user|user_link }}{% endif %}</td>
     </tr>
     <tr class="entity-name">
       <th>Target</th>
