@@ -342,12 +342,12 @@ msgstr ""
 
 #: src/olympia/addons/serializers.py:571
 msgid "Listed versions cannot be submitted while add-on is disabled."
-msgstr ""
+msgstr "Публикувани издания не могат да бъдат изпращани докато добавката е изключена."
 
 #: src/olympia/addons/serializers.py:612
 #, python-format
 msgid "%(addon_type_plural)s are not supported by %(app_name)s"
-msgstr ""
+msgstr "%(app_name)s не поддържа %(addon_type_plural)s"
 
 #: src/olympia/addons/serializers.py:651 src/olympia/devhub/forms.py:931
 #, python-format
@@ -397,11 +397,11 @@ msgstr "Имената на добавките не могат да съдърж
 
 #: src/olympia/addons/validators.py:41
 msgid "Both `license` and `custom_license` cannot be provided together."
-msgstr ""
+msgstr "Полетата `license` и `custom_license` не могат да бъдат използвани заедно."
 
 #: src/olympia/addons/validators.py:64
 msgid "This field, or custom_license, is required for listed versions."
-msgstr ""
+msgstr "Това поле, или `custom_license`, е задължително за публикуваните издания."
 
 #: src/olympia/addons/validators.py:91
 msgid "Wrong add-on type for this license."
@@ -422,7 +422,7 @@ msgstr ""
 
 #: src/olympia/addons/validators.py:272
 msgid "A GUID must be specified in the manifest."
-msgstr ""
+msgstr "Полето GUID трябва да бъде попълнено в манифеста."
 
 #: src/olympia/addons/validators.py:276
 msgid "GUID mismatch between the URL and manifest."
@@ -786,16 +786,16 @@ msgstr "Добавката вече се принадлежи към този с
 
 #: src/olympia/blocklist/models.py:188
 msgid "Blocked"
-msgstr "Забраняване"
+msgstr "Спряна"
 
 #: src/olympia/blocklist/models.py:188
 msgid "Restricted"
-msgstr ""
+msgstr "Ограничена"
 
 #: src/olympia/constants/activity.py:25
 #, python-brace-format
 msgid "{addon} was created."
-msgstr "{addon} бе създадена."
+msgstr "{addon} е създадена."
 
 #: src/olympia/constants/activity.py:35
 #, python-brace-format
