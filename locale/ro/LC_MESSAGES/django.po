@@ -425,16 +425,16 @@ msgstr "Slugul nu poate fi folosit. Te rugăm să alegi altul."
 
 #: src/olympia/addons/serializers.py:1888
 msgid "There is no rollback available in this channel."
-msgstr ""
+msgstr "Nu este disponibilă nicio revenire la versiuni anterioare pe acest canal."
 
 #: src/olympia/addons/serializers.py:1898
 #, python-format
 msgid "Rollback is only available for version %s in this channel."
-msgstr ""
+msgstr "Revenirea la versiuni anterioare este disponibilă doar pentru versiunea %s de pe acest canal."
 
 #: src/olympia/addons/serializers.py:1904
 msgid "Only approved versions can be rolled back, except the most recent version."
-msgstr ""
+msgstr "Numai versiunile aprobate pot fi anulate, cu excepția celei mai recente versiuni."
 
 #: src/olympia/addons/utils.py:52
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -2116,7 +2116,7 @@ msgstr "Ceva nu a funcționat. Te rugăm să contactezi asistența pentru dezvol
 
 #: src/olympia/devhub/forms.py:1653
 msgid "No appropriate version available"
-msgstr ""
+msgstr "Nu este disponibilă nicio versiune corespunzătoare"
 
 #: src/olympia/devhub/forms.py:1660
 msgid "Choose version"
