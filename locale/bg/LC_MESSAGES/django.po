@@ -356,20 +356,19 @@ msgstr ""
 
 #: src/olympia/addons/serializers.py:900
 msgid "Add-ons need at least one owner."
-msgstr ""
+msgstr "Добавките се нуждаят от най-малко един собственик."
 
 #: src/olympia/addons/serializers.py:915
 msgid "Add-ons need at least one listed author."
-msgstr ""
+msgstr "Добавките се нуждаят от най-малко един автор."
 
 #: src/olympia/addons/serializers.py:947
 msgid "Account not found."
 msgstr "Профилът не е намерен."
 
 #: src/olympia/addons/serializers.py:960 src/olympia/devhub/forms.py:431 src/olympia/devhub/forms.py:501
-#, fuzzy
 msgid "An author can only be present once."
-msgstr "Авторът може да бъде показван само веднъж."
+msgstr "Авторът може да присъства само веднъж."
 
 #: src/olympia/addons/serializers.py:971 src/olympia/devhub/forms.py:443
 msgid "The account needs a display name before it can be added as an author."
@@ -975,27 +974,27 @@ msgstr "{addon} е лицензирана под {0}."
 #: src/olympia/constants/activity.py:353
 #, python-brace-format
 msgid "{addon} policy changed."
-msgstr "Полицата на {addon} променена."
+msgstr "Политиката на {addon} променена."
 
 #: src/olympia/constants/activity.py:360
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{addon} icon or previews changed."
-msgstr "Иконката на {addon} променена."
+msgstr "Пиктограма или изображение за {addon} променено."
 
 #: src/olympia/constants/activity.py:367
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{rating} for {addon} approved."
-msgstr "{review} за {addon} одобрена."
+msgstr "{rating} за {addon} одобрено."
 
 #: src/olympia/constants/activity.py:378
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Review {rating} for {addon} deleted."
-msgstr "Отзива {review} към {addon} е изтрит."
+msgstr "Отзивът {rating} към {addon} е премахнат."
 
 #: src/olympia/constants/activity.py:386
 #, python-brace-format
 msgid "Application max version for {version} updated."
-msgstr ""
+msgstr "Максималната версия на приложението за {version} е променена."
 
 #: src/olympia/constants/activity.py:392
 #, python-brace-format
@@ -1029,9 +1028,9 @@ msgid "Account {user} deleted."
 msgstr "Сметката е обновена."
 
 #: src/olympia/constants/activity.py:493
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{rating} for {addon} updated."
-msgstr "{review} за {addon} одобрена."
+msgstr "{rating} за {addon} променено."
 
 #: src/olympia/constants/activity.py:501
 #, python-brace-format
