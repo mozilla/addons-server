@@ -372,7 +372,7 @@ msgstr "Авторът може да присъства само веднъж."
 
 #: src/olympia/addons/serializers.py:971 src/olympia/devhub/forms.py:443
 msgid "The account needs a display name before it can be added as an author."
-msgstr ""
+msgstr "Профилът се нуждае от показвано име, преди да може бъде добавен като автор."
 
 #: src/olympia/addons/serializers.py:1254
 msgid "This slug cannot be used. Please choose another."
