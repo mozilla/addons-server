@@ -16,11 +16,11 @@ msgstr ""
 #: src/olympia/abuse/actions.py:210
 #, python-brace-format
 msgid "Mozilla Add-ons: {} [{}]"
-msgstr "Мозила Добавки: : {} [{}]"
+msgstr "Добавки на Mozilla: {} [{}]"
 
 #: src/olympia/abuse/forms.py:30
 msgid "Email address"
-msgstr "Имейл адрес"
+msgstr "Адрес на ел. поща"
 
 #: src/olympia/abuse/forms.py:45
 msgid "Invalid email provided."
@@ -435,7 +435,7 @@ msgstr "Източникът не може да бъде променян, за�
 
 #: src/olympia/addons/validators.py:315
 msgid "This type of add-on does not allow custom compatibility."
-msgstr ""
+msgstr "Този вид добавки не позволяват съвместимост по избор."
 
 #: src/olympia/addons/validators.py:332
 msgid "This endpoint is not valid for Themes."
@@ -823,7 +823,7 @@ msgstr "{user} ({0}) е добавен към {addon}."
 #: src/olympia/constants/activity.py:67
 #, python-brace-format
 msgid "{user} ({0}) removed from {addon}."
-msgstr ""
+msgstr "{user} ({0}) е премахнат от {addon}."
 
 #: src/olympia/constants/activity.py:76
 #, python-brace-format
@@ -865,7 +865,7 @@ msgstr "Издание {0} на {addon} изтрито."
 #: src/olympia/constants/activity.py:129
 #, python-brace-format
 msgid "File {file} added to {version} of {addon}."
-msgstr ""
+msgstr "Файл {file} добавен към {version} на {addon}."
 
 #: src/olympia/constants/activity.py:141
 #, python-brace-format
