@@ -284,7 +284,7 @@ msgstr "Обновени добавки"
 
 #: static/js/stats/csv_keys.js:24
 msgid "Reviews Written"
-msgstr "Написани рецензии"
+msgstr "Написани отзиви"
 
 #: static/js/stats/csv_keys.js:27
 msgid "User Signups"
@@ -734,13 +734,13 @@ msgstr "Обновени добавки от {0} до {1}"
 #: static/js/stats/csv_keys.js:249
 #, python-brace-format
 msgid "Reviews Written, last {0} days"
-msgstr "Написани рецензии последните {0} дни"
+msgstr "Написани отзиви последните {0} дни"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/stats/csv_keys.js:251
 #, python-brace-format
 msgid "Reviews Written from {0} to {1}"
-msgstr "Написани рецензии от {0} до {1}"
+msgstr "Написани отзиви от {0} до {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:255
@@ -896,7 +896,7 @@ msgstr "{name} разглеждаше тази страница първо."
 
 #: static/js/zamboni/reviewers.js:266
 msgid "Review page polling failed."
-msgstr "Проучването на страницата за преглед не бе успешно."
+msgstr "Проучването на страницата за отзив не е успешно."
 
 #: static/js/zamboni/reviewers.js:554
 #, python-brace-format

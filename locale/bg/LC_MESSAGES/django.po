@@ -601,14 +601,14 @@ msgid "Oops"
 msgstr "Ооох"
 
 #: src/olympia/amo/templates/amo/500.html:11
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
 msgstr ""
 "<h1>Ооох! Възникна грешка</h1>\n"
 "<p>Скоро ще се заемем с оправянето ѝ.</p>\n"
-"<p>Презаредете страницата или се върнете към <a href=\"%(home)s\">началната страница на Добавки</a>.</p>"
+"<p>Презаредете страницата или се върнете към <a href=\"%(home)s\">началната страница на Добавки</a>. Можете също да ни помогнете да отстраним проблема, като <a href=\"https://github.com/mozilla/addons/issues/new\">докладвате за проблема</a> с подробности за това как сте стигнали до тази страница.</p>"
 
 #: src/olympia/amo/templates/amo/fake_fxa_authorization.html:4
 msgid "Register or Log in"
@@ -1100,7 +1100,7 @@ msgid "{addon} {version} disabled."
 msgstr "{addon} {version} е изключена."
 
 #: src/olympia/constants/activity.py:685
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{addon} {version} content rejected."
 msgstr "{addon} {version} отказана."
 
@@ -1294,7 +1294,7 @@ msgstr "Непълен"
 
 #: src/olympia/constants/base.py:24 src/olympia/constants/base.py:31
 msgid "Awaiting Review"
-msgstr "Очаква рецензия"
+msgstr "Очаква преглед"
 
 #: src/olympia/constants/base.py:26 src/olympia/constants/base.py:33
 msgid "Disabled by Mozilla"
@@ -6052,7 +6052,7 @@ msgstr ""
 
 #: src/olympia/files/models.py:324
 msgid "Unreviewed"
-msgstr ""
+msgstr "Непрегледано"
 
 #: src/olympia/files/models.py:327
 #, python-format
@@ -6307,7 +6307,7 @@ msgstr ""
 #: src/olympia/reviewers/templates/reviewers/moderationlog_detail.html:11
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
-msgstr ""
+msgstr "<dd>%(review_author)s</dd>"
 
 #: src/olympia/reviewers/templates/reviewers/queue.html:48
 #, python-format
@@ -6699,7 +6699,7 @@ msgstr "Доклад за дефект"
 
 #: src/olympia/templates/photon-footer.html:19
 msgid "Review Guide"
-msgstr ""
+msgstr "Насоки за писане на отзиви"
 
 #: src/olympia/templates/photon-footer.html:24 src/olympia/templates/photon-footer.html:37
 msgid "Browsers"
