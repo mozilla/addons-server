@@ -32,7 +32,7 @@ msgstr "Основание за обжалване"
 
 #: src/olympia/abuse/forms.py:63
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
-msgstr ""
+msgstr "Обяснете защо смятате, че решението е взето погрешно и/или не е в съответствие с приложимата политика и закони."
 
 #: src/olympia/abuse/models.py:1108
 msgid "User profile"
@@ -251,7 +251,7 @@ msgstr "Добавка"
 
 #: src/olympia/addons/decorators.py:78 src/olympia/amo/templates/amo/submissions_disabled.html:8
 msgid "Add-on uploads are temporarily unavailable."
-msgstr ""
+msgstr "Качването на добавки временно е спряно."
 
 #: src/olympia/addons/fields.py:56
 #, python-brace-format
@@ -290,9 +290,8 @@ msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr "Неподдържан файлов тип, моля, качете архивен файл ({extensions})."
 
 #: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:777 src/olympia/files/utils.py:761 src/olympia/reviewers/forms.py:386
-#, fuzzy
 msgid "Invalid or broken archive."
-msgstr "Невалиден обхват на версиите."
+msgstr "Непознат или повреден архив."
 
 #: src/olympia/addons/fields.py:267
 msgid "Invalid app specified"
@@ -304,12 +303,12 @@ msgstr "Посочена е неизвестна максимална верси
 
 #: src/olympia/addons/fields.py:297
 msgid "Unknown min app version specified"
-msgstr ""
+msgstr "Посочена е неизвестна минимална версия на приложението"
 
 #: src/olympia/addons/fields.py:307 src/olympia/addons/fields.py:325 src/olympia/addons/serializers.py:637
 #, python-format
 msgid "Can not override compatibility information set in the manifest for this application (%s)"
-msgstr ""
+msgstr "Не може да бъде отменена информацията за съвместимост, зададена в манифеста на приложението (%s)"
 
 #: src/olympia/addons/fields.py:375
 #, python-format
@@ -622,7 +621,7 @@ msgstr "Ел. адрес:"
 
 #: src/olympia/amo/templates/amo/fake_fxa_authorization.html:20
 msgid "Two-factor authentication"
-msgstr ""
+msgstr "Двуетапно удостоверяване"
 
 #. abbreviation of 'previous'
 #: src/olympia/amo/templates/amo/paginator.html:5 src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:49
@@ -657,11 +656,11 @@ msgstr "Някои свойства на тази страница са врем
 
 #: src/olympia/amo/templates/amo/submissions_disabled.html:3
 msgid "Add-on uploads temporarily disabled"
-msgstr ""
+msgstr "Качването на добавки временно е спряно"
 
 #: src/olympia/amo/templates/amo/submissions_disabled.html:13
 msgid "Add-on uploads have been temporarily disabled. Please check back later."
-msgstr ""
+msgstr "Качването на добавки временно е спряно. Проверете по-късно."
 
 #: src/olympia/amo/templatetags/jinja_helpers.py:147
 #, python-brace-format
@@ -818,7 +817,7 @@ msgstr "Категориите за {addon} редактирани."
 #: src/olympia/constants/activity.py:57
 #, python-brace-format
 msgid "{user} ({0}) added to {addon}."
-msgstr ""
+msgstr "{user} ({0}) е добавен към {addon}."
 
 #. L10n: {0} is the user role.
 #: src/olympia/constants/activity.py:67
@@ -6994,14 +6993,14 @@ msgstr ""
 #: src/olympia/versions/utils.py:198
 #, python-brace-format
 msgid "Version {version_string} was uploaded before and deleted."
-msgstr ""
+msgstr "Издание {version_string} вече е било качено и премахнато."
 
 #: src/olympia/versions/utils.py:200
 #, python-brace-format
 msgid "Version {version_string} already exists."
-msgstr "Версия {version_string} вече съществува."
+msgstr "Издание {version_string} вече съществува."
 
 #: src/olympia/versions/utils.py:220
 #, python-brace-format
 msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
-msgstr ""
+msgstr "Изданието {version_string} трябва да бъде по-високо от предишното одобрено издание {previous_version_string}."
