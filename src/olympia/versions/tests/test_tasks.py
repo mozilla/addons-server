@@ -24,6 +24,7 @@ from olympia.amo.tests import (
     version_factory,
 )
 from olympia.blocklist.models import Block, BlockType, BlockVersion
+from olympia.reviewers.models import NeedsHumanReview
 
 from ..models import Version, VersionPreview
 from ..tasks import (
@@ -654,7 +655,9 @@ class TestDuplicateAddonVersionForRollback(TestCase):
         self.rollback_version = addon.current_version
         self.setup_source()
 
-        version_factory(addon=addon)
+        self.latest_version = version_factory(
+            addon=addon, version='0.0.2', human_review_date=datetime(2025, 2, 1)
+        )
         assert Version.unfiltered.count() == 2
 
     def setup_source(self):
@@ -738,12 +741,14 @@ class TestDuplicateAddonVersionForRollback(TestCase):
         return new_version
 
     def test_listed(self):
-        self._test_rollback_success()
+        new_version = self._test_rollback_success()
+        assert not NeedsHumanReview.objects.filter(version=new_version).exists()
 
     def test_unlisted(self):
         self.rollback_version.update(channel=amo.CHANNEL_UNLISTED)
         new_version = self._test_rollback_success()
         assert new_version.channel == amo.CHANNEL_UNLISTED
+        assert not NeedsHumanReview.objects.filter(version=new_version).exists()
 
     @mock.patch('olympia.versions.tasks.statsd.incr')
     @mock.patch('olympia.lib.crypto.tasks.sign_file')
@@ -773,6 +778,16 @@ class TestDuplicateAddonVersionForRollback(TestCase):
         assert (
             f'Rolling back add-on "{self.rollback_version.addon_id}: Rændom add-on", '
             f'to version "0.0.1" failed.' in mail.outbox[0].body
+        )
+
+    def test_rollback_from_reviewed_to_unreviewed(self):
+        self.rollback_version.update(human_review_date=None)
+        new_version = self._test_rollback_success()
+        assert new_version.human_review_date is None
+        assert NeedsHumanReview.objects.filter(version=new_version).exists()
+        assert (
+            NeedsHumanReview.objects.filter(version=new_version).get().reason
+            == NeedsHumanReview.REASONS.VERSION_ROLLBACK
         )
 
 
