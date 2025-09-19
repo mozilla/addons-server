@@ -1345,15 +1345,15 @@ msgstr "Речник"
 
 #: src/olympia/constants/base.py:132
 msgid "Deprecated Search Engine"
-msgstr ""
+msgstr "Изведена от употреба търсеща машина"
 
 #: src/olympia/constants/base.py:133
 msgid "Language Pack"
-msgstr ""
+msgstr "Езиков пакет"
 
 #: src/olympia/constants/base.py:134
 msgid "Deprecated Language Pack (Add-on)"
-msgstr ""
+msgstr "Изведен от употреба езиков пакет (добавка)"
 
 #: src/olympia/constants/base.py:135
 msgid "Deprecated Plugin"
@@ -1385,15 +1385,15 @@ msgstr "Речници"
 
 #: src/olympia/constants/base.py:146
 msgid "Deprecated Search Tools"
-msgstr ""
+msgstr "Изведени от употреба инструменти за търсене"
 
 #: src/olympia/constants/base.py:147
 msgid "Language Packs"
-msgstr ""
+msgstr "Езикови пакети"
 
 #: src/olympia/constants/base.py:148
 msgid "Deprecated Language Packs (Add-on)"
-msgstr ""
+msgstr "Изведени от употреба езикови пакети (добавка)"
 
 #: src/olympia/constants/base.py:149
 msgid "Deprecated Plugins"
@@ -2328,7 +2328,7 @@ msgstr "Поискана е проверка."
 
 #: src/olympia/devhub/views.py:1986
 msgid "You must provide further details to proceed."
-msgstr ""
+msgstr "За да продължите трябва да предоставите повече подробности."
 
 #: src/olympia/devhub/views.py:2099
 msgid "Your old credentials were revoked and are no longer valid."
