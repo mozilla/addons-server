@@ -34,14 +34,14 @@ class TestFileAdmin(TestCase):
         assert response.status_code == 200
         assert str(file_.id) in force_str(response.content)
 
-        assert file_.manifest_version == 2
+        assert file_.status == 4
 
         post_data = {
             'version': file_.version.pk,
             'size': file_.size,
             'hash': 'xxx',
             'original_hash': 'xxx',
-            'status': file_.status,
+            'status': 5,
             'original_status': file_.original_status,
             'status_disabled_reason': file_.status_disabled_reason,
             'manifest_version': 3,
@@ -61,7 +61,7 @@ class TestFileAdmin(TestCase):
         response = self.client.post(detail_url, post_data, follow=True)
         assert response.status_code == 200
         file_.refresh_from_db()
-        assert file_.manifest_version == 3
+        assert file_.status == 5
 
     def test_can_not_list_without_admin_advanced_permission(self):
         user = user_factory(email='someone@mozilla.com')

@@ -80,7 +80,7 @@ class VersionAdmin(AMOModelAdmin):
         js = (vite_asset('js/admin-versions.js'),)
 
     view_on_site = False
-    readonly_fields = ('id', 'created', 'version', 'channel')
+    readonly_fields = ('id', 'created', 'addon', 'version', 'channel')
     list_display = (
         'id',
         'created',

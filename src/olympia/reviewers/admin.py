@@ -196,7 +196,7 @@ class NeedsHumanReviewAdmin(AMOModelAdmin):
     view_on_site = False
     list_select_related = ('version', 'version__addon')
     fields = ('created', 'modified', 'reason', 'version', 'is_active')
-    readonly_fields = ('reason', 'created', 'modified')
+    readonly_fields = ('reason', 'created', 'modified', 'version')
     list_filter = (
         'reason',
         'is_active',
