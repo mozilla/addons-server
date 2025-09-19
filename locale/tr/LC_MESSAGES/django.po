@@ -418,7 +418,7 @@ msgstr "Bu kısa ad kullanılamaz. Lütfen başka bir kısa ad seçin."
 
 #: src/olympia/addons/serializers.py:1888
 msgid "There is no rollback available in this channel."
-msgstr ""
+msgstr "Bu kanalda geri döndürme işlemi yapılamaz."
 
 #: src/olympia/addons/serializers.py:1898
 #, python-format
@@ -427,7 +427,7 @@ msgstr ""
 
 #: src/olympia/addons/serializers.py:1904
 msgid "Only approved versions can be rolled back, except the most recent version."
-msgstr ""
+msgstr "En son sürüm hariç, yalnızca onaylanmış sürümler geri döndürülebilir."
 
 #: src/olympia/addons/utils.py:52
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -2103,7 +2103,7 @@ msgstr "Bir hata oluştu. Lütfen geliştirici desteğiyle iletişime geçin."
 
 #: src/olympia/devhub/forms.py:1653
 msgid "No appropriate version available"
-msgstr ""
+msgstr "Uygun sürüm yok"
 
 #: src/olympia/devhub/forms.py:1660
 msgid "Choose version"
