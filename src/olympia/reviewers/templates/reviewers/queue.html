@@ -82,6 +82,7 @@
         <thead>
           <tr class="listing-header">
               <th>Type</th>
+              <th>Source</th>
               <th>Target</th>
               <th>Action</th>
               <th>Decision Date</th>
@@ -89,8 +90,9 @@
         </thead>
         <tbody>
           {% for decision in page.object_list %}
-          <tr id="{{ decision.get_reference_id(short=True) }}" class="held-item">
+          <tr id="{{ decision.get_reference_id(short=True) }}" class="held-item {{ decision.source.name }}" >
             <td><div class="app-icon ed-sprite-action-target-{{ decision.get_target_display() }}" title="{{ decision.get_target_display() }}"></div></td>
+            <td class="decision-source">{{ decision.source }}</td>
             <td>{{ decision.get_target_name() }}</td>
             <td><a href="{{ decision.get_target_review_url() }}">{{ decision.get_action_display() }}</a></td>
             <td>{{ decision.created|datetime }}</td>

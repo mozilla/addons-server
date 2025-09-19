@@ -28,6 +28,7 @@ from olympia.amo.tests import (
 from olympia.constants.abuse import (
     APPEAL_EXPIRATION_DAYS,
     DECISION_ACTIONS,
+    DECISION_SOURCES,
     ILLEGAL_CATEGORIES,
     ILLEGAL_SUBCATEGORIES,
 )
@@ -51,6 +52,7 @@ from ..actions import (
 )
 from ..cinder import (
     CinderAddon,
+    CinderAddonHandledByLegal,
     CinderAddonHandledByReviewers,
     CinderCollection,
     CinderRating,
@@ -1246,11 +1248,13 @@ class TestCinderJob(TestCase):
                 decision_action=DECISION_ACTIONS.AMO_BAN_USER.value,
                 decision_notes='teh notes',
                 policy_ids=['123-45', '678-90'],
+                job_queue='some-cinder-queue',
             )
         assert cinder_job.decision.cinder_id == '12345'
         assert cinder_job.decision.action == DECISION_ACTIONS.AMO_BAN_USER
         assert cinder_job.decision.private_notes == 'teh notes'
         assert cinder_job.decision.reasoning == ''
+        assert cinder_job.decision.from_job_queue == 'some-cinder-queue'
         assert cinder_job.decision.user == target
         assert action_mock.call_count == 1
         assert notify_mock.call_count == 1
@@ -1277,6 +1281,7 @@ class TestCinderJob(TestCase):
                 decision_action=DECISION_ACTIONS.AMO_BAN_USER.value,
                 decision_notes='teh notes',
                 policy_ids=['123-45', '678-90'],
+                job_queue='some-cinder-queue',
             )
         assert cinder_job.decision.cinder_id == '12345'
         assert cinder_job.decision.action == DECISION_ACTIONS.AMO_BAN_USER
@@ -1315,6 +1320,7 @@ class TestCinderJob(TestCase):
                 decision_action=DECISION_ACTIONS.AMO_BAN_USER.value,
                 decision_notes='teh notes',
                 policy_ids=['123-45', '678-90'],
+                job_queue='some-cinder-queue',
             )
         # Shouldn't execute the action or notify, we already processed this
         # decision.
@@ -1346,12 +1352,14 @@ class TestCinderJob(TestCase):
                 decision_action=DECISION_ACTIONS.AMO_DISABLE_ADDON.value,
                 decision_notes='teh notes',
                 policy_ids=['123-45', '678-90'],
+                job_queue='some-cinder-queue',
             )
         assert cinder_job.decision.cinder_id == '12345'
         assert cinder_job.decision.action == DECISION_ACTIONS.AMO_DISABLE_ADDON
         assert cinder_job.decision.private_notes == 'teh notes'
         assert cinder_job.decision.reasoning == ''
         assert cinder_job.decision.addon == target
+        assert cinder_job.decision.from_job_queue == 'some-cinder-queue'
         assert action_mock.call_count == 1
         assert notify_mock.call_count == 1
         assert list(cinder_job.decision.policies.all()) == [policy_a, policy_b]
@@ -1380,6 +1388,7 @@ class TestCinderJob(TestCase):
                 decision_action=DECISION_ACTIONS.AMO_APPROVE.value,
                 decision_notes='',
                 policy_ids=['123-45'],
+                job_queue='some-cinder-queue',
             )
         assert cinder_job.decision.cinder_id == '12345'
         assert cinder_job.decision.action == DECISION_ACTIONS.AMO_APPROVE
@@ -1413,6 +1422,7 @@ class TestCinderJob(TestCase):
                 decision_action=DECISION_ACTIONS.AMO_DISABLE_ADDON.value,
                 decision_notes='',
                 policy_ids=['123-45'],
+                job_queue='some-cinder-queue',
             )
         assert cinder_job.decision.cinder_id == '12345'
         assert cinder_job.decision.action == DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
@@ -2380,6 +2390,27 @@ class TestContentDecision(TestCase):
 
         AbuseReport.objects.create(guid=addon.guid, cinder_job=original_job)
         assert current_decision.is_third_party_initiated
+
+    def test_souce(self):
+        addon = addon_factory()
+        decision = ContentDecision.objects.create(
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON, addon=addon
+        )
+        assert decision.source == DECISION_SOURCES.TASKUS
+
+        decision.update(reviewer_user=self.task_user)
+        assert decision.source == DECISION_SOURCES.AUTOMATION
+
+        decision.update(reviewer_user=self.reviewer_user)
+        assert decision.source == DECISION_SOURCES.REVIEWER
+
+        decision.update(
+            reviewer_user=None, from_job_queue=CinderAddonHandledByLegal.queue
+        )
+        assert decision.source == DECISION_SOURCES.LEGAL
+
+        decision.update(from_job_queue='some-other-cinder-queue')
+        assert decision.source == DECISION_SOURCES.TASKUS
 
     def test_get_action_helper(self):
         addon = addon_factory()

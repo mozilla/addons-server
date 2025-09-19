@@ -217,6 +217,7 @@ def process_webhook_payload_decision(payload):
         except CinderJob.DoesNotExist as exc:
             log.debug('CinderJob instance not found for job id %s', job_id)
             raise CinderWebhookMissingIdError('No matching job id found') from exc
+        queue_slug = source.get('job', {}).get('queue', {}).get('slug')
     elif prev_decision_id := payload.get('previous_decision', {}).get('id'):
         try:
             prev_decision = ContentDecision.objects.get(cinder_id=prev_decision_id)
@@ -228,6 +229,7 @@ def process_webhook_payload_decision(payload):
         if not cinder_job:
             log.debug('No job for ContentDecision with id %s', prev_decision_id)
             raise CinderWebhookMissingIdError('No matching job found for decision id')
+        queue_slug = prev_decision.from_job_queue
     else:
         # We may support this one day, but we currently don't support this
         log.debug('Cinder webhook decision for cinder proactive decision skipped.')
@@ -256,6 +258,7 @@ def process_webhook_payload_decision(payload):
         decision_action=enforcement_actions[0],
         decision_notes=payload.get('notes') or '',
         policy_ids=policy_ids,
+        job_queue=queue_slug,
     )
     if not created:
         raise CinderWebhookIgnoredError('Decision already exists')

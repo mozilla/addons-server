@@ -1260,7 +1260,9 @@ class TestCinderWebhook(TestCase):
             DECISION_ACTIONS.AMO_APPROVE,
         ]
 
-    def test_process_decision_called(self, data=None):
+    def test_process_decision_called(
+        self, data=None, *, slug='amo-content-infringement'
+    ):
         abuse_report = self._setup_reports()
         addon_factory(guid=abuse_report.guid)
         req = self.get_request(data=data or self.get_data())
@@ -1272,6 +1274,7 @@ class TestCinderWebhook(TestCase):
                 decision_action=DECISION_ACTIONS.AMO_DISABLE_ADDON.value,
                 decision_notes='some notes',
                 policy_ids=['f73ad527-54ed-430c-86ff-80e15e2a352b'],
+                job_queue=slug,
             )
         assert response.status_code == 201
         assert response.data == {'amo': {'received': True, 'handled': True}}
@@ -1289,6 +1292,7 @@ class TestCinderWebhook(TestCase):
                 decision_action=DECISION_ACTIONS.AMO_DISABLE_ADDON.value,
                 decision_notes='some notes',
                 policy_ids=['f73ad527-54ed-430c-86ff-80e15e2a352b'],
+                job_queue='amo-content-infringement',
             )
         assert response.status_code == 200
         assert response.data == {
@@ -1324,6 +1328,7 @@ class TestCinderWebhook(TestCase):
             decision_action=DECISION_ACTIONS.AMO_APPROVE.value,
             decision_notes='still no!',
             policy_ids=['1c5d711a-78b7-4fc2-bdef-9a33024f5e8b'],
+            job_queue='amo-dev-ratings',
         )
         assert response.status_code == 201
         assert response.data == {'amo': {'received': True, 'handled': True}}
@@ -1363,6 +1368,7 @@ class TestCinderWebhook(TestCase):
                 '7ea512a2-39a6-4cb6-91a0-2ed162192f7f',
                 'a5c96c92-2373-4d11-b573-61b0de00d8e0',
             ],
+            job_queue='amo-dev-ratings',
         )
         assert response.status_code == 201
         assert response.data == {'amo': {'received': True, 'handled': True}}
@@ -1374,6 +1380,7 @@ class TestCinderWebhook(TestCase):
             action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
             addon=addon_factory(guid=abuse_report.guid),
             cinder_job=CinderJob.objects.get(),
+            from_job_queue='queue-for-original-decision',
         )
         req = self.get_request(
             data=self.get_data(filename='override_change_to_approve.json')
@@ -1386,6 +1393,7 @@ class TestCinderWebhook(TestCase):
             decision_action=DECISION_ACTIONS.AMO_APPROVE.value,
             decision_notes='changed our mind',
             policy_ids=['085f6a1c-46b6-44c2-a6ae-c3a73488aa1e'],
+            job_queue='queue-for-original-decision',
         )
         assert response.status_code == 201
         assert response.data == {'amo': {'received': True, 'handled': True}}
@@ -1510,8 +1518,9 @@ class TestCinderWebhook(TestCase):
 
     def test_queue_does_not_matter_non_reviewer_case(self):
         data = self.get_data()
-        data['payload']['source']['job']['queue']['slug'] = 'amo-another-queue'
-        return self.test_process_decision_called(data)
+        slug = 'amo-another-queue'
+        data['payload']['source']['job']['queue']['slug'] = slug
+        return self.test_process_decision_called(data, slug=slug)
 
     def test_unknown_event(self):
         self._setup_reports()
