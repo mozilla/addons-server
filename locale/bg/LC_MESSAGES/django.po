@@ -1257,7 +1257,7 @@ msgstr ""
 #: src/olympia/constants/activity.py:1246
 #, python-brace-format
 msgid "{addon} {0} property edited."
-msgstr ""
+msgstr "Свойство на {addon} променено."
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -1357,7 +1357,7 @@ msgstr "Изведен от употреба езиков пакет (добав
 
 #: src/olympia/constants/base.py:135
 msgid "Deprecated Plugin"
-msgstr ""
+msgstr "Изведена от употреба приставка"
 
 #: src/olympia/constants/base.py:136
 msgid "Deprecated LWT"
@@ -1397,7 +1397,7 @@ msgstr "Изведени от употреба езикови пакети (до
 
 #: src/olympia/constants/base.py:149
 msgid "Deprecated Plugins"
-msgstr ""
+msgstr "Изведени от употреба приставки"
 
 #: src/olympia/constants/base.py:150
 msgid "Deprecated LWTs"
@@ -1427,7 +1427,7 @@ msgstr "Външен вид"
 
 #: src/olympia/constants/categories.py:80
 msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
-msgstr ""
+msgstr "Изтеглете разширения които променят външния вид на страниците и Firefox. Тази категория включва разширения за тъмни теми, управление на раздели и други."
 
 #: src/olympia/constants/categories.py:88
 msgid "Bookmarks"
@@ -2068,7 +2068,7 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py:1660
 msgid "Choose version"
-msgstr ""
+msgstr "Изберете издание"
 
 #: src/olympia/devhub/forms.py:1669
 msgid "Release notes"
@@ -2312,11 +2312,11 @@ msgstr ""
 
 #: src/olympia/devhub/views.py:1514
 msgid "Tab highlight"
-msgstr ""
+msgstr "Открояване на раздели"
 
 #: src/olympia/devhub/views.py:1516
 msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
-msgstr ""
+msgstr "Цветът на открояване на текущия раздел. Видим като кант около раздела на Firefox 89+ и линия над раздела на по-ранни издания на Firefox. Поле на манифеста: tab_line."
 
 #: src/olympia/devhub/views.py:1615
 msgid "Add-on uploads are temporarily unavailable"
@@ -2348,15 +2348,15 @@ msgstr "Ключ на ППИ изтеглен"
 
 #: src/olympia/devhub/views.py:2206
 msgid "Verify email"
-msgstr ""
+msgstr "Потвърждаване на адреса"
 
 #: src/olympia/devhub/views.py:2208
 msgid "Send another email"
-msgstr ""
+msgstr "Изпращане на друго писмо"
 
 #: src/olympia/devhub/views.py:2241
 msgid "Your email has been verified"
-msgstr ""
+msgstr "Адресът на ел. поща е потвърден"
 
 #: src/olympia/devhub/widgets.py:81
 msgid "My add-on doesn't fit into any of the categories"
@@ -2368,7 +2368,7 @@ msgstr "Споразумение за разпространение на Доб
 
 #: src/olympia/devhub/templates/devhub/base.html:43
 msgid "Help us make things better!"
-msgstr ""
+msgstr "Помогнете ни да направим нещата по-добре!"
 
 #: src/olympia/devhub/templates/devhub/base.html:44
 msgid "Take our quick survey"
