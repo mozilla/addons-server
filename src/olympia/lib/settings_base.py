@@ -1198,7 +1198,7 @@ SIMULATE_NAV_PAY = False
 # This value should be updated shortly after new agreement became effective.
 # The tuple is passed through to datetime.date, so please use a valid date
 # tuple.
-DEV_AGREEMENT_CHANGE_FALLBACK = datetime(2021, 12, 1, 12, 00)
+DEV_AGREEMENT_CHANGE_FALLBACK = datetime(2025, 8, 4, 0, 0)
 
 # If you want to allow self-reviews for add-ons/apps, then enable this.
 # In production we do not want to allow this.
