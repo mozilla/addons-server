@@ -2102,7 +2102,7 @@ msgstr "Niečo sa pokazilo, kontaktujte podporu pre vývojárov."
 
 #: src/olympia/devhub/forms.py:1653
 msgid "No appropriate version available"
-msgstr ""
+msgstr "Nie je k dispozícii žiadna vhodná verzia"
 
 #: src/olympia/devhub/forms.py:1660
 msgid "Choose version"
