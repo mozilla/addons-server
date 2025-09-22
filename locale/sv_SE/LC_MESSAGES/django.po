@@ -5618,22 +5618,22 @@ msgstr "Avvisa automatiskt spårningsförfrågningar från popup-fönster för k
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:670
 msgid "Powerful pop-up dictionary optimized for learning new languages."
-msgstr ""
+msgstr "Kraftfull popup-ordbok optimerad för att lära sig nya språk."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:673
 msgid "Hover your mouse over thumbnails to easily browse and download HD images."
-msgstr ""
+msgstr "Håll muspekaren över miniatyrer för att enkelt bläddra bland och ladda ner HD-bilder."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:676
 msgid "Remove distracting and unwanted search results and related video content."
-msgstr ""
+msgstr "Ta bort distraherande och oönskade sökresultat och relaterat videoinnehåll."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:679
 msgid "Makes Firefox appear as Chrome to websites trying to block Firefox."
-msgstr ""
+msgstr "Får Firefox att framstå som Chrome för webbplatser som försöker blockera Firefox."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:682
