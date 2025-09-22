@@ -5607,22 +5607,22 @@ msgstr "Samodejno zavračajte zahteve pojavnih oken po sledenju s piškotki."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:670
 msgid "Powerful pop-up dictionary optimized for learning new languages."
-msgstr ""
+msgstr "Zmogljiv pojavni slovar, optimiziran za učenje novih jezikov."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:673
 msgid "Hover your mouse over thumbnails to easily browse and download HD images."
-msgstr ""
+msgstr "Pomaknite miško nad sličice za preprosto brskanje in prenos slik HD."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:676
 msgid "Remove distracting and unwanted search results and related video content."
-msgstr ""
+msgstr "Odstranite moteče in neželene rezultate iskanja ter povezane video vsebine."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:679
 msgid "Makes Firefox appear as Chrome to websites trying to block Firefox."
-msgstr ""
+msgstr "Da je Firefox spletnim mestom, ki poskušajo zavrniti Firefox, prikazan kot Chrome."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:682

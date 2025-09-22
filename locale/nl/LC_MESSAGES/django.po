@@ -5616,22 +5616,22 @@ msgstr "Pop-uptrackingverzoeken voor cookies automatisch weigeren."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:670
 msgid "Powerful pop-up dictionary optimized for learning new languages."
-msgstr ""
+msgstr "Krachtig pop-upwoordenboek, geoptimaliseerd voor het leren van nieuwe talen."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:673
 msgid "Hover your mouse over thumbnails to easily browse and download HD images."
-msgstr ""
+msgstr "Beweeg uw muis over miniaturen om eenvoudig HD-afbeeldingen te bekijken en te downloaden."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:676
 msgid "Remove distracting and unwanted search results and related video content."
-msgstr ""
+msgstr "Verwijder afleidende en ongewenste zoekresultaten en gerelateerde video-inhoud."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:679
 msgid "Makes Firefox appear as Chrome to websites trying to block Firefox."
-msgstr ""
+msgstr "Laat Firefox als Chrome verschijnen voor websites die Firefox proberen te blokkeren."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:682
