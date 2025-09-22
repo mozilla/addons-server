@@ -717,9 +717,11 @@ class TestRunNarc(UploadMixin, TestCase):
         user1 = user_factory(display_name='Foo')
         user2 = user_factory(display_name='FooBar')
         user3 = user_factory(display_name='Alice Foo')
+        user4 = user_factory(display_name=None)  # Shouldn't matter.
         self.addon.authors.add(user1)
         self.addon.authors.add(user2)
         self.addon.authors.add(user3)
+        self.addon.authors.add(user4)
         rule = ScannerRule.objects.create(
             name='match_the_fool',
             scanner=NARC,
