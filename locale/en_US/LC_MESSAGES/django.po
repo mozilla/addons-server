@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-19 13:40+0000\n"
+"POT-Creation-Date: 2025-09-22 18:48+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -4667,6 +4667,22 @@ msgstr "Protect your privacy against a unique form of JavaScript “fingerprinti
 #. editorial content for the discovery pane.
 msgid "Automatically deny cookie pop-up tracking requests."
 msgstr "Automatically deny cookie pop-up tracking requests."
+
+#. editorial content for the discovery pane.
+msgid "Powerful pop-up dictionary optimized for learning new languages."
+msgstr "Powerful pop-up dictionary optimized for learning new languages."
+
+#. editorial content for the discovery pane.
+msgid "Hover your mouse over thumbnails to easily browse and download HD images."
+msgstr "Hover your mouse over thumbnails to easily browse and download HD images."
+
+#. editorial content for the discovery pane.
+msgid "Remove distracting and unwanted search results and related video content."
+msgstr "Remove distracting and unwanted search results and related video content."
+
+#. editorial content for the discovery pane.
+msgid "Makes Firefox appear as Chrome to websites trying to block Firefox."
+msgstr "Makes Firefox appear as Chrome to websites trying to block Firefox."
 
 #. editorial content for the primary hero shelves.
 #, fuzzy

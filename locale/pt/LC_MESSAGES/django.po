@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-19 13:40+0000\n"
+"POT-Creation-Date: 2025-09-22 18:48+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4417,6 +4417,22 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Automatically deny cookie pop-up tracking requests."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Powerful pop-up dictionary optimized for learning new languages."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Hover your mouse over thumbnails to easily browse and download HD images."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Remove distracting and unwanted search results and related video content."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Makes Firefox appear as Chrome to websites trying to block Firefox."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
