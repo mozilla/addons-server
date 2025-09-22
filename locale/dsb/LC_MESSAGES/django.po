@@ -5629,22 +5629,22 @@ msgstr "Napšašowanja za slědowanim wuskokujucych woknow za cookieje awtomatis
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:670
 msgid "Powerful pop-up dictionary optimized for learning new languages."
-msgstr ""
+msgstr "Wugbały wuskokujucy słownik, optiměrowany za wuknjenje nowych rěcow."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:673
 msgid "Hover your mouse over thumbnails to easily browse and download HD images."
-msgstr ""
+msgstr "Stajśo swóju myšku nad miniatury, aby wobraze HD lažko pśeglědował a ześěgnuł."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:676
 msgid "Remove distracting and unwanted search results and related video content."
-msgstr ""
+msgstr "Wótwónoźćo wótchylenje a njewitane pytańske wuslědki a pódobny wideowe wopśimjeśe."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:679
 msgid "Makes Firefox appear as Chrome to websites trying to block Firefox."
-msgstr ""
+msgstr "Pokazujo websedłam Firefox ako Chrome, kótarež wopytuju Firefox blokěrowaś."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:682

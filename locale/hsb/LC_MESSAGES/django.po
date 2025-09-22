@@ -5643,7 +5643,7 @@ msgstr "Wotstrońće wotwjedźenje a njewitane pytanske wuslědki a podobny wide
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:679
 msgid "Makes Firefox appear as Chrome to websites trying to block Firefox."
-msgstr ""
+msgstr "Pokazuje websydłam Firefox jako Chrome, kotrež pospytuja Firefox blokować."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:682
