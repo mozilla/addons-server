@@ -12,7 +12,6 @@ from django.utils.html import format_html, format_html_join
 
 import olympia.core.logger
 from olympia import amo
-from olympia.access import acl
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonListingInfo, AddonReviewerFlags, AddonUser
 from olympia.amo.admin import AMOModelAdmin, DateRangeFilter
@@ -593,22 +592,6 @@ class ReplacementAddonAdmin(AMOModelAdmin):
         except models.Addon.DoesNotExist:
             slug = '- Add-on not on AMO -'
         return slug
-
-    def has_module_permission(self, request):
-        # If one can see the changelist, then they have access to the module.
-        return self.has_change_permission(request)
-
-    def has_change_permission(self, request, obj=None):
-        # If an obj is passed, then we're looking at the individual change page
-        # for a replacement addon, otherwise we're looking at the list. When
-        # looking at the list, we also allow users with Addons:Edit - they
-        # won't be able to make any changes but they can see the list.
-        if obj is not None:
-            return super().has_change_permission(request, obj=obj)
-        else:
-            return acl.action_allowed_for(
-                request.user, amo.permissions.ADDONS_EDIT
-            ) or super().has_change_permission(request, obj=obj)
 
 
 @admin.register(models.AddonRegionalRestrictions)

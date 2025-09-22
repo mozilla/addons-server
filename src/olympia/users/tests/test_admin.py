@@ -562,7 +562,7 @@ class TestUserAdmin(TestCase):
         assert alog.action == amo.LOG.ADMIN_USER_ANONYMIZED.id
         assert alog.arguments == [self.user]
 
-    def test_can_delete_with_related_objects_with_admin_advanced_permission(self):
+    def test_can_delete_with_related_objects_with_rating_delete_permission_too(self):
         # Add related instances...
         addon = addon_factory()
         addon_with_other_authors = addon_factory()
@@ -589,6 +589,7 @@ class TestUserAdmin(TestCase):
         # Now test as normal.
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Admin:Advanced')
+        self.grant_permission(user, 'Ratings:Delete')
         assert not self.user.deleted
         self.client.force_login(user)
         core.set_user(user)

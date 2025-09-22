@@ -578,23 +578,17 @@ class TestAbuseReportAdmin(TestCase):
 
 
 class TestCinderPolicyAdmin(TestCase):
-    @classmethod
-    def setUpTestData(cls):
-        cls.user = user_factory(email='someone@mozilla.com')
-        grant_permission(cls.user, '*:*', 'Admins')
-
     def setUp(self):
-        self.client.force_login(self.user)
         self.list_url = reverse('admin:abuse_cinderpolicy_changelist')
         self.sync_cinder_policies_url = reverse('admin:abuse_sync_cinder_policies')
 
-    def test_list_no_permission(self):
-        user = user_factory(email='nobody@mozilla.com')
-        self.client.force_login(user)
-        response = self.client.get(self.list_url)
-        assert response.status_code == 403
+    def login(self, permission='*:*'):
+        self.user = user_factory(email='someone@mozilla.com')
+        if permission:
+            grant_permission(self.user, permission, 'Group')
+        self.client.force_login(self.user)
 
-    def test_list(self):
+    def _make_list_request(self):
         foo = CinderPolicy.objects.create(name='Foo')
         CinderPolicy.objects.create(name='Bar', parent=foo, uuid=uuid.uuid4())
         zab = CinderPolicy.objects.create(name='Zab', parent=foo, uuid=uuid.uuid4())
@@ -634,6 +628,19 @@ class TestCinderPolicyAdmin(TestCase):
             'value': 'Sync from Cinder',
         }
 
+    def test_list_no_permission(self):
+        self.login(permission=None)
+        response = self.client.get(self.list_url)
+        assert response.status_code == 403
+
+    def test_list(self):
+        self.login()
+        self._make_list_request()
+
+    def test_list_with_view_permission(self):
+        self.login(permission='CinderPolicies:View')
+        self._make_list_request()  # should be the same as with full permissions
+
     def test_list_order_by_reviewreason(self):
         foo = CinderPolicy.objects.create(name='Foo')
         CinderPolicy.objects.create(name='Bar', parent=foo, uuid=uuid.uuid4())
@@ -647,6 +654,7 @@ class TestCinderPolicyAdmin(TestCase):
             name='Attached to Lorem', cinder_policy=lorem, canned_response='.'
         )
 
+        self.login()
         with self.assertNumQueries(7):
             # - 2 savepoints (tests)
             # - 2 current user & groups
@@ -665,22 +673,54 @@ class TestCinderPolicyAdmin(TestCase):
             == 'Attached to Zab'
         )
 
+    def _make_edit_request(self, expected_status_code):
+        policy = CinderPolicy.objects.create(
+            name='Bar', uuid=uuid.uuid4(), expose_in_reviewer_tools=False
+        )
+        detail_url = reverse('admin:abuse_cinderpolicy_change', args=(policy.id,))
+        response = self.client.post(
+            detail_url, {'expose_in_reviewer_tools': True}, follow=True
+        )
+        assert response.status_code == expected_status_code
+        return policy
+
+    def test_edit_policies(self):
+        self.login()
+        policy = self._make_edit_request(200)
+        assert policy.reload().expose_in_reviewer_tools is True
+
+    def test_edit_policies_cannot_with_no_permission(self):
+        self.login(permission=None)
+        policy = self._make_edit_request(403)
+        assert policy.reload().expose_in_reviewer_tools is False
+
+    def test_edit_policies_cannot_with_view_permission(self):
+        self.login(permission='CinderPolicies:View')
+        policy = self._make_edit_request(403)
+        assert policy.reload().expose_in_reviewer_tools is False
+
     def test_sync_policies_no_permission(self):
-        user = user_factory(email='nobody@mozilla.com')
-        self.client.force_login(user)
-        response = self.client.get(self.sync_cinder_policies_url)
-        assert response.status_code == 403
+        self.login(permission=None)
         response = self.client.post(self.sync_cinder_policies_url)
         assert response.status_code == 403
 
     def test_sync_policies_wrong_method(self):
+        self.login()
         response = self.client.get(self.sync_cinder_policies_url)
         assert response.status_code == 405
 
     @mock.patch('olympia.abuse.admin.sync_cinder_policies.delay')
-    def test_sync_policies(self, sync_cinder_policies_mock):
+    def _make_sync_policies_request(self, sync_cinder_policies_mock):
         response = self.client.post(self.sync_cinder_policies_url, follow=True)
         assert response.status_code == 200
         assert response.redirect_chain[-1][0].endswith(self.list_url)
         assert response.redirect_chain[-1][1] == 302
         assert sync_cinder_policies_mock.call_count == 1
+
+    def test_sync_policies(self):
+        self.login()
+        self._make_sync_policies_request()
+
+    def test_sync_policies_with_view_permission(self):
+        self.login(permission='CinderPolicies:View')
+        self._make_sync_policies_request()

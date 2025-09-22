@@ -13,7 +13,6 @@ from django.urls import re_path, reverse
 from django.utils.html import format_html, format_html_join
 
 from olympia import amo
-from olympia.access import acl
 from olympia.addons.models import Addon, AddonApprovalsCounter
 from olympia.amo.admin import AMOModelAdmin, DateRangeFilter, FakeChoicesMixin
 from olympia.amo.templatetags.jinja_helpers import vite_asset
@@ -434,7 +433,7 @@ class CinderPolicyAdmin(AMOModelAdmin):
         return custom_urlpatterns + urlpatterns
 
     def sync_cinder_policies(self, request, extra_context=None):
-        if not acl.action_allowed_for(request.user, amo.permissions.ADMIN_ADVANCED):
+        if not self.has_view_permission(request):
             return HttpResponseForbidden()
 
         if request.method != 'POST':
