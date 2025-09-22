@@ -492,7 +492,6 @@ def run_scanner_query_rule(query_rule_pk):
 
 
 @task(ignore_result=False)  # We want the results to track completion rate.
-@use_primary_db
 def run_scanner_query_rule_on_versions_chunk(version_pks, query_rule_pk):
     """
     Task to run a specific ScannerQueryRule on a list of versions.
@@ -505,7 +504,7 @@ def run_scanner_query_rule_on_versions_chunk(version_pks, query_rule_pk):
         version_pks[0],
         version_pks[-1],
     )
-    rule = ScannerQueryRule.objects.get(pk=query_rule_pk)
+    rule = ScannerQueryRule.objects.using('default').get(pk=query_rule_pk)
     if rule.state != RUNNING:
         log.info(
             'Not doing anything for Scanner Query Rule %s on versions %s-%s '
