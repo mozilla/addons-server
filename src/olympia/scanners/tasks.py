@@ -230,7 +230,9 @@ def _run_narc(*, scanner_result, version, rules=None):
     attach_trans_dict(Addon, [addon], field_names=['name'])
     values_from_db = dict(addon.translations[addon.name_id])
     values_from_authors = list(
-        addon.authors.all().values_list('display_name', flat=True)
+        addon.authors.all()
+        .exclude(display_name=None)
+        .values_list('display_name', flat=True)
     )
 
     # Because we're running on a Version, not a FileUpload, we should already
