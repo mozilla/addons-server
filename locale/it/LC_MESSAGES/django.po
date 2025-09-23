@@ -5673,12 +5673,12 @@ msgstr "Rifiuta automaticamente le richieste di tracciamento nei pop-up per i co
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:670
 msgid "Powerful pop-up dictionary optimized for learning new languages."
-msgstr ""
+msgstr "Potente dizionario pop-up ottimizzato per l’apprendimento di nuove lingue."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:673
 msgid "Hover your mouse over thumbnails to easily browse and download HD images."
-msgstr ""
+msgstr "Passa il mouse sulle miniature per sfogliare e scaricare facilmente le immagini HD."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:676
