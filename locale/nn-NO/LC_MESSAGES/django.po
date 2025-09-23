@@ -2452,7 +2452,7 @@ msgstr "Utviklingsutvidingar"
 
 #: src/olympia/devhub/templates/devhub/nav.html:58
 msgid "Community & Support"
-msgstr "Felleskap og brukarstøtte"
+msgstr "Fellesskap og brukarstøtte"
 
 #: src/olympia/devhub/templates/devhub/nav.html:61
 msgid "Add-ons Blog"
@@ -4071,7 +4071,7 @@ msgstr "Matrix"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:10
 msgid "Community forum"
-msgstr "Forum for felleskapet"
+msgstr "Forum for fellesskapet"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:14
 msgid "Extensions Developers Newsletter"
