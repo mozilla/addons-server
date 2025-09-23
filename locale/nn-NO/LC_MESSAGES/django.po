@@ -5617,7 +5617,7 @@ msgstr "Fjern distraherande og uønskte søkjeresultat og relatert videoinnhald.
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:679
 msgid "Makes Firefox appear as Chrome to websites trying to block Firefox."
-msgstr ""
+msgstr "Får Firefox til å framstå som Chrome for nettstadar som prøver å blokkere Firefox."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:682
