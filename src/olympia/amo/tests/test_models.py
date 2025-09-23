@@ -449,8 +449,8 @@ class BaseQuerysetTestCase(TestCase):
             config = qs.get_with_primary_fallback(key='a')
         assert config
         assert config.value == 'Zero'
-        # Despite the query originally using 'replica', we should have used
-        # 'default' since the original get() call raised DoesNotExist.
+        # Despite the query originally using 'fake-replica', we should have
+        # used 'default' since the original get() call raised DoesNotExist.
         assert config._state.db == 'default'
 
     def test_get_with_primary_fallback_already_using_default(self):
