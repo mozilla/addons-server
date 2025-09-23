@@ -5683,12 +5683,12 @@ msgstr "Passa il mouse sulle miniature per sfogliare e scaricare facilmente le i
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:676
 msgid "Remove distracting and unwanted search results and related video content."
-msgstr ""
+msgstr "Elimina i risultati di ricerca indesiderati e fonte di distrazione, insieme ai contenuti video correlati."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:679
 msgid "Makes Firefox appear as Chrome to websites trying to block Firefox."
-msgstr ""
+msgstr "Fa sembrare Firefox come se fosse Chrome ai siti che cercano di bloccarlo"
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:682
