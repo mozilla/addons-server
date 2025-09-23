@@ -494,7 +494,6 @@ def run_scanner_query_rule(query_rule_pk):
 
 
 @task(ignore_result=False)  # We want the results to track completion rate.
-@use_primary_db
 def run_scanner_query_rule_on_versions_chunk(version_pks, query_rule_pk):
     """
     Task to run a specific ScannerQueryRule on a list of versions.
@@ -507,7 +506,11 @@ def run_scanner_query_rule_on_versions_chunk(version_pks, query_rule_pk):
         version_pks[0],
         version_pks[-1],
     )
-    rule = ScannerQueryRule.objects.get(pk=query_rule_pk)
+    # Like run_scanner_query_rule() we don't want to decorate this function to
+    # force it to run on the primary, we want to leverage the replicas as much
+    # as possible while avoiding raising if replication lag causes the rule not
+    # to exist yet when the task is triggered.
+    rule = ScannerQueryRule.objects.all().get_with_primary_fallback(pk=query_rule_pk)
     if rule.state != RUNNING:
         log.info(
             'Not doing anything for Scanner Query Rule %s on versions %s-%s '

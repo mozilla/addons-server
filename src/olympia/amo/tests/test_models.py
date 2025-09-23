@@ -1,5 +1,5 @@
 import os
-from unittest.mock import Mock
+from unittest import mock
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
@@ -50,7 +50,7 @@ class TestModelBase(TestCase):
         super().setUp()
         self.saved_cb = amo_models._on_change_callbacks.copy()
         amo_models._on_change_callbacks.clear()
-        self.cb = Mock()
+        self.cb = mock.Mock()
         self.cb.__name__ = 'testing_mock_callback'
         Addon.on_change(self.cb)
 
@@ -59,7 +59,7 @@ class TestModelBase(TestCase):
         super().tearDown()
 
     def test_multiple_ignored(self):
-        cb = Mock()
+        cb = mock.Mock()
         cb.__name__ = 'something'
         old = len(amo_models._on_change_callbacks[Addon])
         Addon.on_change(cb)
@@ -434,6 +434,33 @@ class BaseQuerysetTestCase(TestCase):
         # Check that each transform function was hit correctly, once.
         assert seen_by_first_transform == [first, second]
         assert seen_by_second_transform == [second, first]
+
+    def test_get_with_primary_fallback(self):
+        # We test with the Config model because it's a simple model
+        # with no translated fields, no caching or other fancy features.
+        Config.objects.create(key='a', value='Zero')
+
+        qs = amo_models.BaseQuerySet(Config).using('fake-replica')
+        with mock.patch.object(qs, 'get') as fake_get:
+            # Force qs.get() - and only this instance - to return DoesNotExist,
+            # which should force get_with_primary_fallback() to create another
+            # queryset with using('default') that is not mocked.
+            fake_get.side_effect = Config.DoesNotExist
+            config = qs.get_with_primary_fallback(key='a')
+        assert config
+        assert config.value == 'Zero'
+        # Despite the query originally using 'fake-replica', we should have
+        # used 'default' since the original get() call raised DoesNotExist.
+        assert config._state.db == 'default'
+
+    def test_get_with_primary_fallback_already_using_default(self):
+        # We test with the Config model because it's a simple model
+        # with no translated fields, no caching or other fancy features.
+        Config.objects.create(key='a', value='Zero')
+
+        qs = amo_models.BaseQuerySet(Config)
+        with self.assertRaises(Config.DoesNotExist):
+            qs.get_with_primary_fallback(key='notfound')
 
 
 class TestFilterableManyToManyField(TestCase):
