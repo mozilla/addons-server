@@ -1003,6 +1003,7 @@ class NeedsHumanReview(ModelBase):
             8,
             'Auto-approved but still had an approval delay set in the past',
         ),
+        ('VERSION_ROLLBACK', 18, 'Rollback to a previous version that was unreviewed'),
         ('UNKNOWN', 0, 'Unknown'),
     )
     REASONS.add_subset(

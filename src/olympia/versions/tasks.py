@@ -22,6 +22,7 @@ from olympia.devhub.tasks import resize_image
 from olympia.files.models import File
 from olympia.files.utils import get_background_images
 from olympia.lib.crypto.tasks import duplicate_addon_version
+from olympia.reviewers.models import NeedsHumanReview
 from olympia.users.models import UserProfile
 from olympia.users.utils import get_task_user
 from olympia.versions.compare import VersionString
@@ -289,6 +290,16 @@ def duplicate_addon_version_for_rollback(
     new_version_number = VersionString(new_version_number)
     old_version = Version.unfiltered.get(id=version_pk)
     user = UserProfile.objects.get(id=user_pk)
+    rollback_from_reviewed_to_unreviewed = (
+        old_version.human_review_date is None
+        and (
+            latest_version := old_version.addon.find_latest_version(
+                old_version.channel,
+                exclude=(amo.STATUS_AWAITING_REVIEW, amo.STATUS_DISABLED),
+            )
+        )
+        and latest_version.human_review_date is not None
+    )
 
     text = (
         f'Rolling back add-on "{old_version.addon}", to version "{old_version.version}"'
@@ -349,6 +360,10 @@ def duplicate_addon_version_for_rollback(
             },
         )
         VersionLog.objects.create(activity_log=log_entry, version=old_version)
+        if rollback_from_reviewed_to_unreviewed:
+            NeedsHumanReview.objects.create(
+                version=version, reason=NeedsHumanReview.REASONS.VERSION_ROLLBACK
+            )
         statsd.incr('versions.tasks.rollback.success')
 
     notify_about_activity_log(
