@@ -418,16 +418,16 @@ msgstr "Denne sluggen kan ikkje brukast. Vel ein annan."
 
 #: src/olympia/addons/serializers.py:1888
 msgid "There is no rollback available in this channel."
-msgstr ""
+msgstr "Det er inga tilbakerulling tilgjengeleg i denne kanalen."
 
 #: src/olympia/addons/serializers.py:1898
 #, python-format
 msgid "Rollback is only available for version %s in this channel."
-msgstr ""
+msgstr "Tilbakerulling er berre tilgjengeleg for versjon %s i denne kanalen."
 
 #: src/olympia/addons/serializers.py:1904
 msgid "Only approved versions can be rolled back, except the most recent version."
-msgstr ""
+msgstr "Berre godkjende versjonar kan rullast tilbake, bortsett frå den nyaste versjonen."
 
 #: src/olympia/addons/utils.py:52
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -2098,7 +2098,7 @@ msgstr "Noko gjekk gale. Ta kontakt med utviklarstøtta."
 
 #: src/olympia/devhub/forms.py:1653
 msgid "No appropriate version available"
-msgstr ""
+msgstr "Ingen passande versjon tilgjengeleg"
 
 #: src/olympia/devhub/forms.py:1660
 msgid "Choose version"
@@ -5602,17 +5602,17 @@ msgstr "Avvis automatisk sporingsførespurnadar frå sprettopp-vindauge for info
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:670
 msgid "Powerful pop-up dictionary optimized for learning new languages."
-msgstr ""
+msgstr "Kraftig sprettopp-ordbok, optimalisert for å lære nye språk."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:673
 msgid "Hover your mouse over thumbnails to easily browse and download HD images."
-msgstr ""
+msgstr "Hald musepeikaren over miniatyrbilde for enkelt å bla gjennom og laste ned HD-bilde."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:676
 msgid "Remove distracting and unwanted search results and related video content."
-msgstr ""
+msgstr "Fjern distraherande og uønskte søkjeresultat og relatert videoinnhald."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:679
