@@ -110,6 +110,21 @@ class BaseQuerySet(models.QuerySet):
         """
         return self.values('pk').order_by().count()
 
+    def get_with_primary_fallback(self, *args, **kwargs):
+        """Like get(), but if using a non-default database and DoesNotExist is
+        raised, another attempt is made using the default database instead.
+
+        Intended to be used in places where replication lag could cause the
+        object not to exist for a brief moment and forcing use of primary db at
+        all times is undesirable.
+        """
+        try:
+            return self.get(*args, **kwargs)
+        except self.model.DoesNotExist:
+            if self.db == 'default':
+                raise
+            return self.using('default').get(*args, **kwargs)
+
 
 class RawQuerySet(models.query.RawQuerySet):
     """A RawQuerySet with __len__."""
