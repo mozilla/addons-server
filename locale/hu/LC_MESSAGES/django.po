@@ -5623,22 +5623,22 @@ msgstr "A sütik felugró ablakainak nyomkövetési kérésének automatikus meg
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:670
 msgid "Powerful pop-up dictionary optimized for learning new languages."
-msgstr ""
+msgstr "Hatékony felugró szótár, új nyelvek tanulására optimalizálva."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:673
 msgid "Hover your mouse over thumbnails to easily browse and download HD images."
-msgstr ""
+msgstr "Vigye az egeret a bélyegképek fölé, hogy könnyedén böngésszen és töltsön le HD képeket."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:676
 msgid "Remove distracting and unwanted search results and related video content."
-msgstr ""
+msgstr "Távolítsa el a zavaró és nem kívánt keresési találatokat és kapcsolódó videótartalmakat."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:679
 msgid "Makes Firefox appear as Chrome to websites trying to block Firefox."
-msgstr ""
+msgstr "A Firefoxot Chrome-ként jeleníti meg azoknak a webhelyeknek, amelyek blokkolni próbálják a Firefoxot."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:682

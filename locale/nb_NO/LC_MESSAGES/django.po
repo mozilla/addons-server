@@ -2454,7 +2454,7 @@ msgstr "Utviklingsutvidelser"
 
 #: src/olympia/devhub/templates/devhub/nav.html:58
 msgid "Community & Support"
-msgstr "Felleskap og brukerstøtte"
+msgstr "Fellesskap og brukerstøtte"
 
 #: src/olympia/devhub/templates/devhub/nav.html:61
 msgid "Add-ons Blog"
