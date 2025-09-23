@@ -572,8 +572,8 @@ class TestActions(TestCase):
 
     def test_delay_auto_approval_indefinitely_and_restrict_already_restricted(self):
         user1 = user_factory(last_login_ip='5.6.7.8')
-        user2 = user_factory(last_login_ip='')
-        user3 = user_factory()
+        user2 = user_factory(last_login_ip='', email='foo+variant@example.com')
+        user3 = user_factory(email='foo@example.com')
         user4 = user_factory(last_login_ip='4.8.15.16')
         existing_restriction1 = EmailUserRestriction.objects.create(
             email_pattern=user1.email
@@ -605,7 +605,7 @@ class TestActions(TestCase):
             restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION,
         ).exists()
         assert EmailUserRestriction.objects.filter(
-            email_pattern=user2.email,
+            email_pattern=EmailUserRestriction.normalize_email(user2.email),
             restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION,
         ).exists()
         assert EmailUserRestriction.objects.filter(
