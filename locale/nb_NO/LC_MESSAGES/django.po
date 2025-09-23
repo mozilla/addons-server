@@ -4073,7 +4073,7 @@ msgstr "Matrix"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:10
 msgid "Community forum"
-msgstr "Forum for felleskapet"
+msgstr "Forum for fellesskapet"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:14
 msgid "Extensions Developers Newsletter"
