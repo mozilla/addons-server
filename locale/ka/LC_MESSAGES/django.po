@@ -5612,17 +5612,17 @@ msgstr "ფუნთუშების ამომხტომი მეთვ�
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:670
 msgid "Powerful pop-up dictionary optimized for learning new languages."
-msgstr ""
+msgstr "მძლავრი ამომხტომი ლექსიკონი, მეტად მოსახერხებელი ახალი ენების შესასწავლად."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:673
 msgid "Hover your mouse over thumbnails to easily browse and download HD images."
-msgstr ""
+msgstr "გადაატარეთ მაჩვენებელი შემცირებულ სურათებს იოლად მოსაძიებლად და მაღალი გარჩევადობით ჩამოსატვირთად."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:676
 msgid "Remove distracting and unwanted search results and related video content."
-msgstr ""
+msgstr "მოაცილეთ ყურადღების გამფანტავი და ძიების არასასურველი შედეგები ვიდეომასალებიანად."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:679
