@@ -5605,22 +5605,22 @@ msgstr "Automaticky odmieta požiadavky na povolenie súborov cookie."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:670
 msgid "Powerful pop-up dictionary optimized for learning new languages."
-msgstr ""
+msgstr "Výkonný kontextový slovník optimalizovaný na učenie sa nových jazykov."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:673
 msgid "Hover your mouse over thumbnails to easily browse and download HD images."
-msgstr ""
+msgstr "Pre jednoduché prehliadanie a sťahovanie obrázkov vo vysokom rozlíšení podržte kurzor myši nad miniatúrami."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:676
 msgid "Remove distracting and unwanted search results and related video content."
-msgstr ""
+msgstr "Odstráňte rušivé a nechcené výsledky vyhľadávania a súvisiaci video obsah."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:679
 msgid "Makes Firefox appear as Chrome to websites trying to block Firefox."
-msgstr ""
+msgstr "Pre webové stránky, ktoré sa snažia Firefox blokovať, sa Firefox javí ako Chrome."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:682
