@@ -106,6 +106,7 @@ class FileInline(admin.TabularInline):
         'version__channel',
         'version__deleted',
         'status',
+        'is_signed',
         'version__is_blocked',
         'version__needs_human_review',
     )
