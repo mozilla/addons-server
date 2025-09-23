@@ -787,9 +787,9 @@ class TestCheckLocalesCompletionRate(TestCase):
             'absent in one of our projects in Pontoon:\n- '
             + '\n- '.join(
                 (
-                    'Indonesian [id]',
                     'Norwegian (Nynorsk) [nn-NO]',
                     'Portuguese (Brazilian) [pt-BR]',
+                    'Romanian [ro]',
                 )
             )
         )
