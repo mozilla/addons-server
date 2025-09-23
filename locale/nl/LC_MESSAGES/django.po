@@ -5626,12 +5626,12 @@ msgstr "Beweeg uw muis over miniaturen om eenvoudig HD-afbeeldingen te bekijken 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:676
 msgid "Remove distracting and unwanted search results and related video content."
-msgstr "Verwijder afleidende en ongewenste zoekresultaten en gerelateerde video-inhoud."
+msgstr ""
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:679
 msgid "Makes Firefox appear as Chrome to websites trying to block Firefox."
-msgstr "Laat Firefox als Chrome verschijnen voor websites die Firefox proberen te blokkeren."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:682
