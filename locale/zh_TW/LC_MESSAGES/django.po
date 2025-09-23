@@ -5524,22 +5524,22 @@ msgstr "自動拒絕彈出的 Cookie 追蹤請求。"
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:670
 msgid "Powerful pop-up dictionary optimized for learning new languages."
-msgstr ""
+msgstr "強大的彈出型字典，最適合用於學習新語言。"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:673
 msgid "Hover your mouse over thumbnails to easily browse and download HD images."
-msgstr ""
+msgstr "將滑鼠移到縮圖的上方即可輕鬆瀏覽下載高解析度圖片。"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:676
 msgid "Remove distracting and unwanted search results and related video content."
-msgstr ""
+msgstr "移除令人分心與不想要的搜尋結果與相關影片內容。"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:679
 msgid "Makes Firefox appear as Chrome to websites trying to block Firefox."
-msgstr ""
+msgstr "針對會封鎖 Firefox 的網站，將瀏覽器顯示為 Chrome。"
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:682
