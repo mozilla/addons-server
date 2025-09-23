@@ -20,11 +20,11 @@ msgstr ""
 
 #: src/olympia/abuse/forms.py:30
 msgid "Email address"
-msgstr ""
+msgstr "نشانی رایانامه"
 
 #: src/olympia/abuse/forms.py:45
 msgid "Invalid email provided."
-msgstr ""
+msgstr "رایانامه نامعتبر ارائه شده است."
 
 #: src/olympia/abuse/forms.py:61
 msgid "Reason for appeal"
@@ -36,7 +36,7 @@ msgstr ""
 
 #: src/olympia/abuse/models.py:1112
 msgid "User profile"
-msgstr ""
+msgstr "نمایه کاربر"
 
 #: src/olympia/abuse/models.py:1480
 #, python-brace-format
@@ -92,7 +92,7 @@ msgstr ""
 
 #: src/olympia/abuse/templates/abuse/emails/base_reporter.txt:1
 msgid "Hello,"
-msgstr ""
+msgstr "سلام،"
 
 #: src/olympia/abuse/templates/abuse/emails/base_reporter.txt:7
 msgid "Mozilla Add-ons Team"
@@ -229,11 +229,11 @@ msgid "Review"
 msgstr "بررسی"
 
 #: src/olympia/activity/models.py:816 src/olympia/devhub/templates/devhub/versions/list.html:41
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Version {0}"
 msgid_plural "Versions {0}"
-msgstr[0] "نسخه: {0}"
-msgstr[1] "نسخه: {0}"
+msgstr[0] "نگارش {0}"
+msgstr[1] "نگارش {0}"
 
 #: src/olympia/activity/serializers.py:46
 msgid "Review note"
@@ -453,11 +453,11 @@ msgstr "ابزارها"
 
 #: src/olympia/amo/context_processors.py:39
 msgid "My Profile"
-msgstr ""
+msgstr "نمایهٔ من"
 
 #: src/olympia/amo/context_processors.py:43
 msgid "Account Settings"
-msgstr ""
+msgstr "تنظیمات حساب"
 
 #: src/olympia/amo/context_processors.py:46
 msgid "My Collections"
@@ -595,11 +595,11 @@ msgstr ""
 
 #: src/olympia/amo/templates/amo/fake_fxa_authorization.html:4
 msgid "Register or Log in"
-msgstr ""
+msgstr "نام‌نویسی یا ورود"
 
 #: src/olympia/amo/templates/amo/fake_fxa_authorization.html:19
 msgid "Email:"
-msgstr ""
+msgstr "رایانامه:"
 
 #: src/olympia/amo/templates/amo/fake_fxa_authorization.html:20
 msgid "Two-factor authentication"
@@ -657,7 +657,7 @@ msgstr ""
 
 #: src/olympia/amo/tests/test_messages.py:54 src/olympia/amo/tests/test_messages.py:55
 msgid "Title"
-msgstr ""
+msgstr "عنوان"
 
 #: src/olympia/amo/tests/test_messages.py:54 src/olympia/amo/tests/test_messages.py:55
 msgid "Body"
@@ -6765,7 +6765,7 @@ msgstr ""
 #: src/olympia/templates/user_login.html:24
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
-msgstr "<a href=\"%(reg)s\">ثبت نام</a>یا <a href=\"%(login)s\">ورود</a>"
+msgstr "<a href=\"%(reg)s\">نام‌نویسی</a> یا <a href=\"%(login)s\">ورود</a>"
 
 #: src/olympia/templates/includes/forms.html:2
 msgid "Required fields"
