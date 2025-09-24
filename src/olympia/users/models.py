@@ -994,6 +994,15 @@ class NormalizeEmailMixin:
         return normalized_email
 
 
+class EmailUserRestrictionManager(ManagerBase):
+    def get_or_create(self, defaults=None, **kwargs):
+        if (email_pattern := kwargs.get('email_pattern')) and '@' in email_pattern:
+            kwargs['email_pattern'] = EmailUserRestriction.normalize_email(
+                email_pattern
+            )
+        return super().get_or_create(defaults=defaults, **kwargs)
+
+
 class EmailUserRestriction(RestrictionAbstractBaseModel, NormalizeEmailMixin):
     id = PositiveAutoField(primary_key=True)
     email_pattern = models.CharField(
@@ -1009,6 +1018,8 @@ class EmailUserRestriction(RestrictionAbstractBaseModel, NormalizeEmailMixin):
     error_message = _(
         'The email address used for your account is not allowed for submissions.'
     )
+
+    objects = EmailUserRestrictionManager()
 
     class Meta:
         db_table = 'users_user_email_restriction'

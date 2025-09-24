@@ -101,7 +101,7 @@ def _restrict_future_approvals(*, version, rule, restriction_type):
     }
     for user in users:
         EmailUserRestriction.objects.get_or_create(
-            email_pattern=EmailUserRestriction.normalize_email(user.email),
+            email_pattern=user.email,
             restriction_type=restriction_type,
             defaults=restriction_defaults,
         )
