@@ -1228,6 +1228,31 @@ class TestEmailUserRestriction(TestCase):
         obj = EmailUserRestriction.objects.create(email_pattern='fôo@bar.com')
         assert str(obj) == 'fôo@bar.com'
 
+    def test_get_or_create_normalization(self):
+        obj, created = EmailUserRestriction.objects.get_or_create(
+            email_pattern='foo+something@bar.com'
+        )
+        assert created
+        assert obj.email_pattern == 'foo@bar.com'
+
+        obj, created = EmailUserRestriction.objects.get_or_create(
+            email_pattern='foo@bar.com'
+        )
+        assert not created
+        assert obj.email_pattern == 'foo@bar.com'
+
+        obj, created = EmailUserRestriction.objects.get_or_create(
+            email_pattern='foo+else@bar.com'
+        )
+        assert not created
+        assert obj.email_pattern == 'foo@bar.com'
+
+        obj, created = EmailUserRestriction.objects.get_or_create(
+            email_pattern='different@bar.com'
+        )
+        assert created
+        assert obj.email_pattern == 'different@bar.com'
+
     def test_email_allowed(self):
         EmailUserRestriction.objects.create(email_pattern='foo@bar.com')
         request = RequestFactory().get('/')
