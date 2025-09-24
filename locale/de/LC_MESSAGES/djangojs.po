@@ -6,827 +6,1033 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-24 12:01+0000\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Pontoon\n"
 
+#: static/js/common/upload-addon.js:54 static/js/common/upload-image.js:136
 msgid "There was a problem contacting the server."
 msgstr "Beim Kontaktieren des Servers ist ein Fehler aufgetreten."
 
+#: static/js/common/upload-addon.js:78
 msgid "Select a file..."
 msgstr "Wählen Sie eine Datei aus…"
 
+#: static/js/common/upload-addon.js:82
 msgid "Your add-on should end with .zip, .xpi or .crx"
 msgstr "Ihr Add-on sollte eine der Dateiendungen .zip, .xpi oder .crx haben"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#, python-format, python-brace-format
+#: static/js/common/upload-addon.js:118
+#, python-brace-format, python-format
 msgid "{0}% complete"
 msgstr "{0}% abgeschlossen"
 
+#: static/js/common/upload-addon.js:122
 #, python-brace-format
 msgid "{0} of {1}"
 msgstr "{0} von {1}"
 
+#: static/js/common/upload-addon.js:166
 msgid "Cancel"
 msgstr "Abbrechen"
 
+#: static/js/common/upload-addon.js:189
 #, python-brace-format
 msgid "Uploading {0}"
 msgstr "{0} wird hochgeladen"
 
+#: static/js/common/upload-addon.js:229
 #, python-brace-format
 msgid "Error with {0}"
 msgstr "Fehler bei {0}"
 
+#: static/js/common/upload-addon.js:237
 msgid "Please make sure to report any linting related issues on GitHub"
 msgstr "Bitte melden Sie alle Linting-Fehler auf GitHub"
 
+#: static/js/common/upload-addon.js:248
 #, python-brace-format
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] "Ihr Add-on ist bei der Überprüfung mit {0} Fehler durchgefallen."
 msgstr[1] "Ihr Add-on ist bei der Überprüfung mit {0} Fehlern durchgefallen."
 
+#: static/js/common/upload-addon.js:266
 #, python-brace-format
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip; und {0} weiterer"
 msgstr[1] "&hellip; und {0} weitere"
 
+#: static/js/common/upload-addon.js:287 static/js/common/upload-addon.js:705
 msgid "See full validation report"
 msgstr "Vollständigen Überprüfungsbericht lesen"
 
+#: static/js/common/upload-addon.js:300
 #, python-brace-format
 msgid "Validating {0}"
 msgstr "Überprüfung von {0}"
 
+#: static/js/common/upload-addon.js:350
 #, python-brace-format
 msgid "Your add-on exceeds the maximum size of {0}."
 msgstr "Ihr Add-on überschreitet die maximale Größe von {0}."
 
+#: static/js/common/upload-addon.js:358
 #, python-brace-format
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Leere Antwort vom Server erhalten; Status: {0}"
 
+#: static/js/common/upload-addon.js:403
 msgid "Your extension has to be compatible with at least one application."
 msgstr "Ihre Erweiterung muss mit mindestens einer Anwendung kompatibel sein."
 
+#: static/js/common/upload-addon.js:473
 msgid "Unexpected server error while validating."
 msgstr "Unerwarteter Server-Fehler bei der Überprüfung."
 
+#: static/js/common/upload-addon.js:519
 msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
 msgstr "Im Manifest explizit als kompatibel mit Firefox für Android gekennzeichnet"
 
+#: static/js/common/upload-addon.js:561
 #, python-brace-format
 msgid "Finished validating {0}"
 msgstr "Überprüfung abgeschlossen {0}"
 
+#: static/js/common/upload-addon.js:568
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr "Zeitüberschreitung bei Ihrer Add-on-Validierung, es gibt eine manuelle Überprüfung."
 
+#: static/js/common/upload-addon.js:573
 #, python-brace-format
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] "Ihr Add-on wurde ohne Fehler und {0} Warnung validiert."
 msgstr[1] "Ihr Add-on wurde ohne Fehler und {0} Warnungen validiert."
 
+#: static/js/common/upload-addon.js:582
 #, python-brace-format
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] "Ihr Add-on wurde ohne Fehler und mit {0} Hinweis validiert."
 msgstr[1] "Ihr Add-on wurde ohne Fehler und mit {0} Hinweisen validiert."
 
+#: static/js/common/upload-addon.js:590
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "Ihr Add-on wurde ohne Fehler und Hinweise validiert."
 
+#: static/js/common/upload-addon.js:651
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Fügen Sie detaillierte Versionshinweise hinzu (dies kann im nächsten Schritt geschehen)."
 
+#: static/js/common/upload-addon.js:654
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
 "Wenn Ihr Add-on ein Benutzerkonto bei einer Website benötigt, um vollständig getestet zu werden, fügen Sie in den Hinweisen an den Überprüfer Benutzername und Passwort eines Testkontos hinzu (dies "
 "kann im nächsten Schritt geschehen)."
 
+#: static/js/common/upload-addon.js:660
 msgid "Add-on submission checklist"
 msgstr "Checkliste für Add-on-Einreichung"
 
+#: static/js/common/upload-addon.js:664
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Bitte überprüfen Sie die folgenden Punkte, bevor Sie Ihre Einreichung abschließen. Dies minimiert Verzögerungen oder Missverständnisse während des Überprüfungsprozesses:"
 
+#: static/js/common/upload-addon.js:671
 msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Von minifizierten, verkürzten oder anderweitig maschinengenerierten Skripten (außer bekannten Bibliotheken) müssen die Quelltexte getrennt zur Überprüfung eingereicht werden. Verwenden Sie "
-"unbedingt das Feld zum Hochladen von Quelltext, damit Ihre Einreichung nicht abgelehnt wird."
+"Von minifizierten, verkürzten oder anderweitig maschinengenerierten Skripten (außer bekannten Bibliotheken) müssen die Quelltexte getrennt zur Überprüfung eingereicht werden. Verwenden Sie unbedingt"
+" das Feld zum Hochladen von Quelltext, damit Ihre Einreichung nicht abgelehnt wird."
 
+#: static/js/common/upload-addon.js:684
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Der Validierungsprozess stellte folgende Probleme fest, die zur Ablehnung führen könnten:"
 
+#: static/js/common/upload-base.js:69
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Der Dateityp, den Sie hochgeladen haben, wurde nicht erkannt."
 
+#: static/js/common/upload-base.js:79 static/js/zamboni/global.js:569
 #, python-brace-format
 msgid "Your file exceeds the maximum size of {0}."
 msgstr "Ihre Datei überschreitet die maximale Größe von {0}."
 
+#: static/js/common/upload-base.js:105
 msgid "You cancelled the upload."
 msgstr "Sie haben das Hochladen abgebrochen."
 
+#: static/js/common/upload-image.js:102
 msgid "Images must be either PNG or JPG."
 msgstr "Grafiken müssen entweder PNG oder JPG sein."
 
+#: static/js/common/upload-image.js:106
 msgid "Videos must be in WebM."
 msgstr "Videos müssen im WebM-Format sein."
 
+#: static/js/stats/chart.js:298
 #, python-brace-format
 msgid "Week of {0}"
 msgstr "Woche von {0}"
 
+#: static/js/stats/chart.js:307
 #, python-brace-format
 msgid "{0} download"
 msgid_plural "{0} downloads"
 msgstr[0] "{0} Download"
 msgstr[1] "{0} Downloads"
 
+#: static/js/stats/chart.js:313
 #, python-brace-format
 msgid "{0} user"
 msgid_plural "{0} users"
 msgstr[0] "{0} Benutzer"
 msgstr[1] "{0} Benutzer"
 
+#: static/js/stats/chart.js:319
 #, python-brace-format
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
 msgstr[0] "{0} Add-on"
 msgstr[1] "{0} Add-ons"
 
+#: static/js/stats/chart.js:325
 #, python-brace-format
 msgid "{0} collection"
 msgid_plural "{0} collections"
 msgstr[0] "{0} Sammlung"
 msgstr[1] "{0} Sammlungen"
 
+#: static/js/stats/chart.js:331
 #, python-brace-format
 msgid "{0} review"
 msgid_plural "{0} reviews"
 msgstr[0] "{0} Bewertung"
 msgstr[1] "{0} Bewertungen"
 
+#: static/js/stats/chart.js:340
 #, python-brace-format
 msgid "{0} sale"
 msgid_plural "{0} sales"
 msgstr[0] "{0} Verkauf"
 msgstr[1] "{0} Verkäufe"
 
+#: static/js/stats/chart.js:346
 #, python-brace-format
 msgid "{0} refund"
 msgid_plural "{0} refunds"
 msgstr[0] "{0} Erstattung"
 msgstr[1] "{0} Erstattungen"
 
+#: static/js/stats/chart.js:352
 #, python-brace-format
 msgid "{0} install"
 msgid_plural "{0} installs"
 msgstr[0] "{0} Installation"
 msgstr[1] "{0} Installationen"
 
+#: static/js/stats/chart.js:453 static/js/stats/csv_keys.js:3 static/js/stats/csv_keys.js:109
 msgid "Downloads"
 msgstr "Downloads"
 
+#: static/js/stats/chart.js:465 static/js/stats/csv_keys.js:6 static/js/stats/csv_keys.js:110
 msgid "Daily Users"
 msgstr "Tägliche Benutzer"
 
+#: static/js/stats/chart.js:498
 msgid "Amount, in USD"
 msgstr "Betrag in US$"
 
+#: static/js/stats/chart.js:510 static/js/stats/csv_keys.js:104
 msgid "Number of Contributions"
 msgstr "Anzahl der Spenden"
 
+#: static/js/stats/chart.js:537
 msgid "More Info..."
 msgstr "Weitere Informationen …"
 
 #. L10n: {0} is an ISO-formatted date.
+#: static/js/stats/chart.js:543
 #, python-brace-format
 msgid "Details for {0}"
 msgstr "Details zu {0}"
 
+#: static/js/stats/csv_keys.js:9
 msgid "Collections Created"
 msgstr "Erstellte Sammlungen"
 
+#: static/js/stats/csv_keys.js:12
 msgid "Add-ons in Use"
 msgstr "Verwendete Add-ons"
 
+#: static/js/stats/csv_keys.js:15
 msgid "Add-ons Created"
 msgstr "Erstellte Add-ons"
 
+#: static/js/stats/csv_keys.js:18
 msgid "Add-ons Downloaded"
 msgstr "Heruntergeladene Add-ons"
 
+#: static/js/stats/csv_keys.js:21
 msgid "Add-ons Updated"
 msgstr "Aktualisierte Add-ons"
 
+#: static/js/stats/csv_keys.js:24
 msgid "Reviews Written"
 msgstr "Geschriebene Bewertungen"
 
+#: static/js/stats/csv_keys.js:27
 msgid "User Signups"
 msgstr "Registrierte Benutzer"
 
+#: static/js/stats/csv_keys.js:30
 msgid "Subscribers"
 msgstr "Abonnenten"
 
+#: static/js/stats/csv_keys.js:33
 msgid "Ratings"
 msgstr "Bewertungen"
 
+#: static/js/stats/csv_keys.js:36 static/js/stats/csv_keys.js:114
 msgid "Sales"
 msgstr "Verkäufe"
 
+#: static/js/stats/csv_keys.js:39 static/js/stats/csv_keys.js:113
 msgid "Installs"
 msgstr "Installationen"
 
+#: static/js/stats/csv_keys.js:42
 msgid "Unknown"
 msgstr "Unbekannt"
 
+#: static/js/stats/csv_keys.js:43
 msgid "Add-ons Manager"
 msgstr "Add-ons-Verwaltung"
 
+#: static/js/stats/csv_keys.js:44
 msgid "Add-ons Manager Promo"
 msgstr "Add-ons-Verwaltung „Promo“"
 
+#: static/js/stats/csv_keys.js:45
 msgid "Add-ons Manager Featured"
 msgstr "Add-ons-Verwaltung „Vorgestellt“"
 
+#: static/js/stats/csv_keys.js:46
 msgid "Add-ons Manager Learn More"
 msgstr "Add-ons-Verwaltung „Mehr erfahren“"
 
+#: static/js/stats/csv_keys.js:47
 msgid "Search Suggestions"
 msgstr "Suchvorschläge"
 
+#: static/js/stats/csv_keys.js:48
 msgid "Search Results"
 msgstr "Suchergebnisse"
 
+#: static/js/stats/csv_keys.js:49 static/js/stats/csv_keys.js:50 static/js/stats/csv_keys.js:51
 msgid "Homepage Promo"
 msgstr "Startseite „Promo“"
 
+#: static/js/stats/csv_keys.js:52 static/js/stats/csv_keys.js:53
 msgid "Homepage Featured"
 msgstr "Startseite „Vorgestellt“"
 
+#: static/js/stats/csv_keys.js:54 static/js/stats/csv_keys.js:55
 msgid "Homepage Up and Coming"
 msgstr "Startseite „Aufstrebend“"
 
+#: static/js/stats/csv_keys.js:56
 msgid "Homepage Most Popular"
 msgstr "Startseite „Beliebteste“"
 
+#: static/js/stats/csv_keys.js:57 static/js/stats/csv_keys.js:59
 msgid "Detail Page"
 msgstr "Detailseite"
 
+#: static/js/stats/csv_keys.js:58 static/js/stats/csv_keys.js:60
 msgid "Detail Page (bottom)"
 msgstr "Detailseite (Ende)"
 
+#: static/js/stats/csv_keys.js:61
 msgid "Detail Page (Development Channel)"
 msgstr "Detailseite (Entwicklerkanal)"
 
+#: static/js/stats/csv_keys.js:62 static/js/stats/csv_keys.js:63 static/js/stats/csv_keys.js:64
 msgid "Often Used With"
 msgstr "Oft verwendet mit"
 
+#: static/js/stats/csv_keys.js:65 static/js/stats/csv_keys.js:66
 msgid "Others By Author"
 msgstr "Andere von diesem Autor"
 
+#: static/js/stats/csv_keys.js:67 static/js/stats/csv_keys.js:68
 msgid "Dependencies"
 msgstr "Abhängigkeiten"
 
+#: static/js/stats/csv_keys.js:69 static/js/stats/csv_keys.js:70
 msgid "Upsell"
 msgstr "Zusatzverkäufe"
 
+#: static/js/stats/csv_keys.js:71
 msgid "Meet the Developer"
 msgstr "Lernen Sie den Entwickler kennen"
 
+#: static/js/stats/csv_keys.js:72
 msgid "User Profile"
 msgstr "Benutzerprofil"
 
+#: static/js/stats/csv_keys.js:73
 msgid "Version History"
 msgstr "Versionsgeschichte"
 
+#: static/js/stats/csv_keys.js:75
 msgid "Sharing"
 msgstr "Weitergeben"
 
+#: static/js/stats/csv_keys.js:76
 msgid "Category Pages"
 msgstr "Kategorieseiten"
 
+#: static/js/stats/csv_keys.js:77
 msgid "Collections"
 msgstr "Sammlungen"
 
+#: static/js/stats/csv_keys.js:78 static/js/stats/csv_keys.js:79
 msgid "Category Landing Featured Carousel"
 msgstr "Kategorie-Übersicht „Karussell der Vorgestellten“"
 
+#: static/js/stats/csv_keys.js:80 static/js/stats/csv_keys.js:81
 msgid "Category Landing Top Rated"
 msgstr "Kategorie-Übersicht „Höchste Bewertung“"
 
+#: static/js/stats/csv_keys.js:82 static/js/stats/csv_keys.js:83
 msgid "Category Landing Most Popular"
 msgstr "Kategorie-Übersicht „Beliebteste“"
 
+#: static/js/stats/csv_keys.js:84 static/js/stats/csv_keys.js:85
 msgid "Category Landing Recently Added"
 msgstr "Kategorie-Übersicht „Zuletzt hinzugefügt“"
 
+#: static/js/stats/csv_keys.js:86 static/js/stats/csv_keys.js:87
 msgid "Browse Listing Featured Sort"
 msgstr "Auflistung durchsuchen „Sortiert nach Vorgestellt“"
 
+#: static/js/stats/csv_keys.js:88 static/js/stats/csv_keys.js:89
 msgid "Browse Listing Users Sort"
 msgstr "Auflistung durchsuchen „Sortiert nach Benutzern“"
 
+#: static/js/stats/csv_keys.js:90 static/js/stats/csv_keys.js:91
 msgid "Browse Listing Rating Sort"
 msgstr "Auflistung durchsuchen „Sortiert nach Bewertung“"
 
+#: static/js/stats/csv_keys.js:92 static/js/stats/csv_keys.js:93
 msgid "Browse Listing Created Sort"
 msgstr "Auflistung durchsuchen „Sortiert nach Erstellt“"
 
+#: static/js/stats/csv_keys.js:94 static/js/stats/csv_keys.js:95
 msgid "Browse Listing Name Sort"
 msgstr "Auflistung durchsuchen „Sortiert nach Name“"
 
+#: static/js/stats/csv_keys.js:96 static/js/stats/csv_keys.js:97
 msgid "Browse Listing Popular Sort"
 msgstr "Auflistung durchsuchen „Sortiert nach Beliebtheit“"
 
+#: static/js/stats/csv_keys.js:98 static/js/stats/csv_keys.js:99
 msgid "Browse Listing Updated Sort"
 msgstr "Auflistung durchsuchen „Sortiert nach Aktualisiert“"
 
+#: static/js/stats/csv_keys.js:100 static/js/stats/csv_keys.js:101
 msgid "Browse Listing Up and Coming Sort"
 msgstr "Auflistung durchsuchen „Sortiert nach Aufstrebende“"
 
+#: static/js/stats/csv_keys.js:105
 msgid "Total Amount Contributed"
 msgstr "Insgesamt gespendeter Betrag"
 
+#: static/js/stats/csv_keys.js:106
 msgid "Average Contribution"
 msgstr "Durchschnittlich gespendeter Betrag"
 
+#: static/js/stats/csv_keys.js:115
 msgid "Usage"
 msgstr "Verwendung"
 
+#: static/js/stats/csv_keys.js:118
 msgid "Firefox"
 msgstr "Firefox"
 
+#: static/js/stats/csv_keys.js:119
 msgid "Mozilla"
 msgstr "Mozilla"
 
+#: static/js/stats/csv_keys.js:120
 msgid "Thunderbird"
 msgstr "Thunderbird"
 
+#: static/js/stats/csv_keys.js:121
 msgid "Sunbird"
 msgstr "Sunbird"
 
+#: static/js/stats/csv_keys.js:122
 msgid "SeaMonkey"
 msgstr "SeaMonkey"
 
+#: static/js/stats/csv_keys.js:123
 msgid "Fennec"
 msgstr "Fennec"
 
+#: static/js/stats/csv_keys.js:124
 msgid "Android"
 msgstr "Android"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:129
 #, python-brace-format
 msgid "Downloads and Daily Users, last {0} days"
 msgstr "Downloads und tägliche Benutzer, letzte {0} Tage"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:131
 #, python-brace-format
 msgid "Downloads and Daily Users from {0} to {1}"
 msgstr "Downloads und tägliche Benutzer von {0} bis {1}"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:135
 #, python-brace-format
 msgid "Installs and Daily Users, last {0} days"
 msgstr "Installationen und tägliche Benutzer, letzte {0} Tage"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:137
 #, python-brace-format
 msgid "Installs and Daily Users from {0} to {1}"
 msgstr "Installationen und tägliche Benutzer von {0} bis {1}"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:141
 #, python-brace-format
 msgid "Downloads, last {0} days"
 msgstr "Downloads in den letzten {0} Tagen"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:143
 #, python-brace-format
 msgid "Downloads from {0} to {1}"
 msgstr "Downloads von {0} bis {1}"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:147
 #, python-brace-format
 msgid "Daily Users, last {0} days"
 msgstr "Tägliche Benutzer in den letzten {0} Tagen"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:149
 #, python-brace-format
 msgid "Daily Users from {0} to {1}"
 msgstr "Tägliche Benutzer von {0} bis {1}"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:153
 #, python-brace-format
 msgid "Applications, last {0} days"
 msgstr "Apps in den letzten {0} Tagen"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:155
 #, python-brace-format
 msgid "Applications from {0} to {1}"
 msgstr "Apps von {0} bis {1}"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:159
 #, python-brace-format
 msgid "Countries, last {0} days"
 msgstr "Länder in den letzten {0} Tagen"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:161
 #, python-brace-format
 msgid "Countries from {0} to {1}"
 msgstr "Länder von {0} bis {1}"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:165
 #, python-brace-format
 msgid "Platforms, last {0} days"
 msgstr "Plattformen in den letzten {0} Tagen"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:167
 #, python-brace-format
 msgid "Platforms from {0} to {1}"
 msgstr "Plattformen von {0} bis {1}"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:171
 #, python-brace-format
 msgid "Languages, last {0} days"
 msgstr "Sprachen in den letzten {0} Tagen"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:173
 #, python-brace-format
 msgid "Languages from {0} to {1}"
 msgstr "Sprachen von {0} bis {1}"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:177
 #, python-brace-format
 msgid "Add-on Versions, last {0} days"
 msgstr "Add-on-Versionen in den letzten {0} Tagen"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:179
 #, python-brace-format
 msgid "Add-on Versions from {0} to {1}"
 msgstr "Add-on-Versionen von {0} bis {1}"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:183
 #, python-brace-format
 msgid "Add-on Status, last {0} days"
 msgstr "Add-on-Status in den letzten {0} Tagen"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:185
 #, python-brace-format
 msgid "Add-on Status from {0} to {1}"
 msgstr "Add-on-Status von {0} bis {1}"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:189
 #, python-brace-format
 msgid "Download Sources, last {0} days"
 msgstr "Download-Quellen in den letzten {0} Tagen"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:191
 #, python-brace-format
 msgid "Download Sources from {0} to {1}"
 msgstr "Download-Quellen von {0} bis {1}"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:195
 #, python-brace-format
 msgid "Download Mediums, last {0} days"
 msgstr "Download-Medien in den letzten {0} Tagen"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:197
 #, python-brace-format
 msgid "Download Mediums from {0} to {1}"
 msgstr "Download-Medien von {0} bis {1}"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:201
 #, python-brace-format
 msgid "Download Contents, last {0} days"
 msgstr "Download-Inhalte in den letzten {0} Tagen"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:203
 #, python-brace-format
 msgid "Download Contents from {0} to {1}"
 msgstr "Download-Inhalte von {0} bis {1}"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:207
 #, python-brace-format
 msgid "Download Campaigns, last {0} days"
 msgstr "Download-Kampagnen in den letzten {0} Tagen"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:209
 #, python-brace-format
 msgid "Download Campaigns from {0} to {1}"
 msgstr "Download-Kampagnen von {0} bis {1}"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:213
 #, python-brace-format
 msgid "Contributions, last {0} days"
 msgstr "Spenden in den letzten {0} Tagen"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:215
 #, python-brace-format
 msgid "Contributions from {0} to {1}"
 msgstr "Spenden von {0} bis {1}"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:219
 #, python-brace-format
 msgid "Site Metrics, last {0} days"
 msgstr "Website-Statistiken, letzte {0} Tage"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:221
 #, python-brace-format
 msgid "Site Metrics from {0} to {1}"
 msgstr "Website-Statistiken von {0} bis {1}"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:225
 #, python-brace-format
 msgid "Add-ons in Use, last {0} days"
 msgstr "Verwendete Add-ons, letzte {0} Tage"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:227
 #, python-brace-format
 msgid "Add-ons in Use from {0} to {1}"
 msgstr "Verwendete Add-ons von {0} bis {1}"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:231
 #, python-brace-format
 msgid "Add-ons Downloaded, last {0} days"
 msgstr "Heruntergeladene Add-ons, letzte {0} Tage"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:233
 #, python-brace-format
 msgid "Add-ons Downloaded from {0} to {1}"
 msgstr "Heruntergeladene Add-ons von {0} bis {1}"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:237
 #, python-brace-format
 msgid "Add-ons Created, last {0} days"
 msgstr "Erstellte Add-ons, letzte {0} Tage"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:239
 #, python-brace-format
 msgid "Add-ons Created from {0} to {1}"
 msgstr "Erstellte Add-ons von {0} bis {1}"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:243
 #, python-brace-format
 msgid "Add-ons Updated, last {0} days"
 msgstr "Aktualisierte Add-ons, letzte {0} Tage"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:245
 #, python-brace-format
 msgid "Add-ons Updated from {0} to {1}"
 msgstr "Aktualisierte Add-ons von {0} bis {1}"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:249
 #, python-brace-format
 msgid "Reviews Written, last {0} days"
 msgstr "Geschriebene Bewertungen, letzte {0} Tage"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:251
 #, python-brace-format
 msgid "Reviews Written from {0} to {1}"
 msgstr "Geschriebene Bewertungen von {0} bis {1}"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:255
 #, python-brace-format
 msgid "User Signups, last {0} days"
 msgstr "Registrierte Benutzer, letzte {0} Tage"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:257
 #, python-brace-format
 msgid "User Signups from {0} to {1}"
 msgstr "Registrierte Benutzer von {0} bis {1}"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:261
 #, python-brace-format
 msgid "Collections Created, last {0} days"
 msgstr "Erstellte Sammlungen, letzte {0} Tage"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:263
 #, python-brace-format
 msgid "Collections Created from {0} to {1}"
 msgstr "Erstellte Sammlungen von {0} bis {1}"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:267
 #, python-brace-format
 msgid "Subscribers, last {0} days"
 msgstr "Abonnenten, letzte {0} Tage"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:269
 #, python-brace-format
 msgid "Subscribers from {0} to {1}"
 msgstr "Abonnenten von {0} bis {1}"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:273
 #, python-brace-format
 msgid "Ratings, last {0} days"
 msgstr "Bewertungen, letzte {0} Tage"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:275
 #, python-brace-format
 msgid "Ratings from {0} to {1}"
 msgstr "Bewertungen von {0} bis {1}"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:279
 #, python-brace-format
 msgid "Sales, last {0} days"
 msgstr "Verkäufe, letzte {0} Tage"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:281
 #, python-brace-format
 msgid "Sales from {0} to {1}"
 msgstr "Verkäufe von {0} bis {1}"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:285
 #, python-brace-format
 msgid "Installs, last {0} days"
 msgstr "Installationen, letzte {0} Tage"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:287
 #, python-brace-format
 msgid "Installs from {0} to {1}"
 msgstr "Installationen von {0} bis {1}"
 
 #. L10n: {0} and {1} are integers.
+#: static/js/stats/csv_keys.js:293
 #, python-brace-format
 msgid "<b>{0}</b> in last {1} days"
 msgstr "<b>{0}</b> in den letzten {1} Tagen"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:295 static/js/stats/csv_keys.js:301
 #, python-brace-format
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "<b>{0}</b> von {1} bis {2}"
 
 #. L10n: {0} and {1} are integers.
+#: static/js/stats/csv_keys.js:299
 #, python-brace-format
 msgid "<b>{0}</b> average in last {1} days"
 msgstr "Durchschnittlich <b>{0}</b> in den letzten {1} Tagen"
 
+#: static/js/stats/overview.js:18
 msgid "No data available."
 msgstr "Keine Daten verfügbar"
 
+#: static/js/stats/table.js:84
 msgid "Date"
 msgstr "Datum"
 
+#: static/js/stats/topchart.js:108
 msgid "Other"
 msgstr "Andere"
 
+#: static/js/zamboni/devhub.js:300
 msgid "Changes Saved"
 msgstr "Änderungen gespeichert"
 
+#: static/js/zamboni/devhub.js:316
 msgid "Enter a new author's email address"
 msgstr "Geben Sie eine neue E-Mail-Adresse des Autors ein"
 
+#: static/js/zamboni/devhub.js:440
 msgid "There was an error uploading your file."
 msgstr "Beim Hochladen Ihrer Datei ist ein Fehler aufgetreten."
 
+#: static/js/zamboni/devhub.js:596
 #, python-brace-format
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} Datei"
 msgstr[1] "{files} Dateien"
 
+#: static/js/zamboni/devhub.js:1196
 msgid "Image changes being processed"
 msgstr "Grafikänderungen werden angewendet"
 
+#: static/js/zamboni/global.js:463
 #, python-brace-format
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> Zeichen"
 msgstr[1] "<b>{0}</b> Zeichen"
 
+#: static/js/zamboni/global.js:472
 #, python-brace-format
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "Noch <b>{0}</b> Zeichen übrig"
 msgstr[1] "Noch <b>{0}</b> Zeichen übrig"
 
+#: static/js/zamboni/init.js:12
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "Diese Funktion wurde zeitweilig deaktiviert, während wir Wartungsarbeiten an der Website durchführen. Bitte versuchen Sie es später erneut."
 
+#: static/js/zamboni/l10n.js:164
 msgid "Remove this localization"
 msgstr "Diese Übersetzung entfernen"
 
+#: static/js/zamboni/reviewers.js:258
 #, python-brace-format
 msgid "{name} was viewing this page first."
 msgstr "{name} hat diese Seite zuerst angesehen."
 
+#: static/js/zamboni/reviewers.js:266
 msgid "Review page polling failed."
 msgstr "Abrufen der Bewertungsseite fehlgeschlagen."
 
+#: static/js/zamboni/reviewers.js:554
 #, python-brace-format
 msgid "{name} was viewing this add-on first."
 msgstr "{name} hat sich dieses Add-on zuerst angesehen."
 
+#: static/js/zamboni/reviewers.js:567 static/js/zamboni/reviewers.js:593
 msgid "Loading&hellip;"
 msgstr "Wird geladen &hellip;"
 
+#: static/js/zamboni/reviewers.js:572
 msgid "Version Notes"
 msgstr "Versionshinweise"
 
+#: static/js/zamboni/reviewers.js:579
 msgid "Notes for Reviewers"
 msgstr "Hinweise für Überprüfer"
 
+#: static/js/zamboni/reviewers.js:586
 msgid "No version notes found"
 msgstr "Keine Kommentare zur Version gefunden"
 
+#: static/js/zamboni/reviewers.js:598
 msgid "Review Text"
 msgstr "Text überprüfen"
 
+#: static/js/zamboni/reviewers.js:605
 msgid "Review notes found"
 msgstr "Vorhandene Kommentare prüfen"
 
+#: static/js/zamboni/static_theme.js:217
 #, python-brace-format
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "Maximale Upload-Größe ist {0} – wählen Sie eine kleinere Hintergrundgrafik."
 
+#: static/js/zamboni/themes_review.js:199
 msgid "Requested Info"
 msgstr "Informationen angefordert"
 
+#: static/js/zamboni/themes_review.js:200
 msgid "Flagged"
 msgstr "Markiert"
 
+#: static/js/zamboni/themes_review.js:201
 msgid "Duplicate"
 msgstr "Duplikat"
 
+#: static/js/zamboni/themes_review.js:202
 msgid "Rejected"
 msgstr "Abgelehnt"
 
+#: static/js/zamboni/themes_review.js:203
 msgid "Approved"
 msgstr "Freigeschaltet"
 
+#: static/js/zamboni/themes_review.js:492
 msgid "No results found"
 msgstr "Keine Ergebnisse gefunden"
 
+#: static/js/zamboni/themes_review_templates.js:43
 msgid "Theme"
 msgstr "Theme"
 
+#: static/js/zamboni/themes_review_templates.js:45
 msgid "Reviewer"
 msgstr "Überprüfer"
 
+#: static/js/zamboni/themes_review_templates.js:47
 msgid "Status"
 msgstr "Status"
 
+#: static/js/zamboni/validator.js:89
 msgid "All tests passed successfully."
 msgstr "Alle Tests wurden erfolgreich durchgeführt."
 
+#: static/js/zamboni/validator.js:92 static/js/zamboni/validator.js:388
 msgid "These tests were not run."
 msgstr "Diese Tests wurden nicht durchgeführt."
 
+#: static/js/zamboni/validator.js:155 static/js/zamboni/validator.js:177
 msgid "Tests"
 msgstr "Tests"
 
+#: static/js/zamboni/validator.js:259 static/js/zamboni/validator.js:492 static/js/zamboni/validator.js:516
 msgid "Error"
 msgstr "Fehler"
 
+#: static/js/zamboni/validator.js:259
 msgid "Warning"
 msgstr "Warnung"
 
+#: static/js/zamboni/validator.js:332
 #, python-brace-format
 msgid "{0} line {1} column {2}"
 msgstr "{0} Zeile {1} Spalte {2}"
 
+#: static/js/zamboni/validator.js:339
 #, python-brace-format
 msgid "{0} line {1}"
 msgstr "{0} Zeile {1}"
 
+#: static/js/zamboni/validator.js:376
 msgid "Add-on failed validation."
 msgstr "Add-on hat die Überprüfung nicht bestanden."
 
+#: static/js/zamboni/validator.js:378
 msgid "Add-on passed validation."
 msgstr "Add-on hat die Überprüfung bestanden."
 
+#: static/js/zamboni/validator.js:391
 #, python-brace-format
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} Fehler"
 msgstr[1] "{0} Fehler"
 
+#: static/js/zamboni/validator.js:394
 #, python-brace-format
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} Warnung"
 msgstr[1] "{0} Warnungen"
 
+#: static/js/zamboni/validator.js:397
 #, python-brace-format
 msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] "{0} Nachricht"
 msgstr[1] "{0} Nachrichten"
 
+#: static/js/zamboni/validator.js:494
 msgid "Validation task could not complete or completed with errors"
 msgstr "Überprüfung konnte nicht abgeschlossen werden oder wurde mit Fehlern abgeschlossen"
 
+#: static/js/zamboni/validator.js:517
 msgid "Internal server error"
 msgstr "Interner Serverfehler"
