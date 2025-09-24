@@ -858,7 +858,7 @@ class TestCinderJob(TestCase):
         assert isinstance(helper, CinderAddon)
         assert isinstance(helper, CinderAddonHandledByReviewers)
         assert helper.addon == addon
-        assert helper.version_string is None
+        assert helper.versions_strings is None
 
         helper = CinderJob.get_entity_helper(
             addon,
@@ -869,7 +869,7 @@ class TestCinderJob(TestCase):
         assert isinstance(helper, CinderAddon)
         assert isinstance(helper, CinderAddonHandledByReviewers)
         assert helper.addon == addon
-        assert helper.version_string == addon.current_version.version
+        assert helper.versions_strings == [addon.current_version.version]
 
         helper = CinderJob.get_entity_helper(user, resolved_in_reviewer_tools=False)
         assert isinstance(helper, CinderUser)
@@ -3912,7 +3912,7 @@ class TestContentDecision(TestCase):
 
         assert job.reload().resolvable_in_reviewer_tools is True
         assert job.decision == decision
-        self._check_requeue_decision(job.final_decision, job, decision, user)        
+        self._check_requeue_decision(job.final_decision, job, decision, user)
 
     def test_get_target_review_url(self):
         addon = addon_factory()

@@ -153,7 +153,10 @@ class CinderJob(ModelBase):
         if isinstance(target, Addon):
             if resolved_in_reviewer_tools:
                 return CinderAddonHandledByReviewers(
-                    target, versions_strings=[addon_version_string]
+                    target,
+                    versions_strings=[addon_version_string]
+                    if addon_version_string
+                    else None,
                 )
             else:
                 return CinderAddon(target)
