@@ -1151,7 +1151,7 @@ class Addon(OnChangeMixin, ModelBase):
         )
 
     def find_latest_version(
-        self, *, channel, exclude=((amo.STATUS_DISABLED,)), deleted=False
+        self, channel, exclude=((amo.STATUS_DISABLED,)), deleted=False
     ):
         """Retrieve the latest version of an add-on for the specified channel.
 
