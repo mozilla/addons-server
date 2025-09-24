@@ -5622,7 +5622,7 @@ msgstr "Odstranite moteče in neželene rezultate iskanja ter povezane video vse
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:679
 msgid "Makes Firefox appear as Chrome to websites trying to block Firefox."
-msgstr "Da je Firefox spletnim mestom, ki poskušajo zavrniti Firefox, prikazan kot Chrome."
+msgstr "Naj se Firefox spletnim mestom, ki poskušajo blokirati Firefox, predstavi kot Chrome."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:682
