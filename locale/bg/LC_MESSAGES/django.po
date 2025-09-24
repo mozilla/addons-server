@@ -1252,7 +1252,7 @@ msgstr ""
 
 #: src/olympia/constants/activity.py:1217
 msgid "Version rollback failure"
-msgstr ""
+msgstr "Грешка при връщане към предишна версия"
 
 #: src/olympia/constants/activity.py:1246
 #, python-brace-format
