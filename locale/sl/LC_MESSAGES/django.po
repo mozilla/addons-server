@@ -420,7 +420,7 @@ msgstr "Te reglete ni mogoče uporabiti. Izberite drugačno."
 
 #: src/olympia/addons/serializers.py:1888
 msgid "There is no rollback available in this channel."
-msgstr "V tem kanalu ni na voljo povratka."
+msgstr "V tem kanalu vračanje različic ni na voljo."
 
 #: src/olympia/addons/serializers.py:1898
 #, python-format
