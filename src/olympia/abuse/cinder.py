@@ -495,7 +495,7 @@ class CinderAddonHandledByReviewers(CinderAddon):
 
     def __init__(self, addon, *, versions_strings=None):
         super().__init__(addon)
-        self.versions_strings = versions_strings
+        self.versions_strings = versions_strings or []
 
     def get_versions(self):
         """Return Version queryset corresponding to the versions strings on
@@ -548,9 +548,11 @@ class CinderAddonHandledByReviewers(CinderAddon):
             else NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION
         )
 
-        # If we don't have versions, flag current to be safe.
-        # (There were either no specific version reported, or an unknown one)
-        if not versions:
+        # If we don't have versions, or we had None in the versions_strings,
+        # flag current or latest listed: there were either no specific version
+        # reported, or an unknown one.
+        versions = set(versions)
+        if not versions or None in self.versions_strings:
             latest_or_current = self.addon.current_version or (
                 # for an appeal there may not be a current version, so look for others.
                 appeal
@@ -559,7 +561,8 @@ class CinderAddonHandledByReviewers(CinderAddon):
                 )
             )
             if latest_or_current:
-                versions = [latest_or_current]
+                versions.add(latest_or_current)
+
         log.debug(
             'Found %s versions potentially needing NHR [%s]',
             len(versions),
@@ -618,9 +621,7 @@ class CinderAddonHandledByReviewers(CinderAddon):
     def post_queue_move(self, *, job, from_2nd_level=False):
         # When the move is to AMO reviewers we need to flag versions for review
         self.versions_strings = set(
-            job.abusereport_set.exclude(addon_version=None).values_list(
-                'addon_version', flat=True
-            )
+            job.abusereport_set.values_list('addon_version', flat=True)
         )
         self.flag_for_human_review(
             versions=self.get_versions(),

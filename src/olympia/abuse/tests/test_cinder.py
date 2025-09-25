@@ -1622,6 +1622,23 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         assert NeedsHumanReview.objects.count() == 2
         assert ActivityLog.objects.count() == 0
 
+    def test_post_queue_move_with_multiple_reports_including_one_with_no_versions(self):
+        cinder_instance, cinder_job, listed_version, unlisted_version = (
+            self._setup_post_queue_move_test()
+        )
+        other_version = version_factory(
+            addon=listed_version.addon, created=self.days_ago(42))
+        # Only one of the reports is against a specific version - and that's
+        # not the current one.
+        cinder_job.abusereport_set.latest('pk').update(addon_version=other_version.version)
+        # ActivityLog.objects.all().delete()
+        cinder_instance.post_queue_move(job=cinder_job)
+        # We flagged the other_version, but also the addon current version
+        # because one of the reports didn't specify which version to flag.
+        assert NeedsHumanReview.objects.count() == 2
+        assert listed_version.needshumanreview_set.exists()
+        assert other_version.needshumanreview_set.exists()
+
     def test_workflow_recreate_no_versions_to_flag(self):
         cinder_instance, cinder_job, listed_version, unlisted_version = (
             self._setup_post_queue_move_test()
