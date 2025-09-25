@@ -423,7 +423,7 @@ msgstr "Bu kanalda geri döndürme işlemi yapılamaz."
 #: src/olympia/addons/serializers.py:1898
 #, python-format
 msgid "Rollback is only available for version %s in this channel."
-msgstr ""
+msgstr "Geri döndürme işlemi bu kanalda yalnızca %s sürümü için kullanılabilir."
 
 #: src/olympia/addons/serializers.py:1904
 msgid "Only approved versions can be rolled back, except the most recent version."
@@ -5611,7 +5611,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:679
 msgid "Makes Firefox appear as Chrome to websites trying to block Firefox."
-msgstr ""
+msgstr "Firefox’u engellemeye çalışan web sitelerine Firefox’u Chrome gibi gösterir."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:682

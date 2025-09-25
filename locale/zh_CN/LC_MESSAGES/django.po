@@ -5525,7 +5525,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:673
 msgid "Hover your mouse over thumbnails to easily browse and download HD images."
-msgstr ""
+msgstr "将鼠标悬停在缩略图上，即可轻松浏览和下载高清图像。"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:676
