@@ -162,11 +162,6 @@ DJANGO_PERMISSIONS_MAPPING.update(
     {
         'abuse.change_abusereport': ABUSEREPORTS_EDIT,
         'abuse.view_cinderpolicy': CINDER_POLICIES_VIEW,
-        # Note that ActivityLog's ModelAdmin actually forbids deletion entirely.
-        # This is just here to allow deletion of users, because django checks
-        # foreign keys even though users are only soft-deleted and related objects
-        # will be kept.
-        'activity.delete_activitylog': ADMIN_ADVANCED,
         'addons.change_addon': ADDONS_EDIT,
         **_addchangedelete('addons', 'addonuser', ADMIN_ADVANCED),
         'addons.change_addonreviewerflags': ADMIN_ADVANCED,
@@ -218,7 +213,6 @@ DJANGO_PERMISSIONS_MAPPING.update(
         'scanners.view_scannerqueryresult': ADMIN_SCANNERS_QUERY_VIEW,
         **_addchangedelete('tags', 'tag', DISCOVERY_EDIT),
         'users.change_userprofile': USERS_EDIT,
-        'users.delete_userprofile': ADMIN_ADVANCED,
         **_addchangedelete(
             'users', 'disposableemaildomainrestriction', ADMIN_DISPOSABLE_EMAIL_EDIT
         ),
