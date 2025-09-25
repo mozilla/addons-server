@@ -5386,15 +5386,13 @@ msgstr "Disfruta de descargas multihilo. Detecta automáticamente diferentes tip
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:503
-#, fuzzy
 msgid "Save images easily—just grab them from your current tab."
-msgstr "Guarda imágenes desde la pestaña actual."
+msgstr "Guarda imágenes fácilmente—solo arrástralas desde tu pestaña actual."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:506
-#, fuzzy
 msgid "Measure web pages. Draw a digital ruler across any web page to check height, width, and alignment of page elements."
-msgstr "Dibuja una regla digital en cualquier página para comprobar su altura, anchura y alineación de los elementos."
+msgstr "Mide páginas web. Dibuja una regla digital en cualquier página web para comprobar la altura, la anchura y la alineación de los elementos de la página."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:509
