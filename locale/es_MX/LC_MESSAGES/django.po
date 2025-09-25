@@ -238,7 +238,7 @@ msgstr "No se permiten enlaces."
 
 #: src/olympia/accounts/serializers.py:158
 msgid "This display name cannot be used."
-msgstr "No se puede utilizar el nombre mostrado."
+msgstr "No se puede utilizar este nombre mostrado."
 
 #: src/olympia/accounts/serializers.py:167 src/olympia/addons/fields.py:366 src/olympia/devhub/views.py:1024
 msgid "Images must be either PNG or JPG."
@@ -6171,7 +6171,7 @@ msgstr ""
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1163
 msgid "See more staff picks"
-msgstr ""
+msgstr "Ver más selecciones de los editores"
 
 #: src/olympia/files/models.py:324
 msgid "Unreviewed"
