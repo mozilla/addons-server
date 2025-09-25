@@ -1627,10 +1627,13 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
             self._setup_post_queue_move_test()
         )
         other_version = version_factory(
-            addon=listed_version.addon, created=self.days_ago(42))
+            addon=listed_version.addon, created=self.days_ago(42)
+        )
         # Only one of the reports is against a specific version - and that's
         # not the current one.
-        cinder_job.abusereport_set.latest('pk').update(addon_version=other_version.version)
+        cinder_job.abusereport_set.latest('pk').update(
+            addon_version=other_version.version
+        )
         # ActivityLog.objects.all().delete()
         cinder_instance.post_queue_move(job=cinder_job)
         # We flagged the other_version, but also the addon current version

@@ -858,7 +858,7 @@ class TestCinderJob(TestCase):
         assert isinstance(helper, CinderAddon)
         assert isinstance(helper, CinderAddonHandledByReviewers)
         assert helper.addon == addon
-        assert helper.versions_strings is None
+        assert helper.versions_strings == []
 
         helper = CinderJob.get_entity_helper(
             addon,
