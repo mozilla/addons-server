@@ -5652,17 +5652,17 @@ msgstr "Potente diccionario emergente optimizado para aprender nuevos idiomas."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:673
 msgid "Hover your mouse over thumbnails to easily browse and download HD images."
-msgstr ""
+msgstr "Pasa el mouse sobre las miniaturas para buscar y descargar fácilmente imágenes en HD."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:676
 msgid "Remove distracting and unwanted search results and related video content."
-msgstr ""
+msgstr "Elimina resultados de búsqueda no deseados o que distraen, así como el contenido de vídeo relacionado."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:679
 msgid "Makes Firefox appear as Chrome to websites trying to block Firefox."
-msgstr ""
+msgstr "Haz que Firefox aparezca como Chrome para los sitios web que intentan bloquear Firefox."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:682
