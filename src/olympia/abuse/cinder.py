@@ -551,7 +551,6 @@ class CinderAddonHandledByReviewers(CinderAddon):
         # If we don't have versions, or we had None in the versions_strings,
         # flag current or latest listed: there were either no specific version
         # reported, or an unknown one.
-        versions = set(versions)
         if not versions or None in self.versions_strings:
             latest_or_current = self.addon.current_version or (
                 # for an appeal there may not be a current version, so look for others.
@@ -561,8 +560,11 @@ class CinderAddonHandledByReviewers(CinderAddon):
                 )
             )
             if latest_or_current:
+                versions = set(versions)
                 versions.add(latest_or_current)
 
+        # Sort versions for logging consistency.
+        versions = sorted(versions, key=lambda v: v.id)
         log.debug(
             'Found %s versions potentially needing NHR [%s]',
             len(versions),
