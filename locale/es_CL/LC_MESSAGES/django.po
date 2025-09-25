@@ -422,16 +422,16 @@ msgstr "Este slug no puede ser usado. Por favor, elige otro."
 
 #: src/olympia/addons/serializers.py:1888
 msgid "There is no rollback available in this channel."
-msgstr ""
+msgstr "No hay ninguna reversión disponible en este canal."
 
 #: src/olympia/addons/serializers.py:1898
 #, python-format
 msgid "Rollback is only available for version %s in this channel."
-msgstr ""
+msgstr "La reversión solo está disponible para la versión %s en este canal."
 
 #: src/olympia/addons/serializers.py:1904
 msgid "Only approved versions can be rolled back, except the most recent version."
-msgstr ""
+msgstr "Sólo se pueden revertir las versiones aprobadas, excepto la versión más reciente."
 
 #: src/olympia/addons/utils.py:52
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -2111,7 +2111,7 @@ msgstr "Algo se fue a las pailas, por favor contacta al soporte para desarrollad
 
 #: src/olympia/devhub/forms.py:1653
 msgid "No appropriate version available"
-msgstr ""
+msgstr "No hay ninguna versión apropiada disponible"
 
 #: src/olympia/devhub/forms.py:1660
 msgid "Choose version"
@@ -5647,7 +5647,7 @@ msgstr "Denegar automáticamente las solicitudes de seguimiento de ventanas emer
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:670
 msgid "Powerful pop-up dictionary optimized for learning new languages."
-msgstr ""
+msgstr "Potente diccionario emergente optimizado para aprender nuevos idiomas."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:673
