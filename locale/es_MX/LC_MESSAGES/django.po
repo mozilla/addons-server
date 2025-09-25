@@ -3489,9 +3489,8 @@ msgid "Manage Listing"
 msgstr "Gestionar lista"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:47
-#, fuzzy
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, concatenated or otherwise machine-generated code."
-msgstr "También puedes editar la versión que acabas de enviar agregando notas de versión o el código fuente en el caso de que incluya código difícil o confuso."
+msgstr "También puedes editar esta versión para agregar notas de versión o código fuente si tu envío incluye código minimizado, concatenado o generado por máquina."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:52
 #, python-brace-format
@@ -3535,9 +3534,8 @@ msgid "Web template engines, both for HTML and CSS"
 msgstr "Motores de plantillas web, tanto para HTML como para CSS"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:32
-#, fuzzy
 msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the extension"
-msgstr "Cualquier otra herramienta que acceda a código o archivos y procese y genere código o archivo(s) para incluirlos en el complemento"
+msgstr "Cualquier otra herramienta que acceda a código o archivos, aplique procesamiento y genere código o archivos para incluir en la extensión"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:43
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
@@ -3995,7 +3993,7 @@ msgstr "Borrar esta aplicación"
 msgid "Select a category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
 msgstr[0] "Selecciona una categoría para este complemento:"
-msgstr[1] ""
+msgstr[1] "Selecciona <b>hasta {0}</b> categorías para este complemento:"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:2
 msgid "Roll back to a previous version"
@@ -5377,9 +5375,8 @@ msgstr "Lee con más claridad y facilidad. Elimina el desorden alrededor del tex
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:497 src/olympia/discovery/strings.jinja2:688
-#, fuzzy
 msgid "Block ads and get enhanced protection against malware and ad tracking."
-msgstr "No solo bloquea los anuncios molestos, también te protege frente a malware y rastreo de publicidad."
+msgstr "Bloquea los anuncios y obtén una protección mejorada contra el malware y el seguimiento de anuncios."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
