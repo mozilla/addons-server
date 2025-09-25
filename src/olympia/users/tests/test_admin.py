@@ -15,12 +15,10 @@ from pyquery import PyQuery as pq
 from olympia import amo, core
 from olympia.abuse.models import AbuseReport
 from olympia.activity.models import ActivityLog
-from olympia.addons.models import AddonUser
 from olympia.amo.templatetags.jinja_helpers import format_datetime
 from olympia.amo.tests import (
     TestCase,
     addon_factory,
-    collection_factory,
     user_factory,
     version_factory,
 )
@@ -524,11 +522,9 @@ class TestUserAdmin(TestCase):
         assert response.status_code == 200
 
     @mock.patch.object(UserProfile, '_delete_related_content')
-    def test_can_not_delete_with_users_edit_permission(
-        self, _delete_related_content_mock
-    ):
+    def test_can_not_delete(self, _delete_related_content_mock):
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Users:Edit')
+        self.grant_permission(user, '*:*')
         assert not user.deleted
         self.client.force_login(user)
         response = self.client.get(self.delete_url, follow=True)
@@ -539,76 +535,6 @@ class TestUserAdmin(TestCase):
         assert not user.deleted
         assert user.email
         assert _delete_related_content_mock.call_count == 0
-
-    @mock.patch.object(UserProfile, '_delete_related_content')
-    def test_can_delete_with_admin_advanced_permission(
-        self, _delete_related_content_mock
-    ):
-        user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Admin:Advanced')
-        assert not self.user.deleted
-        self.client.force_login(user)
-        core.set_user(user)
-        response = self.client.get(self.delete_url, follow=True)
-        assert response.status_code == 200
-        assert b'Cannot delete user' not in response.content
-        response = self.client.post(self.delete_url, {'post': 'yes'}, follow=True)
-        assert response.status_code == 200
-        self.user.reload()
-        assert self.user.deleted
-        assert self.user.email
-        assert _delete_related_content_mock.call_count == 1
-        alog = ActivityLog.objects.latest('pk')
-        assert alog.action == amo.LOG.ADMIN_USER_ANONYMIZED.id
-        assert alog.arguments == [self.user]
-
-    def test_can_delete_with_related_objects_with_admin_advanced_permission(self):
-        # Add related instances...
-        addon = addon_factory()
-        addon_with_other_authors = addon_factory()
-        AddonUser.objects.create(addon=addon_with_other_authors, user=user_factory())
-        relations_that_should_be_deleted = [
-            AddonUser.objects.create(addon=addon_with_other_authors, user=self.user),
-            Rating.objects.create(addon=addon_factory(), rating=5, user=self.user),
-            addon,  # Has no other author, should be deleted.
-            collection_factory(author=self.user),
-        ]
-        relations_that_should_survive = [
-            AbuseReport.objects.create(reporter=self.user, guid='@foo'),
-            AbuseReport.objects.create(user=self.user),
-            ActivityLog.objects.create(user=self.user, action=amo.LOG.USER_EDITED),
-            addon_with_other_authors,  # Has other authors, should be kept.
-            # Bit of a weird case, but because the user was the only author of
-            # this add-on, the addonuser relation is kept, and both the add-on
-            # and the user are soft-deleted. This is in contrast with the case
-            # where the user is *not* the only author, in which case the
-            # addonuser relation is deleted, but the add-on is left intact.
-            AddonUser.objects.create(addon=addon, user=self.user),
-        ]
-
-        # Now test as normal.
-        user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Admin:Advanced')
-        assert not self.user.deleted
-        self.client.force_login(user)
-        core.set_user(user)
-        response = self.client.get(self.delete_url, follow=True)
-        assert response.status_code == 200
-        assert b'Cannot delete user' not in response.content
-        response = self.client.post(self.delete_url, {'post': 'yes'}, follow=True)
-        assert response.status_code == 200
-        self.user.reload()
-        assert self.user.deleted
-        assert self.user.email
-        alog = ActivityLog.objects.filter(action=amo.LOG.ADMIN_USER_ANONYMIZED.id).get()
-        assert alog.arguments == [self.user]
-
-        # Test the related instances we created earlier.
-        for obj in relations_that_should_be_deleted:
-            assert not obj.__class__.objects.filter(pk=obj.pk).exists()
-
-        for obj in relations_that_should_survive:
-            assert obj.__class__.objects.filter(pk=obj.pk).exists()
 
     def test_get_actions(self):
         user_admin = UserAdmin(UserProfile, admin.site)

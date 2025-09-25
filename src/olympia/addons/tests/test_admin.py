@@ -830,9 +830,9 @@ class TestReplacementAddonList(TestCase):
         self.list_url = django_reverse('admin:addons_replacementaddon_changelist')
         assert self.list_url in response.content.decode('utf-8')
 
-    def test_can_see_replacementaddon_module_in_admin_with_admin_curate(self):
+    def test_can_see_replacementaddon_module_in_admin_with_admin(self):
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Admin:Curation')
+        self.grant_permission(user, '*:*')
         self.client.force_login(user)
         url = reverse('admin:index')
         response = self.client.get(url)
@@ -863,7 +863,8 @@ class TestReplacementAddonList(TestCase):
         self.grant_permission(user, 'Addons:Edit')
         self.client.force_login(user)
         response = self.client.get(self.detail_url, follow=True)
-        assert response.status_code == 403
+        assert response.status_code == 200
+        assert '/addon/bar-replacement/' in response.content.decode('utf-8')
         response = self.client.post(
             self.detail_url, {'guid': '@bar', 'path': replacement.path}, follow=True
         )
@@ -885,7 +886,7 @@ class TestReplacementAddonList(TestCase):
         assert response.status_code == 403
         assert ReplacementAddon.objects.filter(pk=replacement.pk).exists()
 
-    def test_can_edit_with_admin_curation_permission(self):
+    def test_can_edit_with_admin_permission(self):
         replacement = ReplacementAddon.objects.create(
             guid='@foo', path='/addon/foo-replacement/'
         )
@@ -893,7 +894,7 @@ class TestReplacementAddonList(TestCase):
             'admin:addons_replacementaddon_change', args=(replacement.pk,)
         )
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Admin:Curation')
+        self.grant_permission(user, '*:*')
         self.client.force_login(user)
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
@@ -906,7 +907,7 @@ class TestReplacementAddonList(TestCase):
         replacement.reload()
         assert replacement.guid == '@bar'
 
-    def test_can_delete_with_admin_curation_permission(self):
+    def test_can_delete_with_admin_permission(self):
         replacement = ReplacementAddon.objects.create(
             guid='@foo', path='/addon/foo-replacement/'
         )
@@ -914,7 +915,7 @@ class TestReplacementAddonList(TestCase):
             'admin:addons_replacementaddon_delete', args=(replacement.pk,)
         )
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Admin:Curation')
+        self.grant_permission(user, '*:*')
         self.client.force_login(user)
         response = self.client.get(self.delete_url, follow=True)
         assert response.status_code == 200
@@ -922,9 +923,9 @@ class TestReplacementAddonList(TestCase):
         assert response.status_code == 200
         assert not ReplacementAddon.objects.filter(pk=replacement.pk).exists()
 
-    def test_can_list_with_admin_curation_permission(self):
+    def test_can_list_with_admin_permission(self):
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Admin:Curation')
+        self.grant_permission(user, '*:*')
         self.client.force_login(user)
         # '@foofoo&foo' isn't a valid guid, because &, but testing urlencoding.
         ReplacementAddon.objects.create(guid='@foofoo&foo', path='/addon/bar/')

@@ -140,7 +140,7 @@ class TestRatingAdmin(TestCase):
     def test_search_by_ip(self):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Ratings:Moderate')
-        self.grant_permission(user, 'Admin:Advanced')
+        self.grant_permission(user, 'Ratings:Delete')
         self.client.force_login(user)
 
         addon = Addon.objects.get(pk=3615)
@@ -290,7 +290,7 @@ class TestRatingAdmin(TestCase):
                 body='Lôrem Ipsûm',
             )
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Admin:Advanced')
+        self.grant_permission(user, 'Ratings:Delete')
         self.grant_permission(user, 'Ratings:Moderate')
         self.client.force_login(user)
         # Find link to sort by IP
@@ -435,7 +435,7 @@ class TestRatingAdmin(TestCase):
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 403
 
-    def test_can_not_delete_without_admin_advanced_permission(self):
+    def test_can_not_delete_without_ratings_delete_permission(self):
         assert Rating.objects.count() == 1
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Ratings:Moderate')  # Not enough!
@@ -448,10 +448,10 @@ class TestRatingAdmin(TestCase):
         assert Rating.objects.count() == 1
         assert Rating.unfiltered.count() == 1
 
-    def test_can_delete_with_admin_advanced_permission(self):
+    def test_can_delete_with_ratings_delete_permission(self):
         assert Rating.objects.count() == 1
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Admin:Advanced')
+        self.grant_permission(user, 'Ratings:Delete')
         self.grant_permission(user, 'Ratings:Moderate')
         self.client.force_login(user)
 
@@ -470,7 +470,7 @@ class TestRatingAdmin(TestCase):
 
     def test_can_not_change_detail(self):
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Admin:Advanced')
+        self.grant_permission(user, 'Ratings:Delete')
         self.grant_permission(user, 'Ratings:Moderate')
         self.client.force_login(user)
 
@@ -480,7 +480,7 @@ class TestRatingAdmin(TestCase):
 
     def test_detail(self):
         user = UserProfile.objects.get(pk=999)
-        self.grant_permission(user, 'Admin:Advanced')
+        self.grant_permission(user, 'Ratings:Delete')
         self.grant_permission(user, 'Ratings:Moderate')
         self.client.force_login(user)
 
