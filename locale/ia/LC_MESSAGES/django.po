@@ -5615,12 +5615,12 @@ msgstr "Potente dictionario resaltante optimisate pro apprender nove linguas."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:673
 msgid "Hover your mouse over thumbnails to easily browse and download HD images."
-msgstr ""
+msgstr "Sur-vola con tu mus le miniaturas pro facilemente navigar e discargar imagines HD."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:676
 msgid "Remove distracting and unwanted search results and related video content."
-msgstr ""
+msgstr "Remover resultatos de recercas distrahente e indesirate, e contento video relative."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:679
