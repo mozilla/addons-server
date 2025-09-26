@@ -16,7 +16,6 @@ from olympia.amo.utils import (
     create_signed_url_for_file_backup,
 )
 from olympia.users.utils import get_task_user
-from olympia.versions.models import Version
 
 
 log = olympia.core.logger.getLogger('z.abuse')
@@ -494,12 +493,22 @@ class CinderAddonHandledByReviewers(CinderAddon):
     # This queue is not monitored on cinder - reports are resolved via AMO instead
     queue_suffix = 'addon-infringement'
 
-    def __init__(self, addon, *, version_string=None):
+    def __init__(self, addon, *, versions_strings=None):
         super().__init__(addon)
-        self.version_string = version_string
+        self.versions_strings = versions_strings or []
+
+    def get_versions(self):
+        """Return Version queryset corresponding to the versions strings on
+        this instance."""
+        qs = self.addon.versions(manager='unfiltered_for_relations')
+        if self.versions_strings:
+            qs = qs.filter(version__in=self.versions_strings).no_transforms()
+        else:
+            qs = qs.none()
+        return qs
 
     def flag_for_human_review(
-        self, *, related_versions, appeal=False, forwarded=False, second_level=False
+        self, *, versions, appeal=False, forwarded=False, second_level=False
     ):
         """Flag an appropriate version for needs human review so it appears in reviewers
         manual revew queue.
@@ -539,46 +548,38 @@ class CinderAddonHandledByReviewers(CinderAddon):
             else NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION
         )
 
-        version_objs = (
-            set(
-                self.addon.versions(manager='unfiltered_for_relations')
-                .filter(version__in=related_versions)
-                .no_transforms()
-            )
-            if related_versions
-            else set()
-        )
-        # If we have more versions specified than versions we flagged, flag current
-        # to be safe. (Either because there was an unknown version, or a None)
-        if len(version_objs) != len(related_versions) or len(related_versions) == 0:
+        # If we don't have versions, or we had None in the versions_strings,
+        # flag current or latest listed: there were either no specific version
+        # reported, or an unknown one.
+        if not versions or None in self.versions_strings:
             latest_or_current = self.addon.current_version or (
                 # for an appeal there may not be a current version, so look for others.
                 appeal
-                and (
-                    self.addon.versions(manager='unfiltered_for_relations')
-                    .filter(channel=amo.CHANNEL_LISTED)
-                    .no_transforms()
-                    .first()
+                and self.addon.find_latest_version(
+                    channel=amo.CHANNEL_LISTED, exclude=(), deleted=True
                 )
             )
             if latest_or_current:
-                version_objs.add(latest_or_current)
-        version_objs = sorted(version_objs, key=lambda v: v.id)
+                versions = set(versions)
+                versions.add(latest_or_current)
+
+        # Sort versions for logging consistency.
+        versions = sorted(versions, key=lambda v: v.id)
         log.debug(
             'Found %s versions potentially needing NHR [%s]',
-            len(version_objs),
-            ','.join(v.version for v in version_objs),
+            len(versions),
+            ','.join(v.version for v in versions),
         )
         existing_nhrs = {
             nhr.version
             for nhr in NeedsHumanReview.objects.filter(
-                version__in=version_objs, is_active=True, reason=reason
+                version__in=versions, is_active=True, reason=reason
             )
         }
         # We need custom save() and post_save to be triggered, so we can't
         # optimize this via bulk_create().
         nhr = None
-        for version in version_objs:
+        for version in versions:
             if version in existing_nhrs:
                 # if there's already an active NHR for this reason, don't duplicate it
                 continue
@@ -588,41 +589,44 @@ class CinderAddonHandledByReviewers(CinderAddon):
         if nhr:
             activity.log_create(
                 amo.LOG.NEEDS_HUMAN_REVIEW_CINDER,
-                *version_objs,
+                *versions,
                 details={'comments': nhr.get_reason_display()},
                 user=core.get_user() or get_task_user(),
             )
 
     def post_report(self, job):
         if not job.is_appeal:
-            self.flag_for_human_review(
-                related_versions={self.version_string}, appeal=False
-            )
+            self.flag_for_human_review(versions=self.get_versions(), appeal=False)
         # If our report was added to an appeal job (i.e. an appeal was ongoing,
         # and a report was made against the add-on), don't flag the add-on for
         # human review again: we should already have one because of the appeal.
 
     def appeal(self, *, decision_cinder_id, **kwargs):
-        if self.version_string:
-            # if this was a reporter appeal we have version_string from the abuse report
-            related_versions = {self.version_string}
+        if self.versions_strings:
+            # if this was a reporter appeal we have versions_strings from the abuse
+            # report and versions is good to go.
+            versions = self.get_versions()
         else:
-            # otherwise get the affected versions from the activity log
-            related_versions = set(
-                Version.unfiltered.filter(
-                    versionlog__activity_log__contentdecisionlog__decision__cinder_id=decision_cinder_id
-                ).values_list('version', flat=True)
+            # otherwise filter with the affected versions from the activity log
+            versions = (
+                self.addon.versions(manager='unfiltered_for_relations')
+                .filter(
+                    versionlog__activity_log__contentdecisionlog__decision__cinder_id=(
+                        decision_cinder_id
+                    )
+                )
+                .no_transforms()
             )
-        self.flag_for_human_review(related_versions=related_versions, appeal=True)
+        self.flag_for_human_review(versions=versions, appeal=True)
         return super().appeal(decision_cinder_id=decision_cinder_id, **kwargs)
 
     def post_queue_move(self, *, job, from_2nd_level=False):
         # When the move is to AMO reviewers we need to flag versions for review
-        reported_versions = set(
+        self.versions_strings = set(
             job.abusereport_set.values_list('addon_version', flat=True)
         )
         self.flag_for_human_review(
-            related_versions=reported_versions,
+            versions=self.get_versions(),
             appeal=job.is_appeal,
             forwarded=True,
             second_level=from_2nd_level,

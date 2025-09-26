@@ -153,7 +153,10 @@ class CinderJob(ModelBase):
         if isinstance(target, Addon):
             if resolved_in_reviewer_tools:
                 return CinderAddonHandledByReviewers(
-                    target, version_string=addon_version_string
+                    target,
+                    versions_strings=[addon_version_string]
+                    if addon_version_string
+                    else None,
                 )
             else:
                 return CinderAddon(target)
@@ -1410,7 +1413,7 @@ class ContentDecision(ModelBase):
             self.target, resolved_in_reviewer_tools=True
         )
         entity_helper.flag_for_human_review(
-            related_versions=self.target_versions.all(),
+            versions=self.target_versions.all(),
             appeal=job.is_appeal,
             second_level=True,
         )

@@ -858,7 +858,7 @@ class TestCinderJob(TestCase):
         assert isinstance(helper, CinderAddon)
         assert isinstance(helper, CinderAddonHandledByReviewers)
         assert helper.addon == addon
-        assert helper.version_string is None
+        assert helper.versions_strings == []
 
         helper = CinderJob.get_entity_helper(
             addon,
@@ -869,7 +869,7 @@ class TestCinderJob(TestCase):
         assert isinstance(helper, CinderAddon)
         assert isinstance(helper, CinderAddonHandledByReviewers)
         assert helper.addon == addon
-        assert helper.version_string == addon.current_version.version
+        assert helper.versions_strings == [addon.current_version.version]
 
         helper = CinderJob.get_entity_helper(user, resolved_in_reviewer_tools=False)
         assert isinstance(helper, CinderUser)
@@ -3887,6 +3887,26 @@ class TestContentDecision(TestCase):
             cinder_job=job,
             cinder_id='1234',
         )
+
+        decision.requeue_held_action(user=user, notes='go!')
+
+        assert job.reload().resolvable_in_reviewer_tools is True
+        assert job.decision == decision
+        self._check_requeue_decision(job.final_decision, job, decision, user)
+
+    def test_requeue_held_action_existing_job_unlisted(self):
+        addon = addon_factory()
+        self.make_addon_unlisted(addon)
+        user = user_factory()
+        job = CinderJob.objects.create(target_addon=addon)
+        decision = ContentDecision.objects.create(
+            addon=addon,
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            reviewer_user=self.reviewer_user,
+            cinder_job=job,
+            cinder_id='1234',
+        )
+        decision.target_versions.add(addon.versions.get())
 
         decision.requeue_held_action(user=user, notes='go!')
 

@@ -1185,7 +1185,9 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
             guid=addon.guid, addon_version=other_version.version
         )
         report = CinderReport(abuse_report)
-        cinder_instance = self.CinderClass(addon, version_string=other_version.version)
+        cinder_instance = self.CinderClass(
+            addon, versions_strings=[other_version.version]
+        )
         assert cinder_instance.report(report=report, reporter=None)
         job = CinderJob.objects.create(job_id='1234-xyz')
         assert not addon.current_version.needshumanreview_set.exists()
@@ -1224,8 +1226,8 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         assert addon.current_version.reload().due_date
 
     def test_appeal_specific_version_from_report(self):
-        """For an appeal from a reporter, version_string is set on the CinderClass
-        instance, from AbuseReport.addon_version_string. If version_string is defined,
+        """For an appeal from a reporter, versions_strings is set on the CinderClass
+        instance, from AbuseReport.addon_version_string. If versions_strings is defined,
         and the version exists, we should flag that version rather than current_version.
         """
         addon = self._create_dummy_target()
@@ -1237,7 +1239,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         self._test_appeal(
             CinderUser(user_factory()),
             cinder_entity_instance=self.CinderClass(
-                addon, version_string=other_version.version
+                addon, versions_strings=[other_version.version]
             ),
         )
         assert not addon.current_version.needshumanreview_set.exists()
@@ -1249,9 +1251,9 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         assert other_version.reload().due_date
 
     def test_appeal_specific_version_from_action(self):
-        """For an appeal from a developer, version_string will be None on the
-        CinderClass instance. If version_string is falsey we collect and flag the addon
-        versions from the appealled decision rather the current_version."""
+        """For an appeal from a developer, versions_strings will be None on the
+        CinderClass instance. If versions_strings is falsey we collect and flag the
+        addon versions from the appealled decision rather the current_version."""
         addon = self._create_dummy_target()
         flagged_version = version_factory(
             addon=addon,
@@ -1262,13 +1264,13 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
             action=DECISION_ACTIONS.AMO_DISABLE_ADDON, cinder_id='some_id', addon=addon
         )
         # An activity log links the flagged_version to the decision, even though the
-        # version_string on the CinderClass below is set to None
+        # versions_strings on the CinderClass below is set to None
         ActivityLog.objects.create(
             amo.LOG.FORCE_DISABLE, addon, flagged_version, decision, user=user_factory()
         )
         self._test_appeal(
             CinderUser(user_factory()),
-            cinder_entity_instance=self.CinderClass(addon, version_string=None),
+            cinder_entity_instance=self.CinderClass(addon, versions_strings=None),
             appealed_decision_id=decision.cinder_id,
         )
         assert not addon.current_version.needshumanreview_set.exists()
@@ -1619,6 +1621,26 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         cinder_instance.post_queue_move(job=cinder_job)
         assert NeedsHumanReview.objects.count() == 2
         assert ActivityLog.objects.count() == 0
+
+    def test_post_queue_move_with_multiple_reports_including_one_with_no_versions(self):
+        cinder_instance, cinder_job, listed_version, unlisted_version = (
+            self._setup_post_queue_move_test()
+        )
+        other_version = version_factory(
+            addon=listed_version.addon, created=self.days_ago(42)
+        )
+        # Only one of the reports is against a specific version - and that's
+        # not the current one.
+        cinder_job.abusereport_set.latest('pk').update(
+            addon_version=other_version.version
+        )
+        # ActivityLog.objects.all().delete()
+        cinder_instance.post_queue_move(job=cinder_job)
+        # We flagged the other_version, but also the addon current version
+        # because one of the reports didn't specify which version to flag.
+        assert NeedsHumanReview.objects.count() == 2
+        assert listed_version.needshumanreview_set.exists()
+        assert other_version.needshumanreview_set.exists()
 
     def test_workflow_recreate_no_versions_to_flag(self):
         cinder_instance, cinder_job, listed_version, unlisted_version = (
