@@ -1243,7 +1243,7 @@ msgstr ""
 
 #: src/olympia/constants/activity.py:1209
 msgid "Version rollback"
-msgstr ""
+msgstr "Връщане на предишна версия"
 
 #: src/olympia/constants/activity.py:1216
 #, python-brace-format
@@ -1369,7 +1369,7 @@ msgstr "Тема"
 
 #: src/olympia/constants/base.py:138
 msgid "Deprecated Site Permission"
-msgstr ""
+msgstr "Изведени от употреба права на страница"
 
 #: src/olympia/constants/base.py:143 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:10
 msgid "Extensions"
