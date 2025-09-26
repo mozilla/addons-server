@@ -431,7 +431,7 @@ msgstr "In chest canâl tu puedis ripristinâ nome ae version %s."
 
 #: src/olympia/addons/serializers.py:1904
 msgid "Only approved versions can be rolled back, except the most recent version."
-msgstr ""
+msgstr "Al è pussibil ripristinâ nome lis versions aprovadis, gjavade la version plui resinte."
 
 #: src/olympia/addons/utils.py:52
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -1294,7 +1294,7 @@ msgstr "Ripristinament version falît"
 #: src/olympia/constants/activity.py:1246
 #, python-brace-format
 msgid "{addon} {0} property edited."
-msgstr ""
+msgstr "A son stadis modificadis lis proprietâts di {addon} {0}."
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -2122,7 +2122,7 @@ msgstr "Alc al è lât strucj, contate il supuart pai svilupadôrs."
 
 #: src/olympia/devhub/forms.py:1653
 msgid "No appropriate version available"
-msgstr ""
+msgstr "No je disponibile une version adate"
 
 #: src/olympia/devhub/forms.py:1660
 msgid "Choose version"
@@ -2134,7 +2134,7 @@ msgstr "Notis di publicazion"
 
 #: src/olympia/devhub/forms.py:1670
 msgid "Automatic rollback based on version [m.m]."
-msgstr ""
+msgstr "Ripristinament automatic in base ae version [m.m]."
 
 #: src/olympia/devhub/forms.py:1743
 msgid "You must select a channel and version to rollback to."
@@ -2316,7 +2316,7 @@ msgstr "Chest cjariament in rêt nol à passât la convalide e a podaressin manc
 
 #: src/olympia/devhub/views.py:1320
 msgid "Rollback submitted. You'll be notified when it's approved"
-msgstr ""
+msgstr "Ripristinament mandât. Tu ricevarâs une notifiche cuant che al vignarà aprovât"
 
 #: src/olympia/devhub/views.py:1458
 msgid "Header area background"
@@ -4020,11 +4020,11 @@ msgstr[1] "Selezione <b>fin a {0}</b> categoriis par chest component adizionâl:
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:2
 msgid "Roll back to a previous version"
-msgstr ""
+msgstr "Torne a une version prime"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:7
 msgid "Users of this extension will roll back to the previous version you choose."
-msgstr ""
+msgstr "Pai utents di cheste estension e vignarà ripristinade la version prime che tu âs sielt tu."
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:13
 #, python-format
@@ -4033,7 +4033,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:19
 msgid "Distribution channel"
-msgstr ""
+msgstr "Canâl di distribuzion"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:31 src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:40
 #: src/olympia/devhub/templates/devhub/versions/list.html:240
@@ -4042,15 +4042,15 @@ msgstr "Version"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:48
 msgid "New version number"
-msgstr ""
+msgstr "Gnûf numar di version"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:54
 msgid "Release Notes"
-msgstr ""
+msgstr "Notis di publicazion"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:63
 msgid "Roll back"
-msgstr ""
+msgstr "Ripristine"
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:3
 msgid "End-User License Agreement"
@@ -4448,7 +4448,7 @@ msgstr "Dutis lis versions"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:224
 msgid "Rollback to a previous version"
-msgstr ""
+msgstr "Torne a une version prime"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:230
 msgid "Upload a New Version"
@@ -4472,7 +4472,7 @@ msgstr "Eliminant cheste version tu eliminarâs par simpri:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:288
 msgid "Important:"
-msgstr ""
+msgstr "Impuartant:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:289
 msgid ""
@@ -5917,7 +5917,7 @@ msgstr "Viôt dutis lis estensions"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1033
 msgid "Anti-tracking extensions"
-msgstr ""
+msgstr "Estensions anti-spiis"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1035
@@ -5927,7 +5927,7 @@ msgstr "Components adizionâi essenziâi"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1037
 msgid "Writing tools"
-msgstr ""
+msgstr "Struments di scriture"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1039 src/olympia/discovery/strings.jinja2:1041 src/olympia/discovery/strings.jinja2:1043
