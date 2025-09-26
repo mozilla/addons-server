@@ -5610,7 +5610,7 @@ msgstr "Automaticamente negar requestas de traciamento per cookie bandiera."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:670
 msgid "Powerful pop-up dictionary optimized for learning new languages."
-msgstr ""
+msgstr "Potente dictionario resaltante optimisate pro apprender nove linguas."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:673
