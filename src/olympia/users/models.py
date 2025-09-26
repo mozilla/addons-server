@@ -860,7 +860,7 @@ class IPNetworkUserRestriction(RestrictionAbstractBaseModel):
     network = CIDRField(
         blank=True,
         null=True,
-        help_text=_('Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28'),
+        help_text='Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28',
     )
 
     error_message = _(
@@ -1006,9 +1006,9 @@ class EmailUserRestrictionManager(ManagerBase):
 class EmailUserRestriction(RestrictionAbstractBaseModel, NormalizeEmailMixin):
     id = PositiveAutoField(primary_key=True)
     email_pattern = models.CharField(
-        _('Email Pattern'),
+        'Email Pattern',
         max_length=100,
-        help_text=_(
+        help_text=(
             'Enter full email that should be blocked or use unix-style wildcards, '
             'e.g. "*@example.com". If you need to block a domain incl subdomains, '
             'add a second entry, e.g. "*@*.example.com".'
@@ -1117,7 +1117,7 @@ class EmailUserRestriction(RestrictionAbstractBaseModel, NormalizeEmailMixin):
 class DisposableEmailDomainRestriction(RestrictionAbstractBaseModel):
     domain = models.CharField(
         max_length=255,
-        help_text=_(
+        help_text=(
             'Enter full disposable email domain that should be '
             'blocked. Wildcards are not supported: if you need those, '
             'or need to match against the entire email and not just '
@@ -1340,7 +1340,7 @@ class UserRestrictionHistory(ModelBase):
     last_login_ip = models.CharField(default='', max_length=45)
 
     class Meta:
-        verbose_name_plural = _('User Restriction History')
+        verbose_name_plural = 'User Restriction History'
         indexes = [
             LongNameIndex(
                 fields=('ip_address',),

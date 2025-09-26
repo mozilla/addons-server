@@ -609,6 +609,7 @@ class EmailUserRestrictionAdmin(AMOModelAdmin):
     list_display = ('email_pattern', 'restriction_type', 'reason')
     list_filter = ('restriction_type',)
     search_fields = ('^email_pattern',)
+    form = forms.EmailUserRestrictionAdminForm
     formfield_overrides = {
         models.CharField: {'widget': TextInput(attrs={'size': '125'})},
     }
