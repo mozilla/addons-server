@@ -1461,6 +1461,7 @@ msgstr "Игри и развлечения"
 #: src/olympia/constants/categories.py:117
 msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
 msgstr ""
+"Изтеглете разширения на Firefox, за да подобрите изживяването си при забавление. Тази категория включва разширения, които могат да подобрят игрите, да подобряват възпроизвеждането на видео и други."
 
 #: src/olympia/constants/categories.py:124
 msgid "Language Support"
@@ -1468,7 +1469,7 @@ msgstr "Езикова поддръжка"
 
 #: src/olympia/constants/categories.py:126
 msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
-msgstr ""
+msgstr "Изтеглете разширения на Firefox, които предлагат езикова поддръжка като проверка на граматиката, търсене на думи, преводи, преобразуване на текст в реч и други подобни."
 
 #: src/olympia/constants/categories.py:133
 msgid "Photos, Music & Videos"
