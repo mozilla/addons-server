@@ -422,12 +422,12 @@ msgstr "Nol è pussibil doprâchest slug. Sielç un altri."
 
 #: src/olympia/addons/serializers.py:1888
 msgid "There is no rollback available in this channel."
-msgstr ""
+msgstr "In chest canâl nol è disponibil nissun ripristinament."
 
 #: src/olympia/addons/serializers.py:1898
 #, python-format
 msgid "Rollback is only available for version %s in this channel."
-msgstr ""
+msgstr "In chest canâl tu puedis ripristinâ nome ae version %s."
 
 #: src/olympia/addons/serializers.py:1904
 msgid "Only approved versions can be rolled back, except the most recent version."
@@ -2126,11 +2126,11 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py:1660
 msgid "Choose version"
-msgstr ""
+msgstr "Sielç version"
 
 #: src/olympia/devhub/forms.py:1669
 msgid "Release notes"
-msgstr ""
+msgstr "Notis di publicazion"
 
 #: src/olympia/devhub/forms.py:1670
 msgid "Automatic rollback based on version [m.m]."
@@ -2138,7 +2138,7 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py:1743
 msgid "You must select a channel and version to rollback to."
-msgstr ""
+msgstr "Tu scugnis sielzi un canâl e une version dulà tornâ indaûr cul ripristinament."
 
 #: src/olympia/devhub/tasks.py:178
 msgid "Invalid or corrupt add-on file."
