@@ -5520,7 +5520,7 @@ msgstr "自动拒绝 Cookie 弹窗的跟踪请求。"
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:670
 msgid "Powerful pop-up dictionary optimized for learning new languages."
-msgstr ""
+msgstr "功能强大的弹出式词典，学习新语言时尤为实用。"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:673
@@ -5530,12 +5530,12 @@ msgstr "将鼠标悬停在缩略图上，即可轻松浏览和下载高清图像
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:676
 msgid "Remove distracting and unwanted search results and related video content."
-msgstr ""
+msgstr "移除扰人的搜索结果和相关视频内容。"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:679
 msgid "Makes Firefox appear as Chrome to websites trying to block Firefox."
-msgstr ""
+msgstr "在试图阻止 Firefox 访问的网站面前，将 Firefox 变装为 Chrome。"
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:682
