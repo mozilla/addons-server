@@ -2099,7 +2099,7 @@ msgstr "Đã xảy ra lỗi, vui lòng liên hệ với bộ phận hỗ trợ n
 
 #: src/olympia/devhub/forms.py:1653
 msgid "No appropriate version available"
-msgstr ""
+msgstr "Không có phiên bản phù hợp nào có sẵn"
 
 #: src/olympia/devhub/forms.py:1660
 msgid "Choose version"
@@ -5600,22 +5600,22 @@ msgstr "Tự động từ chối pop-up cookie yêu cầu theo dõi."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:670
 msgid "Powerful pop-up dictionary optimized for learning new languages."
-msgstr ""
+msgstr "Từ điển mạnh mẽ trong cửa sổ bật lên được tối ưu hóa để học ngôn ngữ mới."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:673
 msgid "Hover your mouse over thumbnails to easily browse and download HD images."
-msgstr ""
+msgstr "Di chuột qua hình thu nhỏ để dễ dàng duyệt và tải xuống hình ảnh HD."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:676
 msgid "Remove distracting and unwanted search results and related video content."
-msgstr ""
+msgstr "Xóa các kết quả tìm kiếm gây mất tập trung và không mong muốn cũng như nội dung video liên quan."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:679
 msgid "Makes Firefox appear as Chrome to websites trying to block Firefox."
-msgstr ""
+msgstr "Làm cho Firefox xuất hiện dưới dạng Chrome đối với các trang web đang cố chặn Firefox."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:682
