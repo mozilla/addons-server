@@ -3931,6 +3931,8 @@ msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement, Review Policies and Rules and our <a %(a_attrs)s href=\"%(faq_url)s\">Frequently Asked Questions</a>. The Firefox "
 "Add-on Distribution Agreement also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
+"Prime di scomençâ, lei e acete l’acuardi di distribuzion pai components adizionâi di Firefox, lis politichis e lis liniis vuide pe revision e lis <a %(a_attrs)s href=\"%(faq_url)s\">domandis fatis "
+"dispès</a>. L’acuardi di distribuzion pai components adizionâi di Firefox si coleghe ancje ae nestre informative su la riservatece, che e spieghe cemût che o gjestìn lis tôs informazions personâls."
 
 #: src/olympia/devhub/templates/devhub/includes/agreement.html:10
 msgid "Review Policies and Rules"
@@ -4031,7 +4033,7 @@ msgstr "Pai utents di cheste estension e vignarà ripristinade la version prime 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:13
 #, python-format
 msgid "Current Version [%(current_version_number)s] will roll back to Version [%(selected_version_number)s]"
-msgstr ""
+msgstr "La version corinte [%(current_version_number)s] e vignarà ripristinade ae version [%(selected_version_number)s]"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:19
 msgid "Distribution channel"
@@ -4481,6 +4483,8 @@ msgid ""
 "Once a version has been deleted, you may not upload a new version with the same version number. The version will also be Restricted, which will disable and prevent any further installation in "
 "Firefox. Existing users can choose to re-enable the add-on."
 msgstr ""
+"Une volte che une version e ven eliminade, no tu podarâs cjariânt une gnove cul stes numar di version. Sore, la version e vignarà limitade, chest al significhe che a vignaran disativadis e impedidis"
+" gnovis lis sôs instalazions in Firefox. I utents che a vevin za instalât il component adizionâl a podaran sielzi di tornâ a ativâlu."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:296
 msgid "Are you sure you wish to delete this version?"
