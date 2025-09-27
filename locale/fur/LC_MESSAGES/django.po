@@ -3195,6 +3195,8 @@ msgstr "Eliminant il component adizionâl tu eliminarâs dutis lis versions e i 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:6
 msgid "All versions will be Restricted, which will disable and prevent any further installation in Firefox. Existing users can choose to re-enable the add-on."
 msgstr ""
+"Dutis lis versions a vignaran limitadis, chest al disativarà e al impedirà gnovis instalazions in Firefox. I utents che a vevin za instalât il component adizionâl a podaran sielzi di tornâ a "
+"ativâlu."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:11
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
