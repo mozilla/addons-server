@@ -423,16 +423,16 @@ msgstr "Ce raccourci ne peut pas être utilisé. Veuillez en choisir un autre."
 
 #: src/olympia/addons/serializers.py:1888
 msgid "There is no rollback available in this channel."
-msgstr ""
+msgstr "Il n’y a pas de retour disponible dans ce canal."
 
 #: src/olympia/addons/serializers.py:1898
 #, python-format
 msgid "Rollback is only available for version %s in this channel."
-msgstr ""
+msgstr "Le retour en arrière n’est possible que pour la version %s dans ce canal."
 
 #: src/olympia/addons/serializers.py:1904
 msgid "Only approved versions can be rolled back, except the most recent version."
-msgstr ""
+msgstr "Seules les versions approuvées peuvent être restaurées, sauf la version la plus récente."
 
 #: src/olympia/addons/utils.py:52
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -2136,7 +2136,7 @@ msgstr "Une erreur s’est produite, veuillez contacter l’assistance aux déve
 
 #: src/olympia/devhub/forms.py:1653
 msgid "No appropriate version available"
-msgstr ""
+msgstr "Aucune version convenable disponible"
 
 #: src/olympia/devhub/forms.py:1660
 msgid "Choose version"
@@ -2148,7 +2148,7 @@ msgstr "Notes de version"
 
 #: src/olympia/devhub/forms.py:1670
 msgid "Automatic rollback based on version [m.m]."
-msgstr ""
+msgstr "Retour automatique vers la version [m.m]."
 
 #: src/olympia/devhub/forms.py:1743
 msgid "You must select a channel and version to rollback to."
@@ -5673,22 +5673,22 @@ msgstr "Refusez automatiquement les pop-ups de demande de cookies de pistage."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:670
 msgid "Powerful pop-up dictionary optimized for learning new languages."
-msgstr ""
+msgstr "Puissant dictionnaire contextuel, optimisé pour l’apprentissage de langues étrangères."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:673
 msgid "Hover your mouse over thumbnails to easily browse and download HD images."
-msgstr ""
+msgstr "Survolez des vignettes avec votre souris pour afficher et télécharger facilement des images en haute définition."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:676
 msgid "Remove distracting and unwanted search results and related video content."
-msgstr ""
+msgstr "Éliminez les résultats de recherche indésirables et sources de distraction ainsi que les contenus vidéo qui leur sont liés."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:679
 msgid "Makes Firefox appear as Chrome to websites trying to block Firefox."
-msgstr ""
+msgstr "Fait passer Firefox pour Chrome auprès des sites web qui cherchent à bloquer Firefox."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:682
