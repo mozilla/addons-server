@@ -5618,7 +5618,7 @@ msgstr "Odstraňte rušivé a nežádoucí výsledky vyhledávání a souvisejí
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:679
 msgid "Makes Firefox appear as Chrome to websites trying to block Firefox."
-msgstr "Firefox se stránkam, které se snaží Firefox zablokovat, jevit jako Chrome."
+msgstr "Na webových stránkách, které se snaží blokovat Firefox, se Firefox tváří jako Chrome."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:682
