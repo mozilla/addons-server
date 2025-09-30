@@ -5,6 +5,7 @@ from django.urls import reverse
 from olympia.amo.tests import TestCase
 from olympia.users.models import (
     RESTRICTION_TYPES,
+    EmailUserRestriction,
     IPNetworkUserRestriction,
     UserProfile,
 )
@@ -39,6 +40,39 @@ class TestDeniedNameAdminAddForm(UserFormBase):
         msg += '1 duplicates were ignored.'
         self.assertContains(r, msg)
         self.assertNotContains(r, 'fubar')
+
+
+class TestEmailUserRestrictionAdminForm(UserFormBase):
+    def test_normalized_pattern_raises_validation_error(self):
+        EmailUserRestriction.objects.create(
+            email_pattern='foo@example.com',
+            restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION,
+        )
+        self.client.force_login(self.user)
+        url = reverse('admin:users_emailuserrestriction_add')
+        data = {
+            'email_pattern': 'foo+bar@example.com',
+            'restriction_type': str(RESTRICTION_TYPES.ADDON_SUBMISSION),
+        }
+        response = self.client.post(url, data)
+        assert response.status_code == 200
+        assert b'Email Pattern and Restriction type already exists' in response.content
+
+    def test_record_normalized_pattern(self):
+        # Note: this would happen because of the custom save() method in the
+        # model anyway.
+        self.client.force_login(self.user)
+        url = reverse('admin:users_emailuserrestriction_add')
+        data = {
+            'email_pattern': 'foo+bar@example.com',
+            'restriction_type': str(RESTRICTION_TYPES.ADDON_SUBMISSION),
+        }
+        response = self.client.post(url, data)
+        assert response.status_code == 302
+        assert EmailUserRestriction.objects.count() == 1
+        restriction = EmailUserRestriction.objects.get()
+        assert restriction.email_pattern == 'foo@example.com'
+        assert restriction.restriction_type == RESTRICTION_TYPES.ADDON_SUBMISSION
 
 
 class TestIPNetworkUserRestrictionForm(UserFormBase):
