@@ -6,119 +6,145 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-30 14:10+0000\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Pontoon\n"
 
+#: static/js/common/upload-addon.js:54 static/js/common/upload-image.js:136
 msgid "There was a problem contacting the server."
 msgstr "Hiba történt a kiszolgálóhoz történő csatlakozás során."
 
+#: static/js/common/upload-addon.js:78
 msgid "Select a file..."
 msgstr "Fájl kiválasztása…"
 
+#: static/js/common/upload-addon.js:82
 msgid "Your add-on should end with .zip, .xpi or .crx"
 msgstr "Kiegészítője végződése .zip, .xpi vagy .crx legyen"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#, python-format, python-brace-format
+#: static/js/common/upload-addon.js:118
+#, python-brace-format, python-format
 msgid "{0}% complete"
 msgstr "{0}% kész"
 
+#: static/js/common/upload-addon.js:122
 #, python-brace-format
 msgid "{0} of {1}"
 msgstr "{0} / {1}"
 
+#: static/js/common/upload-addon.js:166
 msgid "Cancel"
 msgstr "Mégse"
 
+#: static/js/common/upload-addon.js:189
 #, python-brace-format
 msgid "Uploading {0}"
 msgstr "{0} feltöltése"
 
+#: static/js/common/upload-addon.js:229
 #, python-brace-format
 msgid "Error with {0}"
 msgstr "Hiba ezzel: {0}"
 
+#: static/js/common/upload-addon.js:237
 msgid "Please make sure to report any linting related issues on GitHub"
 msgstr "A kódellenőrzővel kapcsolatos problémákat jelentse a GitHubon"
 
+#: static/js/common/upload-addon.js:248
 #, python-brace-format
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] "A kiegészítő az ellenőrzése {0} hiba miatt sikertelen."
 msgstr[1] "A kiegészítő az ellenőrzése {0} hiba miatt sikertelen."
 
+#: static/js/common/upload-addon.js:266
 #, python-brace-format
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip; és további {0}"
 msgstr[1] "&hellip; és további {0}"
 
+#: static/js/common/upload-addon.js:287 static/js/common/upload-addon.js:705
 msgid "See full validation report"
 msgstr "Teljes ellenőrzési jelentés megjelenítése"
 
+#: static/js/common/upload-addon.js:300
 #, python-brace-format
 msgid "Validating {0}"
 msgstr "{0} ellenőrzése"
 
+#: static/js/common/upload-addon.js:350
 #, python-brace-format
 msgid "Your add-on exceeds the maximum size of {0}."
 msgstr "A kiegészítője túllépi a maximális méretet, ami {0}."
 
+#: static/js/common/upload-addon.js:358
 #, python-brace-format
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Üres válasz érkezett a kiszolgálótól; állapot: {0}"
 
+#: static/js/common/upload-addon.js:403
 msgid "Your extension has to be compatible with at least one application."
 msgstr "A kiegészítőjének kompatibilisnek kell lennie legalább egy alkalmazással."
 
+#: static/js/common/upload-addon.js:473
 msgid "Unexpected server error while validating."
 msgstr "Az ellenőrzés közben váratlan hiba történt."
 
+#: static/js/common/upload-addon.js:519
 msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
 msgstr "A Firefox for Android kifejezetten kompatibilisként van megjelölve a leíróban"
 
+#: static/js/common/upload-addon.js:561
 #, python-brace-format
 msgid "Finished validating {0}"
 msgstr "{0} ellenőrzése befejeződött"
 
+#: static/js/common/upload-addon.js:568
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr "Időtúllépés történt a kiegészítő érvényesítése közben, kézi felülvizsgálatra kerül."
 
+#: static/js/common/upload-addon.js:573
 #, python-brace-format
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] "A kiegészítő hiba nélkül és {0} figyelmeztetéssel átment az ellenőrzésen."
 msgstr[1] "A kiegészítő hiba nélkül és {0} figyelmeztetéssel átment az ellenőrzésen."
 
+#: static/js/common/upload-addon.js:582
 #, python-brace-format
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] "A kiegészítő hiba nélkül és {0} üzenettel átment az ellenőrzésen."
 msgstr[1] "A kiegészítő hiba nélkül és {0} üzenettel átment az ellenőrzésen."
 
+#: static/js/common/upload-addon.js:590
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "A kiegészítő hiba és figyelmeztetés nélkül átment az ellenőrzésen."
 
+#: static/js/common/upload-addon.js:651
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Adjon meg részletes verzióinformációt (ezt a következő lépésben is megteheti)."
 
+#: static/js/common/upload-addon.js:654
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
-"Ha a kiegészítőnek egy weboldalhoz tartozó felhasználói fiókra van szüksége a teljes teszteléshez, adjon meg egy teszt felhasználónevet és jelszót a Megjegyzés a vizsgálatot végzőknek résznél (ezt "
-"a következő lépésben is megteheti)."
+"Ha a kiegészítőnek egy weboldalhoz tartozó felhasználói fiókra van szüksége a teljes teszteléshez, adjon meg egy teszt felhasználónevet és jelszót a Megjegyzés a vizsgálatot végzőknek résznél (ezt a"
+" következő lépésben is megteheti)."
 
+#: static/js/common/upload-addon.js:660
 msgid "Add-on submission checklist"
 msgstr "Ellenőrzőlista kiegészítő beküldéséhez"
 
+#: static/js/common/upload-addon.js:664
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Kérjük, ellenőrizze a következő pontokat, mielőtt befejezi a beküldést. Ez csökkenti a vizsgálathoz szükséges időt és a félreértéseket:"
 
+#: static/js/common/upload-addon.js:671
 msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
@@ -126,707 +152,887 @@ msgstr ""
 "A minimalizált, összefűzött és egyéb módon olvashatatlanná tett parancsfájlokat (kivéve az ismert könyvtárakat) külön kell beküldeni a ellenőrzésre. Használja a forráskódfeltöltés mezőt, hogy "
 "elkerülje a beküldés visszautasítását."
 
+#: static/js/common/upload-addon.js:684
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Az ellenőrzési folyamat ezeket a problémákat találta, amik elutasításhoz vezethetnek:"
 
+#: static/js/common/upload-base.js:69
 msgid "The filetype you uploaded isn't recognized."
 msgstr "A feltöltött fájl típusa nem ismerhető fel."
 
+#: static/js/common/upload-base.js:79 static/js/zamboni/global.js:569
 #, python-brace-format
 msgid "Your file exceeds the maximum size of {0}."
 msgstr "A fájl mérete túllépi a maximális méretet, ami {0}."
 
+#: static/js/common/upload-base.js:105
 msgid "You cancelled the upload."
 msgstr "A feltöltés megszakítva."
 
+#: static/js/common/upload-image.js:102
 msgid "Images must be either PNG or JPG."
 msgstr "Az ikonnak PNG-nek vagy JPG-nek kell lennie."
 
+#: static/js/common/upload-image.js:106
 msgid "Videos must be in WebM."
 msgstr "A videónak WebM formátumban kell lennie."
 
+#: static/js/stats/chart.js:298
 #, python-brace-format
 msgid "Week of {0}"
 msgstr "{0}. hét"
 
+#: static/js/stats/chart.js:307
 #, python-brace-format
 msgid "{0} download"
 msgid_plural "{0} downloads"
 msgstr[0] "{0} letöltés"
 msgstr[1] "{0} letöltés"
 
+#: static/js/stats/chart.js:313
 #, python-brace-format
 msgid "{0} user"
 msgid_plural "{0} users"
 msgstr[0] "{0} felhasználó"
 msgstr[1] "{0} felhasználó"
 
+#: static/js/stats/chart.js:319
 #, python-brace-format
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
 msgstr[0] "{0} kiegészítő"
 msgstr[1] "{0} kiegészítő"
 
+#: static/js/stats/chart.js:325
 #, python-brace-format
 msgid "{0} collection"
 msgid_plural "{0} collections"
 msgstr[0] "{0} gyűjtemény"
 msgstr[1] "{0} gyűjtemény"
 
+#: static/js/stats/chart.js:331
 #, python-brace-format
 msgid "{0} review"
 msgid_plural "{0} reviews"
 msgstr[0] "{0} értékelés"
 msgstr[1] "{0} értékelés"
 
+#: static/js/stats/chart.js:340
 #, python-brace-format
 msgid "{0} sale"
 msgid_plural "{0} sales"
 msgstr[0] "{0} eladás"
 msgstr[1] "{0} eladás"
 
+#: static/js/stats/chart.js:346
 #, python-brace-format
 msgid "{0} refund"
 msgid_plural "{0} refunds"
 msgstr[0] "{0} visszatérítés"
 msgstr[1] "{0} visszatérítés"
 
+#: static/js/stats/chart.js:352
 #, python-brace-format
 msgid "{0} install"
 msgid_plural "{0} installs"
 msgstr[0] "{0} telepítés"
 msgstr[1] "{0} telepítés"
 
+#: static/js/stats/chart.js:453 static/js/stats/csv_keys.js:3 static/js/stats/csv_keys.js:109
 msgid "Downloads"
 msgstr "Letöltések"
 
+#: static/js/stats/chart.js:465 static/js/stats/csv_keys.js:6 static/js/stats/csv_keys.js:110
 msgid "Daily Users"
 msgstr "Napi felhasználók"
 
+#: static/js/stats/chart.js:498
 msgid "Amount, in USD"
 msgstr "Mennyiség, USD-ben"
 
+#: static/js/stats/chart.js:510 static/js/stats/csv_keys.js:104
 msgid "Number of Contributions"
 msgstr "Támogatások száma"
 
+#: static/js/stats/chart.js:537
 msgid "More Info..."
 msgstr "Tovább…"
 
 #. L10n: {0} is an ISO-formatted date.
+#: static/js/stats/chart.js:543
 #, python-brace-format
 msgid "Details for {0}"
 msgstr "{0} részletei"
 
+#: static/js/stats/csv_keys.js:9
 msgid "Collections Created"
 msgstr "Létrehozott gyűjtemények"
 
+#: static/js/stats/csv_keys.js:12
 msgid "Add-ons in Use"
 msgstr "Használt kiegészítők"
 
+#: static/js/stats/csv_keys.js:15
 msgid "Add-ons Created"
 msgstr "Létrehozott kiegészítők"
 
+#: static/js/stats/csv_keys.js:18
 msgid "Add-ons Downloaded"
 msgstr "Letöltött kiegészítők"
 
+#: static/js/stats/csv_keys.js:21
 msgid "Add-ons Updated"
 msgstr "Frissített kiegészítők"
 
+#: static/js/stats/csv_keys.js:24
 msgid "Reviews Written"
 msgstr "Megírt értékelések"
 
+#: static/js/stats/csv_keys.js:27
 msgid "User Signups"
 msgstr "Regisztrációk"
 
+#: static/js/stats/csv_keys.js:30
 msgid "Subscribers"
 msgstr "Feliratkozók"
 
+#: static/js/stats/csv_keys.js:33
 msgid "Ratings"
 msgstr "Értékelések"
 
+#: static/js/stats/csv_keys.js:36 static/js/stats/csv_keys.js:114
 msgid "Sales"
 msgstr "Eladások"
 
+#: static/js/stats/csv_keys.js:39 static/js/stats/csv_keys.js:113
 msgid "Installs"
 msgstr "Telepítések"
 
+#: static/js/stats/csv_keys.js:42
 msgid "Unknown"
 msgstr "Ismeretlen"
 
+#: static/js/stats/csv_keys.js:43
 msgid "Add-ons Manager"
 msgstr "Kiegészítőkezelő"
 
+#: static/js/stats/csv_keys.js:44
 msgid "Add-ons Manager Promo"
 msgstr "Kiegészítőkezelő – bemutató"
 
+#: static/js/stats/csv_keys.js:45
 msgid "Add-ons Manager Featured"
 msgstr "Kiegészítőkezelő – kiemelt kiegészítők"
 
+#: static/js/stats/csv_keys.js:46
 msgid "Add-ons Manager Learn More"
 msgstr "Kiegészítőkezelő – tudjon meg többet"
 
+#: static/js/stats/csv_keys.js:47
 msgid "Search Suggestions"
 msgstr "Keresési javaslatok"
 
+#: static/js/stats/csv_keys.js:48
 msgid "Search Results"
 msgstr "Keresési eredmények"
 
+#: static/js/stats/csv_keys.js:49 static/js/stats/csv_keys.js:50 static/js/stats/csv_keys.js:51
 msgid "Homepage Promo"
 msgstr "Kezdőlap – bemutató"
 
+#: static/js/stats/csv_keys.js:52 static/js/stats/csv_keys.js:53
 msgid "Homepage Featured"
 msgstr "Kiemelt kezdőlap"
 
+#: static/js/stats/csv_keys.js:54 static/js/stats/csv_keys.js:55
 msgid "Homepage Up and Coming"
 msgstr "Ígéretes kezdőlap"
 
+#: static/js/stats/csv_keys.js:56
 msgid "Homepage Most Popular"
 msgstr "Legnépszerűbb kezdőlap"
 
+#: static/js/stats/csv_keys.js:57 static/js/stats/csv_keys.js:59
 msgid "Detail Page"
 msgstr "Részletek oldal"
 
+#: static/js/stats/csv_keys.js:58 static/js/stats/csv_keys.js:60
 msgid "Detail Page (bottom)"
 msgstr "Részletek oldal (alul)"
 
+#: static/js/stats/csv_keys.js:61
 msgid "Detail Page (Development Channel)"
 msgstr "Részletek oldal (Fejlesztői csatorna)"
 
+#: static/js/stats/csv_keys.js:62 static/js/stats/csv_keys.js:63 static/js/stats/csv_keys.js:64
 msgid "Often Used With"
 msgstr "Gyakran használt ezzel:"
 
+#: static/js/stats/csv_keys.js:65 static/js/stats/csv_keys.js:66
 msgid "Others By Author"
 msgstr "A szerző további munkái"
 
+#: static/js/stats/csv_keys.js:67 static/js/stats/csv_keys.js:68
 msgid "Dependencies"
 msgstr "Függőségek"
 
+#: static/js/stats/csv_keys.js:69 static/js/stats/csv_keys.js:70
 msgid "Upsell"
 msgstr "Bővítés"
 
+#: static/js/stats/csv_keys.js:71
 msgid "Meet the Developer"
 msgstr "Ismerje meg a fejlesztőt"
 
+#: static/js/stats/csv_keys.js:72
 msgid "User Profile"
 msgstr "Felhasználói profil"
 
+#: static/js/stats/csv_keys.js:73
 msgid "Version History"
 msgstr "Verziótörténet"
 
+#: static/js/stats/csv_keys.js:75
 msgid "Sharing"
 msgstr "Megosztás"
 
+#: static/js/stats/csv_keys.js:76
 msgid "Category Pages"
 msgstr "Kategória oldalak"
 
+#: static/js/stats/csv_keys.js:77
 msgid "Collections"
 msgstr "Gyűjtemények"
 
+#: static/js/stats/csv_keys.js:78 static/js/stats/csv_keys.js:79
 msgid "Category Landing Featured Carousel"
 msgstr "Kategória nyitólap kiemelt körhinta"
 
+#: static/js/stats/csv_keys.js:80 static/js/stats/csv_keys.js:81
 msgid "Category Landing Top Rated"
 msgstr "Kategória nyitólap legjobb értékelés"
 
+#: static/js/stats/csv_keys.js:82 static/js/stats/csv_keys.js:83
 msgid "Category Landing Most Popular"
 msgstr "Kategória nyitólap legnépszerűbb"
 
+#: static/js/stats/csv_keys.js:84 static/js/stats/csv_keys.js:85
 msgid "Category Landing Recently Added"
 msgstr "Kategória nyitólap nemrég hozzáadott"
 
+#: static/js/stats/csv_keys.js:86 static/js/stats/csv_keys.js:87
 msgid "Browse Listing Featured Sort"
 msgstr "„Kiemelt” böngészési lista rendezése"
 
+#: static/js/stats/csv_keys.js:88 static/js/stats/csv_keys.js:89
 msgid "Browse Listing Users Sort"
 msgstr "„Felhasználók” böngészési lista rendezése"
 
+#: static/js/stats/csv_keys.js:90 static/js/stats/csv_keys.js:91
 msgid "Browse Listing Rating Sort"
 msgstr "„Értékelés” böngészési lista rendezése"
 
+#: static/js/stats/csv_keys.js:92 static/js/stats/csv_keys.js:93
 msgid "Browse Listing Created Sort"
 msgstr "„Létrehozva” böngészési lista rendezése"
 
+#: static/js/stats/csv_keys.js:94 static/js/stats/csv_keys.js:95
 msgid "Browse Listing Name Sort"
 msgstr "„Név” böngészési lista rendezése"
 
+#: static/js/stats/csv_keys.js:96 static/js/stats/csv_keys.js:97
 msgid "Browse Listing Popular Sort"
 msgstr "„Legnépszerűbb” böngészési lista rendezése"
 
+#: static/js/stats/csv_keys.js:98 static/js/stats/csv_keys.js:99
 msgid "Browse Listing Updated Sort"
 msgstr "„Frissítve” böngészési lista rendezése"
 
+#: static/js/stats/csv_keys.js:100 static/js/stats/csv_keys.js:101
 msgid "Browse Listing Up and Coming Sort"
 msgstr "„Ígéretes” böngészési lista rendezése"
 
+#: static/js/stats/csv_keys.js:105
 msgid "Total Amount Contributed"
 msgstr "Teljes adomány"
 
+#: static/js/stats/csv_keys.js:106
 msgid "Average Contribution"
 msgstr "Átlagos támogatás"
 
+#: static/js/stats/csv_keys.js:115
 msgid "Usage"
 msgstr "Használat"
 
+#: static/js/stats/csv_keys.js:118
 msgid "Firefox"
 msgstr "Firefox"
 
+#: static/js/stats/csv_keys.js:119
 msgid "Mozilla"
 msgstr "Mozilla"
 
+#: static/js/stats/csv_keys.js:120
 msgid "Thunderbird"
 msgstr "Thunderbird"
 
+#: static/js/stats/csv_keys.js:121
 msgid "Sunbird"
 msgstr "Sunbird"
 
+#: static/js/stats/csv_keys.js:122
 msgid "SeaMonkey"
 msgstr "SeaMonkey"
 
+#: static/js/stats/csv_keys.js:123
 msgid "Fennec"
 msgstr "Fennec"
 
+#: static/js/stats/csv_keys.js:124
 msgid "Android"
 msgstr "Android"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:129
 #, python-brace-format
 msgid "Downloads and Daily Users, last {0} days"
 msgstr "Letöltések és felhasználók az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:131
 #, python-brace-format
 msgid "Downloads and Daily Users from {0} to {1}"
 msgstr "Letöltések és felhasználók {0} és {1} között"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:135
 #, python-brace-format
 msgid "Installs and Daily Users, last {0} days"
 msgstr "Telepítések és felhasználók az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:137
 #, python-brace-format
 msgid "Installs and Daily Users from {0} to {1}"
 msgstr "Letöltések és felhasználók {0} és {1} között"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:141
 #, python-brace-format
 msgid "Downloads, last {0} days"
 msgstr "Letöltések az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:143
 #, python-brace-format
 msgid "Downloads from {0} to {1}"
 msgstr "Letöltések {0} és {1} között"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:147
 #, python-brace-format
 msgid "Daily Users, last {0} days"
 msgstr "Felhasználók az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:149
 #, python-brace-format
 msgid "Daily Users from {0} to {1}"
 msgstr "Felhasználók {0} és {1} között"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:153
 #, python-brace-format
 msgid "Applications, last {0} days"
 msgstr "Alkalmazások az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:155
 #, python-brace-format
 msgid "Applications from {0} to {1}"
 msgstr "Alkalmazások {0} és {1} között"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:159
 #, python-brace-format
 msgid "Countries, last {0} days"
 msgstr "Országok az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:161
 #, python-brace-format
 msgid "Countries from {0} to {1}"
 msgstr "Országok {0} és {1} között"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:165
 #, python-brace-format
 msgid "Platforms, last {0} days"
 msgstr "Platformok az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:167
 #, python-brace-format
 msgid "Platforms from {0} to {1}"
 msgstr "Platformok {0} és {1} között"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:171
 #, python-brace-format
 msgid "Languages, last {0} days"
 msgstr "Nyelvek az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:173
 #, python-brace-format
 msgid "Languages from {0} to {1}"
 msgstr "Nyelvek {0} és {1} között"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:177
 #, python-brace-format
 msgid "Add-on Versions, last {0} days"
 msgstr "Kiegészítő verziói az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:179
 #, python-brace-format
 msgid "Add-on Versions from {0} to {1}"
 msgstr "Kiegészítő verziói {0} és {1} között"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:183
 #, python-brace-format
 msgid "Add-on Status, last {0} days"
 msgstr "Kiegészítő állapota az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:185
 #, python-brace-format
 msgid "Add-on Status from {0} to {1}"
 msgstr "Kiegészítő állapota {0} és {1} között"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:189
 #, python-brace-format
 msgid "Download Sources, last {0} days"
 msgstr "Letöltési források az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:191
 #, python-brace-format
 msgid "Download Sources from {0} to {1}"
 msgstr "Letöltési források {0} és {1} között"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:195
 #, python-brace-format
 msgid "Download Mediums, last {0} days"
 msgstr "Médiumok letöltése az elmúlt {0} napból"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:197
 #, python-brace-format
 msgid "Download Mediums from {0} to {1}"
 msgstr "Médiumok letöltése {0} és {1} között"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:201
 #, python-brace-format
 msgid "Download Contents, last {0} days"
 msgstr "Tartalmak letöltése az elmúlt {0} napból"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:203
 #, python-brace-format
 msgid "Download Contents from {0} to {1}"
 msgstr "Tartalmak letöltése {0} és {1} között"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:207
 #, python-brace-format
 msgid "Download Campaigns, last {0} days"
 msgstr "Kampányok letöltése az elmúlt {0} napból"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:209
 #, python-brace-format
 msgid "Download Campaigns from {0} to {1}"
 msgstr "Kampányok letöltése {0} és {1} között"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:213
 #, python-brace-format
 msgid "Contributions, last {0} days"
 msgstr "Támogatások az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:215
 #, python-brace-format
 msgid "Contributions from {0} to {1}"
 msgstr "Támogatások {0} és {1} között"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:219
 #, python-brace-format
 msgid "Site Metrics, last {0} days"
 msgstr "Oldal metrikái az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:221
 #, python-brace-format
 msgid "Site Metrics from {0} to {1}"
 msgstr "Oldal metrikái {0} és {1} között"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:225
 #, python-brace-format
 msgid "Add-ons in Use, last {0} days"
 msgstr "Használt kiegészítők száma az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:227
 #, python-brace-format
 msgid "Add-ons in Use from {0} to {1}"
 msgstr "Használt kiegészítők száma {0} és {1} között"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:231
 #, python-brace-format
 msgid "Add-ons Downloaded, last {0} days"
 msgstr "Letöltött kiegészítők száma az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:233
 #, python-brace-format
 msgid "Add-ons Downloaded from {0} to {1}"
 msgstr "Letöltött kiegészítők száma {0} és {1} között"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:237
 #, python-brace-format
 msgid "Add-ons Created, last {0} days"
 msgstr "Létrehozott kiegészítők száma az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:239
 #, python-brace-format
 msgid "Add-ons Created from {0} to {1}"
 msgstr "Létrehozott kiegészítők száma {0} és {1} között"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:243
 #, python-brace-format
 msgid "Add-ons Updated, last {0} days"
 msgstr "Frissített kiegészítők száma az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:245
 #, python-brace-format
 msgid "Add-ons Updated from {0} to {1}"
 msgstr "Frissített kiegészítők száma {0} és {1} között"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:249
 #, python-brace-format
 msgid "Reviews Written, last {0} days"
 msgstr "Megírt értékelések száma az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:251
 #, python-brace-format
 msgid "Reviews Written from {0} to {1}"
 msgstr "Megírt értékelések száma {0} és {1} között"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:255
 #, python-brace-format
 msgid "User Signups, last {0} days"
 msgstr "Regisztrációk száma az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:257
 #, python-brace-format
 msgid "User Signups from {0} to {1}"
 msgstr "Regisztrációk száma {0} és {1} között"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:261
 #, python-brace-format
 msgid "Collections Created, last {0} days"
 msgstr "Létrehozott gyűjtemények az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:263
 #, python-brace-format
 msgid "Collections Created from {0} to {1}"
 msgstr "Létrehozott gyűjtemények {0} és {1} között"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:267
 #, python-brace-format
 msgid "Subscribers, last {0} days"
 msgstr "Feliratkozók az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:269
 #, python-brace-format
 msgid "Subscribers from {0} to {1}"
 msgstr "Feliratkozók {0} és {1} között"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:273
 #, python-brace-format
 msgid "Ratings, last {0} days"
 msgstr "Értékelések az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:275
 #, python-brace-format
 msgid "Ratings from {0} to {1}"
 msgstr "Értékelések {0} és {1} között"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:279
 #, python-brace-format
 msgid "Sales, last {0} days"
 msgstr "Eladások az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:281
 #, python-brace-format
 msgid "Sales from {0} to {1}"
 msgstr "Eladások {0} és {1} között"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:285
 #, python-brace-format
 msgid "Installs, last {0} days"
 msgstr "Telepítések az elmúlt {0} napban"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:287
 #, python-brace-format
 msgid "Installs from {0} to {1}"
 msgstr "Telepítések száma {0} és {1} között"
 
 #. L10n: {0} and {1} are integers.
+#: static/js/stats/csv_keys.js:293
 #, python-brace-format
 msgid "<b>{0}</b> in last {1} days"
 msgstr "<b>{0}</b> az utolsó {1} napban"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:295 static/js/stats/csv_keys.js:301
 #, python-brace-format
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "<b>{0}</b> {1} és {2} között"
 
 #. L10n: {0} and {1} are integers.
+#: static/js/stats/csv_keys.js:299
 #, python-brace-format
 msgid "<b>{0}</b> average in last {1} days"
 msgstr "átlagosan <b>{0}</b> az elmúlt {1} napban"
 
+#: static/js/stats/overview.js:18
 msgid "No data available."
 msgstr "Nincs dátum."
 
+#: static/js/stats/table.js:84
 msgid "Date"
 msgstr "Dátum"
 
+#: static/js/stats/topchart.js:108
 msgid "Other"
 msgstr "Egyéb"
 
+#: static/js/zamboni/devhub.js:300
 msgid "Changes Saved"
 msgstr "Változások lementve"
 
+#: static/js/zamboni/devhub.js:316
 msgid "Enter a new author's email address"
 msgstr "Adja meg az új szerző e-mailcímét"
 
+#: static/js/zamboni/devhub.js:440
 msgid "There was an error uploading your file."
 msgstr "Hiba történt a fájl feltöltésekor."
 
+#: static/js/zamboni/devhub.js:596
 #, python-brace-format
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} fájl"
 msgstr[1] "{files} fájl"
 
+#: static/js/zamboni/devhub.js:1196
 msgid "Image changes being processed"
 msgstr "A kép módosítása folyamatban van"
 
+#: static/js/zamboni/global.js:463
 #, python-brace-format
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> karakter"
 msgstr[1] "<b>{0}</b> karakter"
 
+#: static/js/zamboni/global.js:472
 #, python-brace-format
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "<b>{0}</b> karakter maradt"
 msgstr[1] "<b>{0}</b> karakter maradt"
 
+#: static/js/zamboni/init.js:12
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "Ez a funkció a weboldal karbantartása alatt, átmenetileg nem érhető el. Kérjük, látogasson vissza kicsit később."
 
+#: static/js/zamboni/l10n.js:164
 msgid "Remove this localization"
 msgstr "Honosítás eltávolítása"
 
+#: static/js/zamboni/reviewers.js:258
 #, python-brace-format
 msgid "{name} was viewing this page first."
 msgstr "{name} nézte meg először az oldalt."
 
+#: static/js/zamboni/reviewers.js:266
 msgid "Review page polling failed."
 msgstr "Az értékelési oldal lekérdezése sikertelen."
 
+#: static/js/zamboni/reviewers.js:554
 #, python-brace-format
 msgid "{name} was viewing this add-on first."
 msgstr "{name} nézte meg először a kiegészítőt."
 
+#: static/js/zamboni/reviewers.js:567 static/js/zamboni/reviewers.js:593
 msgid "Loading&hellip;"
 msgstr "Betöltés&hellip;"
 
+#: static/js/zamboni/reviewers.js:572
 msgid "Version Notes"
 msgstr "Megjegyzések a verzióhoz"
 
+#: static/js/zamboni/reviewers.js:579
 msgid "Notes for Reviewers"
 msgstr "Megjegyzés a vizsgálatot végzőknek"
 
+#: static/js/zamboni/reviewers.js:586
 msgid "No version notes found"
 msgstr "Nincsenek megjegyzések a verzióhoz"
 
+#: static/js/zamboni/reviewers.js:598
 msgid "Review Text"
 msgstr "Értékelés szövege"
 
+#: static/js/zamboni/reviewers.js:605
 msgid "Review notes found"
 msgstr "Talált értékelési jegyzetek"
 
+#: static/js/zamboni/static_theme.js:217
 #, python-brace-format
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "A maximális feltöltési méret {0} – válasszon egy kisebb háttérképet."
 
+#: static/js/zamboni/themes_review.js:199
 msgid "Requested Info"
 msgstr "Kért információ"
 
+#: static/js/zamboni/themes_review.js:200
 msgid "Flagged"
 msgstr "Megjelölt"
 
+#: static/js/zamboni/themes_review.js:201
 msgid "Duplicate"
 msgstr "Másolat"
 
+#: static/js/zamboni/themes_review.js:202
 msgid "Rejected"
 msgstr "Elutasított"
 
+#: static/js/zamboni/themes_review.js:203
 msgid "Approved"
 msgstr "Jóváhagyott"
 
+#: static/js/zamboni/themes_review.js:492
 msgid "No results found"
 msgstr "Nincs találat"
 
+#: static/js/zamboni/themes_review_templates.js:43
 msgid "Theme"
 msgstr "Téma"
 
+#: static/js/zamboni/themes_review_templates.js:45
 msgid "Reviewer"
 msgstr "Véleményező"
 
+#: static/js/zamboni/themes_review_templates.js:47
 msgid "Status"
 msgstr "Állapot"
 
+#: static/js/zamboni/validator.js:89
 msgid "All tests passed successfully."
 msgstr "Az összes teszten sikeresen átment."
 
+#: static/js/zamboni/validator.js:92 static/js/zamboni/validator.js:388
 msgid "These tests were not run."
 msgstr "Ezek a tesztek nem futottak le."
 
+#: static/js/zamboni/validator.js:155 static/js/zamboni/validator.js:177
 msgid "Tests"
 msgstr "Tesztek"
 
+#: static/js/zamboni/validator.js:259 static/js/zamboni/validator.js:492 static/js/zamboni/validator.js:516
 msgid "Error"
 msgstr "Hiba"
 
+#: static/js/zamboni/validator.js:259
 msgid "Warning"
 msgstr "Figyelmeztetés"
 
+#: static/js/zamboni/validator.js:332
 #, python-brace-format
 msgid "{0} line {1} column {2}"
 msgstr "{0} {1}. sor {2}. oszlop"
 
+#: static/js/zamboni/validator.js:339
 #, python-brace-format
 msgid "{0} line {1}"
 msgstr "{0} {1}. sor"
 
+#: static/js/zamboni/validator.js:376
 msgid "Add-on failed validation."
 msgstr "A kiegészítő nem ment át a vizsgálaton."
 
+#: static/js/zamboni/validator.js:378
 msgid "Add-on passed validation."
 msgstr "A kiegészítő átment a vizsgálaton."
 
+#: static/js/zamboni/validator.js:391
 #, python-brace-format
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} hiba"
 msgstr[1] "{0} hiba"
 
+#: static/js/zamboni/validator.js:394
 #, python-brace-format
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} figyelmeztetés"
 msgstr[1] "{0} figyelmeztetés"
 
+#: static/js/zamboni/validator.js:397
 #, python-brace-format
 msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] "{0} értesítés"
 msgstr[1] "{0} értesítés"
 
+#: static/js/zamboni/validator.js:494
 msgid "Validation task could not complete or completed with errors"
 msgstr "Az ellenőrzés nem fejeződött be vagy hibát okozott"
 
+#: static/js/zamboni/validator.js:517
 msgid "Internal server error"
 msgstr "Belső kiszolgálóhiba"
