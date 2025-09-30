@@ -6250,7 +6250,7 @@ msgid "Invalid or corrupted file."
 msgstr "Archivo no válido o dañado."
 
 #: src/olympia/files/utils.py:903
-#, fuzzy, python-format
+#, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
 msgstr "El ID de tu complemento en manifest.json or install.rdf (%s) no se corresponde con el ID de tu complemento en AMO(%s)"
 
