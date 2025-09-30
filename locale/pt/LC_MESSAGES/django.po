@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-26 09:04+0000\n"
+"POT-Creation-Date: 2025-09-30 14:10+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -5442,16 +5442,6 @@ msgstr "Tem a certeza que deseja remover todas as <b>{0}</b> traduções? Isto n
 msgid "Delete Locale"
 msgstr "Eliminar idioma"
 
-#, fuzzy
-msgid "IP Address"
-msgstr "Endereço de email"
-
-msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
-msgstr ""
-
-msgid "You can only enter one, either IP Address or Network."
-msgstr ""
-
 msgid "No user with that email."
 msgstr "Nenhum utilizador com esse email."
 
@@ -5459,24 +5449,10 @@ msgstr "Nenhum utilizador com esse email."
 msgid "Firefox user {id}"
 msgstr "Firefox para o Android"
 
-msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
-msgstr ""
-
 msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
 msgstr ""
 
-msgid "Email Pattern"
-msgstr ""
-
-msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
-msgstr ""
-
 msgid "The email address used for your account is not allowed for submissions."
-msgstr ""
-
-msgid ""
-"Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
-"restrictions\" instead."
 msgstr ""
 
 #, fuzzy
@@ -5488,10 +5464,6 @@ msgstr "Ante de começar, por favor leia e aceite o nosso acordo de distribuiç�
 #, fuzzy, python-brace-format
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr "Ante de começar, por favor leia e aceite o nosso acordo de distribuição de extra do Firefox. Também tem uma ligação para a nossa nota de privacidade que explica como gerimos a sua informação."
-
-#, fuzzy
-msgid "User Restriction History"
-msgstr "Histórico da análise"
 
 msgid "an add-on developer replies to my review"
 msgstr "um programador de um extra respondeu ao meu comentário"

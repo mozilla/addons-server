@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-26 09:04+0000\n"
+"POT-Creation-Date: 2025-09-30 14:10+0000\n"
 "PO-Revision-Date: 2024-01-15 13:27+0000\n"
 "Last-Translator: Bund10z <abu.avila@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -5446,15 +5446,6 @@ msgstr "¿Estás seguro de que quieres borrar las <b>{0}</b> traducciones? No po
 msgid "Delete Locale"
 msgstr "Eliminar traducción"
 
-msgid "IP Address"
-msgstr "Dirección IP"
-
-msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
-msgstr "Introduce una dirección IPv4 o IPv6 válida; por ejemplo, 127.0.0.1. Se convertirá en una red de /32."
-
-msgid "You can only enter one, either IP Address or Network."
-msgstr "Solo puedes escribir una, o dirección IP o red."
-
 msgid "No user with that email."
 msgstr "No se ha encontrado un usuario con ese correo electrónico."
 
@@ -5462,28 +5453,11 @@ msgstr "No se ha encontrado un usuario con ese correo electrónico."
 msgid "Firefox user {id}"
 msgstr "Usuario de Firefox {id}"
 
-#, fuzzy
-msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
-msgstr "Introduce un rango de red IPv6 o IPv6 válido; por ejemplo, 127.0.0.1/28"
-
 msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
-msgstr ""
-
-msgid "Email Pattern"
-msgstr "Patrón de correo"
-
-msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr ""
 
 msgid "The email address used for your account is not allowed for submissions."
 msgstr ""
-
-msgid ""
-"Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
-"restrictions\" instead."
-msgstr ""
-"Escribe el dominio de correo electrónico completo que hay que bloquear. Los comodines no son compatibles: si los necesitas, o si necesitas hacer coincidir el correo electrónico completo y no solo "
-"la parte del dominio, usa \"Restricciones de usuario de correo electrónico\"."
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
@@ -5497,9 +5471,6 @@ msgid "Please read and accept our Firefox Add-on Distribution Agreement as well 
 msgstr ""
 "Antes de comenzar, lee y acepta nuestro Acuerdo de distribución de complementos de Firefox y nuestras Reglas y políticas de revisión. En el acuerdo también encontrarás un enlace a nuestro Aviso de "
 "privacidad, donde se explica cómo administraremos tu información."
-
-msgid "User Restriction History"
-msgstr "Historial de restricciones del usuario"
 
 msgid "an add-on developer replies to my review"
 msgstr "un desarrollador de complementos responde a mi valoración"

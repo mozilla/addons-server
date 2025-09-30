@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-26 09:04+0000\n"
+"POT-Creation-Date: 2025-09-30 14:10+0000\n"
 "Language: mn\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -5321,15 +5321,6 @@ msgstr ""
 msgid "Delete Locale"
 msgstr ""
 
-msgid "IP Address"
-msgstr ""
-
-msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
-msgstr ""
-
-msgid "You can only enter one, either IP Address or Network."
-msgstr ""
-
 msgid "No user with that email."
 msgstr ""
 
@@ -5337,24 +5328,10 @@ msgstr ""
 msgid "Firefox user {id}"
 msgstr ""
 
-msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
-msgstr ""
-
 msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
 msgstr ""
 
-msgid "Email Pattern"
-msgstr ""
-
-msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
-msgstr ""
-
 msgid "The email address used for your account is not allowed for submissions."
-msgstr ""
-
-msgid ""
-"Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
-"restrictions\" instead."
 msgstr ""
 
 msgid ""
@@ -5364,9 +5341,6 @@ msgstr ""
 
 #, python-brace-format
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
-msgstr ""
-
-msgid "User Restriction History"
 msgstr ""
 
 msgid "an add-on developer replies to my review"

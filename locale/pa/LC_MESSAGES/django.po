@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-26 09:04+0000\n"
+"POT-Creation-Date: 2025-09-30 14:10+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -5423,16 +5423,6 @@ msgstr "ਕੀ ਤੁਸੀਂ ਸਾਰੀਆਂ <b>{0}</b> ਟਰਾਂਸਲ�
 msgid "Delete Locale"
 msgstr "ਲੋਕੇਲ ਹਟਾਓ"
 
-#, fuzzy
-msgid "IP Address"
-msgstr "ਈਮੇਲ ਪਤਾ"
-
-msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
-msgstr ""
-
-msgid "You can only enter one, either IP Address or Network."
-msgstr ""
-
 msgid "No user with that email."
 msgstr "ਇਸ ਈਮੇਲ ਨਾਲ ਕੋਈ ਉਪਭੋਗੀ ਨਹੀਂ।"
 
@@ -5440,24 +5430,10 @@ msgstr "ਇਸ ਈਮੇਲ ਨਾਲ ਕੋਈ ਉਪਭੋਗੀ ਨਹੀਂ�
 msgid "Firefox user {id}"
 msgstr "ਐਨਡਰੋਇਡ ਲਈ ਫ਼ਾਇਰਫ਼ਾਕਸ"
 
-msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
-msgstr ""
-
 msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
 msgstr ""
 
-msgid "Email Pattern"
-msgstr ""
-
-msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
-msgstr ""
-
 msgid "The email address used for your account is not allowed for submissions."
-msgstr ""
-
-msgid ""
-"Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
-"restrictions\" instead."
 msgstr ""
 
 #, fuzzy
@@ -5469,10 +5445,6 @@ msgstr "ਸ਼ੁਰੂ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ, ਕਿਰਪਾ 
 #, fuzzy, python-brace-format
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr "ਸ਼ੁਰੂ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ, ਕਿਰਪਾ ਕਰਕੇ ਸਾਡਾ ਫਾਇਰਫਾਕਸ ਐਡ-ਆਨ ਵੰਡ ਸਮਝੌਤਾ ਪੜ੍ਹੋ ਅਤੇ ਮਨਜ਼ੂਰ ਕਰੋ। ਇਹ ਸਾਡੇ ਪਰਦੇਦਾਰੀ ਨੋਟਿਸ ਨਾਲ ਵੀ ਸਬੰਧ ਰੱਖਦਾ ਜੋ ਦੱਸਦਾ ਹੈ ਕੀ ਕਿਵੇਂ ਅਸੀਂ ਤੁਹਾਡੀ ਜਾਣਕਾਰੀ ਨੂੰ ਵਰਤਦੇ ਹਾਂ।"
-
-#, fuzzy
-msgid "User Restriction History"
-msgstr "ਸਮੀਖਿਆ ਇਤਿਹਾਸ"
 
 msgid "an add-on developer replies to my review"
 msgstr "ਇੱਕ ਐਡ-ਆਨ ਡਿਵੈਲਪਰ ਨੇ ਮੇਰੀ ਸਮੀਖਿਆ ਦਾ ਜਵਾਬ ਦਿੱਤਾ"

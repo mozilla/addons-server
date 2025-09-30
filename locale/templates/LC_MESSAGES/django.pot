@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-26 09:04+0000\n"
+"POT-Creation-Date: 2025-09-30 14:10+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -7561,20 +7561,6 @@ msgstr ""
 msgid "Delete Locale"
 msgstr ""
 
-#: src/olympia/users/forms.py:24
-msgid "IP Address"
-msgstr ""
-
-#: src/olympia/users/forms.py:26
-msgid ""
-"Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a "
-"/32 network."
-msgstr ""
-
-#: src/olympia/users/forms.py:37
-msgid "You can only enter one, either IP Address or Network."
-msgstr ""
-
 #: src/olympia/users/models.py:91
 msgid "No user with that email."
 msgstr ""
@@ -7584,36 +7570,14 @@ msgstr ""
 msgid "Firefox user {id}"
 msgstr ""
 
-#: src/olympia/users/models.py:863
-msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
-msgstr ""
-
 #: src/olympia/users/models.py:867
 msgid ""
 "Multiple submissions violating our policies have been sent from your "
 "location. The IP address has been blocked."
 msgstr ""
 
-#: src/olympia/users/models.py:1009
-msgid "Email Pattern"
-msgstr ""
-
-#: src/olympia/users/models.py:1012
-msgid ""
-"Enter full email that should be blocked or use unix-style wildcards, e.g. "
-"\"*@example.com\". If you need to block a domain incl subdomains, add a "
-"second entry, e.g. \"*@*.example.com\"."
-msgstr ""
-
 #: src/olympia/users/models.py:1019
 msgid "The email address used for your account is not allowed for submissions."
-msgstr ""
-
-#: src/olympia/users/models.py:1121
-msgid ""
-"Enter full disposable email domain that should be blocked. Wildcards are not "
-"supported: if you need those, or need to match against the entire email and "
-"not just the domain part, use \"Email user restrictions\" instead."
 msgstr ""
 
 #: src/olympia/users/models.py:1278
@@ -7629,10 +7593,6 @@ msgstr ""
 msgid ""
 "Please read and accept our Firefox Add-on Distribution Agreement as well as "
 "our Review Policies and Rules by visiting {url}"
-msgstr ""
-
-#: src/olympia/users/models.py:1343
-msgid "User Restriction History"
 msgstr ""
 
 #: src/olympia/users/notifications.py:27

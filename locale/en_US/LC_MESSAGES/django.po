@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-26 09:04+0000\n"
+"POT-Creation-Date: 2025-09-30 14:10+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -5717,16 +5717,6 @@ msgstr "Are you sure you want to remove all <b>{0}</b> translations? This cannot
 msgid "Delete Locale"
 msgstr "Delete Locale"
 
-#, fuzzy
-msgid "IP Address"
-msgstr "Email Address"
-
-msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
-msgstr "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
-
-msgid "You can only enter one, either IP Address or Network."
-msgstr "You can only enter one, either IP Address or Network."
-
 msgid "No user with that email."
 msgstr "No user with that email."
 
@@ -5734,28 +5724,11 @@ msgstr "No user with that email."
 msgid "Firefox user {id}"
 msgstr "Firefox for Android"
 
-#, fuzzy
-msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
-msgstr "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
-
 msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
 msgstr "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
 
-msgid "Email Pattern"
-msgstr "Email Pattern"
-
-msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
-msgstr "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
-
 msgid "The email address used for your account is not allowed for submissions."
 msgstr "The email address used for your account is not allowed for submissions."
-
-msgid ""
-"Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
-"restrictions\" instead."
-msgstr ""
-"Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
-"restrictions\" instead."
 
 #, fuzzy
 msgid ""
@@ -5766,10 +5739,6 @@ msgstr "Before starting, please read and accept our Firefox Add-on Distribution 
 #, fuzzy, python-brace-format
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr "Before starting, please read and accept our Firefox Add-on Distribution Agreement. It also links to our Privacy Notice which explains how we handle your information."
-
-#, fuzzy
-msgid "User Restriction History"
-msgstr "Review History"
 
 msgid "an add-on developer replies to my review"
 msgstr "an add-on developer replies to my review"
