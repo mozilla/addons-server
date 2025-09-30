@@ -55,7 +55,7 @@ class IPNetworkUserRestrictionForm(AMOModelForm):
 
         if ip_address and network:
             raise forms.ValidationError(
-                ('You can only enter one, either IP Address or Network.')
+                'You can only enter one, either IP Address or Network.'
             )
         elif ip_address is not None and not network:
             data['network'] = f'{ip_address}/32'
