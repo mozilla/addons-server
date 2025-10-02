@@ -588,7 +588,7 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
             )
 
     @mock.patch('olympia.addons.models.resolve_i18n_message')
-    def test_bypass_trademark_checks(self, resolve_message):
+    def test_bypass_name_checks(self, resolve_message):
         resolve_message.return_value = 'Notify Mozilla'
 
         addon = amo.tests.addon_factory(
@@ -596,9 +596,9 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         )
         file_obj = addon.current_version.file
 
-        assert utils.parse_xpi(file_obj.file.path, bypass_trademark_checks=True)
+        assert utils.parse_xpi(file_obj.file.path, bypass_name_checks=True)
         assert utils.parse_addon(
-            file_obj.file.path, user=user_factory(), bypass_trademark_checks=True
+            file_obj.file.path, user=user_factory(), bypass_name_checks=True
         )
 
     @mock.patch('olympia.addons.models.resolve_i18n_message')

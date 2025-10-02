@@ -39,7 +39,7 @@ from olympia.addons.utils import (
     fetch_translations_from_addon,
     get_translation_differences,
     remove_icons,
-    verify_mozilla_trademark,
+    validate_addon_name,
 )
 from olympia.amo.fields import HttpHttpsOnlyURLField, ReCaptchaField
 from olympia.amo.forms import AMOModelForm
@@ -127,7 +127,7 @@ class AddonFormBase(TranslationFormMixin, AMOModelForm):
     def clean_name(self):
         user = getattr(self.request, 'user', None)
 
-        name = verify_mozilla_trademark(self.cleaned_data['name'], user, form=self)
+        name = validate_addon_name(self.cleaned_data['name'], user, form=self)
 
         return name
 

@@ -95,7 +95,7 @@ from .validators import (
     NoFallbackDefaultLocaleValidator,
     NoThemesValidator,
     ReviewedSourceFileValidator,
-    VerifyMozillaTrademark,
+    ValidateAddonName,
     VersionAddonMetadataValidator,
     VersionLicenseValidator,
 )
@@ -1037,7 +1037,7 @@ class AddonSerializer(AMOModelSerializer):
     name = TranslationSerializerField(
         required=False,
         validators=[
-            VerifyMozillaTrademark(),
+            ValidateAddonName(),
             OneOrMoreLetterOrNumberCharacterValidator(),
         ],
     )

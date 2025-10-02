@@ -13,58 +13,93 @@ from ..utils import (
     DeleteTokenSigner,
     get_addon_recommendations,
     get_filtered_fallbacks,
-    verify_mozilla_trademark,
+    validate_addon_name,
 )
 
 
 @pytest.mark.django_db
 @pytest.mark.parametrize(
-    'name, allowed, give_permission',
+    'name',
     (
-        ('Fancy new Add-on', True, False),
+        'Fancy new Add-on',
         # We allow the 'for ...' postfix to be used
-        ('Fancy new Add-on for Firefox', True, False),
-        ('Fancy new Add-on for Mozilla', True, False),
-        # But only the postfix
-        ('Fancy new Add-on for Firefox Browser', False, False),
-        ('For Firefox fancy new add-on', False, False),
-        # But users with the TRADEMARK_BYPASS permission are allowed
-        ('Firefox makes everything better', False, False),
-        ('Firefox makes everything better', True, True),
-        ('Mozilla makes everything better', True, True),
-        # A few more test-cases...
-        ('Firefox add-on for Firefox', False, False),
-        ('Firefox add-on for Firefox', True, True),
-        ('Foobarfor Firefox', False, False),
-        ('F i r e f o x', False, False),
-        ('F î r \u0435fox', False, False),
-        ('FiRѐF0 x', False, False),
-        ('F i r \u0435 f o x', False, False),
-        ('F\u2800i r e f o x', False, False),
-        ('F\u2800 i r \u0435 f o x', False, False),
-        ('Fïrefox is great', False, False),
-        ('Foobarfor Firefox!', False, False),
-        ('Mozilla', False, False),
-        ('Moziꙇꙇa', False, False),
-        ('Better Privacy for Firefox!', True, False),
-        ('Firefox awesome for Mozilla', False, False),
-        ('Firefox awesome for Mozilla', True, True),
+        'Fancy new Add-on for Firefox',
+        'Fancy new Add-on for Mozilla',
+        'Better Privacy for Firefox!',
+        # Right on the limit of what's acceptable for number of homoglyphs
+        'BIlIbIlI Helper: BIlIbIlI.com AuxIlIary',
     ),
 )
-def test_verify_mozilla_trademark(name, allowed, give_permission):
+def test_validate_addon_name_allowed(name):
     user = user_factory()
-    if give_permission:
-        group = Group.objects.create(name=name, rules='Trademark:Bypass')
-        GroupUser.objects.create(group=group, user=user)
+    validate_addon_name(name, user)
 
-    if not allowed:
-        with pytest.raises(ValidationError) as exc:
-            verify_mozilla_trademark(name, user)
-        assert exc.value.message == (
-            'Add-on names cannot contain the Mozilla or Firefox trademarks.'
-        )
-    else:
-        verify_mozilla_trademark(name, user)
+
+@pytest.mark.django_db
+@pytest.mark.parametrize(
+    'name',
+    (
+        'Fancy new Add-on for Firefox Browser',
+        'For Firefox shiny new add-on',
+        'Firefox makes everything better',
+        'Mozilla makes everything better',
+        'Firefox add-on for Firefox',
+        'Foobarfor Firefox',
+        'F i r e f o x',
+        'F î r \u0435fox',
+        'FiRѐF0 x',
+        'F i r \u0435 f o x',
+        'F\u2800i r e f o x',
+        'F\u2800 i r \u0435 f o x',
+        'Fïrefox is great',
+        'Foobarfor Firefox!',
+        'Mozilla',
+        'm0z1IIa',
+        'Moziꙇꙇa',
+        'Firefox awesome for Mozilla',
+        'Firefox awesome for Mozilla',
+    ),
+)
+def test_validate_addon_name_disallowed_without_permission(name):
+    normal_user = user_factory()
+    special_user = user_factory()
+    group = Group.objects.create(name=name, rules='Trademark:Bypass')
+    GroupUser.objects.create(group=group, user=special_user)
+
+    # Validates with the permission.
+    validate_addon_name(name, special_user)
+
+    # Raises an error without.
+    with pytest.raises(ValidationError) as exc:
+        validate_addon_name(name, normal_user)
+    assert exc.value.message == (
+        'Add-on names cannot contain the Mozilla or Firefox trademarks.'
+    )
+
+
+@pytest.mark.django_db
+@pytest.mark.parametrize(
+    'name',
+    (
+        'l' * 17, # Too many homoglyphs
+        'l' * 50, # Way too many homoglyphs!
+    )
+)
+def test_validate_addon_name_disallowed_no_matter_what(name):
+    normal_user = user_factory()
+    special_user = user_factory()
+    group = Group.objects.create(name=name, rules='Trademark:Bypass')
+    GroupUser.objects.create(group=group, user=special_user)
+
+    # Raises an error without the permission...
+    with pytest.raises(ValidationError) as exc:
+        validate_addon_name(name, normal_user)
+    assert exc.value.message == 'This name cannot be used.'
+
+    # ... and also with it.
+    with pytest.raises(ValidationError) as exc2:
+        validate_addon_name(name, special_user)
+    assert exc2.value.message == 'This name cannot be used.'
 
 
 class TestGetAddonRecommendations(TestCase):

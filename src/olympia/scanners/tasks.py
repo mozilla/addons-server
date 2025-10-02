@@ -280,8 +280,8 @@ def _run_narc(*, scanner_result, version, rules=None):
             variants = [(value, None)]
             if (normalized_value := normalize_string_for_name_checks(value)) != value:
                 variants.append((normalized_value, 'normalized'))
-            homoglyph_variants = generate_lowercase_homoglyphs_variants_for_string(
-                normalized_value
+            homoglyph_variants = set(
+                generate_lowercase_homoglyphs_variants_for_string(normalized_value)
             )
             if homoglyph_variants:
                 variants.extend(

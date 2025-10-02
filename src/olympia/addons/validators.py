@@ -9,16 +9,16 @@ from olympia.amo.utils import find_language
 from olympia.versions.models import License
 
 from .models import Addon
-from .utils import verify_mozilla_trademark
+from .utils import validate_addon_name
 
 
-class VerifyMozillaTrademark:
+class ValidateAddonName:
     requires_context = True
 
     def __call__(self, value, serializer_field):
         user = serializer_field.context['request'].user
         try:
-            verify_mozilla_trademark(value, user)
+            validate_addon_name(value, user)
         except forms.ValidationError as exc:
             raise exceptions.ValidationError(exc.message) from exc
 
