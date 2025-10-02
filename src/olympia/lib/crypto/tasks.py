@@ -168,7 +168,7 @@ def duplicate_addon_version(old_version, new_version_number, user):
         # the task user, in case they have special permissions allowing
         # the original version to be submitted.
         parsed_data = parse_addon(
-            upload, addon=addon, user=original_author, bypass_trademark_checks=True
+            upload, addon=addon, user=original_author, bypass_name_checks=True
         )
         parsed_data['approval_notes'] = old_version.approval_notes
 

@@ -488,10 +488,23 @@ def build_characters_normalization_strip_table(categories_to_strip):
     )
 
 
+class Homoglyphs(homoglyphs_fork.Homoglyphs):
+    def get_lower_ascii_variants(self, text):
+        """
+        Return an iterator over ascii variants of the given text.
+
+        Similar to what to_ascii() would return, except the result is a an
+        iterator, not a sorted/uniqueness'ed list, and each yielded variant is
+        returned in lowercase.
+        """
+        for variant in self._get_combinations(text, ascii=True):
+            yield variant.lower()
+
+
 def normalize_string_for_name_checks(
     value, categories_to_strip=('Z', 'P', 'M', 'C', 'S')
 ):
-    """Normalizes a unicode string to perform name checks on it.
+    """Normalize a unicode string to perform name checks on it.
 
     * decomposes unicode characters (also applying compatibility decomposition
       to replace letter equivalents)
@@ -506,7 +519,7 @@ def normalize_string_for_name_checks(
 
 
 def generate_lowercase_homoglyphs_variants_for_string(value):
-    """Generates a set of lowercase homoglyph variants for a given string.
+    """Generate an iterator of lowercase homoglyph variants for a given string.
 
     Value passed as argument is a string that is expected to have gone through
     normalization to remove characters we don't want first, see
@@ -530,12 +543,12 @@ def generate_lowercase_homoglyphs_variants_for_string(value):
         )
     )
     value = value.translate(additional_replacement_table)
-    homoglyphs = homoglyphs_fork.Homoglyphs(
+    homoglyphs = Homoglyphs(
         languages={'en'},
         strategy=homoglyphs_fork.STRATEGY_LOAD,
         ascii_range=range(ord('A'), ord('z') + 1),
     )
-    return {variant.lower() for variant in homoglyphs.to_ascii(value)}
+    return homoglyphs.get_lower_ascii_variants(value)
 
 
 def slug_validator(slug, message=validate_slug.message):

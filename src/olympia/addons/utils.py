@@ -23,7 +23,16 @@ def generate_addon_guid():
     return '{%s}' % str(uuid.uuid4())
 
 
-def verify_mozilla_trademark(name, user, *, form=None):
+def validate_addon_name(name, user, *, form=None):
+    """
+    Validate that an add-on name is allowed.
+
+    name can either be  a string or a dict of locale (string) -> name (string)
+    items.
+
+    Users with TRADEMARK_BYPASS permission bypass checks performed by this
+    function.
+    """
     skip_trademark_check = (
         user
         and user.is_authenticated
@@ -39,11 +48,21 @@ def verify_mozilla_trademark(name, user, *, form=None):
             normalize_string_for_name_checks(name)
         )
 
-        for variant in variants:
+        for index, variant in enumerate(variants):
+            if index > 65535:
+                # index > 65535 means over 16 confusable characters with 2
+                # variants each. That name is likely suspicious, and it's too
+                # expensive to continue anyway. Reject it immediately.
+                raise forms.ValidationError(gettext('This name cannot be used.'))
+
+            if skip_trademark_check:
+                continue
+
             for symbol in amo.MOZILLA_TRADEMARK_SYMBOLS:
                 symbol_count = variant.count(symbol)
                 violates_trademark = symbol_count > 1 or (
                     symbol_count >= 1
+                    # 'XXX for Mozilla' or 'XXX for Firefox' is allowed.
                     and not name_without_punctuation.endswith(f' for {symbol}')
                 )
 
@@ -53,10 +72,9 @@ def verify_mozilla_trademark(name, user, *, form=None):
                     )
                     raise forms.ValidationError(msg)
 
-    if not skip_trademark_check:
-        verify_condition_with_locales(
-            value=name, check_func=_check, form=form, field_name='name'
-        )
+    verify_condition_with_locales(
+        value=name, check_func=_check, form=form, field_name='name'
+    )
 
     return name
 

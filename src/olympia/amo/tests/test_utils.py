@@ -1,6 +1,7 @@
 import collections
 import datetime
 import hashlib
+import inspect
 import os.path
 import tempfile
 from unittest import mock
@@ -469,7 +470,9 @@ def test_normalize_string_for_name_checks_with_specific_category(value, expected
     ],
 )
 def test_generate_lowercase_homoglyphs_variants_for_string(value, expected):
-    assert generate_lowercase_homoglyphs_variants_for_string(value) == expected
+    res = generate_lowercase_homoglyphs_variants_for_string(value)
+    assert inspect.isgenerator(res)
+    assert set(res) == expected
 
 
 @pytest.mark.parametrize(

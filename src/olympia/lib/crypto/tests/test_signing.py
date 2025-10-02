@@ -648,7 +648,7 @@ class TestTasks(TestCase):
         assert new_current_version.version == '0.0.3resigned1'
 
     @mock.patch('olympia.addons.models.Addon.resolve_webext_translations')
-    def test_resign_bypass_trademark_checks(self, mock_resolve_message, mock_sign_file):
+    def test_resign_bypass_name_checks(self, mock_resolve_message, mock_sign_file):
         # Would violate trademark rule, as it contains "Firefox" but doesn't
         # end with "for Firefox", and the author doesn't have special
         # permissions.
