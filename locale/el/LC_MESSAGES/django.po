@@ -2141,7 +2141,7 @@ msgstr "Κάτι πήγε στραβά, επικοινωνήστε με την �
 
 #: src/olympia/devhub/forms.py:1653
 msgid "No appropriate version available"
-msgstr ""
+msgstr "Δεν διατίθεται κατάλληλη έκδοση"
 
 #: src/olympia/devhub/forms.py:1660
 msgid "Choose version"
@@ -5667,7 +5667,7 @@ msgstr "Αυτόματη άρνηση αναδυόμενων αιτημάτων 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:670
 msgid "Powerful pop-up dictionary optimized for learning new languages."
-msgstr ""
+msgstr "Ισχυρό αναδυόμενο λεξικό, βελτιστοποιημένο για την εκμάθηση νέων γλωσσών."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:673
@@ -5677,7 +5677,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:676
 msgid "Remove distracting and unwanted search results and related video content."
-msgstr ""
+msgstr "Αφαιρέστε τα ανεπιθύμητα και ενοχλητικά αποτελέσματα αναζήτησης και το σχετικό περιεχόμενο βίντεο."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:679
