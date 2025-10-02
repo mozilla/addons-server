@@ -5,39 +5,6 @@ export default {
   usage: {
     count: gettext('Daily Users'),
   },
-  collections_created: {
-    count: gettext('Collections Created'),
-  },
-  addons_in_use: {
-    count: gettext('Add-ons in Use'),
-  },
-  addons_created: {
-    count: gettext('Add-ons Created'),
-  },
-  addons_downloaded: {
-    count: gettext('Add-ons Downloaded'),
-  },
-  addons_updated: {
-    count: gettext('Add-ons Updated'),
-  },
-  reviews_created: {
-    count: gettext('Reviews Written'),
-  },
-  users_created: {
-    count: gettext('User Signups'),
-  },
-  subscribers: {
-    count: gettext('Subscribers'),
-  },
-  ratings: {
-    count: gettext('Ratings'),
-  },
-  sales: {
-    count: gettext('Sales'),
-  },
-  installs: {
-    count: gettext('Installs'),
-  },
   sources: {
     null: gettext('Unknown'),
     api: gettext('Add-ons Manager'),
@@ -71,7 +38,6 @@ export default {
     developers: gettext('Meet the Developer'),
     userprofile: gettext('User Profile'),
     'version-history': gettext('Version History'),
-
     sharingapi: gettext('Sharing'),
     category: gettext('Category Pages'),
     collection: gettext('Collections'),
@@ -100,19 +66,9 @@ export default {
     'cb-btn-hotness': gettext('Browse Listing Up and Coming Sort'),
     'cb-dl-hotness': gettext('Browse Listing Up and Coming Sort'),
   },
-  contributions: {
-    count: gettext('Number of Contributions'),
-    total: gettext('Total Amount Contributed'),
-    average: gettext('Average Contribution'),
-  },
   overview: {
     downloads: gettext('Downloads'),
     updates: gettext('Daily Users'),
-  },
-  app_overview: {
-    installs: gettext('Installs'),
-    sales: gettext('Sales'),
-    usage: gettext('Usage'),
   },
   apps: {
     '{ec8030f7-c20a-464f-9b0e-13a3a9e97384}': gettext('Firefox'),
@@ -129,12 +85,6 @@ export default {
       gettext('Downloads and Daily Users, last {0} days'),
       // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
       gettext('Downloads and Daily Users from {0} to {1}'),
-    ],
-    app_overview: [
-      // L10n: {0} is an integer.
-      gettext('Installs and Daily Users, last {0} days'),
-      // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-      gettext('Installs and Daily Users from {0} to {1}'),
     ],
     downloads: [
       // L10n: {0} is an integer.
@@ -178,12 +128,6 @@ export default {
       // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
       gettext('Add-on Versions from {0} to {1}'),
     ],
-    statuses: [
-      // L10n: {0} is an integer.
-      gettext('Add-on Status, last {0} days'),
-      // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-      gettext('Add-on Status from {0} to {1}'),
-    ],
     sources: [
       // L10n: {0} is an integer.
       gettext('Download Sources, last {0} days'),
@@ -207,84 +151,6 @@ export default {
       gettext('Download Campaigns, last {0} days'),
       // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
       gettext('Download Campaigns from {0} to {1}'),
-    ],
-    contributions: [
-      // L10n: {0} is an integer.
-      gettext('Contributions, last {0} days'),
-      // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-      gettext('Contributions from {0} to {1}'),
-    ],
-    site: [
-      // L10n: {0} is an integer.
-      gettext('Site Metrics, last {0} days'),
-      // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-      gettext('Site Metrics from {0} to {1}'),
-    ],
-    addons_in_use: [
-      // L10n: {0} is an integer.
-      gettext('Add-ons in Use, last {0} days'),
-      // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-      gettext('Add-ons in Use from {0} to {1}'),
-    ],
-    addons_downloaded: [
-      // L10n: {0} is an integer.
-      gettext('Add-ons Downloaded, last {0} days'),
-      // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-      gettext('Add-ons Downloaded from {0} to {1}'),
-    ],
-    addons_created: [
-      // L10n: {0} is an integer.
-      gettext('Add-ons Created, last {0} days'),
-      // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-      gettext('Add-ons Created from {0} to {1}'),
-    ],
-    addons_updated: [
-      // L10n: {0} is an integer.
-      gettext('Add-ons Updated, last {0} days'),
-      // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-      gettext('Add-ons Updated from {0} to {1}'),
-    ],
-    reviews_created: [
-      // L10n: {0} is an integer.
-      gettext('Reviews Written, last {0} days'),
-      // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-      gettext('Reviews Written from {0} to {1}'),
-    ],
-    users_created: [
-      // L10n: {0} is an integer.
-      gettext('User Signups, last {0} days'),
-      // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-      gettext('User Signups from {0} to {1}'),
-    ],
-    collections_created: [
-      // L10n: {0} is an integer.
-      gettext('Collections Created, last {0} days'),
-      // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-      gettext('Collections Created from {0} to {1}'),
-    ],
-    subscribers: [
-      // L10n: {0} is an integer.
-      gettext('Subscribers, last {0} days'),
-      // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-      gettext('Subscribers from {0} to {1}'),
-    ],
-    ratings: [
-      // L10n: {0} is an integer.
-      gettext('Ratings, last {0} days'),
-      // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-      gettext('Ratings from {0} to {1}'),
-    ],
-    sales: [
-      // L10n: {0} is an integer.
-      gettext('Sales, last {0} days'),
-      // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-      gettext('Sales from {0} to {1}'),
-    ],
-    installs: [
-      // L10n: {0} is an integer.
-      gettext('Installs, last {0} days'),
-      // L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-      gettext('Installs from {0} to {1}'),
     ],
   },
   aggregateLabel: {

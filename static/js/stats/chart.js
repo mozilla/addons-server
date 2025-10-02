@@ -91,22 +91,8 @@ const dayMsecs = 24 * 3600 * 1000;
     locales: 'users',
     os: 'users',
     versions: 'users',
-    statuses: 'users',
-    users_created: 'users',
     downloads: 'downloads',
     sources: 'downloads',
-    contributions: 'currency',
-    revenue: 'currency',
-    reviews_created: 'reviews',
-    addons_in_use: 'addons',
-    addons_created: 'addons',
-    addons_updated: 'addons',
-    addons_downloaded: 'addons',
-    collections_created: 'collections',
-    subscribers: 'collections',
-    ratings: 'collections',
-    sales: 'sales',
-    refunds: 'refunds',
     installs: 'installs',
     countries: 'users',
     contents: 'downloads',
@@ -151,7 +137,7 @@ const dayMsecs = 24 * 3600 * 1000;
       i,
       field,
       val,
-      is_overview = metric == 'overview' || metric == 'app_overview';
+      is_overview = metric == 'overview';
 
     if (!(group in acceptedGroups)) {
       group = 'day';
@@ -282,7 +268,7 @@ const dayMsecs = 24 * 3600 * 1000;
         // Add offset to line up points and ticks on day grouping.
         pointStart: start,
         data: series[field],
-        visible: !(metric == 'contributions' && id != 'total'),
+        visible: true,
       });
     }
 
@@ -332,21 +318,6 @@ const dayMsecs = 24 * 3600 * 1000;
           Highcharts.numberFormat(n, 0),
         );
       }
-      function currencyFormatter(n) {
-        return '$' + Highcharts.numberFormat(n, 2);
-      }
-      function salesFormatter(n) {
-        return format(
-          ngettext('{0} sale', '{0} sales', n),
-          Highcharts.numberFormat(n, 0),
-        );
-      }
-      function refundsFormatter(n) {
-        return format(
-          ngettext('{0} refund', '{0} refunds', n),
-          Highcharts.numberFormat(n, 0),
-        );
-      }
       function installsFormatter(n) {
         return format(
           ngettext('{0} install', '{0} installs', n),
@@ -381,21 +352,6 @@ const dayMsecs = 24 * 3600 * 1000;
           }
           return addEventData(ret, this.x);
         };
-      } else if (metric == 'contributions') {
-        return function () {
-          var ret = '<b>' + xFormatter(this.x) + '</b>',
-            p;
-          for (var i = 0; i < this.points.length; i++) {
-            p = this.points[i];
-            ret += '<br>' + p.series.name + ': ';
-            if (p.series.options.yAxis > 0) {
-              ret += Highcharts.numberFormat(p.y, 0);
-            } else {
-              ret += currencyFormatter(p.y);
-            }
-          }
-          return addEventData(ret, this.x);
-        };
       } else {
         // Determine y-axis formatter.
         switch (metricTypes[metric]) {
@@ -405,10 +361,6 @@ const dayMsecs = 24 * 3600 * 1000;
           case 'downloads':
             yFormatter = downloadFormatter;
             break;
-          case 'currency':
-          case 'revenue':
-            yFormatter = currencyFormatter;
-            break;
           case 'collections':
             yFormatter = collectionsFormatter;
             break;
@@ -417,12 +369,6 @@ const dayMsecs = 24 * 3600 * 1000;
             break;
           case 'addons':
             yFormatter = addonsFormatter;
-            break;
-          case 'sales':
-            yFormatter = salesFormatter;
-            break;
-          case 'refunds':
-            yFormatter = refundsFormatter;
             break;
           case 'installs':
             yFormatter = installsFormatter;
@@ -488,43 +434,6 @@ const dayMsecs = 24 * 3600 * 1000;
           return s.id == 'usage';
         }).yAxis = 1;
       }
-    }
-    if (metric == 'contributions' && newConfig.series.length) {
-      _.extend(newConfig, {
-        yAxis: [
-          {
-            // Amount
-            title: {
-              text: gettext('Amount, in USD'),
-            },
-            labels: {
-              formatter: function () {
-                return Highcharts.numberFormat(this.value, 2);
-              },
-            },
-            min: 0,
-          },
-          {
-            // Number of Contributions
-            title: {
-              text: gettext('Number of Contributions'),
-            },
-            min: 0,
-            labels: {
-              formatter: function () {
-                return Highcharts.numberFormat(this.value, 0);
-              },
-            },
-            opposite: true,
-          },
-        ],
-        tooltip: {
-          shared: true,
-          crosshairs: true,
-        },
-      });
-      // set Daily Users series to use the right yAxis.
-      newConfig.series[0].yAxis = 1;
     }
     newConfig.tooltip.formatter = tooltipFormatter;
 

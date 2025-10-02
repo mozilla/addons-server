@@ -107,16 +107,10 @@ $.fn.csvTable = function (cfg) {
             '</th>';
           _.each(fields, function (f) {
             newBody += '<td>';
-            if (metric == 'contributions' && f != 'count') {
-              newBody +=
-                '$' +
-                Highcharts.numberFormat(StatsManager.getField(row, f), 2);
-            } else {
-              newBody += Highcharts.numberFormat(
-                StatsManager.getField(row, f),
-                0,
-              );
-            }
+            newBody += Highcharts.numberFormat(
+              StatsManager.getField(row, f),
+              0,
+            );
             newBody += '</td>';
           });
           newBody += '</tr>';
