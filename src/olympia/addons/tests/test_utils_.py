@@ -81,9 +81,9 @@ def test_validate_addon_name_disallowed_without_permission(name):
 @pytest.mark.parametrize(
     'name',
     (
-        'l' * 17, # Too many homoglyphs
-        'l' * 50, # Way too many homoglyphs!
-    )
+        'l' * 17,  # Too many homoglyphs
+        'l' * 50,  # Way too many homoglyphs!
+    ),
 )
 def test_validate_addon_name_disallowed_no_matter_what(name):
     normal_user = user_factory()
