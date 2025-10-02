@@ -93,7 +93,6 @@ const dayMsecs = 24 * 3600 * 1000;
     versions: 'users',
     downloads: 'downloads',
     sources: 'downloads',
-    installs: 'installs',
     countries: 'users',
     contents: 'downloads',
     mediums: 'downloads',
@@ -300,30 +299,6 @@ const dayMsecs = 24 * 3600 * 1000;
           Highcharts.numberFormat(n, 0),
         );
       }
-      function addonsFormatter(n) {
-        return format(
-          ngettext('{0} add-on', '{0} add-ons', n),
-          Highcharts.numberFormat(n, 0),
-        );
-      }
-      function collectionsFormatter(n) {
-        return format(
-          ngettext('{0} collection', '{0} collections', n),
-          Highcharts.numberFormat(n, 0),
-        );
-      }
-      function reviewsFormatter(n) {
-        return format(
-          ngettext('{0} review', '{0} reviews', n),
-          Highcharts.numberFormat(n, 0),
-        );
-      }
-      function installsFormatter(n) {
-        return format(
-          ngettext('{0} install', '{0} installs', n),
-          Highcharts.numberFormat(n, 0),
-        );
-      }
       function addEventData(s, date) {
         var e = events[date];
         if (e) {
@@ -360,18 +335,6 @@ const dayMsecs = 24 * 3600 * 1000;
             break;
           case 'downloads':
             yFormatter = downloadFormatter;
-            break;
-          case 'collections':
-            yFormatter = collectionsFormatter;
-            break;
-          case 'reviews':
-            yFormatter = reviewsFormatter;
-            break;
-          case 'addons':
-            yFormatter = addonsFormatter;
-            break;
-          case 'installs':
-            yFormatter = installsFormatter;
             break;
         }
         return function () {
