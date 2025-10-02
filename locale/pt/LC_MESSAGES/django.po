@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-30 14:10+0000\n"
+"POT-Creation-Date: 2025-10-02 09:04+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -319,6 +319,9 @@ msgstr ""
 msgid "Only approved versions can be rolled back, except the most recent version."
 msgstr ""
 
+msgid "This name cannot be used."
+msgstr "Este nome não pode ser utilizado."
+
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
 
@@ -603,9 +606,6 @@ msgstr ""
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Esta url já está a ser utilizada por outra coleção"
-
-msgid "This name cannot be used."
-msgstr "Este nome não pode ser utilizado."
 
 #, fuzzy
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."

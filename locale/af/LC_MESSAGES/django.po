@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-30 14:10+0000\n"
+"POT-Creation-Date: 2025-10-02 09:04+0000\n"
 "Language: af\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -320,6 +320,9 @@ msgstr ""
 msgid "Only approved versions can be rolled back, except the most recent version."
 msgstr ""
 
+msgid "This name cannot be used."
+msgstr ""
+
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
 
@@ -598,9 +601,6 @@ msgstr ""
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Dié URL is reeds in gebruik deur 'n ander versameling"
-
-msgid "This name cannot be used."
-msgstr ""
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr ""
