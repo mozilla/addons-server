@@ -13,24 +13,34 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AlterField(
-            model_name='addon',
-            name='description',
-            field=olympia.translations.fields.PurifiedMarkdownField(blank=True, db_column='description', max_length=15000, null=True, on_delete=django.db.models.deletion.SET_NULL, require_locale=True, short=False, to='translations.PurifiedMarkdownTranslation', to_field='id', unique=True),
-        ),
-        migrations.AlterField(
-            model_name='addon',
-            name='developer_comments',
-            field=olympia.translations.fields.PurifiedMarkdownField(blank=True, db_column='developercomments', max_length=3000, null=True, on_delete=django.db.models.deletion.SET_NULL, require_locale=True, short=True, to='translations.PurifiedMarkdownTranslation', to_field='id', unique=True),
-        ),
-        migrations.AlterField(
-            model_name='addon',
-            name='eula',
-            field=olympia.translations.fields.PurifiedMarkdownField(blank=True, db_column='eula', max_length=350000, null=True, on_delete=django.db.models.deletion.SET_NULL, require_locale=True, short=True, to='translations.PurifiedMarkdownTranslation', to_field='id', unique=True),
-        ),
-        migrations.AlterField(
-            model_name='addon',
-            name='privacy_policy',
-            field=olympia.translations.fields.PurifiedMarkdownField(blank=True, db_column='privacypolicy', max_length=150000, null=True, on_delete=django.db.models.deletion.SET_NULL, require_locale=True, short=True, to='translations.PurifiedMarkdownTranslation', to_field='id', unique=True),
-        ),
+        # The changes here didn't involve any underlying model changes
+        # - PurifiedMarkdownField uses PurifiedMarkdownTranslation which is a proxy for
+        # PurifiedTranslation, but django can't discover that.
+        # So we fake all of these so we don't get unneccessary constraint drops and adds.
+        migrations.SeparateDatabaseAndState(
+            [],
+            [
+                migrations.AlterField(
+                    model_name='addon',
+                    name='description',
+                    field=olympia.translations.fields.PurifiedMarkdownField(blank=True, db_column='description', max_length=15000, null=True, on_delete=django.db.models.deletion.SET_NULL, require_locale=True, short=False, to='translations.PurifiedMarkdownTranslation', to_field='id', unique=True),
+                ),
+                migrations.AlterField(
+                    model_name='addon',
+                    name='developer_comments',
+                    field=olympia.translations.fields.PurifiedMarkdownField(blank=True, db_column='developercomments', max_length=3000, null=True, on_delete=django.db.models.deletion.SET_NULL, require_locale=True, short=True, to='translations.PurifiedMarkdownTranslation', to_field='id', unique=True),
+                ),
+                migrations.AlterField(
+                    model_name='addon',
+                    name='eula',
+                    field=olympia.translations.fields.PurifiedMarkdownField(blank=True, db_column='eula', max_length=350000, null=True, on_delete=django.db.models.deletion.SET_NULL, require_locale=True, short=True, to='translations.PurifiedMarkdownTranslation', to_field='id', unique=True),
+                ),
+                migrations.AlterField(
+                    model_name='addon',
+                    name='privacy_policy',
+                    field=olympia.translations.fields.PurifiedMarkdownField(blank=True, db_column='privacypolicy', max_length=150000, null=True, on_delete=django.db.models.deletion.SET_NULL, require_locale=True, short=True, to='translations.PurifiedMarkdownTranslation', to_field='id', unique=True),
+                ),
+            ],
+        )
+
     ]

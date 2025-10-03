@@ -13,9 +13,18 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AlterField(
-            model_name='version',
-            name='release_notes',
-            field=olympia.translations.fields.PurifiedMarkdownField(blank=True, db_column='releasenotes', max_length=3000, null=True, on_delete=django.db.models.deletion.SET_NULL, require_locale=True, short=False, to='translations.PurifiedMarkdownTranslation', to_field='id', unique=True),
-        ),
+         # The change here didn't involve any underlying model changes
+        # - PurifiedMarkdownField uses PurifiedMarkdownTranslation which is a proxy for
+        # PurifiedTranslation, but django can't discover that.
+        # So we fake it so we don't get unneccessary constraint drops and adds.
+        migrations.SeparateDatabaseAndState(
+            [],
+            [
+                migrations.AlterField(
+                    model_name='version',
+                    name='release_notes',
+                    field=olympia.translations.fields.PurifiedMarkdownField(blank=True, db_column='releasenotes', max_length=3000, null=True, on_delete=django.db.models.deletion.SET_NULL, require_locale=True, short=False, to='translations.PurifiedMarkdownTranslation', to_field='id', unique=True),
+                ),
+            ]
+        )
     ]
