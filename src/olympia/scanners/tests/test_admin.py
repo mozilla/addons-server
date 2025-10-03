@@ -1887,16 +1887,128 @@ class TestScannerQueryResultAdmin(TestCase):
         assert doc('.field-guid').text() == was_blocked_unknown_addon.guid
 
     def test_list_filter_addon_created(self):
-        raise NotImplementedError
+        recently = self.days_ago(1)
+        now = datetime.now()
+        old_addon = addon_factory(created=self.days_ago(42))
+        self.scanner_query_result_factory(version=old_addon.versions.get())
+        new_addon = addon_factory(created=now)
+        self.scanner_query_result_factory(version=new_addon.versions.get())
+
+        response = self.client.get(
+            self.list_url,
+            {
+                'version__addon__created__range__gte': recently.date().isoformat(),
+            },
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody > tr').length == 1
+        assert doc('.field-guid').text() == new_addon.guid
+
+        response = self.client.get(
+            self.list_url,
+            {
+                'version__addon__created__range__lte': recently.date().isoformat(),
+            },
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody > tr').length == 1
+        assert doc('.field-guid').text() == old_addon.guid
 
     def test_list_filter_addon_last_updated(self):
-        raise NotImplementedError
+        some_time_ago = self.days_ago(42)
+        recently = self.days_ago(1)
+        now = datetime.now()
+        # For approved add-ons last_updated is automatically set from most
+        # recent datestatuschanged
+        old_addon = addon_factory(file_kw={'datestatuschanged': some_time_ago})
+        assert old_addon.last_updated == some_time_ago
+        self.scanner_query_result_factory(version=old_addon.versions.get())
+        new_addon = addon_factory(file_kw={'datestatuschanged': now})
+        assert new_addon.last_updated == now
+        self.scanner_query_result_factory(version=new_addon.versions.get())
+
+        response = self.client.get(
+            self.list_url,
+            {
+                'version__addon__last_updated__range__gte': recently.date().isoformat(),
+            },
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody > tr').length == 1
+        assert doc('.field-guid').text() == new_addon.guid
+
+        response = self.client.get(
+            self.list_url,
+            {
+                'version__addon__last_updated__range__lte': recently.date().isoformat(),
+            },
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody > tr').length == 1
+        assert doc('.field-guid').text() == old_addon.guid
 
     def test_list_filter_version_created(self):
-        raise NotImplementedError
+        recently = self.days_ago(1)
+        now = datetime.now()
+        addon = addon_factory(version_kw={'created': self.days_ago(42), 'version': '1.0'})
+        old_version = addon.versions.get()
+        new_version = version_factory(addon=addon, version='2.0')
+        for version in addon.versions.all():
+            self.scanner_query_result_factory(version=version)
+
+        response = self.client.get(
+            self.list_url,
+            {
+                'version__created__range__gte': recently.date().isoformat(),
+            },
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody > tr').length == 1
+        assert doc('.field-version_number').text() == new_version.version
+
+        response = self.client.get(
+            self.list_url,
+            {
+                'version__created__range__lte': recently.date().isoformat(),
+            },
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody > tr').length == 1
+        assert doc('.field-version_number').text() == old_version.version
 
     def test_list_filter_addon_average_daily_users(self):
-        raise NotImplementedError
+        popular_addon = addon_factory(average_daily_users=4242)
+        self.scanner_query_result_factory(version=popular_addon.versions.get())
+        niche_addon = addon_factory(average_daily_users=99)
+        self.scanner_query_result_factory(version=niche_addon.versions.get())
+
+        response = self.client.get(
+            self.list_url,
+            {
+                'version__addon__average_daily_users__range__gte': 100,
+            },
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody > tr').length == 1
+        assert doc('.field-guid').text() == popular_addon.guid
+
+        response = self.client.get(
+            self.list_url,
+            {
+                'version__addon__average_daily_users__range__lte': 100,
+            },
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody > tr').length == 1
+        assert doc('.field-guid').text() == niche_addon.guid
 
     def test_change_page(self):
         result = self.scanner_query_result_factory(
