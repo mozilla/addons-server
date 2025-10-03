@@ -12,13 +12,13 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
+        migrations.AlterModelTable(
+            name='promotedaddonversion',
+            table='promoted_promotedaddonversion',
+        ),
         migrations.RenameModel(
             old_name='PromotedAddonVersion',
             new_name='PromotedApproval',
-        ),
-        migrations.AlterModelTable(
-            name='promotedapproval',
-            table='promoted_promotedaddonversion',
         ),
         migrations.AlterField(
             model_name='promotedgroup',

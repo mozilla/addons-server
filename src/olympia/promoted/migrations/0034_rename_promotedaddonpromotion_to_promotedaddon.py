@@ -12,6 +12,10 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
+        migrations.AlterModelTable(
+            name='promotedaddonpromotion',
+            table='promoted_promotedaddonpromotion',
+        ),
         migrations.RenameModel(
             old_name='PromotedAddonPromotion',
             new_name='PromotedAddon',
@@ -20,9 +24,5 @@ class Migration(migrations.Migration):
             model_name='promotedaddon',
             name='addon',
             field=models.ForeignKey(help_text='Add-on id this item will point to (If you do not know the id, paste the slug instead and it will be transformed automatically for you. If you have access to the add-on admin page, you can use the magnifying glass to see all available add-ons.', on_delete=django.db.models.deletion.CASCADE, related_name='promotedaddon', to='addons.addon'),
-        ),
-        migrations.AlterModelTable(
-            name='promotedaddon',
-            table='promoted_promotedaddonpromotion',
         ),
     ]
