@@ -1953,7 +1953,6 @@ class TestScannerQueryResultAdmin(TestCase):
 
     def test_list_filter_version_created(self):
         recently = self.days_ago(1)
-        now = datetime.now()
         addon = addon_factory(
             version_kw={'created': self.days_ago(42), 'version': '1.0'}
         )
