@@ -5658,12 +5658,12 @@ msgstr "Passe parsore cul mouse su lis miniaturis par sgarfâ e discjariâ cun f
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:676
 msgid "Remove distracting and unwanted search results and related video content."
-msgstr ""
+msgstr "Gjave i risultâts des ricercjis che no ti interessin e che ti distrain, cun ducj i contignûts video corelâts."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:679
 msgid "Makes Firefox appear as Chrome to websites trying to block Firefox."
-msgstr ""
+msgstr "Al fâs in mût che tai sîts che a cirin di blocâ Firefox, chest al somei Chrome."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:682
