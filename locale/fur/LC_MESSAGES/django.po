@@ -5643,7 +5643,7 @@ msgstr "Protêç la tô riservatece cuintri une forme particolâr di “fingerpr
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:658
 msgid "Automatically deny cookie pop-up tracking requests."
-msgstr ""
+msgstr "Dinee in automatic lis richiestis par stâti daûr ator pal web tai barcons a comparse pai cookies."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:670
