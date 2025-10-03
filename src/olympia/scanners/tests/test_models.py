@@ -15,7 +15,6 @@ from olympia.constants.scanners import (
     COMPLETED,
     CUSTOMS,
     FALSE_POSITIVE,
-    MAD,
     NARC,
     NEW,
     RUNNING,
@@ -329,10 +328,6 @@ class TestScannerResult(TestScannerResultMixin, TestCase):
     def test_can_report_feedback_is_false_when_state_is_not_unknown(self):
         result = self.create_result(scanner=CUSTOMS)
         result.state = FALSE_POSITIVE
-        assert not result.can_report_feedback()
-
-    def test_can_report_feedback_is_false_when_scanner_is_mad(self):
-        result = self.create_result(scanner=MAD)
         assert not result.can_report_feedback()
 
     def test_can_revert_feedback_for_triaged_result(self):
