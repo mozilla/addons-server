@@ -37,9 +37,7 @@ function getStatsManager() {
     os: true,
     sources: true,
     versions: true,
-    statuses: true,
     overview: true,
-    site: true,
     countries: true,
     contents: true,
     mediums: true,
@@ -53,10 +51,8 @@ function getStatsManager() {
     locales: 'mean',
     os: 'mean',
     versions: 'mean',
-    statuses: 'mean',
     downloads: 'sum',
     sources: 'sum',
-    contributions: 'sum',
     countries: 'mean',
     contents: 'sum',
     mediums: 'sum',
@@ -161,7 +157,6 @@ function getStatsManager() {
       fields = {};
 
     // Non-breakdown metrics only have one field.
-    if (metric == 'contributions') return ['count', 'total', 'average'];
     if (!(metric in breakdownMetrics)) return ['count'];
 
     ds = dataStore[metric];
@@ -303,12 +298,6 @@ function getStatsManager() {
         data: {},
         empty: true,
       };
-      if (metric == 'contributions') {
-        _.extend(groupVal, {
-          average: 0,
-          total: 0,
-        });
-      }
     }
 
     function performAggregation() {
@@ -323,8 +312,6 @@ function getStatsManager() {
         // overview gets special treatment. Only average ADUs.
         if (metric == 'overview') {
           groupVal.data.updates /= groupCount;
-        } else if (metric == 'contributions') {
-          groupVal.average /= groupCount;
         } else if (metric in breakdownMetrics) {
           // average for mean metrics.
           _.each(groupVal.data, function (val, field) {
@@ -359,21 +346,11 @@ function getStatsManager() {
             data: {},
             empty: true,
           };
-          if (metric == 'contributions') {
-            _.extend(groupVal, {
-              average: 0,
-              total: 0,
-            });
-          }
         }
         // add the current row to our aggregates.
         if (row && groupVal) {
           groupVal.empty = false;
           groupVal.count += row.count;
-          if (metric == 'contributions') {
-            groupVal.total += parseFloat(row.total);
-            groupVal.average += parseFloat(row.average);
-          }
           if (metric in breakdownMetrics) {
             _.each(row.data, function (val, field) {
               if (!groupVal.data[field]) {
