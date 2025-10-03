@@ -1440,6 +1440,12 @@ class TestScannerQueryRuleAdmin(TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#content h1').text() == 'Are you sure?'
+        # Related objects (results) are not shown in the confirmation page to
+        # avoid issues when there are too many of them. So the lists in the
+        # response should only show the rule.
+        uls = doc('#content h2+ul')
+        assert uls[0].text_content().strip() == 'Scanner query rules: 1'
+        assert uls[1].text_content().strip() == 'Scanner query rule: bar'
 
         url = reverse('admin:scanners_scannerqueryrule_delete', args=(rule.pk,))
         response = self.client.post(url, {'post': 'yes'})

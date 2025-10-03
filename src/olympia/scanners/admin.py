@@ -10,6 +10,7 @@ from django.template.loader import render_to_string
 from django.urls import re_path, reverse
 from django.utils.html import format_html, format_html_join
 from django.utils.http import urlencode
+from django.utils.text import capfirst
 
 from olympia import amo
 from olympia.access import acl
@@ -984,3 +985,34 @@ class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, AMOModelAdmin):
 
     state_with_actions.short_description = 'State'
     state_with_actions.allow_tags = True
+
+    def get_deleted_objects(self, objs, request):
+        """
+        Hook used by Django admin to display objects that are about to be
+        deleted (purely for information purposes).
+
+        https://docs.djangoproject.com/en/4.2/ref/contrib/admin/
+        #django.contrib.admin.ModelAdmin.get_deleted_objects
+
+        Return a tuple of (deleted_objects, model_count, perms_needed, protected).
+        """
+        # Original django implementation would try to display all related
+        # models, we avoid that because there can be too many, and it's obvious
+        # that deleting a query rule will delete the query results anyway.
+        deleted_objects = [
+            capfirst(f'{self.model._meta.verbose_name}: {obj}') for obj in objs
+        ]
+
+        # Again original django implementation would count the related objects
+        # but we simplify to avoid expensive queries.
+        model_count = {self.model._meta.verbose_name_plural: len(objs)}
+
+        # We know the user deleting this shouldn't need extra permissions from
+        # related objects, so we don't have anything to display there.
+        perms_needed = set()
+
+        # Similarly we know there won't be any special objects that won't be
+        # deleted, so we don't have anything to display there either.
+        protected = []
+
+        return (deleted_objects, model_count, perms_needed, protected)
