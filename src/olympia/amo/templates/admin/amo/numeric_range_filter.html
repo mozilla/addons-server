@@ -14,11 +14,12 @@
         <li {% if all_choice.selected %}class="selected"{% endif %}>
             <a href="{{ all_choice.query_string }}">All</a>
         </li>
-        {% for field in spec.form %}
-        <li {% if field.data %}class="selected"{% endif %}>
-            {{ field.label_tag }} {{ field }}
+        <li>
+            {% for field in spec.form %}
+                {{ field.errors }}
+                {{ field.label_tag }} {{ field }}
+            {% endfor %}
         </li>
-        {% endfor %}
         <li>
             <input type="submit" value="Submit" />
         </li>

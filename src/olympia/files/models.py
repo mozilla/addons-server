@@ -11,6 +11,7 @@ from django.core.files.storage import default_storage as storage
 from django.db import models
 from django.dispatch import receiver
 from django.urls import reverse
+from django.utils import timezone
 from django.utils.crypto import get_random_string
 from django.utils.encoding import force_str
 from django.utils.functional import cached_property
@@ -112,7 +113,7 @@ class File(OnChangeMixin, ModelBase):
     status = models.PositiveSmallIntegerField(
         choices=STATUS_CHOICES.items(), default=amo.STATUS_AWAITING_REVIEW
     )
-    datestatuschanged = models.DateTimeField(null=True, auto_now_add=True)
+    datestatuschanged = models.DateTimeField(null=True, default=timezone.now)
     strict_compatibility = models.BooleanField(default=False)
     approval_date = models.DateTimeField(null=True)
     # Serial number of the certificate use for the signature.
