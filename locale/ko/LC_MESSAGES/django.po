@@ -415,7 +415,7 @@ msgstr "이 주소는 사용할 수 없습니다. 다른걸 사용해 주세요.
 
 #: src/olympia/addons/serializers.py:1888
 msgid "There is no rollback available in this channel."
-msgstr ""
+msgstr "이 채널에는 롤백이 없습니다."
 
 #: src/olympia/addons/serializers.py:1898
 #, python-format
