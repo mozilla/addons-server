@@ -420,11 +420,11 @@ msgstr "이 채널에는 롤백이 없습니다."
 #: src/olympia/addons/serializers.py:1898
 #, python-format
 msgid "Rollback is only available for version %s in this channel."
-msgstr ""
+msgstr "롤백은 이 채널의 %s 버전에서만 가능합니다."
 
 #: src/olympia/addons/serializers.py:1904
 msgid "Only approved versions can be rolled back, except the most recent version."
-msgstr ""
+msgstr "최신 버전을 제외하고 승인된 버전만 되돌릴 수 있습니다."
 
 #: src/olympia/addons/utils.py:56 src/olympia/bandwagon/serializers.py:92
 msgid "This name cannot be used."
@@ -1260,7 +1260,7 @@ msgstr "보류 중인 반려 상태 변경됨"
 #: src/olympia/constants/activity.py:1208
 #, python-brace-format
 msgid "{addon} {version} created, to rollback from {0}."
-msgstr ""
+msgstr "{0}에서 롤백할 {addon} {version} 버전이 만들어졌습니다."
 
 #: src/olympia/constants/activity.py:1209
 msgid "Version rollback"
@@ -2024,6 +2024,7 @@ msgid ""
 "On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
 "on manifest’s <a {a_attrs}>update_url</a> is provided, as this is the URL where Firefox finds updates for automatic deployment to your users.</span>"
 msgstr ""
+"직접 배포 방법입니다. <span class=\"helptext\">Mozilla가 서명한 후 개발자 허브에서 .xpi 파일을 다운로드하여 일반 사용자에게 배포할 수 있습니다. 부가 기능 매니페스트의 <a {a_attrs}>update_url</a>이 Firefox가 사용자에게 자동으로 배포하기 위한 업데이트를 찾는 URL인지 확인하세요.</span>"
 
 #: src/olympia/devhub/forms.py:1425 src/olympia/devhub/templates/devhub/includes/agreement.html:17
 msgid "Display Name"
@@ -2079,7 +2080,7 @@ msgstr "문제가 발생했습니다. 개발자 지원팀에 문의하세요."
 
 #: src/olympia/devhub/forms.py:1653
 msgid "No appropriate version available"
-msgstr ""
+msgstr "적절한 버전이 없음"
 
 #: src/olympia/devhub/forms.py:1660
 msgid "Choose version"
@@ -2087,11 +2088,11 @@ msgstr "버전 선택"
 
 #: src/olympia/devhub/forms.py:1669
 msgid "Release notes"
-msgstr ""
+msgstr "릴리즈 노트"
 
 #: src/olympia/devhub/forms.py:1670
 msgid "Automatic rollback based on version [m.m]."
-msgstr ""
+msgstr "[m.m] 버전으로 자동으로 롤백됩니다."
 
 #: src/olympia/devhub/forms.py:1743
 msgid "You must select a channel and version to rollback to."
@@ -2302,9 +2303,8 @@ msgid "Toolbar area text and icons"
 msgstr "도구 모음 영역 텍스트 및 아이콘"
 
 #: src/olympia/devhub/views.py:1488
-#, fuzzy
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
-msgstr "탭 부분의 글자색입니다."
+msgstr "도구 모음과 활성 탭에 표시할 텍스트와 아이콘의 색상입니다. 매니페스트 필드:  bookmark_text."
 
 #: src/olympia/devhub/views.py:1495
 msgid "Toolbar field area background"
