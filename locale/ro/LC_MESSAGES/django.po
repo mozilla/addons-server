@@ -5638,22 +5638,22 @@ msgstr "Respinge automat cererile de urmărire pentru cookie-uri în ferestre po
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:670
 msgid "Powerful pop-up dictionary optimized for learning new languages."
-msgstr ""
+msgstr "Dicționar pop-up puternic, optimizat pentru învățarea de limbi noi."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:673
 msgid "Hover your mouse over thumbnails to easily browse and download HD images."
-msgstr ""
+msgstr "Treci cu mouse-ul peste miniaturi ca să navighezi ușor și să descarci imagini HD."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:676
 msgid "Remove distracting and unwanted search results and related video content."
-msgstr ""
+msgstr "Elimină rezultatele nedorite de la căutare și care îți distrag atenția, precum și conținutul video aferent."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:679
 msgid "Makes Firefox appear as Chrome to websites trying to block Firefox."
-msgstr ""
+msgstr "Face ca Firefox să treacă drept Chrome pentru site-urile care încearcă să blocheze Firefox."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:682
