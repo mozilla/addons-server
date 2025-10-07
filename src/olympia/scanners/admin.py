@@ -25,7 +25,6 @@ from olympia.constants.scanners import (
     CUSTOMS,
     FALSE_POSITIVE,
     INCONCLUSIVE,
-    MAD,
     NARC,
     NEW,
     RESULT_STATES,
@@ -514,7 +513,6 @@ class ScannerResultAdmin(AbstractScannerResultAdminMixin, AMOModelAdmin):
         'authors',
         'guid',
         'scanner',
-        'formatted_score',
         'created',
         'state',
         formatted_matched_rules_with_files_and_data,
@@ -527,7 +525,6 @@ class ScannerResultAdmin(AbstractScannerResultAdminMixin, AMOModelAdmin):
         'guid',
         'authors',
         'scanner',
-        'formatted_score',
         'formatted_matched_rules',
         'formatted_created',
         'result_actions',
@@ -544,15 +541,6 @@ class ScannerResultAdmin(AbstractScannerResultAdminMixin, AMOModelAdmin):
 
     def get_queryset(self, request):
         return super().get_queryset(request).prefetch_related('matched_rules')
-
-    def formatted_score(self, obj):
-        if obj.scanner not in [CUSTOMS, MAD]:
-            return '-'
-        if obj.score < 0:
-            return 'n/a'
-        return f'{obj.score * 100:0.0f}%'
-
-    formatted_score.short_description = 'Score'
 
     def safe_referer_redirect(self, request, default_url):
         referer = request.META.get('HTTP_REFERER')

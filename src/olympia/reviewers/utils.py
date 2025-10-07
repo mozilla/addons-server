@@ -4,7 +4,6 @@ from datetime import datetime
 from django.conf import settings
 from django.contrib.humanize.templatetags.humanize import naturaltime
 from django.core.files.base import ContentFile
-from django.db.models import Count, F, Q
 from django.urls import reverse
 from django.utils.html import format_html, format_html_join
 from django.utils.http import urlencode
@@ -268,61 +267,6 @@ class ContentReviewTable(AddonQueueTable):
 
     def _get_addon_name_url(self, record):
         return reverse('reviewers.review', args=['content', record.id])
-
-
-class MadReviewTable(AddonQueueTable):
-    listed_text = 'Listed version'
-    unlisted_text = 'Unlisted versions ({0})'
-    show_count_in_dashboard = False
-    title = 'Flagged by MAD for Human Review'
-    name = 'queue_mad'
-    url_suffix = r'^mad$'
-    permission = amo.permissions.ADDONS_REVIEW
-
-    def render_addon_name(self, record):
-        rval = [markupsafe.escape(record.name)]
-
-        if record.listed_versions_that_need_human_review:
-            url = reverse('reviewers.review', args=[record.id])
-            rval.append(
-                '<a href="%s">%s</a>'
-                % (
-                    url,
-                    self.listed_text.format(
-                        record.listed_versions_that_need_human_review
-                    ),
-                )
-            )
-
-        if record.unlisted_versions_that_need_human_review:
-            url = reverse('reviewers.review', args=['unlisted', record.id])
-            rval.append(
-                '<a href="%s">%s</a>'
-                % (
-                    url,
-                    self.unlisted_text.format(
-                        record.unlisted_versions_that_need_human_review
-                    ),
-                )
-            )
-
-        return markupsafe.Markup(''.join(rval))
-
-    @classmethod
-    def get_queryset(cls, request, **kwargs):
-        admin_reviewer = is_admin_reviewer(request.user) if request else True
-        return Addon.objects.get_mad_queue(admin_reviewer=admin_reviewer).annotate(
-            unlisted_versions_that_need_human_review=Count(
-                'versions',
-                filter=Q(
-                    versions__reviewerflags__needs_human_review_by_mad=True,
-                    versions__channel=amo.CHANNEL_UNLISTED,
-                ),
-            ),
-            listed_versions_that_need_human_review=F(
-                '_current_version__reviewerflags__needs_human_review_by_mad'
-            ),
-        )
 
 
 class ModerationQueueTable:
@@ -1193,7 +1137,7 @@ class ReviewBase:
                 decision_id=decision.id, notify_owners=notify_owners
             )
 
-    def clear_all_needs_human_review_flags_in_channel(self, mad_too=True):
+    def clear_all_needs_human_review_flags_in_channel(self):
         """Clear needs_human_review flags on all versions in the same channel.
 
         Doesn't clear abuse or appeal related flags.
@@ -1212,12 +1156,6 @@ class ReviewBase:
         ).exclude(
             reason__in=NeedsHumanReview.REASONS.ABUSE_OR_APPEAL_RELATED.values
         ).update(is_active=False)
-        if mad_too:
-            # Another one for the needs_human_review_by_mad flag.
-            VersionReviewerFlags.objects.filter(
-                version__addon=self.addon,
-                version__channel=self.version.channel,
-            ).update(needs_human_review_by_mad=False)
         # Trigger a check of all due dates on the add-on since we mass-updated
         # versions.
         self.addon.update_all_due_dates()
@@ -1232,8 +1170,6 @@ class ReviewBase:
                 reason__in=NeedsHumanReview.REASONS.ABUSE_OR_APPEAL_RELATED.values
             )
         qs.update(is_active=False)
-        if version.needs_human_review_by_mad:
-            version.reviewerflags.update(needs_human_review_by_mad=False)
         # Because the updating of needs human review was made with a queryset
         # the post_save signal was not triggered so let's recheck the due date
         # explicitly.

@@ -30,7 +30,7 @@ from olympia.constants.promoted import (
     PROMOTED_GROUP_CHOICES,
     PROMOTED_GROUPS_BY_ID,
 )
-from olympia.constants.scanners import CUSTOMS, MAD, YARA
+from olympia.constants.scanners import CUSTOMS, YARA
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadMixin
 from olympia.files.utils import parse_addon
@@ -1576,12 +1576,6 @@ class TestVersion(AMOPaths, TestCase):
         )
         assert flags.pending_rejection
         assert flags.pending_rejection_by == user
-        assert not flags.needs_human_review_by_mad
-
-        # Update, but do not clear pending_rejection. Both should remain.
-        flags.update(needs_human_review_by_mad=True)
-        assert flags.pending_rejection
-        assert flags.pending_rejection_by == user
 
         # Clear pending_rejection. pending_rejection_by should be cleared as well.
         flags.update(pending_rejection=None)
@@ -1598,40 +1592,11 @@ class TestVersion(AMOPaths, TestCase):
         )
         assert flags.pending_rejection
         assert flags.pending_content_rejection is True
-        assert not flags.needs_human_review_by_mad
-
-        # Update, but do not clear pending_rejection. Both should remain.
-        flags.update(needs_human_review_by_mad=True)
-        assert flags.pending_rejection
-        assert flags.pending_content_rejection is True
 
         # Clear pending_rejection. pending_content_rejection should be cleared as well.
         flags.update(pending_rejection=None)
         assert flags.pending_rejection is None
         assert flags.pending_content_rejection is None
-
-    def test_needs_human_review_by_mad(self):
-        addon = Addon.objects.get(id=3615)
-        version = addon.current_version
-        # No flags: False
-        assert not version.needs_human_review_by_mad
-        # Flag present, value is None (default): False.
-        flags = version_review_flags_factory(version=version)
-        assert not version.needs_human_review_by_mad
-        # Flag present.
-        flags.update(needs_human_review_by_mad=True)
-        assert version.needs_human_review_by_mad
-
-    def test_maliciousness_score(self):
-        addon = Addon.objects.get(id=3615)
-        version = addon.current_version
-        assert version.maliciousness_score == 0
-        ScannerResult.objects.create(version=version, scanner=MAD, score=0.15)
-        assert version.maliciousness_score == 15
-        # In case of an error, we'll likely receive a -1.
-        version_2 = version_factory(addon=addon)
-        ScannerResult.objects.create(version=version_2, scanner=MAD, score=-1)
-        assert version_2.maliciousness_score == 0
 
     def test_approved_for_groups(self):
         version = addon_factory().current_version

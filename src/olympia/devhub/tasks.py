@@ -255,9 +255,9 @@ def validate_file_path(path, channel):
 
 @validation_task
 def forward_linter_results(results, upload_pk):
-    """This task is used in the chord of the validation chain to pass the
+    """This task is used in the group of the validation chain to pass the
     linter results to `handle_upload_validation_result()` (the callback of the
-    chord).
+    group).
     """
     log.debug('Called forward_linter_results() for upload_pk = %d', upload_pk)
     return results

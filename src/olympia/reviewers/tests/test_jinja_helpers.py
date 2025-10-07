@@ -14,12 +14,6 @@ def test_create_an_assay_url():
     )
 
 
-def test_format_score():
-    assert jinja_helpers.format_score(15.1) == '15%'
-    assert jinja_helpers.format_score(0) == 'n/a'
-    assert jinja_helpers.format_score(-1) == 'n/a'
-
-
 def test_to_dom_id():
     assert jinja_helpers.to_dom_id('') == ''
     assert jinja_helpers.to_dom_id('123.456.789') == '123_456_789'

@@ -1,13 +1,12 @@
 CUSTOMS = 1
-# We do not use the WAT scanner anymore but we keep this constant for the model
-# definition. We shouldn't use this constant, though.
-# See: https://github.com/mozilla/addons-server/issues/19152
+# We do not use the WAT or MAD scanners anymore but we keep these constants for the
+# model definition. We shouldn't use these constants, though.
 _WAT = 2
 YARA = 3
-MAD = 4
+_MAD = 4
 NARC = 5
 
-SCANNERS = {CUSTOMS: 'customs', _WAT: 'wat', YARA: 'yara', MAD: 'mad', NARC: 'narc'}
+SCANNERS = {CUSTOMS: 'customs', _WAT: 'wat', YARA: 'yara', _MAD: 'mad', NARC: 'narc'}
 
 # Action IDs are also used for severity (the higher, the more severe).
 # The field is a PositiveSmallIntegerField, it should go up to 65535.

@@ -251,7 +251,6 @@ class AutoApprovalSummary(ModelBase):
     code_weight = models.IntegerField(default=0)
     weight_info = models.JSONField(default=dict, null=True)
     confirmed = models.BooleanField(null=True, default=None)
-    score = models.PositiveSmallIntegerField(default=None, null=True)
 
     class Meta:
         db_table = 'editors_autoapprovalsummary'
@@ -409,14 +408,6 @@ class AutoApprovalSummary(ModelBase):
                 'no_validation_result': 500,
             }
         return factors
-
-    def calculate_score(self):
-        """Compute maliciousness score for this version."""
-        # Some precision is lost but we don't particularly care that much, it's
-        # mainly going to be used as a denormalized field to help the database
-        # query, and be displayed in a list.
-        self.score = int(self.version.maliciousness_score)
-        return self.score
 
     def get_pretty_weight_info(self):
         """Returns a list of strings containing weight information."""
@@ -686,11 +677,9 @@ class AutoApprovalSummary(ModelBase):
         instance = cls(version=version, **data)
         verdict_info = instance.calculate_verdict(dry_run=dry_run)
         instance.calculate_weight()
-        instance.calculate_score()
         # We can't do instance.save(), because we want to handle the case where
         # it already existed. So we put the verdict and weight we just
         # calculated in data and use update_or_create().
-        data['score'] = instance.score
         data['verdict'] = instance.verdict
         data['weight'] = instance.weight
         data['metadata_weight'] = instance.metadata_weight

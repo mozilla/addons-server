@@ -61,7 +61,7 @@ from olympia.blocklist.utils import block_activity_log_save
 from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
-from olympia.constants.scanners import CUSTOMS, MAD, YARA
+from olympia.constants.scanners import CUSTOMS, YARA
 from olympia.files.models import File, FileValidation, WebextPermission
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.reviewers.models import (
@@ -728,12 +728,11 @@ class TestDashboard(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert len(doc('.dashboard h3')) == 8  # All sections are present.
+        assert len(doc('.dashboard h3')) == 7  # All sections are present.
         expected_links = [
             reverse('reviewers.queue_extension'),
             reverse('reviewers.reviewlog'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
-            reverse('reviewers.queue_mad'),
             reverse('reviewers.queue_content_review'),
             reverse('reviewers.queue_theme'),
             reverse('reviewers.reviewlog'),
@@ -750,15 +749,15 @@ class TestDashboard(TestCase):
         # pre-approval addons
         assert doc('.dashboard a')[0].text == 'Manual Review (4)'
         # content review
-        assert doc('.dashboard a')[4].text == 'Content Review (7)'
+        assert doc('.dashboard a')[3].text == 'Content Review (7)'
         # themes
-        assert doc('.dashboard a')[5].text == 'Awaiting Review (2)'
+        assert doc('.dashboard a')[4].text == 'Awaiting Review (2)'
         # user ratings moderation
-        assert doc('.dashboard a')[8].text == 'Ratings Awaiting Moderation (1)'
+        assert doc('.dashboard a')[7].text == 'Ratings Awaiting Moderation (1)'
         # admin tools
-        assert doc('.dashboard a')[12].text == 'Add-ons Pending Rejection (1)'
+        assert doc('.dashboard a')[11].text == 'Add-ons Pending Rejection (1)'
         assert (
-            doc('.dashboard a')[13].text == 'Held Decisions for 2nd Level Approval (1)'
+            doc('.dashboard a')[12].text == 'Held Decisions for 2nd Level Approval (1)'
         )
 
     def test_can_see_all_through_reviewer_view_all_permission(self):
@@ -766,12 +765,11 @@ class TestDashboard(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert len(doc('.dashboard h3')) == 8  # All sections are present.
+        assert len(doc('.dashboard h3')) == 7  # All sections are present.
         expected_links = [
             reverse('reviewers.queue_extension'),
             reverse('reviewers.reviewlog'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
-            reverse('reviewers.queue_mad'),
             reverse('reviewers.queue_content_review'),
             reverse('reviewers.queue_theme'),
             reverse('reviewers.reviewlog'),
@@ -840,12 +838,11 @@ class TestDashboard(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert len(doc('.dashboard h3')) == 2
+        assert len(doc('.dashboard h3')) == 1
         expected_links = [
             reverse('reviewers.queue_extension'),
             reverse('reviewers.reviewlog'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
-            reverse('reviewers.queue_mad'),
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
         assert links == expected_links
@@ -966,12 +963,11 @@ class TestDashboard(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert len(doc('.dashboard h3')) == 3
+        assert len(doc('.dashboard h3')) == 2
         expected_links = [
             reverse('reviewers.queue_extension'),
             reverse('reviewers.reviewlog'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
-            reverse('reviewers.queue_mad'),
             reverse('reviewers.queue_moderated'),
             reverse('reviewers.ratings_moderation_log'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide/Moderation',
@@ -980,11 +976,11 @@ class TestDashboard(TestCase):
         assert links == expected_links
         assert doc('.dashboard a')[0].text == 'Manual Review (0)'
         assert 'target' not in doc('.dashboard a')[0].attrib
-        assert doc('.dashboard a')[4].text == ('Ratings Awaiting Moderation (0)')
-        assert 'target' not in doc('.dashboard a')[5].attrib
-        assert doc('.dashboard a')[6].text == 'Moderation Guide'
-        assert doc('.dashboard a')[6].attrib['target'] == '_blank'
-        assert doc('.dashboard a')[6].attrib['rel'] == 'noopener noreferrer'
+        assert doc('.dashboard a')[3].text == ('Ratings Awaiting Moderation (0)')
+        assert 'target' not in doc('.dashboard a')[4].attrib
+        assert doc('.dashboard a')[5].text == 'Moderation Guide'
+        assert doc('.dashboard a')[5].attrib['target'] == '_blank'
+        assert doc('.dashboard a')[5].attrib['rel'] == 'noopener noreferrer'
 
     def test_view_mobile_site_link_hidden(self):
         self.grant_permission(self.user, 'ReviewerTools:View')
@@ -1349,10 +1345,7 @@ class TestQueueBasics(QueueTest):
         assert response.status_code == 200
         doc = pq(response.content)
         links = doc('.tabnav li a').map(lambda i, e: e.attrib['href'])
-        expected = [
-            reverse('reviewers.queue_extension'),
-            reverse('reviewers.queue_mad'),
-        ]
+        expected = [reverse('reviewers.queue_extension')]
         assert links == expected
 
         self.grant_permission(self.user, 'Ratings:Moderate')
@@ -1362,7 +1355,6 @@ class TestQueueBasics(QueueTest):
         links = doc('.tabnav li a').map(lambda i, e: e.attrib['href'])
         expected = [
             reverse('reviewers.queue_extension'),
-            reverse('reviewers.queue_mad'),
             reverse('reviewers.queue_moderated'),
         ]
         assert links == expected
@@ -1522,7 +1514,7 @@ class TestExtensionQueue(QueueTest):
         )
         self.expected_versions = self.get_expected_versions(self.expected_addons)
         self._test_queue_layout(
-            '🛠️ Manual Review', tab_position=0, total_addons=4, total_queues=2
+            '🛠️ Manual Review', tab_position=0, total_addons=4, total_queues=1
         )
 
     def test_empty_name(self):
@@ -3003,7 +2995,7 @@ class TestReview(ReviewBase):
             str(author.get_role_display()),
             self.addon,
         )
-        with self.assertNumQueries(61):
+        with self.assertNumQueries(60):
             # FIXME: obviously too high, but it's a starting point.
             # Potential further optimizations:
             # - Remove trivial... and not so trivial duplicates
@@ -3047,32 +3039,31 @@ class TestReview(ReviewBase):
             # 33. activity log for paginated list of versions
             # 34. unreviewed versions in other channel
             # 35. count versions needing human review on other pages
-            # 36. count versions needing human review by mad on other pages
-            # 37. count versions pending rejection on other pages
-            # 38. versionreviewer flags exists to find out if pending rejection
-            # 39. fetch promoted groups of current version (repeated)
-            # 40. whiteboard
-            # 41. count add-ons the user is a developer of
-            # 42. something to do with due_date?
-            # 43. reviewer subscriptions for listed
-            # 44. reviewer subscriptions for unlisted
-            # 45. config for motd
-            # 46. release savepoint (?)
-            # 47. select users by role for this add-on (?)
-            # 48. config for site notice
-            # 49. fetch promoted groups of current version (repeated)?
-            # 50. other add-ons with same guid
-            # 51. translations for... (?! id=1)
-            # 52. important activity log about the add-on
-            # 53. user for the activity (from the ActivityLog foreignkey)
-            # 54. user for the activity (from the ActivityLog arguments)
-            # 55. add-on for the activity
-            # 56. translation for the add-on for the activity
-            # 57. waffle switch enable-activity-log-attachments
-            # 58. select all versions in channel for versions dropdown widget
-            # 59. reviewer reasons for the reason dropdown
-            # 60. cinder policies for the policy dropdown
-            # 61. unresolved DSA related abuse reports
+            # 36. count versions pending rejection on other pages
+            # 37. versionreviewer flags exists to find out if pending rejection
+            # 38. fetch promoted groups of current version (repeated)
+            # 39. whiteboard
+            # 40. count add-ons the user is a developer of
+            # 41. something to do with due_date?
+            # 42. reviewer subscriptions for listed
+            # 43. reviewer subscriptions for unlisted
+            # 44. config for motd
+            # 45. release savepoint (?)
+            # 46. select users by role for this add-on (?)
+            # 47. config for site notice
+            # 48. fetch promoted groups of current version (repeated)?
+            # 49. other add-ons with same guid
+            # 50. translations for... (?! id=1)
+            # 51. important activity log about the add-on
+            # 52. user for the activity (from the ActivityLog foreignkey)
+            # 53. user for the activity (from the ActivityLog arguments)
+            # 54. add-on for the activity
+            # 55. translation for the add-on for the activity
+            # 56. waffle switch enable-activity-log-attachments
+            # 57. select all versions in channel for versions dropdown widget
+            # 58. reviewer reasons for the reason dropdown
+            # 59. cinder policies for the policy dropdown
+            # 60. unresolved DSA related abuse reports
             response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -3157,23 +3148,6 @@ class TestReview(ReviewBase):
         icons = doc('.listing-body .app-icon')
         assert icons.eq(0).attr('title') == 'Firefox for Android'
         assert icons.eq(1).attr('title') == 'Firefox'
-
-    def test_maliciousness_score(self):
-        self.grant_permission(self.reviewer, 'Addons:Review')
-        url = reverse('reviewers.review', args=[self.addon.pk])
-        # Without a score.
-        response = self.client.get(url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        score = doc('.listing-body .maliciousness-score')
-        assert score.text() == 'Maliciousness Score:\nn/a ?'
-        # With a score.
-        ScannerResult.objects.create(version=self.version, scanner=MAD, score=0.1)
-        response = self.client.get(url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        score = doc('.listing-body .maliciousness-score')
-        assert score.text() == 'Maliciousness Score:\n10% ?'
 
     def test_item_history_unreviewed_version_in_unlisted_queue(self):
         response = self.client.get(self.url)
@@ -5861,7 +5835,7 @@ class TestReview(ReviewBase):
                     results={'matchedRules': [customs_rule.name]},
                 )
 
-        with self.assertNumQueries(62):
+        with self.assertNumQueries(61):
             # See test_item_history_pagination() for more details about the
             # queries count. What's important here is that the extra versions
             # and scanner results don't cause extra queries.
@@ -5911,44 +5885,6 @@ class TestReview(ReviewBase):
         span = doc('#review-files-header .risk-high')
         assert span.length == 1
         assert span.text() == '2 versions with a due date on other pages.'
-
-    def test_versions_that_are_flagged_by_mad_are_highlighted(self):
-        self.addon.current_version.update(created=self.days_ago(366))
-        for i in range(0, 10):
-            # Add versions 1.0 to 1.9. Flag a few of them as needing human
-            # review.
-            version = version_factory(
-                addon=self.addon, version=f'1.{i}', created=self.days_ago(365 - i)
-            )
-            version_review_flags_factory(
-                version=version, needs_human_review_by_mad=not bool(i % 3)
-            )
-
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        tds = doc('#versions-history .review-files td.files')
-        assert tds.length == 10
-        # Original version should not be there any more, it's on the second
-        # page. Versions on the page should be displayed in chronological order
-        # Versions 1.0, 1.3, 1.6, 1.9 are flagged by mad for human review.
-        assert 'Flagged by MAD scanner' in tds.eq(0).text()
-        assert 'Flagged by MAD scanner' in tds.eq(3).text()
-        assert 'Flagged by MAD scanner' in tds.eq(6).text()
-        assert 'Flagged by MAD scanner' in tds.eq(9).text()
-
-        # There are no other flagged versions in the other page.
-        span = doc('#review-files-header .risk-medium')
-        assert span.length == 0
-
-        # Load the second page. This time there should be a message indicating
-        # there are versions flagged by MAD on other pages.
-        response = self.client.get(self.url, {'page': 2})
-        assert response.status_code == 200
-        doc = pq(response.content)
-        span = doc('#review-files-header .risk-medium')
-        assert span.length == 1
-        assert span.text() == '4 versions flagged by MAD scanner on other pages.'
 
     def test_blocked_versions(self):
         response = self.client.get(self.url)
@@ -7422,187 +7358,6 @@ class TestThemeBackgroundImages(ReviewBase):
         assert len(data['weta_for_tiling.png']) == 124496  # b64-encoded size
         assert 'transparent.gif' in data
         assert len(data['transparent.gif']) == 56  # base64-encoded size
-
-
-class TestMadQueue(QueueTest):
-    fixtures = ['base/users']
-
-    def setUp(self):
-        super().setUp()
-        self.url = reverse('reviewers.queue_mad')
-
-        # This add-on should be listed once, even with two versions.
-        listed_addon = addon_factory(created=self.days_ago(15))
-        version_review_flags_factory(
-            version=version_factory(addon=listed_addon, channel=amo.CHANNEL_LISTED),
-            needs_human_review_by_mad=True,
-        )
-        version_review_flags_factory(
-            version=version_factory(addon=listed_addon, channel=amo.CHANNEL_LISTED),
-            needs_human_review_by_mad=True,
-        )
-
-        # This add-on should be listed once, even with two versions.
-        unlisted_addon = addon_factory(created=self.days_ago(5))
-        version_review_flags_factory(
-            version=version_factory(addon=unlisted_addon, channel=amo.CHANNEL_UNLISTED),
-            needs_human_review_by_mad=True,
-        )
-        version_review_flags_factory(
-            version=version_factory(addon=unlisted_addon, channel=amo.CHANNEL_UNLISTED),
-            needs_human_review_by_mad=True,
-        )
-
-        # This add-on should not be listed, because the latest version is not
-        # flagged.
-        listed_addon_previous = addon_factory(created=self.days_ago(15))
-        version_review_flags_factory(
-            version=version_factory(
-                addon=listed_addon_previous, channel=amo.CHANNEL_LISTED
-            ),
-            needs_human_review_by_mad=True,
-        )
-        version_review_flags_factory(
-            version=version_factory(
-                addon=listed_addon_previous, channel=amo.CHANNEL_LISTED
-            ),
-            needs_human_review_by_mad=False,
-        )
-
-        unflagged_addon = addon_factory()
-        version_factory(addon=unflagged_addon)
-
-        version_review_flags_factory(
-            version=version_factory(addon=addon_factory()),
-            needs_human_review_by_mad=False,
-        )
-
-        # Mixed listed and unlisted versions. Should not show up in queue.
-        mixed_addon = addon_factory(created=self.days_ago(5))
-        version_review_flags_factory(
-            version=version_factory(addon=mixed_addon, channel=amo.CHANNEL_UNLISTED),
-            needs_human_review_by_mad=False,
-        )
-        version_review_flags_factory(
-            version=version_factory(addon=mixed_addon, channel=amo.CHANNEL_LISTED),
-            needs_human_review_by_mad=True,
-        )
-        version_review_flags_factory(
-            version=version_factory(addon=mixed_addon, channel=amo.CHANNEL_LISTED),
-            needs_human_review_by_mad=False,
-        )
-
-        # Mixed listed and unlisted versions. Only the unlisted should show up.
-        mixed_addon2 = addon_factory(created=self.days_ago(4))
-        version_review_flags_factory(
-            version=version_factory(addon=mixed_addon2, channel=amo.CHANNEL_UNLISTED),
-            needs_human_review_by_mad=True,
-        )
-        version_review_flags_factory(
-            version=version_factory(addon=mixed_addon2, channel=amo.CHANNEL_LISTED),
-            needs_human_review_by_mad=True,
-        )
-        version_review_flags_factory(
-            version=version_factory(addon=mixed_addon2, channel=amo.CHANNEL_LISTED),
-            needs_human_review_by_mad=False,
-        )
-
-        # Mixed listed and unlisted versions. Both channels should show up.
-        mixed_addon_both = addon_factory(created=self.days_ago(2))
-        version_review_flags_factory(
-            version=version_factory(
-                addon=mixed_addon_both, channel=amo.CHANNEL_UNLISTED
-            ),
-            needs_human_review_by_mad=True,
-        )
-        version_review_flags_factory(
-            version=version_factory(addon=mixed_addon_both, channel=amo.CHANNEL_LISTED),
-            needs_human_review_by_mad=True,
-        )
-
-        self.expected_addons = [
-            listed_addon,
-            unlisted_addon,
-            mixed_addon2,
-            mixed_addon_both,
-        ]
-        self.expected_versions = self.get_expected_versions(self.expected_addons)
-
-    def test_results(self):
-        with self.assertNumQueries(14):
-            # - 2 for savepoints because we're in tests
-            # - 2 for user/groups
-            # - 1 for the current queue count for pagination purposes
-            # - 2 for the addons in the queue, their files and the number of
-            #     flagged versions they have in each channel (regardless of
-            #     how many are in the queue - that's the important bit)
-            # - 2 for config items (motd / site notice)
-            # - 1 for my add-ons in user menu
-            # - 1 for finding approved promoted groups
-            # - 4 checking the approved promoted group for each version
-            response = self.client.get(self.url)
-        assert response.status_code == 200
-
-        # listed
-        expected = []
-        addon = self.expected_addons[0]
-        expected.append(
-            ('Listed version', reverse('reviewers.review', args=[addon.pk]))
-        )
-        # unlisted
-        addon = self.expected_addons[1]
-        expected.append(
-            (
-                'Unlisted versions (2)',
-                reverse('reviewers.review', args=['unlisted', addon.pk]),
-            )
-        )
-        # mixed, only unlisted flagged
-        addon = self.expected_addons[2]
-        expected.append(
-            (
-                'Unlisted versions (1)',
-                reverse('reviewers.review', args=['unlisted', addon.pk]),
-            )
-        )
-        # mixed, both channels flagged
-        addon = self.expected_addons[3]
-        expected.append(
-            ('Listed version', reverse('reviewers.review', args=[addon.pk]))
-        )
-        expected.append(
-            (
-                'Unlisted versions (1)',
-                reverse('reviewers.review', args=['unlisted', addon.pk]),
-            )
-        )
-
-        doc = pq(response.content)
-        links = doc('#addon-queue tr.addon-row td a:not(.app-icon)')
-        assert len(links) == len(expected)
-        check_links(expected, links)
-
-    def test_only_viewable_with_specific_permission(self):
-        # Content reviewer does not have access.
-        self.user.groupuser_set.all().delete()  # Remove all permissions
-        self.grant_permission(self.user, 'Addons:ContentReview')
-        response = self.client.get(self.url)
-        assert response.status_code == 403
-
-        # Regular user doesn't have access.
-        self.client.logout()
-        self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
-        response = self.client.get(self.url)
-        assert response.status_code == 403
-
-    def test_queue_layout(self):
-        self._test_queue_layout(
-            'Flagged by MAD for Human Review',
-            tab_position=1,
-            total_addons=4,
-            total_queues=2,
-            per_page=1,
-        )
 
 
 class TestUsagePerVersion(ReviewerTest):

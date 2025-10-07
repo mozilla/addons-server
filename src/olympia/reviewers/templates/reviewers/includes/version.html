@@ -1,4 +1,4 @@
-<tr class="listing-header{% if version.needs_human_review %} needs-human-review{% elif version.needs_human_review_by_mad %} flagged-by-mad{%endif %}"
+<tr class="listing-header{% if version.needs_human_review %} needs-human-review{%endif %}"
     id="version-{{ version.version|to_dom_id }}"
 >
   <th>
@@ -59,14 +59,6 @@
               {% endif %}
           </div>
       {% endif %}
-
-      <div class="maliciousness-score">
-        <h5>Maliciousness Score:</h5> {{ version.maliciousness_score|format_score }}
-        <span class="tip tooltip" title="The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings.">?</span>
-        {% if version.needs_human_review_by_mad %}
-          <strong class="risk-medium">Flagged by MAD scanner</strong>
-        {% endif %}
-      </div>
 
       <div class="scanners-results">
       {% for result in version.scannerresults.all() %}

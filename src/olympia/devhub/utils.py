@@ -7,7 +7,7 @@ from django.urls import reverse
 from django.utils.translation import gettext
 
 import waffle
-from celery import chain, chord
+from celery import chain, group
 from django_statsd.clients import statsd
 
 import olympia.core.logger
@@ -17,7 +17,7 @@ from olympia.amo.urlresolvers import linkify_and_clean
 from olympia.files.models import File, FileUpload
 from olympia.files.tasks import repack_fileupload
 from olympia.files.utils import parse_addon, parse_xpi
-from olympia.scanners.tasks import call_mad_api, run_customs, run_yara
+from olympia.scanners.tasks import run_customs, run_yara
 from olympia.versions.models import Version
 from olympia.versions.utils import process_color_value
 
@@ -262,7 +262,7 @@ class Validator:
     def create_file_upload_tasks(self, upload_pk, is_mozilla_signed):
         """
         This method creates the validation chain used during the submission
-        process, combining tasks in parallel (chord) with tasks chained
+        process, combining tasks in parallel (group) with tasks chained
         together (where the output is used as input of the next task).
         """
         tasks_in_parallel = [tasks.forward_linter_results.s(upload_pk)]
@@ -278,7 +278,7 @@ class Validator:
             repack_fileupload.s(upload_pk),
             tasks.validate_upload.s(upload_pk),
             tasks.check_for_api_keys_in_file.s(upload_pk),
-            chord(tasks_in_parallel, call_mad_api.s(upload_pk)),
+            group(tasks_in_parallel),
             tasks.handle_upload_validation_result.s(upload_pk, is_mozilla_signed),
         ]
 
