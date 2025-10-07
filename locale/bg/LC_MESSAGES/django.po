@@ -1183,7 +1183,7 @@ msgstr ""
 
 #: src/olympia/constants/activity.py:959
 msgid "Pending rejection cleared"
-msgstr ""
+msgstr "Чакащият отказ е изчистен"
 
 #: src/olympia/constants/activity.py:1006
 #, python-brace-format
@@ -1557,7 +1557,7 @@ msgstr "Мода"
 
 #: src/olympia/constants/categories.py:229
 msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
-msgstr ""
+msgstr "Изтеглете теми за Firefox, които прославят стила на всякакви форми — шарки, цветя, текстури, модели и др."
 
 #: src/olympia/constants/categories.py:235
 msgid "Film and TV"
