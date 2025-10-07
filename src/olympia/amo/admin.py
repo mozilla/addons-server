@@ -22,7 +22,10 @@ from django.http.request import QueryDict
 from django.utils.html import format_html, format_html_join
 
 from django_vite.templatetags.django_vite import vite_hmr_client
-from rangefilter.filters import DateRangeFilter as DateRangeFilterBase
+from rangefilter.filters import (
+    DateRangeFilter as DateRangeFilterBase,
+    NumericRangeFilter as NumericRangeFilterBase,
+)
 
 from olympia.activity.models import IPLog
 from olympia.amo.models import GroupConcat, Inet6Ntoa
@@ -632,6 +635,27 @@ class DateRangeFilter(FakeChoicesMixin, DateRangeFilterBase):
                 ),
             )
         )
+
+    def choices(self, changelist):
+        # We want a fake 'All' choice as per FakeChoicesMixin, but as of 0.3.15
+        # rangefilter's implementation doesn't bother setting the selected
+        # property, and our mixin calls super(), so we have to do it here.
+        all_choice = next(super().choices(changelist))
+        all_choice['selected'] = not any(self.used_parameters)
+        yield all_choice
+
+
+class NumericRangeFilter(FakeChoicesMixin, NumericRangeFilterBase):
+    """
+    Custom rangefilter.filters.NumericRangeFilter class without the need for
+    inline CSS/JavaScript.
+
+    Needs FakeChoicesMixin for the fake choices the template will be using (the
+    upstream implementation depends on inline JavaScript for this, which we
+    want to avoid).
+    """
+
+    template = 'admin/amo/numeric_range_filter.html'
 
     def choices(self, changelist):
         # We want a fake 'All' choice as per FakeChoicesMixin, but as of 0.3.15
