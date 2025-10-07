@@ -3044,14 +3044,12 @@ msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr "인증받은 사람에 한해 부가 기능을 다른 사람이 공유할 수 있나요?"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:17
-#, fuzzy
 msgid "Can others make commercial use of your Add-on?"
-msgstr "다른 사람이 당신의 테마를 상업적으로 사용할 수 있도록 허용할까요?"
+msgstr "다른 사람이 당신의 부가 기능을 상업적으로 사용할 수 있도록 허용할까요?"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:32
-#, fuzzy
 msgid "Can others create derivative works from your Add-on?"
-msgstr "다른 사람이 당신의 테마를 사용해서 작품을 만들 수 있도록 허용할까요?"
+msgstr "다른 사람이 당신의 부가 기능을 이용해서 작품을 만들 수 있도록 허용할까요?"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:43
 msgid "Yes, as long as they share alike"
@@ -3125,7 +3123,7 @@ msgstr "부가기능을 삭제하면 부가기능을 위해 제출했던 모든 
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:6
 msgid "All versions will be Restricted, which will disable and prevent any further installation in Firefox. Existing users can choose to re-enable the add-on."
-msgstr ""
+msgstr "모든 버전이 제한되어 Firefox에서 더이상 설치되지 않을 것입니다. 기존 사용자는 부가 기능을 다시 활성화할 수 있습니다."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:11
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
@@ -3149,9 +3147,8 @@ msgid "Actions"
 msgstr "활동"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:11
-#, fuzzy
 msgid "Resume the submission process for this add-on"
-msgstr "부가 기능 등록 과정을 계속 진행합니다."
+msgstr "부가 기능 등록 과정 계속하기"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:12
 msgid "Resume"
@@ -3166,14 +3163,12 @@ msgid "Delete"
 msgstr "삭제"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:30
-#, fuzzy
 msgid "Edit details on this add-on's product page"
-msgstr "이 테마의 목록에 대한 상세 편집"
+msgstr "이 부가 기능의 제품 페이지에 대한 상세 정보 수정"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:37
-#, fuzzy
 msgid "Upload a new version of this add-on"
-msgstr "이 부가 기능의 새 버전을 업로드 합니다."
+msgstr "이 부가 기능의 새 버전 업로드"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:38
 msgid "New Version"
@@ -3473,9 +3468,8 @@ msgid "You must submit your extension's source code."
 msgstr "확장 기능의 소스 코드를 제출해야 합니다."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:51
-#, fuzzy
 msgid "Your source code must include:"
-msgstr "소스 코드가 업로드 됨"
+msgstr "소스 코드는 다음을 포함하여야 합니다:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:56
 msgid "Step-by-step build instructions to create an exact copy of the add-on code, in a README file in your source code or in the reviewer notes on the next page."
