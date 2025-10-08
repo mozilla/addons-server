@@ -230,13 +230,13 @@ class AddonVisibilityFilter(admin.BooleanFieldListFilter):
             }
 
 
-class FileStatusFiler(admin.ChoicesFieldListFilter):
+class FileStatusFilter(admin.ChoicesFieldListFilter):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.title = 'file status'
 
 
-class FileIsSigned(admin.BooleanFieldListFilter):
+class FileIsSignedFilter(admin.BooleanFieldListFilter):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.title = 'file signature'
@@ -429,7 +429,13 @@ class AbstractScannerResultAdminMixin:
 class AbstractScannerRuleAdminMixin:
     view_on_site = False
 
-    list_display = ('__str__', 'scanner', 'action', 'is_active')
+    list_display = (
+        '__str__',
+        'scanner',
+        'action',
+        'is_active',
+        'exclude_promoted_addons',
+    )
     list_filter = ('scanner', 'action', 'is_active')
     fields = (
         'scanner',
@@ -442,6 +448,7 @@ class AbstractScannerRuleAdminMixin:
         'matched_results_link',
         'is_active',
         'definition',
+        'exclude_promoted_addons',
     )
     readonly_fields = ('created', 'modified', 'matched_results_link')
 
@@ -719,6 +726,7 @@ class ScannerQueryResultAdmin(AbstractScannerResultAdminMixin, AMOModelAdmin):
         'formatted_created',
         'is_file_signed',
         'was_blocked',
+        'was_promoted',
         'authors',
         'formatted_matched_rules',
         'matching_filenames',
@@ -729,9 +737,10 @@ class ScannerQueryResultAdmin(AbstractScannerResultAdminMixin, AMOModelAdmin):
         ('version__channel', VersionChannelFilter),
         ('version__addon__status', AddonStatusFilter),
         ('version__addon__disabled_by_user', AddonVisibilityFilter),
-        ('version__file__status', FileStatusFiler),
-        ('version__file__is_signed', FileIsSigned),
+        ('version__file__status', FileStatusFilter),
+        ('version__file__is_signed', FileIsSignedFilter),
         ('was_blocked', admin.BooleanFieldListFilter),
+        ('was_promoted', admin.BooleanFieldListFilter),
     )
     list_select_related = AbstractScannerResultAdminMixin.list_select_related + (
         'matched_rule',
@@ -833,6 +842,7 @@ class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, AMOModelAdmin):
         'run_on_disabled_addons',
         'run_on_specific_channel',
         'run_on_current_version_only',
+        'exclude_promoted_addons',
         'created',
         'state_with_actions',
         'completion_rate',
@@ -844,6 +854,7 @@ class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, AMOModelAdmin):
         'run_on_disabled_addons',
         'run_on_specific_channel',
         'run_on_current_version_only',
+        'exclude_promoted_addons',
         'state_with_actions',
         'name',
         'pretty_name',

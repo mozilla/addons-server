@@ -1582,6 +1582,10 @@ class TestScannerQueryResultAdmin(TestCase):
             ('Yes', '?was_blocked__exact=1'),
             ('No', '?was_blocked__exact=0'),
             ('Unknown', '?was_blocked__isnull=True'),
+            ('All', '?'),
+            ('Yes', '?was_promoted__exact=1'),
+            ('No', '?was_promoted__exact=0'),
+            ('Unknown', '?was_promoted__isnull=True'),
         ]
         filters = [(x.text, x.attrib['href']) for x in doc('#changelist-filter a')]
         assert filters == expected
@@ -1798,6 +1802,53 @@ class TestScannerQueryResultAdmin(TestCase):
         doc = pq(response.content)
         assert doc('#result_list tbody > tr').length == 1
         assert doc('.field-guid').text() == was_blocked_unknown_addon.guid
+
+    def test_list_filter_was_promoted(self):
+        was_promoted_addon = addon_factory()
+        self.scanner_query_result_factory(
+            version=was_promoted_addon.versions.get(), was_promoted=True
+        )
+        was_promoted_unknown_addon = addon_factory()
+        self.scanner_query_result_factory(
+            version=was_promoted_unknown_addon.versions.get(), was_promoted=None
+        )
+        was_promoted_false_addon = addon_factory()
+        self.scanner_query_result_factory(
+            version=was_promoted_false_addon.versions.get(), was_promoted=False
+        )
+
+        response = self.client.get(
+            self.list_url,
+            {
+                'was_promoted__exact': '1',
+            },
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody > tr').length == 1
+        assert doc('.field-guid').text() == was_promoted_addon.guid
+
+        response = self.client.get(
+            self.list_url,
+            {
+                'was_promoted__exact': '0',
+            },
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody > tr').length == 1
+        assert doc('.field-guid').text() == was_promoted_false_addon.guid
+
+        response = self.client.get(
+            self.list_url,
+            {
+                'was_promoted__isnull': 'True',
+            },
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody > tr').length == 1
+        assert doc('.field-guid').text() == was_promoted_unknown_addon.guid
 
     def test_change_page(self):
         result = self.scanner_query_result_factory(
