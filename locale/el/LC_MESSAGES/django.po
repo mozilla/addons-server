@@ -423,16 +423,16 @@ msgstr "Δεν είναι δυνατή η χρήση αυτού του αναγ�
 
 #: src/olympia/addons/serializers.py:1888
 msgid "There is no rollback available in this channel."
-msgstr ""
+msgstr "Δεν υπάρχει διαθέσιμο σημείο επαναφοράς σε αυτό το κανάλι."
 
 #: src/olympia/addons/serializers.py:1898
 #, python-format
 msgid "Rollback is only available for version %s in this channel."
-msgstr ""
+msgstr "Το σημείο επαναφοράς είναι διαθέσιμο μόνο για την έκδοση %s σε αυτό το κανάλι."
 
 #: src/olympia/addons/serializers.py:1904
 msgid "Only approved versions can be rolled back, except the most recent version."
-msgstr ""
+msgstr "Μπορούν να ανακληθούν μόνο οι εγκεκριμένες εκδόσεις, εκτός από την πιο πρόσφατη."
 
 #: src/olympia/addons/utils.py:56 src/olympia/bandwagon/serializers.py:92
 msgid "This name cannot be used."
@@ -5672,7 +5672,7 @@ msgstr "Ισχυρό αναδυόμενο λεξικό, βελτιστοποιη
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:673
 msgid "Hover your mouse over thumbnails to easily browse and download HD images."
-msgstr ""
+msgstr "Περάστε τον κέρσορα πάνω από τις μικρογραφίες για εύκολη περιήγηση και λήψη εικόνων HD."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:676
@@ -5682,7 +5682,7 @@ msgstr "Αφαιρέστε τα ανεπιθύμητα και ενοχλητικ
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:679
 msgid "Makes Firefox appear as Chrome to websites trying to block Firefox."
-msgstr ""
+msgstr "Κάνει το Firefox να εμφανίζεται ως Chrome σε ιστοσελίδες που προσπαθούν να αποκλείσουν το Firefox."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:682
