@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-02 09:05+0000\n"
+"POT-Creation-Date: 2025-10-13 08:39+0000\n"
 "PO-Revision-Date: 2015-02-01 09:53+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -159,53 +159,11 @@ msgid_plural "{0} users"
 msgstr[0] "{0} korisnika"
 msgstr[1] "{0} korisnika"
 
-#, fuzzy, python-brace-format
-msgid "{0} add-on"
-msgid_plural "{0} add-ons"
-msgstr[0] "{0} dodataka"
-msgstr[1] "{0} dodataka"
-
-#, fuzzy, python-brace-format
-msgid "{0} collection"
-msgid_plural "{0} collections"
-msgstr[0] "{0} kolekcije"
-msgstr[1] "{0} kolekcije"
-
-#, fuzzy, python-brace-format
-msgid "{0} review"
-msgid_plural "{0} reviews"
-msgstr[0] "{0} recenzija"
-msgstr[1] "{0} recenzija"
-
-#, fuzzy, python-brace-format
-msgid "{0} sale"
-msgid_plural "{0} sales"
-msgstr[0] "{0} prodaja"
-msgstr[1] "{0} prodaja"
-
-#, fuzzy, python-brace-format
-msgid "{0} refund"
-msgid_plural "{0} refunds"
-msgstr[0] "{0} refunkdacija"
-msgstr[1] "{0} refunkdacija"
-
-#, fuzzy, python-brace-format
-msgid "{0} install"
-msgid_plural "{0} installs"
-msgstr[0] "{0} instalacija"
-msgstr[1] "{0} instalacija"
-
 msgid "Downloads"
 msgstr "Preuzimanja"
 
 msgid "Daily Users"
 msgstr "Broj korisnika po danu"
-
-msgid "Amount, in USD"
-msgstr "Količina, u valuti USD"
-
-msgid "Number of Contributions"
-msgstr "Broj doprinosa"
 
 msgid "More Info..."
 msgstr "Više informacija..."
@@ -214,156 +172,6 @@ msgstr "Više informacija..."
 #, python-brace-format
 msgid "Details for {0}"
 msgstr "Detalji o {0}"
-
-msgid "Collections Created"
-msgstr "Napravljene kolekcije"
-
-msgid "Add-ons in Use"
-msgstr "Dodaci koji se koriste"
-
-msgid "Add-ons Created"
-msgstr "Dodataka napravljeno"
-
-msgid "Add-ons Downloaded"
-msgstr "Dodataka preuzeto"
-
-msgid "Add-ons Updated"
-msgstr "Dodataka ažurirano"
-
-msgid "Reviews Written"
-msgstr "Recenzija napisano"
-
-msgid "User Signups"
-msgstr "Prijave korisnika"
-
-msgid "Subscribers"
-msgstr "Pretplatnici"
-
-msgid "Ratings"
-msgstr "Ocene"
-
-msgid "Sales"
-msgstr "Prodaje"
-
-msgid "Installs"
-msgstr "Instalacije"
-
-msgid "Unknown"
-msgstr "Nepoznato"
-
-msgid "Add-ons Manager"
-msgstr "Menadžer dodataka"
-
-msgid "Add-ons Manager Promo"
-msgstr ""
-
-msgid "Add-ons Manager Featured"
-msgstr ""
-
-msgid "Add-ons Manager Learn More"
-msgstr ""
-
-msgid "Search Suggestions"
-msgstr ""
-
-msgid "Search Results"
-msgstr "Rezultati pretrage"
-
-msgid "Homepage Promo"
-msgstr "Promocija na početnoj strani"
-
-msgid "Homepage Featured"
-msgstr "Izdvojeno na početnoj strani"
-
-msgid "Homepage Up and Coming"
-msgstr "Nadolazeće na početnoj strani"
-
-msgid "Homepage Most Popular"
-msgstr "Najpopularnije na početnoj strani"
-
-msgid "Detail Page"
-msgstr "Dodatne informacije"
-
-msgid "Detail Page (bottom)"
-msgstr "Dodatne informacije (dole)"
-
-msgid "Detail Page (Development Channel)"
-msgstr "Dodatne informacije (Kanal za razvoj)"
-
-msgid "Often Used With"
-msgstr "Često korišćeno uz"
-
-msgid "Others By Author"
-msgstr "Ostalo od autora"
-
-msgid "Dependencies"
-msgstr "Zavisi od"
-
-msgid "Upsell"
-msgstr "Tehnike uvećanja prodaje"
-
-msgid "Meet the Developer"
-msgstr ""
-
-msgid "User Profile"
-msgstr ""
-
-msgid "Version History"
-msgstr ""
-
-msgid "Sharing"
-msgstr "Deljenje"
-
-msgid "Category Pages"
-msgstr "Stranice kategorija"
-
-msgid "Collections"
-msgstr "Kolekcije"
-
-msgid "Category Landing Featured Carousel"
-msgstr "Klizač izdvojenih apl. na početnoj strani kategorije"
-
-msgid "Category Landing Top Rated"
-msgstr "Najbolje ocenjene apl. na početnoj strani kategorije"
-
-msgid "Category Landing Most Popular"
-msgstr "Najpopularnije apl. na početnoj strani kategorije"
-
-msgid "Category Landing Recently Added"
-msgstr "Skoro dodate apl. na početnoj strani kategorije"
-
-msgid "Browse Listing Featured Sort"
-msgstr "Pregled sortirane liste istaknutih aplikacija"
-
-msgid "Browse Listing Users Sort"
-msgstr "Pregled sortirane liste korisnika"
-
-msgid "Browse Listing Rating Sort"
-msgstr "Pregled sortirane liste ocena"
-
-msgid "Browse Listing Created Sort"
-msgstr "Pregled sortirane liste kreiranih aplikacija"
-
-msgid "Browse Listing Name Sort"
-msgstr "Pregled sortirane liste naziva"
-
-msgid "Browse Listing Popular Sort"
-msgstr "Pregled sortirane liste popularnih aplikacija"
-
-msgid "Browse Listing Updated Sort"
-msgstr "Pregled sortirane liste ažuriranih aplikacija"
-
-msgid "Browse Listing Up and Coming Sort"
-msgstr "Pregled sortirane liste nadolazećih aplikacija"
-
-msgid "Total Amount Contributed"
-msgstr "Ukupan broj doprinosa"
-
-msgid "Average Contribution"
-msgstr "Prosek doprinosa"
-
-msgid "Usage"
-msgstr "Upotreba"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -395,16 +203,6 @@ msgstr "Preuzimanja i dnevni korisnici, poslednjih {0} dana"
 #, python-brace-format
 msgid "Downloads and Daily Users from {0} to {1}"
 msgstr "Preuzimanja i dnevni korisnici od {0} do {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Installs and Daily Users, last {0} days"
-msgstr "Instalacije i dnevni korisnici, poslednjih {0} dana"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Installs and Daily Users from {0} to {1}"
-msgstr "Instalacije i dnevni korisnici od {0} do {1}"
 
 #. L10n: {0} is an integer.
 #, python-brace-format
@@ -478,16 +276,6 @@ msgstr "Verzije dodataka od {0} do {1}"
 
 #. L10n: {0} is an integer.
 #, python-brace-format
-msgid "Add-on Status, last {0} days"
-msgstr "Status dodataka, poslednjih {0} dana"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Add-on Status from {0} to {1}"
-msgstr "Status dodataka, od {0} do {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
 msgid "Download Sources, last {0} days"
 msgstr "Izvori preuzimanja, poslednjih {0} dana"
 
@@ -525,136 +313,6 @@ msgstr "Preuzimanja, poslednjih {0} dana"
 #, fuzzy, python-brace-format
 msgid "Download Campaigns from {0} to {1}"
 msgstr "Preuzimanja od {0} do {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Contributions, last {0} days"
-msgstr "Doprinosi, poslednjih {0} dana"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Contributions from {0} to {1}"
-msgstr "Doprinosi od {0} do {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Site Metrics, last {0} days"
-msgstr "Pokazatelji za sajt, poslednjih {0} dana"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Site Metrics from {0} to {1}"
-msgstr "Pokazatelji za sajt od {0} do {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Add-ons in Use, last {0} days"
-msgstr "Dodaci u upotrebi, poslednjih {0} dana"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Add-ons in Use from {0} to {1}"
-msgstr "Dodaci u upotrebi od {0} do {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Add-ons Downloaded, last {0} days"
-msgstr "Dodataka preuzeto, poslednjih {0} dana"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Add-ons Downloaded from {0} to {1}"
-msgstr "Dodataka preuzeto od {0} do {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Add-ons Created, last {0} days"
-msgstr "Dodataka napravljeno, poslednjih {0} dana"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Add-ons Created from {0} to {1}"
-msgstr "Dodataka napravljeno od {0} do {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Add-ons Updated, last {0} days"
-msgstr "Dodataka ažurirano, poslednjih {0} dana"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Add-ons Updated from {0} to {1}"
-msgstr "Dodataka ažurirano od {0} do {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Reviews Written, last {0} days"
-msgstr "Recenzija napisano, poslednjih {0} dana"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Reviews Written from {0} to {1}"
-msgstr "Recenzija napisano od {0} do {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "User Signups, last {0} days"
-msgstr "Registracije korisnika, poslednjih {0} dana"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "User Signups from {0} to {1}"
-msgstr "Registracije korisnika od {0} do {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Collections Created, last {0} days"
-msgstr "Kolekcija napravljeno, poslednjih {0} dana"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Collections Created from {0} to {1}"
-msgstr "Kolekcija napravljeno od {0} do {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Subscribers, last {0} days"
-msgstr "Pretplatnici, poslednjih {0} dana"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Subscribers from {0} to {1}"
-msgstr "Pretplatnici od {0} do {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Ratings, last {0} days"
-msgstr "Ocenjivanja, poslednjih {0} dana"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Ratings from {0} to {1}"
-msgstr "Ocenjivanja od {0} do {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Sales, last {0} days"
-msgstr "Prodaja, poslednjih {0} dana"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Sales from {0} to {1}"
-msgstr "Prodaja od {0} do {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Installs, last {0} days"
-msgstr "Instalacije, poslednjih {0} dana"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Installs from {0} to {1}"
-msgstr "Instalacije, od {0} do {1}"
 
 #. L10n: {0} and {1} are integers.
 #, python-brace-format

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-02 09:05+0000\n"
+"POT-Creation-Date: 2025-10-13 08:39+0000\n"
 "PO-Revision-Date: 2015-02-01 09:53+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -159,53 +159,11 @@ msgid_plural "{0} users"
 msgstr[0] "{0} корисника"
 msgstr[1] "{0} корисника"
 
-#, fuzzy, python-brace-format
-msgid "{0} add-on"
-msgid_plural "{0} add-ons"
-msgstr[0] "{0} додатака"
-msgstr[1] "{0} додатака"
-
-#, fuzzy, python-brace-format
-msgid "{0} collection"
-msgid_plural "{0} collections"
-msgstr[0] "{0} колекције"
-msgstr[1] "{0} колекције"
-
-#, fuzzy, python-brace-format
-msgid "{0} review"
-msgid_plural "{0} reviews"
-msgstr[0] "{0} рецензија"
-msgstr[1] "{0} рецензија"
-
-#, fuzzy, python-brace-format
-msgid "{0} sale"
-msgid_plural "{0} sales"
-msgstr[0] "{0} продаја"
-msgstr[1] "{0} продаја"
-
-#, fuzzy, python-brace-format
-msgid "{0} refund"
-msgid_plural "{0} refunds"
-msgstr[0] "{0} рефункдација"
-msgstr[1] "{0} рефункдација"
-
-#, fuzzy, python-brace-format
-msgid "{0} install"
-msgid_plural "{0} installs"
-msgstr[0] "{0} инсталација"
-msgstr[1] "{0} инсталација"
-
 msgid "Downloads"
 msgstr "Преузимања"
 
 msgid "Daily Users"
 msgstr "Број корисника по дану"
-
-msgid "Amount, in USD"
-msgstr "Количина, у валути USD"
-
-msgid "Number of Contributions"
-msgstr "Број доприноса"
 
 msgid "More Info..."
 msgstr "Више информација..."
@@ -214,156 +172,6 @@ msgstr "Више информација..."
 #, python-brace-format
 msgid "Details for {0}"
 msgstr "Детаљи о {0}"
-
-msgid "Collections Created"
-msgstr "Направљене колекције"
-
-msgid "Add-ons in Use"
-msgstr "Додаци који се користе"
-
-msgid "Add-ons Created"
-msgstr "Додатака направљено"
-
-msgid "Add-ons Downloaded"
-msgstr "Додатака преузето"
-
-msgid "Add-ons Updated"
-msgstr "Додатака ажурирано"
-
-msgid "Reviews Written"
-msgstr "Рецензија написано"
-
-msgid "User Signups"
-msgstr "Пријаве корисника"
-
-msgid "Subscribers"
-msgstr "Претплатници"
-
-msgid "Ratings"
-msgstr "Оцене"
-
-msgid "Sales"
-msgstr "Продаје"
-
-msgid "Installs"
-msgstr "Инсталације"
-
-msgid "Unknown"
-msgstr "Непознато"
-
-msgid "Add-ons Manager"
-msgstr "Менаџер додатака"
-
-msgid "Add-ons Manager Promo"
-msgstr ""
-
-msgid "Add-ons Manager Featured"
-msgstr ""
-
-msgid "Add-ons Manager Learn More"
-msgstr ""
-
-msgid "Search Suggestions"
-msgstr ""
-
-msgid "Search Results"
-msgstr "Резултати претраге"
-
-msgid "Homepage Promo"
-msgstr "Промоција на почетној страни"
-
-msgid "Homepage Featured"
-msgstr "Издвојено на почетној страни"
-
-msgid "Homepage Up and Coming"
-msgstr "Надолазеће на почетној страни"
-
-msgid "Homepage Most Popular"
-msgstr "Најпопуларније на почетној страни"
-
-msgid "Detail Page"
-msgstr "Додатне информације"
-
-msgid "Detail Page (bottom)"
-msgstr "Додатне информације (доле)"
-
-msgid "Detail Page (Development Channel)"
-msgstr "Додатне информације (Канал за развој)"
-
-msgid "Often Used With"
-msgstr "Често коришћено уз"
-
-msgid "Others By Author"
-msgstr "Остало од аутора"
-
-msgid "Dependencies"
-msgstr "Зависи од"
-
-msgid "Upsell"
-msgstr "Технике увећања продаје"
-
-msgid "Meet the Developer"
-msgstr ""
-
-msgid "User Profile"
-msgstr ""
-
-msgid "Version History"
-msgstr ""
-
-msgid "Sharing"
-msgstr "Дељење"
-
-msgid "Category Pages"
-msgstr "Странице категорија"
-
-msgid "Collections"
-msgstr "Колекције"
-
-msgid "Category Landing Featured Carousel"
-msgstr "Клизач издвојених апл. на почетној страни категорије"
-
-msgid "Category Landing Top Rated"
-msgstr "Најбоље оцењене апл. на почетној страни категорије"
-
-msgid "Category Landing Most Popular"
-msgstr "Најпопуларније апл. на почетној страни категорије"
-
-msgid "Category Landing Recently Added"
-msgstr "Скоро додате апл. на почетној страни категорије"
-
-msgid "Browse Listing Featured Sort"
-msgstr "Преглед сортиране листе истакнутих апликација"
-
-msgid "Browse Listing Users Sort"
-msgstr "Преглед сортиране листе корисника"
-
-msgid "Browse Listing Rating Sort"
-msgstr "Преглед сортиране листе оцена"
-
-msgid "Browse Listing Created Sort"
-msgstr "Преглед сортиране листе креираних апликација"
-
-msgid "Browse Listing Name Sort"
-msgstr "Преглед сортиране листе назива"
-
-msgid "Browse Listing Popular Sort"
-msgstr "Преглед сортиране листе популарних апликација"
-
-msgid "Browse Listing Updated Sort"
-msgstr "Преглед сортиране листе ажурираних апликација"
-
-msgid "Browse Listing Up and Coming Sort"
-msgstr "Преглед сортиране листе надолазећих апликација"
-
-msgid "Total Amount Contributed"
-msgstr "Укупан број доприноса"
-
-msgid "Average Contribution"
-msgstr "Просек доприноса"
-
-msgid "Usage"
-msgstr "Употреба"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -395,16 +203,6 @@ msgstr "Преузимања и дневни корисници, последњ�
 #, python-brace-format
 msgid "Downloads and Daily Users from {0} to {1}"
 msgstr "Преузимања и дневни корисници од {0} до {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Installs and Daily Users, last {0} days"
-msgstr "Инсталације и дневни корисници, последњих {0} дана"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Installs and Daily Users from {0} to {1}"
-msgstr "Инсталације и дневни корисници од {0} до {1}"
 
 #. L10n: {0} is an integer.
 #, python-brace-format
@@ -478,16 +276,6 @@ msgstr "Верзије додатака од {0} до {1}"
 
 #. L10n: {0} is an integer.
 #, python-brace-format
-msgid "Add-on Status, last {0} days"
-msgstr "Статус додатака, последњих {0} дана"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Add-on Status from {0} to {1}"
-msgstr "Статус додатака, од {0} до {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
 msgid "Download Sources, last {0} days"
 msgstr "Извори преузимања, последњих {0} дана"
 
@@ -525,136 +313,6 @@ msgstr "Преузимања, последњих {0} дана"
 #, fuzzy, python-brace-format
 msgid "Download Campaigns from {0} to {1}"
 msgstr "Преузимања од {0} до {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Contributions, last {0} days"
-msgstr "Доприноси, последњих {0} дана"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Contributions from {0} to {1}"
-msgstr "Доприноси од {0} до {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Site Metrics, last {0} days"
-msgstr "Показатељи за сајт, последњих {0} дана"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Site Metrics from {0} to {1}"
-msgstr "Показатељи за сајт од {0} до {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Add-ons in Use, last {0} days"
-msgstr "Додаци у употреби, последњих {0} дана"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Add-ons in Use from {0} to {1}"
-msgstr "Додаци у употреби од {0} до {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Add-ons Downloaded, last {0} days"
-msgstr "Додатака преузето, последњих {0} дана"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Add-ons Downloaded from {0} to {1}"
-msgstr "Додатака преузето од {0} до {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Add-ons Created, last {0} days"
-msgstr "Додатака направљено, последњих {0} дана"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Add-ons Created from {0} to {1}"
-msgstr "Додатака направљено од {0} до {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Add-ons Updated, last {0} days"
-msgstr "Додатака ажурирано, последњих {0} дана"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Add-ons Updated from {0} to {1}"
-msgstr "Додатака ажурирано од {0} до {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Reviews Written, last {0} days"
-msgstr "Рецензија написано, последњих {0} дана"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Reviews Written from {0} to {1}"
-msgstr "Рецензија написано од {0} до {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "User Signups, last {0} days"
-msgstr "Регистрације корисника, последњих {0} дана"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "User Signups from {0} to {1}"
-msgstr "Регистрације корисника од {0} до {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Collections Created, last {0} days"
-msgstr "Колекција направљено, последњих {0} дана"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Collections Created from {0} to {1}"
-msgstr "Колекција направљено од {0} до {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Subscribers, last {0} days"
-msgstr "Претплатници, последњих {0} дана"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Subscribers from {0} to {1}"
-msgstr "Претплатници од {0} до {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Ratings, last {0} days"
-msgstr "Оцењивања, последњих {0} дана"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Ratings from {0} to {1}"
-msgstr "Оцењивања од {0} до {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Sales, last {0} days"
-msgstr "Продаја, последњих {0} дана"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Sales from {0} to {1}"
-msgstr "Продаја од {0} до {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Installs, last {0} days"
-msgstr "Инсталације, последњих {0} дана"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Installs from {0} to {1}"
-msgstr "Инсталације, од {0} до {1}"
 
 #. L10n: {0} and {1} are integers.
 #, python-brace-format

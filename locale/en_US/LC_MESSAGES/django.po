@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-02 09:04+0000\n"
+"POT-Creation-Date: 2025-10-13 08:39+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1230,6 +1230,7 @@ msgstr "Photos, Music & Videos"
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
 msgstr "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
 
+#. editorial content for the secondary hero shelves.
 #, fuzzy
 msgid "Privacy & Security"
 msgstr "Privacy Policy"
@@ -4902,16 +4903,12 @@ msgid "See all extensions"
 msgstr "Browse all add-ons"
 
 #. editorial content for the secondary hero shelves.
-msgid "Anti-tracking extensions"
-msgstr "Anti-tracking extensions"
+msgid "Extension Starter Pack"
+msgstr "Extension Starter Pack"
 
 #. editorial content for the secondary hero shelves.
-msgid "Essential add-ons"
-msgstr "Essential add-ons"
-
-#. editorial content for the secondary hero shelves.
-msgid "Writing tools"
-msgstr "Writing tools"
+msgid "Twitch customization"
+msgstr "Twitch customization"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"

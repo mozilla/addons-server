@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  messages.pootle\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-02 09:04+0000\n"
+"POT-Creation-Date: 2025-10-13 08:39+0000\n"
 "PO-Revision-Date: 2013-11-07 07:24+0000\n"
 "Last-Translator: Julen <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -1166,6 +1166,7 @@ msgstr "Argazkiak, musika eta bideoak"
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
 msgid "Privacy & Security"
 msgstr "Pribatutasuna eta segurtasuna"
 
@@ -4594,15 +4595,11 @@ msgid "See all extensions"
 msgstr "Arakatu gehigarri guztiak"
 
 #. editorial content for the secondary hero shelves.
-msgid "Anti-tracking extensions"
+msgid "Extension Starter Pack"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Essential add-ons"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Writing tools"
+msgid "Twitch customization"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.

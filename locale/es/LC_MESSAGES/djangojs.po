@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-02 09:05+0000\n"
+"POT-Creation-Date: 2025-10-13 08:39+0000\n"
 "PO-Revision-Date: 2022-04-11 23:43+0000\n"
 "Last-Translator: hermasr58 <hermasr58@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -161,53 +161,11 @@ msgid_plural "{0} users"
 msgstr[0] "{0} usuario"
 msgstr[1] "{0} usuarios"
 
-#, python-brace-format
-msgid "{0} add-on"
-msgid_plural "{0} add-ons"
-msgstr[0] "{0} complemento"
-msgstr[1] "{0} complementos"
-
-#, python-brace-format
-msgid "{0} collection"
-msgid_plural "{0} collections"
-msgstr[0] "{0} colección"
-msgstr[1] "{0} colecciones"
-
-#, python-brace-format
-msgid "{0} review"
-msgid_plural "{0} reviews"
-msgstr[0] "{0} valoración"
-msgstr[1] "{0} valoraciones"
-
-#, python-brace-format
-msgid "{0} sale"
-msgid_plural "{0} sales"
-msgstr[0] "{0} venta"
-msgstr[1] "{0} ventas"
-
-#, python-brace-format
-msgid "{0} refund"
-msgid_plural "{0} refunds"
-msgstr[0] "{0} reembolso"
-msgstr[1] "{0} reembolsos"
-
-#, python-brace-format
-msgid "{0} install"
-msgid_plural "{0} installs"
-msgstr[0] "{0} instalación"
-msgstr[1] "{0} instalaciones"
-
 msgid "Downloads"
 msgstr "Descargas"
 
 msgid "Daily Users"
 msgstr "Usuarios diarios"
-
-msgid "Amount, in USD"
-msgstr "Cantidad, en USD"
-
-msgid "Number of Contributions"
-msgstr "Número de colaboraciones"
 
 msgid "More Info..."
 msgstr "Más información..."
@@ -216,156 +174,6 @@ msgstr "Más información..."
 #, python-brace-format
 msgid "Details for {0}"
 msgstr "Detalles para {0}"
-
-msgid "Collections Created"
-msgstr "Colecciones creadas"
-
-msgid "Add-ons in Use"
-msgstr "Complementos en uso"
-
-msgid "Add-ons Created"
-msgstr "Complementos creados"
-
-msgid "Add-ons Downloaded"
-msgstr "Complementos descargados"
-
-msgid "Add-ons Updated"
-msgstr "Complementos actualizados"
-
-msgid "Reviews Written"
-msgstr "Valoraciones escritas"
-
-msgid "User Signups"
-msgstr "Registros de usuarios"
-
-msgid "Subscribers"
-msgstr "Suscriptores"
-
-msgid "Ratings"
-msgstr "Calificaciones"
-
-msgid "Sales"
-msgstr "Ventas"
-
-msgid "Installs"
-msgstr "Instalaciones"
-
-msgid "Unknown"
-msgstr "Desconocidas"
-
-msgid "Add-ons Manager"
-msgstr "Administrador de complementos"
-
-msgid "Add-ons Manager Promo"
-msgstr "Contenido promocional del administrador de complementos"
-
-msgid "Add-ons Manager Featured"
-msgstr "Destacados del administrador de complementos"
-
-msgid "Add-ons Manager Learn More"
-msgstr "Aprender más del administrador de complementos"
-
-msgid "Search Suggestions"
-msgstr "Sugerencias de búsqueda"
-
-msgid "Search Results"
-msgstr "Resultados de la búsqueda"
-
-msgid "Homepage Promo"
-msgstr "Promocionadas en la página de inicio"
-
-msgid "Homepage Featured"
-msgstr "Destacadas en la página de inicio"
-
-msgid "Homepage Up and Coming"
-msgstr "Próximamente disponibles en la página de inicio"
-
-msgid "Homepage Most Popular"
-msgstr "Más populares en la página de inicio"
-
-msgid "Detail Page"
-msgstr "Página de detalles"
-
-msgid "Detail Page (bottom)"
-msgstr "Página de detalles (abajo)"
-
-msgid "Detail Page (Development Channel)"
-msgstr "Página de detalles (Canal de desarrollo)"
-
-msgid "Often Used With"
-msgstr "Se suele usar con"
-
-msgid "Others By Author"
-msgstr "Otros por autor"
-
-msgid "Dependencies"
-msgstr "Dependencias"
-
-msgid "Upsell"
-msgstr "Promoción"
-
-msgid "Meet the Developer"
-msgstr "Conoce al desarrollador"
-
-msgid "User Profile"
-msgstr "Perfil de usuario"
-
-msgid "Version History"
-msgstr "Historial de versiones"
-
-msgid "Sharing"
-msgstr "Compartir"
-
-msgid "Category Pages"
-msgstr "Páginas de categorías"
-
-msgid "Collections"
-msgstr "Colecciones"
-
-msgid "Category Landing Featured Carousel"
-msgstr "Página de aterrizaje según la categoría Carrusel de destacados"
-
-msgid "Category Landing Top Rated"
-msgstr "Páginas de inicio según la categoría Mejor puntuadas"
-
-msgid "Category Landing Most Popular"
-msgstr "Páginas de inicio según la categoría Más populares"
-
-msgid "Category Landing Recently Added"
-msgstr "Páginas de inicio según la categoría Agregadas recientemente"
-
-msgid "Browse Listing Featured Sort"
-msgstr "Explorar la lista ordenada por destacados"
-
-msgid "Browse Listing Users Sort"
-msgstr "Explorar la lista ordenada por usuarios"
-
-msgid "Browse Listing Rating Sort"
-msgstr "Explorar la lista ordenada por calificaciones"
-
-msgid "Browse Listing Created Sort"
-msgstr "Explorar la lista ordenada por fecha de creación"
-
-msgid "Browse Listing Name Sort"
-msgstr "Explorar la lista ordenada por nombres"
-
-msgid "Browse Listing Popular Sort"
-msgstr "Explorar la lista ordenada por popularidad"
-
-msgid "Browse Listing Updated Sort"
-msgstr "Explorar la lista ordenada por actualizaciones"
-
-msgid "Browse Listing Up and Coming Sort"
-msgstr "Explorar la lista ordenada por disponibles próximamente"
-
-msgid "Total Amount Contributed"
-msgstr "Cantidad total de la contribución"
-
-msgid "Average Contribution"
-msgstr "Contribución media"
-
-msgid "Usage"
-msgstr "Uso"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -397,16 +205,6 @@ msgstr "Descargas y usuarios diarios en los últimos {0} días"
 #, python-brace-format
 msgid "Downloads and Daily Users from {0} to {1}"
 msgstr "Descargas y usuarios diarios desde {0} al {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Installs and Daily Users, last {0} days"
-msgstr "Instalaciones y usuarios diarios en los últimos {0} días"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Installs and Daily Users from {0} to {1}"
-msgstr "Instalaciones y usuarios diarios desde {0} al {1}"
 
 #. L10n: {0} is an integer.
 #, python-brace-format
@@ -480,16 +278,6 @@ msgstr "Versiones de complementos desde {0} al {1}"
 
 #. L10n: {0} is an integer.
 #, python-brace-format
-msgid "Add-on Status, last {0} days"
-msgstr "Estados de complementos en los últimos {0} días"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Add-on Status from {0} to {1}"
-msgstr "Estados de complementos desde {0} al {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
 msgid "Download Sources, last {0} days"
 msgstr "Descarga de fuentes en los últimos {0} días"
 
@@ -527,136 +315,6 @@ msgstr "Descargar campañas en los últimos {0} días"
 #, python-brace-format
 msgid "Download Campaigns from {0} to {1}"
 msgstr "Descargas campañas desde {0} al {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Contributions, last {0} days"
-msgstr "Colaboraciones en los últimos {0} días"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Contributions from {0} to {1}"
-msgstr "Colaboraciones desde {0} al {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Site Metrics, last {0} days"
-msgstr "Métricas del sitio en los últimos {0} días"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Site Metrics from {0} to {1}"
-msgstr "Métricas del sitio desde {0} al {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Add-ons in Use, last {0} days"
-msgstr "Complementos en uso en los últimos {0} días"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Add-ons in Use from {0} to {1}"
-msgstr "Complementos en uso desde {0} al {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Add-ons Downloaded, last {0} days"
-msgstr "Complementos descargados en los últimos {0} días"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Add-ons Downloaded from {0} to {1}"
-msgstr "Complementos descargados desde {0} al {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Add-ons Created, last {0} days"
-msgstr "Complementos creados en los últimos {0} días"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Add-ons Created from {0} to {1}"
-msgstr "Complementos creados desde {0} al {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Add-ons Updated, last {0} days"
-msgstr "Complementos actualizados en los últimos {0} días"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Add-ons Updated from {0} to {1}"
-msgstr "Complementos actualizados desde {0} al {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Reviews Written, last {0} days"
-msgstr "Valoraciones escritas en los últimos {0} días"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Reviews Written from {0} to {1}"
-msgstr "Valoraciones escritas desde {0} al {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "User Signups, last {0} days"
-msgstr "Registros de usuarios en los últimos {0} días"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "User Signups from {0} to {1}"
-msgstr "Registros de usuarios desde {0} al {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Collections Created, last {0} days"
-msgstr "Colecciones creadas en los últimos {0} días"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Collections Created from {0} to {1}"
-msgstr "Colecciones creadas desde {0} al {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Subscribers, last {0} days"
-msgstr "Suscriptores en los últimos {0} días"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Subscribers from {0} to {1}"
-msgstr "Suscriptores desde {0} al {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Ratings, last {0} days"
-msgstr "Calificaciones en los últimos {0} días"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Ratings from {0} to {1}"
-msgstr "Calificaciones desde {0} al {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Sales, last {0} days"
-msgstr "Ventas en los últimos {0} días"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Sales from {0} to {1}"
-msgstr "Ventas desde {0} al {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Installs, last {0} days"
-msgstr "Instalaciones en los últimos {0} días"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Installs from {0} to {1}"
-msgstr "Instalaciones desde {0} al {1}"
 
 #. L10n: {0} and {1} are integers.
 #, python-brace-format
