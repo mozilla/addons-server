@@ -63,10 +63,5 @@ def check_review_delete(context, rating):
 
 
 @library.filter
-def format_score(value):
-    return f'{value:0.0f}%' if value and value >= 0 else 'n/a'
-
-
-@library.filter
 def to_dom_id(string):
     return string.replace('.', '_')

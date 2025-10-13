@@ -7,7 +7,7 @@ from django.conf import settings
 from django.test.utils import override_settings
 
 import pytest
-from celery import chord
+from celery import group
 
 from olympia import amo
 from olympia.addons.models import Addon
@@ -22,7 +22,7 @@ from olympia.applications.models import AppVersion
 from olympia.devhub import tasks, utils
 from olympia.files.tasks import repack_fileupload
 from olympia.files.tests.test_models import UploadMixin
-from olympia.scanners.tasks import call_mad_api, run_customs, run_yara
+from olympia.scanners.tasks import run_customs, run_yara
 from olympia.versions.models import Version
 
 
@@ -62,10 +62,7 @@ class TestAddonsLinterListed(UploadMixin, TestCase):
             repack_fileupload.s(self.file_upload.pk),
             tasks.validate_upload.s(self.file_upload.pk),
             tasks.check_for_api_keys_in_file.s(self.file_upload.pk),
-            chord(
-                [tasks.forward_linter_results.s(self.file_upload.pk)],
-                call_mad_api.s(self.file_upload.pk),
-            ),
+            group([tasks.forward_linter_results.s(self.file_upload.pk)]),
             tasks.handle_upload_validation_result.s(self.file_upload.pk, False),
         )
 
@@ -289,10 +286,7 @@ class TestValidator(UploadMixin, TestCase):
             repack_fileupload.s(file_upload.pk),
             tasks.validate_upload.s(file_upload.pk),
             tasks.check_for_api_keys_in_file.s(file_upload.pk),
-            chord(
-                [tasks.forward_linter_results.s(file_upload.pk)],
-                call_mad_api.s(file_upload.pk),
-            ),
+            group([tasks.forward_linter_results.s(file_upload.pk)]),
             tasks.handle_upload_validation_result.s(file_upload.pk, False),
             final_task,
         )
@@ -323,12 +317,11 @@ class TestValidator(UploadMixin, TestCase):
             repack_fileupload.s(file_upload.pk),
             tasks.validate_upload.s(file_upload.pk),
             tasks.check_for_api_keys_in_file.s(file_upload.pk),
-            chord(
+            group(
                 [
                     tasks.forward_linter_results.s(file_upload.pk),
                     run_yara.s(file_upload.pk),
-                ],
-                call_mad_api.s(file_upload.pk),
+                ]
             ),
             tasks.handle_upload_validation_result.s(file_upload.pk, False),
         )
@@ -345,10 +338,7 @@ class TestValidator(UploadMixin, TestCase):
             repack_fileupload.s(file_upload.pk),
             tasks.validate_upload.s(file_upload.pk),
             tasks.check_for_api_keys_in_file.s(file_upload.pk),
-            chord(
-                [tasks.forward_linter_results.s(file_upload.pk)],
-                call_mad_api.s(file_upload.pk),
-            ),
+            group([tasks.forward_linter_results.s(file_upload.pk)]),
             tasks.handle_upload_validation_result.s(file_upload.pk, False),
         )
 
@@ -364,12 +354,11 @@ class TestValidator(UploadMixin, TestCase):
             repack_fileupload.s(file_upload.pk),
             tasks.validate_upload.s(file_upload.pk),
             tasks.check_for_api_keys_in_file.s(file_upload.pk),
-            chord(
+            group(
                 [
                     tasks.forward_linter_results.s(file_upload.pk),
                     run_customs.s(file_upload.pk),
-                ],
-                call_mad_api.s(file_upload.pk),
+                ]
             ),
             tasks.handle_upload_validation_result.s(file_upload.pk, False),
         )
@@ -386,10 +375,7 @@ class TestValidator(UploadMixin, TestCase):
             repack_fileupload.s(file_upload.pk),
             tasks.validate_upload.s(file_upload.pk),
             tasks.check_for_api_keys_in_file.s(file_upload.pk),
-            chord(
-                [tasks.forward_linter_results.s(file_upload.pk)],
-                call_mad_api.s(file_upload.pk),
-            ),
+            group([tasks.forward_linter_results.s(file_upload.pk)]),
             tasks.handle_upload_validation_result.s(file_upload.pk, False),
         )
 
@@ -406,13 +392,12 @@ class TestValidator(UploadMixin, TestCase):
             repack_fileupload.s(file_upload.pk),
             tasks.validate_upload.s(file_upload.pk),
             tasks.check_for_api_keys_in_file.s(file_upload.pk),
-            chord(
+            group(
                 [
                     tasks.forward_linter_results.s(file_upload.pk),
                     run_yara.s(file_upload.pk),
                     run_customs.s(file_upload.pk),
-                ],
-                call_mad_api.s(file_upload.pk),
+                ]
             ),
             tasks.handle_upload_validation_result.s(file_upload.pk, False),
         )
@@ -430,13 +415,12 @@ class TestValidator(UploadMixin, TestCase):
             repack_fileupload.s(file_upload.pk),
             tasks.validate_upload.s(file_upload.pk),
             tasks.check_for_api_keys_in_file.s(file_upload.pk),
-            chord(
+            group(
                 [
                     tasks.forward_linter_results.s(file_upload.pk),
                     run_yara.s(file_upload.pk),
                     run_customs.s(file_upload.pk),
-                ],
-                call_mad_api.s(file_upload.pk),
+                ]
             ),
             tasks.handle_upload_validation_result.s(file_upload.pk, False),
         )
@@ -458,23 +442,21 @@ class TestValidator(UploadMixin, TestCase):
             'olympia.files.tasks.repack_fileupload',
             'olympia.devhub.tasks.validate_upload',
             'olympia.devhub.tasks.check_for_api_keys_in_file',
-            'celery.chord',
+            'celery.group',
             'olympia.devhub.tasks.handle_upload_validation_result',
         ]
         assert len(tasks) == len(expected_tasks)
         assert expected_tasks == [task.name for task in tasks]
 
-        scanners_chord = tasks[4]
+        scanners_group = tasks[4]
 
         expected_parallel_tasks = [
             'olympia.devhub.tasks.forward_linter_results',
             'olympia.scanners.tasks.run_yara',
             'olympia.scanners.tasks.run_customs',
         ]
-        assert len(scanners_chord.tasks) == len(expected_parallel_tasks)
-        assert expected_parallel_tasks == [task.name for task in scanners_chord.tasks]
-        # Callback
-        assert scanners_chord.body.name == 'olympia.scanners.tasks.call_mad_api'
+        assert len(scanners_group.tasks) == len(expected_parallel_tasks)
+        assert expected_parallel_tasks == [task.name for task in scanners_group.tasks]
 
 
 class TestCreateVersionForUpload(UploadMixin, TestCase):
