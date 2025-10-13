@@ -5890,12 +5890,12 @@ msgstr "Alle útwreidingen besjen"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1033
 msgid "Extension Starter Pack"
-msgstr ""
+msgstr "Utwreiding-startpakket"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1037
 msgid "Twitch customization"
-msgstr ""
+msgstr "Twitch-oanpassing"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1039 src/olympia/discovery/strings.jinja2:1041 src/olympia/discovery/strings.jinja2:1043
