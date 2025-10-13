@@ -10,8 +10,7 @@ Test the devhub statistics dashboard locally with bigquery credentials.
 
 ### Enable a local addon to read from bigquery dev database
 
-Only a [subset of addons][enabled_dev_guids] in dev push data to bigquery. In order to read from bigquery
-your local addon will need to use a matching `guid`.
+Only a [subset of addons][enabled_dev_guids] in dev push data to bigquery. In order to read from bigquery your local addon will need to use a matching `guid`.
 
 Open a django shell `make djshell` and run the following:
 
@@ -19,9 +18,10 @@ Open a django shell `make djshell` and run the following:
 - guid: the guid from the [list][enabled_dev_guids] you want to use (e.g. `@contain-facebook`)
 
 ```python
-addon = Addon.objects.get(pk=<pg>)
+addon = Addon.objects.get(pk=<pk>)
 addon.update(guid=<guid>)
-addon.save()
+addon.addonguid.guid = <guid>
+addon.addonguid.save()  # Need to trigger post-save to update hashed_guid.
 ```
 
 ### Run the statistics dashboard
