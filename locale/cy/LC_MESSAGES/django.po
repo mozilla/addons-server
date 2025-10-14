@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-13 12:37+0000\n"
+"POT-Creation-Date: 2025-10-14 14:55+0000\n"
 "Language: cy\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -5171,14 +5171,6 @@ msgid "Add-on Status by Date"
 msgstr ""
 
 msgid "Daily Users by Date"
-msgstr ""
-
-msgid "What are daily users?"
-msgstr ""
-
-msgid ""
-"<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
-"down by add-on version, operating system, add-on status, application, and locale. </p>"
 msgstr ""
 
 msgid "Application versions by Date"
