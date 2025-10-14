@@ -353,11 +353,11 @@ msgstr "ვერ გადაეწერება თავსებადო�
 msgid "Images must be smaller than %dMB"
 msgstr "სურათი უნდა იყოს არაუმეტეს %d მბ"
 
-#: src/olympia/addons/models.py:2318 src/olympia/addons/models.py:2397 src/olympia/constants/base.py:66
+#: src/olympia/addons/models.py:2302 src/olympia/addons/models.py:2381 src/olympia/constants/base.py:66
 msgid "Listed"
 msgstr "გამოქვეყნებულია"
 
-#: src/olympia/addons/models.py:2575
+#: src/olympia/addons/models.py:2559
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr "დამატებისა და კრებულის მისამართების დაბოლოება უნდა იყოს „/“"
 
@@ -1329,7 +1329,7 @@ msgstr "ელოდება განხილვას"
 msgid "Disabled by Mozilla"
 msgstr "გამორთულია Mozilla-ს მიერ"
 
-#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1211
+#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1185
 msgid "Deleted"
 msgstr "წაიშალა"
 
@@ -1515,7 +1515,8 @@ msgstr ""
 "ჩამოტვირთეთ Firefox-ის გაფართოებები, რომლებიც გააუმჯობესებს სურათებით, სიმღერებითა და ვიდეოებით სარგებლობის შესაძლებლობებს. ამ ჯგუფის გაფართოებებით შესაძლებელია ხმოვანი ან ვიდეოფაილების გარდაქმნა, "
 "სურათებით მსგავსი სურათების მოძიება და ა. შ."
 
-#: src/olympia/constants/categories.py:142
+#. editorial content for the secondary hero shelves.
+#: src/olympia/constants/categories.py:142 src/olympia/discovery/strings.jinja2:1035
 msgid "Privacy & Security"
 msgstr "პირადულობა და უსაფრთხოება"
 
@@ -5627,7 +5628,7 @@ msgstr "მოაცილეთ ყურადღების გამფა�
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:679
 msgid "Makes Firefox appear as Chrome to websites trying to block Firefox."
-msgstr "Firefox გამოჩნდება ისე, როგორც Chrome იმ ვებსაიტებისთვის, რომლებიც ცდილობენ შეზღუდონ Firefox."
+msgstr "Firefox გამოჩნდება ისე, როგორც Chrome, იმ ვებსაიტებისთვის, რომლებიც ცდილობენ შეზღუდონ Firefox."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:682
@@ -5886,18 +5887,13 @@ msgstr "ყველა გაფართოების ნახვა"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1033
-msgid "Anti-tracking extensions"
-msgstr "გაფართოებები თვალთვალის წინააღმდეგ"
-
-#. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1035
-msgid "Essential add-ons"
-msgstr "აუცილებელი დამატებები"
+msgid "Extension Starter Pack"
+msgstr "გაფართოებების საწყისი ნაკრები"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1037
-msgid "Writing tools"
-msgstr "საწერი საშუალებები"
+msgid "Twitch customization"
+msgstr "მორგებული Twitch"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1039 src/olympia/discovery/strings.jinja2:1041 src/olympia/discovery/strings.jinja2:1043
@@ -6720,18 +6716,6 @@ msgstr "დამატების მდგომარეობა თარ�
 msgid "Daily Users by Date"
 msgstr "დღიური მომხმარებელი თარიღის მიხედვით"
 
-#: src/olympia/stats/templates/stats/reports/usage.html:6
-msgid "What are daily users?"
-msgstr "რა არის დღიური მომხმარებელი?"
-
-#: src/olympia/stats/templates/stats/reports/usage.html:10
-msgid ""
-"<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
-"down by add-on version, operating system, add-on status, application, and locale. </p>"
-msgstr ""
-"<h2>რას ნიშნავს დღიური მომხმარებელი?</h2> <p>საიტიდან ჩამოტვირთული დამატებები, განახლებებზე მოწმდება ყოველდღე. ჯამური რაოდენობა ამ შემოწმების, წარმოადგენს მოქმედ დღიურ მომხმარებლებს. დღიური "
-"მომხმარებლები შეიძლება დაიყოს დამატების ვერსიის, საოპერაციო სისტემის, დამატებების მდგომარეობის, პროგრამის და ენის მიხედვით. </p>"
-
 #: src/olympia/stats/templates/stats/reports/versions.html:3
 msgid "Application versions by Date"
 msgstr "პროგრამების ვერსიები თარიღის მიხედვით"
@@ -7032,33 +7016,33 @@ msgstr ""
 "\n"
 "Mozilla, დამატებების გუნდი"
 
-#: src/olympia/versions/models.py:1196
+#: src/olympia/versions/models.py:1170
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
 msgstr "გადადება უარყოფილია, დაგეგმილია %s"
 
-#: src/olympia/versions/models.py:1201
+#: src/olympia/versions/models.py:1175
 msgid "Auto-approved, Confirmed"
 msgstr "თვითდამოწმებულია, დადასტურებულია"
 
-#: src/olympia/versions/models.py:1203
+#: src/olympia/versions/models.py:1177
 msgid "Auto-approved, not Confirmed"
 msgstr "თვითდამოწმებულია, დაუდასტურებელია"
 
-#: src/olympia/versions/models.py:1206
+#: src/olympia/versions/models.py:1180
 msgid "Approved, Manual"
 msgstr "დადასტურებულია, ხელით"
 
-#: src/olympia/versions/models.py:1213
+#: src/olympia/versions/models.py:1187
 msgid "Disabled by Developer"
 msgstr "გამორთულია შემმუშავებლის მიერ"
 
-#: src/olympia/versions/models.py:1571
+#: src/olympia/versions/models.py:1544
 #, python-brace-format
 msgid "{app} {min} and later"
 msgstr "{app} {min} და უფრო ახალ ვერსიებთან"
 
-#: src/olympia/versions/models.py:1698
+#: src/olympia/versions/models.py:1671
 #, python-brace-format
 msgid "The install origin {origin} is not permitted."
 msgstr "{origin} წარმომავლობის მქონე ვერ ჩაიდგმება."

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-02 09:05+0000\n"
+"POT-Creation-Date: 2025-10-14 14:56+0000\n"
 "PO-Revision-Date: 2015-10-15 00:51+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -158,53 +158,11 @@ msgid_plural "{0} users"
 msgstr[0] "{0} utilizadores"
 msgstr[1] "{0} utilizadores"
 
-#, fuzzy, python-brace-format
-msgid "{0} add-on"
-msgid_plural "{0} add-ons"
-msgstr[0] "{0} extras"
-msgstr[1] "{0} extras"
-
-#, fuzzy, python-brace-format
-msgid "{0} collection"
-msgid_plural "{0} collections"
-msgstr[0] "{0} coleções"
-msgstr[1] "{0} coleções"
-
-#, fuzzy, python-brace-format
-msgid "{0} review"
-msgid_plural "{0} reviews"
-msgstr[0] "{0} análises"
-msgstr[1] "{0} análises"
-
-#, fuzzy, python-brace-format
-msgid "{0} sale"
-msgid_plural "{0} sales"
-msgstr[0] "{0} vendas"
-msgstr[1] "{0} vendas"
-
-#, fuzzy, python-brace-format
-msgid "{0} refund"
-msgid_plural "{0} refunds"
-msgstr[0] "{0} devoluções"
-msgstr[1] "{0} devoluções"
-
-#, fuzzy, python-brace-format
-msgid "{0} install"
-msgid_plural "{0} installs"
-msgstr[0] "{0} instalações"
-msgstr[1] "{0} instalações"
-
 msgid "Downloads"
 msgstr "Transferências"
 
 msgid "Daily Users"
 msgstr "Utilizadores diários"
-
-msgid "Amount, in USD"
-msgstr "Valor, em USD"
-
-msgid "Number of Contributions"
-msgstr "Número de contribuições"
 
 msgid "More Info..."
 msgstr "Mais informação..."
@@ -213,156 +171,6 @@ msgstr "Mais informação..."
 #, python-brace-format
 msgid "Details for {0}"
 msgstr "Detalhes para {0}"
-
-msgid "Collections Created"
-msgstr "Coleções criadas"
-
-msgid "Add-ons in Use"
-msgstr "Extras em uso"
-
-msgid "Add-ons Created"
-msgstr "Extras criados"
-
-msgid "Add-ons Downloaded"
-msgstr "Extras transferidos"
-
-msgid "Add-ons Updated"
-msgstr "Extras atualizados"
-
-msgid "Reviews Written"
-msgstr "Análises escritas"
-
-msgid "User Signups"
-msgstr "Registos de utilizador"
-
-msgid "Subscribers"
-msgstr "Subscritores"
-
-msgid "Ratings"
-msgstr "Classificações"
-
-msgid "Sales"
-msgstr "Vendas"
-
-msgid "Installs"
-msgstr "Instalações"
-
-msgid "Unknown"
-msgstr "Desconhecido"
-
-msgid "Add-ons Manager"
-msgstr "Gestor de extras"
-
-msgid "Add-ons Manager Promo"
-msgstr "Gestor de Promoção de Extras"
-
-msgid "Add-ons Manager Featured"
-msgstr "Gestor de Destaques de Extras"
-
-msgid "Add-ons Manager Learn More"
-msgstr "Gestor de Saber Mais sobre Extras"
-
-msgid "Search Suggestions"
-msgstr "Sugestões de pesquisa"
-
-msgid "Search Results"
-msgstr "Resultados da pesquisa"
-
-msgid "Homepage Promo"
-msgstr "Página inicial de promoção"
-
-msgid "Homepage Featured"
-msgstr "Página inicial de destaque"
-
-msgid "Homepage Up and Coming"
-msgstr "Página inicial de novo e a chegar"
-
-msgid "Homepage Most Popular"
-msgstr "Página inicial mais populares"
-
-msgid "Detail Page"
-msgstr "Página de detalhe"
-
-msgid "Detail Page (bottom)"
-msgstr "Página de detalhe (inferior)"
-
-msgid "Detail Page (Development Channel)"
-msgstr "Página de detalhe (canal de desenvolvimento)"
-
-msgid "Often Used With"
-msgstr "Muito utilizado com"
-
-msgid "Others By Author"
-msgstr "Outros do autor"
-
-msgid "Dependencies"
-msgstr "Dependências"
-
-msgid "Upsell"
-msgstr "Upsell"
-
-msgid "Meet the Developer"
-msgstr "Conheça o programador"
-
-msgid "User Profile"
-msgstr "Perfil do utilizador"
-
-msgid "Version History"
-msgstr "Histórico da versão"
-
-msgid "Sharing"
-msgstr "Partilha"
-
-msgid "Category Pages"
-msgstr "Páginas de categoria"
-
-msgid "Collections"
-msgstr "Coleções"
-
-msgid "Category Landing Featured Carousel"
-msgstr "Página inicial de categoria de carrossel de destaque"
-
-msgid "Category Landing Top Rated"
-msgstr "Página inicial de categoria de melhor classificada"
-
-msgid "Category Landing Most Popular"
-msgstr "Página inicial de categoria de mais popular"
-
-msgid "Category Landing Recently Added"
-msgstr "Página inicial de categoria de adicionado recentemente"
-
-msgid "Browse Listing Featured Sort"
-msgstr "Navegar na lista ordenada por destaque"
-
-msgid "Browse Listing Users Sort"
-msgstr "Navegar na lista ordenada por utilizadores"
-
-msgid "Browse Listing Rating Sort"
-msgstr "Navegar na lista ordenada por classificação"
-
-msgid "Browse Listing Created Sort"
-msgstr "Navegar na lista ordenada por criação"
-
-msgid "Browse Listing Name Sort"
-msgstr "Navegar na lista ordenada por nome"
-
-msgid "Browse Listing Popular Sort"
-msgstr "Navegar na lista ordenada por popularidade"
-
-msgid "Browse Listing Updated Sort"
-msgstr "Navegar na lista ordenada por atualização"
-
-msgid "Browse Listing Up and Coming Sort"
-msgstr "Navegar na lista ordenada por novas e a chegar"
-
-msgid "Total Amount Contributed"
-msgstr "Valor total contribuído"
-
-msgid "Average Contribution"
-msgstr "Contribuição média"
-
-msgid "Usage"
-msgstr "Utilização"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -394,16 +202,6 @@ msgstr "Transferências e utilizadores diários, últimos {0} dias"
 #, python-brace-format
 msgid "Downloads and Daily Users from {0} to {1}"
 msgstr "Transferências e utilizadores diários de {0} a {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Installs and Daily Users, last {0} days"
-msgstr "Instalações e utilizadores diários, últimos {0} dias"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Installs and Daily Users from {0} to {1}"
-msgstr "Instalações e utilizadores diários de {0} a {1}"
 
 #. L10n: {0} is an integer.
 #, python-brace-format
@@ -477,16 +275,6 @@ msgstr "Versões de extra de {0} a {1}"
 
 #. L10n: {0} is an integer.
 #, python-brace-format
-msgid "Add-on Status, last {0} days"
-msgstr "Versões de extra, últimos {0} dias"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Add-on Status from {0} to {1}"
-msgstr "Estado de extra de {0} a {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
 msgid "Download Sources, last {0} days"
 msgstr "Transferências de fontes, últimos {0} dias"
 
@@ -524,136 +312,6 @@ msgstr "Transferências, últimos {0} dias"
 #, fuzzy, python-brace-format
 msgid "Download Campaigns from {0} to {1}"
 msgstr "Transferências de {0} a {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Contributions, last {0} days"
-msgstr "Contribuições, últimos {0} dias"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Contributions from {0} to {1}"
-msgstr "Contribuições de {0} a {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Site Metrics, last {0} days"
-msgstr "Métricas do site, últimos {0} dias"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Site Metrics from {0} to {1}"
-msgstr "Métricas do site de {0} a {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Add-ons in Use, last {0} days"
-msgstr "Extras em utilização, últimos {0} dias"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Add-ons in Use from {0} to {1}"
-msgstr "Extras em utilização de {0} a {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Add-ons Downloaded, last {0} days"
-msgstr "Extras transferidos, últimos {0} dias"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Add-ons Downloaded from {0} to {1}"
-msgstr "Extras transferidos de {0} a {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Add-ons Created, last {0} days"
-msgstr "Extras criados, últimos {0} dias"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Add-ons Created from {0} to {1}"
-msgstr "Extras criados de {0} a {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Add-ons Updated, last {0} days"
-msgstr "Extras atualizados, últimos {0} dias"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Add-ons Updated from {0} to {1}"
-msgstr "Extras atualizados de {0} a {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Reviews Written, last {0} days"
-msgstr "Análises feitas, últimos {0} dias"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Reviews Written from {0} to {1}"
-msgstr "Análises feitas de {0} a {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "User Signups, last {0} days"
-msgstr "Registo de utilizadores, últimos {0} dias"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "User Signups from {0} to {1}"
-msgstr "Registo de utilizadores de {0} a {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Collections Created, last {0} days"
-msgstr "Coleções criadas, últimos {0} dias"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Collections Created from {0} to {1}"
-msgstr "Coleções criadas de {0} a {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Subscribers, last {0} days"
-msgstr "Subscritores, últimos {0} dias"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Subscribers from {0} to {1}"
-msgstr "Subscritores de {0} a {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Ratings, last {0} days"
-msgstr "Classificações, últimos {0} dias"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Ratings from {0} to {1}"
-msgstr "Classificações de {0} a {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Sales, last {0} days"
-msgstr "Vendas, últimos {0} dias"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Sales from {0} to {1}"
-msgstr "Vendas de {0} a {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Installs, last {0} days"
-msgstr "Instalações, últimos {0} dias"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Installs from {0} to {1}"
-msgstr "Instalações de {0} a {1}"
 
 #. L10n: {0} and {1} are integers.
 #, python-brace-format

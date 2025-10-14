@@ -27,7 +27,6 @@ from olympia.constants.scanners import (
     CUSTOMS,
     FALSE_POSITIVE,
     INCONCLUSIVE,
-    MAD,
     NEW,
     RUNNING,
     SCHEDULED,
@@ -233,21 +232,6 @@ class TestScannerResultAdmin(TestCase):
         # ...but we do not add a link to it because there is no associated
         # version.
         assert '/browse/' not in formatted_matched_rules_with_files_and_data(result)
-
-    def test_formatted_score_for_customs(self):
-        result = ScannerResult(score=0.123, scanner=CUSTOMS)
-
-        assert self.admin.formatted_score(result) == '12%'
-
-    def test_formatted_score_for_mad(self):
-        result = ScannerResult(score=0.456, scanner=MAD)
-
-        assert self.admin.formatted_score(result) == '46%'
-
-    def test_formatted_score_when_not_available(self):
-        result = ScannerResult(score=-1, scanner=MAD)
-
-        assert self.admin.formatted_score(result) == 'n/a'
 
     def test_list_queries(self):
         ScannerResult.objects.create(
@@ -1630,6 +1614,10 @@ class TestScannerQueryResultAdmin(TestCase):
             ('By was blocked', 'Yes', '?was_blocked__exact=1'),
             ('By was blocked', 'No', '?was_blocked__exact=0'),
             ('By was blocked', 'Unknown', '?was_blocked__isnull=True'),
+            ('By was promoted', 'All', '?'),
+            ('By was promoted', 'Yes', '?was_promoted__exact=1'),
+            ('By was promoted', 'No', '?was_promoted__exact=0'),
+            ('By was promoted', 'Unknown', '?was_promoted__isnull=True'),
         ]
         links = [
             (
@@ -1885,6 +1873,53 @@ class TestScannerQueryResultAdmin(TestCase):
         doc = pq(response.content)
         assert doc('#result_list tbody > tr').length == 1
         assert doc('.field-guid').text() == was_blocked_unknown_addon.guid
+
+    def test_list_filter_was_promoted(self):
+        was_promoted_addon = addon_factory()
+        self.scanner_query_result_factory(
+            version=was_promoted_addon.versions.get(), was_promoted=True
+        )
+        was_promoted_unknown_addon = addon_factory()
+        self.scanner_query_result_factory(
+            version=was_promoted_unknown_addon.versions.get(), was_promoted=None
+        )
+        was_promoted_false_addon = addon_factory()
+        self.scanner_query_result_factory(
+            version=was_promoted_false_addon.versions.get(), was_promoted=False
+        )
+
+        response = self.client.get(
+            self.list_url,
+            {
+                'was_promoted__exact': '1',
+            },
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody > tr').length == 1
+        assert doc('.field-guid').text() == was_promoted_addon.guid
+
+        response = self.client.get(
+            self.list_url,
+            {
+                'was_promoted__exact': '0',
+            },
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody > tr').length == 1
+        assert doc('.field-guid').text() == was_promoted_false_addon.guid
+
+        response = self.client.get(
+            self.list_url,
+            {
+                'was_promoted__isnull': 'True',
+            },
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody > tr').length == 1
+        assert doc('.field-guid').text() == was_promoted_unknown_addon.guid
 
     def test_list_filter_addon_created(self):
         recently = self.days_ago(1)

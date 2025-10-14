@@ -30,7 +30,6 @@ from olympia.constants.scanners import (
     ABORTING,
     COMPLETED,
     CUSTOMS,
-    MAD,
     NARC,
     RUNNING,
     SCANNERS,
@@ -199,7 +198,7 @@ def run_narc_on_version(version_pk, *, run_action_on_match=True):
             statsd.incr(f'devhub.narc{statsd_suffix}.results_differ')
 
         if run_action_on_match and has_new_matches:
-            ScannerResult.run_action(version, check_mad_results=False)
+            ScannerResult.run_action(version)
     except Exception as exc:
         statsd.incr('devhub.narc.failure')
         log.exception(
@@ -464,6 +463,8 @@ def run_scanner_query_rule(query_rule_pk):
         qs = qs.filter(channel=rule.run_on_specific_channel)
     if rule.run_on_current_version_only:
         qs = qs.filter(pk=F('addon___current_version'))
+    if rule.exclude_promoted_addons:
+        qs = qs.exclude(addon__promotedaddon__isnull=False)
     qs = qs.values_list('id', flat=True).order_by('-pk')
     # Build the workflow using a group of tasks dealing with 250 files at a
     # time, chained to a task that marks the query as completed.
@@ -555,103 +556,7 @@ def _run_scanner_query_rule_on_version(version, rule):
     # really care about non-matches.
     if scanner_result.results:
         scanner_result.was_blocked = version.is_blocked
+        scanner_result.was_promoted = version.addon.is_promoted
         scanner_result.save()
 
     return scanner_result
-
-
-@task
-@use_primary_db
-def call_mad_api(all_results, upload_pk):
-    """
-    Call the machine learning API (mad-server) for a given FileUpload.
-
-    This task is the callback of the Celery chord in the validation chain. It
-    receives all the results returned by all the tasks in this chord.
-
-    - `all_results` are the results returned by all the tasks in the chord.
-    - `upload_pk` is the FileUpload ID.
-    """
-    # In case of a validation error (linter or scanner), we do want to skip
-    # this task. This is similar to the behavior of all other tasks decorated
-    # with `@validation_task` but, because this task is the callback of a
-    # Celery chord, we cannot use this decorator.
-    for results in all_results:
-        if results['errors'] > 0:
-            return results
-
-    # The first task registered in the chord is `forward_linter_results()`:
-    results = all_results[0]
-
-    if not waffle.switch_is_active('enable-mad'):
-        log.info('Skipping scanner "mad" task, switch is off')
-        return results
-
-    request_id = uuid.uuid4().hex
-    log.info(
-        'Starting scanner "mad" task for FileUpload %s, request_id=%s.',
-        upload_pk,
-        request_id,
-    )
-
-    try:
-        # TODO: retrieve all scanner results and pass each result to the API.
-        customs_results = ScannerResult.objects.get(
-            upload_id=upload_pk, scanner=CUSTOMS
-        )
-
-        scanMapKeys = customs_results.results.get('scanMap', {}).keys()
-        if len(scanMapKeys) < 2:
-            log.info(
-                'Not calling scanner "mad" for FileUpload %s, scanMap is too small.',
-                upload_pk,
-            )
-            statsd.incr('devhub.mad.skip')
-            return results
-
-        with statsd.timer('devhub.mad'):
-            with requests.Session() as http:
-                adapter = make_adapter_with_retry()
-                http.mount('http://', adapter)
-                http.mount('https://', adapter)
-
-                json_payload = {'scanners': {'customs': customs_results.results}}
-                response = http.post(
-                    url=settings.MAD_API_URL,
-                    json=json_payload,
-                    timeout=settings.MAD_API_TIMEOUT,
-                    headers={'x-request-id': request_id},
-                )
-
-        try:
-            data = response.json()
-        except ValueError as exc:
-            # Log the response body when JSON decoding has failed.
-            raise ValueError(response.text) from exc
-
-        if response.status_code != 200:
-            raise ValueError(data)
-
-        default_score = -1
-        ScannerResult.objects.create(
-            upload_id=upload_pk,
-            scanner=MAD,
-            results=data,
-            score=data.get('ensemble', default_score),
-        )
-
-        # Update the individual scanner results with some info from MAD.
-        customs_data = data.get('scanners', {}).get('customs', {})
-        customs_score = customs_data.get('score', default_score)
-        customs_model_version = customs_data.get('model_version')
-        customs_results.update(score=customs_score, model_version=customs_model_version)
-
-        statsd.incr('devhub.mad.success')
-        log.info('Ending scanner "mad" task for FileUpload %s.', upload_pk)
-    except Exception:
-        statsd.incr('devhub.mad.failure')
-        # We log the exception but we do not raise to avoid perturbing the
-        # submission flow.
-        log.exception('Error in scanner "mad" task for FileUpload %s.', upload_pk)
-
-    return results

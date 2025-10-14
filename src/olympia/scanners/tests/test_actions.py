@@ -15,18 +15,15 @@ from olympia.amo.tests import (
     addon_factory,
     user_factory,
     version_factory,
-    version_review_flags_factory,
 )
 from olympia.blocklist.models import Block, BlockType, BlockVersion
 from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.constants.scanners import (
-    CUSTOMS,
     DELAY_AUTO_APPROVAL,
     DELAY_AUTO_APPROVAL_INDEFINITELY,
     DISABLE_AND_BLOCK,
     FLAG_FOR_HUMAN_REVIEW,
-    MAD,
     NO_ACTION,
     YARA,
 )
@@ -40,7 +37,6 @@ from olympia.scanners.actions import (
     _delay_auto_approval_indefinitely_and_restrict_future_approvals,
     _disable_and_block,
     _flag_for_human_review,
-    _flag_for_human_review_by_scanner,
     _no_action,
 )
 from olympia.scanners.models import (
@@ -52,7 +48,6 @@ from olympia.users.models import (
     EmailUserRestriction,
     IPNetworkUserRestriction,
 )
-from olympia.versions.models import VersionReviewerFlags
 
 
 class TestActions(TestCase):
@@ -934,34 +929,6 @@ class TestActions(TestCase):
         assert addon.auto_approval_delayed_until_unlisted == datetime.max
         assert version.needshumanreview_set.filter(is_active=True).exists()
 
-    def test_flag_for_human_review_by_scanner(self):
-        version = version_factory(addon=addon_factory())
-        with self.assertRaises(VersionReviewerFlags.DoesNotExist):
-            version.reviewerflags  # noqa: B018
-
-        _flag_for_human_review_by_scanner(version=version, rule=None, scanner=MAD)
-
-        assert version.reviewerflags.needs_human_review_by_mad
-
-    def test_flag_for_human_review_by_scanner_with_existing_flags(self):
-        version = version_factory(addon=addon_factory())
-        version_review_flags_factory(version=version)
-
-        assert not version.reviewerflags.needs_human_review_by_mad
-
-        _flag_for_human_review_by_scanner(version=version, rule=None, scanner=MAD)
-        version.refresh_from_db()
-
-        assert version.reviewerflags.needs_human_review_by_mad
-
-    def test_flag_for_human_review_by_scanner_raises_if_not_mad(self):
-        version = version_factory(addon=addon_factory())
-
-        with self.assertRaises(ValueError):
-            assert _flag_for_human_review_by_scanner(
-                version=version, rule=None, scanner=CUSTOMS
-            )
-
     def do_disable_and_block(self, addon):
         existing_decision_count = ContentDecision.objects.count()
         responses.add_callback(
@@ -1289,6 +1256,49 @@ class TestRunAction(TestCase):
 
     @mock.patch('olympia.scanners.models._no_action')
     @mock.patch('olympia.scanners.models._flag_for_human_review')
+    def test_skips_actions_with_exclude_promoted_if_the_addon_is_promoted(
+        self, flag_for_human_review_mock, no_action_mock
+    ):
+        self.make_addon_promoted(
+            self.version.addon, group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+        )
+        # Create another rule and add it to the current scanner result, but set to
+        # exclude_promoted_addons=True.
+        rule = ScannerRule.objects.create(
+            name='rule-2',
+            scanner=self.scanner,
+            action=FLAG_FOR_HUMAN_REVIEW,
+            exclude_promoted_addons=True,
+        )
+        self.scanner_result.matched_rules.add(rule)
+
+        ScannerResult.run_action(self.version)
+
+        assert no_action_mock.called
+        assert not flag_for_human_review_mock.called
+
+    @mock.patch('olympia.scanners.models._no_action')
+    @mock.patch('olympia.scanners.models._flag_for_human_review')
+    def test_does_not_skip_actions_with_exclude_promoted_if_the_addon_is_not_promoted(
+        self, flag_for_human_review_mock, no_action_mock
+    ):
+        # Create another rule and add it to the current scanner result, set to
+        # exclude_promoted_addons=True, but it shouldn't be skipped.
+        rule = ScannerRule.objects.create(
+            name='rule-2',
+            scanner=self.scanner,
+            action=FLAG_FOR_HUMAN_REVIEW,
+            exclude_promoted_addons=True,
+        )
+        self.scanner_result.matched_rules.add(rule)
+
+        ScannerResult.run_action(self.version)
+
+        assert not no_action_mock.called
+        assert flag_for_human_review_mock.called
+
+    @mock.patch('olympia.scanners.models._no_action')
+    @mock.patch('olympia.scanners.models._flag_for_human_review')
     def test_selects_active_actions_only(
         self, flag_for_human_review_mock, no_action_mock
     ):
@@ -1307,50 +1317,3 @@ class TestRunAction(TestCase):
 
         assert no_action_mock.called
         assert not flag_for_human_review_mock.called
-
-    def test_flags_for_human_review_by_mad_when_score_is_too_low(self):
-        version = version_factory(addon=addon_factory())
-        results = {'scanners': {'customs': {'score': 0.001}}}
-        ScannerResult.objects.create(version=version, scanner=MAD, results=results)
-
-        ScannerResult.run_action(version)
-
-        assert version.reviewerflags.needs_human_review_by_mad
-
-    def test_flags_for_human_review_by_mad_when_score_is_too_high(self):
-        version = version_factory(addon=addon_factory())
-        results = {'scanners': {'customs': {'score': 0.99}}}
-        ScannerResult.objects.create(version=version, scanner=MAD, results=results)
-
-        ScannerResult.run_action(version)
-
-        assert version.reviewerflags.needs_human_review_by_mad
-
-    def test_flags_for_human_review_by_mad_when_models_disagree(self):
-        version = version_factory(addon=addon_factory())
-        results = {'scanners': {'customs': {'result_details': {'models_agree': False}}}}
-        ScannerResult.objects.create(version=version, scanner=MAD, results=results)
-
-        ScannerResult.run_action(version)
-
-        assert version.reviewerflags.needs_human_review_by_mad
-
-    def test_does_not_flag_for_human_review_by_mad_if_check_argument_is_false(self):
-        version = version_factory(addon=addon_factory())
-        results = {'scanners': {'customs': {'result_details': {'models_agree': False}}}}
-        ScannerResult.objects.create(version=version, scanner=MAD, results=results)
-
-        ScannerResult.run_action(version, check_mad_results=False)
-
-        with self.assertRaises(VersionReviewerFlags.DoesNotExist):
-            version.reviewerflags  # noqa: B018
-
-    def test_does_not_flag_for_human_review_by_mad_when_score_is_okay(self):
-        version = version_factory(addon=addon_factory())
-        results = {'scanners': {'customs': {'score': 0.2}}}
-        ScannerResult.objects.create(version=version, scanner=MAD, results=results)
-
-        ScannerResult.run_action(version)
-
-        with self.assertRaises(VersionReviewerFlags.DoesNotExist):
-            version.reviewerflags  # noqa: B018

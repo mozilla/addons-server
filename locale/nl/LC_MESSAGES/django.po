@@ -355,11 +355,11 @@ msgstr "Kan de compatibiliteitsinformatie die is ingesteld in het manifest voor 
 msgid "Images must be smaller than %dMB"
 msgstr "Afbeeldingen moeten kleiner zijn dan %dMB"
 
-#: src/olympia/addons/models.py:2318 src/olympia/addons/models.py:2397 src/olympia/constants/base.py:66
+#: src/olympia/addons/models.py:2302 src/olympia/addons/models.py:2381 src/olympia/constants/base.py:66
 msgid "Listed"
 msgstr "Vermeld"
 
-#: src/olympia/addons/models.py:2575
+#: src/olympia/addons/models.py:2559
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr "Paden naar add-ons en collecties dienen met ‘/’ te eindigen"
 
@@ -1337,7 +1337,7 @@ msgstr "Wacht op beoordeling"
 msgid "Disabled by Mozilla"
 msgstr "Uitgeschakeld door Mozilla"
 
-#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1211
+#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1185
 msgid "Deleted"
 msgstr "Verwijderd"
 
@@ -1513,7 +1513,8 @@ msgstr "Foto’s, muziek en video’s"
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
 msgstr "Download Firefox-extensies die uw ervaring van foto’s, muziek en video verbeteren. Extensies in deze categorie passen audio en video aan, bieden omgekeerd afbeelding zoeken, en meer."
 
-#: src/olympia/constants/categories.py:142
+#. editorial content for the secondary hero shelves.
+#: src/olympia/constants/categories.py:142 src/olympia/discovery/strings.jinja2:1035
 msgid "Privacy & Security"
 msgstr "Privacy en beveiliging"
 
@@ -5890,18 +5891,13 @@ msgstr "Alle extensies bekijken"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1033
-msgid "Anti-tracking extensions"
-msgstr "Anti-trackingextensies"
-
-#. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1035
-msgid "Essential add-ons"
-msgstr "Essentiële add-ons"
+msgid "Extension Starter Pack"
+msgstr "Extensie-startpakket"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1037
-msgid "Writing tools"
-msgstr "Schrijfhulpmiddelen"
+msgid "Twitch customization"
+msgstr "Twitch-aanpassing"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1039 src/olympia/discovery/strings.jinja2:1041 src/olympia/discovery/strings.jinja2:1043
@@ -6724,18 +6720,6 @@ msgstr "Add-onstatus op datum"
 msgid "Daily Users by Date"
 msgstr "Dagelijkse gebruikers op datum"
 
-#: src/olympia/stats/templates/stats/reports/usage.html:6
-msgid "What are daily users?"
-msgstr "Wat zijn dagelijkse gebruikers?"
-
-#: src/olympia/stats/templates/stats/reports/usage.html:10
-msgid ""
-"<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
-"down by add-on version, operating system, add-on status, application, and locale. </p>"
-msgstr ""
-"<h2>Wat zijn dagelijkse gebruikers?</h2> <p> Van deze website gedownloade add-ons controleren dagelijks op updates. Het totale aantal van deze updatepings staat bekend als Actieve dagelijkse "
-"gebruikers. Dagelijkse gebruikers kunnen worden onderverdeeld op add-onversie, besturingssysteem, add-onstatus, toepassing en locale. </p>"
-
 #: src/olympia/stats/templates/stats/reports/versions.html:3
 msgid "Application versions by Date"
 msgstr "Toepassingsversies op datum"
@@ -7036,33 +7020,33 @@ msgstr ""
 "\n"
 "Mozilla Add-onsteam"
 
-#: src/olympia/versions/models.py:1196
+#: src/olympia/versions/models.py:1170
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
 msgstr "Vertraagd afgewezen, gepland voor %s"
 
-#: src/olympia/versions/models.py:1201
+#: src/olympia/versions/models.py:1175
 msgid "Auto-approved, Confirmed"
 msgstr "Automatisch goedgekeurd, bevestigd"
 
-#: src/olympia/versions/models.py:1203
+#: src/olympia/versions/models.py:1177
 msgid "Auto-approved, not Confirmed"
 msgstr "Automatisch goedgekeurd, niet bevestigd"
 
-#: src/olympia/versions/models.py:1206
+#: src/olympia/versions/models.py:1180
 msgid "Approved, Manual"
 msgstr "Goedgekeurd, handmatig"
 
-#: src/olympia/versions/models.py:1213
+#: src/olympia/versions/models.py:1187
 msgid "Disabled by Developer"
 msgstr "Uitgeschakeld door ontwikkelaar"
 
-#: src/olympia/versions/models.py:1571
+#: src/olympia/versions/models.py:1544
 #, python-brace-format
 msgid "{app} {min} and later"
 msgstr "{app} {min} en hoger"
 
-#: src/olympia/versions/models.py:1698
+#: src/olympia/versions/models.py:1671
 #, python-brace-format
 msgid "The install origin {origin} is not permitted."
 msgstr "De installatiebron {origin} is niet toegestaan."

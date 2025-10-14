@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-02 09:04+0000\n"
+"POT-Creation-Date: 2025-10-14 14:55+0000\n"
 "PO-Revision-Date: 2024-01-15 13:27+0000\n"
 "Last-Translator: Bund10z <abu.avila@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -1170,6 +1170,7 @@ msgstr ""
 "Descarga extensiones de Firefox que potencian tus experiencias con fotos, música y vídeos. Las extensiones de esta categoría modifican audio y vídeo, realizan búsquedas inversas de imágenes y mucho "
 "más."
 
+#. editorial content for the secondary hero shelves.
 msgid "Privacy & Security"
 msgstr "Privacidad y seguridad"
 
@@ -4648,15 +4649,11 @@ msgid "See all extensions"
 msgstr "Ver todas las extensiones"
 
 #. editorial content for the secondary hero shelves.
-msgid "Anti-tracking extensions"
+msgid "Extension Starter Pack"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Essential add-ons"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Writing tools"
+msgid "Twitch customization"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -5324,16 +5321,6 @@ msgstr "Estado del complemento por fecha"
 
 msgid "Daily Users by Date"
 msgstr "Usuarios diarios por fecha"
-
-msgid "What are daily users?"
-msgstr "¿Qué son los usuarios diarios?"
-
-msgid ""
-"<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
-"down by add-on version, operating system, add-on status, application, and locale. </p>"
-msgstr ""
-"<h2>¿Qué son los usuarios diarios?</h2> <p>Los complementos descargados desde este sitio comprueban si hay actualizaciones una vez al día. El número total de estas comprobaciones de actualizaciones "
-"se conoce como Usuarios diarios activos. Los usuarios diarios pueden desglosarse por versión del complemento, sistema operativo, estado del complemento, aplicación e idioma.</p>"
 
 msgid "Application versions by Date"
 msgstr "Versiones de la aplicación por fecha"

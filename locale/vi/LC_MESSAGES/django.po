@@ -354,11 +354,11 @@ msgstr "Không thể ghi đè thông tin tương thích được đặt trong ma
 msgid "Images must be smaller than %dMB"
 msgstr "Hình ảnh phải nhỏ hơn %dMB"
 
-#: src/olympia/addons/models.py:2318 src/olympia/addons/models.py:2397 src/olympia/constants/base.py:66
+#: src/olympia/addons/models.py:2302 src/olympia/addons/models.py:2381 src/olympia/constants/base.py:66
 msgid "Listed"
 msgstr "Liệt kê"
 
-#: src/olympia/addons/models.py:2575
+#: src/olympia/addons/models.py:2559
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr "Tiện ích và đường dẫn bộ sưu tập cần phải kết thúc bằng \"/\""
 
@@ -1333,7 +1333,7 @@ msgstr "Đang chờ xét duyệt"
 msgid "Disabled by Mozilla"
 msgstr "Bị vô hiệu bởi Mozilla"
 
-#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1211
+#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1185
 msgid "Deleted"
 msgstr "Đã xóa"
 
@@ -1509,7 +1509,8 @@ msgstr "Hình ảnh, Âm nhạc và Phim"
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
 msgstr "Tải xuống các tiện ích mở rộng Firefox giúp nâng cao trải nghiệm ảnh, nhạc và video. Các tiện ích mở rộng trong danh mục này sửa đổi âm thanh và video, tìm kiếm hình ảnh ngược và hơn thế nữa."
 
-#: src/olympia/constants/categories.py:142
+#. editorial content for the secondary hero shelves.
+#: src/olympia/constants/categories.py:142 src/olympia/discovery/strings.jinja2:1035
 msgid "Privacy & Security"
 msgstr "Riêng tư & Bảo mật"
 
@@ -5874,18 +5875,13 @@ msgstr "Xem tất cả các tiện ích mở rộng"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1033
-msgid "Anti-tracking extensions"
-msgstr "Tiện ích mở rộng chống theo dõi"
-
-#. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1035
-msgid "Essential add-ons"
-msgstr "Tiện ích mở rộng cần thiết"
+msgid "Extension Starter Pack"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1037
-msgid "Writing tools"
-msgstr "Công cụ viết"
+msgid "Twitch customization"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1039 src/olympia/discovery/strings.jinja2:1041 src/olympia/discovery/strings.jinja2:1043
@@ -6710,18 +6706,6 @@ msgstr "Trạng thái Tiện ích theo Ngày"
 msgid "Daily Users by Date"
 msgstr "Người dùng Hàng ngày theo Ngày"
 
-#: src/olympia/stats/templates/stats/reports/usage.html:6
-msgid "What are daily users?"
-msgstr "Người dùng hàng ngày là ai?"
-
-#: src/olympia/stats/templates/stats/reports/usage.html:10
-msgid ""
-"<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
-"down by add-on version, operating system, add-on status, application, and locale. </p>"
-msgstr ""
-"<h2>Người dùng hàng ngày là gì?</h2> <p> Các tiện ích được tải xuống từ trang web này kiểm tra các bản cập nhật mỗi ngày một lần. Tổng số ping cập nhật này được gọi là người dùng đang hoạt động hàng"
-" ngày. Người dùng hàng ngày có thể được chia nhỏ theo phiên bản bổ trợ, hệ điều hành, trạng thái tiện ích, ứng dụng và ngôn ngữ. </p>"
-
 #: src/olympia/stats/templates/stats/reports/versions.html:3
 msgid "Application versions by Date"
 msgstr "Phiên bản ứng dụng theo Ngày"
@@ -7022,33 +7006,33 @@ msgstr ""
 "\n"
 "Nhóm tiện ích mở rộng Mozilla"
 
-#: src/olympia/versions/models.py:1196
+#: src/olympia/versions/models.py:1170
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
 msgstr "Bị từ chối trì hoãn, được lên lịch vào %s"
 
-#: src/olympia/versions/models.py:1201
+#: src/olympia/versions/models.py:1175
 msgid "Auto-approved, Confirmed"
 msgstr "Được tự động phê duyệt, đã xác nhận"
 
-#: src/olympia/versions/models.py:1203
+#: src/olympia/versions/models.py:1177
 msgid "Auto-approved, not Confirmed"
 msgstr "Được tự động phê duyệt, chưa được xác nhận"
 
-#: src/olympia/versions/models.py:1206
+#: src/olympia/versions/models.py:1180
 msgid "Approved, Manual"
 msgstr "Đã được phê duyệt, thủ công"
 
-#: src/olympia/versions/models.py:1213
+#: src/olympia/versions/models.py:1187
 msgid "Disabled by Developer"
 msgstr "Bị nhà phát triển vô hiệu hóa"
 
-#: src/olympia/versions/models.py:1571
+#: src/olympia/versions/models.py:1544
 #, python-brace-format
 msgid "{app} {min} and later"
 msgstr "{app} {min} trở lên"
 
-#: src/olympia/versions/models.py:1698
+#: src/olympia/versions/models.py:1671
 #, python-brace-format
 msgid "The install origin {origin} is not permitted."
 msgstr "Origin cài đặt {origin} không được phép."

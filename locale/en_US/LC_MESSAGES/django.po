@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-02 09:04+0000\n"
+"POT-Creation-Date: 2025-10-14 14:55+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1230,6 +1230,7 @@ msgstr "Photos, Music & Videos"
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
 msgstr "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
 
+#. editorial content for the secondary hero shelves.
 #, fuzzy
 msgid "Privacy & Security"
 msgstr "Privacy Policy"
@@ -4902,16 +4903,12 @@ msgid "See all extensions"
 msgstr "Browse all add-ons"
 
 #. editorial content for the secondary hero shelves.
-msgid "Anti-tracking extensions"
-msgstr "Anti-tracking extensions"
+msgid "Extension Starter Pack"
+msgstr "Extension Starter Pack"
 
 #. editorial content for the secondary hero shelves.
-msgid "Essential add-ons"
-msgstr "Essential add-ons"
-
-#. editorial content for the secondary hero shelves.
-msgid "Writing tools"
-msgstr "Writing tools"
+msgid "Twitch customization"
+msgstr "Twitch customization"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -5592,16 +5589,6 @@ msgstr "Add-on Status by Date"
 
 msgid "Daily Users by Date"
 msgstr "Daily Users by Date"
-
-msgid "What are daily users?"
-msgstr "What are daily users?"
-
-msgid ""
-"<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
-"down by add-on version, operating system, add-on status, application, and locale. </p>"
-msgstr ""
-"<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
-"down by add-on version, operating system, add-on status, application, and locale. </p>"
 
 msgid "Application versions by Date"
 msgstr "Application versions by Date"

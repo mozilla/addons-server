@@ -176,659 +176,229 @@ msgstr "ਤਸਵੀਰਾਂ PNG ਜਾਂ JPG ਦੋਨਾਂ ਵਿੱਚ ਇ
 msgid "Videos must be in WebM."
 msgstr "ਵੀਡੀਓ WebM ਵਿੱਚ ਹੋਣੀਆਂ ਚਾਹੀਦੀਆਂ ਹਨ।"
 
-#: static/js/stats/chart.js:298
+#: static/js/stats/chart.js:283
 #, python-brace-format
 msgid "Week of {0}"
 msgstr "{0} ਦਾ ਹਫਤਾ"
 
-#: static/js/stats/chart.js:307
+#: static/js/stats/chart.js:292
 #, python-brace-format
 msgid "{0} download"
 msgid_plural "{0} downloads"
 msgstr[0] "{0} ਡਾਊਨਲੋਡ"
 msgstr[1] "{0} ਡਾਊਨਲੋਡ"
 
-#: static/js/stats/chart.js:313
+#: static/js/stats/chart.js:298
 #, python-brace-format
 msgid "{0} user"
 msgid_plural "{0} users"
 msgstr[0] "{0} ਵਰਤੋਂਕਾਰ"
 msgstr[1] "{0} ਵਰਤੋਂਕਾਰ"
 
-#: static/js/stats/chart.js:319
-#, python-brace-format
-msgid "{0} add-on"
-msgid_plural "{0} add-ons"
-msgstr[0] "{0} ਐਡ-ਆਨ"
-msgstr[1] "{0} ਐਡਆਨ"
-
-#: static/js/stats/chart.js:325
-#, python-brace-format
-msgid "{0} collection"
-msgid_plural "{0} collections"
-msgstr[0] "{0} ਭੰਡਾਰ"
-msgstr[1] "{0} ਭੰਡਾਰ"
-
-#: static/js/stats/chart.js:331
-#, python-brace-format
-msgid "{0} review"
-msgid_plural "{0} reviews"
-msgstr[0] "{0} ਪੜਤਾਲ"
-msgstr[1] "{0} ਪੜਤਾਲਾਂ"
-
-#: static/js/stats/chart.js:340
-#, python-brace-format
-msgid "{0} sale"
-msgid_plural "{0} sales"
-msgstr[0] "{0} ਵਿਕਰੀ"
-msgstr[1] "{0} ਵਿਕਰੀ"
-
-#: static/js/stats/chart.js:346
-#, python-brace-format
-msgid "{0} refund"
-msgid_plural "{0} refunds"
-msgstr[0] "{0} ਰਿਫੰਡ"
-msgstr[1] "{0} ਰਿਫੰਡ"
-
-#: static/js/stats/chart.js:352
-#, python-brace-format
-msgid "{0} install"
-msgid_plural "{0} installs"
-msgstr[0] "{0} ਇੰਸਟਾਲ"
-msgstr[1] "{0} ਇੰਸਟਾਲ"
-
-#: static/js/stats/chart.js:453 static/js/stats/csv_keys.js:3 static/js/stats/csv_keys.js:109
+#: static/js/stats/chart.js:362 static/js/stats/csv_keys.js:3 static/js/stats/csv_keys.js:9
 msgid "Downloads"
 msgstr "ਡਾਊਨਲੋਡ"
 
-#: static/js/stats/chart.js:465 static/js/stats/csv_keys.js:6 static/js/stats/csv_keys.js:110
+#: static/js/stats/chart.js:374 static/js/stats/csv_keys.js:6 static/js/stats/csv_keys.js:10
 msgid "Daily Users"
 msgstr "ਰੋਜ਼ਾਨਾ ਵਰਤੋਂਕਾਰ"
 
-#: static/js/stats/chart.js:498
-msgid "Amount, in USD"
-msgstr "ਰਕਮ, USD ਵਿੱਚ"
-
-#: static/js/stats/chart.js:510 static/js/stats/csv_keys.js:104
-msgid "Number of Contributions"
-msgstr "ਯੋਗਦਾਨਾਂ ਦੀ ਗਿਣਤੀ"
-
-#: static/js/stats/chart.js:537
+#: static/js/stats/chart.js:409
 msgid "More Info..."
 msgstr "ਹੋਰ ਜਾਣਕਾਰੀ..."
 
 #. L10n: {0} is an ISO-formatted date.
-#: static/js/stats/chart.js:543
+#: static/js/stats/chart.js:415
 #, python-brace-format
 msgid "Details for {0}"
 msgstr "{0} ਲਈ ਵੇਰਵੇ"
 
-#: static/js/stats/csv_keys.js:9
-msgid "Collections Created"
-msgstr "ਭੰਡਾਰ ਬਣਾਏ ਗਏ"
-
-#: static/js/stats/csv_keys.js:12
-msgid "Add-ons in Use"
-msgstr "ਐਡ-ਆਨ ਵਿੱਚ ਵਰਤੋ ਹਨ"
-
-#: static/js/stats/csv_keys.js:15
-msgid "Add-ons Created"
-msgstr "ਐਡ-ਆਨ ਬਣਾਇਆ ਗਿਆ"
-
-#: static/js/stats/csv_keys.js:18
-msgid "Add-ons Downloaded"
-msgstr "ਡਾਉਨਲੋਡ ਕੀਤੇ ਗਏ ਐਡ-ਆਨ"
-
-#: static/js/stats/csv_keys.js:21
-msgid "Add-ons Updated"
-msgstr "ਐਡ-ਆਨ ਅੱਪਡੇਟ ਕੀਤੇ ਗਏ"
-
-#: static/js/stats/csv_keys.js:24
-msgid "Reviews Written"
-msgstr "ਕੀਤੀਆਂ ਪੜਤਾਲਾਂ"
-
-#: static/js/stats/csv_keys.js:27
-msgid "User Signups"
-msgstr "ਵਰਤੋਂਕਾਰਾਂ ਦੇ ਸਾਈਨਅੱਪ"
-
-#: static/js/stats/csv_keys.js:30
-msgid "Subscribers"
-msgstr "ਮੈਂਬਰ"
-
-#: static/js/stats/csv_keys.js:33
-msgid "Ratings"
-msgstr "ਰੇਟਿੰਗ"
-
-#: static/js/stats/csv_keys.js:36 static/js/stats/csv_keys.js:114
-msgid "Sales"
-msgstr "ਵਿਕਰੀ"
-
-#: static/js/stats/csv_keys.js:39 static/js/stats/csv_keys.js:113
-msgid "Installs"
-msgstr "ਇੰਸਟਾਲ"
-
-#: static/js/stats/csv_keys.js:42
-msgid "Unknown"
-msgstr "ਅਣਪਛਾਤੇ"
-
-#: static/js/stats/csv_keys.js:43
-msgid "Add-ons Manager"
-msgstr "ਐਡ-ਆਨ ਮੈਨੇਜਰ"
-
-#: static/js/stats/csv_keys.js:44
-msgid "Add-ons Manager Promo"
-msgstr "ਐਡ-ਆਨ ਮੈਨੇਜਰ ਝਲਕ"
-
-#: static/js/stats/csv_keys.js:45
-msgid "Add-ons Manager Featured"
-msgstr "ਖਾਸ ਐਡ-ਆਨ ਮੈਨੇਜਰ"
-
-#: static/js/stats/csv_keys.js:46
-msgid "Add-ons Manager Learn More"
-msgstr "ਐਡ-ਆਨ ਮੈਨੇਜਰ ਬਾਰੇ ਵਧੇਰੇ ਸਿੱਖੋ"
-
-#: static/js/stats/csv_keys.js:47
-msgid "Search Suggestions"
-msgstr "ਖੋਜ ਸੁਝਾਅ"
-
-#: static/js/stats/csv_keys.js:48
-msgid "Search Results"
-msgstr "ਖੋਜ ਦੇ ਨਤੀਜੇ"
-
-#: static/js/stats/csv_keys.js:49 static/js/stats/csv_keys.js:50 static/js/stats/csv_keys.js:51
-msgid "Homepage Promo"
-msgstr "ਮੁੱਖ ਸਫਾ ਪਰੋਮੋ"
-
-#: static/js/stats/csv_keys.js:52 static/js/stats/csv_keys.js:53
-msgid "Homepage Featured"
-msgstr "ਮੁੱਖ ਸਫਾ ਗੁਣ"
-
-#: static/js/stats/csv_keys.js:54 static/js/stats/csv_keys.js:55
-msgid "Homepage Up and Coming"
-msgstr "ਮੁੱਖ ਸਫਾ ਉੱਪਰ ਅਤੇ ਆਉਣਾ"
-
-#: static/js/stats/csv_keys.js:56
-msgid "Homepage Most Popular"
-msgstr "ਸਭ ਤੋਂ ਮਸ਼ਹੂਰ ਮੁੱਖ-ਸਫ਼ਾ"
-
-#: static/js/stats/csv_keys.js:57 static/js/stats/csv_keys.js:59
-msgid "Detail Page"
-msgstr "ਸਫੇ ਦਾ ਵੇਰਵਾ"
-
-#: static/js/stats/csv_keys.js:58 static/js/stats/csv_keys.js:60
-msgid "Detail Page (bottom)"
-msgstr "ਸਫੇ ਦਾ ਵੇਰਵਾ (ਹੇਠਾਂ)"
-
-#: static/js/stats/csv_keys.js:61
-msgid "Detail Page (Development Channel)"
-msgstr "ਸਫੇ ਦਾ ਵੇਰਵਾ (ਵਾਧਾ ਪ੍ਰਣਾਲੀ)"
-
-#: static/js/stats/csv_keys.js:62 static/js/stats/csv_keys.js:63 static/js/stats/csv_keys.js:64
-msgid "Often Used With"
-msgstr "ਆਮ ਕਰਕੇ ਨਾਲ ਵਰਤਿਆ"
-
-#: static/js/stats/csv_keys.js:65 static/js/stats/csv_keys.js:66
-msgid "Others By Author"
-msgstr "ਲੇਖਕ ਵਲੋ ਹੋਰ"
-
-#: static/js/stats/csv_keys.js:67 static/js/stats/csv_keys.js:68
-msgid "Dependencies"
-msgstr "ਨਿਰਭਰਤਾਵਾਂ"
-
-#: static/js/stats/csv_keys.js:69 static/js/stats/csv_keys.js:70
-msgid "Upsell"
-msgstr "ਵਾਧੂ ਖਰੀਦਦਾਰੀ ਲਈ ਉਕਸਾਉਣਾ"
-
-#: static/js/stats/csv_keys.js:71
-msgid "Meet the Developer"
-msgstr "ਵਿਕਾਸਕਾਰ ਨੂੰ ਮਿਲੋ"
-
-#: static/js/stats/csv_keys.js:72
-msgid "User Profile"
-msgstr "ਵਰਤੋਂਕਾਰ ਦਾ ਬਿਉਰਾ"
-
-#: static/js/stats/csv_keys.js:73
-msgid "Version History"
-msgstr "ਵਰਜ਼ਨ ਦਾ ਅਤੀਤ"
-
-#: static/js/stats/csv_keys.js:75
-msgid "Sharing"
-msgstr "ਸਾਂਝਾ ਕਰਨਾ"
-
-#: static/js/stats/csv_keys.js:76
-msgid "Category Pages"
-msgstr "ਕੈਟਾਗਰੀ ਸਫ਼ੇ"
-
-#: static/js/stats/csv_keys.js:77
-msgid "Collections"
-msgstr "ਭੰਡਾਰ"
-
-#: static/js/stats/csv_keys.js:78 static/js/stats/csv_keys.js:79
-msgid "Category Landing Featured Carousel"
-msgstr "ਭੰਡਾਰ ਲੈਂਡਿੰਗ ਫੀਚਰ ਝੂਲਣਾ"
-
-#: static/js/stats/csv_keys.js:80 static/js/stats/csv_keys.js:81
-msgid "Category Landing Top Rated"
-msgstr "ਕੈਟਾਗਰੀ ਸਭ ਤੋਂ ਸਿਖਰਲੀ ਰੇਟਿੰਗ"
-
-#: static/js/stats/csv_keys.js:82 static/js/stats/csv_keys.js:83
-msgid "Category Landing Most Popular"
-msgstr "ਸਭ ਤੋਂ ਮਸ਼ਹੂਰ ਕੈਟਾਗਰੀ ਲੈਂਡਿੰਗ"
-
-#: static/js/stats/csv_keys.js:84 static/js/stats/csv_keys.js:85
-msgid "Category Landing Recently Added"
-msgstr "ਤਾਜਾ ਜੋੜੋ ਲੈਂਡਿੰਗ ਕੈਟਾਗਰੀ"
-
-#: static/js/stats/csv_keys.js:86 static/js/stats/csv_keys.js:87
-msgid "Browse Listing Featured Sort"
-msgstr "ਗੁਣ ਕਿਸਮ ਸੂਚੀ ਬਣਾਓ"
-
-#: static/js/stats/csv_keys.js:88 static/js/stats/csv_keys.js:89
-msgid "Browse Listing Users Sort"
-msgstr "ਵਰਤੋਂਕਾਰ ਕਿਸਮ ਸੂਚੀ ਬਣਾਓ"
-
-#: static/js/stats/csv_keys.js:90 static/js/stats/csv_keys.js:91
-msgid "Browse Listing Rating Sort"
-msgstr "ਰੇਟਿੰਗ ਕਿਸਮ ਸੂਚੀ ਬਣਾਓ"
-
-#: static/js/stats/csv_keys.js:92 static/js/stats/csv_keys.js:93
-msgid "Browse Listing Created Sort"
-msgstr "ਰਚਨਾਤਮਿਕ ਕਿਸਮ ਸੂਚੀ ਬਣਾਓ"
-
-#: static/js/stats/csv_keys.js:94 static/js/stats/csv_keys.js:95
-msgid "Browse Listing Name Sort"
-msgstr "ਨਾਂ ਕਿਸਮ ਸੂਚੀ ਬਣਾਓ"
-
-#: static/js/stats/csv_keys.js:96 static/js/stats/csv_keys.js:97
-msgid "Browse Listing Popular Sort"
-msgstr "ਪ੍ਰਸਿੱਧ ਕਿਸਮ ਸੂਚੀ ਬਣਾਓ"
-
-#: static/js/stats/csv_keys.js:98 static/js/stats/csv_keys.js:99
-msgid "Browse Listing Updated Sort"
-msgstr "ਅੱਪਡੇਟ ਕਿਸਮ ਸੂਚੀ ਬਣਾਓ"
-
-#: static/js/stats/csv_keys.js:100 static/js/stats/csv_keys.js:101
-msgid "Browse Listing Up and Coming Sort"
-msgstr "ਸੂਚੀਬੱਧਤਾ ਅਤੇ ਲੜੀਬੱਧਤਾ ਦੀ ਝਲਕ"
-
-#: static/js/stats/csv_keys.js:105
-msgid "Total Amount Contributed"
-msgstr "ਕੁੱਲ ਰਕਮ ਯੋਗਦਾਨ ਪਾਇਆ"
-
-#: static/js/stats/csv_keys.js:106
-msgid "Average Contribution"
-msgstr "ਔਸਤ ਯੋਗਦਾਨ"
-
-#: static/js/stats/csv_keys.js:115
-msgid "Usage"
-msgstr "ਵਰਤੋਂ"
-
-#: static/js/stats/csv_keys.js:118
+#: static/js/stats/csv_keys.js:13
 msgid "Firefox"
 msgstr "Firefox"
 
-#: static/js/stats/csv_keys.js:119
+#: static/js/stats/csv_keys.js:14
 msgid "Mozilla"
 msgstr "Mozilla"
 
-#: static/js/stats/csv_keys.js:120
+#: static/js/stats/csv_keys.js:15
 msgid "Thunderbird"
 msgstr "ਥੰਡਰਬਰਡ"
 
-#: static/js/stats/csv_keys.js:121
+#: static/js/stats/csv_keys.js:16
 msgid "Sunbird"
 msgstr "ਸਨਬਰਡ"
 
-#: static/js/stats/csv_keys.js:122
+#: static/js/stats/csv_keys.js:17
 msgid "SeaMonkey"
 msgstr "SeaMonkey"
 
-#: static/js/stats/csv_keys.js:123
+#: static/js/stats/csv_keys.js:18
 msgid "Fennec"
 msgstr "ਫੇਨੇਕ"
 
-#: static/js/stats/csv_keys.js:124
+#: static/js/stats/csv_keys.js:19
 msgid "Android"
 msgstr "Android"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:129
+#: static/js/stats/csv_keys.js:24
 #, python-brace-format
 msgid "Downloads and Daily Users, last {0} days"
 msgstr "ਡਾਊਨਲੋਡ ਅਤੇ ਰੋਜ਼ਾਨਾ ਵਰਤੋਂਕਾਰ, ਆਖਰੀ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:131
+#: static/js/stats/csv_keys.js:26
 #, python-brace-format
 msgid "Downloads and Daily Users from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਤੱਕ ਡਾਊਨਲੋਡ ਅਤੇ ਰੋਜ਼ਾਨਾ ਵਰਤੋਂਕਾਰ"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:135
-#, python-brace-format
-msgid "Installs and Daily Users, last {0} days"
-msgstr "ਇੰਸਟਾਲ ਅਤੇ ਰੋਜ਼ਾਨਾ ਵਰਤੋਂਕਾਰ, ਆਖਰੀ {0} ਦਿਨ"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:137
-#, python-brace-format
-msgid "Installs and Daily Users from {0} to {1}"
-msgstr "{0} ਤੋ {1} ਤੱਕ ਇੰਸਟਾਲ ਅਤੇ ਰੋਜ਼ਾਨਾ ਵਰਤੋਂਕਾਰ"
-
-#. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:141
+#: static/js/stats/csv_keys.js:30
 #, python-brace-format
 msgid "Downloads, last {0} days"
 msgstr "ਡਾਊਨਲੋਡ, ਆਖਰੀ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:143
+#: static/js/stats/csv_keys.js:32
 #, python-brace-format
 msgid "Downloads from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਤੱਕ ਡਾਊਨਲੋਡ"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:147
+#: static/js/stats/csv_keys.js:36
 #, python-brace-format
 msgid "Daily Users, last {0} days"
 msgstr "ਰੋਜ਼ਾਨਾ ਵਰਤੋਂਕਾਰ, ਆਖਰੀ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:149
+#: static/js/stats/csv_keys.js:38
 #, python-brace-format
 msgid "Daily Users from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਤੱਕ ਰੋਜ਼ਾਨਾ ਵਰਤੋਂਕਾਰ"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:153
+#: static/js/stats/csv_keys.js:42
 #, python-brace-format
 msgid "Applications, last {0} days"
 msgstr "ਐਪਲੀਕੇਸ਼ਨ, ਆਖਰੀ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:155
+#: static/js/stats/csv_keys.js:44
 #, python-brace-format
 msgid "Applications from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਤੱਕ ਐਪਲੀਕੇਸ਼ਨ"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:159
+#: static/js/stats/csv_keys.js:48
 #, python-brace-format
 msgid "Countries, last {0} days"
 msgstr "ਦੇਸ਼, ਪਿਛਲੇ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:161
+#: static/js/stats/csv_keys.js:50
 #, python-brace-format
 msgid "Countries from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਤੱਕ ਦੇਸ਼"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:165
+#: static/js/stats/csv_keys.js:54
 #, python-brace-format
 msgid "Platforms, last {0} days"
 msgstr "ਮੰਚ, ਆਖਰੀ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:167
+#: static/js/stats/csv_keys.js:56
 #, python-brace-format
 msgid "Platforms from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਤੱਕ ਮੰਚ"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:171
+#: static/js/stats/csv_keys.js:60
 #, python-brace-format
 msgid "Languages, last {0} days"
 msgstr "ਬੋਲੀਆਂ, ਆਖਰੀ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:173
+#: static/js/stats/csv_keys.js:62
 #, python-brace-format
 msgid "Languages from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਤੱਕ ਬੋਲੀਆਂ"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:177
+#: static/js/stats/csv_keys.js:66
 #, python-brace-format
 msgid "Add-on Versions, last {0} days"
 msgstr "ਐਡ-ਆਨ ਵਰਜ਼ਨਾਂ, ਆਖਰੀ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:179
+#: static/js/stats/csv_keys.js:68
 #, python-brace-format
 msgid "Add-on Versions from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਤੱਕ ਐਡ-ਆਨ ਵਰਜ਼ਨ"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:183
-#, python-brace-format
-msgid "Add-on Status, last {0} days"
-msgstr "ਐਡ-ਆਨ ਸਥਿਤੀ, ਆਖਰੀ {0} ਦਿਨ"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:185
-#, python-brace-format
-msgid "Add-on Status from {0} to {1}"
-msgstr "{0} ਤੋਂ {1} ਤੱਕ ਐਡ-ਆਨ ਸਥਿਤੀ"
-
-#. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:189
+#: static/js/stats/csv_keys.js:72
 #, python-brace-format
 msgid "Download Sources, last {0} days"
 msgstr "ਡਾਊਨਲੋਡ ਸੋਮੇ, ਆਖਰੀ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:191
+#: static/js/stats/csv_keys.js:74
 #, python-brace-format
 msgid "Download Sources from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਤੱਕ ਡਾਊਨਲੋਡ ਸੋਮੇ"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:195
+#: static/js/stats/csv_keys.js:78
 #, python-brace-format
 msgid "Download Mediums, last {0} days"
 msgstr "ਠੀਕ-ਠਾਕ ਡਾਊਨਲੋਡ, ਆਖਰੀ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:197
+#: static/js/stats/csv_keys.js:80
 #, python-brace-format
 msgid "Download Mediums from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਤੱਕ ਡਾਊਨਲੋਡ ਮੀਡੀਅਮ"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:201
+#: static/js/stats/csv_keys.js:84
 #, python-brace-format
 msgid "Download Contents, last {0} days"
 msgstr "ਡਾਊਨਲੋਡ ਸਮੱਗਰੀ, ਆਖਰੀ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:203
+#: static/js/stats/csv_keys.js:86
 #, python-brace-format
 msgid "Download Contents from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਤੱਕ ਡਾਊਨਲੋਡ ਸਮੱਗਰੀ"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:207
+#: static/js/stats/csv_keys.js:90
 #, python-brace-format
 msgid "Download Campaigns, last {0} days"
 msgstr "ਡਾਊਨਲੋਡ ਮੁਹਿੰਮਾਂ, ਆਖਰੀ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:209
+#: static/js/stats/csv_keys.js:92
 #, python-brace-format
 msgid "Download Campaigns from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਤੱਕ ਡਾਊਨਲੋਡ ਮੁਹਿੰਮਾਂ"
 
-#. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:213
-#, python-brace-format
-msgid "Contributions, last {0} days"
-msgstr "ਪਿਛਲੇ {0} ਦਿਨ, ਯੋਗਦਾਨ"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:215
-#, python-brace-format
-msgid "Contributions from {0} to {1}"
-msgstr "{0} ਤੋਂ {1} ਤੱਕ ਯੋਗਦਾਨ"
-
-#. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:219
-#, python-brace-format
-msgid "Site Metrics, last {0} days"
-msgstr "ਪਿਛਲੇ {0} ਦਿਨ, ਸਾਈਟ ਬਿਉਰਾ"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:221
-#, python-brace-format
-msgid "Site Metrics from {0} to {1}"
-msgstr "ਵਲੋ ਸਾਈਟ ਬਿਓਰਾ {0} ਤੋ {1}"
-
-#. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:225
-#, python-brace-format
-msgid "Add-ons in Use, last {0} days"
-msgstr "ਐਡ-ਆਨ ਵਰਤੋ ਵਿੱਚ, ਆਖਰੀ {0} ਦਿਨ"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:227
-#, python-brace-format
-msgid "Add-ons in Use from {0} to {1}"
-msgstr "ਐਡ-ਆਨ ਵਰਤੋ ਵਿਚ {0} ਤੋਂ {1}"
-
-#. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:231
-#, python-brace-format
-msgid "Add-ons Downloaded, last {0} days"
-msgstr "ਆਖਰੀ {0} ਦਿਨ, ਐਡ-ਆਨ ਡਾਊਨਲੋਡ ਹੋਏ"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:233
-#, python-brace-format
-msgid "Add-ons Downloaded from {0} to {1}"
-msgstr "ਐਡ-ਆਨ {0} ਤੋਂ {1} ਤੱਕ ਡਾਊਨਲੋਡ ਹੋਇਆ"
-
-#. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:237
-#, python-brace-format
-msgid "Add-ons Created, last {0} days"
-msgstr "ਆਖਰੀ {0} ਦਿਨ,  ਐਡ-ਆਨ ਬਣਾਏ"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:239
-#, python-brace-format
-msgid "Add-ons Created from {0} to {1}"
-msgstr "{0} ਤੋਂ {1} ਵਲੋ ਐਡ-ਆਨ ਬਣਾਏ"
-
-#. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:243
-#, python-brace-format
-msgid "Add-ons Updated, last {0} days"
-msgstr " ਆਖਰੀ {0} ਦਿਨ, ਐਡ-ਆਨ ਅੱਪਡੇਟ"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:245
-#, python-brace-format
-msgid "Add-ons Updated from {0} to {1}"
-msgstr "{0} ਤੋਂ {1} ਵਿੱਚੋਂ ਐਡ-ਆਨ ਅੱਪਡੇਟ"
-
-#. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:249
-#, python-brace-format
-msgid "Reviews Written, last {0} days"
-msgstr " ਆਖਰੀ {0} ਦਿਨ, ਲਿਖਤੀ ਸਮੀਖਿਅਕ"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:251
-#, python-brace-format
-msgid "Reviews Written from {0} to {1}"
-msgstr "{0} ਤੋਂ {1} ਤੱਕ ਲਿਖਤੀ ਪੜਤਾਲਾਂ"
-
-#. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:255
-#, python-brace-format
-msgid "User Signups, last {0} days"
-msgstr "ਪਿਛਲੇ {0} ਦਿਨ, ਵਰਤੋਂਕਾਰ ਸਾਈਨ ਅੱਪ"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:257
-#, python-brace-format
-msgid "User Signups from {0} to {1}"
-msgstr "{0} ਤੋਂ {1} ਤੱਕ ਵਰਤੋਂਕਾਰ ਸਾਈਨ ਅੱਪ"
-
-#. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:261
-#, python-brace-format
-msgid "Collections Created, last {0} days"
-msgstr "ਪਿਛਲੇ {0} ਦਿਨ, ਭੰਡਾਰ ਬਣਾਏ"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:263
-#, python-brace-format
-msgid "Collections Created from {0} to {1}"
-msgstr "{0} ਤੋਂ {1} ਤੱਕ ਬਣਾਏ ਭੰਡਾਰ"
-
-#. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:267
-#, python-brace-format
-msgid "Subscribers, last {0} days"
-msgstr "ਪਿਛਲੇ {0} ਦਿਨ, ਗਾਹਕ"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:269
-#, python-brace-format
-msgid "Subscribers from {0} to {1}"
-msgstr "{0} ਤੋਂ {1} ਤੱਕ ਗਾਹਕ"
-
-#. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:273
-#, python-brace-format
-msgid "Ratings, last {0} days"
-msgstr "ਪਿਛਲੇ {0} ਦਿਨ, ਰੇਟਿੰਗ"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:275
-#, python-brace-format
-msgid "Ratings from {0} to {1}"
-msgstr "{0} ਤੋਂ {1} ਤੱਕ ਰੇਟਿੰਗ"
-
-#. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:279
-#, python-brace-format
-msgid "Sales, last {0} days"
-msgstr "ਆਖਰੀ {0} ਦਿਨ, ਵਿਕਰੀ"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:281
-#, python-brace-format
-msgid "Sales from {0} to {1}"
-msgstr "{0} ਤੋਂ {1} ਵਿੱਚੋਂ ਵਿਕਰੀ"
-
-#. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:285
-#, python-brace-format
-msgid "Installs, last {0} days"
-msgstr "ਆਖਰੀ {0} ਦਿਨ, ਇੰਸਟਾਲ"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:287
-#, python-brace-format
-msgid "Installs from {0} to {1}"
-msgstr "{0} ਤੋਂ {1} ਵੱਲੋਂ ਇੰਸਟਾਲ"
-
 #. L10n: {0} and {1} are integers.
-#: static/js/stats/csv_keys.js:293
+#: static/js/stats/csv_keys.js:98
 #, python-brace-format
 msgid "<b>{0}</b> in last {1} days"
 msgstr "<b>{0}</b> ਆਖਰ ਵਿੱਚ {1} ਦਿਨ"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:295 static/js/stats/csv_keys.js:301
+#: static/js/stats/csv_keys.js:100 static/js/stats/csv_keys.js:106
 #, python-brace-format
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "<b>{0}</b> ਵੱਲੋਂ {1} ਤੋਂ {2}"
 
 #. L10n: {0} and {1} are integers.
-#: static/js/stats/csv_keys.js:299
+#: static/js/stats/csv_keys.js:104
 #, python-brace-format
 msgid "<b>{0}</b> average in last {1} days"
 msgstr "<b>{0}</b>ਅੌਸਤ ਆਖਰੀ {1} ਦਿਨਾਂ ਵਿਚ"

@@ -312,11 +312,11 @@ msgstr ""
 msgid "Images must be smaller than %dMB"
 msgstr "Tugniwin ilaq ad ilint meẓẓiyit ɣef %d MAṬ"
 
-#: src/olympia/addons/models.py:2318 src/olympia/addons/models.py:2397 src/olympia/constants/base.py:66
+#: src/olympia/addons/models.py:2302 src/olympia/addons/models.py:2381 src/olympia/constants/base.py:66
 msgid "Listed"
 msgstr "Yettwabder"
 
-#: src/olympia/addons/models.py:2575
+#: src/olympia/addons/models.py:2559
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr "Iberdan n uzegrir akked taggayt sran ad fakken s \"/\""
 
@@ -1287,7 +1287,7 @@ msgstr "Acegger yettṛaǧun"
 msgid "Disabled by Mozilla"
 msgstr "Isens-it Mozilla"
 
-#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1211
+#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1185
 msgid "Deleted"
 msgstr "Yettwakkes"
 
@@ -1463,7 +1463,8 @@ msgstr "Tiwlafin, aẓawan & tvidyutin"
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
 msgstr "Sader isiɣzaf Firefox yesnernayen aseqdec n tewlafin, aẓawan d tvidyutin. Isiɣzaf n taggayt-a sirigen abeddel  n yifuyla imeslawen akked tvidyutin, anadi n tewlafin yettin, d wayen-nniḍen."
 
-#: src/olympia/constants/categories.py:142
+#. editorial content for the secondary hero shelves.
+#: src/olympia/constants/categories.py:142 src/olympia/discovery/strings.jinja2:1035
 msgid "Privacy & Security"
 msgstr "Tabaḍnit  & Taɣellist"
 
@@ -5791,17 +5792,12 @@ msgstr "Wali meṛṛa isiɣzaf"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1033
-msgid "Anti-tracking extensions"
+msgid "Extension Starter Pack"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1035
-msgid "Essential add-ons"
-msgstr "Izegrar ixataṛen"
-
-#. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1037
-msgid "Writing tools"
+msgid "Twitch customization"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -6625,18 +6621,6 @@ msgstr "Addad n uzegrir s wazemz"
 msgid "Daily Users by Date"
 msgstr "Iseqdacen n yal ass s wazemz"
 
-#: src/olympia/stats/templates/stats/reports/usage.html:6
-msgid "What are daily users?"
-msgstr "D acu d iseqdacen n yal ass?"
-
-#: src/olympia/stats/templates/stats/reports/usage.html:10
-msgid ""
-"<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
-"down by add-on version, operating system, add-on status, application, and locale. </p>"
-msgstr ""
-"<h2>D acu-ten yiseqdacen n wass?</h2> <p> Izegrar i d-yuderen seg usmel-a, ad sneqden ileqman tikkelt deg ass. Amḍan amatu n yilɣa-a ad yettwaseqdec i usileɣ n wayen ittusemman Iseqdacen urmiden n "
-"wass. Iseqdacen n wass zemren ad ttawsemlen ɣef lqem n uzegrir, anagraw n wammud, addad n uzegrir, asnas, akked tutlayt. </p>"
-
 #: src/olympia/stats/templates/stats/reports/versions.html:3
 msgid "Application versions by Date"
 msgstr "Ileqman n usnas s wazemz"
@@ -6920,33 +6904,33 @@ msgid ""
 "Mozilla Add-ons Team"
 msgstr ""
 
-#: src/olympia/versions/models.py:1196
+#: src/olympia/versions/models.py:1170
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
 msgstr ""
 
-#: src/olympia/versions/models.py:1201
+#: src/olympia/versions/models.py:1175
 msgid "Auto-approved, Confirmed"
 msgstr "Aqbal awurman, yentem"
 
-#: src/olympia/versions/models.py:1203
+#: src/olympia/versions/models.py:1177
 msgid "Auto-approved, not Confirmed"
 msgstr "Aqbal awurman, ur yentim ara"
 
-#: src/olympia/versions/models.py:1206
+#: src/olympia/versions/models.py:1180
 msgid "Approved, Manual"
 msgstr "Yettwasentem, s ufus"
 
-#: src/olympia/versions/models.py:1213
+#: src/olympia/versions/models.py:1187
 msgid "Disabled by Developer"
 msgstr "Yettwasens sur uneflay"
 
-#: src/olympia/versions/models.py:1571
+#: src/olympia/versions/models.py:1544
 #, python-brace-format
 msgid "{app} {min} and later"
 msgstr "{app} {min} neɣ ugar"
 
-#: src/olympia/versions/models.py:1698
+#: src/olympia/versions/models.py:1671
 #, python-brace-format
 msgid "The install origin {origin} is not permitted."
 msgstr "Aɣbalu n usebded {origin} ur yettusireg ara."

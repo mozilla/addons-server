@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-02 09:05+0000\n"
+"POT-Creation-Date: 2025-10-14 14:56+0000\n"
 "PO-Revision-Date: 2015-06-29 22:55+0000\n"
 "Last-Translator: jimidar <jimidar@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -158,53 +158,11 @@ msgid_plural "{0} users"
 msgstr[0] "{0} ਯੂਜਰ"
 msgstr[1] "{0} ਯੂਜਰ"
 
-#, fuzzy, python-brace-format
-msgid "{0} add-on"
-msgid_plural "{0} add-ons"
-msgstr[0] "{0} ਐਡ-ਆਨ"
-msgstr[1] "{0} ਐਡ-ਆਨ"
-
-#, fuzzy, python-brace-format
-msgid "{0} collection"
-msgid_plural "{0} collections"
-msgstr[0] "{0} ਭੰਡਾਰ"
-msgstr[1] "{0} ਭੰਡਾਰ"
-
-#, fuzzy, python-brace-format
-msgid "{0} review"
-msgid_plural "{0} reviews"
-msgstr[0] "{0} ਸਮੀਖਿਅਕ"
-msgstr[1] "{0} ਸਮੀਖਿਅਕ"
-
-#, fuzzy, python-brace-format
-msgid "{0} sale"
-msgid_plural "{0} sales"
-msgstr[0] "{0} ਸੇਲ"
-msgstr[1] "{0} ਸੇਲ"
-
-#, fuzzy, python-brace-format
-msgid "{0} refund"
-msgid_plural "{0} refunds"
-msgstr[0] "{0} ਰਿਫੰਡ"
-msgstr[1] "{0} ਰਿਫੰਡ"
-
-#, fuzzy, python-brace-format
-msgid "{0} install"
-msgid_plural "{0} installs"
-msgstr[0] "{0} ਇੰਸਟਾਲ"
-msgstr[1] "{0} ਇੰਸਟਾਲ"
-
 msgid "Downloads"
 msgstr "ਡਾਊਨਲੋਡ"
 
 msgid "Daily Users"
 msgstr "ਰੋਜਾਨਾਂ ਯੂਜਰ"
-
-msgid "Amount, in USD"
-msgstr "USA ਵਿੱਚ, ਰਾਸ਼ੀ"
-
-msgid "Number of Contributions"
-msgstr "ਯੋਗਦਾਨ ਦੀ ਗਿਣਤੀ"
 
 msgid "More Info..."
 msgstr "ਜਿਆਦਾ ਜਾਣਕਾਰੀ...."
@@ -213,156 +171,6 @@ msgstr "ਜਿਆਦਾ ਜਾਣਕਾਰੀ...."
 #, python-brace-format
 msgid "Details for {0}"
 msgstr "{0} ਲਈ ਵੇਰਵਾ"
-
-msgid "Collections Created"
-msgstr "ਬਣਾਇਆ ਭੰਡਾਰ"
-
-msgid "Add-ons in Use"
-msgstr "ਐਡ-ਆਨ ਵਿੱਚ ਵਰਤੋ"
-
-msgid "Add-ons Created"
-msgstr "ਐਡ-ਆਨ ਬਣਾਓ"
-
-msgid "Add-ons Downloaded"
-msgstr "ਐਡ-ਆਨ ਡਾਊਨਲੋਡ"
-
-msgid "Add-ons Updated"
-msgstr "ਐਡ-ਆਨ ਅੱਪਡੇਟ"
-
-msgid "Reviews Written"
-msgstr "ਲਿਖਤੀ ਸਮੀਖਿਅਕ"
-
-msgid "User Signups"
-msgstr "ਯੂਜਰ ਸਾਈਨਅੱਪ"
-
-msgid "Subscribers"
-msgstr "ਗਾਹਕ"
-
-msgid "Ratings"
-msgstr "ਰੇਟਿੰਗ"
-
-msgid "Sales"
-msgstr "ਸੇਲ"
-
-msgid "Installs"
-msgstr "ਇੰਸਟਾਲ"
-
-msgid "Unknown"
-msgstr "ਅਣਜਾਣ"
-
-msgid "Add-ons Manager"
-msgstr "ਐਡ-ਆਨ ਮਨੇਜਰ"
-
-msgid "Add-ons Manager Promo"
-msgstr ""
-
-msgid "Add-ons Manager Featured"
-msgstr ""
-
-msgid "Add-ons Manager Learn More"
-msgstr ""
-
-msgid "Search Suggestions"
-msgstr ""
-
-msgid "Search Results"
-msgstr "ਨਤੀਜੇ ਖੋਜੋ"
-
-msgid "Homepage Promo"
-msgstr "ਮੁੱਖ ਸਫਾ ਪਰੋਮੋ"
-
-msgid "Homepage Featured"
-msgstr "ਮੁੱਖ ਸਫਾ ਗੁਣ"
-
-msgid "Homepage Up and Coming"
-msgstr "ਮੁੱਖ ਸਫਾ ਉੱਪਰ ਅਤੇ ਆਉਣਾ"
-
-msgid "Homepage Most Popular"
-msgstr "ਮੱਖ ਸਫਾ ਜਿਆਦਾ ਪ੍ਰਸਿੱਧ"
-
-msgid "Detail Page"
-msgstr "ਸਫੇ ਦਾ ਵੇਰਵਾ"
-
-msgid "Detail Page (bottom)"
-msgstr "ਸਫੇ ਦਾ ਵੇਰਵਾ (ਹੇਠਾਂ)"
-
-msgid "Detail Page (Development Channel)"
-msgstr "ਸਫੇ ਦਾ ਵੇਰਵਾ (ਵਾਧਾ ਪ੍ਰਣਾਲੀ)"
-
-msgid "Often Used With"
-msgstr "ਆਮ ਕਰਕੇ ਨਾਲ ਵਰਤਿਆ"
-
-msgid "Others By Author"
-msgstr "ਲੇਖਕ ਵਲੋ ਹੋਰ"
-
-msgid "Dependencies"
-msgstr "ਨਿਰਭਰਤਾਵਾਂ"
-
-msgid "Upsell"
-msgstr "ਵਾਧੂ ਖਰੀਦਦਾਰੀ ਲਈ ਉਕਸਾਉਣਾ"
-
-msgid "Meet the Developer"
-msgstr ""
-
-msgid "User Profile"
-msgstr ""
-
-msgid "Version History"
-msgstr ""
-
-msgid "Sharing"
-msgstr "ਵੰਡਣਾ"
-
-msgid "Category Pages"
-msgstr "ਸੰਗ੍ਰਹਿ ਪੰਨੇ"
-
-msgid "Collections"
-msgstr "ਸੰਗ੍ਰਹਿ"
-
-msgid "Category Landing Featured Carousel"
-msgstr "ਸੰਗ੍ਰਹਿ ਭੂਮੀ ਗੁਣ ਝੂਲਣਾ"
-
-msgid "Category Landing Top Rated"
-msgstr "ਚੋਟੀ ਦੀ ਰੇਟਿੰਗ ਵਿੱਚ ਆਉਂਦੇ ਸੰਗ੍ਰਹਿ"
-
-msgid "Category Landing Most Popular"
-msgstr "ਸੱਭ ਤੋਂ ਮਸ਼ਹੂਰ ਵਿੱਚ ਆਉਂਦੇ ਸੰਗ੍ਰਹਿ"
-
-msgid "Category Landing Recently Added"
-msgstr "ਤਾਜਾ ਸ਼ਾਮਿਲ ਲੈਂਡਿੰਗ ਸ਼੍ਰੈਣੀ"
-
-msgid "Browse Listing Featured Sort"
-msgstr "ਗੁਣ ਕਿਸਮ ਸੂਚੀ ਬਣਾਓ"
-
-msgid "Browse Listing Users Sort"
-msgstr "ਯੂਜਰ ਕਿਸਮ ਸੂਚੀ ਬਣਾਓ"
-
-msgid "Browse Listing Rating Sort"
-msgstr "ਰੇਟਿੰਗ ਕਿਸਮ ਸੂਚੀ ਬਣਾਓ"
-
-msgid "Browse Listing Created Sort"
-msgstr "ਰਚਨਾਤਮਿਕ ਕਿਸਮ ਸੂਚੀ ਬਣਾਓ"
-
-msgid "Browse Listing Name Sort"
-msgstr "ਨਾਮ ਕਿਸਮ ਸੂਚੀ ਬਣਾਓ"
-
-msgid "Browse Listing Popular Sort"
-msgstr "ਪ੍ਰਸਿੱਧ ਕਿਸਮ ਸੂਚੀ ਬਣਾਓ"
-
-msgid "Browse Listing Updated Sort"
-msgstr "ਅੱਪਡੇਟ ਕਿਸਮ ਸੂਚੀ ਬਣਾਓ"
-
-msgid "Browse Listing Up and Coming Sort"
-msgstr "ਸੂਚੀਬੱਧਤਾ ਅਤੇ ਲੜੀਬੱਧਤਾ ਦੀ ਝਲਕ"
-
-msgid "Total Amount Contributed"
-msgstr "ਕੁੱਲ ਰਕਮ ਯੋਗਦਾਨ ਪਾਇਆ"
-
-msgid "Average Contribution"
-msgstr "ਔਸਤ ਯੋਗਦਾਨ"
-
-msgid "Usage"
-msgstr "ਵਰਤੋਂ"
 
 msgid "Firefox"
 msgstr "ਫਾਇਰਫਾਕਸ"
@@ -394,16 +202,6 @@ msgstr "ਡਾਊਨਲੋਡ ਅਤੇ ਰੋਜਾਨਾਂ ਯੂਜਰ, ਆ�
 #, python-brace-format
 msgid "Downloads and Daily Users from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਤੱਕ ਡਾਊਨਲੋਡ ਅਤੇ ਰੋਜਾਨਾਂ ਯੂਜਰ"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Installs and Daily Users, last {0} days"
-msgstr "ਇੰਸਟਾਲ ਅਤੇ ਰੋਜਾਨਾਂ ਯੂਜਰ, ਆਖਰੀ {0} ਦਿਨ"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Installs and Daily Users from {0} to {1}"
-msgstr "{0} ਤੋ {1} ਤੱਕ ਇੰਸਟਾਲ ਅਤੇ ਰੋਜਾਨਾਂ ਯੂਜਰ"
 
 #. L10n: {0} is an integer.
 #, python-brace-format
@@ -477,16 +275,6 @@ msgstr "{0} ਤੋਂ {1} ਤੱਕ ਐਡ-ਆਨ ਵਰਜਨ"
 
 #. L10n: {0} is an integer.
 #, python-brace-format
-msgid "Add-on Status, last {0} days"
-msgstr "ਐਡ-ਆਨ ਸਥਿਤੀ, ਆਖਰੀ {0} ਦਿਨ"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Add-on Status from {0} to {1}"
-msgstr "{0} ਤੋਂ {1} ਤੱਕ ਐਡ-ਆਨ ਸਥਿਤੀ"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
 msgid "Download Sources, last {0} days"
 msgstr "ਡਾਊਨਲੋਡ ਸਰੋਤ, ਆਖਰੀ {0} ਦਿਨ"
 
@@ -524,136 +312,6 @@ msgstr "ਡਾਊਨਲੋਡ, ਆਖਰੀ {0} ਦਿਨ"
 #, fuzzy, python-brace-format
 msgid "Download Campaigns from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਤੱਕ ਡਾਊਨਲੋਡ"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Contributions, last {0} days"
-msgstr "ਪਿਛਲੇ {0} ਦਿਨ, ਯੋਗਦਾਨ"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Contributions from {0} to {1}"
-msgstr "{0} ਤੋਂ {1} ਤੱਕ ਯੋਗਦਾਨ"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Site Metrics, last {0} days"
-msgstr "ਪਿਛਲੇ {0} ਦਿਨ, ਸਾਈਟ ਮੈਟ੍ਰਿਕਸ"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Site Metrics from {0} to {1}"
-msgstr "ਵਲੋ ਸਾਈਟ ਬਿਓਰਾ {0} ਤੋ {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Add-ons in Use, last {0} days"
-msgstr "ਅੈਡ-ਓਨ ਵਰਤੋ ਵਿੱਚ, ਆਖਰੀ {0} ਦਿਨ"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Add-ons in Use from {0} to {1}"
-msgstr "ਐਡ-ਆਨ ਵਰਤੋ ਵਿਚ {0} ਤੋਂ {1}"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Add-ons Downloaded, last {0} days"
-msgstr "ਆਖਰੀ {0} ਦਿਨ,ਐਡ-ਆਨ ਡਾਊਨਲੋਡ ਹੋਏ,"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Add-ons Downloaded from {0} to {1}"
-msgstr "ਐਡ-ਆਨ {0} ਤੋਂ {1} ਤੱਕ ਡਾਊਨਲੋਡ ਹੋਇਆ"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Add-ons Created, last {0} days"
-msgstr "ਆਖਰੀ {0} ਦਿਨ, ਅੈਡ-ਓਨ ਰਚੇ ਗਏ"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Add-ons Created from {0} to {1}"
-msgstr "{0} ਤੋਂ {1} ਵਲੋ ਐਡ-ਆਨ ਬਣਾਓ"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Add-ons Updated, last {0} days"
-msgstr " ਆਖਰੀ {0} ਦਿਨ, ਐਡ-ਆਨ ਅੱਪਡੇਟ"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Add-ons Updated from {0} to {1}"
-msgstr "{0} ਤੋਂ {1} ਵਿੱਚੋਂ ਐਡ-ਆਨ ਅੱਪਡੇਟ"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Reviews Written, last {0} days"
-msgstr " ਆਖਰੀ {0} ਦਿਨ, ਲਿਖਤੀ ਸਮੀਖਿਅਕ"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Reviews Written from {0} to {1}"
-msgstr "{0} ਤੋਂ {1} ਤੱਕ ਲਿਖਤੀ ਸਮੀਖਿਅਕ"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "User Signups, last {0} days"
-msgstr "ਪਿਛਲੇ {0} ਦਿਨ, ਯੂਜਰ ਸਾਈਨ ਅੱਪ"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "User Signups from {0} to {1}"
-msgstr "{0} ਤੋਂ {1} ਤੱਕ ਯੂਜਰ ਸਾਈਨ ਅੱਪ"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Collections Created, last {0} days"
-msgstr "ਪਿਛਲੇ {0} ਦਿਨ, ਭੰਡਾਰ ਬਣਾਏ"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Collections Created from {0} to {1}"
-msgstr "{0} ਤੋਂ {1} ਤੱਕ ਬਣਾਏ ਭੰਡਾਰ"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Subscribers, last {0} days"
-msgstr "ਪਿਛਲੇ {0} ਦਿਨ, ਗਾਹਕ"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Subscribers from {0} to {1}"
-msgstr "{0} ਤੋਂ {1} ਤੱਕ ਗਾਹਕ"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Ratings, last {0} days"
-msgstr "ਪਿਛਲੇ {0} ਦਿਨ, ਰੇਟਿੰਗ"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Ratings from {0} to {1}"
-msgstr "{0} ਤੋਂ {1} ਤੱਕ ਰੇਟਿੰਗ"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Sales, last {0} days"
-msgstr "ਆਖਰੀ {0} ਦਿਨ, ਵਿਕਰੀ"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Sales from {0} to {1}"
-msgstr "{0} ਤੋਂ {1} ਵਿੱਚੋਂ ਵਿਕਰੀ"
-
-#. L10n: {0} is an integer.
-#, python-brace-format
-msgid "Installs, last {0} days"
-msgstr "ਆਖਰੀ {0} ਦਿਨ, ਇੰਸਟਾਲ"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, python-brace-format
-msgid "Installs from {0} to {1}"
-msgstr "{0} ਤੋਂ {1} ਵੱਲੋਂ ਇੰਸਟਾਲ"
 
 #. L10n: {0} and {1} are integers.
 #, python-brace-format

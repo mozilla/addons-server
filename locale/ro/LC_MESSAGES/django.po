@@ -356,11 +356,11 @@ msgstr "Nu se pot suprascrie informațiile de compatibilitate setate în manifes
 msgid "Images must be smaller than %dMB"
 msgstr "Imaginile trebuie să fie mai mici de %dMB"
 
-#: src/olympia/addons/models.py:2318 src/olympia/addons/models.py:2397 src/olympia/constants/base.py:66
+#: src/olympia/addons/models.py:2302 src/olympia/addons/models.py:2381 src/olympia/constants/base.py:66
 msgid "Listed"
 msgstr "Listat"
 
-#: src/olympia/addons/models.py:2575
+#: src/olympia/addons/models.py:2559
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr "Căile către suplimente și colecții trebuie să se termine cu „/”"
 
@@ -1339,7 +1339,7 @@ msgstr "În așteptarea recenziei"
 msgid "Disabled by Mozilla"
 msgstr "Dezactivat de Mozilla"
 
-#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1211
+#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1185
 msgid "Deleted"
 msgstr "Șters"
 
@@ -1520,7 +1520,8 @@ msgstr ""
 "Descarcă extensii Firefox care îmbunătățesc experiența cu fotografiile, muzica și videoclipurile. Extensiile din această categorie modifică fișiere audio și video, execută căutarea inversă a "
 "imaginilor și multe altele."
 
-#: src/olympia/constants/categories.py:142
+#. editorial content for the secondary hero shelves.
+#: src/olympia/constants/categories.py:142 src/olympia/discovery/strings.jinja2:1035
 msgid "Privacy & Security"
 msgstr "Confidențialitate și securitate"
 
@@ -5638,22 +5639,22 @@ msgstr "Respinge automat cererile de urmărire pentru cookie-uri în ferestre po
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:670
 msgid "Powerful pop-up dictionary optimized for learning new languages."
-msgstr ""
+msgstr "Dicționar pop-up puternic, optimizat pentru învățarea de limbi noi."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:673
 msgid "Hover your mouse over thumbnails to easily browse and download HD images."
-msgstr ""
+msgstr "Treci cu mouse-ul peste miniaturi ca să navighezi ușor și să descarci imagini HD."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:676
 msgid "Remove distracting and unwanted search results and related video content."
-msgstr ""
+msgstr "Elimină rezultatele nedorite de la căutare și care îți distrag atenția, precum și conținutul video aferent."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:679
 msgid "Makes Firefox appear as Chrome to websites trying to block Firefox."
-msgstr ""
+msgstr "Face ca Firefox să treacă drept Chrome pentru site-urile care încearcă să blocheze Firefox."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:682
@@ -5912,18 +5913,13 @@ msgstr "Vezi toate extensiile"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1033
-msgid "Anti-tracking extensions"
-msgstr "Extensii antiurmărire"
-
-#. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1035
-msgid "Essential add-ons"
-msgstr "Suplimente esențiale"
+msgid "Extension Starter Pack"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1037
-msgid "Writing tools"
-msgstr "Instrumente de scris"
+msgid "Twitch customization"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1039 src/olympia/discovery/strings.jinja2:1041 src/olympia/discovery/strings.jinja2:1043
@@ -6748,18 +6744,6 @@ msgstr "Starea suplimentului în funcție de dată"
 msgid "Daily Users by Date"
 msgstr "Utilizatori zilnici în funcție de dată"
 
-#: src/olympia/stats/templates/stats/reports/usage.html:6
-msgid "What are daily users?"
-msgstr "Ce sunt utilizatorii zilnici?"
-
-#: src/olympia/stats/templates/stats/reports/usage.html:10
-msgid ""
-"<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
-"down by add-on version, operating system, add-on status, application, and locale. </p>"
-msgstr ""
-"<h2>Ce înseamnă utilizatori zilnici?</h2> <p> Suplimentele descărcate de pe acest site verifică pentru actualizări o dată pe zi. Numărul total al acestor pinguri de actualizare poartă denumirea de "
-"„utilizatori zilnici”. Utilizatorii zilnici pot fi defalcați după versiunea suplimentului, sistemul de operare, starea suplimentului, aplicație și limbă. </p>"
-
 #: src/olympia/stats/templates/stats/reports/versions.html:3
 msgid "Application versions by Date"
 msgstr "Versiunile aplicației în funcție de dată"
@@ -7060,33 +7044,33 @@ msgstr ""
 "\n"
 "Echipa Suplimente Mozilla"
 
-#: src/olympia/versions/models.py:1196
+#: src/olympia/versions/models.py:1170
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
 msgstr "Respins cu întârziere, programat pentru %s"
 
-#: src/olympia/versions/models.py:1201
+#: src/olympia/versions/models.py:1175
 msgid "Auto-approved, Confirmed"
 msgstr "Aprobat automat, confirmat"
 
-#: src/olympia/versions/models.py:1203
+#: src/olympia/versions/models.py:1177
 msgid "Auto-approved, not Confirmed"
 msgstr "Aprobat automat, neconfirmat"
 
-#: src/olympia/versions/models.py:1206
+#: src/olympia/versions/models.py:1180
 msgid "Approved, Manual"
 msgstr "Aprobat, manual"
 
-#: src/olympia/versions/models.py:1213
+#: src/olympia/versions/models.py:1187
 msgid "Disabled by Developer"
 msgstr "Dezactivat de către dezvoltator"
 
-#: src/olympia/versions/models.py:1571
+#: src/olympia/versions/models.py:1544
 #, python-brace-format
 msgid "{app} {min} and later"
 msgstr "{app} {min} și versiunile ulterioare"
 
-#: src/olympia/versions/models.py:1698
+#: src/olympia/versions/models.py:1671
 #, python-brace-format
 msgid "The install origin {origin} is not permitted."
 msgstr "Originea instalării {origin} nu este permisă."

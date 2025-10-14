@@ -177,659 +177,229 @@ msgstr "Grafiken müssen entweder PNG oder JPG sein."
 msgid "Videos must be in WebM."
 msgstr "Videos müssen im WebM-Format sein."
 
-#: static/js/stats/chart.js:298
+#: static/js/stats/chart.js:283
 #, python-brace-format
 msgid "Week of {0}"
 msgstr "Woche von {0}"
 
-#: static/js/stats/chart.js:307
+#: static/js/stats/chart.js:292
 #, python-brace-format
 msgid "{0} download"
 msgid_plural "{0} downloads"
 msgstr[0] "{0} Download"
 msgstr[1] "{0} Downloads"
 
-#: static/js/stats/chart.js:313
+#: static/js/stats/chart.js:298
 #, python-brace-format
 msgid "{0} user"
 msgid_plural "{0} users"
 msgstr[0] "{0} Benutzer"
 msgstr[1] "{0} Benutzer"
 
-#: static/js/stats/chart.js:319
-#, python-brace-format
-msgid "{0} add-on"
-msgid_plural "{0} add-ons"
-msgstr[0] "{0} Add-on"
-msgstr[1] "{0} Add-ons"
-
-#: static/js/stats/chart.js:325
-#, python-brace-format
-msgid "{0} collection"
-msgid_plural "{0} collections"
-msgstr[0] "{0} Sammlung"
-msgstr[1] "{0} Sammlungen"
-
-#: static/js/stats/chart.js:331
-#, python-brace-format
-msgid "{0} review"
-msgid_plural "{0} reviews"
-msgstr[0] "{0} Bewertung"
-msgstr[1] "{0} Bewertungen"
-
-#: static/js/stats/chart.js:340
-#, python-brace-format
-msgid "{0} sale"
-msgid_plural "{0} sales"
-msgstr[0] "{0} Verkauf"
-msgstr[1] "{0} Verkäufe"
-
-#: static/js/stats/chart.js:346
-#, python-brace-format
-msgid "{0} refund"
-msgid_plural "{0} refunds"
-msgstr[0] "{0} Erstattung"
-msgstr[1] "{0} Erstattungen"
-
-#: static/js/stats/chart.js:352
-#, python-brace-format
-msgid "{0} install"
-msgid_plural "{0} installs"
-msgstr[0] "{0} Installation"
-msgstr[1] "{0} Installationen"
-
-#: static/js/stats/chart.js:453 static/js/stats/csv_keys.js:3 static/js/stats/csv_keys.js:109
+#: static/js/stats/chart.js:362 static/js/stats/csv_keys.js:3 static/js/stats/csv_keys.js:9
 msgid "Downloads"
 msgstr "Downloads"
 
-#: static/js/stats/chart.js:465 static/js/stats/csv_keys.js:6 static/js/stats/csv_keys.js:110
+#: static/js/stats/chart.js:374 static/js/stats/csv_keys.js:6 static/js/stats/csv_keys.js:10
 msgid "Daily Users"
 msgstr "Tägliche Benutzer"
 
-#: static/js/stats/chart.js:498
-msgid "Amount, in USD"
-msgstr "Betrag in US$"
-
-#: static/js/stats/chart.js:510 static/js/stats/csv_keys.js:104
-msgid "Number of Contributions"
-msgstr "Anzahl der Spenden"
-
-#: static/js/stats/chart.js:537
+#: static/js/stats/chart.js:409
 msgid "More Info..."
 msgstr "Weitere Informationen …"
 
 #. L10n: {0} is an ISO-formatted date.
-#: static/js/stats/chart.js:543
+#: static/js/stats/chart.js:415
 #, python-brace-format
 msgid "Details for {0}"
 msgstr "Details zu {0}"
 
-#: static/js/stats/csv_keys.js:9
-msgid "Collections Created"
-msgstr "Erstellte Sammlungen"
-
-#: static/js/stats/csv_keys.js:12
-msgid "Add-ons in Use"
-msgstr "Verwendete Add-ons"
-
-#: static/js/stats/csv_keys.js:15
-msgid "Add-ons Created"
-msgstr "Erstellte Add-ons"
-
-#: static/js/stats/csv_keys.js:18
-msgid "Add-ons Downloaded"
-msgstr "Heruntergeladene Add-ons"
-
-#: static/js/stats/csv_keys.js:21
-msgid "Add-ons Updated"
-msgstr "Aktualisierte Add-ons"
-
-#: static/js/stats/csv_keys.js:24
-msgid "Reviews Written"
-msgstr "Geschriebene Bewertungen"
-
-#: static/js/stats/csv_keys.js:27
-msgid "User Signups"
-msgstr "Registrierte Benutzer"
-
-#: static/js/stats/csv_keys.js:30
-msgid "Subscribers"
-msgstr "Abonnenten"
-
-#: static/js/stats/csv_keys.js:33
-msgid "Ratings"
-msgstr "Bewertungen"
-
-#: static/js/stats/csv_keys.js:36 static/js/stats/csv_keys.js:114
-msgid "Sales"
-msgstr "Verkäufe"
-
-#: static/js/stats/csv_keys.js:39 static/js/stats/csv_keys.js:113
-msgid "Installs"
-msgstr "Installationen"
-
-#: static/js/stats/csv_keys.js:42
-msgid "Unknown"
-msgstr "Unbekannt"
-
-#: static/js/stats/csv_keys.js:43
-msgid "Add-ons Manager"
-msgstr "Add-ons-Verwaltung"
-
-#: static/js/stats/csv_keys.js:44
-msgid "Add-ons Manager Promo"
-msgstr "Add-ons-Verwaltung „Promo“"
-
-#: static/js/stats/csv_keys.js:45
-msgid "Add-ons Manager Featured"
-msgstr "Add-ons-Verwaltung „Vorgestellt“"
-
-#: static/js/stats/csv_keys.js:46
-msgid "Add-ons Manager Learn More"
-msgstr "Add-ons-Verwaltung „Mehr erfahren“"
-
-#: static/js/stats/csv_keys.js:47
-msgid "Search Suggestions"
-msgstr "Suchvorschläge"
-
-#: static/js/stats/csv_keys.js:48
-msgid "Search Results"
-msgstr "Suchergebnisse"
-
-#: static/js/stats/csv_keys.js:49 static/js/stats/csv_keys.js:50 static/js/stats/csv_keys.js:51
-msgid "Homepage Promo"
-msgstr "Startseite „Promo“"
-
-#: static/js/stats/csv_keys.js:52 static/js/stats/csv_keys.js:53
-msgid "Homepage Featured"
-msgstr "Startseite „Vorgestellt“"
-
-#: static/js/stats/csv_keys.js:54 static/js/stats/csv_keys.js:55
-msgid "Homepage Up and Coming"
-msgstr "Startseite „Aufstrebend“"
-
-#: static/js/stats/csv_keys.js:56
-msgid "Homepage Most Popular"
-msgstr "Startseite „Beliebteste“"
-
-#: static/js/stats/csv_keys.js:57 static/js/stats/csv_keys.js:59
-msgid "Detail Page"
-msgstr "Detailseite"
-
-#: static/js/stats/csv_keys.js:58 static/js/stats/csv_keys.js:60
-msgid "Detail Page (bottom)"
-msgstr "Detailseite (Ende)"
-
-#: static/js/stats/csv_keys.js:61
-msgid "Detail Page (Development Channel)"
-msgstr "Detailseite (Entwicklerkanal)"
-
-#: static/js/stats/csv_keys.js:62 static/js/stats/csv_keys.js:63 static/js/stats/csv_keys.js:64
-msgid "Often Used With"
-msgstr "Oft verwendet mit"
-
-#: static/js/stats/csv_keys.js:65 static/js/stats/csv_keys.js:66
-msgid "Others By Author"
-msgstr "Andere von diesem Autor"
-
-#: static/js/stats/csv_keys.js:67 static/js/stats/csv_keys.js:68
-msgid "Dependencies"
-msgstr "Abhängigkeiten"
-
-#: static/js/stats/csv_keys.js:69 static/js/stats/csv_keys.js:70
-msgid "Upsell"
-msgstr "Zusatzverkäufe"
-
-#: static/js/stats/csv_keys.js:71
-msgid "Meet the Developer"
-msgstr "Lernen Sie den Entwickler kennen"
-
-#: static/js/stats/csv_keys.js:72
-msgid "User Profile"
-msgstr "Benutzerprofil"
-
-#: static/js/stats/csv_keys.js:73
-msgid "Version History"
-msgstr "Versionsgeschichte"
-
-#: static/js/stats/csv_keys.js:75
-msgid "Sharing"
-msgstr "Weitergeben"
-
-#: static/js/stats/csv_keys.js:76
-msgid "Category Pages"
-msgstr "Kategorieseiten"
-
-#: static/js/stats/csv_keys.js:77
-msgid "Collections"
-msgstr "Sammlungen"
-
-#: static/js/stats/csv_keys.js:78 static/js/stats/csv_keys.js:79
-msgid "Category Landing Featured Carousel"
-msgstr "Kategorie-Übersicht „Karussell der Vorgestellten“"
-
-#: static/js/stats/csv_keys.js:80 static/js/stats/csv_keys.js:81
-msgid "Category Landing Top Rated"
-msgstr "Kategorie-Übersicht „Höchste Bewertung“"
-
-#: static/js/stats/csv_keys.js:82 static/js/stats/csv_keys.js:83
-msgid "Category Landing Most Popular"
-msgstr "Kategorie-Übersicht „Beliebteste“"
-
-#: static/js/stats/csv_keys.js:84 static/js/stats/csv_keys.js:85
-msgid "Category Landing Recently Added"
-msgstr "Kategorie-Übersicht „Zuletzt hinzugefügt“"
-
-#: static/js/stats/csv_keys.js:86 static/js/stats/csv_keys.js:87
-msgid "Browse Listing Featured Sort"
-msgstr "Auflistung durchsuchen „Sortiert nach Vorgestellt“"
-
-#: static/js/stats/csv_keys.js:88 static/js/stats/csv_keys.js:89
-msgid "Browse Listing Users Sort"
-msgstr "Auflistung durchsuchen „Sortiert nach Benutzern“"
-
-#: static/js/stats/csv_keys.js:90 static/js/stats/csv_keys.js:91
-msgid "Browse Listing Rating Sort"
-msgstr "Auflistung durchsuchen „Sortiert nach Bewertung“"
-
-#: static/js/stats/csv_keys.js:92 static/js/stats/csv_keys.js:93
-msgid "Browse Listing Created Sort"
-msgstr "Auflistung durchsuchen „Sortiert nach Erstellt“"
-
-#: static/js/stats/csv_keys.js:94 static/js/stats/csv_keys.js:95
-msgid "Browse Listing Name Sort"
-msgstr "Auflistung durchsuchen „Sortiert nach Name“"
-
-#: static/js/stats/csv_keys.js:96 static/js/stats/csv_keys.js:97
-msgid "Browse Listing Popular Sort"
-msgstr "Auflistung durchsuchen „Sortiert nach Beliebtheit“"
-
-#: static/js/stats/csv_keys.js:98 static/js/stats/csv_keys.js:99
-msgid "Browse Listing Updated Sort"
-msgstr "Auflistung durchsuchen „Sortiert nach Aktualisiert“"
-
-#: static/js/stats/csv_keys.js:100 static/js/stats/csv_keys.js:101
-msgid "Browse Listing Up and Coming Sort"
-msgstr "Auflistung durchsuchen „Sortiert nach Aufstrebende“"
-
-#: static/js/stats/csv_keys.js:105
-msgid "Total Amount Contributed"
-msgstr "Insgesamt gespendeter Betrag"
-
-#: static/js/stats/csv_keys.js:106
-msgid "Average Contribution"
-msgstr "Durchschnittlich gespendeter Betrag"
-
-#: static/js/stats/csv_keys.js:115
-msgid "Usage"
-msgstr "Verwendung"
-
-#: static/js/stats/csv_keys.js:118
+#: static/js/stats/csv_keys.js:13
 msgid "Firefox"
 msgstr "Firefox"
 
-#: static/js/stats/csv_keys.js:119
+#: static/js/stats/csv_keys.js:14
 msgid "Mozilla"
 msgstr "Mozilla"
 
-#: static/js/stats/csv_keys.js:120
+#: static/js/stats/csv_keys.js:15
 msgid "Thunderbird"
 msgstr "Thunderbird"
 
-#: static/js/stats/csv_keys.js:121
+#: static/js/stats/csv_keys.js:16
 msgid "Sunbird"
 msgstr "Sunbird"
 
-#: static/js/stats/csv_keys.js:122
+#: static/js/stats/csv_keys.js:17
 msgid "SeaMonkey"
 msgstr "SeaMonkey"
 
-#: static/js/stats/csv_keys.js:123
+#: static/js/stats/csv_keys.js:18
 msgid "Fennec"
 msgstr "Fennec"
 
-#: static/js/stats/csv_keys.js:124
+#: static/js/stats/csv_keys.js:19
 msgid "Android"
 msgstr "Android"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:129
+#: static/js/stats/csv_keys.js:24
 #, python-brace-format
 msgid "Downloads and Daily Users, last {0} days"
 msgstr "Downloads und tägliche Benutzer, letzte {0} Tage"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:131
+#: static/js/stats/csv_keys.js:26
 #, python-brace-format
 msgid "Downloads and Daily Users from {0} to {1}"
 msgstr "Downloads und tägliche Benutzer von {0} bis {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:135
-#, python-brace-format
-msgid "Installs and Daily Users, last {0} days"
-msgstr "Installationen und tägliche Benutzer, letzte {0} Tage"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:137
-#, python-brace-format
-msgid "Installs and Daily Users from {0} to {1}"
-msgstr "Installationen und tägliche Benutzer von {0} bis {1}"
-
-#. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:141
+#: static/js/stats/csv_keys.js:30
 #, python-brace-format
 msgid "Downloads, last {0} days"
 msgstr "Downloads in den letzten {0} Tagen"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:143
+#: static/js/stats/csv_keys.js:32
 #, python-brace-format
 msgid "Downloads from {0} to {1}"
 msgstr "Downloads von {0} bis {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:147
+#: static/js/stats/csv_keys.js:36
 #, python-brace-format
 msgid "Daily Users, last {0} days"
 msgstr "Tägliche Benutzer in den letzten {0} Tagen"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:149
+#: static/js/stats/csv_keys.js:38
 #, python-brace-format
 msgid "Daily Users from {0} to {1}"
 msgstr "Tägliche Benutzer von {0} bis {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:153
+#: static/js/stats/csv_keys.js:42
 #, python-brace-format
 msgid "Applications, last {0} days"
 msgstr "Apps in den letzten {0} Tagen"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:155
+#: static/js/stats/csv_keys.js:44
 #, python-brace-format
 msgid "Applications from {0} to {1}"
 msgstr "Apps von {0} bis {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:159
+#: static/js/stats/csv_keys.js:48
 #, python-brace-format
 msgid "Countries, last {0} days"
 msgstr "Länder in den letzten {0} Tagen"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:161
+#: static/js/stats/csv_keys.js:50
 #, python-brace-format
 msgid "Countries from {0} to {1}"
 msgstr "Länder von {0} bis {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:165
+#: static/js/stats/csv_keys.js:54
 #, python-brace-format
 msgid "Platforms, last {0} days"
 msgstr "Plattformen in den letzten {0} Tagen"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:167
+#: static/js/stats/csv_keys.js:56
 #, python-brace-format
 msgid "Platforms from {0} to {1}"
 msgstr "Plattformen von {0} bis {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:171
+#: static/js/stats/csv_keys.js:60
 #, python-brace-format
 msgid "Languages, last {0} days"
 msgstr "Sprachen in den letzten {0} Tagen"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:173
+#: static/js/stats/csv_keys.js:62
 #, python-brace-format
 msgid "Languages from {0} to {1}"
 msgstr "Sprachen von {0} bis {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:177
+#: static/js/stats/csv_keys.js:66
 #, python-brace-format
 msgid "Add-on Versions, last {0} days"
 msgstr "Add-on-Versionen in den letzten {0} Tagen"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:179
+#: static/js/stats/csv_keys.js:68
 #, python-brace-format
 msgid "Add-on Versions from {0} to {1}"
 msgstr "Add-on-Versionen von {0} bis {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:183
-#, python-brace-format
-msgid "Add-on Status, last {0} days"
-msgstr "Add-on-Status in den letzten {0} Tagen"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:185
-#, python-brace-format
-msgid "Add-on Status from {0} to {1}"
-msgstr "Add-on-Status von {0} bis {1}"
-
-#. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:189
+#: static/js/stats/csv_keys.js:72
 #, python-brace-format
 msgid "Download Sources, last {0} days"
 msgstr "Download-Quellen in den letzten {0} Tagen"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:191
+#: static/js/stats/csv_keys.js:74
 #, python-brace-format
 msgid "Download Sources from {0} to {1}"
 msgstr "Download-Quellen von {0} bis {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:195
+#: static/js/stats/csv_keys.js:78
 #, python-brace-format
 msgid "Download Mediums, last {0} days"
 msgstr "Download-Medien in den letzten {0} Tagen"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:197
+#: static/js/stats/csv_keys.js:80
 #, python-brace-format
 msgid "Download Mediums from {0} to {1}"
 msgstr "Download-Medien von {0} bis {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:201
+#: static/js/stats/csv_keys.js:84
 #, python-brace-format
 msgid "Download Contents, last {0} days"
 msgstr "Download-Inhalte in den letzten {0} Tagen"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:203
+#: static/js/stats/csv_keys.js:86
 #, python-brace-format
 msgid "Download Contents from {0} to {1}"
 msgstr "Download-Inhalte von {0} bis {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:207
+#: static/js/stats/csv_keys.js:90
 #, python-brace-format
 msgid "Download Campaigns, last {0} days"
 msgstr "Download-Kampagnen in den letzten {0} Tagen"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:209
+#: static/js/stats/csv_keys.js:92
 #, python-brace-format
 msgid "Download Campaigns from {0} to {1}"
 msgstr "Download-Kampagnen von {0} bis {1}"
 
-#. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:213
-#, python-brace-format
-msgid "Contributions, last {0} days"
-msgstr "Spenden in den letzten {0} Tagen"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:215
-#, python-brace-format
-msgid "Contributions from {0} to {1}"
-msgstr "Spenden von {0} bis {1}"
-
-#. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:219
-#, python-brace-format
-msgid "Site Metrics, last {0} days"
-msgstr "Website-Statistiken, letzte {0} Tage"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:221
-#, python-brace-format
-msgid "Site Metrics from {0} to {1}"
-msgstr "Website-Statistiken von {0} bis {1}"
-
-#. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:225
-#, python-brace-format
-msgid "Add-ons in Use, last {0} days"
-msgstr "Verwendete Add-ons, letzte {0} Tage"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:227
-#, python-brace-format
-msgid "Add-ons in Use from {0} to {1}"
-msgstr "Verwendete Add-ons von {0} bis {1}"
-
-#. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:231
-#, python-brace-format
-msgid "Add-ons Downloaded, last {0} days"
-msgstr "Heruntergeladene Add-ons, letzte {0} Tage"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:233
-#, python-brace-format
-msgid "Add-ons Downloaded from {0} to {1}"
-msgstr "Heruntergeladene Add-ons von {0} bis {1}"
-
-#. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:237
-#, python-brace-format
-msgid "Add-ons Created, last {0} days"
-msgstr "Erstellte Add-ons, letzte {0} Tage"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:239
-#, python-brace-format
-msgid "Add-ons Created from {0} to {1}"
-msgstr "Erstellte Add-ons von {0} bis {1}"
-
-#. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:243
-#, python-brace-format
-msgid "Add-ons Updated, last {0} days"
-msgstr "Aktualisierte Add-ons, letzte {0} Tage"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:245
-#, python-brace-format
-msgid "Add-ons Updated from {0} to {1}"
-msgstr "Aktualisierte Add-ons von {0} bis {1}"
-
-#. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:249
-#, python-brace-format
-msgid "Reviews Written, last {0} days"
-msgstr "Geschriebene Bewertungen, letzte {0} Tage"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:251
-#, python-brace-format
-msgid "Reviews Written from {0} to {1}"
-msgstr "Geschriebene Bewertungen von {0} bis {1}"
-
-#. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:255
-#, python-brace-format
-msgid "User Signups, last {0} days"
-msgstr "Registrierte Benutzer, letzte {0} Tage"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:257
-#, python-brace-format
-msgid "User Signups from {0} to {1}"
-msgstr "Registrierte Benutzer von {0} bis {1}"
-
-#. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:261
-#, python-brace-format
-msgid "Collections Created, last {0} days"
-msgstr "Erstellte Sammlungen, letzte {0} Tage"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:263
-#, python-brace-format
-msgid "Collections Created from {0} to {1}"
-msgstr "Erstellte Sammlungen von {0} bis {1}"
-
-#. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:267
-#, python-brace-format
-msgid "Subscribers, last {0} days"
-msgstr "Abonnenten, letzte {0} Tage"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:269
-#, python-brace-format
-msgid "Subscribers from {0} to {1}"
-msgstr "Abonnenten von {0} bis {1}"
-
-#. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:273
-#, python-brace-format
-msgid "Ratings, last {0} days"
-msgstr "Bewertungen, letzte {0} Tage"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:275
-#, python-brace-format
-msgid "Ratings from {0} to {1}"
-msgstr "Bewertungen von {0} bis {1}"
-
-#. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:279
-#, python-brace-format
-msgid "Sales, last {0} days"
-msgstr "Verkäufe, letzte {0} Tage"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:281
-#, python-brace-format
-msgid "Sales from {0} to {1}"
-msgstr "Verkäufe von {0} bis {1}"
-
-#. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:285
-#, python-brace-format
-msgid "Installs, last {0} days"
-msgstr "Installationen, letzte {0} Tage"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:287
-#, python-brace-format
-msgid "Installs from {0} to {1}"
-msgstr "Installationen von {0} bis {1}"
-
 #. L10n: {0} and {1} are integers.
-#: static/js/stats/csv_keys.js:293
+#: static/js/stats/csv_keys.js:98
 #, python-brace-format
 msgid "<b>{0}</b> in last {1} days"
 msgstr "<b>{0}</b> in den letzten {1} Tagen"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:295 static/js/stats/csv_keys.js:301
+#: static/js/stats/csv_keys.js:100 static/js/stats/csv_keys.js:106
 #, python-brace-format
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "<b>{0}</b> von {1} bis {2}"
 
 #. L10n: {0} and {1} are integers.
-#: static/js/stats/csv_keys.js:299
+#: static/js/stats/csv_keys.js:104
 #, python-brace-format
 msgid "<b>{0}</b> average in last {1} days"
 msgstr "Durchschnittlich <b>{0}</b> in den letzten {1} Tagen"

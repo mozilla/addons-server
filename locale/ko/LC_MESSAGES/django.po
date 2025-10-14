@@ -350,11 +350,11 @@ msgstr "이 애플리케이션의 매니페스트에 설정된 호환성 정보�
 msgid "Images must be smaller than %dMB"
 msgstr "이미지는 %dMB보다 작아야 합니다"
 
-#: src/olympia/addons/models.py:2318 src/olympia/addons/models.py:2397 src/olympia/constants/base.py:66
+#: src/olympia/addons/models.py:2302 src/olympia/addons/models.py:2381 src/olympia/constants/base.py:66
 msgid "Listed"
 msgstr "나열됨"
 
-#: src/olympia/addons/models.py:2575
+#: src/olympia/addons/models.py:2559
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr "추가 기능 및 컬렉션 경로는 \"/\"로 끝나야 합니다."
 
@@ -415,16 +415,16 @@ msgstr "이 주소는 사용할 수 없습니다. 다른걸 사용해 주세요.
 
 #: src/olympia/addons/serializers.py:1888
 msgid "There is no rollback available in this channel."
-msgstr ""
+msgstr "이 채널에는 롤백이 없습니다."
 
 #: src/olympia/addons/serializers.py:1898
 #, python-format
 msgid "Rollback is only available for version %s in this channel."
-msgstr ""
+msgstr "롤백은 이 채널의 %s 버전에서만 가능합니다."
 
 #: src/olympia/addons/serializers.py:1904
 msgid "Only approved versions can be rolled back, except the most recent version."
-msgstr ""
+msgstr "최신 버전을 제외하고 승인된 버전만 되돌릴 수 있습니다."
 
 #: src/olympia/addons/utils.py:56 src/olympia/bandwagon/serializers.py:92
 msgid "This name cannot be used."
@@ -1260,7 +1260,7 @@ msgstr "보류 중인 반려 상태 변경됨"
 #: src/olympia/constants/activity.py:1208
 #, python-brace-format
 msgid "{addon} {version} created, to rollback from {0}."
-msgstr ""
+msgstr "{0}에서 롤백할 {addon} {version} 버전이 만들어졌습니다."
 
 #: src/olympia/constants/activity.py:1209
 msgid "Version rollback"
@@ -1320,7 +1320,7 @@ msgstr "검토 대기중"
 msgid "Disabled by Mozilla"
 msgstr "Mozilla에 의해 사용 정지당함"
 
-#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1211
+#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1185
 msgid "Deleted"
 msgstr "삭제됨"
 
@@ -1496,7 +1496,8 @@ msgstr "사진 및 동영상"
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
 msgstr "사진, 음악 및 비디오 경험을 향상 시키는 Firefox 확장 프로그램을 다운로드 하십시오. 이 범주의 확장은 오디오 및 비디오 역 이미지 검색 등을 수정합니다."
 
-#: src/olympia/constants/categories.py:142
+#. editorial content for the secondary hero shelves.
+#: src/olympia/constants/categories.py:142 src/olympia/discovery/strings.jinja2:1035
 msgid "Privacy & Security"
 msgstr "개인 정보 보호 및 보안"
 
@@ -2024,6 +2025,7 @@ msgid ""
 "On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
 "on manifest’s <a {a_attrs}>update_url</a> is provided, as this is the URL where Firefox finds updates for automatic deployment to your users.</span>"
 msgstr ""
+"직접 배포 방법입니다. <span class=\"helptext\">Mozilla가 서명한 후 개발자 허브에서 .xpi 파일을 다운로드하여 일반 사용자에게 배포할 수 있습니다. 부가 기능 매니페스트의 <a {a_attrs}>update_url</a>이 Firefox가 사용자에게 자동으로 배포하기 위한 업데이트를 찾는 URL인지 확인하세요.</span>"
 
 #: src/olympia/devhub/forms.py:1425 src/olympia/devhub/templates/devhub/includes/agreement.html:17
 msgid "Display Name"
@@ -2079,7 +2081,7 @@ msgstr "문제가 발생했습니다. 개발자 지원팀에 문의하세요."
 
 #: src/olympia/devhub/forms.py:1653
 msgid "No appropriate version available"
-msgstr ""
+msgstr "적절한 버전이 없음"
 
 #: src/olympia/devhub/forms.py:1660
 msgid "Choose version"
@@ -2087,11 +2089,11 @@ msgstr "버전 선택"
 
 #: src/olympia/devhub/forms.py:1669
 msgid "Release notes"
-msgstr ""
+msgstr "릴리즈 노트"
 
 #: src/olympia/devhub/forms.py:1670
 msgid "Automatic rollback based on version [m.m]."
-msgstr ""
+msgstr "[m.m] 버전으로 자동으로 롤백됩니다."
 
 #: src/olympia/devhub/forms.py:1743
 msgid "You must select a channel and version to rollback to."
@@ -2302,9 +2304,8 @@ msgid "Toolbar area text and icons"
 msgstr "도구 모음 영역 텍스트 및 아이콘"
 
 #: src/olympia/devhub/views.py:1488
-#, fuzzy
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
-msgstr "탭 부분의 글자색입니다."
+msgstr "도구 모음과 활성 탭에 표시할 텍스트와 아이콘의 색상입니다. 매니페스트 필드:  bookmark_text."
 
 #: src/olympia/devhub/views.py:1495
 msgid "Toolbar field area background"
@@ -3044,14 +3045,12 @@ msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr "인증받은 사람에 한해 부가 기능을 다른 사람이 공유할 수 있나요?"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:17
-#, fuzzy
 msgid "Can others make commercial use of your Add-on?"
-msgstr "다른 사람이 당신의 테마를 상업적으로 사용할 수 있도록 허용할까요?"
+msgstr "다른 사람이 당신의 부가 기능을 상업적으로 사용할 수 있도록 허용할까요?"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:32
-#, fuzzy
 msgid "Can others create derivative works from your Add-on?"
-msgstr "다른 사람이 당신의 테마를 사용해서 작품을 만들 수 있도록 허용할까요?"
+msgstr "다른 사람이 당신의 부가 기능을 이용해서 작품을 만들 수 있도록 허용할까요?"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:43
 msgid "Yes, as long as they share alike"
@@ -3125,7 +3124,7 @@ msgstr "부가기능을 삭제하면 부가기능을 위해 제출했던 모든 
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:6
 msgid "All versions will be Restricted, which will disable and prevent any further installation in Firefox. Existing users can choose to re-enable the add-on."
-msgstr ""
+msgstr "모든 버전이 제한되어 Firefox에서 더이상 설치되지 않을 것입니다. 기존 사용자는 부가 기능을 다시 활성화할 수 있습니다."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:11
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
@@ -3149,9 +3148,8 @@ msgid "Actions"
 msgstr "활동"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:11
-#, fuzzy
 msgid "Resume the submission process for this add-on"
-msgstr "부가 기능 등록 과정을 계속 진행합니다."
+msgstr "부가 기능 등록 과정 계속하기"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:12
 msgid "Resume"
@@ -3166,14 +3164,12 @@ msgid "Delete"
 msgstr "삭제"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:30
-#, fuzzy
 msgid "Edit details on this add-on's product page"
-msgstr "이 테마의 목록에 대한 상세 편집"
+msgstr "이 부가 기능의 제품 페이지에 대한 상세 정보 수정"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:37
-#, fuzzy
 msgid "Upload a new version of this add-on"
-msgstr "이 부가 기능의 새 버전을 업로드 합니다."
+msgstr "이 부가 기능의 새 버전 업로드"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:38
 msgid "New Version"
@@ -3473,9 +3469,8 @@ msgid "You must submit your extension's source code."
 msgstr "확장 기능의 소스 코드를 제출해야 합니다."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:51
-#, fuzzy
 msgid "Your source code must include:"
-msgstr "소스 코드가 업로드 됨"
+msgstr "소스 코드는 다음을 포함하여야 합니다:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:56
 msgid "Step-by-step build instructions to create an exact copy of the add-on code, in a README file in your source code or in the reviewer notes on the next page."
@@ -5777,17 +5772,12 @@ msgstr "모든 확장 기능 보기"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1033
-msgid "Anti-tracking extensions"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1035
-msgid "Essential add-ons"
+msgid "Extension Starter Pack"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1037
-msgid "Writing tools"
+msgid "Twitch customization"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -6618,16 +6608,6 @@ msgstr "날짜순 부가 기능 상태"
 msgid "Daily Users by Date"
 msgstr "날짜별 일일 사용자"
 
-#: src/olympia/stats/templates/stats/reports/usage.html:6
-msgid "What are daily users?"
-msgstr "일일 사용자 수란?"
-
-#: src/olympia/stats/templates/stats/reports/usage.html:10
-msgid ""
-"<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
-"down by add-on version, operating system, add-on status, application, and locale. </p>"
-msgstr "<h2>일일 사용자 수란?</h2> <p> 이 사이트를 통해 다운로드 된 부가 기능의 수는 일일 단위로 업데이트 됩니다. 이러한 업데이트 핑의 총합이 일일 사용자 수가 됩니다. 일일 사용자 수는 부가 기능 버전, 운영 체제, 부가 기능 상태, 애플리케이션 종류, 사용 언어별로 제대로 집계가 되지 않을 수도 있습니다. </p>"
-
 #: src/olympia/stats/templates/stats/reports/versions.html:3
 msgid "Application versions by Date"
 msgstr "날짜별 애플리케이션 버전"
@@ -6898,33 +6878,33 @@ msgid ""
 "Mozilla Add-ons Team"
 msgstr ""
 
-#: src/olympia/versions/models.py:1196
+#: src/olympia/versions/models.py:1170
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
 msgstr ""
 
-#: src/olympia/versions/models.py:1201
+#: src/olympia/versions/models.py:1175
 msgid "Auto-approved, Confirmed"
 msgstr ""
 
-#: src/olympia/versions/models.py:1203
+#: src/olympia/versions/models.py:1177
 msgid "Auto-approved, not Confirmed"
 msgstr ""
 
-#: src/olympia/versions/models.py:1206
+#: src/olympia/versions/models.py:1180
 msgid "Approved, Manual"
 msgstr ""
 
-#: src/olympia/versions/models.py:1213
+#: src/olympia/versions/models.py:1187
 msgid "Disabled by Developer"
 msgstr ""
 
-#: src/olympia/versions/models.py:1571
+#: src/olympia/versions/models.py:1544
 #, python-brace-format
 msgid "{app} {min} and later"
 msgstr "{app} {min} 이상"
 
-#: src/olympia/versions/models.py:1698
+#: src/olympia/versions/models.py:1671
 #, python-brace-format
 msgid "The install origin {origin} is not permitted."
 msgstr ""

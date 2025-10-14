@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-02 09:04+0000\n"
+"POT-Creation-Date: 2025-10-14 14:55+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -1311,6 +1311,7 @@ msgid ""
 "and more."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
 #, fuzzy
 msgid "Privacy & Security"
 msgstr "Polisa privatnosti"
@@ -5337,15 +5338,11 @@ msgid "See all extensions"
 msgstr "Pogledajte sve dodatke"
 
 #. editorial content for the secondary hero shelves.
-msgid "Anti-tracking extensions"
+msgid "Extension Starter Pack"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Essential add-ons"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Writing tools"
+msgid "Twitch customization"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -6046,21 +6043,6 @@ msgstr "Status dodatka po datumu"
 
 msgid "Daily Users by Date"
 msgstr "Dnevnih korisnika po datumu"
-
-msgid "What are daily users?"
-msgstr "Šta su dnevni korisnici?"
-
-msgid ""
-"<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check "
-"for updates once per day. The total number of these update pings is known as "
-"Active Daily Users. Daily users can be broken down by add-on version, "
-"operating system, add-on status, application, and locale. </p>"
-msgstr ""
-"<h2>Šta su dnevni korisnici?</h2> <p> Dodaci koji su instalirani sa ovog "
-"sajta proveravaju nadogradnje jednom dnevno. Ukupan broj provera je poznat "
-"kao broj Aktivnih dnevnih korisnika. Dnevni korisnici se mogu rasporediti po "
-"verziji dodatka, operativnom sistemu, statusa dodatka, aplikaciji i lokalu. "
-"</p>"
 
 msgid "Application versions by Date"
 msgstr "Verzije aplikacija po datumu"

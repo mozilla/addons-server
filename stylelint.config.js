@@ -31,6 +31,8 @@ export default {
     'property-no-vendor-prefix': null,
     'shorthand-property-no-redundant-values': null,
     'color-function-notation': null,
+    // less doesn't support rgb with alpha as fourth argument
+    'color-function-alias-notation': null,
     'alpha-value-notation': null,
     'color-hex-length': null,
     'length-zero-no-unit': null,

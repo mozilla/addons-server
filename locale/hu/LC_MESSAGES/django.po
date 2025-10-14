@@ -352,11 +352,11 @@ msgstr "Nem írható felül a leírófájlban beállított kompatibilitási info
 msgid "Images must be smaller than %dMB"
 msgstr "A képeknek %d MB-nál kisebbnek kell lenniük"
 
-#: src/olympia/addons/models.py:2318 src/olympia/addons/models.py:2397 src/olympia/constants/base.py:66
+#: src/olympia/addons/models.py:2302 src/olympia/addons/models.py:2381 src/olympia/constants/base.py:66
 msgid "Listed"
 msgstr "Felsorolva"
 
-#: src/olympia/addons/models.py:2575
+#: src/olympia/addons/models.py:2559
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr "A kiegészítő és gyűjtemény útvonalaknak „/” karakterrel kell végződniük"
 
@@ -1328,7 +1328,7 @@ msgstr "Ellenőrzésre vár"
 msgid "Disabled by Mozilla"
 msgstr "Mozilla által letiltva"
 
-#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1211
+#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1185
 msgid "Deleted"
 msgstr "Törölt"
 
@@ -1513,7 +1513,8 @@ msgstr ""
 "Töltsön le Firefox kiegészítőket, melyek javítják a fényképekkel, zenével és videókkal kapcsolatos élményeit. Az ebben a kategóriában lévő kiegészítők módosítják a hangot és videót, fordított "
 "képkeresést kínálnak, és még sok mást."
 
-#: src/olympia/constants/categories.py:142
+#. editorial content for the secondary hero shelves.
+#: src/olympia/constants/categories.py:142 src/olympia/discovery/strings.jinja2:1035
 msgid "Privacy & Security"
 msgstr "Adatvédelem és biztonság"
 
@@ -5897,18 +5898,13 @@ msgstr "Összes kiegészítő megtekintése"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1033
-msgid "Anti-tracking extensions"
-msgstr "Követés elleni kiegészítők"
-
-#. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1035
-msgid "Essential add-ons"
-msgstr "Elengedhetetlen kiegészítők"
+msgid "Extension Starter Pack"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1037
-msgid "Writing tools"
-msgstr "Íróeszközök"
+msgid "Twitch customization"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1039 src/olympia/discovery/strings.jinja2:1041 src/olympia/discovery/strings.jinja2:1043
@@ -6731,18 +6727,6 @@ msgstr "Kiegészítő állapota dátum szerint"
 msgid "Daily Users by Date"
 msgstr "Napi felhasználók dátum szerint"
 
-#: src/olympia/stats/templates/stats/reports/usage.html:6
-msgid "What are daily users?"
-msgstr "Kik a napi felhasználók?"
-
-#: src/olympia/stats/templates/stats/reports/usage.html:10
-msgid ""
-"<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
-"down by add-on version, operating system, add-on status, application, and locale. </p>"
-msgstr ""
-"<h2>Kik a napi felhasználók?</h2><p>Az oldalról letölthető kiegészítők naponta egyszer ellenőrzik a frissítéseket. Ezen frissítési ellenőrzések összesített száma az úgynevezett aktív napi "
-"felhasználók. A napi felhasználók lebonthatóak a kiegészítő verziója, az operációs rendszer, a kiegészítő állapota, az alkalmazás és a területi beállítások szerint.</p>"
-
 #: src/olympia/stats/templates/stats/reports/versions.html:3
 msgid "Application versions by Date"
 msgstr "Alkalmazásverziók dátum szerint"
@@ -7043,33 +7027,33 @@ msgstr ""
 "\n"
 "A Mozilla Kiegészítők csapata"
 
-#: src/olympia/versions/models.py:1196
+#: src/olympia/versions/models.py:1170
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
 msgstr "Késleltetés elutasítva, ütemezés: %s"
 
-#: src/olympia/versions/models.py:1201
+#: src/olympia/versions/models.py:1175
 msgid "Auto-approved, Confirmed"
 msgstr "Automatikusan jóváhagyva, megerősítve"
 
-#: src/olympia/versions/models.py:1203
+#: src/olympia/versions/models.py:1177
 msgid "Auto-approved, not Confirmed"
 msgstr "Automatikusan jóváhagyva, nincs megerősítve"
 
-#: src/olympia/versions/models.py:1206
+#: src/olympia/versions/models.py:1180
 msgid "Approved, Manual"
 msgstr "Jóváhagyva, kézileg"
 
-#: src/olympia/versions/models.py:1213
+#: src/olympia/versions/models.py:1187
 msgid "Disabled by Developer"
 msgstr "A fejlesztő által letiltva"
 
-#: src/olympia/versions/models.py:1571
+#: src/olympia/versions/models.py:1544
 #, python-brace-format
 msgid "{app} {min} and later"
 msgstr "{app} {min} és frissebbek"
 
-#: src/olympia/versions/models.py:1698
+#: src/olympia/versions/models.py:1671
 #, python-brace-format
 msgid "The install origin {origin} is not permitted."
 msgstr "A(z) {origin} telepítési eredet nem engedélyezett."

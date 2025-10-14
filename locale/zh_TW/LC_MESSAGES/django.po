@@ -350,11 +350,11 @@ msgstr "無法覆蓋安裝資訊檔當中，對此應用程式（%s）的相容�
 msgid "Images must be smaller than %dMB"
 msgstr "圖片必須小於 %dMB"
 
-#: src/olympia/addons/models.py:2318 src/olympia/addons/models.py:2397 src/olympia/constants/base.py:66
+#: src/olympia/addons/models.py:2302 src/olympia/addons/models.py:2381 src/olympia/constants/base.py:66
 msgid "Listed"
 msgstr "顯示"
 
-#: src/olympia/addons/models.py:2575
+#: src/olympia/addons/models.py:2559
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr "附加元件及收藏集的路徑結尾，必須為「/」"
 
@@ -1317,7 +1317,7 @@ msgstr "等待審查"
 msgid "Disabled by Mozilla"
 msgstr "已被 Mozilla 停用"
 
-#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1211
+#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1185
 msgid "Deleted"
 msgstr "已刪除"
 
@@ -1493,7 +1493,8 @@ msgstr "相片、音樂、影片"
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
 msgstr "下載能夠加強看照片、欣賞影音體驗的 Firefox 擴充套件。此分類包含能夠修改影音內容、以圖找圖等更多功能的擴充套件。"
 
-#: src/olympia/constants/categories.py:142
+#. editorial content for the secondary hero shelves.
+#: src/olympia/constants/categories.py:142 src/olympia/discovery/strings.jinja2:1035
 msgid "Privacy & Security"
 msgstr "隱私權與安全性"
 
@@ -5798,18 +5799,13 @@ msgstr "瀏覽所有擴充套件"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1033
-msgid "Anti-tracking extensions"
-msgstr "反追蹤擴充套件"
-
-#. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1035
-msgid "Essential add-ons"
-msgstr "不可錯過的附加元件"
+msgid "Extension Starter Pack"
+msgstr "擴充套件組合包"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1037
-msgid "Writing tools"
-msgstr "寫作工具"
+msgid "Twitch customization"
+msgstr "自訂 Twitch"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1039 src/olympia/discovery/strings.jinja2:1041 src/olympia/discovery/strings.jinja2:1043
@@ -6630,16 +6626,6 @@ msgstr "依日期顯示元件狀態"
 msgid "Daily Users by Date"
 msgstr "依日期顯示每日使用者"
 
-#: src/olympia/stats/templates/stats/reports/usage.html:6
-msgid "What are daily users?"
-msgstr "每日使用者數是指？"
-
-#: src/olympia/stats/templates/stats/reports/usage.html:10
-msgid ""
-"<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
-"down by add-on version, operating system, add-on status, application, and locale. </p>"
-msgstr "<h2>每日使用者數是什麼？</h2><p>從這個網站下載的附加元件每日檢查更新。這些更新偵測的總次數稱為活躍的每日使用者數。每日使用者數可以劃分為附加元件版本、作業系統、附加元件狀態、應用程式與地區。</p>"
-
 #: src/olympia/stats/templates/stats/reports/versions.html:3
 msgid "Application versions by Date"
 msgstr "依日期顯示應用程式版本"
@@ -6937,33 +6923,33 @@ msgstr ""
 "\n"
 "Mozilla Add-ons 團隊"
 
-#: src/olympia/versions/models.py:1196
+#: src/olympia/versions/models.py:1170
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
 msgstr "延遲拒絕，排定於 %s"
 
-#: src/olympia/versions/models.py:1201
+#: src/olympia/versions/models.py:1175
 msgid "Auto-approved, Confirmed"
 msgstr "自動通過審核，已確認"
 
-#: src/olympia/versions/models.py:1203
+#: src/olympia/versions/models.py:1177
 msgid "Auto-approved, not Confirmed"
 msgstr "自動通過審核，未確認"
 
-#: src/olympia/versions/models.py:1206
+#: src/olympia/versions/models.py:1180
 msgid "Approved, Manual"
 msgstr "通過審核，手動"
 
-#: src/olympia/versions/models.py:1213
+#: src/olympia/versions/models.py:1187
 msgid "Disabled by Developer"
 msgstr "由開發者關閉"
 
-#: src/olympia/versions/models.py:1571
+#: src/olympia/versions/models.py:1544
 #, python-brace-format
 msgid "{app} {min} and later"
 msgstr "{app} {min} 及更新版"
 
-#: src/olympia/versions/models.py:1698
+#: src/olympia/versions/models.py:1671
 #, python-brace-format
 msgid "The install origin {origin} is not permitted."
 msgstr "不允許使用 {origin} 此安裝來源。"

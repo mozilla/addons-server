@@ -172,14 +172,14 @@ services:
       - data_rabbitmq:/var/lib/rabbitmq
 
   autograph:
-    image: mozilla/autograph:7.5.2@sha256:3bd9c361a130bc82f9d823ef49995da93f2ac647f392d82ed4e1a38a37dc1b4e
+    image: mozilla/autograph:7.5.3@sha256:5012b868b805602d665834a52d24156dbe56544c20bbbb4011588b56a3a249a7
     command: /go/bin/autograph -c /data/autograph/autograph_localdev_config.yaml
     volumes:
       - data_autograph:/data/autograph
 
   addons-frontend:
     <<: *env
-    image: mozilla/addons-frontend:2025.09.04-1@sha256:742ea4b42378db0557b398f2be24427fe65af644498daf4c626aed5a34d63fe6
+    image: mozilla/addons-frontend:2025.10.02-1@sha256:1bf1a8eb62cf350e3d05df7c99d6cbc47304764b70c48f7c1cf4d141f2719ff1
     platform: linux/amd64
     environment:
       # We change the proxy port (which is the main entrypoint) as well as the

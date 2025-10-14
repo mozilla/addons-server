@@ -355,11 +355,11 @@ msgstr "Kan inte åsidosätta kompatibilitetsinformation som ställts in i manif
 msgid "Images must be smaller than %dMB"
 msgstr "Bilder måste vara mindre än %dMB"
 
-#: src/olympia/addons/models.py:2318 src/olympia/addons/models.py:2397 src/olympia/constants/base.py:66
+#: src/olympia/addons/models.py:2302 src/olympia/addons/models.py:2381 src/olympia/constants/base.py:66
 msgid "Listed"
 msgstr "Listad"
 
-#: src/olympia/addons/models.py:2575
+#: src/olympia/addons/models.py:2559
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr "Sökväg för tillägg och samling måste sluta med \"/\""
 
@@ -1331,7 +1331,7 @@ msgstr "Väntar på granskning"
 msgid "Disabled by Mozilla"
 msgstr "Inaktiverad av Mozilla"
 
-#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1211
+#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1185
 msgid "Deleted"
 msgstr "Borttagen"
 
@@ -1507,7 +1507,8 @@ msgstr "Foton, musik & videor"
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
 msgstr "Hämta utökningar för Firefox som förbättrar bilder, musik och videoupplevelser. Utökningar i denna kategori ändrar ljud och video, omvänd bildsökning och mer."
 
-#: src/olympia/constants/categories.py:142
+#. editorial content for the secondary hero shelves.
+#: src/olympia/constants/categories.py:142 src/olympia/discovery/strings.jinja2:1035
 msgid "Privacy & Security"
 msgstr "Sekretess & säkerhet"
 
@@ -5892,18 +5893,13 @@ msgstr "Se alla tillägg"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1033
-msgid "Anti-tracking extensions"
-msgstr "Antispårningstillägg"
-
-#. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1035
-msgid "Essential add-ons"
-msgstr "Viktiga tillägg"
+msgid "Extension Starter Pack"
+msgstr "Startpaket för tillägg"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1037
-msgid "Writing tools"
-msgstr "Skrivverktyg"
+msgid "Twitch customization"
+msgstr "Anpassning av Twitch"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1039 src/olympia/discovery/strings.jinja2:1041 src/olympia/discovery/strings.jinja2:1043
@@ -6726,18 +6722,6 @@ msgstr "Status för tillägg efter datum"
 msgid "Daily Users by Date"
 msgstr "Dagliga användare efter datum"
 
-#: src/olympia/stats/templates/stats/reports/usage.html:6
-msgid "What are daily users?"
-msgstr "Vad är dagliga användare?"
-
-#: src/olympia/stats/templates/stats/reports/usage.html:10
-msgid ""
-"<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
-"down by add-on version, operating system, add-on status, application, and locale. </p>"
-msgstr ""
-"<h2>Vad är dagliga användare?</h2> <p> Tillägg hämtade från denna webbplats kontrollerar efter uppdateringar en gång per dag. Det totala antalet uppdateringar kallas aktiva dagliga användare. "
-"Dagliga användare kan brytas ner efter tilläggsversion, operativsystem, tilläggsstatus, applikation och språk. </p>"
-
 #: src/olympia/stats/templates/stats/reports/versions.html:3
 msgid "Application versions by Date"
 msgstr "Applikationsversioner efter datum"
@@ -7038,33 +7022,33 @@ msgstr ""
 "\n"
 "Mozillas tilläggsteam"
 
-#: src/olympia/versions/models.py:1196
+#: src/olympia/versions/models.py:1170
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
 msgstr "Fördröjning avvisad, schemalagd för %s"
 
-#: src/olympia/versions/models.py:1201
+#: src/olympia/versions/models.py:1175
 msgid "Auto-approved, Confirmed"
 msgstr "Automatisk godkännande bekräftad"
 
-#: src/olympia/versions/models.py:1203
+#: src/olympia/versions/models.py:1177
 msgid "Auto-approved, not Confirmed"
 msgstr "Automatisk godkännande inte bekräftad"
 
-#: src/olympia/versions/models.py:1206
+#: src/olympia/versions/models.py:1180
 msgid "Approved, Manual"
 msgstr "Godkänd, manuellt"
 
-#: src/olympia/versions/models.py:1213
+#: src/olympia/versions/models.py:1187
 msgid "Disabled by Developer"
 msgstr "Inaktiverad av utvecklare"
 
-#: src/olympia/versions/models.py:1571
+#: src/olympia/versions/models.py:1544
 #, python-brace-format
 msgid "{app} {min} and later"
 msgstr "{app} {min} och senare"
 
-#: src/olympia/versions/models.py:1698
+#: src/olympia/versions/models.py:1671
 #, python-brace-format
 msgid "The install origin {origin} is not permitted."
 msgstr "Installationsursprunget {origin} är inte tillåtet."

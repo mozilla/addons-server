@@ -1,5 +1,4 @@
 import os
-from decimal import Decimal
 from unittest import mock
 
 from django.conf import settings
@@ -16,12 +15,12 @@ from olympia.amo.tests import (
     user_factory,
     version_factory,
 )
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.constants.scanners import (
     ABORTED,
     ABORTING,
     COMPLETED,
     CUSTOMS,
-    MAD,
     NARC,
     NEW,
     RUNNING,
@@ -39,7 +38,6 @@ from olympia.scanners.models import (
 )
 from olympia.scanners.tasks import (
     _run_yara,
-    call_mad_api,
     mark_scanner_query_rule_as_completed_or_aborted,
     run_customs,
     run_narc_on_version,
@@ -1095,7 +1093,6 @@ class TestRunNarc(UploadMixin, TestCase):
         # We re-triggered the run action.
         assert run_action_mock.call_count == 1
         assert run_action_mock.call_args[0] == (self.version,)
-        assert run_action_mock.call_args[1] == {'check_mad_results': False}
 
     @mock.patch('olympia.scanners.tasks.statsd.incr')
     @mock.patch.object(ScannerResult, 'run_action')
@@ -1179,7 +1176,6 @@ class TestRunNarc(UploadMixin, TestCase):
 
         assert run_action_mock.call_count == 1
         assert run_action_mock.call_args[0] == (self.version,)
-        assert run_action_mock.call_args[1] == {'check_mad_results': False}
 
     @mock.patch('olympia.scanners.tasks.statsd.incr')
     @mock.patch.object(ScannerResult, 'run_action')
@@ -1683,6 +1679,17 @@ class TestRunYaraQueryRule(TestCase):
         self.rule.reload()
         assert self.rule.state == COMPLETED
 
+    def test_exclude_promoted_addons(self):
+        self.make_addon_promoted(
+            self.version.addon, group_id=PROMOTED_GROUP_CHOICES.NOTABLE
+        )
+        self.rule.update(exclude_promoted_addons=True, state=SCHEDULED)
+        run_scanner_query_rule.delay(self.rule.pk)
+
+        assert ScannerQueryResult.objects.count() == 0
+        self.rule.reload()
+        assert self.rule.state == COMPLETED
+
     def test_run_on_current_version_only(self):
         # Pretend we went through the admin, run on current version only.
         self.rule.update(state=SCHEDULED, run_on_current_version_only=True)
@@ -1837,6 +1844,7 @@ class TestRunYaraQueryRule(TestCase):
         yara_result = yara_results[0]
         assert yara_result.version == self.version
         assert not yara_result.was_blocked
+        assert not yara_result.was_promoted
         assert len(yara_result.results) == 2
         assert yara_result.results[0] == {
             'rule': self.rule.name,
@@ -1884,6 +1892,19 @@ class TestRunYaraQueryRule(TestCase):
         scanner_result = scanner_results[0]
         assert scanner_result.version == self.version
         assert not scanner_result.was_blocked
+
+    def test_run_on_chunk_was_promoted(self):
+        self.rule.update(state=RUNNING)  # Pretend we started running the rule.
+        self.make_addon_promoted(
+            self.version.addon, group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+        )
+        run_scanner_query_rule_on_versions_chunk([self.version.pk], self.rule.pk)
+
+        scanner_results = ScannerQueryResult.objects.all()
+        assert len(scanner_results) == 1
+        scanner_result = scanner_results[0]
+        assert scanner_result.version == self.version
+        assert scanner_result.was_promoted
 
     def test_run_on_chunk_disabled(self):
         # Make sure it still works when a file has been disabled
@@ -1970,158 +1991,3 @@ class TestRunNarcQueryRule(TestRunYaraQueryRule):
         ]
         self.rule.reload()
         assert self.rule.state == RUNNING  # Not touched by this task.
-
-
-class TestCallMadApi(UploadMixin, TestCase):
-    def setUp(self):
-        super().setUp()
-
-        self.upload = self.get_upload('webextension.xpi')
-        self.results = [
-            {
-                **amo.VALIDATOR_SKELETON_RESULTS,
-            }
-        ]
-        self.customs_result = ScannerResult.objects.create(
-            upload=self.upload,
-            scanner=CUSTOMS,
-            results={'scanMap': {'a': 1, 'b': 2}},
-        )
-        self.yara_result = ScannerResult.objects.create(
-            upload=self.upload, scanner=YARA, results=[{'rule': 'fake'}]
-        )
-        self.default_results_count = len(ScannerResult.objects.all())
-        self.create_switch('enable-mad', active=True)
-
-    def create_response(self, status_code=200, data=None):
-        response = mock.Mock(status_code=status_code)
-        response.json.return_value = data if data else {}
-        return response
-
-    @mock.patch('olympia.scanners.tasks.uuid.uuid4')
-    @mock.patch('olympia.scanners.tasks.statsd.timer')
-    @mock.patch('olympia.scanners.tasks.statsd.incr')
-    @mock.patch.object(requests.Session, 'post')
-    def test_call_with_mocks(self, requests_mock, incr_mock, timer_mock, uuid4_mock):
-        model_version = 'x.y.z'
-        ml_results = {
-            'ensemble': 0.56,
-            'scanners': {
-                'customs': {'score': 0.123, 'model_version': model_version},
-            },
-        }
-        requests_mock.return_value = self.create_response(data=ml_results)
-        requestId = 'some request id'
-        uuid4_mock.return_value.hex = requestId
-        assert len(ScannerResult.objects.all()) == self.default_results_count
-        assert self.customs_result.score == -1.0
-        assert self.customs_result.model_version is None
-
-        returned_results = call_mad_api(self.results, self.upload.pk)
-
-        assert requests_mock.called
-        requests_mock.assert_called_with(
-            url=settings.MAD_API_URL,
-            json={'scanners': {'customs': self.customs_result.results}},
-            timeout=settings.MAD_API_TIMEOUT,
-            headers={'x-request-id': requestId},
-        )
-        assert len(ScannerResult.objects.all()) == self.default_results_count + 1
-        mad_result = ScannerResult.objects.latest()
-        assert mad_result.upload == self.upload
-        assert mad_result.scanner == MAD
-        assert mad_result.results == ml_results
-        assert returned_results == self.results[0]
-        assert incr_mock.called
-        assert incr_mock.call_count == 1
-        incr_mock.assert_has_calls([mock.call('devhub.mad.success')])
-        assert timer_mock.called
-        timer_mock.assert_called_with('devhub.mad')
-        # The customs and mad results should be updated with the scores
-        # returned in the ML response.
-        self.customs_result.refresh_from_db()
-        assert self.customs_result.score == Decimal('0.123')
-        assert self.customs_result.model_version == model_version
-        assert mad_result.score == Decimal('0.56')
-        assert mad_result.model_version is None
-
-    @mock.patch('olympia.scanners.tasks.statsd.incr')
-    @mock.patch.object(requests.Session, 'post')
-    def test_handles_non_200_http_responses(self, requests_mock, incr_mock):
-        requests_mock.return_value = self.create_response(
-            status_code=504, data={'message': 'http timeout'}
-        )
-
-        returned_results = call_mad_api(self.results, self.upload.pk)
-
-        assert requests_mock.called
-        assert len(ScannerResult.objects.all()) == self.default_results_count
-        assert returned_results == self.results[0]
-        assert incr_mock.called
-        assert incr_mock.call_count == 1
-        incr_mock.assert_has_calls([mock.call('devhub.mad.failure')])
-
-    @mock.patch('olympia.scanners.tasks.statsd.incr')
-    @mock.patch.object(requests.Session, 'post')
-    def test_handles_non_json_responses(self, requests_mock, incr_mock):
-        response = mock.Mock(status_code=200)
-        response.json.side_effect = ValueError('not json')
-        requests_mock.return_value = response
-
-        returned_results = call_mad_api(self.results, self.upload.pk)
-
-        assert requests_mock.called
-        assert len(ScannerResult.objects.all()) == self.default_results_count
-        assert returned_results == self.results[0]
-        assert incr_mock.called
-        assert incr_mock.call_count == 1
-        incr_mock.assert_has_calls([mock.call('devhub.mad.failure')])
-
-    @mock.patch.object(requests.Session, 'post')
-    def test_does_not_run_when_switch_is_off(self, requests_mock):
-        self.create_switch('enable-mad', active=False)
-
-        call_mad_api(self.results, self.upload.pk)
-
-        assert not requests_mock.called
-
-    @mock.patch.object(requests.Session, 'post')
-    def test_does_not_run_when_results_contain_errors(self, requests_mock):
-        self.create_switch('enable-mad', active=True)
-        self.results[0].update({'errors': 1})
-
-        returned_results = call_mad_api(self.results, self.upload.pk)
-
-        assert not requests_mock.called
-        assert returned_results == self.results[0]
-
-    @mock.patch.object(requests.Session, 'post')
-    def test_does_not_run_when_scan_map_is_empty(self, requests_mock):
-        self.create_switch('enable-mad', active=True)
-        self.customs_result.update(results={'scanMap': {}})
-
-        returned_results = call_mad_api(self.results, self.upload.pk)
-
-        assert not requests_mock.called
-        assert returned_results == self.results[0]
-
-    @mock.patch.object(requests.Session, 'post')
-    def test_does_not_run_when_scan_map_is_small(self, requests_mock):
-        self.create_switch('enable-mad', active=True)
-        self.customs_result.update(results={'scanMap': {'a': 1}})
-
-        returned_results = call_mad_api(self.results, self.upload.pk)
-
-        assert not requests_mock.called
-        assert returned_results == self.results[0]
-
-    @mock.patch.object(requests.Session, 'post')
-    def test_does_not_run_when_other_results_have_errors(self, requests_mock):
-        self.create_switch('enable-mad', active=True)
-        self.results.append({**amo.VALIDATOR_SKELETON_EXCEPTION_WEBEXT})
-        assert len(self.results) == 2
-
-        returned_results = call_mad_api(self.results, self.upload.pk)
-
-        assert not requests_mock.called
-        assert returned_results == self.results[1]

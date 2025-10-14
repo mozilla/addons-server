@@ -354,11 +354,11 @@ msgstr "Nie je možné prepísať informácie o kompatibilite nastavené v manif
 msgid "Images must be smaller than %dMB"
 msgstr "Obrázky musia byť menšie ako %dMB"
 
-#: src/olympia/addons/models.py:2318 src/olympia/addons/models.py:2397 src/olympia/constants/base.py:66
+#: src/olympia/addons/models.py:2302 src/olympia/addons/models.py:2381 src/olympia/constants/base.py:66
 msgid "Listed"
 msgstr "V zozname"
 
-#: src/olympia/addons/models.py:2575
+#: src/olympia/addons/models.py:2559
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr "Cesta k doplnkom a kolekciám musí končiť znakom \"/\""
 
@@ -1331,7 +1331,7 @@ msgstr "Čaká na kontrolu"
 msgid "Disabled by Mozilla"
 msgstr "Zakázaný Mozillou"
 
-#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1211
+#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1185
 msgid "Deleted"
 msgstr "Odstránené"
 
@@ -1507,7 +1507,8 @@ msgstr "Fotografie, hudba a videá"
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
 msgstr "Stiahnite si rozšírenia pre Firefox, ktoré vylepšia zážitok z fotografií, hudby a videa. Rozšírenia v tejto kategórii upravujú zvuk a video, spätné vyhľadávanie obrázkov a ďalšie."
 
-#: src/olympia/constants/categories.py:142
+#. editorial content for the secondary hero shelves.
+#: src/olympia/constants/categories.py:142 src/olympia/discovery/strings.jinja2:1035
 msgid "Privacy & Security"
 msgstr "Súkromie a bezpečnosť"
 
@@ -5879,18 +5880,13 @@ msgstr "Zobraziť všetky rozšírenia"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1033
-msgid "Anti-tracking extensions"
-msgstr "Rozšírenia proti sledovaniu"
-
-#. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1035
-msgid "Essential add-ons"
-msgstr "Nevyhnutné doplnky"
+msgid "Extension Starter Pack"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1037
-msgid "Writing tools"
-msgstr "Nástroje na písanie"
+msgid "Twitch customization"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1039 src/olympia/discovery/strings.jinja2:1041 src/olympia/discovery/strings.jinja2:1043
@@ -6715,18 +6711,6 @@ msgstr "Stav doplnku podľa dátumu"
 msgid "Daily Users by Date"
 msgstr "Denní používatelia podľa dátumu"
 
-#: src/olympia/stats/templates/stats/reports/usage.html:6
-msgid "What are daily users?"
-msgstr "Čo sú to denní používatelia?"
-
-#: src/olympia/stats/templates/stats/reports/usage.html:10
-msgid ""
-"<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
-"down by add-on version, operating system, add-on status, application, and locale. </p>"
-msgstr ""
-"<h2>Čo sú denní používatelia?</h2> <p> Doplnky stiahnuté z tejto stránky kontrolujú aktualizácie raz za deň. Celkový počet týchto pingov na aktualizácie je známy ako aktívni denní používatelia. "
-"Denných používateľov možno rozdeliť podľa verzie doplnku, operačného systému, stavu doplnku, aplikácie a jazykového nastavenia.</p>"
-
 #: src/olympia/stats/templates/stats/reports/versions.html:3
 msgid "Application versions by Date"
 msgstr "Verzie doplnku podľa dátumu"
@@ -7027,33 +7011,33 @@ msgstr ""
 "\n"
 "Tím doplnkov Mozilla"
 
-#: src/olympia/versions/models.py:1196
+#: src/olympia/versions/models.py:1170
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
 msgstr "Oneskorené odmietnutie, naplánované pre %s"
 
-#: src/olympia/versions/models.py:1201
+#: src/olympia/versions/models.py:1175
 msgid "Auto-approved, Confirmed"
 msgstr "Automaticky schválený, potvrdený"
 
-#: src/olympia/versions/models.py:1203
+#: src/olympia/versions/models.py:1177
 msgid "Auto-approved, not Confirmed"
 msgstr "Automaticky schválený, nepotvrdený"
 
-#: src/olympia/versions/models.py:1206
+#: src/olympia/versions/models.py:1180
 msgid "Approved, Manual"
 msgstr "Schválený, manuálne"
 
-#: src/olympia/versions/models.py:1213
+#: src/olympia/versions/models.py:1187
 msgid "Disabled by Developer"
 msgstr "Zakázaný vývojárom"
 
-#: src/olympia/versions/models.py:1571
+#: src/olympia/versions/models.py:1544
 #, python-brace-format
 msgid "{app} {min} and later"
 msgstr "{app} {min} a vyššie"
 
-#: src/olympia/versions/models.py:1698
+#: src/olympia/versions/models.py:1671
 #, python-brace-format
 msgid "The install origin {origin} is not permitted."
 msgstr "Pôvod inštalácie {origin} nie je povolený."

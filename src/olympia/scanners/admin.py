@@ -30,7 +30,6 @@ from olympia.constants.scanners import (
     CUSTOMS,
     FALSE_POSITIVE,
     INCONCLUSIVE,
-    MAD,
     NARC,
     NEW,
     RESULT_STATES,
@@ -260,13 +259,13 @@ class AddonAverageDailyUsers(NumericRangeFilter):
         self.title = 'add-on ADU'
 
 
-class FileStatusFiler(admin.ChoicesFieldListFilter):
+class FileStatusFilter(admin.ChoicesFieldListFilter):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.title = 'file status'
 
 
-class FileIsSigned(admin.BooleanFieldListFilter):
+class FileIsSignedFilter(admin.BooleanFieldListFilter):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.title = 'file signature'
@@ -459,7 +458,13 @@ class AbstractScannerResultAdminMixin:
 class AbstractScannerRuleAdminMixin:
     view_on_site = False
 
-    list_display = ('__str__', 'scanner', 'action', 'is_active')
+    list_display = (
+        '__str__',
+        'scanner',
+        'action',
+        'is_active',
+        'exclude_promoted_addons',
+    )
     list_filter = ('scanner', 'action', 'is_active')
     fields = (
         'scanner',
@@ -472,6 +477,7 @@ class AbstractScannerRuleAdminMixin:
         'matched_results_link',
         'is_active',
         'definition',
+        'exclude_promoted_addons',
     )
     readonly_fields = ('created', 'modified', 'matched_results_link')
 
@@ -543,7 +549,6 @@ class ScannerResultAdmin(AbstractScannerResultAdminMixin, AMOModelAdmin):
         'authors',
         'guid',
         'scanner',
-        'formatted_score',
         'created',
         'state',
         formatted_matched_rules_with_files_and_data,
@@ -556,7 +561,6 @@ class ScannerResultAdmin(AbstractScannerResultAdminMixin, AMOModelAdmin):
         'guid',
         'authors',
         'scanner',
-        'formatted_score',
         'formatted_matched_rules',
         'formatted_created',
         'result_actions',
@@ -573,15 +577,6 @@ class ScannerResultAdmin(AbstractScannerResultAdminMixin, AMOModelAdmin):
 
     def get_queryset(self, request):
         return super().get_queryset(request).prefetch_related('matched_rules')
-
-    def formatted_score(self, obj):
-        if obj.scanner not in [CUSTOMS, MAD]:
-            return '-'
-        if obj.score < 0:
-            return 'n/a'
-        return f'{obj.score * 100:0.0f}%'
-
-    formatted_score.short_description = 'Score'
 
     def safe_referer_redirect(self, request, default_url):
         referer = request.META.get('HTTP_REFERER')
@@ -760,6 +755,7 @@ class ScannerQueryResultAdmin(AbstractScannerResultAdminMixin, AMOModelAdmin):
         'formatted_created',
         'is_file_signed',
         'was_blocked',
+        'was_promoted',
         'authors',
         'formatted_matched_rules',
         'matching_filenames',
@@ -774,9 +770,10 @@ class ScannerQueryResultAdmin(AbstractScannerResultAdminMixin, AMOModelAdmin):
         ('version__addon__last_updated', AddonLastUpdatedFilter),
         ('version__addon__disabled_by_user', AddonVisibilityFilter),
         ('version__addon__average_daily_users', AddonAverageDailyUsers),
-        ('version__file__status', FileStatusFiler),
-        ('version__file__is_signed', FileIsSigned),
+        ('version__file__status', FileStatusFilter),
+        ('version__file__is_signed', FileIsSignedFilter),
         ('was_blocked', admin.BooleanFieldListFilter),
+        ('was_promoted', admin.BooleanFieldListFilter),
     )
     list_select_related = AbstractScannerResultAdminMixin.list_select_related + (
         'matched_rule',
@@ -878,6 +875,7 @@ class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, AMOModelAdmin):
         'run_on_disabled_addons',
         'run_on_specific_channel',
         'run_on_current_version_only',
+        'exclude_promoted_addons',
         'created',
         'state_with_actions',
         'completion_rate',
@@ -892,6 +890,7 @@ class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, AMOModelAdmin):
         'run_on_disabled_addons',
         'run_on_specific_channel',
         'run_on_current_version_only',
+        'exclude_promoted_addons',
         'state_with_actions',
         'name',
         'pretty_name',

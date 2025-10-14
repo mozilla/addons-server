@@ -17,13 +17,7 @@ from olympia.amo.tests import (
 from olympia.api.tests.utils import APIKeyAuthTestMixin
 from olympia.blocklist.models import BlocklistSubmission
 from olympia.blocklist.utils import block_activity_log_save
-from olympia.constants.scanners import (
-    CUSTOMS,
-    LABEL_BAD,
-    MAD,
-    TRUE_POSITIVE,
-    YARA,
-)
+from olympia.constants.scanners import CUSTOMS, LABEL_BAD, TRUE_POSITIVE, YARA
 from olympia.scanners.models import ScannerResult
 from olympia.scanners.serializers import ScannerResultSerializer
 
@@ -316,7 +310,7 @@ class TestScannerResultViewInternal(TestCase):
 
     def test_get_unique_bad_results(self):
         version_1 = version_factory(addon=addon_factory(), version='1.0')
-        ScannerResult.objects.create(scanner=MAD, version=version_1)
+        ScannerResult.objects.create(scanner=CUSTOMS, version=version_1)
         ActivityLog.objects.create(
             amo.LOG.BLOCKLIST_BLOCK_ADDED, version_1, user=self.user
         )
@@ -324,7 +318,7 @@ class TestScannerResultViewInternal(TestCase):
             amo.LOG.BLOCKLIST_BLOCK_EDITED, version_1, user=self.user
         )
         version_2 = version_factory(addon=addon_factory(), version='2.0')
-        ScannerResult.objects.create(scanner=MAD, version=version_2)
+        ScannerResult.objects.create(scanner=CUSTOMS, version=version_2)
         ActivityLog.objects.create(
             amo.LOG.BLOCKLIST_BLOCK_ADDED, version_2, user=self.user
         )
@@ -338,7 +332,7 @@ class TestScannerResultViewInternal(TestCase):
 
     def test_get_unique_good_results(self):
         version_1 = version_factory(addon=addon_factory(), version='1.0')
-        ScannerResult.objects.create(scanner=MAD, version=version_1)
+        ScannerResult.objects.create(scanner=CUSTOMS, version=version_1)
         ActivityLog.objects.create(amo.LOG.APPROVE_VERSION, version_1, user=self.user)
         ActivityLog.objects.create(
             amo.LOG.CONFIRM_AUTO_APPROVED, version_1, user=self.user
@@ -347,7 +341,7 @@ class TestScannerResultViewInternal(TestCase):
             amo.LOG.CONFIRM_AUTO_APPROVED, version_1, user=self.user
         )
         version_2 = version_factory(addon=addon_factory(), version='2.0')
-        ScannerResult.objects.create(scanner=MAD, version=version_2)
+        ScannerResult.objects.create(scanner=CUSTOMS, version=version_2)
         ActivityLog.objects.create(amo.LOG.APPROVE_VERSION, version_2, user=self.user)
         ActivityLog.objects.create(
             amo.LOG.CONFIRM_AUTO_APPROVED, version_2, user=self.user

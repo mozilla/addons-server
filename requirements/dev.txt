@@ -3,9 +3,9 @@ pyinotify==0.9.6 \
 backcall==0.2.0 \
     --hash=sha256:fbbce6a29f263178a1f7915c1940bde0ec2b2a967566fe1c65c1dfb7422bd255 \
     --hash=sha256:5cbdbf27be5e7cfadb448baf0aa95508f91f2bbc6c6437cd9cd06e2a4c215e1e
-django-debug-toolbar==4.4.6 \
-    --hash=sha256:36e421cb908c2f0675e07f9f41e3d1d8618dc386392ec82d23bcfcd5d29c7044 \
-    --hash=sha256:3beb671c9ec44ffb817fad2780667f172bd1c067dbcabad6268ce39a81335f45
+django-debug-toolbar==6.0.0 \
+    --hash=sha256:0cf2cac5c307b77d6e143c914e5c6592df53ffe34642d93929e5ef095ae56841 \
+    --hash=sha256:6eb9fa6f4a5884bf04004700ffb5a44043f1fff38784447fc52c1633448c8c14
 ptyprocess==0.7.0 \
     --hash=sha256:4b41f3967fce3af57cc7e94b888626c18bf37a083e3651ca8feeb66d492fef35 \
     --hash=sha256:5c5d0a3b48ceee0b48485e0c26037c0acd7d29765ca3fbb5cb3831d347423220
@@ -85,9 +85,9 @@ execnet==2.1.1 \
 iniconfig==2.1.0 \
     --hash=sha256:3abbd2e30b36733fee78f9c7f7308f2d0050e88f0087fd25c2645f63c773e1c7 \
     --hash=sha256:9deba5723312380e77435581c6bf4935c94cbfab9b1ed33ef8d238ea168eb760
-pytest==8.4.1 \
-    --hash=sha256:539c70ba6fcead8e78eebbf1115e8b589e7565830d7d006a8723f19ac8a0afb7 \
-    --hash=sha256:7c67fd69174877359ed9371ec3af8a3d2b04741818c51e5e99cc1742251fa93c
+pytest==8.4.2 \
+    --hash=sha256:86c0d0b93306b961d58d62a4db4879f27fe25513d4b969df351abdddb3c30e01 \
+    --hash=sha256:872f880de3fc3a5bdc88a11b39c9710c3497a547cfa9320bc3c5e62fbf272e79
 pytest-django==4.11.1 \
     --hash=sha256:1b63773f648aa3d8541000c26929c1ea63934be1cfa674c76436966d73fe6a10 \
     --hash=sha256:a949141a1ee103cb0e7a20f1451d355f83f5e4a5d07bdd4dcfdd1fd0ff227991
@@ -329,9 +329,9 @@ pytest-split==0.10.0 \
 pytest-reportlog==0.4.0 \
     --hash=sha256:5db4d00586546d8c6b95c66466629f1e913440c36d97795a673d2e19c5cedd5c \
     --hash=sha256:c9f2079504ee51f776d3118dcf5e4730f163d3dcf26ebc8f600c1fa307bf638c
-django-dbbackup==4.3.0 \
-    --hash=sha256:3549c8ccfdb167f20ca2c26eb0dfa55c79aa3f31ea4e4dbfa0816bc18ceec6dc \
-    --hash=sha256:b4003b353d49d914ffbc033c793198426572d0a2b137ec795ddb2fb82225b960
+django-dbbackup==5.0.0 \
+    --hash=sha256:a0301b14a4bb3c7243a2fde76d09f8f572f16cd7639f75f4cd42d898fc1b82a2 \
+    --hash=sha256:aa9cc88e1413adfec0e547dd91e0afed6dbb91a02459697663a9b988dbc71f18
 pytest-env==1.1.5 \
     --hash=sha256:91209840aa0e43385073ac464a554ad2947cc2fd663a9debf88d03b01e0cc1cf \
     --hash=sha256:ce90cf8772878515c24b31cd97c7fa1f4481cd68d588419fd45f10ecaee6bc30

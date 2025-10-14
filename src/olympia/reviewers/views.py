@@ -106,7 +106,6 @@ from .templatetags.jinja_helpers import to_dom_id
 from .utils import (
     ContentReviewTable,
     HeldDecisionQueueTable,
-    MadReviewTable,
     ModerationQueueTable,
     PendingManualApprovalQueueTable,
     PendingRejectionTable,
@@ -202,12 +201,6 @@ def dashboard(request):
             (
                 'Add-on Review Guide',
                 'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
-            ),
-        ]
-        sections['Human Review Needed'] = [
-            (
-                'Flagged by MAD for Human Review',
-                reverse('reviewers.queue_mad'),
             ),
         ]
     if view_all or acl.action_allowed_for(
@@ -415,7 +408,6 @@ reviewer_tables_registry = {
     table.name: table
     for table in (
         PendingManualApprovalQueueTable,
-        MadReviewTable,
         ThemesQueueTable,
         ModerationQueueTable,
         ContentReviewTable,
@@ -670,11 +662,6 @@ def review(request, addon, channel=None):
     versions_with_a_due_date_other = (
         versions_qs.filter(due_date__isnull=False).exclude(pk__in=version_ids).count()
     )
-    versions_flagged_by_mad_other = (
-        versions_qs.filter(reviewerflags__needs_human_review_by_mad=True)
-        .exclude(pk__in=version_ids)
-        .count()
-    )
     versions_pending_rejection_other = versions_pending_rejection_qs.exclude(
         pk__in=version_ids
     ).count()
@@ -800,7 +787,6 @@ def review(request, addon, channel=None):
         versions_that_would_be_enabled=versions_that_would_be_enabled,
         MAX_VERSIONS_SHOWN_INLINE=MAX_VERSIONS_SHOWN_INLINE,
         versions_with_a_due_date_other=versions_with_a_due_date_other,
-        versions_flagged_by_mad_other=versions_flagged_by_mad_other,
         versions_pending_rejection_other=versions_pending_rejection_other,
         whiteboard_form=whiteboard_form,
         whiteboard_url=whiteboard_url,

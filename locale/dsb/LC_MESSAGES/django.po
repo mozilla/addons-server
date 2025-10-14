@@ -356,11 +356,11 @@ msgstr "Informacije wó kompatibelnosći , kótarež su w manifesće za toś to 
 msgid "Images must be smaller than %dMB"
 msgstr "Wobraze muse mjeńše ako %d MB byś"
 
-#: src/olympia/addons/models.py:2318 src/olympia/addons/models.py:2397 src/olympia/constants/base.py:66
+#: src/olympia/addons/models.py:2302 src/olympia/addons/models.py:2381 src/olympia/constants/base.py:66
 msgid "Listed"
 msgstr "W lisćinje"
 
-#: src/olympia/addons/models.py:2575
+#: src/olympia/addons/models.py:2559
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr "Sćažki dodankow a zběrkow muse se na \"/\" kóńcyś"
 
@@ -1336,7 +1336,7 @@ msgstr "Caka na pśeglědanje"
 msgid "Disabled by Mozilla"
 msgstr "Wót Mozilla znjemóžnjony"
 
-#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1211
+#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1185
 msgid "Deleted"
 msgstr "Wulašowane"
 
@@ -1513,7 +1513,8 @@ msgstr "Fota, muzika a wideo"
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
 msgstr "Ześěgniśo rozšyrjenja Firefox, kótarež fotowe, muzikowe a wideowe dožywjenja pólěpšaju. Rozšyrjenja w toś tej kategoriji awdio a wideo, nawopacne wobrazowe pytanje a wěcej změnjaju."
 
-#: src/olympia/constants/categories.py:142
+#. editorial content for the secondary hero shelves.
+#: src/olympia/constants/categories.py:142 src/olympia/discovery/strings.jinja2:1035
 msgid "Privacy & Security"
 msgstr "Priwatnosć a wěstota"
 
@@ -5903,18 +5904,13 @@ msgstr "Wšykne rozšyrjenja pokazaś"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1033
-msgid "Anti-tracking extensions"
-msgstr "Rozšyrjenja pśeśiwo slědowanju"
-
-#. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1035
-msgid "Essential add-ons"
-msgstr "Zakładne dodanki"
+msgid "Extension Starter Pack"
+msgstr "Zachopny paket rozšyrjenjow"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1037
-msgid "Writing tools"
-msgstr "Pisańske rědy"
+msgid "Twitch customization"
+msgstr "Pśiměrjenje za Twitch"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1039 src/olympia/discovery/strings.jinja2:1041 src/olympia/discovery/strings.jinja2:1043
@@ -6741,18 +6737,6 @@ msgstr "Status dodanka pó datumje"
 msgid "Daily Users by Date"
 msgstr "Wšedne wužywarje pó datumje"
 
-#: src/olympia/stats/templates/stats/reports/usage.html:6
-msgid "What are daily users?"
-msgstr "Co su wšedne wužywarje?"
-
-#: src/olympia/stats/templates/stats/reports/usage.html:10
-msgid ""
-"<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
-"down by add-on version, operating system, add-on status, application, and locale. </p>"
-msgstr ""
-"<h2>Co su wšdnei wuyiwarje?</h2> <p> Dodanki, kótarež su se wót toś togo sedła ześěgnuli, pytaju jaden raz wob źeń za aktualizacijami. Cełkowna licba toś tych aktualizěrowańskich pingow jo znata ako"
-" „Aktiwne wšedne wužywarje“. Wšedni wužywarje daju se pó dodankowej wersiji, źěłowem systemje, dodankowem statusu, nałoženju a rěcy rozklucyś. </p>"
-
 #: src/olympia/stats/templates/stats/reports/versions.html:3
 msgid "Application versions by Date"
 msgstr "Nałožeńske wersije pó datumje"
@@ -7053,33 +7037,33 @@ msgstr ""
 "\n"
 "Team Mozilla Add-ons"
 
-#: src/olympia/versions/models.py:1196
+#: src/olympia/versions/models.py:1170
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
 msgstr "Wokomuźony wótpokazany, za %s planowany"
 
-#: src/olympia/versions/models.py:1201
+#: src/olympia/versions/models.py:1175
 msgid "Auto-approved, Confirmed"
 msgstr "Awtomatiski pśizwólony, wobkšuśony"
 
-#: src/olympia/versions/models.py:1203
+#: src/olympia/versions/models.py:1177
 msgid "Auto-approved, not Confirmed"
 msgstr "Awtomatiski pśizwólony, njewobkšuśony"
 
-#: src/olympia/versions/models.py:1206
+#: src/olympia/versions/models.py:1180
 msgid "Approved, Manual"
 msgstr "Pśizwólony, manuelny"
 
-#: src/olympia/versions/models.py:1213
+#: src/olympia/versions/models.py:1187
 msgid "Disabled by Developer"
 msgstr "Wót wuwijarja znjezmóžnjony"
 
-#: src/olympia/versions/models.py:1571
+#: src/olympia/versions/models.py:1544
 #, python-brace-format
 msgid "{app} {min} and later"
 msgstr "{app} {min} a nowšymi"
 
-#: src/olympia/versions/models.py:1698
+#: src/olympia/versions/models.py:1671
 #, python-brace-format
 msgid "The install origin {origin} is not permitted."
 msgstr "Instalaciski póchad {origin} njejo dowólony."

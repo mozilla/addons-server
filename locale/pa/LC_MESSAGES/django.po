@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-02 09:04+0000\n"
+"POT-Creation-Date: 2025-10-14 14:55+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1168,6 +1168,7 @@ msgstr ""
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
 #, fuzzy
 msgid "Privacy & Security"
 msgstr "ਪਰਦਾ ਨੀਤੀ"
@@ -4622,15 +4623,11 @@ msgid "See all extensions"
 msgstr "ਸਾਰੇ ਐਡ-ਆਨਾਂ ਦੀ ਝਲਕ ਵੇਖੋ"
 
 #. editorial content for the secondary hero shelves.
-msgid "Anti-tracking extensions"
+msgid "Extension Starter Pack"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Essential add-ons"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Writing tools"
+msgid "Twitch customization"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -5301,16 +5298,6 @@ msgstr "ਐਡ-ਆਨ ਦਰਜਾ ਮਿਤੀ ਅਨੁਸਾਰ"
 
 msgid "Daily Users by Date"
 msgstr "ਰੋਜ਼ਾਨਾ ਉਪਭੋਗੀ ਮਿਤੀ ਅਨੁਸਾਰ"
-
-msgid "What are daily users?"
-msgstr "ਰੋਜ਼ਾਨਾ ਉਪਭੋਗੀ ਕੀ ਹਨ?"
-
-msgid ""
-"<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
-"down by add-on version, operating system, add-on status, application, and locale. </p>"
-msgstr ""
-"<h2>ਰੋਜ਼ਾਨਾ ਉਪਭੋਗੀ ਕੀ ਹਨ?</h2> <p>ਇਸ ਸਾਈਟ ਤੋਂ ਡਾਊਨਲੋਡ ਕੀਤੇ ਐਡ-ਆਨ ਦਿਨ ਵਿੱਚ ਇੱਕ ਵਾਰ ਅੱਪਡੇਟਾਂ ਦੀ ਪੜਤਾਲ ਕਰਦੇ ਹਨ। ਇਹਨਾਂ ਅੱਪਡੇਟ ਪਿੰਗਾਂ ਦੀ ਕੁੱਲ ਗਿਣਤੀ ਨੂੰ ਸਰਗਰਮ ਰੋਜ਼ਾਨਾ ਉਪਭੋਗੀ ਵੱਜੋਂ ਜਾਣਿਆ ਜਾਂਦਾ। ਸਰਗਰਮ ਉਪਭੋਗੀ ਐਡ-ਆਨ ਵਰਜਨ, ਓਪਰੇਟਿੰਗ ਸਿਸਟਮ, "
-"ਐਡ-ਆਨ ਦਰਜੇ, ਐਪਲੀਕੇਸ਼ਨ, ਅਤੇ ਲੋਕੇਲ ਦੇ ਅਧਾਰ ਤੇ ਵੰਡੇ ਜਾ ਸਕਦੇ ਹਨ।"
 
 msgid "Application versions by Date"
 msgstr "ਐਪਲੀਕੇਸ਼ਨ ਵਰਜਨ ਮਿਤੀ ਅਨੁਸਾਰ"

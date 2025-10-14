@@ -47,7 +47,6 @@ from olympia.constants.licenses import CC_LICENSES, FORM_LICENSES, LICENSES_BY_B
 from olympia.constants.promoted import (
     PROMOTED_GROUPS_BY_ID,
 )
-from olympia.constants.scanners import MAD
 from olympia.files import utils
 from olympia.files.models import File, cleanup_file
 from olympia.scanners.models import ScannerResult
@@ -1151,31 +1150,6 @@ class Version(OnChangeMixin, ModelBase):
         except VersionReviewerFlags.DoesNotExist:
             return None
 
-    @property
-    def needs_human_review_by_mad(self):
-        try:
-            return self.reviewerflags.needs_human_review_by_mad
-        except VersionReviewerFlags.DoesNotExist:
-            return False
-
-    @property
-    def maliciousness_score(self):
-        try:
-            # We use the score of the MAD scanner because it is the 'ensemble'
-            # score (i.e. score computed using all other scanner scores).
-            # We iterate on all .scannerresults instead of doing .filter()
-            # because there shouldn't be many results, and chances are the
-            # caller (normally reviewer tools review page) will have prefetched
-            # all scanner results.
-            score = [
-                result.score
-                for result in self.scannerresults.all()
-                if result.scanner == MAD
-            ][0]
-        except IndexError:
-            score = None
-        return float(score * 100) if score and score > 0 else 0
-
     @cached_property
     def approved_for_groups(self):
         approvals = list(self.promoted_versions.all())
@@ -1229,7 +1203,6 @@ class VersionReviewerFlags(ModelBase):
         on_delete=models.CASCADE,
         related_name='reviewerflags',
     )
-    needs_human_review_by_mad = models.BooleanField(default=False, db_index=True)
     pending_rejection = models.DateTimeField(
         default=None, null=True, blank=True, db_index=True
     )

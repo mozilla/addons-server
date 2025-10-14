@@ -173,659 +173,229 @@ msgstr "תמונות יכולות להיות בתבנית PNG או JPG."
 msgid "Videos must be in WebM."
 msgstr "וידאו חייב להיות בתבנית WebM."
 
-#: static/js/stats/chart.js:298
+#: static/js/stats/chart.js:283
 #, python-brace-format
 msgid "Week of {0}"
 msgstr "שבוע {0}"
 
-#: static/js/stats/chart.js:307
+#: static/js/stats/chart.js:292
 #, python-brace-format
 msgid "{0} download"
 msgid_plural "{0} downloads"
 msgstr[0] "הורדה אחת"
 msgstr[1] "{0} הורדות"
 
-#: static/js/stats/chart.js:313
+#: static/js/stats/chart.js:298
 #, python-brace-format
 msgid "{0} user"
 msgid_plural "{0} users"
 msgstr[0] "משתמש אחד"
 msgstr[1] "{0} משתמשים"
 
-#: static/js/stats/chart.js:319
-#, python-brace-format
-msgid "{0} add-on"
-msgid_plural "{0} add-ons"
-msgstr[0] "תוספת אחת"
-msgstr[1] "{0} תוספות"
-
-#: static/js/stats/chart.js:325
-#, python-brace-format
-msgid "{0} collection"
-msgid_plural "{0} collections"
-msgstr[0] "אוסף אחד"
-msgstr[1] "{0} אוספים"
-
-#: static/js/stats/chart.js:331
-#, python-brace-format
-msgid "{0} review"
-msgid_plural "{0} reviews"
-msgstr[0] "סקירה אחת"
-msgstr[1] "{0} סקירות"
-
-#: static/js/stats/chart.js:340
-#, python-brace-format
-msgid "{0} sale"
-msgid_plural "{0} sales"
-msgstr[0] "מכירה אחת"
-msgstr[1] "{0} מכירות"
-
-#: static/js/stats/chart.js:346
-#, python-brace-format
-msgid "{0} refund"
-msgid_plural "{0} refunds"
-msgstr[0] "החזר כספי אחד"
-msgstr[1] "{0} החזרים כספיים"
-
-#: static/js/stats/chart.js:352
-#, python-brace-format
-msgid "{0} install"
-msgid_plural "{0} installs"
-msgstr[0] "התקנה אחת"
-msgstr[1] "{0} התקנות"
-
-#: static/js/stats/chart.js:453 static/js/stats/csv_keys.js:3 static/js/stats/csv_keys.js:109
+#: static/js/stats/chart.js:362 static/js/stats/csv_keys.js:3 static/js/stats/csv_keys.js:9
 msgid "Downloads"
 msgstr "הורדות"
 
-#: static/js/stats/chart.js:465 static/js/stats/csv_keys.js:6 static/js/stats/csv_keys.js:110
+#: static/js/stats/chart.js:374 static/js/stats/csv_keys.js:6 static/js/stats/csv_keys.js:10
 msgid "Daily Users"
 msgstr "משתמשים יומיים"
 
-#: static/js/stats/chart.js:498
-msgid "Amount, in USD"
-msgstr "סכום בדולרים אמריקאים"
-
-#: static/js/stats/chart.js:510 static/js/stats/csv_keys.js:104
-msgid "Number of Contributions"
-msgstr "מספר התרומות"
-
-#: static/js/stats/chart.js:537
+#: static/js/stats/chart.js:409
 msgid "More Info..."
 msgstr "מידע נוסף..."
 
 #. L10n: {0} is an ISO-formatted date.
-#: static/js/stats/chart.js:543
+#: static/js/stats/chart.js:415
 #, python-brace-format
 msgid "Details for {0}"
 msgstr "פרטים עבור {0}"
 
-#: static/js/stats/csv_keys.js:9
-msgid "Collections Created"
-msgstr "אוספים שנוצרו"
-
-#: static/js/stats/csv_keys.js:12
-msgid "Add-ons in Use"
-msgstr "תוספות שבשימוש"
-
-#: static/js/stats/csv_keys.js:15
-msgid "Add-ons Created"
-msgstr "תוספות שנוצרו"
-
-#: static/js/stats/csv_keys.js:18
-msgid "Add-ons Downloaded"
-msgstr "תוספות שהורדו"
-
-#: static/js/stats/csv_keys.js:21
-msgid "Add-ons Updated"
-msgstr "תוספות שעודכנו"
-
-#: static/js/stats/csv_keys.js:24
-msgid "Reviews Written"
-msgstr "סקירות שנכתבו"
-
-#: static/js/stats/csv_keys.js:27
-msgid "User Signups"
-msgstr "הרשמות משתמשים"
-
-#: static/js/stats/csv_keys.js:30
-msgid "Subscribers"
-msgstr "מנויים"
-
-#: static/js/stats/csv_keys.js:33
-msgid "Ratings"
-msgstr "דירוגים"
-
-#: static/js/stats/csv_keys.js:36 static/js/stats/csv_keys.js:114
-msgid "Sales"
-msgstr "מכירות"
-
-#: static/js/stats/csv_keys.js:39 static/js/stats/csv_keys.js:113
-msgid "Installs"
-msgstr "התקנות"
-
-#: static/js/stats/csv_keys.js:42
-msgid "Unknown"
-msgstr "לא ידוע"
-
-#: static/js/stats/csv_keys.js:43
-msgid "Add-ons Manager"
-msgstr "מנהל התוספות"
-
-#: static/js/stats/csv_keys.js:44
-msgid "Add-ons Manager Promo"
-msgstr ""
-
-#: static/js/stats/csv_keys.js:45
-msgid "Add-ons Manager Featured"
-msgstr ""
-
-#: static/js/stats/csv_keys.js:46
-msgid "Add-ons Manager Learn More"
-msgstr ""
-
-#: static/js/stats/csv_keys.js:47
-msgid "Search Suggestions"
-msgstr "הצעות חיפוש"
-
-#: static/js/stats/csv_keys.js:48
-msgid "Search Results"
-msgstr "תוצאות חיפוש"
-
-#: static/js/stats/csv_keys.js:49 static/js/stats/csv_keys.js:50 static/js/stats/csv_keys.js:51
-msgid "Homepage Promo"
-msgstr "פרומו דף הבית"
-
-#: static/js/stats/csv_keys.js:52 static/js/stats/csv_keys.js:53
-msgid "Homepage Featured"
-msgstr "הצעות דף הבית"
-
-#: static/js/stats/csv_keys.js:54 static/js/stats/csv_keys.js:55
-msgid "Homepage Up and Coming"
-msgstr "מתקרב ובא דף הבית"
-
-#: static/js/stats/csv_keys.js:56
-msgid "Homepage Most Popular"
-msgstr "הכי פופולרי דף הבית"
-
-#: static/js/stats/csv_keys.js:57 static/js/stats/csv_keys.js:59
-msgid "Detail Page"
-msgstr "עמוד פירוט"
-
-#: static/js/stats/csv_keys.js:58 static/js/stats/csv_keys.js:60
-msgid "Detail Page (bottom)"
-msgstr "עמוד פירוט (תחתית)"
-
-#: static/js/stats/csv_keys.js:61
-msgid "Detail Page (Development Channel)"
-msgstr "עמוד פירוט (ערוץ פיתוח)"
-
-#: static/js/stats/csv_keys.js:62 static/js/stats/csv_keys.js:63 static/js/stats/csv_keys.js:64
-msgid "Often Used With"
-msgstr "לרוב בשימוש עם"
-
-#: static/js/stats/csv_keys.js:65 static/js/stats/csv_keys.js:66
-msgid "Others By Author"
-msgstr "אחרים מאותו היוצר"
-
-#: static/js/stats/csv_keys.js:67 static/js/stats/csv_keys.js:68
-msgid "Dependencies"
-msgstr "תלויות"
-
-#: static/js/stats/csv_keys.js:69 static/js/stats/csv_keys.js:70
-msgid "Upsell"
-msgstr ""
-
-#: static/js/stats/csv_keys.js:71
-msgid "Meet the Developer"
-msgstr "היכרות עם המפתח"
-
-#: static/js/stats/csv_keys.js:72
-msgid "User Profile"
-msgstr "פרופיל משתמש"
-
-#: static/js/stats/csv_keys.js:73
-msgid "Version History"
-msgstr "היסטוריית גרסאות"
-
-#: static/js/stats/csv_keys.js:75
-msgid "Sharing"
-msgstr "שיתוף"
-
-#: static/js/stats/csv_keys.js:76
-msgid "Category Pages"
-msgstr "דפי קטגוריה"
-
-#: static/js/stats/csv_keys.js:77
-msgid "Collections"
-msgstr "אוספים"
-
-#: static/js/stats/csv_keys.js:78 static/js/stats/csv_keys.js:79
-msgid "Category Landing Featured Carousel"
-msgstr ""
-
-#: static/js/stats/csv_keys.js:80 static/js/stats/csv_keys.js:81
-msgid "Category Landing Top Rated"
-msgstr ""
-
-#: static/js/stats/csv_keys.js:82 static/js/stats/csv_keys.js:83
-msgid "Category Landing Most Popular"
-msgstr ""
-
-#: static/js/stats/csv_keys.js:84 static/js/stats/csv_keys.js:85
-msgid "Category Landing Recently Added"
-msgstr ""
-
-#: static/js/stats/csv_keys.js:86 static/js/stats/csv_keys.js:87
-msgid "Browse Listing Featured Sort"
-msgstr ""
-
-#: static/js/stats/csv_keys.js:88 static/js/stats/csv_keys.js:89
-msgid "Browse Listing Users Sort"
-msgstr ""
-
-#: static/js/stats/csv_keys.js:90 static/js/stats/csv_keys.js:91
-msgid "Browse Listing Rating Sort"
-msgstr ""
-
-#: static/js/stats/csv_keys.js:92 static/js/stats/csv_keys.js:93
-msgid "Browse Listing Created Sort"
-msgstr ""
-
-#: static/js/stats/csv_keys.js:94 static/js/stats/csv_keys.js:95
-msgid "Browse Listing Name Sort"
-msgstr ""
-
-#: static/js/stats/csv_keys.js:96 static/js/stats/csv_keys.js:97
-msgid "Browse Listing Popular Sort"
-msgstr ""
-
-#: static/js/stats/csv_keys.js:98 static/js/stats/csv_keys.js:99
-msgid "Browse Listing Updated Sort"
-msgstr ""
-
-#: static/js/stats/csv_keys.js:100 static/js/stats/csv_keys.js:101
-msgid "Browse Listing Up and Coming Sort"
-msgstr ""
-
-#: static/js/stats/csv_keys.js:105
-msgid "Total Amount Contributed"
-msgstr "סכום כולל שנתרם"
-
-#: static/js/stats/csv_keys.js:106
-msgid "Average Contribution"
-msgstr "תרומה ממוצעת"
-
-#: static/js/stats/csv_keys.js:115
-msgid "Usage"
-msgstr "שימוש"
-
-#: static/js/stats/csv_keys.js:118
+#: static/js/stats/csv_keys.js:13
 msgid "Firefox"
 msgstr "Firefox"
 
-#: static/js/stats/csv_keys.js:119
+#: static/js/stats/csv_keys.js:14
 msgid "Mozilla"
 msgstr "Mozilla"
 
-#: static/js/stats/csv_keys.js:120
+#: static/js/stats/csv_keys.js:15
 msgid "Thunderbird"
 msgstr "Thunderbird"
 
-#: static/js/stats/csv_keys.js:121
+#: static/js/stats/csv_keys.js:16
 msgid "Sunbird"
 msgstr "Sunbird"
 
-#: static/js/stats/csv_keys.js:122
+#: static/js/stats/csv_keys.js:17
 msgid "SeaMonkey"
 msgstr "SeaMonkey"
 
-#: static/js/stats/csv_keys.js:123
+#: static/js/stats/csv_keys.js:18
 msgid "Fennec"
 msgstr "Fennec"
 
-#: static/js/stats/csv_keys.js:124
+#: static/js/stats/csv_keys.js:19
 msgid "Android"
 msgstr "Android"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:129
+#: static/js/stats/csv_keys.js:24
 #, python-brace-format
 msgid "Downloads and Daily Users, last {0} days"
 msgstr "הורדות ומשתמשים יומיים, ב־{0} הימים האחרונים"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:131
+#: static/js/stats/csv_keys.js:26
 #, python-brace-format
 msgid "Downloads and Daily Users from {0} to {1}"
 msgstr "הורדות ומשתמשים יומיים מתאריך {0} עד {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:135
-#, python-brace-format
-msgid "Installs and Daily Users, last {0} days"
-msgstr "התקנות ומשתמשים יומיים, ב־{0} הימים האחרונים"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:137
-#, python-brace-format
-msgid "Installs and Daily Users from {0} to {1}"
-msgstr "התקנות ומשתמשים יומיים מתאריך {0} עד {1}"
-
-#. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:141
+#: static/js/stats/csv_keys.js:30
 #, python-brace-format
 msgid "Downloads, last {0} days"
 msgstr "הורדות, ב־{0} הימים האחרונים"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:143
+#: static/js/stats/csv_keys.js:32
 #, python-brace-format
 msgid "Downloads from {0} to {1}"
 msgstr "הורדות מתאריך {0} עד {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:147
+#: static/js/stats/csv_keys.js:36
 #, python-brace-format
 msgid "Daily Users, last {0} days"
 msgstr "משתמשים יומיים, ב־{0} הימים האחרונים"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:149
+#: static/js/stats/csv_keys.js:38
 #, python-brace-format
 msgid "Daily Users from {0} to {1}"
 msgstr "משתמשים יומיים מתאריך {0} עד {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:153
+#: static/js/stats/csv_keys.js:42
 #, python-brace-format
 msgid "Applications, last {0} days"
 msgstr "יישומים, ב־{0} הימים האחרונים"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:155
+#: static/js/stats/csv_keys.js:44
 #, python-brace-format
 msgid "Applications from {0} to {1}"
 msgstr "יישומים מתאריך {0} עד {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:159
+#: static/js/stats/csv_keys.js:48
 #, python-brace-format
 msgid "Countries, last {0} days"
 msgstr "מדינות, ב־{0} הימים האחרונים"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:161
+#: static/js/stats/csv_keys.js:50
 #, python-brace-format
 msgid "Countries from {0} to {1}"
 msgstr "מדינות מתאריך {0} עד {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:165
+#: static/js/stats/csv_keys.js:54
 #, python-brace-format
 msgid "Platforms, last {0} days"
 msgstr "פלטפורמות, ב־{0} הימים האחרונים"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:167
+#: static/js/stats/csv_keys.js:56
 #, python-brace-format
 msgid "Platforms from {0} to {1}"
 msgstr "פלטפורמות מתאריך {0} עד {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:171
+#: static/js/stats/csv_keys.js:60
 #, python-brace-format
 msgid "Languages, last {0} days"
 msgstr "שפות, ב־{0} הימים האחרונים"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:173
+#: static/js/stats/csv_keys.js:62
 #, python-brace-format
 msgid "Languages from {0} to {1}"
 msgstr "שפות מתאריך {0} עד {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:177
+#: static/js/stats/csv_keys.js:66
 #, python-brace-format
 msgid "Add-on Versions, last {0} days"
 msgstr "גרסאות תוספות, ב־{0} הימים האחרונים"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:179
+#: static/js/stats/csv_keys.js:68
 #, python-brace-format
 msgid "Add-on Versions from {0} to {1}"
 msgstr "גרסאות תוספות מתאריך {0} עד {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:183
-#, python-brace-format
-msgid "Add-on Status, last {0} days"
-msgstr "סטטוס תוספות, ב־{0} הימים האחרונים"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:185
-#, python-brace-format
-msgid "Add-on Status from {0} to {1}"
-msgstr "סטטוס תוספות מתאריך {0} עד {1}"
-
-#. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:189
+#: static/js/stats/csv_keys.js:72
 #, python-brace-format
 msgid "Download Sources, last {0} days"
 msgstr "מקורות הורדה, ב־{0} הימים האחרונים"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:191
+#: static/js/stats/csv_keys.js:74
 #, python-brace-format
 msgid "Download Sources from {0} to {1}"
 msgstr "מקורות הורדה מתאריך {0} עד {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:195
+#: static/js/stats/csv_keys.js:78
 #, python-brace-format
 msgid "Download Mediums, last {0} days"
 msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:197
+#: static/js/stats/csv_keys.js:80
 #, python-brace-format
 msgid "Download Mediums from {0} to {1}"
 msgstr ""
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:201
+#: static/js/stats/csv_keys.js:84
 #, python-brace-format
 msgid "Download Contents, last {0} days"
 msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:203
+#: static/js/stats/csv_keys.js:86
 #, python-brace-format
 msgid "Download Contents from {0} to {1}"
 msgstr ""
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:207
+#: static/js/stats/csv_keys.js:90
 #, python-brace-format
 msgid "Download Campaigns, last {0} days"
 msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:209
+#: static/js/stats/csv_keys.js:92
 #, python-brace-format
 msgid "Download Campaigns from {0} to {1}"
 msgstr ""
 
-#. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:213
-#, python-brace-format
-msgid "Contributions, last {0} days"
-msgstr "תרומות, ב־{0} הימים האחרונים"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:215
-#, python-brace-format
-msgid "Contributions from {0} to {1}"
-msgstr "תרומות מתאריך {0} עד {1}"
-
-#. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:219
-#, python-brace-format
-msgid "Site Metrics, last {0} days"
-msgstr "מדדי אתר, {0} הימים האחרונים"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:221
-#, python-brace-format
-msgid "Site Metrics from {0} to {1}"
-msgstr "מדדי אתר מ־{0} ועד {1}"
-
-#. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:225
-#, python-brace-format
-msgid "Add-ons in Use, last {0} days"
-msgstr "תוספות שבשימוש, ב־{0} הימים האחרונים"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:227
-#, python-brace-format
-msgid "Add-ons in Use from {0} to {1}"
-msgstr "תוספות שבשימוש מתאריך {0} עד {1}"
-
-#. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:231
-#, python-brace-format
-msgid "Add-ons Downloaded, last {0} days"
-msgstr "תוספות שהורדו, ב־{0} הימים האחרונים"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:233
-#, python-brace-format
-msgid "Add-ons Downloaded from {0} to {1}"
-msgstr "תוספות שהורדו מתאריך {0} עד {1}"
-
-#. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:237
-#, python-brace-format
-msgid "Add-ons Created, last {0} days"
-msgstr "תוספות שנוצרו, ב־{0} הימים האחרונים"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:239
-#, python-brace-format
-msgid "Add-ons Created from {0} to {1}"
-msgstr "תוספות שנוצרו מתאריך {0} עד {1}"
-
-#. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:243
-#, python-brace-format
-msgid "Add-ons Updated, last {0} days"
-msgstr "תוספות שעודכנו, ב־{0} הימים האחרונים"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:245
-#, python-brace-format
-msgid "Add-ons Updated from {0} to {1}"
-msgstr "תוספות שעודכנו מתאריך {0} עד {1}"
-
-#. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:249
-#, python-brace-format
-msgid "Reviews Written, last {0} days"
-msgstr "סקירות שנכתבו, ב־{0} הימים האחרונים"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:251
-#, python-brace-format
-msgid "Reviews Written from {0} to {1}"
-msgstr "סקירות שנכתבו מתאריך {0} עד {1}"
-
-#. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:255
-#, python-brace-format
-msgid "User Signups, last {0} days"
-msgstr "הרשמות משתמשים, ב־{0} הימים האחרונים"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:257
-#, python-brace-format
-msgid "User Signups from {0} to {1}"
-msgstr "הרשמות משתמשים מתאריך {0} עד {1}"
-
-#. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:261
-#, python-brace-format
-msgid "Collections Created, last {0} days"
-msgstr "אוספים שנוצרו, ב־{0} הימים האחרונים"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:263
-#, python-brace-format
-msgid "Collections Created from {0} to {1}"
-msgstr "אוספים שנוצרו מתאריך {0} עד {1}"
-
-#. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:267
-#, python-brace-format
-msgid "Subscribers, last {0} days"
-msgstr "מנויים, ב־{0} הימים האחרונים"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:269
-#, python-brace-format
-msgid "Subscribers from {0} to {1}"
-msgstr "מנויים מתאריך {0} עד {1}"
-
-#. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:273
-#, python-brace-format
-msgid "Ratings, last {0} days"
-msgstr "דירוגים, ב־{0} הימים האחרונים"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:275
-#, python-brace-format
-msgid "Ratings from {0} to {1}"
-msgstr "דירוגים מתאריך {0} עד {1}"
-
-#. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:279
-#, python-brace-format
-msgid "Sales, last {0} days"
-msgstr "מכירות, ב־{0} הימים האחרונים"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:281
-#, python-brace-format
-msgid "Sales from {0} to {1}"
-msgstr "מכירות מתאריך {0} עד {1}"
-
-#. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:285
-#, python-brace-format
-msgid "Installs, last {0} days"
-msgstr "התקנות, ב־{0} הימים האחרונים"
-
-#. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:287
-#, python-brace-format
-msgid "Installs from {0} to {1}"
-msgstr "התקנות מתאריך {0} עד {1}"
-
 #. L10n: {0} and {1} are integers.
-#: static/js/stats/csv_keys.js:293
+#: static/js/stats/csv_keys.js:98
 #, python-brace-format
 msgid "<b>{0}</b> in last {1} days"
 msgstr "<b>{0}</b> ב־{1} הימים האחרונים"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:295 static/js/stats/csv_keys.js:301
+#: static/js/stats/csv_keys.js:100 static/js/stats/csv_keys.js:106
 #, python-brace-format
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "<b>{0}</b> מתאריך {1} עד {2}"
 
 #. L10n: {0} and {1} are integers.
-#: static/js/stats/csv_keys.js:299
+#: static/js/stats/csv_keys.js:104
 #, python-brace-format
 msgid "<b>{0}</b> average in last {1} days"
 msgstr "ממוצע <b>{0}</b> ב־{1} הימים האחרונים"

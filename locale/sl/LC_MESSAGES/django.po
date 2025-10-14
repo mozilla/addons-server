@@ -355,11 +355,11 @@ msgstr "Podatkov o združljivosti, nastavljenih v manifestu za ta program, ni mo
 msgid "Images must be smaller than %dMB"
 msgstr "Slike morajo biti manjše od %d MB"
 
-#: src/olympia/addons/models.py:2318 src/olympia/addons/models.py:2397 src/olympia/constants/base.py:66
+#: src/olympia/addons/models.py:2302 src/olympia/addons/models.py:2381 src/olympia/constants/base.py:66
 msgid "Listed"
 msgstr "Javno viden"
 
-#: src/olympia/addons/models.py:2575
+#: src/olympia/addons/models.py:2559
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr "Pot dodatka in zbirke se morata končati s \"/\""
 
@@ -1329,7 +1329,7 @@ msgstr "Čaka na pregled"
 msgid "Disabled by Mozilla"
 msgstr "Onemogočen s strani Mozille"
 
-#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1211
+#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1185
 msgid "Deleted"
 msgstr "Izbrisano"
 
@@ -1507,7 +1507,8 @@ msgstr "Fotografije, glasba in video"
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
 msgstr "Prenesite razširitve za Firefox, ki izboljšujejo fotografije, glasbo in videoposnetke. Razširitve v tej kategoriji spreminjajo zvok in video, ponujajo povratno iskanje slik in drugo."
 
-#: src/olympia/constants/categories.py:142
+#. editorial content for the secondary hero shelves.
+#: src/olympia/constants/categories.py:142 src/olympia/discovery/strings.jinja2:1035
 msgid "Privacy & Security"
 msgstr "Zasebnost in varnost"
 
@@ -5881,18 +5882,13 @@ msgstr "Prikaži vse razširitve"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1033
-msgid "Anti-tracking extensions"
-msgstr "Razširitve proti sledenju"
-
-#. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1035
-msgid "Essential add-ons"
-msgstr "Nepogrešljivi dodatki"
+msgid "Extension Starter Pack"
+msgstr "Začetni paket razširitev"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1037
-msgid "Writing tools"
-msgstr "Orodja za pisanje"
+msgid "Twitch customization"
+msgstr "Prilagoditev Twitcha"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1039 src/olympia/discovery/strings.jinja2:1041 src/olympia/discovery/strings.jinja2:1043
@@ -6719,18 +6715,6 @@ msgstr "Stanje dodatka po datumu"
 msgid "Daily Users by Date"
 msgstr "dnevni uporabniki po datumu"
 
-#: src/olympia/stats/templates/stats/reports/usage.html:6
-msgid "What are daily users?"
-msgstr "Kdo so dnevni uporabniki?"
-
-#: src/olympia/stats/templates/stats/reports/usage.html:10
-msgid ""
-"<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
-"down by add-on version, operating system, add-on status, application, and locale. </p>"
-msgstr ""
-"<h2>Kdo so dnevni uporabniki?</h2> <p> Dodatki, nameščeni s te strani, enkrat dnevno preverjajo posodobitve. Skupno število teh preverjanj je znano kot Aktivni dnevni uporabniki. Dnevne uporabnike "
-"se lahko razčleni po različici dodatka, operacijskem sistemu, stanju dodatka, aplikaciji in jeziku. </p>"
-
 #: src/olympia/stats/templates/stats/reports/versions.html:3
 msgid "Application versions by Date"
 msgstr "Različice aplikacije po datumu"
@@ -7031,33 +7015,33 @@ msgstr ""
 "\n"
 "ekipa za dodatke Mozille"
 
-#: src/olympia/versions/models.py:1196
+#: src/olympia/versions/models.py:1170
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
 msgstr "Zakasnitev zavrnjena, načrtovano za %s"
 
-#: src/olympia/versions/models.py:1201
+#: src/olympia/versions/models.py:1175
 msgid "Auto-approved, Confirmed"
 msgstr "Samodejno odobreno, potrjeno"
 
-#: src/olympia/versions/models.py:1203
+#: src/olympia/versions/models.py:1177
 msgid "Auto-approved, not Confirmed"
 msgstr "Samodejno odobreno, nepotrjeno"
 
-#: src/olympia/versions/models.py:1206
+#: src/olympia/versions/models.py:1180
 msgid "Approved, Manual"
 msgstr "Odobreno, ročno"
 
-#: src/olympia/versions/models.py:1213
+#: src/olympia/versions/models.py:1187
 msgid "Disabled by Developer"
 msgstr "Onemogočil razvijalec"
 
-#: src/olympia/versions/models.py:1571
+#: src/olympia/versions/models.py:1544
 #, python-brace-format
 msgid "{app} {min} and later"
 msgstr "{app} {min} in novejšimi"
 
-#: src/olympia/versions/models.py:1698
+#: src/olympia/versions/models.py:1671
 #, python-brace-format
 msgid "The install origin {origin} is not permitted."
 msgstr "Izvor namestitve {origin} ni dovoljen."
