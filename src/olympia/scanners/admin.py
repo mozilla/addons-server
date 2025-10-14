@@ -15,7 +15,12 @@ from django.utils.text import capfirst
 from olympia import amo
 from olympia.access import acl
 from olympia.addons.models import Addon
-from olympia.amo.admin import AMOModelAdmin, MultipleRelatedListFilter
+from olympia.amo.admin import (
+    AMOModelAdmin,
+    DateRangeFilter,
+    MultipleRelatedListFilter,
+    NumericRangeFilter,
+)
 from olympia.amo.templatetags.jinja_helpers import vite_asset
 from olympia.amo.utils import is_safe_url
 from olympia.constants import scanners
@@ -202,6 +207,24 @@ class VersionChannelFilter(admin.ChoicesFieldListFilter):
         self.title = 'version channel'
 
 
+class VersionCreatedFilter(DateRangeFilter):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.title = 'version creation date'
+
+
+class AddonCreatedFilter(DateRangeFilter):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.title = 'add-on creation date'
+
+
+class AddonLastUpdatedFilter(DateRangeFilter):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.title = 'add-on last updated date'
+
+
 class AddonStatusFilter(admin.ChoicesFieldListFilter):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -228,6 +251,12 @@ class AddonVisibilityFilter(admin.BooleanFieldListFilter):
                 ),
                 'display': title,
             }
+
+
+class AddonAverageDailyUsers(NumericRangeFilter):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.title = 'add-on ADU'
 
 
 class FileStatusFilter(admin.ChoicesFieldListFilter):
@@ -735,8 +764,12 @@ class ScannerQueryResultAdmin(AbstractScannerResultAdminMixin, AMOModelAdmin):
     list_filter = (
         ('matched_rule', ScannerRuleListFilter),
         ('version__channel', VersionChannelFilter),
+        ('version__created', VersionCreatedFilter),
         ('version__addon__status', AddonStatusFilter),
+        ('version__addon__created', AddonCreatedFilter),
+        ('version__addon__last_updated', AddonLastUpdatedFilter),
         ('version__addon__disabled_by_user', AddonVisibilityFilter),
+        ('version__addon__average_daily_users', AddonAverageDailyUsers),
         ('version__file__status', FileStatusFilter),
         ('version__file__is_signed', FileIsSignedFilter),
         ('was_blocked', admin.BooleanFieldListFilter),
@@ -848,7 +881,10 @@ class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, AMOModelAdmin):
         'completion_rate',
         'matched_results_link',
     )
-    list_filter = ('state',)
+    list_filter = (
+        'scanner',
+        'state',
+    )
     fields = (
         'scanner',
         'run_on_disabled_addons',

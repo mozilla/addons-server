@@ -767,7 +767,7 @@ def addon_factory(status=amo.STATUS_APPROVED, version_kw=None, file_kw=None, **k
 
     # version_changed task will be triggered and will update last_updated in
     # database for this add-on depending on the state of the version / files.
-    # We're calling the function it uses to compute the value ourselves and=
+    # We're calling the function it uses to compute the value ourselves and
     # sticking that into the attribute ourselves so that we already have the
     # correct value in the instance we are going to return.
     # Note: the aim is to have the instance consistent with what will be in the

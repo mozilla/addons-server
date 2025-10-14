@@ -1555,40 +1555,111 @@ class TestScannerQueryResultAdmin(TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         expected = [
-            ('All', '?'),
-            ('foo (yara)', f'?matched_rule__id__exact={rule_foo.pk}'),
-            ('myrule (yara)', f'?matched_rule__id__exact={self.rule.pk}'),
-            ('A rule walks into a (yara)', f'?matched_rule__id__exact={rule_bar.pk}'),
-            ('All', '?'),
-            ('Unlisted', '?version__channel__exact=1'),
-            ('Listed', '?version__channel__exact=2'),
-            ('All', '?'),
-            ('Incomplete', '?version__addon__status__exact=0'),
-            ('Awaiting Review', '?version__addon__status__exact=3'),
-            ('Approved', '?version__addon__status__exact=4'),
-            ('Disabled by Mozilla', '?version__addon__status__exact=5'),
-            ('Deleted', '?version__addon__status__exact=11'),
-            ('All', '?'),
-            ('Invisible', '?version__addon__disabled_by_user__exact=1'),
-            ('Visible', '?version__addon__disabled_by_user__exact=0'),
-            ('All', '?'),
-            ('Awaiting Review', '?version__file__status__exact=1'),
-            ('Approved', '?version__file__status__exact=4'),
-            ('Disabled by Mozilla', '?version__file__status__exact=5'),
-            ('All', '?'),
-            ('Yes', '?version__file__is_signed__exact=1'),
-            ('No', '?version__file__is_signed__exact=0'),
-            ('All', '?'),
-            ('Yes', '?was_blocked__exact=1'),
-            ('No', '?was_blocked__exact=0'),
-            ('Unknown', '?was_blocked__isnull=True'),
-            ('All', '?'),
-            ('Yes', '?was_promoted__exact=1'),
-            ('No', '?was_promoted__exact=0'),
-            ('Unknown', '?was_promoted__isnull=True'),
+            ('By matched rule', 'All', '?'),
+            (
+                'By matched rule',
+                'foo (yara)',
+                f'?matched_rule__id__exact={rule_foo.pk}',
+            ),
+            (
+                'By matched rule',
+                'myrule (yara)',
+                f'?matched_rule__id__exact={self.rule.pk}',
+            ),
+            (
+                'By matched rule',
+                'A rule walks into a (yara)',
+                f'?matched_rule__id__exact={rule_bar.pk}',
+            ),
+            ('By version channel', 'All', '?'),
+            ('By version channel', 'Unlisted', '?version__channel__exact=1'),
+            ('By version channel', 'Listed', '?version__channel__exact=2'),
+            ('By version creation date', 'All', '?'),
+            ('By add-on status', 'All', '?'),
+            ('By add-on status', 'Incomplete', '?version__addon__status__exact=0'),
+            ('By add-on status', 'Awaiting Review', '?version__addon__status__exact=3'),
+            ('By add-on status', 'Approved', '?version__addon__status__exact=4'),
+            (
+                'By add-on status',
+                'Disabled by Mozilla',
+                '?version__addon__status__exact=5',
+            ),
+            ('By add-on status', 'Deleted', '?version__addon__status__exact=11'),
+            ('By add-on creation date', 'All', '?'),
+            ('By add-on last updated date', 'All', '?'),
+            ('By add-on listing visibility', 'All', '?'),
+            (
+                'By add-on listing visibility',
+                'Invisible',
+                '?version__addon__disabled_by_user__exact=1',
+            ),
+            (
+                'By add-on listing visibility',
+                'Visible',
+                '?version__addon__disabled_by_user__exact=0',
+            ),
+            ('By add-on ADU', 'All', '?'),
+            ('By file status', 'All', '?'),
+            ('By file status', 'Awaiting Review', '?version__file__status__exact=1'),
+            ('By file status', 'Approved', '?version__file__status__exact=4'),
+            (
+                'By file status',
+                'Disabled by Mozilla',
+                '?version__file__status__exact=5',
+            ),
+            ('By file signature', 'All', '?'),
+            ('By file signature', 'Yes', '?version__file__is_signed__exact=1'),
+            ('By file signature', 'No', '?version__file__is_signed__exact=0'),
+            ('By was blocked', 'All', '?'),
+            ('By was blocked', 'Yes', '?was_blocked__exact=1'),
+            ('By was blocked', 'No', '?was_blocked__exact=0'),
+            ('By was blocked', 'Unknown', '?was_blocked__isnull=True'),
+            ('By was promoted', 'All', '?'),
+            ('By was promoted', 'Yes', '?was_promoted__exact=1'),
+            ('By was promoted', 'No', '?was_promoted__exact=0'),
+            ('By was promoted', 'Unknown', '?was_promoted__isnull=True'),
         ]
-        filters = [(x.text, x.attrib['href']) for x in doc('#changelist-filter a')]
-        assert filters == expected
+        links = [
+            (
+                next(link.iterancestors(tag='details')).find('summary').text.strip(),
+                link.text,
+                link.attrib['href'],
+            )
+            for link in doc('#changelist-filter a')
+        ]
+        assert links == expected
+
+        expected = [
+            ('By version creation date', 'From:', 'version__created__range__gte'),
+            ('By version creation date', 'To:', 'version__created__range__lte'),
+            ('By add-on creation date', 'From:', 'version__addon__created__range__gte'),
+            ('By add-on creation date', 'To:', 'version__addon__created__range__lte'),
+            (
+                'By add-on last updated date',
+                'From:',
+                'version__addon__last_updated__range__gte',
+            ),
+            (
+                'By add-on last updated date',
+                'To:',
+                'version__addon__last_updated__range__lte',
+            ),
+            (
+                'By add-on ADU',
+                'From',
+                'version__addon__average_daily_users__range__gte',
+            ),
+            ('By add-on ADU', 'To', 'version__addon__average_daily_users__range__lte'),
+        ]
+        fields = [
+            (
+                next(field.iterancestors(tag='details')).find('summary').text.strip(),
+                field.label.text or field.attrib.get('placeholder'),
+                field.attrib['name'],
+            )
+            for field in doc('#changelist-filter input[id]')
+        ]
+        assert fields == expected
 
     def test_list_filter_matched_rules(self):
         rule_foo = ScannerQueryRule.objects.create(name='foo', scanner=YARA)
@@ -1849,6 +1920,131 @@ class TestScannerQueryResultAdmin(TestCase):
         doc = pq(response.content)
         assert doc('#result_list tbody > tr').length == 1
         assert doc('.field-guid').text() == was_promoted_unknown_addon.guid
+
+    def test_list_filter_addon_created(self):
+        recently = self.days_ago(1)
+        now = datetime.now()
+        old_addon = addon_factory(created=self.days_ago(42))
+        self.scanner_query_result_factory(version=old_addon.versions.get())
+        new_addon = addon_factory(created=now)
+        self.scanner_query_result_factory(version=new_addon.versions.get())
+
+        response = self.client.get(
+            self.list_url,
+            {
+                'version__addon__created__range__gte': recently.date().isoformat(),
+            },
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody > tr').length == 1
+        assert doc('.field-guid').text() == new_addon.guid
+
+        response = self.client.get(
+            self.list_url,
+            {
+                'version__addon__created__range__lte': recently.date().isoformat(),
+            },
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody > tr').length == 1
+        assert doc('.field-guid').text() == old_addon.guid
+
+    def test_list_filter_addon_last_updated(self):
+        some_time_ago = self.days_ago(42)
+        recently = self.days_ago(1)
+        now = datetime.now()
+        # For approved add-ons last_updated is automatically set from most
+        # recent datestatuschanged
+        old_addon = addon_factory(file_kw={'datestatuschanged': some_time_ago})
+        assert old_addon.last_updated == some_time_ago
+        self.scanner_query_result_factory(version=old_addon.versions.get())
+        new_addon = addon_factory(file_kw={'datestatuschanged': now})
+        assert new_addon.last_updated == now
+        self.scanner_query_result_factory(version=new_addon.versions.get())
+
+        response = self.client.get(
+            self.list_url,
+            {
+                'version__addon__last_updated__range__gte': recently.date().isoformat(),
+            },
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody > tr').length == 1
+        assert doc('.field-guid').text() == new_addon.guid
+
+        response = self.client.get(
+            self.list_url,
+            {
+                'version__addon__last_updated__range__lte': recently.date().isoformat(),
+            },
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody > tr').length == 1
+        assert doc('.field-guid').text() == old_addon.guid
+
+    def test_list_filter_version_created(self):
+        recently = self.days_ago(1)
+        addon = addon_factory(
+            version_kw={'created': self.days_ago(42), 'version': '1.0'}
+        )
+        old_version = addon.versions.get()
+        new_version = version_factory(addon=addon, version='2.0')
+        for version in addon.versions.all():
+            self.scanner_query_result_factory(version=version)
+
+        response = self.client.get(
+            self.list_url,
+            {
+                'version__created__range__gte': recently.date().isoformat(),
+            },
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody > tr').length == 1
+        assert doc('.field-version_number').text() == new_version.version
+
+        response = self.client.get(
+            self.list_url,
+            {
+                'version__created__range__lte': recently.date().isoformat(),
+            },
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody > tr').length == 1
+        assert doc('.field-version_number').text() == old_version.version
+
+    def test_list_filter_addon_average_daily_users(self):
+        popular_addon = addon_factory(average_daily_users=4242)
+        self.scanner_query_result_factory(version=popular_addon.versions.get())
+        niche_addon = addon_factory(average_daily_users=99)
+        self.scanner_query_result_factory(version=niche_addon.versions.get())
+
+        response = self.client.get(
+            self.list_url,
+            {
+                'version__addon__average_daily_users__range__gte': 100,
+            },
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody > tr').length == 1
+        assert doc('.field-guid').text() == popular_addon.guid
+
+        response = self.client.get(
+            self.list_url,
+            {
+                'version__addon__average_daily_users__range__lte': 100,
+            },
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody > tr').length == 1
+        assert doc('.field-guid').text() == niche_addon.guid
 
     def test_change_page(self):
         result = self.scanner_query_result_factory(
