@@ -5924,12 +5924,12 @@ msgstr "Viôt dutis lis estensions"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1033
 msgid "Extension Starter Pack"
-msgstr ""
+msgstr "Pachet di estensions par scomençâ"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1037
 msgid "Twitch customization"
-msgstr ""
+msgstr "Personalizazions par Twitch"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1039 src/olympia/discovery/strings.jinja2:1041 src/olympia/discovery/strings.jinja2:1043
