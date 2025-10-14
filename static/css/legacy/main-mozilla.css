@@ -955,7 +955,7 @@ a:focus.button.negative {
 }
 
 .item h3, .item h4 {
-    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 /** END Adding focus outlines to buttons **/
