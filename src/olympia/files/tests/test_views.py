@@ -5,7 +5,7 @@ from django.conf import settings
 from django.test.utils import override_settings
 from django.urls import reverse
 
-from freezegun import freeze_time
+import time_machine
 
 from olympia import amo
 from olympia.amo.tests import (
@@ -207,7 +207,7 @@ class TestFileUploadViewSet(TestCase):
 
     def test_throttling_ip_burst(self):
         ip = '63.245.208.194'
-        with freeze_time('2019-04-08 15:16:23.42') as frozen_time:
+        with time_machine.travel('2019-04-08 15:16:23.42', tick=False) as frozen_time:
             for _ in range(0, 6):
                 self._add_fake_throttling_action(
                     view_class=FileUploadViewSet,
@@ -223,13 +223,13 @@ class TestFileUploadViewSet(TestCase):
 
             # 'Burst' throttling is 1 minute, so 61 seconds later we should be
             # allowed again.
-            frozen_time.tick(delta=timedelta(seconds=61))
+            frozen_time.shift(delta=timedelta(seconds=61))
             response = self._create_post(ip=ip)
             assert response.status_code == 201, response.content
 
     def test_throttling_ip_hourly(self):
         ip = '63.245.208.194'
-        with freeze_time('2019-04-08 15:16:23.42') as frozen_time:
+        with time_machine.travel('2019-04-08 15:16:23.42', tick=False) as frozen_time:
             for _ in range(0, 50):
                 self._add_fake_throttling_action(
                     view_class=FileUploadViewSet,
@@ -245,18 +245,18 @@ class TestFileUploadViewSet(TestCase):
 
             # One minute later, past the 'burst' throttling period, we're still
             # blocked by the 'hourly' limit.
-            frozen_time.tick(delta=timedelta(seconds=61))
+            frozen_time.shift(delta=timedelta(seconds=61))
             response = self._create_post(ip=ip)
             assert response.status_code == 429
 
             # 'hourly' throttling is 1 hour, so 3601 seconds later we should
             # be allowed again.
-            frozen_time.tick(delta=timedelta(seconds=3601))
+            frozen_time.shift(delta=timedelta(seconds=3601))
             response = self._create_post(ip=ip)
             assert response.status_code == 201
 
     def test_throttling_user_burst(self):
-        with freeze_time('2019-04-08 15:16:23.42') as frozen_time:
+        with time_machine.travel('2019-04-08 15:16:23.42', tick=False) as frozen_time:
             for _ in range(0, 6):
                 self._add_fake_throttling_action(
                     view_class=FileUploadViewSet,
@@ -272,12 +272,12 @@ class TestFileUploadViewSet(TestCase):
 
             # 'Burst' throttling is 1 minute, so 61 seconds later we should be
             # allowed again.
-            frozen_time.tick(delta=timedelta(seconds=61))
+            frozen_time.shift(delta=timedelta(seconds=61))
             response = self._create_post(ip=get_random_ip())
             assert response.status_code == 201, response.content
 
     def test_throttling_user_hourly(self):
-        with freeze_time('2019-04-08 15:16:23.42') as frozen_time:
+        with time_machine.travel('2019-04-08 15:16:23.42', tick=False) as frozen_time:
             for _ in range(0, 20):
                 self._add_fake_throttling_action(
                     view_class=FileUploadViewSet,
@@ -293,17 +293,17 @@ class TestFileUploadViewSet(TestCase):
 
             # One minute later, past the 'burst' throttling period, we're still
             # blocked by the 'hourly' limit.
-            frozen_time.tick(delta=timedelta(seconds=61))
+            frozen_time.shift(delta=timedelta(seconds=61))
             response = self._create_post(ip=get_random_ip())
             assert response.status_code == 429, response.content
 
             # 3601 seconds later we should be allowed again.
-            frozen_time.tick(delta=timedelta(seconds=3601))
+            frozen_time.shift(delta=timedelta(seconds=3601))
             response = self._create_post(ip=get_random_ip())
             assert response.status_code == 201, response.content
 
     def test_throttling_user_daily(self):
-        with freeze_time('2019-04-08 15:16:23.42') as frozen_time:
+        with time_machine.travel('2019-04-08 15:16:23.42', tick=False) as frozen_time:
             for _ in range(0, 48):
                 self._add_fake_throttling_action(
                     view_class=FileUploadViewSet,
@@ -319,17 +319,17 @@ class TestFileUploadViewSet(TestCase):
 
             # One minute later, past the 'burst' throttling period, we're still
             # blocked by the 'hourly' limit.
-            frozen_time.tick(delta=timedelta(seconds=61))
+            frozen_time.shift(delta=timedelta(seconds=61))
             response = self._create_post(ip=get_random_ip())
             assert response.status_code == 429, response.content
 
             # After the hourly limit, still blocked.
-            frozen_time.tick(delta=timedelta(seconds=3601))
+            frozen_time.shift(delta=timedelta(seconds=3601))
             response = self._create_post(ip=get_random_ip())
             assert response.status_code == 429, response.content
 
             # 86401 seconds later we should be allowed again (24h + 1s).
-            frozen_time.tick(delta=timedelta(seconds=86401))
+            frozen_time.shift(delta=timedelta(seconds=86401))
             response = self._create_post(ip=get_random_ip())
             assert response.status_code == 201, response.content
 

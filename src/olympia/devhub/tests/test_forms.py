@@ -9,7 +9,7 @@ from django.core.files.storage import default_storage as storage
 from django.utils import translation
 
 import pytest
-from freezegun import freeze_time
+import time_machine
 from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
 
@@ -220,7 +220,7 @@ class TestNewUploadForm(TestCase):
         request = req_factory_factory('/', post=True, data=data)
         request.user = user
         request.META['REMOTE_ADDR'] = '5.6.7.8'
-        with freeze_time('2019-04-08 15:16:23.42') as frozen_time:
+        with time_machine.travel('2019-04-08 15:16:23.42', tick=False) as frozen_time:
             for _x in range(0, 6):
                 self._add_fake_throttling_action(
                     view_class=AddonViewSet,
@@ -236,7 +236,7 @@ class TestNewUploadForm(TestCase):
                 'Please try again after some time.'
             ]
 
-            frozen_time.tick(delta=timedelta(seconds=61))
+            frozen_time.shift(delta=timedelta(seconds=61))
             form = forms.NewUploadForm(data, request=request)
             assert form.is_valid()
 

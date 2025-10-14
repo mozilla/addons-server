@@ -41,7 +41,7 @@ class GranularUserRateThrottle(UserRateThrottle):
 
     def __init__(self):
         super().__init__()
-        # Re-initialize timer at __init__() to allow freeze_gun.freeze_time()
+        # Re-initialize timer at __init__() to allow time_machine.travel()
         # to work properly in tests.
         self.timer = time.time
 

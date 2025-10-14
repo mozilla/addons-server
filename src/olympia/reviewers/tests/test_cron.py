@@ -2,7 +2,7 @@ from datetime import date
 
 from django.conf import settings
 
-from freezegun import freeze_time
+import time_machine
 
 from olympia import amo
 from olympia.amo.tests import TestCase, addon_factory, user_factory
@@ -25,7 +25,7 @@ class TestQueueCount(TestCase):
         assert QueueCount.objects.filter(date=date).count() == expected_count
 
     def test_empty(self):
-        with freeze_time('2024-12-03'):
+        with time_machine.travel('2024-12-03', tick=False):
             expected_date = date.today()
             record_reviewer_queues_counts()
 
@@ -69,7 +69,7 @@ class TestQueueCount(TestCase):
             },
         )
 
-        with freeze_time('2024-12-03'):
+        with time_machine.travel('2024-12-03', tick=False):
             expected_date = date.today()
             record_reviewer_queues_counts()
 
@@ -100,7 +100,7 @@ class TestQueueCount(TestCase):
             is_active=False
         )
 
-        with freeze_time('2024-12-04'):
+        with time_machine.travel('2024-12-04', tick=False):
             expected_date = date.today()
             record_reviewer_queues_counts()
 

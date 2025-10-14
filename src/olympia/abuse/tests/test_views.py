@@ -11,7 +11,7 @@ from django.test.utils import override_settings
 from django.urls import reverse
 from django.utils.encoding import force_bytes
 
-from freezegun import freeze_time
+import time_machine
 from pyquery import PyQuery as pq
 from rest_framework.test import APIRequestFactory
 from waffle.testutils import override_switch
@@ -3188,7 +3188,7 @@ class TestAppeal(TestCase):
             action=DECISION_ACTIONS.AMO_BAN_USER, addon=None, user=target
         )
         self.abuse_report.update(guid=None, user=target)
-        with freeze_time() as frozen_time:
+        with time_machine.travel(tick=False) as frozen_time:
             for _x in range(0, 20):
                 self._add_fake_throttling_action(
                     view_class=AbuseAppealEmailForm,
@@ -3243,7 +3243,7 @@ class TestAppeal(TestCase):
             action=DECISION_ACTIONS.AMO_BAN_USER, addon=None, user=target
         )
         self.abuse_report.update(guid=None, user=target)
-        with freeze_time():
+        with time_machine.travel(tick=False):
             for _x in range(0, 20):
                 self._add_fake_throttling_action(
                     view_class=AbuseAppealEmailForm,
@@ -3274,7 +3274,7 @@ class TestAppeal(TestCase):
         user = user_factory()
         self.addon.authors.add(user)
         self.client.force_login(user)
-        with freeze_time() as frozen_time:
+        with time_machine.travel(tick=False) as frozen_time:
             for _x in range(0, 20):
                 self._add_fake_throttling_action(
                     view_class=AbuseAppealForm,
