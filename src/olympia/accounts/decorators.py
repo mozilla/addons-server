@@ -13,9 +13,7 @@ def two_factor_auth_required(f):
 
     @functools.wraps(f)
     def wrapper(request, *args, **kw):
-        if not request.session.get(
-            'has_two_factor_authentication'
-        ):
+        if not request.session.get('has_two_factor_authentication'):
             # Note: Technically the user might not be logged in or not, it does
             # not matter, if they are they need to go through FxA again anyway.
             login_hint = request.user.email if request.user.is_authenticated else None

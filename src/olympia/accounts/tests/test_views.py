@@ -338,6 +338,8 @@ class TestWithUser(TestCase):
         self.find_user = self.patch('olympia.accounts.views.find_user')
         self.request = mock.MagicMock()
         self.user = AnonymousUser()
+        self.user.is_addon_developer = False
+        self.user.groups_list = []
         self.request.user = self.user
         self.request.session = {'fxa_state': 'some-blob'}
 
