@@ -59,7 +59,7 @@ def test_slugify(test_input, expected):
 
 def test_resize_image():
     # src and dst shouldn't be the same.
-    pytest.raises(Exception, resize_image, 't', 't', 'z')
+    pytest.raises(RuntimeError, resize_image, 't', 't', 'z')
 
 
 def test_resize_image_from_svg():
