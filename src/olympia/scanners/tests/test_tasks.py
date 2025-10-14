@@ -15,6 +15,7 @@ from olympia.amo.tests import (
     user_factory,
     version_factory,
 )
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.constants.scanners import (
     ABORTED,
     ABORTING,
@@ -1678,6 +1679,17 @@ class TestRunYaraQueryRule(TestCase):
         self.rule.reload()
         assert self.rule.state == COMPLETED
 
+    def test_exclude_promoted_addons(self):
+        self.make_addon_promoted(
+            self.version.addon, group_id=PROMOTED_GROUP_CHOICES.NOTABLE
+        )
+        self.rule.update(exclude_promoted_addons=True, state=SCHEDULED)
+        run_scanner_query_rule.delay(self.rule.pk)
+
+        assert ScannerQueryResult.objects.count() == 0
+        self.rule.reload()
+        assert self.rule.state == COMPLETED
+
     def test_run_on_current_version_only(self):
         # Pretend we went through the admin, run on current version only.
         self.rule.update(state=SCHEDULED, run_on_current_version_only=True)
@@ -1832,6 +1844,7 @@ class TestRunYaraQueryRule(TestCase):
         yara_result = yara_results[0]
         assert yara_result.version == self.version
         assert not yara_result.was_blocked
+        assert not yara_result.was_promoted
         assert len(yara_result.results) == 2
         assert yara_result.results[0] == {
             'rule': self.rule.name,
@@ -1879,6 +1892,19 @@ class TestRunYaraQueryRule(TestCase):
         scanner_result = scanner_results[0]
         assert scanner_result.version == self.version
         assert not scanner_result.was_blocked
+
+    def test_run_on_chunk_was_promoted(self):
+        self.rule.update(state=RUNNING)  # Pretend we started running the rule.
+        self.make_addon_promoted(
+            self.version.addon, group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+        )
+        run_scanner_query_rule_on_versions_chunk([self.version.pk], self.rule.pk)
+
+        scanner_results = ScannerQueryResult.objects.all()
+        assert len(scanner_results) == 1
+        scanner_result = scanner_results[0]
+        assert scanner_result.version == self.version
+        assert scanner_result.was_promoted
 
     def test_run_on_chunk_disabled(self):
         # Make sure it still works when a file has been disabled

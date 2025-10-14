@@ -156,6 +156,10 @@ class AbstractScannerRule(ModelBase):
     )
     scanner = models.PositiveSmallIntegerField(choices=SCANNERS.items())
     definition = models.TextField(null=True, blank=True)
+    exclude_promoted_addons = models.BooleanField(
+        default=False,
+        help_text='Exclude add-ons that are in a promoted group from this rule',
+    )
 
     class Meta(ModelBase.Meta):
         abstract = True
@@ -313,16 +317,15 @@ class ScannerResult(AbstractScannerResult):
 
         result_query_name = cls._meta.get_field('matched_rules').related_query_name()
 
-        rule = (
-            cls.rule_model.objects.filter(
-                **{f'{result_query_name}__version': version, 'is_active': True}
-            )
-            .order_by(
-                # The `-` sign means descending order.
-                '-action'
-            )
-            .first()
+        rule_qs = cls.rule_model.objects.filter(
+            **{f'{result_query_name}__version': version, 'is_active': True}
         )
+        if version.addon.is_promoted:
+            rule_qs = rule_qs.exclude(exclude_promoted_addons=True)
+        rule = rule_qs.order_by(
+            # The `-` sign means descending order.
+            '-action'
+        ).first()
 
         if not rule:
             log.info('No action to execute for version %s.', version.pk)
@@ -455,11 +458,13 @@ class ScannerQueryResult(AbstractScannerResult):
         ScannerQueryRule, on_delete=models.CASCADE, related_name='results'
     )
     was_blocked = models.BooleanField(null=True, default=None)
+    was_promoted = models.BooleanField(null=True, default=None)
 
     class Meta(AbstractScannerResult.Meta):
         db_table = 'scanners_query_results'
         indexes = [
             models.Index(fields=('was_blocked',)),
+            models.Index(fields=('was_promoted',)),
         ]
 
     @classproperty

@@ -1256,6 +1256,49 @@ class TestRunAction(TestCase):
 
     @mock.patch('olympia.scanners.models._no_action')
     @mock.patch('olympia.scanners.models._flag_for_human_review')
+    def test_skips_actions_with_exclude_promoted_if_the_addon_is_promoted(
+        self, flag_for_human_review_mock, no_action_mock
+    ):
+        self.make_addon_promoted(
+            self.version.addon, group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+        )
+        # Create another rule and add it to the current scanner result, but set to
+        # exclude_promoted_addons=True.
+        rule = ScannerRule.objects.create(
+            name='rule-2',
+            scanner=self.scanner,
+            action=FLAG_FOR_HUMAN_REVIEW,
+            exclude_promoted_addons=True,
+        )
+        self.scanner_result.matched_rules.add(rule)
+
+        ScannerResult.run_action(self.version)
+
+        assert no_action_mock.called
+        assert not flag_for_human_review_mock.called
+
+    @mock.patch('olympia.scanners.models._no_action')
+    @mock.patch('olympia.scanners.models._flag_for_human_review')
+    def test_does_not_skip_actions_with_exclude_promoted_if_the_addon_is_not_promoted(
+        self, flag_for_human_review_mock, no_action_mock
+    ):
+        # Create another rule and add it to the current scanner result, set to
+        # exclude_promoted_addons=True, but it shouldn't be skipped.
+        rule = ScannerRule.objects.create(
+            name='rule-2',
+            scanner=self.scanner,
+            action=FLAG_FOR_HUMAN_REVIEW,
+            exclude_promoted_addons=True,
+        )
+        self.scanner_result.matched_rules.add(rule)
+
+        ScannerResult.run_action(self.version)
+
+        assert not no_action_mock.called
+        assert flag_for_human_review_mock.called
+
+    @mock.patch('olympia.scanners.models._no_action')
+    @mock.patch('olympia.scanners.models._flag_for_human_review')
     def test_selects_active_actions_only(
         self, flag_for_human_review_mock, no_action_mock
     ):

@@ -463,6 +463,8 @@ def run_scanner_query_rule(query_rule_pk):
         qs = qs.filter(channel=rule.run_on_specific_channel)
     if rule.run_on_current_version_only:
         qs = qs.filter(pk=F('addon___current_version'))
+    if rule.exclude_promoted_addons:
+        qs = qs.exclude(addon__promotedaddon__isnull=False)
     qs = qs.values_list('id', flat=True).order_by('-pk')
     # Build the workflow using a group of tasks dealing with 250 files at a
     # time, chained to a task that marks the query as completed.
@@ -554,6 +556,7 @@ def _run_scanner_query_rule_on_version(version, rule):
     # really care about non-matches.
     if scanner_result.results:
         scanner_result.was_blocked = version.is_blocked
+        scanner_result.was_promoted = version.addon.is_promoted
         scanner_result.save()
 
     return scanner_result
