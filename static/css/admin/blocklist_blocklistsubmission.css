@@ -1,6 +1,6 @@
 div.horizontal-grid {
     display: grid;
-    grid-gap: 10px;
+    gap: 10px;
     grid-template-columns: 1fr 1fr;
 }
 

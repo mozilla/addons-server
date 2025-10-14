@@ -21,7 +21,7 @@ form .char-count:after,
     margin-bottom:3em;
     width: 100%;
     overflow: hidden;
-    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 #edit-addon h3 a {
@@ -718,7 +718,7 @@ div.review-entry p {
 div.review-entry pre {
     white-space: pre-wrap;
     max-width: 650px;
-    word-wrap: break-word;
+    overflow-wrap: break-word;
     margin-bottom: 0px;
 }
 
