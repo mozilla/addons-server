@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-14 14:55+0000\n"
+"POT-Creation-Date: 2025-10-14 16:34+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1002,7 +1002,7 @@ msgstr ""
 msgid "{addon} {version} rejected."
 msgstr ""
 
-#: src/olympia/constants/activity.py:172 src/olympia/files/models.py:322
+#: src/olympia/constants/activity.py:172 src/olympia/files/models.py:323
 msgid "Rejected"
 msgstr ""
 
@@ -6777,11 +6777,11 @@ msgstr ""
 msgid "See more staff picks"
 msgstr ""
 
-#: src/olympia/files/models.py:324
+#: src/olympia/files/models.py:325
 msgid "Unreviewed"
 msgstr ""
 
-#: src/olympia/files/models.py:327
+#: src/olympia/files/models.py:328
 #, python-format
 msgid "[status:%s]"
 msgstr ""
