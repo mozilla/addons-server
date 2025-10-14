@@ -10,7 +10,7 @@ from django.test import RequestFactory
 from django.urls import reverse
 
 import jwt
-from freezegun import freeze_time
+import time_machine
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -296,7 +296,7 @@ class TestSessionIDAuthentication(TestCase):
         not_so_old_date = datetime.now() - timedelta(
             seconds=settings.SESSION_COOKIE_AGE - 30
         )
-        with freeze_time(not_so_old_date):
+        with time_machine.travel(not_so_old_date, tick=False):
             token = self.client.create_session(self.user)
         assert self._authenticate(token)[0] == self.user
         self.update_token_mock.assert_called()

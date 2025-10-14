@@ -1,3 +1,4 @@
+from datetime import datetime
 from importlib import import_module
 from unittest import mock
 
@@ -7,7 +8,7 @@ from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
 import pytest
-from freezegun import freeze_time
+import time_machine
 from rest_framework.test import APIRequestFactory, force_authenticate
 from rest_framework.throttling import BaseThrottle
 from rest_framework.viewsets import GenericViewSet
@@ -124,13 +125,13 @@ class TestGranularUserRateThrottle(TestCase):
         assert self.throttle.allow_request(request, view) is True
         assert allow_request_mock.call_count == 0
 
-    @freeze_time(as_kwarg='frozen_time')
-    def test_freeze_time_works_with_throttling(self, frozen_time):
+    def test_time_machine_works_with_throttling(self):
         self.throttle = self.throttle.__class__()
-        old_time = self.throttle.timer()
-        frozen_time.move_to('2019-04-08 15:16:23.42')
-        assert self.throttle.timer() == 1554736583.42
-        assert old_time != 1554736583.42
+        with time_machine.travel(datetime.now(), tick=False) as frozen_time:
+            old_time = self.throttle.timer()
+            frozen_time.move_to('2019-04-08 15:16:23.42')
+            assert self.throttle.timer() == 1554736583.42
+            assert old_time != 1554736583.42
 
     @mock.patch('rest_framework.throttling.UserRateThrottle.allow_request')
     def test_activity_log(self, allow_request_mock):

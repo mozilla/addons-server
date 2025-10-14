@@ -21,8 +21,8 @@ from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_encode
 
 import pytest
+import time_machine
 from elasticsearch import Elasticsearch
-from freezegun import freeze_time
 from rest_framework.exceptions import ErrorDetail
 from rest_framework.test import APIRequestFactory
 from waffle import switch_is_active
@@ -2878,7 +2878,7 @@ class TestAddonViewSetDelete(TestCase):
             'addon-detail', kwargs={'pk': self.addon.pk}, api_version='v5'
         )
 
-    @freeze_time()
+    @time_machine.travel(datetime.now(), tick=False)
     def test_delete_confirm(self):
         delete_confirm_url = f'{self.url}delete_confirm/'
 

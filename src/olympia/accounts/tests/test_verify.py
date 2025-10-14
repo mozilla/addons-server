@@ -7,7 +7,7 @@ from django.contrib.auth import SESSION_KEY
 from django.test.utils import override_settings
 
 import pytest
-from freezegun import freeze_time
+import time_machine
 
 from olympia.accounts import verify
 from olympia.amo.tests import TestCase
@@ -278,7 +278,7 @@ class TestCheckAndUpdateFxaAccessToken(TestCase):
         self.get_fxa_token_mock.assert_not_called()
         assert request.session['fxa_access_token_expiry'] == tomorrow
 
-    @freeze_time()
+    @time_machine.travel(datetime.now(), tick=False)
     def test_refresh_success(self):
         request = self.get_request()
 
@@ -299,7 +299,7 @@ class TestCheckAndUpdateFxaAccessToken(TestCase):
             == (self.get_fxa_token_mock.return_value['access_token_expiry'])
         )
 
-    @freeze_time()
+    @time_machine.travel(datetime.now(), tick=False)
     def test_refresh_fail(self):
         yesterday = (datetime.now() - timedelta(days=1)).timestamp()
         request = self.get_request(yesterday)
@@ -313,7 +313,7 @@ class TestCheckAndUpdateFxaAccessToken(TestCase):
         # i.e. it's still expired
         assert request.session['fxa_access_token_expiry'] == yesterday
 
-    @freeze_time()
+    @time_machine.travel(datetime.now(), tick=False)
     def test_refresh_token_missing(self):
         request = self.get_request()
         del request.session['fxa_refresh_token']

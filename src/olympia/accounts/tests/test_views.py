@@ -15,9 +15,9 @@ from django.test.utils import override_settings
 from django.urls import reverse
 from django.utils.encoding import force_str
 
-import freezegun
 import jwt
 import responses
+import time_machine
 from rest_framework import exceptions
 from rest_framework.settings import api_settings
 from rest_framework.test import APIClient, APIRequestFactory
@@ -2411,7 +2411,7 @@ class TestFxaNotificationView(TestCase):
         with (
             mock.patch(f'{class_path}.get_jwt_payload') as get_jwt_mock,
             mock.patch(f'{class_path}.process_event') as process_event_mock,
-            freezegun.freeze_time(),
+            time_machine.travel(datetime.now(), tick=False),
         ):
             get_jwt_mock.return_value = self.FXA_EVENT
             response = self.client.post(url)
@@ -2424,7 +2424,7 @@ class TestFxaNotificationView(TestCase):
 
     @mock.patch('olympia.accounts.views.primary_email_change_event.delay')
     def test_process_event_email_change(self, event_mock):
-        with freezegun.freeze_time():
+        with time_machine.travel(datetime.now(), tick=False):
             FxaNotificationView().process_event(
                 self.FXA_ID,
                 FxaNotificationView.FXA_PROFILE_CHANGE_EVENT,
@@ -2440,7 +2440,7 @@ class TestFxaNotificationView(TestCase):
             fxa_id=self.FXA_ID,
             email_changed=datetime(2017, 10, 11),
         )
-        with freezegun.freeze_time():
+        with time_machine.travel(datetime.now(), tick=False):
             FxaNotificationView().process_event(
                 self.FXA_ID,
                 FxaNotificationView.FXA_PROFILE_CHANGE_EVENT,
@@ -2453,7 +2453,7 @@ class TestFxaNotificationView(TestCase):
 
     @mock.patch('olympia.accounts.views.delete_user_event.delay')
     def test_process_event_delete(self, event_mock):
-        with freezegun.freeze_time():
+        with time_machine.travel(datetime.now(), tick=False):
             FxaNotificationView().process_event(
                 self.FXA_ID,
                 FxaNotificationView.FXA_DELETE_EVENT,

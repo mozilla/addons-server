@@ -15,7 +15,7 @@ from django.test.utils import override_settings
 
 import pytest
 import responses
-from freezegun import freeze_time
+import time_machine
 from responses import registries
 
 from olympia.amo.management import BaseDataCommand, storage_structure
@@ -531,7 +531,7 @@ class TestDumpDataCommand(BaseTestDataCommand):
             self.addCleanup(patcher.stop)
             self.mocks[mock_name] = patcher.start()
 
-    @freeze_time('2023-06-26 11:00:44')
+    @time_machine.travel('2023-06-26 11:00:44', tick=False)
     def test_default_name(self):
         print('backup', self.backup_dir)
         backup_dir = os.path.join(self.backup_dir, '20230626110044')

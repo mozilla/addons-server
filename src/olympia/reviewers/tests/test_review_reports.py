@@ -3,7 +3,7 @@ from datetime import date, timedelta
 from django.core import mail
 
 import pytest
-from freezegun import freeze_time
+import time_machine
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
@@ -23,9 +23,9 @@ class TestReviewReports:
     # 2019-01-07: part of the reported week is previous quarter (year even)
     # 2019-01-14: back to reported week being within the quarter
     @pytest.fixture(autouse=True, params=['2019-01-07', '2019-01-14'])
-    def freeze_date(self, request):
-        freezer = freeze_time(request.param)
-        freezer.start()
+    def travel_to_date(self, request):
+        machine = time_machine.travel(request.param, tick=False)
+        machine.start()
 
         self.today = date.today()
         self.last_week_begin = self.today - timedelta(days=self.today.weekday() + 7)
@@ -35,7 +35,7 @@ class TestReviewReports:
         )
 
         yield
-        freezer.stop()
+        machine.stop()
 
     def create_and_review_addon(self, user, weight, verdict, content_review):
         addon = addon_factory()
@@ -48,7 +48,7 @@ class TestReviewReports:
         ActivityLog.objects.create(action, addon, addon.versions.all()[0], user=user)
 
     def generate_review_data(self):
-        with freeze_time(self.last_week_begin) as frozen_time:
+        with time_machine.travel(self.last_week_begin) as frozen_time:
             self.reviewer1 = user_factory(display_name='Volunteer A')
             self.reviewer2 = user_factory(display_name='Staff B')
             self.reviewer3 = user_factory(display_name=None)
@@ -108,7 +108,7 @@ class TestReviewReports:
                 (self.reviewer5, 165, amo.AUTO_APPROVED, True),
             ]
             for review_action in data:
-                frozen_time.tick()
+                frozen_time.shift(1)
                 self.create_and_review_addon(
                     review_action[0],
                     review_action[1],
@@ -121,7 +121,7 @@ class TestReviewReports:
 
             # Search plugin (submitted before auto-approval was implemented)
             search_plugin = addon_factory(type=4)
-            frozen_time.tick()
+            frozen_time.shift(1)
             ActivityLog.objects.create(
                 amo.LOG.APPROVE_CONTENT,
                 search_plugin,
@@ -131,7 +131,7 @@ class TestReviewReports:
 
             # Dictionary (submitted before auto-approval was implemented)
             dictionary = addon_factory(type=amo.ADDON_DICT)
-            frozen_time.tick()
+            frozen_time.shift(1)
             ActivityLog.objects.create(
                 amo.LOG.APPROVE_CONTENT,
                 dictionary,
@@ -141,7 +141,7 @@ class TestReviewReports:
 
             # Theme (should be filtered out of the reports)
             theme = addon_factory(type=amo.ADDON_STATICTHEME)
-            frozen_time.tick()
+            frozen_time.shift(1)
             ActivityLog.objects.create(
                 amo.LOG.APPROVE_VERSION,
                 theme,
@@ -328,28 +328,28 @@ class TestReviewReports:
     def test_multiple_version_review_counted_once_addon_reviewer(self):
         self.reviewer1 = user_factory(display_name='Volunteer A')
 
-        with freeze_time(self.last_week_begin) as frozen_time:
+        with time_machine.travel(self.last_week_begin, tick=False) as frozen_time:
             ActivityLog.objects.create(
                 amo.LOG.APPROVE_VERSION,
                 (addon := addon_factory()),
                 addon.versions.all()[0],
                 user=self.reviewer1,
             )
-            frozen_time.tick()
+            frozen_time.shift(1)
             ActivityLog.objects.create(
                 amo.LOG.CONFIRM_AUTO_APPROVED,
                 (addon := addon_factory()),
                 addon.versions.all()[0],
                 user=self.reviewer1,
             )
-            frozen_time.tick()
+            frozen_time.shift(1)
             ActivityLog.objects.create(
                 amo.LOG.APPROVE_VERSION,
                 (addon := addon_factory()),
                 addon.versions.all()[0],
                 user=self.reviewer1,
             )
-            frozen_time.tick()
+            frozen_time.shift(1)
             ActivityLog.objects.create(
                 amo.LOG.REJECT_VERSION_DELAYED,
                 (addon := addon_factory()),
@@ -361,14 +361,14 @@ class TestReviewReports:
             version_factory(addon=addon)
             version_factory(addon=addon)
             all_versions = list(addon.versions.all())
-            frozen_time.tick()
+            frozen_time.shift(1)
             # As these are logged at the exact same time, only 1 should be counted
             for i in range(3):
                 ActivityLog.objects.create(
                     amo.LOG.REJECT_VERSION, addon, all_versions[i], user=self.reviewer1
                 )
             # This should be ignored because it's an auto-rejection
-            frozen_time.tick()
+            frozen_time.shift(1)
             ActivityLog.objects.create(
                 amo.LOG.REJECT_VERSION,
                 (addon := addon_factory()),
@@ -401,23 +401,23 @@ class TestReviewReports:
     def test_multiple_version_review_counted_once_content_reviewer(self):
         self.reviewer1 = user_factory(display_name='Volunteer A')
 
-        with freeze_time(self.last_week_begin) as frozen_time:
+        with time_machine.travel(self.last_week_begin, tick=False) as frozen_time:
             for _i in range(3):
-                frozen_time.tick()
+                frozen_time.shift(1)
                 ActivityLog.objects.create(
                     amo.LOG.APPROVE_CONTENT,
                     (addon := addon_factory()),
                     addon.versions.all()[0],
                     user=self.reviewer1,
                 )
-                frozen_time.tick()
+                frozen_time.shift(1)
                 ActivityLog.objects.create(
                     amo.LOG.REJECT_CONTENT,
                     (addon := addon_factory()),
                     addon.versions.all()[0],
                     user=self.reviewer1,
                 )
-                frozen_time.tick()
+                frozen_time.shift(1)
                 ActivityLog.objects.create(
                     amo.LOG.REJECT_CONTENT_DELAYED,
                     (addon := addon_factory()),
@@ -429,14 +429,14 @@ class TestReviewReports:
             version_factory(addon=addon)
             version_factory(addon=addon)
             all_versions = list(addon.versions.all())
-            frozen_time.tick()
+            frozen_time.shift(1)
             # As these are logged at the exact same time, only 1 should be counted
             for i in range(3):
                 ActivityLog.objects.create(
                     amo.LOG.REJECT_CONTENT, addon, all_versions[i], user=self.reviewer1
                 )
             # This should be ignored because it's an auto-rejection
-            frozen_time.tick()
+            frozen_time.shift(1)
             ActivityLog.objects.create(
                 amo.LOG.REJECT_CONTENT,
                 (addon := addon_factory()),

@@ -1,5 +1,5 @@
 import json
-from datetime import timedelta
+from datetime import datetime, timedelta
 from ipaddress import IPv4Address
 
 from django.conf import settings
@@ -7,7 +7,7 @@ from django.core import mail
 from django.test.utils import override_settings
 from django.utils.encoding import force_str
 
-from freezegun import freeze_time
+import time_machine
 from rest_framework.exceptions import ErrorDetail
 
 from olympia import amo
@@ -1319,7 +1319,7 @@ class TestRatingViewSetDelete(TestCase):
             user=self.user,
         )
 
-        with freeze_time('2021-07-23') as frozen_time:
+        with time_machine.travel('2021-07-23', tick=False) as frozen_time:
             # And confirm we can rapidly delete them.
             self.client.login_api(self.user)
             response = self.client.delete(
@@ -1347,7 +1347,7 @@ class TestRatingViewSetDelete(TestCase):
             assert response.status_code == 429
 
             # You're free after a minute.
-            frozen_time.tick(delta=timedelta(minutes=1))
+            frozen_time.shift(delta=timedelta(minutes=1))
             addon_c = addon_factory()
             rating_c = Rating.objects.create(
                 addon=addon_c,
@@ -1513,7 +1513,7 @@ class TestRatingViewSetEdit(TestCase):
     def test_throttle(self):
         self.client.login_api(self.user)
 
-        with freeze_time('2021-07-23') as frozen_time:
+        with time_machine.travel('2021-07-23', tick=False) as frozen_time:
             for x in range(1, 6):
                 response = self.client.patch(
                     self.url, {'score': x, 'body': f'Blâh {x}'}
@@ -1531,7 +1531,7 @@ class TestRatingViewSetEdit(TestCase):
             assert self.rating.rating == 5
 
             # Everything back to normal after waiting a minute.
-            frozen_time.tick(delta=timedelta(minutes=1))
+            frozen_time.shift(delta=timedelta(minutes=1))
             response = self.client.patch(self.url, {'score': 1, 'body': 'I did it'})
             assert response.status_code == 200
             self.rating.reload()
@@ -1542,7 +1542,7 @@ class TestRatingViewSetEdit(TestCase):
     def test_no_throttling_with_relevant_permission(self):
         self.client.login_api(self.user)
 
-        with freeze_time('2021-08-09') as frozen_time:
+        with time_machine.travel('2021-08-09', tick=False) as frozen_time:
             for x in range(1, 6):
                 response = self.client.patch(
                     self.url,
@@ -1603,7 +1603,7 @@ class TestRatingViewSetEdit(TestCase):
             assert new_rating.rating == 4
 
             # Everything back to normal after waiting a minute.
-            frozen_time.tick(delta=timedelta(minutes=1))
+            frozen_time.shift(delta=timedelta(minutes=1))
             response = self.client.patch(
                 new_url,
                 {'score': 1, 'body': 'I did it'},
@@ -1615,33 +1615,33 @@ class TestRatingViewSetEdit(TestCase):
             assert str(new_rating.body) == 'I did it'
             assert new_rating.rating == 1
 
-    @freeze_time(as_arg=True)
-    def test_body_contains_banned_word_deny(frozen_time, self):
+    def test_body_contains_banned_word_deny(self):
         DeniedRatingWord.objects.create(word='body', moderation=False)
         DeniedRatingWord.objects.create(word='foo', moderation=False)
         # This wouldn't be matched, because it's a moderate word instead.
         DeniedRatingWord.objects.create(word='test', moderation=True)
         self.client.login_api(self.user)
-        response = self.client.patch(
-            self.url,
-            {
-                'body': 'test bOdy_é',
-                'score': 5,
-            },
-        )
-        assert response.status_code == 400
-        assert response.data == {
-            'body': ['The review text cannot contain the word: "body"']
-        }
+        with time_machine.travel(datetime.now()) as frozen_time:
+            response = self.client.patch(
+                self.url,
+                {
+                    'body': 'test bOdy_é',
+                    'score': 5,
+                },
+            )
+            assert response.status_code == 400
+            assert response.data == {
+                'body': ['The review text cannot contain the word: "body"']
+            }
 
-        frozen_time.tick(delta=timedelta(minutes=1))
-        response = self.client.patch(
-            self.url,
-            {
-                'body': 'test bOdy-é FOO',
-                'score': 5,
-            },
-        )
+            frozen_time.shift(delta=timedelta(minutes=1))
+            response = self.client.patch(
+                self.url,
+                {
+                    'body': 'test bOdy-é FOO',
+                    'score': 5,
+                },
+            )
         assert response.status_code == 400
         assert response.data == {
             'body': ['The review text cannot contain any of the words: "body", "foo"']
@@ -2222,7 +2222,7 @@ class TestRatingViewSetPost(TestCase):
 
     @override_settings(CACHES=locmem_cache)
     def test_throttle(self):
-        with freeze_time('2017-11-01') as frozen_time:
+        with time_machine.travel('2017-11-01') as frozen_time:
             self.user = user_factory()
             self.client.login_api(self.user)
             # First post, no problem.
@@ -2252,7 +2252,7 @@ class TestRatingViewSetPost(TestCase):
             assert response.status_code == 429
 
             # Throttle is 1 minute so check we can go again
-            frozen_time.tick(delta=timedelta(seconds=60))
+            frozen_time.shift(delta=timedelta(seconds=60))
             # And we're good.
             response = self.client.post(
                 self.url,
@@ -2275,7 +2275,7 @@ class TestRatingViewSetPost(TestCase):
                 )
             # We should be able to post one more today.
             new_version = version_factory(addon=self.addon)
-            frozen_time.tick(delta=timedelta(seconds=61))
+            frozen_time.shift(delta=timedelta(seconds=61))
             response = self.client.post(
                 self.url,
                 {
@@ -2289,7 +2289,7 @@ class TestRatingViewSetPost(TestCase):
 
             # Over the daily limit now...
             new_version = version_factory(addon=self.addon)
-            frozen_time.tick(delta=timedelta(seconds=61))
+            frozen_time.shift(delta=timedelta(seconds=61))
             response = self.client.post(
                 self.url,
                 {
@@ -2303,7 +2303,7 @@ class TestRatingViewSetPost(TestCase):
 
             # Wait a day and we're good.
             new_version = version_factory(addon=self.addon)
-            frozen_time.tick(delta=timedelta(hours=24, seconds=1))
+            frozen_time.shift(delta=timedelta(hours=24, seconds=1))
             response = self.client.post(
                 self.url,
                 {
@@ -2317,7 +2317,7 @@ class TestRatingViewSetPost(TestCase):
 
     @override_settings(CACHES=locmem_cache)
     def test_throttle_by_ip(self):
-        with freeze_time('2017-11-01') as frozen_time:
+        with time_machine.travel('2017-11-01') as frozen_time:
             self.user = user_factory()
             self.client.login_api(self.user)
             # First post, no problem.
@@ -2354,7 +2354,7 @@ class TestRatingViewSetPost(TestCase):
             assert response.status_code == 429
 
             # Throttle is 1 minute so check we can go again
-            frozen_time.tick(delta=timedelta(seconds=60))
+            frozen_time.shift(delta=timedelta(seconds=60))
             # And we're good.
             self.client.login_api(self.user)
             response = self.client.post(
@@ -2376,7 +2376,7 @@ class TestRatingViewSetPost(TestCase):
             from olympia.users.models import UserProfile
 
             for x in range(3, 35):
-                frozen_time.tick(delta=timedelta(seconds=61))
+                frozen_time.shift(delta=timedelta(seconds=61))
                 self._add_fake_throttling_action(
                     view_class=RatingViewSet,
                     url=self.url,
@@ -2385,7 +2385,7 @@ class TestRatingViewSetPost(TestCase):
                 )
             # We should be able to post one more today.
             new_version = version_factory(addon=self.addon)
-            frozen_time.tick(delta=timedelta(seconds=61))
+            frozen_time.shift(delta=timedelta(seconds=61))
             response = self.client.post(
                 self.url,
                 {
@@ -2401,7 +2401,7 @@ class TestRatingViewSetPost(TestCase):
 
             # Over the daily limit for IPs now...
             new_version = version_factory(addon=self.addon)
-            frozen_time.tick(delta=timedelta(seconds=61))
+            frozen_time.shift(delta=timedelta(seconds=61))
             response = self.client.post(
                 self.url,
                 {
@@ -2417,7 +2417,7 @@ class TestRatingViewSetPost(TestCase):
 
             # Wait a day and we're good.
             new_version = version_factory(addon=self.addon)
-            frozen_time.tick(delta=timedelta(hours=24, seconds=1))
+            frozen_time.shift(delta=timedelta(hours=24, seconds=1))
             response = self.client.post(
                 self.url,
                 {
@@ -2433,7 +2433,7 @@ class TestRatingViewSetPost(TestCase):
 
     @override_settings(CACHES=locmem_cache)
     def test_rating_post_throttle_separated_from_other_throttles(self):
-        with freeze_time('2017-11-01') as frozen_time:
+        with time_machine.travel('2017-11-01') as frozen_time:
             self.user = user_factory()
             self.client.login_api(self.user)
 
@@ -2490,7 +2490,7 @@ class TestRatingViewSetPost(TestCase):
             assert response.status_code == 200
 
             # Throttle is 1 minute so check we can go again
-            frozen_time.tick(delta=timedelta(seconds=60))
+            frozen_time.shift(delta=timedelta(seconds=60))
 
             # And we're good.
             response = self.client.post(
@@ -2504,8 +2504,7 @@ class TestRatingViewSetPost(TestCase):
             )
             assert response.status_code == 201, response.content
 
-    @freeze_time(as_arg=True)
-    def test_body_contains_banned_word_deny(frozen_time, self):
+    def test_body_contains_banned_word_deny(self):
         DeniedRatingWord.objects.create(word='body', moderation=False)
         DeniedRatingWord.objects.create(word='foo', moderation=False)
         # This wouldn't be matched, because it's a moderate word instead.
@@ -2513,30 +2512,31 @@ class TestRatingViewSetPost(TestCase):
         self.user = user_factory()
         self.client.login_api(self.user)
         assert not Rating.objects.exists()
-        response = self.client.post(
-            self.url,
-            {
-                'addon': self.addon.pk,
-                'body': 'test bOdy_é',
-                'score': 5,
-                'version': self.addon.current_version.pk,
-            },
-        )
-        assert response.status_code == 400
-        assert response.data == {
-            'body': ['The review text cannot contain the word: "body"']
-        }
+        with time_machine.travel(datetime.now()) as frozen_time:
+            response = self.client.post(
+                self.url,
+                {
+                    'addon': self.addon.pk,
+                    'body': 'test bOdy_é',
+                    'score': 5,
+                    'version': self.addon.current_version.pk,
+                },
+            )
+            assert response.status_code == 400
+            assert response.data == {
+                'body': ['The review text cannot contain the word: "body"']
+            }
 
-        frozen_time.tick(delta=timedelta(minutes=1))
-        response = self.client.post(
-            self.url,
-            {
-                'addon': self.addon.pk,
-                'body': 'test bOdy-é FOO',
-                'score': 5,
-                'version': self.addon.current_version.pk,
-            },
-        )
+            frozen_time.shift(delta=timedelta(minutes=1))
+            response = self.client.post(
+                self.url,
+                {
+                    'addon': self.addon.pk,
+                    'body': 'test bOdy-é FOO',
+                    'score': 5,
+                    'version': self.addon.current_version.pk,
+                },
+            )
         assert response.status_code == 400
         assert response.data == {
             'body': ['The review text cannot contain any of the words: "body", "foo"']
@@ -2891,7 +2891,7 @@ class TestRatingViewSetFlag(TestCase):
         )
         url_b = reverse_ns(self.flag_url_name, kwargs={'pk': rating_b.pk})
 
-        with freeze_time('2021-07-23') as frozen_time:
+        with time_machine.travel('2021-07-23') as frozen_time:
             response = self.client.post(
                 self.url, data={'flag': 'review_flag_reason_spam'}
             )
@@ -2913,12 +2913,12 @@ class TestRatingViewSetFlag(TestCase):
             assert response.status_code == 429
 
             # Even waiting an hour doesn't let you continue.
-            frozen_time.tick(delta=timedelta(hours=1))
+            frozen_time.shift(delta=timedelta(hours=1))
             response = self.client.post(url_b, data={'flag': 'review_flag_reason_spam'})
             assert response.status_code == 429
 
             # Waiting 24 hours (total) does.
-            frozen_time.tick(delta=timedelta(hours=23))
+            frozen_time.shift(delta=timedelta(hours=23))
             response = self.client.post(url_b, data={'flag': 'review_flag_reason_spam'})
             assert response.status_code == 202
 
@@ -3141,7 +3141,7 @@ class TestRatingViewSetReply(TestCase):
         )
         other_url = reverse_ns(self.reply_url_name, kwargs={'pk': other_rating.pk})
 
-        with freeze_time('2017-11-01') as frozen_time:
+        with time_machine.travel('2017-11-01') as frozen_time:
             self.client.login_api(self.addon_author)
             # First post, no problem.
             response = self.client.post(
@@ -3153,7 +3153,7 @@ class TestRatingViewSetReply(TestCase):
             assert response.status_code == 201
 
             # Throttle is 1 per 5 seconds so after 4 seconds we have to wait
-            frozen_time.tick(delta=timedelta(seconds=4))
+            frozen_time.shift(delta=timedelta(seconds=4))
             # Second post, nope, have to wait a while.
             response = self.client.post(
                 other_url,
@@ -3163,7 +3163,7 @@ class TestRatingViewSetReply(TestCase):
             )
             assert response.status_code == 429
 
-            frozen_time.tick(delta=timedelta(seconds=5))
+            frozen_time.shift(delta=timedelta(seconds=5))
             # And we're good.
             response = self.client.post(
                 other_url,

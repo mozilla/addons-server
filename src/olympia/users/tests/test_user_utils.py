@@ -10,7 +10,7 @@ from django.test.client import RequestFactory
 
 import pytest
 import responses
-from freezegun import freeze_time
+import time_machine
 
 from olympia import amo, core
 from olympia.activity.models import ActivityLog
@@ -412,7 +412,7 @@ class TestCheckSuppressedEmailConfirmation(TestCase):
             in responses.calls[0].request.headers['authorization']
         )
 
-    @freeze_time('2023-06-26 11:00')
+    @time_machine.travel('2023-06-26 11:00', tick=False)
     def test_format_date_params(self):
         self.with_verification()
 

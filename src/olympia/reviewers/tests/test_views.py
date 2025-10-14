@@ -20,7 +20,7 @@ from django.urls import reverse
 from django.utils.formats import localize
 
 import responses
-from freezegun import freeze_time
+import time_machine
 from lxml.html import HTMLParser, fromstring
 from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
@@ -313,7 +313,7 @@ class TestReviewLog(ReviewerTest):
         assert pq(response.content)('#log-listing tr:not(.hide)').length == 3
 
     def test_start_filter(self):
-        with freeze_time('2017-08-01 10:00'):
+        with time_machine.travel('2017-08-01 10:00', tick=False):
             self.make_approvals()
 
         # Make sure we show the stuff we just made.
@@ -326,10 +326,10 @@ class TestReviewLog(ReviewerTest):
         assert doc('tr.hide').eq(0).text() == 'youwin'
 
     def test_start_default_filter(self):
-        with freeze_time('2017-07-31 10:00'):
+        with time_machine.travel('2017-07-31 10:00', tick=False):
             self.make_approvals()
 
-        with freeze_time('2017-08-01 10:00'):
+        with time_machine.travel('2017-08-01 10:00', tick=False):
             addon = Addon.objects.first()
 
             ActivityLog.objects.create(
@@ -341,7 +341,7 @@ class TestReviewLog(ReviewerTest):
             )
 
         # Make sure the default 'start' to the 1st of a month works properly
-        with freeze_time('2017-08-03 11:00'):
+        with time_machine.travel('2017-08-03 11:00', tick=False):
             response = self.client.get(self.url)
             assert response.status_code == 200
 
@@ -511,7 +511,7 @@ class TestReviewLog(ReviewerTest):
             'Version 2.1.072 content rejected.'
         )
 
-    @freeze_time('2017-08-03')
+    @time_machine.travel('2017-08-03', tick=False)
     def test_review_url(self):
         self.login_as_admin()
         addon = addon_factory()
