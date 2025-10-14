@@ -355,11 +355,11 @@ msgstr "Podatkov o združljivosti, nastavljenih v manifestu za ta program, ni mo
 msgid "Images must be smaller than %dMB"
 msgstr "Slike morajo biti manjše od %d MB"
 
-#: src/olympia/addons/models.py:2318 src/olympia/addons/models.py:2397 src/olympia/constants/base.py:66
+#: src/olympia/addons/models.py:2302 src/olympia/addons/models.py:2381 src/olympia/constants/base.py:66
 msgid "Listed"
 msgstr "Javno viden"
 
-#: src/olympia/addons/models.py:2575
+#: src/olympia/addons/models.py:2559
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr "Pot dodatka in zbirke se morata končati s \"/\""
 
@@ -1329,7 +1329,7 @@ msgstr "Čaka na pregled"
 msgid "Disabled by Mozilla"
 msgstr "Onemogočen s strani Mozille"
 
-#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1211
+#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1185
 msgid "Deleted"
 msgstr "Izbrisano"
 
@@ -7027,33 +7027,33 @@ msgstr ""
 "\n"
 "ekipa za dodatke Mozille"
 
-#: src/olympia/versions/models.py:1196
+#: src/olympia/versions/models.py:1170
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
 msgstr "Zakasnitev zavrnjena, načrtovano za %s"
 
-#: src/olympia/versions/models.py:1201
+#: src/olympia/versions/models.py:1175
 msgid "Auto-approved, Confirmed"
 msgstr "Samodejno odobreno, potrjeno"
 
-#: src/olympia/versions/models.py:1203
+#: src/olympia/versions/models.py:1177
 msgid "Auto-approved, not Confirmed"
 msgstr "Samodejno odobreno, nepotrjeno"
 
-#: src/olympia/versions/models.py:1206
+#: src/olympia/versions/models.py:1180
 msgid "Approved, Manual"
 msgstr "Odobreno, ročno"
 
-#: src/olympia/versions/models.py:1213
+#: src/olympia/versions/models.py:1187
 msgid "Disabled by Developer"
 msgstr "Onemogočil razvijalec"
 
-#: src/olympia/versions/models.py:1571
+#: src/olympia/versions/models.py:1544
 #, python-brace-format
 msgid "{app} {min} and later"
 msgstr "{app} {min} in novejšimi"
 
-#: src/olympia/versions/models.py:1698
+#: src/olympia/versions/models.py:1671
 #, python-brace-format
 msgid "The install origin {origin} is not permitted."
 msgstr "Izvor namestitve {origin} ni dovoljen."

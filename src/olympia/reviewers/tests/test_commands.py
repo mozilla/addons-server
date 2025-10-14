@@ -25,7 +25,7 @@ from olympia.amo.tests import (
 from olympia.amo.utils import days_ago
 from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
-from olympia.constants.scanners import DELAY_AUTO_APPROVAL, MAD, NARC, YARA
+from olympia.constants.scanners import DELAY_AUTO_APPROVAL, NARC, YARA
 from olympia.files.models import FileManifest, FileValidation
 from olympia.files.utils import lock
 from olympia.lib.crypto.signing import SigningError
@@ -392,8 +392,7 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
             == self.addon.versions.count()
         )
 
-    def test_full_with_weights_and_score(self):
-        ScannerResult.objects.create(score=0.314, scanner=MAD, version=self.version)
+    def test_full_with_weights(self):
         AbuseReport.objects.create(guid=self.addon.guid)
         Rating.objects.create(
             addon=self.addon, version=self.version, user=user_factory(), rating=2
@@ -411,7 +410,6 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         assert summary.weight == 65
         assert summary.metadata_weight == 15
         assert summary.code_weight == 50
-        assert summary.score == 31
 
     @mock.patch.object(auto_approve, 'set_reviewing_cache')
     @mock.patch.object(auto_approve, 'clear_reviewing_cache')

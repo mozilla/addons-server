@@ -354,11 +354,11 @@ msgstr "Informacije wo kompatibelnosći , kotrež su w manifesće za tute nało�
 msgid "Images must be smaller than %dMB"
 msgstr "Wobrazy dyrbja mjeńše hač %d MB być"
 
-#: src/olympia/addons/models.py:2318 src/olympia/addons/models.py:2397 src/olympia/constants/base.py:66
+#: src/olympia/addons/models.py:2302 src/olympia/addons/models.py:2381 src/olympia/constants/base.py:66
 msgid "Listed"
 msgstr "Nalistowane"
 
-#: src/olympia/addons/models.py:2575
+#: src/olympia/addons/models.py:2559
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr "Šćežki přidatkow a zběrkow dyrbja so na \"/\" kónčić"
 
@@ -1332,7 +1332,7 @@ msgstr "Čaka na přepruwowanje"
 msgid "Disabled by Mozilla"
 msgstr "Wot Mozilla znjemóžnjeny"
 
-#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1211
+#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1185
 msgid "Deleted"
 msgstr "Zhašane"
 
@@ -7048,33 +7048,33 @@ msgstr ""
 "\n"
 "Team Mozilla Add-ons"
 
-#: src/olympia/versions/models.py:1196
+#: src/olympia/versions/models.py:1170
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
 msgstr "Komdźeny wotpokazany, za %s planowany"
 
-#: src/olympia/versions/models.py:1201
+#: src/olympia/versions/models.py:1175
 msgid "Auto-approved, Confirmed"
 msgstr "Awtomatisce schwaleny, wobkrućeny"
 
-#: src/olympia/versions/models.py:1203
+#: src/olympia/versions/models.py:1177
 msgid "Auto-approved, not Confirmed"
 msgstr "Awtomatisce schwaleny, njewobkrućeny"
 
-#: src/olympia/versions/models.py:1206
+#: src/olympia/versions/models.py:1180
 msgid "Approved, Manual"
 msgstr "Schwaleny, manuelny"
 
-#: src/olympia/versions/models.py:1213
+#: src/olympia/versions/models.py:1187
 msgid "Disabled by Developer"
 msgstr "Wot wuwiwarja znjezmóžnjeny"
 
-#: src/olympia/versions/models.py:1571
+#: src/olympia/versions/models.py:1544
 #, python-brace-format
 msgid "{app} {min} and later"
 msgstr "{app} {min} a nowšimi"
 
-#: src/olympia/versions/models.py:1698
+#: src/olympia/versions/models.py:1671
 #, python-brace-format
 msgid "The install origin {origin} is not permitted."
 msgstr "Instalaciski pochad {origin} dowoleny njeje."

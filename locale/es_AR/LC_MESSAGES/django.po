@@ -355,11 +355,11 @@ msgstr "No se puede modificar la información de compatibilidad establecida en e
 msgid "Images must be smaller than %dMB"
 msgstr "Las imágenes deben tener menos de %dMB"
 
-#: src/olympia/addons/models.py:2318 src/olympia/addons/models.py:2397 src/olympia/constants/base.py:66
+#: src/olympia/addons/models.py:2302 src/olympia/addons/models.py:2381 src/olympia/constants/base.py:66
 msgid "Listed"
 msgstr "Listado"
 
-#: src/olympia/addons/models.py:2575
+#: src/olympia/addons/models.py:2559
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr "Las rutas de los complementos y colecciones deben terminar con \"/\""
 
@@ -1335,7 +1335,7 @@ msgstr "Esperando revisión"
 msgid "Disabled by Mozilla"
 msgstr "Deshabilitado por Mozilla"
 
-#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1211
+#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1185
 msgid "Deleted"
 msgstr "Eliminado"
 
@@ -5916,12 +5916,12 @@ msgstr "Ver todas las extensiones"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1033
 msgid "Extension Starter Pack"
-msgstr ""
+msgstr "Paquete inicial de extensiones"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1037
 msgid "Twitch customization"
-msgstr ""
+msgstr "Personalización de Twitch"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1039 src/olympia/discovery/strings.jinja2:1041 src/olympia/discovery/strings.jinja2:1043
@@ -7060,33 +7060,33 @@ msgstr ""
 "\n"
 "Equipo de complementos de Mozilla"
 
-#: src/olympia/versions/models.py:1196
+#: src/olympia/versions/models.py:1170
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
 msgstr ""
 
-#: src/olympia/versions/models.py:1201
+#: src/olympia/versions/models.py:1175
 msgid "Auto-approved, Confirmed"
 msgstr "Autoaprobado, Confirmado"
 
-#: src/olympia/versions/models.py:1203
+#: src/olympia/versions/models.py:1177
 msgid "Auto-approved, not Confirmed"
 msgstr "Autoaprobado, no Confirmado"
 
-#: src/olympia/versions/models.py:1206
+#: src/olympia/versions/models.py:1180
 msgid "Approved, Manual"
 msgstr "Aprobado, Manual"
 
-#: src/olympia/versions/models.py:1213
+#: src/olympia/versions/models.py:1187
 msgid "Disabled by Developer"
 msgstr "Deshabilitado por el desarrollador"
 
-#: src/olympia/versions/models.py:1571
+#: src/olympia/versions/models.py:1544
 #, python-brace-format
 msgid "{app} {min} and later"
 msgstr "{app} {min} y posterior"
 
-#: src/olympia/versions/models.py:1698
+#: src/olympia/versions/models.py:1671
 #, python-brace-format
 msgid "The install origin {origin} is not permitted."
 msgstr "El origen de instalación {origin} no está permitido."

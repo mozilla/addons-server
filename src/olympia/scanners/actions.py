@@ -2,7 +2,6 @@ from datetime import datetime, timedelta
 
 from olympia.abuse.utils import reject_and_block_addons
 from olympia.constants.abuse import DECISION_ACTIONS
-from olympia.constants.scanners import MAD
 from olympia.users.models import (
     RESTRICTION_TYPES,
     EmailUserRestriction,
@@ -169,14 +168,3 @@ def _disable_and_block(*, version, rule):
         reject_and_block_addons([addon])
     else:
         _delay_auto_approval_indefinitely(version=version, rule=rule)
-
-
-def _flag_for_human_review_by_scanner(*, version, rule, scanner):
-    from olympia.versions.models import VersionReviewerFlags
-
-    if scanner != MAD:
-        raise ValueError('scanner should be MAD')
-
-    VersionReviewerFlags.objects.update_or_create(
-        version=version, defaults={'needs_human_review_by_mad': True}
-    )

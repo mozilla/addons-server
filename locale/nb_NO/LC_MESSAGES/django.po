@@ -354,11 +354,11 @@ msgstr "Kan ikke overstyre kompatibilitetsinformasjonen som er angitt i manifest
 msgid "Images must be smaller than %dMB"
 msgstr "Bilder må være mindre enn %d MB"
 
-#: src/olympia/addons/models.py:2318 src/olympia/addons/models.py:2397 src/olympia/constants/base.py:66
+#: src/olympia/addons/models.py:2302 src/olympia/addons/models.py:2381 src/olympia/constants/base.py:66
 msgid "Listed"
 msgstr "Listet"
 
-#: src/olympia/addons/models.py:2575
+#: src/olympia/addons/models.py:2559
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr "Søkesti for tillegg og samling må slutte med «/»"
 
@@ -1335,7 +1335,7 @@ msgstr "Venter på gjennomgang"
 msgid "Disabled by Mozilla"
 msgstr "Avslått av Mozilla"
 
-#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1211
+#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1185
 msgid "Deleted"
 msgstr "Slettet"
 
@@ -5879,12 +5879,12 @@ msgstr "Se alle utvidelser"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1033
 msgid "Extension Starter Pack"
-msgstr ""
+msgstr "Startpakke for utvidelser"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1037
 msgid "Twitch customization"
-msgstr ""
+msgstr "Twitch-tilpasning"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1039 src/olympia/discovery/strings.jinja2:1041 src/olympia/discovery/strings.jinja2:1043
@@ -7019,33 +7019,33 @@ msgstr ""
 "\n"
 "Mozillas tilleggsteam"
 
-#: src/olympia/versions/models.py:1196
+#: src/olympia/versions/models.py:1170
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
 msgstr "Forsinket avvist, planlagt til %s"
 
-#: src/olympia/versions/models.py:1201
+#: src/olympia/versions/models.py:1175
 msgid "Auto-approved, Confirmed"
 msgstr "Autogodkjent, bekreftet"
 
-#: src/olympia/versions/models.py:1203
+#: src/olympia/versions/models.py:1177
 msgid "Auto-approved, not Confirmed"
 msgstr "Autogodkjent, ikke bekreftet"
 
-#: src/olympia/versions/models.py:1206
+#: src/olympia/versions/models.py:1180
 msgid "Approved, Manual"
 msgstr "Godkjent, manuell"
 
-#: src/olympia/versions/models.py:1213
+#: src/olympia/versions/models.py:1187
 msgid "Disabled by Developer"
 msgstr "Deaktivert av utvikler"
 
-#: src/olympia/versions/models.py:1571
+#: src/olympia/versions/models.py:1544
 #, python-brace-format
 msgid "{app} {min} and later"
 msgstr "{app} {min} og senere"
 
-#: src/olympia/versions/models.py:1698
+#: src/olympia/versions/models.py:1671
 #, python-brace-format
 msgid "The install origin {origin} is not permitted."
 msgstr "Installasjonsopprinnelsen {origin} er ikke tillatt."

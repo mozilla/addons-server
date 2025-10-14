@@ -26,7 +26,6 @@ from olympia.constants.scanners import (
     DELAY_AUTO_APPROVAL_INDEFINITELY_AND_RESTRICT_FUTURE_APPROVALS,
     DISABLE_AND_BLOCK,
     FLAG_FOR_HUMAN_REVIEW,
-    MAD,
     NARC,
     NEW,
     NO_ACTION,
@@ -46,7 +45,6 @@ from olympia.scanners.actions import (
     _delay_auto_approval_indefinitely_and_restrict_future_approvals,
     _disable_and_block,
     _flag_for_human_review,
-    _flag_for_human_review_by_scanner,
     _no_action,
 )
 
@@ -254,11 +252,6 @@ class ScannerResult(AbstractScannerResult):
     matched_rules = models.ManyToManyField(
         'ScannerRule', through='ScannerMatch', related_name='results'
     )
-    # The value is a decimal between 0 and 1. `-1` is a special value to
-    # indicate an error or no score available.
-    score = models.DecimalField(
-        null=True, blank=True, max_digits=6, decimal_places=5, default=-1
-    )
     model_version = models.CharField(max_length=30, null=True)
     has_matches = models.BooleanField(null=True)
     state = models.PositiveSmallIntegerField(
@@ -296,36 +289,13 @@ class ScannerResult(AbstractScannerResult):
             self.matched_rules.add(scanner_rule)
 
     def can_report_feedback(self):
-        return self.state == UNKNOWN and self.scanner not in [MAD]
+        return self.state == UNKNOWN
 
     def can_revert_feedback(self):
-        return self.state != UNKNOWN and self.scanner not in [MAD]
+        return self.state != UNKNOWN
 
     @classmethod
-    def _check_mad_results(cls, version):
-        try:
-            mad_result = cls.objects.filter(version=version, scanner=MAD).get()
-            customs = mad_result.results.get('scanners', {}).get('customs', {})
-            customs_score = customs.get('score', 0.5)
-            customs_models_agree = customs.get('result_details', {}).get(
-                'models_agree', True
-            )
-
-            if (
-                customs_score <= 0.01
-                or customs_score >= 0.99
-                or not customs_models_agree
-            ):
-                log.info('Flagging version %s for human review by MAD.', version.pk)
-                _flag_for_human_review_by_scanner(
-                    version=version, rule=None, scanner=MAD
-                )
-        except cls.DoesNotExist:
-            log.info('No MAD scanner result for version %s.', version.pk)
-            pass
-
-    @classmethod
-    def run_action(cls, version, *, check_mad_results=True):
+    def run_action(cls, version):
         """Try to find and execute an action for a given version, based on the
         scanner results and associated rules.
 
@@ -340,9 +310,6 @@ class ScannerResult(AbstractScannerResult):
                 version.pk,
             )
             return
-
-        if check_mad_results:
-            cls._check_mad_results(version)
 
         result_query_name = cls._meta.get_field('matched_rules').related_query_name()
 
