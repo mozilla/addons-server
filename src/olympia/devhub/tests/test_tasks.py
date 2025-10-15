@@ -23,7 +23,7 @@ from olympia.api.models import SYMMETRIC_JWT_TYPE, APIKey
 from olympia.applications.models import AppVersion
 from olympia.constants.base import VALIDATOR_SKELETON_RESULTS
 from olympia.devhub import tasks
-from olympia.files.models import File
+from olympia.files.models import File, FileUpload
 from olympia.files.tests.test_models import UploadMixin
 from olympia.files.utils import NoManifestFound
 
@@ -910,6 +910,24 @@ class TestValidationTask(TestCase):
         assert TestValidationTask.fake_task_has_been_called
         assert results != returned_results
         assert 'fake_task_results' in returned_results
+
+    def test_handle_upload_validation_result_accepts_list_and_single_result(self):
+        upload = FileUpload.objects.create(
+            user=user_factory(),
+            channel=amo.CHANNEL_LISTED,
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+        )
+        result = amo.VALIDATOR_SKELETON_RESULTS.copy()
+        # This would occur when no scanner is enabled, and only a single
+        # task is passed to the Celery group in the validation chain.
+        tasks.handle_upload_validation_result(result, upload.pk, False)
+        assert upload.reload().validation == json.dumps(result)
+
+        result = amo.VALIDATOR_SKELETON_RESULTS.copy()
+        # Simulates a validation chain with a group of more than 1 task.
+        ignored = {}
+        tasks.handle_upload_validation_result([result, ignored], upload.pk, False)
+        assert upload.reload().validation == json.dumps(result)
 
 
 class TestForwardLinterResults(TestCase):
