@@ -935,3 +935,82 @@ class TestForwardLinterResults(TestCase):
         results = {'errors': 1}
         returned_results = tasks.forward_linter_results(results, 123)
         assert results == returned_results
+
+
+@override_switch('enable-data-collection-permissions', active=True)
+class TestCheckDataCollectionPermissions(UploadMixin, ValidatorTestCase):
+    def setUp(self):
+        self.user = user_factory()
+        self.addon = addon_factory(users=[self.user])
+
+    @override_switch('enforce-data-collection-for-new-addons', active=False)
+    def test_switch_disabled_and_new_extension_without_data_collection(self):
+        upload = self.get_upload(
+            abspath=get_addon_file('valid_webextension.xpi'),
+            with_validation=False,
+            user=self.user,
+        )
+        tasks.validate(upload)
+        upload.refresh_from_db()
+
+        validation = upload.processed_validation
+        assert validation['errors'] == 0
+        assert validation['notices'] == 1
+
+    @override_switch('enforce-data-collection-for-new-addons', active=True)
+    def test_switch_enabled_and_new_extension_without_data_collection(self):
+        upload = self.get_upload(
+            abspath=get_addon_file('valid_webextension.xpi'),
+            with_validation=False,
+            user=self.user,
+        )
+        tasks.validate(upload)
+        upload.refresh_from_db()
+
+        validation = upload.processed_validation
+        assert validation['errors'] == 1
+        assert validation['notices'] == 0
+
+    @override_switch('enforce-data-collection-for-new-addons', active=True)
+    def test_switch_enabled_and_existing_extension_without_data_collection(self):
+        upload = self.get_upload(
+            abspath=get_addon_file('valid_webextension.xpi'),
+            with_validation=False,
+            addon=self.addon,
+            user=self.user,
+        )
+        tasks.validate(upload)
+        upload.refresh_from_db()
+
+        validation = upload.processed_validation
+        assert validation['errors'] == 0
+        assert validation['notices'] == 1
+
+    @override_switch('enforce-data-collection-for-new-addons', active=True)
+    def test_switch_enabled_and_new_extension_with_data_collection(self):
+        upload = self.get_upload(
+            abspath=get_addon_file('valid_webextension_with_data_collection.xpi'),
+            with_validation=False,
+            user=self.user,
+        )
+        tasks.validate(upload)
+        upload.refresh_from_db()
+
+        validation = upload.processed_validation
+        assert validation['errors'] == 0
+        assert validation['notices'] == 0
+
+    @override_switch('enforce-data-collection-for-new-addons', active=True)
+    def test_switch_enabled_and_existing_extension_with_data_collection(self):
+        upload = self.get_upload(
+            abspath=get_addon_file('valid_webextension_with_data_collection.xpi'),
+            with_validation=False,
+            addon=self.addon,
+            user=self.user,
+        )
+        tasks.validate(upload)
+        upload.refresh_from_db()
+
+        validation = upload.processed_validation
+        assert validation['errors'] == 0
+        assert validation['notices'] == 0

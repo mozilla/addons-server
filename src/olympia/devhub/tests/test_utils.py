@@ -62,6 +62,7 @@ class TestAddonsLinterListed(UploadMixin, TestCase):
             repack_fileupload.s(self.file_upload.pk),
             tasks.validate_upload.s(self.file_upload.pk),
             tasks.check_for_api_keys_in_file.s(self.file_upload.pk),
+            tasks.check_data_collection_permissions.s(self.file_upload.pk),
             group([tasks.forward_linter_results.s(self.file_upload.pk)]),
             tasks.handle_upload_validation_result.s(self.file_upload.pk, False),
         )
@@ -286,6 +287,7 @@ class TestValidator(UploadMixin, TestCase):
             repack_fileupload.s(file_upload.pk),
             tasks.validate_upload.s(file_upload.pk),
             tasks.check_for_api_keys_in_file.s(file_upload.pk),
+            tasks.check_data_collection_permissions.s(file_upload.pk),
             group([tasks.forward_linter_results.s(file_upload.pk)]),
             tasks.handle_upload_validation_result.s(file_upload.pk, False),
             final_task,
@@ -317,6 +319,7 @@ class TestValidator(UploadMixin, TestCase):
             repack_fileupload.s(file_upload.pk),
             tasks.validate_upload.s(file_upload.pk),
             tasks.check_for_api_keys_in_file.s(file_upload.pk),
+            tasks.check_data_collection_permissions.s(file_upload.pk),
             group(
                 [
                     tasks.forward_linter_results.s(file_upload.pk),
@@ -338,6 +341,7 @@ class TestValidator(UploadMixin, TestCase):
             repack_fileupload.s(file_upload.pk),
             tasks.validate_upload.s(file_upload.pk),
             tasks.check_for_api_keys_in_file.s(file_upload.pk),
+            tasks.check_data_collection_permissions.s(file_upload.pk),
             group([tasks.forward_linter_results.s(file_upload.pk)]),
             tasks.handle_upload_validation_result.s(file_upload.pk, False),
         )
@@ -354,6 +358,7 @@ class TestValidator(UploadMixin, TestCase):
             repack_fileupload.s(file_upload.pk),
             tasks.validate_upload.s(file_upload.pk),
             tasks.check_for_api_keys_in_file.s(file_upload.pk),
+            tasks.check_data_collection_permissions.s(file_upload.pk),
             group(
                 [
                     tasks.forward_linter_results.s(file_upload.pk),
@@ -375,6 +380,7 @@ class TestValidator(UploadMixin, TestCase):
             repack_fileupload.s(file_upload.pk),
             tasks.validate_upload.s(file_upload.pk),
             tasks.check_for_api_keys_in_file.s(file_upload.pk),
+            tasks.check_data_collection_permissions.s(file_upload.pk),
             group([tasks.forward_linter_results.s(file_upload.pk)]),
             tasks.handle_upload_validation_result.s(file_upload.pk, False),
         )
@@ -392,6 +398,7 @@ class TestValidator(UploadMixin, TestCase):
             repack_fileupload.s(file_upload.pk),
             tasks.validate_upload.s(file_upload.pk),
             tasks.check_for_api_keys_in_file.s(file_upload.pk),
+            tasks.check_data_collection_permissions.s(file_upload.pk),
             group(
                 [
                     tasks.forward_linter_results.s(file_upload.pk),
@@ -415,6 +422,7 @@ class TestValidator(UploadMixin, TestCase):
             repack_fileupload.s(file_upload.pk),
             tasks.validate_upload.s(file_upload.pk),
             tasks.check_for_api_keys_in_file.s(file_upload.pk),
+            tasks.check_data_collection_permissions.s(file_upload.pk),
             group(
                 [
                     tasks.forward_linter_results.s(file_upload.pk),
@@ -442,13 +450,14 @@ class TestValidator(UploadMixin, TestCase):
             'olympia.files.tasks.repack_fileupload',
             'olympia.devhub.tasks.validate_upload',
             'olympia.devhub.tasks.check_for_api_keys_in_file',
+            'olympia.devhub.tasks.check_data_collection_permissions',
             'celery.group',
             'olympia.devhub.tasks.handle_upload_validation_result',
         ]
         assert len(tasks) == len(expected_tasks)
         assert expected_tasks == [task.name for task in tasks]
 
-        scanners_group = tasks[4]
+        scanners_group = tasks[5]
 
         expected_parallel_tasks = [
             'olympia.devhub.tasks.forward_linter_results',

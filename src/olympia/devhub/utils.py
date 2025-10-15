@@ -278,6 +278,7 @@ class Validator:
             repack_fileupload.s(upload_pk),
             tasks.validate_upload.s(upload_pk),
             tasks.check_for_api_keys_in_file.s(upload_pk),
+            tasks.check_data_collection_permissions.s(upload_pk),
             group(tasks_in_parallel),
             tasks.handle_upload_validation_result.s(upload_pk, is_mozilla_signed),
         ]
