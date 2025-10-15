@@ -918,11 +918,15 @@ class TestValidationTask(TestCase):
             source=amo.UPLOAD_SOURCE_DEVHUB,
         )
         result = amo.VALIDATOR_SKELETON_RESULTS.copy()
+        # This would occur when no scanner is enabled, and only a single
+        # task is passed to the Celery group in the validation chain.
         tasks.handle_upload_validation_result(result, upload.pk, False)
         assert upload.reload().validation == json.dumps(result)
 
         result = amo.VALIDATOR_SKELETON_RESULTS.copy()
-        tasks.handle_upload_validation_result([result], upload.pk, False)
+        # Simulates a validation chain with a group of more than 1 task.
+        ignored = {}
+        tasks.handle_upload_validation_result([result, ignored], upload.pk, False)
         assert upload.reload().validation == json.dumps(result)
 
 

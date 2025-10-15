@@ -270,7 +270,9 @@ def handle_upload_validation_result(results, upload_pk, is_mozilla_signed):
     to the given upload_pk."""
     # The first task registered in the group is `forward_linter_results()`,
     # and that's what we save in the upload validation.
-    # Depending on what scanners were enabled, results could be a list or a single item.
+    # Depending on what scanners were enabled, results could be a list or a single item
+    # because Celery unrolls groups with a single task, see:
+    # https://docs.celeryq.dev/en/v5.5.3/userguide/canvas.html#group-unrolling
     if isinstance(results, list):
         results = results[0]
     upload = FileUpload.objects.get(pk=upload_pk)
