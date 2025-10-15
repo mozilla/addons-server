@@ -268,6 +268,11 @@ def forward_linter_results(results, upload_pk):
 def handle_upload_validation_result(results, upload_pk, is_mozilla_signed):
     """Save a set of validation results to a FileUpload instance corresponding
     to the given upload_pk."""
+    # The first task registered in the group is `forward_linter_results()`,
+    # and that's what we save in the upload validation.
+    # Depending on what scanners were enabled, results could be a list or a single item.
+    if isinstance(results, list):
+        results = results[0]
     upload = FileUpload.objects.get(pk=upload_pk)
     upload.validation = json.dumps(results)
     upload.save()  # We want to hit the custom save().
