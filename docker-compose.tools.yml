@@ -13,6 +13,6 @@ services:
 
   zizmor:
     extends: base
-    image: ghcr.io/zizmorcore/zizmor:1.12.1@sha256:863597f69a59c70538efa2a6589cf3162734d17a818c0f00bbc36fe98133283c
+    image: ghcr.io/zizmorcore/zizmor:1.14.2@sha256:d18a6c1e37733db34fbb516e1f168687db53f2e6601ca44d061700757a38ad95
     environment:
       - GH_TOKEN
