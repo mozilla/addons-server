@@ -695,7 +695,7 @@ def resize_image(source, destination, size=None, *, format='png', quality=80):
     quality kwarg is only valid for jpeg format - it's ignored for png.
     """
     if source == destination:
-        raise Exception("source and destination can't be the same: %s" % source)
+        raise RuntimeError("source and destination can't be the same: %s" % source)
     source_fileext = os.path.splitext(source)[1]
     if source_fileext == '.svg':
         tmp_args = {
