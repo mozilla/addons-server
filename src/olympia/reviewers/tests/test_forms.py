@@ -14,7 +14,6 @@ from olympia.abuse.models import (
     CinderAppeal,
     CinderJob,
     CinderPolicy,
-    CinderQueueMove,
     ContentDecision,
 )
 from olympia.addons.models import Addon
@@ -1354,11 +1353,12 @@ class TestReviewForm(TestCase):
             addon=self.addon,
             cinder_job=cinder_job_forwarded,
         )
-        CinderQueueMove.objects.create(
+        ContentDecision.objects.create(
             created=datetime(2025, 5, 22, 11, 42, 5, 541216),
+            action=DECISION_ACTIONS.AMO_ESCALATE_ADDON,
+            private_notes='Zee de zee',
+            addon=self.addon,
             cinder_job=cinder_job_forwarded,
-            notes='Zee de zee',
-            to_queue='amo-env-content-infringment',
         )
         AbuseReport.objects.create(
             **{**abuse_kw, 'location': AbuseReport.LOCATION.AMO},
@@ -1407,7 +1407,7 @@ class TestReviewForm(TestCase):
             '[Forwarded on May 22, 2025, 11:42 a.m.] '
             '[Requeued on May 23, 2025, 10:54 p.m.] '
             '"DSA: It violates Mozilla\'s Add-on Policies"\n'
-            'Reasoning: Zee de zee; Why o why\n\n'
+            'Reasoning: Why o why; Zee de zee\n\n'
             'Show detail on 1 reports\n'
             'v[<script>alert()</script>]: ddd'
         )
