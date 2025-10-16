@@ -916,7 +916,6 @@ class TestAPIKeyPage(TestCase):
         self.client.force_login_with_2fa(UserProfile.objects.get(email='del@icio.us'))
         self.user = UserProfile.objects.get(email='del@icio.us')
         self.user.update(last_login_ip='192.168.1.1')
-        self.create_flag('2fa-enforcement-for-developers-and-special-users')
 
     def _submit_actions(self, doc):
         return doc('form[name=api-credentials-form] button[type=submit][name=action]')
@@ -1283,7 +1282,6 @@ class TestUpload(UploadMixin, TestCase):
         self.client.force_login(self.user)
         self.url = reverse('devhub.upload')
         self.xpi_path = self.file_path('webextension_no_id.xpi')
-        self.create_flag('2fa-enforcement-for-developers-and-special-users')
 
     def post(self, theme_specific=False, **kwargs):
         data = {
@@ -1451,17 +1449,6 @@ class TestUpload(UploadMixin, TestCase):
                 'ending_tier': 5,
             }
         }
-
-    def test_upload_extension_without_2fa_waffle_is_off(self):
-        self.create_flag(
-            '2fa-enforcement-for-developers-and-special-users', everyone=False
-        )
-        self.url = reverse('devhub.upload')
-        response = self.post()
-        upload = FileUpload.objects.get()
-        assert upload.channel == amo.CHANNEL_LISTED
-        url = reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json'])
-        self.assert3xx(response, url)
 
     def test_upload_theme_without_2fa(self):
         self.xpi_path = os.path.join(
@@ -2064,7 +2051,7 @@ class TestDocs(TestCase):
         assert '/en-US/developers/docs/te' == reverse('devhub.docs', args=['te'])
         assert '/en-US/developers/docs/te/st', reverse('devhub.docs', args=['te/st'])
 
-        self.client.force_login(user_factory(read_dev_agreement=None))
+        self.client.force_login_with_2fa(user_factory(read_dev_agreement=None))
         response = self.client.get(reverse('devhub.submit.agreement'))
         doc = pq(response.content)
 

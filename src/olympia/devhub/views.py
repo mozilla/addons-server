@@ -621,9 +621,6 @@ def upload(request, channel='listed', addon=None, is_standalone=False):
         not theme_specific
         and not is_standalone
         and not request.session.get('has_two_factor_authentication')
-        and waffle.flag_is_active(
-            request, '2fa-enforcement-for-developers-and-special-users'
-        )
     ):
         # This shouldn't happen: it means the user attempted to use the add-on
         # submission flow that is behind @two_factor_auth_required decorator

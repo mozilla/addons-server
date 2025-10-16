@@ -18,7 +18,6 @@ from django.views.decorators.cache import never_cache
 
 import jwt
 import requests
-import waffle
 from corsheaders.conf import conf as corsheaders_conf
 from corsheaders.middleware import (
     ACCESS_CONTROL_ALLOW_CREDENTIALS,
@@ -294,19 +293,9 @@ def with_user(f):
                 extra={'sensitive': True},
             )
             user = find_user(identity)
-            # We can't use waffle.flag_is_active() wrapper, because
-            # request.user isn't populated at this point (and we don't want
-            # it to be).
-            enforce_2fa_flag = waffle.get_waffle_flag_model().get(
-                '2fa-enforcement-for-developers-and-special-users'
-            )
-            enforce_2fa_flag_is_active = enforce_2fa_flag.is_active(request) or (
-                enforce_2fa_flag.pk and enforce_2fa_flag.is_active_for_user(user)
-            )
             if (
                 user
                 and not identity.get('twoFactorAuthentication')
-                and enforce_2fa_flag_is_active
                 and (
                     user.is_addon_developer
                     or user.groups_list
