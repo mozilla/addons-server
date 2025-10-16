@@ -4773,7 +4773,7 @@ msgstr "Разделите части своей онлайн-жизни на в
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:131 src/olympia/discovery/strings.jinja2:769
 msgid "Gain an additional layer of tracking protection as you browse the web."
-msgstr "Добавьте еще уровень защиты от отслеживания ваших действий в сети."
+msgstr "Добавьте ещё уровень защиты от отслеживания ваших действий в сети."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:134
@@ -5204,7 +5204,7 @@ msgstr "Задайте любые фоновые цвета и изображе�
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:383
 msgid "Meet an adorable kitty with every new tab. Give it a scratch behind the ear and see what happens."
-msgstr "Найдите очаровательную кошечку на каждой новой вкладке. Почешите ее за ушком и посмотрите, что будет."
+msgstr "Найдите очаровательную кошечку на каждой новой вкладке. Почешите её за ушком и посмотрите, что будет."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:386
@@ -5765,7 +5765,7 @@ msgstr "Получите полосу прокрутки мышью, котор�
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:943
 msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
-msgstr "Замаскируйте свою электронную почту, чтобы защитить свою личность и предотвратить нежелательную почту. Новые обновления делают Firefox Relay еще проще в использовании."
+msgstr "Замаскируйте свою электронную почту, чтобы защитить свою личность и предотвратить нежелательную почту. Новые обновления делают Firefox Relay ещё проще в использовании."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:946
