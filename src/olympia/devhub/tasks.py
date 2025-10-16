@@ -270,8 +270,9 @@ def handle_upload_validation_result(results, upload_pk, is_mozilla_signed):
     to the given upload_pk."""
     # The first task registered in the group is `forward_linter_results()`,
     # and that's what we save in the upload validation.
-    # Depending on what scanners were enabled, results could be a list or a single item
-    # because Celery unrolls groups with a single task, see:
+    #
+    # Depending on what scanners were enabled, results could be a list or a
+    # single item because Celery unrolls groups with a single task, see:
     # https://docs.celeryq.dev/en/v5.5.3/userguide/canvas.html#group-unrolling
     if isinstance(results, list):
         results = results[0]
@@ -403,6 +404,36 @@ def check_for_api_keys_in_file(results, upload_pk):
             zipfile.close()
     except (ValidationError, BadZipFile, OSError):
         pass
+
+    return results
+
+
+@validation_task
+def check_data_collection_permissions(results, upload_pk):
+    upload = FileUpload.objects.get(pk=upload_pk)
+
+    if (
+        waffle.switch_is_active('enforce-data-collection-for-new-addons')
+        and not upload.addon
+    ):
+        # When the switch is enabled and we do not have an add-on for this file
+        # upload (which means it's a new add-on), we change the level of the
+        # MISSING_DATA_COLLECTION_PERMISSIONS message to an error if it exists
+        # in the list of messages returned by the linter.
+        def update_missing_data_collection_permissions(message):
+            if 'MISSING_DATA_COLLECTION_PERMISSIONS' in message.get('id', []):
+                message['type'] = 'error'
+                # Update the counts as well.
+                results['errors'] += 1
+                results['notices'] -= 1
+            return message
+
+        results['messages'] = list(
+            map(
+                update_missing_data_collection_permissions,
+                results.get('messages', []),
+            )
+        )
 
     return results
 
