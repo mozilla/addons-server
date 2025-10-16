@@ -456,7 +456,9 @@ def run_addons_linter(path, channel):
         args.append('--enable-background-service-worker')
 
     if waffle.switch_is_active('enable-data-collection-permissions'):
-        args.append('--enable-data-collection-permissions')
+        args.append('--enable-data-collection-permissions=true')
+    else:
+        args.append('--enable-data-collection-permissions=false')
 
     if not os.path.exists(path):
         raise ValueError(f'Path "{path}" is not a file or directory or does not exist.')

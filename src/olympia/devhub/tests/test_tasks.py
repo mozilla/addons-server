@@ -465,7 +465,7 @@ class TestRunAddonsLinter(UploadMixin, ValidatorTestCase):
 
         tasks.run_addons_linter(path=self.valid_path, channel=amo.CHANNEL_LISTED)
 
-        assert '--enable-data-collection-permissions' not in self.FakePopen.get_args()
+        assert '--enable-data-collection-permissions=false' in self.FakePopen.get_args()
 
     @override_switch('enable-data-collection-permissions', active=True)
     @mock.patch('olympia.devhub.tasks.subprocess')
@@ -474,7 +474,7 @@ class TestRunAddonsLinter(UploadMixin, ValidatorTestCase):
 
         tasks.run_addons_linter(path=self.valid_path, channel=amo.CHANNEL_LISTED)
 
-        assert '--enable-data-collection-permissions' in self.FakePopen.get_args()
+        assert '--enable-data-collection-permissions=true' in self.FakePopen.get_args()
 
 
 class TestValidateFilePath(ValidatorTestCase):
