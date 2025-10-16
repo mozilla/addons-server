@@ -243,6 +243,12 @@
       <div class="review-actions-section data-toggle review-resolve-abuse-reports"
            data-value="{{ actions_resolves_cinder_jobs|join(' ') }}">
           <strong><label for="id_cinder_jobs_to_resolve">{{ form.cinder_jobs_to_resolve.label }}</label></strong>
+          <div class="select-links">
+            [<a href='#' class="select-all">select all</a>]
+            [<a href='#' class="select-none">select none</a>]
+            [<a href='#' class="expand-all">expand all</a>]
+            [<a href='#' class="collapse-all">collapse all</a>]
+          </div>
           {{ form.cinder_jobs_to_resolve }}
           {{ form.cinder_jobs_to_resolve.errors }}
       </div>
