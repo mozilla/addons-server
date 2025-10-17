@@ -9,7 +9,7 @@ from django.core.management import call_command
 from django.test.testcases import TransactionTestCase
 
 import responses
-from freezegun import freeze_time
+import time_machine
 
 from olympia import amo
 from olympia.abuse.models import AbuseReport, CinderJob, CinderPolicy, ContentDecision
@@ -1997,7 +1997,9 @@ class TestAutoRejectTransactions(AutoRejectTestsMixin, TransactionTestCase):
         assert 'right to appeal' in mail.outbox[1].body
 
 
-@freeze_time(backfill_reviewactionreasons_for_delayed_rejections.Command.MAX_DATE)
+@time_machine.travel(
+    backfill_reviewactionreasons_for_delayed_rejections.Command.MAX_DATE, tick=False
+)
 class TestBackfillReviewactionreasonsForDelayedRejections(TestCase):
     def check_log(self, alog, reasons, policies):
         alog.reload()
@@ -2173,7 +2175,7 @@ class TestBackfillReviewactionreasonsForDelayedRejections(TestCase):
         reason = ReviewActionReason.objects.create(
             name='the reason', canned_response='why', cinder_policy=policy
         )
-        with freeze_time(date_after):
+        with time_machine.travel(date_after, tick=False):
             delayed = ActivityLog.objects.create(
                 amo.LOG.REJECT_VERSION_DELAYED,
                 addon,

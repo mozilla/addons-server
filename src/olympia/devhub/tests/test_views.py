@@ -14,10 +14,10 @@ from django.utils import timezone
 from django.utils.encoding import force_str
 from django.utils.translation import trim_whitespace
 
-import freezegun
 import markupsafe
 import pytest
 import responses
+import time_machine
 from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
 
@@ -2431,8 +2431,10 @@ class TestVerifyEmail(TestCase):
         assert not self.email_verification.is_expired
         assert not self.email_verification.is_timedout
 
-        with freezegun.freeze_time(self.email_verification.created) as frozen_time:
-            frozen_time.tick(timedelta(minutes=10, seconds=1))
+        with time_machine.travel(
+            self.email_verification.created, tick=False
+        ) as frozen_time:
+            frozen_time.shift(timedelta(minutes=10, seconds=1))
             response = self.client.get(url)
 
             assert len(mail.outbox) == 1
@@ -2458,8 +2460,10 @@ class TestVerifyEmail(TestCase):
         mock_check_emails.return_value = []
         self.with_email_verification()
 
-        with freezegun.freeze_time(self.email_verification.created) as frozen_time:
-            frozen_time.tick(timedelta(days=31))
+        with time_machine.travel(
+            self.email_verification.created, tick=False
+        ) as frozen_time:
+            frozen_time.shift(timedelta(days=31))
 
             self.client.force_login(self.user_profile)
             response = self.client.get(self.url)
@@ -2501,8 +2505,10 @@ class TestVerifyEmail(TestCase):
         mock_check_emails.return_value = []
         self.with_email_verification()
 
-        with freezegun.freeze_time(self.email_verification.created) as frozen_time:
-            frozen_time.tick(timedelta(minutes=10, seconds=31))
+        with time_machine.travel(
+            self.email_verification.created, tick=False
+        ) as frozen_time:
+            frozen_time.shift(timedelta(minutes=10, seconds=31))
 
             assert self.email_verification.is_timedout
 

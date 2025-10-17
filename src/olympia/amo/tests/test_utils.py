@@ -12,8 +12,8 @@ from django.test.utils import override_settings
 from django.utils.functional import cached_property
 from django.utils.http import quote_etag
 
-import freezegun
 import pytest
+import time_machine
 from babel import Locale
 from google.api_core.exceptions import PreconditionFailed
 
@@ -314,7 +314,7 @@ def test_pngcrush_image(subprocess_mock):
 
 
 def test_utc_millesecs_from_epoch():
-    with freezegun.freeze_time('2018-11-18 06:05:04.030201'):
+    with time_machine.travel('2018-11-18 06:05:04.030201', tick=False):
         timestamp = utc_millesecs_from_epoch()
     assert timestamp == 1542521104030
 
