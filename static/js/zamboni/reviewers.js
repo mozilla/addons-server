@@ -304,6 +304,35 @@ function initReviewActions() {
     $(format('#history a[data-num="{0}"]', eh_setting)).addClass('on');
   }
   highlightHistory();
+
+  $('.review-resolve-abuse-reports .select-all').click(function (e) {
+    e.preventDefault();
+    $('.review-resolve-abuse-reports input[type="checkbox"]').prop(
+      'checked',
+      true,
+    );
+  });
+  $('.review-resolve-abuse-reports .select-none').click(function (e) {
+    e.preventDefault();
+    $('.review-resolve-abuse-reports input[type="checkbox"]').prop(
+      'checked',
+      false,
+    );
+  });
+  $('.review-resolve-abuse-reports .expand-all').click(function (e) {
+    e.preventDefault();
+    $('.review-resolve-abuse-reports details').prop(
+      'open',
+      true,
+    );
+  });
+   $('.review-resolve-abuse-reports .collapse-all').click(function (e) {
+    e.preventDefault();
+     $('.review-resolve-abuse-reports details').prop(
+      'open',
+      false,
+    );
+  });
 }
 
 function callReviewersAPI(apiUrl, method, data, successCallback) {
