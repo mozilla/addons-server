@@ -6,469 +6,587 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-17 10:46+0000\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Pontoon\n"
 
+#: static/js/common/upload-addon.js:54 static/js/common/upload-image.js:136
 msgid "There was a problem contacting the server."
 msgstr "서버와 연결 중 문제가 발생했습니다."
 
+#: static/js/common/upload-addon.js:78
 msgid "Select a file..."
 msgstr "파일 선택..."
 
+#: static/js/common/upload-addon.js:82
 msgid "Your add-on should end with .zip, .xpi or .crx"
 msgstr "부가 기능의 확장자는 .zip, .xpi 또는 .crx를 사용해야 합니다."
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#, python-format, python-brace-format
+#: static/js/common/upload-addon.js:118
+#, python-brace-format, python-format
 msgid "{0}% complete"
 msgstr "{0}% 완료됨"
 
+#: static/js/common/upload-addon.js:122
 #, python-brace-format
 msgid "{0} of {1}"
 msgstr "{0} / {1}"
 
+#: static/js/common/upload-addon.js:166
 msgid "Cancel"
 msgstr "취소"
 
+#: static/js/common/upload-addon.js:189
 #, python-brace-format
 msgid "Uploading {0}"
 msgstr "{0} 업로드 중"
 
+#: static/js/common/upload-addon.js:229
 #, python-brace-format
 msgid "Error with {0}"
 msgstr "오류 {0}개"
 
+#: static/js/common/upload-addon.js:237
 msgid "Please make sure to report any linting related issues on GitHub"
 msgstr "린팅 관련 문제가 있으면 GitHub의 issue에 알려주세요."
 
+#: static/js/common/upload-addon.js:248
 #, python-brace-format
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] "부가 기능이 {0}개의 오류와 함께 검사를 통과하지 못했습니다."
 
+#: static/js/common/upload-addon.js:266
 #, python-brace-format
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;{0}개 더"
 
+#: static/js/common/upload-addon.js:287 static/js/common/upload-addon.js:705
 msgid "See full validation report"
 msgstr "전체 검사 보고서 보기"
 
+#: static/js/common/upload-addon.js:300
 #, python-brace-format
 msgid "Validating {0}"
 msgstr "{0} 검사중"
 
+#: static/js/common/upload-addon.js:350
 #, python-brace-format
 msgid "Your add-on exceeds the maximum size of {0}."
 msgstr "부가 기능 최대 크기인 {0}을 초과했습니다."
 
+#: static/js/common/upload-addon.js:358
 #, python-brace-format
 msgid "Received an empty response from the server; status: {0}"
 msgstr "서버로부터 빈 응답을 받았습니다; 상태: {0}"
 
+#: static/js/common/upload-addon.js:403
 msgid "Your extension has to be compatible with at least one application."
 msgstr "확장 기능은 최소한 하나의 애플리케이션과 호환되어야 합니다."
 
+#: static/js/common/upload-addon.js:473
 msgid "Unexpected server error while validating."
 msgstr "유효성 검사 도중 예상치 못한 오류가 발생했습니다."
 
+#: static/js/common/upload-addon.js:519
 msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
 msgstr "매니페스트에 Android용 Firefox와 호환되는 것으로 명시적으로 표시됨"
 
+#: static/js/common/upload-addon.js:561
 #, python-brace-format
 msgid "Finished validating {0}"
 msgstr "{0} 검사 완료"
 
+#: static/js/common/upload-addon.js:568
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr "부가 기능의 유효성 검사가 시간 초과되어서 수동으로 재검토될 것입니다."
 
+#: static/js/common/upload-addon.js:573
 #, python-brace-format
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] "부가 기능이 오류 없이 {0}개의 경고로 검증되었습니다."
 
+#: static/js/common/upload-addon.js:582
 #, python-brace-format
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] "부가 기능이 오류 없이 {0}개의 메시지로 검증되었습니다."
 
+#: static/js/common/upload-addon.js:590
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "부가 기능이 오류와 경고 없이 검증되었습니다."
 
+#: static/js/common/upload-addon.js:651
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "자세한 버전 정보를 포함합니다(다음 단계에서 할 수 있습니다)."
 
+#: static/js/common/upload-addon.js:654
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr "만약 부가 기능의 테스트를 위해 웹사이트 계정이 필요하다면 테스트 계정과 비밀번호를 노트에 남겨 리뷰어에게 전달해 주세요(다음 단계에서 할 수 있음)."
 
+#: static/js/common/upload-addon.js:660
 msgid "Add-on submission checklist"
 msgstr "부가기능 제출 체크리스트"
 
+#: static/js/common/upload-addon.js:664
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "제출을 마무리 하기 전에 다음 사항을 확인 하십시오. 이 사항들은 지연이나 검토 과정에서의 오해를 최소화할 것입니다:"
 
+#: static/js/common/upload-addon.js:671
 msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr "컴파일된 바이너리파일, 압축되거나 난독화된 스크립트(알려진 라이브러리 제외)는 리뷰를 위해 별도로 제출되어야 합니다. 제출이 거부되지 않도록 하려면 소스 코드 업로드 필드를 사용해야 합니다."
 
+#: static/js/common/upload-addon.js:684
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "유효성 검사 과정에서 거부 원인이 될 수 있는 문제들 발견:"
 
+#: static/js/common/upload-base.js:69
 msgid "The filetype you uploaded isn't recognized."
 msgstr "업로드한 파일 형식을 인식할 수 없습니다."
 
+#: static/js/common/upload-base.js:79 static/js/zamboni/global.js:569
 #, python-brace-format
 msgid "Your file exceeds the maximum size of {0}."
 msgstr "파일 최대 크기인 {0}을 초과했습니다."
 
+#: static/js/common/upload-base.js:105
 msgid "You cancelled the upload."
 msgstr "업로드를 취소했습니다."
 
+#: static/js/common/upload-image.js:102
 msgid "Images must be either PNG or JPG."
 msgstr "이미지는 PNG 또는 JPG여야 합니다."
 
+#: static/js/common/upload-image.js:106
 msgid "Videos must be in WebM."
 msgstr "동영상은 WebM으로 된 것만 사용 가능합니다."
 
+#: static/js/stats/chart.js:283
 #, python-brace-format
 msgid "Week of {0}"
 msgstr "{0}번째 주"
 
+#: static/js/stats/chart.js:292
 #, python-brace-format
 msgid "{0} download"
 msgid_plural "{0} downloads"
 msgstr[0] "{0} 다운로드"
 
+#: static/js/stats/chart.js:298
 #, python-brace-format
 msgid "{0} user"
 msgid_plural "{0} users"
 msgstr[0] "사용자 {0}명"
 
+#: static/js/stats/chart.js:362 static/js/stats/csv_keys.js:3 static/js/stats/csv_keys.js:9
 msgid "Downloads"
 msgstr "다운로드 횟수"
 
+#: static/js/stats/chart.js:374 static/js/stats/csv_keys.js:6 static/js/stats/csv_keys.js:10
 msgid "Daily Users"
 msgstr "일일 사용자 수"
 
+#: static/js/stats/chart.js:409
 msgid "More Info..."
 msgstr "자세히 알아보기..."
 
 #. L10n: {0} is an ISO-formatted date.
+#: static/js/stats/chart.js:415
 #, python-brace-format
 msgid "Details for {0}"
 msgstr "{0}에 대한 상세 정보"
 
+#: static/js/stats/csv_keys.js:13
 msgid "Firefox"
 msgstr "Firefox"
 
+#: static/js/stats/csv_keys.js:14
 msgid "Mozilla"
 msgstr "Mozilla"
 
+#: static/js/stats/csv_keys.js:15
 msgid "Thunderbird"
 msgstr "Thunderbird"
 
+#: static/js/stats/csv_keys.js:16
 msgid "Sunbird"
 msgstr "Sunbird"
 
+#: static/js/stats/csv_keys.js:17
 msgid "SeaMonkey"
 msgstr "SeaMonkey"
 
+#: static/js/stats/csv_keys.js:18
 msgid "Fennec"
 msgstr "Fennec"
 
+#: static/js/stats/csv_keys.js:19
 msgid "Android"
 msgstr "Android"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:24
 #, python-brace-format
 msgid "Downloads and Daily Users, last {0} days"
 msgstr "최근 {0}일간 다운로드 횟수 및 일일 사용자 수"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:26
 #, python-brace-format
 msgid "Downloads and Daily Users from {0} to {1}"
 msgstr "{0} 부터 {1} 까지 다운로드 횟수 및 일일 사용자 수"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:30
 #, python-brace-format
 msgid "Downloads, last {0} days"
 msgstr "최근 {0}일간 다운로드 횟수"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:32
 #, python-brace-format
 msgid "Downloads from {0} to {1}"
 msgstr "{0}부터 {1} 까지 다운로드 횟수"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:36
 #, python-brace-format
 msgid "Daily Users, last {0} days"
 msgstr "최근 {0}일간 일일 사용자 수"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:38
 #, python-brace-format
 msgid "Daily Users from {0} to {1}"
 msgstr "{0}부터 {1} 까지 일일 사용자 수"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:42
 #, python-brace-format
 msgid "Applications, last {0} days"
 msgstr "최근 {0}일간 애플리케이션"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:44
 #, python-brace-format
 msgid "Applications from {0} to {1}"
 msgstr "{0}부터 {1} 까지 애플리케이션"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:48
 #, python-brace-format
 msgid "Countries, last {0} days"
 msgstr "국가, 마지막 {0}일"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:50
 #, python-brace-format
 msgid "Countries from {0} to {1}"
 msgstr "국가 {0}부터 {1}까지"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:54
 #, python-brace-format
 msgid "Platforms, last {0} days"
 msgstr "최근 {0}일간 플랫폼"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:56
 #, python-brace-format
 msgid "Platforms from {0} to {1}"
 msgstr "{0}부터 {1} 까지 플랫폼"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:60
 #, python-brace-format
 msgid "Languages, last {0} days"
 msgstr "최근 {0}일간 언어"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:62
 #, python-brace-format
 msgid "Languages from {0} to {1}"
 msgstr "{0}부터 {1} 까지 언어"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:66
 #, python-brace-format
 msgid "Add-on Versions, last {0} days"
 msgstr "최근 {0}일간 부가 기능 버전"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:68
 #, python-brace-format
 msgid "Add-on Versions from {0} to {1}"
 msgstr "{0}부터 {1} 까지 부가 기능 버전"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:72
 #, python-brace-format
 msgid "Download Sources, last {0} days"
 msgstr "최근 {0}일간 다운로드 출처"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:74
 #, python-brace-format
 msgid "Download Sources from {0} to {1}"
 msgstr "{0}부터 {1} 까지 다운로드 출처"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:78
 #, python-brace-format
 msgid "Download Mediums, last {0} days"
 msgstr "최근 {0}일간 매체 다운로드"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:80
 #, python-brace-format
 msgid "Download Mediums from {0} to {1}"
 msgstr "{0}부터 {1}까지 매체 다운로드"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:84
 #, python-brace-format
 msgid "Download Contents, last {0} days"
 msgstr "최근 {0}일간 다운로드 내용"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:86
 #, python-brace-format
 msgid "Download Contents from {0} to {1}"
 msgstr "{0}에서 {1}까지 콘텐츠 다운로드"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:90
 #, python-brace-format
 msgid "Download Campaigns, last {0} days"
 msgstr "최근 {0}일간 캠페인 다운로드"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:92
 #, python-brace-format
 msgid "Download Campaigns from {0} to {1}"
 msgstr "{0}부터 {1}까지 캠페인 다운로드"
 
 #. L10n: {0} and {1} are integers.
+#: static/js/stats/csv_keys.js:98
 #, python-brace-format
 msgid "<b>{0}</b> in last {1} days"
 msgstr "<b>{0}</b> (최근 {1}일간)"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:100 static/js/stats/csv_keys.js:106
 #, python-brace-format
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "<b>{0}</b> ({1}부터 {2}까지)"
 
 #. L10n: {0} and {1} are integers.
+#: static/js/stats/csv_keys.js:104
 #, python-brace-format
 msgid "<b>{0}</b> average in last {1} days"
 msgstr "<b>{0}</b> (최근 {1}일간 평균)"
 
+#: static/js/stats/overview.js:18
 msgid "No data available."
 msgstr "데이터가 없습니다."
 
+#: static/js/stats/table.js:84
 msgid "Date"
 msgstr "날짜"
 
+#: static/js/stats/topchart.js:108
 msgid "Other"
 msgstr "기타"
 
+#: static/js/zamboni/devhub.js:300
 msgid "Changes Saved"
 msgstr "변경 사항이 저장되었습니다"
 
+#: static/js/zamboni/devhub.js:316
 msgid "Enter a new author's email address"
 msgstr "새 제작자의 이메일 주소를 입력하세요"
 
+#: static/js/zamboni/devhub.js:440
 msgid "There was an error uploading your file."
 msgstr "파일을 업로드하는 과정에서 오류가 발생했습니다."
 
+#: static/js/zamboni/devhub.js:596
 #, python-brace-format
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "파일 {files}개"
 
+#: static/js/zamboni/devhub.js:1196
 msgid "Image changes being processed"
 msgstr "이미지 변경이 처리되었습니다"
 
+#: static/js/zamboni/global.js:463
 #, python-brace-format
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b>자"
 
+#: static/js/zamboni/global.js:472
 #, python-brace-format
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "<b>{0}</b>자 남음"
 
+#: static/js/zamboni/init.js:12
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "이 기능은 웹사이트 점검으로 인해 잠시 사용할 수 없습니다. 잠시 후 다시 사용해 주세요."
 
+#: static/js/zamboni/l10n.js:164
 msgid "Remove this localization"
 msgstr "이 번역 삭제"
 
+#: static/js/zamboni/reviewers.js:258
 #, python-brace-format
 msgid "{name} was viewing this page first."
 msgstr "{name}님이 먼저 이 페이지를 살펴보셨습니다."
 
+#: static/js/zamboni/reviewers.js:266
 msgid "Review page polling failed."
 msgstr "리뷰 페이지 폴링에 실패했습니다."
 
+#: static/js/zamboni/reviewers.js:583
 #, python-brace-format
 msgid "{name} was viewing this add-on first."
 msgstr "{name}님이 먼저 이 부가 기능을 조회하셨습니다."
 
+#: static/js/zamboni/reviewers.js:596 static/js/zamboni/reviewers.js:622
 msgid "Loading&hellip;"
 msgstr "불러오는 중&hellip;"
 
+#: static/js/zamboni/reviewers.js:601
 msgid "Version Notes"
 msgstr "버전 정보"
 
+#: static/js/zamboni/reviewers.js:608
 msgid "Notes for Reviewers"
 msgstr "검토자 메모"
 
+#: static/js/zamboni/reviewers.js:615
 msgid "No version notes found"
 msgstr "버전 정보를 찾을 수 없습니다."
 
+#: static/js/zamboni/reviewers.js:627
 msgid "Review Text"
 msgstr "검토 내용"
 
+#: static/js/zamboni/reviewers.js:634
 msgid "Review notes found"
 msgstr "검토 메모가 발견됨"
 
+#: static/js/zamboni/static_theme.js:217
 #, python-brace-format
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "사용 가능한 최대 업로드 크키는 {0}입니다. - 더 작은 배경 이미지를 선택해주세요."
 
+#: static/js/zamboni/themes_review.js:199
 msgid "Requested Info"
 msgstr "요청된 정보"
 
+#: static/js/zamboni/themes_review.js:200
 msgid "Flagged"
 msgstr "표시됨"
 
+#: static/js/zamboni/themes_review.js:201
 msgid "Duplicate"
 msgstr "복사하기"
 
+#: static/js/zamboni/themes_review.js:202
 msgid "Rejected"
 msgstr "거부됨"
 
+#: static/js/zamboni/themes_review.js:203
 msgid "Approved"
 msgstr "승인됨"
 
+#: static/js/zamboni/themes_review.js:492
 msgid "No results found"
 msgstr "검색 결과 없음"
 
+#: static/js/zamboni/themes_review_templates.js:43
 msgid "Theme"
 msgstr "테마"
 
+#: static/js/zamboni/themes_review_templates.js:45
 msgid "Reviewer"
 msgstr "검토자"
 
+#: static/js/zamboni/themes_review_templates.js:47
 msgid "Status"
 msgstr "상태"
 
+#: static/js/zamboni/validator.js:89
 msgid "All tests passed successfully."
 msgstr "모든 테스트에 통과했습니다."
 
+#: static/js/zamboni/validator.js:92 static/js/zamboni/validator.js:388
 msgid "These tests were not run."
 msgstr "이 테스트는 실행되지 않았습니다."
 
+#: static/js/zamboni/validator.js:155 static/js/zamboni/validator.js:177
 msgid "Tests"
 msgstr "검사"
 
+#: static/js/zamboni/validator.js:259 static/js/zamboni/validator.js:492 static/js/zamboni/validator.js:516
 msgid "Error"
 msgstr "오류"
 
+#: static/js/zamboni/validator.js:259
 msgid "Warning"
 msgstr "경고"
 
+#: static/js/zamboni/validator.js:332
 #, python-brace-format
 msgid "{0} line {1} column {2}"
 msgstr "{0} 줄 {1} 열 {2}"
 
+#: static/js/zamboni/validator.js:339
 #, python-brace-format
 msgid "{0} line {1}"
 msgstr "{0} 줄 {1}"
 
+#: static/js/zamboni/validator.js:376
 msgid "Add-on failed validation."
 msgstr "부가 기능이 검사를 통과하지 못했습니다."
 
+#: static/js/zamboni/validator.js:378
 msgid "Add-on passed validation."
 msgstr "부가 기능이 검사를 통과했습니다."
 
+#: static/js/zamboni/validator.js:391
 #, python-brace-format
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "오류 {0}개"
 
+#: static/js/zamboni/validator.js:394
 #, python-brace-format
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "경고 {0}개"
 
+#: static/js/zamboni/validator.js:397
 #, python-brace-format
 msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] "알림 {0}개"
 
+#: static/js/zamboni/validator.js:494
 msgid "Validation task could not complete or completed with errors"
 msgstr "검사 작업이 오류로 인해 완료되지 못했습니다"
 
+#: static/js/zamboni/validator.js:517
 msgid "Internal server error"
 msgstr "내부 서버 오류"
