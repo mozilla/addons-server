@@ -770,7 +770,7 @@ msgstr ""
 
 #: src/olympia/bandwagon/serializers.py:72
 msgid "This custom URL is already in use by another one of your collections."
-msgstr ""
+msgstr "Този персонализиран URL адрес вече се използва от друга ваша колекция."
 
 #: src/olympia/bandwagon/serializers.py:105
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
@@ -1654,11 +1654,11 @@ msgstr "Общи"
 
 #: src/olympia/constants/licenses.py:15
 msgid "Mozilla Public License 2.0"
-msgstr ""
+msgstr "Публичен лиценз на Mozilla 2.0"
 
 #: src/olympia/constants/licenses.py:22
 msgid "Apache License 2.0"
-msgstr ""
+msgstr "Лиценз на Apache 2.0"
 
 #: src/olympia/constants/licenses.py:29
 msgid "GNU General Public License v2.0 only"
