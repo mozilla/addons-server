@@ -2101,7 +2101,7 @@ msgstr "Algo deu errado, entre em contato com o suporte ao desenvolvedor."
 
 #: src/olympia/devhub/forms.py:1653
 msgid "No appropriate version available"
-msgstr "Nenhuma versão apropriada disponível"
+msgstr "Nenhuma versão adequada disponível"
 
 #: src/olympia/devhub/forms.py:1660
 msgid "Choose version"
@@ -2295,7 +2295,7 @@ msgstr "O envio deste arquivo falhou na validação e pode não apresentar resul
 
 #: src/olympia/devhub/views.py:1320
 msgid "Rollback submitted. You'll be notified when it's approved"
-msgstr "Reversão enviada. Você será notificado quando for aprovado"
+msgstr "Reversão enviada. Você será notificado quando for aprovada"
 
 #: src/olympia/devhub/views.py:1458
 msgid "Header area background"
@@ -3166,7 +3166,7 @@ msgstr "Excluir sua extensão irá apagar permanentemente todas as versões e ar
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:6
 msgid "All versions will be Restricted, which will disable and prevent any further installation in Firefox. Existing users can choose to re-enable the add-on."
-msgstr "Todas as versões serão restritas, o que irá desabilitar e impedir qualquer nova instalação no Firefox. Usuários existentes podem optar por reativar a extensão."
+msgstr "Todas as versões ficarão restritas, o que irá desativar e impedir qualquer nova instalação no Firefox. Quem tem instalado pode optar por reativar a extensão."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:11
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
