@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-17 10:46+0000\n"
+"POT-Creation-Date: 2025-10-20 20:52+0000\n"
 "Language: cy\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -4293,6 +4293,22 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Makes Firefox appear as Chrome to websites trying to block Firefox."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Manage your Gmail (even multiple accounts) right from Firefox's toolbar button."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Track the time you spend on the web, analyze your habits, block distracting sites & more."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Improve your writing — get instant access to the power of synonyms."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Deep translation features for a rich language experience anywhere on the web."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
