@@ -695,7 +695,7 @@ class TestRunNarc(UploadMixin, TestCase):
             'rule': 'match_the_fool',
         }
 
-        for result, locale in zip(narc_result.results[:1], locales):
+        for result, locale in zip(narc_result.results[:1], locales, strict=True):
             assert result == {
                 'meta': {
                     'locale': locale,

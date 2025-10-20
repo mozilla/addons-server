@@ -468,7 +468,7 @@ class PolicyValueMultiValueField(forms.MultiValueField):
     def compress(self, data_list):
         data_list = data_list or [None for _ in self.fields]
         policy_values = defaultdict(dict)
-        for field, value in zip(self.fields, data_list):
+        for field, value in zip(self.fields, data_list, strict=True):
             policy_values[field.policy.uuid][field.placeholder] = (
                 html.unescape(value) if value else value
             )
