@@ -333,9 +333,9 @@ pytest-reportlog==0.4.0 \
 django-dbbackup==5.0.0 \
     --hash=sha256:a0301b14a4bb3c7243a2fde76d09f8f572f16cd7639f75f4cd42d898fc1b82a2 \
     --hash=sha256:aa9cc88e1413adfec0e547dd91e0afed6dbb91a02459697663a9b988dbc71f18
-pytest-env==1.1.5 \
-    --hash=sha256:91209840aa0e43385073ac464a554ad2947cc2fd663a9debf88d03b01e0cc1cf \
-    --hash=sha256:ce90cf8772878515c24b31cd97c7fa1f4481cd68d588419fd45f10ecaee6bc30
+pytest-env==1.2.0 \
+    --hash=sha256:475e2ebe8626cee01f491f304a74b12137742397d6c784ea4bc258f069232b80 \
+    --hash=sha256:d7e5b7198f9b83c795377c09feefa45d56083834e60d04767efd64819fc9da00
 django-model-info==2024.11.5 \
     --hash=sha256:3ceffa8f9b8d6f98fef9e0d4bad7a6f35694315f3fdb30f21e687ecba79bc071 \
     --hash=sha256:fe8497cb71cd045b929d79548bf7f5f3f5261e15c8b585005d684838363d9f7d
