@@ -5650,22 +5650,22 @@ msgstr "Pokazujo websedłam Firefox ako Chrome, kótarež wopytuju Firefox blok�
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:685
 msgid "Manage your Gmail (even multiple accounts) right from Firefox's toolbar button."
-msgstr ""
+msgstr "Zastojśo swóju Gmail (samo někotare konta) direktnje z tłocaška symboloweje rědki Firefox."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:688
 msgid "Track the time you spend on the web, analyze your habits, block distracting sites & more."
-msgstr ""
+msgstr "Slědujśo casoju, kótaryž we webje pśebywaśo, analyzěrujśo swóje zwuconosći, blokěrujśo wótchylajuce sedła a wěcej."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:691
 msgid "Improve your writing — get instant access to the power of synonyms."
-msgstr ""
+msgstr "Pólěpšćo swójo pisanje – dostańśo pśistup k mócy synonymow ned."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:694
 msgid "Deep translation features for a rich language experience anywhere on the web."
-msgstr ""
+msgstr "Wobšyrne funkcije pśełožowanja za bogate rěcne dožywjenje něźi we webje."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:697
