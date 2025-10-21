@@ -5545,22 +5545,22 @@ msgstr "針對會封鎖 Firefox 的網站，將瀏覽器顯示為 Chrome。"
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:685
 msgid "Manage your Gmail (even multiple accounts) right from Firefox's toolbar button."
-msgstr ""
+msgstr "直接從 Firefox 的工具列按鈕來管理您的 Gmail（有多個帳號也沒問題）"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:688
 msgid "Track the time you spend on the web, analyze your habits, block distracting sites & more."
-msgstr ""
+msgstr "紀錄您上網花的時間、分析習慣、封鎖讓人分心的網站與更多功能。"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:691
 msgid "Improve your writing — get instant access to the power of synonyms."
-msgstr ""
+msgstr "改進寫作品質 — 即時獲得同義詞的威力。"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:694
 msgid "Deep translation features for a rich language experience anywhere on the web."
-msgstr ""
+msgstr "在網路上的任何地方都能使用深度翻譯功能，讓您有豐富的語言體驗。"
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:697
