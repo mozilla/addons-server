@@ -6997,6 +6997,13 @@ msgid ""
 "\n"
 "Mozilla Add-ons Team"
 msgstr ""
+"Tungjatjeta,\n"
+"\n"
+"Këtë mesazh po e merrni ngaqë llogaria juaj si përdorues %(name)s në %(site_url)s është fshirë. Kjo mund të jetë bërë automatikisht, nëse tani afër fshitë llogarinë tuaj Mozilla.\n"
+"\n"
+"Të fala,\n"
+"\n"
+"Ekipi i Shtesa Mozilla"
 
 #: src/olympia/versions/models.py:1170
 #, python-format
