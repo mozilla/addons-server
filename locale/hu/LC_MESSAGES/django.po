@@ -5659,7 +5659,7 @@ msgstr "Fejlessze az írását – kapjon azonnali hozzáférést a szinonimákh
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:694
 msgid "Deep translation features for a rich language experience anywhere on the web."
-msgstr ""
+msgstr "Mély fordítási funkciók a gazdag nyelvi élményért bárhol a weben."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:697
