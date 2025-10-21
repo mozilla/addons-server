@@ -5626,22 +5626,22 @@ msgstr "Pre webové stránky, ktoré sa snažia Firefox blokovať, sa Firefox ja
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:685
 msgid "Manage your Gmail (even multiple accounts) right from Firefox's toolbar button."
-msgstr ""
+msgstr "Spravujte svoj Gmail (aj viacero účtov) priamo z tlačidla na paneli s nástrojmi vo Firefoxe."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:688
 msgid "Track the time you spend on the web, analyze your habits, block distracting sites & more."
-msgstr ""
+msgstr "Sledujte čas strávený na webe, analyzujte svoje návyky, blokujte rušivé stránky a mnoho ďalšieho."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:691
 msgid "Improve your writing — get instant access to the power of synonyms."
-msgstr ""
+msgstr "Zlepšite si písanie – získajte okamžitý prístup k sile synoným."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:694
 msgid "Deep translation features for a rich language experience anywhere on the web."
-msgstr ""
+msgstr "Funkcie hlbokého prekladu pre bohatý jazykový zážitok kdekoľvek na webe."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:697
