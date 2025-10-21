@@ -5644,17 +5644,17 @@ msgstr "A Firefoxot Chrome-ként jeleníti meg azoknak a webhelyeknek, amelyek b
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:685
 msgid "Manage your Gmail (even multiple accounts) right from Firefox's toolbar button."
-msgstr ""
+msgstr "Kezelje a Gmailjét (akár több fiók esetén is) közvetlenül a Firefox eszköztárgombjával."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:688
 msgid "Track the time you spend on the web, analyze your habits, block distracting sites & more."
-msgstr ""
+msgstr "Kövesse nyomon a weben töltött időt, elemezze szokásait, blokkolja a figyelemelterelő oldalakat és így tovább."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:691
 msgid "Improve your writing — get instant access to the power of synonyms."
-msgstr ""
+msgstr "Fejlessze az írását – kapjon azonnali hozzáférést a szinonimákhoz."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:694
