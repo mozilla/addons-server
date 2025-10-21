@@ -5633,12 +5633,12 @@ msgstr "Firefox გამოჩნდება ისე, როგორც Chr
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:685
 msgid "Manage your Gmail (even multiple accounts) right from Firefox's toolbar button."
-msgstr ""
+msgstr "მართეთ თქვენი Gmail (თუნდაც რამდენიმე ანგარიში) პირდაპირ Firefox-ის ხელსაწყოთა ზოლის ღილაკით."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:688
 msgid "Track the time you spend on the web, analyze your habits, block distracting sites & more."
-msgstr ""
+msgstr "მიხედეთ ვებსივრცეში გატარებულ დროს, დააკვირდით თქვენს ჩვევებს, აირიდეთ ყურადღების გამფანტავი საიტები და სხვ."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:691
