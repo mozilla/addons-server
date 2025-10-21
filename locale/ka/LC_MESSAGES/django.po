@@ -5643,12 +5643,12 @@ msgstr "მიხედეთ ვებსივრცეში გატარ�
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:691
 msgid "Improve your writing — get instant access to the power of synonyms."
-msgstr ""
+msgstr "გაიუმჯობესეთ წერის უნარები – მყისიერი წვდომა სინონიმებით ძლევამოსილებასთან."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:694
 msgid "Deep translation features for a rich language experience anywhere on the web."
-msgstr ""
+msgstr "სიღრმისეული თარგმნის შესაძლებლობები მრავალფეროვანი ენებით სრულად სარგებლობისთვის ვებსამყაროში."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:697
