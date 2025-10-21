@@ -5655,12 +5655,12 @@ msgstr "Lässt Firefox für Websites, die versuchen, Firefox zu blockieren, als 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:685
 msgid "Manage your Gmail (even multiple accounts) right from Firefox's toolbar button."
-msgstr ""
+msgstr "Verwalten Sie Ihr Gmail (sogar mehrere Konten) direkt über die Schaltfläche in der Symbolleiste von Firefox."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:688
 msgid "Track the time you spend on the web, analyze your habits, block distracting sites & more."
-msgstr ""
+msgstr "Verfolgen Sie die Zeit, die Sie im Internet verbringen, analysieren Sie Ihre Gewohnheiten, blockieren Sie ablenkende Websites und mehr."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:691
