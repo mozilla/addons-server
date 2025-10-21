@@ -5665,12 +5665,12 @@ msgstr "Verfolgen Sie die Zeit, die Sie im Internet verbringen, analysieren Sie 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:691
 msgid "Improve your writing — get instant access to the power of synonyms."
-msgstr ""
+msgstr "Verbessern Sie Ihren Schreibstil – erhalten Sie sofortigen Zugriff auf die Macht von Synonymen."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:694
 msgid "Deep translation features for a rich language experience anywhere on the web."
-msgstr ""
+msgstr "Umfangreiche Übersetzungsfunktionen für ein vielfältiges Spracherlebnis im ganzen Web."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:697
