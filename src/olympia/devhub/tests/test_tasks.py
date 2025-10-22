@@ -955,7 +955,8 @@ class TestCheckDataCollectionPermissions(UploadMixin, ValidatorTestCase):
 
         validation = upload.processed_validation
         assert validation['errors'] == 0
-        assert validation['notices'] == 1
+        assert validation['notices'] == 0
+        assert validation['warnings'] == 1
 
     @override_switch('enforce-data-collection-for-new-addons', active=True)
     def test_switch_enabled_and_new_extension_without_data_collection(self):
@@ -970,6 +971,7 @@ class TestCheckDataCollectionPermissions(UploadMixin, ValidatorTestCase):
         validation = upload.processed_validation
         assert validation['errors'] == 1
         assert validation['notices'] == 0
+        assert validation['warnings'] == 0
 
     @override_switch('enforce-data-collection-for-new-addons', active=True)
     def test_switch_enabled_and_existing_extension_without_data_collection(self):
@@ -984,7 +986,8 @@ class TestCheckDataCollectionPermissions(UploadMixin, ValidatorTestCase):
 
         validation = upload.processed_validation
         assert validation['errors'] == 0
-        assert validation['notices'] == 1
+        assert validation['notices'] == 0
+        assert validation['warnings'] == 1
 
     @override_switch('enforce-data-collection-for-new-addons', active=True)
     def test_switch_enabled_and_new_extension_with_data_collection(self):
@@ -999,6 +1002,7 @@ class TestCheckDataCollectionPermissions(UploadMixin, ValidatorTestCase):
         validation = upload.processed_validation
         assert validation['errors'] == 0
         assert validation['notices'] == 0
+        assert validation['warnings'] == 0
 
     @override_switch('enforce-data-collection-for-new-addons', active=True)
     def test_switch_enabled_and_existing_extension_with_data_collection(self):
@@ -1014,3 +1018,4 @@ class TestCheckDataCollectionPermissions(UploadMixin, ValidatorTestCase):
         validation = upload.processed_validation
         assert validation['errors'] == 0
         assert validation['notices'] == 0
+        assert validation['warnings'] == 0

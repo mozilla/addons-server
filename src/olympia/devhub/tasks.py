@@ -425,7 +425,7 @@ def check_data_collection_permissions(results, upload_pk):
                 message['type'] = 'error'
                 # Update the counts as well.
                 results['errors'] += 1
-                results['notices'] -= 1
+                results['warnings'] -= 1
             return message
 
         results['messages'] = list(
