@@ -23,6 +23,24 @@ class DatabaseSchemaEditor(mysql_base.DatabaseSchemaEditor):
                     self.deferred_sql.extend(autoinc_sql)
         super().create_model(model)
 
+    def remove_field(self, model, field, algorithm=None):
+        if algorithm is not None:
+            self.sql_delete_column = (
+                f'{self.__class__.sql_delete_column}, ALGORITHM={algorithm}'
+            )
+        super().remove_field(model, field)
+        if algorithm is not None:
+            self.sql_delete_column = self.__class__.sql_delete_column
+
+    def add_field(self, model, field, algorithm=None):
+        if algorithm is not None:
+            self.sql_create_column = (
+                f'{self.__class__.sql_create_column}, ALGORITHM={algorithm}'
+            )
+        super().add_field(model, field)
+        if algorithm is not None:
+            self.sql_create_column = self.__class__.sql_create_column
+
 
 class DatabaseOperations(mysql_base.DatabaseOperations):
     integer_field_ranges = {
