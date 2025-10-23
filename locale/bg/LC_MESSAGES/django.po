@@ -1114,9 +1114,8 @@ msgid "{addon} {version} admin theme-review requested."
 msgstr "поискана рецензия за {addon} {version}."
 
 #: src/olympia/constants/activity.py:742
-#, fuzzy
 msgid "Admin theme-review requested"
-msgstr "Заявена рецензия"
+msgstr "Заявена е администраторски преглед на тема"
 
 #: src/olympia/constants/activity.py:752
 #, fuzzy, python-brace-format
