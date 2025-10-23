@@ -2111,7 +2111,7 @@ msgstr "Wystąpił problem, skontaktuj się z pomocą techniczną dla deweloper�
 
 #: src/olympia/devhub/forms.py:1653
 msgid "No appropriate version available"
-msgstr ""
+msgstr "Brak odpowiedniej wersji"
 
 #: src/olympia/devhub/forms.py:1660
 msgid "Choose version"
@@ -3309,6 +3309,8 @@ msgid ""
 "Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
 "submission process is complete."
 msgstr ""
+"Ostrzeżenie: wartości nazwy/podsumowania w innych lokalizacjach zostaną automatycznie przycięte, aby zmieściły się w limicie %(max_length)s znaków.  Aby je edytować, przejdź na „Edytuj stronę "
+"produktu” po zakończeniu procesu przesyłania."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:52 src/olympia/devhub/templates/devhub/addons/submit/describe.html:73
 msgid "Add-on URL:"
