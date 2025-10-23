@@ -1556,7 +1556,7 @@ msgstr "Karty"
 
 #: src/olympia/constants/categories.py:181
 msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
-msgstr ""
+msgstr "Pobierz rozszerzenie dla Firefoksa do dostosowywania kart i strony nowej karty. Odkryj rozszerzenia, które mogą kontrolować karty, zmienić sposób, w który z nich korzystasz i nie tylko."
 
 #: src/olympia/constants/categories.py:188
 msgid "Web Development"
@@ -1872,12 +1872,12 @@ msgstr "Ostatnie zmiany dla moich dodatków"
 #: src/olympia/devhub/file_validation_annotations.py:55
 #, python-brace-format
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
-msgstr ""
+msgstr "Dodatki Open Search {blog_link_open}nie są już wspierane na AMO{blog_link_close}. Zamiast tego możesz stworzyć {doc_link_open}rozszerzenie wyszukiwania{doc_link_close}."
 
 #: src/olympia/devhub/file_validation_annotations.py:105
 #, python-brace-format
 msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr ""
+msgstr "Manifest V3 nie jest obecnie wspierany do przesyłu. {start_href}Dowiedz się więcej o harmonogramie wsparcia{end_href}."
 
 #: src/olympia/devhub/forms.py:92
 msgid "This slug is already in use. Please choose another."
@@ -3748,6 +3748,15 @@ msgid ""
 "Thank you,\n"
 "The Mozilla Add-ons team"
 msgstr ""
+"Szanowny twórco dodatku,\n"
+"\n"
+"Zauważyliśmy, że Twoje tajne dane uwierzytelniające AMO API zostały zawarte w dodatku przesłanym do addons.mozilla.org. Aby chronić Twoje konto i dodatki, unieważniliśmy ujawnione dane uwierzytelniające.\n"
+"Możesz wygenerować nowe dane uwierzytelniające API pod adresem %(api_keys_url)s.\n"
+"\n"
+"Upewnij się, że nigdy nie udostępniasz swoich danych uwierzytelniających nikomu. Nigdy nie umieszczaj ich w publicznym repozytorium, dodatku ani żadnym innym publicznym miejscu. Zachęcamy do sprawdzenia swoich repozytoriów kodu i rozszerzeń w celu usunięcia wszelkich odniesień do danych uwierzytelniających AMO.\n"
+"\n"
+"Dziękujemy,\n"
+"Zespół Mozilla Add-ons"
 
 #: src/olympia/devhub/templates/devhub/emails/verify-email-completed.ltxt:7
 msgid ""
@@ -4145,7 +4154,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/get_involved.html:16
 msgid "Learn more about the developer community"
-msgstr ""
+msgstr "Więcej informacji o społeczności programistów"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:47 src/olympia/devhub/templates/devhub/versions/list.html:22
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
@@ -5906,7 +5915,7 @@ msgstr "Wyświetl wszystkie rozszerzenia"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1048
 msgid "Extension Starter Pack"
-msgstr ""
+msgstr "Pakiet startowy rozszerzeń"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1052
@@ -6152,7 +6161,7 @@ msgstr ""
 
 #: src/olympia/files/models.py:325
 msgid "Unreviewed"
-msgstr ""
+msgstr "Niesprawdzona"
 
 #: src/olympia/files/models.py:328
 #, python-format
