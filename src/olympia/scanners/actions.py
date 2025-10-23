@@ -152,7 +152,7 @@ def _disable_and_block(*, version, rule):
     successful_appeal = ContentDecision.objects.filter(
         addon=addon,
         action__in=DECISION_ACTIONS.NON_OFFENDING.values,
-        cinder_job__appealed_decisions__action=DECISION_ACTIONS.AMO_BLOCK_ADDON,
+        cinder_job__appealed_decisions__action__in=DECISION_ACTIONS.REMOVING.values,
     )
 
     if (

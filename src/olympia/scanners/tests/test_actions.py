@@ -1051,7 +1051,7 @@ class TestActions(TestCase):
         assert not EmailUserRestriction.objects.exists()
         assert not IPNetworkUserRestriction.objects.exists()
 
-    def test_disable_and_block_but_previous_successful_appeal(self):
+    def _test_disable_and_block_but_previous_successful_appeal(self, appealed_action):
         UsageTier.objects.create(
             upper_adu_threshold=10000, disable_and_block_action_available=True
         )
@@ -1084,6 +1084,21 @@ class TestActions(TestCase):
         # We didn't add restrictions.
         assert not EmailUserRestriction.objects.exists()
         assert not IPNetworkUserRestriction.objects.exists()
+
+    def test_disable_and_block_but_previous_successful_appeal_on_block(self):
+        self._test_disable_and_block_but_previous_successful_appeal(
+            DECISION_ACTIONS.AMO_BLOCK_ADDON
+        )
+
+    def test_disable_and_block_but_previous_successful_appeal_on_disable(self):
+        self._test_disable_and_block_but_previous_successful_appeal(
+            DECISION_ACTIONS.AMO_DISABLE_ADDON
+        )
+
+    def test_disable_and_block_but_previous_successful_appeal_on_reject(self):
+        self._test_disable_and_block_but_previous_successful_appeal(
+            DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
+        )
 
     def test_disable_and_block_with_unsuccesful_appeal(self):
         user = user_factory(last_login_ip='172.16.0.1')
@@ -1121,7 +1136,7 @@ class TestActions(TestCase):
         )
         ContentDecision.objects.create(
             addon=addon,
-            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            action=DECISION_ACTIONS.AMO_IGNORE,
             appeal_job=appeal_decision.cinder_job,
         )
         self.do_disable_and_block(addon)
