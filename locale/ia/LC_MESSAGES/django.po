@@ -5636,7 +5636,7 @@ msgstr "Gere tu Gmail (mesmo plure contos) justo ab buttones de barra de utensil
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:688
 msgid "Track the time you spend on the web, analyze your habits, block distracting sites & more."
-msgstr ""
+msgstr "Tracia le tempore que tu spende sur le web, analysa tu habitos, bloca sitos distrahente e plus."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:691
