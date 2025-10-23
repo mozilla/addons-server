@@ -5659,22 +5659,22 @@ msgstr "Face ca Firefox să treacă drept Chrome pentru site-urile care încearc
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:685
 msgid "Manage your Gmail (even multiple accounts) right from Firefox's toolbar button."
-msgstr ""
+msgstr "Gestionează-ți contul gmail (chiar și mai multe conturi) direct din butonul din bara de instrumente Firefox."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:688
 msgid "Track the time you spend on the web, analyze your habits, block distracting sites & more."
-msgstr ""
+msgstr "Urmărești timpul cât stai pe web, îți analizezi obiceiurile, blochezi site-uri care îți distrag atenția și multe altele."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:691
 msgid "Improve your writing — get instant access to the power of synonyms."
-msgstr ""
+msgstr "Îți îmbunătățești scrisul — obții acces instant la puterea sinonimelor."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:694
 msgid "Deep translation features for a rich language experience anywhere on the web."
-msgstr ""
+msgstr "Funcții de traducere profundă pentru o experiență lingvistică bogată oriunde pe web."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:697
@@ -5934,12 +5934,12 @@ msgstr "Vezi toate extensiile"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1048
 msgid "Extension Starter Pack"
-msgstr ""
+msgstr "Pachet starter de extensii"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1052
 msgid "Twitch customization"
-msgstr ""
+msgstr "Personalizare Twitch"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1054 src/olympia/discovery/strings.jinja2:1056 src/olympia/discovery/strings.jinja2:1058
