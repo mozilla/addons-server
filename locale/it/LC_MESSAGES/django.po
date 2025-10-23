@@ -5694,22 +5694,22 @@ msgstr "Fa sembrare Firefox come se fosse Chrome ai siti che cercano di bloccarl
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:685
 msgid "Manage your Gmail (even multiple accounts) right from Firefox's toolbar button."
-msgstr ""
+msgstr "Gestisci la tua posta su Gmail (anche con più account) direttamente dalla barra degli strumenti di Firefox."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:688
 msgid "Track the time you spend on the web, analyze your habits, block distracting sites & more."
-msgstr ""
+msgstr "Tieni traccia del tempo che trascorri sul Web, analizza le tue abitudini, blocca i siti che ti distraggono e molto altro ancora."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:691
 msgid "Improve your writing — get instant access to the power of synonyms."
-msgstr ""
+msgstr "Migliora la tua scrittura con la potenza dei sinonimi."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:694
 msgid "Deep translation features for a rich language experience anywhere on the web."
-msgstr ""
+msgstr "Tecnologie di traduzione evolute per un’esperienza linguistica fluida in tutto il Web."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:697
