@@ -2456,7 +2456,11 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
 
 class TestCinderRating(BaseTestCinderCase, TestCase):
     CinderClass = CinderRating
-    expected_queries_for_report = 1  # For the author
+    expected_queries_for_report = 4
+    # 4 queries expected (:sadface:)
+    # - 1 for the author
+    # - 2 for the addon and the translations
+    # - 1 for the promoted addon groups
     expected_queue_suffix = 'ratings'
 
     def setUp(self):
@@ -2501,6 +2505,11 @@ class TestCinderRating(BaseTestCinderCase, TestCase):
                         },
                     },
                     {
+                        'entity_type': 'amo_addon',
+                        'attributes': CinderAddon(rating.addon).get_attributes(),
+                    },
+                    {
+                        'entity_type': 'amo_report',
                         'attributes': {
                             'id': str(abuse_report.pk),
                             'created': str(abuse_report.created),
@@ -2511,7 +2520,6 @@ class TestCinderRating(BaseTestCinderCase, TestCase):
                             'illegal_category': None,
                             'illegal_subcategory': None,
                         },
-                        'entity_type': 'amo_report',
                     },
                 ],
                 'relationships': [
@@ -2521,6 +2529,13 @@ class TestCinderRating(BaseTestCinderCase, TestCase):
                         'target_id': str(rating.pk),
                         'target_type': 'amo_rating',
                         'relationship_type': 'amo_rating_author_of',
+                    },
+                    {
+                        'relationship_type': 'amo_review_of',
+                        'source_id': str(rating.pk),
+                        'source_type': 'amo_rating',
+                        'target_id': str(self.addon.pk),
+                        'target_type': 'amo_addon',
                     },
                     {
                         'relationship_type': 'amo_report_of',
@@ -2567,6 +2582,10 @@ class TestCinderRating(BaseTestCinderCase, TestCase):
                         },
                     },
                     {
+                        'entity_type': 'amo_addon',
+                        'attributes': CinderAddon(rating.addon).get_attributes(),
+                    },
+                    {
                         'attributes': {
                             'id': str(abuse_report.pk),
                             'created': str(abuse_report.created),
@@ -2587,6 +2606,13 @@ class TestCinderRating(BaseTestCinderCase, TestCase):
                         'target_id': str(rating.pk),
                         'target_type': 'amo_rating',
                         'relationship_type': 'amo_rating_author_of',
+                    },
+                    {
+                        'relationship_type': 'amo_review_of',
+                        'source_id': str(rating.pk),
+                        'source_type': 'amo_rating',
+                        'target_id': str(self.addon.pk),
+                        'target_type': 'amo_addon',
                     },
                     {
                         'relationship_type': 'amo_report_of',
@@ -2646,6 +2672,10 @@ class TestCinderRating(BaseTestCinderCase, TestCase):
                         },
                     },
                     {
+                        'entity_type': 'amo_addon',
+                        'attributes': CinderAddon(rating.addon).get_attributes(),
+                    },
+                    {
                         'entity_type': 'amo_rating',
                         'attributes': {
                             'id': str(original_rating.pk),
@@ -2675,6 +2705,13 @@ class TestCinderRating(BaseTestCinderCase, TestCase):
                         'target_id': str(rating.pk),
                         'target_type': 'amo_rating',
                         'relationship_type': 'amo_rating_author_of',
+                    },
+                    {
+                        'relationship_type': 'amo_review_of',
+                        'source_id': str(rating.pk),
+                        'source_type': 'amo_rating',
+                        'target_id': str(self.addon.pk),
+                        'target_type': 'amo_addon',
                     },
                     {
                         'source_id': str(original_rating.pk),
