@@ -5698,7 +5698,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:691
 msgid "Improve your writing — get instant access to the power of synonyms."
-msgstr ""
+msgstr "Βελτιώστε τα κείμενά σας, με άμεση πρόσβαση σε συνώνυμες λέξεις."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:694
