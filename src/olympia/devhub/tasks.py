@@ -414,6 +414,7 @@ def check_data_collection_permissions(results, upload_pk):
 
     if (
         waffle.switch_is_active('enforce-data-collection-for-new-addons')
+        and upload.source == amo.UPLOAD_SOURCE_DEVHUB
         and not upload.addon
     ):
         # When the switch is enabled and we do not have an add-on for this file
