@@ -974,6 +974,42 @@ class TestCheckDataCollectionPermissions(UploadMixin, ValidatorTestCase):
         assert validation['warnings'] == 0
 
     @override_switch('enforce-data-collection-for-new-addons', active=True)
+    def test_switch_enabled_and_new_extension_without_data_collection_from_signing_api(
+        self,
+    ):
+        upload = self.get_upload(
+            abspath=get_addon_file('valid_webextension.xpi'),
+            with_validation=False,
+            user=self.user,
+            source=amo.UPLOAD_SOURCE_SIGNING_API,
+        )
+        tasks.validate(upload)
+        upload.refresh_from_db()
+
+        validation = upload.processed_validation
+        assert validation['errors'] == 0
+        assert validation['notices'] == 0
+        assert validation['warnings'] == 1
+
+    @override_switch('enforce-data-collection-for-new-addons', active=True)
+    def test_switch_enabled_and_new_extension_without_data_collection_from_addon_api(
+        self,
+    ):
+        upload = self.get_upload(
+            abspath=get_addon_file('valid_webextension.xpi'),
+            with_validation=False,
+            user=self.user,
+            source=amo.UPLOAD_SOURCE_ADDON_API,
+        )
+        tasks.validate(upload)
+        upload.refresh_from_db()
+
+        validation = upload.processed_validation
+        assert validation['errors'] == 0
+        assert validation['notices'] == 0
+        assert validation['warnings'] == 1
+
+    @override_switch('enforce-data-collection-for-new-addons', active=True)
     def test_switch_enabled_and_existing_extension_without_data_collection(self):
         upload = self.get_upload(
             abspath=get_addon_file('valid_webextension.xpi'),
