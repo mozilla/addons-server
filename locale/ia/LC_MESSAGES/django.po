@@ -5631,7 +5631,7 @@ msgstr "Face apparer Firefox como Chrome pro sitos web que tenta blocar Firefox.
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:685
 msgid "Manage your Gmail (even multiple accounts) right from Firefox's toolbar button."
-msgstr ""
+msgstr "Gere tu Gmail (mesmo plure contos) justo ab buttones de barra de utensiles de Firefox."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:688
@@ -5641,7 +5641,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:691
 msgid "Improve your writing — get instant access to the power of synonyms."
-msgstr ""
+msgstr "Meliora tu scriptura, obtene accesso instantanee al poter del synonymos."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:694
