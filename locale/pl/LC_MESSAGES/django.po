@@ -3384,6 +3384,8 @@ msgid ""
 "If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
 "%(policy_requirements_open)spolicy requirements%(policy_requirements_close)s."
 msgstr ""
+"Jeśli nie dołączono instrukcji budowania kodu źródłowego, musisz podać je tutaj. Wprowadź instrukcje budowania krok po kroku, aby osiągnąć dokładną kopię kodu dodatku, zgodnie "
+"z %(policy_requirements_open)swymaganiami polityki%(policy_requirements_close)s."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:224 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:38
 msgid "These notes will only be visible to you and our reviewers."
@@ -3425,7 +3427,7 @@ msgstr "Więcej informacji na temat tych opcji można znaleźć w artykule <a %(
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html:24
 #, python-format
 msgid "All add-ons must comply with <a %(a_attrs)s>Mozilla’s Add-on Policies</a> and are subject to manual review at any time after submission."
-msgstr ""
+msgstr "Wszystkie dodatki muszą przestrzegać <a %(a_attrs)s>Polityki Dodatków Mozilli</a> i mogą zostać poddane kontroli w dowolnym momencie po przesłaniu dodatku."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:4
 msgid "Submission Complete"
@@ -3507,15 +3509,15 @@ msgstr "Generatory kodu lub minifikatory"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:29
 msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
-msgstr ""
+msgstr "Narzędzia łączące wiele plików w jeden, takie jak <span class=\"tech-emphasis\">webpack</span>"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:31
 msgid "Web template engines, both for HTML and CSS"
-msgstr ""
+msgstr "Silniki szablonów internetowych, zarówno dla HTML, jak i CSS"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:32
 msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the extension"
-msgstr ""
+msgstr "Każde inne narzędzie, które pobiera kod lub pliki, przetwarza je i generuje kod lub plik(i) do uwzględnienia w rozszerzeniu"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:43
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
@@ -3547,7 +3549,7 @@ msgstr "Wymagana wersja i instrukcje instalacji wszelkich programów użytych w 
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:62
 msgid "Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified, or otherwise machine-generated."
-msgstr ""
+msgstr "Pliki źródłowe (oprócz otwarto-źródłowych bibliotek stron trzecich) nie mogą być transpilowane, łączone, minimalizowane, ani w żaden inny sposób generowane maszynowo."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:67
 #, python-format
@@ -3618,7 +3620,7 @@ msgstr "Generator motywu"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:14
 msgid "Warning: the following manifest properties that your most recent version upload used in its manifest are unsupported in this wizard and will be ignored:"
-msgstr ""
+msgstr "Ostrzeżenie: następujące właściwości manifestu użyte w najnowszej przesłanej wersji twojego dodatku nie są obsługiwane w tym kreatorze i zostaną zignorowane:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:25
 msgid "Theme name"
@@ -3703,6 +3705,14 @@ msgid ""
 "\n"
 "%(url)s"
 msgstr ""
+"Następujący klucz API został dodany do twojego konta:\n"
+"\n"
+"%(key)s\n"
+"\n"
+"Jeśli uważasz, że ten klucz został został błędnie stworzony, możesz go usunąć i\n"
+"wyłączyć dostęp w następującej lokalizacji:\n"
+"\n"
+"%(url)s"
 
 #: src/olympia/devhub/templates/devhub/emails/revoked-key-email.ltxt:8
 #, python-format
@@ -3716,6 +3726,14 @@ msgid ""
 "\n"
 "%(url)s"
 msgstr ""
+"Następujący klucz API został usunięty z twojego konta:\n"
+"\n"
+"%(key)s\n"
+"\n"
+"Jeśli uważasz, że ten klucz został został błędnie usunięty, możesz utworzyć nowy\n"
+"w następującej lokalizacji:\n"
+"\n"
+"%(url)s"
 
 #: src/olympia/devhub/templates/devhub/emails/submission_api_key_revocation.txt:9
 #, python-format
