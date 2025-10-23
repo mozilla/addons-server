@@ -25,12 +25,12 @@ SERVICES_URL = 'https://' + SERVICES_DOMAIN
 STATIC_URL = '%s/static-server/' % EXTERNAL_SITE_URL
 MEDIA_URL = '%s/user-media/' % EXTERNAL_SITE_URL
 
-CSP_FONT_SRC += (STATIC_URL,)
-# CSP_IMG_SRC already contains 'self', but we could be on reviewers or admin
+CONTENT_SECURITY_POLICY['DIRECTIVES']['font-src'] += (STATIC_URL,)
+# img-src already contains 'self', but we could be on reviewers or admin
 # domain and want to load things from the regular domain.
-CSP_IMG_SRC += (MEDIA_URL, STATIC_URL)
-CSP_SCRIPT_SRC += (STATIC_URL,)
-CSP_STYLE_SRC += (STATIC_URL,)
+CONTENT_SECURITY_POLICY['DIRECTIVES']['img-src'] += (MEDIA_URL, STATIC_URL)
+CONTENT_SECURITY_POLICY['DIRECTIVES']['script-src'] += (STATIC_URL,)
+CONTENT_SECURITY_POLICY['DIRECTIVES']['style-src'] += (STATIC_URL,)
 
 SESSION_COOKIE_DOMAIN = '.%s' % DOMAIN
 

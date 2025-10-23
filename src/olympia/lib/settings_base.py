@@ -968,59 +968,46 @@ GOOGLE_TAGMANAGER_HOST = 'https://*.googletagmanager.com'
 GOOGLE_ANALYTICS_HOST = 'https://*.google-analytics.com'
 GOOGLE_ADDITIONAL_ANALYTICS_HOST = 'https://*.analytics.google.com'
 
+RECAPTCHA_URL = 'https://www.recaptcha.net/recaptcha/'
 
-CSP_REPORT_URI = '/__cspreport__'
-CSP_REPORT_ONLY = False
-CSP_EXCLUDE_URL_PREFIXES = ()
-
-# NOTE: CSP_DEFAULT_SRC MUST be set otherwise things not set
-# will default to being open to anything.
-CSP_DEFAULT_SRC = ("'none'",)
-CSP_CONNECT_SRC = (
-    "'self'",
-    GOOGLE_ANALYTICS_HOST,
-    GOOGLE_ADDITIONAL_ANALYTICS_HOST,
-    GOOGLE_TAGMANAGER_HOST,
-)
-CSP_FORM_ACTION = ("'self'",)
-CSP_FONT_SRC = (
-    "'self'",
-    PROD_STATIC_URL,
-)
-CSP_CHILD_SRC = ('https://www.recaptcha.net/recaptcha/',)
-CSP_FRAME_SRC = CSP_CHILD_SRC
-CSP_IMG_SRC = (
-    "'self'",
-    'blob:',  # Needed for image uploads.
-    'data:',  # Needed for theme wizard.
-    PROD_STATIC_URL,
-    PROD_MEDIA_URL,
-    GOOGLE_ANALYTICS_HOST,
-    GOOGLE_TAGMANAGER_HOST,
-)
-CSP_MEDIA_SRC = ('https://videos.cdn.mozilla.net',)
-CSP_OBJECT_SRC = ("'none'",)
-
-CSP_SCRIPT_SRC = (
-    GOOGLE_ANALYTICS_HOST,
-    GOOGLE_TAGMANAGER_HOST,
-    'https://www.recaptcha.net/recaptcha/',
-    'https://www.gstatic.com/recaptcha/',
-    'https://www.gstatic.cn/recaptcha/',
-    PROD_STATIC_URL,
-)
-CSP_STYLE_SRC = (
-    "'unsafe-inline'",
-    PROD_STATIC_URL,
-)
-
-RESTRICTED_DOWNLOAD_CSP = {
-    'DEFAULT_SRC': "'none'",
-    'BASE_URI': "'none'",
-    'FORM_ACTION': "'none'",
-    'OBJECT_SRC': "'none'",
-    'FRAME_ANCESTORS': "'none'",
-    'REPORT_URI': CSP_REPORT_URI,
+CONTENT_SECURITY_POLICY = {
+    'DIRECTIVES': {
+        # NOTE: default-src MUST be set otherwise things not set
+        # will default to being open to anything.
+        'default-src': ("'none'",),
+        'child-src': (RECAPTCHA_URL,),
+        'connect-src': (
+            "'self'",
+            GOOGLE_ANALYTICS_HOST,
+            GOOGLE_ADDITIONAL_ANALYTICS_HOST,
+            GOOGLE_TAGMANAGER_HOST,
+        ),
+        'font-src': ("'self'", PROD_STATIC_URL),
+        'form-action': ("'self'",),
+        'frame-src': (RECAPTCHA_URL,),
+        'img-src': (
+            "'self'",
+            'blob:',  # Needed for image uploads.
+            'data:',  # Needed for theme wizard.
+            PROD_STATIC_URL,
+            PROD_MEDIA_URL,
+            GOOGLE_ANALYTICS_HOST,
+            GOOGLE_TAGMANAGER_HOST,
+        ),
+        'media-src': ('https://videos.cdn.mozilla.net',),
+        'object-src': ("'none'",),
+        'report-uri': '/__cspreport__',
+        'script-src': (
+            GOOGLE_ANALYTICS_HOST,
+            GOOGLE_TAGMANAGER_HOST,
+            RECAPTCHA_URL,
+            'https://www.gstatic.com/recaptcha/',
+            'https://www.gstatic.cn/recaptcha/',
+            PROD_STATIC_URL,
+        ),
+        'style-src': ("'unsafe-inline'", PROD_STATIC_URL),
+    },
+    'EXCLUDE_URL_PREFIXES': (),
 }
 
 # Should robots.txt deny everything or disallow a calculated list of URLs we

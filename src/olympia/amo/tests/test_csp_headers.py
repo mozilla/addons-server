@@ -1,17 +1,15 @@
 import os
 
 from django.conf import settings
-from django.test.utils import override_settings
 
 from olympia.amo.tests import TestCase
 from olympia.lib import settings_base as base_settings
 
 
 def test_default_settings_no_report_only():
-    assert settings.CSP_REPORT_ONLY is False
+    assert getattr(settings, 'CONTENT_SECURITY_POLICY', {}).keys()
 
 
-@override_settings(CSP_REPORT_ONLY=False)
 class TestCSPHeaders(TestCase):
     def test_for_specific_csp_settings(self):
         """Test that required settings are provided as headers."""
@@ -35,101 +33,191 @@ class TestCSPHeaders(TestCase):
 
     def test_unsafe_inline_not_in_script_src(self):
         """Make sure a script-src does not have unsafe-inline."""
-        assert "'unsafe-inline'" not in base_settings.CSP_SCRIPT_SRC
+        assert (
+            "'unsafe-inline'"
+            not in base_settings.CONTENT_SECURITY_POLICY['DIRECTIVES']['script-src']
+        )
 
     def test_unsafe_eval_not_in_script_src(self):
         """Make sure a script-src does not have unsafe-eval."""
-        assert "'unsafe-eval'" not in base_settings.CSP_SCRIPT_SRC
+        assert (
+            "'unsafe-eval'"
+            not in base_settings.CONTENT_SECURITY_POLICY['DIRECTIVES']['script-src']
+        )
 
     def test_data_and_blob_not_in_script_and_style_src(self):
         """Make sure a script-src/style-src does not have data: or blob:."""
-        assert 'blob:' not in base_settings.CSP_SCRIPT_SRC
-        assert 'data:' not in base_settings.CSP_SCRIPT_SRC
-        assert 'blob:' not in base_settings.CSP_STYLE_SRC
-        assert 'data:' not in base_settings.CSP_STYLE_SRC
+        assert (
+            'blob:'
+            not in base_settings.CONTENT_SECURITY_POLICY['DIRECTIVES']['script-src']
+        )
+        assert (
+            'data:'
+            not in base_settings.CONTENT_SECURITY_POLICY['DIRECTIVES']['script-src']
+        )
+        assert (
+            'blob:'
+            not in base_settings.CONTENT_SECURITY_POLICY['DIRECTIVES']['style-src']
+        )
+        assert (
+            'data:'
+            not in base_settings.CONTENT_SECURITY_POLICY['DIRECTIVES']['style-src']
+        )
 
     def test_http_protocol_not_in_script_src(self):
         """Make sure a script-src does not have hosts using http:."""
-        for val in base_settings.CSP_SCRIPT_SRC:
+        for val in base_settings.CONTENT_SECURITY_POLICY['DIRECTIVES']['script-src']:
             assert not val.startswith('http:')
 
     def test_http_protocol_not_in_frame_src(self):
         """Make sure a frame-src does not have hosts using http:."""
-        for val in base_settings.CSP_FRAME_SRC:
+        for val in base_settings.CONTENT_SECURITY_POLICY['DIRECTIVES']['frame-src']:
             assert not val.startswith('http:')
 
     def test_http_protocol_not_in_child_src(self):
         """Make sure a child-src does not have hosts using http:."""
-        for val in base_settings.CSP_CHILD_SRC:
+        for val in base_settings.CONTENT_SECURITY_POLICY['DIRECTIVES']['child-src']:
             assert not val.startswith('http:')
 
     def test_http_protocol_not_in_style_src(self):
         """Make sure a style-src does not have hosts using http:."""
-        for val in base_settings.CSP_STYLE_SRC:
+        for val in base_settings.CONTENT_SECURITY_POLICY['DIRECTIVES']['style-src']:
             assert not val.startswith('http:')
 
     def test_http_protocol_not_in_img_src(self):
         """Make sure a img-src does not have hosts using http:."""
-        for val in base_settings.CSP_IMG_SRC:
+        for val in base_settings.CONTENT_SECURITY_POLICY['DIRECTIVES']['img-src']:
             assert not val.startswith('http:')
 
     def test_blob_and_data_in_img_src(self):
         """Test that img-src contains data/blob."""
-        assert 'blob:' in base_settings.CSP_IMG_SRC
-        assert 'data:' in base_settings.CSP_IMG_SRC
+        assert 'blob:' in base_settings.CONTENT_SECURITY_POLICY['DIRECTIVES']['img-src']
+        assert 'data:' in base_settings.CONTENT_SECURITY_POLICY['DIRECTIVES']['img-src']
 
     def test_child_src_matches_frame_src(self):
         """Check frame-src directive has same settings as child-src"""
-        assert base_settings.CSP_FRAME_SRC == base_settings.CSP_CHILD_SRC
+        assert (
+            base_settings.CONTENT_SECURITY_POLICY['DIRECTIVES']['frame-src']
+            == base_settings.CONTENT_SECURITY_POLICY['DIRECTIVES']['child-src']
+        )
 
     def test_prod_static_url_in_common_settings(self):
         """Make sure prod cdn is specified by default for statics."""
         prod_static_url = base_settings.PROD_STATIC_URL
-        assert prod_static_url in base_settings.CSP_FONT_SRC
-        assert prod_static_url in base_settings.CSP_IMG_SRC
-        assert prod_static_url in base_settings.CSP_SCRIPT_SRC
-        assert prod_static_url in base_settings.CSP_STYLE_SRC
+        assert (
+            prod_static_url
+            in base_settings.CONTENT_SECURITY_POLICY['DIRECTIVES']['font-src']
+        )
+        assert (
+            prod_static_url
+            in base_settings.CONTENT_SECURITY_POLICY['DIRECTIVES']['img-src']
+        )
+        assert (
+            prod_static_url
+            in base_settings.CONTENT_SECURITY_POLICY['DIRECTIVES']['script-src']
+        )
+        assert (
+            prod_static_url
+            in base_settings.CONTENT_SECURITY_POLICY['DIRECTIVES']['style-src']
+        )
 
         prod_media_url = base_settings.PROD_MEDIA_URL
-        assert prod_media_url not in base_settings.CSP_FONT_SRC
-        assert prod_media_url in base_settings.CSP_IMG_SRC
-        assert prod_media_url not in base_settings.CSP_SCRIPT_SRC
-        assert prod_media_url not in base_settings.CSP_STYLE_SRC
+        assert (
+            prod_media_url
+            not in base_settings.CONTENT_SECURITY_POLICY['DIRECTIVES']['font-src']
+        )
+        assert (
+            prod_media_url
+            in base_settings.CONTENT_SECURITY_POLICY['DIRECTIVES']['img-src']
+        )
+        assert (
+            prod_media_url
+            not in base_settings.CONTENT_SECURITY_POLICY['DIRECTIVES']['script-src']
+        )
+        assert (
+            prod_media_url
+            not in base_settings.CONTENT_SECURITY_POLICY['DIRECTIVES']['style-src']
+        )
 
     def test_self_in_common_settings(self):
         """Check 'self' is defined for common settings."""
-        assert "'self'" in base_settings.CSP_CONNECT_SRC
-        assert "'self'" in base_settings.CSP_IMG_SRC
-        assert "'self'" in base_settings.CSP_FORM_ACTION
+        assert (
+            "'self'"
+            in base_settings.CONTENT_SECURITY_POLICY['DIRECTIVES']['connect-src']
+        )
+        assert (
+            "'self'" in base_settings.CONTENT_SECURITY_POLICY['DIRECTIVES']['img-src']
+        )
+        assert (
+            "'self'"
+            in base_settings.CONTENT_SECURITY_POLICY['DIRECTIVES']['form-action']
+        )
 
     def test_not_self_in_script_child_or_style_src(self):
         """script-src/style-src/child-src should not need 'self' or the entire
         a.m.o. domain"""
-        assert "'self'" not in base_settings.CSP_SCRIPT_SRC
-        assert 'https://addons.mozilla.org' not in base_settings.CSP_SCRIPT_SRC
-        assert "'self'" not in base_settings.CSP_STYLE_SRC
-        assert 'https://addons.mozilla.org' not in base_settings.CSP_STYLE_SRC
-        assert "'self'" not in base_settings.CSP_CHILD_SRC
-        assert 'https://addons.mozilla.org' not in base_settings.CSP_CHILD_SRC
+        assert (
+            "'self'"
+            not in base_settings.CONTENT_SECURITY_POLICY['DIRECTIVES']['script-src']
+        )
+        assert (
+            'https://addons.mozilla.org'
+            not in base_settings.CONTENT_SECURITY_POLICY['DIRECTIVES']['script-src']
+        )
+        assert (
+            "'self'"
+            not in base_settings.CONTENT_SECURITY_POLICY['DIRECTIVES']['style-src']
+        )
+        assert (
+            'https://addons.mozilla.org'
+            not in base_settings.CONTENT_SECURITY_POLICY['DIRECTIVES']['style-src']
+        )
+        assert (
+            "'self'"
+            not in base_settings.CONTENT_SECURITY_POLICY['DIRECTIVES']['child-src']
+        )
+        assert (
+            'https://addons.mozilla.org'
+            not in base_settings.CONTENT_SECURITY_POLICY['DIRECTIVES']['child-src']
+        )
 
     def test_analytics_in_common_settings(self):
         """Check for anaytics hosts in connect-src, img-src and script-src"""
         # See https://github.com/mozilla/addons/issues/14799#issuecomment-2127359422
-        assert base_settings.GOOGLE_ANALYTICS_HOST in base_settings.CSP_CONNECT_SRC
-        assert base_settings.GOOGLE_TAGMANAGER_HOST in base_settings.CSP_CONNECT_SRC
+        assert (
+            base_settings.GOOGLE_ANALYTICS_HOST
+            in base_settings.CONTENT_SECURITY_POLICY['DIRECTIVES']['connect-src']
+        )
+        assert (
+            base_settings.GOOGLE_TAGMANAGER_HOST
+            in base_settings.CONTENT_SECURITY_POLICY['DIRECTIVES']['connect-src']
+        )
         assert (
             base_settings.GOOGLE_ADDITIONAL_ANALYTICS_HOST
-            in base_settings.CSP_CONNECT_SRC
+            in base_settings.CONTENT_SECURITY_POLICY['DIRECTIVES']['connect-src']
         )
 
-        assert base_settings.GOOGLE_ANALYTICS_HOST in base_settings.CSP_IMG_SRC
-        assert base_settings.GOOGLE_TAGMANAGER_HOST in base_settings.CSP_IMG_SRC
+        assert (
+            base_settings.GOOGLE_ANALYTICS_HOST
+            in base_settings.CONTENT_SECURITY_POLICY['DIRECTIVES']['img-src']
+        )
+        assert (
+            base_settings.GOOGLE_TAGMANAGER_HOST
+            in base_settings.CONTENT_SECURITY_POLICY['DIRECTIVES']['img-src']
+        )
 
-        assert base_settings.GOOGLE_ANALYTICS_HOST in base_settings.CSP_SCRIPT_SRC
-        assert base_settings.GOOGLE_TAGMANAGER_HOST in base_settings.CSP_SCRIPT_SRC
+        assert (
+            base_settings.GOOGLE_ANALYTICS_HOST
+            in base_settings.CONTENT_SECURITY_POLICY['DIRECTIVES']['script-src']
+        )
+        assert (
+            base_settings.GOOGLE_TAGMANAGER_HOST
+            in base_settings.CONTENT_SECURITY_POLICY['DIRECTIVES']['script-src']
+        )
 
     def test_csp_settings_not_overriden_for_prod(self):
-        """Checks sites/prod/settings.py doesn't have CSP_* settings.
+        """Checks sites/prod/settings.py doesn't change CONTENT_SECURITY_POLICY
+        settings.
 
         Because testing the import of site settings is difficult due to
         env vars, we specify prod settings in lib/base_settings and then
@@ -145,4 +233,4 @@ class TestCSPHeaders(TestCase):
 
         with open(path) as f:
             data = f.read()
-            assert 'CSP_' not in data
+            assert 'CONTENT_SECURITY_POLICY' not in data
