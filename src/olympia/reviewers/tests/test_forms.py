@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 from django.core.files.base import ContentFile
 from django.utils.encoding import force_str
 
-from freezegun import freeze_time
+import time_machine
 from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
 
@@ -1110,7 +1110,7 @@ class TestReviewForm(TestCase):
         assert not form.is_valid()
         assert form.errors == {'versions': ['This field is required.']}
 
-    @freeze_time('2025-02-10 12:09')
+    @time_machine.travel('2025-02-10 12:09', tick=False)
     def test_delayed_rejection_date_is_readonly_for_regular_reviewers(self):
         # Regular reviewers can't customize the delayed rejection period.
         self.grant_permission(self.request.user, 'Addons:Review')
@@ -1145,7 +1145,7 @@ class TestReviewForm(TestCase):
             == 'change_or_clear_pending_rejection_multiple_versions'
         )
 
-    @freeze_time('2025-01-23 12:52')
+    @time_machine.travel('2025-01-23 12:52', tick=False)
     def test_delayed_rejection_days_shows_up_for_admin_reviewers(self):
         # Admin reviewers can customize the delayed rejection period.
         self.grant_permission(self.request.user, 'Addons:Review')
@@ -1180,7 +1180,7 @@ class TestReviewForm(TestCase):
             == 'change_or_clear_pending_rejection_multiple_versions'
         )
 
-    @freeze_time('2025-01-23 12:52')
+    @time_machine.travel('2025-01-23 12:52', tick=False)
     def test_delayed_rejection_days_value_not_in_the_future(self):
         self.grant_permission(self.request.user, 'Addons:Review,Reviews:Admin')
         self.reason_a = ReviewActionReason.objects.create(

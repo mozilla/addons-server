@@ -10,7 +10,7 @@ from django.test.utils import override_settings
 from django.urls import reverse
 
 import responses
-from freezegun import freeze_time
+import time_machine
 from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
 
@@ -2201,38 +2201,43 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert deleted_addon.status == amo.STATUS_DELETED  # Should stay deleted
         assert DeniedGuid.objects.filter(guid=deleted_addon.guid).exists()
 
-    @freeze_time('2023-01-01 12:34:56', as_arg=True)
-    def test_add_with_delayed(frozen_time, self):
+    def test_add_with_delayed(self):
         delay_days = 2
         addon_adu = settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD - 1
-        (
-            new_addon,
-            existing_and_full,
-            partial_addon,
-            existing_and_partial,
-        ) = self._test_add_multiple_submit(addon_adu=addon_adu, delay=delay_days)
-        # no new Block objects yet even though under the threshold
-        assert Block.objects.count() == 2
-        multi = BlocklistSubmission.objects.get()
-        assert multi.signoff_state == BlocklistSubmission.SIGNOFF_STATES.AUTOAPPROVED
-        assert not multi.is_submission_ready
+        with time_machine.travel('2023-01-01 12:34:56', tick=False) as frozen_time:
+            (
+                new_addon,
+                existing_and_full,
+                partial_addon,
+                existing_and_partial,
+            ) = self._test_add_multiple_submit(addon_adu=addon_adu, delay=delay_days)
+            # no new Block objects yet even though under the threshold
+            assert Block.objects.count() == 2
+            multi = BlocklistSubmission.objects.get()
+            assert (
+                multi.signoff_state == BlocklistSubmission.SIGNOFF_STATES.AUTOAPPROVED
+            )
+            assert not multi.is_submission_ready
 
-        frozen_time.tick(delta=timedelta(days=delay_days, seconds=1))
-        # Now we're past, the submission is ready
-        assert multi.is_submission_ready
-        assert multi.signoff_state == BlocklistSubmission.SIGNOFF_STATES.AUTOAPPROVED
+            frozen_time.shift(delta=timedelta(days=delay_days, seconds=1))
+            # Now we're past, the submission is ready
+            assert multi.is_submission_ready
+            assert (
+                multi.signoff_state == BlocklistSubmission.SIGNOFF_STATES.AUTOAPPROVED
+            )
 
-        multi.save_to_block_objects()
-        self._test_add_multiple_verify_blocks(
-            new_addon,
-            existing_and_full,
-            partial_addon,
-            existing_and_partial,
-            has_signoff=False,
-        )
-        assert (
-            multi.reload().signoff_state == BlocklistSubmission.SIGNOFF_STATES.PUBLISHED
-        )
+            multi.save_to_block_objects()
+            self._test_add_multiple_verify_blocks(
+                new_addon,
+                existing_and_full,
+                partial_addon,
+                existing_and_partial,
+                has_signoff=False,
+            )
+            assert (
+                multi.reload().signoff_state
+                == BlocklistSubmission.SIGNOFF_STATES.PUBLISHED
+            )
 
     def test_approve_delayed(self):
         now = datetime.now()

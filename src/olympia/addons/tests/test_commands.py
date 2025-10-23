@@ -8,7 +8,7 @@ from django.core.management import call_command
 from django.core.management.base import CommandError
 
 import pytest
-from freezegun import freeze_time
+import time_machine
 
 from olympia import amo
 from olympia.abuse.models import AbuseReport
@@ -61,7 +61,7 @@ def count_subtask_calls(original_function):
     original_function.subtask = original_function_subtask
 
 
-@freeze_time('2019-04-01')
+@time_machine.travel('2019-04-01', tick=False)
 @pytest.mark.django_db
 def test_process_addons_limit_addons():
     user_factory(id=settings.TASK_USER_ID)
@@ -369,7 +369,7 @@ class TestBumpAndResignAddons(TestCase):
         file_kw = {'filename': 'webextension.xpi', 'is_signed': True}
         user_factory(id=settings.TASK_USER_ID)
 
-        with freeze_time('2019-04-01'):
+        with time_machine.travel('2019-04-01', tick=False):
             addon_with_history = addon_factory(file_kw=file_kw)
             # Create a few more versions for this add-on to test that we only
             # re-sign current versions
@@ -389,7 +389,7 @@ class TestBumpAndResignAddons(TestCase):
             addon_factory(disabled_by_user=True, file_kw=file_kw)
 
         # Don't resign add-ons created after April 4th 2019
-        with freeze_time('2019-05-01'):
+        with time_machine.travel('2019-05-01', tick=False):
             addon_factory(file_kw=file_kw)
             addon_factory(type=amo.ADDON_STATICTHEME, file_kw=file_kw)
 

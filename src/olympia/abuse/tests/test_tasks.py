@@ -7,8 +7,8 @@ from django.conf import settings
 
 import pytest
 import responses
+import time_machine
 from celery.exceptions import Retry
-from freezegun import freeze_time
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
@@ -194,7 +194,7 @@ def _high_abuse_reports_setup(field):
     return not_flagged, flagged
 
 
-@freeze_time('2023-06-26 11:00')
+@time_machine.travel('2023-06-26 11:00', tick=False)
 @pytest.mark.django_db
 def test_flag_high_abuse_reports_addons_according_to_review_tier():
     set_config(amo.config_keys.EXTRA_REVIEW_TARGET_PER_DAY, '1')
@@ -253,7 +253,7 @@ def test_flag_high_abuse_reports_addons_according_to_review_tier():
     ]
 
 
-@freeze_time('2023-06-26 11:00')
+@time_machine.travel('2023-06-26 11:00', tick=False)
 @pytest.mark.django_db
 def test_block_high_abuse_reports_addons_according_to_review_tier():
     not_blocked, blocked = _high_abuse_reports_setup(

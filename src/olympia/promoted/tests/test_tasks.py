@@ -3,7 +3,7 @@ from datetime import datetime
 from django.conf import settings
 
 import pytest
-from freezegun import freeze_time
+import time_machine
 
 from olympia import amo
 from olympia.addons.serializers import PromotedGroup
@@ -98,7 +98,7 @@ def test_add_high_adu_extensions_to_notable():
     deleted_extension_version = deleted_extension.current_version
     deleted_extension.delete()
 
-    with freeze_time():
+    with time_machine.travel(datetime.now(), tick=False):
         now = datetime.now()
         add_high_adu_extensions_to_notable()
 

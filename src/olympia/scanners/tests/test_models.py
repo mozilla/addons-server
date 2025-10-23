@@ -1,11 +1,12 @@
 import uuid
+from datetime import datetime
 from unittest import mock
 
 from django.core.exceptions import ValidationError
 from django.test.utils import override_settings
 
 import pytest
-from freezegun import freeze_time
+import time_machine
 
 from olympia import amo
 from olympia.amo.tests import TestCase, addon_factory, user_factory
@@ -548,10 +549,12 @@ class TestScannerQueryRule(TestScannerRuleMixin, TestCase):
 def test_query_rule_change_state_to_valid(current_state, target_state):
     rule = ScannerQueryRule(name='some_rule', scanner=YARA)
     rule.state = current_state
-    with freeze_time('2020-04-08 15:16:23.42') as frozen_time:
+    with time_machine.travel('2020-04-08 15:16:23.42', tick=False):
         rule.change_state_to(target_state)
+        now = datetime.now()
     if target_state == COMPLETED:
-        assert rule.completed == frozen_time()
+        assert rule.completed == now
+        assert rule.completed != datetime.now()
     else:
         assert rule.completed is None
 

@@ -15,7 +15,7 @@ from django.utils import timezone
 
 import pytest
 import responses
-from freezegun import freeze_time
+import time_machine
 
 from olympia import amo, core
 from olympia.access.models import Group, GroupUser
@@ -1775,7 +1775,9 @@ class TestSuppressedEmailVerification(TestCase):
         )
         assert not email_verification.is_expired
 
-        with freeze_time(email_verification.created + timedelta(days=31)):
+        with time_machine.travel(
+            email_verification.created + timedelta(days=31), tick=False
+        ):
             assert email_verification.is_expired
 
     def test_is_timedout(self):
@@ -1784,5 +1786,7 @@ class TestSuppressedEmailVerification(TestCase):
         )
         assert not email_verification.is_timedout
 
-        with freeze_time(email_verification.created + timedelta(minutes=10, seconds=1)):
+        with time_machine.travel(
+            email_verification.created + timedelta(minutes=10, seconds=1), tick=False
+        ):
             assert email_verification.is_timedout

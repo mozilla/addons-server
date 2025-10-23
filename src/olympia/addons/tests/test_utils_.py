@@ -1,9 +1,9 @@
-from datetime import timedelta
+from datetime import datetime, timedelta
 
 from django.forms import ValidationError
 
 import pytest
-from freezegun import freeze_time
+import time_machine
 
 from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.users.models import Group, GroupUser
@@ -128,24 +128,24 @@ class TestGetAddonRecommendations(TestCase):
         assert len(recommendations) == 4
 
 
-@freeze_time(as_kwarg='frozen_time')
-def test_delete_token_signer(frozen_time=None):
+def test_delete_token_signer():
     signer = DeleteTokenSigner()
     addon_id = 1234
-    token = signer.generate(addon_id)
-    # generated token is valid
-    assert signer.validate(token, addon_id)
-    # generating with the same addon_id at the same time returns the same value
-    assert token == signer.generate(addon_id)
-    # generating with a different addon_id at the same time returns a different value
-    assert token != signer.generate(addon_id + 1)
-    # and the addon_id must match for it to be a valid token
-    assert not signer.validate(token, addon_id + 1)
+    with time_machine.travel(datetime.now(), tick=False) as frozen_time:
+        token = signer.generate(addon_id)
+        # generated token is valid
+        assert signer.validate(token, addon_id)
+        # generating with the same addon_id at the same time returns the same value
+        assert token == signer.generate(addon_id)
+        # generating with a different addon_id at the same time returns different value
+        assert token != signer.generate(addon_id + 1)
+        # and the addon_id must match for it to be a valid token
+        assert not signer.validate(token, addon_id + 1)
 
-    # token is valid for 60 seconds so after 59 is still valid
-    frozen_time.tick(timedelta(seconds=59))
-    assert signer.validate(token, addon_id)
+        # token is valid for 60 seconds so after 59 is still valid
+        frozen_time.shift(timedelta(seconds=59))
+        assert signer.validate(token, addon_id)
 
-    # but not after 60 seconds
-    frozen_time.tick(timedelta(seconds=2))
-    assert not signer.validate(token, addon_id)
+        # but not after 60 seconds
+        frozen_time.shift(timedelta(seconds=2))
+        assert not signer.validate(token, addon_id)

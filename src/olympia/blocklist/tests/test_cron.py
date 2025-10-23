@@ -8,7 +8,7 @@ from django.conf import settings
 
 import pytest
 import responses
-from freezegun import freeze_time
+import time_machine
 from waffle.testutils import override_switch
 
 from olympia import amo
@@ -37,7 +37,7 @@ from olympia.zadmin.models import set_config
 STATSD_PREFIX = 'blocklist.cron.upload_mlbf_to_remote_settings.'
 
 
-@freeze_time('2020-01-01 12:34:56')
+@time_machine.travel('2020-01-01 12:34:56', tick=False)
 @override_switch('blocklist_mlbf_submit', active=True)
 class TestUploadToRemoteSettings(TestCase):
     def setUp(self):
@@ -565,7 +565,7 @@ class TestUploadToRemoteSettings(TestCase):
 
 
 class TestTimeMethods(TestCase):
-    @freeze_time('2024-10-10 12:34:56')
+    @time_machine.travel('2024-10-10 12:34:56', tick=False)
     def test_get_generation_time(self):
         assert get_generation_time() == datetime_to_ts()
         assert isinstance(get_generation_time(), int)

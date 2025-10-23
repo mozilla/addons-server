@@ -7,7 +7,7 @@ from unittest import mock
 from django.conf import settings
 
 import pytest
-from freezegun import freeze_time
+import time_machine
 from PIL import Image
 from waffle.testutils import override_switch
 
@@ -253,7 +253,7 @@ def test_update_addon_hotness():
     assert addon2.hotness == 0
 
 
-@freeze_time('2023-05-15 11:00')
+@time_machine.travel('2023-05-15 11:00', tick=False)
 @pytest.mark.django_db
 def test_flag_high_hotness_according_to_review_tier():
     user_factory(pk=settings.TASK_USER_ID)
@@ -397,7 +397,7 @@ def test_flag_high_hotness_according_to_review_tier():
     ]
 
 
-@freeze_time('2023-05-15 11:00')
+@time_machine.travel('2023-05-15 11:00', tick=False)
 @pytest.mark.django_db
 def test_flag_high_hotness_according_to_review_tier_threshold_check(
     django_assert_num_queries,
@@ -452,7 +452,7 @@ def test_flag_high_hotness_according_to_review_tier_threshold_check(
     )
 
 
-@freeze_time('2023-05-15 11:00')
+@time_machine.travel('2023-05-15 11:00', tick=False)
 @pytest.mark.django_db
 def test_flag_high_hotness_according_to_review_tier_threshold_check_negative():
     user_factory(pk=settings.TASK_USER_ID)
