@@ -36,7 +36,7 @@
     "underscore": "1.13.7"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.27.2",
+    "@babel/preset-env": "^7.28.3",
     "@eslint/compat": "^1.4.0",
     "@eslint/js": "^9.17.0",
     "@rollup/plugin-babel": "^6.1.0",
