@@ -3803,7 +3803,7 @@ msgstr "Shtesa juaj tregohet te galeria jonë dhe përdoruesit po marrin përdit
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:30
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery."
-msgstr ""
+msgstr "Shtesa juaj qe çaktivizuar nga një përgjegjës sajti dhe s’shfaqet më te galeria jonë."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:33
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
@@ -3973,20 +3973,20 @@ msgstr[1] "Përzgjidhni <b>deri në {0}</b> kategori për këtë shtesë:"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:2
 msgid "Roll back to a previous version"
-msgstr ""
+msgstr "Kthejeni prapa te një version i mëparshëm"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:7
 msgid "Users of this extension will roll back to the previous version you choose."
-msgstr ""
+msgstr "Përdorues të këtij zgjerimi do të kthehen prapa te versioni i mëparshëm që zgjidhni ju."
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:13
 #, python-format
 msgid "Current Version [%(current_version_number)s] will roll back to Version [%(selected_version_number)s]"
-msgstr ""
+msgstr "Versioni i Tanishëm [%(current_version_number)s] do të kthehet prapa te Versioni [%(selected_version_number)s]"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:19
 msgid "Distribution channel"
-msgstr ""
+msgstr "Kanal shpërndarjeje"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:31 src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:40
 #: src/olympia/devhub/templates/devhub/versions/list.html:240
@@ -4003,7 +4003,7 @@ msgstr "Shënime Hedhjeje Në Qarkullim"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:63
 msgid "Roll back"
-msgstr ""
+msgstr "Ktheje prapa"
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:3
 msgid "End-User License Agreement"
@@ -4398,7 +4398,7 @@ msgstr "Krejt versionet"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:224
 msgid "Rollback to a previous version"
-msgstr ""
+msgstr "Prapakthim te një version i mëparshëm"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:230
 msgid "Upload a New Version"
@@ -4422,7 +4422,7 @@ msgstr "Fshirja e këtij versioni do të fshijë përgjithmonë:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:288
 msgid "Important:"
-msgstr ""
+msgstr "E rëndësishme:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:289
 msgid ""
