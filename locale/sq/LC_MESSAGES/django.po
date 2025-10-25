@@ -1279,7 +1279,7 @@ msgstr ""
 
 #: src/olympia/constants/activity.py:1209
 msgid "Version rollback"
-msgstr ""
+msgstr "Prapakthim versioni"
 
 #: src/olympia/constants/activity.py:1216
 #, python-brace-format
