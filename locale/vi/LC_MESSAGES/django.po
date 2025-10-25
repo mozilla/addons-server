@@ -1695,23 +1695,23 @@ msgstr "Giấy phép Apache 2.0"
 
 #: src/olympia/constants/licenses.py:29
 msgid "GNU General Public License v2.0 only"
-msgstr ""
+msgstr "Chỉ Giấy phép Công cộng GNU v2.0"
 
 #: src/olympia/constants/licenses.py:36
 msgid "GNU General Public License v3.0 only"
-msgstr ""
+msgstr "Chỉ Giấy phép Công cộng GNU v3.0"
 
 #: src/olympia/constants/licenses.py:43
 msgid "GNU Lesser General Public License v2.1 only"
-msgstr ""
+msgstr "Chỉ Giấy phép Công cộng GNU Hạn chế v2.1"
 
 #: src/olympia/constants/licenses.py:50
 msgid "GNU Lesser General Public License v3.0 only"
-msgstr ""
+msgstr "Chỉ Giấy phép Công cộng Hạn chế GNU v3.0"
 
 #: src/olympia/constants/licenses.py:57
 msgid "GNU Affero General Public License v3.0 only"
-msgstr ""
+msgstr "Chỉ Giấy phép Công cộng GNU Affero v3.0"
 
 #: src/olympia/constants/licenses.py:64
 msgid "MIT License"
@@ -5621,7 +5621,7 @@ msgstr "Làm cho Firefox xuất hiện dưới dạng Chrome đối với các t
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:685
 msgid "Manage your Gmail (even multiple accounts) right from Firefox's toolbar button."
-msgstr ""
+msgstr "Quản lý Gmail của bạn (kể cả bạn có nhiều tài khoản) nay từ nút thanh công cụ của Firefox."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:688
@@ -5631,7 +5631,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:691
 msgid "Improve your writing — get instant access to the power of synonyms."
-msgstr ""
+msgstr "Nâng cao khả năng viết của bạn, mở khóa ngay sức mạnh của từ đồng nghĩa."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:694
@@ -5901,7 +5901,7 @@ msgstr ""
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1052
 msgid "Twitch customization"
-msgstr ""
+msgstr "Tùy chỉnh Twitch"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1054 src/olympia/discovery/strings.jinja2:1056 src/olympia/discovery/strings.jinja2:1058
