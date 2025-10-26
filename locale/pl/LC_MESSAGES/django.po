@@ -3768,6 +3768,13 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Cześć,\n"
+"\n"
+"Twój e-mail został pomyślnie zweryfikowany.\n"
+"\n"
+"Pozdrawiamy,\n"
+"\n"
+"Zespół Dodatków Mozilli"
 
 #: src/olympia/devhub/templates/devhub/emails/verify-email-requested.ltxt:10
 #, python-format
@@ -4098,7 +4105,7 @@ msgstr "Zasoby"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:9
 msgid "WebExtensions API"
-msgstr ""
+msgstr "API WebExtensions"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:18
 msgid "Web-Ext: build & test extensions"
@@ -5920,7 +5927,7 @@ msgstr "Pakiet startowy rozszerzeń"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1052
 msgid "Twitch customization"
-msgstr ""
+msgstr "Personalizowanie Twitcha"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1054 src/olympia/discovery/strings.jinja2:1056 src/olympia/discovery/strings.jinja2:1058
@@ -6142,7 +6149,7 @@ msgstr ""
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1166
 msgid "Twitch extensions"
-msgstr "Rozszerzenia Twitch"
+msgstr "Rozszerzenia Twitcha"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1168
