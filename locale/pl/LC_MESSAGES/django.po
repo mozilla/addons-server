@@ -4873,7 +4873,7 @@ msgstr "Przechowuj bezpiecznie hasła i uzyskuj do nich dostęp na wielu urządz
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:209
 msgid "Know where you go on the web. Get the country location of the websites you visit. Be an informed internet traveler."
-msgstr ""
+msgstr "Dowiedz się, gdzie jesteś w sieci. Sprawdź lokalizację kraju, w którym znajdują się strony internetowe, które odwiedzasz. Bądź świadomym podróżnikiem w sieci."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:212
@@ -4966,9 +4966,8 @@ msgstr "Otwieraj nową kartę po prawej stronie bieżącej karty, a nie na końc
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:263
-#, fuzzy
 msgid "Conquer spam. Use clever temporary email addresses to remain anonymous and avoid spam."
-msgstr "Używaj sprytnych tymczasowych adresów e-mail, aby zachować anonimowość i unikać spamu."
+msgstr "Pokonaj spam. Używaj sprytnych, tymczasowych adresów e-mail, aby zachować anonimowość i unikać spamu."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:266
@@ -5036,9 +5035,8 @@ msgstr "Przetłumacz całą stronę internetową na preferowany język — jedny
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:302
-#, fuzzy
 msgid "Instantly display all links from a web page in new tabs."
-msgstr "Natychmiast wyświetlaj wszystkie odnośniki w nowych kartach."
+msgstr "Natychmiastowe wyświetlanie wszystkich linków ze strony internetowej w nowych kartach."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:305
@@ -5069,7 +5067,7 @@ msgstr "Twórz notatki ogólne i specyficzne dla witryny w celu przejrzenia pó�
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:320 src/olympia/discovery/strings.jinja2:724
 msgid "Phone-like scrolling for your desktop. Features \"grab-n-drag\" style mouse movement."
-msgstr ""
+msgstr "Przewijanie jak w telefonie dla twojego komputera. Obsługuje gesty myszy w stylu „chwyć i przeciągnij”."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5371,7 +5369,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:491
 msgid "Get grammar help anywhere you write on the web — social media, email, docs, and more."
-msgstr ""
+msgstr "Uzyskaj pomoc gramatyczną wszędzie tam, gdzie piszesz w Internecie — w mediach społecznościowych, poczcie e-mail, dokumentach i nie tylko."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5581,7 +5579,7 @@ msgstr "Zamaskuj swój adres e-mail. Firefox Relay chroni Twoją tożsamość i 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:612
 msgid "Time-based theme changer. Make Firefox change colors as the time of day changes."
-msgstr ""
+msgstr "Zmieniacz motywów oparty na czasie. Spraw, aby Firefox zmieniał kolory w miarę zmiany pory dnia."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:615
@@ -5892,7 +5890,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1033
 msgid "Re-take control of Twitter/X and customize your experience."
-msgstr ""
+msgstr "Przejmij kontrolę nad Twitterem/X i spersonalizuj swoje doświadczenie."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1036
@@ -5902,7 +5900,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1039
 msgid "Change the color of Firefox to match every website you visit."
-msgstr ""
+msgstr "Zmień kolor Firefoksa, aby pasował do każdej odwiedzanej witryny."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1042
