@@ -4539,7 +4539,7 @@ msgstr "Zatrzymaj śledzenie przez Facebooka. Odizoluj swoją tożsamość na Fa
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:23 src/olympia/discovery/strings.jinja2:850
 msgid "Simplify search by highlighting text on any web page to search the phrase from an array of engines."
-msgstr ""
+msgstr "Uprość wyszukiwanie, zaznaczając tekst na dowolnej stronie internetowej, aby wyszukać frazę w wielu wyszukiwarkach."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5990,7 +5990,7 @@ msgstr "Silne menedżery haseł"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1088
 msgid "See more password manager staff picks"
-msgstr ""
+msgstr "Nasze propozycje menedżerów haseł"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1091
@@ -6000,7 +6000,7 @@ msgstr "Narzędzia do tłumaczenia"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1093
 msgid "See more translation tool staff picks"
-msgstr ""
+msgstr "Nasze propozycje narzędzi do tłumaczeń"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1096
@@ -6052,7 +6052,7 @@ msgstr "Personalizowanie YouTube"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1118
 msgid "See more YouTube extension staff picks"
-msgstr ""
+msgstr "Nasze propozycje rozszerzeń dla YouTube"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1121
@@ -6102,7 +6102,7 @@ msgstr ""
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1143
 msgid "See more creativity staff picks"
-msgstr ""
+msgstr "Nasze propozycje rozszerzeń kreatywności"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1146
@@ -6122,7 +6122,7 @@ msgstr "Najpopularniejsze menedżery pobierania"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1153
 msgid "See more download manager staff picks"
-msgstr ""
+msgstr "Nasze propozycje menedżerów pobierania"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1156
@@ -6132,7 +6132,7 @@ msgstr "Rozszerzenia dostępności"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1158
 msgid "See more accessibility staff picks"
-msgstr ""
+msgstr "Nasze propozycje rozszerzeń dostępności"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1161
