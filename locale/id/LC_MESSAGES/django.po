@@ -4764,7 +4764,7 @@ msgstr "Konversikan semua tab terbuka Anda menjadi daftar agar dapat mengelolany
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:179 src/olympia/discovery/strings.jinja2:754
 msgid "Robust download management. Check the state of your downloads through a status bar, download history page, and more."
-msgstr ""
+msgstr "Manajemen unduhan yang andal. Periksa status unduhan Anda melalui bilah status, laman riwayat unduhan, dan lainnya."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:182
@@ -4822,7 +4822,7 @@ msgstr "Ketahui lokasi negara laman web yang Anda kunjungi. Jadilah petualang in
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:212
 msgid "Enhance your reading experience. Make the text you're reading more appealing by removing the clutter around it."
-msgstr ""
+msgstr "Tingkatkan pengalaman membaca Anda. Jadikan teks yang Anda baca lebih menarik dengan menghilangkan kekusutan di sekitarnya."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
