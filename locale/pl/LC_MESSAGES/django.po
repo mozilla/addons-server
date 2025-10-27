@@ -6152,7 +6152,7 @@ msgstr "Rozszerzenia Twitcha"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1168
 msgid "See more Twitch extension staff picks"
-msgstr ""
+msgstr "Nasze propozycje rozszerzeń dla Twitcha"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1176
