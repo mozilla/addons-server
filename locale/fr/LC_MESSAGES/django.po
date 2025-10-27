@@ -5694,22 +5694,22 @@ msgstr "Fait passer Firefox pour Chrome auprès des sites web qui cherchent à b
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:685
 msgid "Manage your Gmail (even multiple accounts) right from Firefox's toolbar button."
-msgstr ""
+msgstr "Gérez votre compte Gmail (même plusieurs comptes) depuis le bouton dans la barre d’outils de Firefox."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:688
 msgid "Track the time you spend on the web, analyze your habits, block distracting sites & more."
-msgstr ""
+msgstr "Surveillez le temps que vous passez en ligne, étudiez vos habitudes, bloquez les sites qui vous distraient, etc."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:691
 msgid "Improve your writing — get instant access to the power of synonyms."
-msgstr ""
+msgstr "Perfectionnez votre rédaction — profitez immédiatement de la force des synonymes."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:694
 msgid "Deep translation features for a rich language experience anywhere on the web."
-msgstr ""
+msgstr "Des outils de traduction avancés pour profiter d’une expérience linguistique enrichissante partout sur le Web."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:697

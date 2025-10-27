@@ -46,7 +46,7 @@ msgstr "\"{}\" untuk {}"
 #: src/olympia/abuse/serializers.py:32
 #, python-brace-format
 msgid "Please ensure this field has no more than {max_length} characters."
-msgstr "Harap pastikan kolom ini tidak melebihi {max_length} karakter."
+msgstr "Pastikan bidang ini tidak lebih dari {max_length} karakter."
 
 #: src/olympia/abuse/serializers.py:241 src/olympia/abuse/serializers.py:257 src/olympia/addons/fields.py:51 src/olympia/addons/fields.py:257
 msgid "Invalid value"
@@ -4715,7 +4715,7 @@ msgstr "Tambahkan keamanan terenkripsi ke tiap situs yang mendukung HTTPS. Meram
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:152
 msgid "Get the best coupons automatically applied to your shopping cart at checkout."
-msgstr ""
+msgstr "Dapatkan kupon terbaik yang diterapkan secara otomatis ke keranjang belanja Anda saat checkout."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:155
@@ -4758,7 +4758,7 @@ msgstr "Tentukan beranda yang terubahsuaikan untuk tab baru Anda."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:176 src/olympia/discovery/strings.jinja2:832
 msgid "Convert all your open tabs into a list to easily manage them and speed up Firefox."
-msgstr ""
+msgstr "Konversikan semua tab terbuka Anda menjadi daftar agar dapat mengelolanya dengan mudah dan mempercepat Firefox."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
