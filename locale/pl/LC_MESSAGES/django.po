@@ -3692,6 +3692,16 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Cześć,\n"
+"\n"
+"otrzymujesz tę wiadomość z uwagi na twoje zgłoszenie o nowe deweloperskie klucze API dla\n"
+"%(domain)s. Aby ukończyć proces, prosimy kliknąć poniższy odnośnik:\n"
+"\n"
+"%(api_key_confirmation_link)s\n"
+"\n"
+"Pozdrawiamy,\n"
+"\n"
+"Zespół Dodatków Mozilli"
 
 #: src/olympia/devhub/templates/devhub/emails/new-key-email.ltxt:8
 #, python-format
@@ -3790,6 +3800,16 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Cześć,\n"
+"\n"
+"Otrzymujesz tę wiadomość, ponieważ otrzymaliśmy zgłoszenie o weryfikację twojego adresu e-mail.\n"
+"Aby ukończyć proces, prosimy kliknąć poniższy odnośnik:\n"
+"\n"
+"%(confirmation_link)s\n"
+"\n"
+"Pozdrawiamy,\n"
+"\n"
+"Zespół Dodatków Mozilli"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:6 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:4
 msgid "Invisible"
@@ -5336,14 +5356,13 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:473
-#, fuzzy
 msgid "Simplify tabs. Organize your many open tabs in a tidy vertical sidebar."
-msgstr "Zarządzaj otwartymi kartami na schludnym pasku bocznym."
+msgstr "Uprość karty. Zarządzaj otwartymi kartami na schludnym pasku bocznym."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:476
 msgid "Automatically delete unwanted cookies. Offers white and blacklist support."
-msgstr ""
+msgstr "Automatycznie usuwaj niechciane ciasteczka. Oferuje także obsługę białej i czarnej listy."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:479
@@ -5381,7 +5400,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:497 src/olympia/discovery/strings.jinja2:703
 msgid "Block ads and get enhanced protection against malware and ad tracking."
-msgstr ""
+msgstr "Blokuj reklamy i uzyskaj lepszą ochronę przed złośliwym oprogramowaniem i śledzącymi reklamami."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5452,7 +5471,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:536
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
-msgstr ""
+msgstr "Niektóre witryny mają problemy z odtwarzaniem filmów w Firefoksie na Androida. To rozszerzenie rozwiązuje ten problem."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:540
@@ -7031,6 +7050,13 @@ msgid ""
 "\n"
 "Mozilla Add-ons Team"
 msgstr ""
+"Cześć,\n"
+"\n"
+"Otrzymujesz tę wiadomość, ponieważ twoje konto użytkownika %(name)s na %(site_url)s zostało usunięte. Mogło się to zdarzyć automatycznie, jeśli twoje konto Mozilli zostało niedawno usunięte.\n"
+"\n"
+"Pozdrawiamy,\n"
+"\n"
+"Zespół Dodatków Mozilli"
 
 #: src/olympia/versions/models.py:1170
 #, python-format
