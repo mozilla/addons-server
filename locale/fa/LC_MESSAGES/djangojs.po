@@ -216,7 +216,7 @@ msgstr "جزئیات {0}"
 
 #: static/js/stats/csv_keys.js:13
 msgid "Firefox"
-msgstr ""
+msgstr "Firefox"
 
 #: static/js/stats/csv_keys.js:14
 msgid "Mozilla"
