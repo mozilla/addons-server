@@ -4565,7 +4565,7 @@ msgstr "Uprość wyszukiwanie, zaznaczając tekst na dowolnej stronie internetow
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:26 src/olympia/discovery/strings.jinja2:787
 msgid "Instant weather updates from around the world."
-msgstr ""
+msgstr "Natychmiastowe informacje pogodowe z całego świata."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:29
@@ -4582,7 +4582,7 @@ msgstr "Widzisz interesujący obraz i chcesz uzyskać więcej informacji? Wypró
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:35 src/olympia/discovery/strings.jinja2:769
 msgid "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr ""
+msgstr "Pobieraj wideo z łatwością. Działa z YouTube, Facebookiem, Vimeo, Twitchem, Dailymotion, Periscope i setkami innych serwisów wideo."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:38
@@ -5149,7 +5149,7 @@ msgstr "Zapisuj wprowadzone dane i wprowadzaj je automatycznie następnym razem.
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:356
 msgid "Search privately with just a click."
-msgstr ""
+msgstr "Wyszukuj prywatnie za pomocą jednego kliknięcia."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5481,18 +5481,18 @@ msgstr ""
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:543
 msgid "Get weather updates right in the browser."
-msgstr ""
+msgstr "Otrzymuj informacje pogodowe bezpośrednio w przeglądarce."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:546
 msgid "Delete cookies, browsing history, and cached files with just a single click."
-msgstr ""
+msgstr "Usuń ciasteczka, historię przeglądania i pliki tymczasowe jednym kliknięciem."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:549 src/olympia/discovery/strings.jinja2:814
 msgid "Remove tracking elements from web links."
-msgstr ""
+msgstr "Usuń elementy śledzące z linków."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:552
