@@ -1518,6 +1518,8 @@ msgstr "Раздели"
 #: src/olympia/constants/categories.py:181
 msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
 msgstr ""
+"Изтеглете разширението за Firefox за персонализация на разделите и страницата за нов раздел. Открийте разширения, които могат да управляват разделите, да променят начина, по който взаимодействате с "
+"тях и други подобрения."
 
 #: src/olympia/constants/categories.py:188
 msgid "Web Development"
