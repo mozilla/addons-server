@@ -5626,7 +5626,7 @@ msgstr "Quản lý Gmail của bạn (kể cả bạn có nhiều tài khoản) 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:688
 msgid "Track the time you spend on the web, analyze your habits, block distracting sites & more."
-msgstr ""
+msgstr "Theo dõi thời gian bạn dành cho web, phân tích thói quen của bạn, chặn các trang web gây sao nhãng và nhiều thứ khác."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:691
@@ -5636,7 +5636,7 @@ msgstr "Nâng cao khả năng viết của bạn, mở khóa ngay sức mạnh c
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:694
 msgid "Deep translation features for a rich language experience anywhere on the web."
-msgstr ""
+msgstr "Tính năng dịch sâu vì trải nghiệm ngôn ngữ phong phú bất cứ trang web nào."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:697
