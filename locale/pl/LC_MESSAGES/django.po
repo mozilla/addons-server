@@ -3178,7 +3178,7 @@ msgstr "Wszystkie wersje będą miały status „Z ograniczeniami”, co wyłą
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:11
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
-msgstr ""
+msgstr "Nie można przywrócić identyfikatora tego dodatku i nie będzie już można go użyć w celu przesłania."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:2 src/olympia/devhub/templates/devhub/versions/list.html:261 src/olympia/devhub/templates/devhub/versions/list.html:265
 msgid "Delete Add-on"
@@ -5187,9 +5187,8 @@ msgstr "Ciesz się pełną kontrolą nad kartami — zamykaj zduplikowane karty,
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:377
-#, fuzzy
 msgid "Enjoy a strange education. Load a random Wikipedia article each time you open a new tab."
-msgstr "Wczytaj losowy artykuł na Wikipedii za każdym razem, gdy otwierasz nową kartę."
+msgstr "Ciesz się dziwną edukacją. Wczytaj losowy artykuł na Wikipedii za każdym razem, gdy otwierasz nową kartę."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:380
@@ -5208,9 +5207,8 @@ msgstr "Na te chwile, gdy potrzebujesz wystrzelić lasery z kota."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:389
-#, fuzzy
 msgid "Search Firefox by easily accessing your open tabs, bookmarks, and history."
-msgstr "Uzyskaj łatwy dostęp do otwartych kart, zakładek i historii."
+msgstr "Przeszukuj Firefoksa za pomocą łatwego dostępu do otwartych kart, zakładek i historii."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:392
@@ -5250,19 +5248,17 @@ msgstr "Proste narzędzie blokujące reklamy, które skupia się na wyświetlani
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:413
 msgid "Track Amazon pricing history. Make informed shopping decisions."
-msgstr ""
+msgstr "Śledź historię cen na Amazonie. Podejmuj świadome decyzje konsumenckie."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:416
-#, fuzzy
 msgid "Shop with confidence. This extension provides an extra check to ensure you're shopping on a site that's been vetted for reliability."
-msgstr "Dodatkowa kontrola w celu upewnienia się, że robisz zakupy w witrynie, która została sprawdzona pod kątem niezawodności."
+msgstr "Kupuj z pewnością siebie. To rozszerzenie zapewnia dodatkową kontrolę, aby upewnić się, że robisz zakupy na stronie, która została sprawdzona pod kątem wiarygodności."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:419
-#, fuzzy
 msgid "Track productivity. Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
-msgstr "Mierz ilość czasu spędzanego na komputerze lub w określonych aplikacjach roboczych, takich jak Trello, JIRA, Basecamp, GitHub i wiele innych."
+msgstr "Monitoruj swoją produktywność. Mierz ilość czasu spędzanego na komputerze lub w określonych aplikacjach roboczych, takich jak Trello, JIRA, Basecamp, GitHub i wiele innych."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:422
@@ -5587,7 +5583,7 @@ msgstr "Żegnajcie irytujące ostrzeżenia o ciasteczkach!"
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:604
 msgid "All your emoji needs—always just a click away."
-msgstr "Wszystkie emoji, które potrzebujesz — zawsze na wyciągnięcie ręki."
+msgstr "Wszystkie emoji, których potrzebujesz — zawsze na wyciągnięcie ręki."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:608
@@ -5642,7 +5638,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:670
 msgid "Powerful pop-up dictionary optimized for learning new languages."
-msgstr ""
+msgstr "Bogaty słownik w postaci wyskakującego okna zoptymalizowany do nauki nowych języków."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:673
@@ -5657,7 +5653,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:679
 msgid "Makes Firefox appear as Chrome to websites trying to block Firefox."
-msgstr ""
+msgstr "Sprawia, że Firefox udaje Chrome na witrynach blokujących Firefoksa."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:685
@@ -5682,7 +5678,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:697
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
-msgstr ""
+msgstr "Niektóre witryny mają problemy z odtwarzaniem filmów na Androidzie. Oto rozwiązanie."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:718
