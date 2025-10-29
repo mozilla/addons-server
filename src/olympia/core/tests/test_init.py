@@ -4,10 +4,10 @@ from olympia import core
 from olympia.users.models import UserProfile
 
 
-def test_override_remote_addr():
+def test_override_remote_addr_or_metadata():
     original = core.get_remote_addr()
 
-    with core.override_remote_addr('some other value'):
+    with core.override_remote_addr_or_metadata(ip_address='some other value'):
         assert core.get_remote_addr() == 'some other value'
 
     assert core.get_remote_addr() == original

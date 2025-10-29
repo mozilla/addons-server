@@ -79,7 +79,7 @@ class UploadMixin(amo.tests.AMOPaths):
             user = user_factory()
         with open(abspath if abspath else self.file_path(filename), 'rb') as f:
             xpi = f.read()
-        with core.override_remote_addr('127.0.0.62'):
+        with core.override_remote_addr_or_metadata(ip_address='127.0.0.62'):
             upload = FileUpload.from_post(
                 [xpi],
                 filename=abspath or filename,

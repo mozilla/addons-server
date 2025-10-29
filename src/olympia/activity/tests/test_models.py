@@ -374,7 +374,7 @@ class TestActivityLog(TestCase):
     def test_to_string_num_queries_model_depending_on_addon(self):
         addon = Addon.objects.get()
         addon2 = addon_factory()
-        with core.override_remote_addr('1.1.1.1'):
+        with core.override_remote_addr_or_metadata(ip_address='1.1.1.1'):
             ActivityLog.objects.create(
                 amo.LOG.ADD_VERSION,
                 addon,
@@ -410,7 +410,7 @@ class TestActivityLog(TestCase):
         # create an IPLog.
         action = amo.LOG.REJECT_VERSION
         assert not getattr(action, 'store_ip', False)
-        with core.override_remote_addr('127.0.4.8'):
+        with core.override_remote_addr_or_metadata(ip_address='127.0.4.8'):
             activity = ActivityLog.objects.create(
                 action,
                 addon,
@@ -422,7 +422,7 @@ class TestActivityLog(TestCase):
         # create an IPLog.
         action = amo.LOG.ADD_VERSION
         assert getattr(action, 'store_ip', False)
-        with core.override_remote_addr('15.16.23.42'):
+        with core.override_remote_addr_or_metadata(ip_address='15.16.23.42'):
             activity = ActivityLog.objects.create(
                 action,
                 addon,
