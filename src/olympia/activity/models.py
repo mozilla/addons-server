@@ -284,6 +284,23 @@ class IPLog(ModelBase):
         return super().save(*args, **kwargs)
 
 
+class RequestFingerprintLog(ModelBase):
+    """
+    This table is for indexing the activity log by some request fingerprints, (only for
+    specific actions).
+    """
+
+    activity_log = models.OneToOneField('ActivityLog', on_delete=models.CASCADE)
+    # https://github.com/FoxIO-LLC/ja4/blob/main/technical_details/JA4.md
+    # e.g. t13d1516h2_8daaf6152771_b186095e22b6
+    ja4 = models.CharField(max_length=36, db_index=True)
+    signals = models.JSONField(default=list)
+
+    class Meta:
+        db_table = 'log_activity_request_fingerprint'
+        ordering = ('-created',)
+
+
 class RatingLog(ModelBase):
     """
     This table is for indexing the activity log by Ratings (user reviews).
@@ -511,6 +528,21 @@ class ActivityLogManager(ManagerBase):
             # from a task.
             IPLog.objects.create(
                 ip_address_binary=ip_address,
+                activity_log=al,
+                created=kw.get('created', timezone.now()),
+            )
+
+            # Also, if we're storing the ip address, store the request fingerprints too
+            ja4 = core.get_request_metadata().get('Client-JA4') or ''
+            if ja4:
+                ja4 = ja4[: RequestFingerprintLog._meta.get_field('ja4').max_length]
+            # it should be a comma-seperated string
+            signals = (core.get_request_metadata().get('X-SigSci-Tags') or '').split(
+                ','
+            )
+            RequestFingerprintLog.objects.create(
+                ja4=ja4,
+                signals=signals,
                 activity_log=al,
                 created=kw.get('created', timezone.now()),
             )

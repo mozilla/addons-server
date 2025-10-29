@@ -149,31 +149,31 @@ class TestRatingAdmin(TestCase):
         fourth_addon = addon_factory(guid='@fourth_addon')
 
         core.set_user(user)
-        with core.override_remote_addr('4.8.15.16'):
+        with core.override_remote_addr_or_metadata(ip_address='4.8.15.16'):
             rating1 = Rating.objects.create(
                 addon=addon,
                 user=user_factory(),
                 rating=1,
                 body='Lôrem body 1',
             )
-        with core.override_remote_addr('4.8.15.16'):
+        with core.override_remote_addr_or_metadata(ip_address='4.8.15.16'):
             rating2 = Rating.objects.create(
                 addon=addon,
                 user=user_factory(),
                 rating=2,
                 body='Lôrem body 2',
             )
-        with core.override_remote_addr('125.1.2.3'):
+        with core.override_remote_addr_or_metadata(ip_address='125.1.2.3'):
             rating3 = Rating.objects.create(
                 addon=second_addon,
                 user=user_factory(),
                 rating=5,
                 body='Lôrem body 3',
             )
-        with core.override_remote_addr('4.8.15.16'):
+        with core.override_remote_addr_or_metadata(ip_address='4.8.15.16'):
             rating3.rating = 3
             rating3.save()
-        with core.override_remote_addr('125.5.6.7'):
+        with core.override_remote_addr_or_metadata(ip_address='125.5.6.7'):
             rating4 = Rating.objects.create(
                 addon=third_addon,
                 user=user_factory(),
@@ -266,7 +266,7 @@ class TestRatingAdmin(TestCase):
         # a checkbox to delete ratings, and it does count towards the column
         # index values.
         core.set_user(user)
-        with core.override_remote_addr('125.1.1.2'):
+        with core.override_remote_addr_or_metadata(ip_address='125.1.1.2'):
             Rating.objects.create(
                 addon=addon_factory(),
                 user=user_factory(),
@@ -282,7 +282,7 @@ class TestRatingAdmin(TestCase):
         )
 
     def test_can_delete_on_changelist_while_sorting_by_ip(self):
-        with core.override_remote_addr('125.1.1.2'):
+        with core.override_remote_addr_or_metadata(ip_address='125.1.1.2'):
             rating2 = Rating.objects.create(
                 addon=self.addon,
                 user=user_factory(),
