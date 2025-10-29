@@ -5394,7 +5394,7 @@ msgstr "Uzyskaj pomoc gramatyczną wszędzie tam, gdzie piszesz w Internecie —
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:494 src/olympia/discovery/strings.jinja2:706
 msgid "Read with more clarity and ease. Remove the clutter around text on web pages."
-msgstr ""
+msgstr "Czytaj z większą przejrzystością i łatwością. Usuń bałagan wokół tekstu na stronach internetowych."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5476,7 +5476,7 @@ msgstr "Niektóre witryny mają problemy z odtwarzaniem filmów w Firefoksie na 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:540
 msgid "Select, sort, and run your downloads faster."
-msgstr ""
+msgstr "Wybieraj, sortuj i pobieraj pliki szybciej."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:543
@@ -5503,7 +5503,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:555 src/olympia/discovery/strings.jinja2:877
 msgid "Easily organize tons of open tabs."
-msgstr ""
+msgstr "Łatwe organizowanie wielu otwartych kart."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5744,7 +5744,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:898
 msgid "Advanced reader for aggregating all of your RSS/Atom/RDF sources."
-msgstr ""
+msgstr "Zaawansowany czytnik do agregacji wszystkich źródeł RSS/Atom/RDF."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:916
@@ -5834,7 +5834,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:988
 msgid "Get RSS feed auto-updates direct to your bookmark folders."
-msgstr ""
+msgstr "Otrzymuj automatyczne aktualizacje kanałów RSS bezpośrednio do folderu zakładek."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:991
@@ -6851,6 +6851,8 @@ msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
 "Commons Attribution Share-Alike License v3.0</a> or any later version."
 msgstr ""
+"Jeśli nie <a href=\"https://www.mozilla.org/about/legal/\">określono</a> inaczej, zawartość tej witryny jest licencjonowana na warunkach licencji <a href=\"https://creativecommons.org/licenses/by-"
+"sa/3.0/\"> Creative Commons Attribution Share-Alike License v3.0 </a> lub dowolnej nowszej wersji."
 
 #: src/olympia/templates/user_login.html:24
 #, python-format

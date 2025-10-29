@@ -5833,7 +5833,7 @@ msgstr "Tommel opp for å få tilbake «tommelen ned»."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1012
 msgid "Translate websites in Firefox — privately — without using the cloud."
-msgstr "Omset nettstader i Firefox — privat — utan å bruke skya."
+msgstr "Omset nettstadar i Firefox — privat — utan å bruke skya."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1015
