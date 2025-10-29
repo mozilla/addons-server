@@ -5658,12 +5658,12 @@ msgstr "Sprawia, że Firefox udaje Chrome na witrynach blokujących Firefoksa."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:685
 msgid "Manage your Gmail (even multiple accounts) right from Firefox's toolbar button."
-msgstr ""
+msgstr "Zarządzaj swoją pocztą Gmail (nawet wieloma kontami) bezpośrednio z przycisku na pasku narzędzi Firefoksa."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:688
 msgid "Track the time you spend on the web, analyze your habits, block distracting sites & more."
-msgstr ""
+msgstr "Monitoruj czas spędzany w sieci, analizuj swoje nawyki, blokuj rozpraszające Cię witryny i nie tylko."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:691
@@ -5702,9 +5702,8 @@ msgstr "Czytaj pliki ePUB bezpośrednio w Firefoksie — zwiększaj rozmiar teks
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:778
-#, fuzzy
 msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configurations."
-msgstr "Odkryj nowy sposób nawigacji przy użyciu ponad 50 przydatnych gestów myszą."
+msgstr "Dostosuj gesty myszki. Odkrywaj nowe sposoby nawigacji dzięki ponad 50 konfiguracjom."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:829
@@ -5719,7 +5718,7 @@ msgstr "Użyj gestów myszy do zamykania kart, nawigowania po stronach i nie tyl
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:841
 msgid "A simple way to adjust the size of any page's text — or even enlarge the page itself."
-msgstr ""
+msgstr "Prosty sposób dostosowania rozmiaru tekstu na dowolnej stronie — albo nawet powiększenia całej strony."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:868
@@ -5864,7 +5863,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1009
 msgid "Thumbs-up to bringing back thumbs-down."
-msgstr ""
+msgstr "Kciuk w górę za przywróceniem kciuków w dół."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1012
@@ -5884,7 +5883,7 @@ msgstr "Łatwe streszczanie wiadomości e-mail, dokumentów, artykułów i trans
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1021
 msgid "You’re in control. Turn off VPN when a website won’t work and set different locations for different websites. Windows only."
-msgstr ""
+msgstr "Masz pełną kontrolę. Wyłącz VPN, gdy witryna nie działa i ustaw różne lokalizacje dla wybranych witryn. Tylko dla Windows."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1024
@@ -6024,7 +6023,7 @@ msgstr ""
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1098
 msgid "See more social streaming staff picks"
-msgstr ""
+msgstr "Nasze propozycje rozszerzeń do transmisji społecznościowych"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1101
@@ -6126,7 +6125,7 @@ msgstr "Rozszerzenia mediów społecznościowych"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1148
 msgid "See more social media staff picks"
-msgstr ""
+msgstr "Nasze propozycje rozszerzeń do mediów społecznościowych"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1151
