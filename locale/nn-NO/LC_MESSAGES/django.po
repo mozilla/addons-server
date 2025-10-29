@@ -5623,12 +5623,12 @@ msgstr "Får Firefox til å framstå som Chrome for nettstadar som prøver å bl
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:685
 msgid "Manage your Gmail (even multiple accounts) right from Firefox's toolbar button."
-msgstr ""
+msgstr "Handsam Gmail-kontoane dine (til og med fleire kontoar) direkte frå Firefox sin verktøylinjeknapp."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:688
 msgid "Track the time you spend on the web, analyze your habits, block distracting sites & more."
-msgstr ""
+msgstr "Spor tida du brukar på nettet, analyser vanane dine, blokker distraherande nettstadar, og meir."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:691

@@ -5586,9 +5586,8 @@ msgstr "Żegnajcie irytujące ostrzeżenia o ciasteczkach!"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:604
-#, fuzzy
 msgid "All your emoji needs—always just a click away."
-msgstr "Dziesiątki niesamowitych emoji na każdą okazję — zawsze wystarczy jedno kliknięcie."
+msgstr "Wszystkie emoji, które potrzebujesz — zawsze na wyciągnięcie ręki."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:608
@@ -6245,7 +6244,7 @@ msgstr ""
 
 #: src/olympia/files/utils.py:637
 msgid "Uncompressed size is too large"
-msgstr ""
+msgstr "Nieskompresowany rozmiar jest zbyt duży"
 
 #: src/olympia/files/utils.py:669
 msgid "Invalid archive."
@@ -6300,7 +6299,7 @@ msgstr "Nie można przesłać pakietu językowego"
 
 #: src/olympia/files/utils.py:965
 msgid "The locale of an existing dictionary/language pack cannot be changed"
-msgstr ""
+msgstr "Nie można zmieniać języka w istniejącym słowniku/pakiecie językowym"
 
 #: src/olympia/files/utils.py:1008
 #, python-brace-format
@@ -6396,7 +6395,7 @@ msgstr "Nie możesz napisać więcej niż jednej opinii tej samej wersji dodatku
 #: src/olympia/ratings/serializers.py:317
 #, python-brace-format
 msgid "Invalid flag [{}] - must be one of [{}]"
-msgstr ""
+msgstr "Nieprawidłowa flaga [{}] - musi być jedną z [{}]"
 
 #: src/olympia/ratings/serializers.py:329
 msgid "This rating can't be flagged because it has no review text."
@@ -6852,7 +6851,7 @@ msgid ""
 "Commons Attribution Share-Alike License v3.0</a> or any later version."
 msgstr ""
 "Jeśli nie <a href=\"https://www.mozilla.org/about/legal/\">określono</a> inaczej, zawartość tej witryny jest licencjonowana na warunkach licencji <a href=\"https://creativecommons.org/licenses/by-"
-"sa/3.0/\"> Creative Commons Attribution Share-Alike License v3.0 </a> lub dowolnej nowszej wersji."
+"sa/3.0/\">Creative Commons Attribution Share-Alike License v3.0</a> lub dowolnej nowszej wersji."
 
 #: src/olympia/templates/user_login.html:24
 #, python-format
