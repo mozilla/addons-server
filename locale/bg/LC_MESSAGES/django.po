@@ -1477,6 +1477,8 @@ msgstr "Снимки, музика и видео"
 #: src/olympia/constants/categories.py:135
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
 msgstr ""
+"Изтеглете разширения за Firefox, които подобряват преживяването при работа с фотографии, музика и видео. Разширенията в тази категория редактират аудио и видео файлове, търсят изображения по "
+"зададено вече такова и др."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/constants/categories.py:142 src/olympia/discovery/strings.jinja2:1050
