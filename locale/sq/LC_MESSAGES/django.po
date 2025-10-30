@@ -422,16 +422,16 @@ msgstr "Ky identifikues s’mund të përdoret. Ju lutemi, zgjidhni një tjetër
 
 #: src/olympia/addons/serializers.py:1888
 msgid "There is no rollback available in this channel."
-msgstr ""
+msgstr "Në këtë kanal s’ka prapakthim të mundshëm."
 
 #: src/olympia/addons/serializers.py:1898
 #, python-format
 msgid "Rollback is only available for version %s in this channel."
-msgstr ""
+msgstr "Në këtë kanal, prapakthimi është i mundshëm vetëm për versionin %s."
 
 #: src/olympia/addons/serializers.py:1904
 msgid "Only approved versions can be rolled back, except the most recent version."
-msgstr ""
+msgstr "Hiq versionin më të freskët, mund të bëhet prapakthim vetëm te versioni të miratuar."
 
 #: src/olympia/addons/utils.py:56 src/olympia/bandwagon/serializers.py:92
 msgid "This name cannot be used."
@@ -2119,7 +2119,7 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py:1743
 msgid "You must select a channel and version to rollback to."
-msgstr ""
+msgstr "Që të bëhet rikthim në të, duhet të përzgjidhni një kanal dhe një version."
 
 #: src/olympia/devhub/tasks.py:178
 msgid "Invalid or corrupt add-on file."
@@ -2297,7 +2297,7 @@ msgstr "Ky ngarkim s’arriti të vleftësohej, dhe mund t’i mungojnë përfun
 
 #: src/olympia/devhub/views.py:1320
 msgid "Rollback submitted. You'll be notified when it's approved"
-msgstr ""
+msgstr "Prapakthimi u parashtrua. Do të njoftoheni, kur të jetë miratuar"
 
 #: src/olympia/devhub/views.py:1458
 msgid "Header area background"
@@ -6963,6 +6963,16 @@ msgid ""
 "Kind regards,\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Tungjatjeta %(author_name)s,\n"
+"\n"
+"Jeni të ftuar të bëheni një autor i %(addon_name)s në %(domain)s. Pranimi i ftesës do t’ju bëjë të mundur të përpunoni shtesën dhe mund të shfaqë emrin tuaj te lista e autorëve, te sajti.\n"
+"\n"
+"Klikoni mbi lidhjen më poshtë që të përgjigjeni, nëse doni të shtoheni si një autor për %(addon_name)s.\n"
+"\n"
+"%(author_confirmation_link)s\n"
+"\n"
+"Me respekt,\n"
+"Ekipi i Shtesave Mozilla"
 
 #: src/olympia/users/templates/users/emails/author_changed.ltxt:3
 #, python-format
