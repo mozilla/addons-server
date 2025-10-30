@@ -5624,22 +5624,22 @@ msgstr "Får Firefox til å fremstå som Chrome for nettsteder som prøver å bl
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:685
 msgid "Manage your Gmail (even multiple accounts) right from Firefox's toolbar button."
-msgstr ""
+msgstr "Behandle Gmail-kontoen din (selv flere kontoer) direkte fra Firefox-verktøylinjeknapp."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:688
 msgid "Track the time you spend on the web, analyze your habits, block distracting sites & more."
-msgstr ""
+msgstr "Spor tiden du bruker på nettet, analyser vanene dine, blokker distraherende nettsteder og mer."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:691
 msgid "Improve your writing — get instant access to the power of synonyms."
-msgstr ""
+msgstr "Forbedre skrivingen din — få umiddelbar tilgang til kraften i synonymer."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:694
 msgid "Deep translation features for a rich language experience anywhere on the web."
-msgstr ""
+msgstr "Dyptgående oversettelsesfunksjoner for en rik språkopplevelse hvor som helst på nettet."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:697
