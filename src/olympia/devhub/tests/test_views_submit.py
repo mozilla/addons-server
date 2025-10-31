@@ -71,7 +71,6 @@ class TestSubmitBase(TestCase):
         self.client.force_login_with_2fa(self.user)
         self.user.update(last_login_ip='192.0.2.1')
         self.addon = self.get_addon()
-        self.create_flag('2fa-enforcement-for-developers-and-special-users')
 
     def get_addon(self):
         return Addon.objects.get(pk=3615)
@@ -407,7 +406,6 @@ class TestAddonSubmitDistribution(TestCase):
         self.client.force_login_with_2fa(self.user)
         self.user.update(last_login_ip='192.0.2.1')
         self.url = reverse('devhub.submit.distribution')
-        self.create_flag('2fa-enforcement-for-developers-and-special-users')
 
     def test_check_agreement_okay(self):
         response = self.client.post(reverse('devhub.submit.agreement'))
@@ -523,7 +521,6 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         self.user.update(last_login_ip='192.0.2.1')
         self.upload = self.get_upload('webextension_no_id.xpi', user=self.user)
         self.statsd_incr_mock = self.patch('olympia.devhub.views.statsd.incr')
-        self.create_flag('2fa-enforcement-for-developers-and-special-users')
 
     def post(
         self,
@@ -2235,7 +2232,6 @@ class VersionSubmitUploadMixin:
         self.version.save()
         self.upload = self.get_upload('webextension.xpi', user=self.user)
         self.statsd_incr_mock = self.patch('olympia.devhub.views.statsd.incr')
-        self.create_flag('2fa-enforcement-for-developers-and-special-users')
 
     def post(
         self,
