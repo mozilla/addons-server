@@ -66,13 +66,15 @@ def flag_high_abuse_reports_addons_according_to_review_tier():
 
 def retryable_task(f):
     retryable_exceptions = (requests.RequestException,)
+    max_retries = 60  # Aiming for ~72 hours retry period.
+    warn_after_retries = 7  # This is about 1 hour
 
     @task(
         autoretry_for=retryable_exceptions,
         retry_backoff=30,  # Start backoff at 30 seconds.
         retry_backoff_max=2 * 60 * 60,  # Max out at 2 hours between retries.
         retry_jitter=False,  # Delay can be 0 with jitter, which we don't want.
-        retry_kwargs={'max_retries': 60},  # Aiming for ~72 hours retry period.
+        retry_kwargs={'max_retries': max_retries},
         bind=True,  # Gives access to task retries count inside the function.
     )
     @functools.wraps(f)
@@ -83,8 +85,14 @@ def retryable_task(f):
         except Exception as exc:
             retry_count = task.request.retries
             statsd.incr(f'abuse.tasks.{function_name}.failure')
-            if isinstance(exc, retryable_exceptions) and retry_count == 0:
-                log.exception(f'Retrying Celery Task {function_name}', exc_info=exc)
+            if isinstance(exc, retryable_exceptions):
+                if retry_count == 0:
+                    log.exception(f'Retrying Celery Task {function_name}', exc_info=exc)
+                elif retry_count == warn_after_retries:
+                    log.exception(
+                        f'Retried Celery Task for {function_name} {retry_count} times',
+                        exc_info=exc,
+                    )
             raise
         else:
             statsd.incr(f'abuse.tasks.{function_name}.success')

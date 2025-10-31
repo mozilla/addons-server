@@ -6,6 +6,7 @@ from unittest import mock
 from django.conf import settings
 
 import pytest
+import requests
 import responses
 import time_machine
 from celery.exceptions import Retry
@@ -394,8 +395,7 @@ def test_addon_report_to_cinder_exception(log_exception_mock, statsd_incr_mock):
     with pytest.raises(Retry) as exc_info:
         report_to_cinder.delay(abuse_report.id)
     exception = exc_info.value
-    assert exception.when > 0
-    assert exception.when <= 30
+    assert exception.when == 30
     assert log_exception_mock.call_count == 1
     assert log_exception_mock.call_args_list == [
         (
@@ -408,6 +408,44 @@ def test_addon_report_to_cinder_exception(log_exception_mock, statsd_incr_mock):
 
     assert statsd_incr_mock.call_count == 1
     assert statsd_incr_mock.call_args[0] == ('abuse.tasks.report_to_cinder.failure',)
+
+
+@pytest.mark.django_db
+@mock.patch('olympia.abuse.tasks.log.exception')
+def test_multiple_retries_with_exceptions_on_first_and_seventh_retry(
+    log_exception_mock,
+):
+    addon = addon_factory()
+    abuse_report = AbuseReport.objects.create(
+        guid=addon.guid,
+        reason=AbuseReport.REASONS.ILLEGAL,
+        message='This is bad',
+        illegal_category=ILLEGAL_CATEGORIES.OTHER,
+        illegal_subcategory=ILLEGAL_SUBCATEGORIES.OTHER,
+    )
+    responses.add(
+        responses.POST,
+        f'{settings.CINDER_SERVER_URL}create_report',
+        json={'job_id': '1234-xyz'},
+        status=500,
+    )
+
+    with mock.patch('celery.app.task.Task.request') as request_mock:
+        for i in range(10):
+            with pytest.raises(requests.exceptions.HTTPError):
+                # Simulate Celery state: how many retries have *already happened*.
+                request_mock.retries = i
+                report_to_cinder.run(abuse_report.id)
+
+    assert log_exception_mock.call_count == 2
+    assert log_exception_mock.call_args_list == [
+        mock.call('Retrying Celery Task report_to_cinder', exc_info=mock.ANY),
+        mock.call(
+            'Retried Celery Task for report_to_cinder 7 times', exc_info=mock.ANY
+        ),
+    ]
+
+    assert CinderJob.objects.count() == 0
 
 
 @pytest.mark.django_db
@@ -637,8 +675,7 @@ def test_addon_appeal_to_cinder_reporter_exception(
             is_reporter=True,
         )
     exception = exc_info.value
-    assert exception.when > 0
-    assert exception.when <= 30
+    assert exception.when == 30
     assert log_exception_mock.call_count == 1
     assert log_exception_mock.call_args_list == [
         (
@@ -939,8 +976,7 @@ def test_report_decision_to_cinder_and_notify_exception(
     with pytest.raises(Retry) as exc_info:
         report_decision_to_cinder_and_notify.delay(decision_id=decision.id)
     exception = exc_info.value
-    assert exception.when > 0
-    assert exception.when <= 30
+    assert exception.when == 30
     assert log_exception_mock.call_count == 1
     assert log_exception_mock.call_args_list == [
         (
@@ -984,8 +1020,7 @@ class TestSyncCinderPolicies(TestCase):
         with pytest.raises(Retry) as exc_info:
             sync_cinder_policies.delay()
         exception = exc_info.value
-        assert exception.when > 0
-        assert exception.when <= 30
+        assert exception.when == 30
         assert log_exception_mock.call_count == 1
         assert log_exception_mock.call_args_list == [
             (
