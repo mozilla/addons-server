@@ -5903,7 +5903,7 @@ msgstr "Prikaži vse razširitve"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1048
 msgid "Extension Starter Pack"
-msgstr "Začetni paket razširitev"
+msgstr "Paket razširitev za začetek"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1052
