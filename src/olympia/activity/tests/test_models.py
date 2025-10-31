@@ -17,6 +17,7 @@ from olympia.activity.models import (
     DraftComment,
     GenericMozillaUser,
     IPLog,
+    RequestFingerprintLog,
     ReviewActionReasonLog,
     attachment_upload_path,
 )
@@ -374,7 +375,7 @@ class TestActivityLog(TestCase):
     def test_to_string_num_queries_model_depending_on_addon(self):
         addon = Addon.objects.get()
         addon2 = addon_factory()
-        with core.override_remote_addr('1.1.1.1'):
+        with core.override_remote_addr_or_metadata(ip_address='1.1.1.1'):
             ActivityLog.objects.create(
                 amo.LOG.ADD_VERSION,
                 addon,
@@ -410,7 +411,7 @@ class TestActivityLog(TestCase):
         # create an IPLog.
         action = amo.LOG.REJECT_VERSION
         assert not getattr(action, 'store_ip', False)
-        with core.override_remote_addr('127.0.4.8'):
+        with core.override_remote_addr_or_metadata(ip_address='127.0.4.8'):
             activity = ActivityLog.objects.create(
                 action,
                 addon,
@@ -422,7 +423,7 @@ class TestActivityLog(TestCase):
         # create an IPLog.
         action = amo.LOG.ADD_VERSION
         assert getattr(action, 'store_ip', False)
-        with core.override_remote_addr('15.16.23.42'):
+        with core.override_remote_addr_or_metadata(ip_address='15.16.23.42'):
             activity = ActivityLog.objects.create(
                 action,
                 addon,
@@ -434,6 +435,48 @@ class TestActivityLog(TestCase):
         assert ip_log.activity_log == activity
         assert ip_log._ip_address == '15.16.23.42'
         assert ip_log.ip_address_binary == IPv4Address('15.16.23.42')
+
+    def test_request_fingerprint_log(self):
+        addon = Addon.objects.get()
+        assert RequestFingerprintLog.objects.count() == 0
+        # 37 charactors to test truncation to 36 characters.
+        metadata = {
+            'Client-JA4': 'a' * 37,
+            'X-SigSci-Tags': 'TAG1,TAG2',
+            'other': 'data',
+        }
+        # Creating an activity log for an action without store_ip=True doesn't
+        # create an RequestFingerprintLog.
+        action = amo.LOG.REJECT_VERSION
+        assert not getattr(action, 'store_ip', False)
+        with core.override_remote_addr_or_metadata(
+            ip_address='127.0.4.8', metadata=metadata
+        ):
+            activity = ActivityLog.objects.create(
+                action,
+                addon,
+                addon.current_version,
+                user=self.request.user,
+            )
+        assert RequestFingerprintLog.objects.count() == 0
+        # Creating an activity log for an action *with* store_ip=True *does*
+        # create an RequestFingerprintLog.
+        action = amo.LOG.ADD_VERSION
+        assert getattr(action, 'store_ip', False)
+        with core.override_remote_addr_or_metadata(
+            ip_address='15.16.23.42', metadata=metadata
+        ):
+            activity = ActivityLog.objects.create(
+                action,
+                addon,
+                addon.current_version,
+                user=self.request.user,
+            )
+        assert RequestFingerprintLog.objects.count() == 1
+        fingerprint_log = RequestFingerprintLog.objects.get()
+        assert fingerprint_log.activity_log == activity
+        assert fingerprint_log.ja4 == 'a' * 36  # Truncated to 36 characters.
+        assert fingerprint_log.signals == ['TAG1', 'TAG2']
 
     def test_review_action_reason_log(self):
         addon = Addon.objects.get()

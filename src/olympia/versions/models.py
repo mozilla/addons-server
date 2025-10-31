@@ -457,7 +457,9 @@ class Version(OnChangeMixin, ModelBase):
             channel=channel,
             release_notes=parsed_data.get('release_notes'),
         )
-        with core.override_remote_addr(upload.ip_address):
+        with core.override_remote_addr_or_metadata(
+            ip_address=upload.ip_address, metadata=upload.request_metadata
+        ):
             # The following log statement is used by foxsec-pipeline.
             # We override the IP because it might be called from a task and we
             # want the original IP from the submitter.

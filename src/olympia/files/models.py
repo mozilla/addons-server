@@ -437,6 +437,7 @@ class FileUpload(ModelBase):
     addon = models.ForeignKey('addons.Addon', null=True, on_delete=models.CASCADE)
     access_token = models.CharField(max_length=40, null=True)
     ip_address = models.CharField(max_length=45)
+    request_metadata = models.JSONField(default=dict, null=True)
     source = models.PositiveSmallIntegerField(choices=amo.UPLOAD_SOURCE_CHOICES)
 
     objects = ManagerBase()
@@ -558,6 +559,7 @@ class FileUpload(ModelBase):
             source=source,
             channel=channel,
             ip_address=ip_address,
+            request_metadata=core.get_request_metadata(),
             version=version,
         )
         upload.add_file(chunks, filename, size)

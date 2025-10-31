@@ -38,7 +38,7 @@ class TestActivity(HubTest):
         version = Version.objects.create(version=version_string, addon=self.addon)
 
         for _i in range(num):
-            with core.override_remote_addr('127.0.0.1'):
+            with core.override_remote_addr_or_metadata(ip_address='127.0.0.1'):
                 ActivityLog.objects.create(amo.LOG.ADD_VERSION, self.addon, version)
 
     def log_status(self, num):

@@ -179,11 +179,11 @@ class TestUserAdmin(TestCase):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Users:Edit')
         self.client.force_login(user)
-        with core.override_remote_addr('127.0.0.2'):
+        with core.override_remote_addr_or_metadata(ip_address='127.0.0.2'):
             self.user.update(email='foo@bar.com')
             # That will make self.user match our query.
             ActivityLog.objects.create(amo.LOG.LOG_IN, user=self.user)
-        with core.override_remote_addr('127.0.0.1'):
+        with core.override_remote_addr_or_metadata(ip_address='127.0.0.1'):
             extra_user = user_factory()  # Extra user that shouldn't match
             ActivityLog.objects.create(amo.LOG.LOG_IN, user=extra_user)
         with self.assertNumQueries(6):
@@ -204,7 +204,7 @@ class TestUserAdmin(TestCase):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Users:Edit')
         self.client.force_login(user)
-        with core.override_remote_addr('127.0.0.2'):
+        with core.override_remote_addr_or_metadata(ip_address='127.0.0.2'):
             self.user.update(email='foo@bar.com')
             # That will make self.user match our query.
             ActivityLog.objects.create(amo.LOG.LOG_IN, user=self.user)
@@ -212,10 +212,10 @@ class TestUserAdmin(TestCase):
         # contains a comma character, which would trip the split(',') we do on
         # the result of the GROUP_CONCAT if the binary value wasn't translated
         # to an IP address string representation before being grouped.
-        with core.override_remote_addr('127.0.0.44'):
+        with core.override_remote_addr_or_metadata(ip_address='127.0.0.44'):
             # Add another login from a different IP to make sure we show it.
             ActivityLog.objects.create(amo.LOG.LOG_IN, user=self.user)
-        with core.override_remote_addr('127.0.0.1'):
+        with core.override_remote_addr_or_metadata(ip_address='127.0.0.1'):
             extra_user = user_factory()  # Extra user that shouldn't match
             ActivityLog.objects.create(amo.LOG.LOG_IN, user=extra_user)
         with self.assertNumQueries(6):
@@ -238,17 +238,17 @@ class TestUserAdmin(TestCase):
         self.client.force_login(user)
 
         # Extra user that will match but not thanks to their last login ip...
-        with core.override_remote_addr('127.0.0.1'):
+        with core.override_remote_addr_or_metadata(ip_address='127.0.0.1'):
             extra_user = user_factory(email='extra@bar.com')
             ActivityLog.objects.create(amo.LOG.LOG_IN, user=extra_user)
-        with core.override_remote_addr('127.0.0.2'):
+        with core.override_remote_addr_or_metadata(ip_address='127.0.0.2'):
             ActivityLog.objects.create(amo.LOG.RESTRICTED, user=extra_user)
         # Another one that will match through their activity
         extra_extra_user = user_factory(email='extra_extra@bar.com')
-        with core.override_remote_addr('127.0.0.2'):
+        with core.override_remote_addr_or_metadata(ip_address='127.0.0.2'):
             ActivityLog.objects.create(amo.LOG.RESTRICTED, user=extra_extra_user)
         # And finally self.user that will also match
-        with core.override_remote_addr('127.0.0.2'):
+        with core.override_remote_addr_or_metadata(ip_address='127.0.0.2'):
             ActivityLog.objects.create(amo.LOG.ADD_RATING, user=self.user)
         self.user.update(email='foo@bar.com')
         with self.assertNumQueries(6):
@@ -279,7 +279,7 @@ class TestUserAdmin(TestCase):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Users:Edit')
         self.client.force_login(user)
-        with core.override_remote_addr('127.0.0.2'):
+        with core.override_remote_addr_or_metadata(ip_address='127.0.0.2'):
             ActivityLog.objects.create(amo.LOG.ADD_RATING, user=self.user)
         self.user.update(email='foo@bar.com')
         with self.assertNumQueries(6):
@@ -301,7 +301,7 @@ class TestUserAdmin(TestCase):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Users:Edit')
         self.client.force_login(user)
-        with core.override_remote_addr('127.0.0.2'):
+        with core.override_remote_addr_or_metadata(ip_address='127.0.0.2'):
             ActivityLog.objects.create(amo.LOG.ADD_RATING, user=self.user)
         self.user.update(email='foo@bar.com')
         with self.assertNumQueries(6):
@@ -323,7 +323,7 @@ class TestUserAdmin(TestCase):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Users:Edit')
         self.client.force_login(user)
-        with core.override_remote_addr('127.0.0.2'):
+        with core.override_remote_addr_or_metadata(ip_address='127.0.0.2'):
             ActivityLog.objects.create(amo.LOG.ADD_RATING, user=self.user)
         self.user.update(email='foo@bar.com')
         with self.assertNumQueries(6):
@@ -345,7 +345,7 @@ class TestUserAdmin(TestCase):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Users:Edit')
         self.client.force_login(user)
-        with core.override_remote_addr('127.0.0.2'):
+        with core.override_remote_addr_or_metadata(ip_address='127.0.0.2'):
             ActivityLog.objects.create(amo.LOG.ADD_RATING, user=self.user)
         self.user.update(email='foo@bar.com')
         with self.assertNumQueries(6):
@@ -368,19 +368,19 @@ class TestUserAdmin(TestCase):
         self.grant_permission(user, 'Users:Edit')
         self.client.force_login(user)
         # Will match once with the last_login
-        with core.override_remote_addr('127.0.0.3'):
+        with core.override_remote_addr_or_metadata(ip_address='127.0.0.3'):
             ActivityLog.objects.create(amo.LOG.LOG_IN, user=self.user)
         self.user.update(email='foo@bar.com')
         # Will match twice, will only show up once since it's the same user.
         extra_user = user_factory(email='extra@bar.com')
-        with core.override_remote_addr('127.0.0.2'):
+        with core.override_remote_addr_or_metadata(ip_address='127.0.0.2'):
             ActivityLog.objects.create(amo.LOG.LOG_IN, user=extra_user)
             ActivityLog.objects.create(amo.LOG.LOG_IN, user=extra_user)
         # Will match 4 times, will only show up once since it's the same user.
         extra_extra_user = user_factory(email='extra_extra@bar.com')
-        with core.override_remote_addr('127.0.0.3'):
+        with core.override_remote_addr_or_metadata(ip_address='127.0.0.3'):
             ActivityLog.objects.create(amo.LOG.LOG_IN, user=extra_extra_user)
-        with core.override_remote_addr('127.0.0.2'):
+        with core.override_remote_addr_or_metadata(ip_address='127.0.0.2'):
             ActivityLog.objects.create(amo.LOG.RESTRICTED, user=extra_extra_user)
             ActivityLog.objects.create(amo.LOG.ADD_RATING, user=extra_extra_user)
             ActivityLog.objects.create(amo.LOG.ADD_VERSION, user=extra_extra_user)
@@ -413,19 +413,19 @@ class TestUserAdmin(TestCase):
         self.grant_permission(user, 'Users:Edit')
         self.client.force_login(user)
         # Will match once with the last_login
-        with core.override_remote_addr('127.0.0.3'):
+        with core.override_remote_addr_or_metadata(ip_address='127.0.0.3'):
             ActivityLog.objects.create(amo.LOG.LOG_IN, user=self.user)
         self.user.update(email='foo@bar.com')
         # Will match twice, will only show up once since it's the same user.
         extra_user = user_factory(email='extra@bar.com')
-        with core.override_remote_addr('127.0.0.2'):
+        with core.override_remote_addr_or_metadata(ip_address='127.0.0.2'):
             ActivityLog.objects.create(amo.LOG.LOG_IN, user=extra_user)
             ActivityLog.objects.create(amo.LOG.LOG_IN, user=extra_user)
         # Will match 4 times, will only show up once since it's the same user.
         extra_extra_user = user_factory(email='extra_extra@bar.com')
-        with core.override_remote_addr('127.0.0.3'):
+        with core.override_remote_addr_or_metadata(ip_address='127.0.0.3'):
             ActivityLog.objects.create(amo.LOG.LOG_IN, user=extra_extra_user)
-        with core.override_remote_addr('127.0.0.2'):
+        with core.override_remote_addr_or_metadata(ip_address='127.0.0.2'):
             ActivityLog.objects.create(amo.LOG.RESTRICTED, user=extra_extra_user)
             ActivityLog.objects.create(amo.LOG.ADD_RATING, user=extra_extra_user)
             ActivityLog.objects.create(amo.LOG.ADD_VERSION, user=extra_extra_user)
@@ -920,36 +920,38 @@ class TestUserAdmin(TestCase):
         dummy_addon = addon_factory()
         another_user = user_factory()
         core.set_user(another_user)
-        with core.override_remote_addr('255.255.0.0'):
+        with core.override_remote_addr_or_metadata(ip_address='255.255.0.0'):
             Rating.objects.create(addon=dummy_addon, user=another_user)
         core.set_user(self.user)
-        with core.override_remote_addr('127.1.2.3'):
+        with core.override_remote_addr_or_metadata(ip_address='127.1.2.3'):
             ActivityLog.objects.create(amo.LOG.LOG_IN, user=self.user)
-        with core.override_remote_addr('129.1.2.4'):
+        with core.override_remote_addr_or_metadata(ip_address='129.1.2.4'):
             Rating.objects.create(addon=addon_factory(), user=self.user)
-        with core.override_remote_addr('128.1.2.3'):
+        with core.override_remote_addr_or_metadata(ip_address='128.1.2.3'):
             Rating.objects.create(
                 addon=dummy_addon,
                 version=dummy_addon.current_version,
                 user=self.user,
             )
-        with core.override_remote_addr('129.1.2.4'):
+        with core.override_remote_addr_or_metadata(ip_address='129.1.2.4'):
             Rating.objects.create(
                 addon=dummy_addon,
                 version=version_factory(addon=dummy_addon),
                 user=self.user,
             )
-        with core.override_remote_addr('130.1.2.4'):
+        with core.override_remote_addr_or_metadata(ip_address='130.1.2.4'):
             Rating.objects.create(addon=addon_factory(), user=self.user)
-        with core.override_remote_addr('2001:0db8:0000:85a3:0000:0000:ac1f:8001'):
+        with core.override_remote_addr_or_metadata(
+            ip_address='2001:0db8:0000:85a3:0000:0000:ac1f:8001'
+        ):
             ActivityLog.objects.create(amo.LOG.LOG_IN, user=self.user)
-        with core.override_remote_addr('130.1.2.4'):
+        with core.override_remote_addr_or_metadata(ip_address='130.1.2.4'):
             Rating.objects.create(addon=addon_factory(), user=self.user)
-        with core.override_remote_addr('15.16.23.42'):
+        with core.override_remote_addr_or_metadata(ip_address='15.16.23.42'):
             ActivityLog.objects.create(amo.LOG.ADD_VERSION, dummy_addon, user=self.user)
-        with core.override_remote_addr('4.8.15.16'):
+        with core.override_remote_addr_or_metadata(ip_address='4.8.15.16'):
             ActivityLog.objects.create(amo.LOG.RESTRICTED, user=self.user)
-        with core.override_remote_addr('172.0.0.2'):
+        with core.override_remote_addr_or_metadata(ip_address='172.0.0.2'):
             ActivityLog.objects.create(amo.LOG.RESTRICTED, user=self.user)
         model_admin = UserAdmin(UserProfile, admin.site)
         doc = pq(model_admin.known_ip_adresses(self.user))
@@ -967,21 +969,25 @@ class TestUserAdmin(TestCase):
         assert len(result) == 8
 
         # Duplicates are ignored
-        with core.override_remote_addr('127.1.2.3'):
+        with core.override_remote_addr_or_metadata(ip_address='127.1.2.3'):
             Rating.objects.create(
                 addon=dummy_addon,
                 version=version_factory(addon=dummy_addon),
                 user=self.user,
             )
-        with core.override_remote_addr('172.0.0.2'):
+        with core.override_remote_addr_or_metadata(ip_address='172.0.0.2'):
             ActivityLog.objects.create(amo.LOG.ADD_VERSION, dummy_addon, user=self.user)
-        with core.override_remote_addr('15.16.23.42'):
+        with core.override_remote_addr_or_metadata(ip_address='15.16.23.42'):
             ActivityLog.objects.create(amo.LOG.RESTRICTED, user=self.user)
-        with core.override_remote_addr('4.8.15.16'):
+        with core.override_remote_addr_or_metadata(ip_address='4.8.15.16'):
             ActivityLog.objects.create(amo.LOG.RESTRICTED, user=self.user)
-        with core.override_remote_addr('2001:db8:0:85a3:0:0:ac1f:8001'):
+        with core.override_remote_addr_or_metadata(
+            ip_address='2001:db8:0:85a3:0:0:ac1f:8001'
+        ):
             ActivityLog.objects.create(amo.LOG.LOG_IN, user=self.user)
-        with core.override_remote_addr('2001:db8:0:85a3::ac1f:8001'):
+        with core.override_remote_addr_or_metadata(
+            ip_address='2001:db8:0:85a3::ac1f:8001'
+        ):
             ActivityLog.objects.create(amo.LOG.LOG_IN, user=self.user)
         doc = pq(model_admin.known_ip_adresses(self.user))
         result = doc('ul li').text().split()

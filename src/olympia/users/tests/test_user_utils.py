@@ -49,7 +49,11 @@ def test_email_unsubscribe_code_parse():
 @mock.patch('django_statsd.clients.statsd.incr')
 class TestRestrictionChecker(TestCase):
     def setUp(self):
-        self.request = RequestFactory(REMOTE_ADDR='10.0.0.1').get('/')
+        headers = {
+            'Client-JA4': 'd1234-5678-0000',
+            'X-SigSci-Tags': 'TAG,ANOTHERTAG',
+        }
+        self.request = RequestFactory(REMOTE_ADDR='10.0.0.1', headers=headers).get('/')
         self.request.is_api = False
         self.request.user = user_factory(read_dev_agreement=self.days_ago(0))
         self.request.user.update(last_login_ip='192.168.1.1')
@@ -93,6 +97,8 @@ class TestRestrictionChecker(TestCase):
         activity = ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).get()
         assert activity.user == self.request.user
         assert activity.iplog.ip_address_binary == IPv4Address('10.0.0.1')
+        assert activity.requestfingerprintlog.ja4 == 'd1234-5678-0000'
+        assert activity.requestfingerprintlog.signals == ['TAG', 'ANOTHERTAG']
 
     def test_is_submission_allowed_bypassing_read_dev_agreement(self, incr_mock):
         self.request.user.update(read_dev_agreement=None)
@@ -139,6 +145,8 @@ class TestRestrictionChecker(TestCase):
         activity = ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).get()
         assert activity.user == self.request.user
         assert activity.iplog.ip_address_binary == IPv4Address('10.0.0.1')
+        assert activity.requestfingerprintlog.ja4 == 'd1234-5678-0000'
+        assert activity.requestfingerprintlog.signals == ['TAG', 'ANOTHERTAG']
 
     def test_is_submission_allowed_email_restricted(self, incr_mock):
         EmailUserRestriction.objects.create(email_pattern=self.request.user.email)
@@ -164,6 +172,8 @@ class TestRestrictionChecker(TestCase):
         activity = ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).get()
         assert activity.user == self.request.user
         assert activity.iplog.ip_address_binary == IPv4Address('10.0.0.1')
+        assert activity.requestfingerprintlog.ja4 == 'd1234-5678-0000'
+        assert activity.requestfingerprintlog.signals == ['TAG', 'ANOTHERTAG']
 
     def test_is_submission_allowed_bypassing_read_dev_agreement_restricted(
         self, incr_mock
@@ -196,6 +206,8 @@ class TestRestrictionChecker(TestCase):
         activity = ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).get()
         assert activity.user == self.request.user
         assert activity.iplog.ip_address_binary == IPv4Address('10.0.0.1')
+        assert activity.requestfingerprintlog.ja4 == 'd1234-5678-0000'
+        assert activity.requestfingerprintlog.signals == ['TAG', 'ANOTHERTAG']
 
     def test_is_auto_approval_allowed_email_restricted_only_for_submission(
         self, incr_mock
@@ -228,6 +240,10 @@ class TestRestrictionChecker(TestCase):
             ip_address='10.0.0.2',
             source=amo.UPLOAD_SOURCE_DEVHUB,
             channel=amo.CHANNEL_LISTED,
+            request_metadata={
+                'Client-JA4': 'd1234-5678-0002',
+                'X-SigSci-Tags': 'TAG2,ANOTHERTAG2',
+            },
         )
         incr_mock.reset_mock()
         checker = RestrictionChecker(upload=upload)
@@ -251,6 +267,8 @@ class TestRestrictionChecker(TestCase):
         # Note that there is no request in this case, the ip_adress is coming
         # from the upload.
         assert activity.iplog.ip_address_binary == IPv4Address('10.0.0.2')
+        assert activity.requestfingerprintlog.ja4 == 'd1234-5678-0002'
+        assert activity.requestfingerprintlog.signals == ['TAG2', 'ANOTHERTAG2']
 
     def test_no_request_or_upload_at_init(self, incr_mock):
         with self.assertRaises(ImproperlyConfigured):

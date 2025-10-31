@@ -267,17 +267,17 @@ class TestAddonAdmin(TestCase):
         self.client.force_login(user)
 
         addon = addon_factory(guid='@foo')
-        with core.override_remote_addr('4.8.15.16'):
+        with core.override_remote_addr_or_metadata(ip_address='4.8.15.16'):
             ActivityLog.objects.create(
                 amo.LOG.ADD_VERSION, addon.current_version, addon, user=user
             )
         version_factory(addon=addon)
-        with core.override_remote_addr('4.8.15.16'):
+        with core.override_remote_addr_or_metadata(ip_address='4.8.15.16'):
             ActivityLog.objects.create(
                 amo.LOG.ADD_VERSION, addon.current_version, addon, user=user
             )
         second_addon = addon_factory(guid='@bar')
-        with core.override_remote_addr('4.8.15.16'):
+        with core.override_remote_addr_or_metadata(ip_address='4.8.15.16'):
             ActivityLog.objects.create(
                 amo.LOG.ADD_VERSION,
                 second_addon.current_version,
@@ -285,7 +285,7 @@ class TestAddonAdmin(TestCase):
                 user=user,
             )
         third_addon = addon_factory(guid='@xyz')
-        with core.override_remote_addr('127.0.0.1'):
+        with core.override_remote_addr_or_metadata(ip_address='127.0.0.1'):
             ActivityLog.objects.create(
                 amo.LOG.ADD_VERSION,
                 third_addon.current_version,

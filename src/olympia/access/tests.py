@@ -1,11 +1,12 @@
 from django.contrib.auth.models import AnonymousUser
+from django.http import HttpResponse
 
 import pytest
 
-from olympia import amo
+from olympia import amo, core
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser
-from olympia.amo.tests import TestCase, addon_factory, user_factory
+from olympia.amo.tests import RequestFactory, TestCase, addon_factory, user_factory
 from olympia.users.models import UserProfile
 
 from .acl import (
@@ -20,6 +21,7 @@ from .acl import (
     match_rules,
     reserved_guid_addon_submission_allowed,
 )
+from .middleware import UserAndAddrMiddleware
 
 
 pytestmark = pytest.mark.django_db
@@ -321,3 +323,39 @@ def test_reserved_guid_addon_submission_allowed_not_mozilla_not_allowed(guid):
     user = user_factory()
     data = {'guid': guid}
     assert not reserved_guid_addon_submission_allowed(user, data)
+
+
+def test_user_and_addr_middleware():
+    middleware = UserAndAddrMiddleware(lambda x: response)
+    wanted_headers = {
+        'Client-JA4': 'd1234-5678-0000',
+        'X-SigSci-Tags': 'TAG,ANOTHERTAG',
+    }
+    request = RequestFactory(
+        REMOTE_ADDR='123.45.67.89',
+        headers={**wanted_headers, 'another_HEADER': 'Ignored'},
+    ).get('/')
+    assert request.headers
+    response = HttpResponse()
+    user = user_factory()
+
+    request.user = user
+
+    assert core.get_user() is None
+    assert core.get_remote_addr() is None
+    assert core.get_request_metadata() == {}
+
+    middleware.process_request(request)
+    assert core.get_user() == user
+    assert core.get_remote_addr() == '123.45.67.89'
+    assert core.get_request_metadata() == wanted_headers, request.headers
+
+    middleware.process_response(request, response)
+    assert core.get_user() is None
+    assert core.get_remote_addr() is None
+    assert core.get_request_metadata() == {}
+
+    middleware.process_exception(request, Exception())
+    assert core.get_user() is None
+    assert core.get_remote_addr() is None
+    assert core.get_request_metadata() == {}
