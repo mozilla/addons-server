@@ -1,3 +1,4 @@
+from django import forms
 from django.utils.translation import gettext, gettext_lazy as _
 
 from rest_framework import serializers
@@ -9,7 +10,7 @@ from olympia.accounts.serializers import BaseUserSerializer
 from olympia.addons.models import Addon
 from olympia.addons.serializers import AddonSerializer
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.amo.utils import clean_nl, has_urls, slug_validator
+from olympia.amo.utils import clean_nl, has_urls, slug_validator, validate_name
 from olympia.api.fields import (
     SlugOrPrimaryKeyRelatedField,
     SplitField,
@@ -80,17 +81,18 @@ class CollectionSerializer(AMOModelSerializer):
         return absolutify(obj.get_url_path())
 
     def validate_name(self, value):
-        # if we have a localised dict of values validate them all.
-        if isinstance(value, dict):
-            return {
-                locale: self.validate_name(sub_value)
-                for locale, sub_value in value.items()
-            }
-        if DeniedName.blocked(value) and not can_use_denied_names(
-            self.context.get('request')
-        ):
-            raise serializers.ValidationError(gettext('This name cannot be used.'))
-        return value
+        error_msg = gettext('This name cannot be used.')
+
+        def check_function(normalized_name, variant):
+            if not can_use_denied_names(
+                self.context.get('request')
+            ) and DeniedName.blocked(variant):
+                raise serializers.ValidationError(error_msg)
+
+        try:
+            return validate_name(value, check_function, error_msg)
+        except forms.ValidationError as exc:
+            raise serializers.ValidationError(exc.messages)
 
     def validate_description(self, value):
         if has_urls(clean_nl(str(value))):
@@ -106,14 +108,18 @@ class CollectionSerializer(AMOModelSerializer):
                 'numbers, underscores or hyphens.'
             ),
         )
-        if DeniedName.blocked(value) and not can_use_denied_names(
-            self.context.get('request')
-        ):
-            raise serializers.ValidationError(
-                gettext('This custom URL cannot be used.')
-            )
+        error_msg = gettext('This custom URL cannot be used.')
 
-        return value
+        def check_function(normalized_name, variant):
+            if not can_use_denied_names(
+                self.context.get('request')
+            ) and DeniedName.blocked(variant):
+                raise serializers.ValidationError(error_msg)
+
+        try:
+            return validate_name(value, check_function, error_msg)
+        except forms.ValidationError as exc:
+            raise serializers.ValidationError(exc.messages)
 
     def create(self, validated_data):
         validated_data['author'] = self.context['request'].user

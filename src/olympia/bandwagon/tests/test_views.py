@@ -465,11 +465,31 @@ class CollectionViewSetDataMixin:
         response = self.send(data=data)
         assert response.status_code == 400
         assert json.loads(response.content) == {'name': ['This name cannot be used.']}
+
+        # homoglyphs don't bypass the validation
+        data.update(name={'en-US': 'fѻѺ thing'})
+        response = self.send(data=data)
+        assert response.status_code == 400
+        assert json.loads(response.content) == {'name': ['This name cannot be used.']}
+
         # But you can if you have the correct permission
         self.grant_permission(self.user, 'Collections:Edit')
         self.client.login_api(self.user)
         response = self.send(data=data)
         assert response.status_code in (200, 201)
+
+    def test_name_too_many_homoglyphs(self):
+        self.client.login_api(self.user)
+        data = dict(self.data)
+        data.update(name={'en-US': 'l' * 17})
+        response = self.send(data=data)
+        assert response.status_code == 400
+        assert json.loads(response.content) == {'name': ['This name cannot be used.']}
+        # even with permission
+        self.grant_permission(self.user, 'Collections:Edit')
+        self.client.login_api(self.user)
+        response = self.send(data=data)
+        assert response.status_code == 400
 
     def test_slug_denied_name(self):
         DeniedName.objects.create(name='foo')
@@ -481,11 +501,35 @@ class CollectionViewSetDataMixin:
         assert json.loads(response.content) == {
             'slug': ['This custom URL cannot be used.']
         }
+
+        # homoglyphs don't bypass the validation
+        data.update(slug='fѻѺ_thing')
+        response = self.send(data=data)
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'slug': ['This custom URL cannot be used.']
+        }
+
         # But you can if you have the correct permission
         self.grant_permission(self.user, 'Collections:Edit')
         self.client.login_api(self.user)
         response = self.send(data=data)
         assert response.status_code in (200, 201)
+
+    def test_slug_too_many_homoglyphs(self):
+        self.client.login_api(self.user)
+        data = dict(self.data)
+        data.update(slug='l' * 17)
+        response = self.send(data=data)
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'slug': ['This custom URL cannot be used.']
+        }
+        # even with permission
+        self.grant_permission(self.user, 'Collections:Edit')
+        self.client.login_api(self.user)
+        response = self.send(data=data)
+        assert response.status_code == 400
 
 
 class TestCollectionViewSetCreate(CollectionViewSetDataMixin, TestCase):
