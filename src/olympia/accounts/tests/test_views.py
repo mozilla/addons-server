@@ -1510,7 +1510,7 @@ class TestAccountViewSetUpdate(TestCase):
     def test_display_name_denied_name(self):
         DeniedName.objects.create(name='foo')
         self.client.login_api(self.user)
-        response = self.patch(data={'display_name': 'foo_thing'})
+        response = self.patch(data={'display_name': 'foó_thing'})
         assert response.status_code == 400
         assert json.loads(response.content) == {
             'display_name': ['This display name cannot be used.']

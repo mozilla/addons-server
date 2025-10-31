@@ -37,7 +37,6 @@ from olympia.ratings.models import Rating
 from olympia.users.models import (
     RESTRICTION_TYPES,
     BannedUserContent,
-    DeniedName,
     DisposableEmailDomainRestriction,
     EmailReputationRestriction,
     EmailUserRestriction,
@@ -1018,28 +1017,6 @@ class TestUserProfile(TestCase):
         instance.date_responded = timezone.now() - timedelta(days=181)
         instance.save()
         assert user.is_survey_eligible(amo.DEV_EXP_SURVEY_ALCHEMER_ID)
-
-
-class TestDeniedName(TestCase):
-    fixtures = ['users/test_backends']
-
-    def test_blocked(self):
-        assert DeniedName.blocked('IE6Fan')
-        assert DeniedName.blocked('IE6fantastic')
-        assert not DeniedName.blocked('IE6')
-        assert not DeniedName.blocked('testo')
-
-    def test_blocked_emoji(self):
-        assert not DeniedName.blocked('Test 🎧')
-        assert not DeniedName.blocked('Test 🌠')
-
-        denied = DeniedName.objects.create(name='🌠')
-        assert not DeniedName.blocked('Test 🎧')
-        assert DeniedName.blocked('Test 🌠')
-
-        denied.update(name='🎧')
-        assert DeniedName.blocked('Test 🎧')
-        assert not DeniedName.blocked('Test 🌠')
 
 
 class TestIPNetworkUserRestriction(TestCase):

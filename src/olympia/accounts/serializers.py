@@ -15,15 +15,14 @@ from olympia.amo.utils import (
     subscribe_newsletter,
     unsubscribe_newsletter,
     urlparams,
-    validate_name,
 )
 from olympia.api.fields import HttpHttpsOnlyURLField
 from olympia.api.serializers import AMOModelSerializer, SiteStatusSerializer
 from olympia.api.utils import is_gate_active
 from olympia.api.validators import OneOrMoreLetterOrNumberCharacterAPIValidator
 from olympia.users import notifications
-from olympia.users.models import DeniedName, UserProfile
-from olympia.users.utils import upload_picture
+from olympia.users.models import UserProfile
+from olympia.users.utils import upload_picture, validate_user_name
 
 
 log = olympia.core.logger.getLogger('accounts')
@@ -157,12 +156,8 @@ class SelfUserProfileSerializer(FullUserProfileSerializer):
     def validate_display_name(self, value):
         error_msg = gettext('This display name cannot be used.')
 
-        def check_function(normalized_name, variant):
-            if DeniedName.blocked(variant):
-                raise serializers.ValidationError(error_msg)
-
         try:
-            return validate_name(value, check_function, error_msg)
+            return validate_user_name(value, error_msg)
         except forms.ValidationError as exc:
             raise serializers.ValidationError(exc.messages) from exc
 

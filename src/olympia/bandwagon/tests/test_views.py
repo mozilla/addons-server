@@ -461,7 +461,7 @@ class CollectionViewSetDataMixin:
         DeniedName.objects.create(name='foo')
         self.client.login_api(self.user)
         data = dict(self.data)
-        data.update(name={'en-US': 'foo_thing'})
+        data.update(name={'en-US': 'foó_thing'})
         response = self.send(data=data)
         assert response.status_code == 400
         assert json.loads(response.content) == {'name': ['This name cannot be used.']}
@@ -492,10 +492,10 @@ class CollectionViewSetDataMixin:
         assert response.status_code == 400
 
     def test_slug_denied_name(self):
-        DeniedName.objects.create(name='foo')
+        DeniedName.objects.create(name='abcde')
         self.client.login_api(self.user)
         data = dict(self.data)
-        data.update(slug='foo_thing')
+        data.update(slug='abcdé_thing')
         response = self.send(data=data)
         assert response.status_code == 400
         assert json.loads(response.content) == {
@@ -503,7 +503,7 @@ class CollectionViewSetDataMixin:
         }
 
         # homoglyphs don't bypass the validation
-        data.update(slug='fѻѺ_thing')
+        data.update(slug='abcdЄ_thing')
         response = self.send(data=data)
         assert response.status_code == 400
         assert json.loads(response.content) == {

@@ -10,7 +10,7 @@ from olympia.accounts.serializers import BaseUserSerializer
 from olympia.addons.models import Addon
 from olympia.addons.serializers import AddonSerializer
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.amo.utils import clean_nl, has_urls, slug_validator, validate_name
+from olympia.amo.utils import clean_nl, has_urls, slug_validator
 from olympia.api.fields import (
     SlugOrPrimaryKeyRelatedField,
     SplitField,
@@ -19,7 +19,7 @@ from olympia.api.fields import (
 from olympia.api.serializers import AMOModelSerializer
 from olympia.api.utils import is_gate_active
 from olympia.bandwagon.models import Collection, CollectionAddon
-from olympia.users.models import DeniedName
+from olympia.users.utils import validate_user_name
 
 
 def can_use_denied_names(request):
@@ -80,19 +80,18 @@ class CollectionSerializer(AMOModelSerializer):
     def get_url(self, obj):
         return absolutify(obj.get_url_path())
 
-    def validate_name(self, value):
-        error_msg = gettext('This name cannot be used.')
-
-        def check_function(normalized_name, variant):
-            if not can_use_denied_names(
-                self.context.get('request')
-            ) and DeniedName.blocked(variant):
-                raise serializers.ValidationError(error_msg)
-
+    def _validate_name_or_slug(self, value, error_msg):
         try:
-            return validate_name(value, check_function, error_msg)
+            return validate_user_name(
+                value,
+                error_msg,
+                can_use_denied_names=can_use_denied_names(self.context.get('request')),
+            )
         except forms.ValidationError as exc:
-            raise serializers.ValidationError(exc.messages)
+            raise serializers.ValidationError(exc.messages) from exc
+
+    def validate_name(self, value):
+        return self._validate_name_or_slug(value, gettext('This name cannot be used.'))
 
     def validate_description(self, value):
         if has_urls(clean_nl(str(value))):
@@ -108,18 +107,9 @@ class CollectionSerializer(AMOModelSerializer):
                 'numbers, underscores or hyphens.'
             ),
         )
-        error_msg = gettext('This custom URL cannot be used.')
-
-        def check_function(normalized_name, variant):
-            if not can_use_denied_names(
-                self.context.get('request')
-            ) and DeniedName.blocked(variant):
-                raise serializers.ValidationError(error_msg)
-
-        try:
-            return validate_name(value, check_function, error_msg)
-        except forms.ValidationError as exc:
-            raise serializers.ValidationError(exc.messages)
+        return self._validate_name_or_slug(
+            value, gettext('This custom URL cannot be used.')
+        )
 
     def create(self, validated_data):
         validated_data['author'] = self.context['request'].user
