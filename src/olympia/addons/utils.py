@@ -8,11 +8,7 @@ from django.utils.translation import gettext
 
 from olympia import amo, core
 from olympia.access.acl import action_allowed_for
-from olympia.amo.utils import (
-    generate_lowercase_homoglyphs_variants_for_string,
-    normalize_string_for_name_checks,
-    verify_condition_with_locales,
-)
+from olympia.amo.utils import validate_name
 from olympia.translations.models import Translation
 
 
@@ -39,42 +35,25 @@ def validate_addon_name(name, user, *, form=None):
         and action_allowed_for(user, amo.permissions.TRADEMARK_BYPASS)
     )
 
-    def _check(name):
-        name_without_punctuation = normalize_string_for_name_checks(
-            name, categories_to_strip=('P')
-        ).lower()
+    def check_function(normalized_name, variant):
+        if skip_trademark_check:
+            return
 
-        variants = generate_lowercase_homoglyphs_variants_for_string(
-            normalize_string_for_name_checks(name)
-        )
+        for symbol in amo.MOZILLA_TRADEMARK_SYMBOLS:
+            symbol_count = variant.count(symbol)
+            violates_trademark = symbol_count > 1 or (
+                symbol_count >= 1
+                # 'XXX for Mozilla' or 'XXX for Firefox' is allowed.
+                and not normalized_name.endswith(f' for {symbol}')
+            )
 
-        for index, variant in enumerate(variants):
-            if index > 65535:
-                # index > 65535 means over 16 confusable characters with 2
-                # variants each. That name is likely suspicious, and it's too
-                # expensive to continue anyway. Reject it immediately.
-                raise forms.ValidationError(gettext('This name cannot be used.'))
-
-            if skip_trademark_check:
-                continue
-
-            for symbol in amo.MOZILLA_TRADEMARK_SYMBOLS:
-                symbol_count = variant.count(symbol)
-                violates_trademark = symbol_count > 1 or (
-                    symbol_count >= 1
-                    # 'XXX for Mozilla' or 'XXX for Firefox' is allowed.
-                    and not name_without_punctuation.endswith(f' for {symbol}')
+            if violates_trademark:
+                msg = gettext(
+                    'Add-on names cannot contain the Mozilla or Firefox trademarks.'
                 )
+                raise forms.ValidationError(msg)
 
-                if violates_trademark:
-                    msg = gettext(
-                        'Add-on names cannot contain the Mozilla or Firefox trademarks.'
-                    )
-                    raise forms.ValidationError(msg)
-
-    verify_condition_with_locales(
-        value=name, check_func=_check, form=form, field_name='name'
-    )
+    validate_name(name, check_function, gettext('This name cannot be used.'), form=form)
 
     return name
 

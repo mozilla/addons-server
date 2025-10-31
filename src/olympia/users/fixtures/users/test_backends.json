@@ -64,7 +64,7 @@
         "pk": 1,
         "model": "users.deniedname",
         "fields": {
-            "name": "IE6Fan",
+            "name": "ie6fan",
             "modified": "2010-07-21 23:32:05",
             "created": "2010-07-21 23:32:05"
         }

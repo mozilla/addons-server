@@ -16,8 +16,7 @@ from django.contrib.auth.signals import user_logged_in
 from django.core import validators
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.db import models
-from django.db.models import F, Max, Q, Value
-from django.db.models.functions import Collate
+from django.db.models import Max, Q
 from django.template import loader
 from django.templatetags.static import static
 from django.urls import reverse
@@ -780,23 +779,6 @@ class DeniedName(ModelBase):
 
     def __str__(self):
         return self.name
-
-    @classmethod
-    def blocked(cls, value):
-        """
-        Check to see if a given name is in the deny list.
-        Return True if the name contains one of the denied terms.
-
-        """
-        return (
-            DeniedName.objects.annotate(
-                query_field=Collate(
-                    Value(value, output_field=models.CharField()), 'utf8mb4_0900_ai_ci'
-                )
-            )
-            .filter(query_field__icontains=F('name'))
-            .exists()
-        )
 
 
 class RestrictionAbstractBase:

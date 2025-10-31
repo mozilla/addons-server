@@ -4,6 +4,7 @@ import hashlib
 import hmac
 import urllib
 
+from django import forms
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 from django.template import loader
@@ -396,3 +397,20 @@ def check_suppressed_email_confirmation(verification, page_size=5):
                 verification.mark_as_delivered()
 
     return found_emails
+
+
+def validate_user_name(value, error_msg, *, can_use_denied_names=False):
+    from olympia.amo.utils import validate_name
+
+    from .models import DeniedName
+
+    # Check to see if a given name is in the deny list.
+    denied_names = list(DeniedName.objects.values_list('name', flat=True))
+
+    def check_function(normalized_name, variant):
+        if not can_use_denied_names and any(
+            denied in variant for denied in denied_names
+        ):
+            raise forms.ValidationError(error_msg)
+
+    return validate_name(value, check_function, error_msg)
