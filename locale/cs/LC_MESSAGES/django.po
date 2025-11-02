@@ -5899,12 +5899,12 @@ msgstr "Zobrazit všechna rozšíření"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1048
 msgid "Extension Starter Pack"
-msgstr "Starter Pack rozšíření"
+msgstr "Startovací balíček rozšíření"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1052
 msgid "Twitch customization"
-msgstr "Přizpůsobení Twitchi"
+msgstr "Přizpůsobení Twitchu"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1054 src/olympia/discovery/strings.jinja2:1056 src/olympia/discovery/strings.jinja2:1058
