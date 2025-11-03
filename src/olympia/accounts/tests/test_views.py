@@ -337,8 +337,8 @@ class TestWithUser(TestCase):
         self.fxa_identify = self.patch('olympia.accounts.views.verify.fxa_identify')
         self.find_user = self.patch('olympia.accounts.views.find_user')
         self.request = mock.MagicMock()
-        self.user = AnonymousUser()
-        self.request.user = self.user
+        self.user = user_factory()
+        self.request.user = AnonymousUser()
         self.request.session = {'fxa_state': 'some-blob'}
 
     def get_fxa_config(self, request):
@@ -600,8 +600,6 @@ class TestWithUser(TestCase):
         }
 
     def test_addon_developer_should_redirect_for_two_factor_auth(self):
-        self.create_flag('2fa-enforcement-for-developers-and-special-users')
-        self.user = user_factory()
         # They have developed a theme, but also an extension, so they will need
         # 2FA.
         addon_factory(users=[self.user])
@@ -609,37 +607,15 @@ class TestWithUser(TestCase):
         self._test_should_redirect_for_two_factor_auth()
 
     def test_special_user_should_redirect_for_two_factor_auth(self):
-        self.create_flag('2fa-enforcement-for-developers-and-special-users')
-        self.user = user_factory()
         # User isn't a developer but is part of a group.
         self.grant_permission(self.user, 'Some:Thing')
         self._test_should_redirect_for_two_factor_auth()
-
-    def test_user_should_redirect_for_two_factor_auth_flag_user_specific(self):
-        self.user = user_factory()
-        flag = self.create_flag(
-            '2fa-enforcement-for-developers-and-special-users', everyone=False
-        )
-        flag.users.add(self.user)
-        # User isn't a developer but is part of a group.
-        self.grant_permission(self.user, 'Some:Thing')
-        # The flag is enabled for that user.
-        self._test_should_redirect_for_two_factor_auth()
-
-        # Others should be unaffected as the flag is only set for a specific
-        # user.
-        self.user = user_factory()
-        self.grant_permission(self.user, 'Some:Thing')
-        self._test_should_continue_without_redirect_for_two_factor_auth()
 
     def test_theme_developer_should_not_redirect_for_two_factor_auth(self):
-        self.create_flag('2fa-enforcement-for-developers-and-special-users')
-        self.user = user_factory()
         addon_factory(users=[self.user], type=amo.ADDON_STATICTHEME)
         self._test_should_continue_without_redirect_for_two_factor_auth()
 
     def test_addon_developer_already_using_two_factor_should_continue(self):
-        self.create_flag('2fa-enforcement-for-developers-and-special-users')
         self.user = user_factory()
         addon_factory(users=[self.user])
         identity = {
@@ -652,8 +628,6 @@ class TestWithUser(TestCase):
         )
 
     def test_2fa_enforced_already_using_two_factor_should_continue(self):
-        self.create_flag('2fa-enforcement-for-developers-and-special-users')
-        self.user = user_factory()
         identity = {
             'uid': '1234',
             'email': 'hey@yo.it',
@@ -668,30 +642,11 @@ class TestWithUser(TestCase):
         assert 'enforce_2fa' not in self.request.session
 
     def test_2fa_enforced_on_this_view_should_redirect_for_two_factor_auth(self):
-        self.create_flag('2fa-enforcement-for-developers-and-special-users')
-        self.user = user_factory()
         self.request.session['enforce_2fa'] = True
         self._test_should_redirect_for_two_factor_auth()
 
-    def test_waffle_flag_off_developer_without_2fa_should_continue(self):
-        self.create_flag(
-            '2fa-enforcement-for-developers-and-special-users', everyone=False
-        )
-        self.user = user_factory()
-        addon_factory(users=[self.user])
-        self._test_should_continue_without_redirect_for_two_factor_auth()
-
-    def test_waffle_flag_off_enforced_2fa_should_have_no_effect(self):
-        self.create_flag(
-            '2fa-enforcement-for-developers-and-special-users', everyone=False
-        )
-        self.user = user_factory()
-        self.request.session['enforce_2fa'] = True
-        self._test_should_continue_without_redirect_for_two_factor_auth()
-
     @override_settings(FXA_CONFIG={'default': {'client_id': ''}})
     def test_fake_fxa_auth(self):
-        self.user = user_factory()
         self.find_user.return_value = self.user
         self.request.data = {
             'code': 'foo',
@@ -712,7 +667,6 @@ class TestWithUser(TestCase):
 
     @override_settings(FXA_CONFIG={'default': {'client_id': ''}})
     def test_fake_fxa_auth_with_2fa(self):
-        self.user = user_factory()
         self.find_user.return_value = self.user
         self.request.data = {
             'code': 'foo',
