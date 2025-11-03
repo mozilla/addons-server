@@ -1,0 +1,926 @@
+{
+    "slug": "amo-frontend",
+    "name": "AMO Frontend",
+    "priority": 3,
+    "deadline": null,
+    "visibility": "public",
+    "contact": "jIdunhnZ8Edgi9npILuSoFvf5ZY",
+    "info": "This project covers the top page of about:addons, and the user-facing pages of addons.mozilla.org on Firefox for Android. Updates are deployed every Thursday. Localizable strings can be extracted on Tuesday, and changes landed by 5pm UTC each Tuesday go live on Thursday. To test your localization, use the <a href=\"https://addons.allizom.org/\">staging server</a>. To report new issues, click <a href=\"https://github.com/mozilla/addons-frontend/issues/new\"> here</a>. Other ways to <a href=\"https://wiki.mozilla.org/Add-ons/Contribute\">contribute</a> to add-on.\n\nTo learn more about localizing and testing AMO frontend, check out this &lt;a href=\"&gt;document.<p></p>\n\nTo request a new locale, please file a bug in Bugzilla <a href=\"https://bugzilla.mozilla.org/enter_bug.cgi?product=Mozilla+Localizations&amp;assigned_to=pmo%40mozilla.com\">using this template</a>.",
+    "system_project": false,
+    "disabled": false,
+    "sync_disabled": false,
+    "pretranslation_enabled": true,
+    "total_strings": 48420,
+    "approved_strings": 41349,
+    "pretranslated_strings": 6,
+    "strings_with_warnings": 0,
+    "strings_with_errors": 0,
+    "missing_strings": 7065,
+    "unreviewed_strings": 1093,
+    "complete": false,
+    "tags": [],
+    "locales": [
+        "sq",
+        "ar",
+        "bg",
+        "ca",
+        "zh-CN",
+        "zh-TW",
+        "cs",
+        "da",
+        "nl",
+        "en-GB",
+        "fi",
+        "fr",
+        "de",
+        "el",
+        "he",
+        "hu",
+        "id",
+        "it",
+        "ja",
+        "ko",
+        "mk",
+        "fa",
+        "pt-BR",
+        "pt-PT",
+        "ro",
+        "ru",
+        "sk",
+        "sl",
+        "sv-SE",
+        "uk",
+        "vi",
+        "dsb",
+        "hsb",
+        "kab",
+        "ast",
+        "fy-NL",
+        "th",
+        "nb-NO",
+        "tr",
+        "nn-NO",
+        "pl",
+        "ur",
+        "te",
+        "ms",
+        "ka",
+        "cak",
+        "bs",
+        "az",
+        "en-CA",
+        "ia",
+        "pa-IN",
+        "hr",
+        "bn",
+        "is",
+        "si",
+        "fur",
+        "es-AR",
+        "es-CL",
+        "es-MX",
+        "es-ES"
+    ],
+    "localizations": [
+        {
+            "locale": {
+                "code": "sq",
+                "name": "Albanian"
+            },
+            "total_strings": 807,
+            "approved_strings": 796,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 11,
+            "unreviewed_strings": 0,
+            "complete": false
+        },
+        {
+            "locale": {
+                "code": "ar",
+                "name": "Arabic"
+            },
+            "total_strings": 807,
+            "approved_strings": 475,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 332,
+            "unreviewed_strings": 72,
+            "complete": false
+        },
+        {
+            "locale": {
+                "code": "bg",
+                "name": "Bulgarian"
+            },
+            "total_strings": 807,
+            "approved_strings": 775,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 32,
+            "unreviewed_strings": 0,
+            "complete": false
+        },
+        {
+            "locale": {
+                "code": "ca",
+                "name": "Catalan"
+            },
+            "total_strings": 807,
+            "approved_strings": 578,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 229,
+            "unreviewed_strings": 2,
+            "complete": false
+        },
+        {
+            "locale": {
+                "code": "zh-CN",
+                "name": "Chinese (China)"
+            },
+            "total_strings": 807,
+            "approved_strings": 807,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 0,
+            "unreviewed_strings": 1,
+            "complete": true
+        },
+        {
+            "locale": {
+                "code": "zh-TW",
+                "name": "Chinese (Taiwan)"
+            },
+            "total_strings": 807,
+            "approved_strings": 807,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 0,
+            "unreviewed_strings": 0,
+            "complete": true
+        },
+        {
+            "locale": {
+                "code": "cs",
+                "name": "Czech"
+            },
+            "total_strings": 807,
+            "approved_strings": 807,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 0,
+            "unreviewed_strings": 0,
+            "complete": true
+        },
+        {
+            "locale": {
+                "code": "da",
+                "name": "Danish"
+            },
+            "total_strings": 807,
+            "approved_strings": 705,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 102,
+            "unreviewed_strings": 4,
+            "complete": false
+        },
+        {
+            "locale": {
+                "code": "nl",
+                "name": "Dutch"
+            },
+            "total_strings": 807,
+            "approved_strings": 807,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 0,
+            "unreviewed_strings": 0,
+            "complete": true
+        },
+        {
+            "locale": {
+                "code": "en-GB",
+                "name": "English (Great Britain)"
+            },
+            "total_strings": 807,
+            "approved_strings": 807,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 0,
+            "unreviewed_strings": 0,
+            "complete": true
+        },
+        {
+            "locale": {
+                "code": "fi",
+                "name": "Finnish"
+            },
+            "total_strings": 807,
+            "approved_strings": 731,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 76,
+            "unreviewed_strings": 0,
+            "complete": false
+        },
+        {
+            "locale": {
+                "code": "fr",
+                "name": "French"
+            },
+            "total_strings": 807,
+            "approved_strings": 807,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 0,
+            "unreviewed_strings": 0,
+            "complete": true
+        },
+        {
+            "locale": {
+                "code": "de",
+                "name": "German"
+            },
+            "total_strings": 807,
+            "approved_strings": 807,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 0,
+            "unreviewed_strings": 0,
+            "complete": true
+        },
+        {
+            "locale": {
+                "code": "el",
+                "name": "Greek"
+            },
+            "total_strings": 807,
+            "approved_strings": 807,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 0,
+            "unreviewed_strings": 0,
+            "complete": true
+        },
+        {
+            "locale": {
+                "code": "he",
+                "name": "Hebrew"
+            },
+            "total_strings": 807,
+            "approved_strings": 798,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 9,
+            "unreviewed_strings": 6,
+            "complete": false
+        },
+        {
+            "locale": {
+                "code": "hu",
+                "name": "Hungarian"
+            },
+            "total_strings": 807,
+            "approved_strings": 807,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 0,
+            "unreviewed_strings": 0,
+            "complete": true
+        },
+        {
+            "locale": {
+                "code": "id",
+                "name": "Indonesian"
+            },
+            "total_strings": 807,
+            "approved_strings": 783,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 24,
+            "unreviewed_strings": 0,
+            "complete": false
+        },
+        {
+            "locale": {
+                "code": "it",
+                "name": "Italian"
+            },
+            "total_strings": 807,
+            "approved_strings": 807,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 0,
+            "unreviewed_strings": 0,
+            "complete": true
+        },
+        {
+            "locale": {
+                "code": "ja",
+                "name": "Japanese"
+            },
+            "total_strings": 807,
+            "approved_strings": 767,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 40,
+            "unreviewed_strings": 0,
+            "complete": false
+        },
+        {
+            "locale": {
+                "code": "ko",
+                "name": "Korean"
+            },
+            "total_strings": 807,
+            "approved_strings": 807,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 0,
+            "unreviewed_strings": 0,
+            "complete": true
+        },
+        {
+            "locale": {
+                "code": "mk",
+                "name": "Macedonian"
+            },
+            "total_strings": 807,
+            "approved_strings": 145,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 662,
+            "unreviewed_strings": 0,
+            "complete": false
+        },
+        {
+            "locale": {
+                "code": "fa",
+                "name": "Persian"
+            },
+            "total_strings": 807,
+            "approved_strings": 189,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 618,
+            "unreviewed_strings": 18,
+            "complete": false
+        },
+        {
+            "locale": {
+                "code": "pt-BR",
+                "name": "Portuguese (Brazil)"
+            },
+            "total_strings": 807,
+            "approved_strings": 801,
+            "pretranslated_strings": 6,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 0,
+            "unreviewed_strings": 0,
+            "complete": true
+        },
+        {
+            "locale": {
+                "code": "pt-PT",
+                "name": "Portuguese (Portugal)"
+            },
+            "total_strings": 807,
+            "approved_strings": 785,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 22,
+            "unreviewed_strings": 0,
+            "complete": false
+        },
+        {
+            "locale": {
+                "code": "ro",
+                "name": "Romanian"
+            },
+            "total_strings": 807,
+            "approved_strings": 807,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 0,
+            "unreviewed_strings": 0,
+            "complete": true
+        },
+        {
+            "locale": {
+                "code": "ru",
+                "name": "Russian"
+            },
+            "total_strings": 807,
+            "approved_strings": 807,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 0,
+            "unreviewed_strings": 0,
+            "complete": true
+        },
+        {
+            "locale": {
+                "code": "sk",
+                "name": "Slovak"
+            },
+            "total_strings": 807,
+            "approved_strings": 807,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 0,
+            "unreviewed_strings": 0,
+            "complete": true
+        },
+        {
+            "locale": {
+                "code": "sl",
+                "name": "Slovenian"
+            },
+            "total_strings": 807,
+            "approved_strings": 807,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 0,
+            "unreviewed_strings": 0,
+            "complete": true
+        },
+        {
+            "locale": {
+                "code": "sv-SE",
+                "name": "Swedish"
+            },
+            "total_strings": 807,
+            "approved_strings": 807,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 0,
+            "unreviewed_strings": 0,
+            "complete": true
+        },
+        {
+            "locale": {
+                "code": "uk",
+                "name": "Ukrainian"
+            },
+            "total_strings": 807,
+            "approved_strings": 785,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 22,
+            "unreviewed_strings": 22,
+            "complete": false
+        },
+        {
+            "locale": {
+                "code": "vi",
+                "name": "Vietnamese"
+            },
+            "total_strings": 807,
+            "approved_strings": 807,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 0,
+            "unreviewed_strings": 0,
+            "complete": true
+        },
+        {
+            "locale": {
+                "code": "dsb",
+                "name": "Sorbian, Lower"
+            },
+            "total_strings": 807,
+            "approved_strings": 807,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 0,
+            "unreviewed_strings": 0,
+            "complete": true
+        },
+        {
+            "locale": {
+                "code": "hsb",
+                "name": "Sorbian, Upper"
+            },
+            "total_strings": 807,
+            "approved_strings": 807,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 0,
+            "unreviewed_strings": 0,
+            "complete": true
+        },
+        {
+            "locale": {
+                "code": "kab",
+                "name": "Kabyle"
+            },
+            "total_strings": 807,
+            "approved_strings": 679,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 128,
+            "unreviewed_strings": 0,
+            "complete": false
+        },
+        {
+            "locale": {
+                "code": "ast",
+                "name": "Asturian"
+            },
+            "total_strings": 807,
+            "approved_strings": 176,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 631,
+            "unreviewed_strings": 0,
+            "complete": false
+        },
+        {
+            "locale": {
+                "code": "fy-NL",
+                "name": "Frisian"
+            },
+            "total_strings": 807,
+            "approved_strings": 807,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 0,
+            "unreviewed_strings": 0,
+            "complete": true
+        },
+        {
+            "locale": {
+                "code": "th",
+                "name": "Thai"
+            },
+            "total_strings": 807,
+            "approved_strings": 601,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 206,
+            "unreviewed_strings": 0,
+            "complete": false
+        },
+        {
+            "locale": {
+                "code": "nb-NO",
+                "name": "Norwegian Bokmål"
+            },
+            "total_strings": 807,
+            "approved_strings": 807,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 0,
+            "unreviewed_strings": 0,
+            "complete": true
+        },
+        {
+            "locale": {
+                "code": "tr",
+                "name": "Turkish"
+            },
+            "total_strings": 807,
+            "approved_strings": 807,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 0,
+            "unreviewed_strings": 0,
+            "complete": true
+        },
+        {
+            "locale": {
+                "code": "nn-NO",
+                "name": "Norwegian Nynorsk"
+            },
+            "total_strings": 807,
+            "approved_strings": 807,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 0,
+            "unreviewed_strings": 0,
+            "complete": true
+        },
+        {
+            "locale": {
+                "code": "pl",
+                "name": "Polish"
+            },
+            "total_strings": 807,
+            "approved_strings": 804,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 3,
+            "unreviewed_strings": 4,
+            "complete": false
+        },
+        {
+            "locale": {
+                "code": "ur",
+                "name": "Urdu"
+            },
+            "total_strings": 807,
+            "approved_strings": 341,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 466,
+            "unreviewed_strings": 56,
+            "complete": false
+        },
+        {
+            "locale": {
+                "code": "te",
+                "name": "Telugu"
+            },
+            "total_strings": 807,
+            "approved_strings": 456,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 351,
+            "unreviewed_strings": 0,
+            "complete": false
+        },
+        {
+            "locale": {
+                "code": "ms",
+                "name": "Malay"
+            },
+            "total_strings": 807,
+            "approved_strings": 451,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 356,
+            "unreviewed_strings": 8,
+            "complete": false
+        },
+        {
+            "locale": {
+                "code": "ka",
+                "name": "Georgian"
+            },
+            "total_strings": 807,
+            "approved_strings": 807,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 0,
+            "unreviewed_strings": 0,
+            "complete": true
+        },
+        {
+            "locale": {
+                "code": "cak",
+                "name": "Kaqchikel"
+            },
+            "total_strings": 807,
+            "approved_strings": 377,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 430,
+            "unreviewed_strings": 9,
+            "complete": false
+        },
+        {
+            "locale": {
+                "code": "bs",
+                "name": "Bosnian"
+            },
+            "total_strings": 807,
+            "approved_strings": 310,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 497,
+            "unreviewed_strings": 182,
+            "complete": false
+        },
+        {
+            "locale": {
+                "code": "az",
+                "name": "Azerbaijani"
+            },
+            "total_strings": 807,
+            "approved_strings": 349,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 458,
+            "unreviewed_strings": 17,
+            "complete": false
+        },
+        {
+            "locale": {
+                "code": "en-CA",
+                "name": "English (Canada)"
+            },
+            "total_strings": 807,
+            "approved_strings": 807,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 0,
+            "unreviewed_strings": 0,
+            "complete": true
+        },
+        {
+            "locale": {
+                "code": "ia",
+                "name": "Interlingua"
+            },
+            "total_strings": 807,
+            "approved_strings": 807,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 0,
+            "unreviewed_strings": 0,
+            "complete": true
+        },
+        {
+            "locale": {
+                "code": "pa-IN",
+                "name": "Punjabi"
+            },
+            "total_strings": 807,
+            "approved_strings": 615,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 192,
+            "unreviewed_strings": 0,
+            "complete": false
+        },
+        {
+            "locale": {
+                "code": "hr",
+                "name": "Croatian"
+            },
+            "total_strings": 807,
+            "approved_strings": 805,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 2,
+            "unreviewed_strings": 0,
+            "complete": false
+        },
+        {
+            "locale": {
+                "code": "bn",
+                "name": "Bengali"
+            },
+            "total_strings": 807,
+            "approved_strings": 287,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 520,
+            "unreviewed_strings": 397,
+            "complete": false
+        },
+        {
+            "locale": {
+                "code": "is",
+                "name": "Icelandic"
+            },
+            "total_strings": 807,
+            "approved_strings": 722,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 85,
+            "unreviewed_strings": 0,
+            "complete": false
+        },
+        {
+            "locale": {
+                "code": "si",
+                "name": "Sinhala"
+            },
+            "total_strings": 807,
+            "approved_strings": 640,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 167,
+            "unreviewed_strings": 2,
+            "complete": false
+        },
+        {
+            "locale": {
+                "code": "fur",
+                "name": "Friulian"
+            },
+            "total_strings": 807,
+            "approved_strings": 807,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 0,
+            "unreviewed_strings": 0,
+            "complete": true
+        },
+        {
+            "locale": {
+                "code": "es-AR",
+                "name": "Spanish (Argentina)"
+            },
+            "total_strings": 807,
+            "approved_strings": 803,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 4,
+            "unreviewed_strings": 10,
+            "complete": false
+        },
+        {
+            "locale": {
+                "code": "es-CL",
+                "name": "Spanish (Chile)"
+            },
+            "total_strings": 807,
+            "approved_strings": 807,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 0,
+            "unreviewed_strings": 0,
+            "complete": true
+        },
+        {
+            "locale": {
+                "code": "es-MX",
+                "name": "Spanish (Mexico)"
+            },
+            "total_strings": 807,
+            "approved_strings": 807,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 0,
+            "unreviewed_strings": 0,
+            "complete": true
+        },
+        {
+            "locale": {
+                "code": "es-ES",
+                "name": "Spanish (Spain)"
+            },
+            "total_strings": 807,
+            "approved_strings": 707,
+            "pretranslated_strings": 0,
+            "strings_with_warnings": 0,
+            "strings_with_errors": 0,
+            "missing_strings": 100,
+            "unreviewed_strings": 130,
+            "complete": false
+        }
+    ]
+}
