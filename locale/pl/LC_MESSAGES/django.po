@@ -5838,7 +5838,7 @@ msgstr "Skuteczny bloker wszystkich typów reklam."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:994
 msgid "Mass download manager makes extreme downloading extremely easy."
-msgstr ""
+msgstr "Menedżer masowego pobierania, który sprawia, że ekstremalne pobieranie plików staje się ekstremalnie proste."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:997
