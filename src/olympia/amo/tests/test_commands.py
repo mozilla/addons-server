@@ -19,6 +19,9 @@ import time_machine
 from responses import registries
 
 from olympia.amo.management import BaseDataCommand, storage_structure
+from olympia.amo.management.commands.check_locales_completion_rate import (
+    Command as CheckLocalesCommand,
+)
 from olympia.amo.tests import TestCase, user_factory
 from olympia.core.languages import PROD_LANGUAGES
 from olympia.users.models import UserProfile
@@ -738,46 +741,43 @@ class TestCheckLocalesCompletionRate(TestCase):
         'pl',
     )
 
-    def fake_successful_pontoon_response(self):
+    def fake_successful_pontoon_response(self, project):
         root = os.path.join(settings.ROOT, 'src/olympia/amo/fixtures/')
-        return open(os.path.join(root, 'pontoon_response.json')).read()
+        return open(
+            os.path.join(root, f'pontoon_response_{project.replace("-", "_")}.json')
+        ).read()
 
     def test_max_retries(self):
         with responses.RequestsMock(
             registry=registries.OrderedRegistry
         ) as responses_with_retries:
-            responses_with_retries.get(
-                'https://pontoon.mozilla.org/graphql', status=504
-            )
-            responses_with_retries.get(
-                'https://pontoon.mozilla.org/graphql', status=503
-            )
-            responses_with_retries.get(
-                'https://pontoon.mozilla.org/graphql', status=500
-            )
-            responses_with_retries.get(
-                'https://pontoon.mozilla.org/graphql', status=502
-            )
-            responses_with_retries.get(
-                'https://pontoon.mozilla.org/graphql',
-                content_type='application/json',
-                body=self.fake_successful_pontoon_response(),
-                status=200,
-            )
+            for project in CheckLocalesCommand.PONTOON_PROJECTS:
+                url = CheckLocalesCommand.PONTOON_API.format(PROJECT=project)
+                responses_with_retries.get(url, status=504)
+                responses_with_retries.get(url, status=503)
+                responses_with_retries.get(url, status=500)
+                responses_with_retries.get(url, status=502)
+                responses_with_retries.get(
+                    url,
+                    content_type='application/json',
+                    body=self.fake_successful_pontoon_response(project),
+                    status=200,
+                )
             call_command('check_locales_completion_rate', stdout=io.StringIO())
-            assert len(responses_with_retries.calls) == 5
+            assert len(responses_with_retries.calls) == 10
             assert len(mail.outbox) == 1
             self._test_full_run_typical_response()
 
     def test_full_run_typical_response(self):
-        responses.add(
-            responses.GET,
-            'https://pontoon.mozilla.org/graphql',
-            content_type='application/json',
-            body=self.fake_successful_pontoon_response(),
-        )
+        for project in CheckLocalesCommand.PONTOON_PROJECTS:
+            responses.add(
+                responses.GET,
+                CheckLocalesCommand.PONTOON_API.format(PROJECT=project),
+                content_type='application/json',
+                body=self.fake_successful_pontoon_response(project),
+            )
         call_command('check_locales_completion_rate', stdout=io.StringIO())
-        assert len(responses.calls) == 1
+        assert len(responses.calls) == 2
         assert len(mail.outbox) == 1
         self._test_full_run_typical_response()
 
@@ -799,42 +799,44 @@ class TestCheckLocalesCompletionRate(TestCase):
             'The following locales are above threshold and not yet enabled:\n- '
             + '\n- '.join(
                 (
-                    'Latvian [lv]',
-                    'Lithuanian [lt]',
-                    'Mongolian [mn]',
+                    'Bulgarian [bg]',
+                    'Danish [da]',
+                    'Indonesian [id]',
                 )
             )
         )
         assert expected_above in mail.outbox[0].body
 
-    def test_full_run_empty_response(self):
-        responses.add(
-            responses.GET,
-            'https://pontoon.mozilla.org/graphql',
-            content_type='application/json',
-            body=json.dumps({}),
-        )
+    def test_full_run_completely_empty_response(self):
+        for project in CheckLocalesCommand.PONTOON_PROJECTS:
+            responses.add(
+                responses.GET,
+                CheckLocalesCommand.PONTOON_API.format(PROJECT=project),
+                content_type='application/json',
+                body=json.dumps({}),
+            )
         call_command('check_locales_completion_rate', stdout=io.StringIO())
-        assert len(responses.calls) == 1
+        assert len(responses.calls) == 2
         assert len(mail.outbox) == 1
         self._test_full_run_empty_response()
 
-    def test_full_run_completely_empty_response(self):
-        responses.add(
-            responses.GET,
-            'https://pontoon.mozilla.org/graphql',
-            content_type='application/json',
-            body=json.dumps(
-                {
-                    'data': {
-                        'amo': {'localizations': []},
-                        'amoFrontend': {'localizations': []},
+    def test_full_run_empty_response(self):
+        for project in CheckLocalesCommand.PONTOON_PROJECTS:
+            responses.add(
+                responses.GET,
+                CheckLocalesCommand.PONTOON_API.format(PROJECT=project),
+                content_type='application/json',
+                body=json.dumps(
+                    {
+                        'data': {
+                            'amo': {'localizations': []},
+                            'amoFrontend': {'localizations': []},
+                        }
                     }
-                }
-            ),
-        )
+                ),
+            )
         call_command('check_locales_completion_rate', stdout=io.StringIO())
-        assert len(responses.calls) == 1
+        assert len(responses.calls) == 2
         assert len(mail.outbox) == 1
         self._test_full_run_empty_response()
 

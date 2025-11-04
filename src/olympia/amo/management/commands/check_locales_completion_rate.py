@@ -1,4 +1,3 @@
-import re
 from collections import defaultdict
 
 from django.conf import settings
@@ -19,33 +18,8 @@ class Command(BaseCommand):
         'Check locales completion rate for AMO projects in Pontoon and warn '
         'us by email of any falling below pre-established thresholds'
     )
-    PONTOON_API = 'https://pontoon.mozilla.org/graphql'
-    PONTOON_QUERY = """
-    query {
-      amo: project(slug: "amo") {
-        ...projectFields
-      }
-      amoFrontend: project(slug: "amo-frontend") {
-        ...projectFields
-      }
-    }
-
-    fragment projectFields on Project {
-      name
-      localizations {
-        locale {
-          code
-          name
-        }
-        totalStrings
-        approvedStrings
-      }
-    }
-    """
-    # Number of Pontoon projects we expect each locale to be in based on the
-    # query above. AMO locales are split into 2 projects, our query reflects
-    # that by querying amo and amoFrontend.
-    PONTOON_PROJECTS = 2
+    PONTOON_API = 'https://pontoon.mozilla.org/api/v2/projects/{PROJECT}/'
+    PONTOON_PROJECTS = ('amo', 'amo-frontend')
     # Threshold to enable/disable locales.
     COMPLETION_THRESHOLD = 80
     # Arbitrary list of locales we always want to keep, either because they
@@ -80,13 +54,14 @@ class Command(BaseCommand):
         locales_above_threshold = set()
         locales_already_on_amo = set(settings.AMO_LANGUAGES)
         seen_locales = defaultdict(int)
-        data = self.fetch_data()
-        for project, project_data in data.items():
+
+        for project in self.PONTOON_PROJECTS:
+            project_data = self.fetch_data(project)
             for locale_data in project_data.get('localizations', []):
                 locale = self.get_locale(locale_data)
                 seen_locales[locale] += 1
                 completion = self.get_completion(locale_data)
-                # If we see a locale below treshold, immediately add it to the
+                # If we see a locale below threshold, immediately add it to the
                 # relevant set.
                 if completion < self.COMPLETION_THRESHOLD:
                     self.stdout.write(
@@ -108,9 +83,8 @@ class Command(BaseCommand):
         # a locale would disappear completely from pontoon and still be enabled
         # on our side.
         for locale in locales_already_on_amo | locales_above_threshold:
-            if (
-                locale != settings.LANGUAGE_CODE
-                and seen_locales[locale] != self.PONTOON_PROJECTS
+            if locale != settings.LANGUAGE_CODE and seen_locales[locale] != len(
+                self.PONTOON_PROJECTS
             ):
                 self.stdout.write(
                     f'❌ {self.pretty_locale_name(locale)} is only in '
@@ -130,10 +104,8 @@ class Command(BaseCommand):
         locales_below_threshold &= locales_already_on_amo
         return locales_below_threshold, locales_above_threshold
 
-    def fetch_data(self):
-        self.stdout.write(
-            f'Calling pontoon with {re.sub(r"\s", "", self.PONTOON_QUERY)}'
-        )
+    def fetch_data(self, project):
+        self.stdout.write(f'Calling pontoon REST api with [{project}]')
         session = requests.Session()
         adapter = HTTPAdapter(
             max_retries=Retry(
@@ -143,15 +115,14 @@ class Command(BaseCommand):
             )
         )
         session.mount('https://', adapter)
-        response = session.get(
-            self.PONTOON_API, params={'query': self.PONTOON_QUERY}, timeout=5
-        )
+        response = session.get(self.PONTOON_API.format(PROJECT=project), timeout=5)
         response.raise_for_status()
-        data = response.json().get('data', {})
-        return data
+        return response.json()
 
     def get_completion(self, locale_data):
-        return round(locale_data['approvedStrings'] / locale_data['totalStrings'] * 100)
+        return round(
+            locale_data['approved_strings'] / locale_data['total_strings'] * 100
+        )
 
     def get_locale(self, locale_data):
         return locale_data['locale']['code']
