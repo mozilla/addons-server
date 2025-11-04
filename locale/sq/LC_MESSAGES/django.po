@@ -1284,16 +1284,16 @@ msgstr "Prapakthim versioni"
 #: src/olympia/constants/activity.py:1216
 #, python-brace-format
 msgid "{addon} rollback from {version} failed."
-msgstr ""
+msgstr "Prapakthimi nga {version} për {addon} dështoi."
 
 #: src/olympia/constants/activity.py:1217
 msgid "Version rollback failure"
-msgstr ""
+msgstr "Dështim prapakthimi në version"
 
 #: src/olympia/constants/activity.py:1246
 #, python-brace-format
 msgid "{addon} {0} property edited."
-msgstr ""
+msgstr "U përpunua vetia {addon} {0}"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -1808,7 +1808,7 @@ msgstr ""
 
 #: src/olympia/constants/promoted.py:151
 msgid "Partner"
-msgstr ""
+msgstr "Partner"
 
 #: src/olympia/constants/reviewers.py:23
 msgid "No Reputation"
@@ -2103,7 +2103,7 @@ msgstr "Diç shkoi ters, ju lutemi, lidhuni me asistencën për zhvillues."
 
 #: src/olympia/devhub/forms.py:1653
 msgid "No appropriate version available"
-msgstr ""
+msgstr "S’ka të gatshëm version të përshtatshëm"
 
 #: src/olympia/devhub/forms.py:1660
 msgid "Choose version"
@@ -2115,7 +2115,7 @@ msgstr "Shënime hedhjeje në qarkullim"
 
 #: src/olympia/devhub/forms.py:1670
 msgid "Automatic rollback based on version [m.m]."
-msgstr ""
+msgstr "Prapakthim i automatizuar bazuar në version [m.m]."
 
 #: src/olympia/devhub/forms.py:1743
 msgid "You must select a channel and version to rollback to."
