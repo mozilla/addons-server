@@ -4848,20 +4848,18 @@ msgstr "Zapisuj informacje z Internetu w usłudze OneNote, aby edytować, adnoto
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:185
-#, fuzzy
 msgid "Stop ad trackers when you click Google and Yandex search returns."
-msgstr "Powstrzymaj usługi śledzenia, gdy klikasz wyniki wyszukiwania Google i Yandex."
+msgstr "Powstrzymaj trackery reklamowe, gdy klikasz wyniki wyszukiwania Google i Yandex."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:188
-#, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages, and more."
-msgstr "Używaj gestów myszą, aby zamykać karty, przechodzić do poprzedniej strony, wczytywać stronę ponownie itp."
+msgstr "Używaj gestów myszy do zamykania kart, nawigowania po stronach i nie tylko."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:191
 msgid "See thumbnail images alongside your search returns."
-msgstr ""
+msgstr "Oglądaj miniatury obrazów wraz z wynikami wyszukiwania."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:194
