@@ -5892,7 +5892,7 @@ msgstr ""
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1052
 msgid "Twitch customization"
-msgstr ""
+msgstr "Përshtatje Twitch"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1054 src/olympia/discovery/strings.jinja2:1056 src/olympia/discovery/strings.jinja2:1058
