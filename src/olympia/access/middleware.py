@@ -24,10 +24,10 @@ class UserAndAddrMiddleware(MiddlewareMixin):
     def process_response(self, request, response):
         core.set_user(None)
         core.set_remote_addr(None)
-        core.set_request_metadata()
+        core.set_request_metadata(None)
         return response
 
     def process_exception(self, request, exception):
         core.set_user(None)
         core.set_remote_addr(None)
-        core.set_request_metadata()
+        core.set_request_metadata(None)

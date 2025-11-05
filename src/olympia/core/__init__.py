@@ -1,5 +1,6 @@
 import contextlib
 import threading
+from collections.abc import Mapping
 
 
 _locals = threading.local()
@@ -33,8 +34,8 @@ def get_request_metadata():
     return getattr(_locals, 'request_metadata', None) or {}
 
 
-def set_request_metadata(data=None):
-    if data:
+def set_request_metadata(data):
+    if data and isinstance(data, Mapping):
         _locals.request_metadata = {key: value for key, value in data.items() if value}
     else:
         _locals.request_metadata = None
