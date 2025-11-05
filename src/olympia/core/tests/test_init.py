@@ -36,9 +36,9 @@ def test_get_request_metadata_and_set_request_metadata():
     assert core.get_request_metadata() == {'a': 'b'}
 
 
-def test_select_request_fingerprint_headers():
-    assert core.select_request_fingerprint_headers(HttpHeaders({})) == {}
+def test_select_request_metadata():
+    assert core.select_request_metadata(HttpHeaders({})) == {}
 
-    assert core.select_request_fingerprint_headers(
+    assert core.select_request_metadata(
         HttpHeaders({'HTTP_Client-JA4': None, 'HTTP_X_SigSci-TAGS': 'SOME,tags'})
     ) == {'X-SigSci-Tags': 'SOME,tags'}

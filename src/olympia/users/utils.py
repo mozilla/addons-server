@@ -146,9 +146,7 @@ class RestrictionChecker:
         if self.request:
             self.user = self.request.user
             self.ip_address = self.request.META.get('REMOTE_ADDR', '')
-            self.request_metadata = core.select_request_fingerprint_headers(
-                request.headers
-            )
+            self.request_metadata = core.select_request_metadata(request.headers)
         elif self.upload:
             self.user = self.upload.user
             self.ip_address = self.upload.ip_address
