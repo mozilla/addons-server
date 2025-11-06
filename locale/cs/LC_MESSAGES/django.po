@@ -5884,7 +5884,7 @@ msgstr "Změňte barvy Firefoxu pro každou webovou stránku, kterou navštíví
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1042
 msgid "Learning a new language? Yomitan is the ideal dictionary companion."
-msgstr "Učíte se nový jazyk? Yomitan je ideální doplněk slovníku."
+msgstr "Učíte se nový jazyk? Yomitan je ideálním slovníkovým společníkem."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1045
@@ -5894,17 +5894,17 @@ msgstr "Přibalte si do Firefoxu výkonný tezaurus."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1048
 msgid "Hover over web images to enlarge their appearance."
-msgstr "Najeďte myší na webové obrázky pro zvětšení jejich vzhledu."
+msgstr "Najetím na webové obrázky zvětšíte jejich vzhled."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1051
 msgid "Feature rich translation tool. Works across the web, eBooks, PDF's, even video subtitles."
-msgstr "Bohatý překladatelský nástroj. Funguje na celém webu, e-knihy, PDF, dokonce i video titulky."
+msgstr "Překladatelský nástroj s bohatými funkcemi. Funguje napříč webem, elektronickými knihami, soubory PDF i titulky k videím."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1054
 msgid "Track the time you spend on every website you visit."
-msgstr "Sledujte čas, který strávíte na každé stránce, kterou navštívíte."
+msgstr "Sledujte čas strávený na každé navštívené webové stránce."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1057
@@ -5924,7 +5924,7 @@ msgstr "Zanechávejte si poznámky ke každé stránce."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1066
 msgid "Serenity for your Reddit experience."
-msgstr "Serenity pro váš Reddit zážitek."
+msgstr "Klid pro váš zážitek na Redditu."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1069
@@ -5939,7 +5939,7 @@ msgstr "Ovládání videa ve formátu WebM na dosah ruky."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1075
 msgid "Disguise Firefox as the Chrome browser to spoof websites that try to block Firefox."
-msgstr "Zamaskujte Firefox jako prohlížeč Chrome, abyste mohli předstírat, že se vás pokouší blokovat Firefox."
+msgstr "Převlečte Firefox za prohlížeč Chrome a podvrhněte webové stránky, které se snaží blokovat Firefox."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1078
