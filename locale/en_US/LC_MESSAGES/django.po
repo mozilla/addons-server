@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-03 09:59+0000\n"
+"POT-Creation-Date: 2025-11-06 09:45+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -4903,6 +4903,54 @@ msgstr "Translate text without leaving the page you're on (PDF compatible)."
 #. editorial content for the primary hero shelves.
 msgid "Change the color of Firefox to match every website you visit."
 msgstr "Change the color of Firefox to match every website you visit."
+
+#. editorial content for the primary hero shelves.
+msgid "Learning a new language? Yomitan is the ideal dictionary companion."
+msgstr "Learning a new language? Yomitan is the ideal dictionary companion."
+
+#. editorial content for the primary hero shelves.
+msgid "Pack a powerful thesaurus right inside Firefox."
+msgstr "Pack a powerful thesaurus right inside Firefox."
+
+#. editorial content for the primary hero shelves.
+msgid "Hover over web images to enlarge their appearance."
+msgstr "Hover over web images to enlarge their appearance."
+
+#. editorial content for the primary hero shelves.
+msgid "Feature rich translation tool. Works across the web, eBooks, PDF's, even video subtitles."
+msgstr "Feature rich translation tool. Works across the web, eBooks, PDF's, even video subtitles."
+
+#. editorial content for the primary hero shelves.
+msgid "Track the time you spend on every website you visit."
+msgstr "Track the time you spend on every website you visit."
+
+#. editorial content for the primary hero shelves.
+msgid "Manage your Gmail (even multiple accounts) right from a handy pop-up accessible from the Firefox toolbar."
+msgstr "Manage your Gmail (even multiple accounts) right from a handy pop-up accessible from the Firefox toolbar."
+
+#. editorial content for the primary hero shelves.
+msgid "De-clutter YouTube. Strip away unwanted elements like related videos, shorts & more."
+msgstr "De-clutter YouTube. Strip away unwanted elements like related videos, shorts & more."
+
+#. editorial content for the primary hero shelves.
+msgid "Leave yourself little notes on any web page."
+msgstr "Leave yourself little notes on any web page."
+
+#. editorial content for the primary hero shelves.
+msgid "Serenity for your Reddit experience."
+msgstr "Serenity for your Reddit experience."
+
+#. editorial content for the primary hero shelves.
+msgid "Save and organize anything you find on the web."
+msgstr "Save and organize anything you find on the web."
+
+#. editorial content for the primary hero shelves.
+msgid "WebM video controls at your fingertips."
+msgstr "WebM video controls at your fingertips."
+
+#. editorial content for the primary hero shelves.
+msgid "Disguise Firefox as the Chrome browser to spoof websites that try to block Firefox."
+msgstr "Disguise Firefox as the Chrome browser to spoof websites that try to block Firefox."
 
 #. editorial content for the secondary hero shelves.
 #, fuzzy
