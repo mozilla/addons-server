@@ -5950,22 +5950,22 @@ msgstr "Zawóstajśo małe notice na kuždem webboku."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1066
 msgid "Serenity for your Reddit experience."
-msgstr ""
+msgstr "Sćerpnosć za wašo dožywjenje Reddit."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1069
 msgid "Save and organize anything you find on the web."
-msgstr ""
+msgstr "Składujśo a organizěrujśo wšykno, což we webje namakajośo."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1072
 msgid "WebM video controls at your fingertips."
-msgstr ""
+msgstr "Wóźeńske elementy wideo WebM k ruce."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1075
 msgid "Disguise Firefox as the Chrome browser to spoof websites that try to block Firefox."
-msgstr ""
+msgstr "Tarnujśo Firefox ako wobglědowak Chrome, aby websedła torił, kótarež wopytuju Firefox blokěrowaś."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1078
