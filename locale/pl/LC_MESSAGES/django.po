@@ -4665,9 +4665,8 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:83
-#, fuzzy
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ configurations."
-msgstr "Odkryj nowy sposób nawigacji przy użyciu ponad 50 przydatnych gestów myszą."
+msgstr "Personalizuj gesty myszki. Odkrywaj nowe sposoby nawigacji dzięki ponad 50 konfiguracjom."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4874,9 +4873,8 @@ msgstr "Zablokuj domyślnie wszystkie okna wyskakujące, a następnie wybierz, k
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:200
-#, fuzzy
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
-msgstr "Zmień wygląd dowolnej witryny! Przełączaj kolory, tła stron i nie tylko."
+msgstr "Personalizuj wygląd dowolnej witryny. Przełączaj kolory, tła stron i nie tylko."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:203
@@ -5421,7 +5419,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:512 src/olympia/discovery/strings.jinja2:733
 msgid "Customize shades of light and dark to make web pages more visually pleasing."
-msgstr ""
+msgstr "Dostosuj jasne i ciemne odcienie, aby strony internetowe były bardziej atrakcyjne wizualnie."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5503,7 +5501,7 @@ msgstr "Łatwe organizowanie wielu otwartych kart."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:558 src/olympia/discovery/strings.jinja2:817
 msgid "Create and customize tab groups."
-msgstr ""
+msgstr "Twórz i personalizuj grupy kart."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:561
@@ -5616,7 +5614,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:628
 msgid "Customize YouTube to taste. Give it a new look, new features & filter only the content you want."
-msgstr ""
+msgstr "Dostosuj YouTube do swoich potrzeb. Nadaj mu nowy wygląd, nowe funkcje i filtruj tylko interesujące Cię treści."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:640
@@ -5701,7 +5699,7 @@ msgstr "Czytaj pliki ePUB bezpośrednio w Firefoksie — zwiększaj rozmiar teks
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:778
 msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configurations."
-msgstr "Dostosuj gesty myszki. Odkrywaj nowe sposoby nawigacji dzięki ponad 50 konfiguracjom."
+msgstr "Personalizuj gesty myszki. Odkrywaj nowe sposoby nawigacji dzięki ponad 50 konfiguracjom."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:829
