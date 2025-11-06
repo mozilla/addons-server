@@ -2023,6 +2023,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         self.upload.update(
             user=user,
             ip_address='5.6.7.8',
+            request_metadata={'Client-JA4': 'd123-456', 'X-SigSci-Tags': 'TAG1,TAG2'},
             source=source,
         )
         with self.assertLogs(logger='z.versions', level='INFO') as logs:
@@ -2056,6 +2057,9 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert activities[1].action == amo.LOG.ADD_VERSION.id
         assert activities[1].arguments == [version, self.addon]
         assert activities[1].user == user
+        assert activities[1].iplog._ip_address == self.upload.ip_address
+        assert activities[1].requestfingerprintlog.ja4 == 'd123-456'
+        assert activities[1].requestfingerprintlog.signals == ['TAG1', 'TAG2']
 
     def test_logging_signing_api(self):
         self._test_logging(amo.UPLOAD_SOURCE_SIGNING_API)

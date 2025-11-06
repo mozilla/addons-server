@@ -61,7 +61,7 @@ class TestUserProfile(TestCase):
 
     def test_logged_in(self):
         user = user_factory()
-        with core.override_remote_addr('4.8.15.16'):
+        with core.override_remote_addr_or_metadata(ip_address='4.8.15.16'):
             self.client.force_login(user)
         user.reload()
         assert user.last_login_ip == '4.8.15.16'
@@ -70,7 +70,7 @@ class TestUserProfile(TestCase):
         assert log.user == user
         assert log.iplog.ip_address_binary == IPv4Address('4.8.15.16')
 
-        with core.override_remote_addr('23.42.42.42'):
+        with core.override_remote_addr_or_metadata(ip_address='23.42.42.42'):
             self.client.force_login(user)
         assert user.last_login_ip == '23.42.42.42'
         assert ActivityLog.objects.filter(action=amo.LOG.LOG_IN.id).count() == 2
