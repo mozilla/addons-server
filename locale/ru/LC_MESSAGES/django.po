@@ -5970,12 +5970,12 @@ msgstr "Сохраняйте и организуйте всё, что найдё
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1072
 msgid "WebM video controls at your fingertips."
-msgstr ""
+msgstr "Управление видео WebM на кончиках ваших пальцев."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1075
 msgid "Disguise Firefox as the Chrome browser to spoof websites that try to block Firefox."
-msgstr ""
+msgstr "Замаскируйте Firefox под браузер Chrome, чтобы обвести веб-сайты, которые пытаются заблокировать Firefox."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1078
