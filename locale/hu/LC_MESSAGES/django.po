@@ -5924,7 +5924,7 @@ msgstr "Funkciógazdag fordítási eszköz. Működik a weben, az e-könyvekben,
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1054
 msgid "Track the time you spend on every website you visit."
-msgstr ""
+msgstr "Kövesse nyomon az összes felkeresett webhelyen töltött időt."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1057
