@@ -5904,22 +5904,22 @@ msgstr "Módosítsa a Firefox színét, hogy illeszkedjen minden felkeresett web
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1042
 msgid "Learning a new language? Yomitan is the ideal dictionary companion."
-msgstr ""
+msgstr "Új nyelvet tanul? A Yomitan az ideális társ."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1045
 msgid "Pack a powerful thesaurus right inside Firefox."
-msgstr ""
+msgstr "Csomagoljon egy hatékony tezauruszt közvetlenül a Firefoxba."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1048
 msgid "Hover over web images to enlarge their appearance."
-msgstr ""
+msgstr "Vigye az egeret a webes képek fölé, hogy kinagyítsa őket."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1051
 msgid "Feature rich translation tool. Works across the web, eBooks, PDF's, even video subtitles."
-msgstr ""
+msgstr "Funkciógazdag fordítási eszköz. Működik a weben, az e-könyvekben, PDF-ekben, sőt még a videófeliratokban is."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1054
