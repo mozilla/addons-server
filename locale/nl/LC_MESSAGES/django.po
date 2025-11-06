@@ -5937,12 +5937,12 @@ msgstr "Laat kleine notities voor uzelf achter op webpagina’s."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1066
 msgid "Serenity for your Reddit experience."
-msgstr ""
+msgstr "Sereniteit voor uw Reddit-ervaring."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1069
 msgid "Save and organize anything you find on the web."
-msgstr ""
+msgstr "Bewaar en orden alles wat u op het web vindt."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1072
@@ -5952,7 +5952,7 @@ msgstr "WebM-videobediening binnen handbereik."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1075
 msgid "Disguise Firefox as the Chrome browser to spoof websites that try to block Firefox."
-msgstr ""
+msgstr "Vermom Firefox als de Chrome-browser om websites die Firefox proberen te blokkeren om de tuin te leiden."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1078
