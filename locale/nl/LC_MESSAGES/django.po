@@ -5897,7 +5897,7 @@ msgstr "Wijzig de kleur van Firefox zodat deze overeenkomt met elke bezochte web
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1042
 msgid "Learning a new language? Yomitan is the ideal dictionary companion."
-msgstr "Een nieuwe taal leren? Yomitan is de ideale metgezel voor een woordenboek."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1045
@@ -5912,7 +5912,7 @@ msgstr "Houd de muisaanwijzer boven webafbeeldingen om ze te vergroten."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1051
 msgid "Feature rich translation tool. Works across the web, eBooks, PDF's, even video subtitles."
-msgstr "Vertaalhulpmiddel met rijke functies. Werkt overal op het web, in eBoeken, PDF’s, zelfs ondertitels voor video’s."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1054
@@ -5927,22 +5927,22 @@ msgstr "Beheer uw Gmail (zelfs meerdere accounts) rechtstreeks vanuit een handig
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1060
 msgid "De-clutter YouTube. Strip away unwanted elements like related videos, shorts & more."
-msgstr "YouTube opruimen. Verwijder ongewenste elementen zoals gerelateerde video’s, korte films en meer."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1063
 msgid "Leave yourself little notes on any web page."
-msgstr "Laat kleine notities achter op webpagina’s."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1066
 msgid "Serenity for your Reddit experience."
-msgstr "Serenity voor uw Reddit-ervaring."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1069
 msgid "Save and organize anything you find on the web."
-msgstr "Bewaar en organiseer alles wat u op het web vindt."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1072
@@ -5952,7 +5952,7 @@ msgstr "WebM-videobediening binnen handbereik."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1075
 msgid "Disguise Firefox as the Chrome browser to spoof websites that try to block Firefox."
-msgstr "Firefox vermommen als de Chrome-browser om websites die Firefox proberen te blokkeren te vervalsen."
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1078
