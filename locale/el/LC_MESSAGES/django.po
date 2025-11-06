@@ -5948,7 +5948,7 @@ msgstr "Αλλάξτε το χρώμα του Firefox για να ταιριάζ
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1042
 msgid "Learning a new language? Yomitan is the ideal dictionary companion."
-msgstr ""
+msgstr "Μαθαίνετε μια νέα γλώσσα; Το Yomitan είναι το ιδανικό εργαλείο λεξικού."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1045
