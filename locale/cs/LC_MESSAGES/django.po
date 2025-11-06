@@ -5884,62 +5884,62 @@ msgstr "Změňte barvy Firefoxu pro každou webovou stránku, kterou navštíví
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1042
 msgid "Learning a new language? Yomitan is the ideal dictionary companion."
-msgstr ""
+msgstr "Učíte se nový jazyk? Yomitan je ideální doplněk slovníku."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1045
 msgid "Pack a powerful thesaurus right inside Firefox."
-msgstr ""
+msgstr "Přibalte si do Firefoxu výkonný tezaurus."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1048
 msgid "Hover over web images to enlarge their appearance."
-msgstr ""
+msgstr "Najeďte myší na webové obrázky pro zvětšení jejich vzhledu."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1051
 msgid "Feature rich translation tool. Works across the web, eBooks, PDF's, even video subtitles."
-msgstr ""
+msgstr "Bohatý překladatelský nástroj. Funguje na celém webu, e-knihy, PDF, dokonce i video titulky."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1054
 msgid "Track the time you spend on every website you visit."
-msgstr ""
+msgstr "Sledujte čas, který strávíte na každé stránce, kterou navštívíte."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1057
 msgid "Manage your Gmail (even multiple accounts) right from a handy pop-up accessible from the Firefox toolbar."
-msgstr ""
+msgstr "Spravujte svůj Gmail (dokonce i více účtů) přímo z šikovného vyskakovacího okna přístupného z nástrojové lišty Firefoxu."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1060
 msgid "De-clutter YouTube. Strip away unwanted elements like related videos, shorts & more."
-msgstr ""
+msgstr "Zbavte se nepořádku na YouTube. Odstraňte nežádoucí prvky, jako jsou podobná videa, krátké filmy a další."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1063
 msgid "Leave yourself little notes on any web page."
-msgstr ""
+msgstr "Zanechávejte si poznámky ke každé stránce."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1066
 msgid "Serenity for your Reddit experience."
-msgstr ""
+msgstr "Serenity pro váš Reddit zážitek."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1069
 msgid "Save and organize anything you find on the web."
-msgstr ""
+msgstr "Uložte si a uspořádejte vše, co na webu najdete."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1072
 msgid "WebM video controls at your fingertips."
-msgstr ""
+msgstr "Ovládání videa ve formátu WebM na dosah ruky."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1075
 msgid "Disguise Firefox as the Chrome browser to spoof websites that try to block Firefox."
-msgstr ""
+msgstr "Zamaskujte Firefox jako prohlížeč Chrome, abyste mohli předstírat, že se vás pokouší blokovat Firefox."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1078

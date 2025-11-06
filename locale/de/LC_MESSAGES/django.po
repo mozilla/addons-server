@@ -5915,62 +5915,62 @@ msgstr "Ändern Sie die Farbe von Firefox, damit sie zu jeder besuchten Website 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1042
 msgid "Learning a new language? Yomitan is the ideal dictionary companion."
-msgstr ""
+msgstr "Sie lernen eine neue Sprache? Yamitan ist das ideale Wörterbuch dazu."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1045
 msgid "Pack a powerful thesaurus right inside Firefox."
-msgstr ""
+msgstr "Rüsten Sie Firefox mit einem umfangreichen Thesaurus aus."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1048
 msgid "Hover over web images to enlarge their appearance."
-msgstr ""
+msgstr "Bewegen Sie die Maus über Web-Grafiken, um deren Erscheinungsbild zu vergrößern."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1051
 msgid "Feature rich translation tool. Works across the web, eBooks, PDF's, even video subtitles."
-msgstr ""
+msgstr "Übersetzungswerkzeug mit vielen Funktionen. Funktioniert im gesamten Web, in E-Books, bei PDFs und sogar bei Videountertiteln."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1054
 msgid "Track the time you spend on every website you visit."
-msgstr ""
+msgstr "Verfolgen Sie die Zeit, die Sie auf jeder besuchten Website verbringen."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1057
 msgid "Manage your Gmail (even multiple accounts) right from a handy pop-up accessible from the Firefox toolbar."
-msgstr ""
+msgstr "Verwalten Sie Ihr Gmail (sogar mehrere Konten) direkt aus einem praktischen Pop-up, auf das Sie über die Firefox-Symbolleiste zugreifen können."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1060
 msgid "De-clutter YouTube. Strip away unwanted elements like related videos, shorts & more."
-msgstr ""
+msgstr "Entrümpeln Sie YouTube. Entfernen Sie unerwünschte Elemente wie ähnliche Videos, Kurzfilme und mehr."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1063
 msgid "Leave yourself little notes on any web page."
-msgstr ""
+msgstr "Hinterlassen Sie sich kleine Notizen auf einer Webseite."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1066
 msgid "Serenity for your Reddit experience."
-msgstr ""
+msgstr "Gelassenheit für Ihr Reddit-Erlebnis."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1069
 msgid "Save and organize anything you find on the web."
-msgstr ""
+msgstr "Speichern und organisieren Sie alles, was Sie im Internet finden."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1072
 msgid "WebM video controls at your fingertips."
-msgstr ""
+msgstr "WebM-Videosteuerung in Griffweite."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1075
 msgid "Disguise Firefox as the Chrome browser to spoof websites that try to block Firefox."
-msgstr ""
+msgstr "Tarnen Sie Firefox als Chrome-Browser, um Websites zu täuschen, die Firefox blockieren wollen."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1078
