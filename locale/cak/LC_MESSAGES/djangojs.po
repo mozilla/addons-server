@@ -6,119 +6,145 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-06 09:46+0000\n"
 "Language: cak\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Pontoon\n"
 
+#: static/js/common/upload-addon.js:54 static/js/common/upload-image.js:136
 msgid "There was a problem contacting the server."
 msgstr "Xk'ulwachitäj jun k'ayewal toq nikanöx ri k'uxasamaj."
 
+#: static/js/common/upload-addon.js:78
 msgid "Select a file..."
 msgstr "Ticha' jun yakb'äl..."
 
+#: static/js/common/upload-addon.js:82
 msgid "Your add-on should end with .zip, .xpi or .crx"
 msgstr " Ri atz'aqat k'o ta chi nik'is rik'in .zip, .xpi, o .crx."
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#, python-format, python-brace-format
+#: static/js/common/upload-addon.js:118
+#, python-brace-format, python-format
 msgid "{0}% complete"
 msgstr "{0}% tz'aqät"
 
+#: static/js/common/upload-addon.js:122
 #, python-brace-format
 msgid "{0} of {1}"
 msgstr "{0} richin {1}"
 
+#: static/js/common/upload-addon.js:166
 msgid "Cancel"
 msgstr "Tiq'at"
 
+#: static/js/common/upload-addon.js:189
 #, python-brace-format
 msgid "Uploading {0}"
 msgstr "Nijotob'äx {0}"
 
+#: static/js/common/upload-addon.js:229
 #, python-brace-format
 msgid "Error with {0}"
 msgstr "Sachoj rik'in {0}"
 
+#: static/js/common/upload-addon.js:237
 msgid "Please make sure to report any linting related issues on GitHub"
 msgstr "Taya' rutzijol xab'achike k'ayewal rik'in ri runuk'ik cholaj pa GitHub"
 
+#: static/js/common/upload-addon.js:248
 #, python-brace-format
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] "Ri atz'aqat xsach rik'in ri rujikib'axik rik'in {0} sachoj."
 msgstr[1] "Ri atz'aqat xsach rik'in ri rujikib'axik kik'in {0} taq sachoj."
 
+#: static/js/common/upload-addon.js:266
 #, python-brace-format
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;chuqa'{0} ch'aqa' chik"
 msgstr[1] "&hellip;chuqa' {0} ch'aqa' chik"
 
+#: static/js/common/upload-addon.js:287 static/js/common/upload-addon.js:705
 msgid "See full validation report"
 msgstr "Titz'et ri tz'aqät rutzijol jikib'anem"
 
+#: static/js/common/upload-addon.js:300
 #, python-brace-format
 msgid "Validating {0}"
 msgstr "Nijikib'äx {0}"
 
+#: static/js/common/upload-addon.js:350
 #, python-brace-format
 msgid "Your add-on exceeds the maximum size of {0}."
 msgstr "Ri atz'aqat xik'o chuwa ri nïm runimilem {0}."
 
+#: static/js/common/upload-addon.js:358
 #, python-brace-format
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Xk'ulutäj jun kowöl tzolin rutzij k'uxasamaj; rub'anikil: {0}"
 
+#: static/js/common/upload-addon.js:403
 msgid "Your extension has to be compatible with at least one application."
 msgstr ""
 
+#: static/js/common/upload-addon.js:473
 msgid "Unexpected server error while validating."
 msgstr "Man oyob'en ta ri sachoj toq nijikib'äx."
 
+#: static/js/common/upload-addon.js:519
 msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
 msgstr ""
 
+#: static/js/common/upload-addon.js:561
 #, python-brace-format
 msgid "Finished validating {0}"
 msgstr "Xk'is richin nijikib'äx {0}"
 
+#: static/js/common/upload-addon.js:568
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr "Xk'is ruq'ijul rujikib'axik atz'aqat, chi q'ab'aj xtinik'öx."
 
+#: static/js/common/upload-addon.js:573
 #, python-brace-format
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] "Ri atz'aqat xjikib'äx rik'in majun sachoj chuqa' {0} rutzijol k'ayewal."
 msgstr[1] "Ri atz'aqat xjikib'äx rik'in majun taq sachoj chuqa' {0} kitzijol k'ayewal."
 
+#: static/js/common/upload-addon.js:582
 #, python-brace-format
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] "Ri atz'aqat xjikib'äx rik'in majun taq sachoj chuqa' {0} rutzijol."
 msgstr[1] "Ri atz'aqat xjikib'äx rik'in majun taq sachoj chuqa' {0} kitzijol."
 
+#: static/js/common/upload-addon.js:590
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "Ri atz'aqat xjikib'äx rik'in majun taq sachoj o kitzijol k'ayewal."
 
+#: static/js/common/upload-addon.js:651
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Ruk'wan ruch'utitzijol ruwäch (re re' tikirel nib'an pa ri jun chik xak)."
 
+#: static/js/common/upload-addon.js:654
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
-"We ri atz'aqat nrajo' jun rub'i' taqoya'l pa jun ruxaq k'amaya'l richin nitojtob'ëx ütz, tatz'aqatisaj jun tojtob'enel okisaxel chuqa' ewan tzij pa ri Ch'utitzijol richin ri Nik'onel (re re' "
-"tikirel nib'an pa ri jun chik xak)."
+"We ri atz'aqat nrajo' jun rub'i' taqoya'l pa jun ruxaq k'amaya'l richin nitojtob'ëx ütz, tatz'aqatisaj jun tojtob'enel okisaxel chuqa' ewan tzij pa ri Ch'utitzijol richin ri Nik'onel (re re' tikirel"
+" nib'an pa ri jun chik xak)."
 
+#: static/js/common/upload-addon.js:660
 msgid "Add-on submission checklist"
 msgstr "Rucholb'al kijikib'anem kitaqik taq tz'aqat"
 
+#: static/js/common/upload-addon.js:664
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Tanik'oj re taq rupam re' chuwäch nak'isib'ej ri ataqoj. Re re' xtuch'utinisaj yokenïk o itzel taq na'oj toq ninik'öx:"
 
+#: static/js/common/upload-addon.js:671
 #, fuzzy
 msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
@@ -127,365 +153,457 @@ msgstr ""
 "Ri molon taq kach'akul, achi'el chuqa' ri taq skrip ech'utinisan o yesachon (man ye'ok ta ri taq wujb'äl etaman kiwäch) k'o chi yetaq chi kijujunal richin yenik'öx. Tajikib'a' chi nawokisaj ri "
 "k'ojlib'äl richin nijotob'äx ruxe'el b'itz'ib' richin chi man tixutüx pe ri ataqoj."
 
+#: static/js/common/upload-addon.js:684
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Ri rusamajixik jikib'anem xrïl re taq k'ayewal re' ri yetikïr nikib'än chi xtixutüx pe:"
 
+#: static/js/common/upload-base.js:69
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Man netamäx ta ruwäch ri ruwäch yakb'äl xajotob'a'."
 
+#: static/js/common/upload-base.js:79 static/js/zamboni/global.js:569
 #, python-brace-format
 msgid "Your file exceeds the maximum size of {0}."
 msgstr "Ri ayakb'al xik'o chuwa ri nïm runimilem {0}."
 
+#: static/js/common/upload-base.js:105
 msgid "You cancelled the upload."
 msgstr "Xaq'ät rujotob'axik."
 
+#: static/js/common/upload-image.js:102
 msgid "Images must be either PNG or JPG."
 msgstr "Ri taq wachib'äl k'o chi e PNG o JPG kib'anikil."
 
+#: static/js/common/upload-image.js:106
 msgid "Videos must be in WebM."
 msgstr "Ri taq silowäch k'o chi e WebM kib'anikil."
 
+#: static/js/stats/chart.js:283
 #, python-brace-format
 msgid "Week of {0}"
 msgstr "Ruwuqq'ij {0}"
 
+#: static/js/stats/chart.js:292
 #, python-brace-format
 msgid "{0} download"
 msgid_plural "{0} downloads"
 msgstr[0] "{0} qasanïk"
 msgstr[1] "{0} taq qasanïk"
 
+#: static/js/stats/chart.js:298
 #, python-brace-format
 msgid "{0} user"
 msgid_plural "{0} users"
 msgstr[0] "{0} okisanel"
 msgstr[1] "{0} okisanela'"
 
+#: static/js/stats/chart.js:362 static/js/stats/csv_keys.js:3 static/js/stats/csv_keys.js:9
 msgid "Downloads"
 msgstr "Taq qasanïk"
 
+#: static/js/stats/chart.js:374 static/js/stats/csv_keys.js:6 static/js/stats/csv_keys.js:10
 msgid "Daily Users"
 msgstr "Q'ij chi Q'ij Okisanela'"
 
+#: static/js/stats/chart.js:409
 msgid "More Info..."
 msgstr "Ch'aqa' chik Etamab'äl..."
 
 #. L10n: {0} is an ISO-formatted date.
+#: static/js/stats/chart.js:415
 #, python-brace-format
 msgid "Details for {0}"
 msgstr "Kib'anikil {0}"
 
+#: static/js/stats/csv_keys.js:13
 msgid "Firefox"
 msgstr "Firefox"
 
+#: static/js/stats/csv_keys.js:14
 msgid "Mozilla"
 msgstr "Mozilla"
 
+#: static/js/stats/csv_keys.js:15
 msgid "Thunderbird"
 msgstr "Thunderbird"
 
+#: static/js/stats/csv_keys.js:16
 msgid "Sunbird"
 msgstr "Sunbird"
 
+#: static/js/stats/csv_keys.js:17
 msgid "SeaMonkey"
 msgstr "SeaMonkey"
 
+#: static/js/stats/csv_keys.js:18
 msgid "Fennec"
 msgstr "Fennec"
 
+#: static/js/stats/csv_keys.js:19
 msgid "Android"
 msgstr "Android"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:24
 #, python-brace-format
 msgid "Downloads and Daily Users, last {0} days"
 msgstr "Taq Qasanïk chuqa' Q'ij chi Q'ij Okisanela', ri ruk'isib'äl {0} q'ij"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:26
 #, python-brace-format
 msgid "Downloads and Daily Users from {0} to {1}"
 msgstr "Taq Qasanïk chuqa' Q'ij chi Q'ij Okisanela' pa {0} k'a {1}"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:30
 #, python-brace-format
 msgid "Downloads, last {0} days"
 msgstr "Taq qasanïk, ri ruk'isib'äl {0} q'ij"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:32
 #, python-brace-format
 msgid "Downloads from {0} to {1}"
 msgstr "Taq qasanïk pa {0} k'a {1}"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:36
 #, python-brace-format
 msgid "Daily Users, last {0} days"
 msgstr "Q'ij chi Q'ij Okisanela', ri ruk'isib'äl {0} q'ij"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:38
 #, python-brace-format
 msgid "Daily Users from {0} to {1}"
 msgstr "Q'ij chi Q'ij Okisanela' pa {0} k'a {1}"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:42
 #, python-brace-format
 msgid "Applications, last {0} days"
 msgstr "Taq chokoy, ri ruk'sib'äl {0} q'ij"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:44
 #, python-brace-format
 msgid "Applications from {0} to {1}"
 msgstr "Taq chokoy pa {0} k'a {1}"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:48
 #, python-brace-format
 msgid "Countries, last {0} days"
 msgstr "Taq amaq', ri ruk'sib'äl {0} q'ij"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:50
 #, python-brace-format
 msgid "Countries from {0} to {1}"
 msgstr "Taq amaq' pa {0} k'a {1}"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:54
 #, python-brace-format
 msgid "Platforms, last {0} days"
 msgstr "Taq nuk'uche'el, ri ruk'sib'äl {0} q'ij"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:56
 #, python-brace-format
 msgid "Platforms from {0} to {1}"
 msgstr "Taq nuk'uche'el pa {0} k'a {1}"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:60
 #, python-brace-format
 msgid "Languages, last {0} days"
 msgstr "Taq ch'ab'äl, ri ruk'isib'äl {0} q'ij"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:62
 #, python-brace-format
 msgid "Languages from {0} to {1}"
 msgstr "Taq ch'ab'äl pa {0} k'a {1}"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:66
 #, python-brace-format
 msgid "Add-on Versions, last {0} days"
 msgstr "Kiwäch Tz'aqat, ri ruk'sib'äl {0} q'ij"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:68
 #, python-brace-format
 msgid "Add-on Versions from {0} to {1}"
 msgstr "Kiwäch Tz'aqat pa {0} k'a {1}"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:72
 #, python-brace-format
 msgid "Download Sources, last {0} days"
 msgstr "Kiqasaxïk Taq Xe'el, ri ruk'isib'äl {0} q'ij"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:74
 #, python-brace-format
 msgid "Download Sources from {0} to {1}"
 msgstr "Kiqasaxik Xe'el pa {0} k'a {1}"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:78
 #, python-brace-format
 msgid "Download Mediums, last {0} days"
 msgstr "Loman Taq Qasanïk, ruk'isib'äl {0} q'ij"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:80
 #, python-brace-format
 msgid "Download Mediums from {0} to {1}"
 msgstr "Loman Taq Qasanïk pa {0} k'a {1}"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:84
 #, python-brace-format
 msgid "Download Contents, last {0} days"
 msgstr "Kiqasaxïk Taq Rupam, ruk'isib'äl {0} q'ij"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:86
 #, python-brace-format
 msgid "Download Contents from {0} to {1}"
 msgstr "Kiqasaxik Taq Rupam pa {0} k'a {1}"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:90
 #, python-brace-format
 msgid "Download Campaigns, last {0} days"
 msgstr "Keqasäx taq Samajinem, ruk'isib'äl {0} q'ij"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:92
 #, python-brace-format
 msgid "Download Campaigns from {0} to {1}"
 msgstr "Keqasäx taq Samajinem pa {0} k'a {1}"
 
 #. L10n: {0} and {1} are integers.
+#: static/js/stats/csv_keys.js:98
 #, python-brace-format
 msgid "<b>{0}</b> in last {1} days"
 msgstr "<b>{0}</b> pa ruk'isib'äl {1} q'ij"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:100 static/js/stats/csv_keys.js:106
 #, python-brace-format
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "<b>{0}</b> pa {1} k'a {2}"
 
 #. L10n: {0} and {1} are integers.
+#: static/js/stats/csv_keys.js:104
 #, python-brace-format
 msgid "<b>{0}</b> average in last {1} days"
 msgstr "<b>{0}</b> junamilil pa ruk'isib'äl {1} q'ij"
 
+#: static/js/stats/overview.js:18
 msgid "No data available."
 msgstr "Majun tzij wachel."
 
+#: static/js/stats/table.js:84
 msgid "Date"
 msgstr "Q'ijul"
 
+#: static/js/stats/topchart.js:108
 msgid "Other"
 msgstr "Juley chik"
 
+#: static/js/zamboni/devhub.js:300
 msgid "Changes Saved"
 msgstr "Xeyak taq Jaloj"
 
+#: static/js/zamboni/devhub.js:316
 msgid "Enter a new author's email address"
 msgstr "Titz'ib'äx jun k'ak'a' ochochib'al rutaqoya'l b'anel"
 
+#: static/js/zamboni/devhub.js:440
 msgid "There was an error uploading your file."
 msgstr "Xk'ulwachitäj jun sachoj toq nijotob'äx ayakb'al."
 
+#: static/js/zamboni/devhub.js:596
 #, python-brace-format
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} yakb'äl"
 msgstr[1] "{files} taq yakb'äl"
 
+#: static/js/zamboni/devhub.js:1196
 msgid "Image changes being processed"
 msgstr "Yesamajïx ri taq jaloj pa ri wachib'äl"
 
+#: static/js/zamboni/global.js:463
 #, python-brace-format
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> tz'ib'."
 msgstr[1] "<b>{0}</b> tz'ib'."
 
+#: static/js/zamboni/global.js:472
 #, python-brace-format
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "<b>{0}</b> jun chik tz'ib'."
 msgstr[1] "<b>{0}</b> juley chik taq tz'ib'."
 
+#: static/js/zamboni/init.js:12
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "Chupül re b'anikil re' k'a niqab'än na ruk'ojlem re ajk'amaya'l ruxaq. Tatojtob'ej chik pa ka'i' oxi' ch'utiramaj."
 
+#: static/js/zamboni/l10n.js:164
 msgid "Remove this localization"
 msgstr "Tiyuj re k'ojlemal re'"
 
+#: static/js/zamboni/reviewers.js:258
 #, python-brace-format
 msgid "{name} was viewing this page first."
 msgstr "{name} rutz'eton chik wi re ruxaq re'."
 
+#: static/js/zamboni/reviewers.js:266
 msgid "Review page polling failed."
 msgstr ""
 
+#: static/js/zamboni/reviewers.js:583
 #, python-brace-format
 msgid "{name} was viewing this add-on first."
 msgstr "{name} rutz'eton chik wi re tz'aqat re'."
 
+#: static/js/zamboni/reviewers.js:596 static/js/zamboni/reviewers.js:622
 msgid "Loading&hellip;"
 msgstr "Nisamajib'ëx&hellip;"
 
+#: static/js/zamboni/reviewers.js:601
 msgid "Version Notes"
 msgstr "Kich'utitzijol Ruwäch"
 
+#: static/js/zamboni/reviewers.js:608
 msgid "Notes for Reviewers"
 msgstr "Kich'utitzijol Nik'onela'"
 
+#: static/js/zamboni/reviewers.js:615
 msgid "No version notes found"
 msgstr "Majun kich'utitzijol ruwäch xilitäj"
 
+#: static/js/zamboni/reviewers.js:627
 msgid "Review Text"
 msgstr "Tinik'öx Cholan Rutzij"
 
+#: static/js/zamboni/reviewers.js:634
 msgid "Review notes found"
 msgstr "Kenik'öx taq ch'utitzijol xe'ilitäj"
 
+#: static/js/zamboni/static_theme.js:217
 #, python-brace-format
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "Ri nïm rupalem rusamajib'exik ja ri {0} - tacha' jun ko'öl ruwachib'al rupam."
 
+#: static/js/zamboni/themes_review.js:199
 msgid "Requested Info"
 msgstr "K'utun Etamab'äl"
 
+#: static/js/zamboni/themes_review.js:200
 msgid "Flagged"
 msgstr "Xya' retal"
 
+#: static/js/zamboni/themes_review.js:201
 msgid "Duplicate"
 msgstr "Kamulun"
 
+#: static/js/zamboni/themes_review.js:202
 msgid "Rejected"
 msgstr "Xutun"
 
+#: static/js/zamboni/themes_review.js:203
 msgid "Approved"
 msgstr "Juch'un"
 
+#: static/js/zamboni/themes_review.js:492
 msgid "No results found"
 msgstr "Majun achike xilitäj"
 
+#: static/js/zamboni/themes_review_templates.js:43
 msgid "Theme"
 msgstr "Wachinïk"
 
+#: static/js/zamboni/themes_review_templates.js:45
 msgid "Reviewer"
 msgstr "Nik'onel"
 
+#: static/js/zamboni/themes_review_templates.js:47
 msgid "Status"
 msgstr "B'anikil"
 
+#: static/js/zamboni/validator.js:89
 msgid "All tests passed successfully."
 msgstr "Ütz xe'ik'owisäx ronojel ri taq tojtob'enïk."
 
+#: static/js/zamboni/validator.js:92 static/js/zamboni/validator.js:388
 msgid "These tests were not run."
 msgstr "Man xesamajib'ëx ta re taq tojtob'enïk re'."
 
+#: static/js/zamboni/validator.js:155 static/js/zamboni/validator.js:177
 msgid "Tests"
 msgstr "Taq tojtob'enïk"
 
+#: static/js/zamboni/validator.js:259 static/js/zamboni/validator.js:492 static/js/zamboni/validator.js:516
 msgid "Error"
 msgstr "Sachoj"
 
+#: static/js/zamboni/validator.js:259
 msgid "Warning"
 msgstr "Rutzijol k'ayewal"
 
+#: static/js/zamboni/validator.js:332
 #, python-brace-format
 msgid "{0} line {1} column {2}"
 msgstr "{0} cholaj {1} tem {2}"
 
+#: static/js/zamboni/validator.js:339
 #, python-brace-format
 msgid "{0} line {1}"
 msgstr "{0} cholaj {1}"
 
+#: static/js/zamboni/validator.js:376
 msgid "Add-on failed validation."
 msgstr "Xsach rik'in ri jikib'anïk ri tz'aqat."
 
+#: static/js/zamboni/validator.js:378
 msgid "Add-on passed validation."
 msgstr "Xik'o rik'in ri jikib'anïk ri tz'aqat."
 
+#: static/js/zamboni/validator.js:391
 #, python-brace-format
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} sachoj"
 msgstr[1] "{0} taq sachoj"
 
+#: static/js/zamboni/validator.js:394
 #, python-brace-format
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} rutzijol k'ayewal"
 msgstr[1] "{0} kitzijol taq k'ayewal"
 
+#: static/js/zamboni/validator.js:397
 #, python-brace-format
 msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] "{0} tzijol"
 msgstr[1] "{0} taq tzijol"
 
+#: static/js/zamboni/validator.js:494
 msgid "Validation task could not complete or completed with errors"
 msgstr "Max xtikïr ta xtz'aqär ri rujikib'axik samaj o xtz'aqatisäx rik'in sachoj"
 
+#: static/js/zamboni/validator.js:517
 msgid "Internal server error"
 msgstr "Sachoj chupam ri ruk'u'x samaj"
