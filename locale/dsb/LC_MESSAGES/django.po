@@ -5910,42 +5910,42 @@ msgstr "Změńśo barwu Firefox, aby kuždemu websedłoju wótpowědujo, ku kót
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1042
 msgid "Learning a new language? Yomitan is the ideal dictionary companion."
-msgstr ""
+msgstr "Wuknjośo nowu rěc? Yomitan jo idealny słownikowy pśewódnik."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1045
 msgid "Pack a powerful thesaurus right inside Firefox."
-msgstr ""
+msgstr "Integrěrujśo mócny tezawrus do Firefox."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1048
 msgid "Hover over web images to enlarge their appearance."
-msgstr ""
+msgstr "Gibniśo kursor myški nad webwobraze, aby jich naglěd pówětšył."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1051
 msgid "Feature rich translation tool. Works across the web, eBooks, PDF's, even video subtitles."
-msgstr ""
+msgstr "Pśełožowaŕski rěd z wjele funkcijami. Funkcioněrujo we webje, w elektroniskich knigłach, PDF a samo we wideowych pódtitelach."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1054
 msgid "Track the time you spend on every website you visit."
-msgstr ""
+msgstr "Slědujśo casoju, kótaryž na kuždem woglědanem websedle pśebywaśo."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1057
 msgid "Manage your Gmail (even multiple accounts) right from a handy pop-up accessible from the Firefox toolbar."
-msgstr ""
+msgstr "Zastojśo swóju Gmail (samo někotare konta) direktnje z pśirucnego wuskokujucego wokna ze symboloweje rědki Firefox."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1060
 msgid "De-clutter YouTube. Strip away unwanted elements like related videos, shorts & more."
-msgstr ""
+msgstr "Wurumujśo YouTube. Wótwónoźćo njewitane elementy ako pódobne wideo, krotkofilmy a wěcej."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1063
 msgid "Leave yourself little notes on any web page."
-msgstr ""
+msgstr "Zawóstajśo małe notice na kuždem webboku."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1066
