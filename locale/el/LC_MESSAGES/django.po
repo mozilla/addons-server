@@ -5953,57 +5953,57 @@ msgstr "Μαθαίνετε μια νέα γλώσσα; Το Yomitan είναι �
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1045
 msgid "Pack a powerful thesaurus right inside Firefox."
-msgstr ""
+msgstr "Ενσωματώστε ένα ισχυρό λεξικό συνωνύμων στο Firefox."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1048
 msgid "Hover over web images to enlarge their appearance."
-msgstr ""
+msgstr "Τοποθετήστε τον κέρσορα πάνω σε εικόνες του ιστού για να μεγεθύνετε την εμφάνισή τους."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1051
 msgid "Feature rich translation tool. Works across the web, eBooks, PDF's, even video subtitles."
-msgstr ""
+msgstr "Εργαλείο μετάφρασης με πληθώρα δυνατοτήτων. Λειτουργεί σε όλο τον ιστό, σε ηλεκτρονικά βιβλία, σε PDF, ακόμα και σε υπότιτλους βίντεο."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1054
 msgid "Track the time you spend on every website you visit."
-msgstr ""
+msgstr "Παρακολουθήστε το χρόνο που αφιερώνετε σε κάθε ιστότοπο που επισκέπτεστε."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1057
 msgid "Manage your Gmail (even multiple accounts) right from a handy pop-up accessible from the Firefox toolbar."
-msgstr ""
+msgstr "Διαχειριστείτε το Gmail σας (ακόμα και πολλαπλούς λογαριασμούς) απευθείας από ένα βολικό αναδυόμενο παράθυρο, προσβάσιμο από τη γραμμή εργαλείων του Firefox."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1060
 msgid "De-clutter YouTube. Strip away unwanted elements like related videos, shorts & more."
-msgstr ""
+msgstr "Αφαιρέστε τα περιττά στοιχεία του YouTube. Απομακρύνετε τα ανεπιθύμητα στοιχεία, όπως σχετικά βίντεο, shorts και πολλά άλλα."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1063
 msgid "Leave yourself little notes on any web page."
-msgstr ""
+msgstr "Αφήστε στον εαυτό σας μικρές σημειώσεις, σε οποιαδήποτε ιστοσελίδα."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1066
 msgid "Serenity for your Reddit experience."
-msgstr ""
+msgstr "Απολαύστε μια γαλήνια εμπειρία στο Reddit."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1069
 msgid "Save and organize anything you find on the web."
-msgstr ""
+msgstr "Αποθηκεύστε και οργανώστε οτιδήποτε βρείτε στο διαδίκτυο."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1072
 msgid "WebM video controls at your fingertips."
-msgstr ""
+msgstr "Στοιχεία ελέγχου για βίντεο WebM στα χέρια σας."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1075
 msgid "Disguise Firefox as the Chrome browser to spoof websites that try to block Firefox."
-msgstr ""
+msgstr "Μεταμφιέστε το Firefox σε Chrome για να παρακάμψετε τους περιορισμούς των ιστοτόπων που προσπαθούν να αποκλείσουν το Firefox."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1078
