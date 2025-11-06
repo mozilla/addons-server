@@ -5984,7 +5984,7 @@ msgstr "Gérez votre compte Gmail (même plusieurs comptes) dans une fenêtre po
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1060
 msgid "De-clutter YouTube. Strip away unwanted elements like related videos, shorts & more."
-msgstr ""
+msgstr "Allégez YouTube. Supprimez les éléments superflus comme les vidéos similaires, les shorts et plus encore."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1063

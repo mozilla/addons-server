@@ -5909,32 +5909,32 @@ msgstr "Změńće barbu Firefox, zo by kóždemu websydłu wotpowěduje, kotrež
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1042
 msgid "Learning a new language? Yomitan is the ideal dictionary companion."
-msgstr ""
+msgstr "Wuknjeće nowu rěč? Yomitan je idealny słownikowy přewodnik."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1045
 msgid "Pack a powerful thesaurus right inside Firefox."
-msgstr ""
+msgstr "Integrujće mócny tezawrus do Firefox."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1048
 msgid "Hover over web images to enlarge their appearance."
-msgstr ""
+msgstr "Pohibujće kursor myški nad webwobrazy, zo byšće jich napohlad powjetšił."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1051
 msgid "Feature rich translation tool. Works across the web, eBooks, PDF's, even video subtitles."
-msgstr ""
+msgstr "Přełožowanski nastroj z wjele funkcijemi. Funguje we webje, w elektroniskich knihach, PDF a samo we widejowych podtitulach."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1054
 msgid "Track the time you spend on every website you visit."
-msgstr ""
+msgstr "Slědujće časej, kotryž na kóždym wopytanym websydle přebywaće."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1057
 msgid "Manage your Gmail (even multiple accounts) right from a handy pop-up accessible from the Firefox toolbar."
-msgstr ""
+msgstr "Rjadujće swoju Gmail (samo wjacore konta) direktnje z přiručneho wuskakowaceho wokna ze symboloweje lajsty Firefox."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1060
