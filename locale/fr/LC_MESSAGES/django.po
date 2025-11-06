@@ -5994,7 +5994,7 @@ msgstr "Laissez-vous de petites notes sur n’importe quelle page web."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1066
 msgid "Serenity for your Reddit experience."
-msgstr ""
+msgstr "Apaisez votre navigation sur Reddit."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1069

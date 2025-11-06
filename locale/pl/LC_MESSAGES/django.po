@@ -5489,7 +5489,7 @@ msgstr "Usuń elementy śledzące z linków."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:552
 msgid "Get auto-populated RSS feed bookmark folders."
-msgstr ""
+msgstr "Uzyskaj foldery zakładek automatycznie aktualizowane przez kanały RSS."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5506,7 +5506,7 @@ msgstr "Twórz i personalizuj grupy kart."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:561
 msgid "Save an entire web page—including images and styling—as a single HTML file."
-msgstr ""
+msgstr "Zapisz całą stronę internetową — łącznie z obrazami i stylem — jako pojedynczy plik HTML."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:566
