@@ -5954,32 +5954,32 @@ msgstr "Changez la couleur de Firefox pour qu’elle corresponde à celle des si
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1042
 msgid "Learning a new language? Yomitan is the ideal dictionary companion."
-msgstr ""
+msgstr "Vous apprendrez une nouvelle langue ? Yomitan est le dictionnaire idéal pour vous accompagner."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1045
 msgid "Pack a powerful thesaurus right inside Firefox."
-msgstr ""
+msgstr "Intégrez un puissant dictionnaire de synonymes directement dans Firefox."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1048
 msgid "Hover over web images to enlarge their appearance."
-msgstr ""
+msgstr "Survolez des images web pour agrandir leur affichage."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1051
 msgid "Feature rich translation tool. Works across the web, eBooks, PDF's, even video subtitles."
-msgstr ""
+msgstr "Outil de traduction riche en fonctionnalités. Fonctionne avec tout le Web, les livres électroniques, les fichiers PDF et même les sous-titres des vidéos."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1054
 msgid "Track the time you spend on every website you visit."
-msgstr ""
+msgstr "Surveillez le temps que vous consacrez à chacun des sites web que vous consultez."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1057
 msgid "Manage your Gmail (even multiple accounts) right from a handy pop-up accessible from the Firefox toolbar."
-msgstr ""
+msgstr "Gérez votre compte Gmail (même plusieurs comptes) dans une fenêtre popup accessible depuis la barre d’outils de Firefox."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1060
