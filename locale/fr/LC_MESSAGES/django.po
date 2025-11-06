@@ -5989,7 +5989,7 @@ msgstr "Allégez YouTube. Supprimez les éléments superflus comme les vidéos s
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1063
 msgid "Leave yourself little notes on any web page."
-msgstr ""
+msgstr "Laissez-vous de petites notes sur n’importe quelle page web."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1066
