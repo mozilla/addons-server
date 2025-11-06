@@ -24,6 +24,7 @@ from olympia.amo.tests import (
     version_factory,
 )
 from olympia.blocklist.models import Block, BlockType, BlockVersion
+from olympia.constants.blocklist import REASON_VERSION_DELETED
 from olympia.reviewers.models import NeedsHumanReview
 
 from ..models import Version, VersionPreview
@@ -838,10 +839,10 @@ def test_soft_block_versions():
     assert new_blocks[0].guid == addon_with_two_versions.guid
     assert new_blocks[0].blockversion_set.all()[1].version == versions[1]
     assert new_blocks[0].blockversion_set.all()[0].version == versions[2]
-    assert new_blocks[0].reason == 'Version deleted'
+    assert new_blocks[0].reason == REASON_VERSION_DELETED
     assert new_blocks[1].guid == addon_with_one_version.guid
     assert new_blocks[1].blockversion_set.get().version == versions[0]
-    assert new_blocks[0].reason == 'Version deleted'
+    assert new_blocks[0].reason == REASON_VERSION_DELETED
 
     assert existing_block.blockversion_set.count() == 2
     assert other_version_on_partialy_blocked_addon.blockversion.block == existing_block

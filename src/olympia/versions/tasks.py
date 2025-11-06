@@ -18,6 +18,7 @@ from olympia.activity.utils import notify_about_activity_log
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import SafeStorage, extract_colors_from_image, pngcrush_image
+from olympia.constants.blocklist import REASON_VERSION_DELETED
 from olympia.devhub.tasks import resize_image
 from olympia.files.models import File
 from olympia.files.utils import get_background_images
@@ -373,7 +374,7 @@ def duplicate_addon_version_for_rollback(
 
 @task
 @use_primary_db
-def soft_block_versions(version_ids, reason='Version deleted', **kw):
+def soft_block_versions(version_ids, reason=REASON_VERSION_DELETED, **kw):
     """Soft-blocks the specified add-on versions - used for after deletes"""
     # To avoid circular imports
     from olympia.blocklist.models import BlocklistSubmission, BlockType

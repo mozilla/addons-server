@@ -55,6 +55,7 @@ from olympia.amo.utils import (
     sorted_groupby,
     to_language,
 )
+from olympia.constants.blocklist import REASON_ADDON_DELETED
 from olympia.constants.browsers import BROWSERS
 from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.constants.promoted import (
@@ -910,7 +911,7 @@ class Addon(OnChangeMixin, ModelBase):
             )
             if all_versions:
                 version_tasks.soft_block_versions.delay(
-                    version_ids=all_versions, reason='Addon deleted'
+                    version_ids=all_versions, reason=REASON_ADDON_DELETED
                 )
         else:
             # Real deletion path.
