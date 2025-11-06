@@ -146,9 +146,11 @@ class RestrictionChecker:
         if self.request:
             self.user = self.request.user
             self.ip_address = self.request.META.get('REMOTE_ADDR', '')
+            self.request_metadata = core.select_request_metadata(request.headers)
         elif self.upload:
             self.user = self.upload.user
             self.ip_address = self.upload.ip_address
+            self.request_metadata = self.upload.request_metadata
         else:
             raise ImproperlyConfigured('RestrictionChecker needs a request or upload')
         self.failed_restrictions = []
@@ -178,7 +180,9 @@ class RestrictionChecker:
                     f'RestrictionChecker.is_{action_type}_allowed.{name}.failure'
                 )
                 if self.user and self.user.is_authenticated:
-                    with core.override_remote_addr(self.ip_address):
+                    with core.override_remote_addr_or_metadata(
+                        ip_address=self.ip_address, metadata=self.request_metadata
+                    ):
                         activity.log_create(
                             amo.LOG.RESTRICTED,
                             user=self.user,
