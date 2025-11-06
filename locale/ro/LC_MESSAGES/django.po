@@ -5919,62 +5919,62 @@ msgstr "Schimbă culoarea Firefox ca să se potrivească cu fiecare site web pe 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1042
 msgid "Learning a new language? Yomitan is the ideal dictionary companion."
-msgstr ""
+msgstr "Înveți o limbă nouă? Yomitan este companionul ideal de dicționar."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1045
 msgid "Pack a powerful thesaurus right inside Firefox."
-msgstr ""
+msgstr "Include un dicționar puternic de sinonime chiar în Firefox."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1048
 msgid "Hover over web images to enlarge their appearance."
-msgstr ""
+msgstr "Treci cu cursorul peste imaginile web pentru a le mări."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1051
 msgid "Feature rich translation tool. Works across the web, eBooks, PDF's, even video subtitles."
-msgstr ""
+msgstr "Instrument de traducere bogat în funcții. Funcționează pe web, în cărți electronice, PDF-uri și chiar și în subtitrări video."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1054
 msgid "Track the time you spend on every website you visit."
-msgstr ""
+msgstr "Urmărește timpul petrecut pe fiecare site web pe care intri."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1057
 msgid "Manage your Gmail (even multiple accounts) right from a handy pop-up accessible from the Firefox toolbar."
-msgstr ""
+msgstr "Gestionează-ți contul Gmail (chiar și mai multe conturi) direct dintr-o fereastră pop-up accesibilă din bara de instrumente Firefox."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1060
 msgid "De-clutter YouTube. Strip away unwanted elements like related videos, shorts & more."
-msgstr ""
+msgstr "Elimină elementele nedorite de pe YouTube, cum ar fi videoclipuri similare, scurtmetraje și multe altele."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1063
 msgid "Leave yourself little notes on any web page."
-msgstr ""
+msgstr "Lasă-ți mici notițe pe orice pagină web."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1066
 msgid "Serenity for your Reddit experience."
-msgstr ""
+msgstr "Liniște pentru experiența ta pe Reddit."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1069
 msgid "Save and organize anything you find on the web."
-msgstr ""
+msgstr "Salvează și organizează tot ce găsești pe web."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1072
 msgid "WebM video controls at your fingertips."
-msgstr ""
+msgstr "Comenzi video WebM la îndemână."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1075
 msgid "Disguise Firefox as the Chrome browser to spoof websites that try to block Firefox."
-msgstr ""
+msgstr "Deghizează Firefox în browser Chrome pentru a intra pe site-urile web care încearcă să blocheze Firefox."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1078
