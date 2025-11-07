@@ -2570,7 +2570,7 @@ msgstr "לא מצאנו רשומות דוא״ל עבורך ביומיים האח
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:91
 msgid "Refresh results"
-msgstr "רענון תוצאות"
+msgstr "ריענון תוצאות"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:101
 #, python-format
