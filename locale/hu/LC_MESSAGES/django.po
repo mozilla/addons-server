@@ -5929,37 +5929,37 @@ msgstr "Kövesse nyomon az összes felkeresett webhelyen töltött időt."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1057
 msgid "Manage your Gmail (even multiple accounts) right from a handy pop-up accessible from the Firefox toolbar."
-msgstr ""
+msgstr "Kezelje a Gmailjét (akár több fiók esetén is) közvetlenül a Firefox eszköztárán elérhető felugró ablakból."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1060
 msgid "De-clutter YouTube. Strip away unwanted elements like related videos, shorts & more."
-msgstr ""
+msgstr "Rendezze át a YouTube-ot. Távolítsa el a nem kívánt elemeket, mint például a kapcsolódó videókat, shorts videókat és egyebeket."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1063
 msgid "Leave yourself little notes on any web page."
-msgstr ""
+msgstr "Hagyjon magának kis jegyzeteket bármelyik weboldalon."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1066
 msgid "Serenity for your Reddit experience."
-msgstr ""
+msgstr "Nyugalom a Reddit-élményéhez."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1069
 msgid "Save and organize anything you find on the web."
-msgstr ""
+msgstr "Mentsen el és rendszerezzen bármit, amit a weben talál."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1072
 msgid "WebM video controls at your fingertips."
-msgstr ""
+msgstr "WebM-videóvezérlés egy karnyújtásnyira."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1075
 msgid "Disguise Firefox as the Chrome browser to spoof websites that try to block Firefox."
-msgstr ""
+msgstr "Álcázza a Firefoxot Chrome böngészőnek, hogy megtévessze a Firefoxot blokkolni próbáló weboldalakat."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1078

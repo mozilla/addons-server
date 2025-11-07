@@ -5964,7 +5964,7 @@ msgstr "Integra un potente dizionario dei sinonimi direttamente in Firefox."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1048
 msgid "Hover over web images to enlarge their appearance."
-msgstr ""
+msgstr "Passa il mouse sopra le immagini per ingrandirle."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1051
@@ -6009,7 +6009,7 @@ msgstr "Controlli video WebM a portata di mano."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1075
 msgid "Disguise Firefox as the Chrome browser to spoof websites that try to block Firefox."
-msgstr ""
+msgstr "Fai apparire Firefox come se fosse Chrome per ingannare i siti che cercano di bloccare Firefox."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1078
