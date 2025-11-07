@@ -5684,7 +5684,7 @@ msgstr "Miore la tô scriture — sfrute intun lamp la potence dai sinonims."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:694
 msgid "Deep translation features for a rich language experience anywhere on the web."
-msgstr ""
+msgstr "Funzionalitâts di traduzion avanzadis par otignî une esperience linguistiche fluide ator par dut il web."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:697
@@ -5929,22 +5929,22 @@ msgstr "Cambie il colôr di Firefox in mût che al corispuindi al sît web che t
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1042
 msgid "Learning a new language? Yomitan is the ideal dictionary companion."
-msgstr ""
+msgstr "Stâstu imparant une gnove leghe? Yomitan al è il to amì dizionari ideâl."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1045
 msgid "Pack a powerful thesaurus right inside Firefox."
-msgstr ""
+msgstr "Integre un potent dizionari dai sinonims juste dentri di Firefox."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1048
 msgid "Hover over web images to enlarge their appearance."
-msgstr ""
+msgstr "Passe parsore cul mouse tes imagjins par slargjâlis."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1051
 msgid "Feature rich translation tool. Works across the web, eBooks, PDF's, even video subtitles."
-msgstr ""
+msgstr "Strument di traduzion siôr di funzions. Al funzione su dut il web, cui eBooks, cui PDFs e ancje cui sottitui dai videos."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1054
