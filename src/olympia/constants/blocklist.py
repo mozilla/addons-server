@@ -4,6 +4,10 @@ from enum import Enum
 
 REMOTE_SETTINGS_COLLECTION_MLBF = 'addons-bloomfilters'
 
+# Must be kept in sync with addons-frontend
+REASON_ADDON_DELETED = 'Addon deleted'
+REASON_VERSION_DELETED = 'Version deleted'
+
 
 class BlockListAction(Enum):
     # Re-upload the Blocked filter
