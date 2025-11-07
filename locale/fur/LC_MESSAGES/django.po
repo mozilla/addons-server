@@ -5669,17 +5669,17 @@ msgstr "Al fâs in mût che tai sîts che a cirin di blocâ Firefox, chest al so
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:685
 msgid "Manage your Gmail (even multiple accounts) right from Firefox's toolbar button."
-msgstr ""
+msgstr "Gjestìs la tô pueste su Gmail (ancje plui accounts) dret dal boton de sbare dai struments di Firefox."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:688
 msgid "Track the time you spend on the web, analyze your habits, block distracting sites & more."
-msgstr ""
+msgstr "Ten segnât il timp che tu passis ator pal web, analize lis tôs abitudinis, bloche i sîts che ti straviin e tant altri."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:691
 msgid "Improve your writing — get instant access to the power of synonyms."
-msgstr ""
+msgstr "Miore la tô scriture — sfrute intun lamp la potence dai sinonims."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:694
