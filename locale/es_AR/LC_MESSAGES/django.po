@@ -5921,32 +5921,32 @@ msgstr "Cambiar el color de Firefox para que coincida con cada sitio web que vis
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1042
 msgid "Learning a new language? Yomitan is the ideal dictionary companion."
-msgstr ""
+msgstr "¿Aprendiendo un nuevo idioma? Yomitan es el compañero de diccionario ideal."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1045
 msgid "Pack a powerful thesaurus right inside Firefox."
-msgstr ""
+msgstr "Meté un poderoso diccionario de sinónimos dentro de Firefox."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1048
 msgid "Hover over web images to enlarge their appearance."
-msgstr ""
+msgstr "Pasa el cursor sobre las imágenes web para ampliarlas."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1051
 msgid "Feature rich translation tool. Works across the web, eBooks, PDF's, even video subtitles."
-msgstr ""
+msgstr "Herramienta de traducción rica en opciones. Funciona en la web, libros electrónicos, PDF e incluso subtítulos de video."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1054
 msgid "Track the time you spend on every website you visit."
-msgstr ""
+msgstr "Llevá un control del tiempo que pasás en cada sitio web que visitás."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1057
 msgid "Manage your Gmail (even multiple accounts) right from a handy pop-up accessible from the Firefox toolbar."
-msgstr ""
+msgstr "Administrá tu Gmail (incluso varias cuentas) directamente desde una ventana emergente accesible desde la barra de herramientas de Firefox."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1060
@@ -5956,17 +5956,17 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1063
 msgid "Leave yourself little notes on any web page."
-msgstr ""
+msgstr "Dejate notitas en cualquier página web."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1066
 msgid "Serenity for your Reddit experience."
-msgstr ""
+msgstr "Serenidad para tu experiencia en Reddit."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1069
 msgid "Save and organize anything you find on the web."
-msgstr ""
+msgstr "Guardá y organizá cualquier cosa que encontrés en la web."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1072
@@ -6076,7 +6076,7 @@ msgstr "Herramientas de traducción"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1129
 msgid "See more translation tool staff picks"
-msgstr ""
+msgstr "Ver más herramientas de traducción seleccionadas"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1132
