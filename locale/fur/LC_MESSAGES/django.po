@@ -5949,7 +5949,7 @@ msgstr "Strument di traduzion siôr di funzions. Al funzione su dut il web, cui 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1054
 msgid "Track the time you spend on every website you visit."
-msgstr ""
+msgstr "Ten segnât il timp che tu passis su ogni sît web che tu visitis."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1057
