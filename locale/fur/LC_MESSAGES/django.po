@@ -5954,12 +5954,12 @@ msgstr "Ten segnât il timp che tu passis su ogni sît web che tu visitis."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1057
 msgid "Manage your Gmail (even multiple accounts) right from a handy pop-up accessible from the Firefox toolbar."
-msgstr ""
+msgstr "Gjestìs la tô pueste su Gmail (ancje plui accounts) dret di un barcon a comparse che tu cjatarâs te sbare dai struments di Firefox."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1060
 msgid "De-clutter YouTube. Strip away unwanted elements like related videos, shorts & more."
-msgstr ""
+msgstr "Fâs ordin su YouTube. Gjave i elements che no tu vuelis, come i videos corelâts, i Shorts e altri."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1063
