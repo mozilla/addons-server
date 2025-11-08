@@ -5984,7 +5984,7 @@ msgstr "Extensiile sunt ca un fel de aplicații pentru Firefox."
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1080
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
-msgstr "Acestea adaugă funcționalități în Firefox pentru a face navigarea mai rapidă, mai sigură sau doar distractivă."
+msgstr "Ele adaugă funcționalități în Firefox pentru a face navigarea mai rapidă, mai sigură sau doar distractivă."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1082
