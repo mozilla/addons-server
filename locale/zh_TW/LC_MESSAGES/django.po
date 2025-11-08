@@ -5805,62 +5805,62 @@ msgstr "讓 Firefox 的色彩搭配您開啟的各個網站，自動變換。"
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1042
 msgid "Learning a new language? Yomitan is the ideal dictionary companion."
-msgstr ""
+msgstr "正在學習新語言？Yomitan 是您理想的字典好夥伴。"
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1045
 msgid "Pack a powerful thesaurus right inside Firefox."
-msgstr ""
+msgstr "在 Firefox 中加入威力強大的同義詞詞庫。"
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1048
 msgid "Hover over web images to enlarge their appearance."
-msgstr ""
+msgstr "將滑鼠移到網頁圖片上，即可放大。"
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1051
 msgid "Feature rich translation tool. Works across the web, eBooks, PDF's, even video subtitles."
-msgstr ""
+msgstr "功能豐富的翻譯工具。可在網頁、電子書、PDF，甚至是影片字幕使用。"
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1054
 msgid "Track the time you spend on every website you visit."
-msgstr ""
+msgstr "追蹤您在造訪的每個網站所花的時間。"
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1057
 msgid "Manage your Gmail (even multiple accounts) right from a handy pop-up accessible from the Firefox toolbar."
-msgstr ""
+msgstr "直接從 Firefox 工具列按鈕彈出視窗來管理您的 Gmail（有多個帳號也沒問題）"
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1060
 msgid "De-clutter YouTube. Strip away unwanted elements like related videos, shorts & more."
-msgstr ""
+msgstr "讓 YouTube 變得更整潔。清除相關影片、短片等不想要的元素。"
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1063
 msgid "Leave yourself little notes on any web page."
-msgstr ""
+msgstr "讓您在任何網頁上都能留下小筆記給自己。"
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1066
 msgid "Serenity for your Reddit experience."
-msgstr ""
+msgstr "為您帶來平靜的 Reddit 使用體驗。"
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1069
 msgid "Save and organize anything you find on the web."
-msgstr ""
+msgstr "儲存並管理您在網路上找到的任何東西。"
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1072
 msgid "WebM video controls at your fingertips."
-msgstr ""
+msgstr "隨手開啟 WebM 影片控制元件。"
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1075
 msgid "Disguise Firefox as the Chrome browser to spoof websites that try to block Firefox."
-msgstr ""
+msgstr "將 Firefox 扮裝成 Chrome 瀏覽器，躲避會封鎖 Firefox 的網站。"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1078
