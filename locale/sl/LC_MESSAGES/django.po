@@ -5888,7 +5888,7 @@ msgstr "Naj se barva Firefoxa prilagodi vsakemu spletnemu mestu, ki ga obiščet
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1042
 msgid "Learning a new language? Yomitan is the ideal dictionary companion."
-msgstr "Učite se novega jezika? Yomitan je idealen spremljevalec slovarja."
+msgstr "Se učite novega jezika? Yomitan je idealen slovarski spremljevalec."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1045
