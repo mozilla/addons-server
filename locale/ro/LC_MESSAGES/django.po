@@ -578,7 +578,7 @@ msgstr "Nu se permit URL-uri."
 
 #: src/olympia/amo/validators.py:17
 msgid "Must contain at least one printable character."
-msgstr "Trebuie să conțină cel puțin un caracter tipăribil."
+msgstr "Trebuie să conțină cel puțin un caracter care poate fi printat."
 
 #: src/olympia/amo/validators.py:62
 msgid "Ensure this field contains at least one letter or number character."
@@ -5327,7 +5327,7 @@ msgstr "Repară sonorul supărător. Volum sonor prea mic pe un site web? Sau pr
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:455
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
-msgstr "Editezi o pagină web înainte de tipărire. Fă modificări vizuale extraordinare — elimină reclamele sau conținutul neinteresant — pe orice pagină web pe care vrei să o tipărești."
+msgstr "Editezi o pagină web înainte de printare. Fă modificări vizuale extraordinare — elimină reclamele sau conținutul neinteresant — pe orice pagină web pe care vrei să o printezi."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:458
