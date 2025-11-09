@@ -5898,37 +5898,37 @@ msgstr "ახალ ენას სწავლობთ? Yomitan საუკ
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1045
 msgid "Pack a powerful thesaurus right inside Firefox."
-msgstr ""
+msgstr "ცნობარების მძლავრი საგანძური პირდაპირ Firefox-ში."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1048
 msgid "Hover over web images to enlarge their appearance."
-msgstr ""
+msgstr "გადაატარეთ ვებსურათებს მაჩვენებელი გადიდებულად ნახვისთვის."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1051
 msgid "Feature rich translation tool. Works across the web, eBooks, PDF's, even video subtitles."
-msgstr ""
+msgstr "შესაძლებლობებით აღსავსე თარგმნის ხელსაწყო. იმეშავებს მთელ ვებსივრცეში, წიგნებზე, PDF-ფაილებზე, ვიდეოების სუბტიტრებზეც კი."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1054
 msgid "Track the time you spend on every website you visit."
-msgstr ""
+msgstr "თვალი გეჭიროთ თითოეულ საიტზე გატარებულ დროზე."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1057
 msgid "Manage your Gmail (even multiple accounts) right from a handy pop-up accessible from the Firefox toolbar."
-msgstr ""
+msgstr "მართეთ თქვენი Gmail (თუნდაც რამდენიმე ანგარიში) პირდაპირ Firefox-ის ხელსაწყოთა ზოლზე ამომხტომ არეში."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1060
 msgid "De-clutter YouTube. Strip away unwanted elements like related videos, shorts & more."
-msgstr ""
+msgstr "არეულობისგან გაწმინდეთ YouTube. მოაცილეთ არასასურველი ნაწილები, მათ შორის მსგავსი თუ მოკლე ვიდეოების შემოთავაზებები და სხვ."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1063
 msgid "Leave yourself little notes on any web page."
-msgstr ""
+msgstr "გააკეთეთ მცირე ჩანიშვნები ნებისმიერ ვებგვერდზე."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1066
@@ -5938,12 +5938,12 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1069
 msgid "Save and organize anything you find on the web."
-msgstr ""
+msgstr "შეინახეთ და დაალაგეთ ინტერნეტში მოძიებული ნებისმიერი რამ."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1072
 msgid "WebM video controls at your fingertips."
-msgstr ""
+msgstr "WebM-ვიდეოს სამართავი თქვენს ხელთ."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1075
