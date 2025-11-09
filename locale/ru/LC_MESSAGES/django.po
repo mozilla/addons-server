@@ -1749,7 +1749,7 @@ msgstr "Creative Commons Атрибуция — Некоммерческое и�
 
 #: src/olympia/constants/licenses.py:132
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "Creative Commons Атрибуция — Некоммерческое использование — С сохранением условий 3.0"
+msgstr "Creative Commons — Атрибуция — Некоммерчески — С сохранением условий 3.0"
 
 #: src/olympia/constants/licenses.py:142
 msgid "Creative Commons Attribution-NoDerivs 3.0"
@@ -1757,7 +1757,7 @@ msgstr "Creative Commons Атрибуция — Без производных п
 
 #: src/olympia/constants/licenses.py:152
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "Creative Commons Атрибуция — С сохранением условий 3.0"
+msgstr "Creative Commons — Атрибуция — С сохранением условий 3.0"
 
 #: src/olympia/constants/licenses.py:162
 msgid "Creative Commons Attribution 4.0"
