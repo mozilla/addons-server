@@ -834,12 +834,12 @@ msgstr "Был создан {addon}."
 #: src/olympia/constants/activity.py:35
 #, python-brace-format
 msgid "{addon} properties edited."
-msgstr "свойства {addon} отредактированы."
+msgstr "Свойства {addon} отредактированы."
 
 #: src/olympia/constants/activity.py:42
 #, python-brace-format
 msgid "{addon} description edited."
-msgstr "описание {addon} отредактировано."
+msgstr "Описание {addon} отредактировано."
 
 #: src/olympia/constants/activity.py:49
 #, python-brace-format

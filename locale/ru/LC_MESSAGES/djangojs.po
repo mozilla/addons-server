@@ -456,9 +456,9 @@ msgstr[2] "<b>{0}</b> символов"
 #, python-brace-format
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
-msgstr[0] "остался <b>{0}</b> символ"
-msgstr[1] "осталось <b>{0}</b> символа"
-msgstr[2] "осталось <b>{0}</b> символов"
+msgstr[0] "Остался <b>{0}</b> символ"
+msgstr[1] "Осталось <b>{0}</b> символа"
+msgstr[2] "Осталось <b>{0}</b> символов"
 
 #: static/js/zamboni/init.js:12
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
@@ -509,7 +509,7 @@ msgstr "Найдены замечания при проверке"
 #: static/js/zamboni/static_theme.js:217
 #, python-brace-format
 msgid "Maximum upload size is {0} - choose a smaller background image."
-msgstr "Максимальный размер загружаемого файла {0} - выберите фоновое изображение поменьше."
+msgstr "Максимальный размер загружаемого файла {0} — выберите фоновое изображение поменьше."
 
 #: static/js/zamboni/themes_review.js:199
 msgid "Requested Info"
