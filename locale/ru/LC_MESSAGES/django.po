@@ -1449,7 +1449,7 @@ msgstr "Оповещения и обновления"
 #: src/olympia/constants/categories.py:70
 msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
 msgstr ""
-"Установите расширения Firefox, которые помогут вам быть в курсе всего нового, отслеживать задачи, повышать производительность. Найдите расширения, которые перезагружают вкладки, управляют "
+"Скачайте расширения Firefox, которые помогут вам быть в курсе всего нового, отслеживать задачи, повышать производительность. Найдите расширения, которые перезагружают вкладки, управляют "
 "продуктивностью и многое другое."
 
 #: src/olympia/constants/categories.py:78
@@ -1458,7 +1458,7 @@ msgstr "Внешний вид"
 
 #: src/olympia/constants/categories.py:80
 msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
-msgstr "Загрузите расширения, которые изменят внешний вид веб-сайтов и браузера Firefox. В эту категорию входят расширения для включения тёмных тем, управления вкладками и многого другого."
+msgstr "Скачайте расширения, которые изменят внешний вид веб-сайтов и браузера Firefox. В эту категорию входят расширения для включения тёмных тем, управления вкладками и многого другого."
 
 #: src/olympia/constants/categories.py:88
 msgid "Bookmarks"
@@ -1466,15 +1466,15 @@ msgstr "Закладки"
 
 #: src/olympia/constants/categories.py:90
 msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
-msgstr "Загрузите расширения, которые улучшат ваши закладки путем защиты их паролем, поиском дубликатов и «битых» ссылок и многим другим."
+msgstr "Скачайте расширения, которые улучшат ваши закладки путём защиты их паролем, поиском дубликатов и «битых» ссылок и многим другим."
 
 #: src/olympia/constants/categories.py:97
 msgid "Download Management"
-msgstr "Управление загрузкой файлов"
+msgstr "Управление скачиванием файлов"
 
 #: src/olympia/constants/categories.py:99
 msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
-msgstr "Загрузите расширения Firefox, которые могут помочь загружать статьи, музыку и видео. Вы также можете найти расширения для управления загрузками, обмена файлами и многого другого."
+msgstr "Скачайте расширения Firefox, которые могут помочь скачивать статьи, музыку и видео. Вы также можете найти расширения для управления загрузками, обмена файлами и многого другого."
 
 #: src/olympia/constants/categories.py:106
 msgid "Feeds, News & Blogging"
@@ -1482,7 +1482,7 @@ msgstr "Ленты новостей и блоги"
 
 #: src/olympia/constants/categories.py:108
 msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
-msgstr "Загрузите расширения Firefox, которые устранят беспорядок, чтобы вы могли быть в курсе событий в социальных сетях, следить за блогами, RSS-каналами, снижать нагрузку на глаза и многое другое."
+msgstr "Скачайте расширения Firefox, которые устранят беспорядок, чтобы вы могли быть в курсе событий в социальных сетях, следить за блогами, RSS-каналами, снижать нагрузку на глаза и многое другое."
 
 #: src/olympia/constants/categories.py:115
 msgid "Games & Entertainment"
@@ -1491,7 +1491,7 @@ msgstr "Игры и развлечения"
 #: src/olympia/constants/categories.py:117
 msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
 msgstr ""
-"Загрузите расширения Firefox, чтобы повысить качество ваших развлечений. В эту категорию входят расширения, которые могут улучшить игровые возможности, управлять воспроизведением видео и многое "
+"Скачайте расширения Firefox, чтобы повысить качество ваших развлечений. В эту категорию входят расширения, которые могут улучшить игровые возможности, управлять воспроизведением видео и многое "
 "другое."
 
 #: src/olympia/constants/categories.py:124
@@ -1500,7 +1500,7 @@ msgstr "Языковые инструменты"
 
 #: src/olympia/constants/categories.py:126
 msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
-msgstr "Загрузите расширения Firefox, которые предлагают языковую поддержку, такую как проверка орфографии, поиск слов, перевод и озвучивание текста и многое другое."
+msgstr "Скачайте расширения Firefox, которые предлагают языковую поддержку, такую как проверка орфографии, поиск слов, перевод и озвучивание текста и многое другое."
 
 #: src/olympia/constants/categories.py:133
 msgid "Photos, Music & Videos"
@@ -1508,7 +1508,7 @@ msgstr "Фотографии, музыка и видео"
 
 #: src/olympia/constants/categories.py:135
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
-msgstr "Загрузите расширения Firefox, которые улучшат вашу работу с фотографиями, музыкой и видео. Расширения в этой категории изменяют аудио и видео, выполняют поиск по изображениям и многое другое."
+msgstr "Скачайте расширения Firefox, которые улучшат вашу работу с фотографиями, музыкой и видео. Расширения в этой категории изменяют аудио и видео, выполняют поиск по изображениям и многое другое."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/constants/categories.py:142 src/olympia/discovery/strings.jinja2:1086
@@ -1518,7 +1518,7 @@ msgstr "Приватность и защита"
 #: src/olympia/constants/categories.py:144
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
 msgstr ""
-"Загрузите расширения Firefox для приватного и безопасного просмотра страниц. В эту категорию входят расширения для блокировки назойливой рекламы, предотвращения отслеживания, управления "
+"Скачайте расширения Firefox для приватного и безопасного просмотра страниц. В эту категорию входят расширения для блокировки назойливой рекламы, предотвращения отслеживания, управления "
 "перенаправлениями и многого другого."
 
 #: src/olympia/constants/categories.py:152
@@ -1527,7 +1527,7 @@ msgstr "Инструменты поиска"
 
 #: src/olympia/constants/categories.py:154
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
-msgstr "Загрузите расширения Firefox для быстрого поиска. Эта категория включает в себя расширения, которые выделяют и ищут текст, IP-адреса/домены и многое другое."
+msgstr "Скачайте расширения Firefox для быстрого поиска. Эта категория включает в себя расширения, которые выделяют и ищут текст, IP-адреса/домены и многое другое."
 
 #: src/olympia/constants/categories.py:161
 msgid "Shopping"
@@ -1535,7 +1535,7 @@ msgstr "Шоппинг"
 
 #: src/olympia/constants/categories.py:163
 msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
-msgstr "Загрузите расширения Firefox, которые улучшат онлайн-шоппинг с помощью поиска купонов и сделок, анализа отзывов и многого другого."
+msgstr "Скачайте расширения Firefox, которые улучшат онлайн-шоппинг с помощью поиска купонов и сделок, анализа отзывов и многого другого."
 
 #: src/olympia/constants/categories.py:170
 msgid "Social & Communication"
@@ -1543,7 +1543,7 @@ msgstr "Общение и коммуникация"
 
 #: src/olympia/constants/categories.py:172
 msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
-msgstr "Загрузите расширения Firefox для улучшения социальных сетей и обмена мгновенными сообщениями. В эту категорию входят улучшенные уведомления на вкладках, загрузчики видео и многое другое."
+msgstr "Скачайте расширения Firefox для улучшения социальных сетей и обмена мгновенными сообщениями. В эту категорию входят улучшенные уведомления на вкладках, загрузчики видео и многое другое."
 
 #: src/olympia/constants/categories.py:179
 msgid "Tabs"
@@ -1552,7 +1552,7 @@ msgstr "Вкладки"
 #: src/olympia/constants/categories.py:181
 msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
 msgstr ""
-"Загрузите расширения Firefox для настройки вкладок и страницы новой вкладки. Откройте для себя расширения, которые могут управлять вкладками, изменять то, как вы с ними взаимодействуете и многое "
+"Скачайте расширения Firefox для настройки вкладок и страницы новой вкладки. Откройте для себя расширения, которые могут управлять вкладками, изменять то, как вы с ними взаимодействуете и многое "
 "другое."
 
 #: src/olympia/constants/categories.py:188
@@ -1561,7 +1561,7 @@ msgstr "Веб-разработка"
 
 #: src/olympia/constants/categories.py:190
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
-msgstr "Загрузите расширения Firefox для веб-разработки. В эту категорию входят расширения для GitHub, изменения user agent, управления куками и многого другого."
+msgstr "Скачайте расширения Firefox для веб-разработки. В эту категорию входят расширения для GitHub, изменения агента пользователя, управления куками и многого другого."
 
 #: src/olympia/constants/categories.py:198 src/olympia/constants/categories.py:290 src/olympia/devhub/forms.py:613
 msgid "Other"
@@ -1569,7 +1569,7 @@ msgstr "Другое"
 
 #: src/olympia/constants/categories.py:201
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
-msgstr "Загрузите расширения Firefox, которые могут быть непредсказуемыми и креативными, но полезными для необычных задач."
+msgstr "Скачайте расширения Firefox, которые могут быть непредсказуемыми и креативными, но полезными для необычных задач."
 
 #: src/olympia/constants/categories.py:209
 msgid "Abstract"
@@ -1577,7 +1577,7 @@ msgstr "Абстрактные"
 
 #: src/olympia/constants/categories.py:211
 msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
-msgstr "Загрузите художественные и концептуальные темы для Firefox. В эту категорию входят красочные палитры и формы, фантастические пейзажи, игривые кошки, психоделические цветы."
+msgstr "Скачайте художественные и концептуальные темы для Firefox. В эту категорию входят красочные палитры и формы, фантастические пейзажи, игривые кошки, психоделические цветы."
 
 #: src/olympia/constants/categories.py:218
 msgid "Causes"
@@ -1585,7 +1585,7 @@ msgstr "Активистские"
 
 #: src/olympia/constants/categories.py:220
 msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
-msgstr "Загрузите темы Firefox для нишевых интересов и увлечений. Эта категория включает в себя спортивные, праздничные, благотворительные, национальные и другие темы."
+msgstr "Скачайте темы Firefox для нишевых интересов и увлечений. Эта категория включает в себя спортивные, праздничные, благотворительные, национальные и другие темы."
 
 #: src/olympia/constants/categories.py:227
 msgid "Fashion"
@@ -1593,7 +1593,7 @@ msgstr "Мода"
 
 #: src/olympia/constants/categories.py:229
 msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
-msgstr "Загрузите темы Firefox, которые предоставляют любые стили: узоры, цветы, текстуры, модели и многое другое."
+msgstr "Скачайте темы Firefox, которые предоставляют любые стили: узоры, цветы, текстуры, модели и многое другое."
 
 #: src/olympia/constants/categories.py:235
 msgid "Film and TV"
@@ -1601,11 +1601,11 @@ msgstr "Кино и телевидение"
 
 #: src/olympia/constants/categories.py:237
 msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
-msgstr "Загрузите темы Firefox, связанные с фильмами и телевидением. В эту категорию входят такие аниме, как «Учиха Мадара», такие фильмы, как «Матрица», шоу (Игра престолов) и многое другое."
+msgstr "Скачайте темы Firefox, связанные с фильмами и телевидением. В эту категорию входят такие аниме, как «Учиха Мадара», такие фильмы, как «Матрица», шоу (Игра престолов) и многое другое."
 
 #: src/olympia/constants/categories.py:246
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
-msgstr "Загрузите темы с символикой Firefox. Эта категория включает в себя красочные, разнообразные изображения логотипа Firefox, темы с лисицами."
+msgstr "Скачайте темы с символикой Firefox. Эта категория включает в себя красочные, разнообразные изображения логотипа Firefox, темы с лисицами."
 
 #: src/olympia/constants/categories.py:253
 msgid "Foxkeh"
@@ -1613,7 +1613,7 @@ msgstr "Foxkeh"
 
 #: src/olympia/constants/categories.py:255
 msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
-msgstr "Загрузите японские темы для Firefox. Эта категория включает в себя темы, которые изображают милый талисман Foxkeh в различных позах на разных пейзажах."
+msgstr "Скачайте японские темы для Firefox. Эта категория включает в себя темы, которые изображают милый талисман Foxkeh («Фокскэ») в различных позах на разных пейзажах."
 
 #: src/olympia/constants/categories.py:262
 msgid "Holiday"
@@ -1621,7 +1621,7 @@ msgstr "Праздники"
 
 #: src/olympia/constants/categories.py:264
 msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
-msgstr "Загрузите праздничные темы для Firefox. Эта категория включает Рождество, Хэллоуин, День Благодарения, День Святого Патрика, Пасху, Четвёртое июля и многое другое."
+msgstr "Скачайте праздничные темы для Firefox. Эта категория включает Рождество, Хэллоуин, День Благодарения, День Святого Патрика, Пасху, Четвёртое июля и многое другое."
 
 #: src/olympia/constants/categories.py:271
 msgid "Music"
@@ -1629,7 +1629,7 @@ msgstr "Музыка"
 
 #: src/olympia/constants/categories.py:273
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
-msgstr "Загрузите музыкальные темы для Firefox. В эту категорию входят популярные группы, такие как Nirvana и BTS, инструменты, музыкальные клипы и многое другое."
+msgstr "Скачайте музыкальные темы для Firefox. В эту категорию входят популярные группы, такие как Nirvana и BTS, инструменты, музыкальные клипы и многое другое."
 
 #: src/olympia/constants/categories.py:281
 msgid "Nature"
@@ -1637,11 +1637,11 @@ msgstr "Природа"
 
 #: src/olympia/constants/categories.py:283
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
-msgstr "Загрузите темы Firefox с животными и природными ландшафтами. В эту категорию входят цветы, закаты, лисы, времена года, планеты, котята, птицы и многое другое."
+msgstr "Скачайте темы Firefox с животными и природными ландшафтами. В эту категорию входят цветы, закаты, лисы, времена года, планеты, котята, птицы и многое другое."
 
 #: src/olympia/constants/categories.py:293
 msgid "Download Firefox themes that are interesting, creative, and unique."
-msgstr "Загрузите интересные, креативные и уникальные темы для Firefox."
+msgstr "Скачайте интересные, креативные и уникальные темы для Firefox."
 
 #: src/olympia/constants/categories.py:298
 msgid "Scenery"
@@ -1649,7 +1649,7 @@ msgstr "Пейзажи"
 
 #: src/olympia/constants/categories.py:300
 msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
-msgstr "Загрузите темы Firefox, отображающие окружающую среду и мир природы. В эту категорию входят закаты, пляжи, иллюстрации, городские горизонты и многое другое."
+msgstr "Скачайте темы Firefox, отображающие окружающую среду и мир природы. В эту категорию входят закаты, пляжи, иллюстрации, городские горизонты и многое другое."
 
 #: src/olympia/constants/categories.py:307
 msgid "Seasonal"
@@ -1657,7 +1657,7 @@ msgstr "Времена года"
 
 #: src/olympia/constants/categories.py:309
 msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
-msgstr "Загрузите темы Firefox для всех времён года — осени, зимы, весны и лета. Осенние листья, снежные горные вершины, солнечные летние дни и весенние цветы."
+msgstr "Скачайте темы Firefox для всех времён года — осени, зимы, весны и лета. Осенние листья, снежные горные вершины, солнечные летние дни и весенние цветы."
 
 #: src/olympia/constants/categories.py:316
 msgid "Solid"
@@ -1665,7 +1665,7 @@ msgstr "Заливка"
 
 #: src/olympia/constants/categories.py:318
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
-msgstr "Загрузите темы Firefox со сплошными и градиентными цветами, чтобы персонализировать свой браузер. В эту категорию входят смелые красные, пастельные, мягкие оттенки серого и многие другие."
+msgstr "Скачайте темы Firefox со сплошными и градиентными цветами, чтобы персонализировать свой браузер. В эту категорию входят смелые красные, пастельные, мягкие оттенки серого и многие другие."
 
 #: src/olympia/constants/categories.py:325
 msgid "Sports"
@@ -1673,7 +1673,7 @@ msgstr "Спортивные"
 
 #: src/olympia/constants/categories.py:327
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
-msgstr "Загрузите спортивные темы для Firefox. В эту категорию входят флаги стран, спортивные команды, футбол, хоккей и многое другое."
+msgstr "Скачайте спортивные темы для Firefox. В эту категорию входят флаги стран, спортивные команды, футбол, хоккей и многое другое."
 
 #: src/olympia/constants/categories.py:334
 msgid "Websites"
@@ -1681,7 +1681,7 @@ msgstr "Веб-сайты"
 
 #: src/olympia/constants/categories.py:336
 msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
-msgstr "Загрузите темы Firefox, которые отражают суть Интернета — увлекательные, необычные и отличительные."
+msgstr "Скачайте темы Firefox, которые отражают суть Интернета — увлекательные, необычные и отличительные."
 
 #: src/olympia/constants/categories.py:341 src/olympia/constants/categories.py:342
 msgid "General"
@@ -3241,7 +3241,7 @@ msgstr "Новая версия"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:45
 msgid "Daily statistics on downloads and users"
-msgstr "Ежедневная статистика по загрузкам и пользователям"
+msgstr "Ежедневная статистика по скачиваниям и пользователям"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:46
 msgid "Statistics"
@@ -3272,9 +3272,9 @@ msgstr "У этого дополнения нет каких-либо верси
 #, python-brace-format
 msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
-msgstr[0] "<strong>{0}</strong> загрузка за неделю"
-msgstr[1] "<strong>{0}</strong> загрузки за неделю"
-msgstr[2] "<strong>{0}</strong> загрузок за неделю"
+msgstr[0] "<strong>{0}</strong> скачивание за неделю"
+msgstr[1] "<strong>{0}</strong> скачивания за неделю"
+msgstr[2] "<strong>{0}</strong> скачиваний за неделю"
 
 #. {0} is the number of active users.
 #: src/olympia/devhub/templates/devhub/addons/listing/macros.html:28
@@ -3987,7 +3987,8 @@ msgstr "Ожидание подписи версии"
 
 #: src/olympia/devhub/templates/devhub/includes/done_unlisted.html:3
 msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
-msgstr "Готово! ✨ Вы получите уведомление по электронной почте, когда подписанный файл будет готов к загрузке из Центра разработки. Если вы не увидите письмо через 24 часа, проверьте папку со спамом."
+msgstr ""
+"Готово! ✨ Вы получите уведомление по электронной почте, когда подписанный файл будет готов к скачиванию из Центра разработки. Если вы не увидите письмо через 24 часа, проверьте папку со спамом."
 
 #: src/olympia/devhub/templates/devhub/includes/license_form.html:5 src/olympia/devhub/templates/devhub/versions/edit.html:83
 msgid "License"
@@ -4602,7 +4603,7 @@ msgstr "Нашли интересное изображение в Интерне
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:35 src/olympia/discovery/strings.jinja2:769
 msgid "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr "С лёгкостью загружайте видео. Работает с YouTube, Фейсбуком, Vimeo, Twitch, Dailymotion, Periscope и сотнями других сайтов с видео."
+msgstr "С лёгкостью скачивайте видео. Работает с YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope и сотнями других сайтов с видео."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:38
@@ -4825,7 +4826,7 @@ msgstr "Делайте снимки веб-страниц, редактируй�
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:161
 msgid "A superior Windows-only downloader tool."
-msgstr "Прекрасный инструмент для загрузки (работает только в Windows)."
+msgstr "Прекрасный инструмент для скачивания (работает только в Windows)."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:164
@@ -4857,7 +4858,7 @@ msgstr "Превратите все свои открытые вкладки в 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:179 src/olympia/discovery/strings.jinja2:754
 msgid "Robust download management. Check the state of your downloads through a status bar, download history page, and more."
-msgstr "Надёжное управление загрузками. Проверяйте, как идёт загрузка, в строке состояния, загружайте историю страниц и многое другое."
+msgstr "Надёжное управление загрузками. Проверяйте, как идёт скачивание, в строке состояния, скачивайте историю страниц и многое другое."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:182
@@ -4986,7 +4987,7 @@ msgstr "Скрывайте части просматриваемого веб-с
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:254
 msgid "Download images you find on the web."
-msgstr "Загружайте изображения, которые вы находите в Интернете."
+msgstr "Скачивайте изображения, которые вы находите в Интернете."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:257
@@ -5082,7 +5083,7 @@ msgstr "Запретите поисковым системам узнавать 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:311
 msgid "Download YouTube videos and/or audio."
-msgstr "Загружайте видео и (или) аудио с YouTube."
+msgstr "Скачивайте видео и (или) аудио с YouTube."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:314
