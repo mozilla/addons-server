@@ -5893,7 +5893,7 @@ msgstr "შეაფერადეთ Firefox მონახულებულ
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1042
 msgid "Learning a new language? Yomitan is the ideal dictionary companion."
-msgstr ""
+msgstr "ახალ ენას სწავლობთ? Yomitan საუკეთესო დამხმარე ლექსიკონია."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1045
