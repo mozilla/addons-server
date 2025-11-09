@@ -5933,7 +5933,7 @@ msgstr "გააკეთეთ მცირე ჩანიშვნები 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1066
 msgid "Serenity for your Reddit experience."
-msgstr ""
+msgstr "უშფოთველად გამოიყენეთ Reddit."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1069
@@ -5948,7 +5948,7 @@ msgstr "WebM-ვიდეოს სამართავი თქვენს �
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1075
 msgid "Disguise Firefox as the Chrome browser to spoof websites that try to block Firefox."
-msgstr ""
+msgstr "შენიღბეთ Firefox, თითქოს Chrome-ბრაუზერია, იმ საიტების მოსაჩვენებლად, რომლებიც ცდილობენ შეზღუდონ Firefox."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1078
