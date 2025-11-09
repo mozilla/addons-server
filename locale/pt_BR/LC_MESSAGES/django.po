@@ -825,7 +825,7 @@ msgstr "Bloqueado"
 
 #: src/olympia/blocklist/models.py:188
 msgid "Restricted"
-msgstr "Limitado"
+msgstr "Com restrição"
 
 #: src/olympia/constants/activity.py:25
 #, python-brace-format
@@ -3166,7 +3166,7 @@ msgstr "Excluir sua extensão irá apagar permanentemente todas as versões e ar
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:6
 msgid "All versions will be Restricted, which will disable and prevent any further installation in Firefox. Existing users can choose to re-enable the add-on."
-msgstr "Todas as versões ficarão restritas, o que irá desativar e impedir qualquer nova instalação no Firefox. Quem tem instalado pode optar por reativar a extensão."
+msgstr "Todas as versões ficarão com restrição, o que irá desativar e impedir qualquer nova instalação no Firefox. Quem tem instalado pode optar por reativar a extensão."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:11
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
@@ -4430,8 +4430,8 @@ msgid ""
 "Once a version has been deleted, you may not upload a new version with the same version number. The version will also be Restricted, which will disable and prevent any further installation in "
 "Firefox. Existing users can choose to re-enable the add-on."
 msgstr ""
-"Assim que uma versão for excluída, não pode enviar uma nova versão com o mesmo número de versão. A versão também será restrita, o que irá desativar e impedir novas instalações do Firefox. Usuários "
-"existentes podem optar por reativar a extensão."
+"Assim que uma versão for excluída, não pode enviar uma nova versão com o mesmo número de versão. A versão também ficará com restrição, o que irá desativar e impedir novas instalações do Firefox. "
+"Usuários existentes podem optar por reativar a extensão."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:296
 msgid "Are you sure you wish to delete this version?"
