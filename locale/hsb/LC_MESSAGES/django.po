@@ -5924,7 +5924,7 @@ msgstr "Pohibujće kursor myški nad webwobrazy, zo byšće jich napohlad powjet
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1051
 msgid "Feature rich translation tool. Works across the web, eBooks, PDFs, even video subtitles."
-msgstr ""
+msgstr "Přełožowanski nastroj z wjele funkcijemi. Funguje we webje, w elektroniskich knihach, PDF a samo we widejowych podtitulach."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1054
