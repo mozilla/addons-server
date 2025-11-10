@@ -5881,62 +5881,62 @@ msgstr "Thay đổi màu của Firefox để phù hợp với mọi trang web b�
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1042
 msgid "Learning a new language? Yomitan is the ideal dictionary companion."
-msgstr ""
+msgstr "Bạn đang học một ngôn ngữ mới? Yomitan chính là người bạn đồng hành lý tưởng trong từ điển."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1045
 msgid "Pack a powerful thesaurus right inside Firefox."
-msgstr ""
+msgstr "Tích hợp từ điển đồng nghĩa mạnh mẽ ngay trong Firefox."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1048
 msgid "Hover over web images to enlarge their appearance."
-msgstr ""
+msgstr "Di chuột qua hình ảnh trên web để phóng to hình ảnh."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1051
 msgid "Feature rich translation tool. Works across the web, eBooks, PDF's, even video subtitles."
-msgstr ""
+msgstr "Công cụ dịch thuật nhiều tính năng. Hoạt động trên web, sách điện tử, PDF, thậm chí cả phụ đề video."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1054
 msgid "Track the time you spend on every website you visit."
-msgstr ""
+msgstr "Theo dõi thời gian bạn dành cho mỗi trang web bạn truy cập."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1057
 msgid "Manage your Gmail (even multiple accounts) right from a handy pop-up accessible from the Firefox toolbar."
-msgstr ""
+msgstr "Quản lý Gmail của bạn (thậm chí nhiều tài khoản) ngay từ cửa sổ bật lên tiện dụng có thể truy cập từ thanh công cụ Firefox."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1060
 msgid "De-clutter YouTube. Strip away unwanted elements like related videos, shorts & more."
-msgstr ""
+msgstr "Dọn dẹp YouTube. Loại bỏ các thành phần không mong muốn như video liên quan, video ngắn, v.v."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1063
 msgid "Leave yourself little notes on any web page."
-msgstr ""
+msgstr "Ghi lại những ghi chú nhỏ trên bất kỳ trang web nào."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1066
 msgid "Serenity for your Reddit experience."
-msgstr ""
+msgstr "Nâng cao trải nghiệm Reddit của bạn."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1069
 msgid "Save and organize anything you find on the web."
-msgstr ""
+msgstr "Lưu và sắp xếp mọi thứ bạn tìm thấy trên web."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1072
 msgid "WebM video controls at your fingertips."
-msgstr ""
+msgstr "Điều khiển video WebM ngay trong tầm tay bạn."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1075
 msgid "Disguise Firefox as the Chrome browser to spoof websites that try to block Firefox."
-msgstr ""
+msgstr "Ngụy trang Firefox thành trình duyệt Chrome để đánh lừa các trang web cố gắng chặn Firefox."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1078
@@ -5956,7 +5956,7 @@ msgstr "Xem tất cả các tiện ích mở rộng"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1084
 msgid "Extension Starter Pack"
-msgstr ""
+msgstr "Gói tiện ích mở rộng khởi đầu"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1088
@@ -6339,7 +6339,7 @@ msgstr "Không rõ"
 
 #: src/olympia/files/views.py:83 src/olympia/signing/views.py:128
 msgid "Missing \"upload\" key in multipart file data."
-msgstr ""
+msgstr "Thiếu khóa \"upload\" trong dữ liệu tệp multipart."
 
 #: src/olympia/files/views.py:89
 msgid "Missing \"channel\" arg."
