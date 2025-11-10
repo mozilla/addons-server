@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-10 11:00+0000\n"
+"POT-Creation-Date: 2025-11-10 19:21+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -4917,8 +4917,8 @@ msgid "Hover over web images to enlarge their appearance."
 msgstr "Hover over web images to enlarge their appearance."
 
 #. editorial content for the primary hero shelves.
-msgid "Feature rich translation tool. Works across the web, eBooks, PDF's, even video subtitles."
-msgstr "Feature rich translation tool. Works across the web, eBooks, PDF's, even video subtitles."
+msgid "Feature rich translation tool. Works across the web, eBooks, PDFs, even video subtitles."
+msgstr "Feature rich translation tool. Works across the web, eBooks, PDFs, even video subtitles."
 
 #. editorial content for the primary hero shelves.
 msgid "Track the time you spend on every website you visit."
