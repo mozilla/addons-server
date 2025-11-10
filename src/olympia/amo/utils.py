@@ -1173,6 +1173,31 @@ def verify_condition_with_locales(*, value, check_func, form=None, field_name=No
                     raise
 
 
+def validate_name(name, check_function, error_message, *, form=None):
+    def variant_checker(name):
+        normalized_name = normalize_string_for_name_checks(
+            name, categories_to_strip=('P')
+        ).lower()
+
+        variants = generate_lowercase_homoglyphs_variants_for_string(
+            normalize_string_for_name_checks(name)
+        )
+
+        for index, variant in enumerate(variants):
+            if index > 65535:
+                # index > 65535 means over 16 confusable characters with 2
+                # variants each. That name is likely suspicious, and it's too
+                # expensive to continue anyway. Reject it immediately.
+                raise forms.ValidationError(error_message)
+
+            check_function(normalized_name, variant)
+
+    verify_condition_with_locales(
+        value=name, check_func=variant_checker, form=form, field_name='name'
+    )
+    return name
+
+
 def verify_no_urls(value, *, form=None, field_name=None):
     def _check(value):
         if has_urls(value):

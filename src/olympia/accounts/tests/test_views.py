@@ -45,7 +45,7 @@ from olympia.amo.tests import (
 )
 from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.api.tests.utils import APIKeyAuthTestMixin
-from olympia.users.models import UserNotification, UserProfile
+from olympia.users.models import DeniedName, UserNotification, UserProfile
 from olympia.users.notifications import (
     NOTIFICATIONS_BY_ID,
     NOTIFICATIONS_COMBINED,
@@ -1460,6 +1460,30 @@ class TestAccountViewSetUpdate(TestCase):
 
         response = self.patch(data={'display_name': 'a' * 50})
         assert response.status_code == 200
+
+    def test_display_name_denied_name(self):
+        DeniedName.objects.create(name='foo')
+        self.client.login_api(self.user)
+        response = self.patch(data={'display_name': 'foó_thing'})
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'display_name': ['This display name cannot be used.']
+        }
+
+        # homoglyphs don't bypass the validation
+        response = self.patch(data={'display_name': 'fѻѺ_thing'})
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'display_name': ['This display name cannot be used.']
+        }
+
+    def test_display_name_too_many_homoglyphs(self):
+        self.client.login_api(self.user)
+        response = self.patch(data={'display_name': 'l' * 17})
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'display_name': ['This display name cannot be used.']
+        }
 
     @override_settings(EXTERNAL_SITE_URL='https://example.org')
     def test_validate_homepage(self):

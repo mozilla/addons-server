@@ -1,3 +1,4 @@
+from django import forms
 from django.conf import settings
 from django.utils.translation import gettext
 
@@ -20,8 +21,8 @@ from olympia.api.serializers import AMOModelSerializer, SiteStatusSerializer
 from olympia.api.utils import is_gate_active
 from olympia.api.validators import OneOrMoreLetterOrNumberCharacterAPIValidator
 from olympia.users import notifications
-from olympia.users.models import DeniedName, UserProfile
-from olympia.users.utils import upload_picture
+from olympia.users.models import UserProfile
+from olympia.users.utils import upload_picture, validate_user_name
 
 
 log = olympia.core.logger.getLogger('accounts')
@@ -153,11 +154,12 @@ class SelfUserProfileSerializer(FullUserProfileSerializer):
         return value
 
     def validate_display_name(self, value):
-        if DeniedName.blocked(value):
-            raise serializers.ValidationError(
-                gettext('This display name cannot be used.')
-            )
-        return value
+        error_msg = gettext('This display name cannot be used.')
+
+        try:
+            return validate_user_name(value, error_msg)
+        except forms.ValidationError as exc:
+            raise serializers.ValidationError(exc.messages) from exc
 
     def validate_picture_upload(self, value):
         image_check = ImageCheck(value)

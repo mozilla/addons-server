@@ -556,13 +556,15 @@ class DeniedNameAdmin(AMOModelAdmin):
                 inserted = 0
                 duplicates = 0
 
-                for x in form.cleaned_data['names'].splitlines():
+                existing = self.model.objects.all().values_list('name', flat=True)
+                for line in form.cleaned_data['names'].splitlines():
+                    line = line.lower()
                     # check with the cache
-                    if self.model.blocked(x):
+                    if any(name in line for name in existing):
                         duplicates += 1
                         continue
                     try:
-                        self.model.objects.create(**{'name': x.lower()})
+                        self.model.objects.create(**{'name': line})
                         inserted += 1
                     except IntegrityError:
                         # although unlikely, someone else could have added
