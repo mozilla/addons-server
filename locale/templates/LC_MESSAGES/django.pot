@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-07 09:24+0000\n"
+"POT-Creation-Date: 2025-11-10 11:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -237,25 +237,25 @@ msgid ""
 "removed the content.\n"
 msgstr ""
 
-#: src/olympia/accounts/serializers.py:152 src/olympia/bandwagon/serializers.py:98
+#: src/olympia/accounts/serializers.py:153 src/olympia/bandwagon/serializers.py:99
 msgid "No links are allowed."
 msgstr ""
 
-#: src/olympia/accounts/serializers.py:158
+#: src/olympia/accounts/serializers.py:157
 msgid "This display name cannot be used."
 msgstr ""
 
-#: src/olympia/accounts/serializers.py:167 src/olympia/addons/fields.py:366
+#: src/olympia/accounts/serializers.py:169 src/olympia/addons/fields.py:366
 #: src/olympia/devhub/views.py:1021
 msgid "Images must be either PNG or JPG."
 msgstr ""
 
-#: src/olympia/accounts/serializers.py:171 src/olympia/addons/fields.py:371
+#: src/olympia/accounts/serializers.py:173 src/olympia/addons/fields.py:371
 #: src/olympia/devhub/views.py:1027
 msgid "Images cannot be animated."
 msgstr ""
 
-#: src/olympia/accounts/serializers.py:176 src/olympia/devhub/views.py:1036
+#: src/olympia/accounts/serializers.py:178 src/olympia/devhub/views.py:1036
 #, python-format
 msgid "Please use images smaller than %dMB."
 msgstr ""
@@ -453,12 +453,12 @@ msgstr ""
 msgid "Only approved versions can be rolled back, except the most recent version."
 msgstr ""
 
-#: src/olympia/addons/utils.py:56 src/olympia/bandwagon/serializers.py:92
-msgid "This name cannot be used."
+#: src/olympia/addons/utils.py:52
+msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
 
-#: src/olympia/addons/utils.py:71
-msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
+#: src/olympia/addons/utils.py:56 src/olympia/bandwagon/serializers.py:94
+msgid "This name cannot be used."
 msgstr ""
 
 #: src/olympia/addons/validators.py:41
@@ -612,7 +612,7 @@ msgid ""
 "We'll be back to full capacity shortly."
 msgstr ""
 
-#: src/olympia/amo/utils.py:1179
+#: src/olympia/amo/utils.py:1204
 msgid "URLs are not allowed."
 msgstr ""
 
@@ -875,19 +875,19 @@ msgid ""
 "some time."
 msgstr ""
 
-#: src/olympia/bandwagon/serializers.py:72
+#: src/olympia/bandwagon/serializers.py:73
 msgid "This custom URL is already in use by another one of your collections."
 msgstr ""
 
-#: src/olympia/bandwagon/serializers.py:105
+#: src/olympia/bandwagon/serializers.py:106
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr ""
 
-#: src/olympia/bandwagon/serializers.py:113
+#: src/olympia/bandwagon/serializers.py:111
 msgid "This custom URL cannot be used."
 msgstr ""
 
-#: src/olympia/bandwagon/serializers.py:149
+#: src/olympia/bandwagon/serializers.py:145
 msgid "This add-on already belongs to the collection"
 msgstr ""
 
@@ -2926,7 +2926,7 @@ msgid "Preview still being generated - come back later or refresh the page."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/invitation.html:3
-#: src/olympia/users/utils.py:98
+#: src/olympia/users/utils.py:99
 #, python-brace-format
 msgid "Author invitation for {addon_name}"
 msgstr ""
@@ -7638,26 +7638,26 @@ msgstr ""
 msgid "Delete Locale"
 msgstr ""
 
-#: src/olympia/users/models.py:91
+#: src/olympia/users/models.py:90
 msgid "No user with that email."
 msgstr ""
 
-#: src/olympia/users/models.py:612
+#: src/olympia/users/models.py:611
 #, python-brace-format
 msgid "Firefox user {id}"
 msgstr ""
 
-#: src/olympia/users/models.py:867
+#: src/olympia/users/models.py:849
 msgid ""
 "Multiple submissions violating our policies have been sent from your "
 "location. The IP address has been blocked."
 msgstr ""
 
-#: src/olympia/users/models.py:1019
+#: src/olympia/users/models.py:1001
 msgid "The email address used for your account is not allowed for submissions."
 msgstr ""
 
-#: src/olympia/users/models.py:1278
+#: src/olympia/users/models.py:1260
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution "
 "Agreement as well as our Review Policies and Rules. The Firefox Add-on "
@@ -7665,7 +7665,7 @@ msgid ""
 " handle your information."
 msgstr ""
 
-#: src/olympia/users/models.py:1292
+#: src/olympia/users/models.py:1274
 #, python-brace-format
 msgid ""
 "Please read and accept our Firefox Add-on Distribution Agreement as well as "
@@ -7710,15 +7710,15 @@ msgstr ""
 msgid "User Notifications"
 msgstr ""
 
-#: src/olympia/users/utils.py:91
+#: src/olympia/users/utils.py:92
 msgid "An author has been added to your add-on"
 msgstr ""
 
-#: src/olympia/users/utils.py:115
+#: src/olympia/users/utils.py:116
 msgid "An author role has been changed on your add-on"
 msgstr ""
 
-#: src/olympia/users/utils.py:125
+#: src/olympia/users/utils.py:126
 msgid "An author has been removed from your add-on"
 msgstr ""
 

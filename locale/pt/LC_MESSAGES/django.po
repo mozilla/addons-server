@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-07 09:24+0000\n"
+"POT-Creation-Date: 2025-11-10 11:00+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -319,11 +319,11 @@ msgstr ""
 msgid "Only approved versions can be rolled back, except the most recent version."
 msgstr ""
 
-msgid "This name cannot be used."
-msgstr "Este nome não pode ser utilizado."
-
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
+
+msgid "This name cannot be used."
+msgstr "Este nome não pode ser utilizado."
 
 msgid "Both `license` and `custom_license` cannot be provided together."
 msgstr ""

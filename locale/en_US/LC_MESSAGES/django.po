@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-07 09:24+0000\n"
+"POT-Creation-Date: 2025-11-10 11:00+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -371,11 +371,11 @@ msgstr "Rollback is only available for version %s in this channel."
 msgid "Only approved versions can be rolled back, except the most recent version."
 msgstr "Only approved versions can be rolled back, except the most recent version."
 
-msgid "This name cannot be used."
-msgstr "This name cannot be used."
-
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Add-on names cannot contain the Mozilla or Firefox trademarks."
+
+msgid "This name cannot be used."
+msgstr "This name cannot be used."
 
 msgid "Both `license` and `custom_license` cannot be provided together."
 msgstr "Both `license` and `custom_license` cannot be provided together."

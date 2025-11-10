@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-07 09:24+0000\n"
+"POT-Creation-Date: 2025-11-10 11:00+0000\n"
 "PO-Revision-Date: 2024-01-15 13:27+0000\n"
 "Last-Translator: Bund10z <abu.avila@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -327,11 +327,11 @@ msgstr ""
 msgid "Only approved versions can be rolled back, except the most recent version."
 msgstr ""
 
-msgid "This name cannot be used."
-msgstr "No se puede utilizar este nombre."
-
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Los nombres de complementos no pueden incluir las marcas Mozilla o Firefox."
+
+msgid "This name cannot be used."
+msgstr "No se puede utilizar este nombre."
 
 msgid "Both `license` and `custom_license` cannot be provided together."
 msgstr ""
