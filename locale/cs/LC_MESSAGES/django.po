@@ -5899,7 +5899,7 @@ msgstr "Najetím na webové obrázky zvětšíte jejich vzhled."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1051
 msgid "Feature rich translation tool. Works across the web, eBooks, PDFs, even video subtitles."
-msgstr ""
+msgstr "Bohatý překladatelský nástroj. Funguje na celém webu, e-knihy, PDF, dokonce i video titulky."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1054

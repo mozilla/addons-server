@@ -5930,7 +5930,7 @@ msgstr "Bewegen Sie die Maus über Web-Grafiken, um deren Erscheinungsbild zu ve
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1051
 msgid "Feature rich translation tool. Works across the web, eBooks, PDFs, even video subtitles."
-msgstr ""
+msgstr "Übersetzungswerkzeug mit vielen Funktionen. Funktioniert im gesamten Web, in E-Books, bei PDFs und sogar bei Videountertiteln."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1054

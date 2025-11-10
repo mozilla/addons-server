@@ -5912,7 +5912,7 @@ msgstr "Houd de muisaanwijzer boven webafbeeldingen om ze te vergroten."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1051
 msgid "Feature rich translation tool. Works across the web, eBooks, PDFs, even video subtitles."
-msgstr ""
+msgstr "Vertaalhulpmiddel met rijke functies. Werkt overal op het web, in eBoeken, PDF’s en zelfs ondertitels voor video’s."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1054

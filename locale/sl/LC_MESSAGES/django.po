@@ -5903,7 +5903,7 @@ msgstr "Pridržite miškin kazalec na spletnih slikah, da povečate njihov videz
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1051
 msgid "Feature rich translation tool. Works across the web, eBooks, PDFs, even video subtitles."
-msgstr ""
+msgstr "Orodje za prevajanje, bogato s funkcijami. Deluje na spletu, e-knjigah, datotekah PDF, celo s podnapisi za videoposnetke."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1054
