@@ -5884,22 +5884,22 @@ msgstr "Endre fargen på Firefox slik at den matcher alle nettstedene du besøke
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1042
 msgid "Learning a new language? Yomitan is the ideal dictionary companion."
-msgstr ""
+msgstr "Lærer du et nytt språk? Yomitan er den ideelle ordbokshjelperen."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1045
 msgid "Pack a powerful thesaurus right inside Firefox."
-msgstr ""
+msgstr "Pakk inn en kraftig synonymordbok rett i Firefox."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1048
 msgid "Hover over web images to enlarge their appearance."
-msgstr ""
+msgstr "Hold markøren over nettsidebilder for å forstørre dem."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1051
 msgid "Feature rich translation tool. Works across the web, eBooks, PDF's, even video subtitles."
-msgstr ""
+msgstr "Funksjonsrikt oversettelsesverktøy. Fungerer på tvers av nettet, e-bøker, PDF-er og til og med videotekster."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1054
