@@ -5908,7 +5908,7 @@ msgstr "გადაატარეთ ვებსურათებს მა�
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1051
 msgid "Feature rich translation tool. Works across the web, eBooks, PDFs, even video subtitles."
-msgstr ""
+msgstr "შესაძლებლობებით აღსავსე თარგმნის ხელსაწყო. იმეშავებს მთელ ვებსივრცეში, წიგნებზე, PDF-ფაილებზე, ვიდეოების სუბტიტრებზეც კი."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1054
