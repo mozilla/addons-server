@@ -5899,7 +5899,7 @@ msgstr "Hold markøren over nettsidebilder for å forstørre dem."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1051
 msgid "Feature rich translation tool. Works across the web, eBooks, PDFs, even video subtitles."
-msgstr ""
+msgstr "Funksjonsrikt oversettelsesverktøy. Fungerer på tvers av nettet, e-bøker, PDF-er og til og med videoundertekster."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1054
