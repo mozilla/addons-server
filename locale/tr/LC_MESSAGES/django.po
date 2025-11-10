@@ -1270,7 +1270,7 @@ msgstr "Bekleyen ret değiştirildi"
 #: src/olympia/constants/activity.py:1208
 #, python-brace-format
 msgid "{addon} {version} created, to rollback from {0}."
-msgstr ""
+msgstr "{0} sürümünden geri alınacak {addon} {version} oluşturuldu."
 
 #: src/olympia/constants/activity.py:1209
 msgid "Version rollback"
@@ -5897,12 +5897,12 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1054
 msgid "Track the time you spend on every website you visit."
-msgstr ""
+msgstr "Ziyaret ettiğiniz her sitede geçirdiğiniz süreyi izleyin."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1057
 msgid "Manage your Gmail (even multiple accounts) right from a handy pop-up accessible from the Firefox toolbar."
-msgstr ""
+msgstr "Gmail’inizi (hatta birden fazla hesabınızı) Firefox araç çubuğundan erişebileceğiniz açılır pencereden yönetin."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1060
@@ -5927,12 +5927,12 @@ msgstr "Web’de bulduğunuz her şeyi kaydedip düzenleyin."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1072
 msgid "WebM video controls at your fingertips."
-msgstr ""
+msgstr "WebM video kontrolleri parmaklarınızın ucunda."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1075
 msgid "Disguise Firefox as the Chrome browser to spoof websites that try to block Firefox."
-msgstr ""
+msgstr "Firefox’u engellemeye çalışan siteleri kandırmak için Firefox’u Chrome tarayıcısı gibi gösterin."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1078
