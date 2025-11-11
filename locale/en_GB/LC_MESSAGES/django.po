@@ -5905,7 +5905,7 @@ msgstr "Hover over web images to enlarge their appearance."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1051
 msgid "Feature rich translation tool. Works across the web, eBooks, PDFs, even video subtitles."
-msgstr ""
+msgstr "Feature rich translation tool. Works across the web, eBooks, PDFs, even video subtitles."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1054

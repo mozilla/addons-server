@@ -5969,7 +5969,7 @@ msgstr "Survolez des images web pour agrandir leur affichage."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1051
 msgid "Feature rich translation tool. Works across the web, eBooks, PDFs, even video subtitles."
-msgstr ""
+msgstr "Outil de traduction riche en fonctionnalités. Fonctionne avec tout le Web, les livres électroniques, les fichiers PDF et même les sous-titres des vidéos."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1054
