@@ -5936,7 +5936,7 @@ msgstr "Наведите курсор на веб-изображения, что
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1051
 msgid "Feature rich translation tool. Works across the web, eBooks, PDFs, even video subtitles."
-msgstr ""
+msgstr "Многофункциональное средство перевода. Работает с Интернетом, электронными книгами, PDF-файлами и даже с видеосубтитрами."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1054
