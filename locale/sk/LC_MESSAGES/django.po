@@ -5901,7 +5901,7 @@ msgstr "Podržte kurzor myši nad webovými obrázkami a oni sa zväčšia."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1051
 msgid "Feature rich translation tool. Works across the web, eBooks, PDFs, even video subtitles."
-msgstr ""
+msgstr "Prekladač s bohatými funkciami. Funguje na webe, v elektronických knihách, PDF súboroch a dokonca aj s titulkami k videám."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1054
