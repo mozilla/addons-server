@@ -5906,7 +5906,7 @@ msgstr "Survola imagines web pro aggrandir lor apparentia."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1051
 msgid "Feature rich translation tool. Works across the web, eBooks, PDFs, even video subtitles."
-msgstr ""
+msgstr "Application de traduction ric de functionalitates. Functiona inter web, eBooks, files PDF, mesmo subtitulos de videos."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1054
