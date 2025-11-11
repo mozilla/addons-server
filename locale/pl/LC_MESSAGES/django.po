@@ -5939,7 +5939,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1057
 msgid "Manage your Gmail (even multiple accounts) right from a handy pop-up accessible from the Firefox toolbar."
-msgstr ""
+msgstr "Zarządzaj swoją pocztą Gmail (nawet wieloma kontami) bezpośrednio za pomocą wygodnego okienka dostępnego na pasku narzędzi Firefoksa."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1060
