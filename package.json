@@ -43,7 +43,7 @@
     "@rollup/plugin-inject": "^5.0.5",
     "@vitest/eslint-plugin": "^1.4.0",
     "dotenv": "^17.2.3",
-    "eslint": "^9.39.0",
+    "eslint": "^9.39.1",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.4",
     "eslint-plugin-simple-import-sort": "^12.1.1",
