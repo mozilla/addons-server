@@ -5910,7 +5910,7 @@ msgstr "Hâld de mûsoanwizer boppe webôfbyldingen om se te fergrutsjen."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1051
 msgid "Feature rich translation tool. Works across the web, eBooks, PDFs, even video subtitles."
-msgstr ""
+msgstr "Oersetark fol mei funksjes. Wurket oeral op it web, yn e-boeken, PDF’s, sels ûndertitels foar fideo’s."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1054
