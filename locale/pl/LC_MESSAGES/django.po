@@ -5594,7 +5594,7 @@ msgstr "Zmieniacz motywów oparty na czasie. Spraw, aby Firefox zmieniał kolory
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:615
 msgid "Declutter your Twitter experience."
-msgstr ""
+msgstr "Usuń bałagan ze swojego Twittera."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:618
@@ -5604,7 +5604,7 @@ msgstr "Przywróć możliwość wyświetlania kciuka w dół!"
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:621
 msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
-msgstr ""
+msgstr "Słuchaj muzyki na YouTube bez irytujących przerw w postaci „Film został wstrzymany. Kontynuować oglądanie?”."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:625
@@ -5619,7 +5619,7 @@ msgstr "Dostosuj YouTube do swoich potrzeb. Nadaj mu nowy wygląd, nowe funkcje 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:640
 msgid "Changes the color of Firefox to match the appearance of any website."
-msgstr ""
+msgstr "Zmienia kolor Firefoksa, aby pasował do każdej witryny."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:650
@@ -5779,12 +5779,12 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:958
 msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
-msgstr ""
+msgstr "Zamaskuj swój adres e-mail, aby chronić swoją tożsamość i zapobiegać niechcianej poczcie. Nowe aktualizacje sprawiają, że korzystanie z Firefox Relay jest jeszcze łatwiejsze."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:961
 msgid "Instantly translate any selected text on web pages."
-msgstr ""
+msgstr "Natychmiastowe tłumaczenie dowolnego zaznaczonego tekstu na witrynach."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:964
@@ -5914,7 +5914,7 @@ msgstr "Zmień kolor Firefoksa, aby pasował do każdej odwiedzanej witryny."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1042
 msgid "Learning a new language? Yomitan is the ideal dictionary companion."
-msgstr ""
+msgstr "Uczysz się nowego języka? Yomitan to idealny dodatek słownikowy."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1045
