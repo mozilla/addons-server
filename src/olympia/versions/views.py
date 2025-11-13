@@ -1,11 +1,15 @@
 import os
 
 from django import http
+from django.conf import settings
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_object_or_404, redirect
 from django.template.response import TemplateResponse
 from django.urls import reverse
 from django.utils.cache import patch_cache_control, patch_vary_headers
+from django.utils.crypto import constant_time_compare
+
+import waffle
 
 import olympia.core.logger
 from olympia import amo
@@ -218,6 +222,18 @@ def download_source(request, version_id):
             allow_addons_edit_permission=False,
             allow_developer=True,
         )
+
+    # Source code can also be downloaded using an API key when the source
+    # builder feature is enabled.
+    api_key = request.headers.get('x-api-key')
+    if waffle.switch_is_active('enable-source-builder') and api_key:
+        has_permission = constant_time_compare(api_key, settings.SOURCE_BUILDER_API_KEY)
+        if has_permission:
+            log.info(
+                'Source code for Version %s was accessed via SOURCE_BUILDER_API_KEY',
+                version.id,
+            )
+
     if not (has_permission and getattr(version, 'source', None)):
         raise http.Http404()
 
