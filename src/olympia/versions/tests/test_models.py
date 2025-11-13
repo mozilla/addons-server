@@ -663,6 +663,39 @@ class TestVersion(AMOPaths, TestCase):
         assert activity.user == user
         assert not version.needshumanreview_set.count()
 
+    @override_switch('enable-source-builder', active=True)
+    @mock.patch('olympia.versions.tasks.call_source_builder.delay')
+    def test_call_source_builder_when_switch_is_enabled(self, call_source_builder_mock):
+        user = UserProfile.objects.latest('pk')
+        version = Version.objects.get(pk=81551)
+        version.source = self.file_fixture_path('webextension_no_id.zip')
+        assert version.sources_provided
+
+        version.flag_if_sources_were_provided(user)
+
+        activity = (
+            ActivityLog.objects.for_versions(version)
+            .filter(action=amo.LOG.SOURCE_CODE_UPLOADED.id)
+            .get()
+        )
+        call_source_builder_mock.assert_called_with(
+            version_pk=version.pk, activity_log_id=activity.id
+        )
+
+    @override_switch('enable-source-builder', active=False)
+    @mock.patch('olympia.versions.tasks.call_source_builder.delay')
+    def test_call_source_builder_when_switch_is_disabled(
+        self, call_source_builder_mock
+    ):
+        user = UserProfile.objects.latest('pk')
+        version = Version.objects.get(pk=81551)
+        version.source = self.file_fixture_path('webextension_no_id.zip')
+        assert version.sources_provided
+
+        version.flag_if_sources_were_provided(user)
+
+        call_source_builder_mock.assert_not_called()
+
     def test_flag_if_sources_were_provided_pending_rejection(self):
         user = UserProfile.objects.latest('pk')
         version = Version.objects.get(pk=81551)

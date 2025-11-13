@@ -3,11 +3,14 @@ import operator
 import os
 import tempfile
 from io import BytesIO
+from urllib.parse import urljoin
 
 from django.conf import settings
 from django.db import transaction
 from django.template import loader
+from django.urls import reverse
 
+import requests
 from django_statsd.clients import statsd
 from PIL import Image
 
@@ -24,6 +27,7 @@ from olympia.files.models import File
 from olympia.files.utils import get_background_images
 from olympia.lib.crypto.tasks import duplicate_addon_version
 from olympia.reviewers.models import NeedsHumanReview
+from olympia.scanners.tasks import make_adapter_with_retry
 from olympia.users.models import UserProfile
 from olympia.users.utils import get_task_user
 from olympia.versions.compare import VersionString
@@ -416,3 +420,43 @@ def soft_block_versions(version_ids, reason=REASON_VERSION_DELETED, **kw):
         ),
         overwrite_block_metadata=False,
     )
+
+
+@task
+def call_source_builder(version_pk, activity_log_id):
+    log.info(
+        'Calling source builder API for Version %s (activity_log_id = %s)',
+        version_pk,
+        activity_log_id,
+    )
+
+    try:
+        version = Version.objects.get(pk=version_pk)
+
+        with requests.Session() as http:
+            adapter = make_adapter_with_retry()
+            http.mount('http://', adapter)
+            http.mount('https://', adapter)
+
+            json_payload = {
+                'addon_id': version.addon_id,
+                'version_id': version.id,
+                'download_source_url': urljoin(
+                    settings.EXTERNAL_SITE_URL,
+                    reverse('downloads.source', kwargs={'version_id': version.id}),
+                ),
+                'license_slug': version.license.slug,
+                'activity_log_id': activity_log_id,
+            }
+            http.post(
+                url=settings.SOURCE_BUILDER_API_URL,
+                json=json_payload,
+                timeout=settings.SOURCE_BUILDER_API_TIMEOUT,
+            )
+    except Exception:
+        log.exception(
+            'Error while calling source builder API for Version %s '
+            '(activity_log_id = %s)',
+            version_pk,
+            activity_log_id,
+        )

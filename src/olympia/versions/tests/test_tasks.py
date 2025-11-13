@@ -4,14 +4,17 @@ import zipfile
 from base64 import b64encode
 from datetime import datetime
 from unittest import mock
+from urllib.parse import urljoin
 
 from django.conf import settings
 from django.core import mail
 from django.core.files import temp
 from django.core.files.base import File as DjangoFile
+from django.urls import reverse
 from django.utils.encoding import force_str
 
 import pytest
+import requests
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
@@ -30,6 +33,7 @@ from olympia.reviewers.models import NeedsHumanReview
 from ..models import Version, VersionPreview
 from ..tasks import (
     UI_FIELDS,
+    call_source_builder,
     duplicate_addon_version_for_rollback,
     generate_static_theme_preview,
     hard_delete_versions,
@@ -852,3 +856,29 @@ def test_soft_block_versions():
     assert BlockVersion.objects.filter(block_type=BlockType.BLOCKED).count() == 1
 
     assert len(mail.outbox) == 0
+
+
+class TestCallSourceBuilder(TestCase):
+    @mock.patch.object(requests.Session, 'post')
+    def test_call_with_mock(self, requests_mock):
+        addon = addon_factory()
+        version = version_factory(addon=addon)
+        activity_log_id = 123
+
+        call_source_builder(version.pk, activity_log_id)
+
+        assert requests_mock.called
+        requests_mock.assert_called_with(
+            url=settings.SOURCE_BUILDER_API_URL,
+            json={
+                'addon_id': addon.id,
+                'version_id': version.id,
+                'download_source_url': urljoin(
+                    settings.EXTERNAL_SITE_URL,
+                    reverse('downloads.source', kwargs={'version_id': version.id}),
+                ),
+                'license_slug': version.license.slug,
+                'activity_log_id': activity_log_id,
+            },
+            timeout=settings.SOURCE_BUILDER_API_TIMEOUT,
+        )

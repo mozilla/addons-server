@@ -826,14 +826,19 @@ class Version(OnChangeMixin, ModelBase):
         from olympia.activity.utils import log_and_notify
         from olympia.reviewers.models import NeedsHumanReview
 
+        from .tasks import call_source_builder
+
         if self.source:
             # Add Activity Log, notifying staff, relevant reviewers and
             # other authors of the add-on.
-            log_and_notify(amo.LOG.SOURCE_CODE_UPLOADED, None, user, self)
+            note = log_and_notify(amo.LOG.SOURCE_CODE_UPLOADED, None, user, self)
 
             if self.pending_rejection:
                 reason = NeedsHumanReview.REASONS.PENDING_REJECTION_SOURCES_PROVIDED
                 NeedsHumanReview.objects.create(version=self, reason=reason)
+
+            if waffle.switch_is_active('enable-source-builder'):
+                call_source_builder.delay(version_pk=self.pk, activity_log_id=note.id)
 
     @classmethod
     def transformer(cls, versions):
