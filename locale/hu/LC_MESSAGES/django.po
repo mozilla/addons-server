@@ -5919,7 +5919,7 @@ msgstr "Vigye az egeret a webes képek fölé, hogy kinagyítsa őket."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1051
 msgid "Feature rich translation tool. Works across the web, eBooks, PDFs, even video subtitles."
-msgstr ""
+msgstr "Funkciógazdag fordítási eszköz. Működik a weben, az e-könyvekben, PDF-ekben, sőt még a videófeliratokban is."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1054
