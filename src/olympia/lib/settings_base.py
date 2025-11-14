@@ -833,6 +833,7 @@ CELERY_TASK_ROUTES = {
     'olympia.scanners.tasks.run_customs': {'queue': 'devhub'},
     'olympia.scanners.tasks.run_narc_on_version': {'queue': 'devhub'},
     'olympia.scanners.tasks.run_yara': {'queue': 'devhub'},
+    'olympia.versions.tasks.call_source_builder': {'queue': 'devhub'},
     'olympia.versions.tasks.soft_block_versions': {'queue': 'devhub'},
     # Crons.
     'olympia.addons.tasks.update_addon_average_daily_users': {'queue': 'cron'},
@@ -1557,3 +1558,7 @@ SPECTACULAR_SETTINGS = {
 SWAGGER_SCHEMA_FILE = path('schema.yml')
 
 SWAGGER_UI_ENABLED = env('SWAGGER_UI_ENABLED', default=False) or TARGET != 'production'
+
+# Source builder settings.
+SOURCE_BUILDER_API_URL = env('SOURCE_BUILDER_API_URL', default=None)
+SOURCE_BUILDER_API_TIMEOUT = 5  # seconds

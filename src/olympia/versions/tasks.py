@@ -8,6 +8,7 @@ from django.conf import settings
 from django.db import transaction
 from django.template import loader
 
+import requests
 from django_statsd.clients import statsd
 from PIL import Image
 
@@ -24,6 +25,7 @@ from olympia.files.models import File
 from olympia.files.utils import get_background_images
 from olympia.lib.crypto.tasks import duplicate_addon_version
 from olympia.reviewers.models import NeedsHumanReview
+from olympia.scanners.tasks import make_adapter_with_retry
 from olympia.users.models import UserProfile
 from olympia.users.utils import get_task_user
 from olympia.versions.compare import VersionString
@@ -416,3 +418,32 @@ def soft_block_versions(version_ids, reason=REASON_VERSION_DELETED, **kw):
         ),
         overwrite_block_metadata=False,
     )
+
+
+@task
+def call_source_builder(version_pk):
+    log.info('Calling source builder API for Version %s', version_pk)
+
+    try:
+        version = Version.objects.get(pk=version_pk)
+
+        with requests.Session() as http:
+            adapter = make_adapter_with_retry()
+            http.mount('http://', adapter)
+            http.mount('https://', adapter)
+
+            json_payload = {
+                'addon_guid': version.addon.guid,
+                'version': version.version,
+                'download_source_url': '',
+                'license_slug': version.license.slug,
+            }
+            http.post(
+                url=settings.SOURCE_BUILDER_API_URL,
+                json=json_payload,
+                timeout=settings.SOURCE_BUILDER_API_TIMEOUT,
+            )
+    except Exception:
+        log.exception(
+            'Error while calling source builder API for Version %s.', version_pk
+        )
