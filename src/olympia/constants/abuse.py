@@ -10,7 +10,7 @@ DECISION_ACTIONS = APIChoicesWithDash(
     ('AMO_BAN_USER', 1, 'User ban'),
     ('AMO_DISABLE_ADDON', 2, 'Add-on disable'),
     # Used to indicate the job has been forwarded to AMO
-    ('AMO_ESCALATE_ADDON', 3, '(Obsolete) Forward add-on to reviewers'),
+    ('AMO_ESCALATE_ADDON', 3, 'Forward add-on to reviewers'),
     # 4 is unused
     ('AMO_DELETE_RATING', 5, 'Rating delete'),
     ('AMO_DELETE_COLLECTION', 6, 'Collection delete'),
