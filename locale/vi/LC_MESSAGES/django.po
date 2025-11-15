@@ -5896,7 +5896,7 @@ msgstr "Di chuột qua hình ảnh trên web để phóng to hình ảnh."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1051
 msgid "Feature rich translation tool. Works across the web, eBooks, PDFs, even video subtitles."
-msgstr ""
+msgstr "Công cụ dịch thuật nhiều tính năng. Hoạt động trên web, sách điện tử, PDF, thậm chí cả phụ đề video."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1054
