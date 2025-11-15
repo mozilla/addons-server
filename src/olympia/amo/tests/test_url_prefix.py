@@ -2,6 +2,7 @@ from django import shortcuts
 from django.conf import settings
 from django.test.client import Client, RequestFactory
 from django.urls import resolve, reverse, set_script_prefix
+from django.utils.http import MAX_URL_LENGTH
 
 import pytest
 
@@ -159,6 +160,15 @@ class MiddlewareTest(TestCase):
             '/fr/firefox/extensions/?foo=fooval&bar=barval',
         )
         check('/en-US/firefox?lang=fr-CA', '/fr/firefox/')
+
+    def test_redirect_with_long_url(self):
+        url = '/firefox/?' + 'a' * (MAX_URL_LENGTH - len('/en-US/firefox/?'))
+
+        response = self.process(url)
+        assert response.status_code == 302, len(response.url)
+
+        response = self.process(url + 'a')
+        assert response.status_code == 414, len(response.url)
 
 
 class TestPrefixer(TestCase):

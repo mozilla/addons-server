@@ -1291,6 +1291,10 @@ class HttpResponseTemporaryRedirect(HttpResponseRedirectBase):
     status_code = 307
 
 
+class HttpResponseURITooLong(HttpResponse):
+    status_code = 414
+
+
 def is_safe_url(url, request, allowed_hosts=None):
     """Use Django's `url_has_allowed_host_and_scheme()` and pass a configured
     list of allowed hosts and enforce HTTPS.  `allowed_hosts` can be specified."""
