@@ -5633,7 +5633,7 @@ msgstr "Spor tida du brukar på nettet, analyser vanane dine, blokker distrahera
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:691
 msgid "Improve your writing — get instant access to the power of synonyms."
-msgstr ""
+msgstr "Forbetre skrivinga di — få direkte tilgang til krafta i synonym."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:694
@@ -5883,12 +5883,12 @@ msgstr "Endre fargen på Firefox for å matche kvar nettstad du besøkjer."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1042
 msgid "Learning a new language? Yomitan is the ideal dictionary companion."
-msgstr ""
+msgstr "Lærer du eit nytt språk? Yomitan er den ideelle ordbokshjelparen."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1045
 msgid "Pack a powerful thesaurus right inside Firefox."
-msgstr ""
+msgstr "Pakk inn ei kraftig synonymordbok rett i Firefox."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1048
