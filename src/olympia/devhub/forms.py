@@ -35,12 +35,7 @@ from olympia.addons.models import (
     DeniedSlug,
     Preview,
 )
-from olympia.addons.utils import (
-    fetch_translations_from_addon,
-    get_translation_differences,
-    remove_icons,
-    validate_addon_name,
-)
+from olympia.addons.utils import remove_icons, validate_addon_name
 from olympia.amo.fields import HttpHttpsOnlyURLField, ReCaptchaField
 from olympia.amo.forms import AMOModelForm
 from olympia.amo.messages import DoubleSafe
@@ -59,6 +54,10 @@ from olympia.translations import LOCALES
 from olympia.translations.fields import LocaleErrorMessage, TransField, TransTextarea
 from olympia.translations.forms import TranslationFormMixin
 from olympia.translations.models import Translation, delete_translation
+from olympia.translations.utils import (
+    fetch_translations_from_instance,
+    get_translation_differences,
+)
 from olympia.translations.widgets import TranslationTextarea, TranslationTextInput
 from olympia.users.models import (
     RESTRICTION_TYPES,
@@ -134,7 +133,7 @@ class AddonFormBase(TranslationFormMixin, AMOModelForm):
     def save(self, *args, **kwargs):
         metadata_content_review = self.instance and self.instance.has_listed_versions()
         existing_data = (
-            fetch_translations_from_addon(
+            fetch_translations_from_instance(
                 self.instance, self.fields_to_trigger_content_review
             )
             if metadata_content_review
@@ -142,7 +141,7 @@ class AddonFormBase(TranslationFormMixin, AMOModelForm):
         )
         obj = super().save(*args, **kwargs)
         if metadata_content_review:
-            new_data = fetch_translations_from_addon(
+            new_data = fetch_translations_from_instance(
                 obj, self.fields_to_trigger_content_review
             )
             if existing_data != new_data:

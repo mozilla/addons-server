@@ -8,6 +8,7 @@ from django.utils.cache import get_max_age
 from rest_framework.fields import empty
 
 from olympia import amo
+from olympia.activity.models import ActivityLog
 from olympia.amo.tests import (
     APITestClientSessionID,
     TestCase,
@@ -737,6 +738,42 @@ class TestCollectionViewSetPatch(CollectionViewSetDataMixin, TestCase):
             # But can't patch it.
             response = self.send(url=url)
             assert response.status_code == 403
+
+    def test_logging(self):
+        old_collection_name = str(self.collection.name)
+        self.collection.description = 'old desc'
+        self.collection.slug = 'same'
+        self.collection.save()
+        self.client.login_api(self.user)
+        data = {
+            'description': {'fr': 'nouvelle desc'},
+            'name': {'en-US': 'New Name'},
+            'slug': 'same',  # unchanged, shouldn't log
+        }
+        response = self.client.patch(self.get_url(self.user), data)
+
+        assert response.status_code == 200, response.content
+        self.collection = self.collection.reload()
+        assert str(self.collection.name) == 'New Name'
+        assert str(self.collection.description) == 'old desc'
+        with self.activate('fr'):
+            assert str(self.collection.reload().description) == 'nouvelle desc'
+        alogs = list(
+            ActivityLog.objects.filter(
+                user=self.user, action=amo.LOG.EDIT_COLLECTION_PROPERTY.id
+            )
+        )
+        assert len(alogs) == 2
+        assert alogs[1].arguments == [
+            self.collection,
+            'name',
+            f'{{"removed": ["{old_collection_name}"], "added": ["New Name"]}}',
+        ]
+        assert alogs[0].arguments == [
+            self.collection,
+            'description',
+            '{"removed": [], "added": ["nouvelle desc"]}',
+        ]
 
 
 class TestCollectionViewSetDelete(TestCase):

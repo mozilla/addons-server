@@ -17,7 +17,11 @@ from olympia.amo.utils import (
     urlparams,
 )
 from olympia.api.fields import HttpHttpsOnlyURLField
-from olympia.api.serializers import AMOModelSerializer, SiteStatusSerializer
+from olympia.api.serializers import (
+    AMOModelSerializer,
+    PropertyUpdatedMixin,
+    SiteStatusSerializer,
+)
 from olympia.api.utils import is_gate_active
 from olympia.api.validators import OneOrMoreLetterOrNumberCharacterAPIValidator
 from olympia.users import notifications
@@ -103,7 +107,7 @@ class MinimalUserProfileSerializer(FullUserProfileSerializer):
         return data
 
 
-class SelfUserProfileSerializer(FullUserProfileSerializer):
+class SelfUserProfileSerializer(PropertyUpdatedMixin, FullUserProfileSerializer):
     display_name = serializers.CharField(
         min_length=2,
         max_length=50,
@@ -116,6 +120,8 @@ class SelfUserProfileSerializer(FullUserProfileSerializer):
     site_status = SiteStatusSerializer(source='*', read_only=True)
     # Override homepage to use our own URLField with custom validation.
     homepage = HttpHttpsOnlyURLField(required=False, allow_blank=True)
+
+    ACTIVITY_LOG_ACTION = amo.LOG.EDIT_USER_PROPERTY
 
     class Meta(FullUserProfileSerializer.Meta):
         fields = FullUserProfileSerializer.Meta.fields + (
