@@ -5938,7 +5938,7 @@ msgstr "WebM-videokontrollar lett tilgjengelege."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1075
 msgid "Disguise Firefox as the Chrome browser to spoof websites that try to block Firefox."
-msgstr ""
+msgstr "Forkle Firefox som Chrome-nettlesaren for å lure nettstadar som prøver å blokkere Firefox."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1078
