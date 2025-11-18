@@ -31,6 +31,7 @@ from django.utils.cache import (
 from django.utils.crypto import constant_time_compare
 from django.utils.deprecation import MiddlewareMixin
 from django.utils.encoding import force_str, iri_to_uri
+from django.utils.http import MAX_URL_LENGTH
 from django.utils.translation import activate, gettext_lazy as _
 
 import MySQLdb as mysql
@@ -66,13 +67,21 @@ class LocaleAndAppURLMiddleware(MiddlewareMixin):
     4. strip them from the URL so we can do stuff
     """
 
+    def redirect(self, redirect_to):
+        from .utils import HttpResponseURITooLong
+
+        # Always use a 302 redirect to avoid users being stuck in case of accidental
+        # misconfiguration. We need to account for `MAX_URL_LENGTH` to match
+        # `django.shortcuts.redirect()`'s behavior, see:
+        # https://github.com/django/django/commit/c880530ddd4fabd5939bab0e148bebe36699432a
+        if len(redirect_to) > MAX_URL_LENGTH:
+            return HttpResponseURITooLong()
+        else:
+            return HttpResponseRedirect(redirect_to)
+
     def process_request(self, request):
         # Find locale, app
         prefixer = urlresolvers.Prefixer(request)
-
-        # Always use a 302 redirect to avoid users being stuck in case of
-        # accidental misconfiguration.
-        redirect_type = HttpResponseRedirect
 
         set_url_prefix(prefixer)
         full_path = prefixer.fix(prefixer.shortened_path)
@@ -80,7 +89,7 @@ class LocaleAndAppURLMiddleware(MiddlewareMixin):
         if prefixer.app == amo.MOBILE.short and request.path.rstrip('/').endswith(
             '/' + amo.MOBILE.short
         ):
-            return redirect_type(request.path.replace('/mobile', '/android'))
+            return self.redirect(request.path.replace('/mobile', '/android'))
 
         if ('lang' in request.GET or 'app' in request.GET) and not re.match(
             settings.SUPPORTED_NONAPPS_NONLOCALES_REGEX, prefixer.shortened_path
@@ -92,7 +101,7 @@ class LocaleAndAppURLMiddleware(MiddlewareMixin):
             query = request.GET.dict()
             query.pop('app', None)
             query.pop('lang', None)
-            return redirect_type(urlparams(new_path, **query))
+            return self.redirect(urlparams(new_path, **query))
 
         if full_path != request.path:
             query_string = request.META.get('QUERY_STRING', '')
@@ -102,7 +111,7 @@ class LocaleAndAppURLMiddleware(MiddlewareMixin):
                 query_string = force_str(query_string, errors='ignore')
                 full_path = f'{full_path}?{query_string}'
 
-            response = redirect_type(full_path)
+            response = self.redirect(full_path)
             # Cache the redirect for a year.
             if not settings.DEBUG:
                 patch_cache_control(response, max_age=60 * 60 * 24 * 365)
