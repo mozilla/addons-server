@@ -71,7 +71,9 @@ class LocaleAndAppURLMiddleware(MiddlewareMixin):
         from .utils import HttpResponseURITooLong
 
         # Always use a 302 redirect to avoid users being stuck in case of accidental
-        # misconfiguration.
+        # misconfiguration. We need to account for `MAX_URL_LENGTH` to match 
+        # `django.shortcuts.redirect()`'s behavior, see:
+        # https://github.com/django/django/commit/c880530ddd4fabd5939bab0e148bebe36699432a
         if len(redirect_to) > MAX_URL_LENGTH:
             return HttpResponseURITooLong()
         else:
