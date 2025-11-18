@@ -5599,7 +5599,7 @@ msgstr "Poderoso dicionário em painel, otimizado para aprendizado de novos idio
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:673
 msgid "Hover your mouse over thumbnails to easily browse and download HD images."
-msgstr "Passe o mouse sobre as miniaturas para navegar facilmente e baixar imagens em HD."
+msgstr "Passe o mouse sobre miniaturas para navegar e baixar imagens em alta definição com facilidade."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:676
