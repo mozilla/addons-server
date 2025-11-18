@@ -5594,7 +5594,7 @@ msgstr "Negar automaticamente solicitações de rastreamento de cookies."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:670
 msgid "Powerful pop-up dictionary optimized for learning new languages."
-msgstr "Um poderoso dicionário pop-up, otimizado para aprender novos idiomas."
+msgstr "Poderoso dicionário em painel, otimizado para aprendizado de novos idiomas."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:673
