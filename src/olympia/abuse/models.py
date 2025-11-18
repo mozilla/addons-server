@@ -1386,19 +1386,9 @@ class ContentDecision(ModelBase):
     def requeue_held_action(self, *, user, notes):
         # requeuing only works for addons
         assert self.addon is not None
-        if self.cinder_job:
+        if self.cinder_job and not self.cinder_job.resolvable_in_reviewer_tools:
             # if the decision is part of a job, claim it for the reviewer tools
-            job = self.cinder_job
-            job.update(resolvable_in_reviewer_tools=True)
-        else:
-            # otherwise we create a fake job, so it shows up in the reviewer tools
-            job = CinderJob.objects.create(
-                target_addon=self.addon,
-                resolvable_in_reviewer_tools=True,
-                job_id=None,
-            )
-            # and link the current decision to that job, so the override works
-            self.update(cinder_job=job)
+            self.cinder_job.update(resolvable_in_reviewer_tools=True)
         ContentDecision.objects.create(
             addon=self.addon,
             action=DECISION_ACTIONS.AMO_REQUEUE,
@@ -1406,7 +1396,7 @@ class ContentDecision(ModelBase):
             override_of=self,
             action_date=datetime.now(),
             private_notes=notes,
-            cinder_job=job,
+            cinder_job=self.cinder_job,
         )
 
         entity_helper = CinderJob.get_entity_helper(
@@ -1414,8 +1404,9 @@ class ContentDecision(ModelBase):
         )
         entity_helper.flag_for_human_review(
             versions=self.target_versions.all(),
-            appeal=job.is_appeal,
+            appeal=self.cinder_job.is_appeal if self.cinder_job else False,
             second_level=True,
+            notes=notes,
         )
 
     def send_notifications(self, *, notify_owners=True):

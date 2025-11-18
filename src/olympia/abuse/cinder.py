@@ -511,7 +511,7 @@ class CinderAddonHandledByReviewers(CinderAddon):
         return qs
 
     def flag_for_human_review(
-        self, *, versions, appeal=False, forwarded=False, second_level=False
+        self, *, versions, appeal=False, forwarded=False, second_level=False, notes=None
     ):
         """Flag an appropriate version for needs human review so it appears in reviewers
         manual revew queue.
@@ -593,7 +593,10 @@ class CinderAddonHandledByReviewers(CinderAddon):
             activity.log_create(
                 amo.LOG.NEEDS_HUMAN_REVIEW_CINDER,
                 *versions,
-                details={'comments': nhr.get_reason_display()},
+                details={
+                    'comments': nhr.get_reason_display(),
+                    **({'reason': notes} if notes else {}),
+                },
                 user=core.get_user() or get_task_user(),
             )
 

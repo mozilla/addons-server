@@ -3855,9 +3855,11 @@ class TestContentDecision(TestCase):
         assert requeue.private_notes == 'go!'
         assert requeue.reviewer_user == user
         assert requeue.cinder_job == job
-        assert NeedsHumanReview.objects.filter(
+        nhr = NeedsHumanReview.objects.get(
             reason=NeedsHumanReview.REASONS.SECOND_LEVEL_REQUEUE
-        ).exists()
+        )
+        log = ActivityLog.objects.get(action=amo.LOG.NEEDS_HUMAN_REVIEW_CINDER.id)
+        assert log.details == {'comments': nhr.get_reason_display(), 'reason': 'go!'}
 
     def test_requeue_held_action_no_job(self):
         addon = addon_factory()
@@ -3871,10 +3873,8 @@ class TestContentDecision(TestCase):
 
         decision.requeue_held_action(user=user, notes='go!')
 
-        new_job = decision.reload().cinder_job
-        assert new_job.resolvable_in_reviewer_tools is True
-        assert new_job.target_addon == addon
-        self._check_requeue_decision(new_job.final_decision, new_job, decision, user)
+        assert decision.reload().cinder_job is None
+        self._check_requeue_decision(decision.overridden_by, None, decision, user)
 
     def test_requeue_held_action_existing_job(self):
         addon = addon_factory()
