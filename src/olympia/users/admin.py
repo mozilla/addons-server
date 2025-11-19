@@ -16,13 +16,13 @@ from django.http import (
 from django.template.response import TemplateResponse
 from django.urls import re_path, reverse
 from django.utils.encoding import force_str
-from django.utils.html import format_html
+from django.utils.html import format_html, format_html_join
 from django.utils.safestring import mark_safe
 
 from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.access import acl
-from olympia.activity.models import ActivityLog
+from olympia.activity.models import ActivityLog, RequestFingerprintLog
 from olympia.addons.models import Addon, AddonUser
 from olympia.amo.admin import AMOModelAdmin
 from olympia.amo.utils import backup_storage_enabled, create_signed_url_for_file_backup
@@ -140,15 +140,16 @@ class UserAdmin(AMOModelAdmin):
         'id',
         'has_full_profile',
         'known_ip_adresses',
+        'known_ja4s',
         'last_known_activity_time',
         'last_login',
-        'last_login_ip',
         'modified',
         'picture_img',
         'ratings_authorship',
         'restriction_history_for_this_user',
         'currently_matching_exact_email_restrictions',
         'currently_matching_exact_ip_restrictions',
+        'user_last_login_ip',
         'username',
     )
     fieldsets = (
@@ -199,8 +200,9 @@ class UserAdmin(AMOModelAdmin):
                     'last_login',
                     'last_known_activity_time',
                     'activity',
-                    'last_login_ip',
+                    'user_last_login_ip',
                     'known_ip_adresses',
+                    'known_ja4s',
                     'banned',
                     'notes',
                     'has_active_api_key',
@@ -532,6 +534,41 @@ class UserAdmin(AMOModelAdmin):
         return related_content_link(obj, UserHistory, 'user')
 
     history_for_this_user.short_description = 'User History'
+
+    def known_ja4s(self, obj):
+        ja4s = (
+            RequestFingerprintLog.objects.filter(activity_log__user=obj)
+            .values_list('ja4', flat=True)
+            .order_by()
+            .distinct()
+        )
+        if not ja4s:
+            return ''
+        activities_changelist = reverse('admin:activity_activitylog_changelist')
+        contents = format_html_join(
+            '',
+            '<li><a href="{}?q={}">{}</a></li>',
+            sorted(
+                (
+                    activities_changelist,
+                    ja4,
+                    ja4,
+                )
+                for ja4 in ja4s
+            ),
+        )
+        return format_html('<ul>{}</ul>', contents)
+
+    def user_last_login_ip(self, obj):
+        if not obj.last_login_ip:
+            return ''
+        activities_changelist = reverse('admin:activity_activitylog_changelist')
+        return format_html(
+            '<a href="{}?q={}">{}</a>',
+            activities_changelist,
+            obj.last_login_ip,
+            obj.last_login_ip,
+        )
 
     def has_delete_permission(self, request, obj=None):
         return False

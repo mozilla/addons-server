@@ -790,7 +790,9 @@ class RestrictionAbstractBase:
         Return whether the specified request should be allowed to submit
         add-ons.
         """
-        return True
+        return cls.allow_request(
+            request, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
+        )
 
     @classmethod
     def allow_auto_approval(cls, upload):
@@ -798,14 +800,14 @@ class RestrictionAbstractBase:
         Return whether the specified version should be allowed to be proceed
         through auto-approval process.
         """
-        return True
+        raise NotImplementedError
 
     @classmethod
     def allow_rating(cls, request):
         """
         Return whether the specified request should be allowed to submit ratings.
         """
-        return True
+        return cls.allow_request(request, restriction_type=RESTRICTION_TYPES.RATING)
 
     @classmethod
     def allow_rating_without_moderation(cls, request):
@@ -813,7 +815,13 @@ class RestrictionAbstractBase:
         Return whether ratings from the specified request should not be flagged for
         moderation.
         """
-        return True
+        return cls.allow_request(
+            request, restriction_type=RESTRICTION_TYPES.RATING_MODERATE
+        )
+
+    @classmethod
+    def allow_request(cls, request, *, restriction_type):
+        raise NotImplementedError
 
     @classmethod
     def get_error_message(cls, is_api):
@@ -878,15 +886,6 @@ class IPNetworkUserRestriction(RestrictionAbstractBaseModel):
         return network
 
     @classmethod
-    def allow_submission(cls, request):
-        """
-        Return whether the specified request should be allowed to submit add-ons.
-        """
-        return cls.allow_request(
-            request, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
-        )
-
-    @classmethod
     def allow_auto_approval(cls, upload):
         if not upload.user or not upload.ip_address:
             return False
@@ -902,16 +901,6 @@ class IPNetworkUserRestriction(RestrictionAbstractBaseModel):
             remote_addr,
             user_last_login_ip,
             restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL,
-        )
-
-    @classmethod
-    def allow_rating(cls, request):
-        return cls.allow_request(request, restriction_type=RESTRICTION_TYPES.RATING)
-
-    @classmethod
-    def allow_rating_without_moderation(cls, request):
-        return cls.allow_request(
-            request, restriction_type=RESTRICTION_TYPES.RATING_MODERATE
         )
 
     @classmethod
@@ -1021,31 +1010,11 @@ class EmailUserRestriction(RestrictionAbstractBaseModel, NormalizeEmailMixin):
         super().save(**kw)
 
     @classmethod
-    def allow_submission(cls, request):
-        """
-        Return whether the specified request should be allowed to submit
-        add-ons.
-        """
-        return cls.allow_request(
-            request, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
-        )
-
-    @classmethod
     def allow_auto_approval(cls, upload):
         if not upload.user:
             return False
         return cls.allow_email(
             upload.user.email, restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
-        )
-
-    @classmethod
-    def allow_rating(cls, request):
-        return cls.allow_request(request, restriction_type=RESTRICTION_TYPES.RATING)
-
-    @classmethod
-    def allow_rating_without_moderation(cls, request):
-        return cls.allow_request(
-            request, restriction_type=RESTRICTION_TYPES.RATING_MODERATE
         )
 
     @classmethod
@@ -1122,31 +1091,11 @@ class DisposableEmailDomainRestriction(RestrictionAbstractBaseModel):
         return str(self.domain)
 
     @classmethod
-    def allow_submission(cls, request):
-        """
-        Return whether the specified request should be allowed to submit
-        add-ons.
-        """
-        return cls.allow_request(
-            request, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
-        )
-
-    @classmethod
     def allow_auto_approval(cls, upload):
         if not upload.user:
             return False
         return cls.allow_email(
             upload.user.email, restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
-        )
-
-    @classmethod
-    def allow_rating(cls, request):
-        return cls.allow_request(request, restriction_type=RESTRICTION_TYPES.RATING)
-
-    @classmethod
-    def allow_rating_without_moderation(cls, request):
-        return cls.allow_request(
-            request, restriction_type=RESTRICTION_TYPES.RATING_MODERATE
         )
 
     @classmethod
@@ -1165,6 +1114,44 @@ class DisposableEmailDomainRestriction(RestrictionAbstractBaseModel):
         return not cls.objects.filter(
             domain=email_domain, restriction_type=restriction_type
         ).exists()
+
+
+class FingerprintRestriction(RestrictionAbstractBaseModel):
+    ja4 = models.CharField(max_length=36, db_index=True)
+
+    error_message = 'FIXME'
+
+    class Meta:
+        db_table = 'users_fingerprint_restriction'
+        constraints = [
+            models.UniqueConstraint(
+                fields=('ja4', 'restriction_type'),
+                name='ja4_restriction_type_uniq',
+            )
+        ]
+
+    def __str__(self):
+        return str(self.domain)
+
+    @classmethod
+    def allow_ja4(cls, ja4, *, restriction_type):
+        return not cls.objects.filter(
+            ja4=ja4, restriction_type=restriction_type
+        ).exists()
+
+    @classmethod
+    def allow_request(cls, request, *, restriction_type):
+        if not (ja4 := request.headers.get('Client-JA4')):
+            return True
+        return cls.allow_ja4(ja4, restriction_type=restriction_type)
+
+    @classmethod
+    def allow_auto_approval(cls, upload):
+        if not upload.request_metadata or not (
+            ja4 := upload.request_metadata.get('Client-JA4')
+        ):
+            return True
+        return cls.allow_ja4(ja4, restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL)
 
 
 class ReputationRestrictionMixin:
@@ -1232,7 +1219,7 @@ class IPReputationRestriction(RestrictionAbstractBase, ReputationRestrictionMixi
     error_message = IPNetworkUserRestriction.error_message
 
     @classmethod
-    def allow_submission(cls, request):
+    def allow_request(cls, request, *, restriction_type):
         try:
             remote_addr = ipaddress.ip_address(request.META.get('REMOTE_ADDR'))
         except ValueError:
@@ -1248,7 +1235,7 @@ class EmailReputationRestriction(
     error_message = EmailUserRestriction.error_message
 
     @classmethod
-    def allow_submission(cls, request):
+    def allow_request(cls, request, *, restriction_type):
         if not request.user.is_authenticated:
             return False
 
@@ -1279,10 +1266,10 @@ class DeveloperAgreementRestriction(RestrictionAbstractBase):
             return cls.error_message
 
     @classmethod
-    def allow_submission(cls, request):
+    def allow_request(cls, request, *, restriction_type):
         """
-        Return whether the specified request should be allowed to submit
-        add-ons.
+        Return whether the specified request should be allowed for the given
+        restriction type.
         """
         allowed = (
             request.user.is_authenticated
