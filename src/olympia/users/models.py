@@ -1305,6 +1305,7 @@ class UserRestrictionHistory(ModelBase):
         (3, IPNetworkUserRestriction),
         (4, EmailReputationRestriction),
         (5, IPReputationRestriction),
+        (6, FingerprintRestriction),
     )
 
     user = models.ForeignKey(
