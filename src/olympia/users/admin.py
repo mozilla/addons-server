@@ -38,6 +38,7 @@ from .models import (
     DeniedName,
     DisposableEmailDomainRestriction,
     EmailUserRestriction,
+    FingerprintRestriction,
     GroupUser,
     IPNetworkUserRestriction,
     UserHistory,
@@ -660,6 +661,17 @@ class DisposableEmailDomainRestrictionAdmin(AMOModelAdmin):
     list_display = ('domain', 'restriction_type', 'reason')
     list_filter = ('restriction_type',)
     search_fields = ('^domain',)
+    formfield_overrides = {
+        models.CharField: {'widget': TextInput(attrs={'size': '125'})},
+    }
+
+
+@admin.register(FingerprintRestriction)
+class FingerprintRestrictionAdmin(AMOModelAdmin):
+    actions = ['delete_selected']
+    list_display = ('ja4', 'restriction_type', 'reason')
+    list_filter = ('restriction_type',)
+    search_fields = ('^ja4',)
     formfield_overrides = {
         models.CharField: {'widget': TextInput(attrs={'size': '125'})},
     }
