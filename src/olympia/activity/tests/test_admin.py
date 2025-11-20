@@ -96,7 +96,6 @@ class TestActivityLogAdmin(TestCase):
         self.client.force_login(user)
         user2 = user_factory()
         user3 = user_factory()
-        addon = addon_factory(users=[user3])
         with core.override_remote_addr_or_metadata(
             ip_address='127.0.0.2', metadata={'Client-JA4': 'some_ja4'}
         ):
