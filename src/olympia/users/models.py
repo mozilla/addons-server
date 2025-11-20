@@ -800,7 +800,7 @@ class RestrictionAbstractBase:
         Return whether the specified version should be allowed to be proceed
         through auto-approval process.
         """
-        # Should be implemented by child classes.        
+        # Should be implemented by child classes.
         raise NotImplementedError
 
     @classmethod

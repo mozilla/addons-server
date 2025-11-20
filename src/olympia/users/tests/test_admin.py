@@ -503,7 +503,7 @@ class TestUserAdmin(TestCase):
         # We want to see absolutely everything, so make our user a superadmin.
         self.grant_permission(user, '*:*')
         self.client.force_login(user)
-        with self.assertNumQueries(23):
+        with self.assertNumQueries(24):
             # - 4 savepoint/release
             # - 2 current logged in user & groups
             # - 2 target user & groups
@@ -516,6 +516,7 @@ class TestUserAdmin(TestCase):
             #      exact email restrictions, exact ip restrictions)
             # - 1 last activity date
             # - 1 known activity ips
+            # - 1 known ja4s
             # - 1 api key
             # - 1 all group names (for dropdown where we can add groups)
             response = self.client.get(self.detail_url)
