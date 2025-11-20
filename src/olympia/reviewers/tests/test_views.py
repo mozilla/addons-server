@@ -7751,11 +7751,8 @@ class TestHeldDecisionReview(ReviewerTest):
 
         assert response.status_code == 302
         assert addon.reload().status == amo.STATUS_APPROVED
-        new_job = self.decision.reload().cinder_job
-        assert new_job.resolvable_in_reviewer_tools
-        new_decision = new_job.final_decision
-        assert self.decision.overridden_by == new_decision
-        assert new_decision.action == DECISION_ACTIONS.AMO_REQUEUE
+        assert self.decision.reload().cinder_job is None
+        assert self.decision.overridden_by.action == DECISION_ACTIONS.AMO_REQUEUE
         assert self.decision.reload().action_date is None
         assert NeedsHumanReview.objects.filter(
             reason=NeedsHumanReview.REASONS.SECOND_LEVEL_REQUEUE,
