@@ -1004,6 +1004,30 @@ class TestUserAdmin(TestCase):
         }
         assert len(result) == 8
 
+    def test_known_ja4s(self):
+        with core.override_remote_addr_or_metadata(ip_address='127.1.2.1',
+            metadata={'Client-JA4': 'first_ja4'}):
+            ActivityLog.objects.create(amo.LOG.LOG_IN, user=self.user)
+        with core.override_remote_addr_or_metadata(ip_address='127.1.2.2',
+            metadata={'Client-JA4': 'second_ja4'}):
+            ActivityLog.objects.create(amo.LOG.LOG_IN, user=self.user)
+        with core.override_remote_addr_or_metadata(ip_address='127.1.2.2',
+            metadata={'Client-JA4': 'second_ja4'}):
+            ActivityLog.objects.create(amo.LOG.LOG_IN, user=self.user)
+        with core.override_remote_addr_or_metadata(ip_address='127.1.2.3',
+            metadata={'Client-JA4': ''}):
+            ActivityLog.objects.create(amo.LOG.LOG_IN, user=self.user)
+        with core.override_remote_addr_or_metadata(ip_address='127.1.2.4'):
+            ActivityLog.objects.create(amo.LOG.LOG_IN, user=self.user)
+        model_admin = UserAdmin(UserProfile, admin.site)
+        doc = pq(model_admin.known_ja4s(self.user))
+        result = doc('ul li').text().split()
+        assert set(result) == {
+            'first_ja4',
+            'second_ja4',
+        }
+        assert len(result) == 2
+
     def test_last_known_activity_time(self):
         someone_else = user_factory(username='someone_else')
         addon = addon_factory()
