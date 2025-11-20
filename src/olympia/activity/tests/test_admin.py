@@ -97,13 +97,15 @@ class TestActivityLogAdmin(TestCase):
         user2 = user_factory()
         user3 = user_factory()
         addon = addon_factory(users=[user3])
-        with core.override_remote_addr_or_metadata(ip_address='127.0.0.2',
-            metadata={'Client-JA4': 'some_ja4'}):
+        with core.override_remote_addr_or_metadata(
+            ip_address='127.0.0.2', metadata={'Client-JA4': 'some_ja4'}
+        ):
             user2.update(email='foo@bar.com')
             # Will match (ja4 we'll be searching for)
             ActivityLog.objects.create(amo.LOG.LOG_IN, user=user2)
-        with core.override_remote_addr_or_metadata(ip_address='127.0.0.3',
-            metadata={'Client-JA4': 'some_other_ja4'}):
+        with core.override_remote_addr_or_metadata(
+            ip_address='127.0.0.3', metadata={'Client-JA4': 'some_other_ja4'}
+        ):
             # Won't match (different ja4)
             ActivityLog.objects.create(amo.LOG.LOG_IN, user=user3)
         with core.override_remote_addr_or_metadata(ip_address='127.0.0.1'):

@@ -1005,17 +1005,21 @@ class TestUserAdmin(TestCase):
         assert len(result) == 8
 
     def test_known_ja4s(self):
-        with core.override_remote_addr_or_metadata(ip_address='127.1.2.1',
-            metadata={'Client-JA4': 'first_ja4'}):
+        with core.override_remote_addr_or_metadata(
+            ip_address='127.1.2.1', metadata={'Client-JA4': 'first_ja4'}
+        ):
             ActivityLog.objects.create(amo.LOG.LOG_IN, user=self.user)
-        with core.override_remote_addr_or_metadata(ip_address='127.1.2.2',
-            metadata={'Client-JA4': 'second_ja4'}):
+        with core.override_remote_addr_or_metadata(
+            ip_address='127.1.2.2', metadata={'Client-JA4': 'second_ja4'}
+        ):
             ActivityLog.objects.create(amo.LOG.LOG_IN, user=self.user)
-        with core.override_remote_addr_or_metadata(ip_address='127.1.2.2',
-            metadata={'Client-JA4': 'second_ja4'}):
+        with core.override_remote_addr_or_metadata(
+            ip_address='127.1.2.2', metadata={'Client-JA4': 'second_ja4'}
+        ):
             ActivityLog.objects.create(amo.LOG.LOG_IN, user=self.user)
-        with core.override_remote_addr_or_metadata(ip_address='127.1.2.3',
-            metadata={'Client-JA4': ''}):
+        with core.override_remote_addr_or_metadata(
+            ip_address='127.1.2.3', metadata={'Client-JA4': ''}
+        ):
             ActivityLog.objects.create(amo.LOG.LOG_IN, user=self.user)
         with core.override_remote_addr_or_metadata(ip_address='127.1.2.4'):
             ActivityLog.objects.create(amo.LOG.LOG_IN, user=self.user)
