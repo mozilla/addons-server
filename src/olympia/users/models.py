@@ -1125,7 +1125,9 @@ class DisposableEmailDomainRestriction(RestrictionAbstractBaseModel):
 class FingerprintRestriction(RestrictionAbstractBaseModel):
     ja4 = models.CharField(max_length=36, db_index=True)
 
-    error_message = 'FIXME'
+    error_message = _(
+        'The software or device you are using is not allowed for submissions.'
+    )
 
     class Meta:
         db_table = 'users_fingerprint_restriction'
@@ -1137,7 +1139,7 @@ class FingerprintRestriction(RestrictionAbstractBaseModel):
         ]
 
     def __str__(self):
-        return str(self.domain)
+        return str(self.ja4)
 
     @classmethod
     def allow_ja4(cls, ja4, *, restriction_type):
