@@ -800,6 +800,7 @@ class RestrictionAbstractBase:
         Return whether the specified version should be allowed to be proceed
         through auto-approval process.
         """
+        # Should be implemented by child classes.        
         raise NotImplementedError
 
     @classmethod
@@ -821,6 +822,11 @@ class RestrictionAbstractBase:
 
     @classmethod
     def allow_request(cls, request, *, restriction_type):
+        """
+        Return whether the specified request should be allowed for the given
+        restriction type.
+        """
+        # Should be implemented by child classes.
         raise NotImplementedError
 
     @classmethod
@@ -1215,7 +1221,7 @@ class ReputationRestrictionMixin:
         return True
 
 
-class IPReputationRestriction(RestrictionAbstractBase, ReputationRestrictionMixin):
+class IPReputationRestriction(ReputationRestrictionMixin, RestrictionAbstractBase):
     error_message = IPNetworkUserRestriction.error_message
 
     @classmethod
@@ -1230,7 +1236,7 @@ class IPReputationRestriction(RestrictionAbstractBase, ReputationRestrictionMixi
 
 
 class EmailReputationRestriction(
-    RestrictionAbstractBase, NormalizeEmailMixin, ReputationRestrictionMixin
+    ReputationRestrictionMixin, RestrictionAbstractBase, NormalizeEmailMixin
 ):
     error_message = EmailUserRestriction.error_message
 
@@ -1266,12 +1272,17 @@ class DeveloperAgreementRestriction(RestrictionAbstractBase):
             return cls.error_message
 
     @classmethod
+    def allow_auto_approval(cls, upload):
+        # DeveloperRestriction is only relevant at add-on submission time.
+        return True
+
+    @classmethod
     def allow_request(cls, request, *, restriction_type):
         """
         Return whether the specified request should be allowed for the given
         restriction type.
         """
-        allowed = (
+        allowed = restriction_type != RESTRICTION_TYPES.ADDON_SUBMISSION or (
             request.user.is_authenticated
             and request.user.has_read_developer_agreement()
         )
