@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  messages.pootle\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-21 13:54+0000\n"
+"POT-Creation-Date: 2025-11-21 21:21+0000\n"
 "PO-Revision-Date: 2013-11-07 07:24+0000\n"
 "Last-Translator: Julen <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -1174,7 +1174,6 @@ msgstr "Argazkiak, musika eta bideoak"
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
 msgstr ""
 
-#. editorial content for the secondary hero shelves.
 msgid "Privacy & Security"
 msgstr "Pribatutasuna eta segurtasuna"
 
@@ -4413,6 +4412,22 @@ msgstr ""
 msgid "Deep translation features for a rich language experience anywhere on the web."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Leave yourself little notes on any website."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Discover and download higher quality versions of interesting images and videos you find on the web."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Save and organize anything you find on the web — articles, media, PDFs & more."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Enhance your Reddit experience with color-coded comments, simpler navigation, gestures for upvoting & much more."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr ""
@@ -4667,11 +4682,19 @@ msgid "See all extensions"
 msgstr "Arakatu gehigarri guztiak"
 
 #. editorial content for the secondary hero shelves.
+msgid "New Recommended Extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Reddit revolutionized"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
 msgid "Extension Starter Pack"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Twitch customization"
+msgid "Explore now"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.

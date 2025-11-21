@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-21 13:54+0000\n"
+"POT-Creation-Date: 2025-11-21 21:21+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1238,7 +1238,6 @@ msgstr "Photos, Music & Videos"
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
 msgstr "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
 
-#. editorial content for the secondary hero shelves.
 #, fuzzy
 msgid "Privacy & Security"
 msgstr "Privacy Policy"
@@ -4709,6 +4708,22 @@ msgstr "Improve your writing — get instant access to the power of synonyms."
 msgid "Deep translation features for a rich language experience anywhere on the web."
 msgstr "Deep translation features for a rich language experience anywhere on the web."
 
+#. editorial content for the discovery pane.
+msgid "Leave yourself little notes on any website."
+msgstr "Leave yourself little notes on any website."
+
+#. editorial content for the discovery pane.
+msgid "Discover and download higher quality versions of interesting images and videos you find on the web."
+msgstr "Discover and download higher quality versions of interesting images and videos you find on the web."
+
+#. editorial content for the discovery pane.
+msgid "Save and organize anything you find on the web — articles, media, PDFs & more."
+msgstr "Save and organize anything you find on the web — articles, media, PDFs & more."
+
+#. editorial content for the discovery pane.
+msgid "Enhance your Reddit experience with color-coded comments, simpler navigation, gestures for upvoting & much more."
+msgstr "Enhance your Reddit experience with color-coded comments, simpler navigation, gestures for upvoting & much more."
+
 #. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4975,12 +4990,20 @@ msgid "See all extensions"
 msgstr "Browse all add-ons"
 
 #. editorial content for the secondary hero shelves.
+msgid "New Recommended Extensions"
+msgstr "New Recommended Extensions"
+
+#. editorial content for the secondary hero shelves.
+msgid "Reddit revolutionized"
+msgstr "Reddit revolutionized"
+
+#. editorial content for the secondary hero shelves.
 msgid "Extension Starter Pack"
 msgstr "Extension Starter Pack"
 
 #. editorial content for the secondary hero shelves.
-msgid "Twitch customization"
-msgstr "Twitch customization"
+msgid "Explore now"
+msgstr "Explore now"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
