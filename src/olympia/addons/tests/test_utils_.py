@@ -55,9 +55,13 @@ def test_validate_addon_name_allowed(name):
         'Foobarfor Firefox!',
         'Mozilla',
         'm0z1IIa',
+        'ꮇozilla',
         'Moziꙇꙇa',
         'Firefox awesome for Mozilla',
         'Firefox awesome for Mozilla',
+        'ƒireføx',
+        'ϝirefox',
+        'FIRꭼfox',
     ),
 )
 def test_validate_addon_name_disallowed_without_permission(name):

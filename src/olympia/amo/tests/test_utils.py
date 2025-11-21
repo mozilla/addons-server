@@ -417,7 +417,7 @@ class TestIsSafeUrl(TestCase):
 @pytest.mark.parametrize(
     'value, expected',
     [
-        ('foo ', 'foo'),
+        ('føǿ ', 'foo'),
         ('bär', 'bar'),
         ('b+är', 'bar'),
         ('Ali.ce', 'Alice'),
@@ -426,6 +426,9 @@ class TestIsSafeUrl(TestCase):
         ('\u2800', ''),
         ('Something\x7f\u20dfFishy', 'SomethingFishy'),
         ('Something\ufffcVery\U0001d140Fishy', 'SomethingVeryFishy'),
+        ('қѺʍѕ', 'koms'),
+        ('tЄctoniк', 'tectonik'),
+        ('ωïnnϵr', 'winner'),
     ],
 )
 def test_normalize_string_for_name_checks(value, expected):
@@ -435,7 +438,7 @@ def test_normalize_string_for_name_checks(value, expected):
 @pytest.mark.parametrize(
     'value, expected',
     [
-        ('foo ', 'foo '),  # Whitespace is now kept
+        ('føǿ ', 'foo '),  # Whitespace is now kept
         ('bär', 'bär'),  # Accent (Mark) is now kept, we've decomposed the ä
         ('b+är', 'b+är'),  # Symbol and Accent are now kept, we've decomposed the ä
         ('Ali.ce', 'Alice'),  # Puncutation is gone
@@ -463,10 +466,8 @@ def test_normalize_string_for_name_checks_with_specific_category(value, expected
         ('l\u04300', {'iao', 'lao'}),
         ('𝐪1lt', {'qiit', 'qilt', 'qlit', 'qllt'}),
         ('bеta', {'beta'}),
-        ('қѺʍѕ', {'koms'}),
         ('Zoom', {'zoom'}),
         ('ТЕСТ0n1𝓀', {'tectonik', 'tectonlk'}),
-        ('ТЄСТ0n1к', {'tectonik', 'tectonlk'}),
     ],
 )
 def test_generate_lowercase_homoglyphs_variants_for_string(value, expected):
