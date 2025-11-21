@@ -1294,12 +1294,12 @@ msgstr "Egenskapen {addon} {0} redigerad."
 #: src/olympia/constants/activity.py:1254
 #, python-brace-format
 msgid "Collection {0} property {1} updated."
-msgstr ""
+msgstr "Samling {0}, egenskap {1} uppdaterad."
 
 #: src/olympia/constants/activity.py:1261
 #, python-brace-format
 msgid "Account {user} property {0} updated."
-msgstr ""
+msgstr "Konto {user}, egenskap {0} uppdaterad."
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
