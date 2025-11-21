@@ -1295,12 +1295,12 @@ msgstr "Kajkosć {addon} {0} je so wobdźěłała."
 #: src/olympia/constants/activity.py:1254
 #, python-brace-format
 msgid "Collection {0} property {1} updated."
-msgstr ""
+msgstr "Zběrka {0} kajkosć {1} je so zaktualizowała."
 
 #: src/olympia/constants/activity.py:1261
 #, python-brace-format
 msgid "Account {user} property {0} updated."
-msgstr ""
+msgstr "Konto {user} kajkosć {0} je so zaktualizowało."
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"

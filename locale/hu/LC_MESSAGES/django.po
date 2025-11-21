@@ -1291,12 +1291,12 @@ msgstr "A(z) {addon} {0} tulajdonsága szerkesztve."
 #: src/olympia/constants/activity.py:1254
 #, python-brace-format
 msgid "Collection {0} property {1} updated."
-msgstr ""
+msgstr "A(z) {0} gyűjtemény {1} tulajdonsága frissítve."
 
 #: src/olympia/constants/activity.py:1261
 #, python-brace-format
 msgid "Account {user} property {0} updated."
-msgstr ""
+msgstr "A(z) {user} fiók {0} tulajdonsága frissítve."
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
