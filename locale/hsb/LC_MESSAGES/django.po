@@ -5678,17 +5678,17 @@ msgstr "Wobšěrne přełožowanske funkcije za bohate rěčne dožiwjenje něhd
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:697
 msgid "Leave yourself little notes on any website."
-msgstr ""
+msgstr "Zawostajće małe noticy na někajkim websydle."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:700
 msgid "Discover and download higher quality versions of interesting images and videos you find on the web."
-msgstr ""
+msgstr "Wotkryjće a sćehńće wersije zajimawych wobrazow a widejow z wyšej kwalitu, kotrež we webje namakaće."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:703
 msgid "Save and organize anything you find on the web — articles, media, PDFs & more."
-msgstr ""
+msgstr "Składujće a organizujće wšitko, štož we webje namakaće – nastawki, medije, PDF a wjace."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:706
