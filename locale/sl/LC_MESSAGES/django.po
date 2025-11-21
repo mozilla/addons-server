@@ -1297,7 +1297,7 @@ msgstr "Lastnost {1} zbirke {0} posodobljena."
 #: src/olympia/constants/activity.py:1261
 #, python-brace-format
 msgid "Account {user} property {0} updated."
-msgstr "Lastnost računa {user} {0} posodobljena."
+msgstr "Lastnost {0} računa {user} posodobljena."
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -5928,7 +5928,7 @@ msgstr "Upravljajte svoj Gmail (tudi več računov) kar iz priročnega pojavnega
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1060
 msgid "De-clutter YouTube. Strip away unwanted elements like related videos, shorts & more."
-msgstr "Očistite YouTube. Odstranite neželene elemente, kot so povezani videoposnetki, kratke filme in drugo."
+msgstr "Očistite YouTube. Odstranite povezane videoposnetke, kratke videe in druge neželene elemente."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1063
@@ -5953,7 +5953,7 @@ msgstr "Kontrolniki videa WebM na dosegu roke."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1075
 msgid "Disguise Firefox as the Chrome browser to spoof websites that try to block Firefox."
-msgstr "Prikrijte Firefox v brskalnik Chrome, da prevarite spletna mesta, ki poskušajo Firefox blokirati."
+msgstr "Zakrinkajte Firefox v Chrome in pretentajte spletna mesta, ki poskušajo blokirati Firefox."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1078
