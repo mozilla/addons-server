@@ -52,7 +52,7 @@
       {% if version.source %}
           <div><h5>Additional sources:</h5></div>
           <div>
-              {% if is_admin %}
+              {% if can_view_source %}
                   <a href="{{ url('downloads.source', version.pk) }}">Download files</a>
               {% else %}
                   The developer has provided source code.
