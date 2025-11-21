@@ -52,6 +52,9 @@ ADDONS_ALL_DUE_DATES = AclPermission('Addons', 'AllDueDates')
 # Can view/make choices in 2nd level approval queue
 ADDONS_HIGH_IMPACT_APPROVE = AclPermission('Addons', 'HighImpactApprove')
 
+# Can download developer provided source code files
+ADDONS_SOURCE_DOWNLOAD = AclPermission('Addons', 'SourceDownload')
+
 # Can edit all collections.
 COLLECTIONS_EDIT = AclPermission('Collections', 'Edit')
 # Can contribute to community managed collection: COLLECTION_FEATURED_THEMES_ID
