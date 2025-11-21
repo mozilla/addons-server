@@ -1299,12 +1299,12 @@ msgstr "Kakosć {addon} {0} jo se wobźěłała."
 #: src/olympia/constants/activity.py:1254
 #, python-brace-format
 msgid "Collection {0} property {1} updated."
-msgstr ""
+msgstr "Kakosć {1} zběrki {0} jo se zaktualizěrowała."
 
 #: src/olympia/constants/activity.py:1261
 #, python-brace-format
 msgid "Account {user} property {0} updated."
-msgstr ""
+msgstr "Kakosć {0} konta {user} jo se zaktualizěrowała."
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -5679,22 +5679,22 @@ msgstr "Wobšyrne funkcije pśełožowanja za bogate rěcne dožywjenje něźi w
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:697
 msgid "Leave yourself little notes on any website."
-msgstr ""
+msgstr "Zawóstajśo małe notice na někakem websedle."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:700
 msgid "Discover and download higher quality versions of interesting images and videos you find on the web."
-msgstr ""
+msgstr "Namakajśo a ześěgniśo wersije zajmnych wobrazow a wideo z wušeju kwalitu, kótarež we webje namakajośo."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:703
 msgid "Save and organize anything you find on the web — articles, media, PDFs & more."
-msgstr ""
+msgstr "Składujśo a organizěrujśo wšykno, což we webje namakajośo – nastawki, medije, PDF a wěcej."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:706
 msgid "Enhance your Reddit experience with color-coded comments, simpler navigation, gestures for upvoting & much more."
-msgstr ""
+msgstr "Pólěpšćo swójo dožywjenje Reddit z pśez barwy koděrowanymi komentarami, lažčejšeju nawigaciju, gestami za pozitiwne pógódnośenje a wjele wěcej."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:712
@@ -6014,12 +6014,12 @@ msgstr "Wšykne rozšyrjenja pokazaś"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1099
 msgid "New Recommended Extensions"
-msgstr ""
+msgstr "Nowe dopórucone rozšyrjenja"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1101
 msgid "Reddit revolutionized"
-msgstr ""
+msgstr "Reddit rewolucioněrowany"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1103
@@ -6029,7 +6029,7 @@ msgstr "Zachopny paket rozšyrjenjow"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1105
 msgid "Explore now"
-msgstr ""
+msgstr "Něnto wuslěźiś"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1107 src/olympia/discovery/strings.jinja2:1109
