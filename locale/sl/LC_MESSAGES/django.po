@@ -1292,12 +1292,12 @@ msgstr "Lastnost dodatka {addon} {0} urejena."
 #: src/olympia/constants/activity.py:1254
 #, python-brace-format
 msgid "Collection {0} property {1} updated."
-msgstr ""
+msgstr "Lastnost {1} zbirke {0} posodobljena."
 
 #: src/olympia/constants/activity.py:1261
 #, python-brace-format
 msgid "Account {user} property {0} updated."
-msgstr ""
+msgstr "Lastnost računa {user} {0} posodobljena."
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
