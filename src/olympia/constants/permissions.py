@@ -23,6 +23,8 @@ API_BYPASS_THROTTLING = AclPermission('API', 'BypassThrottling')
 ADMIN_CURATION = AclPermission('Admin', 'Curation')
 # Can edit the properties of any add-on (pseduo-admin).
 ADDONS_EDIT = AclPermission('Addons', 'Edit')
+# Can view add-ons in django admin
+ADMIN_ADDONS_VIEW = AclPermission('Addons', 'AdminView')
 # Can view deleted add-ons in the API.
 ADDONS_VIEW_DELETED = AclPermission('Addons', 'ViewDeleted')
 # Can view only the reviewer tools.
@@ -59,6 +61,8 @@ ADDONS_SOURCE_DOWNLOAD = AclPermission('Addons', 'SourceDownload')
 COLLECTIONS_EDIT = AclPermission('Collections', 'Edit')
 # Can contribute to community managed collection: COLLECTION_FEATURED_THEMES_ID
 COLLECTIONS_CONTRIBUTE = AclPermission('Collections', 'Contribute')
+# Can view all collections in django admin
+ADMIN_COLLECTIONS_VIEW = AclPermission('Collections', 'AdminView')
 
 # Can view statistics for all addons, regardless of privacy settings.
 STATS_VIEW = AclPermission('Stats', 'View')
@@ -165,6 +169,7 @@ DJANGO_PERMISSIONS_MAPPING.update(
     {
         'abuse.change_abusereport': ABUSEREPORTS_EDIT,
         'abuse.view_cinderpolicy': CINDER_POLICIES_VIEW,
+        'addons.view_addon': ADMIN_ADDONS_VIEW,
         'addons.change_addon': ADDONS_EDIT,
         **_addchangedelete('addons', 'addonuser', ADMIN_ADVANCED),
         'addons.change_addonreviewerflags': ADMIN_ADVANCED,
@@ -174,6 +179,7 @@ DJANGO_PERMISSIONS_MAPPING.update(
         ),
         # Users with Admin:Curation can do anything to AddonBrowserMapping.
         **_addchangedelete('addons', 'addonbrowsermapping', ADMIN_CURATION),
+        'bandwagon.view_collection': ADMIN_COLLECTIONS_VIEW,
         'bandwagon.change_collection': COLLECTIONS_EDIT,
         'bandwagon.delete_collection': ADMIN_ADVANCED,
         **_addchangedelete('blocklist', 'block', BLOCKLIST_CREATE),
