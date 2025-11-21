@@ -19,6 +19,7 @@ from django.core.paginator import InvalidPage
 from django.db import models
 from django.db.models.constants import LOOKUP_SEP
 from django.http.request import QueryDict
+from django.urls import reverse
 from django.utils.html import format_html, format_html_join
 
 from django_vite.templatetags.django_vite import vite_hmr_client
@@ -522,8 +523,11 @@ class AMOModelAdmin(admin.ModelAdmin):
                 .distinct()
             )
 
+        activities_changelist = reverse('admin:activity_activitylog_changelist')
         contents = format_html_join(
-            '', '<li>{}</li>', sorted((str(i),) for i in ip_addresses)
+            '',
+            '<li><a href="{}?q={}">{}</a></li>',
+            sorted((activities_changelist, str(i), str(i)) for i in ip_addresses),
         )
         return format_html('<ul>{}</ul>', contents)
 

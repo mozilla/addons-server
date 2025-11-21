@@ -90,7 +90,8 @@
     border-color: orange;
 }
 
-.change-list .field-known_ip_adresses ul {
+.change-list .field-known_ip_adresses ul,
+.form-row .readonly ul {
     margin: 0;
     padding: 0;
 }
@@ -105,4 +106,8 @@
 
 #changelist-filter select {
     width: 100%;
+}
+
+.form-row .readonly ul {
+    margin: 0;
 }

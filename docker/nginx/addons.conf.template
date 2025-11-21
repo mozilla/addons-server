@@ -68,6 +68,7 @@ server {
         uwsgi_param   X-Real-IP             $remote_addr;
         uwsgi_param   X-Forwarded-For       $proxy_add_x_forwarded_for;
         uwsgi_param   X-Forwarded-Protocol  ssl;
+        # uwsgi_param   HTTP_Client_JA4       fake_ja4;
 
         add_header X-Served-By "olympia" always;
     }

@@ -40,6 +40,7 @@ from olympia.users.models import (
     DisposableEmailDomainRestriction,
     EmailReputationRestriction,
     EmailUserRestriction,
+    FingerprintRestriction,
     IPNetworkUserRestriction,
     IPReputationRestriction,
     SuppressedEmail,
@@ -1351,6 +1352,76 @@ class TestEmailUserRestriction(TestCase):
             channel=amo.CHANNEL_LISTED,
         )
         assert EmailUserRestriction.allow_auto_approval(upload)
+
+
+class TestFingerprintRestriction(TestCase):
+    def test_str(self):
+        obj = FingerprintRestriction(ja4='t13d1517h2_8daaf6152771_f0fc7018f8e8')
+        assert str(obj) == 't13d1517h2_8daaf6152771_f0fc7018f8e8'
+
+    def test_no_ja4_submission_allowed(self):
+        FingerprintRestriction.objects.create(
+            ja4='t13d1517h2_8daaf6152771_f0fc7018f8e8'
+        )
+        request = RequestFactory().get('/')
+        assert FingerprintRestriction.allow_submission(request)
+
+    def test_no_ja4_auto_approval_allowed(self):
+        FingerprintRestriction.objects.create(
+            ja4='t13d1517h2_8daaf6152771_f0fc7018f8e8'
+        )
+        upload = FileUpload.objects.create(
+            ip_address='192.168.0.1',
+            user=user_factory(),
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            channel=amo.CHANNEL_LISTED,
+        )
+        assert FingerprintRestriction.allow_auto_approval(upload)
+
+    def test_ja4_submission_restricted(self):
+        restricted_ja4 = 'some_fake_ja4'
+        FingerprintRestriction.objects.create(ja4=restricted_ja4)
+        request = RequestFactory().get('/', headers={'Client-JA4': restricted_ja4})
+        assert not FingerprintRestriction.allow_submission(request)
+
+    def test_ja4_rating_restriction(self):
+        restricted_ja4 = 'some_fake_ja4'
+        FingerprintRestriction.objects.create(
+            ja4=restricted_ja4, restriction_type=RESTRICTION_TYPES.RATING
+        )
+
+        # Submissions are not restricted.
+        request = RequestFactory().get('/', headers={'Client-JA4': restricted_ja4})
+        assert FingerprintRestriction.allow_submission(request)
+        assert not FingerprintRestriction.allow_rating(request)
+
+    def test_ja4_auto_approval_restricted(self):
+        restricted_ja4 = 'some_fake_ja4'
+        FingerprintRestriction.objects.create(
+            ja4=restricted_ja4, restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
+        )
+
+        # Submissions or ratings are not restricted.
+        request = RequestFactory().get('/', headers={'Client-JA4': restricted_ja4})
+        assert FingerprintRestriction.allow_submission(request)
+        assert FingerprintRestriction.allow_rating(request)
+        assert FingerprintRestriction.allow_rating_without_moderation(request)
+
+        # Auto-approval is restricted.
+        upload = FileUpload.objects.create(
+            ip_address='192.168.0.1',
+            user=user_factory(),
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            channel=amo.CHANNEL_LISTED,
+            request_metadata={'Client-JA4': restricted_ja4},
+        )
+        assert not FingerprintRestriction.allow_auto_approval(upload)
+
+    def test_ja4_different_restriction(self):
+        restricted_ja4 = 'some_fake_ja4'
+        FingerprintRestriction.objects.create(ja4=restricted_ja4)
+        request = RequestFactory().get('/', headers={'Client-JA4': 'another_ja4'})
+        assert FingerprintRestriction.allow_submission(request)
 
 
 @override_settings(
