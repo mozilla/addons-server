@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  messages.pootle\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-20 12:26+0000\n"
+"POT-Creation-Date: 2025-11-21 13:54+0000\n"
 "PO-Revision-Date: 2013-11-07 07:24+0000\n"
 "Last-Translator: Julen <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -994,6 +994,14 @@ msgstr ""
 
 #, python-brace-format
 msgid "{addon} {0} property edited."
+msgstr ""
+
+#, python-brace-format
+msgid "Collection {0} property {1} updated."
+msgstr ""
+
+#, python-brace-format
+msgid "Account {user} property {0} updated."
 msgstr ""
 
 msgid "Firefox"

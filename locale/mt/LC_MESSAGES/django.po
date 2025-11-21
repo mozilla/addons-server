@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-20 12:26+0000\n"
+"POT-Creation-Date: 2025-11-21 13:54+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -969,6 +969,14 @@ msgstr ""
 
 #, python-brace-format
 msgid "{addon} {0} property edited."
+msgstr ""
+
+#, python-brace-format
+msgid "Collection {0} property {1} updated."
+msgstr ""
+
+#, python-brace-format
+msgid "Account {user} property {0} updated."
 msgstr ""
 
 msgid "Firefox"
