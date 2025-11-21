@@ -7,6 +7,7 @@ from rest_framework import serializers
 import olympia.core.logger
 from olympia import amo
 from olympia.access.models import Group
+from olympia.activity import log_create
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import (
     ImageCheck,
@@ -193,6 +194,13 @@ class SelfUserProfileSerializer(PropertyUpdatedMixin, FullUserProfileSerializer)
         photo = validated_data.get('picture_upload')
         if photo:
             upload_picture(instance, photo)
+            log_create(
+                self.ACTIVITY_LOG_ACTION,
+                instance,
+                'picture',
+                '',
+                user=self.context['request'].user,
+            )
         return instance
 
     def to_representation(self, obj):

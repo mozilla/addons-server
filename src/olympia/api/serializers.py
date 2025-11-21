@@ -3,6 +3,7 @@ from collections import defaultdict
 from datetime import datetime
 
 from django.conf import settings
+from django.core.exceptions import ImproperlyConfigured
 
 from elasticsearch_dsl.response.hit import Hit
 from rest_framework import serializers
@@ -107,7 +108,7 @@ class PropertyUpdatedMixin:
 
     def update(self, instance, validated_data):
         if not self.ACTIVITY_LOG_ACTION:
-            raise NotImplementedError(
+            raise ImproperlyConfigured(
                 'Subclasses of PropertyUpdatedMixin must define activity_log_action.'
             )
 
@@ -118,7 +119,7 @@ class PropertyUpdatedMixin:
             if self.fields.get(field).__class__.__name__ == 'TranslationSerializerField'
         ]
         old_values = {
-            field: str(getattr(instance, field))
+            field: str(getattr(instance, field) or '')
             for field in self.Meta.fields
             if field in validated_data
             and not self.fields[field].write_only
@@ -129,7 +130,7 @@ class PropertyUpdatedMixin:
         instance = super().update(instance, validated_data)
 
         new_values = {
-            field: str(getattr(instance, field))
+            field: str(getattr(instance, field) or '')
             for field in old_values
             if field not in translated_fields
         }
