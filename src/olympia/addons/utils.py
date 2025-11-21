@@ -1,5 +1,4 @@
 import uuid
-from collections import defaultdict
 
 from django import forms
 from django.core.files.storage import default_storage as storage
@@ -9,7 +8,6 @@ from django.utils.translation import gettext
 from olympia import amo, core
 from olympia.access.acl import action_allowed_for
 from olympia.amo.utils import validate_name
-from olympia.translations.models import Translation
 
 
 log = core.logger.getLogger('z.addons')
@@ -96,28 +94,6 @@ def compute_last_updated(addon):
         .values_list('last_updated', flat=True)
     )
     return values[0] if values else None
-
-
-def fetch_translations_from_addon(addon, properties):
-    translation_ids_gen = (
-        (prop, getattr(addon, prop + '_id', None)) for prop in properties
-    )
-    translation_ids = {id_: prop for prop, id_ in translation_ids_gen if id_}
-    # Just get all the values together to make it simplier
-    out = defaultdict(set)
-    for trans in Translation.objects.filter(id__in=translation_ids):
-        out[translation_ids.get(trans.id, '_')].add(str(trans))
-    return out
-
-
-def get_translation_differences(old_, new_):
-    out = {}
-    for field in list({*old_, *new_}):
-        removed = list(old_[field] - new_[field])
-        added = list(new_[field] - old_[field])
-        if removed or added:
-            out[field] = {'removed': removed, 'added': added}
-    return out
 
 
 class DeleteTokenSigner(TimestampSigner):

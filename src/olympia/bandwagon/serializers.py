@@ -16,7 +16,7 @@ from olympia.api.fields import (
     SplitField,
     TranslationSerializerField,
 )
-from olympia.api.serializers import AMOModelSerializer
+from olympia.api.serializers import AMOModelSerializer, PropertyUpdatedMixin
 from olympia.api.utils import is_gate_active
 from olympia.bandwagon.models import Collection, CollectionAddon
 from olympia.users.utils import validate_user_name
@@ -30,7 +30,7 @@ def can_use_denied_names(request):
     )
 
 
-class CollectionSerializer(AMOModelSerializer):
+class CollectionSerializer(PropertyUpdatedMixin, AMOModelSerializer):
     name = TranslationSerializerField()
     description = TranslationSerializerField(allow_blank=True, required=False)
     url = serializers.SerializerMethodField()
@@ -42,6 +42,8 @@ class CollectionSerializer(AMOModelSerializer):
     )
     public = serializers.BooleanField(source='listed', default=True)
     uuid = serializers.UUIDField(format='hex', required=False, read_only=True)
+
+    ACTIVITY_LOG_ACTION = amo.LOG.EDIT_COLLECTION_PROPERTY
 
     class Meta:
         model = Collection

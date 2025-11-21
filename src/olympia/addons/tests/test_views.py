@@ -2540,7 +2540,7 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         )
         assert response.status_code == 200
 
-    @mock.patch('olympia.addons.serializers.fetch_translations_from_addon')
+    @mock.patch('olympia.addons.serializers.fetch_translations_from_instance')
     def test_metadata_content_review_unlisted(self, fetch_mock):
         self.make_addon_unlisted(self.addon)
         AddonApprovalsCounter.approve_content_for_addon(addon=self.addon)

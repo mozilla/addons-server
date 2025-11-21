@@ -1587,6 +1587,49 @@ class TestAccountViewSetUpdate(TestCase):
             ]
         }
 
+    def test_logging(self):
+        self.user.update(biography=None, occupation='same', location='old place')
+        self.client.login_api(self.user)
+        photo = get_uploaded_file('transparent.png')
+        data = {
+            'picture_upload': photo,
+            'biography': '',  # None to '', shouldn't log
+            'display_name': 'New Name',
+            'occupation': 'same',  # unchanged, shouldn't log
+            'location': 'new place',
+        }
+        response = self.client.patch(self.url, data, format='multipart')
+
+        assert response.status_code == 200
+        json_content = json.loads(force_str(response.content))
+        self.user = self.user.reload()
+        assert 'anon_user.png' not in json_content['picture_url']
+        assert '%s.png' % self.user.id in json_content['picture_url']
+        assert self.user.biography == ''
+        assert self.user.name == 'New Name'
+        assert self.user.location == 'new place'
+        alogs = list(
+            ActivityLog.objects.filter(
+                user=self.user, action=amo.LOG.EDIT_USER_PROPERTY.id
+            )
+        )
+        assert len(alogs) == 3
+        assert alogs[0].arguments == [
+            self.user,
+            'picture',
+            '',
+        ]
+        assert alogs[1].arguments == [
+            self.user,
+            'display_name',
+            '{"removed": "", "added": "New Name"}',
+        ]
+        assert alogs[2].arguments == [
+            self.user,
+            'location',
+            '{"removed": "old place", "added": "new place"}',
+        ]
+
 
 class TestAccountViewSetDelete(TestCase):
     client_class = APITestClientSessionID

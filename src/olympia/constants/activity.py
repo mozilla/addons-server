@@ -1247,6 +1247,20 @@ class EDIT_ADDON_PROPERTY(_LOG):
     show_user_to_developer = True
 
 
+class EDIT_COLLECTION_PROPERTY(_LOG):
+    """Expects: collection, field. 3rd arg is a json blob."""
+
+    id = 209
+    format = _('Collection {0} property {1} updated.')
+
+
+class EDIT_USER_PROPERTY(_LOG):
+    """Expects: user, field. 3rd arg is a json blob."""
+
+    id = 210
+    format = _('Account {user} property {0} updated.')
+
+
 LOGS = [x for x in vars().values() if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 # Make sure there's no duplicate IDs.
 assert len(LOGS) == len({log.id for log in LOGS})

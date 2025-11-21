@@ -52,6 +52,10 @@ from olympia.ratings.utils import get_grouped_ratings
 from olympia.scanners.tasks import run_narc_on_version
 from olympia.search.filters import AddonAppVersionQueryParam
 from olympia.tags.models import Tag
+from olympia.translations.utils import (
+    fetch_translations_from_instance,
+    get_translation_differences,
+)
 from olympia.users.models import RESTRICTION_TYPES, EmailUserRestriction, UserProfile
 from olympia.versions.models import (
     ApplicationsVersions,
@@ -86,7 +90,6 @@ from .models import (
     ReplacementAddon,
 )
 from .tasks import resize_icon, resize_preview
-from .utils import fetch_translations_from_addon, get_translation_differences
 from .validators import (
     AddonDefaultLocaleValidator,
     AddonMetadataValidator,
@@ -1360,7 +1363,7 @@ class AddonSerializer(AMOModelSerializer):
     def update(self, instance, validated_data):
         fields_to_review = ('name', 'summary')
         old_metadata = (
-            fetch_translations_from_addon(instance, fields_to_review)
+            fetch_translations_from_instance(instance, fields_to_review)
             if instance.has_listed_versions()
             else None
         )
@@ -1391,7 +1394,7 @@ class AddonSerializer(AMOModelSerializer):
             )
 
         if old_metadata is not None and old_metadata != (
-            new_metadata := fetch_translations_from_addon(instance, fields_to_review)
+            new_metadata := fetch_translations_from_instance(instance, fields_to_review)
         ):
             statsd.incr('addons.submission.metadata_content_review_triggered')
             changes = get_translation_differences(old_metadata, new_metadata)
