@@ -5738,7 +5738,7 @@ msgstr "Salva e organizza tutto ciò che trovi sul Web: articoli, file multimedi
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:706
 msgid "Enhance your Reddit experience with color-coded comments, simpler navigation, gestures for upvoting & much more."
-msgstr ""
+msgstr "Migliora la tua esperienza su Reddit con commenti colorati, navigazione più semplice, gesti per dare un “upvote” e molto altro ancora."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:712
