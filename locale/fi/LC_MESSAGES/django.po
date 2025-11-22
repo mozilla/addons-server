@@ -2066,7 +2066,7 @@ msgstr "Valitse versio"
 
 #: src/olympia/devhub/forms.py:1668
 msgid "Release notes"
-msgstr ""
+msgstr "Julkaisutiedot"
 
 #: src/olympia/devhub/forms.py:1669
 msgid "Automatic rollback based on version [m.m]."
@@ -5831,22 +5831,22 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1081
 msgid "Serenity for your Reddit experience."
-msgstr ""
+msgstr "Rauhallisuutta Reddit-kokemuksellesi."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1084
 msgid "Save and organize anything you find on the web."
-msgstr ""
+msgstr "Tallenna ja järjestä kaikki, mitä löydät verkosta."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1087
 msgid "WebM video controls at your fingertips."
-msgstr ""
+msgstr "WebM-videoiden ohjaimet sormiesi ulottuvilla."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1090
 msgid "Disguise Firefox as the Chrome browser to spoof websites that try to block Firefox."
-msgstr ""
+msgstr "Naamioi Firefox Chrome-selaimeksi verkkosivustoille, jotka yrittävät estää Firefoxin käytön."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1093
@@ -5866,22 +5866,22 @@ msgstr "Selaa kaikkia laajennuksia"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1099
 msgid "New Recommended Extensions"
-msgstr ""
+msgstr "Uusia suositeltuja laajennuksia"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1101
 msgid "Reddit revolutionized"
-msgstr ""
+msgstr "Reddit mullistettuna"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1103
 msgid "Extension Starter Pack"
-msgstr ""
+msgstr "Laajennusten aloituspaketti"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1105
 msgid "Explore now"
-msgstr ""
+msgstr "Tutustu nyt"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1107 src/olympia/discovery/strings.jinja2:1109
