@@ -5705,7 +5705,7 @@ msgstr "Сохраняйте и организуйте всё, что наход
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:706
 msgid "Enhance your Reddit experience with color-coded comments, simpler navigation, gestures for upvoting & much more."
-msgstr ""
+msgstr "Расширьте свою работу на Reddit с помощью цветных комментариев, простой навигации, жестов для голосования и прочего."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:712
@@ -5935,7 +5935,7 @@ msgstr "Улучшите свой опыт использования в Twitch.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1048
 msgid "Re-take control of Twitter/X and customize your experience."
-msgstr "Верните контроль над Twitter/X и настройте его по своему вкусу."
+msgstr "Верните контроль над X («Твиттером») и настройте его по своему вкусу."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1051
@@ -6025,12 +6025,12 @@ msgstr "Посмотреть все расширения"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1099
 msgid "New Recommended Extensions"
-msgstr ""
+msgstr "Новые рекомендуемые расширения"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1101
 msgid "Reddit revolutionized"
-msgstr ""
+msgstr "Reddit произвел революцию"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1103
@@ -6040,7 +6040,7 @@ msgstr "Стартовый пакет расширений"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1105
 msgid "Explore now"
-msgstr ""
+msgstr "Посмотреть сейчас"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1107 src/olympia/discovery/strings.jinja2:1109
