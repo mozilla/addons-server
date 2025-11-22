@@ -5723,7 +5723,7 @@ msgstr "Tecnologie di traduzione evolute per un’esperienza linguistica fluida 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:697
 msgid "Leave yourself little notes on any website."
-msgstr ""
+msgstr "Lascia piccoli promemoria su qualsiasi sito web."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:700
