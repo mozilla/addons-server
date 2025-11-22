@@ -6005,7 +6005,7 @@ msgstr "Štartovací balíček rozšírení"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1105
 msgid "Explore now"
-msgstr ""
+msgstr "Preskúmajte teraz"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1107 src/olympia/discovery/strings.jinja2:1109

@@ -1297,12 +1297,12 @@ msgstr "{addon} {0}-eigenskip bewurke."
 #: src/olympia/constants/activity.py:1254
 #, python-brace-format
 msgid "Collection {0} property {1} updated."
-msgstr ""
+msgstr "Eigenskip {1} fan kolleksje {0} bywurke."
 
 #: src/olympia/constants/activity.py:1261
 #, python-brace-format
 msgid "Account {user} property {0} updated."
-msgstr ""
+msgstr "Eigenskip {0} fan account {user} bywurke."
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -5664,22 +5664,22 @@ msgstr "Wiidweidige oersetfunksjes foar in rike taalûnderfining oeral op it web
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:697
 msgid "Leave yourself little notes on any website."
-msgstr ""
+msgstr "Lit lytse notysjes foar josels efter op elke website."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:700
 msgid "Discover and download higher quality versions of interesting images and videos you find on the web."
-msgstr ""
+msgstr "Untdek en download ferzjes fan hegere kwaliteit fan nijsgjirrige ôfbyldingen en fideo’s dy’t jo op it web fine."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:703
 msgid "Save and organize anything you find on the web — articles, media, PDFs & more."
-msgstr ""
+msgstr "Bewarje en organisearje alles wat jo op it web fine – artikels, media, PDF’s en mear."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:706
 msgid "Enhance your Reddit experience with color-coded comments, simpler navigation, gestures for upvoting & much more."
-msgstr ""
+msgstr "Ferbetterje jo Reddit-ûnderfining mei kleurkodearre opmerkingen, ienfâldiger navigaasje, gebearen foar opwurdearring en folle mear."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:712
@@ -5999,12 +5999,12 @@ msgstr "Alle útwreidingen besjen"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1099
 msgid "New Recommended Extensions"
-msgstr ""
+msgstr "Nije oanrekommandearre útwreidingen"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1101
 msgid "Reddit revolutionized"
-msgstr ""
+msgstr "Reddit revolúsjonearre"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1103
@@ -6014,7 +6014,7 @@ msgstr "Utwreiding-startpakket"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1105
 msgid "Explore now"
-msgstr ""
+msgstr "No ferkenne"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1107 src/olympia/discovery/strings.jinja2:1109
