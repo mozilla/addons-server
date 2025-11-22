@@ -5650,22 +5650,22 @@ msgstr "Tính năng dịch sâu vì trải nghiệm ngôn ngữ phong phú bất
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:697
 msgid "Leave yourself little notes on any website."
-msgstr ""
+msgstr "Ghi lại những ghi chú nhỏ trên bất kỳ trang web nào."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:700
 msgid "Discover and download higher quality versions of interesting images and videos you find on the web."
-msgstr ""
+msgstr "Khám phá và tải xuống phiên bản chất lượng cao hơn của những hình ảnh và video thú vị mà bạn tìm thấy trên web."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:703
 msgid "Save and organize anything you find on the web — articles, media, PDFs & more."
-msgstr ""
+msgstr "Lưu và sắp xếp mọi thứ bạn tìm thấy trên web — bài viết, phương tiện, PDF, v.v."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:706
 msgid "Enhance your Reddit experience with color-coded comments, simpler navigation, gestures for upvoting & much more."
-msgstr ""
+msgstr "Nâng cấp trải nghiệm Reddit của bạn với bình luận được tô màu theo cấp, điều hướng đơn giản hơn, cử chỉ để upvote và nhiều hơn nữa."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:712
@@ -5985,12 +5985,12 @@ msgstr "Xem tất cả các tiện ích mở rộng"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1099
 msgid "New Recommended Extensions"
-msgstr ""
+msgstr "Tiện ích mở rộng mới được đề xuất"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1101
 msgid "Reddit revolutionized"
-msgstr ""
+msgstr "Reddit cách mạng hóa"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1103
@@ -6000,7 +6000,7 @@ msgstr "Gói tiện ích mở rộng khởi đầu"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1105
 msgid "Explore now"
-msgstr ""
+msgstr "Khám phá ngay"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1107 src/olympia/discovery/strings.jinja2:1109
