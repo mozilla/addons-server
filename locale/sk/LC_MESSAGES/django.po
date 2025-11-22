@@ -5655,22 +5655,22 @@ msgstr "Funkcie hlbokého prekladu pre bohatý jazykový zážitok kdekoľvek na
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:697
 msgid "Leave yourself little notes on any website."
-msgstr ""
+msgstr "Zanechajte si krátke poznámky na akejkoľvek webovej stránke."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:700
 msgid "Discover and download higher quality versions of interesting images and videos you find on the web."
-msgstr ""
+msgstr "Objavte a stiahnite si verzie zaujímavých obrázkov a videí vo vyššej kvalite, ktoré nájdete na webe."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:703
 msgid "Save and organize anything you find on the web — articles, media, PDFs & more."
-msgstr ""
+msgstr "Uložte si a usporiadajte všetko, čo nájdete na webe – články, médiá, súbory PDF a ďalšie."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:706
 msgid "Enhance your Reddit experience with color-coded comments, simpler navigation, gestures for upvoting & much more."
-msgstr ""
+msgstr "Vylepšite si zážitok z Redditu pomocou farebne odlíšených komentárov, jednoduchšej navigácie, gest na hlasovanie a oveľa viac."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:712
@@ -5990,7 +5990,7 @@ msgstr "Zobraziť všetky rozšírenia"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1099
 msgid "New Recommended Extensions"
-msgstr ""
+msgstr "Nové odporúčané rozšírenia"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1101
