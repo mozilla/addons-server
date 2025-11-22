@@ -1302,12 +1302,12 @@ msgstr "Proprietatea {addon} {0} a fost editată."
 #: src/olympia/constants/activity.py:1254
 #, python-brace-format
 msgid "Collection {0} property {1} updated."
-msgstr ""
+msgstr "Proprietatea {1} colecției {0} a fost actualizată."
 
 #: src/olympia/constants/activity.py:1261
 #, python-brace-format
 msgid "Account {user} property {0} updated."
-msgstr ""
+msgstr "Proprietatea {0} contului {user} a fost actualizată."
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -5688,7 +5688,7 @@ msgstr "Funcții de traducere profundă pentru o experiență lingvistică bogat
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:697
 msgid "Leave yourself little notes on any website."
-msgstr ""
+msgstr "Lasă-ți mici notițe pe orice site web."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:700
@@ -5963,7 +5963,7 @@ msgstr "Treci cu cursorul peste imaginile web pentru a le mări."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1066
 msgid "Feature rich translation tool. Works across the web, eBooks, PDFs, even video subtitles."
-msgstr ""
+msgstr "Instrument de traducere bogat în funcții. Funcționează pe web, în cărți electronice, PDF-uri și chiar și în subtitrări video."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1069
@@ -6023,7 +6023,7 @@ msgstr "Vezi toate extensiile"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1099
 msgid "New Recommended Extensions"
-msgstr ""
+msgstr "Extensii recomandate noi"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1101
@@ -6038,7 +6038,7 @@ msgstr "Pachet starter de extensii"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1105
 msgid "Explore now"
-msgstr ""
+msgstr "Explorează acum"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1107 src/olympia/discovery/strings.jinja2:1109
