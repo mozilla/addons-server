@@ -5690,17 +5690,17 @@ msgstr "Возможности глубокого перевода для рас
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:697
 msgid "Leave yourself little notes on any website."
-msgstr ""
+msgstr "Оставляйте себе небольшие заметки на любом веб-сайте."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:700
 msgid "Discover and download higher quality versions of interesting images and videos you find on the web."
-msgstr ""
+msgstr "Находите и загружайте более качественные версии интересных изображений и видео, которые вы находите в Интернете."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:703
 msgid "Save and organize anything you find on the web — articles, media, PDFs & more."
-msgstr ""
+msgstr "Сохраняйте и организуйте всё, что находите в Интернете — статьи, медиа, PDF-файлы и прочее."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:706
