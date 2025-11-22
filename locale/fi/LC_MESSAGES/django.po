@@ -360,7 +360,7 @@ msgstr "Lisäosat tarvitsevat vähintään yhden omistajan."
 
 #: src/olympia/addons/serializers.py:918
 msgid "Add-ons need at least one listed author."
-msgstr ""
+msgstr "Lisäosat tarvitsevat vähintään yhden listatun tekijän."
 
 #: src/olympia/addons/serializers.py:950
 msgid "Account not found."
@@ -368,7 +368,7 @@ msgstr "Tiliä ei löydy."
 
 #: src/olympia/addons/serializers.py:963 src/olympia/devhub/forms.py:430 src/olympia/devhub/forms.py:500
 msgid "An author can only be present once."
-msgstr ""
+msgstr "Tekijä voi olla läsnä vain kerran."
 
 #: src/olympia/addons/serializers.py:974 src/olympia/devhub/forms.py:442
 msgid "The account needs a display name before it can be added as an author."
@@ -990,7 +990,7 @@ msgstr ""
 
 #: src/olympia/constants/activity.py:397
 msgid "Email sent to Author about add-on compatibility."
-msgstr ""
+msgstr "Sähköposti lähetetty tekijälle lisäosan yhteensopivuudesta."
 
 #: src/olympia/constants/activity.py:402
 msgid "Password changed."
@@ -1487,7 +1487,7 @@ msgstr "Hakutyökalut"
 
 #: src/olympia/constants/categories.py:154
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
-msgstr ""
+msgstr "Lataa Firefox-laajennuksia hakua varten. Tähän luokkaan kuuluvat laajennukset, jotka korostavat ja hakevat tekstiä, hakevat IP-osoitteita/verkkotunnuksia ja paljon muuta."
 
 #: src/olympia/constants/categories.py:161
 msgid "Shopping"
@@ -1551,7 +1551,7 @@ msgstr "Muoti"
 
 #: src/olympia/constants/categories.py:229
 msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
-msgstr ""
+msgstr "Lataa Firefox-teemoja, jotka juhlistavat kaikenlaisia tyylejä – kuvioita, kukka-asetelmia, tekstuureja, malleja ja paljon muuta."
 
 #: src/olympia/constants/categories.py:235
 msgid "Film and TV"
@@ -2058,7 +2058,7 @@ msgstr "Jokin meni pieleen, ota yhteys kehittäjätukeen."
 
 #: src/olympia/devhub/forms.py:1652
 msgid "No appropriate version available"
-msgstr ""
+msgstr "Sopivaa versiota ei saatavilla"
 
 #: src/olympia/devhub/forms.py:1659
 msgid "Choose version"
@@ -2683,7 +2683,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/owner.html:49
 msgid "Authors that have been added to this add-on but haven't confirmed."
-msgstr ""
+msgstr "Tekijät, jotka on lisätty tähän lisäosaan, mutta joita ei ole vahvistettu."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:96 src/olympia/devhub/templates/devhub/addons/edit/describe.html:260
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:84 src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:174 src/olympia/devhub/templates/devhub/addons/owner.html:78
@@ -2737,7 +2737,7 @@ msgstr "Avustukset"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:40
 msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
-msgstr ""
+msgstr "Jos haluat pyytää käyttäjiltäsi rahallista lahjoitusta, aseta tähän sivu, jossa he voivat tehdä lahjoituksen."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:55 src/olympia/translations/templates/translations/trans-menu.html:13
 msgid "Default Locale"
@@ -4578,7 +4578,7 @@ msgstr "Yksinkertainen tapa säätää minkä tahansa sivun tekstin kokoa – ta
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:107 src/olympia/discovery/strings.jinja2:820
 msgid "Stop trackers in their tracks and learn more about them."
-msgstr ""
+msgstr "Pysäytä seuraimet ja hanki lisätietoja niistä."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5055,7 +5055,7 @@ msgstr "Määritä uuden välilehden sivu näyttämään mukautettuja taustavär
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:383
 msgid "Meet an adorable kitty with every new tab. Give it a scratch behind the ear and see what happens."
-msgstr ""
+msgstr "Tapaa suloinen kissa jokaisen uuden välilehden mukana. Raaputa sitä korvan takaa ja katso, mitä tapahtuu."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:386
@@ -5196,7 +5196,7 @@ msgstr "Säädä selaimen ääniasetuksia äärimmäisellä kirkkaudella."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:464 src/olympia/discovery/strings.jinja2:727
 msgid "Defend yourself against the sneakiest trackers."
-msgstr ""
+msgstr "Puolusta itseäsi viheliäimpiä seuraimia vastaan."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:467
