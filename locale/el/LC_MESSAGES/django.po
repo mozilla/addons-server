@@ -6052,7 +6052,7 @@ msgstr "Προβολή όλων των επεκτάσεων"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1099
 msgid "New Recommended Extensions"
-msgstr ""
+msgstr "Nέες προτεινόμενες επεκτάσεις"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1101
