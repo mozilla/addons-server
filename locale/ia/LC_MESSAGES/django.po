@@ -1297,7 +1297,7 @@ msgstr "Proprietates de {addon} {0} modificate."
 #: src/olympia/constants/activity.py:1254
 #, python-brace-format
 msgid "Collection {0} property {1} updated."
-msgstr ""
+msgstr "Proprietate {1} del collection {0} actualisate."
 
 #: src/olympia/constants/activity.py:1261
 #, python-brace-format
@@ -5665,17 +5665,17 @@ msgstr "Lassa tu micre notas sur qualcunque sito web."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:700
 msgid "Discover and download higher quality versions of interesting images and videos you find on the web."
-msgstr ""
+msgstr "Discoperi e discarga versiones de plus alte qualitates de interessante imagines e videos que tu trova sur le web."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:703
 msgid "Save and organize anything you find on the web — articles, media, PDFs & more."
-msgstr ""
+msgstr "Salva e organisa toto lo que tu trova sur le web; articulos, medios, files PDF & plus."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:706
 msgid "Enhance your Reddit experience with color-coded comments, simpler navigation, gestures for upvoting & much more."
-msgstr ""
+msgstr "Meliora tu experientia sur Reddit con commentos colorate, navigation plus simple, gestos pro dar un voto positive e multe altero ancora."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:712
