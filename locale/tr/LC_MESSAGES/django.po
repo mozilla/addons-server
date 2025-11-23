@@ -1293,12 +1293,12 @@ msgstr "{addon} {0} özelliği düzenlendi."
 #: src/olympia/constants/activity.py:1254
 #, python-brace-format
 msgid "Collection {0} property {1} updated."
-msgstr ""
+msgstr "{0} koleksiyonunun {1} özelliği güncellendi."
 
 #: src/olympia/constants/activity.py:1261
 #, python-brace-format
 msgid "Account {user} property {0} updated."
-msgstr ""
+msgstr "{user} hesabının {0} özelliği güncellendi."
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -5646,12 +5646,12 @@ msgstr "İnternetin her yerinde zengin bir dil deneyimi için derin çeviri öze
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:697
 msgid "Leave yourself little notes on any website."
-msgstr ""
+msgstr "Web sayfalarına kendiniz için küçük notlar bırakın."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:700
 msgid "Discover and download higher quality versions of interesting images and videos you find on the web."
-msgstr ""
+msgstr "İnternette bulduğunuz ilginç resimlerin ve videoların daha kaliteli versiyonlarını keşfedip indirin."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:703
@@ -5921,7 +5921,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1066
 msgid "Feature rich translation tool. Works across the web, eBooks, PDFs, even video subtitles."
-msgstr ""
+msgstr "Zengin özelliklere sahip çeviri aracı. Web’de, e-kitaplarda, PDF’lerde ve hatta video altyazılarında çalışır."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1069
@@ -5981,7 +5981,7 @@ msgstr "Tüm uzantılara bak"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1099
 msgid "New Recommended Extensions"
-msgstr ""
+msgstr "Önerilen yeni uzantılar"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1101
@@ -5996,7 +5996,7 @@ msgstr "Uzantı Başlangıç Paketi"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1105
 msgid "Explore now"
-msgstr ""
+msgstr "Şimdi keşfedin"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1107 src/olympia/discovery/strings.jinja2:1109
