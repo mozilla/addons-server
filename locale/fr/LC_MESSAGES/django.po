@@ -5733,7 +5733,7 @@ msgstr "Découvrez et téléchargez des versions de meilleure qualité des image
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:703
 msgid "Save and organize anything you find on the web — articles, media, PDFs & more."
-msgstr ""
+msgstr "Enregistrez et classez tout ce que vous trouvez sur le Web : articles, médias, PDF…"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:706
@@ -6058,12 +6058,12 @@ msgstr "Voir toutes les extensions"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1099
 msgid "New Recommended Extensions"
-msgstr ""
+msgstr "Nouvelles extensions recommandées"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1101
 msgid "Reddit revolutionized"
-msgstr ""
+msgstr "Reddit révolutionné"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1103
@@ -6073,7 +6073,7 @@ msgstr "Extensions pour démarrer"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1105
 msgid "Explore now"
-msgstr ""
+msgstr "Découvrez-les maintenant"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1107 src/olympia/discovery/strings.jinja2:1109
@@ -7060,7 +7060,7 @@ msgstr "L’adresse e-mail utilisée pour votre compte n’est pas autorisée po
 
 #: src/olympia/users/models.py:1129
 msgid "The software or device you are using is not allowed for submissions."
-msgstr ""
+msgstr "Le logiciel ou l’appareil que vous utilisez n’est pas autorisé pour des envois."
 
 #: src/olympia/users/models.py:1255
 msgid ""
