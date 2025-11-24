@@ -191,7 +191,7 @@ def download_source(request, version_id):
     """
     Download source code for a given version_id.
 
-    Requires developer of the add-on or admin reviewer permission. If the
+    Requires developer of the add-on or source download permission. If the
     version or add-on is deleted, developers can't access.
 
     If the version source code wasn't provided, but the user had the right
@@ -201,9 +201,10 @@ def download_source(request, version_id):
     version = get_object_or_404(Version.unfiltered, pk=version_id)
     addon = version.addon
 
-    # Channel doesn't matter, source code is only available to admin reviewers
-    # or developers of the add-on. If the add-on, version or file is deleted or
-    # disabled, then only admins can access.
+    # Channel doesn't matter, source code is only available to users with source
+    # download permission, or developers of the add-on.
+    # If the add-on, version or file is deleted or disabled, then only user with
+    # source download can access.
     has_permission = acl.action_allowed_for(
         request.user, amo.permissions.ADDONS_SOURCE_DOWNLOAD
     )

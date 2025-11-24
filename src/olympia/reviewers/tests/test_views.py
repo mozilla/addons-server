@@ -4206,7 +4206,7 @@ class TestReview(ReviewBase):
 
         url = reverse('reviewers.review', args=[self.addon.pk])
 
-        # Admin reviewer: able to download sources.
+        # Admin user: able to download sources.
         user = UserProfile.objects.get(email='admin@mozilla.com')
         self.client.force_login(user)
         response = self.client.get(url, follow=True)

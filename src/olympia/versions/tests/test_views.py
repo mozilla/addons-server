@@ -900,8 +900,8 @@ class TestDownloadSource(TestCase):
         self.make_addon_unlisted(self.addon)
         assert self.client.get(self.url).status_code == 404
 
-    def test_download_for_admin(self):
-        """File downloading is allowed for admins."""
+    def test_download_for_source_download_permission(self):
+        """File downloading is allowed for users with source download permission."""
         self.grant_permission(
             self.user, ':'.join(amo.permissions.ADDONS_SOURCE_DOWNLOAD)
         )
