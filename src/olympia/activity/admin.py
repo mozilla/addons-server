@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils.html import format_html, format_html_join
 
 from olympia import amo
 from olympia.amo.admin import AMOModelAdmin
@@ -16,6 +17,7 @@ class ActivityLogAdmin(AMOModelAdmin):
         'pretty_arguments',
         'kept_forever',
         'known_ip_adresses',
+        'ja4',
     )
     raw_id_fields = ('user',)
     readonly_fields = (
@@ -24,6 +26,8 @@ class ActivityLogAdmin(AMOModelAdmin):
         'pretty_arguments',
         'kept_forever',
         'known_ip_adresses',
+        'ja4',
+        'signals',
     )
     fields = (
         'user',
@@ -31,15 +35,19 @@ class ActivityLogAdmin(AMOModelAdmin):
         'pretty_arguments',
         'kept_forever',
         'known_ip_adresses',
+        'ja4',
+        'signals',
     )
     raw_id_fields = ('user',)
     view_on_site = False
-    search_fields = ('pk',)  # Not that useful, it's there to unlock search.
+    list_select_related = ('requestfingerprintlog',)
+    search_fields = ('=requestfingerprintlog__ja4',)
     search_by_ip_actions = LOG_STORE_IPS
     # We're already dealing with activity logs so the accessor should just be
     # an empty string. The reverse one from iplog should be 'activity_log'.
     search_by_ip_activity_accessor = ''
     search_by_ip_activity_reverse_accessor = 'activity_log'
+    minimum_search_terms_to_search_by_id = 1
 
     def lookup_allowed(self, lookup, value):
         if lookup == 'addonlog__addon':
@@ -63,6 +71,18 @@ class ActivityLogAdmin(AMOModelAdmin):
     @admin.display(description='Kept forever', boolean=True)
     def kept_forever(self, obj):
         return getattr(amo.LOG_BY_ID.get(obj.action), 'keep', False)
+
+    @admin.display()
+    def ja4(self, obj):
+        return obj.requestfingerprintlog.ja4 if obj.requestfingerprintlog else ''
+
+    @admin.display()
+    def signals(self, obj):
+        signals = obj.requestfingerprintlog.signals if obj.requestfingerprintlog else []
+        return format_html(
+            '<ul>{}</ul>',
+            format_html_join('', '<li>{}</li>', ((signal,) for signal in signals)),
+        )
 
     def change_view(self, request, object_id, form_url='', extra_context=None):
         if extra_context is None:

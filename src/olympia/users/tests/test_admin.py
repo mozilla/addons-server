@@ -503,7 +503,7 @@ class TestUserAdmin(TestCase):
         # We want to see absolutely everything, so make our user a superadmin.
         self.grant_permission(user, '*:*')
         self.client.force_login(user)
-        with self.assertNumQueries(23):
+        with self.assertNumQueries(24):
             # - 4 savepoint/release
             # - 2 current logged in user & groups
             # - 2 target user & groups
@@ -516,6 +516,7 @@ class TestUserAdmin(TestCase):
             #      exact email restrictions, exact ip restrictions)
             # - 1 last activity date
             # - 1 known activity ips
+            # - 1 known ja4s
             # - 1 api key
             # - 1 all group names (for dropdown where we can add groups)
             response = self.client.get(self.detail_url)
@@ -1002,6 +1003,34 @@ class TestUserAdmin(TestCase):
             '4.8.15.16',
         }
         assert len(result) == 8
+
+    def test_known_ja4s(self):
+        with core.override_remote_addr_or_metadata(
+            ip_address='127.1.2.1', metadata={'Client-JA4': 'first_ja4'}
+        ):
+            ActivityLog.objects.create(amo.LOG.LOG_IN, user=self.user)
+        with core.override_remote_addr_or_metadata(
+            ip_address='127.1.2.2', metadata={'Client-JA4': 'second_ja4'}
+        ):
+            ActivityLog.objects.create(amo.LOG.LOG_IN, user=self.user)
+        with core.override_remote_addr_or_metadata(
+            ip_address='127.1.2.2', metadata={'Client-JA4': 'second_ja4'}
+        ):
+            ActivityLog.objects.create(amo.LOG.LOG_IN, user=self.user)
+        with core.override_remote_addr_or_metadata(
+            ip_address='127.1.2.3', metadata={'Client-JA4': ''}
+        ):
+            ActivityLog.objects.create(amo.LOG.LOG_IN, user=self.user)
+        with core.override_remote_addr_or_metadata(ip_address='127.1.2.4'):
+            ActivityLog.objects.create(amo.LOG.LOG_IN, user=self.user)
+        model_admin = UserAdmin(UserProfile, admin.site)
+        doc = pq(model_admin.known_ja4s(self.user))
+        result = doc('ul li').text().split()
+        assert set(result) == {
+            'first_ja4',
+            'second_ja4',
+        }
+        assert len(result) == 2
 
     def test_last_known_activity_time(self):
         someone_else = user_factory(username='someone_else')
