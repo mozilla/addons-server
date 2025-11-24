@@ -6,55 +6,47 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2025-11-24 13:33+0000\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "Generated-By: Pontoon\n"
 
-#: static/js/common/upload-addon.js:54 static/js/common/upload-image.js:136
 msgid "There was a problem contacting the server."
 msgstr "Pri kontaktovaní servera sa vyskytol problém."
 
-#: static/js/common/upload-addon.js:78
 msgid "Select a file..."
 msgstr "Zvoľte súbor..."
 
-#: static/js/common/upload-addon.js:82
 msgid "Your add-on should end with .zip, .xpi or .crx"
 msgstr "Váš doplnok by mal mať koncovku .zip, .xpi alebo .crx"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#: static/js/common/upload-addon.js:118
-#, python-brace-format, python-format
+#, python-format, python-brace-format
 msgid "{0}% complete"
 msgstr "Dokončené na {0} %"
 
-#: static/js/common/upload-addon.js:122
 #, python-brace-format
 msgid "{0} of {1}"
 msgstr "{0} z {1}"
 
-#: static/js/common/upload-addon.js:166
 msgid "Cancel"
 msgstr "Zrušiť"
 
-#: static/js/common/upload-addon.js:189
 #, python-brace-format
 msgid "Uploading {0}"
 msgstr "Odosiela sa {0}"
 
-#: static/js/common/upload-addon.js:229
 #, python-brace-format
 msgid "Error with {0}"
 msgstr "Chyba s {0}"
 
-#: static/js/common/upload-addon.js:237
 msgid "Please make sure to report any linting related issues on GitHub"
 msgstr "Uistite sa, že ste na GitHub ohlásili akékoľvek problémy súvisiace s lintingom"
 
-#: static/js/common/upload-addon.js:248
 #, python-brace-format
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
@@ -62,7 +54,6 @@ msgstr[0] "Váš doplnok neprešiel overením, výsledok: {0} chyba."
 msgstr[1] "Váš doplnok neprešiel overením, výsledok: {0} chyby."
 msgstr[2] "Váš doplnok neprešiel overením, výsledok: {0} chýb."
 
-#: static/js/common/upload-addon.js:266
 #, python-brace-format
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
@@ -70,47 +61,37 @@ msgstr[0] "&hellip;a {0} ďalšia"
 msgstr[1] "&hellip;a {0} ďalšie"
 msgstr[2] "&hellip;a {0} ďalších"
 
-#: static/js/common/upload-addon.js:287 static/js/common/upload-addon.js:705
 msgid "See full validation report"
 msgstr "Zobraziť celú správu o overení"
 
-#: static/js/common/upload-addon.js:300
 #, python-brace-format
 msgid "Validating {0}"
 msgstr "Overuje sa {0}"
 
-#: static/js/common/upload-addon.js:350
 #, python-brace-format
 msgid "Your add-on exceeds the maximum size of {0}."
 msgstr "Váš doplnok presahuje maximálnu veľkosť {0}."
 
-#: static/js/common/upload-addon.js:358
 #, python-brace-format
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Prijatá prázdna odpoveď zo servera. Stav: {0}"
 
-#: static/js/common/upload-addon.js:403
 msgid "Your extension has to be compatible with at least one application."
 msgstr "Vaše rozšírenie musí byť kompatibilné aspoň s jednou aplikáciou."
 
-#: static/js/common/upload-addon.js:473
 msgid "Unexpected server error while validating."
 msgstr "Počas overovania sa vyskytla neočakávaná chyba."
 
-#: static/js/common/upload-addon.js:519
 msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
 msgstr "V manifeste explicitne označené ako kompatibilné s Firefoxom pre Android"
 
-#: static/js/common/upload-addon.js:561
 #, python-brace-format
 msgid "Finished validating {0}"
 msgstr "Ukončené overovanie {0}"
 
-#: static/js/common/upload-addon.js:568
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr "Časový limit pre overenie vášho doplnku vypršal, doplnok bude skontrolovaný manuálne."
 
-#: static/js/common/upload-addon.js:573
 #, python-brace-format
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
@@ -118,7 +99,6 @@ msgstr[0] "Váš doplnok bol overený bez chýb a s {0} varovaním."
 msgstr[1] "Váš doplnok bol overený bez chýb a s {0} varovaniami."
 msgstr[2] "Váš doplnok bol overený bez chýb a s {0} varovaniami."
 
-#: static/js/common/upload-addon.js:582
 #, python-brace-format
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
@@ -126,27 +106,21 @@ msgstr[0] "Váš doplnok bol overený bez chýb a s {0} správou."
 msgstr[1] "Váš doplnok bol overený bez chýb a s {0} správami."
 msgstr[2] "Váš doplnok bol overený bez chýb a s {0} správami."
 
-#: static/js/common/upload-addon.js:590
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "Váš doplnok bol overený bez chýb alebo varovaní."
 
-#: static/js/common/upload-addon.js:651
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Zahrnúť podrobné poznámky k verzii (možno nastaviť v ďalšom kroku)."
 
-#: static/js/common/upload-addon.js:654
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr "Ak váš doplnok vyžaduje účet na webovom serveri pre možnosť plnej kontroly, zadajte prosím používateľské meno a heslo do poľa Poznámky ku kontrole (možno vykonať v ďalšom kroku)."
 
-#: static/js/common/upload-addon.js:660
 msgid "Add-on submission checklist"
 msgstr "Zoznam doplnkov odoslaných na kontrolu"
 
-#: static/js/common/upload-addon.js:664
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Skontrolujte prosím nasledujúce body pred odoslaním doplnku na kontrolu. Pomôžete tým kontrolu zrýchliť a predísť prípadnému nedorozumeniu pri procese kontroly:"
 
-#: static/js/common/upload-addon.js:671
 msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
@@ -154,37 +128,29 @@ msgstr ""
 "Minifikované, zreťazené alebo inak strojovo generované skripty (okrem známych knižníc) musia mať svoje zdroje odoslané na kontrolu oddelene. Uistite sa, že používate pole na nahranie zdrojového "
 "kódu, aby ste sa vyhli odmietnutiu vášho doplnku."
 
-#: static/js/common/upload-addon.js:684
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Proces kontroly zistil tieto možné nedostatky, ktoré môžu viesť k zamietnutiu kontroly:"
 
-#: static/js/common/upload-base.js:69
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Nebol rozpoznaný typ súboru, ktorý ste odoslali."
 
-#: static/js/common/upload-base.js:79 static/js/zamboni/global.js:569
 #, python-brace-format
 msgid "Your file exceeds the maximum size of {0}."
 msgstr "Váš súbor presahuje maximálnu veľkosť {0}."
 
-#: static/js/common/upload-base.js:105
 msgid "You cancelled the upload."
 msgstr "Odosielanie ste zrušili."
 
-#: static/js/common/upload-image.js:102
 msgid "Images must be either PNG or JPG."
 msgstr "Obrázky musia mať formát PNG alebo JPG."
 
-#: static/js/common/upload-image.js:106
 msgid "Videos must be in WebM."
 msgstr "Videá musia byť vo formáte WebM."
 
-#: static/js/stats/chart.js:283
 #, python-brace-format
 msgid "Week of {0}"
 msgstr "Týždeň {0}"
 
-#: static/js/stats/chart.js:292
 #, python-brace-format
 msgid "{0} download"
 msgid_plural "{0} downloads"
@@ -192,7 +158,6 @@ msgstr[0] "{0} stiahnutie"
 msgstr[1] "{0} stiahnutia"
 msgstr[2] "{0} stiahnutí"
 
-#: static/js/stats/chart.js:298
 #, python-brace-format
 msgid "{0} user"
 msgid_plural "{0} users"
@@ -200,239 +165,194 @@ msgstr[0] "{0} používateľ"
 msgstr[1] "{0} používatelia"
 msgstr[2] "{0} používateľov"
 
-#: static/js/stats/chart.js:362 static/js/stats/csv_keys.js:3 static/js/stats/csv_keys.js:9
 msgid "Downloads"
 msgstr "Stiahnutia"
 
-#: static/js/stats/chart.js:374 static/js/stats/csv_keys.js:6 static/js/stats/csv_keys.js:10
 msgid "Daily Users"
 msgstr "Denní používatelia"
 
-#: static/js/stats/chart.js:409
 msgid "More Info..."
 msgstr "Ďalšie informácie…"
 
 #. L10n: {0} is an ISO-formatted date.
-#: static/js/stats/chart.js:415
 #, python-brace-format
 msgid "Details for {0}"
 msgstr "Detaily pre {0}"
 
-#: static/js/stats/csv_keys.js:13
 msgid "Firefox"
 msgstr "Firefox"
 
-#: static/js/stats/csv_keys.js:14
 msgid "Mozilla"
 msgstr "Mozilla"
 
-#: static/js/stats/csv_keys.js:15
 msgid "Thunderbird"
 msgstr "Thunderbird"
 
-#: static/js/stats/csv_keys.js:16
 msgid "Sunbird"
 msgstr "Sunbird"
 
-#: static/js/stats/csv_keys.js:17
 msgid "SeaMonkey"
 msgstr "SeaMonkey"
 
-#: static/js/stats/csv_keys.js:18
 msgid "Fennec"
 msgstr "Fennec"
 
-#: static/js/stats/csv_keys.js:19
 msgid "Android"
 msgstr "Android"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:24
 #, python-brace-format
 msgid "Downloads and Daily Users, last {0} days"
 msgstr "Stiahnutia a denní používatelia, posledných {0} dní"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:26
 #, python-brace-format
 msgid "Downloads and Daily Users from {0} to {1}"
 msgstr "Stiahnutia a denní používatelia od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:30
 #, python-brace-format
 msgid "Downloads, last {0} days"
 msgstr "Stiahnutia za posledných {0} dní"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:32
 #, python-brace-format
 msgid "Downloads from {0} to {1}"
 msgstr "Stiahnutia od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:36
 #, python-brace-format
 msgid "Daily Users, last {0} days"
 msgstr "Denní používatelia, posledných {0} dní"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:38
 #, python-brace-format
 msgid "Daily Users from {0} to {1}"
 msgstr "Denní používatelia od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:42
 #, python-brace-format
 msgid "Applications, last {0} days"
 msgstr "Aplikácie, posledných {0} dní"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:44
 #, python-brace-format
 msgid "Applications from {0} to {1}"
 msgstr "Aplikácie od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:48
 #, python-brace-format
 msgid "Countries, last {0} days"
 msgstr "Krajiny, posledných {0} dní"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:50
 #, python-brace-format
 msgid "Countries from {0} to {1}"
 msgstr "Krajiny od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:54
 #, python-brace-format
 msgid "Platforms, last {0} days"
 msgstr "Platformy, posledných {0} dní"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:56
 #, python-brace-format
 msgid "Platforms from {0} to {1}"
 msgstr "Platformy od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:60
 #, python-brace-format
 msgid "Languages, last {0} days"
 msgstr "Jazyky, posledných {0} dní"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:62
 #, python-brace-format
 msgid "Languages from {0} to {1}"
 msgstr "Jazyky od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:66
 #, python-brace-format
 msgid "Add-on Versions, last {0} days"
 msgstr "Verzie doplnkov, posledných {0} dní"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:68
 #, python-brace-format
 msgid "Add-on Versions from {0} to {1}"
 msgstr "Verzie doplnku od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:72
 #, python-brace-format
 msgid "Download Sources, last {0} days"
 msgstr "Zdroje stiahnutí, posledných {0} dní"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:74
 #, python-brace-format
 msgid "Download Sources from {0} to {1}"
 msgstr "Zdroje stiahnutí od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:78
 #, python-brace-format
 msgid "Download Mediums, last {0} days"
 msgstr "Spôsob stiahnutia, posledných {0} dní"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:80
 #, python-brace-format
 msgid "Download Mediums from {0} to {1}"
 msgstr "Spôsob stiahnutia od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:84
 #, python-brace-format
 msgid "Download Contents, last {0} days"
 msgstr "Stiahnutia obsahu, posledných {0} dní"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:86
 #, python-brace-format
 msgid "Download Contents from {0} to {1}"
 msgstr "Stiahnutia obsahu od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:90
 #, python-brace-format
 msgid "Download Campaigns, last {0} days"
 msgstr "Stiahnutia v kampaniach, posledných {0} dní"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:92
 #, python-brace-format
 msgid "Download Campaigns from {0} to {1}"
 msgstr "Stiahnutia v kampaniach od {0} do {1}"
 
 #. L10n: {0} and {1} are integers.
-#: static/js/stats/csv_keys.js:98
 #, python-brace-format
 msgid "<b>{0}</b> in last {1} days"
 msgstr "<b>{0}</b> za posledných {1} dní"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:100 static/js/stats/csv_keys.js:106
 #, python-brace-format
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "<b>{0}</b> od {1} do {2}"
 
 #. L10n: {0} and {1} are integers.
-#: static/js/stats/csv_keys.js:104
 #, python-brace-format
 msgid "<b>{0}</b> average in last {1} days"
 msgstr "<b>{0}</b> priemerne za posledných {1} dní"
 
-#: static/js/stats/overview.js:18
 msgid "No data available."
 msgstr "K dispozícii nie sú žiadne údaje."
 
-#: static/js/stats/table.js:84
 msgid "Date"
 msgstr "Dátum"
 
-#: static/js/stats/topchart.js:108
 msgid "Other"
 msgstr "Iné"
 
-#: static/js/zamboni/devhub.js:300
 msgid "Changes Saved"
 msgstr "Zmeny boli uložené"
 
-#: static/js/zamboni/devhub.js:316
 msgid "Enter a new author's email address"
 msgstr "Zadajte e‑mailovú adresu nového autora"
 
-#: static/js/zamboni/devhub.js:440
 msgid "There was an error uploading your file."
 msgstr "Pri odosielaní súboru sa vyskytla chyba."
 
-#: static/js/zamboni/devhub.js:596
 #, python-brace-format
 msgid "{files} file"
 msgid_plural "{files} files"
@@ -440,11 +360,9 @@ msgstr[0] "{files} súbor"
 msgstr[1] "{files} súbory"
 msgstr[2] "{files} súborov"
 
-#: static/js/zamboni/devhub.js:1196
 msgid "Image changes being processed"
 msgstr "Zmeny obrázkov sa práve spracovávajú"
 
-#: static/js/zamboni/global.js:463
 #, python-brace-format
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
@@ -452,7 +370,6 @@ msgstr[0] "<b>{0}</b> znak"
 msgstr[1] "<b>{0}</b> znaky"
 msgstr[2] "<b>{0}</b> znakov"
 
-#: static/js/zamboni/global.js:472
 #, python-brace-format
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
@@ -460,132 +377,101 @@ msgstr[0] "Zostáva <b>{0}</b> znak"
 msgstr[1] "Zostávajú <b>{0}</b> znaky"
 msgstr[2] "Zostáva <b>{0}</b> znakov"
 
-#: static/js/zamboni/init.js:12
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "Táto funkcia je dočasne nedostupná kvôli prebiehajúcej údržbe servera. Prosím, skúste to neskôr."
 
-#: static/js/zamboni/l10n.js:164
 msgid "Remove this localization"
 msgstr "Odstrániť túto lokalizáciu"
 
-#: static/js/zamboni/reviewers.js:258
 #, python-brace-format
 msgid "{name} was viewing this page first."
 msgstr "{name} zobrazil túto stránku skôr."
 
-#: static/js/zamboni/reviewers.js:266
 msgid "Review page polling failed."
 msgstr "Hlasovanie na stránke s recenziami zlyhalo."
 
-#: static/js/zamboni/reviewers.js:583
 #, python-brace-format
 msgid "{name} was viewing this add-on first."
 msgstr "{name} skontroloval tento doplnok."
 
-#: static/js/zamboni/reviewers.js:596 static/js/zamboni/reviewers.js:622
 msgid "Loading&hellip;"
 msgstr "Načítava sa&hellip;"
 
-#: static/js/zamboni/reviewers.js:601
 msgid "Version Notes"
 msgstr "Poznámky k verzii"
 
-#: static/js/zamboni/reviewers.js:608
 msgid "Notes for Reviewers"
 msgstr "Poznámky ku kontrole"
 
-#: static/js/zamboni/reviewers.js:615
 msgid "No version notes found"
 msgstr "Neboli nájdené poznámky k verzii"
 
-#: static/js/zamboni/reviewers.js:627
 msgid "Review Text"
 msgstr "Text hodnotenia"
 
-#: static/js/zamboni/reviewers.js:634
 msgid "Review notes found"
 msgstr "Poznámky k hodnoteniu"
 
-#: static/js/zamboni/static_theme.js:217
 #, python-brace-format
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "Maximálna povolená veľkosť je {0} - vyberte menší obrázok pozadia."
 
-#: static/js/zamboni/themes_review.js:199
 msgid "Requested Info"
 msgstr "Požadované informácie"
 
-#: static/js/zamboni/themes_review.js:200
 msgid "Flagged"
 msgstr "Označené na kontrolu"
 
-#: static/js/zamboni/themes_review.js:201
 msgid "Duplicate"
 msgstr "Duplicitné"
 
-#: static/js/zamboni/themes_review.js:202
 msgid "Rejected"
 msgstr "Zamietnuté"
 
-#: static/js/zamboni/themes_review.js:203
 msgid "Approved"
 msgstr "Schválené"
 
-#: static/js/zamboni/themes_review.js:492
 msgid "No results found"
 msgstr "Neboli nájdené žiadne výsledky"
 
-#: static/js/zamboni/themes_review_templates.js:43
 msgid "Theme"
 msgstr "Téma"
 
-#: static/js/zamboni/themes_review_templates.js:45
 msgid "Reviewer"
 msgstr "Recenzent"
 
-#: static/js/zamboni/themes_review_templates.js:47
 msgid "Status"
 msgstr "Stav"
 
-#: static/js/zamboni/validator.js:89
 msgid "All tests passed successfully."
 msgstr "Všetky testy ukončené úspešne."
 
-#: static/js/zamboni/validator.js:92 static/js/zamboni/validator.js:388
 msgid "These tests were not run."
 msgstr "Tieto testy neboli spustené."
 
-#: static/js/zamboni/validator.js:155 static/js/zamboni/validator.js:177
 msgid "Tests"
 msgstr "Testy"
 
-#: static/js/zamboni/validator.js:259 static/js/zamboni/validator.js:492 static/js/zamboni/validator.js:516
 msgid "Error"
 msgstr "Chyba"
 
-#: static/js/zamboni/validator.js:259
 msgid "Warning"
 msgstr "Upozornenie"
 
-#: static/js/zamboni/validator.js:332
 #, python-brace-format
 msgid "{0} line {1} column {2}"
 msgstr "{0} riadok {1} stĺpec {2}"
 
-#: static/js/zamboni/validator.js:339
 #, python-brace-format
 msgid "{0} line {1}"
 msgstr "{0} riadok {1}"
 
-#: static/js/zamboni/validator.js:376
 msgid "Add-on failed validation."
 msgstr "Doplnok neprešiel overením."
 
-#: static/js/zamboni/validator.js:378
 msgid "Add-on passed validation."
 msgstr "Doplnok prešiel overením."
 
-#: static/js/zamboni/validator.js:391
 #, python-brace-format
 msgid "{0} error"
 msgid_plural "{0} errors"
@@ -593,7 +479,6 @@ msgstr[0] "{0} chyba"
 msgstr[1] "{0} chyby"
 msgstr[2] "{0} chýb"
 
-#: static/js/zamboni/validator.js:394
 #, python-brace-format
 msgid "{0} warning"
 msgid_plural "{0} warnings"
@@ -601,7 +486,6 @@ msgstr[0] "{0} varovanie"
 msgstr[1] "{0} varovania"
 msgstr[2] "{0} varovaní"
 
-#: static/js/zamboni/validator.js:397
 #, python-brace-format
 msgid "{0} notice"
 msgid_plural "{0} notices"
@@ -609,10 +493,8 @@ msgstr[0] "{0} upozornenie"
 msgstr[1] "{0} upozornenia"
 msgstr[2] "{0} upozornení"
 
-#: static/js/zamboni/validator.js:494
 msgid "Validation task could not complete or completed with errors"
 msgstr "Úloha overenia nemohla byť dokončená alebo bola ukončená s chybami"
 
-#: static/js/zamboni/validator.js:517
 msgid "Internal server error"
 msgstr "Vnútorná chyba servera"

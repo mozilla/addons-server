@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-21 21:21+0000\n"
+"POT-Creation-Date: 2025-11-24 13:33+0000\n"
 "PO-Revision-Date: 2024-01-15 13:27+0000\n"
 "Last-Translator: Bund10z <abu.avila@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -5539,6 +5539,9 @@ msgid "Multiple submissions violating our policies have been sent from your loca
 msgstr ""
 
 msgid "The email address used for your account is not allowed for submissions."
+msgstr ""
+
+msgid "The software or device you are using is not allowed for submissions."
 msgstr ""
 
 msgid ""

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-21 21:21+0000\n"
+"POT-Creation-Date: 2025-11-24 13:33+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -5516,6 +5516,9 @@ msgid "Multiple submissions violating our policies have been sent from your loca
 msgstr ""
 
 msgid "The email address used for your account is not allowed for submissions."
+msgstr ""
+
+msgid "The software or device you are using is not allowed for submissions."
 msgstr ""
 
 #, fuzzy

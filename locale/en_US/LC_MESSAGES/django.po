@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-21 21:21+0000\n"
+"POT-Creation-Date: 2025-11-24 13:33+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -5811,6 +5811,9 @@ msgstr "Multiple submissions violating our policies have been sent from your loc
 
 msgid "The email address used for your account is not allowed for submissions."
 msgstr "The email address used for your account is not allowed for submissions."
+
+msgid "The software or device you are using is not allowed for submissions."
+msgstr "The software or device you are using is not allowed for submissions."
 
 #, fuzzy
 msgid ""
