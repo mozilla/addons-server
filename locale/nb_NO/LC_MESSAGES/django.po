@@ -1298,12 +1298,12 @@ msgstr "{addon} {0}-egenskap redigert."
 #: src/olympia/constants/activity.py:1254
 #, python-brace-format
 msgid "Collection {0} property {1} updated."
-msgstr ""
+msgstr "Samling {0}, egenskap {1} oppdatert."
 
 #: src/olympia/constants/activity.py:1261
 #, python-brace-format
 msgid "Account {user} property {0} updated."
-msgstr ""
+msgstr "Konto {user}, egenskap {0} oppdatert."
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -5653,17 +5653,17 @@ msgstr "Dyptgående oversettelsesfunksjoner for en rik språkopplevelse hvor som
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:697
 msgid "Leave yourself little notes on any website."
-msgstr ""
+msgstr "Legg igjen små notater på et hvilket som helst nettsted."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:700
 msgid "Discover and download higher quality versions of interesting images and videos you find on the web."
-msgstr ""
+msgstr "Oppdag og last ned versjoner av høyere kvalitet av interessante bilder og videoer du finner på nettet."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:703
 msgid "Save and organize anything you find on the web — articles, media, PDFs & more."
-msgstr ""
+msgstr "Lagre og organiser alt du finner på nettet — artikler, media, PDF-filer og mer."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:706
