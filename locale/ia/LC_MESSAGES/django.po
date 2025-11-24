@@ -6997,7 +6997,7 @@ msgstr "Le adresse email usate pro tu conto non es autorisate pro invios."
 
 #: src/olympia/users/models.py:1129
 msgid "The software or device you are using is not allowed for submissions."
-msgstr ""
+msgstr "Le software o apparato que tu usa non ha permisso pro invios."
 
 #: src/olympia/users/models.py:1255
 msgid ""
