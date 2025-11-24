@@ -5666,7 +5666,7 @@ msgstr "Uitgebreide vertaalfuncties voor een rijke taalervaring overal op het we
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:697
 msgid "Leave yourself little notes on any website."
-msgstr "Laat notities achter op elke website."
+msgstr "Laat notities voor uzelf achter op elke website."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:700
@@ -5676,7 +5676,7 @@ msgstr "Ontdek en download versies in hogere kwaliteit van interessante afbeeldi
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:703
 msgid "Save and organize anything you find on the web — articles, media, PDFs & more."
-msgstr "Bewaar en organiseer alles wat u op het web vindt – artikelen, media, PDF’s en meer."
+msgstr "Bewaar en orden alles wat u op het web vindt – artikelen, media, PDF’s en meer."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:706
