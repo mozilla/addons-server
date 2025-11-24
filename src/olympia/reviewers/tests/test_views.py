@@ -4206,7 +4206,7 @@ class TestReview(ReviewBase):
 
         url = reverse('reviewers.review', args=[self.addon.pk])
 
-        # Admin reviewer: able to download sources.
+        # Admin user: able to download sources.
         user = UserProfile.objects.get(email='admin@mozilla.com')
         self.client.force_login(user)
         response = self.client.get(url, follow=True)
@@ -4219,6 +4219,13 @@ class TestReview(ReviewBase):
         response = self.client.get(url, follow=True)
         assert response.status_code == 200
         assert b'The developer has provided source code.' in response.content
+
+        # A reviewer with source code view access should be able to download too
+        self.grant_permission(user, ':'.join(amo.permissions.ADDONS_SOURCE_DOWNLOAD))
+        self.client.force_login(user)
+        response = self.client.get(url, follow=True)
+        assert response.status_code == 200
+        assert b'Download files' in response.content
 
     def test_translations(self):
         self.addon.name = {
