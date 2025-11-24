@@ -5723,7 +5723,7 @@ msgstr "Des outils de traduction avancés pour profiter d’une expérience ling
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:697
 msgid "Leave yourself little notes on any website."
-msgstr ""
+msgstr "Laissez-vous de petites notes sur n’importe quel site web."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:700
