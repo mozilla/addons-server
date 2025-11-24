@@ -6992,7 +6992,7 @@ msgstr "E-mailová adresa použitá pro váš účet nemá povolené odesílán�
 
 #: src/olympia/users/models.py:1129
 msgid "The software or device you are using is not allowed for submissions."
-msgstr ""
+msgstr "Software či zařízení, které používáte, nemá povoleno přidávání příspěvků."
 
 #: src/olympia/users/models.py:1255
 msgid ""

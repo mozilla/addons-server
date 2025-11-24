@@ -6998,7 +6998,7 @@ msgstr "E-poštni naslov, ki ga uporablja vaš račun, ni dovoljen za predložit
 
 #: src/olympia/users/models.py:1129
 msgid "The software or device you are using is not allowed for submissions."
-msgstr ""
+msgstr "Programska oprema ali naprava, ki jo uporabljate, ni dovoljena za pošiljanje."
 
 #: src/olympia/users/models.py:1255
 msgid ""

@@ -7003,7 +7003,7 @@ msgstr "Het e-mailadres dat u voor uw account hebt gebruikt is niet toegestaan v
 
 #: src/olympia/users/models.py:1129
 msgid "The software or device you are using is not allowed for submissions."
-msgstr ""
+msgstr "De software of het apparaat dat u gebruikt is niet toegestaan voor inzendingen."
 
 #: src/olympia/users/models.py:1255
 msgid ""
