@@ -438,7 +438,7 @@ def test_normalize_string_for_name_checks(value, expected):
 @pytest.mark.parametrize(
     'value, expected',
     [
-        ('føǿ ', 'foo '),  # Whitespace is now kept
+        ('føǿ ', 'foó '),  # Decomposed accent (Mark) and whitespace are now kept
         ('bär', 'bär'),  # Accent (Mark) is now kept, we've decomposed the ä
         ('b+är', 'b+är'),  # Symbol and Accent are now kept, we've decomposed the ä
         ('Ali.ce', 'Alice'),  # Puncutation is gone
