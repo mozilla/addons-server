@@ -57,6 +57,12 @@
               {% else %}
                   The developer has provided source code.
               {% endif %}
+              {% if waffle.switch('enable-source-builder') %}
+                  &nbsp;|&nbsp;
+                  <a href="{{ settings.SOURCE_BUILDER_VIEWER_URL }}?addon_id={{ addon.pk }}&addon_version={{ version.pk }}"
+                     class="source-builder"
+                     target="_blank" rel="noopener noreferrer">Source Builder</a>
+              {% endif %}
           </div>
       {% endif %}
 
