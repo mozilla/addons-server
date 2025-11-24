@@ -7060,7 +7060,7 @@ msgstr "L’indirizzo email del tuo account non possiede i permessi necessari pe
 
 #: src/olympia/users/models.py:1129
 msgid "The software or device you are using is not allowed for submissions."
-msgstr ""
+msgstr "Non è consentito effettuare il caricamento dal software o dal dispositivo in uso."
 
 #: src/olympia/users/models.py:1255
 msgid ""
