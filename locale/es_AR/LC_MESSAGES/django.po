@@ -5690,22 +5690,22 @@ msgstr ""
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:697
 msgid "Leave yourself little notes on any website."
-msgstr ""
+msgstr "Dejate notitas en cualquier sitio web."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:700
 msgid "Discover and download higher quality versions of interesting images and videos you find on the web."
-msgstr ""
+msgstr "Descubrí y descargá versiones de mayor calidad de imágenes y videos interesantes que encontrés en la web."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:703
 msgid "Save and organize anything you find on the web — articles, media, PDFs & more."
-msgstr ""
+msgstr "Guardá y organizá cualquier cosa que encontrés en la web: artículos, medios, archivos PDF y más."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:706
 msgid "Enhance your Reddit experience with color-coded comments, simpler navigation, gestures for upvoting & much more."
-msgstr ""
+msgstr "Mejorá tu experiencia en Reddit con comentarios codificados por colores, navegación más simple, gestos para votar y mucho más."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:712
@@ -6025,12 +6025,12 @@ msgstr "Ver todas las extensiones"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1099
 msgid "New Recommended Extensions"
-msgstr ""
+msgstr "Nuevas extensiones recomendadas"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1101
 msgid "Reddit revolutionized"
-msgstr ""
+msgstr "Reddit revolucionado"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1103
@@ -6040,7 +6040,7 @@ msgstr "Paquete inicial de extensiones"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1105
 msgid "Explore now"
-msgstr ""
+msgstr "Explorar ahora"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1107 src/olympia/discovery/strings.jinja2:1109
