@@ -7021,7 +7021,7 @@ msgstr "Die E-Mail-Adresse, die Sie für Ihr Konto verwendet haben, ist für die
 
 #: src/olympia/users/models.py:1129
 msgid "The software or device you are using is not allowed for submissions."
-msgstr ""
+msgstr "Die von Ihnen verwendete Software oder das Gerät ist für Einreichungen nicht erlaubt."
 
 #: src/olympia/users/models.py:1255
 msgid ""

@@ -7001,7 +7001,7 @@ msgstr "It e-mailadres dat jo foar jo account brûkt hawwe is net tastien foar y
 
 #: src/olympia/users/models.py:1129
 msgid "The software or device you are using is not allowed for submissions."
-msgstr ""
+msgstr "De software of it apparaat dat jo brûke is net tastien foar ynstjoeringen."
 
 #: src/olympia/users/models.py:1255
 msgid ""
