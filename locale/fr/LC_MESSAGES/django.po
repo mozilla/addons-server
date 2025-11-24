@@ -5728,7 +5728,7 @@ msgstr "Laissez-vous de petites notes sur n’importe quel site web."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:700
 msgid "Discover and download higher quality versions of interesting images and videos you find on the web."
-msgstr ""
+msgstr "Découvrez et téléchargez des versions de meilleure qualité des images et des vidéos intéressantes que vous dénichez sur le Web."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:703
