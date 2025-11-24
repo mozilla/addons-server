@@ -5673,7 +5673,7 @@ msgstr "Mély fordítási funkciók a gazdag nyelvi élményért bárhol a weben
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:697
 msgid "Leave yourself little notes on any website."
-msgstr ""
+msgstr "Hagyjon magának kis jegyzeteket bármelyik webhelyen."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:700
@@ -6008,7 +6008,7 @@ msgstr "Összes kiegészítő megtekintése"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1099
 msgid "New Recommended Extensions"
-msgstr ""
+msgstr "Új ajánlott kiegészítők"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1101
