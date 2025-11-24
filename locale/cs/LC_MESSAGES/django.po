@@ -5653,7 +5653,7 @@ msgstr "Funkce hlubokého překladu pro bohatý jazykový zážitek kdekoliv na 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:697
 msgid "Leave yourself little notes on any website."
-msgstr "Nechte si poznámky na jakékoliv stránce."
+msgstr "Zanechávejte si malé poznámky na jakýchkoli webových stránkách."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:700
@@ -5663,7 +5663,7 @@ msgstr "Objevujte a stahujte kvalitnější verze zajímavých obrázků a vide�
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:703
 msgid "Save and organize anything you find on the web — articles, media, PDFs & more."
-msgstr "Ukládejte a organizujte vše, co na webu najdete – články, multimédia, soubory PDF a další."
+msgstr "Ukládejte a organizujte vše, co na webu najdete — články, multimédia, soubory PDF a další."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:706
@@ -5928,7 +5928,7 @@ msgstr "Najetím na webové obrázky zvětšíte jejich vzhled."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1066
 msgid "Feature rich translation tool. Works across the web, eBooks, PDFs, even video subtitles."
-msgstr "Bohatý překladatelský nástroj. Funguje na celém webu, e-knihy, PDF, dokonce i video titulky."
+msgstr "Překladatelský nástroj s bohatými funkcemi. Funguje na webu, v elektronických knihách, PDF i v titulcích k videím."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1069
