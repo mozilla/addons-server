@@ -7019,7 +7019,7 @@ msgstr "E-mejlowa adresa, kotruž sće za swoje konto wužił, za zapodaća dowo
 
 #: src/olympia/users/models.py:1129
 msgid "The software or device you are using is not allowed for submissions."
-msgstr ""
+msgstr "Software abo grat, kotrejž wužiwaće, za zapodaća dowolenej njejstej."
 
 #: src/olympia/users/models.py:1255
 msgid ""
