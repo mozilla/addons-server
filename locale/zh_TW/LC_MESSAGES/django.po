@@ -6907,7 +6907,7 @@ msgstr "您帳號的電子郵件地址不允許用來送出附加元件。"
 
 #: src/olympia/users/models.py:1129
 msgid "The software or device you are using is not allowed for submissions."
-msgstr ""
+msgstr "您使用的軟體或裝置未被允許送交套件審核。"
 
 #: src/olympia/users/models.py:1255
 msgid ""
