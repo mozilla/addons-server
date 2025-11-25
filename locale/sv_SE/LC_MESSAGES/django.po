@@ -7005,7 +7005,7 @@ msgstr "E-postadressen som används för ditt konto är inte tillåten för att 
 
 #: src/olympia/users/models.py:1129
 msgid "The software or device you are using is not allowed for submissions."
-msgstr ""
+msgstr "Programvaran eller enheten du använder är inte tillåten för bidrag."
 
 #: src/olympia/users/models.py:1255
 msgid ""
