@@ -516,7 +516,7 @@ msgstr "Colecțiile mele"
 
 #: src/olympia/amo/context_processors.py:51 src/olympia/templates/user_login.html:15 src/olympia/templates/user_login.html:17
 msgid "Log out"
-msgstr "Deconectare"
+msgstr "Ieși din cont"
 
 #: src/olympia/amo/context_processors.py:59 src/olympia/devhub/templates/devhub/addons/dashboard.html:4
 msgid "Manage My Submissions"
@@ -657,7 +657,7 @@ msgstr ""
 
 #: src/olympia/amo/templates/amo/fake_fxa_authorization.html:4
 msgid "Register or Log in"
-msgstr "Întregistrare sau conectare"
+msgstr "Fă-ți un cont sau intră în cont"
 
 #: src/olympia/amo/templates/amo/fake_fxa_authorization.html:19
 msgid "Email:"
@@ -4243,7 +4243,7 @@ msgstr "Blog"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html:39
 msgid "Sign Out"
-msgstr "Ieșire"
+msgstr "Ieșire din cont"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html:41
 msgid "No Photo"
