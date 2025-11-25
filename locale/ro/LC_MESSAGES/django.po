@@ -4243,7 +4243,7 @@ msgstr "Blog"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html:39
 msgid "Sign Out"
-msgstr "Ieșire din cont"
+msgstr "Ieși din cont"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html:41
 msgid "No Photo"
@@ -4279,7 +4279,7 @@ msgstr "Autentifică-te pe centrul dezvoltatorilor ca să trimiți sau să gesti
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/submit_or_manage_extension.html:11
 msgid "Register for a developer account or log in to the Developer Hub"
-msgstr "Creează-ți un cont de dezvoltator sau autentifică-te pe centrul dezvoltatorilor"
+msgstr "Fă-ți un cont de dezvoltator sau intră în cont pe centrul dezvoltatorilor"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:5
 #, python-brace-format
@@ -6951,7 +6951,7 @@ msgstr ""
 #: src/olympia/templates/user_login.html:24
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
-msgstr "<a href=\"%(reg)s\">Înregistrează-te</a> sau <a href=\"%(login)s\">autentifică-te</a>"
+msgstr "<a href=\"%(reg)s\">Fă-ți un cont</a> sau <a href=\"%(login)s\">intră în cont</a>"
 
 #: src/olympia/templates/includes/forms.html:2
 msgid "Required fields"
