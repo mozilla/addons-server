@@ -6,141 +6,115 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2025-11-25 09:48+0000\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Pontoon\n"
 
-#: static/js/common/upload-addon.js:54 static/js/common/upload-image.js:136
 msgid "There was a problem contacting the server."
 msgstr "Đã xảy ra sự cố khi kết nối với máy chủ."
 
-#: static/js/common/upload-addon.js:78
 msgid "Select a file..."
 msgstr "Chọn tập tin…"
 
-#: static/js/common/upload-addon.js:82
 msgid "Your add-on should end with .zip, .xpi or .crx"
 msgstr "Tiện ích của bạn phải kết thúc bằng một trong các phần mở rộng sau: .zip, .xpi, .crx"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#: static/js/common/upload-addon.js:118
-#, python-brace-format, python-format
+#, python-format, python-brace-format
 msgid "{0}% complete"
 msgstr "{0}% hoàn thành"
 
-#: static/js/common/upload-addon.js:122
 #, python-brace-format
 msgid "{0} of {1}"
 msgstr "{0} trong số {1}"
 
-#: static/js/common/upload-addon.js:166
 msgid "Cancel"
 msgstr "Hủy bỏ"
 
-#: static/js/common/upload-addon.js:189
 #, python-brace-format
 msgid "Uploading {0}"
 msgstr "Đang tải lên {0}"
 
-#: static/js/common/upload-addon.js:229
 #, python-brace-format
 msgid "Error with {0}"
 msgstr "Lỗi {0}"
 
-#: static/js/common/upload-addon.js:237
 msgid "Please make sure to report any linting related issues on GitHub"
 msgstr "Vui lòng đảm bảo báo cáo mọi vấn đề liên quan đến linting trên GitHub"
 
-#: static/js/common/upload-addon.js:248
 #, python-brace-format
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] "Tiện ích của bạn đã được xác thực không thành công với {0} lỗi."
 
-#: static/js/common/upload-addon.js:266
 #, python-brace-format
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip; và {0} cái khác"
 
-#: static/js/common/upload-addon.js:287 static/js/common/upload-addon.js:705
 msgid "See full validation report"
 msgstr "Xem bản báo cáo đầy đủ của quá trình xác thực"
 
-#: static/js/common/upload-addon.js:300
 #, python-brace-format
 msgid "Validating {0}"
 msgstr "Xác nhận {0}"
 
-#: static/js/common/upload-addon.js:350
 #, python-brace-format
 msgid "Your add-on exceeds the maximum size of {0}."
 msgstr "Tiện ích của bạn vượt quá kích thước tối đa {0}."
 
-#: static/js/common/upload-addon.js:358
 #, python-brace-format
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Đã nhận được phản hồi trống từ máy chủ; trạng thái: {0}"
 
-#: static/js/common/upload-addon.js:403
 msgid "Your extension has to be compatible with at least one application."
 msgstr "Tiện ích mở rộng của bạn phải tương thích với ít nhất một ứng dụng."
 
-#: static/js/common/upload-addon.js:473
 msgid "Unexpected server error while validating."
 msgstr "Xảy ra lỗi ở máy chủ khi xác thực."
 
-#: static/js/common/upload-addon.js:519
 msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
 msgstr "Được đánh dấu là tương thích với Firefox dành cho Android trong manifest."
 
-#: static/js/common/upload-addon.js:561
 #, python-brace-format
 msgid "Finished validating {0}"
 msgstr "Đã hoàn tất xác thực {0}"
 
-#: static/js/common/upload-addon.js:568
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr "Xác thực tiện ích của bạn đã quá thời gian qui định và đã được chuyển sang đánh giá thủ công."
 
-#: static/js/common/upload-addon.js:573
 #, python-brace-format
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] "Tiện ích của bạn đã được xác thực không có lỗi và {0} cảnh báo."
 
-#: static/js/common/upload-addon.js:582
 #, python-brace-format
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] "Tiện ích của bạn đã được xác thực không có lỗi và {0} lời nhắn."
 
-#: static/js/common/upload-addon.js:590
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "Tiện ích của bạn đã được xác thực không có lỗi hay cảnh báo nào."
 
-#: static/js/common/upload-addon.js:651
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Bao gồm các ghi chú chi tiết (điều này có thể hoàn tất trong bước tiếp theo)."
 
-#: static/js/common/upload-addon.js:654
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
 "Nếu tiện ích của bạn yêu cầu tài khoản cho trang web để được kiểm tra đầy đủ, nhớ đính kèm tên người dùng và mật khẩu thử nghiệm trong Ghi chú cho đánh giá viên (điều này có thể được hoàn thành "
 "trong bước tiếp theo)."
 
-#: static/js/common/upload-addon.js:660
 msgid "Add-on submission checklist"
 msgstr "Danh sách kiểm tra bản đệ trình tiện ích"
 
-#: static/js/common/upload-addon.js:664
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Vui lòng xác minh các điểm sau đây trước khi hoàn thành đệ trình của bạn. Điều này sẽ giảm thiểu sự chậm trễ hoặc hiểu lầm trong quá trình xem xét:"
 
-#: static/js/common/upload-addon.js:671
 msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
@@ -148,449 +122,357 @@ msgstr ""
 "Các tệp nhị phân được biên dịch, cũng như các tập lệnh rút gọn hoặc bị xáo trộn (không bao gồm các thư viện đã biết) cần phải có các nguồn được gửi riêng để xem xét. Đảm bảo rằng bạn sử dụng trường "
 "tải lên mã nguồn để tránh việc đệ trình của bạn bị từ chối."
 
-#: static/js/common/upload-addon.js:684
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Quá trình xác nhận đã tìm thấy những vấn đề có thể dẫn đến từ chối:"
 
-#: static/js/common/upload-base.js:69
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Kiểu tệp bạn đã tải lên không được công nhận."
 
-#: static/js/common/upload-base.js:79 static/js/zamboni/global.js:569
 #, python-brace-format
 msgid "Your file exceeds the maximum size of {0}."
 msgstr "Tệp của bạn vượt quá kích thước tối đa {0}."
 
-#: static/js/common/upload-base.js:105
 msgid "You cancelled the upload."
 msgstr "Bạn đã hủy quá trình tải lên."
 
-#: static/js/common/upload-image.js:102
 msgid "Images must be either PNG or JPG."
 msgstr "Các hình ảnh phải dưới dạng PNG hoặc JPEG."
 
-#: static/js/common/upload-image.js:106
 msgid "Videos must be in WebM."
 msgstr "Các video phải dưới dạng WebM."
 
-#: static/js/stats/chart.js:283
 #, python-brace-format
 msgid "Week of {0}"
 msgstr "Tuần {0}"
 
-#: static/js/stats/chart.js:292
 #, python-brace-format
 msgid "{0} download"
 msgid_plural "{0} downloads"
 msgstr[0] "{0} tải xuống"
 
-#: static/js/stats/chart.js:298
 #, python-brace-format
 msgid "{0} user"
 msgid_plural "{0} users"
 msgstr[0] "{0} người dùng"
 
-#: static/js/stats/chart.js:362 static/js/stats/csv_keys.js:3 static/js/stats/csv_keys.js:9
 msgid "Downloads"
 msgstr "Tải xuống"
 
-#: static/js/stats/chart.js:374 static/js/stats/csv_keys.js:6 static/js/stats/csv_keys.js:10
 msgid "Daily Users"
 msgstr "Người dùng Hàng ngày"
 
-#: static/js/stats/chart.js:409
 msgid "More Info..."
 msgstr "Thêm thông tin…"
 
 #. L10n: {0} is an ISO-formatted date.
-#: static/js/stats/chart.js:415
 #, python-brace-format
 msgid "Details for {0}"
 msgstr "Các chi tiết của {0}"
 
-#: static/js/stats/csv_keys.js:13
 msgid "Firefox"
 msgstr "Firefox"
 
-#: static/js/stats/csv_keys.js:14
 msgid "Mozilla"
 msgstr "Mozilla"
 
-#: static/js/stats/csv_keys.js:15
 msgid "Thunderbird"
 msgstr "Thunderbird"
 
-#: static/js/stats/csv_keys.js:16
 msgid "Sunbird"
 msgstr "Sunbird"
 
-#: static/js/stats/csv_keys.js:17
 msgid "SeaMonkey"
 msgstr "SeaMonkey"
 
-#: static/js/stats/csv_keys.js:18
 msgid "Fennec"
 msgstr "Fennec"
 
-#: static/js/stats/csv_keys.js:19
 msgid "Android"
 msgstr "Android"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:24
 #, python-brace-format
 msgid "Downloads and Daily Users, last {0} days"
 msgstr "Số lượt tải xuống và người dùng hàng ngày, {0} ngày trước"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:26
 #, python-brace-format
 msgid "Downloads and Daily Users from {0} to {1}"
 msgstr "Số lượt tải xuống và người dùng hàng ngày từ {0} đến {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:30
 #, python-brace-format
 msgid "Downloads, last {0} days"
 msgstr "Lượt tải xuống, {0} ngày trước"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:32
 #, python-brace-format
 msgid "Downloads from {0} to {1}"
 msgstr "Lượt tải xuống từ {0} đến {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:36
 #, python-brace-format
 msgid "Daily Users, last {0} days"
 msgstr "Người dùng Hàng ngày, {0} ngày trước"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:38
 #, python-brace-format
 msgid "Daily Users from {0} to {1}"
 msgstr "Người dùng Hàng ngày từ {0} đến {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:42
 #, python-brace-format
 msgid "Applications, last {0} days"
 msgstr "Ứng dụng, {0} ngày truớc"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:44
 #, python-brace-format
 msgid "Applications from {0} to {1}"
 msgstr "Ứng dụng từ {0} đến {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:48
 #, python-brace-format
 msgid "Countries, last {0} days"
 msgstr "Quốc gia, {0} ngày trước"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:50
 #, python-brace-format
 msgid "Countries from {0} to {1}"
 msgstr "Quốc gia từ {0} đến {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:54
 #, python-brace-format
 msgid "Platforms, last {0} days"
 msgstr "Nền tảng, {0} ngày trước"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:56
 #, python-brace-format
 msgid "Platforms from {0} to {1}"
 msgstr "Nền tảng từ {0} đến {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:60
 #, python-brace-format
 msgid "Languages, last {0} days"
 msgstr "Ngôn ngữ, {0} ngày trước"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:62
 #, python-brace-format
 msgid "Languages from {0} to {1}"
 msgstr "Ngôn ngữ từ {0} đến {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:66
 #, python-brace-format
 msgid "Add-on Versions, last {0} days"
 msgstr "Phiên bản tiện ích, {0} ngày trước"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:68
 #, python-brace-format
 msgid "Add-on Versions from {0} to {1}"
 msgstr "Phiên bản tiện ích từ {0} đến {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:72
 #, python-brace-format
 msgid "Download Sources, last {0} days"
 msgstr "Nguồn tải xuống, {0} ngày trước"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:74
 #, python-brace-format
 msgid "Download Sources from {0} to {1}"
 msgstr "Nguồn tải xuống từ {0} đến {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:78
 #, fuzzy, python-brace-format
 msgid "Download Mediums, last {0} days"
 msgstr "Lượt tải xuống, {0} ngày trước"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:80
 #, fuzzy, python-brace-format
 msgid "Download Mediums from {0} to {1}"
 msgstr "Lượt tải xuống từ {0} đến {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:84
 #, python-brace-format
 msgid "Download Contents, last {0} days"
 msgstr "Lượt tải xuống nội dung, {0} ngày trước"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:86
 #, python-brace-format
 msgid "Download Contents from {0} to {1}"
 msgstr "Lượt tải xuống nội dung từ {0} đến {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:90
 #, fuzzy, python-brace-format
 msgid "Download Campaigns, last {0} days"
 msgstr "Lượt tải xuống, {0} ngày trước"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:92
 #, fuzzy, python-brace-format
 msgid "Download Campaigns from {0} to {1}"
 msgstr "Lượt tải xuống từ {0} đến {1}"
 
 #. L10n: {0} and {1} are integers.
-#: static/js/stats/csv_keys.js:98
 #, python-brace-format
 msgid "<b>{0}</b> in last {1} days"
 msgstr "<b>{0}</b> vào {1} ngày trước"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:100 static/js/stats/csv_keys.js:106
 #, python-brace-format
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "<b>{0}</b> từ {1} đến {2}"
 
 #. L10n: {0} and {1} are integers.
-#: static/js/stats/csv_keys.js:104
 #, python-brace-format
 msgid "<b>{0}</b> average in last {1} days"
 msgstr "Trung bình <b>{0}</b> vào {1} ngày trước"
 
-#: static/js/stats/overview.js:18
 msgid "No data available."
 msgstr "Không có dữ liệu."
 
-#: static/js/stats/table.js:84
 msgid "Date"
 msgstr "Ngày tháng"
 
-#: static/js/stats/topchart.js:108
 msgid "Other"
 msgstr "Khác"
 
-#: static/js/zamboni/devhub.js:300
 msgid "Changes Saved"
 msgstr "Đã lưu các thay đổi"
 
-#: static/js/zamboni/devhub.js:316
 msgid "Enter a new author's email address"
 msgstr "Nhập địa chỉ email của tác giả mới"
 
-#: static/js/zamboni/devhub.js:440
 msgid "There was an error uploading your file."
 msgstr "Xảy ra lỗi trong quá trình tải lên tập tin."
 
-#: static/js/zamboni/devhub.js:596
 #, python-brace-format
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} tập tin"
 
-#: static/js/zamboni/devhub.js:1196
 msgid "Image changes being processed"
 msgstr "Thay đổi hình ảnh đang được xử lý"
 
-#: static/js/zamboni/global.js:463
 #, python-brace-format
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> ký tự"
 
-#: static/js/zamboni/global.js:472
 #, python-brace-format
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "<b>{0}</b> ký tự còn lại"
 
-#: static/js/zamboni/init.js:12
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr " Tính năng này tạm thời bị vô hiệu hóa trong khi chúng tôi đang bảo trì trang web. Vui lòng kiểm tra lại sau. "
 
-#: static/js/zamboni/l10n.js:164
 msgid "Remove this localization"
 msgstr "Xóa bản dịch này"
 
-#: static/js/zamboni/reviewers.js:258
 #, python-brace-format
 msgid "{name} was viewing this page first."
 msgstr "{name} đã xem trang này đầu tiên."
 
-#: static/js/zamboni/reviewers.js:266
 msgid "Review page polling failed."
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:583
 #, python-brace-format
 msgid "{name} was viewing this add-on first."
 msgstr "{name} đã xem tiện ích này trước tiên."
 
-#: static/js/zamboni/reviewers.js:596 static/js/zamboni/reviewers.js:622
 msgid "Loading&hellip;"
 msgstr "Đang tải&hellip;"
 
-#: static/js/zamboni/reviewers.js:601
 msgid "Version Notes"
 msgstr "Ghi chú về phiên bản"
 
-#: static/js/zamboni/reviewers.js:608
 msgid "Notes for Reviewers"
 msgstr "Ghi chú cho người duyệt"
 
-#: static/js/zamboni/reviewers.js:615
 msgid "No version notes found"
 msgstr "Không tìm thấy ghi chú về phiên bản"
 
-#: static/js/zamboni/reviewers.js:627
 msgid "Review Text"
 msgstr "Xem lại văn bản"
 
-#: static/js/zamboni/reviewers.js:634
 msgid "Review notes found"
 msgstr "Xem lại ghi chú"
 
-#: static/js/zamboni/static_theme.js:217
 #, python-brace-format
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "Kích thước tải lên tối đa là {0} - chọn hình nền nhỏ hơn."
 
-#: static/js/zamboni/themes_review.js:199
 msgid "Requested Info"
 msgstr "Thông tin được yêu cầu"
 
-#: static/js/zamboni/themes_review.js:200
 msgid "Flagged"
 msgstr "Đã gắn cờ"
 
-#: static/js/zamboni/themes_review.js:201
 msgid "Duplicate"
 msgstr "Bản sao"
 
-#: static/js/zamboni/themes_review.js:202
 msgid "Rejected"
 msgstr "Từ chối"
 
-#: static/js/zamboni/themes_review.js:203
 msgid "Approved"
 msgstr "Chấp nhận"
 
-#: static/js/zamboni/themes_review.js:492
 msgid "No results found"
 msgstr "Không tìm thấy kết quả nào"
 
-#: static/js/zamboni/themes_review_templates.js:43
 msgid "Theme"
 msgstr "Chủ đề"
 
-#: static/js/zamboni/themes_review_templates.js:45
 msgid "Reviewer"
 msgstr "Người đánh giá"
 
-#: static/js/zamboni/themes_review_templates.js:47
 msgid "Status"
 msgstr "Trạng thái"
 
-#: static/js/zamboni/validator.js:89
 msgid "All tests passed successfully."
 msgstr "Tất cả các bài kiểm tra đã thông qua."
 
-#: static/js/zamboni/validator.js:92 static/js/zamboni/validator.js:388
 msgid "These tests were not run."
 msgstr "Những bài kiểm tra đã không được chạy."
 
-#: static/js/zamboni/validator.js:155 static/js/zamboni/validator.js:177
 msgid "Tests"
 msgstr "Kiểm tra"
 
-#: static/js/zamboni/validator.js:259 static/js/zamboni/validator.js:492 static/js/zamboni/validator.js:516
 msgid "Error"
 msgstr "Lỗi"
 
-#: static/js/zamboni/validator.js:259
 msgid "Warning"
 msgstr "Cảnh báo"
 
-#: static/js/zamboni/validator.js:332
 #, python-brace-format
 msgid "{0} line {1} column {2}"
 msgstr "{0} dòng {1} cột {2}"
 
-#: static/js/zamboni/validator.js:339
 #, python-brace-format
 msgid "{0} line {1}"
 msgstr "{0} dòng {1}"
 
-#: static/js/zamboni/validator.js:376
 msgid "Add-on failed validation."
 msgstr "Tiện ích xác thực không thành công."
 
-#: static/js/zamboni/validator.js:378
 msgid "Add-on passed validation."
 msgstr "Tiện ích đã thông qua xác nhận."
 
-#: static/js/zamboni/validator.js:391
 #, python-brace-format
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} lỗi"
 
-#: static/js/zamboni/validator.js:394
 #, python-brace-format
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} cảnh báo"
 
-#: static/js/zamboni/validator.js:397
 #, python-brace-format
 msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] "{0} chú ý"
 
-#: static/js/zamboni/validator.js:494
 msgid "Validation task could not complete or completed with errors"
 msgstr "Tác vụ xác nhận không hoàn thành hoặc hoàn thành với lỗi"
 
-#: static/js/zamboni/validator.js:517
 msgid "Internal server error"
 msgstr "Lỗi nội bộ máy chủ"
