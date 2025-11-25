@@ -164,7 +164,9 @@ def flag_high_rating_addons_according_to_review_tier():
     for usage_tier in disabling_tiers:
         disabling_tier_filters |= usage_tier.get_rating_threshold_q_object(block=True)
     if disabling_tier_filters:
-        reject_and_block_addons(addons_qs.filter(disabling_tier_filters))
+        reject_and_block_addons(
+            addons_qs.filter(disabling_tier_filters), reject_reason='high rating count'
+        )
 
     # Need a ratings ratio threshold to be set for the tier.
     flagging_tiers = usage_tiers_qs.filter(

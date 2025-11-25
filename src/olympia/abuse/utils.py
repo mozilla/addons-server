@@ -3,7 +3,7 @@ from django.conf import settings
 from olympia.constants.abuse import DECISION_ACTIONS
 
 
-def reject_and_block_addons(addons):
+def reject_and_block_addons(addons, *, reject_reason):
     from .models import CinderPolicy, ContentDecision
     from .tasks import report_decision_to_cinder_and_notify
 
@@ -13,6 +13,7 @@ def reject_and_block_addons(addons):
             action=DECISION_ACTIONS.AMO_BLOCK_ADDON,
             reviewer_user_id=settings.TASK_USER_ID,
             metadata={ContentDecision.POLICY_DYNAMIC_VALUES: {}},
+            private_notes=f'Rejected and blocked due to: {reject_reason}',
         )
         decision.policies.set(
             CinderPolicy.objects.filter(

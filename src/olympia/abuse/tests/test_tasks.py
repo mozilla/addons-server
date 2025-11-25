@@ -283,6 +283,14 @@ def test_block_high_abuse_reports_addons_according_to_review_tier():
             .filter(blockversion__isnull=True)
             .exists()
         ), f'Addon {addon}s versions should have been blocked'
+        assert (
+            ActivityLog.objects.filter(
+                addonlog__addon=addon, action=amo.LOG.REVIEWER_PRIVATE_COMMENT.id
+            )
+            .get()
+            .details['comments']
+            == 'Rejected and blocked due to: high abuse report count'
+        )
 
 
 @pytest.mark.django_db

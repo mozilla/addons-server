@@ -48,7 +48,10 @@ def flag_high_abuse_reports_addons_according_to_review_tier():
     for usage_tier in disabling_tiers:
         disabling_tier_filters |= usage_tier.get_abuse_threshold_q_object(block=True)
     if disabling_tier_filters:
-        reject_and_block_addons(addons_qs.filter(disabling_tier_filters))
+        reject_and_block_addons(
+            addons_qs.filter(disabling_tier_filters),
+            reject_reason='high abuse report count',
+        )
 
     # Need a abuse reports ratio threshold to be set for the tier.
     flagging_tiers = usage_tiers_qs.filter(
