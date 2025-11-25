@@ -6989,7 +6989,7 @@ msgstr "E-postadressa som blir brukt for kontoen din er ikkje tillaten for innse
 
 #: src/olympia/users/models.py:1129
 msgid "The software or device you are using is not allowed for submissions."
-msgstr ""
+msgstr "Programvara eller eininga du brukar er ikkje tillaten for innsendingar."
 
 #: src/olympia/users/models.py:1255
 msgid ""
