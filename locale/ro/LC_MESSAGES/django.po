@@ -4275,7 +4275,7 @@ msgstr "Ești gata să trimiți sau să îți gestionezi extensia?"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/submit_or_manage_extension.html:7
 msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
-msgstr "Autentifică-te pe centrul dezvoltatorilor ca să trimiți sau să gestionezi extensii și teme."
+msgstr "Intră în cont pe centrul dezvoltatorilor ca să trimiți sau să gestionezi extensii și teme."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/submit_or_manage_extension.html:11
 msgid "Register for a developer account or log in to the Developer Hub"
@@ -5693,17 +5693,17 @@ msgstr "Lasă-ți mici notițe pe orice site web."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:700
 msgid "Discover and download higher quality versions of interesting images and videos you find on the web."
-msgstr ""
+msgstr "Descoperă și descarcă versiuni de calitate superioară ale imaginilor și videoclipurilor interesante pe care le găsești pe web."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:703
 msgid "Save and organize anything you find on the web — articles, media, PDFs & more."
-msgstr ""
+msgstr "Salvează și organizează tot ce găsești pe web — articole, fișiere media, fișiere PDF și multe altele."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:706
 msgid "Enhance your Reddit experience with color-coded comments, simpler navigation, gestures for upvoting & much more."
-msgstr ""
+msgstr "Îmbunătățește-ți experiența pe Reddit cu comentarii codificate pe culori, navigare mai simplă, gesturi pentru vot pozitiv și multe altele."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:712
@@ -6028,7 +6028,7 @@ msgstr "Extensii recomandate noi"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1101
 msgid "Reddit revolutionized"
-msgstr ""
+msgstr "Reddit revoluționat"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1103
@@ -7027,7 +7027,7 @@ msgstr "Adresa de e-mail pe care ai folosit-o pentru contul tău nu are permisiu
 
 #: src/olympia/users/models.py:1129
 msgid "The software or device you are using is not allowed for submissions."
-msgstr ""
+msgstr "Software-ul sau dispozitivul pe care îl folosești nu este permis pentru trimiteri."
 
 #: src/olympia/users/models.py:1255
 msgid ""
