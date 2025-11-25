@@ -7029,7 +7029,7 @@ msgstr "Адрес электронной почты, используемый �
 
 #: src/olympia/users/models.py:1129
 msgid "The software or device you are using is not allowed for submissions."
-msgstr ""
+msgstr "Программное обеспечение или устройство, которые вы используете, не разрешены для отправки."
 
 #: src/olympia/users/models.py:1255
 msgid ""
