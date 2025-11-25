@@ -7031,7 +7031,7 @@ msgstr "La dirección de correo electrónico usada para tu cuenta no está permi
 
 #: src/olympia/users/models.py:1129
 msgid "The software or device you are using is not allowed for submissions."
-msgstr ""
+msgstr "El software o dispositivo que estás usando no está permitido para envíos."
 
 #: src/olympia/users/models.py:1255
 msgid ""
