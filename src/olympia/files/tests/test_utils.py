@@ -66,9 +66,39 @@ class AppVersionsMixin:
 
 
 class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
+    def test_valid_json(self):
+        assert self.parse({})
+
     def test_not_dict(self):
         with self.assertRaises(utils.InvalidManifest) as exc:
             utils.ManifestJSONExtractor('"foo@bar.com"').parse()
+        assert isinstance(exc.exception, forms.ValidationError)
+        assert exc.exception.message == 'Could not parse the manifest file.'
+
+    def test_fields_that_should_be_dicts(self):
+        with self.assertRaises(utils.InvalidManifest) as exc:
+            self.parse({'browser_specific_settings': []})
+        assert isinstance(exc.exception, forms.ValidationError)
+        assert exc.exception.message == 'Could not parse the manifest file.'
+
+        with self.assertRaises(utils.InvalidManifest) as exc:
+            self.parse({'browser_specific_settings': {'gecko': 'lmao'}})
+        assert isinstance(exc.exception, forms.ValidationError)
+        assert exc.exception.message == 'Could not parse the manifest file.'
+
+        with self.assertRaises(utils.InvalidManifest) as exc:
+            self.parse({'developer': 'rotfl'})
+        assert isinstance(exc.exception, forms.ValidationError)
+        assert exc.exception.message == 'Could not parse the manifest file.'
+
+        with self.assertRaises(utils.InvalidManifest) as exc:
+            self.parse(
+                {
+                    'browser_specific_settings': {
+                        'gecko': {'data_collection_permissions': []}
+                    }
+                }
+            )
         assert isinstance(exc.exception, forms.ValidationError)
         assert exc.exception.message == 'Could not parse the manifest file.'
 

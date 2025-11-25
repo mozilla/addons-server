@@ -1,6 +1,7 @@
 import contextlib
 import errno
 import fcntl
+import functools
 import hashlib
 import io
 import json
@@ -152,6 +153,17 @@ def get_simple_version(version_string):
     return VersionString(re.sub('[<=>]', '', version_string))
 
 
+def raise_invalid_manifest_if_not_dict(f):
+    @functools.wraps(f)
+    def wrapper(self):
+        rval = f(self)
+        if not isinstance(rval, (dict, MappingProxyType)) and not hasattr(rval, 'get'):
+            raise InvalidManifest(gettext('Could not parse the manifest file.'))
+        return rval
+
+    return wrapper
+
+
 class ManifestJSONExtractor:
     """Extract add-on info from a manifest file."""
 
@@ -190,10 +202,15 @@ class ManifestJSONExtractor:
         return self.data.get(key, default)
 
     @property
+    @raise_invalid_manifest_if_not_dict
+    def developer(self):
+        return self.get('developer', EMPTY_FALLBACK_DICT)
+
+    @property
     def homepage(self):
         homepage_url = self.get('homepage_url')
         # `developer.url` in the manifest overrides `homepage_url`.
-        return self.get('developer', EMPTY_FALLBACK_DICT).get('url', homepage_url)
+        return self.developer.get('url', homepage_url)
 
     @property
     def is_experiment(self):
@@ -206,20 +223,29 @@ class ManifestJSONExtractor:
         return any(bool(self.get(key)) for key in experiment_keys)
 
     @property
+    @raise_invalid_manifest_if_not_dict
+    def browser_specific_settings(self):
+        return self.get(
+            'browser_specific_settings', self.get('applications', EMPTY_FALLBACK_DICT)
+        )
+
+    @property
+    @raise_invalid_manifest_if_not_dict
     def gecko(self):
         """Return the "applications|browser_specific_settings["gecko"]" part
         of the manifest."""
-        parent_block = self.get(
-            'browser_specific_settings', self.get('applications', EMPTY_FALLBACK_DICT)
-        )
-        return parent_block.get('gecko', EMPTY_FALLBACK_DICT)
+        return self.browser_specific_settings.get('gecko', EMPTY_FALLBACK_DICT)
 
     @property
+    @raise_invalid_manifest_if_not_dict
     def gecko_android(self):
         """Return `browser_specific_settings.gecko_android` if present."""
-        return self.get('browser_specific_settings', EMPTY_FALLBACK_DICT).get(
-            'gecko_android', EMPTY_FALLBACK_DICT
-        )
+        return self.browser_specific_settings.get('gecko_android', EMPTY_FALLBACK_DICT)
+
+    @property
+    @raise_invalid_manifest_if_not_dict
+    def data_collection_permissions(self):
+        return self.gecko.get('data_collection_permissions', {})
 
     @property
     def guid(self):
@@ -441,12 +467,12 @@ class ManifestJSONExtractor:
                         'permissions': self.get('permissions', []),
                         'host_permissions': self.get('host_permissions', []),
                         'content_scripts': self.get('content_scripts', []),
-                        'data_collection_permissions': self.gecko.get(
-                            'data_collection_permissions', {}
-                        ).get('required', []),
-                        'optional_data_collection_permissions': self.gecko.get(
-                            'data_collection_permissions', {}
-                        ).get('optional', []),
+                        'data_collection_permissions': self.data_collection_permissions.get(
+                            'required', []
+                        ),
+                        'optional_data_collection_permissions': self.data_collection_permissions.get(
+                            'optional', []
+                        ),
                     }
                 )
 
