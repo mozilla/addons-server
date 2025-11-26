@@ -5995,7 +5995,7 @@ msgstr "Nové odporúčané rozšírenia"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1101
 msgid "Reddit revolutionized"
-msgstr ""
+msgstr "Reddit po novom"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1103
@@ -6994,7 +6994,7 @@ msgstr "E‑mailová adresa použitá pre váš účet nemá povolené odosielan
 
 #: src/olympia/users/models.py:1129
 msgid "The software or device you are using is not allowed for submissions."
-msgstr ""
+msgstr "Softvér alebo zariadenie, ktoré používate, nie je povolené na odosielanie príspevkov."
 
 #: src/olympia/users/models.py:1255
 msgid ""
