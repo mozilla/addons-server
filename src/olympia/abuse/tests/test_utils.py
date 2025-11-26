@@ -82,29 +82,19 @@ def test_reject_and_block_addons():
     assert 'violation!' not in mail.outbox[1].body
     # no email yet for recommended addon - it would come after the 2nd level review
 
-    assert ActivityLog.objects.filter(action=amo.LOG.FORCE_DISABLE.id).count() == 2
-    assert (
-        ActivityLog.objects.filter(action=amo.LOG.HELD_ACTION_FORCE_DISABLE.id).count()
-        == 1
+    log_entries = ActivityLog.objects.filter(action=amo.LOG.FORCE_DISABLE.id)
+    assert len(log_entries) == 2
+    assert log_entries[0].details['reason'] == 'Rejected and blocked due to: violation!'
+    assert log_entries[1].details['reason'] == 'Rejected and blocked due to: violation!'
+    log_entries = ActivityLog.objects.filter(
+        action=amo.LOG.HELD_ACTION_FORCE_DISABLE.id
     )
+    assert len(log_entries) == 1
+    assert log_entries[0].details['reason'] == 'Rejected and blocked due to: violation!'
+
     assert (
         ActivityLog.objects.filter(
             action=amo.LOG.BLOCKLIST_VERSION_SOFT_BLOCKED.id
         ).count()
         == 2
-    )
-
-    assert (
-        ActivityLog.objects.filter(action=amo.LOG.REVIEWER_PRIVATE_COMMENT.id).count()
-        == 3
-    )
-    log_entries = ActivityLog.objects.filter(action=amo.LOG.REVIEWER_PRIVATE_COMMENT.id)
-    assert (
-        log_entries[0].details['comments'] == 'Rejected and blocked due to: violation!'
-    )
-    assert (
-        log_entries[1].details['comments'] == 'Rejected and blocked due to: violation!'
-    )
-    assert (
-        log_entries[2].details['comments'] == 'Rejected and blocked due to: violation!'
     )

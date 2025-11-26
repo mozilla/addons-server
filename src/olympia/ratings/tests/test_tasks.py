@@ -330,9 +330,9 @@ def test_block_high_rating_addons_according_to_review_tier():
         ), f'Addon {addon}s versions should have been blocked'
         assert (
             ActivityLog.objects.filter(
-                addonlog__addon=addon, action=amo.LOG.REVIEWER_PRIVATE_COMMENT.id
+                addonlog__addon=addon, action=amo.LOG.FORCE_DISABLE.id
             )
             .get()
-            .details['comments']
+            .details['reason']
             == 'Rejected and blocked due to: high rating count'
         )

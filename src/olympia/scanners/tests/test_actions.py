@@ -957,10 +957,10 @@ class TestActions(TestCase):
 
         assert (
             ActivityLog.objects.filter(
-                addonlog__addon=addon, action=amo.LOG.REVIEWER_PRIVATE_COMMENT.id
+                addonlog__addon=addon, action=amo.LOG.FORCE_DISABLE.id
             )
             .get()
-            .details['comments']
+            .details['reason']
             == 'Rejected and blocked due to: scanner rule "Test Rule"'
         )
 
@@ -1026,10 +1026,10 @@ class TestActions(TestCase):
         assert not ContentDecision.objects.get().action_date  # Action pending approval
         assert (
             ActivityLog.objects.filter(
-                addonlog__addon=addon, action=amo.LOG.REVIEWER_PRIVATE_COMMENT.id
+                addonlog__addon=addon, action=amo.LOG.HELD_ACTION_FORCE_DISABLE.id
             )
             .get()
-            .details['comments']
+            .details['reason']
             == 'Rejected and blocked due to: scanner rule "Test Rule"'
         )
 
