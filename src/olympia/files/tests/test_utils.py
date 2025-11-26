@@ -75,7 +75,10 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         assert isinstance(exc.exception, forms.ValidationError)
         assert exc.exception.message == 'Could not parse the manifest file.'
 
-    def test_fields_that_should_be_dicts(self):
+    def test_parse_with_fields_that_should_be_dicts(self):
+        # parse() will get the value for these fields and therefore should
+        # raise the InvalidManifest exception if they are not dicts, so that
+        # the linter can display the proper error.
         with self.assertRaises(utils.InvalidManifest) as exc:
             self.parse({'browser_specific_settings': []})
         assert isinstance(exc.exception, forms.ValidationError)
@@ -91,6 +94,9 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         assert isinstance(exc.exception, forms.ValidationError)
         assert exc.exception.message == 'Could not parse the manifest file.'
 
+    def test_parse_data_collection_permissions_should_be_dict(self):
+        # As previous, this is automatically parsed for extensions and should
+        # raise InvalidManifest if not a dict.
         with self.assertRaises(utils.InvalidManifest) as exc:
             self.parse(
                 {
@@ -915,6 +921,10 @@ class TestManifestJSONExtractorStaticTheme(TestManifestJSONExtractor):
 
     def test_type(self):
         assert self.parse({})['type'] == amo.ADDON_STATICTHEME
+
+    def test_parse_data_collection_permissions_should_be_dict(self):
+        # Overridden because themes don't support data collection permissions.
+        pass
 
     def test_apps_use_default_versions_if_applications_is_omitted(self):
         """
