@@ -4714,7 +4714,7 @@ msgstr "Pagina pe care o cauți este indisponibilă? Caută o versiune arhivată
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:98 src/olympia/discovery/strings.jinja2:787
 msgid "Hover over an image to magnify it."
-msgstr "Treci cu mouse-ul peste o imagine pentru mărire."
+msgstr "Plasează cursorul pe o imagine pentru a o mări."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5653,7 +5653,7 @@ msgstr "Dicționar pop-up puternic, optimizat pentru învățarea de limbi noi."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:673
 msgid "Hover your mouse over thumbnails to easily browse and download HD images."
-msgstr "Treci cu mouse-ul peste miniaturi ca să navighezi ușor și să descarci imagini HD."
+msgstr "Plasează cursorul pe miniaturi pentru a naviga cu ușurință și pentru a descărca imagini HD."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:676
@@ -5958,7 +5958,7 @@ msgstr "Include un dicționar puternic de sinonime chiar în Firefox."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1063
 msgid "Hover over web images to enlarge their appearance."
-msgstr "Treci cu cursorul peste imaginile web pentru a le mări."
+msgstr "Plasează cursorul pe imagini web pentru a le mări aspectul."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1066
