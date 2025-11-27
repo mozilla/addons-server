@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-25 09:48+0000\n"
+"POT-Creation-Date: 2025-11-27 11:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -340,7 +340,7 @@ msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr ""
 
 #: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:776
-#: src/olympia/files/utils.py:761 src/olympia/reviewers/forms.py:386
+#: src/olympia/files/utils.py:788 src/olympia/reviewers/forms.py:386
 msgid "Invalid or broken archive."
 msgstr ""
 
@@ -6919,139 +6919,140 @@ msgstr ""
 msgid "[status:%s]"
 msgstr ""
 
-#: src/olympia/files/utils.py:84
+#: src/olympia/files/utils.py:86
 msgid "This upload has already been submitted."
 msgstr ""
 
-#: src/olympia/files/utils.py:186 src/olympia/files/utils.py:868
+#: src/olympia/files/utils.py:162 src/olympia/files/utils.py:199
+#: src/olympia/files/utils.py:895
 msgid "Could not parse the manifest file."
 msgstr ""
 
-#: src/olympia/files/utils.py:319
+#: src/olympia/files/utils.py:346
 #, python-brace-format
 msgid "Lowest supported \"strict_min_version\" is {min_version}."
 msgstr ""
 
-#: src/olympia/files/utils.py:350
+#: src/olympia/files/utils.py:377
 #, python-brace-format
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
 msgstr ""
 
-#: src/olympia/files/utils.py:364
+#: src/olympia/files/utils.py:391
 #, python-brace-format
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
 msgstr ""
 
-#: src/olympia/files/utils.py:548
+#: src/olympia/files/utils.py:575
 msgid "Unsupported compression method in archive."
 msgstr ""
 
-#: src/olympia/files/utils.py:551
+#: src/olympia/files/utils.py:578
 msgid "Unsupported archive type."
 msgstr ""
 
-#: src/olympia/files/utils.py:560
+#: src/olympia/files/utils.py:587
 msgid ""
 "Invalid file name in archive. Please make sure all filenames are utf-8 or "
 "latin1 encoded."
 msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
-#: src/olympia/files/utils.py:574
+#: src/olympia/files/utils.py:601
 #, python-brace-format
 msgid "Invalid file name in archive: {0}"
 msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
-#: src/olympia/files/utils.py:582
+#: src/olympia/files/utils.py:609
 #, python-brace-format
 msgid "File exceeding size limit in archive: {0}"
 msgstr ""
 
-#: src/olympia/files/utils.py:602
+#: src/olympia/files/utils.py:629
 msgid ""
 "This archive contains a forbidden special file (symbolic / hard link or "
 "device / block file)"
 msgstr ""
 
-#: src/olympia/files/utils.py:637
+#: src/olympia/files/utils.py:664
 msgid "Uncompressed size is too large"
 msgstr ""
 
-#: src/olympia/files/utils.py:669
+#: src/olympia/files/utils.py:696
 msgid "Invalid archive."
 msgstr ""
 
-#: src/olympia/files/utils.py:856
+#: src/olympia/files/utils.py:883
 msgid "No manifest.json found"
 msgstr ""
 
-#: src/olympia/files/utils.py:861
+#: src/olympia/files/utils.py:888
 msgid "Invalid or corrupted file."
 msgstr ""
 
-#: src/olympia/files/utils.py:901
+#: src/olympia/files/utils.py:928
 #, python-format
 msgid ""
 "The add-on ID in your manifest.json (%s) does not match the ID of your add-on"
 " on AMO (%s)"
 msgstr ""
 
-#: src/olympia/files/utils.py:909
+#: src/olympia/files/utils.py:936
 msgid "Duplicate add-on ID found."
 msgstr ""
 
-#: src/olympia/files/utils.py:915
+#: src/olympia/files/utils.py:942
 #, python-brace-format
 msgid "Version numbers should have at most {max_length} characters."
 msgstr ""
 
-#: src/olympia/files/utils.py:921
+#: src/olympia/files/utils.py:948
 msgid ""
 "Version numbers should only contain letters, numbers, and these punctuation "
 "characters: +*.-_."
 msgstr ""
 
-#: src/olympia/files/utils.py:930
+#: src/olympia/files/utils.py:957
 #, python-brace-format
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr ""
 
-#: src/olympia/files/utils.py:943
+#: src/olympia/files/utils.py:970
 msgid "You cannot submit this type of add-on"
 msgstr ""
 
-#: src/olympia/files/utils.py:947
+#: src/olympia/files/utils.py:974
 msgid "You cannot submit an add-on using an ID ending with this suffix"
 msgstr ""
 
-#: src/olympia/files/utils.py:952
+#: src/olympia/files/utils.py:979
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
 
-#: src/olympia/files/utils.py:956
+#: src/olympia/files/utils.py:983
 msgid "You cannot submit a language pack"
 msgstr ""
 
-#: src/olympia/files/utils.py:965
+#: src/olympia/files/utils.py:992
 msgid "The locale of an existing dictionary/language pack cannot be changed"
 msgstr ""
 
-#: src/olympia/files/utils.py:1008
+#: src/olympia/files/utils.py:1035
 #, python-brace-format
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr ""
 
-#: src/olympia/files/utils.py:1017
+#: src/olympia/files/utils.py:1044
 msgid "Unexpected error."
 msgstr ""
 
-#: src/olympia/files/utils.py:1022
+#: src/olympia/files/utils.py:1049
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr ""
 
-#: src/olympia/files/utils.py:1027
+#: src/olympia/files/utils.py:1054
 msgid "Unknown"
 msgstr ""
 
