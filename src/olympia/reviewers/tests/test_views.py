@@ -4242,7 +4242,7 @@ class TestReview(ReviewBase):
         assert builder_link[0].text == 'Source Builder'
         assert (
             builder_link.attr['href']
-            == f'https://source.builder/?addon_id={self.addon.id}&addon_version={self.addon.current_version.id}'
+            == f'https://source.builder/?addon_id={self.addon.id}&version_id={self.addon.current_version.id}'
         )
 
     @override_settings(SOURCE_BUILDER_VIEWER_URL='https://source.builder/')
