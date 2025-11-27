@@ -1653,7 +1653,7 @@ msgstr "Krajina"
 
 #: src/olympia/constants/categories.py:300
 msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
-msgstr "Stáhněte si vzhledy Firefoxu, které jsou zajímavé prostředím a přírodou světa. Tato kategorie zahrnuje západy slunce, pláže, ilustrace, městská panoramata a další."
+msgstr "Stáhněte si vzhledy Firefoxu, které zachycují přírodu a životní prostředí. Tato kategorie zahrnuje západy slunce, pláže, ilustrace, panoramata měst aj."
 
 #: src/olympia/constants/categories.py:307
 msgid "Seasonal"
@@ -5663,7 +5663,7 @@ msgstr "Objevujte a stahujte kvalitnější verze zajímavých obrázků a vide�
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:703
 msgid "Save and organize anything you find on the web — articles, media, PDFs & more."
-msgstr "Ukládejte a organizujte vše, co na webu najdete — články, multimédia, soubory PDF a další."
+msgstr "Ukládejte a organizujte vše, co na webu najdete — články, multimédia, soubory PDF a další věci."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:706
