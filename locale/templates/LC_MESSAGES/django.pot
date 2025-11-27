@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-11-27 11:15+0000\n"
+"POT-Creation-Date: 2025-11-27 15:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1418,7 +1418,7 @@ msgstr ""
 msgid "Disabled by Mozilla"
 msgstr ""
 
-#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1187
+#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1192
 msgid "Deleted"
 msgstr ""
 
@@ -7827,33 +7827,33 @@ msgid ""
 "Mozilla Add-ons Team"
 msgstr ""
 
-#: src/olympia/versions/models.py:1172
+#: src/olympia/versions/models.py:1177
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
 msgstr ""
 
-#: src/olympia/versions/models.py:1177
+#: src/olympia/versions/models.py:1182
 msgid "Auto-approved, Confirmed"
 msgstr ""
 
-#: src/olympia/versions/models.py:1179
+#: src/olympia/versions/models.py:1184
 msgid "Auto-approved, not Confirmed"
 msgstr ""
 
-#: src/olympia/versions/models.py:1182
+#: src/olympia/versions/models.py:1187
 msgid "Approved, Manual"
 msgstr ""
 
-#: src/olympia/versions/models.py:1189
+#: src/olympia/versions/models.py:1194
 msgid "Disabled by Developer"
 msgstr ""
 
-#: src/olympia/versions/models.py:1546
+#: src/olympia/versions/models.py:1551
 #, python-brace-format
 msgid "{app} {min} and later"
 msgstr ""
 
-#: src/olympia/versions/models.py:1673
+#: src/olympia/versions/models.py:1678
 #, python-brace-format
 msgid "The install origin {origin} is not permitted."
 msgstr ""
