@@ -51,14 +51,18 @@ ifneq ($(DOCKER_TAGS_FILE),)
 	DOCKER_BAKE_ARGS += --file $(DOCKER_TAGS_FILE)
 endif
 
-DOCKER_COMPOSE_ARGS := \
+# Arguments passed to the `docker compose` command before any other sub-command
+# is passed.
+DOCKER_COMPOSE_ARGS ?=
+
+DOCKER_COMPOSE_UP_ARGS := \
 	-d \
 	--remove-orphans \
 	--no-build \
 	--quiet-pull \
 
 ifneq ($(DOCKER_WAIT),)
-	DOCKER_COMPOSE_ARGS += --wait
+	DOCKER_COMPOSE_UP_ARGS += --wait
 endif
 
 # Paths should be cleaned before mounting .:/data/olympia
@@ -192,7 +196,7 @@ up_pre: setup docker_pull_or_build docker_sync_host ## Pre-up the environment, s
 
 .PHONY: up_start
 up_start: docker_mysqld_volume_create ## Start the docker containers
-	docker compose up $(DOCKER_COMPOSE_ARGS) $(ARGS)
+	docker compose $(DOCKER_COMPOSE_ARGS) up $(DOCKER_COMPOSE_UP_ARGS) $(ARGS)
 
 .PHONY: up_post
 up_post: docker_clean_images docker_clean_volumes ## Post-up the environment, setup files, volumes and host state
@@ -203,6 +207,10 @@ up_post: docker_clean_images docker_clean_volumes ## Post-up the environment, se
 
 .PHONY: up
 up: up_pre up_start up_post ## Up the environment
+
+.PHONY: up_private
+up_private: DOCKER_COMPOSE_ARGS += -f docker-compose.yml -f docker-compose.private.yml
+up_private: up ## Up the environment with the private services
 
 .PHONY: down
 down: docker_compose_down docker_clean_images docker_clean_volumes ## Stop the docker containers and clean up non-peristent dangling resources
