@@ -423,6 +423,7 @@ def soft_block_versions(version_ids, reason=REASON_VERSION_DELETED, **kw):
 
 
 @task
+@use_primary_db
 def call_source_builder(version_pk, activity_log_id):
     log.info(
         'Calling source builder API for Version %s (activity_log_id = %s)',
@@ -431,7 +432,7 @@ def call_source_builder(version_pk, activity_log_id):
     )
 
     try:
-        version = Version.objects.get(pk=version_pk)
+        version = Version.unfiltered.get(pk=version_pk)
 
         with requests.Session() as http:
             adapter = make_adapter_with_retry()

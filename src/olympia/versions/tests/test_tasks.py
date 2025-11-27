@@ -882,3 +882,29 @@ class TestCallSourceBuilder(TestCase):
             },
             timeout=settings.SOURCE_BUILDER_API_TIMEOUT,
         )
+
+    @mock.patch.object(requests.Session, 'post')
+    def test_call_with_mock_and_deleted_version(self, requests_mock):
+        addon = addon_factory()
+        version = version_factory(addon=addon)
+        # Delete the version. The task uses `Version.unfiltered` to account for that.
+        version.delete()
+        activity_log_id = 123
+
+        call_source_builder(version.pk, activity_log_id)
+
+        assert requests_mock.called
+        requests_mock.assert_called_with(
+            url=settings.SOURCE_BUILDER_API_URL,
+            json={
+                'addon_id': addon.id,
+                'version_id': version.id,
+                'download_source_url': urljoin(
+                    settings.EXTERNAL_SITE_URL,
+                    reverse('downloads.source', kwargs={'version_id': version.id}),
+                ),
+                'license_slug': version.license.slug,
+                'activity_log_id': activity_log_id,
+            },
+            timeout=settings.SOURCE_BUILDER_API_TIMEOUT,
+        )
