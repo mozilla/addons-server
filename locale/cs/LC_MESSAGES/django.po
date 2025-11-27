@@ -1549,7 +1549,7 @@ msgstr "Sdílení a sociální sítě"
 
 #: src/olympia/constants/categories.py:172
 msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
-msgstr "Stáhněte si rozšíření pro Firefox pro zlepšení sociálních sítí a psaní zpráv. Tato kategorie zahrnuje funkce pro oznámení v panelech, stahování vidí videa a další."
+msgstr "Stáhněte si rozšíření pro Firefox vylepšující sociální sítě a výměnu rychlých zpráv. Tato kategorie zahrnuje funkce pro oznámení v panelech, nástroje pro stahování videí a další věci."
 
 #: src/olympia/constants/categories.py:179
 msgid "Tabs"
@@ -1557,7 +1557,7 @@ msgstr "Panely"
 
 #: src/olympia/constants/categories.py:181
 msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
-msgstr "Stáhněte si rozšíření pro Firefox a přizpůsobte si obsah nového panelu. Objevte rozšíření, která mohou ovládat panely, měnit způsob jejich ovládání a další."
+msgstr "Stáhněte si rozšíření pro Firefox na přizpůsobení panelů a stránky nového panelu. Objevte rozšíření, která umožňují ovládat panely, měnit způsob interakce s nimi apod."
 
 #: src/olympia/constants/categories.py:188
 msgid "Web Development"
