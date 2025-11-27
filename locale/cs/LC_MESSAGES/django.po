@@ -5943,7 +5943,7 @@ msgstr "Spravujte svůj Gmail (dokonce i více účtů) přímo z šikovného vy
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1075
 msgid "De-clutter YouTube. Strip away unwanted elements like related videos, shorts & more."
-msgstr "Zbavte se nepořádku na YouTube. Odstraňte nežádoucí prvky, jako jsou podobná videa, krátké filmy a další."
+msgstr "Zbavte se nepořádku na YouTube. Odstraňte nežádoucí prvky, jako jsou související videa, krátké filmy a další věci."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1078
