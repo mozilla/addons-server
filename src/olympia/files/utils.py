@@ -14,6 +14,7 @@ import struct
 import tarfile
 import tempfile
 import zipfile
+from collections.abc import Mapping
 from types import MappingProxyType
 
 from django import forms
@@ -153,11 +154,11 @@ def get_simple_version(version_string):
     return VersionString(re.sub('[<=>]', '', version_string))
 
 
-def raise_invalid_manifest_if_not_dict(f):
+def raise_invalid_manifest_if_not_mapping(f):
     @functools.wraps(f)
     def wrapper(self):
         rval = f(self)
-        if not isinstance(rval, (dict, MappingProxyType)) and not hasattr(rval, 'get'):
+        if not isinstance(rval, Mapping):
             raise InvalidManifest(gettext('Could not parse the manifest file.'))
         return rval
 
@@ -202,7 +203,7 @@ class ManifestJSONExtractor:
         return self.data.get(key, default)
 
     @property
-    @raise_invalid_manifest_if_not_dict
+    @raise_invalid_manifest_if_not_mapping
     def developer(self):
         return self.get('developer', EMPTY_FALLBACK_DICT)
 
@@ -223,29 +224,29 @@ class ManifestJSONExtractor:
         return any(bool(self.get(key)) for key in experiment_keys)
 
     @property
-    @raise_invalid_manifest_if_not_dict
+    @raise_invalid_manifest_if_not_mapping
     def browser_specific_settings(self):
         return self.get(
             'browser_specific_settings', self.get('applications', EMPTY_FALLBACK_DICT)
         )
 
     @property
-    @raise_invalid_manifest_if_not_dict
+    @raise_invalid_manifest_if_not_mapping
     def gecko(self):
         """Return the "applications|browser_specific_settings["gecko"]" part
         of the manifest."""
         return self.browser_specific_settings.get('gecko', EMPTY_FALLBACK_DICT)
 
     @property
-    @raise_invalid_manifest_if_not_dict
+    @raise_invalid_manifest_if_not_mapping
     def gecko_android(self):
         """Return `browser_specific_settings.gecko_android` if present."""
         return self.browser_specific_settings.get('gecko_android', EMPTY_FALLBACK_DICT)
 
     @property
-    @raise_invalid_manifest_if_not_dict
+    @raise_invalid_manifest_if_not_mapping
     def data_collection_permissions(self):
-        return self.gecko.get('data_collection_permissions', {})
+        return self.gecko.get('data_collection_permissions', EMPTY_FALLBACK_DICT)
 
     @property
     def guid(self):
