@@ -2445,14 +2445,15 @@ class TestFxaNotificationView(TestCase):
 
     @mock.patch('olympia.accounts.views.primary_email_change_event.delay')
     def test_process_event_email_change(self, event_mock):
-        with time_machine.travel(datetime.now(), tick=False):
+        someday = datetime(2025, 10, 26, 1, 24)
+        with time_machine.travel(someday, tick=False):
             FxaNotificationView().process_event(
                 self.FXA_ID,
                 FxaNotificationView.FXA_PROFILE_CHANGE_EVENT,
                 {'email': 'new-email@example.com'},
             )
             event_mock.assert_called_with(
-                self.FXA_ID, datetime.now().timestamp(), 'new-email@example.com'
+                self.FXA_ID, someday.timestamp(), 'new-email@example.com'
             )
 
     def test_process_event_email_change_integration(self):
@@ -2461,7 +2462,7 @@ class TestFxaNotificationView(TestCase):
             fxa_id=self.FXA_ID,
             email_changed=datetime(2017, 10, 11),
         )
-        with time_machine.travel(datetime.now(), tick=False):
+        with time_machine.travel(datetime(2025, 10, 26, 1, 24), tick=False):
             FxaNotificationView().process_event(
                 self.FXA_ID,
                 FxaNotificationView.FXA_PROFILE_CHANGE_EVENT,
@@ -2474,13 +2475,14 @@ class TestFxaNotificationView(TestCase):
 
     @mock.patch('olympia.accounts.views.delete_user_event.delay')
     def test_process_event_delete(self, event_mock):
-        with time_machine.travel(datetime.now(), tick=False):
+        someday = datetime(2025, 10, 26, 1, 24)
+        with time_machine.travel(someday, tick=False):
             FxaNotificationView().process_event(
                 self.FXA_ID,
                 FxaNotificationView.FXA_DELETE_EVENT,
                 {},
             )
-            event_mock.assert_called_with(self.FXA_ID, datetime.now().timestamp())
+            event_mock.assert_called_with(self.FXA_ID, someday.timestamp())
 
     @override_switch('fxa-account-delete', active=True)
     def test_process_event_delete_integration(self):
