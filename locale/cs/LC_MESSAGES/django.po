@@ -1493,7 +1493,7 @@ msgstr "RSS a blogování"
 
 #: src/olympia/constants/categories.py:108
 msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
-msgstr "Stáhněte si rozšíření pro Firefox, která odstraní nepořádek, takže můžete sledovat sociálních sítě, vyhledávat na blogu, používat RSS kanály, ulevit svým očím a další."
+msgstr "Stáhněte si rozšíření pro Firefox, která odstraní nepořádek, takže můžete být stále v obraze na sociálních sítích a blozích, používat RSS kanály, ulevit svým očím apod."
 
 #: src/olympia/constants/categories.py:115
 msgid "Games & Entertainment"
@@ -1509,7 +1509,7 @@ msgstr "Podpora jazyků"
 
 #: src/olympia/constants/categories.py:126
 msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
-msgstr "Stáhněte si rozšíření pro Firefox, která nabízejí podporu jazyků jako je kontrola gramatiky, vyhledávání slov, překlad textů, převod textu na řeč a další."
+msgstr "Stáhněte si rozšíření pro Firefox, která nabízejí jazykovou podporu jako je kontrola gramatiky, vyhledávání slov, překlad textů, převod textu na řeč a další věci."
 
 #: src/olympia/constants/categories.py:133
 msgid "Photos, Music & Videos"
