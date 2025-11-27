@@ -1517,7 +1517,7 @@ msgstr "Fotografie a média"
 
 #: src/olympia/constants/categories.py:135
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
-msgstr "Stáhněte si rozšíření pro Firefox, která vylepšují fotky, hudbu a videa. Rozšíření v této kategorii upravují zvuk a videa, dohledávají texty k obrázkům a další."
+msgstr "Stáhněte si rozšíření pro Firefox, která vylepšují fotky, hudbu a videa. Rozšíření v této kategorii upravují zvuk a videa, vyhledávají na základě obrázku apod."
 
 #: src/olympia/constants/categories.py:142
 msgid "Privacy & Security"
@@ -1533,7 +1533,7 @@ msgstr "Nástroje pro vyhledávání"
 
 #: src/olympia/constants/categories.py:154
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
-msgstr "Stáhněte si rozšíření pro vyhledávání. Tato kategorie zahrnuje rozšíření, která zvýrazňují a vyhledávají text, IP adresy, domény a další."
+msgstr "Stáhněte si rozšíření pro Firefox zaměřená na vyhledávání. Tato kategorie zahrnuje rozšíření, která zvýrazňují a vyhledávají text, dohledávají IP adresy či domény apod."
 
 #: src/olympia/constants/categories.py:161
 msgid "Shopping"
