@@ -1477,7 +1477,7 @@ msgstr "Záložky"
 
 #: src/olympia/constants/categories.py:90
 msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
-msgstr "Stáhněte si rozšíření, které ochrání záložky heslem, najde duplikáty nebo nefunkční odkazy a další."
+msgstr "Stáhněte si rozšíření, které se postará o záložky tím, že je ochrání heslem, vyhledá jejich duplikáty, najde nefunkční záložky apod."
 
 #: src/olympia/constants/categories.py:97
 msgid "Download Management"
@@ -1485,7 +1485,7 @@ msgstr "Stahování souborů"
 
 #: src/olympia/constants/categories.py:99
 msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
-msgstr "Stáhněte si rozšíření pro Firefox, která vám pomohou stahovat webové stránky, hudbu nebo videa. Máme také rozšíření pro správu stahování, sdílení souborů a další."
+msgstr "Stáhněte si rozšíření pro Firefox, která vám pomohou stahovat webové stránky, hudbu nebo videa. Máme také rozšíření pro správu stahování, sdílení souborů a mnoho dalšího."
 
 #: src/olympia/constants/categories.py:106
 msgid "Feeds, News & Blogging"
