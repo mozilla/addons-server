@@ -1565,7 +1565,7 @@ msgstr "Vývoj webu"
 
 #: src/olympia/constants/categories.py:190
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
-msgstr "Stáhněte si nástroje pro Firefox a vývoj webových aplikací. Tato kategorie zahrnuje rozšíření pro GitHub, nastavení user agenta, správu cookies a další."
+msgstr "Stáhněte si rozšíření pro Firefox, která představují webové vývojářské nástroje. Tato kategorie zahrnuje rozšíření pro GitHub, nastavení user agenta, správu cookies a další věci."
 
 #: src/olympia/constants/categories.py:198 src/olympia/constants/categories.py:290 src/olympia/devhub/forms.py:612
 msgid "Other"
