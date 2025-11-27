@@ -1469,7 +1469,7 @@ msgstr "Vzhled"
 
 #: src/olympia/constants/categories.py:80
 msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
-msgstr "Stáhněte si rozšíření, která upravují vzhled webových stránek i samotného Firefoxu. Tato kategorie obsahuje rozšíření pro nastavení tmavého vzhledu, správu panelů a další."
+msgstr "Stáhněte si rozšíření, která upravují vzhled webových stránek i samotného Firefoxu. Tato kategorie obsahuje rozšíření pro nastavení tmavého vzhledu, správu panelů a další věci."
 
 #: src/olympia/constants/categories.py:88
 msgid "Bookmarks"
