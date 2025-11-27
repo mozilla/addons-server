@@ -7010,7 +7010,7 @@ msgstr "A fiókjához használt e-mail-cím nem használható a beküldésekhez.
 
 #: src/olympia/users/models.py:1129
 msgid "The software or device you are using is not allowed for submissions."
-msgstr ""
+msgstr "A használt szoftvere vagy eszköze nem engedélyezett a beküldésekhez."
 
 #: src/olympia/users/models.py:1255
 msgid ""
