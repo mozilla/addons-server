@@ -1224,7 +1224,7 @@ msgstr ""
 
 #: src/olympia/constants/activity.py:1071
 msgid "Content rejected automatically after delay expired"
-msgstr ""
+msgstr "Отхвърлен автоматично след изтичане на забавянето"
 
 #: src/olympia/constants/activity.py:1196
 #, python-brace-format
