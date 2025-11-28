@@ -5618,42 +5618,42 @@ msgstr "Makes Firefox appear as Chrome to websites trying to block Firefox."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:685
 msgid "Manage your Gmail (even multiple accounts) right from Firefox's toolbar button."
-msgstr ""
+msgstr "Manage your Gmail (even multiple accounts) right from Firefox's toolbar button."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:688
 msgid "Track the time you spend on the web, analyze your habits, block distracting sites & more."
-msgstr ""
+msgstr "Track the time you spend on the web, analyze your habits, block distracting sites & more."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:691
 msgid "Improve your writing — get instant access to the power of synonyms."
-msgstr ""
+msgstr "Improve your writing — get instant access to the power of synonyms."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:694
 msgid "Deep translation features for a rich language experience anywhere on the web."
-msgstr ""
+msgstr "Deep translation features for a rich language experience anywhere on the web."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:697
 msgid "Leave yourself little notes on any website."
-msgstr ""
+msgstr "Leave yourself little notes on any website."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:700
 msgid "Discover and download higher quality versions of interesting images and videos you find on the web."
-msgstr ""
+msgstr "Discover and download higher quality versions of interesting images and videos you find on the web."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:703
 msgid "Save and organize anything you find on the web — articles, media, PDFs & more."
-msgstr ""
+msgstr "Save and organize anything you find on the web — articles, media, PDFs & more."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:706
 msgid "Enhance your Reddit experience with color-coded comments, simpler navigation, gestures for upvoting & much more."
-msgstr ""
+msgstr "Enhance your Reddit experience with colour-coded comments, simpler navigation, gestures for upvoting & much more."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:712
@@ -5898,62 +5898,62 @@ msgstr "Change the colour of Firefox to match every website you visit."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1057
 msgid "Learning a new language? Yomitan is the ideal dictionary companion."
-msgstr ""
+msgstr "Learning a new language? Yomitan is the ideal dictionary companion."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1060
 msgid "Pack a powerful thesaurus right inside Firefox."
-msgstr ""
+msgstr "Pack a powerful thesaurus right inside Firefox."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1063
 msgid "Hover over web images to enlarge their appearance."
-msgstr ""
+msgstr "Hover over web images to enlarge their appearance."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1066
 msgid "Feature rich translation tool. Works across the web, eBooks, PDFs, even video subtitles."
-msgstr ""
+msgstr "Feature rich translation tool. Works across the web, eBooks, PDFs, even video subtitles."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1069
 msgid "Track the time you spend on every website you visit."
-msgstr ""
+msgstr "Track the time you spend on every website you visit."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1072
 msgid "Manage your Gmail (even multiple accounts) right from a handy pop-up accessible from the Firefox toolbar."
-msgstr ""
+msgstr "Manage your Gmail (even multiple accounts) right from a handy pop-up accessible from the Firefox toolbar."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1075
 msgid "De-clutter YouTube. Strip away unwanted elements like related videos, shorts & more."
-msgstr ""
+msgstr "De-clutter YouTube. Strip away unwanted elements like related videos, shorts & more."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1078
 msgid "Leave yourself little notes on any web page."
-msgstr ""
+msgstr "Leave yourself little notes on any web page."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1081
 msgid "Serenity for your Reddit experience."
-msgstr ""
+msgstr "Serenity for your Reddit experience."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1084
 msgid "Save and organize anything you find on the web."
-msgstr ""
+msgstr "Save and organize anything you find on the web."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1087
 msgid "WebM video controls at your fingertips."
-msgstr ""
+msgstr "WebM video controls at your fingertips."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1090
 msgid "Disguise Firefox as the Chrome browser to spoof websites that try to block Firefox."
-msgstr ""
+msgstr "Disguise Firefox as the Chrome browser to spoof websites that try to block Firefox."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1093
@@ -5973,22 +5973,22 @@ msgstr "See all extensions"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1099
 msgid "New Recommended Extensions"
-msgstr ""
+msgstr "New Recommended Extensions"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1101
 msgid "Reddit revolutionized"
-msgstr ""
+msgstr "Reddit revolutionized"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1103
 msgid "Extension Starter Pack"
-msgstr ""
+msgstr "Extension Starter Pack"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1105
 msgid "Explore now"
-msgstr ""
+msgstr "Explore now"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1107 src/olympia/discovery/strings.jinja2:1109
@@ -6975,7 +6975,7 @@ msgstr "The email address used for your account is not allowed for submissions."
 
 #: src/olympia/users/models.py:1129
 msgid "The software or device you are using is not allowed for submissions."
-msgstr ""
+msgstr "The software or device you are using is not allowed for submissions."
 
 #: src/olympia/users/models.py:1255
 msgid ""
