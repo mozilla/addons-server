@@ -10,6 +10,7 @@ import responses
 import time_machine
 
 from olympia import amo
+from olympia.activity.models import ActivityLog
 from olympia.amo.tests import TestCase, addon_factory, days_ago, user_factory
 from olympia.files.models import File
 from olympia.ratings.models import Rating, RatingAggregate
@@ -327,3 +328,11 @@ def test_block_high_rating_addons_according_to_review_tier():
             .filter(blockversion__isnull=True)
             .exists()
         ), f'Addon {addon}s versions should have been blocked'
+        assert (
+            ActivityLog.objects.filter(
+                addonlog__addon=addon, action=amo.LOG.FORCE_DISABLE.id
+            )
+            .get()
+            .details['reason']
+            == 'Rejected and blocked due to: high rating count'
+        )

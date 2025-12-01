@@ -165,6 +165,8 @@ def _disable_and_block(*, version, rule):
             rule=rule,
             restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL,
         )
-        reject_and_block_addons([addon])
+        reject_and_block_addons(
+            [addon], reject_reason=f'scanner rule "{rule.pretty_name or rule.name}"'
+        )
     else:
         _delay_auto_approval_indefinitely(version=version, rule=rule)
