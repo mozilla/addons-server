@@ -5723,7 +5723,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1015
 msgid "Remove formatting from copied Clipboard text."
-msgstr ""
+msgstr "Ukloni formatiranje iz kopiranog teksta u međuspremniku."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1018
@@ -6971,6 +6971,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s )"
 msgstr ""
+"Sljedeći autor je uklonjen iz dodatka %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s )"
 
 #: src/olympia/users/templates/users/emails/user_deleted.ltxt:7
 #, python-format
