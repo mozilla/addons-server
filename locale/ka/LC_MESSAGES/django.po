@@ -1292,12 +1292,12 @@ msgstr "{addon} {0} თვისება ჩასწორებულია."
 #: src/olympia/constants/activity.py:1254
 #, python-brace-format
 msgid "Collection {0} property {1} updated."
-msgstr ""
+msgstr "{0} კრებულის {1} მახასიათებელი განახლდა."
 
 #: src/olympia/constants/activity.py:1261
 #, python-brace-format
 msgid "Account {user} property {0} updated."
-msgstr ""
+msgstr "{user} ანგარიშის {0} მახასიათებელი განახლდა."
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -5662,7 +5662,7 @@ msgstr "სიღრმისეული თარგმნის შესა�
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:697
 msgid "Leave yourself little notes on any website."
-msgstr ""
+msgstr "დატოვეთ ჩანაწერები ნებისმიერ საიტზე."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:700
@@ -5997,12 +5997,12 @@ msgstr "ყველა გაფართოების ნახვა"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1099
 msgid "New Recommended Extensions"
-msgstr ""
+msgstr "ახალი სასურველი გაფართოებები"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1101
 msgid "Reddit revolutionized"
-msgstr ""
+msgstr "Reddit ახლებურად"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1103
@@ -6012,7 +6012,7 @@ msgstr "გაფართოებების საწყისი ნაკ�
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1105
 msgid "Explore now"
-msgstr ""
+msgstr "გაეცანით ახლავე"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1107 src/olympia/discovery/strings.jinja2:1109
@@ -6999,7 +6999,7 @@ msgstr "ელფოსტის მისამართი, რომელი
 
 #: src/olympia/users/models.py:1129
 msgid "The software or device you are using is not allowed for submissions."
-msgstr ""
+msgstr "პროგრამა ან მოწყობილობა, რომელსაც იყენებთ, არაა ნებადართული წარდგენისთვის."
 
 #: src/olympia/users/models.py:1255
 msgid ""
