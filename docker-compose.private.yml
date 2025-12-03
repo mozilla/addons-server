@@ -20,6 +20,7 @@ services:
       context: ./private/addons-builder
     environment:
       - PORT=10200
+      - API_AUTH_TOKEN=sourcebuildersecret
     expose:
       - 10200
     links:

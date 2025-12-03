@@ -453,6 +453,7 @@ def call_source_builder(version_pk, activity_log_id):
                 url=settings.SOURCE_BUILDER_API_URL,
                 json=json_payload,
                 timeout=settings.SOURCE_BUILDER_API_TIMEOUT,
+                headers={'Authorization': f'Bearer {settings.SOURCE_BUILDER_API_KEY}'},
             )
     except Exception:
         log.exception(
