@@ -2,6 +2,7 @@ services:
   worker:
     depends_on:
       - customs
+      - source-builder
 
   customs:
     build:
@@ -9,6 +10,18 @@ services:
     environment:
       - ALLOWED_ORIGIN=http://olympia.test
       - PORT=10101
+    links:
+      - "nginx:olympia.test"
+    depends_on:
+      - web
+
+  source-builder:
+    build:
+      context: ./private/addons-builder
+    environment:
+      - PORT=10200
+    expose:
+      - 10200
     links:
       - "nginx:olympia.test"
     depends_on:

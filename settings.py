@@ -180,3 +180,5 @@ GOOGLE_APPLICATION_CREDENTIALS_BIGQUERY = env(
 )
 
 CINDER_SERVER_URL = 'https://mozilla-staging.cinderapp.com/api/v1/'
+
+SOURCE_BUILDER_API_URL = 'http://source-builder:10200/submit'
