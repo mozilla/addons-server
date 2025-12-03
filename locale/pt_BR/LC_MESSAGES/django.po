@@ -5613,7 +5613,7 @@ msgstr "Passe o mouse sobre miniaturas para navegar e baixar imagens em alta def
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:676
 msgid "Remove distracting and unwanted search results and related video content."
-msgstr "Remova resultados de pesquisa indesejados e que distraem e conteúdo de vídeo relacionado."
+msgstr "Remova resultados de pesquisa indesejados e fonte de distração, além de conteúdos de vídeo relacionados."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:679
