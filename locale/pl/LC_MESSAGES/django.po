@@ -1300,12 +1300,12 @@ msgstr "Edytowano właściwość {0} dodatku {addon}."
 #: src/olympia/constants/activity.py:1254
 #, python-brace-format
 msgid "Collection {0} property {1} updated."
-msgstr ""
+msgstr "Zaktualizowano właściwość {1} kolekcji {0}."
 
 #: src/olympia/constants/activity.py:1261
 #, python-brace-format
 msgid "Account {user} property {0} updated."
-msgstr ""
+msgstr "Zaktualizowano właściwość {0} konta {user}."
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -4756,7 +4756,7 @@ msgstr "Automatycznie wczytuj ponownie karty zgodnie z ustawionym przedziałem c
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:128 src/olympia/discovery/strings.jinja2:988
 msgid "Keep parts of your online life separated into color-coded and cookie separated tabs. Now integrated with Mozilla VPN for an extra layer of privacy."
-msgstr ""
+msgstr "Rozdzielaj elementy swojego życia internetowego za pomocą kart oznaczonych kolorami i odseparowanych ciasteczek. Teraz zintegrowane z Mozilla VPN dla dodatkowej warstwy prywatności."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5683,7 +5683,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:697
 msgid "Leave yourself little notes on any website."
-msgstr ""
+msgstr "Zostawiaj sobie krótkie notatki na dowolnej stronie internetowej."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:700

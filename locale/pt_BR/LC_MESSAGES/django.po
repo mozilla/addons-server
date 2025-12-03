@@ -3987,7 +3987,7 @@ msgstr "Reverter para uma versão anterior"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:7
 msgid "Users of this extension will roll back to the previous version you choose."
-msgstr "Os usuários desta extensão irão reverter para a versão anterior que você escolher."
+msgstr "Quem usa esta extensão terá sua instalação revertida para a versão anterior que você escolher."
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:13
 #, python-format
