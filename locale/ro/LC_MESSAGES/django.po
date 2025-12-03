@@ -7002,7 +7002,7 @@ msgstr "Înlătură modificările"
 #: src/olympia/translations/templates/translations/trans-menu.html:56
 #, python-brace-format
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
-msgstr "Sigur vrei să elimini toate <b>{0}</b> traducerile? Acțiunea nu poate fi inversată."
+msgstr "Sigur vrei să elimini toate <b>{0}</b> traducerile? Acțiunea este ireversibilă."
 
 #: src/olympia/translations/templates/translations/trans-menu.html:61
 msgid "Delete Locale"
