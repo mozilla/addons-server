@@ -881,6 +881,7 @@ class TestCallSourceBuilder(TestCase):
                 'activity_log_id': activity_log_id,
             },
             timeout=settings.SOURCE_BUILDER_API_TIMEOUT,
+            headers={'Authorization': f'Bearer {settings.SOURCE_BUILDER_API_KEY}'},
         )
 
     @mock.patch.object(requests.Session, 'post')
@@ -907,4 +908,5 @@ class TestCallSourceBuilder(TestCase):
                 'activity_log_id': activity_log_id,
             },
             timeout=settings.SOURCE_BUILDER_API_TIMEOUT,
+            headers={'Authorization': f'Bearer {settings.SOURCE_BUILDER_API_KEY}'},
         )
