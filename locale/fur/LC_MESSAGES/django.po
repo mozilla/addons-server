@@ -1299,12 +1299,12 @@ msgstr "A son stadis modificadis lis proprietâts di {addon} {0}."
 #: src/olympia/constants/activity.py:1254
 #, python-brace-format
 msgid "Collection {0} property {1} updated."
-msgstr ""
+msgstr "Proprietât {1} de racuelte {0} inzornade."
 
 #: src/olympia/constants/activity.py:1261
 #, python-brace-format
 msgid "Account {user} property {0} updated."
-msgstr ""
+msgstr "Proprietât {0} dal account {user} inzornade."
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -5698,7 +5698,7 @@ msgstr "Funzionalitâts di traduzion avanzadis par otignî une esperience lingui
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:697
 msgid "Leave yourself little notes on any website."
-msgstr ""
+msgstr "Lassiti piçulis notis su cualsisei sît web."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:700
