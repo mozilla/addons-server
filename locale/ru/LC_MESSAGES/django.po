@@ -2175,7 +2175,7 @@ msgstr "Создано"
 
 #: src/olympia/devhub/views.py:118 src/olympia/devhub/views.py:127 src/olympia/stats/templates/stats/addon_report_menu.html:8
 msgid "Downloads"
-msgstr "Скачивания"
+msgstr "Загрузки"
 
 #: src/olympia/devhub/views.py:119 src/olympia/devhub/views.py:128
 msgid "Rating"
