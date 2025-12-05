@@ -417,7 +417,7 @@ msgstr "Аккаунт должен иметь отображаемое имя, 
 
 #: src/olympia/addons/serializers.py:1257
 msgid "This slug cannot be used. Please choose another."
-msgstr "Это окончание нельзя использовать. Пожалуйста, выберите другое."
+msgstr "Этот слаг нельзя использовать. Пожалуйста, выберите другой."
 
 #: src/olympia/addons/serializers.py:1891
 msgid "There is no rollback available in this channel."
@@ -792,7 +792,7 @@ msgstr "Значение в локали по умолчанию \"{lang_code}\"
 #: src/olympia/api/fields.py:386
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
-msgstr "Некорректный pk или slug \"%s\" - объект не существует."
+msgstr "Некорректный идентификатор или слаг «%s» — объект не существует."
 
 #: src/olympia/api/models.py:148
 msgid "Confirmation for developer API keys"
@@ -1177,7 +1177,7 @@ msgstr "Запланировано отклонение"
 #: src/olympia/constants/activity.py:853
 #, python-brace-format
 msgid "{addon} {version} automatically created and signed from {0}."
-msgstr "{addon} {version} автоматически создано и подписано из {0}."
+msgstr "«{addon}» {version} автоматически создано и подписано из {0}."
 
 #: src/olympia/constants/activity.py:854
 msgid "Version re-signed"
@@ -1219,7 +1219,7 @@ msgstr "Ожидание отклонения удалено"
 #: src/olympia/constants/activity.py:1006
 #, python-brace-format
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
-msgstr "{user_responsible} изменил слаг {addon} с {0} на {1}."
+msgstr "{user_responsible} изменил слаг «{addon}» с {0} на {1}."
 
 #: src/olympia/constants/activity.py:1007
 msgid "Add-on slug changed"
