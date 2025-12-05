@@ -202,7 +202,7 @@ msgstr[2] "{0} пользователей"
 
 #: static/js/stats/chart.js:362 static/js/stats/csv_keys.js:3 static/js/stats/csv_keys.js:9
 msgid "Downloads"
-msgstr "Скачивания"
+msgstr "Загрузки"
 
 #: static/js/stats/chart.js:374 static/js/stats/csv_keys.js:6 static/js/stats/csv_keys.js:10
 msgid "Daily Users"
