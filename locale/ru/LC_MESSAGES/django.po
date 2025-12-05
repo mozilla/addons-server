@@ -1270,7 +1270,7 @@ msgstr "Ожидание отклонения изменено"
 #: src/olympia/constants/activity.py:1208
 #, python-brace-format
 msgid "{addon} {version} created, to rollback from {0}."
-msgstr "Создано {addon} {version}, для отката с {0}."
+msgstr "Создано «{addon}» {version}, для отката с {0}."
 
 #: src/olympia/constants/activity.py:1209
 msgid "Version rollback"
@@ -1885,12 +1885,12 @@ msgstr "Манифест V3 в настоящее время не поддерж
 
 #: src/olympia/devhub/forms.py:91
 msgid "This slug is already in use. Please choose another."
-msgstr "Это окончание уже используется. Пожалуйста, выберите другое."
+msgstr "Этот слаг уже используется. Пожалуйста, выберите другой."
 
 #: src/olympia/devhub/forms.py:94
 #, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
-msgstr "Окончание не может быть \"%(slug)s\". Пожалуйста, выберите другое."
+msgstr "Слаг не может быть «%(slug)s». Пожалуйста, выберите другой."
 
 #. L10n: {0} is the number of categories.
 #: src/olympia/devhub/forms.py:216
@@ -2056,8 +2056,8 @@ msgid ""
 "On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
 "on manifest’s <a {a_attrs}>update_url</a> is provided, as this is the URL where Firefox finds updates for automatic deployment to your users.</span>"
 msgstr ""
-"Самостоятельно. <span class=\"helptext\">После того, как ваша заявка будет подписана Mozilla, вы можете загрузить .xpi-файл из Центра разработчиков и распространить его среди своей аудитории. "
-"Убедитесь, что в манифесте дополнения указан <a {a_attrs}>update_url</a>, так как это URL-адрес, по которому Firefox находит обновления для автоматического развертывания для ваших "
+"Самостоятельно. <span class=\"helptext\">После того, как ваша заявка будет подписана Mozilla, вы можете скачать .xpi-файл из Центра разработчиков и распространить его среди своей аудитории. "
+"Убедитесь, что в манифесте дополнения указан <a {a_attrs}>update_url</a>, так как это URL-адрес, по которому Firefox находит обновления для автоматического развёртывания для ваших "
 "пользователей.</span>"
 
 #: src/olympia/devhub/forms.py:1424 src/olympia/devhub/templates/devhub/includes/agreement.html:17
@@ -2167,7 +2167,7 @@ msgstr "Обновлено"
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:38 src/olympia/devhub/templates/devhub/addons/edit/describe.html:75 src/olympia/devhub/templates/devhub/addons/submit/describe.html:35
 #: src/olympia/devhub/views.py:116 src/olympia/devhub/views.py:126
 msgid "Name"
-msgstr "Имя"
+msgstr "Название"
 
 #: src/olympia/devhub/views.py:117 src/olympia/devhub/views.py:125
 msgid "Created"
@@ -2175,7 +2175,7 @@ msgstr "Создано"
 
 #: src/olympia/devhub/views.py:118 src/olympia/devhub/views.py:127 src/olympia/stats/templates/stats/addon_report_menu.html:8
 msgid "Downloads"
-msgstr "Загрузки"
+msgstr "Скачивания"
 
 #: src/olympia/devhub/views.py:119 src/olympia/devhub/views.py:128
 msgid "Rating"
@@ -2223,7 +2223,7 @@ msgstr "URL имя некорректно. Тема не была удалена
 
 #: src/olympia/devhub/views.py:391
 msgid "URL name was incorrect. Add-on was not deleted."
-msgstr "URL имя некорректно. Дополнение не было удалено."
+msgstr "Указан неверный адрес. Дополнение не удалено."
 
 #: src/olympia/devhub/views.py:463
 msgid "Invitation accepted."
@@ -2876,7 +2876,7 @@ msgstr "URL дополнения"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:59 src/olympia/devhub/templates/devhub/addons/edit/describe.html:88
 msgid "Choose a short, unique URL slug for your add-on."
-msgstr "Выберите короткий, уникальный URL slug для вашего дополнения."
+msgstr "Выберите короткий, уникальный слаг адреса для вашего дополнения."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:69
 msgid "View Listing"
@@ -3317,7 +3317,7 @@ msgstr "Нет, не отменять"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:16
 msgid "Name and Summary:"
-msgstr "Имя и описание:"
+msgstr "Название и описание:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:16 src/olympia/devhub/templates/devhub/addons/submit/describe.html:87
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:102 src/olympia/devhub/templates/devhub/addons/submit/describe.html:164
@@ -3345,7 +3345,7 @@ msgstr "Пожалуйста, используйте в вашем URL толь�
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:67
 msgid "Name:"
-msgstr "Имя:"
+msgstr "Название:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:68
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
@@ -3649,7 +3649,7 @@ msgstr "Предупреждение: следующие свойства ман
 
 #: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:25
 msgid "Theme name"
-msgstr "Имя темы"
+msgstr "Название темы"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:37
 msgid "Select a header image for your theme"
@@ -5322,7 +5322,7 @@ msgstr "Нашли в Интернете интересную картинку? 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:446
 msgid "Harness the ability to download video and/or audio in multiple formats."
-msgstr "Загружайте видео и (или) аудио в разнообразных форматах."
+msgstr "Скачивайте видео и (или) аудио в разнообразных форматах."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5414,7 +5414,7 @@ msgstr "Блокируйте рекламу и получайте улучшен
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:500 src/olympia/discovery/strings.jinja2:898
 msgid "Enjoy multi-threading download support. Automatically detect different types of media available for download."
-msgstr "Наслаждайтесь поддержкой многопоточной загрузки. Автоматически определяйте различные форматы медиа для загрузки."
+msgstr "Наслаждайтесь поддержкой многопоточного скачивания. Автоматически определяйте различные форматы медиа для загрузки."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:503
@@ -5484,7 +5484,7 @@ msgstr "Некоторые веб-сайты испытывают затрудн
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:540
 msgid "Select, sort, and run your downloads faster."
-msgstr "Выбирайте, сортируйте и ускоряйте загрузки."
+msgstr "Выбирайте, сортируйте и ускоряйте скачивания."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:543
@@ -5655,7 +5655,7 @@ msgstr "Мощный всплывающий словарь, оптимизиро
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:673
 msgid "Hover your mouse over thumbnails to easily browse and download HD images."
-msgstr "Наведите курсор мыши на миниатюры для легкого просмотра и загрузки HD-изображений."
+msgstr "Наведите курсор мыши на миниатюры для лёгкого просмотра и скачивания HD-изображений."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:676
@@ -5695,7 +5695,7 @@ msgstr "Оставляйте себе небольшие заметки на л�
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:700
 msgid "Discover and download higher quality versions of interesting images and videos you find on the web."
-msgstr "Находите и загружайте более качественные версии интересных изображений и видео, которые вы находите в Интернете."
+msgstr "Находите и скачивайте более качественные версии интересных изображений и видео, которые вы находите в Интернете."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:703
@@ -5870,7 +5870,7 @@ msgstr "Эффективный блокировщик всех типов рек
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1009
 msgid "Mass download manager makes extreme downloading extremely easy."
-msgstr "Менеджер массовой загрузки делает экстремальную загрузку чрезвычайно простой."
+msgstr "Менеджер массового скачивания делает огромные скачивания чрезвычайно простыми."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1012
@@ -6232,12 +6232,12 @@ msgstr "Больше средств для социальных сетей, от
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1202
 msgid "Top download managers"
-msgstr "Лучшие менеджеры загрузок"
+msgstr "Лучшие менеджеры скачиваний"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1204
 msgid "See more download manager staff picks"
-msgstr "Больше менеджеров загрузки, отобранных нашими сотрудниками"
+msgstr "Больше менеджеров скачивания, отобранных нашими сотрудниками"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1207
