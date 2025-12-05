@@ -2833,7 +2833,7 @@ msgstr "vagy"
 #: src/olympia/devhub/templates/devhub/versions/edit.html:136 src/olympia/devhub/templates/devhub/versions/list.html:305 src/olympia/devhub/templates/devhub/versions/list.html:315
 #: src/olympia/devhub/templates/devhub/versions/list.html:354 src/olympia/translations/templates/translations/trans-menu.html:50 src/olympia/translations/templates/translations/trans-menu.html:62
 msgid "Cancel"
-msgstr "Mégsem"
+msgstr "Mégse"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:7 src/olympia/devhub/templates/devhub/addons/submit/describe.html:5 src/olympia/devhub/templates/devhub/addons/submit/describe.html:9
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:3
@@ -3938,7 +3938,7 @@ msgstr "A fiókjához meg kell adnia egy megjelenítendő nevet, hogy a felhaszn
 #: src/olympia/devhub/templates/devhub/includes/agreement.html:38
 #, python-brace-format
 msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr "vagy <a href=\"{0}\">Mégsem</a>"
+msgstr "vagy <a href=\"{0}\">Mégse</a>"
 
 #: src/olympia/devhub/templates/devhub/includes/agreement.html:44
 msgid "More information on Developer Accounts"
