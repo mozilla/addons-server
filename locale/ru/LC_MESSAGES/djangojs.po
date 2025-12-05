@@ -188,9 +188,9 @@ msgstr "{0} неделя"
 #, python-brace-format
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] "{0} загрузка"
-msgstr[1] "{0} загрузки"
-msgstr[2] "{0} загрузок"
+msgstr[0] "{0} скачивание"
+msgstr[1] "{0} скачивания"
+msgstr[2] "{0} скачиваний"
 
 #: static/js/stats/chart.js:298
 #, python-brace-format
@@ -202,7 +202,7 @@ msgstr[2] "{0} пользователей"
 
 #: static/js/stats/chart.js:362 static/js/stats/csv_keys.js:3 static/js/stats/csv_keys.js:9
 msgid "Downloads"
-msgstr "Загрузки"
+msgstr "Скачивания"
 
 #: static/js/stats/chart.js:374 static/js/stats/csv_keys.js:6 static/js/stats/csv_keys.js:10
 msgid "Daily Users"
@@ -250,25 +250,25 @@ msgstr "Android"
 #: static/js/stats/csv_keys.js:24
 #, python-brace-format
 msgid "Downloads and Daily Users, last {0} days"
-msgstr "Загрузки и ежедневные пользователи, последние {0} дней"
+msgstr "Скачивания и ежедневные пользователи за последние {0} дн."
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/stats/csv_keys.js:26
 #, python-brace-format
 msgid "Downloads and Daily Users from {0} to {1}"
-msgstr "Загрузки и ежедневные пользователи, с {0} по {1}"
+msgstr "Скачивания и ежедневные пользователи с {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:30
 #, python-brace-format
 msgid "Downloads, last {0} days"
-msgstr "Загрузки, последние {0} дней"
+msgstr "Скачивания за последние {0} дн."
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/stats/csv_keys.js:32
 #, python-brace-format
 msgid "Downloads from {0} to {1}"
-msgstr "Загрузки, с {0} по {1}"
+msgstr "Скачивания с {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:36
@@ -346,49 +346,49 @@ msgstr "Версии дополнения, с {0} по {1}"
 #: static/js/stats/csv_keys.js:72
 #, python-brace-format
 msgid "Download Sources, last {0} days"
-msgstr "Источники загрузок, последние {0} дней"
+msgstr "Источники скачиваний за последние {0} дн."
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/stats/csv_keys.js:74
 #, python-brace-format
 msgid "Download Sources from {0} to {1}"
-msgstr "Источники загрузок, с {0} по {1}"
+msgstr "Источники скачиваний с {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:78
 #, python-brace-format
 msgid "Download Mediums, last {0} days"
-msgstr "Загрузок медиа, последние {0} дней"
+msgstr "Скачиваний медиа за последние {0} дн."
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/stats/csv_keys.js:80
 #, python-brace-format
 msgid "Download Mediums from {0} to {1}"
-msgstr "Загрузок медиа с {0} по {1}"
+msgstr "Скачиваний медиа с {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:84
 #, python-brace-format
 msgid "Download Contents, last {0} days"
-msgstr "Загрузок содержимого, последние {0} дней"
+msgstr "Скачиваний содержимого за последние {0} дн."
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/stats/csv_keys.js:86
 #, python-brace-format
 msgid "Download Contents from {0} to {1}"
-msgstr "Загрузок содержимого с {0} по {1}"
+msgstr "Скачиваний содержимого за {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:90
 #, python-brace-format
 msgid "Download Campaigns, last {0} days"
-msgstr "Загрузок кампаний, последние {0} дней"
+msgstr "Скачиваний кампаний за последние {0} дн."
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/stats/csv_keys.js:92
 #, python-brace-format
 msgid "Download Campaigns from {0} to {1}"
-msgstr "Загрузок кампаний с {0} по {1}"
+msgstr "Скачиваний кампаний с {0} по {1}"
 
 #. L10n: {0} and {1} are integers.
 #: static/js/stats/csv_keys.js:98
