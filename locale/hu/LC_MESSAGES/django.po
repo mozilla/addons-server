@@ -3895,7 +3895,7 @@ msgstr "Új verzió feltöltése"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:23
 msgid "View All"
-msgstr "Mutassa mindet"
+msgstr "Összes megjelenítése"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:40
 msgid "Listed Review Page"
