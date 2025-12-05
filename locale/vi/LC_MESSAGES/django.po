@@ -6989,7 +6989,7 @@ msgstr "Địa chỉ email sử dụng cho tài khoản của bạn không đư�
 
 #: src/olympia/users/models.py:1129
 msgid "The software or device you are using is not allowed for submissions."
-msgstr ""
+msgstr "Phần mềm hoặc thiết bị bạn đang sử dụng không được phép sử dụng để gửi bài."
 
 #: src/olympia/users/models.py:1255
 msgid ""
