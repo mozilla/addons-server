@@ -6784,7 +6784,7 @@ msgstr "Использование приложения по дате"
 
 #: src/olympia/stats/templates/stats/reports/campaigns.html:3
 msgid "Download campaigns by Date"
-msgstr "Загрузок кампаний по дате"
+msgstr "Скачиваний кампаний по дате"
 
 #: src/olympia/stats/templates/stats/reports/campaigns.html:7 src/olympia/stats/templates/stats/reports/contents.html:7 src/olympia/stats/templates/stats/reports/mediums.html:7
 #: src/olympia/stats/templates/stats/reports/sources.html:7
@@ -6793,7 +6793,7 @@ msgstr "Об отслеживании внешних источников..."
 
 #: src/olympia/stats/templates/stats/reports/contents.html:3
 msgid "Download contents by Date"
-msgstr "Загрузок содержимого по дате"
+msgstr "Скачиваний содержимого по дате"
 
 #: src/olympia/stats/templates/stats/reports/countries.html:3
 msgid "User countries by Date"
@@ -6801,7 +6801,7 @@ msgstr "Страны пользователей по дате"
 
 #: src/olympia/stats/templates/stats/reports/downloads.html:3
 msgid "Downloaded by Date"
-msgstr "Загружено по дате"
+msgstr "Скачано по дате"
 
 #: src/olympia/stats/templates/stats/reports/locales.html:3
 msgid "User languages by Date"
@@ -6809,7 +6809,7 @@ msgstr "Языки пользователя по дате"
 
 #: src/olympia/stats/templates/stats/reports/mediums.html:3
 msgid "Download mediums by Date"
-msgstr "Загрузок медиа по дате"
+msgstr "Скачиваний медиа по дате"
 
 #: src/olympia/stats/templates/stats/reports/os.html:3
 msgid "Platform usage by Date"
@@ -6818,7 +6818,7 @@ msgstr "Использование платформ по дате"
 #: src/olympia/stats/templates/stats/reports/overview.html:9
 #, python-brace-format
 msgid "<b>{0}</b> Weekly Downloads"
-msgstr "<b>{0}</b> загрузок за неделю"
+msgstr "<b>{0}</b> скачиваний за неделю"
 
 #: src/olympia/stats/templates/stats/reports/overview.html:11 src/olympia/stats/templates/stats/reports/overview.html:15
 msgid "Loading..."
@@ -6855,7 +6855,7 @@ msgstr "Показать другие платформы&hellip;"
 
 #: src/olympia/stats/templates/stats/reports/sources.html:3
 msgid "Download sources by Date"
-msgstr "Источники загрузок по дате"
+msgstr "Источники скачиваний по дате"
 
 #: src/olympia/stats/templates/stats/reports/statuses.html:3
 msgid "Add-on Status by Date"
@@ -6953,7 +6953,7 @@ msgstr ""
 #: src/olympia/templates/user_login.html:24
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
-msgstr "<a href=\"%(reg)s\">Зарегистрируйтесь</a> или <a href=\"%(login)s\">Войдите</a>"
+msgstr "<a href=\"%(reg)s\">Зарегистрируйтесь</a> или <a href=\"%(login)s\">войдите</a>"
 
 #: src/olympia/templates/includes/forms.html:2
 msgid "Required fields"
