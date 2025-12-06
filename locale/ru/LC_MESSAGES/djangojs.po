@@ -274,31 +274,31 @@ msgstr "Скачивания с {0} по {1}"
 #: static/js/stats/csv_keys.js:36
 #, python-brace-format
 msgid "Daily Users, last {0} days"
-msgstr "Ежедневные пользователи, последние {0} дней"
+msgstr "Ежедневные пользователи за последние {0} дн."
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/stats/csv_keys.js:38
 #, python-brace-format
 msgid "Daily Users from {0} to {1}"
-msgstr "Ежедневные пользователи, с {0} по {1}"
+msgstr "Ежедневные пользователи с {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:42
 #, python-brace-format
 msgid "Applications, last {0} days"
-msgstr "Приложения, последние {0} дней"
+msgstr "Приложения за последние {0} дн."
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/stats/csv_keys.js:44
 #, python-brace-format
 msgid "Applications from {0} to {1}"
-msgstr "Приложения, с {0} по {1}"
+msgstr "Приложения с {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:48
 #, python-brace-format
 msgid "Countries, last {0} days"
-msgstr "Страны, последние {0} дней"
+msgstr "Страны за последние {0} дн."
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/stats/csv_keys.js:50
@@ -310,37 +310,37 @@ msgstr "Страны с {0} по {1}"
 #: static/js/stats/csv_keys.js:54
 #, python-brace-format
 msgid "Platforms, last {0} days"
-msgstr "Платформы, последние {0} дней"
+msgstr "Платформы за последние {0} дн."
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/stats/csv_keys.js:56
 #, python-brace-format
 msgid "Platforms from {0} to {1}"
-msgstr "Платформы, с {0} по {1}"
+msgstr "Платформы с {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:60
 #, python-brace-format
 msgid "Languages, last {0} days"
-msgstr "Языки, последние {0} дней"
+msgstr "Языки за последние {0} дн."
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/stats/csv_keys.js:62
 #, python-brace-format
 msgid "Languages from {0} to {1}"
-msgstr "Языки, с {0} по {1}"
+msgstr "Языки с {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:66
 #, python-brace-format
 msgid "Add-on Versions, last {0} days"
-msgstr "Версии дополнения, последние {0} дней"
+msgstr "Версии дополнения за последние {0} дн."
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/stats/csv_keys.js:68
 #, python-brace-format
 msgid "Add-on Versions from {0} to {1}"
-msgstr "Версии дополнения, с {0} по {1}"
+msgstr "Версии дополнения с {0} по {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:72
@@ -394,19 +394,19 @@ msgstr "Скачиваний кампаний с {0} по {1}"
 #: static/js/stats/csv_keys.js:98
 #, python-brace-format
 msgid "<b>{0}</b> in last {1} days"
-msgstr "<b>{0}</b> за последние {1} дней"
+msgstr "<b>{0}</b> за последние {1} дн."
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
 #: static/js/stats/csv_keys.js:100 static/js/stats/csv_keys.js:106
 #, python-brace-format
 msgid "<b>{0}</b> from {1} to {2}"
-msgstr "<b>{0}</b>, с {1} по {2}"
+msgstr "<b>{0}</b> с {1} по {2}"
 
 #. L10n: {0} and {1} are integers.
 #: static/js/stats/csv_keys.js:104
 #, python-brace-format
 msgid "<b>{0}</b> average in last {1} days"
-msgstr "в среднем <b>{0}</b> за последние {1} дней"
+msgstr "в среднем <b>{0}</b> за последние {1} дн."
 
 #: static/js/stats/overview.js:18
 msgid "No data available."
