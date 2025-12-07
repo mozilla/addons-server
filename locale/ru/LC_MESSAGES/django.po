@@ -2470,7 +2470,7 @@ msgstr "Разработка дополнений"
 
 #: src/olympia/devhub/templates/devhub/nav.html:58
 msgid "Community & Support"
-msgstr "Сообщество и Поддержка"
+msgstr "Сообщество и поддержка"
 
 #: src/olympia/devhub/templates/devhub/nav.html:61
 msgid "Add-ons Blog"
