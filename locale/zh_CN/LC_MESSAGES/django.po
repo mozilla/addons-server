@@ -5860,7 +5860,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1075
 msgid "De-clutter YouTube. Strip away unwanted elements like related videos, shorts & more."
-msgstr ""
+msgstr "精简 YouTube 界面，移除相关视频、短视频等干扰元素。"
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1078
@@ -5920,7 +5920,7 @@ msgstr "新手必备扩展"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1105
 msgid "Explore now"
-msgstr ""
+msgstr "立即探索"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1107 src/olympia/discovery/strings.jinja2:1109
@@ -6903,7 +6903,7 @@ msgstr "您的账户电子邮件地址不能用于提交。"
 
 #: src/olympia/users/models.py:1129
 msgid "The software or device you are using is not allowed for submissions."
-msgstr ""
+msgstr "您所使用的软件或设备不允许用于提交。"
 
 #: src/olympia/users/models.py:1255
 msgid ""
