@@ -210,9 +210,9 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
-" \n"
-" Mozilla 부가 기능: %(name)s에 대해 신고해주셔서 감사합니다. \n"
-" \n"
+"\n"
+"Mozilla 부가 기능: %(name)s에 대해 신고해주셔서 감사합니다. \n"
+"\n"
 "신고해 주신 내용을 검토했으며, Mozilla 정책(%(policy_document_url)s)을 위반한 것이 확인되어 해당 콘텐츠는 삭제하였습니다. \n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_user.txt:5
