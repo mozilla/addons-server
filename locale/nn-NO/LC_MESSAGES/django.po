@@ -4824,7 +4824,7 @@ msgstr "Spesifiser ei eigendefinert startside for dei nye fanene dine."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:176 src/olympia/discovery/strings.jinja2:847
 msgid "Convert all your open tabs into a list to easily manage them and speed up Firefox."
-msgstr "Konverter alle dei opne fanene dine til ei liste for enkelt å behandle dei og gjer Firefox raskare."
+msgstr "Konverter alle dei opne fanene dine til ei liste for enkelt å handsame dei, og gjer Firefox raskare."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
