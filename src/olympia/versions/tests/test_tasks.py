@@ -910,3 +910,16 @@ class TestCallSourceBuilder(TestCase):
             timeout=settings.SOURCE_BUILDER_API_TIMEOUT,
             headers={'Authorization': f'Bearer {settings.SOURCE_BUILDER_API_KEY}'},
         )
+
+    @mock.patch.object(requests.Session, 'post')
+    def test_no_call_with_mock_when_license_is_missing(self, requests_mock):
+        addon = addon_factory()
+        version = version_factory(addon=addon)
+        # Remove the license for this version, which is the case for unlisted
+        # versions for instance.
+        version.update(license=None)
+        activity_log_id = 123
+
+        call_source_builder(version.pk, activity_log_id)
+
+        requests_mock.assert_not_called()

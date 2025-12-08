@@ -434,6 +434,15 @@ def call_source_builder(version_pk, activity_log_id):
     try:
         version = Version.unfiltered.get(pk=version_pk)
 
+        if not version.license:
+            log.info(
+                'Missing license in source builder for Version %s '
+                '(activity_log_id = %s)',
+                version_pk,
+                activity_log_id,
+            )
+            return
+
         with requests.Session() as http:
             adapter = make_adapter_with_retry()
             http.mount('http://', adapter)
