@@ -1018,12 +1018,12 @@ msgstr "Значок или предпросмотр «{addon}» изменён.
 #: src/olympia/constants/activity.py:367
 #, python-brace-format
 msgid "{rating} for {addon} approved."
-msgstr "{rating} для «{addon}» одобрен."
+msgstr "«{rating}» для «{addon}» одобрен."
 
 #: src/olympia/constants/activity.py:378
 #, python-brace-format
 msgid "Review {rating} for {addon} deleted."
-msgstr "Отзыв {rating} на «{addon}» удалён."
+msgstr "Отзыв «{rating}» на «{addon}» удалён."
 
 #: src/olympia/constants/activity.py:386
 #, python-brace-format
@@ -1064,7 +1064,7 @@ msgstr "Аккаунт {user} удалён."
 #: src/olympia/constants/activity.py:493
 #, python-brace-format
 msgid "{rating} for {addon} updated."
-msgstr "{rating} для «{addon}» обновлён."
+msgstr "«{rating}» для «{addon}» обновлён."
 
 #: src/olympia/constants/activity.py:501
 #, python-brace-format
@@ -1131,12 +1131,12 @@ msgstr "{version} «{addon}» включена снова."
 #: src/olympia/constants/activity.py:667
 #, python-brace-format
 msgid "{addon} {version} disabled."
-msgstr "{addon} {version} отключено."
+msgstr "{version} «{addon}» отключена."
 
 #: src/olympia/constants/activity.py:685
 #, python-brace-format
 msgid "{addon} {version} content rejected."
-msgstr "Содержимое {addon} {version} отвергнуто."
+msgstr "{version} «{addon}» — содержимое отвергнуто."
 
 #: src/olympia/constants/activity.py:686
 msgid "Content rejected"
@@ -1145,7 +1145,7 @@ msgstr "Содержимое отвергнуто"
 #: src/olympia/constants/activity.py:741
 #, python-brace-format
 msgid "{addon} {version} admin theme-review requested."
-msgstr "Запрошена проверка темы {addon} {version} администратором."
+msgstr "{version} «{addon}» получает запрос проверки темы администратором."
 
 #: src/olympia/constants/activity.py:742
 msgid "Admin theme-review requested"
@@ -1154,12 +1154,12 @@ msgstr "Запрошена проверка темы администратор�
 #: src/olympia/constants/activity.py:752
 #, python-brace-format
 msgid "{addon} was migrated from a lightweight theme."
-msgstr "{addon} прошло миграцию с лёгкой темы."
+msgstr "«{addon}» прошло миграцию с лёгкой темы."
 
 #: src/olympia/constants/activity.py:828
 #, python-brace-format
 msgid "{addon} {version} content reject scheduled."
-msgstr "Запланировано отклонение содержимого {addon} {version}."
+msgstr "{version} «{addon}» — запланировано отклонение содержимого."
 
 #: src/olympia/constants/activity.py:829
 msgid "Content reject scheduled"
@@ -1168,7 +1168,7 @@ msgstr "Запланировано отклонение содержимого"
 #: src/olympia/constants/activity.py:841
 #, python-brace-format
 msgid "{addon} {version} reject scheduled."
-msgstr "Запланировано отклонение {addon} {version}."
+msgstr "{version} «{addon}» — запланировано отклонение."
 
 #: src/olympia/constants/activity.py:842
 msgid "Rejection scheduled"
@@ -1177,7 +1177,7 @@ msgstr "Запланировано отклонение"
 #: src/olympia/constants/activity.py:853
 #, python-brace-format
 msgid "{addon} {version} automatically created and signed from {0}."
-msgstr "«{addon}» {version} автоматически создано и подписано из {0}."
+msgstr "{version} «{addon}» автоматически создана и подписана из «{0}»."
 
 #: src/olympia/constants/activity.py:854
 msgid "Version re-signed"
@@ -1186,17 +1186,17 @@ msgstr "Версия подписана повторно"
 #: src/olympia/constants/activity.py:862
 #, python-brace-format
 msgid "{addon} force-disabled"
-msgstr "{addon} принудительно отключен"
+msgstr "«{addon}» принудительно отключён"
 
 #: src/olympia/constants/activity.py:873
 #, python-brace-format
 msgid "{addon} force-enabled"
-msgstr "{addon} принудительно включен"
+msgstr "«{addon}» принудительно включён"
 
 #: src/olympia/constants/activity.py:902
 #, python-brace-format
 msgid "{addon} {version} un-rejected."
-msgstr "Отклонение {addon} {version} отменено."
+msgstr "{version} «{addon}» — отклонение отменено."
 
 #: src/olympia/constants/activity.py:903
 msgid "Un-rejected"
@@ -1205,12 +1205,12 @@ msgstr "Отклонение отменено"
 #: src/olympia/constants/activity.py:941
 #, python-brace-format
 msgid "Reply to {rating} for {addon} written."
-msgstr "Ответ на {rating} для {addon} написан."
+msgstr "Ответ на «{rating}» для «{addon}» написан."
 
 #: src/olympia/constants/activity.py:958
 #, python-brace-format
 msgid "{addon} {version} pending rejection cleared."
-msgstr "{addon} {version}, ожидающее отклонения, удалено."
+msgstr "{version} «{addon}», ожидающая отклонения, удалена."
 
 #: src/olympia/constants/activity.py:959
 msgid "Pending rejection cleared"
@@ -1219,7 +1219,7 @@ msgstr "Ожидание отклонения удалено"
 #: src/olympia/constants/activity.py:1006
 #, python-brace-format
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
-msgstr "{user_responsible} изменил слаг «{addon}» с {0} на {1}."
+msgstr "{user_responsible} изменяет слаг «{addon}» с {0} на {1}."
 
 #: src/olympia/constants/activity.py:1007
 msgid "Add-on slug changed"
@@ -1238,12 +1238,12 @@ msgstr "Коллекция {collection} восстановлена модера�
 #: src/olympia/constants/activity.py:1029
 #, python-brace-format
 msgid "Review {rating} for {addon} un-deleted."
-msgstr "Обзор {rating} для {addon} восстановлен."
+msgstr "Обзор «{rating}» для «{addon}» восстановлен."
 
 #: src/olympia/constants/activity.py:1058
 #, python-brace-format
 msgid "{addon} {version} rejected automatically after delay expired."
-msgstr "{addon} {version} отклонено автоматически по истечению задержки."
+msgstr "{version} «{addon}» отклонена автоматически по истечению задержки."
 
 #: src/olympia/constants/activity.py:1059
 msgid "Rejected automatically after delay expired"
@@ -1252,7 +1252,7 @@ msgstr "Отклонено автоматически по истечению з
 #: src/olympia/constants/activity.py:1070
 #, python-brace-format
 msgid "{addon} {version} content rejected automatically after delay expired."
-msgstr "{addon} {version} отклонено автоматически по истечению задержки."
+msgstr "{version} «{addon}» отклонена автоматически по истечению задержки."
 
 #: src/olympia/constants/activity.py:1071
 msgid "Content rejected automatically after delay expired"
@@ -1261,7 +1261,7 @@ msgstr "Содержимое отклонено автоматически по 
 #: src/olympia/constants/activity.py:1196
 #, python-brace-format
 msgid "{addon} {version} pending rejection changed."
-msgstr "Ожидание отклонения {addon} {version} изменено."
+msgstr "{version} «{addon}» — изменено ожидание отклонения."
 
 #: src/olympia/constants/activity.py:1197
 msgid "Pending rejection changed"
@@ -1270,7 +1270,7 @@ msgstr "Ожидание отклонения изменено"
 #: src/olympia/constants/activity.py:1208
 #, python-brace-format
 msgid "{addon} {version} created, to rollback from {0}."
-msgstr "Создано «{addon}» {version}, для отката с {0}."
+msgstr "{version} «{addon}» создана, для отката с [{0}]."
 
 #: src/olympia/constants/activity.py:1209
 msgid "Version rollback"
@@ -1279,7 +1279,7 @@ msgstr "Откат версии"
 #: src/olympia/constants/activity.py:1216
 #, python-brace-format
 msgid "{addon} rollback from {version} failed."
-msgstr "Откат {addon} с {version} не удался."
+msgstr "Откат «{addon}» с [{version}] не удался."
 
 #: src/olympia/constants/activity.py:1217
 msgid "Version rollback failure"
@@ -1288,7 +1288,7 @@ msgstr "Не удалось откатить версию"
 #: src/olympia/constants/activity.py:1246
 #, python-brace-format
 msgid "{addon} {0} property edited."
-msgstr "Свойство {addon} {0} отредактировано."
+msgstr "Свойство «{addon}» — {0} отредактировано."
 
 #: src/olympia/constants/activity.py:1254
 #, python-brace-format
@@ -2704,12 +2704,12 @@ msgstr "Предварительный просмотр всё ещё генер
 #: src/olympia/devhub/templates/devhub/addons/invitation.html:3 src/olympia/users/utils.py:99
 #, python-brace-format
 msgid "Author invitation for {addon_name}"
-msgstr "Приглашение автора {addon_name}"
+msgstr "Приглашение автора «{addon_name}»"
 
 #: src/olympia/devhub/templates/devhub/addons/invitation.html:18
 #, python-brace-format
 msgid "You have been invited to become an author of {addon_name}."
-msgstr "Вас пригласили стать автором {addon_name}."
+msgstr "Вас пригласили стать автором «{addon_name}»."
 
 #: src/olympia/devhub/templates/devhub/addons/invitation.html:21
 msgid "Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website. "
@@ -2718,7 +2718,7 @@ msgstr "Принятие приглашения даст вам доступ к 
 #: src/olympia/devhub/templates/devhub/addons/invitation.html:22
 #, python-brace-format
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
-msgstr "Нажмите кнопку «Принять» ниже, чтобы подтвердить, что вы хотите быть добавлены в качестве автора для {addon_name}."
+msgstr "Нажмите кнопку «Принять» ниже, чтобы подтвердить, что вы хотите быть добавлены в качестве автора «{addon_name}»."
 
 #: src/olympia/devhub/templates/devhub/addons/invitation.html:24 src/olympia/devhub/templates/devhub/includes/agreement.html:36
 msgid "Accept"
