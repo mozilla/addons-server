@@ -41,7 +41,7 @@ msgstr "Профиль пользователя"
 #: src/olympia/abuse/models.py:1474
 #, python-brace-format
 msgid "\"{}\" for {}"
-msgstr "\"{}\" для {}"
+msgstr "«{}» для {}"
 
 #: src/olympia/abuse/serializers.py:32
 #, python-brace-format
@@ -110,7 +110,7 @@ msgid ""
 "Thank you for your attention.\n"
 msgstr ""
 "\n"
-"Благодарим вас за сообщение о %(name)s в дополнениях Mozilla, а также за предоставление дополнительной информации о вашей обеспокоенности.\n"
+"Благодарим вас за сообщение о %(name)s на сайте дополнений Mozilla, а также за предоставление дополнительной информации о вашей обеспокоенности.\n"
 "\n"
 "После рассмотрения вашей апелляции, мы установили, что предыдущее решение о том, что это содержимое не нарушает политику Mozilla (%(policy_document_url)s), было верным. На основе этого определения мы отклонили вашу апелляцию и не будем предпринимать никаких действий для вашего аккаунта или контента.\n"
 "%(manual_reasoning_text)s.\n"
@@ -126,7 +126,7 @@ msgid ""
 "After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, we have removed the content, and notified the user of our action.\n"
 msgstr ""
 "\n"
-"Благодарим вас за сообщение о %(name)s в Дополнениях Mozilla, а также за предоставление дополнительной информации о вашей обеспокоенности.\n"
+"Благодарим вас за сообщение о %(name)s на сайте дополнений Mozilla, а также за предоставление дополнительной информации о вашей обеспокоенности.\n"
 "\n"
 "После рассмотрения вашей апелляции, мы установили, что наше предыдущее решение о том, что это содержимое не нарушает политику Mozilla (%(policy_document_url)s), было неверным. На основе этого определения, мы удалили содержимое и уведомили пользователя о нашем действии.\n"
 
@@ -139,7 +139,7 @@ msgid ""
 "After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, we have requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
 msgstr ""
 "\n"
-"Благодарим вас за сообщение о %(name)s в дополнениях Mozilla, а также за предоставление дополнительной информации о вашей обеспокоенности.\n"
+"Благодарим вас за сообщение о %(name)s на сайте дополнений Mozilla, а также за предоставление дополнительной информации о вашей обеспокоенности.\n"
 "\n"
 "После рассмотрения вашей апелляции, мы установили, что наше предыдущее решение о том, что это содержимое не нарушает политику Mozilla (%(policy_document_url)s), было неверным. На основе этого определения, мы попросили разработчика внести изменения. Если они не обновят свой контент для исправления нарушения, мы его удалим.\n"
 
@@ -152,7 +152,7 @@ msgid ""
 "We reviewed your report and the content in question, and found that it does not violate Mozilla's policies (%(policy_document_url)s).  It will therefore not be subject to any moderation action.\n"
 msgstr ""
 "\n"
-"Благодарим вас за отчет о %(name)s в %(target_url)s.\n"
+"Благодарим вас за сообщение о %(name)s на сайте %(target_url)s.\n"
 "\n"
 "Мы рассмотрели ваше сообщение и данное содержимое и обнаружили, что оно не нарушает политику Mozilla (%(policy_document_url)s). Поэтому оно не будет подвергаться каким-либо действиям модерации.\n"
 
@@ -174,7 +174,7 @@ msgid ""
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
 "\n"
-"Спасибо за сообщение о следующем дополнении на Дополнениях Mozilla: %(name)s.\n"
+"Спасибо за сообщение о следующем дополнении на сайте дополнений Mozilla: %(name)s.\n"
 "\n"
 "Мы рассмотрели ваше сообщение и данное содержимое, и обнаружили, что оно нарушает политику Mozilla (%(policy_document_url)s), и поэтому удалили это содержимое.\n"
 
@@ -187,7 +187,7 @@ msgid ""
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
 msgstr ""
 "\n"
-"Спасибо за сообщение о следующем дополнении на Mozilla Add-ons: %(name)s.\n"
+"Спасибо за сообщение о следующем дополнении на сайте дополнений Mozilla: %(name)s.\n"
 "\n"
 "Мы рассмотрели ваше сообщение и рассматриваемое содержимое и обнаружили, что оно нарушает политику Mozilla (%(policy_document_url)s), и поэтому попросили разработчика внести изменения. Если они не обновят свой контент для исправления нарушения, мы его удалим.\n"
 
@@ -200,7 +200,7 @@ msgid ""
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
 "\n"
-"Спасибо за отчет о следующей коллекции Дополнений Mozilla: %(name)s.\n"
+"Спасибо за сообщение о следующей коллекции на сайте дополнений Mozilla: %(name)s.\n"
 "\n"
 "Мы рассмотрели ваше сообщение и данное содержимое, и обнаружили, что оно нарушает политику Mozilla (%(policy_document_url)s), и поэтому удалили это содержимое.\n"
 
@@ -213,7 +213,7 @@ msgid ""
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
 "\n"
-"Благодарим вас за отчет о следующем рейтинге Дополнений Mozilla: %(name)s.\n"
+"Благодарим вас за сообщение о следующем рейтинге на сайте дополнений Mozilla: %(name)s.\n"
 "\n"
 "Мы рассмотрели ваше сообщение и данное содержимое, и обнаружили, что оно нарушает политику Mozilla (%(policy_document_url)s), и поэтому удалили это содержимое.\n"
 
@@ -226,7 +226,7 @@ msgid ""
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
 "\n"
-"Благодарим вас за отчет о следующем профиле пользователя на сайте дополнений Mozilla: %(name)s.\n"
+"Благодарим вас за сообщение о следующем профиле пользователя на сайте дополнений Mozilla: %(name)s.\n"
 "\n"
 "Мы рассмотрели ваше сообщение и данное содержимое, и обнаружили, что оно нарушает политику Mozilla (%(policy_document_url)s), и поэтому удалили это содержимое.\n"
 
@@ -249,7 +249,7 @@ msgstr "Изображения не могут быть анимированы."
 #: src/olympia/accounts/serializers.py:185 src/olympia/devhub/views.py:1036
 #, python-format
 msgid "Please use images smaller than %dMB."
-msgstr "Пожалуйста, используйте изображения менее %dМБ."
+msgstr "Пожалуйста, используйте изображения менее %d МБ."
 
 #: src/olympia/accounts/views.py:193
 msgid "Need help?"
@@ -360,7 +360,7 @@ msgstr "Опубликованное"
 
 #: src/olympia/addons/models.py:2560
 msgid "Add-on and collection paths need to end with \"/\""
-msgstr "Пути дополнений и подборок должны заканчиваться \"/\""
+msgstr "Пути дополнений и подборок должны заканчиваться «/»"
 
 #: src/olympia/addons/serializers.py:332
 msgid "Built in licenses can not be updated."
@@ -378,7 +378,7 @@ msgstr "Файл уже отключён."
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
-"Последнюю утвержденную версию этого дополнения %s нельзя удалить, поскольку предыдущая версия не была утверждена для продвижения %s. Пожалуйста, свяжитесь с администраторами AMO, если вам нужна "
+"Последнюю одобренную версию этого дополнения «%s» нельзя удалить, поскольку предыдущая версия не была одобрена для продвижения «%s». Пожалуйста, свяжитесь с администраторами AMO, если вам нужна "
 "помощь."
 
 #: src/olympia/addons/serializers.py:574
@@ -430,7 +430,7 @@ msgstr "Откат доступен только для версии %s на э�
 
 #: src/olympia/addons/serializers.py:1907
 msgid "Only approved versions can be rolled back, except the most recent version."
-msgstr "Можно откатить только утверждённые версии, кроме самой последней версии."
+msgstr "Можно откатить только одобренные версии, кроме самой последней версии."
 
 #: src/olympia/addons/utils.py:50
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -500,11 +500,11 @@ msgstr "Инструменты"
 
 #: src/olympia/amo/context_processors.py:39
 msgid "My Profile"
-msgstr "Мой Профиль"
+msgstr "Мой профиль"
 
 #: src/olympia/amo/context_processors.py:43
 msgid "Account Settings"
-msgstr "Настройки учётной записи"
+msgstr "Настройки аккаунта"
 
 #: src/olympia/amo/context_processors.py:46
 msgid "My Collections"
@@ -534,7 +534,7 @@ msgstr "Центр разработки"
 
 #: src/olympia/amo/context_processors.py:79 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:20 src/olympia/devhub/views.py:2121
 msgid "Manage API Keys"
-msgstr "Управление API-ключами."
+msgstr "Управление API-ключами"
 
 #: src/olympia/amo/context_processors.py:85
 msgid "Reviewer Tools"
@@ -829,86 +829,86 @@ msgstr "Ограничено"
 #: src/olympia/constants/activity.py:25
 #, python-brace-format
 msgid "{addon} was created."
-msgstr "Был создан {addon}."
+msgstr "Был создан «{addon}»."
 
 #: src/olympia/constants/activity.py:35
 #, python-brace-format
 msgid "{addon} properties edited."
-msgstr "Свойства {addon} отредактированы."
+msgstr "Свойства «{addon}» отредактированы."
 
 #: src/olympia/constants/activity.py:42
 #, python-brace-format
 msgid "{addon} description edited."
-msgstr "Описание {addon} отредактировано."
+msgstr "Описание «{addon}» отредактировано."
 
 #: src/olympia/constants/activity.py:49
 #, python-brace-format
 msgid "Categories edited for {addon}."
-msgstr "Категории для {addon} отредактированы."
+msgstr "Категории для «{addon}» отредактированы."
 
 #. L10n: {0} is the user role.
 #: src/olympia/constants/activity.py:57
 #, python-brace-format
 msgid "{user} ({0}) added to {addon}."
-msgstr "{user} ({0}) добавлен в {addon}."
+msgstr "{user} ({0}) добавлен в «{addon}»."
 
 #. L10n: {0} is the user role.
 #: src/olympia/constants/activity.py:67
 #, python-brace-format
 msgid "{user} ({0}) removed from {addon}."
-msgstr "{user} ({0}) удалён из {addon}."
+msgstr "{user} ({0}) удалён из «{addon}»."
 
 #: src/olympia/constants/activity.py:76
 #, python-brace-format
 msgid "Contributions for {addon}."
-msgstr "Взносы для {addon}."
+msgstr "Взносы для «{addon}»."
 
 #: src/olympia/constants/activity.py:81
 #, python-brace-format
 msgid "{addon} disabled."
-msgstr "{addon} отключено."
+msgstr "«{addon}» отключено."
 
 #: src/olympia/constants/activity.py:88
 #, python-brace-format
 msgid "{addon} enabled."
-msgstr "{addon} включено."
+msgstr "«{addon}» включено."
 
 #. L10n: {status} is the status
 #: src/olympia/constants/activity.py:96
 #, python-brace-format
 msgid "{addon} status changed to {status}."
-msgstr "Статус {addon} изменён на {status}."
+msgstr "Статус «{addon}» изменён на «{status}»."
 
 #: src/olympia/constants/activity.py:103
 #, python-brace-format
 msgid "{version} added to {addon}."
-msgstr "В {addon} добавлена версия {version}."
+msgstr "{version} добавлена в «{addon}»."
 
 #: src/olympia/constants/activity.py:112
 #, python-brace-format
 msgid "{version} edited for {addon}."
-msgstr "{version} отредактирована для {addon}."
+msgstr "{version} отредактирована для «{addon}»."
 
 #. L10n: {0} is the version number
 #: src/olympia/constants/activity.py:121
 #, python-brace-format
 msgid "Version {0} deleted from {addon}."
-msgstr "Версия {0} удалена из {addon}."
+msgstr "Версия {0} удалена из «{addon}»."
 
 #: src/olympia/constants/activity.py:129
 #, python-brace-format
 msgid "File {file} added to {version} of {addon}."
-msgstr "Файл {file} добавлен в {version} {addon}."
+msgstr "{version} — файл {file} добавлен в «{addon}»."
 
 #: src/olympia/constants/activity.py:141
 #, python-brace-format
 msgid "File {0} deleted from {version} of {addon}."
-msgstr "Файл {0} удалён из версии {version} дополнения {addon}."
+msgstr "{version} — файл {0} удалён из «{addon}»."
 
 #: src/olympia/constants/activity.py:147
 #, python-brace-format
 msgid "{addon} {version} approved."
-msgstr "{addon} {version} одобрено."
+msgstr "{version} «{addon}» одобрена."
 
 #: src/olympia/constants/activity.py:148 src/olympia/constants/base.py:25 src/olympia/constants/base.py:32
 msgid "Approved"
@@ -917,7 +917,7 @@ msgstr "Одобрено"
 #: src/olympia/constants/activity.py:159
 #, python-brace-format
 msgid "{addon} {version} given preliminary review."
-msgstr "{addon} {version} прошло предварительную проверку."
+msgstr "{version} «{addon}» прошла предварительную проверку."
 
 #: src/olympia/constants/activity.py:160
 msgid "Preliminarily approved"
@@ -926,7 +926,7 @@ msgstr "Предварительно одобрено"
 #: src/olympia/constants/activity.py:171
 #, python-brace-format
 msgid "{addon} {version} rejected."
-msgstr "{addon} {version} отвергнуто."
+msgstr "{version} «{addon}» отвергнута."
 
 #: src/olympia/constants/activity.py:172 src/olympia/files/models.py:323
 msgid "Rejected"
@@ -935,7 +935,7 @@ msgstr "Отклонено"
 #: src/olympia/constants/activity.py:183
 #, python-brace-format
 msgid "{addon} {version} retained."
-msgstr "{addon} {version} оставлено."
+msgstr "{version} «{addon}» оставлена."
 
 #: src/olympia/constants/activity.py:184
 msgid "Retained"
@@ -944,7 +944,7 @@ msgstr "Сохранено"
 #: src/olympia/constants/activity.py:207
 #, python-brace-format
 msgid "{addon} {version} review requested."
-msgstr "запрошена проверка {addon} {version} ."
+msgstr "{version} «{addon}» получает запрос проверки."
 
 #: src/olympia/constants/activity.py:208
 msgid "Review requested"
@@ -953,7 +953,7 @@ msgstr "Запрошена рецензия"
 #: src/olympia/constants/activity.py:217
 #, python-brace-format
 msgid "{addon} {version} more information requested."
-msgstr "Запрошено больше информации о {addon} {version}."
+msgstr "{version} «{addon}» получает запрос на дополнительную информацию."
 
 #: src/olympia/constants/activity.py:218
 msgid "More information requested"
@@ -966,27 +966,27 @@ msgstr "Ваше дополнение отмечено для проверки �
 #: src/olympia/constants/activity.py:258
 #, python-brace-format
 msgid "{tag} added to {addon}."
-msgstr "{tag} добавлена в {addon}."
+msgstr "Метка «{tag}» добавлена в «{addon}»."
 
 #: src/olympia/constants/activity.py:265
 #, python-brace-format
 msgid "{tag} removed from {addon}."
-msgstr "{tag} удалена из {addon}."
+msgstr "Метка «{tag}» удалена из «{addon}»."
 
 #: src/olympia/constants/activity.py:272
 #, python-brace-format
 msgid "{addon} added to {collection}."
-msgstr "{addon} добавлен в {collection}."
+msgstr "«{addon}» добавлено в подборку «{collection}»."
 
 #: src/olympia/constants/activity.py:279
 #, python-brace-format
 msgid "{addon} removed from {collection}."
-msgstr "{addon} удалено из {collection}."
+msgstr "«{addon}» удалено из подборки «{collection}»."
 
 #: src/olympia/constants/activity.py:286
 #, python-brace-format
 msgid "{rating} for {addon} written."
-msgstr "{rating} для {addon} оставлен."
+msgstr "{rating} для «{addon}» оставлен."
 
 #. L10n: {0} is the application, {1} is the version of the app
 #: src/olympia/constants/activity.py:327
@@ -998,32 +998,32 @@ msgstr "{0} {1} добавлено."
 #: src/olympia/constants/activity.py:335
 #, python-brace-format
 msgid "{user} role changed to {0} for {addon}."
-msgstr "Роль {user} изменена на {0} для {addon}."
+msgstr "Роль {user} изменена на [{0}] для «{addon}»."
 
 #: src/olympia/constants/activity.py:346
 #, python-brace-format
 msgid "{addon} is now licensed under {0}."
-msgstr "{addon} теперь лицензировано на условиях {0}."
+msgstr "«{addon}» теперь лицензировано на условиях {0}."
 
 #: src/olympia/constants/activity.py:353
 #, python-brace-format
 msgid "{addon} policy changed."
-msgstr "политика {addon} изменена."
+msgstr "Политика «{addon}» изменена."
 
 #: src/olympia/constants/activity.py:360
 #, python-brace-format
 msgid "{addon} icon or previews changed."
-msgstr "Значок {addon} или превью изменён."
+msgstr "Значок или предпросмотр «{addon}» изменён."
 
 #: src/olympia/constants/activity.py:367
 #, python-brace-format
 msgid "{rating} for {addon} approved."
-msgstr "{rating} для {addon} одобрен."
+msgstr "{rating} для «{addon}» одобрен."
 
 #: src/olympia/constants/activity.py:378
 #, python-brace-format
 msgid "Review {rating} for {addon} deleted."
-msgstr "Отзыв {rating} на {addon} удалён."
+msgstr "Отзыв {rating} на «{addon}» удалён."
 
 #: src/olympia/constants/activity.py:386
 #, python-brace-format
@@ -1046,7 +1046,7 @@ msgstr "Пароль изменён."
 #: src/olympia/constants/activity.py:408
 #, python-brace-format
 msgid "{addon} {version} approved but waiting to be made public."
-msgstr "{addon} {version} одобрено, но ждет, чтобы стать публичным."
+msgstr "{version} «{addon}» одобрена, но ждёт, чтобы стать публичной."
 
 #: src/olympia/constants/activity.py:409
 msgid "Approved but waiting"
@@ -1064,17 +1064,17 @@ msgstr "Аккаунт {user} удалён."
 #: src/olympia/constants/activity.py:493
 #, python-brace-format
 msgid "{rating} for {addon} updated."
-msgstr "{rating} для {addon} обновлён."
+msgstr "{rating} для «{addon}» обновлён."
 
 #: src/olympia/constants/activity.py:501
 #, python-brace-format
 msgid "{addon} reviewed."
-msgstr "{addon} проверено."
+msgstr "«{addon}» проверено."
 
 #: src/olympia/constants/activity.py:536
 #, python-brace-format
 msgid "{addon} unlisted."
-msgstr "{addon} скрыто."
+msgstr "«{addon}» теперь только по ссылке."
 
 #. L10n: {0} is the add-on GUID.
 #: src/olympia/constants/activity.py:560
@@ -1090,7 +1090,7 @@ msgstr "{file} был подписан."
 #: src/olympia/constants/activity.py:614
 #, python-brace-format
 msgid "Reply by developer on {addon} {version}."
-msgstr "Ответ разработчика на {addon} {version}."
+msgstr "{version} «{addon}» получает ответ разработчика."
 
 #: src/olympia/constants/activity.py:615
 msgid "Developer Reply"
@@ -1099,7 +1099,7 @@ msgstr "Ответ разработчика"
 #: src/olympia/constants/activity.py:623
 #, python-brace-format
 msgid "Reply by reviewer on {addon} {version}."
-msgstr "Ответ проверяющего на {addon} {version}."
+msgstr "{version} «{addon}» получает ответ проверяющего."
 
 #: src/olympia/constants/activity.py:624
 msgid "Reviewer Reply"
@@ -1108,7 +1108,7 @@ msgstr "Ответ проверяющего"
 #: src/olympia/constants/activity.py:631
 #, python-brace-format
 msgid "Notes for reviewers changed for {addon} {version}."
-msgstr "Примечания для проверяющих изменены для {addon} {version}."
+msgstr "{version} «{addon}» получает изменения в примечаниях для проверяющих."
 
 #: src/olympia/constants/activity.py:632
 msgid "Notes for reviewers changed"
@@ -1223,7 +1223,7 @@ msgstr "{user_responsible} изменил слаг «{addon}» с {0} на {1}."
 
 #: src/olympia/constants/activity.py:1007
 msgid "Add-on slug changed"
-msgstr "Изменена ссылка на дополнение"
+msgstr "Изменён слаг дополнения"
 
 #: src/olympia/constants/activity.py:1014
 #, python-brace-format
@@ -4357,7 +4357,7 @@ msgstr "Создан %(created)s и его статус изменён %(status_
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html:9
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s"
-msgstr "Создан %(created)s и его статус изменён на %(status)s"
+msgstr "Создан %(created)s и его статус изменён на «%(status)s»"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:3
 msgid "Status & Versions"
@@ -4523,7 +4523,7 @@ msgstr "Файлы, ожидающие проверки, будут отключ
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:343
 msgid "Are you sure you wish to hide your add-on?"
-msgstr "Вы уверены, что хотите скрыть свое дополнение?"
+msgstr "Вы уверены, что хотите скрыть своё дополнение?"
 
 #. L10n: first parameter is the number of errors
 #: src/olympia/devhub/templatetags/jinja_helpers.py:78
@@ -6030,7 +6030,7 @@ msgstr "Новые рекомендуемые расширения"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1101
 msgid "Reddit revolutionized"
-msgstr "Reddit произвел революцию"
+msgstr "Reddit произвёл революцию"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1103
@@ -6147,7 +6147,7 @@ msgstr "Расширения с тегами “{tag}”"
 #: src/olympia/discovery/strings.jinja2:1159
 #, python-brace-format
 msgid "See more extensions tagged \"{tag}\""
-msgstr "Больше расширений с тегом \"{tag}\""
+msgstr "Больше расширений с меткой «{tag}»"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1162
@@ -6483,7 +6483,7 @@ msgstr "Эта версия дополнения не существует ил�
 
 #: src/olympia/ratings/serializers.py:270
 msgid "You can't leave a review on your own add-on."
-msgstr "Нельзя оставить отзыв на свое дополнение."
+msgstr "Нельзя оставить отзыв на своё дополнение."
 
 #: src/olympia/ratings/serializers.py:285
 msgid "You can't leave more than one review for the same version of an add-on."
@@ -6637,7 +6637,7 @@ msgstr "по Медиа"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:17
 msgid "by Content"
-msgstr "по Содержимому"
+msgstr "по содержимому"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:20
 msgid "by Campaign"
@@ -6703,7 +6703,7 @@ msgstr "Панель статистики :: Дополнения для {0}"
 #: src/olympia/stats/templates/stats/stats.html:32 src/olympia/stats/templates/stats/stats.html:35
 #, python-brace-format
 msgid "Statistics for {0}"
-msgstr "Статистика для {0}"
+msgstr "Статистика «{0}»"
 
 #: src/olympia/stats/templates/stats/stats.html:38
 msgid "Statistics Dashboard"
@@ -6831,7 +6831,7 @@ msgstr "В среднем <b>{0}</b> ежедневных пользовател
 
 #: src/olympia/stats/templates/stats/reports/overview.html:21
 msgid "Top Applications"
-msgstr "Топ приложений"
+msgstr "Лучшие приложения"
 
 #: src/olympia/stats/templates/stats/reports/overview.html:25
 msgid "See more applications&hellip;"
@@ -7213,4 +7213,4 @@ msgstr "Версия {version_string} уже существует."
 #: src/olympia/versions/utils.py:220
 #, python-brace-format
 msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
-msgstr "Версия {version_string} должна быть больше, чем предыдущая утвержденная версия {previous_version_string}."
+msgstr "Версия {version_string} должна быть больше, чем предыдущая одобренная версия {previous_version_string}."
