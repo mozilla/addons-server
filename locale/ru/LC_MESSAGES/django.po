@@ -1117,7 +1117,7 @@ msgstr "Примечания для проверяющих изменены"
 #: src/olympia/constants/activity.py:640
 #, python-brace-format
 msgid "Source code uploaded for {addon} {version}."
-msgstr "Загружен исходный код для {addon} {version}."
+msgstr "{version} «{addon}» — загружен исходный код."
 
 #: src/olympia/constants/activity.py:641
 msgid "Source code uploaded"
@@ -1126,7 +1126,7 @@ msgstr "Исходный код загружен"
 #: src/olympia/constants/activity.py:660
 #, python-brace-format
 msgid "{addon} {version} re-enabled."
-msgstr "{addon} {version} включено снова."
+msgstr "{version} «{addon}» включена снова."
 
 #: src/olympia/constants/activity.py:667
 #, python-brace-format
@@ -1714,11 +1714,11 @@ msgstr "Только Стандартная общественная лицен�
 
 #: src/olympia/constants/licenses.py:43
 msgid "GNU Lesser General Public License v2.1 only"
-msgstr "Только Меньшая Стандартная общественная лицензия GNU v2.1"
+msgstr "Только Меньшая стандартная общественная лицензия GNU v2.1"
 
 #: src/olympia/constants/licenses.py:50
 msgid "GNU Lesser General Public License v3.0 only"
-msgstr "Только Меньшая Стандартная общественная лицензия GNU v3.0"
+msgstr "Только Меньшая стандартная общественная лицензия GNU v3.0"
 
 #: src/olympia/constants/licenses.py:57
 msgid "GNU Affero General Public License v3.0 only"
@@ -1734,7 +1734,7 @@ msgstr "Лицензия ISC"
 
 #: src/olympia/constants/licenses.py:78
 msgid "BSD 2-Clause \"Simplified\" License"
-msgstr "\"Упрощённая\" лицензия BSD из двух пунктов"
+msgstr "«Упрощённая» лицензия BSD из двух пунктов"
 
 #: src/olympia/constants/licenses.py:85
 msgid "Mozilla Public License 1.1"
@@ -1914,9 +1914,9 @@ msgstr "Домен URL должен быть одним из [%s]."
 #, python-brace-format
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
-msgstr[0] "У вас на {0} метку больше, чем это допустимо."
-msgstr[1] "У вас на {0} метки больше, чем это допустимо."
-msgstr[2] "У вас на {0} меток больше, чем это допустимо."
+msgstr[0] "У вас на {0} метку больше допустимых."
+msgstr[1] "У вас на {0} метки больше допустимых."
+msgstr[2] "У вас на {0} меток больше допустимых."
 
 #: src/olympia/devhub/forms.py:327
 #, python-format
@@ -2158,7 +2158,7 @@ msgstr "Валидация сгенерировала слишком много 
 #: src/olympia/devhub/utils.py:207
 #, python-brace-format
 msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
-msgstr "Это дополнение не является темой. Используйте страницу <a href=\"{link}\">Отправить новое дополнение</a>, чтобы отправлять расширения."
+msgstr "Это дополнение не является темой. Используйте страницу <a href=\"{link}\">отправки нового дополнения</a>, чтобы отправлять расширения."
 
 #: src/olympia/devhub/views.py:115
 msgid "Updated"
@@ -2394,7 +2394,7 @@ msgstr "Создан новый ключ API"
 
 #: src/olympia/devhub/views.py:2143
 msgid "API key revoked"
-msgstr "ключ API отозван"
+msgstr "Ключ API отозван"
 
 #: src/olympia/devhub/views.py:2203
 msgid "Verify email"
@@ -2428,16 +2428,16 @@ msgstr "Пройдите наш быстрый опрос"
 #: src/olympia/devhub/templates/devhub/index.html:21 src/olympia/templates/base.html:17
 #, python-brace-format
 msgid "{0} Add-ons"
-msgstr "{0} Дополнения"
+msgstr "Дополнения {0}"
 
 #: src/olympia/devhub/templates/devhub/nav.html:2
 msgid "Return to the DevHub homepage"
-msgstr "Вернуться на домашнюю страницу DevHub"
+msgstr "Вернуться на домашнюю страницу Центра разработки"
 
 #. Text in small tag is smaller and on its own line.
 #: src/olympia/devhub/templates/devhub/nav.html:4
 msgid "<small>Add-on</small> Developer Hub"
-msgstr "Центр разработчиков <small>Дополнений</small>"
+msgstr "Центр разработчиков <small>дополнений</small>"
 
 #: src/olympia/devhub/templates/devhub/nav.html:21
 msgid "more add-ons..."
@@ -2809,10 +2809,7 @@ msgstr "Локаль по умолчанию"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:56
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
-msgstr ""
-"Информация о вашем дополнении, отображаемая в этой локали,\n"
-"                        хотя вы можете переопределять её переводом на другой язык.\n"
-"                        Это относится только к опубликованным дополнениям."
+msgstr "Информация о вашем дополнении, отображаемая в этой локали, хотя вы можете переопределять её переводом на другой язык. Это относится только к опубликованным дополнениям."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:72
 msgid "Homepage"
@@ -2823,10 +2820,8 @@ msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
 "ons."
 msgstr ""
-"Если у вашего дополнения другая домашняя страница, введите её\n"
-"                          адрес здесь. Если ваш сайт переведён на другие\n"
-"                          языки, можно добавить переводы в это поле.\n"
-"                          Это относится только к опубликованным дополнениям."
+"Если у вашего дополнения другая домашняя страница, введите её адрес здесь. Если ваш сайт переведён на другие языки, можно добавить переводы в это поле. Это относится только к опубликованным "
+"дополнениям."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:96 src/olympia/devhub/templates/devhub/addons/edit/describe.html:260
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:84 src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:174
@@ -2852,7 +2847,7 @@ msgstr "Опишите дополнение"
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:18
 #, python-brace-format
 msgid "Describe {0}"
-msgstr "Опишите {0}"
+msgstr "Опишите «{0}»"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:22
 msgid "Name and Summary"
@@ -2889,7 +2884,7 @@ msgstr "Просмотреть страницу продукта"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:107 src/olympia/devhub/templates/devhub/addons/submit/describe.html:91
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
-msgstr "Это резюме должно четко объяснять, что делает ваше дополнение. Оно будет показано в листинге и при поиске, и оно будет использоваться проверяющими при тестировании вашего дополнения."
+msgstr "Эта сводка должна чётко объяснять, что делает ваше дополнение. Она будет показана в списках и при поиске, и она будет использоваться проверяющими при тестировании вашего дополнения."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:128
 msgid "Description"
@@ -2944,11 +2939,8 @@ msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
 " for listed add-ons."
 msgstr ""
-"Если вы хотите отобразить адрес электронной почты для поддержки,\n"
-"                          введите его здесь. Если у вас есть различные адреса\n"
-"                          для каждого языка, то можно добавить несколько\n"
-"                          локализаций для этого поля. Это относится только к\n"
-"                          опубликованным дополнениям."
+"Если вы хотите отобразить адрес электронной почты для поддержки, введите его здесь. Если у вас есть различные адреса для каждого языка, то можно добавить несколько локализаций для этого поля. Это "
+"относится только к опубликованным дополнениям."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:234
 msgid "Website"
@@ -2959,10 +2951,8 @@ msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
 "listed add-ons."
 msgstr ""
-"Если у вашего дополнения есть сайт поддержки или форум, введите\n"
-"                          его адрес здесь. Если ваш сайт переведён на\n"
-"                          другие языки, для этого поля можно добавить несколько локализаций.\n"
-"                          Это относится только к опубликованным дополнениям."
+"Если у вашего дополнения есть сайт поддержки или форум, введите его адрес здесь. Если ваш сайт переведён на другие языки, для этого поля можно добавить несколько локализаций. Это относится только к "
+"опубликованным дополнениям."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/media.html:3
 msgid "Images"
@@ -2976,7 +2966,7 @@ msgstr "Технические детали"
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:16
 #, python-brace-format
 msgid "Technical Details for {0}"
-msgstr "Технические детали для {0}"
+msgstr "Технические детали для «{0}»"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:22
 msgid "Developer Comments"
@@ -3017,7 +3007,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:10
 #, python-brace-format
 msgid "Add-on Media for {0}"
-msgstr "Медиа дополнения для {0}"
+msgstr "Медиа дополнения для «{0}»"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:15
 msgid "Add-on icon"
@@ -3139,7 +3129,7 @@ msgstr "Ваше дополнение будет выпущено на усло�
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:60
 msgid "Select a different license."
-msgstr "Выберите другую лицензию."
+msgstr "Выбрать другую лицензию."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:64
 msgid "More information on Creative Commons licenses"
@@ -3197,7 +3187,7 @@ msgstr "При удалении вашего дополнения будут н�
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:6
 msgid "All versions will be Restricted, which will disable and prevent any further installation in Firefox. Existing users can choose to re-enable the add-on."
-msgstr "Все версии будут Заблокированы, что отключит и предотвратит любую дальнейшую установку в Firefox. Существующие пользователи могут снова включить дополнение."
+msgstr "Все версии будут ограничены, что отключит и предотвратит любую дальнейшую установку в Firefox. Существующие пользователи могут снова включить дополнение."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:11
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
@@ -3445,12 +3435,12 @@ msgstr "Для начала выберите способ распростран
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html:19
 #, python-format
 msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing</a> on Firefox Extension Workshop."
-msgstr "Для получения дополнительной информации прочитайте <a %(a_attrs)s>Распространение и подписание дополнений</a> в Firefox Extension Workshop."
+msgstr "Для получения дополнительной информации прочитайте <a %(a_attrs)s>распространение и подписание дополнений</a> в мастерской расширений Firefox."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html:24
 #, python-format
 msgid "All add-ons must comply with <a %(a_attrs)s>Mozilla’s Add-on Policies</a> and are subject to manual review at any time after submission."
-msgstr "Все дополнения должны соответствовать <a %(a_attrs)s>Политикам Mozilla в отношении дополнений</a> и подлежат ручной проверке в любое время после отправки."
+msgstr "Все дополнения должны соответствовать <a %(a_attrs)s>политикам Mozilla в отношении дополнений</a> и подлежат ручной проверке в любое время после отправки."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:4
 msgid "Submission Complete"
@@ -3584,7 +3574,7 @@ msgstr "Максимальный допустимый размер файла �
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:72
 #, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
-msgstr "Для получения дополнительной информации, пожалуйста, прочитайте <a %(a_attrs)s>Отправка исходного кода</a> в Firefox Extension Workshop."
+msgstr "Для получения дополнительной информации, пожалуйста, прочитайте <a %(a_attrs)s>отправку исходного кода</a> в мастерской расширений Firefox."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:77
 msgid "Upload source code:"
@@ -3673,7 +3663,7 @@ msgstr "Выровнена по верхнему правому краю"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:52
 msgid "Select a different header image"
-msgstr "Выберите другое верхнее изображение."
+msgstr "Выбрать другое верхнее изображение"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:55
 msgid "Select colors for your theme"
@@ -3946,7 +3936,7 @@ msgstr "Политики проверки и правила"
 
 #: src/olympia/devhub/templates/devhub/includes/agreement.html:13
 msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "Я прочитал и принимаю это соглашение, а также правила и политики"
+msgstr "Мною прочитано и принято это соглашение, а также правила и политики"
 
 #: src/olympia/devhub/templates/devhub/includes/agreement.html:18
 msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
@@ -3955,11 +3945,11 @@ msgstr "Ваш аккаунт должен иметь отображаемое �
 #: src/olympia/devhub/templates/devhub/includes/agreement.html:38
 #, python-brace-format
 msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr "или<a href=\"{0}\">Отменить</a>"
+msgstr "или <a href=\"{0}\">отменить</a>"
 
 #: src/olympia/devhub/templates/devhub/includes/agreement.html:44
 msgid "More information on Developer Accounts"
-msgstr "Больше информации об Аккаунте разработчика"
+msgstr "Больше информации об аккаунте разработчика"
 
 #: src/olympia/devhub/templates/devhub/includes/android_compatibility_modal.html:3
 msgid "Firefox for Android compatibility"
@@ -4094,7 +4084,7 @@ msgstr "Узнайте больше о политике проверки исх�
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/banner.html:4
 msgid "Build best-in-class extensions and themes"
-msgstr "Создавайте лучшие в своем классе расширения и темы"
+msgstr "Создавайте лучшие в своём классе расширения и темы"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/banner.html:7 src/olympia/devhub/templates/devhub/new-landing/components/overview.html:5
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
@@ -4103,7 +4093,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/banner.html:13
 msgid "Visit the Firefox Extension Workshop"
-msgstr "Посетите Мастерскую расширений Firefox"
+msgstr "Посетите мастерскую расширений Firefox"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:4
 msgid "Connect with us"
@@ -4127,7 +4117,7 @@ msgstr "Будьте в курсе новостей и событий для р�
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:24 src/olympia/devhub/templates/devhub/new-landing/components/connect.html:25
 msgid "Email Address"
-msgstr "Адрес электронной почты"
+msgstr "Адрес эл. почты"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:31
 #, python-format
@@ -4136,7 +4126,7 @@ msgstr "Я соглашаюсь с тем, как Mozilla обращается �
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:40
 msgid "Sign Up"
-msgstr "Зарегистрироваться"
+msgstr "Подписаться"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:44
 msgid "Thanks!"
@@ -4222,12 +4212,12 @@ msgstr "Просмотреть все представления"
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:103
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
 msgstr ""
-"Это место, где вы просматриваете и управляете своими дополнениями и темами. Для публикации вашего первого дополнения щёлкните по «Представить свое первое дополнение» или «Представить свою первую "
+"Это место, где вы просматриваете и управляете своими дополнениями и темами. Для публикации вашего первого дополнения щёлкните по «Представить своё первое дополнение» или «Представить свою первую "
 "тему»."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:109
 msgid "Submit Your First Add-on"
-msgstr "Представить свое первое дополнение"
+msgstr "Представить своё первое дополнение"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:110
 msgid "Submit Your First Theme"
@@ -4352,7 +4342,7 @@ msgstr "Файл {file_id}"
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html:5
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
-msgstr "Создан %(created)s и его статус изменён %(status_date)s на %(status)s"
+msgstr "Создан %(created)s и его статус изменён %(status_date)s на «%(status)s»"
 
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html:9
 #, python-format
@@ -7119,14 +7109,14 @@ msgid ""
 msgstr ""
 "Добрый день, %(author_name)s!\n"
 "\n"
-"Вам было предложено стать автором %(addon_name)s на %(domain)s. Принятие приглашения даст вам доступ к редактированию дополнения и может отобразить ваше имя в списке авторов на веб-сайте.\n"
+"Вам было предложено стать автором «%(addon_name)s» на %(domain)s. Принятие приглашения даст вам доступ к редактированию дополнения и может отобразить ваше имя в списке авторов на веб-сайте.\n"
 "\n"
-"Щёлкните по ссылке ниже, чтобы ответить, если вы хотите добавиться в качестве автора %(addon_name)s.\n"
+"Щёлкните по ссылке ниже, чтобы ответить, если вы хотите добавиться в качестве автора «%(addon_name)s».\n"
 "\n"
 "%(author_confirmation_link)s\n"
 "\n"
 "С уважением,\n"
-"Команда дополнений Mozilla"
+"команда дополнений Mozilla"
 
 #: src/olympia/users/templates/users/emails/author_changed.ltxt:3
 #, python-format
