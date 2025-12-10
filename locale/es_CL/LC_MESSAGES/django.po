@@ -1300,12 +1300,12 @@ msgstr "Propiedad {0} de {addon} editada."
 #: src/olympia/constants/activity.py:1254
 #, python-brace-format
 msgid "Collection {0} property {1} updated."
-msgstr ""
+msgstr "Se actualizó la propiedad {1} de la colección {0}."
 
 #: src/olympia/constants/activity.py:1261
 #, python-brace-format
 msgid "Account {user} property {0} updated."
-msgstr ""
+msgstr "Se actualizó la propiedad {0} de la cuenta {user}."
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -5697,22 +5697,22 @@ msgstr "Funciones de traducción profunda para una experiencia lingüística enr
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:697
 msgid "Leave yourself little notes on any website."
-msgstr ""
+msgstr "Deja pequeñas notas en cualquier sitio web."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:700
 msgid "Discover and download higher quality versions of interesting images and videos you find on the web."
-msgstr ""
+msgstr "Descubre y descarga versiones de mayor calidad de imágenes y vídeos interesantes que encuentres en la web."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:703
 msgid "Save and organize anything you find on the web — articles, media, PDFs & more."
-msgstr ""
+msgstr "Guarda y organiza todo lo que encuentres en la web: artículos, medios, archivos PDF y más."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:706
 msgid "Enhance your Reddit experience with color-coded comments, simpler navigation, gestures for upvoting & much more."
-msgstr ""
+msgstr "Mejora tu experiencia en Reddit con comentarios codificados por colores, navegación más sencilla, gestos para votar positivamente y mucho más."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:712
@@ -6032,12 +6032,12 @@ msgstr "Ver todas las extensiones"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1099
 msgid "New Recommended Extensions"
-msgstr ""
+msgstr "Nuevas extensiones recomendadas"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1101
 msgid "Reddit revolutionized"
-msgstr ""
+msgstr "Reddit revolucionado"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1103
@@ -6047,7 +6047,7 @@ msgstr "Paquete de inicio de extensiones"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1105
 msgid "Explore now"
-msgstr ""
+msgstr "Explorar ahora"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1107 src/olympia/discovery/strings.jinja2:1109
@@ -7034,7 +7034,7 @@ msgstr "La dirección de correo electrónico utilizada para tu cuenta no está p
 
 #: src/olympia/users/models.py:1129
 msgid "The software or device you are using is not allowed for submissions."
-msgstr ""
+msgstr "El software o dispositivo que estás utilizando no está permitido para realizar envíos."
 
 #: src/olympia/users/models.py:1255
 msgid ""
