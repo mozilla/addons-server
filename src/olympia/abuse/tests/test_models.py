@@ -532,30 +532,6 @@ class TestAbuseReport(TestCase):
         Version.unfiltered.get(version=report.addon_version).delete(hard=True)
         assert report.is_individually_actionable is False
 
-    def test_is_handled_by_reviewers(self):
-        addon = addon_factory()
-        abuse_report = AbuseReport.objects.create(
-            guid=addon.guid,
-            reason=AbuseReport.REASONS.ILLEGAL,
-            location=AbuseReport.LOCATION.BOTH,
-        )
-        # location is in REVIEWER_HANDLED (BOTH) but reason is not (ILLEGAL)
-        assert not abuse_report.is_handled_by_reviewers
-
-        abuse_report.update(reason=AbuseReport.REASONS.POLICY_VIOLATION)
-        # now reason is in REVIEWER_HANDLED it will be reported differently
-        assert abuse_report.is_handled_by_reviewers
-
-        abuse_report.update(location=AbuseReport.LOCATION.AMO)
-        # but not if the location is not in REVIEWER_HANDLED (i.e. AMO)
-        assert not abuse_report.is_handled_by_reviewers
-
-        # test non-addons are False regardless
-        abuse_report.update(location=AbuseReport.LOCATION.ADDON)
-        assert abuse_report.is_handled_by_reviewers
-        abuse_report.update(user=user_factory(), guid=None)
-        assert not abuse_report.is_handled_by_reviewers
-
     def test_constraint(self):
         report = AbuseReport()
         constraints = report.get_constraints()
@@ -1152,33 +1128,6 @@ class TestCinderJob(TestCase):
         rating.delete()
         self.check_report_with_already_moderated_content(abuse_report)
 
-    def test_report_with_addon_already_moderated(self):
-        addon = addon_factory()
-        abuse_report = AbuseReport.objects.create(
-            guid=addon.guid,
-            reason=AbuseReport.REASONS.POLICY_VIOLATION,
-            location=AbuseReport.LOCATION.ADDON,
-            reporter_email='some@email.com',
-        )
-        addon.current_version.update(human_review_date=datetime.now())
-        self.check_report_with_already_moderated_content(abuse_report)
-
-    def test_report_with_addon_version_already_moderated(self):
-        addon = addon_factory()
-        version = version_factory(
-            addon=addon,
-            human_review_date=datetime.now(),
-            file_kw={'status': amo.STATUS_DISABLED},
-        )
-        abuse_report = AbuseReport.objects.create(
-            guid=addon.guid,
-            reason=AbuseReport.REASONS.POLICY_VIOLATION,
-            location=AbuseReport.LOCATION.ADDON,
-            reporter_email='some@email.com',
-            addon_version=version.version,
-        )
-        self.check_report_with_already_moderated_content(abuse_report)
-
     def test_report_with_addon_already_moderated_existing_job(self):
         addon = addon_factory()
         AbuseReport.objects.create(
@@ -1197,39 +1146,6 @@ class TestCinderJob(TestCase):
         )
         addon.current_version.update(human_review_date=datetime.now())
         self.check_report_with_already_moderated_content(abuse_report)
-
-    def test_report_resolvable_in_reviewer_tools(self):
-        abuse_report = AbuseReport.objects.create(
-            guid=addon_factory().guid,
-            reason=AbuseReport.REASONS.POLICY_VIOLATION,
-            location=AbuseReport.LOCATION.ADDON,
-        )
-        responses.add(
-            responses.POST,
-            f'{settings.CINDER_SERVER_URL}create_report',
-            json={'job_id': '1234-xyz'},
-            status=201,
-        )
-
-        CinderJob.report(abuse_report)
-
-        cinder_job = CinderJob.objects.get()
-        assert cinder_job.job_id == '1234-xyz'
-        assert cinder_job.abusereport_set.get() == abuse_report
-        assert cinder_job.target_addon == abuse_report.target
-        assert cinder_job.resolvable_in_reviewer_tools
-
-        # And check if we get back the same job_id for a subsequent report we update
-
-        another_report = AbuseReport.objects.create(
-            guid=addon_factory().guid, reason=AbuseReport.REASONS.ILLEGAL
-        )
-        CinderJob.report(another_report)
-        cinder_job.reload()
-        assert CinderJob.objects.count() == 1
-        assert list(cinder_job.abusereport_set.all()) == [abuse_report, another_report]
-        assert cinder_job.target_addon == abuse_report.target
-        assert cinder_job.resolvable_in_reviewer_tools
 
     def test_process_decision(self):
         cinder_job = CinderJob.objects.create(job_id='1234')
@@ -1491,7 +1407,7 @@ class TestCinderJob(TestCase):
     def test_process_queue_move_with_addon_already_moderated(self):
         addon = addon_factory()
         job = CinderJob.objects.create(
-            target_addon=addon, job_id='1234-xyz', resolvable_in_reviewer_tools=True
+            target_addon=addon, job_id='1234-xyz', resolvable_in_reviewer_tools=False
         )
         policy = CinderPolicy.objects.create(
             uuid='123',

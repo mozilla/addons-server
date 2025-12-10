@@ -238,7 +238,7 @@ class CinderJob(ModelBase):
         entity_helper = cls.get_entity_helper(
             abuse_report.target,
             addon_version_string=abuse_report.addon_version,
-            resolved_in_reviewer_tools=abuse_report.is_handled_by_reviewers,
+            resolved_in_reviewer_tools=False,
         )
         job_id = entity_helper.report(report=report_entity, reporter=reporter_entity)
         with atomic():
@@ -246,9 +246,7 @@ class CinderJob(ModelBase):
                 job_id=job_id,
                 defaults={
                     'target_addon': abuse_report.addon,
-                    'resolvable_in_reviewer_tools': (
-                        abuse_report.is_handled_by_reviewers
-                    ),
+                    'resolvable_in_reviewer_tools': False,
                 },
             )
             abuse_report.update(cinder_job=cinder_job)
@@ -863,15 +861,6 @@ class AbuseReport(ModelBase):
         return AbuseReport.objects.filter(
             AbuseReportManager.is_individually_actionable_q(), id=self.id
         ).exists()
-
-    @property
-    def is_handled_by_reviewers(self):
-        return (
-            (target := self.target)
-            and isinstance(target, Addon)
-            and self.reason in AbuseReport.REASONS.REVIEWER_HANDLED
-            and self.location in AbuseReport.LOCATION.REVIEWER_HANDLED
-        )
 
     @property
     def illegal_category_cinder_value(self):
