@@ -536,6 +536,9 @@ class TestAddonIndexer(TestCase):
         assert (
             extracted['promoted'][0]['group_id'] == PROMOTED_GROUP_CHOICES.RECOMMENDED
         )
+        assert (
+            extracted['promoted'][0]['category'] == PROMOTED_GROUP_CHOICES.RECOMMENDED.api_value
+        )
         assert extracted['promoted'][0]['approved_for_apps'] == [
             amo.FIREFOX.id,
             amo.ANDROID.id,
@@ -562,7 +565,8 @@ class TestAddonIndexer(TestCase):
         assert (
             extracted['promoted'][0]['group_id'] == PROMOTED_GROUP_CHOICES.RECOMMENDED
         )
-        assert extracted['promoted'][1]['group_id'] == PROMOTED_GROUP_CHOICES.LINE
+        assert extracted['promoted'][0]['category'] == PROMOTED_GROUP_CHOICES.RECOMMENDED.api_value
+        assert extracted['promoted'][1]['category'] == PROMOTED_GROUP_CHOICES.LINE.api_value
 
         # Promoted theme.
         self.addon = addon_factory(type=amo.ADDON_STATICTHEME)

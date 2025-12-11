@@ -1631,8 +1631,8 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
                 group = PROMOTED_GROUP_CHOICES.for_value(promotion['group_id'])
                 obj.promoted.append(
                     {
-                        'group_id': group.value,
-                        'category': group.api_value,
+                        'group_id': promotion['group_id'],
+                        'category': promotion.get('category', group.api_value),
                         'apps': [
                             APP_IDS.get(app_id).short for app_id in approved_for_apps
                         ],

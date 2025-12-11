@@ -490,6 +490,7 @@ class AddonIndexer:
                     'type': 'object',
                     'properties': {
                         'group_id': {'type': 'byte'},
+                        'category': {'type': 'keyword'},
                         'approved_for_apps': {'type': 'byte'},
                     },
                 },
@@ -688,6 +689,7 @@ class AddonIndexer:
         data['promoted'] = [
             {
                 'group_id': promotion.group_id,
+                'category': promotion.api_name,
                 # store the app approvals because .approved_applications needs it.
                 'approved_for_apps': [
                     app.id for app in obj.approved_applications_for(promotion)
