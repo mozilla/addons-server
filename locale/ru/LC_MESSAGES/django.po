@@ -3018,10 +3018,8 @@ msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
 "relevant for listed add-ons."
 msgstr ""
-"Загрузите иконку вашего дополнения или выберите одну из наших.\n"
-"                      Иконка отображается везде рядом с вашим дополнением. Загружаемые изображения\n"
-"                      могут быть в следующих форматах: .png, .jpg.\n"
-"                      Это относится только к опубликованным дополнениям."
+"Загрузите значок вашего дополнения или выберите один из наших. Значок отображается везде рядом с вашим дополнением. Загружаемые изображения могут быть в следующих форматах: .png, .jpg. Это относится"
+" только к опубликованным дополнениям."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:25
 msgid "Select an icon for your add-on:"
