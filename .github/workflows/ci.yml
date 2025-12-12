@@ -89,7 +89,7 @@ jobs:
       matrix:
         target: [actionlint, zizmor]
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           persist-credentials: false
 
@@ -109,7 +109,7 @@ jobs:
       digest: ${{ steps.build.outputs.digest || '' }}
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           persist-credentials: false
 
@@ -136,7 +136,7 @@ jobs:
     needs: build
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           persist-credentials: false
 
@@ -189,7 +189,7 @@ jobs:
       contents: write
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           persist-credentials: ${{ needs.context.outputs.is_default_branch }}
           fetch-depth: 0
@@ -266,7 +266,7 @@ jobs:
     needs: [context, build, docs_build, locales, test, test_main]
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           persist-credentials: false
 
@@ -303,7 +303,7 @@ jobs:
       image: moz-fx-amo-prod/amo-prod/addons-server
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           persist-credentials: false
 
