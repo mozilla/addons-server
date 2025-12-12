@@ -29,12 +29,11 @@ To create JWTs, first obtain a **key** and **secret** from the
     If someone obtains your secret they can make API requests on behalf of your user account.
 
 
-Create a JWT for each request
-=============================
+Create a JWT
+============
 
-Prior to making every API request, you need to generate a fresh `JWT`_.
-The JWT will have a short expiration time and is only valid for a single
-request so you can't cache or reuse it.
+Prior to making API requests, you need to generate a `JWT`_.
+The JWT will have a short expiration time but can be re-used until they expire.
 You only need to include a few standard fields; here's what the raw JSON object
 needs to look like before it's signed:
 
@@ -67,11 +66,6 @@ exp
     This is a `standard JWT claim`_ indicating
     the *expiration time*. It should be a Unix epoch timestamp in UTC time
     and must be **no longer than five minutes** past the issued at time.
-
-     .. versionchanged:: 2016-10-06
-
-        We increased the expiration time from 60 seconds to five minutes
-        to workaround support for large and slow uploads.
 
 
 .. note::
