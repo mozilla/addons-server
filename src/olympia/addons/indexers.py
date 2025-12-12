@@ -494,6 +494,7 @@ class AddonIndexer:
                         'approved_for_apps': {'type': 'byte'},
                     },
                 },
+                'ranking_bump': {'type': 'float', 'null_value': 1.0},
                 'ratings': {
                     'type': 'object',
                     'properties': {
@@ -697,6 +698,18 @@ class AddonIndexer:
             }
             for promotion in obj.publicly_promoted_groups
         ]
+        # Add an additional bump for certain promoted groups.
+        # TODO: actually use this value in the search ranking algorithm, and drop
+        # the existing function that uses PROMOTED_GROUPS_CHOICES
+        max_promoted_ranking_bump = max(
+            (
+                promotion.search_ranking_bump
+                for promotion in obj.publicly_promoted_groups
+            ),
+            default=1.0,
+        )
+        if max_promoted_ranking_bump:
+            data['ranking_bump'] = max_promoted_ranking_bump
 
         data['ratings'] = {
             'average': obj.average_rating,
