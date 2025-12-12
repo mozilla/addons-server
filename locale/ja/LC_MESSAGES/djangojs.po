@@ -6,471 +6,587 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-12-12 11:39+0000\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Pontoon\n"
 
+#: static/js/common/upload-addon.js:54 static/js/common/upload-image.js:136
 msgid "There was a problem contacting the server."
 msgstr "サーバーへの接続中に問題が発生しました。"
 
+#: static/js/common/upload-addon.js:78
 msgid "Select a file..."
 msgstr "ファイルを選択..."
 
+#: static/js/common/upload-addon.js:82
 msgid "Your add-on should end with .zip, .xpi or .crx"
 msgstr "アドオンは .zip .xpi .crx のいずれかの拡張子を持つファイルにしてください"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#, python-format, python-brace-format
+#: static/js/common/upload-addon.js:118
+#, python-brace-format, python-format
 msgid "{0}% complete"
 msgstr "{0}% 完了"
 
+#: static/js/common/upload-addon.js:122
 #, python-brace-format
 msgid "{0} of {1}"
 msgstr "{0} / {1}"
 
+#: static/js/common/upload-addon.js:166
 msgid "Cancel"
 msgstr "キャンセル"
 
+#: static/js/common/upload-addon.js:189
 #, python-brace-format
 msgid "Uploading {0}"
 msgstr "{0} をアップロードしています"
 
+#: static/js/common/upload-addon.js:229
 #, python-brace-format
 msgid "Error with {0}"
 msgstr "{0} にエラーがありました"
 
+#: static/js/common/upload-addon.js:237
 msgid "Please make sure to report any linting related issues on GitHub"
 msgstr "lint 関連の問題は必ず GitHub で報告してください"
 
+#: static/js/common/upload-addon.js:248
 #, python-brace-format
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] "アドオンの検証に失敗しました。{0} 個のエラーがあります。"
 
+#: static/js/common/upload-addon.js:266
 #, python-brace-format
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "... その他 {0} 個"
 
+#: static/js/common/upload-addon.js:287 static/js/common/upload-addon.js:705
 msgid "See full validation report"
 msgstr "検証レポートの詳細を見る"
 
+#: static/js/common/upload-addon.js:300
 #, python-brace-format
 msgid "Validating {0}"
 msgstr "{0} を検証しています"
 
+#: static/js/common/upload-addon.js:350
 #, python-brace-format
 msgid "Your add-on exceeds the maximum size of {0}."
 msgstr "このアドオンは最大サイズ {0} を超えています。"
 
+#: static/js/common/upload-addon.js:358
 #, python-brace-format
 msgid "Received an empty response from the server; status: {0}"
 msgstr "サーバーから空の応答が返りました。ステータス: {0}"
 
+#: static/js/common/upload-addon.js:403
 msgid "Your extension has to be compatible with at least one application."
 msgstr "この拡張機能は、少なくとも 1 つのアプリケーションとの互換性が必要です。"
 
+#: static/js/common/upload-addon.js:473
 msgid "Unexpected server error while validating."
 msgstr "検証中に予期せぬサーバーエラーが発生しました。"
 
+#: static/js/common/upload-addon.js:519
 msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
 msgstr "マニフェストでは Android 版 Firefox との互換性が明示されています"
 
+#: static/js/common/upload-addon.js:561
 #, python-brace-format
 msgid "Finished validating {0}"
 msgstr "{0} の検証が完了しました"
 
+#: static/js/common/upload-addon.js:568
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr "このアドオンの検証は時間切れとなったため、手作業で審査されます。"
 
+#: static/js/common/upload-addon.js:573
 #, python-brace-format
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] "このアドオンの検証が完了しました。エラーなし、{0} 件の警告があります。"
 
+#: static/js/common/upload-addon.js:582
 #, python-brace-format
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] "このアドオンの検証が完了しました。エラーなし、{0} 件のメッセージがあります。"
 
+#: static/js/common/upload-addon.js:590
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "このアドオンの検証が完了しました。エラーも警告もありません。"
 
+#: static/js/common/upload-addon.js:651
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "詳しいバージョンノートを含める (これは次のステップで行えます)。"
 
+#: static/js/common/upload-addon.js:654
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr "このアドオンを完全にテストするにあたってウェブサイトのアカウントが必要となる場合、テスト用のユーザー名とパスワードを審査担当者へのメモに含めてください (これは次のステップで行えます)。"
 
+#: static/js/common/upload-addon.js:660
 msgid "Add-on submission checklist"
 msgstr "アドオン登録チェックリスト"
 
+#: static/js/common/upload-addon.js:664
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "登録を完了する前に以下の点について確認してください。これは審査手続き中の遅延や誤解を最小限にするために役立ちます。"
 
+#: static/js/common/upload-addon.js:671
 msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
-msgstr ""
-"最小化、結合、難読化されたスクリプト (既知のライブラリを除く) がアドオンに含まれる場合、審査用に別途元のソースを提出する必要があります。その場合は必ずソースコードアップロード用のフォームを用い、審査"
-"が即座に却下されないようにしてください。"
+msgstr "最小化、結合、難読化されたスクリプト (既知のライブラリを除く) がアドオンに含まれる場合、審査用に別途元のソースを提出する必要があります。その場合は必ずソースコードアップロード用のフォームを用い、審査が即座に却下されないようにしてください。"
 
+#: static/js/common/upload-addon.js:684
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "アドオンの検証中にこれらの問題が見つかり、審査が却下されました:"
 
+#: static/js/common/upload-base.js:69
 msgid "The filetype you uploaded isn't recognized."
 msgstr "アップロードされたファイルの種類を認識できません。"
 
+#: static/js/common/upload-base.js:79 static/js/zamboni/global.js:569
 #, python-brace-format
 msgid "Your file exceeds the maximum size of {0}."
 msgstr "このファイルは最大サイズ {0} を超えています。"
 
+#: static/js/common/upload-base.js:105
 msgid "You cancelled the upload."
 msgstr "アップロードがキャンセルされました。"
 
+#: static/js/common/upload-image.js:102
 msgid "Images must be either PNG or JPG."
 msgstr "画像は PNG か JPEG 形式でなければなりません。"
 
+#: static/js/common/upload-image.js:106
 msgid "Videos must be in WebM."
 msgstr "動画は WebM 形式でなければなりません。"
 
+#: static/js/stats/chart.js:283
 #, python-brace-format
 msgid "Week of {0}"
 msgstr "{0} の週"
 
+#: static/js/stats/chart.js:292
 #, python-brace-format
 msgid "{0} download"
 msgid_plural "{0} downloads"
 msgstr[0] "{0} 件のダウンロード"
 
+#: static/js/stats/chart.js:298
 #, python-brace-format
 msgid "{0} user"
 msgid_plural "{0} users"
 msgstr[0] "{0} 人のユーザー"
 
+#: static/js/stats/chart.js:362 static/js/stats/csv_keys.js:3 static/js/stats/csv_keys.js:9
 msgid "Downloads"
 msgstr "ダウンロード数"
 
+#: static/js/stats/chart.js:374 static/js/stats/csv_keys.js:6 static/js/stats/csv_keys.js:10
 msgid "Daily Users"
 msgstr "日別ユーザー数"
 
+#: static/js/stats/chart.js:409
 msgid "More Info..."
 msgstr "詳細..."
 
 #. L10n: {0} is an ISO-formatted date.
+#: static/js/stats/chart.js:415
 #, python-brace-format
 msgid "Details for {0}"
 msgstr "{0} の詳細"
 
+#: static/js/stats/csv_keys.js:13
 msgid "Firefox"
 msgstr "Firefox"
 
+#: static/js/stats/csv_keys.js:14
 msgid "Mozilla"
 msgstr "Mozilla"
 
+#: static/js/stats/csv_keys.js:15
 msgid "Thunderbird"
 msgstr "Thunderbird"
 
+#: static/js/stats/csv_keys.js:16
 msgid "Sunbird"
 msgstr "Sunbird"
 
+#: static/js/stats/csv_keys.js:17
 msgid "SeaMonkey"
 msgstr "SeaMonkey"
 
+#: static/js/stats/csv_keys.js:18
 msgid "Fennec"
 msgstr "Fennec"
 
+#: static/js/stats/csv_keys.js:19
 msgid "Android"
 msgstr "Android"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:24
 #, python-brace-format
 msgid "Downloads and Daily Users, last {0} days"
 msgstr "最近 {0} 日間のダウンロード回数とユーザー数"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:26
 #, python-brace-format
 msgid "Downloads and Daily Users from {0} to {1}"
 msgstr "{0} から {1} までのダウンロード回数とユーザー数"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:30
 #, python-brace-format
 msgid "Downloads, last {0} days"
 msgstr "最近 {0} 日間のダウンロード回数"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:32
 #, python-brace-format
 msgid "Downloads from {0} to {1}"
 msgstr "{0} から {1} までのダウンロード回数"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:36
 #, python-brace-format
 msgid "Daily Users, last {0} days"
 msgstr "最近 {0} 日間のユーザー数"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:38
 #, python-brace-format
 msgid "Daily Users from {0} to {1}"
 msgstr "{0} から {1} までのユーザー数"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:42
 #, python-brace-format
 msgid "Applications, last {0} days"
 msgstr "最近 {0} 日間のアプリケーション"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:44
 #, python-brace-format
 msgid "Applications from {0} to {1}"
 msgstr "{0} から {1} までのアプリケーション"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:48
 #, python-brace-format
 msgid "Countries, last {0} days"
 msgstr "最近 {0} 日間の国"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:50
 #, python-brace-format
 msgid "Countries from {0} to {1}"
 msgstr "{0} から {1} までの国"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:54
 #, python-brace-format
 msgid "Platforms, last {0} days"
 msgstr "最近 {0} 日間の OS"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:56
 #, python-brace-format
 msgid "Platforms from {0} to {1}"
 msgstr "{0} から {1} までの OS"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:60
 #, python-brace-format
 msgid "Languages, last {0} days"
 msgstr "最近 {0} 日間の言語"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:62
 #, python-brace-format
 msgid "Languages from {0} to {1}"
 msgstr "{0} から {1} までの言語"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:66
 #, python-brace-format
 msgid "Add-on Versions, last {0} days"
 msgstr "最近 {0} 日間のアドオンのバージョン"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:68
 #, python-brace-format
 msgid "Add-on Versions from {0} to {1}"
 msgstr "{0} から {1} までのアドオンのバージョン"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:72
 #, python-brace-format
 msgid "Download Sources, last {0} days"
 msgstr "最近 {0} 日間のダウンロード参照元"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:74
 #, python-brace-format
 msgid "Download Sources from {0} to {1}"
 msgstr "{0} から {1} までのダウンロード参照元"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:78
 #, python-brace-format
 msgid "Download Mediums, last {0} days"
 msgstr "最近 {0} 日間のダウンロード媒体"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:80
 #, python-brace-format
 msgid "Download Mediums from {0} to {1}"
 msgstr "{0} から {1} までのダウンロード媒体"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:84
 #, python-brace-format
 msgid "Download Contents, last {0} days"
 msgstr "最近 {0} 日間のダウンロードコンテンツ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:86
 #, python-brace-format
 msgid "Download Contents from {0} to {1}"
 msgstr "{0} から {1} までのダウンロードコンテンツ"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:90
 #, python-brace-format
 msgid "Download Campaigns, last {0} days"
 msgstr "最近 {0} 日間のダウンロードキャンペーン"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:92
 #, python-brace-format
 msgid "Download Campaigns from {0} to {1}"
 msgstr "{0} から {1} までのダウンロードキャンペーン"
 
 #. L10n: {0} and {1} are integers.
+#: static/js/stats/csv_keys.js:98
 #, python-brace-format
 msgid "<b>{0}</b> in last {1} days"
 msgstr "最近 {1} 日間の <b>{0}</b>"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:100 static/js/stats/csv_keys.js:106
 #, python-brace-format
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "{1} から {2} までの <b>{0}</b>"
 
 #. L10n: {0} and {1} are integers.
+#: static/js/stats/csv_keys.js:104
 #, python-brace-format
 msgid "<b>{0}</b> average in last {1} days"
 msgstr "最近 {1} 日間の平均 <b>{0}</b>"
 
+#: static/js/stats/overview.js:18
 msgid "No data available."
 msgstr "表示できるデータがありません。"
 
+#: static/js/stats/table.js:84
 msgid "Date"
 msgstr "日付"
 
+#: static/js/stats/topchart.js:108
 msgid "Other"
 msgstr "その他"
 
+#: static/js/zamboni/devhub.js:300
 msgid "Changes Saved"
 msgstr "変更が保存されました"
 
+#: static/js/zamboni/devhub.js:316
 msgid "Enter a new author's email address"
 msgstr "新しい作者のメールアドレスを入力してください"
 
+#: static/js/zamboni/devhub.js:440
 msgid "There was an error uploading your file."
 msgstr "ファイルのアップロード中にエラーが発生しました。"
 
+#: static/js/zamboni/devhub.js:596
 #, python-brace-format
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} 個のファイル"
 
+#: static/js/zamboni/devhub.js:1196
 msgid "Image changes being processed"
 msgstr "画像の変換処理を行っています"
 
+#: static/js/zamboni/global.js:463
 #, python-brace-format
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> 文字"
 
+#: static/js/zamboni/global.js:472
 #, python-brace-format
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "残り <b>{0}</b> 文字"
 
+#: static/js/zamboni/init.js:12
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "この機能はサイトメンテナンスのため一時的に無効になっています。また後で試してください。"
 
+#: static/js/zamboni/l10n.js:164
 msgid "Remove this localization"
 msgstr "このローカライズを削除"
 
+#: static/js/zamboni/reviewers.js:258
 #, python-brace-format
 msgid "{name} was viewing this page first."
 msgstr "{name} が初めてこのページを見ました。"
 
+#: static/js/zamboni/reviewers.js:266
 msgid "Review page polling failed."
 msgstr "評価ページの投票に失敗しました。"
 
+#: static/js/zamboni/reviewers.js:583
 #, python-brace-format
 msgid "{name} was viewing this add-on first."
 msgstr "{name} が初めてこのアドオンを見ました。"
 
+#: static/js/zamboni/reviewers.js:596 static/js/zamboni/reviewers.js:622
 msgid "Loading&hellip;"
 msgstr "読み込み中..."
 
+#: static/js/zamboni/reviewers.js:601
 msgid "Version Notes"
 msgstr "バージョンノート"
 
+#: static/js/zamboni/reviewers.js:608
 msgid "Notes for Reviewers"
 msgstr "審査担当者へのメモ"
 
+#: static/js/zamboni/reviewers.js:615
 msgid "No version notes found"
 msgstr "バージョンノートはありません"
 
+#: static/js/zamboni/reviewers.js:627
 msgid "Review Text"
 msgstr "レビューテキスト"
 
+#: static/js/zamboni/reviewers.js:634
 msgid "Review notes found"
 msgstr "レビューノートが見つかりました"
 
+#: static/js/zamboni/static_theme.js:217
 #, python-brace-format
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "最大アップロードサイズは {0} です。小さいサイズの背景画像を選んでください。"
 
+#: static/js/zamboni/themes_review.js:199
 msgid "Requested Info"
 msgstr "求められている情報"
 
+#: static/js/zamboni/themes_review.js:200
 msgid "Flagged"
 msgstr "フラグ付き"
 
+#: static/js/zamboni/themes_review.js:201
 msgid "Duplicate"
 msgstr "重複"
 
+#: static/js/zamboni/themes_review.js:202
 msgid "Rejected"
 msgstr "却下済み"
 
+#: static/js/zamboni/themes_review.js:203
 msgid "Approved"
 msgstr "承認済み"
 
+#: static/js/zamboni/themes_review.js:492
 msgid "No results found"
 msgstr "結果なし"
 
+#: static/js/zamboni/themes_review_templates.js:43
 msgid "Theme"
 msgstr "テーマ"
 
+#: static/js/zamboni/themes_review_templates.js:45
 msgid "Reviewer"
 msgstr "レビュー担当者"
 
+#: static/js/zamboni/themes_review_templates.js:47
 msgid "Status"
 msgstr "ステータス"
 
+#: static/js/zamboni/validator.js:89
 msgid "All tests passed successfully."
 msgstr "すべてのテストに合格しました。"
 
+#: static/js/zamboni/validator.js:92 static/js/zamboni/validator.js:388
 msgid "These tests were not run."
 msgstr "これらのテストは実行されませんでした。"
 
+#: static/js/zamboni/validator.js:155 static/js/zamboni/validator.js:177
 msgid "Tests"
 msgstr "テスト"
 
+#: static/js/zamboni/validator.js:259 static/js/zamboni/validator.js:492 static/js/zamboni/validator.js:516
 msgid "Error"
 msgstr "エラー"
 
+#: static/js/zamboni/validator.js:259
 msgid "Warning"
 msgstr "警告"
 
+#: static/js/zamboni/validator.js:332
 #, python-brace-format
 msgid "{0} line {1} column {2}"
 msgstr "{0} 行: {1} 列: {2}"
 
+#: static/js/zamboni/validator.js:339
 #, python-brace-format
 msgid "{0} line {1}"
 msgstr "{0} 行: {1}"
 
+#: static/js/zamboni/validator.js:376
 msgid "Add-on failed validation."
 msgstr "アドオンは検証に失敗しました。"
 
+#: static/js/zamboni/validator.js:378
 msgid "Add-on passed validation."
 msgstr "アドオンは検証に合格しました。"
 
+#: static/js/zamboni/validator.js:391
 #, python-brace-format
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} 個のエラー"
 
+#: static/js/zamboni/validator.js:394
 #, python-brace-format
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} 個の警告"
 
+#: static/js/zamboni/validator.js:397
 #, python-brace-format
 msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] "{0} 個の通知"
 
+#: static/js/zamboni/validator.js:494
 msgid "Validation task could not complete or completed with errors"
 msgstr "検証作業を完了できなかったか、エラーを出力して完了しました"
 
+#: static/js/zamboni/validator.js:517
 msgid "Internal server error"
 msgstr "内部サーバーエラー"

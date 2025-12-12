@@ -6,481 +6,599 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-12-12 11:39+0000\n"
 "Language: te\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Pontoon\n"
 
+#: static/js/common/upload-addon.js:54 static/js/common/upload-image.js:136
 msgid "There was a problem contacting the server."
 msgstr "సర్వర్‌ని సంప్రదించడంలో సమస్య ఉంది."
 
+#: static/js/common/upload-addon.js:78
 msgid "Select a file..."
 msgstr "ఒక ఫైలును ఎంచుకోండి..."
 
+#: static/js/common/upload-addon.js:82
 msgid "Your add-on should end with .zip, .xpi or .crx"
 msgstr "మీ పొడగింతను .zip, .xpi లేదా .crxతో ముగించాలి"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#, python-format, python-brace-format
+#: static/js/common/upload-addon.js:118
+#, python-brace-format, python-format
 msgid "{0}% complete"
 msgstr "{0}% పూర్తి"
 
+#: static/js/common/upload-addon.js:122
 #, python-brace-format
 msgid "{0} of {1}"
 msgstr "{1} యొక్క {0}"
 
+#: static/js/common/upload-addon.js:166
 msgid "Cancel"
 msgstr "రద్దుచేయి"
 
+#: static/js/common/upload-addon.js:189
 #, python-brace-format
 msgid "Uploading {0}"
 msgstr "{0}‌‌‌‌‌ను ఎక్కిస్తోంది"
 
+#: static/js/common/upload-addon.js:229
 #, python-brace-format
 msgid "Error with {0}"
 msgstr "{0}తో లోపం"
 
+#: static/js/common/upload-addon.js:237
 msgid "Please make sure to report any linting related issues on GitHub"
 msgstr "ఏవైనా లింటింగ్ సంబంధిత సమస్యలను దయచేసి GitHubలో నివేదించండి"
 
+#: static/js/common/upload-addon.js:248
 #, python-brace-format
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] "మీ పొడిగింత {0} లోపంతో ధృవీకరణ విఫలమైంది."
 msgstr[1] "మీ పొడిగింత {0} లోపాలతో ధృవీకరణ విఫలమైంది."
 
+#: static/js/common/upload-addon.js:266
 #, python-brace-format
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;మరియు {0} మరింత"
 msgstr[1] "&hellip;మరియు {0} మరింత"
 
+#: static/js/common/upload-addon.js:287 static/js/common/upload-addon.js:705
 msgid "See full validation report"
 msgstr "పూర్తి ధ్రువీకరణ నివేదికను చూడండి"
 
+#: static/js/common/upload-addon.js:300
 #, python-brace-format
 msgid "Validating {0}"
 msgstr "{0} సరిచూస్తోంది"
 
+#: static/js/common/upload-addon.js:350
 #, python-brace-format
 msgid "Your add-on exceeds the maximum size of {0}."
 msgstr "మీ పొడిగింత {0} గరిష్ఠ పరిమాణాన్ని మించిపోయింది."
 
+#: static/js/common/upload-addon.js:358
 #, python-brace-format
 msgid "Received an empty response from the server; status: {0}"
 msgstr "సర్వరు నుండి ఖాళీ స్పందన వచ్చింది; స్థితి: {0}"
 
+#: static/js/common/upload-addon.js:403
 msgid "Your extension has to be compatible with at least one application."
 msgstr "మీ పొడగింత కనీసం ఒక అనువర్తనానికైనా అనుగుణ్యంగా ఉండాలి."
 
+#: static/js/common/upload-addon.js:473
 msgid "Unexpected server error while validating."
 msgstr "ధృవీకరిస్తున్నప్పుడు ఊహించని సర్వర్ లోపం ఏర్పడింది."
 
+#: static/js/common/upload-addon.js:519
 msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
 msgstr "మానిఫెస్ట్‌లో Android కోసం Firefox కు అనుకూలంగా ఉన్నట్లు స్పష్టంగా గుర్తు పెట్టబడింది"
 
+#: static/js/common/upload-addon.js:561
 #, python-brace-format
 msgid "Finished validating {0}"
 msgstr "సరిచూడడం పూర్తయింది {0}"
 
+#: static/js/common/upload-addon.js:568
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr "మీ పొడగింత చెల్లుబాటు కాలం ముగిసింది, ఇది మానవీయంగా సమీక్షించబడుతుంది."
 
+#: static/js/common/upload-addon.js:573
 #, python-brace-format
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] "లోపాలు లేకుండా మరియు {0} హెచ్చరికలతో మీ పొడిగింత ధృవీకరించబడింది."
 msgstr[1] "లోపాలు మరియు {0} హెచ్చరికలు లేకుండా మీ పొడిగింత ధృవీకరించబడింది."
 
+#: static/js/common/upload-addon.js:582
 #, python-brace-format
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] "లోపాలు లేకుండా మరియు {0} హెచ్చరికలతో మీ పొడిగింత ధృవీకరించబడింది."
 msgstr[1] "మీ పొడిగింత లోపాలు మరియు {0} సందేశాలతో ధృవీకరించబడలేదు."
 
+#: static/js/common/upload-addon.js:590
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "లోపాలు లేదా హెచ్చరికలతో మీ పొడిగింత ధృవీకరించబడింది."
 
+#: static/js/common/upload-addon.js:651
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "వివరణాత్మక వెర్షన్ గమనికలను చేర్చండి (ఇది తరువాతి దశలో చేయవచ్చు)."
 
+#: static/js/common/upload-addon.js:654
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr "మీ పొడగింతను పూర్తిగా పరీక్షించటానికి ఒక వెబ్‌సైటు ఖాతా అవసరమైతే, సమీక్షకులకు గమనికలలో ఒక పరీక్షా వాడుకరి పేరు, సంకేతపదాన్ని ఇవ్వండి (దీన్ని తరువాతి అంచెలో చేయవచ్చు)."
 
+#: static/js/common/upload-addon.js:660
 msgid "Add-on submission checklist"
 msgstr "పొడిగింతల సమర్పణ పరిశీలిత పట్టిక"
 
+#: static/js/common/upload-addon.js:664
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "దయచేసి మీ సమర్పణను ఖరారు చేయడానికి ముందు ఈ క్రింది అంశాలను ధృవీకరించండి. ఇది సమీక్ష ప్రక్రియ సమయంలో ఆలస్యాన్ని లేదా అపార్థాలను తగ్గిస్తుంది:"
 
+#: static/js/common/upload-addon.js:671
 msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
 
+#: static/js/common/upload-addon.js:684
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "సరిచూత ప్రక్రియ ఈ క్రింది తిరస్కరణకు దారితీసే సమస్యలను కనుగొంది:"
 
+#: static/js/common/upload-base.js:69
 msgid "The filetype you uploaded isn't recognized."
 msgstr "మీరు ఎక్కించిన ఫైలు రకం గుర్తించబడలేదు."
 
+#: static/js/common/upload-base.js:79 static/js/zamboni/global.js:569
 #, python-brace-format
 msgid "Your file exceeds the maximum size of {0}."
 msgstr "మీ ఫైలు {0} గరిష్ఠ పరిమాణాన్ని మించిపోయింది."
 
+#: static/js/common/upload-base.js:105
 msgid "You cancelled the upload."
 msgstr "మీరు ఎగుమతిని రద్దు చేసారు."
 
+#: static/js/common/upload-image.js:102
 msgid "Images must be either PNG or JPG."
 msgstr "చిత్రాలు తప్పనిసరిగా PNG లేదా JPG లో ఉండాలి."
 
+#: static/js/common/upload-image.js:106
 msgid "Videos must be in WebM."
 msgstr "వీడియోలు తప్పనిసరిగా WebM లో ఉండాలి."
 
+#: static/js/stats/chart.js:283
 #, python-brace-format
 msgid "Week of {0}"
 msgstr "వారం {0}"
 
+#: static/js/stats/chart.js:292
 #, python-brace-format
 msgid "{0} download"
 msgid_plural "{0} downloads"
 msgstr[0] "{0} దింపుకోలు"
 msgstr[1] "{0} దింపుకోళ్ళు"
 
+#: static/js/stats/chart.js:298
 #, python-brace-format
 msgid "{0} user"
 msgid_plural "{0} users"
 msgstr[0] "{0} వాడుకరి"
 msgstr[1] "{0} వాడుకరులు"
 
+#: static/js/stats/chart.js:362 static/js/stats/csv_keys.js:3 static/js/stats/csv_keys.js:9
 msgid "Downloads"
 msgstr "దింపుకోళ్ళు"
 
+#: static/js/stats/chart.js:374 static/js/stats/csv_keys.js:6 static/js/stats/csv_keys.js:10
 msgid "Daily Users"
 msgstr "రోజువారీ వాడుకరులు"
 
+#: static/js/stats/chart.js:409
 msgid "More Info..."
 msgstr "మరింత సమాచారం..."
 
 #. L10n: {0} is an ISO-formatted date.
+#: static/js/stats/chart.js:415
 #, python-brace-format
 msgid "Details for {0}"
 msgstr "{0} వివరాలు"
 
+#: static/js/stats/csv_keys.js:13
 msgid "Firefox"
 msgstr "Firefox"
 
+#: static/js/stats/csv_keys.js:14
 msgid "Mozilla"
 msgstr "Mozilla"
 
+#: static/js/stats/csv_keys.js:15
 msgid "Thunderbird"
 msgstr "Thunderbird"
 
+#: static/js/stats/csv_keys.js:16
 msgid "Sunbird"
 msgstr "Sunbird"
 
+#: static/js/stats/csv_keys.js:17
 msgid "SeaMonkey"
 msgstr "SeaMonkey"
 
+#: static/js/stats/csv_keys.js:18
 msgid "Fennec"
 msgstr "Fennec"
 
+#: static/js/stats/csv_keys.js:19
 msgid "Android"
 msgstr "ఆండ్రాయిడ్"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:24
 #, python-brace-format
 msgid "Downloads and Daily Users, last {0} days"
 msgstr "గత {0} రోజుల దింపుకోళ్ళు మరియు రోజువారీ వాడుకరుల వివరాలు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:26
 #, python-brace-format
 msgid "Downloads and Daily Users from {0} to {1}"
 msgstr "{0} నుండి {1} వరకు దింపుకోళ్ళు మరియు రోజువారీ వాడుకరుల వివరాలు"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:30
 #, python-brace-format
 msgid "Downloads, last {0} days"
 msgstr "గత {0} రోజుల దింపుకోళ్ళు "
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:32
 #, python-brace-format
 msgid "Downloads from {0} to {1}"
 msgstr "{0} నుండి {1} వరకు దింపుకోళ్ళు "
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:36
 #, python-brace-format
 msgid "Daily Users, last {0} days"
 msgstr "గత {0} రోజుల రోజువారీ వాడుకరుల వివరాలు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:38
 #, python-brace-format
 msgid "Daily Users from {0} to {1}"
 msgstr "{0} నుండి {1} వరకు రోజువారీ వాడుకరుల వివరాలు"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:42
 #, python-brace-format
 msgid "Applications, last {0} days"
 msgstr "గత {0} రోజుల అనువర్తనలు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:44
 #, python-brace-format
 msgid "Applications from {0} to {1}"
 msgstr "{0} నుండి {1} వరకు అనువర్తనలు"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:48
 #, python-brace-format
 msgid "Countries, last {0} days"
 msgstr "దేశాలు, గత {0} రోజులు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:50
 #, python-brace-format
 msgid "Countries from {0} to {1}"
 msgstr "{0} నుండి {1} వరకు దేశాలు"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:54
 #, python-brace-format
 msgid "Platforms, last {0} days"
 msgstr "గత {0} రోజుల వేదికలు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:56
 #, python-brace-format
 msgid "Platforms from {0} to {1}"
 msgstr "{0} నుండి {1} వరకు వేదికలు"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:60
 #, python-brace-format
 msgid "Languages, last {0} days"
 msgstr "గత {0} రోజుల భాషలు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:62
 #, python-brace-format
 msgid "Languages from {0} to {1}"
 msgstr "{0} నుండి {1} వరకు భాషలు"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:66
 #, python-brace-format
 msgid "Add-on Versions, last {0} days"
 msgstr "చివరి {0} రోజులు, పొడిగింత వెర్షన్ల వివరాలు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:68
 #, python-brace-format
 msgid "Add-on Versions from {0} to {1}"
 msgstr "{0} నుండి {1} వరకు పొడిగింత వెర్షన్లు"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:72
 #, python-brace-format
 msgid "Download Sources, last {0} days"
 msgstr "గత {0} రోజుల దింపుకోళ్ళ మూలాలు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:74
 #, python-brace-format
 msgid "Download Sources from {0} to {1}"
 msgstr "{0} నుంచి {1} వరకు వనరులను దింపుకోండి"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:78
 #, python-brace-format
 msgid "Download Mediums, last {0} days"
 msgstr "దింపుకోలు మాధ్యమాలు, గత {0} రోజులు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:80
 #, python-brace-format
 msgid "Download Mediums from {0} to {1}"
 msgstr "{0} నుండి {1} వరకు దింపుకోలు మాధ్యమాలు"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:84
 #, python-brace-format
 msgid "Download Contents, last {0} days"
 msgstr "దింపుకోలు విషయాలు, గత {0} రోజులు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:86
 #, python-brace-format
 msgid "Download Contents from {0} to {1}"
 msgstr "{0} నుండి {1} వరకు దింపుకోలు విషయాలు"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:90
 #, python-brace-format
 msgid "Download Campaigns, last {0} days"
 msgstr "దింపుకోలు ప్రచారాలు, గత {0} రోజులు"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:92
 #, python-brace-format
 msgid "Download Campaigns from {0} to {1}"
 msgstr "{0} నుండి {1} వరకు దింపుకోలు ప్రచారాలు"
 
 #. L10n: {0} and {1} are integers.
+#: static/js/stats/csv_keys.js:98
 #, python-brace-format
 msgid "<b>{0}</b> in last {1} days"
 msgstr "గత {1} రోజులలో <b>{0}</b>"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:100 static/js/stats/csv_keys.js:106
 #, python-brace-format
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "{1} నుండి {2} వరకు<b>{0}</b>"
 
 #. L10n: {0} and {1} are integers.
+#: static/js/stats/csv_keys.js:104
 #, python-brace-format
 msgid "<b>{0}</b> average in last {1} days"
 msgstr "గత {1} రోజుల్లో సగటు <b>{0}</b>"
 
+#: static/js/stats/overview.js:18
 msgid "No data available."
 msgstr "ఏ డేటా అందుబాటులో లేదు."
 
+#: static/js/stats/table.js:84
 msgid "Date"
 msgstr "తేదీ"
 
+#: static/js/stats/topchart.js:108
 msgid "Other"
 msgstr "ఇతర"
 
+#: static/js/zamboni/devhub.js:300
 msgid "Changes Saved"
 msgstr "మార్పులు భద్రపరచండి"
 
+#: static/js/zamboni/devhub.js:316
 msgid "Enter a new author's email address"
 msgstr "కొత్త రచయిత యొక్క ఇమెయిల్ చిరునామాను నమోదు చేయండి"
 
+#: static/js/zamboni/devhub.js:440
 msgid "There was an error uploading your file."
 msgstr "మీ ఫైలు ఎక్కించంలో పొరపాటు జరిగింది."
 
+#: static/js/zamboni/devhub.js:596
 #, python-brace-format
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} ఫైలు"
 msgstr[1] "{files} ఫైళ్లు"
 
+#: static/js/zamboni/devhub.js:1196
 msgid "Image changes being processed"
 msgstr "బొమ్మ మార్పులు ప్రాసెస్ అవుతున్నాయి"
 
+#: static/js/zamboni/global.js:463
 #, python-brace-format
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> అక్షరం"
 msgstr[1] "<b>{0}</b> అక్షరాలు"
 
+#: static/js/zamboni/global.js:472
 #, python-brace-format
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "<b>{0}</b> అక్షరం మిగిలి ఉంది"
 msgstr[1] "<b>{0}</b> అక్షరాలు మిగిలి ఉన్నాయి"
 
+#: static/js/zamboni/init.js:12
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "వెబ్‌సైటు నిర్వహణ స్థితిలో ఉన్నప్పుడు ఈ సౌలభ్యం తాత్కాలికంగా నిలిపివేయబడుతుంది. దయచేసి కొంతసేపటి తర్వాత మళ్లీ చూడండి."
 
+#: static/js/zamboni/l10n.js:164
 msgid "Remove this localization"
 msgstr "ఈ స్థానికీకరణను తీసివేయి"
 
+#: static/js/zamboni/reviewers.js:258
 #, python-brace-format
 msgid "{name} was viewing this page first."
 msgstr "{name} మొదట ఈ పేజీని చూస్తున్నారు."
 
+#: static/js/zamboni/reviewers.js:266
 msgid "Review page polling failed."
 msgstr ""
 
+#: static/js/zamboni/reviewers.js:583
 #, python-brace-format
 msgid "{name} was viewing this add-on first."
 msgstr "{name} మొదట ఈ పొడగింపును స్తున్నారు."
 
+#: static/js/zamboni/reviewers.js:596 static/js/zamboni/reviewers.js:622
 msgid "Loading&hellip;"
 msgstr "వస్తోంది&hellip;"
 
+#: static/js/zamboni/reviewers.js:601
 msgid "Version Notes"
 msgstr "వెర్షన్ గమనికలు"
 
+#: static/js/zamboni/reviewers.js:608
 msgid "Notes for Reviewers"
 msgstr "సమీక్షకుల కోసం గమనికలు"
 
+#: static/js/zamboni/reviewers.js:615
 msgid "No version notes found"
 msgstr "వెర్షన్ గమనికలు కనుగొనబడలేదు"
 
+#: static/js/zamboni/reviewers.js:627
 msgid "Review Text"
 msgstr "సమీక్షా పాఠ్యం"
 
+#: static/js/zamboni/reviewers.js:634
 msgid "Review notes found"
 msgstr "సమీక్ష గమనికలు కనబడ్డాయి"
 
+#: static/js/zamboni/static_theme.js:217
 #, python-brace-format
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "గరిష్ట ఎక్కింపు పరిమాణం {0} - చిన్న నేపథ్య చిత్రాన్ని ఎంచుకోండి."
 
+#: static/js/zamboni/themes_review.js:199
 msgid "Requested Info"
 msgstr "అభ్యర్థించిన సమాచారం"
 
+#: static/js/zamboni/themes_review.js:200
 msgid "Flagged"
 msgstr "ఫ్లాగైనవి"
 
+#: static/js/zamboni/themes_review.js:201
 msgid "Duplicate"
 msgstr "నకిలీ"
 
+#: static/js/zamboni/themes_review.js:202
 msgid "Rejected"
 msgstr "తిరస్క్రించబదింది"
 
+#: static/js/zamboni/themes_review.js:203
 msgid "Approved"
 msgstr "ఆమోదించబడింది"
 
+#: static/js/zamboni/themes_review.js:492
 msgid "No results found"
 msgstr "ఎటువంటి ఫలితాలు లభించలేదు"
 
+#: static/js/zamboni/themes_review_templates.js:43
 msgid "Theme"
 msgstr "అలంకారం"
 
+#: static/js/zamboni/themes_review_templates.js:45
 msgid "Reviewer"
 msgstr "సమీక్షకుడు"
 
+#: static/js/zamboni/themes_review_templates.js:47
 msgid "Status"
 msgstr "స్థితి"
 
+#: static/js/zamboni/validator.js:89
 msgid "All tests passed successfully."
 msgstr "అన్ని పరీక్షలు విజయవంతంగా ఆమోదించబడ్డాయి."
 
+#: static/js/zamboni/validator.js:92 static/js/zamboni/validator.js:388
 msgid "These tests were not run."
 msgstr "ఈ పరీక్షలు అమలు కాలేదు."
 
+#: static/js/zamboni/validator.js:155 static/js/zamboni/validator.js:177
 msgid "Tests"
 msgstr "పరీక్షలు"
 
+#: static/js/zamboni/validator.js:259 static/js/zamboni/validator.js:492 static/js/zamboni/validator.js:516
 msgid "Error"
 msgstr "లోపం"
 
+#: static/js/zamboni/validator.js:259
 msgid "Warning"
 msgstr "హెచ్చరిక"
 
+#: static/js/zamboni/validator.js:332
 #, python-brace-format
 msgid "{0} line {1} column {2}"
 msgstr "{0} వరుస {1} నిలువు వరుస {2}"
 
+#: static/js/zamboni/validator.js:339
 #, python-brace-format
 msgid "{0} line {1}"
 msgstr "{0} వరుస {1}"
 
+#: static/js/zamboni/validator.js:376
 msgid "Add-on failed validation."
 msgstr "పొడిగింత ధ్రువీకరణ విఫలమైంది."
 
+#: static/js/zamboni/validator.js:378
 msgid "Add-on passed validation."
 msgstr "పొడిగింత ధ్రువీకరణను ఆమోదించింది."
 
+#: static/js/zamboni/validator.js:391
 #, python-brace-format
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} లోపం"
 msgstr[1] "{0} లోపాలు"
 
+#: static/js/zamboni/validator.js:394
 #, python-brace-format
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} హెచ్చరిక"
 msgstr[1] "{0} హెచ్చరికలు"
 
+#: static/js/zamboni/validator.js:397
 #, python-brace-format
 msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] "{0} నోటీసు"
 msgstr[1] "{0} నోటీసులు"
 
+#: static/js/zamboni/validator.js:494
 msgid "Validation task could not complete or completed with errors"
 msgstr "చెల్లుబాటు పని పూర్తికాలేదు లేదా దానిలో లోపాలున్నాయి"
 
+#: static/js/zamboni/validator.js:517
 msgid "Internal server error"
 msgstr "అంతర్గత సర్వర్ లోపం"
