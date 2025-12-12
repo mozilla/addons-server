@@ -388,9 +388,9 @@ asgiref==3.11.0 \
     --hash=sha256:13acff32519542a1736223fb79a715acdebe24286d98e8b164a73085f40da2c4 \
     --hash=sha256:1db9021efadb0d9512ce8ffaf72fcef601c7b73a8807a1bb2ef143dc6b14846d
 # billiard is required by celery
-billiard==4.2.3 \
-    --hash=sha256:96486f0885afc38219d02d5f0ccd5bec8226a414b834ab244008cbb0025b8dcb \
-    --hash=sha256:989e9b688e3abf153f307b68a1328dfacfb954e30a4f920005654e276c69236b
+billiard==4.2.4 \
+    --hash=sha256:525b42bdec68d2b983347ac312f892db930858495db601b5836ac24e6477cde5 \
+    --hash=sha256:55f542c371209e03cd5862299b74e52e4fbcba8250ba611ad94276b369b6a85f
 # bitarray is required by filtercascade
 bitarray == 3.0.0 \
     --hash=sha256:000df24c183011b5d27c23d79970f49b6762e5bb5aacd25da9c3e9695c693222 \
@@ -533,9 +533,9 @@ bitarray == 3.0.0 \
 bleach==6.0.0 \
     --hash=sha256:1a1a85c1595e07d8db14c5f09f09e6433502c51c595970edc090551f0db99414 \
     --hash=sha256:33c16e3353dbd13028ab4799a0f89a83f113405c766e9c122df8a06f5b85b3f4
-celery==5.5.3 \
-    --hash=sha256:0b5761a07057acee94694464ca482416b959568904c9dfa41ce8413a7d65d525 \
-    --hash=sha256:6c972ae7968c2b5281227f01c3a3f984037d21c5129d07bf3550cc2afc6b10a5
+celery==5.6.0 \
+    --hash=sha256:33cf01477b175017fc8f22c5ee8a65157591043ba8ca78a443fe703aa910f581 \
+    --hash=sha256:641405206042d52ae460e4e9751a2e31b06cf80ab836fcf92e0b9311d7ea8113
 # charset-normalizer is required by requests
 charset-normalizer==3.4.4 \
     --hash=sha256:027f6de494925c0ab2a55eab46ae5129951638a49a34d87f4c3eda90f696b4ad \
