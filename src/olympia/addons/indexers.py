@@ -162,7 +162,6 @@ class AddonIndexer:
     # or sorting.
     hidden_fields = (
         '*.raw',
-        'boost',
         'colors',
         'hotness',
         # Translated content that is used for filtering purposes is stored
@@ -419,7 +418,6 @@ class AddonIndexer:
                 'app': {'type': 'byte'},
                 'average_daily_users': {'type': 'long'},
                 'bayesian_rating': {'type': 'double'},
-                'boost': {'type': 'float', 'null_value': 1.0},
                 'category': {'type': 'integer'},
                 'colors': {
                     'type': 'nested',
@@ -651,15 +649,6 @@ class AddonIndexer:
                 data['colors'] = obj.current_previews[0].colors
 
         data['app'] = [app.id for app in obj.compatible_apps.keys()]
-        # Boost by the number of users on a logarithmic scale.
-        data['boost'] = float(data['average_daily_users'] ** 0.2)
-        # Quadruple the boost if the add-on is public.
-        if (
-            obj.status == amo.STATUS_APPROVED
-            and not obj.is_experimental
-            and 'boost' in data
-        ):
-            data['boost'] = float(max(data['boost'], 1) * 4)
         # We can use all_categories because the indexing code goes through the
         # transformer that sets it.
         data['category'] = [cat.id for cat in obj.all_categories]
