@@ -1815,7 +1815,7 @@ msgstr "Notável"
 
 #: src/olympia/constants/promoted.py:151
 msgid "Partner"
-msgstr "Parceria"
+msgstr "Parceiro"
 
 #: src/olympia/constants/reviewers.py:23
 msgid "No Reputation"
