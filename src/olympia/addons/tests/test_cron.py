@@ -159,6 +159,7 @@ class TestUpdateAddonHotness(TestCase):
         self.awaiting_review = addon_factory(status=amo.STATUS_NOMINATED)
         self.deleted_extension = addon_factory()
         self.deleted_extension.delete()
+        self.previously_unknown_extension = addon_factory()
 
         self.frozen_extension = addon_factory()
         FrozenAddon.objects.create(addon=self.frozen_extension)
@@ -209,6 +210,10 @@ class TestUpdateAddonHotness(TestCase):
                 'avg_this_week': 1040,
                 'avg_previous_week': 1000,
             },
+            self.previously_unknown_extension.guid: {
+                'avg_this_week': 4815,
+                'avg_previous_week': 0,
+            },
         }
 
         cron.update_addon_hotness()
@@ -230,6 +235,9 @@ class TestUpdateAddonHotness(TestCase):
         # Deleted or awaiting review add-ons get a hotness too.
         assert self.awaiting_review.reload().hotness == 0.049687154950312847
         assert self.deleted_extension.reload().hotness == 0.04
+
+        # Previously unknown (nothing last week), we still compute hotness.
+        assert self.previously_unknown_extension.reload().hotness == 4814.0
 
         # Exclude frozen add-ons too.
         assert self.frozen_extension.reload().hotness == 0

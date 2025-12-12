@@ -409,7 +409,7 @@ def update_addon_hotness(averages):
             continue
 
         this_week = average['avg_this_week']
-        previous_week = min(average['avg_previous_week'], 1)
+        previous_week = max(average['avg_previous_week'], 1)
         threshold = (
             MINIMUM_ADU_FOR_HOTNESS_THEME
             if addon.type == amo.ADDON_STATICTHEME
