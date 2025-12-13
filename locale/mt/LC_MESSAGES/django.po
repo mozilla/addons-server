@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-12-12 11:39+0000\n"
+"POT-Creation-Date: 2025-12-13 11:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4532,11 +4532,11 @@ msgid "See all extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "New Recommended Extensions"
+msgid "2025 Staff Picks"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Reddit revolutionized"
+msgid "New Recommended Extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4544,11 +4544,11 @@ msgid "Extension Starter Pack"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Explore now"
+msgid "See staff picks"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "See staff picks"
+msgid "Explore now"
 msgstr ""
 
 #. editorial content for the homepage shelves.

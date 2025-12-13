@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-12-12 11:39+0000\n"
+"POT-Creation-Date: 2025-12-13 11:23+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -4990,24 +4990,24 @@ msgid "See all extensions"
 msgstr "Browse all add-ons"
 
 #. editorial content for the secondary hero shelves.
-msgid "New Recommended Extensions"
-msgstr "New Recommended Extensions"
+msgid "2025 Staff Picks"
+msgstr "2025 Staff Picks"
 
 #. editorial content for the secondary hero shelves.
-msgid "Reddit revolutionized"
-msgstr "Reddit revolutionized"
+msgid "New Recommended Extensions"
+msgstr "New Recommended Extensions"
 
 #. editorial content for the secondary hero shelves.
 msgid "Extension Starter Pack"
 msgstr "Extension Starter Pack"
 
 #. editorial content for the secondary hero shelves.
-msgid "Explore now"
-msgstr "Explore now"
-
-#. editorial content for the secondary hero shelves.
 msgid "See staff picks"
 msgstr "See staff picks"
+
+#. editorial content for the secondary hero shelves.
+msgid "Explore now"
+msgstr "Explore now"
 
 #. editorial content for the homepage shelves.
 #, fuzzy

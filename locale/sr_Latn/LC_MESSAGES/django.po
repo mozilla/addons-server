@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-12-12 11:39+0000\n"
+"POT-Creation-Date: 2025-12-13 11:23+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -5444,11 +5444,11 @@ msgid "See all extensions"
 msgstr "Pogledajte sve dodatke"
 
 #. editorial content for the secondary hero shelves.
-msgid "New Recommended Extensions"
+msgid "2025 Staff Picks"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Reddit revolutionized"
+msgid "New Recommended Extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -5456,11 +5456,11 @@ msgid "Extension Starter Pack"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Explore now"
+msgid "See staff picks"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "See staff picks"
+msgid "Explore now"
 msgstr ""
 
 #. editorial content for the homepage shelves.
