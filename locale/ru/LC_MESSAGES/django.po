@@ -1606,7 +1606,7 @@ msgstr "Скачайте темы Firefox, которые предоставля
 
 #: src/olympia/constants/categories.py:235
 msgid "Film and TV"
-msgstr "Кино и телевидение"
+msgstr "Фильмы и телевидение"
 
 #: src/olympia/constants/categories.py:237
 msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
@@ -1654,7 +1654,7 @@ msgstr "Скачайте интересные, креативные и уник�
 
 #: src/olympia/constants/categories.py:298
 msgid "Scenery"
-msgstr "Пейзажи"
+msgstr "Украшающие"
 
 #: src/olympia/constants/categories.py:300
 msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
@@ -3958,17 +3958,17 @@ msgid ""
 "Did you test your extension to ensure it works as expected on Firefox for Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" "
 "href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
 msgstr ""
-"Вы протестировали свое расширение, чтобы убедиться, что оно работает в Firefox для Android? Если нет, пожалуйста, обратитесь<a target=\"_blank\" rel=\"noopener noreferrer\" "
-"href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">к разделу Разработка расширений к Firefox для Android</a>, чтобы получить рекомендации по "
-"тестированию перед отправкой."
+"Вы протестировали своё расширение, чтобы убедиться, что оно работает в Firefox для Android? Если нет, пожалуйста, обратитесь <a target=\"_blank\" rel=\"noopener noreferrer\" "
+"href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">к разделу «Разработка расширений к Firefox для Android»</a>, чтобы получить рекомендации "
+"по тестированию перед отправкой."
 
 #: src/olympia/devhub/templates/devhub/includes/android_compatibility_modal.html:6
 msgid "Yes, I’ve tested my extension with Firefox for Android"
-msgstr "Да, я протестировал свое расширение в Firefox для Android"
+msgstr "Да, моё расширение протестировано в Firefox для Android"
 
 #: src/olympia/devhub/templates/devhub/includes/android_compatibility_modal.html:7
 msgid "No, I have not tested"
-msgstr "Нет, я не тестировал"
+msgstr "Нет, не тестировано"
 
 #: src/olympia/devhub/templates/devhub/includes/blog_posts.html:3
 msgid "Developer News"
