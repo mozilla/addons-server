@@ -18,7 +18,7 @@ from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.constants.promoted import (
     BADGED_API_NAME,
     PROMOTED_API_NAME_TO_IDS,
-    PROMOTED_GROUPS,
+    PROMOTED_GROUP_CHOICES,
 )
 from olympia.versions.compare import version_int
 
@@ -913,9 +913,11 @@ class SearchQueryFilter(BaseFilterBackend):
             ),
         ]
         ranking_bump_groups = amo.utils.sorted_groupby(
-            PROMOTED_GROUPS, lambda g: g.search_ranking_bump, reverse=True
+            PROMOTED_GROUP_CHOICES.ACTIVE.entries,
+            lambda g: getattr(g, 'search_ranking_bump', 0.0),
+            reverse=True,
         )
-        for bump, promo_ids in ranking_bump_groups:
+        for bump, promo_groups in ranking_bump_groups:
             if not bump:
                 continue
             functions.append(
@@ -925,7 +927,9 @@ class SearchQueryFilter(BaseFilterBackend):
                         'filter': (
                             Q(
                                 'terms',
-                                **{'promoted.group_id': [p.id for p in promo_ids]},
+                                **{
+                                    'promoted.group_id': [p.value for p in promo_groups]
+                                },
                             )
                         ),
                     }

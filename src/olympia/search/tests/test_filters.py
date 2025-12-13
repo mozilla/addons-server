@@ -14,11 +14,7 @@ from rest_framework import serializers
 from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.constants.categories import CATEGORIES
-from olympia.constants.promoted import (
-    BADGED_GROUPS,
-    PROMOTED_API_NAME_TO_IDS,
-    PROMOTED_GROUP_CHOICES,
-)
+from olympia.constants.promoted import PROMOTED_API_NAME_TO_IDS, PROMOTED_GROUP_CHOICES
 from olympia.search.filters import (
     AddonCreatedQueryParam,
     AddonRatingQueryParam,
@@ -708,7 +704,11 @@ class TestSearchParameterFilter(FilterTestsBase):
         filter_ = qs['query']['bool']['filter']
         assert {'terms': {'guid': ['@foobar']}} in filter_
         assert {
-            'terms': {'promoted.group_id': [group.id for group in BADGED_GROUPS]}
+            'terms': {
+                'promoted.group_id': [
+                    group_id for group_id in PROMOTED_GROUP_CHOICES.BADGED.values
+                ]
+            }
         } in filter_
 
     def test_return_to_amo_for_all_listed(self):
@@ -721,7 +721,11 @@ class TestSearchParameterFilter(FilterTestsBase):
         filter_ = qs['query']['bool']['filter']
         assert {'terms': {'guid': ['@foobar']}} in filter_
         assert {
-            'terms': {'promoted.group_id': [group.id for group in BADGED_GROUPS]}
+            'terms': {
+                'promoted.group_id': [
+                    group_id for group_id in PROMOTED_GROUP_CHOICES.BADGED.values
+                ]
+            }
         } not in filter_
 
     def test_search_by_app_invalid(self):

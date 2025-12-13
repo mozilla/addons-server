@@ -44,9 +44,6 @@ from olympia.amo.utils import (
 from olympia.applications.models import AppVersion
 from olympia.constants.applications import APP_IDS
 from olympia.constants.licenses import CC_LICENSES, FORM_LICENSES, LICENSES_BY_BUILTIN
-from olympia.constants.promoted import (
-    PROMOTED_GROUPS_BY_ID,
-)
 from olympia.files import utils
 from olympia.files.models import File, cleanup_file
 from olympia.scanners.models import ScannerResult
@@ -863,38 +860,6 @@ class Version(OnChangeMixin, ModelBase):
             )
 
     @classmethod
-    def transformer_promoted(cls, versions):
-        """Attach the promoted approvals to the versions."""
-        if not versions:
-            return
-
-        PromotedApproval = versions[0].promoted_versions.model
-
-        ids = {v.id for v in versions}
-
-        approvals = list(
-            PromotedApproval.objects.filter(version_id__in=ids).values_list(
-                'version_id', 'promoted_group__group_id', 'application_id', named=True
-            )
-        )
-
-        approval_dict = {
-            version_id: list(groups)
-            for version_id, groups in sorted_groupby(approvals, 'version_id')
-        }
-        for version in versions:
-            v_id = version.id
-            groups = [
-                (
-                    PROMOTED_GROUPS_BY_ID.get(approval.promoted_group__group_id),
-                    APP_IDS.get(approval.application_id),
-                )
-                for approval in approval_dict.get(v_id, [])
-                if approval.promoted_group__group_id in PROMOTED_GROUPS_BY_ID
-            ]
-            version.approved_for_groups = groups
-
-    @classmethod
     def transformer_activity(cls, versions):
         """Attach all the activity to the versions."""
         from olympia.activity.models import VersionLog
@@ -1156,18 +1121,6 @@ class Version(OnChangeMixin, ModelBase):
             return self.reviewerflags.pending_rejection_by
         except VersionReviewerFlags.DoesNotExist:
             return None
-
-    @cached_property
-    def approved_for_groups(self):
-        approvals = list(self.promoted_versions.all())
-        return [
-            (
-                PROMOTED_GROUPS_BY_ID.get(approval.promoted_group.group_id),
-                approval.application,
-            )
-            for approval in approvals
-            if approval.promoted_group.group_id in PROMOTED_GROUPS_BY_ID
-        ]
 
     def get_review_status_for_auto_approval_and_delay_reject(self):
         status = None

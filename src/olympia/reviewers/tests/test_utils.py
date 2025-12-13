@@ -38,10 +38,7 @@ from olympia.amo.tests import (
 from olympia.amo.utils import send_mail
 from olympia.blocklist.models import Block, BlocklistSubmission
 from olympia.constants.abuse import DECISION_ACTIONS
-from olympia.constants.promoted import (
-    PROMOTED_GROUP_CHOICES,
-    PROMOTED_GROUPS_BY_ID,
-)
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.files.models import File
 from olympia.lib.crypto.signing import SigningError
 from olympia.lib.crypto.tests.test_signing import (
@@ -2291,10 +2288,6 @@ class TestReviewHelper(TestReviewHelperBase):
 
         self.addon.reload()
         assert PROMOTED_GROUP_CHOICES.NOTABLE in self.addon.promoted_groups().group_id
-        assert self.review_version.reload().approved_for_groups == [
-            (PROMOTED_GROUPS_BY_ID.get(PROMOTED_GROUP_CHOICES.NOTABLE), amo.FIREFOX),
-            (PROMOTED_GROUPS_BY_ID.get(PROMOTED_GROUP_CHOICES.NOTABLE), amo.ANDROID),
-        ]
 
     def test_addon_with_version_need_human_review_confirm_auto_approval(self):
         NeedsHumanReview.objects.create(version=self.addon.current_version)

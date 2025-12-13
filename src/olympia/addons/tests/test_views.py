@@ -5644,7 +5644,6 @@ class TestAddonSearchView(ESTestCase):
 
         assert set(qset.to_dict()['_source']['excludes']) == {
             '*.raw',
-            'boost',
             'colors',
             'hotness',
             'name',

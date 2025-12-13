@@ -70,7 +70,6 @@ class TestAddonIndexer(TestCase):
         # to store in ES differs from the one in the db.
         complex_fields = [
             'app',
-            'boost',
             'category',
             'colors',
             'current_version',
@@ -82,6 +81,7 @@ class TestAddonIndexer(TestCase):
             'name',
             'previews',
             'promoted',
+            'ranking_bump',
             'ratings',
             'summary',
             'tags',
@@ -233,7 +233,6 @@ class TestAddonIndexer(TestCase):
             assert extracted[field_name] == getattr(self.addon, field_name)
 
         assert extracted['app'] == [FIREFOX.id]
-        assert extracted['boost'] == self.addon.average_daily_users**0.2 * 4
         assert extracted['category'] == [1, 22, 71]  # From fixture.
         assert extracted['current_version']
         assert extracted['listed_authors'] == [
@@ -530,17 +529,22 @@ class TestAddonIndexer(TestCase):
 
         # Promoted extension.
         self.addon = addon_factory(promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED)
+        promotion_groups = self.addon.publicly_promoted_groups
+        assert len(promotion_groups) == 1
+        assert promotion_groups[0].group_id == PROMOTED_GROUP_CHOICES.RECOMMENDED
         extracted = self._extract()
 
         assert extracted['promoted'][0]
-        assert (
-            extracted['promoted'][0]['group_id'] == PROMOTED_GROUP_CHOICES.RECOMMENDED
-        )
+        assert extracted['promoted'][0]['group_id'] == promotion_groups[0].group_id
+        assert extracted['promoted'][0]['category'] == promotion_groups[0].api_name
         assert extracted['promoted'][0]['approved_for_apps'] == [
             amo.FIREFOX.id,
             amo.ANDROID.id,
         ]
         assert extracted['is_recommended'] is True
+
+        # check the extension got an extra ranking bump
+        assert extracted['ranking_bump'] == promotion_groups[0].search_ranking_bump
 
         # Specific application.
         PromotedApproval.objects.filter(
@@ -557,12 +561,26 @@ class TestAddonIndexer(TestCase):
             apps=[amo.FIREFOX],
         )
         self.addon.approve_for_version()
+        del self.addon.publicly_promoted_groups
+        promotion_groups = self.addon.publicly_promoted_groups
+        assert len(promotion_groups) == 2
+        assert promotion_groups[0].group_id == PROMOTED_GROUP_CHOICES.RECOMMENDED
+        assert promotion_groups[1].group_id == PROMOTED_GROUP_CHOICES.LINE
         extracted = self._extract()
         assert extracted['promoted']
-        assert (
-            extracted['promoted'][0]['group_id'] == PROMOTED_GROUP_CHOICES.RECOMMENDED
-        )
-        assert extracted['promoted'][1]['group_id'] == PROMOTED_GROUP_CHOICES.LINE
+        assert extracted['promoted'][0]['group_id'] == promotion_groups[0].group_id
+        assert extracted['promoted'][1]['group_id'] == promotion_groups[1].group_id
+        assert extracted['promoted'][0]['category'] == promotion_groups[0].api_name
+        assert extracted['promoted'][1]['category'] == promotion_groups[1].api_name
+
+        # check the extension got an extra boost, but not twice the bump
+        assert extracted['ranking_bump'] == promotion_groups[0].search_ranking_bump
+
+        # Tinker with the bump value - it should be the max of all promotions.
+        promotion_groups[1].search_ranking_bump = 6.0
+        promotion_groups[1].save()
+        extracted = self._extract()
+        assert extracted['ranking_bump'] == 6.0
 
         # Promoted theme.
         self.addon = addon_factory(type=amo.ADDON_STATICTHEME)

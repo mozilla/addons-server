@@ -152,7 +152,7 @@ class TestShelfViewSet(ESTestCase):
         self.shelf_d.update(enabled=True)
 
         # would be 24 (??) but we mocked Shelf.tag that does a query.
-        with self.assertNumQueries(27):
+        with self.assertNumQueries(26):
             response = self.client.get(self.url)
         assert response.status_code == 200
 

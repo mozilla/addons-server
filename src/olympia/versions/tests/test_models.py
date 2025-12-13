@@ -26,15 +26,12 @@ from olympia.amo.tests.test_models import BasePreviewMixin
 from olympia.amo.utils import utc_millesecs_from_epoch
 from olympia.applications.models import AppVersion
 from olympia.blocklist.models import Block, BlockType, BlockVersion
-from olympia.constants.promoted import (
-    PROMOTED_GROUP_CHOICES,
-    PROMOTED_GROUPS_BY_ID,
-)
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.constants.scanners import CUSTOMS, YARA
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadMixin
 from olympia.files.utils import parse_addon
-from olympia.promoted.models import PromotedApproval, PromotedGroup
+from olympia.promoted.models import PromotedGroup
 from olympia.reviewers.models import AutoApprovalSummary, NeedsHumanReview
 from olympia.scanners.models import ScannerResult
 from olympia.users.models import (
@@ -1630,112 +1627,6 @@ class TestVersion(AMOPaths, TestCase):
         flags.update(pending_rejection=None)
         assert flags.pending_rejection is None
         assert flags.pending_content_rejection is None
-
-    def test_approved_for_groups(self):
-        version = addon_factory().current_version
-        assert version.approved_for_groups == []
-
-        # give it some promoted approvals
-        PromotedApproval.objects.create(
-            version=version,
-            promoted_group=PromotedGroup.objects.get(
-                group_id=PROMOTED_GROUP_CHOICES.LINE
-            ),
-            application_id=amo.FIREFOX.id,
-        )
-        PromotedApproval.objects.create(
-            version=version,
-            promoted_group=PromotedGroup.objects.get(
-                group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
-            ),
-            application_id=amo.ANDROID.id,
-        )
-
-        del version.approved_for_groups
-        assert version.approved_for_groups == [
-            (PROMOTED_GROUPS_BY_ID.get(PROMOTED_GROUP_CHOICES.LINE), amo.FIREFOX),
-            (
-                PROMOTED_GROUPS_BY_ID.get(PROMOTED_GROUP_CHOICES.RECOMMENDED),
-                amo.ANDROID,
-            ),
-        ]
-
-    def test_transform_promoted(self):
-        version_a = addon_factory().current_version
-        version_b = addon_factory().current_version
-        versions = Version.objects.filter(
-            id__in=(version_a.id, version_b.id)
-        ).transform(Version.transformer_promoted)
-        list(versions)  # to evaluate the queryset
-        with self.assertNumQueries(0):
-            assert versions[0].approved_for_groups == []
-            assert versions[1].approved_for_groups == []
-
-        # give them some promoted approvals
-        PromotedApproval.objects.create(
-            version=version_a,
-            promoted_group=PromotedGroup.objects.get(
-                group_id=PROMOTED_GROUP_CHOICES.LINE
-            ),
-            application_id=amo.FIREFOX.id,
-        )
-        PromotedApproval.objects.create(
-            version=version_a,
-            promoted_group=PromotedGroup.objects.get(
-                group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
-            ),
-            application_id=amo.FIREFOX.id,
-        )
-        PromotedApproval.objects.create(
-            version=version_b,
-            promoted_group=PromotedGroup.objects.get(
-                group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
-            ),
-            application_id=amo.FIREFOX.id,
-        )
-        PromotedApproval.objects.create(
-            version=version_b,
-            promoted_group=PromotedGroup.objects.get(
-                group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
-            ),
-            application_id=amo.ANDROID.id,
-        )
-
-        versions = Version.objects.filter(
-            id__in=(version_a.id, version_b.id)
-        ).transform(Version.transformer_promoted)
-        list(versions)  # to evaluate the queryset
-
-        def _sort(group_app_tuple):
-            return group_app_tuple[0].id, group_app_tuple[1].id
-
-        with self.assertNumQueries(0):
-            assert sorted(versions[1].approved_for_groups, key=_sort) == sorted(
-                [
-                    (
-                        PROMOTED_GROUPS_BY_ID.get(PROMOTED_GROUP_CHOICES.RECOMMENDED),
-                        amo.FIREFOX,
-                    ),
-                    (
-                        PROMOTED_GROUPS_BY_ID.get(PROMOTED_GROUP_CHOICES.LINE),
-                        amo.FIREFOX,
-                    ),
-                ],
-                key=_sort,
-            )
-            assert sorted(versions[0].approved_for_groups, key=_sort) == sorted(
-                [
-                    (
-                        PROMOTED_GROUPS_BY_ID.get(PROMOTED_GROUP_CHOICES.RECOMMENDED),
-                        amo.FIREFOX,
-                    ),
-                    (
-                        PROMOTED_GROUPS_BY_ID.get(PROMOTED_GROUP_CHOICES.RECOMMENDED),
-                        amo.ANDROID,
-                    ),
-                ],
-                key=_sort,
-            )
 
     def test_version_string(self):
         addon = Addon.objects.get(id=3615)
