@@ -6058,7 +6058,7 @@ msgstr "Visualizza tutte le estensioni"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1099
 msgid "2025 Staff Picks"
-msgstr ""
+msgstr "Scelti dallo staff per il 2025"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1101
