@@ -2646,7 +2646,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/invitation.html:21
 msgid "Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website. "
-msgstr ""
+msgstr "招待を承諾するとアドオンが編集できるようになります。ウェブサイトの作者リストにあなたの名前が表示される場合があります。"
 
 #: src/olympia/devhub/templates/devhub/addons/invitation.html:22
 #, python-brace-format
@@ -2679,7 +2679,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/owner.html:49
 msgid "Authors that have been added to this add-on but haven't confirmed."
-msgstr ""
+msgstr "このアドオンに追加されているが確認されていない作者。"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:96 src/olympia/devhub/templates/devhub/addons/edit/describe.html:260
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:84 src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:174 src/olympia/devhub/templates/devhub/addons/owner.html:78
@@ -2921,7 +2921,7 @@ msgstr "ホワイトボード"
 msgid ""
 "The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that may"
 " help. This whiteboard is also editable by reviewers."
-msgstr ""
+msgstr "ホワイトボードは、バージョンが何であれ、あなたのアドオンに関連する情報をレビュアーに提供する場所です。アドオンをテストする方法や役に立つかもしれない追加情報を提供するために利用してください。このホワイトボードはレビュアーが編集することもできます。"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:10
 #, python-brace-format
@@ -5158,7 +5158,7 @@ msgstr "VPN を使ってますか？IP アドレスが漏れる可能性があ�
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:440
 msgid "Close annoying pop-ups with a simple click."
-msgstr ""
+msgstr "クリックするだけで迷惑なポップアップを閉じる。"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:443
@@ -5192,7 +5192,7 @@ msgstr "広告や不快なコンテンツを削除すれば、印刷したウェ
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:458
 msgid "Track Amazon pricing history. Make smart shopping decisions by receiving alerts for price changes on Amazon products you're interested in."
-msgstr ""
+msgstr "Amazon の価格履歴を追跡します。気になる Amazon 商品の価格変更アラートを受信して賢いショッピングを。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5226,13 +5226,13 @@ msgstr "不要な Cookie を自動的に削除します。ホワイトリスト�
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:479
 msgid "With a simple click of the mouse you can watch videos in full screen glory."
-msgstr ""
+msgstr "マウスをクリックするだけで、全画面表示で動画を視聴できます。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:482 src/olympia/discovery/strings.jinja2:877
 msgid "Stop wasting valuable memory space with inactive tabs."
-msgstr ""
+msgstr "非アクティブなタブでメモリーを浪費するのを止めましょう。"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:485
@@ -5242,7 +5242,7 @@ msgstr "ページ全体 (または一部) を単一の HTML ファイルとし�
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:488
 msgid "Cut through the nonsense of typical TOS agreements. This clever extension helps you quickly understand what you’re being asked to agree to."
-msgstr ""
+msgstr "よくある TOS 契約書のナンセンスを切り抜けましょう。この賢い拡張機能を使えば、同意を求められている内容を素早く理解することができます。"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:491
@@ -5253,24 +5253,24 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:494 src/olympia/discovery/strings.jinja2:721
 msgid "Read with more clarity and ease. Remove the clutter around text on web pages."
-msgstr ""
+msgstr "より明確に、より簡単に読むことができます。 ウェブページの本文の周囲の乱雑さを取り除きます。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:497 src/olympia/discovery/strings.jinja2:718
 msgid "Block ads and get enhanced protection against malware and ad tracking."
-msgstr ""
+msgstr "広告をブロックし、マルウェアや広告トラッキングの防止を強化します。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:500 src/olympia/discovery/strings.jinja2:898
 msgid "Enjoy multi-threading download support. Automatically detect different types of media available for download."
-msgstr ""
+msgstr "マルチスレッドのダウンロード支援をお楽しみください。ダウンロード可能なさまざまな種類のメディアを自動的に検出します。"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:503
 msgid "Save images easily—just grab them from your current tab."
-msgstr ""
+msgstr "画像を簡単に保存できます。現在のタブから画像を取得するだけです。"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:506
@@ -5441,7 +5441,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:601
 msgid "Goodbye, annoying cookie warnings!"
-msgstr ""
+msgstr "さようなら、迷惑な Cookie 警告！"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:604
@@ -6476,7 +6476,7 @@ msgstr "URL またはパッケージ内の不正なアドオン ID"
 
 #: src/olympia/signing/views.py:211
 msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."
-msgstr ""
+msgstr "「非表示」にしたアドオンに新しい公開バージョンを追加することはできません。"
 
 #: src/olympia/signing/views.py:220
 msgid "You cannot add a listed version to this add-on via the API due to missing metadata. Please submit via the website"
@@ -6484,7 +6484,7 @@ msgstr ""
 
 #: src/olympia/signing/views.py:275
 msgid "No uploaded file for that add-on and version."
-msgstr ""
+msgstr "このアドオンとバージョンのファイルはまだアップロードされていません。"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:4
 msgid "Overview"
@@ -6496,7 +6496,7 @@ msgstr "参照元別"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:14
 msgid "by Medium"
-msgstr ""
+msgstr "媒体別"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:17
 #, fuzzy
@@ -6505,7 +6505,7 @@ msgstr "内容"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:20
 msgid "by Campaign"
-msgstr ""
+msgstr "キャンペーン別"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:26
 msgid "Daily Users"
@@ -6529,7 +6529,7 @@ msgstr "OS 別"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:41
 msgid "by Country"
-msgstr ""
+msgstr "国別"
 
 #: src/olympia/stats/templates/stats/popup.html:2 src/olympia/stats/templates/stats/popup.html:8 src/olympia/stats/templates/stats/stats.html:180
 msgid "close"
@@ -6768,7 +6768,7 @@ msgstr ""
 
 #: src/olympia/templates/photon-footer.html:16
 msgid "Community Blog"
-msgstr ""
+msgstr "コミュニティブログ"
 
 #: src/olympia/templates/photon-footer.html:17
 msgid "Forum"
@@ -6788,7 +6788,7 @@ msgstr ""
 
 #: src/olympia/templates/photon-footer.html:27
 msgid "Desktop"
-msgstr ""
+msgstr "デスクトップ"
 
 #: src/olympia/templates/photon-footer.html:29
 msgid "Enterprise"
@@ -6796,15 +6796,15 @@ msgstr ""
 
 #: src/olympia/templates/photon-footer.html:34
 msgid "Products"
-msgstr ""
+msgstr "製品"
 
 #: src/olympia/templates/photon-footer.html:52
 msgid "Privacy"
-msgstr ""
+msgstr "プライバシー"
 
 #: src/olympia/templates/photon-footer.html:53
 msgid "Cookies"
-msgstr ""
+msgstr "Cookie"
 
 #: src/olympia/templates/photon-footer.html:54
 msgid "Legal"
@@ -7026,7 +7026,7 @@ msgstr ""
 
 #: src/olympia/versions/models.py:1194
 msgid "Disabled by Developer"
-msgstr ""
+msgstr "開発者によって無効にされました"
 
 #: src/olympia/versions/models.py:1551
 #, python-brace-format
@@ -7036,7 +7036,7 @@ msgstr "{app} {min} 以降"
 #: src/olympia/versions/models.py:1678
 #, python-brace-format
 msgid "The install origin {origin} is not permitted."
-msgstr ""
+msgstr "インストール元 {origin} は許可されていません。"
 
 #: src/olympia/versions/utils.py:198
 #, python-brace-format
