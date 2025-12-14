@@ -1568,7 +1568,7 @@ msgstr "映画やテレビを題材にした Firefox のテーマをダウンロ
 
 #: src/olympia/constants/categories.py:246
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
-msgstr ""
+msgstr "Firefox ブラウザーをテーマにした Firefox テーマをダウンロードしましょう。このカテゴリーには、Firefox ロゴのカラフルで多様な描写と一般的なキツネのテーマが含まれています。"
 
 #: src/olympia/constants/categories.py:253
 msgid "Foxkeh"
@@ -1576,7 +1576,7 @@ msgstr "フォクすけ"
 
 #: src/olympia/constants/categories.py:255
 msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
-msgstr ""
+msgstr "日本語 Firefox の Firefox テーマをダウンロードしましょう。このカテゴリーには、さまざまな風景でさまざまなポーズをとる、かわいいフォクすけのマスコットを描いたテーマが含まれます。"
 
 #: src/olympia/constants/categories.py:262
 msgid "Holiday"
@@ -1584,7 +1584,7 @@ msgstr "祝日"
 
 #: src/olympia/constants/categories.py:264
 msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
-msgstr ""
+msgstr "祝日をテーマにした Firefox テーマをダウンロードしましょう。このカテゴリーには、クリスマス、ハロウィーン、感謝祭、聖パトリックの日、イースター、米国独立記念日などが含まれます。"
 
 #: src/olympia/constants/categories.py:271
 msgid "Music"
@@ -1592,7 +1592,7 @@ msgstr "音楽"
 
 #: src/olympia/constants/categories.py:273
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
-msgstr ""
+msgstr "音楽に趣のあるアーティストの Firefox テーマをダウンロードしましょう。このカテゴリーには、Nirvana や BTS などの人気バンド、楽器、ミュージックビデオなどが含まれます。"
 
 #: src/olympia/constants/categories.py:281
 msgid "Nature"
@@ -1600,11 +1600,11 @@ msgstr "自然"
 
 #: src/olympia/constants/categories.py:283
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
-msgstr ""
+msgstr "動物や自然の風景をテーマにした Firefox テーマをダウンロードしましょう。このカテゴリーには、花、夕焼け、キツネ、季節、惑星、子猫、鳥などが含まれます。"
 
 #: src/olympia/constants/categories.py:293
 msgid "Download Firefox themes that are interesting, creative, and unique."
-msgstr ""
+msgstr "興味をそそられる、創造的でユニークな Firefox テーマをダウンロードしよう。"
 
 #: src/olympia/constants/categories.py:298
 msgid "Scenery"
@@ -1612,7 +1612,7 @@ msgstr "風景"
 
 #: src/olympia/constants/categories.py:300
 msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
-msgstr ""
+msgstr "環境や自然界をテーマにした Firefox テーマをダウンロードしましょう。このカテゴリーには、夕日、ビーチ、イラスト、街のスカイラインなどが含まれます。"
 
 #: src/olympia/constants/categories.py:307
 msgid "Seasonal"
@@ -1620,7 +1620,7 @@ msgstr "季節"
 
 #: src/olympia/constants/categories.py:309
 msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
-msgstr ""
+msgstr "春夏秋冬の四季を彩る Firefox テーマをダウンロードしましょう。このテーマには、紅葉、雪山、夏の晴れた日、春の花などが含まれます。"
 
 #: src/olympia/constants/categories.py:316
 msgid "Solid"
@@ -1628,7 +1628,7 @@ msgstr "無地"
 
 #: src/olympia/constants/categories.py:318
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
-msgstr ""
+msgstr "あなたのブラウザーを個性的なものにするソリッドカラーとグラデーションカラーの Firefox テーマをダウンロードしましょう。このカテゴリーには、大胆な赤、パステルカラー、ソフトグレーなどがあります。"
 
 #: src/olympia/constants/categories.py:325
 msgid "Sports"
@@ -1636,7 +1636,7 @@ msgstr "スポーツ"
 
 #: src/olympia/constants/categories.py:327
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
-msgstr ""
+msgstr "さまざまなスポーツの Firefoxテーマをダウンロードしましょう。このカテゴリーには、国旗、スポーツチーム、サッカー、ホッケーなどが含まれます。"
 
 #: src/olympia/constants/categories.py:334
 msgid "Websites"
@@ -1644,7 +1644,7 @@ msgstr "ウェブサイト"
 
 #: src/olympia/constants/categories.py:336
 msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
-msgstr ""
+msgstr "ウェブのエッセンスを取り入れた、魅力的で、一風変わった、個性的な Firefox テーマをダウンロードしましょう。"
 
 #: src/olympia/constants/categories.py:341 src/olympia/constants/categories.py:342
 msgid "General"
