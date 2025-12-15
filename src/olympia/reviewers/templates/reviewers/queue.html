@@ -45,22 +45,22 @@
                 {{ review.instance.addon.name }}</a>
             </h3>
             <p>
-            {% trans user=review.instance.user|user_link, date=review.instance.created|date,
+            {% with user=review.instance.user|user_link, date=review.instance.created|date,
                      stars=review.instance.rating|stars, locale=review.instance.body.locale %}
               by {{ user }} on {{ date }}
               {{ stars }}
-            {% endtrans %}
+            {% endwith %}
             </p>
             <p class="description">{{ review.instance.body|nl2br }}</p>
             <ul class="reviews-flagged-reasons">
               {% for reason in review.instance.ratingflag_set.all() %}
               <li>
               <div>
-                {% trans user=reason.user|user_link, date=reason.modified|datetime,
+                {% with user=reason.user|user_link, date=reason.modified|datetime,
                          reason=flags[reason.flag] %}
                 <strong>{{ reason }}</strong>
                 <span class="light">Flagged by {{ user }} on {{ date }}</span>
-                {% endtrans %}
+                {% endwith %}
               </div>
               {{ reason.note }}
               </li>

@@ -1,5 +1,3 @@
-from django.utils.translation import gettext_lazy as _
-
 from extended_choices import Choices
 
 from .base import ADDON_ANY, ADDON_EXTENSION, ADDON_STATICTHEME
@@ -20,10 +18,10 @@ POST_REVIEW_WEIGHT_HIGH_RISK = 175
 POST_REVIEW_WEIGHT_MEDIUM_RISK = 90
 
 REPUTATION_CHOICES = {
-    0: _('No Reputation'),
-    1: _('Good (1)'),
-    2: _('Very Good (2)'),
-    3: _('Excellent (3)'),
+    0: 'No Reputation',
+    1: 'Good (1)',
+    2: 'Very Good (2)',
+    3: 'Excellent (3)',
 }
 
 # Review queue pagination
@@ -38,11 +36,11 @@ ACTION_DUPLICATE = 2
 ACTION_REJECT = 3
 ACTION_APPROVE = 4
 REVIEW_ACTIONS = {
-    ACTION_MOREINFO: _('Request More Info'),
-    ACTION_FLAG: _('Flag'),
-    ACTION_DUPLICATE: _('Duplicate'),
-    ACTION_REJECT: _('Reject'),
-    ACTION_APPROVE: _('Approve'),
+    ACTION_MOREINFO: 'Request More Info',
+    ACTION_FLAG: 'Flag',
+    ACTION_DUPLICATE: 'Duplicate',
+    ACTION_REJECT: 'Reject',
+    ACTION_APPROVE: 'Approve',
 }
 
 WOULD_NOT_HAVE_BEEN_AUTO_APPROVED = 0
@@ -65,9 +63,9 @@ AUTO_APPROVAL_VERDICT_CHOICES = (
 
 # Types of Add-ons for Reasons.
 REASON_ADDON_TYPE_CHOICES = {
-    ADDON_ANY: _('All'),
-    ADDON_EXTENSION: _('Extension'),
-    ADDON_STATICTHEME: _('Theme'),
+    ADDON_ANY: 'All',
+    ADDON_EXTENSION: 'Extension',
+    ADDON_STATICTHEME: 'Theme',
 }
 
 HELD_DECISION_CHOICES = Choices(
