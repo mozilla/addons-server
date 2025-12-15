@@ -6033,7 +6033,7 @@ msgstr "Viôt dutis lis estensions"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1099
 msgid "2025 Staff Picks"
-msgstr ""
+msgstr "Sieltis dal organic pal 2025"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1101
@@ -7035,7 +7035,7 @@ msgstr "La direzion e-mail dal to account no à i permès necessaris par fâ inv
 
 #: src/olympia/users/models.py:1129
 msgid "The software or device you are using is not allowed for submissions."
-msgstr ""
+msgstr "Il software o il dispositîf che tu stâs doprant nol à il permès pal inviament."
 
 #: src/olympia/users/models.py:1255
 msgid ""
