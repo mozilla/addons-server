@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-12-13 11:23+0000\n"
+"POT-Creation-Date: 2025-12-15 11:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -312,7 +312,7 @@ msgstr ""
 msgid "The \"other\" category cannot be combined with another category"
 msgstr ""
 
-#: src/olympia/addons/fields.py:76 src/olympia/addons/serializers.py:1277
+#: src/olympia/addons/fields.py:76 src/olympia/addons/serializers.py:1274
 msgid "Invalid category name."
 msgstr ""
 
@@ -357,7 +357,7 @@ msgid "Unknown min app version specified"
 msgstr ""
 
 #: src/olympia/addons/fields.py:307 src/olympia/addons/fields.py:325
-#: src/olympia/addons/serializers.py:640
+#: src/olympia/addons/serializers.py:637
 #, python-format
 msgid ""
 "Can not override compatibility information set in the manifest for this "
@@ -378,19 +378,19 @@ msgstr ""
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr ""
 
-#: src/olympia/addons/serializers.py:332
+#: src/olympia/addons/serializers.py:329
 msgid "Built in licenses can not be updated."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:527
+#: src/olympia/addons/serializers.py:524
 msgid "Upload is not valid."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:543
+#: src/olympia/addons/serializers.py:540
 msgid "File is already disabled."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:547 src/olympia/addons/views.py:741
+#: src/olympia/addons/serializers.py:544 src/olympia/addons/views.py:741
 #, python-format
 msgid ""
 "The latest approved version of this %s add-on cannot be deleted because the "
@@ -398,16 +398,16 @@ msgid ""
 " if you need help with this."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:574
+#: src/olympia/addons/serializers.py:571
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:615
+#: src/olympia/addons/serializers.py:612
 #, python-format
 msgid "%(addon_type_plural)s are not supported by %(app_name)s"
 msgstr ""
 
-#: src/olympia/addons/serializers.py:654 src/olympia/devhub/forms.py:930
+#: src/olympia/addons/serializers.py:651 src/olympia/devhub/forms.py:930
 #, python-format
 msgid ""
 "Invalid version range. For Firefox for Android, you may only pick a range "
@@ -415,41 +415,41 @@ msgid ""
 "%(min)s."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:903
+#: src/olympia/addons/serializers.py:900
 msgid "Add-ons need at least one owner."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:918
+#: src/olympia/addons/serializers.py:915
 msgid "Add-ons need at least one listed author."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:950
+#: src/olympia/addons/serializers.py:947
 msgid "Account not found."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:963 src/olympia/devhub/forms.py:430
+#: src/olympia/addons/serializers.py:960 src/olympia/devhub/forms.py:430
 #: src/olympia/devhub/forms.py:500
 msgid "An author can only be present once."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:974 src/olympia/devhub/forms.py:442
+#: src/olympia/addons/serializers.py:971 src/olympia/devhub/forms.py:442
 msgid "The account needs a display name before it can be added as an author."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:1257
+#: src/olympia/addons/serializers.py:1254
 msgid "This slug cannot be used. Please choose another."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:1891
+#: src/olympia/addons/serializers.py:1879
 msgid "There is no rollback available in this channel."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:1901
+#: src/olympia/addons/serializers.py:1889
 #, python-format
 msgid "Rollback is only available for version %s in this channel."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:1907
+#: src/olympia/addons/serializers.py:1895
 msgid "Only approved versions can be rolled back, except the most recent version."
 msgstr ""
 
@@ -1418,7 +1418,7 @@ msgstr ""
 msgid "Disabled by Mozilla"
 msgstr ""
 
-#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1192
+#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1145
 msgid "Deleted"
 msgstr ""
 
@@ -1945,30 +1945,6 @@ msgstr ""
 
 #: src/olympia/constants/licenses.py:222
 msgid "The Unlicense"
-msgstr ""
-
-#: src/olympia/constants/promoted.py:74
-msgid "Recommended"
-msgstr ""
-
-#: src/olympia/constants/promoted.py:105
-msgid "By Firefox"
-msgstr ""
-
-#: src/olympia/constants/promoted.py:123
-msgid "Spotlight"
-msgstr ""
-
-#: src/olympia/constants/promoted.py:134
-msgid "Strategic"
-msgstr ""
-
-#: src/olympia/constants/promoted.py:141
-msgid "Notable"
-msgstr ""
-
-#: src/olympia/constants/promoted.py:151
-msgid "Partner"
 msgstr ""
 
 #: src/olympia/constants/reviewers.py:23
@@ -7231,7 +7207,7 @@ msgstr ""
 msgid "Invalid Return To AMO guid (not in base64url format?)"
 msgstr ""
 
-#: src/olympia/search/filters.py:966
+#: src/olympia/search/filters.py:970
 msgid "Maximum query length exceeded."
 msgstr ""
 
@@ -7827,33 +7803,33 @@ msgid ""
 "Mozilla Add-ons Team"
 msgstr ""
 
-#: src/olympia/versions/models.py:1177
+#: src/olympia/versions/models.py:1130
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
 msgstr ""
 
-#: src/olympia/versions/models.py:1182
+#: src/olympia/versions/models.py:1135
 msgid "Auto-approved, Confirmed"
 msgstr ""
 
-#: src/olympia/versions/models.py:1184
+#: src/olympia/versions/models.py:1137
 msgid "Auto-approved, not Confirmed"
 msgstr ""
 
-#: src/olympia/versions/models.py:1187
+#: src/olympia/versions/models.py:1140
 msgid "Approved, Manual"
 msgstr ""
 
-#: src/olympia/versions/models.py:1194
+#: src/olympia/versions/models.py:1147
 msgid "Disabled by Developer"
 msgstr ""
 
-#: src/olympia/versions/models.py:1551
+#: src/olympia/versions/models.py:1504
 #, python-brace-format
 msgid "{app} {min} and later"
 msgstr ""
 
-#: src/olympia/versions/models.py:1678
+#: src/olympia/versions/models.py:1631
 #, python-brace-format
 msgid "The install origin {origin} is not permitted."
 msgstr ""
