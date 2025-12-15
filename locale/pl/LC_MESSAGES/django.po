@@ -6018,7 +6018,7 @@ msgstr "Wyświetl wszystkie rozszerzenia"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1099
 msgid "2025 Staff Picks"
-msgstr ""
+msgstr "Nasze propozycje na rok 2025"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1101
@@ -6250,7 +6250,7 @@ msgstr "Pakiet startowy rozszerzeń"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1214
 msgid "See more starter extension staff picks"
-msgstr ""
+msgstr "Nasze propozycje rozszerzeń dla początkujących"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1217
