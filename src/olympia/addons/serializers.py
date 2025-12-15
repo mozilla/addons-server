@@ -41,10 +41,7 @@ from olympia.bandwagon.models import Collection
 from olympia.constants.applications import APP_IDS, APPS_ALL
 from olympia.constants.base import ADDON_TYPE_CHOICES_API
 from olympia.constants.categories import CATEGORIES_BY_ID
-from olympia.constants.promoted import (
-    PROMOTED_GROUP_CHOICES,
-    PROMOTED_GROUPS_BY_ID,
-)
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.files.models import File, FileUpload
 from olympia.files.utils import DuplicateAddonID, parse_addon
 from olympia.promoted.models import PromotedGroup
@@ -1629,27 +1626,18 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
         if promoted:
             promoted_list = promoted if isinstance(promoted, list) else [promoted]
             obj.promoted = []
-            approved_for_groups = []
             for promotion in promoted_list:
-                # set .approved_for_groups cached_property because it's used in
-                # .approved_applications.
                 approved_for_apps = promotion.get('approved_for_apps')
-                group = PROMOTED_GROUPS_BY_ID[promotion['group_id']]
+                group = PROMOTED_GROUP_CHOICES.for_value(promotion['group_id'])
                 obj.promoted.append(
                     {
-                        'group_id': group.id,
-                        'category': group.api_name,
+                        'group_id': promotion['group_id'],
+                        'category': promotion.get('category', group.api_value),
                         'apps': [
                             APP_IDS.get(app_id).short for app_id in approved_for_apps
                         ],
                     }
                 )
-                approved_for_groups.extend(
-                    (group, APP_IDS.get(app_id)) for app_id in approved_for_apps
-                )
-            # we can safely regenerate these tuples because
-            # .appproved_applications only cares about the current group
-            obj._current_version.approved_for_groups = tuple(approved_for_groups)
         else:
             obj.promoted = []
 

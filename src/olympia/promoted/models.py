@@ -6,10 +6,7 @@ from olympia.abuse.models import ManagerBase
 from olympia.addons.models import Addon
 from olympia.amo.models import BaseQuerySet, ModelBase
 from olympia.constants.applications import APP_IDS, APPS_CHOICES
-from olympia.constants.promoted import (
-    DEACTIVATED_LEGACY_IDS,
-    PROMOTED_GROUP_CHOICES,
-)
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.reviewers.models import NeedsHumanReview
 from olympia.versions.models import Version
 
@@ -30,6 +27,9 @@ class PromotedGroupQuerySet(BaseQuerySet):
     def name(self):
         return ', '.join(self.__getattr__('name'))
 
+    def active(self):
+        return self.filter(active=True)
+
 
 class PromotedGroupManager(ManagerBase):
     _queryset_class = PromotedGroupQuerySet
@@ -44,6 +44,9 @@ class PromotedGroupManager(ManagerBase):
             'promoted_group__group_id', flat=True
         )
         return self.all_for(addon=addon).filter(group_id__in=approved_promotions)
+
+    def active(self):
+        return self.get_queryset().active()
 
 
 class PromotedGroup(models.Model):
@@ -126,20 +129,16 @@ class PromotedGroup(models.Model):
         # Obsolete, never used in production, only there to prevent us from re-using
         # the ids. Both these classes used to have specific properties set that were
         # removed since they are not supposed to be used anyway.
-        if self.group_id in DEACTIVATED_LEGACY_IDS and not self.pk:
+        if (
+            self.group_id in PROMOTED_GROUP_CHOICES.values
+            and self.group_id not in PROMOTED_GROUP_CHOICES.ACTIVE.values
+            and not self.pk
+        ):
             raise ValidationError(f'Legacy ID {self.group_id} is not allowed')
         super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name
-
-    @classmethod
-    def active_groups(self):
-        return PromotedGroup.objects.filter(active=True)
-
-    @classmethod
-    def badged_groups(self):
-        return PromotedGroup.active_groups().filter(badged=True)
 
 
 class PromotedAddon(ModelBase):
@@ -199,10 +198,6 @@ class PromotedAddon(ModelBase):
                 application_id=app.id,
                 version=version,
             )
-        try:
-            del version.approved_for_groups
-        except AttributeError:
-            pass
 
     def approve_for_addon(self):
         """This sets up the addon as approved for the current promoted group.

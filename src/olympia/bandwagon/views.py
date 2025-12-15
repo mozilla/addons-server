@@ -174,7 +174,6 @@ class CollectionAddonViewSet(ModelViewSet):
             obj.addon._current_version for obj in objs if obj.addon._current_version
         ]
         addons = [obj.addon for obj in objs]
-        Version.transformer_promoted(current_versions)
         Version.transformer_license(current_versions)
         attach_tags(addons)
 
