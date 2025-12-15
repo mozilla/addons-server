@@ -246,15 +246,34 @@ class CinderJobsWidget(forms.CheckboxSelectMultiple):
         # label_from_instance() on WidgetRenderedModelMultipleChoiceField returns the
         # full object, not a label, this is what makes this work.
         obj = label
-        is_appeal = obj.is_appeal
-        queue_moves = list(obj.queue_moves.order_by('-created'))
-        requeued_decisions = list(
-            obj.decisions.filter(action=DECISION_ACTIONS.AMO_REQUEUE).order_by(
-                '-created'
-            )
+
+        forwarded_or_requeued_decisions = list(
+            obj.decisions.filter(
+                action__in=(
+                    DECISION_ACTIONS.AMO_REQUEUE,
+                    DECISION_ACTIONS.AMO_ESCALATE_ADDON,
+                )
+            ).order_by('-created')
         )
-        forwarded = queue_moves[0].created if queue_moves else None
-        requeued = requeued_decisions[0].created if requeued_decisions else None
+
+        is_appeal = obj.is_appeal
+        forwarded = next(
+            (
+                decision
+                for decision in forwarded_or_requeued_decisions
+                if decision.action == DECISION_ACTIONS.AMO_ESCALATE_ADDON
+            ),
+            None,
+        )
+        requeued = next(
+            (
+                decision
+                for decision in forwarded_or_requeued_decisions
+                if decision.action == DECISION_ACTIONS.AMO_REQUEUE
+            ),
+            None,
+        )
+
         reports = obj.all_abuse_reports
         reasons_set = {
             (report.REASONS.for_value(report.reason).display,) for report in reports
@@ -266,13 +285,12 @@ class CinderJobsWidget(forms.CheckboxSelectMultiple):
             )
             for report in reports
         )
-        forwarded_or_requeued_notes = [
-            *(move.notes for move in queue_moves),
-            *(decision.private_notes for decision in requeued_decisions),
-        ]
+        internal_notes_gen = (
+            decision.private_notes for decision in forwarded_or_requeued_decisions
+        )
         internal_notes = (
-            ((f'Reasoning: {"; ".join(forwarded_or_requeued_notes)}',),)
-            if forwarded_or_requeued_notes
+            ((f'Reasoning: {"; ".join(internal_notes_gen)}',),)
+            if forwarded_or_requeued_decisions
             else ()
         )
         appeals = (
@@ -294,10 +312,10 @@ class CinderJobsWidget(forms.CheckboxSelectMultiple):
             '</details>',
             format_datetime(obj.created),
             '[Appeal] ' if is_appeal else '',
-            format_html('[Forwarded on {}] ', format_datetime(forwarded))
+            format_html('[Forwarded on {}] ', format_datetime(forwarded.created))
             if forwarded
             else '',
-            format_html('[Requeued on {}] ', format_datetime(requeued))
+            format_html('[Requeued on {}] ', format_datetime(requeued.created))
             if requeued
             else '',
             format_html_join(', ', '"{}"', reasons_set),

@@ -61,10 +61,13 @@ class CinderJobQuerySet(BaseQuerySet):
             Q(decisions__isnull=True)
             | Q(
                 # i.e. the latest decision is a requeue
-                decisions__action=DECISION_ACTIONS.AMO_REQUEUE,
+                decisions__action__in=(
+                    DECISION_ACTIONS.AMO_REQUEUE,
+                    DECISION_ACTIONS.AMO_ESCALATE_ADDON,
+                ),
                 decisions__overridden_by__isnull=True,
             )
-        )
+        ).distinct()
 
     def resolvable_in_reviewer_tools(self):
         return self.filter(resolvable_in_reviewer_tools=True)
@@ -348,8 +351,15 @@ class CinderJob(ModelBase):
         return created
 
     def process_queue_move(self, *, new_queue, notes):
-        CinderQueueMove.objects.create(cinder_job=self, notes=notes, to_queue=new_queue)
         if new_queue == CinderAddonHandledByReviewers(self.target).queue:
+            ContentDecision.objects.create(
+                addon=self.target_addon,
+                action=DECISION_ACTIONS.AMO_ESCALATE_ADDON,
+                override_of=self.decision,
+                action_date=datetime.now(),
+                private_notes=notes,
+                cinder_job=self,
+            )
             # now escalated
             entity_helper = CinderJob.get_entity_helper(
                 self.target, resolved_in_reviewer_tools=True
@@ -384,20 +394,20 @@ class CinderJob(ModelBase):
             .unresolved()
             .resolvable_in_reviewer_tools()
         )
-        if (
-            (decision_actions := tuple(self.decisions.values_list('action', flat=True)))
-            # i.e. was the previous decision before the current a requeue
-            and len(decision_actions) >= 2
-            and decision_actions[-2] == DECISION_ACTIONS.AMO_REQUEUE
-        ):
+        # the previous decision before this new decision
+        penultimate_action = tuple(self.decisions.values_list('action', flat=True))[
+            -2:-1
+        ]
+        if penultimate_action == (DECISION_ACTIONS.AMO_REQUEUE,):
             has_unresolved_jobs_with_similar_reason = base_unresolved_jobs_qs.filter(
                 decisions__action=DECISION_ACTIONS.AMO_REQUEUE,
                 decisions__overridden_by__isnull=True,
             ).exists()
             reasons = {NeedsHumanReview.REASONS.SECOND_LEVEL_REQUEUE}
-        elif self.queue_moves.exists():
+        elif penultimate_action == (DECISION_ACTIONS.AMO_ESCALATE_ADDON,):
             has_unresolved_jobs_with_similar_reason = base_unresolved_jobs_qs.filter(
-                queue_moves__id__gt=0
+                decisions__action=DECISION_ACTIONS.AMO_ESCALATE_ADDON,
+                decisions__overridden_by__isnull=True,
             ).exists()
             reasons = {
                 NeedsHumanReview.REASONS.CINDER_ESCALATION,
@@ -1489,11 +1499,3 @@ class CinderAppeal(ModelBase):
     reporter_report = models.OneToOneField(
         to=AbuseReport, on_delete=models.CASCADE, null=True
     )
-
-
-class CinderQueueMove(ModelBase):
-    cinder_job = models.ForeignKey(
-        to=CinderJob, on_delete=models.CASCADE, related_name='queue_moves'
-    )
-    notes = models.TextField(max_length=1000, blank=True)
-    to_queue = models.CharField(max_length=128)

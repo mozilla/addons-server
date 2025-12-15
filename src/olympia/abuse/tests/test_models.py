@@ -65,7 +65,6 @@ from ..models import (
     CinderAppeal,
     CinderJob,
     CinderPolicy,
-    CinderQueueMove,
     ContentDecision,
 )
 
@@ -756,8 +755,11 @@ class TestCinderJobManager(TestCase):
         assert list(qs) == [job, appeal_job]
 
         not_policy_report.cinder_job.update(resolvable_in_reviewer_tools=True)
-        CinderQueueMove.objects.create(
-            cinder_job=not_policy_report.cinder_job, to_queue='?'
+        ContentDecision.objects.create(
+            action=DECISION_ACTIONS.AMO_ESCALATE_ADDON,
+            action_date=datetime.now(),
+            cinder_job=not_policy_report.cinder_job,
+            addon=not_policy_report.target,
         )
         qs = CinderJob.objects.resolvable_in_reviewer_tools()
         assert list(qs) == [not_policy_report.cinder_job, job, appeal_job]
@@ -1364,9 +1366,10 @@ class TestCinderJob(TestCase):
         nhr = NeedsHumanReview.objects.get()
         assert nhr.reason == NeedsHumanReview.REASONS.CINDER_ESCALATION
         assert nhr.version == addon.current_version
-        assert CinderQueueMove.objects.filter(
-            cinder_job=cinder_job, to_queue='amo-env-addon-infringement', notes='notes!'
-        ).exists()
+        assert cinder_job.decision.private_notes == 'notes!'
+        assert cinder_job.decision.action == DECISION_ACTIONS.AMO_ESCALATE_ADDON
+        assert cinder_job.decision.cinder_job == cinder_job
+        assert cinder_job.decision.addon == cinder_job.target_addon
 
     def test_process_queue_move_out_of_reviewer_handled(self):
         # Not yet implemented, so just check it's silently ignored
@@ -1384,9 +1387,7 @@ class TestCinderJob(TestCase):
         assert cinder_job.resolvable_in_reviewer_tools is True
         assert len(mail.outbox) == 0
         assert NeedsHumanReview.objects.count() == 1
-        assert CinderQueueMove.objects.filter(
-            cinder_job=cinder_job, to_queue='amo-env-listings', notes='out'
-        ).exists()
+        assert not cinder_job.decision
 
     def test_process_queue_move_other_queue_movement(self):
         # we don't need to about these other queue moves, so just check it's silently
@@ -1399,9 +1400,7 @@ class TestCinderJob(TestCase):
         assert not cinder_job.resolvable_in_reviewer_tools
         assert len(mail.outbox) == 0
         assert NeedsHumanReview.objects.count() == 0
-        assert CinderQueueMove.objects.filter(
-            cinder_job=cinder_job, to_queue='amo-env-some-other-queue', notes='?'
-        ).exists()
+        assert not cinder_job.decision
 
     @override_switch('dsa-cinder-forwarded-review', active=True)
     def test_process_queue_move_with_addon_already_moderated(self):
@@ -1439,7 +1438,11 @@ class TestCinderJob(TestCase):
         assert mail.outbox[0].to == ['some@email.com']
         assert 'already assessed' in mail.outbox[0].body
         assert ContentDecision.objects.exists()
-        decision = ContentDecision.objects.get()
+        assert ContentDecision.objects.count() == 2
+        assert ContentDecision.objects.first().action == (
+            DECISION_ACTIONS.AMO_ESCALATE_ADDON
+        )
+        decision = ContentDecision.objects.last()
         assert decision.action == DECISION_ACTIONS.AMO_CLOSED_NO_ACTION
         self.assertCloseToNow(decision.action_date)
         assert decision.cinder_job == CinderJob.objects.get()
@@ -1575,14 +1578,24 @@ class TestCinderJob(TestCase):
     def test_clear_needs_human_review_flags_forwarded_moved_queue(self):
         job = self._setup_clear_needs_human_review_flags()
         # if the job is forwarded, we make sure that there are no other forwarded jobs
-        CinderQueueMove.objects.create(cinder_job=job, to_queue='wherever')
+        job.decision.update(action=DECISION_ACTIONS.AMO_ESCALATE_ADDON)
+        ContentDecision.objects.create(
+            action=DECISION_ACTIONS.AMO_APPROVE,
+            addon=job.target_addon,
+            cinder_job=job,
+            override_of=job.final_decision,
+        )
 
         other_forward = CinderJob.objects.create(
             job_id='3',
             target_addon=job.target_addon,
             resolvable_in_reviewer_tools=True,
         )
-        CinderQueueMove.objects.create(cinder_job=other_forward, to_queue='whoever')
+        ContentDecision.objects.create(
+            action=DECISION_ACTIONS.AMO_ESCALATE_ADDON,
+            addon=job.target_addon,
+            cinder_job=other_forward,
+        )
         job.clear_needs_human_review_flags()
         assert self._nhr_exists(NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION)
         assert self._nhr_exists(NeedsHumanReview.REASONS.CINDER_ESCALATION)
@@ -1595,6 +1608,7 @@ class TestCinderJob(TestCase):
             action=DECISION_ACTIONS.AMO_APPROVE,
             addon=job.target_addon,
             cinder_job=other_forward,
+            override_of=other_forward.decision,
         )
         job.clear_needs_human_review_flags()
         assert self._nhr_exists(NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION)
@@ -3515,17 +3529,24 @@ class TestContentDecision(TestCase):
     def test_resolve_job_forwarded(self):
         addon_developer = user_factory()
         addon = addon_factory(users=[addon_developer])
+        cinder_job = CinderJob.objects.create(job_id='999')
+        ContentDecision.objects.create(
+            addon=addon,
+            action=DECISION_ACTIONS.AMO_ESCALATE_ADDON,
+            action_date=datetime.now(),
+            private_notes='why moved',
+            cinder_job=cinder_job,
+        )
         decision = ContentDecision.objects.create(
             addon=addon,
             action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
             action_date=datetime.now(),
             reasoning='some review text',
             reviewer_user=self.reviewer_user,
+            cinder_job=cinder_job,
         )
         policies = [CinderPolicy.objects.create(name='policy', uuid='12345678')]
         decision.policies.set(policies)
-        cinder_job = CinderJob.objects.create(job_id='999', decision=decision)
-        CinderQueueMove.objects.create(cinder_job=cinder_job, to_queue='wherever')
         NeedsHumanReview.objects.create(
             version=addon.current_version,
             reason=NeedsHumanReview.REASONS.CINDER_ESCALATION,
@@ -3571,14 +3592,20 @@ class TestContentDecision(TestCase):
     def test_execute_action_forwarded_to_legal(self):
         addon_developer = user_factory()
         addon = addon_factory(users=[addon_developer])
+        cinder_job = CinderJob.objects.create(job_id='999')
+        ContentDecision.objects.create(
+            addon=addon,
+            action=DECISION_ACTIONS.AMO_ESCALATE_ADDON,
+            private_notes='why moved',
+            cinder_job=cinder_job,
+        )
         decision = ContentDecision.objects.create(
             addon=addon,
             action=DECISION_ACTIONS.AMO_LEGAL_FORWARD,
             reasoning='some reasoning',
             reviewer_user=self.reviewer_user,
+            cinder_job=cinder_job,
         )
-        cinder_job = CinderJob.objects.create(job_id='999', decision=decision)
-        CinderQueueMove.objects.create(cinder_job=cinder_job, to_queue='wherever')
         NeedsHumanReview.objects.create(
             version=addon.current_version,
             reason=NeedsHumanReview.REASONS.CINDER_ESCALATION,
@@ -3606,8 +3633,8 @@ class TestContentDecision(TestCase):
         decision.execute_action()
 
         cinder_job.reload()
-        assert cinder_job.decision.action == DECISION_ACTIONS.AMO_LEGAL_FORWARD
-        self.assertCloseToNow(cinder_job.decision.action_date)
+        assert cinder_job.final_decision.action == DECISION_ACTIONS.AMO_LEGAL_FORWARD
+        self.assertCloseToNow(cinder_job.final_decision.action_date)
         assert not NeedsHumanReview.objects.filter(
             is_active=True, reason=NeedsHumanReview.REASONS.CINDER_ESCALATION
         ).exists()
