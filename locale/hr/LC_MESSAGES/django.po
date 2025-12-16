@@ -2043,11 +2043,11 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py:1659
 msgid "Choose version"
-msgstr ""
+msgstr "Odaberi verziju"
 
 #: src/olympia/devhub/forms.py:1668
 msgid "Release notes"
-msgstr ""
+msgstr "Napomene o izdanju"
 
 #: src/olympia/devhub/forms.py:1669
 msgid "Automatic rollback based on version [m.m]."
