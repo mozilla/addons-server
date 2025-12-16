@@ -2545,7 +2545,7 @@ msgstr "Nedavna aktivnost za {0}"
 #: src/olympia/devhub/templates/devhub/addons/activity.html:33
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
-msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> od strane %(user)s"
+msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> od %(user)s"
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html:45
 msgid "No results found."
