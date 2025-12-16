@@ -5888,7 +5888,7 @@ msgstr "Endre fargen på Firefox for å matche kvar nettstad du besøkjer."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1057
 msgid "Learning a new language? Yomitan is the ideal dictionary companion."
-msgstr "Lærer du eit nytt språk? Yomitan er den ideelle ordbokshjelparen."
+msgstr "Lærer du eit nytt språk? Yomitan er den ideelle ordbokhjelparen."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1060
