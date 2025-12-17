@@ -103,7 +103,7 @@ $.fn.csvTable = function (cfg) {
           newBody += '<tr>';
           newBody +=
             '<th>' +
-            Highcharts.dateFormat('%a, %b %e, %Y', Date.iso(d)) +
+            Date.iso(d).toLocaleDateString($('html').attr('lang'), {"weekday": "short", "month": "short", "day": "numeric", "year": "numeric"}) +
             '</th>';
           _.each(fields, function (f) {
             newBody += '<td>';

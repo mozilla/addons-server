@@ -42,7 +42,7 @@
             </th>
             <td>
               {% if editable %}
-                <p>{{ _('Supported domains: %s'|format(', '.join(amo.VALID_CONTRIBUTION_DOMAINS))) }}</p>
+                <p>{{ _('Supported domains: %(supported_domains)s', supported_domains=', '.join(amo.VALID_CONTRIBUTION_DOMAINS)) }}</p>
                 <p>{{ main_form.contributions }}</p>
                 {{ main_form.contributions.errors }}
               {% else %}
