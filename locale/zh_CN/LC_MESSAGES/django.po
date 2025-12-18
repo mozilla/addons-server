@@ -1280,12 +1280,12 @@ msgstr "{addon} {0} 的属性已编辑。"
 #: src/olympia/constants/activity.py:1254
 #, python-brace-format
 msgid "Collection {0} property {1} updated."
-msgstr ""
+msgstr "收藏集 {0} 属性 {1} 已更新。"
 
 #: src/olympia/constants/activity.py:1261
 #, python-brace-format
 msgid "Account {user} property {0} updated."
-msgstr ""
+msgstr "账户 {user} 属性 {0} 已更新。"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -5526,17 +5526,17 @@ msgstr "在试图阻止 Firefox 访问的网站面前，将 Firefox 变装为 Ch
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:685
 msgid "Manage your Gmail (even multiple accounts) right from Firefox's toolbar button."
-msgstr ""
+msgstr "直接通过 Firefox 工具栏中的按钮管理 Gmail，多个账户也不在话下。"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:688
 msgid "Track the time you spend on the web, analyze your habits, block distracting sites & more."
-msgstr ""
+msgstr "记录您在网络上花的时间、分析您的浏览习惯、屏蔽让您分心的网站，还有更多实用功能。"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:691
 msgid "Improve your writing — get instant access to the power of synonyms."
-msgstr ""
+msgstr "解锁同义词的魔力，下笔如有神。"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:694
