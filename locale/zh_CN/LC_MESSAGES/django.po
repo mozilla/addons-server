@@ -5541,7 +5541,7 @@ msgstr "解锁同义词的魔力，时刻妙笔生花。"
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:694
 msgid "Deep translation features for a rich language experience anywhere on the web."
-msgstr ""
+msgstr "深度集成的翻译功能，助你遍览全网各语言内容。"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:697
