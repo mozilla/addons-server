@@ -5536,7 +5536,7 @@ msgstr "记录您在网络上花的时间、分析您的浏览习惯、屏蔽让
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:691
 msgid "Improve your writing — get instant access to the power of synonyms."
-msgstr "解锁同义词的魔力，下笔如有神。"
+msgstr "解锁同义词的魔力，时刻妙笔生花。"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:694
@@ -5546,7 +5546,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:697
 msgid "Leave yourself little notes on any website."
-msgstr ""
+msgstr "在任意网站上给自己留个小笔记。"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:700
@@ -5841,22 +5841,22 @@ msgstr "精简 YouTube 界面，移除相关视频、短视频等干扰元素。
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1078
 msgid "Leave yourself little notes on any web page."
-msgstr ""
+msgstr "在任意网页上给自己留个小笔记。"
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1081
 msgid "Serenity for your Reddit experience."
-msgstr ""
+msgstr "让 Reddit 更纯净。"
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1084
 msgid "Save and organize anything you find on the web."
-msgstr ""
+msgstr "将您在网络上发现的内容汇聚一处、归纳整理。"
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1087
 msgid "WebM video controls at your fingertips."
-msgstr ""
+msgstr "触手可及的 WebM 视频控件。"
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1090
@@ -5886,7 +5886,7 @@ msgstr ""
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1101
 msgid "New Recommended Extensions"
-msgstr ""
+msgstr "扩展新推荐"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1103
