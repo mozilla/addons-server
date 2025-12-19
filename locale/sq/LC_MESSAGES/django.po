@@ -3888,6 +3888,8 @@ msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement, Review Policies and Rules and our <a %(a_attrs)s href=\"%(faq_url)s\">Frequently Asked Questions</a>. The Firefox "
 "Add-on Distribution Agreement also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
+"Para se t’ia filloni, ju lutemi, lexoni dhe pranoni Marrëveshjen tonë për Shpërndarje Shtesash Firefox, Rregulla Shqyrtimesh dhe Rregulla, si dhe <a %(a_attrs)s href=\"%(faq_url)s\">Pyetje të Bëra "
+"Rëndom</a>. Marrëveshja mbi Shpërndarje Shtesash Firefox lidhet edhe me Shënimin tonë mbi Privatësinë, i cili shpjegon si e trajtojmë informacionin tuaj."
 
 #: src/olympia/devhub/templates/devhub/includes/agreement.html:10
 msgid "Review Policies and Rules"
@@ -4434,6 +4436,8 @@ msgid ""
 "Once a version has been deleted, you may not upload a new version with the same version number. The version will also be Restricted, which will disable and prevent any further installation in "
 "Firefox. Existing users can choose to re-enable the add-on."
 msgstr ""
+"Pasi të jetë fshirë një version, s’mund të instaloni një version të ri me të njëjtin numër versioni. Versioni gjithashtu do të Kufizohet, çka do të çaktivizojë dhe pengojë çfarëdo instalimi të "
+"mëtejshëm në Firefox. Përdoruesit ekzistues mund të zgjedhin ta riaktivizojnë shtesën."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:296
 msgid "Are you sure you wish to delete this version?"
