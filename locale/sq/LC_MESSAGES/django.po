@@ -1266,11 +1266,11 @@ msgstr "Lëndë hedhur poshtë automatikisht pas skadimi vonese."
 #: src/olympia/constants/activity.py:1196
 #, python-brace-format
 msgid "{addon} {version} pending rejection changed."
-msgstr ""
+msgstr "Hedhja poshtë pezull për {addon} {version} ndryshoi."
 
 #: src/olympia/constants/activity.py:1197
 msgid "Pending rejection changed"
-msgstr ""
+msgstr "Hedhja poshtë pezull u ndryshua"
 
 #: src/olympia/constants/activity.py:1208
 #, python-brace-format
