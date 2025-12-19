@@ -5901,62 +5901,62 @@ msgstr "Ndryshojeni ngjyrën e Firefox-it që të përkojë me çdo sajt që viz
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1057
 msgid "Learning a new language? Yomitan is the ideal dictionary companion."
-msgstr ""
+msgstr "Po nxini një gjuhë të re? Yomitan është shoqëruesi ideal i fjalorit."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1060
 msgid "Pack a powerful thesaurus right inside Firefox."
-msgstr ""
+msgstr "Paketoni një thesaurus të fuqishëm mu në Firefox."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1063
 msgid "Hover over web images to enlarge their appearance."
-msgstr ""
+msgstr "Kaloni kursorin sipër figurash në internet, për të zmadhuar pamjen e tyre."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1066
 msgid "Feature rich translation tool. Works across the web, eBooks, PDFs, even video subtitles."
-msgstr ""
+msgstr "Mjet përkthimi i pasur me veçori. Funksionin në internet, eLibra, PDF-ra, madje edhe për titra videosh."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1069
 msgid "Track the time you spend on every website you visit."
-msgstr ""
+msgstr "Ndiqni kohën që shpenzoni në çdo sajt që vizitoni."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1072
 msgid "Manage your Gmail (even multiple accounts) right from a handy pop-up accessible from the Firefox toolbar."
-msgstr ""
+msgstr "Administroni Gmail-in tuaj (qoftë edhe me disa llogari) drejt e nga një dritare flluskë e përshtatshme që nga paneli i Firefox-it."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1075
 msgid "De-clutter YouTube. Strip away unwanted elements like related videos, shorts & more."
-msgstr ""
+msgstr "Hiqni rrëmujën në YouTube. Zhvisheni nga elementë të padëshiruar, b.f., video të ngjashme, të shkurtra & etj."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1078
 msgid "Leave yourself little notes on any web page."
-msgstr ""
+msgstr "I lini vetes shënime të vockla në çfarëdo faqe web."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1081
 msgid "Serenity for your Reddit experience."
-msgstr ""
+msgstr "Paqe në funksionimin e Reddit-it për ju."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1084
 msgid "Save and organize anything you find on the web."
-msgstr ""
+msgstr "Ruani dhe sistemoni gjithçka gjeni në internet."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1087
 msgid "WebM video controls at your fingertips."
-msgstr ""
+msgstr "Kontrolle videosh WebM në majë të gishtave."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1090
 msgid "Disguise Firefox as the Chrome browser to spoof websites that try to block Firefox."
-msgstr ""
+msgstr "Maskojeni Firefox-in si shfletuesin Chrome, për të ngatërruar sajte që rreken të bllokojnë Firefox-n tuaj."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1093
@@ -5976,12 +5976,12 @@ msgstr "Shihni tërë zgjerimet"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1099
 msgid "2025 Staff Picks"
-msgstr ""
+msgstr "Zgjedhje të Ekipit për 2025-n"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1101
 msgid "New Recommended Extensions"
-msgstr ""
+msgstr "Zgjerime të Reja të Rekomanduara"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1103
@@ -5996,7 +5996,7 @@ msgstr "Shihni zgjedhje nga stafi"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1107
 msgid "Explore now"
-msgstr ""
+msgstr "Eksplorojini që tani"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1112
@@ -6978,7 +6978,7 @@ msgstr "Adresa email e përdorur për llogarinë tuaj nuk lejohet për parashtri
 
 #: src/olympia/users/models.py:1129
 msgid "The software or device you are using is not allowed for submissions."
-msgstr ""
+msgstr "Software-i apo pajisja që po përdorni s’lejohet për parashtrime."
 
 #: src/olympia/users/models.py:1255
 msgid ""
