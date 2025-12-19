@@ -5596,67 +5596,67 @@ msgstr "Mbroni privatësinë tuaj nga një formë unike “fingerprinting” Jav
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:658
 msgid "Automatically deny cookie pop-up tracking requests."
-msgstr ""
+msgstr "Hidhni poshtë automatikisht kërkesa flluskë për ndjekje me “cookie”."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:670
 msgid "Powerful pop-up dictionary optimized for learning new languages."
-msgstr ""
+msgstr "Fjalor i fuqishëm, që hapet si flluskë, i optimizuar për mësim gjuhësh të reja."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:673
 msgid "Hover your mouse over thumbnails to easily browse and download HD images."
-msgstr ""
+msgstr "Kaloni kursorin sipër miniaturash, për të shfletuar dhe shkarkuar kollaj figura HD."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:676
 msgid "Remove distracting and unwanted search results and related video content."
-msgstr ""
+msgstr "Hiq përfundime kërkimi shpërqendruese dhe të padëshiruara dhe lëndë video të lidhur me to."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:679
 msgid "Makes Firefox appear as Chrome to websites trying to block Firefox."
-msgstr ""
+msgstr "E bën Firefox-in të duket si Chrome për sajte që provojnë të bllokojnë Firefox-in."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:685
 msgid "Manage your Gmail (even multiple accounts) right from Firefox's toolbar button."
-msgstr ""
+msgstr "Administroni Gmail-in tuaj (qoftë edhe me disa llogari) drejt e nga butoni i panelit të Firefox-it."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:688
 msgid "Track the time you spend on the web, analyze your habits, block distracting sites & more."
-msgstr ""
+msgstr "Ndiqni kohën që harxhoni në internet, analizoni zakonet tuaja, bllokoni sajte që ju shpërqendrojnë, etj."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:691
 msgid "Improve your writing — get instant access to the power of synonyms."
-msgstr ""
+msgstr "Përmirësoni shkrimin tuaj — përfitoni hyrje të menjëhershme te fuqia e sinonimeve."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:694
 msgid "Deep translation features for a rich language experience anywhere on the web."
-msgstr ""
+msgstr "Veçori përkthimi të thellë, për një gjuhë të pasur kudo në internet."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:697
 msgid "Leave yourself little notes on any website."
-msgstr ""
+msgstr "I lini vetes shënime të vockla në çfarëdo sajti."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:700
 msgid "Discover and download higher quality versions of interesting images and videos you find on the web."
-msgstr ""
+msgstr "Zbuloni dhe shkarkoni versione me cilësi më të lartë figurash dhe videosh interesante që gjeni në internet."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:703
 msgid "Save and organize anything you find on the web — articles, media, PDFs & more."
-msgstr ""
+msgstr "Ruani dhe sistemoni gjithçka gjeni në internet — artikuj, media, PDF-ta & etj."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:706
 msgid "Enhance your Reddit experience with color-coded comments, simpler navigation, gestures for upvoting & much more."
-msgstr ""
+msgstr "Thelloni funksionimin e Reddit-it për ju, me komente me ngjyra, lëvizje më të thjeshtë, gjeste për dhënie vote & e plotë të tjera."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:712
@@ -5986,7 +5986,7 @@ msgstr ""
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1103
 msgid "Extension Starter Pack"
-msgstr ""
+msgstr "Paketë Zgjerimesh Fillestare"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1105 src/olympia/discovery/strings.jinja2:1109
