@@ -1924,7 +1924,7 @@ msgstr "這個附加元件有隱私權保護政策"
 
 #: src/olympia/devhub/forms.py:709
 msgid "Please specify your add-on's Privacy Policy:"
-msgstr "請註明您附加元件的隱私權保護政策:"
+msgstr "請註明您附加元件的隱私權保護政策："
 
 #: src/olympia/devhub/forms.py:744
 #, python-brace-format
