@@ -3153,7 +3153,7 @@ msgstr "Fshirja e shtesës tuaj do të fshijë përgjithnjë krejt versionet dhe
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:6
 msgid "All versions will be Restricted, which will disable and prevent any further installation in Firefox. Existing users can choose to re-enable the add-on."
-msgstr ""
+msgstr "Krejt versionet do të Kufizohen, çka do të çaktivizojë dhe pengojë çfarëdo instalimi të mëtejshëm në Firefox. Përdoruesit ekzistues mund të zgjedhin të riaktivizojnë shtesën."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:11
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
@@ -3671,6 +3671,16 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Tungjatjeta,\n"
+"\n"
+"Këtë mesazh po e merrni ngaqë keni kërkuar kyçe të rinj API zhvilluesish për\n"
+"%(domain)s. Që të përfundohet ky proces, ju lutemi, klikoni mbi lidhjen më poshtë:\n"
+"\n"
+"%(api_key_confirmation_link)s\n"
+"\n"
+"Të fala,\n"
+"\n"
+"Ekipi i Shtesave Mozilla"
 
 #: src/olympia/devhub/templates/devhub/emails/new-key-email.ltxt:8
 #, python-format
@@ -3769,6 +3779,16 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Tungjatjeta,\n"
+"\n"
+"Këtë mesazh po e merrni ngaqë kërkuat të verifikohet email-i juaj.\n"
+"Që të përfundohet ky proces, ju lutemi, klikoni mbi lidhjen më poshtë:\n"
+"\n"
+"%(confirmation_link)s\n"
+"\n"
+"Të fala,\n"
+"\n"
+"Ekipi i Shtesave Mozilla"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:6 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:4
 msgid "Invisible"
