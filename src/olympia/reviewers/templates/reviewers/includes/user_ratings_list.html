@@ -2,9 +2,9 @@
   {% for rating in user_ratings %}
   <li>
     {% with date=rating.created|date, ip_address=rating.ip_address %}
-      {% trans user=rating.user|user_link %}
+      {% with user=rating.user|user_link %}
         {{ user }} on {{ date }} [{{ ip_address }}]
-      {% endtrans %}
+      {% endwith %}
     {% endwith %}
     <blockquote>
       {{ rating.rating|stars }}<br/>

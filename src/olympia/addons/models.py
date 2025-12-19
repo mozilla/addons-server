@@ -2557,7 +2557,7 @@ class ReplacementAddon(ModelBase):
     path = models.CharField(
         max_length=255,
         null=True,
-        help_text=_('Add-on and collection paths need to end with "/"'),
+        help_text='Add-on and collection paths need to end with "/"',
     )
 
     class Meta:

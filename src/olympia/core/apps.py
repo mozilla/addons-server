@@ -10,7 +10,6 @@ from django.apps import AppConfig
 from django.conf import settings
 from django.core.checks import Error, Tags, register
 from django.db import connection
-from django.utils.translation import gettext_lazy as _
 
 import requests
 
@@ -211,7 +210,7 @@ def nginx_check(app_configs, **kwargs):
 
 class CoreConfig(AppConfig):
     name = 'olympia.core'
-    verbose_name = _('Core')
+    verbose_name = 'Core'
 
     def ready(self):
         super().ready()

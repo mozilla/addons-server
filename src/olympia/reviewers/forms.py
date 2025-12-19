@@ -14,7 +14,6 @@ from django.forms.models import (
     modelformset_factory,
 )
 from django.utils.html import format_html, format_html_join
-from django.utils.translation import gettext
 
 import markupsafe
 import waffle
@@ -368,14 +367,11 @@ def validate_review_attachment(value):
         if not value.name.endswith(VALID_ATTACHMENT_EXTENSIONS):
             valid_extensions_string = '(%s)' % ', '.join(VALID_ATTACHMENT_EXTENSIONS)
             raise forms.ValidationError(
-                gettext(
-                    'Unsupported file type, please upload a file {extensions}.'.format(
-                        extensions=valid_extensions_string
-                    )
-                )
+                'Unsupported file type, please upload a file '
+                f'{valid_extensions_string}.'
             )
         if value.size >= settings.MAX_UPLOAD_SIZE:
-            raise forms.ValidationError(gettext('File too large.'))
+            raise forms.ValidationError('File too large.')
         try:
             if value.name.endswith('.zip'):
                 # See clean_source() in WithSourceMixin
@@ -383,7 +379,7 @@ def validate_review_attachment(value):
                 if zip_file.zip_file.testzip() is not None:
                     raise zipfile.BadZipFile()
         except (zipfile.BadZipFile, OSError, EOFError) as err:
-            raise forms.ValidationError(gettext('Invalid or broken archive.')) from err
+            raise forms.ValidationError('Invalid or broken archive.') from err
     return value
 
 
