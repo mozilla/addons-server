@@ -216,7 +216,7 @@ msgstr "Подробнее..."
 #: static/js/stats/chart.js:415
 #, python-brace-format
 msgid "Details for {0}"
-msgstr "Подробности для {0}"
+msgstr "Подробности за {0}"
 
 #: static/js/stats/csv_keys.js:13
 msgid "Firefox"
@@ -471,7 +471,7 @@ msgstr "Удалить эту локализацию"
 #: static/js/zamboni/reviewers.js:258
 #, python-brace-format
 msgid "{name} was viewing this page first."
-msgstr "{name} просматривал эту страницу первым."
+msgstr "{name}: первый просмотревший эту страницу."
 
 #: static/js/zamboni/reviewers.js:266
 msgid "Review page polling failed."
@@ -480,7 +480,7 @@ msgstr "Опрос страницы обзора не удался."
 #: static/js/zamboni/reviewers.js:583
 #, python-brace-format
 msgid "{name} was viewing this add-on first."
-msgstr "{name} просматривал это дополнение первым."
+msgstr "{name}: первый просмотревший это дополнение."
 
 #: static/js/zamboni/reviewers.js:596 static/js/zamboni/reviewers.js:622
 msgid "Loading&hellip;"
