@@ -35,6 +35,7 @@ from olympia.constants.abuse import (
 from olympia.constants.permissions import ADDONS_HIGH_IMPACT_APPROVE
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.core import set_user
+from olympia.files.models import File
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import NeedsHumanReview
 from olympia.users.models import UserProfile
@@ -3356,6 +3357,76 @@ class TestContentDecision(TestCase):
         assert not version.needshumanreview_set.filter(is_active=True).exists()
         assert 'An attachment was provided.' not in mail.outbox[0].body
         assert 'To respond or view the file,' not in mail.outbox[0].body
+
+    def _execute_action_approve_appeal(self, addon, appealed_decision_action):
+        older_version = addon.versions.last()
+        newer_version = addon.versions.first()
+        appeal_job = CinderJob.objects.create()
+        ContentDecision.objects.create(
+            addon=addon,
+            action=appealed_decision_action,
+            reasoning='initial review text',
+            appeal_job=appeal_job,
+        )
+        decision = ContentDecision.objects.create(
+            addon=addon,
+            action=DECISION_ACTIONS.AMO_APPROVE,
+            reasoning='some review text',
+            reviewer_user=self.reviewer_user,
+            cinder_job=appeal_job,
+        )
+        decision.target_versions.set([older_version, newer_version])
+        assert decision.action_date is None
+
+        decision.execute_action()
+        self.assertCloseToNow(decision.action_date)
+        assert older_version.file.reload().status == amo.STATUS_APPROVED
+        assert newer_version.file.reload().status == amo.STATUS_AWAITING_REVIEW
+
+        decision.send_notifications()
+        mail_item = mail.outbox[0]
+        assert 'some review text' in mail_item.body
+        assert 'An attachment was provided.' not in mail_item.body
+        assert 'To respond or view the file,' not in mail_item.body
+        assert (
+            'versions were reinstated: '
+            f'{older_version.version}, {newer_version.version}' in mail_item.body
+        )
+        assert 'versions may be removed again in the future' in mail_item.body
+
+    def test_execute_action_approve_appeal_on_disable(self):
+        addon = addon_factory(users=[user_factory()], status=amo.STATUS_DISABLED)
+        older_version = addon.versions.get()
+        older_version.file.update(
+            status=amo.STATUS_DISABLED,
+            original_status=amo.STATUS_APPROVED,
+            status_disabled_reason=File.STATUS_DISABLED_REASONS.ADDON_DISABLE,
+        )
+        version_factory(
+            addon=addon,
+            file_kw={
+                'status': amo.STATUS_DISABLED,
+                'original_status': amo.STATUS_AWAITING_REVIEW,
+                'status_disabled_reason': File.STATUS_DISABLED_REASONS.ADDON_DISABLE,
+            },
+        )
+        #
+        self._execute_action_approve_appeal(addon, DECISION_ACTIONS.AMO_DISABLE_ADDON)
+        assert addon.reload().status == amo.STATUS_APPROVED
+
+    def test_execute_action_approve_appeal_on_reject(self):
+        addon = addon_factory(users=[user_factory()])
+        older_version = addon.versions.get()
+        version_factory(
+            addon=addon
+        )  # add a middle version that wasn't rejected or changed
+        older_version.file.update(
+            status=amo.STATUS_DISABLED, original_status=amo.STATUS_APPROVED
+        )
+        version_factory(addon=addon, file_kw={'status': amo.STATUS_DISABLED})
+        self._execute_action_approve_appeal(
+            addon, DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
+        )
 
     def _test_execute_action_reject_version_delayed_outcome(self, decision):
         decision.send_notifications()
