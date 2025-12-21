@@ -685,7 +685,7 @@ msgstr "Происходит техническое обслуживание"
 
 #: src/olympia/amo/templates/amo/read-only.html:9
 msgid "This feature is temporarily disabled while we perform website maintenance. Please use your browser's Back button and try again a little later."
-msgstr "Эта функция временно отключена, пока мы проводим техническое обслуживание сайта. Пожалуйста, используйте браузера кнопку \"Назад\" и попробуйте позже."
+msgstr "Эта функция временно отключена, пока мы проводим техническое обслуживание сайта. Пожалуйста, используйте браузера кнопку «Назад» и попробуйте позже."
 
 #: src/olympia/amo/templates/amo/read-only.html:14
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
@@ -782,12 +782,12 @@ msgstr "Вы должны указать объект {{lang-code:value}}."
 #: src/olympia/api/fields.py:94
 #, python-brace-format
 msgid "A value in the default locale of \"{lang_code}\" is required."
-msgstr "Требуется значение в локализации по умолчанию \"{lang_code}\"."
+msgstr "Требуется значение в локализации по умолчанию «{lang_code}»."
 
 #: src/olympia/api/fields.py:97
 #, python-brace-format
 msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
-msgstr "Значение в локали по умолчанию \"{lang_code}\" требуется, если настроены другие переводы."
+msgstr "Значение в локализации по умолчанию «{lang_code}» требуется, если настроены другие переводы."
 
 #: src/olympia/api/fields.py:386
 #, python-format
@@ -808,7 +808,7 @@ msgstr "Этот пользовательский URL уже используе�
 
 #: src/olympia/bandwagon/serializers.py:108
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
-msgstr "Этот пользовательский URL может состоять из букв, цифр, подчеркиваний или дефисов."
+msgstr "Этот пользовательский URL может состоять из букв, цифр, подчёркиваний или дефисов."
 
 #: src/olympia/bandwagon/serializers.py:113
 msgid "This custom URL cannot be used."
@@ -992,7 +992,7 @@ msgstr "{rating} для «{addon}» оставлен."
 #: src/olympia/constants/activity.py:327
 #, python-brace-format
 msgid "{0} {1} added."
-msgstr "{0} {1} добавлено."
+msgstr "Версия {1} ({0}) добавлена."
 
 #. L10n: {0} is the user role
 #: src/olympia/constants/activity.py:335
@@ -1080,7 +1080,7 @@ msgstr "«{addon}» теперь только по ссылке."
 #: src/olympia/constants/activity.py:560
 #, python-brace-format
 msgid "Add-on id {0} with GUID {1} has been deleted"
-msgstr "Дополнение id {0} с GUID {1} было удалено"
+msgstr "ID дополнения {0} с GUID {1} было удалено"
 
 #: src/olympia/constants/activity.py:567 src/olympia/constants/activity.py:573
 #, python-brace-format
@@ -1370,7 +1370,7 @@ msgstr "Разработчик"
 
 #: src/olympia/constants/base.py:105
 msgid "(Deleted)"
-msgstr "(Удалено)"
+msgstr "(удалено)"
 
 #: src/olympia/constants/base.py:129 src/olympia/constants/reviewers.py:69
 msgid "Extension"
@@ -1402,7 +1402,7 @@ msgstr "Устаревший плагин"
 
 #: src/olympia/constants/base.py:136
 msgid "Deprecated LWT"
-msgstr "Устаревшая LWT"
+msgstr "Устаревшая лёгкая тема"
 
 #: src/olympia/constants/base.py:137 src/olympia/constants/reviewers.py:70
 msgid "Theme"
@@ -1442,7 +1442,7 @@ msgstr "Устаревшие плагины"
 
 #: src/olympia/constants/base.py:150
 msgid "Deprecated LWTs"
-msgstr "Устаревшие LWT"
+msgstr "Устаревшие лёгкие темы"
 
 #: src/olympia/constants/base.py:151 src/olympia/devhub/templates/devhub/nav.html:43 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:11
 msgid "Themes"
@@ -2591,7 +2591,7 @@ msgstr "Обновить результаты"
 #: src/olympia/devhub/templates/devhub/verify_email.html:101
 #, python-format
 msgid "If you encounter issues, please see our <a %(a_attrs)s>troubleshooting suggestions</a> on Firefox Extension Workshop."
-msgstr "Если вы столкнулись с проблемами, пожалуйста, ознакомьтесь с нашими <a %(a_attrs)s>предложениями по устранению неполадок</a> в Firefox Extension Workshop."
+msgstr "Если вы столкнулись с проблемами, пожалуйста, ознакомьтесь с нашими <a %(a_attrs)s>предложениями по устранению неполадок</a> в мастерской расширений Firefox."
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html:4 src/olympia/devhub/templates/devhub/addons/activity.html:17
 msgid "Recent Activity for My Add-ons"
@@ -3305,7 +3305,7 @@ msgstr "URL дополнения:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:56 src/olympia/devhub/templates/devhub/addons/submit/describe.html:77
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
-msgstr "Пожалуйста, используйте в вашем URL только буквы, цифры, подчеркивания и тире."
+msgstr "Пожалуйста, используйте в вашем URL только буквы, цифры, подчёркивания и тире."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:67
 msgid "Name:"
@@ -3450,8 +3450,8 @@ msgstr "Ваше дополнение будет успешнее, если вы
 msgid ""
 "You can attract users to your extension by adding a detailed description and screenshots to your listing. Get help <a %(a_attrs)s>creating an appealing listing</a> on Firefox Extension Workshop."
 msgstr ""
-"Вы можете привлечь пользователей к своему расширению, добавив подробное описание и снимки экрана в своё заявление. Получите помощь по <a %(a_attrs)s>созданию привлекательного листинга</a> в Firefox "
-"Extension Workshop."
+"Вы можете привлечь пользователей к своему расширению, добавив подробное описание и снимки экрана в своё заявление. Получите помощь по <a %(a_attrs)s>созданию привлекательного листинга</a> в "
+"мастерской расширений Firefox."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:43
 msgid "Manage Listing"
@@ -4128,7 +4128,7 @@ msgstr "Продвижение"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:27
 msgid "\"Get The Add-on\" button"
-msgstr "Кнопка \"Получить дополнение\""
+msgstr "Кнопка «Получить дополнение»"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:28
 msgid "Recommended Extensions program"
