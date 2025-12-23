@@ -6597,7 +6597,7 @@ msgstr "по источнику"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:14
 msgid "by Medium"
-msgstr "по Медиа"
+msgstr "по медиа"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:17
 msgid "by Content"
