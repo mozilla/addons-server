@@ -3958,7 +3958,7 @@ msgstr "Adresa e-pošte"
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:31
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
-msgstr "Slažem se da Mozilla upravlja mojim podacima kao što je objašnjeno u ovoj %(link_open)snapomeni o privatnost%(link_close)s."
+msgstr "Slažem se da Mozilla upravlja mojim podacima kao što je objašnjeno na stranici %(link_open)snapomena o privatnost%(link_close)s."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:40
 msgid "Sign Up"
