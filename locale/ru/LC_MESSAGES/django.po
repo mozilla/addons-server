@@ -475,7 +475,7 @@ msgstr "Несоответствие GUID между URL-адресом и ма�
 
 #: src/olympia/addons/validators.py:291
 msgid "Source cannot be changed because this version has been reviewed by Mozilla."
-msgstr "Источник не может быть изменен, так как эта версия была проверена Mozilla."
+msgstr "Источник не может быть изменён, так как эта версия была проверена Mozilla."
 
 #: src/olympia/addons/validators.py:315
 msgid "This type of add-on does not allow custom compatibility."
@@ -607,7 +607,7 @@ msgstr ""
 
 #: src/olympia/amo/templates/amo/403.html:26
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
-msgstr "Если вы отключили в своем браузере заголовки источников ссылки, включите их снова, по крайней мере для этого сайта или для HTTPS-соединений, или же для запросов «same-origin»."
+msgstr "Если вы отключили в своём браузере заголовки источников ссылки, включите их снова, по крайней мере для этого сайта или для HTTPS-соединений, или же для запросов «same-origin»."
 
 #: src/olympia/amo/templates/amo/403.html:36
 msgid ""
@@ -1843,7 +1843,7 @@ msgstr "Ядро"
 #: src/olympia/devhub/feeds.py:52
 #, python-format
 msgid "Recent Changes for %s"
-msgstr "Недавние изменения для %s"
+msgstr "Недавние изменения «%s»"
 
 #: src/olympia/devhub/feeds.py:54
 msgid "Recent Changes for My Add-ons"
@@ -2233,7 +2233,7 @@ msgstr "Значки могут быть либо в PNG либо в JPG."
 
 #: src/olympia/devhub/views.py:1025
 msgid "Icons cannot be animated."
-msgstr "Иконки не могут быть анимированы."
+msgstr "Значки не могут быть анимированы."
 
 #: src/olympia/devhub/views.py:1051
 #, python-brace-format
@@ -2262,8 +2262,8 @@ msgstr "Ошибка при загрузке вашего предпросмот
 msgid ""
 "The latest approved version of this %s add-on cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
-"Последняя утвержденная версия этого дополнения %s не может быть удалена или отключена, поскольку предыдущая версия не была утверждена для продвижения %s. Пожалуйста, свяжитесь с администраторами "
-"AMO, если вам нужна помощь."
+"Последняя одобренная версия этого дополнения %s не может быть удалена или отключена, поскольку предыдущая версия не была одобрена для продвижения %s. Пожалуйста, свяжитесь с администраторами AMO, "
+"если вам нужна помощь."
 
 #: src/olympia/devhub/views.py:1227
 #, python-format
@@ -2366,11 +2366,11 @@ msgstr "Сохраняйте свои API-ключи в тайне и никог
 
 #: src/olympia/devhub/views.py:2132
 msgid "New API key created"
-msgstr "Создан новый ключ API"
+msgstr "Создан новый API-ключ"
 
 #: src/olympia/devhub/views.py:2143
 msgid "API key revoked"
-msgstr "Ключ API отозван"
+msgstr "API-ключ отозван"
 
 #: src/olympia/devhub/views.py:2203
 msgid "Verify email"
@@ -2495,7 +2495,7 @@ msgstr "Вы хотите распространять своё дополнен
 #: src/olympia/devhub/templates/devhub/validation.html:5
 #, python-brace-format
 msgid "Validation Results for {0}"
-msgstr "Результаты валидации для {0}"
+msgstr "Результаты валидации «{0}»"
 
 #: src/olympia/devhub/templates/devhub/validation.html:7
 msgid "Validation Results"
@@ -2601,7 +2601,7 @@ msgstr "Последние действия для моих дополнений
 #: src/olympia/devhub/templates/devhub/addons/activity.html:15
 #, python-brace-format
 msgid "Recent Activity for {0}"
-msgstr "Последние действия для {0}"
+msgstr "Последние действия «{0}»"
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html:33
 #, python-format
@@ -2755,7 +2755,7 @@ msgstr "Правка"
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:15
 #, python-brace-format
 msgid "Additional Details for {0}"
-msgstr "Дополнительные сведения о {0}"
+msgstr "Дополнительные сведения «{0}»"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:19
 msgid "Tags"
@@ -2942,7 +2942,7 @@ msgstr "Технические детали"
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:16
 #, python-brace-format
 msgid "Technical Details for {0}"
-msgstr "Технические детали для «{0}»"
+msgstr "Технические детали «{0}»"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:22
 msgid "Developer Comments"
@@ -2958,7 +2958,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:46
 msgid "Universally unique identifier"
-msgstr "Универсально уникальный идентификатор"
+msgstr "Универсально уникальный идентификатор (UUID)"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:47
 msgid "UUID"
@@ -2983,7 +2983,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:10
 #, python-brace-format
 msgid "Add-on Media for {0}"
-msgstr "Медиа дополнения для «{0}»"
+msgstr "Медиа-дополнения для «{0}»"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:15
 msgid "Add-on icon"
@@ -3704,7 +3704,7 @@ msgid ""
 "\n"
 "%(url)s"
 msgstr ""
-"В вашу учётную запись был добавлен следующий ключ API:\n"
+"В ваш аккаунт был добавлен следующий API-ключ:\n"
 "\n"
 "%(key)s\n"
 "\n"
@@ -3725,7 +3725,7 @@ msgid ""
 "\n"
 "%(url)s"
 msgstr ""
-"Следующий ключ API был отозван из вашей учётной записи:\n"
+"Следующий API-ключ был отозван из вашего аккаунта:\n"
 "\n"
 "%(key)s\n"
 "\n"
@@ -3749,7 +3749,7 @@ msgid ""
 msgstr ""
 "Уважаемый разработчик дополнений,\n"
 "\n"
-"Мы заметили, что ваши секретные учётные данные AMO API содержатся в дополнении, отправленном на addons.mozilla.org. Чтобы защитить вашу учётную запись и дополнения, мы отозвали утёкшие учётные данные.\n"
+"Мы заметили, что ваши секретные учётные данные AMO API содержатся в дополнении, отправленном на addons.mozilla.org. Чтобы защитить ваш аккаунт и дополнения, мы отозвали утёкшие учётные данные.\n"
 "Вы можете сгенерировать новые учётные данные API на %(api_keys_url)s\n"
 "\n"
 "Убедитесь, что вы никогда никому не сообщали свои учётные данные. Никогда не включайте их в общедоступное хранилище, дополнение или любое другое общедоступное место. Мы рекомендуем вам просмотреть свои репозитории кода и расширения, чтобы удалить любые ссылки на ваши учётные данные AMO.\n"
@@ -3814,9 +3814,7 @@ msgstr "По завершении процесса проверки вы пол�
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:28
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
-msgstr ""
-"Ваше дополнение отображается в нашей галерее и пользователи\n"
-"                             получают автоматические обновления."
+msgstr "Ваше дополнение отображается в нашей галерее и пользователи получают обновления автоматически."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:30
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery."
@@ -3847,7 +3845,7 @@ msgstr "Опубликованная версия:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:70
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
-msgstr "Это версия вашего дополнения, которая может быть установлена любым, кто нажмёт на кнопку Установить на addons.mozilla,org"
+msgstr "Это версия вашего дополнения, которая может быть установлена любым, кто нажмёт на кнопку «Установить» на addons.mozilla,org"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:79
 msgid "Next Listed Version:"
@@ -3989,8 +3987,8 @@ msgstr "Удалить это приложение"
 msgid "Select a category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
 msgstr[0] "Выберите категорию для этого дополнения:"
-msgstr[1] "Выберите категорию для этих дополнений:"
-msgstr[2] "Выберите категорию для этих дополнений:"
+msgstr[1] "Выберите <b>до {0}</b> категорий для этого дополнения:"
+msgstr[2] "Выберите <b>до {0}</b> категорий для этого дополнения:"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:2
 msgid "Roll back to a previous version"
@@ -4877,7 +4875,7 @@ msgstr "Настройте свою страницу новой вкладки, 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:206
 msgid "Store passwords securely and access them across multiple devices."
-msgstr "Надежно сохраняйте пароли и обращайтесь к ним с разных устройств."
+msgstr "Надёжно сохраняйте пароли и обращайтесь к ним с разных устройств."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:209
@@ -5122,7 +5120,7 @@ msgstr "Уберите рекламу из результатов поиска."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:347 src/olympia/discovery/strings.jinja2:353
 msgid "Store passwords securely and sign in to known websites automatically."
-msgstr "Надежно сохраняйте пароли и автоматически входите на известные веб-сайты."
+msgstr "Надёжно сохраняйте пароли и автоматически входите на известные веб-сайты."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:350
@@ -5218,7 +5216,7 @@ msgstr "Редактируйте свои закладки через панел
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:407
 msgid "Store passwords securely and sign in automatically to known websites."
-msgstr "Надежно сохраняйте пароли и автоматически входите на известные веб-сайты."
+msgstr "Надёжно сохраняйте пароли и автоматически входите на известные веб-сайты."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:410
@@ -5574,7 +5572,7 @@ msgstr "Смена темы в зависимости от времени сут
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:615
 msgid "Declutter your Twitter experience."
-msgstr "Наведите порядок в своем Twitter."
+msgstr "Наведите порядок в своём Твиттере."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:618
@@ -6064,7 +6062,7 @@ msgstr "Больше рекомендуемых тем"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1137
 msgid "Strong password managers"
-msgstr "Надежные менеджеры паролей"
+msgstr "Надёжные менеджеры паролей"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1139
@@ -6105,7 +6103,7 @@ msgstr "Больше расширений для управления вклад
 #: src/olympia/discovery/strings.jinja2:1157
 #, python-brace-format
 msgid "“{tag}” tagged extensions"
-msgstr "Расширения с тегами “{tag}”"
+msgstr "Расширения с меткой «{tag}»"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1159
