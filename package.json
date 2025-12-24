@@ -60,7 +60,7 @@
     "stylelint-config-standard": "^39.0.1",
     "stylelint-config-standard-less": "^3.0.1",
     "vite": "^6.4.1",
-    "vitest": "^3.2.4",
+    "vitest": "^4.0.16",
     "zod": "^3.24.2"
   }
 }
