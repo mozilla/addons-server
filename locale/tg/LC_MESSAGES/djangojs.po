@@ -19,7 +19,7 @@ msgstr ""
 
 #: static/js/common/upload-addon.js:78
 msgid "Select a file..."
-msgstr ""
+msgstr "Файлеро интихоб кунед..."
 
 #: static/js/common/upload-addon.js:82
 msgid "Your add-on should end with .zip, .xpi or .crx"
@@ -34,11 +34,11 @@ msgstr ""
 #: static/js/common/upload-addon.js:122
 #, python-brace-format
 msgid "{0} of {1}"
-msgstr ""
+msgstr "{0} аз {1}"
 
 #: static/js/common/upload-addon.js:166
 msgid "Cancel"
-msgstr ""
+msgstr "Бекор кардан"
 
 #: static/js/common/upload-addon.js:189
 #, python-brace-format
@@ -194,7 +194,7 @@ msgstr[1] ""
 
 #: static/js/stats/chart.js:362 static/js/stats/csv_keys.js:3 static/js/stats/csv_keys.js:9
 msgid "Downloads"
-msgstr ""
+msgstr "Боргириҳо"
 
 #: static/js/stats/chart.js:374 static/js/stats/csv_keys.js:6 static/js/stats/csv_keys.js:10
 msgid "Daily Users"
@@ -202,25 +202,25 @@ msgstr ""
 
 #: static/js/stats/chart.js:409
 msgid "More Info..."
-msgstr ""
+msgstr "Маълумоти бештар..."
 
 #. L10n: {0} is an ISO-formatted date.
 #: static/js/stats/chart.js:415
 #, python-brace-format
 msgid "Details for {0}"
-msgstr ""
+msgstr "Тафсилоти давраи {0}"
 
 #: static/js/stats/csv_keys.js:13
 msgid "Firefox"
-msgstr ""
+msgstr "Firefox"
 
 #: static/js/stats/csv_keys.js:14
 msgid "Mozilla"
-msgstr ""
+msgstr "Mozilla"
 
 #: static/js/stats/csv_keys.js:15
 msgid "Thunderbird"
-msgstr ""
+msgstr "Thunderbird"
 
 #: static/js/stats/csv_keys.js:16
 msgid "Sunbird"
@@ -510,19 +510,19 @@ msgstr ""
 
 #: static/js/zamboni/themes_review.js:201
 msgid "Duplicate"
-msgstr ""
+msgstr "Нусха"
 
 #: static/js/zamboni/themes_review.js:202
 msgid "Rejected"
-msgstr ""
+msgstr "Рад карда шуд"
 
 #: static/js/zamboni/themes_review.js:203
 msgid "Approved"
-msgstr ""
+msgstr "Тасдиқ карда шуд"
 
 #: static/js/zamboni/themes_review.js:492
 msgid "No results found"
-msgstr ""
+msgstr "Ягон натиҷа ёфт нашуд"
 
 #: static/js/zamboni/themes_review_templates.js:43
 msgid "Theme"
@@ -550,11 +550,11 @@ msgstr ""
 
 #: static/js/zamboni/validator.js:259 static/js/zamboni/validator.js:492 static/js/zamboni/validator.js:516
 msgid "Error"
-msgstr ""
+msgstr "Хато"
 
 #: static/js/zamboni/validator.js:259
 msgid "Warning"
-msgstr ""
+msgstr "Огоҳӣ"
 
 #: static/js/zamboni/validator.js:332
 #, python-brace-format

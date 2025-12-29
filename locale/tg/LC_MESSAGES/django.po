@@ -20,7 +20,7 @@ msgstr ""
 
 #: src/olympia/abuse/forms.py:30
 msgid "Email address"
-msgstr ""
+msgstr "Нишонии почтаи электронӣ"
 
 #: src/olympia/abuse/forms.py:45
 msgid "Invalid email provided."
@@ -36,7 +36,7 @@ msgstr ""
 
 #: src/olympia/abuse/models.py:1104
 msgid "User profile"
-msgstr ""
+msgstr "Профили корбар"
 
 #: src/olympia/abuse/models.py:1463
 #, python-brace-format
@@ -67,7 +67,7 @@ msgstr ""
 
 #: src/olympia/abuse/templates/abuse/appeal.html:31 src/olympia/amo/templates/amo/fake_fxa_authorization.html:21
 msgid "OK"
-msgstr ""
+msgstr "ХУБ"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:33 src/olympia/abuse/templates/abuse/appeal.html:41
 msgid "Thank you for your report."
@@ -444,27 +444,27 @@ msgstr ""
 #: src/olympia/addons/templates/addons/includes/dashboard_tabs.html:4 src/olympia/devhub/templates/devhub/nav.html:15 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:19
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html:16
 msgid "My Add-ons"
-msgstr ""
+msgstr "Ҷузъҳои иловагии ман"
 
 #: src/olympia/addons/templates/addons/includes/dashboard_tabs.html:6
 msgid "My Themes"
-msgstr ""
+msgstr "Мавзуъҳои ман"
 
 #: src/olympia/amo/context_processors.py:30 src/olympia/devhub/templates/devhub/nav.html:49 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:16
 msgid "Tools"
-msgstr ""
+msgstr "Абзорҳо"
 
 #: src/olympia/amo/context_processors.py:39
 msgid "My Profile"
-msgstr ""
+msgstr "Профили ман"
 
 #: src/olympia/amo/context_processors.py:43
 msgid "Account Settings"
-msgstr ""
+msgstr "Танзимоти ҳисоб"
 
 #: src/olympia/amo/context_processors.py:46
 msgid "My Collections"
-msgstr ""
+msgstr "Маҷмуаҳои ман"
 
 #: src/olympia/amo/context_processors.py:51 src/olympia/templates/user_login.html:15 src/olympia/templates/user_login.html:17
 msgid "Log out"
