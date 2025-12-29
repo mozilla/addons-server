@@ -406,7 +406,7 @@ msgstr "<b>{0}</b> с {1} по {2}"
 #: static/js/stats/csv_keys.js:104
 #, python-brace-format
 msgid "<b>{0}</b> average in last {1} days"
-msgstr "в среднем <b>{0}</b> за последние {1} дн."
+msgstr "В среднем <b>{0}</b> за последние {1} дн."
 
 #: static/js/stats/overview.js:18
 msgid "No data available."

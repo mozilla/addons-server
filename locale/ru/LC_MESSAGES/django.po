@@ -630,7 +630,7 @@ msgid ""
 msgstr ""
 "<h1>Извините, но мы не можем найти то, что вы ищете.</h1> <p>Страница или файл, который вы запросили, не найдены на нашем сайте. Вполне возможно, что вы щёлкнули по ссылке, которая устарела, или "
 "неправильно набрали адрес.</p><ul><li> Если вы набрали адрес, пожалуйста, проверьте правильность его написания.</li> <li> Если вы откуда-либо проследовали по ссылке, пожалуйста, "
-"%(open_bug_link)sсообщите об ошибке%(close_bug_link)s. Сообщите нам, откуда вы пришли и что вы ищете, и мы сделаем все возможное, чтобы это исправить.</li></ul> <p> Или же вы можете просто перейти "
+"%(open_bug_link)sсообщите об ошибке%(close_bug_link)s. Сообщите нам, откуда вы пришли и что вы ищете, и мы сделаем всё возможное, чтобы это исправить.</li></ul> <p> Или же вы можете просто перейти "
 "на некоторые из популярных страниц нашего сайта.</p> <ul> <li> Возможно вы заинтересованы в <a href=\"%(rec)s\">списке избранных дополнений</a>?</li> <li> Или вы хотите <a href=\"%(search)s\">найти "
 "дополнение</a>? Вы можете перейти к <a href=\"%(search)s\">странице поиска</a> или просто использовать поле поиска, расположенное выше.</li> <li> Если вы хотите начать сначала, просто перейдите на "
 "<a href=\"%(home)s\">главную страницу дополнений</a>.</li> </ul>"
@@ -5146,7 +5146,7 @@ msgstr "Легко находите информацию в Википедии, 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:365
 msgid "Find what you're looking for within a specific domain."
-msgstr "Найдите искомые результаты в определенном домене."
+msgstr "Найдите искомые результаты в определённом домене."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:368
@@ -5414,7 +5414,7 @@ msgstr "Изменяйте внешний вид вашего браузера. 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:521
 msgid "Keep personal notes anywhere on the web. Simply use a sidebar to attach notes on specific web pages."
-msgstr "Создавайте свои заметки для любой страницы в Интернете. Просто используйте боковую панель, чтобы добавить примечания на определенной веб-странице."
+msgstr "Создавайте свои заметки для любой страницы в Интернете. Просто используйте боковую панель, чтобы добавить примечания на определённой веб-странице."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:524
@@ -5817,7 +5817,7 @@ msgstr "Настройте YouTube по вкусу."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1000
 msgid "Delete browsing data directly from the browser toolbar."
-msgstr "Удаляйте данные веб-серфинга прямо с панели инструментов браузера."
+msgstr "Удаляйте данные веб-сёрфинга прямо с панели инструментов браузера."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1003
@@ -6508,7 +6508,7 @@ msgstr "от %(user)s, %(date)s %(stars)s"
 #: src/olympia/reviewers/templates/reviewers/queue.html:59
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
-msgstr "<strong>%(reason)s</strong> <span class=\"light\">Отмечено %(user)s  в %(date)s</span>"
+msgstr "<strong>%(reason)s</strong> <span class=\"light\">отмечено %(user)s, %(date)s</span>"
 
 #: src/olympia/reviewers/templates/reviewers/review.html:320
 msgid "<strong>Warning!</strong> Another user may be viewing this page before you."
@@ -6517,7 +6517,7 @@ msgstr "<strong>Предупреждение!</strong> До вас другой 
 #: src/olympia/reviewers/templates/reviewers/includes/user_ratings_list.html:5
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"
-msgstr "%(user)s на %(date)s [%(ip_address)s]"
+msgstr "%(user)s, %(date)s [%(ip_address)s]"
 
 #: src/olympia/reviewers/templates/reviewers/includes/version.html:5
 #, python-format
@@ -6956,7 +6956,7 @@ msgstr "Новые локализации"
 #: src/olympia/translations/templates/translations/trans-menu.html:42
 #, python-brace-format
 msgid "You have unsaved changes in the <b>{0}</b> locale. Would you like to save your changes before switching locales?"
-msgstr "У вас имеются несохранённые изменения в <b>{0}</b> локали. Вы хотите сохранить изменения перед переключением локалей?"
+msgstr "У вас имеются несохранённые изменения в локали <b>{0}</b>. Вы хотите сохранить изменения перед переключением локалей?"
 
 #: src/olympia/translations/templates/translations/trans-menu.html:49
 msgid "Discard Changes"
@@ -6966,7 +6966,7 @@ msgstr "Отменить изменения"
 #: src/olympia/translations/templates/translations/trans-menu.html:56
 #, python-brace-format
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
-msgstr "Вы уверены, что хотите удалить все переводы на <b>{0}</b>? Это действие нельзя отменить."
+msgstr "<b>{0}</b>: вы уверены, что хотите удалить все переводы? Это действие нельзя отменить."
 
 #: src/olympia/translations/templates/translations/trans-menu.html:61
 msgid "Delete Locale"
