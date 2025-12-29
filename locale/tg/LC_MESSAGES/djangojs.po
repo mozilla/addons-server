@@ -1,6 +1,11 @@
+# Translations template for addons-server.
+# Copyright (C) 2025 Mozilla
+# This file is distributed under the same license as the addons-server project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: addons-server 1.0\n"
 "Language: tg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -22,7 +27,7 @@ msgstr ""
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: static/js/common/upload-addon.js:118
-#, python-format, python-brace-format
+#, python-brace-format, python-format
 msgid "{0}% complete"
 msgstr ""
 
@@ -91,8 +96,7 @@ msgid "Unexpected server error while validating."
 msgstr ""
 
 #: static/js/common/upload-addon.js:519
-msgid ""
-"Explicitly marked as compatible with Firefox for Android in the manifest"
+msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
 msgstr ""
 
 #: static/js/common/upload-addon.js:561
@@ -127,10 +131,7 @@ msgid "Include detailed version notes (this can be done in the next step)."
 msgstr ""
 
 #: static/js/common/upload-addon.js:654
-msgid ""
-"If your add-on requires an account to a website in order to be fully tested, "
-"include a test username and password in the Notes to Reviewer (this can be "
-"done in the next step)."
+msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
 
 #: static/js/common/upload-addon.js:660
@@ -138,17 +139,13 @@ msgid "Add-on submission checklist"
 msgstr ""
 
 #: static/js/common/upload-addon.js:664
-msgid ""
-"Please verify the following points before finalizing your submission. This "
-"will minimize delays or misunderstanding during the review process:"
+msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr ""
 
 #: static/js/common/upload-addon.js:671
 msgid ""
-"Minified, concatenated or otherwise machine-generated scripts (excluding "
-"known libraries) need to have their sources submitted separately for review. "
-"Make sure that you use the source code upload field to avoid having your "
-"submission rejected."
+"Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
+"field to avoid having your submission rejected."
 msgstr ""
 
 #: static/js/common/upload-addon.js:684
@@ -195,13 +192,11 @@ msgid_plural "{0} users"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/stats/chart.js:362 static/js/stats/csv_keys.js:3
-#: static/js/stats/csv_keys.js:9
+#: static/js/stats/chart.js:362 static/js/stats/csv_keys.js:3 static/js/stats/csv_keys.js:9
 msgid "Downloads"
 msgstr ""
 
-#: static/js/stats/chart.js:374 static/js/stats/csv_keys.js:6
-#: static/js/stats/csv_keys.js:10
+#: static/js/stats/chart.js:374 static/js/stats/csv_keys.js:6 static/js/stats/csv_keys.js:10
 msgid "Daily Users"
 msgstr ""
 
@@ -455,9 +450,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: static/js/zamboni/init.js:12
-msgid ""
-"This feature is temporarily disabled while we perform website maintenance. "
-"Please check back a little later."
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr ""
 
 #: static/js/zamboni/l10n.js:164
@@ -555,8 +548,7 @@ msgstr ""
 msgid "Tests"
 msgstr ""
 
-#: static/js/zamboni/validator.js:259 static/js/zamboni/validator.js:492
-#: static/js/zamboni/validator.js:516
+#: static/js/zamboni/validator.js:259 static/js/zamboni/validator.js:492 static/js/zamboni/validator.js:516
 msgid "Error"
 msgstr ""
 
