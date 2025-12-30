@@ -5551,12 +5551,12 @@ msgstr "在任意网站上给自己留个小笔记。"
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:700
 msgid "Discover and download higher quality versions of interesting images and videos you find on the web."
-msgstr ""
+msgstr "在网上看到有趣的图片或视频，试试用它来寻找并下载更高质量的版本。"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:703
 msgid "Save and organize anything you find on the web — articles, media, PDFs & more."
-msgstr ""
+msgstr "保存和管理您在网络上发现的一切内容，包括文章、媒体、PDF 文档等。"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:706
