@@ -5561,7 +5561,7 @@ msgstr "保存和管理您在网络上发现的一切内容，包括文章、媒
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:706
 msgid "Enhance your Reddit experience with color-coded comments, simpler navigation, gestures for upvoting & much more."
-msgstr ""
+msgstr "通过颜色标注评论、简化的导航方式、点赞手势等功能，增强 Reddit 使用体验。"
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:712
@@ -5811,7 +5811,7 @@ msgstr "在学新语言？Yomitan 词典是您的理想搭档。"
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1060
 msgid "Pack a powerful thesaurus right inside Firefox."
-msgstr ""
+msgstr "将强大的同义词词典装进 Firefox。"
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1063
@@ -5821,7 +5821,7 @@ msgstr "将鼠标悬停在网页图像上即可放大。"
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1066
 msgid "Feature rich translation tool. Works across the web, eBooks, PDFs, even video subtitles."
-msgstr ""
+msgstr "功能丰富的翻译工具，可翻译网页、电子书、PDF 文档，视频字幕也能轻松应付。"
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1069
