@@ -5870,12 +5870,12 @@ msgstr "Lide automaticamente com formulários de consentimento GDPR."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1042
 msgid "Block malicious websites from port scanning."
-msgstr "Bloqueia sites maliciosos de verificação de porta."
+msgstr "Impeça que sites maliciosos façam verificação de portas."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1045
 msgid "Enhance your Twitch experience."
-msgstr "Melhore sua experiência na Twitch."
+msgstr "Melhore sua experiência de uso no Twitch."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1048
@@ -5890,7 +5890,7 @@ msgstr "Traduza texto sem sair da página (compatível com PDF)."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1054
 msgid "Change the color of Firefox to match every website you visit."
-msgstr "Mude a cor do Firefox para combinar com todos os sites que você visita."
+msgstr "Mude a cor do Firefox para combinar com cada sites que você visitar."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1057
@@ -5905,12 +5905,12 @@ msgstr "Tenha um poderoso dicionário de sinônimos diretamente no Firefox."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1063
 msgid "Hover over web images to enlarge their appearance."
-msgstr "Passe o mouse sobre imagens da web para aumentar suas aparências."
+msgstr "Passe o mouse sobre imagens da web para aumentar a aparência."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1066
 msgid "Feature rich translation tool. Works across the web, eBooks, PDFs, even video subtitles."
-msgstr "Ferramenta de tradução rica em recursos. Funciona em toda a web, eBooks, PDFs, até mesmo legendas de vídeos."
+msgstr "Ferramenta de tradução rica em recursos. Funciona em toda a web, eBooks, PDFs, até mesmo em legendas de vídeos."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1069
@@ -5980,7 +5980,7 @@ msgstr "Novas extensões recomendadas"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1103
 msgid "Extension Starter Pack"
-msgstr "Pacote de extensões para começar"
+msgstr "Pacote de extensões para iniciar"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1105 src/olympia/discovery/strings.jinja2:1109
