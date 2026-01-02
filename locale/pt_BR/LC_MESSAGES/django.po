@@ -3884,8 +3884,8 @@ msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement, Review Policies and Rules and our <a %(a_attrs)s href=\"%(faq_url)s\">Frequently Asked Questions</a>. The Firefox "
 "Add-on Distribution Agreement also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
-"Antes de iniciar, por favor leia e aceite nosso acordo de distribuição de complementos Firefox, revise as políticas e regras e nossas <a %(a_attrs)s href=\"%(faq_url)s\">Perguntas frequentes</a>. O "
-"acordo de distribuição de extensões do Firefox também vincula a nossa notificação de privacidade que explica como nós tratamos sua informação."
+"Antes de iniciar, leia e aceite nosso acordo de distribuição de extensões do Firefox e as diretrizes e regras de revisão e consulte as <a %(a_attrs)s href=\"%(faq_url)s\">dúvidas frequentes</a>. O "
+"acordo de distribuição de extensões do Firefox também vincula ao nosso aviso de privacidade, que explica como tratamos suas informações."
 
 #: src/olympia/devhub/templates/devhub/includes/agreement.html:10
 msgid "Review Policies and Rules"
@@ -5610,7 +5610,7 @@ msgstr "Remova resultados de pesquisa indesejados e fonte de distração, além 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:679
 msgid "Makes Firefox appear as Chrome to websites trying to block Firefox."
-msgstr "Faz com que o Firefox apareça como Chrome para sites que estão tentando bloquear o Firefox."
+msgstr "Faz com que o Firefox apareça como se fosse o Chrome em sites que tentam bloquear o Firefox."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:685
