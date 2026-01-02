@@ -5592,7 +5592,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:676
 msgid "Remove distracting and unwanted search results and related video content."
-msgstr ""
+msgstr "Dikkat dağıtan ve istenmeyen arama sonuçlarını ve ilgili video içeriklerini kaldırın."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:679
@@ -5602,12 +5602,12 @@ msgstr "Firefox’u engellemeye çalışan web sitelerine Firefox’u Chrome gib
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:685
 msgid "Manage your Gmail (even multiple accounts) right from Firefox's toolbar button."
-msgstr ""
+msgstr "Gmail'inizi (hatta birden fazla hesabı) doğrudan Firefox'un araç çubuğu düğmesinden yönetin."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:688
 msgid "Track the time you spend on the web, analyze your habits, block distracting sites & more."
-msgstr ""
+msgstr "Web'de geçirdiğiniz süreyi takip edin, alışkanlıklarınızı analiz edin, dikkat dağıtıcı siteleri engelleyin ve daha fazlasını yapın."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:691
@@ -5922,7 +5922,7 @@ msgstr "Web sayfalarına kendiniz için küçük notlar bırakın."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1081
 msgid "Serenity for your Reddit experience."
-msgstr ""
+msgstr "Reddit deneyiminiz için huzur."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1084
