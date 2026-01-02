@@ -5590,7 +5590,7 @@ msgstr "Proteja sua privacidade contra uma forma única de “fingerprinting” 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:658
 msgid "Automatically deny cookie pop-up tracking requests."
-msgstr "Negar automaticamente solicitações de rastreamento de cookies."
+msgstr "Negue automaticamente solicitações de rastreamento de avisos de cookies."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:670
@@ -5620,7 +5620,7 @@ msgstr "Gerencie seu Gmail (mesmo várias contas) direto da barra de ferramentas
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:688
 msgid "Track the time you spend on the web, analyze your habits, block distracting sites & more."
-msgstr "Monitore o tempo que você gasta na web, analise seus hábitos, bloqueie sites que o distraem e muito mais."
+msgstr "Monitore o tempo que você gasta na web, analise seus hábitos, bloqueie sites que te distraem e muito mais."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:691
@@ -5645,7 +5645,7 @@ msgstr "Descubra e baixe versões de alta qualidade de imagens e vídeos interes
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:703
 msgid "Save and organize anything you find on the web — articles, media, PDFs & more."
-msgstr "Salve e organize tudo que encontrar na web, artigos, mídia, PDFs e muito mais."
+msgstr "Salve e organize qualquer coisa que encontrar na web — artigos, mídias, documentos PDF e muito mais."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:706
@@ -5755,7 +5755,7 @@ msgstr "Retorne para um tempo mais simples, quando os principais resultados de p
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:961
 msgid "Get the mouse scrollbar you've always wanted — specify width and color."
-msgstr "Tenha a barra de rolagem que você sempre quis, selecione a espessura e a cor."
+msgstr "Tenha a barra de rolagem que você sempre quis, selecione a espessura e a cor que preferir."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:973
@@ -5865,7 +5865,7 @@ msgstr "Você está no controle. Desative a VPN quando um site não funcionar e 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1039
 msgid "Automatically handle GDPR consent forms."
-msgstr "Lide com formulários de consentimento do GDPR automaticamente."
+msgstr "Lide automaticamente com formulários de consentimento GDPR."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1042
