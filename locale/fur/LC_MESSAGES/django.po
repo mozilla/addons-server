@@ -82,7 +82,7 @@ msgstr ""
 
 #: src/olympia/abuse/templates/abuse/appeal.html:38
 msgid "Because the decision you are appealing has already been overturned, your appeal will not be processed."
-msgstr "Viodût che il to ricors al rivuarde une decision che e je za stade anulade, nol vignarà elaborât."
+msgstr "Stant che il to ricors al rivuarde une decision che e je za stade anulade, nol vignarà elaborât."
 
 #: src/olympia/abuse/templates/abuse/appeal.html:42
 msgid "The decision you are appealing has already been overridden by a new decision, so this decision can't be appealed."
