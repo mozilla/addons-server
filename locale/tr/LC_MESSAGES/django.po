@@ -3915,6 +3915,9 @@ msgid ""
 "Did you test your extension to ensure it works as expected on Firefox for Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" "
 "href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
 msgstr ""
+"Uzantınızı Android için Firefox’ta test ederek beklendiği gibi çalıştığını kontrol ettiniz mi? Etmediyseniz lütfen uzantınızı göndermeden önce <a target=\"_blank\" rel=\"noopener noreferrer\" "
+"href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\"> Firefox Android için uzantı geliştirme</a> sayfasını inceleyerek uzantınızı test etme "
+"hakkında bilgi alın."
 
 #: src/olympia/devhub/templates/devhub/includes/android_compatibility_modal.html:6
 msgid "Yes, I’ve tested my extension with Firefox for Android"
@@ -5068,7 +5071,7 @@ msgstr "YouTube videolarının sadece sesini dinleyerek internet kotanızdan tas
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:335
 msgid "Turn words into beautiful headlines and image overlay text."
-msgstr ""
+msgstr "Kelimeleri güzel başlıklara ve resim üzerine yazılı metinlere dönüştürün."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5582,12 +5585,12 @@ msgstr "Çerezlerin sizi takip etme isteklerini otomatik olarak reddedin."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:670
 msgid "Powerful pop-up dictionary optimized for learning new languages."
-msgstr ""
+msgstr "Yeni diller öğrenmek için optimize edilmiş, açılır pencerede çalışan güçlü bir sözlük."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:673
 msgid "Hover your mouse over thumbnails to easily browse and download HD images."
-msgstr ""
+msgstr "Fareyle küçük resimlerin üzerine gelerek HD resimleri kolayca görün ve indirin."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:676
@@ -5612,7 +5615,7 @@ msgstr "Web'de geçirdiğiniz süreyi takip edin, alışkanlıklarınızı anali
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:691
 msgid "Improve your writing — get instant access to the power of synonyms."
-msgstr ""
+msgstr "Yazma becerinizi geliştirin: Eşanlamlı sözcüklerin gücüne anında erişin."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:694
@@ -5632,12 +5635,12 @@ msgstr "İnternette bulduğunuz ilginç resimlerin ve videoların daha kaliteli 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:703
 msgid "Save and organize anything you find on the web — articles, media, PDFs & more."
-msgstr ""
+msgstr "Web'de bulduğunuz her şeyi (makaleler, resimler, PDF'ler ve daha fazlası) kaydedip organize edin."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:706
 msgid "Enhance your Reddit experience with color-coded comments, simpler navigation, gestures for upvoting & much more."
-msgstr ""
+msgstr "Renk kodlu yorumlar, daha basit gezinme, beğenme hareketleri ve çok daha fazlasıyla Reddit deneyiminizi geliştirin."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:712
@@ -5887,12 +5890,12 @@ msgstr "Yeni bir dil mi öğreniyorsunuz? Yomitan ideal bir sözlüktür."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1060
 msgid "Pack a powerful thesaurus right inside Firefox."
-msgstr ""
+msgstr "Firefox'a güçlü bir eşanlamlılar sözlüğü ekleyin."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1063
 msgid "Hover over web images to enlarge their appearance."
-msgstr ""
+msgstr "Fareyle resimlerin üzerine giderek onları büyütün."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1066
@@ -5912,7 +5915,7 @@ msgstr "Gmail’inizi (hatta birden fazla hesabınızı) Firefox araç çubuğun
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1075
 msgid "De-clutter YouTube. Strip away unwanted elements like related videos, shorts & more."
-msgstr ""
+msgstr "YouTube'u arındırın. İlgili videoları, short'ları ve diğer istenmeyen öğeleri kaldırın."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1078
@@ -6959,7 +6962,7 @@ msgstr "Hesabınızda kullanılan e-posta adresine gönderim izni verilmiyor."
 
 #: src/olympia/users/models.py:1129
 msgid "The software or device you are using is not allowed for submissions."
-msgstr ""
+msgstr "Kullandığınız yazılım veya cihazın gönderim yapmasına izin verilmiyor."
 
 #: src/olympia/users/models.py:1255
 msgid ""
