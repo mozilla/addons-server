@@ -6874,7 +6874,7 @@ msgstr "O endereço de email usado na sua conta não tem permissão para envios.
 
 #: src/olympia/users/models.py:1129
 msgid "The software or device you are using is not allowed for submissions."
-msgstr "O software ou dispositivo que você está usando não tem permissão para envios."
+msgstr "O software ou dispositivo que você está usando não tem permissão para enviar."
 
 #: src/olympia/users/models.py:1255
 msgid ""
