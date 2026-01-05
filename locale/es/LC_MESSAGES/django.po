@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-01-02 12:21+0000\n"
+"POT-Creation-Date: 2026-01-05 10:31+0000\n"
 "PO-Revision-Date: 2024-01-15 13:27+0000\n"
 "Last-Translator: Bund10z <abu.avila@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -272,9 +272,6 @@ msgstr ""
 msgid "Listed"
 msgstr "Listado"
 
-msgid "Add-on and collection paths need to end with \"/\""
-msgstr ""
-
 msgid "Built in licenses can not be updated."
 msgstr ""
 
@@ -496,15 +493,6 @@ msgid ""
 msgstr ""
 "<h1>¡Ups! Hubo un error.</h1> <p>Lo solucionaremos lo antes posible.</p> <p> Prueba a actualizar la página o volver a la <a href=\"%(home)s\">página de inicio de Complementos</a>. También puedes "
 "ayudarnos a arreglar el error <a href=\"https://github.com/mozilla/addons/issues/new\">reportando el problema</a> con los detalles de cómo llegaste a esta página. </p>"
-
-msgid "Register or Log in"
-msgstr "Registrarse o iniciar sesión"
-
-msgid "Email:"
-msgstr "Email:"
-
-msgid "Two-factor authentication"
-msgstr ""
 
 #. abbreviation of 'previous'
 msgid "Prev"
@@ -1386,39 +1374,6 @@ msgstr ""
 
 msgid "The Unlicense"
 msgstr ""
-
-msgid "No Reputation"
-msgstr "Sin reputación"
-
-msgid "Good (1)"
-msgstr "Bueno (1)"
-
-msgid "Very Good (2)"
-msgstr "Muy bueno (2)"
-
-msgid "Excellent (3)"
-msgstr "Excelente (3)"
-
-msgid "Request More Info"
-msgstr "Solicitar más info"
-
-msgid "Flag"
-msgstr "Marca"
-
-msgid "Duplicate"
-msgstr "Duplicar"
-
-msgid "Reject"
-msgstr "Rechazar"
-
-msgid "Approve"
-msgstr "Aprobar"
-
-msgid "All"
-msgstr "Todos"
-
-msgid "Core"
-msgstr "Core"
 
 #, python-format
 msgid "Recent Changes for %s"
@@ -5132,36 +5087,6 @@ msgstr "Puntuado con {0} de 5 estrellas"
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Puntuado con %(rating)s de 5 estrellas"
-
-#, python-brace-format
-msgid "Unsupported file type, please upload a file {extensions}."
-msgstr ""
-
-msgid "File too large."
-msgstr ""
-
-#, python-format
-msgid "<dd>%(review_author)s</dd>"
-msgstr "<dd>%(review_author)s</dd>"
-
-#, python-format
-msgid "by %(user)s on %(date)s %(stars)s"
-msgstr ""
-
-#, python-format
-msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
-msgstr "<strong>%(reason)s</strong> <span class=\"light\">marcada por %(user)s el %(date)s</span>"
-
-msgid "<strong>Warning!</strong> Another user may be viewing this page before you."
-msgstr ""
-
-#, python-format
-msgid "%(user)s on %(date)s [%(ip_address)s]"
-msgstr "%(user)s el %(date)s [%(ip_address)s]"
-
-#, python-format
-msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-msgstr "Versión %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."

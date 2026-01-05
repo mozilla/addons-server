@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-01-02 12:21+0000\n"
+"POT-Creation-Date: 2026-01-05 10:31+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -74,7 +74,6 @@ msgid "Thank you. Your appeal has been recorded."
 msgstr ""
 
 #: src/olympia/abuse/templates/abuse/appeal.html:31
-#: src/olympia/amo/templates/amo/fake_fxa_authorization.html:21
 msgid "OK"
 msgstr ""
 
@@ -340,7 +339,7 @@ msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr ""
 
 #: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:776
-#: src/olympia/files/utils.py:788 src/olympia/reviewers/forms.py:386
+#: src/olympia/files/utils.py:788
 msgid "Invalid or broken archive."
 msgstr ""
 
@@ -372,10 +371,6 @@ msgstr ""
 #: src/olympia/addons/models.py:2303 src/olympia/addons/models.py:2382
 #: src/olympia/constants/base.py:66
 msgid "Listed"
-msgstr ""
-
-#: src/olympia/addons/models.py:2560
-msgid "Add-on and collection paths need to end with \"/\""
 msgstr ""
 
 #: src/olympia/addons/serializers.py:329
@@ -701,18 +696,6 @@ msgid ""
 "with the details of how you got to this page. </p>"
 msgstr ""
 
-#: src/olympia/amo/templates/amo/fake_fxa_authorization.html:4
-msgid "Register or Log in"
-msgstr ""
-
-#: src/olympia/amo/templates/amo/fake_fxa_authorization.html:19
-msgid "Email:"
-msgstr ""
-
-#: src/olympia/amo/templates/amo/fake_fxa_authorization.html:20
-msgid "Two-factor authentication"
-msgstr ""
-
 #. abbreviation of 'previous'
 #: src/olympia/amo/templates/amo/paginator.html:5
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:49
@@ -734,7 +717,6 @@ msgid "Next"
 msgstr ""
 
 #: src/olympia/amo/templates/amo/paginator.html:31
-#: src/olympia/reviewers/templates/reviewers/includes/paginator_history.html:11
 #, python-format
 msgid ""
 "Results <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> of "
@@ -1450,7 +1432,7 @@ msgstr ""
 msgid "(Deleted)"
 msgstr ""
 
-#: src/olympia/constants/base.py:129 src/olympia/constants/reviewers.py:69
+#: src/olympia/constants/base.py:129
 msgid "Extension"
 msgstr ""
 
@@ -1482,7 +1464,7 @@ msgstr ""
 msgid "Deprecated LWT"
 msgstr ""
 
-#: src/olympia/constants/base.py:137 src/olympia/constants/reviewers.py:70
+#: src/olympia/constants/base.py:137
 msgid "Theme"
 msgstr ""
 
@@ -1945,50 +1927,6 @@ msgstr ""
 
 #: src/olympia/constants/licenses.py:222
 msgid "The Unlicense"
-msgstr ""
-
-#: src/olympia/constants/reviewers.py:23
-msgid "No Reputation"
-msgstr ""
-
-#: src/olympia/constants/reviewers.py:24
-msgid "Good (1)"
-msgstr ""
-
-#: src/olympia/constants/reviewers.py:25
-msgid "Very Good (2)"
-msgstr ""
-
-#: src/olympia/constants/reviewers.py:26
-msgid "Excellent (3)"
-msgstr ""
-
-#: src/olympia/constants/reviewers.py:41
-msgid "Request More Info"
-msgstr ""
-
-#: src/olympia/constants/reviewers.py:42
-msgid "Flag"
-msgstr ""
-
-#: src/olympia/constants/reviewers.py:43
-msgid "Duplicate"
-msgstr ""
-
-#: src/olympia/constants/reviewers.py:44
-msgid "Reject"
-msgstr ""
-
-#: src/olympia/constants/reviewers.py:45
-msgid "Approve"
-msgstr ""
-
-#: src/olympia/constants/reviewers.py:68
-msgid "All"
-msgstr ""
-
-#: src/olympia/core/apps.py:214
-msgid "Core"
 msgstr ""
 
 #: src/olympia/devhub/feeds.py:52
@@ -7142,48 +7080,6 @@ msgstr ""
 #: src/olympia/ratings/templates/ratings/reviews_rating.html:4
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
-msgstr ""
-
-#: src/olympia/reviewers/forms.py:372
-#, python-brace-format
-msgid "Unsupported file type, please upload a file {extensions}."
-msgstr ""
-
-#: src/olympia/reviewers/forms.py:378
-msgid "File too large."
-msgstr ""
-
-#: src/olympia/reviewers/templates/reviewers/moderationlog_detail.html:11
-#, python-format
-msgid "<dd>%(review_author)s</dd>"
-msgstr ""
-
-#: src/olympia/reviewers/templates/reviewers/queue.html:48
-#, python-format
-msgid "by %(user)s on %(date)s %(stars)s"
-msgstr ""
-
-#: src/olympia/reviewers/templates/reviewers/queue.html:59
-#, python-format
-msgid ""
-"<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on "
-"%(date)s</span>"
-msgstr ""
-
-#: src/olympia/reviewers/templates/reviewers/review.html:320
-msgid "<strong>Warning!</strong> Another user may be viewing this page before you."
-msgstr ""
-
-#: src/olympia/reviewers/templates/reviewers/includes/user_ratings_list.html:5
-#, python-format
-msgid "%(user)s on %(date)s [%(ip_address)s]"
-msgstr ""
-
-#: src/olympia/reviewers/templates/reviewers/includes/version.html:5
-#, python-format
-msgid ""
-"Version %(version)s &middot; %(created)s <span class=\"light\">&middot; "
-"%(version_status)s</span>"
 msgstr ""
 
 #: src/olympia/search/filters.py:49 src/olympia/search/filters.py:62

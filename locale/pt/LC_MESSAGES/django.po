@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-01-02 12:21+0000\n"
+"POT-Creation-Date: 2026-01-05 10:31+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -263,9 +263,6 @@ msgstr ""
 msgid "Listed"
 msgstr "Listado"
 
-msgid "Add-on and collection paths need to end with \"/\""
-msgstr ""
-
 msgid "Built in licenses can not be updated."
 msgstr ""
 
@@ -484,16 +481,6 @@ msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
 msgstr "<h1>Ups! Tivemos um erro.</h1> <p>Vamos repará-lo em breve.</p> <p> Pode tentar atualizar a página, ou volte à <a href=\"%(home)s\">página inicial dos extras</a>. </p>"
-
-msgid "Register or Log in"
-msgstr ""
-
-#, fuzzy
-msgid "Email:"
-msgstr "Email"
-
-msgid "Two-factor authentication"
-msgstr ""
 
 #. abbreviation of 'previous'
 msgid "Prev"
@@ -1386,40 +1373,6 @@ msgid "Creative Commons Attribution-ShareAlike 4.0"
 msgstr ""
 
 msgid "The Unlicense"
-msgstr ""
-
-#, fuzzy
-msgid "No Reputation"
-msgstr "Resolução"
-
-msgid "Good (1)"
-msgstr ""
-
-msgid "Very Good (2)"
-msgstr ""
-
-msgid "Excellent (3)"
-msgstr ""
-
-msgid "Request More Info"
-msgstr "Solicitar mais informações"
-
-msgid "Flag"
-msgstr "Sinalizar"
-
-msgid "Duplicate"
-msgstr "Duplicar"
-
-msgid "Reject"
-msgstr "Rejeitar"
-
-msgid "Approve"
-msgstr "Aprovar"
-
-msgid "All"
-msgstr ""
-
-msgid "Core"
 msgstr ""
 
 #, python-format
@@ -5128,36 +5081,6 @@ msgstr "Classificado com {0} de 5 estrelas"
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Classificado com %(rating)s de 5 estrelas"
-
-#, python-brace-format
-msgid "Unsupported file type, please upload a file {extensions}."
-msgstr ""
-
-msgid "File too large."
-msgstr ""
-
-#, python-format
-msgid "<dd>%(review_author)s</dd>"
-msgstr ""
-
-#, python-format
-msgid "by %(user)s on %(date)s %(stars)s"
-msgstr ""
-
-#, python-format
-msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
-msgstr "<strong>%(reason)s</strong> <span class=\"light\">Marcado por %(user)s em %(date)s</span>"
-
-msgid "<strong>Warning!</strong> Another user may be viewing this page before you."
-msgstr ""
-
-#, python-format
-msgid "%(user)s on %(date)s [%(ip_address)s]"
-msgstr "%(user)s em %(date)s [%(ip_address)s]"
-
-#, python-format
-msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-msgstr "Versão %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
 #, fuzzy, python-format
 msgid "Invalid \"%s\" parameter."

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-01-02 12:21+0000\n"
+"POT-Creation-Date: 2026-01-05 10:31+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -267,9 +267,6 @@ msgstr ""
 msgid "Listed"
 msgstr "Наведене"
 
-msgid "Add-on and collection paths need to end with \"/\""
-msgstr ""
-
 msgid "Built in licenses can not be updated."
 msgstr ""
 
@@ -489,16 +486,6 @@ msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
 msgstr "<h1>Упс! Дошло је до грешке.</h1> <p>Ускоро ћемо то исправити.</p> <p> Можете пробати да поново учитате страницу, или се вратите на <a href=\"%(home)s\">почетну страницу за додатке</a>. </p>"
-
-msgid "Register or Log in"
-msgstr ""
-
-#, fuzzy
-msgid "Email:"
-msgstr "Е-пошта"
-
-msgid "Two-factor authentication"
-msgstr ""
 
 #. abbreviation of 'previous'
 msgid "Prev"
@@ -1399,40 +1386,6 @@ msgid "Creative Commons Attribution-ShareAlike 4.0"
 msgstr ""
 
 msgid "The Unlicense"
-msgstr ""
-
-#, fuzzy
-msgid "No Reputation"
-msgstr "Резолуција"
-
-msgid "Good (1)"
-msgstr ""
-
-msgid "Very Good (2)"
-msgstr ""
-
-msgid "Excellent (3)"
-msgstr ""
-
-msgid "Request More Info"
-msgstr "Захтевај више информација"
-
-msgid "Flag"
-msgstr "Означи"
-
-msgid "Duplicate"
-msgstr "Дупликат"
-
-msgid "Reject"
-msgstr "Одбиј"
-
-msgid "Approve"
-msgstr "Одобри"
-
-msgid "All"
-msgstr ""
-
-msgid "Core"
 msgstr ""
 
 #, python-format
@@ -5128,36 +5081,6 @@ msgstr "Оцењено са {0} од 5 звездица"
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Оцењено са %(rating)s од 5 звездица"
-
-#, python-brace-format
-msgid "Unsupported file type, please upload a file {extensions}."
-msgstr ""
-
-msgid "File too large."
-msgstr ""
-
-#, python-format
-msgid "<dd>%(review_author)s</dd>"
-msgstr ""
-
-#, python-format
-msgid "by %(user)s on %(date)s %(stars)s"
-msgstr ""
-
-#, python-format
-msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
-msgstr "<strong>%(reason)s</strong> <span class=\"light\">Означио %(user)s дана %(date)s</span>"
-
-msgid "<strong>Warning!</strong> Another user may be viewing this page before you."
-msgstr ""
-
-#, python-format
-msgid "%(user)s on %(date)s [%(ip_address)s]"
-msgstr "%(user)s дана %(date)s [%(ip_address)s]"
-
-#, python-format
-msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-msgstr "Верзија %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
 #, fuzzy, python-format
 msgid "Invalid \"%s\" parameter."

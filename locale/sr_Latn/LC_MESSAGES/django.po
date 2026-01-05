@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-01-02 12:21+0000\n"
+"POT-Creation-Date: 2026-01-05 10:31+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -306,9 +306,6 @@ msgstr ""
 msgid "Listed"
 msgstr "Navedene"
 
-msgid "Add-on and collection paths need to end with \"/\""
-msgstr ""
-
 msgid "Built in licenses can not be updated."
 msgstr ""
 
@@ -576,16 +573,6 @@ msgstr ""
 "<h1>Ups! Došlo je do greške.</h1> <p>Uskoro ćemo to ispraviti.</p> <p> "
 "Možete probati da ponovo učitate stranicu, ili se vratite na <a "
 "href=\"%(home)s\">početnu stranicu za dodatke</a>. </p>"
-
-msgid "Register or Log in"
-msgstr ""
-
-#, fuzzy
-msgid "Email:"
-msgstr "E-pošta"
-
-msgid "Two-factor authentication"
-msgstr ""
 
 #. abbreviation of 'previous'
 msgid "Prev"
@@ -1585,40 +1572,6 @@ msgid "Creative Commons Attribution-ShareAlike 4.0"
 msgstr ""
 
 msgid "The Unlicense"
-msgstr ""
-
-#, fuzzy
-msgid "No Reputation"
-msgstr "Rezolucija"
-
-msgid "Good (1)"
-msgstr ""
-
-msgid "Very Good (2)"
-msgstr ""
-
-msgid "Excellent (3)"
-msgstr ""
-
-msgid "Request More Info"
-msgstr "Zahtevaj više informacija"
-
-msgid "Flag"
-msgstr "Označi"
-
-msgid "Duplicate"
-msgstr "Duplikat"
-
-msgid "Reject"
-msgstr "Odbij"
-
-msgid "Approve"
-msgstr "Odobri"
-
-msgid "All"
-msgstr ""
-
-msgid "Core"
 msgstr ""
 
 #, python-format
@@ -5860,45 +5813,6 @@ msgstr "Ocenjeno sa {0} od 5 zvezdica"
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Ocenjeno sa %(rating)s od 5 zvezdica"
-
-#, python-brace-format
-msgid "Unsupported file type, please upload a file {extensions}."
-msgstr ""
-
-msgid "File too large."
-msgstr ""
-
-#, python-format
-msgid "<dd>%(review_author)s</dd>"
-msgstr ""
-
-#, python-format
-msgid "by %(user)s on %(date)s %(stars)s"
-msgstr ""
-
-#, python-format
-msgid ""
-"<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on "
-"%(date)s</span>"
-msgstr ""
-"<strong>%(reason)s</strong> <span class=\"light\">Označio %(user)s dana "
-"%(date)s</span>"
-
-msgid ""
-"<strong>Warning!</strong> Another user may be viewing this page before you."
-msgstr ""
-
-#, python-format
-msgid "%(user)s on %(date)s [%(ip_address)s]"
-msgstr "%(user)s dana %(date)s [%(ip_address)s]"
-
-#, python-format
-msgid ""
-"Version %(version)s &middot; %(created)s <span class=\"light\">&middot; "
-"%(version_status)s</span>"
-msgstr ""
-"Verzija %(version)s &middot; %(created)s <span class=\"light\">&middot; "
-"%(version_status)s</span>"
 
 #, fuzzy, python-format
 msgid "Invalid \"%s\" parameter."
