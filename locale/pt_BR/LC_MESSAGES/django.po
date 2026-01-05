@@ -5860,12 +5860,12 @@ msgstr "Acompanhe o tempo que você gasta em cada site que você visita."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1072
 msgid "Manage your Gmail (even multiple accounts) right from a handy pop-up accessible from the Firefox toolbar."
-msgstr "Gerencie seu Gmail (mesmo várias contas) direto de um menu de contexto acessível na barra de ferramentas do Firefox."
+msgstr "Gerencie seu Gmail (mesmo várias contas) direto em um painel prático e acessível na barra de ferramentas do Firefox."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1075
 msgid "De-clutter YouTube. Strip away unwanted elements like related videos, shorts & more."
-msgstr "Organize o YouTube. Remova elementos indesejados, como vídeos relacionados, atalhos e muito mais."
+msgstr "Organize o YouTube. Remova elementos indesejados, como vídeos relacionados, resumidos (shorts) e muito mais."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1078
@@ -5875,12 +5875,12 @@ msgstr "Deixe pequenas notas para si mesmo em qualquer página web."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1081
 msgid "Serenity for your Reddit experience."
-msgstr "Serenidade na sua experiência no Reddit."
+msgstr "Serenidade na sua experiência de uso no Reddit."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1084
 msgid "Save and organize anything you find on the web."
-msgstr "Salve e organize tudo que encontrar na web."
+msgstr "Salve e organize qualquer coisa que encontrar na web."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1087
@@ -5890,7 +5890,7 @@ msgstr "Controles de vídeo WebM ao seu alcance."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1090
 msgid "Disguise Firefox as the Chrome browser to spoof websites that try to block Firefox."
-msgstr "Disfarce o Firefox de Chrome para falsificar sites que tentam bloquear o Firefox."
+msgstr "Disfarce o Firefox de navegador Chrome para driblar sites que tentam bloquear o Firefox."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1093
