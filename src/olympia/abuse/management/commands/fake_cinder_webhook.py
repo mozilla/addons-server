@@ -27,8 +27,10 @@ class Command(BaseCommand):
             raise CommandError('Only works in local environments')
         try:
             body = open(options['payload_filename'], 'rb').read()
-        except FileNotFoundError:
-            raise CommandError('Cannot find payload file. Try using --payload=<path>.')
+        except FileNotFoundError as exc:
+            raise CommandError(
+                'Cannot find payload file. Try using --payload=<path>.'
+            ) from exc
         signature = hmac.new(
             force_bytes(settings.CINDER_WEBHOOK_TOKEN),
             msg=body,
