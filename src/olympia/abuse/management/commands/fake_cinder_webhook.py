@@ -25,7 +25,10 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         if settings.ENV != 'local':
             raise CommandError('Only works in local environments')
-        body = open(options['payload_filename'], 'rb').read()
+        try:
+            body = open(options['payload_filename'], 'rb').read()
+        except FileNotFoundError:
+            raise CommandError('Cannot find payload file. Try using --payload=<path>.')
         signature = hmac.new(
             force_bytes(settings.CINDER_WEBHOOK_TOKEN),
             msg=body,
