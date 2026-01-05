@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h2> {{ _('Register or Log in') }} </h2>
+  <h2>Register or Log in</h2>
   <form id="fake_fxa_authorization" method="get" action="{{ url('auth:accounts.authenticate') }}">
     <h3> Don't panic! </h3>
     <p>
@@ -16,9 +16,9 @@
       <input type="hidden" name="{{ key }}" value="{{ value }}" />
     {% endfor %}
     <input type="hidden" name="code" value="fakecode" />
-    <label for="id_email">{{ _('Email:') }}</label> <input type="email" name="fake_fxa_email" id="id_email" />
-    <label><input type="checkbox" name="fake_two_factor_authentication" value="true" />{{ _('Two-factor authentication') }}</label>
-    <input type="submit" value="{{ _('OK') }}" />
+    <label for="id_email">Email:</label> <input type="email" name="fake_fxa_email" id="id_email" />
+    <label><input type="checkbox" name="fake_two_factor_authentication" value="true" />Two-factor authentication</label>
+    <input type="submit" value="OK" />
 
     {% if interesting_accounts %}
       <h3> Special accounts </h3>
