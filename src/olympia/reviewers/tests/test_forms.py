@@ -668,6 +668,58 @@ class TestReviewForm(TestCase):
         form.is_valid()
         assert form.cleaned_data['cinder_jobs_to_resolve'] == [report_job]
 
+    def test_cinder_jobs_filtered_for_reject_or_reject_multiple_versions(self):
+        self.grant_permission(self.request.user, 'Addons:Review')
+        self.addon.update(status=amo.STATUS_NOMINATED)
+        self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        appeal_job = CinderJob.objects.create(
+            job_id='1', resolvable_in_reviewer_tools=True, target_addon=self.addon
+        )
+        ContentDecision.objects.create(
+            appeal_job=appeal_job,
+            addon=self.addon,
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+        )
+        report_job = CinderJob.objects.create(
+            job_id='2', resolvable_in_reviewer_tools=True, target_addon=self.addon
+        )
+        AbuseReport.objects.create(cinder_job=report_job, guid=self.addon.guid)
+        policy = CinderPolicy.objects.create(
+            uuid='a',
+            name='ignore',
+            expose_in_reviewer_tools=True,
+            enforcement_actions=[DECISION_ACTIONS.AMO_IGNORE.api_value],
+        )
+
+        data = {
+            'action': 'reject_multiple_versions',
+            'comments': 'lol',
+            'cinder_jobs_to_resolve': [appeal_job.id],
+            'versions': [self.version.pk],
+        }
+        form = self.get_form(data=data)
+        form.is_valid()
+        assert form.cleaned_data['cinder_jobs_to_resolve'] == []
+
+        data['cinder_jobs_to_resolve'] = [report_job, appeal_job]
+        form = self.get_form(data=data)
+        form.is_valid()
+        assert form.cleaned_data['cinder_jobs_to_resolve'] == [report_job]
+
+        data = {
+            'action': 'reject',
+            'cinder_policies': [policy.id],
+            'cinder_jobs_to_resolve': [appeal_job.id],
+        }
+        form = self.get_form(data=data)
+        form.is_valid()
+        assert form.cleaned_data['cinder_jobs_to_resolve'] == []
+
+        data['cinder_jobs_to_resolve'] = [report_job.id, appeal_job.id]
+        form = self.get_form(data=data)
+        form.is_valid()
+        assert form.cleaned_data['cinder_jobs_to_resolve'] == [report_job]
+
     def test_boilerplate(self):
         self.grant_permission(self.request.user, 'Addons:Review')
         self.addon.update(status=amo.STATUS_NOMINATED)
@@ -1432,7 +1484,9 @@ class TestReviewForm(TestCase):
         assert label_0.attr['class'] == 'data-toggle-hide'
         assert label_0.attr['data-value'] == 'resolve_appeal_job'
         assert label_1.attr['class'] == 'data-toggle-hide'
-        assert label_1.attr['data-value'] == 'resolve_reports_job'
+        assert label_1.attr['data-value'] == ' '.join(
+            ('resolve_reports_job', 'reject', 'reject_multiple_versions')
+        )
         assert label_2.attr['class'] == 'data-toggle-hide'
         assert label_2.attr['data-value'] == 'resolve_appeal_job'
 

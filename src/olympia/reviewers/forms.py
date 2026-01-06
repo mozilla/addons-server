@@ -307,8 +307,18 @@ class CinderJobsWidget(forms.CheckboxSelectMultiple):
         )
 
         attrs = attrs or {}
+        # Reviewers shouldn't use resolve_appeal_job to resolve "regular" jobs,
+        # and conversely shouldn't use resolve_reports_job to resolve appeals,
+        # as resolving appeals is a bit more involved.
+        # On top of that, they shouldn't resolve appeals when rejecting
+        # versions: that would cause the rejection to be no-op and that's not
+        # always what we want.
+        # The parent element will have `data-toggle-hide`, so data-value is
+        # used to hide actions that are not supposed to be used for this job.
         attrs['data-value'] = (
-            'resolve_appeal_job' if not is_appeal else 'resolve_reports_job'
+            'resolve_appeal_job'
+            if not is_appeal
+            else ' '.join(('resolve_reports_job', 'reject', 'reject_multiple_versions'))
         )
         return super().create_option(
             name, value, label, selected, index, subindex, attrs
@@ -606,14 +616,19 @@ class ReviewForm(forms.Form):
         selected_action = self.cleaned_data.get('action')
         # If the user select a different type of job before changing actions there could
         # be non-appeal jobs selected as cinder_jobs_to_resolve under resolve_appeal_job
-        # action, or appeal jobs under resolve_reports_job action. So filter them out.
+        # action, or appeal jobs under resolve_reports_job/a reject action. So filter
+        # them out.
         if selected_action == 'resolve_appeal_job':
             self.cleaned_data['cinder_jobs_to_resolve'] = [
                 job
                 for job in self.cleaned_data.get('cinder_jobs_to_resolve', ())
                 if job.is_appeal
             ]
-        elif selected_action == 'resolve_reports_job':
+        elif selected_action in (
+            'resolve_reports_job',
+            'reject',
+            'reject_multiple_versions',
+        ):
             self.cleaned_data['cinder_jobs_to_resolve'] = [
                 job
                 for job in self.cleaned_data.get('cinder_jobs_to_resolve', ())
