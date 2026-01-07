@@ -37,6 +37,7 @@ from olympia.constants.scanners import (
     SCHEDULED,
     TRUE_POSITIVE,
     UNKNOWN,
+    WEBHOOK,
     WEBHOOK_EVENTS,
     YARA,
 )
@@ -488,7 +489,7 @@ class AbstractScannerRuleAdminMixin:
         if db_field.name == 'scanner':
             kwargs['choices'] = (('', '---------'),)
             for key, value in db_field.get_choices():
-                if key in [CUSTOMS, YARA, NARC]:
+                if key in [CUSTOMS, YARA, NARC, WEBHOOK]:
                     kwargs['choices'] += ((key, value),)
         return super().formfield_for_choice_field(db_field, request, **kwargs)
 
@@ -551,7 +552,7 @@ class ScannerResultAdmin(AbstractScannerResultAdminMixin, AMOModelAdmin):
         'formatted_addon',
         'authors',
         'guid',
-        'scanner',
+        'formatted_scanner',
         'created',
         'state',
         formatted_matched_rules_with_files_and_data,
@@ -563,7 +564,7 @@ class ScannerResultAdmin(AbstractScannerResultAdminMixin, AMOModelAdmin):
         'formatted_addon',
         'guid',
         'authors',
-        'scanner',
+        'formatted_scanner',
         'formatted_matched_rules',
         'formatted_created',
         'result_actions',
@@ -580,6 +581,14 @@ class ScannerResultAdmin(AbstractScannerResultAdminMixin, AMOModelAdmin):
 
     def get_queryset(self, request):
         return super().get_queryset(request).prefetch_related('matched_rules')
+
+    def formatted_scanner(self, obj):
+        if obj.scanner == WEBHOOK:
+            return f'[webhook] {obj.webhook_event}'
+        else:
+            return obj.scanner
+
+    formatted_scanner.short_description = 'Scanner'
 
     def safe_referer_redirect(self, request, default_url):
         referer = request.META.get('HTTP_REFERER')
