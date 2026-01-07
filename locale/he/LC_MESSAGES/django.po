@@ -796,11 +796,11 @@ msgstr "תוספת זו כבר שייכת לאוסף"
 
 #: src/olympia/blocklist/models.py:188
 msgid "Blocked"
-msgstr ""
+msgstr "חסום"
 
 #: src/olympia/blocklist/models.py:188
 msgid "Restricted"
-msgstr ""
+msgstr "מוגבל"
 
 #: src/olympia/constants/activity.py:25
 #, python-brace-format

@@ -2749,7 +2749,7 @@ msgstr "Se vuoi ricevere donazioni monetarie, imposta in questo campo un URL da 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:45
 #, python-format
 msgid "Supported domains: %(supported_domains)s"
-msgstr ""
+msgstr "Domini supportati: %(supported_domains)s"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:55 src/olympia/translations/templates/translations/trans-menu.html:13
 msgid "Default Locale"
@@ -2848,12 +2848,17 @@ msgid ""
 "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Minimum length: %(min_length)s characters; Recommended "
 "length: 250 characters. If you need a longer description, make sure the first 250 characters contain the most important description points."
 msgstr ""
+"Una spiegazione più dettagliata di caratteristiche, funzionalità e altre informazioni rilevanti. Questo campo viene visualizzato solo nella pagina del prodotto del componente aggiuntivo. Lunghezza "
+"minima: %(min_length)s caratteri. Lunghezza consigliata: 250 caratteri. Se hai bisogno di una descrizione più lunga, assicurati che i primi 250 caratteri contengano i punti descrittivi più "
+"importanti."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:140
 msgid ""
 "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Recommended length: 250 characters. If you need a longer "
 "description, make sure the first 250 characters contain the most important description points."
 msgstr ""
+"Una spiegazione più dettagliata di caratteristiche, funzionalità e altre informazioni rilevanti. Questo campo viene visualizzato solo nella pagina del prodotto del componente aggiuntivo. Lunghezza "
+"consigliata: 250 caratteri. Se hai bisogno di una descrizione più lunga, assicurati che i primi 250 caratteri contengano i punti descrittivi più importanti."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:169
 msgid "Experimental?"
