@@ -37,6 +37,7 @@ from olympia.constants.scanners import (
     SCHEDULED,
     TRUE_POSITIVE,
     UNKNOWN,
+    WEBHOOK_EVENTS,
     YARA,
 )
 
@@ -46,6 +47,8 @@ from .models import (
     ScannerQueryRule,
     ScannerResult,
     ScannerRule,
+    ScannerWebhook,
+    ScannerWebhookEvent,
 )
 from .tasks import run_scanner_query_rule
 
@@ -1051,3 +1054,36 @@ class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, AMOModelAdmin):
         protected = []
 
         return (deleted_objects, model_count, perms_needed, protected)
+
+
+class ScannerWebhookEventInline(admin.StackedInline):
+    model = ScannerWebhookEvent
+    view_on_site = False
+    extra = 0
+
+
+@admin.register(ScannerWebhook)
+class ScannerWebhookAdmin(AMOModelAdmin):
+    view_on_site = False
+
+    inlines = [ScannerWebhookEventInline]
+
+    list_display = (
+        'name',
+        'url',
+        'formatted_events_list',
+        'is_active',
+    )
+
+    def get_queryset(self, request):
+        return super().get_queryset(request).prefetch_related('scannerwebhookevent_set')
+
+    def formatted_events_list(self, obj):
+        return ', '.join(
+            [
+                WEBHOOK_EVENTS.get(item.event)
+                for item in obj.scannerwebhookevent_set.all()
+            ]
+        )
+
+    formatted_events_list.short_description = 'Events'

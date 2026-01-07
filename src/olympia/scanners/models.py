@@ -266,7 +266,7 @@ class ScannerWebhookEvent(ModelBase):
         unique_together = ('webhook', 'event')
 
     def __str__(self):
-        return f"{self.webhook.name} ({WEBHOOK_EVENTS.get(self.event)})"
+        return f'{self.webhook.name} ({WEBHOOK_EVENTS.get(self.event)})'
 
 
 class ScannerResult(AbstractScannerResult):
