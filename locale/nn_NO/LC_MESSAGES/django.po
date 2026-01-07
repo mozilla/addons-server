@@ -2708,7 +2708,7 @@ msgstr "Om du ønskjer å be om pengebidrag frå brukarane dine, spesifiser ei s
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:45
 #, python-format
 msgid "Supported domains: %(supported_domains)s"
-msgstr ""
+msgstr "Støtta domene: %(supported_domains)s"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:55 src/olympia/translations/templates/translations/trans-menu.html:13
 msgid "Default Locale"
@@ -3537,7 +3537,7 @@ msgstr "Lag ein temaversjon"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:81
 msgid "You can upload a finished theme using the upload option above, or you can build it yourself using this tool."
-msgstr ""
+msgstr "Du kan laste opp eit ferdig tema ved å bruke opplastingsalternativet ovanfor, eller du kan bygge det sjølv ved å bruke dette verktøyet."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:87
 msgid "Create a Theme"
@@ -4731,7 +4731,7 @@ msgstr "Forandre måten du surfar Reddit på ved å bruke taggar, og meir."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:158
 msgid "Screenshot webpages, make edits & share."
-msgstr ""
+msgstr "Ta skjermbilde av nettsider, rediger og del dei."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:161
