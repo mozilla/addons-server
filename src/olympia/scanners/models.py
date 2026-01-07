@@ -76,7 +76,7 @@ class AbstractScannerResult(ModelBase):
         names. Not all scanners have rules that necessarily match."""
         if self.scanner in (NARC, YARA):
             return sorted({result['rule'] for result in self.results})
-        if self.scanner == CUSTOMS and 'matchedRules' in self.results:
+        if 'matchedRules' in self.results:
             return self.results['matchedRules']
         # We do not have support for the remaining scanners (yet).
         return []
