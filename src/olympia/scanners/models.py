@@ -35,6 +35,7 @@ from olympia.constants.scanners import (
     SCANNERS,
     SCHEDULED,
     UNKNOWN,
+    WEBHOOK_EVENTS,
     YARA,
 )
 from olympia.files.models import FileUpload
@@ -244,6 +245,28 @@ class ScannerRule(AbstractScannerRule):
 
     class Meta(AbstractScannerRule.Meta):
         db_table = 'scanners_rules'
+
+
+class ScannerWebhook(ModelBase):
+    name = models.CharField(max_length=100)
+    url = models.URLField(max_length=255)
+    api_key = models.CharField(max_length=100)
+    is_active = models.BooleanField(default=True)
+
+    class Meta:
+        db_table = 'scanners_webhooks'
+
+
+class ScannerWebhookEvent(ModelBase):
+    webhook = models.ForeignKey(ScannerWebhook, on_delete=models.CASCADE)
+    event = models.PositiveSmallIntegerField(choices=WEBHOOK_EVENTS.items())
+
+    class Meta:
+        db_table = 'scanners_webhook_events'
+        unique_together = ('webhook', 'event')
+
+    def __str__(self):
+        return f"{self.webhook.name} ({WEBHOOK_EVENTS.get(self.event)})"
 
 
 class ScannerResult(AbstractScannerResult):
