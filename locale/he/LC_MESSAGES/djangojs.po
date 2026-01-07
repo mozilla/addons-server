@@ -146,7 +146,7 @@ msgstr "נא לבדוק את הנקודות הבאות לפני סיום ההג�
 msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
-msgstr ""
+msgstr "יש לשלוח את קובצי המקור של קבצים בינריים שהוגדרו מראש, כמו גם סקריפטים מעורפלים (למעט ספריות מוכרות) בנפרד לסקירה. נא לוודא שעשית שימוש בשדה העלאת קוד מקור כדי להימנע מדחיית ההגשה שלך."
 
 #: static/js/common/upload-addon.js:684
 msgid "The validation process found these issues that can lead to rejections:"
@@ -362,25 +362,25 @@ msgstr ""
 #: static/js/stats/csv_keys.js:84
 #, python-brace-format
 msgid "Download Contents, last {0} days"
-msgstr ""
+msgstr "הורדת תוכן, {0} הימים האחרונים"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/stats/csv_keys.js:86
 #, python-brace-format
 msgid "Download Contents from {0} to {1}"
-msgstr ""
+msgstr "הורדת תוכן מ־{0} עד {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:90
 #, python-brace-format
 msgid "Download Campaigns, last {0} days"
-msgstr ""
+msgstr "הורדת מסעות פרסום, {0} הימים האחרונים"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/stats/csv_keys.js:92
 #, python-brace-format
 msgid "Download Campaigns from {0} to {1}"
-msgstr ""
+msgstr "הורדת מסעות פרסום מ־{0} עד {1}"
 
 #. L10n: {0} and {1} are integers.
 #: static/js/stats/csv_keys.js:98
