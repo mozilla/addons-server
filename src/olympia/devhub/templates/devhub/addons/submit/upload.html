@@ -78,8 +78,10 @@
       <p></p>
       <h3>{{ _('Create a Theme Version') }}</h3>
       <p>
+        {% trans %}
         You can upload a finished theme using the upload option above,
         or you can build it yourself using this tool.
+        {% endtrans %}
       </p>
       <div>
         <a class="button" id="wizardlink" href="{{ wizard_url }}">{{ _('Create a Theme') }}</a>

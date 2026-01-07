@@ -105,10 +105,11 @@
       {{ describe_form.description.errors }}
       <div class="edit-addon-details">
         {{ _("A longer explanation of features, functionality, and other relevant information. "
-             "This field is only displayed on the addon's product page. " +
-             ('Minimum length: 10 characters; ' if describe_form.description.field.min_length else '') +
-             "Recommended length: 250 characters. "
-             "If you need a longer description, make sure the first 250 characters contain the most important description points.") }}
+             "This field is only displayed on the add-on's product page. "
+             "Minimum length: %(min_length)s characters; Recommended length: 250 characters. "
+             "If you need a longer description, make sure the first 250 characters contain the most important description points.",
+              min_length=describe_form.description.field.min_length
+        ) }}
         <div class="char-count"
              data-for-startswith="{{ describe_form.description.auto_id }}_"
              data-minlength="{{ describe_form.description.field.min_length }}"></div>
