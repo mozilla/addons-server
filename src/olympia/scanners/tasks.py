@@ -33,6 +33,8 @@ from olympia.constants.scanners import (
     NARC,
     RUNNING,
     SCANNERS,
+    WEBHOOK,
+    WEBHOOK_DURING_VALIDATION,
     YARA,
 )
 from olympia.devhub.tasks import validation_task
@@ -46,6 +48,7 @@ from .models import (
     ScannerQueryRule,
     ScannerResult,
     ScannerRule,
+    ScannerWebhookEvent,
 )
 
 
@@ -61,6 +64,74 @@ def make_adapter_with_retry():
         )
     )
     return adapter
+
+
+@validation_task
+def call_webhooks_during_validation(results, upload_pk):
+    log.info('Calling webhooks for FileUpload %s.', upload_pk)
+    upload = FileUpload.objects.get(pk=upload_pk)
+
+    try:
+        if not os.path.exists(upload.file_path):
+            raise ValueError(f'FileUpload "{upload.file_path}" does not exist.')
+
+        call_webhooks(
+            event_name=WEBHOOK_DURING_VALIDATION,
+            payload={'download_url': upload.get_authenticated_download_url()},
+            upload=upload,
+        )
+
+        log.info('All webhooks have been called for FileUpload %s.', upload_pk)
+    except Exception as exc:
+        log.exception('Error while calling webhooks for FileUpload %s.', upload_pk)
+        if not waffle.switch_is_active('ignore-exceptions-in-scanner-tasks'):
+            raise exc
+
+    return results
+
+
+def call_webhooks(event_name, payload, upload=None, version=None):
+    for event in ScannerWebhookEvent.objects.filter(
+        event=event_name, webhook__is_active=True
+    ).all():
+        log.info('Calling webhook "%s".', event.webhook.name)
+
+        try:
+            data = _call_webhook(webhook=event.webhook, payload=payload)
+
+            ScannerResult.objects.create(
+                scanner=WEBHOOK,
+                webhook_event=event,
+                upload=upload,
+                version=version,
+                results=data,
+            )
+        except Exception:
+            log.exception('Error while calling webhook "%s".', event.webhook.name)
+
+
+def _call_webhook(webhook, payload):
+    with requests.Session() as http:
+        adapter = make_adapter_with_retry()
+        http.mount('http://', adapter)
+        http.mount('https://', adapter)
+
+        response = http.post(
+            url=webhook.url,
+            json=payload,
+            timeout=settings.SCANNER_TIMEOUT,
+            headers={'Authorization': f'Bearer {webhook.api_key}'},
+        )
+    try:
+        data = response.json()
+    except ValueError as exc:
+        # Log the response body when JSON decoding has failed.
+        raise ValueError(response.text) from exc
+
+    if response.status_code != 200 or 'error' in data:
+        raise ValueError(data)
+
+    return data
 
 
 def run_scanner(results, upload_pk, scanner, api_url, api_key):
