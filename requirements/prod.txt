@@ -1011,9 +1011,9 @@ google-crc32c==1.8.0 \
 google-resumable-media==2.8.0 \
     --hash=sha256:dd14a116af303845a8d932ddae161a26e86cc229645bc98b39f026f9b1717582 \
     --hash=sha256:f1157ed8b46994d60a1bc432544db62352043113684d4e030ee02e77ebe9a1ae
-proto-plus==1.26.1 \
-    --hash=sha256:13285478c2dcf2abb829db158e1047e2f1e8d63a077d94263c2b88b043c75a66 \
-    --hash=sha256:21a515a4c4c0088a773899e23c7bbade3d18f9c66c73edd4c7ee3816bc96a012
+proto-plus==1.27.0 \
+    --hash=sha256:1baa7f81cf0f8acb8bc1f6d085008ba4171eaf669629d1b6d1673b21ed1c0a82 \
+    --hash=sha256:873af56dd0d7e91836aee871e5799e1c6f1bda86ac9a983e0bb9f0c266a568c4
 protobuf==4.25.8 \
     --hash=sha256:077ff8badf2acf8bc474406706ad890466274191a48d0abd3bd6987107c9cde5 \
     --hash=sha256:15a0af558aa3b13efef102ae6e4f3efac06f1eea11afb3a57db2901447d9fb59 \
