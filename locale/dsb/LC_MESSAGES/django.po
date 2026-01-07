@@ -2724,7 +2724,7 @@ msgstr "Jolic cośo swóje wužywarje wó pjenjezne pósćiwanki pšosyś, staj�
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:45
 #, python-format
 msgid "Supported domains: %(supported_domains)s"
-msgstr ""
+msgstr "Pódprěte domeny: %(supported_domains)s"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:55 src/olympia/translations/templates/translations/trans-menu.html:13
 msgid "Default Locale"
@@ -2819,12 +2819,16 @@ msgid ""
 "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Minimum length: %(min_length)s characters; Recommended "
 "length: 250 characters. If you need a longer description, make sure the first 250 characters contain the most important description points."
 msgstr ""
+"Dlejše wujasnjenje funkcijow, funkcionalnosći a drugich relewantnych informacijow. Toś to pólo se jano na produktowem boku dodanka pokazujo. Minimalna dłujkosć: %(min_length)s znamuškow; dopórucona "
+"dłujkosć: 250 znamuškow. Jolic dlejše wopisanje trjebaśo, zawěsććo, až prědne 250 znamuškow nejwažnjejše dypki wopisanja wopśimuju."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:140
 msgid ""
 "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Recommended length: 250 characters. If you need a longer "
 "description, make sure the first 250 characters contain the most important description points."
 msgstr ""
+"Dlejše wujasnjenje funkcijow, funkcionalnosći a drugich relewantnych informacijow. Toś to pólo se jano na produktowem boku dodanka pokazujo. Dopórucona dłujkosć: 250 znamuškow. Jolic dlejše "
+"wopisanje trjebaśo, zawěsććo, až prědne 250 znamuškow nejwažnjejše dypki wopisanja wopśimuju."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:169
 msgid "Experimental?"
@@ -3558,7 +3562,7 @@ msgstr "Wersiju drastwy napóraś"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:81
 msgid "You can upload a finished theme using the upload option above, or you can build it yourself using this tool."
-msgstr ""
+msgstr "Móžośo dokóńconu drastwu z pomocu nagrawańskeje móžnosći górjejce nagraś, abo móžośo ju sam z pomocu toś tog rěda wuwijaś."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:87
 msgid "Create a Theme"
@@ -4755,7 +4759,7 @@ msgstr "Změńśo wašnju, z kótarejuž Reddit z pomocu klucowych słowow a wě
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:158
 msgid "Screenshot webpages, make edits & share."
-msgstr ""
+msgstr "Gótujśo fota wobrazowki websedłow, wobźěłajśo a źělśo je."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:161

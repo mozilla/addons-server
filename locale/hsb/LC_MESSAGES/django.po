@@ -2824,6 +2824,8 @@ msgid ""
 "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Recommended length: 250 characters. If you need a longer "
 "description, make sure the first 250 characters contain the most important description points."
 msgstr ""
+"Dlěše wujasnjenje funkcijow, funkcionalnosće a druhich relewantnych informacijow. Tute polo so jenož na produktowej stronje přidatka pokazuje. Doporučena dołhosć: 250 znamješkow. Jeli dlěše "
+"wopisanje trjebaće, zawěsćće, zo prěnje 250 znamješkow najwažniše wopisowanske dypki wobsahuja."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:169
 msgid "Experimental?"
@@ -3559,7 +3561,7 @@ msgstr "Wersiju drasty wutworić"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:81
 msgid "You can upload a finished theme using the upload option above, or you can build it yourself using this tool."
-msgstr ""
+msgstr "Móžeće dokónčenu drastu z pomocu nahrawanskeje móžnosće horjeka nahrać, abo móžeće ju sam z pomocu tutoho nastroja wuwiwać."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:87
 msgid "Create a Theme"
