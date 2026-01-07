@@ -200,7 +200,7 @@ msgid ""
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
 "\n"
-"Спасибо за сообщение о следующей коллекции на сайте дополнений Mozilla: %(name)s.\n"
+"Спасибо за сообщение о следующей подборке на сайте дополнений Mozilla: %(name)s.\n"
 "\n"
 "Мы рассмотрели ваше сообщение и данное содержимое, и обнаружили, что оно нарушает политику Mozilla (%(policy_document_url)s), и поэтому удалили это содержимое.\n"
 
@@ -1212,12 +1212,12 @@ msgstr "Изменён слаг дополнения"
 #: src/olympia/constants/activity.py:1014
 #, python-brace-format
 msgid "Collection {collection} deleted by moderator"
-msgstr "Коллекция {collection} удалена модератором"
+msgstr "Подборка «{collection}» удалена модератором"
 
 #: src/olympia/constants/activity.py:1020
 #, python-brace-format
 msgid "Collection {collection} un-deleted by moderator"
-msgstr "Коллекция {collection} восстановлена модератором"
+msgstr "Подборка «{collection}» восстановлена модератором"
 
 #: src/olympia/constants/activity.py:1029
 #, python-brace-format
@@ -1277,7 +1277,7 @@ msgstr "Свойство «{addon}» — {0} отредактировано."
 #: src/olympia/constants/activity.py:1254
 #, python-brace-format
 msgid "Collection {0} property {1} updated."
-msgstr "Свойство {1} коллекции {0} обновлено."
+msgstr "Свойство {1} подборки «{0}» обновлено."
 
 #: src/olympia/constants/activity.py:1261
 #, python-brace-format
@@ -1819,7 +1819,7 @@ msgstr[2] "У вас может быть только {0} категорий."
 
 #: src/olympia/devhub/forms.py:226
 msgid "The miscellaneous category cannot be combined with additional categories."
-msgstr "Категория Разное не может быть скомбинирована с дополнительными категориями."
+msgstr "Категория «Разное» не может быть скомбинирована с дополнительными категориями."
 
 #: src/olympia/devhub/forms.py:292
 #, python-format
@@ -5878,7 +5878,7 @@ msgstr "Измените цвет Firefox, чтобы он соответств�
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1059
 msgid "Learning a new language? Yomitan is the ideal dictionary companion."
-msgstr "Изучаете новый язык? Yomitan - идеальный словарь-компаньон."
+msgstr "Изучаете новый язык? Yomitan — идеальный словарь-компаньон."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1062
@@ -6227,7 +6227,7 @@ msgstr "Не удалось распарсить файл манифеста."
 #: src/olympia/files/utils.py:346
 #, python-brace-format
 msgid "Lowest supported \"strict_min_version\" is {min_version}."
-msgstr "Минимальная поддерживаемая \"strict_min_version\" - {min_version}."
+msgstr "Минимальная поддерживаемая «strict_min_version» — {min_version}."
 
 #: src/olympia/files/utils.py:377
 #, python-brace-format
@@ -6420,7 +6420,7 @@ msgstr "Нельзя оставить более одного отзыва дл�
 #: src/olympia/ratings/serializers.py:317
 #, python-brace-format
 msgid "Invalid flag [{}] - must be one of [{}]"
-msgstr "Некорректный флаг [{}] - должен быть одним из [{}]"
+msgstr "Некорректный флаг [{}] — должен быть одним из [{}]"
 
 #: src/olympia/ratings/serializers.py:329
 msgid "This rating can't be flagged because it has no review text."
@@ -7074,7 +7074,7 @@ msgstr "Автоматически одобрено, не подтвержден
 
 #: src/olympia/versions/models.py:1140
 msgid "Approved, Manual"
-msgstr "Утверждено, Вручную"
+msgstr "Одобрено вручную"
 
 #: src/olympia/versions/models.py:1147
 msgid "Disabled by Developer"
