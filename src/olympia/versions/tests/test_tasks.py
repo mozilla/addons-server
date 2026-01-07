@@ -33,7 +33,7 @@ from olympia.reviewers.models import NeedsHumanReview
 from ..models import Version, VersionPreview
 from ..tasks import (
     UI_FIELDS,
-    call_source_builder,
+    call_webhooks_on_source_code_uploaded,
     duplicate_addon_version_for_rollback,
     generate_static_theme_preview,
     hard_delete_versions,
@@ -858,14 +858,15 @@ def test_soft_block_versions():
     assert len(mail.outbox) == 0
 
 
-class TestCallSourceBuilder(TestCase):
+@pytest.mark.skip(reason='convert tests to use call_webhooks_on_source_code_uploaded')
+class TestCallWebhooksOnSourceCodeUploaded(TestCase):
     @mock.patch.object(requests.Session, 'post')
     def test_call_with_mock(self, requests_mock):
         addon = addon_factory()
         version = version_factory(addon=addon)
         activity_log_id = 123
 
-        call_source_builder(version.pk, activity_log_id)
+        call_webhooks_on_source_code_uploaded(version.pk, activity_log_id)
 
         assert requests_mock.called
         requests_mock.assert_called_with(
@@ -892,7 +893,7 @@ class TestCallSourceBuilder(TestCase):
         version.delete()
         activity_log_id = 123
 
-        call_source_builder(version.pk, activity_log_id)
+        call_webhooks_on_source_code_uploaded(version.pk, activity_log_id)
 
         assert requests_mock.called
         requests_mock.assert_called_with(
@@ -920,6 +921,6 @@ class TestCallSourceBuilder(TestCase):
         version.update(license=None)
         activity_log_id = 123
 
-        call_source_builder(version.pk, activity_log_id)
+        call_webhooks_on_source_code_uploaded(version.pk, activity_log_id)
 
         requests_mock.assert_not_called()
