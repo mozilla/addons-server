@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-01-05 10:31+0000\n"
+"POT-Creation-Date: 2026-01-07 09:57+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -2175,6 +2175,10 @@ msgstr "Contributions"
 msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
 msgstr "If you would like to request monetary contributions from your users, set this to a page where they can do so."
 
+#, python-format
+msgid "Supported domains: %(supported_domains)s"
+msgstr "Supported domains: %(supported_domains)s"
+
 msgid "Default Locale"
 msgstr "Default Locale"
 
@@ -2240,6 +2244,21 @@ msgstr "This summary should clearly explain what your add-on does. It will be sh
 
 msgid "Description"
 msgstr "Description"
+
+#, python-format
+msgid ""
+"A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Minimum length: %(min_length)s characters; Recommended "
+"length: 250 characters. If you need a longer description, make sure the first 250 characters contain the most important description points."
+msgstr ""
+"A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Minimum length: %(min_length)s characters; Recommended "
+"length: 250 characters. If you need a longer description, make sure the first 250 characters contain the most important description points."
+
+msgid ""
+"A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Recommended length: 250 characters. If you need a longer "
+"description, make sure the first 250 characters contain the most important description points."
+msgstr ""
+"A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Recommended length: 250 characters. If you need a longer "
+"description, make sure the first 250 characters contain the most important description points."
 
 #, fuzzy
 msgid "Experimental?"
@@ -2857,6 +2876,9 @@ msgstr "Administrative overrides"
 #, fuzzy
 msgid "Create a Theme Version"
 msgstr "Create a New Theme"
+
+msgid "You can upload a finished theme using the upload option above, or you can build it yourself using this tool."
+msgstr "You can upload a finished theme using the upload option above, or you can build it yourself using this tool."
 
 #, fuzzy
 msgid "Create a Theme"
@@ -3889,8 +3911,8 @@ msgid "Change the way you surf Reddit by using tags and more."
 msgstr "Change the way you surf Reddit by using tags and more."
 
 #. editorial content for the discovery pane.
-msgid "Screenshot webpages, make edits, and share."
-msgstr "Screenshot webpages, make edits, and share."
+msgid "Screenshot webpages, make edits & share."
+msgstr "Screenshot webpages, make edits & share."
 
 #. editorial content for the discovery pane.
 msgid "A superior Windows-only downloader tool."

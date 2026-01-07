@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-01-05 10:31+0000\n"
+"POT-Creation-Date: 2026-01-07 09:57+0000\n"
 "PO-Revision-Date: 2024-01-15 13:27+0000\n"
 "Last-Translator: Bund10z <abu.avila@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -2078,6 +2078,10 @@ msgstr "URL de las colaboraciones"
 msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
 msgstr "Si quieres perdir contribuciones económicas a los usuarios, configura esto en una página donde puedan hacerlo."
 
+#, python-format
+msgid "Supported domains: %(supported_domains)s"
+msgstr ""
+
 msgid "Default Locale"
 msgstr "Idioma por defecto"
 
@@ -2145,6 +2149,17 @@ msgstr "En este resumen deberías especificar la función de tu complemento. Apa
 
 msgid "Description"
 msgstr "Descripción"
+
+#, python-format
+msgid ""
+"A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Minimum length: %(min_length)s characters; Recommended "
+"length: 250 characters. If you need a longer description, make sure the first 250 characters contain the most important description points."
+msgstr ""
+
+msgid ""
+"A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Recommended length: 250 characters. If you need a longer "
+"description, make sure the first 250 characters contain the most important description points."
+msgstr ""
 
 msgid "Experimental?"
 msgstr "¿Es experimental?"
@@ -2726,6 +2741,9 @@ msgstr "Anulaciones administrativas"
 
 msgid "Create a Theme Version"
 msgstr "Crear una versión del tema"
+
+msgid "You can upload a finished theme using the upload option above, or you can build it yourself using this tool."
+msgstr ""
 
 msgid "Create a Theme"
 msgstr "Crear un tema"
@@ -3668,8 +3686,8 @@ msgid "Change the way you surf Reddit by using tags and more."
 msgstr "Cambia la forma de explorar Reddit a través de etiquetas y otras opciones."
 
 #. editorial content for the discovery pane.
-msgid "Screenshot webpages, make edits, and share."
-msgstr "Haz capturas de pantalla de páginas web, realiza ediciones y compártelas."
+msgid "Screenshot webpages, make edits & share."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "A superior Windows-only downloader tool."

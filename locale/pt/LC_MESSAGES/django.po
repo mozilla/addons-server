@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-01-05 10:31+0000\n"
+"POT-Creation-Date: 2026-01-07 09:57+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2092,6 +2092,10 @@ msgstr "Contribuições"
 msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
 msgstr ""
 
+#, python-format
+msgid "Supported domains: %(supported_domains)s"
+msgstr ""
+
 msgid "Default Locale"
 msgstr "Idioma por omissão"
 
@@ -2153,6 +2157,17 @@ msgstr ""
 
 msgid "Description"
 msgstr "Descrição"
+
+#, python-format
+msgid ""
+"A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Minimum length: %(min_length)s characters; Recommended "
+"length: 250 characters. If you need a longer description, make sure the first 250 characters contain the most important description points."
+msgstr ""
+
+msgid ""
+"A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Recommended length: 250 characters. If you need a longer "
+"description, make sure the first 250 characters contain the most important description points."
+msgstr ""
 
 msgid "Experimental?"
 msgstr ""
@@ -2750,6 +2765,9 @@ msgstr "Sobreposições administrativas"
 #, fuzzy
 msgid "Create a Theme Version"
 msgstr "Criar um novo tema"
+
+msgid "You can upload a finished theme using the upload option above, or you can build it yourself using this tool."
+msgstr ""
 
 #, fuzzy
 msgid "Create a Theme"
@@ -3698,7 +3716,7 @@ msgid "Change the way you surf Reddit by using tags and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Screenshot webpages, make edits, and share."
+msgid "Screenshot webpages, make edits & share."
 msgstr ""
 
 #. editorial content for the discovery pane.

@@ -6,144 +6,118 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-01-07 09:57+0000\n"
 "Language: nb_NO\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Pontoon\n"
 
-#: static/js/common/upload-addon.js:54 static/js/common/upload-image.js:136
 msgid "There was a problem contacting the server."
 msgstr "Et problem oppstod ved forsøk på å kontakte serveren."
 
-#: static/js/common/upload-addon.js:78
 msgid "Select a file..."
 msgstr "Velg fil ..."
 
-#: static/js/common/upload-addon.js:82
 msgid "Your add-on should end with .zip, .xpi or .crx"
 msgstr "Tillegget må ende på .zip, .xpi, eller .crx"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#: static/js/common/upload-addon.js:118
-#, python-brace-format, python-format
+#, python-format, python-brace-format
 msgid "{0}% complete"
 msgstr "{0}% fullført"
 
-#: static/js/common/upload-addon.js:122
 #, python-brace-format
 msgid "{0} of {1}"
 msgstr "{0} av {1}"
 
-#: static/js/common/upload-addon.js:166
 msgid "Cancel"
 msgstr "Avbryt"
 
-#: static/js/common/upload-addon.js:189
 #, python-brace-format
 msgid "Uploading {0}"
 msgstr "Laster opp {0}"
 
-#: static/js/common/upload-addon.js:229
 #, python-brace-format
 msgid "Error with {0}"
 msgstr "Feil med {0}"
 
-#: static/js/common/upload-addon.js:237
 msgid "Please make sure to report any linting related issues on GitHub"
 msgstr "Sørg for å rapportere eventuelle linting-problemer på GitHub"
 
-#: static/js/common/upload-addon.js:248
 #, python-brace-format
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] "Validering av utvidelsen gav {0} feil."
 msgstr[1] "Validering av utvidelsen gav {0} feil."
 
-#: static/js/common/upload-addon.js:266
 #, python-brace-format
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;og {0} flere"
 msgstr[1] "&hellip;og {0} flere"
 
-#: static/js/common/upload-addon.js:287 static/js/common/upload-addon.js:705
 msgid "See full validation report"
 msgstr "Se fullstendig valideringsrapport"
 
-#: static/js/common/upload-addon.js:300
 #, python-brace-format
 msgid "Validating {0}"
 msgstr "Validerer {0}"
 
-#: static/js/common/upload-addon.js:350
 #, python-brace-format
 msgid "Your add-on exceeds the maximum size of {0}."
 msgstr "Utvidelsen din overstiger maksimumstørrelsen på {0}."
 
-#: static/js/common/upload-addon.js:358
 #, python-brace-format
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Mottok en tom respons fra serveren; status: {0}"
 
-#: static/js/common/upload-addon.js:403
 msgid "Your extension has to be compatible with at least one application."
 msgstr "Utvidelsen din må være kompatibel med minst ett program."
 
-#: static/js/common/upload-addon.js:473
 msgid "Unexpected server error while validating."
 msgstr "Uventet serverfeil ved validering."
 
-#: static/js/common/upload-addon.js:519
 msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
 msgstr "Eksplisitt merket som kompatibel med Firefox for Android i manifestet"
 
-#: static/js/common/upload-addon.js:561
 #, python-brace-format
 msgid "Finished validating {0}"
 msgstr "Fullførte validering av {0}"
 
-#: static/js/common/upload-addon.js:568
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr "Valideringen av din utvidelse har utløpt, den vil bli gjennomått manuelt."
 
-#: static/js/common/upload-addon.js:573
 #, python-brace-format
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] "Din utvidelse ble validert som feilfri og med {0} advarsel."
 msgstr[1] "Din utvidelse ble validert som feilfri og med {0} advarsel."
 
-#: static/js/common/upload-addon.js:582
 #, python-brace-format
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] "Din utvidelse ble validert som feilfri og {0} melding."
 msgstr[1] "Din utvidelse ble validert som feilfri og {0} meldinger."
 
-#: static/js/common/upload-addon.js:590
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "Din utvidelse ble validert uten feil eller advarsler."
 
-#: static/js/common/upload-addon.js:651
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Inkluder detaljerte versjonsmerkander (dette kan gjøres i det neste steget)."
 
-#: static/js/common/upload-addon.js:654
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
 "Hvis din utvidelse krever en konto på et nettsted for å kunne bli ordentlig testet, legg med et brukernavn og passord i notatene for den som skal gjennomgå (dette kan bli gjort i det neste trinnet)."
 
-#: static/js/common/upload-addon.js:660
 msgid "Add-on submission checklist"
 msgstr "Sjekkliste for å sende inn utvidelser"
 
-#: static/js/common/upload-addon.js:664
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Bekreft de følgende punktene før du fullfører innsendingen din. Dette vil minimalisere forsinkelser og misforståelser under gjennomgangsprosessen:"
 
-#: static/js/common/upload-addon.js:671
 msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
@@ -151,457 +125,365 @@ msgstr ""
 "Minifiserte, sammenlagte eller på annen måte maskingenererte skript (bortsett fra velkjente biblioteker) må ha kildekoden sin sendt inn til vurdering separat. Sørg for at du bruker "
 "opplastningsfeltet for kildekode for å unngå at innsendingen din blir avvist."
 
-#: static/js/common/upload-addon.js:684
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Valideringsprosessen oppdaget disse problemene som kan føre til avslag:"
 
-#: static/js/common/upload-base.js:69
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Filtypen du lastet opp er ikke gjenkjent."
 
-#: static/js/common/upload-base.js:79 static/js/zamboni/global.js:569
 #, python-brace-format
 msgid "Your file exceeds the maximum size of {0}."
 msgstr "Filen din overskrider maksimumstørrelsen på {0}."
 
-#: static/js/common/upload-base.js:105
 msgid "You cancelled the upload."
 msgstr "Du avbrøt opplastingen."
 
-#: static/js/common/upload-image.js:102
 msgid "Images must be either PNG or JPG."
 msgstr "Bilder må være enten PNG eller JPG."
 
-#: static/js/common/upload-image.js:106
 msgid "Videos must be in WebM."
 msgstr "Videoer må være i WebM."
 
-#: static/js/stats/chart.js:283
 #, python-brace-format
 msgid "Week of {0}"
 msgstr "Uke {0}"
 
-#: static/js/stats/chart.js:292
 #, python-brace-format
 msgid "{0} download"
 msgid_plural "{0} downloads"
 msgstr[0] "{0} nedlasting"
 msgstr[1] "{0} nedlastinger"
 
-#: static/js/stats/chart.js:298
 #, python-brace-format
 msgid "{0} user"
 msgid_plural "{0} users"
 msgstr[0] "{0} bruker"
 msgstr[1] "{0} brukere"
 
-#: static/js/stats/chart.js:362 static/js/stats/csv_keys.js:3 static/js/stats/csv_keys.js:9
 msgid "Downloads"
 msgstr "Nedlastinger"
 
-#: static/js/stats/chart.js:374 static/js/stats/csv_keys.js:6 static/js/stats/csv_keys.js:10
 msgid "Daily Users"
 msgstr "Daglige brukere"
 
-#: static/js/stats/chart.js:409
 msgid "More Info..."
 msgstr "Mer info ..."
 
 #. L10n: {0} is an ISO-formatted date.
-#: static/js/stats/chart.js:415
 #, python-brace-format
 msgid "Details for {0}"
 msgstr "Detaljer for {0}"
 
-#: static/js/stats/csv_keys.js:13
 msgid "Firefox"
 msgstr "Firefox"
 
-#: static/js/stats/csv_keys.js:14
 msgid "Mozilla"
 msgstr "Mozilla"
 
-#: static/js/stats/csv_keys.js:15
 msgid "Thunderbird"
 msgstr "Thunderbird"
 
-#: static/js/stats/csv_keys.js:16
 msgid "Sunbird"
 msgstr "Sunbird"
 
-#: static/js/stats/csv_keys.js:17
 msgid "SeaMonkey"
 msgstr "SeaMonkey"
 
-#: static/js/stats/csv_keys.js:18
 msgid "Fennec"
 msgstr "Fennec"
 
-#: static/js/stats/csv_keys.js:19
 msgid "Android"
 msgstr "Android"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:24
 #, python-brace-format
 msgid "Downloads and Daily Users, last {0} days"
 msgstr "Nedlastinger og daglige brukere, siste {0} dager"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:26
 #, python-brace-format
 msgid "Downloads and Daily Users from {0} to {1}"
 msgstr "Nedlastinger og daglige brukere fra {0} til {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:30
 #, python-brace-format
 msgid "Downloads, last {0} days"
 msgstr "Nedlastinger, siste {0} dager"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:32
 #, python-brace-format
 msgid "Downloads from {0} to {1}"
 msgstr "Nedlastinger fra {0} til {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:36
 #, python-brace-format
 msgid "Daily Users, last {0} days"
 msgstr "Daglige brukere, siste {0} dager"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:38
 #, python-brace-format
 msgid "Daily Users from {0} to {1}"
 msgstr "Daglige brukere fra {0} til {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:42
 #, python-brace-format
 msgid "Applications, last {0} days"
 msgstr "Programmer, siste {0} dager"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:44
 #, python-brace-format
 msgid "Applications from {0} to {1}"
 msgstr "Programmer fra {0} til {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:48
 #, python-brace-format
 msgid "Countries, last {0} days"
 msgstr "Land, de siste {0} dagene"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:50
 #, python-brace-format
 msgid "Countries from {0} to {1}"
 msgstr "Land fra {0} til {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:54
 #, python-brace-format
 msgid "Platforms, last {0} days"
 msgstr "Plattformer, siste {0} dager"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:56
 #, python-brace-format
 msgid "Platforms from {0} to {1}"
 msgstr "Plattformer fra {0} til {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:60
 #, python-brace-format
 msgid "Languages, last {0} days"
 msgstr "Språk, siste {0} dager"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:62
 #, python-brace-format
 msgid "Languages from {0} to {1}"
 msgstr "Språk fra {0} til {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:66
 #, python-brace-format
 msgid "Add-on Versions, last {0} days"
 msgstr "Utvidelsesversjoner, siste {0} dager"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:68
 #, python-brace-format
 msgid "Add-on Versions from {0} to {1}"
 msgstr "Utvidelsesversjoner fra {0} til {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:72
 #, python-brace-format
 msgid "Download Sources, last {0} days"
 msgstr "Nedlastingskilder, siste {0} dager"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:74
 #, python-brace-format
 msgid "Download Sources from {0} to {1}"
 msgstr "Nedlastingskilder fra {0} til {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:78
 #, python-brace-format
 msgid "Download Mediums, last {0} days"
 msgstr "Last ned medier, siste {0} dager"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:80
 #, python-brace-format
 msgid "Download Mediums from {0} to {1}"
 msgstr "Last ned medier fra {0} til {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:84
 #, python-brace-format
 msgid "Download Contents, last {0} days"
 msgstr "Last ned innhold, siste {0} dager"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:86
 #, python-brace-format
 msgid "Download Contents from {0} to {1}"
 msgstr "Last ned innhold fra {0} til {1}"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:90
 #, python-brace-format
 msgid "Download Campaigns, last {0} days"
 msgstr "Last ned kampanjer, siste {0} dager"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:92
 #, python-brace-format
 msgid "Download Campaigns from {0} to {1}"
 msgstr "Last ned kampanjer fra {0} til {1}"
 
 #. L10n: {0} and {1} are integers.
-#: static/js/stats/csv_keys.js:98
 #, python-brace-format
 msgid "<b>{0}</b> in last {1} days"
 msgstr "<b>{0}</b> de siste {1} dagene"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:100 static/js/stats/csv_keys.js:106
 #, python-brace-format
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "<b>{0}</b> fra {1} til {2}"
 
 #. L10n: {0} and {1} are integers.
-#: static/js/stats/csv_keys.js:104
 #, python-brace-format
 msgid "<b>{0}</b> average in last {1} days"
 msgstr "<b>{0}</b> gjennomsnittelig de siste {1} dagene"
 
-#: static/js/stats/overview.js:18
 msgid "No data available."
 msgstr "Ingen data tilgjengelig."
 
-#: static/js/stats/table.js:84
 msgid "Date"
 msgstr "Dato"
 
-#: static/js/stats/topchart.js:108
 msgid "Other"
 msgstr "Annet"
 
-#: static/js/zamboni/devhub.js:300
 msgid "Changes Saved"
 msgstr "Endringer lagret"
 
-#: static/js/zamboni/devhub.js:316
 msgid "Enter a new author's email address"
 msgstr "Skriv inn en ny e-postadresse til opphavsmannen"
 
-#: static/js/zamboni/devhub.js:440
 msgid "There was an error uploading your file."
 msgstr "En feil oppstod under opplasting av fil."
 
-#: static/js/zamboni/devhub.js:596
 #, python-brace-format
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} fil"
 msgstr[1] "{files} filer"
 
-#: static/js/zamboni/devhub.js:1196
 msgid "Image changes being processed"
 msgstr "Endringer på bilde blir behandlet"
 
-#: static/js/zamboni/global.js:463
 #, python-brace-format
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> tegn"
 msgstr[1] "<b>{0}</b> tegn"
 
-#: static/js/zamboni/global.js:472
 #, python-brace-format
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "<b>{0}</b> tegn igjen"
 msgstr[1] "<b>{0}</b> tegn igjen"
 
-#: static/js/zamboni/init.js:12
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "Denne funksjonen er midlertidig utilgjengelig mens vi utfører rutinemessig vedlikehold. Kom tilbake senere."
 
-#: static/js/zamboni/l10n.js:164
 msgid "Remove this localization"
 msgstr "Fjern denne oversettelsen"
 
-#: static/js/zamboni/reviewers.js:258
 #, python-brace-format
 msgid "{name} was viewing this page first."
 msgstr "{name} så på denne siden først."
 
-#: static/js/zamboni/reviewers.js:266
 msgid "Review page polling failed."
 msgstr "Klarte ikke å hente siden med vurderinger."
 
-#: static/js/zamboni/reviewers.js:583
 #, python-brace-format
 msgid "{name} was viewing this add-on first."
 msgstr "{name} så på denne utvidelsen først."
 
-#: static/js/zamboni/reviewers.js:596 static/js/zamboni/reviewers.js:622
 msgid "Loading&hellip;"
 msgstr "Laster &hellip;"
 
-#: static/js/zamboni/reviewers.js:601
 msgid "Version Notes"
 msgstr "Versjonnotat"
 
-#: static/js/zamboni/reviewers.js:608
 msgid "Notes for Reviewers"
 msgstr "Notat for omtalere"
 
-#: static/js/zamboni/reviewers.js:615
 msgid "No version notes found"
 msgstr "Versjonsnotat ikke funnet"
 
-#: static/js/zamboni/reviewers.js:627
 msgid "Review Text"
 msgstr "Omtalingstekst"
 
-#: static/js/zamboni/reviewers.js:634
 msgid "Review notes found"
 msgstr "Fant ingen omtalingstekst"
 
-#: static/js/zamboni/static_theme.js:217
 #, python-brace-format
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "Maksimal opplastningsstørrelse er {0} - velg et mindre bakgrunnsbilde."
 
-#: static/js/zamboni/themes_review.js:199
 msgid "Requested Info"
 msgstr "Forespurt info"
 
-#: static/js/zamboni/themes_review.js:200
 msgid "Flagged"
 msgstr "Flagget"
 
-#: static/js/zamboni/themes_review.js:201
 msgid "Duplicate"
 msgstr "Duplikat"
 
-#: static/js/zamboni/themes_review.js:202
 msgid "Rejected"
 msgstr "Avvist"
 
-#: static/js/zamboni/themes_review.js:203
 msgid "Approved"
 msgstr "Godkjent"
 
-#: static/js/zamboni/themes_review.js:492
 msgid "No results found"
 msgstr "Ingen resultat"
 
-#: static/js/zamboni/themes_review_templates.js:43
 msgid "Theme"
 msgstr "Tema"
 
-#: static/js/zamboni/themes_review_templates.js:45
 msgid "Reviewer"
 msgstr "Gjennomgåingsperson"
 
-#: static/js/zamboni/themes_review_templates.js:47
 msgid "Status"
 msgstr "Status"
 
-#: static/js/zamboni/validator.js:89
 msgid "All tests passed successfully."
 msgstr "Alle tester fullført."
 
-#: static/js/zamboni/validator.js:92 static/js/zamboni/validator.js:388
 msgid "These tests were not run."
 msgstr "Disse testene ble ikke kjørt."
 
-#: static/js/zamboni/validator.js:155 static/js/zamboni/validator.js:177
 msgid "Tests"
 msgstr "Tester"
 
-#: static/js/zamboni/validator.js:259 static/js/zamboni/validator.js:492 static/js/zamboni/validator.js:516
 msgid "Error"
 msgstr "Feil"
 
-#: static/js/zamboni/validator.js:259
 msgid "Warning"
 msgstr "Advarsel"
 
-#: static/js/zamboni/validator.js:332
 #, python-brace-format
 msgid "{0} line {1} column {2}"
 msgstr "{0} linje {1} kolonne {2}"
 
-#: static/js/zamboni/validator.js:339
 #, python-brace-format
 msgid "{0} line {1}"
 msgstr "{0} linje {1}"
 
-#: static/js/zamboni/validator.js:376
 msgid "Add-on failed validation."
 msgstr "Validering av utvidelse mislykket."
 
-#: static/js/zamboni/validator.js:378
 msgid "Add-on passed validation."
 msgstr "Utvidelsevalidering fullført."
 
-#: static/js/zamboni/validator.js:391
 #, python-brace-format
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} feil"
 msgstr[1] "{0} feil"
 
-#: static/js/zamboni/validator.js:394
 #, python-brace-format
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} advarsel"
 msgstr[1] "{0} advarsler"
 
-#: static/js/zamboni/validator.js:397
 #, python-brace-format
 msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] "{0} varsel"
 msgstr[1] "{0} varsler"
 
-#: static/js/zamboni/validator.js:494
 msgid "Validation task could not complete or completed with errors"
 msgstr "Valideringsoppgave kunne ikke fullføre, eller fullførte med feil"
 
-#: static/js/zamboni/validator.js:517
 msgid "Internal server error"
 msgstr "Intern serverfeil"

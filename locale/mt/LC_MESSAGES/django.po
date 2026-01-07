@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-01-05 10:31+0000\n"
+"POT-Creation-Date: 2026-01-07 09:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2032,6 +2032,10 @@ msgstr ""
 msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
 msgstr ""
 
+#, python-format
+msgid "Supported domains: %(supported_domains)s"
+msgstr ""
+
 msgid "Default Locale"
 msgstr ""
 
@@ -2087,6 +2091,17 @@ msgid "This summary should clearly explain what your add-on does. It will be sho
 msgstr ""
 
 msgid "Description"
+msgstr ""
+
+#, python-format
+msgid ""
+"A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Minimum length: %(min_length)s characters; Recommended "
+"length: 250 characters. If you need a longer description, make sure the first 250 characters contain the most important description points."
+msgstr ""
+
+msgid ""
+"A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Recommended length: 250 characters. If you need a longer "
+"description, make sure the first 250 characters contain the most important description points."
 msgstr ""
 
 msgid "Experimental?"
@@ -2621,6 +2636,9 @@ msgid "Administrative overrides"
 msgstr ""
 
 msgid "Create a Theme Version"
+msgstr ""
+
+msgid "You can upload a finished theme using the upload option above, or you can build it yourself using this tool."
 msgstr ""
 
 msgid "Create a Theme"
@@ -3506,7 +3524,7 @@ msgid "Change the way you surf Reddit by using tags and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Screenshot webpages, make edits, and share."
+msgid "Screenshot webpages, make edits & share."
 msgstr ""
 
 #. editorial content for the discovery pane.
