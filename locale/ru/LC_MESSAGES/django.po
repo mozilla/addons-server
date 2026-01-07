@@ -2722,7 +2722,7 @@ msgstr "Если вы хотите попросить ваших пользов�
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:45
 #, python-format
 msgid "Supported domains: %(supported_domains)s"
-msgstr ""
+msgstr "Поддерживаемые домены: %(supported_domains)s"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:55 src/olympia/translations/templates/translations/trans-menu.html:13
 msgid "Default Locale"
@@ -2817,12 +2817,16 @@ msgid ""
 "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Minimum length: %(min_length)s characters; Recommended "
 "length: 250 characters. If you need a longer description, make sure the first 250 characters contain the most important description points."
 msgstr ""
+"Длинное описание возможностей, функциональности и другой релевантной информации. Это поле отображается только на странице дополнения. Минимальная длина: %(min_length)s символов; Рекомендуемая длина:"
+" 250 символов. Если вам нужно более длинное описание, убедитесь, что первые 250 символов содержат наиболее важные моменты."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:140
 msgid ""
 "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Recommended length: 250 characters. If you need a longer "
 "description, make sure the first 250 characters contain the most important description points."
 msgstr ""
+"Длинное описание возможностей, функциональности и другой релевантной информации. Это поле отображается только на странице дополнения. Рекомендуемая длина: 250 символов. Если вам нужно более длинное "
+"описание, убедитесь, что первые 250 символов содержат наиболее важные моменты."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:169
 msgid "Experimental?"
@@ -3555,7 +3559,7 @@ msgstr "Создать версию темы"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:81
 msgid "You can upload a finished theme using the upload option above, or you can build it yourself using this tool."
-msgstr ""
+msgstr "Вы можете загрузить готовую тему, используя вариант загрузки выше, или создать её самостоятельно с помощью этого инструмента."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:87
 msgid "Create a Theme"
@@ -4754,7 +4758,7 @@ msgstr "Измените свои привычки посещения Reddit, и
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:158
 msgid "Screenshot webpages, make edits & share."
-msgstr ""
+msgstr "Делайте скриншоты веб-страниц, редактируйте и делитесь ими."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:161

@@ -2721,7 +2721,7 @@ msgstr "Jeli chceće swojich wužiwarjow wo pjenježne dary prosyć, stajće to 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:45
 #, python-format
 msgid "Supported domains: %(supported_domains)s"
-msgstr ""
+msgstr "Podpěrane domeny: %(supported_domains)s"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:55 src/olympia/translations/templates/translations/trans-menu.html:13
 msgid "Default Locale"
@@ -2816,6 +2816,8 @@ msgid ""
 "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Minimum length: %(min_length)s characters; Recommended "
 "length: 250 characters. If you need a longer description, make sure the first 250 characters contain the most important description points."
 msgstr ""
+"Dlěše wujasnjenje funkcijow, funkcionalnosće a druhich relewantnych informacijow. Tute polo so jenož na produktowej stronje přidatka pokazuje. Minimalna dołhosć: %(min_length)s znamješkow; "
+"doporučena dołhosć: 250 znamješkow. Jeli dlěše wopisanje trjebaće, zawěsćće, zo prěnje 250 znamješkow najwažniše wopisowanske dypki wobsahuja."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:140
 msgid ""
@@ -4754,7 +4756,7 @@ msgstr "Změńće wašnje, z kotrymž Reddit z pomocu klučowych słowow a wjace
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:158
 msgid "Screenshot webpages, make edits & share."
-msgstr ""
+msgstr "Čińće fota wobrazowki websydłow, wobdźěłajće a dźělće je."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:161
