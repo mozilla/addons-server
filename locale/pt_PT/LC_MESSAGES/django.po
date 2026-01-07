@@ -609,8 +609,8 @@ msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
 "parties."
 msgstr ""
-"Está a ver esta mensagem porque este site requer uma cookie CSRF ao submeter formulários. Esta cookie é necessária por questões segurança, para garantir que o seu navegador não está a ser raptado "
-"por terceiros."
+"Está a ver esta mensagem porque este site requer um cookie CSRF ao submeter formulários. Este cookie é necessário por questões segurança, para garantir que o seu navegador não está a ser raptado por"
+" terceiros."
 
 #: src/olympia/amo/templates/amo/404.html:3
 msgid "Not Found"
