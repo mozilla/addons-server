@@ -63,3 +63,10 @@ QUERY_RULE_STATES = {
 
 LABEL_BAD = 'bad'
 LABEL_GOOD = 'good'
+
+# Webhook events
+WEBHOOK_DURING_VALIDATION = 1
+
+WEBHOOK_EVENTS = {
+    WEBHOOK_DURING_VALIDATION: 'during_validation',
+}
