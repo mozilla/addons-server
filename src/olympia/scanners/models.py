@@ -276,6 +276,12 @@ class ScannerResult(AbstractScannerResult):
         on_delete=models.SET_NULL,
         null=True,
     )
+    webhook_event = models.ForeignKey(
+        ScannerWebhookEvent,
+        related_name='%(class)ss',  # scannerresults
+        on_delete=models.SET_NULL,
+        null=True,
+    )
     matched_rules = models.ManyToManyField(
         'ScannerRule', through='ScannerMatch', related_name='results'
     )
@@ -289,8 +295,8 @@ class ScannerResult(AbstractScannerResult):
         db_table = 'scanners_results'
         constraints = [
             models.UniqueConstraint(
-                fields=('upload', 'scanner', 'version'),
-                name='scanners_results_upload_id_scanner_version_id_ad9eb8a6_uniq',
+                fields=('upload', 'webhook_event', 'scanner', 'version'),
+                name='upload_webhook_event_scanner_version_uniq',
             )
         ]
         indexes = [
