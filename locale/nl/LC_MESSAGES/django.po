@@ -2714,7 +2714,7 @@ msgstr "Als u om geldelijke bijdragen van uw gebruikers wilt vragen, stel dit da
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:45
 #, python-format
 msgid "Supported domains: %(supported_domains)s"
-msgstr ""
+msgstr "Ondersteunde domeinen: %(supported_domains)s"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:55 src/olympia/translations/templates/translations/trans-menu.html:13
 msgid "Default Locale"
@@ -2809,12 +2809,16 @@ msgid ""
 "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Minimum length: %(min_length)s characters; Recommended "
 "length: 250 characters. If you need a longer description, make sure the first 250 characters contain the most important description points."
 msgstr ""
+"Een langere uitleg van functies, functionaliteit en andere relevante informatie. Dit veld wordt alleen op de productpagina van de add-on getoond. Minimale lengte: %(min_length)s tekens; Aanbevolen "
+"lengte: 250 tekens. Als u een langere beschrijving nodig hebt, zorg er dan voor dat de eerste 250 tekens de belangrijkste beschrijvingspunten bevatten."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:140
 msgid ""
 "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Recommended length: 250 characters. If you need a longer "
 "description, make sure the first 250 characters contain the most important description points."
 msgstr ""
+"Een langere uitleg van functies, functionaliteit en andere relevante informatie. Dit veld wordt alleen op de productpagina van de add-on getoond. Aanbevolen lengte: 250 tekens. Als u een langere "
+"beschrijving nodig hebt, zorg er dan voor dat de eerste 250 tekens de belangrijkste beschrijvingspunten bevatten."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:169
 msgid "Experimental?"
@@ -3545,7 +3549,7 @@ msgstr "Een themaversie maken"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:81
 msgid "You can upload a finished theme using the upload option above, or you can build it yourself using this tool."
-msgstr ""
+msgstr "U kunt een voltooid thema uploaden via de bovenstaande uploadoptie, of u kunt deze zelf bouwen met dit hulpmiddel."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:87
 msgid "Create a Theme"
@@ -4742,7 +4746,7 @@ msgstr "Wijzig de manier waarop u op Reddit surft door labels en meer te gebruik
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:158
 msgid "Screenshot webpages, make edits & share."
-msgstr ""
+msgstr "Maak schermafbeeldingen van webpagina’s, bewerk ze en deel ze."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:161
