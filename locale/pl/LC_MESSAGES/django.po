@@ -4940,9 +4940,8 @@ msgstr "Dostosuj w prosty sposób wbudowane ustawienia prywatności w Firefoksie
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:269
-#, fuzzy
 msgid "Get instant translations by highlighting text and clicking the button that pops up."
-msgstr "Uzyskuj natychmiastowo dostęp do tłumaczeń, zaznaczając tekst i klikając wyskakujący przycisk."
+msgstr "Uzyskuj natychmiastowe tłumaczenia, zaznaczając tekst i klikając wyskakujący przycisk."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:272
@@ -4958,7 +4957,7 @@ msgstr "Uzyskaj dostęp do usługi WhatsApp poprzez panel paska narzędzi Firefo
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:278
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
-msgstr ""
+msgstr "Ogranicz dostęp Firefoksa do zdefiniowanych przez Ciebie stron. Świetne narzędzie do ćwiczenia internetowej samodyscypliny."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:281
@@ -5261,9 +5260,8 @@ msgstr "Sprawdź położenie geograficzne dowolnej witryny. Stań się świadomy
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:452
-#, fuzzy
 msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? SoundFixer can help."
-msgstr "Czy poziom głośności w witrynie jest zbyt niski? Zbyt wysoki? SoundFixer może pomóc."
+msgstr "Napraw irytujące audio. Czy poziom głośności w witrynie jest zbyt niski? Zbyt wysoki? SoundFixer może pomóc."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:455
@@ -5901,7 +5899,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1071
 msgid "Track the time you spend on every website you visit."
-msgstr ""
+msgstr "Kontroluj czas spędzany na każdej odwiedzanej witrynie."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1074
@@ -5916,7 +5914,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1080
 msgid "Leave yourself little notes on any web page."
-msgstr ""
+msgstr "Zostawiaj sobie krótkie notatki na dowolnej stronie internetowej."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1083
