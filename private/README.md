@@ -42,14 +42,26 @@ $ [root@<docker>:/code#] ./manage.py waffle_switch enable-yara on
 
 ## source-builder
 
-The `enable-source-builder` waffle switch is used to enable/disable the source
-builder integration:
+Both the `enable-scanner-webhooks` and `enable-source-builder` waffle switches
+are used to call the source-builder service and display information about it in
+the UI, respectively:
 
 ```
 $ make shell
+$ [root@<docker>:/code#] ./manage.py waffle_switch enable-scanner-webhooks on
 $ [root@<docker>:/code#] ./manage.py waffle_switch enable-source-builder on
 ```
+
+Navigate to the [Django admin][scannerwebhook_add] and create a new webhook with
+the following information:
+
+- Name: `source-builder`
+- URL: `http://source-builder.test:10200/submit`
+- API key: `sourcebuildersecret`
+- Scanner webhook events: add an entry with `on_source_code_uploaded`
 
 **Note:** this service requires the presence of some mandatory environment
 variables, which can be specified in the `private/addons-builder/.env` file. See
 the project's README file for more information.
+
+[scannerwebhook_add]: http://olympia.test/en-US/admin/models/scanners/scannerwebhook/add/

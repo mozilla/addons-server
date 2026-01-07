@@ -47,6 +47,22 @@ uploaded file.
 }
 ```
 
+#### `on_source_code_uploaded`
+
+This event occurs when source code is uploaded, e.g., in DevHub.
+
+The payload sent looks like this:
+
+```json
+{
+  "addon_id": 85,
+  "version_id": 42,
+  "download_source_url": "http://olympia.test/downloads/source/42",
+  "license_slug": "MPL-2.0",
+  "activity_log_id": 2170
+}
+```
+
 ### Adding a new event
 
 1. Add a constant for the new event in `src/olympia/constants/scanners.py`. The

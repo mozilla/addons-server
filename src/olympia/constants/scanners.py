@@ -74,7 +74,9 @@ LABEL_GOOD = 'good'
 
 # Webhook events
 WEBHOOK_DURING_VALIDATION = 1
+WEBHOOK_ON_SOURCE_CODE_UPLOADED = 2
 
 WEBHOOK_EVENTS = {
     WEBHOOK_DURING_VALIDATION: 'during_validation',
+    WEBHOOK_ON_SOURCE_CODE_UPLOADED: 'on_source_code_uploaded',
 }
