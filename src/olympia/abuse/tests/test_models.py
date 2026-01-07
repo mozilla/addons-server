@@ -1600,16 +1600,37 @@ class TestCinderJob(TestCase):
         job = CinderJob.objects.create(job_id='fake_job_id')
         assert not job.is_appeal
 
-        appeal = CinderJob.objects.create(job_id='an appeal job')
+        appeal_job = CinderJob.objects.create(job_id='an appeal job')
         ContentDecision.objects.create(
             action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
             addon=addon_factory(),
-            appeal_job=appeal,
+            appeal_job=appeal_job,
             cinder_job=job,
         )
         job.reload()
         assert not job.is_appeal
-        assert appeal.is_appeal
+        assert appeal_job.is_appeal
+
+    def test_is_developer_appeal(self):
+        job = CinderJob.objects.create(job_id='fake_job_id')
+        assert not job.is_developer_appeal
+
+        appeal_job = CinderJob.objects.create(job_id='an appeal job')
+        decision = ContentDecision.objects.create(
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            addon=addon_factory(),
+            appeal_job=appeal_job,
+            cinder_job=job,
+        )
+        appeal = CinderAppeal.objects.create(decision=decision)
+        job.reload()
+        assert not job.is_developer_appeal
+        assert appeal_job.is_developer_appeal
+
+        # If the CinderAppeal object has a reporter report attached, it's a
+        # reporter appeal, not a developer one.
+        appeal.update(reporter_report=AbuseReport.objects.create(guid='@fakeguid'))
+        assert not appeal_job.is_developer_appeal
 
     def _setup_clear_needs_human_review_flags(self):
         addon = addon_factory()

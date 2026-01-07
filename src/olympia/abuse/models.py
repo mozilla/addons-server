@@ -148,9 +148,7 @@ class CinderJob(ModelBase):
 
     @property
     def is_developer_appeal(self):
-        return CinderAppeal.objects.filter(
-            reporter_report=None, decision__in=self.appealed_decisions.all()
-        ).exists()
+        return self.appealed_decisions.filter(appeals__reporter_report=None).exists()
 
     @classmethod
     def get_entity_helper(
