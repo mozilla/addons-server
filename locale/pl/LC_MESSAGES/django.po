@@ -2817,6 +2817,8 @@ msgid ""
 "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Minimum length: %(min_length)s characters; Recommended "
 "length: 250 characters. If you need a longer description, make sure the first 250 characters contain the most important description points."
 msgstr ""
+"Dłuższe wyjaśnienie funkcji, funkcjonalności i innych istotnych informacji. To pole jest wyświetlane tylko na stronie produktu dodatku. Minimalna długość: %(min_length)s znaków; Zalecana długość: "
+"250 znaków. Jeśli potrzebujesz dłuższego opisu, upewnij się, że pierwsze 250 znaków zawiera najważniejsze punkty."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:140
 msgid ""
