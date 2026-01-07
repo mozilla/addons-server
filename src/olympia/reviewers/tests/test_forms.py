@@ -695,13 +695,15 @@ class TestReviewForm(TestCase):
         reporter_appeal_other_report_job = CinderJob.objects.create(
             job_id='4', resolvable_in_reviewer_tools=True, target_addon=self.addon
         )
-        ContentDecision.objects.create(
+        other_decision = ContentDecision.objects.create(
             cinder_job=other_report_job,
             appeal_job=reporter_appeal_other_report_job,
             addon=self.addon,
             action=DECISION_ACTIONS.AMO_IGNORE,
         )
-        CinderAppeal.objects.create(decision=decision, reporter_report=other_report)
+        CinderAppeal.objects.create(
+            decision=other_decision, reporter_report=other_report
+        )
         policy = CinderPolicy.objects.create(
             uuid='a',
             name='ignore',
