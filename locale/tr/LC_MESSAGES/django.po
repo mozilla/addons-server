@@ -2713,7 +2713,7 @@ msgstr "Kullanıcılarınızdan parasal katkı talep etmek istiyorsanız bunu ya
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:45
 #, python-format
 msgid "Supported domains: %(supported_domains)s"
-msgstr ""
+msgstr "Desteklenen alan adları: %(supported_domains)s"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:55 src/olympia/translations/templates/translations/trans-menu.html:13
 msgid "Default Locale"
@@ -3539,7 +3539,7 @@ msgstr "Tema sürümü oluştur"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:81
 msgid "You can upload a finished theme using the upload option above, or you can build it yourself using this tool."
-msgstr ""
+msgstr "Yukarıdaki gönderme seçeneğini kullanarak hazır bir temayı gönderebilir veya bu aracı kullanarak temanızı kendiniz oluşturabilirsiniz."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:87
 msgid "Create a Theme"
@@ -4728,7 +4728,7 @@ msgstr "Etiketleri ve daha fazlasını kullanarak Reddit'te gezinme şeklinizi d
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:158
 msgid "Screenshot webpages, make edits & share."
-msgstr ""
+msgstr "Web sayfalarının ekran görüntüsünü alın, düzenleyin ve paylaşın."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:161
