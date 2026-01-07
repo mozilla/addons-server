@@ -265,20 +265,29 @@ class CinderJobsWidget(forms.CheckboxSelectMultiple):
             )
             for report in reports
         )
-        forwarded_or_requeued_notes = [
-            *(move.notes for move in queue_moves),
-            *(decision.private_notes for decision in requeued_decisions),
-        ]
+        forwarded_or_requeued_notes = (
+            [
+                *(move.notes for move in queue_moves),
+                *(decision.private_notes for decision in requeued_decisions),
+            ]
+            if requeued or forwarded
+            else []
+        )
         internal_notes = (
             ((f'Reasoning: {"; ".join(forwarded_or_requeued_notes)}',),)
             if forwarded_or_requeued_notes
             else ()
         )
         appeals = (
-            (appeal_obj.text, appeal_obj.reporter_report is not None)
-            for appealed_decision in obj.appealed_decisions.all()
-            for appeal_obj in appealed_decision.appeals.all()
+            (
+                (appeal_obj.text, appeal_obj.reporter_report_id is not None)
+                for appealed_decision in obj.appealed_decisions.all()
+                for appeal_obj in appealed_decision.appeals.all()
+            )
+            if is_appeal
+            else ()
         )
+        is_developer_appeal = is_appeal and obj.is_developer_appeal
         subtexts_gen = [
             *internal_notes,
             *(
@@ -306,9 +315,20 @@ class CinderJobsWidget(forms.CheckboxSelectMultiple):
         )
 
         attrs = attrs or {}
-        attrs['data-value'] = (
+        # Reviewers shouldn't use resolve_appeal_job to resolve "regular" jobs,
+        # and conversely shouldn't use resolve_reports_job to resolve appeals,
+        # as resolving appeals is a bit more involved.
+        # On top of that, they shouldn't resolve *developer* appeals when
+        # rejecting versions: that would cause the rejection to be no-op and
+        # that's not always what we want.
+        # The parent element will have `data-toggle-hide`, so data-value is
+        # used to hide actions that are not supposed to be used for this job.
+        hide_for_these_actions = [
             'resolve_appeal_job' if not is_appeal else 'resolve_reports_job'
-        )
+        ]
+        if is_developer_appeal:
+            hide_for_these_actions.extend(('reject', 'reject_multiple_versions'))
+        attrs['data-value'] = ' '.join(hide_for_these_actions)
         return super().create_option(
             name, value, label, selected, index, subindex, attrs
         )
@@ -602,7 +622,8 @@ class ReviewForm(forms.Form):
         selected_action = self.cleaned_data.get('action')
         # If the user select a different type of job before changing actions there could
         # be non-appeal jobs selected as cinder_jobs_to_resolve under resolve_appeal_job
-        # action, or appeal jobs under resolve_reports_job action. So filter them out.
+        # action, or appeal jobs under resolve_reports_job/a reject action. So filter
+        # them out.
         if selected_action == 'resolve_appeal_job':
             self.cleaned_data['cinder_jobs_to_resolve'] = [
                 job
@@ -614,6 +635,12 @@ class ReviewForm(forms.Form):
                 job
                 for job in self.cleaned_data.get('cinder_jobs_to_resolve', ())
                 if not job.is_appeal
+            ]
+        elif selected_action in ('reject', 'reject_multiple_versions'):
+            self.cleaned_data['cinder_jobs_to_resolve'] = [
+                job
+                for job in self.cleaned_data.get('cinder_jobs_to_resolve', ())
+                if not job.is_developer_appeal
             ]
         if self.cleaned_data.get('cinder_jobs_to_resolve') and self.cleaned_data.get(
             'cinder_policies'

@@ -668,6 +668,102 @@ class TestReviewForm(TestCase):
         form.is_valid()
         assert form.cleaned_data['cinder_jobs_to_resolve'] == [report_job]
 
+    def test_cinder_jobs_filtered_for_reject_or_reject_multiple_versions(self):
+        self.grant_permission(self.request.user, 'Addons:Review')
+        self.addon.update(status=amo.STATUS_NOMINATED)
+        self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        developer_appeal_job = CinderJob.objects.create(
+            job_id='1', resolvable_in_reviewer_tools=True, target_addon=self.addon
+        )
+        decision = ContentDecision.objects.create(
+            appeal_job=developer_appeal_job,
+            addon=self.addon,
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+        )
+        CinderAppeal.objects.create(decision=decision)
+        report_job = CinderJob.objects.create(
+            job_id='2', resolvable_in_reviewer_tools=True, target_addon=self.addon
+        )
+        AbuseReport.objects.create(cinder_job=report_job, guid=self.addon.guid)
+
+        other_report_job = CinderJob.objects.create(
+            job_id='3', resolvable_in_reviewer_tools=True, target_addon=self.addon
+        )
+        other_report = AbuseReport.objects.create(
+            cinder_job=other_report_job, guid=self.addon.guid
+        )
+        reporter_appeal_other_report_job = CinderJob.objects.create(
+            job_id='4', resolvable_in_reviewer_tools=True, target_addon=self.addon
+        )
+        other_decision = ContentDecision.objects.create(
+            cinder_job=other_report_job,
+            appeal_job=reporter_appeal_other_report_job,
+            addon=self.addon,
+            action=DECISION_ACTIONS.AMO_IGNORE,
+        )
+        CinderAppeal.objects.create(
+            decision=other_decision, reporter_report=other_report
+        )
+        policy = CinderPolicy.objects.create(
+            uuid='a',
+            name='ignore',
+            expose_in_reviewer_tools=True,
+            enforcement_actions=[DECISION_ACTIONS.AMO_IGNORE.api_value],
+        )
+
+        data = {
+            'action': 'reject_multiple_versions',
+            'comments': 'lol',
+            'cinder_jobs_to_resolve': [
+                reporter_appeal_other_report_job,
+                developer_appeal_job,
+            ],
+            'versions': [self.version.pk],
+        }
+        form = self.get_form(data=data)
+        form.is_valid()
+        assert form.cleaned_data['cinder_jobs_to_resolve'] == [
+            reporter_appeal_other_report_job
+        ]
+
+        data['cinder_jobs_to_resolve'] = [
+            reporter_appeal_other_report_job,
+            report_job,
+            developer_appeal_job,
+        ]
+        form = self.get_form(data=data)
+        form.is_valid()
+        assert form.cleaned_data['cinder_jobs_to_resolve'] == [
+            reporter_appeal_other_report_job,
+            report_job,
+        ]
+
+        data = {
+            'action': 'reject',
+            'cinder_policies': [policy.id],
+            'cinder_jobs_to_resolve': [
+                reporter_appeal_other_report_job,
+                developer_appeal_job,
+            ],
+        }
+        form = self.get_form(data=data)
+        form.is_valid()
+        assert form.cleaned_data['cinder_jobs_to_resolve'] == [
+            reporter_appeal_other_report_job
+        ]
+
+        data['cinder_jobs_to_resolve'] = [
+            reporter_appeal_other_report_job,
+            report_job,
+            developer_appeal_job,
+        ]
+        form = self.get_form(data=data)
+        form.is_valid()
+        assert form.cleaned_data['cinder_jobs_to_resolve'] == [
+            reporter_appeal_other_report_job,
+            report_job,
+        ]
+
     def test_boilerplate(self):
         self.grant_permission(self.request.user, 'Addons:Review')
         self.addon.update(status=amo.STATUS_NOMINATED)
@@ -1329,7 +1425,7 @@ class TestReviewForm(TestCase):
             target_addon=self.addon,
         )
         cinder_job_appealed.decision.update(appeal_job=cinder_job_appeal)
-        CinderAppeal.objects.create(
+        appeal_obj = CinderAppeal.objects.create(
             text='some justification',
             decision=cinder_job_appealed.decision,
         )
@@ -1432,9 +1528,24 @@ class TestReviewForm(TestCase):
         assert label_0.attr['class'] == 'data-toggle-hide'
         assert label_0.attr['data-value'] == 'resolve_appeal_job'
         assert label_1.attr['class'] == 'data-toggle-hide'
-        assert label_1.attr['data-value'] == 'resolve_reports_job'
+        assert label_1.attr['data-value'] == ' '.join(
+            ('resolve_reports_job', 'reject', 'reject_multiple_versions')
+        )
         assert label_2.attr['class'] == 'data-toggle-hide'
         assert label_2.attr['data-value'] == 'resolve_appeal_job'
+
+        # If we make the developer appeal a reporter appeal instead, suddenly
+        # the widget option is shown for reject/reject_multiple_versions.
+        appeal_obj.update(
+            reporter_report=AbuseReport.objects.create(
+                **abuse_kw, cinder_job=cinder_job_appealed
+            )
+        )
+        form = self.get_form()
+        doc = pq(str(form['cinder_jobs_to_resolve']))
+        label_1 = doc('label[for="id_cinder_jobs_to_resolve_1"]')
+        assert label_1.attr['class'] == 'data-toggle-hide'
+        assert label_1.attr['data-value'] == 'resolve_reports_job'
 
     def test_cinder_policies_choices(self):
         policy_exposed = CinderPolicy.objects.create(
