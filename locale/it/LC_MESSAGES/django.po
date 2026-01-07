@@ -3602,7 +3602,7 @@ msgstr "Crea una versione del tema"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:81
 msgid "You can upload a finished theme using the upload option above, or you can build it yourself using this tool."
-msgstr ""
+msgstr "Hai la possibilità di caricare un tema già pronto tramite l’opzione di upload qui sopra, oppure puoi realizzarlo direttamente con questo strumento"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:87
 msgid "Create a Theme"
@@ -4803,7 +4803,7 @@ msgstr "Cambia il modo di navigare su Reddit usando tag e altro."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:158
 msgid "Screenshot webpages, make edits & share."
-msgstr ""
+msgstr "Cattura schermate di pagine web, modificale e condividile."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:161
