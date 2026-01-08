@@ -225,7 +225,7 @@ msgstr ""
 
 #: src/olympia/activity/models.py:770
 msgid "Review"
-msgstr ""
+msgstr "Бознигарӣ"
 
 #: src/olympia/activity/models.py:848 src/olympia/devhub/templates/devhub/versions/list.html:41
 #, python-brace-format
@@ -357,7 +357,7 @@ msgstr ""
 
 #: src/olympia/addons/serializers.py:947
 msgid "Account not found."
-msgstr ""
+msgstr "Ҳисоб ёфт нашуд."
 
 #: src/olympia/addons/serializers.py:960 src/olympia/devhub/forms.py:430 src/olympia/devhub/forms.py:500
 msgid "An author can only be present once."
@@ -567,7 +567,7 @@ msgstr ""
 
 #: src/olympia/amo/templates/amo/404.html:3
 msgid "Not Found"
-msgstr ""
+msgstr "Ёфт нашуд"
 
 #: src/olympia/amo/templates/amo/404.html:7
 #, python-format
@@ -595,14 +595,14 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:63 src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:76
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:89 src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:102
 msgid "Prev"
-msgstr ""
+msgstr "Қаблӣ"
 
 #: src/olympia/amo/templates/amo/paginator.html:25 src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:51
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:65 src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:78
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:91 src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:104
 #: src/olympia/stats/templates/stats/stats.html:157
 msgid "Next"
-msgstr ""
+msgstr "Навбатӣ"
 
 #: src/olympia/amo/templates/amo/paginator.html:31
 #, python-format
@@ -642,11 +642,11 @@ msgstr ""
 
 #: src/olympia/amo/tests/test_messages.py:54 src/olympia/amo/tests/test_messages.py:55
 msgid "Title"
-msgstr ""
+msgstr "Сарлавҳа"
 
 #: src/olympia/amo/tests/test_messages.py:54 src/olympia/amo/tests/test_messages.py:55
 msgid "Body"
-msgstr ""
+msgstr "Матни асосӣ"
 
 #: src/olympia/amo/tests/test_messages.py:56
 msgid "Another Title"

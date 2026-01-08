@@ -414,7 +414,7 @@ msgstr "Дигар"
 
 #: static/js/zamboni/devhub.js:300
 msgid "Changes Saved"
-msgstr ""
+msgstr "Тағйирот нигоҳ дошта шуд"
 
 #: static/js/zamboni/devhub.js:316
 msgid "Enter a new author's email address"
@@ -428,8 +428,8 @@ msgstr ""
 #, python-brace-format
 msgid "{files} file"
 msgid_plural "{files} files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{files} файл"
+msgstr[1] "{files} файл"
 
 #: static/js/zamboni/devhub.js:1196
 msgid "Image changes being processed"
@@ -526,7 +526,7 @@ msgstr "Ягон натиҷа ёфт нашуд"
 
 #: static/js/zamboni/themes_review_templates.js:43
 msgid "Theme"
-msgstr ""
+msgstr "Мавзуъ"
 
 #: static/js/zamboni/themes_review_templates.js:45
 msgid "Reviewer"
@@ -534,7 +534,7 @@ msgstr ""
 
 #: static/js/zamboni/themes_review_templates.js:47
 msgid "Status"
-msgstr ""
+msgstr "Вазъият"
 
 #: static/js/zamboni/validator.js:89
 msgid "All tests passed successfully."
