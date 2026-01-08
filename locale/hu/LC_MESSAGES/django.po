@@ -2719,7 +2719,7 @@ msgstr "Ha pénzbeli támogatást szeretne kérni a felhasználóktól, akkor á
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:45
 #, python-format
 msgid "Supported domains: %(supported_domains)s"
-msgstr ""
+msgstr "Támogatott domainek: %(supported_domains)s"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:55 src/olympia/translations/templates/translations/trans-menu.html:13
 msgid "Default Locale"
@@ -2814,12 +2814,16 @@ msgid ""
 "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Minimum length: %(min_length)s characters; Recommended "
 "length: 250 characters. If you need a longer description, make sure the first 250 characters contain the most important description points."
 msgstr ""
+"A funkciók és a Jellemzők hosszabb magyarázata, és más fontos információk. Ez a mező csak a kiegészítő termékoldalán jelenik meg. Minimális hossz: %(min_length)s karakter; Ajánlott hossz: 250 "
+"karakter. Ha hosszabb leírásra van szüksége, győződjön meg róla, hogy az első 250 karakter tartalmazza a legfontosabb pontokat."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:140
 msgid ""
 "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Recommended length: 250 characters. If you need a longer "
 "description, make sure the first 250 characters contain the most important description points."
 msgstr ""
+"A funkciók és a Jellemzők hosszabb magyarázata, és más fontos információk. Ez a mező csak a kiegészítő termékoldalán jelenik meg. Ajánlott hossz: 250 karakter. Ha hosszabb leírásra van szüksége, "
+"győződjön meg róla, hogy az első 250 karakter tartalmazza a legfontosabb pontokat."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:169
 msgid "Experimental?"
@@ -3552,7 +3556,7 @@ msgstr "Téma verzió létrehozása"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:81
 msgid "You can upload a finished theme using the upload option above, or you can build it yourself using this tool."
-msgstr ""
+msgstr "Feltölthet egy kész témát a fenti feltöltési lehetőséggel, vagy saját maga is elkészítheti ezzel az eszközzel."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:87
 msgid "Create a Theme"
@@ -4752,7 +4756,7 @@ msgstr "Módosítsa a Redditen szörfölését, címkék használatával és egy
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:158
 msgid "Screenshot webpages, make edits & share."
-msgstr ""
+msgstr "Készítsen képernyőképeket weblapokról, végezzen változtatásokat, és ossza meg azokat."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:161
