@@ -406,11 +406,11 @@ msgstr ""
 
 #: static/js/stats/table.js:84
 msgid "Date"
-msgstr ""
+msgstr "Сана"
 
 #: static/js/stats/topchart.js:108
 msgid "Other"
-msgstr ""
+msgstr "Дигар"
 
 #: static/js/zamboni/devhub.js:300
 msgid "Changes Saved"
