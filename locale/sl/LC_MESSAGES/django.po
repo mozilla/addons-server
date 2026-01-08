@@ -2713,7 +2713,7 @@ msgstr "Če želite od svojih uporabnikov zahtevati denarne prispevke, tu nastav
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:45
 #, python-format
 msgid "Supported domains: %(supported_domains)s"
-msgstr ""
+msgstr "Podprte domene: %(supported_domains)s"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:55 src/olympia/translations/templates/translations/trans-menu.html:13
 msgid "Default Locale"
@@ -2806,12 +2806,16 @@ msgid ""
 "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Minimum length: %(min_length)s characters; Recommended "
 "length: 250 characters. If you need a longer description, make sure the first 250 characters contain the most important description points."
 msgstr ""
+"Daljša razlaga značilnosti, funkcionalnosti in druge pomembne informacije. To polje se prikaže samo na dodatkovi strani izdelka. Najmanjša dolžina: %(min_length)s znakov; priporočena dolžina: 250 "
+"znakov. Če potrebujete daljši opis, naj prvih 250 znakov vsebuje najpomembnejše podatke."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:140
 msgid ""
 "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Recommended length: 250 characters. If you need a longer "
 "description, make sure the first 250 characters contain the most important description points."
 msgstr ""
+"Daljša razlaga značilnosti, funkcionalnosti in druge pomembne informacije. To polje se prikaže samo na dodatkovi strani izdelka. Priporočena dolžina: 250 znakov. Če potrebujete daljši opis, naj "
+"prvih 250 znakov vsebuje najpomembnejše podatke."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:169
 msgid "Experimental?"
@@ -3540,7 +3544,7 @@ msgstr "Ustvarite različico teme"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:81
 msgid "You can upload a finished theme using the upload option above, or you can build it yourself using this tool."
-msgstr ""
+msgstr "Dokončano temo lahko naložite z zgornjo možnostjo, lahko pa jo zgradite sami s tem orodjem."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:87
 msgid "Create a Theme"
@@ -4735,7 +4739,7 @@ msgstr "Spremenite način brskanja po Redditu z oznakami in še čim."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:158
 msgid "Screenshot webpages, make edits & share."
-msgstr ""
+msgstr "Ustvarite posnetke spletnih strani, jih uredite in delite."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:161
