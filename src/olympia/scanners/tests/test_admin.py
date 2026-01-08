@@ -1585,6 +1585,11 @@ class TestScannerQueryResultAdmin(TestCase):
                 '?version__addon__status__exact=5',
             ),
             ('By add-on status', 'Deleted', '?version__addon__status__exact=11'),
+            (
+                'By add-on status',
+                'Listing Content Rejected',
+                '?version__addon__status__exact=15',
+            ),
             ('By add-on creation date', 'All', '?'),
             ('By add-on last updated date', 'All', '?'),
             ('By add-on listing visibility', 'All', '?'),

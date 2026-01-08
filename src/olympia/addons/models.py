@@ -424,19 +424,8 @@ class AddonManager(ManagerBase):
                 # current_version=None). We know the add-ons are likely to have a
                 # version since they were flagged, so returning incomplete ones
                 # is acceptable.
-                Q(
-                    status__in=[
-                        amo.STATUS_APPROVED,
-                        amo.STATUS_NOMINATED,
-                        amo.STATUS_NULL,
-                    ]
-                ),
-                Q(
-                    versions__file__status__in=[
-                        amo.STATUS_APPROVED,
-                        amo.STATUS_AWAITING_REVIEW,
-                    ]
-                ),
+                Q(status__in=amo.VALID_ADDON_STATUSES + (amo.STATUS_NULL,)),
+                Q(versions__file__status__in=amo.VALID_FILE_STATUSES),
                 Q(versions__reviewerflags__pending_rejection__isnull=True),
                 *q_filters,
             )
@@ -1300,8 +1289,12 @@ class Addon(OnChangeMixin, ModelBase):
     def update_status(self, ignore_version=None):
         self.reload()
 
-        # We don't auto-update the status of deleted or force disabled add-ons.
-        if self.status in (amo.STATUS_DELETED, amo.STATUS_DISABLED):
+        # We don't auto-update the status of rejected deleted or force disabled add-ons.
+        if self.status in (
+            amo.STATUS_DELETED,
+            amo.STATUS_DISABLED,
+            amo.STATUS_REJECTED,
+        ):
             self.update_version(ignore=ignore_version)
             return
 
@@ -1518,7 +1511,7 @@ class Addon(OnChangeMixin, ModelBase):
         return self.status == amo.STATUS_DELETED
 
     def is_unreviewed(self):
-        return self.status == amo.STATUS_NOMINATED
+        return self.status in (amo.STATUS_NOMINATED, amo.STATUS_REJECTED)
 
     def is_public(self):
         return self.status == amo.STATUS_APPROVED and not self.disabled_by_user
