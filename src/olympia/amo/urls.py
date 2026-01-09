@@ -13,6 +13,7 @@ shared_services_api_patterns = [
     # which is useful to reach those services from an API request, to make them
     # work with services.a.m.o. or test their behavior with request.is_api
     # being True.
+    re_path(r'^dummy_upload', views.dummy_upload, name='amo.dummy_upload'),
     re_path(r'^client_info', views.client_info, name='amo.client_info'),
     re_path(r'^403', views.handler403),
     re_path(r'^404', views.handler404),
