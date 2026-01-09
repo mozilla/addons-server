@@ -1,6 +1,7 @@
 import json
 import os
 import re
+import time
 
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
@@ -71,6 +72,25 @@ def services_monitor(request):
             'dummy_monitor',
         ]
     )
+
+
+@csrf_exempt
+@non_atomic_requests
+def dummy_upload(request):
+    if getattr(settings, 'ENV', None) == 'prod':
+        raise PermissionDenied
+    # dd if=/dev/urandom of=/tmp/test.img bs=100M count=1
+    # curl -F parse=1 -F upload=@/tmp/test.img <host>/services/dummy_upload
+    if request.POST.get('parse') and 'upload' in request.FILES:
+        buf = request.FILES['upload'].read()
+    else:
+        buf = ''
+    
+    return JsonResponse({
+        # request._start_time is set by GraphiteRequestTimingMiddleware
+        'elapsed_in_app': int((time.time() - request._start_time) * 1000),
+        'buf_size': len(buf),
+    })
 
 
 @never_cache
