@@ -118,7 +118,8 @@ def _call_webhook(webhook, payload):
 
         response = http.post(
             url=webhook.url,
-            json=payload,
+            # HACK: pass the api_key for customs
+            json={**payload, 'api_key': webhook.api_key},
             # TODO: set global timeout
             # timeout=settings.XXX_TIMEOUT,
             headers={'Authorization': f'Bearer {webhook.api_key}'},
