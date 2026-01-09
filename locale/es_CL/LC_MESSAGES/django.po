@@ -2725,7 +2725,7 @@ msgstr "Si quieres perdir contribuciones económicas a los usuarios, configura e
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:45
 #, python-format
 msgid "Supported domains: %(supported_domains)s"
-msgstr ""
+msgstr "Dominios admitidos: %(supported_domains)s"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:55 src/olympia/translations/templates/translations/trans-menu.html:13
 msgid "Default Locale"
@@ -4772,7 +4772,7 @@ msgstr "Cambia la forma de explorar Reddit a través de etiquetas y otras opcion
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:158
 msgid "Screenshot webpages, make edits & share."
-msgstr ""
+msgstr "Haz capturas de pantalla de páginas web, realiza ediciones y compártelas."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:161
