@@ -519,7 +519,7 @@ class TestVersion(TestCase):
             )
             file.update(status=file_status)
             self.addon.update_status()
-            if status == amo.STATUS_DISABLED:
+            if status in (amo.STATUS_DISABLED, amo.STATUS_REJECTED):
                 self.addon.update(status=status)
 
             self.client.post(cancel_url)

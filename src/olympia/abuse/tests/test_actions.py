@@ -49,6 +49,7 @@ from ..actions import (
     ContentActionForwardToLegal,
     ContentActionIgnore,
     ContentActionOverrideApprove,
+    ContentActionRejectListingContent,
     ContentActionRejectVersion,
     ContentActionRejectVersionDelayed,
     ContentActionTargetAppealApprove,
@@ -665,7 +666,7 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
         assert not self.addon.current_version
         assert self.ActionClass(self.decision).addon_version == self.another_version
 
-    def _test_disable_addon(self):
+    def _process_action_and_notify(self):
         self.decision.update(action=self.takedown_decision_action)
         action = self.ActionClass(self.decision)
         activity = action.process_action()
@@ -711,7 +712,7 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
         assert ActivityLog.objects.count() == 0
 
     def test_execute_action(self):
-        subject = self._test_disable_addon()
+        subject = self._process_action_and_notify()
         assert len(mail.outbox) == 3
         self._test_reporter_takedown_email(subject)
 
@@ -728,7 +729,7 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
         CinderAppeal.objects.create(
             decision=original_job.decision, reporter_report=self.abuse_report_auth
         )
-        subject = self._test_disable_addon()
+        subject = self._process_action_and_notify()
         assert len(mail.outbox) == 2
         self._test_reporter_appeal_takedown_email(subject)
 
@@ -1815,8 +1816,8 @@ class TestContentActionBlockAddon(TestContentActionDisableAddon):
         ]
         assert block_version_activity.user == self.task_user
 
-    def _test_disable_addon(self):
-        subject = super()._test_disable_addon()
+    def _process_action_and_notify(self):
+        subject = super()._process_action_and_notify()
 
         assert ActivityLog.objects.count() == 4
         block_activity = ActivityLog.objects.all()[3]
@@ -1884,6 +1885,96 @@ class TestContentActionBlockAddon(TestContentActionDisableAddon):
         ).details['policy_texts'] == [
             'Parent Policy, specifically Bad policy: This is a Térrible thing'
         ]
+
+
+class TestContentActionRejectListingContent(TestContentActionDisableAddon):
+    ActionClass = ContentActionRejectListingContent
+    takedown_decision_action = DECISION_ACTIONS.AMO_REJECT_LISTING_CONTENT
+    disable_snippet = 'until you address the violations and request a further review'
+    activity_log_action = amo.LOG.REJECT_LISTING_CONTENT
+
+    def setUp(self):
+        super().setUp()
+        # content rejections are not specific to a version
+        self.decision.target_versions.clear()
+
+    def _process_action_and_notify(self):
+        self.decision.update(action=self.takedown_decision_action)
+        action = self.ActionClass(self.decision)
+        activity = action.process_action()
+        assert activity
+        assert activity.log == self.activity_log_action
+        assert self.addon.reload().status == amo.STATUS_REJECTED
+        assert activity.arguments == [
+            self.addon,
+            self.decision,
+            self.policy,
+        ]
+        assert activity.user == self.task_user
+        assert ActivityLog.objects.count() >= 2
+        second_activity = ActivityLog.objects.exclude(pk=activity.pk).first()
+        assert second_activity.log == amo.LOG.REVIEWER_PRIVATE_COMMENT
+        assert second_activity.arguments == [self.addon, self.decision]
+        assert second_activity.user == self.task_user
+        assert second_activity.details == {'comments': self.decision.private_notes}
+        assert len(mail.outbox) == 0
+
+        self.cinder_job.notify_reporters(action)
+        action.notify_owners()
+        subject = f'Mozilla Add-ons: {self.addon.name}'
+        self._test_owner_takedown_email(subject, self.disable_snippet)
+        assert f'Your Extension {self.addon.name}' in mail.outbox[-1].body
+        return subject
+
+    def _test_approve_appeal_or_override(self, ContentActionClass):
+        self.addon.update(status=amo.STATUS_REJECTED)
+        ActivityLog.objects.all().delete()
+        action = ContentActionClass(self.decision)
+        activity = action.process_action()
+
+        assert self.addon.reload().status == amo.STATUS_APPROVED
+        assert activity.log == amo.LOG.APPROVE_LISTING_CONTENT
+        assert activity.arguments == [self.addon, self.decision, self.policy]
+        assert activity.user == self.task_user
+        assert ActivityLog.objects.count() == 3
+        # We have an additional activity if the add-on status wasn't STATUS_NOMINATED
+        second_activity = (
+            ActivityLog.objects.exclude(pk=activity.pk)
+            .exclude(action=amo.LOG.CHANGE_STATUS.id)
+            .get()
+        )
+        assert second_activity.log == amo.LOG.REVIEWER_PRIVATE_COMMENT
+        assert second_activity.arguments == [self.addon, self.decision]
+        assert second_activity.user == self.task_user
+        assert second_activity.details == {'comments': self.decision.private_notes}
+        assert len(mail.outbox) == 0
+
+        self.cinder_job.notify_reporters(action)
+        action.notify_owners()
+        self._test_owner_restore_email(f'Mozilla Add-ons: {self.addon.name}')
+
+    def test_hold_action(self):
+        self.decision.update(action=self.takedown_decision_action)
+        action = self.ActionClass(self.decision)
+        activity = action.hold_action()
+        assert activity.log == amo.LOG.HELD_ACTION_REJECT_LISTING_CONTENT
+        assert activity.arguments == [
+            self.addon,
+            self.decision,
+            self.policy,
+        ]
+        assert activity.user == self.task_user
+        assert ActivityLog.objects.count() == 2
+        second_activity = ActivityLog.objects.exclude(pk=activity.pk).get()
+        assert second_activity.log == amo.LOG.REVIEWER_PRIVATE_COMMENT
+        assert second_activity.arguments == [self.addon, self.decision]
+        assert second_activity.user == self.task_user
+        assert second_activity.details == {'comments': self.decision.private_notes}
+        assert activity.details == {
+            'comments': self.decision.reasoning,
+            'human_review': False,
+            'policy_texts': [self.policy.full_text()],
+        }
 
 
 class TestContentActionCollection(BaseTestContentAction, TestCase):

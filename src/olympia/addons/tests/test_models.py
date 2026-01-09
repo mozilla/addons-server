@@ -2861,6 +2861,22 @@ class TestUpdateStatus(TestCase):
         addon.update_status()
         assert addon.status == amo.STATUS_DISABLED
 
+    def test_rejected_listing_addons_do_not_update(self):
+        addon = addon_factory(
+            status=amo.STATUS_REJECTED, file_kw={'status': amo.STATUS_DISABLED}
+        )
+        assert addon.status == amo.STATUS_REJECTED
+
+        version_factory(addon=addon, file_kw={'status': amo.STATUS_APPROVED})
+        addon.reload()
+        addon.update_status()
+        assert addon.status == amo.STATUS_REJECTED
+
+        version_factory(addon=addon, file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        addon.reload()
+        addon.update_status()
+        assert addon.status == amo.STATUS_REJECTED
+
 
 class TestGetVersion(TestCase):
     fixtures = [
