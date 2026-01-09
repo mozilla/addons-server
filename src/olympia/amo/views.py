@@ -85,12 +85,14 @@ def dummy_upload(request):
         buf = request.FILES['upload'].read()
     else:
         buf = ''
-    
-    return JsonResponse({
-        # request._start_time is set by GraphiteRequestTimingMiddleware
-        'elapsed_in_app': int((time.time() - request._start_time) * 1000),
-        'buf_size': len(buf),
-    })
+
+    return JsonResponse(
+        {
+            # request._start_time is set by GraphiteRequestTimingMiddleware
+            'elapsed_in_app': int((time.time() - request._start_time) * 1000),
+            'buf_size': len(buf),
+        }
+    )
 
 
 @never_cache
