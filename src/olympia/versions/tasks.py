@@ -10,7 +10,6 @@ from django.db import transaction
 from django.template import loader
 from django.urls import reverse
 
-import requests
 from django_statsd.clients import statsd
 from PIL import Image
 
@@ -22,12 +21,13 @@ from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import SafeStorage, extract_colors_from_image, pngcrush_image
 from olympia.constants.blocklist import REASON_VERSION_DELETED
+from olympia.constants.scanners import WEBHOOK_ON_SOURCE_CODE_UPLOADED
 from olympia.devhub.tasks import resize_image
 from olympia.files.models import File
 from olympia.files.utils import get_background_images
 from olympia.lib.crypto.tasks import duplicate_addon_version
 from olympia.reviewers.models import NeedsHumanReview
-from olympia.scanners.tasks import make_adapter_with_retry
+from olympia.scanners.tasks import call_webhooks
 from olympia.users.models import UserProfile
 from olympia.users.utils import get_task_user
 from olympia.versions.compare import VersionString
@@ -424,9 +424,9 @@ def soft_block_versions(version_ids, reason=REASON_VERSION_DELETED, **kw):
 
 @task
 @use_primary_db
-def call_source_builder(version_pk, activity_log_id):
+def call_webhooks_on_source_code_uploaded(version_pk, activity_log_id):
     log.info(
-        'Calling source builder API for Version %s (activity_log_id = %s)',
+        'Calling webhooks for Version %s (activity_log_id = %s)',
         version_pk,
         activity_log_id,
     )
@@ -436,38 +436,31 @@ def call_source_builder(version_pk, activity_log_id):
 
         if not version.license:
             log.info(
-                'Missing license in source builder for Version %s '
-                '(activity_log_id = %s)',
+                'Missing license in call_webhooks_on_source_code_uploaded for '
+                'Version %s (activity_log_id = %s)',
                 version_pk,
                 activity_log_id,
             )
             return
 
-        with requests.Session() as http:
-            adapter = make_adapter_with_retry()
-            http.mount('http://', adapter)
-            http.mount('https://', adapter)
-
-            json_payload = {
-                'addon_id': version.addon_id,
-                'version_id': version.id,
-                'download_source_url': urljoin(
-                    settings.EXTERNAL_SITE_URL,
-                    reverse('downloads.source', kwargs={'version_id': version.id}),
-                ),
-                'license_slug': version.license.slug,
-                'activity_log_id': activity_log_id,
-            }
-            http.post(
-                url=settings.SOURCE_BUILDER_API_URL,
-                json=json_payload,
-                timeout=settings.SOURCE_BUILDER_API_TIMEOUT,
-                headers={'Authorization': f'Bearer {settings.SOURCE_BUILDER_API_KEY}'},
-            )
+        payload = {
+            'addon_id': version.addon_id,
+            'version_id': version.id,
+            'download_source_url': urljoin(
+                settings.EXTERNAL_SITE_URL,
+                reverse('downloads.source', kwargs={'version_id': version.id}),
+            ),
+            'license_slug': version.license.slug,
+            'activity_log_id': activity_log_id,
+        }
+        call_webhooks(
+            event_name=WEBHOOK_ON_SOURCE_CODE_UPLOADED,
+            payload=payload,
+            version=version,
+        )
     except Exception:
         log.exception(
-            'Error while calling source builder API for Version %s '
-            '(activity_log_id = %s)',
+            'Error while calling webhooks for Version %s (activity_log_id = %s)',
             version_pk,
             activity_log_id,
         )
