@@ -4751,7 +4751,7 @@ msgstr "Zmień sposób przeglądania serwisu Reddit przy użyciu etykiet i innyc
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:158
 msgid "Screenshot webpages, make edits & share."
-msgstr "Wykonuj zrzuty ekranu stron internetowych, edytuj je i udostępniaj."
+msgstr "Wykonuj zrzuty ekranu stron internetowych, edytuj je i udostępniaj."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:161
