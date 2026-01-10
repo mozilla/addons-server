@@ -4538,7 +4538,7 @@ msgstr "Pobieraj wideo z łatwością. Działa z YouTube, Facebookiem, Vimeo, Tw
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:38
 msgid "Up your emoji game. Dozens of amazing emojis for every occasion—always just a click away."
-msgstr ""
+msgstr "Rozwiń swoją gamę emoji. Dziesiątki niesamowitych emoji na każdą okazję — zawsze na wyciągnięcie ręki."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:41
@@ -4663,7 +4663,7 @@ msgstr "Powstrzymaj usługi śledzące i otrzymuj informacje na ich temat."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:110 src/olympia/discovery/strings.jinja2:882
 msgid "Leave a clean digital trail. Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr ""
+msgstr "Wyczyść swoje cyfrowe ślady. Spraw, aby Firefox zapominał dane witryn, takie jak ciasteczka i pliki lokalne, ale tylko dla wybranych przez Ciebie domen."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4751,7 +4751,7 @@ msgstr "Zmień sposób przeglądania serwisu Reddit przy użyciu etykiet i innyc
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:158
 msgid "Screenshot webpages, make edits & share."
-msgstr ""
+msgstr "Wykonuj zrzuty ekranu stron internetowych, edytuj je i udostępniaj."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:161
@@ -4765,9 +4765,8 @@ msgstr "Dowiedz się, kto Cię śledzi i gdzie mogą być udostępniane Twoje in
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:167
-#, fuzzy
 msgid "Surf anonymously. Browse the web with disguised identity—even appear as if you're browsing from another country."
-msgstr "Przeglądaj Internet z ukrytą tożsamością — dzięki temu dodatkowi może się wydawać, że surfujesz z innego kraju."
+msgstr "Surfuj anonimowo. Przeglądaj Internet z ukrytą tożsamością — dzięki temu dodatkowi może się wydawać, że surfujesz z innego kraju."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:170
