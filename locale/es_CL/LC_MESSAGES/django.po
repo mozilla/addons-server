@@ -2825,12 +2825,17 @@ msgid ""
 "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Minimum length: %(min_length)s characters; Recommended "
 "length: 250 characters. If you need a longer description, make sure the first 250 characters contain the most important description points."
 msgstr ""
+"Una explicación más detallada de las características, funcionalidades y otra información relevante. Este campo solo se muestra en la página de producto del complemento. Longitud mínima: "
+"%(min_length)s caracteres; longitud recomendada: 250 caracteres. Si necesita una descripción más extensa, asegúrate de que los primeros 250 caracteres contengan los puntos descriptivos más "
+"importantes."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:140
 msgid ""
 "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Recommended length: 250 characters. If you need a longer "
 "description, make sure the first 250 characters contain the most important description points."
 msgstr ""
+"Una explicación más detallada de las características, funcionalidades y otra información relevante. Este campo solo se muestra en la página de producto del complemento. Longitud recomendada: 250 "
+"caracteres. Si necesita una descripción más extensa, asegúrate de que los primeros 250 caracteres contengan los puntos descriptivos más importantes."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:169
 msgid "Experimental?"
@@ -3569,7 +3574,7 @@ msgstr "Crear una versión del tema"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:81
 msgid "You can upload a finished theme using the upload option above, or you can build it yourself using this tool."
-msgstr ""
+msgstr "Puedes cargar un tema acabado usando la opción de carga de arriba, o puedes crearlo tú mismo usando esta herramienta."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:87
 msgid "Create a Theme"
