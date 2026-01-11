@@ -2807,12 +2807,16 @@ msgid ""
 "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Minimum length: %(min_length)s characters; Recommended "
 "length: 250 characters. If you need a longer description, make sure the first 250 characters contain the most important description points."
 msgstr ""
+"Dlhšie vysvetlenie funkcií, funkčnosti a ďalších relevantných informácií. Toto pole sa zobrazuje iba na stránke produktu doplnku. Minimálna dĺžka: %(min_length)s znakov. Odporúčaná dĺžka: 250 "
+"znakov. Ak potrebujete dlhší popis, uistite sa, že prvých 250 znakov obsahuje najdôležitejšie body popisu."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:140
 msgid ""
 "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Recommended length: 250 characters. If you need a longer "
 "description, make sure the first 250 characters contain the most important description points."
 msgstr ""
+"Dlhšie vysvetlenie funkcií, funkčnosti a ďalších relevantných informácií. Toto pole sa zobrazuje iba na stránke produktu doplnku. Odporúčaná dĺžka: 250 znakov. Ak potrebujete dlhší popis, uistite "
+"sa, že prvých 250 znakov obsahuje najdôležitejšie body popisu."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:169
 msgid "Experimental?"
@@ -3541,7 +3545,7 @@ msgstr "Vytvoriť verziu témy vzhľadu"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:81
 msgid "You can upload a finished theme using the upload option above, or you can build it yourself using this tool."
-msgstr ""
+msgstr "Hotovú tému môžete nahrať pomocou voľby nahrania uvedenej vyššie alebo si ju môžete vytvoriť sami pomocou tohto nástroja."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:87
 msgid "Create a Theme"
@@ -4734,7 +4738,7 @@ msgstr "Zmeňte spôsob, akým surfujete na Reddite, pomocou značiek a ďalší
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:158
 msgid "Screenshot webpages, make edits & share."
-msgstr ""
+msgstr "Snímajte webové stránky, vykonajte úpravy a zdieľajte ich."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:161
