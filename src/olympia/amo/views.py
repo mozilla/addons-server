@@ -85,12 +85,24 @@ def dummy_upload(request):
         buf = request.FILES['upload'].read()
     else:
         buf = ''
+    # Additional delay to test timeout behavior.
+    if 'delay' in request.POST:
+        try:
+            delay = int(request.POST.get('delay', 1))
+            if delay > 120 or delay < 0:
+                raise ValueError
+        except ValueError:
+            delay = 1
+        time.sleep(delay)
+    else:
+        delay = None
 
     return JsonResponse(
         {
             # request._start_time is set by GraphiteRequestTimingMiddleware
             'elapsed_in_app': int((time.time() - request._start_time) * 1000),
             'buf_size': len(buf),
+            'delay': delay,
         }
     )
 
