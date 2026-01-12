@@ -1196,7 +1196,20 @@ class TestUserAdmin(TestCase):
         self.grant_permission(user, 'Addons:Edit')
         self.client.force_login(user)
         response = self.client.get(detail_url_by_email, follow=False)
-        self.assert3xx(response, detail_url_final, 301)
+        self.assert3xx(response, detail_url_final, 302)
+
+    def test_access_using_email_multiple_matches(self):
+        lookup_user = user_factory(email='foo@bar.xyz')
+        duplicate_user = user_factory(email='foo@bar.xyz')
+        detail_url_by_email = reverse(
+            'admin:users_userprofile_change', args=(lookup_user.email,)
+        )
+        list_url_with_email = self.list_url + '?email=foo@bar.xyz'
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Addons:Edit')
+        self.client.force_login(user)
+        response = self.client.get(detail_url_by_email, follow=False)
+        self.assert3xx(response, list_url_with_email, 302)
 
     def test_user_history(self):
         UserHistory.objects.create(email='old@example.com', user=self.user)
