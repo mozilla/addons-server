@@ -7,7 +7,6 @@ from urllib.parse import quote_plus
 
 from django.conf import settings
 from django.contrib.auth import login, logout
-from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.utils.decorators import method_decorator
