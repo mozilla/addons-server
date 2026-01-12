@@ -1976,6 +1976,27 @@ class TestContentActionRejectListingContent(TestContentActionDisableAddon):
             'policy_texts': [self.policy.full_text()],
         }
 
+    def test_addon_version_has_target_versions(self):
+        # This type of action doesn't have any target_versions, so addon_version will
+        # just be the current version.
+        assert (
+            self.ActionClass(self.decision).addon_version == self.addon.current_version
+        )
+
+    def test_log_action_args(self):
+        activity = self.ActionClass(self.decision).log_action(self.activity_log_action)
+        assert self.addon in activity.arguments
+        assert activity.arguments == [
+            self.addon,
+            self.decision,
+            self.policy,
+        ]
+        assert activity.details == {
+            'human_review': False,
+            'comments': self.decision.reasoning,
+            'policy_texts': [self.policy.full_text()],
+        }
+
 
 class TestContentActionCollection(BaseTestContentAction, TestCase):
     ActionClass = ContentActionDeleteCollection
