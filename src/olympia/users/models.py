@@ -347,7 +347,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         ],
     )
 
-    email = models.EmailField(unique=True, null=True, max_length=75)
+    email = models.EmailField(null=True, max_length=75)
 
     averagerating = models.FloatField(null=True)
     # biography can (and does) contain html and other unsanitized content.
@@ -389,6 +389,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         db_table = 'users'
         indexes = [
             models.Index(fields=('created',), name='created'),
+            models.Index(fields=('email',), name='email'),
             models.Index(fields=('fxa_id',), name='users_fxa_id_index'),
             LongNameIndex(
                 fields=('last_login_ip',), name='users_last_login_ip_2cfbbfbd'

@@ -106,35 +106,45 @@ def safe_redirect(request, url, action):
 
 
 def find_user(identity):
-    """Try to find a user for a Mozilla accounts profile. If the account
-    hasn't been migrated we'll need to do the lookup by email but we should
-    use the ID after that so check both.
+    """Try to find a user for a Mozilla accounts profile. Try fxa_id first, but
+    if no account is found that way fall back on email (user hasn't logged in
+    since the introduction of FxA).
 
-    If we get multiple users we're in some weird state where the accounts need
-    to be merged but that behaviour hasn't been defined so let it raise.
+    If the user email belongs to a banned user, raise an error, they shouldn't
+    be able to bypass the ban with another FxA with the same email.
 
-    If the user is deleted but we were still able to find them using their
-    email or fxa_id, throw an error - they are banned, they shouldn't be able
-    to log in anymore.
+    Ther user returned can be a deleted (not banned) user: they will be
+    undeleted by the authenticate view.
     """
     try:
-        user = UserProfile.objects.get(
-            Q(fxa_id=identity['uid']) | Q(email=identity['email'])
-        )
-        is_task_user = user.id == settings.TASK_USER_ID
-        if user.banned or is_task_user:
-            # If the user was banned raise a 403, it's not the prettiest
-            # but should be enough.
-            # Alternatively if someone tried to log in as the task user then
-            # prevent that because that user "owns" a number of important
-            # addons and collections, and it's actions are special cased.
-            raise exceptions.PermissionDenied()
-        return user
+        user = UserProfile.objects.get(fxa_id=identity['uid'])
     except UserProfile.DoesNotExist:
-        return None
-    # UserProfile.MultipleObjectsReturned might be raised here. This is
-    # expected, we don't know what to do in this case so we let the exception
-    # happen loudly.
+        try:
+            # Fall back to email for old accounts that never used FxA before.
+            user = UserProfile.objects.get(fxa_id=None, email=identity['email'])
+        except UserProfile.DoesNotExist:
+            return None
+
+        # It's technically possible to raise MultipleObjectsReturned here, if
+        # somehow multiple accounts are sharing the same email while having no
+        # FxA id. In practice we used to have an uniqueness constraint on
+        # email before FxA was introduced, and even for a long time after, so
+        # this shouldn't happen.
+
+    is_task_user = user.id == settings.TASK_USER_ID
+    # If we find anyone with that email that has ever been banned, we want to
+    # prevent them from logging in no matter what.
+    is_banned = UserProfile.objects.filter(
+        email=identity['email'], banned__isnull=False
+    ).exists()
+    if is_banned or is_task_user:
+        # If the user was banned raise a 403, it's not the prettiest
+        # but should be enough.
+        # Alternatively if someone tried to log in as the task user then
+        # prevent that because that user "owns" a number of important
+        # addons and collections, and it's actions are special cased.
+        raise exceptions.PermissionDenied()
+    return user
 
 
 def register_user(identity):
@@ -150,6 +160,7 @@ def reregister_user(user):
     user.update(deleted=False)
     log.info(f'Re-created deleted user {user} from FxA')
     statsd.incr('accounts.account_created_from_fxa')
+    statsd.incr('accounts.account_recreated_from_fxa')
 
 
 def update_user(user, identity):
