@@ -1727,6 +1727,9 @@ class TestReviewHelper(TestReviewHelperBase):
         assert activity.details['human_review'] is False
 
     def test_unlisted_approve_latest_version_need_human_review(self):
+        CinderJob.objects.create(
+            target_addon=self.addon, resolvable_in_reviewer_tools=True
+        )
         self.setup_data(
             amo.STATUS_NULL, channel=amo.CHANNEL_UNLISTED, human_review=True
         )
@@ -3638,6 +3641,9 @@ class TestReviewHelper(TestReviewHelperBase):
         assert unselected.due_date
 
     def test_clear_needs_human_review_multiple_versions_not_abuse(self):
+        job = CinderJob.objects.create(
+            target_addon=self.addon, resolvable_in_reviewer_tools=True
+        )
         self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
         NeedsHumanReview.objects.create(version=self.review_version)
         # abuse or appeal related NHR are cleared in ContentDecision so aren't cleared
@@ -3668,6 +3674,17 @@ class TestReviewHelper(TestReviewHelperBase):
             .exists()
         )
         assert self.review_version.due_date
+
+        # if the job is already resolved though, the NHR should be cleared
+        ContentDecision.objects.create(
+            addon=self.addon, action=DECISION_ACTIONS.AMO_DISABLE_ADDON, cinder_job=job
+        )
+        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
+        self.helper.set_data(data)
+        self.helper.handler.clear_needs_human_review_multiple_versions()
+        assert not self.review_version.needshumanreview_set.filter(
+            is_active=True
+        ).exists()
 
     def test_set_needs_human_review_multiple_versions(self):
         self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
