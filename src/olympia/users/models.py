@@ -14,6 +14,7 @@ from django.conf import settings
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.signals import user_logged_in
 from django.core import validators
+from django.core.exceptions import ValidationError
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.db import models
 from django.db.models import Max, Q
@@ -103,6 +104,25 @@ class UserEmailField(forms.ModelChoiceField):
 
     def get_bound_field(self, form, field_name):
         return UserEmailBoundField(form, self, field_name)
+
+    def to_python(self, value):
+        if value in self.empty_values:
+            return None
+        try:
+            key = self.to_field_name or 'pk'
+            if isinstance(value, self.queryset.model):
+                value = getattr(value, key)
+            # Handle potential multiple users with same email.
+            value = self.queryset.filter(**{key: value}).last()
+            if value is None:
+                raise self.queryset.model.DoesNotExist
+        except (ValueError, TypeError, self.queryset.model.DoesNotExist):
+            raise ValidationError(
+                self.error_messages['invalid_choice'],
+                code='invalid_choice',
+                params={'value': value},
+            )
+        return value
 
 
 class UserEmailBoundField(forms.boundfield.BoundField):
