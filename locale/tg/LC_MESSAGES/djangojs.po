@@ -578,15 +578,15 @@ msgstr ""
 #, python-brace-format
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} хато"
+msgstr[1] "{0} хато"
 
 #: static/js/zamboni/validator.js:394
 #, python-brace-format
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} огоҳӣ"
+msgstr[1] "{0} огоҳӣ"
 
 #: static/js/zamboni/validator.js:397
 #, python-brace-format
