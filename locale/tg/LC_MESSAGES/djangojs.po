@@ -592,8 +592,8 @@ msgstr[1] "{0} огоҳӣ"
 #, python-brace-format
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} ёддошт"
+msgstr[1] "{0} ёддошт"
 
 #: static/js/zamboni/validator.js:494
 msgid "Validation task could not complete or completed with errors"
@@ -601,4 +601,4 @@ msgstr ""
 
 #: static/js/zamboni/validator.js:517
 msgid "Internal server error"
-msgstr ""
+msgstr "Хатои дохилии сервер"

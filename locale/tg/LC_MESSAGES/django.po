@@ -92,7 +92,7 @@ msgstr ""
 
 #: src/olympia/abuse/templates/abuse/emails/base_reporter.txt:1
 msgid "Hello,"
-msgstr ""
+msgstr "Салом,"
 
 #: src/olympia/abuse/templates/abuse/emails/base_reporter.txt:7
 msgid "Mozilla Add-ons Team"
@@ -244,7 +244,7 @@ msgstr ""
 
 #: src/olympia/activity/tests/test_constants.py:21 src/olympia/devhub/templates/devhub/addons/activity.html:60
 msgid "Add-on"
-msgstr ""
+msgstr "Ҷузъи иловагӣ"
 
 #: src/olympia/addons/decorators.py:78 src/olympia/amo/templates/amo/submissions_disabled.html:8
 msgid "Add-on uploads are temporarily unavailable."
@@ -539,11 +539,11 @@ msgstr ""
 
 #: src/olympia/amo/templates/amo/403.html:3
 msgid "Not allowed"
-msgstr ""
+msgstr "Иҷозат дода намешавад"
 
 #: src/olympia/amo/templates/amo/403.html:8
 msgid "Oops! Not allowed."
-msgstr ""
+msgstr "Упс! Иҷозат дода намешавад."
 
 #: src/olympia/amo/templates/amo/403.html:10
 msgid "You tried to do something that you weren't allowed to."
@@ -1304,7 +1304,7 @@ msgstr ""
 
 #: src/olympia/constants/base.py:129
 msgid "Extension"
-msgstr ""
+msgstr "Васеъшавӣ"
 
 #: src/olympia/constants/base.py:130
 msgid "Deprecated Complete Theme"
@@ -1312,7 +1312,7 @@ msgstr ""
 
 #: src/olympia/constants/base.py:131
 msgid "Dictionary"
-msgstr ""
+msgstr "Луғат"
 
 #: src/olympia/constants/base.py:132
 msgid "Deprecated Search Engine"
@@ -1877,12 +1877,12 @@ msgstr ""
 #: src/olympia/devhub/forms.py:1177 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:7 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:22
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:37
 msgid "Yes"
-msgstr ""
+msgstr "Ҳа"
 
 #: src/olympia/devhub/forms.py:1177 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:13 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:28
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:52
 msgid "No"
-msgstr ""
+msgstr "Не"
 
 #: src/olympia/devhub/forms.py:1192
 msgid "You have not uploaded a source file."
@@ -2030,7 +2030,7 @@ msgstr ""
 
 #: src/olympia/devhub/views.py:192
 msgid "All My Add-ons"
-msgstr ""
+msgstr "Ҳамаи ҷузъҳои иловагии ман"
 
 #: src/olympia/devhub/views.py:220
 msgid "All Activity"
@@ -2335,7 +2335,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/search.html:8
 msgid "Search"
-msgstr ""
+msgstr "Ҷустуҷӯ"
 
 #: src/olympia/devhub/templates/devhub/suppressed_email.html:4
 #, python-format
@@ -2344,7 +2344,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:8 src/olympia/devhub/templates/devhub/suppressed_email.html:8
 msgid "Learn more"
-msgstr ""
+msgstr "Маълумоти бештар"
 
 #: src/olympia/devhub/templates/devhub/validate_addon.html:12
 msgid "Use the field below to upload your add-on package."
@@ -2473,7 +2473,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html:45
 msgid "No results found."
-msgstr ""
+msgstr "Ягон натиҷа ёфт нашуд."
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html:57
 msgid "Refine Activity"
@@ -2481,7 +2481,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html:70
 msgid "Activity"
-msgstr ""
+msgstr "Фаъолият"
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html:81 src/olympia/devhub/templates/devhub/addons/dashboard.html:33 src/olympia/devhub/templates/devhub/addons/dashboard.html:34
 msgid "Subscribe to this feed"
@@ -2559,7 +2559,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/invitation.html:24 src/olympia/devhub/templates/devhub/includes/agreement.html:36
 msgid "Accept"
-msgstr ""
+msgstr "Қабул кардан"
 
 #: src/olympia/devhub/templates/devhub/addons/invitation.html:24
 msgid "Decline"
