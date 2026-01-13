@@ -1289,19 +1289,21 @@ class Addon(OnChangeMixin, ModelBase):
     def update_status(self, ignore_version=None):
         self.reload()
 
-        # We don't auto-update the status of rejected deleted or force disabled add-ons.
-        if self.status in (
-            amo.STATUS_DELETED,
-            amo.STATUS_DISABLED,
-            amo.STATUS_REJECTED,
-        ):
+        # We don't auto-update the status of deleted or force disabled add-ons.
+        if self.status in (amo.STATUS_DELETED, amo.STATUS_DISABLED):
             self.update_version(ignore=ignore_version)
             return
 
         listed_versions = self.versions.filter(channel=amo.CHANNEL_LISTED)
         correct_status = self.status
         force_update = False
-        if listed_versions.filter(file__status=amo.STATUS_APPROVED).exists():
+        if AddonApprovalsCounter.objects.filter(
+            addon=self, last_content_review_pass=False
+        ).exists():
+            # If the content review failed, the status should stay as rejected
+            correct_status = amo.STATUS_REJECTED
+            reason = 'content review failed'
+        elif listed_versions.filter(file__status=amo.STATUS_APPROVED).exists():
             correct_status = amo.STATUS_APPROVED
             reason = 'unapproved add-on with approved listed version'
 
@@ -2405,6 +2407,7 @@ class AddonApprovalsCounter(ModelBase):
     counter = models.PositiveIntegerField(default=0)
     last_human_review = models.DateTimeField(null=True)
     last_content_review = models.DateTimeField(null=True, db_index=True)
+    last_content_review_pass = models.BooleanField(null=True, db_index=True)
 
     def __str__(self):
         return '%s: %d' % (str(self.pk), self.counter) if self.pk else ''
@@ -2423,6 +2426,8 @@ class AddonApprovalsCounter(ModelBase):
             'last_human_review': now,
             'last_content_review': now,
         }
+        # TODO: rewrite this using update_or_create when we're on django5.2
+        # - it supports seperate create and update defaults.
         obj, created = cls.objects.get_or_create(addon=addon, defaults=data)
         if not created:
             data['counter'] = F('counter') + 1
@@ -2434,28 +2439,31 @@ class AddonApprovalsCounter(ModelBase):
         """
         Reset the approval counter (but not the dates) for the specified addon.
         """
-        obj, created = cls.objects.update_or_create(
-            addon=addon, defaults={'counter': 0}
+        obj, _ = cls.objects.update_or_create(addon=addon, defaults={'counter': 0})
+        return obj
+
+    @classmethod
+    def approve_content_for_addon(cls, addon):
+        """
+        Set last_content_review and last_content_review_pass to True for this addon.
+        """
+        obj, _ = cls.objects.update_or_create(
+            addon=addon,
+            defaults={
+                'last_content_review': datetime.now(),
+                'last_content_review_pass': True,
+            },
         )
         return obj
 
     @classmethod
-    def approve_content_for_addon(cls, addon, now=None):
-        """
-        Set last_content_review for this addon.
-        """
-        if now is None:
-            now = datetime.now()
-        return cls.reset_content_for_addon(addon, reset_to=now)
-
-    @classmethod
-    def reset_content_for_addon(cls, addon, reset_to=None):
+    def reset_content_for_addon(cls, addon):
         """
         Reset the last_content_review date for this addon so it triggers
         another review.
         """
-        obj, created = cls.objects.update_or_create(
-            addon=addon, defaults={'last_content_review': reset_to}
+        obj, _ = cls.objects.update_or_create(
+            addon=addon, defaults={'last_content_review': None}
         )
         return obj
 

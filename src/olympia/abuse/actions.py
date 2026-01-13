@@ -14,7 +14,7 @@ import olympia
 from olympia import amo
 from olympia.access.models import Group
 from olympia.activity import log_create
-from olympia.addons.models import Addon, AddonReviewerFlags
+from olympia.addons.models import Addon, AddonApprovalsCounter, AddonReviewerFlags
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import send_mail
 from olympia.bandwagon.models import Collection
@@ -693,6 +693,9 @@ class ContentActionRejectListingContent(ContentActionDisableAddon):
     def process_action(self, release_hold=False):
         if self.target.status not in (amo.STATUS_DISABLED, amo.STATUS_REJECTED):
             self.target.update(status=amo.STATUS_REJECTED)
+            AddonApprovalsCounter.objects.update_or_create(
+                addon=self.target, defaults={'last_content_review_pass': False}
+            )
             return self.log_action(amo.LOG.REJECT_LISTING_CONTENT)
         return None
 
@@ -876,9 +879,14 @@ class ContentActionTargetAppealApprove(
                 DECISION_ACTIONS.AMO_REJECT_LISTING_CONTENT in previous_decision_actions
                 and target.status == amo.STATUS_REJECTED
             ):
-                target.update(status=amo.STATUS_NOMINATED)
-                # The add-on status may not be nominated, so call the function to
-                # correct it.
+                AddonApprovalsCounter.objects.update_or_create(
+                    addon=self.target,
+                    defaults={
+                        'last_content_review': datetime.now(),
+                        'last_content_review_pass': True,
+                    },
+                )
+                # Call the function to correct it the status
                 target.update_status()
                 activity_log_action = amo.LOG.APPROVE_LISTING_CONTENT
 

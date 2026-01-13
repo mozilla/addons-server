@@ -530,13 +530,13 @@ class TestHome(TestCase):
         statuses = [
             (amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW, 'Awaiting Review'),
             (amo.STATUS_APPROVED, amo.STATUS_AWAITING_REVIEW, 'Approved'),
-            (amo.STATUS_DISABLED, amo.STATUS_APPROVED, 'Disabled by Mozilla'),
             (
                 amo.STATUS_REJECTED,
                 amo.STATUS_AWAITING_REVIEW,
                 'Listing Content Rejected',
             ),
             (amo.STATUS_REJECTED, amo.STATUS_APPROVED, 'Listing Content Rejected'),
+            (amo.STATUS_DISABLED, amo.STATUS_APPROVED, 'Disabled by Mozilla'),
         ]
 
         latest_version = self.addon.find_latest_version(amo.CHANNEL_LISTED)

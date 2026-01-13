@@ -823,6 +823,11 @@ class TestAddonModels(TestCase):
         assert delete_all_addon_media_with_backup_mock.delay.call_count == 1
         assert delete_all_addon_media_with_backup_mock.delay.call_args[0] == (addon.pk,)
 
+    def test_force_disable_works_if_status_is_listing_rejected(self):
+        addon = Addon.unfiltered.get(pk=3615)
+        addon.update(status=amo.STATUS_REJECTED)
+        self.test_force_disable()
+
     def test_force_disable_clear_due_date_unlisted_auto_approval_indefinite_delay(self):
         addon = addon_factory(status=amo.STATUS_NULL)
         version = version_factory(
@@ -885,6 +890,56 @@ class TestAddonModels(TestCase):
         assert v3.file.reload().status == amo.STATUS_APPROVED
         log = ActivityLog.objects.latest('pk')
         assert log.action == amo.LOG.FORCE_ENABLE.id
+
+        assert restore_all_addon_media_from_backup_mock.delay.call_count == 1
+        assert restore_all_addon_media_from_backup_mock.delay.call_args[0] == (
+            addon.pk,
+        )
+
+    @patch('olympia.addons.tasks.restore_all_addon_media_from_backup')
+    def test_force_enable_back_to_rejected(
+        self, restore_all_addon_media_from_backup_mock
+    ):
+        core.set_user(UserProfile.objects.get(email='admin@mozilla.com'))
+        addon = Addon.unfiltered.get(pk=3615)
+        v1 = addon.current_version
+        v2 = version_factory(addon=addon)
+        v3 = version_factory(addon=addon)
+        AddonApprovalsCounter.objects.create(
+            addon=addon, last_content_review_pass=False
+        )
+        addon.update(status=amo.STATUS_DISABLED)
+        v1.file.update(
+            status=amo.STATUS_DISABLED,
+            original_status=amo.STATUS_APPROVED,
+            # We don't want to re-enable a version the developer disabled
+            status_disabled_reason=File.STATUS_DISABLED_REASONS.DEVELOPER,
+        )
+        v2.file.update(
+            status=amo.STATUS_DISABLED,
+            original_status=amo.STATUS_APPROVED,
+            # we also don't want to re-enable a version we rejected
+            status_disabled_reason=File.STATUS_DISABLED_REASONS.NONE,
+        )
+        v3.file.update(
+            status=amo.STATUS_DISABLED,
+            original_status=amo.STATUS_APPROVED,
+            # but we do want to re-enable a version we only disabled with the addon
+            status_disabled_reason=File.STATUS_DISABLED_REASONS.ADDON_DISABLE,
+        )
+
+        addon.force_enable()
+        assert addon.reload().status == amo.STATUS_REJECTED
+        assert v1.file.reload().status == amo.STATUS_DISABLED
+        assert v2.file.reload().status == amo.STATUS_DISABLED
+        assert v3.file.reload().status == amo.STATUS_APPROVED
+        assert ActivityLog.objects.latest('pk').action == amo.LOG.CHANGE_STATUS.id
+        assert (
+            ActivityLog.objects.exclude(action=amo.LOG.CHANGE_STATUS.id)
+            .latest('pk')
+            .action
+            == amo.LOG.FORCE_ENABLE.id
+        )
 
         assert restore_all_addon_media_from_backup_mock.delay.call_count == 1
         assert restore_all_addon_media_from_backup_mock.delay.call_args[0] == (
@@ -2865,6 +2920,9 @@ class TestUpdateStatus(TestCase):
         addon = addon_factory(
             status=amo.STATUS_REJECTED, file_kw={'status': amo.STATUS_DISABLED}
         )
+        AddonApprovalsCounter.objects.create(
+            addon=addon, last_content_review_pass=False
+        )
         assert addon.status == amo.STATUS_REJECTED
 
         version_factory(addon=addon, file_kw={'status': amo.STATUS_APPROVED})
@@ -2876,6 +2934,13 @@ class TestUpdateStatus(TestCase):
         addon.reload()
         addon.update_status()
         assert addon.status == amo.STATUS_REJECTED
+
+        # but if the content review passed, the status will update
+        AddonApprovalsCounter.objects.get(addon=addon).update(
+            last_content_review_pass=True
+        )
+        addon.update_status()
+        assert addon.status == amo.STATUS_APPROVED
 
 
 class TestGetVersion(TestCase):
