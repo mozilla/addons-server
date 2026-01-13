@@ -256,6 +256,9 @@ class ScannerWebhook(ModelBase):
     class Meta:
         db_table = 'scanners_webhooks'
 
+    def __str__(self):
+        return self.name
+
 
 class ScannerWebhookEvent(ModelBase):
     webhook = models.ForeignKey(ScannerWebhook, on_delete=models.CASCADE)
@@ -266,7 +269,7 @@ class ScannerWebhookEvent(ModelBase):
         unique_together = ('webhook', 'event')
 
     def __str__(self):
-        return f'{self.webhook.name} ({WEBHOOK_EVENTS.get(self.event)})'
+        return f'{self.webhook} ({WEBHOOK_EVENTS.get(self.event)})'
 
 
 class ScannerResult(AbstractScannerResult):
