@@ -2803,12 +2803,16 @@ msgid ""
 "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Minimum length: %(min_length)s characters; Recommended "
 "length: 250 characters. If you need a longer description, make sure the first 250 characters contain the most important description points."
 msgstr ""
+"Ei lengre forklaring av funksjonar, funksjonalitet og annan relevant informasjon. Dette feltet blir berre vist på produktsida for utvidinga. Minimumslengd: %(min_length)s teikn; tilrådd lengd: 250 "
+"teikn. Om du treng ei lengre beskriving, sørg for at dei første 250 teikna inneheld dei viktigaste beskrivingspunkta."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:140
 msgid ""
 "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Recommended length: 250 characters. If you need a longer "
 "description, make sure the first 250 characters contain the most important description points."
 msgstr ""
+"Ei lengre forklaring av funksjonar, funksjonalitet og annan relevant informasjon. Dette feltet blir berre vist på produktsida for utvidinga. Tilrådd lengde: 250 teikn. Om du treng ei lengre "
+"beskriving, sørg for at dei første 250 teikna inneheld dei viktigaste beskrivingspunkta."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:169
 msgid "Experimental?"
