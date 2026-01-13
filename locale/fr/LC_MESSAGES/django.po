@@ -2752,7 +2752,7 @@ msgstr "Si vous souhaitez demander une contribution financière aux utilisateurs
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:45
 #, python-format
 msgid "Supported domains: %(supported_domains)s"
-msgstr ""
+msgstr "Domaines pris en charge : %(supported_domains)s"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:55 src/olympia/translations/templates/translations/trans-menu.html:13
 msgid "Default Locale"
@@ -4798,7 +4798,7 @@ msgstr "Changez vos habitudes de navigation sur Reddit en utilisant des tags et 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:158
 msgid "Screenshot webpages, make edits & share."
-msgstr ""
+msgstr "Effectuez des captures d’écran des pages web de votre choix puis modifiez-les ou partagez-les."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:161
@@ -5996,7 +5996,7 @@ msgstr "Voir toutes les extensions"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1101
 msgid "2025 Staff Picks"
-msgstr ""
+msgstr "La sélection 2025 de l’équipe"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1103
