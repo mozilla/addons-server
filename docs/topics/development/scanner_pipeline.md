@@ -16,6 +16,18 @@ Each service registered as a scanner webhook must be protected with a secret
 (bearer) token. AMO will include this token in the `Authorization` header of
 each HTTP request made to the webhook.
 
+### Adding a scanner webhook
+
+Scanner webhooks must be registered in the AMO (django) admin. The following
+information must be provided:
+
+- _Name_: the name of the scanner
+- _URL_: the full URL of the scanner, which will receive the events
+- _API key_: the secret key sent to the scanner to authenticate AMO requests
+
+Add one or more scanner webhook events, see the next section for more
+information.
+
 (scanner-webhook-events)=
 ### Scanner Webhook Events
 
