@@ -2251,7 +2251,7 @@ class TestAccountNotificationViewSetUpdate(TestCase):
 
 
 class TestAccountNotificationUnsubscribe(TestCase):
-    client_class = APITestClientSessionID
+    client_class = APIClient
 
     def setUp(self):
         self.user = user_factory()
@@ -2307,6 +2307,14 @@ class TestAccountNotificationUnsubscribe(TestCase):
             user=self.user, notification_id=notification_const.id
         )
         assert not ntn.enabled
+
+    def test_unsubscribe_old_userprofile_with_same_email_is_ignored(self):
+        user_factory(email=self.user.email, deleted=True)
+        self.test_unsubscribe_user()
+
+    def test_unsubscribe_deleted_userprofile_with_same_email_is_ignored(self):
+        user_factory(email=self.user.email, created=self.days_ago(1234))
+        self.test_unsubscribe_user()
 
     def test_unsubscribe_invalid_notification(self):
         token, hash_ = UnsubscribeCode.create(self.user.email)
