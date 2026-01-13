@@ -106,8 +106,9 @@ def call_webhooks(event_name, payload, upload=None, version=None):
                 version=version,
                 results=data,
             )
-        except Exception:
+        except Exception as exc:
             log.exception('Error while calling webhook "%s".', event.webhook.name)
+            raise exc
 
 
 def _call_webhook(webhook, payload):

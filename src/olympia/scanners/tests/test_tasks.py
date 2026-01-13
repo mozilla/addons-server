@@ -2064,6 +2064,27 @@ class TestCallWebhooks(UploadMixin, TestCase):
         assert results[0].webhook_event == event_1
         assert results[1].webhook_event == event_3
 
+    @mock.patch('olympia.scanners.tasks._call_webhook')
+    def test_call_webhooks_raises(self, _call_webhook_mock):
+        assert len(ScannerResult.objects.all()) == 0
+
+        webhook = ScannerWebhook.objects.create(
+            name='some-scanner',
+            url='https://example.org/webhook',
+            api_key='some-api-key',
+            is_active=True,
+        )
+        ScannerWebhookEvent.objects.create(
+            event=WEBHOOK_DURING_VALIDATION, webhook=webhook
+        )
+
+        _call_webhook_mock.side_effect = RuntimeError()
+
+        payload = {'some': 'payload to send to the scanners for that event'}
+
+        with self.assertRaises(RuntimeError):
+            call_webhooks(WEBHOOK_DURING_VALIDATION, payload)
+
 
 class TestCallWebhook(TestCase):
     def create_response(self, status_code=200, data=None):
