@@ -94,6 +94,7 @@ class TestRunScanner(UploadMixin, TestCase):
                 'download_url': self.upload.get_authenticated_download_url(),
             },
             timeout=123,
+            headers={'Authorization': f'Bearer {self.API_KEY}'},
         )
         result = ScannerResult.objects.all()[0]
         assert result.upload == self.upload

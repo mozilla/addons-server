@@ -128,7 +128,10 @@ def _run_scanner_for_url(scanner_result, url, scanner, api_url, api_key):
             'download_url': url,
         }
         response = http.post(
-            url=api_url, json=json_payload, timeout=settings.SCANNER_TIMEOUT
+            url=api_url,
+            json=json_payload,
+            timeout=settings.SCANNER_TIMEOUT,
+            headers={'Authorization': f'Bearer {api_key}'},
         )
 
     try:
