@@ -88,7 +88,7 @@ from olympia.versions.tasks import duplicate_addon_version_for_rollback
 from olympia.versions.utils import get_next_version_number
 from olympia.zadmin.models import get_config
 
-from . import feeds, forms, signals, tasks
+from . import feeds, forms, tasks
 
 
 log = olympia.core.logger.getLogger('z.devhub')
@@ -1893,7 +1893,6 @@ def _submit_details(request, addon, version):
             if not static_theme:
                 reviewer_form.save()
             addon.update_status()
-            signals.submission_done.send(sender=addon)
         elif not static_theme:
             reviewer_form.save()
 
