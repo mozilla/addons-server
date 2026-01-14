@@ -7,6 +7,7 @@ from urllib.parse import quote_plus
 
 from django.conf import settings
 from django.contrib.auth import login, logout
+from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.utils.decorators import method_decorator
@@ -134,7 +135,7 @@ def find_user(identity):
     # If we find anyone with that email that has ever been banned, we want to
     # prevent them from logging in no matter what.
     is_banned = UserProfile.objects.filter(
-        email=identity['email'], banned__isnull=False
+        Q(email=identity['email']) | Q(fxa_id=identity['uid']), banned__isnull=False
     ).exists()
     if is_banned or is_task_user:
         # If the user was banned raise a 403, it's not the prettiest
