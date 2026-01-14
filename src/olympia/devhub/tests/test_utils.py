@@ -22,7 +22,11 @@ from olympia.applications.models import AppVersion
 from olympia.devhub import tasks, utils
 from olympia.files.tasks import repack_fileupload
 from olympia.files.tests.test_models import UploadMixin
-from olympia.scanners.tasks import run_customs, run_yara
+from olympia.scanners.tasks import (
+    call_webhooks_during_validation,
+    run_customs,
+    run_yara,
+)
 from olympia.versions.models import Version
 
 
@@ -466,6 +470,51 @@ class TestValidator(UploadMixin, TestCase):
         ]
         assert len(scanners_group.tasks) == len(expected_parallel_tasks)
         assert expected_parallel_tasks == [task.name for task in scanners_group.tasks]
+
+    @mock.patch('olympia.devhub.utils.chain')
+    def test_calls_webhooks_during_validation(self, mock_chain):
+        self.create_switch('enable-scanner-webhooks', active=True)
+        file_upload = self.get_upload('webextension.xpi', with_validation=False)
+
+        utils.Validator(file_upload)
+
+        mock_chain.assert_called_once_with(
+            tasks.create_initial_validation_results.si(),
+            repack_fileupload.s(file_upload.pk),
+            tasks.validate_upload.s(file_upload.pk),
+            tasks.check_for_api_keys_in_file.s(file_upload.pk),
+            tasks.check_data_collection_permissions.s(file_upload.pk),
+            group(
+                [
+                    tasks.forward_linter_results.s(file_upload.pk),
+                    call_webhooks_during_validation.s(file_upload.pk),
+                ]
+            ),
+            tasks.handle_upload_validation_result.s(file_upload.pk, False),
+        )
+
+    @mock.patch('olympia.devhub.utils.chain')
+    def test_does_not_call_webhooks_during_validation_when_switch_is_off(
+        self, mock_chain
+    ):
+        self.create_switch('enable-scanner-webhooks', active=False)
+        file_upload = self.get_upload('webextension.xpi', with_validation=False)
+
+        utils.Validator(file_upload)
+
+        mock_chain.assert_called_once_with(
+            tasks.create_initial_validation_results.si(),
+            repack_fileupload.s(file_upload.pk),
+            tasks.validate_upload.s(file_upload.pk),
+            tasks.check_for_api_keys_in_file.s(file_upload.pk),
+            tasks.check_data_collection_permissions.s(file_upload.pk),
+            group(
+                [
+                    tasks.forward_linter_results.s(file_upload.pk),
+                ]
+            ),
+            tasks.handle_upload_validation_result.s(file_upload.pk, False),
+        )
 
 
 class TestCreateVersionForUpload(UploadMixin, TestCase):

@@ -25,6 +25,8 @@ from olympia.constants.scanners import (
     NEW,
     RUNNING,
     SCHEDULED,
+    WEBHOOK,
+    WEBHOOK_DURING_VALIDATION,
     YARA,
 )
 from olympia.files.models import File
@@ -35,9 +37,14 @@ from olympia.scanners.models import (
     ScannerQueryRule,
     ScannerResult,
     ScannerRule,
+    ScannerWebhook,
+    ScannerWebhookEvent,
 )
 from olympia.scanners.tasks import (
+    _call_webhook,
     _run_yara,
+    call_webhooks,
+    call_webhooks_during_validation,
     mark_scanner_query_rule_as_completed_or_aborted,
     run_customs,
     run_narc_on_version,
@@ -1992,3 +1999,208 @@ class TestRunNarcQueryRule(TestRunYaraQueryRule):
         ]
         self.rule.reload()
         assert self.rule.state == RUNNING  # Not touched by this task.
+
+
+class TestCallWebhooks(UploadMixin, TestCase):
+    def setUp(self):
+        super().setUp()
+
+        self.upload = self.get_upload('webextension.xpi')
+
+    @mock.patch('olympia.scanners.tasks._call_webhook')
+    def test_call_webhooks(self, _call_webhook_mock):
+        assert len(ScannerResult.objects.all()) == 0
+
+        webhook_1 = ScannerWebhook.objects.create(
+            name='some-scanner',
+            url='https://example.org/webhook',
+            api_key='some-api-key',
+            is_active=True,
+        )
+        # This one is disabled.
+        webhook_2 = ScannerWebhook.objects.create(
+            name='some-disabled-scanner',
+            url='https://example.org/webhook',
+            api_key='some-api-key',
+            is_active=False,
+        )
+        webhook_3 = ScannerWebhook.objects.create(
+            name='some-other-scanner',
+            url='https://example.org/webhook',
+            api_key='some-api-key',
+            is_active=True,
+        )
+        # Register the webhook scanners for the same event.
+        event_1 = ScannerWebhookEvent.objects.create(
+            event=WEBHOOK_DURING_VALIDATION, webhook=webhook_1
+        )
+        _event_2 = ScannerWebhookEvent.objects.create(
+            event=WEBHOOK_DURING_VALIDATION, webhook=webhook_2
+        )
+        event_3 = ScannerWebhookEvent.objects.create(
+            event=WEBHOOK_DURING_VALIDATION, webhook=webhook_3
+        )
+
+        returned_data = {'data': 'some data returned by the scanner'}
+        _call_webhook_mock.return_value = returned_data
+
+        payload = {'some': 'payload to send to the scanners for that event'}
+
+        # Call the webhooks.
+        call_webhooks(WEBHOOK_DURING_VALIDATION, payload)
+
+        assert _call_webhook_mock.called
+        assert _call_webhook_mock.call_count == 2
+        _call_webhook_mock.assert_has_calls(
+            [
+                mock.call(webhook=webhook_1, payload=payload),
+                mock.call(webhook=webhook_3, payload=payload),
+            ]
+        )
+        results = ScannerResult.objects.all()
+        assert len(results) == 2
+        for result in results:
+            assert result.scanner == WEBHOOK
+            assert result.results == returned_data
+        assert results[0].webhook_event == event_1
+        assert results[1].webhook_event == event_3
+
+    @mock.patch('olympia.scanners.tasks._call_webhook')
+    def test_call_webhooks_raises(self, _call_webhook_mock):
+        assert len(ScannerResult.objects.all()) == 0
+
+        webhook = ScannerWebhook.objects.create(
+            name='some-scanner',
+            url='https://example.org/webhook',
+            api_key='some-api-key',
+            is_active=True,
+        )
+        ScannerWebhookEvent.objects.create(
+            event=WEBHOOK_DURING_VALIDATION, webhook=webhook
+        )
+
+        _call_webhook_mock.side_effect = RuntimeError()
+
+        payload = {'some': 'payload to send to the scanners for that event'}
+
+        with self.assertRaises(RuntimeError):
+            call_webhooks(WEBHOOK_DURING_VALIDATION, payload)
+
+
+class TestCallWebhook(TestCase):
+    def create_response(self, status_code=200, data=None):
+        response = mock.Mock(status_code=status_code)
+        response.json.return_value = data if data else {}
+        return response
+
+    @override_settings(SCANNER_TIMEOUT=123)
+    @mock.patch.object(requests.Session, 'post')
+    def test_call_webhook(self, requests_mock):
+        webhook = ScannerWebhook.objects.create(
+            name='some-scanner',
+            url='https://example.org/webhook',
+            api_key='some-api-key',
+            is_active=True,
+        )
+        payload = {'some': 'payload to send to the scanners for that event'}
+
+        response_data = {'some': 'data'}
+        requests_mock.return_value = self.create_response(data=response_data)
+
+        returned_value = _call_webhook(webhook, payload)
+
+        assert requests_mock.called
+        requests_mock.assert_called_with(
+            url=webhook.url,
+            json=payload,
+            timeout=123,
+            headers={'Authorization': f'Bearer {webhook.api_key}'},
+        )
+        assert returned_value == response_data
+
+    @override_settings(SCANNER_TIMEOUT=123)
+    @mock.patch.object(requests.Session, 'post')
+    def test_call_webhook_with_error_returned_by_the_scanner(self, requests_mock):
+        webhook = ScannerWebhook.objects.create(
+            name='some-scanner',
+            url='https://example.org/webhook',
+            api_key='some-api-key',
+            is_active=True,
+        )
+        payload = {'some': 'payload to send to the scanners for that event'}
+
+        response_data = {'error': 'ooops'}
+        requests_mock.return_value = self.create_response(data=response_data)
+
+        with self.assertRaises(ValueError) as exc:
+            _call_webhook(webhook, payload)
+
+        assert requests_mock.called
+        assert exc.exception.args[0] == response_data
+
+    @override_settings(SCANNER_TIMEOUT=123)
+    @mock.patch.object(requests.Session, 'post')
+    def test_call_webhook_with_http_error(self, requests_mock):
+        webhook = ScannerWebhook.objects.create(
+            name='some-scanner',
+            url='https://example.org/webhook',
+            api_key='some-api-key',
+            is_active=True,
+        )
+        payload = {'some': 'payload to send to the scanners for that event'}
+
+        response_data = {'message': 'http timeout'}
+        requests_mock.return_value = self.create_response(
+            status_code=504, data=response_data
+        )
+
+        with self.assertRaises(ValueError) as exc:
+            _call_webhook(webhook, payload)
+
+        assert requests_mock.called
+        assert exc.exception.args[0] == response_data
+
+
+class TestCallWebhooksDuringValidation(UploadMixin, TestCase):
+    def setUp(self):
+        super().setUp()
+
+        self.upload = self.get_upload('webextension.xpi')
+        self.results = {
+            **amo.VALIDATOR_SKELETON_RESULTS,
+        }
+
+    @mock.patch('olympia.scanners.tasks.call_webhooks')
+    def test_call_webhooks_during_validation(self, call_webhooks_mock):
+        results = call_webhooks_during_validation(self.results, self.upload.pk)
+
+        assert call_webhooks_mock.called
+        call_webhooks_mock.assert_called_with(
+            event_name=WEBHOOK_DURING_VALIDATION,
+            payload={'download_url': self.upload.get_authenticated_download_url()},
+            upload=self.upload,
+        )
+        assert self.results == results
+
+    def test_call_webhooks_during_validation_without_file_path(self):
+        self.create_switch('ignore-exceptions-in-scanner-tasks', active=False)
+        self.upload.update(path='/not-a-file')
+
+        results = call_webhooks_during_validation(self.results, self.upload.pk)
+
+        assert self.results != results
+        # This is coming from `VALIDATOR_SKELETON_EXCEPTION_WEBEXT` because
+        # `call_webhooks_during_validation` is decorated with
+        # `@validation_task`, which handles all uncaught exceptions gracefully.
+        #
+        # This is the case here since the task raises when the file upload path
+        # doesn't exist.
+        assert results['messages'][0]['uid'] == '35432f419340461897aa8362398339c4'
+
+    def test_call_webhooks_during_validation_without_file_path_ignore_exceptions(self):
+        self.create_switch('ignore-exceptions-in-scanner-tasks', active=True)
+        self.upload.update(path='/not-a-file')
+
+        results = call_webhooks_during_validation(self.results, self.upload.pk)
+
+        assert self.results == results

@@ -5,8 +5,16 @@ _WAT = 2
 YARA = 3
 _MAD = 4
 NARC = 5
+WEBHOOK = 6
 
-SCANNERS = {CUSTOMS: 'customs', _WAT: 'wat', YARA: 'yara', _MAD: 'mad', NARC: 'narc'}
+SCANNERS = {
+    CUSTOMS: 'customs',
+    _WAT: 'wat',
+    YARA: 'yara',
+    _MAD: 'mad',
+    NARC: 'narc',
+    WEBHOOK: 'webhook',
+}
 
 # Action IDs are also used for severity (the higher, the more severe).
 # The field is a PositiveSmallIntegerField, it should go up to 65535.
@@ -63,3 +71,10 @@ QUERY_RULE_STATES = {
 
 LABEL_BAD = 'bad'
 LABEL_GOOD = 'good'
+
+# Webhook events
+WEBHOOK_DURING_VALIDATION = 1
+
+WEBHOOK_EVENTS = {
+    WEBHOOK_DURING_VALIDATION: 'during_validation',
+}

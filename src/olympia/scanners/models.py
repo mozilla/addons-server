@@ -35,6 +35,7 @@ from olympia.constants.scanners import (
     SCANNERS,
     SCHEDULED,
     UNKNOWN,
+    WEBHOOK_EVENTS,
     YARA,
 )
 from olympia.files.models import FileUpload
@@ -75,7 +76,7 @@ class AbstractScannerResult(ModelBase):
         names. Not all scanners have rules that necessarily match."""
         if self.scanner in (NARC, YARA):
             return sorted({result['rule'] for result in self.results})
-        if self.scanner == CUSTOMS and 'matchedRules' in self.results:
+        if 'matchedRules' in self.results:
             return self.results['matchedRules']
         # We do not have support for the remaining scanners (yet).
         return []
@@ -246,9 +247,40 @@ class ScannerRule(AbstractScannerRule):
         db_table = 'scanners_rules'
 
 
+class ScannerWebhook(ModelBase):
+    name = models.CharField(max_length=100)
+    url = models.URLField(max_length=255)
+    api_key = models.CharField(max_length=100)
+    is_active = models.BooleanField(default=True)
+
+    class Meta:
+        db_table = 'scanners_webhooks'
+
+    def __str__(self):
+        return self.name
+
+
+class ScannerWebhookEvent(ModelBase):
+    webhook = models.ForeignKey(ScannerWebhook, on_delete=models.CASCADE)
+    event = models.PositiveSmallIntegerField(choices=WEBHOOK_EVENTS.items())
+
+    class Meta:
+        db_table = 'scanners_webhook_events'
+        unique_together = ('webhook', 'event')
+
+    def __str__(self):
+        return f'{self.webhook} ({WEBHOOK_EVENTS.get(self.event)})'
+
+
 class ScannerResult(AbstractScannerResult):
     upload = models.ForeignKey(
         FileUpload,
+        related_name='%(class)ss',  # scannerresults
+        on_delete=models.SET_NULL,
+        null=True,
+    )
+    webhook_event = models.ForeignKey(
+        ScannerWebhookEvent,
         related_name='%(class)ss',  # scannerresults
         on_delete=models.SET_NULL,
         null=True,
@@ -266,8 +298,8 @@ class ScannerResult(AbstractScannerResult):
         db_table = 'scanners_results'
         constraints = [
             models.UniqueConstraint(
-                fields=('upload', 'scanner', 'version'),
-                name='scanners_results_upload_id_scanner_version_id_ad9eb8a6_uniq',
+                fields=('upload', 'webhook_event', 'scanner', 'version'),
+                name='upload_webhook_event_scanner_version_uniq',
             )
         ]
         indexes = [
