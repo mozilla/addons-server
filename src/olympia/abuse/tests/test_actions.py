@@ -18,7 +18,7 @@ from olympia.activity.models import (
     AttachmentLog,
     ReviewActionReasonLog,
 )
-from olympia.addons.models import Addon, AddonUser
+from olympia.addons.models import Addon, AddonApprovalsCounter, AddonUser
 from olympia.amo.tests import (
     TestCase,
     addon_factory,
@@ -1067,6 +1067,54 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
         )
         assert new_activity.attachmentlog == attachmentlog
 
+    def _test_approve_appeal_or_override_but_listing_rejected(self, ContentActionClass):
+        self.addon.update(status=amo.STATUS_DISABLED)
+        ActivityLog.objects.all().delete()
+        action = ContentActionClass(self.decision)
+        activity = action.process_action()
+
+        assert self.addon.reload().status == amo.STATUS_REJECTED
+        assert activity.log == amo.LOG.FORCE_ENABLE
+        assert activity.arguments == [self.addon, self.decision, self.policy]
+        assert activity.user == self.task_user
+        assert ActivityLog.objects.count() == 3
+        second_activity = (
+            ActivityLog.objects.exclude(pk=activity.pk)
+            .exclude(action=amo.LOG.CHANGE_STATUS.id)
+            .get()
+        )
+        assert second_activity.log == amo.LOG.REVIEWER_PRIVATE_COMMENT
+        assert second_activity.arguments == [self.addon, self.decision]
+        assert second_activity.user == self.task_user
+        assert second_activity.details == {'comments': self.decision.private_notes}
+        assert len(mail.outbox) == 0
+
+        self.cinder_job.notify_reporters(action)
+        action.notify_owners()
+        self._test_owner_restore_email(f'Mozilla Add-ons: {self.addon.name}')
+
+    def test_approve_appeal_success_but_listing_rejected(self):
+        AddonApprovalsCounter.objects.create(
+            addon=self.addon, last_content_review_pass=False
+        )
+        self.past_negative_decision.update(appeal_job=self.cinder_job)
+        self._test_approve_appeal_or_override_but_listing_rejected(
+            ContentActionTargetAppealApprove
+        )
+        assert 'listing on Mozilla Add-ons remains unavailable' in mail.outbox[0].body
+        assert self.addon.reload().status == amo.STATUS_REJECTED
+
+    def test_approve_override_success_but_listing_rejected(self):
+        AddonApprovalsCounter.objects.create(
+            addon=self.addon, last_content_review_pass=False
+        )
+        self.decision.update(override_of=self.past_negative_decision)
+        self._test_approve_appeal_or_override_but_listing_rejected(
+            ContentActionOverrideApprove
+        )
+        assert 'listing on Mozilla Add-ons remains unavailable' in mail.outbox[0].body
+        assert self.addon.reload().status == amo.STATUS_REJECTED
+
 
 class TestContentActionRejectVersion(TestContentActionDisableAddon):
     ActionClass = ContentActionRejectVersion
@@ -1183,6 +1231,26 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         self.cinder_job.notify_reporters(action)
         action.notify_owners()
         self._test_owner_restore_email(f'Mozilla Add-ons: {self.addon.name}')
+
+    def test_approve_appeal_success_but_listing_rejected(self):
+        self.addon.update(status=amo.STATUS_REJECTED)
+        AddonApprovalsCounter.objects.create(
+            addon=self.addon, last_content_review_pass=False
+        )
+        self.past_negative_decision.update(appeal_job=self.cinder_job)
+        self._test_approve_appeal_or_override(ContentActionTargetAppealApprove)
+        assert self.addon.reload().status == amo.STATUS_REJECTED
+        assert 'listing on Mozilla Add-ons remains unavailable' in mail.outbox[0].body
+
+    def test_approve_override_success_but_listing_rejected(self):
+        self.addon.update(status=amo.STATUS_REJECTED)
+        AddonApprovalsCounter.objects.create(
+            addon=self.addon, last_content_review_pass=False
+        )
+        self.decision.update(override_of=self.past_negative_decision)
+        self._test_approve_appeal_or_override(ContentActionOverrideApprove)
+        assert self.addon.reload().status == amo.STATUS_REJECTED
+        assert 'listing on Mozilla Add-ons remains unavailable' in mail.outbox[0].body
 
     def test_approve_override_success_for_delayed_reject(self):
         for version in self.past_negative_decision.target_versions.all():
@@ -1996,6 +2064,14 @@ class TestContentActionRejectListingContent(TestContentActionDisableAddon):
             'comments': self.decision.reasoning,
             'policy_texts': [self.policy.full_text()],
         }
+
+    def test_approve_appeal_success_but_listing_rejected(self):
+        # This test doesn't apply for this ActionClass.
+        pass
+
+    def test_approve_override_success_but_listing_rejected(self):
+        pass
+        # This test doesn't apply for this ActionClass.
 
 
 class TestContentActionCollection(BaseTestContentAction, TestCase):

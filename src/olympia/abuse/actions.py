@@ -136,6 +136,8 @@ class ContentAction:
         )
 
         context_dict = {
+            'is_listing_disabled': getattr(self.target, 'status', None)
+            == amo.STATUS_REJECTED,
             'is_third_party_initiated': self.decision.is_third_party_initiated,
             # It's a plain-text email so we're safe to include comments without escaping
             # them - we don't want ', etc, rendered as html entities.
