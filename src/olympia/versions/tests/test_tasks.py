@@ -14,7 +14,6 @@ from django.urls import reverse
 from django.utils.encoding import force_str
 
 import pytest
-import requests
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
@@ -28,12 +27,13 @@ from olympia.amo.tests import (
 )
 from olympia.blocklist.models import Block, BlockType, BlockVersion
 from olympia.constants.blocklist import REASON_VERSION_DELETED
+from olympia.constants.scanners import WEBHOOK_ON_SOURCE_CODE_UPLOADED
 from olympia.reviewers.models import NeedsHumanReview
 
 from ..models import Version, VersionPreview
 from ..tasks import (
     UI_FIELDS,
-    call_source_builder,
+    call_webhooks_on_source_code_uploaded,
     duplicate_addon_version_for_rollback,
     generate_static_theme_preview,
     hard_delete_versions,
@@ -858,19 +858,19 @@ def test_soft_block_versions():
     assert len(mail.outbox) == 0
 
 
-class TestCallSourceBuilder(TestCase):
-    @mock.patch.object(requests.Session, 'post')
-    def test_call_with_mock(self, requests_mock):
+class TestCallWebhooksOnSourceCodeUploaded(TestCase):
+    @mock.patch('olympia.versions.tasks.call_webhooks')
+    def test_call_with_mock(self, call_webhooks_mock):
         addon = addon_factory()
         version = version_factory(addon=addon)
         activity_log_id = 123
 
-        call_source_builder(version.pk, activity_log_id)
+        call_webhooks_on_source_code_uploaded(version.pk, activity_log_id)
 
-        assert requests_mock.called
-        requests_mock.assert_called_with(
-            url=settings.SOURCE_BUILDER_API_URL,
-            json={
+        assert call_webhooks_mock.called
+        call_webhooks_mock.assert_called_with(
+            event_name=WEBHOOK_ON_SOURCE_CODE_UPLOADED,
+            payload={
                 'addon_id': addon.id,
                 'version_id': version.id,
                 'download_source_url': urljoin(
@@ -880,24 +880,23 @@ class TestCallSourceBuilder(TestCase):
                 'license_slug': version.license.slug,
                 'activity_log_id': activity_log_id,
             },
-            timeout=settings.SOURCE_BUILDER_API_TIMEOUT,
-            headers={'Authorization': f'Bearer {settings.SOURCE_BUILDER_API_KEY}'},
+            version=version,
         )
 
-    @mock.patch.object(requests.Session, 'post')
-    def test_call_with_mock_and_deleted_version(self, requests_mock):
+    @mock.patch('olympia.versions.tasks.call_webhooks')
+    def test_call_with_mock_and_deleted_version(self, call_webhooks_mock):
         addon = addon_factory()
         version = version_factory(addon=addon)
         # Delete the version. The task uses `Version.unfiltered` to account for that.
         version.delete()
         activity_log_id = 123
 
-        call_source_builder(version.pk, activity_log_id)
+        call_webhooks_on_source_code_uploaded(version.pk, activity_log_id)
 
-        assert requests_mock.called
-        requests_mock.assert_called_with(
-            url=settings.SOURCE_BUILDER_API_URL,
-            json={
+        assert call_webhooks_mock.called
+        call_webhooks_mock.assert_called_with(
+            event_name=WEBHOOK_ON_SOURCE_CODE_UPLOADED,
+            payload={
                 'addon_id': addon.id,
                 'version_id': version.id,
                 'download_source_url': urljoin(
@@ -907,12 +906,11 @@ class TestCallSourceBuilder(TestCase):
                 'license_slug': version.license.slug,
                 'activity_log_id': activity_log_id,
             },
-            timeout=settings.SOURCE_BUILDER_API_TIMEOUT,
-            headers={'Authorization': f'Bearer {settings.SOURCE_BUILDER_API_KEY}'},
+            version=version,
         )
 
-    @mock.patch.object(requests.Session, 'post')
-    def test_no_call_with_mock_when_license_is_missing(self, requests_mock):
+    @mock.patch('olympia.versions.tasks.call_webhooks')
+    def test_no_call_with_mock_when_license_is_missing(self, call_webhooks_mock):
         addon = addon_factory()
         version = version_factory(addon=addon)
         # Remove the license for this version, which is the case for unlisted
@@ -920,6 +918,6 @@ class TestCallSourceBuilder(TestCase):
         version.update(license=None)
         activity_log_id = 123
 
-        call_source_builder(version.pk, activity_log_id)
+        call_webhooks_on_source_code_uploaded(version.pk, activity_log_id)
 
-        requests_mock.assert_not_called()
+        call_webhooks_mock.assert_not_called()

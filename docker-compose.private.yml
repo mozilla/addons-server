@@ -27,3 +27,7 @@ services:
       - "nginx:olympia.test"
     depends_on:
       - web
+    networks:
+      default:
+        aliases:
+          - source-builder.test

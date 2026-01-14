@@ -823,7 +823,7 @@ class Version(OnChangeMixin, ModelBase):
         from olympia.activity.utils import log_and_notify
         from olympia.reviewers.models import NeedsHumanReview
 
-        from .tasks import call_source_builder
+        from .tasks import call_webhooks_on_source_code_uploaded
 
         if self.source:
             # Add Activity Log, notifying staff, relevant reviewers and
@@ -834,8 +834,10 @@ class Version(OnChangeMixin, ModelBase):
                 reason = NeedsHumanReview.REASONS.PENDING_REJECTION_SOURCES_PROVIDED
                 NeedsHumanReview.objects.create(version=self, reason=reason)
 
-            if waffle.switch_is_active('enable-source-builder'):
-                call_source_builder.delay(version_pk=self.pk, activity_log_id=note.id)
+            if waffle.switch_is_active('enable-scanner-webhooks'):
+                call_webhooks_on_source_code_uploaded.delay(
+                    version_pk=self.pk, activity_log_id=note.id
+                )
 
     @classmethod
     def transformer(cls, versions):
