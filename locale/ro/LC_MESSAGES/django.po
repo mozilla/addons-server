@@ -2730,7 +2730,7 @@ msgstr "Dacă vrei să soliciți contribuții financiare de la utilizatori, sete
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:45
 #, python-format
 msgid "Supported domains: %(supported_domains)s"
-msgstr ""
+msgstr "Domenii acceptate: %(supported_domains)s"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:55 src/olympia/translations/templates/translations/trans-menu.html:13
 msgid "Default Locale"
@@ -2825,12 +2825,16 @@ msgid ""
 "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Minimum length: %(min_length)s characters; Recommended "
 "length: 250 characters. If you need a longer description, make sure the first 250 characters contain the most important description points."
 msgstr ""
+"O explicație mai lungă a caracteristicilor, funcționalității și a altor informații relevante. Câmpul este afișat doar pe pagina produsului suplimentului. Lungime minimă: %(min_length)s (de) "
+"caractere; Lungime recomandată: 250 de caractere. Dacă ai nevoie de o descriere mai lungă, asigură-te că primele 250 de caractere conțin cele mai importante puncte din descriere."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:140
 msgid ""
 "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Recommended length: 250 characters. If you need a longer "
 "description, make sure the first 250 characters contain the most important description points."
 msgstr ""
+"O explicație mai lungă a caracteristicilor, funcționalității și a altor informații relevante. Câmpul este afișat doar pe pagina produsului suplimentului. Lungime recomandată: 250 de caractere. Dacă "
+"ai nevoie de o descriere mai lungă, asigură-te că primele 250 de caractere conțin cele mai importante puncte din descriere."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:169
 msgid "Experimental?"
@@ -3563,7 +3567,7 @@ msgstr "Creează o versiune de temă"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:81
 msgid "You can upload a finished theme using the upload option above, or you can build it yourself using this tool."
-msgstr ""
+msgstr "Poți încărca o temă finalizată folosind opțiunea de încărcare de mai sus sau o poți construi singur(ă) folosind acest instrument."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:87
 msgid "Create a Theme"
@@ -4763,7 +4767,7 @@ msgstr "Schimbă-ți modul în care navighezi pe Reddit folosind etichete și mu
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:158
 msgid "Screenshot webpages, make edits & share."
-msgstr ""
+msgstr "Fă capturi de ecran cu pagini web, editează--le și partajează-le."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:161
