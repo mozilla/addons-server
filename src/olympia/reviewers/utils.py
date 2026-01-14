@@ -341,30 +341,20 @@ class ReviewHelper:
 
     def set_review_handler(self, channel):
         """Set the handler property."""
+        kwargs = {
+            'addon': self.addon,
+            'version': self.version,
+            'user': self.user,
+            'human_review': self.human_review,
+            'content_review': self.content_review,
+            'helper': self,
+        }
         if channel == amo.CHANNEL_UNLISTED:
-            self.handler = ReviewUnlisted(
-                addon=self.addon,
-                version=self.version,
-                user=self.user,
-                human_review=self.human_review,
-                content_review=self.content_review,
-            )
+            self.handler = ReviewUnlisted(**kwargs)
         elif self.addon.status == amo.STATUS_NOMINATED:
-            self.handler = ReviewAddon(
-                addon=self.addon,
-                version=self.version,
-                user=self.user,
-                human_review=self.human_review,
-                content_review=self.content_review,
-            )
+            self.handler = ReviewAddon(**kwargs)
         else:
-            self.handler = ReviewFiles(
-                addon=self.addon,
-                version=self.version,
-                user=self.user,
-                human_review=self.human_review,
-                content_review=self.content_review,
-            )
+            self.handler = ReviewFiles(**kwargs)
 
     def get_actions(self):
         actions = OrderedDict()
@@ -917,6 +907,7 @@ class ReviewBase:
         user,
         content_review=False,
         human_review=True,
+        helper=None,
     ):
         self.user = user
         self.human_review = human_review
@@ -929,6 +920,7 @@ class ReviewBase:
         )
         self.content_review = content_review
         self.redirect_url = None
+        self.helper = helper  # backreference to the ReviewHelper if needed
 
     def set_addon(self):
         """Alter addon, set human_review_date timestamp on version being reviewed."""
@@ -1160,12 +1152,10 @@ class ReviewBase:
         # versions.
         self.addon.update_all_due_dates()
 
-    def clear_specific_needs_human_review_flags(
-        self, version, *, abuse_appeal_too=False
-    ):
+    def clear_specific_needs_human_review_flags(self, version):
         """Clear needs_human_review flags on a specific version."""
         qs = version.needshumanreview_set.filter(is_active=True)
-        if not abuse_appeal_too:
+        if self.helper and self.helper.unresolved_cinderjob_qs.exists():
             qs = qs.exclude(
                 reason__in=NeedsHumanReview.REASONS.ABUSE_OR_APPEAL_RELATED.values
             )
