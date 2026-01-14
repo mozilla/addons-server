@@ -493,6 +493,29 @@ class TestValidator(UploadMixin, TestCase):
             tasks.handle_upload_validation_result.s(file_upload.pk, False),
         )
 
+    @mock.patch('olympia.devhub.utils.chain')
+    def test_does_not_call_webhooks_during_validation_when_switch_is_off(
+        self, mock_chain
+    ):
+        self.create_switch('enable-scanner-webhooks', active=False)
+        file_upload = self.get_upload('webextension.xpi', with_validation=False)
+
+        utils.Validator(file_upload)
+
+        mock_chain.assert_called_once_with(
+            tasks.create_initial_validation_results.si(),
+            repack_fileupload.s(file_upload.pk),
+            tasks.validate_upload.s(file_upload.pk),
+            tasks.check_for_api_keys_in_file.s(file_upload.pk),
+            tasks.check_data_collection_permissions.s(file_upload.pk),
+            group(
+                [
+                    tasks.forward_linter_results.s(file_upload.pk),
+                ]
+            ),
+            tasks.handle_upload_validation_result.s(file_upload.pk, False),
+        )
+
 
 class TestCreateVersionForUpload(UploadMixin, TestCase):
     fixtures = ['base/addon_3615']
