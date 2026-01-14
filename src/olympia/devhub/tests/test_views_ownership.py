@@ -523,7 +523,7 @@ class TestEditAuthor(TestOwnership):
         assert not form.is_valid()
         assert form.errors == [{'user': ['No user with that email.']}]
 
-    def test_cant_add_deleted_user(self):
+    def test_cant_add_user_with_no_fxa_id(self):
         regular = UserProfile.objects.get(email='regular@mozilla.com')
         regular.update(fxa_id=None)
         additional_data = formset(

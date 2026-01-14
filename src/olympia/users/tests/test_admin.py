@@ -1200,7 +1200,7 @@ class TestUserAdmin(TestCase):
 
     def test_access_using_email_multiple_matches(self):
         lookup_user = user_factory(email='foo@bar.xyz')
-        duplicate_user = user_factory(email='foo@bar.xyz')
+        user_factory(email=lookup_user.email)  # Dupe, forcing to redirect to changelist
         detail_url_by_email = reverse(
             'admin:users_userprofile_change', args=(lookup_user.email,)
         )

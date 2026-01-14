@@ -307,9 +307,7 @@ class TestFindUser(TestCase):
 
     def test_two_users_exist(self):
         me = UserProfile.objects.create(fxa_id='9999', email='me@amo.ca', username='me')
-        you = UserProfile.objects.create(
-            fxa_id='8888', email='you@amo.ca', username='you'
-        )
+        UserProfile.objects.create(fxa_id='8888', email='you@amo.ca', username='you')
         # Correct fxa_id wins all the time, email is ignored even if it would
         # match.
         assert views.find_user({'uid': '9999', 'email': 'you@amo.ca'}) == me

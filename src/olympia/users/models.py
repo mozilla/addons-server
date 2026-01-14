@@ -116,12 +116,12 @@ class UserEmailField(forms.ModelChoiceField):
             value = self.queryset.filter(**{key: value}).last()
             if value is None:
                 raise self.queryset.model.DoesNotExist
-        except (ValueError, TypeError, self.queryset.model.DoesNotExist):
+        except (ValueError, TypeError, self.queryset.model.DoesNotExist) as exc:
             raise ValidationError(
                 self.error_messages['invalid_choice'],
                 code='invalid_choice',
                 params={'value': value},
-            )
+            ) from exc
         return value
 
 
