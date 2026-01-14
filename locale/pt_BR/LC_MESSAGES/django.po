@@ -2712,7 +2712,7 @@ msgstr "Se você quiser solicitar contribuições monetárias de seus usuários,
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:45
 #, python-format
 msgid "Supported domains: %(supported_domains)s"
-msgstr ""
+msgstr "Domínios suportados: %(supported_domains)s"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:55 src/olympia/translations/templates/translations/trans-menu.html:13
 msgid "Default Locale"
@@ -2807,12 +2807,16 @@ msgid ""
 "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Minimum length: %(min_length)s characters; Recommended "
 "length: 250 characters. If you need a longer description, make sure the first 250 characters contain the most important description points."
 msgstr ""
+"Uma explicação mais longa dos recursos, funcionalidades e outras informações relevantes. Este campo só é exibido na página de produto da extensão. Tamanho mínimo: %(min_length)s caracteres; Tamanho "
+"recomendado: 250 caracteres. Se precisar de uma descrição mais longa, certifique-se de que os primeiros 250 caracteres contenham os pontos mais importantes da descrição."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:140
 msgid ""
 "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Recommended length: 250 characters. If you need a longer "
 "description, make sure the first 250 characters contain the most important description points."
 msgstr ""
+"Uma explicação mais longa dos recursos, funcionalidades e outras informações relevantes. Este campo só é exibido na página de produto da extensão. Tamanho recomendado: 250 caracteres. Se precisar de"
+" uma descrição mais longa, certifique-se de que os primeiros 250 caracteres contenham os pontos mais importantes da descrição."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:169
 msgid "Experimental?"
@@ -3541,7 +3545,7 @@ msgstr "Criar uma versão do tema"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:81
 msgid "You can upload a finished theme using the upload option above, or you can build it yourself using this tool."
-msgstr ""
+msgstr "Você pode enviar um tema pronto usando a opção de envio acima, ou pode criar você mesmo usando esta ferramenta."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:87
 msgid "Create a Theme"
@@ -4738,7 +4742,7 @@ msgstr "Altere a forma como navega no Reddit usando marcações e mais."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:158
 msgid "Screenshot webpages, make edits & share."
-msgstr ""
+msgstr "Faça capturas de tela de páginas da web, edições e compartilhe."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:161
