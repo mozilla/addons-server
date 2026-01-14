@@ -2678,7 +2678,7 @@ msgstr "如果您想请求用户捐款，在这里放下捐款页面。"
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:45
 #, python-format
 msgid "Supported domains: %(supported_domains)s"
-msgstr ""
+msgstr "支持的域名：%(supported_domains)s"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:55 src/olympia/translations/templates/translations/trans-menu.html:13
 msgid "Default Locale"
@@ -2768,13 +2768,13 @@ msgstr "描述"
 msgid ""
 "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Minimum length: %(min_length)s characters; Recommended "
 "length: 250 characters. If you need a longer description, make sure the first 250 characters contain the most important description points."
-msgstr ""
+msgstr "关于功能、作用及其他相关信息的详细说明。此内容仅显示在附加组件的产品页面。最小长度：%(min_length)s 个字符；建议长度：250 个字符。如需更长的描述，请确保前 250 个字符包含最重要的说明要点。"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:140
 msgid ""
 "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Recommended length: 250 characters. If you need a longer "
 "description, make sure the first 250 characters contain the most important description points."
-msgstr ""
+msgstr "关于功能、作用及其他相关信息的详细说明。此内容仅显示在附加组件的产品页面。建议长度：250 个字符。如需更长的描述，请确保前 250 个字符包含最重要的说明要点。"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:169
 msgid "Experimental?"
@@ -3481,7 +3481,7 @@ msgstr "创建新版主题"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:81
 msgid "You can upload a finished theme using the upload option above, or you can build it yourself using this tool."
-msgstr ""
+msgstr "您可以使用上方的“上传”选项来上传已制作完成的主题，也可以使用本工具自行构建。"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:87
 msgid "Create a Theme"
@@ -4649,7 +4649,7 @@ msgstr "使用标签（tags）等功能改变浏览 Reddit 的方式。"
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:158
 msgid "Screenshot webpages, make edits & share."
-msgstr ""
+msgstr "网页截图、编辑和分享。"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:161
