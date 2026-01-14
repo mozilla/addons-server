@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-01-14 09:06+0000\n"
+"POT-Creation-Date: 2026-01-14 10:33+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -567,7 +567,7 @@ msgstr ""
 
 #: src/olympia/amo/context_processors.py:79
 #: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:20
-#: src/olympia/devhub/views.py:2121
+#: src/olympia/devhub/views.py:2120
 msgid "Manage API Keys"
 msgstr ""
 
@@ -2488,41 +2488,41 @@ msgstr ""
 msgid "Add-on uploads are temporarily unavailable"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1981
+#: src/olympia/devhub/views.py:1980
 msgid "Review requested."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1983
+#: src/olympia/devhub/views.py:1982
 msgid "You must provide further details to proceed."
 msgstr ""
 
-#: src/olympia/devhub/views.py:2096
+#: src/olympia/devhub/views.py:2095
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr ""
 
-#: src/olympia/devhub/views.py:2115
+#: src/olympia/devhub/views.py:2114
 msgid ""
 "Keep your API keys secret and never share them with anyone, including Mozilla"
 " contributors."
 msgstr ""
 
-#: src/olympia/devhub/views.py:2132
+#: src/olympia/devhub/views.py:2131
 msgid "New API key created"
 msgstr ""
 
-#: src/olympia/devhub/views.py:2143
+#: src/olympia/devhub/views.py:2142
 msgid "API key revoked"
 msgstr ""
 
-#: src/olympia/devhub/views.py:2203
+#: src/olympia/devhub/views.py:2202
 msgid "Verify email"
 msgstr ""
 
-#: src/olympia/devhub/views.py:2205
+#: src/olympia/devhub/views.py:2204
 msgid "Send another email"
 msgstr ""
 
-#: src/olympia/devhub/views.py:2238
+#: src/olympia/devhub/views.py:2237
 msgid "Your email has been verified"
 msgstr ""
 
