@@ -488,7 +488,11 @@ class TestUserAdmin(TestCase):
         assert response.status_code == 200
         response = self.client.post(
             self.detail_url,
-            {'display_name': 'foo', 'email': self.user.email},
+            {
+                'display_name': 'foo',
+                'email': self.user.email,
+                'fxa_id': self.user.fxa_id,
+            },
             follow=True,
         )
         assert response.status_code == 200
