@@ -3027,7 +3027,7 @@ msgstr "Ürün sayfanızda ekran görüntülerinin bulunması, yüklenme şansı
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:182 src/olympia/devhub/templates/devhub/addons/submit/distribute.html:30
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:85 src/olympia/devhub/templates/devhub/addons/submit/upload.html:101
 msgid "Continue"
-msgstr "Devam Et"
+msgstr "Devam et"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:2
 msgid "Can others share your Add-on, as long as you're given credit?"
@@ -3348,7 +3348,7 @@ msgstr "Bu notlar ayrıntı sayfasında görünecektir."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html:3 src/olympia/devhub/templates/devhub/addons/submit/distribute.html:9
 msgid "How to Distribute this Version"
-msgstr "Bu Sürüm Nasıl Dağıtılır?"
+msgstr "Bu sürüm nasıl dağıtılacak?"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html:10
 msgid "To get started, select how you would like to distribute this version."
