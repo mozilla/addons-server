@@ -514,7 +514,7 @@ msgstr "Başvurularımı Yönet"
 #: src/olympia/amo/context_processors.py:65 src/olympia/devhub/templates/devhub/addons/dashboard.html:24 src/olympia/devhub/templates/devhub/addons/submit/base.html:8
 #: src/olympia/devhub/templates/devhub/nav.html:28 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:97
 msgid "Submit a New Add-on"
-msgstr "Yeni Eklenti Gönder"
+msgstr "Yeni eklenti gönder"
 
 #: src/olympia/amo/context_processors.py:71 src/olympia/devhub/templates/devhub/addons/dashboard.html:28 src/olympia/devhub/templates/devhub/addons/submit/base.html:6
 #: src/olympia/devhub/templates/devhub/nav.html:30 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:98
@@ -3178,11 +3178,11 @@ msgstr "Daha fazla"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:54 src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:4
 msgid "Manage Status & Versions"
-msgstr "Durumu ve Sürümleri Yönet"
+msgstr "Durumu ve sürümleri yönet"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:65 src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:49
 msgid "View Recent Changes"
-msgstr "Son Değişikliklere Bak"
+msgstr "Son değişikliklere bak"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html:9
 msgid "This add-on is missing some required information before it can be submitted for publication."
@@ -3428,7 +3428,7 @@ msgstr "Kaynak kodu yükleme"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:11
 msgid "Do You Need to Submit Source Code?"
-msgstr "Kaynak kodu göndermeniz mi gerekiyor?"
+msgstr "Kaynak kodu göndermeniz gerekiyor mu?"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:15
 msgid "Mozilla’s add-on reviewers need to be able to read and reproduce the code in your extension. If they can’t, your extension may be rejected."
@@ -3853,7 +3853,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/agreement.html:10
 msgid "Review Policies and Rules"
-msgstr "İnceleme İlkeleri ve Kuralları"
+msgstr "İnceleme Politikaları ve Kuralları"
 
 #: src/olympia/devhub/templates/devhub/includes/agreement.html:13
 msgid "I have read and accept this Agreement and the Rules and Policies"
@@ -6903,7 +6903,7 @@ msgstr ""
 #: src/olympia/users/models.py:1269
 #, python-brace-format
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
-msgstr "Lütfen {url} adresini ziyaret ederek Firefox Eklenti Dağıtım Sözleşme'mizi ve İnceleme İlkeleri ve Kuralları'mızı okuyup kabul edin"
+msgstr "Lütfen {url} adresini ziyaret ederek Firefox Eklenti Dağıtım Sözleşmemizi ve İnceleme Politikaları ve Kuralları'mızı okuyup kabul edin"
 
 #: src/olympia/users/notifications.py:27
 msgid "an add-on developer replies to my review"
