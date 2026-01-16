@@ -2659,7 +2659,7 @@ msgstr "Bu eklentiye eklenen ancak onaylanmayan yazarlar."
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:84 src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:174 src/olympia/devhub/templates/devhub/addons/owner.html:78
 #: src/olympia/devhub/templates/devhub/versions/edit.html:134 src/olympia/translations/templates/translations/trans-menu.html:48
 msgid "Save Changes"
-msgstr "Değişiklikleri Kaydet"
+msgstr "Değişiklikleri kaydet"
 
 #: src/olympia/devhub/templates/devhub/addons/owner.html:95
 msgid ""
@@ -4220,11 +4220,11 @@ msgstr "Buradaki uygulama bilgilerinin değiştirilmesi, paketteki kurulum bildi
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:55
 msgid "Add Another Application&hellip;"
-msgstr "Başka bir uygulama ekle &hellip;"
+msgstr "Başka bir uygulama ekle&hellip;"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:66
 msgid "Version Notes"
-msgstr "Sürüm Notları"
+msgstr "Sürüm notları"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:67
 msgid ""
@@ -4238,7 +4238,7 @@ msgstr "Onay durumu"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:106
 msgid "Notes for Reviewers"
-msgstr "İnceleyicilere Yönelik Notlar"
+msgstr "İnceleyicilere yönelik notlar"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:107
 msgid "Optionally, enter any information that may be useful to the Reviewer of this add-on, such as test account information."
@@ -4364,7 +4364,7 @@ msgstr "Önceki bir sürüme geri dön"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:230
 msgid "Upload a New Version"
-msgstr "Yeni bir sürüm yükleyin"
+msgstr "Yeni sürüm gönder"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:280
 #, python-brace-format

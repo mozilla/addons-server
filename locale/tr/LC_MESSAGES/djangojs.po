@@ -479,11 +479,11 @@ msgstr "Yükleniyor&hellip;"
 
 #: static/js/zamboni/reviewers.js:601
 msgid "Version Notes"
-msgstr "Sürüm Notları"
+msgstr "Sürüm notları"
 
 #: static/js/zamboni/reviewers.js:608
 msgid "Notes for Reviewers"
-msgstr "İnceleyicilere Yönelik Notlar"
+msgstr "İnceleyicilere yönelik notlar"
 
 #: static/js/zamboni/reviewers.js:615
 msgid "No version notes found"
