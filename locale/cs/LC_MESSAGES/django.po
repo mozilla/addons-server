@@ -3547,7 +3547,7 @@ msgstr "Vytvořit verzi motivu vzhledu"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:81
 msgid "You can upload a finished theme using the upload option above, or you can build it yourself using this tool."
-msgstr "Můžete nahrát hotový motiv vzhledu pomocí možnosti nahrání výše, nebo si ho můžete pomocí tohoto nástroje vytvořit sami."
+msgstr "Hotový motiv můžete nahrát pomocí výše uvedené možnosti nahrávání nebo si jej můžete vytvořit sami pomocí tohoto nástroje."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:87
 msgid "Create a Theme"
