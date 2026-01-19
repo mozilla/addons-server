@@ -6,599 +6,481 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-01-19 14:53+0000\n"
 "Language: si\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Pontoon\n"
 
-#: static/js/common/upload-addon.js:54 static/js/common/upload-image.js:136
 msgid "There was a problem contacting the server."
 msgstr "සේවාදායකය සම්බන්‍ධ කර ගැනීමේ ගැටලුවකි."
 
-#: static/js/common/upload-addon.js:78
 msgid "Select a file..."
 msgstr "ගොනුවක් තෝරන්න..."
 
-#: static/js/common/upload-addon.js:82
 msgid "Your add-on should end with .zip, .xpi or .crx"
 msgstr "ඔබගේ එක්කහුව .zip, .xpi හෝ .crx න් නිම විය යුතුය"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#: static/js/common/upload-addon.js:118
-#, python-brace-format, python-format
+#, python-format, python-brace-format
 msgid "{0}% complete"
 msgstr "{0}% ක් සම්පූර්ණයි"
 
-#: static/js/common/upload-addon.js:122
 #, python-brace-format
 msgid "{0} of {1}"
 msgstr "{1} න් {0}"
 
-#: static/js/common/upload-addon.js:166
 msgid "Cancel"
 msgstr "අවලංගු"
 
-#: static/js/common/upload-addon.js:189
 #, python-brace-format
 msgid "Uploading {0}"
 msgstr "{0} උඩුගත වෙමින්"
 
-#: static/js/common/upload-addon.js:229
 #, python-brace-format
 msgid "Error with {0}"
 msgstr "{0} සමඟ දෝෂ"
 
-#: static/js/common/upload-addon.js:237
 msgid "Please make sure to report any linting related issues on GitHub"
 msgstr "කරුණාකර සියලුම ලින්ටින් ආශ්‍රිත ගැටළු ගිට්හබ් වෙත වාර්තා කරන්න"
 
-#: static/js/common/upload-addon.js:248
 #, python-brace-format
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] "දෝෂ {0} ක් සහිතව ඔබගේ එක්කහුව වලංගුකරණයට අසමත් විය."
 msgstr[1] "දෝෂ {0} ක් සහිතව ඔබගේ එක්කහුව වලංගුකරණයට අසමත් විය."
 
-#: static/js/common/upload-addon.js:266
 #, python-brace-format
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;සහ තවත් {0}"
 msgstr[1] "&hellip;සහ තවත් {0}"
 
-#: static/js/common/upload-addon.js:287 static/js/common/upload-addon.js:705
 msgid "See full validation report"
 msgstr "පූර්ණ වලංගුකරණ වාර්තාව බලන්න"
 
-#: static/js/common/upload-addon.js:300
 #, python-brace-format
 msgid "Validating {0}"
 msgstr "{0} වලංගු කරමින්"
 
-#: static/js/common/upload-addon.js:350
 #, python-brace-format
 msgid "Your add-on exceeds the maximum size of {0}."
 msgstr "ඔබගේ එක්කහුව උපරිම ප්‍රමාණය {0} ඉක්මවයි."
 
-#: static/js/common/upload-addon.js:358
 #, python-brace-format
 msgid "Received an empty response from the server; status: {0}"
 msgstr "සේවාදායකයෙන් හිස් ප්‍රතිචාරයක් ලැබුණි; තත්‍වය: {0}"
 
-#: static/js/common/upload-addon.js:403
 msgid "Your extension has to be compatible with at least one application."
 msgstr "ඔබේ දිගුව අවම වශයෙන් එක් යෙදුමකට ගැළපිය යුතුය."
 
-#: static/js/common/upload-addon.js:473
 msgid "Unexpected server error while validating."
 msgstr "වලංගුකරණය අතරතුර අනපේක්‍ෂිත සේවාදායක දෝෂයකි."
 
-#: static/js/common/upload-addon.js:519
 msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
 msgstr ""
 
-#: static/js/common/upload-addon.js:561
 #, python-brace-format
 msgid "Finished validating {0}"
 msgstr "වලංගුකරණය අවසන්: {0}"
 
-#: static/js/common/upload-addon.js:568
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr "ඔබගේ එක්කහුව වලංගුකරණය ඉකුත් වී ඇත, එය අතින් සමාලෝචනය කෙරේ."
 
-#: static/js/common/upload-addon.js:573
 #, python-brace-format
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] "ඔබගේ එක්කහුව දෝෂ රහිතව හා අවවාද {0} ක් සහිතව වලංගු කෙරිිණි."
 msgstr[1] "ඔබගේ එක්කහුව දෝෂ රහිතව හා අවවාද {0} ක් සහිතව වලංගු කෙරිිණි."
 
-#: static/js/common/upload-addon.js:582
 #, python-brace-format
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] "ඔබගේ එක්කහුව දෝෂ රහිතව හා පණිවිඩ {0} ක් සහිතව වලංගු කෙරිිණි."
 msgstr[1] "ඔබගේ එක්කහුව දෝෂ රහිතව හා පණිවිඩ {0} ක් සහිතව වලංගු කෙරිිණි."
 
-#: static/js/common/upload-addon.js:590
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "ඔබගේ එක්කහුව දෝෂ හා අවවාද රහිතව වලංගු කෙරිිණි."
 
-#: static/js/common/upload-addon.js:651
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "විස්තරාත්මක අනුවාද සටහන් යොදන්න (ඊළඟ පියවරේදී හැකිය)."
 
-#: static/js/common/upload-addon.js:654
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
 
-#: static/js/common/upload-addon.js:660
 msgid "Add-on submission checklist"
 msgstr ""
 
-#: static/js/common/upload-addon.js:664
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr ""
 
-#: static/js/common/upload-addon.js:671
 msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
 
-#: static/js/common/upload-addon.js:684
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr ""
 
-#: static/js/common/upload-base.js:69
 msgid "The filetype you uploaded isn't recognized."
 msgstr "ඔබ උඩුගත කළ ගොනු වර්ගය නොහඳුනයි."
 
-#: static/js/common/upload-base.js:79 static/js/zamboni/global.js:569
 #, python-brace-format
 msgid "Your file exceeds the maximum size of {0}."
 msgstr "ගොනුව {0} ක උපරිම ප්‍රමාණය ඉක්මවයි."
 
-#: static/js/common/upload-base.js:105
 msgid "You cancelled the upload."
 msgstr "ඔබ උඩුගත කිරීම අවලංගු කළා."
 
-#: static/js/common/upload-image.js:102
 msgid "Images must be either PNG or JPG."
 msgstr "රූපය PNG හෝ JPG විය යුතුය."
 
-#: static/js/common/upload-image.js:106
 msgid "Videos must be in WebM."
 msgstr "දෘශ්‍යකය WebM විය යුතුය."
 
-#: static/js/stats/chart.js:283
 #, python-brace-format
 msgid "Week of {0}"
 msgstr "{0} වන සතිය"
 
-#: static/js/stats/chart.js:292
 #, python-brace-format
 msgid "{0} download"
 msgid_plural "{0} downloads"
 msgstr[0] "බාගැනීම් {0}"
 msgstr[1] "බාගැනීම් {0}"
 
-#: static/js/stats/chart.js:298
 #, python-brace-format
 msgid "{0} user"
 msgid_plural "{0} users"
 msgstr[0] "පරිශ්‍රීලකයින් {0}"
 msgstr[1] "පරිශ්‍රීලකයින් {0}"
 
-#: static/js/stats/chart.js:362 static/js/stats/csv_keys.js:3 static/js/stats/csv_keys.js:9
 msgid "Downloads"
 msgstr "බාගැනීම්"
 
-#: static/js/stats/chart.js:374 static/js/stats/csv_keys.js:6 static/js/stats/csv_keys.js:10
 msgid "Daily Users"
 msgstr "දෛනික පරිශ්‍රීලකයින්"
 
-#: static/js/stats/chart.js:409
 msgid "More Info..."
 msgstr "තව තොරතුරු..."
 
 #. L10n: {0} is an ISO-formatted date.
-#: static/js/stats/chart.js:415
 #, python-brace-format
 msgid "Details for {0}"
 msgstr "{0} සඳහා විස්තර"
 
-#: static/js/stats/csv_keys.js:13
 msgid "Firefox"
 msgstr "ෆයර්ෆොක්ස්"
 
-#: static/js/stats/csv_keys.js:14
 msgid "Mozilla"
 msgstr "මොසිල්ලා"
 
-#: static/js/stats/csv_keys.js:15
 msgid "Thunderbird"
 msgstr "තන්ඩර්බර්ඩ්"
 
-#: static/js/stats/csv_keys.js:16
 msgid "Sunbird"
 msgstr "සන්බර්ඩ්"
 
-#: static/js/stats/csv_keys.js:17
 msgid "SeaMonkey"
 msgstr "සීමන්කි"
 
-#: static/js/stats/csv_keys.js:18
 msgid "Fennec"
 msgstr "ෆෙනෙක්"
 
-#: static/js/stats/csv_keys.js:19
 msgid "Android"
 msgstr "ඇන්ඩ්‍රොයිඩ්"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:24
 #, python-brace-format
 msgid "Downloads and Daily Users, last {0} days"
 msgstr "බාගැනීම් හා දෛනික පරිශ්‍රීලකයින්, පසුගිය දවස් {0}"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:26
 #, python-brace-format
 msgid "Downloads and Daily Users from {0} to {1}"
 msgstr "{0} සිට {1} දක්වා බාගැනීම් හා දෛනික පරිශ්‍රීලකයින්"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:30
 #, python-brace-format
 msgid "Downloads, last {0} days"
 msgstr "බාගැනීම්, පසුගිය දවස් {0}"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:32
 #, python-brace-format
 msgid "Downloads from {0} to {1}"
 msgstr "{0} සිට {1} දක්වා බාගැනීම්"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:36
 #, python-brace-format
 msgid "Daily Users, last {0} days"
 msgstr "දෛනික පරිශ්‍රීලකයින්, පසුගිය දවස් {0}"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:38
 #, python-brace-format
 msgid "Daily Users from {0} to {1}"
 msgstr "{0} සිට {1} දක්වා දෛනික පරිශ්‍රීලකයින්"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:42
 #, python-brace-format
 msgid "Applications, last {0} days"
 msgstr "යෙදුම්, පසුගිය දවස් {0}"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:44
 #, python-brace-format
 msgid "Applications from {0} to {1}"
 msgstr "{0} සිට {1} දක්වා යෙදුම්"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:48
 #, python-brace-format
 msgid "Countries, last {0} days"
 msgstr "රටවල්, පසුගිය දවස් {0}"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:50
 #, python-brace-format
 msgid "Countries from {0} to {1}"
 msgstr "{0} සිට {1} දක්වා රටවල්"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:54
 #, python-brace-format
 msgid "Platforms, last {0} days"
 msgstr "වේදිකා, පසුගිය දවස් {0}"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:56
 #, python-brace-format
 msgid "Platforms from {0} to {1}"
 msgstr "{0} සිට {1} දක්වා වේදිකා"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:60
 #, python-brace-format
 msgid "Languages, last {0} days"
 msgstr "භාෂා, පසුගිය දවස් {0}"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:62
 #, python-brace-format
 msgid "Languages from {0} to {1}"
 msgstr "{0} සිට {1} දක්වා භාෂා"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:66
 #, python-brace-format
 msgid "Add-on Versions, last {0} days"
 msgstr "එක්කහු අනුවාද, පසුගිය දවස් {0}"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:68
 #, python-brace-format
 msgid "Add-on Versions from {0} to {1}"
 msgstr "{0} සිට {1} දක්වා එක්කහු අනුවාද"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:72
 #, python-brace-format
 msgid "Download Sources, last {0} days"
 msgstr "මූලාශ්‍ර බාගැනීම, පසුගිය දවස් {0}"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:74
 #, python-brace-format
 msgid "Download Sources from {0} to {1}"
 msgstr "{0} සිට {1} දක්වා මූලාශ්‍ර බාගැනීම"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:78
 #, python-brace-format
 msgid "Download Mediums, last {0} days"
 msgstr "මාධ්‍ය බාගැනීම, පසුගිය දවස් {0}"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:80
 #, python-brace-format
 msgid "Download Mediums from {0} to {1}"
 msgstr ""
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:84
 #, python-brace-format
 msgid "Download Contents, last {0} days"
 msgstr "අන්තර්ගත බාගැනීම, පසුගිය දවස් {0}"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:86
 #, python-brace-format
 msgid "Download Contents from {0} to {1}"
 msgstr "{0} සිට {1} දක්වා අන්තර්ගත බාගැනීම"
 
 #. L10n: {0} is an integer.
-#: static/js/stats/csv_keys.js:90
 #, python-brace-format
 msgid "Download Campaigns, last {0} days"
 msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:92
 #, python-brace-format
 msgid "Download Campaigns from {0} to {1}"
 msgstr ""
 
 #. L10n: {0} and {1} are integers.
-#: static/js/stats/csv_keys.js:98
 #, python-brace-format
 msgid "<b>{0}</b> in last {1} days"
 msgstr "පසුගිය දවස් {1} තුළ <b>{0}</b>"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
-#: static/js/stats/csv_keys.js:100 static/js/stats/csv_keys.js:106
 #, python-brace-format
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "{1} සිට {2} දක්වා <b>{0}</b>"
 
 #. L10n: {0} and {1} are integers.
-#: static/js/stats/csv_keys.js:104
 #, python-brace-format
 msgid "<b>{0}</b> average in last {1} days"
 msgstr "පසුගිය දවස් {1} තුළ සාමාන්‍යය <b>{0}</b>"
 
-#: static/js/stats/overview.js:18
 msgid "No data available."
 msgstr "දත්ත නොතිබේ"
 
-#: static/js/stats/table.js:84
 msgid "Date"
 msgstr "දිනය"
 
-#: static/js/stats/topchart.js:108
 msgid "Other"
 msgstr "වෙනත්"
 
-#: static/js/zamboni/devhub.js:300
 msgid "Changes Saved"
 msgstr "වෙනස්කම් සුරැකිණි"
 
-#: static/js/zamboni/devhub.js:316
 msgid "Enter a new author's email address"
 msgstr ""
 
-#: static/js/zamboni/devhub.js:440
 msgid "There was an error uploading your file."
 msgstr "ඔබගේ ගොනුව උඩුගත කිරීමේ දෝෂයකි."
 
-#: static/js/zamboni/devhub.js:596
 #, python-brace-format
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "ගොනු {files}"
 msgstr[1] "ගොනු {files}"
 
-#: static/js/zamboni/devhub.js:1196
 msgid "Image changes being processed"
 msgstr "රූප වෙනස් කිරීම් සකසමින් පවතී"
 
-#: static/js/zamboni/global.js:463
 #, python-brace-format
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "අකුරු <b>{0}</b>"
 msgstr[1] "අකුරු <b>{0}</b>"
 
-#: static/js/zamboni/global.js:472
 #, python-brace-format
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "අකුරු <b>{0}</b> ක් ඉතිරිය"
 msgstr[1] "අකුරු <b>{0}</b> ක් ඉතිරිය"
 
-#: static/js/zamboni/init.js:12
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "අපි අඩවිය නඩත්තු කරන හෙයින් මෙම විශේෂාංගය තාවකාලිකව අබල කර ඇත. ටික වේලාවකට පසුව නැවත පරීක්‍ෂා කරන්න."
 
-#: static/js/zamboni/l10n.js:164
 msgid "Remove this localization"
 msgstr "මෙම දේශීයකරණය ඉවතලන්න"
 
-#: static/js/zamboni/reviewers.js:258
 #, python-brace-format
 msgid "{name} was viewing this page first."
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:266
 msgid "Review page polling failed."
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:583
 #, python-brace-format
 msgid "{name} was viewing this add-on first."
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:596 static/js/zamboni/reviewers.js:622
 msgid "Loading&hellip;"
 msgstr "&hellip; පූරණය වෙමින්"
 
-#: static/js/zamboni/reviewers.js:601
 msgid "Version Notes"
 msgstr "අනුවාද සටහන්"
 
-#: static/js/zamboni/reviewers.js:608
 msgid "Notes for Reviewers"
 msgstr "සමාලෝචකයින් සඳහා සටහන්"
 
-#: static/js/zamboni/reviewers.js:615
 msgid "No version notes found"
 msgstr "අනුවාද සටහන් හමු නොවුණි"
 
-#: static/js/zamboni/reviewers.js:627
 msgid "Review Text"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:634
 msgid "Review notes found"
 msgstr "සමාලෝචන සටහන් හමු විය"
 
-#: static/js/zamboni/static_theme.js:217
 #, python-brace-format
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "උඩුගත කිරීමේ උපරිම ප්‍රමාණය {0} - කුඩා පසුබිම් රූපයක් තෝරන්න."
 
-#: static/js/zamboni/themes_review.js:199
 msgid "Requested Info"
 msgstr "ඉල්ලූ තොරතුරු"
 
-#: static/js/zamboni/themes_review.js:200
 msgid "Flagged"
 msgstr ""
 
-#: static/js/zamboni/themes_review.js:201
 msgid "Duplicate"
 msgstr ""
 
-#: static/js/zamboni/themes_review.js:202
 msgid "Rejected"
 msgstr "ප්‍රතික්‍ෂේපිතයි"
 
-#: static/js/zamboni/themes_review.js:203
 msgid "Approved"
 msgstr "අනුමතයි"
 
-#: static/js/zamboni/themes_review.js:492
 msgid "No results found"
 msgstr "ප්‍රතිඵල හමු නොවුණි"
 
-#: static/js/zamboni/themes_review_templates.js:43
 msgid "Theme"
 msgstr "තේමාව"
 
-#: static/js/zamboni/themes_review_templates.js:45
 msgid "Reviewer"
 msgstr "සමාලෝචක"
 
-#: static/js/zamboni/themes_review_templates.js:47
 msgid "Status"
 msgstr "තත්‍වය"
 
-#: static/js/zamboni/validator.js:89
 msgid "All tests passed successfully."
 msgstr ""
 
-#: static/js/zamboni/validator.js:92 static/js/zamboni/validator.js:388
 msgid "These tests were not run."
 msgstr ""
 
-#: static/js/zamboni/validator.js:155 static/js/zamboni/validator.js:177
 msgid "Tests"
 msgstr ""
 
-#: static/js/zamboni/validator.js:259 static/js/zamboni/validator.js:492 static/js/zamboni/validator.js:516
 msgid "Error"
 msgstr "දෝෂයකි"
 
-#: static/js/zamboni/validator.js:259
 msgid "Warning"
 msgstr "අවවාදයයි"
 
-#: static/js/zamboni/validator.js:332
 #, python-brace-format
 msgid "{0} line {1} column {2}"
 msgstr ""
 
-#: static/js/zamboni/validator.js:339
 #, python-brace-format
 msgid "{0} line {1}"
 msgstr ""
 
-#: static/js/zamboni/validator.js:376
 msgid "Add-on failed validation."
 msgstr "එක්කහුව වලංගුකරණයට අසමත් විය"
 
-#: static/js/zamboni/validator.js:378
 msgid "Add-on passed validation."
 msgstr "එක්කහුව වලංගුකරණයෙන් සමත් විය"
 
-#: static/js/zamboni/validator.js:391
 #, python-brace-format
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "දෝෂ {0}"
 msgstr[1] "දෝෂ {0}"
 
-#: static/js/zamboni/validator.js:394
 #, python-brace-format
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "අවවාද {0}"
 msgstr[1] "අවවාද {0}"
 
-#: static/js/zamboni/validator.js:397
 #, python-brace-format
 msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] "දැන්වීම් {0}"
 msgstr[1] "දැන්වීම් {0}"
 
-#: static/js/zamboni/validator.js:494
 msgid "Validation task could not complete or completed with errors"
 msgstr "වලංගුකරණ කාර්ය දෝෂ සහිතව සම්පූර්ණයි හෝ සම්පූර්ණ නොවුණි"
 
-#: static/js/zamboni/validator.js:517
 msgid "Internal server error"
 msgstr "අභ්‍යන්තර සේවාදායක දෝෂයකි"

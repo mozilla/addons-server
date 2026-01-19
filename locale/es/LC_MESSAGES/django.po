@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-01-14 14:29+0000\n"
+"POT-Creation-Date: 2026-01-19 14:53+0000\n"
 "PO-Revision-Date: 2024-01-15 13:27+0000\n"
 "Last-Translator: Bund10z <abu.avila@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -995,6 +995,13 @@ msgstr ""
 msgid "Account {user} property {0} updated."
 msgstr ""
 
+#, python-brace-format
+msgid "{addon} listing content rejected."
+msgstr ""
+
+msgid "Listing content rejected"
+msgstr ""
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -1021,6 +1028,9 @@ msgstr "Incompleto"
 
 msgid "Awaiting Review"
 msgstr "Esperando revisión"
+
+msgid "Listing Content Rejected"
+msgstr ""
 
 msgid "Disabled by Mozilla"
 msgstr "Deshabilitado por Mozilla"
@@ -2919,6 +2929,9 @@ msgstr ""
 "                             reciben actualizaciones automáticas."
 
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery."
+msgstr ""
+
+msgid "Your add-on listing was rejected. It is not listed in our gallery. Please address the reasons and reapply for review."
 msgstr ""
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."

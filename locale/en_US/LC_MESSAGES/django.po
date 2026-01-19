@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-01-14 14:29+0000\n"
+"POT-Creation-Date: 2026-01-19 14:53+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1054,6 +1054,13 @@ msgstr "Collection {0} property {1} updated."
 msgid "Account {user} property {0} updated."
 msgstr "Account {user} property {0} updated."
 
+#, python-brace-format
+msgid "{addon} listing content rejected."
+msgstr "{addon} listing content rejected."
+
+msgid "Listing content rejected"
+msgstr "Listing content rejected"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -1080,6 +1087,9 @@ msgstr "Incomplete"
 
 msgid "Awaiting Review"
 msgstr "Awaiting Review"
+
+msgid "Listing Content Rejected"
+msgstr "Listing Content Rejected"
 
 msgid "Disabled by Mozilla"
 msgstr "Disabled by Mozilla"
@@ -3088,6 +3098,9 @@ msgstr "Your add-on is displayed in our gallery and users are receiving automati
 
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery."
 msgstr "Your add-on was disabled by a site administrator and is no longer shown in our gallery."
+
+msgid "Your add-on listing was rejected. It is not listed in our gallery. Please address the reasons and reapply for review."
+msgstr "Your add-on listing was rejected. It is not listed in our gallery. Please address the reasons and reapply for review."
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
