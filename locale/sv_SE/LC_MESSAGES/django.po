@@ -3799,7 +3799,7 @@ msgstr "Ditt tillägg har inaktiverats av en webbplatsadministratör och visas i
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:32
 msgid "Your add-on listing was rejected. It is not listed in our gallery. Please address the reasons and reapply for review."
-msgstr ""
+msgstr "Din listning av tillägg avvisades. Det finns inte med i vårt galleri. Vänligen ange orsakerna och ansök om granskning igen."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:35
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
