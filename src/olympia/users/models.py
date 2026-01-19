@@ -390,7 +390,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     # Is the profile page for this account a full profile?
     has_full_profile = models.BooleanField(default=False, db_column='public')
 
-    fxa_id = models.CharField(blank=True, null=True, max_length=128)
+    fxa_id = models.CharField(unique=True, blank=True, null=True, max_length=128)
 
     # Identifier that is used to invalidate internal API tokens (i.e. those
     # that we generate for addons-frontend, NOT the API keys external clients
