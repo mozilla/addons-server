@@ -16,5 +16,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(null_blank_fxa_ids, lambda *args: None)
+        migrations.RunPython(null_blank_fxa_ids, reverse_code=migrations.RunPython.noop)
     ]
