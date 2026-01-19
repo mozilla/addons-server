@@ -14,7 +14,7 @@ import olympia
 from olympia import amo
 from olympia.access.models import Group
 from olympia.activity import log_create
-from olympia.addons.models import Addon, AddonReviewerFlags
+from olympia.addons.models import Addon, AddonApprovalsCounter, AddonReviewerFlags
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import send_mail
 from olympia.bandwagon.models import Collection
@@ -136,6 +136,8 @@ class ContentAction:
         )
 
         context_dict = {
+            'is_listing_disabled': getattr(self.target, 'status', None)
+            == amo.STATUS_REJECTED,
             'is_third_party_initiated': self.decision.is_third_party_initiated,
             # It's a plain-text email so we're safe to include comments without escaping
             # them - we don't want ', etc, rendered as html entities.
@@ -680,6 +682,31 @@ class ContentActionBlockAddon(ContentActionDisableAddon):
         return None
 
 
+class ContentActionRejectListingContent(ContentActionDisableAddon):
+    description = 'Add-on listing content has been rejected'
+
+    def should_hold_action(self):
+        return bool(
+            self.target.status not in (amo.STATUS_DISABLED, amo.STATUS_REJECTED)
+            # is a high profile add-on
+            and any(self.target.promoted_groups(currently_approved=False).high_profile)
+        )
+
+    def process_action(self, release_hold=False):
+        if self.target.status not in (amo.STATUS_DISABLED, amo.STATUS_REJECTED):
+            self.target.update(status=amo.STATUS_REJECTED)
+            AddonApprovalsCounter.objects.update_or_create(
+                addon=self.target, defaults={'last_content_review_pass': False}
+            )
+            return self.log_action(amo.LOG.REJECT_LISTING_CONTENT)
+        return None
+
+    def hold_action(self):
+        if self.target.status not in (amo.STATUS_DISABLED, amo.STATUS_REJECTED):
+            return self.log_action(amo.LOG.HELD_ACTION_REJECT_LISTING_CONTENT)
+        return None
+
+
 class ContentActionForwardToLegal(ContentAction):
     valid_targets = (Addon,)
 
@@ -800,21 +827,22 @@ class ContentActionTargetAppealApprove(
                 .only('pk', 'version')
                 .order_by('-pk')
             )
-            if self.previous_decisions.filter(
-                action__in=(
-                    DECISION_ACTIONS.AMO_DISABLE_ADDON,
-                    DECISION_ACTIONS.AMO_BLOCK_ADDON,
-                )
-            ).exists():
+            previous_decision_actions = self.previous_decisions.values_list(
+                'action', flat=True
+            )
+            activity_log_action = None
+
+            if (
+                DECISION_ACTIONS.AMO_DISABLE_ADDON in previous_decision_actions
+                or DECISION_ACTIONS.AMO_BLOCK_ADDON in previous_decision_actions
+            ):
                 # FIXME: we should also automatically revert the block if the
                 # previous decision was AMO_BLOCK_ADDON.
                 target_versions = list(target_versions)
                 if target.status == amo.STATUS_DISABLED:
                     target.force_enable(skip_activity_log=True)
                 activity_log_action = amo.LOG.FORCE_ENABLE
-            elif self.previous_decisions.filter(
-                action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
-            ).exists():
+            if DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON in previous_decision_actions:
                 target_versions = list(
                     target_versions.filter(
                         # we only need to unreject disabled versions we rejected
@@ -835,9 +863,10 @@ class ContentActionTargetAppealApprove(
                     )
                 target.update_status()
                 activity_log_action = amo.LOG.UNREJECT_VERSION
-            elif self.previous_decisions.filter(
-                action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON
-            ).exists():
+            if (
+                DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON
+                in previous_decision_actions
+            ):
                 for version in target_versions:
                     VersionReviewerFlags.objects.update_or_create(
                         version=version,
@@ -848,8 +877,24 @@ class ContentActionTargetAppealApprove(
                         },
                     )
                 activity_log_action = amo.LOG.CLEAR_PENDING_REJECTION
-            else:
+            if (
+                DECISION_ACTIONS.AMO_REJECT_LISTING_CONTENT in previous_decision_actions
+                and target.status == amo.STATUS_REJECTED
+            ):
+                AddonApprovalsCounter.objects.update_or_create(
+                    addon=self.target,
+                    defaults={
+                        'last_content_review': datetime.now(),
+                        'last_content_review_pass': True,
+                    },
+                )
+                # Call the function to correct it the status
+                target.update_status()
+                activity_log_action = amo.LOG.APPROVE_LISTING_CONTENT
+
+            if not activity_log_action:
                 return
+
             log_entry = self.log_action(
                 activity_log_action,
                 *target_versions,
@@ -954,5 +999,6 @@ CONTENT_ACTION_FROM_DECISION_ACTION = defaultdict(
         DECISION_ACTIONS.AMO_CHANGE_PENDING_REJECTION_DATE: (
             ContentActionChangePendingRejectionDate
         ),
+        DECISION_ACTIONS.AMO_REJECT_LISTING_CONTENT: ContentActionRejectListingContent,
     },
 )

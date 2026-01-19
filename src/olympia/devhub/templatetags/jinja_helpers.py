@@ -55,6 +55,7 @@ def status_class(addon):
         amo.STATUS_APPROVED: 'approved',
         amo.STATUS_DISABLED: 'admin-disabled',
         amo.STATUS_DELETED: 'deleted',
+        amo.STATUS_REJECTED: 'rejected',
     }
     if addon.disabled_by_user and addon.status != amo.STATUS_DISABLED:
         cls = 'disabled'
