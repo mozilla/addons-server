@@ -48,6 +48,7 @@ from olympia.scanners.actions import (
     _flag_for_human_review,
     _no_action,
 )
+from olympia.users.models import UserProfile
 
 
 log = olympia.core.logger.getLogger('z.scanners.models')
@@ -255,6 +256,21 @@ class ScannerWebhook(ModelBase):
 
     class Meta:
         db_table = 'scanners_webhooks'
+
+    def save(self, *args, **kwargs):
+        UserProfile.objects.get_or_create_service_account(
+            name=self.service_account_name,
+            notes=(
+                'Service account automatically created for '
+                f'the "{self.name}" scanner webhook.'
+            ),
+        )
+
+        return super().save(*args, **kwargs)
+
+    @property
+    def service_account_name(self):
+        return f'webhook-{self.name}'
 
     def __str__(self):
         return self.name

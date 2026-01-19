@@ -28,6 +28,15 @@ information must be provided:
 Add one or more scanner webhook events, see the next section for more
 information.
 
+```{note}
+Upon creation, a _service account_ will be automatically generated for this
+scanner webhook.
+
+A service account is needed to authenticate the scanner against the AMO API.
+Make sure to add the relevant permissions to it, depending on what the scanner
+needs to access.
+```
+
 (scanner-webhook-events)=
 ### Scanner Webhook Events
 

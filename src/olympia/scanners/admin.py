@@ -23,6 +23,7 @@ from olympia.amo.admin import (
 )
 from olympia.amo.templatetags.jinja_helpers import vite_asset
 from olympia.amo.utils import is_safe_url
+from olympia.api.models import APIKey
 from olympia.constants import scanners
 from olympia.constants.scanners import (
     ABORTING,
@@ -41,6 +42,7 @@ from olympia.constants.scanners import (
     WEBHOOK_EVENTS,
     YARA,
 )
+from olympia.users.models import UserProfile
 
 from .models import (
     ImproperScannerQueryRuleStateError,
@@ -1083,6 +1085,7 @@ class ScannerWebhookAdmin(AMOModelAdmin):
         'formatted_events_list',
         'is_active',
     )
+    readonly_fields = ('service_account',)
 
     def get_queryset(self, request):
         return super().get_queryset(request).prefetch_related('scannerwebhookevent_set')
@@ -1096,3 +1099,27 @@ class ScannerWebhookAdmin(AMOModelAdmin):
         )
 
     formatted_events_list.short_description = 'Events'
+
+    def service_account(self, obj):
+        try:
+            user = UserProfile.objects.get_service_account(
+                name=obj.service_account_name
+            )
+            api_key = APIKey.get_jwt_key(user=user)
+        except UserProfile.DoesNotExist:
+            return '(will be automatically created)'
+        except APIKey.DoesNotExist:
+            # Set a dummy model instance so that the rendered content below
+            # keeps working in case AMO JWT keys are missing.
+            api_key = APIKey()
+
+        return format_html(
+            '<a href="{}">{}</a><br><br>{}<br>{}',
+            urljoin(
+                settings.EXTERNAL_SITE_URL,
+                reverse('admin:users_userprofile_change', args=(user.pk,)),
+            ),
+            user.username,
+            api_key.key,
+            api_key.secret,
+        )

@@ -21,6 +21,7 @@ from olympia.amo.tests import (
     user_factory,
     version_factory,
 )
+from olympia.api.models import APIKey
 from olympia.constants.scanners import (
     ABORTING,
     COMPLETED,
@@ -42,6 +43,7 @@ from olympia.scanners.admin import (
     ScannerQueryResultAdmin,
     ScannerResultAdmin,
     ScannerRuleAdmin,
+    ScannerWebhookAdmin,
     StateFilter,
     WithVersionFilter,
     formatted_matched_rules_with_files_and_data,
@@ -51,8 +53,10 @@ from olympia.scanners.models import (
     ScannerQueryRule,
     ScannerResult,
     ScannerRule,
+    ScannerWebhook,
 )
 from olympia.scanners.templatetags.scanners import format_scanners_data
+from olympia.users.models import UserProfile
 from olympia.versions.models import Version
 
 
@@ -2173,3 +2177,45 @@ class FormattedMatchedRulesWithFilesAndData(TestCase):
         assert len(doc('li')) == 3  # 2 + 1 for the "…and and more 3 files"
         assert doc('li')[1].text.strip() == 'somefilename1'
         assert doc('li')[2].text == '…and 3 more files'
+
+
+class TestScannerWebhookAdmin(TestCase):
+    def setUp(self):
+        super().setUp()
+
+        self.user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(self.user, 'Admin:ScannersWebhooksView')
+        self.grant_permission(self.user, 'Admin:ScannersWebhooksEdit')
+        self.client.force_login(self.user)
+        self.list_url = reverse('admin:scanners_scannerwebhook_changelist')
+
+        self.admin = ScannerWebhookAdmin(model=ScannerWebhook, admin_site=AdminSite())
+
+    def test_service_account_without_service_account(self):
+        webhook = ScannerWebhook(name='some service')
+        assert self.admin.service_account(webhook) == '(will be automatically created)'
+
+    def test_service_account_with_service_account(self):
+        webhook = ScannerWebhook.objects.create(name='some service')
+        user = UserProfile.objects.get_service_account(
+            name=webhook.service_account_name
+        )
+        api_key = APIKey.get_jwt_key(user=user)
+
+        service_account_html = self.admin.service_account(webhook)
+        assert user.username in service_account_html
+        assert api_key.key in service_account_html
+        assert api_key.secret in service_account_html
+
+    def test_service_account_without_api_keys(self):
+        webhook = ScannerWebhook.objects.create(name='some service')
+        user = UserProfile.objects.get_service_account(
+            name=webhook.service_account_name
+        )
+        api_key = APIKey.get_jwt_key(user=user)
+        api_key.delete()
+
+        service_account_html = self.admin.service_account(webhook)
+        assert user.username in service_account_html
+        assert api_key.key not in service_account_html
+        assert api_key.secret not in service_account_html
