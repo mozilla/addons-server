@@ -1286,11 +1286,11 @@ msgstr "Lastnost {0} računa {user} posodobljena."
 #: src/olympia/constants/activity.py:1277
 #, python-brace-format
 msgid "{addon} listing content rejected."
-msgstr ""
+msgstr "Vsebina objave za {addon} zavrnjena."
 
 #: src/olympia/constants/activity.py:1278
 msgid "Listing content rejected"
-msgstr ""
+msgstr "Vsebina seznama je zavrnjena"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -1330,7 +1330,7 @@ msgstr "Čaka na pregled"
 
 #: src/olympia/constants/base.py:27
 msgid "Listing Content Rejected"
-msgstr ""
+msgstr "Vsebina objave je zavrnjena"
 
 #: src/olympia/constants/base.py:28 src/olympia/constants/base.py:35
 msgid "Disabled by Mozilla"
@@ -3788,7 +3788,7 @@ msgstr "Vaš dodatek je onemogočil skrbnik spletnega mesta in ni več prikazan 
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:32
 msgid "Your add-on listing was rejected. It is not listed in our gallery. Please address the reasons and reapply for review."
-msgstr ""
+msgstr "Objava vašega dodatka je bila zavrnjena. Ni naveden v naši galeriji. Prosimo, da obrazložite razloge in se ponovno prijavite za pregled."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:35
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
