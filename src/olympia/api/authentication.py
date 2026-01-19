@@ -268,13 +268,23 @@ class UnsubscribeTokenAuthentication(BaseAuthentication):
             email = UnsubscribeCode.parse(
                 request.data.get('token'), request.data.get('hash')
             )
-            user = UserProfile.objects.get(email=email)
+            user = (
+                UserProfile.objects.filter(email=email)
+                # Don't want deleted users to be able to authenticate in any
+                # way. They shouldn't be receiving notifications anymore, after
+                # all they deleted their account...
+                .exclude(deleted=True)
+                # Some old accounts that never logged in with FxA can share an
+                # email with newer ones if the new one changed their email. We
+                # only care about the newest one, the older is likely unusable
+                # anyway.
+                .order_by('created')
+                .last()
+            )
         except ValueError as exc:
             raise exceptions.AuthenticationFailed(
                 gettext('Invalid token or hash.')
             ) from exc
-        except UserProfile.DoesNotExist as exc:
-            raise exceptions.AuthenticationFailed(
-                gettext('Email address not found.')
-            ) from exc
+        if user is None:
+            raise exceptions.AuthenticationFailed(gettext('Email address not found.'))
         return (user, None)

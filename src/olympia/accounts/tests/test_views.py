@@ -260,7 +260,11 @@ class TestLoginUserAndRegisterUser(TestCase):
         views.login_user(self.__class__, self.request, user, self.identity)
         self.assertCloseToNow(user.last_login)
         assert user.last_login_ip == '8.8.8.8'
-        incr_mock.assert_called_with('accounts.account_created_from_fxa')
+        assert incr_mock.call_count == 2
+        assert incr_mock.call_args_list[0][0][0] == 'accounts.account_created_from_fxa'
+        assert (
+            incr_mock.call_args_list[1][0][0] == 'accounts.account_recreated_from_fxa'
+        )
 
     def test_login_with_token_data(self):
         token_data = {
@@ -287,9 +291,14 @@ class TestFindUser(TestCase):
         assert user == found_user
 
     def test_user_exists_with_email(self):
-        user = UserProfile.objects.create(fxa_id='9999', email='me@amo.ca')
+        user = UserProfile.objects.create(fxa_id=None, email='me@amo.ca')
         found_user = views.find_user({'uid': '8888', 'email': 'me@amo.ca'})
         assert user == found_user
+
+        # If there is a fxa_id mismatch they can't log in even if the email is
+        # correct.
+        user.update(fxa_id='9999')
+        assert views.find_user({'uid': '8888', 'email': 'me@amo.ca'}) is None
 
     def test_user_exists_with_both(self):
         user = UserProfile.objects.create(fxa_id='9999', email='me@amo.ca')
@@ -297,31 +306,44 @@ class TestFindUser(TestCase):
         assert user == found_user
 
     def test_two_users_exist(self):
-        UserProfile.objects.create(fxa_id='9999', email='me@amo.ca', username='me')
+        me = UserProfile.objects.create(fxa_id='9999', email='me@amo.ca', username='me')
         UserProfile.objects.create(fxa_id='8888', email='you@amo.ca', username='you')
-        with self.assertRaises(UserProfile.MultipleObjectsReturned):
-            views.find_user({'uid': '9999', 'email': 'you@amo.ca'})
+        # Correct fxa_id wins all the time, email is ignored even if it would
+        # match.
+        assert views.find_user({'uid': '9999', 'email': 'you@amo.ca'}) == me
+
+        # We don't fall back on email if the account has an fxa_id.
+        assert views.find_user({'uid': '6666', 'email': 'me@amo.ca'}) is None
 
     def test_find_user_banned(self):
-        UserProfile.objects.create(
-            fxa_id='abc',
+        user = UserProfile.objects.create(
             email='me@amo.ca',
             deleted=True,
             banned=datetime.now(),
         )
+        # Banned user with no fxa_id, we find them by email (ignoring the fxa_id).
         with self.assertRaises(exceptions.PermissionDenied):
-            views.find_user({'uid': 'abc', 'email': 'you@amo.ca'})
+            views.find_user({'uid': 'abc', 'email': 'me@amo.ca'})
+
+        # Banned user with fxa_id, we find them by fxa_id (ignoring the email)
+        user.update(fxa_id='abc')
+        with self.assertRaises(exceptions.PermissionDenied):
+            views.find_user({'uid': 'abc', 'email': 'ignored@some.where'})
 
     def test_find_user_deleted(self):
         user = UserProfile.objects.create(fxa_id='abc', email='me@amo.ca', deleted=True)
         assert views.find_user({'uid': 'abc', 'email': 'you@amo.ca'}) == user
 
     def test_find_user_mozilla(self):
-        task_user = user_factory(id=settings.TASK_USER_ID, fxa_id='abc')
-        with self.assertRaises(exceptions.PermissionDenied):
-            views.find_user({'uid': '123456', 'email': task_user.email})
+        task_user = user_factory(id=settings.TASK_USER_ID)
         with self.assertRaises(exceptions.PermissionDenied):
             views.find_user({'uid': task_user.fxa_id, 'email': 'doesnt@matta'})
+
+        # Even if they don't have a fxa_id, you can't log in by email with the
+        # task user.
+        task_user.update(fxa_id=None)
+        with self.assertRaises(exceptions.PermissionDenied):
+            views.find_user({'uid': '123456', 'email': task_user.email})
 
 
 class TestWithUser(TestCase):
@@ -991,7 +1013,7 @@ class TestAuthenticateView(TestCase, InitializeSessionMixin):
 
     def test_success_with_account_logs_in(self):
         user = UserProfile.objects.create(
-            username='foobar', email='real@yeahoo.com', fxa_id='10'
+            username='foobar', email='real@yeahoo.com', fxa_id='9001'
         )
         identity = {'email': 'real@yeahoo.com', 'uid': '9001'}
         self.fxa_identify.return_value = identity, self.token_data
@@ -1014,7 +1036,7 @@ class TestAuthenticateView(TestCase, InitializeSessionMixin):
         UserProfile.objects.create(
             username='foobar',
             email='real@yeahoo.com',
-            fxa_id='10',
+            fxa_id='9001',
             deleted=True,
             banned=datetime.now(),
         )
@@ -1023,8 +1045,26 @@ class TestAuthenticateView(TestCase, InitializeSessionMixin):
         response = self.client.get(self.url, {'code': 'code', 'state': self.fxa_state})
         assert response.status_code == 403
 
+    def test_banned_user_other_account_same_email_cant_log_in(self):
+        UserProfile.objects.create(
+            username='foobar',
+            email='real@yeahoo.com',
+            fxa_id='9000',
+            deleted=True,
+            banned=datetime.now(),
+        )
+        UserProfile.objects.create(
+            username='foobar_not_banned',
+            email='real@yeahoo.com',
+            fxa_id='9001',
+        )
+        identity = {'email': 'real@yeahoo.com', 'uid': '9001'}
+        self.fxa_identify.return_value = identity, self.token_data
+        response = self.client.get(self.url, {'code': 'code', 'state': self.fxa_state})
+        assert response.status_code == 403
+
     def test_log_in_redirects_to_next_path(self):
-        user = UserProfile.objects.create(email='real@yeahoo.com', fxa_id='10')
+        user = UserProfile.objects.create(email='real@yeahoo.com', fxa_id='9001')
         identity = {'email': 'real@yeahoo.com', 'uid': '9001'}
         self.fxa_identify.return_value = identity, self.token_data
         response = self.client.get(
@@ -2251,7 +2291,7 @@ class TestAccountNotificationViewSetUpdate(TestCase):
 
 
 class TestAccountNotificationUnsubscribe(TestCase):
-    client_class = APITestClientSessionID
+    client_class = APIClient
 
     def setUp(self):
         self.user = user_factory()
@@ -2307,6 +2347,14 @@ class TestAccountNotificationUnsubscribe(TestCase):
             user=self.user, notification_id=notification_const.id
         )
         assert not ntn.enabled
+
+    def test_unsubscribe_old_userprofile_with_same_email_is_ignored(self):
+        user_factory(email=self.user.email, deleted=True)
+        self.test_unsubscribe_user()
+
+    def test_unsubscribe_deleted_userprofile_with_same_email_is_ignored(self):
+        user_factory(email=self.user.email, created=self.days_ago(1234))
+        self.test_unsubscribe_user()
 
     def test_unsubscribe_invalid_notification(self):
         token, hash_ = UnsubscribeCode.create(self.user.email)

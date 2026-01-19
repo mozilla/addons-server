@@ -900,6 +900,8 @@ def user_factory(**kw):
         # allow us to do some quick & dirty additions with the auth_id to make
         # invalid ones.
         kw['auth_id'] = random.randint(1, 4294967295 - 42)
+    if 'fxa_id' not in kw:
+        kw['fxa_id'] = f'fake-fxa-id-{kw["auth_id"]:x}'
     user = UserProfile.objects.create(username=username, email=email, **kw)
     return user
 

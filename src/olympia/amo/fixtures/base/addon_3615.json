@@ -219,6 +219,7 @@
             "occupation": "",
             "homepage": "http://www.yahoo.com/",
             "email": "del@icio.us",
+            "fxa_id": "fake-fxa-id-for-55021",
             "location": "",
             "biography": null,
             "deleted": false,

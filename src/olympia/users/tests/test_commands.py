@@ -115,7 +115,7 @@ class TestClearOldUserData(TestCase):
 
         # Deleted and recent: last_login_ip, email, fxa_id must be cleared.
         recent_deleted_user = user_factory(
-            last_login_ip='127.0.0.1', deleted=True, fxa_id='abcde'
+            last_login_ip='127.0.0.1', deleted=True, fxa_id='abcdef1234'
         )
         recent_deleted_user.update(modified=recent_date)
         self.create_ip_log(recent_deleted_user)
@@ -129,13 +129,19 @@ class TestClearOldUserData(TestCase):
 
         # recent and banned
         recent_banned_user = user_factory(
-            last_login_ip='127.0.0.1', deleted=True, fxa_id='abcde', banned=recent_date
+            last_login_ip='127.0.0.1',
+            deleted=True,
+            fxa_id='abcdef4567',
+            banned=recent_date,
         )
         recent_banned_user.update(modified=recent_date)
         self.create_ip_log(recent_banned_user)
 
         old_banned_user = user_factory(
-            last_login_ip='127.0.0.1', deleted=True, fxa_id='abcde', banned=recent_date
+            last_login_ip='127.0.0.1',
+            deleted=True,
+            fxa_id='abcdef8901',
+            banned=recent_date,
         )
         old_banned_user.update(modified=old_date)
         self.create_ip_log(old_banned_user)
@@ -229,7 +235,7 @@ class TestClearOldUserData(TestCase):
 
         # Deleted and recent: last_login_ip, email, fxa_id must be cleared.
         recent_deleted_user = user_factory(
-            last_login_ip='127.0.0.1', deleted=True, fxa_id='abcde'
+            last_login_ip='127.0.0.1', deleted=True, fxa_id='abcd'
         )
         recent_deleted_user.update(modified=recent_date)
         urh2 = UserRestrictionHistory.objects.create(
@@ -240,7 +246,7 @@ class TestClearOldUserData(TestCase):
         )
 
         old_banned_user = user_factory(
-            last_login_ip='127.0.0.1', deleted=True, fxa_id='abcde', banned=recent_date
+            last_login_ip='127.0.0.1', deleted=True, fxa_id='ef123', banned=recent_date
         )
         old_banned_user.update(modified=old_date)
         urh3 = UserRestrictionHistory.objects.create(

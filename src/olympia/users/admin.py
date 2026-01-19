@@ -283,18 +283,23 @@ class UserAdmin(AMOModelAdmin):
         extra_context['has_users_edit_permission'] = acl.action_allowed_for(
             request.user, amo.permissions.USERS_EDIT
         )
-
-        lookup_field = UserProfile.get_lookup_field(object_id)
-        if lookup_field != 'pk':
+        if '@' in object_id:
+            # We got an '@' so our object_id is an email...
             try:
-                if lookup_field == 'email':
-                    user = UserProfile.objects.get(email=object_id)
-            except UserProfile.DoesNotExist as exc:
-                raise http.Http404 from exc
-            url = request.path.replace(object_id, str(user.id), 1)
-            if request.GET:
-                url += '?' + request.GET.urlencode()
-            return http.HttpResponsePermanentRedirect(url)
+                # ... there is a single user with that email, redirect to its
+                # change page.
+                obj = self.model.objects.get(email=object_id)
+                url = reverse('admin:users_userprofile_change', args=(obj.pk,))
+                if request.GET:
+                    url += '?' + request.GET.urlencode()
+            except self.model.MultipleObjectsReturned:
+                # ... there are multiple users with the same email, redirect to
+                # the changelist listing these users.
+                url = (
+                    reverse('admin:users_userprofile_changelist')
+                    + f'?email={object_id}'
+                )
+            return http.HttpResponseRedirect(url)
 
         return super().change_view(
             request,

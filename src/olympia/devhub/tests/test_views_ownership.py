@@ -1,5 +1,7 @@
 """Tests for ``devhub.views.ownership`` and ``devhub.views.invitation``."""
 
+from datetime import timedelta
+
 from django.conf import settings
 from django.core import mail
 from django.urls import reverse
@@ -30,6 +32,7 @@ class TestOwnership(TestCase):
         self.version = self.addon.current_version
         self.url = self.addon.get_dev_url('owner')
         self.client.force_login(UserProfile.objects.get(email='del@icio.us'))
+        self.regular = UserProfile.objects.get(email='regular@mozilla.com')
 
     def build_form_data(self, data):
         """Build dict containing data that would be submitted by clients."""
@@ -346,7 +349,7 @@ class TestEditAuthor(TestOwnership):
         # First, add someone else manually in second position.
         AddonUser.objects.create(
             addon=self.addon,
-            user=UserProfile.objects.get(email='regular@mozilla.com'),
+            user=self.regular,
             listed=True,
             role=amo.AUTHOR_ROLE_DEV,
             position=1,
@@ -395,7 +398,7 @@ class TestEditAuthor(TestOwnership):
     def test_success_add_user(self):
         additional_data = formset(
             {
-                'user': 'regular@mozilla.com',
+                'user': self.regular.email,
                 'role': amo.AUTHOR_ROLE_DEV,
                 'listed': True,
             },
@@ -423,12 +426,12 @@ class TestEditAuthor(TestOwnership):
             )
             == expected_authors
         )
-        expected_pending = ['regular@mozilla.com']
+        expected_pending = [self.regular.pk]
         assert (
             list(
                 AddonUserPendingConfirmation.objects.filter(
                     addon=self.addon
-                ).values_list('user__email', flat=True)
+                ).values_list('user__pk', flat=True)
             )
             == expected_pending
         )
@@ -448,9 +451,30 @@ class TestEditAuthor(TestOwnership):
         assert author_confirmation_email.subject == (
             'Author invitation for Delicious Bookmarks'
         )
-        assert 'regular@mozilla.com' in author_confirmation_email.to
+        assert self.regular.email in author_confirmation_email.to
         assert invitation_url in author_confirmation_email.body
         assert settings.DOMAIN in author_confirmation_email.body
+
+    def test_success_add_user_with_duplicate_that_has_no_fxa_id(self):
+        user_factory(email='regular@mozilla.com', fxa_id=None)
+        self.test_success_add_user()
+
+    def test_success_add_user_with_duplicate_that_was_deleted(self):
+        user_factory(email='regular@mozilla.com', deleted=True)
+        self.test_success_add_user()
+
+    def test_success_add_user_with_duplicate_that_is_just_older(self):
+        # That shouldn't happen in the real world, because the only reasons for
+        # having multiple user profiles with the same email should be deleted
+        # accounts or accounts with no fxa_id, but we should still handle that
+        # situation as gracefully as possible, by picking the most recently
+        # created user.
+        user_factory(
+            username='dupereg',
+            email='regular@mozilla.com',
+            created=self.regular.created - timedelta(days=365),
+        )
+        self.test_success_add_user()
 
     def test_cant_add_if_display_name_is_none(self):
         regular = UserProfile.objects.get(email='regular@mozilla.com')
@@ -478,6 +502,46 @@ class TestEditAuthor(TestOwnership):
                 ]
             }
         ]
+
+    def test_cant_add_deleted_user(self):
+        regular = UserProfile.objects.get(email='regular@mozilla.com')
+        regular.update(deleted=True)
+        additional_data = formset(
+            {
+                'user': 'regular@mozilla.com',
+                'role': amo.AUTHOR_ROLE_DEV,
+                'listed': True,
+            },
+            prefix='authors_pending_confirmation',
+            total_count=1,
+            initial_count=0,
+        )
+        data = self.build_form_data(additional_data)
+        response = self.client.post(self.url, data)
+        assert response.status_code == 200
+        form = response.context['authors_pending_confirmation_form']
+        assert not form.is_valid()
+        assert form.errors == [{'user': ['No user with that email.']}]
+
+    def test_cant_add_user_with_no_fxa_id(self):
+        regular = UserProfile.objects.get(email='regular@mozilla.com')
+        regular.update(fxa_id=None)
+        additional_data = formset(
+            {
+                'user': 'regular@mozilla.com',
+                'role': amo.AUTHOR_ROLE_DEV,
+                'listed': True,
+            },
+            prefix='authors_pending_confirmation',
+            total_count=1,
+            initial_count=0,
+        )
+        data = self.build_form_data(additional_data)
+        response = self.client.post(self.url, data)
+        assert response.status_code == 200
+        form = response.context['authors_pending_confirmation_form']
+        assert not form.is_valid()
+        assert form.errors == [{'user': ['No user with that email.']}]
 
     def test_cant_add_if_display_name_is_not_ok_for_a_developer(self):
         regular = UserProfile.objects.get(email='regular@mozilla.com')
@@ -593,6 +657,24 @@ class TestEditAuthor(TestOwnership):
                 ]
             }
         ]
+
+    def test_failure_add_deleted_user(self):
+        UserProfile.objects.get(email='regular@mozilla.com').update(deleted=True)
+        additional_data = formset(
+            {
+                'user': 'regular@mozilla.com',
+                'role': amo.AUTHOR_ROLE_DEV,
+                'listed': True,
+            },
+            prefix='authors_pending_confirmation',
+            total_count=1,
+            initial_count=0,
+        )
+        data = self.build_form_data(additional_data)
+        response = self.client.post(self.url, data)
+        assert response.status_code == 200
+        form = response.context['authors_pending_confirmation_form']
+        assert form.errors == [{'user': ['No user with that email.']}]
 
     def test_cant_change_existing_author(self):
         # Make sure we can't directly edit the user email once an author has
