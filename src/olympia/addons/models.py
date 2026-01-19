@@ -2396,11 +2396,12 @@ class AddonApprovalsCounter(ModelBase):
     belonging to an add-on has been approved by a human. Reset everytime a
     listed version is auto-approved for this add-on.
 
-    Holds 2 additional date fields:
+    Holds additional fields:
     - last_human_review, the date of the last time a human fully reviewed the
       add-on
     - last_content_review, the date of the last time a human fully reviewed the
       add-on content (not code).
+    - last_content_review_pass, a boolean indicating if the last content review passed.
     """
 
     addon = models.OneToOneField(Addon, primary_key=True, on_delete=models.CASCADE)

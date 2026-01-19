@@ -16,7 +16,7 @@ _STATUS_BETA = 7  # Deprecated, see addons-server/issues/7163
 _STATUS_LITE = 8  # Deprecated, preliminary reviewed.
 _STATUS_LITE_AND_NOMINATED = 9  # Deprecated, prelim & waiting for full review.
 STATUS_DELETED = 11  # Add-on has been deleted.
-_STATUS__REJECTED = 12  # Deprecated. Applied only to rejected personas.
+_STATUS_LWT_REJECTED = 12  # Deprecated. Applied only to rejected personas.
 _STATUS_REVIEW_PENDING = 14  # Deprecated. Was personas, needing further action
 STATUS_REJECTED = 15  # Add-on listing rejected after failed content review.
 
