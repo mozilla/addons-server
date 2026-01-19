@@ -530,6 +530,12 @@ class TestHome(TestCase):
         statuses = [
             (amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW, 'Awaiting Review'),
             (amo.STATUS_APPROVED, amo.STATUS_AWAITING_REVIEW, 'Approved'),
+            (
+                amo.STATUS_REJECTED,
+                amo.STATUS_AWAITING_REVIEW,
+                'Listing Content Rejected',
+            ),
+            (amo.STATUS_REJECTED, amo.STATUS_APPROVED, 'Listing Content Rejected'),
             (amo.STATUS_DISABLED, amo.STATUS_APPROVED, 'Disabled by Mozilla'),
         ]
 

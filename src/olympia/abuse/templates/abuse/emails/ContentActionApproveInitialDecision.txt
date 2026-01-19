@@ -1,6 +1,8 @@
 Hello,
 
-{% if not auto_approval %}
+{% if is_listing_disabled %}
+Your {{ type }} has been approved for distribution, but the listing on Mozilla Add-ons remains unavailable until you address the violations and request a further review.  It is available at {{ target_url }}.
+{% elif not auto_approval %}
 Your {{ type }} has been approved on Mozilla Add-ons and it is now available at {{ target_url }}.
 {% else %}
 Your {{ type }} has been automatically screened and tentatively approved. It is now available at {{ target_url }}.

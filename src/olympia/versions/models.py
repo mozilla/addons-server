@@ -164,18 +164,14 @@ class VersionManager(ManagerBase):
             # be a theme either.
             Q(
                 channel=amo.CHANNEL_LISTED,
-                addon__status__in=(amo.STATUS_NOMINATED, amo.STATUS_APPROVED),
+                addon__status__in=amo.VALID_ADDON_STATUSES,
                 addon__disabled_by_user=False,
                 addon__type__in=(amo.ADDON_EXTENSION, amo.ADDON_LPAPP, amo.ADDON_DICT),
             )
             # For unlisted, add-on can't be deleted or disabled.
             | Q(
                 channel=amo.CHANNEL_UNLISTED,
-                addon__status__in=(
-                    amo.STATUS_NULL,
-                    amo.STATUS_NOMINATED,
-                    amo.STATUS_APPROVED,
-                ),
+                addon__status__in=amo.VALID_ADDON_STATUSES + (amo.STATUS_NULL,),
             )
         )
         return qs

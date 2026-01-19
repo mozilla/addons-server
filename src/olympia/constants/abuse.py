@@ -30,6 +30,7 @@ DECISION_ACTIONS = APIChoicesWithDash(
     ('AMO_CHANGE_PENDING_REJECTION_DATE', 14, 'Pending rejection date changed'),
     ('AMO_REQUEUE', 15, 'No action - internal requeue'),
     ('AMO_BLOCK_ADDON', 16, 'Add-on disable and block'),
+    ('AMO_REJECT_LISTING_CONTENT', 17, 'Add-on listing content rejection'),
 )
 DECISION_ACTIONS.add_subset(
     'APPEALABLE_BY_AUTHOR',
@@ -43,6 +44,7 @@ DECISION_ACTIONS.add_subset(
         # part can't be automatically reverted by a successful appeal and has
         # to be done manually.
         'AMO_BLOCK_ADDON',
+        'AMO_REJECT_LISTING_CONTENT',
     ),
 )
 DECISION_ACTIONS.add_subset(
@@ -57,6 +59,7 @@ DECISION_ACTIONS.add_subset(
         'AMO_DELETE_COLLECTION',
         'AMO_REJECT_VERSION_ADDON',
         'AMO_BLOCK_ADDON',
+        'AMO_REJECT_LISTING_CONTENT',
     ),
 )
 DECISION_ACTIONS.add_subset(
