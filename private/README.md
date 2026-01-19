@@ -31,6 +31,23 @@ $ make shell
 $ [root@<docker>:/code#] ./manage.py waffle_switch enable-customs on
 ```
 
+### Running customs as a webhook
+
+Enable the scanner pipeline:
+
+```
+$ make shell
+$ [root@<docker>:/code#] ./manage.py waffle_switch enable-scanner-webhooks on
+```
+
+Navigate to the [Django admin][scannerwebhook_add] and create a new webhook with
+the following information:
+
+- Name: `customs`
+- URL: `http://customs.test:10101/`
+- API key: `customssecret`
+- Scanner webhook events: add an entry with `during_validation`
+
 ## yara
 
 A waffle switch is used to enable/disable the `yara` scanner:
