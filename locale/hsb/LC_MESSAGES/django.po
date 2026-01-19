@@ -3803,7 +3803,7 @@ msgstr "Waš přidatk je so wot sydłoweho administratora znjemóžnił a so hi�
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:32
 msgid "Your add-on listing was rejected. It is not listed in our gallery. Please address the reasons and reapply for review."
-msgstr ""
+msgstr "Lisćinowy zapisk wašeho přidatka je so wotpokazał. Njeje w našej galeriji nalistowany. Prošu wuslědźće přičiny a požadajće nowe přepruwowanje."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:35
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
