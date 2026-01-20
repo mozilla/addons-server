@@ -3790,7 +3790,7 @@ msgstr "Jo add-on is útskeakele troch in websitebehearder en wurdt net mear wer
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:32
 msgid "Your add-on listing was rejected. It is not listed in our gallery. Please address the reasons and reapply for review."
-msgstr ""
+msgstr "Jo add-onfermelding is ôfwezen. Dizze wurdt net fermeld yn ús galerij. Ferhelp de redenen en tsjinje in nije oanfraach foar beoardieling yn."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:35
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
