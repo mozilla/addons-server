@@ -1294,7 +1294,7 @@ msgstr "Eigenschap {0} van account {user} bijgewerkt."
 #: src/olympia/constants/activity.py:1277
 #, python-brace-format
 msgid "{addon} listing content rejected."
-msgstr ""
+msgstr "Lijstinhoud van {addon} afgewezen."
 
 #: src/olympia/constants/activity.py:1278
 msgid "Listing content rejected"
@@ -3791,7 +3791,7 @@ msgstr "Uw add-on is uitgeschakeld door een websitebeheerder en wordt niet meer 
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:32
 msgid "Your add-on listing was rejected. It is not listed in our gallery. Please address the reasons and reapply for review."
-msgstr ""
+msgstr "Uw add-onvermelding is afgewezen. Deze wordt niet vermeld in onze galerij. Verhelp de redenen en dien een nieuwe aanvraag voor beoordeling in."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:35
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
