@@ -668,10 +668,7 @@ class FilterableManyToManyField(models.fields.related.ManyToManyField):
         instance of FilterableManyToManyDescriptor rather than
         ManyToManyDescriptor, and pass down the q_filter property."""
         super().contribute_to_related_class(cls, related)
-        if (
-            not self.remote_field.is_hidden()
-            and not related.related_model._meta.swapped
-        ):
+        if not self.remote_field.hidden and not related.related_model._meta.swapped:
             setattr(
                 cls,
                 related.get_accessor_name(),

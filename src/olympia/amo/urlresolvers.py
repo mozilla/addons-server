@@ -1,11 +1,10 @@
 import hashlib
 import hmac
 import re
-from urllib.parse import quote
+from urllib.parse import quote, urlparse
 
 from django.conf import settings
 from django.utils.encoding import force_bytes
-from django.utils.http import _urlparse as django_urlparse
 from django.utils.translation.trans_real import parse_accept_lang_header
 
 import bleach
@@ -122,9 +121,7 @@ def get_outgoing_url(url):
     if not settings.REDIRECT_URL:
         return url
 
-    # django.utils.http._urlparse is a copy of python's urlparse()
-    # "but uses fixed urlsplit() function".
-    parsed_url = django_urlparse(url)
+    parsed_url = urlparse(url)
     url_netloc = parsed_url.netloc
 
     # This prevents a link like javascript://addons.mozilla.org...
@@ -135,12 +132,9 @@ def get_outgoing_url(url):
 
     # No double-escaping, and some domain names are excluded.
     allowed = settings.REDIRECT_URL_ALLOW_LIST + [
-        django_urlparse(settings.EXTERNAL_SITE_URL).netloc
+        urlparse(settings.EXTERNAL_SITE_URL).netloc
     ]
-    if (
-        url_netloc == django_urlparse(settings.REDIRECT_URL).netloc
-        or url_netloc in allowed
-    ):
+    if url_netloc == urlparse(settings.REDIRECT_URL).netloc or url_netloc in allowed:
         return url
 
     url = force_bytes(markupsafe.Markup(url).unescape())

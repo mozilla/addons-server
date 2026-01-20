@@ -20,6 +20,7 @@ from urllib.parse import (
     ParseResult,
     unquote,
     urlencode as urllib_urlencode,
+    urlparse,
 )
 
 import django.core.mail
@@ -37,11 +38,7 @@ from django.urls import reverse
 from django.utils import translation
 from django.utils.encoding import force_bytes, force_str
 from django.utils.functional import cached_property
-from django.utils.http import (
-    _urlparse as django_urlparse,
-    quote_etag,
-    url_has_allowed_host_and_scheme,
-)
+from django.utils.http import quote_etag, url_has_allowed_host_and_scheme
 from django.utils.translation import gettext
 
 import basket
@@ -92,7 +89,7 @@ def urlparams(url_, hash=None, **query):
     New query params will be appended to existing parameters, except duplicate
     names, which will be replaced.
     """
-    url = django_urlparse(force_str(url_))
+    url = urlparse(force_str(url_))
 
     fragment = hash if hash is not None else url.fragment
 

@@ -23,13 +23,13 @@ from django.core.files import File as DjangoFile
 from django.core.files.storage import default_storage as storage
 from django.template.defaultfilters import filesizeformat
 from django.utils.encoding import force_str
-from django.utils.jslex import JsLexer
 from django.utils.translation import gettext
 
 import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
 from olympia.addons.utils import validate_addon_name
+from olympia.amo.jslex import JsLexer
 from olympia.amo.utils import decode_json, find_language, rm_local_tmp_dir
 from olympia.applications.models import AppVersion
 from olympia.lib import unicodehelper
