@@ -1,3 +1,5 @@
+import hashlib
+import hmac
 import itertools
 import json
 import os
@@ -117,11 +119,21 @@ def _call_webhook(webhook, payload):
         http.mount('http://', adapter)
         http.mount('https://', adapter)
 
+        data = json.dumps(payload)
+        digest = hmac.new(
+            webhook.api_key.encode(),
+            msg=data.encode(),
+            digestmod=hashlib.sha256,
+        ).hexdigest()
+
         response = http.post(
             url=webhook.url,
-            json=payload,
+            data=data,
             timeout=settings.SCANNER_TIMEOUT,
-            headers={'Authorization': f'Bearer {webhook.api_key}'},
+            headers={
+                'Content-Type': 'application/json',
+                'Authorization': f'HMAC-SHA256 {digest}',
+            },
         )
     try:
         data = response.json()
