@@ -126,6 +126,10 @@ ADMIN_SCANNERS_RULES_EDIT = AclPermission('Admin', 'ScannersRulesEdit')
 ADMIN_SCANNERS_QUERY_EDIT = AclPermission('Admin', 'ScannersQueryEdit')
 # Can view things the scanners query admin (code search).
 ADMIN_SCANNERS_QUERY_VIEW = AclPermission('Admin', 'ScannersQueryView')
+# Can access the scanners webhooks admin.
+ADMIN_SCANNERS_WEBHOOKS_VIEW = AclPermission('Admin', 'ScannersWebhooksView')
+# Can use "actions" on the scanners webhooks.
+ADMIN_SCANNERS_WEBHOOKS_EDIT = AclPermission('Admin', 'ScannersWebhooksEdit')
 
 # Can create/edit a Block in the blocklist - the change may require signoff
 BLOCKLIST_CREATE = AclPermission('Blocklist', 'Create')
@@ -220,6 +224,8 @@ DJANGO_PERMISSIONS_MAPPING.update(
         'scanners.delete_scannerqueryresult': ADMIN_SCANNERS_QUERY_EDIT,
         'scanners.view_scannerqueryrule': ADMIN_SCANNERS_QUERY_VIEW,
         'scanners.view_scannerqueryresult': ADMIN_SCANNERS_QUERY_VIEW,
+        'scanners.view_scannerwebhook': ADMIN_SCANNERS_WEBHOOKS_VIEW,
+        **_addchangedelete('scanners', 'scannerwebhook', ADMIN_SCANNERS_WEBHOOKS_EDIT),
         **_addchangedelete('tags', 'tag', DISCOVERY_EDIT),
         'users.change_userprofile': USERS_EDIT,
         **_addchangedelete(

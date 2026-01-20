@@ -31,7 +31,9 @@ from olympia.scanners.models import (
     ScannerQueryRule,
     ScannerResult,
     ScannerRule,
+    ScannerWebhook,
 )
+from olympia.users.models import UserProfile
 
 
 class FakeYaraMatch:
@@ -594,3 +596,21 @@ def test_query_rule_change_state_to_invalid(current_state, target_state):
     # changing through change_state_to() failed before it should always be
     # None in this test.
     assert rule.completed is None
+
+
+class TestScannerWebhook(TestCase):
+    def test_save_creates_a_service_account(self):
+        name = 'some name'
+        webhook = ScannerWebhook(name=name, url='https://example.com', api_key='secret')
+        with self.assertRaises(UserProfile.DoesNotExist):
+            UserProfile.objects.get_service_account(name=webhook.service_account_name)
+
+        webhook.save()
+
+        user = UserProfile.objects.get_service_account(
+            name=webhook.service_account_name
+        )
+        assert user.pk is not None
+        assert user.notes == (
+            f'Service account automatically created for the "{name}" scanner webhook.'
+        )

@@ -18,6 +18,7 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from django.db import models
 from django.db.models import Max, Q
 from django.template import loader
+from django.template.defaultfilters import slugify
 from django.templatetags.static import static
 from django.urls import reverse
 from django.utils import timezone
@@ -309,6 +310,37 @@ class UserManager(BaseUserManager, ManagerBase):
 
     def unban_and_reenable_related_content(self):
         return self.all().unban_and_reenable_related_content()
+
+    def get_service_account(self, name):
+        if not name:
+            raise self.model.DoesNotExist('"name" cannot be blank.')
+
+        return self.get(
+            username=self._make_username_for_service_account(name),
+            fxa_id=None,
+            email=None,
+        )
+
+    def get_or_create_service_account(self, name, notes=None):
+        user, created = self.get_or_create(
+            username=self._make_username_for_service_account(name),
+            fxa_id=None,
+            email=None,
+            defaults={
+                'notes': notes,
+                'read_dev_agreement': datetime.now(),
+            },
+        )
+
+        if created:
+            from olympia.api.models import APIKey
+
+            APIKey.new_jwt_credentials(user=user)
+
+        return user
+
+    def _make_username_for_service_account(self, name):
+        return slugify(f'service-account-{name}')
 
 
 class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):

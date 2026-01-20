@@ -23,6 +23,7 @@ from olympia.amo.admin import (
 )
 from olympia.amo.templatetags.jinja_helpers import vite_asset
 from olympia.amo.utils import is_safe_url
+from olympia.api.models import APIKey
 from olympia.constants import scanners
 from olympia.constants.scanners import (
     ABORTING,
@@ -41,6 +42,7 @@ from olympia.constants.scanners import (
     WEBHOOK_EVENTS,
     YARA,
 )
+from olympia.users.models import UserProfile
 
 from .models import (
     ImproperScannerQueryRuleStateError,
@@ -1083,6 +1085,7 @@ class ScannerWebhookAdmin(AMOModelAdmin):
         'formatted_events_list',
         'is_active',
     )
+    readonly_fields = ('service_account',)
 
     def get_queryset(self, request):
         return super().get_queryset(request).prefetch_related('scannerwebhookevent_set')
@@ -1090,9 +1093,59 @@ class ScannerWebhookAdmin(AMOModelAdmin):
     def formatted_events_list(self, obj):
         return ', '.join(
             [
-                WEBHOOK_EVENTS.get(item.event)
+                WEBHOOK_EVENTS.get(item.event, '(unknown)')
                 for item in obj.scannerwebhookevent_set.all()
             ]
         )
 
     formatted_events_list.short_description = 'Events'
+
+    def service_account(self, obj):
+        try:
+            user = UserProfile.objects.get_service_account(
+                name=obj.service_account_name
+            )
+        except UserProfile.DoesNotExist:
+            return '(will be automatically created)'
+
+        return format_html(
+            '<a href="{}">{}</a>',
+            urljoin(
+                settings.EXTERNAL_SITE_URL,
+                reverse('admin:users_userprofile_change', args=(user.pk,)),
+            ),
+            user.username,
+        )
+
+    def save_model(self, request, obj, form, change):
+        # First save the model.
+        super().save_model(request, obj, form, change)
+
+        if not change:
+            # Display the JWT keys only once on creation.
+            try:
+                user = UserProfile.objects.get_service_account(
+                    name=obj.service_account_name
+                )
+                api_key = APIKey.get_jwt_key(user=user)
+                messages.add_message(
+                    request,
+                    messages.INFO,
+                    format_html(
+                        'Please note the JWT keys for the service account '
+                        '"<a href="{}">{}</a>":'
+                        '<br><br>'
+                        '<code>{}</code>'
+                        '<br>'
+                        '<code>{}</code>',
+                        urljoin(
+                            settings.EXTERNAL_SITE_URL,
+                            reverse('admin:users_userprofile_change', args=(user.pk,)),
+                        ),
+                        user.username,
+                        api_key.key,
+                        api_key.secret,
+                    ),
+                )
+            except Exception:
+                pass

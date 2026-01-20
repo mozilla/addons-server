@@ -30,6 +30,7 @@ from olympia.amo.tests import (
 )
 from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.amo.utils import SafeStorage
+from olympia.api.models import APIKey
 from olympia.bandwagon.models import Collection
 from olympia.devhub.models import SurveyResponse
 from olympia.files.models import File, FileUpload
@@ -1750,6 +1751,61 @@ class TestUserManager(TestCase):
         assert Group.objects.get(name='Admins') in user.groups.all()
         assert not user.is_staff  # Not a mozilla.com email...
         assert user.is_superuser
+
+    def test_get_or_create_service_account(self):
+        name = 'some service'
+
+        user = UserProfile.objects.get_or_create_service_account(name=name)
+
+        assert user.pk is not None
+        assert not user.email
+        assert not user.fxa_id
+        assert user.username == 'service-account-some-service'
+        assert not user.notes
+        assert user.read_dev_agreement is not None
+        assert APIKey.get_jwt_key(user=user)
+
+    def test_get_or_create_service_account_with_notes(self):
+        name = 'some service'
+        notes = 'some notes'
+
+        user = UserProfile.objects.get_or_create_service_account(name=name, notes=notes)
+
+        assert user.pk is not None
+        assert not user.email
+        assert not user.fxa_id
+        assert user.username == 'service-account-some-service'
+        assert user.notes == notes
+        assert user.read_dev_agreement is not None
+
+    def test_get_or_create_service_account_return_existing_user(self):
+        number_of_users = len(UserProfile.objects.all())
+        number_of_keys = len(APIKey.objects.all())
+
+        name = 'some service'
+        user = UserProfile.objects.get_or_create_service_account(name=name)
+        jwt_key = APIKey.get_jwt_key(user=user)
+        assert jwt_key
+        # Call method again, verify that it doesn't recreate an account.
+        user2 = UserProfile.objects.get_or_create_service_account(name=name)
+        assert user2.pk == user.pk
+        assert APIKey.get_jwt_key(user=user2) == jwt_key
+
+        assert len(UserProfile.objects.all()) == number_of_users + 1
+        assert len(APIKey.objects.all()) == number_of_keys + 1
+
+    def test_get_service_account_with_empty_name(self):
+        with self.assertRaises(UserProfile.DoesNotExist):
+            UserProfile.objects.get_service_account(name='')
+
+    def test_get_unknown_service_account(self):
+        with self.assertRaises(UserProfile.DoesNotExist):
+            UserProfile.objects.get_service_account(name='unknown')
+
+    def test_get_service_account(self):
+        name = 'some service'
+        user = UserProfile.objects.get_or_create_service_account(name=name)
+        assert UserProfile.objects.get_service_account(name=name) == user
 
 
 @pytest.mark.django_db
