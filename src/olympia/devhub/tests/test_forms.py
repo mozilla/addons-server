@@ -1236,9 +1236,6 @@ class TestIconForm(TestCase):
         assert len(imgs) == 1  # Only one default icon available atm
         assert imgs[0].attrib == {
             'alt': '',
-            # In dev/stage/prod where STATICFILES_STORAGE is ManifestStaticFilesStorage,
-            # we'd get some hashed file names, but in tests this is deactivated so that
-            # we don't need to run collectstatic to run tests.
             'src': 'http://testserver/static/img/addon-icons/default-32.png',
             'data-src-64': 'http://testserver/static/img/addon-icons/default-64.png',
             'data-src-128': 'http://testserver/static/img/addon-icons/default-128.png',

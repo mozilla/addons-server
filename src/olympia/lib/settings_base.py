@@ -1143,7 +1143,14 @@ CSRF_FAILURE_VIEW = 'olympia.amo.views.csrf_failure'
 CSRF_USE_SESSIONS = True
 
 # Default file storage mechanism that holds media.
-DEFAULT_FILE_STORAGE = 'olympia.amo.utils.SafeStorage'
+STORAGES = {
+    'default': {
+        'BACKEND': 'olympia.amo.utils.SafeStorage',
+    },
+    'staticfiles': {
+        'BACKEND': 'django.contrib.staticfiles.storage.StaticFilesStorage',
+    },
+}
 
 # And how long we'll give the server to respond for monitoring.
 # We currently do not have any actual timeouts during the signing-process.
@@ -1235,8 +1242,6 @@ STATICFILES_DIRS = (
     STATIC_FILES_PATH,
     STATIC_BUILD_PATH,
 )
-
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 # Path related settings. In dev/stage/prod `NETAPP_STORAGE_ROOT` environment
 # variable will be set and point to our NFS/EFS storage

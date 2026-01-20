@@ -36,12 +36,16 @@ STATIC_URL = '%s/static/' % SITE_URL
 MEDIA_URL = '%s/user-media/' % SITE_URL
 
 # Tests run with DEBUG=False but we don't want to have to run collectstatic
-# everytime, so reset STATICFILES_STORAGE to the default instead of
-# ManifestStaticFilesStorage
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
-
-# Overrides whatever storage you might have put in local settings.
-DEFAULT_FILE_STORAGE = 'olympia.amo.utils.SafeStorage'
+# everytime, so reset STORAGES['staticfiles'] to the default, and override
+# whatever storage you might have put in local settings.
+STORAGES = {
+    'default': {
+        'BACKEND': 'olympia.amo.utils.SafeStorage',
+    },
+    'staticfiles': {
+        'BACKEND': 'django.contrib.staticfiles.storage.StaticFilesStorage',
+    },
+}
 
 TASK_USER_ID = 1337
 

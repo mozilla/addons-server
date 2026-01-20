@@ -6,7 +6,6 @@ from datetime import timedelta
 
 from django import http
 from django.core.exceptions import PermissionDenied
-from django.core.files.storage import get_storage_class
 from django.db.transaction import non_atomic_requests
 from django.http import HttpResponse
 from django.template import loader
@@ -47,9 +46,6 @@ SERIES = (
     'contents',
     'campaigns',
 )
-
-
-storage = get_storage_class()()
 
 
 def csv_fields(series):

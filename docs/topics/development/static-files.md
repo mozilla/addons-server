@@ -36,9 +36,8 @@ The rendering path for static files is as follows:
 1. Nginx tries to serve the file if it is available in the `./static` directory.
 2. If the file is not found, the request is forwarded to django and served by the static file server.
 
-The static file serve uses our defined `STATICFILES_STORAGE` setting to determine the URL for static files as well as their underlying source file.
-During development, we use the `StaticFilesStorage` class which does not map the hashed file names back to their original file names.
-Otherwise we use the same `ManifestStaticFilesStorage` class that is used in production, expecting to serve the files from the `STATIC_ROOT` directory.
+The static file serve uses our defined `STORAGES['staticfiles]` setting to determine the URL for static files as well as their underlying source file.
+We use the `StaticFilesStorage` class which does not map the hashed file names back to their original file names.
 
 This allows us to skip `update_assets` in dev mode, speeding up the development process, while still enabling production-like behavior
 when configured to do so. The long term goal is to run CI in production mode always to ensure all tests verify against the production
