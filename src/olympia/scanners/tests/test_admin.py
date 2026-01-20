@@ -2187,6 +2187,7 @@ class TestScannerWebhookAdmin(TestCase):
         self.grant_permission(self.user, 'Admin:ScannersWebhooksView')
         self.grant_permission(self.user, 'Admin:ScannersWebhooksEdit')
         self.client.force_login(self.user)
+        self.add_url = reverse('admin:scanners_scannerwebhook_add')
         self.list_url = reverse('admin:scanners_scannerwebhook_changelist')
 
         self.admin = ScannerWebhookAdmin(model=ScannerWebhook, admin_site=AdminSite())
@@ -2203,3 +2204,39 @@ class TestScannerWebhookAdmin(TestCase):
 
         service_account_html = self.admin.service_account(webhook)
         assert user.username in service_account_html
+
+    def test_create(self):
+        response = self.client.post(
+            self.add_url,
+            {
+                'name': 'scanner-name',
+                'url': 'https://example.com/scanner',
+                'api_key': 'scanner-api-key',
+            },
+            follow=True,
+        )
+
+        webhook = ScannerWebhook.objects.last()
+        user = UserProfile.objects.get_service_account(
+            name=webhook.service_account_name
+        )
+        api_key = APIKey.get_jwt_key(user=user)
+        assert webhook.name == 'scanner-name'
+        assert b'Please note the JWT keys' in response.content
+        assert api_key.key.encode() in response.content
+        assert api_key.secret.encode() in response.content
+
+        response = self.client.post(
+            reverse('admin:scanners_scannerwebhook_change', args=(webhook.pk,)),
+            {
+                'name': 'new-scanner-name',
+                'url': 'https://example.com/scanner',
+                'api_key': 'scanner-api-key',
+            },
+            follow=True,
+        )
+
+        webhook.refresh_from_db()
+        assert webhook.name == 'new-scanner-name'
+        # We shouldn't see the JWT keys on update.
+        assert b'Please note the JWT keys' not in response.content

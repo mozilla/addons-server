@@ -1116,3 +1116,36 @@ class ScannerWebhookAdmin(AMOModelAdmin):
             ),
             user.username,
         )
+
+    def save_model(self, request, obj, form, change):
+        # First save the model.
+        super().save_model(request, obj, form, change)
+
+        if not change:
+            # Display the JWT keys only once on creation.
+            try:
+                user = UserProfile.objects.get_service_account(
+                    name=obj.service_account_name
+                )
+                api_key = APIKey.get_jwt_key(user=user)
+                messages.add_message(
+                    request,
+                    messages.INFO,
+                    format_html(
+                        'Please note the JWT keys for the service account '
+                        '"<a href="{}">{}</a>":'
+                        '<br><br>'
+                        '<code>{}</code>'
+                        '<br>'
+                        '<code>{}</code>',
+                        urljoin(
+                            settings.EXTERNAL_SITE_URL,
+                            reverse('admin:users_userprofile_change', args=(user.pk,)),
+                        ),
+                        user.username,
+                        api_key.key,
+                        api_key.secret,
+                    ),
+                )
+            except Exception:
+                pass
