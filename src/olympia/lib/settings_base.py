@@ -174,6 +174,7 @@ DJANGO_EXTENSIONS_RESET_DB_MYSQL_ENGINES = [DB_ENGINE]
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
 TIME_ZONE = 'UTC'
+USE_TZ = False
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
@@ -225,9 +226,6 @@ LOCALE_PATHS = (path('locale'),)
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
 USE_I18N = True
-
-# This enables localized formatting of numbers and dates/times. Deprecated in Django4.1
-USE_L10N = True
 
 # The host currently running the site.  Only use this in code for good reason;
 # the site is designed to run on a cluster and should continue to support that
