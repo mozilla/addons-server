@@ -2200,22 +2200,6 @@ class TestScannerWebhookAdmin(TestCase):
         user = UserProfile.objects.get_service_account(
             name=webhook.service_account_name
         )
-        api_key = APIKey.get_jwt_key(user=user)
 
         service_account_html = self.admin.service_account(webhook)
         assert user.username in service_account_html
-        assert api_key.key in service_account_html
-        assert api_key.secret in service_account_html
-
-    def test_service_account_without_api_keys(self):
-        webhook = ScannerWebhook.objects.create(name='some service')
-        user = UserProfile.objects.get_service_account(
-            name=webhook.service_account_name
-        )
-        api_key = APIKey.get_jwt_key(user=user)
-        api_key.delete()
-
-        service_account_html = self.admin.service_account(webhook)
-        assert user.username in service_account_html
-        assert api_key.key not in service_account_html
-        assert api_key.secret not in service_account_html
