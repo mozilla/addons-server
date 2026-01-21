@@ -1291,11 +1291,11 @@ msgstr "Proprietate {0} del conto {user} actualisate."
 #: src/olympia/constants/activity.py:1277
 #, python-brace-format
 msgid "{addon} listing content rejected."
-msgstr ""
+msgstr "Contento del lista {addon} refusate."
 
 #: src/olympia/constants/activity.py:1278
 msgid "Listing content rejected"
-msgstr ""
+msgstr "Contento del lista refusate"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -1335,7 +1335,7 @@ msgstr "Attendente revision"
 
 #: src/olympia/constants/base.py:27
 msgid "Listing Content Rejected"
-msgstr ""
+msgstr "Contento del lista refusate"
 
 #: src/olympia/constants/base.py:28 src/olympia/constants/base.py:35
 msgid "Disabled by Mozilla"
