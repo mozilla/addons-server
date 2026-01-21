@@ -964,17 +964,6 @@ class TestUserProfile(TestCase):
         addon.delete()
         assert not user.reload().has_full_profile
 
-    def test_get_lookup_field(self):
-        user = UserProfile.objects.get(id=55021)
-        lookup_field_pk = UserProfile.get_lookup_field(str(user.id))
-        assert lookup_field_pk == 'pk'
-        lookup_field_email = UserProfile.get_lookup_field(user.email)
-        assert lookup_field_email == 'email'
-        lookup_field_random_digit = UserProfile.get_lookup_field('123456')
-        assert lookup_field_random_digit == 'pk'
-        lookup_field_random_string = UserProfile.get_lookup_field('my@mail.co')
-        assert lookup_field_random_string == 'email'
-
     def test_suppressed_email(self):
         user = user_factory()
         assert not user.suppressed_email

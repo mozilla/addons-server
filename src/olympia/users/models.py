@@ -14,6 +14,7 @@ from django.conf import settings
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.signals import user_logged_in
 from django.core import validators
+from django.core.exceptions import ValidationError
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.db import models
 from django.db.models import Max, Q
@@ -104,6 +105,25 @@ class UserEmailField(forms.ModelChoiceField):
 
     def get_bound_field(self, form, field_name):
         return UserEmailBoundField(form, self, field_name)
+
+    def to_python(self, value):
+        if value in self.empty_values:
+            return None
+        try:
+            key = self.to_field_name or 'pk'
+            if isinstance(value, self.queryset.model):
+                value = getattr(value, key)
+            # Handle potential multiple users with same email.
+            value = self.queryset.filter(**{key: value}).last()
+            if value is None:
+                raise self.queryset.model.DoesNotExist
+        except (ValueError, TypeError, self.queryset.model.DoesNotExist) as exc:
+            raise ValidationError(
+                self.error_messages['invalid_choice'],
+                code='invalid_choice',
+                params={'value': value},
+            ) from exc
+        return value
 
 
 class UserEmailBoundField(forms.boundfield.BoundField):
@@ -379,7 +399,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         ],
     )
 
-    email = models.EmailField(unique=True, null=True, max_length=75)
+    email = models.EmailField(null=True, max_length=75)
 
     averagerating = models.FloatField(null=True)
     # biography can (and does) contain html and other unsanitized content.
@@ -402,7 +422,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     # Is the profile page for this account a full profile?
     has_full_profile = models.BooleanField(default=False, db_column='public')
 
-    fxa_id = models.CharField(blank=True, null=True, max_length=128)
+    fxa_id = models.CharField(unique=True, blank=True, null=True, max_length=128)
 
     # Identifier that is used to invalidate internal API tokens (i.e. those
     # that we generate for addons-frontend, NOT the API keys external clients
@@ -421,6 +441,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         db_table = 'users'
         indexes = [
             models.Index(fields=('created',), name='created'),
+            models.Index(fields=('email',), name='email'),
             models.Index(fields=('fxa_id',), name='users_fxa_id_index'),
             LongNameIndex(
                 fields=('last_login_ip',), name='users_last_login_ip_2cfbbfbd'
@@ -434,15 +455,6 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
     def __str__(self):
         return f'{self.id}: {self.display_name or self.username}'
-
-    @classmethod
-    def get_lookup_field(cls, identifier):
-        lookup_field = 'pk'
-        if identifier and not identifier.isdigit():
-            # If the identifier contains anything other than a digit,
-            # it's an email.
-            lookup_field = 'email'
-        return lookup_field
 
     @property
     def is_superuser(self):

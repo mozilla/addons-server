@@ -374,7 +374,10 @@ class AddonFormTechnicalUnlisted(AddonFormBase):
 
 
 class AuthorForm(AMOModelForm):
-    user = UserEmailField(required=True, queryset=UserProfile.objects.all())
+    user = UserEmailField(
+        required=True,
+        queryset=UserProfile.objects.all(),
+    )
     role = forms.TypedChoiceField(
         required=True,
         choices=amo.AUTHOR_CHOICES,
@@ -414,6 +417,15 @@ class AuthorForm(AMOModelForm):
 
 
 class AuthorWaitingConfirmationForm(AuthorForm):
+    # In order to be invited a user profile needs to be non-deleted and have a
+    # fxa_id (ensuring they logged in at least once through FxA).
+    user = UserEmailField(
+        required=True,
+        queryset=UserProfile.objects.filter(fxa_id__isnull=False)
+        .exclude(deleted=True)
+        .order_by('created'),
+    )
+
     class Meta(AuthorForm.Meta):
         model = AddonUserPendingConfirmation
 
