@@ -333,7 +333,9 @@ class UserAdmin(AMOModelAdmin):
         if not acl.action_allowed_for(request.user, amo.permissions.USERS_EDIT):
             return HttpResponseForbidden()
 
-        self.model.objects.filter(pk=obj.pk).ban_and_disable_related_content()
+        self.model.objects.filter(pk=obj.pk).ban_and_disable_related_content(
+            hard_block_addons=True
+        )
         kw = {'user': force_str(obj)}
         self.message_user(request, 'The user "%(user)s" has been banned.' % kw)
         return HttpResponseRedirect(
@@ -415,7 +417,7 @@ class UserAdmin(AMOModelAdmin):
         )
 
     def ban_action(self, request, qs):
-        qs.ban_and_disable_related_content()
+        qs.ban_and_disable_related_content(hard_block_addons=True)
         kw = {'users': ', '.join(str(user) for user in qs)}
         self.message_user(request, 'The users "%(users)s" have been banned.' % kw)
 
