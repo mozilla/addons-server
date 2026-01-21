@@ -3787,7 +3787,7 @@ msgstr "Tu additivo era disactivate per un administrator de sito e non es plus m
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:32
 msgid "Your add-on listing was rejected. It is not listed in our gallery. Please address the reasons and reapply for review."
-msgstr ""
+msgstr "Tu lista de additivos ha essite rejectate. Illo non sera exhibite in nostre galeria. Corrige le motivos e reface demanda de revision."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:35
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
