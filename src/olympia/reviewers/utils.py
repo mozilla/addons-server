@@ -167,8 +167,8 @@ class PendingManualApprovalQueueTable(AddonQueueTable):
                 '',
                 '<li>{}</li>',
                 [
-                    (entry.display,)
-                    for entry in NeedsHumanReview.REASONS.entries
+                    (entry.label,)
+                    for entry in NeedsHumanReview.REASONS
                     if getattr(record, entry.annotation, None)
                 ],
             ),

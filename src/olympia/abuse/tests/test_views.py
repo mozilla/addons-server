@@ -238,7 +238,7 @@ class AddonAbuseViewSetTestBase:
             data={
                 'addon': str(addon.guid),
                 'message': 'foo',
-                'reason': reason.constant.lower(),
+                'reason': reason.api_value,
             },
         )
         assert response.status_code == 201
@@ -1241,7 +1241,7 @@ class TestCinderWebhook(TestCase):
         addon_factory(guid=abuse_report.guid)
         assert filter_enforcement_actions([], cinder_job) == []
         actions_from_json = [
-            'amo-disable_addon',
+            'amo-disable-addon',
             'amo-ban-user',
             'amo-approve',
             'not-amo-action',  # not a valid action at all

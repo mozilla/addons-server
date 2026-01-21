@@ -75,7 +75,7 @@ class TestAbuseReport(TestCase):
     fixtures = ['base/addon_3615', 'base/user_999']
 
     def test_choices(self):
-        assert AbuseReport.ADDON_SIGNATURES.choices == (
+        assert AbuseReport.ADDON_SIGNATURES.choices == [
             (None, 'None'),
             (1, 'Curated and partner'),
             (2, 'Curated'),
@@ -90,8 +90,8 @@ class TestAbuseReport(TestCase):
             (11, 'System'),
             (12, 'Privileged'),
             (13, 'Not required'),
-        )
-        assert AbuseReport.ADDON_SIGNATURES.api_choices == (
+        ]
+        assert AbuseReport.ADDON_SIGNATURES.api_choices == [
             (None, None),
             (1, 'curated_and_partner'),
             (2, 'curated'),
@@ -106,9 +106,9 @@ class TestAbuseReport(TestCase):
             (11, 'system'),
             (12, 'privileged'),
             (13, 'not_required'),
-        )
+        ]
 
-        assert AbuseReport.REASONS.choices == (
+        assert AbuseReport.REASONS.choices == [
             (None, 'None'),
             (1, 'Damages computer and/or data'),
             (2, 'Creates spam or advertising'),
@@ -128,8 +128,8 @@ class TestAbuseReport(TestCase):
             (20, 'Feedback: It does not work, breaks websites, or slows down Firefox'),
             (21, "Feedback: It's spam"),
             (127, 'Other'),
-        )
-        assert AbuseReport.REASONS.api_choices == (
+        ]
+        assert AbuseReport.REASONS.api_choices == [
             (None, None),
             (1, 'damage'),
             (2, 'spam'),
@@ -145,9 +145,9 @@ class TestAbuseReport(TestCase):
             (20, 'does_not_work'),
             (21, 'feedback_spam'),
             (127, 'other'),
-        )
+        ]
 
-        assert AbuseReport.ADDON_INSTALL_METHODS.choices == (
+        assert AbuseReport.ADDON_INSTALL_METHODS.choices == [
             (None, 'None'),
             (1, 'Add-on Manager Web API'),
             (2, 'Direct link'),
@@ -164,9 +164,9 @@ class TestAbuseReport(TestCase):
             (13, 'Sync'),
             (14, 'URL'),
             (127, 'Other'),
-        )
+        ]
 
-        assert AbuseReport.ADDON_INSTALL_METHODS.api_choices == (
+        assert AbuseReport.ADDON_INSTALL_METHODS.api_choices == [
             (None, None),
             (1, 'amwebapi'),
             (2, 'link'),
@@ -183,9 +183,9 @@ class TestAbuseReport(TestCase):
             (13, 'sync'),
             (14, 'url'),
             (127, 'other'),
-        )
+        ]
 
-        assert AbuseReport.ADDON_INSTALL_SOURCES.choices == (
+        assert AbuseReport.ADDON_INSTALL_SOURCES.choices == [
             (None, 'None'),
             (1, 'Add-ons Manager'),
             (2, 'Add-ons Debugging'),
@@ -216,9 +216,9 @@ class TestAbuseReport(TestCase):
             (27, 'System-wide Add-on (OS Share)'),
             (28, 'System-wide Add-on (OS Local)'),
             (127, 'Other'),
-        )
+        ]
 
-        assert AbuseReport.ADDON_INSTALL_SOURCES.api_choices == (
+        assert AbuseReport.ADDON_INSTALL_SOURCES.api_choices == [
             (None, None),
             (1, 'about_addons'),
             (2, 'about_debugging'),
@@ -249,39 +249,39 @@ class TestAbuseReport(TestCase):
             (27, 'app_system_share'),
             (28, 'app_system_local'),
             (127, 'other'),
-        )
+        ]
 
-        assert AbuseReport.REPORT_ENTRY_POINTS.choices == (
+        assert AbuseReport.REPORT_ENTRY_POINTS.choices == [
             (None, 'None'),
             (1, 'Uninstall'),
             (2, 'Menu'),
             (3, 'Toolbar context menu'),
             (4, 'AMO'),
             (5, 'Unified extensions context menu'),
-        )
-        assert AbuseReport.REPORT_ENTRY_POINTS.api_choices == (
+        ]
+        assert AbuseReport.REPORT_ENTRY_POINTS.api_choices == [
             (None, None),
             (1, 'uninstall'),
             (2, 'menu'),
             (3, 'toolbar_context_menu'),
             (4, 'amo'),
             (5, 'unified_context_menu'),
-        )
+        ]
 
-        assert AbuseReport.LOCATION.choices == (
+        assert AbuseReport.LOCATION.choices == [
             (None, 'None'),
             (1, 'Add-on page on AMO'),
             (2, 'Inside Add-on'),
             (3, 'Both on AMO and inside Add-on'),
-        )
-        assert AbuseReport.LOCATION.api_choices == (
+        ]
+        assert AbuseReport.LOCATION.api_choices == [
             (None, None),
             (1, 'amo'),
             (2, 'addon'),
             (3, 'both'),
-        )
+        ]
 
-        assert ILLEGAL_CATEGORIES.choices == (
+        assert ILLEGAL_CATEGORIES.choices == [
             (None, 'None'),
             (1, 'Animal welfare'),
             (2, 'Consumer information infringements'),
@@ -298,8 +298,8 @@ class TestAbuseReport(TestCase):
             (13, 'Unsafe, non-compliant, or prohibited products'),
             (14, 'Violence'),
             (15, 'Other'),
-        )
-        assert ILLEGAL_CATEGORIES.api_choices == (
+        ]
+        assert ILLEGAL_CATEGORIES.api_choices == [
             (None, None),
             (1, 'animal_welfare'),
             (2, 'consumer_information'),
@@ -316,9 +316,9 @@ class TestAbuseReport(TestCase):
             (13, 'unsafe_and_prohibited_products'),
             (14, 'violence'),
             (15, 'other'),
-        )
+        ]
 
-        assert ILLEGAL_SUBCATEGORIES.choices == (
+        assert ILLEGAL_SUBCATEGORIES.choices == [
             (None, 'None'),
             (1, 'Something else'),
             (2, 'Insufficient information on traders'),
@@ -389,8 +389,8 @@ class TestAbuseReport(TestCase):
             (47, 'Human exploitation'),
             (48, 'Human trafficking'),
             (49, 'General calls or incitement to violence and/or hatred'),
-        )
-        assert ILLEGAL_SUBCATEGORIES.api_choices == (
+        ]
+        assert ILLEGAL_SUBCATEGORIES.api_choices == [
             (None, None),
             (1, 'other'),
             (2, 'insufficient_information_on_traders'),
@@ -441,7 +441,7 @@ class TestAbuseReport(TestCase):
             (47, 'human_exploitation'),
             (48, 'human_trafficking'),
             (49, 'incitement_violence_hatred'),
-        )
+        ]
 
     def test_type(self):
         addon = addon_factory(guid='@lol')
@@ -1779,7 +1779,7 @@ class TestContentDecisionCanBeAppealed(TestCase):
         )
         for decision_action in (
             action
-            for action, _ in DECISION_ACTIONS
+            for action in DECISION_ACTIONS
             if action not in DECISION_ACTIONS.APPEALABLE_BY_REPORTER
         ):
             self.decision.update(

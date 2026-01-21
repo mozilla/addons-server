@@ -1739,5 +1739,5 @@ class TestHeldDecisionReviewForm(TestCase):
 def test_review_queue_filter_form_due_date_reasons():
     form = ReviewQueueFilter(data=None)
     assert form.fields['due_date_reasons'].choices == [
-        (entry.annotation, entry.display) for entry in NeedsHumanReview.REASONS.entries
+        (entry.annotation, entry.label) for entry in NeedsHumanReview.REASONS
     ]

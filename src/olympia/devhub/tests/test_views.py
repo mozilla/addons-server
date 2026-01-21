@@ -961,7 +961,7 @@ class TestAPIKeyPage(TestCase):
         assert 'recaptcha' in form.fields
         (confirm_button,) = self._submit_actions(doc)
         assert 'Confirm email address' in confirm_button.text
-        assert confirm_button.get('value') == APIKeyForm.ACTION_CHOICES.confirm
+        assert confirm_button.get('value') == APIKeyForm.ACTION_CHOICES.CONFIRM
 
     def test_view_with_credentials_not_confirmed_yet(self):
         APIKey.objects.create(
@@ -979,7 +979,7 @@ class TestAPIKeyPage(TestCase):
         (revoke_button,) = self._submit_actions(doc)
 
         assert 'Revoke' in revoke_button.text
-        assert revoke_button.get('value') == APIKeyForm.ACTION_CHOICES.revoke
+        assert revoke_button.get('value') == APIKeyForm.ACTION_CHOICES.REVOKE
 
     def test_view_with_credentials_confirmed(self):
         APIKeyConfirmation.objects.create(
@@ -1001,10 +1001,10 @@ class TestAPIKeyPage(TestCase):
         revoke_button, regenerate_button = self._submit_actions(doc)
 
         assert 'Revoke' in revoke_button.text
-        assert revoke_button.get('value') == APIKeyForm.ACTION_CHOICES.revoke
+        assert revoke_button.get('value') == APIKeyForm.ACTION_CHOICES.REVOKE
 
         assert 'Revoke and regenerate credentials' in regenerate_button.text
-        assert regenerate_button.get('value') == APIKeyForm.ACTION_CHOICES.regenerate
+        assert regenerate_button.get('value') == APIKeyForm.ACTION_CHOICES.REGENERATE
 
     def test_view_without_credentials_confirmation_requested_no_token(self):
         APIKeyConfirmation.objects.create(
@@ -1037,7 +1037,7 @@ class TestAPIKeyPage(TestCase):
 
         (generate_button,) = self._submit_actions(doc)
         assert 'Generate new credentials' in generate_button.text
-        assert generate_button.get('value') == APIKeyForm.ACTION_CHOICES.generate
+        assert generate_button.get('value') == APIKeyForm.ACTION_CHOICES.GENERATE
 
     def test_view_no_credentials_has_been_confirmed_once(self):
         APIKeyConfirmation.objects.create(
@@ -1048,7 +1048,7 @@ class TestAPIKeyPage(TestCase):
         doc = pq(response.content)
         (confirm_button,) = self._submit_actions(doc)
         assert 'Generate new credentials' in confirm_button.text
-        assert confirm_button.get('value') == APIKeyForm.ACTION_CHOICES.generate
+        assert confirm_button.get('value') == APIKeyForm.ACTION_CHOICES.GENERATE
 
     def test_create_new_credentials_has_been_confirmed_once(self):
         APIKeyConfirmation.objects.create(
@@ -1058,7 +1058,7 @@ class TestAPIKeyPage(TestCase):
         with patch as mock_creator:
             mock_creator.return_value.key = 'fake-new-jwt-key'
             response = self.client.post(
-                self.url, data={'action': APIKeyForm.ACTION_CHOICES.generate}
+                self.url, data={'action': APIKeyForm.ACTION_CHOICES.GENERATE}
             )
         mock_creator.assert_called_with(self.user)
 
@@ -1079,7 +1079,7 @@ class TestAPIKeyPage(TestCase):
         response = self.client.post(
             self.url,
             data={
-                'action': APIKeyForm.ACTION_CHOICES.generate,
+                'action': APIKeyForm.ACTION_CHOICES.GENERATE,
                 'confirmation_token': 'secrettoken',
             },
         )
@@ -1105,7 +1105,7 @@ class TestAPIKeyPage(TestCase):
         response = self.client.post(
             self.url,
             data={
-                'action': APIKeyForm.ACTION_CHOICES.confirm,
+                'action': APIKeyForm.ACTION_CHOICES.CONFIRM,
                 'g-recaptcha-response': 'test',
             },
         )
@@ -1134,7 +1134,7 @@ class TestAPIKeyPage(TestCase):
             user=self.user, token='doesnt matter', confirmed_once=False
         )
         response = self.client.post(
-            self.url, data={'action': APIKeyForm.ACTION_CHOICES.generate}
+            self.url, data={'action': APIKeyForm.ACTION_CHOICES.GENERATE}
         )
         assert len(mail.outbox) == 0
         assert not APIKey.objects.filter(user=self.user).exists()
@@ -1151,7 +1151,7 @@ class TestAPIKeyPage(TestCase):
         response = self.client.post(
             self.url,
             data={
-                'action': APIKeyForm.ACTION_CHOICES.generate,
+                'action': APIKeyForm.ACTION_CHOICES.GENERATE,
                 'confirmation_token': 'wrong',
             },
         )
@@ -1175,7 +1175,7 @@ class TestAPIKeyPage(TestCase):
             secret='some-jwt-secret',
         )
         response = self.client.post(
-            self.url, data={'action': APIKeyForm.ACTION_CHOICES.regenerate}
+            self.url, data={'action': APIKeyForm.ACTION_CHOICES.REGENERATE}
         )
         self.assert3xx(response, self.url)
 
@@ -1194,7 +1194,7 @@ class TestAPIKeyPage(TestCase):
             secret='some-jwt-secret',
         )
         response = self.client.post(
-            self.url, data={'action': APIKeyForm.ACTION_CHOICES.regenerate}
+            self.url, data={'action': APIKeyForm.ACTION_CHOICES.REGENERATE}
         )
         form = response.context['form']
         assert not form.is_valid()
@@ -1206,7 +1206,7 @@ class TestAPIKeyPage(TestCase):
         # Since there was no confirmation, the user can revoke the current key
         # effectively starting from the beginning with recaptcha and confirmation.
         response = self.client.post(
-            self.url, data={'action': APIKeyForm.ACTION_CHOICES.revoke}
+            self.url, data={'action': APIKeyForm.ACTION_CHOICES.REVOKE}
         )
         self.assert3xx(response, self.url)
         assert len(mail.outbox) == 1
@@ -1233,7 +1233,7 @@ class TestAPIKeyPage(TestCase):
             secret='some-jwt-secret',
         )
         response = self.client.post(
-            self.url, data={'action': APIKeyForm.ACTION_CHOICES.revoke}
+            self.url, data={'action': APIKeyForm.ACTION_CHOICES.REVOKE}
         )
         self.assert3xx(response, self.url)
 
@@ -1269,7 +1269,7 @@ class TestAPIKeyPage(TestCase):
         response = self.client.post(
             f'{self.url}?token=secrettoken',
             data={
-                'action': APIKeyForm.ACTION_CHOICES.generate,
+                'action': APIKeyForm.ACTION_CHOICES.GENERATE,
                 'confirmation_token': 'wrong',
             },
         )
@@ -2524,7 +2524,7 @@ class TestVerifyEmail(TestCase):
         mock_check_suppressed.return_value = []
         self.with_email_verification()
         self.email_verification.status = (
-            SuppressedEmailVerification.STATUS_CHOICES.Delivered
+            SuppressedEmailVerification.STATUS_CHOICES.DELIVERED
         )
         self.email_verification.save()
         response = self.client.get(self.url)

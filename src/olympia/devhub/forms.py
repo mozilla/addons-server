@@ -19,7 +19,6 @@ from django.utils.translation import get_language, gettext, gettext_lazy as _, n
 
 import waffle
 from django_statsd.clients import statsd
-from extended_choices import Choices
 
 from olympia import amo
 from olympia.access import acl
@@ -36,6 +35,7 @@ from olympia.addons.models import (
     Preview,
 )
 from olympia.addons.utils import remove_icons, validate_addon_name
+from olympia.amo.enum import StrEnumChoices
 from olympia.amo.fields import HttpHttpsOnlyURLField, ReCaptchaField
 from olympia.amo.forms import AMOModelForm
 from olympia.amo.messages import DoubleSafe
@@ -1463,14 +1463,14 @@ class AgreementForm(forms.Form):
 
 
 class APIKeyForm(forms.Form):
-    ACTION_CHOICES = Choices(
-        ('confirm', 'confirm', _('Confirm email address')),
-        ('generate', 'generate', _('Generate new credentials')),
-        ('regenerate', 'regenerate', _('Revoke and regenerate credentials')),
-        ('revoke', 'revoke', _('Revoke')),
-    )
-    REQUIRES_CREDENTIALS = (ACTION_CHOICES.revoke, ACTION_CHOICES.regenerate)
-    REQUIRES_CONFIRMATION = (ACTION_CHOICES.generate, ACTION_CHOICES.regenerate)
+    class ACTION_CHOICES(StrEnumChoices):
+        CONFIRM = 'confirm', _('Confirm email address')
+        GENERATE = 'generate', _('Generate new credentials')
+        REGENERATE = 'regenerate', _('Revoke and regenerate credentials')
+        REVOKE = 'revoke', _('Revoke')
+
+    ACTION_CHOICES.add_subset('REQUIRES_CREDENTIALS', ('REVOKE', 'REGENERATE'))
+    ACTION_CHOICES.add_subset('REQUIRES_CONFIRMATION', ('GENERATE', 'REGENERATE'))
 
     @cached_property
     def credentials(self):
@@ -1530,10 +1530,10 @@ class APIKeyForm(forms.Form):
                 required=True,
                 initial=self.credentials.secret,
             )
-            self.available_actions.append(self.ACTION_CHOICES.revoke)
+            self.available_actions.append(self.ACTION_CHOICES.REVOKE)
 
             if has_confirmation and self.confirmation.confirmed_once:
-                self.available_actions.append(self.ACTION_CHOICES.regenerate)
+                self.available_actions.append(self.ACTION_CHOICES.REGENERATE)
 
         elif has_confirmation:
             get_token_param = self.request.GET.get('token')
@@ -1547,7 +1547,7 @@ class APIKeyForm(forms.Form):
                     'Please click the confirm button below to generate '
                     'API credentials for user <strong>{name}</strong>.'
                 ).format(name=self.request.user.name)
-                self.available_actions.append(self.ACTION_CHOICES.generate)
+                self.available_actions.append(self.ACTION_CHOICES.GENERATE)
             else:
                 help_text = _(
                     'A confirmation link will be sent to your email address. '
@@ -1569,7 +1569,7 @@ class APIKeyForm(forms.Form):
                 self.fields['recaptcha'] = ReCaptchaField(
                     label='', help_text=_("You don't have any API credentials.")
                 )
-            self.available_actions.append(self.ACTION_CHOICES.confirm)
+            self.available_actions.append(self.ACTION_CHOICES.CONFIRM)
 
     def clean(self):
         cleaned_data = super().clean()
@@ -1589,18 +1589,18 @@ class APIKeyForm(forms.Form):
         confirmation_created = False
 
         # User is revoking or regenerating credentials, revoke existing credentials
-        if self.action in self.REQUIRES_CREDENTIALS:
+        if self.action in self.ACTION_CHOICES.REQUIRES_CREDENTIALS:
             self.credentials.update(is_active=None)
             credentials_revoked = True
 
         # user is trying to generate or regenerate credentials, create new credentials
-        if self.action in self.REQUIRES_CONFIRMATION:
+        if self.action in self.ACTION_CHOICES.REQUIRES_CONFIRMATION:
             self.confirmation.update(confirmed_once=True)
             self.credentials = APIKey.new_jwt_credentials(self.request.user)
             credentials_generated = True
 
         # user has no credentials or confirmation, create a confirmation
-        if self.action == self.ACTION_CHOICES.confirm:
+        if self.action == self.ACTION_CHOICES.CONFIRM:
             self.confirmation = APIKeyConfirmation.objects.create(
                 user=self.request.user, token=APIKeyConfirmation.generate_token()
             )

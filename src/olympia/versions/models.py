@@ -219,10 +219,9 @@ class VersionManager(ManagerBase):
 
         # Abuse-related reasons & developer replies always trigger a due
         # date even if the version has been disabled / not signed.
-        abuse_related_or_developer_reply = (
-            NeedsHumanReview.REASONS.ABUSE_OR_APPEAL_RELATED.entries
-            + [NeedsHumanReview.REASONS.DEVELOPER_REPLY.choice_entry]
-        )
+        abuse_related_or_developer_reply = list(
+            NeedsHumanReview.REASONS.ABUSE_OR_APPEAL_RELATED
+        ) + [NeedsHumanReview.REASONS.DEVELOPER_REPLY]
         for entry in abuse_related_or_developer_reply:
             reasons[entry.annotation] = Q(
                 needshumanreview__is_active=True,
@@ -236,7 +235,7 @@ class VersionManager(ManagerBase):
             ~Q(file__status=amo.STATUS_DISABLED) | Q(file__is_signed=True),
             needshumanreview__is_active=True,
         )
-        for entry in set(NeedsHumanReview.REASONS.entries).difference(
+        for entry in set(NeedsHumanReview.REASONS).difference(
             abuse_related_or_developer_reply
         ):
             reasons[entry.annotation] = Q(

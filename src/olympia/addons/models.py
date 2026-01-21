@@ -757,9 +757,9 @@ class Addon(OnChangeMixin, ModelBase):
         inheritance."""
         from olympia.reviewers.models import NeedsHumanReview
 
-        reasons_triggering_inheritance = set(
-            NeedsHumanReview.REASONS.values.keys()
-        ) - set(NeedsHumanReview.REASONS.NO_DUE_DATE_INHERITANCE.values.keys())
+        reasons_triggering_inheritance = set(NeedsHumanReview.REASONS.values) - set(
+            NeedsHumanReview.REASONS.NO_DUE_DATE_INHERITANCE.values
+        )
         return self.versions(manager='unfiltered_for_relations').filter(
             channel=channel,
             needshumanreview__is_active=True,

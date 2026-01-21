@@ -2698,7 +2698,7 @@ class TestAddonDueDate(TestCase):
         ) == {unlisted_version}
 
         # Adding any of those NHR should not matter.
-        for reason_value, _ in NeedsHumanReview.REASONS.NO_DUE_DATE_INHERITANCE:
+        for reason_value in NeedsHumanReview.REASONS.NO_DUE_DATE_INHERITANCE:
             version2.needshumanreview_set.create(reason=reason_value)
 
         assert set(
@@ -4159,8 +4159,8 @@ class TestExtensionsQueues(TestCase):
         )  # Should not show up either (SCANNER_ACTION NHR is inactive)
 
         addons = Addon.objects.get_queryset_for_pending_queues(
-            due_date_reasons_choices=NeedsHumanReview.REASONS.extract_subset(
-                'AUTO_APPROVAL_DISABLED', 'SCANNER_ACTION'
+            due_date_reasons_choices=NeedsHumanReview.REASONS.get_subset(
+                '_SUB', ('AUTO_APPROVAL_DISABLED', 'SCANNER_ACTION')
             )
         )
         assert list(addons) == expected_addons

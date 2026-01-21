@@ -6,11 +6,11 @@ from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 
 def create_partner_promoted_group(apps, schema_editor):
     PromotedGroup = apps.get_model('promoted', 'PromotedGroup')
-    partner = PROMOTED_GROUP_CHOICES.for_constant('PARTNER')
+    partner = PROMOTED_GROUP_CHOICES.PARTNER
     PromotedGroup.objects.update_or_create(
         group_id=partner.value,
         defaults={
-            'name': partner.display,
+            'name': partner.label,
             'api_name': partner.api_value,
             'high_profile': True,
             'active': True,

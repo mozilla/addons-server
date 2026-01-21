@@ -34,9 +34,9 @@ def block_activity_log_save(obj, *, change, submission_obj):
         f'{len(blocked_versions)} total versions now blocked.',
     }
 
-    details['signoff_state'] = submission_obj.SIGNOFF_STATES.for_value(
+    details['signoff_state'] = submission_obj.SIGNOFF_STATES(
         submission_obj.signoff_state
-    ).display
+    ).label
     if submission_obj.signoff_by:
         details['signoff_by'] = submission_obj.signoff_by.id
     details['block_type'] = submission_obj.block_type
@@ -96,9 +96,9 @@ def block_activity_log_delete(obj, deleted, *, submission_obj):
         else amo.LOG.BLOCKLIST_BLOCK_DELETED
     )
 
-    details['signoff_state'] = submission_obj.SIGNOFF_STATES.for_value(
+    details['signoff_state'] = submission_obj.SIGNOFF_STATES(
         submission_obj.signoff_state
-    ).display
+    ).label
     if submission_obj.signoff_by:
         details['signoff_by'] = submission_obj.signoff_by.id
 

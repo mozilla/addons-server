@@ -187,7 +187,7 @@ class TestBlocklistSubmissionForm(TestCase):
         submission = BlocklistSubmission.objects.create(
             input_guids=f'{self.new_addon.guid}\n{self.existing_block_partial.guid}',
         )
-        for action in BlocklistSubmission.ACTIONS.values.keys():
+        for action in BlocklistSubmission.ACTIONS.values:
             # they're the same for each of the actions
             submission.update(
                 action=action,

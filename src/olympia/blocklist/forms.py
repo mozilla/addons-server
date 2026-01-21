@@ -81,7 +81,7 @@ class BlocksWidget(forms.widgets.SelectMultiple):
         """Return the verb to use when displaying a given version, depending
         on the action."""
         try:
-            verb = BlocklistSubmission.ACTIONS.for_value(action).short
+            verb = BlocklistSubmission.ACTIONS(action).short
         except KeyError:
             verb = '?'
         return verb

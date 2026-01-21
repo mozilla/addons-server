@@ -56,7 +56,7 @@ class PromotedGroup(models.Model):
 
     group_id = models.SmallIntegerField(
         help_text='The legacy ID from back when promoted groups were static classes',
-        choices=PROMOTED_GROUP_CHOICES,
+        choices=PROMOTED_GROUP_CHOICES.choices,
     )
     name = models.CharField(
         max_length=255, help_text='Human-readable name for the promotion group.'

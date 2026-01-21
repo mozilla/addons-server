@@ -255,9 +255,7 @@ class CinderJobsWidget(forms.CheckboxSelectMultiple):
         forwarded = queue_moves[0].created if queue_moves else None
         requeued = requeued_decisions[0].created if requeued_decisions else None
         reports = obj.all_abuse_reports
-        reasons_set = {
-            (report.REASONS.for_value(report.reason).display,) for report in reports
-        }
+        reasons_set = {(report.REASONS(report.reason).label,) for report in reports}
         messages_gen = (
             (
                 (f'v[{report.addon_version}]: ' if report.addon_version else ''),
@@ -347,9 +345,9 @@ class CinderPolicyWidget(forms.CheckboxSelectMultiple):
         label = str(obj)
         attrs = attrs or {}
         actions_on_policy = {
-            DECISION_ACTIONS.for_api_value(action).value
+            DECISION_ACTIONS.from_api_value(action).value
             for action in obj.enforcement_actions
-            if DECISION_ACTIONS.has_api_value(action)
+            if action in DECISION_ACTIONS.api_values
         }
         actions = (
             reviewer_action
@@ -900,14 +898,11 @@ class ReviewQueueFilter(forms.Form):
     )
 
     def __init__(self, data, *args, **kw):
-        due_date_reasons = [
-            entry.annotation for entry in NeedsHumanReview.REASONS.entries
-        ]
+        due_date_reasons = [entry.annotation for entry in NeedsHumanReview.REASONS]
         kw['initial'] = {'due_date_reasons': due_date_reasons}
         super().__init__(data, *args, **kw)
         self.fields['due_date_reasons'].choices = [
-            (entry.annotation, entry.display)
-            for entry in NeedsHumanReview.REASONS.entries
+            (entry.annotation, entry.label) for entry in NeedsHumanReview.REASONS
         ]
 
 
@@ -932,9 +927,9 @@ class HeldDecisionReviewForm(forms.Form):
             self.fields['cinder_job'].queryset = self.cinder_jobs_qs
             self.fields['cinder_job'].initial = [job.id for job in self.cinder_jobs_qs]
         if self.decision.addon:
-            self.fields['choice'].choices = HELD_DECISION_CHOICES.ADDON
+            self.fields['choice'].choices = HELD_DECISION_CHOICES.ADDON.choices
         else:
-            self.fields['choice'].choices = HELD_DECISION_CHOICES.OTHER
+            self.fields['choice'].choices = HELD_DECISION_CHOICES.OTHER.choices
 
     def clean(self):
         super().clean()

@@ -1603,7 +1603,7 @@ class TestExtensionQueue(QueueTest):
         rows = doc('#addon-queue tr.addon-row')
         for row in rows:
             assert (
-                NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED.display
+                NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED.label
                 in row.text_content()
             )
 
@@ -1634,7 +1634,7 @@ class TestExtensionQueue(QueueTest):
         rows = doc('#addon-queue tr.addon-row')
         for row in rows:
             assert (
-                NeedsHumanReview.REASONS.BELONGS_TO_PROMOTED_GROUP.display
+                NeedsHumanReview.REASONS.BELONGS_TO_PROMOTED_GROUP.label
                 in row.text_content()
             )
 
@@ -1767,19 +1767,15 @@ class TestExtensionQueue(QueueTest):
         doc = self._test_results()
         rows = doc('#addon-queue tr.addon-row')
         assert (
-            NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION.display
+            NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION.label
             in rows[0].text_content()
         )
+        assert NeedsHumanReview.REASONS.DEVELOPER_REPLY.label in rows[1].text_content()
         assert (
-            NeedsHumanReview.REASONS.DEVELOPER_REPLY.display in rows[1].text_content()
-        )
-        assert (
-            NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION.display
+            NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION.label
             in rows[1].text_content()
         )
-        assert (
-            NeedsHumanReview.REASONS.DEVELOPER_REPLY.display in rows[2].text_content()
-        )
+        assert NeedsHumanReview.REASONS.DEVELOPER_REPLY.label in rows[2].text_content()
 
     def test_different_due_dates_correct_one_is_shown_when_filtering(self):
         self.url += '?due_date_reasons=needs_human_review_developer_reply'

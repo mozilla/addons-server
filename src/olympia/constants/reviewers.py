@@ -1,4 +1,4 @@
-from extended_choices import Choices
+from olympia.amo.enum import StrEnumChoices
 
 from .base import ADDON_ANY, ADDON_EXTENSION, ADDON_STATICTHEME
 
@@ -68,10 +68,12 @@ REASON_ADDON_TYPE_CHOICES = {
     ADDON_STATICTHEME: 'Theme',
 }
 
-HELD_DECISION_CHOICES = Choices(
-    ('YES', 'yes', 'Proceed with action'),
-    ('NO', 'no', 'Approve content instead'),
-    ('CANCEL', 'cancel', 'Cancel and enqueue in Reviewer Tools'),
-)
+
+class HELD_DECISION_CHOICES(StrEnumChoices):
+    YES = 'yes', 'Proceed with action'
+    NO = 'no', 'Approve content instead'
+    CANCEL = 'cancel', 'Cancel and enqueue in Reviewer Tools'
+
+
 HELD_DECISION_CHOICES.add_subset('ADDON', ('YES', 'CANCEL'))
 HELD_DECISION_CHOICES.add_subset('OTHER', ('YES', 'NO'))

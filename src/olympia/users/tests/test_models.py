@@ -1853,7 +1853,7 @@ class TestSuppressedEmailVerification(TestCase):
 
         assert (
             email_verification.status
-            == SuppressedEmailVerification.STATUS_CHOICES.Pending
+            == SuppressedEmailVerification.STATUS_CHOICES.PENDING
         )
 
     def test_only_valid_options(self):
