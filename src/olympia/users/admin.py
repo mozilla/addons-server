@@ -463,6 +463,11 @@ class UserAdmin(AMOModelAdmin):
         user_log = (
             ActivityLog.objects.filter(user=obj)
             .values_list('created', flat=True)
+            # Ordering by created DESC is slow for users with lots of activity,
+            # the index is in the wrong order. Using the pk is faster and
+            # almost 100% equivalent without having to have another index just
+            # for that query.
+            .order_by('-pk')
             .first()
         )
         return display_for_value(user_log, '')
