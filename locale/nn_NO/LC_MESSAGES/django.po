@@ -1290,7 +1290,7 @@ msgstr "Konto {user}, eigenskap {0} oppdatert."
 #: src/olympia/constants/activity.py:1277
 #, python-brace-format
 msgid "{addon} listing content rejected."
-msgstr ""
+msgstr "Innhaldet i oppføringa for {addon} vart avvist."
 
 #: src/olympia/constants/activity.py:1278
 msgid "Listing content rejected"
@@ -3783,7 +3783,7 @@ msgstr "Tillegget ditt vart deaktivert av ein nettstadadministrator og visast ik
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:32
 msgid "Your add-on listing was rejected. It is not listed in our gallery. Please address the reasons and reapply for review."
-msgstr ""
+msgstr "Oppføringa av utvidinga di vart avvist. Den er ikkje oppført i galleriet vårt. Rett opp årsakene og send den inn på nytt for vurdering."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:35
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
