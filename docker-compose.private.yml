@@ -14,6 +14,10 @@ services:
       - "nginx:olympia.test"
     depends_on:
       - web
+    networks:
+      default:
+        aliases:
+          - customs.test
 
   source-builder:
     build:
