@@ -1294,7 +1294,7 @@ msgstr "Innhaldet i oppføringa for {addon} vart avvist."
 
 #: src/olympia/constants/activity.py:1278
 msgid "Listing content rejected"
-msgstr ""
+msgstr "Innhaldet i listeoppføringa vart avvist"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -1334,7 +1334,7 @@ msgstr "Ventar på vurdering"
 
 #: src/olympia/constants/base.py:27
 msgid "Listing Content Rejected"
-msgstr ""
+msgstr "Innhaldet i listeoppføringa vart avvist"
 
 #: src/olympia/constants/base.py:28 src/olympia/constants/base.py:35
 msgid "Disabled by Mozilla"
