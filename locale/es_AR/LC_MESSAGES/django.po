@@ -3579,7 +3579,7 @@ msgstr "Crear una versión del tema"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:81
 msgid "You can upload a finished theme using the upload option above, or you can build it yourself using this tool."
-msgstr ""
+msgstr "Podés subir un tema terminado usando la opción de subir que está arriba, o podés construirlo vos mismo usando esta herramienta."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:87
 msgid "Create a Theme"
@@ -3810,7 +3810,7 @@ msgstr "Tu complemento fue deshabilitado por un administrador del sitio y ya no 
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:32
 msgid "Your add-on listing was rejected. It is not listed in our gallery. Please address the reasons and reapply for review."
-msgstr ""
+msgstr "Tu lista de complementos fue rechazada. No aparece en nuestra galería. Revisá los motivos y volvé a solicitar la revisión."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:35
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
