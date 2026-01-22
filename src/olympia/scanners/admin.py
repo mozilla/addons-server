@@ -589,7 +589,7 @@ class ScannerResultAdmin(AbstractScannerResultAdminMixin, AMOModelAdmin):
         if obj.scanner == WEBHOOK:
             return f'[webhook] {obj.webhook_event}'
         else:
-            return SCANNERS.get(obj.scanner, '(unknown)')
+            return obj.get_scanner_display()
 
     formatted_scanner.short_description = 'Scanner'
 
