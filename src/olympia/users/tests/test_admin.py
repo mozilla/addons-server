@@ -1047,20 +1047,22 @@ class TestUserAdmin(TestCase):
         # set in the thread global at the time, so set that in advance.
         core.set_user(self.user)
         expected_date = self.days_ago(1)
-        activity = ActivityLog.objects.create(amo.LOG.CREATE_ADDON, addon)
-        activity.update(created=self.days_ago(2))
+        first_activity = ActivityLog.objects.create(amo.LOG.CREATE_ADDON, addon)
 
         activity = ActivityLog.objects.create(amo.LOG.EDIT_PROPERTIES, addon)
         activity.update(created=expected_date)
-
         assert activity.reload().created == expected_date
+
+        # Pretend the first activity is most recent. It shouldn't show up,
+        # because for performance we're relying on ordering by -pk.
+        first_activity.update(created=self.days_ago(0))
+        assert first_activity.reload().created != expected_date
 
         # Create another activity, more recent, attached to a different user.
         core.set_user(someone_else)
-        activity = ActivityLog.objects.create(amo.LOG.EDIT_PROPERTIES, addon)
+        ActivityLog.objects.create(amo.LOG.EDIT_PROPERTIES, addon)
 
         expected_result = localize(expected_date)
-
         assert str(model_admin.last_known_activity_time(self.user)) == expected_result
 
     def _call_related_content_method(self, method):
