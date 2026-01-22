@@ -33,6 +33,8 @@ from olympia.constants.scanners import (
     SCHEDULED,
     TRUE_POSITIVE,
     UNKNOWN,
+    WEBHOOK,
+    WEBHOOK_DURING_VALIDATION,
     YARA,
 )
 from olympia.files.models import FileUpload
@@ -54,6 +56,7 @@ from olympia.scanners.models import (
     ScannerResult,
     ScannerRule,
     ScannerWebhook,
+    ScannerWebhookEvent,
 )
 from olympia.scanners.templatetags.scanners import format_scanners_data
 from olympia.users.models import UserProfile
@@ -989,6 +992,20 @@ class TestScannerResultAdmin(TestCase):
 
         last_url, status_code = response.redirect_chain[-1]
         assert last_url == reverse('admin:scanners_scannerresult_changelist')
+
+    def test_formatted_scanner(self):
+        result = ScannerResult(scanner=YARA)
+        assert self.admin.formatted_scanner(result) == 'yara'
+
+        event = ScannerWebhookEvent.objects.create(
+            event=WEBHOOK_DURING_VALIDATION,
+            webhook=ScannerWebhook.objects.create(name='some service'),
+        )
+        result = ScannerResult(scanner=WEBHOOK, webhook_event=event)
+        assert (
+            self.admin.formatted_scanner(result)
+            == '[webhook] some service (during_validation)'
+        )
 
 
 class TestScannerRuleAdmin(TestCase):
