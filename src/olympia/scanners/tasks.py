@@ -129,7 +129,7 @@ def _call_webhook(webhook, payload):
         # Log the response body when JSON decoding has failed.
         raise ValueError(response.text) from exc
 
-    if response.status_code != 200 or 'error' in data:
+    if response.status_code not in [200, 201, 202] or 'error' in data:
         raise ValueError(data)
 
     return data
