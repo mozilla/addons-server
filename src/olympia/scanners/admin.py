@@ -35,7 +35,6 @@ from olympia.constants.scanners import (
     NEW,
     RESULT_STATES,
     RUNNING,
-    SCANNERS,
     SCHEDULED,
     TRUE_POSITIVE,
     UNKNOWN,
