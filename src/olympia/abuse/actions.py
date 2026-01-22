@@ -882,7 +882,7 @@ class ContentActionTargetAppealApprove(
                 and target.status == amo.STATUS_REJECTED
             ):
                 AddonApprovalsCounter.objects.update_or_create(
-                    addon=self.target,
+                    addon=target,
                     defaults={
                         'last_content_review': datetime.now(),
                         'last_content_review_pass': True,
@@ -919,10 +919,10 @@ class ContentActionTargetAppealApprove(
                 amo.LOG.UNDELETE_RATING,
                 self.target.addon,
                 extra_details={
-                    'body': str(self.target.body),
-                    'addon_id': self.target.addon.pk,
-                    'addon_title': str(self.target.addon.name),
-                    'is_flagged': self.target.ratingflag_set.exists(),
+                    'body': str(target.body),
+                    'addon_id': target.addon.pk,
+                    'addon_title': str(target.addon.name),
+                    'is_flagged': target.ratingflag_set.exists(),
                 },
             )
 
@@ -941,10 +941,39 @@ class ContentActionOverrideApprove(ContentActionTargetAppealApprove):
         return self.decision.__class__.objects.filter(pk=self.decision.override_of_id)
 
 
-class ContentActionApproveNoAction(AnyTargetMixin, NoActionMixin, ContentAction):
-    description = 'Reported content is within policy, initial decision, so no action'
+class ContentActionApproveListingContent(
+    AnyTargetMixin, AnyOwnerEmailMixin, ContentAction
+):
+    description = 'Reported content is within policy'
     reporter_template_path = 'abuse/emails/reporter_content_approve.txt'
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_approve.txt'
+
+    def __init__(self, decision):
+        super().__init__(decision)
+        self.status = self.target.status if isinstance(self.target, Addon) else None
+
+    def get_owners(self):
+        if self.status == amo.STATUS_REJECTED:
+            # If we're approving listing content that was rejected, we need to
+            # notify the authors.
+            return self.target.authors.all()
+        return ()
+
+    def process_action(self, release_hold=False):
+        if isinstance(self.target, Addon):
+            AddonApprovalsCounter.objects.update_or_create(
+                addon=self.target,
+                defaults={
+                    'last_content_review': datetime.now(),
+                    'last_content_review_pass': True,
+                },
+            )
+            if self.status == amo.STATUS_REJECTED:
+                # Call the function to correct it the status
+                self.target.update_status()
+            log_entry = self.log_action(amo.LOG.APPROVE_LISTING_CONTENT)
+            return log_entry
+        return None
 
 
 class ContentActionApproveInitialDecision(
@@ -991,7 +1020,7 @@ CONTENT_ACTION_FROM_DECISION_ACTION = defaultdict(
         DECISION_ACTIONS.AMO_BLOCK_ADDON: ContentActionBlockAddon,
         DECISION_ACTIONS.AMO_DELETE_COLLECTION: ContentActionDeleteCollection,
         DECISION_ACTIONS.AMO_DELETE_RATING: ContentActionDeleteRating,
-        DECISION_ACTIONS.AMO_APPROVE: ContentActionApproveNoAction,
+        DECISION_ACTIONS.AMO_APPROVE: ContentActionApproveListingContent,
         DECISION_ACTIONS.AMO_APPROVE_VERSION: ContentActionApproveInitialDecision,
         DECISION_ACTIONS.AMO_IGNORE: ContentActionIgnore,
         DECISION_ACTIONS.AMO_CLOSED_NO_ACTION: ContentActionAlreadyModerated,

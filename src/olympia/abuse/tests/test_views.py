@@ -33,7 +33,7 @@ from olympia.core import get_user, set_user
 from olympia.ratings.models import Rating
 
 from ..actions import (
-    ContentActionApproveNoAction,
+    ContentActionApproveListingContent,
     ContentActionDisableAddon,
     ContentActionTargetAppealApprove,
     ContentActionTargetAppealRemovalAffirmation,
@@ -1508,7 +1508,7 @@ class TestCinderWebhook(TestCase):
         )
         req = self.get_request(data=data)
         with mock.patch.object(
-            ContentActionApproveNoAction, 'process_action'
+            ContentActionApproveListingContent, 'process_action'
         ) as process_mock:
             cinder_webhook(req)
         process_mock.assert_called()
