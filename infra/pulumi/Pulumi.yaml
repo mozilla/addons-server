@@ -1,0 +1,12 @@
+name: thunderbird-addons
+runtime:
+  name: python
+  options:
+    virtualenv: .venv
+description: Infrastructure for Thunderbird Add-ons (addons.thunderbird.net)
+
+# Project configuration
+config:
+  pulumi:tags:
+    value:
+      pulumi:template: aws-python

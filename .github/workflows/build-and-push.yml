@@ -1,0 +1,146 @@
+# Build and Push to ECR
+# This workflow builds the Docker image and pushes it to AWS ECR
+# Triggered on pushes to stage branch and version tags
+#
+# Required GitHub Secrets:
+#   AWS_ACCESS_KEY_ID     - IAM user access key with ECR push permissions
+#   AWS_SECRET_ACCESS_KEY - IAM user secret key
+#
+# Note: For improved security we might want to consider using OIDC federation instead of static
+# credentials. This would allow GH Actions to assume an IAM role directly
+# without storing long-lived access keys. Cf. https://tinyurl.com/ghAwsOidc
+#
+# The IAM user needs these permissions (provided by tb_pulumi.ci.AwsAutomationUser):
+#   - ecr:GetAuthorizationToken
+#   - ecr:BatchCheckLayerAvailability
+#   - ecr:BatchGetImage
+#   - ecr:CompleteLayerUpload
+#   - ecr:DescribeImages
+#   - ecr:InitiateLayerUpload
+#   - ecr:GetDownloadUrlForLayer
+#   - ecr:ListImages
+#   - ecr:UploadLayerPart
+#   - ecr:PutImage
+
+name: Build and Push to ECR
+
+on:
+  push:
+    branches:
+      - stage
+      - main
+    tags:
+      - 'v*'
+  pull_request:
+    branches:
+      - stage
+      - main
+
+env:
+  AWS_REGION: us-west-2
+  ECR_REPOSITORY: atn-stage-addons-server
+  AWS_ACCOUNT_ID: "768512802988"
+
+jobs:
+  build:
+    name: Build and Push
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Extract metadata for Docker
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY }}
+          tags: |
+            type=ref,event=branch
+            type=ref,event=pr
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=sha,prefix=
+            type=raw,value=latest,enable={{is_default_branch}}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile.ecs
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          build-args: |
+            OLYMPIA_UID=9500
+            OLYMPIA_GID=9500
+
+      - name: Generate version.json
+        if: github.event_name != 'pull_request'
+        run: |
+          echo '{
+            "commit": "${{ github.sha }}",
+            "version": "${{ github.ref_name }}",
+            "source": "https://github.com/${{ github.repository }}",
+            "build": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          }' > version.json
+          cat version.json
+
+      - name: Image digest
+        if: github.event_name != 'pull_request'
+        run: echo "Image pushed with digest ${{ steps.meta.outputs.digest }}"
+
+  # Deploy to ECS (optional - we would uncomment this when ready)
+  # deploy:
+  #   name: Deploy to ECS
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   if: github.ref == 'refs/heads/stage' && github.event_name != 'pull_request'
+  #
+  #   steps:
+  #     - name: Configure AWS credentials
+  #       uses: aws-actions/configure-aws-credentials@v4
+  #       with:
+  #         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  #         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  #         aws-region: ${{ env.AWS_REGION }}
+  #
+  #     - name: Update ECS service (web)
+  #       run: |
+  #         aws ecs update-service \
+  #           --cluster thunderbird-addons-stage-web-cluster \
+  #           --service thunderbird-addons-stage-web-service \
+  #           --force-new-deployment
+  #
+  #     - name: Update ECS service (worker)
+  #       run: |
+  #         aws ecs update-service \
+  #           --cluster thunderbird-addons-stage-worker-cluster \
+  #           --service thunderbird-addons-stage-worker-service \
+  #           --force-new-deployment
+  #
+  #     - name: Update ECS service (versioncheck)
+  #       run: |
+  #         aws ecs update-service \
+  #           --cluster thunderbird-addons-stage-versioncheck-cluster \
+  #           --service thunderbird-addons-stage-versioncheck-service \
+  #           --force-new-deployment

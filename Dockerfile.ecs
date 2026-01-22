@@ -1,0 +1,196 @@
+# Dockerfile.ecs
+# ECS Fargate-optimised Dockerfile for Thunderbird Add-ons Server
+#
+# This Dockerfile is intended for production deployment on AWS ECS Fargate
+# Key features:
+#   - Non-root user execution (olympia)
+#   - Environment-driven configuration
+#   - Built-in health check
+#   - Predictable entrypoint supporting multiple service modes
+#
+# Service modes (via ENTRYPOINT):
+#   web          - Django application via uWSGI (default)
+#   worker       - Celery background workers
+#   versioncheck - Versioncheck API service
+#   scheduler    - Celery beat scheduler
+#   manage       - Django management commands
+#
+# Required environment variables:
+#   DJANGO_SETTINGS_MODULE - Django settings module (default: settings)
+#   DATABASE_URL           - MySQL connection string
+#   CELERY_BROKER_URL      - RabbitMQ connection string
+#   CELERY_RESULT_BACKEND  - Redis connection string
+#   ELASTICSEARCH_LOCATION - OpenSearch/Elasticsearch host:port
+#   MEMCACHE_LOCATION      - Memcached host:port
+#
+# Optional environment variables:
+#   UWSGI_PROCESSES    - Number of uWSGI worker processes (default: 4)
+#   UWSGI_THREADS      - Threads per process (default: 4)
+#   UWSGI_PORT         - HTTP port (default: 8000)
+#   CELERY_CONCURRENCY - Celery worker concurrency (default: 4)
+#   CELERY_QUEUES      - Comma-separated queue names
+#   CELERY_LOGLEVEL    - Celery log level (default: info)
+#   SENTRY_DSN         - Sentry error reporting DSN
+#
+# Build:
+#   docker build -f Dockerfile.ecs -t addons-server:latest .
+#
+# Run examples:
+#   docker run -e DATABASE_URL=... addons-server:latest web
+#   docker run -e DATABASE_URL=... addons-server:latest worker
+#   docker run -e DATABASE_URL=... addons-server:latest versioncheck
+
+FROM python:3.6-slim-stretch
+
+LABEL maintainer="Thunderbird Team"
+LABEL org.opencontainers.image.title="Thunderbird Add-ons Server"
+LABEL org.opencontainers.image.description="ECS Fargate deployment image for addons.thunderbird.net"
+
+# Build arguments
+ARG OLYMPIA_UID=9500
+ARG OLYMPIA_GID=9500
+
+ENV PYTHON_VERSION_MAJOR=3
+ENV SWIG_FEATURES="-D__x86_64__"
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+ENV LANG=en_US.UTF-8
+ENV LC_ALL=en_US.UTF-8
+
+# Default runtime environment (can be overridden at container start)
+ENV DJANGO_SETTINGS_MODULE=settings
+ENV UWSGI_PROCESSES=4
+ENV UWSGI_THREADS=4
+ENV UWSGI_PORT=8000
+ENV CELERY_CONCURRENCY=4
+ENV CELERY_LOGLEVEL=info
+
+# Create olympia user and group (non-root execution)
+RUN groupadd -g ${OLYMPIA_GID} olympia && \
+    useradd -u ${OLYMPIA_UID} -g ${OLYMPIA_GID} -s /bin/bash -m olympia
+
+# Update the main repositories to the archived repository (Stretch is EOL)
+RUN echo "deb http://archive.debian.org/debian stretch main contrib non-free" > /etc/apt/sources.list
+
+# Add nodesource repository and requirements
+ADD docker/nodesource.gpg.key /etc/pki/gpg/GPG-KEY-nodesource
+RUN apt-get update && apt-get install -y \
+        apt-transport-https \
+        gnupg2 \
+    && rm -rf /var/lib/apt/lists/*
+RUN cat /etc/pki/gpg/GPG-KEY-nodesource | apt-key add -
+ADD docker/debian-stretch-nodesource-repo /etc/apt/sources.list.d/nodesource.list
+ADD docker/debian-stretch-backports-repo /etc/apt/sources.list.d/backports.list
+
+# Install system dependencies
+# Note: Debian Stretch is EOL, some packages have dependency issues
+# We skip libssl-dev as it has broken deps in the archive; cryptography is pre-built in pip
+RUN apt-get update && apt-get install -y \
+        # General dependencies
+        bash-completion \
+        build-essential \
+        curl \
+        libjpeg-dev \
+        libsasl2-dev \
+        libxml2-dev \
+        libxslt-dev \
+        locales \
+        zlib1g-dev \
+        libffi-dev \
+        libmagic-dev \
+        nodejs \
+        # Git for git-checkout dependencies
+        git \
+        # MySQL client and development headers
+        mysql-client \
+        default-libmysqlclient-dev \
+        swig \
+        gettext \
+        # SVG rendering for theme previews
+        librsvg2-bin \
+        # PNG optimisation for uploaded images
+        pngcrush \
+        # Makefile and UI tests require uuid
+        uuid \
+        # GeoIP lookups
+        libmaxminddb0 \
+        libmaxminddb-dev \
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get clean
+
+# Install tini for proper signal handling in containers
+# tini is not available in Debian Stretch apt repos, so we download from GitHub
+ARG TINI_VERSION=v0.19.0
+RUN curl -fsSL https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini -o /usr/bin/tini \
+    && chmod +x /usr/bin/tini
+
+# Compile required locale
+RUN localedef -i en_US -f UTF-8 en_US.UTF-8
+
+# Create application directories with correct ownership
+RUN mkdir -p /data/olympia /app /var/log/olympia /var/run/olympia && \
+    chown -R olympia:olympia /data /app /var/log/olympia /var/run/olympia
+
+# Copy version.json first (for cache invalidation)
+COPY --chown=olympia:olympia version.json /app/version.json
+
+# Copy application code
+COPY --chown=olympia:olympia . /data/olympia
+WORKDIR /data/olympia
+
+# Install Python dependencies (as root for system packages then we fix ownership)
+RUN pip3 install --no-cache-dir --exists-action=w --no-deps -r requirements/system.txt && \
+    pip3 install --no-cache-dir --exists-action=w --no-deps -r requirements/prod_py3.txt && \
+    pip3 install --no-cache-dir --exists-action=w --no-deps -e .
+
+# Link uwsgi to expected paths
+RUN ln -s /usr/local/bin/uwsgi /usr/bin/uwsgi && \
+    ln -s /usr/bin/uwsgi /usr/sbin/uwsgi
+
+# Install uwsgi dogstatsd plugin for metrics
+WORKDIR /usr/lib/uwsgi/plugins
+RUN uwsgi --build-plugin https://github.com/Datadog/uwsgi-dogstatsd && \
+    rm -rf uwsgi-dogstatsd
+
+# Build static assets
+WORKDIR /data/olympia
+RUN echo "from olympia.lib.settings_base import *\n\
+LESS_BIN = 'node_modules/less/bin/lessc'\n\
+CLEANCSS_BIN = 'node_modules/clean-css-cli/bin/cleancss'\n\
+UGLIFY_BIN = 'node_modules/uglify-js/bin/uglifyjs'\n\
+FXA_CONFIG = {'default': {}, 'internal': {}}\n"\
+> settings_local.py
+
+RUN DJANGO_SETTINGS_MODULE='settings_local' locale/compile-mo.sh locale
+
+RUN npm install \
+    && make -f Makefile-docker copy_node_js \
+    && DJANGO_SETTINGS_MODULE='settings_local' python manage.py compress_assets \
+    && DJANGO_SETTINGS_MODULE='settings_local' python manage.py generate_jsi18n_files \
+    && DJANGO_SETTINGS_MODULE='settings_local' python manage.py collectstatic --noinput
+
+# Clean up build-time files
+RUN rm -f settings_local.py settings_local.pyc && \
+    rm -rf /root/.npm /root/.cache && \
+    find /data/olympia -type d -name "__pycache__" -exec rm -rf {} + 2>/dev/null || true && \
+    find /data/olympia -type f -name "*.pyc" -delete 2>/dev/null || true
+
+# Make entrypoint executable
+RUN chmod +x /data/olympia/docker/docker-entrypoint.sh
+
+# Switch to non-root user
+USER olympia
+
+# Expose the application port
+EXPOSE 8000
+
+# Health check - calls the Django monitor endpoint
+# Adjust interval/timeout based on application startup time
+HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
+    CMD curl -f http://localhost:${UWSGI_PORT}/services/monitor.json || exit 1
+
+# Use tini as init system for proper signal handling
+ENTRYPOINT ["/usr/bin/tini", "--", "/data/olympia/docker/docker-entrypoint.sh"]
+
+# Default command: run web server
+CMD ["web"]

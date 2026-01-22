@@ -1,0 +1,13 @@
+# Thunderbird Pulumi library
+# Requires Python 3.13+ (tb_pulumi v0.0.15+)
+tb_pulumi @ git+https://github.com/thunderbird/pulumi.git@v0.0.16
+
+# Core Pulumi dependencies (tb_pulumi will pull these, but explicit is better)
+pulumi>=3.0.0,<4.0.0
+pulumi-aws>=6.0.0,<7.0.0
+
+# AWS SDK for boto3 operations in tb_pulumi
+boto3>=1.28.0
+
+# YAML parsing for config files
+pyyaml>=6.0
