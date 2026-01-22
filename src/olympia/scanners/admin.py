@@ -35,6 +35,7 @@ from olympia.constants.scanners import (
     NEW,
     RESULT_STATES,
     RUNNING,
+    SCANNERS,
     SCHEDULED,
     TRUE_POSITIVE,
     UNKNOWN,
@@ -588,7 +589,7 @@ class ScannerResultAdmin(AbstractScannerResultAdminMixin, AMOModelAdmin):
         if obj.scanner == WEBHOOK:
             return f'[webhook] {obj.webhook_event}'
         else:
-            return obj.scanner
+            return SCANNERS.get(obj.scanner, '(unknown)')
 
     formatted_scanner.short_description = 'Scanner'
 
