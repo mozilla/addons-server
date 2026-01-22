@@ -1068,6 +1068,33 @@ class TestVersion(TestCase):
             in pq(response.content).text()
         )
 
+    def test_new_upload_button(self):
+        response = self.client.get(self.url)
+        button = pq(response.content)('.version-buttons a.button.version-upload')
+        assert button
+        assert button.text() == 'Upload a New Version'
+        assert button.attr('href') == (
+            reverse('devhub.submit.version', args=[self.addon.slug])
+        )
+
+        # Do show for "Invisible" or "Rejected" add-ons (they can upload an
+        # unlisted version)
+        self.addon.update(status=amo.STATUS_REJECTED)
+        response = self.client.get(self.url)
+        button = pq(response.content)('.version-buttons a.button.version-upload')
+        assert button
+
+        self.addon.update(disabled_by_user=True)
+        response = self.client.get(self.url)
+        button = pq(response.content)('.version-buttons a.button.version-upload')
+        assert button
+
+        # Don't show for STATUS_DISABLED addons.
+        self.addon.update(status=amo.STATUS_DISABLED)
+        response = self.client.get(self.url)
+        button = pq(response.content)('.version-buttons a.button.version-upload')
+        assert not button
+
 
 class TestVersionEditBase(TestCase):
     fixtures = ['base/users', 'base/addon_3615']

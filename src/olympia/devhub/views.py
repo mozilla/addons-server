@@ -1324,7 +1324,7 @@ def version_list(request, addon_id, addon):
         'addon': addon,
         'can_request_review': addon.can_request_review(),
         'can_rollback': rollback_form.can_rollback(),
-        'can_submit': not addon.is_disabled,
+        'can_submit': addon.status != amo.STATUS_DISABLED,
         'comments_maxlength': CommentLog._meta.get_field('comments').max_length,
         'latest_approved_unlisted_version_number': rollback_form.can_rollback()
         and addon.versions.filter(
@@ -1533,9 +1533,13 @@ def _submit_upload(
 
     next_view is the view that will be redirected to.
     """
-    if addon and addon.disabled_by_user and channel == amo.CHANNEL_LISTED:
+    if (
+        addon
+        and channel == amo.CHANNEL_LISTED
+        and not addon.can_submit_listed_versions()
+    ):
         # Listed versions can not be submitted while the add-on is set to
-        # "invisible" (disabled_by_user).
+        # "invisible" (disabled_by_user) or had its listing rejected.
         return redirect('devhub.submit.version.distribution', addon.slug)
     form = forms.NewUploadForm(
         request.POST or None,

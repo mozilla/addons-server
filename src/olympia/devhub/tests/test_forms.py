@@ -651,6 +651,12 @@ class TestDistributionChoiceForm(TestCase):
         assert form.fields['channel'].choices[0][0] == 'listed'
         assert form.fields['channel'].choices[1][0] == 'unlisted'
 
+        # Rejected add-ons don't get to choose "On this site." either.
+        addon.status = amo.STATUS_REJECTED
+        form = forms.DistributionChoiceForm(addon=addon)
+        assert len(form.fields['channel'].choices) == 1
+        assert form.fields['channel'].choices[0][0] == 'unlisted'
+
 
 class TestDescribeForm(TestCase):
     fixtures = ('base/addon_3615', 'addons/denied')

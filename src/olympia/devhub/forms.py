@@ -1422,9 +1422,10 @@ class DistributionChoiceForm(forms.Form):
             ('listed', mark_safe(self.LISTED_LABEL)),
             ('unlisted', mark_safe(self.UNLISTED_LABEL)),
         ]
-        if self.addon and self.addon.disabled_by_user:
-            # If the add-on is disabled, 'listed' is not a valid choice,
-            # "invisible" add-ons can not upload new listed versions.
+        if self.addon and not self.addon.can_submit_listed_versions():
+            # If the add-on is "invisible" or the listing was rejected,
+            # 'listed' is not a valid choice, you can't upload new listed
+            # versions while in either of these states.
             choices.pop(0)
 
         self.fields['channel'].choices = choices
