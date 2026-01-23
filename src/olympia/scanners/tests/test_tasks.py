@@ -2120,6 +2120,44 @@ class TestCallWebhook(TestCase):
 
     @override_settings(SCANNER_TIMEOUT=123)
     @mock.patch.object(requests.Session, 'post')
+    def test_call_webhook_http_201(self, requests_mock):
+        webhook = ScannerWebhook.objects.create(
+            name='some-scanner',
+            url='https://example.org/webhook',
+            api_key='some-api-key',
+            is_active=True,
+        )
+        response_data = {'some': 'data'}
+        requests_mock.return_value = self.create_response(
+            status_code=201, data=response_data
+        )
+
+        returned_value = _call_webhook(webhook, payload={})
+
+        assert requests_mock.called
+        assert returned_value == response_data
+
+    @override_settings(SCANNER_TIMEOUT=123)
+    @mock.patch.object(requests.Session, 'post')
+    def test_call_webhook_http_202(self, requests_mock):
+        webhook = ScannerWebhook.objects.create(
+            name='some-scanner',
+            url='https://example.org/webhook',
+            api_key='some-api-key',
+            is_active=True,
+        )
+        response_data = {'some': 'data'}
+        requests_mock.return_value = self.create_response(
+            status_code=202, data=response_data
+        )
+
+        returned_value = _call_webhook(webhook, payload={})
+
+        assert requests_mock.called
+        assert returned_value == response_data
+
+    @override_settings(SCANNER_TIMEOUT=123)
+    @mock.patch.object(requests.Session, 'post')
     def test_call_webhook_with_error_returned_by_the_scanner(self, requests_mock):
         webhook = ScannerWebhook.objects.create(
             name='some-scanner',
