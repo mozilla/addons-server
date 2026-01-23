@@ -1296,11 +1296,11 @@ msgstr "Proprietà {0} dell’account {user} aggiornata."
 #: src/olympia/constants/activity.py:1277
 #, python-brace-format
 msgid "{addon} listing content rejected."
-msgstr ""
+msgstr "Contenuti per la scheda di {addon} rifiutati."
 
 #: src/olympia/constants/activity.py:1278
 msgid "Listing content rejected"
-msgstr ""
+msgstr "Contenuti scheda rifiutati"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -1340,7 +1340,7 @@ msgstr "In attesa di revisione"
 
 #: src/olympia/constants/base.py:27
 msgid "Listing Content Rejected"
-msgstr ""
+msgstr "Contenuti scheda rifiutati"
 
 #: src/olympia/constants/base.py:28 src/olympia/constants/base.py:35
 msgid "Disabled by Mozilla"
@@ -3843,6 +3843,7 @@ msgstr "Il componente aggiuntivo è stato disattivato da un amministratore e non
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:32
 msgid "Your add-on listing was rejected. It is not listed in our gallery. Please address the reasons and reapply for review."
 msgstr ""
+"La scheda del tuo componente aggiuntivo è stata rifiutata. Non compare nella nostra galleria. Ti invitiamo a risolvere le motivazioni indicate e a inviare nuovamente la richiesta di revisione."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:35
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
