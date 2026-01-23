@@ -12,9 +12,9 @@ HTTP request to each webhook subscribed to this event. The payload sent to the
 webook depends on the event. The response from each webhook will lead to the
 creation of a [scanner result](#scanner-results).
 
-Each service registered as a scanner webhook must be protected with a secret
-(bearer) token. AMO will include this token in the `Authorization` header of
-each HTTP request made to the webhook.
+Each service registered as a scanner webhook must be protected with a shared
+secret (api) key. Read [the scanners authentication
+section](#scanners-authentication) for more information.
 
 ### Adding a scanner webhook
 
@@ -106,3 +106,82 @@ A scanner action is some logic that can be applied to an add-on version. For
 example, flagging a version for manual review is a scanner action.
 
 These actions are defined in `src/olympia/scanners/actions.py`.
+
+## Scanners
+
+(scanners-authentication)=
+### Authentication
+
+Scanners must verify the incoming requests using the `Authorization` header and
+not allow unauthenticated requests. For every webhook call, AMO will send this
+header with the _API key_ defined in the Django admin as follows:
+
+```
+Authorization: Bearer <api_key>
+```
+
+### API response
+
+Scanners must return a JSON response that contains the following fields:
+
+- `version`: the scanner version
+
+### Creating a new scanner
+
+We provide a library to quickly develop new scanners written with Node.js:
+[addons-scanner-utils][].
+
+Start by installing the dependencies using `npm`:
+
+```text
+npm add express body-parser safe-compare addons-scanner-utils
+```
+
+Next, create an `index.js` containing the code of the scanner:
+
+```js
+import { createExpressApp } from "addons-scanner-utils";
+
+const handler = (req, res) => {
+  console.log({ data: req.body });
+
+  res.json({ version: "1.0.0" });
+};
+
+const app = createExpressApp({
+  apiKeyEnvVarName: "NEW_SCANNER_API_KEY",
+})(handler);
+const port = process.env.PORT || 20000;
+
+app.listen(port, () => {
+  console.log(`new-scanner is running on port ${port}`);
+});
+```
+
+Start the new scanner with `node`:
+
+```text
+NEW_SCANNER_API_KEY=new-scanner-api-key node index.js
+new-scanner is running on port 20000
+```
+
+Register the new scanner on AMO:
+
+![](../../_static/images/scanner-pipeline-create-new-scanner.png)
+
+When the new scanner is created, the Django admin will display the JWT keys for
+the service account bound to this new scanner. Keep these credentials safe.
+
+![](../../_static/images/scanner-pipeline-jwt-keys.png)
+
+When uploading a new file, you should see the following in the console:
+
+```js
+{
+  data: {
+    download_url: "http://olympia.test/uploads/file/fa7868396b7e44ef8a0711f608f534f7/?access_token=w0Tl7qmJqBMQ4gtitKbcdKozulWVQWhkU0wEA10N"
+  }
+}
+```
+
+[addons-scanner-utils]: https://github.com/mozilla/addons-scanner-utils
