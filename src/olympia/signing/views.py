@@ -206,12 +206,19 @@ class VersionView(APIView):
                 else:
                     channel = amo.CHANNEL_UNLISTED  # Treat as new.
 
-            if addon.disabled_by_user and channel == amo.CHANNEL_LISTED:
-                msg = gettext(
-                    'You cannot add listed versions to an add-on set to '
-                    '"Invisible" state.'
-                )
-                raise forms.ValidationError(msg, status.HTTP_400_BAD_REQUEST)
+            if channel == amo.CHANNEL_LISTED:
+                if addon.disabled_by_user:
+                    msg = gettext(
+                        'You cannot add listed versions to an add-on set to '
+                        '"Invisible" state.'
+                    )
+                    raise forms.ValidationError(msg, status.HTTP_400_BAD_REQUEST)
+                elif addon.status == amo.STATUS_REJECTED:
+                    msg = gettext(
+                        'Listed versions cannot be submitted while add-on '
+                        'listing is rejected.'
+                    )
+                    raise forms.ValidationError(msg, status.HTTP_400_BAD_REQUEST)
 
             will_have_listed = channel == amo.CHANNEL_LISTED
             if not addon.has_complete_metadata(has_listed_versions=will_have_listed):

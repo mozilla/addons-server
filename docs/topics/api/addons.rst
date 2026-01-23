@@ -227,6 +227,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
             public  Approved
            deleted  Deleted
           disabled  Disabled by Mozilla
+          rejected  Listing rejected
          nominated  Awaiting Review
         incomplete  Incomplete - no approved listed versions
     ==============  ==========================================================

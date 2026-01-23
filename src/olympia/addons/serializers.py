@@ -572,6 +572,13 @@ class DeveloperVersionSerializer(VersionSerializer):
                                 'disabled.'
                             )
                         )
+                    elif self.addon.status == amo.STATUS_REJECTED:
+                        raise exceptions.ValidationError(
+                            gettext(
+                                'Listed versions cannot be submitted while add-on '
+                                'listing is rejected.'
+                            )
+                        )
         elif 'source' in data:
             # We need to manually trigger this as null/empty values aren't validated.
             try:
