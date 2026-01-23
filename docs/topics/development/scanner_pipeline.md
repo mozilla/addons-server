@@ -114,11 +114,15 @@ These actions are defined in `src/olympia/scanners/actions.py`.
 
 Scanners must verify the incoming requests using the `Authorization` header and
 not allow unauthenticated requests. For every webhook call, AMO will send this
-header with the _API key_ defined in the Django admin as follows:
+header using the _API key_ defined in the Django admin as follows:
 
 ```
-Authorization: Bearer <api_key>
+Authorization: HMAC-SHA256 <hexdigest>
 ```
+
+`<hexdigest>` is the [HMAC-SHA256][hmac] hex digest of the request's body with
+the _API key_ used as the secret key. Make sure to hash the _raw_ request's
+body.
 
 ### API response
 
@@ -185,3 +189,4 @@ When uploading a new file, you should see the following in the console:
 ```
 
 [addons-scanner-utils]: https://github.com/mozilla/addons-scanner-utils
+[hmac]: https://en.wikipedia.org/wiki/HMAC

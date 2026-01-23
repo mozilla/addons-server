@@ -1,3 +1,4 @@
+import json
 import os
 from unittest import mock
 
@@ -2110,11 +2111,17 @@ class TestCallWebhook(TestCase):
         returned_value = _call_webhook(webhook, payload)
 
         assert requests_mock.called
+        expected_digest = (
+            '1987be0ea649633a3eaca7c504b9995fe20aa054d7423e490df927b1ede917a1'
+        )
         requests_mock.assert_called_with(
             url=webhook.url,
-            json=payload,
+            data=json.dumps(payload),
             timeout=123,
-            headers={'Authorization': f'Bearer {webhook.api_key}'},
+            headers={
+                'Content-Type': 'application/json',
+                'Authorization': f'HMAC-SHA256 {expected_digest}',
+            },
         )
         assert returned_value == response_data
 
