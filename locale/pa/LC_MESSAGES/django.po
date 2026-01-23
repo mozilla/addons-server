@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-01-21 10:34+0000\n"
+"POT-Creation-Date: 2026-01-23 21:26+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4674,15 +4674,17 @@ msgid "See all extensions"
 msgstr "ਸਾਰੇ ਐਡ-ਆਨਾਂ ਦੀ ਝਲਕ ਵੇਖੋ"
 
 #. editorial content for the secondary hero shelves.
-msgid "2025 Staff Picks"
+msgid "YouTube extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "New Recommended Extensions"
-msgstr ""
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Creativity extensions"
+msgstr "ਟਿੱਪਣੀ ਕੀਤੀ"
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension Starter Pack"
+msgid "New Recommended extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4713,14 +4715,12 @@ msgid "See more popular themes"
 msgstr "ਆਪਣੇ ਥੀਮ ਲਈ ਰੰਗ ਚੁਣੋ।"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
-msgid "Enhanced privacy extensions"
-msgstr "ਸਾਰੇ ਐਡ-ਆਨਾਂ ਦੀ ਝਲਕ ਵੇਖੋ"
+msgid "Privacy & security"
+msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
-msgid "See more recommended privacy extensions"
-msgstr "ਸਾਰੇ ਐਡ-ਆਨਾਂ ਦੀ ਝਲਕ ਵੇਖੋ"
+msgid "See more privacy staff picks"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4843,11 +4843,6 @@ msgstr ""
 #, fuzzy
 msgid "See more Steam staff picks"
 msgstr "ਸਾਰੇ ਐਡ-ਆਨਾਂ ਦੀ ਝਲਕ ਵੇਖੋ"
-
-#. editorial content for the homepage shelves.
-#, fuzzy
-msgid "Creativity extensions"
-msgstr "ਟਿੱਪਣੀ ਕੀਤੀ"
 
 #. editorial content for the homepage shelves.
 #, fuzzy

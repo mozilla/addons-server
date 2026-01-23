@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-01-21 10:34+0000\n"
+"POT-Creation-Date: 2026-01-23 21:26+0000\n"
 "PO-Revision-Date: 2024-01-15 13:27+0000\n"
 "Last-Translator: Bund10z <abu.avila@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -4704,15 +4704,17 @@ msgid "See all extensions"
 msgstr "Ver todas las extensiones"
 
 #. editorial content for the secondary hero shelves.
-msgid "2025 Staff Picks"
+msgid "YouTube extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "New Recommended Extensions"
-msgstr ""
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Creativity extensions"
+msgstr "Temas recomendados"
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension Starter Pack"
+msgid "New Recommended extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4740,14 +4742,12 @@ msgid "See more popular themes"
 msgstr "Ver más temas populares"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
-msgid "Enhanced privacy extensions"
-msgstr "Ver todas las extensiones"
+msgid "Privacy & security"
+msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
-msgid "See more recommended privacy extensions"
-msgstr "Ver más extensiones recomendadas"
+msgid "See more privacy staff picks"
+msgstr ""
 
 # Plural in this context means many of the add-on type
 #. editorial content for the homepage shelves.
@@ -4872,11 +4872,6 @@ msgstr ""
 #, fuzzy
 msgid "See more Steam staff picks"
 msgstr "Ver más extensiones populares"
-
-#. editorial content for the homepage shelves.
-#, fuzzy
-msgid "Creativity extensions"
-msgstr "Temas recomendados"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
