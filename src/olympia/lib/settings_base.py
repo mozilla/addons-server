@@ -380,6 +380,7 @@ JINJA_EXCLUDE_TEMPLATE_PATHS = (
     r'django_extensions/graph_models/django2018/digraph.dot',
     r'django_extensions/graph_models/django2018/label.dot',
     r'django_extensions/graph_models/django2018/relation.dot',
+    r'django_jsonform\/',
 )
 
 TEMPLATES = [
@@ -598,6 +599,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     # Has to load after auth
     'django_statsd',
+    'django_jsonform',
 )
 
 # These need to point to prod, because that's where the database lives. You can

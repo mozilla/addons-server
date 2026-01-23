@@ -80,3 +80,56 @@ WEBHOOK_EVENTS = {
     WEBHOOK_DURING_VALIDATION: 'during_validation',
     WEBHOOK_ON_SOURCE_CODE_UPLOADED: 'on_source_code_uploaded',
 }
+
+# Special empty configuration schema to use when the rule is being created
+EMPTY_RULE_CONFIGURATION_SCHEMA = {}
+
+# Default configuration for rules other than NARC
+DEFAULT_RULE_CONFIGURATION_SCHEMA = {}
+
+# Narc configuration schema
+NARC_RULE_CONFIGURATION_SCHEMA = {
+    'type': 'object',
+    'keys': {
+        'examine_slug': {
+            'type': 'boolean',
+            'default': False,
+            'helpText': (
+                'Run the rule against the add-on slug used for the listing on AMO'
+            ),
+        },
+        'examine_listing_names': {
+            'type': 'boolean',
+            'default': True,
+            'helpText': (
+                'Run the rule against the add-on name(s) used for the listing on AMO'
+            ),
+        },
+        'examine_xpi_names': {
+            'type': 'boolean',
+            'default': True,
+            'helpText': 'Run the rule against the add-on name(s) in the XPI',
+        },
+        'examine_authors_names': {
+            'type': 'boolean',
+            'default': True,
+            'helpText': (
+                'Run the rule against the name of each author attached to the add-on'
+            ),
+        },
+        'examine_normalized_variants': {
+            'type': 'boolean',
+            'default': True,
+            'helpText': (
+                'For each string being examined, also examine a normalized variant'
+            ),
+        },
+        'examine_homoglyphs_variants': {
+            'type': 'boolean',
+            'default': True,
+            'helpText': (
+                'For each string being examined, also examine homoglyphs variants',
+            )
+        },
+    },
+}

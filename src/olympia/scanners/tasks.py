@@ -355,6 +355,7 @@ def _run_narc(*, scanner_result, version, rules=None):
             itertools.repeat('author'),
             zip(itertools.repeat(None), sorted(values_from_authors)),
         ),
+        [('slug', (None, addon.slug))],
     ):
         values[value].append({'source': source, 'locale': locale})
 
@@ -364,14 +365,38 @@ def _run_narc(*, scanner_result, version, rules=None):
         # `re` module.
         definition = regex.compile(str(rule.definition), regex.I | regex.E)
         for value, sources in values.items():
+            # For the specific rule we're looking at, we build a copy of
+            # sources of each string that we then modify to remove sources the
+            # rule is not interested in. If no sources are left, we can ignore
+            # that string for this particular rule.
+            sources_to_examine = list(sources)
+            if not rule.configuration.get('examine_slug'):
+                sources_to_examine.remove('slug')
+            if not rule.configuration.get('examine_xpi_names'):
+                sources_to_examine.remove('xpi')
+            if not rule.configuration.get('examine_authors_names'):
+                sources_to_examine.remove('author')
+            if not rule.configuration.get('examine_listing_names'):
+                sources_to_examine.remove('db_addon')
+
+            if not sources_to_examine:
+                continue
+
             value = str(value)
             variants = [(value, None)]
-            if (normalized_value := normalize_string_for_name_checks(value)) != value:
+            normalized_value = normalize_string_for_name_checks(value)
+            if (
+                rule.configuration.get('examine_normalized_variants')
+                and normalized_value != value
+            ):
                 variants.append((normalized_value, 'normalized'))
             homoglyph_variants = set(
                 generate_lowercase_homoglyphs_variants_for_string(normalized_value)
             )
-            if homoglyph_variants:
+            if (
+                rule.configuration.get('examine_homoglyphs_variants')
+                and homoglyph_variants
+            ):
                 variants.extend(
                     (homoglyph_variant, 'homoglyph')
                     for homoglyph_variant in homoglyph_variants
