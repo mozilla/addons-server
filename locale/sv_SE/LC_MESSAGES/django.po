@@ -6013,7 +6013,7 @@ msgstr "Sekretess & säkerhet"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1126
 msgid "See more privacy staff picks"
-msgstr ""
+msgstr "Se fler integritetstillägg som valts av anställda"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1129
