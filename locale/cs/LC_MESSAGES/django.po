@@ -1288,7 +1288,7 @@ msgstr "U účtu {user} byla aktualizována vlastnost {0}."
 #: src/olympia/constants/activity.py:1277
 #, python-brace-format
 msgid "{addon} listing content rejected."
-msgstr "Obsah stránky {addon} zamítnut."
+msgstr "Obsah stránky doplňku {addon} byl zamítnut."
 
 #: src/olympia/constants/activity.py:1278
 msgid "Listing content rejected"
@@ -1332,7 +1332,7 @@ msgstr "Čeká na kontrolu"
 
 #: src/olympia/constants/base.py:27
 msgid "Listing Content Rejected"
-msgstr "Obsah záznamu zamítnut"
+msgstr "Obsah stránky byl zamítnut"
 
 #: src/olympia/constants/base.py:28 src/olympia/constants/base.py:35
 msgid "Disabled by Mozilla"
@@ -3787,7 +3787,7 @@ msgstr "Váš doplněk byl zakázán správcem webu a již není zobrazen v naš
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:32
 msgid "Your add-on listing was rejected. It is not listed in our gallery. Please address the reasons and reapply for review."
-msgstr "Stránka vašeho doplňku byla zamítnuta. Není umístěn v naší galerii. Vyřešte všechny důvody a znovu požádejte o kontrolu."
+msgstr "Stránka vašeho doplňku byla zamítnuta. Není umístěna v naší galerii. Vyřešte všechny důvody a znovu požádejte o kontrolu."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:35
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
@@ -5963,7 +5963,7 @@ msgstr "Nová doporučená rozšíření"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1107 src/olympia/discovery/strings.jinja2:1109
 msgid "See staff picks"
-msgstr "Zobrazit tipy zaměstnanců"
+msgstr "Zobrazit výběr od zaměstnanců"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1111
