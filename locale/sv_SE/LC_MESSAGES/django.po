@@ -5962,7 +5962,7 @@ msgstr "Se alla tillägg"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1101
 msgid "YouTube extensions"
-msgstr ""
+msgstr "YouTube-tillägg"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -5973,7 +5973,7 @@ msgstr "Kreativitetstillägg"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1105
 msgid "New Recommended extensions"
-msgstr ""
+msgstr "Nya rekommenderade tillägg"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1107 src/olympia/discovery/strings.jinja2:1109
@@ -6008,7 +6008,7 @@ msgstr "Se fler populära teman"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1124
 msgid "Privacy & security"
-msgstr ""
+msgstr "Sekretess & säkerhet"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1126
