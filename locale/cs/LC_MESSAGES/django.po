@@ -1518,7 +1518,7 @@ msgstr "Stáhněte si rozšíření pro Firefox, která vylepšují fotky, hudbu
 
 #: src/olympia/constants/categories.py:142
 msgid "Privacy & Security"
-msgstr "Soukromí a bezpečnost"
+msgstr "Soukromí a zabezpečení"
 
 #: src/olympia/constants/categories.py:144
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
@@ -5993,7 +5993,7 @@ msgstr "Další oblíbené vzhledy"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1124
 msgid "Privacy & security"
-msgstr "Soukromí a bezpečnost"
+msgstr "Soukromí a zabezpečení"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1126
