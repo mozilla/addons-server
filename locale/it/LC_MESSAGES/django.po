@@ -6019,7 +6019,7 @@ msgstr "Visualizza tutte le estensioni"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1101
 msgid "YouTube extensions"
-msgstr ""
+msgstr "Estensioni per YouTube"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -6030,7 +6030,7 @@ msgstr "Estensioni per la creatività"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1105
 msgid "New Recommended extensions"
-msgstr ""
+msgstr "Nuove estensioni consigliate"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1107 src/olympia/discovery/strings.jinja2:1109
@@ -6065,12 +6065,12 @@ msgstr "Visualizza altri temi popolari"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1124
 msgid "Privacy & security"
-msgstr ""
+msgstr "Privacy e sicurezza"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1126
 msgid "See more privacy staff picks"
-msgstr ""
+msgstr "Visualizza altre scelte dallo staff per la privacy"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1129
