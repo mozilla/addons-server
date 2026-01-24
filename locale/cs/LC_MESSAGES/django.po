@@ -5932,7 +5932,7 @@ msgstr "Převlečte Firefox za prohlížeč Chrome a podvrhněte webové stránk
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1095
 msgid "Extensions are like apps for Firefox."
-msgstr "Rozšíření jsou jako aplikace pro Firefox."
+msgstr "Rozšíření jsou něco jako aplikace pro Firefox."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1097
