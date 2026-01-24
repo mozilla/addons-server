@@ -5994,7 +5994,7 @@ msgstr "Neue empfohlene Erweiterungen"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1107 src/olympia/discovery/strings.jinja2:1109
 msgid "See staff picks"
-msgstr "Von Mitarbeitern ausgewählte Erweiterungen ansehen"
+msgstr "Vom Team ausgewählte Erweiterungen ansehen"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1111
@@ -6029,7 +6029,7 @@ msgstr "Datenschutz & Sicherheit"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1126
 msgid "See more privacy staff picks"
-msgstr ""
+msgstr "Weitere vom Team ausgewählte Datenschutz-Erweiterungen ansehen"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1129
@@ -6059,7 +6059,7 @@ msgstr "Starke Passwortverwaltungen"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1141
 msgid "See more password manager staff picks"
-msgstr "Mehr von Mitarbeitern ausgewählte Erweiterungen zur Passwortverwaltung ansehen"
+msgstr "Weitere vom Team ausgewählte Erweiterungen zur Passwortverwaltung ansehen"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1144
@@ -6069,7 +6069,7 @@ msgstr "Übersetzungswerkzeuge"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1146
 msgid "See more translation tool staff picks"
-msgstr "Weitere von Mitarbeitern ausgewählte Übersetzungswerkzeuge ansehen"
+msgstr "Weitere vom Team ausgewählte Übersetzungswerkzeuge ansehen"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1149
@@ -6079,7 +6079,7 @@ msgstr "Social-Streaming"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1151
 msgid "See more social streaming staff picks"
-msgstr "Mehr von Mitarbeitern ausgewählte soziale Streaming-Erweiterungen ansehen"
+msgstr "Weitere vom Team ausgewählte soziale Streaming-Erweiterungen ansehen"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1154
@@ -6089,7 +6089,7 @@ msgstr "Tab-Verwaltung"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1156
 msgid "See more tab management staff picks"
-msgstr "Mehr von Mitarbeitern ausgewählte Erweiterungen zur Tab-Verwaltung ansehen"
+msgstr "Weitere vom Team ausgewählte Erweiterungen zur Tab-Verwaltung ansehen"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1159
@@ -6111,7 +6111,7 @@ msgstr "Leistungsfähige Werbeblocker"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1166
 msgid "See more ad blocker staff picks"
-msgstr "Mehr von Mitarbeitern ausgewählte Werbeblocker ansehen"
+msgstr "Weitere vom Team ausgewählte Werbeblocker ansehen"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1169
@@ -6121,7 +6121,7 @@ msgstr "YouTube-Anpassungen"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1171
 msgid "See more YouTube extension staff picks"
-msgstr "Weitere von Mitarbeitern ausgewählte YouTube-Erweiterungen ansehen"
+msgstr "Weitere vom Team ausgewählte YouTube-Erweiterungen ansehen"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1174
@@ -6161,12 +6161,12 @@ msgstr "Steam-Verbesserungen"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1191
 msgid "See more Steam staff picks"
-msgstr "Mehr von Mitarbeitern ausgewählte soziale Erweiterungen zu Steam ansehen"
+msgstr "Weitere vom Team ausgewählte soziale Erweiterungen zu Steam ansehen"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1196
 msgid "See more creativity staff picks"
-msgstr "Mehr von Mitarbeitern ausgewählte soziale Kreativitäts-Erweiterungen ansehen"
+msgstr "Weitere vom Team ausgewählte soziale Kreativitäts-Erweiterungen ansehen"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1199
@@ -6176,7 +6176,7 @@ msgstr "Erweiterungen für soziale Medien"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1201
 msgid "See more social media staff picks"
-msgstr "Mehr von Mitarbeitern ausgewählte Erweiterungen für soziale Medien ansehen"
+msgstr "Weitere vom Team ausgewählte Erweiterungen für soziale Medien ansehen"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1204
@@ -6186,7 +6186,7 @@ msgstr "Meistverwendete Download-Manager"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1206
 msgid "See more download manager staff picks"
-msgstr "Mehr von Mitarbeitern ausgewählte Download-Manager ansehen"
+msgstr "Weitere vom Team ausgewählte Download-Manager ansehen"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1209
@@ -6196,7 +6196,7 @@ msgstr "Barrierefreiheits-Erweiterungen"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1211
 msgid "See more accessibility staff picks"
-msgstr "Mehr von Mitarbeitern ausgewählte Barrierefreiheits-Erweiterungen ansehen"
+msgstr "Weitere vom Team ausgewählte Barrierefreiheits-Erweiterungen ansehen"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1214
@@ -6206,7 +6206,7 @@ msgstr "Erweiterungen-Starterpaket"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1216
 msgid "See more starter extension staff picks"
-msgstr "Weitere von Mitarbeitern ausgewählte Starterpaket-Erweiterungen ansehen"
+msgstr "Weitere vom Team ausgewählte Starterpaket-Erweiterungen ansehen"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1219
@@ -6216,7 +6216,7 @@ msgstr "Twitch-Erweiterungen"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1221
 msgid "See more Twitch extension staff picks"
-msgstr "Mehr von Mitarbeitern ausgewählte Twitch-Erweiterungen ansehen"
+msgstr "Weitere vom Team ausgewählte Twitch-Erweiterungen ansehen"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1229
@@ -6226,7 +6226,7 @@ msgstr "Erweiterungen für Spiele und Medien"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1231
 msgid "See more staff picks"
-msgstr "Weitere von Mitarbeitern ausgewählte Erweiterungen ansehen"
+msgstr "Weitere vom Team ausgewählte Erweiterungen ansehen"
 
 #: src/olympia/files/models.py:325
 msgid "Unreviewed"
