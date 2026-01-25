@@ -5947,7 +5947,7 @@ msgstr "Se alle utvidelser"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1101
 msgid "YouTube extensions"
-msgstr ""
+msgstr "YouTube-utvidelser"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -5958,7 +5958,7 @@ msgstr "Kreativitetsutvidelser"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1105
 msgid "New Recommended extensions"
-msgstr ""
+msgstr "Nye anbefalte utvidelser"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1107 src/olympia/discovery/strings.jinja2:1109
@@ -5993,7 +5993,7 @@ msgstr "Vis flere populære tema"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1124
 msgid "Privacy & security"
-msgstr ""
+msgstr "Personvern og sikkerhet"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1126
