@@ -3788,7 +3788,7 @@ msgstr "Vaš dodatek je onemogočil skrbnik spletnega mesta in ni več prikazan 
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:32
 msgid "Your add-on listing was rejected. It is not listed in our gallery. Please address the reasons and reapply for review."
-msgstr "Objava vašega dodatka je bila zavrnjena. Ni naveden v naši galeriji. Prosimo, da obrazložite razloge in se ponovno prijavite za pregled."
+msgstr "Objava vašega dodatka je bila zavrnjena. Ni prikazan v naši galeriji. Prosimo, da razrešite razloge za zavrnitev in ga ponovno oddate v pregled."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:35
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
@@ -5616,7 +5616,7 @@ msgstr "Možnosti za poglobljeno prevajanje za bogato jezikovno izkušnjo kjerko
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:697
 msgid "Leave yourself little notes on any website."
-msgstr "Pustite si beležke na katerikoli spletni strani."
+msgstr "Ustvarjajte si drobne zabeležke na katerikoli spletni strani."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:700
@@ -5896,7 +5896,7 @@ msgstr "Orodje za prevajanje, bogato s funkcijami. Deluje na spletu, e-knjigah, 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1071
 msgid "Track the time you spend on every website you visit."
-msgstr "Sledite času, ki ga preživite na vsakem spletnem mestu, ki ga obiščete."
+msgstr "Sledite, koliko časa preživite na katerem spletnem mestu."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1074
@@ -5911,7 +5911,7 @@ msgstr "Očistite YouTube. Odstranite povezane videoposnetke, kratke videe in dr
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1080
 msgid "Leave yourself little notes on any web page."
-msgstr "Pustite si majhne beležke na katerikoli spletni strani."
+msgstr "Ustvarjajte si drobne zabeležke na katerikoli spletni strani."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1083
@@ -5921,7 +5921,7 @@ msgstr "Spokojnost za izkušnjo Reddita."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1086
 msgid "Save and organize anything you find on the web."
-msgstr "Shranite in organizirajte vse, kar najdete na spletu."
+msgstr "Shranite in organizirajte karkoli, kar najdete na spletu."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1089
@@ -6002,7 +6002,7 @@ msgstr "Zasebnost in varnost"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1126
 msgid "See more privacy staff picks"
-msgstr "Več oseb po izboru za zasebnost"
+msgstr "Več osebno izbranih razširitev za zasebnost"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1129
