@@ -383,7 +383,7 @@ msgstr "Nalistowane wersije njedadźa so zapodać, mjeztym zo přidatk je znjem�
 
 #: src/olympia/addons/serializers.py:578 src/olympia/signing/views.py:218
 msgid "Listed versions cannot be submitted while add-on listing is rejected."
-msgstr ""
+msgstr "Nalistowane wersije njedadźa so zapodać, mjeztym zo so nalistowanje přidatkow wotpokazuje."
 
 #: src/olympia/addons/serializers.py:619
 #, python-format
@@ -3063,7 +3063,7 @@ msgstr "Waš přidatk je tuchwilu na „njewidźomy“ stajeny."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cant_submit_new_listed_versions_warning.html:5
 msgid "Your add-on listing was rejected."
-msgstr ""
+msgstr "Waš lisćinowy zapisk přidatka je so wotpokazał."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cant_submit_new_listed_versions_warning.html:7
 msgid "While in this state, \"On your own\" is the only distribution method available."
