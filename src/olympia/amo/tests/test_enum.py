@@ -24,6 +24,17 @@ class TestStrEnumChoices(TestCase):
         assert Choices.FIRST_AND_SECOND.SECOND.value == 'second'
         assert Choices.FIRST_AND_SECOND.SECOND.label == 'Second Choice'
 
+        subset = Choices.extract_subset('THIRD', 'FIRST')
+        assert len(subset) == 2
+        assert subset.THIRD.value == 'third'
+        assert subset.THIRD.label == 'Third Choice'
+        assert subset.FIRST.value == 'first'
+        assert subset.FIRST.label == 'First Choice'
+        assert subset.__name__ == 'ChoicesSubset'
+        assert not hasattr(Choices, 'ChoicesSubset')
+        # the subset is still an EnumChoices, with the same functions
+        assert subset.extract_subset('THIRD').THIRD.value == 'third'
+
     def test_choices_with_none(self):
         class Choices(self.klass):
             NO_DECISION = 'no', 'No decision'
@@ -56,6 +67,10 @@ class TestStrEnumChoices(TestCase):
         assert Choices(Choices.NO_DECISION.value).api_value == 'no_decision'
         assert Choices[Choices.NO_DECISION.name].api_value == 'no_decision'
 
+        assert (
+            Choices.extract_subset('NO_DECISION').NO_DECISION.api_value == 'no_decision'
+        )
+
 
 class TestEnumChoices(TestCase):
     klass = EnumChoices
@@ -77,6 +92,17 @@ class TestEnumChoices(TestCase):
         assert Choices.FIRST_AND_SECOND.FIRST.label == 'First Choice'
         assert Choices.FIRST_AND_SECOND.SECOND.value == 2
         assert Choices.FIRST_AND_SECOND.SECOND.label == 'Second Choice'
+
+        subset = Choices.extract_subset('THIRD', 'FIRST')
+        assert len(subset) == 2
+        assert subset.THIRD.value == 3
+        assert subset.THIRD.label == 'Third Choice'
+        assert subset.FIRST.value == 1
+        assert subset.FIRST.label == 'First Choice'
+        assert subset.__name__ == 'ChoicesSubset'
+        assert not hasattr(Choices, 'ChoicesSubset')
+        # the subset is still an EnumChoices, with the same functions
+        assert subset.extract_subset('THIRD').THIRD.value == 3
 
     def test_choices_with_none(self):
         class Choices(self.klass):
@@ -110,6 +136,10 @@ class TestEnumChoices(TestCase):
         assert Choices(Choices.NO_DECISION.value).api_value == 'no_decision'
         assert Choices[Choices.NO_DECISION.name].api_value == 'no_decision'
 
+        assert (
+            Choices.extract_subset('NO_DECISION').NO_DECISION.api_value == 'no_decision'
+        )
+
 
 class TestEnumChoicesApiDash(TestEnumChoices):
     klass = EnumChoicesApiDash
@@ -134,3 +164,7 @@ class TestEnumChoicesApiDash(TestEnumChoices):
         assert Choices[Choices.NO_DECISION.name].api_value == 'no-decision'
 
         assert Choices.from_api_value('no-decision') == Choices.NO_DECISION
+
+        assert (
+            Choices.extract_subset('NO_DECISION').NO_DECISION.api_value == 'no-decision'
+        )

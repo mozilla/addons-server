@@ -4159,8 +4159,8 @@ class TestExtensionsQueues(TestCase):
         )  # Should not show up either (SCANNER_ACTION NHR is inactive)
 
         addons = Addon.objects.get_queryset_for_pending_queues(
-            due_date_reasons_choices=NeedsHumanReview.REASONS.get_subset(
-                '_SUB', ('AUTO_APPROVAL_DISABLED', 'SCANNER_ACTION')
+            due_date_reasons_choices=NeedsHumanReview.REASONS.extract_subset(
+                'AUTO_APPROVAL_DISABLED', 'SCANNER_ACTION'
             )
         )
         assert list(addons) == expected_addons

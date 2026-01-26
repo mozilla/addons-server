@@ -21,6 +21,10 @@ class SubsetMixin:
         subset = cls.get_subset(name, members)
         setattr(cls, name, subset)
 
+    @classmethod
+    def extract_subset(cls, *members):
+        return cls.get_subset(f'{cls.__name__}Subset', members)
+
 
 class ApiValueMixin:
     @DynamicClassAttribute

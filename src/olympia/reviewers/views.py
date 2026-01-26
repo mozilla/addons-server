@@ -325,13 +325,12 @@ def queue(request, tab):
         due_date_reasons_choices = None
         if filter_form.is_valid():
             # Build a choices subset from the submitted reasons.
-            due_date_reasons_choices = NeedsHumanReview.REASONS.get_subset(
-                '_SUB',
-                (
+            due_date_reasons_choices = NeedsHumanReview.REASONS.extract_subset(
+                *(
                     entry.name
                     for entry in NeedsHumanReview.REASONS
                     if entry.annotation in filter_form.cleaned_data['due_date_reasons']
-                ),
+                )
             )
         qs = TableObj.get_queryset(
             request=request,
