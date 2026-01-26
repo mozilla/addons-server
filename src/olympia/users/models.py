@@ -50,6 +50,7 @@ from olympia.amo.utils import (
     id_to_path,
 )
 from olympia.amo.validators import OneOrMoreLetterOrNumberCharacterValidator
+from olympia.constants.blocklist import REASON_USER_BANNED
 from olympia.files.models import File
 from olympia.translations.query import order_by_translation
 from olympia.users.notifications import NOTIFICATIONS_BY_ID
@@ -243,7 +244,7 @@ class UserQuerySet(BaseQuerySet):
             submission = BlocklistSubmission(
                 action=BlocklistSubmission.ACTIONS.ADDCHANGE,
                 input_guids='\r\n'.join([addon.guid for addon in addons_sole]),
-                reason='Automatic block because of user ban',
+                reason=REASON_USER_BANNED,
                 updated_by=core.get_user(),
                 disable_addon=False,  # Add-ons will already be disabled above.
             )

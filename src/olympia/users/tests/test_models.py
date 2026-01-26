@@ -34,6 +34,7 @@ from olympia.amo.utils import SafeStorage
 from olympia.api.models import APIKey
 from olympia.bandwagon.models import Collection
 from olympia.blocklist.models import Block, BlocklistSubmission, BlockType
+from olympia.constants.blocklist import REASON_USER_BANNED
 from olympia.devhub.models import SurveyResponse
 from olympia.files.models import File, FileUpload
 from olympia.ratings.models import Rating
@@ -314,6 +315,7 @@ class TestUserProfile(TestCase):
             assert not submission.disable_addon
             assert submission.block_type == BlockType.BLOCKED
             assert submission.updated_by == core.get_user()
+            assert submission.reason == REASON_USER_BANNED
 
             expected_blocked_versions = (
                 *addon_sole.versions.all(),
@@ -322,6 +324,7 @@ class TestUserProfile(TestCase):
             for version in expected_blocked_versions:
                 assert version.is_blocked
                 assert version.blockversion.block_type == BlockType.BLOCKED
+                assert version.blockversion.block.reason == REASON_USER_BANNED
             assert not addon_multi.current_version.reload().is_blocked
 
         assert not user_sole._ratings_all.exists()  # Even replies.

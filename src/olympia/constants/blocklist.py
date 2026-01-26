@@ -4,6 +4,8 @@ from enum import Enum
 
 REMOTE_SETTINGS_COLLECTION_MLBF = 'addons-bloomfilters'
 
+REASON_USER_BANNED = 'This add-on has been blocked because its author has been banned.'
+
 # Must be kept in sync with addons-frontend
 REASON_ADDON_DELETED = 'Addon deleted'
 REASON_VERSION_DELETED = 'Version deleted'
