@@ -383,7 +383,7 @@ msgstr "Oppførte versjoner kan ikke sendes inn mens tillegget er deaktivert."
 
 #: src/olympia/addons/serializers.py:578 src/olympia/signing/views.py:218
 msgid "Listed versions cannot be submitted while add-on listing is rejected."
-msgstr ""
+msgstr "Oppførte versjoner kan ikke sendes inn mens tilleggsoppføringen er avvist."
 
 #: src/olympia/addons/serializers.py:619
 #, python-format
@@ -3051,7 +3051,7 @@ msgstr "Tillegget ditt er for øyeblikket satt til «Usynlig»."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cant_submit_new_listed_versions_warning.html:5
 msgid "Your add-on listing was rejected."
-msgstr ""
+msgstr "Oppføringen av tillegget ditt ble avvist."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cant_submit_new_listed_versions_warning.html:7
 msgid "While in this state, \"On your own\" is the only distribution method available."
