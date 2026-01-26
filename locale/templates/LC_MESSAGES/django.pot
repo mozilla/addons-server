@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-01-26 14:11+0000\n"
+"POT-Creation-Date: 2026-01-26 16:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -311,7 +311,7 @@ msgstr ""
 msgid "The \"other\" category cannot be combined with another category"
 msgstr ""
 
-#: src/olympia/addons/fields.py:76 src/olympia/addons/serializers.py:1274
+#: src/olympia/addons/fields.py:76 src/olympia/addons/serializers.py:1281
 msgid "Invalid category name."
 msgstr ""
 
@@ -356,7 +356,7 @@ msgid "Unknown min app version specified"
 msgstr ""
 
 #: src/olympia/addons/fields.py:307 src/olympia/addons/fields.py:325
-#: src/olympia/addons/serializers.py:637
+#: src/olympia/addons/serializers.py:644
 #, python-format
 msgid ""
 "Can not override compatibility information set in the manifest for this "
@@ -368,7 +368,7 @@ msgstr ""
 msgid "Images must be smaller than %dMB"
 msgstr ""
 
-#: src/olympia/addons/models.py:2298 src/olympia/addons/models.py:2377
+#: src/olympia/addons/models.py:2305 src/olympia/addons/models.py:2384
 #: src/olympia/constants/base.py:70
 msgid "Listed"
 msgstr ""
@@ -397,12 +397,16 @@ msgstr ""
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:612
+#: src/olympia/addons/serializers.py:578 src/olympia/signing/views.py:218
+msgid "Listed versions cannot be submitted while add-on listing is rejected."
+msgstr ""
+
+#: src/olympia/addons/serializers.py:619
 #, python-format
 msgid "%(addon_type_plural)s are not supported by %(app_name)s"
 msgstr ""
 
-#: src/olympia/addons/serializers.py:651 src/olympia/devhub/forms.py:942
+#: src/olympia/addons/serializers.py:658 src/olympia/devhub/forms.py:942
 #, python-format
 msgid ""
 "Invalid version range. For Firefox for Android, you may only pick a range "
@@ -410,41 +414,41 @@ msgid ""
 "%(min)s."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:900
+#: src/olympia/addons/serializers.py:907
 msgid "Add-ons need at least one owner."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:915
+#: src/olympia/addons/serializers.py:922
 msgid "Add-ons need at least one listed author."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:947
+#: src/olympia/addons/serializers.py:954
 msgid "Account not found."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:960 src/olympia/devhub/forms.py:442
+#: src/olympia/addons/serializers.py:967 src/olympia/devhub/forms.py:442
 #: src/olympia/devhub/forms.py:512
 msgid "An author can only be present once."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:971 src/olympia/devhub/forms.py:454
+#: src/olympia/addons/serializers.py:978 src/olympia/devhub/forms.py:454
 msgid "The account needs a display name before it can be added as an author."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:1254
+#: src/olympia/addons/serializers.py:1261
 msgid "This slug cannot be used. Please choose another."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:1879
+#: src/olympia/addons/serializers.py:1886
 msgid "There is no rollback available in this channel."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:1889
+#: src/olympia/addons/serializers.py:1896
 #, python-format
 msgid "Rollback is only available for version %s in this channel."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:1895
+#: src/olympia/addons/serializers.py:1902
 msgid "Only approved versions can be rolled back, except the most recent version."
 msgstr ""
 
@@ -567,7 +571,7 @@ msgstr ""
 
 #: src/olympia/amo/context_processors.py:79
 #: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:20
-#: src/olympia/devhub/views.py:2120
+#: src/olympia/devhub/views.py:2124
 msgid "Manage API Keys"
 msgstr ""
 
@@ -2155,32 +2159,32 @@ msgid ""
 "updates for automatic deployment to your users.</span>"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1436
+#: src/olympia/devhub/forms.py:1437
 #: src/olympia/devhub/templates/devhub/includes/agreement.html:17
 msgid "Display Name"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1467
+#: src/olympia/devhub/forms.py:1468
 msgid "Confirm email address"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1468
+#: src/olympia/devhub/forms.py:1469
 msgid "Generate new credentials"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1469
+#: src/olympia/devhub/forms.py:1470
 msgid "Revoke and regenerate credentials"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1470
+#: src/olympia/devhub/forms.py:1471
 msgid "Revoke"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1509
+#: src/olympia/devhub/forms.py:1510
 msgid "JWT issuer"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1516
+#: src/olympia/devhub/forms.py:1517
 #, python-brace-format
 msgid ""
 "To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> "
@@ -2188,48 +2192,48 @@ msgid ""
 "as explained in the <a href=\"{docs_url}\">API documentation</a>."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1526
+#: src/olympia/devhub/forms.py:1527
 msgid "JWT secret"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1547
+#: src/olympia/devhub/forms.py:1548
 #, python-brace-format
 msgid ""
 "Please click the confirm button below to generate API credentials for user "
 "<strong>{name}</strong>."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1553
+#: src/olympia/devhub/forms.py:1554
 msgid ""
 "A confirmation link will be sent to your email address. After confirmation "
 "you will find your API keys on this page."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1570
+#: src/olympia/devhub/forms.py:1571
 msgid "You don't have any API credentials."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1581
+#: src/olympia/devhub/forms.py:1582
 msgid "Something went wrong, please contact developer support."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1664
+#: src/olympia/devhub/forms.py:1665
 msgid "No appropriate version available"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1671
+#: src/olympia/devhub/forms.py:1672
 msgid "Choose version"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1680
+#: src/olympia/devhub/forms.py:1681
 msgid "Release notes"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1681
+#: src/olympia/devhub/forms.py:1682
 msgid "Automatic rollback based on version [m.m]."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1754
+#: src/olympia/devhub/forms.py:1755
 msgid "You must select a channel and version to rollback to."
 msgstr ""
 
@@ -2497,45 +2501,45 @@ msgid ""
 "  tab_line."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1612
+#: src/olympia/devhub/views.py:1616
 msgid "Add-on uploads are temporarily unavailable"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1980
+#: src/olympia/devhub/views.py:1984
 msgid "Review requested."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1982
+#: src/olympia/devhub/views.py:1986
 msgid "You must provide further details to proceed."
 msgstr ""
 
-#: src/olympia/devhub/views.py:2095
+#: src/olympia/devhub/views.py:2099
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr ""
 
-#: src/olympia/devhub/views.py:2114
+#: src/olympia/devhub/views.py:2118
 msgid ""
 "Keep your API keys secret and never share them with anyone, including Mozilla"
 " contributors."
 msgstr ""
 
-#: src/olympia/devhub/views.py:2131
+#: src/olympia/devhub/views.py:2135
 msgid "New API key created"
 msgstr ""
 
-#: src/olympia/devhub/views.py:2142
+#: src/olympia/devhub/views.py:2146
 msgid "API key revoked"
 msgstr ""
 
-#: src/olympia/devhub/views.py:2202
+#: src/olympia/devhub/views.py:2206
 msgid "Verify email"
 msgstr ""
 
-#: src/olympia/devhub/views.py:2204
+#: src/olympia/devhub/views.py:2208
 msgid "Send another email"
 msgstr ""
 
-#: src/olympia/devhub/views.py:2237
+#: src/olympia/devhub/views.py:2241
 msgid "Your email has been verified"
 msgstr ""
 
@@ -3348,8 +3352,22 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:182
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html:30
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:85
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:101
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:102
 msgid "Continue"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/includes/cant_submit_new_listed_versions_warning.html:3
+msgid "Your add-on is currently set to \"Invisible\"."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/includes/cant_submit_new_listed_versions_warning.html:5
+msgid "Your add-on listing was rejected."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/includes/cant_submit_new_listed_versions_warning.html:7
+msgid ""
+"While in this state, \"On your own\" is the only distribution method "
+"available."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:2
@@ -3384,16 +3402,6 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:64
 msgid "More information on Creative Commons licenses"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/addons/includes/invisible_channel_warning.html:2
-msgid "Your add-on is currently set to \"Invisible\"."
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/addons/includes/invisible_channel_warning.html:3
-msgid ""
-"While in this state, \"On your own\" is the only distribution method "
-"available."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/includes/source_file_input.html:12
@@ -3912,46 +3920,46 @@ msgstr ""
 msgid "Where to Host Version"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:23
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:24
 msgid "Change"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:28
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:29
 msgid "Upload Version"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:30
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:31
 msgid ""
 "Use the fields below to upload your add-on package. After upload, a series of"
 " automated validation tests will be run on your file."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:34
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:35
 #, python-format
 msgid ""
 "The maximum file size accepted is %(max_size)s. If your add-on is larger than"
 " %(max_size)s, it will fail validation."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:59
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:60
 msgid "Which applications is this version compatible with?"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:66
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:67
 msgid "Administrative overrides"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:79
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:80
 msgid "Create a Theme Version"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:81
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:82
 msgid ""
 "You can upload a finished theme using the upload option above, or you can "
 "build it yourself using this tool."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:87
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:88
 msgid "Create a Theme"
 msgstr ""
 
@@ -7181,17 +7189,17 @@ msgstr ""
 msgid "Invalid Add-on ID in URL or package"
 msgstr ""
 
-#: src/olympia/signing/views.py:211
+#: src/olympia/signing/views.py:212
 msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."
 msgstr ""
 
-#: src/olympia/signing/views.py:220
+#: src/olympia/signing/views.py:227
 msgid ""
 "You cannot add a listed version to this add-on via the API due to missing "
 "metadata. Please submit via the website"
 msgstr ""
 
-#: src/olympia/signing/views.py:275
+#: src/olympia/signing/views.py:282
 msgid "No uploaded file for that add-on and version."
 msgstr ""
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-01-26 14:11+0000\n"
+"POT-Creation-Date: 2026-01-26 16:58+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -330,6 +330,9 @@ msgstr "The latest approved version of this %s add-on cannot be deleted because 
 
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr "Listed versions cannot be submitted while add-on is disabled."
+
+msgid "Listed versions cannot be submitted while add-on listing is rejected."
+msgstr "Listed versions cannot be submitted while add-on listing is rejected."
 
 #, python-format
 msgid "%(addon_type_plural)s are not supported by %(app_name)s"
@@ -2444,6 +2447,15 @@ msgstr "Having screenshots in your product page greatly increases its chances of
 msgid "Continue"
 msgstr "Continue"
 
+msgid "Your add-on is currently set to \"Invisible\"."
+msgstr "Your add-on is currently set to \"Invisible\"."
+
+msgid "Your add-on listing was rejected."
+msgstr "Your add-on listing was rejected."
+
+msgid "While in this state, \"On your own\" is the only distribution method available."
+msgstr "While in this state, \"On your own\" is the only distribution method available."
+
 #, fuzzy
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr "Can others share your Theme, as long as you're given credit?"
@@ -2472,12 +2484,6 @@ msgstr "Select a different license."
 #, fuzzy
 msgid "More information on Creative Commons licenses"
 msgstr "More information requested"
-
-msgid "Your add-on is currently set to \"Invisible\"."
-msgstr "Your add-on is currently set to \"Invisible\"."
-
-msgid "While in this state, \"On your own\" is the only distribution method available."
-msgstr "While in this state, \"On your own\" is the only distribution method available."
 
 msgid "You cannot change attached sources because this version has been reviewed by Mozilla."
 msgstr "You cannot change attached sources because this version has been reviewed by Mozilla."

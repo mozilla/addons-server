@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-01-26 14:11+0000\n"
+"POT-Creation-Date: 2026-01-26 16:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -275,6 +275,9 @@ msgid "The latest approved version of this %s add-on cannot be deleted because t
 msgstr ""
 
 msgid "Listed versions cannot be submitted while add-on is disabled."
+msgstr ""
+
+msgid "Listed versions cannot be submitted while add-on listing is rejected."
 msgstr ""
 
 #, python-format
@@ -2268,6 +2271,15 @@ msgstr ""
 msgid "Continue"
 msgstr ""
 
+msgid "Your add-on is currently set to \"Invisible\"."
+msgstr ""
+
+msgid "Your add-on listing was rejected."
+msgstr ""
+
+msgid "While in this state, \"On your own\" is the only distribution method available."
+msgstr ""
+
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr ""
 
@@ -2290,12 +2302,6 @@ msgid "Select a different license."
 msgstr ""
 
 msgid "More information on Creative Commons licenses"
-msgstr ""
-
-msgid "Your add-on is currently set to \"Invisible\"."
-msgstr ""
-
-msgid "While in this state, \"On your own\" is the only distribution method available."
 msgstr ""
 
 msgid "You cannot change attached sources because this version has been reviewed by Mozilla."
