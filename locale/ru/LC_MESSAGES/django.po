@@ -383,7 +383,7 @@ msgstr "Перечисленные версии не могут быть отп�
 
 #: src/olympia/addons/serializers.py:578 src/olympia/signing/views.py:218
 msgid "Listed versions cannot be submitted while add-on listing is rejected."
-msgstr ""
+msgstr "Опубликованные версии не могут быть представлены, пока листинг дополнения отклонён."
 
 #: src/olympia/addons/serializers.py:619
 #, python-format
@@ -3062,7 +3062,7 @@ msgstr "Ваше дополнение сейчас «Невидимое»."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cant_submit_new_listed_versions_warning.html:5
 msgid "Your add-on listing was rejected."
-msgstr ""
+msgstr "Ваше дополнение было отклонено."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cant_submit_new_listed_versions_warning.html:7
 msgid "While in this state, \"On your own\" is the only distribution method available."
