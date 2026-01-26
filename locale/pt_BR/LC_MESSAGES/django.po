@@ -382,7 +382,7 @@ msgstr "Versões listadas não podem ser enviadas enquanto a extensão estiver d
 
 #: src/olympia/addons/serializers.py:578 src/olympia/signing/views.py:218
 msgid "Listed versions cannot be submitted while add-on listing is rejected."
-msgstr ""
+msgstr "Versões listadas não podem ser enviadas enquanto a listagem de extensões for rejeitada."
 
 #: src/olympia/addons/serializers.py:619
 #, python-format
@@ -3052,7 +3052,7 @@ msgstr "Sua extensão está no momento definida como \"Invisível\"."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cant_submit_new_listed_versions_warning.html:5
 msgid "Your add-on listing was rejected."
-msgstr ""
+msgstr "A sua lista de extensões foi rejeitada."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cant_submit_new_listed_versions_warning.html:7
 msgid "While in this state, \"On your own\" is the only distribution method available."

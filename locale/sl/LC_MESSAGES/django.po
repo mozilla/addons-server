@@ -382,7 +382,7 @@ msgstr "Javno vidnih različic ni mogoče predložiti, ko je dodatek onemogočen
 
 #: src/olympia/addons/serializers.py:578 src/olympia/signing/views.py:218
 msgid "Listed versions cannot be submitted while add-on listing is rejected."
-msgstr ""
+msgstr "Navedenih različic ni mogoče predložiti, medtem ko je navajanje dodatkov zavrnjeno."
 
 #: src/olympia/addons/serializers.py:619
 #, python-format
@@ -3046,7 +3046,7 @@ msgstr "Vaš dodatek je trenutno nastavljen na \"Neviden\"."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cant_submit_new_listed_versions_warning.html:5
 msgid "Your add-on listing was rejected."
-msgstr ""
+msgstr "Objava vašega dodatka je bila zavrnjena."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cant_submit_new_listed_versions_warning.html:7
 msgid "While in this state, \"On your own\" is the only distribution method available."
