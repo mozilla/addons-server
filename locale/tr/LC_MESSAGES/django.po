@@ -380,7 +380,7 @@ msgstr "Eklenti devre dışıyken listelenen sürümler gönderilemez."
 
 #: src/olympia/addons/serializers.py:578 src/olympia/signing/views.py:218
 msgid "Listed versions cannot be submitted while add-on listing is rejected."
-msgstr ""
+msgstr "Eklenti listelenmesi reddedilmişse listelenen sürümler gönderilemez."
 
 #: src/olympia/addons/serializers.py:619
 #, python-format
@@ -3052,7 +3052,7 @@ msgstr "Eklentiniz şu anda \"Görünmez\" olarak ayarlanmış."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cant_submit_new_listed_versions_warning.html:5
 msgid "Your add-on listing was rejected."
-msgstr ""
+msgstr "Eklenti listelemeniz reddedildi."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cant_submit_new_listed_versions_warning.html:7
 msgid "While in this state, \"On your own\" is the only distribution method available."
