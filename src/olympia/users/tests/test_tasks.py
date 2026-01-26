@@ -399,7 +399,7 @@ class TestSendSuppressedEmailConfirmation(TestCase):
             suppressed_email=SuppressedEmail.objects.create(
                 email=self.user_profile.email
             ),
-            status=SuppressedEmailVerification.STATUS_CHOICES.Failed,
+            status=SuppressedEmailVerification.STATUS_CHOICES.FAILED,
         )
 
         responses.add(
@@ -411,11 +411,11 @@ class TestSendSuppressedEmailConfirmation(TestCase):
             status=201,
         )
 
-        assert verification.status == SuppressedEmailVerification.STATUS_CHOICES.Failed
+        assert verification.status == SuppressedEmailVerification.STATUS_CHOICES.FAILED
         send_suppressed_email_confirmation.apply([verification.id])
         assert (
             verification.reload().status
-            == SuppressedEmailVerification.STATUS_CHOICES.Pending
+            == SuppressedEmailVerification.STATUS_CHOICES.PENDING
         )
 
 

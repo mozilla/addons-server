@@ -1765,17 +1765,17 @@ class TestGetFlags(TestCase):
 
     def test_due_date_reason_flags(self):
         def reset_all_flags_to_false():
-            for entry in NeedsHumanReview.REASONS.entries:
+            for entry in NeedsHumanReview.REASONS:
                 setattr(self.addon, entry.annotation, False)
 
         assert get_flags(self.addon, self.addon.current_version) == []
         reset_all_flags_to_false()
         assert get_flags(self.addon, self.addon.current_version) == []
-        for entry in NeedsHumanReview.REASONS.entries:
+        for entry in NeedsHumanReview.REASONS:
             reset_all_flags_to_false()
             setattr(self.addon, entry.annotation, True)
             assert get_flags(self.addon, self.addon.current_version) == [
-                (entry.annotation.replace('_', '-'), entry.display)
+                (entry.annotation.replace('_', '-'), entry.label)
             ]
 
 
@@ -1821,8 +1821,8 @@ class TestNeedsHumanReview(TestCase):
         assert ActivityLog.objects.count() == 0
 
     def test_reasons_have_annotation_property(self):
-        for entry in NeedsHumanReview.REASONS.entries:
-            assert entry.annotation == f'needs_human_review_{entry.constant.lower()}'
+        for entry in NeedsHumanReview.REASONS:
+            assert entry.annotation == f'needs_human_review_{entry.name.lower()}'
 
 
 class UsageTierTests(TestCase):

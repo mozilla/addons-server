@@ -913,7 +913,7 @@ class SearchQueryFilter(BaseFilterBackend):
             ),
         ]
         ranking_bump_groups = amo.utils.sorted_groupby(
-            PROMOTED_GROUP_CHOICES.ACTIVE.entries,
+            PROMOTED_GROUP_CHOICES.ACTIVE,
             lambda g: getattr(g, 'search_ranking_bump', 0.0),
             reverse=True,
         )

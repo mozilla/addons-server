@@ -17,9 +17,9 @@ from requests import RequestException
 import olympia.core.logger
 from olympia import amo
 from olympia.addons.models import Addon
+from olympia.amo.enum import EnumChoices
 from olympia.amo.models import BaseQuerySet, ManagerBase, ModelBase
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.api.utils import APIChoicesWithNone
 from olympia.bandwagon.models import Collection
 from olympia.constants.abuse import (
     APPEAL_EXPIRATION_DAYS,
@@ -468,67 +468,62 @@ class AbuseReportManager(ManagerBase):
 class AbuseReport(ModelBase):
     # Note: those choices don't need to be translated for now, the
     # human-readable values are only exposed in the admin.
-    ADDON_SIGNATURES = APIChoicesWithNone(
-        ('CURATED_AND_PARTNER', 1, 'Curated and partner'),
-        ('CURATED', 2, 'Curated'),
-        ('PARTNER', 3, 'Partner'),
-        ('NON_CURATED', 4, 'Non-curated'),
-        ('UNSIGNED', 5, 'Unsigned'),
-        ('BROKEN', 6, 'Broken'),
-        ('UNKNOWN', 7, 'Unknown'),
-        ('MISSING', 8, 'Missing'),
-        ('PRELIMINARY', 9, 'Preliminary'),
-        ('SIGNED', 10, 'Signed'),
-        ('SYSTEM', 11, 'System'),
-        ('PRIVILEGED', 12, 'Privileged'),
-        ('NOT_REQUIRED', 13, 'Not required'),
-    )
-    REASONS = APIChoicesWithNone(
+    class ADDON_SIGNATURES(EnumChoices):
+        CURATED_AND_PARTNER = 1, 'Curated and partner'
+        CURATED = 2, 'Curated'
+        PARTNER = 3, 'Partner'
+        NON_CURATED = 4, 'Non-curated'
+        UNSIGNED = 5, 'Unsigned'
+        BROKEN = 6, 'Broken'
+        UNKNOWN = 7, 'Unknown'
+        MISSING = 8, 'Missing'
+        PRELIMINARY = 9, 'Preliminary'
+        SIGNED = 10, 'Signed'
+        SYSTEM = 11, 'System'
+        PRIVILEGED = 12, 'Privileged'
+        NOT_REQUIRED = 13, 'Not required'
+
+        __empty__ = 'None'
+
+    class REASONS(EnumChoices):
         # Reporting reasons used in Firefox
-        ('DAMAGE', 1, 'Damages computer and/or data'),
-        ('SPAM', 2, 'Creates spam or advertising'),
-        (
-            'SETTINGS',
-            3,
-            'Changes search / homepage / new tab page without informing user',
-        ),
+        DAMAGE = 1, 'Damages computer and/or data'
+        SPAM = 2, 'Creates spam or advertising'
+        SETTINGS = 3, 'Changes search / homepage / new tab page without informing user'
         # `4` was previously 'New tab takeover' but has been merged into the
         # previous one. We avoid re-using the value.
-        ('BROKEN', 5, 'Doesn’t work, breaks websites, or slows Firefox down'),
-        ('POLICY', 6, 'Hateful, violent, or illegal content'),
-        ('DECEPTIVE', 7, 'Pretends to be something it’s not'),
+        BROKEN = 5, 'Doesn’t work, breaks websites, or slows Firefox down'
+        POLICY = 6, 'Hateful, violent, or illegal content'
+        DECEPTIVE = 7, 'Pretends to be something it’s not'
         # `8` was previously "Doesn't work" but has been merged into the
         # previous one. We avoid re-using the value.
-        ('UNWANTED', 9, "Wasn't wanted / impossible to get rid of"),
+        UNWANTED = 9, "Wasn't wanted / impossible to get rid of"
         # `10` was previously "Other". We avoid re-using the value.
         #
         # Reporting reasons used in AMO Feedback flow - DSA categories
-        (
-            'HATEFUL_VIOLENT_DECEPTIVE',
+        HATEFUL_VIOLENT_DECEPTIVE = (
             11,
-            'DSA: It contains hateful, violent, deceptive, or other inappropriate '
-            'content',
-        ),
-        (
-            'ILLEGAL',
+            (
+                'DSA: It contains hateful, violent, deceptive, or other inappropriate '
+                'content'
+            ),
+        )
+        ILLEGAL = (
             12,
             'DSA: It violates the law or contains content that violates the law',
-        ),
-        ('POLICY_VIOLATION', 13, "DSA: It violates Mozilla's Add-on Policies"),
-        ('SOMETHING_ELSE', 14, 'DSA: Something else'),
+        )
+        POLICY_VIOLATION = 13, "DSA: It violates Mozilla's Add-on Policies"
+        SOMETHING_ELSE = 14, 'DSA: Something else'
         # Reporting reasons used in AMO Feedback flow - Feedback (non-DSA) categories
-        (
-            'DOES_NOT_WORK',
+        DOES_NOT_WORK = (
             20,
             'Feedback: It does not work, breaks websites, or slows down Firefox',
-        ),
-        (
-            'FEEDBACK_SPAM',
-            21,
-            "Feedback: It's spam",
-        ),
-        ('OTHER', 127, 'Other'),
-    )
+        )
+        FEEDBACK_SPAM = 21, "Feedback: It's spam"
+        OTHER = 127, 'Other'
+
+        __empty__ = 'None'
+
     # Base reasons shared by all on-AMO content using AMO Feedback flow.
     REASONS.add_subset(
         'CONTENT_REASONS',
@@ -545,74 +540,82 @@ class AbuseReport(ModelBase):
     # https://searchfox.org
     # /mozilla-central/source/toolkit/components/telemetry/Events.yaml#122-131
     # Firefox submits values in lowercase, with '-' and ':' changed to '_'.
-    ADDON_INSTALL_METHODS = APIChoicesWithNone(
-        ('AMWEBAPI', 1, 'Add-on Manager Web API'),
-        ('LINK', 2, 'Direct link'),
-        ('INSTALLTRIGGER', 3, 'Install Trigger'),
-        ('INSTALL_FROM_FILE', 4, 'From File'),
-        ('MANAGEMENT_WEBEXT_API', 5, 'Webext management API'),
-        ('DRAG_AND_DROP', 6, 'Drag & Drop'),
-        ('SIDELOAD', 7, 'Sideload'),
+    class ADDON_INSTALL_METHODS(EnumChoices):
+        AMWEBAPI = 1, 'Add-on Manager Web API'
+        LINK = 2, 'Direct link'
+        INSTALLTRIGGER = 3, 'Install Trigger'
+        INSTALL_FROM_FILE = 4, 'From File'
+        MANAGEMENT_WEBEXT_API = 5, 'Webext management API'
+        DRAG_AND_DROP = 6, 'Drag & Drop'
+        SIDELOAD = 7, 'Sideload'
         # Values between 8 and 13 are obsolete, we use to merge
         # install source and method into addon_install_method before deciding
         # to split the two like Firefox does, so these 6 values are only kept
         # for backwards-compatibility with older reports and older versions of
         # Firefox that still only submit that.
-        ('FILE_URL', 8, 'File URL'),
-        ('ENTERPRISE_POLICY', 9, 'Enterprise Policy'),
-        ('DISTRIBUTION', 10, 'Included in build'),
-        ('SYSTEM_ADDON', 11, 'System Add-on'),
-        ('TEMPORARY_ADDON', 12, 'Temporary Add-on'),
-        ('SYNC', 13, 'Sync'),
+        FILE_URL = 8, 'File URL'
+        ENTERPRISE_POLICY = 9, 'Enterprise Policy'
+        DISTRIBUTION = 10, 'Included in build'
+        SYSTEM_ADDON = 11, 'System Add-on'
+        TEMPORARY_ADDON = 12, 'Temporary Add-on'
+        SYNC = 13, 'Sync'
         # Back to normal values.
-        ('URL', 14, 'URL'),
+        URL = 14, 'URL'
         # Our own catch-all. The serializer expects it to be called "OTHER".
-        ('OTHER', 127, 'Other'),
-    )
-    ADDON_INSTALL_SOURCES = APIChoicesWithNone(
-        ('ABOUT_ADDONS', 1, 'Add-ons Manager'),
-        ('ABOUT_DEBUGGING', 2, 'Add-ons Debugging'),
-        ('ABOUT_PREFERENCES', 3, 'Preferences'),
-        ('AMO', 4, 'AMO'),
-        ('APP_PROFILE', 5, 'App Profile'),
-        ('DISCO', 6, 'Disco Pane'),
-        ('DISTRIBUTION', 7, 'Included in build'),
-        ('EXTENSION', 8, 'Extension'),
-        ('ENTERPRISE_POLICY', 9, 'Enterprise Policy'),
-        ('FILE_URL', 10, 'File URL'),
-        ('GMP_PLUGIN', 11, 'GMP Plugin'),
-        ('INTERNAL', 12, 'Internal'),
-        ('PLUGIN', 13, 'Plugin'),
-        ('RTAMO', 14, 'Return to AMO'),
-        ('SYNC', 15, 'Sync'),
-        ('SYSTEM_ADDON', 16, 'System Add-on'),
-        ('TEMPORARY_ADDON', 17, 'Temporary Add-on'),
-        ('UNKNOWN', 18, 'Unknown'),
-        ('WINREG_APP_USER', 19, 'Windows Registry (User)'),
-        ('WINREG_APP_GLOBAL', 20, 'Windows Registry (Global)'),
-        ('APP_SYSTEM_PROFILE', 21, 'System Add-on (Profile)'),
-        ('APP_SYSTEM_ADDONS', 22, 'System Add-on (Update)'),
-        ('APP_SYSTEM_DEFAULTS', 23, 'System Add-on (Bundled)'),
-        ('APP_BUILTIN', 24, 'Built-in Add-on'),
-        ('APP_SYSTEM_USER', 25, 'System-wide Add-on (User)'),
-        ('APP_GLOBAL', 26, 'Application Add-on'),
-        ('APP_SYSTEM_SHARE', 27, 'System-wide Add-on (OS Share)'),
-        ('APP_SYSTEM_LOCAL', 28, 'System-wide Add-on (OS Local)'),
+        OTHER = 127, 'Other'
+
+        __empty__ = 'None'
+
+    class ADDON_INSTALL_SOURCES(EnumChoices):
+        ABOUT_ADDONS = 1, 'Add-ons Manager'
+        ABOUT_DEBUGGING = 2, 'Add-ons Debugging'
+        ABOUT_PREFERENCES = 3, 'Preferences'
+        AMO = 4, 'AMO'
+        APP_PROFILE = 5, 'App Profile'
+        DISCO = 6, 'Disco Pane'
+        DISTRIBUTION = 7, 'Included in build'
+        EXTENSION = 8, 'Extension'
+        ENTERPRISE_POLICY = 9, 'Enterprise Policy'
+        FILE_URL = 10, 'File URL'
+        GMP_PLUGIN = 11, 'GMP Plugin'
+        INTERNAL = 12, 'Internal'
+        PLUGIN = 13, 'Plugin'
+        RTAMO = 14, 'Return to AMO'
+        SYNC = 15, 'Sync'
+        SYSTEM_ADDON = 16, 'System Add-on'
+        TEMPORARY_ADDON = 17, 'Temporary Add-on'
+        UNKNOWN = 18, 'Unknown'
+        WINREG_APP_USER = 19, 'Windows Registry (User)'
+        WINREG_APP_GLOBAL = 20, 'Windows Registry (Global)'
+        APP_SYSTEM_PROFILE = 21, 'System Add-on (Profile)'
+        APP_SYSTEM_ADDONS = 22, 'System Add-on (Update)'
+        APP_SYSTEM_DEFAULTS = 23, 'System Add-on (Bundled)'
+        APP_BUILTIN = 24, 'Built-in Add-on'
+        APP_SYSTEM_USER = 25, 'System-wide Add-on (User)'
+        APP_GLOBAL = 26, 'Application Add-on'
+        APP_SYSTEM_SHARE = 27, 'System-wide Add-on (OS Share)'
+        APP_SYSTEM_LOCAL = 28, 'System-wide Add-on (OS Local)'
         # Our own catch-all. The serializer expects it to be called "OTHER".
-        ('OTHER', 127, 'Other'),
-    )
-    REPORT_ENTRY_POINTS = APIChoicesWithNone(
-        ('UNINSTALL', 1, 'Uninstall'),
-        ('MENU', 2, 'Menu'),
-        ('TOOLBAR_CONTEXT_MENU', 3, 'Toolbar context menu'),
-        ('AMO', 4, 'AMO'),
-        ('UNIFIED_CONTEXT_MENU', 5, 'Unified extensions context menu'),
-    )
-    LOCATION = APIChoicesWithNone(
-        ('AMO', 1, 'Add-on page on AMO'),
-        ('ADDON', 2, 'Inside Add-on'),
-        ('BOTH', 3, 'Both on AMO and inside Add-on'),
-    )
+        OTHER = 127, 'Other'
+
+        __empty__ = 'None'
+
+    class REPORT_ENTRY_POINTS(EnumChoices):
+        UNINSTALL = 1, 'Uninstall'
+        MENU = 2, 'Menu'
+        TOOLBAR_CONTEXT_MENU = 3, 'Toolbar context menu'
+        AMO = 4, 'AMO'
+        UNIFIED_CONTEXT_MENU = 5, 'Unified extensions context menu'
+
+        __empty__ = 'None'
+
+    class LOCATION(EnumChoices):
+        AMO = 1, 'Add-on page on AMO'
+        ADDON = 2, 'Inside Add-on'
+        BOTH = 3, 'Both on AMO and inside Add-on'
+
+        __empty__ = 'None'
+
     # Abuse in these locations are handled by reviewers
     LOCATION.add_subset('REVIEWER_HANDLED', ('ADDON', 'BOTH'))
 
@@ -871,7 +874,7 @@ class AbuseReport(ModelBase):
         if not self.illegal_category:
             return None
         # We should send "normalized" constants to Cinder.
-        const = ILLEGAL_CATEGORIES.for_value(self.illegal_category).constant
+        const = ILLEGAL_CATEGORIES(self.illegal_category).name
         return f'STATEMENT_CATEGORY_{const}'
 
     @property
@@ -879,7 +882,7 @@ class AbuseReport(ModelBase):
         if not self.illegal_subcategory:
             return None
         # We should send "normalized" constants to Cinder.
-        const = ILLEGAL_SUBCATEGORIES.for_value(self.illegal_subcategory).constant
+        const = ILLEGAL_SUBCATEGORIES(self.illegal_subcategory).name
         return f'KEYWORD_{const}'
 
 
@@ -945,12 +948,12 @@ class CinderPolicy(ModelBase):
     @classmethod
     def get_decision_actions_from_policies(cls, policies, *, for_entity=None):
         actions = {
-            action.value
+            action
             for policy in policies
             for api_value in policy.enforcement_actions
             if policy.enforcement_actions
-            and DECISION_ACTIONS.has_api_value(api_value)
-            and (action := DECISION_ACTIONS.for_api_value(api_value))
+            and api_value in DECISION_ACTIONS.api_values
+            and (action := DECISION_ACTIONS.from_api_value(api_value))
             and (
                 not for_entity
                 or for_entity
@@ -1315,7 +1318,7 @@ class ContentDecision(ModelBase):
             or self.cinder_job
         ):
             create_decision_kw = {
-                'action': DECISION_ACTIONS.for_value(self.action).api_value,
+                'action': DECISION_ACTIONS(self.action).api_value,
                 'reasoning': self.reasoning,
                 'policy_uuids': list(self.policies.values_list('uuid', flat=True)),
             }

@@ -30,12 +30,12 @@ from django.utils.translation import gettext, gettext_lazy as _
 
 import requests
 import waffle
-from extended_choices import Choices
 
 import olympia.core.logger
 from olympia import activity, amo, core
 from olympia.access.models import Group, GroupUser
 from olympia.amo.decorators import use_primary_db
+from olympia.amo.enum import EnumChoices
 from olympia.amo.fields import CIDRField, PositiveAutoField
 from olympia.amo.models import (
     BaseQuerySet,
@@ -50,7 +50,6 @@ from olympia.amo.utils import (
     id_to_path,
 )
 from olympia.amo.validators import OneOrMoreLetterOrNumberCharacterValidator
-from olympia.api.utils import APIChoices
 from olympia.files.models import File
 from olympia.translations.query import order_by_translation
 from olympia.users.notifications import NOTIFICATIONS_BY_ID
@@ -72,12 +71,11 @@ def get_anonymized_username():
     return f'anonymous-{force_str(binascii.b2a_hex(os.urandom(16)))}'
 
 
-RESTRICTION_TYPES = Choices(
-    ('ADDON_SUBMISSION', 1, 'Add-on Submission'),
-    ('ADDON_APPROVAL', 2, 'Add-on Approval'),
-    ('RATING', 3, 'Rating'),
-    ('RATING_MODERATE', 4, 'Rating Flag for Moderation'),
-)
+class RESTRICTION_TYPES(EnumChoices):
+    ADDON_SUBMISSION = 1, 'Add-on Submission'
+    ADDON_APPROVAL = 2, 'Add-on Approval'
+    RATING = 3, 'Rating'
+    RATING_MODERATE = 4, 'Rating Flag for Moderation'
 
 
 class UserEmailField(forms.ModelChoiceField):
@@ -1518,11 +1516,10 @@ class SuppressedEmail(ModelBase):
 
 
 class SuppressedEmailVerification(ModelBase):
-    STATUS_CHOICES = APIChoices(
-        ('Pending', 0, 'Pending'),
-        ('Delivered', 1, 'Delivered'),
-        ('Failed', 2, 'Failed'),
-    )
+    class STATUS_CHOICES(EnumChoices):
+        PENDING = 0, 'Pending'
+        DELIVERED = 1, 'Delivered'
+        FAILED = 2, 'Failed'
 
     confirmation_code = models.CharField(
         max_length=255, null=False, blank=False, default=uuid.uuid4
@@ -1533,7 +1530,7 @@ class SuppressedEmailVerification(ModelBase):
         on_delete=models.CASCADE,
     )
     status = models.PositiveSmallIntegerField(
-        choices=STATUS_CHOICES.choices, default=STATUS_CHOICES.Pending
+        choices=STATUS_CHOICES.choices, default=STATUS_CHOICES.PENDING
     )
 
     @property
@@ -1549,5 +1546,5 @@ class SuppressedEmailVerification(ModelBase):
         return self.created + timedelta(minutes=10) < datetime.now()
 
     def mark_as_delivered(self):
-        self.update(status=SuppressedEmailVerification.STATUS_CHOICES.Delivered)
+        self.update(status=SuppressedEmailVerification.STATUS_CHOICES.DELIVERED)
         self.save()

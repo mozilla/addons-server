@@ -106,8 +106,8 @@ class TestPromotedGroupQuerySet(TestCase):
 
 class TestPromotedGroup(TestCase):
     def test_deactived_group_ids_raise(self):
-        for group in PROMOTED_GROUP_CHOICES.entries:
-            if group in PROMOTED_GROUP_CHOICES.ACTIVE.entries:
+        for group in PROMOTED_GROUP_CHOICES:
+            if group in PROMOTED_GROUP_CHOICES.ACTIVE:
                 continue
             with self.assertRaises(ValidationError):
                 PromotedGroup.objects.create(

@@ -44,7 +44,7 @@
               name="action"
               value="{{ action }}"
             >
-              {{ form.ACTION_CHOICES.for_value(action).display }}
+              {{ form.ACTION_CHOICES(action).label }}
             </button>
           {% endfor %}
         </p>

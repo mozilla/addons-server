@@ -174,7 +174,7 @@ def sync_cinder_policies():
             actions = [
                 action['slug']
                 for action in policy.get('enforcement_actions', [])
-                if DECISION_ACTIONS.has_api_value(action['slug'])
+                if action['slug'] in DECISION_ACTIONS.api_values
             ]
             cinder_policy, _ = CinderPolicy.objects.update_or_create(
                 uuid=policy['uuid'],

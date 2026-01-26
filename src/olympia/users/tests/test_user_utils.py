@@ -611,7 +611,7 @@ class TestCheckSuppressedEmailConfirmation(TestCase):
 
         assert (
             self.verification.reload().status
-            == SuppressedEmailVerification.STATUS_CHOICES.Delivered
+            == SuppressedEmailVerification.STATUS_CHOICES.DELIVERED
         )
 
     def test_verify_response_data(self):

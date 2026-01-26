@@ -2698,7 +2698,7 @@ class TestAddonDueDate(TestCase):
         ) == {unlisted_version}
 
         # Adding any of those NHR should not matter.
-        for reason_value, _ in NeedsHumanReview.REASONS.NO_DUE_DATE_INHERITANCE:
+        for reason_value in NeedsHumanReview.REASONS.NO_DUE_DATE_INHERITANCE:
             version2.needshumanreview_set.create(reason=reason_value)
 
         assert set(

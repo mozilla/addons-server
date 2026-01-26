@@ -2247,7 +2247,7 @@ def email_verification(request):
         else:
             if (
                 email_verification.reload().status
-                == SuppressedEmailVerification.STATUS_CHOICES.Delivered
+                == SuppressedEmailVerification.STATUS_CHOICES.DELIVERED
             ):
                 data['state'] = VERIFY_EMAIL_STATE['confirmation_pending']
                 data['render_table'] = False

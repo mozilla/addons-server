@@ -536,7 +536,7 @@ class TestVersionManager(TestCase):
         # one for themes awaiting review.
         assert len(q_objects) == len(NeedsHumanReview.REASONS) + 1
         assert 'is_from_theme_awaiting_review' in q_objects
-        for entry in NeedsHumanReview.REASONS.entries:
+        for entry in NeedsHumanReview.REASONS:
             assert entry.annotation in q_objects
 
     def test_get_due_date_reason_q_objects_filtering(self):
@@ -1332,14 +1332,14 @@ class TestVersion(AMOPaths, TestCase):
         assert version.should_have_due_date
 
         version.file.update(is_signed=False)
-        for reason in NeedsHumanReview.REASONS.values.keys() - [
+        for reason in set(NeedsHumanReview.REASONS.values) - {
             NeedsHumanReview.REASONS.DEVELOPER_REPLY,
             NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION,
             NeedsHumanReview.REASONS.CINDER_ESCALATION,
             NeedsHumanReview.REASONS.CINDER_APPEAL_ESCALATION,
             NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL,
             NeedsHumanReview.REASONS.SECOND_LEVEL_REQUEUE,
-        ]:
+        }:
             # Every other reason shouldn't result in a due date since the
             # version is disabled and not signed at this point.
             needs_human_review.update(reason=reason)
