@@ -1296,7 +1296,7 @@ msgstr "Innholdet i oppføringen for {addon} ble avvist."
 
 #: src/olympia/constants/activity.py:1278
 msgid "Listing content rejected"
-msgstr ""
+msgstr "Liseoppføringsinnhold avvist"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -1336,7 +1336,7 @@ msgstr "Venter på gjennomgang"
 
 #: src/olympia/constants/base.py:27
 msgid "Listing Content Rejected"
-msgstr ""
+msgstr "Liseoppføringsinnhold avvist"
 
 #: src/olympia/constants/base.py:28 src/olympia/constants/base.py:35
 msgid "Disabled by Mozilla"
@@ -5998,7 +5998,7 @@ msgstr "Personvern og sikkerhet"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1126
 msgid "See more privacy staff picks"
-msgstr ""
+msgstr "Se andre personvernutvidelser valgt av de ansatte"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1129
