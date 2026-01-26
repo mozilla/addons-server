@@ -125,6 +125,15 @@ class TestVersion(TestCase):
             reverse('devhub.submit.version', args=[self.addon.slug])
         )
 
+        # Still show for "Invisible" add-ons (they can submit unlisted versions)
+        self.addon.update(disabled_by_user=True)
+        response = self.client.get(url)
+        link = pq(response.content)('.addon-status>.addon-upload>strong>a')
+        assert link.text() == 'Upload New Version'
+        assert link.attr('href') == (
+            reverse('devhub.submit.version', args=[self.addon.slug])
+        )
+
         # Don't show for STATUS_DISABLED addons.
         self.addon.update(status=amo.STATUS_DISABLED)
         response = self.client.get(url)

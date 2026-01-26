@@ -170,10 +170,10 @@ class TestDashboard(HubTest):
         assert 'Statistics' in links, 'Unexpected: %r' % links
         assert 'New Version' in links, 'Unexpected: %r' % links
 
-        # Disabled (user): hide new version link.
+        # Disabled (user): don't hide new version link (they can submit unlisted).
         self.addon.update(disabled_by_user=True)
         links = self.get_action_links(self.addon.pk)
-        assert 'New Version' not in links, 'Unexpected: %r' % links
+        assert 'New Version' in links, 'Unexpected: %r' % links
 
         # Disabled (admin): hide statistics and new version links.
         self.addon.update(disabled_by_user=False, status=amo.STATUS_DISABLED)
