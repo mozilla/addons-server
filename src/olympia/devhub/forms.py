@@ -1642,7 +1642,7 @@ class LimitedModelChoiceField(forms.ModelChoiceField):
             del self._choices
         super()._set_queryset(queryset)
 
-    queryset = property(forms.ModelChoiceField._get_queryset, _set_queryset)
+    queryset = property(forms.ModelChoiceField.queryset.fget, _set_queryset)
 
     def _get_choices(self):
         # If self._choices is set, we called this before.
@@ -1654,7 +1654,7 @@ class LimitedModelChoiceField(forms.ModelChoiceField):
         self._choices = list(itertools.islice(self.iterator(self), count))
         return self._choices
 
-    choices = property(_get_choices, forms.ModelChoiceField._set_choices)
+    choices = property(_get_choices, forms.ModelChoiceField.choices.fset)
 
 
 class RollbackVersionForm(forms.Form):
