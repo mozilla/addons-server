@@ -6023,7 +6023,7 @@ msgstr "Priwatnosć a wěstota"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1126
 msgid "See more privacy staff picks"
-msgstr ""
+msgstr "Dalše wot sobudźěłaćerjow wubrane rozšěrjenja priwatnosće wobhladać"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1129
