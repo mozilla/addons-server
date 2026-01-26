@@ -243,6 +243,22 @@ jobs:
       version: ${{ needs.build.outputs.version }}
       digest: ${{ needs.build.outputs.digest }}
 
+  test_django52:
+    needs: build
+    uses: ./.github/workflows/_test.yml
+    with:
+      version: ${{ needs.build.outputs.version }}
+      digest: ${{ needs.build.outputs.digest }}
+      django_version: django52
+
+  test_django52_main:
+    needs: [context, build]
+    uses: ./.github/workflows/_test_main.yml
+    with:
+      version: ${{ needs.build.outputs.version }}
+      digest: ${{ needs.build.outputs.digest }}
+      django_version: django52
+
   test_check:
     needs: [context, build]
     uses: ./.github/workflows/_test_check.yml
