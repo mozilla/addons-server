@@ -1518,6 +1518,13 @@ class Addon(OnChangeMixin, ModelBase):
     def is_public(self):
         return self.status == amo.STATUS_APPROVED and not self.disabled_by_user
 
+    def can_submit_listed_versions(self):
+        return (
+            not self.is_disabled
+            and not self.is_deleted
+            and self.status != amo.STATUS_REJECTED
+        )
+
     def has_complete_metadata(self, has_listed_versions=None):
         """See get_required_metadata for has_listed_versions details."""
         return all(self.get_required_metadata(has_listed_versions=has_listed_versions))

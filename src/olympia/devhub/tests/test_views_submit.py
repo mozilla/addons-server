@@ -2055,6 +2055,14 @@ class TestVersionSubmitDistribution(TestSubmitBase):
             reverse('devhub.submit.version.upload', args=[self.addon.slug, 'unlisted']),
         )
 
+        # Even if the add-on is rejected
+        self.addon.update(status=amo.STATUS_REJECTED)
+        response = self.client.post(self.url, {'channel': 'unlisted'})
+        self.assert3xx(
+            response,
+            reverse('devhub.submit.version.upload', args=[self.addon.slug, 'unlisted']),
+        )
+
     def test_unlisted_redirects_to_next_step_if_addon_is_invisible(self):
         self.addon.update(disabled_by_user=True)
         response = self.client.post(self.url, {'channel': 'unlisted'})
@@ -2065,6 +2073,15 @@ class TestVersionSubmitDistribution(TestSubmitBase):
 
     def test_listed_not_available_if_addon_is_invisible(self):
         self.addon.update(disabled_by_user=True)
+        response = self.client.post(self.url, {'channel': 'listed'})
+        # Not redirected, instead the page is shown with an error.
+        assert response.status_code == 200
+        doc = pq(response.content)
+        errorlist = doc('.errorlist')
+        assert errorlist.text().startswith('Select a valid choice.')
+
+    def test_listed_not_available_if_addon_is_rejected(self):
+        self.addon.update(status=amo.STATUS_REJECTED)
         response = self.client.post(self.url, {'channel': 'listed'})
         # Not redirected, instead the page is shown with an error.
         assert response.status_code == 200
@@ -2116,7 +2133,38 @@ class TestVersionSubmitDistribution(TestSubmitBase):
             'id': 'id_channel_0',
         }
         # There should be a warning.
-        assert doc('p.status-disabled')
+        warning = doc('p.status-disabled')
+        assert warning
+        assert warning.text() == (
+            'Your add-on is currently set to "Invisible". While in this state,'
+            ' "On your own" is the only distribution method available.'
+        )
+
+    def test_no_preselected_channel_if_addon_is_rejected(self):
+        # As above, a rejected add-on can't submit new listed versions, only
+        # unlisted.
+        self.addon.update(status=amo.STATUS_REJECTED)
+        response = self.client.get(self.url, {'channel': 'unlisted'})
+        assert response.status_code == 200
+        doc = pq(response.content)
+        channel_input = doc('form.addon-submit-distribute input.channel')
+        assert len(channel_input) == 1
+        assert channel_input[0].attrib == {
+            'type': 'radio',
+            'checked': 'checked',
+            'name': 'channel',
+            'value': 'unlisted',
+            'class': 'channel',
+            'required': '',
+            'id': 'id_channel_0',
+        }
+        # There should be a warning.
+        warning = doc('p.status-disabled')
+        assert warning
+        assert warning.text() == (
+            'Your add-on listing was rejected. While in this state,'
+            ' "On your own" is the only distribution method available.'
+        )
 
     def test_no_redirect_for_metadata(self):
         self.addon.update(status=amo.STATUS_NULL)
@@ -2693,6 +2741,25 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadMixin, TestC
             302,
         )
 
+    def test_redirect_if_addon_is_rejected(self):
+        self.addon.update(status=amo.STATUS_REJECTED)
+        # We should be redirected to the "distribution" page, because we tried
+        # to access the listed upload page while the add-on was rejected.
+        response = self.client.get(self.url)
+        self.assert3xx(
+            response,
+            reverse('devhub.submit.version.distribution', args=[self.addon.slug]),
+            302,
+        )
+
+        # Same for posts.
+        response = self.post(expected_status=302)
+        self.assert3xx(
+            response,
+            reverse('devhub.submit.version.distribution', args=[self.addon.slug]),
+            302,
+        )
+
     def test_version_num_must_be_greater(self):
         self.version.update(version='0.0.2')
         self.version.file.update(is_signed=True)
@@ -2760,6 +2827,17 @@ class TestVersionSubmitUploadUnlisted(VersionSubmitUploadMixin, UploadMixin, Tes
         doc = pq(response.content)
         # Channel should be 'unlisted' with a warning shown, no choice about it
         # since the add-on is "invisible".
+        assert doc('p.status-disabled')
+        # The link to select another distribution channel should be absent.
+        assert not doc('.addon-submit-distribute a:contains("Change")')
+
+    def test_show_warning_and_remove_change_link_if_addon_is_rejected(self):
+        self.addon.update(status=amo.STATUS_REJECTED)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        # Channel should be 'unlisted' with a warning shown, no choice about it
+        # since the add-on is rejected.
         assert doc('p.status-disabled')
         # The link to select another distribution channel should be absent.
         assert not doc('.addon-submit-distribute a:contains("Change")')

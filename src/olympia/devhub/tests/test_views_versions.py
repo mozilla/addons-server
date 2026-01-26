@@ -125,6 +125,15 @@ class TestVersion(TestCase):
             reverse('devhub.submit.version', args=[self.addon.slug])
         )
 
+        # Still show for "Invisible" add-ons (they can submit unlisted versions)
+        self.addon.update(disabled_by_user=True)
+        response = self.client.get(url)
+        link = pq(response.content)('.addon-status>.addon-upload>strong>a')
+        assert link.text() == 'Upload New Version'
+        assert link.attr('href') == (
+            reverse('devhub.submit.version', args=[self.addon.slug])
+        )
+
         # Don't show for STATUS_DISABLED addons.
         self.addon.update(status=amo.STATUS_DISABLED)
         response = self.client.get(url)
@@ -1067,6 +1076,33 @@ class TestVersion(TestCase):
             'Rétablissement demandé. Vous recevrez une notification une fois approuvé'
             in pq(response.content).text()
         )
+
+    def test_new_upload_button(self):
+        response = self.client.get(self.url)
+        button = pq(response.content)('.version-buttons a.button.version-upload')
+        assert button
+        assert button.text() == 'Upload a New Version'
+        assert button.attr('href') == (
+            reverse('devhub.submit.version', args=[self.addon.slug])
+        )
+
+        # Do show for "Invisible" or "Rejected" add-ons (they can upload an
+        # unlisted version)
+        self.addon.update(status=amo.STATUS_REJECTED)
+        response = self.client.get(self.url)
+        button = pq(response.content)('.version-buttons a.button.version-upload')
+        assert button
+
+        self.addon.update(disabled_by_user=True)
+        response = self.client.get(self.url)
+        button = pq(response.content)('.version-buttons a.button.version-upload')
+        assert button
+
+        # Don't show for STATUS_DISABLED addons.
+        self.addon.update(status=amo.STATUS_DISABLED)
+        response = self.client.get(self.url)
+        button = pq(response.content)('.version-buttons a.button.version-upload')
+        assert not button
 
 
 class TestVersionEditBase(TestCase):

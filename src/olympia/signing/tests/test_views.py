@@ -505,6 +505,30 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         assert response.status_code == 202
         assert addon.find_latest_version(channel=amo.CHANNEL_UNLISTED)
 
+    def test_no_listed_version_upload_for_rejected_addon(self):
+        addon = Addon.objects.get(guid=self.guid)
+        addon.update(status=amo.STATUS_REJECTED)
+        assert not addon.find_latest_version(channel=amo.CHANNEL_UNLISTED)
+
+        response = self.request('PUT', self.url(self.guid, '3.0'), version='3.0')
+        assert response.status_code == 400
+        error_msg = (
+            'Listed versions cannot be submitted while add-on listing is rejected'
+        )
+        assert error_msg in response.data['error']
+
+        response = self.request(
+            'PUT', self.url(self.guid, '3.0'), version='3.0', channel='listed'
+        )
+        assert response.status_code == 400
+        assert error_msg in response.data['error']
+
+        response = self.request(
+            'PUT', self.url(self.guid, '3.0'), version='3.0', channel='unlisted'
+        )
+        assert response.status_code == 202
+        assert addon.find_latest_version(channel=amo.CHANNEL_UNLISTED)
+
     def test_channel_ignored_for_new_addon(self):
         guid = '@create-version'
         qs = Addon.unfiltered.filter(guid=guid)

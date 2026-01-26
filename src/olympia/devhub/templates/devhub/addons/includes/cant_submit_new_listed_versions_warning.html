@@ -1,0 +1,8 @@
+<p class="status-disabled">
+  {% if addon.disabled_by_user %}
+    <b>{{ _('Your add-on is currently set to "Invisible".') }}</b>
+  {% elif addon.status == amo.STATUS_REJECTED %}
+    <b>{{ _('Your add-on listing was rejected.') }}</b>
+  {% endif %}
+  {{ _('While in this state, "On your own" is the only distribution method available.') }}
+</p>

@@ -3928,7 +3928,7 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
             ]
         }
 
-    def test_cannot_submit_listed_to_disabled_(self):
+    def test_cannot_submit_listed_to_disabled(self):
         self.addon.update(disabled_by_user=True)
         self.upload.update(channel=amo.CHANNEL_LISTED)
         response = self.client.post(
@@ -3939,6 +3939,28 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
         assert response.data == {
             'non_field_errors': [
                 'Listed versions cannot be submitted while add-on is disabled.'
+            ],
+        }
+
+        # but we can submit an unlisted version though
+        self.upload.update(channel=amo.CHANNEL_UNLISTED)
+        response = self.client.post(
+            self.url,
+            data=self.minimal_data,
+        )
+        assert response.status_code == 201, response.content
+
+    def test_cannot_submit_listed_to_rejected(self):
+        self.addon.update(status=amo.STATUS_REJECTED)
+        self.upload.update(channel=amo.CHANNEL_LISTED)
+        response = self.client.post(
+            self.url,
+            data=self.minimal_data,
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'non_field_errors': [
+                'Listed versions cannot be submitted while add-on listing is rejected.'
             ],
         }
 

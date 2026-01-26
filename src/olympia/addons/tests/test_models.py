@@ -1421,6 +1421,26 @@ class TestAddonModels(TestCase):
         addon = Addon.objects.get(id=3615)
         assert addon.all_categories[0] in CATEGORIES[addon.type].values()
 
+    def test_can_submit_listed_versions(self):
+        addon = Addon.objects.get(id=3615)
+        assert addon.can_submit_listed_versions()
+
+        addon.update(status=amo.STATUS_REJECTED)
+        assert not addon.can_submit_listed_versions()
+
+    def test_can_submit_listed_versions_deleted(self):
+        addon = Addon.objects.get(id=3615)
+        addon.update(status=amo.STATUS_DELETED)
+        assert not addon.can_submit_listed_versions()
+
+    def test_can_submit_listed_versions_disabled(self):
+        addon = Addon.objects.get(id=3615)
+        addon.update(status=amo.STATUS_DISABLED)
+        assert not addon.can_submit_listed_versions()
+
+        addon.update(status=amo.STATUS_APPROVED, disabled_by_user=True)
+        assert not addon.can_submit_listed_versions()
+
     def test_listed_has_complete_metadata_no_categories(self):
         addon = Addon.objects.get(id=3615)
         assert addon.has_complete_metadata()  # Confirm complete already.
