@@ -3,13 +3,13 @@ import hmac
 import itertools
 import json
 import os
-import re
 import uuid
 from collections import defaultdict
 
 from django.conf import settings
 from django.db.models import F
 
+import regex
 import requests
 import waffle
 import yara
@@ -360,7 +360,9 @@ def _run_narc(*, scanner_result, version, rules=None):
 
     # Run each rule on the values we've accumulated.
     for rule in rules:
-        definition = re.compile(str(rule.definition), re.I)
+        # We're using `regex`, which is faster/more powerful than the default
+        # `re` module.
+        definition = regex.compile(str(rule.definition), regex.I | regex.E)
         for value, sources in values.items():
             value = str(value)
             variants = [(value, None)]
