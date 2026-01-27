@@ -550,6 +550,12 @@ class TestUserAdmin(TestCase):
         request.user = user_factory()
         self.grant_permission(request.user, 'Users:Edit')
         assert list(user_admin.get_actions(request).keys()) == [
+            'reset_api_key_action',
+            'reset_session_action',
+        ]
+
+        self.grant_permission(request.user, 'Users:Ban')
+        assert list(user_admin.get_actions(request).keys()) == [
             'ban_action',
             'unban_action',
             'reset_api_key_action',
@@ -616,6 +622,7 @@ class TestUserAdmin(TestCase):
         unban_url = reverse('admin:users_userprofile_unban', args=(self.user.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Users:Edit')
+        self.grant_permission(user, 'Users:Ban')
         self.client.force_login(user)
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
@@ -756,6 +763,9 @@ class TestUserAdmin(TestCase):
         response = self.client.post(ban_url, follow=True)
         assert response.status_code == 403
         self.grant_permission(user, 'Users:Edit')
+        response = self.client.post(ban_url, follow=True)
+        assert response.status_code == 403
+        self.grant_permission(user, 'Users:Ban')
         response = self.client.get(ban_url, follow=True)
         assert response.status_code == 405  # Wrong http method.
         response = self.client.post(wrong_ban_url, follow=True)
@@ -787,6 +797,9 @@ class TestUserAdmin(TestCase):
         response = self.client.post(unban_url, follow=True)
         assert response.status_code == 403
         self.grant_permission(user, 'Users:Edit')
+        response = self.client.post(unban_url, follow=True)
+        assert response.status_code == 403
+        self.grant_permission(user, 'Users:Ban')
         response = self.client.get(unban_url, follow=True)
         assert response.status_code == 405  # Wrong http method.
         response = self.client.post(wrong_unban_url, follow=True)
