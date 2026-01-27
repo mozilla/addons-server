@@ -383,7 +383,7 @@ msgstr "Le versiones publicate non pote esser inviate durante que le additivo es
 
 #: src/olympia/addons/serializers.py:578 src/olympia/signing/views.py:218
 msgid "Listed versions cannot be submitted while add-on listing is rejected."
-msgstr ""
+msgstr "Le versiones listate non pote esser cargate dum le additivo es refusate."
 
 #: src/olympia/addons/serializers.py:619
 #, python-format
