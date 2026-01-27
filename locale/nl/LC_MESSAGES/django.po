@@ -384,7 +384,7 @@ msgstr "Vermelde versies kunnen niet worden ingediend terwijl de add-on is uitge
 
 #: src/olympia/addons/serializers.py:578 src/olympia/signing/views.py:218
 msgid "Listed versions cannot be submitted while add-on listing is rejected."
-msgstr "Vermelde versies kunnen niet worden ingediend terwijl add-onvermelding wordt afgewezen."
+msgstr "Vermelde versies kunnen niet worden ingediend terwijl de add-onvermelding is afgewezen."
 
 #: src/olympia/addons/serializers.py:619
 #, python-format
