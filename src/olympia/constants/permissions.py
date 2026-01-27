@@ -75,6 +75,8 @@ LOCALIZER = AclPermission('Localizer', '%')
 
 # Can edit user accounts.
 USERS_EDIT = AclPermission('Users', 'Edit')
+# Can ban them.
+USERS_BAN = AclPermission('Users', 'Ban')
 
 # Can moderate add-on ratings submitted by users.
 RATINGS_MODERATE = AclPermission('Ratings', 'Moderate')

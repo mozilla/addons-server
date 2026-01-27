@@ -270,18 +270,24 @@ class UserAdmin(AMOModelAdmin):
     def get_actions(self, request):
         actions = super().get_actions(request)
         if not acl.action_allowed_for(request.user, amo.permissions.USERS_EDIT):
-            # You need Users:Edit to be able to (un)ban users and reset their
+            # You need Users:Edit to be able to reset users
             # api key confirmation/session.
-            actions.pop('ban_action')
-            actions.pop('unban_action')
             actions.pop('reset_api_key_action')
             actions.pop('reset_session_action')
+        if not acl.action_allowed_for(request.user, amo.permissions.USERS_BAN):
+            # And Users:Ban to (un)ban them
+            actions.pop('ban_action')
+            actions.pop('unban_action')
+
         return actions
 
     def change_view(self, request, object_id, form_url='', extra_context=None):
         extra_context = extra_context or {}
         extra_context['has_users_edit_permission'] = acl.action_allowed_for(
             request.user, amo.permissions.USERS_EDIT
+        )
+        extra_context['has_users_ban_permission'] = acl.action_allowed_for(
+            request.user, amo.permissions.USERS_BAN
         )
         if '@' in object_id:
             # We got an '@' so our object_id is an email...
@@ -330,7 +336,7 @@ class UserAdmin(AMOModelAdmin):
         if obj is None:
             raise Http404()
 
-        if not acl.action_allowed_for(request.user, amo.permissions.USERS_EDIT):
+        if not acl.action_allowed_for(request.user, amo.permissions.USERS_BAN):
             return HttpResponseForbidden()
 
         self.model.objects.filter(pk=obj.pk).ban_and_disable_related_content(
@@ -350,7 +356,7 @@ class UserAdmin(AMOModelAdmin):
         if obj is None:
             raise Http404()
 
-        if not acl.action_allowed_for(request.user, amo.permissions.USERS_EDIT):
+        if not acl.action_allowed_for(request.user, amo.permissions.USERS_BAN):
             return HttpResponseForbidden()
 
         self.model.objects.filter(pk=obj.pk).unban_and_reenable_related_content()
