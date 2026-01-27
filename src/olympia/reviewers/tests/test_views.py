@@ -3430,6 +3430,21 @@ class TestReview(ReviewBase):
         ]
         check_links(expected, doc('#actions-addon a'))
 
+    def test_action_links_as_admin_on_content_review(self):
+        self.login_as_admin()
+        self.url = reverse('reviewers.review', args=('content', self.addon.pk))
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        expected = [
+            ('View Product Page', self.addon.get_url_path()),
+            ('Listed Review Page', reverse('reviewers.review', args=(self.addon.id,))),
+            ('Edit', self.addon.get_dev_url()),
+            ('Admin Page', reverse('admin:addons_addon_change', args=[self.addon.id])),
+            ('Statistics', reverse('stats.overview', args=[self.addon.id])),
+        ]
+        check_links(expected, doc('#actions-addon a'))
+
     def test_action_links_as_admin(self):
         self.login_as_admin()
         response = self.client.get(self.url)
@@ -3437,6 +3452,7 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         expected = [
             ('View Product Page', self.addon.get_url_path()),
+            ('Content Review Page', reverse('reviewers.review', args=('content', self.addon.id))),
             ('Edit', self.addon.get_dev_url()),
             ('Admin Page', reverse('admin:addons_addon_change', args=[self.addon.id])),
             ('Statistics', reverse('stats.overview', args=[self.addon.id])),
@@ -3476,6 +3492,7 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         expected = [
             ('View Product Page', self.addon.get_url_path()),
+            ('Content Review Page', reverse('reviewers.review', args=('content', self.addon.id))),
             (
                 'Unlisted Review Page',
                 reverse('reviewers.review', args=('unlisted', self.addon.id)),
@@ -3502,6 +3519,30 @@ class TestReview(ReviewBase):
         expected = [
             ('View Product Page', self.addon.get_url_path()),
             ('Listed Review Page', reverse('reviewers.review', args=(self.addon.id,))),
+            ('Content Review Page', reverse('reviewers.review', args=('content', self.addon.id))),
+            ('Edit', self.addon.get_dev_url()),
+            ('Admin Page', reverse('admin:addons_addon_change', args=[self.addon.id])),
+            ('Statistics', reverse('stats.overview', args=[self.addon.id])),
+        ]
+        check_links(expected, doc('#actions-addon a'))
+
+    def test_mixed_channels_action_links_as_admin_on_content_review(self):
+        self.make_addon_unlisted(self.addon)
+        version_factory(
+            addon=self.addon,
+            channel=amo.CHANNEL_LISTED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
+        self.addon.update(status=amo.STATUS_NOMINATED)
+        self.login_as_admin()
+        self.url = reverse('reviewers.review', args=('content', self.addon.pk))
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        expected = [
+            ('View Product Page', self.addon.get_url_path()),
+            ('Listed Review Page', reverse('reviewers.review', args=(self.addon.id,))),
+            ('Unlisted Review Page', reverse('reviewers.review', args=('unlisted', self.addon.id))),
             ('Edit', self.addon.get_dev_url()),
             ('Admin Page', reverse('admin:addons_addon_change', args=[self.addon.id])),
             ('Statistics', reverse('stats.overview', args=[self.addon.id])),
@@ -3523,6 +3564,7 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         doc = pq(response.content)
         expected = [
+            ('Content Review Page', reverse('reviewers.review', args=('content', self.addon.id))),
             (
                 'Unlisted Review Page',
                 reverse('reviewers.review', args=('unlisted', self.addon.id)),
@@ -3548,6 +3590,7 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         expected = [
             ('Listed Review Page', reverse('reviewers.review', args=(self.addon.id,))),
+            ('Content Review Page', reverse('reviewers.review', args=('content', self.addon.id))),
             ('Admin Page', reverse('admin:addons_addon_change', args=[self.addon.id])),
             ('Statistics', reverse('stats.overview', args=[self.addon.id])),
         ]
@@ -3567,6 +3610,7 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         expected = [
             ('View Product Page', self.addon.get_url_path()),
+            ('Content Review Page', reverse('reviewers.review', args=('content', self.addon.id))),
         ]
         check_links(expected, doc('#actions-addon a'))
 
@@ -3575,8 +3619,11 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        admin = doc('#actions-addon li')
-        assert admin.length == 1
+        expected = [
+            ('View Product Page', self.addon.get_url_path()),
+            ('Content Review Page', reverse('reviewers.review', args=('content', self.addon.id))),
+        ]
+        check_links(expected, doc('#actions-addon a'))
 
     def test_extra_actions_subscribe_checked_state(self):
         self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted')

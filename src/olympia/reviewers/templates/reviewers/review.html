@@ -471,11 +471,17 @@
     {% if not addon.is_deleted and addon.has_listed_versions() %}
       <li><a href="{{ addon.get_url_path() }}">View Product Page</a></li>
     {% endif %}
-    {# If we are on the unlisted review page, show the link to the listed review page #}
-    {% if unlisted and addon.has_listed_versions(include_deleted=True) %}
-      <li><a href="{{ url('reviewers.review', addon.id) }}">Listed Review Page</a></li>
-    {# On the listed review page, show link to unlisted version review if necessary and allowed #}
-    {% elif not unlisted and acl_is_unlisted_addons_viewer_or_reviewer and addon.has_unlisted_versions(include_deleted=True) %}
+    {# If we are on the unlisted or content review page, show the link to the listed review page #}
+    {% if addon.has_listed_versions(include_deleted=True) %}
+      {% if unlisted or content_review %}
+        <li><a href="{{ url('reviewers.review', addon.id) }}">Listed Review Page</a></li>
+      {% endif %}
+      {% if not content_review %}
+        <li><a href="{{ url('reviewers.review', 'content', addon.id) }}">Content Review Page</a></li>
+      {% endif %}
+    {% endif %}
+    {# If not on the unlisted review page, show link to unlisted version review if necessary and allowed #}
+    {% if not unlisted and acl_is_unlisted_addons_viewer_or_reviewer and addon.has_unlisted_versions(include_deleted=True) %}
       <li><a href="{{ url('reviewers.review', 'unlisted', addon.id) }}">Unlisted Review Page</a></li>
     {% endif %}
 
