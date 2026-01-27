@@ -381,7 +381,7 @@ msgstr "Verejné verzie nie je možné odoslať, kým je doplnok zakázaný."
 
 #: src/olympia/addons/serializers.py:578 src/olympia/signing/views.py:218
 msgid "Listed versions cannot be submitted while add-on listing is rejected."
-msgstr ""
+msgstr "Verejné verzie nie je možné odoslať, kým nie je schválené zaradenie doplnku do databázy doplnkov."
 
 #: src/olympia/addons/serializers.py:619
 #, python-format
@@ -1292,11 +1292,11 @@ msgstr "Vlastnosť {0} účtu používateľa {user} bola aktualizovaná."
 #: src/olympia/constants/activity.py:1277
 #, python-brace-format
 msgid "{addon} listing content rejected."
-msgstr ""
+msgstr "Zaradenie doplnku {addon} do zoznamu doplnkov bolo zamietnuté."
 
 #: src/olympia/constants/activity.py:1278
 msgid "Listing content rejected"
-msgstr ""
+msgstr "Zaradenie do zoznamu doplnkov zamietnuté"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -1336,7 +1336,7 @@ msgstr "Čaká na kontrolu"
 
 #: src/olympia/constants/base.py:27
 msgid "Listing Content Rejected"
-msgstr ""
+msgstr "Zaradenie do zoznamu doplnkov zamietnuté"
 
 #: src/olympia/constants/base.py:28 src/olympia/constants/base.py:35
 msgid "Disabled by Mozilla"
@@ -3050,7 +3050,7 @@ msgstr "Váš doplnok je momentálne nastavený ako „Neviditeľný“."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cant_submit_new_listed_versions_warning.html:5
 msgid "Your add-on listing was rejected."
-msgstr ""
+msgstr "Zaradenie doplnku do zoznamu doplnkov bolo zamietnuté."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cant_submit_new_listed_versions_warning.html:7
 msgid "While in this state, \"On your own\" is the only distribution method available."
@@ -3795,7 +3795,7 @@ msgstr "Váš doplnok bol zakázaný správcom stránky a už sa nezobrazuje v n
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:32
 msgid "Your add-on listing was rejected. It is not listed in our gallery. Please address the reasons and reapply for review."
-msgstr ""
+msgstr "Zaradenie vášho doplnku do zoznamu doplnkov bolo zamietnuté. Nie je teda uvedený v našej galérii. Prosím, vyriešte dôvody zamietnutia a znova požiadajte o kontrolu."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:35
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
@@ -5957,7 +5957,7 @@ msgstr "Zobraziť všetky rozšírenia"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1101
 msgid "YouTube extensions"
-msgstr ""
+msgstr "Rozšírenia pre YouTube"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -5968,7 +5968,7 @@ msgstr "Rozšírenia pre kreativitu"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1105
 msgid "New Recommended extensions"
-msgstr ""
+msgstr "Nové odporúčané rozšírenia"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1107 src/olympia/discovery/strings.jinja2:1109
@@ -6003,12 +6003,12 @@ msgstr "Ďalšie populárne témy vzhľadu"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1124
 msgid "Privacy & security"
-msgstr ""
+msgstr "Súkromie a bezpečnosť"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1126
 msgid "See more privacy staff picks"
-msgstr ""
+msgstr "Ďalšie tipy ohľadom súkromia od znalcov"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1129
