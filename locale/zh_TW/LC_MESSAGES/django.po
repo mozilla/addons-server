@@ -377,7 +377,7 @@ msgstr "停用附加元件時，無法送出上架的版本。"
 
 #: src/olympia/addons/serializers.py:578 src/olympia/signing/views.py:218
 msgid "Listed versions cannot be submitted while add-on listing is rejected."
-msgstr ""
+msgstr "附加元件上架遭拒後，無法送審已上架的版本。"
 
 #: src/olympia/addons/serializers.py:619
 #, python-format
@@ -3000,7 +3000,7 @@ msgstr "您的附加元件目前設定為「隱藏」。"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cant_submit_new_listed_versions_warning.html:5
 msgid "Your add-on listing was rejected."
-msgstr ""
+msgstr "您的附加元件上架申請已被拒絕。"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cant_submit_new_listed_versions_warning.html:7
 msgid "While in this state, \"On your own\" is the only distribution method available."
