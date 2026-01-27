@@ -162,7 +162,6 @@ class AddonIndexer:
     # or sorting.
     hidden_fields = (
         '*.raw',
-        'boost',
         'colors',
         'hotness',
         # Translated content that is used for filtering purposes is stored
@@ -419,7 +418,6 @@ class AddonIndexer:
                 'app': {'type': 'byte'},
                 'average_daily_users': {'type': 'long'},
                 'bayesian_rating': {'type': 'double'},
-                'boost': {'type': 'float', 'null_value': 1.0},
                 'category': {'type': 'integer'},
                 'colors': {
                     'type': 'nested',
@@ -490,9 +488,11 @@ class AddonIndexer:
                     'type': 'object',
                     'properties': {
                         'group_id': {'type': 'byte'},
+                        'category': {'type': 'keyword'},
                         'approved_for_apps': {'type': 'byte'},
                     },
                 },
+                'ranking_bump': {'type': 'float', 'null_value': 1.0},
                 'ratings': {
                     'type': 'object',
                     'properties': {
@@ -649,15 +649,6 @@ class AddonIndexer:
                 data['colors'] = obj.current_previews[0].colors
 
         data['app'] = [app.id for app in obj.compatible_apps.keys()]
-        # Boost by the number of users on a logarithmic scale.
-        data['boost'] = float(data['average_daily_users'] ** 0.2)
-        # Quadruple the boost if the add-on is public.
-        if (
-            obj.status == amo.STATUS_APPROVED
-            and not obj.is_experimental
-            and 'boost' in data
-        ):
-            data['boost'] = float(max(data['boost'], 1) * 4)
         # We can use all_categories because the indexing code goes through the
         # transformer that sets it.
         data['category'] = [cat.id for cat in obj.all_categories]
@@ -688,6 +679,7 @@ class AddonIndexer:
         data['promoted'] = [
             {
                 'group_id': promotion.group_id,
+                'category': promotion.api_name,
                 # store the app approvals because .approved_applications needs it.
                 'approved_for_apps': [
                     app.id for app in obj.approved_applications_for(promotion)
@@ -695,6 +687,18 @@ class AddonIndexer:
             }
             for promotion in obj.publicly_promoted_groups
         ]
+        # Add an additional bump for certain promoted groups.
+        # TODO: actually use this value in the search ranking algorithm, and drop
+        # the existing function that uses PROMOTED_GROUPS_CHOICES
+        max_promoted_ranking_bump = max(
+            (
+                promotion.search_ranking_bump
+                for promotion in obj.publicly_promoted_groups
+            ),
+            default=1.0,
+        )
+        if max_promoted_ranking_bump:
+            data['ranking_bump'] = max_promoted_ranking_bump
 
         data['ratings'] = {
             'average': obj.average_rating,

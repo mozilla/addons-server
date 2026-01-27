@@ -14,11 +14,12 @@ from django.conf import settings
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.signals import user_logged_in
 from django.core import validators
+from django.core.exceptions import ValidationError
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.db import models
-from django.db.models import F, Max, Q, Value
-from django.db.models.functions import Collate
+from django.db.models import Max, Q
 from django.template import loader
+from django.template.defaultfilters import slugify
 from django.templatetags.static import static
 from django.urls import reverse
 from django.utils import timezone
@@ -29,12 +30,12 @@ from django.utils.translation import gettext, gettext_lazy as _
 
 import requests
 import waffle
-from extended_choices import Choices
 
 import olympia.core.logger
 from olympia import activity, amo, core
 from olympia.access.models import Group, GroupUser
 from olympia.amo.decorators import use_primary_db
+from olympia.amo.enum import EnumChoices
 from olympia.amo.fields import CIDRField, PositiveAutoField
 from olympia.amo.models import (
     BaseQuerySet,
@@ -49,7 +50,6 @@ from olympia.amo.utils import (
     id_to_path,
 )
 from olympia.amo.validators import OneOrMoreLetterOrNumberCharacterValidator
-from olympia.api.utils import APIChoices
 from olympia.files.models import File
 from olympia.translations.query import order_by_translation
 from olympia.users.notifications import NOTIFICATIONS_BY_ID
@@ -71,12 +71,11 @@ def get_anonymized_username():
     return f'anonymous-{force_str(binascii.b2a_hex(os.urandom(16)))}'
 
 
-RESTRICTION_TYPES = Choices(
-    ('ADDON_SUBMISSION', 1, 'Add-on Submission'),
-    ('ADDON_APPROVAL', 2, 'Add-on Approval'),
-    ('RATING', 3, 'Rating'),
-    ('RATING_MODERATE', 4, 'Rating Flag for Moderation'),
-)
+class RESTRICTION_TYPES(EnumChoices):
+    ADDON_SUBMISSION = 1, 'Add-on Submission'
+    ADDON_APPROVAL = 2, 'Add-on Approval'
+    RATING = 3, 'Rating'
+    RATING_MODERATE = 4, 'Rating Flag for Moderation'
 
 
 class UserEmailField(forms.ModelChoiceField):
@@ -104,6 +103,25 @@ class UserEmailField(forms.ModelChoiceField):
 
     def get_bound_field(self, form, field_name):
         return UserEmailBoundField(form, self, field_name)
+
+    def to_python(self, value):
+        if value in self.empty_values:
+            return None
+        try:
+            key = self.to_field_name or 'pk'
+            if isinstance(value, self.queryset.model):
+                value = getattr(value, key)
+            # Handle potential multiple users with same email.
+            value = self.queryset.filter(**{key: value}).last()
+            if value is None:
+                raise self.queryset.model.DoesNotExist
+        except (ValueError, TypeError, self.queryset.model.DoesNotExist) as exc:
+            raise ValidationError(
+                self.error_messages['invalid_choice'],
+                code='invalid_choice',
+                params={'value': value},
+            ) from exc
+        return value
 
 
 class UserEmailBoundField(forms.boundfield.BoundField):
@@ -311,6 +329,37 @@ class UserManager(BaseUserManager, ManagerBase):
     def unban_and_reenable_related_content(self):
         return self.all().unban_and_reenable_related_content()
 
+    def get_service_account(self, name):
+        if not name:
+            raise self.model.DoesNotExist('"name" cannot be blank.')
+
+        return self.get(
+            username=self._make_username_for_service_account(name),
+            fxa_id=None,
+            email=None,
+        )
+
+    def get_or_create_service_account(self, name, notes=None):
+        user, created = self.get_or_create(
+            username=self._make_username_for_service_account(name),
+            fxa_id=None,
+            email=None,
+            defaults={
+                'notes': notes,
+                'read_dev_agreement': datetime.now(),
+            },
+        )
+
+        if created:
+            from olympia.api.models import APIKey
+
+            APIKey.new_jwt_credentials(user=user)
+
+        return user
+
+    def _make_username_for_service_account(self, name):
+        return slugify(f'service-account-{name}')
+
 
 class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     objects = UserManager()
@@ -348,7 +397,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         ],
     )
 
-    email = models.EmailField(unique=True, null=True, max_length=75)
+    email = models.EmailField(null=True, max_length=75)
 
     averagerating = models.FloatField(null=True)
     # biography can (and does) contain html and other unsanitized content.
@@ -371,7 +420,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     # Is the profile page for this account a full profile?
     has_full_profile = models.BooleanField(default=False, db_column='public')
 
-    fxa_id = models.CharField(blank=True, null=True, max_length=128)
+    fxa_id = models.CharField(unique=True, blank=True, null=True, max_length=128)
 
     # Identifier that is used to invalidate internal API tokens (i.e. those
     # that we generate for addons-frontend, NOT the API keys external clients
@@ -390,6 +439,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         db_table = 'users'
         indexes = [
             models.Index(fields=('created',), name='created'),
+            models.Index(fields=('email',), name='email'),
             models.Index(fields=('fxa_id',), name='users_fxa_id_index'),
             LongNameIndex(
                 fields=('last_login_ip',), name='users_last_login_ip_2cfbbfbd'
@@ -403,15 +453,6 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
     def __str__(self):
         return f'{self.id}: {self.display_name or self.username}'
-
-    @classmethod
-    def get_lookup_field(cls, identifier):
-        lookup_field = 'pk'
-        if identifier and not identifier.isdigit():
-            # If the identifier contains anything other than a digit,
-            # it's an email.
-            lookup_field = 'email'
-        return lookup_field
 
     @property
     def is_superuser(self):
@@ -781,23 +822,6 @@ class DeniedName(ModelBase):
     def __str__(self):
         return self.name
 
-    @classmethod
-    def blocked(cls, value):
-        """
-        Check to see if a given name is in the deny list.
-        Return True if the name contains one of the denied terms.
-
-        """
-        return (
-            DeniedName.objects.annotate(
-                query_field=Collate(
-                    Value(value, output_field=models.CharField()), 'utf8mb4_0900_ai_ci'
-                )
-            )
-            .filter(query_field__icontains=F('name'))
-            .exists()
-        )
-
 
 class RestrictionAbstractBase:
     """Base class for restrictions."""
@@ -808,7 +832,9 @@ class RestrictionAbstractBase:
         Return whether the specified request should be allowed to submit
         add-ons.
         """
-        return True
+        return cls.allow_request(
+            request, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
+        )
 
     @classmethod
     def allow_auto_approval(cls, upload):
@@ -816,14 +842,15 @@ class RestrictionAbstractBase:
         Return whether the specified version should be allowed to be proceed
         through auto-approval process.
         """
-        return True
+        # Should be implemented by child classes.
+        raise NotImplementedError
 
     @classmethod
     def allow_rating(cls, request):
         """
         Return whether the specified request should be allowed to submit ratings.
         """
-        return True
+        return cls.allow_request(request, restriction_type=RESTRICTION_TYPES.RATING)
 
     @classmethod
     def allow_rating_without_moderation(cls, request):
@@ -831,7 +858,18 @@ class RestrictionAbstractBase:
         Return whether ratings from the specified request should not be flagged for
         moderation.
         """
-        return True
+        return cls.allow_request(
+            request, restriction_type=RESTRICTION_TYPES.RATING_MODERATE
+        )
+
+    @classmethod
+    def allow_request(cls, request, *, restriction_type):
+        """
+        Return whether the specified request should be allowed for the given
+        restriction type.
+        """
+        # Should be implemented by child classes.
+        raise NotImplementedError
 
     @classmethod
     def get_error_message(cls, is_api):
@@ -896,15 +934,6 @@ class IPNetworkUserRestriction(RestrictionAbstractBaseModel):
         return network
 
     @classmethod
-    def allow_submission(cls, request):
-        """
-        Return whether the specified request should be allowed to submit add-ons.
-        """
-        return cls.allow_request(
-            request, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
-        )
-
-    @classmethod
     def allow_auto_approval(cls, upload):
         if not upload.user or not upload.ip_address:
             return False
@@ -920,16 +949,6 @@ class IPNetworkUserRestriction(RestrictionAbstractBaseModel):
             remote_addr,
             user_last_login_ip,
             restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL,
-        )
-
-    @classmethod
-    def allow_rating(cls, request):
-        return cls.allow_request(request, restriction_type=RESTRICTION_TYPES.RATING)
-
-    @classmethod
-    def allow_rating_without_moderation(cls, request):
-        return cls.allow_request(
-            request, restriction_type=RESTRICTION_TYPES.RATING_MODERATE
         )
 
     @classmethod
@@ -1039,31 +1058,11 @@ class EmailUserRestriction(RestrictionAbstractBaseModel, NormalizeEmailMixin):
         super().save(**kw)
 
     @classmethod
-    def allow_submission(cls, request):
-        """
-        Return whether the specified request should be allowed to submit
-        add-ons.
-        """
-        return cls.allow_request(
-            request, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
-        )
-
-    @classmethod
     def allow_auto_approval(cls, upload):
         if not upload.user:
             return False
         return cls.allow_email(
             upload.user.email, restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
-        )
-
-    @classmethod
-    def allow_rating(cls, request):
-        return cls.allow_request(request, restriction_type=RESTRICTION_TYPES.RATING)
-
-    @classmethod
-    def allow_rating_without_moderation(cls, request):
-        return cls.allow_request(
-            request, restriction_type=RESTRICTION_TYPES.RATING_MODERATE
         )
 
     @classmethod
@@ -1140,31 +1139,11 @@ class DisposableEmailDomainRestriction(RestrictionAbstractBaseModel):
         return str(self.domain)
 
     @classmethod
-    def allow_submission(cls, request):
-        """
-        Return whether the specified request should be allowed to submit
-        add-ons.
-        """
-        return cls.allow_request(
-            request, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
-        )
-
-    @classmethod
     def allow_auto_approval(cls, upload):
         if not upload.user:
             return False
         return cls.allow_email(
             upload.user.email, restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
-        )
-
-    @classmethod
-    def allow_rating(cls, request):
-        return cls.allow_request(request, restriction_type=RESTRICTION_TYPES.RATING)
-
-    @classmethod
-    def allow_rating_without_moderation(cls, request):
-        return cls.allow_request(
-            request, restriction_type=RESTRICTION_TYPES.RATING_MODERATE
         )
 
     @classmethod
@@ -1183,6 +1162,46 @@ class DisposableEmailDomainRestriction(RestrictionAbstractBaseModel):
         return not cls.objects.filter(
             domain=email_domain, restriction_type=restriction_type
         ).exists()
+
+
+class FingerprintRestriction(RestrictionAbstractBaseModel):
+    ja4 = models.CharField(max_length=36, db_index=True)
+
+    error_message = _(
+        'The software or device you are using is not allowed for submissions.'
+    )
+
+    class Meta:
+        db_table = 'users_fingerprint_restriction'
+        constraints = [
+            models.UniqueConstraint(
+                fields=('ja4', 'restriction_type'),
+                name='ja4_restriction_type_uniq',
+            )
+        ]
+
+    def __str__(self):
+        return str(self.ja4)
+
+    @classmethod
+    def allow_ja4(cls, ja4, *, restriction_type):
+        return not cls.objects.filter(
+            ja4=ja4, restriction_type=restriction_type
+        ).exists()
+
+    @classmethod
+    def allow_request(cls, request, *, restriction_type):
+        if not (ja4 := request.headers.get('Client-JA4')):
+            return True
+        return cls.allow_ja4(ja4, restriction_type=restriction_type)
+
+    @classmethod
+    def allow_auto_approval(cls, upload):
+        if not upload.request_metadata or not (
+            ja4 := upload.request_metadata.get('Client-JA4')
+        ):
+            return True
+        return cls.allow_ja4(ja4, restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL)
 
 
 class ReputationRestrictionMixin:
@@ -1246,11 +1265,11 @@ class ReputationRestrictionMixin:
         return True
 
 
-class IPReputationRestriction(RestrictionAbstractBase, ReputationRestrictionMixin):
+class IPReputationRestriction(ReputationRestrictionMixin, RestrictionAbstractBase):
     error_message = IPNetworkUserRestriction.error_message
 
     @classmethod
-    def allow_submission(cls, request):
+    def allow_request(cls, request, *, restriction_type):
         try:
             remote_addr = ipaddress.ip_address(request.META.get('REMOTE_ADDR'))
         except ValueError:
@@ -1261,12 +1280,12 @@ class IPReputationRestriction(RestrictionAbstractBase, ReputationRestrictionMixi
 
 
 class EmailReputationRestriction(
-    RestrictionAbstractBase, NormalizeEmailMixin, ReputationRestrictionMixin
+    ReputationRestrictionMixin, RestrictionAbstractBase, NormalizeEmailMixin
 ):
     error_message = EmailUserRestriction.error_message
 
     @classmethod
-    def allow_submission(cls, request):
+    def allow_request(cls, request, *, restriction_type):
         if not request.user.is_authenticated:
             return False
 
@@ -1297,12 +1316,17 @@ class DeveloperAgreementRestriction(RestrictionAbstractBase):
             return cls.error_message
 
     @classmethod
-    def allow_submission(cls, request):
+    def allow_auto_approval(cls, upload):
+        # DeveloperRestriction is only relevant at add-on submission time.
+        return True
+
+    @classmethod
+    def allow_request(cls, request, *, restriction_type):
         """
-        Return whether the specified request should be allowed to submit
-        add-ons.
+        Return whether the specified request should be allowed for the given
+        restriction type.
         """
-        allowed = (
+        allowed = restriction_type != RESTRICTION_TYPES.ADDON_SUBMISSION or (
             request.user.is_authenticated
             and request.user.has_read_developer_agreement()
         )
@@ -1325,6 +1349,7 @@ class UserRestrictionHistory(ModelBase):
         (3, IPNetworkUserRestriction),
         (4, EmailReputationRestriction),
         (5, IPReputationRestriction),
+        (6, FingerprintRestriction),
     )
 
     user = models.ForeignKey(
@@ -1491,11 +1516,10 @@ class SuppressedEmail(ModelBase):
 
 
 class SuppressedEmailVerification(ModelBase):
-    STATUS_CHOICES = APIChoices(
-        ('Pending', 0, 'Pending'),
-        ('Delivered', 1, 'Delivered'),
-        ('Failed', 2, 'Failed'),
-    )
+    class STATUS_CHOICES(EnumChoices):
+        PENDING = 0, 'Pending'
+        DELIVERED = 1, 'Delivered'
+        FAILED = 2, 'Failed'
 
     confirmation_code = models.CharField(
         max_length=255, null=False, blank=False, default=uuid.uuid4
@@ -1506,7 +1530,7 @@ class SuppressedEmailVerification(ModelBase):
         on_delete=models.CASCADE,
     )
     status = models.PositiveSmallIntegerField(
-        choices=STATUS_CHOICES.choices, default=STATUS_CHOICES.Pending
+        choices=STATUS_CHOICES.choices, default=STATUS_CHOICES.PENDING
     )
 
     @property
@@ -1522,5 +1546,5 @@ class SuppressedEmailVerification(ModelBase):
         return self.created + timedelta(minutes=10) < datetime.now()
 
     def mark_as_delivered(self):
-        self.update(status=SuppressedEmailVerification.STATUS_CHOICES.Delivered)
+        self.update(status=SuppressedEmailVerification.STATUS_CHOICES.DELIVERED)
         self.save()

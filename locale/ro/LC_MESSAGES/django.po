@@ -1,7 +1,7 @@
 # Translations template for addons-server.
-# Copyright (C) 2025 Mozilla
+# Copyright (C) 2026 Mozilla
 # This file is distributed under the same license as the addons-server project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
 msgid ""
 msgstr ""
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < 20)) ? 1 : 2);\n"
 "Generated-By: Pontoon\n"
 
-#: src/olympia/abuse/actions.py:210
+#: src/olympia/abuse/actions.py:212
 #, python-brace-format
 msgid "Mozilla Add-ons: {} [{}]"
 msgstr "Suplimente Mozilla: {} [{}]"
@@ -34,11 +34,11 @@ msgstr "Motiv contestație"
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr "Te rugăm să ne explici de ce crezi că decizia este greșită și/sau nu se aliniază cu politica sau legea aplicabilă."
 
-#: src/olympia/abuse/models.py:1115
+#: src/olympia/abuse/models.py:1111
 msgid "User profile"
 msgstr "Profil utilizator"
 
-#: src/olympia/abuse/models.py:1483
+#: src/olympia/abuse/models.py:1470
 #, python-brace-format
 msgid "\"{}\" for {}"
 msgstr "\"{}\" pentru {}"
@@ -65,7 +65,7 @@ msgstr "Decizia {0}"
 msgid "Thank you. Your appeal has been recorded."
 msgstr "Mulțumim! Contestația a fost înregistrată."
 
-#: src/olympia/abuse/templates/abuse/appeal.html:31 src/olympia/amo/templates/amo/fake_fxa_authorization.html:21
+#: src/olympia/abuse/templates/abuse/appeal.html:31
 msgid "OK"
 msgstr "OK"
 
@@ -232,28 +232,28 @@ msgstr ""
 "\n"
 "Am analizat raportul și conținutul în cauză și am constatat că încalcă politicile Mozilla (%(policy_document_url)s). Prin urmare, am eliminat conținutul.\n"
 
-#: src/olympia/accounts/serializers.py:152 src/olympia/bandwagon/serializers.py:98
+#: src/olympia/accounts/serializers.py:160 src/olympia/bandwagon/serializers.py:101
 msgid "No links are allowed."
 msgstr "Nu se permit linkuri."
 
-#: src/olympia/accounts/serializers.py:158
+#: src/olympia/accounts/serializers.py:164
 msgid "This display name cannot be used."
 msgstr "Acest nume afișat nu poate fi folosit."
 
-#: src/olympia/accounts/serializers.py:167 src/olympia/addons/fields.py:366 src/olympia/devhub/views.py:1024
+#: src/olympia/accounts/serializers.py:176 src/olympia/addons/fields.py:366 src/olympia/devhub/views.py:1021
 msgid "Images must be either PNG or JPG."
 msgstr "Imaginile trebuie să fie PNG sau JPG."
 
-#: src/olympia/accounts/serializers.py:171 src/olympia/addons/fields.py:371 src/olympia/devhub/views.py:1030
+#: src/olympia/accounts/serializers.py:180 src/olympia/addons/fields.py:371 src/olympia/devhub/views.py:1027
 msgid "Images cannot be animated."
 msgstr "Imaginile nu pot fi animate."
 
-#: src/olympia/accounts/serializers.py:176 src/olympia/devhub/views.py:1039
+#: src/olympia/accounts/serializers.py:185 src/olympia/devhub/views.py:1036
 #, python-format
 msgid "Please use images smaller than %dMB."
 msgstr "Te rugăm folosește imagini mai mici de %dMB."
 
-#: src/olympia/accounts/views.py:194
+#: src/olympia/accounts/views.py:204
 msgid "Need help?"
 msgstr "Ai nevoie de ajutor?"
 
@@ -266,11 +266,11 @@ msgstr "Notificarea [%s] nu există"
 msgid "Add-ons Review Team"
 msgstr "Echipa de revizuire a suplimentelor"
 
-#: src/olympia/activity/models.py:738
+#: src/olympia/activity/models.py:770
 msgid "Review"
 msgstr "Scrie o recenzie"
 
-#: src/olympia/activity/models.py:816 src/olympia/devhub/templates/devhub/versions/list.html:41
+#: src/olympia/activity/models.py:848 src/olympia/devhub/templates/devhub/versions/list.html:41
 #, python-brace-format
 msgid "Version {0}"
 msgid_plural "Versions {0}"
@@ -303,7 +303,7 @@ msgstr "Numărul maxim de categorii per aplicație ({MAX_CATEGORIES}) a fost dep
 msgid "The \"other\" category cannot be combined with another category"
 msgstr "Categoria „altele” nu poate fi combinată cu o altă categorie"
 
-#: src/olympia/addons/fields.py:76 src/olympia/addons/serializers.py:1274
+#: src/olympia/addons/fields.py:76 src/olympia/addons/serializers.py:1281
 msgid "Invalid category name."
 msgstr "Denumire categorie nevalidă."
 
@@ -312,11 +312,11 @@ msgstr "Denumire categorie nevalidă."
 msgid "URL domain must be one of [{domains}]."
 msgstr "Domeniul URL trebuie să fie unul dintre [{domains}]."
 
-#: src/olympia/addons/fields.py:125 src/olympia/devhub/forms.py:299
+#: src/olympia/addons/fields.py:125 src/olympia/devhub/forms.py:298
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
 msgstr "Calea URL pentru sponsorii GitHub trebuie să conțină /sponsori/."
 
-#: src/olympia/addons/fields.py:128 src/olympia/devhub/forms.py:302
+#: src/olympia/addons/fields.py:128 src/olympia/devhub/forms.py:301
 msgid "URLs must start with https://."
 msgstr "URL-urile trebuie să înceapă cu https://."
 
@@ -330,7 +330,7 @@ msgstr "Licența cu slug={value} nu există."
 msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr "Tip de fișier neacceptat. Încarcă un fișier tip arhivă ({extensions})."
 
-#: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:777 src/olympia/files/utils.py:761 src/olympia/reviewers/forms.py:386
+#: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:788 src/olympia/files/utils.py:788
 msgid "Invalid or broken archive."
 msgstr "Arhivă nevalidă sau coruptă."
 
@@ -346,7 +346,7 @@ msgstr "Versiunea maximă a aplicației specificate este necunoscută"
 msgid "Unknown min app version specified"
 msgstr "Versiunea minimă a aplicației specificate este necunoscută"
 
-#: src/olympia/addons/fields.py:307 src/olympia/addons/fields.py:325 src/olympia/addons/serializers.py:637
+#: src/olympia/addons/fields.py:307 src/olympia/addons/fields.py:325 src/olympia/addons/serializers.py:644
 #, python-format
 msgid "Can not override compatibility information set in the manifest for this application (%s)"
 msgstr "Nu se pot suprascrie informațiile de compatibilitate setate în manifest pentru această aplicație (%s)"
@@ -356,13 +356,9 @@ msgstr "Nu se pot suprascrie informațiile de compatibilitate setate în manifes
 msgid "Images must be smaller than %dMB"
 msgstr "Imaginile trebuie să fie mai mici de %dMB"
 
-#: src/olympia/addons/models.py:2302 src/olympia/addons/models.py:2381 src/olympia/constants/base.py:66
+#: src/olympia/addons/models.py:2305 src/olympia/addons/models.py:2384 src/olympia/constants/base.py:70
 msgid "Listed"
 msgstr "Listat"
-
-#: src/olympia/addons/models.py:2559
-msgid "Add-on and collection paths need to end with \"/\""
-msgstr "Căile către suplimente și colecții trebuie să se termine cu „/”"
 
 #: src/olympia/addons/serializers.py:329
 msgid "Built in licenses can not be updated."
@@ -387,62 +383,66 @@ msgstr ""
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr "Versiunile enumerate nu pot fi trimise cât timp suplimentul este dezactivat."
 
-#: src/olympia/addons/serializers.py:612
+#: src/olympia/addons/serializers.py:578 src/olympia/signing/views.py:218
+msgid "Listed versions cannot be submitted while add-on listing is rejected."
+msgstr ""
+
+#: src/olympia/addons/serializers.py:619
 #, python-format
 msgid "%(addon_type_plural)s are not supported by %(app_name)s"
 msgstr "%(addon_type_plural)s nu sunt acceptate de %(app_name)s"
 
-#: src/olympia/addons/serializers.py:651 src/olympia/devhub/forms.py:931
+#: src/olympia/addons/serializers.py:658 src/olympia/devhub/forms.py:942
 #, python-format
 msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
 msgstr ""
 "Interval de versiune nevalid. Pentru Firefox pentru Android, puteți alege numai un interval care începe cu versiunea %(max)s sau una superioară sau se termină cu una mai mică decât versiunea "
 "%(min)s."
 
-#: src/olympia/addons/serializers.py:900
+#: src/olympia/addons/serializers.py:907
 msgid "Add-ons need at least one owner."
 msgstr "Suplimentele au nevoie de cel puțin un proprietar."
 
-#: src/olympia/addons/serializers.py:915
+#: src/olympia/addons/serializers.py:922
 msgid "Add-ons need at least one listed author."
 msgstr "Suplimentele au nevoie de cel puțin un autor listat."
 
-#: src/olympia/addons/serializers.py:947
+#: src/olympia/addons/serializers.py:954
 msgid "Account not found."
 msgstr "Contul nu a fost găsit."
 
-#: src/olympia/addons/serializers.py:960 src/olympia/devhub/forms.py:431 src/olympia/devhub/forms.py:501
+#: src/olympia/addons/serializers.py:967 src/olympia/devhub/forms.py:442 src/olympia/devhub/forms.py:512
 msgid "An author can only be present once."
 msgstr "Autorii pot fi listați numai o dată."
 
-#: src/olympia/addons/serializers.py:971 src/olympia/devhub/forms.py:443
+#: src/olympia/addons/serializers.py:978 src/olympia/devhub/forms.py:454
 msgid "The account needs a display name before it can be added as an author."
 msgstr "Contul are nevoie de o denumire de afișat înainte de a putea fi adăugat ca autor."
 
-#: src/olympia/addons/serializers.py:1254
+#: src/olympia/addons/serializers.py:1261
 msgid "This slug cannot be used. Please choose another."
 msgstr "Slugul nu poate fi folosit. Te rugăm să alegi altul."
 
-#: src/olympia/addons/serializers.py:1888
+#: src/olympia/addons/serializers.py:1886
 msgid "There is no rollback available in this channel."
 msgstr "Nu este disponibilă nicio revenire la versiuni anterioare pe acest canal."
 
-#: src/olympia/addons/serializers.py:1898
+#: src/olympia/addons/serializers.py:1896
 #, python-format
 msgid "Rollback is only available for version %s in this channel."
 msgstr "Revenirea la versiuni anterioare este disponibilă doar pentru versiunea %s de pe acest canal."
 
-#: src/olympia/addons/serializers.py:1904
+#: src/olympia/addons/serializers.py:1902
 msgid "Only approved versions can be rolled back, except the most recent version."
 msgstr "Numai versiunile aprobate pot fi anulate, cu excepția celei mai recente versiuni."
 
-#: src/olympia/addons/utils.py:56 src/olympia/bandwagon/serializers.py:92
-msgid "This name cannot be used."
-msgstr "Această denumire nu poate fi utilizată."
-
-#: src/olympia/addons/utils.py:71
+#: src/olympia/addons/utils.py:50
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Denumirile suplimentelor nu pot conține mărci comerciale Mozilla sau Firefox."
+
+#: src/olympia/addons/utils.py:54 src/olympia/bandwagon/serializers.py:96
+msgid "This name cannot be used."
+msgstr "Această denumire nu poate fi utilizată."
 
 #: src/olympia/addons/validators.py:41
 msgid "Both `license` and `custom_license` cannot be provided together."
@@ -516,7 +516,7 @@ msgstr "Colecțiile mele"
 
 #: src/olympia/amo/context_processors.py:51 src/olympia/templates/user_login.html:15 src/olympia/templates/user_login.html:17
 msgid "Log out"
-msgstr "Deconectare"
+msgstr "Ieși din cont"
 
 #: src/olympia/amo/context_processors.py:59 src/olympia/devhub/templates/devhub/addons/dashboard.html:4
 msgid "Manage My Submissions"
@@ -532,7 +532,7 @@ msgstr "Trimite un supliment nou"
 msgid "Submit a New Theme"
 msgstr "Trimite o temă nouă"
 
-#: src/olympia/amo/context_processors.py:76 src/olympia/constants/base.py:84 src/olympia/devhub/templatetags/jinja_helpers.py:32 src/olympia/templates/photon-footer.html:14
+#: src/olympia/amo/context_processors.py:76 src/olympia/constants/base.py:88 src/olympia/devhub/templatetags/jinja_helpers.py:32 src/olympia/templates/photon-footer.html:14
 msgid "Developer Hub"
 msgstr "Centrul dezvoltatorilor"
 
@@ -568,17 +568,17 @@ msgstr "Introdu o rețea IP4 sau IP6 validă."
 msgid "CIDR"
 msgstr "CIDR"
 
-#: src/olympia/amo/middleware.py:248 src/olympia/devhub/templates/devhub/index.html:56 src/olympia/templates/base.html:64
+#: src/olympia/amo/middleware.py:257 src/olympia/devhub/templates/devhub/index.html:56 src/olympia/templates/base.html:64
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Unele funcționalități sunt dezactivate temporar, cât efectuăm întreținerea pe site. Revenim imediat la capacitate maximă."
 
-#: src/olympia/amo/utils.py:1179
+#: src/olympia/amo/utils.py:1228
 msgid "URLs are not allowed."
 msgstr "Nu se permit URL-uri."
 
 #: src/olympia/amo/validators.py:17
 msgid "Must contain at least one printable character."
-msgstr "Trebuie să conțină cel puțin un caracter tipăribil."
+msgstr "Trebuie să conțină cel puțin un caracter care poate fi printat."
 
 #: src/olympia/amo/validators.py:62
 msgid "Ensure this field contains at least one letter or number character."
@@ -655,18 +655,6 @@ msgstr ""
 "<h1>Ups! A apărut o eroare.</h1> <p>O vom rezolva în curând.</p> <p> Poți încerca să reîmprospătezi pagina sau să te întorci la <a href=\"%(home)s\">Pagina de start pentru suplimente</a>. Ne poți "
 "ajuta să rezolvăm eroarea prin <a href=\"https://github.com/mozilla/addons/issues/new\">raportarea unei probleme</a> cu detaliile modului în care ai ajuns pe această pagină. </p>"
 
-#: src/olympia/amo/templates/amo/fake_fxa_authorization.html:4
-msgid "Register or Log in"
-msgstr "Întregistrare sau conectare"
-
-#: src/olympia/amo/templates/amo/fake_fxa_authorization.html:19
-msgid "Email:"
-msgstr "E-mail:"
-
-#: src/olympia/amo/templates/amo/fake_fxa_authorization.html:20
-msgid "Two-factor authentication"
-msgstr "Autentificare cu doi factori"
-
 #. abbreviation of 'previous'
 #: src/olympia/amo/templates/amo/paginator.html:5 src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:49
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:63 src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:76
@@ -681,7 +669,7 @@ msgstr "Înapoi"
 msgid "Next"
 msgstr "Înainte"
 
-#: src/olympia/amo/templates/amo/paginator.html:31 src/olympia/reviewers/templates/reviewers/includes/paginator_history.html:11
+#: src/olympia/amo/templates/amo/paginator.html:31
 #, python-format
 msgid "Results <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> of <strong>%(count)s</strong>"
 msgstr "Rezultate <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> din <strong>%(count)s</strong>"
@@ -765,11 +753,11 @@ msgstr "Eroare la decodarea semnăturii."
 msgid "Invalid JWT Token."
 msgstr "Jeton JWT nevalid."
 
-#: src/olympia/api/authentication.py:274
+#: src/olympia/api/authentication.py:286
 msgid "Invalid token or hash."
 msgstr "Jeton sau hash nevalid."
 
-#: src/olympia/api/authentication.py:278
+#: src/olympia/api/authentication.py:289
 msgid "Email address not found."
 msgstr "Nu s-a găsit adresa de e-mail."
 
@@ -809,11 +797,11 @@ msgstr "Confirmare pentru cheile API de dezvoltator"
 msgid "You have submitted this form too many times recently. Please try again after some time."
 msgstr "Ai trimis acest formular de prea multe ori în ultima vreme. Te rugăm să încerci din nou mai târziu."
 
-#: src/olympia/bandwagon/serializers.py:72
+#: src/olympia/bandwagon/serializers.py:75
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Acest URL personalizat este deja utilizat de una dintre celelalte colecții ale tale."
 
-#: src/olympia/bandwagon/serializers.py:105
+#: src/olympia/bandwagon/serializers.py:108
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr "URL-ul personalizat trebuie să fie alcătuit din litere, numere, liniuță jos sau cratime."
 
@@ -821,15 +809,15 @@ msgstr "URL-ul personalizat trebuie să fie alcătuit din litere, numere, liniu�
 msgid "This custom URL cannot be used."
 msgstr "Acest URL personalizat nu poate fi folosit."
 
-#: src/olympia/bandwagon/serializers.py:149
+#: src/olympia/bandwagon/serializers.py:147
 msgid "This add-on already belongs to the collection"
 msgstr "Acest supliment deja face parte din colecție"
 
-#: src/olympia/blocklist/models.py:188
+#: src/olympia/blocklist/models.py:189
 msgid "Blocked"
 msgstr "Blocat"
 
-#: src/olympia/blocklist/models.py:188
+#: src/olympia/blocklist/models.py:189
 msgid "Restricted"
 msgstr "Restricționat"
 
@@ -917,7 +905,7 @@ msgstr "Fișierul {0} a fost șters din {version} de {addon}."
 msgid "{addon} {version} approved."
 msgstr "{addon} {version} aprobat."
 
-#: src/olympia/constants/activity.py:148 src/olympia/constants/base.py:25 src/olympia/constants/base.py:32
+#: src/olympia/constants/activity.py:148 src/olympia/constants/base.py:26 src/olympia/constants/base.py:34
 msgid "Approved"
 msgstr "Aprobată"
 
@@ -935,7 +923,7 @@ msgstr "Aprobat preliminar"
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version} respins."
 
-#: src/olympia/constants/activity.py:172 src/olympia/files/models.py:323
+#: src/olympia/constants/activity.py:172 src/olympia/files/models.py:324
 msgid "Rejected"
 msgstr "Respinsă"
 
@@ -1299,6 +1287,25 @@ msgstr "Revenirea la versiune a eșuat"
 msgid "{addon} {0} property edited."
 msgstr "Proprietatea {addon} {0} a fost editată."
 
+#: src/olympia/constants/activity.py:1254
+#, python-brace-format
+msgid "Collection {0} property {1} updated."
+msgstr "Proprietatea {1} colecției {0} a fost actualizată."
+
+#: src/olympia/constants/activity.py:1261
+#, python-brace-format
+msgid "Account {user} property {0} updated."
+msgstr "Proprietatea {0} contului {user} a fost actualizată."
+
+#: src/olympia/constants/activity.py:1277
+#, python-brace-format
+msgid "{addon} listing content rejected."
+msgstr ""
+
+#: src/olympia/constants/activity.py:1278
+msgid "Listing content rejected"
+msgstr ""
+
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
 msgstr "Firefox"
@@ -1327,127 +1334,131 @@ msgstr "Firefox pentru Android"
 msgid "Mozilla"
 msgstr "Mozilla"
 
-#: src/olympia/constants/base.py:23
+#: src/olympia/constants/base.py:24
 msgid "Incomplete"
 msgstr "Incompletă"
 
-#: src/olympia/constants/base.py:24 src/olympia/constants/base.py:31
+#: src/olympia/constants/base.py:25 src/olympia/constants/base.py:33
 msgid "Awaiting Review"
 msgstr "În așteptarea recenziei"
 
-#: src/olympia/constants/base.py:26 src/olympia/constants/base.py:33
+#: src/olympia/constants/base.py:27
+msgid "Listing Content Rejected"
+msgstr ""
+
+#: src/olympia/constants/base.py:28 src/olympia/constants/base.py:35
 msgid "Disabled by Mozilla"
 msgstr "Dezactivat de Mozilla"
 
-#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1185
+#: src/olympia/constants/base.py:29 src/olympia/versions/models.py:1142
 msgid "Deleted"
 msgstr "Șters"
 
-#: src/olympia/constants/base.py:65
+#: src/olympia/constants/base.py:69
 msgid "Unlisted"
 msgstr "Nelistat"
 
-#: src/olympia/constants/base.py:85
+#: src/olympia/constants/base.py:89
 msgid "Signing API"
 msgstr "API de semnătură"
 
-#: src/olympia/constants/base.py:86
+#: src/olympia/constants/base.py:90
 msgid "Add-on API"
 msgstr "API-uri pentru suplimente"
 
-#: src/olympia/constants/base.py:87
+#: src/olympia/constants/base.py:91
 msgid "Automatically generated by AMO"
 msgstr "Generat automat de AMO"
 
-#: src/olympia/constants/base.py:96
+#: src/olympia/constants/base.py:100
 msgid "Owner"
 msgstr "Proprietar"
 
-#: src/olympia/constants/base.py:97 src/olympia/users/notifications.py:105
+#: src/olympia/constants/base.py:101 src/olympia/users/notifications.py:105
 msgid "Developer"
 msgstr "Dezvoltator"
 
-#: src/olympia/constants/base.py:105
+#: src/olympia/constants/base.py:109
 msgid "(Deleted)"
 msgstr "(Șters)"
 
-#: src/olympia/constants/base.py:129 src/olympia/constants/reviewers.py:69
+#: src/olympia/constants/base.py:133
 msgid "Extension"
 msgstr "Extensie"
 
-#: src/olympia/constants/base.py:130
+#: src/olympia/constants/base.py:134
 msgid "Deprecated Complete Theme"
 msgstr "Temă completă perimată"
 
-#: src/olympia/constants/base.py:131
+#: src/olympia/constants/base.py:135
 msgid "Dictionary"
 msgstr "Dicționar"
 
-#: src/olympia/constants/base.py:132
+#: src/olympia/constants/base.py:136
 msgid "Deprecated Search Engine"
 msgstr "Motor de căutare învechit"
 
-#: src/olympia/constants/base.py:133
+#: src/olympia/constants/base.py:137
 msgid "Language Pack"
 msgstr "Pachet lingvistic"
 
-#: src/olympia/constants/base.py:134
+#: src/olympia/constants/base.py:138
 msgid "Deprecated Language Pack (Add-on)"
 msgstr "Pachet lingvistic învechit (supliment)"
 
-#: src/olympia/constants/base.py:135
+#: src/olympia/constants/base.py:139
 msgid "Deprecated Plugin"
 msgstr "Pluginuri învechite"
 
-#: src/olympia/constants/base.py:136
+#: src/olympia/constants/base.py:140
 msgid "Deprecated LWT"
 msgstr "LWT perimat"
 
-#: src/olympia/constants/base.py:137 src/olympia/constants/reviewers.py:70
+#: src/olympia/constants/base.py:141
 msgid "Theme"
 msgstr "Temă"
 
-#: src/olympia/constants/base.py:138
+#: src/olympia/constants/base.py:142
 msgid "Deprecated Site Permission"
 msgstr "Permisiune site perimată"
 
-#: src/olympia/constants/base.py:143 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:10
+#: src/olympia/constants/base.py:147 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:10
 msgid "Extensions"
 msgstr "Extensii"
 
-#: src/olympia/constants/base.py:144
+#: src/olympia/constants/base.py:148
 msgid "Deprecated Complete Themes"
 msgstr "Teme complete perimate"
 
-#: src/olympia/constants/base.py:145
+#: src/olympia/constants/base.py:149
 msgid "Dictionaries"
 msgstr "Dicționare"
 
-#: src/olympia/constants/base.py:146
+#: src/olympia/constants/base.py:150
 msgid "Deprecated Search Tools"
 msgstr "Instrumente de căutare învechite"
 
-#: src/olympia/constants/base.py:147
+#: src/olympia/constants/base.py:151
 msgid "Language Packs"
 msgstr "Pachete lingvistice"
 
-#: src/olympia/constants/base.py:148
+#: src/olympia/constants/base.py:152
 msgid "Deprecated Language Packs (Add-on)"
 msgstr "Pachete lingvistice învechite (supliment)"
 
-#: src/olympia/constants/base.py:149
+#: src/olympia/constants/base.py:153
 msgid "Deprecated Plugins"
 msgstr "Pluginuri învechite"
 
-#: src/olympia/constants/base.py:150
+#: src/olympia/constants/base.py:154
 msgid "Deprecated LWTs"
 msgstr "LWT perimate"
 
-#: src/olympia/constants/base.py:151 src/olympia/devhub/templates/devhub/nav.html:43 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:11
+#: src/olympia/constants/base.py:155 src/olympia/devhub/templates/devhub/nav.html:43 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:11
 msgid "Themes"
 msgstr "Teme"
 
-#: src/olympia/constants/base.py:152
+#: src/olympia/constants/base.py:156
 msgid "Deprecated Site Permissions"
 msgstr "Permisiuni site perimate"
 
@@ -1520,8 +1531,7 @@ msgstr ""
 "Descarcă extensii Firefox care îmbunătățesc experiența cu fotografiile, muzica și videoclipurile. Extensiile din această categorie modifică fișiere audio și video, execută căutarea inversă a "
 "imaginilor și multe altele."
 
-#. editorial content for the secondary hero shelves.
-#: src/olympia/constants/categories.py:142 src/olympia/discovery/strings.jinja2:1050
+#: src/olympia/constants/categories.py:142
 msgid "Privacy & Security"
 msgstr "Confidențialitate și securitate"
 
@@ -1574,7 +1584,7 @@ msgid "Download Firefox extensions that feature web development tools. This cate
 msgstr ""
 "Descarcă extensii Firefox care includ instrumente de dezvoltare web. Această categorie include extensii pentru GitHub, comutarea agentului utilizator, gestionarea cookie-urilor și multe altele."
 
-#: src/olympia/constants/categories.py:198 src/olympia/constants/categories.py:290 src/olympia/devhub/forms.py:613
+#: src/olympia/constants/categories.py:198 src/olympia/constants/categories.py:290 src/olympia/devhub/forms.py:624
 msgid "Other"
 msgstr "Altele"
 
@@ -1798,74 +1808,6 @@ msgstr "Creative Commons Atribuire - partajare similare 4.0"
 msgid "The Unlicense"
 msgstr "Fără licență"
 
-#: src/olympia/constants/promoted.py:74
-msgid "Recommended"
-msgstr "Recomandat"
-
-#: src/olympia/constants/promoted.py:105
-msgid "By Firefox"
-msgstr "De la Firefox"
-
-#: src/olympia/constants/promoted.py:123
-msgid "Spotlight"
-msgstr "Spotlight"
-
-#: src/olympia/constants/promoted.py:134
-msgid "Strategic"
-msgstr "Strategic"
-
-#: src/olympia/constants/promoted.py:141
-msgid "Notable"
-msgstr "Relevante"
-
-#: src/olympia/constants/promoted.py:151
-msgid "Partner"
-msgstr "Partener"
-
-#: src/olympia/constants/reviewers.py:23
-msgid "No Reputation"
-msgstr "Nicio reputație"
-
-#: src/olympia/constants/reviewers.py:24
-msgid "Good (1)"
-msgstr "Bine (1)"
-
-#: src/olympia/constants/reviewers.py:25
-msgid "Very Good (2)"
-msgstr "Foarte bine (2)"
-
-#: src/olympia/constants/reviewers.py:26
-msgid "Excellent (3)"
-msgstr "Excelent (3)"
-
-#: src/olympia/constants/reviewers.py:41
-msgid "Request More Info"
-msgstr "Cere mai multe informații"
-
-#: src/olympia/constants/reviewers.py:42
-msgid "Flag"
-msgstr "Semnalează"
-
-#: src/olympia/constants/reviewers.py:43
-msgid "Duplicate"
-msgstr "Duplicat"
-
-#: src/olympia/constants/reviewers.py:44
-msgid "Reject"
-msgstr "Respinge"
-
-#: src/olympia/constants/reviewers.py:45
-msgid "Approve"
-msgstr "Aprobă"
-
-#: src/olympia/constants/reviewers.py:68
-msgid "All"
-msgstr "Toate"
-
-#: src/olympia/core/apps.py:214
-msgid "Core"
-msgstr "Nucleu"
-
 #: src/olympia/devhub/feeds.py:52
 #, python-format
 msgid "Recent Changes for %s"
@@ -1885,17 +1827,17 @@ msgstr "Suplimentele cu căutare deschisă {blog_link_open}nu mai au suport pe A
 msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
 msgstr "Manifest V3 nu este acceptat pentru încărcare momentan. {start_href}Citește mai multe despre cronologia asistenței{end_href}."
 
-#: src/olympia/devhub/forms.py:92
+#: src/olympia/devhub/forms.py:91
 msgid "This slug is already in use. Please choose another."
 msgstr "Acest slug este deja în uz. Te rugăm să alegi altul."
 
-#: src/olympia/devhub/forms.py:95
+#: src/olympia/devhub/forms.py:94
 #, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
 msgstr "Slugul nu poate fi „%(slug)s”. Te rugăm să alegi altul."
 
 #. L10n: {0} is the number of categories.
-#: src/olympia/devhub/forms.py:217
+#: src/olympia/devhub/forms.py:216
 #, python-brace-format
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
@@ -1903,16 +1845,16 @@ msgstr[0] "Poți avea doar {0} categorie."
 msgstr[1] "Poți avea doar {0} categorii."
 msgstr[2] "Poți avea doar {0} de categorii."
 
-#: src/olympia/devhub/forms.py:227
+#: src/olympia/devhub/forms.py:226
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "Categoria de diverse nu poate fi combinată cu categorii suplimentare."
 
-#: src/olympia/devhub/forms.py:293
+#: src/olympia/devhub/forms.py:292
 #, python-format
 msgid "URL domain must be one of [%s]."
 msgstr "Domeniul URL trebuie să fie unul dintre [%s]."
 
-#: src/olympia/devhub/forms.py:309
+#: src/olympia/devhub/forms.py:308
 #, python-brace-format
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
@@ -1920,139 +1862,139 @@ msgstr[0] "Ai {0} etichetă în plus."
 msgstr[1] "Ai {0} etichete în plus."
 msgstr[2] "Ai {0} de etichete în plus."
 
-#: src/olympia/devhub/forms.py:328
+#: src/olympia/devhub/forms.py:327
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
 msgstr "Înainte de a schimba limba implicită, trebuie să ai un nume, un rezumat și o descriere în limba respectivă. Îți lipsește %s."
 
-#: src/olympia/devhub/forms.py:413
+#: src/olympia/devhub/forms.py:415
 msgid "Users can not be added directly"
 msgstr "Utilizatorii nu pot fi adăugați direct"
 
-#: src/olympia/devhub/forms.py:478
+#: src/olympia/devhub/forms.py:489
 msgid "Must have at least one owner."
 msgstr "Trebuie să aibă cel puțin un proprietar."
 
-#: src/olympia/devhub/forms.py:480
+#: src/olympia/devhub/forms.py:491
 msgid "At least one author must be listed."
 msgstr "Trebuie să fie listat cel puțin un autor."
 
-#: src/olympia/devhub/forms.py:528
+#: src/olympia/devhub/forms.py:539
 msgid "Slug incorrect."
 msgstr "Slug incorect."
 
-#: src/olympia/devhub/forms.py:563 src/olympia/devhub/templates/devhub/versions/edit.html:88
+#: src/olympia/devhub/forms.py:574 src/olympia/devhub/templates/devhub/versions/edit.html:88
 msgid "Details"
 msgstr "Detalii"
 
-#: src/olympia/devhub/forms.py:584
+#: src/olympia/devhub/forms.py:595
 msgid "What is your license's name?"
 msgstr "Care este denumirea licenței tale?"
 
-#: src/olympia/devhub/forms.py:586 src/olympia/devhub/forms.py:633
+#: src/olympia/devhub/forms.py:597 src/olympia/devhub/forms.py:644
 msgid "Custom License"
 msgstr "Licență personalizată"
 
-#: src/olympia/devhub/forms.py:591
+#: src/olympia/devhub/forms.py:602
 msgid "Provide the text of your license."
 msgstr "Furnizează textul licenței tale."
 
-#: src/olympia/devhub/forms.py:641
+#: src/olympia/devhub/forms.py:652
 msgid "License text is required when choosing Other."
 msgstr "Textul licenței este necesar când alegi Altele."
 
-#: src/olympia/devhub/forms.py:697
+#: src/olympia/devhub/forms.py:708
 msgid "This add-on has an End-User License Agreement"
 msgstr "Acest supliment are un acord de licență pentru utilizatorul final"
 
-#: src/olympia/devhub/forms.py:702
+#: src/olympia/devhub/forms.py:713
 msgid "Please specify your add-on's End-User License Agreement:"
 msgstr "Te rugăm să specifici acordul de licență pentru utilizatorul final aferent suplimentului tău:"
 
-#: src/olympia/devhub/forms.py:705
+#: src/olympia/devhub/forms.py:716
 msgid "This add-on has a Privacy Policy"
 msgstr "Acest supliment are o politică de confidențialitate"
 
-#: src/olympia/devhub/forms.py:710
+#: src/olympia/devhub/forms.py:721
 msgid "Please specify your add-on's Privacy Policy:"
 msgstr "Te rugăm să specifici politica de confidențialitate aferentă suplimentului tău:"
 
-#: src/olympia/devhub/forms.py:745
+#: src/olympia/devhub/forms.py:756
 #, python-brace-format
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Tip de fișier nesuportat. Te rugăm să încarci un fișier tip arhivă {extensions}."
 
-#: src/olympia/devhub/forms.py:789
+#: src/olympia/devhub/forms.py:800
 msgid "View current"
 msgstr "Afișează versiunea actuală"
 
-#: src/olympia/devhub/forms.py:912
+#: src/olympia/devhub/forms.py:923
 msgid "Invalid version range."
 msgstr "Domeniu de versiune nevalid."
 
-#: src/olympia/devhub/forms.py:1018
+#: src/olympia/devhub/forms.py:1029
 msgid "Need at least one compatible application."
 msgstr "Necesită cel puțin o aplicație compatibilă."
 
-#: src/olympia/devhub/forms.py:1060 src/olympia/devhub/forms.py:1118
+#: src/olympia/devhub/forms.py:1071 src/olympia/devhub/forms.py:1129
 msgid "There was an error with your upload. Please try again."
 msgstr "A apărut o eroare la încărcare. Te rugăm să încerci din nou."
 
-#: src/olympia/devhub/forms.py:1065
+#: src/olympia/devhub/forms.py:1076
 msgid "Override failed validation"
 msgstr "Înlocuire forțată validare eșuată"
 
-#: src/olympia/devhub/forms.py:1075
+#: src/olympia/devhub/forms.py:1086
 msgid "Need to select at least one application."
 msgstr "Necesită selectarea cel puțin a unei aplicații."
 
-#: src/olympia/devhub/forms.py:1080
+#: src/olympia/devhub/forms.py:1091
 msgid "You have submitted too many uploads recently. Please try again after some time."
 msgstr "Ai realizat prea multe încărcări în ultimul timp. Te rugăm să încerci din nou mai târziu."
 
-#: src/olympia/devhub/forms.py:1129 src/olympia/signing/views.py:156
+#: src/olympia/devhub/forms.py:1140 src/olympia/signing/views.py:156
 #, python-brace-format
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Versiunea {version} a mai fost încărcată și apoi ștearsă."
 
-#: src/olympia/devhub/forms.py:1138 src/olympia/devhub/forms.py:1144 src/olympia/signing/views.py:158
+#: src/olympia/devhub/forms.py:1149 src/olympia/devhub/forms.py:1155 src/olympia/signing/views.py:158
 #, python-brace-format
 msgid "Version {version} already exists."
 msgstr "Versiunea {version} există deja."
 
-#: src/olympia/devhub/forms.py:1140
+#: src/olympia/devhub/forms.py:1151
 msgid "Continue with existing upload instead?"
 msgstr "Continui în schimb cu încărcarea existentă?"
 
-#: src/olympia/devhub/forms.py:1178 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:7 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:22
+#: src/olympia/devhub/forms.py:1189 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:7 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:22
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:37
 msgid "Yes"
 msgstr "Da"
 
-#: src/olympia/devhub/forms.py:1178 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:13 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:28
+#: src/olympia/devhub/forms.py:1189 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:13 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:28
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:52
 msgid "No"
 msgstr "Nu"
 
-#: src/olympia/devhub/forms.py:1193
+#: src/olympia/devhub/forms.py:1204
 msgid "You have not uploaded a source file."
 msgstr "Nu ai încărcat un fișier sursă."
 
-#: src/olympia/devhub/forms.py:1196
+#: src/olympia/devhub/forms.py:1207
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "Fișier sursă încărcat, dar ai indicat că nu este necesară nicio sursă."
 
-#: src/olympia/devhub/forms.py:1260
+#: src/olympia/devhub/forms.py:1271
 #, python-brace-format
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
 msgstr "Asigură-te că denumirea și rezumatul au împreună cel mult {limit_value} de caractere (au {show_value})."
 
-#: src/olympia/devhub/forms.py:1379
+#: src/olympia/devhub/forms.py:1390
 #, python-brace-format
 msgid "On this site. <span class=\"helptext\">Your submission is publicly listed on {site_domain}.</span>"
 msgstr "Pe acest site. <span class=\"helptext\">Suplimentul este listat public pe {site_domain}.</span>"
 
-#: src/olympia/devhub/forms.py:1386
+#: src/olympia/devhub/forms.py:1397
 #, python-brace-format
 msgid ""
 "On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
@@ -2061,31 +2003,31 @@ msgstr ""
 "Pe cont propriu. <span class=\"helptext\">După ce suplimentul este semnat de Mozilla, poți descărca fișierul .xpi din Centrul dezvoltatorilor și îl poți distribui publicului. Te rugăm să te asiguri "
 "că este furnizat <a {a_attrs}>update_url</a> al manifestului suplimentului pentru că este adresa URL la care Firefox găsește actualizări pentru implementarea automată pentru utilizatorii tăi.</span>"
 
-#: src/olympia/devhub/forms.py:1425 src/olympia/devhub/templates/devhub/includes/agreement.html:17
+#: src/olympia/devhub/forms.py:1437 src/olympia/devhub/templates/devhub/includes/agreement.html:17
 msgid "Display Name"
 msgstr "Nume afișat"
 
-#: src/olympia/devhub/forms.py:1456
+#: src/olympia/devhub/forms.py:1468
 msgid "Confirm email address"
 msgstr "Confirmă adresa de e-mail"
 
-#: src/olympia/devhub/forms.py:1457
+#: src/olympia/devhub/forms.py:1469
 msgid "Generate new credentials"
 msgstr "Generează date de autentificare noi"
 
-#: src/olympia/devhub/forms.py:1458
+#: src/olympia/devhub/forms.py:1470
 msgid "Revoke and regenerate credentials"
 msgstr "Revocă și regenerează datele de autentificare"
 
-#: src/olympia/devhub/forms.py:1459
+#: src/olympia/devhub/forms.py:1471
 msgid "Revoke"
 msgstr "Revocă"
 
-#: src/olympia/devhub/forms.py:1498
+#: src/olympia/devhub/forms.py:1510
 msgid "JWT issuer"
 msgstr "Emitent JWT"
 
-#: src/olympia/devhub/forms.py:1505
+#: src/olympia/devhub/forms.py:1517
 #, python-brace-format
 msgid ""
 "To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
@@ -2094,44 +2036,44 @@ msgstr ""
 "Pentru cereri API, trimite un <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> ca antet de autorzare. Va trebui să generezi un JWT pentru fiecare cerere, conform explicațiilor din <a "
 "href=\"{docs_url}\">documentația API</a>."
 
-#: src/olympia/devhub/forms.py:1515
+#: src/olympia/devhub/forms.py:1527
 msgid "JWT secret"
 msgstr "Secret JWT"
 
-#: src/olympia/devhub/forms.py:1536
+#: src/olympia/devhub/forms.py:1548
 #, python-brace-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
 msgstr "Te rugăm să dai clic pe butonul de confirmare de mai jos pentru a genera datele de autentificare API ale utilizatorului <strong>{name}</strong>."
 
-#: src/olympia/devhub/forms.py:1542
+#: src/olympia/devhub/forms.py:1554
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
 msgstr "Ți se va trimite pe adresa de e-mail un link de confirmare. După confirmare, îți vei găsi cheile API pe această pagină."
 
-#: src/olympia/devhub/forms.py:1559
+#: src/olympia/devhub/forms.py:1571
 msgid "You don't have any API credentials."
 msgstr "Nu ai date de autentificare API."
 
-#: src/olympia/devhub/forms.py:1570
+#: src/olympia/devhub/forms.py:1582
 msgid "Something went wrong, please contact developer support."
 msgstr "Ceva nu a funcționat. Te rugăm să contactezi asistența pentru dezvoltatori."
 
-#: src/olympia/devhub/forms.py:1653
+#: src/olympia/devhub/forms.py:1665
 msgid "No appropriate version available"
 msgstr "Nu este disponibilă nicio versiune corespunzătoare"
 
-#: src/olympia/devhub/forms.py:1660
+#: src/olympia/devhub/forms.py:1672
 msgid "Choose version"
 msgstr "Alege versiunea"
 
-#: src/olympia/devhub/forms.py:1669
+#: src/olympia/devhub/forms.py:1681
 msgid "Release notes"
 msgstr "Note de lansare"
 
-#: src/olympia/devhub/forms.py:1670
+#: src/olympia/devhub/forms.py:1682
 msgid "Automatic rollback based on version [m.m]."
 msgstr "Revenire automată în funcție de versiune [m.m]."
 
-#: src/olympia/devhub/forms.py:1743
+#: src/olympia/devhub/forms.py:1755
 msgid "You must select a channel and version to rollback to."
 msgstr "Trebuie să selectezi un canal și o versiune la care să revii."
 
@@ -2147,16 +2089,16 @@ msgstr "Am găsit cheia ta API pentru dezvoltatori în fișierul trimis. Pentru 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
 msgstr "Am găsit în fișierul trimis cheia API pentru dezvoltatori aparținând unui coautor. Pentru a-ți proteja suplimentul, cheia va fi revocată."
 
-#: src/olympia/devhub/tasks.py:687
+#: src/olympia/devhub/tasks.py:688
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr "Notificare de securitate Mozilla: Datele de autentificare pentru API-ul AMO au fost revocate"
 
-#: src/olympia/devhub/utils.py:86
+#: src/olympia/devhub/utils.py:90
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Validarea a generat prea multe erori/avertismente, așa că %s (de) mesaje au fost trunchiate. După corectarea mesajelor vizibile, vei putea să le vezi și pe celelalte."
 
-#: src/olympia/devhub/utils.py:207
+#: src/olympia/devhub/utils.py:211
 #, python-brace-format
 msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
 msgstr "Suplimentul nu este o temă. Folosește pagina <a href=\"{link}\">Depunere supliment nou</a> ca să timiți extensii."
@@ -2239,7 +2181,7 @@ msgstr "Invitație refuzată."
 msgid "A confirmation email has been sent to {email}"
 msgstr "A fost trimis un mesaj e-mail de confirmare la {email}"
 
-#: src/olympia/devhub/views.py:551 src/olympia/devhub/views.py:1167
+#: src/olympia/devhub/views.py:551 src/olympia/devhub/views.py:1164
 msgid "Changes successfully saved."
 msgstr "Modificări salvate cu succes."
 
@@ -2247,42 +2189,42 @@ msgstr "Modificări salvate cu succes."
 msgid "Validate Add-on"
 msgstr "Validează suplimentul"
 
-#: src/olympia/devhub/views.py:645
+#: src/olympia/devhub/views.py:642
 #, python-brace-format
 msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
 msgstr "<a href=\"{link}\">Te rugăm să adaugi autentificarea cu doi factori în cont ca să poți trimite extensii.</a>"
 
-#: src/olympia/devhub/views.py:1022
+#: src/olympia/devhub/views.py:1019
 msgid "Icons must be either PNG or JPG."
 msgstr "Pictogramele trebuie să fie PNG ori JPG."
 
-#: src/olympia/devhub/views.py:1028
+#: src/olympia/devhub/views.py:1025
 msgid "Icons cannot be animated."
 msgstr "Pictogramele nu pot fi animate."
 
-#: src/olympia/devhub/views.py:1054
+#: src/olympia/devhub/views.py:1051
 #, python-brace-format
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr "Imaginea trebuie să fie de cel puțin {0} pixeli lățime și {1} pixeli înălțime."
 
-#: src/olympia/devhub/views.py:1058
+#: src/olympia/devhub/views.py:1055
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "Imaginile trebuie să fie la un raport de 4:3."
 
-#: src/olympia/devhub/views.py:1066
+#: src/olympia/devhub/views.py:1063
 #, python-brace-format
 msgid "Icon must be at least {0} pixels wide and tall."
 msgstr "Pictograma trebuie să fie de cel puțin {0} pixeli lățime și înălțime."
 
-#: src/olympia/devhub/views.py:1071
+#: src/olympia/devhub/views.py:1068
 msgid "Icon must be square (same width and height)."
 msgstr "Pictograma trebuie să fie pătrată (aceeași lățime și înălțime)."
 
-#: src/olympia/devhub/views.py:1077
+#: src/olympia/devhub/views.py:1074
 msgid "There was an error uploading your preview."
 msgstr "A apărut o eroare la încărcarea previzualizării tale."
 
-#: src/olympia/devhub/views.py:1223
+#: src/olympia/devhub/views.py:1220
 #, python-format
 msgid ""
 "The latest approved version of this %s add-on cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
@@ -2290,86 +2232,86 @@ msgstr ""
 "Ultima versiune aprobată a acestui supliment %s nu poate fi ștearsă sau dezactivată deoarece versiunea precedentă nu a fost aprobată pentru promovare %s. Te rugăm să contactezi administratorii AMO "
 "dacă ai nevoie de ajutor în acest sens."
 
-#: src/olympia/devhub/views.py:1230
+#: src/olympia/devhub/views.py:1227
 #, python-format
 msgid "Version %s disabled."
 msgstr "Versiune %s dezactivată."
 
-#: src/olympia/devhub/views.py:1234
+#: src/olympia/devhub/views.py:1231
 #, python-format
 msgid "Version %s deleted."
 msgstr "Versiune %s ștearsă."
 
-#: src/olympia/devhub/views.py:1245
+#: src/olympia/devhub/views.py:1242
 #, python-format
 msgid "Version %s re-enabled."
 msgstr "Versiune %s reactivată."
 
-#: src/olympia/devhub/views.py:1261
+#: src/olympia/devhub/views.py:1258
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "Încărcarea nu a trecut validarea și se poate să nu aibă rezultate complete de validare. Te rugăm să dai dovadă de maximă precauție la recenzie."
 
-#: src/olympia/devhub/views.py:1320
+#: src/olympia/devhub/views.py:1317
 msgid "Rollback submitted. You'll be notified when it's approved"
 msgstr "Revenire trimisă. Vei primi o notificare când va fi aprobată"
 
-#: src/olympia/devhub/views.py:1458
+#: src/olympia/devhub/views.py:1455
 msgid "Header area background"
 msgstr "Fundalul zonei de antet"
 
-#: src/olympia/devhub/views.py:1460
+#: src/olympia/devhub/views.py:1457
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
 msgstr "Culoarea fundalului pentru zona antetului, afișată în partea de antet neacoperită sau vizibilă prin imaginea antetului. Câmpul manifestului:  frame."
 
-#: src/olympia/devhub/views.py:1468
+#: src/olympia/devhub/views.py:1465
 msgid "Header area text and icons"
 msgstr "Text și pictograme în zona antetului"
 
-#: src/olympia/devhub/views.py:1470
+#: src/olympia/devhub/views.py:1467
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
 msgstr "Culoarea textului și a pictogramelor din zona antetului, cu excepția filei active. Câmpul manifestului:  tab_background_text."
 
-#: src/olympia/devhub/views.py:1477
+#: src/olympia/devhub/views.py:1474
 msgid "Toolbar area background"
 msgstr "Fundalul zonei barei de instrumente"
 
-#: src/olympia/devhub/views.py:1479
+#: src/olympia/devhub/views.py:1476
 msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
 msgstr "Culoarea fundalului pentru bara de navigare, bara de marcaje și fila activă.  Câmpul manifestului:  toolbar."
 
-#: src/olympia/devhub/views.py:1486
+#: src/olympia/devhub/views.py:1483
 msgid "Toolbar area text and icons"
 msgstr "Text și pictograme pentru zona barei de instrumente"
 
-#: src/olympia/devhub/views.py:1488
+#: src/olympia/devhub/views.py:1485
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
 msgstr "Culoarea textului și a pictogramelor din bara de instrumente și fila activă. Câmpul manifestului:  bookmark_text."
 
-#: src/olympia/devhub/views.py:1495
+#: src/olympia/devhub/views.py:1492
 msgid "Toolbar field area background"
 msgstr "Fundalul câmpurilor pentru zona barei de instrumente"
 
-#: src/olympia/devhub/views.py:1497
+#: src/olympia/devhub/views.py:1494
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
 msgstr "Culoarea fundalului pentru câmpurile din bara de instrumente, cum ar fi bara de adrese. Câmpul manifestului:  toolbar_field."
 
-#: src/olympia/devhub/views.py:1504
+#: src/olympia/devhub/views.py:1501
 msgid "Toolbar field area text"
 msgstr "Textul zonei câmpului din bara de instrumente"
 
-#: src/olympia/devhub/views.py:1506
+#: src/olympia/devhub/views.py:1503
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "Culoarea textului din câmpurile barei de instrumente, cum ar fi bara de adrese. Câmpul manifestului:  toolbar_field_text."
 
-#: src/olympia/devhub/views.py:1514
+#: src/olympia/devhub/views.py:1511
 msgid "Tab highlight"
 msgstr "Evidențiere filă"
 
-#: src/olympia/devhub/views.py:1516
+#: src/olympia/devhub/views.py:1513
 msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
 msgstr "Culoarea de evidențiere a filei active. Implementată ca un chenar în jurul filei pe Firefox 89+ și o linie deasupra filei pe versiunile Firefox mai vechi. Câmp manifest: tab_line."
 
-#: src/olympia/devhub/views.py:1615
+#: src/olympia/devhub/views.py:1616
 msgid "Add-on uploads are temporarily unavailable"
 msgstr "Încărcările de suplimente sunt momentan indisponibile"
 
@@ -2532,7 +2474,7 @@ msgstr "Validat la data de:"
 msgid "Email Address Verification"
 msgstr "Verificarea adresei de e-mail"
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html:62 src/olympia/devhub/templates/devhub/includes/addon_details.html:89 src/olympia/devhub/templates/devhub/verify_email.html:10
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:64 src/olympia/devhub/templates/devhub/includes/addon_details.html:91 src/olympia/devhub/templates/devhub/verify_email.html:10
 msgid "Status:"
 msgstr "Stare:"
 
@@ -2700,7 +2642,7 @@ msgstr "Previzualizarea versiunii listate"
 msgid "Preview still being generated - come back later or refresh the page."
 msgstr "Previzualizarea este încă în curs de generare - revino mai târziu sau reîmprospătează pagina."
 
-#: src/olympia/devhub/templates/devhub/addons/invitation.html:3 src/olympia/users/utils.py:98
+#: src/olympia/devhub/templates/devhub/addons/invitation.html:3 src/olympia/users/utils.py:99
 #, python-brace-format
 msgid "Author invitation for {addon_name}"
 msgstr "Invitație ca autor pentru {addon_name}"
@@ -2747,7 +2689,7 @@ msgstr "Autori în curs de confirmare"
 msgid "Authors that have been added to this add-on but haven't confirmed."
 msgstr "Autori adăugați, dar neconfirmați la acest supliment."
 
-#: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:96 src/olympia/devhub/templates/devhub/addons/edit/describe.html:260
+#: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:96 src/olympia/devhub/templates/devhub/addons/edit/describe.html:272
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:84 src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:174 src/olympia/devhub/templates/devhub/addons/owner.html:78
 #: src/olympia/devhub/templates/devhub/versions/edit.html:134 src/olympia/translations/templates/translations/trans-menu.html:48
 msgid "Save Changes"
@@ -2802,6 +2744,11 @@ msgstr "URL pentru contribuții"
 msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
 msgstr "Dacă vrei să soliciți contribuții financiare de la utilizatori, setează o pagină unde să poată contribui."
 
+#: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:45
+#, python-format
+msgid "Supported domains: %(supported_domains)s"
+msgstr "Domenii acceptate: %(supported_domains)s"
+
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:55 src/olympia/translations/templates/translations/trans-menu.html:13
 msgid "Default Locale"
 msgstr "Limbă implicită"
@@ -2822,14 +2769,14 @@ msgstr ""
 "Dacă suplimentul tău are altă pagină de start, introdu aici adresa ei. Dacă site-ul tău web este localizat în alte limbi, se pot adăuga traduceri multiple ale acestui câmp. Are relevanță numai "
 "pentru suplimentele listate."
 
-#: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:96 src/olympia/devhub/templates/devhub/addons/edit/describe.html:260
+#: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:96 src/olympia/devhub/templates/devhub/addons/edit/describe.html:272
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:84 src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:174
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:32 src/olympia/devhub/templates/devhub/versions/edit.html:134 src/olympia/devhub/templates/devhub/versions/list.html:305
 #: src/olympia/devhub/templates/devhub/versions/list.html:354 src/olympia/translations/templates/translations/trans-menu.html:50 src/olympia/translations/templates/translations/trans-menu.html:62
 msgid "or"
 msgstr "sau"
 
-#: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:99 src/olympia/devhub/templates/devhub/addons/edit/describe.html:263
+#: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:99 src/olympia/devhub/templates/devhub/addons/edit/describe.html:275
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:87 src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:177
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:32 src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:64
 #: src/olympia/devhub/templates/devhub/versions/edit.html:136 src/olympia/devhub/templates/devhub/versions/list.html:305 src/olympia/devhub/templates/devhub/versions/list.html:315
@@ -2889,51 +2836,68 @@ msgstr "Rezumatul trebuie să explice clar ce face suplimentul. Va fi afișat î
 msgid "Description"
 msgstr "Descriere"
 
-#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:157
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:131 src/olympia/devhub/templates/devhub/addons/submit/describe.html:107
+#, python-format
+msgid ""
+"A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Minimum length: %(min_length)s characters; Recommended "
+"length: 250 characters. If you need a longer description, make sure the first 250 characters contain the most important description points."
+msgstr ""
+"O explicație mai lungă a caracteristicilor, funcționalității și a altor informații relevante. Câmpul este afișat doar pe pagina produsului suplimentului. Lungime minimă: %(min_length)s (de) "
+"caractere; Lungime recomandată: 250 de caractere. Dacă ai nevoie de o descriere mai lungă, asigură-te că primele 250 de caractere conțin cele mai importante puncte din descriere."
+
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:140
+msgid ""
+"A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Recommended length: 250 characters. If you need a longer "
+"description, make sure the first 250 characters contain the most important description points."
+msgstr ""
+"O explicație mai lungă a caracteristicilor, funcționalității și a altor informații relevante. Câmpul este afișat doar pe pagina produsului suplimentului. Lungime recomandată: 250 de caractere. Dacă "
+"ai nevoie de o descriere mai lungă, asigură-te că primele 250 de caractere conțin cele mai importante puncte din descriere."
+
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:169
 msgid "Experimental?"
 msgstr "Experimental?"
 
-#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:158
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:170
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
 msgstr "Dacă suplimentul este experimental sau nu este altminteri gata pentru uz general.  Suplimentul va fi listat, dar va avea o vizibilitate redusă. "
 
-#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:163
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:175
 msgid "This add-on is experimental."
 msgstr "Acest supliment este experimental."
 
-#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:165
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:177
 msgid "This add-on is ready for general use."
 msgstr "Acest supliment este gata pentru uz general."
 
-#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:170
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:182
 msgid "Requires Payment?"
 msgstr "Necesită plată?"
 
-#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:171 src/olympia/devhub/templates/devhub/addons/submit/describe.html:139
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:183 src/olympia/devhub/templates/devhub/addons/submit/describe.html:140
 msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
 msgstr "Bifează această casetă dacă funcționalitățile principale ale acestui supliment necesită orice formă de plată în avans sau după o perioadă de probă ca să funcționeze."
 
-#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:176 src/olympia/devhub/templates/devhub/addons/submit/describe.html:135
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:188 src/olympia/devhub/templates/devhub/addons/submit/describe.html:136
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
 msgstr "Acest supliment necesită plăți, servicii sau programe informatice cu plată sau echipamente fizice suplimentare."
 
-#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:179
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:191
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr "Acest supliment nu necesită plăți suplimentare, servicii sau programe informatice cu plată sau echipamente fizice suplimentare."
 
-#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:187
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:199
 msgid "Categories"
 msgstr "Categorii"
 
-#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:188
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:200
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
 msgstr "Categoriile sunt modalitatea principală folosită de utilizatori ca să răsfoiască suplimentele. Alege una în care se încadrează funcționalitatea suplimentului tău pentru cea mai mare expunere."
 
-#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:211
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:223
 msgid "Email"
 msgstr "E-mail"
 
-#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:213
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:225
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
 " for listed add-ons."
@@ -2941,11 +2905,11 @@ msgstr ""
 "Dacă vrei să afișezi o adresă de e-mail pentru solicitări de asistență, introdu adresa aici. Dacă ai adrese diferite pentru fiecare limbă, se pot adăuga traduceri multiple ale acestui câmp. Are "
 "relevanță numai pentru suplimentele listate."
 
-#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:234
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:246
 msgid "Website"
 msgstr "Site web"
 
-#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:236
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:248
 msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
 "listed add-ons."
@@ -3096,9 +3060,21 @@ msgid "Having screenshots in your product page greatly increases its chances of 
 msgstr "Capturile de ecran din pagina produsului îi sporesc șansele de a fi instalat."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:182 src/olympia/devhub/templates/devhub/addons/submit/distribute.html:30
-#: src/olympia/devhub/templates/devhub/addons/submit/source.html:85 src/olympia/devhub/templates/devhub/addons/submit/upload.html:99
+#: src/olympia/devhub/templates/devhub/addons/submit/source.html:85 src/olympia/devhub/templates/devhub/addons/submit/upload.html:102
 msgid "Continue"
 msgstr "Continuă"
+
+#: src/olympia/devhub/templates/devhub/addons/includes/cant_submit_new_listed_versions_warning.html:3
+msgid "Your add-on is currently set to \"Invisible\"."
+msgstr "Suplimentul este setat acum pe „invizibil”."
+
+#: src/olympia/devhub/templates/devhub/addons/includes/cant_submit_new_listed_versions_warning.html:5
+msgid "Your add-on listing was rejected."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/includes/cant_submit_new_listed_versions_warning.html:7
+msgid "While in this state, \"On your own\" is the only distribution method available."
+msgstr "Când este în această stare, singura metodă de distribuție disponibilă este „pe cont propriu”."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:2
 msgid "Can others share your Add-on, as long as you're given credit?"
@@ -3131,14 +3107,6 @@ msgstr "Selectează o licență diferită."
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:64
 msgid "More information on Creative Commons licenses"
 msgstr "Informații suplimentare despre licențele Creative Commons"
-
-#: src/olympia/devhub/templates/devhub/addons/includes/invisible_channel_warning.html:2
-msgid "Your add-on is currently set to \"Invisible\"."
-msgstr "Suplimentul este setat acum pe „invizibil”."
-
-#: src/olympia/devhub/templates/devhub/addons/includes/invisible_channel_warning.html:3
-msgid "While in this state, \"On your own\" is the only distribution method available."
-msgstr "Când este în această stare, singura metodă de distribuție disponibilă este „pe cont propriu”."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/source_file_input.html:12
 msgid "You cannot change attached sources because this version has been reviewed by Mozilla."
@@ -3285,7 +3253,7 @@ msgstr[2] "<strong>{0}</strong> (de) utilizatori activi"
 msgid "Submit a New Version"
 msgstr "Trimite o versiune nouă"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/base.html:33 src/olympia/devhub/templates/devhub/addons/submit/describe.html:236
+#: src/olympia/devhub/templates/devhub/addons/submit/base.html:33 src/olympia/devhub/templates/devhub/addons/submit/describe.html:237
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:49 src/olympia/devhub/templates/devhub/addons/submit/source.html:92
 msgid "Cancel and Disable Version"
 msgstr "Anulează și dezactivează versiunea"
@@ -3307,7 +3275,7 @@ msgid "Name and Summary:"
 msgstr "Denumire și rezumat:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:16 src/olympia/devhub/templates/devhub/addons/submit/describe.html:87
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:102 src/olympia/devhub/templates/devhub/addons/submit/describe.html:164
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:102 src/olympia/devhub/templates/devhub/addons/submit/describe.html:165
 #: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:25 src/olympia/devhub/templates/devhub/addons/submit/wizard.html:37 src/olympia/devhub/templates/devhub/addons/submit/wizard.html:65
 #: src/olympia/templates/includes/forms.html:2 src/olympia/templates/includes/forms.html:6
 msgid "required"
@@ -3346,49 +3314,49 @@ msgstr "Rezumat:"
 msgid "Description:"
 msgstr "Descriere:"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:123
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:124
 msgid "This add-on is experimental"
 msgstr "Acest supliment este experimental"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:126
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:127
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
 "Bifează această opțiune dacă suplimentul tău este experimental sau altminteri încă nu gata pentru uz general.  Suplimentul va fi listat, dar va avea vizibilitate redusă.  Poți modifica această "
 "setare mai târziu."
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:151
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:152
 msgid "Support email:"
 msgstr "E-mail de asistență:"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:158
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:159
 msgid "Support website:"
 msgstr "Site de asistență:"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:164
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:165
 msgid "License:"
 msgstr "Licență:"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:170
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:171
 msgid "Please choose a license appropriate for the rights you grant."
 msgstr "Te rugăm să alegi o licență corespunzătoare pentru drepturile pe care le acorzi."
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:194
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:195
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
 msgstr "Dacă suplimentul tău transmite orice date de pe calculatorul utilizatorului, este necesară o politică de confidențialitate care să explice ce date sunt transmise și cum sunt utilizate."
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:207 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:21
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:208 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:21
 msgid "Notes to Reviewer:"
 msgstr "Note către revizor:"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:210 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:24
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:211 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:24
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
 msgstr "E ceva de care revizorii noștri ar trebui să țină cont la analizarea acestui supliment?"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:213 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:27
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:214 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:27
 msgid "Remember"
 msgstr "Reține"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:214 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:28
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:215 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:28
 #, python-format
 msgid ""
 "If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
@@ -3397,11 +3365,11 @@ msgstr ""
 "Dacă ai trimis codul sursă, dar nu ai inclus instrucțiunile, trebuie să le furnizezi aici. Introdu instrucțiunile de compilare pas cu pas pentru crearea unei copii exacte a codului suplimentului, "
 "conform %(policy_requirements_open)scerințelor politicii%(policy_requirements_close)s."
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:224 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:38
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:225 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:38
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Notele vor fi vizibile numai pentru tine și revizorii noștri."
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:229 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:42
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:230 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:42
 msgid "Submit Version"
 msgstr "Trimite versiune"
 
@@ -3589,36 +3557,40 @@ msgstr "Încarcă suplimentul"
 msgid "Where to Host Version"
 msgstr "Unde va fi găzduită versiunea"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:23
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:24
 msgid "Change"
 msgstr "Modificare"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:28
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:29
 msgid "Upload Version"
 msgstr "Încarcă versiunea"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:30
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:31
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Folosește câmpurile de mai jos ca să încarci pachetul suplimentului. După încărcare, pe fișierul tău va fi executată o serie de teste automate de validare."
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:34
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:35
 #, python-format
 msgid "The maximum file size accepted is %(max_size)s. If your add-on is larger than %(max_size)s, it will fail validation."
 msgstr "Dimensiunea maximă acceptată a fișierului este %(max_size)s. Dacă suplimentul este mai mare decât %(max_size)s, validarea va eșua."
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:59
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:60
 msgid "Which applications is this version compatible with?"
 msgstr "Cu ce aplicații este compatibilă versiunea?"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:66
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:67
 msgid "Administrative overrides"
 msgstr "Suprareglaje administrative"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:79
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:80
 msgid "Create a Theme Version"
 msgstr "Creează o versiune de temă"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:85
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:82
+msgid "You can upload a finished theme using the upload option above, or you can build it yourself using this tool."
+msgstr "Poți încărca o temă finalizată folosind opțiunea de încărcare de mai sus sau o poți construi singur(ă) folosind acest instrument."
+
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:88
 msgid "Create a Theme"
 msgstr "Creează o temă"
 
@@ -3843,52 +3815,56 @@ msgstr "Suplimentul tău este afișat în galeria noastră și utilizatorii prim
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery."
 msgstr "Suplimentul a fost dezactivat de un administrator al site-ului și nu mai este afișat în galeria noastră."
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html:33
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:32
+msgid "Your add-on listing was rejected. It is not listed in our gallery. Please address the reasons and reapply for review."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:35
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
 "Suplimentul tău nu va fi inclus în rezultatele de căutare și pagina lui de listare va indica cum că l-ai dezactivat. Depunerile de versiuni noi pentru listare nu vor fi acceptate în această stare."
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html:40 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:85
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:42 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:85
 msgid "Created:"
 msgstr "Creat:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html:46 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:81
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:48 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:81
 msgid "Last Updated:"
 msgstr "Ultima actualizare:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html:56
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:58
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr "Listat pe acest site după ce a trecut cu succes recenzia codului. Actualizările automate sunt gestionate de acest site"
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html:68
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:70
 msgid "Listed Version:"
 msgstr "Versiune listată:"
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html:70
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:72
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
 msgstr "Aceasta este versiunea suplimentului tău care va fi instalată dacă cineva dă clic pe butonul Instalează de pe addons.mozilla.org"
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html:79
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:81
 msgid "Next Listed Version:"
 msgstr "Următoarea versiune din listă:"
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html:81
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:83
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr "Aceasta este cea mai recentă versiune încărcată, dar încă nu este live pe site"
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html:99 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:66
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:101 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:66
 #: src/olympia/devhub/templates/devhub/versions/list.html:26
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr "Semnat pentru autodistribuție. Actualizările sunt gestionate de tine."
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html:105
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:107
 msgid "Latest Version:"
 msgstr "Ultima versiune:"
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html:107
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:109
 msgid "This is the newest uploaded unlisted version"
 msgstr "Aceasta este cea mai nouă versiune nelistată încărcată"
 
@@ -4234,7 +4210,7 @@ msgstr "Blog"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html:39
 msgid "Sign Out"
-msgstr "Ieșire"
+msgstr "Ieși din cont"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html:41
 msgid "No Photo"
@@ -4266,11 +4242,11 @@ msgstr "Ești gata să trimiți sau să îți gestionezi extensia?"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/submit_or_manage_extension.html:7
 msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
-msgstr "Autentifică-te pe centrul dezvoltatorilor ca să trimiți sau să gestionezi extensii și teme."
+msgstr "Intră în cont pe centrul dezvoltatorilor ca să trimiți sau să gestionezi extensii și teme."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/submit_or_manage_extension.html:11
 msgid "Register for a developer account or log in to the Developer Hub"
-msgstr "Creează-ți un cont de dezvoltator sau autentifică-te pe centrul dezvoltatorilor"
+msgstr "Fă-ți un cont de dezvoltator sau intră în cont pe centrul dezvoltatorilor"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:5
 #, python-brace-format
@@ -4512,7 +4488,7 @@ msgid "Are you sure you wish to hide your add-on?"
 msgstr "Sigur vrei să-ți ascunzi suplimentul?"
 
 #. L10n: first parameter is the number of errors
-#: src/olympia/devhub/templatetags/jinja_helpers.py:78
+#: src/olympia/devhub/templatetags/jinja_helpers.py:79
 #, python-brace-format
 msgid "{0} error"
 msgid_plural "{0} errors"
@@ -4521,7 +4497,7 @@ msgstr[1] "{0} erori"
 msgstr[2] "{0} de erori"
 
 #. L10n: first parameter is the number of warnings
-#: src/olympia/devhub/templatetags/jinja_helpers.py:82
+#: src/olympia/devhub/templatetags/jinja_helpers.py:83
 #, python-brace-format
 msgid "{0} warning"
 msgid_plural "{0} warnings"
@@ -4531,55 +4507,55 @@ msgstr[2] "{0} de avertismente"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:2 src/olympia/discovery/strings.jinja2:760
+#: src/olympia/discovery/strings.jinja2:2 src/olympia/discovery/strings.jinja2:777
 msgid "Block invisible trackers and spying ads that follow you around the web."
-msgstr "Blochează elementele de urmărire invizibile și reclamele spionătoare care te urmăresc pe web."
+msgstr "Blochează elementele de urmărire invizibile și reclamele care te spionează și te urmăresc pe web."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:5 src/olympia/discovery/strings.jinja2:853
+#: src/olympia/discovery/strings.jinja2:5 src/olympia/discovery/strings.jinja2:870
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
 msgstr "Bucură-te de o pagină nouă frumoasă, cu fundaluri personalizate, informații meteo locale și multe altele."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:8 src/olympia/discovery/strings.jinja2:763
+#: src/olympia/discovery/strings.jinja2:8 src/olympia/discovery/strings.jinja2:780
 msgid "Highlight any text, right-click, and translate instantly."
 msgstr "Evidențiază orice text, dă clic dreapta și tradu instant."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:11 src/olympia/discovery/strings.jinja2:847
+#: src/olympia/discovery/strings.jinja2:11 src/olympia/discovery/strings.jinja2:864
 msgid "Perform reverse image searches from an array of engines."
 msgstr "Efectuezi căutări inverse de imagini dintr-o gamă de motoare de căutare."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:14 src/olympia/discovery/strings.jinja2:808
+#: src/olympia/discovery/strings.jinja2:14 src/olympia/discovery/strings.jinja2:825
 msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
 msgstr "Blocator de reclame și protecție pentru viața privată. O configurare simplă îți permite să preiei controlul asupra reclamelor pe care le vezi și cum ești urmărit pe internet."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:17 src/olympia/discovery/strings.jinja2:811
+#: src/olympia/discovery/strings.jinja2:17 src/olympia/discovery/strings.jinja2:828
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr "Ai o mulțime de file deschise? Organizează-le într-o bară laterală ordonată."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:20 src/olympia/discovery/strings.jinja2:796
+#: src/olympia/discovery/strings.jinja2:20 src/olympia/discovery/strings.jinja2:813
 msgid "Stop Facebook tracking. Isolate your Facebook identity into a separate “container” to prevent Facebook from tracking you around the web."
 msgstr "Oprește urmărirea practicată de Facebook. Izolează-ți identitatea Facebook într-un „container” separat, ceea ce face mai greu pentru Facebook să-ți urmărească mișcările de pe web."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:23 src/olympia/discovery/strings.jinja2:850
+#: src/olympia/discovery/strings.jinja2:23 src/olympia/discovery/strings.jinja2:867
 msgid "Simplify search by highlighting text on any web page to search the phrase from an array of engines."
 msgstr "Simplifică căutarea evidențiind textul pe orice pagină web pentru a căuta expresia într-o gamă de motoare de căutare."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:26 src/olympia/discovery/strings.jinja2:787
+#: src/olympia/discovery/strings.jinja2:26 src/olympia/discovery/strings.jinja2:804
 msgid "Instant weather updates from around the world."
 msgstr "Actualizări meteo instant de pe tot globul."
 
@@ -4590,13 +4566,13 @@ msgstr "Alege pagina pe care o vezi de fiecare dată când deschizi o filă nou�
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:32 src/olympia/discovery/strings.jinja2:766
+#: src/olympia/discovery/strings.jinja2:32 src/olympia/discovery/strings.jinja2:783
 msgid "See an interesting picture on the web and want to learn more about it? Try this image search tool."
 msgstr "Vezi o imagine interesantă pe web și vrei să afli mai multe despre ea? Încearcă această unealtă de căutat imagini."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:35 src/olympia/discovery/strings.jinja2:769
+#: src/olympia/discovery/strings.jinja2:35 src/olympia/discovery/strings.jinja2:786
 msgid "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
 msgstr "Descarcă videoclipuri cu ușurință. Funcționează cu YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope și sute de alte site-uri video."
 
@@ -4612,13 +4588,13 @@ msgstr "Gestionarea parolelor simplificată. Sincronizează-ți toate datele de 
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:44 src/olympia/discovery/strings.jinja2:775
+#: src/olympia/discovery/strings.jinja2:44 src/olympia/discovery/strings.jinja2:792
 msgid "Effective, lightweight ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr "Un blocker de reclame de mărime redusă și eficient. uBlock Origin aplică mii de filtre pentru conținut fără să devoreze prea multă memorie."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:47 src/olympia/discovery/strings.jinja2:781
+#: src/olympia/discovery/strings.jinja2:47 src/olympia/discovery/strings.jinja2:798
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr "Bucură-te de o suită de funcționalități YouTube noi, precum modul cinema, blocarea reclamelor, comanda de redare automată și multe altele."
 
@@ -4659,13 +4635,13 @@ msgstr "Oprește site-urile web rău intenționate să-ți utilizeze resursele c
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:71 src/olympia/discovery/strings.jinja2:709
+#: src/olympia/discovery/strings.jinja2:71 src/olympia/discovery/strings.jinja2:726
 msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
 msgstr "Obții ajutor gramatical oriunde scrii pe web—rețele de socializare, e-mail, documente și multe altele."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:74 src/olympia/discovery/strings.jinja2:793
+#: src/olympia/discovery/strings.jinja2:74 src/olympia/discovery/strings.jinja2:810
 msgid "Display current worldwide times in Firefox's status bar."
 msgstr "Afișează ora exactă din orice țară în bara de stare din Firefox."
 
@@ -4686,7 +4662,7 @@ msgstr "Personalizează gesturile din mouse. Descoperă un mod nou de navigare c
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:86 src/olympia/discovery/strings.jinja2:904
+#: src/olympia/discovery/strings.jinja2:86 src/olympia/discovery/strings.jinja2:921
 msgid "Darken the page around video players for a focused viewing experience."
 msgstr "Întunecă pagina în jurul playerelor video pentru o experiență de vizualizare focalizată."
 
@@ -4703,13 +4679,13 @@ msgstr "Pagina pe care o cauți este indisponibilă? Caută o versiune arhivată
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:98 src/olympia/discovery/strings.jinja2:772
+#: src/olympia/discovery/strings.jinja2:98 src/olympia/discovery/strings.jinja2:789
 msgid "Hover over an image to magnify it."
-msgstr "Treci cu mouse-ul peste o imagine pentru mărire."
+msgstr "Plasează cursorul pe o imagine pentru a o mări."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:101 src/olympia/discovery/strings.jinja2:844
+#: src/olympia/discovery/strings.jinja2:101 src/olympia/discovery/strings.jinja2:861
 msgid "Automatically erase cookies after you close a tab."
 msgstr "Șterge automat cookie-urile după ce închizi o filă."
 
@@ -4720,25 +4696,25 @@ msgstr "Un mod simplu de ajustare a mărimii textului de pe orice pagină—sau 
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:107 src/olympia/discovery/strings.jinja2:805
+#: src/olympia/discovery/strings.jinja2:107 src/olympia/discovery/strings.jinja2:822
 msgid "Stop trackers in their tracks and learn more about them."
 msgstr "Oprești instant elementele de urmărire și afli mai multe despre ele."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:110 src/olympia/discovery/strings.jinja2:865
+#: src/olympia/discovery/strings.jinja2:110 src/olympia/discovery/strings.jinja2:882
 msgid "Leave a clean digital trail. Make Firefox forget website data like cookies and local storage, but only for domains you choose."
 msgstr "Lasă urme digitale curate. Fă Firefox să uite datele site-urilor web, precum cookie-uri și stocare locală, dar numai pentru domeniile alese de tine."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:113 src/olympia/discovery/strings.jinja2:835
+#: src/olympia/discovery/strings.jinja2:113 src/olympia/discovery/strings.jinja2:852
 msgid "No need to write the same thing over and over. Save frequently-entered text to paste anytime."
 msgstr "Nu este nevoie să scrii același lucru iar și iar. Salvează textele introduse frecvent și inserează-le în orice moment."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:116 src/olympia/discovery/strings.jinja2:802
+#: src/olympia/discovery/strings.jinja2:116 src/olympia/discovery/strings.jinja2:819
 msgid "Get more screen space by removing ads from your web-based inbox."
 msgstr "Fă-ți spațiu pe ecran eliminând reclamele din căsuța poștală web."
 
@@ -4749,25 +4725,25 @@ msgstr "Gestionează-ți filele deschise într-o bară laterală ordonată."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:122 src/olympia/discovery/strings.jinja2:907
+#: src/olympia/discovery/strings.jinja2:122 src/olympia/discovery/strings.jinja2:924
 msgid "Avoid sneaky trackers and restrictions. Disguise your navigation by cloaking the identity of your browser and operating system."
 msgstr "Evită elementele de urmărire insidioase și restricțiile. Disimulează-ți navigarea prin mascarea identității browserului și a sistemului de operare."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:125 src/olympia/discovery/strings.jinja2:799
+#: src/olympia/discovery/strings.jinja2:125 src/olympia/discovery/strings.jinja2:816
 msgid "Automatically reload tabs based on time intervals you set."
 msgstr "Reîncarcă automat filele în baza intervalelor de timp setate de tine."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:128 src/olympia/discovery/strings.jinja2:973
+#: src/olympia/discovery/strings.jinja2:128 src/olympia/discovery/strings.jinja2:990
 msgid "Keep parts of your online life separated into color-coded and cookie separated tabs. Now integrated with Mozilla VPN for an extra layer of privacy."
 msgstr "Păstrează părți ale vieții tale online separate în file codificate pe culori și cookie-uri separate. Acum integrat cu Mozilla VPN pentru un nivel suplimentar de confidențialitate."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:131 src/olympia/discovery/strings.jinja2:784
+#: src/olympia/discovery/strings.jinja2:131 src/olympia/discovery/strings.jinja2:801
 msgid "Gain an additional layer of tracking protection as you browse the web."
 msgstr "Obține un strat suplimentar de protecție împotriva urmăririi în timp ce navighezi pe web."
 
@@ -4778,7 +4754,7 @@ msgstr "Citește fișiere ePub direct în Firefox—poți mări fonturile, dimen
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:137 src/olympia/discovery/strings.jinja2:901
+#: src/olympia/discovery/strings.jinja2:137 src/olympia/discovery/strings.jinja2:918
 msgid "Play YouTube videos by default in the highest quality, turn off annotations, and more."
 msgstr "Redai videoclipuri YouTube implicit la cea mai mare calitate, dezactivezi adnotările și multe altele."
 
@@ -4799,7 +4775,7 @@ msgstr "Îmbunătățește-ți experiența de vizualizare prin reglarea vitezei 
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:149 src/olympia/discovery/strings.jinja2:790
+#: src/olympia/discovery/strings.jinja2:149 src/olympia/discovery/strings.jinja2:807
 msgid "Add encrypted security to any site that supports HTTPS. Browse securely."
 msgstr "Adaugă securitate criptată pe orice site care are suport HTTPS. Navighează securizat."
 
@@ -4815,7 +4791,7 @@ msgstr "Schimbă-ți modul în care navighezi pe Reddit folosind etichete și mu
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:158
-msgid "Screenshot webpages, make edits, and share."
+msgid "Screenshot webpages, make edits & share."
 msgstr "Fă capturi de ecran cu pagini web, editează--le și partajează-le."
 
 #. editorial content for the discovery pane.
@@ -4845,13 +4821,13 @@ msgstr "Definește o pagină de start personalizată pentru filele noi."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:176 src/olympia/discovery/strings.jinja2:832
+#: src/olympia/discovery/strings.jinja2:176 src/olympia/discovery/strings.jinja2:849
 msgid "Convert all your open tabs into a list to easily manage them and speed up Firefox."
 msgstr "Convertește-ți toate filele deschise într-o listă ca să le gestionezi ușor și să faci Firefox mai rapid."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:179 src/olympia/discovery/strings.jinja2:754
+#: src/olympia/discovery/strings.jinja2:179 src/olympia/discovery/strings.jinja2:771
 msgid "Robust download management. Check the state of your downloads through a status bar, download history page, and more."
 msgstr "Gestionare robustă a descărcărilor. Verifici starea descărcărilor cu o bară de stare, pagina cu istoricul descărcărilor și multe altele."
 
@@ -4882,7 +4858,7 @@ msgstr "Redu efortul ochilor prin scăderea luminozității de afișare."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:197 src/olympia/discovery/strings.jinja2:751
+#: src/olympia/discovery/strings.jinja2:197 src/olympia/discovery/strings.jinja2:768
 msgid "Block all pop-ups by default, then decide which ones you'd like to open."
 msgstr "Blochează implicit toate pop-up-urile, apoi decizi pe care ai vrea să le deschizi."
 
@@ -4913,7 +4889,7 @@ msgstr "Îmbunătățește-ți experiența de lectură. Fă mai atrăgător text
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:215 src/olympia/discovery/strings.jinja2:826
+#: src/olympia/discovery/strings.jinja2:215 src/olympia/discovery/strings.jinja2:843
 msgid "Right-click and drag links you want open in new tabs."
 msgstr "Dă clic dreapta și trage linkuri pe care vrei să le deschizi în file noi."
 
@@ -4954,7 +4930,7 @@ msgstr "Urmărești istoricul prețurilor, găsești produse concurente, afli ev
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:239 src/olympia/discovery/strings.jinja2:748
+#: src/olympia/discovery/strings.jinja2:239 src/olympia/discovery/strings.jinja2:765
 msgid "Make it your YouTube. Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
 msgstr "Personalizează YouTube. Redai videoclipurile într-o fereastră contextuală, vezi reclame numai în canalele la care te-ai abonat, faci capturi de ecrane cu videoclipuri și atât de multe altele."
 
@@ -5035,7 +5011,7 @@ msgstr "Verifică-ți toate fluxurile RSS preferate pe o singură pagină."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:287 src/olympia/discovery/strings.jinja2:745
+#: src/olympia/discovery/strings.jinja2:287 src/olympia/discovery/strings.jinja2:762
 msgid "Enable night mode for a better viewing experience."
 msgstr "Activează modul de noapte pentru o mai bună experiență vizuală."
 
@@ -5091,13 +5067,13 @@ msgstr "Creează note generale și specifice site-urilor web de revăzut mai tâ
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:320 src/olympia/discovery/strings.jinja2:724
+#: src/olympia/discovery/strings.jinja2:320 src/olympia/discovery/strings.jinja2:741
 msgid "Phone-like scrolling for your desktop. Features \"grab-n-drag\" style mouse movement."
 msgstr "Derulare ca pe telefon pentru desktop. Are mișcarea de mouse tip „apucare și tragere”."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:323 src/olympia/discovery/strings.jinja2:895
+#: src/olympia/discovery/strings.jinja2:323 src/olympia/discovery/strings.jinja2:912
 msgid "Clear your browser cache with a click or keystroke."
 msgstr "Golește cache-ul browserului cu un clic sau o tastă."
 
@@ -5108,13 +5084,13 @@ msgstr "Evidențiază text pe paginile web de salvat și accesat mai târziu."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:329 src/olympia/discovery/strings.jinja2:721
+#: src/olympia/discovery/strings.jinja2:329 src/olympia/discovery/strings.jinja2:738
 msgid "Enjoy music from 30,000+ radio stations from all over the globe."
 msgstr "Bucură-te de muzică de la peste 30.000 de posturi radio de pe întreg globul."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:332 src/olympia/discovery/strings.jinja2:892
+#: src/olympia/discovery/strings.jinja2:332 src/olympia/discovery/strings.jinja2:909
 msgid "Save bandwidth by just streaming the audio from YouTube clips."
 msgstr "Economisește lățime de bandă prin difuzare audio numai din videoclipurile de pe YouTube."
 
@@ -5125,13 +5101,13 @@ msgstr "Transformă cuvintele în titluri frumoase și texte suprapuse pe imagin
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:338 src/olympia/discovery/strings.jinja2:742
+#: src/olympia/discovery/strings.jinja2:338 src/olympia/discovery/strings.jinja2:759
 msgid "Automatically navigate to the secure version of a website if it's available."
 msgstr "Navighează automat spre versiunea securizată a unui site web dacă este disponibilă."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:341 src/olympia/discovery/strings.jinja2:823
+#: src/olympia/discovery/strings.jinja2:341 src/olympia/discovery/strings.jinja2:840
 msgid "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
 msgstr "Șterge-ți istoricul de navigare. Specifică un număr personalizat de zile pentru păstrarea istoricului în browser înainte de ștergerea lui automată."
 
@@ -5157,7 +5133,7 @@ msgstr "Căutare privată numai dintr-un clic."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:359 src/olympia/discovery/strings.jinja2:856
+#: src/olympia/discovery/strings.jinja2:359 src/olympia/discovery/strings.jinja2:873
 msgid "Put an end to tab hijacking. Don't let clicked links take control of your current tab and load content you didn't ask for."
 msgstr "Pune capăt deturnării filelor. Nu lăsa linkurile pe care dai clic să preia controlul asupra filei actuale și să încarce conținut nedorit."
 
@@ -5272,13 +5248,13 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:425 src/olympia/discovery/strings.jinja2:859
+#: src/olympia/discovery/strings.jinja2:425 src/olympia/discovery/strings.jinja2:876
 msgid "Only allow web content to run from sites you trust. Surf securely."
 msgstr "Permiți rularea conținutului web numai de pe site-urile în care ai încredere. Navighezi în siguranță."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:428 src/olympia/discovery/strings.jinja2:730
+#: src/olympia/discovery/strings.jinja2:428 src/olympia/discovery/strings.jinja2:747
 msgid "Take full control of the cookies you've accumulated while browsing."
 msgstr "Preia complet controlul asupra cookie-urilor acumulate în timpul navigării."
 
@@ -5289,7 +5265,7 @@ msgstr "Șterge automat istoricul din browser pentru site-uri web selectate de t
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:434 src/olympia/discovery/strings.jinja2:820
+#: src/olympia/discovery/strings.jinja2:434 src/olympia/discovery/strings.jinja2:837
 msgid "Password-protect your personal bookmarks."
 msgstr "Protejează cu parolă marcajele tale personale."
 
@@ -5315,7 +5291,7 @@ msgstr "Bucură-te de posibilitatea de a descărca clipuri video și/sau audio �
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:449 src/olympia/discovery/strings.jinja2:715
+#: src/olympia/discovery/strings.jinja2:449 src/olympia/discovery/strings.jinja2:732
 msgid "Learn where any website's server is geographically located. Be an informed web traveler."
 msgstr "Află unde este localizat geografic serverul oricărui site web. Fii un călător pe web informat."
 
@@ -5327,7 +5303,7 @@ msgstr "Repară sonorul supărător. Volum sonor prea mic pe un site web? Sau pr
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:455
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
-msgstr "Editezi o pagină web înainte de tipărire. Fă modificări vizuale extraordinare — elimină reclamele sau conținutul neinteresant — pe orice pagină web pe care vrei să o tipărești."
+msgstr "Editezi o pagină web înainte de printare. Fă modificări vizuale extraordinare — elimină reclamele sau conținutul neinteresant — pe orice pagină web pe care vrei să o printezi."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:458
@@ -5336,13 +5312,13 @@ msgstr "Urmărește istoricul prețurilor de pe Amazon. Ia decizii inteligente d
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:461 src/olympia/discovery/strings.jinja2:886
+#: src/olympia/discovery/strings.jinja2:461 src/olympia/discovery/strings.jinja2:903
 msgid "Adjust browser audio settings with extreme clarity."
 msgstr "Ajustează setările audio ale browserului la o calitate extremă de claritate."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:464 src/olympia/discovery/strings.jinja2:712
+#: src/olympia/discovery/strings.jinja2:464 src/olympia/discovery/strings.jinja2:729
 msgid "Defend yourself against the sneakiest trackers."
 msgstr "Apără-te de cele mai insidioase elemente de urmărire."
 
@@ -5368,7 +5344,7 @@ msgstr "Cu un clic de mouse poți vedea videoclipuri pe ecran complet."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:482 src/olympia/discovery/strings.jinja2:862
+#: src/olympia/discovery/strings.jinja2:482 src/olympia/discovery/strings.jinja2:879
 msgid "Stop wasting valuable memory space with inactive tabs."
 msgstr "Nu mai irosi spațiul valoros de memorie cu file inactive."
 
@@ -5389,19 +5365,19 @@ msgstr "Obține ajutor gramatical oriunde scrii pe web — pe rețelele sociale,
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:494 src/olympia/discovery/strings.jinja2:706
+#: src/olympia/discovery/strings.jinja2:494 src/olympia/discovery/strings.jinja2:723
 msgid "Read with more clarity and ease. Remove the clutter around text on web pages."
 msgstr "Citește mai clar și mai ușor. Elimină aglomerația din jurul textelor pe paginile web."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:497 src/olympia/discovery/strings.jinja2:703
+#: src/olympia/discovery/strings.jinja2:497 src/olympia/discovery/strings.jinja2:720
 msgid "Block ads and get enhanced protection against malware and ad tracking."
 msgstr "Blochezi reclame și obții o protecție sporită împotriva softurilor malițioase și a urmăririi prin reclame."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:500 src/olympia/discovery/strings.jinja2:883
+#: src/olympia/discovery/strings.jinja2:500 src/olympia/discovery/strings.jinja2:900
 msgid "Enjoy multi-threading download support. Automatically detect different types of media available for download."
 msgstr "Bucură-te de suport multifilar la descărcare. Detectează automat diferite tipuri de multimedia disponibile pentru descărcare."
 
@@ -5422,19 +5398,19 @@ msgstr "Bucură-te de beneficiile unei gestionări puternice a parolelor."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:512 src/olympia/discovery/strings.jinja2:733
+#: src/olympia/discovery/strings.jinja2:512 src/olympia/discovery/strings.jinja2:750
 msgid "Customize shades of light and dark to make web pages more visually pleasing."
 msgstr "Personalizează tente de clar/obscur pentru a optimiza vizual paginile."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:515 src/olympia/discovery/strings.jinja2:880
+#: src/olympia/discovery/strings.jinja2:515 src/olympia/discovery/strings.jinja2:897
 msgid "Block distracting websites. Simply list the sites you want the extension to block. Instant discipline!"
 msgstr "Blochezi site-urile web care îți distrag atenția. Pur și simplu enumeri site-urile pe care vrei să le blocheze extensia. Disciplină instant!"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:518 src/olympia/discovery/strings.jinja2:727
+#: src/olympia/discovery/strings.jinja2:518 src/olympia/discovery/strings.jinja2:744
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
 msgstr "Schimbă-ți aspectul browserului. Îți creezi ușor propriile teme vizuale și dai Firefox-ului un aspect pe gustul tău."
 
@@ -5455,13 +5431,13 @@ msgstr "Urmărești produse și primești notificări când scad prețurile la a
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:530 src/olympia/discovery/strings.jinja2:700
+#: src/olympia/discovery/strings.jinja2:530 src/olympia/discovery/strings.jinja2:717
 msgid "Turn the web dark or select a custom color scheme to visually tailor the internet to your own taste."
 msgstr "Navighează pe web cu o temă întunecată sau selectează o paletă de culori personalizată pentru a plia vizual Internetul pe gustul tău."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:533 src/olympia/discovery/strings.jinja2:919
+#: src/olympia/discovery/strings.jinja2:533 src/olympia/discovery/strings.jinja2:936
 msgid "Get a more advanced search page on Firefox for Android."
 msgstr "Obține o pagină de căutare mai avansată în Firefox pentru Android."
 
@@ -5487,7 +5463,7 @@ msgstr "Ștergi cookie-uri, istoricul de navigare și fișiere din cache dintr-u
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:549 src/olympia/discovery/strings.jinja2:814
+#: src/olympia/discovery/strings.jinja2:549 src/olympia/discovery/strings.jinja2:831
 msgid "Remove tracking elements from web links."
 msgstr "Elimini elementele de urmărire din linkurile web."
 
@@ -5498,13 +5474,13 @@ msgstr "Obții dosare de marcaje de fluxuri RSS populate automat."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:555 src/olympia/discovery/strings.jinja2:877
+#: src/olympia/discovery/strings.jinja2:555 src/olympia/discovery/strings.jinja2:894
 msgid "Easily organize tons of open tabs."
 msgstr "Organizezi ușor tone de file deschise."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:558 src/olympia/discovery/strings.jinja2:817
+#: src/olympia/discovery/strings.jinja2:558 src/olympia/discovery/strings.jinja2:834
 msgid "Create and customize tab groups."
 msgstr "Creezi și personalizezi grupuri de file."
 
@@ -5520,13 +5496,13 @@ msgstr "Blochează toate reclamele — video, pop-up, bannere și multe altele."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:569 src/olympia/discovery/strings.jinja2:871
+#: src/olympia/discovery/strings.jinja2:569 src/olympia/discovery/strings.jinja2:888
 msgid "Watch streaming media with friends and family anywhere."
 msgstr "Urmărești fluxuri media cu prietenii și familia oriunde."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:572 src/olympia/discovery/strings.jinja2:913
+#: src/olympia/discovery/strings.jinja2:572 src/olympia/discovery/strings.jinja2:930
 msgid "Skip over sponsored portions of YouTube videos."
 msgstr "Sari peste porțiunile sponsorizate ale videoclipurilor YouTube."
 
@@ -5537,31 +5513,31 @@ msgstr "Ascultă conținutul paginilor web. Suport pentru peste 40 de limbi."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:578 src/olympia/discovery/strings.jinja2:910
+#: src/olympia/discovery/strings.jinja2:578 src/olympia/discovery/strings.jinja2:927
 msgid "Double-click any word to instantly see its definition."
 msgstr "Dă dublu clic pe orice cuvânt pentru a-i vedea definiția."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:583 src/olympia/discovery/strings.jinja2:952
+#: src/olympia/discovery/strings.jinja2:583 src/olympia/discovery/strings.jinja2:969
 msgid "Save batches of tabs as convenient bookmarks."
 msgstr "Salvează loturi de file ca marcaje convenabile."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:586 src/olympia/discovery/strings.jinja2:955
+#: src/olympia/discovery/strings.jinja2:586 src/olympia/discovery/strings.jinja2:972
 msgid "Tabs and bookmarks neatly organized in a Firefox side view."
 msgstr "File și marcaje organizate bine într-o vizualizare laterală Firefox."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:589 src/olympia/discovery/strings.jinja2:934
+#: src/olympia/discovery/strings.jinja2:589 src/olympia/discovery/strings.jinja2:951
 msgid "Thousands of GIFs at your fingertips."
 msgstr "Mii de GIF-uri la îndemână."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:592 src/olympia/discovery/strings.jinja2:940
+#: src/olympia/discovery/strings.jinja2:592 src/olympia/discovery/strings.jinja2:957
 msgid "The easiest way to manage YouTube subscriptions."
 msgstr "Cel mai ușor mod de a gestiona abonamentele YouTube."
 
@@ -5572,7 +5548,7 @@ msgstr "Obține bara de derulare pe care ați dorit-o dintotdeauna — specific�
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:598 src/olympia/discovery/strings.jinja2:949
+#: src/olympia/discovery/strings.jinja2:598 src/olympia/discovery/strings.jinja2:966
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
 msgstr "Salvezi și restaurezi file. Include funcții de salvare automată și sincronizare în cloud."
 
@@ -5644,7 +5620,7 @@ msgstr "Dicționar pop-up puternic, optimizat pentru învățarea de limbi noi."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:673
 msgid "Hover your mouse over thumbnails to easily browse and download HD images."
-msgstr "Treci cu mouse-ul peste miniaturi ca să navighezi ușor și să descarci imagini HD."
+msgstr "Plasează cursorul pe miniaturi pentru a naviga cu ușurință și pentru a descărca imagini HD."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:676
@@ -5659,659 +5635,745 @@ msgstr "Face ca Firefox să treacă drept Chrome pentru site-urile care încearc
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:685
 msgid "Manage your Gmail (even multiple accounts) right from Firefox's toolbar button."
-msgstr ""
+msgstr "Gestionează-ți contul gmail (chiar și mai multe conturi) direct din butonul din bara de instrumente Firefox."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:688
 msgid "Track the time you spend on the web, analyze your habits, block distracting sites & more."
-msgstr ""
+msgstr "Urmărești timpul cât stai pe web, îți analizezi obiceiurile, blochezi site-uri care îți distrag atenția și multe altele."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:691
 msgid "Improve your writing — get instant access to the power of synonyms."
-msgstr ""
+msgstr "Îți îmbunătățești scrisul — obții acces instant la puterea sinonimelor."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:694
 msgid "Deep translation features for a rich language experience anywhere on the web."
-msgstr ""
+msgstr "Funcții de traducere profundă pentru o experiență lingvistică bogată oriunde pe web."
+
+#. editorial content for the discovery pane.
+#: src/olympia/discovery/strings.jinja2:697
+msgid "Leave yourself little notes on any website."
+msgstr "Lasă-ți mici notițe pe orice site web."
+
+#. editorial content for the discovery pane.
+#: src/olympia/discovery/strings.jinja2:700
+msgid "Discover and download higher quality versions of interesting images and videos you find on the web."
+msgstr "Descoperă și descarcă versiuni de calitate superioară ale imaginilor și videoclipurilor interesante pe care le găsești pe web."
+
+#. editorial content for the discovery pane.
+#: src/olympia/discovery/strings.jinja2:703
+msgid "Save and organize anything you find on the web — articles, media, PDFs & more."
+msgstr "Salvează și organizează tot ce găsești pe web — articole, fișiere media, fișiere PDF și multe altele."
+
+#. editorial content for the discovery pane.
+#: src/olympia/discovery/strings.jinja2:706
+msgid "Enhance your Reddit experience with color-coded comments, simpler navigation, gestures for upvoting & much more."
+msgstr "Îmbunătățește-ți experiența pe Reddit cu comentarii codificate pe culori, navigare mai simplă, gesturi pentru vot pozitiv și multe altele."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:697
+#: src/olympia/discovery/strings.jinja2:714
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Unele site-uri web întâmpină dificultăți la redarea videoclipurilor pe Android. Această extensie le rezolvă."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:718
+#: src/olympia/discovery/strings.jinja2:735
 msgid "Find an interesting pic on the web? Use TinEye to discover its origins."
 msgstr "Ai găsit o imagine interesantă pe web? Folosește TinEye ca să descoperi de unde provine."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:736
+#: src/olympia/discovery/strings.jinja2:753
 msgid "Save images easily — just grab them from your current tab."
 msgstr "Salvezi ușor imagini — pur și simplu le iei din fila actuală."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:739
+#: src/olympia/discovery/strings.jinja2:756
 msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title & more."
 msgstr "Bucură-te de controlul absolut asupra filelor — închide file duplicate, îmbină ferestre, copiază titluri de file și multe altele."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:757
+#: src/olympia/discovery/strings.jinja2:774
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
 msgstr "Citește fișiere ePUB direct în Firefox — mărește dimensiunea fontului, dimensiunile paginii și multe altele."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:778
+#: src/olympia/discovery/strings.jinja2:795
 msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configurations."
 msgstr "Personalizezi gesturile din mouse. Descoperi noi modalități de navigare cu peste 50 de configurații."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:829
+#: src/olympia/discovery/strings.jinja2:846
 msgid "Customize the look of any website. Shift colors, page backgrounds & more."
 msgstr "Personalizezi aspectul oricărui site web. Schimbi culori, fundaluri de pagini și multe altele."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:838
+#: src/olympia/discovery/strings.jinja2:855
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "Folosești gesturi din mouse pentru închiderea filelor, navigarea prin pagini și multe altele."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:841
+#: src/olympia/discovery/strings.jinja2:858
 msgid "A simple way to adjust the size of any page's text — or even enlarge the page itself."
 msgstr "Un mod simplu de ajustare a mărimii textului pe orice pagină — sau chiar pentru mărirea paginii."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:868
+#: src/olympia/discovery/strings.jinja2:885
 msgid "Enjoy thumbnail images of websites alongside your search returns."
 msgstr "Bucură-te de imagini miniaturale ale site-urilor web alături de rezultatele căutărilor tale."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:874
+#: src/olympia/discovery/strings.jinja2:891
 msgid "Save an entire web page — including images and styling — as a single HTML file."
 msgstr "Salvează o pagină web întreagă — inclusiv imagini și stil — într-un singur fișier HTML."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:889
+#: src/olympia/discovery/strings.jinja2:906
 msgid "Edit a web page before printing. Remove ads or any unwanted content."
 msgstr "Editezi o pagină web înainte de scoatere la imprimantă. Elimini reclame sau orice conținut nedorit."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:898
+#: src/olympia/discovery/strings.jinja2:915
 msgid "Advanced reader for aggregating all of your RSS/Atom/RDF sources."
 msgstr "Un lector avansat pentru agregarea tuturor surselor tale RSS/Atom/RDF."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:916
+#: src/olympia/discovery/strings.jinja2:933
 msgid "Web pages read aloud. 40+ languages supported."
 msgstr "Asculți conținutul paginilor web. Suport pentru peste 40 de limbi."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:922
+#: src/olympia/discovery/strings.jinja2:939
 msgid "Removes those long tracking parameters from Google search result URL's."
 msgstr "Elimină acei parametri de urmărire lungi din adresele URL ale rezultatelor la căutările pe Google."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:925
+#: src/olympia/discovery/strings.jinja2:942
 msgid "Get weather updates directly from Firefox."
 msgstr "Obține actualizări meteo direct din Firefox."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:928
+#: src/olympia/discovery/strings.jinja2:945
 msgid "Manage your time better with a browser clock that charts work intervals."
 msgstr "Gestionează-ți mai bine timpul cu un ceas de browser care prezintă intervalele de lucru."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:931
+#: src/olympia/discovery/strings.jinja2:948
 msgid "Tired of that \"Video paused. Continue watching?\" message? Listen to your favorite music uninterrupted on YouTube."
 msgstr "Te-ai săturat de mesajul „Videoclipul a fost întrerupt. Continui vizionarea?”? Ascultă muzica preferată fără întreruperi pe YouTube."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:937
+#: src/olympia/discovery/strings.jinja2:954
 msgid "Begone, annoying cookie warnings!"
 msgstr "Să dispară avertismentele enervante despre cookie-uri!"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:943
+#: src/olympia/discovery/strings.jinja2:960
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
 msgstr "Revii la vremuri mai simple — când primele rezultate ale căutării stăteau deasupra anunțurilor (compatibil cu motoarele de căutare Google și Bing)."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:946
+#: src/olympia/discovery/strings.jinja2:963
 msgid "Get the mouse scrollbar you've always wanted — specify width and color."
 msgstr "Obține bara de derulare pe care ați dorit-o dintotdeauna — specifică lățimea și culoarea."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:958
+#: src/olympia/discovery/strings.jinja2:975
 msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
 msgstr "Maschează-ți adresa de e-mail ca să îți protejezi identitatea și să previ primirea de mesaje nedorite. Noile actualizări fac Firefox Relay și mai ușor de utilizat."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:961
+#: src/olympia/discovery/strings.jinja2:978
 msgid "Instantly translate any selected text on web pages."
 msgstr "Traduci instant orice text selectat pe paginile web."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:964
+#: src/olympia/discovery/strings.jinja2:981
 msgid "Make Firefox change colors based on time of day."
 msgstr "Setezi Firefox să schimbe culorile în funcție de ora din zi."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:967
+#: src/olympia/discovery/strings.jinja2:984
 msgid "Eliminate YouTube distractions. Remove related and recommended video suggestions, comments & more."
 msgstr "Elimină distragerile atenției de pe YouTube. Elimină sugestiile, comentariile, videoclipurile recomandate și altele asemenea."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:970
+#: src/olympia/discovery/strings.jinja2:987
 msgid "Take emojis with you everywhere on the web."
 msgstr "Ia emoji-urile cu tine oriunde pe web."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:976
+#: src/olympia/discovery/strings.jinja2:993
 msgid "Put restrictions on distracting, time-wasting websites."
 msgstr "Pune restricții pe site-urile web care distrag atenția și care te fac să pierzi timpul."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:979
+#: src/olympia/discovery/strings.jinja2:996
 msgid "Remove clutter from your Twitter."
 msgstr "Elimină dezordinea de pe Twitter."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:982
+#: src/olympia/discovery/strings.jinja2:999
 msgid "Customize YouTube to taste."
 msgstr "Personalizează YouTube după preferințe."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:985
+#: src/olympia/discovery/strings.jinja2:1002
 msgid "Delete browsing data directly from the browser toolbar."
 msgstr "Ștergi datele de navigare direct din bara de instrumente a browserului."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:988
+#: src/olympia/discovery/strings.jinja2:1005
 msgid "Get RSS feed auto-updates direct to your bookmark folders."
 msgstr "Obții actualizări automate ale fluxurilor RSS direct în dosarele de marcaje."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:991
+#: src/olympia/discovery/strings.jinja2:1008
 msgid "Effective blocker against all types of ads."
 msgstr "Blochează eficient toate tipurile de reclame."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:994
+#: src/olympia/discovery/strings.jinja2:1011
 msgid "Mass download manager makes extreme downloading extremely easy."
 msgstr "Managerul de descărcare în masă face descărcările extreme extrem de ușoare."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:997
+#: src/olympia/discovery/strings.jinja2:1014
 msgid "Remove ads & receive better protection against malware."
 msgstr "Blochezi reclame și obții o protecție sporită împotriva softurilor malițioase."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1000
+#: src/olympia/discovery/strings.jinja2:1017
 msgid "Remove formatting from copied Clipboard text."
 msgstr "Elimină formatarea din textul copiat în clipboard."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1003
+#: src/olympia/discovery/strings.jinja2:1020
 msgid "Fingerprinting privacy protection."
 msgstr "Protecția confidențialității împotriva amprentării digitale."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1006
+#: src/olympia/discovery/strings.jinja2:1023
 msgid "Enhance your gaming experience on Steam."
 msgstr "Îmbunătățește-ți experiența de joc pe Steam."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1009
+#: src/olympia/discovery/strings.jinja2:1026
 msgid "Thumbs-up to bringing back thumbs-down."
 msgstr "Degetul mare în sus pentru a readuce degetul mare în jos."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1012
+#: src/olympia/discovery/strings.jinja2:1029
 msgid "Translate websites in Firefox — privately — without using the cloud."
 msgstr "Traduci site-uri web în Firefox — în mod privat — fără a utiliza cloudul."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1015
+#: src/olympia/discovery/strings.jinja2:1032
 msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
 msgstr "Blochează site-urile web care te fac să pierzi timpul. Blochează-le complet sau doar pentru intervalele de timp alese de tine."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1018
+#: src/olympia/discovery/strings.jinja2:1035
 msgid "Easily summarize emails, docs, articles, and video transcripts in English across the web — without sacrificing your privacy."
 msgstr "Faci ușor rezumate de mesaje e-mail, documente, articole și transcrieri video în limba engleză pe web — fără a-ți compromite confidențialitatea."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1021
+#: src/olympia/discovery/strings.jinja2:1038
 msgid "You’re in control. Turn off VPN when a website won’t work and set different locations for different websites. Windows only."
 msgstr "Tu deții controlul. Dezactivează VPN-ul atunci când nu funcționează un site web și setează locații diferite pentru site-uri web diferite. Numai pentru Windows."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1024
+#: src/olympia/discovery/strings.jinja2:1041
 msgid "Automatically handle GDPR consent forms."
 msgstr "Gestionezi automat formularele de consimțământ GDPR."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1027
+#: src/olympia/discovery/strings.jinja2:1044
 msgid "Block malicious websites from port scanning."
 msgstr "Blochezi scanarea porturilor pe site-urile web rău intenționate."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1030
+#: src/olympia/discovery/strings.jinja2:1047
 msgid "Enhance your Twitch experience."
 msgstr "Îmbunătățește-ți experiența Twitch."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1033
+#: src/olympia/discovery/strings.jinja2:1050
 msgid "Re-take control of Twitter/X and customize your experience."
 msgstr "Preia din nou controlul asupra Twitter/X și personalizează-ți experiența."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1036
+#: src/olympia/discovery/strings.jinja2:1053
 msgid "Translate text without leaving the page you're on (PDF compatible)."
 msgstr "Tradu text fără să ieși de pe pagină (compatibil cu PDF)."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1039
+#: src/olympia/discovery/strings.jinja2:1056
 msgid "Change the color of Firefox to match every website you visit."
 msgstr "Schimbă culoarea Firefox ca să se potrivească cu fiecare site web pe care intri."
 
+#. editorial content for the primary hero shelves.
+#: src/olympia/discovery/strings.jinja2:1059
+msgid "Learning a new language? Yomitan is the ideal dictionary companion."
+msgstr "Înveți o limbă nouă? Yomitan este companionul ideal de dicționar."
+
+#. editorial content for the primary hero shelves.
+#: src/olympia/discovery/strings.jinja2:1062
+msgid "Pack a powerful thesaurus right inside Firefox."
+msgstr "Include un dicționar puternic de sinonime chiar în Firefox."
+
+#. editorial content for the primary hero shelves.
+#: src/olympia/discovery/strings.jinja2:1065
+msgid "Hover over web images to enlarge their appearance."
+msgstr "Plasează cursorul pe imagini web pentru a le mări aspectul."
+
+#. editorial content for the primary hero shelves.
+#: src/olympia/discovery/strings.jinja2:1068
+msgid "Feature rich translation tool. Works across the web, eBooks, PDFs, even video subtitles."
+msgstr "Instrument de traducere bogat în funcții. Funcționează pe web, în cărți electronice, PDF-uri și chiar și în subtitrări video."
+
+#. editorial content for the primary hero shelves.
+#: src/olympia/discovery/strings.jinja2:1071
+msgid "Track the time you spend on every website you visit."
+msgstr "Urmărește timpul petrecut pe fiecare site web pe care intri."
+
+#. editorial content for the primary hero shelves.
+#: src/olympia/discovery/strings.jinja2:1074
+msgid "Manage your Gmail (even multiple accounts) right from a handy pop-up accessible from the Firefox toolbar."
+msgstr "Gestionează-ți contul Gmail (chiar și mai multe conturi) direct dintr-o fereastră pop-up accesibilă din bara de instrumente Firefox."
+
+#. editorial content for the primary hero shelves.
+#: src/olympia/discovery/strings.jinja2:1077
+msgid "De-clutter YouTube. Strip away unwanted elements like related videos, shorts & more."
+msgstr "Elimină elementele nedorite de pe YouTube, cum ar fi videoclipuri similare, scurtmetraje și multe altele."
+
+#. editorial content for the primary hero shelves.
+#: src/olympia/discovery/strings.jinja2:1080
+msgid "Leave yourself little notes on any web page."
+msgstr "Lasă-ți mici notițe pe orice pagină web."
+
+#. editorial content for the primary hero shelves.
+#: src/olympia/discovery/strings.jinja2:1083
+msgid "Serenity for your Reddit experience."
+msgstr "Liniște pentru experiența ta pe Reddit."
+
+#. editorial content for the primary hero shelves.
+#: src/olympia/discovery/strings.jinja2:1086
+msgid "Save and organize anything you find on the web."
+msgstr "Salvează și organizează tot ce găsești pe web."
+
+#. editorial content for the primary hero shelves.
+#: src/olympia/discovery/strings.jinja2:1089
+msgid "WebM video controls at your fingertips."
+msgstr "Comenzi video WebM la îndemână."
+
+#. editorial content for the primary hero shelves.
+#: src/olympia/discovery/strings.jinja2:1092
+msgid "Disguise Firefox as the Chrome browser to spoof websites that try to block Firefox."
+msgstr "Deghizează Firefox în browser Chrome pentru a intra pe site-urile web care încearcă să blocheze Firefox."
+
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1042
+#: src/olympia/discovery/strings.jinja2:1095
 msgid "Extensions are like apps for Firefox."
 msgstr "Extensiile sunt ca un fel de aplicații pentru Firefox."
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1044
+#: src/olympia/discovery/strings.jinja2:1097
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
-msgstr "Acestea adaugă funcționalități în Firefox pentru a face navigarea mai rapidă, mai sigură sau doar distractivă."
+msgstr "Ele adaugă funcționalități în Firefox pentru a face navigarea mai rapidă, mai sigură sau doar distractivă."
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1046
+#: src/olympia/discovery/strings.jinja2:1099
 msgid "See all extensions"
 msgstr "Vezi toate extensiile"
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1048
-msgid "Extension Starter Pack"
+#: src/olympia/discovery/strings.jinja2:1101
+msgid "YouTube extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1052
-msgid "Twitch customization"
+#. editorial content for the homepage shelves.
+#: src/olympia/discovery/strings.jinja2:1103 src/olympia/discovery/strings.jinja2:1194
+msgid "Creativity extensions"
+msgstr "Extensii de creativitate"
+
+#. editorial content for the secondary hero shelves.
+#: src/olympia/discovery/strings.jinja2:1105
+msgid "New Recommended extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1054 src/olympia/discovery/strings.jinja2:1056 src/olympia/discovery/strings.jinja2:1058
+#: src/olympia/discovery/strings.jinja2:1107 src/olympia/discovery/strings.jinja2:1109
 msgid "See staff picks"
 msgstr "Vezi recomandările echipei"
 
+#. editorial content for the secondary hero shelves.
+#: src/olympia/discovery/strings.jinja2:1111
+msgid "Explore now"
+msgstr "Explorează acum"
+
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1061
+#: src/olympia/discovery/strings.jinja2:1114
 msgid "Recommended extensions"
 msgstr "Extensii recomandate"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1063
+#: src/olympia/discovery/strings.jinja2:1116
 msgid "See more recommended extensions"
 msgstr "Vezi mai multe extensii recomandate"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1066
+#: src/olympia/discovery/strings.jinja2:1119
 msgid "Popular themes"
 msgstr "Teme populare"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1068
+#: src/olympia/discovery/strings.jinja2:1121
 msgid "See more popular themes"
 msgstr "Vezi mai multe teme populare"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1071
-msgid "Enhanced privacy extensions"
-msgstr "Extensii care sporesc confidențialitatea"
+#: src/olympia/discovery/strings.jinja2:1124
+msgid "Privacy & security"
+msgstr ""
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1073
-msgid "See more recommended privacy extensions"
-msgstr "Vezi mai multe extensii recomandate pentru confidențialitate"
+#: src/olympia/discovery/strings.jinja2:1126
+msgid "See more privacy staff picks"
+msgstr ""
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1076
+#: src/olympia/discovery/strings.jinja2:1129
 msgid "Popular extensions"
 msgstr "Extensii populare"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1078
+#: src/olympia/discovery/strings.jinja2:1131
 msgid "See more popular extensions"
 msgstr "Vezi mai multe extensii populare"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1081
+#: src/olympia/discovery/strings.jinja2:1134
 msgid "Recommended themes"
 msgstr "Teme recomandate"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1083
+#: src/olympia/discovery/strings.jinja2:1136
 msgid "See more recommended themes"
 msgstr "Vezi mai multe teme recomandate"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1086
+#: src/olympia/discovery/strings.jinja2:1139
 msgid "Strong password managers"
 msgstr "Manageri de parole puternice"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1088
+#: src/olympia/discovery/strings.jinja2:1141
 msgid "See more password manager staff picks"
 msgstr "Vezi mai multe extensii pentru gestionarea parolelor recomandate de echipă"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1091
+#: src/olympia/discovery/strings.jinja2:1144
 msgid "Translation tools"
 msgstr "Instrumente de traducere"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1093
+#: src/olympia/discovery/strings.jinja2:1146
 msgid "See more translation tool staff picks"
 msgstr "Vezi mai multe instrumente de traducere recomandate de echipă"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1096
+#: src/olympia/discovery/strings.jinja2:1149
 msgid "Social streaming"
 msgstr "Distribuire pe rețele sociale"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1098
+#: src/olympia/discovery/strings.jinja2:1151
 msgid "See more social streaming staff picks"
 msgstr "Vezi mai multe extensii de distribuire pe rețele sociale recomandate de echipă"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1101
+#: src/olympia/discovery/strings.jinja2:1154
 msgid "Tab managers"
 msgstr "Manageri de file"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1103
+#: src/olympia/discovery/strings.jinja2:1156
 msgid "See more tab management staff picks"
 msgstr "Vezi mai multe extensii pentru gestionarea filelor recomandate de echipă"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1106
+#: src/olympia/discovery/strings.jinja2:1159
 #, python-brace-format
 msgid "“{tag}” tagged extensions"
 msgstr "Extensii etichetate „{tag}”"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1108
+#: src/olympia/discovery/strings.jinja2:1161
 #, python-brace-format
 msgid "See more extensions tagged \"{tag}\""
 msgstr "Vezi mai multe extensii etichetate „{tag}”"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1111
+#: src/olympia/discovery/strings.jinja2:1164
 msgid "Elite ad blockers"
 msgstr "Blocatoare de reclame de elită"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1113
+#: src/olympia/discovery/strings.jinja2:1166
 msgid "See more ad blocker staff picks"
 msgstr "Vezi mai multe extensii de blocare a reclamelor recomandate de echipă"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1116
+#: src/olympia/discovery/strings.jinja2:1169
 msgid "YouTube customization"
 msgstr "Personalizare YouTube"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1118
+#: src/olympia/discovery/strings.jinja2:1171
 msgid "See more YouTube extension staff picks"
 msgstr "Vezi mai multe extensii pentru YouTube recomandate de echipă"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1121
+#: src/olympia/discovery/strings.jinja2:1174
 msgid "Trending themes"
 msgstr "Teme în tendințe"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1123
+#: src/olympia/discovery/strings.jinja2:1176
 msgid "See more trending themes"
 msgstr "Vezi mai multe teme în tendințe"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1126 src/olympia/discovery/strings.jinja2:1171
+#: src/olympia/discovery/strings.jinja2:1179 src/olympia/discovery/strings.jinja2:1224
 msgid "Top rated themes"
 msgstr "Teme cu cele mai bune recenzii"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1128 src/olympia/discovery/strings.jinja2:1173
+#: src/olympia/discovery/strings.jinja2:1181 src/olympia/discovery/strings.jinja2:1226
 msgid "See more top rated themes"
 msgstr "Vezi mai multe teme cu cele mai bune recenzii"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1131
+#: src/olympia/discovery/strings.jinja2:1184
 msgid "Trending extensions"
 msgstr "Extensii în tendințe"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1133
+#: src/olympia/discovery/strings.jinja2:1186
 msgid "See more trending extensions"
 msgstr "Vezi mai multe extensii în tendințe"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1136
+#: src/olympia/discovery/strings.jinja2:1189
 msgid "Steam enhancers"
 msgstr "Amelioratoare pentru Steam"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1138
+#: src/olympia/discovery/strings.jinja2:1191
 msgid "See more Steam staff picks"
 msgstr "Vezi mai multe extensii Steam recomandate de echipă"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1141
-msgid "Creativity extensions"
-msgstr "Extensii de creativitate"
-
-#. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1143
+#: src/olympia/discovery/strings.jinja2:1196
 msgid "See more creativity staff picks"
 msgstr "Vezi mai multe extensii de creativitate alese de echipă"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1146
+#: src/olympia/discovery/strings.jinja2:1199
 msgid "Social media extensions"
 msgstr "Extensii pentru rețele sociale"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1148
+#: src/olympia/discovery/strings.jinja2:1201
 msgid "See more social media staff picks"
 msgstr "Vezi mai multe extensii pentru rețelele sociale recomandate de echipă"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1151
+#: src/olympia/discovery/strings.jinja2:1204
 msgid "Top download managers"
 msgstr "Cele mai bune instrumente pentru gestionarea descărcărilor"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1153
+#: src/olympia/discovery/strings.jinja2:1206
 msgid "See more download manager staff picks"
 msgstr "Vezi mai multe instrumente pentru gestionarea descărcărilor recomandate de echipă"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1156
+#: src/olympia/discovery/strings.jinja2:1209
 msgid "Accessibility extensions"
 msgstr "Extensii de accesibilitate"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1158
+#: src/olympia/discovery/strings.jinja2:1211
 msgid "See more accessibility staff picks"
 msgstr "Vezi mai multe extensii pentru accesibilitate recomandate de echipă"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1161
+#: src/olympia/discovery/strings.jinja2:1214
 msgid "Extension starter pack"
 msgstr "Pachet starter de extensii"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1163
+#: src/olympia/discovery/strings.jinja2:1216
 msgid "See more starter extension staff picks"
 msgstr "Vezi mai multe extensii starter recomandate de echipă"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1166
+#: src/olympia/discovery/strings.jinja2:1219
 msgid "Twitch extensions"
 msgstr "Extensii Twitch"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1168
+#: src/olympia/discovery/strings.jinja2:1221
 msgid "See more Twitch extension staff picks"
 msgstr "Vezi mai multe extensii pentru Twitch recomandate de echipă"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1176
+#: src/olympia/discovery/strings.jinja2:1229
 msgid "Gaming & media extensions"
 msgstr "Extensii pentru jocuri și multimedia"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1178
+#: src/olympia/discovery/strings.jinja2:1231
 msgid "See more staff picks"
 msgstr "Vezi mai multe extensii recomandate de echipă"
 
-#: src/olympia/files/models.py:325
+#: src/olympia/files/models.py:326
 msgid "Unreviewed"
 msgstr "Nerevizuit"
 
-#: src/olympia/files/models.py:328
+#: src/olympia/files/models.py:329
 #, python-format
 msgid "[status:%s]"
 msgstr "[status:%s]"
 
-#: src/olympia/files/utils.py:84
+#: src/olympia/files/utils.py:86
 msgid "This upload has already been submitted."
 msgstr "Încărcarea a fost deja trimisă."
 
-#: src/olympia/files/utils.py:186 src/olympia/files/utils.py:868
+#: src/olympia/files/utils.py:162 src/olympia/files/utils.py:199 src/olympia/files/utils.py:895
 msgid "Could not parse the manifest file."
 msgstr "Nu s-a reușit analizarea fișierului manifest."
 
-#: src/olympia/files/utils.py:319
+#: src/olympia/files/utils.py:346
 #, python-brace-format
 msgid "Lowest supported \"strict_min_version\" is {min_version}."
 msgstr "Cea mai mică valoare „strict_min_version\" acceptată este {min_version}."
 
-#: src/olympia/files/utils.py:350
+#: src/olympia/files/utils.py:377
 #, python-brace-format
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
 msgstr "„strict_min_version\" {appver} necunoscută pentru {app}"
 
-#: src/olympia/files/utils.py:364
+#: src/olympia/files/utils.py:391
 #, python-brace-format
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
 msgstr "Valoare „strict_max_version\" necunoscută {appver} pentru {app}"
 
-#: src/olympia/files/utils.py:548
+#: src/olympia/files/utils.py:575
 msgid "Unsupported compression method in archive."
 msgstr "Metodă de compresie neacceptată în arhivă."
 
-#: src/olympia/files/utils.py:551
+#: src/olympia/files/utils.py:578
 msgid "Unsupported archive type."
 msgstr "Tip de arhivă nesuportat."
 
-#: src/olympia/files/utils.py:560
+#: src/olympia/files/utils.py:587
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr "Denumire de fișier nevalidă în arhivă. Te rugăm să te asiguri că toate denumirile de fișiere sunt codate în utf-8 sau latin1."
 
 #. L10n: {0} is the name of the invalid file.
-#: src/olympia/files/utils.py:574
+#: src/olympia/files/utils.py:601
 #, python-brace-format
 msgid "Invalid file name in archive: {0}"
 msgstr "Denumire de fișier nevalidă în arhiva: {0}"
 
 #. L10n: {0} is the name of the invalid file.
-#: src/olympia/files/utils.py:582
+#: src/olympia/files/utils.py:609
 #, python-brace-format
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Fișier care depășește limita de mărime în arhiva: {0}"
 
-#: src/olympia/files/utils.py:602
+#: src/olympia/files/utils.py:629
 msgid "This archive contains a forbidden special file (symbolic / hard link or device / block file)"
 msgstr "Arhiva conține un fișier special interzis (link simbolic/fizic sau fișier de dispozitiv/bloc)"
 
-#: src/olympia/files/utils.py:637
+#: src/olympia/files/utils.py:664
 msgid "Uncompressed size is too large"
 msgstr "Dimensiunea necomprimată este prea mare"
 
-#: src/olympia/files/utils.py:669
+#: src/olympia/files/utils.py:696
 msgid "Invalid archive."
 msgstr "Arhivă nevalidă."
 
-#: src/olympia/files/utils.py:856
+#: src/olympia/files/utils.py:883
 msgid "No manifest.json found"
 msgstr "Niciun manifest.json găsit"
 
-#: src/olympia/files/utils.py:861
+#: src/olympia/files/utils.py:888
 msgid "Invalid or corrupted file."
 msgstr "Fișier nevalid sau corupt."
 
-#: src/olympia/files/utils.py:901
+#: src/olympia/files/utils.py:928
 #, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
 msgstr "ID-ul suplimentului din manifest.json (%s) nu corespunde ID-ului dat suplimentului pe AMO (%s)"
 
-#: src/olympia/files/utils.py:909
+#: src/olympia/files/utils.py:936
 msgid "Duplicate add-on ID found."
 msgstr "S-a depistat un ID de supliment duplicat."
 
-#: src/olympia/files/utils.py:915
+#: src/olympia/files/utils.py:942
 #, python-brace-format
 msgid "Version numbers should have at most {max_length} characters."
 msgstr "Numerele versiunilor trebuie să aibă maxim {max_length} caractere."
 
-#: src/olympia/files/utils.py:921
+#: src/olympia/files/utils.py:948
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Numerele de versiune trebuie să conțină numai litere, cifre și aceste semne de punctuație: +*.-_."
 
-#: src/olympia/files/utils.py:930
+#: src/olympia/files/utils.py:957
 #, python-brace-format
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr "Mărimea maximă pentru temele WebExtension este {0}."
 
-#: src/olympia/files/utils.py:943
+#: src/olympia/files/utils.py:970
 msgid "You cannot submit this type of add-on"
 msgstr "Nu poți trimite acest tip de supliment"
 
-#: src/olympia/files/utils.py:947
+#: src/olympia/files/utils.py:974
 msgid "You cannot submit an add-on using an ID ending with this suffix"
 msgstr "Nu poți trimite un supliment cu un ID care se termină în acest sufix"
 
-#: src/olympia/files/utils.py:952
+#: src/olympia/files/utils.py:979
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Nu poți trimite o extensie semnată de Mozilla"
 
-#: src/olympia/files/utils.py:956
+#: src/olympia/files/utils.py:983
 msgid "You cannot submit a language pack"
 msgstr "Nu poți trimite un pachet lingvistic"
 
-#: src/olympia/files/utils.py:965
+#: src/olympia/files/utils.py:992
 msgid "The locale of an existing dictionary/language pack cannot be changed"
 msgstr "Limba unui dicționar/pachet lingvistic existent nu poate fi modificată"
 
-#: src/olympia/files/utils.py:1008
+#: src/olympia/files/utils.py:1035
 #, python-brace-format
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Tip de fișier fără suport. Te rugăm să încarci un fișier {extensions} cu suport."
 
-#: src/olympia/files/utils.py:1017
+#: src/olympia/files/utils.py:1044
 msgid "Unexpected error."
 msgstr "Eroare neașteptată."
 
-#: src/olympia/files/utils.py:1022
+#: src/olympia/files/utils.py:1049
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "Tipul (%s) nu se potrivește cu tipul suplimentului înregistrat pe AMO (%s)"
 
-#: src/olympia/files/utils.py:1027
+#: src/olympia/files/utils.py:1054
 msgid "Unknown"
 msgstr "Necunoscut"
 
@@ -6423,44 +6485,6 @@ msgstr "Evaluată cu {0} din 5 stele"
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Evaluată cu %(rating)s din 5 stele"
 
-#: src/olympia/reviewers/forms.py:372
-#, python-brace-format
-msgid "Unsupported file type, please upload a file {extensions}."
-msgstr "Tip de fișier nesuportat. Te rugăm să încarci un fișier {extensions}."
-
-#: src/olympia/reviewers/forms.py:378
-msgid "File too large."
-msgstr "Fișier prea mare."
-
-#: src/olympia/reviewers/templates/reviewers/moderationlog_detail.html:11
-#, python-format
-msgid "<dd>%(review_author)s</dd>"
-msgstr "<dd>%(review_author)s</dd>"
-
-#: src/olympia/reviewers/templates/reviewers/queue.html:48
-#, python-format
-msgid "by %(user)s on %(date)s %(stars)s"
-msgstr "de către %(user)s la data de %(date)s %(stars)s"
-
-#: src/olympia/reviewers/templates/reviewers/queue.html:59
-#, python-format
-msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
-msgstr "<strong>%(reason)s</strong> <span class=\"light\">Semnalat de %(user)s la data de %(date)s</span>"
-
-#: src/olympia/reviewers/templates/reviewers/review.html:320
-msgid "<strong>Warning!</strong> Another user may be viewing this page before you."
-msgstr "<strong>Avertisment!</strong> Este posibil ca un alt utilizator să fi vizualizat pagina înaintea ta."
-
-#: src/olympia/reviewers/templates/reviewers/includes/user_ratings_list.html:5
-#, python-format
-msgid "%(user)s on %(date)s [%(ip_address)s]"
-msgstr "%(user)s la data de %(date)s [%(ip_address)s]"
-
-#: src/olympia/reviewers/templates/reviewers/includes/version.html:5
-#, python-format
-msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-msgstr "Versiune %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-
 #: src/olympia/search/filters.py:49 src/olympia/search/filters.py:62 src/olympia/search/filters.py:95 src/olympia/search/filters.py:170 src/olympia/search/filters.py:210
 #: src/olympia/search/filters.py:356 src/olympia/search/filters.py:467
 #, python-format
@@ -6480,7 +6504,7 @@ msgstr "Întoarcerea pe AMO este dezactivată acum"
 msgid "Invalid Return To AMO guid (not in base64url format?)"
 msgstr "Retur nevalid către GUID AMO (nu este în format base64url?)"
 
-#: src/olympia/search/filters.py:966
+#: src/olympia/search/filters.py:970
 msgid "Maximum query length exceeded."
 msgstr "S-a depășit lungimea maximă de interogare."
 
@@ -6510,15 +6534,15 @@ msgstr "Te rugăm să specifici ID-ul suplimentului în manifest dacă are mai m
 msgid "Invalid Add-on ID in URL or package"
 msgstr "ID-ul nevalid al suplimentului în URL sau pachet"
 
-#: src/olympia/signing/views.py:211
+#: src/olympia/signing/views.py:212
 msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."
 msgstr "Nu poți adăuga versiuni listate la un supliment setat în starea de „invizibil”."
 
-#: src/olympia/signing/views.py:220
+#: src/olympia/signing/views.py:227
 msgid "You cannot add a listed version to this add-on via the API due to missing metadata. Please submit via the website"
 msgstr "Nu poți adăuga o versiune listată la acest supliment prin API din cauză că lipsesc metadate. Te rugăm să transmiți prin intermediul site-ului"
 
-#: src/olympia/signing/views.py:275
+#: src/olympia/signing/views.py:282
 msgid "No uploaded file for that add-on and version."
 msgstr "Nu există niciun fișier încărcat pentru acel supliment și acea versiune."
 
@@ -6852,7 +6876,7 @@ msgstr ""
 #: src/olympia/templates/user_login.html:24
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
-msgstr "<a href=\"%(reg)s\">Înregistrează-te</a> sau <a href=\"%(login)s\">autentifică-te</a>"
+msgstr "<a href=\"%(reg)s\">Fă-ți un cont</a> sau <a href=\"%(login)s\">intră în cont</a>"
 
 #: src/olympia/templates/includes/forms.html:2
 msgid "Required fields"
@@ -6903,30 +6927,34 @@ msgstr "Înlătură modificările"
 #: src/olympia/translations/templates/translations/trans-menu.html:56
 #, python-brace-format
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
-msgstr "Sigur vrei să elimini toate <b>{0}</b> traducerile? Acțiunea nu poate fi inversată."
+msgstr "Sigur vrei să elimini toate <b>{0}</b> traducerile? Acțiunea este ireversibilă."
 
 #: src/olympia/translations/templates/translations/trans-menu.html:61
 msgid "Delete Locale"
 msgstr "Șterge traducerea"
 
-#: src/olympia/users/models.py:91
+#: src/olympia/users/models.py:90
 msgid "No user with that email."
 msgstr "Nu există niciun utilizator cu acea adresă de e-mail."
 
-#: src/olympia/users/models.py:612
+#: src/olympia/users/models.py:653
 #, python-brace-format
 msgid "Firefox user {id}"
 msgstr "Utilizator Firefox {id}"
 
-#: src/olympia/users/models.py:867
+#: src/olympia/users/models.py:905
 msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
 msgstr "Din locația ta au fost realizate mai multe trimiteri care încalcă politicile noastre. Adresa IP a fost blocată."
 
-#: src/olympia/users/models.py:1019
+#: src/olympia/users/models.py:1038
 msgid "The email address used for your account is not allowed for submissions."
 msgstr "Adresa de e-mail pe care ai folosit-o pentru contul tău nu are permisiunea să trimită."
 
-#: src/olympia/users/models.py:1278
+#: src/olympia/users/models.py:1171
+msgid "The software or device you are using is not allowed for submissions."
+msgstr "Software-ul sau dispozitivul pe care îl folosești nu este permis pentru trimiteri."
+
+#: src/olympia/users/models.py:1297
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
 " which explains how we handle your information."
@@ -6934,7 +6962,7 @@ msgstr ""
 "Înainte de a începe, te rugăm să citești și să accepți Acordul de distribuție pentru suplimente Firefox, precum și Politicile și regulile noastre pentru recenzii. Acordul de distribuție pentru "
 "suplimente Firefox trimite și la Notificarea noastră privind confidențialitatea, care explică modul în care îți gestionăm informațiile."
 
-#: src/olympia/users/models.py:1292
+#: src/olympia/users/models.py:1311
 #, python-brace-format
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr "Te rugăm să citești și să accepți Acordul de distribuție Firefox, precum și Politicile și regulile noastre pentru recenzii intrând pe {url}"
@@ -6975,15 +7003,15 @@ msgstr "Mozilla trebuie să mă contacteze cu privire la suplimentul meu individ
 msgid "User Notifications"
 msgstr "Notificări utilizatori"
 
-#: src/olympia/users/utils.py:91
+#: src/olympia/users/utils.py:92
 msgid "An author has been added to your add-on"
 msgstr "A fost adăugat un autor la suplimentul tău"
 
-#: src/olympia/users/utils.py:115
+#: src/olympia/users/utils.py:116
 msgid "An author role has been changed on your add-on"
 msgstr "A fost modificat rolul unui autor în suplimentul tău"
 
-#: src/olympia/users/utils.py:125
+#: src/olympia/users/utils.py:126
 msgid "An author has been removed from your add-on"
 msgstr "A fost eliminat un autor din suplimentul tău"
 
@@ -7064,33 +7092,33 @@ msgstr ""
 "\n"
 "Echipa Suplimente Mozilla"
 
-#: src/olympia/versions/models.py:1170
+#: src/olympia/versions/models.py:1127
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
 msgstr "Respins cu întârziere, programat pentru %s"
 
-#: src/olympia/versions/models.py:1175
+#: src/olympia/versions/models.py:1132
 msgid "Auto-approved, Confirmed"
 msgstr "Aprobat automat, confirmat"
 
-#: src/olympia/versions/models.py:1177
+#: src/olympia/versions/models.py:1134
 msgid "Auto-approved, not Confirmed"
 msgstr "Aprobat automat, neconfirmat"
 
-#: src/olympia/versions/models.py:1180
+#: src/olympia/versions/models.py:1137
 msgid "Approved, Manual"
 msgstr "Aprobat, manual"
 
-#: src/olympia/versions/models.py:1187
+#: src/olympia/versions/models.py:1144
 msgid "Disabled by Developer"
 msgstr "Dezactivat de către dezvoltator"
 
-#: src/olympia/versions/models.py:1544
+#: src/olympia/versions/models.py:1501
 #, python-brace-format
 msgid "{app} {min} and later"
 msgstr "{app} {min} și versiunile ulterioare"
 
-#: src/olympia/versions/models.py:1671
+#: src/olympia/versions/models.py:1628
 #, python-brace-format
 msgid "The install origin {origin} is not permitted."
 msgstr "Originea instalării {origin} nu este permisă."

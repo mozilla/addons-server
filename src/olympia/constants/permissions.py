@@ -23,6 +23,8 @@ API_BYPASS_THROTTLING = AclPermission('API', 'BypassThrottling')
 ADMIN_CURATION = AclPermission('Admin', 'Curation')
 # Can edit the properties of any add-on (pseduo-admin).
 ADDONS_EDIT = AclPermission('Addons', 'Edit')
+# Can view add-ons in django admin
+ADMIN_ADDONS_VIEW = AclPermission('Addons', 'AdminView')
 # Can view deleted add-ons in the API.
 ADDONS_VIEW_DELETED = AclPermission('Addons', 'ViewDeleted')
 # Can view only the reviewer tools.
@@ -52,10 +54,15 @@ ADDONS_ALL_DUE_DATES = AclPermission('Addons', 'AllDueDates')
 # Can view/make choices in 2nd level approval queue
 ADDONS_HIGH_IMPACT_APPROVE = AclPermission('Addons', 'HighImpactApprove')
 
+# Can download developer provided source code files
+ADDONS_SOURCE_DOWNLOAD = AclPermission('Addons', 'SourceDownload')
+
 # Can edit all collections.
 COLLECTIONS_EDIT = AclPermission('Collections', 'Edit')
 # Can contribute to community managed collection: COLLECTION_FEATURED_THEMES_ID
 COLLECTIONS_CONTRIBUTE = AclPermission('Collections', 'Contribute')
+# Can view all collections in django admin
+ADMIN_COLLECTIONS_VIEW = AclPermission('Collections', 'AdminView')
 
 # Can view statistics for all addons, regardless of privacy settings.
 STATS_VIEW = AclPermission('Stats', 'View')
@@ -119,6 +126,10 @@ ADMIN_SCANNERS_RULES_EDIT = AclPermission('Admin', 'ScannersRulesEdit')
 ADMIN_SCANNERS_QUERY_EDIT = AclPermission('Admin', 'ScannersQueryEdit')
 # Can view things the scanners query admin (code search).
 ADMIN_SCANNERS_QUERY_VIEW = AclPermission('Admin', 'ScannersQueryView')
+# Can access the scanners webhooks admin.
+ADMIN_SCANNERS_WEBHOOKS_VIEW = AclPermission('Admin', 'ScannersWebhooksView')
+# Can use "actions" on the scanners webhooks.
+ADMIN_SCANNERS_WEBHOOKS_EDIT = AclPermission('Admin', 'ScannersWebhooksEdit')
 
 # Can create/edit a Block in the blocklist - the change may require signoff
 BLOCKLIST_CREATE = AclPermission('Blocklist', 'Create')
@@ -162,6 +173,7 @@ DJANGO_PERMISSIONS_MAPPING.update(
     {
         'abuse.change_abusereport': ABUSEREPORTS_EDIT,
         'abuse.view_cinderpolicy': CINDER_POLICIES_VIEW,
+        'addons.view_addon': ADMIN_ADDONS_VIEW,
         'addons.change_addon': ADDONS_EDIT,
         **_addchangedelete('addons', 'addonuser', ADMIN_ADVANCED),
         'addons.change_addonreviewerflags': ADMIN_ADVANCED,
@@ -171,6 +183,7 @@ DJANGO_PERMISSIONS_MAPPING.update(
         ),
         # Users with Admin:Curation can do anything to AddonBrowserMapping.
         **_addchangedelete('addons', 'addonbrowsermapping', ADMIN_CURATION),
+        'bandwagon.view_collection': ADMIN_COLLECTIONS_VIEW,
         'bandwagon.change_collection': COLLECTIONS_EDIT,
         'bandwagon.delete_collection': ADMIN_ADVANCED,
         **_addchangedelete('blocklist', 'block', BLOCKLIST_CREATE),
@@ -211,6 +224,8 @@ DJANGO_PERMISSIONS_MAPPING.update(
         'scanners.delete_scannerqueryresult': ADMIN_SCANNERS_QUERY_EDIT,
         'scanners.view_scannerqueryrule': ADMIN_SCANNERS_QUERY_VIEW,
         'scanners.view_scannerqueryresult': ADMIN_SCANNERS_QUERY_VIEW,
+        'scanners.view_scannerwebhook': ADMIN_SCANNERS_WEBHOOKS_VIEW,
+        **_addchangedelete('scanners', 'scannerwebhook', ADMIN_SCANNERS_WEBHOOKS_EDIT),
         **_addchangedelete('tags', 'tag', DISCOVERY_EDIT),
         'users.change_userprofile': USERS_EDIT,
         **_addchangedelete(

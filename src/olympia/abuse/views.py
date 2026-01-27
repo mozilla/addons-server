@@ -196,10 +196,10 @@ def filter_enforcement_actions(enforcement_actions, cinder_job):
     if not target:
         return []
     return [
-        action.value
+        action
         for action_slug in enforcement_actions
-        if DECISION_ACTIONS.has_api_value(action_slug)
-        and (action := DECISION_ACTIONS.for_api_value(action_slug))
+        if action_slug in DECISION_ACTIONS.api_values
+        and (action := DECISION_ACTIONS.from_api_value(action_slug))
         and target.__class__
         in CONTENT_ACTION_FROM_DECISION_ACTION[action.value].valid_targets
     ]

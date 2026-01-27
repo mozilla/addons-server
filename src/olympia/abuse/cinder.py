@@ -9,6 +9,7 @@ from requests import HTTPError
 
 import olympia
 from olympia import activity, amo, core
+from olympia.addons.models import Addon
 from olympia.amo.utils import (
     backup_storage_enabled,
     chunked,
@@ -439,13 +440,15 @@ class CinderRating(CinderEntity):
         }
 
     def get_context_generator(self):
-        # Note: we are not currently sending the add-on the rating is for as
-        # part of the context.
         cinder_user = CinderUser(self.rating.user)
+        cinder_addon = CinderAddon(
+            Addon.unfiltered.filter(id=self.rating.addon_id).only_translations().get()
+        )
         context = {
-            'entities': [cinder_user.get_entity_data()],
+            'entities': [cinder_user.get_entity_data(), cinder_addon.get_entity_data()],
             'relationships': [
                 cinder_user.get_relationship_data(self, 'amo_rating_author_of'),
+                self.get_relationship_data(cinder_addon, 'amo_review_of'),
             ],
         }
         if reply_to := getattr(self.rating, 'reply_to', None):
@@ -508,7 +511,7 @@ class CinderAddonHandledByReviewers(CinderAddon):
         return qs
 
     def flag_for_human_review(
-        self, *, versions, appeal=False, forwarded=False, second_level=False
+        self, *, versions, appeal=False, forwarded=False, second_level=False, notes=None
     ):
         """Flag an appropriate version for needs human review so it appears in reviewers
         manual revew queue.
@@ -590,7 +593,10 @@ class CinderAddonHandledByReviewers(CinderAddon):
             activity.log_create(
                 amo.LOG.NEEDS_HUMAN_REVIEW_CINDER,
                 *versions,
-                details={'comments': nhr.get_reason_display()},
+                details={
+                    'comments': nhr.get_reason_display(),
+                    **({'reason': notes} if notes else {}),
+                },
                 user=core.get_user() or get_task_user(),
             )
 

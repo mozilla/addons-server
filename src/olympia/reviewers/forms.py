@@ -14,7 +14,6 @@ from django.forms.models import (
     modelformset_factory,
 )
 from django.utils.html import format_html, format_html_join
-from django.utils.translation import gettext
 
 import markupsafe
 import waffle
@@ -256,9 +255,7 @@ class CinderJobsWidget(forms.CheckboxSelectMultiple):
         forwarded = queue_moves[0].created if queue_moves else None
         requeued = requeued_decisions[0].created if requeued_decisions else None
         reports = obj.all_abuse_reports
-        reasons_set = {
-            (report.REASONS.for_value(report.reason).display,) for report in reports
-        }
+        reasons_set = {(report.REASONS(report.reason).label,) for report in reports}
         messages_gen = (
             (
                 (f'v[{report.addon_version}]: ' if report.addon_version else ''),
@@ -266,20 +263,29 @@ class CinderJobsWidget(forms.CheckboxSelectMultiple):
             )
             for report in reports
         )
-        forwarded_or_requeued_notes = [
-            *(move.notes for move in queue_moves),
-            *(decision.private_notes for decision in requeued_decisions),
-        ]
+        forwarded_or_requeued_notes = (
+            [
+                *(move.notes for move in queue_moves),
+                *(decision.private_notes for decision in requeued_decisions),
+            ]
+            if requeued or forwarded
+            else []
+        )
         internal_notes = (
             ((f'Reasoning: {"; ".join(forwarded_or_requeued_notes)}',),)
             if forwarded_or_requeued_notes
             else ()
         )
         appeals = (
-            (appeal_obj.text, appeal_obj.reporter_report is not None)
-            for appealed_decision in obj.appealed_decisions.all()
-            for appeal_obj in appealed_decision.appeals.all()
+            (
+                (appeal_obj.text, appeal_obj.reporter_report_id is not None)
+                for appealed_decision in obj.appealed_decisions.all()
+                for appeal_obj in appealed_decision.appeals.all()
+            )
+            if is_appeal
+            else ()
         )
+        is_developer_appeal = is_appeal and obj.is_developer_appeal
         subtexts_gen = [
             *internal_notes,
             *(
@@ -307,9 +313,20 @@ class CinderJobsWidget(forms.CheckboxSelectMultiple):
         )
 
         attrs = attrs or {}
-        attrs['data-value'] = (
+        # Reviewers shouldn't use resolve_appeal_job to resolve "regular" jobs,
+        # and conversely shouldn't use resolve_reports_job to resolve appeals,
+        # as resolving appeals is a bit more involved.
+        # On top of that, they shouldn't resolve *developer* appeals when
+        # rejecting versions: that would cause the rejection to be no-op and
+        # that's not always what we want.
+        # The parent element will have `data-toggle-hide`, so data-value is
+        # used to hide actions that are not supposed to be used for this job.
+        hide_for_these_actions = [
             'resolve_appeal_job' if not is_appeal else 'resolve_reports_job'
-        )
+        ]
+        if is_developer_appeal:
+            hide_for_these_actions.extend(('reject', 'reject_multiple_versions'))
+        attrs['data-value'] = ' '.join(hide_for_these_actions)
         return super().create_option(
             name, value, label, selected, index, subindex, attrs
         )
@@ -328,9 +345,9 @@ class CinderPolicyWidget(forms.CheckboxSelectMultiple):
         label = str(obj)
         attrs = attrs or {}
         actions_on_policy = {
-            DECISION_ACTIONS.for_api_value(action).value
+            DECISION_ACTIONS.from_api_value(action).value
             for action in obj.enforcement_actions
-            if DECISION_ACTIONS.has_api_value(action)
+            if action in DECISION_ACTIONS.api_values
         }
         actions = (
             reviewer_action
@@ -368,14 +385,11 @@ def validate_review_attachment(value):
         if not value.name.endswith(VALID_ATTACHMENT_EXTENSIONS):
             valid_extensions_string = '(%s)' % ', '.join(VALID_ATTACHMENT_EXTENSIONS)
             raise forms.ValidationError(
-                gettext(
-                    'Unsupported file type, please upload a file {extensions}.'.format(
-                        extensions=valid_extensions_string
-                    )
-                )
+                'Unsupported file type, please upload a file '
+                f'{valid_extensions_string}.'
             )
         if value.size >= settings.MAX_UPLOAD_SIZE:
-            raise forms.ValidationError(gettext('File too large.'))
+            raise forms.ValidationError('File too large.')
         try:
             if value.name.endswith('.zip'):
                 # See clean_source() in WithSourceMixin
@@ -383,7 +397,7 @@ def validate_review_attachment(value):
                 if zip_file.zip_file.testzip() is not None:
                     raise zipfile.BadZipFile()
         except (zipfile.BadZipFile, OSError, EOFError) as err:
-            raise forms.ValidationError(gettext('Invalid or broken archive.')) from err
+            raise forms.ValidationError('Invalid or broken archive.') from err
     return value
 
 
@@ -606,7 +620,8 @@ class ReviewForm(forms.Form):
         selected_action = self.cleaned_data.get('action')
         # If the user select a different type of job before changing actions there could
         # be non-appeal jobs selected as cinder_jobs_to_resolve under resolve_appeal_job
-        # action, or appeal jobs under resolve_reports_job action. So filter them out.
+        # action, or appeal jobs under resolve_reports_job/a reject action. So filter
+        # them out.
         if selected_action == 'resolve_appeal_job':
             self.cleaned_data['cinder_jobs_to_resolve'] = [
                 job
@@ -618,6 +633,12 @@ class ReviewForm(forms.Form):
                 job
                 for job in self.cleaned_data.get('cinder_jobs_to_resolve', ())
                 if not job.is_appeal
+            ]
+        elif selected_action in ('reject', 'reject_multiple_versions'):
+            self.cleaned_data['cinder_jobs_to_resolve'] = [
+                job
+                for job in self.cleaned_data.get('cinder_jobs_to_resolve', ())
+                if not job.is_developer_appeal
             ]
         if self.cleaned_data.get('cinder_jobs_to_resolve') and self.cleaned_data.get(
             'cinder_policies'
@@ -877,14 +898,11 @@ class ReviewQueueFilter(forms.Form):
     )
 
     def __init__(self, data, *args, **kw):
-        due_date_reasons = [
-            entry.annotation for entry in NeedsHumanReview.REASONS.entries
-        ]
+        due_date_reasons = [entry.annotation for entry in NeedsHumanReview.REASONS]
         kw['initial'] = {'due_date_reasons': due_date_reasons}
         super().__init__(data, *args, **kw)
         self.fields['due_date_reasons'].choices = [
-            (entry.annotation, entry.display)
-            for entry in NeedsHumanReview.REASONS.entries
+            (entry.annotation, entry.label) for entry in NeedsHumanReview.REASONS
         ]
 
 
@@ -909,9 +927,9 @@ class HeldDecisionReviewForm(forms.Form):
             self.fields['cinder_job'].queryset = self.cinder_jobs_qs
             self.fields['cinder_job'].initial = [job.id for job in self.cinder_jobs_qs]
         if self.decision.addon:
-            self.fields['choice'].choices = HELD_DECISION_CHOICES.ADDON
+            self.fields['choice'].choices = HELD_DECISION_CHOICES.ADDON.choices
         else:
-            self.fields['choice'].choices = HELD_DECISION_CHOICES.OTHER
+            self.fields['choice'].choices = HELD_DECISION_CHOICES.OTHER.choices
 
     def clean(self):
         super().clean()

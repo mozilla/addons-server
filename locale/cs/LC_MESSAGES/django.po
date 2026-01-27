@@ -1,7 +1,7 @@
 # Translations template for addons-server.
-# Copyright (C) 2025 Mozilla
+# Copyright (C) 2026 Mozilla
 # This file is distributed under the same license as the addons-server project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
 msgid ""
 msgstr ""
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "Generated-By: Pontoon\n"
 
-#: src/olympia/abuse/actions.py:210
+#: src/olympia/abuse/actions.py:212
 #, python-brace-format
 msgid "Mozilla Add-ons: {} [{}]"
 msgstr "Doplňky Mozilly: {} [{}]"
@@ -34,11 +34,11 @@ msgstr "Důvod odvolání"
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr "Vysvětlete prosím, proč si myslíte, že toto rozhodnutí bylo učiněno omylem a/nebo proč není v souladu s platnými zásadami či zákonem."
 
-#: src/olympia/abuse/models.py:1115
+#: src/olympia/abuse/models.py:1111
 msgid "User profile"
 msgstr "Profil uživatele"
 
-#: src/olympia/abuse/models.py:1483
+#: src/olympia/abuse/models.py:1470
 #, python-brace-format
 msgid "\"{}\" for {}"
 msgstr "\"{}\" pro {}"
@@ -65,7 +65,7 @@ msgstr "Rozhodnutí {0}"
 msgid "Thank you. Your appeal has been recorded."
 msgstr "Děkujeme. Vaše odvolání bylo zaznamenáno."
 
-#: src/olympia/abuse/templates/abuse/appeal.html:31 src/olympia/amo/templates/amo/fake_fxa_authorization.html:21
+#: src/olympia/abuse/templates/abuse/appeal.html:31
 msgid "OK"
 msgstr "OK"
 
@@ -230,28 +230,28 @@ msgstr ""
 "\n"
 "Zkontrolovali jsme vaše hlášení a příslušný obsah a zjistili jsme, že porušuje pravidla Mozilly (%(policy_document_url)s), a proto jsme ho odstranili.\n"
 
-#: src/olympia/accounts/serializers.py:152 src/olympia/bandwagon/serializers.py:98
+#: src/olympia/accounts/serializers.py:160 src/olympia/bandwagon/serializers.py:101
 msgid "No links are allowed."
 msgstr "Odkazy nejsou povoleny."
 
-#: src/olympia/accounts/serializers.py:158
+#: src/olympia/accounts/serializers.py:164
 msgid "This display name cannot be used."
 msgstr "Toto jméno nemůže být použito."
 
-#: src/olympia/accounts/serializers.py:167 src/olympia/addons/fields.py:366 src/olympia/devhub/views.py:1024
+#: src/olympia/accounts/serializers.py:176 src/olympia/addons/fields.py:366 src/olympia/devhub/views.py:1021
 msgid "Images must be either PNG or JPG."
 msgstr "Obrázky musí být ve formátech PNG či JPG."
 
-#: src/olympia/accounts/serializers.py:171 src/olympia/addons/fields.py:371 src/olympia/devhub/views.py:1030
+#: src/olympia/accounts/serializers.py:180 src/olympia/addons/fields.py:371 src/olympia/devhub/views.py:1027
 msgid "Images cannot be animated."
 msgstr "Obrázky nemohou být animované."
 
-#: src/olympia/accounts/serializers.py:176 src/olympia/devhub/views.py:1039
+#: src/olympia/accounts/serializers.py:185 src/olympia/devhub/views.py:1036
 #, python-format
 msgid "Please use images smaller than %dMB."
 msgstr "Používejte prosím obrázky menší než %dMB."
 
-#: src/olympia/accounts/views.py:194
+#: src/olympia/accounts/views.py:204
 msgid "Need help?"
 msgstr "Potřebujete pomoci?"
 
@@ -264,11 +264,11 @@ msgstr "Upozornění [%s] neexistuje"
 msgid "Add-ons Review Team"
 msgstr "Tým kontroly doplňků"
 
-#: src/olympia/activity/models.py:738
+#: src/olympia/activity/models.py:770
 msgid "Review"
 msgstr "Recenze"
 
-#: src/olympia/activity/models.py:816 src/olympia/devhub/templates/devhub/versions/list.html:41
+#: src/olympia/activity/models.py:848 src/olympia/devhub/templates/devhub/versions/list.html:41
 #, python-brace-format
 msgid "Version {0}"
 msgid_plural "Versions {0}"
@@ -301,7 +301,7 @@ msgstr "Byl překročen maximální počet kategorií pro aplikaci ({MAX_CATEGOR
 msgid "The \"other\" category cannot be combined with another category"
 msgstr "Kategorii \"ostatní\" nelze kombinovat s jinou kategorií"
 
-#: src/olympia/addons/fields.py:76 src/olympia/addons/serializers.py:1274
+#: src/olympia/addons/fields.py:76 src/olympia/addons/serializers.py:1281
 msgid "Invalid category name."
 msgstr "Neplatný název kategorie."
 
@@ -310,11 +310,11 @@ msgstr "Neplatný název kategorie."
 msgid "URL domain must be one of [{domains}]."
 msgstr "Doména URL musí být jedna z těchto: {domains}."
 
-#: src/olympia/addons/fields.py:125 src/olympia/devhub/forms.py:299
+#: src/olympia/addons/fields.py:125 src/olympia/devhub/forms.py:298
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
 msgstr "Adresa URL sponzorů GitHubu musí obsahovat text /sponsors/."
 
-#: src/olympia/addons/fields.py:128 src/olympia/devhub/forms.py:302
+#: src/olympia/addons/fields.py:128 src/olympia/devhub/forms.py:301
 msgid "URLs must start with https://."
 msgstr "URL adresy musí začínat https://."
 
@@ -328,7 +328,7 @@ msgstr "Licence s hodnotou atributu slug={value} neexistuje."
 msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr "Nepodporovaný typ souboru. Nahrajte prosím soubor s archivem ({extensions})."
 
-#: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:777 src/olympia/files/utils.py:761 src/olympia/reviewers/forms.py:386
+#: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:788 src/olympia/files/utils.py:788
 msgid "Invalid or broken archive."
 msgstr "Archiv je neplatný nebo rozbitý."
 
@@ -344,7 +344,7 @@ msgstr "Zadána neznámá maximální verze aplikace"
 msgid "Unknown min app version specified"
 msgstr "Zadána neznámá minimální verze aplikace"
 
-#: src/olympia/addons/fields.py:307 src/olympia/addons/fields.py:325 src/olympia/addons/serializers.py:637
+#: src/olympia/addons/fields.py:307 src/olympia/addons/fields.py:325 src/olympia/addons/serializers.py:644
 #, python-format
 msgid "Can not override compatibility information set in the manifest for this application (%s)"
 msgstr "Není možné přepsat informaci o kompatibilitě pro aplikaci (%s) nastavenou v manifestu"
@@ -354,13 +354,9 @@ msgstr "Není možné přepsat informaci o kompatibilitě pro aplikaci (%s) nast
 msgid "Images must be smaller than %dMB"
 msgstr "Obrázky musí být menší než %d MB"
 
-#: src/olympia/addons/models.py:2302 src/olympia/addons/models.py:2381 src/olympia/constants/base.py:66
+#: src/olympia/addons/models.py:2305 src/olympia/addons/models.py:2384 src/olympia/constants/base.py:70
 msgid "Listed"
 msgstr "Zobrazení"
-
-#: src/olympia/addons/models.py:2559
-msgid "Add-on and collection paths need to end with \"/\""
-msgstr "Cesty k doplňkům a sbírkám musí končit znakem \"/\""
 
 #: src/olympia/addons/serializers.py:329
 msgid "Built in licenses can not be updated."
@@ -384,60 +380,64 @@ msgstr ""
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr "Veřejné verze není možné odeslat, když je doplněk zakázaný."
 
-#: src/olympia/addons/serializers.py:612
+#: src/olympia/addons/serializers.py:578 src/olympia/signing/views.py:218
+msgid "Listed versions cannot be submitted while add-on listing is rejected."
+msgstr "Veřejné verze nelze odeslat, pokud je doplněk zamítnut."
+
+#: src/olympia/addons/serializers.py:619
 #, python-format
 msgid "%(addon_type_plural)s are not supported by %(app_name)s"
 msgstr "%(addon_type_plural)s nejsou podporované aplikací %(app_name)s"
 
-#: src/olympia/addons/serializers.py:651 src/olympia/devhub/forms.py:931
+#: src/olympia/addons/serializers.py:658 src/olympia/devhub/forms.py:942
 #, python-format
 msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
 msgstr "Nesprávný rozsah verzí. Pro Firefox pro Android můžete vybrat pouze rozsah, který začíná verzí %(max)s nebo vyšší nebo končí verzí nižší než %(min)s."
 
-#: src/olympia/addons/serializers.py:900
+#: src/olympia/addons/serializers.py:907
 msgid "Add-ons need at least one owner."
 msgstr "Doplňky musí mít alespoň jednoho vlastníka."
 
-#: src/olympia/addons/serializers.py:915
+#: src/olympia/addons/serializers.py:922
 msgid "Add-ons need at least one listed author."
 msgstr "Doplňky musí mít uvedeného alespoň jednoho autora."
 
-#: src/olympia/addons/serializers.py:947
+#: src/olympia/addons/serializers.py:954
 msgid "Account not found."
 msgstr "Účet nebyl nalezen."
 
-#: src/olympia/addons/serializers.py:960 src/olympia/devhub/forms.py:431 src/olympia/devhub/forms.py:501
+#: src/olympia/addons/serializers.py:967 src/olympia/devhub/forms.py:442 src/olympia/devhub/forms.py:512
 msgid "An author can only be present once."
 msgstr "Autor může být uveden pouze jednou."
 
-#: src/olympia/addons/serializers.py:971 src/olympia/devhub/forms.py:443
+#: src/olympia/addons/serializers.py:978 src/olympia/devhub/forms.py:454
 msgid "The account needs a display name before it can be added as an author."
 msgstr "Před přidáním účtu jako autora musí být v účtu nastaveno zobrazované jméno."
 
-#: src/olympia/addons/serializers.py:1254
+#: src/olympia/addons/serializers.py:1261
 msgid "This slug cannot be used. Please choose another."
 msgstr "Tento slug (část adresy URL) se nedá použít. Zvolte si prosím jiný."
 
-#: src/olympia/addons/serializers.py:1888
+#: src/olympia/addons/serializers.py:1886
 msgid "There is no rollback available in this channel."
 msgstr "Vrácení verze není v tomto kanále dostupné."
 
-#: src/olympia/addons/serializers.py:1898
+#: src/olympia/addons/serializers.py:1896
 #, python-format
 msgid "Rollback is only available for version %s in this channel."
 msgstr "Vrácení verze je v tomto kanále k dispozici pouze pro verzi %s."
 
-#: src/olympia/addons/serializers.py:1904
+#: src/olympia/addons/serializers.py:1902
 msgid "Only approved versions can be rolled back, except the most recent version."
 msgstr "Pouze schválené verze mohou být vráceny zpět, s výjimkou nejnovější verze."
 
-#: src/olympia/addons/utils.py:56 src/olympia/bandwagon/serializers.py:92
-msgid "This name cannot be used."
-msgstr "Tento název nemůže být použit."
-
-#: src/olympia/addons/utils.py:71
+#: src/olympia/addons/utils.py:50
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Názvy doplňků nesmí obsahovat ochranné známky Mozilly a Firefoxu."
+
+#: src/olympia/addons/utils.py:54 src/olympia/bandwagon/serializers.py:96
+msgid "This name cannot be used."
+msgstr "Tento název nemůže být použit."
 
 #: src/olympia/addons/validators.py:41
 msgid "Both `license` and `custom_license` cannot be provided together."
@@ -527,7 +527,7 @@ msgstr "Přidání nového doplňku"
 msgid "Submit a New Theme"
 msgstr "Přidání nového vzhledu"
 
-#: src/olympia/amo/context_processors.py:76 src/olympia/constants/base.py:84 src/olympia/devhub/templatetags/jinja_helpers.py:32 src/olympia/templates/photon-footer.html:14
+#: src/olympia/amo/context_processors.py:76 src/olympia/constants/base.py:88 src/olympia/devhub/templatetags/jinja_helpers.py:32 src/olympia/templates/photon-footer.html:14
 msgid "Developer Hub"
 msgstr "Pro vývojáře"
 
@@ -563,11 +563,11 @@ msgstr "Zadejte platnou síť IP4 nebo IP6."
 msgid "CIDR"
 msgstr "CIDR"
 
-#: src/olympia/amo/middleware.py:248 src/olympia/devhub/templates/devhub/index.html:56 src/olympia/templates/base.html:64
+#: src/olympia/amo/middleware.py:257 src/olympia/devhub/templates/devhub/index.html:56 src/olympia/templates/base.html:64
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Některá funkčnost je během údržby webu dočasně nedostupná. Brzy opět poběžíme naplno."
 
-#: src/olympia/amo/utils.py:1179
+#: src/olympia/amo/utils.py:1228
 msgid "URLs are not allowed."
 msgstr "URL adresy nejsou povoleny."
 
@@ -648,18 +648,6 @@ msgstr ""
 "<h1>Ale ne! Nastala chyba.</h1> <p>Brzy to opravíme.</p> <p>Můžete zkusit obnovit stránku či přejít zpět na <a href=\"%(home)s\">domovskou stránku doplňků</a>. Můžete nám také pomoci s opravou <a "
 "href=\"https://github.com/mozilla/addons/issues/new\">nahlášením této chyby</a> včetně podrobností, jak jste se na tuto stránku dostali.</p>"
 
-#: src/olympia/amo/templates/amo/fake_fxa_authorization.html:4
-msgid "Register or Log in"
-msgstr "Registrace nebo přihlášení"
-
-#: src/olympia/amo/templates/amo/fake_fxa_authorization.html:19
-msgid "Email:"
-msgstr "E-mail:"
-
-#: src/olympia/amo/templates/amo/fake_fxa_authorization.html:20
-msgid "Two-factor authentication"
-msgstr "Dvoufaktorové ověřování"
-
 #. abbreviation of 'previous'
 #: src/olympia/amo/templates/amo/paginator.html:5 src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:49
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:63 src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:76
@@ -674,7 +662,7 @@ msgstr "Předchozí"
 msgid "Next"
 msgstr "Další"
 
-#: src/olympia/amo/templates/amo/paginator.html:31 src/olympia/reviewers/templates/reviewers/includes/paginator_history.html:11
+#: src/olympia/amo/templates/amo/paginator.html:31
 #, python-format
 msgid "Results <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> of <strong>%(count)s</strong>"
 msgstr "Výsledky <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> z <strong>%(count)s</strong>"
@@ -758,11 +746,11 @@ msgstr "Chyba při čtení podpisu."
 msgid "Invalid JWT Token."
 msgstr "Neplatný token JWT."
 
-#: src/olympia/api/authentication.py:274
+#: src/olympia/api/authentication.py:286
 msgid "Invalid token or hash."
 msgstr "Neplatný token nebo hash."
 
-#: src/olympia/api/authentication.py:278
+#: src/olympia/api/authentication.py:289
 msgid "Email address not found."
 msgstr "E-mailová adresa nebyla nalezena."
 
@@ -802,11 +790,11 @@ msgstr "Potvrzení pro vývojářské API klíče"
 msgid "You have submitted this form too many times recently. Please try again after some time."
 msgstr "Tento formulář jste v poslední době odeslali příliš mnohokrát. Zkuste to prosím znovu za chvíli."
 
-#: src/olympia/bandwagon/serializers.py:72
+#: src/olympia/bandwagon/serializers.py:75
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Tato URL je už používána jinou vaší sbírkou."
 
-#: src/olympia/bandwagon/serializers.py:105
+#: src/olympia/bandwagon/serializers.py:108
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr "URL může obsahovat znaky abecedy, čísla, podtržítka nebo pomlčky."
 
@@ -814,15 +802,15 @@ msgstr "URL může obsahovat znaky abecedy, čísla, podtržítka nebo pomlčky.
 msgid "This custom URL cannot be used."
 msgstr "Vlastní URL adresu nejde použít."
 
-#: src/olympia/bandwagon/serializers.py:149
+#: src/olympia/bandwagon/serializers.py:147
 msgid "This add-on already belongs to the collection"
 msgstr "Tento doplněk už ve sbírce je"
 
-#: src/olympia/blocklist/models.py:188
+#: src/olympia/blocklist/models.py:189
 msgid "Blocked"
 msgstr "Blokováno"
 
-#: src/olympia/blocklist/models.py:188
+#: src/olympia/blocklist/models.py:189
 msgid "Restricted"
 msgstr "Omezeno"
 
@@ -910,7 +898,7 @@ msgstr "Od doplňku {addon} verze {version} byl smazán soubor {0}."
 msgid "{addon} {version} approved."
 msgstr "Doplněk {addon} {version} byl schválen."
 
-#: src/olympia/constants/activity.py:148 src/olympia/constants/base.py:25 src/olympia/constants/base.py:32
+#: src/olympia/constants/activity.py:148 src/olympia/constants/base.py:26 src/olympia/constants/base.py:34
 msgid "Approved"
 msgstr "Schváleno"
 
@@ -928,7 +916,7 @@ msgstr "Předběžně schváleno"
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version} zamítnut."
 
-#: src/olympia/constants/activity.py:172 src/olympia/files/models.py:323
+#: src/olympia/constants/activity.py:172 src/olympia/files/models.py:324
 msgid "Rejected"
 msgstr "Zamítnuto"
 
@@ -1291,6 +1279,25 @@ msgstr "Vrácení zpět se nezdařilo"
 msgid "{addon} {0} property edited."
 msgstr "Vlastnost {addon} {0} byla upravena."
 
+#: src/olympia/constants/activity.py:1254
+#, python-brace-format
+msgid "Collection {0} property {1} updated."
+msgstr "Vlastnost {1} sbírky {0} byla aktualizována."
+
+#: src/olympia/constants/activity.py:1261
+#, python-brace-format
+msgid "Account {user} property {0} updated."
+msgstr "U účtu {user} byla aktualizována vlastnost {0}."
+
+#: src/olympia/constants/activity.py:1277
+#, python-brace-format
+msgid "{addon} listing content rejected."
+msgstr "Obsah stránky doplňku {addon} byl zamítnut."
+
+#: src/olympia/constants/activity.py:1278
+msgid "Listing content rejected"
+msgstr "Obsah stránky byl zamítnut"
+
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
 msgstr "Firefox"
@@ -1319,127 +1326,131 @@ msgstr "Firefox pro Android"
 msgid "Mozilla"
 msgstr "Mozilla"
 
-#: src/olympia/constants/base.py:23
+#: src/olympia/constants/base.py:24
 msgid "Incomplete"
 msgstr "Nekompletní"
 
-#: src/olympia/constants/base.py:24 src/olympia/constants/base.py:31
+#: src/olympia/constants/base.py:25 src/olympia/constants/base.py:33
 msgid "Awaiting Review"
 msgstr "Čeká na kontrolu"
 
-#: src/olympia/constants/base.py:26 src/olympia/constants/base.py:33
+#: src/olympia/constants/base.py:27
+msgid "Listing Content Rejected"
+msgstr "Obsah stránky byl zamítnut"
+
+#: src/olympia/constants/base.py:28 src/olympia/constants/base.py:35
 msgid "Disabled by Mozilla"
 msgstr "Zakázáno Mozillou"
 
-#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1185
+#: src/olympia/constants/base.py:29 src/olympia/versions/models.py:1142
 msgid "Deleted"
 msgstr "Smazáno"
 
-#: src/olympia/constants/base.py:65
+#: src/olympia/constants/base.py:69
 msgid "Unlisted"
 msgstr "Není v seznamu"
 
-#: src/olympia/constants/base.py:85
+#: src/olympia/constants/base.py:89
 msgid "Signing API"
 msgstr "API pro podepisování"
 
-#: src/olympia/constants/base.py:86
+#: src/olympia/constants/base.py:90
 msgid "Add-on API"
 msgstr "Rozhraní API pro doplňky"
 
-#: src/olympia/constants/base.py:87
+#: src/olympia/constants/base.py:91
 msgid "Automatically generated by AMO"
 msgstr "Automaticky vygenerováno webem AMO"
 
-#: src/olympia/constants/base.py:96
+#: src/olympia/constants/base.py:100
 msgid "Owner"
 msgstr "Vlastník"
 
-#: src/olympia/constants/base.py:97 src/olympia/users/notifications.py:105
+#: src/olympia/constants/base.py:101 src/olympia/users/notifications.py:105
 msgid "Developer"
 msgstr "Vývojář"
 
-#: src/olympia/constants/base.py:105
+#: src/olympia/constants/base.py:109
 msgid "(Deleted)"
 msgstr "(Smazáno)"
 
-#: src/olympia/constants/base.py:129 src/olympia/constants/reviewers.py:69
+#: src/olympia/constants/base.py:133
 msgid "Extension"
 msgstr "Rozšíření"
 
-#: src/olympia/constants/base.py:130
+#: src/olympia/constants/base.py:134
 msgid "Deprecated Complete Theme"
 msgstr "Zastaralý plný motiv vzhledu"
 
-#: src/olympia/constants/base.py:131
+#: src/olympia/constants/base.py:135
 msgid "Dictionary"
 msgstr "Slovník"
 
-#: src/olympia/constants/base.py:132
+#: src/olympia/constants/base.py:136
 msgid "Deprecated Search Engine"
 msgstr "Zastaralý vyhledávač"
 
-#: src/olympia/constants/base.py:133
+#: src/olympia/constants/base.py:137
 msgid "Language Pack"
 msgstr "Jazykový balíček"
 
-#: src/olympia/constants/base.py:134
+#: src/olympia/constants/base.py:138
 msgid "Deprecated Language Pack (Add-on)"
 msgstr "Zastaralý jazykový balíček (doplněk)"
 
-#: src/olympia/constants/base.py:135
+#: src/olympia/constants/base.py:139
 msgid "Deprecated Plugin"
 msgstr "Zastaralý zásuvný modul"
 
-#: src/olympia/constants/base.py:136
+#: src/olympia/constants/base.py:140
 msgid "Deprecated LWT"
 msgstr "Zastaralý odlehčený motiv vzhledu"
 
-#: src/olympia/constants/base.py:137 src/olympia/constants/reviewers.py:70
+#: src/olympia/constants/base.py:141
 msgid "Theme"
 msgstr "Motiv vzhledu"
 
-#: src/olympia/constants/base.py:138
+#: src/olympia/constants/base.py:142
 msgid "Deprecated Site Permission"
 msgstr "Zastaralé oprávnění serveru"
 
-#: src/olympia/constants/base.py:143 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:10
+#: src/olympia/constants/base.py:147 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:10
 msgid "Extensions"
 msgstr "Rozšíření"
 
-#: src/olympia/constants/base.py:144
+#: src/olympia/constants/base.py:148
 msgid "Deprecated Complete Themes"
 msgstr "Zastaralé plné motivy vzhledu"
 
-#: src/olympia/constants/base.py:145
+#: src/olympia/constants/base.py:149
 msgid "Dictionaries"
 msgstr "Slovníky"
 
-#: src/olympia/constants/base.py:146
+#: src/olympia/constants/base.py:150
 msgid "Deprecated Search Tools"
 msgstr "Zastaralé vyhledávací moduly"
 
-#: src/olympia/constants/base.py:147
+#: src/olympia/constants/base.py:151
 msgid "Language Packs"
 msgstr "Jazykové balíčky"
 
-#: src/olympia/constants/base.py:148
+#: src/olympia/constants/base.py:152
 msgid "Deprecated Language Packs (Add-on)"
 msgstr "Zastaralé jazykové balíčky (doplňky)"
 
-#: src/olympia/constants/base.py:149
+#: src/olympia/constants/base.py:153
 msgid "Deprecated Plugins"
 msgstr "Zastaralé zásuvné moduly"
 
-#: src/olympia/constants/base.py:150
+#: src/olympia/constants/base.py:154
 msgid "Deprecated LWTs"
 msgstr "Zastaralé odlehčené motivy vzhledu"
 
-#: src/olympia/constants/base.py:151 src/olympia/devhub/templates/devhub/nav.html:43 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:11
+#: src/olympia/constants/base.py:155 src/olympia/devhub/templates/devhub/nav.html:43 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:11
 msgid "Themes"
 msgstr "Motivy vzhledu"
 
-#: src/olympia/constants/base.py:152
+#: src/olympia/constants/base.py:156
 msgid "Deprecated Site Permissions"
 msgstr "Zastaralá oprávnění serveru"
 
@@ -1459,7 +1470,7 @@ msgstr "Vzhled"
 
 #: src/olympia/constants/categories.py:80
 msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
-msgstr "Stáhněte si rozšíření, která upravují vzhled webových stránek i samotného Firefoxu. Tato kategorie obsahuje rozšíření pro nastavení tmavého vzhledu, správu panelů a další."
+msgstr "Stáhněte si rozšíření, která upravují vzhled webových stránek i samotného Firefoxu. Tato kategorie obsahuje rozšíření pro nastavení tmavého vzhledu, správu panelů a další věci."
 
 #: src/olympia/constants/categories.py:88
 msgid "Bookmarks"
@@ -1467,7 +1478,7 @@ msgstr "Záložky"
 
 #: src/olympia/constants/categories.py:90
 msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
-msgstr "Stáhněte si rozšíření, které ochrání záložky heslem, najde duplikáty nebo nefunkční odkazy a další."
+msgstr "Stáhněte si rozšíření, které se postará o záložky tím, že je ochrání heslem, vyhledá jejich duplikáty, najde nefunkční záložky apod."
 
 #: src/olympia/constants/categories.py:97
 msgid "Download Management"
@@ -1475,7 +1486,7 @@ msgstr "Stahování souborů"
 
 #: src/olympia/constants/categories.py:99
 msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
-msgstr "Stáhněte si rozšíření pro Firefox, která vám pomohou stahovat webové stránky, hudbu nebo videa. Máme také rozšíření pro správu stahování, sdílení souborů a další."
+msgstr "Stáhněte si rozšíření pro Firefox, která vám pomohou stahovat webové stránky, hudbu nebo videa. Máme také rozšíření pro správu stahování, sdílení souborů a mnoho dalšího."
 
 #: src/olympia/constants/categories.py:106
 msgid "Feeds, News & Blogging"
@@ -1483,7 +1494,7 @@ msgstr "RSS a blogování"
 
 #: src/olympia/constants/categories.py:108
 msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
-msgstr "Stáhněte si rozšíření pro Firefox, která odstraní nepořádek, takže můžete sledovat sociálních sítě, vyhledávat na blogu, používat RSS kanály, ulevit svým očím a další."
+msgstr "Stáhněte si rozšíření pro Firefox, která odstraní nepořádek, takže můžete být stále v obraze na sociálních sítích a blozích, používat RSS kanály, ulevit svým očím apod."
 
 #: src/olympia/constants/categories.py:115
 msgid "Games & Entertainment"
@@ -1499,7 +1510,7 @@ msgstr "Podpora jazyků"
 
 #: src/olympia/constants/categories.py:126
 msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
-msgstr "Stáhněte si rozšíření pro Firefox, která nabízejí podporu jazyků jako je kontrola gramatiky, vyhledávání slov, překlad textů, převod textu na řeč a další."
+msgstr "Stáhněte si rozšíření pro Firefox, která nabízejí jazykovou podporu jako je kontrola gramatiky, vyhledávání slov, překlad textů, převod textu na řeč a další věci."
 
 #: src/olympia/constants/categories.py:133
 msgid "Photos, Music & Videos"
@@ -1507,12 +1518,11 @@ msgstr "Fotografie a média"
 
 #: src/olympia/constants/categories.py:135
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
-msgstr "Stáhněte si rozšíření pro Firefox, která vylepšují fotky, hudbu a videa. Rozšíření v této kategorii upravují zvuk a videa, dohledávají texty k obrázkům a další."
+msgstr "Stáhněte si rozšíření pro Firefox, která vylepšují fotky, hudbu a videa. Rozšíření v této kategorii upravují zvuk a videa, vyhledávají na základě obrázku apod."
 
-#. editorial content for the secondary hero shelves.
-#: src/olympia/constants/categories.py:142 src/olympia/discovery/strings.jinja2:1050
+#: src/olympia/constants/categories.py:142
 msgid "Privacy & Security"
-msgstr "Soukromí a bezpečnost"
+msgstr "Soukromí a zabezpečení"
 
 #: src/olympia/constants/categories.py:144
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
@@ -1524,7 +1534,7 @@ msgstr "Nástroje pro vyhledávání"
 
 #: src/olympia/constants/categories.py:154
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
-msgstr "Stáhněte si rozšíření pro vyhledávání. Tato kategorie zahrnuje rozšíření, která zvýrazňují a vyhledávají text, IP adresy, domény a další."
+msgstr "Stáhněte si rozšíření pro Firefox zaměřená na vyhledávání. Tato kategorie zahrnuje rozšíření, která zvýrazňují a vyhledávají text, dohledávají IP adresy či domény apod."
 
 #: src/olympia/constants/categories.py:161
 msgid "Shopping"
@@ -1540,7 +1550,7 @@ msgstr "Sdílení a sociální sítě"
 
 #: src/olympia/constants/categories.py:172
 msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
-msgstr "Stáhněte si rozšíření pro Firefox pro zlepšení sociálních sítí a psaní zpráv. Tato kategorie zahrnuje funkce pro oznámení v panelech, stahování vidí videa a další."
+msgstr "Stáhněte si rozšíření pro Firefox vylepšující sociální sítě a výměnu rychlých zpráv. Tato kategorie zahrnuje funkce pro oznámení v panelech, nástroje pro stahování videí a další věci."
 
 #: src/olympia/constants/categories.py:179
 msgid "Tabs"
@@ -1548,7 +1558,7 @@ msgstr "Panely"
 
 #: src/olympia/constants/categories.py:181
 msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
-msgstr "Stáhněte si rozšíření pro Firefox a přizpůsobte si obsah nového panelu. Objevte rozšíření, která mohou ovládat panely, měnit způsob jejich ovládání a další."
+msgstr "Stáhněte si rozšíření pro Firefox na přizpůsobení panelů a stránky nového panelu. Objevte rozšíření, která umožňují ovládat panely, měnit způsob interakce s nimi apod."
 
 #: src/olympia/constants/categories.py:188
 msgid "Web Development"
@@ -1556,9 +1566,9 @@ msgstr "Vývoj webu"
 
 #: src/olympia/constants/categories.py:190
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
-msgstr "Stáhněte si nástroje pro Firefox a vývoj webových aplikací. Tato kategorie zahrnuje rozšíření pro GitHub, nastavení user agenta, správu cookies a další."
+msgstr "Stáhněte si rozšíření pro Firefox, která představují webové vývojářské nástroje. Tato kategorie zahrnuje rozšíření pro GitHub, nastavení user agenta, správu cookies a další věci."
 
-#: src/olympia/constants/categories.py:198 src/olympia/constants/categories.py:290 src/olympia/devhub/forms.py:613
+#: src/olympia/constants/categories.py:198 src/olympia/constants/categories.py:290 src/olympia/devhub/forms.py:624
 msgid "Other"
 msgstr "Ostatní"
 
@@ -1644,7 +1654,7 @@ msgstr "Krajina"
 
 #: src/olympia/constants/categories.py:300
 msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
-msgstr "Stáhněte si vzhledy Firefoxu, které jsou zajímavé prostředím a přírodou světa. Tato kategorie zahrnuje západy slunce, pláže, ilustrace, městská panoramata a další."
+msgstr "Stáhněte si vzhledy Firefoxu, které zachycují přírodu a životní prostředí. Tato kategorie zahrnuje západy slunce, pláže, ilustrace, panoramata měst aj."
 
 #: src/olympia/constants/categories.py:307
 msgid "Seasonal"
@@ -1784,74 +1794,6 @@ msgstr "Creative Commons Attribution-ShareAlike 4.0"
 msgid "The Unlicense"
 msgstr "Bez licence"
 
-#: src/olympia/constants/promoted.py:74
-msgid "Recommended"
-msgstr "Doporučené"
-
-#: src/olympia/constants/promoted.py:105
-msgid "By Firefox"
-msgstr "Od Firefoxu"
-
-#: src/olympia/constants/promoted.py:123
-msgid "Spotlight"
-msgstr "Vybrané"
-
-#: src/olympia/constants/promoted.py:134
-msgid "Strategic"
-msgstr "Strategický"
-
-#: src/olympia/constants/promoted.py:141
-msgid "Notable"
-msgstr "Pozoruhodný"
-
-#: src/olympia/constants/promoted.py:151
-msgid "Partner"
-msgstr "Partnerství"
-
-#: src/olympia/constants/reviewers.py:23
-msgid "No Reputation"
-msgstr "Zatím žádná reputace"
-
-#: src/olympia/constants/reviewers.py:24
-msgid "Good (1)"
-msgstr "Dobrý (1)"
-
-#: src/olympia/constants/reviewers.py:25
-msgid "Very Good (2)"
-msgstr "Velmi dobré (2)"
-
-#: src/olympia/constants/reviewers.py:26
-msgid "Excellent (3)"
-msgstr "Výborné (3)"
-
-#: src/olympia/constants/reviewers.py:41
-msgid "Request More Info"
-msgstr "Požádat o více informací"
-
-#: src/olympia/constants/reviewers.py:42
-msgid "Flag"
-msgstr "Označit"
-
-#: src/olympia/constants/reviewers.py:43
-msgid "Duplicate"
-msgstr "Duplicitní"
-
-#: src/olympia/constants/reviewers.py:44
-msgid "Reject"
-msgstr "Zamítnout"
-
-#: src/olympia/constants/reviewers.py:45
-msgid "Approve"
-msgstr "Schválit"
-
-#: src/olympia/constants/reviewers.py:68
-msgid "All"
-msgstr "Vše"
-
-#: src/olympia/core/apps.py:214
-msgid "Core"
-msgstr "Jádro"
-
 #: src/olympia/devhub/feeds.py:52
 #, python-format
 msgid "Recent Changes for %s"
@@ -1871,17 +1813,17 @@ msgstr "Doplňky ve formátu Open Search {blog_link_open}již nejsou na webu dop
 msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
 msgstr "Manifest V3 není v současné době pro nahrávání podporován. {start_href}Přečtěte si více o době podpory{end_href}."
 
-#: src/olympia/devhub/forms.py:92
+#: src/olympia/devhub/forms.py:91
 msgid "This slug is already in use. Please choose another."
 msgstr "Toto URL je již používáno. Zvolte prosím jiné."
 
-#: src/olympia/devhub/forms.py:95
+#: src/olympia/devhub/forms.py:94
 #, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
 msgstr "URL nemůže být \"%(slug)s\". Zvolte prosím jiné."
 
 #. L10n: {0} is the number of categories.
-#: src/olympia/devhub/forms.py:217
+#: src/olympia/devhub/forms.py:216
 #, python-brace-format
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
@@ -1889,16 +1831,16 @@ msgstr[0] "Smíte být pouze v {0} kategorii."
 msgstr[1] "Smíte být pouze v {0} kategoriích."
 msgstr[2] "Smíte být pouze v {0} kategoriích."
 
-#: src/olympia/devhub/forms.py:227
+#: src/olympia/devhub/forms.py:226
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "Kategorie Různé nemůže být kombinována s jinými kategoriemi."
 
-#: src/olympia/devhub/forms.py:293
+#: src/olympia/devhub/forms.py:292
 #, python-format
 msgid "URL domain must be one of [%s]."
 msgstr "Doména v URL adrese musí být jedna z těchto [%s]."
 
-#: src/olympia/devhub/forms.py:309
+#: src/olympia/devhub/forms.py:308
 #, python-brace-format
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
@@ -1906,139 +1848,139 @@ msgstr[0] "Máte příliš mnoho štítků: {0}"
 msgstr[1] "Máte příliš mnoho štítků: {0}"
 msgstr[2] "Máte příliš mnoho štítků: {0}"
 
-#: src/olympia/devhub/forms.py:328
+#: src/olympia/devhub/forms.py:327
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
 msgstr "Dříve, než změníte výchozí jazyk, musíte mít v tomto jazyce vyplněno jméno, shrnutí a popis. Aktuálně vám chybí %s."
 
-#: src/olympia/devhub/forms.py:413
+#: src/olympia/devhub/forms.py:415
 msgid "Users can not be added directly"
 msgstr "Uživatelé nemohou být přidáni přímo"
 
-#: src/olympia/devhub/forms.py:478
+#: src/olympia/devhub/forms.py:489
 msgid "Must have at least one owner."
 msgstr "Musí být alespoň jeden vlastník."
 
-#: src/olympia/devhub/forms.py:480
+#: src/olympia/devhub/forms.py:491
 msgid "At least one author must be listed."
 msgstr "Musí být uveden alespoň jeden autor."
 
-#: src/olympia/devhub/forms.py:528
+#: src/olympia/devhub/forms.py:539
 msgid "Slug incorrect."
 msgstr "Nesprávný název URL."
 
-#: src/olympia/devhub/forms.py:563 src/olympia/devhub/templates/devhub/versions/edit.html:88
+#: src/olympia/devhub/forms.py:574 src/olympia/devhub/templates/devhub/versions/edit.html:88
 msgid "Details"
 msgstr "Podrobnosti"
 
-#: src/olympia/devhub/forms.py:584
+#: src/olympia/devhub/forms.py:595
 msgid "What is your license's name?"
 msgstr "Jaký je název této licence?"
 
-#: src/olympia/devhub/forms.py:586 src/olympia/devhub/forms.py:633
+#: src/olympia/devhub/forms.py:597 src/olympia/devhub/forms.py:644
 msgid "Custom License"
 msgstr "Vlastní licence"
 
-#: src/olympia/devhub/forms.py:591
+#: src/olympia/devhub/forms.py:602
 msgid "Provide the text of your license."
 msgstr "Zadejte text své licence."
 
-#: src/olympia/devhub/forms.py:641
+#: src/olympia/devhub/forms.py:652
 msgid "License text is required when choosing Other."
 msgstr "Pokud zvolíte vlastní licenci, musíte zadat její text."
 
-#: src/olympia/devhub/forms.py:697
+#: src/olympia/devhub/forms.py:708
 msgid "This add-on has an End-User License Agreement"
 msgstr "Tento doplněk má Licenční smlouvu pro koncové uživatele"
 
-#: src/olympia/devhub/forms.py:702
+#: src/olympia/devhub/forms.py:713
 msgid "Please specify your add-on's End-User License Agreement:"
 msgstr "Vyplňte prosím Licenční smlouvu pro koncové uživatele vašeho doplňku:"
 
-#: src/olympia/devhub/forms.py:705
+#: src/olympia/devhub/forms.py:716
 msgid "This add-on has a Privacy Policy"
 msgstr "Doplněk má zásady ochrany osobních údajů"
 
-#: src/olympia/devhub/forms.py:710
+#: src/olympia/devhub/forms.py:721
 msgid "Please specify your add-on's Privacy Policy:"
 msgstr "Zadejte prosím zásady ochrany osobních údajů pro váš doplněk:"
 
-#: src/olympia/devhub/forms.py:745
+#: src/olympia/devhub/forms.py:756
 #, python-brace-format
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Nepodporovaný typ souboru. Nahrajte prosím soubor s archivem pro {extensions}."
 
-#: src/olympia/devhub/forms.py:789
+#: src/olympia/devhub/forms.py:800
 msgid "View current"
 msgstr "Zobrazit aktuální"
 
-#: src/olympia/devhub/forms.py:912
+#: src/olympia/devhub/forms.py:923
 msgid "Invalid version range."
 msgstr "Neplatný rozsah verzí."
 
-#: src/olympia/devhub/forms.py:1018
+#: src/olympia/devhub/forms.py:1029
 msgid "Need at least one compatible application."
 msgstr "Je vyžadována alespoň jedna kompatibilní aplikace."
 
-#: src/olympia/devhub/forms.py:1060 src/olympia/devhub/forms.py:1118
+#: src/olympia/devhub/forms.py:1071 src/olympia/devhub/forms.py:1129
 msgid "There was an error with your upload. Please try again."
 msgstr "Při nahrávání se vyskytla chyba. Zkuste to prosím znovu."
 
-#: src/olympia/devhub/forms.py:1065
+#: src/olympia/devhub/forms.py:1076
 msgid "Override failed validation"
 msgstr "Přepsat nezdařenou validaci"
 
-#: src/olympia/devhub/forms.py:1075
+#: src/olympia/devhub/forms.py:1086
 msgid "Need to select at least one application."
 msgstr "Vyberte alespoň jednu aplikaci."
 
-#: src/olympia/devhub/forms.py:1080
+#: src/olympia/devhub/forms.py:1091
 msgid "You have submitted too many uploads recently. Please try again after some time."
 msgstr "V poslední době jste toho odeslali příliš mnoho. Zkuste to prosím znovu za nějaký čas."
 
-#: src/olympia/devhub/forms.py:1129 src/olympia/signing/views.py:156
+#: src/olympia/devhub/forms.py:1140 src/olympia/signing/views.py:156
 #, python-brace-format
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Verze {version} už byla dříve nahrána a smazána."
 
-#: src/olympia/devhub/forms.py:1138 src/olympia/devhub/forms.py:1144 src/olympia/signing/views.py:158
+#: src/olympia/devhub/forms.py:1149 src/olympia/devhub/forms.py:1155 src/olympia/signing/views.py:158
 #, python-brace-format
 msgid "Version {version} already exists."
 msgstr "Verze {version} už existuje."
 
-#: src/olympia/devhub/forms.py:1140
+#: src/olympia/devhub/forms.py:1151
 msgid "Continue with existing upload instead?"
 msgstr "Pokračovat místo toho se současným nahráváním?"
 
-#: src/olympia/devhub/forms.py:1178 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:7 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:22
+#: src/olympia/devhub/forms.py:1189 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:7 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:22
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:37
 msgid "Yes"
 msgstr "Ano"
 
-#: src/olympia/devhub/forms.py:1178 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:13 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:28
+#: src/olympia/devhub/forms.py:1189 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:13 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:28
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:52
 msgid "No"
 msgstr "Ne"
 
-#: src/olympia/devhub/forms.py:1193
+#: src/olympia/devhub/forms.py:1204
 msgid "You have not uploaded a source file."
 msgstr "Nenahráli jste soubor se zdrojovými kódy."
 
-#: src/olympia/devhub/forms.py:1196
+#: src/olympia/devhub/forms.py:1207
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "Zdrojový soubor byl nahrán, ale nevložili jste do něj žádný zdrojový kód."
 
-#: src/olympia/devhub/forms.py:1260
+#: src/olympia/devhub/forms.py:1271
 #, python-brace-format
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
 msgstr "Zajistěte, aby název a souhrn měli dohromady maximálně {limit_value} znaků (mají jich {show_value})."
 
-#: src/olympia/devhub/forms.py:1379
+#: src/olympia/devhub/forms.py:1390
 #, python-brace-format
 msgid "On this site. <span class=\"helptext\">Your submission is publicly listed on {site_domain}.</span>"
 msgstr "Na tomto webu. <span class=\"helptext\">Váš doplněk bude zveřejněn na webu {site_domain}.</span>"
 
-#: src/olympia/devhub/forms.py:1386
+#: src/olympia/devhub/forms.py:1397
 #, python-brace-format
 msgid ""
 "On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
@@ -2047,31 +1989,31 @@ msgstr ""
 "Vlastní cestou. <span class=\"helptext\">Poté, co Mozilla váš doplněk podepíše, si můžete z Developer Hubu stáhnout soubor .xpi a distribuovat ho svým uživatelům. Ujistěte se, že je v manifestu "
 "doplňku uvedeno <a {a_attrs}>update_url</a>, protože to je adresa URL, na které Firefox vyhledává aktualizace pro automatické nasazení vašim uživatelům.</span>"
 
-#: src/olympia/devhub/forms.py:1425 src/olympia/devhub/templates/devhub/includes/agreement.html:17
+#: src/olympia/devhub/forms.py:1437 src/olympia/devhub/templates/devhub/includes/agreement.html:17
 msgid "Display Name"
 msgstr "Zobrazované jméno"
 
-#: src/olympia/devhub/forms.py:1456
+#: src/olympia/devhub/forms.py:1468
 msgid "Confirm email address"
 msgstr "Potvrďte e-mailovou adresu"
 
-#: src/olympia/devhub/forms.py:1457
+#: src/olympia/devhub/forms.py:1469
 msgid "Generate new credentials"
 msgstr "Generovat nová pověření"
 
-#: src/olympia/devhub/forms.py:1458
+#: src/olympia/devhub/forms.py:1470
 msgid "Revoke and regenerate credentials"
 msgstr "Zneplatnit a znovu vygenerovat přihlašovací údaje"
 
-#: src/olympia/devhub/forms.py:1459
+#: src/olympia/devhub/forms.py:1471
 msgid "Revoke"
 msgstr "Zneplatnit"
 
-#: src/olympia/devhub/forms.py:1498
+#: src/olympia/devhub/forms.py:1510
 msgid "JWT issuer"
 msgstr "JWT vystavitel"
 
-#: src/olympia/devhub/forms.py:1505
+#: src/olympia/devhub/forms.py:1517
 #, python-brace-format
 msgid ""
 "To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
@@ -2080,44 +2022,44 @@ msgstr ""
 "Při provedení API požadavků pošlete <a href=\"{jwt_url}\">JWT (JSON Web Token)</a> jako autorizační hlavičku. Pro každý požadavek budete muset vygenerovat JWT, jak je popsáno v <a "
 "href=\"{docs_url}\">dokumentaci API</a>."
 
-#: src/olympia/devhub/forms.py:1515
+#: src/olympia/devhub/forms.py:1527
 msgid "JWT secret"
 msgstr "JWT secret"
 
-#: src/olympia/devhub/forms.py:1536
+#: src/olympia/devhub/forms.py:1548
 #, python-brace-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
 msgstr "Pro vygenerování API přihlašovacích údajů pro uživatele <strong>{name}</strong> prosím klepněte na tlačítko níže."
 
-#: src/olympia/devhub/forms.py:1542
+#: src/olympia/devhub/forms.py:1554
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
 msgstr "Na vaši e-mailovou adresu bude zaslán odkaz pro potvrzení. Po potvrzení najdete svůj API klíče na této stránce."
 
-#: src/olympia/devhub/forms.py:1559
+#: src/olympia/devhub/forms.py:1571
 msgid "You don't have any API credentials."
 msgstr "Nemáte žádné přihlašovací údaje k API."
 
-#: src/olympia/devhub/forms.py:1570
+#: src/olympia/devhub/forms.py:1582
 msgid "Something went wrong, please contact developer support."
 msgstr "Něco se pokazilo. Kontaktujte prosím podporu pro vývojáře."
 
-#: src/olympia/devhub/forms.py:1653
+#: src/olympia/devhub/forms.py:1665
 msgid "No appropriate version available"
 msgstr "Odpovídající verze není k dispozici"
 
-#: src/olympia/devhub/forms.py:1660
+#: src/olympia/devhub/forms.py:1672
 msgid "Choose version"
 msgstr "Vyberte verzi"
 
-#: src/olympia/devhub/forms.py:1669
+#: src/olympia/devhub/forms.py:1681
 msgid "Release notes"
 msgstr "Poznámky k vydání"
 
-#: src/olympia/devhub/forms.py:1670
+#: src/olympia/devhub/forms.py:1682
 msgid "Automatic rollback based on version [m.m]."
 msgstr "Automatické vrácení změn na základě verze [m.m]."
 
-#: src/olympia/devhub/forms.py:1743
+#: src/olympia/devhub/forms.py:1755
 msgid "You must select a channel and version to rollback to."
 msgstr "Musíte vybrat kanál a verzi, ke které se chcete vrátit."
 
@@ -2133,16 +2075,16 @@ msgstr "Váš vývojářšký API klíč byl nalezen v nahraném souboru. Pro oc
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
 msgstr "Vývojářšký API klíč spoluautora byl nalezen v nahraném souboru. Pro ochranu vašeho doplňku bude tento klíč zneplatněn."
 
-#: src/olympia/devhub/tasks.py:687
+#: src/olympia/devhub/tasks.py:688
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr "Bezpečnostní upozornění Mozilly: Vaše přihlašovací údaje k API serveru AMO byly zneplatněny"
 
-#: src/olympia/devhub/utils.py:86
+#: src/olympia/devhub/utils.py:90
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Kontrola vygenerovala příliš mnoho chyb/varování a %s zpráv tak není zobrazeno. Po opravení zobrazených nedostatků budete moci vidět další."
 
-#: src/olympia/devhub/utils.py:207
+#: src/olympia/devhub/utils.py:211
 #, python-brace-format
 msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
 msgstr "Tento doplněk není motivem vzhledu. Pro odeslání rozšíření použijte stránku <a href=\"{link}\">Přidání nového doplňku</a>."
@@ -2225,7 +2167,7 @@ msgstr "Nabídka byla odmítnuta."
 msgid "A confirmation email has been sent to {email}"
 msgstr "Na adresu {email} byl zaslán potvrzovací e-mail"
 
-#: src/olympia/devhub/views.py:551 src/olympia/devhub/views.py:1167
+#: src/olympia/devhub/views.py:551 src/olympia/devhub/views.py:1164
 msgid "Changes successfully saved."
 msgstr "Změny byly úspěšně uloženy."
 
@@ -2233,42 +2175,42 @@ msgstr "Změny byly úspěšně uloženy."
 msgid "Validate Add-on"
 msgstr "Kontrola doplňku"
 
-#: src/olympia/devhub/views.py:645
+#: src/olympia/devhub/views.py:642
 #, python-brace-format
 msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
 msgstr "<a href=\"{link}\">Abyste mohli odeslat rozšíření, přidejte prosím ke svému účtu dvoufaktorové ověřování.</a>"
 
-#: src/olympia/devhub/views.py:1022
+#: src/olympia/devhub/views.py:1019
 msgid "Icons must be either PNG or JPG."
 msgstr "Ikona musí být ve formátu PNG či JPG."
 
-#: src/olympia/devhub/views.py:1028
+#: src/olympia/devhub/views.py:1025
 msgid "Icons cannot be animated."
 msgstr "Ikony nemohou být animované."
 
-#: src/olympia/devhub/views.py:1054
+#: src/olympia/devhub/views.py:1051
 #, python-brace-format
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr "Obrázek musí být alespoň {0} pixelů široký a {1} pixelů vysoký."
 
-#: src/olympia/devhub/views.py:1058
+#: src/olympia/devhub/views.py:1055
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "Rozměry obrázku musí být v poměru 4:3."
 
-#: src/olympia/devhub/views.py:1066
+#: src/olympia/devhub/views.py:1063
 #, python-brace-format
 msgid "Icon must be at least {0} pixels wide and tall."
 msgstr "Ikona musí být alespoň {0} pixelů široká i vysoká."
 
-#: src/olympia/devhub/views.py:1071
+#: src/olympia/devhub/views.py:1068
 msgid "Icon must be square (same width and height)."
 msgstr "Ikona musí být čtvercová (stejná šířka a výška)."
 
-#: src/olympia/devhub/views.py:1077
+#: src/olympia/devhub/views.py:1074
 msgid "There was an error uploading your preview."
 msgstr "Při nahrávání obrázku se vyskytla chyba."
 
-#: src/olympia/devhub/views.py:1223
+#: src/olympia/devhub/views.py:1220
 #, python-format
 msgid ""
 "The latest approved version of this %s add-on cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
@@ -2276,86 +2218,86 @@ msgstr ""
 "Nejnovější schválenou verzi tohoto doplňku pro %s nelze odstranit ani zakázat, protože předchozí verze nebyla schválena pro propagaci aplikace %s. Pokud s tím potřebujete pomoci, obraťte se na "
 "správce AMO."
 
-#: src/olympia/devhub/views.py:1230
+#: src/olympia/devhub/views.py:1227
 #, python-format
 msgid "Version %s disabled."
 msgstr "Verze %s je zakázána."
 
-#: src/olympia/devhub/views.py:1234
+#: src/olympia/devhub/views.py:1231
 #, python-format
 msgid "Version %s deleted."
 msgstr "Verze %s byla smazána."
 
-#: src/olympia/devhub/views.py:1245
+#: src/olympia/devhub/views.py:1242
 #, python-format
 msgid "Version %s re-enabled."
 msgstr "Verze %s znovu povolena."
 
-#: src/olympia/devhub/views.py:1261
+#: src/olympia/devhub/views.py:1258
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "Při nahrávání selhala kontrola a výsledky kontroly tak mohou být nekompletní. Věnujte tomu při kontrole zvláštní péči."
 
-#: src/olympia/devhub/views.py:1320
+#: src/olympia/devhub/views.py:1317
 msgid "Rollback submitted. You'll be notified when it's approved"
 msgstr "Vrácení změny bylo odesláno. Až bude schválena, budete upozorněni"
 
-#: src/olympia/devhub/views.py:1458
+#: src/olympia/devhub/views.py:1455
 msgid "Header area background"
 msgstr "Pozadí záhlaví"
 
-#: src/olympia/devhub/views.py:1460
+#: src/olympia/devhub/views.py:1457
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
 msgstr "Barva pozadí v oblasti záhlaví, která se použije pro nezakrytou plochu záhlaví nebo pro plochu viditelnou skrze obrázek v záhlaví. Pole manifestu:  frame."
 
-#: src/olympia/devhub/views.py:1468
+#: src/olympia/devhub/views.py:1465
 msgid "Header area text and icons"
 msgstr "Text a ikony v záhlaví"
 
-#: src/olympia/devhub/views.py:1470
+#: src/olympia/devhub/views.py:1467
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
 msgstr "Barva textu a ikon v oblasti záhlaví, s výjimkou aktivního panelu. Pole manifestu:  tab_background_text."
 
-#: src/olympia/devhub/views.py:1477
+#: src/olympia/devhub/views.py:1474
 msgid "Toolbar area background"
 msgstr "Pozadí nástrojových lišt"
 
-#: src/olympia/devhub/views.py:1479
+#: src/olympia/devhub/views.py:1476
 msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
 msgstr "Barva pozadí navigační lišty, lišty záložek a aktivního panelu.  Pole manifestu:  toolbar."
 
-#: src/olympia/devhub/views.py:1486
+#: src/olympia/devhub/views.py:1483
 msgid "Toolbar area text and icons"
 msgstr "Text a ikony v nástrojové liště"
 
-#: src/olympia/devhub/views.py:1488
+#: src/olympia/devhub/views.py:1485
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
 msgstr "Barva textu a ikon v lištách a aktivním panelu. Pole manifestu:  bookmark_text."
 
-#: src/olympia/devhub/views.py:1495
+#: src/olympia/devhub/views.py:1492
 msgid "Toolbar field area background"
 msgstr "Pozadí polí v nástrojových lištách"
 
-#: src/olympia/devhub/views.py:1497
+#: src/olympia/devhub/views.py:1494
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
 msgstr "Barva pozadí polí v nástrojových lištách, jako je např. adresní řádek. Pole manifestu:  toolbar_field."
 
-#: src/olympia/devhub/views.py:1504
+#: src/olympia/devhub/views.py:1501
 msgid "Toolbar field area text"
 msgstr "Text polí v nástrojových lištách"
 
-#: src/olympia/devhub/views.py:1506
+#: src/olympia/devhub/views.py:1503
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "Barva textu v polích v nástrojových lištách, jako je např. adresní řádek. Pole manifestu:  toolbar_field_text."
 
-#: src/olympia/devhub/views.py:1514
+#: src/olympia/devhub/views.py:1511
 msgid "Tab highlight"
 msgstr "Zvýraznění panelu"
 
-#: src/olympia/devhub/views.py:1516
+#: src/olympia/devhub/views.py:1513
 msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
 msgstr "Barva zvýraznění aktivního panelu. Ve Firefoxu 89 a vyšším je implementována jako rámeček kolem panelu a ve starších Firefoxech jako čára nad panelem. Pole manifestu:  tab_line."
 
-#: src/olympia/devhub/views.py:1615
+#: src/olympia/devhub/views.py:1616
 msgid "Add-on uploads are temporarily unavailable"
 msgstr "Nahrávání doplňků je dočasně nedostupné"
 
@@ -2518,7 +2460,7 @@ msgstr "Kontrolováno dne:"
 msgid "Email Address Verification"
 msgstr "Ověření e-mailové adresy"
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html:62 src/olympia/devhub/templates/devhub/includes/addon_details.html:89 src/olympia/devhub/templates/devhub/verify_email.html:10
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:64 src/olympia/devhub/templates/devhub/includes/addon_details.html:91 src/olympia/devhub/templates/devhub/verify_email.html:10
 msgid "Status:"
 msgstr "Stav:"
 
@@ -2685,7 +2627,7 @@ msgstr "Náhled zveřejněné verze"
 msgid "Preview still being generated - come back later or refresh the page."
 msgstr "Náhled se stále generuje. Načtěte stránku znovu nebo se sem vraťte později."
 
-#: src/olympia/devhub/templates/devhub/addons/invitation.html:3 src/olympia/users/utils.py:98
+#: src/olympia/devhub/templates/devhub/addons/invitation.html:3 src/olympia/users/utils.py:99
 #, python-brace-format
 msgid "Author invitation for {addon_name}"
 msgstr "Nabídka autorství pro doplněk {addon_name}"
@@ -2732,7 +2674,7 @@ msgstr "Autoři, u nichž se čeká na potvrzení"
 msgid "Authors that have been added to this add-on but haven't confirmed."
 msgstr "Autoři, kteří byli k tomuto doplňku přidáni, ale nepotvrdili se."
 
-#: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:96 src/olympia/devhub/templates/devhub/addons/edit/describe.html:260
+#: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:96 src/olympia/devhub/templates/devhub/addons/edit/describe.html:272
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:84 src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:174 src/olympia/devhub/templates/devhub/addons/owner.html:78
 #: src/olympia/devhub/templates/devhub/versions/edit.html:134 src/olympia/translations/templates/translations/trans-menu.html:48
 msgid "Save Changes"
@@ -2787,6 +2729,11 @@ msgstr "URL pro příspěvky"
 msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
 msgstr "Pokud byste rádi dostávali příspěvky od uživatelů, nastavte zde stránku, kde vám je mohou posílat."
 
+#: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:45
+#, python-format
+msgid "Supported domains: %(supported_domains)s"
+msgstr "Podporované domény: %(supported_domains)s"
+
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:55 src/olympia/translations/templates/translations/trans-menu.html:13
 msgid "Default Locale"
 msgstr "Výchozí jazyk"
@@ -2806,14 +2753,14 @@ msgid ""
 msgstr ""
 "Pokud má váš doplněk ještě jinou domovskou stránku, zadejte ji sem. Je-li stránka přeložena do více jazyků, můžete přidat více překladů tohoto políčka. Relevantní pouze pro zveřejněné doplňky."
 
-#: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:96 src/olympia/devhub/templates/devhub/addons/edit/describe.html:260
+#: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:96 src/olympia/devhub/templates/devhub/addons/edit/describe.html:272
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:84 src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:174
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:32 src/olympia/devhub/templates/devhub/versions/edit.html:134 src/olympia/devhub/templates/devhub/versions/list.html:305
 #: src/olympia/devhub/templates/devhub/versions/list.html:354 src/olympia/translations/templates/translations/trans-menu.html:50 src/olympia/translations/templates/translations/trans-menu.html:62
 msgid "or"
 msgstr "nebo"
 
-#: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:99 src/olympia/devhub/templates/devhub/addons/edit/describe.html:263
+#: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:99 src/olympia/devhub/templates/devhub/addons/edit/describe.html:275
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:87 src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:177
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:32 src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:64
 #: src/olympia/devhub/templates/devhub/versions/edit.html:136 src/olympia/devhub/templates/devhub/versions/list.html:305 src/olympia/devhub/templates/devhub/versions/list.html:315
@@ -2873,51 +2820,68 @@ msgstr "Tento souhrn by měl jasně vysvětlovat, k čemu váš doplněk slouž�
 msgid "Description"
 msgstr "Popis"
 
-#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:157
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:131 src/olympia/devhub/templates/devhub/addons/submit/describe.html:107
+#, python-format
+msgid ""
+"A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Minimum length: %(min_length)s characters; Recommended "
+"length: 250 characters. If you need a longer description, make sure the first 250 characters contain the most important description points."
+msgstr ""
+"Delší popis vlastností, funkcí a dalších důležitých informací. Toto pole je zobrazeno pouze na stránce doplňku. Minimální délka: %(min_length)s znaků; Doporučená délka: 250 znaků. Pokud potřebujete "
+"delší popis, ujistěte se, že prvních 250 znaků obsahuje nejdůležitější body popisu."
+
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:140
+msgid ""
+"A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Recommended length: 250 characters. If you need a longer "
+"description, make sure the first 250 characters contain the most important description points."
+msgstr ""
+"Delší popis vlastností, funkcí a dalších důležitých informací. Toto pole je zobrazeno pouze na stránce doplňku. Doporučená délka: 250 znaků. Pokud potřebujete delší popis, ujistěte se, že prvních "
+"250 znaků obsahuje nejdůležitější body popisu."
+
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:169
 msgid "Experimental?"
 msgstr "Experimentální?"
 
-#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:158
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:170
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
 msgstr "Zda je váš doplněk experimentální nebo jiným způsobem nevhodný pro běžné používání.  Doplněk bude zveřejněn, ale bude mít omezenou viditelnost. "
 
-#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:163
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:175
 msgid "This add-on is experimental."
 msgstr "Tento doplněk je experimentální."
 
-#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:165
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:177
 msgid "This add-on is ready for general use."
 msgstr "Tento doplněk je připraven pro obecné použití."
 
-#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:170
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:182
 msgid "Requires Payment?"
 msgstr "Je vyžadována platba?"
 
-#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:171 src/olympia/devhub/templates/devhub/addons/submit/describe.html:139
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:183 src/olympia/devhub/templates/devhub/addons/submit/describe.html:140
 msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
 msgstr "Toto políčko zaškrtněte, pokud klíčové funkce tohoto doplňku ke své funkci vyžadují nějakou formu platby předem či po uběhnutí zkušební doby."
 
-#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:176 src/olympia/devhub/templates/devhub/addons/submit/describe.html:135
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:188 src/olympia/devhub/templates/devhub/addons/submit/describe.html:136
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
 msgstr "Tento doplněk vyžaduje platbu, placené služby nebo software, či dodatečný hardware."
 
-#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:179
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:191
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr "Tento doplněk nevyžaduje platby, placené služby či software, ani dodatečný hardware."
 
-#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:187
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:199
 msgid "Categories"
 msgstr "Kategorie"
 
-#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:188
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:200
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
 msgstr "Kategorie jsou pro uživatele hlavní způsob orientace mezi doplňky. Pro co nejsnazší nalezení vašeho doplňku vyberte všechny, které se k němu hodí."
 
-#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:211
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:223
 msgid "Email"
 msgstr "E-mail"
 
-#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:213
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:225
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
 " for listed add-ons."
@@ -2925,11 +2889,11 @@ msgstr ""
 "Chcete-li zobrazit e-mailovou adresu pro dotazy na podporu, zadejte ji zde. Máte-li různé adresy pro různé jazyky, můžete přidat více překladů tohoto políčka. Relevantní pouze pro zveřejněné "
 "doplňky."
 
-#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:234
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:246
 msgid "Website"
 msgstr "Domovská stránka"
 
-#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:236
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:248
 msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
 "listed add-ons."
@@ -3079,9 +3043,21 @@ msgid "Having screenshots in your product page greatly increases its chances of 
 msgstr "Snímky obrazovky na stránce doplňku výrazně zvyšují jeho šance na to, že si ho uživatelé nainstalují."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:182 src/olympia/devhub/templates/devhub/addons/submit/distribute.html:30
-#: src/olympia/devhub/templates/devhub/addons/submit/source.html:85 src/olympia/devhub/templates/devhub/addons/submit/upload.html:99
+#: src/olympia/devhub/templates/devhub/addons/submit/source.html:85 src/olympia/devhub/templates/devhub/addons/submit/upload.html:102
 msgid "Continue"
 msgstr "Pokračovat"
+
+#: src/olympia/devhub/templates/devhub/addons/includes/cant_submit_new_listed_versions_warning.html:3
+msgid "Your add-on is currently set to \"Invisible\"."
+msgstr "Váš doplněk je aktuálně nastaven na „Neviditelný“."
+
+#: src/olympia/devhub/templates/devhub/addons/includes/cant_submit_new_listed_versions_warning.html:5
+msgid "Your add-on listing was rejected."
+msgstr "Stránka vašeho doplňku byla zamítnuta."
+
+#: src/olympia/devhub/templates/devhub/addons/includes/cant_submit_new_listed_versions_warning.html:7
+msgid "While in this state, \"On your own\" is the only distribution method available."
+msgstr "V tomto stavu je jedinou dostupnou metodou distribuce „Vlastní cestou“."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:2
 msgid "Can others share your Add-on, as long as you're given credit?"
@@ -3114,14 +3090,6 @@ msgstr "Volba odlišné licence."
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:64
 msgid "More information on Creative Commons licenses"
 msgstr "Více informací o licencích Creative Commons"
-
-#: src/olympia/devhub/templates/devhub/addons/includes/invisible_channel_warning.html:2
-msgid "Your add-on is currently set to \"Invisible\"."
-msgstr "Váš doplněk je aktuálně nastaven na „Neviditelný“."
-
-#: src/olympia/devhub/templates/devhub/addons/includes/invisible_channel_warning.html:3
-msgid "While in this state, \"On your own\" is the only distribution method available."
-msgstr "V tomto stavu je jedinou dostupnou metodou distribuce „Vlastní cestou“."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/source_file_input.html:12
 msgid "You cannot change attached sources because this version has been reviewed by Mozilla."
@@ -3268,7 +3236,7 @@ msgstr[2] "<strong>{0}</strong> aktivních uživatelů"
 msgid "Submit a New Version"
 msgstr "Odeslat novou verzi"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/base.html:33 src/olympia/devhub/templates/devhub/addons/submit/describe.html:236
+#: src/olympia/devhub/templates/devhub/addons/submit/base.html:33 src/olympia/devhub/templates/devhub/addons/submit/describe.html:237
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:49 src/olympia/devhub/templates/devhub/addons/submit/source.html:92
 msgid "Cancel and Disable Version"
 msgstr "Zrušit a zakázat verzi"
@@ -3290,7 +3258,7 @@ msgid "Name and Summary:"
 msgstr "Název a souhrn:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:16 src/olympia/devhub/templates/devhub/addons/submit/describe.html:87
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:102 src/olympia/devhub/templates/devhub/addons/submit/describe.html:164
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:102 src/olympia/devhub/templates/devhub/addons/submit/describe.html:165
 #: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:25 src/olympia/devhub/templates/devhub/addons/submit/wizard.html:37 src/olympia/devhub/templates/devhub/addons/submit/wizard.html:65
 #: src/olympia/templates/includes/forms.html:2 src/olympia/templates/includes/forms.html:6
 msgid "required"
@@ -3329,48 +3297,48 @@ msgstr "Souhrn:"
 msgid "Description:"
 msgstr "Popis:"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:123
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:124
 msgid "This add-on is experimental"
 msgstr "Tento doplněk je experimentální"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:126
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:127
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
 "Označte, pokud je váš doplněk experimentální nebo jiným způsobem nevhodný pro běžné používání.  Doplněk bude zveřejněn, ale bude mít omezenou viditelnost.  Toto nastavení můžete později změnit."
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:151
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:152
 msgid "Support email:"
 msgstr "E-mail podpory:"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:158
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:159
 msgid "Support website:"
 msgstr "Stránka podpory:"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:164
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:165
 msgid "License:"
 msgstr "Licence:"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:170
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:171
 msgid "Please choose a license appropriate for the rights you grant."
 msgstr "Zvolte prosím vhodnou licenci vzhledem k právům, která chcete poskytnout ke svému zdrojovému kódu."
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:194
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:195
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
 msgstr "Přenáší-li doplněk data z počítače uživatele, je nutné v zásadách ochrany osobních údajů vysvětlit, jaká data jsou odesílána a jak jsou použita."
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:207 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:21
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:208 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:21
 msgid "Notes to Reviewer:"
 msgstr "Poznámky pro redaktora:"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:210 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:24
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:211 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:24
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
 msgstr "Je tu něco, na co by redaktoři měli při kontrole doplňku myslet?"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:213 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:27
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:214 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:27
 msgid "Remember"
 msgstr "Pamatujte"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:214 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:28
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:215 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:28
 #, python-format
 msgid ""
 "If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
@@ -3379,11 +3347,11 @@ msgstr ""
 "Pokud jste odeslali zdrojový kód, ale neobsahoval instrukce, musíte je poskytnout zde. Zadejte na základě %(policy_requirements_open)snašich podmínek%(policy_requirements_close)s podrobný postup, "
 "jak vytvořit přesnou kopii kódu doplňku."
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:224 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:38
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:225 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:38
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Tyto poznámky budou viditelné pouze vám a našim redaktorům."
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:229 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:42
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:230 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:42
 msgid "Submit Version"
 msgstr "Odeslat verzi"
 
@@ -3569,36 +3537,40 @@ msgstr "Nahrát doplněk"
 msgid "Where to Host Version"
 msgstr "Kde bude verze hostována"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:23
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:24
 msgid "Change"
 msgstr "Změna"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:28
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:29
 msgid "Upload Version"
 msgstr "Nahrát verzi"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:30
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:31
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Pro nahrání balíčku se svým doplňkem použijte tlačítko níže. Po nahrání bude spuštěna sada automatizovaných testů, které váš balíček zkontrolují."
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:34
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:35
 #, python-format
 msgid "The maximum file size accepted is %(max_size)s. If your add-on is larger than %(max_size)s, it will fail validation."
 msgstr "Maximální povolená velikost souboru je %(max_size)s. Pokud je váš doplněk větší než %(max_size)s, jeho kontrola selže."
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:59
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:60
 msgid "Which applications is this version compatible with?"
 msgstr "S kterými platformami je tato verze kompatibilní?"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:66
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:67
 msgid "Administrative overrides"
 msgstr "Změny při administraci"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:79
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:80
 msgid "Create a Theme Version"
 msgstr "Vytvořit verzi motivu vzhledu"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:85
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:82
+msgid "You can upload a finished theme using the upload option above, or you can build it yourself using this tool."
+msgstr "Hotový motiv můžete nahrát pomocí výše uvedené možnosti nahrávání nebo si jej můžete vytvořit sami pomocí tohoto nástroje."
+
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:88
 msgid "Create a Theme"
 msgstr "Vytvořit nový motiv vzhledu"
 
@@ -3821,51 +3793,55 @@ msgstr "Váš doplněk je zobrazen v naší galerii a uživatelé k němu získ�
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery."
 msgstr "Váš doplněk byl zakázán správcem webu a již není zobrazen v naší galerii."
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html:33
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:32
+msgid "Your add-on listing was rejected. It is not listed in our gallery. Please address the reasons and reapply for review."
+msgstr "Stránka vašeho doplňku byla zamítnuta. Není umístěna v naší galerii. Vyřešte všechny důvody a znovu požádejte o kontrolu."
+
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:35
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr "Váš doplněk nebude zobrazován ve výsledcích vyhledávání a na jeho stránce se zobrazí informace, že jste jej zakázali. V tomto stavu také nebudou přijímány nové verze."
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html:40 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:85
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:42 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:85
 msgid "Created:"
 msgstr "Vytvořeno:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html:46 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:81
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:48 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:81
 msgid "Last Updated:"
 msgstr "Naposledy aktualizován:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html:56
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:58
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr "Zveřejněno na této stránce, jakmile úspěšně projde kontrolou. O aktualizace se automaticky stará tato stránka"
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html:68
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:70
 msgid "Listed Version:"
 msgstr "Veřejná verze:"
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html:70
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:72
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
 msgstr "Toto je verze doplňku, která bude nainstalována, když někdo klikne na tlačítko Nainstalovat na stránkách addons.mozilla.org"
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html:79
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:81
 msgid "Next Listed Version:"
 msgstr "Příští veřejná verze:"
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html:81
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:83
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr "Toto je nejnovější nahraná veze, nicméně zatím nebyla na stránkách uveřejněna"
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html:99 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:66
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:101 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:66
 #: src/olympia/devhub/templates/devhub/versions/list.html:26
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr "Podepsáno pro samostatnou distribuci. O aktualizace se staráte sami."
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html:105
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:107
 msgid "Latest Version:"
 msgstr "Poslední verze:"
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html:107
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:109
 msgid "This is the newest uploaded unlisted version"
 msgstr "Toto je nejnovější nezveřejněná nahraná veze"
 
@@ -4480,7 +4456,7 @@ msgid "Are you sure you wish to hide your add-on?"
 msgstr "Opravdu chcete skrýt svůj doplněk?"
 
 #. L10n: first parameter is the number of errors
-#: src/olympia/devhub/templatetags/jinja_helpers.py:78
+#: src/olympia/devhub/templatetags/jinja_helpers.py:79
 #, python-brace-format
 msgid "{0} error"
 msgid_plural "{0} errors"
@@ -4489,7 +4465,7 @@ msgstr[1] "{0} chyby"
 msgstr[2] "{0} chyb"
 
 #. L10n: first parameter is the number of warnings
-#: src/olympia/devhub/templatetags/jinja_helpers.py:82
+#: src/olympia/devhub/templatetags/jinja_helpers.py:83
 #, python-brace-format
 msgid "{0} warning"
 msgid_plural "{0} warnings"
@@ -4499,55 +4475,55 @@ msgstr[2] "{0} varování"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:2 src/olympia/discovery/strings.jinja2:760
+#: src/olympia/discovery/strings.jinja2:2 src/olympia/discovery/strings.jinja2:777
 msgid "Block invisible trackers and spying ads that follow you around the web."
 msgstr "Zablokujte neviditelné sledovací prvky a reklamy, které vás špehují při brouzdání internetem."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:5 src/olympia/discovery/strings.jinja2:853
+#: src/olympia/discovery/strings.jinja2:5 src/olympia/discovery/strings.jinja2:870
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
 msgstr "Dopřejte si nádhernou stránku nového panelu s nastavitelným pozadím, informacemi o počasí a dalšími vychytávkami."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:8 src/olympia/discovery/strings.jinja2:763
+#: src/olympia/discovery/strings.jinja2:8 src/olympia/discovery/strings.jinja2:780
 msgid "Highlight any text, right-click, and translate instantly."
 msgstr "Vyberte text a nechte si ho přeložit klepnutím pravého tlačítka myši."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:11 src/olympia/discovery/strings.jinja2:847
+#: src/olympia/discovery/strings.jinja2:11 src/olympia/discovery/strings.jinja2:864
 msgid "Perform reverse image searches from an array of engines."
 msgstr "Dohledejte zdroj obrázků pomocí široké palety vyhledávačů."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:14 src/olympia/discovery/strings.jinja2:808
+#: src/olympia/discovery/strings.jinja2:14 src/olympia/discovery/strings.jinja2:825
 msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
 msgstr "Blokování reklam a ochrana soukromí. Jednoduché nastavení vám umožní převzít kontrolu nad reklamami a nad tím, jak jste na internetu sledováni."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:17 src/olympia/discovery/strings.jinja2:811
+#: src/olympia/discovery/strings.jinja2:17 src/olympia/discovery/strings.jinja2:828
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr "Máte spousty otevřených panelů? Řádně si je uspořádejte v postranní liště."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:20 src/olympia/discovery/strings.jinja2:796
+#: src/olympia/discovery/strings.jinja2:20 src/olympia/discovery/strings.jinja2:813
 msgid "Stop Facebook tracking. Isolate your Facebook identity into a separate “container” to prevent Facebook from tracking you around the web."
 msgstr "Nenechte se sledovat Facebookem. Izolujte svou Facebookovou identitu do samostatného „kontejneru“ a zabraňte tak Facebooku, aby vás sledoval po celém internetu."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:23 src/olympia/discovery/strings.jinja2:850
+#: src/olympia/discovery/strings.jinja2:23 src/olympia/discovery/strings.jinja2:867
 msgid "Simplify search by highlighting text on any web page to search the phrase from an array of engines."
 msgstr "Zjednodušte vyhledávání: označte text na jakékoliv webové stránce a vyberte si vyhledávač, kterým jej chcete vyhledat."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:26 src/olympia/discovery/strings.jinja2:787
+#: src/olympia/discovery/strings.jinja2:26 src/olympia/discovery/strings.jinja2:804
 msgid "Instant weather updates from around the world."
 msgstr "Aktuální informace o počasí z celého světa."
 
@@ -4558,13 +4534,13 @@ msgstr "Nastavte si stránku otevíranou v nové panelu."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:32 src/olympia/discovery/strings.jinja2:766
+#: src/olympia/discovery/strings.jinja2:32 src/olympia/discovery/strings.jinja2:783
 msgid "See an interesting picture on the web and want to learn more about it? Try this image search tool."
 msgstr "Narazili jste na webu na zajímavý obrázek? S tímto nástrojem pro vyhledávání obrázků o něm zjistíte více."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:35 src/olympia/discovery/strings.jinja2:769
+#: src/olympia/discovery/strings.jinja2:35 src/olympia/discovery/strings.jinja2:786
 msgid "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
 msgstr "Stahujte videa snadno. Podporuje videa na webech YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope a stovkách dalších."
 
@@ -4580,13 +4556,13 @@ msgstr "Zjednodušená správa hesel. Synchronizace přihlašovacích údajů na
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:44 src/olympia/discovery/strings.jinja2:775
+#: src/olympia/discovery/strings.jinja2:44 src/olympia/discovery/strings.jinja2:792
 msgid "Effective, lightweight ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr "Jednoduché a účinné blokování reklam. uBlock Origin dokáže efektivně pracovat s tisíci pravidly pro rozpoznání obsahu bez velkých dopadů na rychlost vašeho počítače."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:47 src/olympia/discovery/strings.jinja2:781
+#: src/olympia/discovery/strings.jinja2:47 src/olympia/discovery/strings.jinja2:798
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr "Užijte si sadu nových funkcí pro YouTube, jako je režim kina, blokování reklam, ovládání automatického přehrávání a mnoho dalšího."
 
@@ -4627,13 +4603,13 @@ msgstr "Zabraňte zlomyslným webovým stránkám, aby váš počítač využív
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:71 src/olympia/discovery/strings.jinja2:709
+#: src/olympia/discovery/strings.jinja2:71 src/olympia/discovery/strings.jinja2:726
 msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
 msgstr "Nechte si při psaní pomoci s gramatikou. Na sociálních sítích, při psaní e-mailů, dokumentů i jinde."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:74 src/olympia/discovery/strings.jinja2:793
+#: src/olympia/discovery/strings.jinja2:74 src/olympia/discovery/strings.jinja2:810
 msgid "Display current worldwide times in Firefox's status bar."
 msgstr "Nechte si ve stavové liště Firefoxu zobrazovat čas jakéhokoli místa na Zemi."
 
@@ -4654,7 +4630,7 @@ msgstr "Přizpůsobte si gesta myši. Objevte nový způsob, jak provádět navi
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:86 src/olympia/discovery/strings.jinja2:904
+#: src/olympia/discovery/strings.jinja2:86 src/olympia/discovery/strings.jinja2:921
 msgid "Darken the page around video players for a focused viewing experience."
 msgstr "Ztmaví obsah stránky okolo videa, aby vás nic nerušilo při jeho sledování."
 
@@ -4671,13 +4647,13 @@ msgstr "Je stránka, kterou hledáte, nedostupná? Vyhledejte její archivovanou
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:98 src/olympia/discovery/strings.jinja2:772
+#: src/olympia/discovery/strings.jinja2:98 src/olympia/discovery/strings.jinja2:789
 msgid "Hover over an image to magnify it."
 msgstr "Potřebujete nějaký obrázek zvětšit? Jednoduše najeďte myší nad obrázek a zvětší se."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:101 src/olympia/discovery/strings.jinja2:844
+#: src/olympia/discovery/strings.jinja2:101 src/olympia/discovery/strings.jinja2:861
 msgid "Automatically erase cookies after you close a tab."
 msgstr "Automaticky vymažte cookies po zavření panelu."
 
@@ -4688,25 +4664,25 @@ msgstr "Jednoduchý způsob, jak upravit velikost textu libovolné stránky – 
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:107 src/olympia/discovery/strings.jinja2:805
+#: src/olympia/discovery/strings.jinja2:107 src/olympia/discovery/strings.jinja2:822
 msgid "Stop trackers in their tracks and learn more about them."
 msgstr "Nenechte se sledovat a místo toho zjistěte něco o těch, kdo se vás sledovat pokouší."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:110 src/olympia/discovery/strings.jinja2:865
+#: src/olympia/discovery/strings.jinja2:110 src/olympia/discovery/strings.jinja2:882
 msgid "Leave a clean digital trail. Make Firefox forget website data like cookies and local storage, but only for domains you choose."
 msgstr "Zanechávejte za sebou čistou digitální stopu. Nechte Firefox zapomenout data jako cookies nebo obsah místního úložiště pro domény, které sami vyberete."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:113 src/olympia/discovery/strings.jinja2:835
+#: src/olympia/discovery/strings.jinja2:113 src/olympia/discovery/strings.jinja2:852
 msgid "No need to write the same thing over and over. Save frequently-entered text to paste anytime."
 msgstr "Není třeba psát totéž znovu a znovu. Uložte si často zadávaný text a kdykoli ho pak vložte."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:116 src/olympia/discovery/strings.jinja2:802
+#: src/olympia/discovery/strings.jinja2:116 src/olympia/discovery/strings.jinja2:819
 msgid "Get more screen space by removing ads from your web-based inbox."
 msgstr "Získejte více místa na obrazovce tím, že odstraníte reklamy ze své webové e-mailové schránky."
 
@@ -4717,25 +4693,25 @@ msgstr "Spravujte otevřené panely v uspořádané postranní liště."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:122 src/olympia/discovery/strings.jinja2:907
+#: src/olympia/discovery/strings.jinja2:122 src/olympia/discovery/strings.jinja2:924
 msgid "Avoid sneaky trackers and restrictions. Disguise your navigation by cloaking the identity of your browser and operating system."
 msgstr "Vyhněte se nepříjemnému sledování a omezením. Zamaskujte svou cestu internetem skrytím identity vašeho prohlížeče a operačního systému."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:125 src/olympia/discovery/strings.jinja2:799
+#: src/olympia/discovery/strings.jinja2:125 src/olympia/discovery/strings.jinja2:816
 msgid "Automatically reload tabs based on time intervals you set."
 msgstr "Automaticky aktualizujte panely na základě stanovených časových intervalů."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:128 src/olympia/discovery/strings.jinja2:973
+#: src/olympia/discovery/strings.jinja2:128 src/olympia/discovery/strings.jinja2:990
 msgid "Keep parts of your online life separated into color-coded and cookie separated tabs. Now integrated with Mozilla VPN for an extra layer of privacy."
 msgstr "Mějte jednotlivé části svého online života oddělené v barevně odlišených panelech, každý se svými cookies. Nyní integrováno do sítě Mozilla VPN jako další vrstva ochrany soukromí."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:131 src/olympia/discovery/strings.jinja2:784
+#: src/olympia/discovery/strings.jinja2:131 src/olympia/discovery/strings.jinja2:801
 msgid "Gain an additional layer of tracking protection as you browse the web."
 msgstr "Získejte další ochranu proti sledování při prohlížení internetu."
 
@@ -4746,7 +4722,7 @@ msgstr "Čtěte soubory ePub přímo ve Firefoxu – zvětšete velikost písma,
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:137 src/olympia/discovery/strings.jinja2:901
+#: src/olympia/discovery/strings.jinja2:137 src/olympia/discovery/strings.jinja2:918
 msgid "Play YouTube videos by default in the highest quality, turn off annotations, and more."
 msgstr "Přehrávejte videa na YouTube standardně v nejvyšší kvalitě, vypněte poznámky apod."
 
@@ -4767,7 +4743,7 @@ msgstr "Nastavte si rychlost přehrávání videa a další věci."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:149 src/olympia/discovery/strings.jinja2:790
+#: src/olympia/discovery/strings.jinja2:149 src/olympia/discovery/strings.jinja2:807
 msgid "Add encrypted security to any site that supports HTTPS. Browse securely."
 msgstr "Přidejte šifrované zabezpečení každému webu, který podporuje protokol HTTPS. Brouzdejte bezpečně."
 
@@ -4783,7 +4759,7 @@ msgstr "Změňte způsob, jakým surfujete po Redditu pomocí štítků a mnoho 
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:158
-msgid "Screenshot webpages, make edits, and share."
+msgid "Screenshot webpages, make edits & share."
 msgstr "Vytvářejte snímky obrazovky, upravujte je a sdílejte."
 
 #. editorial content for the discovery pane.
@@ -4813,13 +4789,13 @@ msgstr "Určete si pro nové panely vlastní domovskou stránku."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:176 src/olympia/discovery/strings.jinja2:832
+#: src/olympia/discovery/strings.jinja2:176 src/olympia/discovery/strings.jinja2:849
 msgid "Convert all your open tabs into a list to easily manage them and speed up Firefox."
 msgstr "Proměňte všechny své otevřené panely v seznam, abyste je mohli snadno spravovat a zrychlili Firefox."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:179 src/olympia/discovery/strings.jinja2:754
+#: src/olympia/discovery/strings.jinja2:179 src/olympia/discovery/strings.jinja2:771
 msgid "Robust download management. Check the state of your downloads through a status bar, download history page, and more."
 msgstr "Robustní správa stahování. Kontrolujte stav stahování skrze stavový řádek, stránku historie stahování a nejen to."
 
@@ -4850,7 +4826,7 @@ msgstr "Ulevte svým očím na webu ztmavením jeho zobrazení."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:197 src/olympia/discovery/strings.jinja2:751
+#: src/olympia/discovery/strings.jinja2:197 src/olympia/discovery/strings.jinja2:768
 msgid "Block all pop-ups by default, then decide which ones you'd like to open."
 msgstr "Zablokujte automaticky všechna vyskakovací okna a poté se rozhodněte, které z nich chcete otevřít."
 
@@ -4881,7 +4857,7 @@ msgstr "Zkvalitněte svůj čtenářský zážitek. Udělejte čtený text pří
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:215 src/olympia/discovery/strings.jinja2:826
+#: src/olympia/discovery/strings.jinja2:215 src/olympia/discovery/strings.jinja2:843
 msgid "Right-click and drag links you want open in new tabs."
 msgstr "Klepněte pravým tlačítkem myši na odkazy, které chcete otevřít v nových panelech, a přetáhněte je."
 
@@ -4922,7 +4898,7 @@ msgstr "Sledujte vývoj cen, najděte konkurenční produkty, poznejte hodnocen�
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:239 src/olympia/discovery/strings.jinja2:748
+#: src/olympia/discovery/strings.jinja2:239 src/olympia/discovery/strings.jinja2:765
 msgid "Make it your YouTube. Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
 msgstr "Udělejte si YouTube podle svého. Přehrávejte videa ve vyskakovacím okně, reklamy si nechte zobrazovat jen v odebíraných kanálech, pořizujte z videí snímky obrazovky a ještě mnohem více."
 
@@ -5003,7 +4979,7 @@ msgstr "Zkontrolujte své oblíbené RSS kanály na jediné stránce."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:287 src/olympia/discovery/strings.jinja2:745
+#: src/olympia/discovery/strings.jinja2:287 src/olympia/discovery/strings.jinja2:762
 msgid "Enable night mode for a better viewing experience."
 msgstr "Zapněte noční režim pro vytvoření prostředí méně zatěžujícího oči."
 
@@ -5059,13 +5035,13 @@ msgstr "Vytvářejte obecné poznámky i poznámky patřící jen určitým str�
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:320 src/olympia/discovery/strings.jinja2:724
+#: src/olympia/discovery/strings.jinja2:320 src/olympia/discovery/strings.jinja2:741
 msgid "Phone-like scrolling for your desktop. Features \"grab-n-drag\" style mouse movement."
 msgstr "Posouvání stránek jako v telefonu pro váš počítač. Nabízí možnost pohybu myši ve stylu „uchopit a táhnout“."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:323 src/olympia/discovery/strings.jinja2:895
+#: src/olympia/discovery/strings.jinja2:323 src/olympia/discovery/strings.jinja2:912
 msgid "Clear your browser cache with a click or keystroke."
 msgstr "Vymažte mezipaměť prohlížeče klepnutím nebo stiskem klávesy."
 
@@ -5076,13 +5052,13 @@ msgstr "Zvýrazněte text na webových stránkách pro jeho uložení a pozděj�
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:329 src/olympia/discovery/strings.jinja2:721
+#: src/olympia/discovery/strings.jinja2:329 src/olympia/discovery/strings.jinja2:738
 msgid "Enjoy music from 30,000+ radio stations from all over the globe."
 msgstr "Vychutnejte si hudbu z více než 30 000 rozhlasových stanic z celého světa."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:332 src/olympia/discovery/strings.jinja2:892
+#: src/olympia/discovery/strings.jinja2:332 src/olympia/discovery/strings.jinja2:909
 msgid "Save bandwidth by just streaming the audio from YouTube clips."
 msgstr "Ušetřete přenesená data přehráváním pouze zvukové stopy z YouTube videí."
 
@@ -5093,13 +5069,13 @@ msgstr "Proměňte slova v krásné titulky a obrázkový překryvný text."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:338 src/olympia/discovery/strings.jinja2:742
+#: src/olympia/discovery/strings.jinja2:338 src/olympia/discovery/strings.jinja2:759
 msgid "Automatically navigate to the secure version of a website if it's available."
 msgstr "Automaticky přejděte na zabezpečenou verzi webu, pokud je k dispozici."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:341 src/olympia/discovery/strings.jinja2:823
+#: src/olympia/discovery/strings.jinja2:341 src/olympia/discovery/strings.jinja2:840
 msgid "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
 msgstr "Vymazávejte svou historii prohlížení. Stanovte si počet dní, po které má být historie uchovávána, než bude automaticky vymazána."
 
@@ -5125,7 +5101,7 @@ msgstr "Vyhledávejte se zachováním soukromí pomocí jen jednoho kliknutí."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:359 src/olympia/discovery/strings.jinja2:856
+#: src/olympia/discovery/strings.jinja2:359 src/olympia/discovery/strings.jinja2:873
 msgid "Put an end to tab hijacking. Don't let clicked links take control of your current tab and load content you didn't ask for."
 msgstr "Skoncujte s únosy panelu. Nenechte kliknuté odkazy, aby převzaly kontrolu nad aktuálním panelem a aby načetly obsah, o který jste nežádali."
 
@@ -5237,13 +5213,13 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:425 src/olympia/discovery/strings.jinja2:859
+#: src/olympia/discovery/strings.jinja2:425 src/olympia/discovery/strings.jinja2:876
 msgid "Only allow web content to run from sites you trust. Surf securely."
 msgstr "Umožněte webovému obsahu se spustit pouze ze stránek, kterým důvěřujete. Surfujte bezpečně."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:428 src/olympia/discovery/strings.jinja2:730
+#: src/olympia/discovery/strings.jinja2:428 src/olympia/discovery/strings.jinja2:747
 msgid "Take full control of the cookies you've accumulated while browsing."
 msgstr "Získejte plnou kontrolu nad cookies, které se vám při procházení nashromáždili."
 
@@ -5254,7 +5230,7 @@ msgstr "Automaticky vymažte historii prohlížeče pro vybrané weby."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:434 src/olympia/discovery/strings.jinja2:820
+#: src/olympia/discovery/strings.jinja2:434 src/olympia/discovery/strings.jinja2:837
 msgid "Password-protect your personal bookmarks."
 msgstr "Zabezpečte své osobní záložky heslem."
 
@@ -5280,7 +5256,7 @@ msgstr "Využijte možnosti stahování videa a/nebo zvuku ve více formátech."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:449 src/olympia/discovery/strings.jinja2:715
+#: src/olympia/discovery/strings.jinja2:449 src/olympia/discovery/strings.jinja2:732
 msgid "Learn where any website's server is geographically located. Be an informed web traveler."
 msgstr "Zjistěte, kde se geograficky nachází server kteréhokoli webu. Buďte informovaným webovým cestovatelem."
 
@@ -5301,13 +5277,13 @@ msgstr "Sledujte historii cen na Amazonu. Čiňte inteligentní nákupní rozhod
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:461 src/olympia/discovery/strings.jinja2:886
+#: src/olympia/discovery/strings.jinja2:461 src/olympia/discovery/strings.jinja2:903
 msgid "Adjust browser audio settings with extreme clarity."
 msgstr "Upravte nastavení zvuku prohlížeče, aby byl co nejčistší."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:464 src/olympia/discovery/strings.jinja2:712
+#: src/olympia/discovery/strings.jinja2:464 src/olympia/discovery/strings.jinja2:729
 msgid "Defend yourself against the sneakiest trackers."
 msgstr "Chraňte se před těmi nejrafinovanějšími sledovacími prvky."
 
@@ -5333,7 +5309,7 @@ msgstr "Prostým kliknutím myši můžete sledovat videa v celé kráse – na 
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:482 src/olympia/discovery/strings.jinja2:862
+#: src/olympia/discovery/strings.jinja2:482 src/olympia/discovery/strings.jinja2:879
 msgid "Stop wasting valuable memory space with inactive tabs."
 msgstr "Už neplýtvejte drahocenným paměťovým prostorem díky neaktivním panelům."
 
@@ -5354,19 +5330,19 @@ msgstr "Nechte si při psaní pomoci s gramatikou. Na sociálních sítích, př
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:494 src/olympia/discovery/strings.jinja2:706
+#: src/olympia/discovery/strings.jinja2:494 src/olympia/discovery/strings.jinja2:723
 msgid "Read with more clarity and ease. Remove the clutter around text on web pages."
 msgstr "Čtěte s větší snadností a soustředěním. Odstraňte rušivé elementy kolem textu na webových stránkách."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:497 src/olympia/discovery/strings.jinja2:703
+#: src/olympia/discovery/strings.jinja2:497 src/olympia/discovery/strings.jinja2:720
 msgid "Block ads and get enhanced protection against malware and ad tracking."
 msgstr "Blokujte reklamy a získejte vylepšenou ochranu před malwarem a sledováním realizované reklamami."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:500 src/olympia/discovery/strings.jinja2:883
+#: src/olympia/discovery/strings.jinja2:500 src/olympia/discovery/strings.jinja2:900
 msgid "Enjoy multi-threading download support. Automatically detect different types of media available for download."
 msgstr "Užívejte si podporu stahování ve více vláknech. Automaticky najděte různé typy médií, které jsou pro stažení k mání."
 
@@ -5387,19 +5363,19 @@ msgstr "Užívejte výhod správy silných hesel."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:512 src/olympia/discovery/strings.jinja2:733
+#: src/olympia/discovery/strings.jinja2:512 src/olympia/discovery/strings.jinja2:750
 msgid "Customize shades of light and dark to make web pages more visually pleasing."
 msgstr "Upravte světlé a tmavé odstíny, aby byly webové stránky příjemnější na pohled."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:515 src/olympia/discovery/strings.jinja2:880
+#: src/olympia/discovery/strings.jinja2:515 src/olympia/discovery/strings.jinja2:897
 msgid "Block distracting websites. Simply list the sites you want the extension to block. Instant discipline!"
 msgstr "Zablokujte rušivé webové stránky. Sestavte seznam webových stránek, které chcete, aby toto rozšíření blokovalo. Okamžitá poslušnost!"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:518 src/olympia/discovery/strings.jinja2:727
+#: src/olympia/discovery/strings.jinja2:518 src/olympia/discovery/strings.jinja2:744
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
 msgstr "Změňte vzhled svého prohlížeče. Snadno si navrhněte své vlastní motivy vzhledu, aby Firefox vypadal tak, jak si přejete."
 
@@ -5420,13 +5396,13 @@ msgstr "Sledujte ceny produktů na Amazonu, Best Buy, eBay, Home Depotu a Walmar
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:530 src/olympia/discovery/strings.jinja2:700
+#: src/olympia/discovery/strings.jinja2:530 src/olympia/discovery/strings.jinja2:717
 msgid "Turn the web dark or select a custom color scheme to visually tailor the internet to your own taste."
 msgstr "Ztmavte si web nebo si vyberte vlastní barevné schéma a vizuálně si tak přizpůsobte internet svému vlastnímu vkusu."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:533 src/olympia/discovery/strings.jinja2:919
+#: src/olympia/discovery/strings.jinja2:533 src/olympia/discovery/strings.jinja2:936
 msgid "Get a more advanced search page on Firefox for Android."
 msgstr "Získejte pokročilejší stránku vyhledávání ve Firefoxu pro Android."
 
@@ -5452,7 +5428,7 @@ msgstr "Vymažte cookies, historii prohlížení a mezipaměť jediným kliknut�
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:549 src/olympia/discovery/strings.jinja2:814
+#: src/olympia/discovery/strings.jinja2:549 src/olympia/discovery/strings.jinja2:831
 msgid "Remove tracking elements from web links."
 msgstr "Odstraňte sledovací prvky z webových odkazů."
 
@@ -5463,13 +5439,13 @@ msgstr "Získejte automaticky aktualizované složky záložek coby RSS kanály.
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:555 src/olympia/discovery/strings.jinja2:877
+#: src/olympia/discovery/strings.jinja2:555 src/olympia/discovery/strings.jinja2:894
 msgid "Easily organize tons of open tabs."
 msgstr "Snadno organizujte haldy otevřených panelů."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:558 src/olympia/discovery/strings.jinja2:817
+#: src/olympia/discovery/strings.jinja2:558 src/olympia/discovery/strings.jinja2:834
 msgid "Create and customize tab groups."
 msgstr "Vytvářejte a přizpůsobte si skupiny panelů."
 
@@ -5485,13 +5461,13 @@ msgstr "Blokujte všechny reklamy – videa, vyskakovací okna, bannery aj."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:569 src/olympia/discovery/strings.jinja2:871
+#: src/olympia/discovery/strings.jinja2:569 src/olympia/discovery/strings.jinja2:888
 msgid "Watch streaming media with friends and family anywhere."
 msgstr "Sledujte streamovaná média s přáteli a rodinou kdekoli."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:572 src/olympia/discovery/strings.jinja2:913
+#: src/olympia/discovery/strings.jinja2:572 src/olympia/discovery/strings.jinja2:930
 msgid "Skip over sponsored portions of YouTube videos."
 msgstr "Přeskočte sponzorované části videí na YouTube."
 
@@ -5502,31 +5478,31 @@ msgstr "Nechte si webové stránky předčítat. Podporováno více než 40 jazy
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:578 src/olympia/discovery/strings.jinja2:910
+#: src/olympia/discovery/strings.jinja2:578 src/olympia/discovery/strings.jinja2:927
 msgid "Double-click any word to instantly see its definition."
 msgstr "Poklepáním na libovolné slovo se okamžitě zobrazí jeho definice."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:583 src/olympia/discovery/strings.jinja2:952
+#: src/olympia/discovery/strings.jinja2:583 src/olympia/discovery/strings.jinja2:969
 msgid "Save batches of tabs as convenient bookmarks."
 msgstr "Ukládejte si sady panelů jako pohodlné záložky."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:586 src/olympia/discovery/strings.jinja2:955
+#: src/olympia/discovery/strings.jinja2:586 src/olympia/discovery/strings.jinja2:972
 msgid "Tabs and bookmarks neatly organized in a Firefox side view."
 msgstr "Panely a záložky úhledně uspořádané v postranní liště Firefoxu."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:589 src/olympia/discovery/strings.jinja2:934
+#: src/olympia/discovery/strings.jinja2:589 src/olympia/discovery/strings.jinja2:951
 msgid "Thousands of GIFs at your fingertips."
 msgstr "Tisíce GIFů na dosah ruky."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:592 src/olympia/discovery/strings.jinja2:940
+#: src/olympia/discovery/strings.jinja2:592 src/olympia/discovery/strings.jinja2:957
 msgid "The easiest way to manage YouTube subscriptions."
 msgstr "Nejjednodušší způsob, jak spravovat odběry na YouTube."
 
@@ -5537,7 +5513,7 @@ msgstr "Pořiďte si posuvník, který jste vždycky chtěli – určete si ší
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:598 src/olympia/discovery/strings.jinja2:949
+#: src/olympia/discovery/strings.jinja2:598 src/olympia/discovery/strings.jinja2:966
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
 msgstr "Uložení a obnovení panelů. Obsahuje funkce automatického ukládání a synchronizace s cloudem."
 
@@ -5641,642 +5617,728 @@ msgstr "Zlepšete své psaní — získejte okamžitý přístup k síle synonym
 msgid "Deep translation features for a rich language experience anywhere on the web."
 msgstr "Funkce hlubokého překladu pro bohatý jazykový zážitek kdekoliv na webu."
 
-#. editorial content for the primary hero shelves.
+#. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:697
+msgid "Leave yourself little notes on any website."
+msgstr "Zanechávejte si malé poznámky na jakýchkoli webových stránkách."
+
+#. editorial content for the discovery pane.
+#: src/olympia/discovery/strings.jinja2:700
+msgid "Discover and download higher quality versions of interesting images and videos you find on the web."
+msgstr "Objevujte a stahujte kvalitnější verze zajímavých obrázků a videí, které najdete na webu."
+
+#. editorial content for the discovery pane.
+#: src/olympia/discovery/strings.jinja2:703
+msgid "Save and organize anything you find on the web — articles, media, PDFs & more."
+msgstr "Ukládejte a organizujte vše, co na webu najdete — články, multimédia, soubory PDF a další věci."
+
+#. editorial content for the discovery pane.
+#: src/olympia/discovery/strings.jinja2:706
+msgid "Enhance your Reddit experience with color-coded comments, simpler navigation, gestures for upvoting & much more."
+msgstr "Vylepšete si zážitek ze svého Redditu pomocí barevně odlišených komentářů, jednodušší navigace, gest pro hlasování a mnoha dalšího."
+
+#. editorial content for the primary hero shelves.
+#: src/olympia/discovery/strings.jinja2:714
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Některé weby mají potíže s přehráváním videí v systému Android. Tady je oprava."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:718
+#: src/olympia/discovery/strings.jinja2:735
 msgid "Find an interesting pic on the web? Use TinEye to discover its origins."
 msgstr "Našli jste na webu zajímavý obrázek? Použijte TinEye a odhalte jeho původ."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:736
+#: src/olympia/discovery/strings.jinja2:753
 msgid "Save images easily — just grab them from your current tab."
 msgstr "Ukládejte obrázky snadno — jednoduše si je vezměte z aktuálního panelu."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:739
+#: src/olympia/discovery/strings.jinja2:756
 msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title & more."
 msgstr "Mějte maximální kontrolu nad panely — zavřete duplicitní panely, slučte okna, zkopírujte název panelu a mnoho dalšího."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:757
+#: src/olympia/discovery/strings.jinja2:774
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
 msgstr "Čtěte soubory ePub přímo ve Firefoxu – zvětšete velikost písma, rozměry stránky apod."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:778
+#: src/olympia/discovery/strings.jinja2:795
 msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configurations."
 msgstr "Přizpůsobte si gesta myši. Objevte nový způsob, jak provádět navigaci pomocí více než 50 konfigurací."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:829
+#: src/olympia/discovery/strings.jinja2:846
 msgid "Customize the look of any website. Shift colors, page backgrounds & more."
 msgstr "Změňte vzhled libovolné webové stránky! Zaměňte barvy, pozadí stránek a další prvky."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:838
+#: src/olympia/discovery/strings.jinja2:855
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "Zavírejte panely, procházejte stránky a provádějte další činnosti pomocí gest myši."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:841
+#: src/olympia/discovery/strings.jinja2:858
 msgid "A simple way to adjust the size of any page's text — or even enlarge the page itself."
 msgstr "Jednoduchý způsob, jak upravit velikost textu libovolné stránky — nebo dokonce zvětšit samotnou stránku."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:868
+#: src/olympia/discovery/strings.jinja2:885
 msgid "Enjoy thumbnail images of websites alongside your search returns."
 msgstr "Nechte si vedle výsledků vyhledávání zobrazovat náhledy daných stránek."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:874
+#: src/olympia/discovery/strings.jinja2:891
 msgid "Save an entire web page — including images and styling — as a single HTML file."
 msgstr "Uložte si celou webovou stránku — včetně obrázků a stylů — jako jeden soubor HTML."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:889
+#: src/olympia/discovery/strings.jinja2:906
 msgid "Edit a web page before printing. Remove ads or any unwanted content."
 msgstr "Úprava webové stránky před vytištěním. Odstraňte reklamy nebo jakýkoli nežádoucí obsah."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:898
+#: src/olympia/discovery/strings.jinja2:915
 msgid "Advanced reader for aggregating all of your RSS/Atom/RDF sources."
 msgstr "Pokročilá čtečka pro agregaci všech vašich RSS/Atom/RDF zdrojů."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:916
+#: src/olympia/discovery/strings.jinja2:933
 msgid "Web pages read aloud. 40+ languages supported."
 msgstr "Webové stránky se sami předčítají. Podporováno více než 40 jazyků."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:922
+#: src/olympia/discovery/strings.jinja2:939
 msgid "Removes those long tracking parameters from Google search result URL's."
 msgstr "Odstraňuje z adres URL výsledků vyhledávání Google ony dlouhé sledovací parametry."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:925
+#: src/olympia/discovery/strings.jinja2:942
 msgid "Get weather updates directly from Firefox."
 msgstr "Mějte aktuální informace o počasí přímo ve Firefoxu."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:928
+#: src/olympia/discovery/strings.jinja2:945
 msgid "Manage your time better with a browser clock that charts work intervals."
 msgstr "Lépe hospodařte se svým časem díky hodinám v prohlížeči, které vyznačují pracovní přestávky."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:931
+#: src/olympia/discovery/strings.jinja2:948
 msgid "Tired of that \"Video paused. Continue watching?\" message? Listen to your favorite music uninterrupted on YouTube."
 msgstr "Už vás nebaví hláška „Video bylo pozastaveno. Chcete pokračovat ve sledování?“ Poslouchejte svou oblíbenou hudbu na YouTube bez jakéhokoliv přerušování."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:937
+#: src/olympia/discovery/strings.jinja2:954
 msgid "Begone, annoying cookie warnings!"
 msgstr "Sbohem, otravná upozornění na cookies!"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:943
+#: src/olympia/discovery/strings.jinja2:960
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
 msgstr "Vraťte se do jednodušších časů, kdy se nejlepší výsledky vyhledávání nacházely nad reklamami (kompatibilní s vyhledávači Google a Bing)."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:946
+#: src/olympia/discovery/strings.jinja2:963
 msgid "Get the mouse scrollbar you've always wanted — specify width and color."
 msgstr "Pořiďte si posuvník, který jste vždycky chtěli — určete šířku a barvu."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:958
+#: src/olympia/discovery/strings.jinja2:975
 msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
 msgstr "Zamaskujte svůj e-mail, abyste ochránili svou identitu a zabránili tak nevyžádané poště. Díky novinkám je používání služby Firefox Relay ještě jednodušší."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:961
+#: src/olympia/discovery/strings.jinja2:978
 msgid "Instantly translate any selected text on web pages."
 msgstr "Okamžitě přeložte jakýkoli vybraný text na webových stránkách."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:964
+#: src/olympia/discovery/strings.jinja2:981
 msgid "Make Firefox change colors based on time of day."
 msgstr "Nechte Firefox měnit barvy podle denní doby."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:967
+#: src/olympia/discovery/strings.jinja2:984
 msgid "Eliminate YouTube distractions. Remove related and recommended video suggestions, comments & more."
 msgstr "Zbavte se na YouTube rušivých prvků. Odstraňte návrhy souvisejících a doporučených videí, komentáře a další věci."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:970
+#: src/olympia/discovery/strings.jinja2:987
 msgid "Take emojis with you everywhere on the web."
 msgstr "Vezměte si emotikony všude na webu s sebou."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:976
+#: src/olympia/discovery/strings.jinja2:993
 msgid "Put restrictions on distracting, time-wasting websites."
 msgstr "Omezte rozptylující a časem plýtvající webové stránky."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:979
+#: src/olympia/discovery/strings.jinja2:996
 msgid "Remove clutter from your Twitter."
 msgstr "Odstraňte z Twitteru všechen balast."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:982
+#: src/olympia/discovery/strings.jinja2:999
 msgid "Customize YouTube to taste."
 msgstr "Přizpůsobte si YouTube dle chuti."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:985
+#: src/olympia/discovery/strings.jinja2:1002
 msgid "Delete browsing data directly from the browser toolbar."
 msgstr "Odstraňte údaje o prohlížení přímo z nástrojové lišty prohlížeče."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:988
+#: src/olympia/discovery/strings.jinja2:1005
 msgid "Get RSS feed auto-updates direct to your bookmark folders."
 msgstr "Získejte automaticky aktualizované složky záložek coby RSS kanály."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:991
+#: src/olympia/discovery/strings.jinja2:1008
 msgid "Effective blocker against all types of ads."
 msgstr "Účinný blokátor všech typů reklam."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:994
+#: src/olympia/discovery/strings.jinja2:1011
 msgid "Mass download manager makes extreme downloading extremely easy."
 msgstr "Správce hromadného stahování extrémně usnadňuje extrémní stahování."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:997
+#: src/olympia/discovery/strings.jinja2:1014
 msgid "Remove ads & receive better protection against malware."
 msgstr "Blokujte reklamy a získejte vylepšenou ochranu před malwarem."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1000
+#: src/olympia/discovery/strings.jinja2:1017
 msgid "Remove formatting from copied Clipboard text."
 msgstr "Odstraňte formátování z textu zkopírovaného ze schránky."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1003
+#: src/olympia/discovery/strings.jinja2:1020
 msgid "Fingerprinting privacy protection."
 msgstr "Ochrana soukromí před vytvářením otisku prohlížeče."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1006
+#: src/olympia/discovery/strings.jinja2:1023
 msgid "Enhance your gaming experience on Steam."
 msgstr "Vylepšete svůj herní prožitek na Steamu."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1009
+#: src/olympia/discovery/strings.jinja2:1026
 msgid "Thumbs-up to bringing back thumbs-down."
 msgstr "Palec nahoru k vrácení palce dolů."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1012
+#: src/olympia/discovery/strings.jinja2:1029
 msgid "Translate websites in Firefox — privately — without using the cloud."
 msgstr "Překládejte webové stránky ve Firefoxu — soukromně — bez použití cloudu."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1015
+#: src/olympia/discovery/strings.jinja2:1032
 msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
 msgstr "Blokujte webové stránky, které vás obírají o čas. Zablokujte je úplně nebo jen v časech podle vaší volby."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1018
+#: src/olympia/discovery/strings.jinja2:1035
 msgid "Easily summarize emails, docs, articles, and video transcripts in English across the web — without sacrificing your privacy."
 msgstr "Snadno sumarizujte e-maily, dokumenty, články a přepisy videí v angličtině z celého webu – bez obětování svého soukromí."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1021
+#: src/olympia/discovery/strings.jinja2:1038
 msgid "You’re in control. Turn off VPN when a website won’t work and set different locations for different websites. Windows only."
 msgstr "Máte to pod kontrolou. Vypněte VPN, když webová stránka nefunguje, a nastavte různá umístění pro různé webové stránky. Pouze pro Windows."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1024
+#: src/olympia/discovery/strings.jinja2:1041
 msgid "Automatically handle GDPR consent forms."
 msgstr "Automaticky zpracovávat formuláře souhlasu podle GDPR."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1027
+#: src/olympia/discovery/strings.jinja2:1044
 msgid "Block malicious websites from port scanning."
 msgstr "Blokujte skenování portů škodlivými webovými stránkami."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1030
+#: src/olympia/discovery/strings.jinja2:1047
 msgid "Enhance your Twitch experience."
 msgstr "Vylepšete si zážitek z Twitche."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1033
+#: src/olympia/discovery/strings.jinja2:1050
 msgid "Re-take control of Twitter/X and customize your experience."
 msgstr "Převezměte zpět kontrolu nad Twitter/X a přizpůsobte si svůj zážitek."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1036
+#: src/olympia/discovery/strings.jinja2:1053
 msgid "Translate text without leaving the page you're on (PDF compatible)."
 msgstr "Překládejte text přímo ze stránky, na které se nacházíte (PDF kompatibilní)."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1039
+#: src/olympia/discovery/strings.jinja2:1056
 msgid "Change the color of Firefox to match every website you visit."
 msgstr "Změňte barvy Firefoxu pro každou webovou stránku, kterou navštívíte."
 
-#. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1042
-msgid "Extensions are like apps for Firefox."
-msgstr "Rozšíření jsou jako aplikace pro Firefox."
+#. editorial content for the primary hero shelves.
+#: src/olympia/discovery/strings.jinja2:1059
+msgid "Learning a new language? Yomitan is the ideal dictionary companion."
+msgstr "Učíte se nový jazyk? Yomitan je ideálním slovníkovým společníkem."
+
+#. editorial content for the primary hero shelves.
+#: src/olympia/discovery/strings.jinja2:1062
+msgid "Pack a powerful thesaurus right inside Firefox."
+msgstr "Přibalte si do Firefoxu výkonný tezaurus."
+
+#. editorial content for the primary hero shelves.
+#: src/olympia/discovery/strings.jinja2:1065
+msgid "Hover over web images to enlarge their appearance."
+msgstr "Najetím na webové obrázky zvětšíte jejich vzhled."
+
+#. editorial content for the primary hero shelves.
+#: src/olympia/discovery/strings.jinja2:1068
+msgid "Feature rich translation tool. Works across the web, eBooks, PDFs, even video subtitles."
+msgstr "Překladatelský nástroj s bohatými funkcemi. Funguje na webu, v elektronických knihách, PDF i v titulcích k videím."
+
+#. editorial content for the primary hero shelves.
+#: src/olympia/discovery/strings.jinja2:1071
+msgid "Track the time you spend on every website you visit."
+msgstr "Sledujte čas strávený na každé navštívené webové stránce."
+
+#. editorial content for the primary hero shelves.
+#: src/olympia/discovery/strings.jinja2:1074
+msgid "Manage your Gmail (even multiple accounts) right from a handy pop-up accessible from the Firefox toolbar."
+msgstr "Spravujte svůj Gmail (dokonce i více účtů) přímo z šikovného vyskakovacího okna přístupného z nástrojové lišty Firefoxu."
+
+#. editorial content for the primary hero shelves.
+#: src/olympia/discovery/strings.jinja2:1077
+msgid "De-clutter YouTube. Strip away unwanted elements like related videos, shorts & more."
+msgstr "Zbavte se nepořádku na YouTube. Odstraňte nežádoucí prvky, jako jsou související videa, krátké filmy a další věci."
+
+#. editorial content for the primary hero shelves.
+#: src/olympia/discovery/strings.jinja2:1080
+msgid "Leave yourself little notes on any web page."
+msgstr "Zanechávejte si poznámky ke každé stránce."
+
+#. editorial content for the primary hero shelves.
+#: src/olympia/discovery/strings.jinja2:1083
+msgid "Serenity for your Reddit experience."
+msgstr "Klid pro váš zážitek na Redditu."
+
+#. editorial content for the primary hero shelves.
+#: src/olympia/discovery/strings.jinja2:1086
+msgid "Save and organize anything you find on the web."
+msgstr "Uložte si a uspořádejte vše, co na webu najdete."
+
+#. editorial content for the primary hero shelves.
+#: src/olympia/discovery/strings.jinja2:1089
+msgid "WebM video controls at your fingertips."
+msgstr "Ovládání videa ve formátu WebM na dosah ruky."
+
+#. editorial content for the primary hero shelves.
+#: src/olympia/discovery/strings.jinja2:1092
+msgid "Disguise Firefox as the Chrome browser to spoof websites that try to block Firefox."
+msgstr "Převlečte Firefox za prohlížeč Chrome a podvrhněte webové stránky, které se snaží blokovat Firefox."
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1044
+#: src/olympia/discovery/strings.jinja2:1095
+msgid "Extensions are like apps for Firefox."
+msgstr "Rozšíření jsou něco jako aplikace pro Firefox."
+
+#. editorial content for the secondary hero shelves.
+#: src/olympia/discovery/strings.jinja2:1097
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
 msgstr "Přidávají do Firefoxu funkce, se kterými je brouzdání rychlejší, bezpečnější nebo prostě jen zábavnější."
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1046
+#: src/olympia/discovery/strings.jinja2:1099
 msgid "See all extensions"
 msgstr "Zobrazit všechna rozšíření"
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1048
-msgid "Extension Starter Pack"
-msgstr "Starter Pack rozšíření"
+#: src/olympia/discovery/strings.jinja2:1101
+msgid "YouTube extensions"
+msgstr "Rozšíření pro YouTube"
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1052
-msgid "Twitch customization"
-msgstr "Přizpůsobení Twitchi"
+#. editorial content for the homepage shelves.
+#: src/olympia/discovery/strings.jinja2:1103 src/olympia/discovery/strings.jinja2:1194
+msgid "Creativity extensions"
+msgstr "Kreativní rozšíření"
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1054 src/olympia/discovery/strings.jinja2:1056 src/olympia/discovery/strings.jinja2:1058
+#: src/olympia/discovery/strings.jinja2:1105
+msgid "New Recommended extensions"
+msgstr "Nová doporučená rozšíření"
+
+#. editorial content for the secondary hero shelves.
+#: src/olympia/discovery/strings.jinja2:1107 src/olympia/discovery/strings.jinja2:1109
 msgid "See staff picks"
-msgstr "Zobrazit tipy zaměstnanců"
+msgstr "Zobrazit výběr od zaměstnanců"
+
+#. editorial content for the secondary hero shelves.
+#: src/olympia/discovery/strings.jinja2:1111
+msgid "Explore now"
+msgstr "Prozkoumat"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1061
+#: src/olympia/discovery/strings.jinja2:1114
 msgid "Recommended extensions"
 msgstr "Doporučená rozšíření"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1063
+#: src/olympia/discovery/strings.jinja2:1116
 msgid "See more recommended extensions"
 msgstr "Další doporučená rozšíření"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1066
+#: src/olympia/discovery/strings.jinja2:1119
 msgid "Popular themes"
 msgstr "Oblíbené vzhledy"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1068
+#: src/olympia/discovery/strings.jinja2:1121
 msgid "See more popular themes"
 msgstr "Další oblíbené vzhledy"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1071
-msgid "Enhanced privacy extensions"
-msgstr "Rozšíření zaměřená na zvýšení soukromí"
+#: src/olympia/discovery/strings.jinja2:1124
+msgid "Privacy & security"
+msgstr "Soukromí a zabezpečení"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1073
-msgid "See more recommended privacy extensions"
-msgstr "Další doporučená rozšíření pro ochranu soukromí"
+#: src/olympia/discovery/strings.jinja2:1126
+msgid "See more privacy staff picks"
+msgstr "Další vybraná rozšíření zaměřená na soukromí"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1076
+#: src/olympia/discovery/strings.jinja2:1129
 msgid "Popular extensions"
 msgstr "Oblíbená rozšíření"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1078
+#: src/olympia/discovery/strings.jinja2:1131
 msgid "See more popular extensions"
 msgstr "Další oblíbená rozšíření"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1081
+#: src/olympia/discovery/strings.jinja2:1134
 msgid "Recommended themes"
 msgstr "Doporučené motivy vzhledu"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1083
+#: src/olympia/discovery/strings.jinja2:1136
 msgid "See more recommended themes"
 msgstr "Další doporučené vzhledy"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1086
+#: src/olympia/discovery/strings.jinja2:1139
 msgid "Strong password managers"
 msgstr "Správci hesel"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1088
+#: src/olympia/discovery/strings.jinja2:1141
 msgid "See more password manager staff picks"
 msgstr "Další vybraná rozšíření pro správu hesel"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1091
+#: src/olympia/discovery/strings.jinja2:1144
 msgid "Translation tools"
 msgstr "Jazykové překladače"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1093
+#: src/olympia/discovery/strings.jinja2:1146
 msgid "See more translation tool staff picks"
 msgstr "Další vybrané jazykové překladače"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1096
+#: src/olympia/discovery/strings.jinja2:1149
 msgid "Social streaming"
 msgstr "Streamování na sociálních sítích"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1098
+#: src/olympia/discovery/strings.jinja2:1151
 msgid "See more social streaming staff picks"
 msgstr "Další vybraná rozšíření pro streamování na sociálních sítích"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1101
+#: src/olympia/discovery/strings.jinja2:1154
 msgid "Tab managers"
 msgstr "Správa panelů"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1103
+#: src/olympia/discovery/strings.jinja2:1156
 msgid "See more tab management staff picks"
 msgstr "Další vybraná rozšíření pro správu panelů"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1106
+#: src/olympia/discovery/strings.jinja2:1159
 #, python-brace-format
 msgid "“{tag}” tagged extensions"
 msgstr "Rozšíření se štítkem „{tag}“"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1108
+#: src/olympia/discovery/strings.jinja2:1161
 #, python-brace-format
 msgid "See more extensions tagged \"{tag}\""
 msgstr "Zobrazit další rozšíření se štítkem „{tag}“"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1111
+#: src/olympia/discovery/strings.jinja2:1164
 msgid "Elite ad blockers"
 msgstr "Výkonné blokátory reklam"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1113
+#: src/olympia/discovery/strings.jinja2:1166
 msgid "See more ad blocker staff picks"
 msgstr "Další vybraná rozšíření pro blokování reklam"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1116
+#: src/olympia/discovery/strings.jinja2:1169
 msgid "YouTube customization"
 msgstr "Přizpůsobení YouTube"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1118
+#: src/olympia/discovery/strings.jinja2:1171
 msgid "See more YouTube extension staff picks"
 msgstr "Další vybraná rozšíření pro YouTube"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1121
+#: src/olympia/discovery/strings.jinja2:1174
 msgid "Trending themes"
 msgstr "Právě populární motivy vzhledu"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1123
+#: src/olympia/discovery/strings.jinja2:1176
 msgid "See more trending themes"
 msgstr "Další populární vzhledy"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1126 src/olympia/discovery/strings.jinja2:1171
+#: src/olympia/discovery/strings.jinja2:1179 src/olympia/discovery/strings.jinja2:1224
 msgid "Top rated themes"
 msgstr "Nejlépe hodnocené motivy vzhledu"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1128 src/olympia/discovery/strings.jinja2:1173
+#: src/olympia/discovery/strings.jinja2:1181 src/olympia/discovery/strings.jinja2:1226
 msgid "See more top rated themes"
 msgstr "Další dobře hodnocené motivy vzhledu"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1131
+#: src/olympia/discovery/strings.jinja2:1184
 msgid "Trending extensions"
 msgstr "Právě populární rozšíření"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1133
+#: src/olympia/discovery/strings.jinja2:1186
 msgid "See more trending extensions"
 msgstr "Další právě populární rozšíření"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1136
+#: src/olympia/discovery/strings.jinja2:1189
 msgid "Steam enhancers"
 msgstr "Vylepšení pro Steam"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1138
+#: src/olympia/discovery/strings.jinja2:1191
 msgid "See more Steam staff picks"
 msgstr "Další vybraná rozšíření pro platformu Steam"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1141
-msgid "Creativity extensions"
-msgstr "Kreativní rozšíření"
-
-#. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1143
+#: src/olympia/discovery/strings.jinja2:1196
 msgid "See more creativity staff picks"
 msgstr "Další vybraná rozšíření pro kreativitu"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1146
+#: src/olympia/discovery/strings.jinja2:1199
 msgid "Social media extensions"
 msgstr "Rozšíření pro sociální sítě"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1148
+#: src/olympia/discovery/strings.jinja2:1201
 msgid "See more social media staff picks"
 msgstr "Další vybraná rozšíření pro sociální sítě"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1151
+#: src/olympia/discovery/strings.jinja2:1204
 msgid "Top download managers"
 msgstr "Nejlepší správci stahování"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1153
+#: src/olympia/discovery/strings.jinja2:1206
 msgid "See more download manager staff picks"
 msgstr "Další vybraná rozšíření pro správu stahování"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1156
+#: src/olympia/discovery/strings.jinja2:1209
 msgid "Accessibility extensions"
 msgstr "Rozšíření pro přístupnost"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1158
+#: src/olympia/discovery/strings.jinja2:1211
 msgid "See more accessibility staff picks"
 msgstr "Další vybraná rozšíření týmu pro přístupnost"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1161
+#: src/olympia/discovery/strings.jinja2:1214
 msgid "Extension starter pack"
 msgstr "Startovací balíček rozšíření"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1163
+#: src/olympia/discovery/strings.jinja2:1216
 msgid "See more starter extension staff picks"
 msgstr "Další vybraná startovací rozšíření"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1166
+#: src/olympia/discovery/strings.jinja2:1219
 msgid "Twitch extensions"
 msgstr "Rozšíření pro Twitch"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1168
+#: src/olympia/discovery/strings.jinja2:1221
 msgid "See more Twitch extension staff picks"
 msgstr "Další vybraná rozšíření pro Twitch"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1176
+#: src/olympia/discovery/strings.jinja2:1229
 msgid "Gaming & media extensions"
 msgstr "Rozšíření pro hraní her a média"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1178
+#: src/olympia/discovery/strings.jinja2:1231
 msgid "See more staff picks"
 msgstr "Zobrazit další výběr od zaměstnanců"
 
-#: src/olympia/files/models.py:325
+#: src/olympia/files/models.py:326
 msgid "Unreviewed"
 msgstr "Nezkontrolované"
 
-#: src/olympia/files/models.py:328
+#: src/olympia/files/models.py:329
 #, python-format
 msgid "[status:%s]"
 msgstr "[stav:%s]"
 
-#: src/olympia/files/utils.py:84
+#: src/olympia/files/utils.py:86
 msgid "This upload has already been submitted."
 msgstr "Toto nahrání již bylo odesláno."
 
-#: src/olympia/files/utils.py:186 src/olympia/files/utils.py:868
+#: src/olympia/files/utils.py:162 src/olympia/files/utils.py:199 src/olympia/files/utils.py:895
 msgid "Could not parse the manifest file."
 msgstr "Nepodařilo se zpracovat manifest soubor."
 
-#: src/olympia/files/utils.py:319
+#: src/olympia/files/utils.py:346
 #, python-brace-format
 msgid "Lowest supported \"strict_min_version\" is {min_version}."
 msgstr "Nejnižší podporovaná hodnota \"strict_min_version\" je {min_version}."
 
-#: src/olympia/files/utils.py:350
+#: src/olympia/files/utils.py:377
 #, python-brace-format
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
 msgstr "Neznámá hodnota \"strict_min_version\" {appver} pro {app}"
 
-#: src/olympia/files/utils.py:364
+#: src/olympia/files/utils.py:391
 #, python-brace-format
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
 msgstr "Neznámá hodnota \"strict_max_version\" {appver} pro {app}"
 
-#: src/olympia/files/utils.py:548
+#: src/olympia/files/utils.py:575
 msgid "Unsupported compression method in archive."
 msgstr "Archiv je v nepodporované metodě komprese."
 
-#: src/olympia/files/utils.py:551
+#: src/olympia/files/utils.py:578
 msgid "Unsupported archive type."
 msgstr "Nepodporovaný typ archivu."
 
-#: src/olympia/files/utils.py:560
+#: src/olympia/files/utils.py:587
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr "V archivu se nachází soubor s neplatným názvem. Ujistěte se prosím, že všechny názvy souborů jsou v kódování utf-8 nebo latin1."
 
 #. L10n: {0} is the name of the invalid file.
-#: src/olympia/files/utils.py:574
+#: src/olympia/files/utils.py:601
 #, python-brace-format
 msgid "Invalid file name in archive: {0}"
 msgstr "Neplatný název souboru v archivu: {0}"
 
 #. L10n: {0} is the name of the invalid file.
-#: src/olympia/files/utils.py:582
+#: src/olympia/files/utils.py:609
 #, python-brace-format
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Překročena velikost souboru v archivu: {0}"
 
-#: src/olympia/files/utils.py:602
+#: src/olympia/files/utils.py:629
 msgid "This archive contains a forbidden special file (symbolic / hard link or device / block file)"
 msgstr "Archiv obsahuje zakázaný speciální soubor (symbolický / pevný odkaz nebo soubor zařízení / blokovaný)"
 
-#: src/olympia/files/utils.py:637
+#: src/olympia/files/utils.py:664
 msgid "Uncompressed size is too large"
 msgstr "Nekomprimovaná velikost je příliš velká"
 
-#: src/olympia/files/utils.py:669
+#: src/olympia/files/utils.py:696
 msgid "Invalid archive."
 msgstr "Neplatný archiv."
 
-#: src/olympia/files/utils.py:856
+#: src/olympia/files/utils.py:883
 msgid "No manifest.json found"
 msgstr "Nebyl nalezen soubor manifest.json"
 
-#: src/olympia/files/utils.py:861
+#: src/olympia/files/utils.py:888
 msgid "Invalid or corrupted file."
 msgstr "Neplatný nebo poškozený soubor."
 
-#: src/olympia/files/utils.py:901
+#: src/olympia/files/utils.py:928
 #, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
 msgstr "ID doplňku v souboru manifest.json (%s) je jiné, než ID doplňku na AMO (%s)"
 
-#: src/olympia/files/utils.py:909
+#: src/olympia/files/utils.py:936
 msgid "Duplicate add-on ID found."
 msgstr "Nalezeno duplicitní ID doplňku."
 
-#: src/olympia/files/utils.py:915
+#: src/olympia/files/utils.py:942
 #, python-brace-format
 msgid "Version numbers should have at most {max_length} characters."
 msgstr "Čísla verzí mohou mít nejvíce {max_length} znaků."
 
-#: src/olympia/files/utils.py:921
+#: src/olympia/files/utils.py:948
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Čísla verzí by měla obsahovat pouze základní znaky, čísla a následující speciální znaky: +*.-_."
 
-#: src/olympia/files/utils.py:930
+#: src/olympia/files/utils.py:957
 #, python-brace-format
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr "Maximální velikost WebExtension motivů vzhledu je {0}."
 
-#: src/olympia/files/utils.py:943
+#: src/olympia/files/utils.py:970
 msgid "You cannot submit this type of add-on"
 msgstr "Přidávání tohoto typu doplňku není povoleno"
 
-#: src/olympia/files/utils.py:947
+#: src/olympia/files/utils.py:974
 msgid "You cannot submit an add-on using an ID ending with this suffix"
 msgstr "Nemůžete odeslat doplněk pomocí ID končícího touto příponou"
 
-#: src/olympia/files/utils.py:952
+#: src/olympia/files/utils.py:979
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Nemůžete nahrát rozšíření podepsané Mozillou"
 
-#: src/olympia/files/utils.py:956
+#: src/olympia/files/utils.py:983
 msgid "You cannot submit a language pack"
 msgstr "Nemůžete odeslat jazykový balíček"
 
-#: src/olympia/files/utils.py:965
+#: src/olympia/files/utils.py:992
 msgid "The locale of an existing dictionary/language pack cannot be changed"
 msgstr "Jazykové nastavení existujícího slovníku/jazykového balíčku není možné změnit"
 
-#: src/olympia/files/utils.py:1008
+#: src/olympia/files/utils.py:1035
 #, python-brace-format
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Nepodporovaný typ souboru. Nahrajte prosím podporovaný soubor typu {extensions}."
 
-#: src/olympia/files/utils.py:1017
+#: src/olympia/files/utils.py:1044
 msgid "Unexpected error."
 msgstr "Neočekávaná chyba."
 
-#: src/olympia/files/utils.py:1022
+#: src/olympia/files/utils.py:1049
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "Typ (%s) neodpovídá typu doplňku zde na AMO (%s)"
 
-#: src/olympia/files/utils.py:1027
+#: src/olympia/files/utils.py:1054
 msgid "Unknown"
 msgstr "Neznámé"
 
@@ -6388,44 +6450,6 @@ msgstr "Ohodnoceno {0} z 5 hvězdiček"
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Ohodnoceno %(rating)s z 5 hvězdiček"
 
-#: src/olympia/reviewers/forms.py:372
-#, python-brace-format
-msgid "Unsupported file type, please upload a file {extensions}."
-msgstr "Nepodporovaný typ souboru. Nahrajte prosím soubor typu {extensions}."
-
-#: src/olympia/reviewers/forms.py:378
-msgid "File too large."
-msgstr "Soubor je příliš velký."
-
-#: src/olympia/reviewers/templates/reviewers/moderationlog_detail.html:11
-#, python-format
-msgid "<dd>%(review_author)s</dd>"
-msgstr "<dd>%(review_author)s</dd>"
-
-#: src/olympia/reviewers/templates/reviewers/queue.html:48
-#, python-format
-msgid "by %(user)s on %(date)s %(stars)s"
-msgstr "od %(user)s dne %(date)s %(stars)s"
-
-#: src/olympia/reviewers/templates/reviewers/queue.html:59
-#, python-format
-msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
-msgstr "<strong>%(reason)s</strong> <span class=\"light\">Označil uživatel %(user)s dne %(date)s</span>"
-
-#: src/olympia/reviewers/templates/reviewers/review.html:320
-msgid "<strong>Warning!</strong> Another user may be viewing this page before you."
-msgstr "<strong>Upozornění!</strong> Tuto stránku si možná před vámi prohlíží jiný uživatel."
-
-#: src/olympia/reviewers/templates/reviewers/includes/user_ratings_list.html:5
-#, python-format
-msgid "%(user)s on %(date)s [%(ip_address)s]"
-msgstr "%(user)s dne %(date)s [%(ip_address)s]"
-
-#: src/olympia/reviewers/templates/reviewers/includes/version.html:5
-#, python-format
-msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-msgstr "Verze %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-
 #: src/olympia/search/filters.py:49 src/olympia/search/filters.py:62 src/olympia/search/filters.py:95 src/olympia/search/filters.py:170 src/olympia/search/filters.py:210
 #: src/olympia/search/filters.py:356 src/olympia/search/filters.py:467
 #, python-format
@@ -6445,7 +6469,7 @@ msgstr "Návrat na AMO je momentálně zakázán"
 msgid "Invalid Return To AMO guid (not in base64url format?)"
 msgstr "Neplatný guid pro návrat na AMO (není ve formátu base64url?)"
 
-#: src/olympia/search/filters.py:966
+#: src/olympia/search/filters.py:970
 msgid "Maximum query length exceeded."
 msgstr "Překročena maximální délka dotazu."
 
@@ -6475,15 +6499,15 @@ msgstr "Je-li identifikátor ID doplňku delší než 64 znaků, specifikujte je
 msgid "Invalid Add-on ID in URL or package"
 msgstr "Neplatné ID doplňku v adrese URL nebo balíčku"
 
-#: src/olympia/signing/views.py:211
+#: src/olympia/signing/views.py:212
 msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."
 msgstr "Uvedené verze nelze přidat do doplňku nastaveného do stavu „Neviditelný“."
 
-#: src/olympia/signing/views.py:220
+#: src/olympia/signing/views.py:227
 msgid "You cannot add a listed version to this add-on via the API due to missing metadata. Please submit via the website"
 msgstr "Kvůli chybějícím metadatům nemůžete k tomuto doplňku přidat veřejnou verzi prostřednictvím API. Nahrejte ji prosím pomocí webového rozhraní"
 
-#: src/olympia/signing/views.py:275
+#: src/olympia/signing/views.py:282
 msgid "No uploaded file for that add-on and version."
 msgstr "Pro tuto verzi doplňku nebyl nahrán žádný soubor."
 
@@ -6874,24 +6898,28 @@ msgstr "Chcete odstranit všechny překlady pro jazyk <b>{0}</b>? Tuto operaci n
 msgid "Delete Locale"
 msgstr "Smazat jazyk"
 
-#: src/olympia/users/models.py:91
+#: src/olympia/users/models.py:90
 msgid "No user with that email."
 msgstr "Nebyl nalezen uživatel, který by měl tento e-mail."
 
-#: src/olympia/users/models.py:612
+#: src/olympia/users/models.py:653
 #, python-brace-format
 msgid "Firefox user {id}"
 msgstr "Uživatel Firefoxu - {id}"
 
-#: src/olympia/users/models.py:867
+#: src/olympia/users/models.py:905
 msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
 msgstr "Z vašeho umístění bylo odesláno několik příspěvků, které porušují naše pravidla. IP adresa byla zablokována."
 
-#: src/olympia/users/models.py:1019
+#: src/olympia/users/models.py:1038
 msgid "The email address used for your account is not allowed for submissions."
 msgstr "E-mailová adresa použitá pro váš účet nemá povolené odesílání příspěvků."
 
-#: src/olympia/users/models.py:1278
+#: src/olympia/users/models.py:1171
+msgid "The software or device you are using is not allowed for submissions."
+msgstr "Software či zařízení, které používáte, nemá povoleno přidávání příspěvků."
+
+#: src/olympia/users/models.py:1297
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
 " which explains how we handle your information."
@@ -6899,7 +6927,7 @@ msgstr ""
 "Než začnete, přečtěte si prosím naše pravidla pro distribuci doplňků pro Firefox a zásady a pravidla pro kontrolu doplňků. Pravidla pro distribuci doplňků pro Firefox také odkazují na naše zásady "
 "ochrany osobních údajů, které vysvětlují, jak nakládáme s vašimi údaji."
 
-#: src/olympia/users/models.py:1292
+#: src/olympia/users/models.py:1311
 #, python-brace-format
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr "Navštivte adresu {url} a přečtěte si Dohodu k distribuci doplňků pro Firefox a naše Zásady a pravidla kontroly, a následně je akceptujte"
@@ -6940,15 +6968,15 @@ msgstr "Mozilla mě potřebuje kontaktovat ohledně některého z mých doplňk�
 msgid "User Notifications"
 msgstr "Uživatelská oznámení"
 
-#: src/olympia/users/utils.py:91
+#: src/olympia/users/utils.py:92
 msgid "An author has been added to your add-on"
 msgstr "K vašemu doplňku byl přidán nový autor"
 
-#: src/olympia/users/utils.py:115
+#: src/olympia/users/utils.py:116
 msgid "An author role has been changed on your add-on"
 msgstr "U vašeho doplňku byla změněna role autora"
 
-#: src/olympia/users/utils.py:125
+#: src/olympia/users/utils.py:126
 msgid "An author has been removed from your add-on"
 msgstr "U vašeho doplňku byl odebrán jeden z autorů"
 
@@ -7029,33 +7057,33 @@ msgstr ""
 "\n"
 "Tým doplňků Mozilla"
 
-#: src/olympia/versions/models.py:1170
+#: src/olympia/versions/models.py:1127
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
 msgstr "Opožděné zamítnutí, naplánováno na %s"
 
-#: src/olympia/versions/models.py:1175
+#: src/olympia/versions/models.py:1132
 msgid "Auto-approved, Confirmed"
 msgstr "Automaticky schváleno, potvrzeno"
 
-#: src/olympia/versions/models.py:1177
+#: src/olympia/versions/models.py:1134
 msgid "Auto-approved, not Confirmed"
 msgstr "Automaticky schváleno, nepotvrzeno"
 
-#: src/olympia/versions/models.py:1180
+#: src/olympia/versions/models.py:1137
 msgid "Approved, Manual"
 msgstr "Schváleno, ručně"
 
-#: src/olympia/versions/models.py:1187
+#: src/olympia/versions/models.py:1144
 msgid "Disabled by Developer"
 msgstr "Zakázáno vývojářem"
 
-#: src/olympia/versions/models.py:1544
+#: src/olympia/versions/models.py:1501
 #, python-brace-format
 msgid "{app} {min} and later"
 msgstr "{app} {min} a novější"
 
-#: src/olympia/versions/models.py:1671
+#: src/olympia/versions/models.py:1628
 #, python-brace-format
 msgid "The install origin {origin} is not permitted."
 msgstr "Původ instalace {origin} není povolen."

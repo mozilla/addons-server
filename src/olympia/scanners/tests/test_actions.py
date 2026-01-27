@@ -10,6 +10,7 @@ import responses
 
 from olympia import amo
 from olympia.abuse.models import CinderJob, ContentDecision
+from olympia.activity.models import ActivityLog
 from olympia.amo.tests import (
     TestCase,
     addon_factory,
@@ -942,7 +943,8 @@ class TestActions(TestCase):
         )
         version1 = addon.current_version
         version2 = version_factory(addon=addon)
-        _disable_and_block(version=version2, rule=None)
+        rule = ScannerRule.objects.create(scanner=YARA, name='Test Rule')
+        _disable_and_block(version=version2, rule=rule)
         assert addon.reload().status == amo.STATUS_DISABLED
         assert addon.block
         assert version1.is_blocked
@@ -952,6 +954,15 @@ class TestActions(TestCase):
         assert version2.file.reload().status == amo.STATUS_DISABLED
         assert version2.blockversion.block_type == BlockType.SOFT_BLOCKED
         assert ContentDecision.objects.count() == existing_decision_count + 1
+
+        assert (
+            ActivityLog.objects.filter(
+                addonlog__addon=addon, action=amo.LOG.FORCE_DISABLE.id
+            )
+            .get()
+            .details['reason']
+            == 'Rejected and blocked due to: scanner rule "Test Rule"'
+        )
 
         for author in addon.authors.all():
             assert EmailUserRestriction.objects.filter(
@@ -974,9 +985,13 @@ class TestActions(TestCase):
         )
         user = user_factory(last_login_ip='172.16.0.1')
         addon = addon_factory(average_daily_users=4242, users=[user])
-        _disable_and_block(version=addon.current_version, rule=None)
+        rule = ScannerRule.objects.create(scanner=YARA, name='Test Rule')
+        _disable_and_block(version=addon.current_version, rule=rule)
         assert reject_and_block_addons_mock.call_count == 1
-        assert reject_and_block_addons_mock.call_args[0] == ([addon],)
+        assert reject_and_block_addons_mock.call_args.args == ([addon],)
+        assert reject_and_block_addons_mock.call_args.kwargs == {
+            'reject_reason': 'scanner rule "Test Rule"'
+        }
 
     def test_disable_and_block_second_level_approval(self):
         responses.add_callback(
@@ -999,7 +1014,8 @@ class TestActions(TestCase):
 
         version1 = addon.current_version
         version2 = version_factory(addon=addon)
-        _disable_and_block(version=version2, rule=None)
+        rule = ScannerRule.objects.create(scanner=YARA, name='Test Rule')
+        _disable_and_block(version=version2, rule=rule)
         assert addon.reload().status == amo.STATUS_APPROVED  # Not disabled yet
         assert not addon.block
         assert not version1.is_blocked
@@ -1008,6 +1024,14 @@ class TestActions(TestCase):
         assert version2.file.reload().status == amo.STATUS_APPROVED  # Not disabled yet
         assert ContentDecision.objects.count() == 1
         assert not ContentDecision.objects.get().action_date  # Action pending approval
+        assert (
+            ActivityLog.objects.filter(
+                addonlog__addon=addon, action=amo.LOG.HELD_ACTION_FORCE_DISABLE.id
+            )
+            .get()
+            .details['reason']
+            == 'Rejected and blocked due to: scanner rule "Test Rule"'
+        )
 
     def test_disable_and_block_not_available_for_that_tier(self):
         tier = UsageTier.objects.create(lower_adu_threshold=1)
@@ -1051,7 +1075,7 @@ class TestActions(TestCase):
         assert not EmailUserRestriction.objects.exists()
         assert not IPNetworkUserRestriction.objects.exists()
 
-    def test_disable_and_block_but_previous_successful_appeal(self):
+    def _test_disable_and_block_but_previous_successful_appeal(self, appealed_action):
         UsageTier.objects.create(
             upper_adu_threshold=10000, disable_and_block_action_available=True
         )
@@ -1084,6 +1108,21 @@ class TestActions(TestCase):
         # We didn't add restrictions.
         assert not EmailUserRestriction.objects.exists()
         assert not IPNetworkUserRestriction.objects.exists()
+
+    def test_disable_and_block_but_previous_successful_appeal_on_block(self):
+        self._test_disable_and_block_but_previous_successful_appeal(
+            DECISION_ACTIONS.AMO_BLOCK_ADDON
+        )
+
+    def test_disable_and_block_but_previous_successful_appeal_on_disable(self):
+        self._test_disable_and_block_but_previous_successful_appeal(
+            DECISION_ACTIONS.AMO_DISABLE_ADDON
+        )
+
+    def test_disable_and_block_but_previous_successful_appeal_on_reject(self):
+        self._test_disable_and_block_but_previous_successful_appeal(
+            DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
+        )
 
     def test_disable_and_block_with_unsuccesful_appeal(self):
         user = user_factory(last_login_ip='172.16.0.1')
@@ -1121,7 +1160,7 @@ class TestActions(TestCase):
         )
         ContentDecision.objects.create(
             addon=addon,
-            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            action=DECISION_ACTIONS.AMO_IGNORE,
             appeal_job=appeal_decision.cinder_job,
         )
         self.do_disable_and_block(addon)

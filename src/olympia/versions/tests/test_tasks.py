@@ -4,11 +4,13 @@ import zipfile
 from base64 import b64encode
 from datetime import datetime
 from unittest import mock
+from urllib.parse import urljoin
 
 from django.conf import settings
 from django.core import mail
 from django.core.files import temp
 from django.core.files.base import File as DjangoFile
+from django.urls import reverse
 from django.utils.encoding import force_str
 
 import pytest
@@ -24,11 +26,14 @@ from olympia.amo.tests import (
     version_factory,
 )
 from olympia.blocklist.models import Block, BlockType, BlockVersion
+from olympia.constants.blocklist import REASON_VERSION_DELETED
+from olympia.constants.scanners import WEBHOOK_ON_SOURCE_CODE_UPLOADED
 from olympia.reviewers.models import NeedsHumanReview
 
 from ..models import Version, VersionPreview
 from ..tasks import (
     UI_FIELDS,
+    call_webhooks_on_source_code_uploaded,
     duplicate_addon_version_for_rollback,
     generate_static_theme_preview,
     hard_delete_versions,
@@ -838,10 +843,10 @@ def test_soft_block_versions():
     assert new_blocks[0].guid == addon_with_two_versions.guid
     assert new_blocks[0].blockversion_set.all()[1].version == versions[1]
     assert new_blocks[0].blockversion_set.all()[0].version == versions[2]
-    assert new_blocks[0].reason == 'Version deleted'
+    assert new_blocks[0].reason == REASON_VERSION_DELETED
     assert new_blocks[1].guid == addon_with_one_version.guid
     assert new_blocks[1].blockversion_set.get().version == versions[0]
-    assert new_blocks[0].reason == 'Version deleted'
+    assert new_blocks[0].reason == REASON_VERSION_DELETED
 
     assert existing_block.blockversion_set.count() == 2
     assert other_version_on_partialy_blocked_addon.blockversion.block == existing_block
@@ -851,3 +856,68 @@ def test_soft_block_versions():
     assert BlockVersion.objects.filter(block_type=BlockType.BLOCKED).count() == 1
 
     assert len(mail.outbox) == 0
+
+
+class TestCallWebhooksOnSourceCodeUploaded(TestCase):
+    @mock.patch('olympia.versions.tasks.call_webhooks')
+    def test_call_with_mock(self, call_webhooks_mock):
+        addon = addon_factory()
+        version = version_factory(addon=addon)
+        activity_log_id = 123
+
+        call_webhooks_on_source_code_uploaded(version.pk, activity_log_id)
+
+        assert call_webhooks_mock.called
+        call_webhooks_mock.assert_called_with(
+            event_name=WEBHOOK_ON_SOURCE_CODE_UPLOADED,
+            payload={
+                'addon_id': addon.id,
+                'version_id': version.id,
+                'download_source_url': urljoin(
+                    settings.EXTERNAL_SITE_URL,
+                    reverse('downloads.source', kwargs={'version_id': version.id}),
+                ),
+                'license_slug': version.license.slug,
+                'activity_log_id': activity_log_id,
+            },
+            version=version,
+        )
+
+    @mock.patch('olympia.versions.tasks.call_webhooks')
+    def test_call_with_mock_and_deleted_version(self, call_webhooks_mock):
+        addon = addon_factory()
+        version = version_factory(addon=addon)
+        # Delete the version. The task uses `Version.unfiltered` to account for that.
+        version.delete()
+        activity_log_id = 123
+
+        call_webhooks_on_source_code_uploaded(version.pk, activity_log_id)
+
+        assert call_webhooks_mock.called
+        call_webhooks_mock.assert_called_with(
+            event_name=WEBHOOK_ON_SOURCE_CODE_UPLOADED,
+            payload={
+                'addon_id': addon.id,
+                'version_id': version.id,
+                'download_source_url': urljoin(
+                    settings.EXTERNAL_SITE_URL,
+                    reverse('downloads.source', kwargs={'version_id': version.id}),
+                ),
+                'license_slug': version.license.slug,
+                'activity_log_id': activity_log_id,
+            },
+            version=version,
+        )
+
+    @mock.patch('olympia.versions.tasks.call_webhooks')
+    def test_no_call_with_mock_when_license_is_missing(self, call_webhooks_mock):
+        addon = addon_factory()
+        version = version_factory(addon=addon)
+        # Remove the license for this version, which is the case for unlisted
+        # versions for instance.
+        version.update(license=None)
+        activity_log_id = 123
+
+        call_webhooks_on_source_code_uploaded(version.pk, activity_log_id)
+
+        call_webhooks_mock.assert_not_called()

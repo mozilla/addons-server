@@ -210,7 +210,7 @@ def send_suppressed_email_confirmation(suppressed_email_verification_id):
 
     code_snippet = str(verification.confirmation_code)[-5:]
 
-    verification.status = SuppressedEmailVerification.STATUS_CHOICES.Pending
+    verification.status = SuppressedEmailVerification.STATUS_CHOICES.PENDING
 
     confirmation_link = absolutify(
         reverse('devhub.email_verification')

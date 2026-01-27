@@ -16,13 +16,13 @@ from django.http import (
 from django.template.response import TemplateResponse
 from django.urls import re_path, reverse
 from django.utils.encoding import force_str
-from django.utils.html import format_html
+from django.utils.html import format_html, format_html_join
 from django.utils.safestring import mark_safe
 
 from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.access import acl
-from olympia.activity.models import ActivityLog
+from olympia.activity.models import ActivityLog, RequestFingerprintLog
 from olympia.addons.models import Addon, AddonUser
 from olympia.amo.admin import AMOModelAdmin
 from olympia.amo.utils import backup_storage_enabled, create_signed_url_for_file_backup
@@ -38,6 +38,7 @@ from .models import (
     DeniedName,
     DisposableEmailDomainRestriction,
     EmailUserRestriction,
+    FingerprintRestriction,
     GroupUser,
     IPNetworkUserRestriction,
     UserHistory,
@@ -140,15 +141,16 @@ class UserAdmin(AMOModelAdmin):
         'id',
         'has_full_profile',
         'known_ip_adresses',
+        'known_ja4s',
         'last_known_activity_time',
         'last_login',
-        'last_login_ip',
         'modified',
         'picture_img',
         'ratings_authorship',
         'restriction_history_for_this_user',
         'currently_matching_exact_email_restrictions',
         'currently_matching_exact_ip_restrictions',
+        'user_last_login_ip',
         'username',
     )
     fieldsets = (
@@ -199,8 +201,9 @@ class UserAdmin(AMOModelAdmin):
                     'last_login',
                     'last_known_activity_time',
                     'activity',
-                    'last_login_ip',
+                    'user_last_login_ip',
                     'known_ip_adresses',
+                    'known_ja4s',
                     'banned',
                     'notes',
                     'has_active_api_key',
@@ -280,18 +283,23 @@ class UserAdmin(AMOModelAdmin):
         extra_context['has_users_edit_permission'] = acl.action_allowed_for(
             request.user, amo.permissions.USERS_EDIT
         )
-
-        lookup_field = UserProfile.get_lookup_field(object_id)
-        if lookup_field != 'pk':
+        if '@' in object_id:
+            # We got an '@' so our object_id is an email...
             try:
-                if lookup_field == 'email':
-                    user = UserProfile.objects.get(email=object_id)
-            except UserProfile.DoesNotExist as exc:
-                raise http.Http404 from exc
-            url = request.path.replace(object_id, str(user.id), 1)
-            if request.GET:
-                url += '?' + request.GET.urlencode()
-            return http.HttpResponsePermanentRedirect(url)
+                # ... there is a single user with that email, redirect to its
+                # change page.
+                obj = self.model.objects.get(email=object_id)
+                url = reverse('admin:users_userprofile_change', args=(obj.pk,))
+                if request.GET:
+                    url += '?' + request.GET.urlencode()
+            except self.model.MultipleObjectsReturned:
+                # ... there are multiple users with the same email, redirect to
+                # the changelist listing these users.
+                url = (
+                    reverse('admin:users_userprofile_changelist')
+                    + f'?email={object_id}'
+                )
+            return http.HttpResponseRedirect(url)
 
         return super().change_view(
             request,
@@ -460,6 +468,11 @@ class UserAdmin(AMOModelAdmin):
         user_log = (
             ActivityLog.objects.filter(user=obj)
             .values_list('created', flat=True)
+            # Ordering by created DESC is slow for users with lots of activity,
+            # the index is in the wrong order. Using the pk is faster and
+            # almost 100% equivalent without having to have another index just
+            # for that query.
+            .order_by('-pk')
             .first()
         )
         return display_for_value(user_log, '')
@@ -533,6 +546,41 @@ class UserAdmin(AMOModelAdmin):
 
     history_for_this_user.short_description = 'User History'
 
+    def known_ja4s(self, obj):
+        ja4s = (
+            RequestFingerprintLog.objects.filter(activity_log__user=obj)
+            .values_list('ja4', flat=True)
+            .order_by()
+            .distinct()
+        )
+        if not ja4s:
+            return ''
+        activities_changelist = reverse('admin:activity_activitylog_changelist')
+        contents = format_html_join(
+            '',
+            '<li><a href="{}?q={}">{}</a></li>',
+            sorted(
+                (
+                    activities_changelist,
+                    ja4,
+                    ja4,
+                )
+                for ja4 in ja4s
+            ),
+        )
+        return format_html('<ul>{}</ul>', contents)
+
+    def user_last_login_ip(self, obj):
+        if not obj.last_login_ip:
+            return ''
+        activities_changelist = reverse('admin:activity_activitylog_changelist')
+        return format_html(
+            '<a href="{}?q={}">{}</a>',
+            activities_changelist,
+            obj.last_login_ip,
+            obj.last_login_ip,
+        )
+
     def has_delete_permission(self, request, obj=None):
         return False
 
@@ -556,13 +604,15 @@ class DeniedNameAdmin(AMOModelAdmin):
                 inserted = 0
                 duplicates = 0
 
-                for x in form.cleaned_data['names'].splitlines():
+                existing = self.model.objects.all().values_list('name', flat=True)
+                for line in form.cleaned_data['names'].splitlines():
+                    line = line.lower()
                     # check with the cache
-                    if self.model.blocked(x):
+                    if any(name in line for name in existing):
                         duplicates += 1
                         continue
                     try:
-                        self.model.objects.create(**{'name': x.lower()})
+                        self.model.objects.create(**{'name': line})
                         inserted += 1
                     except IntegrityError:
                         # although unlikely, someone else could have added
@@ -621,6 +671,17 @@ class DisposableEmailDomainRestrictionAdmin(AMOModelAdmin):
     list_display = ('domain', 'restriction_type', 'reason')
     list_filter = ('restriction_type',)
     search_fields = ('^domain',)
+    formfield_overrides = {
+        models.CharField: {'widget': TextInput(attrs={'size': '125'})},
+    }
+
+
+@admin.register(FingerprintRestriction)
+class FingerprintRestrictionAdmin(AMOModelAdmin):
+    actions = ['delete_selected']
+    list_display = ('ja4', 'restriction_type', 'reason')
+    list_filter = ('restriction_type',)
+    search_fields = ('^ja4',)
     formfield_overrides = {
         models.CharField: {'widget': TextInput(attrs={'size': '125'})},
     }

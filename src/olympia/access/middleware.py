@@ -17,12 +17,15 @@ class UserAndAddrMiddleware(MiddlewareMixin):
         # lazy to avoid early database queries.
         core.set_user(request.user)
         core.set_remote_addr(request.META.get('REMOTE_ADDR'))
+        core.set_request_metadata(core.select_request_metadata(request.headers))
 
     def process_response(self, request, response):
         core.set_user(None)
         core.set_remote_addr(None)
+        core.set_request_metadata(None)
         return response
 
     def process_exception(self, request, exception):
         core.set_user(None)
         core.set_remote_addr(None)
+        core.set_request_metadata(None)

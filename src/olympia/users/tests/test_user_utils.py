@@ -10,7 +10,7 @@ from django.test.client import RequestFactory
 
 import pytest
 import responses
-from freezegun import freeze_time
+import time_machine
 
 from olympia import amo, core
 from olympia.activity.models import ActivityLog
@@ -20,6 +20,7 @@ from olympia.files.models import FileUpload
 from ..models import (
     RESTRICTION_TYPES,
     EmailUserRestriction,
+    FingerprintRestriction,
     IPNetworkUserRestriction,
     SuppressedEmail,
     SuppressedEmailVerification,
@@ -49,7 +50,12 @@ def test_email_unsubscribe_code_parse():
 @mock.patch('django_statsd.clients.statsd.incr')
 class TestRestrictionChecker(TestCase):
     def setUp(self):
-        self.request = RequestFactory(REMOTE_ADDR='10.0.0.1').get('/')
+        self.ja4 = 'd1234-5678-0000'
+        headers = {
+            'Client-JA4': self.ja4,
+            'X-SigSci-Tags': 'TAG,ANOTHERTAG',
+        }
+        self.request = RequestFactory(REMOTE_ADDR='10.0.0.1', headers=headers).get('/')
         self.request.is_api = False
         self.request.user = user_factory(read_dev_agreement=self.days_ago(0))
         self.request.user.update(last_login_ip='192.168.1.1')
@@ -93,6 +99,8 @@ class TestRestrictionChecker(TestCase):
         activity = ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).get()
         assert activity.user == self.request.user
         assert activity.iplog.ip_address_binary == IPv4Address('10.0.0.1')
+        assert activity.requestfingerprintlog.ja4 == self.ja4
+        assert activity.requestfingerprintlog.signals == ['TAG', 'ANOTHERTAG']
 
     def test_is_submission_allowed_bypassing_read_dev_agreement(self, incr_mock):
         self.request.user.update(read_dev_agreement=None)
@@ -139,6 +147,8 @@ class TestRestrictionChecker(TestCase):
         activity = ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).get()
         assert activity.user == self.request.user
         assert activity.iplog.ip_address_binary == IPv4Address('10.0.0.1')
+        assert activity.requestfingerprintlog.ja4 == self.ja4
+        assert activity.requestfingerprintlog.signals == ['TAG', 'ANOTHERTAG']
 
     def test_is_submission_allowed_email_restricted(self, incr_mock):
         EmailUserRestriction.objects.create(email_pattern=self.request.user.email)
@@ -164,6 +174,35 @@ class TestRestrictionChecker(TestCase):
         activity = ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).get()
         assert activity.user == self.request.user
         assert activity.iplog.ip_address_binary == IPv4Address('10.0.0.1')
+        assert activity.requestfingerprintlog.ja4 == self.ja4
+        assert activity.requestfingerprintlog.signals == ['TAG', 'ANOTHERTAG']
+
+    def test_is_submission_allowed_ja4_restricted(self, incr_mock):
+        FingerprintRestriction.objects.create(ja4=self.ja4)
+        checker = RestrictionChecker(request=self.request)
+        assert not checker.is_submission_allowed()
+        assert checker.get_error_message() == (
+            'The software or device you are using is not allowed for submissions.'
+        )
+        assert incr_mock.call_count == 2
+        assert incr_mock.call_args_list[0][0] == (
+            'RestrictionChecker.is_submission_allowed.FingerprintRestriction.failure',
+        )
+        assert incr_mock.call_args_list[1][0] == (
+            'RestrictionChecker.is_submission_allowed.failure',
+        )
+        assert UserRestrictionHistory.objects.count() == 1
+        history = UserRestrictionHistory.objects.get()
+        assert history.get_restriction_display() == 'FingerprintRestriction'
+        assert history.user == self.request.user
+        assert history.last_login_ip == self.request.user.last_login_ip
+        assert history.ip_address == '10.0.0.1'
+        assert ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).count() == 1
+        activity = ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).get()
+        assert activity.user == self.request.user
+        assert activity.iplog.ip_address_binary == IPv4Address('10.0.0.1')
+        assert activity.requestfingerprintlog.ja4 == self.ja4
+        assert activity.requestfingerprintlog.signals == ['TAG', 'ANOTHERTAG']
 
     def test_is_submission_allowed_bypassing_read_dev_agreement_restricted(
         self, incr_mock
@@ -196,6 +235,8 @@ class TestRestrictionChecker(TestCase):
         activity = ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).get()
         assert activity.user == self.request.user
         assert activity.iplog.ip_address_binary == IPv4Address('10.0.0.1')
+        assert activity.requestfingerprintlog.ja4 == self.ja4
+        assert activity.requestfingerprintlog.signals == ['TAG', 'ANOTHERTAG']
 
     def test_is_auto_approval_allowed_email_restricted_only_for_submission(
         self, incr_mock
@@ -228,6 +269,10 @@ class TestRestrictionChecker(TestCase):
             ip_address='10.0.0.2',
             source=amo.UPLOAD_SOURCE_DEVHUB,
             channel=amo.CHANNEL_LISTED,
+            request_metadata={
+                'Client-JA4': 'd1234-5678-0002',
+                'X-SigSci-Tags': 'TAG2,ANOTHERTAG2',
+            },
         )
         incr_mock.reset_mock()
         checker = RestrictionChecker(upload=upload)
@@ -251,6 +296,48 @@ class TestRestrictionChecker(TestCase):
         # Note that there is no request in this case, the ip_adress is coming
         # from the upload.
         assert activity.iplog.ip_address_binary == IPv4Address('10.0.0.2')
+        assert activity.requestfingerprintlog.ja4 == 'd1234-5678-0002'
+        assert activity.requestfingerprintlog.signals == ['TAG2', 'ANOTHERTAG2']
+
+    def test_is_auto_approval_allowed_ja4_restricted(self, incr_mock):
+        FingerprintRestriction.objects.create(
+            ja4=self.ja4,
+            restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL,
+        )
+        upload = FileUpload.objects.create(
+            user=self.request.user,
+            ip_address='10.0.0.2',
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            channel=amo.CHANNEL_LISTED,
+            request_metadata={
+                'Client-JA4': self.ja4,
+                'X-SigSci-Tags': 'TAG2,ANOTHERTAG2',
+            },
+        )
+        incr_mock.reset_mock()
+        checker = RestrictionChecker(upload=upload)
+        assert not checker.is_auto_approval_allowed()
+        assert incr_mock.call_count == 2
+        assert incr_mock.call_args_list[0][0] == (
+            'RestrictionChecker.is_auto_approval_allowed.FingerprintRestriction.failure',
+        )
+        assert incr_mock.call_args_list[1][0] == (
+            'RestrictionChecker.is_auto_approval_allowed.failure',
+        )
+        assert UserRestrictionHistory.objects.count() == 1
+        history = UserRestrictionHistory.objects.get()
+        assert history.get_restriction_display() == 'FingerprintRestriction'
+        assert history.user == self.request.user
+        assert history.last_login_ip == self.request.user.last_login_ip
+        assert history.ip_address == '10.0.0.2'
+        assert ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).count() == 1
+        activity = ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).get()
+        assert activity.user == self.request.user
+        # Note that there is no request in this case, the ip_adress is coming
+        # from the upload.
+        assert activity.iplog.ip_address_binary == IPv4Address('10.0.0.2')
+        assert activity.requestfingerprintlog.ja4 == self.ja4
+        assert activity.requestfingerprintlog.signals == ['TAG2', 'ANOTHERTAG2']
 
     def test_no_request_or_upload_at_init(self, incr_mock):
         with self.assertRaises(ImproperlyConfigured):
@@ -412,7 +499,7 @@ class TestCheckSuppressedEmailConfirmation(TestCase):
             in responses.calls[0].request.headers['authorization']
         )
 
-    @freeze_time('2023-06-26 11:00')
+    @time_machine.travel('2023-06-26 11:00', tick=False)
     def test_format_date_params(self):
         self.with_verification()
 
@@ -524,7 +611,7 @@ class TestCheckSuppressedEmailConfirmation(TestCase):
 
         assert (
             self.verification.reload().status
-            == SuppressedEmailVerification.STATUS_CHOICES.Delivered
+            == SuppressedEmailVerification.STATUS_CHOICES.DELIVERED
         )
 
     def test_verify_response_data(self):

@@ -8,6 +8,7 @@ from django.utils.cache import get_max_age
 from rest_framework.fields import empty
 
 from olympia import amo
+from olympia.activity.models import ActivityLog
 from olympia.amo.tests import (
     APITestClientSessionID,
     TestCase,
@@ -254,7 +255,7 @@ class TestCollectionViewSetDetail(TestCase):
         self.collection.add_addon(addon_factory())
         self.collection.add_addon(addon_factory())
         # see TestCollectionAddonViewSetList.test_basic for the query breakdown
-        with self.assertNumQueries(34):
+        with self.assertNumQueries(33):
             response = self.client.get(self.url + '?with_addons')
         assert len(response.data['addons']) == 4
         patched_drf_setting = dict(settings.REST_FRAMEWORK)
@@ -461,31 +462,75 @@ class CollectionViewSetDataMixin:
         DeniedName.objects.create(name='foo')
         self.client.login_api(self.user)
         data = dict(self.data)
-        data.update(name={'en-US': 'foo_thing'})
+        data.update(name={'en-US': 'foó_thing'})
         response = self.send(data=data)
         assert response.status_code == 400
         assert json.loads(response.content) == {'name': ['This name cannot be used.']}
+
+        # homoglyphs don't bypass the validation
+        data.update(name={'en-US': 'fѻѺ thing'})
+        response = self.send(data=data)
+        assert response.status_code == 400
+        assert json.loads(response.content) == {'name': ['This name cannot be used.']}
+
         # But you can if you have the correct permission
         self.grant_permission(self.user, 'Collections:Edit')
         self.client.login_api(self.user)
         response = self.send(data=data)
         assert response.status_code in (200, 201)
 
-    def test_slug_denied_name(self):
-        DeniedName.objects.create(name='foo')
+    def test_name_too_many_homoglyphs(self):
         self.client.login_api(self.user)
         data = dict(self.data)
-        data.update(slug='foo_thing')
+        data.update(name={'en-US': 'l' * 17})
+        response = self.send(data=data)
+        assert response.status_code == 400
+        assert json.loads(response.content) == {'name': ['This name cannot be used.']}
+        # even with permission
+        self.grant_permission(self.user, 'Collections:Edit')
+        self.client.login_api(self.user)
+        response = self.send(data=data)
+        assert response.status_code == 400
+
+    def test_slug_denied_name(self):
+        DeniedName.objects.create(name='abcde')
+        self.client.login_api(self.user)
+        data = dict(self.data)
+        data.update(slug='abcdé_thing')
         response = self.send(data=data)
         assert response.status_code == 400
         assert json.loads(response.content) == {
             'slug': ['This custom URL cannot be used.']
         }
+
+        # homoglyphs don't bypass the validation
+        data.update(slug='abcdЄ_thing')
+        response = self.send(data=data)
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'slug': ['This custom URL cannot be used.']
+        }
+
         # But you can if you have the correct permission
         self.grant_permission(self.user, 'Collections:Edit')
         self.client.login_api(self.user)
         response = self.send(data=data)
         assert response.status_code in (200, 201)
+
+    def test_slug_too_many_homoglyphs(self):
+        self.client.login_api(self.user)
+        data = dict(self.data)
+        data.update(slug='l' * 17)
+        response = self.send(data=data)
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'slug': ['This custom URL cannot be used.']
+        }
+        # even with permission
+        self.grant_permission(self.user, 'Collections:Edit')
+        self.client.login_api(self.user)
+        response = self.send(data=data)
+        assert response.status_code == 400
 
 
 class TestCollectionViewSetCreate(CollectionViewSetDataMixin, TestCase):
@@ -693,6 +738,42 @@ class TestCollectionViewSetPatch(CollectionViewSetDataMixin, TestCase):
             # But can't patch it.
             response = self.send(url=url)
             assert response.status_code == 403
+
+    def test_logging(self):
+        old_collection_name = str(self.collection.name)
+        self.collection.description = 'old desc'
+        self.collection.slug = 'same'
+        self.collection.save()
+        self.client.login_api(self.user)
+        data = {
+            'description': {'fr': 'nouvelle desc'},
+            'name': {'en-US': 'New Name'},
+            'slug': 'same',  # unchanged, shouldn't log
+        }
+        response = self.client.patch(self.get_url(self.user), data)
+
+        assert response.status_code == 200, response.content
+        self.collection = self.collection.reload()
+        assert str(self.collection.name) == 'New Name'
+        assert str(self.collection.description) == 'old desc'
+        with self.activate('fr'):
+            assert str(self.collection.reload().description) == 'nouvelle desc'
+        alogs = list(
+            ActivityLog.objects.filter(
+                user=self.user, action=amo.LOG.EDIT_COLLECTION_PROPERTY.id
+            )
+        )
+        assert len(alogs) == 2
+        assert alogs[1].arguments == [
+            self.collection,
+            'name',
+            f'{{"removed": ["{old_collection_name}"], "added": ["New Name"]}}',
+        ]
+        assert alogs[0].arguments == [
+            self.collection,
+            'description',
+            '{"removed": [], "added": ["nouvelle desc"]}',
+        ]
 
 
 class TestCollectionViewSetDelete(TestCase):
@@ -1070,7 +1151,7 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         )
         self.client.login_api(self.user)
         # Passing authentication makes an extra query. We should not be caching.
-        self._test_response(expected_num_queries=30)
+        self._test_response(expected_num_queries=29)
 
     def test_no_caching_authenticated_by_username(self):
         self.user.update(username='notmozilla')
@@ -1083,7 +1164,7 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         )
         self.client.login_api(self.user)
         # Passing authentication makes an extra query. We should not be caching.
-        self._test_response(expected_num_queries=30)
+        self._test_response(expected_num_queries=29)
 
     def test_no_caching_anonymous_not_mozilla_collection(self):
         # We get the Cache-Control set from middleware (not the view).
@@ -1120,7 +1201,7 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         )
         self._test_response(expected_max_age=7200)
 
-    def _test_response(self, expected_num_queries=29, expected_max_age=None):
+    def _test_response(self, expected_num_queries=28, expected_max_age=None):
         with self.assertNumQueries(expected_num_queries):
             response = self.client.get(self.url)
         assert response['Content-Type'] == 'application/json'
@@ -1140,7 +1221,7 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         assert get_max_age(response) == expected_max_age
 
     def test_basic(self):
-        with self.assertNumQueries(29):
+        with self.assertNumQueries(28):
             #  1. start savepoint
             #  2. get user
             #  3. get collections of user
@@ -1166,7 +1247,6 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
             # 23. end savepoint
             # 24. approved promoted groups x3
             # 28. promoted addons
-            # 29. addon listing info
             super().test_basic()
 
     def test_transforms(self):

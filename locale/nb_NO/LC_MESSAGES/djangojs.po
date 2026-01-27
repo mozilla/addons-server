@@ -1,7 +1,7 @@
 # Translations template for addons-server.
-# Copyright (C) 2025 Mozilla
+# Copyright (C) 2026 Mozilla
 # This file is distributed under the same license as the addons-server project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
 msgid ""
 msgstr ""
@@ -19,7 +19,7 @@ msgstr "Et problem oppstod ved forsøk på å kontakte serveren."
 
 #: static/js/common/upload-addon.js:78
 msgid "Select a file..."
-msgstr "Velg fil ..."
+msgstr "XXX fil ..."
 
 #: static/js/common/upload-addon.js:82
 msgid "Your add-on should end with .zip, .xpi or .crx"

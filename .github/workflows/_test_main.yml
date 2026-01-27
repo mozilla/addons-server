@@ -57,7 +57,7 @@ jobs:
       splits: ${{ steps.result.outputs.splits }}
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           persist-credentials: false
 
@@ -90,7 +90,7 @@ jobs:
         group: ${{fromJson(needs.test_config.outputs.matrix)}}
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           persist-credentials: false
 
@@ -107,7 +107,7 @@ jobs:
             make test_main ARGS="${split} ${group} ${report}"
 
       - name: Upload logs
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           path: ${{ env.log_file }}
           name: ${{ env.log_artifact }}-${{ matrix.group }}
@@ -120,11 +120,11 @@ jobs:
     needs: [test_config, test_main]
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           persist-credentials: false
 
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v6
         with:
           pattern: ${{ env.log_artifact }}*
 

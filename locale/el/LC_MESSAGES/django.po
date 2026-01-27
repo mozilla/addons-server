@@ -1,7 +1,7 @@
 # Translations template for addons-server.
-# Copyright (C) 2025 Mozilla
+# Copyright (C) 2026 Mozilla
 # This file is distributed under the same license as the addons-server project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
 msgid ""
 msgstr ""
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Pontoon\n"
 
-#: src/olympia/abuse/actions.py:210
+#: src/olympia/abuse/actions.py:212
 #, python-brace-format
 msgid "Mozilla Add-ons: {} [{}]"
 msgstr "Πρόσθετα Mozilla: {} [{}]"
@@ -34,11 +34,11 @@ msgstr "Λόγος ένστασης"
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr "Εξηγήστε γιατί πιστεύετε ότι αυτή η απόφαση λήφθηκε κατά λάθος ή/και γιατί δεν συμμορφώνεται με την ισχύουσα πολιτική ή νομοθεσία."
 
-#: src/olympia/abuse/models.py:1115
+#: src/olympia/abuse/models.py:1111
 msgid "User profile"
 msgstr "Προφίλ χρήστη"
 
-#: src/olympia/abuse/models.py:1483
+#: src/olympia/abuse/models.py:1470
 #, python-brace-format
 msgid "\"{}\" for {}"
 msgstr "«{}» για {}"
@@ -65,7 +65,7 @@ msgstr "Απόφαση {0}"
 msgid "Thank you. Your appeal has been recorded."
 msgstr "Σας ευχαριστούμε. Η ένστασή σας έχει καταγραφεί."
 
-#: src/olympia/abuse/templates/abuse/appeal.html:31 src/olympia/amo/templates/amo/fake_fxa_authorization.html:21
+#: src/olympia/abuse/templates/abuse/appeal.html:31
 msgid "OK"
 msgstr "OK"
 
@@ -232,28 +232,28 @@ msgstr ""
 "\n"
 "Ελέγξαμε την αναφορά σας και το εν λόγω περιεχόμενο και διαπιστώσαμε ότι παραβιάζει τις πολιτικές της Mozilla (%(policy_document_url)s) και επομένως, έχουμε αφαιρέσει το περιεχόμενο.\n"
 
-#: src/olympia/accounts/serializers.py:152 src/olympia/bandwagon/serializers.py:98
+#: src/olympia/accounts/serializers.py:160 src/olympia/bandwagon/serializers.py:101
 msgid "No links are allowed."
 msgstr "Δεν επιτρέπονται σύνδεσμοι."
 
-#: src/olympia/accounts/serializers.py:158
+#: src/olympia/accounts/serializers.py:164
 msgid "This display name cannot be used."
 msgstr "Αυτό το εμφανιζόμενο όνομα δεν μπορεί να χρησιμοποιηθεί."
 
-#: src/olympia/accounts/serializers.py:167 src/olympia/addons/fields.py:366 src/olympia/devhub/views.py:1024
+#: src/olympia/accounts/serializers.py:176 src/olympia/addons/fields.py:366 src/olympia/devhub/views.py:1021
 msgid "Images must be either PNG or JPG."
 msgstr "Οι εικόνες πρέπει να είναι σε μορφή PNG ή JPG."
 
-#: src/olympia/accounts/serializers.py:171 src/olympia/addons/fields.py:371 src/olympia/devhub/views.py:1030
+#: src/olympia/accounts/serializers.py:180 src/olympia/addons/fields.py:371 src/olympia/devhub/views.py:1027
 msgid "Images cannot be animated."
 msgstr "Δεν επιτρέπονται κινούμενες εικόνες."
 
-#: src/olympia/accounts/serializers.py:176 src/olympia/devhub/views.py:1039
+#: src/olympia/accounts/serializers.py:185 src/olympia/devhub/views.py:1036
 #, python-format
 msgid "Please use images smaller than %dMB."
 msgstr "Χρησιμοποιήστε εικόνες μικρότερες από %dMB."
 
-#: src/olympia/accounts/views.py:194
+#: src/olympia/accounts/views.py:204
 msgid "Need help?"
 msgstr "Χρειάζεστε βοήθεια;"
 
@@ -266,11 +266,11 @@ msgstr "Η ειδοποίηση [%s] δεν υπάρχει"
 msgid "Add-ons Review Team"
 msgstr "Ομάδα αξιολόγησης προσθέτων"
 
-#: src/olympia/activity/models.py:738
+#: src/olympia/activity/models.py:770
 msgid "Review"
 msgstr "Αξιολόγηση"
 
-#: src/olympia/activity/models.py:816 src/olympia/devhub/templates/devhub/versions/list.html:41
+#: src/olympia/activity/models.py:848 src/olympia/devhub/templates/devhub/versions/list.html:41
 #, python-brace-format
 msgid "Version {0}"
 msgid_plural "Versions {0}"
@@ -302,7 +302,7 @@ msgstr "Έχετε υπερβεί τον μέγιστο αριθμό κατηγ�
 msgid "The \"other\" category cannot be combined with another category"
 msgstr "Η κατηγορία «άλλα» δεν μπορεί να συνδυαστεί με κάποια άλλη κατηγορία"
 
-#: src/olympia/addons/fields.py:76 src/olympia/addons/serializers.py:1274
+#: src/olympia/addons/fields.py:76 src/olympia/addons/serializers.py:1281
 msgid "Invalid category name."
 msgstr "Μη έγκυρο όνομα κατηγορίας."
 
@@ -311,11 +311,11 @@ msgstr "Μη έγκυρο όνομα κατηγορίας."
 msgid "URL domain must be one of [{domains}]."
 msgstr "Ο τομέας του URL πρέπει να είναι ένας από τους [{domains}]."
 
-#: src/olympia/addons/fields.py:125 src/olympia/devhub/forms.py:299
+#: src/olympia/addons/fields.py:125 src/olympia/devhub/forms.py:298
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
 msgstr "Η διαδρομή URL για χορηγούς GitHub πρέπει να περιέχει το /sponsors/."
 
-#: src/olympia/addons/fields.py:128 src/olympia/devhub/forms.py:302
+#: src/olympia/addons/fields.py:128 src/olympia/devhub/forms.py:301
 msgid "URLs must start with https://."
 msgstr "Τα URL πρέπει να ξεκινούν με «https://»."
 
@@ -329,7 +329,7 @@ msgstr "Η άδεια με slug={value} δεν υπάρχει."
 msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr "Ο τύπος αρχείου δεν υποστηρίζεται, μεταφορτώστε ένα συμπιεσμένο αρχείο ({extensions})."
 
-#: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:777 src/olympia/files/utils.py:761 src/olympia/reviewers/forms.py:386
+#: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:788 src/olympia/files/utils.py:788
 msgid "Invalid or broken archive."
 msgstr "Άκυρο ή κατεστραμμένο αρχείο."
 
@@ -345,7 +345,7 @@ msgstr "Καθορίστηκε άγνωστη μέγιστη έκδοση εφα
 msgid "Unknown min app version specified"
 msgstr "Καθορίστηκε άγνωστη ελάχιστη έκδοση εφαρμογής"
 
-#: src/olympia/addons/fields.py:307 src/olympia/addons/fields.py:325 src/olympia/addons/serializers.py:637
+#: src/olympia/addons/fields.py:307 src/olympia/addons/fields.py:325 src/olympia/addons/serializers.py:644
 #, python-format
 msgid "Can not override compatibility information set in the manifest for this application (%s)"
 msgstr "Δεν είναι δυνατή η παράκαμψη των πληροφοριών συμβατότητας που έχουν οριστεί στο αρχείο δήλωσης για αυτήν την εφαρμογή (%s)"
@@ -355,13 +355,9 @@ msgstr "Δεν είναι δυνατή η παράκαμψη των πληροφ
 msgid "Images must be smaller than %dMB"
 msgstr "Οι εικόνες πρέπει να είναι μικρότερες από %dΜΒ"
 
-#: src/olympia/addons/models.py:2302 src/olympia/addons/models.py:2381 src/olympia/constants/base.py:66
+#: src/olympia/addons/models.py:2305 src/olympia/addons/models.py:2384 src/olympia/constants/base.py:70
 msgid "Listed"
 msgstr "Καταχωρημένο"
-
-#: src/olympia/addons/models.py:2559
-msgid "Add-on and collection paths need to end with \"/\""
-msgstr "Οι διαδρομές προσθέτων και συλλογών πρέπει να λήγουν με «/»"
 
 #: src/olympia/addons/serializers.py:329
 msgid "Built in licenses can not be updated."
@@ -386,61 +382,65 @@ msgstr ""
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr "Οι καταχωρημένες εκδόσεις δεν μπορούν να υποβληθούν, όσο το πρόσθετο είναι ανενεργό."
 
-#: src/olympia/addons/serializers.py:612
+#: src/olympia/addons/serializers.py:578 src/olympia/signing/views.py:218
+msgid "Listed versions cannot be submitted while add-on listing is rejected."
+msgstr ""
+
+#: src/olympia/addons/serializers.py:619
 #, python-format
 msgid "%(addon_type_plural)s are not supported by %(app_name)s"
 msgstr "Τα %(addon_type_plural)s δεν υποστηρίζονται από το %(app_name)s"
 
-#: src/olympia/addons/serializers.py:651 src/olympia/devhub/forms.py:931
+#: src/olympia/addons/serializers.py:658 src/olympia/devhub/forms.py:942
 #, python-format
 msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
 msgstr ""
 "Μη έγκυρο εύρος εκδόσεων. Για το Firefox για Android, μπορείτε να επιλέξετε μόνο ένα εύρος που ξεκινά με την έκδοση %(max)s ή νεότερη, ή που τελειώνει με κάποια έκδοση, παλαιότερη της %(min)s."
 
-#: src/olympia/addons/serializers.py:900
+#: src/olympia/addons/serializers.py:907
 msgid "Add-ons need at least one owner."
 msgstr "Τα πρόσθετα χρειάζονται τουλάχιστον έναν κάτοχο."
 
-#: src/olympia/addons/serializers.py:915
+#: src/olympia/addons/serializers.py:922
 msgid "Add-ons need at least one listed author."
 msgstr "Τα πρόσθετα χρειάζονται τουλάχιστον έναν καταχωρημένο δημιουργό."
 
-#: src/olympia/addons/serializers.py:947
+#: src/olympia/addons/serializers.py:954
 msgid "Account not found."
 msgstr "Ο λογαριασμός δεν βρέθηκε."
 
-#: src/olympia/addons/serializers.py:960 src/olympia/devhub/forms.py:431 src/olympia/devhub/forms.py:501
+#: src/olympia/addons/serializers.py:967 src/olympia/devhub/forms.py:442 src/olympia/devhub/forms.py:512
 msgid "An author can only be present once."
 msgstr "Ένας δημιουργός μπορεί να εμφανίζεται μόνο μια φορά."
 
-#: src/olympia/addons/serializers.py:971 src/olympia/devhub/forms.py:443
+#: src/olympia/addons/serializers.py:978 src/olympia/devhub/forms.py:454
 msgid "The account needs a display name before it can be added as an author."
 msgstr "Ο λογαριασμός χρειάζεται ένα εμφανιζόμενο όνομα για να μπορεί να προστεθεί ως δημιουργός."
 
-#: src/olympia/addons/serializers.py:1254
+#: src/olympia/addons/serializers.py:1261
 msgid "This slug cannot be used. Please choose another."
 msgstr "Δεν είναι δυνατή η χρήση αυτού του αναγνωριστικού URL. Επιλέξτε κάποιο άλλο."
 
-#: src/olympia/addons/serializers.py:1888
+#: src/olympia/addons/serializers.py:1886
 msgid "There is no rollback available in this channel."
 msgstr "Δεν υπάρχει διαθέσιμο σημείο επαναφοράς σε αυτό το κανάλι."
 
-#: src/olympia/addons/serializers.py:1898
+#: src/olympia/addons/serializers.py:1896
 #, python-format
 msgid "Rollback is only available for version %s in this channel."
 msgstr "Το σημείο επαναφοράς είναι διαθέσιμο μόνο για την έκδοση %s σε αυτό το κανάλι."
 
-#: src/olympia/addons/serializers.py:1904
+#: src/olympia/addons/serializers.py:1902
 msgid "Only approved versions can be rolled back, except the most recent version."
 msgstr "Μπορούν να ανακληθούν μόνο οι εγκεκριμένες εκδόσεις, εκτός από την πιο πρόσφατη."
 
-#: src/olympia/addons/utils.py:56 src/olympia/bandwagon/serializers.py:92
-msgid "This name cannot be used."
-msgstr "Αυτό το όνομα δεν μπορεί να χρησιμοποιηθεί."
-
-#: src/olympia/addons/utils.py:71
+#: src/olympia/addons/utils.py:50
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Τα ονόματα προσθέτων δεν μπορούν να περιέχουν τα εμπορικά σήματα της Mozilla ή του Firefox."
+
+#: src/olympia/addons/utils.py:54 src/olympia/bandwagon/serializers.py:96
+msgid "This name cannot be used."
+msgstr "Αυτό το όνομα δεν μπορεί να χρησιμοποιηθεί."
 
 #: src/olympia/addons/validators.py:41
 msgid "Both `license` and `custom_license` cannot be provided together."
@@ -530,7 +530,7 @@ msgstr "Υποβολή νέου προσθέτου"
 msgid "Submit a New Theme"
 msgstr "Υποβολή νέου θέματος"
 
-#: src/olympia/amo/context_processors.py:76 src/olympia/constants/base.py:84 src/olympia/devhub/templatetags/jinja_helpers.py:32 src/olympia/templates/photon-footer.html:14
+#: src/olympia/amo/context_processors.py:76 src/olympia/constants/base.py:88 src/olympia/devhub/templatetags/jinja_helpers.py:32 src/olympia/templates/photon-footer.html:14
 msgid "Developer Hub"
 msgstr "Κέντρο προγραμματιστών"
 
@@ -566,11 +566,11 @@ msgstr "Εισαγάγετε ένα έγκυρο δίκτυο IP4 ή IP6."
 msgid "CIDR"
 msgstr "CIDR"
 
-#: src/olympia/amo/middleware.py:248 src/olympia/devhub/templates/devhub/index.html:56 src/olympia/templates/base.html:64
+#: src/olympia/amo/middleware.py:257 src/olympia/devhub/templates/devhub/index.html:56 src/olympia/templates/base.html:64
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Ορισμένες λειτουργίες έχουν απενεργοποιηθεί προσωρινά λόγω εκτέλεσης εργασιών συντήρησης στον ιστότοπο. Η πλήρης λειτουργικότητα θα επανέλθει σύντομα."
 
-#: src/olympia/amo/utils.py:1179
+#: src/olympia/amo/utils.py:1228
 msgid "URLs are not allowed."
 msgstr "Τα URL δεν επιτρέπονται."
 
@@ -654,18 +654,6 @@ msgstr ""
 "<h1>Ωχ! Προέκυψε σφάλμα.</h1> <p>Θα το διορθώσουμε σύντομα.</p> <p>Δοκιμάστε να ανανεώσετε τη σελίδα ή επιστρέψτε στην <a href=\"%(home)s\">αρχική σελίδα των προσθέτων</a>. Μπορείτε επίσης να μας "
 "βοηθήσετε να επιλύσουμε αυτό το ζήτημα <a href=\"https://github.com/mozilla/addons/issues/new\">αναφέροντας το πρόβλημα</a> με λεπτομέρειες σχετικά με το πώς φτάσατε σε αυτήν τη σελίδα.</p>"
 
-#: src/olympia/amo/templates/amo/fake_fxa_authorization.html:4
-msgid "Register or Log in"
-msgstr "Εγγραφή ή σύνδεση"
-
-#: src/olympia/amo/templates/amo/fake_fxa_authorization.html:19
-msgid "Email:"
-msgstr "Email:"
-
-#: src/olympia/amo/templates/amo/fake_fxa_authorization.html:20
-msgid "Two-factor authentication"
-msgstr "Ταυτοποίηση δύο παραγόντων"
-
 #. abbreviation of 'previous'
 #: src/olympia/amo/templates/amo/paginator.html:5 src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:49
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:63 src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:76
@@ -680,7 +668,7 @@ msgstr "Προηγούμενο"
 msgid "Next"
 msgstr "Επόμενο"
 
-#: src/olympia/amo/templates/amo/paginator.html:31 src/olympia/reviewers/templates/reviewers/includes/paginator_history.html:11
+#: src/olympia/amo/templates/amo/paginator.html:31
 #, python-format
 msgid "Results <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> of <strong>%(count)s</strong>"
 msgstr "Αποτελέσματα <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> από <strong>%(count)s</strong>"
@@ -765,11 +753,11 @@ msgstr "Σφάλμα αποκωδικοποίησης υπογραφής."
 msgid "Invalid JWT Token."
 msgstr "Μη έγκυρο διακριτικό JWT."
 
-#: src/olympia/api/authentication.py:274
+#: src/olympia/api/authentication.py:286
 msgid "Invalid token or hash."
 msgstr "Μη έγκυρο διακριτικό ή hash."
 
-#: src/olympia/api/authentication.py:278
+#: src/olympia/api/authentication.py:289
 msgid "Email address not found."
 msgstr "Η διεύθυνση email δεν βρέθηκε."
 
@@ -809,11 +797,11 @@ msgstr "Επιβεβαίωση για κλειδιά API προγραμματι�
 msgid "You have submitted this form too many times recently. Please try again after some time."
 msgstr "Έχετε υποβάλει αυτήν τη φόρμα πάρα πολλές φορές πρόσφατα. Δοκιμάστε ξανά αργότερα."
 
-#: src/olympia/bandwagon/serializers.py:72
+#: src/olympia/bandwagon/serializers.py:75
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Αυτό το προσαρμοσμένο URL χρησιμοποιείται ήδη από κάποιο άλλο στις συλλογές σας."
 
-#: src/olympia/bandwagon/serializers.py:105
+#: src/olympia/bandwagon/serializers.py:108
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr "Το προσαρμοσμένο URL πρέπει να περιέχει γράμματα, αριθμούς, ή (κάτω) παύλες."
 
@@ -821,15 +809,15 @@ msgstr "Το προσαρμοσμένο URL πρέπει να περιέχει �
 msgid "This custom URL cannot be used."
 msgstr "Αυτό το προσαρμοσμένο URL δεν μπορεί να χρησιμοποιηθεί."
 
-#: src/olympia/bandwagon/serializers.py:149
+#: src/olympia/bandwagon/serializers.py:147
 msgid "This add-on already belongs to the collection"
 msgstr "Αυτό το πρόσθετο ανήκει ήδη σε άλλη συλλογή"
 
-#: src/olympia/blocklist/models.py:188
+#: src/olympia/blocklist/models.py:189
 msgid "Blocked"
 msgstr "Αποκλεισμένο"
 
-#: src/olympia/blocklist/models.py:188
+#: src/olympia/blocklist/models.py:189
 msgid "Restricted"
 msgstr "Περιορισμένο"
 
@@ -917,7 +905,7 @@ msgstr "Διαγράφηκε το αρχείο {0} από την έκδοση {v
 msgid "{addon} {version} approved."
 msgstr "Εγκρίθηκε η έκδοση {version} του {addon}."
 
-#: src/olympia/constants/activity.py:148 src/olympia/constants/base.py:25 src/olympia/constants/base.py:32
+#: src/olympia/constants/activity.py:148 src/olympia/constants/base.py:26 src/olympia/constants/base.py:34
 msgid "Approved"
 msgstr "Εγκρίθηκε"
 
@@ -935,7 +923,7 @@ msgstr "Εγκρίθηκε προκαταρκτικά"
 msgid "{addon} {version} rejected."
 msgstr "Απορρίφθηκε η έκδοση {version} του {addon}."
 
-#: src/olympia/constants/activity.py:172 src/olympia/files/models.py:323
+#: src/olympia/constants/activity.py:172 src/olympia/files/models.py:324
 msgid "Rejected"
 msgstr "Απορρίφθηκε"
 
@@ -1299,6 +1287,25 @@ msgstr "Αποτυχία επαναφοράς έκδοσης"
 msgid "{addon} {0} property edited."
 msgstr "Έγινε επεξεργασία της ιδιότητας «{0}» του {addon}."
 
+#: src/olympia/constants/activity.py:1254
+#, python-brace-format
+msgid "Collection {0} property {1} updated."
+msgstr "Η ιδιότητα {1} της συλλογής {0} ενημερώθηκε."
+
+#: src/olympia/constants/activity.py:1261
+#, python-brace-format
+msgid "Account {user} property {0} updated."
+msgstr "Η ιδιότητα {0} του λογαριασμού {user} ενημερώθηκε."
+
+#: src/olympia/constants/activity.py:1277
+#, python-brace-format
+msgid "{addon} listing content rejected."
+msgstr ""
+
+#: src/olympia/constants/activity.py:1278
+msgid "Listing content rejected"
+msgstr ""
+
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
 msgstr "Firefox"
@@ -1327,127 +1334,131 @@ msgstr "Firefox για Android"
 msgid "Mozilla"
 msgstr "Mozilla"
 
-#: src/olympia/constants/base.py:23
+#: src/olympia/constants/base.py:24
 msgid "Incomplete"
 msgstr "Ημιτελές"
 
-#: src/olympia/constants/base.py:24 src/olympia/constants/base.py:31
+#: src/olympia/constants/base.py:25 src/olympia/constants/base.py:33
 msgid "Awaiting Review"
 msgstr "Αναμένεται αξιολόγηση"
 
-#: src/olympia/constants/base.py:26 src/olympia/constants/base.py:33
+#: src/olympia/constants/base.py:27
+msgid "Listing Content Rejected"
+msgstr ""
+
+#: src/olympia/constants/base.py:28 src/olympia/constants/base.py:35
 msgid "Disabled by Mozilla"
 msgstr "Απενεργοποιήθηκε από τη Mozilla"
 
-#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1185
+#: src/olympia/constants/base.py:29 src/olympia/versions/models.py:1142
 msgid "Deleted"
 msgstr "Διαγράφηκε"
 
-#: src/olympia/constants/base.py:65
+#: src/olympia/constants/base.py:69
 msgid "Unlisted"
 msgstr "Δεν αναγράφεται"
 
-#: src/olympia/constants/base.py:85
+#: src/olympia/constants/base.py:89
 msgid "Signing API"
 msgstr "API υπογραφής"
 
-#: src/olympia/constants/base.py:86
+#: src/olympia/constants/base.py:90
 msgid "Add-on API"
 msgstr "API προσθέτου"
 
-#: src/olympia/constants/base.py:87
+#: src/olympia/constants/base.py:91
 msgid "Automatically generated by AMO"
 msgstr "Δημιουργήθηκε αυτόματα από το AMO"
 
-#: src/olympia/constants/base.py:96
+#: src/olympia/constants/base.py:100
 msgid "Owner"
 msgstr "Ιδιοκτήτης"
 
-#: src/olympia/constants/base.py:97 src/olympia/users/notifications.py:105
+#: src/olympia/constants/base.py:101 src/olympia/users/notifications.py:105
 msgid "Developer"
 msgstr "Δημιουργός"
 
-#: src/olympia/constants/base.py:105
+#: src/olympia/constants/base.py:109
 msgid "(Deleted)"
 msgstr "(Διαγράφηκε)"
 
-#: src/olympia/constants/base.py:129 src/olympia/constants/reviewers.py:69
+#: src/olympia/constants/base.py:133
 msgid "Extension"
 msgstr "Επέκταση"
 
-#: src/olympia/constants/base.py:130
+#: src/olympia/constants/base.py:134
 msgid "Deprecated Complete Theme"
 msgstr "Παρωχημένο πλήρες θέμα"
 
-#: src/olympia/constants/base.py:131
+#: src/olympia/constants/base.py:135
 msgid "Dictionary"
 msgstr "Λεξικό"
 
-#: src/olympia/constants/base.py:132
+#: src/olympia/constants/base.py:136
 msgid "Deprecated Search Engine"
 msgstr "Παρωχημένη μηχανή αναζήτησης"
 
-#: src/olympia/constants/base.py:133
+#: src/olympia/constants/base.py:137
 msgid "Language Pack"
 msgstr "Πακέτο γλώσσας"
 
-#: src/olympia/constants/base.py:134
+#: src/olympia/constants/base.py:138
 msgid "Deprecated Language Pack (Add-on)"
 msgstr "Παρωχημένο πακέτο γλώσσας (Πρόσθετο)"
 
-#: src/olympia/constants/base.py:135
+#: src/olympia/constants/base.py:139
 msgid "Deprecated Plugin"
 msgstr "Παρωχημένο άρθρωμα"
 
-#: src/olympia/constants/base.py:136
+#: src/olympia/constants/base.py:140
 msgid "Deprecated LWT"
 msgstr "Παρωχημένο LWT"
 
-#: src/olympia/constants/base.py:137 src/olympia/constants/reviewers.py:70
+#: src/olympia/constants/base.py:141
 msgid "Theme"
 msgstr "Θέμα"
 
-#: src/olympia/constants/base.py:138
+#: src/olympia/constants/base.py:142
 msgid "Deprecated Site Permission"
 msgstr "Παρωχημένη άδεια ιστοτόπου"
 
-#: src/olympia/constants/base.py:143 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:10
+#: src/olympia/constants/base.py:147 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:10
 msgid "Extensions"
 msgstr "Επεκτάσεις"
 
-#: src/olympia/constants/base.py:144
+#: src/olympia/constants/base.py:148
 msgid "Deprecated Complete Themes"
 msgstr "Παρωχημένα πλήρη θέματα"
 
-#: src/olympia/constants/base.py:145
+#: src/olympia/constants/base.py:149
 msgid "Dictionaries"
 msgstr "Λεξικά"
 
-#: src/olympia/constants/base.py:146
+#: src/olympia/constants/base.py:150
 msgid "Deprecated Search Tools"
 msgstr "Παρωχημένα εργαλεία αναζήτησης"
 
-#: src/olympia/constants/base.py:147
+#: src/olympia/constants/base.py:151
 msgid "Language Packs"
 msgstr "Πακέτα γλωσσών"
 
-#: src/olympia/constants/base.py:148
+#: src/olympia/constants/base.py:152
 msgid "Deprecated Language Packs (Add-on)"
 msgstr "Παρωχημένα πακέτα γλωσσών (Πρόσθετο)"
 
-#: src/olympia/constants/base.py:149
+#: src/olympia/constants/base.py:153
 msgid "Deprecated Plugins"
 msgstr "Παρωχημένα αρθρώματα"
 
-#: src/olympia/constants/base.py:150
+#: src/olympia/constants/base.py:154
 msgid "Deprecated LWTs"
 msgstr "Παρωχημένα LWTs"
 
-#: src/olympia/constants/base.py:151 src/olympia/devhub/templates/devhub/nav.html:43 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:11
+#: src/olympia/constants/base.py:155 src/olympia/devhub/templates/devhub/nav.html:43 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:11
 msgid "Themes"
 msgstr "Θέματα"
 
-#: src/olympia/constants/base.py:152
+#: src/olympia/constants/base.py:156
 msgid "Deprecated Site Permissions"
 msgstr "Παρωχημένες άδειες ιστοτόπου"
 
@@ -1525,8 +1536,7 @@ msgstr ""
 "Κάντε λήψη επεκτάσεων του Firefox που βελτιώνουν τις φωτογραφίες, τη μουσική και τα βίντεο. Οι επεκτάσεις σε αυτήν την κατηγορία τροποποιούν τον ήχο και τα βίντεο, κάνουν αντίστροφή αναζήτηση "
 "εικόνων και πολλά άλλα."
 
-#. editorial content for the secondary hero shelves.
-#: src/olympia/constants/categories.py:142 src/olympia/discovery/strings.jinja2:1050
+#: src/olympia/constants/categories.py:142
 msgid "Privacy & Security"
 msgstr "Απόρρητο και ασφάλεια"
 
@@ -1582,7 +1592,7 @@ msgstr ""
 "Κάντε λήψη επεκτάσεων του Firefox που προσφέρουν εργαλεία προγραμματισμού ιστού. Αυτή η κατηγορία περιέχει επεκτάσεις για το GitHub, την εναλλαγή πράκτορα χρήστη, τη διαχείριση cookie και πολλά "
 "άλλα."
 
-#: src/olympia/constants/categories.py:198 src/olympia/constants/categories.py:290 src/olympia/devhub/forms.py:613
+#: src/olympia/constants/categories.py:198 src/olympia/constants/categories.py:290 src/olympia/devhub/forms.py:624
 msgid "Other"
 msgstr "Άλλα"
 
@@ -1824,74 +1834,6 @@ msgstr "Creative Commons Attribution-ShareAlike 4.0"
 msgid "The Unlicense"
 msgstr "The Unlicense"
 
-#: src/olympia/constants/promoted.py:74
-msgid "Recommended"
-msgstr "Προτείνεται"
-
-#: src/olympia/constants/promoted.py:105
-msgid "By Firefox"
-msgstr "Από το Firefox"
-
-#: src/olympia/constants/promoted.py:123
-msgid "Spotlight"
-msgstr "Ανάδειξη"
-
-#: src/olympia/constants/promoted.py:134
-msgid "Strategic"
-msgstr "Στρατηγική"
-
-#: src/olympia/constants/promoted.py:141
-msgid "Notable"
-msgstr "Αξιοσημείωτο"
-
-#: src/olympia/constants/promoted.py:151
-msgid "Partner"
-msgstr "Συνεργασία"
-
-#: src/olympia/constants/reviewers.py:23
-msgid "No Reputation"
-msgstr "Καμία φήμη"
-
-#: src/olympia/constants/reviewers.py:24
-msgid "Good (1)"
-msgstr "Καλό (1)"
-
-#: src/olympia/constants/reviewers.py:25
-msgid "Very Good (2)"
-msgstr "Πολύ καλό (2)"
-
-#: src/olympia/constants/reviewers.py:26
-msgid "Excellent (3)"
-msgstr "Άριστο (3)"
-
-#: src/olympia/constants/reviewers.py:41
-msgid "Request More Info"
-msgstr "Απαίτηση περισσότερων πληροφοριών"
-
-#: src/olympia/constants/reviewers.py:42
-msgid "Flag"
-msgstr "Αναφορά"
-
-#: src/olympia/constants/reviewers.py:43
-msgid "Duplicate"
-msgstr "Αντιγραφή"
-
-#: src/olympia/constants/reviewers.py:44
-msgid "Reject"
-msgstr "Απόρριψη"
-
-#: src/olympia/constants/reviewers.py:45
-msgid "Approve"
-msgstr "Έγκριση"
-
-#: src/olympia/constants/reviewers.py:68
-msgid "All"
-msgstr "Όλα"
-
-#: src/olympia/core/apps.py:214
-msgid "Core"
-msgstr "Πυρήνας"
-
 #: src/olympia/devhub/feeds.py:52
 #, python-format
 msgid "Recent Changes for %s"
@@ -1911,172 +1853,172 @@ msgstr "Τα πρόσθετα Open Search {blog_link_open}δεν υποστηρ�
 msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
 msgstr "Δεν υποστηρίζεται προς το παρόν η μεταφόρτωση για το Manifest V3. {start_href}Διαβάστε περισσότερα για το χρονοδιάγραμμα υποστήριξης{end_href}."
 
-#: src/olympia/devhub/forms.py:92
+#: src/olympia/devhub/forms.py:91
 msgid "This slug is already in use. Please choose another."
 msgstr "Αυτό το αναγνωριστικό URL χρησιμοποιείται ήδη. Επιλέξτε κάποιο άλλο."
 
-#: src/olympia/devhub/forms.py:95
+#: src/olympia/devhub/forms.py:94
 #, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
 msgstr "Το αναγνωριστικό URL δεν μπορεί να είναι «%(slug)s». Επιλέξτε κάποιο άλλο."
 
 #. L10n: {0} is the number of categories.
-#: src/olympia/devhub/forms.py:217
+#: src/olympia/devhub/forms.py:216
 #, python-brace-format
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "Μπορείτε να έχετε μόνο {0} κατηγορία."
 msgstr[1] "Μπορείτε να έχετε μόνο {0} κατηγορίες."
 
-#: src/olympia/devhub/forms.py:227
+#: src/olympia/devhub/forms.py:226
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "Η κατηγορία «Διάφορα» δεν μπορεί να συνδυαστεί με άλλες κατηγορίες."
 
-#: src/olympia/devhub/forms.py:293
+#: src/olympia/devhub/forms.py:292
 #, python-format
 msgid "URL domain must be one of [%s]."
 msgstr "Ο τομέας του URL πρέπει να είναι ένας από τους [%s]."
 
-#: src/olympia/devhub/forms.py:309
+#: src/olympia/devhub/forms.py:308
 #, python-brace-format
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] "Έχετε {0} πλεονάζουσα ετικέτα."
 msgstr[1] "Έχετε {0} πλεονάζουσες ετικέτες."
 
-#: src/olympia/devhub/forms.py:328
+#: src/olympia/devhub/forms.py:327
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
 msgstr "Πριν αλλάξετε την προεπιλεγμένη σας γλώσσα, πρέπει να έχετε ορίσει όνομα, περίληψη και περιγραφή σε αυτή. Λείπουν: %s."
 
-#: src/olympia/devhub/forms.py:413
+#: src/olympia/devhub/forms.py:415
 msgid "Users can not be added directly"
 msgstr "Δεν είναι δυνατή η απευθείας προσθήκη χρηστών"
 
-#: src/olympia/devhub/forms.py:478
+#: src/olympia/devhub/forms.py:489
 msgid "Must have at least one owner."
 msgstr "Θα πρέπει να υπάρχει τουλάχιστον ένας ιδιοκτήτης."
 
-#: src/olympia/devhub/forms.py:480
+#: src/olympia/devhub/forms.py:491
 msgid "At least one author must be listed."
 msgstr "Θα πρέπει να αναγράφεται τουλάχιστον ένας δημιουργός."
 
-#: src/olympia/devhub/forms.py:528
+#: src/olympia/devhub/forms.py:539
 msgid "Slug incorrect."
 msgstr "Εσφαλμένο αναγνωριστικό URL."
 
-#: src/olympia/devhub/forms.py:563 src/olympia/devhub/templates/devhub/versions/edit.html:88
+#: src/olympia/devhub/forms.py:574 src/olympia/devhub/templates/devhub/versions/edit.html:88
 msgid "Details"
 msgstr "Λεπτομέρειες"
 
-#: src/olympia/devhub/forms.py:584
+#: src/olympia/devhub/forms.py:595
 msgid "What is your license's name?"
 msgstr "Ποιο είναι το όνομα της άδειάς σας;"
 
-#: src/olympia/devhub/forms.py:586 src/olympia/devhub/forms.py:633
+#: src/olympia/devhub/forms.py:597 src/olympia/devhub/forms.py:644
 msgid "Custom License"
 msgstr "Προσαρμοσμένη άδεια"
 
-#: src/olympia/devhub/forms.py:591
+#: src/olympia/devhub/forms.py:602
 msgid "Provide the text of your license."
 msgstr "Παραθέστε το κείμενο της άδειάς σας."
 
-#: src/olympia/devhub/forms.py:641
+#: src/olympia/devhub/forms.py:652
 msgid "License text is required when choosing Other."
 msgstr "Απαιτείται το κείμενο της άδειας αν επιλέξατε «Άλλη»."
 
-#: src/olympia/devhub/forms.py:697
+#: src/olympia/devhub/forms.py:708
 msgid "This add-on has an End-User License Agreement"
 msgstr "Αυτό το πρόσθετο διαθέτει Άδεια χρήσης τελικού χρήστη"
 
-#: src/olympia/devhub/forms.py:702
+#: src/olympia/devhub/forms.py:713
 msgid "Please specify your add-on's End-User License Agreement:"
 msgstr "Καθορίστε τη συμφωνία άδειας τελικού χρήστη για το πρόσθετό σας:"
 
-#: src/olympia/devhub/forms.py:705
+#: src/olympia/devhub/forms.py:716
 msgid "This add-on has a Privacy Policy"
 msgstr "Αυτό το πρόσθετο διαθέτει Πολιτική απορρήτου"
 
-#: src/olympia/devhub/forms.py:710
+#: src/olympia/devhub/forms.py:721
 msgid "Please specify your add-on's Privacy Policy:"
 msgstr "Καθορίστε την πολιτική απορρήτου του προσθέτου σας:"
 
-#: src/olympia/devhub/forms.py:745
+#: src/olympia/devhub/forms.py:756
 #, python-brace-format
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Ο τύπος αρχείου δεν υποστηρίζεται, μεταφορτώστε ένα συμπιεσμένο αρχείο {extensions}."
 
-#: src/olympia/devhub/forms.py:789
+#: src/olympia/devhub/forms.py:800
 msgid "View current"
 msgstr "Προβολή τρέχοντος"
 
-#: src/olympia/devhub/forms.py:912
+#: src/olympia/devhub/forms.py:923
 msgid "Invalid version range."
 msgstr "Μη έγκυρο εύρος εκδόσεων."
 
-#: src/olympia/devhub/forms.py:1018
+#: src/olympia/devhub/forms.py:1029
 msgid "Need at least one compatible application."
 msgstr "Απαιτείται τουλάχιστον μία συμβατή εφαρμογή."
 
-#: src/olympia/devhub/forms.py:1060 src/olympia/devhub/forms.py:1118
+#: src/olympia/devhub/forms.py:1071 src/olympia/devhub/forms.py:1129
 msgid "There was an error with your upload. Please try again."
 msgstr "Προέκυψε σφάλμα με τη μεταφόρτωσή σας. Δοκιμάστε ξανά."
 
-#: src/olympia/devhub/forms.py:1065
+#: src/olympia/devhub/forms.py:1076
 msgid "Override failed validation"
 msgstr "Η παράκαμψη απέτυχε να επικυρωθεί"
 
-#: src/olympia/devhub/forms.py:1075
+#: src/olympia/devhub/forms.py:1086
 msgid "Need to select at least one application."
 msgstr "Πρέπει να επιλέξετε τουλάχιστον μια εφαρμογή."
 
-#: src/olympia/devhub/forms.py:1080
+#: src/olympia/devhub/forms.py:1091
 msgid "You have submitted too many uploads recently. Please try again after some time."
 msgstr "Έχετε κάνει πάρα πολλές μεταφορτώσεις πρόσφατα. Δοκιμάστε ξανά αργότερα."
 
-#: src/olympia/devhub/forms.py:1129 src/olympia/signing/views.py:156
+#: src/olympia/devhub/forms.py:1140 src/olympia/signing/views.py:156
 #, python-brace-format
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Η έκδοση {version} μεταφορτώθηκε στο παρελθόν και διαγράφηκε."
 
-#: src/olympia/devhub/forms.py:1138 src/olympia/devhub/forms.py:1144 src/olympia/signing/views.py:158
+#: src/olympia/devhub/forms.py:1149 src/olympia/devhub/forms.py:1155 src/olympia/signing/views.py:158
 #, python-brace-format
 msgid "Version {version} already exists."
 msgstr "Η έκδοση {version} υπάρχει ήδη."
 
-#: src/olympia/devhub/forms.py:1140
+#: src/olympia/devhub/forms.py:1151
 msgid "Continue with existing upload instead?"
 msgstr "Συνέχεια με την υπάρχουσα μεταφόρτωση;"
 
-#: src/olympia/devhub/forms.py:1178 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:7 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:22
+#: src/olympia/devhub/forms.py:1189 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:7 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:22
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:37
 msgid "Yes"
 msgstr "Ναι"
 
-#: src/olympia/devhub/forms.py:1178 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:13 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:28
+#: src/olympia/devhub/forms.py:1189 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:13 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:28
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:52
 msgid "No"
 msgstr "Όχι"
 
-#: src/olympia/devhub/forms.py:1193
+#: src/olympia/devhub/forms.py:1204
 msgid "You have not uploaded a source file."
 msgstr "Δεν έχετε μεταφορτώσει αρχείο πηγαίου κώδικα."
 
-#: src/olympia/devhub/forms.py:1196
+#: src/olympia/devhub/forms.py:1207
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "Μεταφορτώθηκε αρχείο πηγαίου κώδικα, αλλά υποδείξατε ότι δεν χρειαζόταν."
 
-#: src/olympia/devhub/forms.py:1260
+#: src/olympia/devhub/forms.py:1271
 #, python-brace-format
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
 msgstr "Βεβαιωθείτε ότι το όνομα και το επώνυμο μαζί είναι το πολύ {limit_value} χαρακτήρες (έχουν {show_value})."
 
-#: src/olympia/devhub/forms.py:1379
+#: src/olympia/devhub/forms.py:1390
 #, python-brace-format
 msgid "On this site. <span class=\"helptext\">Your submission is publicly listed on {site_domain}.</span>"
 msgstr "Σε αυτόν τον ιστότοπο. <span class=\"helptext\">Η υποβολή σας καταχωρείται δημόσια στο {site_domain}.</span>"
 
-#: src/olympia/devhub/forms.py:1386
+#: src/olympia/devhub/forms.py:1397
 #, python-brace-format
 msgid ""
 "On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
@@ -2086,31 +2028,31 @@ msgstr ""
 "σας. Βεβαιωθείτε ότι το αρχείο δήλωσης του προσθέτου σας περιέχει το <a {a_attrs}>update_url</a>, καθώς το Firefox θα χρησιμοποιεί αυτό το URL για να βρει ενημερώσεις και να τις διανείμει αυτόματα "
 "στους χρήστες σας.</span>"
 
-#: src/olympia/devhub/forms.py:1425 src/olympia/devhub/templates/devhub/includes/agreement.html:17
+#: src/olympia/devhub/forms.py:1437 src/olympia/devhub/templates/devhub/includes/agreement.html:17
 msgid "Display Name"
 msgstr "Εμφανιζόμενο όνομα"
 
-#: src/olympia/devhub/forms.py:1456
+#: src/olympia/devhub/forms.py:1468
 msgid "Confirm email address"
 msgstr "Επιβεβαίωση διεύθυνσης email"
 
-#: src/olympia/devhub/forms.py:1457
+#: src/olympia/devhub/forms.py:1469
 msgid "Generate new credentials"
 msgstr "Δημιουργία νέων διαπιστευτηρίων"
 
-#: src/olympia/devhub/forms.py:1458
+#: src/olympia/devhub/forms.py:1470
 msgid "Revoke and regenerate credentials"
 msgstr "Ανάκληση και εκ νέου δημιουργία διαπιστευτηρίων"
 
-#: src/olympia/devhub/forms.py:1459
+#: src/olympia/devhub/forms.py:1471
 msgid "Revoke"
 msgstr "Ανάκληση"
 
-#: src/olympia/devhub/forms.py:1498
+#: src/olympia/devhub/forms.py:1510
 msgid "JWT issuer"
 msgstr "Εκδότης JWT"
 
-#: src/olympia/devhub/forms.py:1505
+#: src/olympia/devhub/forms.py:1517
 #, python-brace-format
 msgid ""
 "To make API requests, send a <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
@@ -2119,44 +2061,44 @@ msgstr ""
 "Για να πραγματοποιήσετε αιτήματα API, στείλτε ένα <a href=\"{jwt_url}\">JSON Web Token (JWT)</a> ως την κεφαλίδα εξουσιοδότησης. Θα πρέπει να δημιουργήσετε ένα JWT για κάθε αίτημα, όπως εξηγείται "
 "στην <a href=\"{docs_url}\">τεκμηρίωση API</a>."
 
-#: src/olympia/devhub/forms.py:1515
+#: src/olympia/devhub/forms.py:1527
 msgid "JWT secret"
 msgstr "Μυστικό JWT"
 
-#: src/olympia/devhub/forms.py:1536
+#: src/olympia/devhub/forms.py:1548
 #, python-brace-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
 msgstr "Κάντε κλικ στο παρακάτω κουμπί επιβεβαίωσης για να δημιουργήσετε διαπιστευτήρια API για τον χρήστη <strong>{name}</strong>."
 
-#: src/olympia/devhub/forms.py:1542
+#: src/olympia/devhub/forms.py:1554
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
 msgstr "Θα αποσταλεί ένας σύνδεσμος επιβεβαίωσης στη διεύθυνση email σας. Μετά την επιβεβαίωση, θα βρείτε τα κλειδιά API σε αυτήν τη σελίδα."
 
-#: src/olympia/devhub/forms.py:1559
+#: src/olympia/devhub/forms.py:1571
 msgid "You don't have any API credentials."
 msgstr "Δεν έχετε κανένα διαπιστευτήριο API."
 
-#: src/olympia/devhub/forms.py:1570
+#: src/olympia/devhub/forms.py:1582
 msgid "Something went wrong, please contact developer support."
 msgstr "Κάτι πήγε στραβά, επικοινωνήστε με την υποστήριξη προγραμματιστών."
 
-#: src/olympia/devhub/forms.py:1653
+#: src/olympia/devhub/forms.py:1665
 msgid "No appropriate version available"
 msgstr "Δεν διατίθεται κατάλληλη έκδοση"
 
-#: src/olympia/devhub/forms.py:1660
+#: src/olympia/devhub/forms.py:1672
 msgid "Choose version"
 msgstr "Επιλογή έκδοσης"
 
-#: src/olympia/devhub/forms.py:1669
+#: src/olympia/devhub/forms.py:1681
 msgid "Release notes"
 msgstr "Σημειώσεις έκδοσης"
 
-#: src/olympia/devhub/forms.py:1670
+#: src/olympia/devhub/forms.py:1682
 msgid "Automatic rollback based on version [m.m]."
 msgstr "Αυτόματη επιστροφή βάσει της έκδοσης [m.m]."
 
-#: src/olympia/devhub/forms.py:1743
+#: src/olympia/devhub/forms.py:1755
 msgid "You must select a channel and version to rollback to."
 msgstr "Πρέπει να επιλέξετε ένα κανάλι και μια έκδοση προς επιστροφή."
 
@@ -2172,16 +2114,16 @@ msgstr "Το κλειδί API προγραμματιστή σας βρέθηκε
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
 msgstr "Το κλειδί API προγραμματιστή του συνδημιουργού βρέθηκε στο υποβεβλημένο αρχείο. Για να προστατεύσετε το πρόσθετό σας, το κλειδί θα ανακληθεί."
 
-#: src/olympia/devhub/tasks.py:687
+#: src/olympia/devhub/tasks.py:688
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr "Σημείωση ασφαλείας της Mozilla: Τα διαπιστευτήρια του AMO API σας έχουν ανακληθεί"
 
-#: src/olympia/devhub/utils.py:86
+#: src/olympia/devhub/utils.py:90
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Η επικύρωση παρήγαγε πάρα πολλά σφάλματα/προειδοποιήσεις, επομένως κρύφτηκαν %s μηνύματα. Αφού διορθώσετε τα ορατά μηνύματα, θα μπορέσετε να δείτε τα υπόλοιπα."
 
-#: src/olympia/devhub/utils.py:207
+#: src/olympia/devhub/utils.py:211
 #, python-brace-format
 msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
 msgstr "Αυτό το πρόσθετο δεν είναι θέμα. Χρησιμοποιήστε τη σελίδα <a href=\"{link}\">Υποβολή νέου προσθέτου</a> για να υποβάλετε νέες επεκτάσεις."
@@ -2264,7 +2206,7 @@ msgstr "Η πρόσκληση απορρίφθηκε."
 msgid "A confirmation email has been sent to {email}"
 msgstr "Ένα email επιβεβαίωσης έχει σταλεί στο {email}"
 
-#: src/olympia/devhub/views.py:551 src/olympia/devhub/views.py:1167
+#: src/olympia/devhub/views.py:551 src/olympia/devhub/views.py:1164
 msgid "Changes successfully saved."
 msgstr "Οι αλλαγές αποθηκεύτηκαν επιτυχώς."
 
@@ -2272,42 +2214,42 @@ msgstr "Οι αλλαγές αποθηκεύτηκαν επιτυχώς."
 msgid "Validate Add-on"
 msgstr "Επικύρωση προσθέτου"
 
-#: src/olympia/devhub/views.py:645
+#: src/olympia/devhub/views.py:642
 #, python-brace-format
 msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
 msgstr "<a href=\"{link}\">Προσθέστε την ταυτοποίηση δύο παραγόντων στον λογαριασμό σας για να υποβάλετε επεκτάσεις.</a>"
 
-#: src/olympia/devhub/views.py:1022
+#: src/olympia/devhub/views.py:1019
 msgid "Icons must be either PNG or JPG."
 msgstr "Τα εικονίδια θα πρέπει να είναι σε μορφή PNG ή JPG."
 
-#: src/olympia/devhub/views.py:1028
+#: src/olympia/devhub/views.py:1025
 msgid "Icons cannot be animated."
 msgstr "Δεν επιτρέπονται κινούμενα εικονίδια."
 
-#: src/olympia/devhub/views.py:1054
+#: src/olympia/devhub/views.py:1051
 #, python-brace-format
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr "Η εικόνα πρέπει να έχει τουλάχιστον {0} pixels πλάτος και {1} pixels ύψος."
 
-#: src/olympia/devhub/views.py:1058
+#: src/olympia/devhub/views.py:1055
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "Οι διαστάσεις της εικόνας πρέπει να είναι σε αναλογία 4:3."
 
-#: src/olympia/devhub/views.py:1066
+#: src/olympia/devhub/views.py:1063
 #, python-brace-format
 msgid "Icon must be at least {0} pixels wide and tall."
 msgstr "Το εικονίδιο πρέπει να έχει τουλάχιστον {0} pixels πλάτος και ύψος."
 
-#: src/olympia/devhub/views.py:1071
+#: src/olympia/devhub/views.py:1068
 msgid "Icon must be square (same width and height)."
 msgstr "Το εικονίδιο πρέπει να είναι τετράγωνο (ίδιο πλάτος και ύψος)."
 
-#: src/olympia/devhub/views.py:1077
+#: src/olympia/devhub/views.py:1074
 msgid "There was an error uploading your preview."
 msgstr "Προέκυψε σφάλμα κατά τη μεταφόρτωση της προεπισκόπησής σας."
 
-#: src/olympia/devhub/views.py:1223
+#: src/olympia/devhub/views.py:1220
 #, python-format
 msgid ""
 "The latest approved version of this %s add-on cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
@@ -2315,87 +2257,87 @@ msgstr ""
 "Δεν είναι δυνατή η διαγραφή ή η απενεργοποίηση της τελευταίας εγκεκριμένης έκδοσης του προσθέτου %s, καθώς η προηγούμενη έκδοση δεν είχε εγκριθεί για προώθηση %s. Επικοινωνήστε με τους διαχειριστές "
 "του AMO αν χρειάζεστε βοήθεια."
 
-#: src/olympia/devhub/views.py:1230
+#: src/olympia/devhub/views.py:1227
 #, python-format
 msgid "Version %s disabled."
 msgstr "Η έκδοση %s απενεργοποιήθηκε."
 
-#: src/olympia/devhub/views.py:1234
+#: src/olympia/devhub/views.py:1231
 #, python-format
 msgid "Version %s deleted."
 msgstr "Η έκδοση %s διαγράφηκε."
 
-#: src/olympia/devhub/views.py:1245
+#: src/olympia/devhub/views.py:1242
 #, python-format
 msgid "Version %s re-enabled."
 msgstr "Η έκδοση %s ενεργοποιήθηκε εκ νέου."
 
-#: src/olympia/devhub/views.py:1261
+#: src/olympia/devhub/views.py:1258
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "Η επικύρωση αυτής της μεταφόρτωσης απέτυχε, επομένως ενδέχεται να λείπουν τα πλήρη αποτελέσματα επικύρωσης. Ελέγξτε τη με προσοχή."
 
-#: src/olympia/devhub/views.py:1320
+#: src/olympia/devhub/views.py:1317
 msgid "Rollback submitted. You'll be notified when it's approved"
 msgstr "Υποβλήθηκε αίτημα επιστροφής σε προηγούμενη έκδοση. Θα ειδοποιηθείτε όταν εγκριθεί"
 
-#: src/olympia/devhub/views.py:1458
+#: src/olympia/devhub/views.py:1455
 msgid "Header area background"
 msgstr "Φόντο περιοχής επικεφαλίδας"
 
-#: src/olympia/devhub/views.py:1460
+#: src/olympia/devhub/views.py:1457
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
 msgstr "Το χρώμα φόντου της περιοχής επικεφαλίδας, που προβάλλεται στο μέρος της επικεφαλίδας που δεν καλύπτεται ή που είναι ορατό μέσω της εικόνας επικεφαλίδας. Πεδίο αρχείου δήλωσης:  frame."
 
-#: src/olympia/devhub/views.py:1468
+#: src/olympia/devhub/views.py:1465
 msgid "Header area text and icons"
 msgstr "Κείμενο και εικονίδια περιοχής επικεφαλίδας"
 
-#: src/olympia/devhub/views.py:1470
+#: src/olympia/devhub/views.py:1467
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
 msgstr "Το χρώμα του κειμένου και των εικονιδίων στην περιοχή επικεφαλίδας, εκτός της ενεργής καρτέλας. Πεδίο αρχείου δήλωσης:  tab_background_text."
 
-#: src/olympia/devhub/views.py:1477
+#: src/olympia/devhub/views.py:1474
 msgid "Toolbar area background"
 msgstr "Φόντο περιοχής γραμμής εργαλείων"
 
-#: src/olympia/devhub/views.py:1479
+#: src/olympia/devhub/views.py:1476
 msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
 msgstr "Το χρώμα φόντου για τη γραμμή πλοήγησης, τη γραμμή σελιδοδεικτών και την ενεργή καρτέλα.  Πεδίο αρχείου δήλωσης:  toolbar."
 
-#: src/olympia/devhub/views.py:1486
+#: src/olympia/devhub/views.py:1483
 msgid "Toolbar area text and icons"
 msgstr "Κείμενο και εικονίδια περιοχής γραμμής εργαλείων"
 
-#: src/olympia/devhub/views.py:1488
+#: src/olympia/devhub/views.py:1485
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
 msgstr "Το χρώμα του κειμένου και των εικονιδίων στη γραμμή εργαλείων και την ενεργή καρτέλα. Πεδίο αρχείου δήλωσης:  bookmark_text."
 
-#: src/olympia/devhub/views.py:1495
+#: src/olympia/devhub/views.py:1492
 msgid "Toolbar field area background"
 msgstr "Φόντο περιοχής πεδίου γραμμής εργαλείων"
 
-#: src/olympia/devhub/views.py:1497
+#: src/olympia/devhub/views.py:1494
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
 msgstr "Το χρώμα φόντου για πεδία της γραμμής εργαλείων, όπως η γραμμή URL. Πεδίο αρχείου δήλωσης:  toolbar_field."
 
-#: src/olympia/devhub/views.py:1504
+#: src/olympia/devhub/views.py:1501
 msgid "Toolbar field area text"
 msgstr "Κείμενο περιοχής πεδίου γραμμής εργαλείων"
 
-#: src/olympia/devhub/views.py:1506
+#: src/olympia/devhub/views.py:1503
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "Το χρώμα του κειμένου στα πεδία της γραμμής εργαλείων, όπως η γραμμή URL. Πεδίο αρχείου δήλωσης:  toolbar_field_text."
 
-#: src/olympia/devhub/views.py:1514
+#: src/olympia/devhub/views.py:1511
 msgid "Tab highlight"
 msgstr "Επισήμανση καρτέλας"
 
-#: src/olympia/devhub/views.py:1516
+#: src/olympia/devhub/views.py:1513
 msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
 msgstr ""
 "Το χρώμα επισήμανσης της ενεργής καρτέλας. Εφαρμόζεται ως περίγραμμα γύρω από την καρτέλα στο Firefox 89+ και ως γραμμή πάνω από την καρτέλα σε παλαιότερα Firefox. Πεδίο αρχείου δήλωσης:  tab_line."
 
-#: src/olympia/devhub/views.py:1615
+#: src/olympia/devhub/views.py:1616
 msgid "Add-on uploads are temporarily unavailable"
 msgstr "Οι μεταφορτώσεις προσθέτων δεν είναι προσωρινά διαθέσιμες"
 
@@ -2558,7 +2500,7 @@ msgstr "Επικύρωση στις:"
 msgid "Email Address Verification"
 msgstr "Επαλήθευση διεύθυνσης email"
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html:62 src/olympia/devhub/templates/devhub/includes/addon_details.html:89 src/olympia/devhub/templates/devhub/verify_email.html:10
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:64 src/olympia/devhub/templates/devhub/includes/addon_details.html:91 src/olympia/devhub/templates/devhub/verify_email.html:10
 msgid "Status:"
 msgstr "Κατάσταση:"
 
@@ -2724,7 +2666,7 @@ msgstr "Προεπισκόπηση αναγραφόμενης έκδοσης"
 msgid "Preview still being generated - come back later or refresh the page."
 msgstr "Γίνεται ακόμα δημιουργία της προεπισκόπησης. Επιστρέψτε αργότερα ή φορτώστε εκ νέου τη σελίδα."
 
-#: src/olympia/devhub/templates/devhub/addons/invitation.html:3 src/olympia/users/utils.py:98
+#: src/olympia/devhub/templates/devhub/addons/invitation.html:3 src/olympia/users/utils.py:99
 #, python-brace-format
 msgid "Author invitation for {addon_name}"
 msgstr "Πρόσκληση δημιουργού για το {addon_name}"
@@ -2771,7 +2713,7 @@ msgstr "Εκκρεμεί επιβεβαίωση των δημιουργών"
 msgid "Authors that have been added to this add-on but haven't confirmed."
 msgstr "Δημιουργοί που έχουν προστεθεί σε αυτό το πρόσθετο αλλά δεν έχουν επιβεβαιωθεί."
 
-#: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:96 src/olympia/devhub/templates/devhub/addons/edit/describe.html:260
+#: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:96 src/olympia/devhub/templates/devhub/addons/edit/describe.html:272
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:84 src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:174 src/olympia/devhub/templates/devhub/addons/owner.html:78
 #: src/olympia/devhub/templates/devhub/versions/edit.html:134 src/olympia/translations/templates/translations/trans-menu.html:48
 msgid "Save Changes"
@@ -2826,6 +2768,11 @@ msgstr "URL συνεισφορών"
 msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
 msgstr "Αν θέλετε να ζητήσετε χρηματικές συνεισφορές από τους χρήστες, ορίστε αυτό σε μια σελίδα, όπου μπορούν να κάνουν δωρεά."
 
+#: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:45
+#, python-format
+msgid "Supported domains: %(supported_domains)s"
+msgstr "Υποστηριζόμενοι τομείς: %(supported_domains)s"
+
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:55 src/olympia/translations/templates/translations/trans-menu.html:13
 msgid "Default Locale"
 msgstr "Προεπιλεγμένη γλώσσα"
@@ -2846,14 +2793,14 @@ msgstr ""
 "Αν το πρόσθετό σας έχει άλλη αρχική σελίδα, εισαγάγετε τη διεύθυνσή της εδώ. Αν ο ιστότοπός σας μεταφράζεται σε άλλες γλώσσες, μπορούν να προστεθούν πολλαπλές μεταφράσεις του πεδίου. Αφορά μόνο "
 "καταχωρημένα πρόσθετα."
 
-#: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:96 src/olympia/devhub/templates/devhub/addons/edit/describe.html:260
+#: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:96 src/olympia/devhub/templates/devhub/addons/edit/describe.html:272
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:84 src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:174
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:32 src/olympia/devhub/templates/devhub/versions/edit.html:134 src/olympia/devhub/templates/devhub/versions/list.html:305
 #: src/olympia/devhub/templates/devhub/versions/list.html:354 src/olympia/translations/templates/translations/trans-menu.html:50 src/olympia/translations/templates/translations/trans-menu.html:62
 msgid "or"
 msgstr "ή"
 
-#: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:99 src/olympia/devhub/templates/devhub/addons/edit/describe.html:263
+#: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:99 src/olympia/devhub/templates/devhub/addons/edit/describe.html:275
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:87 src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:177
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:32 src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:64
 #: src/olympia/devhub/templates/devhub/versions/edit.html:136 src/olympia/devhub/templates/devhub/versions/list.html:305 src/olympia/devhub/templates/devhub/versions/list.html:315
@@ -2913,51 +2860,64 @@ msgstr "Αυτή η περίληψη θα πρέπει να εξηγεί σαφ�
 msgid "Description"
 msgstr "Περιγραφή"
 
-#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:157
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:131 src/olympia/devhub/templates/devhub/addons/submit/describe.html:107
+#, python-format
+msgid ""
+"A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Minimum length: %(min_length)s characters; Recommended "
+"length: 250 characters. If you need a longer description, make sure the first 250 characters contain the most important description points."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:140
+msgid ""
+"A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Recommended length: 250 characters. If you need a longer "
+"description, make sure the first 250 characters contain the most important description points."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:169
 msgid "Experimental?"
 msgstr "Πειραματικό;"
 
-#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:158
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:170
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
 msgstr "Αν το πρόσθετό σας είναι πειραματικό ή μη έτοιμο για γενική χρήση. Το πρόσθετο θα αναγράφεται, αλλά θα έχει μειωμένη ορατότητα. "
 
-#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:163
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:175
 msgid "This add-on is experimental."
 msgstr "Αυτό το πρόσθετο είναι πειραματικό."
 
-#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:165
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:177
 msgid "This add-on is ready for general use."
 msgstr "Αυτό το πρόσθετο είναι έτοιμο για γενική χρήση."
 
-#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:170
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:182
 msgid "Requires Payment?"
 msgstr "Απαιτεί πληρωμή;"
 
-#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:171 src/olympia/devhub/templates/devhub/addons/submit/describe.html:139
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:183 src/olympia/devhub/templates/devhub/addons/submit/describe.html:140
 msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
 msgstr "Επιλέξτε το αν οι κύριες λειτουργίες του προσθέτου αυτού απαιτούν κάποια μορφή πληρωμής από την αρχή ή μετά από μια δοκιμαστική περίοδο."
 
-#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:176 src/olympia/devhub/templates/devhub/addons/submit/describe.html:135
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:188 src/olympia/devhub/templates/devhub/addons/submit/describe.html:136
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
 msgstr "Αυτό το πρόσθετο απαιτεί πληρωμή, επί πληρωμή υπηρεσίες ή λογισμικό, ή επιπρόσθετο υλικό."
 
-#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:179
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:191
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr "Αυτό το πρόσθετο δεν απαιτεί καμία επιπρόσθετη πληρωμή, επί πληρωμή υπηρεσίες ή λογισμικό, ή επιπρόσθετο υλικό."
 
-#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:187
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:199
 msgid "Categories"
 msgstr "Κατηγορίες"
 
-#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:188
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:200
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
 msgstr "Οι κατηγορίες είναι ο κύριος τρόπος με τον οποίο οι χρήστες περιηγούνται στα πρόσθετα. Επιλέξτε αυτήν που ταιριάζει στη λειτουργία του προσθέτου σας για μέγιστη προβολή."
 
-#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:211
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:223
 msgid "Email"
 msgstr "Email"
 
-#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:213
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:225
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
 " for listed add-ons."
@@ -2965,11 +2925,11 @@ msgstr ""
 "Αν θέλετε να γίνεται προβολή ενός email για απορίες υποστήριξης, εισάγετέ το εδώ. Αν έχετε διαφορετικές διευθύνσεις για κάθε γλώσσα, μπορείτε να προσθέσετε πολλές μεταφράσεις αυτού του πεδίου. Αυτό "
 "ισχύει μόνο για τα καταχωρημένα πρόσθετα."
 
-#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:234
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:246
 msgid "Website"
 msgstr "Ιστότοπος"
 
-#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:236
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:248
 msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
 "listed add-ons."
@@ -3120,9 +3080,21 @@ msgid "Having screenshots in your product page greatly increases its chances of 
 msgstr "Προσθέτοντας στιγμιότυπα οθόνης στη σελίδα του προϊόντος σας, αυξάνετε σημαντικά τις πιθανότητες εγκατάστασής του."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:182 src/olympia/devhub/templates/devhub/addons/submit/distribute.html:30
-#: src/olympia/devhub/templates/devhub/addons/submit/source.html:85 src/olympia/devhub/templates/devhub/addons/submit/upload.html:99
+#: src/olympia/devhub/templates/devhub/addons/submit/source.html:85 src/olympia/devhub/templates/devhub/addons/submit/upload.html:102
 msgid "Continue"
 msgstr "Συνέχεια"
+
+#: src/olympia/devhub/templates/devhub/addons/includes/cant_submit_new_listed_versions_warning.html:3
+msgid "Your add-on is currently set to \"Invisible\"."
+msgstr "Το πρόσθετό σας έχει οριστεί σε «Αόρατο»."
+
+#: src/olympia/devhub/templates/devhub/addons/includes/cant_submit_new_listed_versions_warning.html:5
+msgid "Your add-on listing was rejected."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/includes/cant_submit_new_listed_versions_warning.html:7
+msgid "While in this state, \"On your own\" is the only distribution method available."
+msgstr "Σε αυτήν την κατάσταση, το «Προσωπικά» είναι η μόνη διαθέσιμη μέθοδος διανομής."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:2
 msgid "Can others share your Add-on, as long as you're given credit?"
@@ -3155,14 +3127,6 @@ msgstr "Επιλέξτε μια διαφορετική άδεια."
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:64
 msgid "More information on Creative Commons licenses"
 msgstr "Περισσότερες πληροφορίες για τις άδειες Creative Commons"
-
-#: src/olympia/devhub/templates/devhub/addons/includes/invisible_channel_warning.html:2
-msgid "Your add-on is currently set to \"Invisible\"."
-msgstr "Το πρόσθετό σας έχει οριστεί σε «Αόρατο»."
-
-#: src/olympia/devhub/templates/devhub/addons/includes/invisible_channel_warning.html:3
-msgid "While in this state, \"On your own\" is the only distribution method available."
-msgstr "Σε αυτήν την κατάσταση, το «Προσωπικά» είναι η μόνη διαθέσιμη μέθοδος διανομής."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/source_file_input.html:12
 msgid "You cannot change attached sources because this version has been reviewed by Mozilla."
@@ -3309,7 +3273,7 @@ msgstr[1] "<strong>{0}</strong> ενεργοί χρήστες"
 msgid "Submit a New Version"
 msgstr "Υποβολή νέας έκδοσης"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/base.html:33 src/olympia/devhub/templates/devhub/addons/submit/describe.html:236
+#: src/olympia/devhub/templates/devhub/addons/submit/base.html:33 src/olympia/devhub/templates/devhub/addons/submit/describe.html:237
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:49 src/olympia/devhub/templates/devhub/addons/submit/source.html:92
 msgid "Cancel and Disable Version"
 msgstr "Ακύρωση και απενεργοποίηση έκδοσης"
@@ -3331,7 +3295,7 @@ msgid "Name and Summary:"
 msgstr "Όνομα και περίληψη:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:16 src/olympia/devhub/templates/devhub/addons/submit/describe.html:87
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:102 src/olympia/devhub/templates/devhub/addons/submit/describe.html:164
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:102 src/olympia/devhub/templates/devhub/addons/submit/describe.html:165
 #: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:25 src/olympia/devhub/templates/devhub/addons/submit/wizard.html:37 src/olympia/devhub/templates/devhub/addons/submit/wizard.html:65
 #: src/olympia/templates/includes/forms.html:2 src/olympia/templates/includes/forms.html:6
 msgid "required"
@@ -3370,49 +3334,49 @@ msgstr "Σύνοψη:"
 msgid "Description:"
 msgstr "Περιγραφή:"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:123
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:124
 msgid "This add-on is experimental"
 msgstr "Αυτό το πρόσθετο είναι πειραματικό"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:126
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:127
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
 "Ενεργοποιήστε αυτήν την επιλογή αν το πρόσθετό σας είναι πειραματικό ή όχι έτοιμο για γενική χρήση. Το πρόσθετο θα καταχωρηθεί, αλλά με μειωμένη ορατότητα. Μπορείτε να αλλάξετε αργότερα αυτήν τη "
 "ρύθμιση."
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:151
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:152
 msgid "Support email:"
 msgstr "Email υποστήριξης:"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:158
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:159
 msgid "Support website:"
 msgstr "Ιστότοπος υποστήριξης:"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:164
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:165
 msgid "License:"
 msgstr "Άδεια:"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:170
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:171
 msgid "Please choose a license appropriate for the rights you grant."
 msgstr "Επιλέξτε μια κατάλληλη άδεια για τα δικαιώματα που παραχωρείτε."
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:194
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:195
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
 msgstr "Αν το πρόσθετό σας μεταδίδει δεδομένα από τον υπολογιστή του χρήστη, απαιτείται μια πολιτική απορρήτου, η οποία εξηγεί ποια δεδομένα αποστέλλονται και πώς χρησιμοποιούνται."
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:207 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:21
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:208 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:21
 msgid "Notes to Reviewer:"
 msgstr "Σημειώσεις προς ελεγκτή:"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:210 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:24
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:211 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:24
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
 msgstr "Υπάρχει κάτι που θα πρέπει να λάβουν υπόψη οι ελεγκτές μας κατά την αξιολόγηση του προσθέτου;"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:213 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:27
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:214 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:27
 msgid "Remember"
 msgstr "Απομνημόνευση"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:214 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:28
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:215 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:28
 #, python-format
 msgid ""
 "If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
@@ -3421,11 +3385,11 @@ msgstr ""
 "Αν υποβάλατε πηγαίο κώδικα, αλλά δεν συμπεριλάβατε οδηγίες, θα πρέπει να τις παραθέσετε εδώ. Εισαγάγετε αναλυτικές οδηγίες ανάπτυξης για τη δημιουργία ενός ακριβούς αντιγράφου του κώδικα του "
 "προσθέτου, βάσει των %(policy_requirements_open)sαπαιτήσεων της πολιτικής%(policy_requirements_close)s."
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:224 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:38
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:225 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:38
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Αυτές οι σημειώσεις είναι ορατές μόνο σε εσάς και τους ελεγκτές μας."
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:229 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:42
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:230 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:42
 msgid "Submit Version"
 msgstr "Υποβολή έκδοσης"
 
@@ -3617,36 +3581,40 @@ msgstr "Μεταφόρτωση προσθέτου"
 msgid "Where to Host Version"
 msgstr "Τοποθεσία φιλοξενίας έκδοσης"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:23
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:24
 msgid "Change"
 msgstr "Αλλαγή"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:28
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:29
 msgid "Upload Version"
 msgstr "Μεταφόρτωση έκδοσης"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:30
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:31
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Χρησιμοποιήστε τα παρακάτω πεδία για να μεταφορτώσετε το πακέτο του προσθέτου σας. Μετά τη μεταφόρτωση, θα εκτελεστεί μια σειρά από αυτοματοποιημένους ελέγχους εγκυρότητας στο αρχείο σας."
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:34
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:35
 #, python-format
 msgid "The maximum file size accepted is %(max_size)s. If your add-on is larger than %(max_size)s, it will fail validation."
 msgstr "Το μέγιστο αποδεκτό μέγεθος αρχείου είναι %(max_size)s. Αν το πρόσθετό σας είναι μεγαλύτερο από %(max_size)s, θα αποτύχει στη διαδικασία επικύρωσης."
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:59
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:60
 msgid "Which applications is this version compatible with?"
 msgstr "Με ποιες εφαρμογές είναι συμβατή αυτή η έκδοση;"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:66
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:67
 msgid "Administrative overrides"
 msgstr "Διαχειριστική υπερίσχυση"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:79
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:80
 msgid "Create a Theme Version"
 msgstr "Δημιουργία έκδοσης θέματος"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:85
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:82
+msgid "You can upload a finished theme using the upload option above, or you can build it yourself using this tool."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:88
 msgid "Create a Theme"
 msgstr "Δημιουργία θέματος"
 
@@ -3872,53 +3840,57 @@ msgstr "Το πρόσθετό σας εμφανίζεται στη συλλογ�
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery."
 msgstr "Το πρόσθετό σας απενεργοποιήθηκε από έναν διαχειριστή του ιστοτόπου και δεν εμφανίζεται πλέον στη συλλογή μας."
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html:33
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:32
+msgid "Your add-on listing was rejected. It is not listed in our gallery. Please address the reasons and reapply for review."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:35
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
 "Το πρόσθετό σας δεν θα συμπεριλαμβάνεται στα αποτελέσματα αναζήτησης και η σελίδα καταχώρησης θα υποδεικνύει ότι το έχετε απενεργοποιήσει. Οι υποβολές νέων εκδόσεων για καταχώρηση δεν θα γίνονται "
 "αποδεκτές σε αυτήν την κατάσταση."
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html:40 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:85
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:42 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:85
 msgid "Created:"
 msgstr "Δημιουργήθηκε:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html:46 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:81
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:48 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:81
 msgid "Last Updated:"
 msgstr "Τελευταία ενημέρωση:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html:56
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:58
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr "Καταχωρήθηκε σε αυτόν τον ιστότοπο αφού πέρασε την αξιολόγηση κώδικα. Οι αυτόματες ενημερώσεις διαχειρίζονται από τον ιστότοπο"
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html:68
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:70
 msgid "Listed Version:"
 msgstr "Καταχωρημένη έκδοση:"
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html:70
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:72
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
 msgstr "Αυτή είναι η έκδοση του προσθέτου σας που θα εγκατασταθεί αν κάποιος κάνει κλικ στο κουμπί εγκατάστασης στο addons.mozilla.org"
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html:79
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:81
 msgid "Next Listed Version:"
 msgstr "Επόμενη καταχωρημένη έκδοση:"
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html:81
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:83
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr "Αυτή είναι η νεότερη έκδοση που έχει μεταφορτωθεί, ωστόσο δεν έχει δημοσιευθεί ακόμα στον ιστότοπο"
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html:99 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:66
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:101 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:66
 #: src/olympia/devhub/templates/devhub/versions/list.html:26
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr "Υπεγράφη για αυτοδιανομή. Εσείς χειρίζεστε τις ενημερώσεις."
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html:105
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:107
 msgid "Latest Version:"
 msgstr "Τελευταία έκδοση:"
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html:107
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:109
 msgid "This is the newest uploaded unlisted version"
 msgstr "Αυτή είναι η νεότερη μεταφορτωμένη έκδοση που δεν έχει καταχωρηθεί"
 
@@ -4546,7 +4518,7 @@ msgid "Are you sure you wish to hide your add-on?"
 msgstr "Θέλετε σίγουρα να αποκρύψετε το πρόσθετό σας;"
 
 #. L10n: first parameter is the number of errors
-#: src/olympia/devhub/templatetags/jinja_helpers.py:78
+#: src/olympia/devhub/templatetags/jinja_helpers.py:79
 #, python-brace-format
 msgid "{0} error"
 msgid_plural "{0} errors"
@@ -4554,7 +4526,7 @@ msgstr[0] "{0} σφάλμα"
 msgstr[1] "{0} σφάλματα"
 
 #. L10n: first parameter is the number of warnings
-#: src/olympia/devhub/templatetags/jinja_helpers.py:82
+#: src/olympia/devhub/templatetags/jinja_helpers.py:83
 #, python-brace-format
 msgid "{0} warning"
 msgid_plural "{0} warnings"
@@ -4563,55 +4535,55 @@ msgstr[1] "{0} προειδοποιήσεις"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:2 src/olympia/discovery/strings.jinja2:760
+#: src/olympia/discovery/strings.jinja2:2 src/olympia/discovery/strings.jinja2:777
 msgid "Block invisible trackers and spying ads that follow you around the web."
 msgstr "Φραγή αόρατων ιχνηλατών και κατασκοπευτικών διαφημίσεων που σας ακολουθούν στο διαδίκτυο."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:5 src/olympia/discovery/strings.jinja2:853
+#: src/olympia/discovery/strings.jinja2:5 src/olympia/discovery/strings.jinja2:870
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
 msgstr "Απολαύστε μια όμορφη νέα σελίδα με προσαρμόσιμα φόντα, πληροφορίες τοπικού καιρού και πολλά άλλα."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:8 src/olympia/discovery/strings.jinja2:763
+#: src/olympia/discovery/strings.jinja2:8 src/olympia/discovery/strings.jinja2:780
 msgid "Highlight any text, right-click, and translate instantly."
 msgstr "Επισημάνετε οποιοδήποτε κείμενο, κάντε δεξί κλικ και δείτε άμεσα τη μετάφραση."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:11 src/olympia/discovery/strings.jinja2:847
+#: src/olympia/discovery/strings.jinja2:11 src/olympia/discovery/strings.jinja2:864
 msgid "Perform reverse image searches from an array of engines."
 msgstr "Εκτελέστε αντίστροφες αναζητήσεις εικόνων από μια σειρά μηχανών."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:14 src/olympia/discovery/strings.jinja2:808
+#: src/olympia/discovery/strings.jinja2:14 src/olympia/discovery/strings.jinja2:825
 msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
 msgstr "Φραγή διαφημίσεων και προστασία απορρήτου. Μια απλή ρύθμιση σάς επιτρέπει να ελέγξετε τις διαφημίσεις που βλέπετε και το πώς καταγράφεστε στο διαδίκτυο."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:17 src/olympia/discovery/strings.jinja2:811
+#: src/olympia/discovery/strings.jinja2:17 src/olympia/discovery/strings.jinja2:828
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr "Έχετε πολλές ανοικτές καρτέλες; Οργανώστε τις σε μια τακτοποιημένη πλευρική γραμμή."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:20 src/olympia/discovery/strings.jinja2:796
+#: src/olympia/discovery/strings.jinja2:20 src/olympia/discovery/strings.jinja2:813
 msgid "Stop Facebook tracking. Isolate your Facebook identity into a separate “container” to prevent Facebook from tracking you around the web."
 msgstr "Αποτρέψτε την καταγραφή του Facebook. Απομονώστε την ταυτότητά σας στο Facebook σε έναν ξεχωριστό χώρο, εμποδίζοντας το Facebook από το να καταγράψει τη διαδικτυακή δραστηριότητά σας."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:23 src/olympia/discovery/strings.jinja2:850
+#: src/olympia/discovery/strings.jinja2:23 src/olympia/discovery/strings.jinja2:867
 msgid "Simplify search by highlighting text on any web page to search the phrase from an array of engines."
 msgstr "Απλοποιήστε τις αναζητήσεις κάνοντας απλά επισήμανση κειμένου σε οποιαδήποτε ιστοσελίδα για αναζήτηση της φράσης από μια σειρά μηχανών."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:26 src/olympia/discovery/strings.jinja2:787
+#: src/olympia/discovery/strings.jinja2:26 src/olympia/discovery/strings.jinja2:804
 msgid "Instant weather updates from around the world."
 msgstr "Άμεσες ενημερώσεις καιρού από όλο τον κόσμο."
 
@@ -4622,13 +4594,13 @@ msgstr "Επιλέξτε τη σελίδα που θα βλέπετε όταν �
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:32 src/olympia/discovery/strings.jinja2:766
+#: src/olympia/discovery/strings.jinja2:32 src/olympia/discovery/strings.jinja2:783
 msgid "See an interesting picture on the web and want to learn more about it? Try this image search tool."
 msgstr "Βλέπετε μια ενδιαφέρουσα εικόνα στο διαδίκτυο και θέλετε να μάθετε περισσότερα σχετικά με αυτή; Δοκιμάστε αυτό το εργαλείο αναζήτησης εικόνων."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:35 src/olympia/discovery/strings.jinja2:769
+#: src/olympia/discovery/strings.jinja2:35 src/olympia/discovery/strings.jinja2:786
 msgid "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
 msgstr "Κάντε λήψη βίντεο με άνεση. Λειτουργεί με YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope και εκατοντάδες άλλους ιστοτόπους βίντεο."
 
@@ -4644,13 +4616,13 @@ msgstr "Απλοποιημένη διαχείριση κωδικών πρόσβ�
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:44 src/olympia/discovery/strings.jinja2:775
+#: src/olympia/discovery/strings.jinja2:44 src/olympia/discovery/strings.jinja2:792
 msgid "Effective, lightweight ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr "Ελαφρύ και αποτελεσματικό πρόσθετο φραγής διαφημίσεων. Το uBlock Origin εξαναγκάζει χιλιάδες φίλτρα περιεχομένου χωρίς να καταναλώνει υπερβολική μνήμη."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:47 src/olympia/discovery/strings.jinja2:781
+#: src/olympia/discovery/strings.jinja2:47 src/olympia/discovery/strings.jinja2:798
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
 msgstr "Απολαύστε μια σουίτα νέων λειτουργιών στο YouTube, όπως λειτουργία κινηματογράφου, φραγή διαφημίσεων, έλεγχος αυτόματης αναπαραγωγής και άλλα."
 
@@ -4691,13 +4663,13 @@ msgstr "Σταματήστε τη χρήση ισχύος του υπολογι�
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:71 src/olympia/discovery/strings.jinja2:709
+#: src/olympia/discovery/strings.jinja2:71 src/olympia/discovery/strings.jinja2:726
 msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
 msgstr "Λάβετε βοήθεια οπουδήποτε γράφετε στο διαδίκτυο: μέσα κοινωνικής δικτύωσης, email, έγγραφα και άλλα."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:74 src/olympia/discovery/strings.jinja2:793
+#: src/olympia/discovery/strings.jinja2:74 src/olympia/discovery/strings.jinja2:810
 msgid "Display current worldwide times in Firefox's status bar."
 msgstr "Εμφάνιση παγκόσμιας ώρας στη γραμμή κατάστασης του Firefox."
 
@@ -4718,7 +4690,7 @@ msgstr "Προσαρμογή κινήσεων ποντικιού. Ανακαλύ
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:86 src/olympia/discovery/strings.jinja2:904
+#: src/olympia/discovery/strings.jinja2:86 src/olympia/discovery/strings.jinja2:921
 msgid "Darken the page around video players for a focused viewing experience."
 msgstr "Κάντε σκοτεινή τη σελίδα γύρω από τα βίντεο για μια εστιασμένη εμπειρία προβολής."
 
@@ -4735,13 +4707,13 @@ msgstr "Δεν είναι διαθέσιμη η σελίδα που ψάχνετ
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:98 src/olympia/discovery/strings.jinja2:772
+#: src/olympia/discovery/strings.jinja2:98 src/olympia/discovery/strings.jinja2:789
 msgid "Hover over an image to magnify it."
 msgstr "Μετακινήστε τον κέρσορα πάνω σε μια εικόνα για μεγέθυνση."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:101 src/olympia/discovery/strings.jinja2:844
+#: src/olympia/discovery/strings.jinja2:101 src/olympia/discovery/strings.jinja2:861
 msgid "Automatically erase cookies after you close a tab."
 msgstr "Αυτόματη διαγραφή cookie αφού κλείσετε μια καρτέλα."
 
@@ -4752,25 +4724,25 @@ msgstr "Ένας απλός τρόπος για να προσαρμόσετε τ
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:107 src/olympia/discovery/strings.jinja2:805
+#: src/olympia/discovery/strings.jinja2:107 src/olympia/discovery/strings.jinja2:822
 msgid "Stop trackers in their tracks and learn more about them."
 msgstr "Σταματήστε τους ιχνηλάτες και μάθετε περισσότερα σχετικά με αυτούς."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:110 src/olympia/discovery/strings.jinja2:865
+#: src/olympia/discovery/strings.jinja2:110 src/olympia/discovery/strings.jinja2:882
 msgid "Leave a clean digital trail. Make Firefox forget website data like cookies and local storage, but only for domains you choose."
 msgstr "Αφήστε καθαρό ψηφιακό μονοπάτι. Κάντε το Firefox να ξεχάσει τα δεδομένα ιστοτόπων, όπως cookie και τοπική αποθήκευση, αλλά μόνο για τους τομείς που θα επιλέξετε."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:113 src/olympia/discovery/strings.jinja2:835
+#: src/olympia/discovery/strings.jinja2:113 src/olympia/discovery/strings.jinja2:852
 msgid "No need to write the same thing over and over. Save frequently-entered text to paste anytime."
 msgstr "Δεν χρειάζεται να γράφετε το ίδιο ξανά και ξανά. Αποθηκεύστε το κείμενο που εισάγετε συχνά για επικόλληση ανά πάσα στιγμή."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:116 src/olympia/discovery/strings.jinja2:802
+#: src/olympia/discovery/strings.jinja2:116 src/olympia/discovery/strings.jinja2:819
 msgid "Get more screen space by removing ads from your web-based inbox."
 msgstr "Αποκτήστε περισσότερο χώρο στην οθόνη αφαιρώντας διαφημίσεις από τα διαδικτυακά σας εισερχόμενα."
 
@@ -4781,25 +4753,25 @@ msgstr "Διαχειριστείτε τις ανοικτές σας καρτέλ
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:122 src/olympia/discovery/strings.jinja2:907
+#: src/olympia/discovery/strings.jinja2:122 src/olympia/discovery/strings.jinja2:924
 msgid "Avoid sneaky trackers and restrictions. Disguise your navigation by cloaking the identity of your browser and operating system."
 msgstr "Αποφύγετε πονηρούς ιχνηλάτες και περιορισμούς. Μεταμφιέστε την πλοήγησή σας καλύπτοντας την ταυτότητα του προγράμματος περιήγησης και του λειτουργικού σας συστήματος."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:125 src/olympia/discovery/strings.jinja2:799
+#: src/olympia/discovery/strings.jinja2:125 src/olympia/discovery/strings.jinja2:816
 msgid "Automatically reload tabs based on time intervals you set."
 msgstr "Αυτόματη ανανέωση καρτελών βάσει των χρονικών διαστημάτων που έχετε ορίσει."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:128 src/olympia/discovery/strings.jinja2:973
+#: src/olympia/discovery/strings.jinja2:128 src/olympia/discovery/strings.jinja2:990
 msgid "Keep parts of your online life separated into color-coded and cookie separated tabs. Now integrated with Mozilla VPN for an extra layer of privacy."
 msgstr "Διατηρήστε τμήματα της διαδικτυακής σας ζωής χωρισμένα σε χρωματιστές καρτέλες με διαχωρισμό των cookie. Πλέον με ενσωμάτωση του Mozilla VPN για ένα ακόμα επίπεδο απορρήτου."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:131 src/olympia/discovery/strings.jinja2:784
+#: src/olympia/discovery/strings.jinja2:131 src/olympia/discovery/strings.jinja2:801
 msgid "Gain an additional layer of tracking protection as you browse the web."
 msgstr "Αποκτήστε ένα επιπλέον επίπεδο προστασίας από καταγραφή ενώ περιηγείστε στο διαδίκτυο."
 
@@ -4810,7 +4782,7 @@ msgstr "Διαβάστε αρχεία ePub απευθείας στο Firefox—�
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:137 src/olympia/discovery/strings.jinja2:901
+#: src/olympia/discovery/strings.jinja2:137 src/olympia/discovery/strings.jinja2:918
 msgid "Play YouTube videos by default in the highest quality, turn off annotations, and more."
 msgstr "Αναπαραγωγή YouTube βίντεο από προεπιλογή στην υψηλότερη ποιότητα, απενεργοποίηση σχολιασμών και πολλά άλλα."
 
@@ -4831,7 +4803,7 @@ msgstr "Βελτίωση εμπειρίας θέασης με προσαρμογ
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:149 src/olympia/discovery/strings.jinja2:790
+#: src/olympia/discovery/strings.jinja2:149 src/olympia/discovery/strings.jinja2:807
 msgid "Add encrypted security to any site that supports HTTPS. Browse securely."
 msgstr "Προσθήκη κρυπτογραφημένης ασφάλειας σε κάθε ιστότοπο που υποστηρίζει HTTPS. Ασφαλής περιήγηση."
 
@@ -4847,8 +4819,8 @@ msgstr "Αλλάξτε τον τρόπο με τον οποίο περιηγεί
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:158
-msgid "Screenshot webpages, make edits, and share."
-msgstr "Στιγμιότυπα ιστοσελίδων, επεξεργασία και κοινοποίηση."
+msgid "Screenshot webpages, make edits & share."
+msgstr ""
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:161
@@ -4877,13 +4849,13 @@ msgstr "Ορίστε μια προσαρμοσμένη αρχική σελίδα
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:176 src/olympia/discovery/strings.jinja2:832
+#: src/olympia/discovery/strings.jinja2:176 src/olympia/discovery/strings.jinja2:849
 msgid "Convert all your open tabs into a list to easily manage them and speed up Firefox."
 msgstr "Μετατρέψτε όλες τις ανοικτές καρτέλες σας σε μια λίστα για εύκολη διαχείριση και επιτάχυνση του Firefox."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:179 src/olympia/discovery/strings.jinja2:754
+#: src/olympia/discovery/strings.jinja2:179 src/olympia/discovery/strings.jinja2:771
 msgid "Robust download management. Check the state of your downloads through a status bar, download history page, and more."
 msgstr "Πανίσχυρη διαχείριση λήψεων. Ελέγξτε την κατάσταση των λήψεών σας μέσω της γραμμής κατάστασης, της σελίδας ιστορικού λήψεων και πολλά άλλα."
 
@@ -4914,7 +4886,7 @@ msgstr "Καταστήστε τον ιστό πιο άνετο για τα μά�
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:197 src/olympia/discovery/strings.jinja2:751
+#: src/olympia/discovery/strings.jinja2:197 src/olympia/discovery/strings.jinja2:768
 msgid "Block all pop-ups by default, then decide which ones you'd like to open."
 msgstr "Αποκλείστε όλα τα αναδυόμενα από προεπιλογή και αποφασίστε έπειτα ποια θέλετε να ανοίξετε."
 
@@ -4945,7 +4917,7 @@ msgstr "Βελτιώστε την εμπειρία ανάγνωσής σας. Κ
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:215 src/olympia/discovery/strings.jinja2:826
+#: src/olympia/discovery/strings.jinja2:215 src/olympia/discovery/strings.jinja2:843
 msgid "Right-click and drag links you want open in new tabs."
 msgstr "Κάντε δεξί κλικ και σύρετε τους συνδέσμους που θέλετε να ανοίξετε σε νέες καρτέλες."
 
@@ -4986,7 +4958,7 @@ msgstr "Δείτε το ιστορικό τιμής, βρείτε ανταγων
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:239 src/olympia/discovery/strings.jinja2:748
+#: src/olympia/discovery/strings.jinja2:239 src/olympia/discovery/strings.jinja2:765
 msgid "Make it your YouTube. Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
 msgstr "Φέρετε το YouTube στα μέτρα σας. Αναπαραγωγή βίντεο σε αποσπώμενο παράθυρο, προβολή διαφημίσεων μόνο σε κανάλια που έχετε κάνει εγγραφή, λήψη στιγμιότυπων βίντεο και πολλά άλλα."
 
@@ -5067,7 +5039,7 @@ msgstr "Δείτε τις αγαπημένες ροές RSS σας, όλες σ�
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:287 src/olympia/discovery/strings.jinja2:745
+#: src/olympia/discovery/strings.jinja2:287 src/olympia/discovery/strings.jinja2:762
 msgid "Enable night mode for a better viewing experience."
 msgstr "Ενεργοποιήστε τη νυχτερινή λειτουργία για καλύτερη εμπειρία θέασης."
 
@@ -5123,13 +5095,13 @@ msgstr "Δημιουργήστε γενικές, αλλά και ειδικές 
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:320 src/olympia/discovery/strings.jinja2:724
+#: src/olympia/discovery/strings.jinja2:320 src/olympia/discovery/strings.jinja2:741
 msgid "Phone-like scrolling for your desktop. Features \"grab-n-drag\" style mouse movement."
 msgstr "Δυνατότητες κύλισης τηλεφώνου στον υπολογιστή σας. Δυνατότητες, όπως επιλογή και απόθεση, με το ποντίκι."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:323 src/olympia/discovery/strings.jinja2:895
+#: src/olympia/discovery/strings.jinja2:323 src/olympia/discovery/strings.jinja2:912
 msgid "Clear your browser cache with a click or keystroke."
 msgstr "Καθαρίστε την κρυφή μνήμη του προγράμματος περιήγησής σας με ένα κλικ ή ένα πλήκτρο."
 
@@ -5140,13 +5112,13 @@ msgstr "Επισημάνετε κείμενο σε ιστοσελίδες για
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:329 src/olympia/discovery/strings.jinja2:721
+#: src/olympia/discovery/strings.jinja2:329 src/olympia/discovery/strings.jinja2:738
 msgid "Enjoy music from 30,000+ radio stations from all over the globe."
 msgstr "Απολαύστε μουσική από 30.000+ ραδιοφωνικούς σταθμούς από όλο τον κόσμο."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:332 src/olympia/discovery/strings.jinja2:892
+#: src/olympia/discovery/strings.jinja2:332 src/olympia/discovery/strings.jinja2:909
 msgid "Save bandwidth by just streaming the audio from YouTube clips."
 msgstr "Εξοικονομήστε εύρος ζώνης με τη ροή ήχου από τα βίντεο στο YouTube."
 
@@ -5157,13 +5129,13 @@ msgstr "Μετατρέψτε τις λέξεις σε όμορφες επικε�
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:338 src/olympia/discovery/strings.jinja2:742
+#: src/olympia/discovery/strings.jinja2:338 src/olympia/discovery/strings.jinja2:759
 msgid "Automatically navigate to the secure version of a website if it's available."
 msgstr "Αυτόματη πλοήγηση στην ασφαλή έκδοση ενός ιστοτόπου αν είναι διαθέσιμη."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:341 src/olympia/discovery/strings.jinja2:823
+#: src/olympia/discovery/strings.jinja2:341 src/olympia/discovery/strings.jinja2:840
 msgid "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
 msgstr "Διαγράψτε το ιστορικό περιήγησής σας. Καθορίστε έναν αριθμό ημερών που θα διατηρείται το ιστορικό του προγράμματος περιήγησης σας πριν από την αυτόματη διαγραφή."
 
@@ -5189,7 +5161,7 @@ msgstr "Ιδιωτική αναζήτηση με ένα μόνο κλικ."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:359 src/olympia/discovery/strings.jinja2:856
+#: src/olympia/discovery/strings.jinja2:359 src/olympia/discovery/strings.jinja2:873
 msgid "Put an end to tab hijacking. Don't let clicked links take control of your current tab and load content you didn't ask for."
 msgstr "Δώστε ένα τέλος στην παραβίαση των καρτελών. Εμποδίστε την κατάληψη καρτελών και τη φόρτωση ανεπιθύμητου περιεχομένου από συνδέσμους που κάνατε κλικ."
 
@@ -5301,13 +5273,13 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:425 src/olympia/discovery/strings.jinja2:859
+#: src/olympia/discovery/strings.jinja2:425 src/olympia/discovery/strings.jinja2:876
 msgid "Only allow web content to run from sites you trust. Surf securely."
 msgstr "Επιτρέψτε την εκτέλεση περιεχομένου ιστού, μόνο από τους ιστοτόπους που εμπιστεύεστε. Σερφάρετε με ασφάλεια."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:428 src/olympia/discovery/strings.jinja2:730
+#: src/olympia/discovery/strings.jinja2:428 src/olympia/discovery/strings.jinja2:747
 msgid "Take full control of the cookies you've accumulated while browsing."
 msgstr "Πάρτε τον πλήρη έλεγχο των cookie που συγκεντρώνετε κατά την περιήγηση."
 
@@ -5318,7 +5290,7 @@ msgstr "Διαγράψτε αυτόματα το ιστορικό περιήγη
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:434 src/olympia/discovery/strings.jinja2:820
+#: src/olympia/discovery/strings.jinja2:434 src/olympia/discovery/strings.jinja2:837
 msgid "Password-protect your personal bookmarks."
 msgstr "Προστασία σελιδοδεικτών με κωδικό πρόσβασης."
 
@@ -5344,7 +5316,7 @@ msgstr "Αξιοποιήστε τη δυνατότητα λήψης βίντεο
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:449 src/olympia/discovery/strings.jinja2:715
+#: src/olympia/discovery/strings.jinja2:449 src/olympia/discovery/strings.jinja2:732
 msgid "Learn where any website's server is geographically located. Be an informed web traveler."
 msgstr "Μάθετε πού βρίσκεται γεωγραφικά ο διακομιστής κάθε ιστοτόπου. Γίνετε ενημερωμένοι ταξιδιώτες του ιστού."
 
@@ -5365,13 +5337,13 @@ msgstr "Παρακολούθηση ιστορικού τιμών στο Amazon. 
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:461 src/olympia/discovery/strings.jinja2:886
+#: src/olympia/discovery/strings.jinja2:461 src/olympia/discovery/strings.jinja2:903
 msgid "Adjust browser audio settings with extreme clarity."
 msgstr "Προσαρμόστε τις ρυθμίσεις ήχου του προγράμματος περιήγησής σας με εξαιρετική ευκρίνεια."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:464 src/olympia/discovery/strings.jinja2:712
+#: src/olympia/discovery/strings.jinja2:464 src/olympia/discovery/strings.jinja2:729
 msgid "Defend yourself against the sneakiest trackers."
 msgstr "Αμυνθείτε από τους πιο ύπουλους ιχνηλάτες."
 
@@ -5397,7 +5369,7 @@ msgstr "Με ένα απλό κλικ, μπορείτε να παρακολου�
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:482 src/olympia/discovery/strings.jinja2:862
+#: src/olympia/discovery/strings.jinja2:482 src/olympia/discovery/strings.jinja2:879
 msgid "Stop wasting valuable memory space with inactive tabs."
 msgstr "Σταματήστε να σπαταλάτε πολύτιμη μνήμη σε ανενεργές καρτέλες."
 
@@ -5418,19 +5390,19 @@ msgstr "Λάβετε βοήθεια οπουδήποτε γράφετε στο �
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:494 src/olympia/discovery/strings.jinja2:706
+#: src/olympia/discovery/strings.jinja2:494 src/olympia/discovery/strings.jinja2:723
 msgid "Read with more clarity and ease. Remove the clutter around text on web pages."
 msgstr "Διαβάστε με περισσότερη ευκολία και ευκρίνεια. Καταργήστε τα περιττά στοιχεία των ιστοσελίδων γύρω από το κείμενο."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:497 src/olympia/discovery/strings.jinja2:703
+#: src/olympia/discovery/strings.jinja2:497 src/olympia/discovery/strings.jinja2:720
 msgid "Block ads and get enhanced protection against malware and ad tracking."
 msgstr "Φραγή διαφημίσεων και ενισχυμένη προστασία από κακόβουλο λογισμικό και καταγραφή διαφημίσεων."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:500 src/olympia/discovery/strings.jinja2:883
+#: src/olympia/discovery/strings.jinja2:500 src/olympia/discovery/strings.jinja2:900
 msgid "Enjoy multi-threading download support. Automatically detect different types of media available for download."
 msgstr "Απολαύστε την υποστήριξη λήψεων με πολλαπλά thread. Αυτόματη ανίχνευση διαφορετικών τύπων πολυμέσων που διατίθενται για λήψη."
 
@@ -5451,19 +5423,19 @@ msgstr "Απολαύστε τα οφέλη της ισχυρής διαχείρ�
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:512 src/olympia/discovery/strings.jinja2:733
+#: src/olympia/discovery/strings.jinja2:512 src/olympia/discovery/strings.jinja2:750
 msgid "Customize shades of light and dark to make web pages more visually pleasing."
 msgstr "Προσαρμογή φωτεινών και σκούρων αποχρώσεων για πιο ευχάριστες οπτικά ιστοσελίδες."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:515 src/olympia/discovery/strings.jinja2:880
+#: src/olympia/discovery/strings.jinja2:515 src/olympia/discovery/strings.jinja2:897
 msgid "Block distracting websites. Simply list the sites you want the extension to block. Instant discipline!"
 msgstr "Φραγή ενοχλητικών ιστοτόπων. Απλά καταγράψτε τους ιστοτόπους που θέλετε να αποκλειστούν από την επέκταση. Άμεση πειθαρχία!"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:518 src/olympia/discovery/strings.jinja2:727
+#: src/olympia/discovery/strings.jinja2:518 src/olympia/discovery/strings.jinja2:744
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
 msgstr "Αλλάξτε την εμφάνιση του προγράμματος περιήγησής σας. Σχεδιάστε εύκολα τα δικά σας θέματα και διαμορφώστε όπως θέλετε το Firefox."
 
@@ -5484,13 +5456,13 @@ msgstr "Παρακολούθηση προϊόντων που σας ενδιαφ
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:530 src/olympia/discovery/strings.jinja2:700
+#: src/olympia/discovery/strings.jinja2:530 src/olympia/discovery/strings.jinja2:717
 msgid "Turn the web dark or select a custom color scheme to visually tailor the internet to your own taste."
 msgstr "Κάντε εναλλαγή σε σκούρο θέμα ή επιλέξτε ένα προσαρμοσμένο σύνολο χρωμάτων για να προσαρμόσετε το διαδίκτυο σύμφωνα με τα γούστα σας."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:533 src/olympia/discovery/strings.jinja2:919
+#: src/olympia/discovery/strings.jinja2:533 src/olympia/discovery/strings.jinja2:936
 msgid "Get a more advanced search page on Firefox for Android."
 msgstr "Αποκτήστε μια πιο προηγμένη σελίδα αναζήτησης στο Firefox για Android."
 
@@ -5516,7 +5488,7 @@ msgstr "Διαγράψτε τα cookie, το ιστορικό περιήγηση
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:549 src/olympia/discovery/strings.jinja2:814
+#: src/olympia/discovery/strings.jinja2:549 src/olympia/discovery/strings.jinja2:831
 msgid "Remove tracking elements from web links."
 msgstr "Αφαίρεση στοιχείων καταγραφής από διαδικτυακούς συνδέσμους."
 
@@ -5527,13 +5499,13 @@ msgstr "Λάβετε φακέλους σελιδοδεικτών με αυτόμ
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:555 src/olympia/discovery/strings.jinja2:877
+#: src/olympia/discovery/strings.jinja2:555 src/olympia/discovery/strings.jinja2:894
 msgid "Easily organize tons of open tabs."
 msgstr "Οργανώστε εύκολα πολλές ανοικτές καρτέλες."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:558 src/olympia/discovery/strings.jinja2:817
+#: src/olympia/discovery/strings.jinja2:558 src/olympia/discovery/strings.jinja2:834
 msgid "Create and customize tab groups."
 msgstr "Δημιουργήστε και προσαρμόστε ομάδες καρτελών."
 
@@ -5549,13 +5521,13 @@ msgstr "Φραγή όλων των διαφημίσεων — βίντεο, αν
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:569 src/olympia/discovery/strings.jinja2:871
+#: src/olympia/discovery/strings.jinja2:569 src/olympia/discovery/strings.jinja2:888
 msgid "Watch streaming media with friends and family anywhere."
 msgstr "Παρακολουθήστε ροή πολυμέσων με φίλους και συγγενείς οπουδήποτε."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:572 src/olympia/discovery/strings.jinja2:913
+#: src/olympia/discovery/strings.jinja2:572 src/olympia/discovery/strings.jinja2:930
 msgid "Skip over sponsored portions of YouTube videos."
 msgstr "Παράλειψη των χορηγούμενων μερών των βίντεο στο YouTube."
 
@@ -5566,31 +5538,31 @@ msgstr "Ανάγνωση ιστοσελίδων από τη συσκευή σα�
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:578 src/olympia/discovery/strings.jinja2:910
+#: src/olympia/discovery/strings.jinja2:578 src/olympia/discovery/strings.jinja2:927
 msgid "Double-click any word to instantly see its definition."
 msgstr "Κάντε διπλό κλικ σε οποιαδήποτε λέξη για να δείτε άμεσα τον ορισμό της."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:583 src/olympia/discovery/strings.jinja2:952
+#: src/olympia/discovery/strings.jinja2:583 src/olympia/discovery/strings.jinja2:969
 msgid "Save batches of tabs as convenient bookmarks."
 msgstr "Αποθήκευση πολλαπλών καρτελών σε βολικούς σελιδοδείκτες."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:586 src/olympia/discovery/strings.jinja2:955
+#: src/olympia/discovery/strings.jinja2:586 src/olympia/discovery/strings.jinja2:972
 msgid "Tabs and bookmarks neatly organized in a Firefox side view."
 msgstr "Οργάνωση καρτελών και σελιδοδεικτών σε μια πλαϊνή προβολή του Firefox."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:589 src/olympia/discovery/strings.jinja2:934
+#: src/olympia/discovery/strings.jinja2:589 src/olympia/discovery/strings.jinja2:951
 msgid "Thousands of GIFs at your fingertips."
 msgstr "Χιλιάδες GIFs στα δάχτυλά σας."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:592 src/olympia/discovery/strings.jinja2:940
+#: src/olympia/discovery/strings.jinja2:592 src/olympia/discovery/strings.jinja2:957
 msgid "The easiest way to manage YouTube subscriptions."
 msgstr "Ο πιο εύκολος τρόπος διαχείρισης συνδρομών στο YouTube."
 
@@ -5601,7 +5573,7 @@ msgstr "Αποκτήστε τη γραμμή κύλισης που πάντα θ
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:598 src/olympia/discovery/strings.jinja2:949
+#: src/olympia/discovery/strings.jinja2:598 src/olympia/discovery/strings.jinja2:966
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
 msgstr "Αποθήκευση και επαναφορά καρτελών. Περιλαμβάνει λειτουργίες αυτόματης αποθήκευσης και συγχρονισμού cloud."
 
@@ -5688,659 +5660,745 @@ msgstr "Κάνει το Firefox να εμφανίζεται ως Chrome σε ι�
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:685
 msgid "Manage your Gmail (even multiple accounts) right from Firefox's toolbar button."
-msgstr ""
+msgstr "Διαχειριστείτε το Gmail σας (ακόμα και πολλαπλούς λογαριασμούς) απευθείας από το κουμπί της γραμμής εργαλείων του Firefox."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:688
 msgid "Track the time you spend on the web, analyze your habits, block distracting sites & more."
-msgstr ""
+msgstr "Καταγράψτε τον χρόνο που περνάτε στο διαδίκτυο, αναλύστε τις συνήθειές σας, αποκλείστε ιστοτόπους που σας αποσπούν την προσοχή και πολλά άλλα."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:691
 msgid "Improve your writing — get instant access to the power of synonyms."
-msgstr ""
+msgstr "Βελτιώστε τα κείμενά σας, με άμεση πρόσβαση σε συνώνυμες λέξεις."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:694
 msgid "Deep translation features for a rich language experience anywhere on the web."
-msgstr ""
+msgstr "Λειτουργίες λεπτομερούς μετάφρασης για μια πλούσια γλωσσική εμπειρία, οπουδήποτε στο διαδίκτυο."
+
+#. editorial content for the discovery pane.
+#: src/olympia/discovery/strings.jinja2:697
+msgid "Leave yourself little notes on any website."
+msgstr "Αφήστε στον εαυτό σας μικρές σημειώσεις, σε οποιαδήποτε ιστοσελίδα."
+
+#. editorial content for the discovery pane.
+#: src/olympia/discovery/strings.jinja2:700
+msgid "Discover and download higher quality versions of interesting images and videos you find on the web."
+msgstr "Ανακαλύψτε και κάντε λήψη εκδόσεων υψηλότερης ποιότητας για ενδιαφέρουσες εικόνες και βίντεο στο διαδίκτυο."
+
+#. editorial content for the discovery pane.
+#: src/olympia/discovery/strings.jinja2:703
+msgid "Save and organize anything you find on the web — articles, media, PDFs & more."
+msgstr "Αποθηκεύστε και οργανώστε οτιδήποτε βρείτε στο διαδίκτυο όπως άρθρα, πολυμέσα, αρχεία PDF και πολλά άλλα."
+
+#. editorial content for the discovery pane.
+#: src/olympia/discovery/strings.jinja2:706
+msgid "Enhance your Reddit experience with color-coded comments, simpler navigation, gestures for upvoting & much more."
+msgstr "Βελτιώστε την εμπειρία σας στο Reddit με χρωματιστά σχόλια, απλούστερη πλοήγηση, θετικές κινήσεις και πολλά άλλα."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:697
+#: src/olympia/discovery/strings.jinja2:714
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Ορισμένοι ιστότοποι δυσκολεύονται με την αναπαραγωγή βίντεο στο Firefox για Android. Αυτή η επέκταση διορθώνει το σφάλμα."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:718
+#: src/olympia/discovery/strings.jinja2:735
 msgid "Find an interesting pic on the web? Use TinEye to discover its origins."
 msgstr "Βρήκατε μια ενδιαφέρουσα εικόνα στο διαδίκτυο; Ανακαλύψτε την προέλευσή της με το TinEye."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:736
+#: src/olympia/discovery/strings.jinja2:753
 msgid "Save images easily — just grab them from your current tab."
 msgstr "Εύκολη αποθήκευση εικόνων — απλά «αρπάξτε» τις από την τρέχουσα καρτέλα σας."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:739
+#: src/olympia/discovery/strings.jinja2:756
 msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title & more."
 msgstr "Απολαύστε τον απόλυτο έλεγχο καρτελών — κλείστε τις διπλές καρτέλες, συγχωνεύστε παράθυρα, αντιγράψτε τον τίτλο της καρτέλας και άλλα."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:757
+#: src/olympia/discovery/strings.jinja2:774
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
 msgstr "Διαβάστε αρχεία ePub απευθείας στο Firefox—μεγέθυνση γραμματοσειράς, διαστάσεις σελίδας και άλλα."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:778
+#: src/olympia/discovery/strings.jinja2:795
 msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configurations."
 msgstr "Προσαρμογή κινήσεων ποντικιού. Ανακαλύψτε νέους τρόπους πλοήγησης με 50+ ρυθμίσεις."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:829
+#: src/olympia/discovery/strings.jinja2:846
 msgid "Customize the look of any website. Shift colors, page backgrounds & more."
 msgstr "Προσαρμόστε την εμφάνιση όλων των ιστοτόπων. Αλλάξτε χρώματα, φόντα σελίδων και πολλά άλλα."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:838
+#: src/olympia/discovery/strings.jinja2:855
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "Χρησιμοποιήστε κινήσεις ποντικιού για κλείσιμο καρτελών, πλοήγηση σε σελίδες και πολλά άλλα."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:841
+#: src/olympia/discovery/strings.jinja2:858
 msgid "A simple way to adjust the size of any page's text — or even enlarge the page itself."
 msgstr "Ένας απλός τρόπος για να προσαρμόσετε το μέγεθος του κειμένου οποιασδήποτε σελίδας — ή ακόμη και να μεγεθύνετε την ίδια τη σελίδα."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:868
+#: src/olympia/discovery/strings.jinja2:885
 msgid "Enjoy thumbnail images of websites alongside your search returns."
 msgstr "Απολαύστε μικρογραφίες ιστοτόπων δίπλα στα αποτελέσματα αναζήτησής σας."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:874
+#: src/olympia/discovery/strings.jinja2:891
 msgid "Save an entire web page — including images and styling — as a single HTML file."
 msgstr "Αποθηκεύστε μια ολόκληρη ιστοσελίδα —μαζί με τις εικόνες και τη μορφοποίησή της— σε ένα αρχείο HTML."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:889
+#: src/olympia/discovery/strings.jinja2:906
 msgid "Edit a web page before printing. Remove ads or any unwanted content."
 msgstr "Επεξεργαστείτε μια ιστοσελίδα πριν από την εκτύπωση. Αφαιρέστε τις διαφημίσεις ή το ανεπιθύμητο περιεχόμενο."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:898
+#: src/olympia/discovery/strings.jinja2:915
 msgid "Advanced reader for aggregating all of your RSS/Atom/RDF sources."
 msgstr "Προηγμένο εργαλείο ανάγνωσης για τη συγκέντρωση όλων των ροών RSS/Atom/RDF σας."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:916
+#: src/olympia/discovery/strings.jinja2:933
 msgid "Web pages read aloud. 40+ languages supported."
 msgstr "Εκφώνηση ιστοσελίδων. Υποστήριξη για 40+ γλώσσες."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:922
+#: src/olympia/discovery/strings.jinja2:939
 msgid "Removes those long tracking parameters from Google search result URL's."
 msgstr "Αφαιρεί τις μεγάλες παραμέτρους καταγραφής από τα URL των αποτελεσμάτων αναζήτησης Google."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:925
+#: src/olympia/discovery/strings.jinja2:942
 msgid "Get weather updates directly from Firefox."
 msgstr "Λάβετε ενημερώσεις καιρού απευθείας από το Firefox."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:928
+#: src/olympia/discovery/strings.jinja2:945
 msgid "Manage your time better with a browser clock that charts work intervals."
 msgstr "Διαχειριστείτε καλύτερα τον χρόνο σας με ένα ρολόι που χαρτογραφεί τα διαστήματα εργασίας."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:931
+#: src/olympia/discovery/strings.jinja2:948
 msgid "Tired of that \"Video paused. Continue watching?\" message? Listen to your favorite music uninterrupted on YouTube."
 msgstr "Σας κούρασε το μήνυμα «Το βίντεο διακόπηκε. Συνέχεια παρακολούθησης;»; Ακούστε την αγαπημένη σας μουσική χωρίς διακοπή στο YouTube."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:937
+#: src/olympia/discovery/strings.jinja2:954
 msgid "Begone, annoying cookie warnings!"
 msgstr "Εξαφανιστείτε, ενοχλητικές προειδοποιήσεις cookie!"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:943
+#: src/olympia/discovery/strings.jinja2:960
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
 msgstr "Επιστρέψτε σε πιο απλές εποχές — όταν τα κορυφαία αποτελέσματα αναζήτησης βρίσκονταν πάνω από τις διαφημίσεις (συμβατό με τις μηχανές αναζήτησης Google και Bing)."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:946
+#: src/olympia/discovery/strings.jinja2:963
 msgid "Get the mouse scrollbar you've always wanted — specify width and color."
 msgstr "Αποκτήστε τη γραμμή κύλισης που πάντα θέλατε — επιλέξτε πλάτος και χρώμα."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:958
+#: src/olympia/discovery/strings.jinja2:975
 msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
 msgstr "Κρύψτε το email σας για να προστατέψετε την ταυτότητά σας και να αποτρέψετε την ανεπιθύμητη αλληλογραφία. Οι νέες ενημερώσεις κάνουν το Firefox Relay ακόμα πιο εύκολο στη χρήση."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:961
+#: src/olympia/discovery/strings.jinja2:978
 msgid "Instantly translate any selected text on web pages."
 msgstr "Άμεση μετάφραση επιλεγμένου κειμένου σε ιστοσελίδες."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:964
+#: src/olympia/discovery/strings.jinja2:981
 msgid "Make Firefox change colors based on time of day."
 msgstr "Αλλαγή των χρωμάτων του Firefox βάσει της ώρας."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:967
+#: src/olympia/discovery/strings.jinja2:984
 msgid "Eliminate YouTube distractions. Remove related and recommended video suggestions, comments & more."
 msgstr "Αποφύγετε τους περισπασμούς από το YouTube. Καταργήστε τις σχετικές και προτεινόμενες προτάσεις βίντεο, σχόλια και άλλα."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:970
+#: src/olympia/discovery/strings.jinja2:987
 msgid "Take emojis with you everywhere on the web."
 msgstr "Πάρτε τα emoji μαζί σας οπουδήποτε στο διαδίκτυο."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:976
+#: src/olympia/discovery/strings.jinja2:993
 msgid "Put restrictions on distracting, time-wasting websites."
 msgstr "Βάλτε περιορισμούς σε ιστοτόπους που σας αποσπούν την προσοχή και σπαταλούν τον χρόνο σας."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:979
+#: src/olympia/discovery/strings.jinja2:996
 msgid "Remove clutter from your Twitter."
 msgstr "Αφαιρέστε τα περιττά στοιχεία από το Twitter σας."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:982
+#: src/olympia/discovery/strings.jinja2:999
 msgid "Customize YouTube to taste."
 msgstr "Προσαρμόστε το YouTube στα μέτρα σας."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:985
+#: src/olympia/discovery/strings.jinja2:1002
 msgid "Delete browsing data directly from the browser toolbar."
 msgstr "Διαγράψτε τα δεδομένα περιήγησης απευθείας από τη γραμμή εργαλείων του προγράμματος περιήγησής σας."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:988
+#: src/olympia/discovery/strings.jinja2:1005
 msgid "Get RSS feed auto-updates direct to your bookmark folders."
 msgstr "Λήψη αυτόματων ενημερώσεων για ροές RSS, απευθείας στους φακέλους σελιδοδεικτών σας."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:991
+#: src/olympia/discovery/strings.jinja2:1008
 msgid "Effective blocker against all types of ads."
 msgstr "Αποτελεσματική φραγή για όλους τους τύπους διαφημίσεων."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:994
+#: src/olympia/discovery/strings.jinja2:1011
 msgid "Mass download manager makes extreme downloading extremely easy."
 msgstr "Η διαχείριση μαζικών λήψεων καθιστά εξαιρετικά εύκολες τις πολλαπλές λήψεις."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:997
+#: src/olympia/discovery/strings.jinja2:1014
 msgid "Remove ads & receive better protection against malware."
 msgstr "Αφαίρεση διαφημίσεων και ενισχυμένη προστασία από κακόβουλο λογισμικό."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1000
+#: src/olympia/discovery/strings.jinja2:1017
 msgid "Remove formatting from copied Clipboard text."
 msgstr "Κατάργηση μορφοποίησης από το αντιγραμμένο κείμενο του πρόχειρου."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1003
+#: src/olympia/discovery/strings.jinja2:1020
 msgid "Fingerprinting privacy protection."
 msgstr "Προστασία απορρήτου με δακτυλικό αποτύπωμα."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1006
+#: src/olympia/discovery/strings.jinja2:1023
 msgid "Enhance your gaming experience on Steam."
 msgstr "Βελτιώστε την εμπειρία σας με τα παιχνίδια στο Steam."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1009
+#: src/olympia/discovery/strings.jinja2:1026
 msgid "Thumbs-up to bringing back thumbs-down."
 msgstr "«Μου αρέσει» η επιστροφή του «Δεν μου αρέσει»."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1012
+#: src/olympia/discovery/strings.jinja2:1029
 msgid "Translate websites in Firefox — privately — without using the cloud."
 msgstr "Μετάφραση ιστοτόπων στο Firefox — ιδιωτικά — χωρίς τη χρήση του cloud."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1015
+#: src/olympia/discovery/strings.jinja2:1032
 msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
 msgstr "Αποκλεισμός ιστοτόπων που σπαταλούν τον χρόνο σας. Αποκλείστε τους εντελώς ή μόνο με χρονικό περιορισμό της επιλογής σας."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1018
+#: src/olympia/discovery/strings.jinja2:1035
 msgid "Easily summarize emails, docs, articles, and video transcripts in English across the web — without sacrificing your privacy."
 msgstr "Συνοψίστε εύκολα τα email, τα έγγραφα, τα άρθρα και τις μεταγραφές βίντεο στα αγγλικά σε όλο το διαδίκτυο, χωρίς να θυσιάσετε το απόρρητό σας."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1021
+#: src/olympia/discovery/strings.jinja2:1038
 msgid "You’re in control. Turn off VPN when a website won’t work and set different locations for different websites. Windows only."
 msgstr "Εσείς έχετε τον έλεγχο. Απενεργοποιήστε το VPN όταν ένας ιστότοπος δεν λειτουργεί και ορίστε διαφορετικές τοποθεσίες για διαφορετικούς ιστοτόπους. Μόνο στα Windows."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1024
+#: src/olympia/discovery/strings.jinja2:1041
 msgid "Automatically handle GDPR consent forms."
 msgstr "Αυτόματος χειρισμός των φορμών συγκατάθεσης για τον GDPR."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1027
+#: src/olympia/discovery/strings.jinja2:1044
 msgid "Block malicious websites from port scanning."
 msgstr "Αποτρέψτε τη σάρωση θυρών από κακόβουλους ιστοτόπους."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1030
+#: src/olympia/discovery/strings.jinja2:1047
 msgid "Enhance your Twitch experience."
 msgstr "Βελτιώστε την εμπειρία σας στο Twitch."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1033
+#: src/olympia/discovery/strings.jinja2:1050
 msgid "Re-take control of Twitter/X and customize your experience."
 msgstr "Ανακτήστε τον έλεγχο του Twitter/X και προσαρμόστε την εμπειρία σας."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1036
+#: src/olympia/discovery/strings.jinja2:1053
 msgid "Translate text without leaving the page you're on (PDF compatible)."
 msgstr "Μεταφράστε κείμενο χωρίς να αποχωρήσετε από τη σελίδα (συμβατό και με PDF)."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1039
+#: src/olympia/discovery/strings.jinja2:1056
 msgid "Change the color of Firefox to match every website you visit."
 msgstr "Αλλάξτε το χρώμα του Firefox για να ταιριάζει με κάθε ιστότοπο που επισκέπτεστε."
 
+#. editorial content for the primary hero shelves.
+#: src/olympia/discovery/strings.jinja2:1059
+msgid "Learning a new language? Yomitan is the ideal dictionary companion."
+msgstr "Μαθαίνετε μια νέα γλώσσα; Το Yomitan είναι το ιδανικό εργαλείο λεξικού."
+
+#. editorial content for the primary hero shelves.
+#: src/olympia/discovery/strings.jinja2:1062
+msgid "Pack a powerful thesaurus right inside Firefox."
+msgstr "Ενσωματώστε ένα ισχυρό λεξικό συνωνύμων στο Firefox."
+
+#. editorial content for the primary hero shelves.
+#: src/olympia/discovery/strings.jinja2:1065
+msgid "Hover over web images to enlarge their appearance."
+msgstr "Τοποθετήστε τον κέρσορα πάνω σε εικόνες του ιστού για να μεγεθύνετε την εμφάνισή τους."
+
+#. editorial content for the primary hero shelves.
+#: src/olympia/discovery/strings.jinja2:1068
+msgid "Feature rich translation tool. Works across the web, eBooks, PDFs, even video subtitles."
+msgstr "Εργαλείο μετάφρασης με πληθώρα δυνατοτήτων. Λειτουργεί σε όλο τον ιστό, σε ηλεκτρονικά βιβλία, σε PDF, ακόμα και σε υπότιτλους βίντεο."
+
+#. editorial content for the primary hero shelves.
+#: src/olympia/discovery/strings.jinja2:1071
+msgid "Track the time you spend on every website you visit."
+msgstr "Παρακολουθήστε το χρόνο που αφιερώνετε σε κάθε ιστότοπο που επισκέπτεστε."
+
+#. editorial content for the primary hero shelves.
+#: src/olympia/discovery/strings.jinja2:1074
+msgid "Manage your Gmail (even multiple accounts) right from a handy pop-up accessible from the Firefox toolbar."
+msgstr "Διαχειριστείτε το Gmail σας (ακόμα και πολλαπλούς λογαριασμούς) απευθείας από ένα βολικό αναδυόμενο παράθυρο, προσβάσιμο από τη γραμμή εργαλείων του Firefox."
+
+#. editorial content for the primary hero shelves.
+#: src/olympia/discovery/strings.jinja2:1077
+msgid "De-clutter YouTube. Strip away unwanted elements like related videos, shorts & more."
+msgstr "Αφαιρέστε τα περιττά στοιχεία του YouTube. Απομακρύνετε τα ανεπιθύμητα στοιχεία, όπως σχετικά βίντεο, shorts και πολλά άλλα."
+
+#. editorial content for the primary hero shelves.
+#: src/olympia/discovery/strings.jinja2:1080
+msgid "Leave yourself little notes on any web page."
+msgstr "Αφήστε στον εαυτό σας μικρές σημειώσεις, σε οποιαδήποτε ιστοσελίδα."
+
+#. editorial content for the primary hero shelves.
+#: src/olympia/discovery/strings.jinja2:1083
+msgid "Serenity for your Reddit experience."
+msgstr "Απολαύστε μια γαλήνια εμπειρία στο Reddit."
+
+#. editorial content for the primary hero shelves.
+#: src/olympia/discovery/strings.jinja2:1086
+msgid "Save and organize anything you find on the web."
+msgstr "Αποθηκεύστε και οργανώστε οτιδήποτε βρείτε στο διαδίκτυο."
+
+#. editorial content for the primary hero shelves.
+#: src/olympia/discovery/strings.jinja2:1089
+msgid "WebM video controls at your fingertips."
+msgstr "Στοιχεία ελέγχου για βίντεο WebM στα χέρια σας."
+
+#. editorial content for the primary hero shelves.
+#: src/olympia/discovery/strings.jinja2:1092
+msgid "Disguise Firefox as the Chrome browser to spoof websites that try to block Firefox."
+msgstr "Μεταμφιέστε το Firefox σε Chrome για να παρακάμψετε τους περιορισμούς των ιστοτόπων που προσπαθούν να αποκλείσουν το Firefox."
+
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1042
+#: src/olympia/discovery/strings.jinja2:1095
 msgid "Extensions are like apps for Firefox."
 msgstr "Οι επεκτάσεις είναι σαν εφαρμογές για το Firefox."
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1044
+#: src/olympia/discovery/strings.jinja2:1097
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
 msgstr "Προσθέτουν λειτουργίες στο Firefox για ταχύτερη, ασφαλέστερη και πιο διασκεδιαστική περιήγηση."
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1046
+#: src/olympia/discovery/strings.jinja2:1099
 msgid "See all extensions"
 msgstr "Προβολή όλων των επεκτάσεων"
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1048
-msgid "Extension Starter Pack"
-msgstr "Βασικό Πακέτο Επεκτάσεων"
+#: src/olympia/discovery/strings.jinja2:1101
+msgid "YouTube extensions"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1052
-msgid "Twitch customization"
-msgstr "Ρύθμιση Twitch"
+#. editorial content for the homepage shelves.
+#: src/olympia/discovery/strings.jinja2:1103 src/olympia/discovery/strings.jinja2:1194
+msgid "Creativity extensions"
+msgstr "Επεκτάσεις δημιουργικότητας"
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1054 src/olympia/discovery/strings.jinja2:1056 src/olympia/discovery/strings.jinja2:1058
+#: src/olympia/discovery/strings.jinja2:1105
+msgid "New Recommended extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#: src/olympia/discovery/strings.jinja2:1107 src/olympia/discovery/strings.jinja2:1109
 msgid "See staff picks"
 msgstr "Προβολή επιλογών προσωπικού"
 
+#. editorial content for the secondary hero shelves.
+#: src/olympia/discovery/strings.jinja2:1111
+msgid "Explore now"
+msgstr "Εξερεύνηση τώρα"
+
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1061
+#: src/olympia/discovery/strings.jinja2:1114
 msgid "Recommended extensions"
 msgstr "Προτεινόμενες επεκτάσεις"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1063
+#: src/olympia/discovery/strings.jinja2:1116
 msgid "See more recommended extensions"
 msgstr "Περισσότερες προτεινόμενες επεκτάσεις"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1066
+#: src/olympia/discovery/strings.jinja2:1119
 msgid "Popular themes"
 msgstr "Δημοφιλή θέματα"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1068
+#: src/olympia/discovery/strings.jinja2:1121
 msgid "See more popular themes"
 msgstr "Περισσότερα δημοφιλή θέματα"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1071
-msgid "Enhanced privacy extensions"
-msgstr "Επεκτάσεις ενισχυμένου απορρήτου"
+#: src/olympia/discovery/strings.jinja2:1124
+msgid "Privacy & security"
+msgstr ""
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1073
-msgid "See more recommended privacy extensions"
-msgstr "Περισσότερες προτεινόμενες επεκτάσεις απορρήτου"
+#: src/olympia/discovery/strings.jinja2:1126
+msgid "See more privacy staff picks"
+msgstr ""
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1076
+#: src/olympia/discovery/strings.jinja2:1129
 msgid "Popular extensions"
 msgstr "Δημοφιλείς επεκτάσεις"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1078
+#: src/olympia/discovery/strings.jinja2:1131
 msgid "See more popular extensions"
 msgstr "Περισσότερες δημοφιλείς επεκτάσεις"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1081
+#: src/olympia/discovery/strings.jinja2:1134
 msgid "Recommended themes"
 msgstr "Προτεινόμενα θέματα"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1083
+#: src/olympia/discovery/strings.jinja2:1136
 msgid "See more recommended themes"
 msgstr "Περισσότερα προτεινόμενα θέματα"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1086
+#: src/olympia/discovery/strings.jinja2:1139
 msgid "Strong password managers"
 msgstr "Ισχυρά πρόσθετα διαχείρισης κωδικών πρόσβασης"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1088
+#: src/olympia/discovery/strings.jinja2:1141
 msgid "See more password manager staff picks"
 msgstr "Περισσότερες επιλεγμένες επεκτάσεις διαχείρισης κωδικών πρόσβασης"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1091
+#: src/olympia/discovery/strings.jinja2:1144
 msgid "Translation tools"
 msgstr "Εργαλεία μετάφρασης"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1093
+#: src/olympia/discovery/strings.jinja2:1146
 msgid "See more translation tool staff picks"
 msgstr "Περισσότερα επιλεγμένα εργαλεία μετάφρασης"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1096
+#: src/olympia/discovery/strings.jinja2:1149
 msgid "Social streaming"
 msgstr "Μετάδοση σε κοινωνικά δίκτυα"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1098
+#: src/olympia/discovery/strings.jinja2:1151
 msgid "See more social streaming staff picks"
 msgstr "Περισσότερες επιλεγμένες επεκτάσεις μετάδοσης κοινωνικών δικτύων"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1101
+#: src/olympia/discovery/strings.jinja2:1154
 msgid "Tab managers"
 msgstr "Εργαλεία διαχείρισης καρτελών"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1103
+#: src/olympia/discovery/strings.jinja2:1156
 msgid "See more tab management staff picks"
 msgstr "Περισσότερες επιλεγμένες επεκτάσεις διαχείρισης καρτελών"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1106
+#: src/olympia/discovery/strings.jinja2:1159
 #, python-brace-format
 msgid "“{tag}” tagged extensions"
 msgstr "Επεκτάσεις με ετικέτα «{tag}»"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1108
+#: src/olympia/discovery/strings.jinja2:1161
 #, python-brace-format
 msgid "See more extensions tagged \"{tag}\""
 msgstr "Περισσότερες επεκτάσεις με ετικέτα «{tag}»"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1111
+#: src/olympia/discovery/strings.jinja2:1164
 msgid "Elite ad blockers"
 msgstr "Επίλεκτα πρόσθετα φραγής διαφημίσεων"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1113
+#: src/olympia/discovery/strings.jinja2:1166
 msgid "See more ad blocker staff picks"
 msgstr "Περισσότερες επιλεγμένες επεκτάσεις φραγής διαφημίσεων"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1116
+#: src/olympia/discovery/strings.jinja2:1169
 msgid "YouTube customization"
 msgstr "Προσαρμογή YouTube"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1118
+#: src/olympia/discovery/strings.jinja2:1171
 msgid "See more YouTube extension staff picks"
 msgstr "Περισσότερες επιλεγμένες επεκτάσεις YouTube"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1121
+#: src/olympia/discovery/strings.jinja2:1174
 msgid "Trending themes"
 msgstr "Δημοφιλή θέματα"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1123
+#: src/olympia/discovery/strings.jinja2:1176
 msgid "See more trending themes"
 msgstr "Περισσότερα δημοφιλή θέματα"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1126 src/olympia/discovery/strings.jinja2:1171
+#: src/olympia/discovery/strings.jinja2:1179 src/olympia/discovery/strings.jinja2:1224
 msgid "Top rated themes"
 msgstr "Πιο υψηλά βαθμολογημένα θέματα"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1128 src/olympia/discovery/strings.jinja2:1173
+#: src/olympia/discovery/strings.jinja2:1181 src/olympia/discovery/strings.jinja2:1226
 msgid "See more top rated themes"
 msgstr "Περισσότερα υψηλά βαθμολογημένα θέματα"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1131
+#: src/olympia/discovery/strings.jinja2:1184
 msgid "Trending extensions"
 msgstr "Δημοφιλείς επεκτάσεις"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1133
+#: src/olympia/discovery/strings.jinja2:1186
 msgid "See more trending extensions"
 msgstr "Περισσότερες δημοφιλείς επεκτάσεις"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1136
+#: src/olympia/discovery/strings.jinja2:1189
 msgid "Steam enhancers"
 msgstr "Επεκτάσεις βελτίωσης του Steam"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1138
+#: src/olympia/discovery/strings.jinja2:1191
 msgid "See more Steam staff picks"
 msgstr "Περισσότερες επιλογές συντακτών για το Steam"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1141
-msgid "Creativity extensions"
-msgstr "Επεκτάσεις δημιουργικότητας"
-
-#. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1143
+#: src/olympia/discovery/strings.jinja2:1196
 msgid "See more creativity staff picks"
 msgstr "Περισσότερες επιλογές συντακτών για δημιουργικότητα"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1146
+#: src/olympia/discovery/strings.jinja2:1199
 msgid "Social media extensions"
 msgstr "Επεκτάσεις κοινωνικών δικτύων"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1148
+#: src/olympia/discovery/strings.jinja2:1201
 msgid "See more social media staff picks"
 msgstr "Περισσότερες επιλογές συντακτών για κοινωνικά δίκτυα"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1151
+#: src/olympia/discovery/strings.jinja2:1204
 msgid "Top download managers"
 msgstr "Κορυφαίες επεκτάσεις διαχείρισης λήψεων"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1153
+#: src/olympia/discovery/strings.jinja2:1206
 msgid "See more download manager staff picks"
 msgstr "Περισσότερες επιλεγμένες επεκτάσεις διαχείρισης λήψεων"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1156
+#: src/olympia/discovery/strings.jinja2:1209
 msgid "Accessibility extensions"
 msgstr "Επεκτάσεις προσβασιμότητας"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1158
+#: src/olympia/discovery/strings.jinja2:1211
 msgid "See more accessibility staff picks"
 msgstr "Περισσότερες επιλογές συντακτών για προσβασιμότητα"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1161
+#: src/olympia/discovery/strings.jinja2:1214
 msgid "Extension starter pack"
 msgstr "Βασικό πακέτο επεκτάσεων"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1163
+#: src/olympia/discovery/strings.jinja2:1216
 msgid "See more starter extension staff picks"
 msgstr "Περισσότερες επιλογές συντακτών για βασικές επεκτάσεις"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1166
+#: src/olympia/discovery/strings.jinja2:1219
 msgid "Twitch extensions"
 msgstr "Επεκτάσεις Twitch"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1168
+#: src/olympia/discovery/strings.jinja2:1221
 msgid "See more Twitch extension staff picks"
 msgstr "Περισσότερες επιλογές συντακτών για επεκτάσεις Twitch"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1176
+#: src/olympia/discovery/strings.jinja2:1229
 msgid "Gaming & media extensions"
 msgstr "Επεκτάσεις παιχνιδιών και πολυμέσων"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1178
+#: src/olympia/discovery/strings.jinja2:1231
 msgid "See more staff picks"
 msgstr "Περισσότερες επιλογές συντακτών"
 
-#: src/olympia/files/models.py:325
+#: src/olympia/files/models.py:326
 msgid "Unreviewed"
 msgstr "Δεν έχει ελεγχθεί"
 
-#: src/olympia/files/models.py:328
+#: src/olympia/files/models.py:329
 #, python-format
 msgid "[status:%s]"
 msgstr "[κατάσταση:%s]"
 
-#: src/olympia/files/utils.py:84
+#: src/olympia/files/utils.py:86
 msgid "This upload has already been submitted."
 msgstr "Αυτή η μεταφόρτωση έχει ήδη υποβληθεί."
 
-#: src/olympia/files/utils.py:186 src/olympia/files/utils.py:868
+#: src/olympia/files/utils.py:162 src/olympia/files/utils.py:199 src/olympia/files/utils.py:895
 msgid "Could not parse the manifest file."
 msgstr "Δεν ήταν δυνατή η ανάλυση του αρχείου δήλωσης."
 
-#: src/olympia/files/utils.py:319
+#: src/olympia/files/utils.py:346
 #, python-brace-format
 msgid "Lowest supported \"strict_min_version\" is {min_version}."
 msgstr "Η ελάχιστη υποστηριζόμενη «strict_min_version» είναι η {min_version}."
 
-#: src/olympia/files/utils.py:350
+#: src/olympia/files/utils.py:377
 #, python-brace-format
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
 msgstr "Άγνωστο «strict_min_version» {appver} για το {app}"
 
-#: src/olympia/files/utils.py:364
+#: src/olympia/files/utils.py:391
 #, python-brace-format
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
 msgstr "Άγνωστο «strict_max_version» {appver} για το {app}"
 
-#: src/olympia/files/utils.py:548
+#: src/olympia/files/utils.py:575
 msgid "Unsupported compression method in archive."
 msgstr "Μη υποστηριζόμενη μέθοδος συμπίεσης στο αρχείο."
 
-#: src/olympia/files/utils.py:551
+#: src/olympia/files/utils.py:578
 msgid "Unsupported archive type."
 msgstr "Μη υποστηριζόμενος τύπος αρχείου."
 
-#: src/olympia/files/utils.py:560
+#: src/olympia/files/utils.py:587
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr "Μη έγκυρο όνομα αρχείου στο συμπιεσμένο αρχείο. Βεβαιωθείτε ότι όλα τα ονόματα αρχείων έχουν κωδικοποίηση UTF-8 ή Latin 1."
 
 #. L10n: {0} is the name of the invalid file.
-#: src/olympia/files/utils.py:574
+#: src/olympia/files/utils.py:601
 #, python-brace-format
 msgid "Invalid file name in archive: {0}"
 msgstr "Άκυρο όνομα αρχείου στο αρχείο: {0}"
 
 #. L10n: {0} is the name of the invalid file.
-#: src/olympia/files/utils.py:582
+#: src/olympia/files/utils.py:609
 #, python-brace-format
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Το αρχείο υπερβαίνει το όριο μεγέθους στην αρχειοθήκη: {0}"
 
-#: src/olympia/files/utils.py:602
+#: src/olympia/files/utils.py:629
 msgid "This archive contains a forbidden special file (symbolic / hard link or device / block file)"
 msgstr "Αυτό το συμπιεσμένο αρχείο περιέχει ένα απαγορευμένο ειδικό αρχείο (συμβολικός σύνδεσμος/σύνδεσμος υλικού ή αρχείο συσκευής/μπλοκ)"
 
-#: src/olympia/files/utils.py:637
+#: src/olympia/files/utils.py:664
 msgid "Uncompressed size is too large"
 msgstr "Το μέγεθος χωρίς συμπίεση είναι πολύ μεγάλο"
 
-#: src/olympia/files/utils.py:669
+#: src/olympia/files/utils.py:696
 msgid "Invalid archive."
 msgstr "Μη έγκυρο συμπιεσμένο αρχείο."
 
-#: src/olympia/files/utils.py:856
+#: src/olympia/files/utils.py:883
 msgid "No manifest.json found"
 msgstr "Δεν βρέθηκε manifest.json"
 
-#: src/olympia/files/utils.py:861
+#: src/olympia/files/utils.py:888
 msgid "Invalid or corrupted file."
 msgstr "Μη έγκυρο ή κατεστραμμένο αρχείο."
 
-#: src/olympia/files/utils.py:901
+#: src/olympia/files/utils.py:928
 #, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
 msgstr "Το ID προσθέτου στο manifest.json σας (%s) δεν ταιριάζει με το ID του προσθέτου σας στο AMO (%s)"
 
-#: src/olympia/files/utils.py:909
+#: src/olympia/files/utils.py:936
 msgid "Duplicate add-on ID found."
 msgstr "Βρέθηκε διπλό ID προσθέτου."
 
-#: src/olympia/files/utils.py:915
+#: src/olympia/files/utils.py:942
 #, python-brace-format
 msgid "Version numbers should have at most {max_length} characters."
 msgstr "Οι αριθμοί εκδόσεων θα πρέπει να έχουν το πολύ {max_length} χαρακτήρες."
 
-#: src/olympia/files/utils.py:921
+#: src/olympia/files/utils.py:948
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Οι αριθμοί εκδόσεων μπορούν να περιλαμβάνουν μόνο αριθμούς, γράμματα και αυτά τα σύμβολα: +*.-_."
 
-#: src/olympia/files/utils.py:930
+#: src/olympia/files/utils.py:957
 #, python-brace-format
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr "Το μέγιστο μέγεθος για θέματα WebExtension είναι {0}."
 
-#: src/olympia/files/utils.py:943
+#: src/olympia/files/utils.py:970
 msgid "You cannot submit this type of add-on"
 msgstr "Δεν μπορείτε να υποβάλετε αυτόν τον τύπο προσθέτου"
 
-#: src/olympia/files/utils.py:947
+#: src/olympia/files/utils.py:974
 msgid "You cannot submit an add-on using an ID ending with this suffix"
 msgstr "Δεν μπορείτε να υποβάλετε πρόσθετο με ένα ID που λήγει με αυτήν την κατάληξη"
 
-#: src/olympia/files/utils.py:952
+#: src/olympia/files/utils.py:979
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Δεν μπορείτε να υποβάλετε υπογεγραμμένη επέκταση Mozilla"
 
-#: src/olympia/files/utils.py:956
+#: src/olympia/files/utils.py:983
 msgid "You cannot submit a language pack"
 msgstr "Δεν μπορείτε να υποβάλετε ένα πακέτο γλώσσας"
 
-#: src/olympia/files/utils.py:965
+#: src/olympia/files/utils.py:992
 msgid "The locale of an existing dictionary/language pack cannot be changed"
 msgstr "Δεν είναι δυνατή η αλλαγή της γλώσσας ενός υπάρχοντος λεξικού/γλωσσικού πακέτου"
 
-#: src/olympia/files/utils.py:1008
+#: src/olympia/files/utils.py:1035
 #, python-brace-format
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Ο τύπος αρχείου δεν υποστηρίζεται, μεταφορτώστε ένα υποστηριζόμενο αρχείο {extensions}."
 
-#: src/olympia/files/utils.py:1017
+#: src/olympia/files/utils.py:1044
 msgid "Unexpected error."
 msgstr "Απροσδόκητο σφάλμα."
 
-#: src/olympia/files/utils.py:1022
+#: src/olympia/files/utils.py:1049
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "Ο τύπος (%s) δεν αντιστοιχεί στον τύπο του προσθέτου σας στο AMO (%s)"
 
-#: src/olympia/files/utils.py:1027
+#: src/olympia/files/utils.py:1054
 msgid "Unknown"
 msgstr "Άγνωστο"
 
@@ -6450,44 +6508,6 @@ msgstr "Βαθμολογήθηκε με {0} στα 5 αστέρια"
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Βαθμολογήθηκε %(rating)s στα 5 αστέρια"
 
-#: src/olympia/reviewers/forms.py:372
-#, python-brace-format
-msgid "Unsupported file type, please upload a file {extensions}."
-msgstr "Ο τύπος αρχείου δεν υποστηρίζεται, μεταφορτώστε ένα αρχείο {extensions}."
-
-#: src/olympia/reviewers/forms.py:378
-msgid "File too large."
-msgstr "Το αρχείο είναι πολύ μεγάλο."
-
-#: src/olympia/reviewers/templates/reviewers/moderationlog_detail.html:11
-#, python-format
-msgid "<dd>%(review_author)s</dd>"
-msgstr "<dd>%(review_author)s</dd>"
-
-#: src/olympia/reviewers/templates/reviewers/queue.html:48
-#, python-format
-msgid "by %(user)s on %(date)s %(stars)s"
-msgstr "από τον/την %(user)s στις %(date)s %(stars)s"
-
-#: src/olympia/reviewers/templates/reviewers/queue.html:59
-#, python-format
-msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
-msgstr "<strong>%(reason)s</strong> <span class=\"light\">Επισημάνθηκε από τον/την %(user)s στις %(date)s</span>"
-
-#: src/olympia/reviewers/templates/reviewers/review.html:320
-msgid "<strong>Warning!</strong> Another user may be viewing this page before you."
-msgstr "<strong>Προειδοποίηση!</strong> Κάποιος άλλος χρήστης ενδέχεται να έβλεπε τη σελίδα αυτήν πριν από εσάς."
-
-#: src/olympia/reviewers/templates/reviewers/includes/user_ratings_list.html:5
-#, python-format
-msgid "%(user)s on %(date)s [%(ip_address)s]"
-msgstr "%(user)s στις %(date)s [%(ip_address)s]"
-
-#: src/olympia/reviewers/templates/reviewers/includes/version.html:5
-#, python-format
-msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-msgstr "Έκδοση %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-
 #: src/olympia/search/filters.py:49 src/olympia/search/filters.py:62 src/olympia/search/filters.py:95 src/olympia/search/filters.py:170 src/olympia/search/filters.py:210
 #: src/olympia/search/filters.py:356 src/olympia/search/filters.py:467
 #, python-format
@@ -6507,7 +6527,7 @@ msgstr "Η επιστροφή στο AMO είναι ανενεργή αυτήν 
 msgid "Invalid Return To AMO guid (not in base64url format?)"
 msgstr "Άκυρο guid επιστροφής στο AMO (δεν είναι σε μορφή base64url;)"
 
-#: src/olympia/search/filters.py:966
+#: src/olympia/search/filters.py:970
 msgid "Maximum query length exceeded."
 msgstr "Έχετε υπερβεί το μέγιστο μήκος ερωτήματος."
 
@@ -6537,15 +6557,15 @@ msgstr "Καθορίστε το ID του προσθέτου σας στο αρ�
 msgid "Invalid Add-on ID in URL or package"
 msgstr "Μη έγκυρο ID προσθέτου στο URL ή στο πακέτο"
 
-#: src/olympia/signing/views.py:211
+#: src/olympia/signing/views.py:212
 msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."
 msgstr "Δεν μπορείτε να προσθέσετε καταχωρημένες εκδόσεις σε πρόσθετο με κατάσταση «Αόρατο»."
 
-#: src/olympia/signing/views.py:220
+#: src/olympia/signing/views.py:227
 msgid "You cannot add a listed version to this add-on via the API due to missing metadata. Please submit via the website"
 msgstr "Δεν μπορείτε να προσθέσετε μια καταχωρημένη έκδοση σε αυτό το πρόσθετο μέσω του API λόγω απουσίας μεταδεδομένων. Κάντε υποβολή μέσω του ιστοτόπου"
 
-#: src/olympia/signing/views.py:275
+#: src/olympia/signing/views.py:282
 msgid "No uploaded file for that add-on and version."
 msgstr "Κανένα μεταφορτωμένο αρχείο για αυτό το πρόσθετο και αυτήν την έκδοση."
 
@@ -6936,24 +6956,28 @@ msgstr "Θέλετε σίγουρα να αφαιρέσετε όλες τις μ
 msgid "Delete Locale"
 msgstr "Διαγραφή γλώσσας"
 
-#: src/olympia/users/models.py:91
+#: src/olympia/users/models.py:90
 msgid "No user with that email."
 msgstr "Κανένας χρήστης με αυτό το email."
 
-#: src/olympia/users/models.py:612
+#: src/olympia/users/models.py:653
 #, python-brace-format
 msgid "Firefox user {id}"
 msgstr "Χρήστης Firefox {id}"
 
-#: src/olympia/users/models.py:867
+#: src/olympia/users/models.py:905
 msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
 msgstr "Έχουν αποσταλεί πολλαπλές υποβολές που παραβιάζουν τις πολιτικές μας από την τοποθεσία σας. Η διεύθυνση IP έχει αποκλειστεί."
 
-#: src/olympia/users/models.py:1019
+#: src/olympia/users/models.py:1038
 msgid "The email address used for your account is not allowed for submissions."
 msgstr "Δεν επιτρέπονται υποβολές από τη διεύθυνση email του λογαριασμού σας."
 
-#: src/olympia/users/models.py:1278
+#: src/olympia/users/models.py:1171
+msgid "The software or device you are using is not allowed for submissions."
+msgstr "Το λογισμικό ή η συσκευή που χρησιμοποιείτε δεν επιτρέπονται για υποβολές."
+
+#: src/olympia/users/models.py:1297
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
 " which explains how we handle your information."
@@ -6961,7 +6985,7 @@ msgstr ""
 "Πριν ξεκινήσετε, διαβάστε και αποδεχτείτε τη Συμφωνία διανομής προσθέτων του Firefox, καθώς και τις Πολιτικές και τους Κανόνες αξιολόγησης. Η συμφωνία διανομής προσθέτων του Firefox θα σας "
 "παραπέμψει στη Σημείωση απορρήτου μας, η οποία εξηγεί πώς χειριζόμαστε τις πληροφορίες σας."
 
-#: src/olympia/users/models.py:1292
+#: src/olympia/users/models.py:1311
 #, python-brace-format
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr "Διαβάστε και αποδεχτείτε τη Συμφωνία διανομής προσθέτων του Firefox, καθώς και τις Πολιτικές και τους Κανόνες αξιολόγησης, εδώ: {url}"
@@ -7002,15 +7026,15 @@ msgstr "Η Mozilla πρέπει να επικοινωνήσει μαζί μου 
 msgid "User Notifications"
 msgstr "Ειδοποιήσεις χρήστη"
 
-#: src/olympia/users/utils.py:91
+#: src/olympia/users/utils.py:92
 msgid "An author has been added to your add-on"
 msgstr "Ένας δημιουργός έχει προστεθεί από το πρόσθετό σας"
 
-#: src/olympia/users/utils.py:115
+#: src/olympia/users/utils.py:116
 msgid "An author role has been changed on your add-on"
 msgstr "Ο ρόλος ενός δημιουργού έχει αλλάξει στο πρόσθετό σας"
 
-#: src/olympia/users/utils.py:125
+#: src/olympia/users/utils.py:126
 msgid "An author has been removed from your add-on"
 msgstr "Ένας δημιουργός έχει αφαιρεθεί από το πρόσθετό σας"
 
@@ -7091,33 +7115,33 @@ msgstr ""
 "\n"
 "Η ομάδα προσθέτων της Mozilla"
 
-#: src/olympia/versions/models.py:1170
+#: src/olympia/versions/models.py:1127
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
 msgstr "Καθυστερημένη απόρριψη, προγραμματίστηκε για τις %s"
 
-#: src/olympia/versions/models.py:1175
+#: src/olympia/versions/models.py:1132
 msgid "Auto-approved, Confirmed"
 msgstr "Αυτόματη έγκριση, επιβεβαιώθηκε"
 
-#: src/olympia/versions/models.py:1177
+#: src/olympia/versions/models.py:1134
 msgid "Auto-approved, not Confirmed"
 msgstr "Αυτόματη έγκριση, δεν επιβεβαιώθηκε"
 
-#: src/olympia/versions/models.py:1180
+#: src/olympia/versions/models.py:1137
 msgid "Approved, Manual"
 msgstr "Έγκριση, χειροκίνητη"
 
-#: src/olympia/versions/models.py:1187
+#: src/olympia/versions/models.py:1144
 msgid "Disabled by Developer"
 msgstr "Απενεργοποιήθηκε από τον προγραμματιστή"
 
-#: src/olympia/versions/models.py:1544
+#: src/olympia/versions/models.py:1501
 #, python-brace-format
 msgid "{app} {min} and later"
 msgstr "{app} {min} και νεότερα"
 
-#: src/olympia/versions/models.py:1671
+#: src/olympia/versions/models.py:1628
 #, python-brace-format
 msgid "The install origin {origin} is not permitted."
 msgstr "Η προέλευση εγκατάστασης «{origin}» δεν επιτρέπεται."

@@ -4,6 +4,7 @@ import hashlib
 import hmac
 import urllib
 
+from django import forms
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 from django.template import loader
@@ -146,9 +147,11 @@ class RestrictionChecker:
         if self.request:
             self.user = self.request.user
             self.ip_address = self.request.META.get('REMOTE_ADDR', '')
+            self.request_metadata = core.select_request_metadata(request.headers)
         elif self.upload:
             self.user = self.upload.user
             self.ip_address = self.upload.ip_address
+            self.request_metadata = self.upload.request_metadata
         else:
             raise ImproperlyConfigured('RestrictionChecker needs a request or upload')
         self.failed_restrictions = []
@@ -178,7 +181,9 @@ class RestrictionChecker:
                     f'RestrictionChecker.is_{action_type}_allowed.{name}.failure'
                 )
                 if self.user and self.user.is_authenticated:
-                    with core.override_remote_addr(self.ip_address):
+                    with core.override_remote_addr_or_metadata(
+                        ip_address=self.ip_address, metadata=self.request_metadata
+                    ):
                         activity.log_create(
                             amo.LOG.RESTRICTED,
                             user=self.user,
@@ -396,3 +401,20 @@ def check_suppressed_email_confirmation(verification, page_size=5):
                 verification.mark_as_delivered()
 
     return found_emails
+
+
+def validate_user_name(value, error_msg, *, can_use_denied_names=False):
+    from olympia.amo.utils import validate_name
+
+    from .models import DeniedName
+
+    # Check to see if a given name is in the deny list.
+    denied_names = list(DeniedName.objects.values_list('name', flat=True))
+
+    def check_function(normalized_name, variant):
+        if not can_use_denied_names and any(
+            denied in variant for denied in denied_names
+        ):
+            raise forms.ValidationError(error_msg)
+
+    return validate_name(value, check_function, error_msg)

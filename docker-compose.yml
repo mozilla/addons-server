@@ -97,7 +97,7 @@ services:
       start_period: 10s
 
   nginx:
-    image: nginx:1.29-bookworm@sha256:dc53c8f25a10f9109190ed5b59bda2d707a3bde0e45857ce9e1efaa32ff9cbc1
+    image: nginx:1.29-bookworm@sha256:8adbdcb969e2676478ee2c7ad333956f0c8e0e4c5a7463f4611d7a2e7a7ff5dc
     <<: *env
     volumes:
       - data_nginx:/etc/nginx/templates
@@ -115,7 +115,7 @@ services:
     image: memcached:1.5.16@sha256:9655004969fb55e163c665f1c485f48b48784d3eb54c210882103f54d7d842d1
 
   mysqld:
-    image: mysql:8.0@sha256:bf577825b52ab281d6281fb281eabbfdc73507eda8f2c2745790251533ef0306
+    image: mysql:8.0@sha256:0275a35e79c60caae68fac520602d9f6897feb9b0941a1471196b1a01760e581
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
       - MYSQL_DATABASE=olympia
@@ -141,7 +141,7 @@ services:
       retries: 3
 
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:8.18.2@sha256:7506a97309af9fa3221ce1d60068223aabb613afe96c1d3a0add5f6bb0e0b61c
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.19.8@sha256:1b6a877f18352510860ee065f01472bd37d33ac5eb1d943e0b9ed366b149638c
     environment:
       # Disable all xpack related features to avoid unrelated logging
       # in docker logs. https://github.com/mozilla/addons-server/issues/8887
@@ -160,7 +160,7 @@ services:
       - data_redis:/data
 
   rabbitmq:
-    image: rabbitmq:3.12@sha256:4dc5d5a5076f7c458b7f3468e2282f329a8911cc3c31c4ed4aefcedb27917da2
+    image: rabbitmq:3.13@sha256:4cf3d0116716920b9a9e72b47d8c5a562296a79e0b0d48df56eee51967d123a7
     hostname: olympia
     expose:
       - "5672"
@@ -172,14 +172,14 @@ services:
       - data_rabbitmq:/var/lib/rabbitmq
 
   autograph:
-    image: mozilla/autograph:7.5.3@sha256:5012b868b805602d665834a52d24156dbe56544c20bbbb4011588b56a3a249a7
+    image: mozilla/autograph:7.5.5@sha256:8d448fab80666c589eb0ff4f1b1aac358222a12461630ef760a5fd4db66c63be
     command: /go/bin/autograph -c /data/autograph/autograph_localdev_config.yaml
     volumes:
       - data_autograph:/data/autograph
 
   addons-frontend:
     <<: *env
-    image: mozilla/addons-frontend:2025.10.16-1@sha256:8eb326f30ffd10f96280ad989f952809ce8d3fce48b91812a08bd3158e4c6489
+    image: mozilla/addons-frontend:2025.11.27@sha256:9746ca74acc49bf85000911f26b4317028195c81ea0800c439a37a374d4a9479
     platform: linux/amd64
     environment:
       # We change the proxy port (which is the main entrypoint) as well as the

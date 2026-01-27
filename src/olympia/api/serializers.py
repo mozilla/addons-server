@@ -1,13 +1,20 @@
+import json
 from collections import defaultdict
 from datetime import datetime
 
 from django.conf import settings
+from django.core.exceptions import ImproperlyConfigured
 
 from elasticsearch_dsl.response.hit import Hit
 from rest_framework import serializers
 
 from olympia import amo
+from olympia.activity.models import ActivityLog
 from olympia.amo.utils import BaseModelSerializerAndFormMixin
+from olympia.translations.utils import (
+    fetch_translations_from_instance,
+    get_translation_differences,
+)
 from olympia.zadmin.models import get_config
 
 
@@ -94,3 +101,61 @@ class SiteStatusSerializer(serializers.BaseSerializer):
             'read_only': settings.READ_ONLY,
             'notice': get_config(amo.config_keys.SITE_NOTICE),
         }
+
+
+class PropertyUpdatedMixin:
+    ACTIVITY_LOG_ACTION = None  # defined by subclasses
+
+    def update(self, instance, validated_data):
+        if not self.ACTIVITY_LOG_ACTION:
+            raise ImproperlyConfigured(
+                'Subclasses of PropertyUpdatedMixin must define activity_log_action.'
+            )
+
+        user = self.context['request'].user
+        translated_fields = [
+            field
+            for field in self.Meta.fields
+            if self.fields.get(field).__class__.__name__ == 'TranslationSerializerField'
+        ]
+        old_values = {
+            field: str(getattr(instance, field) or '')
+            for field in self.Meta.fields
+            if field in validated_data
+            and not self.fields[field].write_only
+            and field not in translated_fields
+        }
+        old_values.update(fetch_translations_from_instance(instance, translated_fields))
+
+        instance = super().update(instance, validated_data)
+
+        new_values = {
+            field: str(getattr(instance, field) or '')
+            for field in old_values
+            if field not in translated_fields
+        }
+        new_values.update(fetch_translations_from_instance(instance, translated_fields))
+
+        for field, old_value in old_values.items():
+            if field in translated_fields:
+                differences = get_translation_differences(
+                    {field: old_value},
+                    {field: new_values[field]},
+                )
+                if differences:
+                    differences = differences[field]
+            elif old_value != new_values[field]:
+                differences = {'removed': old_value, 'added': new_values[field]}
+            else:
+                differences = None
+
+            if differences:
+                ActivityLog.objects.create(
+                    self.ACTIVITY_LOG_ACTION,
+                    instance,
+                    field,
+                    json.dumps(differences),
+                    user=user,
+                )
+
+        return instance

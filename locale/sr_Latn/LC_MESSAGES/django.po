@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-20 20:52+0000\n"
+"POT-Creation-Date: 2026-01-26 16:58+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -306,9 +306,6 @@ msgstr ""
 msgid "Listed"
 msgstr "Navedene"
 
-msgid "Add-on and collection paths need to end with \"/\""
-msgstr ""
-
 msgid "Built in licenses can not be updated."
 msgstr ""
 
@@ -326,6 +323,9 @@ msgid ""
 msgstr ""
 
 msgid "Listed versions cannot be submitted while add-on is disabled."
+msgstr ""
+
+msgid "Listed versions cannot be submitted while add-on listing is rejected."
 msgstr ""
 
 #, python-format
@@ -369,11 +369,11 @@ msgid ""
 "Only approved versions can be rolled back, except the most recent version."
 msgstr ""
 
-msgid "This name cannot be used."
-msgstr "Ovo ime ne može biti upotrebljeno."
-
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
+
+msgid "This name cannot be used."
+msgstr "Ovo ime ne može biti upotrebljeno."
 
 msgid "Both `license` and `custom_license` cannot be provided together."
 msgstr ""
@@ -576,16 +576,6 @@ msgstr ""
 "<h1>Ups! Došlo je do greške.</h1> <p>Uskoro ćemo to ispraviti.</p> <p> "
 "Možete probati da ponovo učitate stranicu, ili se vratite na <a "
 "href=\"%(home)s\">početnu stranicu za dodatke</a>. </p>"
-
-msgid "Register or Log in"
-msgstr ""
-
-#, fuzzy
-msgid "Email:"
-msgstr "E-pošta"
-
-msgid "Two-factor authentication"
-msgstr ""
 
 #. abbreviation of 'previous'
 msgid "Prev"
@@ -1116,6 +1106,21 @@ msgstr ""
 msgid "{addon} {0} property edited."
 msgstr ""
 
+#, python-brace-format
+msgid "Collection {0} property {1} updated."
+msgstr ""
+
+#, python-brace-format
+msgid "Account {user} property {0} updated."
+msgstr ""
+
+#, python-brace-format
+msgid "{addon} listing content rejected."
+msgstr ""
+
+msgid "Listing content rejected"
+msgstr ""
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -1142,6 +1147,9 @@ msgstr "Nedovršeno"
 
 msgid "Awaiting Review"
 msgstr "Čekam ocenu"
+
+msgid "Listing Content Rejected"
+msgstr ""
 
 msgid "Disabled by Mozilla"
 msgstr "Onemogućeno od strane Mozilla-e"
@@ -1311,7 +1319,6 @@ msgid ""
 "and more."
 msgstr ""
 
-#. editorial content for the secondary hero shelves.
 #, fuzzy
 msgid "Privacy & Security"
 msgstr "Polisa privatnosti"
@@ -1578,60 +1585,6 @@ msgid "Creative Commons Attribution-ShareAlike 4.0"
 msgstr ""
 
 msgid "The Unlicense"
-msgstr ""
-
-#, fuzzy
-msgid "Recommended"
-msgstr "Komentariši"
-
-#, fuzzy
-msgid "By Firefox"
-msgstr "Firefox"
-
-msgid "Spotlight"
-msgstr ""
-
-msgid "Strategic"
-msgstr ""
-
-msgid "Notable"
-msgstr ""
-
-msgid "Partner"
-msgstr ""
-
-#, fuzzy
-msgid "No Reputation"
-msgstr "Rezolucija"
-
-msgid "Good (1)"
-msgstr ""
-
-msgid "Very Good (2)"
-msgstr ""
-
-msgid "Excellent (3)"
-msgstr ""
-
-msgid "Request More Info"
-msgstr "Zahtevaj više informacija"
-
-msgid "Flag"
-msgstr "Označi"
-
-msgid "Duplicate"
-msgstr "Duplikat"
-
-msgid "Reject"
-msgstr "Odbij"
-
-msgid "Approve"
-msgstr "Odobri"
-
-msgid "All"
-msgstr ""
-
-msgid "Core"
 msgstr ""
 
 #, python-format
@@ -2449,6 +2402,10 @@ msgid ""
 "this to a page where they can do so."
 msgstr ""
 
+#, python-format
+msgid "Supported domains: %(supported_domains)s"
+msgstr ""
+
 msgid "Default Locale"
 msgstr "Podrazumevani lokal"
 
@@ -2519,6 +2476,22 @@ msgstr ""
 
 msgid "Description"
 msgstr "Opis"
+
+#, python-format
+msgid ""
+"A longer explanation of features, functionality, and other relevant "
+"information. This field is only displayed on the add-on's product page. "
+"Minimum length: %(min_length)s characters; Recommended length: 250 "
+"characters. If you need a longer description, make sure the first 250 "
+"characters contain the most important description points."
+msgstr ""
+
+msgid ""
+"A longer explanation of features, functionality, and other relevant "
+"information. This field is only displayed on the add-on's product page. "
+"Recommended length: 250 characters. If you need a longer description, make "
+"sure the first 250 characters contain the most important description points."
+msgstr ""
 
 #, fuzzy
 msgid "Experimental?"
@@ -2712,6 +2685,17 @@ msgstr ""
 msgid "Continue"
 msgstr "Nastavi"
 
+msgid "Your add-on is currently set to \"Invisible\"."
+msgstr ""
+
+msgid "Your add-on listing was rejected."
+msgstr ""
+
+msgid ""
+"While in this state, \"On your own\" is the only distribution method "
+"available."
+msgstr ""
+
 #, fuzzy
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr "Da li drugi mogu da dele Vašu temu, ukoliko Vama idu zasluge?"
@@ -2742,14 +2726,6 @@ msgstr "Izaberite drugačiju licencu."
 #, fuzzy
 msgid "More information on Creative Commons licenses"
 msgstr "Zahtevane dodatne informacije"
-
-msgid "Your add-on is currently set to \"Invisible\"."
-msgstr ""
-
-msgid ""
-"While in this state, \"On your own\" is the only distribution method "
-"available."
-msgstr ""
 
 msgid ""
 "You cannot change attached sources because this version has been reviewed by "
@@ -3197,6 +3173,11 @@ msgstr "Administrativna poništavanja"
 msgid "Create a Theme Version"
 msgstr "Napravi novu temu"
 
+msgid ""
+"You can upload a finished theme using the upload option above, or you can "
+"build it yourself using this tool."
+msgstr ""
+
 #, fuzzy
 msgid "Create a Theme"
 msgstr "Napravi novu temu"
@@ -3371,6 +3352,11 @@ msgstr ""
 msgid ""
 "Your add-on was disabled by a site administrator and is no longer shown in "
 "our gallery."
+msgstr ""
+
+msgid ""
+"Your add-on listing was rejected. It is not listed in our gallery. Please "
+"address the reasons and reapply for review."
 msgstr ""
 
 msgid ""
@@ -4302,7 +4288,7 @@ msgid "Change the way you surf Reddit by using tags and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Screenshot webpages, make edits, and share."
+msgid "Screenshot webpages, make edits & share."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -5126,6 +5112,28 @@ msgid ""
 "Deep translation features for a rich language experience anywhere on the web."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Leave yourself little notes on any website."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid ""
+"Discover and download higher quality versions of interesting images and "
+"videos you find on the web."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid ""
+"Save and organize anything you find on the web — articles, media, PDFs & "
+"more."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid ""
+"Enhance your Reddit experience with color-coded comments, simpler "
+"navigation, gestures for upvoting & much more."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr ""
@@ -5343,6 +5351,62 @@ msgstr ""
 msgid "Change the color of Firefox to match every website you visit."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Learning a new language? Yomitan is the ideal dictionary companion."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Pack a powerful thesaurus right inside Firefox."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Hover over web images to enlarge their appearance."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid ""
+"Feature rich translation tool. Works across the web, eBooks, PDFs, even "
+"video subtitles."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Track the time you spend on every website you visit."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid ""
+"Manage your Gmail (even multiple accounts) right from a handy pop-up "
+"accessible from the Firefox toolbar."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid ""
+"De-clutter YouTube. Strip away unwanted elements like related videos, shorts "
+"& more."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Leave yourself little notes on any web page."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Serenity for your Reddit experience."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Save and organize anything you find on the web."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "WebM video controls at your fingertips."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid ""
+"Disguise Firefox as the Chrome browser to spoof websites that try to block "
+"Firefox."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr ""
@@ -5359,15 +5423,25 @@ msgid "See all extensions"
 msgstr "Pogledajte sve dodatke"
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension Starter Pack"
+msgid "YouTube extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Twitch customization"
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Creativity extensions"
+msgstr "Komentariši"
+
+#. editorial content for the secondary hero shelves.
+msgid "New Recommended extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Explore now"
 msgstr ""
 
 #. editorial content for the homepage shelves.
@@ -5390,14 +5464,12 @@ msgid "See more popular themes"
 msgstr "Odaberite boje za Vašu temu."
 
 #. editorial content for the homepage shelves.
-#, fuzzy
-msgid "Enhanced privacy extensions"
-msgstr "Pogledajte sve dodatke"
+msgid "Privacy & security"
+msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
-msgid "See more recommended privacy extensions"
-msgstr "Pogledajte sve dodatke"
+msgid "See more privacy staff picks"
+msgstr ""
 
 # Plural in this context means many of the add-on type
 #. editorial content for the homepage shelves.
@@ -5521,11 +5593,6 @@ msgstr ""
 #, fuzzy
 msgid "See more Steam staff picks"
 msgstr "Pogledajte sve dodatke"
-
-#. editorial content for the homepage shelves.
-#, fuzzy
-msgid "Creativity extensions"
-msgstr "Komentariši"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -5787,45 +5854,6 @@ msgstr "Ocenjeno sa {0} od 5 zvezdica"
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Ocenjeno sa %(rating)s od 5 zvezdica"
-
-#, python-brace-format
-msgid "Unsupported file type, please upload a file {extensions}."
-msgstr ""
-
-msgid "File too large."
-msgstr ""
-
-#, python-format
-msgid "<dd>%(review_author)s</dd>"
-msgstr ""
-
-#, python-format
-msgid "by %(user)s on %(date)s %(stars)s"
-msgstr ""
-
-#, python-format
-msgid ""
-"<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on "
-"%(date)s</span>"
-msgstr ""
-"<strong>%(reason)s</strong> <span class=\"light\">Označio %(user)s dana "
-"%(date)s</span>"
-
-msgid ""
-"<strong>Warning!</strong> Another user may be viewing this page before you."
-msgstr ""
-
-#, python-format
-msgid "%(user)s on %(date)s [%(ip_address)s]"
-msgstr "%(user)s dana %(date)s [%(ip_address)s]"
-
-#, python-format
-msgid ""
-"Version %(version)s &middot; %(created)s <span class=\"light\">&middot; "
-"%(version_status)s</span>"
-msgstr ""
-"Verzija %(version)s &middot; %(created)s <span class=\"light\">&middot; "
-"%(version_status)s</span>"
 
 #, fuzzy, python-format
 msgid "Invalid \"%s\" parameter."
@@ -6202,6 +6230,9 @@ msgid ""
 msgstr ""
 
 msgid "The email address used for your account is not allowed for submissions."
+msgstr ""
+
+msgid "The software or device you are using is not allowed for submissions."
 msgstr ""
 
 msgid ""

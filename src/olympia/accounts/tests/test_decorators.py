@@ -17,7 +17,6 @@ class TestTwoFactorAuthRequired(TestCase):
         self.request = RequestFactory().get('/')
         self.request.session = {}
         self.request.user = AnonymousUser()
-        self.create_flag('2fa-enforcement-for-developers-and-special-users')
 
     def test_has_two_factor_auth(self):
         self.request.session['has_two_factor_authentication'] = True
@@ -35,15 +34,6 @@ class TestTwoFactorAuthRequired(TestCase):
             self.request, login_hint=self.user.email
         )['location']
         self.assert3xx(response, expected_redirect_url)
-
-    def test_does_not_have_two_factor_auth_yet_but_waffle_is_off(self):
-        self.create_flag(
-            '2fa-enforcement-for-developers-and-special-users', everyone=False
-        )
-        func = two_factor_auth_required(self.f)  # Does nothing
-        response = func(self.request)
-        assert self.f.call_count == 1
-        assert response == 'FakeResponse'
 
     def test_does_not_have_two_factor_auth_yet_anonymous(self):
         func = two_factor_auth_required(self.f)

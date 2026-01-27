@@ -35,6 +35,7 @@ from olympia.constants.abuse import (
 from olympia.constants.permissions import ADDONS_HIGH_IMPACT_APPROVE
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.core import set_user
+from olympia.files.models import File
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import NeedsHumanReview
 from olympia.users.models import UserProfile
@@ -74,7 +75,7 @@ class TestAbuseReport(TestCase):
     fixtures = ['base/addon_3615', 'base/user_999']
 
     def test_choices(self):
-        assert AbuseReport.ADDON_SIGNATURES.choices == (
+        assert AbuseReport.ADDON_SIGNATURES.choices == [
             (None, 'None'),
             (1, 'Curated and partner'),
             (2, 'Curated'),
@@ -89,8 +90,8 @@ class TestAbuseReport(TestCase):
             (11, 'System'),
             (12, 'Privileged'),
             (13, 'Not required'),
-        )
-        assert AbuseReport.ADDON_SIGNATURES.api_choices == (
+        ]
+        assert AbuseReport.ADDON_SIGNATURES.api_choices == [
             (None, None),
             (1, 'curated_and_partner'),
             (2, 'curated'),
@@ -105,9 +106,9 @@ class TestAbuseReport(TestCase):
             (11, 'system'),
             (12, 'privileged'),
             (13, 'not_required'),
-        )
+        ]
 
-        assert AbuseReport.REASONS.choices == (
+        assert AbuseReport.REASONS.choices == [
             (None, 'None'),
             (1, 'Damages computer and/or data'),
             (2, 'Creates spam or advertising'),
@@ -127,8 +128,8 @@ class TestAbuseReport(TestCase):
             (20, 'Feedback: It does not work, breaks websites, or slows down Firefox'),
             (21, "Feedback: It's spam"),
             (127, 'Other'),
-        )
-        assert AbuseReport.REASONS.api_choices == (
+        ]
+        assert AbuseReport.REASONS.api_choices == [
             (None, None),
             (1, 'damage'),
             (2, 'spam'),
@@ -144,9 +145,9 @@ class TestAbuseReport(TestCase):
             (20, 'does_not_work'),
             (21, 'feedback_spam'),
             (127, 'other'),
-        )
+        ]
 
-        assert AbuseReport.ADDON_INSTALL_METHODS.choices == (
+        assert AbuseReport.ADDON_INSTALL_METHODS.choices == [
             (None, 'None'),
             (1, 'Add-on Manager Web API'),
             (2, 'Direct link'),
@@ -163,9 +164,9 @@ class TestAbuseReport(TestCase):
             (13, 'Sync'),
             (14, 'URL'),
             (127, 'Other'),
-        )
+        ]
 
-        assert AbuseReport.ADDON_INSTALL_METHODS.api_choices == (
+        assert AbuseReport.ADDON_INSTALL_METHODS.api_choices == [
             (None, None),
             (1, 'amwebapi'),
             (2, 'link'),
@@ -182,9 +183,9 @@ class TestAbuseReport(TestCase):
             (13, 'sync'),
             (14, 'url'),
             (127, 'other'),
-        )
+        ]
 
-        assert AbuseReport.ADDON_INSTALL_SOURCES.choices == (
+        assert AbuseReport.ADDON_INSTALL_SOURCES.choices == [
             (None, 'None'),
             (1, 'Add-ons Manager'),
             (2, 'Add-ons Debugging'),
@@ -215,9 +216,9 @@ class TestAbuseReport(TestCase):
             (27, 'System-wide Add-on (OS Share)'),
             (28, 'System-wide Add-on (OS Local)'),
             (127, 'Other'),
-        )
+        ]
 
-        assert AbuseReport.ADDON_INSTALL_SOURCES.api_choices == (
+        assert AbuseReport.ADDON_INSTALL_SOURCES.api_choices == [
             (None, None),
             (1, 'about_addons'),
             (2, 'about_debugging'),
@@ -248,39 +249,39 @@ class TestAbuseReport(TestCase):
             (27, 'app_system_share'),
             (28, 'app_system_local'),
             (127, 'other'),
-        )
+        ]
 
-        assert AbuseReport.REPORT_ENTRY_POINTS.choices == (
+        assert AbuseReport.REPORT_ENTRY_POINTS.choices == [
             (None, 'None'),
             (1, 'Uninstall'),
             (2, 'Menu'),
             (3, 'Toolbar context menu'),
             (4, 'AMO'),
             (5, 'Unified extensions context menu'),
-        )
-        assert AbuseReport.REPORT_ENTRY_POINTS.api_choices == (
+        ]
+        assert AbuseReport.REPORT_ENTRY_POINTS.api_choices == [
             (None, None),
             (1, 'uninstall'),
             (2, 'menu'),
             (3, 'toolbar_context_menu'),
             (4, 'amo'),
             (5, 'unified_context_menu'),
-        )
+        ]
 
-        assert AbuseReport.LOCATION.choices == (
+        assert AbuseReport.LOCATION.choices == [
             (None, 'None'),
             (1, 'Add-on page on AMO'),
             (2, 'Inside Add-on'),
             (3, 'Both on AMO and inside Add-on'),
-        )
-        assert AbuseReport.LOCATION.api_choices == (
+        ]
+        assert AbuseReport.LOCATION.api_choices == [
             (None, None),
             (1, 'amo'),
             (2, 'addon'),
             (3, 'both'),
-        )
+        ]
 
-        assert ILLEGAL_CATEGORIES.choices == (
+        assert ILLEGAL_CATEGORIES.choices == [
             (None, 'None'),
             (1, 'Animal welfare'),
             (2, 'Consumer information infringements'),
@@ -297,8 +298,8 @@ class TestAbuseReport(TestCase):
             (13, 'Unsafe, non-compliant, or prohibited products'),
             (14, 'Violence'),
             (15, 'Other'),
-        )
-        assert ILLEGAL_CATEGORIES.api_choices == (
+        ]
+        assert ILLEGAL_CATEGORIES.api_choices == [
             (None, None),
             (1, 'animal_welfare'),
             (2, 'consumer_information'),
@@ -315,9 +316,9 @@ class TestAbuseReport(TestCase):
             (13, 'unsafe_and_prohibited_products'),
             (14, 'violence'),
             (15, 'other'),
-        )
+        ]
 
-        assert ILLEGAL_SUBCATEGORIES.choices == (
+        assert ILLEGAL_SUBCATEGORIES.choices == [
             (None, 'None'),
             (1, 'Something else'),
             (2, 'Insufficient information on traders'),
@@ -388,8 +389,8 @@ class TestAbuseReport(TestCase):
             (47, 'Human exploitation'),
             (48, 'Human trafficking'),
             (49, 'General calls or incitement to violence and/or hatred'),
-        )
-        assert ILLEGAL_SUBCATEGORIES.api_choices == (
+        ]
+        assert ILLEGAL_SUBCATEGORIES.api_choices == [
             (None, None),
             (1, 'other'),
             (2, 'insufficient_information_on_traders'),
@@ -440,7 +441,7 @@ class TestAbuseReport(TestCase):
             (47, 'human_exploitation'),
             (48, 'human_trafficking'),
             (49, 'incitement_violence_hatred'),
-        )
+        ]
 
     def test_type(self):
         addon = addon_factory(guid='@lol')
@@ -531,30 +532,6 @@ class TestAbuseReport(TestCase):
 
         Version.unfiltered.get(version=report.addon_version).delete(hard=True)
         assert report.is_individually_actionable is False
-
-    def test_is_handled_by_reviewers(self):
-        addon = addon_factory()
-        abuse_report = AbuseReport.objects.create(
-            guid=addon.guid,
-            reason=AbuseReport.REASONS.ILLEGAL,
-            location=AbuseReport.LOCATION.BOTH,
-        )
-        # location is in REVIEWER_HANDLED (BOTH) but reason is not (ILLEGAL)
-        assert not abuse_report.is_handled_by_reviewers
-
-        abuse_report.update(reason=AbuseReport.REASONS.POLICY_VIOLATION)
-        # now reason is in REVIEWER_HANDLED it will be reported differently
-        assert abuse_report.is_handled_by_reviewers
-
-        abuse_report.update(location=AbuseReport.LOCATION.AMO)
-        # but not if the location is not in REVIEWER_HANDLED (i.e. AMO)
-        assert not abuse_report.is_handled_by_reviewers
-
-        # test non-addons are False regardless
-        abuse_report.update(location=AbuseReport.LOCATION.ADDON)
-        assert abuse_report.is_handled_by_reviewers
-        abuse_report.update(user=user_factory(), guid=None)
-        assert not abuse_report.is_handled_by_reviewers
 
     def test_constraint(self):
         report = AbuseReport()
@@ -1152,33 +1129,6 @@ class TestCinderJob(TestCase):
         rating.delete()
         self.check_report_with_already_moderated_content(abuse_report)
 
-    def test_report_with_addon_already_moderated(self):
-        addon = addon_factory()
-        abuse_report = AbuseReport.objects.create(
-            guid=addon.guid,
-            reason=AbuseReport.REASONS.POLICY_VIOLATION,
-            location=AbuseReport.LOCATION.ADDON,
-            reporter_email='some@email.com',
-        )
-        addon.current_version.update(human_review_date=datetime.now())
-        self.check_report_with_already_moderated_content(abuse_report)
-
-    def test_report_with_addon_version_already_moderated(self):
-        addon = addon_factory()
-        version = version_factory(
-            addon=addon,
-            human_review_date=datetime.now(),
-            file_kw={'status': amo.STATUS_DISABLED},
-        )
-        abuse_report = AbuseReport.objects.create(
-            guid=addon.guid,
-            reason=AbuseReport.REASONS.POLICY_VIOLATION,
-            location=AbuseReport.LOCATION.ADDON,
-            reporter_email='some@email.com',
-            addon_version=version.version,
-        )
-        self.check_report_with_already_moderated_content(abuse_report)
-
     def test_report_with_addon_already_moderated_existing_job(self):
         addon = addon_factory()
         AbuseReport.objects.create(
@@ -1197,39 +1147,6 @@ class TestCinderJob(TestCase):
         )
         addon.current_version.update(human_review_date=datetime.now())
         self.check_report_with_already_moderated_content(abuse_report)
-
-    def test_report_resolvable_in_reviewer_tools(self):
-        abuse_report = AbuseReport.objects.create(
-            guid=addon_factory().guid,
-            reason=AbuseReport.REASONS.POLICY_VIOLATION,
-            location=AbuseReport.LOCATION.ADDON,
-        )
-        responses.add(
-            responses.POST,
-            f'{settings.CINDER_SERVER_URL}create_report',
-            json={'job_id': '1234-xyz'},
-            status=201,
-        )
-
-        CinderJob.report(abuse_report)
-
-        cinder_job = CinderJob.objects.get()
-        assert cinder_job.job_id == '1234-xyz'
-        assert cinder_job.abusereport_set.get() == abuse_report
-        assert cinder_job.target_addon == abuse_report.target
-        assert cinder_job.resolvable_in_reviewer_tools
-
-        # And check if we get back the same job_id for a subsequent report we update
-
-        another_report = AbuseReport.objects.create(
-            guid=addon_factory().guid, reason=AbuseReport.REASONS.ILLEGAL
-        )
-        CinderJob.report(another_report)
-        cinder_job.reload()
-        assert CinderJob.objects.count() == 1
-        assert list(cinder_job.abusereport_set.all()) == [abuse_report, another_report]
-        assert cinder_job.target_addon == abuse_report.target
-        assert cinder_job.resolvable_in_reviewer_tools
 
     def test_process_decision(self):
         cinder_job = CinderJob.objects.create(job_id='1234')
@@ -1491,7 +1408,7 @@ class TestCinderJob(TestCase):
     def test_process_queue_move_with_addon_already_moderated(self):
         addon = addon_factory()
         job = CinderJob.objects.create(
-            target_addon=addon, job_id='1234-xyz', resolvable_in_reviewer_tools=True
+            target_addon=addon, job_id='1234-xyz', resolvable_in_reviewer_tools=False
         )
         policy = CinderPolicy.objects.create(
             uuid='123',
@@ -1600,16 +1517,37 @@ class TestCinderJob(TestCase):
         job = CinderJob.objects.create(job_id='fake_job_id')
         assert not job.is_appeal
 
-        appeal = CinderJob.objects.create(job_id='an appeal job')
+        appeal_job = CinderJob.objects.create(job_id='an appeal job')
         ContentDecision.objects.create(
             action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
             addon=addon_factory(),
-            appeal_job=appeal,
+            appeal_job=appeal_job,
             cinder_job=job,
         )
         job.reload()
         assert not job.is_appeal
-        assert appeal.is_appeal
+        assert appeal_job.is_appeal
+
+    def test_is_developer_appeal(self):
+        job = CinderJob.objects.create(job_id='fake_job_id')
+        assert not job.is_developer_appeal
+
+        appeal_job = CinderJob.objects.create(job_id='an appeal job')
+        decision = ContentDecision.objects.create(
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            addon=addon_factory(),
+            appeal_job=appeal_job,
+            cinder_job=job,
+        )
+        appeal = CinderAppeal.objects.create(decision=decision)
+        job.reload()
+        assert not job.is_developer_appeal
+        assert appeal_job.is_developer_appeal
+
+        # If the CinderAppeal object has a reporter report attached, it's a
+        # reporter appeal, not a developer one.
+        appeal.update(reporter_report=AbuseReport.objects.create(guid='@fakeguid'))
+        assert not appeal_job.is_developer_appeal
 
     def _setup_clear_needs_human_review_flags(self):
         addon = addon_factory()
@@ -1841,7 +1779,7 @@ class TestContentDecisionCanBeAppealed(TestCase):
         )
         for decision_action in (
             action
-            for action, _ in DECISION_ACTIONS
+            for action in DECISION_ACTIONS
             if action not in DECISION_ACTIONS.APPEALABLE_BY_REPORTER
         ):
             self.decision.update(
@@ -3441,6 +3379,76 @@ class TestContentDecision(TestCase):
         assert 'An attachment was provided.' not in mail.outbox[0].body
         assert 'To respond or view the file,' not in mail.outbox[0].body
 
+    def _execute_action_approve_appeal(self, addon, appealed_decision_action):
+        older_version = addon.versions.last()
+        newer_version = addon.versions.first()
+        appeal_job = CinderJob.objects.create()
+        ContentDecision.objects.create(
+            addon=addon,
+            action=appealed_decision_action,
+            reasoning='initial review text',
+            appeal_job=appeal_job,
+        )
+        decision = ContentDecision.objects.create(
+            addon=addon,
+            action=DECISION_ACTIONS.AMO_APPROVE,
+            reasoning='some review text',
+            reviewer_user=self.reviewer_user,
+            cinder_job=appeal_job,
+        )
+        decision.target_versions.set([older_version, newer_version])
+        assert decision.action_date is None
+
+        decision.execute_action()
+        self.assertCloseToNow(decision.action_date)
+        assert older_version.file.reload().status == amo.STATUS_APPROVED
+        assert newer_version.file.reload().status == amo.STATUS_AWAITING_REVIEW
+
+        decision.send_notifications()
+        mail_item = mail.outbox[0]
+        assert 'some review text' in mail_item.body
+        assert 'An attachment was provided.' not in mail_item.body
+        assert 'To respond or view the file,' not in mail_item.body
+        assert (
+            'versions were reinstated: '
+            f'{older_version.version}, {newer_version.version}' in mail_item.body
+        )
+        assert 'versions may be removed again in the future' in mail_item.body
+
+    def test_execute_action_approve_appeal_on_disable(self):
+        addon = addon_factory(users=[user_factory()], status=amo.STATUS_DISABLED)
+        older_version = addon.versions.get()
+        older_version.file.update(
+            status=amo.STATUS_DISABLED,
+            original_status=amo.STATUS_APPROVED,
+            status_disabled_reason=File.STATUS_DISABLED_REASONS.ADDON_DISABLE,
+        )
+        version_factory(
+            addon=addon,
+            file_kw={
+                'status': amo.STATUS_DISABLED,
+                'original_status': amo.STATUS_AWAITING_REVIEW,
+                'status_disabled_reason': File.STATUS_DISABLED_REASONS.ADDON_DISABLE,
+            },
+        )
+        #
+        self._execute_action_approve_appeal(addon, DECISION_ACTIONS.AMO_DISABLE_ADDON)
+        assert addon.reload().status == amo.STATUS_APPROVED
+
+    def test_execute_action_approve_appeal_on_reject(self):
+        addon = addon_factory(users=[user_factory()])
+        older_version = addon.versions.get()
+        version_factory(
+            addon=addon
+        )  # add a middle version that wasn't rejected or changed
+        older_version.file.update(
+            status=amo.STATUS_DISABLED, original_status=amo.STATUS_APPROVED
+        )
+        version_factory(addon=addon, file_kw={'status': amo.STATUS_DISABLED})
+        self._execute_action_approve_appeal(
+            addon, DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
+        )
+
     def _test_execute_action_reject_version_delayed_outcome(self, decision):
         decision.send_notifications()
         assert 'appeal' not in mail.outbox[0].body
@@ -3855,9 +3863,11 @@ class TestContentDecision(TestCase):
         assert requeue.private_notes == 'go!'
         assert requeue.reviewer_user == user
         assert requeue.cinder_job == job
-        assert NeedsHumanReview.objects.filter(
+        nhr = NeedsHumanReview.objects.get(
             reason=NeedsHumanReview.REASONS.SECOND_LEVEL_REQUEUE
-        ).exists()
+        )
+        log = ActivityLog.objects.get(action=amo.LOG.NEEDS_HUMAN_REVIEW_CINDER.id)
+        assert log.details == {'comments': nhr.get_reason_display(), 'reason': 'go!'}
 
     def test_requeue_held_action_no_job(self):
         addon = addon_factory()
@@ -3871,10 +3881,8 @@ class TestContentDecision(TestCase):
 
         decision.requeue_held_action(user=user, notes='go!')
 
-        new_job = decision.reload().cinder_job
-        assert new_job.resolvable_in_reviewer_tools is True
-        assert new_job.target_addon == addon
-        self._check_requeue_decision(new_job.final_decision, new_job, decision, user)
+        assert decision.reload().cinder_job is None
+        self._check_requeue_decision(decision.overridden_by, None, decision, user)
 
     def test_requeue_held_action_existing_job(self):
         addon = addon_factory()

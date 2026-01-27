@@ -21,8 +21,8 @@ from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_encode
 
 import pytest
+import time_machine
 from elasticsearch import Elasticsearch
-from freezegun import freeze_time
 from rest_framework.exceptions import ErrorDetail
 from rest_framework.test import APIRequestFactory
 from waffle import switch_is_active
@@ -2540,7 +2540,7 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         )
         assert response.status_code == 200
 
-    @mock.patch('olympia.addons.serializers.fetch_translations_from_addon')
+    @mock.patch('olympia.addons.serializers.fetch_translations_from_instance')
     def test_metadata_content_review_unlisted(self, fetch_mock):
         self.make_addon_unlisted(self.addon)
         AddonApprovalsCounter.approve_content_for_addon(addon=self.addon)
@@ -2878,7 +2878,7 @@ class TestAddonViewSetDelete(TestCase):
             'addon-detail', kwargs={'pk': self.addon.pk}, api_version='v5'
         )
 
-    @freeze_time()
+    @time_machine.travel(datetime.now(), tick=False)
     def test_delete_confirm(self):
         delete_confirm_url = f'{self.url}delete_confirm/'
 
@@ -3928,7 +3928,7 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
             ]
         }
 
-    def test_cannot_submit_listed_to_disabled_(self):
+    def test_cannot_submit_listed_to_disabled(self):
         self.addon.update(disabled_by_user=True)
         self.upload.update(channel=amo.CHANNEL_LISTED)
         response = self.client.post(
@@ -3939,6 +3939,28 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
         assert response.data == {
             'non_field_errors': [
                 'Listed versions cannot be submitted while add-on is disabled.'
+            ],
+        }
+
+        # but we can submit an unlisted version though
+        self.upload.update(channel=amo.CHANNEL_UNLISTED)
+        response = self.client.post(
+            self.url,
+            data=self.minimal_data,
+        )
+        assert response.status_code == 201, response.content
+
+    def test_cannot_submit_listed_to_rejected(self):
+        self.addon.update(status=amo.STATUS_REJECTED)
+        self.upload.update(channel=amo.CHANNEL_LISTED)
+        response = self.client.post(
+            self.url,
+            data=self.minimal_data,
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'non_field_errors': [
+                'Listed versions cannot be submitted while add-on listing is rejected.'
             ],
         }
 
@@ -5644,7 +5666,6 @@ class TestAddonSearchView(ESTestCase):
 
         assert set(qset.to_dict()['_source']['excludes']) == {
             '*.raw',
-            'boost',
             'colors',
             'hotness',
             'name',

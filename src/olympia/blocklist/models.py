@@ -1,5 +1,6 @@
 from collections import defaultdict, namedtuple
 from datetime import datetime
+from types import DynamicClassAttribute
 
 from django.conf import settings
 from django.db import models
@@ -8,11 +9,11 @@ from django.utils.functional import cached_property
 from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
 
-from extended_choices import Choices
 from multidb import get_replica
 
 from olympia import amo
 from olympia.addons.models import Addon
+from olympia.amo.enum import EnumChoices
 from olympia.amo.fields import PositiveTinyIntegerField
 from olympia.amo.models import BaseQuerySet, ManagerBase, ModelBase
 from olympia.amo.templatetags.jinja_helpers import absolutify
@@ -164,7 +165,7 @@ class Block(ModelBase):
         return blocks
 
 
-class BlockType(models.IntegerChoices):
+class BlockType(EnumChoices):
     BLOCKED = 0, '🛑 Hard-Blocked'
     SOFT_BLOCKED = 1, '⚠️ Soft-Blocked'
 
@@ -201,25 +202,37 @@ class BlocklistSubmissionManager(ManagerBase):
 
 
 class BlocklistSubmission(ModelBase):
-    SIGNOFF_STATES = Choices(
-        ('PENDING', 0, 'Pending Sign-off'),
-        ('APPROVED', 1, 'Approved'),
-        ('REJECTED', 2, 'Rejected'),
-        ('AUTOAPPROVED', 3, 'Auto Sign-off'),
-        ('PUBLISHED', 4, 'Published'),
-    )
+    class SIGNOFF_STATES(EnumChoices):
+        PENDING = 0, 'Pending Sign-off'
+        APPROVED = 1, 'Approved'
+        REJECTED = 2, 'Rejected'
+        AUTOAPPROVED = 3, 'Auto Sign-off'
+        PUBLISHED = 4, 'Published'
+
     SIGNOFF_STATES.add_subset('STATES_APPROVED', ('APPROVED', 'AUTOAPPROVED'))
     SIGNOFF_STATES.add_subset('STATES_FINISHED', ('REJECTED', 'PUBLISHED'))
-    ACTIONS = Choices(
+
+    class _EnumChoicesWithShort(EnumChoices):
         # 'short' extra property is added to describe the short verb we use for
         # each action when displayed next to a version.
-        ('ADDCHANGE', 0, 'Add/Change Block', {'short': 'Block'}),
-        ('DELETE', 1, 'Delete Block', {'short': 'Unblock'}),
-        ('HARDEN', 2, 'Harden Block', {'short': 'Harden'}),
-        ('SOFTEN', 3, 'Soften Block', {'short': 'Soften'}),
-    )
+        @DynamicClassAttribute
+        def short(self):
+            return {
+                'ADDCHANGE': 'Block',
+                'DELETE': 'Unblock',
+                'HARDEN': 'Harden',
+                'SOFTEN': 'Soften',
+            }[self.name]
+
+    class ACTIONS(_EnumChoicesWithShort):
+        ADDCHANGE = 0, 'Add/Change Block'
+        DELETE = 1, 'Delete Block'
+        HARDEN = 2, 'Harden Block'
+        SOFTEN = 3, 'Soften Block'
+
     ACTIONS.add_subset('SAVE_TO_BLOCK_OBJECTS', ('ADDCHANGE', 'HARDEN', 'SOFTEN'))
     ACTIONS.add_subset('DELETE_TO_BLOCK_OBJECTS', ('DELETE',))
+
     FakeBlockAddonVersion = namedtuple(
         'FakeBlockAddonVersion',
         (
@@ -512,19 +525,19 @@ class BlocklistSubmission(ModelBase):
     @classmethod
     def get_submissions_from_guid(cls, guid):
         return cls.objects.exclude(
-            signoff_state__in=cls.SIGNOFF_STATES.STATES_FINISHED.values.keys()
+            signoff_state__in=cls.SIGNOFF_STATES.STATES_FINISHED.values
         ).filter(to_block__contains={'guid': guid})
 
     @classmethod
     def get_submissions_from_version_id(cls, version_id):
         return cls.objects.exclude(
-            signoff_state__in=cls.SIGNOFF_STATES.STATES_FINISHED.values.keys()
+            signoff_state__in=cls.SIGNOFF_STATES.STATES_FINISHED.values
         ).filter(changed_version_ids__contains=version_id)
 
     @classmethod
     def get_all_submission_versions(cls):
         submission_qs = cls.objects.exclude(
-            signoff_state__in=cls.SIGNOFF_STATES.STATES_FINISHED.values.keys()
+            signoff_state__in=cls.SIGNOFF_STATES.STATES_FINISHED.values
         ).values_list('id', 'changed_version_ids')
         return {
             ver_id: sub_id for sub_id, id_list in submission_qs for ver_id in id_list

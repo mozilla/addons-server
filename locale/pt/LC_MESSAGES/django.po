@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-20 20:52+0000\n"
+"POT-Creation-Date: 2026-01-26 16:58+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -263,9 +263,6 @@ msgstr ""
 msgid "Listed"
 msgstr "Listado"
 
-msgid "Add-on and collection paths need to end with \"/\""
-msgstr ""
-
 msgid "Built in licenses can not be updated."
 msgstr ""
 
@@ -280,6 +277,9 @@ msgid "The latest approved version of this %s add-on cannot be deleted because t
 msgstr ""
 
 msgid "Listed versions cannot be submitted while add-on is disabled."
+msgstr ""
+
+msgid "Listed versions cannot be submitted while add-on listing is rejected."
 msgstr ""
 
 #, python-format
@@ -319,11 +319,11 @@ msgstr ""
 msgid "Only approved versions can be rolled back, except the most recent version."
 msgstr ""
 
-msgid "This name cannot be used."
-msgstr "Este nome não pode ser utilizado."
-
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
+
+msgid "This name cannot be used."
+msgstr "Este nome não pode ser utilizado."
 
 msgid "Both `license` and `custom_license` cannot be provided together."
 msgstr ""
@@ -484,16 +484,6 @@ msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
 msgstr "<h1>Ups! Tivemos um erro.</h1> <p>Vamos repará-lo em breve.</p> <p> Pode tentar atualizar a página, ou volte à <a href=\"%(home)s\">página inicial dos extras</a>. </p>"
-
-msgid "Register or Log in"
-msgstr ""
-
-#, fuzzy
-msgid "Email:"
-msgstr "Email"
-
-msgid "Two-factor authentication"
-msgstr ""
 
 #. abbreviation of 'previous'
 msgid "Prev"
@@ -1000,6 +990,21 @@ msgstr ""
 msgid "{addon} {0} property edited."
 msgstr ""
 
+#, python-brace-format
+msgid "Collection {0} property {1} updated."
+msgstr ""
+
+#, python-brace-format
+msgid "Account {user} property {0} updated."
+msgstr ""
+
+#, python-brace-format
+msgid "{addon} listing content rejected."
+msgstr ""
+
+msgid "Listing content rejected"
+msgstr ""
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -1026,6 +1031,9 @@ msgstr "Incompleto"
 
 msgid "Awaiting Review"
 msgstr "A aguardar pela revisão"
+
+msgid "Listing Content Rejected"
+msgstr ""
 
 msgid "Disabled by Mozilla"
 msgstr "Desativado pela Mozilla"
@@ -1168,7 +1176,6 @@ msgstr ""
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
 msgstr ""
 
-#. editorial content for the secondary hero shelves.
 #, fuzzy
 msgid "Privacy & Security"
 msgstr "Política de privacidade"
@@ -1379,60 +1386,6 @@ msgid "Creative Commons Attribution-ShareAlike 4.0"
 msgstr ""
 
 msgid "The Unlicense"
-msgstr ""
-
-#, fuzzy
-msgid "Recommended"
-msgstr "comentado"
-
-#, fuzzy
-msgid "By Firefox"
-msgstr "Firefox"
-
-msgid "Spotlight"
-msgstr ""
-
-msgid "Strategic"
-msgstr ""
-
-msgid "Notable"
-msgstr ""
-
-msgid "Partner"
-msgstr ""
-
-#, fuzzy
-msgid "No Reputation"
-msgstr "Resolução"
-
-msgid "Good (1)"
-msgstr ""
-
-msgid "Very Good (2)"
-msgstr ""
-
-msgid "Excellent (3)"
-msgstr ""
-
-msgid "Request More Info"
-msgstr "Solicitar mais informações"
-
-msgid "Flag"
-msgstr "Sinalizar"
-
-msgid "Duplicate"
-msgstr "Duplicar"
-
-msgid "Reject"
-msgstr "Rejeitar"
-
-msgid "Approve"
-msgstr "Aprovar"
-
-msgid "All"
-msgstr ""
-
-msgid "Core"
 msgstr ""
 
 #, python-format
@@ -2152,6 +2105,10 @@ msgstr "Contribuições"
 msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
 msgstr ""
 
+#, python-format
+msgid "Supported domains: %(supported_domains)s"
+msgstr ""
+
 msgid "Default Locale"
 msgstr "Idioma por omissão"
 
@@ -2213,6 +2170,17 @@ msgstr ""
 
 msgid "Description"
 msgstr "Descrição"
+
+#, python-format
+msgid ""
+"A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Minimum length: %(min_length)s characters; Recommended "
+"length: 250 characters. If you need a longer description, make sure the first 250 characters contain the most important description points."
+msgstr ""
+
+msgid ""
+"A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Recommended length: 250 characters. If you need a longer "
+"description, make sure the first 250 characters contain the most important description points."
+msgstr ""
 
 msgid "Experimental?"
 msgstr ""
@@ -2385,6 +2353,15 @@ msgstr ""
 msgid "Continue"
 msgstr "Continuar"
 
+msgid "Your add-on is currently set to \"Invisible\"."
+msgstr ""
+
+msgid "Your add-on listing was rejected."
+msgstr ""
+
+msgid "While in this state, \"On your own\" is the only distribution method available."
+msgstr ""
+
 #, fuzzy
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr "Outras pessoas podem compartilhar o seu tema, desde que lhe sejam atribuído créditos?"
@@ -2413,12 +2390,6 @@ msgstr "Selecione uma licença diferente."
 #, fuzzy
 msgid "More information on Creative Commons licenses"
 msgstr "Solicitada mais informação"
-
-msgid "Your add-on is currently set to \"Invisible\"."
-msgstr ""
-
-msgid "While in this state, \"On your own\" is the only distribution method available."
-msgstr ""
 
 msgid "You cannot change attached sources because this version has been reviewed by Mozilla."
 msgstr ""
@@ -2811,6 +2782,9 @@ msgstr "Sobreposições administrativas"
 msgid "Create a Theme Version"
 msgstr "Criar um novo tema"
 
+msgid "You can upload a finished theme using the upload option above, or you can build it yourself using this tool."
+msgstr ""
+
 #, fuzzy
 msgid "Create a Theme"
 msgstr "Criar um novo tema"
@@ -2966,6 +2940,9 @@ msgid "Your add-on is displayed in our gallery and users are receiving automatic
 msgstr "O seu extra está a ser apresentado na nossa galeria e os utilizadores estão a receber atualizações automáticas."
 
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery."
+msgstr ""
+
+msgid "Your add-on listing was rejected. It is not listed in our gallery. Please address the reasons and reapply for review."
 msgstr ""
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
@@ -3758,7 +3735,7 @@ msgid "Change the way you surf Reddit by using tags and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Screenshot webpages, make edits, and share."
+msgid "Screenshot webpages, make edits & share."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4452,6 +4429,22 @@ msgstr ""
 msgid "Deep translation features for a rich language experience anywhere on the web."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Leave yourself little notes on any website."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Discover and download higher quality versions of interesting images and videos you find on the web."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Save and organize anything you find on the web — articles, media, PDFs & more."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Enhance your Reddit experience with color-coded comments, simpler navigation, gestures for upvoting & much more."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr ""
@@ -4644,6 +4637,54 @@ msgstr ""
 msgid "Change the color of Firefox to match every website you visit."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Learning a new language? Yomitan is the ideal dictionary companion."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Pack a powerful thesaurus right inside Firefox."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Hover over web images to enlarge their appearance."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Feature rich translation tool. Works across the web, eBooks, PDFs, even video subtitles."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Track the time you spend on every website you visit."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Manage your Gmail (even multiple accounts) right from a handy pop-up accessible from the Firefox toolbar."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "De-clutter YouTube. Strip away unwanted elements like related videos, shorts & more."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Leave yourself little notes on any web page."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Serenity for your Reddit experience."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Save and organize anything you find on the web."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "WebM video controls at your fingertips."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Disguise Firefox as the Chrome browser to spoof websites that try to block Firefox."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr ""
@@ -4658,15 +4699,25 @@ msgid "See all extensions"
 msgstr "Navegar em todos os extras"
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension Starter Pack"
+msgid "YouTube extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Twitch customization"
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Creativity extensions"
+msgstr "comentado"
+
+#. editorial content for the secondary hero shelves.
+msgid "New Recommended extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Explore now"
 msgstr ""
 
 #. editorial content for the homepage shelves.
@@ -4689,14 +4740,12 @@ msgid "See more popular themes"
 msgstr "Selecione as cores para o seu tema."
 
 #. editorial content for the homepage shelves.
-#, fuzzy
-msgid "Enhanced privacy extensions"
-msgstr "Navegar em todos os extras"
+msgid "Privacy & security"
+msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
-msgid "See more recommended privacy extensions"
-msgstr "Navegar em todos os extras"
+msgid "See more privacy staff picks"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4819,11 +4868,6 @@ msgstr ""
 #, fuzzy
 msgid "See more Steam staff picks"
 msgstr "Navegar em todos os extras"
-
-#. editorial content for the homepage shelves.
-#, fuzzy
-msgid "Creativity extensions"
-msgstr "comentado"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -5069,36 +5113,6 @@ msgstr "Classificado com {0} de 5 estrelas"
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Classificado com %(rating)s de 5 estrelas"
-
-#, python-brace-format
-msgid "Unsupported file type, please upload a file {extensions}."
-msgstr ""
-
-msgid "File too large."
-msgstr ""
-
-#, python-format
-msgid "<dd>%(review_author)s</dd>"
-msgstr ""
-
-#, python-format
-msgid "by %(user)s on %(date)s %(stars)s"
-msgstr ""
-
-#, python-format
-msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
-msgstr "<strong>%(reason)s</strong> <span class=\"light\">Marcado por %(user)s em %(date)s</span>"
-
-msgid "<strong>Warning!</strong> Another user may be viewing this page before you."
-msgstr ""
-
-#, python-format
-msgid "%(user)s on %(date)s [%(ip_address)s]"
-msgstr "%(user)s em %(date)s [%(ip_address)s]"
-
-#, python-format
-msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-msgstr "Versão %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
 #, fuzzy, python-format
 msgid "Invalid \"%s\" parameter."
@@ -5456,6 +5470,9 @@ msgid "Multiple submissions violating our policies have been sent from your loca
 msgstr ""
 
 msgid "The email address used for your account is not allowed for submissions."
+msgstr ""
+
+msgid "The software or device you are using is not allowed for submissions."
 msgstr ""
 
 #, fuzzy

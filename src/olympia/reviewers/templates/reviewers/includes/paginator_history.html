@@ -8,11 +8,11 @@
       </li>
     {% endif %}
     <li>
-      {% trans begin=pager.start_index(), end=pager.end_index(),
+      {% with  begin=pager.start_index(), end=pager.end_index(),
                count=count|numberfmt %}
         Results <strong>{{ begin }}</strong>&ndash;<strong>{{ end }}</strong>
         of <strong>{{ count }}</strong>
-      {% endtrans %}
+      {% endwith %}
     </li>
     {% if pager.has_previous() %}
       <li>

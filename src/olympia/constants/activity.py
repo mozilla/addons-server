@@ -1247,6 +1247,52 @@ class EDIT_ADDON_PROPERTY(_LOG):
     show_user_to_developer = True
 
 
+class EDIT_COLLECTION_PROPERTY(_LOG):
+    """Expects: collection, field. 3rd arg is a json blob."""
+
+    id = 209
+    format = _('Collection {0} property {1} updated.')
+
+
+class EDIT_USER_PROPERTY(_LOG):
+    """Expects: user, field. 3rd arg is a json blob."""
+
+    id = 210
+    format = _('Account {user} property {0} updated.')
+
+
+class APPROVE_LISTING_CONTENT(_LOG):
+    id = 211
+    format = '{addon} listing content approved.'
+    short = 'Listing content approved'
+    keep = True
+    reviewer_review_action = True
+    review_queue = True
+    hide_developer = True
+
+
+class REJECT_LISTING_CONTENT(_LOG):
+    id = 212
+    action_class = 'reject'
+    format = _('{addon} listing content rejected.')
+    short = _('Listing content rejected')
+    keep = True
+    review_email_user = True
+    review_queue = True
+    reviewer_review_action = True
+    cinder_action = DECISION_ACTIONS.AMO_REJECT_LISTING_CONTENT
+
+
+class HELD_ACTION_REJECT_LISTING_CONTENT(_LOG):
+    id = 213
+    action_class = 'reject'
+    format = '{addon} listing content rejection held for further review.'
+    reviewer_format = 'Held {addon} listing content rejection by {user_responsible}.'
+    admin_format = reviewer_format
+    short = 'Held Listing Content Rejection'
+    admin_event = True
+
+
 LOGS = [x for x in vars().values() if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 # Make sure there's no duplicate IDs.
 assert len(LOGS) == len({log.id for log in LOGS})

@@ -2,9 +2,9 @@
     id="version-{{ version.version|to_dom_id }}"
 >
   <th>
-    {% trans version = version.version, created = version.created|date, version_status = version.get_review_status_display() %}
+    {% with version = version.version, created = version.created|date, version_status = version.get_review_status_display() %}
     Version {{ version }} &middot; {{ created }} <span class="light">&middot; {{ version_status }}</span>
-    {% endtrans %}
+    {% endwith %}
 
     {% if version.autoapprovalsummary and version.autoapprovalsummary.confirmed %}
     <span class="light">(Confirmed)</span>
@@ -52,10 +52,16 @@
       {% if version.source %}
           <div><h5>Additional sources:</h5></div>
           <div>
-              {% if is_admin %}
+              {% if can_view_source %}
                   <a href="{{ url('downloads.source', version.pk) }}">Download files</a>
               {% else %}
                   The developer has provided source code.
+              {% endif %}
+              {% if waffle.switch('enable-source-builder') %}
+                  &nbsp;|&nbsp;
+                  <a href="{{ settings.SOURCE_BUILDER_VIEWER_URL }}?addon_id={{ addon.pk }}&version_id={{ version.pk }}"
+                     class="source-builder"
+                     target="_blank" rel="noopener noreferrer">Source Builder</a>
               {% endif %}
           </div>
       {% endif %}

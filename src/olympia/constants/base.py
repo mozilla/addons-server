@@ -16,13 +16,15 @@ _STATUS_BETA = 7  # Deprecated, see addons-server/issues/7163
 _STATUS_LITE = 8  # Deprecated, preliminary reviewed.
 _STATUS_LITE_AND_NOMINATED = 9  # Deprecated, prelim & waiting for full review.
 STATUS_DELETED = 11  # Add-on has been deleted.
-_STATUS_REJECTED = 12  # Deprecated. Applied only to rejected personas.
+_STATUS_LWT_REJECTED = 12  # Deprecated. Applied only to rejected personas.
 _STATUS_REVIEW_PENDING = 14  # Deprecated. Was personas, needing further action
+STATUS_REJECTED = 15  # Add-on listing rejected after failed content review.
 
 STATUS_CHOICES_ADDON = {
     STATUS_NULL: _('Incomplete'),
     STATUS_NOMINATED: _('Awaiting Review'),
     STATUS_APPROVED: _('Approved'),
+    STATUS_REJECTED: _('Listing Content Rejected'),
     STATUS_DISABLED: _('Disabled by Mozilla'),
     STATUS_DELETED: _('Deleted'),
 }
@@ -41,6 +43,7 @@ STATUS_CHOICES_API = {
     STATUS_APPROVED: 'public',
     STATUS_DISABLED: 'disabled',
     STATUS_DELETED: 'deleted',
+    STATUS_REJECTED: 'rejected',
 }
 
 STATUS_CHOICES_API_LOOKUP = {
@@ -50,11 +53,12 @@ STATUS_CHOICES_API_LOOKUP = {
     'public': STATUS_APPROVED,
     'disabled': STATUS_DISABLED,
     'deleted': STATUS_DELETED,
+    'rejected': STATUS_REJECTED,
 }
 
 APPROVED_STATUSES = (STATUS_APPROVED,)
 UNREVIEWED_FILE_STATUSES = (STATUS_AWAITING_REVIEW,)
-VALID_ADDON_STATUSES = (STATUS_NOMINATED, STATUS_APPROVED)
+VALID_ADDON_STATUSES = (STATUS_NOMINATED, STATUS_APPROVED, STATUS_REJECTED)
 VALID_FILE_STATUSES = (STATUS_AWAITING_REVIEW, STATUS_APPROVED)
 
 # Version channels

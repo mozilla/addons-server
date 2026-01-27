@@ -14,10 +14,10 @@ from django.utils import timezone
 from django.utils.encoding import force_str
 from django.utils.translation import trim_whitespace
 
-import freezegun
 import markupsafe
 import pytest
 import responses
+import time_machine
 from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
 
@@ -170,10 +170,10 @@ class TestDashboard(HubTest):
         assert 'Statistics' in links, 'Unexpected: %r' % links
         assert 'New Version' in links, 'Unexpected: %r' % links
 
-        # Disabled (user): hide new version link.
+        # Disabled (user): don't hide new version link (they can submit unlisted).
         self.addon.update(disabled_by_user=True)
         links = self.get_action_links(self.addon.pk)
-        assert 'New Version' not in links, 'Unexpected: %r' % links
+        assert 'New Version' in links, 'Unexpected: %r' % links
 
         # Disabled (admin): hide statistics and new version links.
         self.addon.update(disabled_by_user=False, status=amo.STATUS_DISABLED)
@@ -530,6 +530,12 @@ class TestHome(TestCase):
         statuses = [
             (amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW, 'Awaiting Review'),
             (amo.STATUS_APPROVED, amo.STATUS_AWAITING_REVIEW, 'Approved'),
+            (
+                amo.STATUS_REJECTED,
+                amo.STATUS_AWAITING_REVIEW,
+                'Listing Content Rejected',
+            ),
+            (amo.STATUS_REJECTED, amo.STATUS_APPROVED, 'Listing Content Rejected'),
             (amo.STATUS_DISABLED, amo.STATUS_APPROVED, 'Disabled by Mozilla'),
         ]
 
@@ -916,7 +922,6 @@ class TestAPIKeyPage(TestCase):
         self.client.force_login_with_2fa(UserProfile.objects.get(email='del@icio.us'))
         self.user = UserProfile.objects.get(email='del@icio.us')
         self.user.update(last_login_ip='192.168.1.1')
-        self.create_flag('2fa-enforcement-for-developers-and-special-users')
 
     def _submit_actions(self, doc):
         return doc('form[name=api-credentials-form] button[type=submit][name=action]')
@@ -956,7 +961,7 @@ class TestAPIKeyPage(TestCase):
         assert 'recaptcha' in form.fields
         (confirm_button,) = self._submit_actions(doc)
         assert 'Confirm email address' in confirm_button.text
-        assert confirm_button.get('value') == APIKeyForm.ACTION_CHOICES.confirm
+        assert confirm_button.get('value') == APIKeyForm.ACTION_CHOICES.CONFIRM
 
     def test_view_with_credentials_not_confirmed_yet(self):
         APIKey.objects.create(
@@ -974,7 +979,7 @@ class TestAPIKeyPage(TestCase):
         (revoke_button,) = self._submit_actions(doc)
 
         assert 'Revoke' in revoke_button.text
-        assert revoke_button.get('value') == APIKeyForm.ACTION_CHOICES.revoke
+        assert revoke_button.get('value') == APIKeyForm.ACTION_CHOICES.REVOKE
 
     def test_view_with_credentials_confirmed(self):
         APIKeyConfirmation.objects.create(
@@ -996,10 +1001,10 @@ class TestAPIKeyPage(TestCase):
         revoke_button, regenerate_button = self._submit_actions(doc)
 
         assert 'Revoke' in revoke_button.text
-        assert revoke_button.get('value') == APIKeyForm.ACTION_CHOICES.revoke
+        assert revoke_button.get('value') == APIKeyForm.ACTION_CHOICES.REVOKE
 
         assert 'Revoke and regenerate credentials' in regenerate_button.text
-        assert regenerate_button.get('value') == APIKeyForm.ACTION_CHOICES.regenerate
+        assert regenerate_button.get('value') == APIKeyForm.ACTION_CHOICES.REGENERATE
 
     def test_view_without_credentials_confirmation_requested_no_token(self):
         APIKeyConfirmation.objects.create(
@@ -1032,7 +1037,7 @@ class TestAPIKeyPage(TestCase):
 
         (generate_button,) = self._submit_actions(doc)
         assert 'Generate new credentials' in generate_button.text
-        assert generate_button.get('value') == APIKeyForm.ACTION_CHOICES.generate
+        assert generate_button.get('value') == APIKeyForm.ACTION_CHOICES.GENERATE
 
     def test_view_no_credentials_has_been_confirmed_once(self):
         APIKeyConfirmation.objects.create(
@@ -1043,7 +1048,7 @@ class TestAPIKeyPage(TestCase):
         doc = pq(response.content)
         (confirm_button,) = self._submit_actions(doc)
         assert 'Generate new credentials' in confirm_button.text
-        assert confirm_button.get('value') == APIKeyForm.ACTION_CHOICES.generate
+        assert confirm_button.get('value') == APIKeyForm.ACTION_CHOICES.GENERATE
 
     def test_create_new_credentials_has_been_confirmed_once(self):
         APIKeyConfirmation.objects.create(
@@ -1053,7 +1058,7 @@ class TestAPIKeyPage(TestCase):
         with patch as mock_creator:
             mock_creator.return_value.key = 'fake-new-jwt-key'
             response = self.client.post(
-                self.url, data={'action': APIKeyForm.ACTION_CHOICES.generate}
+                self.url, data={'action': APIKeyForm.ACTION_CHOICES.GENERATE}
             )
         mock_creator.assert_called_with(self.user)
 
@@ -1074,7 +1079,7 @@ class TestAPIKeyPage(TestCase):
         response = self.client.post(
             self.url,
             data={
-                'action': APIKeyForm.ACTION_CHOICES.generate,
+                'action': APIKeyForm.ACTION_CHOICES.GENERATE,
                 'confirmation_token': 'secrettoken',
             },
         )
@@ -1100,7 +1105,7 @@ class TestAPIKeyPage(TestCase):
         response = self.client.post(
             self.url,
             data={
-                'action': APIKeyForm.ACTION_CHOICES.confirm,
+                'action': APIKeyForm.ACTION_CHOICES.CONFIRM,
                 'g-recaptcha-response': 'test',
             },
         )
@@ -1129,7 +1134,7 @@ class TestAPIKeyPage(TestCase):
             user=self.user, token='doesnt matter', confirmed_once=False
         )
         response = self.client.post(
-            self.url, data={'action': APIKeyForm.ACTION_CHOICES.generate}
+            self.url, data={'action': APIKeyForm.ACTION_CHOICES.GENERATE}
         )
         assert len(mail.outbox) == 0
         assert not APIKey.objects.filter(user=self.user).exists()
@@ -1146,7 +1151,7 @@ class TestAPIKeyPage(TestCase):
         response = self.client.post(
             self.url,
             data={
-                'action': APIKeyForm.ACTION_CHOICES.generate,
+                'action': APIKeyForm.ACTION_CHOICES.GENERATE,
                 'confirmation_token': 'wrong',
             },
         )
@@ -1170,7 +1175,7 @@ class TestAPIKeyPage(TestCase):
             secret='some-jwt-secret',
         )
         response = self.client.post(
-            self.url, data={'action': APIKeyForm.ACTION_CHOICES.regenerate}
+            self.url, data={'action': APIKeyForm.ACTION_CHOICES.REGENERATE}
         )
         self.assert3xx(response, self.url)
 
@@ -1189,7 +1194,7 @@ class TestAPIKeyPage(TestCase):
             secret='some-jwt-secret',
         )
         response = self.client.post(
-            self.url, data={'action': APIKeyForm.ACTION_CHOICES.regenerate}
+            self.url, data={'action': APIKeyForm.ACTION_CHOICES.REGENERATE}
         )
         form = response.context['form']
         assert not form.is_valid()
@@ -1201,7 +1206,7 @@ class TestAPIKeyPage(TestCase):
         # Since there was no confirmation, the user can revoke the current key
         # effectively starting from the beginning with recaptcha and confirmation.
         response = self.client.post(
-            self.url, data={'action': APIKeyForm.ACTION_CHOICES.revoke}
+            self.url, data={'action': APIKeyForm.ACTION_CHOICES.REVOKE}
         )
         self.assert3xx(response, self.url)
         assert len(mail.outbox) == 1
@@ -1228,7 +1233,7 @@ class TestAPIKeyPage(TestCase):
             secret='some-jwt-secret',
         )
         response = self.client.post(
-            self.url, data={'action': APIKeyForm.ACTION_CHOICES.revoke}
+            self.url, data={'action': APIKeyForm.ACTION_CHOICES.REVOKE}
         )
         self.assert3xx(response, self.url)
 
@@ -1264,7 +1269,7 @@ class TestAPIKeyPage(TestCase):
         response = self.client.post(
             f'{self.url}?token=secrettoken',
             data={
-                'action': APIKeyForm.ACTION_CHOICES.generate,
+                'action': APIKeyForm.ACTION_CHOICES.GENERATE,
                 'confirmation_token': 'wrong',
             },
         )
@@ -1283,7 +1288,6 @@ class TestUpload(UploadMixin, TestCase):
         self.client.force_login(self.user)
         self.url = reverse('devhub.upload')
         self.xpi_path = self.file_path('webextension_no_id.xpi')
-        self.create_flag('2fa-enforcement-for-developers-and-special-users')
 
     def post(self, theme_specific=False, **kwargs):
         data = {
@@ -1451,17 +1455,6 @@ class TestUpload(UploadMixin, TestCase):
                 'ending_tier': 5,
             }
         }
-
-    def test_upload_extension_without_2fa_waffle_is_off(self):
-        self.create_flag(
-            '2fa-enforcement-for-developers-and-special-users', everyone=False
-        )
-        self.url = reverse('devhub.upload')
-        response = self.post()
-        upload = FileUpload.objects.get()
-        assert upload.channel == amo.CHANNEL_LISTED
-        url = reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json'])
-        self.assert3xx(response, url)
 
     def test_upload_theme_without_2fa(self):
         self.xpi_path = os.path.join(
@@ -2064,7 +2057,7 @@ class TestDocs(TestCase):
         assert '/en-US/developers/docs/te' == reverse('devhub.docs', args=['te'])
         assert '/en-US/developers/docs/te/st', reverse('devhub.docs', args=['te/st'])
 
-        self.client.force_login(user_factory(read_dev_agreement=None))
+        self.client.force_login_with_2fa(user_factory(read_dev_agreement=None))
         response = self.client.get(reverse('devhub.submit.agreement'))
         doc = pq(response.content)
 
@@ -2431,8 +2424,10 @@ class TestVerifyEmail(TestCase):
         assert not self.email_verification.is_expired
         assert not self.email_verification.is_timedout
 
-        with freezegun.freeze_time(self.email_verification.created) as frozen_time:
-            frozen_time.tick(timedelta(minutes=10, seconds=1))
+        with time_machine.travel(
+            self.email_verification.created, tick=False
+        ) as frozen_time:
+            frozen_time.shift(timedelta(minutes=10, seconds=1))
             response = self.client.get(url)
 
             assert len(mail.outbox) == 1
@@ -2458,8 +2453,10 @@ class TestVerifyEmail(TestCase):
         mock_check_emails.return_value = []
         self.with_email_verification()
 
-        with freezegun.freeze_time(self.email_verification.created) as frozen_time:
-            frozen_time.tick(timedelta(days=31))
+        with time_machine.travel(
+            self.email_verification.created, tick=False
+        ) as frozen_time:
+            frozen_time.shift(timedelta(days=31))
 
             self.client.force_login(self.user_profile)
             response = self.client.get(self.url)
@@ -2501,8 +2498,10 @@ class TestVerifyEmail(TestCase):
         mock_check_emails.return_value = []
         self.with_email_verification()
 
-        with freezegun.freeze_time(self.email_verification.created) as frozen_time:
-            frozen_time.tick(timedelta(minutes=10, seconds=31))
+        with time_machine.travel(
+            self.email_verification.created, tick=False
+        ) as frozen_time:
+            frozen_time.shift(timedelta(minutes=10, seconds=31))
 
             assert self.email_verification.is_timedout
 
@@ -2525,7 +2524,7 @@ class TestVerifyEmail(TestCase):
         mock_check_suppressed.return_value = []
         self.with_email_verification()
         self.email_verification.status = (
-            SuppressedEmailVerification.STATUS_CHOICES.Delivered
+            SuppressedEmailVerification.STATUS_CHOICES.DELIVERED
         )
         self.email_verification.save()
         response = self.client.get(self.url)

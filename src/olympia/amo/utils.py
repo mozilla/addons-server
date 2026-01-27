@@ -474,18 +474,54 @@ def slugify(s, ok=SLUG_OK, lower=True, spaces=False, delimiter='-'):
 
 
 @functools.cache
-def build_characters_normalization_strip_table(categories_to_strip):
-    """Return a dict of characters to strip when normalizing strings, to be
+def build_characters_normalization_replacement_table(categories_to_strip):
+    """Return a dict of characters to replace when normalizing strings, to be
     used with <str>.translate().
 
     Results are cached in memory as building the table can be quite slow.
     """
-    return dict.fromkeys(
+    translations_table = dict.fromkeys(
         i
         for i in range(sys.maxunicode)
         if unicodedata.category(chr(i))[0] in categories_to_strip
         or chr(i) in OneOrMorePrintableCharacterValidator.special_blank_characters
     )
+    # Then add additional characters that are usually not normally considered
+    # confusables, but we think they should, so we want to get the
+    # corresponding ascii character when normalizing for name checks. This can
+    # override symbols we would strip if we only used the table generated
+    # above.
+    additional_replacements = {
+        'a': ('Ѧ', 'ѧ', 'Ꙙ', 'ꙙ'),
+        'b': ('В', 'Ъ', 'в', 'ъ', 'ь', 'Ꙏ', 'ꙏ'),
+        'c': ('¢', 'Ҫ', 'ҫ'),
+        'd': ('ð', 'đ'),
+        'e': ('Ε', 'ε', 'Є', 'Э', '€', '℈', 'Ꞓ', 'ꭼ', 'з', 'э', 'є', 'Ҽ', 'Ҿ', 'ҿ'),
+        'f': ('ƒ', 'ϝ', 'ғ', 'Ғ'),
+        'h': ('ħ', 'Ђ', 'н', 'Ң', 'ң', 'Ҥ', 'ҥ', 'Һ', 'Ӈ', 'ӈ', 'Ӊ', 'ӊ'),
+        'i': ('ı',),
+        'k': ('ĸ', 'κ', 'к', 'қ', 'ҝ', 'ҟ', 'ҡ', 'ᴋ', 'Қ', 'Ҝ', 'Ҟ', 'Ҡ', 'Ӄ', 'ӄ'),
+        'l': ('ł', 'ꙇ', '𐑃'),
+        'm': ('ʍ', 'м', 'ᴍ', 'ꮇ', 'Ӎ', 'ӎ', 'Ꙧ', 'ꙧ'),
+        'n': ('И', 'и'),
+        'o': ('ø', 'Ѻ', 'ѻ', 'ѳ', 'ꙩ'),
+        'r': ('Я', 'я'),
+        's': ('ѕ', 'ꙅ', 'Ꙅ', 'Ꚃ', 'ꚃ'),
+        't': ('ŧ', 'τ', 'т', 'ᴛ', '⊤', 'Ꚍ', 'ꚍ', 'Ꚑ', 'ꚑ', 'ꞇ', 'Ҭ', 'ҭ'),
+        'w': ('ω', 'ш', 'Ш', 'Щ', 'щ', 'Ѡ', 'ѿ', 'Ꚗ', 'ꚗ'),
+        'x': ('Ҳ', 'ҳ', 'Ӽ', 'ӽ', 'Ӿ', 'ӿ'),
+        'y': ('Ұ', 'ұ'),
+    }
+    additional_replacement_table = dict(
+        itertools.chain(
+            *(
+                list(zip(map(ord, letters), itertools.repeat(ord(replacement))))
+                for replacement, letters in additional_replacements.items()
+            )
+        )
+    )
+    translations_table.update(additional_replacement_table)
+    return translations_table
 
 
 class Homoglyphs(homoglyphs_fork.Homoglyphs):
@@ -508,13 +544,19 @@ def normalize_string_for_name_checks(
 
     * decomposes unicode characters (also applying compatibility decomposition
       to replace letter equivalents)
-    * strips all whitespace, punctuation, mark, control, symbol & special
+    * replaces some confusable characters with corresponding ascii character
+    * strips all characters belonging to categories_to_strip. By default strip
+      whitespace, punctuation, mark, control, symbol & special
       invisible characters (since the string was decomposed, this should also
       remove a bunch of accents)
     """
-    strip_table = build_characters_normalization_strip_table(categories_to_strip)
+    # Normalize first to decompose characters.
     value = unicodedata.normalize('NFKD', force_str(value))
-    value = value.translate(strip_table)
+    # Strip/replace depending on categories_to_strip passed as argument.
+    translations_table = build_characters_normalization_replacement_table(
+        categories_to_strip
+    )
+    value = value.translate(translations_table)
     return value
 
 
@@ -525,24 +567,6 @@ def generate_lowercase_homoglyphs_variants_for_string(value):
     normalization to remove characters we don't want first, see
     normalize_string_for_name_checks().
     """
-    # These are not normally considered confusables, but we think they should.
-    additional_replacements = {
-        'e': ('Э', '℈', 'Є', '€', 'Ꞓ'),
-        'k': ('ĸ', 'κ', 'к', 'қ', 'ҝ', 'ҟ', 'ҡ', 'ᴋ'),
-        'l': ('ꙇ'),
-        'm': ('ʍ', 'м', 'ᴍ'),
-        'o': ('Ѻ', 'ѻ'),
-        't': ('т', 'ᴛ', '𝛕', '𝜏', '𝝉', '𝞃', '𝞽', 'ꚍ', 'ꚑ', 'Ꚍ', 'Ꚑ'),
-    }
-    additional_replacement_table = dict(
-        itertools.chain(
-            *(
-                list(zip(map(ord, letters), itertools.repeat(ord(replacement))))
-                for replacement, letters in additional_replacements.items()
-            )
-        )
-    )
-    value = value.translate(additional_replacement_table)
     homoglyphs = Homoglyphs(
         languages={'en'},
         strategy=homoglyphs_fork.STRATEGY_LOAD,
@@ -1173,6 +1197,31 @@ def verify_condition_with_locales(*, value, check_func, form=None, field_name=No
                     raise
 
 
+def validate_name(name, check_function, error_message, *, form=None):
+    def variant_checker(name):
+        normalized_name = normalize_string_for_name_checks(
+            name, categories_to_strip=('P')
+        ).lower()
+
+        variants = generate_lowercase_homoglyphs_variants_for_string(
+            normalize_string_for_name_checks(name)
+        )
+
+        for index, variant in enumerate(variants):
+            if index > 65535:
+                # index > 65535 means over 16 confusable characters with 2
+                # variants each. That name is likely suspicious, and it's too
+                # expensive to continue anyway. Reject it immediately.
+                raise forms.ValidationError(error_message)
+
+            check_function(normalized_name, variant)
+
+    verify_condition_with_locales(
+        value=name, check_func=variant_checker, form=form, field_name='name'
+    )
+    return name
+
+
 def verify_no_urls(value, *, form=None, field_name=None):
     def _check(value):
         if has_urls(value):
@@ -1264,6 +1313,10 @@ class HttpResponseTemporaryRedirect(HttpResponseRedirectBase):
     redirect POSTs too."""
 
     status_code = 307
+
+
+class HttpResponseURITooLong(HttpResponse):
+    status_code = 414
 
 
 def is_safe_url(url, request, allowed_hosts=None):

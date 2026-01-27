@@ -4,11 +4,7 @@ from django.db import IntegrityError, transaction
 from olympia.addons.models import Addon
 from olympia.amo.tests import TestCase, addon_factory, version_factory
 from olympia.constants import applications
-from olympia.constants.promoted import (
-    DEACTIVATED_LEGACY_IDS,
-    PROMOTED_GROUP_CHOICES,
-    PROMOTED_GROUPS_BY_ID,
-)
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.promoted.models import (
     PromotedAddon,
     PromotedApproval,
@@ -109,45 +105,13 @@ class TestPromotedGroupQuerySet(TestCase):
 
 
 class TestPromotedGroup(TestCase):
-    def test_promoted_group_data_is_derived_from_promoted_groups(self):
-        # Loop over all groups from PROMOTED_GROUPS_BY_ID to ensure complete coverage
-        for const_group in PROMOTED_GROUPS_BY_ID.values():
-            try:
-                pg = PromotedGroup.objects.get(group_id=const_group.id)
-            except PromotedGroup.DoesNotExist:
-                self.fail(f'PromotedGroup with id={const_group.id} not found')
-
-            self.assertEqual(pg.name, const_group.name)
-            self.assertEqual(pg.api_name, const_group.api_name)
-            self.assertAlmostEqual(
-                pg.search_ranking_bump, const_group.search_ranking_bump
-            )
-            self.assertEqual(pg.listed_pre_review, const_group.listed_pre_review)
-            self.assertEqual(pg.unlisted_pre_review, const_group.unlisted_pre_review)
-            self.assertEqual(pg.admin_review, const_group.admin_review)
-            self.assertEqual(pg.badged, const_group.badged)
-            self.assertEqual(
-                pg.autograph_signing_states, const_group.autograph_signing_states
-            )
-            self.assertEqual(pg.can_primary_hero, const_group.can_primary_hero)
-            self.assertEqual(pg.immediate_approval, const_group.immediate_approval)
-            self.assertEqual(
-                pg.flag_for_human_review, const_group.flag_for_human_review
-            )
-            self.assertEqual(
-                pg.can_be_compatible_with_all_fenix_versions,
-                const_group.can_be_compatible_with_all_fenix_versions,
-            )
-            self.assertEqual(pg.high_profile, const_group.high_profile)
-            self.assertEqual(pg.high_profile_rating, const_group.high_profile_rating)
-            expected_active = True
-            self.assertEqual(pg.active, expected_active)
-
     def test_deactived_group_ids_raise(self):
-        for group_id in DEACTIVATED_LEGACY_IDS:
+        for group in PROMOTED_GROUP_CHOICES:
+            if group in PROMOTED_GROUP_CHOICES.ACTIVE:
+                continue
             with self.assertRaises(ValidationError):
                 PromotedGroup.objects.create(
-                    group_id=group_id,
+                    group_id=group.value,
                     name='Test',
                     api_name='test',
                 )
@@ -156,20 +120,6 @@ class TestPromotedGroup(TestCase):
         # Ensure the __str__ method returns the name
         for pg in PromotedGroup.objects.all():
             self.assertEqual(str(pg), pg.name)
-
-    def test_get_active_or_badged_promoted_groups(self):
-        active_groups = PromotedGroup.active_groups()
-        assert len(active_groups) == 6
-        badged_groups = PromotedGroup.badged_groups()
-        assert len(badged_groups) == 2
-
-        for group in PromotedGroup.objects.all():
-            if group.active:
-                assert group in active_groups
-            if group.badged:
-                assert group in badged_groups
-            if not group.active and not group.badged:
-                assert group not in active_groups and group not in badged_groups
 
 
 class TestPromotedAddon(TestCase):

@@ -38,10 +38,7 @@ from olympia.amo.tests import (
 from olympia.amo.utils import send_mail
 from olympia.blocklist.models import Block, BlocklistSubmission
 from olympia.constants.abuse import DECISION_ACTIONS
-from olympia.constants.promoted import (
-    PROMOTED_GROUP_CHOICES,
-    PROMOTED_GROUPS_BY_ID,
-)
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.files.models import File
 from olympia.lib.crypto.signing import SigningError
 from olympia.lib.crypto.tests.test_signing import (
@@ -1730,6 +1727,9 @@ class TestReviewHelper(TestReviewHelperBase):
         assert activity.details['human_review'] is False
 
     def test_unlisted_approve_latest_version_need_human_review(self):
+        CinderJob.objects.create(
+            target_addon=self.addon, resolvable_in_reviewer_tools=True
+        )
         self.setup_data(
             amo.STATUS_NULL, channel=amo.CHANNEL_UNLISTED, human_review=True
         )
@@ -1869,6 +1869,43 @@ class TestReviewHelper(TestReviewHelperBase):
         )
         assert activity.details['human_review'] is True
 
+    def test_nomination_but_rejected_to_public(self):
+        self.sign_file_mock.reset()
+        self.setup_data(amo.STATUS_REJECTED)
+        AddonApprovalsCounter.objects.create(
+            addon=self.addon, last_content_review_pass=False
+        )
+        AutoApprovalSummary.objects.update_or_create(
+            version=self.review_version,
+            defaults={'verdict': amo.AUTO_APPROVED, 'weight': 101},
+        )
+
+        self.helper.handler.approve_latest_version()
+
+        assert self.addon.status == amo.STATUS_REJECTED
+        assert self.addon.versions.all()[0].file.status == (amo.STATUS_APPROVED)
+
+        assert len(mail.outbox) == 1
+        message = mail.outbox[0]
+        self.check_subject(message)
+        assert 'remains unavailable ' in message.body
+
+        # AddonApprovalsCounter counter is now at 1 for this addon.
+        approval_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
+        assert approval_counter.counter == 1
+        assert approval_counter.last_content_review_pass is False  # hasn't changed
+
+        self.sign_file_mock.assert_called_with(self.file)
+        assert storage.exists(self.file.file.path)
+
+        assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
+        activity = (
+            ActivityLog.objects.for_addons(self.addon)
+            .filter(action=amo.LOG.APPROVE_VERSION.id)
+            .get()
+        )
+        assert activity.details['human_review'] is True
+
     def _test_nomination_to_public_not_human(self):
         self.sign_file_mock.reset()
 
@@ -1905,6 +1942,45 @@ class TestReviewHelper(TestReviewHelperBase):
         message = mail.outbox[0]
         self.check_subject(message)
         assert 'been automatically screened and tentatively approved' in message.body
+
+    def test_nomination_but_listing_rejected_to_public_not_human(self):
+        self.setup_data(amo.STATUS_REJECTED, human_review=False)
+        approval_counter = AddonApprovalsCounter.objects.create(
+            addon=self.addon, last_content_review_pass=False
+        )
+        self.sign_file_mock.reset()
+
+        self.helper.handler.approve_latest_version()
+
+        assert self.addon.status == amo.STATUS_REJECTED  # no change
+        assert self.addon.versions.all()[0].file.status == (amo.STATUS_APPROVED)
+
+        # AddonApprovalsCounter counter is still at 0 for this addon since there
+        # was an automatic approval.
+        approval_counter.reload()
+        assert approval_counter.counter == 0
+        assert approval_counter.last_human_review is None
+
+        self.sign_file_mock.assert_called_with(self.file)
+        assert storage.exists(self.file.file.path)
+
+        assert self.check_log_count(amo.LOG.APPROVE_VERSION.id, get_task_user()) == 1
+
+        assert not self.review_version.human_review_date
+        activity = (
+            ActivityLog.objects.for_addons(self.addon)
+            .filter(action=amo.LOG.APPROVE_VERSION.id)
+            .get()
+        )
+        assert activity.details['human_review'] is False
+
+        assert len(mail.outbox) == 1
+        message = mail.outbox[0]
+        self.check_subject(message)
+        assert (
+            'been automatically screened and tentatively approved' not in message.body
+        )
+        assert 'remains unavailable' in message.body
 
     def test_nomination_to_public_not_human_langpack(self):
         self.setup_data(amo.STATUS_NOMINATED, human_review=False, type=amo.ADDON_LPAPP)
@@ -2291,10 +2367,6 @@ class TestReviewHelper(TestReviewHelperBase):
 
         self.addon.reload()
         assert PROMOTED_GROUP_CHOICES.NOTABLE in self.addon.promoted_groups().group_id
-        assert self.review_version.reload().approved_for_groups == [
-            (PROMOTED_GROUPS_BY_ID.get(PROMOTED_GROUP_CHOICES.NOTABLE), amo.FIREFOX),
-            (PROMOTED_GROUPS_BY_ID.get(PROMOTED_GROUP_CHOICES.NOTABLE), amo.ANDROID),
-        ]
 
     def test_addon_with_version_need_human_review_confirm_auto_approval(self):
         NeedsHumanReview.objects.create(version=self.addon.current_version)
@@ -3645,6 +3717,9 @@ class TestReviewHelper(TestReviewHelperBase):
         assert unselected.due_date
 
     def test_clear_needs_human_review_multiple_versions_not_abuse(self):
+        job = CinderJob.objects.create(
+            target_addon=self.addon, resolvable_in_reviewer_tools=True
+        )
         self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
         NeedsHumanReview.objects.create(version=self.review_version)
         # abuse or appeal related NHR are cleared in ContentDecision so aren't cleared
@@ -3675,6 +3750,17 @@ class TestReviewHelper(TestReviewHelperBase):
             .exists()
         )
         assert self.review_version.due_date
+
+        # if the job is already resolved though, the NHR should be cleared
+        ContentDecision.objects.create(
+            addon=self.addon, action=DECISION_ACTIONS.AMO_DISABLE_ADDON, cinder_job=job
+        )
+        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
+        self.helper.set_data(data)
+        self.helper.handler.clear_needs_human_review_multiple_versions()
+        assert not self.review_version.needshumanreview_set.filter(
+            is_active=True
+        ).exists()
 
     def test_set_needs_human_review_multiple_versions(self):
         self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)

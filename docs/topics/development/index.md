@@ -29,4 +29,5 @@ waffle
 remote_settings
 ../../../README.rst
 authentication
+scanner_pipeline
 ```

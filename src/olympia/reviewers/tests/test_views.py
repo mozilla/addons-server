@@ -20,7 +20,7 @@ from django.urls import reverse
 from django.utils.formats import localize
 
 import responses
-from freezegun import freeze_time
+import time_machine
 from lxml.html import HTMLParser, fromstring
 from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
@@ -313,7 +313,7 @@ class TestReviewLog(ReviewerTest):
         assert pq(response.content)('#log-listing tr:not(.hide)').length == 3
 
     def test_start_filter(self):
-        with freeze_time('2017-08-01 10:00'):
+        with time_machine.travel('2017-08-01 10:00', tick=False):
             self.make_approvals()
 
         # Make sure we show the stuff we just made.
@@ -326,10 +326,10 @@ class TestReviewLog(ReviewerTest):
         assert doc('tr.hide').eq(0).text() == 'youwin'
 
     def test_start_default_filter(self):
-        with freeze_time('2017-07-31 10:00'):
+        with time_machine.travel('2017-07-31 10:00', tick=False):
             self.make_approvals()
 
-        with freeze_time('2017-08-01 10:00'):
+        with time_machine.travel('2017-08-01 10:00', tick=False):
             addon = Addon.objects.first()
 
             ActivityLog.objects.create(
@@ -341,7 +341,7 @@ class TestReviewLog(ReviewerTest):
             )
 
         # Make sure the default 'start' to the 1st of a month works properly
-        with freeze_time('2017-08-03 11:00'):
+        with time_machine.travel('2017-08-03 11:00', tick=False):
             response = self.client.get(self.url)
             assert response.status_code == 200
 
@@ -511,7 +511,7 @@ class TestReviewLog(ReviewerTest):
             'Version 2.1.072 content rejected.'
         )
 
-    @freeze_time('2017-08-03')
+    @time_machine.travel('2017-08-03', tick=False)
     def test_review_url(self):
         self.login_as_admin()
         addon = addon_factory()
@@ -1603,7 +1603,7 @@ class TestExtensionQueue(QueueTest):
         rows = doc('#addon-queue tr.addon-row')
         for row in rows:
             assert (
-                NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED.display
+                NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED.label
                 in row.text_content()
             )
 
@@ -1634,7 +1634,7 @@ class TestExtensionQueue(QueueTest):
         rows = doc('#addon-queue tr.addon-row')
         for row in rows:
             assert (
-                NeedsHumanReview.REASONS.BELONGS_TO_PROMOTED_GROUP.display
+                NeedsHumanReview.REASONS.BELONGS_TO_PROMOTED_GROUP.label
                 in row.text_content()
             )
 
@@ -1767,19 +1767,15 @@ class TestExtensionQueue(QueueTest):
         doc = self._test_results()
         rows = doc('#addon-queue tr.addon-row')
         assert (
-            NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION.display
+            NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION.label
             in rows[0].text_content()
         )
+        assert NeedsHumanReview.REASONS.DEVELOPER_REPLY.label in rows[1].text_content()
         assert (
-            NeedsHumanReview.REASONS.DEVELOPER_REPLY.display in rows[1].text_content()
-        )
-        assert (
-            NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION.display
+            NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION.label
             in rows[1].text_content()
         )
-        assert (
-            NeedsHumanReview.REASONS.DEVELOPER_REPLY.display in rows[2].text_content()
-        )
+        assert NeedsHumanReview.REASONS.DEVELOPER_REPLY.label in rows[2].text_content()
 
     def test_different_due_dates_correct_one_is_shown_when_filtering(self):
         self.url += '?due_date_reasons=needs_human_review_developer_reply'
@@ -4195,7 +4191,7 @@ class TestReview(ReviewBase):
             == f'vscode://mozilla.assay/review/{self.addon.guid}/{self.addon.current_version.version}'
         )
 
-    def test_download_sources_link(self):
+    def _setup_source(self):
         version = self.addon.current_version
         tdir = temp.gettempdir()
         source_file = temp.NamedTemporaryFile(suffix='.zip', dir=tdir, mode='r+')
@@ -4204,9 +4200,11 @@ class TestReview(ReviewBase):
         version.source.save(os.path.basename(source_file.name), DjangoFile(source_file))
         version.save()
 
+    def test_download_sources_link(self):
+        self._setup_source()
         url = reverse('reviewers.review', args=[self.addon.pk])
 
-        # Admin reviewer: able to download sources.
+        # Admin user: able to download sources.
         user = UserProfile.objects.get(email='admin@mozilla.com')
         self.client.force_login(user)
         response = self.client.get(url, follow=True)
@@ -4219,6 +4217,40 @@ class TestReview(ReviewBase):
         response = self.client.get(url, follow=True)
         assert response.status_code == 200
         assert b'The developer has provided source code.' in response.content
+
+        # A reviewer with source code view access should be able to download too
+        self.grant_permission(user, ':'.join(amo.permissions.ADDONS_SOURCE_DOWNLOAD))
+        self.client.force_login(user)
+        response = self.client.get(url, follow=True)
+        assert response.status_code == 200
+        assert b'Download files' in response.content
+
+    @override_settings(SOURCE_BUILDER_VIEWER_URL='https://source.builder/')
+    @override_switch('enable-source-builder', active=True)
+    def test_source_builder_link(self):
+        self._setup_source()
+        url = reverse('reviewers.review', args=[self.addon.pk])
+
+        response = self.client.get(url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        builder_link = doc('#versions-history td.files .source-builder')
+        assert builder_link[0].text == 'Source Builder'
+        assert (
+            builder_link.attr['href']
+            == f'https://source.builder/?addon_id={self.addon.id}&version_id={self.addon.current_version.id}'
+        )
+
+    @override_settings(SOURCE_BUILDER_VIEWER_URL='https://source.builder/')
+    @override_switch('enable-source-builder', active=False)
+    def test_no_source_link_if_waffle_off(self):
+        self._setup_source()
+        url = reverse('reviewers.review', args=[self.addon.pk])
+
+        response = self.client.get(url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('#versions-history td.files .source-builder')
 
     def test_translations(self):
         self.addon.name = {
@@ -7751,11 +7783,8 @@ class TestHeldDecisionReview(ReviewerTest):
 
         assert response.status_code == 302
         assert addon.reload().status == amo.STATUS_APPROVED
-        new_job = self.decision.reload().cinder_job
-        assert new_job.resolvable_in_reviewer_tools
-        new_decision = new_job.final_decision
-        assert self.decision.overridden_by == new_decision
-        assert new_decision.action == DECISION_ACTIONS.AMO_REQUEUE
+        assert self.decision.reload().cinder_job is None
+        assert self.decision.overridden_by.action == DECISION_ACTIONS.AMO_REQUEUE
         assert self.decision.reload().action_date is None
         assert NeedsHumanReview.objects.filter(
             reason=NeedsHumanReview.REASONS.SECOND_LEVEL_REQUEUE,

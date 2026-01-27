@@ -325,10 +325,10 @@ def queue(request, tab):
         due_date_reasons_choices = None
         if filter_form.is_valid():
             # Build a choices subset from the submitted reasons.
-            due_date_reasons_choices = NeedsHumanReview.REASONS.__class__(
+            due_date_reasons_choices = NeedsHumanReview.REASONS.extract_subset(
                 *(
-                    entry
-                    for entry in NeedsHumanReview.REASONS.entries
+                    entry.name
+                    for entry in NeedsHumanReview.REASONS
                     if entry.annotation in filter_form.cleaned_data['due_date_reasons']
                 )
             )
@@ -466,6 +466,9 @@ def review(request, addon, channel=None):
     # Other cases are handled in ReviewHelper by limiting what actions are
     # available depending on user permissions and add-on/version state.
     is_admin = acl.action_allowed_for(request.user, amo.permissions.REVIEWS_ADMIN)
+    can_view_source = acl.action_allowed_for(
+        request.user, amo.permissions.ADDONS_SOURCE_DOWNLOAD
+    )
     version = addon.find_latest_version(channel=channel, exclude=(), deleted=is_admin)
     latest_not_disabled_version = addon.find_latest_version(channel=channel)
 
@@ -745,6 +748,7 @@ def review(request, addon, channel=None):
         approvals_info=approvals_info,
         auto_approval_info=auto_approval_info,
         base_version_pk=base_version_pk,
+        can_view_source=can_view_source,
         channel=channel,
         content_review=content_review,
         count=count,

@@ -23,6 +23,7 @@ from olympia.amo.admin import (
 )
 from olympia.amo.templatetags.jinja_helpers import vite_asset
 from olympia.amo.utils import is_safe_url
+from olympia.api.models import APIKey
 from olympia.constants import scanners
 from olympia.constants.scanners import (
     ABORTING,
@@ -37,8 +38,11 @@ from olympia.constants.scanners import (
     SCHEDULED,
     TRUE_POSITIVE,
     UNKNOWN,
+    WEBHOOK,
+    WEBHOOK_EVENTS,
     YARA,
 )
+from olympia.users.models import UserProfile
 
 from .models import (
     ImproperScannerQueryRuleStateError,
@@ -46,6 +50,8 @@ from .models import (
     ScannerQueryRule,
     ScannerResult,
     ScannerRule,
+    ScannerWebhook,
+    ScannerWebhookEvent,
 )
 from .tasks import run_scanner_query_rule
 
@@ -485,7 +491,7 @@ class AbstractScannerRuleAdminMixin:
         if db_field.name == 'scanner':
             kwargs['choices'] = (('', '---------'),)
             for key, value in db_field.get_choices():
-                if key in [CUSTOMS, YARA, NARC]:
+                if key in [CUSTOMS, YARA, NARC, WEBHOOK]:
                     kwargs['choices'] += ((key, value),)
         return super().formfield_for_choice_field(db_field, request, **kwargs)
 
@@ -548,7 +554,7 @@ class ScannerResultAdmin(AbstractScannerResultAdminMixin, AMOModelAdmin):
         'formatted_addon',
         'authors',
         'guid',
-        'scanner',
+        'formatted_scanner',
         'created',
         'state',
         formatted_matched_rules_with_files_and_data,
@@ -560,7 +566,7 @@ class ScannerResultAdmin(AbstractScannerResultAdminMixin, AMOModelAdmin):
         'formatted_addon',
         'guid',
         'authors',
-        'scanner',
+        'formatted_scanner',
         'formatted_matched_rules',
         'formatted_created',
         'result_actions',
@@ -577,6 +583,14 @@ class ScannerResultAdmin(AbstractScannerResultAdminMixin, AMOModelAdmin):
 
     def get_queryset(self, request):
         return super().get_queryset(request).prefetch_related('matched_rules')
+
+    def formatted_scanner(self, obj):
+        if obj.scanner == WEBHOOK:
+            return f'[webhook] {obj.webhook_event}'
+        else:
+            return obj.get_scanner_display()
+
+    formatted_scanner.short_description = 'Scanner'
 
     def safe_referer_redirect(self, request, default_url):
         referer = request.META.get('HTTP_REFERER')
@@ -1051,3 +1065,87 @@ class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, AMOModelAdmin):
         protected = []
 
         return (deleted_objects, model_count, perms_needed, protected)
+
+
+class ScannerWebhookEventInline(admin.StackedInline):
+    model = ScannerWebhookEvent
+    view_on_site = False
+    extra = 0
+
+
+@admin.register(ScannerWebhook)
+class ScannerWebhookAdmin(AMOModelAdmin):
+    view_on_site = False
+
+    inlines = [ScannerWebhookEventInline]
+
+    list_display = (
+        'name',
+        'url',
+        'formatted_events_list',
+        'is_active',
+    )
+    readonly_fields = ('service_account',)
+
+    def get_queryset(self, request):
+        return super().get_queryset(request).prefetch_related('scannerwebhookevent_set')
+
+    def formatted_events_list(self, obj):
+        return ', '.join(
+            [
+                WEBHOOK_EVENTS.get(item.event, '(unknown)')
+                for item in obj.scannerwebhookevent_set.all()
+            ]
+        )
+
+    formatted_events_list.short_description = 'Events'
+
+    def service_account(self, obj):
+        try:
+            user = UserProfile.objects.get_service_account(
+                name=obj.service_account_name
+            )
+        except UserProfile.DoesNotExist:
+            return '(will be automatically created)'
+
+        return format_html(
+            '<a href="{}">{}</a>',
+            urljoin(
+                settings.EXTERNAL_SITE_URL,
+                reverse('admin:users_userprofile_change', args=(user.pk,)),
+            ),
+            user.username,
+        )
+
+    def save_model(self, request, obj, form, change):
+        # First save the model.
+        super().save_model(request, obj, form, change)
+
+        if not change:
+            # Display the JWT keys only once on creation.
+            try:
+                user = UserProfile.objects.get_service_account(
+                    name=obj.service_account_name
+                )
+                api_key = APIKey.get_jwt_key(user=user)
+                messages.add_message(
+                    request,
+                    messages.INFO,
+                    format_html(
+                        'Please note the JWT keys for the service account '
+                        '"<a href="{}">{}</a>":'
+                        '<br><br>'
+                        '<code>{}</code>'
+                        '<br>'
+                        '<code>{}</code>',
+                        urljoin(
+                            settings.EXTERNAL_SITE_URL,
+                            reverse('admin:users_userprofile_change', args=(user.pk,)),
+                        ),
+                        user.username,
+                        api_key.key,
+                        api_key.secret,
+                    ),
+                )
+            except Exception:
+                pass

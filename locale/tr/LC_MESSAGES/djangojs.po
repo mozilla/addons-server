@@ -1,7 +1,7 @@
 # Translations template for addons-server.
-# Copyright (C) 2025 Mozilla
+# Copyright (C) 2026 Mozilla
 # This file is distributed under the same license as the addons-server project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
 msgid ""
 msgstr ""
@@ -479,11 +479,11 @@ msgstr "Yükleniyor&hellip;"
 
 #: static/js/zamboni/reviewers.js:601
 msgid "Version Notes"
-msgstr "Sürüm Notları"
+msgstr "Sürüm notları"
 
 #: static/js/zamboni/reviewers.js:608
 msgid "Notes for Reviewers"
-msgstr "İnceleyicilere Yönelik Notlar"
+msgstr "İnceleyicilere yönelik notlar"
 
 #: static/js/zamboni/reviewers.js:615
 msgid "No version notes found"

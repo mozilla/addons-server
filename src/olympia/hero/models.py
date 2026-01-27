@@ -15,7 +15,7 @@ from olympia.addons.models import Addon
 from olympia.amo.models import LongNameIndex, ModelBase
 from olympia.amo.reverse import resolve_with_trailing_slash, reverse
 from olympia.amo.utils import SafeStorage
-from olympia.constants.promoted import PROMOTED_GROUPS
+from olympia.promoted.models import PromotedGroup
 
 
 GRADIENT_START_COLOR = ('#20123A', 'color-ink-80')
@@ -211,9 +211,9 @@ class PrimaryHero(ModelBase):
                 )
                 if not can_add_to_primary:
                     can_hero_groups = ', '.join(
-                        str(promo.name)
-                        for promo in PROMOTED_GROUPS
-                        if promo.can_primary_hero
+                        PromotedGroup.objects.active()
+                        .filter(can_primary_hero=True)
+                        .values_list('name', flat=True)
                     )
                     error_dict['enabled'] = ValidationError(
                         'Only add-ons that are %s can be enabled for '

@@ -1,5 +1,6 @@
 import json
 from datetime import datetime, timedelta
+from types import DynamicClassAttribute
 
 from django.conf import settings
 from django.core.cache import cache
@@ -11,14 +12,12 @@ from django.template import loader
 from django.urls import reverse
 from django.utils.functional import cached_property
 
-from extended_choices import Choices
-from extended_choices.helpers import ChoiceEntry
-
 import olympia.core.logger
 from olympia import activity, amo, core
 from olympia.abuse.models import AbuseReport, CinderPolicy
 from olympia.access import acl
 from olympia.addons.models import Addon, AddonApprovalsCounter
+from olympia.amo.enum import EnumChoices
 from olympia.amo.models import ModelBase
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import send_mail
@@ -110,10 +109,7 @@ def get_flags(addon, version):
     flags = [
         (prop.replace('_', '-'), title)
         for (prop, title) in VIEW_QUEUE_FLAGS
-        + tuple(
-            (entry.annotation, entry.display)
-            for entry in NeedsHumanReview.REASONS.entries
-        )
+        + tuple((entry.annotation, entry.label) for entry in NeedsHumanReview.REASONS)
         if getattr(version, prop, getattr(addon, prop, None))
         and prop
         not in exclude_flags_by_channel.get(getattr(version, 'channel', None), ())
@@ -935,66 +931,57 @@ class UsageTier(ModelBase):
         return ratings_count_qs
 
 
-class ChoiceEntryWithNHRAnnotationPrefix(ChoiceEntry):
-    @property
+class _EnumChoicesWithAnnotation(EnumChoices):
+    @DynamicClassAttribute
     def annotation(self):
         """Annotation that querysets will use when returning the queue."""
         # This needs to match the classes in the CSS to show the right flag
         # for the right reason, and it's also used in the queue filter form,
         # and therefore in URLs that reviewers might have bookmarked - don't
         # change it lightly!
-        return f'needs_human_review_{self.constant.lower()}'
-
-
-class ChoicesWithNHRAnnotationPrefix(Choices):
-    ChoiceEntryClass = ChoiceEntryWithNHRAnnotationPrefix
+        return f'needs_human_review_{self.name.lower()}'
 
 
 class NeedsHumanReview(ModelBase):
     """Model holding information about why a version was flagged for human
     review."""
 
-    REASONS = ChoicesWithNHRAnnotationPrefix(
-        ('BELONGS_TO_PROMOTED_GROUP', 14, 'Belongs to a promoted group'),
-        ('ADDED_TO_PROMOTED_GROUP', 2, 'Was added to a promoted group'),
-        ('DEVELOPER_REPLY', 6, 'Developer replied'),
-        ('CINDER_ESCALATION', 10, 'Escalated for an abuse report, via cinder'),
-        ('ABUSE_ADDON_VIOLATION', 11, 'Reported for abuse within the add-on'),
-        (
-            'ADDON_REVIEW_APPEAL',
+    class REASONS(_EnumChoicesWithAnnotation):
+        BELONGS_TO_PROMOTED_GROUP = 14, 'Belongs to a promoted group'
+        ADDED_TO_PROMOTED_GROUP = 2, 'Was added to a promoted group'
+        DEVELOPER_REPLY = 6, 'Developer replied'
+        CINDER_ESCALATION = 10, 'Escalated for an abuse report, via cinder'
+        ABUSE_ADDON_VIOLATION = 11, 'Reported for abuse within the add-on'
+        ADDON_REVIEW_APPEAL = (
             12,
             "Appeal of a reviewer's decision about a policy violation",
-        ),
-        ('CINDER_APPEAL_ESCALATION', 15, 'Escalated appeal via cinder'),
-        (
-            'SECOND_LEVEL_REQUEUE',
+        )
+        CINDER_APPEAL_ESCALATION = 15, 'Escalated appeal via cinder'
+        SECOND_LEVEL_REQUEUE = (
             16,
             'Re-enqueued in reviewer tools from 2nd level approval',
-        ),
-        ('ABUSE_REPORTS_THRESHOLD', 9, 'Over abuse reports threshold for usage tier'),
-        ('RATINGS_THRESHOLD', 17, 'Over ratings threshold for usage tier'),
-        (
-            'PENDING_REJECTION_SOURCES_PROVIDED',
+        )
+        ABUSE_REPORTS_THRESHOLD = 9, 'Over abuse reports threshold for usage tier'
+        RATINGS_THRESHOLD = 17, 'Over ratings threshold for usage tier'
+        PENDING_REJECTION_SOURCES_PROVIDED = (
             5,
             'Sources provided while pending rejection',
-        ),
-        ('AUTO_APPROVAL_DISABLED', 13, 'Has auto-approval disabled'),
-        ('SCANNER_ACTION', 1, 'Hit scanner rule'),
-        ('HOTNESS_THRESHOLD', 3, 'Over growth threshold for usage tier'),
-        ('INHERITANCE', 4, 'Previous version in channel had needs human review set'),
-        (
-            'MANUALLY_SET_BY_REVIEWER',
+        )
+        AUTO_APPROVAL_DISABLED = 13, 'Has auto-approval disabled'
+        SCANNER_ACTION = 1, 'Hit scanner rule'
+        HOTNESS_THRESHOLD = 3, 'Over growth threshold for usage tier'
+        INHERITANCE = 4, 'Previous version in channel had needs human review set'
+        MANUALLY_SET_BY_REVIEWER = (
             7,
             'Manually set as needing human review by a reviewer',
-        ),
-        (
-            'AUTO_APPROVED_PAST_APPROVAL_DELAY',
+        )
+        AUTO_APPROVED_PAST_APPROVAL_DELAY = (
             8,
             'Auto-approved but still had an approval delay set in the past',
-        ),
-        ('VERSION_ROLLBACK', 18, 'Rollback to a previous version that was unreviewed'),
-        ('UNKNOWN', 0, 'Unknown'),
-    )
+        )
+        VERSION_ROLLBACK = 18, 'Rollback to a previous version that was unreviewed'
+        UNKNOWN = 0, 'Unknown'
+
     REASONS.add_subset(
         'ABUSE_OR_APPEAL_RELATED',
         (

@@ -1,3 +1,4 @@
+from django import forms
 from django.conf import settings
 from django.utils.translation import gettext
 
@@ -6,6 +7,7 @@ from rest_framework import serializers
 import olympia.core.logger
 from olympia import amo
 from olympia.access.models import Group
+from olympia.activity import log_create
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import (
     ImageCheck,
@@ -16,12 +18,16 @@ from olympia.amo.utils import (
     urlparams,
 )
 from olympia.api.fields import HttpHttpsOnlyURLField
-from olympia.api.serializers import AMOModelSerializer, SiteStatusSerializer
+from olympia.api.serializers import (
+    AMOModelSerializer,
+    PropertyUpdatedMixin,
+    SiteStatusSerializer,
+)
 from olympia.api.utils import is_gate_active
 from olympia.api.validators import OneOrMoreLetterOrNumberCharacterAPIValidator
 from olympia.users import notifications
-from olympia.users.models import DeniedName, UserProfile
-from olympia.users.utils import upload_picture
+from olympia.users.models import UserProfile
+from olympia.users.utils import upload_picture, validate_user_name
 
 
 log = olympia.core.logger.getLogger('accounts')
@@ -102,7 +108,7 @@ class MinimalUserProfileSerializer(FullUserProfileSerializer):
         return data
 
 
-class SelfUserProfileSerializer(FullUserProfileSerializer):
+class SelfUserProfileSerializer(PropertyUpdatedMixin, FullUserProfileSerializer):
     display_name = serializers.CharField(
         min_length=2,
         max_length=50,
@@ -115,6 +121,8 @@ class SelfUserProfileSerializer(FullUserProfileSerializer):
     site_status = SiteStatusSerializer(source='*', read_only=True)
     # Override homepage to use our own URLField with custom validation.
     homepage = HttpHttpsOnlyURLField(required=False, allow_blank=True)
+
+    ACTIVITY_LOG_ACTION = amo.LOG.EDIT_USER_PROPERTY
 
     class Meta(FullUserProfileSerializer.Meta):
         fields = FullUserProfileSerializer.Meta.fields + (
@@ -153,11 +161,12 @@ class SelfUserProfileSerializer(FullUserProfileSerializer):
         return value
 
     def validate_display_name(self, value):
-        if DeniedName.blocked(value):
-            raise serializers.ValidationError(
-                gettext('This display name cannot be used.')
-            )
-        return value
+        error_msg = gettext('This display name cannot be used.')
+
+        try:
+            return validate_user_name(value, error_msg)
+        except forms.ValidationError as exc:
+            raise serializers.ValidationError(exc.messages) from exc
 
     def validate_picture_upload(self, value):
         image_check = ImageCheck(value)
@@ -185,6 +194,13 @@ class SelfUserProfileSerializer(FullUserProfileSerializer):
         photo = validated_data.get('picture_upload')
         if photo:
             upload_picture(instance, photo)
+            log_create(
+                self.ACTIVITY_LOG_ACTION,
+                instance,
+                'picture',
+                '',
+                user=self.context['request'].user,
+            )
         return instance
 
     def to_representation(self, obj):

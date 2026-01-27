@@ -8,8 +8,8 @@
   {% csrf_token %}
   <h3>{{ _('How to Distribute this Version') }}</h3>
     <p>{{ _('To get started, select how you would like to distribute this version.') }}</p>
-    {% if addon and addon.disabled_by_user %}
-      {% include "devhub/addons/includes/invisible_channel_warning.html" %}
+    {% if addon and (addon.disabled_by_user or addon.status == amo.STATUS_REJECTED) %}
+      {% include "devhub/addons/includes/cant_submit_new_listed_versions_warning.html" %}
     {% endif %}
     <div>
         {{ distribution_form.channel }}

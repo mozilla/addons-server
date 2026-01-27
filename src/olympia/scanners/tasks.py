@@ -1,13 +1,15 @@
+import hashlib
+import hmac
 import itertools
 import json
 import os
-import re
 import uuid
 from collections import defaultdict
 
 from django.conf import settings
 from django.db.models import F
 
+import regex
 import requests
 import waffle
 import yara
@@ -33,6 +35,8 @@ from olympia.constants.scanners import (
     NARC,
     RUNNING,
     SCANNERS,
+    WEBHOOK,
+    WEBHOOK_DURING_VALIDATION,
     YARA,
 )
 from olympia.devhub.tasks import validation_task
@@ -46,6 +50,7 @@ from .models import (
     ScannerQueryRule,
     ScannerResult,
     ScannerRule,
+    ScannerWebhookEvent,
 )
 
 
@@ -61,6 +66,85 @@ def make_adapter_with_retry():
         )
     )
     return adapter
+
+
+@validation_task
+def call_webhooks_during_validation(results, upload_pk):
+    log.info('Calling webhooks for FileUpload %s.', upload_pk)
+    upload = FileUpload.objects.get(pk=upload_pk)
+
+    try:
+        if not os.path.exists(upload.file_path):
+            raise ValueError(f'FileUpload "{upload.file_path}" does not exist.')
+
+        call_webhooks(
+            event_name=WEBHOOK_DURING_VALIDATION,
+            payload={'download_url': upload.get_authenticated_download_url()},
+            upload=upload,
+        )
+
+        log.info('All webhooks have been called for FileUpload %s.', upload_pk)
+    except Exception as exc:
+        log.exception('Error while calling webhooks for FileUpload %s.', upload_pk)
+        if not waffle.switch_is_active('ignore-exceptions-in-scanner-tasks'):
+            raise exc
+
+    return results
+
+
+def call_webhooks(event_name, payload, upload=None, version=None):
+    for event in ScannerWebhookEvent.objects.filter(
+        event=event_name, webhook__is_active=True
+    ).all():
+        log.info('Calling webhook "%s".', event.webhook.name)
+
+        try:
+            data = _call_webhook(webhook=event.webhook, payload=payload)
+
+            ScannerResult.objects.create(
+                scanner=WEBHOOK,
+                webhook_event=event,
+                upload=upload,
+                version=version,
+                results=data,
+            )
+        except Exception as exc:
+            log.exception('Error while calling webhook "%s".', event.webhook.name)
+            raise exc
+
+
+def _call_webhook(webhook, payload):
+    with requests.Session() as http:
+        adapter = make_adapter_with_retry()
+        http.mount('http://', adapter)
+        http.mount('https://', adapter)
+
+        data = json.dumps(payload)
+        digest = hmac.new(
+            webhook.api_key.encode(),
+            msg=data.encode(),
+            digestmod=hashlib.sha256,
+        ).hexdigest()
+
+        response = http.post(
+            url=webhook.url,
+            data=data,
+            timeout=settings.SCANNER_TIMEOUT,
+            headers={
+                'Content-Type': 'application/json',
+                'Authorization': f'HMAC-SHA256 {digest}',
+            },
+        )
+    try:
+        data = response.json()
+    except ValueError as exc:
+        # Log the response body when JSON decoding has failed.
+        raise ValueError(response.text) from exc
+
+    if response.status_code not in [200, 201, 202] or 'error' in data:
+        raise ValueError(data)
+
+    return data
 
 
 def run_scanner(results, upload_pk, scanner, api_url, api_key):
@@ -128,7 +212,10 @@ def _run_scanner_for_url(scanner_result, url, scanner, api_url, api_key):
             'download_url': url,
         }
         response = http.post(
-            url=api_url, json=json_payload, timeout=settings.SCANNER_TIMEOUT
+            url=api_url,
+            json=json_payload,
+            timeout=settings.SCANNER_TIMEOUT,
+            headers={'Authorization': f'Bearer {api_key}'},
         )
 
     try:
@@ -273,7 +360,9 @@ def _run_narc(*, scanner_result, version, rules=None):
 
     # Run each rule on the values we've accumulated.
     for rule in rules:
-        definition = re.compile(str(rule.definition), re.I)
+        # We're using `regex`, which is faster/more powerful than the default
+        # `re` module.
+        definition = regex.compile(str(rule.definition), regex.I | regex.E)
         for value, sources in values.items():
             value = str(value)
             variants = [(value, None)]

@@ -11,7 +11,7 @@ from django.test.utils import override_settings
 from django.urls import reverse
 from django.utils.encoding import force_bytes
 
-from freezegun import freeze_time
+import time_machine
 from pyquery import PyQuery as pq
 from rest_framework.test import APIRequestFactory
 from waffle.testutils import override_switch
@@ -238,7 +238,7 @@ class AddonAbuseViewSetTestBase:
             data={
                 'addon': str(addon.guid),
                 'message': 'foo',
-                'reason': reason.constant.lower(),
+                'reason': reason.api_value,
             },
         )
         assert response.status_code == 201
@@ -1241,7 +1241,7 @@ class TestCinderWebhook(TestCase):
         addon_factory(guid=abuse_report.guid)
         assert filter_enforcement_actions([], cinder_job) == []
         actions_from_json = [
-            'amo-disable_addon',
+            'amo-disable-addon',
             'amo-ban-user',
             'amo-approve',
             'not-amo-action',  # not a valid action at all
@@ -3188,7 +3188,7 @@ class TestAppeal(TestCase):
             action=DECISION_ACTIONS.AMO_BAN_USER, addon=None, user=target
         )
         self.abuse_report.update(guid=None, user=target)
-        with freeze_time() as frozen_time:
+        with time_machine.travel(datetime.now(), tick=False) as frozen_time:
             for _x in range(0, 20):
                 self._add_fake_throttling_action(
                     view_class=AbuseAppealEmailForm,
@@ -3209,7 +3209,7 @@ class TestAppeal(TestCase):
             assert doc('ul.errorlist').text() == expected_error_message
 
             # Advance 23 hours, still blocked for that IP.
-            frozen_time.tick(delta=timedelta(hours=21))
+            frozen_time.shift(delta=timedelta(hours=21))
             assert (
                 expected_error_message
                 in response.context_data['appeal_email_form'].non_field_errors()
@@ -3218,7 +3218,7 @@ class TestAppeal(TestCase):
             assert doc('ul.errorlist').text() == expected_error_message
 
             # Advance one day to be able to submit again with the same IP.
-            frozen_time.tick(delta=timedelta(hours=24, seconds=1))
+            frozen_time.shift(delta=timedelta(hours=24, seconds=1))
             response = self.client.post(
                 self.author_appeal_url,
                 {'email': target.email},
@@ -3243,7 +3243,7 @@ class TestAppeal(TestCase):
             action=DECISION_ACTIONS.AMO_BAN_USER, addon=None, user=target
         )
         self.abuse_report.update(guid=None, user=target)
-        with freeze_time():
+        with time_machine.travel(datetime.now(), tick=False):
             for _x in range(0, 20):
                 self._add_fake_throttling_action(
                     view_class=AbuseAppealEmailForm,
@@ -3274,7 +3274,7 @@ class TestAppeal(TestCase):
         user = user_factory()
         self.addon.authors.add(user)
         self.client.force_login(user)
-        with freeze_time() as frozen_time:
+        with time_machine.travel(datetime.now(), tick=False) as frozen_time:
             for _x in range(0, 20):
                 self._add_fake_throttling_action(
                     view_class=AbuseAppealForm,
@@ -3296,7 +3296,7 @@ class TestAppeal(TestCase):
             assert not doc('#appeal-thank-you')
 
             # Advance 23 hours, still blocked for that IP.
-            frozen_time.tick(delta=timedelta(hours=23))
+            frozen_time.shift(delta=timedelta(hours=23))
             assert (
                 expected_error_message
                 in response.context_data['appeal_form'].non_field_errors()
@@ -3306,7 +3306,7 @@ class TestAppeal(TestCase):
             assert not doc('#appeal-thank-you')
 
             # Advance one day to be able to submit again with the same IP.
-            frozen_time.tick(delta=timedelta(hours=24, seconds=1))
+            frozen_time.shift(delta=timedelta(hours=24, seconds=1))
             response = self.client.post(
                 self.author_appeal_url,
                 {'reason': 'I dont like this'},

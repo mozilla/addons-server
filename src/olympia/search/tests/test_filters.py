@@ -7,18 +7,14 @@ from django.test.utils import override_settings
 from django.utils import translation
 from django.utils.http import urlsafe_base64_encode
 
+import time_machine
 from elasticsearch_dsl import Search
-from freezegun import freeze_time
 from rest_framework import serializers
 
 from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.constants.categories import CATEGORIES
-from olympia.constants.promoted import (
-    BADGED_GROUPS,
-    PROMOTED_API_NAME_TO_IDS,
-    PROMOTED_GROUP_CHOICES,
-)
+from olympia.constants.promoted import PROMOTED_API_NAME_TO_IDS, PROMOTED_GROUP_CHOICES
 from olympia.search.filters import (
     AddonCreatedQueryParam,
     AddonRatingQueryParam,
@@ -533,7 +529,7 @@ class TestSortingFilter(FilterTestsBase):
             self._filter(data={'q': 'something', 'promoted': 'line', 'sort': 'random'})
         assert context.exception.detail == [expected]
 
-    @freeze_time('2023-12-24')
+    @time_machine.travel('2023-12-24', tick=False)
     def test_sort_random_featured(self):
         qs = self._filter(data={'featured': 'true', 'sort': 'random'})
         # Note: this test does not call AddonFeaturedQueryParam so it won't
@@ -545,7 +541,7 @@ class TestSortingFilter(FilterTestsBase):
         ]
 
     def test_sort_random_seed(self):
-        with freeze_time('2023-12-24') as frozen_time:
+        with time_machine.travel('2023-12-24', tick=False) as frozen_time:
             qs = self._filter(data={'featured': 'true', 'sort': 'random'})
             assert qs['sort'] == ['_score']
             assert qs['query']['function_score']['functions'] == [
@@ -553,7 +549,7 @@ class TestSortingFilter(FilterTestsBase):
             ]
 
             # Stable within the hour
-            frozen_time.tick(delta=timedelta(minutes=59, seconds=59))
+            frozen_time.shift(delta=timedelta(minutes=59, seconds=59))
             qs = self._filter(data={'featured': 'true', 'sort': 'random'})
             assert qs['sort'] == ['_score']
             assert qs['query']['function_score']['functions'] == [
@@ -561,7 +557,7 @@ class TestSortingFilter(FilterTestsBase):
             ]
 
             # Changes once hour changes.
-            frozen_time.tick(delta=timedelta(seconds=1))
+            frozen_time.shift(delta=timedelta(seconds=1))
             qs = self._filter(data={'featured': 'true', 'sort': 'random'})
             assert qs['sort'] == ['_score']
             assert qs['query']['function_score']['functions'] == [
@@ -569,7 +565,7 @@ class TestSortingFilter(FilterTestsBase):
             ]
 
             # Stays stable again until next hour.
-            frozen_time.tick(delta=timedelta(minutes=59))
+            frozen_time.shift(delta=timedelta(minutes=59))
             qs = self._filter(data={'featured': 'true', 'sort': 'random'})
             assert qs['sort'] == ['_score']
             assert qs['query']['function_score']['functions'] == [
@@ -577,7 +573,7 @@ class TestSortingFilter(FilterTestsBase):
             ]
 
             # Changes again once hour changes again.
-            frozen_time.tick(delta=timedelta(minutes=1))
+            frozen_time.shift(delta=timedelta(minutes=1))
             qs = self._filter(data={'featured': 'true', 'sort': 'random'})
             assert qs['sort'] == ['_score']
             assert qs['query']['function_score']['functions'] == [
@@ -592,7 +588,7 @@ class TestSortingFilter(FilterTestsBase):
                 {'random_score': {'seed': 17733072 + 24, 'field': 'id'}}
             ]
 
-    @freeze_time('2023-12-24')
+    @time_machine.travel('2023-12-24', tick=False)
     def test_sort_random(self):
         qs = self._filter(data={'promoted': 'recommended', 'sort': 'random'})
         # Note: this test does not call AddonPromotedQueryParam so it won't
@@ -708,7 +704,11 @@ class TestSearchParameterFilter(FilterTestsBase):
         filter_ = qs['query']['bool']['filter']
         assert {'terms': {'guid': ['@foobar']}} in filter_
         assert {
-            'terms': {'promoted.group_id': [group.id for group in BADGED_GROUPS]}
+            'terms': {
+                'promoted.group_id': [
+                    group_id for group_id in PROMOTED_GROUP_CHOICES.BADGED.values
+                ]
+            }
         } in filter_
 
     def test_return_to_amo_for_all_listed(self):
@@ -721,7 +721,11 @@ class TestSearchParameterFilter(FilterTestsBase):
         filter_ = qs['query']['bool']['filter']
         assert {'terms': {'guid': ['@foobar']}} in filter_
         assert {
-            'terms': {'promoted.group_id': [group.id for group in BADGED_GROUPS]}
+            'terms': {
+                'promoted.group_id': [
+                    group_id for group_id in PROMOTED_GROUP_CHOICES.BADGED.values
+                ]
+            }
         } not in filter_
 
     def test_search_by_app_invalid(self):
@@ -1542,7 +1546,7 @@ class TestCombinedFilter(FilterTestsBase):
         }
         assert expected in should
 
-    @freeze_time('2023-12-24')
+    @time_machine.travel('2023-12-24', tick=False)
     def test_filter_featured_sort_random(self):
         qs = self._filter(data={'featured': 'true', 'sort': 'random'})
         bool_ = qs['query']['bool']
@@ -1560,7 +1564,7 @@ class TestCombinedFilter(FilterTestsBase):
             {'random_score': {'seed': 17733072, 'field': 'id'}}
         ]
 
-    @freeze_time('2023-12-24')
+    @time_machine.travel('2023-12-24', tick=False)
     def test_filter_promoted_sort_random(self):
         qs = self._filter(data={'promoted': 'spotlight', 'sort': 'random'})
         bool_ = qs['query']['bool']

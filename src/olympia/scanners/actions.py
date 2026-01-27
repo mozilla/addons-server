@@ -152,7 +152,7 @@ def _disable_and_block(*, version, rule):
     successful_appeal = ContentDecision.objects.filter(
         addon=addon,
         action__in=DECISION_ACTIONS.NON_OFFENDING.values,
-        cinder_job__appealed_decisions__action=DECISION_ACTIONS.AMO_BLOCK_ADDON,
+        cinder_job__appealed_decisions__action__in=DECISION_ACTIONS.REMOVING.values,
     )
 
     if (
@@ -165,6 +165,8 @@ def _disable_and_block(*, version, rule):
             rule=rule,
             restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL,
         )
-        reject_and_block_addons([addon])
+        reject_and_block_addons(
+            [addon], reject_reason=f'scanner rule "{rule.pretty_name or rule.name}"'
+        )
     else:
         _delay_auto_approval_indefinitely(version=version, rule=rule)

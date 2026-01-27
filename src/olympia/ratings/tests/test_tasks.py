@@ -7,9 +7,10 @@ from django.conf import settings
 
 import pytest
 import responses
-from freezegun import freeze_time
+import time_machine
 
 from olympia import amo
+from olympia.activity.models import ActivityLog
 from olympia.amo.tests import TestCase, addon_factory, days_ago, user_factory
 from olympia.files.models import File
 from olympia.ratings.models import Rating, RatingAggregate
@@ -239,7 +240,7 @@ def _high_ratings_setup(threshold_field):
     return not_flagged, flagged
 
 
-@freeze_time('2023-06-26 11:00')
+@time_machine.travel('2023-06-26 11:00', tick=False)
 @pytest.mark.django_db
 def test_flag_high_rating_addons_according_to_review_tier():
     set_config(amo.config_keys.EXTRA_REVIEW_TARGET_PER_DAY, '1')
@@ -298,7 +299,7 @@ def test_flag_high_rating_addons_according_to_review_tier():
     ]
 
 
-@freeze_time('2023-06-26 11:00')
+@time_machine.travel('2023-06-26 11:00', tick=False)
 @pytest.mark.django_db
 def test_block_high_rating_addons_according_to_review_tier():
     not_blocked, blocked = _high_ratings_setup(
@@ -327,3 +328,11 @@ def test_block_high_rating_addons_according_to_review_tier():
             .filter(blockversion__isnull=True)
             .exists()
         ), f'Addon {addon}s versions should have been blocked'
+        assert (
+            ActivityLog.objects.filter(
+                addonlog__addon=addon, action=amo.LOG.FORCE_DISABLE.id
+            )
+            .get()
+            .details['reason']
+            == 'Rejected and blocked due to: high rating count'
+        )

@@ -79,7 +79,7 @@ class UploadMixin(amo.tests.AMOPaths):
             user = user_factory()
         with open(abspath if abspath else self.file_path(filename), 'rb') as f:
             xpi = f.read()
-        with core.override_remote_addr('127.0.0.62'):
+        with core.override_remote_addr_or_metadata(ip_address='127.0.0.62'):
             upload = FileUpload.from_post(
                 [xpi],
                 filename=abspath or filename,
@@ -879,6 +879,15 @@ class TestFileUpload(UploadMixin, TestCase):
         addon = Addon.objects.get(pk=3615)
         with self.assertNumQueries(1):
             self.upload(addon=addon)
+
+    def test_from_post_ip_address_and_metadata_set(self):
+        addon = Addon.objects.get(pk=3615)
+        with core.override_remote_addr_or_metadata(
+            ip_address='127.0.0.99', metadata={'foo': 'bar'}
+        ):
+            upload = self.upload(addon=addon)
+        assert upload.ip_address == '127.0.0.99'
+        assert upload.request_metadata == {'foo': 'bar'}
 
     def test_save_without_validation(self):
         upload = FileUpload.objects.create(

@@ -101,7 +101,7 @@ class Command(ProcessObjectsCommand):
                 'queryset_filters': [
                     Q(
                         type=amo.ADDON_STATICTHEME,
-                        status__in=[amo.STATUS_APPROVED, amo.STATUS_NOMINATED],
+                        status__in=amo.VALID_ADDON_STATUSES,
                     )
                 ],
                 'kwargs': {'only_missing': False},

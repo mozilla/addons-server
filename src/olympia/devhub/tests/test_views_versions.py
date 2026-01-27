@@ -15,7 +15,7 @@ from waffle.testutils import override_switch
 from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.activity.utils import ACTIVITY_MAIL_GROUP
-from olympia.addons.models import Addon
+from olympia.addons.models import Addon, AddonApprovalsCounter
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
     TestCase,
@@ -125,6 +125,15 @@ class TestVersion(TestCase):
             reverse('devhub.submit.version', args=[self.addon.slug])
         )
 
+        # Still show for "Invisible" add-ons (they can submit unlisted versions)
+        self.addon.update(disabled_by_user=True)
+        response = self.client.get(url)
+        link = pq(response.content)('.addon-status>.addon-upload>strong>a')
+        assert link.text() == 'Upload New Version'
+        assert link.attr('href') == (
+            reverse('devhub.submit.version', args=[self.addon.slug])
+        )
+
         # Don't show for STATUS_DISABLED addons.
         self.addon.update(status=amo.STATUS_DISABLED)
         response = self.client.get(url)
@@ -180,6 +189,15 @@ class TestVersion(TestCase):
         assert self.addon.versions.count() == 0
         assert Addon.objects.get(id=3615).status == amo.STATUS_NULL
 
+    def test_version_delete_with_rejected_listing(self):
+        AddonApprovalsCounter.objects.create(
+            addon=self.addon, last_content_review_pass=False
+        )
+        response = self.client.post(self.delete_url, self.delete_data)
+        assert response.status_code == 302
+        assert self.addon.versions.count() == 0
+        assert Addon.objects.get(id=3615).status == amo.STATUS_REJECTED
+
     def test_disable_version(self):
         self.delete_data['disable_version'] = ''
         self.client.post(self.delete_url, self.delete_data)
@@ -188,6 +206,13 @@ class TestVersion(TestCase):
         assert (
             ActivityLog.objects.filter(action=amo.LOG.DISABLE_VERSION.id).count() == 1
         )
+
+    def test_disable_version_with_rejected_listing(self):
+        AddonApprovalsCounter.objects.create(
+            addon=self.addon, last_content_review_pass=False
+        )
+        self.test_disable_version()
+        assert Addon.objects.get(id=3615).status == amo.STATUS_REJECTED
 
     def test_cant_disable_or_delete_current_version_recommended(self):
         # If the add-on is recommended you can't disable or delete the current
@@ -519,7 +544,7 @@ class TestVersion(TestCase):
             )
             file.update(status=file_status)
             self.addon.update_status()
-            if status == amo.STATUS_DISABLED:
+            if status in (amo.STATUS_DISABLED, amo.STATUS_REJECTED):
                 self.addon.update(status=status)
 
             self.client.post(cancel_url)
@@ -1051,6 +1076,33 @@ class TestVersion(TestCase):
             'Rétablissement demandé. Vous recevrez une notification une fois approuvé'
             in pq(response.content).text()
         )
+
+    def test_new_upload_button(self):
+        response = self.client.get(self.url)
+        button = pq(response.content)('.version-buttons a.button.version-upload')
+        assert button
+        assert button.text() == 'Upload a New Version'
+        assert button.attr('href') == (
+            reverse('devhub.submit.version', args=[self.addon.slug])
+        )
+
+        # Do show for "Invisible" or "Rejected" add-ons (they can upload an
+        # unlisted version)
+        self.addon.update(status=amo.STATUS_REJECTED)
+        response = self.client.get(self.url)
+        button = pq(response.content)('.version-buttons a.button.version-upload')
+        assert button
+
+        self.addon.update(disabled_by_user=True)
+        response = self.client.get(self.url)
+        button = pq(response.content)('.version-buttons a.button.version-upload')
+        assert button
+
+        # Don't show for STATUS_DISABLED addons.
+        self.addon.update(status=amo.STATUS_DISABLED)
+        response = self.client.get(self.url)
+        button = pq(response.content)('.version-buttons a.button.version-upload')
+        assert not button
 
 
 class TestVersionEditBase(TestCase):

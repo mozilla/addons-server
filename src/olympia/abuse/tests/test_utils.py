@@ -8,6 +8,7 @@ import pytest
 import responses
 
 from olympia import amo
+from olympia.activity.models import ActivityLog
 from olympia.amo.tests import addon_factory, user_factory, version_factory
 from olympia.blocklist.models import Block, BlockType, BlockVersion
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
@@ -55,7 +56,7 @@ def test_reject_and_block_addons():
         callback=lambda r: (201, {}, json.dumps({'uuid': uuid.uuid4().hex})),
     )
 
-    reject_and_block_addons(addons)
+    reject_and_block_addons(addons, reject_reason='violation!')
 
     assert normal_addon.block
     assert not recommended_addon.block
@@ -76,5 +77,24 @@ def test_reject_and_block_addons():
 
     assert len(mail.outbox) == 2  # One for normal, one for partially blocked
     assert mail.outbox[0].to == [normal_addon.authors.get().email]
+    assert 'violation!' not in mail.outbox[0].body
     assert mail.outbox[1].to == [partially_blocked_addon.authors.get().email]
+    assert 'violation!' not in mail.outbox[1].body
     # no email yet for recommended addon - it would come after the 2nd level review
+
+    log_entries = ActivityLog.objects.filter(action=amo.LOG.FORCE_DISABLE.id)
+    assert len(log_entries) == 2
+    assert log_entries[0].details['reason'] == 'Rejected and blocked due to: violation!'
+    assert log_entries[1].details['reason'] == 'Rejected and blocked due to: violation!'
+    log_entries = ActivityLog.objects.filter(
+        action=amo.LOG.HELD_ACTION_FORCE_DISABLE.id
+    )
+    assert len(log_entries) == 1
+    assert log_entries[0].details['reason'] == 'Rejected and blocked due to: violation!'
+
+    assert (
+        ActivityLog.objects.filter(
+            action=amo.LOG.BLOCKLIST_VERSION_SOFT_BLOCKED.id
+        ).count()
+        == 2
+    )

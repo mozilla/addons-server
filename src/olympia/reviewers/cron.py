@@ -1,7 +1,7 @@
 from datetime import date
 
 from olympia.constants.promoted import (
-    PROMOTED_GROUPS,
+    PROMOTED_GROUP_CHOICES,
 )
 from olympia.reviewers.models import QueueCount
 from olympia.reviewers.utils import PendingManualApprovalQueueTable
@@ -17,10 +17,10 @@ def record_reviewer_queues_counts():
     }
     # Also drill down manual review queue by promoted class (there is no real
     # queue for each, but we still want that data).
-    for group in PROMOTED_GROUPS:
-        querysets[f'{PendingManualApprovalQueueTable.name}/{group.api_name}'] = (
+    for group in PROMOTED_GROUP_CHOICES.ACTIVE:
+        querysets[f'{PendingManualApprovalQueueTable.name}/{group.api_value}'] = (
             PendingManualApprovalQueueTable.get_queryset(None).filter(
-                promotedaddon__promoted_group__group_id=group.id
+                promotedaddon__promoted_group__group_id=group.value
             )
         )
 

@@ -10,7 +10,7 @@ from django.test.utils import override_settings
 from django.utils import translation
 
 import responses
-from freezegun import freeze_time
+import time_machine
 from rest_framework.response import Response
 
 from olympia import amo
@@ -505,6 +505,30 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         assert response.status_code == 202
         assert addon.find_latest_version(channel=amo.CHANNEL_UNLISTED)
 
+    def test_no_listed_version_upload_for_rejected_addon(self):
+        addon = Addon.objects.get(guid=self.guid)
+        addon.update(status=amo.STATUS_REJECTED)
+        assert not addon.find_latest_version(channel=amo.CHANNEL_UNLISTED)
+
+        response = self.request('PUT', self.url(self.guid, '3.0'), version='3.0')
+        assert response.status_code == 400
+        error_msg = (
+            'Listed versions cannot be submitted while add-on listing is rejected'
+        )
+        assert error_msg in response.data['error']
+
+        response = self.request(
+            'PUT', self.url(self.guid, '3.0'), version='3.0', channel='listed'
+        )
+        assert response.status_code == 400
+        assert error_msg in response.data['error']
+
+        response = self.request(
+            'PUT', self.url(self.guid, '3.0'), version='3.0', channel='unlisted'
+        )
+        assert response.status_code == 202
+        assert addon.find_latest_version(channel=amo.CHANNEL_UNLISTED)
+
     def test_channel_ignored_for_new_addon(self):
         guid = '@create-version'
         qs = Addon.unfiltered.filter(guid=guid)
@@ -594,7 +618,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         ]
         UserProfile.objects.bulk_create(users)
         users = UserProfile.objects.filter(email__startswith='bulk')
-        with freeze_time('2019-04-08 15:16:23.42') as frozen_time:
+        with time_machine.travel('2019-04-08 15:16:23.42', tick=False) as frozen_time:
             for user in users:
                 self._add_fake_throttling_action(
                     view_class=self.view_class,
@@ -618,7 +642,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
 
             # 'Burst' throttling is 1 minute, so 61 seconds later we should be
             # allowed again.
-            frozen_time.tick(delta=timedelta(seconds=61))
+            frozen_time.shift(delta=timedelta(seconds=61))
             response = self.request(
                 verb,
                 url=url,
@@ -639,7 +663,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         ]
         UserProfile.objects.bulk_create(users)
         users = UserProfile.objects.filter(email__startswith='bulk')
-        with freeze_time('2019-04-08 15:16:23.42') as frozen_time:
+        with time_machine.travel('2019-04-08 15:16:23.42', tick=False) as frozen_time:
             for user in users:
                 # Make the user different every time so that we test the ip
                 # throttling.
@@ -665,7 +689,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
 
             # One minute later, past the 'burst' throttling period, we're still
             # blocked by the 'hourly' limit.
-            frozen_time.tick(delta=timedelta(seconds=61))
+            frozen_time.shift(delta=timedelta(seconds=61))
             response = self.request(
                 verb,
                 url=url,
@@ -679,7 +703,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
 
             # 'hourly' throttling is 1 hour, so 3601 seconds later we should
             # be allowed again.
-            frozen_time.tick(delta=timedelta(seconds=3601))
+            frozen_time.shift(delta=timedelta(seconds=3601))
             response = self.request(
                 verb,
                 url=url,
@@ -692,7 +716,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             assert response.status_code == expected_status
 
     def _test_throttling_verb_user_burst(self, verb, url, expected_status=201):
-        with freeze_time('2019-04-08 15:16:23.42') as frozen_time:
+        with time_machine.travel('2019-04-08 15:16:23.42', tick=False) as frozen_time:
             for _x in range(0, 6):
                 # Make the IP different every time so that we test the user
                 # throttling.
@@ -718,7 +742,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
 
             # 'Burst' throttling is 1 minute, so 61 seconds later we should be
             # allowed again.
-            frozen_time.tick(delta=timedelta(seconds=61))
+            frozen_time.shift(delta=timedelta(seconds=61))
             response = self.request(
                 verb,
                 url=url,
@@ -731,7 +755,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             assert response.status_code == expected_status
 
     def _test_throttling_verb_user_hourly(self, verb, url, expected_status=201):
-        with freeze_time('2019-04-08 15:16:23.42') as frozen_time:
+        with time_machine.travel('2019-04-08 15:16:23.42', tick=False) as frozen_time:
             # 21 is above the hourly limit but below the daily one.
             for _x in range(0, 21):
                 # Make the IP different every time so that we test the user
@@ -758,7 +782,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
 
             # One minute later, past the 'burst' throttling period, we're still
             # blocked by the 'hourly' limit.
-            frozen_time.tick(delta=timedelta(seconds=61))
+            frozen_time.shift(delta=timedelta(seconds=61))
             response = self.request(
                 verb,
                 url=url,
@@ -771,7 +795,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             assert response.status_code == 429
 
             # 3601 seconds later we should be allowed again.
-            frozen_time.tick(delta=timedelta(seconds=3601))
+            frozen_time.shift(delta=timedelta(seconds=3601))
             response = self.request(
                 verb,
                 url=url,
@@ -784,7 +808,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             assert response.status_code == expected_status, response.json()
 
     def _test_throttling_verb_user_daily(self, verb, url, expected_status=201):
-        with freeze_time('2019-04-08 15:16:23.42') as frozen_time:
+        with time_machine.travel('2019-04-08 15:16:23.42', tick=False) as frozen_time:
             for _x in range(0, 50):
                 # Make the IP different every time so that we test the user
                 # throttling.
@@ -810,7 +834,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
 
             # One minute later, past the 'burst' throttling period, we're still
             # blocked by the 'hourly' limit.
-            frozen_time.tick(delta=timedelta(seconds=61))
+            frozen_time.shift(delta=timedelta(seconds=61))
             response = self.request(
                 verb,
                 url=url,
@@ -823,7 +847,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             assert response.status_code == 429
 
             # After the hourly limit, still blocked.
-            frozen_time.tick(delta=timedelta(seconds=3601))
+            frozen_time.shift(delta=timedelta(seconds=3601))
             response = self.request(
                 verb,
                 url=url,
@@ -836,7 +860,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             assert response.status_code == 429
 
             # 86401 seconds later we should be allowed again (24h + 1s).
-            frozen_time.tick(delta=timedelta(seconds=86401))
+            frozen_time.shift(delta=timedelta(seconds=86401))
             response = self.request(
                 verb,
                 url=url,
@@ -893,7 +917,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             self.user, ':'.join(amo.permissions.API_BYPASS_THROTTLING)
         )
         url = self.url(self.guid, '3.0')
-        with freeze_time('2019-04-08 15:16:23.42'):
+        with time_machine.travel('2019-04-08 15:16:23.42', tick=False):
             for _x in range(0, 60):
                 # With that many actions all throttling classes should prevent
                 # the user from submitting an addon...
@@ -1262,7 +1286,7 @@ class TestTestUploadVersionWebextensionTransactions(
 
     def test_activity_log_saved_on_throttling(self):
         url = reverse_ns('signing.version', api_version='v4')
-        with freeze_time('2019-04-08 15:16:23.42'):
+        with time_machine.travel('2019-04-08 15:16:23.42', tick=False):
             for _x in range(0, 3):
                 self._add_fake_throttling_action(
                     view_class=self.view_class,
@@ -1451,7 +1475,7 @@ class TestCheckVersion(BaseUploadVersionTestMixin, TestCase):
         self.create_version('3.0')
         url = self.url(self.guid, '3.0')
 
-        with freeze_time('2019-04-08 15:16:23.42'):
+        with time_machine.travel('2019-04-08 15:16:23.42', tick=False):
             for _x in range(0, 60):
                 # With that many actions all throttling classes should prevent
                 # the user from submitting an addon...

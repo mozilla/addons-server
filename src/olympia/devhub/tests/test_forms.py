@@ -9,7 +9,7 @@ from django.core.files.storage import default_storage as storage
 from django.utils import translation
 
 import pytest
-from freezegun import freeze_time
+import time_machine
 from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
 
@@ -220,7 +220,7 @@ class TestNewUploadForm(TestCase):
         request = req_factory_factory('/', post=True, data=data)
         request.user = user
         request.META['REMOTE_ADDR'] = '5.6.7.8'
-        with freeze_time('2019-04-08 15:16:23.42') as frozen_time:
+        with time_machine.travel('2019-04-08 15:16:23.42', tick=False) as frozen_time:
             for _x in range(0, 6):
                 self._add_fake_throttling_action(
                     view_class=AddonViewSet,
@@ -236,7 +236,7 @@ class TestNewUploadForm(TestCase):
                 'Please try again after some time.'
             ]
 
-            frozen_time.tick(delta=timedelta(seconds=61))
+            frozen_time.shift(delta=timedelta(seconds=61))
             form = forms.NewUploadForm(data, request=request)
             assert form.is_valid()
 
@@ -650,6 +650,12 @@ class TestDistributionChoiceForm(TestCase):
         assert len(form.fields['channel'].choices) == 2
         assert form.fields['channel'].choices[0][0] == 'listed'
         assert form.fields['channel'].choices[1][0] == 'unlisted'
+
+        # Rejected add-ons don't get to choose "On this site." either.
+        addon.status = amo.STATUS_REJECTED
+        form = forms.DistributionChoiceForm(addon=addon)
+        assert len(form.fields['channel'].choices) == 1
+        assert form.fields['channel'].choices[0][0] == 'unlisted'
 
 
 class TestDescribeForm(TestCase):
@@ -1300,12 +1306,12 @@ class TestAPIKeyForm(TestCase):
         return req_factory_factory(url, post=True, user=self.user, data=data)
 
     def test_fields_without_credentials_or_confirmation(self):
-        request = self._request(action=forms.APIKeyForm.ACTION_CHOICES.confirm)
+        request = self._request(action=forms.APIKeyForm.ACTION_CHOICES.CONFIRM)
         form = forms.APIKeyForm(request.POST, request=request)
         assert form.available_actions == [
-            forms.APIKeyForm.ACTION_CHOICES.confirm,
+            forms.APIKeyForm.ACTION_CHOICES.CONFIRM,
         ]
-        assert form.is_valid()
+        assert form.is_valid(), form.errors
         assert 'credentials_key' not in form.fields
         assert 'credentials_secret' not in form.fields
         assert 'confirmation_token' not in form.fields
@@ -1321,7 +1327,7 @@ class TestAPIKeyForm(TestCase):
             assert form.errors['recaptcha'] == ['This field is required.']
 
             request = self._request(
-                action=forms.APIKeyForm.ACTION_CHOICES.confirm,
+                action=forms.APIKeyForm.ACTION_CHOICES.CONFIRM,
                 data={'g-recaptcha-response': 'test'},
             )
             form = forms.APIKeyForm(request.POST, request=request)
@@ -1330,7 +1336,7 @@ class TestAPIKeyForm(TestCase):
     def test_fields_with_credentials(self):
         APIKey.new_jwt_credentials(self.user)
         credentials = APIKey.get_jwt_key(user=self.user)
-        request = self._request(action=forms.APIKeyForm.ACTION_CHOICES.revoke)
+        request = self._request(action=forms.APIKeyForm.ACTION_CHOICES.REVOKE)
         form = forms.APIKeyForm(request.POST, request=request)
         assert 'confirmation_token' not in form.fields
         assert 'recaptcha' not in form.fields
@@ -1352,12 +1358,12 @@ class TestAPIKeyForm(TestCase):
 
         assert form.is_valid()
         assert form.available_actions == [
-            forms.APIKeyForm.ACTION_CHOICES.revoke,
+            forms.APIKeyForm.ACTION_CHOICES.REVOKE,
         ]
 
     def test_fields_with_confirmation(self):
         confirmation = APIKeyConfirmation.objects.create(user=self.user, token='test')
-        request = self._request(action=forms.APIKeyForm.ACTION_CHOICES.generate)
+        request = self._request(action=forms.APIKeyForm.ACTION_CHOICES.GENERATE)
         form = forms.APIKeyForm(request.POST, request=request)
         assert 'credentials_key' not in form.fields
         assert 'credentials_secret' not in form.fields
@@ -1373,24 +1379,24 @@ class TestAPIKeyForm(TestCase):
         assert form.available_actions == []
 
         request = self._request(
-            action=forms.APIKeyForm.ACTION_CHOICES.generate,
+            action=forms.APIKeyForm.ACTION_CHOICES.GENERATE,
             token=confirmation.token,
         )
         form = forms.APIKeyForm(request.POST, request=request)
         assert form.is_valid()
         assert form.available_actions == [
-            forms.APIKeyForm.ACTION_CHOICES.generate,
+            forms.APIKeyForm.ACTION_CHOICES.GENERATE,
         ]
 
         confirmation.update(confirmed_once=True)
         request = self._request(
-            action=forms.APIKeyForm.ACTION_CHOICES.generate,
+            action=forms.APIKeyForm.ACTION_CHOICES.GENERATE,
             token=None,
         )
         form = forms.APIKeyForm(request.POST, request=request)
         assert form.is_valid()
         assert form.available_actions == [
-            forms.APIKeyForm.ACTION_CHOICES.generate,
+            forms.APIKeyForm.ACTION_CHOICES.GENERATE,
         ]
 
     def test_fields_with_credentials_and_confirmation(self):
@@ -1398,7 +1404,7 @@ class TestAPIKeyForm(TestCase):
         confirmation = APIKeyConfirmation.objects.create(
             user=self.user, token='test', confirmed_once=True
         )
-        request = self._request(action=forms.APIKeyForm.ACTION_CHOICES.revoke)
+        request = self._request(action=forms.APIKeyForm.ACTION_CHOICES.REVOKE)
         form = forms.APIKeyForm(request.POST, request=request)
         assert 'recaptcha' not in form.fields
         assert 'confirmation_token' not in form.fields
@@ -1406,22 +1412,22 @@ class TestAPIKeyForm(TestCase):
         assert 'credentials_secret' in form.fields
         assert form.is_valid()
         assert form.available_actions == [
-            forms.APIKeyForm.ACTION_CHOICES.revoke,
-            forms.APIKeyForm.ACTION_CHOICES.regenerate,
+            forms.APIKeyForm.ACTION_CHOICES.REVOKE,
+            forms.APIKeyForm.ACTION_CHOICES.REGENERATE,
         ]
 
         confirmation.update(confirmed_once=False)
         form = forms.APIKeyForm(request.POST, request=request)
         assert form.is_valid()
         assert form.available_actions == [
-            forms.APIKeyForm.ACTION_CHOICES.revoke,
+            forms.APIKeyForm.ACTION_CHOICES.REVOKE,
         ]
 
     def test_revoke_credentials(self):
         APIKey.new_jwt_credentials(self.user)
         credentials = APIKey.get_jwt_key(user=self.user)
         assert credentials.is_active is True
-        request = self._request(action=forms.APIKeyForm.ACTION_CHOICES.revoke)
+        request = self._request(action=forms.APIKeyForm.ACTION_CHOICES.REVOKE)
         form = forms.APIKeyForm(request.POST, request=request)
         assert form.is_valid()
         form.save()
@@ -1432,7 +1438,7 @@ class TestAPIKeyForm(TestCase):
         confirmation = APIKeyConfirmation.objects.get(user=self.user)
         assert confirmation.confirmed_once is False
         request = self._request(
-            action=forms.APIKeyForm.ACTION_CHOICES.generate, token=confirmation.token
+            action=forms.APIKeyForm.ACTION_CHOICES.GENERATE, token=confirmation.token
         )
         form = forms.APIKeyForm(request.POST, request=request)
         assert form.is_valid()
@@ -1441,7 +1447,7 @@ class TestAPIKeyForm(TestCase):
         assert form.credentials == APIKey.get_jwt_key(user=self.user)
 
     def test_send_confirmation(self):
-        request = self._request(action=forms.APIKeyForm.ACTION_CHOICES.confirm)
+        request = self._request(action=forms.APIKeyForm.ACTION_CHOICES.CONFIRM)
         form = forms.APIKeyForm(request.POST, request=request)
         assert form.confirmation is None
         assert form.is_valid()

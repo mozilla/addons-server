@@ -15,9 +15,9 @@ from django.test.utils import override_settings
 from django.urls import reverse
 from django.utils.encoding import force_str
 
-import freezegun
 import jwt
 import responses
+import time_machine
 from rest_framework import exceptions
 from rest_framework.settings import api_settings
 from rest_framework.test import APIClient, APIRequestFactory
@@ -45,7 +45,7 @@ from olympia.amo.tests import (
 )
 from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.api.tests.utils import APIKeyAuthTestMixin
-from olympia.users.models import UserNotification, UserProfile
+from olympia.users.models import DeniedName, UserNotification, UserProfile
 from olympia.users.notifications import (
     NOTIFICATIONS_BY_ID,
     NOTIFICATIONS_COMBINED,
@@ -260,7 +260,11 @@ class TestLoginUserAndRegisterUser(TestCase):
         views.login_user(self.__class__, self.request, user, self.identity)
         self.assertCloseToNow(user.last_login)
         assert user.last_login_ip == '8.8.8.8'
-        incr_mock.assert_called_with('accounts.account_created_from_fxa')
+        assert incr_mock.call_count == 2
+        assert incr_mock.call_args_list[0][0][0] == 'accounts.account_created_from_fxa'
+        assert (
+            incr_mock.call_args_list[1][0][0] == 'accounts.account_recreated_from_fxa'
+        )
 
     def test_login_with_token_data(self):
         token_data = {
@@ -287,9 +291,14 @@ class TestFindUser(TestCase):
         assert user == found_user
 
     def test_user_exists_with_email(self):
-        user = UserProfile.objects.create(fxa_id='9999', email='me@amo.ca')
+        user = UserProfile.objects.create(fxa_id=None, email='me@amo.ca')
         found_user = views.find_user({'uid': '8888', 'email': 'me@amo.ca'})
         assert user == found_user
+
+        # If there is a fxa_id mismatch they can't log in even if the email is
+        # correct.
+        user.update(fxa_id='9999')
+        assert views.find_user({'uid': '8888', 'email': 'me@amo.ca'}) is None
 
     def test_user_exists_with_both(self):
         user = UserProfile.objects.create(fxa_id='9999', email='me@amo.ca')
@@ -297,31 +306,44 @@ class TestFindUser(TestCase):
         assert user == found_user
 
     def test_two_users_exist(self):
-        UserProfile.objects.create(fxa_id='9999', email='me@amo.ca', username='me')
+        me = UserProfile.objects.create(fxa_id='9999', email='me@amo.ca', username='me')
         UserProfile.objects.create(fxa_id='8888', email='you@amo.ca', username='you')
-        with self.assertRaises(UserProfile.MultipleObjectsReturned):
-            views.find_user({'uid': '9999', 'email': 'you@amo.ca'})
+        # Correct fxa_id wins all the time, email is ignored even if it would
+        # match.
+        assert views.find_user({'uid': '9999', 'email': 'you@amo.ca'}) == me
+
+        # We don't fall back on email if the account has an fxa_id.
+        assert views.find_user({'uid': '6666', 'email': 'me@amo.ca'}) is None
 
     def test_find_user_banned(self):
-        UserProfile.objects.create(
-            fxa_id='abc',
+        user = UserProfile.objects.create(
             email='me@amo.ca',
             deleted=True,
             banned=datetime.now(),
         )
+        # Banned user with no fxa_id, we find them by email (ignoring the fxa_id).
         with self.assertRaises(exceptions.PermissionDenied):
-            views.find_user({'uid': 'abc', 'email': 'you@amo.ca'})
+            views.find_user({'uid': 'abc', 'email': 'me@amo.ca'})
+
+        # Banned user with fxa_id, we find them by fxa_id (ignoring the email)
+        user.update(fxa_id='abc')
+        with self.assertRaises(exceptions.PermissionDenied):
+            views.find_user({'uid': 'abc', 'email': 'ignored@some.where'})
 
     def test_find_user_deleted(self):
         user = UserProfile.objects.create(fxa_id='abc', email='me@amo.ca', deleted=True)
         assert views.find_user({'uid': 'abc', 'email': 'you@amo.ca'}) == user
 
     def test_find_user_mozilla(self):
-        task_user = user_factory(id=settings.TASK_USER_ID, fxa_id='abc')
-        with self.assertRaises(exceptions.PermissionDenied):
-            views.find_user({'uid': '123456', 'email': task_user.email})
+        task_user = user_factory(id=settings.TASK_USER_ID)
         with self.assertRaises(exceptions.PermissionDenied):
             views.find_user({'uid': task_user.fxa_id, 'email': 'doesnt@matta'})
+
+        # Even if they don't have a fxa_id, you can't log in by email with the
+        # task user.
+        task_user.update(fxa_id=None)
+        with self.assertRaises(exceptions.PermissionDenied):
+            views.find_user({'uid': '123456', 'email': task_user.email})
 
 
 class TestWithUser(TestCase):
@@ -337,8 +359,8 @@ class TestWithUser(TestCase):
         self.fxa_identify = self.patch('olympia.accounts.views.verify.fxa_identify')
         self.find_user = self.patch('olympia.accounts.views.find_user')
         self.request = mock.MagicMock()
-        self.user = AnonymousUser()
-        self.request.user = self.user
+        self.user = user_factory()
+        self.request.user = AnonymousUser()
         self.request.session = {'fxa_state': 'some-blob'}
 
     def get_fxa_config(self, request):
@@ -600,8 +622,6 @@ class TestWithUser(TestCase):
         }
 
     def test_addon_developer_should_redirect_for_two_factor_auth(self):
-        self.create_flag('2fa-enforcement-for-developers-and-special-users')
-        self.user = user_factory()
         # They have developed a theme, but also an extension, so they will need
         # 2FA.
         addon_factory(users=[self.user])
@@ -609,37 +629,15 @@ class TestWithUser(TestCase):
         self._test_should_redirect_for_two_factor_auth()
 
     def test_special_user_should_redirect_for_two_factor_auth(self):
-        self.create_flag('2fa-enforcement-for-developers-and-special-users')
-        self.user = user_factory()
         # User isn't a developer but is part of a group.
         self.grant_permission(self.user, 'Some:Thing')
         self._test_should_redirect_for_two_factor_auth()
-
-    def test_user_should_redirect_for_two_factor_auth_flag_user_specific(self):
-        self.user = user_factory()
-        flag = self.create_flag(
-            '2fa-enforcement-for-developers-and-special-users', everyone=False
-        )
-        flag.users.add(self.user)
-        # User isn't a developer but is part of a group.
-        self.grant_permission(self.user, 'Some:Thing')
-        # The flag is enabled for that user.
-        self._test_should_redirect_for_two_factor_auth()
-
-        # Others should be unaffected as the flag is only set for a specific
-        # user.
-        self.user = user_factory()
-        self.grant_permission(self.user, 'Some:Thing')
-        self._test_should_continue_without_redirect_for_two_factor_auth()
 
     def test_theme_developer_should_not_redirect_for_two_factor_auth(self):
-        self.create_flag('2fa-enforcement-for-developers-and-special-users')
-        self.user = user_factory()
         addon_factory(users=[self.user], type=amo.ADDON_STATICTHEME)
         self._test_should_continue_without_redirect_for_two_factor_auth()
 
     def test_addon_developer_already_using_two_factor_should_continue(self):
-        self.create_flag('2fa-enforcement-for-developers-and-special-users')
         self.user = user_factory()
         addon_factory(users=[self.user])
         identity = {
@@ -652,8 +650,6 @@ class TestWithUser(TestCase):
         )
 
     def test_2fa_enforced_already_using_two_factor_should_continue(self):
-        self.create_flag('2fa-enforcement-for-developers-and-special-users')
-        self.user = user_factory()
         identity = {
             'uid': '1234',
             'email': 'hey@yo.it',
@@ -668,30 +664,11 @@ class TestWithUser(TestCase):
         assert 'enforce_2fa' not in self.request.session
 
     def test_2fa_enforced_on_this_view_should_redirect_for_two_factor_auth(self):
-        self.create_flag('2fa-enforcement-for-developers-and-special-users')
-        self.user = user_factory()
         self.request.session['enforce_2fa'] = True
         self._test_should_redirect_for_two_factor_auth()
 
-    def test_waffle_flag_off_developer_without_2fa_should_continue(self):
-        self.create_flag(
-            '2fa-enforcement-for-developers-and-special-users', everyone=False
-        )
-        self.user = user_factory()
-        addon_factory(users=[self.user])
-        self._test_should_continue_without_redirect_for_two_factor_auth()
-
-    def test_waffle_flag_off_enforced_2fa_should_have_no_effect(self):
-        self.create_flag(
-            '2fa-enforcement-for-developers-and-special-users', everyone=False
-        )
-        self.user = user_factory()
-        self.request.session['enforce_2fa'] = True
-        self._test_should_continue_without_redirect_for_two_factor_auth()
-
     @override_settings(FXA_CONFIG={'default': {'client_id': ''}})
     def test_fake_fxa_auth(self):
-        self.user = user_factory()
         self.find_user.return_value = self.user
         self.request.data = {
             'code': 'foo',
@@ -712,7 +689,6 @@ class TestWithUser(TestCase):
 
     @override_settings(FXA_CONFIG={'default': {'client_id': ''}})
     def test_fake_fxa_auth_with_2fa(self):
-        self.user = user_factory()
         self.find_user.return_value = self.user
         self.request.data = {
             'code': 'foo',
@@ -1037,7 +1013,7 @@ class TestAuthenticateView(TestCase, InitializeSessionMixin):
 
     def test_success_with_account_logs_in(self):
         user = UserProfile.objects.create(
-            username='foobar', email='real@yeahoo.com', fxa_id='10'
+            username='foobar', email='real@yeahoo.com', fxa_id='9001'
         )
         identity = {'email': 'real@yeahoo.com', 'uid': '9001'}
         self.fxa_identify.return_value = identity, self.token_data
@@ -1060,7 +1036,7 @@ class TestAuthenticateView(TestCase, InitializeSessionMixin):
         UserProfile.objects.create(
             username='foobar',
             email='real@yeahoo.com',
-            fxa_id='10',
+            fxa_id='9001',
             deleted=True,
             banned=datetime.now(),
         )
@@ -1069,8 +1045,26 @@ class TestAuthenticateView(TestCase, InitializeSessionMixin):
         response = self.client.get(self.url, {'code': 'code', 'state': self.fxa_state})
         assert response.status_code == 403
 
+    def test_banned_user_other_account_same_email_cant_log_in(self):
+        UserProfile.objects.create(
+            username='foobar',
+            email='real@yeahoo.com',
+            fxa_id='9000',
+            deleted=True,
+            banned=datetime.now(),
+        )
+        UserProfile.objects.create(
+            username='foobar_not_banned',
+            email='real@yeahoo.com',
+            fxa_id='9001',
+        )
+        identity = {'email': 'real@yeahoo.com', 'uid': '9001'}
+        self.fxa_identify.return_value = identity, self.token_data
+        response = self.client.get(self.url, {'code': 'code', 'state': self.fxa_state})
+        assert response.status_code == 403
+
     def test_log_in_redirects_to_next_path(self):
-        user = UserProfile.objects.create(email='real@yeahoo.com', fxa_id='10')
+        user = UserProfile.objects.create(email='real@yeahoo.com', fxa_id='9001')
         identity = {'email': 'real@yeahoo.com', 'uid': '9001'}
         self.fxa_identify.return_value = identity, self.token_data
         response = self.client.get(
@@ -1507,6 +1501,30 @@ class TestAccountViewSetUpdate(TestCase):
         response = self.patch(data={'display_name': 'a' * 50})
         assert response.status_code == 200
 
+    def test_display_name_denied_name(self):
+        DeniedName.objects.create(name='foo')
+        self.client.login_api(self.user)
+        response = self.patch(data={'display_name': 'foó_thing'})
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'display_name': ['This display name cannot be used.']
+        }
+
+        # homoglyphs don't bypass the validation
+        response = self.patch(data={'display_name': 'fѻѺ_thing'})
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'display_name': ['This display name cannot be used.']
+        }
+
+    def test_display_name_too_many_homoglyphs(self):
+        self.client.login_api(self.user)
+        response = self.patch(data={'display_name': 'l' * 17})
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'display_name': ['This display name cannot be used.']
+        }
+
     @override_settings(EXTERNAL_SITE_URL='https://example.org')
     def test_validate_homepage(self):
         self.client.login_api(self.user)
@@ -1608,6 +1626,49 @@ class TestAccountViewSetUpdate(TestCase):
                 'an image or a corrupted image.'
             ]
         }
+
+    def test_logging(self):
+        self.user.update(biography=None, occupation='same', location='old place')
+        self.client.login_api(self.user)
+        photo = get_uploaded_file('transparent.png')
+        data = {
+            'picture_upload': photo,
+            'biography': '',  # None to '', shouldn't log
+            'display_name': 'New Name',
+            'occupation': 'same',  # unchanged, shouldn't log
+            'location': 'new place',
+        }
+        response = self.client.patch(self.url, data, format='multipart')
+
+        assert response.status_code == 200
+        json_content = json.loads(force_str(response.content))
+        self.user = self.user.reload()
+        assert 'anon_user.png' not in json_content['picture_url']
+        assert '%s.png' % self.user.id in json_content['picture_url']
+        assert self.user.biography == ''
+        assert self.user.name == 'New Name'
+        assert self.user.location == 'new place'
+        alogs = list(
+            ActivityLog.objects.filter(
+                user=self.user, action=amo.LOG.EDIT_USER_PROPERTY.id
+            )
+        )
+        assert len(alogs) == 3
+        assert alogs[0].arguments == [
+            self.user,
+            'picture',
+            '',
+        ]
+        assert alogs[1].arguments == [
+            self.user,
+            'display_name',
+            '{"removed": "", "added": "New Name"}',
+        ]
+        assert alogs[2].arguments == [
+            self.user,
+            'location',
+            '{"removed": "old place", "added": "new place"}',
+        ]
 
 
 class TestAccountViewSetDelete(TestCase):
@@ -2230,7 +2291,7 @@ class TestAccountNotificationViewSetUpdate(TestCase):
 
 
 class TestAccountNotificationUnsubscribe(TestCase):
-    client_class = APITestClientSessionID
+    client_class = APIClient
 
     def setUp(self):
         self.user = user_factory()
@@ -2286,6 +2347,14 @@ class TestAccountNotificationUnsubscribe(TestCase):
             user=self.user, notification_id=notification_const.id
         )
         assert not ntn.enabled
+
+    def test_unsubscribe_old_userprofile_with_same_email_is_ignored(self):
+        user_factory(email=self.user.email, deleted=True)
+        self.test_unsubscribe_user()
+
+    def test_unsubscribe_deleted_userprofile_with_same_email_is_ignored(self):
+        user_factory(email=self.user.email, created=self.days_ago(1234))
+        self.test_unsubscribe_user()
 
     def test_unsubscribe_invalid_notification(self):
         token, hash_ = UnsubscribeCode.create(self.user.email)
@@ -2411,7 +2480,7 @@ class TestFxaNotificationView(TestCase):
         with (
             mock.patch(f'{class_path}.get_jwt_payload') as get_jwt_mock,
             mock.patch(f'{class_path}.process_event') as process_event_mock,
-            freezegun.freeze_time(),
+            time_machine.travel(datetime.now(), tick=False),
         ):
             get_jwt_mock.return_value = self.FXA_EVENT
             response = self.client.post(url)
@@ -2424,14 +2493,15 @@ class TestFxaNotificationView(TestCase):
 
     @mock.patch('olympia.accounts.views.primary_email_change_event.delay')
     def test_process_event_email_change(self, event_mock):
-        with freezegun.freeze_time():
+        someday = datetime(2025, 10, 26, 1, 24)
+        with time_machine.travel(someday, tick=False):
             FxaNotificationView().process_event(
                 self.FXA_ID,
                 FxaNotificationView.FXA_PROFILE_CHANGE_EVENT,
                 {'email': 'new-email@example.com'},
             )
             event_mock.assert_called_with(
-                self.FXA_ID, datetime.now().timestamp(), 'new-email@example.com'
+                self.FXA_ID, someday.timestamp(), 'new-email@example.com'
             )
 
     def test_process_event_email_change_integration(self):
@@ -2440,7 +2510,7 @@ class TestFxaNotificationView(TestCase):
             fxa_id=self.FXA_ID,
             email_changed=datetime(2017, 10, 11),
         )
-        with freezegun.freeze_time():
+        with time_machine.travel(datetime(2025, 10, 26, 1, 24), tick=False):
             FxaNotificationView().process_event(
                 self.FXA_ID,
                 FxaNotificationView.FXA_PROFILE_CHANGE_EVENT,
@@ -2453,13 +2523,14 @@ class TestFxaNotificationView(TestCase):
 
     @mock.patch('olympia.accounts.views.delete_user_event.delay')
     def test_process_event_delete(self, event_mock):
-        with freezegun.freeze_time():
+        someday = datetime(2025, 10, 26, 1, 24)
+        with time_machine.travel(someday, tick=False):
             FxaNotificationView().process_event(
                 self.FXA_ID,
                 FxaNotificationView.FXA_DELETE_EVENT,
                 {},
             )
-            event_mock.assert_called_with(self.FXA_ID, datetime.now().timestamp())
+            event_mock.assert_called_with(self.FXA_ID, someday.timestamp())
 
     @override_switch('fxa-account-delete', active=True)
     def test_process_event_delete_integration(self):

@@ -1,7 +1,7 @@
 # Translations template for addons-server.
-# Copyright (C) 2025 Mozilla
+# Copyright (C) 2026 Mozilla
 # This file is distributed under the same license as the addons-server project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
 msgid ""
 msgstr ""
@@ -216,7 +216,7 @@ msgstr "جزئیات {0}"
 
 #: static/js/stats/csv_keys.js:13
 msgid "Firefox"
-msgstr ""
+msgstr "Firefox"
 
 #: static/js/stats/csv_keys.js:14
 msgid "Mozilla"

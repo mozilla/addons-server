@@ -41,10 +41,7 @@ from olympia.bandwagon.models import Collection
 from olympia.constants.applications import APP_IDS, APPS_ALL
 from olympia.constants.base import ADDON_TYPE_CHOICES_API
 from olympia.constants.categories import CATEGORIES_BY_ID
-from olympia.constants.promoted import (
-    PROMOTED_GROUP_CHOICES,
-    PROMOTED_GROUPS_BY_ID,
-)
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.files.models import File, FileUpload
 from olympia.files.utils import DuplicateAddonID, parse_addon
 from olympia.promoted.models import PromotedGroup
@@ -52,6 +49,10 @@ from olympia.ratings.utils import get_grouped_ratings
 from olympia.scanners.tasks import run_narc_on_version
 from olympia.search.filters import AddonAppVersionQueryParam
 from olympia.tags.models import Tag
+from olympia.translations.utils import (
+    fetch_translations_from_instance,
+    get_translation_differences,
+)
 from olympia.users.models import RESTRICTION_TYPES, EmailUserRestriction, UserProfile
 from olympia.versions.models import (
     ApplicationsVersions,
@@ -86,7 +87,6 @@ from .models import (
     ReplacementAddon,
 )
 from .tasks import resize_icon, resize_preview
-from .utils import fetch_translations_from_addon, get_translation_differences
 from .validators import (
     AddonDefaultLocaleValidator,
     AddonMetadataValidator,
@@ -570,6 +570,13 @@ class DeveloperVersionSerializer(VersionSerializer):
                             gettext(
                                 'Listed versions cannot be submitted while add-on is '
                                 'disabled.'
+                            )
+                        )
+                    elif self.addon.status == amo.STATUS_REJECTED:
+                        raise exceptions.ValidationError(
+                            gettext(
+                                'Listed versions cannot be submitted while add-on '
+                                'listing is rejected.'
                             )
                         )
         elif 'source' in data:
@@ -1360,7 +1367,7 @@ class AddonSerializer(AMOModelSerializer):
     def update(self, instance, validated_data):
         fields_to_review = ('name', 'summary')
         old_metadata = (
-            fetch_translations_from_addon(instance, fields_to_review)
+            fetch_translations_from_instance(instance, fields_to_review)
             if instance.has_listed_versions()
             else None
         )
@@ -1391,7 +1398,7 @@ class AddonSerializer(AMOModelSerializer):
             )
 
         if old_metadata is not None and old_metadata != (
-            new_metadata := fetch_translations_from_addon(instance, fields_to_review)
+            new_metadata := fetch_translations_from_instance(instance, fields_to_review)
         ):
             statsd.incr('addons.submission.metadata_content_review_triggered')
             changes = get_translation_differences(old_metadata, new_metadata)
@@ -1626,27 +1633,18 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
         if promoted:
             promoted_list = promoted if isinstance(promoted, list) else [promoted]
             obj.promoted = []
-            approved_for_groups = []
             for promotion in promoted_list:
-                # set .approved_for_groups cached_property because it's used in
-                # .approved_applications.
                 approved_for_apps = promotion.get('approved_for_apps')
-                group = PROMOTED_GROUPS_BY_ID[promotion['group_id']]
+                group = PROMOTED_GROUP_CHOICES(promotion['group_id'])
                 obj.promoted.append(
                     {
-                        'group_id': group.id,
-                        'category': group.api_name,
+                        'group_id': promotion['group_id'],
+                        'category': promotion.get('category', group.api_value),
                         'apps': [
                             APP_IDS.get(app_id).short for app_id in approved_for_apps
                         ],
                     }
                 )
-                approved_for_groups.extend(
-                    (group, APP_IDS.get(app_id)) for app_id in approved_for_apps
-                )
-            # we can safely regenerate these tuples because
-            # .appproved_applications only cares about the current group
-            obj._current_version.approved_for_groups = tuple(approved_for_groups)
         else:
             obj.promoted = []
 

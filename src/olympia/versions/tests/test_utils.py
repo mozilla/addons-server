@@ -10,7 +10,7 @@ from django.conf import settings
 from django.utils.encoding import force_str
 
 import pytest
-from freezegun import freeze_time
+import time_machine
 from PIL import Image, ImageChops
 
 from olympia import amo
@@ -208,12 +208,12 @@ def test_get_review_due_date():
     )
 
 
-@freeze_time('2023-05-22 11:00')
+@time_machine.travel('2023-05-22 11:00', tick=False)
 def test_get_review_due_date_default_starting_date_now():
     assert get_review_due_date() == datetime(2023, 5, 25, 11, 0)
 
 
-@freeze_time('2023-05-16 11:00')
+@time_machine.travel('2023-05-16 11:00', tick=False)
 @pytest.mark.django_db
 def test_get_staggered_review_due_date_generator():
     # Default config is to start from now + REVIEWER_STANDARD_REVIEW_TIME, and
@@ -241,7 +241,7 @@ def test_get_staggered_review_due_date_generator():
     assert due == datetime(2023, 5, 23, 2, 0)
 
 
-@freeze_time('2023-05-16 11:00')
+@time_machine.travel('2023-05-16 11:00', tick=False)
 def test_get_staggered_review_due_date_generator_default_target_provided():
     generator = get_staggered_review_due_date_generator(target_per_day=2)
     due = next(generator)
@@ -252,7 +252,7 @@ def test_get_staggered_review_due_date_generator_default_target_provided():
     assert due == datetime(2023, 5, 22, 11, 0)
 
 
-@freeze_time('2023-05-19 11:00')
+@time_machine.travel('2023-05-19 11:00', tick=False)
 def test_get_staggered_review_due_date_generator_default_initial_days_delay():
     generator = get_staggered_review_due_date_generator(
         initial_days_delay=2, target_per_day=8
@@ -273,7 +273,7 @@ def test_get_staggered_review_due_date_generator_default_initial_starting_date()
     assert due == datetime(2023, 5, 26, 11, 0)
 
 
-@freeze_time('2023-05-16 11:00')
+@time_machine.travel('2023-05-16 11:00', tick=False)
 @pytest.mark.django_db
 def test_get_staggered_review_due_date_generator_custom_config():
     set_config(amo.config_keys.EXTRA_REVIEW_TARGET_PER_DAY.key, 4)
@@ -289,7 +289,7 @@ def test_get_staggered_review_due_date_generator_custom_config():
 
 
 @mock.patch('olympia.zadmin.models.log')
-@freeze_time('2023-05-16 11:00')
+@time_machine.travel('2023-05-16 11:00', tick=False)
 @pytest.mark.django_db
 def test_get_staggered_review_due_date_generator_garbage_config(log_mock):
     set_config(amo.config_keys.EXTRA_REVIEW_TARGET_PER_DAY, 'lolweird')

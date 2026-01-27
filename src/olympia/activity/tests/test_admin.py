@@ -53,16 +53,16 @@ class TestActivityLogAdmin(TestCase):
         user2 = user_factory()
         user3 = user_factory()
         addon = addon_factory(users=[user3])
-        with core.override_remote_addr('127.0.0.2'):
+        with core.override_remote_addr_or_metadata(ip_address='127.0.0.2'):
             user2.update(email='foo@bar.com')
             # That will make user2 match our query.
             ActivityLog.objects.create(amo.LOG.LOG_IN, user=user2)
-        with core.override_remote_addr('127.0.0.2'):
+        with core.override_remote_addr_or_metadata(ip_address='127.0.0.2'):
             # That will make user3 match our query.
             ActivityLog.objects.create(
                 amo.LOG.ADD_VERSION, addon.current_version, addon, user=user3
             )
-        with core.override_remote_addr('127.0.0.1'):
+        with core.override_remote_addr_or_metadata(ip_address='127.0.0.1'):
             extra_user = user_factory()  # Extra user that shouldn't match
             ActivityLog.objects.create(amo.LOG.LOG_IN, user=extra_user)
         with self.assertNumQueries(11):
@@ -89,6 +89,41 @@ class TestActivityLogAdmin(TestCase):
         # Make sure login ip is now displayed, and has the right value.
         # (twice since 2 rows are matching)
         assert doc('.field-known_ip_adresses').text() == '127.0.0.2 127.0.0.2'
+
+    def test_search_for_ja4(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, '*:*')
+        self.client.force_login(user)
+        user2 = user_factory()
+        user3 = user_factory()
+        with core.override_remote_addr_or_metadata(
+            ip_address='127.0.0.2', metadata={'Client-JA4': 'some_ja4'}
+        ):
+            user2.update(email='foo@bar.com')
+            # Will match (ja4 we'll be searching for)
+            ActivityLog.objects.create(amo.LOG.LOG_IN, user=user2)
+        with core.override_remote_addr_or_metadata(
+            ip_address='127.0.0.3', metadata={'Client-JA4': 'some_other_ja4'}
+        ):
+            # Won't match (different ja4)
+            ActivityLog.objects.create(amo.LOG.LOG_IN, user=user3)
+        with core.override_remote_addr_or_metadata(ip_address='127.0.0.1'):
+            extra_user = user_factory()
+            # Won't match (no ja4)
+            ActivityLog.objects.create(amo.LOG.LOG_IN, user=extra_user)
+        with self.assertNumQueries(7):
+            # - 2 savepoints/release
+            # - 2 user and groups
+            # - 1 count for pagination
+            # - 1 activities
+            # - 1 all users from activities
+            response = self.client.get(self.list_url, {'q': 'some_ja4'}, follow=True)
+        assert response.status_code == 200
+        doc = pq(response.content.decode('utf-8'))
+        assert len(doc('#result_list tbody tr')) == 1
+        # Make sure it's the right records.
+        assert doc('.field-user_link')[0].text_content() == str(user2)
+        assert doc('.field-ja4').text() == 'some_ja4'
 
     def test_escaping_and_links(self):
         user = user_factory(

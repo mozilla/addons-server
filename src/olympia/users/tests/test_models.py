@@ -15,7 +15,7 @@ from django.utils import timezone
 
 import pytest
 import responses
-from freezegun import freeze_time
+import time_machine
 
 from olympia import amo, core
 from olympia.access.models import Group, GroupUser
@@ -30,6 +30,7 @@ from olympia.amo.tests import (
 )
 from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.amo.utils import SafeStorage
+from olympia.api.models import APIKey
 from olympia.bandwagon.models import Collection
 from olympia.devhub.models import SurveyResponse
 from olympia.files.models import File, FileUpload
@@ -37,10 +38,10 @@ from olympia.ratings.models import Rating
 from olympia.users.models import (
     RESTRICTION_TYPES,
     BannedUserContent,
-    DeniedName,
     DisposableEmailDomainRestriction,
     EmailReputationRestriction,
     EmailUserRestriction,
+    FingerprintRestriction,
     IPNetworkUserRestriction,
     IPReputationRestriction,
     SuppressedEmail,
@@ -61,7 +62,7 @@ class TestUserProfile(TestCase):
 
     def test_logged_in(self):
         user = user_factory()
-        with core.override_remote_addr('4.8.15.16'):
+        with core.override_remote_addr_or_metadata(ip_address='4.8.15.16'):
             self.client.force_login(user)
         user.reload()
         assert user.last_login_ip == '4.8.15.16'
@@ -70,7 +71,7 @@ class TestUserProfile(TestCase):
         assert log.user == user
         assert log.iplog.ip_address_binary == IPv4Address('4.8.15.16')
 
-        with core.override_remote_addr('23.42.42.42'):
+        with core.override_remote_addr_or_metadata(ip_address='23.42.42.42'):
             self.client.force_login(user)
         assert user.last_login_ip == '23.42.42.42'
         assert ActivityLog.objects.filter(action=amo.LOG.LOG_IN.id).count() == 2
@@ -963,17 +964,6 @@ class TestUserProfile(TestCase):
         addon.delete()
         assert not user.reload().has_full_profile
 
-    def test_get_lookup_field(self):
-        user = UserProfile.objects.get(id=55021)
-        lookup_field_pk = UserProfile.get_lookup_field(str(user.id))
-        assert lookup_field_pk == 'pk'
-        lookup_field_email = UserProfile.get_lookup_field(user.email)
-        assert lookup_field_email == 'email'
-        lookup_field_random_digit = UserProfile.get_lookup_field('123456')
-        assert lookup_field_random_digit == 'pk'
-        lookup_field_random_string = UserProfile.get_lookup_field('my@mail.co')
-        assert lookup_field_random_string == 'email'
-
     def test_suppressed_email(self):
         user = user_factory()
         assert not user.suppressed_email
@@ -1018,28 +1008,6 @@ class TestUserProfile(TestCase):
         instance.date_responded = timezone.now() - timedelta(days=181)
         instance.save()
         assert user.is_survey_eligible(amo.DEV_EXP_SURVEY_ALCHEMER_ID)
-
-
-class TestDeniedName(TestCase):
-    fixtures = ['users/test_backends']
-
-    def test_blocked(self):
-        assert DeniedName.blocked('IE6Fan')
-        assert DeniedName.blocked('IE6fantastic')
-        assert not DeniedName.blocked('IE6')
-        assert not DeniedName.blocked('testo')
-
-    def test_blocked_emoji(self):
-        assert not DeniedName.blocked('Test 🎧')
-        assert not DeniedName.blocked('Test 🌠')
-
-        denied = DeniedName.objects.create(name='🌠')
-        assert not DeniedName.blocked('Test 🎧')
-        assert DeniedName.blocked('Test 🌠')
-
-        denied.update(name='🎧')
-        assert DeniedName.blocked('Test 🎧')
-        assert not DeniedName.blocked('Test 🌠')
 
 
 class TestIPNetworkUserRestriction(TestCase):
@@ -1376,6 +1344,76 @@ class TestEmailUserRestriction(TestCase):
         assert EmailUserRestriction.allow_auto_approval(upload)
 
 
+class TestFingerprintRestriction(TestCase):
+    def test_str(self):
+        obj = FingerprintRestriction(ja4='t13d1517h2_8daaf6152771_f0fc7018f8e8')
+        assert str(obj) == 't13d1517h2_8daaf6152771_f0fc7018f8e8'
+
+    def test_no_ja4_submission_allowed(self):
+        FingerprintRestriction.objects.create(
+            ja4='t13d1517h2_8daaf6152771_f0fc7018f8e8'
+        )
+        request = RequestFactory().get('/')
+        assert FingerprintRestriction.allow_submission(request)
+
+    def test_no_ja4_auto_approval_allowed(self):
+        FingerprintRestriction.objects.create(
+            ja4='t13d1517h2_8daaf6152771_f0fc7018f8e8'
+        )
+        upload = FileUpload.objects.create(
+            ip_address='192.168.0.1',
+            user=user_factory(),
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            channel=amo.CHANNEL_LISTED,
+        )
+        assert FingerprintRestriction.allow_auto_approval(upload)
+
+    def test_ja4_submission_restricted(self):
+        restricted_ja4 = 'some_fake_ja4'
+        FingerprintRestriction.objects.create(ja4=restricted_ja4)
+        request = RequestFactory().get('/', headers={'Client-JA4': restricted_ja4})
+        assert not FingerprintRestriction.allow_submission(request)
+
+    def test_ja4_rating_restriction(self):
+        restricted_ja4 = 'some_fake_ja4'
+        FingerprintRestriction.objects.create(
+            ja4=restricted_ja4, restriction_type=RESTRICTION_TYPES.RATING
+        )
+
+        # Submissions are not restricted.
+        request = RequestFactory().get('/', headers={'Client-JA4': restricted_ja4})
+        assert FingerprintRestriction.allow_submission(request)
+        assert not FingerprintRestriction.allow_rating(request)
+
+    def test_ja4_auto_approval_restricted(self):
+        restricted_ja4 = 'some_fake_ja4'
+        FingerprintRestriction.objects.create(
+            ja4=restricted_ja4, restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
+        )
+
+        # Submissions or ratings are not restricted.
+        request = RequestFactory().get('/', headers={'Client-JA4': restricted_ja4})
+        assert FingerprintRestriction.allow_submission(request)
+        assert FingerprintRestriction.allow_rating(request)
+        assert FingerprintRestriction.allow_rating_without_moderation(request)
+
+        # Auto-approval is restricted.
+        upload = FileUpload.objects.create(
+            ip_address='192.168.0.1',
+            user=user_factory(),
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            channel=amo.CHANNEL_LISTED,
+            request_metadata={'Client-JA4': restricted_ja4},
+        )
+        assert not FingerprintRestriction.allow_auto_approval(upload)
+
+    def test_ja4_different_restriction(self):
+        restricted_ja4 = 'some_fake_ja4'
+        FingerprintRestriction.objects.create(ja4=restricted_ja4)
+        request = RequestFactory().get('/', headers={'Client-JA4': 'another_ja4'})
+        assert FingerprintRestriction.allow_submission(request)
+
+
 @override_settings(
     REPUTATION_SERVICE_URL='https://reputation.example.com',
     REPUTATION_SERVICE_TOKEN='fancy_token',
@@ -1703,6 +1741,61 @@ class TestUserManager(TestCase):
         assert not user.is_staff  # Not a mozilla.com email...
         assert user.is_superuser
 
+    def test_get_or_create_service_account(self):
+        name = 'some service'
+
+        user = UserProfile.objects.get_or_create_service_account(name=name)
+
+        assert user.pk is not None
+        assert not user.email
+        assert not user.fxa_id
+        assert user.username == 'service-account-some-service'
+        assert not user.notes
+        assert user.read_dev_agreement is not None
+        assert APIKey.get_jwt_key(user=user)
+
+    def test_get_or_create_service_account_with_notes(self):
+        name = 'some service'
+        notes = 'some notes'
+
+        user = UserProfile.objects.get_or_create_service_account(name=name, notes=notes)
+
+        assert user.pk is not None
+        assert not user.email
+        assert not user.fxa_id
+        assert user.username == 'service-account-some-service'
+        assert user.notes == notes
+        assert user.read_dev_agreement is not None
+
+    def test_get_or_create_service_account_return_existing_user(self):
+        number_of_users = len(UserProfile.objects.all())
+        number_of_keys = len(APIKey.objects.all())
+
+        name = 'some service'
+        user = UserProfile.objects.get_or_create_service_account(name=name)
+        jwt_key = APIKey.get_jwt_key(user=user)
+        assert jwt_key
+        # Call method again, verify that it doesn't recreate an account.
+        user2 = UserProfile.objects.get_or_create_service_account(name=name)
+        assert user2.pk == user.pk
+        assert APIKey.get_jwt_key(user=user2) == jwt_key
+
+        assert len(UserProfile.objects.all()) == number_of_users + 1
+        assert len(APIKey.objects.all()) == number_of_keys + 1
+
+    def test_get_service_account_with_empty_name(self):
+        with self.assertRaises(UserProfile.DoesNotExist):
+            UserProfile.objects.get_service_account(name='')
+
+    def test_get_unknown_service_account(self):
+        with self.assertRaises(UserProfile.DoesNotExist):
+            UserProfile.objects.get_service_account(name='unknown')
+
+    def test_get_service_account(self):
+        name = 'some service'
+        user = UserProfile.objects.get_or_create_service_account(name=name)
+        assert UserProfile.objects.get_service_account(name=name) == user
+
 
 @pytest.mark.django_db
 def test_get_session_auth_hash_is_used_for_session_auth():
@@ -1760,7 +1853,7 @@ class TestSuppressedEmailVerification(TestCase):
 
         assert (
             email_verification.status
-            == SuppressedEmailVerification.STATUS_CHOICES.Pending
+            == SuppressedEmailVerification.STATUS_CHOICES.PENDING
         )
 
     def test_only_valid_options(self):
@@ -1775,7 +1868,9 @@ class TestSuppressedEmailVerification(TestCase):
         )
         assert not email_verification.is_expired
 
-        with freeze_time(email_verification.created + timedelta(days=31)):
+        with time_machine.travel(
+            email_verification.created + timedelta(days=31), tick=False
+        ):
             assert email_verification.is_expired
 
     def test_is_timedout(self):
@@ -1784,5 +1879,7 @@ class TestSuppressedEmailVerification(TestCase):
         )
         assert not email_verification.is_timedout
 
-        with freeze_time(email_verification.created + timedelta(minutes=10, seconds=1)):
+        with time_machine.travel(
+            email_verification.created + timedelta(minutes=10, seconds=1), tick=False
+        ):
             assert email_verification.is_timedout

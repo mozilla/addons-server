@@ -44,9 +44,6 @@ from olympia.amo.utils import (
 from olympia.applications.models import AppVersion
 from olympia.constants.applications import APP_IDS
 from olympia.constants.licenses import CC_LICENSES, FORM_LICENSES, LICENSES_BY_BUILTIN
-from olympia.constants.promoted import (
-    PROMOTED_GROUPS_BY_ID,
-)
 from olympia.files import utils
 from olympia.files.models import File, cleanup_file
 from olympia.scanners.models import ScannerResult
@@ -167,18 +164,14 @@ class VersionManager(ManagerBase):
             # be a theme either.
             Q(
                 channel=amo.CHANNEL_LISTED,
-                addon__status__in=(amo.STATUS_NOMINATED, amo.STATUS_APPROVED),
+                addon__status__in=amo.VALID_ADDON_STATUSES,
                 addon__disabled_by_user=False,
                 addon__type__in=(amo.ADDON_EXTENSION, amo.ADDON_LPAPP, amo.ADDON_DICT),
             )
             # For unlisted, add-on can't be deleted or disabled.
             | Q(
                 channel=amo.CHANNEL_UNLISTED,
-                addon__status__in=(
-                    amo.STATUS_NULL,
-                    amo.STATUS_NOMINATED,
-                    amo.STATUS_APPROVED,
-                ),
+                addon__status__in=amo.VALID_ADDON_STATUSES + (amo.STATUS_NULL,),
             )
         )
         return qs
@@ -226,10 +219,9 @@ class VersionManager(ManagerBase):
 
         # Abuse-related reasons & developer replies always trigger a due
         # date even if the version has been disabled / not signed.
-        abuse_related_or_developer_reply = (
-            NeedsHumanReview.REASONS.ABUSE_OR_APPEAL_RELATED.entries
-            + [NeedsHumanReview.REASONS.DEVELOPER_REPLY.choice_entry]
-        )
+        abuse_related_or_developer_reply = list(
+            NeedsHumanReview.REASONS.ABUSE_OR_APPEAL_RELATED
+        ) + [NeedsHumanReview.REASONS.DEVELOPER_REPLY]
         for entry in abuse_related_or_developer_reply:
             reasons[entry.annotation] = Q(
                 needshumanreview__is_active=True,
@@ -243,7 +235,7 @@ class VersionManager(ManagerBase):
             ~Q(file__status=amo.STATUS_DISABLED) | Q(file__is_signed=True),
             needshumanreview__is_active=True,
         )
-        for entry in set(NeedsHumanReview.REASONS.entries).difference(
+        for entry in set(NeedsHumanReview.REASONS).difference(
             abuse_related_or_developer_reply
         ):
             reasons[entry.annotation] = Q(
@@ -457,7 +449,9 @@ class Version(OnChangeMixin, ModelBase):
             channel=channel,
             release_notes=parsed_data.get('release_notes'),
         )
-        with core.override_remote_addr(upload.ip_address):
+        with core.override_remote_addr_or_metadata(
+            ip_address=upload.ip_address, metadata=upload.request_metadata
+        ):
             # The following log statement is used by foxsec-pipeline.
             # We override the IP because it might be called from a task and we
             # want the original IP from the submitter.
@@ -824,14 +818,21 @@ class Version(OnChangeMixin, ModelBase):
         from olympia.activity.utils import log_and_notify
         from olympia.reviewers.models import NeedsHumanReview
 
+        from .tasks import call_webhooks_on_source_code_uploaded
+
         if self.source:
             # Add Activity Log, notifying staff, relevant reviewers and
             # other authors of the add-on.
-            log_and_notify(amo.LOG.SOURCE_CODE_UPLOADED, None, user, self)
+            note = log_and_notify(amo.LOG.SOURCE_CODE_UPLOADED, None, user, self)
 
             if self.pending_rejection:
                 reason = NeedsHumanReview.REASONS.PENDING_REJECTION_SOURCES_PROVIDED
                 NeedsHumanReview.objects.create(version=self, reason=reason)
+
+            if waffle.switch_is_active('enable-scanner-webhooks'):
+                call_webhooks_on_source_code_uploaded.delay(
+                    version_pk=self.pk, activity_log_id=note.id
+                )
 
     @classmethod
     def transformer(cls, versions):
@@ -854,38 +855,6 @@ class Version(OnChangeMixin, ModelBase):
             version.compatible_apps = version._create_compatible_apps(
                 av_dict.get(version.id, [])
             )
-
-    @classmethod
-    def transformer_promoted(cls, versions):
-        """Attach the promoted approvals to the versions."""
-        if not versions:
-            return
-
-        PromotedApproval = versions[0].promoted_versions.model
-
-        ids = {v.id for v in versions}
-
-        approvals = list(
-            PromotedApproval.objects.filter(version_id__in=ids).values_list(
-                'version_id', 'promoted_group__group_id', 'application_id', named=True
-            )
-        )
-
-        approval_dict = {
-            version_id: list(groups)
-            for version_id, groups in sorted_groupby(approvals, 'version_id')
-        }
-        for version in versions:
-            v_id = version.id
-            groups = [
-                (
-                    PROMOTED_GROUPS_BY_ID.get(approval.promoted_group__group_id),
-                    APP_IDS.get(approval.application_id),
-                )
-                for approval in approval_dict.get(v_id, [])
-                if approval.promoted_group__group_id in PROMOTED_GROUPS_BY_ID
-            ]
-            version.approved_for_groups = groups
 
     @classmethod
     def transformer_activity(cls, versions):
@@ -1149,18 +1118,6 @@ class Version(OnChangeMixin, ModelBase):
             return self.reviewerflags.pending_rejection_by
         except VersionReviewerFlags.DoesNotExist:
             return None
-
-    @cached_property
-    def approved_for_groups(self):
-        approvals = list(self.promoted_versions.all())
-        return [
-            (
-                PROMOTED_GROUPS_BY_ID.get(approval.promoted_group.group_id),
-                approval.application,
-            )
-            for approval in approvals
-            if approval.promoted_group.group_id in PROMOTED_GROUPS_BY_ID
-        ]
 
     def get_review_status_for_auto_approval_and_delay_reject(self):
         status = None

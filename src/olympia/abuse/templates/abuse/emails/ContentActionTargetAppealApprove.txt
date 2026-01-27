@@ -2,8 +2,12 @@ Hello,
 
 Previously, your {{ type }} was suspended/removed from Mozilla Add-ons, based on a finding that you had violated Mozilla's policies.
 
-{% if not is_override %}After reviewing your appeal, we{% else %}We have now{% endif %} determined that the previous decision was incorrect, and based on that determination, we have restored your {{ type }}. It is now available at {{ target_url }}.
+{% if not is_override %}After reviewing your appeal, we{% else %}We have now{% endif %} determined that the previous decision was incorrect, and based on that determination, we have restored your {{ type }}.
+{% if is_listing_disabled %}The listing on Mozilla Add-ons remains unavailable however, until you address the violations and request a further review. {% endif %}It is now available at {{ target_url }}.
 {% if manual_reasoning_text %}{{ manual_reasoning_text }}. {% endif %}
+{% if version_list %}
+The following versions were reinstated: {{ version_list }}.
+Please note that these versions may be removed again in the future, if additional policy violations are discovered. {% endif %}
 
 {% if has_attachment %}
 An attachment was provided. {% if dev_url %}To respond or view the file, visit {{ dev_url }}.{% endif %}

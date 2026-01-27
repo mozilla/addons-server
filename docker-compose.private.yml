@@ -2,6 +2,7 @@ services:
   worker:
     depends_on:
       - customs
+      - source-builder
 
   customs:
     build:
@@ -13,3 +14,24 @@ services:
       - "nginx:olympia.test"
     depends_on:
       - web
+    networks:
+      default:
+        aliases:
+          - customs.test
+
+  source-builder:
+    build:
+      context: ./private/addons-builder
+    environment:
+      - PORT=10200
+      - API_AUTH_TOKEN=sourcebuildersecret
+    expose:
+      - 10200
+    links:
+      - "nginx:olympia.test"
+    depends_on:
+      - web
+    networks:
+      default:
+        aliases:
+          - source-builder.test

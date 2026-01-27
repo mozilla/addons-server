@@ -88,7 +88,7 @@ from olympia.versions.tasks import duplicate_addon_version_for_rollback
 from olympia.versions.utils import get_next_version_number
 from olympia.zadmin.models import get_config
 
-from . import feeds, forms, signals, tasks
+from . import feeds, forms, tasks
 
 
 log = olympia.core.logger.getLogger('z.devhub')
@@ -623,9 +623,6 @@ def upload(request, channel='listed', addon=None, is_standalone=False):
         not theme_specific
         and not is_standalone
         and not request.session.get('has_two_factor_authentication')
-        and waffle.flag_is_active(
-            request, '2fa-enforcement-for-developers-and-special-users'
-        )
     ):
         # This shouldn't happen: it means the user attempted to use the add-on
         # submission flow that is behind @two_factor_auth_required decorator
@@ -1329,7 +1326,7 @@ def version_list(request, addon_id, addon):
         'addon': addon,
         'can_request_review': addon.can_request_review(),
         'can_rollback': rollback_form.can_rollback(),
-        'can_submit': not addon.is_disabled,
+        'can_submit': addon.status != amo.STATUS_DISABLED,
         'comments_maxlength': CommentLog._meta.get_field('comments').max_length,
         'latest_approved_unlisted_version_number': rollback_form.can_rollback()
         and addon.versions.filter(
@@ -1538,9 +1535,13 @@ def _submit_upload(
 
     next_view is the view that will be redirected to.
     """
-    if addon and addon.disabled_by_user and channel == amo.CHANNEL_LISTED:
+    if (
+        addon
+        and channel == amo.CHANNEL_LISTED
+        and not addon.can_submit_listed_versions()
+    ):
         # Listed versions can not be submitted while the add-on is set to
-        # "invisible" (disabled_by_user).
+        # "invisible" (disabled_by_user) or had its listing rejected.
         return redirect('devhub.submit.version.distribution', addon.slug)
     form = forms.NewUploadForm(
         request.POST or None,
@@ -1898,7 +1899,6 @@ def _submit_details(request, addon, version):
             if not static_theme:
                 reviewer_form.save()
             addon.update_status()
-            signals.submission_done.send(sender=addon)
         elif not static_theme:
             reviewer_form.save()
 
@@ -2253,7 +2253,7 @@ def email_verification(request):
         else:
             if (
                 email_verification.reload().status
-                == SuppressedEmailVerification.STATUS_CHOICES.Delivered
+                == SuppressedEmailVerification.STATUS_CHOICES.DELIVERED
             ):
                 data['state'] = VERIFY_EMAIL_STATE['confirmation_pending']
                 data['render_table'] = False

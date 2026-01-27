@@ -126,12 +126,24 @@
             <th>
               <label data-for="description">
                 {{ _("Description") }}
-                {{ tip(None,
-                       _("A longer explanation of features, functionality, and other relevant information. "
-                         "This field is only displayed on the add-on's product page. " +
-                         ('Minimum length: 10 characters; ' if editable and main_form.description.field.min_length else '') +
-                         "Recommended length: 250 characters. "
-                         "If you need a longer description, make sure the first 250 characters contain the most important description points.")) }}
+                {% if editable %}
+                  {{ tip(None,
+                        _("A longer explanation of features, functionality, and other relevant information. "
+                          "This field is only displayed on the add-on's product page. "
+                          "Minimum length: %(min_length)s characters; Recommended length: 250 characters. "
+                          "If you need a longer description, make sure the first 250 characters contain the most important description points.",
+                          min_length=main_form.description.field.min_length)
+                        )
+                  }}
+                {% else %}
+                  {{ tip(None,
+                    _("A longer explanation of features, functionality, and other relevant information. "
+                      "This field is only displayed on the add-on's product page. "
+                      "Recommended length: 250 characters. "
+                      "If you need a longer description, make sure the first 250 characters contain the most important description points.")
+                    )
+                  }}
+                {% endif %}
               </label>
             </th>
             <td>

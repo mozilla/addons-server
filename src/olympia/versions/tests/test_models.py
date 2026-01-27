@@ -26,15 +26,12 @@ from olympia.amo.tests.test_models import BasePreviewMixin
 from olympia.amo.utils import utc_millesecs_from_epoch
 from olympia.applications.models import AppVersion
 from olympia.blocklist.models import Block, BlockType, BlockVersion
-from olympia.constants.promoted import (
-    PROMOTED_GROUP_CHOICES,
-    PROMOTED_GROUPS_BY_ID,
-)
+from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.constants.scanners import CUSTOMS, YARA
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadMixin
 from olympia.files.utils import parse_addon
-from olympia.promoted.models import PromotedApproval, PromotedGroup
+from olympia.promoted.models import PromotedGroup
 from olympia.reviewers.models import AutoApprovalSummary, NeedsHumanReview
 from olympia.scanners.models import ScannerResult
 from olympia.users.models import (
@@ -539,7 +536,7 @@ class TestVersionManager(TestCase):
         # one for themes awaiting review.
         assert len(q_objects) == len(NeedsHumanReview.REASONS) + 1
         assert 'is_from_theme_awaiting_review' in q_objects
-        for entry in NeedsHumanReview.REASONS.entries:
+        for entry in NeedsHumanReview.REASONS:
             assert entry.annotation in q_objects
 
     def test_get_due_date_reason_q_objects_filtering(self):
@@ -662,6 +659,41 @@ class TestVersion(AMOPaths, TestCase):
         assert activity.action == amo.LOG.SOURCE_CODE_UPLOADED.id
         assert activity.user == user
         assert not version.needshumanreview_set.count()
+
+    @override_switch('enable-scanner-webhooks', active=True)
+    @mock.patch('olympia.versions.tasks.call_webhooks_on_source_code_uploaded.delay')
+    def test_call_webhooks_on_source_code_uploaded_when_switch_is_enabled(
+        self, call_webhooks_on_source_code_uploaded_mock
+    ):
+        user = UserProfile.objects.latest('pk')
+        version = Version.objects.get(pk=81551)
+        version.source = self.file_fixture_path('webextension_no_id.zip')
+        assert version.sources_provided
+
+        version.flag_if_sources_were_provided(user)
+
+        activity = (
+            ActivityLog.objects.for_versions(version)
+            .filter(action=amo.LOG.SOURCE_CODE_UPLOADED.id)
+            .get()
+        )
+        call_webhooks_on_source_code_uploaded_mock.assert_called_with(
+            version_pk=version.pk, activity_log_id=activity.id
+        )
+
+    @override_switch('enable-scanner-webhooks', active=False)
+    @mock.patch('olympia.versions.tasks.call_webhooks_on_source_code_uploaded.delay')
+    def test_call_webhooks_on_source_code_uploaded_when_switch_is_disabled(
+        self, call_webhooks_on_source_code_uploaded_mock
+    ):
+        user = UserProfile.objects.latest('pk')
+        version = Version.objects.get(pk=81551)
+        version.source = self.file_fixture_path('webextension_no_id.zip')
+        assert version.sources_provided
+
+        version.flag_if_sources_were_provided(user)
+
+        call_webhooks_on_source_code_uploaded_mock.assert_not_called()
 
     def test_flag_if_sources_were_provided_pending_rejection(self):
         user = UserProfile.objects.latest('pk')
@@ -1300,14 +1332,14 @@ class TestVersion(AMOPaths, TestCase):
         assert version.should_have_due_date
 
         version.file.update(is_signed=False)
-        for reason in NeedsHumanReview.REASONS.values.keys() - [
+        for reason in set(NeedsHumanReview.REASONS.values) - {
             NeedsHumanReview.REASONS.DEVELOPER_REPLY,
             NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION,
             NeedsHumanReview.REASONS.CINDER_ESCALATION,
             NeedsHumanReview.REASONS.CINDER_APPEAL_ESCALATION,
             NeedsHumanReview.REASONS.ADDON_REVIEW_APPEAL,
             NeedsHumanReview.REASONS.SECOND_LEVEL_REQUEUE,
-        ]:
+        }:
             # Every other reason shouldn't result in a due date since the
             # version is disabled and not signed at this point.
             needs_human_review.update(reason=reason)
@@ -1597,112 +1629,6 @@ class TestVersion(AMOPaths, TestCase):
         flags.update(pending_rejection=None)
         assert flags.pending_rejection is None
         assert flags.pending_content_rejection is None
-
-    def test_approved_for_groups(self):
-        version = addon_factory().current_version
-        assert version.approved_for_groups == []
-
-        # give it some promoted approvals
-        PromotedApproval.objects.create(
-            version=version,
-            promoted_group=PromotedGroup.objects.get(
-                group_id=PROMOTED_GROUP_CHOICES.LINE
-            ),
-            application_id=amo.FIREFOX.id,
-        )
-        PromotedApproval.objects.create(
-            version=version,
-            promoted_group=PromotedGroup.objects.get(
-                group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
-            ),
-            application_id=amo.ANDROID.id,
-        )
-
-        del version.approved_for_groups
-        assert version.approved_for_groups == [
-            (PROMOTED_GROUPS_BY_ID.get(PROMOTED_GROUP_CHOICES.LINE), amo.FIREFOX),
-            (
-                PROMOTED_GROUPS_BY_ID.get(PROMOTED_GROUP_CHOICES.RECOMMENDED),
-                amo.ANDROID,
-            ),
-        ]
-
-    def test_transform_promoted(self):
-        version_a = addon_factory().current_version
-        version_b = addon_factory().current_version
-        versions = Version.objects.filter(
-            id__in=(version_a.id, version_b.id)
-        ).transform(Version.transformer_promoted)
-        list(versions)  # to evaluate the queryset
-        with self.assertNumQueries(0):
-            assert versions[0].approved_for_groups == []
-            assert versions[1].approved_for_groups == []
-
-        # give them some promoted approvals
-        PromotedApproval.objects.create(
-            version=version_a,
-            promoted_group=PromotedGroup.objects.get(
-                group_id=PROMOTED_GROUP_CHOICES.LINE
-            ),
-            application_id=amo.FIREFOX.id,
-        )
-        PromotedApproval.objects.create(
-            version=version_a,
-            promoted_group=PromotedGroup.objects.get(
-                group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
-            ),
-            application_id=amo.FIREFOX.id,
-        )
-        PromotedApproval.objects.create(
-            version=version_b,
-            promoted_group=PromotedGroup.objects.get(
-                group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
-            ),
-            application_id=amo.FIREFOX.id,
-        )
-        PromotedApproval.objects.create(
-            version=version_b,
-            promoted_group=PromotedGroup.objects.get(
-                group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
-            ),
-            application_id=amo.ANDROID.id,
-        )
-
-        versions = Version.objects.filter(
-            id__in=(version_a.id, version_b.id)
-        ).transform(Version.transformer_promoted)
-        list(versions)  # to evaluate the queryset
-
-        def _sort(group_app_tuple):
-            return group_app_tuple[0].id, group_app_tuple[1].id
-
-        with self.assertNumQueries(0):
-            assert sorted(versions[1].approved_for_groups, key=_sort) == sorted(
-                [
-                    (
-                        PROMOTED_GROUPS_BY_ID.get(PROMOTED_GROUP_CHOICES.RECOMMENDED),
-                        amo.FIREFOX,
-                    ),
-                    (
-                        PROMOTED_GROUPS_BY_ID.get(PROMOTED_GROUP_CHOICES.LINE),
-                        amo.FIREFOX,
-                    ),
-                ],
-                key=_sort,
-            )
-            assert sorted(versions[0].approved_for_groups, key=_sort) == sorted(
-                [
-                    (
-                        PROMOTED_GROUPS_BY_ID.get(PROMOTED_GROUP_CHOICES.RECOMMENDED),
-                        amo.FIREFOX,
-                    ),
-                    (
-                        PROMOTED_GROUPS_BY_ID.get(PROMOTED_GROUP_CHOICES.RECOMMENDED),
-                        amo.ANDROID,
-                    ),
-                ],
-                key=_sort,
-            )
 
     def test_version_string(self):
         addon = Addon.objects.get(id=3615)
@@ -2023,6 +1949,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         self.upload.update(
             user=user,
             ip_address='5.6.7.8',
+            request_metadata={'Client-JA4': 'd123-456', 'X-SigSci-Tags': 'TAG1,TAG2'},
             source=source,
         )
         with self.assertLogs(logger='z.versions', level='INFO') as logs:
@@ -2056,6 +1983,9 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert activities[1].action == amo.LOG.ADD_VERSION.id
         assert activities[1].arguments == [version, self.addon]
         assert activities[1].user == user
+        assert activities[1].iplog._ip_address == self.upload.ip_address
+        assert activities[1].requestfingerprintlog.ja4 == 'd123-456'
+        assert activities[1].requestfingerprintlog.signals == ['TAG1', 'TAG2']
 
     def test_logging_signing_api(self):
         self._test_logging(amo.UPLOAD_SOURCE_SIGNING_API)

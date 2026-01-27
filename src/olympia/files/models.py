@@ -19,11 +19,11 @@ from django.utils.text import slugify
 from django.utils.translation import gettext
 
 from django_statsd.clients import statsd
-from extended_choices import Choices
 
 import olympia.core.logger
 from olympia import amo, core
 from olympia.amo.decorators import use_primary_db
+from olympia.amo.enum import EnumChoices
 from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ManagerBase, ModelBase, OnChangeMixin
 from olympia.amo.utils import SafeStorage, id_to_path
@@ -88,13 +88,14 @@ class FileManager(ManagerBase):
 class File(OnChangeMixin, ModelBase):
     id = PositiveAutoField(primary_key=True)
     STATUS_CHOICES = amo.STATUS_CHOICES_FILE
-    STATUS_DISABLED_REASONS = Choices(
-        ('NONE', 0, 'None'),
-        ('DEVELOPER', 1, 'Developer disabled'),
-        ('ADDON_DISABLE', 2, 'Add-on disabled'),
-        ('ADDON_DELETE', 3, 'Add-on deleted'),
-        ('VERSION_DELETE', 4, 'Version deleted'),
-    )
+
+    class STATUS_DISABLED_REASONS(EnumChoices):
+        NONE = 0, 'None'
+        DEVELOPER = 1, 'Developer disabled'
+        ADDON_DISABLE = 2, 'Add-on disabled'
+        ADDON_DELETE = 3, 'Add-on deleted'
+        VERSION_DELETE = 4, 'Version deleted'
+
     SUPPORTED_MANIFEST_VERSIONS = ((2, 'Manifest V2'), (3, 'Manifest V3'))
 
     version = models.OneToOneField('versions.Version', on_delete=models.CASCADE)
@@ -437,6 +438,7 @@ class FileUpload(ModelBase):
     addon = models.ForeignKey('addons.Addon', null=True, on_delete=models.CASCADE)
     access_token = models.CharField(max_length=40, null=True)
     ip_address = models.CharField(max_length=45)
+    request_metadata = models.JSONField(default=dict, null=True)
     source = models.PositiveSmallIntegerField(choices=amo.UPLOAD_SOURCE_CHOICES)
 
     objects = ManagerBase()
@@ -558,6 +560,7 @@ class FileUpload(ModelBase):
             source=source,
             channel=channel,
             ip_address=ip_address,
+            request_metadata=core.get_request_metadata(),
             version=version,
         )
         upload.add_file(chunks, filename, size)

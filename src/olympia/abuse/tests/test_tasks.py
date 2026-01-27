@@ -6,9 +6,10 @@ from unittest import mock
 from django.conf import settings
 
 import pytest
+import requests
 import responses
+import time_machine
 from celery.exceptions import Retry
-from freezegun import freeze_time
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
@@ -194,7 +195,7 @@ def _high_abuse_reports_setup(field):
     return not_flagged, flagged
 
 
-@freeze_time('2023-06-26 11:00')
+@time_machine.travel('2023-06-26 11:00', tick=False)
 @pytest.mark.django_db
 def test_flag_high_abuse_reports_addons_according_to_review_tier():
     set_config(amo.config_keys.EXTRA_REVIEW_TARGET_PER_DAY, '1')
@@ -253,7 +254,7 @@ def test_flag_high_abuse_reports_addons_according_to_review_tier():
     ]
 
 
-@freeze_time('2023-06-26 11:00')
+@time_machine.travel('2023-06-26 11:00', tick=False)
 @pytest.mark.django_db
 def test_block_high_abuse_reports_addons_according_to_review_tier():
     not_blocked, blocked = _high_abuse_reports_setup(
@@ -282,6 +283,14 @@ def test_block_high_abuse_reports_addons_according_to_review_tier():
             .filter(blockversion__isnull=True)
             .exists()
         ), f'Addon {addon}s versions should have been blocked'
+        assert (
+            ActivityLog.objects.filter(
+                addonlog__addon=addon, action=amo.LOG.FORCE_DISABLE.id
+            )
+            .get()
+            .details['reason']
+            == 'Rejected and blocked due to: high abuse report count'
+        )
 
 
 @pytest.mark.django_db
@@ -394,8 +403,7 @@ def test_addon_report_to_cinder_exception(log_exception_mock, statsd_incr_mock):
     with pytest.raises(Retry) as exc_info:
         report_to_cinder.delay(abuse_report.id)
     exception = exc_info.value
-    assert exception.when > 0
-    assert exception.when <= 30
+    assert exception.when == 30
     assert log_exception_mock.call_count == 1
     assert log_exception_mock.call_args_list == [
         (
@@ -408,6 +416,44 @@ def test_addon_report_to_cinder_exception(log_exception_mock, statsd_incr_mock):
 
     assert statsd_incr_mock.call_count == 1
     assert statsd_incr_mock.call_args[0] == ('abuse.tasks.report_to_cinder.failure',)
+
+
+@pytest.mark.django_db
+@mock.patch('olympia.abuse.tasks.log.exception')
+def test_multiple_retries_with_exceptions_on_first_and_seventh_retry(
+    log_exception_mock,
+):
+    addon = addon_factory()
+    abuse_report = AbuseReport.objects.create(
+        guid=addon.guid,
+        reason=AbuseReport.REASONS.ILLEGAL,
+        message='This is bad',
+        illegal_category=ILLEGAL_CATEGORIES.OTHER,
+        illegal_subcategory=ILLEGAL_SUBCATEGORIES.OTHER,
+    )
+    responses.add(
+        responses.POST,
+        f'{settings.CINDER_SERVER_URL}create_report',
+        json={'job_id': '1234-xyz'},
+        status=500,
+    )
+
+    with mock.patch('celery.app.task.Task.request') as request_mock:
+        for i in range(10):
+            with pytest.raises(requests.exceptions.HTTPError):
+                # Simulate Celery state: how many retries have *already happened*.
+                request_mock.retries = i
+                report_to_cinder.run(abuse_report.id)
+
+    assert log_exception_mock.call_count == 2
+    assert log_exception_mock.call_args_list == [
+        mock.call('Retrying Celery Task report_to_cinder', exc_info=mock.ANY),
+        mock.call(
+            'Retried Celery Task for report_to_cinder 7 times', exc_info=mock.ANY
+        ),
+    ]
+
+    assert CinderJob.objects.count() == 0
 
 
 @pytest.mark.django_db
@@ -637,8 +683,7 @@ def test_addon_appeal_to_cinder_reporter_exception(
             is_reporter=True,
         )
     exception = exc_info.value
-    assert exception.when > 0
-    assert exception.when <= 30
+    assert exception.when == 30
     assert log_exception_mock.call_count == 1
     assert log_exception_mock.call_args_list == [
         (
@@ -939,8 +984,7 @@ def test_report_decision_to_cinder_and_notify_exception(
     with pytest.raises(Retry) as exc_info:
         report_decision_to_cinder_and_notify.delay(decision_id=decision.id)
     exception = exc_info.value
-    assert exception.when > 0
-    assert exception.when <= 30
+    assert exception.when == 30
     assert log_exception_mock.call_count == 1
     assert log_exception_mock.call_args_list == [
         (
@@ -984,8 +1028,7 @@ class TestSyncCinderPolicies(TestCase):
         with pytest.raises(Retry) as exc_info:
             sync_cinder_policies.delay()
         exception = exc_info.value
-        assert exception.when > 0
-        assert exception.when <= 30
+        assert exception.when == 30
         assert log_exception_mock.call_count == 1
         assert log_exception_mock.call_args_list == [
             (

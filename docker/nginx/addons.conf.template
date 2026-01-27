@@ -1,4 +1,4 @@
-client_max_body_size 50m;
+client_max_body_size 200m;
 etag off;
 merge_slashes off;
 
@@ -49,7 +49,7 @@ server {
         try_files $uri @olympia;
     }
 
-    location ~ ^/(__version__|__heartbeat__|services/monitor.json)(\?.*)?$ {
+    location ~ ^/(__version__|__heartbeat__|services).*$ {
         try_files $uri @olympia;
     }
 
@@ -68,6 +68,7 @@ server {
         uwsgi_param   X-Real-IP             $remote_addr;
         uwsgi_param   X-Forwarded-For       $proxy_add_x_forwarded_for;
         uwsgi_param   X-Forwarded-Protocol  ssl;
+        # uwsgi_param   HTTP_Client_JA4       fake_ja4;
 
         add_header X-Served-By "olympia" always;
     }
