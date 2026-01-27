@@ -7,6 +7,7 @@ won't be tracked in git).
 """
 
 import os
+from copy import deepcopy
 from urllib.parse import urlparse
 
 from olympia.core.utils import get_version_json
@@ -117,19 +118,19 @@ FXA_CONTENT_HOST = 'https://accounts.stage.mozaws.net'
 FXA_OAUTH_HOST = 'https://oauth.stage.mozaws.net/v1'
 FXA_PROFILE_HOST = 'https://profile.stage.mozaws.net/v1'
 
-# CSP report endpoint which returns a 204 from addons-nginx in local dev.
-CSP_REPORT_URI = '/csp-report'
-RESTRICTED_DOWNLOAD_CSP['REPORT_URI'] = CSP_REPORT_URI
-
 # Set CSP like we do for dev/stage/prod, but also allow GA over http + www subdomain
 # for local development.
 HTTP_GA_SRC = 'http://www.google-analytics.com'
 
-CSP_CONNECT_SRC += (SITE_URL,)
-CSP_FONT_SRC += (STATIC_URL,)
-CSP_IMG_SRC += (MEDIA_URL, STATIC_URL, HTTP_GA_SRC)
-CSP_SCRIPT_SRC += (STATIC_URL, HTTP_GA_SRC)
-CSP_STYLE_SRC += (STATIC_URL,)
+# we want to be able to test the settings_base without these overrides interfering
+CONTENT_SECURITY_POLICY = deepcopy(CONTENT_SECURITY_POLICY)
+CONTENT_SECURITY_POLICY['DIRECTIVES']['connect-src'] += (SITE_URL,)
+CONTENT_SECURITY_POLICY['DIRECTIVES']['font-src'] += (STATIC_URL,)
+CONTENT_SECURITY_POLICY['DIRECTIVES']['img-src'] += (MEDIA_URL, STATIC_URL, HTTP_GA_SRC)
+CONTENT_SECURITY_POLICY['DIRECTIVES']['script-src'] += (STATIC_URL, HTTP_GA_SRC)
+CONTENT_SECURITY_POLICY['DIRECTIVES']['style-src'] += (STATIC_URL,)
+# CSP report endpoint which returns a 204 from addons-nginx in local dev.
+CONTENT_SECURITY_POLICY['DIRECTIVES']['report-uri'] = '/csp-report'
 
 # Auth token required to authorize inbound email.
 INBOUND_EMAIL_SECRET_KEY = 'totally-unsecure-secret-string'

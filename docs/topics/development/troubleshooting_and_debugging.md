@@ -91,7 +91,7 @@ To use it, see the official getting started docs: [Django Debug Toolbar Installa
 
 - The Django Debug Toolbar can slow down the website. Mitigate this by deselecting the checkbox next to the `SQL` panel.
 - Use the Django Debug Toolbar only when needed, as it affects CSP report only for your local dev environment.
-- You might need to disable CSP by setting `CSP_REPORT_ONLY = True` in your local settings because the Django Debug Toolbar uses "data:" for its logo and "unsafe eval" for some panels like templates or SQL.
+- You might need to disable CSP by setting `CONTENT_SECURITY_POLICY_REPORT_ONLY = CONTENT_SECURITY_POLICY_REPORT;CONTENT_SECURITY_POLICY_REPORT = {}` in your local settings because the Django Debug Toolbar uses "data:" for its logo and "unsafe eval" for some panels like templates or SQL.
 
 ## Additional Debugging Tools
 

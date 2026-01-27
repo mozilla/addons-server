@@ -144,8 +144,10 @@ def addon_listing(request, theme=False):
 
 
 @csp_update(
-    CONNECT_SRC=settings.MOZILLA_NEWLETTER_URL,
-    FORM_ACTION=settings.MOZILLA_NEWLETTER_URL,
+    {
+        'connect-src': [settings.MOZILLA_NEWLETTER_URL],
+        'form-action': [settings.MOZILLA_NEWLETTER_URL],
+    }
 )
 def index(request):
     ctx = {}
