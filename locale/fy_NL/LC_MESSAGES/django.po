@@ -382,7 +382,7 @@ msgstr "Fermelde ferzjes kinne net yntsjinne wurde, wylst de add-on útskeakele 
 
 #: src/olympia/addons/serializers.py:578 src/olympia/signing/views.py:218
 msgid "Listed versions cannot be submitted while add-on listing is rejected."
-msgstr ""
+msgstr "Fermelde ferzjes kinne net yntsjinne wurde, wylst de add-onfermelding ôfwiisd is."
 
 #: src/olympia/addons/serializers.py:619
 #, python-format
@@ -3055,7 +3055,7 @@ msgstr "Jo add-on is op it stuit ynsteld op ‘Unsichtber’."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cant_submit_new_listed_versions_warning.html:5
 msgid "Your add-on listing was rejected."
-msgstr ""
+msgstr "Jo add-onfermelding is ôfwiisd."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cant_submit_new_listed_versions_warning.html:7
 msgid "While in this state, \"On your own\" is the only distribution method available."
