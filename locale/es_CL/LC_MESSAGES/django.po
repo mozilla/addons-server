@@ -384,7 +384,7 @@ msgstr "El listado de versiones no puede enviarse mientras el complemento está 
 
 #: src/olympia/addons/serializers.py:578 src/olympia/signing/views.py:218
 msgid "Listed versions cannot be submitted while add-on listing is rejected."
-msgstr ""
+msgstr "Las versiones para publicar no pueden ser enviadas mientras la publicación del complemento esté rechazada."
 
 #: src/olympia/addons/serializers.py:619
 #, python-format
@@ -3081,7 +3081,7 @@ msgstr "Tu complemento está actualmente configurado en \"Invisible\"."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cant_submit_new_listed_versions_warning.html:5
 msgid "Your add-on listing was rejected."
-msgstr ""
+msgstr "La publicación de tu complemento fue rechazada."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cant_submit_new_listed_versions_warning.html:7
 msgid "While in this state, \"On your own\" is the only distribution method available."
