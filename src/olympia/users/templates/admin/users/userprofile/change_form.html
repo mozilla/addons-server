@@ -10,11 +10,13 @@
               They have to be *after* the other submit buttons, otherwise they
               could become the default submit button of the page
             {% endcomment %}
-            {% if has_users_edit_permission %}
+            {% if has_users_ban_permission %}
                 <input formaction="{% url 'admin:users_userprofile_ban' original.pk|admin_urlquote %}"
                        type="submit" value="Ban"  {% if original.banned %}disabled="disabled"{% endif %}/>
                 <input formaction="{% url 'admin:users_userprofile_unban' original.pk|admin_urlquote %}"
                        type="submit" value="Unban" {% if not original.banned %}disabled="disabled"{% endif %}/>
+            {% endif %}
+            {% if has_users_edit_permission %}
                 <input formaction="{% url 'admin:users_userprofile_reset_api_key' original.pk|admin_urlquote %}"
                        type="submit" value="Reset API Key" />
                 <input formaction="{% url 'admin:users_userprofile_reset_session' original.pk|admin_urlquote %}"

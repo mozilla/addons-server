@@ -4,6 +4,7 @@ from ipaddress import IPv4Address, IPv4Network, IPv6Network
 from unittest import mock
 
 from django import forms
+from django.conf import settings
 from django.contrib.auth import get_user
 from django.contrib.auth.models import AnonymousUser
 from django.core import mail
@@ -32,6 +33,8 @@ from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.amo.utils import SafeStorage
 from olympia.api.models import APIKey
 from olympia.bandwagon.models import Collection
+from olympia.blocklist.models import Block, BlocklistSubmission, BlockType
+from olympia.constants.blocklist import REASON_USER_BANNED
 from olympia.devhub.models import SurveyResponse
 from olympia.files.models import File, FileUpload
 from olympia.ratings.models import Rating
@@ -201,7 +204,7 @@ class TestUserProfile(TestCase):
     @mock.patch('olympia.users.tasks.copy_file_to_backup_storage')
     @mock.patch('olympia.users.tasks.backup_storage_enabled', lambda: True)
     def test_ban_and_disable_related_content_bulk(
-        self, copy_file_to_backup_storage_mock
+        self, copy_file_to_backup_storage_mock, hard_block_addons=False
     ):
         copy_file_to_backup_storage_mock.side_effect = (
             lambda local_path, content_type: os.path.basename(local_path)
@@ -221,6 +224,9 @@ class TestUserProfile(TestCase):
         addon_sole = addon_factory(users=[user_sole])
         addon_sole_file = addon_sole.current_version.file
         self.setup_user_to_be_have_content_disabled(user_sole)
+        other_addon_sole = addon_factory(users=[user_sole])
+        other_addon_sole_file1 = other_addon_sole.current_version.file
+        other_addon_sole_file2 = version_factory(addon=other_addon_sole).file
         user_multi = user_factory(
             auth_id=987654321,
             email='multi.addons@foo.baa',
@@ -253,7 +259,7 @@ class TestUserProfile(TestCase):
         # Now that everything is set up, disable/delete related content.
         UserProfile.objects.filter(
             pk__in=(user_sole.pk, user_multi.pk)
-        ).ban_and_disable_related_content()
+        ).ban_and_disable_related_content(hard_block_addons=hard_block_addons)
 
         assert copy_file_to_backup_storage_mock.call_count == 2
 
@@ -262,23 +268,64 @@ class TestUserProfile(TestCase):
 
         addon_sole.reload()
         addon_multi.reload()
-        # if sole dev should have been disabled, but the author retained
+        other_addon_sole.reload()
+        # add-ons for which user_sole is the only dev should have been
+        # disabled, but the author retained
         assert addon_sole.status == amo.STATUS_DISABLED
         assert list(addon_sole.authors.all()) == [user_sole]
-        # shouldn't have been disabled as it has another author
+        assert other_addon_sole.status == amo.STATUS_DISABLED
+        assert list(other_addon_sole.authors.all()) == [user_sole]
+
+        # addon_multi shouldn't have been disabled as it has another author
         assert addon_multi.status != amo.STATUS_DISABLED
         assert list(addon_multi.authors.all()) == [user_innocent]
 
         # the File objects have been disabled
-        addon_sole_file.reload()
-        assert addon_sole_file.status == amo.STATUS_DISABLED
-        assert addon_sole_file.original_status == amo.STATUS_APPROVED
-        assert (
-            addon_sole_file.status_disabled_reason
-            == File.STATUS_DISABLED_REASONS.ADDON_DISABLE
-        )
+        for file_ in (addon_sole_file, other_addon_sole_file1, other_addon_sole_file2):
+            file_.reload()
+            assert file_.status == amo.STATUS_DISABLED
+            assert file_.original_status == amo.STATUS_APPROVED
+            assert (
+                file_.status_disabled_reason
+                == File.STATUS_DISABLED_REASONS.ADDON_DISABLE
+            )
         # But not for the Add-on that wasn't disabled
         assert addon_multi_file.reload().status == amo.STATUS_APPROVED
+
+        if not hard_block_addons:
+            assert not BlocklistSubmission.objects.exists()
+            assert not Block.objects.exists()
+        else:
+            assert BlocklistSubmission.objects.count() == 1
+            submission = BlocklistSubmission.objects.get()
+            assert (
+                submission.signoff_state == BlocklistSubmission.SIGNOFF_STATES.PUBLISHED
+            )
+            assert submission.input_guids
+            assert set(submission.input_guids.split()) == set(
+                (addon_sole.guid, other_addon_sole.guid)
+            )
+            assert submission.changed_version_ids
+            assert set(submission.changed_version_ids) == set(
+                (
+                    *addon_sole.versions.all().values_list('id', flat=True),
+                    *other_addon_sole.versions.all().values_list('id', flat=True),
+                )
+            )
+            assert not submission.disable_addon
+            assert submission.block_type == BlockType.BLOCKED
+            assert submission.updated_by == core.get_user()
+            assert submission.reason == REASON_USER_BANNED
+
+            expected_blocked_versions = (
+                *addon_sole.versions.all(),
+                *other_addon_sole.versions.all(),
+            )
+            for version in expected_blocked_versions:
+                assert version.is_blocked
+                assert version.blockversion.block_type == BlockType.BLOCKED
+                assert version.blockversion.block.reason == REASON_USER_BANNED
+            assert not addon_multi.current_version.reload().is_blocked
 
         assert not user_sole._ratings_all.exists()  # Even replies.
         assert not user_sole.collections.exists()
@@ -294,10 +341,10 @@ class TestUserProfile(TestCase):
             banned_content.ratings(manager='unfiltered_for_relations').all(),
             user_sole._ratings_all(manager='unfiltered_for_relations').all(),
         )
-        # User was not removed from add-ons - they only had the one where they
-        # were a solo author, so they keep the relationship but the add-on is
+        # User was not removed from add-ons - they had two where they were a
+        # solo author, so they keep the relationships but the add-ons are
         # disabled.
-        assert banned_content.addons.get() == addon_sole
+        assert set(banned_content.addons.all()) == {addon_sole, other_addon_sole}
         assert not banned_content.addons_users(
             manager='unfiltered_for_relations'
         ).exists()
@@ -424,6 +471,61 @@ class TestUserProfile(TestCase):
             'user_multi': user_multi,
         }
 
+    def test_ban_and_disable_related_content_bulk_with_hard_block(self):
+        user_factory(pk=settings.TASK_USER_ID)
+        fake_admin = user_factory(display_name='Fake Admin')
+        core.set_user(fake_admin)  # Needed for activity log
+        users = self.test_ban_and_disable_related_content_bulk(hard_block_addons=True)
+        # 2 add-ons from `user_sole` were blocked as part of the ban
+        addons = users['user_sole'].addons.all()
+        assert (
+            ActivityLog.objects.filter(action=amo.LOG.BLOCKLIST_BLOCK_ADDED.id).count()
+            == 2
+        )
+        for addon in addons:
+            activity = (
+                ActivityLog.objects.for_addons(addon)
+                .filter(action=amo.LOG.BLOCKLIST_BLOCK_ADDED.id)
+                .get()
+            )
+            assert activity.user == fake_admin
+            assert activity.arguments == [
+                addon,
+                addon.guid,
+                Block.objects.get(guid=addon.guid),
+            ]
+
+    def test_ban_and_disable_related_content_bulk_with_hard_block_not_auto_approved(
+        self,
+    ):
+        user_factory(pk=settings.TASK_USER_ID)
+        fake_admin = user_factory(display_name='Fake Admin')
+        core.set_user(fake_admin)  # Needed for activity log
+
+        user = user_factory(display_name='Ban Me Please')
+        addon = addon_factory(
+            users=[user],
+            average_daily_users=settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD + 1,
+        )
+        version = addon.current_version
+
+        UserProfile.objects.filter(pk__in=[user.pk]).ban_and_disable_related_content(
+            hard_block_addons=True
+        )
+
+        addon.reload()
+        user.reload()
+        assert user.banned
+        assert addon.status == amo.STATUS_DISABLED
+        # We should have a BlocklistSubmission, but it needs approval, so no
+        # blocks yet.
+        assert BlocklistSubmission.objects.count() == 1
+        submission = BlocklistSubmission.objects.get()
+        assert submission.input_guids == addon.guid
+        assert submission.changed_version_ids == [version.pk]
+        assert submission.signoff_state == BlocklistSubmission.SIGNOFF_STATES.PENDING
+        assert not Block.objects.exists()
+
     @mock.patch('olympia.users.models.download_file_contents_from_backup_storage')
     @mock.patch('olympia.users.models.backup_storage_enabled', lambda: True)
     def test_unban_and_restore_banned_content(
@@ -448,8 +550,9 @@ class TestUserProfile(TestCase):
         user_sole.reload()
         assert not user_sole.banned
         assert not user_sole.deleted
-        addon_sole = user_sole.addons.get()
-        assert addon_sole.status == amo.STATUS_APPROVED
+        assert user_sole.addons.count() == 2
+        for addon in user_sole.addons.all():
+            assert addon.status == amo.STATUS_APPROVED
         assert user_sole._ratings_all.all().count() == 2  # Includes replies
         assert user_sole.collections.count() == 1
         assert not BannedUserContent.objects.filter(user=user_sole).exists()
@@ -510,8 +613,9 @@ class TestUserProfile(TestCase):
         user_sole.reload()
         assert not user_sole.banned
         assert not user_sole.deleted
-        addon_sole = user_sole.addons.get()
-        assert addon_sole.status == amo.STATUS_APPROVED
+        assert user_sole.addons.count() == 2
+        for addon in user_sole.addons.all():
+            assert addon.status == amo.STATUS_APPROVED
         assert user_sole._ratings_all.all().count() == 2  # Includes replies
         assert user_sole.collections.count() == 1
         assert not BannedUserContent.objects.filter(user=user_sole).exists()

@@ -50,6 +50,7 @@ from olympia.amo.utils import (
     id_to_path,
 )
 from olympia.amo.validators import OneOrMoreLetterOrNumberCharacterValidator
+from olympia.constants.blocklist import REASON_USER_BANNED
 from olympia.files.models import File
 from olympia.translations.query import order_by_translation
 from olympia.users.notifications import NOTIFICATIONS_BY_ID
@@ -138,7 +139,9 @@ class UserEmailBoundField(forms.boundfield.BoundField):
 
 
 class UserQuerySet(BaseQuerySet):
-    def ban_and_disable_related_content(self, *, skip_activity_log=False):
+    def ban_and_disable_related_content(
+        self, *, skip_activity_log=False, hard_block_addons=False
+    ):
         """Admin method to ban multiple users and disable the content they
         produced.
 
@@ -151,6 +154,8 @@ class UserQuerySet(BaseQuerySet):
         from olympia.addons.models import Addon, AddonUser
         from olympia.addons.tasks import index_addons
         from olympia.bandwagon.models import Collection
+        from olympia.blocklist.models import BlocklistSubmission
+        from olympia.blocklist.tasks import process_blocklistsubmission
         from olympia.ratings.models import Rating
         from olympia.users.tasks import delete_photo
 
@@ -232,6 +237,29 @@ class UserQuerySet(BaseQuerySet):
             addons_sole_ids.append(addon.pk)
             addon.force_disable()
         index_addons.delay(addons_sole_ids)
+
+        # Hard-block all versions of addons we force disabled, if the relevant
+        # boolean is True.
+        if hard_block_addons:
+            submission = BlocklistSubmission(
+                action=BlocklistSubmission.ACTIONS.ADDCHANGE,
+                input_guids='\r\n'.join([addon.guid for addon in addons_sole]),
+                reason=REASON_USER_BANNED,
+                updated_by=core.get_user(),
+                disable_addon=False,  # Add-ons will already be disabled above.
+            )
+            submission.changed_version_ids = [
+                version.id
+                for block in submission.process_input_guids(
+                    submission.input_guids, load_full_objects=False
+                )['blocks']
+                for version in block.addon_versions
+                if not version.is_blocked
+            ]
+            submission.save()
+            submission.update_signoff_for_auto_approval()
+            if submission.is_submission_ready:
+                process_blocklistsubmission.delay(submission.id)
 
         # Soft-delete the other content associated with the user: Ratings and
         # Collections.
