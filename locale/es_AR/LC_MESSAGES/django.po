@@ -384,7 +384,7 @@ msgstr "Las versiones listadas no se pueden enviar mientras el complemento está
 
 #: src/olympia/addons/serializers.py:578 src/olympia/signing/views.py:218
 msgid "Listed versions cannot be submitted while add-on listing is rejected."
-msgstr ""
+msgstr "Las versiones listadas no se pueden enviar mientras el listado del complemento está rechazado."
 
 #: src/olympia/addons/serializers.py:619
 #, python-format
@@ -2739,7 +2739,7 @@ msgstr "Si quieres perdir contribuciones económicas a los usuarios, configura e
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:45
 #, python-format
 msgid "Supported domains: %(supported_domains)s"
-msgstr ""
+msgstr "Dominios soportados: %(supported_domains)s"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:55 src/olympia/translations/templates/translations/trans-menu.html:13
 msgid "Default Locale"
@@ -2839,12 +2839,16 @@ msgid ""
 "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Minimum length: %(min_length)s characters; Recommended "
 "length: 250 characters. If you need a longer description, make sure the first 250 characters contain the most important description points."
 msgstr ""
+"Una explicación más larga de características, funcionalidad y otra información relevante. Este campo solo se muestra en la página de producto del complemento. Longitud mínima: %(min_length)s "
+"caracteres; Longitud recomendada: 250 caracteres. Si necesitás una descripción más larga, asegurate que los primeros 250 caracteres contengan los puntos descriptivos más importantes."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:140
 msgid ""
 "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Recommended length: 250 characters. If you need a longer "
 "description, make sure the first 250 characters contain the most important description points."
 msgstr ""
+"Una explicación más larga de características, funcionalidad y otra información relevante. Este campo solo se muestra en la página de producto del complemento. Longitud recomendada: 250 caracteres. "
+"Si necesitás una descripción más larga, asegurate que los primeros 250 caracteres contengan los puntos descriptivos más importantes."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:169
 msgid "Experimental?"
@@ -4792,7 +4796,7 @@ msgstr "Cambia la forma de explorar Reddit a través de etiquetas y otras opcion
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:158
 msgid "Screenshot webpages, make edits & share."
-msgstr ""
+msgstr "Captura de pantalla de páginas web, editá y compartí."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:161
