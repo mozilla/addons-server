@@ -478,10 +478,17 @@ class ReviewHelper:
             job for job in unresolved_cinder_jobs if job.is_appeal
         )
 
+        use_content_rejection = self.content_review and waffle.switch_is_active(
+            'content_rejection_enabled'
+        )
+
         # Special logic for availability of reject/approve multiple action:
         if version_is_unlisted:
             can_reject_multiple = is_appropriate_reviewer
             can_approve_multiple = is_appropriate_reviewer
+        elif use_content_rejection:
+            can_reject_multiple = False
+            can_approve_multiple = False
         elif (
             self.content_review
             or any(promoted_group.listed_pre_review)
@@ -562,21 +569,73 @@ class ReviewHelper:
             'requires_reasons': not is_static_theme and not use_policies,
             'requires_reasons_for_cinder_jobs': not use_policies,
         }
-        actions['approve_content'] = {
-            'method': self.handler.approve_content,
-            'label': 'Approve Content',
+        actions['approve_listing_content'] = {
+            'method': self.handler.approve_listing_content,
+            'label': 'Approve Listing Content',
             'details': (
-                'This records your approbation of the '
-                'content of the latest public version, '
-                'without notifying the developer.'
+                'This records the listing content as approved. '
+                'The developer will not be notified.'
             ),
             'minimal': False,
             'comments': False,
             'available': (
                 self.content_review
+                and self.addon.status != amo.STATUS_REJECTED
                 and addon_is_valid_and_version_is_listed
                 and is_appropriate_reviewer
             ),
+            'enforcement_actions': (
+                not is_static_theme and use_policies and (DECISION_ACTIONS.AMO_APPROVE,)
+            ),
+            'resolves_cinder_jobs': True,
+        }
+        actions['approve_rejected_listing_content'] = {
+            'method': self.handler.approve_rejected_listing_content,
+            'label': 'Approve Rejected Listing Content',
+            'details': (
+                'This records the listing content as approved, and restores an '
+                "add-on's status after listing rejection. "
+                'The developer will be notified.'
+            ),
+            'minimal': False,
+            'comments': False,
+            'available': (
+                self.content_review
+                and self.addon.status == amo.STATUS_REJECTED
+                and addon_is_valid_and_version_is_listed
+                and is_appropriate_reviewer
+            ),
+            'enforcement_actions': (
+                not is_static_theme and use_policies and (DECISION_ACTIONS.AMO_APPROVE,)
+            ),
+            'resolves_cinder_jobs': True,
+        }
+        actions['reject_listing_content'] = {
+            'method': self.handler.reject_listing_content,
+            'label': 'Reject Listing Content',
+            'details': (
+                "This rejects the listing content, and removes the add-on's public "
+                'listing. The developer will be notified and can request a further '
+                'review after they make changes.'
+            ),
+            'minimal': False,
+            'comments': True,
+            'available': (
+                use_content_rejection
+                and addon_is_valid_and_version_is_listed
+                and is_appropriate_reviewer
+            ),
+            'enforcement_actions': (
+                use_policies
+                and (
+                    DECISION_ACTIONS.AMO_DISABLE_ADDON,
+                    DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
+                    DECISION_ACTIONS.AMO_REJECT_LISTING_CONTENT,
+                )
+            ),
+            'resolves_cinder_jobs': True,
+            'requires_reasons': not is_static_theme and not use_policies,
+            'requires_reasons_for_cinder_jobs': not use_policies,
         }
         actions['confirm_auto_approved'] = {
             'method': self.handler.confirm_auto_approved,
@@ -646,6 +705,7 @@ class ReviewHelper:
             'comments': False,
             'available': (
                 not version_is_unlisted
+                and not use_content_rejection
                 and addon_is_not_disabled_or_deleted
                 and version_was_rejected
                 and is_appropriate_admin_reviewer
@@ -710,7 +770,7 @@ class ReviewHelper:
             'multiple_versions': True,
             'minimal': True,
             'comments': False,
-            'available': is_appropriate_admin_reviewer,
+            'available': not use_content_rejection and is_appropriate_admin_reviewer,
         }
         actions['clear_needs_human_review_multiple_versions'] = {
             'method': self.handler.clear_needs_human_review_multiple_versions,
@@ -1402,21 +1462,44 @@ class ReviewBase:
             self.log_action(amo.LOG.CLEAR_ADMIN_REVIEW_THEME)
             log.info(f'{amo.LOG.CLEAR_ADMIN_REVIEW_THEME.short} for {self.addon}')
 
-    def approve_content(self):
-        """Approve content of an add-on."""
-        channel = self.version.channel
-        version = self.addon.current_version
-
+    def approve_listing_content(self):
+        """Approve listing content of an add-on."""
         # Content review only action.
         assert self.content_review
 
         # Doesn't make sense for unlisted versions.
-        assert channel == amo.CHANNEL_LISTED
+        assert self.version.channel == amo.CHANNEL_LISTED
 
-        # When doing a content review, don't increment the approvals counter,
-        # just record the date of the content approval and log it.
-        AddonApprovalsCounter.approve_content_for_addon(addon=self.addon)
-        self.log_action(amo.LOG.APPROVE_CONTENT, version=version)
+        self.record_decision(amo.LOG.APPROVE_LISTING_CONTENT, action_completed=False)
+
+    def approve_rejected_listing_content(self):
+        """Approve listing content of an add-on that is currently rejected.
+
+        Note this is essentially the same as approve_listing_content - it has a
+        different log action but it's only used to discover the relevant
+        DECISION_ACTION, and they're both AMO_APPROVE.
+        ContentActionApproveListingContent has it's own logic to choose the correct
+        activity log class."""
+        # Content review only action.
+        assert self.content_review
+
+        # Doesn't make sense for unlisted versions.
+        assert self.version.channel == amo.CHANNEL_LISTED
+
+        log.info('Sending email for %s' % (self.addon))
+        self.record_decision(
+            amo.LOG.APPROVE_REJECTED_LISTING_CONTENT, action_completed=False
+        )
+
+    def reject_listing_content(self):
+        """Reject listing content of an add-on."""
+        # Content review only action.
+        assert self.content_review
+        # Doesn't make sense for unlisted versions.
+        assert self.version.channel == amo.CHANNEL_LISTED
+
+        log.info('Sending email for %s' % (self.addon))
+        self.record_decision(amo.LOG.REJECT_LISTING_CONTENT, action_completed=False)
 
     def confirm_auto_approved(self):
         """Confirm an auto-approval decision."""

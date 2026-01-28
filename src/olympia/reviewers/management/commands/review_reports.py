@@ -41,7 +41,8 @@ REPORTS = {
     },
     'content': {
         'activities': (
-            amo.LOG.APPROVE_CONTENT,
+            amo.LOG.APPROVE_LISTING_CONTENT,
+            amo.LOG.REJECT_LISTING_CONTENT,
             amo.LOG.REJECT_CONTENT,
             amo.LOG.REJECT_CONTENT_DELAYED,
         ),

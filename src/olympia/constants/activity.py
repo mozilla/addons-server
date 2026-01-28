@@ -672,16 +672,6 @@ class DISABLE_VERSION(_LOG):
     short = 'Version disabled'
 
 
-class APPROVE_CONTENT(_LOG):
-    id = 147
-    format = '{addon} {version} content approved.'
-    short = 'Content approved'
-    keep = True
-    reviewer_review_action = True
-    review_queue = True
-    hide_developer = True
-
-
 class REJECT_CONTENT(_LOG):
     id = 148
     action_class = 'reject'
@@ -1273,13 +1263,26 @@ class EDIT_USER_PROPERTY(_LOG):
 
 
 class APPROVE_LISTING_CONTENT(_LOG):
-    id = 211
-    format = '{addon} listing content approved.'
-    short = 'Listing content approved'
+    id = 147
+    format = '{addon} content approved.'
+    short = 'Content approved'
     keep = True
     reviewer_review_action = True
     review_queue = True
     hide_developer = True
+    cinder_action = DECISION_ACTIONS.AMO_APPROVE
+    review_queue_important_change = True
+
+
+class APPROVE_REJECTED_LISTING_CONTENT(_LOG):
+    id = 211
+    format = _('{addon} rejected listing content approved.')
+    short = _('Rejected listing approved')
+    keep = True
+    review_email_user = True
+    reviewer_review_action = True
+    review_queue = True
+    cinder_action = DECISION_ACTIONS.AMO_APPROVE
     review_queue_important_change = True
 
 

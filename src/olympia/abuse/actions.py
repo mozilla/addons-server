@@ -685,6 +685,10 @@ class ContentActionBlockAddon(ContentActionDisableAddon):
 class ContentActionRejectListingContent(ContentActionDisableAddon):
     description = 'Add-on listing content has been rejected'
 
+    @property
+    def target_versions(self):
+        return self.decision.target_versions.none()
+
     def should_hold_action(self):
         return bool(
             self.target.status not in (amo.STATUS_DISABLED, amo.STATUS_REJECTED)
@@ -698,8 +702,7 @@ class ContentActionRejectListingContent(ContentActionDisableAddon):
             AddonApprovalsCounter.objects.update_or_create(
                 addon=self.target, defaults={'last_content_review_pass': False}
             )
-            return self.log_action(amo.LOG.REJECT_LISTING_CONTENT)
-        return None
+        return self.log_action(amo.LOG.REJECT_LISTING_CONTENT)
 
     def hold_action(self):
         if self.target.status not in (amo.STATUS_DISABLED, amo.STATUS_REJECTED):
@@ -881,6 +884,7 @@ class ContentActionTargetAppealApprove(
                 DECISION_ACTIONS.AMO_REJECT_LISTING_CONTENT in previous_decision_actions
                 and target.status == amo.STATUS_REJECTED
             ):
+                target_versions = target_versions.none()
                 AddonApprovalsCounter.objects.update_or_create(
                     addon=target,
                     defaults={
@@ -890,7 +894,7 @@ class ContentActionTargetAppealApprove(
                 )
                 # Call the function to correct it the status
                 target.update_status()
-                activity_log_action = amo.LOG.APPROVE_LISTING_CONTENT
+                activity_log_action = amo.LOG.APPROVE_REJECTED_LISTING_CONTENT
 
             if not activity_log_action:
                 return
@@ -941,16 +945,17 @@ class ContentActionOverrideApprove(ContentActionTargetAppealApprove):
         return self.decision.__class__.objects.filter(pk=self.decision.override_of_id)
 
 
-class ContentActionApproveListingContent(
-    AnyTargetMixin, AnyOwnerEmailMixin, ContentAction
-):
+class ContentActionApproveListingContent(AnyTargetMixin, ContentAction):
     description = 'Reported content is within policy'
     reporter_template_path = 'abuse/emails/reporter_content_approve.txt'
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_approve.txt'
 
     def __init__(self, decision):
         super().__init__(decision)
-        self.status = self.target.status if isinstance(self.target, Addon) else None
+        self.status = self.decision.metadata.get(
+            'previous_status',
+            self.target.status if isinstance(self.target, Addon) else None,
+        )
 
     def get_owners(self):
         if self.status == amo.STATUS_REJECTED:
@@ -969,9 +974,13 @@ class ContentActionApproveListingContent(
                 },
             )
             if self.status == amo.STATUS_REJECTED:
+                self.decision.metadata['previous_status'] = self.status
+                self.decision.save(update_fields=['metadata'])
                 # Call the function to correct it the status
                 self.target.update_status()
-            log_entry = self.log_action(amo.LOG.APPROVE_LISTING_CONTENT)
+                log_entry = self.log_action(amo.LOG.APPROVE_REJECTED_LISTING_CONTENT)
+            else:
+                log_entry = self.log_action(amo.LOG.APPROVE_LISTING_CONTENT)
             return log_entry
         return None
 

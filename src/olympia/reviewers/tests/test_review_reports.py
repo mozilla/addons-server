@@ -43,7 +43,9 @@ class TestReviewReports:
             version=addon.current_version, verdict=verdict, weight=weight
         )
         action = (
-            amo.LOG.APPROVE_VERSION if not content_review else amo.LOG.APPROVE_CONTENT
+            amo.LOG.APPROVE_VERSION
+            if not content_review
+            else amo.LOG.APPROVE_LISTING_CONTENT
         )
         ActivityLog.objects.create(action, addon, addon.versions.all()[0], user=user)
 
@@ -123,7 +125,7 @@ class TestReviewReports:
             search_plugin = addon_factory(type=4)
             frozen_time.shift(1)
             ActivityLog.objects.create(
-                amo.LOG.APPROVE_CONTENT,
+                amo.LOG.APPROVE_LISTING_CONTENT,
                 search_plugin,
                 search_plugin.versions.all()[0],
                 user=self.reviewer3,
@@ -133,7 +135,7 @@ class TestReviewReports:
             dictionary = addon_factory(type=amo.ADDON_DICT)
             frozen_time.shift(1)
             ActivityLog.objects.create(
-                amo.LOG.APPROVE_CONTENT,
+                amo.LOG.APPROVE_LISTING_CONTENT,
                 dictionary,
                 dictionary.versions.all()[0],
                 user=self.reviewer3,
@@ -149,7 +151,7 @@ class TestReviewReports:
                 user=self.reviewer2,
             )
             ActivityLog.objects.create(
-                amo.LOG.APPROVE_CONTENT,
+                amo.LOG.APPROVE_LISTING_CONTENT,
                 theme,
                 theme.versions.all()[0],
                 user=self.reviewer1,
@@ -405,7 +407,7 @@ class TestReviewReports:
             for _i in range(3):
                 frozen_time.shift(1)
                 ActivityLog.objects.create(
-                    amo.LOG.APPROVE_CONTENT,
+                    amo.LOG.APPROVE_LISTING_CONTENT,
                     (addon := addon_factory()),
                     addon.versions.all()[0],
                     user=self.reviewer1,
