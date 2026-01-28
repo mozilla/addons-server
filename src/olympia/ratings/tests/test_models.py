@@ -3,7 +3,7 @@ from unittest import mock
 from django.core import mail
 from django.core.exceptions import ValidationError
 
-from elasticsearch_dsl import Q, Search
+from elasticsearch.dsl import Q, Search
 
 from olympia import amo, core
 from olympia.activity.models import ActivityLog

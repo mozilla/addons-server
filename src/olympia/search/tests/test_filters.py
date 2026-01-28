@@ -8,7 +8,7 @@ from django.utils import translation
 from django.utils.http import urlsafe_base64_encode
 
 import time_machine
-from elasticsearch_dsl import Search
+from elasticsearch.dsl import Search
 from rest_framework import serializers
 
 from olympia import amo
