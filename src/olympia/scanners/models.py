@@ -8,6 +8,7 @@ from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.functional import classproperty
 
+import regex
 import yara
 
 import olympia.core.logger
@@ -192,10 +193,14 @@ class AbstractScannerRule(ModelBase):
         if not self.definition:
             raise ValidationError({'definition': 'Narc rules should have a definition'})
         try:
-            re.compile(self.definition)
+            regex.compile(self.definition)
         except Exception as exc:
             raise ValidationError(
-                {'definition': 'An error occurred when compiling regular expression'}
+                {
+                    'definition': (
+                        f'An error occurred when compiling regular expression: {exc}'
+                    )
+                }
             ) from exc
 
     def clean_yara(self):

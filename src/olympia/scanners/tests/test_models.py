@@ -404,7 +404,23 @@ class TestScannerRuleMixin:
             definition=r'^test\Y',  # Invalid escape sequence in regexp
         )
 
-        with pytest.raises(ValidationError, match=r'error occurred when compiling'):
+        with pytest.raises(
+            ValidationError,
+            match=r'error occurred when compiling regular expression: bad escape',
+        ):
+            rule.clean()
+
+    def test_clean_raises_for_narc_rule_that_doesnt_compile_with_regex_module(self):
+        rule = self.model(
+            name='some_rule',
+            scanner=NARC,
+            definition=r'^(test){e<=-1}',
+        )
+
+        with pytest.raises(
+            ValidationError,
+            match=r'error occurred when compiling regular expression: bad',
+        ):
             rule.clean()
 
     def test_clean_raises_for_yara_rule_without_a_definition(self):
