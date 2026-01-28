@@ -6,469 +6,589 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-01-28 15:45+0000\n"
 "Language: th\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Pontoon\n"
 
+#: static/js/common/upload-addon.js:54 static/js/common/upload-image.js:136
 msgid "There was a problem contacting the server."
 msgstr "มีปัญหาในการติดต่อกับเซิร์ฟเวอร์"
 
+#: static/js/common/upload-addon.js:78
 msgid "Select a file..."
 msgstr "เลือกไฟล์..."
 
+#: static/js/common/upload-addon.js:82
 msgid "Your add-on should end with .zip, .xpi or .crx"
 msgstr "ส่วนเสริมของคุณควรลงท้ายด้วย .zip .xpi หรือ .crx"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#, python-format, python-brace-format
+#: static/js/common/upload-addon.js:118
+#, python-brace-format, python-format
 msgid "{0}% complete"
 msgstr "เสร็จสมบูรณ์ {0}%"
 
+#: static/js/common/upload-addon.js:122
 #, python-brace-format
 msgid "{0} of {1}"
 msgstr "{0} จาก {1}"
 
+#: static/js/common/upload-addon.js:166
 msgid "Cancel"
 msgstr "ยกเลิก"
 
+#: static/js/common/upload-addon.js:189
 #, python-brace-format
 msgid "Uploading {0}"
 msgstr "กำลังอัปโหลด {0}"
 
+#: static/js/common/upload-addon.js:229
 #, python-brace-format
 msgid "Error with {0}"
 msgstr "เกิดข้อผิดพลาดกับ {0}"
 
+#: static/js/common/upload-addon.js:237
 msgid "Please make sure to report any linting related issues on GitHub"
 msgstr "โปรดอย่าลืมรายงานปัญหาที่เกี่ยวข้องกับการ Lint บน GitHub"
 
+#: static/js/common/upload-addon.js:248
 #, python-brace-format
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] "ส่วนเสริมของคุณไม่ผ่านการตรวจสอบด้วย {0} ข้อผิดพลาด"
 
+#: static/js/common/upload-addon.js:266
 #, python-brace-format
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;และเพิ่มเติมอีก {0}"
 
+#: static/js/common/upload-addon.js:287 static/js/common/upload-addon.js:705
 msgid "See full validation report"
 msgstr "ดูรายงานการตรวจสอบฉบับเต็ม"
 
+#: static/js/common/upload-addon.js:300
 #, python-brace-format
 msgid "Validating {0}"
 msgstr "กำลังตรวจสอบ {0}"
 
+#: static/js/common/upload-addon.js:350
 #, python-brace-format
 msgid "Your add-on exceeds the maximum size of {0}."
 msgstr "ส่วนเสริมของคุณเกินขนาดสูงสุด {0}"
 
+#: static/js/common/upload-addon.js:358
 #, python-brace-format
 msgid "Received an empty response from the server; status: {0}"
 msgstr "ได้รับการตอบสนองที่ว่างเปล่าจากแม่ข่าย; สถานะ: {0}"
 
+#: static/js/common/upload-addon.js:403
 msgid "Your extension has to be compatible with at least one application."
 msgstr "ส่วนขยายของคุณต้องเข้ากันได้กับอย่างน้อยหนึ่งแอปพลิเคชัน"
 
+#: static/js/common/upload-addon.js:473
 msgid "Unexpected server error while validating."
 msgstr "เกิดข้อผิดพลาดที่ไม่คาดคิดกับเซิร์ฟเวอร์ขณะตรวจสอบ"
 
+#: static/js/common/upload-addon.js:519
 msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
 msgstr "ระบุอย่างชัดเจนใน Manifest ว่าเข้ากันได้กับ Firefox สำหรับ Android"
 
+#: static/js/common/upload-addon.js:561
 #, python-brace-format
 msgid "Finished validating {0}"
 msgstr "เสร็จสิ้นการตรวจสอบ {0}"
 
+#: static/js/common/upload-addon.js:568
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr "หยุดพักการตรวจสอบส่วนเสริมของคุณชั่วคราว ส่วนเสริมของคุณจะถูกตรวจสอบโดยมนุษย์"
 
+#: static/js/common/upload-addon.js:573
 #, python-brace-format
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] "ส่วนเสริมของคุณผ่านการตรวจสอบโดยไม่มีข้อผิดพลาดและ {0} คำเตือน"
 
+#: static/js/common/upload-addon.js:582
 #, python-brace-format
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] "ส่วนเสริมของคุณผ่านการตรวจสอบโดยไม่มีข้อผิดพลาดและ {0} ข้อความ"
 
+#: static/js/common/upload-addon.js:590
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "ส่วนเสริมของคุณผ่านการตรวจสอบโดยไม่มีข้อผิดพลาดหรือคำเตือนใด"
 
+#: static/js/common/upload-addon.js:651
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "รวมหมายเหตุรายละเอียดรุ่น (สามารถยกไปทำในขั้นตอนถัดไปได้)"
 
+#: static/js/common/upload-addon.js:654
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr "หากส่วนเสริมของคุณจำเป็นต้องใช้บัญชีผู้ใช้ในเว็บไซต์เพื่อทดสอบแบบสมบูรณ์ โปรดระบุชื่อผู้ใช้และรหัสผ่านไว้ในหมายเหตุให้แก่ผู้ตรวจทานด้วย (สามารถยกไปทำในขั้นตอนถัดไปได้)"
 
+#: static/js/common/upload-addon.js:660
 msgid "Add-on submission checklist"
 msgstr "รายการตรวจสอบการส่งส่วนเสริม"
 
+#: static/js/common/upload-addon.js:664
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "โปรดตรวจสอบหัวข้อต่าง ๆ ก่อนส่งข้อมูลในขั้นสุดท้าย จะช่วยลดความล่าช้าหรือความเข้าใจผิดที่อาจเกิดขึ้นระหว่างทำการตรวจสอบ:"
 
+#: static/js/common/upload-addon.js:671
 msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
-msgstr "สคริปต์ที่มีการย่อ เชื่อมโยงกัน หรือสร้างขึ้นด้วยเครื่อง (ยกเว้นไลบรารีที่รู้จัก) ต้องส่งซอร์สแยกต่างหากเพื่อใช้สำหรับตรวจทาน ตรวจสอบให้แน่ใจว่า คุณใช้ช่องอัปโหลดซอร์สโค้ดเพื่อหลีกเลี่ยงไม่ให้ข้อมูลที่คุณส่งถูกปฏิเสธ"
+msgstr ""
+"สคริปต์ที่มีการย่อ เชื่อมโยงกัน หรือสร้างขึ้นด้วยเครื่อง (ยกเว้นไลบรารีที่รู้จัก) ต้องส่งซอร์สแยกต่างหากเพื่อใช้สำหรับตรวจทาน ตรวจสอบให้แน่ใจว่า "
+"คุณใช้ช่องอัปโหลดซอร์สโค้ดเพื่อหลีกเลี่ยงไม่ให้ข้อมูลที่คุณส่งถูกปฏิเสธ"
 
+#: static/js/common/upload-addon.js:684
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "กระบวนการการตรวจสอบความถูกต้องพบปัญหาที่อาจก่อให้เกิดการปฏิเสธ:"
 
+#: static/js/common/upload-base.js:69
 msgid "The filetype you uploaded isn't recognized."
 msgstr "ไม่รู้จักรูปแบบไฟล์ที่คุณอัปโหลด"
 
+#: static/js/common/upload-base.js:79 static/js/zamboni/global.js:569
 #, python-brace-format
 msgid "Your file exceeds the maximum size of {0}."
 msgstr "ไฟล์ของคุณเกินขนาดสูงสุด {0}"
 
+#: static/js/common/upload-base.js:105
 msgid "You cancelled the upload."
 msgstr "คุณได้ยกเลิกการอัปโหลด"
 
+#: static/js/common/upload-image.js:102
 msgid "Images must be either PNG or JPG."
 msgstr "ภาพจะต้องเป็น PNG หรือ JPG"
 
+#: static/js/common/upload-image.js:106
 msgid "Videos must be in WebM."
 msgstr "วิดีโอต้องเป็นแบบ WebM"
 
+#: static/js/stats/chart.js:283
 #, python-brace-format
 msgid "Week of {0}"
 msgstr "สัปดาห์ที่ {0}"
 
+#: static/js/stats/chart.js:292
 #, python-brace-format
 msgid "{0} download"
 msgid_plural "{0} downloads"
 msgstr[0] "{0} การดาวน์โหลด"
 
+#: static/js/stats/chart.js:298
 #, python-brace-format
 msgid "{0} user"
 msgid_plural "{0} users"
 msgstr[0] "{0} ผู้ใช้"
 
+#: static/js/stats/chart.js:362 static/js/stats/csv_keys.js:3 static/js/stats/csv_keys.js:9
 msgid "Downloads"
 msgstr "การดาวน์โหลด"
 
+#: static/js/stats/chart.js:374 static/js/stats/csv_keys.js:6 static/js/stats/csv_keys.js:10
 msgid "Daily Users"
 msgstr "ผู้ใช้ต่อวัน"
 
+#: static/js/stats/chart.js:409
 msgid "More Info..."
 msgstr "ข้อมูลเพิ่มเติม..."
 
 #. L10n: {0} is an ISO-formatted date.
+#: static/js/stats/chart.js:415
 #, python-brace-format
 msgid "Details for {0}"
 msgstr "รายละเอียดสำหรับ {0}"
 
+#: static/js/stats/csv_keys.js:13
 msgid "Firefox"
 msgstr "Firefox"
 
+#: static/js/stats/csv_keys.js:14
 msgid "Mozilla"
 msgstr "Mozilla"
 
+#: static/js/stats/csv_keys.js:15
 msgid "Thunderbird"
 msgstr "Thunderbird"
 
+#: static/js/stats/csv_keys.js:16
 msgid "Sunbird"
 msgstr "Sunbird"
 
+#: static/js/stats/csv_keys.js:17
 msgid "SeaMonkey"
 msgstr "SeaMonkey"
 
+#: static/js/stats/csv_keys.js:18
 msgid "Fennec"
 msgstr "Fennec"
 
+#: static/js/stats/csv_keys.js:19
 msgid "Android"
 msgstr "Android"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:24
 #, python-brace-format
 msgid "Downloads and Daily Users, last {0} days"
 msgstr "การดาวน์โหลดและผู้ใช้ต่อวันใน {0} วันล่าสุด"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:26
 #, python-brace-format
 msgid "Downloads and Daily Users from {0} to {1}"
 msgstr "การดาวน์โหลดและผู้ใช้ต่อวันจาก {0} ถึง {1}"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:30
 #, python-brace-format
 msgid "Downloads, last {0} days"
 msgstr "การดาวน์โหลดใน {0} วันล่าสุด"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:32
 #, python-brace-format
 msgid "Downloads from {0} to {1}"
 msgstr "การดาวน์โหลดจาก {0} ถึง {1}"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:36
 #, python-brace-format
 msgid "Daily Users, last {0} days"
 msgstr "ผู้ใช้ต่อวันใน {0} วันล่าสุด"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:38
 #, python-brace-format
 msgid "Daily Users from {0} to {1}"
 msgstr "ผู้ใช้ต่อวันจาก {0} ถึง {1}"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:42
 #, python-brace-format
 msgid "Applications, last {0} days"
 msgstr "แอปพลิเคชันใน {0} วันล่าสุด"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:44
 #, python-brace-format
 msgid "Applications from {0} to {1}"
 msgstr "แอปพลิเคชันจาก {0} ถึง {1}"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:48
 #, python-brace-format
 msgid "Countries, last {0} days"
 msgstr "ประเทศใน {0} วันล่าสุด"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:50
 #, python-brace-format
 msgid "Countries from {0} to {1}"
 msgstr "ประเทศจาก {0} ถึง {1}"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:54
 #, python-brace-format
 msgid "Platforms, last {0} days"
 msgstr "แพลตฟอร์มใน {0} วันล่าสุด"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:56
 #, python-brace-format
 msgid "Platforms from {0} to {1}"
 msgstr "แพลตฟอร์มจาก {0} ถึง {1}"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:60
 #, python-brace-format
 msgid "Languages, last {0} days"
 msgstr "ภาษาใน {0} วันล่าสุด"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:62
 #, python-brace-format
 msgid "Languages from {0} to {1}"
 msgstr "ภาษาจาก {0} ถึง {1}"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:66
 #, python-brace-format
 msgid "Add-on Versions, last {0} days"
 msgstr "รุ่นของส่วนเสริมใน {0} วันล่าสุด"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:68
 #, python-brace-format
 msgid "Add-on Versions from {0} to {1}"
 msgstr "รุ่นของส่วนเสริมจาก {0} ถึง {1}"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:72
 #, python-brace-format
 msgid "Download Sources, last {0} days"
 msgstr "การดาวน์โหลดซอร์สใน {0} วันล่าสุด"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:74
 #, python-brace-format
 msgid "Download Sources from {0} to {1}"
 msgstr "การดาวน์โหลดซอร์สจาก {0} ถึง {1}"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:78
 #, python-brace-format
 msgid "Download Mediums, last {0} days"
 msgstr "สื่อกลางการดาวน์โหลดใน {0} วันล่าสุด"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:80
 #, python-brace-format
 msgid "Download Mediums from {0} to {1}"
 msgstr "สื่อกลางการดาวน์โหลดจาก {0} ถึง {1}"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:84
 #, python-brace-format
 msgid "Download Contents, last {0} days"
 msgstr "เนื้อหาการดาวน์โหลดซอร์สใน {0} วันล่าสุด"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:86
 #, python-brace-format
 msgid "Download Contents from {0} to {1}"
 msgstr "เนื้อหาการดาวน์โหลดจาก {0} ถึง {1}"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:90
 #, python-brace-format
 msgid "Download Campaigns, last {0} days"
 msgstr "แคมเปญการดาวน์โหลดใน {0} วันล่าสุด"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:92
 #, python-brace-format
 msgid "Download Campaigns from {0} to {1}"
 msgstr "แคมเปญการดาวน์โหลดจาก {0} ถึง {1}"
 
 #. L10n: {0} and {1} are integers.
+#: static/js/stats/csv_keys.js:98
 #, python-brace-format
 msgid "<b>{0}</b> in last {1} days"
 msgstr "<b>{0}</b> ใน {1} วันล่าสุด"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:100 static/js/stats/csv_keys.js:106
 #, python-brace-format
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "<b>{0}</b> จาก {1} ถึง {2}"
 
 #. L10n: {0} and {1} are integers.
+#: static/js/stats/csv_keys.js:104
 #, python-brace-format
 msgid "<b>{0}</b> average in last {1} days"
 msgstr "<b>{0}</b> เฉลี่ยใน {1} วันล่าสุด"
 
+#: static/js/stats/overview.js:18
 msgid "No data available."
 msgstr "ไม่มีข้อมูล"
 
+#: static/js/stats/table.js:84
 msgid "Date"
 msgstr "วันที่"
 
+#: static/js/stats/topchart.js:108
 msgid "Other"
 msgstr "อื่น ๆ"
 
+#: static/js/zamboni/devhub.js:300
 msgid "Changes Saved"
 msgstr "บันทึกการเปลี่ยนแปลงแล้ว"
 
+#: static/js/zamboni/devhub.js:316
 msgid "Enter a new author's email address"
 msgstr "ป้อนที่อยู่อีเมลของผู้สร้างใหม่"
 
+#: static/js/zamboni/devhub.js:440
 msgid "There was an error uploading your file."
 msgstr "เกิดข้อผิดพลาดขึ้นในระหว่างการอัปโหลดไฟล์ของคุณ"
 
+#: static/js/zamboni/devhub.js:596
 #, python-brace-format
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} ไฟล์"
 
+#: static/js/zamboni/devhub.js:1196
 msgid "Image changes being processed"
 msgstr "ภาพที่เปลี่ยนกำลังดำเนินการอยู่"
 
+#: static/js/zamboni/global.js:463
 #, python-brace-format
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> ตัวอักษร"
 
+#: static/js/zamboni/global.js:472
 #, python-brace-format
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "เหลือ <b>{0}</b> ตัวอักษร"
 
+#: static/js/zamboni/init.js:12
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "คุณสมบัตินี้ถูกปิดใช้งานชั่วคราวในขณะที่เรากำลังทำการบำรุงรักษาเว็บไซต์ โปรดกลับมาอีกครั้งในภายหลัง"
 
+#: static/js/zamboni/l10n.js:164
 msgid "Remove this localization"
 msgstr "เอาการแปลนี้ออก"
 
+#: static/js/zamboni/reviewers.js:258
 #, python-brace-format
 msgid "{name} was viewing this page first."
 msgstr "{name} ดูหน้านี้เป็นคนแรก"
 
+#: static/js/zamboni/reviewers.js:266
 msgid "Review page polling failed."
 msgstr "การโพลล์หน้าตรวจทานล้มเหลว"
 
+#: static/js/zamboni/reviewers.js:583
 #, python-brace-format
 msgid "{name} was viewing this add-on first."
 msgstr "{name} ดูส่วนเสริมนี้เป็นคนแรก"
 
+#: static/js/zamboni/reviewers.js:596 static/js/zamboni/reviewers.js:622
 msgid "Loading&hellip;"
 msgstr "กำลังโหลด&hellip;"
 
+#: static/js/zamboni/reviewers.js:601
 msgid "Version Notes"
 msgstr "บันทึกประจำรุ่น"
 
+#: static/js/zamboni/reviewers.js:608
 msgid "Notes for Reviewers"
 msgstr "หมายเหตุสำหรับนักวิจารณ์"
 
+#: static/js/zamboni/reviewers.js:615
 msgid "No version notes found"
 msgstr "ไม่พบบันทึกประจำรุ่น"
 
+#: static/js/zamboni/reviewers.js:627
 msgid "Review Text"
 msgstr "ข้อความการตรวจทาน"
 
+#: static/js/zamboni/reviewers.js:634
 msgid "Review notes found"
 msgstr "พบบันทึกการตรวจทาน"
 
+#: static/js/zamboni/static_theme.js:217
 #, python-brace-format
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "ขนาดการอัปโหลดสูงสุดคือ {0} - เลือกภาพพื้นหลังที่เล็กกว่า"
 
+#: static/js/zamboni/themes_review.js:199
 msgid "Requested Info"
 msgstr "ข้อมูลที่ร้องขอ"
 
+#: static/js/zamboni/themes_review.js:200
 msgid "Flagged"
 msgstr "ถูกปักธง"
 
+#: static/js/zamboni/themes_review.js:201
 msgid "Duplicate"
 msgstr "ซ้ำ"
 
+#: static/js/zamboni/themes_review.js:202
 msgid "Rejected"
 msgstr "ถูกปฏิเสธ"
 
+#: static/js/zamboni/themes_review.js:203
 msgid "Approved"
 msgstr "อนุมัติแล้ว"
 
+#: static/js/zamboni/themes_review.js:492
 msgid "No results found"
 msgstr "ไม่พบผลลัพธ์"
 
+#: static/js/zamboni/themes_review_templates.js:43
 msgid "Theme"
 msgstr "ชุดรูปแบบ"
 
+#: static/js/zamboni/themes_review_templates.js:45
 msgid "Reviewer"
 msgstr "ผู้ตรวจทาน"
 
+#: static/js/zamboni/themes_review_templates.js:47
 msgid "Status"
 msgstr "สถานะ"
 
+#: static/js/zamboni/validator.js:89
 msgid "All tests passed successfully."
 msgstr "การทดสอบทั้งหมดผ่านอย่างประสบความสำเร็จ"
 
+#: static/js/zamboni/validator.js:92 static/js/zamboni/validator.js:388
 msgid "These tests were not run."
 msgstr "การทดสอบเหล่านี้ไม่ทำงาน"
 
+#: static/js/zamboni/validator.js:155 static/js/zamboni/validator.js:177
 msgid "Tests"
 msgstr "ทดสอบ"
 
+#: static/js/zamboni/validator.js:259 static/js/zamboni/validator.js:492 static/js/zamboni/validator.js:516
 msgid "Error"
 msgstr "ข้อผิดพลาด"
 
+#: static/js/zamboni/validator.js:259
 msgid "Warning"
 msgstr "คำเตือน"
 
+#: static/js/zamboni/validator.js:332
 #, python-brace-format
 msgid "{0} line {1} column {2}"
 msgstr "{0} บรรทัด {1} คอลัมน์ {2}"
 
+#: static/js/zamboni/validator.js:339
 #, python-brace-format
 msgid "{0} line {1}"
 msgstr "{0} บรรทัด {1}"
 
+#: static/js/zamboni/validator.js:376
 msgid "Add-on failed validation."
 msgstr "ส่วนเสริมของคุณไม่ผ่านการตรวจสอบ"
 
+#: static/js/zamboni/validator.js:378
 msgid "Add-on passed validation."
 msgstr "ส่วนเสริมของคุณได้ผ่านการตรวจสอบ"
 
+#: static/js/zamboni/validator.js:391
 #, python-brace-format
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} ข้อผิดพลาด"
 
+#: static/js/zamboni/validator.js:394
 #, python-brace-format
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} คำเตือน"
 
+#: static/js/zamboni/validator.js:397
 #, python-brace-format
 msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] "{0} ประกาศ"
 
+#: static/js/zamboni/validator.js:494
 msgid "Validation task could not complete or completed with errors"
 msgstr "งานการตรวจสอบไม่สามารถเสร็จสิ้นได้เพราะมีข้อผิดพลาด"
 
+#: static/js/zamboni/validator.js:517
 msgid "Internal server error"
 msgstr "ข้อผิดพลาดเซิร์ฟเวอร์ภายใน"

@@ -6,485 +6,603 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-01-28 15:45+0000\n"
 "Language: ka\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Pontoon\n"
 
+#: static/js/common/upload-addon.js:54 static/js/common/upload-image.js:136
 msgid "There was a problem contacting the server."
 msgstr "სერვერთან დაკავშირება ვერ მოხერხდა."
 
+#: static/js/common/upload-addon.js:78
 msgid "Select a file..."
 msgstr "ფაილის არჩევა..."
 
+#: static/js/common/upload-addon.js:82
 msgid "Your add-on should end with .zip, .xpi or .crx"
 msgstr "თქვენი დამატების დაბოლოება უნდა იყოს .zip, .xpi ან .crx"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#, python-format, python-brace-format
+#: static/js/common/upload-addon.js:118
+#, python-brace-format, python-format
 msgid "{0}% complete"
 msgstr "{0}% დასრულებულია"
 
+#: static/js/common/upload-addon.js:122
 #, python-brace-format
 msgid "{0} of {1}"
 msgstr "{0} / {1}"
 
+#: static/js/common/upload-addon.js:166
 msgid "Cancel"
 msgstr "გაუქმება"
 
+#: static/js/common/upload-addon.js:189
 #, python-brace-format
 msgid "Uploading {0}"
 msgstr "იტვირთება {0}"
 
+#: static/js/common/upload-addon.js:229
 #, python-brace-format
 msgid "Error with {0}"
 msgstr "{0} – შეცდომა"
 
+#: static/js/common/upload-addon.js:237
 msgid "Please make sure to report any linting related issues on GitHub"
 msgstr "გთხოვთ, მოგვახსენოთ Linting-თან დაკავშირებული ყველა ხარვეზე GitHub-ზე"
 
+#: static/js/common/upload-addon.js:248
 #, python-brace-format
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] "თქვენი დამატების შემოწმება ვერ მოხერხდა {0} შეცდომის გამო."
 msgstr[1] "თქვენი დამატების შემოწმება ვერ მოხერხდა {0} შეცდომის გამო."
 
+#: static/js/common/upload-addon.js:266
 #, python-brace-format
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;და კიდევ {0}"
 msgstr[1] "&hellip;და კიდევ {0}"
 
+#: static/js/common/upload-addon.js:287 static/js/common/upload-addon.js:705
 msgid "See full validation report"
 msgstr "დამოწმების სრული ანგარიშგების ნახვა"
 
+#: static/js/common/upload-addon.js:300
 #, python-brace-format
 msgid "Validating {0}"
 msgstr "მოწმდება {0}"
 
+#: static/js/common/upload-addon.js:350
 #, python-brace-format
 msgid "Your add-on exceeds the maximum size of {0}."
 msgstr "თქვენი დამატების ზომა აჭარბებს {0} დაშვებულ ზღვარს."
 
+#: static/js/common/upload-addon.js:358
 #, python-brace-format
 msgid "Received an empty response from the server; status: {0}"
 msgstr "სერვერისგან მოვიდა უშინაარსო პასუხი; მდგომარეობა: {0}"
 
+#: static/js/common/upload-addon.js:403
 msgid "Your extension has to be compatible with at least one application."
 msgstr "თქვენი გაფართოება თავსებადი უნდა იყოს ერთ აპლიკაციასთან მაინც."
 
+#: static/js/common/upload-addon.js:473
 msgid "Unexpected server error while validating."
 msgstr "სერვერის მოულოდნელი შეცდომა დამოწმებისას."
 
+#: static/js/common/upload-addon.js:519
 msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
 msgstr "მკაფიოდ აღნიშნულია, რომ თავსებადია Firefox Android-ისთვის მანიფესტში"
 
+#: static/js/common/upload-addon.js:561
 #, python-brace-format
 msgid "Finished validating {0}"
 msgstr "{0}-ის შემოწმება დასრულდა"
 
+#: static/js/common/upload-addon.js:568
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr "დამატების გადამოწმების დრო ამოიწურა, ის ხელით იქნება განხილული."
 
+#: static/js/common/upload-addon.js:573
 #, python-brace-format
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] "დამატების შემოწმება დასრულდა შეცდომის გარეშე და {0} გაფრთხილებით."
 msgstr[1] "დამატების შემოწმება დასრულდა შეცდომის გარეშე და {0} გაფრთხილებით."
 
+#: static/js/common/upload-addon.js:582
 #, python-brace-format
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] "დამატების შემოწმება დასრულდა შეცდომის გარეშე და {0} შეტყობინებით."
 msgstr[1] "დამატების შემოწმება დასრულდა შეცდომის გარეშე და {0} შეტყობინებით."
 
+#: static/js/common/upload-addon.js:590
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "დამატების შემოწმება დასრულდა შეცდომის და გაფრთხილებების გარეშე."
 
+#: static/js/common/upload-addon.js:651
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "მიუთითეთ ვერსიის შენიშვნები დეტალურად (ამის გაკეთება მომდევნო ნაბიჯში შეიძლება)."
 
+#: static/js/common/upload-addon.js:654
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
 "თუ თქვენი დამატების სრულყოფილად გამოსაცდელად საჭიროა საიტის ანგარიში, მიმომხილველებისთვის განკუთვნილ შენიშვნებში მიუთითეთ საცდელი მომხმარებლის სახელი და პაროლი (ამის გაკეთება, შემდეგ ნაბიჯზეა "
 "შესაძლებელი)."
 
+#: static/js/common/upload-addon.js:660
 msgid "Add-on submission checklist"
 msgstr "საკონტროლო სია დამატების წარსადგენად"
 
+#: static/js/common/upload-addon.js:664
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "გთხოვთ გადაამოწმოთ მოცემული პუნქტები, წარდგენის დასასრულებლად. ეს შეამცირებს განხილვის დროს შეფერხების ან გაუგებრობის წარმოშობას:"
 
+#: static/js/common/upload-addon.js:671
 msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"შეკუმშული, შერწყმული ან სხვა მანქანური გზით წარმოებული სკრიპტები (ცნობილი ბიბლიოთეკების გარდა) განსახილველად უნდა გადაიგზავნოს სათითაოდ. დარწმუნდით, რომ სარგებლობთ პირველწყარო კოდის ასატვირთი "
-"ველით, რომ თავიდან აიცილოთ უარი მიღებაზე."
+"შეკუმშული, შერწყმული ან სხვა მანქანური გზით წარმოებული სკრიპტები (ცნობილი ბიბლიოთეკების გარდა) განსახილველად უნდა გადაიგზავნოს სათითაოდ. დარწმუნდით, რომ სარგებლობთ პირველწყარო კოდის ასატვირთი ველით,"
+" რომ თავიდან აიცილოთ უარი მიღებაზე."
 
+#: static/js/common/upload-addon.js:684
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "გადამოწმებისას აღმოჩენილია გარკვეული საკითხები, რაც შეიძლება უარყოფის საფუძველი გახდეს."
 
+#: static/js/common/upload-base.js:69
 msgid "The filetype you uploaded isn't recognized."
 msgstr "ატვირთული ფაილის სახეობა, გაურკვეველია."
 
+#: static/js/common/upload-base.js:79 static/js/zamboni/global.js:569
 #, python-brace-format
 msgid "Your file exceeds the maximum size of {0}."
 msgstr "თქვენი ფაილის ზომა აჭარბებს {0} დაშვებულ ზღვარს."
 
+#: static/js/common/upload-base.js:105
 msgid "You cancelled the upload."
 msgstr "თქვენ გააუქმეთ ატვირთვა."
 
+#: static/js/common/upload-image.js:102
 msgid "Images must be either PNG or JPG."
 msgstr "სურათი უნდა იყოს PNG ან JPG."
 
+#: static/js/common/upload-image.js:106
 msgid "Videos must be in WebM."
 msgstr "ვიდეო უნდა იყოს WebM."
 
+#: static/js/stats/chart.js:283
 #, python-brace-format
 msgid "Week of {0}"
 msgstr "{0} კვირა"
 
+#: static/js/stats/chart.js:292
 #, python-brace-format
 msgid "{0} download"
 msgid_plural "{0} downloads"
 msgstr[0] "{0} ჩამოტვირთვა"
 msgstr[1] "{0} ჩამოტვირთვა"
 
+#: static/js/stats/chart.js:298
 #, python-brace-format
 msgid "{0} user"
 msgid_plural "{0} users"
 msgstr[0] "{0} მომხმარებელი"
 msgstr[1] "{0} მომხმარებელი"
 
+#: static/js/stats/chart.js:362 static/js/stats/csv_keys.js:3 static/js/stats/csv_keys.js:9
 msgid "Downloads"
 msgstr "ჩამოტვირთვები"
 
+#: static/js/stats/chart.js:374 static/js/stats/csv_keys.js:6 static/js/stats/csv_keys.js:10
 msgid "Daily Users"
 msgstr "დღიური მომხმარებლები"
 
+#: static/js/stats/chart.js:409
 msgid "More Info..."
 msgstr "დამატებითი მონაცემები..."
 
 #. L10n: {0} is an ISO-formatted date.
+#: static/js/stats/chart.js:415
 #, python-brace-format
 msgid "Details for {0}"
 msgstr "დამატებითი მონაცემები {0} თარიღისთვის"
 
+#: static/js/stats/csv_keys.js:13
 msgid "Firefox"
 msgstr "Firefox"
 
+#: static/js/stats/csv_keys.js:14
 msgid "Mozilla"
 msgstr "Mozilla"
 
+#: static/js/stats/csv_keys.js:15
 msgid "Thunderbird"
 msgstr "Thunderbird"
 
+#: static/js/stats/csv_keys.js:16
 msgid "Sunbird"
 msgstr "Sunbird"
 
+#: static/js/stats/csv_keys.js:17
 msgid "SeaMonkey"
 msgstr "SeaMonkey"
 
+#: static/js/stats/csv_keys.js:18
 msgid "Fennec"
 msgstr "Fennec"
 
+#: static/js/stats/csv_keys.js:19
 msgid "Android"
 msgstr "Android"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:24
 #, python-brace-format
 msgid "Downloads and Daily Users, last {0} days"
 msgstr "ჩამოტვირთვების და დღიური მომხმარებლების რაოდენობა, ბოლო {0} დღეში"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:26
 #, python-brace-format
 msgid "Downloads and Daily Users from {0} to {1}"
 msgstr "ჩამოტვირთვების და დღიური მომხმარებლების რაოდენობა {0}-დან {1}-მდე"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:30
 #, python-brace-format
 msgid "Downloads, last {0} days"
 msgstr "ჩამოტვირთვები, ბოლო {0} დღეში"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:32
 #, python-brace-format
 msgid "Downloads from {0} to {1}"
 msgstr "ჩამოტვირთვები {0}-დან {1}-მდე"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:36
 #, python-brace-format
 msgid "Daily Users, last {0} days"
 msgstr "დღიური მომხმარებლები, ბოლო {0} დღეში"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:38
 #, python-brace-format
 msgid "Daily Users from {0} to {1}"
 msgstr "დღიური მომხმარებლები {0}-იდან {1}-მდე"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:42
 #, python-brace-format
 msgid "Applications, last {0} days"
 msgstr "პროგრამები, ბოლო {0} დღეში"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:44
 #, python-brace-format
 msgid "Applications from {0} to {1}"
 msgstr "პროგრამები {0}-დან {1}-მდე"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:48
 #, python-brace-format
 msgid "Countries, last {0} days"
 msgstr "ქვეყნები, ბოლო {0} დღეში"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:50
 #, python-brace-format
 msgid "Countries from {0} to {1}"
 msgstr "ქვეყნები {0}-დან {1}-მდე"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:54
 #, python-brace-format
 msgid "Platforms, last {0} days"
 msgstr "პლატფორმები, ბოლო {0} დღეში"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:56
 #, python-brace-format
 msgid "Platforms from {0} to {1}"
 msgstr "პლატფორმები {0}-დან {1}-მდე"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:60
 #, python-brace-format
 msgid "Languages, last {0} days"
 msgstr "ენები, ბოლო {0} დღეში"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:62
 #, python-brace-format
 msgid "Languages from {0} to {1}"
 msgstr "ენები {0}-დან {1}-მდე"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:66
 #, python-brace-format
 msgid "Add-on Versions, last {0} days"
 msgstr "დამატების ვერსიები, ბოლო {0} დღეში"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:68
 #, python-brace-format
 msgid "Add-on Versions from {0} to {1}"
 msgstr "დამატების ვერსიები {0}-დან {1}-მდე"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:72
 #, python-brace-format
 msgid "Download Sources, last {0} days"
 msgstr "ჩამოტვირთვის წყაროები, ბოლო {0} დღეში"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:74
 #, python-brace-format
 msgid "Download Sources from {0} to {1}"
 msgstr "ჩამოტვირთვის წყაროები {0}-დან {1}-მდე"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:78
 #, python-brace-format
 msgid "Download Mediums, last {0} days"
 msgstr "ჩამოტვირთვების Medium, ბოლო {0} დღეში"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:80
 #, python-brace-format
 msgid "Download Mediums from {0} to {1}"
 msgstr "ჩამოტვირთვების Medium, {0}-დან {1}-მდე"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:84
 #, python-brace-format
 msgid "Download Contents, last {0} days"
 msgstr "ჩამოტვირთვები შიგთავსის, ბოლო {0} დღეში"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:86
 #, python-brace-format
 msgid "Download Contents from {0} to {1}"
 msgstr "ჩამოტვირთვები შიგთავსის, {0}-დან {1}-მდე"
 
 #. L10n: {0} is an integer.
+#: static/js/stats/csv_keys.js:90
 #, python-brace-format
 msgid "Download Campaigns, last {0} days"
 msgstr "ჩამოტვირთვების Campaign, ბოლო {0} დღეში"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:92
 #, python-brace-format
 msgid "Download Campaigns from {0} to {1}"
 msgstr "ჩამოტვირთვების Campaign, {0}-დან {1}-მდე"
 
 #. L10n: {0} and {1} are integers.
+#: static/js/stats/csv_keys.js:98
 #, python-brace-format
 msgid "<b>{0}</b> in last {1} days"
 msgstr "<b>{0}</b> ბოლო {1} დღეში"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
+#: static/js/stats/csv_keys.js:100 static/js/stats/csv_keys.js:106
 #, python-brace-format
 msgid "<b>{0}</b> from {1} to {2}"
 msgstr "<b>{0}</b> {1}-დან {2}-მდე"
 
 #. L10n: {0} and {1} are integers.
+#: static/js/stats/csv_keys.js:104
 #, python-brace-format
 msgid "<b>{0}</b> average in last {1} days"
 msgstr "საშუალო <b>{0}</b> ბოლო {1} დღეში"
 
+#: static/js/stats/overview.js:18
 msgid "No data available."
 msgstr "მონაცემები არაა ხელმისაწვდომი."
 
+#: static/js/stats/table.js:84
 msgid "Date"
 msgstr "თარიღი "
 
+#: static/js/stats/topchart.js:108
 msgid "Other"
 msgstr "სხვა"
 
+#: static/js/zamboni/devhub.js:300
 msgid "Changes Saved"
 msgstr "ცვლილებები შენახულია"
 
+#: static/js/zamboni/devhub.js:316
 msgid "Enter a new author's email address"
 msgstr "შეიყვანეთ შემქმნელის ახალი ელფოსტის მისამართი"
 
+#: static/js/zamboni/devhub.js:440
 msgid "There was an error uploading your file."
 msgstr "ფაილის ატვირთვისას წარმოიშვა შეცდომა."
 
+#: static/js/zamboni/devhub.js:596
 #, python-brace-format
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "{files} ფაილი"
 msgstr[1] "{files} ფაილი"
 
+#: static/js/zamboni/devhub.js:1196
 msgid "Image changes being processed"
 msgstr "სურათის ცვლილებები მუშავდება"
 
+#: static/js/zamboni/global.js:463
 #, python-brace-format
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> სიმბოლო"
 msgstr[1] "<b>{0}</b> სიმბოლო"
 
+#: static/js/zamboni/global.js:472
 #, python-brace-format
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "დარჩენილია <b>{0}</b> სიმბოლო"
 msgstr[1] "დარჩენილია <b>{0}</b> სიმბოლო"
 
+#: static/js/zamboni/init.js:12
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "ვებსაიტზე ტექნიკური მომსახურების გამო ეს შესაძლებლობა დროებით გამორთულია. გთხოვთ სცადოთ მოგვიანებით."
 
+#: static/js/zamboni/l10n.js:164
 msgid "Remove this localization"
 msgstr "ამ თარგმანის ამოშლა"
 
+#: static/js/zamboni/reviewers.js:258
 #, python-brace-format
 msgid "{name} was viewing this page first."
 msgstr "{name} პირველმა მოინახულა ეს გვერდი."
 
+#: static/js/zamboni/reviewers.js:266
 msgid "Review page polling failed."
 msgstr "განსახილველ გვერდზე გამოკითხვა ვერ მოხერხდა."
 
+#: static/js/zamboni/reviewers.js:583
 #, python-brace-format
 msgid "{name} was viewing this add-on first."
 msgstr "{name} პირველმა იხილა ეს დამატება."
 
+#: static/js/zamboni/reviewers.js:596 static/js/zamboni/reviewers.js:622
 msgid "Loading&hellip;"
 msgstr "იტვირთება&hellip;"
 
+#: static/js/zamboni/reviewers.js:601
 msgid "Version Notes"
 msgstr "ვერსიის შენიშვნები"
 
+#: static/js/zamboni/reviewers.js:608
 msgid "Notes for Reviewers"
 msgstr "შენიშვნები მიმომხილველთათვის"
 
+#: static/js/zamboni/reviewers.js:615
 msgid "No version notes found"
 msgstr "შენიშვნები ვერსიის შესახებ არ მოიძებნა"
 
+#: static/js/zamboni/reviewers.js:627
 msgid "Review Text"
 msgstr "ტექსტის განხილვა"
 
+#: static/js/zamboni/reviewers.js:634
 msgid "Review notes found"
 msgstr "ნაპოვნი შენიშვნების განხილვა"
 
+#: static/js/zamboni/static_theme.js:217
 #, python-brace-format
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "დასაშვები ასატვირთი ზომაა {0} – აირჩიეთ შედარებით მცირე ზომის ფონის სურათი."
 
+#: static/js/zamboni/themes_review.js:199
 msgid "Requested Info"
 msgstr "მოთხოვნილი ინფორმაცია"
 
+#: static/js/zamboni/themes_review.js:200
 msgid "Flagged"
 msgstr "მონიშნულია"
 
+#: static/js/zamboni/themes_review.js:201
 msgid "Duplicate"
 msgstr "დუბლირება"
 
+#: static/js/zamboni/themes_review.js:202
 msgid "Rejected"
 msgstr "უარყოფილია"
 
+#: static/js/zamboni/themes_review.js:203
 msgid "Approved"
 msgstr "მიღებულია"
 
+#: static/js/zamboni/themes_review.js:492
 msgid "No results found"
 msgstr "შედეგები ვერ მოიძებნა."
 
+#: static/js/zamboni/themes_review_templates.js:43
 msgid "Theme"
 msgstr "თემა"
 
+#: static/js/zamboni/themes_review_templates.js:45
 msgid "Reviewer"
 msgstr "მიმომხილველი"
 
+#: static/js/zamboni/themes_review_templates.js:47
 msgid "Status"
 msgstr "მდგომარეობა"
 
+#: static/js/zamboni/validator.js:89
 msgid "All tests passed successfully."
 msgstr "ყველა შემოწმება დასრულდა წარმატებით."
 
+#: static/js/zamboni/validator.js:92 static/js/zamboni/validator.js:388
 msgid "These tests were not run."
 msgstr "ეს შემოწმება არ ჩატარებულა."
 
+#: static/js/zamboni/validator.js:155 static/js/zamboni/validator.js:177
 msgid "Tests"
 msgstr "შემოწმება"
 
+#: static/js/zamboni/validator.js:259 static/js/zamboni/validator.js:492 static/js/zamboni/validator.js:516
 msgid "Error"
 msgstr "შეცდომა"
 
+#: static/js/zamboni/validator.js:259
 msgid "Warning"
 msgstr "გაფრთხილება"
 
+#: static/js/zamboni/validator.js:332
 #, python-brace-format
 msgid "{0} line {1} column {2}"
 msgstr "{0} სტრიქონი {1} სვეტი {2}"
 
+#: static/js/zamboni/validator.js:339
 #, python-brace-format
 msgid "{0} line {1}"
 msgstr "{0} სტრიქონი {1}"
 
+#: static/js/zamboni/validator.js:376
 msgid "Add-on failed validation."
 msgstr "დამატებამ შემოწმება ვერ გაიარა."
 
+#: static/js/zamboni/validator.js:378
 msgid "Add-on passed validation."
 msgstr "დამატებამ შემოწმება გაიარა."
 
+#: static/js/zamboni/validator.js:391
 #, python-brace-format
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} შეცდომა"
 msgstr[1] "{0} შეცდომა"
 
+#: static/js/zamboni/validator.js:394
 #, python-brace-format
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} გაფრთხილება"
 msgstr[1] "{0} გაფრთხილება"
 
+#: static/js/zamboni/validator.js:397
 #, python-brace-format
 msgid "{0} notice"
 msgid_plural "{0} notices"
 msgstr[0] "{0} შენიშვნა"
 msgstr[1] "{0} შენიშვნა"
 
+#: static/js/zamboni/validator.js:494
 msgid "Validation task could not complete or completed with errors"
 msgstr "დამოწმების დასრულება ვერ მოხერხდა ან დასრულდა ხარვეზებით"
 
+#: static/js/zamboni/validator.js:517
 msgid "Internal server error"
 msgstr "სერვერის შიდა შეცდომა"
