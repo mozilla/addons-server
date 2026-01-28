@@ -389,10 +389,14 @@ def _run_narc(*, scanner_result, version, rules=None):
                                 'locale': source_info['locale'],
                                 'source': source_info['source'],
                                 'pattern': rule.definition,
+                                'match': match.group(),
                                 'string': variant,
                                 'span': span,
                             },
                         }
+                        fuzzy_counts = match.fuzzy_counts
+                        if any(fuzzy_counts):
+                            result['meta']['fuzzy_counts'] = fuzzy_counts
                         if variant_type is not None:
                             result['meta']['variant'] = variant_type
                             result['meta']['original_string'] = value
