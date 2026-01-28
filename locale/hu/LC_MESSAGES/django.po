@@ -381,7 +381,7 @@ msgstr "A felsorolt verziók nem küldhetők el, amíg a kiegészítő le van ti
 
 #: src/olympia/addons/serializers.py:578 src/olympia/signing/views.py:218
 msgid "Listed versions cannot be submitted while add-on listing is rejected."
-msgstr ""
+msgstr "A felsorolt verziók nem küldhetők be, amíg a kiegészítő listázása el van utasítva."
 
 #: src/olympia/addons/serializers.py:619
 #, python-format
@@ -1289,11 +1289,11 @@ msgstr "A(z) {user} fiók {0} tulajdonsága frissítve."
 #: src/olympia/constants/activity.py:1277
 #, python-brace-format
 msgid "{addon} listing content rejected."
-msgstr ""
+msgstr "A(z) {addon} listázásának tartalma elutasítva."
 
 #: src/olympia/constants/activity.py:1278
 msgid "Listing content rejected"
-msgstr ""
+msgstr "Listázási tartalom elutasítva"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -1333,7 +1333,7 @@ msgstr "Ellenőrzésre vár"
 
 #: src/olympia/constants/base.py:27
 msgid "Listing Content Rejected"
-msgstr ""
+msgstr "Listázási tartalom elutasítva"
 
 #: src/olympia/constants/base.py:28 src/olympia/constants/base.py:35
 msgid "Disabled by Mozilla"
@@ -3061,7 +3061,7 @@ msgstr "A kiegészítője jelenleg „Láthatatlan” értékre van állítva."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cant_submit_new_listed_versions_warning.html:5
 msgid "Your add-on listing was rejected."
-msgstr ""
+msgstr "A kiegészítő listázása elutasításra került."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cant_submit_new_listed_versions_warning.html:7
 msgid "While in this state, \"On your own\" is the only distribution method available."
@@ -3806,7 +3806,7 @@ msgstr "A kiegészítőt egy oldal adminisztrátora letiltotta, ezért nem jelen
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:32
 msgid "Your add-on listing was rejected. It is not listed in our gallery. Please address the reasons and reapply for review."
-msgstr ""
+msgstr "A kiegészítő listázása elutasításra került. Nem szerepel a galériánkban. Szüntesse meg az okait, és kérjen újbóli felülvizsgálatot."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:35
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
@@ -5975,7 +5975,7 @@ msgstr "Összes kiegészítő megtekintése"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1101
 msgid "YouTube extensions"
-msgstr ""
+msgstr "YouTube kiegészítők"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -5986,7 +5986,7 @@ msgstr "Kreatív kiegészítők"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1105
 msgid "New Recommended extensions"
-msgstr ""
+msgstr "Új ajánlott kiegészítők"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1107 src/olympia/discovery/strings.jinja2:1109
@@ -6021,12 +6021,12 @@ msgstr "További népszerű témák megtekintése"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1124
 msgid "Privacy & security"
-msgstr ""
+msgstr "Adatvédelem és biztonság"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1126
 msgid "See more privacy staff picks"
-msgstr ""
+msgstr "További, stáb által javasolt adatvédelmi kiegészítők megtekintése"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1129
