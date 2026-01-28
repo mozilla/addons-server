@@ -35,6 +35,7 @@ from olympia.constants.scanners import (
     NEW,
     RESULT_STATES,
     RUNNING,
+    SCANNERS,
     SCHEDULED,
     TRUE_POSITIVE,
     UNKNOWN,
@@ -124,6 +125,32 @@ class MatchesFilter(PresenceFilter):
         if self.value() == 'all':
             return queryset
         return queryset.filter(has_matches=True)
+
+
+class ScannerFilter(SimpleListFilter):
+    title = 'scanner'
+    parameter_name = 'scanner'
+
+    def lookups(self, request, model_admin):
+        return (
+            # Built-in scanners, omitting WEBHOOK
+            *((k, v) for k, v in SCANNERS.items() if k != WEBHOOK),
+            # Webhook scanners
+            *(
+                (f'{WEBHOOK}_{k}', f'[webhook] {v}')
+                for k, v in ScannerWebhook.objects.values_list('id', 'name')
+            ),
+        )
+
+    def queryset(self, request, queryset):
+        if self.value() is None:
+            return queryset
+
+        if self.value().startswith(f'{WEBHOOK}_'):
+            scanner, webhook_id = self.value().split('_')
+            return queryset.filter(scanner=scanner, webhook_event__webhook=webhook_id)
+
+        return queryset.filter(scanner=self.value())
 
 
 class StateFilter(SimpleListFilter):
@@ -572,7 +599,7 @@ class ScannerResultAdmin(AbstractScannerResultAdminMixin, AMOModelAdmin):
         'result_actions',
     )
     list_filter = (
-        'scanner',
+        ScannerFilter,
         MatchesFilter,
         StateFilter,
         ('matched_rules', ScannerRuleListFilter),
