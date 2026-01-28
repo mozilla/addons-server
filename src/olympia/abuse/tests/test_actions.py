@@ -40,7 +40,7 @@ from olympia.versions.models import VersionReviewerFlags
 from ..actions import (
     ContentAction,
     ContentActionApproveInitialDecision,
-    ContentActionApproveNoAction,
+    ContentActionApproveListingContent,
     ContentActionBanUser,
     ContentActionBlockAddon,
     ContentActionDeleteCollection,
@@ -279,16 +279,18 @@ class BaseTestContentAction:
         self._test_approve_appeal_or_override(ContentActionOverrideApprove)
         assert 'After reviewing your appeal' not in mail.outbox[0].body
 
-    def _test_reporter_no_action_taken(
-        self,
-        *,
-        ActionClass=ContentActionApproveNoAction,
-        action=DECISION_ACTIONS.AMO_APPROVE,
-    ):
+    def _test_reporter_no_action_taken(self, *, ActionClass, action):
         raise NotImplementedError
 
+    def _test_reporter_content_approved_action_taken(self):
+        # For most ActionClasses, there is no action taken.
+        return self._test_reporter_no_action_taken(
+            ActionClass=ContentActionApproveListingContent,
+            action=DECISION_ACTIONS.AMO_APPROVE,
+        )
+
     def test_reporter_content_approve_report(self):
-        subject = self._test_reporter_no_action_taken()
+        subject = self._test_reporter_content_approved_action_taken()
         assert len(mail.outbox) == 2
         self._test_reporter_content_approve_email(subject)
 
@@ -310,14 +312,15 @@ class BaseTestContentAction:
             decision=original_job.decision, reporter_report=self.abuse_report_auth
         )
         self.cinder_job.reload()
-        subject = self._test_reporter_no_action_taken()
+        subject = self._test_reporter_content_approved_action_taken()
         assert len(mail.outbox) == 1  # only abuse_report_auth reporter
         self._test_reporter_appeal_approve_email(subject)
 
     def test_owner_content_approve_report_email(self):
         # This isn't called by cinder actions, but is triggered by reviewer actions
         subject = self._test_reporter_no_action_taken(
-            ActionClass=ContentActionApproveInitialDecision
+            ActionClass=ContentActionApproveInitialDecision,
+            action=DECISION_ACTIONS.AMO_APPROVE,
         )
         assert len(mail.outbox) == 3
         self._test_reporter_content_approve_email(subject)
@@ -365,7 +368,7 @@ class BaseTestContentAction:
         action.notify_owners()
         assert unsafe_str in mail.outbox[0].body
 
-        action = ContentActionApproveNoAction(self.decision)
+        action = ContentActionApproveListingContent(self.decision)
         mail.outbox.clear()
         action.notify_reporters(
             reporter_abuse_reports=[self.abuse_report_auth], is_appeal=True
@@ -508,12 +511,7 @@ class TestContentActionUser(BaseTestContentAction, TestCase):
         assert len(mail.outbox) == 2
         self._test_reporter_appeal_takedown_email(subject)
 
-    def _test_reporter_no_action_taken(
-        self,
-        *,
-        ActionClass=ContentActionApproveNoAction,
-        action=DECISION_ACTIONS.AMO_APPROVE,
-    ):
+    def _test_reporter_no_action_taken(self, *, ActionClass, action):
         self.decision.update(action=action)
         action = ActionClass(self.decision)
         assert action.process_action() is None
@@ -755,12 +753,7 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
         action.notify_owners()
         self._test_owner_restore_email(f'Mozilla Add-ons: {self.addon.name}')
 
-    def _test_reporter_no_action_taken(
-        self,
-        *,
-        ActionClass=ContentActionApproveNoAction,
-        action=DECISION_ACTIONS.AMO_APPROVE,
-    ):
+    def _test_reporter_no_action_taken(self, *, ActionClass, action):
         self.decision.update(action=action)
         action = ActionClass(self.decision)
         assert action.process_action() is None
@@ -771,6 +764,70 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
         self.cinder_job.notify_reporters(action)
         action.notify_owners()
         return f'Mozilla Add-ons: {self.addon.name}'
+
+    def _test_reporter_content_approved_action_taken(self):
+        # override because Addon's get content reviewed if marked as Approve
+        action = DECISION_ACTIONS.AMO_APPROVE
+        self.decision.update(action=action)
+        action = ContentActionApproveListingContent(self.decision)
+        activity = action.process_action()
+        assert activity.log == amo.LOG.APPROVE_LISTING_CONTENT
+        assert activity.arguments == [self.addon, self.decision, self.policy]
+        assert activity.user == self.task_user
+
+        assert self.addon.reload().status == amo.STATUS_APPROVED
+        assert ActivityLog.objects.count() == 2
+        second_activity = ActivityLog.objects.exclude(pk=activity.pk).get()
+        assert second_activity.log == amo.LOG.REVIEWER_PRIVATE_COMMENT
+        assert second_activity.arguments == [self.addon, self.decision]
+        assert second_activity.user == self.task_user
+        assert second_activity.details == {'comments': self.decision.private_notes}
+
+        counter = AddonApprovalsCounter.objects.get(addon=self.addon)
+        assert counter.last_content_review_pass is True
+        self.assertCloseToNow(counter.last_content_review)
+
+        assert len(mail.outbox) == 0
+        self.cinder_job.notify_reporters(action)
+        action.notify_owners()
+        return f'Mozilla Add-ons: {self.addon.name}'
+
+    def test_content_approve_rejected_listing_content(self):
+        AddonApprovalsCounter.objects.create(
+            addon=self.addon, last_content_review_pass=False
+        )
+        self.addon.update(status=amo.STATUS_REJECTED)
+        action = DECISION_ACTIONS.AMO_APPROVE
+        self.decision.update(action=action)
+        action = ContentActionApproveListingContent(self.decision)
+        activity = action.process_action()
+        assert activity.log == amo.LOG.APPROVE_LISTING_CONTENT
+        assert activity.arguments == [self.addon, self.decision, self.policy]
+        assert activity.user == self.task_user
+
+        assert self.addon.reload().status == amo.STATUS_APPROVED
+        assert ActivityLog.objects.count() == 3
+        second_activity, third_activity = ActivityLog.objects.exclude(
+            pk=activity.pk
+        ).filter()
+        assert second_activity.log == amo.LOG.REVIEWER_PRIVATE_COMMENT
+        assert second_activity.arguments == [self.addon, self.decision]
+        assert second_activity.user == self.task_user
+        assert second_activity.details == {'comments': self.decision.private_notes}
+        assert third_activity.log == amo.LOG.CHANGE_STATUS
+
+        counter = AddonApprovalsCounter.objects.get(addon=self.addon)
+        assert counter.last_content_review_pass is True
+        self.assertCloseToNow(counter.last_content_review)
+
+        assert len(mail.outbox) == 0
+        self.cinder_job.notify_reporters(action)
+        action.notify_owners()
+        subject = f'Mozilla Add-ons: {self.addon.name}'
+
+        assert len(mail.outbox) == 3
+        self._test_reporter_content_approve_email(subject)
+        assert 'within policy, and based on that determination' in mail.outbox[-1].body
 
     def test_target_appeal_decline(self):
         self.addon.update(status=amo.STATUS_DISABLED)
@@ -2159,12 +2216,7 @@ class TestContentActionCollection(BaseTestContentAction, TestCase):
         assert len(mail.outbox) == 2
         self._test_reporter_appeal_takedown_email(subject)
 
-    def _test_reporter_no_action_taken(
-        self,
-        *,
-        ActionClass=ContentActionApproveNoAction,
-        action=DECISION_ACTIONS.AMO_APPROVE,
-    ):
+    def _test_reporter_no_action_taken(self, *, ActionClass, action):
         self.decision.update(action=action)
         action = ActionClass(self.decision)
         assert action.process_action() is None
@@ -2338,12 +2390,7 @@ class TestContentActionRating(BaseTestContentAction, TestCase):
         assert len(mail.outbox) == 2
         self._test_reporter_appeal_takedown_email(subject)
 
-    def _test_reporter_no_action_taken(
-        self,
-        *,
-        ActionClass=ContentActionApproveNoAction,
-        action=DECISION_ACTIONS.AMO_APPROVE,
-    ):
+    def _test_reporter_no_action_taken(self, *, ActionClass, action):
         self.decision.update(action=action)
         action = ActionClass(self.decision)
         assert action.process_action() is None

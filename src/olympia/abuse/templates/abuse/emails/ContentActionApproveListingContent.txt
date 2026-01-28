@@ -1,0 +1,19 @@
+Hello,
+
+Previously, your {{ type }} was suspended/removed from Mozilla Add-ons, based on a finding that you had violated Mozilla's policies.
+
+We have now determined that your content is within policy, and based on that determination, we have restored your {{ type }}. It is now available at {{ target_url }}.
+{% if manual_reasoning_text %}{{ manual_reasoning_text }}. {% endif %}
+
+{% if has_attachment %}
+An attachment was provided. {% if dev_url %}To respond or view the file, visit {{ dev_url }}.{% endif %}
+
+{% endif %}
+Thank you.
+
+More information about Mozilla's add-on policies can be found at {{ policy_document_url }}.
+
+[{{ reference_id }}]
+--
+Mozilla Add-ons Team
+{{ SITE_URL }}
