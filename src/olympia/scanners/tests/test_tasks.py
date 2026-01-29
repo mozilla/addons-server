@@ -1593,21 +1593,19 @@ class TestRunYara(UploadMixin, TestCase):
         assert received_results == self.results
 
 
-class TestRunYaraQueryRule(TestCase):
-    def setUp(self):
-        super().setUp()
+class TestRunQueryRuleMixin:
+    __test__ = False
 
+    def create_basic_rule(self):
+        # Implement in actual test classes
+        raise NotImplementedError
+
+    def setUp(self):
         self.version = addon_factory(
             name='WebExtension', file_kw={'filename': 'webextension.xpi'}
         ).current_version
 
-        # This rule will match for all files in the xpi.
-        self.rule = ScannerQueryRule.objects.create(
-            name='always_true',
-            scanner=YARA,
-            definition='rule always_true { condition: true }',
-            state=NEW,
-        )
+        self.rule = self.create_basic_rule()
 
         # Just to be sure we're always starting fresh.
         assert len(ScannerQueryResult.objects.all()) == 0
@@ -1844,30 +1842,6 @@ class TestRunYaraQueryRule(TestCase):
         self.rule.reload()
         assert self.rule.state == ABORTED  # Not touched by this.
 
-    def test_run_on_chunk(self):
-        self.rule.update(state=RUNNING)  # Pretend we started running the rule.
-        run_scanner_query_rule_on_versions_chunk([self.version.pk], self.rule.pk)
-
-        yara_results = ScannerQueryResult.objects.all()
-        assert len(yara_results) == 1
-        yara_result = yara_results[0]
-        assert yara_result.version == self.version
-        assert not yara_result.was_blocked
-        assert not yara_result.was_promoted
-        assert len(yara_result.results) == 2
-        assert yara_result.results[0] == {
-            'rule': self.rule.name,
-            'tags': [],
-            'meta': {'filename': 'index.js'},
-        }
-        assert yara_result.results[1] == {
-            'rule': self.rule.name,
-            'tags': [],
-            'meta': {'filename': 'manifest.json'},
-        }
-        self.rule.reload()
-        assert self.rule.state == RUNNING  # Not touched by this task.
-
     def test_run_on_chunk_was_blocked(self):
         self.rule.update(state=RUNNING)  # Pretend we started running the rule.
         block_factory(addon=self.version.addon, updated_by=user_factory())
@@ -1930,20 +1904,54 @@ class TestRunYaraQueryRule(TestCase):
         assert self.rule.state == NEW  # Not touched by this task.
 
 
-class TestRunNarcQueryRule(TestRunYaraQueryRule):
-    def setUp(self):
-        super().setUp()
+class TestRunYaraQueryRule(TestRunQueryRuleMixin, TestCase):
+    __test__ = True
 
-        # Make the test rule a NARC rule.
-        self.rule.update(
+    def create_basic_rule(self):
+        # This rule will match for all files in the xpi.
+        return ScannerQueryRule.objects.create(
+            name='always_true',
+            scanner=YARA,
+            definition='rule always_true { condition: true }',
+            state=NEW,
+        )
+
+    def test_run_on_chunk(self):
+        self.rule.update(state=RUNNING)  # Pretend we started running the rule.
+        run_scanner_query_rule_on_versions_chunk([self.version.pk], self.rule.pk)
+
+        yara_results = ScannerQueryResult.objects.all()
+        assert len(yara_results) == 1
+        yara_result = yara_results[0]
+        assert yara_result.version == self.version
+        assert not yara_result.was_blocked
+        assert not yara_result.was_promoted
+        assert len(yara_result.results) == 2
+        assert yara_result.results[0] == {
+            'rule': self.rule.name,
+            'tags': [],
+            'meta': {'filename': 'index.js'},
+        }
+        assert yara_result.results[1] == {
+            'rule': self.rule.name,
+            'tags': [],
+            'meta': {'filename': 'manifest.json'},
+        }
+        self.rule.reload()
+        assert self.rule.state == RUNNING  # Not touched by this task.
+
+
+class TestRunNarcQueryRule(TestRunQueryRuleMixin, TestCase):
+    __test__ = True
+
+    def create_basic_rule(self):
+        # This rule will match every name, with the default config.
+        return ScannerQueryRule.objects.create(
             name='match_everything',
             scanner=NARC,
             definition='.*',
             state=NEW,
         )
-
-        # Just to be sure we're always starting fresh.
-        assert len(ScannerQueryResult.objects.all()) == 0
 
     def test_run_on_chunk(self):
         self.rule.update(state=RUNNING)  # Pretend we started running the rule.

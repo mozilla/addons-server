@@ -83,8 +83,8 @@ WEBHOOK_EVENTS = {
 
 # Special empty configuration schema to use when the rule is being created
 EMPTY_RULE_CONFIGURATION_SCHEMA = {
-  'type': 'object',
-  'keys': {},
+    'type': 'object',
+    'keys': {},
 }
 
 # Default configuration for rules other than NARC.
