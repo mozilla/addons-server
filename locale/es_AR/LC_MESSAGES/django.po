@@ -422,16 +422,16 @@ msgstr "Este slug no puede usarse. Elegí otro."
 
 #: src/olympia/addons/serializers.py:1886
 msgid "There is no rollback available in this channel."
-msgstr ""
+msgstr "No hay reversión disponible en este canal."
 
 #: src/olympia/addons/serializers.py:1896
 #, python-format
 msgid "Rollback is only available for version %s in this channel."
-msgstr ""
+msgstr "La reversión solo está disponible para la versión %s en este canal."
 
 #: src/olympia/addons/serializers.py:1902
 msgid "Only approved versions can be rolled back, except the most recent version."
-msgstr ""
+msgstr "Solo se pueden revertir las versiones aprobadas, excepto la versión más reciente."
 
 #: src/olympia/addons/utils.py:50
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -2063,11 +2063,11 @@ msgstr "Notas de la versión"
 
 #: src/olympia/devhub/forms.py:1682
 msgid "Automatic rollback based on version [m.m]."
-msgstr ""
+msgstr "Reversión automática basada en la versión [m.m]."
 
 #: src/olympia/devhub/forms.py:1755
 msgid "You must select a channel and version to rollback to."
-msgstr ""
+msgstr "Se debe seleccionar un canal y una versión para revertir."
 
 #: src/olympia/devhub/tasks.py:178
 msgid "Invalid or corrupt add-on file."
@@ -2245,7 +2245,7 @@ msgstr "Esta subida ha fallado la validación y puede carecer de resultados de v
 
 #: src/olympia/devhub/views.py:1319
 msgid "Rollback submitted. You'll be notified when it's approved"
-msgstr ""
+msgstr "Reversión enviada. Serás notificado cuando sea aprobada"
 
 #: src/olympia/devhub/views.py:1457
 msgid "Header area background"
@@ -4027,7 +4027,7 @@ msgstr "Notas de la versión"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:63
 msgid "Roll back"
-msgstr ""
+msgstr "Reversión"
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:3
 msgid "End-User License Agreement"
