@@ -22,6 +22,7 @@ from olympia.constants.scanners import (
     ACTIONS,
     COMPLETED,
     CUSTOMS,
+    DEFAULT_RULE_CONFIGURATION_SCHEMA,
     DELAY_AUTO_APPROVAL,
     DELAY_AUTO_APPROVAL_INDEFINITELY,
     DELAY_AUTO_APPROVAL_INDEFINITELY_AND_RESTRICT,
@@ -150,7 +151,7 @@ def rule_schema(instance=None):
         else:
             # Currently only NARC has configuration options, but leaving the
             # possibility open for the future.
-            schema = NARC_RULE_CONFIGURATION_SCHEMA
+            schema = DEFAULT_RULE_CONFIGURATION_SCHEMA
     else:
         # If we don't have an instance we shouldn't set a schema, because we
         # can't predict whether or not it will be compatible with the scanner
@@ -183,7 +184,7 @@ class AbstractScannerRule(ModelBase):
         default=False,
         help_text='Exclude add-ons that are in a promoted group from this rule',
     )
-    configuration = JSONFormJSONField(schema=rule_schema, default=dict)
+    configuration = JSONFormJSONField(schema=rule_schema, default=dict, blank=True)
 
     class Meta(ModelBase.Meta):
         abstract = True

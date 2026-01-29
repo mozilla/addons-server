@@ -14,11 +14,11 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='scannerqueryrule',
             name='configuration',
-            field=django_jsonform.models.fields.JSONField(default=dict),
+            field=django_jsonform.models.fields.JSONField(blank=True, default=dict),
         ),
         migrations.AddField(
             model_name='scannerrule',
             name='configuration',
-            field=django_jsonform.models.fields.JSONField(default=dict),
+            field=django_jsonform.models.fields.JSONField(blank=True, default=dict),
         ),
     ]
