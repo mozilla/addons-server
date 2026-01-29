@@ -369,17 +369,22 @@ def _run_narc(*, scanner_result, version, rules=None):
             # sources of each string that we then modify to remove sources the
             # rule is not interested in. If no sources are left, we can ignore
             # that string for this particular rule.
-            sources_to_examine = list(sources)
+            sources_to_ignore = set()
             if not rule.configuration.get('examine_slug'):
-                sources_to_examine.remove('slug')
+                sources_to_ignore.add('slug')
             if not rule.configuration.get('examine_xpi_names'):
-                sources_to_examine.remove('xpi')
+                sources_to_ignore.add('xpi')
             if not rule.configuration.get('examine_authors_names'):
-                sources_to_examine.remove('author')
+                sources_to_ignore.add('author')
             if not rule.configuration.get('examine_listing_names'):
-                sources_to_examine.remove('db_addon')
+                sources_to_ignore.add('db_addon')
+            sources_to_examine = {
+                source['source'] for source in sources
+            } - sources_to_ignore
 
             if not sources_to_examine:
+                # This value is only present in sources the configuration told
+                # us to ignore, so continue without examining it.
                 continue
 
             value = str(value)

@@ -52,6 +52,7 @@ from olympia.scanners.actions import (
     _flag_for_human_review,
     _no_action,
 )
+from olympia.scanners.utils import default_from_schema
 from olympia.users.models import UserProfile
 
 
@@ -255,6 +256,12 @@ class AbstractScannerRule(ModelBase):
             raise ValidationError(
                 {'definition': 'An error occurred when compiling the definition'}
             ) from exc
+
+    def save(self, *args, **kwargs):
+        if self.pk is None and not self.configuration:
+            schema = rule_schema(self)
+            self.configuration = default_from_schema(schema)
+        return super().save(*args, **kwargs)
 
 
 class ScannerRule(AbstractScannerRule):
