@@ -364,27 +364,29 @@ def _run_narc(*, scanner_result, version, rules=None):
         # We're using `regex`, which is faster/more powerful than the default
         # `re` module.
         definition = regex.compile(str(rule.definition), regex.I | regex.E)
+        # For each rule, build a set of the sources to ignore according to the
+        # rule configuration....
+        sources_to_ignore = set()
+        if not rule.configuration.get('examine_slug'):
+            sources_to_ignore.add('slug')
+        if not rule.configuration.get('examine_xpi_names'):
+            sources_to_ignore.add('xpi')
+        if not rule.configuration.get('examine_authors_names'):
+            sources_to_ignore.add('author')
+        if not rule.configuration.get('examine_listing_names'):
+            sources_to_ignore.add('db_addon')
+
         for value, sources in values.items():
-            # For the specific rule we're looking at, we build a copy of
-            # sources of each string that we then modify to remove sources the
-            # rule is not interested in. If no sources are left, we can ignore
-            # that string for this particular rule.
-            sources_to_ignore = set()
-            if not rule.configuration.get('examine_slug'):
-                sources_to_ignore.add('slug')
-            if not rule.configuration.get('examine_xpi_names'):
-                sources_to_ignore.add('xpi')
-            if not rule.configuration.get('examine_authors_names'):
-                sources_to_ignore.add('author')
-            if not rule.configuration.get('examine_listing_names'):
-                sources_to_ignore.add('db_addon')
+            # ... Then for each value we have, look at what sources it came
+            # from, removing those we want to ignore for this rule.
             sources_to_examine = {
                 source['source'] for source in sources
             } - sources_to_ignore
 
+            # We are left with a set of sources we're interested in: if it's
+            # empty that means the value is only present in sources the rule
+            # configuration wants to ignore, so we continue to the next one.
             if not sources_to_examine:
-                # This value is only present in sources the configuration told
-                # us to ignore, so continue without examining it.
                 continue
 
             value = str(value)
