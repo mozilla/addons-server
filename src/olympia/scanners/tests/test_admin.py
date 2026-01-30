@@ -28,6 +28,7 @@ from olympia.constants.scanners import (
     CUSTOMS,
     FALSE_POSITIVE,
     INCONCLUSIVE,
+    NARC,
     NEW,
     RUNNING,
     SCHEDULED,
@@ -1179,6 +1180,27 @@ class TestScannerRuleAdmin(TestCase):
             'narc',
             'webhook',
         ]
+
+    def test_change_view_default_configuration_instance_empty_on_create(self):
+        url = reverse('admin:scanners_scannerrule_add')
+        response = self.client.get(url)
+        assert response.status_code == 200
+        admin_form = response.context_data['adminform']
+        assert 'configuration' in admin_form.fields
+        assert admin_form.fields['configuration'].widget.instance
+        assert not admin_form.fields['configuration'].widget.instance.pk
+        assert admin_form.fields['configuration'].widget.instance.scanner is None
+
+    def test_change_view_default_configuration_instance_on_change(self):
+        # Change page passes the instance to the configuration widget so that
+        # django-jsonform can use the right schema.
+        rule = ScannerRule.objects.create(name='bar', scanner=NARC)
+        url = reverse('admin:scanners_scannerrule_change', args=(rule.pk,))
+        response = self.client.get(url)
+        assert response.status_code == 200
+        admin_form = response.context_data['adminform']
+        assert 'configuration' in admin_form.fields
+        assert admin_form.fields['configuration'].widget.instance == rule
 
 
 class TestScannerQueryRuleAdmin(TestCase):
