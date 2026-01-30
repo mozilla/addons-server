@@ -1465,7 +1465,7 @@ class TestRunNarc(UploadMixin, TestCase):
         }
 
     def test_run_multiple_rules_with_different_configuration(self):
-        pointless_rule = ScannerRule.objects.create(
+        ScannerRule.objects.create(
             name='always_match_rule_with_config_not_matching_anything',
             scanner=NARC,
             definition='.*',

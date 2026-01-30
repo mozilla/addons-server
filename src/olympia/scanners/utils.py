@@ -3,7 +3,7 @@ def default_from_schema(schema):
 
     Only supports the flat objects."""
     obj = {}
-    if schema.get('type') != 'object':
+    if not schema or not isinstance(schema, dict) or schema.get('type') != 'object':
         return obj
     for key in schema.get('keys', []):
         if 'default' in schema['keys'][key]:
