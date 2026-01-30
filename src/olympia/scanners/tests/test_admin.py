@@ -42,6 +42,7 @@ from olympia.reviewers.templatetags.assay import assay_url
 from olympia.scanners.admin import (
     ExcludeMatchedRulesFilter,
     MatchesFilter,
+    ScannerFilter,
     ScannerQueryResultAdmin,
     ScannerResultAdmin,
     ScannerRuleAdmin,
@@ -250,13 +251,14 @@ class TestScannerResultAdmin(TestCase):
         )
         deleted_addon.delete()
 
-        with self.assertNumQueries(13):
+        with self.assertNumQueries(14):
             # 13 queries:
             # - 2 transaction savepoints because of tests
             # - 2 request user and groups
             # - 1 COUNT(*) on scanners results for pagination
             #     (show_full_result_count=False so we avoid the duplicate)
             # - 2 get all available rules for filtering
+            # - 1 all webhooks for ScannerFilter
             # - 1 scanners results and versions in one query
             # - 1 all add-ons in one query
             # - 1 all files in one query
@@ -291,18 +293,19 @@ class TestScannerResultAdmin(TestCase):
             name='hello', scanner=YARA, pretty_name='Pretty Hello'
         )
         rule_foo = ScannerRule.objects.create(name='foo', scanner=CUSTOMS)
+        webhook = ScannerWebhook.objects.create(name='some-webhook')
 
         response = self.client.get(self.list_url)
         assert response.status_code == 200
         doc = pq(response.content)
         expected = [
             ('All', '?'),
-            ('customs', '?scanner__exact=1'),
-            ('wat', '?scanner__exact=2'),
-            ('yara', '?scanner__exact=3'),
-            ('mad', '?scanner__exact=4'),
-            ('narc', '?scanner__exact=5'),
-            ('webhook', '?scanner__exact=6'),
+            ('customs', '?scanner=1'),
+            ('wat', '?scanner=2'),
+            ('yara', '?scanner=3'),
+            ('mad', '?scanner=4'),
+            ('narc', '?scanner=5'),
+            ('[webhook] some-webhook', f'?scanner=6_{webhook.id}'),
             ('All', '?has_matched_rules=all'),
             (' With matched rules only', '?'),
             ('All', '?state=all'),
@@ -331,6 +334,81 @@ class TestScannerResultAdmin(TestCase):
             for option in doc('#changelist-filter option')
         ]
         assert filters == expected
+
+    def test_list_filter_scanners(self):
+        ScannerResult.objects.create(scanner=YARA)
+        ScannerResult.objects.create(scanner=CUSTOMS)
+        webhook = ScannerWebhook.objects.create(name='some service')
+        ScannerResult.objects.create(
+            scanner=WEBHOOK,
+            webhook_event=ScannerWebhookEvent.objects.create(
+                event=WEBHOOK_DURING_VALIDATION, webhook=webhook
+            ),
+        )
+
+        # All scanner results, by default.
+        response = self.client.get(
+            self.list_url,
+            {
+                MatchesFilter.parameter_name: 'all',
+                WithVersionFilter.parameter_name: 'all',
+            },
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody > tr').length == 3
+
+        # Customs
+        response = self.client.get(
+            self.list_url,
+            {
+                ScannerFilter.parameter_name: CUSTOMS,
+                MatchesFilter.parameter_name: 'all',
+                WithVersionFilter.parameter_name: 'all',
+            },
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody > tr').length == 1
+
+        # Yara
+        response = self.client.get(
+            self.list_url,
+            {
+                ScannerFilter.parameter_name: YARA,
+                MatchesFilter.parameter_name: 'all',
+                WithVersionFilter.parameter_name: 'all',
+            },
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody > tr').length == 1
+
+        # Webhook
+        response = self.client.get(
+            self.list_url,
+            {
+                ScannerFilter.parameter_name: f'{WEBHOOK}_{webhook.id}',
+                MatchesFilter.parameter_name: 'all',
+                WithVersionFilter.parameter_name: 'all',
+            },
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody > tr').length == 1
+
+        # Invalid webhook
+        response = self.client.get(
+            self.list_url,
+            {
+                ScannerFilter.parameter_name: f'{WEBHOOK}_{webhook.id + 123}',
+                MatchesFilter.parameter_name: 'all',
+                WithVersionFilter.parameter_name: 'all',
+            },
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody > tr').length == 0
 
     def test_list_filter_matched_rules(self):
         rule_bar = ScannerRule.objects.create(name='bar', scanner=YARA)
@@ -510,17 +588,15 @@ class TestScannerResultAdmin(TestCase):
             f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
             '&state=3',
             f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
-            '&state=3&scanner__exact=1',
+            '&state=3&scanner=1',
             f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
-            '&state=3&scanner__exact=2',
+            '&state=3&scanner=2',
             f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
-            '&state=3&scanner__exact=3',
+            '&state=3&scanner=3',
             f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
-            '&state=3&scanner__exact=4',
+            '&state=3&scanner=4',
             f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
-            '&state=3&scanner__exact=5',
-            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
-            '&state=3&scanner__exact=6',
+            '&state=3&scanner=5',
             f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
             '&state=3&has_matched_rules=all',
             f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
