@@ -3090,7 +3090,7 @@ msgstr "Το πρόσθετό σας έχει οριστεί σε «Αόρατο
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cant_submit_new_listed_versions_warning.html:5
 msgid "Your add-on listing was rejected."
-msgstr ""
+msgstr "Η καταχώρηση του προσθέτου σας απορρίφθηκε."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cant_submit_new_listed_versions_warning.html:7
 msgid "While in this state, \"On your own\" is the only distribution method available."
