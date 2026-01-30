@@ -2821,12 +2821,16 @@ msgid ""
 "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Minimum length: %(min_length)s characters; Recommended "
 "length: 250 characters. If you need a longer description, make sure the first 250 characters contain the most important description points."
 msgstr ""
+"Phần mô tả chi tiết hơn về các tính năng, chức năng và thông tin liên quan khác. Trường này chỉ hiển thị trên trang sản phẩm của tiện ích mở rộng. Độ dài tối thiểu: %(min_length)s ký tự; Độ dài "
+"khuyến nghị: 250 ký tự. Nếu bạn cần mô tả dài hơn, hãy đảm bảo 250 ký tự đầu tiên chứa các mô tả quan trọng nhất."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:140
 msgid ""
 "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Recommended length: 250 characters. If you need a longer "
 "description, make sure the first 250 characters contain the most important description points."
 msgstr ""
+"Phần mô tả chi tiết hơn về các tính năng, chức năng và thông tin liên quan khác. Trường này chỉ hiển thị trên trang sản phẩm của tiện ích mở rộng. Độ dài khuyến nghị: 250 ký tự. Nếu bạn cần mô tả "
+"dài hơn, hãy đảm bảo 250 ký tự đầu tiên chứa các mô tả quan trọng nhất."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:169
 msgid "Experimental?"
@@ -3557,7 +3561,7 @@ msgstr "Tạo một phiên bản chủ đề"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:82
 msgid "You can upload a finished theme using the upload option above, or you can build it yourself using this tool."
-msgstr ""
+msgstr "Bạn có thể tải lên giao diện đã hoàn thiện bằng tùy chọn tải lên ở trên, hoặc bạn có thể tự xây dựng giao diện đó bằng công cụ này."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:88
 msgid "Create a Theme"
