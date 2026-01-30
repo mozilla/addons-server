@@ -379,9 +379,11 @@ def _run_narc(*, scanner_result, version, rules=None):
         for value, sources in values.items():
             # ... Then for each value we have, look at what sources it came
             # from, removing those we want to ignore for this rule.
-            sources_to_examine = {
-                source['source'] for source in sources
-            } - sources_to_ignore
+            sources_to_examine = [
+                source_info
+                for source_info in sources
+                if source_info['source'] not in sources_to_ignore
+            ]
 
             # We are left with a set of sources we're interested in: if it's
             # empty that means the value is only present in sources the rule
@@ -414,7 +416,7 @@ def _run_narc(*, scanner_result, version, rules=None):
             for variant, variant_type in variants:
                 if match := definition.search(variant):
                     span = tuple(match.span())
-                    for source_info in sources:
+                    for source_info in sources_to_examine:
                         result = {
                             'rule': rule.name,
                             'meta': {

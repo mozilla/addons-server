@@ -263,6 +263,7 @@ class TestRunNarc(UploadMixin, TestCase):
         self.user = user_factory(display_name='Fôo')
         self.addon = addon_factory(
             guid='@webextension-guid',
+            slug='my-webextension',
             name='My Fancy WebExtension Addon',
             users=[self.user],
         )
@@ -1248,6 +1249,249 @@ class TestRunNarc(UploadMixin, TestCase):
         )
 
         assert run_action_mock.call_count == 0
+
+    def test_run_do_examine_slug(self):
+        rule = ScannerRule.objects.create(
+            name='always_match_rule',
+            scanner=NARC,
+            definition='.*',
+        )
+        # examine_slug defaults to False, enable it.
+        rule.configuration['examine_slug'] = True
+        rule.save()
+
+        run_narc_on_version(self.version.pk)
+
+        scanner_results = ScannerResult.objects.all()
+        assert len(scanner_results) == 1
+        narc_result = scanner_results[0]
+        assert narc_result.scanner == NARC
+        assert narc_result.upload is None
+        assert narc_result.version == self.version
+        assert narc_result.has_matches
+        assert list(narc_result.matched_rules.all()) == [rule]
+        assert len(narc_result.results) == 8  # Would be 6 without slug
+        assert narc_result.results
+        assert narc_result.results[4]['meta'] == {
+            'span': [0, 14],
+            'locale': None,
+            'source': 'slug',
+            'string': 'mywebextension',
+            'pattern': '.*',
+            'variant': 'normalized',
+            'original_string': 'my-webextension',
+        }
+        assert narc_result.results[6]['meta'] == {
+            'span': [0, 15],
+            'locale': None,
+            'source': 'slug',
+            'string': 'my-webextension',
+            'pattern': '.*',
+        }
+
+    def test_run_dont_examine_xpi_names(self):
+        rule = ScannerRule.objects.create(
+            name='always_match_rule',
+            scanner=NARC,
+            definition='.*',
+        )
+        rule.configuration['examine_xpi_names'] = False
+        rule.save()
+
+        run_narc_on_version(self.version.pk)
+
+        scanner_results = ScannerResult.objects.all()
+        assert len(scanner_results) == 1
+        narc_result = scanner_results[0]
+        assert narc_result.scanner == NARC
+        assert narc_result.upload is None
+        assert narc_result.version == self.version
+        assert narc_result.has_matches
+        assert list(narc_result.matched_rules.all()) == [rule]
+        assert len(narc_result.results) == 4  # Would be 6 with xpi
+        assert 'xpi' not in {result['meta']['source'] for result in narc_result.results}
+
+    def test_run_dont_examine_author_names(self):
+        rule = ScannerRule.objects.create(
+            name='always_match_rule',
+            scanner=NARC,
+            definition='.*',
+        )
+        rule.configuration['examine_authors_names'] = False
+        rule.save()
+
+        run_narc_on_version(self.version.pk)
+
+        scanner_results = ScannerResult.objects.all()
+        assert len(scanner_results) == 1
+        narc_result = scanner_results[0]
+        assert narc_result.scanner == NARC
+        assert narc_result.upload is None
+        assert narc_result.version == self.version
+        assert narc_result.has_matches
+        assert list(narc_result.matched_rules.all()) == [rule]
+        assert len(narc_result.results) == 4  # Would be 6 with author
+        assert 'author' not in {
+            result['meta']['source'] for result in narc_result.results
+        }
+
+    def test_run_dont_examine_listing_names(self):
+        rule = ScannerRule.objects.create(
+            name='always_match_rule',
+            scanner=NARC,
+            definition='.*',
+        )
+        rule.configuration['examine_listing_names'] = False
+        rule.save()
+
+        run_narc_on_version(self.version.pk)
+
+        scanner_results = ScannerResult.objects.all()
+        assert len(scanner_results) == 1
+        narc_result = scanner_results[0]
+        assert narc_result.scanner == NARC
+        assert narc_result.upload is None
+        assert narc_result.version == self.version
+        assert narc_result.has_matches
+        assert list(narc_result.matched_rules.all()) == [rule]
+        assert len(narc_result.results) == 4  # Would be 6 with listing names
+        assert 'db_addon' not in {
+            result['meta']['source'] for result in narc_result.results
+        }
+
+    def test_run_dont_examine_normalized_variants(self):
+        rule = ScannerRule.objects.create(
+            name='always_match_rule',
+            scanner=NARC,
+            definition='.*',
+        )
+        rule.configuration['examine_normalized_variants'] = False
+        rule.save()
+
+        run_narc_on_version(self.version.pk)
+
+        scanner_results = ScannerResult.objects.all()
+        assert len(scanner_results) == 1
+        narc_result = scanner_results[0]
+        assert narc_result.scanner == NARC
+        assert narc_result.upload is None
+        assert narc_result.version == self.version
+        assert narc_result.has_matches
+        assert list(narc_result.matched_rules.all()) == [rule]
+        assert len(narc_result.results) == 3  # Would be 6 with normalized
+        assert 'normalized' not in {
+            result['meta'].get('variant') for result in narc_result.results
+        }
+
+    def test_run_dont_examine_homoglyphs_variants(self):
+        rule = ScannerRule.objects.create(
+            name='always_match_rule',
+            scanner=NARC,
+            definition='.*',
+        )
+        rule.configuration['examine_homoglyphs_variants'] = False
+        rule.save()
+        self.addon.name = 'Little addon'  # l/I homoglyph
+        self.addon.save()
+
+        run_narc_on_version(self.version.pk)
+
+        scanner_results = ScannerResult.objects.all()
+        assert len(scanner_results) == 1
+        narc_result = scanner_results[0]
+        assert narc_result.scanner == NARC
+        assert narc_result.upload is None
+        assert narc_result.version == self.version
+        assert narc_result.has_matches
+        assert list(narc_result.matched_rules.all()) == [rule]
+        assert len(narc_result.results) == 6  # Would be 7 with homoglyphs
+        assert 'homoglyph' not in {
+            result['meta'].get('variant') for result in narc_result.results
+        }
+
+    def test_run_dont_examine_anything(self):
+        rule = ScannerRule.objects.create(
+            name='always_match_rule',
+            scanner=NARC,
+            definition='.*',
+        )
+        # examine_slugs default to False already.
+        rule.configuration['examine_listing_names'] = False
+        rule.configuration['examine_xpi_names'] = False
+        rule.configuration['examine_authors_names'] = False
+        rule.save()
+
+        run_narc_on_version(self.version.pk)
+
+        scanner_results = ScannerResult.objects.all()
+        assert len(scanner_results) == 1
+        narc_result = scanner_results[0]
+        assert narc_result.scanner == NARC
+        assert narc_result.upload is None
+        assert narc_result.version == self.version
+        assert not narc_result.has_matches
+        assert list(narc_result.matched_rules.all()) == []
+
+    def test_run_dont_examine_source_with_same_string_elsewhere(self):
+        # Have the listing name and author name share the same string...
+        self.addon.name = self.addon.listed_authors[0].display_name
+        self.addon.save()
+
+        # ...Then configure the rule not to search in the author name.
+        rule = ScannerRule.objects.create(
+            name='always_match_rule',
+            scanner=NARC,
+            definition='.*',
+        )
+        rule.configuration['examine_authors_names'] = False
+        rule.save()
+
+        run_narc_on_version(self.version.pk)
+
+        scanner_results = ScannerResult.objects.all()
+        assert len(scanner_results) == 1
+        narc_result = scanner_results[0]
+        assert narc_result.scanner == NARC
+        assert narc_result.upload is None
+        assert narc_result.version == self.version
+        assert len(narc_result.results) == 4  # Removed author & normalized author match
+        # We didn't examine the author name
+        assert 'author' not in {
+            result['meta']['source'] for result in narc_result.results
+        }
+        # We should still have matches for the listing name (& normalized listing name)
+        assert 'db_addon' in {
+            result['meta']['source'] for result in narc_result.results
+        }
+
+    def test_run_multiple_rules_with_different_configuration(self):
+        pointless_rule = ScannerRule.objects.create(
+            name='always_match_rule_with_config_not_matching_anything',
+            scanner=NARC,
+            definition='.*',
+            configuration={
+                'examine_xpi_names': False,
+                'examine_slug': False,
+                'examine_listing_names': False,
+                'examine_authors_names': False,
+            },
+        )
+
+        rule = ScannerRule.objects.create(
+            name='always_match_rule',
+            scanner=NARC,
+            definition='.*',
+        )
+        run_narc_on_version(self.version.pk)
+
+        scanner_results = ScannerResult.objects.all()
+        assert len(scanner_results) == 1
+        narc_result = scanner_results[0]
+        assert narc_result.scanner == NARC
+        assert narc_result.upload is None
+        assert narc_result.version == self.version
+        assert len(narc_result.results) == 6
+        assert list(narc_result.matched_rules.all()) == [rule]
 
 
 class TestRunYara(UploadMixin, TestCase):
