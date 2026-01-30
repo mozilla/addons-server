@@ -493,7 +493,6 @@ class TestScannerRuleMixin:
         rule.save()
         assert rule.configuration == {}
 
-
     def test_default_configuration_narc_on_save(self):
         rule = self.model(
             name='some_rule',
