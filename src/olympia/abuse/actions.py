@@ -344,7 +344,7 @@ class ContentActionDisableAddon(ContentAction):
         extra_details = {'human_review': human_review} | (extra_details or {})
         if (
             target_versions := self.target_versions.no_transforms()
-            .only('pk', 'version')
+            .only('pk', 'version', 'file')
             .order_by('-pk')
         ):
             extra_args = (*target_versions, *extra_args)
@@ -376,7 +376,7 @@ class ContentActionDisableAddon(ContentAction):
             .filter(addon=self.target)
             .exclude(file__status=amo.STATUS_DISABLED)
             .no_transforms()
-            .only('pk', 'version')
+            .only('pk', 'version', 'file')
             .order_by('-pk')
         )
 
@@ -628,7 +628,7 @@ class ContentActionBlockAddon(ContentActionDisableAddon):
         return (
             Version.unfiltered.filter(addon=self.target, blockversion__id__isnull=True)
             .no_transforms()
-            .only('pk', 'version')
+            .only('pk', 'version', 'file')
             .order_by('-pk')
         )
 
@@ -825,7 +825,7 @@ class ContentActionTargetAppealApprove(
         if isinstance(target, Addon):
             target_versions = (
                 self.target_versions.no_transforms()
-                .only('pk', 'version')
+                .only('pk', 'version', 'file')
                 .order_by('-pk')
             )
             previous_decision_actions = self.previous_decisions.values_list(
