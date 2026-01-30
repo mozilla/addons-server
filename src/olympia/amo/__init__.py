@@ -15,6 +15,7 @@ from olympia.constants.activity import (  # noqa
     LOG_KEEP,
     LOG_REVIEW_QUEUE,
     LOG_REVIEW_QUEUE_DEVELOPER,
+    LOG_REVIEW_QUEUE_IMPORTANT_CHANGE,
     LOG_REVIEW_EMAIL_USER,
 )
 from olympia.constants.applications import *  # noqa
