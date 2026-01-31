@@ -410,16 +410,16 @@ msgstr "このスラグは使用できません。別のスラグを付けてく
 
 #: src/olympia/addons/serializers.py:1886
 msgid "There is no rollback available in this channel."
-msgstr ""
+msgstr "このチャンネルではロールバックが利用できません。"
 
 #: src/olympia/addons/serializers.py:1896
 #, python-format
 msgid "Rollback is only available for version %s in this channel."
-msgstr ""
+msgstr "このチャンネルではバージョン %s のみロールバック可能です。"
 
 #: src/olympia/addons/serializers.py:1902
 msgid "Only approved versions can be rolled back, except the most recent version."
-msgstr ""
+msgstr "最新バージョンを除き、承認されたバージョンにのみロールバックできます。"
 
 #: src/olympia/addons/utils.py:50
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -1243,20 +1243,20 @@ msgstr "却下の保留が変更されました"
 #: src/olympia/constants/activity.py:1208
 #, python-brace-format
 msgid "{addon} {version} created, to rollback from {0}."
-msgstr ""
+msgstr "{addon} {version} が作成されました。{0} からロールバックします。"
 
 #: src/olympia/constants/activity.py:1209
 msgid "Version rollback"
-msgstr ""
+msgstr "バージョンのロールバック"
 
 #: src/olympia/constants/activity.py:1216
 #, python-brace-format
 msgid "{addon} rollback from {version} failed."
-msgstr ""
+msgstr "{addon} のバージョン {version} からのロールバックに失敗しました。"
 
 #: src/olympia/constants/activity.py:1217
 msgid "Version rollback failure"
-msgstr ""
+msgstr "バージョンのロールバックに失敗"
 
 #: src/olympia/constants/activity.py:1246
 #, python-brace-format
@@ -1276,11 +1276,11 @@ msgstr ""
 #: src/olympia/constants/activity.py:1277
 #, python-brace-format
 msgid "{addon} listing content rejected."
-msgstr ""
+msgstr "{addon} の掲載コンテンツが却下されました。"
 
 #: src/olympia/constants/activity.py:1278
 msgid "Listing content rejected"
-msgstr ""
+msgstr "掲載コンテンツが却下されました"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -1680,31 +1680,31 @@ msgstr "Mozilla Public License 2.0"
 
 #: src/olympia/constants/licenses.py:22
 msgid "Apache License 2.0"
-msgstr ""
+msgstr "Apache License 2.0"
 
 #: src/olympia/constants/licenses.py:29
 msgid "GNU General Public License v2.0 only"
-msgstr ""
+msgstr "GNU General Public License v2.0 のみ"
 
 #: src/olympia/constants/licenses.py:36
 msgid "GNU General Public License v3.0 only"
-msgstr ""
+msgstr "GNU General Public License v3.0 のみ"
 
 #: src/olympia/constants/licenses.py:43
 msgid "GNU Lesser General Public License v2.1 only"
-msgstr ""
+msgstr "GNU Lesser General Public License v2.1 のみ"
 
 #: src/olympia/constants/licenses.py:50
 msgid "GNU Lesser General Public License v3.0 only"
-msgstr ""
+msgstr "GNU Lesser General Public License v3.0 のみ"
 
 #: src/olympia/constants/licenses.py:57
 msgid "GNU Affero General Public License v3.0 only"
-msgstr ""
+msgstr "GNU Affero General Public License v3.0 のみ"
 
 #: src/olympia/constants/licenses.py:64
 msgid "MIT License"
-msgstr ""
+msgstr "MIT License"
 
 #: src/olympia/constants/licenses.py:71
 msgid "ISC License"
@@ -2025,11 +2025,11 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py:1681
 msgid "Release notes"
-msgstr ""
+msgstr "リリースノート"
 
 #: src/olympia/devhub/forms.py:1682
 msgid "Automatic rollback based on version [m.m]."
-msgstr ""
+msgstr "バージョン [m.m] に基づいて自動的にロールバックします。"
 
 #: src/olympia/devhub/forms.py:1755
 msgid "You must select a channel and version to rollback to."
