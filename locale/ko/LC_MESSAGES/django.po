@@ -2271,7 +2271,7 @@ msgstr "탭 강조"
 
 #: src/olympia/devhub/views.py:1515
 msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
-msgstr ""
+msgstr "활성 탭의 강조 표시 색상입니다. Firefox 89+에서 탭 주변의 테두리로 구현되고, 오래된 Firefox에서는 탭 위의 선으로 구현됩니다. Manifest 필드:  tab_line."
 
 #: src/olympia/devhub/views.py:1618
 msgid "Add-on uploads are temporarily unavailable"
@@ -2701,7 +2701,7 @@ msgstr "사용자에게 금전적 기부를 요청하려면 이를 할 수 있�
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:45
 #, python-format
 msgid "Supported domains: %(supported_domains)s"
-msgstr ""
+msgstr "지원하는 도메인: %(supported_domains)s"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:55 src/olympia/translations/templates/translations/trans-menu.html:13
 msgid "Default Locale"
@@ -2791,13 +2791,13 @@ msgstr "설명"
 msgid ""
 "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Minimum length: %(min_length)s characters; Recommended "
 "length: 250 characters. If you need a longer description, make sure the first 250 characters contain the most important description points."
-msgstr ""
+msgstr "특징과 기능, 기타 관련 정보에 대한 자세한 설명입니다. 이 필드는 부가 기능의 제품 페이지에만 표시됩니다. 최소 길이: %(min_length)s 자, 권장 길이: 250자. 만약 권장 길이보다 더 긴 설명을 적는다면, 첫 250자에 가장 중요한 설명 요점을 포함해 주세요."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:140
 msgid ""
 "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Recommended length: 250 characters. If you need a longer "
 "description, make sure the first 250 characters contain the most important description points."
-msgstr ""
+msgstr "특징과 기능, 기타 관련 정보에 대한 자세한 설명입니다. 이 필드는 부가 기능의 제품 페이지에만 표시됩니다. 권장 길이: 250자. 만약 권장 길이보다 더 긴 설명을 적는다면, 첫 250자에 가장 중요한 설명 요점을 포함해 주세요."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:169
 msgid "Experimental?"
@@ -3328,12 +3328,12 @@ msgstr "시작하려면 이 버전을 배포할 방법을 선택하세요."
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html:19
 #, python-format
 msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing</a> on Firefox Extension Workshop."
-msgstr ""
+msgstr "Firefox 확장 기능 워크샵에서 <a %(a_attrs)s>부가 기능 배포 및 서명</a>을 읽어, 이러한 옵션에 대해 자세히 알아볼 수 있습니다."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html:24
 #, python-format
 msgid "All add-ons must comply with <a %(a_attrs)s>Mozilla’s Add-on Policies</a> and are subject to manual review at any time after submission."
-msgstr ""
+msgstr "모든 부가 기능은 <a %(a_attrs)s>Mozilla의 부가 기능 정책</a>을 준수해야 하며, 제출 후 언제든 수동 검토 대상이 될 수 있습니다."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:4
 msgid "Submission Complete"
