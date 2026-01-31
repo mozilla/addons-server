@@ -5600,7 +5600,7 @@ msgstr "Na webových stránkách, které se snaží blokovat Firefox, se Firefox
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:685
 msgid "Manage your Gmail (even multiple accounts) right from Firefox's toolbar button."
-msgstr "Spravujte svůj Gmail (dokonce i více účtů) přímo z panelu nástrojů Firefoxu."
+msgstr "Spravujte svůj Gmail (dokonce i více účtů) přímo z nástrojové lišty Firefoxu."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:688
