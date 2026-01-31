@@ -109,6 +109,13 @@ msgid ""
 "\n"
 "Thank you for your attention.\n"
 msgstr ""
+"\n"
+"Mozilla アドオンサイト上の %(name)s に関する報告と懸念事項について、詳細な情報をご提供いただき誠にありがとうございます。\n"
+"\n"
+"お客様の異議申し立てを審査した結果、このコンテンツは Mozilla のポリシー (%(policy_document_url)s) に違反していないという前回の判断は正しいと判断しました。この判断に基づき、異議申し立てを却下いたしました。アカウントおよびコンテンツに対していかなる措置も講じることはありません。\n"
+"%(manual_reasoning_text)s\n"
+"\n"
+"ご意見いただきありがとうございました。\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown.txt:5
 #, python-format
@@ -172,6 +179,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
 msgstr ""
+"\n"
+"Mozilla アドオンの次のアドオンについて、ご報告いただきありがとうございます: %(name)s。\n"
+"\n"
+"ご報告いただいた内容を審査した結果、Mozilla のポリシー (%(policy_document_url)s) に違反していることが判明したため、開発者に修正を依頼しました。開発者がコンテンツを更新して違反を是正しない場合、アドオンを削除いたします。\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_collection.txt:5
 #, python-format
@@ -181,6 +192,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
+"\n"
+"Mozilla アドオンの次のコレクションについて、ご報告いただきありがとうございます: %(name)s。\n"
+"\n"
+"ご報告いただいた内容を審査した結果、Mozilla のポリシー (%(policy_document_url)s) に違反していることが判明したので、該当コンテンツを削除いたしました。\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_rating.txt:5
 #, python-format
@@ -190,6 +205,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
+"\n"
+"Mozilla アドオンの次の評価について、ご報告いただきありがとうございます: %(name)s。\n"
+"\n"
+"ご報告いただいた内容を審査した結果、Mozilla のポリシー (%(policy_document_url)s) に違反していることが判明したので、該当コンテンツを削除いたしました。\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_user.txt:5
 #, python-format
@@ -199,6 +218,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
+"\n"
+"Mozilla アドオンの次のユーザープロファイルについて、ご報告いただきありがとうございます: %(name)s。\n"
+"\n"
+"ご報告いただいた内容を審査した結果、Mozilla のポリシー (%(policy_document_url)s) に違反していることが判明したので、該当コンテンツを削除いたしました。\n"
 
 #: src/olympia/accounts/serializers.py:160 src/olympia/bandwagon/serializers.py:101
 msgid "No links are allowed."
@@ -3425,7 +3448,7 @@ msgstr "トランスパイルまたは難読化、最小化、その他機械的
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:67
 #, python-format
 msgid "The maximum file size accepted is %(max_size)s."
-msgstr ""
+msgstr "受け入れ可能な最大ファイルサイズは %(max_size)s です。"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:72
 #, python-format
@@ -3463,7 +3486,7 @@ msgstr "下のフォームを使ってアドオンのパッケージをアップ
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:35
 #, python-format
 msgid "The maximum file size accepted is %(max_size)s. If your add-on is larger than %(max_size)s, it will fail validation."
-msgstr ""
+msgstr "受け入れ可能なファイルサイズは最大 %(max_size)s です。アドオンのファイルサイズが %(max_size)s より大きい場合、検証に失敗します。"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:60
 msgid "Which applications is this version compatible with?"
@@ -4258,7 +4281,7 @@ msgstr "このバージョンを削除すると、以下のものが完全に削
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:288
 msgid "Important:"
-msgstr ""
+msgstr "重要:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:289
 msgid ""
