@@ -2729,7 +2729,7 @@ msgstr "Se você quiser solicitar contribuições monetárias de seus usuários,
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:45
 #, python-format
 msgid "Supported domains: %(supported_domains)s"
-msgstr "Domínios suportados: %(supported_domains)s"
+msgstr "Domínios onde há suporte: %(supported_domains)s"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:55 src/olympia/translations/templates/translations/trans-menu.html:13
 msgid "Default Locale"
@@ -3052,7 +3052,7 @@ msgstr "Sua extensão está no momento definida como \"Invisível\"."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cant_submit_new_listed_versions_warning.html:5
 msgid "Your add-on listing was rejected."
-msgstr "A sua lista de extensões foi rejeitada."
+msgstr "Sua lista de extensões foi rejeitada."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cant_submit_new_listed_versions_warning.html:7
 msgid "While in this state, \"On your own\" is the only distribution method available."
@@ -3566,7 +3566,7 @@ msgstr "Criar uma versão do tema"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:82
 msgid "You can upload a finished theme using the upload option above, or you can build it yourself using this tool."
-msgstr "Você pode enviar um tema pronto usando a opção de envio acima, ou pode criar você mesmo usando esta ferramenta."
+msgstr "Você pode enviar um tema pronto usando a opção acima de enviar, ou pode criar você mesmo usando esta ferramenta."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:88
 msgid "Create a Theme"
@@ -5961,7 +5961,7 @@ msgstr "Ver todas extensões"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1101
 msgid "YouTube extensions"
-msgstr "Extensões para o YouTube"
+msgstr "Extensões para YouTube"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -6012,7 +6012,7 @@ msgstr "Privacidade e segurança"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1126
 msgid "See more privacy staff picks"
-msgstr "Mais escolhas da equipe de privacidade"
+msgstr "Mais escolhas de privacidade da equipe"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1129
