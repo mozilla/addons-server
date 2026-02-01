@@ -1294,7 +1294,7 @@ msgstr "Vsebina objave za {addon} zavrnjena."
 
 #: src/olympia/constants/activity.py:1278
 msgid "Listing content rejected"
-msgstr "Vsebina seznama je zavrnjena"
+msgstr "Objava vsebine zavrnjena"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -1334,7 +1334,7 @@ msgstr "Čaka na pregled"
 
 #: src/olympia/constants/base.py:27
 msgid "Listing Content Rejected"
-msgstr "Vsebina objave je zavrnjena"
+msgstr "Objava vsebine zavrnjena"
 
 #: src/olympia/constants/base.py:28 src/olympia/constants/base.py:35
 msgid "Disabled by Mozilla"
