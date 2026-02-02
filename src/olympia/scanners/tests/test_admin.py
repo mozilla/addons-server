@@ -28,6 +28,7 @@ from olympia.constants.scanners import (
     CUSTOMS,
     FALSE_POSITIVE,
     INCONCLUSIVE,
+    NARC,
     NEW,
     RUNNING,
     SCHEDULED,
@@ -1503,7 +1504,7 @@ class TestScannerQueryResultAdmin(TestCase):
     def scanner_query_result_factory(self, *args, **kwargs):
         kwargs.setdefault('scanner', YARA)
         result = ScannerQueryResult(*args, **kwargs)
-        if 'rule' not in kwargs and 'results' not in kwargs:
+        if 'results' not in kwargs:
             result.add_yara_result(rule=self.rule.name)
         result.save()
         return result
@@ -1552,6 +1553,50 @@ class TestScannerQueryResultAdmin(TestCase):
         response = self.client.get(self.list_url)
         html = pq(response.content)
         assert '/icon-yes.svg' in html('.field-is_file_signed img')[0].attrib['src']
+
+    def test_list_view_displays_narc_metadata(self):
+        addon = addon_factory()
+        addon.update(average_daily_users=999)
+        addon.authors.add(user_factory(email='foo@bar.com'))
+        self.narc_rule = ScannerQueryRule.objects.create(
+            name='mynarcrule', scanner=NARC
+        )
+        result = self.scanner_query_result_factory(
+            version=addon.current_version,
+            scanner=NARC,
+            matched_rule=self.narc_rule,
+            results=[
+                {
+                    'meta': {
+                        'span': [8, 14],
+                        'locale': 'en-us',
+                        'source': 'whatever',
+                        'string': 'fakestring',
+                        'pattern': 'ahaha',
+                        'original_string': 'something',
+                    },
+                    'rule': self.narc_rule.name,
+                }
+            ],
+        )
+        response = self.client.get(self.list_url)
+        html = pq(response.content)
+        assert html('td.field-match_info details')
+        details = html('td.field-match_info details')[0]
+        # This field contains only basic metadata is displayed (full is
+        # displayed in results in change page).
+        assert details.text_content().strip().split() == [
+            'locale:en-us',
+            'source:whatever',
+            'string:fakestring',
+            'original_string:something',
+        ]
+        assert html('.field-id a')
+        link = html('.field-id a')[0]
+        expected_url = reverse(
+            'admin:scanners_scannerqueryresult_change', args=(result.pk,)
+        )
+        assert link.attrib['href'] == expected_url
 
     def test_list_view_no_query_permissions(self):
         self.scanner_query_result_factory(version=addon_factory().current_version)
