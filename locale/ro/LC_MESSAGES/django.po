@@ -385,7 +385,7 @@ msgstr "Versiunile enumerate nu pot fi trimise cât timp suplimentul este dezact
 
 #: src/olympia/addons/serializers.py:578 src/olympia/signing/views.py:218
 msgid "Listed versions cannot be submitted while add-on listing is rejected."
-msgstr ""
+msgstr "Versiunile enumerate nu pot fi trimise cât timp listarea suplimentului este respinsă."
 
 #: src/olympia/addons/serializers.py:619
 #, python-format
@@ -1300,11 +1300,11 @@ msgstr "Proprietatea {0} contului {user} a fost actualizată."
 #: src/olympia/constants/activity.py:1277
 #, python-brace-format
 msgid "{addon} listing content rejected."
-msgstr ""
+msgstr "Conținutul listării {addon} a fost respins."
 
 #: src/olympia/constants/activity.py:1278
 msgid "Listing content rejected"
-msgstr ""
+msgstr "Conținut listare respins"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -1344,7 +1344,7 @@ msgstr "În așteptarea recenziei"
 
 #: src/olympia/constants/base.py:27
 msgid "Listing Content Rejected"
-msgstr ""
+msgstr "Conținut listare respins"
 
 #: src/olympia/constants/base.py:28 src/olympia/constants/base.py:35
 msgid "Disabled by Mozilla"
@@ -3070,7 +3070,7 @@ msgstr "Suplimentul este setat acum pe „invizibil”."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cant_submit_new_listed_versions_warning.html:5
 msgid "Your add-on listing was rejected."
-msgstr ""
+msgstr "Listarea suplimentului tău a fost respinsă."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cant_submit_new_listed_versions_warning.html:7
 msgid "While in this state, \"On your own\" is the only distribution method available."
@@ -3817,7 +3817,7 @@ msgstr "Suplimentul a fost dezactivat de un administrator al site-ului și nu ma
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:32
 msgid "Your add-on listing was rejected. It is not listed in our gallery. Please address the reasons and reapply for review."
-msgstr ""
+msgstr "Listarea suplimentului tău a fost respinsă. Nu apare în galeria noastră. Te rugăm să vezi care sunt motivele și să faci din nou o cerere de recenzie."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:35
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
@@ -5990,7 +5990,7 @@ msgstr "Vezi toate extensiile"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1101
 msgid "YouTube extensions"
-msgstr ""
+msgstr "Extensii YouTube"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -6001,7 +6001,7 @@ msgstr "Extensii de creativitate"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1105
 msgid "New Recommended extensions"
-msgstr ""
+msgstr "Extensii noi recomandate"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1107 src/olympia/discovery/strings.jinja2:1109
@@ -6036,12 +6036,12 @@ msgstr "Vezi mai multe teme populare"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1124
 msgid "Privacy & security"
-msgstr ""
+msgstr "Intimitate și securitate"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1126
 msgid "See more privacy staff picks"
-msgstr ""
+msgstr "Vezi mai multe alegeri făcute de echipă pentru confidențialitate"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1129
