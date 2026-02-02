@@ -800,7 +800,7 @@ msgstr "URL může obsahovat znaky abecedy, čísla, podtržítka nebo pomlčky.
 
 #: src/olympia/bandwagon/serializers.py:113
 msgid "This custom URL cannot be used."
-msgstr "Vlastní URL adresu nejde použít."
+msgstr "Vlastní adresu URL nejde použít."
 
 #: src/olympia/bandwagon/serializers.py:147
 msgid "This add-on already belongs to the collection"
