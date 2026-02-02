@@ -316,7 +316,7 @@ msgstr "Adresa URL sponzorů GitHubu musí obsahovat text /sponsors/."
 
 #: src/olympia/addons/fields.py:128 src/olympia/devhub/forms.py:301
 msgid "URLs must start with https://."
-msgstr "URL adresy musí začínat https://."
+msgstr "Adresy URL musí začínat https://."
 
 #: src/olympia/addons/fields.py:187
 #, python-brace-format
@@ -569,7 +569,7 @@ msgstr "Některá funkčnost je během údržby webu dočasně nedostupná. Brzy
 
 #: src/olympia/amo/utils.py:1228
 msgid "URLs are not allowed."
-msgstr "URL adresy nejsou povoleny."
+msgstr "Adresy URL nejsou povoleny."
 
 #: src/olympia/amo/validators.py:17
 msgid "Must contain at least one printable character."
@@ -1838,7 +1838,7 @@ msgstr "Kategorie Různé nemůže být kombinována s jinými kategoriemi."
 #: src/olympia/devhub/forms.py:292
 #, python-format
 msgid "URL domain must be one of [%s]."
-msgstr "Doména v URL adrese musí být jedna z těchto [%s]."
+msgstr "Doména v adrese URL musí být jedna z těchto [%s]."
 
 #: src/olympia/devhub/forms.py:308
 #, python-brace-format
