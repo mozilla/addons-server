@@ -15,7 +15,7 @@ msgstr ""
 
 #: static/js/common/upload-addon.js:54 static/js/common/upload-image.js:136
 msgid "There was a problem contacting the server."
-msgstr "Dogodio se problem u povezivanju na poslužitelja."
+msgstr "Dogodio se problem u povezivanju na server."
 
 #: static/js/common/upload-addon.js:78
 msgid "Select a file..."
@@ -95,7 +95,7 @@ msgstr "Tvoje proširenje mora biti kompatibilno s barem jednom aplikacijom."
 
 #: static/js/common/upload-addon.js:473
 msgid "Unexpected server error while validating."
-msgstr "Neočekivana greška poslužitelja tijekom provjere."
+msgstr "Neočekivana greška servera tijekom provjere."
 
 #: static/js/common/upload-addon.js:519
 msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
@@ -615,4 +615,4 @@ msgstr "Zadatak ovjere se nije mogao dovršiti ili je završen sa pogreškama"
 
 #: static/js/zamboni/validator.js:517
 msgid "Internal server error"
-msgstr "Interna pogreška poslužitelja"
+msgstr "Interna greška servera"
