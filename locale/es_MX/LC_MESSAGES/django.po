@@ -5996,7 +5996,7 @@ msgstr "Ver las selecciones del personal"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1111
 msgid "Explore now"
-msgstr ""
+msgstr "Explorar ahora"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1114
@@ -6021,7 +6021,7 @@ msgstr "Ver más temas populares"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1124
 msgid "Privacy & security"
-msgstr ""
+msgstr "Privacidad y seguridad"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1126
@@ -6172,9 +6172,8 @@ msgstr "Ver más extensiones populares"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1196
-#, fuzzy
 msgid "See more creativity staff picks"
-msgstr "por versión del complemento"
+msgstr "Ver más selecciones del personal de creatividad"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1199
