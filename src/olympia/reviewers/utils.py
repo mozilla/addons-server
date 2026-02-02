@@ -479,7 +479,7 @@ class ReviewHelper:
         )
 
         use_content_rejection = self.content_review and waffle.switch_is_active(
-            'content_rejection_enabled'
+            'enable-content-rejection'
         )
 
         # Special logic for availability of reject/approve multiple action:

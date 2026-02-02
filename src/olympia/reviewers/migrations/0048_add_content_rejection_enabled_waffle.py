@@ -12,5 +12,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        CreateWaffleSwitch(name='content_rejection_enabled')
+        CreateWaffleSwitch(name='enable-content-rejection')
     ]

@@ -337,7 +337,7 @@ class TestReviewHelper(TestReviewHelperBase):
             == expected
         )
 
-    @override_switch('content_rejection_enabled', active=False)
+    @override_switch('enable-content-rejection', active=False)
     def test_actions_content_review(self):
         self.grant_permission(self.user, 'Addons:ContentReview')
         expected = [
@@ -359,7 +359,7 @@ class TestReviewHelper(TestReviewHelperBase):
             == expected
         )
 
-    @override_switch('content_rejection_enabled', active=True)
+    @override_switch('enable-content-rejection', active=True)
     def test_actions_content_review_use_content_rejection(self):
         self.grant_permission(self.user, 'Addons:ContentReview')
         expected = [
@@ -404,7 +404,7 @@ class TestReviewHelper(TestReviewHelperBase):
             == expected
         )
 
-    @override_switch('content_rejection_enabled', active=True)
+    @override_switch('enable-content-rejection', active=True)
     def test_actions_content_review_rejected(self):
         self.grant_permission(self.user, 'Addons:ContentReview')
         expected = [
@@ -3715,7 +3715,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert 'have restored your Extension' in message.body
 
     @override_switch('cinder_policy_review_reasons_enabled', active=False)
-    @override_switch('content_rejection_enabled', active=True)
+    @override_switch('enable-content-rejection', active=True)
     def test_reject_listing_content_review(self):
         self.grant_permission(self.user, 'Addons:ContentReview')
         self.setup_data(
@@ -3768,7 +3768,7 @@ class TestReviewHelper(TestReviewHelperBase):
         )
 
     @override_switch('cinder_policy_review_reasons_enabled', active=True)
-    @override_switch('content_rejection_enabled', active=True)
+    @override_switch('enable-content-rejection', active=True)
     def test_reject_listing_content_review_with_policies(self):
         self.grant_permission(self.user, 'Addons:ContentReview')
         self.setup_data(

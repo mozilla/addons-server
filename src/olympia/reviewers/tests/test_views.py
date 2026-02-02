@@ -4502,7 +4502,7 @@ class TestReview(ReviewBase):
         )
         self.assert3xx(response, content_url)
 
-    @override_switch('content_rejection_enabled', active=True)
+    @override_switch('enable-content-rejection', active=True)
     @override_switch('cinder_policy_review_reasons_enabled', active=True)
     def test_reject_listing_content_review(self):
         responses.add(
