@@ -1264,8 +1264,8 @@ class EDIT_USER_PROPERTY(_LOG):
 
 class APPROVE_LISTING_CONTENT(_LOG):
     id = 147
-    format = '{addon} content approved.'
-    short = 'Content approved'
+    format = '{addon} listing content approved.'
+    short = 'Listing approved'
     keep = True
     reviewer_review_action = True
     review_queue = True
@@ -1276,7 +1276,8 @@ class APPROVE_LISTING_CONTENT(_LOG):
 
 class APPROVE_REJECTED_LISTING_CONTENT(_LOG):
     id = 211
-    format = _('{addon} rejected listing content approved.')
+    format = _('{addon} listing content approved.')
+    reviewer_format = '{addon} rejected listing content approved.'
     short = _('Rejected listing approved')
     keep = True
     review_email_user = True
@@ -1290,7 +1291,7 @@ class REJECT_LISTING_CONTENT(_LOG):
     id = 212
     action_class = 'reject'
     format = _('{addon} listing content rejected.')
-    short = _('Listing content rejected')
+    short = _('Listing rejected')
     keep = True
     review_email_user = True
     review_queue = True
