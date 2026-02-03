@@ -79,4 +79,4 @@ updates:
     - ">= 9"
   - dependency-name: protobuf
     versions:
-    - ">= 5.0.0"
+    - ">= 7.0.0"
