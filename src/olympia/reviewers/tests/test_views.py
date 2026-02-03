@@ -464,7 +464,7 @@ class TestReviewLog(ReviewerTest):
         assert response.status_code == 200
         assert pq(response.content)('#log-listing tbody td').eq(1).html().strip() == (
             '<a href="/en-US/reviewers/review-content/3615">Delicious Bookmarks</a> '
-            'content approved.'
+            'listing content approved.'
         )
 
     def test_approval_multiple_versions(self):

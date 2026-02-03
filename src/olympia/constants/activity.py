@@ -1306,7 +1306,7 @@ class HELD_ACTION_REJECT_LISTING_CONTENT(_LOG):
     format = '{addon} listing content rejection held for further review.'
     reviewer_format = 'Held {addon} listing content rejection by {user_responsible}.'
     admin_format = reviewer_format
-    short = 'Held Listing Content Rejection'
+    short = 'Held listing rejection'
     admin_event = True
     review_queue_important_change = True
 
