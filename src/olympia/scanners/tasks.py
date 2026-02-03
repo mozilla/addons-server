@@ -366,15 +366,15 @@ def _run_narc(*, scanner_result, version, rules=None):
         definition = regex.compile(str(rule.definition), regex.I | regex.E)
         # For each rule, build a set of the sources to ignore according to the
         # rule configuration....
-        sources_to_ignore = set()
-        if not rule.configuration.get('examine_slug'):
-            sources_to_ignore.add('slug')
-        if not rule.configuration.get('examine_xpi_names'):
-            sources_to_ignore.add('xpi')
-        if not rule.configuration.get('examine_authors_names'):
-            sources_to_ignore.add('author')
-        if not rule.configuration.get('examine_listing_names'):
-            sources_to_ignore.add('db_addon')
+        rule_sources = set()
+        if rule.configuration.get('examine_slug'):
+            rule_sources.add('slug')
+        if rule.configuration.get('examine_xpi_names'):
+            rule_sources.add('xpi')
+        if rule.configuration.get('examine_authors_names'):
+            rule_sources.add('author')
+        if rule.configuration.get('examine_listing_names'):
+            rule_sources.add('db_addon')
 
         for value, sources in values.items():
             # ... Then for each value we have, look at what sources it came
@@ -382,7 +382,7 @@ def _run_narc(*, scanner_result, version, rules=None):
             sources_to_examine = [
                 source_info
                 for source_info in sources
-                if source_info['source'] not in sources_to_ignore
+                if source_info['source'] in rule_sources
             ]
 
             # We are left with a set of sources we're interested in: if it's
