@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-03 10:33+0000\n"
+"POT-Creation-Date: 2026-02-03 18:12+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1058,11 +1058,18 @@ msgid "Account {user} property {0} updated."
 msgstr "Account {user} property {0} updated."
 
 #, python-brace-format
+msgid "{addon} listing content approved."
+msgstr "{addon} listing content approved."
+
+msgid "Rejected listing approved"
+msgstr "Rejected listing approved"
+
+#, python-brace-format
 msgid "{addon} listing content rejected."
 msgstr "{addon} listing content rejected."
 
-msgid "Listing content rejected"
-msgstr "Listing content rejected"
+msgid "Listing rejected"
+msgstr "Listing rejected"
 
 msgid "Firefox"
 msgstr "Firefox"
