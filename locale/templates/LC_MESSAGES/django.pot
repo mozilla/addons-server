@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-01-28 15:45+0000\n"
+"POT-Creation-Date: 2026-02-03 10:33+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -912,463 +912,463 @@ msgid "{user} ({0}) added to {addon}."
 msgstr ""
 
 #. L10n: {0} is the user role.
-#: src/olympia/constants/activity.py:67
+#: src/olympia/constants/activity.py:68
 #, python-brace-format
 msgid "{user} ({0}) removed from {addon}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:76
+#: src/olympia/constants/activity.py:78
 #, python-brace-format
 msgid "Contributions for {addon}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:81
+#: src/olympia/constants/activity.py:83
 #, python-brace-format
 msgid "{addon} disabled."
 msgstr ""
 
-#: src/olympia/constants/activity.py:88
+#: src/olympia/constants/activity.py:90
 #, python-brace-format
 msgid "{addon} enabled."
 msgstr ""
 
 #. L10n: {status} is the status
-#: src/olympia/constants/activity.py:96
+#: src/olympia/constants/activity.py:98
 #, python-brace-format
 msgid "{addon} status changed to {status}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:103
+#: src/olympia/constants/activity.py:105
 #, python-brace-format
 msgid "{version} added to {addon}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:112
+#: src/olympia/constants/activity.py:114
 #, python-brace-format
 msgid "{version} edited for {addon}."
 msgstr ""
 
 #. L10n: {0} is the version number
-#: src/olympia/constants/activity.py:121
+#: src/olympia/constants/activity.py:123
 #, python-brace-format
 msgid "Version {0} deleted from {addon}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:129
+#: src/olympia/constants/activity.py:131
 #, python-brace-format
 msgid "File {file} added to {version} of {addon}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:141
+#: src/olympia/constants/activity.py:143
 #, python-brace-format
 msgid "File {0} deleted from {version} of {addon}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:147
+#: src/olympia/constants/activity.py:149
 #, python-brace-format
 msgid "{addon} {version} approved."
 msgstr ""
 
-#: src/olympia/constants/activity.py:148 src/olympia/constants/base.py:26
+#: src/olympia/constants/activity.py:150 src/olympia/constants/base.py:26
 #: src/olympia/constants/base.py:34
 msgid "Approved"
 msgstr ""
 
-#: src/olympia/constants/activity.py:159
+#: src/olympia/constants/activity.py:161
 #, python-brace-format
 msgid "{addon} {version} given preliminary review."
 msgstr ""
 
-#: src/olympia/constants/activity.py:160
+#: src/olympia/constants/activity.py:162
 msgid "Preliminarily approved"
 msgstr ""
 
-#: src/olympia/constants/activity.py:171
+#: src/olympia/constants/activity.py:173
 #, python-brace-format
 msgid "{addon} {version} rejected."
 msgstr ""
 
-#: src/olympia/constants/activity.py:172 src/olympia/files/models.py:324
+#: src/olympia/constants/activity.py:174 src/olympia/files/models.py:324
 msgid "Rejected"
 msgstr ""
 
-#: src/olympia/constants/activity.py:183
+#: src/olympia/constants/activity.py:185
 #, python-brace-format
 msgid "{addon} {version} retained."
 msgstr ""
 
-#: src/olympia/constants/activity.py:184
+#: src/olympia/constants/activity.py:186
 msgid "Retained"
 msgstr ""
 
-#: src/olympia/constants/activity.py:207
+#: src/olympia/constants/activity.py:209
 #, python-brace-format
 msgid "{addon} {version} review requested."
 msgstr ""
 
-#: src/olympia/constants/activity.py:208
+#: src/olympia/constants/activity.py:210
 msgid "Review requested"
 msgstr ""
 
-#: src/olympia/constants/activity.py:217
+#: src/olympia/constants/activity.py:219
 #, python-brace-format
 msgid "{addon} {version} more information requested."
 msgstr ""
 
-#: src/olympia/constants/activity.py:218
+#: src/olympia/constants/activity.py:220
 msgid "More information requested"
 msgstr ""
 
-#: src/olympia/constants/activity.py:236
+#: src/olympia/constants/activity.py:238
 msgid ""
 "The add-on has been flagged for Admin Review. It's still in our review queue,"
 " but it will need to be checked by one of our admin reviewers. The review "
 "might take longer than usual."
 msgstr ""
 
-#: src/olympia/constants/activity.py:258
+#: src/olympia/constants/activity.py:260
 #, python-brace-format
 msgid "{tag} added to {addon}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:265
+#: src/olympia/constants/activity.py:267
 #, python-brace-format
 msgid "{tag} removed from {addon}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:272
+#: src/olympia/constants/activity.py:274
 #, python-brace-format
 msgid "{addon} added to {collection}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:279
+#: src/olympia/constants/activity.py:281
 #, python-brace-format
 msgid "{addon} removed from {collection}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:286
+#: src/olympia/constants/activity.py:288
 #, python-brace-format
 msgid "{rating} for {addon} written."
 msgstr ""
 
 #. L10n: {0} is the application, {1} is the version of the app
-#: src/olympia/constants/activity.py:327
+#: src/olympia/constants/activity.py:329
 #, python-brace-format
 msgid "{0} {1} added."
 msgstr ""
 
 #. L10n: {0} is the user role
-#: src/olympia/constants/activity.py:335
+#: src/olympia/constants/activity.py:337
 #, python-brace-format
 msgid "{user} role changed to {0} for {addon}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:346
+#: src/olympia/constants/activity.py:349
 #, python-brace-format
 msgid "{addon} is now licensed under {0}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:353
+#: src/olympia/constants/activity.py:356
 #, python-brace-format
 msgid "{addon} policy changed."
 msgstr ""
 
-#: src/olympia/constants/activity.py:360
+#: src/olympia/constants/activity.py:363
 #, python-brace-format
 msgid "{addon} icon or previews changed."
 msgstr ""
 
-#: src/olympia/constants/activity.py:367
+#: src/olympia/constants/activity.py:370
 #, python-brace-format
 msgid "{rating} for {addon} approved."
 msgstr ""
 
-#: src/olympia/constants/activity.py:378
+#: src/olympia/constants/activity.py:381
 #, python-brace-format
 msgid "Review {rating} for {addon} deleted."
 msgstr ""
 
-#: src/olympia/constants/activity.py:386
+#: src/olympia/constants/activity.py:389
 #, python-brace-format
 msgid "Application max version for {version} updated."
 msgstr ""
 
-#: src/olympia/constants/activity.py:392
+#: src/olympia/constants/activity.py:395
 #, python-brace-format
 msgid "Authors emailed about compatibility of {version}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:397
+#: src/olympia/constants/activity.py:400
 msgid "Email sent to Author about add-on compatibility."
 msgstr ""
 
-#: src/olympia/constants/activity.py:402
+#: src/olympia/constants/activity.py:405
 msgid "Password changed."
 msgstr ""
 
-#: src/olympia/constants/activity.py:408
+#: src/olympia/constants/activity.py:411
 #, python-brace-format
 msgid "{addon} {version} approved but waiting to be made public."
 msgstr ""
 
-#: src/olympia/constants/activity.py:409
+#: src/olympia/constants/activity.py:412
 msgid "Approved but waiting"
 msgstr ""
 
-#: src/olympia/constants/activity.py:417
+#: src/olympia/constants/activity.py:420
 msgid "Account updated."
 msgstr ""
 
-#: src/olympia/constants/activity.py:422
+#: src/olympia/constants/activity.py:425
 #, python-brace-format
 msgid "Account {user} deleted."
 msgstr ""
 
-#: src/olympia/constants/activity.py:493
+#: src/olympia/constants/activity.py:496
 #, python-brace-format
 msgid "{rating} for {addon} updated."
 msgstr ""
 
-#: src/olympia/constants/activity.py:501
+#: src/olympia/constants/activity.py:504
 #, python-brace-format
 msgid "{addon} reviewed."
 msgstr ""
 
-#: src/olympia/constants/activity.py:536
+#: src/olympia/constants/activity.py:539
 #, python-brace-format
 msgid "{addon} unlisted."
 msgstr ""
 
 #. L10n: {0} is the add-on GUID.
-#: src/olympia/constants/activity.py:560
+#: src/olympia/constants/activity.py:563
 #, python-brace-format
 msgid "Add-on id {0} with GUID {1} has been deleted"
 msgstr ""
 
-#: src/olympia/constants/activity.py:567 src/olympia/constants/activity.py:573
+#: src/olympia/constants/activity.py:570 src/olympia/constants/activity.py:576
 #, python-brace-format
 msgid "{file} was signed."
 msgstr ""
 
-#: src/olympia/constants/activity.py:614
+#: src/olympia/constants/activity.py:617
 #, python-brace-format
 msgid "Reply by developer on {addon} {version}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:615
+#: src/olympia/constants/activity.py:618
 msgid "Developer Reply"
 msgstr ""
 
-#: src/olympia/constants/activity.py:623
+#: src/olympia/constants/activity.py:626
 #, python-brace-format
 msgid "Reply by reviewer on {addon} {version}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:624
+#: src/olympia/constants/activity.py:627
 msgid "Reviewer Reply"
 msgstr ""
 
-#: src/olympia/constants/activity.py:631
+#: src/olympia/constants/activity.py:634
 #, python-brace-format
 msgid "Notes for reviewers changed for {addon} {version}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:632
+#: src/olympia/constants/activity.py:635
 msgid "Notes for reviewers changed"
 msgstr ""
 
-#: src/olympia/constants/activity.py:640
+#: src/olympia/constants/activity.py:643
 #, python-brace-format
 msgid "Source code uploaded for {addon} {version}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:641
+#: src/olympia/constants/activity.py:644
 msgid "Source code uploaded"
 msgstr ""
 
-#: src/olympia/constants/activity.py:660
+#: src/olympia/constants/activity.py:663
 #, python-brace-format
 msgid "{addon} {version} re-enabled."
 msgstr ""
 
-#: src/olympia/constants/activity.py:667
+#: src/olympia/constants/activity.py:670
 #, python-brace-format
 msgid "{addon} {version} disabled."
 msgstr ""
 
-#: src/olympia/constants/activity.py:685
+#: src/olympia/constants/activity.py:688
 #, python-brace-format
 msgid "{addon} {version} content rejected."
 msgstr ""
 
-#: src/olympia/constants/activity.py:686
+#: src/olympia/constants/activity.py:689
 msgid "Content rejected"
 msgstr ""
 
-#: src/olympia/constants/activity.py:741
+#: src/olympia/constants/activity.py:744
 #, python-brace-format
 msgid "{addon} {version} admin theme-review requested."
 msgstr ""
 
-#: src/olympia/constants/activity.py:742
+#: src/olympia/constants/activity.py:745
 msgid "Admin theme-review requested"
 msgstr ""
 
-#: src/olympia/constants/activity.py:752
+#: src/olympia/constants/activity.py:756
 #, python-brace-format
 msgid "{addon} was migrated from a lightweight theme."
 msgstr ""
 
-#: src/olympia/constants/activity.py:828
+#: src/olympia/constants/activity.py:832
 #, python-brace-format
 msgid "{addon} {version} content reject scheduled."
 msgstr ""
 
-#: src/olympia/constants/activity.py:829
+#: src/olympia/constants/activity.py:833
 msgid "Content reject scheduled"
 msgstr ""
 
-#: src/olympia/constants/activity.py:841
+#: src/olympia/constants/activity.py:845
 #, python-brace-format
 msgid "{addon} {version} reject scheduled."
 msgstr ""
 
-#: src/olympia/constants/activity.py:842
+#: src/olympia/constants/activity.py:846
 msgid "Rejection scheduled"
 msgstr ""
 
-#: src/olympia/constants/activity.py:853
+#: src/olympia/constants/activity.py:857
 #, python-brace-format
 msgid "{addon} {version} automatically created and signed from {0}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:854
+#: src/olympia/constants/activity.py:858
 msgid "Version re-signed"
 msgstr ""
 
-#: src/olympia/constants/activity.py:862
+#: src/olympia/constants/activity.py:866
 #, python-brace-format
 msgid "{addon} force-disabled"
 msgstr ""
 
-#: src/olympia/constants/activity.py:873
+#: src/olympia/constants/activity.py:878
 #, python-brace-format
 msgid "{addon} force-enabled"
 msgstr ""
 
-#: src/olympia/constants/activity.py:902
+#: src/olympia/constants/activity.py:908
 #, python-brace-format
 msgid "{addon} {version} un-rejected."
 msgstr ""
 
-#: src/olympia/constants/activity.py:903
+#: src/olympia/constants/activity.py:909
 msgid "Un-rejected"
 msgstr ""
 
-#: src/olympia/constants/activity.py:941
+#: src/olympia/constants/activity.py:947
 #, python-brace-format
 msgid "Reply to {rating} for {addon} written."
 msgstr ""
 
-#: src/olympia/constants/activity.py:958
+#: src/olympia/constants/activity.py:964
 #, python-brace-format
 msgid "{addon} {version} pending rejection cleared."
 msgstr ""
 
-#: src/olympia/constants/activity.py:959
+#: src/olympia/constants/activity.py:965
 msgid "Pending rejection cleared"
 msgstr ""
 
-#: src/olympia/constants/activity.py:1006
+#: src/olympia/constants/activity.py:1013
 #, python-brace-format
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:1007
+#: src/olympia/constants/activity.py:1014
 msgid "Add-on slug changed"
 msgstr ""
 
-#: src/olympia/constants/activity.py:1014
+#: src/olympia/constants/activity.py:1021
 #, python-brace-format
 msgid "Collection {collection} deleted by moderator"
 msgstr ""
 
-#: src/olympia/constants/activity.py:1020
+#: src/olympia/constants/activity.py:1027
 #, python-brace-format
 msgid "Collection {collection} un-deleted by moderator"
 msgstr ""
 
-#: src/olympia/constants/activity.py:1029
+#: src/olympia/constants/activity.py:1036
 #, python-brace-format
 msgid "Review {rating} for {addon} un-deleted."
 msgstr ""
 
-#: src/olympia/constants/activity.py:1058
+#: src/olympia/constants/activity.py:1065
 #, python-brace-format
 msgid "{addon} {version} rejected automatically after delay expired."
 msgstr ""
 
-#: src/olympia/constants/activity.py:1059
+#: src/olympia/constants/activity.py:1066
 msgid "Rejected automatically after delay expired"
 msgstr ""
 
-#: src/olympia/constants/activity.py:1070
+#: src/olympia/constants/activity.py:1077
 #, python-brace-format
 msgid "{addon} {version} content rejected automatically after delay expired."
 msgstr ""
 
-#: src/olympia/constants/activity.py:1071
+#: src/olympia/constants/activity.py:1078
 msgid "Content rejected automatically after delay expired"
 msgstr ""
 
-#: src/olympia/constants/activity.py:1196
+#: src/olympia/constants/activity.py:1205
 #, python-brace-format
 msgid "{addon} {version} pending rejection changed."
 msgstr ""
 
-#: src/olympia/constants/activity.py:1197
+#: src/olympia/constants/activity.py:1206
 msgid "Pending rejection changed"
 msgstr ""
 
-#: src/olympia/constants/activity.py:1208
+#: src/olympia/constants/activity.py:1217
 #, python-brace-format
 msgid "{addon} {version} created, to rollback from {0}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:1209
+#: src/olympia/constants/activity.py:1218
 msgid "Version rollback"
 msgstr ""
 
-#: src/olympia/constants/activity.py:1216
+#: src/olympia/constants/activity.py:1225
 #, python-brace-format
 msgid "{addon} rollback from {version} failed."
 msgstr ""
 
-#: src/olympia/constants/activity.py:1217
+#: src/olympia/constants/activity.py:1226
 msgid "Version rollback failure"
 msgstr ""
 
-#: src/olympia/constants/activity.py:1246
+#: src/olympia/constants/activity.py:1257
 #, python-brace-format
 msgid "{addon} {0} property edited."
 msgstr ""
 
-#: src/olympia/constants/activity.py:1254
+#: src/olympia/constants/activity.py:1265
 #, python-brace-format
 msgid "Collection {0} property {1} updated."
 msgstr ""
 
-#: src/olympia/constants/activity.py:1261
+#: src/olympia/constants/activity.py:1272
 #, python-brace-format
 msgid "Account {user} property {0} updated."
 msgstr ""
 
-#: src/olympia/constants/activity.py:1277
+#: src/olympia/constants/activity.py:1289
 #, python-brace-format
 msgid "{addon} listing content rejected."
 msgstr ""
 
-#: src/olympia/constants/activity.py:1278
+#: src/olympia/constants/activity.py:1290
 msgid "Listing content rejected"
 msgstr ""
 
