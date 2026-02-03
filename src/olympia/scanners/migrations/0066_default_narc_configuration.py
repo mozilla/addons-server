@@ -24,7 +24,7 @@ def add_default_configuration_for_narc(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('scanners', '0064_scannerqueryrule_configuration_and_more'),
+        ('scanners', '0065_scannerrule_configuration_and_more'),
     ]
 
     operations = [

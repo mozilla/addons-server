@@ -7,7 +7,7 @@ import django_jsonform.models.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('scanners', '0063_alter_scannerwebhook_api_key'),
+        ('scanners', '0064_create_customs_scanner_rules_for_webhook'),
     ]
 
     operations = [
