@@ -5661,12 +5661,12 @@ msgstr "Zostawiaj sobie krótkie notatki na dowolnej stronie internetowej."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:700
 msgid "Discover and download higher quality versions of interesting images and videos you find on the web."
-msgstr ""
+msgstr "Odkrywaj i pobieraj lepsze jakościowo wersje interesujących zdjęć i filmów, które znajdujesz w sieci."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:703
 msgid "Save and organize anything you find on the web — articles, media, PDFs & more."
-msgstr ""
+msgstr "Zapisuj i organizuj wszystko, co znajdziesz w sieci — artykuły, multimedia, pliki PDF i inne."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:706
@@ -5961,7 +5961,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1086
 msgid "Save and organize anything you find on the web."
-msgstr ""
+msgstr "Zapisuj i organizuj wszystko, co znajdziesz w sieci."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1089
@@ -5991,7 +5991,7 @@ msgstr "Wyświetl wszystkie rozszerzenia"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1101
 msgid "YouTube extensions"
-msgstr ""
+msgstr "Rozszerzenia YouTube"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -6002,7 +6002,7 @@ msgstr ""
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1105
 msgid "New Recommended extensions"
-msgstr ""
+msgstr "Nowe polecane rozszerzenia"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1107 src/olympia/discovery/strings.jinja2:1109
@@ -6037,7 +6037,7 @@ msgstr "Więcej popularnych motywów"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1124
 msgid "Privacy & security"
-msgstr ""
+msgstr "Prywatność i bezpieczeństwo"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1126
