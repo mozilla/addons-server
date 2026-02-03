@@ -5613,7 +5613,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:676
 msgid "Remove distracting and unwanted search results and related video content."
-msgstr ""
+msgstr "Elimina resultados de búsqueda no deseados o que distraen, así como el contenido de vídeo relacionado."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:679
