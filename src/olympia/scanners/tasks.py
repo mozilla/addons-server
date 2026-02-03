@@ -355,6 +355,7 @@ def _run_narc(*, scanner_result, version, rules=None):
             itertools.repeat('author'),
             zip(itertools.repeat(None), sorted(values_from_authors)),
         ),
+        [('slug', (None, addon.slug))],
     ):
         values[value].append({'source': source, 'locale': locale})
 
@@ -363,15 +364,48 @@ def _run_narc(*, scanner_result, version, rules=None):
         # We're using `regex`, which is faster/more powerful than the default
         # `re` module.
         definition = regex.compile(str(rule.definition), regex.I | regex.E)
+        # For each rule, build a set of the sources to ignore according to the
+        # rule configuration....
+        rule_sources = set()
+        if rule.configuration.get('examine_slug'):
+            rule_sources.add('slug')
+        if rule.configuration.get('examine_xpi_names'):
+            rule_sources.add('xpi')
+        if rule.configuration.get('examine_authors_names'):
+            rule_sources.add('author')
+        if rule.configuration.get('examine_listing_names'):
+            rule_sources.add('db_addon')
+
         for value, sources in values.items():
+            # ... Then for each value we have, look at what sources it came
+            # from, removing those we want to ignore for this rule.
+            sources_to_examine = [
+                source_info
+                for source_info in sources
+                if source_info['source'] in rule_sources
+            ]
+
+            # We are left with a set of sources we're interested in: if it's
+            # empty that means the value is only present in sources the rule
+            # configuration wants to ignore, so we continue to the next one.
+            if not sources_to_examine:
+                continue
+
             value = str(value)
             variants = [(value, None)]
-            if (normalized_value := normalize_string_for_name_checks(value)) != value:
+            normalized_value = normalize_string_for_name_checks(value)
+            if (
+                rule.configuration.get('examine_normalized_variants')
+                and normalized_value != value
+            ):
                 variants.append((normalized_value, 'normalized'))
             homoglyph_variants = set(
                 generate_lowercase_homoglyphs_variants_for_string(normalized_value)
             )
-            if homoglyph_variants:
+            if (
+                rule.configuration.get('examine_homoglyphs_variants')
+                and homoglyph_variants
+            ):
                 variants.extend(
                     (homoglyph_variant, 'homoglyph')
                     for homoglyph_variant in homoglyph_variants
@@ -382,7 +416,7 @@ def _run_narc(*, scanner_result, version, rules=None):
             for variant, variant_type in variants:
                 if match := definition.search(variant):
                     span = tuple(match.span())
-                    for source_info in sources:
+                    for source_info in sources_to_examine:
                         result = {
                             'rule': rule.name,
                             'meta': {

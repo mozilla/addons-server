@@ -483,6 +483,47 @@ class TestScannerRuleMixin:
         with pytest.raises(ValidationError, match=r'An error occurred'):
             rule.clean()
 
+    def test_default_configuration_yara_on_save(self):
+        rule = self.model(
+            name='some_rule',
+            scanner=YARA,
+            definition='rule some_rule { condition: true }',
+        )
+        assert rule.configuration == {}
+        rule.save()
+        assert rule.configuration == {}
+
+    def test_default_configuration_narc_on_save(self):
+        rule = self.model(
+            name='some_rule',
+            scanner=NARC,
+            definition='.*',
+        )
+        assert rule.configuration == {}
+        rule.save()
+        assert rule.configuration == {
+            'examine_authors_names': True,
+            'examine_homoglyphs_variants': True,
+            'examine_listing_names': True,
+            'examine_normalized_variants': True,
+            'examine_slug': False,
+            'examine_xpi_names': True,
+        }
+        return rule
+
+    def test_configuration_isnt_overwritten_by_default_for_existing_rule(self):
+        rule = self.test_default_configuration_narc_on_save()
+        rule.configuration['examine_slug'] = True
+        rule.save()
+        assert rule.configuration == {
+            'examine_authors_names': True,
+            'examine_homoglyphs_variants': True,
+            'examine_listing_names': True,
+            'examine_normalized_variants': True,
+            'examine_slug': True,
+            'examine_xpi_names': True,
+        }
+
 
 class TestScannerRule(TestScannerRuleMixin, TestCase):
     __test__ = True

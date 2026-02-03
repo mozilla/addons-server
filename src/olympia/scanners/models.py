@@ -10,6 +10,7 @@ from django.utils.functional import classproperty
 
 import regex
 import yara
+from django_jsonform.models.fields import JSONField as JSONFormJSONField
 
 import olympia.core.logger
 from olympia import amo
@@ -21,13 +22,16 @@ from olympia.constants.scanners import (
     ACTIONS,
     COMPLETED,
     CUSTOMS,
+    DEFAULT_RULE_CONFIGURATION_SCHEMA,
     DELAY_AUTO_APPROVAL,
     DELAY_AUTO_APPROVAL_INDEFINITELY,
     DELAY_AUTO_APPROVAL_INDEFINITELY_AND_RESTRICT,
     DELAY_AUTO_APPROVAL_INDEFINITELY_AND_RESTRICT_FUTURE_APPROVALS,
     DISABLE_AND_BLOCK,
+    EMPTY_RULE_CONFIGURATION_SCHEMA,
     FLAG_FOR_HUMAN_REVIEW,
     NARC,
+    NARC_RULE_CONFIGURATION_SCHEMA,
     NEW,
     NO_ACTION,
     QUERY_RULE_STATES,
@@ -49,6 +53,7 @@ from olympia.scanners.actions import (
     _flag_for_human_review,
     _no_action,
 )
+from olympia.scanners.utils import default_from_schema
 from olympia.users.models import UserProfile
 
 
@@ -139,6 +144,22 @@ class AbstractScannerResult(ModelBase):
         }.get(self.scanner)
 
 
+def rule_schema(instance=None):
+    if instance:
+        if instance.scanner == NARC:
+            schema = NARC_RULE_CONFIGURATION_SCHEMA
+        else:
+            # Currently only NARC has configuration options, but leaving the
+            # possibility open for the future.
+            schema = DEFAULT_RULE_CONFIGURATION_SCHEMA
+    else:
+        # If we don't have an instance we shouldn't set a schema, because we
+        # can't predict whether or not it will be compatible with the scanner
+        # that the rule will be for.
+        schema = EMPTY_RULE_CONFIGURATION_SCHEMA
+    return schema
+
+
 class AbstractScannerRule(ModelBase):
     name = models.CharField(
         max_length=200,
@@ -163,6 +184,7 @@ class AbstractScannerRule(ModelBase):
         default=False,
         help_text='Exclude add-ons that are in a promoted group from this rule',
     )
+    configuration = JSONFormJSONField(schema=rule_schema, default=dict, blank=True)
 
     class Meta(ModelBase.Meta):
         abstract = True
@@ -235,6 +257,12 @@ class AbstractScannerRule(ModelBase):
             raise ValidationError(
                 {'definition': 'An error occurred when compiling the definition'}
             ) from exc
+
+    def save(self, *args, **kwargs):
+        if self.pk is None and not self.configuration:
+            schema = rule_schema(self)
+            self.configuration = default_from_schema(schema)
+        return super().save(*args, **kwargs)
 
 
 class ScannerRule(AbstractScannerRule):

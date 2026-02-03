@@ -4,6 +4,7 @@ from django.conf import settings
 from django.contrib import admin, messages
 from django.contrib.admin import SimpleListFilter
 from django.db.models import Count, Prefetch
+from django.forms import ModelForm
 from django.http import Http404
 from django.shortcuts import redirect
 from django.template.loader import render_to_string
@@ -304,6 +305,17 @@ class FileIsSignedFilter(admin.BooleanFieldListFilter):
         self.title = 'file signature'
 
 
+class ScannerRuleModelForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # manually set the current instance on the widget for the configuration
+        # field, so that rule_schema callable works.
+        # http://django-jsonform.rtfd.io/en/stable/fields-and-widgets.html
+        # #accessing-model-instance-in-callable-schema
+        if 'configuration' in self.fields:
+            self.fields['configuration'].widget.instance = self.instance
+
+
 class AbstractScannerResultAdminMixin:
     actions = None
     view_on_site = False
@@ -498,6 +510,7 @@ class AbstractScannerRuleAdminMixin:
         'is_active',
         'exclude_promoted_addons',
     )
+    form = ScannerRuleModelForm
     list_filter = ('scanner', 'action', 'is_active')
     fields = (
         'scanner',
@@ -510,6 +523,7 @@ class AbstractScannerRuleAdminMixin:
         'matched_results_link',
         'is_active',
         'definition',
+        'configuration',
         'exclude_promoted_addons',
     )
     readonly_fields = ('created', 'modified', 'matched_results_link')
@@ -941,6 +955,7 @@ class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, AMOModelAdmin):
         'completion_rate',
         'matched_results_link',
         'definition',
+        'configuration',
     )
     readonly_fields = (
         'completion_rate',
