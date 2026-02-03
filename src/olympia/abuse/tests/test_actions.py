@@ -702,7 +702,7 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
             action=amo.LOG.REVIEWER_PRIVATE_COMMENT.id
         ).exists()
 
-    def test_already_disabled(self):
+    def test_already_taken_down(self):
         self.decision.update(action=self.takedown_decision_action)
         self.addon.update(status=amo.STATUS_DISABLED)
         action = self.ActionClass(self.decision)
@@ -769,9 +769,11 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
         # override because Addon's get content reviewed if marked as Approve
         action = DECISION_ACTIONS.AMO_APPROVE
         self.decision.update(action=action)
+        assert self.decision.target_versions.exists()
         action = ContentActionApproveListingContent(self.decision)
         activity = action.process_action()
         assert activity.log == amo.LOG.APPROVE_LISTING_CONTENT
+        # no versions in the args though
         assert activity.arguments == [self.addon, self.decision, self.policy]
         assert activity.user == self.task_user
 
@@ -787,6 +789,8 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
         assert counter.last_content_review_pass is True
         self.assertCloseToNow(counter.last_content_review)
 
+        # get this again, to replicate how send_notifications works
+        action = ContentActionApproveListingContent(self.decision)
         assert len(mail.outbox) == 0
         self.cinder_job.notify_reporters(action)
         action.notify_owners()
@@ -799,11 +803,18 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
         self.addon.update(status=amo.STATUS_REJECTED)
         action = DECISION_ACTIONS.AMO_APPROVE
         self.decision.update(action=action)
+        assert self.decision.target_versions.exists()
         action = ContentActionApproveListingContent(self.decision)
         activity = action.process_action()
-        assert activity.log == amo.LOG.APPROVE_LISTING_CONTENT
+        # no versions in the args though
+        assert activity.log == amo.LOG.APPROVE_REJECTED_LISTING_CONTENT
         assert activity.arguments == [self.addon, self.decision, self.policy]
         assert activity.user == self.task_user
+
+        assert (
+            self.decision.reload().metadata.get('previous_status')
+            == amo.STATUS_REJECTED
+        )
 
         assert self.addon.reload().status == amo.STATUS_APPROVED
         assert ActivityLog.objects.count() == 3
@@ -820,6 +831,8 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
         assert counter.last_content_review_pass is True
         self.assertCloseToNow(counter.last_content_review)
 
+        # get this again, to replicate how send_notifications works
+        action = ContentActionApproveListingContent(self.decision)
         assert len(mail.outbox) == 0
         self.cinder_job.notify_reporters(action)
         action.notify_owners()
@@ -1361,7 +1374,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
             action=amo.LOG.REVIEWER_PRIVATE_COMMENT.id
         ).exists()
 
-    def test_already_disabled(self):
+    def test_already_taken_down(self):
         self.decision.update(
             action=self.takedown_decision_action, reviewer_user=user_factory()
         )
@@ -1371,7 +1384,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         assert action.process_action() is None
         assert ActivityLog.objects.count() == 0
 
-    def test_already_disabled_delayed_rejection(self):
+    def test_already_taken_down_delayed_rejection(self):
         in_the_future = datetime.now() + timedelta(days=14, hours=1)
         self.decision.update(
             action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
@@ -1433,7 +1446,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         self.version.file.update(status=amo.STATUS_DISABLED)
         self.test_execute_action_delayed()
 
-    def test_already_disabled_by_developer(self):
+    def test_already_taken_down_by_developer(self):
         # If versions were disabled by the developer, that doesn't prevent the
         # rejection from being applied and recorded.
         self.version.is_user_disabled = True
@@ -1443,7 +1456,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         assert len(mail.outbox) == 3
         self._test_reporter_takedown_email(subject)
 
-    def test_already_disabled_by_developer_delayed_rejection(self):
+    def test_already_taken_down_by_developer_delayed_rejection(self):
         # If versions were disabled by the developer, that doesn't prevent the
         # delayed rejection from being applied and recorded.
         self.version.is_user_disabled = True
@@ -1953,7 +1966,7 @@ class TestContentActionBlockAddon(TestContentActionDisableAddon):
 
         return subject
 
-    def test_already_disabled(self):
+    def test_already_taken_down(self):
         """For a block action, this shouldn't affect the block, only the disable"""
         self.decision.update(action=self.takedown_decision_action)
         self.addon.update(status=amo.STATUS_DISABLED)
@@ -2018,11 +2031,6 @@ class TestContentActionRejectListingContent(TestContentActionDisableAddon):
     disable_snippet = 'until you address the violations and request a further review'
     activity_log_action = amo.LOG.REJECT_LISTING_CONTENT
 
-    def setUp(self):
-        super().setUp()
-        # content rejections are not specific to a version
-        self.decision.target_versions.clear()
-
     def _process_action_and_notify(self):
         self.decision.update(action=self.takedown_decision_action)
         action = self.ActionClass(self.decision)
@@ -2044,6 +2052,8 @@ class TestContentActionRejectListingContent(TestContentActionDisableAddon):
         assert second_activity.details == {'comments': self.decision.private_notes}
         assert len(mail.outbox) == 0
 
+        # get this again, to replicate how send_notifications works
+        action = self.ActionClass(self.decision)
         self.cinder_job.notify_reporters(action)
         action.notify_owners()
         subject = f'Mozilla Add-ons: {self.addon.name}'
@@ -2058,7 +2068,7 @@ class TestContentActionRejectListingContent(TestContentActionDisableAddon):
         activity = action.process_action()
 
         assert self.addon.reload().status == amo.STATUS_APPROVED
-        assert activity.log == amo.LOG.APPROVE_LISTING_CONTENT
+        assert activity.log == amo.LOG.APPROVE_REJECTED_LISTING_CONTENT
         assert activity.arguments == [self.addon, self.decision, self.policy]
         assert activity.user == self.task_user
         assert ActivityLog.objects.count() == 3
@@ -2108,6 +2118,11 @@ class TestContentActionRejectListingContent(TestContentActionDisableAddon):
             self.ActionClass(self.decision).addon_version == self.addon.current_version
         )
 
+        # Also check that if the decision does have target_versions, the action class
+        # ignores them
+        assert self.decision.target_versions.exists()
+        assert not self.ActionClass(self.decision).target_versions.exists()
+
     def test_log_action_args(self):
         activity = self.ActionClass(self.decision).log_action(self.activity_log_action)
         assert self.addon in activity.arguments
@@ -2129,6 +2144,12 @@ class TestContentActionRejectListingContent(TestContentActionDisableAddon):
     def test_approve_override_success_but_listing_rejected(self):
         pass
         # This test doesn't apply for this ActionClass.
+
+    def test_already_taken_down(self):
+        self.addon.update(status=amo.STATUS_REJECTED)
+        # it should work the same if it's already rejected - the developer can ask for
+        # a new review, and we reject it again
+        self._process_action_and_notify()
 
 
 class TestContentActionCollection(BaseTestContentAction, TestCase):

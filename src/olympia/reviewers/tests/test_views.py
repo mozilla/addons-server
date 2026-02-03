@@ -259,14 +259,15 @@ class TestReviewLog(ReviewerTest):
         assert rows.filter('.hide').eq(0).text() == 'youwin'
 
         # Add more activity, it'd still should not cause more queries.
-        self.make_an_approval(amo.LOG.APPROVE_CONTENT, addon=addon_factory())
+        self.make_an_approval(amo.LOG.APPROVE_LISTING_CONTENT, addon=addon_factory())
+        self.make_an_approval(amo.LOG.REJECT_LISTING_CONTENT, addon=addon_factory())
         self.make_an_approval(amo.LOG.REJECT_CONTENT, addon=addon_factory())
         with self.assertNumQueries(14):
             response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
         rows = doc('tbody tr')
-        assert rows.filter(':not(.hide)').length == 4
+        assert rows.filter(':not(.hide)').length == 5
 
     def test_xss(self):
         a = Addon.objects.all()[0]
@@ -458,12 +459,12 @@ class TestReviewLog(ReviewerTest):
         )
 
     def test_content_approval(self):
-        self.make_an_approval(amo.LOG.APPROVE_CONTENT)
+        self.make_an_approval(amo.LOG.APPROVE_LISTING_CONTENT)
         response = self.client.get(self.url)
         assert response.status_code == 200
         assert pq(response.content)('#log-listing tbody td').eq(1).html().strip() == (
             '<a href="/en-US/reviewers/review-content/3615">Delicious Bookmarks</a> '
-            'Version 2.1.072 content approved.'
+            'listing content approved.'
         )
 
     def test_approval_multiple_versions(self):
@@ -502,13 +503,29 @@ class TestReviewLog(ReviewerTest):
             'Versions 3.2.1, 2.1.072 rejected.'
         )
 
-    def test_content_rejection(self):
+    def test_content_version_rejection(self):
         self.make_an_approval(amo.LOG.REJECT_CONTENT)
         response = self.client.get(self.url)
         assert response.status_code == 200
         assert pq(response.content)('#log-listing tbody td').eq(1).html().strip() == (
             '<a href="/en-US/reviewers/review-content/3615">Delicious Bookmarks</a> '
             'Version 2.1.072 content rejected.'
+        )
+
+    def test_content_listing_rejection(self):
+        addon = Addon.objects.get(pk=3615)
+        version_factory(addon=addon, version='3.2.1')
+        ActivityLog.objects.create(
+            amo.LOG.REJECT_LISTING_CONTENT,
+            addon,
+            user=self.user,
+            details={'comments': 'I do not like this'},
+        )
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert pq(response.content)('#log-listing tbody td').eq(1).html().strip() == (
+            '<a href="/en-US/reviewers/review-content/3615">Delicious Bookmarks</a> '
+            'listing content rejected.'
         )
 
     @time_machine.travel('2017-08-03', tick=False)
@@ -3430,6 +3447,21 @@ class TestReview(ReviewBase):
         ]
         check_links(expected, doc('#actions-addon a'))
 
+    def test_action_links_as_admin_on_content_review(self):
+        self.login_as_admin()
+        self.url = reverse('reviewers.review', args=('content', self.addon.pk))
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        expected = [
+            ('View Product Page', self.addon.get_url_path()),
+            ('Listed Review Page', reverse('reviewers.review', args=(self.addon.id,))),
+            ('Edit', self.addon.get_dev_url()),
+            ('Admin Page', reverse('admin:addons_addon_change', args=[self.addon.id])),
+            ('Statistics', reverse('stats.overview', args=[self.addon.id])),
+        ]
+        check_links(expected, doc('#actions-addon a'))
+
     def test_action_links_as_admin(self):
         self.login_as_admin()
         response = self.client.get(self.url)
@@ -3437,6 +3469,10 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         expected = [
             ('View Product Page', self.addon.get_url_path()),
+            (
+                'Content Review Page',
+                reverse('reviewers.review', args=('content', self.addon.id)),
+            ),
             ('Edit', self.addon.get_dev_url()),
             ('Admin Page', reverse('admin:addons_addon_change', args=[self.addon.id])),
             ('Statistics', reverse('stats.overview', args=[self.addon.id])),
@@ -3477,6 +3513,10 @@ class TestReview(ReviewBase):
         expected = [
             ('View Product Page', self.addon.get_url_path()),
             (
+                'Content Review Page',
+                reverse('reviewers.review', args=('content', self.addon.id)),
+            ),
+            (
                 'Unlisted Review Page',
                 reverse('reviewers.review', args=('unlisted', self.addon.id)),
             ),
@@ -3502,6 +3542,36 @@ class TestReview(ReviewBase):
         expected = [
             ('View Product Page', self.addon.get_url_path()),
             ('Listed Review Page', reverse('reviewers.review', args=(self.addon.id,))),
+            (
+                'Content Review Page',
+                reverse('reviewers.review', args=('content', self.addon.id)),
+            ),
+            ('Edit', self.addon.get_dev_url()),
+            ('Admin Page', reverse('admin:addons_addon_change', args=[self.addon.id])),
+            ('Statistics', reverse('stats.overview', args=[self.addon.id])),
+        ]
+        check_links(expected, doc('#actions-addon a'))
+
+    def test_mixed_channels_action_links_as_admin_on_content_review(self):
+        self.make_addon_unlisted(self.addon)
+        version_factory(
+            addon=self.addon,
+            channel=amo.CHANNEL_LISTED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
+        self.addon.update(status=amo.STATUS_NOMINATED)
+        self.login_as_admin()
+        self.url = reverse('reviewers.review', args=('content', self.addon.pk))
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        expected = [
+            ('View Product Page', self.addon.get_url_path()),
+            ('Listed Review Page', reverse('reviewers.review', args=(self.addon.id,))),
+            (
+                'Unlisted Review Page',
+                reverse('reviewers.review', args=('unlisted', self.addon.id)),
+            ),
             ('Edit', self.addon.get_dev_url()),
             ('Admin Page', reverse('admin:addons_addon_change', args=[self.addon.id])),
             ('Statistics', reverse('stats.overview', args=[self.addon.id])),
@@ -3523,6 +3593,10 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         doc = pq(response.content)
         expected = [
+            (
+                'Content Review Page',
+                reverse('reviewers.review', args=('content', self.addon.id)),
+            ),
             (
                 'Unlisted Review Page',
                 reverse('reviewers.review', args=('unlisted', self.addon.id)),
@@ -3548,6 +3622,10 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         expected = [
             ('Listed Review Page', reverse('reviewers.review', args=(self.addon.id,))),
+            (
+                'Content Review Page',
+                reverse('reviewers.review', args=('content', self.addon.id)),
+            ),
             ('Admin Page', reverse('admin:addons_addon_change', args=[self.addon.id])),
             ('Statistics', reverse('stats.overview', args=[self.addon.id])),
         ]
@@ -3567,6 +3645,10 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         expected = [
             ('View Product Page', self.addon.get_url_path()),
+            (
+                'Content Review Page',
+                reverse('reviewers.review', args=('content', self.addon.id)),
+            ),
         ]
         check_links(expected, doc('#actions-addon a'))
 
@@ -3575,8 +3657,14 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        admin = doc('#actions-addon li')
-        assert admin.length == 1
+        expected = [
+            ('View Product Page', self.addon.get_url_path()),
+            (
+                'Content Review Page',
+                reverse('reviewers.review', args=('content', self.addon.id)),
+            ),
+        ]
+        check_links(expected, doc('#actions-addon a'))
 
     def test_extra_actions_subscribe_checked_state(self):
         self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted')
@@ -4339,7 +4427,7 @@ class TestReview(ReviewBase):
         assert response.status_code == 302
         assert mock_sign_file.called
 
-    def test_approve_content_content_review(self):
+    def test_approve_listing_content_review(self):
         GroupUser.objects.filter(user=self.reviewer).all().delete()
         content_url = reverse('reviewers.review', args=['content', self.addon.pk])
         summary = AutoApprovalSummary.objects.create(
@@ -4349,7 +4437,7 @@ class TestReview(ReviewBase):
         response = self.client.post(
             content_url,
             {
-                'action': 'approve_content',
+                'action': 'approve_listing_content',
                 'comments': 'ignore me this action does not support comments',
             },
         )
@@ -4361,12 +4449,113 @@ class TestReview(ReviewBase):
             == 0
         )
         assert (
-            ActivityLog.objects.filter(action=amo.LOG.APPROVE_CONTENT.id).count() == 1
+            ActivityLog.objects.filter(
+                action=amo.LOG.APPROVE_LISTING_CONTENT.id
+            ).count()
+            == 1
         )
-        a_log = ActivityLog.objects.filter(action=amo.LOG.APPROVE_CONTENT.id).get()
-        assert a_log.details['version'] == self.addon.current_version.version
+        a_log = ActivityLog.objects.filter(
+            action=amo.LOG.APPROVE_LISTING_CONTENT.id
+        ).get()
         assert a_log.details['comments'] == ''
+        assert (
+            AddonApprovalsCounter.objects.get(addon=self.addon).last_content_review_pass
+            is True
+        )
         self.assert3xx(response, content_url)
+
+    def test_approve_rejected_listing_content_review(self):
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}create_decision',
+            json={'uuid': uuid.uuid4().hex},
+            status=201,
+        )
+        assert AddonApprovalsCounter.objects.update_or_create(
+            addon=self.addon, defaults={'last_content_review_pass': False}
+        )
+        self.addon.update(status=amo.STATUS_REJECTED)
+        GroupUser.objects.filter(user=self.reviewer).all().delete()
+        content_url = reverse('reviewers.review', args=['content', self.addon.pk])
+        self.grant_permission(self.reviewer, 'Addons:ContentReview')
+        response = self.client.post(
+            content_url,
+            {
+                'action': 'approve_rejected_listing_content',
+                'comments': 'ignore me this action does not support comments',
+            },
+        )
+        assert response.status_code == 302
+        assert (
+            ActivityLog.objects.filter(
+                action=amo.LOG.APPROVE_REJECTED_LISTING_CONTENT.id
+            ).count()
+            == 1
+        )
+        a_log = ActivityLog.objects.filter(
+            action=amo.LOG.APPROVE_REJECTED_LISTING_CONTENT.id
+        ).get()
+        assert a_log.details['comments'] == ''
+        assert (
+            AddonApprovalsCounter.objects.get(addon=self.addon).last_content_review_pass
+            is True
+        )
+        self.assert3xx(response, content_url)
+
+    @override_switch('enable-content-rejection', active=True)
+    @override_switch('cinder_policy_review_reasons_enabled', active=True)
+    def test_reject_listing_content_review(self):
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}create_decision',
+            json={'uuid': uuid.uuid4().hex},
+            status=201,
+        )
+        GroupUser.objects.filter(user=self.reviewer).all().delete()
+        content_url = reverse('reviewers.review', args=['content', self.addon.pk])
+        summary = AutoApprovalSummary.objects.create(
+            version=self.addon.current_version, verdict=amo.AUTO_APPROVED
+        )
+        policy = CinderPolicy.objects.create(
+            uuid='x',
+            expose_in_reviewer_tools=True,
+            enforcement_actions=[DECISION_ACTIONS.AMO_APPROVE.api_value],
+        )
+        self.grant_permission(self.reviewer, 'Addons:ContentReview')
+
+        response = self.client.post(
+            content_url,
+            {
+                'action': 'reject_listing_content',
+                'cinder_policies': [policy.id],
+                'comments': 'Reject does support comments',
+            },
+        )
+
+        assert response.status_code == 302, response.context['form'].errors
+        summary.reload()
+        assert summary.confirmed is None  # We're only doing a content review.
+        assert (
+            ActivityLog.objects.filter(action=amo.LOG.CONFIRM_AUTO_APPROVED.id).count()
+            == 0
+        )
+        assert (
+            ActivityLog.objects.filter(action=amo.LOG.REJECT_LISTING_CONTENT.id).count()
+            == 1
+        )
+        a_log = ActivityLog.objects.filter(
+            action=amo.LOG.REJECT_LISTING_CONTENT.id
+        ).get()
+        assert a_log.details['comments'] == 'Reject does support comments'
+        self.assert3xx(response, content_url)
+        assert (
+            AddonApprovalsCounter.objects.get(addon=self.addon).last_content_review_pass
+            is False
+        )
+        assert (
+            responses.calls[0].request.url
+            == f'{settings.CINDER_SERVER_URL}create_decision'
+        )
 
     def test_content_review_redirect_if_only_permission(self):
         GroupUser.objects.filter(user=self.reviewer).all().delete()
@@ -5760,7 +5949,7 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         expected_actions = [
-            'approve_content',
+            'approve_listing_content',
             'reject_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',

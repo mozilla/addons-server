@@ -672,16 +672,6 @@ class DISABLE_VERSION(_LOG):
     short = 'Version disabled'
 
 
-class APPROVE_CONTENT(_LOG):
-    id = 147
-    format = '{addon} {version} content approved.'
-    short = 'Content approved'
-    keep = True
-    reviewer_review_action = True
-    review_queue = True
-    hide_developer = True
-
-
 class REJECT_CONTENT(_LOG):
     id = 148
     action_class = 'reject'
@@ -1273,13 +1263,27 @@ class EDIT_USER_PROPERTY(_LOG):
 
 
 class APPROVE_LISTING_CONTENT(_LOG):
-    id = 211
+    id = 147
     format = '{addon} listing content approved.'
-    short = 'Listing content approved'
+    short = 'Listing approved'
     keep = True
     reviewer_review_action = True
     review_queue = True
     hide_developer = True
+    cinder_action = DECISION_ACTIONS.AMO_APPROVE
+    review_queue_important_change = True
+
+
+class APPROVE_REJECTED_LISTING_CONTENT(_LOG):
+    id = 211
+    format = _('{addon} listing content approved.')
+    reviewer_format = '{addon} rejected listing content approved.'
+    short = _('Rejected listing approved')
+    keep = True
+    review_email_user = True
+    reviewer_review_action = True
+    review_queue = True
+    cinder_action = DECISION_ACTIONS.AMO_APPROVE
     review_queue_important_change = True
 
 
@@ -1287,7 +1291,7 @@ class REJECT_LISTING_CONTENT(_LOG):
     id = 212
     action_class = 'reject'
     format = _('{addon} listing content rejected.')
-    short = _('Listing content rejected')
+    short = _('Listing rejected')
     keep = True
     review_email_user = True
     review_queue = True
@@ -1302,7 +1306,7 @@ class HELD_ACTION_REJECT_LISTING_CONTENT(_LOG):
     format = '{addon} listing content rejection held for further review.'
     reviewer_format = 'Held {addon} listing content rejection by {user_responsible}.'
     admin_format = reviewer_format
-    short = 'Held Listing Content Rejection'
+    short = 'Held listing rejection'
     admin_event = True
     review_queue_important_change = True
 

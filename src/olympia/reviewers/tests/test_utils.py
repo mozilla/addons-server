@@ -337,11 +337,34 @@ class TestReviewHelper(TestReviewHelperBase):
             == expected
         )
 
+    @override_switch('enable-content-rejection', active=False)
     def test_actions_content_review(self):
         self.grant_permission(self.user, 'Addons:ContentReview')
         expected = [
-            'approve_content',
+            'approve_listing_content',
             'reject_multiple_versions',
+            'set_needs_human_review_multiple_versions',
+            'reply',
+            'request_legal_review',
+            'comment',
+        ]
+        assert (
+            list(
+                self.get_review_actions(
+                    addon_status=amo.STATUS_APPROVED,
+                    file_status=amo.STATUS_APPROVED,
+                    content_review=True,
+                ).keys()
+            )
+            == expected
+        )
+
+    @override_switch('enable-content-rejection', active=True)
+    def test_actions_content_review_use_content_rejection(self):
+        self.grant_permission(self.user, 'Addons:ContentReview')
+        expected = [
+            'approve_listing_content',
+            'reject_listing_content',
             'set_needs_human_review_multiple_versions',
             'reply',
             'request_legal_review',
@@ -363,7 +386,7 @@ class TestReviewHelper(TestReviewHelperBase):
         # the first time.
         self.grant_permission(self.user, 'Addons:ContentReview')
         expected = [
-            'approve_content',
+            'approve_listing_content',
             'reject_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
@@ -375,6 +398,32 @@ class TestReviewHelper(TestReviewHelperBase):
                 self.get_review_actions(
                     addon_status=amo.STATUS_NOMINATED,
                     file_status=amo.STATUS_AWAITING_REVIEW,
+                    content_review=True,
+                ).keys()
+            )
+            == expected
+        )
+
+    @override_switch('enable-content-rejection', active=True)
+    def test_actions_content_review_rejected(self):
+        self.grant_permission(self.user, 'Addons:ContentReview')
+        expected = [
+            'approve_rejected_listing_content',
+            'reject_listing_content',
+            'set_needs_human_review_multiple_versions',
+            'reply',
+            'request_legal_review',
+            'comment',
+        ]
+        AddonApprovalsCounter.objects.create(
+            addon=self.addon,
+            last_content_review_pass=False,
+        )
+        assert (
+            list(
+                self.get_review_actions(
+                    addon_status=amo.STATUS_REJECTED,
+                    file_status=amo.STATUS_APPROVED,
                     content_review=True,
                 ).keys()
             )
@@ -501,7 +550,7 @@ class TestReviewHelper(TestReviewHelperBase):
         # be better off just do a full review).
         self.grant_permission(self.user, 'Addons:RecommendedReview')
         expected = [
-            'approve_content',
+            'approve_listing_content',
             'reject_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
@@ -2205,7 +2254,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert summary.confirmed is True
         approvals_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
         self.assertCloseToNow(approvals_counter.last_human_review)
-        assert self.check_log_count(amo.LOG.APPROVE_CONTENT.id) == 0
+        assert self.check_log_count(amo.LOG.APPROVE_LISTING_CONTENT.id) == 0
         assert self.check_log_count(amo.LOG.CONFIRM_AUTO_APPROVED.id) == 1
         activity = (
             ActivityLog.objects.for_addons(self.addon)
@@ -2245,7 +2294,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert summary.confirmed is True
         approvals_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
         self.assertCloseToNow(approvals_counter.last_human_review)
-        assert self.check_log_count(amo.LOG.APPROVE_CONTENT.id) == 0
+        assert self.check_log_count(amo.LOG.APPROVE_LISTING_CONTENT.id) == 0
         assert self.check_log_count(amo.LOG.CONFIRM_AUTO_APPROVED.id) == 1
         activity = (
             ActivityLog.objects.for_addons(self.addon)
@@ -2282,7 +2331,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert summary.confirmed is True
         approvals_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
         self.assertCloseToNow(approvals_counter.last_human_review)
-        assert self.check_log_count(amo.LOG.APPROVE_CONTENT.id) == 0
+        assert self.check_log_count(amo.LOG.APPROVE_LISTING_CONTENT.id) == 0
         assert self.check_log_count(amo.LOG.CONFIRM_AUTO_APPROVED.id) == 1
         activity = (
             ActivityLog.objects.for_addons(self.addon)
@@ -2326,7 +2375,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert summary.confirmed is True
         approvals_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
         self.assertCloseToNow(approvals_counter.last_human_review)
-        assert self.check_log_count(amo.LOG.APPROVE_CONTENT.id) == 0
+        assert self.check_log_count(amo.LOG.APPROVE_LISTING_CONTENT.id) == 0
         assert self.check_log_count(amo.LOG.CONFIRM_AUTO_APPROVED.id) == 1
         activity = (
             ActivityLog.objects.for_addons(self.addon)
@@ -3483,7 +3532,8 @@ class TestReviewHelper(TestReviewHelperBase):
     def test_reject_multiple_versions_delayed_with_human_content_review(self):
         self._test_reject_multiple_versions_delayed_with_human(content_review=True)
 
-    def test_approve_content_content_review(self):
+    @override_switch('cinder_policy_review_reasons_enabled', active=False)
+    def test_approve_listing_content_review(self):
         self.grant_permission(self.user, 'Addons:ContentReview')
         self.setup_data(
             amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED, content_review=True
@@ -3498,7 +3548,9 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.file.status == amo.STATUS_APPROVED
         assert self.addon.current_version.file.status == (amo.STATUS_APPROVED)
 
-        self.helper.handler.data['action'] = 'approve_content'
+        self.helper.handler.data = {
+            'action': 'approve_listing_content',
+        }
         self.helper.process()
 
         summary.reload()
@@ -3507,16 +3559,270 @@ class TestReviewHelper(TestReviewHelperBase):
         assert approvals_counter.counter == 0
         assert approvals_counter.last_human_review is None
         self.assertCloseToNow(approvals_counter.last_content_review)
+        assert approvals_counter.last_content_review_pass is True
         assert self.check_log_count(amo.LOG.CONFIRM_AUTO_APPROVED.id) == 0
-        assert self.check_log_count(amo.LOG.APPROVE_CONTENT.id) == 1
+        assert self.check_log_count(amo.LOG.APPROVE_LISTING_CONTENT.id) == 1
         activity = (
             ActivityLog.objects.for_addons(self.addon)
-            .filter(action=amo.LOG.APPROVE_CONTENT.id)
+            .filter(action=amo.LOG.APPROVE_LISTING_CONTENT.id)
             .get()
         )
-        assert activity.arguments == [self.addon, self.review_version]
+        decision = ContentDecision.objects.get()
+        assert activity.arguments == [self.addon, decision]
         assert activity.details['comments'] == ''
         assert not self.review_version.human_review_date
+        assert len(mail.outbox) == 0  # No email on approve.
+
+    @override_switch('cinder_policy_review_reasons_enabled', active=True)
+    def test_approve_listing_content_review_with_policies(self):
+        self.grant_permission(self.user, 'Addons:ContentReview')
+        self.setup_data(
+            amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED, content_review=True
+        )
+        summary = AutoApprovalSummary.objects.create(
+            version=self.review_version, verdict=amo.AUTO_APPROVED
+        )
+        policy, _ = CinderPolicy.objects.get_or_create(
+            enforcement_actions=[DECISION_ACTIONS.AMO_APPROVE.api_value]
+        )
+        self.create_paths()
+
+        # Safeguards.
+        assert self.addon.status == amo.STATUS_APPROVED
+        assert self.file.status == amo.STATUS_APPROVED
+        assert self.addon.current_version.file.status == (amo.STATUS_APPROVED)
+
+        self.helper.handler.data = {
+            'action': 'approve_listing_content',
+            'cinder_policies': [policy],
+        }
+        self.helper.process()
+
+        summary.reload()
+        assert summary.confirmed is None  # unchanged.
+        approvals_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
+        assert approvals_counter.counter == 0
+        assert approvals_counter.last_human_review is None
+        self.assertCloseToNow(approvals_counter.last_content_review)
+        assert approvals_counter.last_content_review_pass is True
+        assert self.check_log_count(amo.LOG.CONFIRM_AUTO_APPROVED.id) == 0
+        assert self.check_log_count(amo.LOG.APPROVE_LISTING_CONTENT.id) == 1
+        activity = (
+            ActivityLog.objects.for_addons(self.addon)
+            .filter(action=amo.LOG.APPROVE_LISTING_CONTENT.id)
+            .get()
+        )
+        decision = ContentDecision.objects.get()
+        assert activity.arguments == [self.addon, decision, policy]
+        assert activity.details['comments'] == ''
+        assert not self.review_version.human_review_date
+        assert len(mail.outbox) == 0  # No email on approve.
+
+    @override_switch('cinder_policy_review_reasons_enabled', active=False)
+    def test_approve_rejected_listing_content_review(self):
+        self.grant_permission(self.user, 'Addons:ContentReview')
+        approvals_counter = AddonApprovalsCounter.objects.create(
+            addon=self.addon, last_content_review_pass=False
+        )
+        self.setup_data(
+            amo.STATUS_REJECTED, file_status=amo.STATUS_APPROVED, content_review=True
+        )
+        summary = AutoApprovalSummary.objects.create(
+            version=self.review_version, verdict=amo.AUTO_APPROVED
+        )
+        self.create_paths()
+
+        # Safeguards.
+        assert self.addon.reload().status == amo.STATUS_REJECTED
+        assert self.file.status == amo.STATUS_APPROVED
+        assert self.addon.current_version.file.status == (amo.STATUS_APPROVED)
+
+        self.helper.handler.data = {
+            'action': 'approve_rejected_listing_content',
+        }
+        self.helper.process()
+
+        summary.reload()
+        assert summary.confirmed is None  # unchanged.
+        assert approvals_counter.reload().counter == 0
+        assert approvals_counter.last_human_review is None
+        self.assertCloseToNow(approvals_counter.last_content_review)
+        assert approvals_counter.last_content_review_pass is True
+        assert self.check_log_count(amo.LOG.CONFIRM_AUTO_APPROVED.id) == 0
+        assert self.check_log_count(amo.LOG.APPROVE_REJECTED_LISTING_CONTENT.id) == 1
+        activity = (
+            ActivityLog.objects.for_addons(self.addon)
+            .filter(action=amo.LOG.APPROVE_REJECTED_LISTING_CONTENT.id)
+            .get()
+        )
+        decision = ContentDecision.objects.get()
+        assert activity.arguments == [self.addon, decision]
+        assert activity.details['comments'] == ''
+        assert not self.review_version.human_review_date
+        assert len(mail.outbox) == 1
+        message = mail.outbox[0]
+        assert message.to == [self.addon.authors.all()[0].email]
+        assert 'have restored your Extension' in message.body
+
+    @override_switch('cinder_policy_review_reasons_enabled', active=True)
+    def test_approve_rejected_listing_content_review_with_policies(self):
+        self.grant_permission(self.user, 'Addons:ContentReview')
+        approvals_counter = AddonApprovalsCounter.objects.create(
+            addon=self.addon, last_content_review_pass=False
+        )
+        self.setup_data(
+            amo.STATUS_REJECTED, file_status=amo.STATUS_APPROVED, content_review=True
+        )
+        summary = AutoApprovalSummary.objects.create(
+            version=self.review_version, verdict=amo.AUTO_APPROVED
+        )
+        policy, _ = CinderPolicy.objects.get_or_create(
+            enforcement_actions=[DECISION_ACTIONS.AMO_APPROVE.api_value]
+        )
+        self.create_paths()
+
+        # Safeguards.
+        assert self.addon.reload().status == amo.STATUS_REJECTED
+        assert self.file.status == amo.STATUS_APPROVED
+        assert self.addon.current_version.file.status == (amo.STATUS_APPROVED)
+
+        self.helper.handler.data = {
+            'action': 'approve_rejected_listing_content',
+            'cinder_policies': [policy],
+        }
+        self.helper.process()
+
+        summary.reload()
+        assert summary.confirmed is None  # unchanged.
+        assert approvals_counter.reload().counter == 0
+        assert approvals_counter.last_human_review is None
+        self.assertCloseToNow(approvals_counter.last_content_review)
+        assert approvals_counter.last_content_review_pass is True
+        assert self.check_log_count(amo.LOG.CONFIRM_AUTO_APPROVED.id) == 0
+        assert self.check_log_count(amo.LOG.APPROVE_REJECTED_LISTING_CONTENT.id) == 1
+        activity = (
+            ActivityLog.objects.for_addons(self.addon)
+            .filter(action=amo.LOG.APPROVE_REJECTED_LISTING_CONTENT.id)
+            .get()
+        )
+        decision = ContentDecision.objects.get()
+        assert activity.arguments == [self.addon, decision, policy]
+        assert activity.details['comments'] == ''
+        assert not self.review_version.human_review_date
+        assert len(mail.outbox) == 1
+        message = mail.outbox[0]
+        assert message.to == [self.addon.authors.all()[0].email]
+        assert 'have restored your Extension' in message.body
+
+    @override_switch('cinder_policy_review_reasons_enabled', active=False)
+    @override_switch('enable-content-rejection', active=True)
+    def test_reject_listing_content_review(self):
+        self.grant_permission(self.user, 'Addons:ContentReview')
+        self.setup_data(
+            amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED, content_review=True
+        )
+        summary = AutoApprovalSummary.objects.create(
+            version=self.review_version, verdict=amo.AUTO_APPROVED
+        )
+        self.create_paths()
+
+        # Safeguards.
+        assert self.addon.status == amo.STATUS_APPROVED
+        assert self.file.status == amo.STATUS_APPROVED
+        version = self.addon.current_version
+        assert version.file.status == amo.STATUS_APPROVED
+
+        self.helper.handler.data = {
+            'action': 'reject_listing_content',
+        }
+        self.helper.process()
+
+        summary.reload()
+        assert summary.confirmed is None  # unchanged.
+        approvals_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
+        assert approvals_counter.counter == 0
+        assert approvals_counter.last_human_review is None
+        assert approvals_counter.last_content_review is None
+        assert approvals_counter.last_content_review_pass is False
+        assert self.check_log_count(amo.LOG.REJECT_LISTING_CONTENT.id) == 1
+        activity = (
+            ActivityLog.objects.for_addons(self.addon)
+            .filter(action=amo.LOG.REJECT_LISTING_CONTENT.id)
+            .get()
+        )
+        decision = ContentDecision.objects.get()
+        assert activity.arguments == [self.addon, decision]
+        assert activity.details['comments'] == ''
+        assert not self.review_version.human_review_date
+        # assert decision.policies.get() == policy
+
+        assert self.addon.reload().status == amo.STATUS_REJECTED
+        assert version.file.reload().status == amo.STATUS_APPROVED  # unchanged
+
+        assert len(mail.outbox) == 1
+        message = mail.outbox[0]
+        assert message.to == [self.addon.authors.all()[0].email]
+        assert (
+            'until you address the violations and request a further review'
+            in message.body
+        )
+
+    @override_switch('cinder_policy_review_reasons_enabled', active=True)
+    @override_switch('enable-content-rejection', active=True)
+    def test_reject_listing_content_review_with_policies(self):
+        self.grant_permission(self.user, 'Addons:ContentReview')
+        self.setup_data(
+            amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED, content_review=True
+        )
+        summary = AutoApprovalSummary.objects.create(
+            version=self.review_version, verdict=amo.AUTO_APPROVED
+        )
+        policy, _ = CinderPolicy.objects.get_or_create(
+            enforcement_actions=[DECISION_ACTIONS.AMO_REJECT_LISTING_CONTENT.api_value]
+        )
+        self.create_paths()
+
+        # Safeguards.
+        assert self.addon.status == amo.STATUS_APPROVED
+        assert self.file.status == amo.STATUS_APPROVED
+        version = self.addon.current_version
+        assert version.file.status == amo.STATUS_APPROVED
+
+        self.helper.handler.data = {
+            'action': 'reject_listing_content',
+            'cinder_policies': [policy],
+        }
+        self.helper.process()
+
+        summary.reload()
+        assert summary.confirmed is None  # unchanged.
+        approvals_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
+        assert approvals_counter.counter == 0
+        assert approvals_counter.last_human_review is None
+        assert approvals_counter.last_content_review is None
+        assert approvals_counter.last_content_review_pass is False
+        assert self.check_log_count(amo.LOG.REJECT_LISTING_CONTENT.id) == 1
+        activity = (
+            ActivityLog.objects.for_addons(self.addon)
+            .filter(action=amo.LOG.REJECT_LISTING_CONTENT.id)
+            .get()
+        )
+        decision = ContentDecision.objects.get()
+        assert activity.arguments == [self.addon, decision, policy]
+        assert activity.details['comments'] == ''
+        assert not self.review_version.human_review_date
+        assert decision.policies.get() == policy
+
+        assert self.addon.reload().status == amo.STATUS_REJECTED
+        assert version.file.reload().status == amo.STATUS_APPROVED  # unchanged
+
+        assert len(mail.outbox) == 1
+        message = mail.outbox[0]
+        assert message.to == [self.addon.authors.all()[0].email]
+        assert (
+            'until you address the violations and request a further review'
+            in message.body
+        )
 
     def test_nominated_to_approved_recommended(self):
         self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED)

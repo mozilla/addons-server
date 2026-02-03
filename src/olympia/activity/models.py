@@ -855,7 +855,11 @@ class ActivityLog(ModelBase):
 
         if type_ == 'reviewlog' and addon and addon_pk and addon_name:
             reverse_args = [addon_pk]
-            if self.action in (amo.LOG.REJECT_CONTENT.id, amo.LOG.APPROVE_CONTENT.id):
+            if self.action in (
+                amo.LOG.REJECT_CONTENT.id,
+                amo.LOG.APPROVE_LISTING_CONTENT.id,
+                amo.LOG.REJECT_LISTING_CONTENT.id,
+            ):
                 reverse_args.insert(0, 'content')
             elif channel and channel == amo.CHANNEL_UNLISTED:
                 reverse_args.insert(0, 'unlisted')
