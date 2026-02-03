@@ -5006,6 +5006,18 @@ class TestReview(ReviewBase):
                     'comments': 'disabled auto-approval on unlisted',
                 },
             ),
+            ActivityLog.objects.create(
+                amo.LOG.APPROVE_LISTING_CONTENT,
+                self.addon,
+            ),
+            ActivityLog.objects.create(
+                amo.LOG.REJECT_LISTING_CONTENT,
+                self.addon,
+            ),
+            ActivityLog.objects.create(
+                amo.LOG.HELD_ACTION_REJECT_LISTING_CONTENT,
+                self.addon,
+            ),
         ]
 
         response = self.client.get(self.url)
@@ -5023,6 +5035,9 @@ class TestReview(ReviewBase):
             amo.LOG.FORCE_ENABLE.id,
             amo.LOG.ENABLE_AUTO_APPROVAL.id,
             amo.LOG.DISABLE_AUTO_APPROVAL.id,
+            amo.LOG.APPROVE_LISTING_CONTENT.id,
+            amo.LOG.REJECT_LISTING_CONTENT.id,
+            amo.LOG.HELD_ACTION_REJECT_LISTING_CONTENT.id,
         ]
 
         # Make sure the logs are displayed in the page.

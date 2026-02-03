@@ -58,6 +58,7 @@ class ADD_USER_WITH_ROLE(_LOG):
     short = 'Author added'
     keep = True
     show_user_to_developer = True
+    review_queue_important_change = True
 
 
 class REMOVE_USER_WITH_ROLE(_LOG):
@@ -68,6 +69,7 @@ class REMOVE_USER_WITH_ROLE(_LOG):
     short = 'Author removed'
     keep = True
     show_user_to_developer = True
+    review_queue_important_change = True
 
 
 class EDIT_CONTRIBUTIONS(_LOG):
@@ -336,6 +338,7 @@ class CHANGE_USER_WITH_ROLE(_LOG):
     short = 'Author role changed'
     keep = True
     show_user_to_developer = True
+    review_queue_important_change = True
 
 
 class CHANGE_LICENSE(_LOG):
@@ -744,6 +747,7 @@ class REQUEST_ADMIN_REVIEW_THEME(_LOG):
     review_queue = True
     reviewer_review_action = True
     sanitize = REQUEST_SUPER_REVIEW.sanitize
+    review_queue_important_change = True
 
 
 class CREATE_STATICTHEME_FROM_PERSONA(_LOG):
@@ -864,6 +868,7 @@ class FORCE_DISABLE(_LOG):
     admin_format = reviewer_format
     short = 'Force disabled'
     cinder_action = DECISION_ACTIONS.AMO_DISABLE_ADDON
+    review_queue_important_change = True
 
 
 class FORCE_ENABLE(_LOG):
@@ -875,6 +880,7 @@ class FORCE_ENABLE(_LOG):
     admin_format = reviewer_format
     short = 'Force enabled'
     cinder_action = DECISION_ACTIONS.AMO_APPROVE_VERSION
+    review_queue_important_change = True
 
 
 class LOG_IN(_LOG):
@@ -999,6 +1005,7 @@ class CLEAR_ADMIN_REVIEW_THEME(_LOG):
     review_queue = True
     reviewer_review_action = True
     admin_event = True
+    review_queue_important_change = True
 
 
 class ADDON_SLUG_CHANGED(_LOG):
@@ -1127,6 +1134,7 @@ class HELD_ACTION_FORCE_DISABLE(_LOG):
     admin_format = reviewer_format
     short = 'Held force disable'
     admin_event = True
+    review_queue_important_change = True
 
 
 class BLOCKLIST_VERSION_SOFT_BLOCKED(_LOG):
@@ -1145,6 +1153,7 @@ class REQUEST_LEGAL(_LOG):
     short = 'Forwarded to Legal'
     hide_developer = True
     cinder_action = DECISION_ACTIONS.AMO_LEGAL_FORWARD
+    review_queue_important_change = True
 
 
 class HELD_ACTION_REJECT_VERSIONS(_LOG):
@@ -1226,6 +1235,7 @@ class ENABLE_AUTO_APPROVAL(_LOG):
     reviewer_review_action = True
     review_queue = True
     hide_developer = True
+    review_queue_important_change = True
 
 
 class DISABLE_AUTO_APPROVAL(_LOG):
@@ -1236,6 +1246,7 @@ class DISABLE_AUTO_APPROVAL(_LOG):
     reviewer_review_action = True
     review_queue = True
     hide_developer = True
+    review_queue_important_change = True
 
 
 class EDIT_ADDON_PROPERTY(_LOG):
@@ -1269,6 +1280,7 @@ class APPROVE_LISTING_CONTENT(_LOG):
     reviewer_review_action = True
     review_queue = True
     hide_developer = True
+    review_queue_important_change = True
 
 
 class REJECT_LISTING_CONTENT(_LOG):
@@ -1281,6 +1293,7 @@ class REJECT_LISTING_CONTENT(_LOG):
     review_queue = True
     reviewer_review_action = True
     cinder_action = DECISION_ACTIONS.AMO_REJECT_LISTING_CONTENT
+    review_queue_important_change = True
 
 
 class HELD_ACTION_REJECT_LISTING_CONTENT(_LOG):
@@ -1291,6 +1304,7 @@ class HELD_ACTION_REJECT_LISTING_CONTENT(_LOG):
     admin_format = reviewer_format
     short = 'Held Listing Content Rejection'
     admin_event = True
+    review_queue_important_change = True
 
 
 LOGS = [x for x in vars().values() if isclass(x) and issubclass(x, _LOG) and x != _LOG]
@@ -1317,6 +1331,10 @@ LOG_HIDE_DEVELOPER = [
 ]
 # Review Queue logs to show to developer (i.e. hiding admin/private)
 LOG_REVIEW_QUEUE_DEVELOPER = list(set(LOG_REVIEW_QUEUE) - set(LOG_HIDE_DEVELOPER))
+
+LOG_REVIEW_QUEUE_IMPORTANT_CHANGE = [
+    log.id for log in LOGS if hasattr(log, 'review_queue_important_change')
+]
 
 # Actions for which the user name can be shown to developers.
 # This is used by transformer_anonymize_user_for_developer to determine
