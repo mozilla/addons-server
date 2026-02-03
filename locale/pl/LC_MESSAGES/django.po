@@ -3950,7 +3950,7 @@ msgstr "Zobacz blog &#9658;"
 
 #: src/olympia/devhub/templates/devhub/includes/done_unlisted.html:1
 msgid "Version Signature Pending"
-msgstr ""
+msgstr "Trwa generowanie podpisu wersji"
 
 #: src/olympia/devhub/templates/devhub/includes/done_unlisted.html:3
 msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
