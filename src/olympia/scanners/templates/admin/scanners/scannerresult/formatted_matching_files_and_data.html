@@ -1,0 +1,22 @@
+{% load admin_urls %}
+{% load scanners %}
+
+{# This template can be used for both scanner results and scanner query results. Keep it generic. #}
+{# Note that this is a django template and not jinja2! #}
+
+
+{% if contains_data %}<details>{% endif %}
+<ul>
+  {% for rule in matched_rules %}
+    {% for item in rule.files_and_data %}
+      <li>
+          {% if 'filename' in item %}
+            {{ item.filename }}
+          {% else %}
+            {{ item|format_scanners_data }}
+          {% endif %}
+      </li>
+    {% endfor %}
+  {% endfor %}
+</ul>
+{% if contains_data %}</details>{% endif %}

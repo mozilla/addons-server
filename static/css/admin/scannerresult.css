@@ -32,6 +32,7 @@
 }
 
 .field-matching_filenames ul,
+.field-match_info ul,
 .field-authors ul,
 /* This rule is for the change page. */
 .aligned .field-authors ul
@@ -41,7 +42,7 @@
     padding: 0;
 }
 
-.field-matching_filenames li, .field-authors li {
+.field-match_info li, .field-authors li {
     display: block;
     max-width: 36em;
     overflow: hidden;
@@ -51,6 +52,10 @@
 
 .field-authors li {
     max-width: 24em;
+}
+
+.model-scannerqueryresult #result_list tr:hover {
+  background: var(--selected-row);
 }
 
 .model-scannerqueryresult #result_list td, .model-scannerqueryresult #result_list th {

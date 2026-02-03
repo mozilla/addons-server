@@ -78,6 +78,7 @@ def formatted_matched_rules_with_files_and_data(
         {
             'obj': obj,
             'limit_to': limit_to,
+            'contains_data': any(rule.scanner != YARA for rule in rules),
             'display_data': display_data,
             'display_scanner': display_scanner,
             'rule_change_urlname': 'admin:%s_%s_change' % info,
@@ -800,8 +801,8 @@ class ScannerQueryResultAdmin(AbstractScannerResultAdminMixin, AMOModelAdmin):
         'formatted_results',
     )
     raw_id_fields = ('version',)
-    list_display_links = None
     list_display = (
+        'id',
         'addon_name',
         'guid',
         'addon_adi',
@@ -813,7 +814,7 @@ class ScannerQueryResultAdmin(AbstractScannerResultAdminMixin, AMOModelAdmin):
         'was_promoted',
         'authors',
         'formatted_matched_rules',
-        'matching_filenames',
+        'match_info',
         'download',
     )
     list_filter = (
@@ -897,9 +898,9 @@ class ScannerQueryResultAdmin(AbstractScannerResultAdminMixin, AMOModelAdmin):
     def get_unfiltered_changelist_params(self):
         return {}
 
-    def matching_filenames(self, obj):
+    def match_info(self, obj):
         return formatted_matched_rules_with_files_and_data(
-            obj, template_name='formatted_matching_files'
+            obj, template_name='formatted_matching_files_and_data'
         )
 
     def download(self, obj):

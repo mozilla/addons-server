@@ -413,8 +413,8 @@ def _run_narc(*, scanner_result, version, rules=None):
                     and homoglyph_variant != normalized_value.lower()
                 )
 
-            for variant, variant_type in variants:
-                if match := definition.search(variant):
+            for variant_string, variant_type in variants:
+                if match := definition.search(variant_string):
                     span = tuple(match.span())
                     for source_info in sources_to_examine:
                         result = {
@@ -423,10 +423,14 @@ def _run_narc(*, scanner_result, version, rules=None):
                                 'locale': source_info['locale'],
                                 'source': source_info['source'],
                                 'pattern': rule.definition,
-                                'string': variant,
+                                'string': variant_string,
                                 'span': span,
                             },
                         }
+                        if (match_group := match.group()) != variant_string:
+                            result['meta']['match'] = match_group
+                        if any(fuzzy_counts := match.fuzzy_counts):
+                            result['meta']['fuzzy_counts'] = fuzzy_counts
                         if variant_type is not None:
                             result['meta']['variant'] = variant_type
                             result['meta']['original_string'] = value
