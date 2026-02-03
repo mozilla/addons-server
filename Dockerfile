@@ -18,7 +18,6 @@ ENV NPM_DEPS_DIR=${HOME}/node_modules
 ENV VITE_MANIFEST_FILE_NAME=manifest.json
 ENV STATIC_URL_PREFIX=/static-server/
 ENV MEDIA_URL_PREFIX=/user-media/
-ENV ELASTIC_CLIENT_APIVERSIONING=1
 RUN <<EOF
 groupadd -g ${OLYMPIA_UID} olympia
 useradd -u ${OLYMPIA_UID} -g ${OLYMPIA_UID} -s /sbin/nologin -d ${HOME} olympia

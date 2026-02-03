@@ -6,7 +6,7 @@ x-env-mapping: &env
     - CELERY_BROKER_URL=amqp://olympia:olympia@rabbitmq/olympia
     - CELERY_RESULT_BACKEND=redis://redis:6379/1
     - DATABASES_DEFAULT_URL=mysql://root:@mysqld/olympia
-    - ELASTICSEARCH_LOCATION=elasticsearch:9200
+    - ELASTICSEARCH_LOCATION=http://elasticsearch:9200
     - MEMCACHE_LOCATION=memcached:11211
     - MYSQL_DATABASE=olympia
     - MYSQL_ROOT_PASSWORD=docker
@@ -21,7 +21,6 @@ x-env-mapping: &env
     - HISTCONTROL=erasedups
     - ENV=local
     - SWAGGER_UI_ENABLED=true
-    - CIRCLECI
     - SKIP_DATA_SEED
     - FXA_CLIENT_ID
     - FXA_CLIENT_SECRET

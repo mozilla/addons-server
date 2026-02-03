@@ -167,7 +167,7 @@ pyparsing==3.3.2 \
 setuptools==80.9.0 \
     --hash=sha256:062d34222ad13e0cc312a4c02d73f059e86a4acbfbdea8f8f76b28c99f306922 \
     --hash=sha256:f36b47402ecde768dbfafc46e8e4207b4360c654f1f3bb84475f0a28628fb19c
-# six is required by Sphinx, bleach, cryptography, django-environ, django-extensions, django-tables2, docker-compose, docker-py, docker-pycreds, dockerpty, elasticsearch-dsl, html5lib, mock, nobot, packaging, pathlib2, prompt_toolkit, sphinxcontrib-httpdomain, websocket-client
+# six is required by Sphinx, bleach, cryptography, django-environ, django-extensions, django-tables2, docker-compose, docker-py, docker-pycreds, dockerpty, html5lib, mock, nobot, packaging, pathlib2, prompt_toolkit, sphinxcontrib-httpdomain, websocket-client
 six==1.17.0 \
     --hash=sha256:4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274 \
     --hash=sha256:ff70335d468e7eb6ec65b95b99d3a2836546063f63acc5171de367e834932a81
@@ -812,13 +812,12 @@ dockerflow==2024.4.2 \
 drf-nested-routers==0.95.0 \
     --hash=sha256:815978f802e578fd7035c74040c104909cbe97615de89a275d77e928f4029891 \
     --hash=sha256:dd489c33d667aaa81383ffaa8c74781d2b353d8f0795716ae37fc59ee297b7c4
-# elasticsearch is required by elasticsearch-dsl
-elasticsearch==7.17.13 \
-    --hash=sha256:ba1b87322045fc37831009c7c49ef0e2777165a2ad3390df4d9e2b7a09d90c86 \
-    --hash=sha256:dac73df9a9070b9c96be45d99f4316badc525f8b17f418e9c86da2bb5855c892
-elasticsearch-dsl==7.4.1 \
-    --hash=sha256:07ee9c87dc28cc3cae2daa19401e1e18a172174ad9e5ca67938f752e3902a1d5 \
-    --hash=sha256:97f79239a252be7c4cce554c29e64695d7ef6a4828372316a5e5ff815e7a7498
+elasticsearch==8.19.3 \
+    --hash=sha256:e84dd618a220cac25b962790085045dd27ac72e01c0a5d81bd29a2d47a71f03f \
+    --hash=sha256:fe1db2555811192e8a1be78b01234d0a49d32b185ea7eeeb6f059331dee32838
+elastic-transport==8.17.1 \
+    --hash=sha256:192718f498f1d10c5e9aa8b9cf32aed405e469a7f0e9d6a8923431dbb2c59fb8 \
+    --hash=sha256:5edef32ac864dca8e2f0a613ef63491ee8d6b8cfb52881fa7313ba9290cac6d2
 email-reply-parser==0.5.12 \
     --hash=sha256:d051cfa8f54046f7399553aae57f17f62bf1652f83e3e9970fd109c0f24a880c \
     --hash=sha256:3499c02284679e020acf8aa30ef9e43c62f9ab5ccee0a35bfac85a0c1fa685fd \
@@ -970,7 +969,7 @@ pymemcache==4.0.0 \
 prompt_toolkit==3.0.52 \
     --hash=sha256:28cde192929c8e7321de85de1ddbe736f1375148b02f2e17edd840042b1be855 \
     --hash=sha256:9aac639a3bbd33284347de5ad8d68ecc044b91a762dc39b7c21095fcd6a19955
-# python-dateutil is required by elasticsearch-dsl
+# python-dateutil is required by elasticsearch
 python-dateutil==2.9.0.post0 \
     --hash=sha256:37dd54208da7e1cd875388217d5e00ebd4179249f90fb72437e91a35459a0ad3 \
     --hash=sha256:a8b2bc7bffae282281c8140a97d3aa9c14da0b136dfe83f850eea9a5f7470427

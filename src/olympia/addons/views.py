@@ -10,7 +10,7 @@ from django.utils.translation import gettext
 
 import waffle
 from drf_spectacular.utils import extend_schema, extend_schema_view
-from elasticsearch_dsl import Q, Search, query
+from elasticsearch.dsl import Q, Search, query
 from rest_framework import exceptions, serializers, status
 from rest_framework.decorators import action
 from rest_framework.generics import ListAPIView

@@ -928,7 +928,7 @@ LOGGING = {
             'level': logging.WARNING,
             'propagate': True,
         },
-        'elasticsearch': {
+        'elastic_transport.transport': {
             'handlers': ['null'],
             'level': logging.INFO,
             'propagate': False,
