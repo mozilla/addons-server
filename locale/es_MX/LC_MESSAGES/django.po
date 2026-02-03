@@ -4430,7 +4430,7 @@ msgstr "Al borrar esta versión, se eliminará definitivamente:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:288
 msgid "Important:"
-msgstr ""
+msgstr "Importante:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:289
 msgid ""

@@ -1290,11 +1290,11 @@ msgstr "Lastnost {0} računa {user} posodobljena."
 #: src/olympia/constants/activity.py:1279
 #, python-brace-format
 msgid "{addon} listing content approved."
-msgstr ""
+msgstr "Vsebina objave za {addon} odobrena."
 
 #: src/olympia/constants/activity.py:1281
 msgid "Rejected listing approved"
-msgstr ""
+msgstr "Zavrnjena kotacija odobrena"
 
 #: src/olympia/constants/activity.py:1293
 #, python-brace-format
@@ -1303,7 +1303,7 @@ msgstr "Vsebina objave za {addon} zavrnjena."
 
 #: src/olympia/constants/activity.py:1294
 msgid "Listing rejected"
-msgstr ""
+msgstr "Objavljanje zavrnjeno"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
