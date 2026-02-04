@@ -1311,7 +1311,7 @@ msgstr "Lijstinhoud van {addon} afgewezen."
 
 #: src/olympia/constants/activity.py:1294
 msgid "Listing rejected"
-msgstr "Advertentie afgewezen"
+msgstr "Vermelding afgewezen"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
