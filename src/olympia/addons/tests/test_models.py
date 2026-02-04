@@ -906,7 +906,8 @@ class TestAddonModels(TestCase):
         v2 = version_factory(addon=addon)
         v3 = version_factory(addon=addon)
         AddonApprovalsCounter.objects.create(
-            addon=addon, last_content_review_pass=False
+            addon=addon,
+            content_review_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.FAIL,
         )
         addon.update(status=amo.STATUS_DISABLED)
         v1.file.update(
@@ -2941,7 +2942,8 @@ class TestUpdateStatus(TestCase):
             status=amo.STATUS_REJECTED, file_kw={'status': amo.STATUS_DISABLED}
         )
         AddonApprovalsCounter.objects.create(
-            addon=addon, last_content_review_pass=False
+            addon=addon,
+            content_review_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.FAIL,
         )
         assert addon.status == amo.STATUS_REJECTED
 
@@ -2957,7 +2959,7 @@ class TestUpdateStatus(TestCase):
 
         # but if the content review passed, the status will update
         AddonApprovalsCounter.objects.get(addon=addon).update(
-            last_content_review_pass=True
+            content_review_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.PASS
         )
         addon.update_status()
         assert addon.status == amo.STATUS_APPROVED
@@ -3581,14 +3583,39 @@ class TestAddonApprovalsCounter(TestCase):
         assert approval_counter.counter == 1
         self.assertCloseToNow(approval_counter.last_human_review)
         self.assertCloseToNow(approval_counter.last_content_review)
+        assert (
+            approval_counter.content_review_status
+            == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.PASS
+        )
         approval_counter.update(
-            last_human_review=self.days_ago(100), last_content_review=self.days_ago(100)
+            last_human_review=self.days_ago(100),
+            last_content_review=self.days_ago(100),
+            content_review_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.CHANGED,
         )
         AddonApprovalsCounter.increment_for_addon(self.addon)
         approval_counter.reload()
         assert approval_counter.counter == 2
         self.assertCloseToNow(approval_counter.last_human_review)
         self.assertCloseToNow(approval_counter.last_content_review)
+        assert (
+            approval_counter.content_review_status
+            == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.PASS
+        )
+
+        # But if the previous content reviewed failed, the status shouldn't be updated
+        # - the developer must request a review first
+        approval_counter.update(
+            content_review_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.FAIL
+        )
+        AddonApprovalsCounter.increment_for_addon(self.addon)
+        approval_counter.reload()
+        assert approval_counter.counter == 3
+        self.assertCloseToNow(approval_counter.last_human_review)
+        self.assertCloseToNow(approval_counter.last_content_review)
+        assert (
+            approval_counter.content_review_status
+            == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.FAIL
+        )
 
     def test_increment_non_existing(self):
         approval_counter = AddonApprovalsCounter.objects.create(
@@ -3599,6 +3626,10 @@ class TestAddonApprovalsCounter(TestCase):
         assert approval_counter.counter == 1
         self.assertCloseToNow(approval_counter.last_human_review)
         self.assertCloseToNow(approval_counter.last_content_review)
+        assert (
+            approval_counter.content_review_status
+            == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.PASS
+        )
 
     def test_reset_existing(self):
         approval_counter = AddonApprovalsCounter.objects.create(
@@ -3606,14 +3637,19 @@ class TestAddonApprovalsCounter(TestCase):
             counter=42,
             last_content_review=self.days_ago(60),
             last_human_review=self.days_ago(30),
+            content_review_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.PASS,
         )
         AddonApprovalsCounter.reset_for_addon(self.addon)
         approval_counter.reload()
         assert approval_counter.counter == 0
-        # Dates were not touched.
+        # Dates and content review were not touched.
         self.assertCloseToNow(approval_counter.last_human_review, now=self.days_ago(30))
         self.assertCloseToNow(
             approval_counter.last_content_review, now=self.days_ago(60)
+        )
+        assert (
+            approval_counter.content_review_status
+            == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.PASS
         )
 
     def test_reset_non_existing(self):
@@ -3621,14 +3657,10 @@ class TestAddonApprovalsCounter(TestCase):
         AddonApprovalsCounter.reset_for_addon(self.addon)
         approval_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
         assert approval_counter.counter == 0
-
-    def test_approve_content_non_existing(self):
-        assert not AddonApprovalsCounter.objects.filter(addon=self.addon).exists()
-        AddonApprovalsCounter.approve_content_for_addon(self.addon)
-        approval_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
-        assert approval_counter.counter == 0
-        assert approval_counter.last_human_review is None
-        self.assertCloseToNow(approval_counter.last_content_review)
+        assert (
+            approval_counter.content_review_status
+            == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.UNREVIEWED
+        )
 
     def test_approve_content_existing(self):
         approval_counter = AddonApprovalsCounter.objects.create(
@@ -3644,6 +3676,99 @@ class TestAddonApprovalsCounter(TestCase):
         # Those fields were not touched.
         assert approval_counter.counter == 42
         self.assertCloseToNow(approval_counter.last_human_review, now=self.days_ago(10))
+        assert (
+            approval_counter.content_review_status
+            == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.PASS
+        )
+
+    def test_approve_content_non_existing(self):
+        assert not AddonApprovalsCounter.objects.filter(addon=self.addon).exists()
+        AddonApprovalsCounter.approve_content_for_addon(self.addon)
+        approval_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
+        assert approval_counter.counter == 0
+        assert approval_counter.last_human_review is None
+        self.assertCloseToNow(approval_counter.last_content_review)
+        assert (
+            approval_counter.content_review_status
+            == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.PASS
+        )
+
+    def test_reject_content_existing(self):
+        approval_counter = AddonApprovalsCounter.objects.create(
+            addon=self.addon,
+            counter=42,
+            last_content_review=self.days_ago(367),
+            last_human_review=self.days_ago(10),
+        )
+        AddonApprovalsCounter.reject_content_for_addon(self.addon)
+
+        assert approval_counter.reload().last_content_review is None
+        assert approval_counter.counter == 42  # unchanged
+        self.assertCloseToNow(approval_counter.last_human_review, now=self.days_ago(10))
+        assert (
+            approval_counter.content_review_status
+            == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.FAIL
+        )
+
+    def test_reject_content_non_existing(self):
+        assert not AddonApprovalsCounter.objects.filter(addon=self.addon).exists()
+        AddonApprovalsCounter.reject_content_for_addon(self.addon)
+        approval_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
+        assert approval_counter.counter == 0
+        assert approval_counter.last_human_review is None
+        assert (
+            approval_counter.content_review_status
+            == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.FAIL
+        )
+
+    def test_reset_content_existing(self):
+        approval_counter = AddonApprovalsCounter.objects.create(
+            addon=self.addon,
+            counter=42,
+            last_content_review=self.days_ago(367),
+            last_human_review=self.days_ago(10),
+            content_review_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.PASS,
+        )
+        AddonApprovalsCounter.reset_content_for_addon(self.addon)
+        assert approval_counter.reload().counter == 42  # unchanged
+        self.assertCloseToNow(approval_counter.last_human_review, now=self.days_ago(10))
+        assert approval_counter.last_content_review is None
+        assert (
+            approval_counter.content_review_status
+            == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.CHANGED
+        )
+
+        # But only when the previous status was PASS should we update to CHANGED
+        # We don't want to, for example, override a FAIL, or REQUESTED because we'd
+        # lose that it was rejected. Or to set CHANGED when it wasn't reviewed before.
+        for previous_status in AddonApprovalsCounter.CONTENT_REVIEW_STATUSES:
+            if previous_status == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.PASS:
+                continue
+            approval_counter.update(
+                content_review_status=previous_status,
+            )
+            AddonApprovalsCounter.reset_content_for_addon(self.addon)
+            assert approval_counter.reload().content_review_status == previous_status
+
+    def test_reset_content_non_existing(self):
+        assert not AddonApprovalsCounter.objects.filter(addon=self.addon).exists()
+        AddonApprovalsCounter.reset_content_for_addon(self.addon)
+        approval_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
+        assert approval_counter.counter == 0
+        assert approval_counter.last_human_review is None
+        assert (
+            approval_counter.content_review_status
+            == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.UNREVIEWED
+        )
+
+    def test_request_review(self):
+        AddonApprovalsCounter.request_new_content_review_for_addon(self.addon)
+        approval_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
+        assert approval_counter.last_content_review is None
+        assert (
+            approval_counter.content_review_status
+            == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.REQUESTED
+        )
 
 
 class TestMigratedLWTModel(TestCase):
