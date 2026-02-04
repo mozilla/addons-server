@@ -1278,11 +1278,11 @@ msgstr "已更新帳號 {user} 的屬性 {0}。"
 #: src/olympia/constants/activity.py:1279
 #, python-brace-format
 msgid "{addon} listing content approved."
-msgstr ""
+msgstr "已接受 {addon} 上架內容。"
 
 #: src/olympia/constants/activity.py:1281
 msgid "Rejected listing approved"
-msgstr ""
+msgstr "已同意拒絕上架"
 
 #: src/olympia/constants/activity.py:1293
 #, python-brace-format
@@ -1291,7 +1291,7 @@ msgstr "已拒絕 {addon} 上架內容。"
 
 #: src/olympia/constants/activity.py:1294
 msgid "Listing rejected"
-msgstr ""
+msgstr "已拒絕上架"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
