@@ -423,6 +423,13 @@ def disable(request, addon_id, addon):
     return redirect(addon.get_dev_url('versions'))
 
 
+@dev_required
+@post_required
+def rejected_review_request(request, addon_id, addon):
+    # something something request a new content review
+    return redirect(addon.get_dev_url('versions'))
+
+
 # Can't use @dev_required, as the user is not a developer yet. Can't use
 # @addon_view_factory either, because it requires a developer for unlisted
 # add-ons. So we just @login_required and retrieve the addon ourselves in the
@@ -1306,6 +1313,14 @@ def version_list(request, addon_id, addon):
     rollback_form = forms.RollbackVersionForm(
         request.POST if was_rollback_submit else None, addon=addon
     )
+    rejected_log = (
+        addon.status == amo.STATUS_REJECTED
+        and ActivityLog.objects.filter(
+            addonlog__addon=addon, action=amo.LOG.REJECT_LISTING_CONTENT.id
+        )
+        .order_by('-created')
+        .first()
+    )
 
     if was_rollback_submit and rollback_form.is_valid():
         duplicate_addon_version_for_rollback.delay(
@@ -1335,6 +1350,12 @@ def version_list(request, addon_id, addon):
         .values_list('version', flat=True)
         .first(),
         'is_admin': is_admin,
+        'rejection_manual_reasoning_text': rejected_log.details.get('comments', '')
+        if rejected_log
+        else '',
+        'rejected_policy_texts': rejected_log.details.get('policy_texts', [])
+        if rejected_log
+        else [],
         'rollback_form': rollback_form,
         'session_id': request.session.session_key,
         'versions': versions,
