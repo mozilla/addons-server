@@ -1311,6 +1311,14 @@ class HELD_ACTION_REJECT_LISTING_CONTENT(_LOG):
     review_queue_important_change = True
 
 
+class REJECTED_LISTING_REVIEW_REQUEST(_LOG):
+    id = 214
+    format = _('{addon} listing content review requested.')
+    short = _('Listing review requested')
+    keep = True
+    review_email_user = True
+
+
 LOGS = [x for x in vars().values() if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 # Make sure there's no duplicate IDs.
 assert len(LOGS) == len({log.id for log in LOGS})

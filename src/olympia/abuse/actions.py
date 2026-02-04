@@ -697,7 +697,7 @@ class ContentActionRejectListingContent(ContentActionDisableAddon):
         )
 
     def process_action(self, release_hold=False):
-        if self.target.status not in (amo.STATUS_DISABLED, amo.STATUS_REJECTED):
+        if self.target.status != amo.STATUS_DISABLED:
             self.target.update(status=amo.STATUS_REJECTED)
             AddonApprovalsCounter.reject_content_for_addon(self.target)
         return self.log_action(amo.LOG.REJECT_LISTING_CONTENT)

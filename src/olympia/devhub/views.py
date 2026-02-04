@@ -39,6 +39,7 @@ from olympia.activity.models import ActivityLog, CommentLog
 from olympia.addons.decorators import require_submissions_enabled
 from olympia.addons.models import (
     Addon,
+    AddonApprovalsCounter,
     AddonReviewerFlags,
     AddonUser,
     AddonUserPendingConfirmation,
@@ -420,6 +421,20 @@ def cancel(request, addon_id, addon, channel):
 def disable(request, addon_id, addon):
     addon.update(disabled_by_user=True)
     ActivityLog.objects.create(amo.LOG.USER_DISABLE, addon)
+    return redirect(addon.get_dev_url('versions'))
+
+
+@dev_required
+@post_required
+def rejected_review_request(request, addon_id, addon):
+    if addon.status != amo.STATUS_REJECTED:
+        raise http.Http404()
+    AddonApprovalsCounter.request_new_content_review_for_addon(addon)
+    ActivityLog.objects.create(amo.LOG.REJECTED_LISTING_REVIEW_REQUEST, addon)
+    messages.success(
+        request,
+        gettext('Request for a new review of listing content acknowledged.'),
+    )
     return redirect(addon.get_dev_url('versions'))
 
 
@@ -1306,6 +1321,19 @@ def version_list(request, addon_id, addon):
     rollback_form = forms.RollbackVersionForm(
         request.POST if was_rollback_submit else None, addon=addon
     )
+    rejected_log = (
+        addon.status == amo.STATUS_REJECTED
+        and ActivityLog.objects.filter(
+            addonlog__addon=addon, action=amo.LOG.REJECT_LISTING_CONTENT.id
+        )
+        .order_by('-created')
+        .first()
+    )
+    rejection_review_requested = (
+        rejected_log
+        and addon.addonapprovalscounter.content_review_status
+        == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.REQUESTED
+    )
 
     if was_rollback_submit and rollback_form.is_valid():
         duplicate_addon_version_for_rollback.delay(
@@ -1335,6 +1363,13 @@ def version_list(request, addon_id, addon):
         .values_list('version', flat=True)
         .first(),
         'is_admin': is_admin,
+        'rejection_manual_reasoning_text': rejected_log.details.get('comments', '')
+        if rejected_log
+        else '',
+        'rejection_policy_texts': rejected_log.details.get('policy_texts', [])
+        if rejected_log
+        else [],
+        'rejection_review_requested': rejection_review_requested,
         'rollback_form': rollback_form,
         'session_id': request.session.session_key,
         'versions': versions,

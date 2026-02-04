@@ -152,28 +152,7 @@
   {# Only show listing visibility if there are listed versions... or if somehow the add-on is already invisible,
      to allow developers to toggle it back so that they can upload listed versions #}
   {% if has_listed_versions or addon.disabled_by_user %}
-    <h3>{{ distro_tag(amo.CHANNEL_LISTED)}} {{ _('Listing visibility') }}</h3>
-    <div class="item" id="addon-current-state">
-      <div class="item_wrapper">
-        <label><input name="addon-state" value="listed" type="radio"
-                    {% if addon.status == amo.STATUS_DISABLED %}disabled="disabled"{% endif %}
-                    {% if not addon.is_disabled %}checked="checked"{% endif %}
-                    data-url="{{ addon.get_dev_url('enable') }}"
-                    class="enable-addon">
-        {{ _("{label_open}Visible:{label_close} Visible to everyone on {site_url} and included "
-             "in search results and product pages.")|format_html(
-             label_open='<strong>'|safe, label_close='</strong>'|safe, site_url=settings.SITE_URL)|safe }}</label>
-        <br>
-        <label><input name="addon-state" value="hidden" type="radio"
-                    {% if addon.status == amo.STATUS_DISABLED %}disabled="disabled"{% endif %}
-                    {% if addon.is_disabled %}checked="checked"{% endif %}
-                    class="disable-addon">
-        {{ _("{label_open}Invisible:{label_close} Won't be included in search results, and its product page will "
-              "indicate you disabled it. New version submissions for product "
-              "won't be accepted in this state.")|format_html(
-             label_open='<strong>'|safe, label_close='</strong>'|safe) }}</label>
-      </div>
-    </div>
+    {% include "devhub/includes/listing_visibility.html" %}
     {% if latest_listed_version or current_version %}
         <h3>{{ distro_tag(amo.CHANNEL_LISTED)}} {{ _('Listed versions') }}</h3>
     {% endif %}
