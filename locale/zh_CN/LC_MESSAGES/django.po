@@ -5877,7 +5877,7 @@ msgstr "浏览所有扩展"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1101
 msgid "YouTube extensions"
-msgstr ""
+msgstr "YouTube 扩展"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -5923,12 +5923,12 @@ msgstr "更多热门主题"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1124
 msgid "Privacy & security"
-msgstr ""
+msgstr "隐私与安全"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1126
 msgid "See more privacy staff picks"
-msgstr ""
+msgstr "更多编辑推荐 > 隐私保护"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1129
