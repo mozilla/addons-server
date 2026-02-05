@@ -681,6 +681,32 @@ class TestWithUser(TestCase):
         assert args == (self, self.request)
         assert kwargs['user'] == self.user
         assert kwargs['identity']['email'] == self.user.email
+        assert kwargs['identity']['uid'] == self.user.fxa_id
+        assert kwargs['identity']['twoFactorAuthentication'] is None
+        assert kwargs['next_path'] == '/a/path/?'
+        assert self.fxa_identify.call_count == 0
+
+    @override_settings(FXA_CONFIG={'default': {'client_id': ''}})
+    def test_fake_fxa_auth_dupe_find_first(self):
+        # Create duplicate users, it shouldn't affect anything.
+        user_factory(fxa_id=None, email=self.user.email)
+        user_factory(email=self.user.email)
+        self.test_fake_fxa_auth()  # Should still log in with self.user
+
+    @override_settings(FXA_CONFIG={'default': {'client_id': ''}})
+    def test_fake_fxa_auth_register(self):
+        self.find_user.return_value = self.user
+        self.request.data = {
+            'code': 'foo',
+            'fake_fxa_email': 'whatever@example.com',
+            'state': 'some-blob:{next_path}'.format(
+                next_path=force_str(base64.urlsafe_b64encode(b'/a/path/?'))
+            ),
+        }
+        args, kwargs = self.fn(self.request)
+        assert args == (self, self.request)
+        assert kwargs['user'] == self.user
+        assert kwargs['identity']['email'] == 'whatever@example.com'
         assert kwargs['identity']['uid'].startswith('fake_fxa_id-')
         assert len(kwargs['identity']['uid']) == 44  # 32 random chars + prefix
         assert kwargs['identity']['twoFactorAuthentication'] is None
@@ -702,8 +728,7 @@ class TestWithUser(TestCase):
         assert args == (self, self.request)
         assert kwargs['user'] == self.user
         assert kwargs['identity']['email'] == self.user.email
-        assert kwargs['identity']['uid'].startswith('fake_fxa_id-')
-        assert len(kwargs['identity']['uid']) == 44  # 32 random chars + prefix
+        assert kwargs['identity']['uid'] == self.user.fxa_id
         assert kwargs['identity']['twoFactorAuthentication'] == 'true'
         assert kwargs['next_path'] == '/a/path/?'
         assert self.fxa_identify.call_count == 0
