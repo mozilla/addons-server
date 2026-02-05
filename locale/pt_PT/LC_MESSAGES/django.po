@@ -381,7 +381,7 @@ msgstr "Versões listadas não podem ser enviadas enquanto o extra estiver desab
 
 #: src/olympia/addons/serializers.py:578 src/olympia/signing/views.py:218
 msgid "Listed versions cannot be submitted while add-on listing is rejected."
-msgstr ""
+msgstr "Não podem ser enviadas versões listadas enquanto a listagem do extra estiver rejeitada."
 
 #: src/olympia/addons/serializers.py:619
 #, python-format
@@ -1306,7 +1306,7 @@ msgstr ""
 
 #: src/olympia/constants/activity.py:1294
 msgid "Listing rejected"
-msgstr ""
+msgstr "Listagem rejeitada"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -2061,19 +2061,19 @@ msgstr "Algo correu mal. Por favor, contacte o apoio ao programador."
 
 #: src/olympia/devhub/forms.py:1665
 msgid "No appropriate version available"
-msgstr ""
+msgstr "Nenhuma versão apropriada disponível"
 
 #: src/olympia/devhub/forms.py:1672
 msgid "Choose version"
-msgstr ""
+msgstr "Escolher versão"
 
 #: src/olympia/devhub/forms.py:1681
 msgid "Release notes"
-msgstr ""
+msgstr "Notas de lançamento"
 
 #: src/olympia/devhub/forms.py:1682
 msgid "Automatic rollback based on version [m.m]."
-msgstr ""
+msgstr "Reversão automática baseada na versão [m.m]."
 
 #: src/olympia/devhub/forms.py:1755
 msgid "You must select a channel and version to rollback to."
@@ -2551,7 +2551,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:91
 msgid "Refresh results"
-msgstr ""
+msgstr "Atualizar resultados"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:101
 #, python-format
