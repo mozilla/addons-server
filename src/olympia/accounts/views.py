@@ -277,11 +277,17 @@ def with_user(f):
         try:
             if use_fake_fxa(fxa_config) and 'fake_fxa_email' in data:
                 # Bypassing real authentication, we take the email provided
-                # and generate a random fxa id.
+                # and grab the first corresponding fxa_id we can find (or
+                # generate a random one if we couldn't find any).
+                fxa_id = (
+                    UserProfile.objects.filter(email=data['fake_fxa_email'])
+                    .values_list('fxa_id', flat=True)
+                    .order_by('pk')
+                    .first()
+                ) or 'fake_fxa_id-%s' % force_str(binascii.b2a_hex(os.urandom(16)))
                 identity = {
                     'email': data['fake_fxa_email'],
-                    'uid': 'fake_fxa_id-%s'
-                    % force_str(binascii.b2a_hex(os.urandom(16))),
+                    'uid': fxa_id,
                     'twoFactorAuthentication': data.get(
                         'fake_two_factor_authentication'
                     ),
