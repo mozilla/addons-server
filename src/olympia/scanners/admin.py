@@ -5,7 +5,7 @@ from django.contrib import admin, messages
 from django.contrib.admin import SimpleListFilter
 from django.db.models import Count, Prefetch
 from django.forms import ModelForm
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import redirect
 from django.template.loader import render_to_string
 from django.urls import re_path, reverse
@@ -318,7 +318,7 @@ class ScannerRuleModelForm(ModelForm):
 
 
 class AbstractScannerResultAdminMixin:
-    actions = None
+    actions = ['block_addons_action', 'search_for_authors_action']
     view_on_site = False
     list_select_related = ('version',)
     raw_id_fields = ('version',)
@@ -355,6 +355,33 @@ class AbstractScannerResultAdminMixin:
             WithVersionFilter.parameter_name: 'all',
             StateFilter.parameter_name: 'all',
         }
+
+    def get_actions(self, request):
+        actions = super().get_actions(request)
+        if not acl.action_allowed_for(request.user, amo.permissions.BLOCKLIST_CREATE):
+            actions.pop('block_addons_action', None)
+        if not acl.action_allowed_for(request.user, amo.permissions.USERS_EDIT):
+            actions.pop('search_for_authors_action', None)
+        return actions
+
+    @admin.action(description='Block these add-ons')
+    def block_addons_action(self, request, queryset):
+        guids = Addon.unfiltered.filter(
+            versions__scannerqueryresults__in=queryset.values_list('pk')
+        ).values_list('guid', flat=True).distinct()
+        url = reverse('admin:blocklist_blocklistsubmission_add')
+        # blocklist submission page expects guids separated by \n
+        parameters = {'guids': '\n'.join(guids)}
+        return HttpResponseRedirect(url + f'?{urlencode(parameters)}')
+
+    @admin.action(description='Search for authors of these add-ons')
+    def search_for_authors_action(self, request, queryset):
+        userids = UserProfile.objects.filter(
+            addons__versions__scannerqueryresults__in=queryset.values_list('pk'),
+        ).values_list('pk', flat=True).distinct()
+        url = reverse('admin:users_userprofile_changelist')
+        parameters = {'q': ','.join(map(str, userids))}
+        return HttpResponseRedirect(url + f'?{urlencode(parameters)}')
 
     # Remove the "add" button
     def has_add_permission(self, request):
@@ -879,6 +906,8 @@ class ScannerQueryResultAdmin(AbstractScannerResultAdminMixin, AMOModelAdmin):
                 obj.version.get_channel_display(),
             )
         return '-'
+
+    formatted_channel.short_description = 'Channel'
 
     def version_number(self, obj):
         if obj.version:
