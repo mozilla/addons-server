@@ -1299,7 +1299,7 @@ msgstr "Contento del lista {addon} approbate."
 
 #: src/olympia/constants/activity.py:1281
 msgid "Rejected listing approved"
-msgstr ""
+msgstr "Approbate contentos pro le scheda precedentemente refusate"
 
 #: src/olympia/constants/activity.py:1293
 #, python-brace-format
