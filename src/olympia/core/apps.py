@@ -169,7 +169,7 @@ def nginx_check(app_configs, **kwargs):
     files_to_remove = []
 
     for dir, prefix in configs:
-        base_url = f'{settings.INTERNAL_SITE_URL}{prefix}'
+        base_url = f'http://nginx{prefix}'
         file_path = os.path.join(dir, 'test.txt')
         file_url = f'{base_url}test.txt'
 
