@@ -208,15 +208,11 @@ urlpatterns = [
     ),
     re_path(r'^addon/api/key/$', views.api_key, name='devhub.api_key'),
     # Standalone validator:
-    re_path(
-        r'^addon/validate/?$', views.validate_addon, name='devhub.validate_addon'
-    ),
+    re_path(r'^addon/validate/?$', views.validate_addon, name='devhub.validate_addon'),
     # Redirect to /addons/ at the base.
     re_path(r'^addon$', lambda r: redirect('devhub.addons', permanent=True)),
     re_path(r'^addons$', views.dashboard, name='devhub.addons'),
-    re_path(
-        r'^themes$', views.dashboard, name='devhub.themes', kwargs={'theme': True}
-    ),
+    re_path(r'^themes$', views.dashboard, name='devhub.themes', kwargs={'theme': True}),
     re_path(r'^feed$', views.feed, name='devhub.feed_all'),
     # TODO: not necessary when devhub homepage is moved out of remora
     re_path(r'^feed/all$', lambda r: redirect('devhub.feed_all', permanent=True)),
