@@ -372,13 +372,6 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
 
         return ro_fields
 
-    def _get_input_guids(self, request):
-        return splitlines(
-            self.get_value(
-                'guids', request, default=request.POST.get('input_guids', '')
-            )
-        )
-
     def add_view(self, request, **kwargs):
         if not self.has_add_permission(request):
             raise PermissionDenied
