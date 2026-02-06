@@ -2,9 +2,7 @@ from django.shortcuts import redirect
 from django.urls import include, re_path
 
 from olympia.addons.urls import ADDON_ID
-from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import partial
-from olympia.lib.misc.urlconf_decorator import decorate
 
 from . import views
 
@@ -154,127 +152,120 @@ redirect_patterns = [
     ),
 ]
 
-urlpatterns = decorate(
-    use_primary_db,
-    [
-        re_path(r'^$', views.index, name='devhub.index'),
-        re_path(r'', include(redirect_patterns)),
-        # Redirect people who have /addons/ instead of /addon/.
-        re_path(
-            r'^addons/\d+/.*', lambda r: redirect(r.path.replace('addons', 'addon', 1))
-        ),
-        # Add-on submission
-        re_path(
-            r'^addon/submit/(?:1)?$',
-            lambda r: redirect('devhub.submit.agreement', permanent=True),
-        ),
-        re_path(
-            r'^addon/submit/agreement$',
-            views.submit_addon,
-            name='devhub.submit.agreement',
-        ),
-        re_path(
-            r'^addon/submit/distribution$',
-            views.submit_addon_distribution,
-            name='devhub.submit.distribution',
-        ),
-        re_path(
-            r'^addon/submit/upload-(?P<channel>listed|unlisted)$',
-            views.submit_addon_upload,
-            name='devhub.submit.upload',
-        ),
-        # Theme-specific submission pages
-        re_path(
-            r'^addon/submit/theme/agreement$',
-            views.submit_theme,
-            name='devhub.submit.theme.agreement',
-        ),
-        re_path(
-            r'^addon/submit/theme/distribution$',
-            views.submit_theme_distribution,
-            name='devhub.submit.theme.distribution',
-        ),
-        re_path(
-            r'^addon/submit/theme/upload-(?P<channel>listed|unlisted)$',
-            views.submit_theme_upload,
-            name='devhub.submit.theme.upload',
-        ),
-        re_path(
-            r'^addon/submit/wizard-(?P<channel>listed|unlisted)$',
-            views.submit_addon_theme_wizard,
-            name='devhub.submit.wizard',
-        ),
-        # Submission API
-        re_path(
-            r'^addon/agreement/$',
-            views.developer_agreement,
-            name='devhub.developer_agreement',
-        ),
-        re_path(r'^addon/api/key/$', views.api_key, name='devhub.api_key'),
-        # Standalone validator:
-        re_path(
-            r'^addon/validate/?$', views.validate_addon, name='devhub.validate_addon'
-        ),
-        # Redirect to /addons/ at the base.
-        re_path(r'^addon$', lambda r: redirect('devhub.addons', permanent=True)),
-        re_path(r'^addons$', views.dashboard, name='devhub.addons'),
-        re_path(
-            r'^themes$', views.dashboard, name='devhub.themes', kwargs={'theme': True}
-        ),
-        re_path(r'^feed$', views.feed, name='devhub.feed_all'),
-        # TODO: not necessary when devhub homepage is moved out of remora
-        re_path(r'^feed/all$', lambda r: redirect('devhub.feed_all', permanent=True)),
-        re_path(r'^feed/%s$' % ADDON_ID, views.feed, name='devhub.feed'),
-        re_path(r'^upload$', views.upload, name='devhub.upload'),
-        re_path(
-            r'^upload/unlisted$',
-            partial(views.upload, channel='unlisted'),
-            name='devhub.upload_unlisted',
-        ),
-        re_path(
-            r'^upload/([^/]+)(?:/([^/]+))?$',
-            views.upload_detail,
-            name='devhub.upload_detail',
-        ),
-        re_path(
-            r'^standalone-upload$',
-            partial(views.upload, is_standalone=True),
-            name='devhub.standalone_upload',
-        ),
-        re_path(
-            r'^standalone-upload-unlisted$',
-            partial(views.upload, is_standalone=True, channel='unlisted'),
-            name='devhub.standalone_upload_unlisted',
-        ),
-        re_path(
-            r'^standalone-upload/([^/]+)$',
-            views.standalone_upload_detail,
-            name='devhub.standalone_upload_detail',
-        ),
-        # URLs for a single add-on.
-        re_path(r'^addon/%s/' % ADDON_ID, include(detail_patterns)),
-        re_path(r'^ajax/addon/%s/' % ADDON_ID, include(ajax_patterns)),
-        # Old LWT Theme submission.
-        re_path(
-            r'^theme/submit/?$',
-            lambda r: redirect('devhub.submit.theme.agreement'),
-            name='devhub.submit.theme.old_lwt_flow',
-        ),
-        # Add-on SDK page
-        re_path(r'builder$', lambda r: redirect(views.MDN_BASE)),
-        # Developer docs
-        re_path(
-            r'docs/(?P<doc_name>[-_\w]+(?:/[-_\w]+)?)?$', views.docs, name='devhub.docs'
-        ),
-        # logout page
-        re_path(r'^logout', views.logout, name='devhub.logout'),
-        re_path(
-            r'^verify-email', views.email_verification, name='devhub.email_verification'
-        ),
-        re_path(
-            r'^survey_response/(?P<survey_id>\d+)/$',
-            views.survey_response,
-            name='devhub.survey_response',
-        ),
-    ],
-)
+urlpatterns = [
+    re_path(r'^$', views.index, name='devhub.index'),
+    re_path(r'', include(redirect_patterns)),
+    # Redirect people who have /addons/ instead of /addon/.
+    re_path(
+        r'^addons/\d+/.*', lambda r: redirect(r.path.replace('addons', 'addon', 1))
+    ),
+    # Add-on submission
+    re_path(
+        r'^addon/submit/(?:1)?$',
+        lambda r: redirect('devhub.submit.agreement', permanent=True),
+    ),
+    re_path(
+        r'^addon/submit/agreement$',
+        views.submit_addon,
+        name='devhub.submit.agreement',
+    ),
+    re_path(
+        r'^addon/submit/distribution$',
+        views.submit_addon_distribution,
+        name='devhub.submit.distribution',
+    ),
+    re_path(
+        r'^addon/submit/upload-(?P<channel>listed|unlisted)$',
+        views.submit_addon_upload,
+        name='devhub.submit.upload',
+    ),
+    # Theme-specific submission pages
+    re_path(
+        r'^addon/submit/theme/agreement$',
+        views.submit_theme,
+        name='devhub.submit.theme.agreement',
+    ),
+    re_path(
+        r'^addon/submit/theme/distribution$',
+        views.submit_theme_distribution,
+        name='devhub.submit.theme.distribution',
+    ),
+    re_path(
+        r'^addon/submit/theme/upload-(?P<channel>listed|unlisted)$',
+        views.submit_theme_upload,
+        name='devhub.submit.theme.upload',
+    ),
+    re_path(
+        r'^addon/submit/wizard-(?P<channel>listed|unlisted)$',
+        views.submit_addon_theme_wizard,
+        name='devhub.submit.wizard',
+    ),
+    # Submission API
+    re_path(
+        r'^addon/agreement/$',
+        views.developer_agreement,
+        name='devhub.developer_agreement',
+    ),
+    re_path(r'^addon/api/key/$', views.api_key, name='devhub.api_key'),
+    # Standalone validator:
+    re_path(r'^addon/validate/?$', views.validate_addon, name='devhub.validate_addon'),
+    # Redirect to /addons/ at the base.
+    re_path(r'^addon$', lambda r: redirect('devhub.addons', permanent=True)),
+    re_path(r'^addons$', views.dashboard, name='devhub.addons'),
+    re_path(r'^themes$', views.dashboard, name='devhub.themes', kwargs={'theme': True}),
+    re_path(r'^feed$', views.feed, name='devhub.feed_all'),
+    # TODO: not necessary when devhub homepage is moved out of remora
+    re_path(r'^feed/all$', lambda r: redirect('devhub.feed_all', permanent=True)),
+    re_path(r'^feed/%s$' % ADDON_ID, views.feed, name='devhub.feed'),
+    re_path(r'^upload$', views.upload, name='devhub.upload'),
+    re_path(
+        r'^upload/unlisted$',
+        partial(views.upload, channel='unlisted'),
+        name='devhub.upload_unlisted',
+    ),
+    re_path(
+        r'^upload/([^/]+)(?:/([^/]+))?$',
+        views.upload_detail,
+        name='devhub.upload_detail',
+    ),
+    re_path(
+        r'^standalone-upload$',
+        partial(views.upload, is_standalone=True),
+        name='devhub.standalone_upload',
+    ),
+    re_path(
+        r'^standalone-upload-unlisted$',
+        partial(views.upload, is_standalone=True, channel='unlisted'),
+        name='devhub.standalone_upload_unlisted',
+    ),
+    re_path(
+        r'^standalone-upload/([^/]+)$',
+        views.standalone_upload_detail,
+        name='devhub.standalone_upload_detail',
+    ),
+    # URLs for a single add-on.
+    re_path(r'^addon/%s/' % ADDON_ID, include(detail_patterns)),
+    re_path(r'^ajax/addon/%s/' % ADDON_ID, include(ajax_patterns)),
+    # Old LWT Theme submission.
+    re_path(
+        r'^theme/submit/?$',
+        lambda r: redirect('devhub.submit.theme.agreement'),
+        name='devhub.submit.theme.old_lwt_flow',
+    ),
+    # Add-on SDK page
+    re_path(r'builder$', lambda r: redirect(views.MDN_BASE)),
+    # Developer docs
+    re_path(
+        r'docs/(?P<doc_name>[-_\w]+(?:/[-_\w]+)?)?$', views.docs, name='devhub.docs'
+    ),
+    # logout page
+    re_path(r'^logout', views.logout, name='devhub.logout'),
+    re_path(
+        r'^verify-email', views.email_verification, name='devhub.email_verification'
+    ),
+    re_path(
+        r'^survey_response/(?P<survey_id>\d+)/$',
+        views.survey_response,
+        name='devhub.survey_response',
+    ),
+]
