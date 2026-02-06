@@ -179,7 +179,7 @@ class TestQueryFilter(FilterTestsBase):
                 'bool': {
                     'must': [
                         {'term': {'is_experimental': False}},
-                        {'terms': {'status': (4,)}},
+                        {'terms': {'status': [4,]}},
                         {'exists': {'field': 'current_version'}},
                         {'term': {'is_disabled': False}},
                     ]
@@ -425,7 +425,7 @@ class TestReviewedContentFilter(FilterTestsBase):
         assert 'must' not in qs['query']['bool']
         filter_ = qs['query']['bool']['filter']
 
-        assert {'terms': {'status': amo.APPROVED_STATUSES}} in filter_
+        assert {'terms': {'status': list(amo.APPROVED_STATUSES)}} in filter_
         assert {'exists': {'field': 'current_version'}} in filter_
         assert {'term': {'is_disabled': False}} in filter_
 
@@ -1527,7 +1527,7 @@ class TestCombinedFilter(FilterTestsBase):
         assert 'must_not' not in bool_
 
         filter_ = bool_['filter']
-        assert {'terms': {'status': amo.APPROVED_STATUSES}} in filter_
+        assert {'terms': {'status': list(amo.APPROVED_STATUSES)}} in filter_
         assert {'exists': {'field': 'current_version'}} in filter_
         assert {'term': {'is_disabled': False}} in filter_
 
@@ -1554,7 +1554,7 @@ class TestCombinedFilter(FilterTestsBase):
         assert 'must_not' not in bool_
 
         filter_ = bool_['filter']
-        assert {'terms': {'status': amo.APPROVED_STATUSES}} in filter_
+        assert {'terms': {'status': list(amo.APPROVED_STATUSES)}} in filter_
         assert {'exists': {'field': 'current_version'}} in filter_
         assert {'term': {'is_disabled': False}} in filter_
 
@@ -1572,7 +1572,7 @@ class TestCombinedFilter(FilterTestsBase):
         assert 'must_not' not in bool_
 
         filter_ = bool_['filter']
-        assert {'terms': {'status': amo.APPROVED_STATUSES}} in filter_
+        assert {'terms': {'status': list(amo.APPROVED_STATUSES)}} in filter_
         assert {'exists': {'field': 'current_version'}} in filter_
         assert {'term': {'is_disabled': False}} in filter_
 
