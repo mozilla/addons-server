@@ -366,9 +366,15 @@ class AbstractScannerResultAdminMixin:
 
     @admin.action(description='Block these add-ons')
     def block_addons_action(self, request, queryset):
-        guids = Addon.unfiltered.filter(
-            versions__scannerqueryresults__in=queryset.values_list('pk')
-        ).values_list('guid', flat=True).distinct()
+        related_name = self.model._meta.get_field('version').related_query_name()
+        guids = (
+            Addon.unfiltered.filter(
+                **{f'versions__{related_name}__in': queryset.values_list('pk')}
+            )
+            .values_list('guid', flat=True)
+            .distinct()
+            .order_by('guid')
+        )
         url = reverse('admin:blocklist_blocklistsubmission_add')
         # blocklist submission page expects guids separated by \n
         parameters = {'guids': '\n'.join(guids)}
@@ -376,9 +382,17 @@ class AbstractScannerResultAdminMixin:
 
     @admin.action(description='Search for authors of these add-ons')
     def search_for_authors_action(self, request, queryset):
-        userids = UserProfile.objects.filter(
-            addons__versions__scannerqueryresults__in=queryset.values_list('pk'),
-        ).values_list('pk', flat=True).distinct()
+        related_name = self.model._meta.get_field('version').related_query_name()
+        userids = (
+            UserProfile.objects.filter(
+                **{
+                    f'addons__versions__{related_name}__in': queryset.values_list('pk'),
+                }
+            )
+            .values_list('pk', flat=True)
+            .distinct()
+            .order_by('pk')
+        )
         url = reverse('admin:users_userprofile_changelist')
         parameters = {'q': ','.join(map(str, userids))}
         return HttpResponseRedirect(url + f'?{urlencode(parameters)}')

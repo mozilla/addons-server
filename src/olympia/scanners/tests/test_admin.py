@@ -4,7 +4,9 @@ from unittest import mock
 from urllib.parse import urljoin
 
 from django.conf import settings
+from django.contrib import admin
 from django.contrib.admin.sites import AdminSite
+from django.contrib.auth.models import AnonymousUser
 from django.test import RequestFactory
 from django.test.utils import override_settings
 from django.urls import reverse
@@ -88,6 +90,74 @@ class TestScannerResultAdmin(TestCase):
         assert response.status_code == 200
         html = pq(response.content)
         assert html('.column-result_actions').length == 1
+
+    def test_get_actions(self):
+        scanner_result_admin = ScannerResultAdmin(ScannerResult, admin.site)
+        request = RequestFactory().get('/')
+        request.user = AnonymousUser()
+        assert list(scanner_result_admin.get_actions(request).keys()) == []
+
+        request.user = user_factory()
+        assert list(scanner_result_admin.get_actions(request).keys()) == []
+
+        self.grant_permission(request.user, 'Users:Edit')
+        assert list(scanner_result_admin.get_actions(request).keys()) == [
+            'search_for_authors_action',
+        ]
+
+        self.grant_permission(request.user, 'Blocklist:Create')
+        assert list(scanner_result_admin.get_actions(request).keys()) == [
+            'block_addons_action',
+            'search_for_authors_action',
+        ]
+
+    def test_block_addons_action(self):
+        self.grant_permission(self.user, 'Blocklist:Create')
+        rule = ScannerRule.objects.create(name='my_rule', scanner=CUSTOMS)
+        version_factory(addon=addon_factory(guid='@guid1'))
+        addon_factory(guid='@guid2')
+        for version in Version.objects.all():
+            ScannerResult.objects.create(
+                scanner=CUSTOMS,
+                version=version,
+                results={'matchedRules': [rule.name]},
+            )
+        addon_factory(guid='@guid3')  # not matching, ignored.
+        qs = ScannerResult.objects.filter(matched_rules=rule)
+        request = RequestFactory().get('/')
+        request.user = self.user
+        scanner_result_admin = ScannerResultAdmin(ScannerResult, admin.site)
+        response = scanner_result_admin.block_addons_action(request, qs)
+        submission_url = reverse('admin:blocklist_blocklistsubmission_add')
+        query_string = '?guids=%40guid1%0A%40guid2'
+        assert response['location'] == submission_url + query_string
+
+    def test_search_for_authors_action(self):
+        self.grant_permission(self.user, 'Users:Edit')
+        rule = ScannerRule.objects.create(name='my_rule', scanner=CUSTOMS)
+        user1_1 = user_factory()
+        user1_2 = user_factory()
+        addon1 = addon_factory(users=[user1_1, user1_2])
+        version_factory(addon=addon1)
+        user2_1 = user_factory()
+        addon_factory(guid='@guid2', users=[user2_1])
+        addon_factory()  # somehow no author
+        addon_factory(users=[user1_1])  # user1_1 again.
+        for version in Version.objects.all():
+            ScannerResult.objects.create(
+                scanner=CUSTOMS,
+                version=version,
+                results={'matchedRules': [rule.name]},
+            )
+        addon_factory(users=[user_factory()])  # not matching, ignored.
+        qs = ScannerResult.objects.filter(matched_rules=rule)
+        request = RequestFactory().get('/')
+        request.user = self.user
+        scanner_result_admin = ScannerResultAdmin(ScannerResult, admin.site)
+        response = scanner_result_admin.search_for_authors_action(request, qs)
+        users_url = reverse('admin:users_userprofile_changelist')
+        query_string = f'?q={user1_1.pk}%2C{user1_2.pk}%2C{user2_1.pk}'
+        assert response['location'] == users_url + query_string
 
     def test_list_view_for_non_admins(self):
         rule = ScannerRule.objects.create(name='rule', scanner=CUSTOMS)
@@ -1650,6 +1720,74 @@ class TestScannerQueryResultAdmin(TestCase):
         response = self.client.get(self.list_url)
         html = pq(response.content)
         assert '/icon-yes.svg' in html('.field-is_file_signed img')[0].attrib['src']
+
+    def test_get_actions(self):
+        scanner_query_result_admin = ScannerQueryResultAdmin(
+            ScannerQueryResult, admin.site
+        )
+        request = RequestFactory().get('/')
+        request.user = AnonymousUser()
+        assert list(scanner_query_result_admin.get_actions(request).keys()) == []
+
+        request.user = user_factory()
+        assert list(scanner_query_result_admin.get_actions(request).keys()) == []
+
+        self.grant_permission(request.user, 'Users:Edit')
+        assert list(scanner_query_result_admin.get_actions(request).keys()) == [
+            'search_for_authors_action',
+        ]
+
+        self.grant_permission(request.user, 'Blocklist:Create')
+        assert list(scanner_query_result_admin.get_actions(request).keys()) == [
+            'block_addons_action',
+            'search_for_authors_action',
+        ]
+
+    def test_block_addons_action(self):
+        self.grant_permission(self.user, 'Blocklist:Create')
+        version_factory(addon=addon_factory(guid='@guid1'))
+        addon_factory(guid='@guid2')
+        for version in Version.objects.all():
+            self.scanner_query_result_factory(
+                version=version, scanner=YARA, matched_rule=self.rule
+            )
+        addon_factory(guid='@guid3')  # not matching, ignored.
+        qs = ScannerQueryResult.objects.filter(matched_rule=self.rule)
+        request = RequestFactory().get('/')
+        request.user = self.user
+        scanner_query_result_admin = ScannerQueryResultAdmin(
+            ScannerQueryResult, admin.site
+        )
+        response = scanner_query_result_admin.block_addons_action(request, qs)
+        submission_url = reverse('admin:blocklist_blocklistsubmission_add')
+        query_string = '?guids=%40guid1%0A%40guid2'
+        assert response['location'] == submission_url + query_string
+
+    def test_search_for_authors_action(self):
+        self.grant_permission(self.user, 'Users:Edit')
+        user1_1 = user_factory()
+        user1_2 = user_factory()
+        addon1 = addon_factory(users=[user1_1, user1_2])
+        version_factory(addon=addon1)
+        user2_1 = user_factory()
+        addon_factory(guid='@guid2', users=[user2_1])
+        addon_factory()  # somehow no author
+        addon_factory(users=[user1_1])  # user1_1 again.
+        for version in Version.objects.all():
+            self.scanner_query_result_factory(
+                version=version, scanner=YARA, matched_rule=self.rule
+            )
+        addon_factory(users=[user_factory()])  # not matching, ignored.
+        qs = ScannerQueryResult.objects.filter(matched_rule=self.rule)
+        request = RequestFactory().get('/')
+        request.user = self.user
+        scanner_query_result_admin = ScannerQueryResultAdmin(
+            ScannerQueryResult, admin.site
+        )
+        response = scanner_query_result_admin.search_for_authors_action(request, qs)
+        users_url = reverse('admin:users_userprofile_changelist')
+        query_string = f'?q={user1_1.pk}%2C{user1_2.pk}%2C{user2_1.pk}'
+        assert response['location'] == users_url + query_string
 
     def test_list_view_displays_narc_metadata(self):
         addon = addon_factory()

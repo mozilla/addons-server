@@ -107,9 +107,7 @@ class BannedUserContentInline(admin.TabularInline):
 
 @admin.register(UserProfile)
 class UserAdmin(AMOModelAdmin):
-    list_filter = (
-        'banned',
-    )
+    list_filter = ('banned',)
     list_display = (
         '__str__',
         'email',
