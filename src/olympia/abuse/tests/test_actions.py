@@ -786,7 +786,10 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
         assert second_activity.details == {'comments': self.decision.private_notes}
 
         counter = AddonApprovalsCounter.objects.get(addon=self.addon)
-        assert counter.last_content_review_pass is True
+        assert (
+            counter.content_review_status
+            == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.PASS
+        )
         self.assertCloseToNow(counter.last_content_review)
 
         # get this again, to replicate how send_notifications works
@@ -798,7 +801,8 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
 
     def test_content_approve_rejected_listing_content(self):
         AddonApprovalsCounter.objects.create(
-            addon=self.addon, last_content_review_pass=False
+            addon=self.addon,
+            content_review_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.REQUESTED,
         )
         self.addon.update(status=amo.STATUS_REJECTED)
         action = DECISION_ACTIONS.AMO_APPROVE
@@ -828,7 +832,10 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
         assert third_activity.log == amo.LOG.CHANGE_STATUS
 
         counter = AddonApprovalsCounter.objects.get(addon=self.addon)
-        assert counter.last_content_review_pass is True
+        assert (
+            counter.content_review_status
+            == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.PASS
+        )
         self.assertCloseToNow(counter.last_content_review)
 
         # get this again, to replicate how send_notifications works
@@ -1165,7 +1172,8 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
 
     def test_approve_appeal_success_but_listing_rejected(self):
         AddonApprovalsCounter.objects.create(
-            addon=self.addon, last_content_review_pass=False
+            addon=self.addon,
+            content_review_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.FAIL,
         )
         self.past_negative_decision.update(appeal_job=self.cinder_job)
         self._test_approve_appeal_or_override_but_listing_rejected(
@@ -1176,7 +1184,8 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
 
     def test_approve_override_success_but_listing_rejected(self):
         AddonApprovalsCounter.objects.create(
-            addon=self.addon, last_content_review_pass=False
+            addon=self.addon,
+            content_review_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.FAIL,
         )
         self.decision.update(override_of=self.past_negative_decision)
         self._test_approve_appeal_or_override_but_listing_rejected(
@@ -1305,7 +1314,8 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
     def test_approve_appeal_success_but_listing_rejected(self):
         self.addon.update(status=amo.STATUS_REJECTED)
         AddonApprovalsCounter.objects.create(
-            addon=self.addon, last_content_review_pass=False
+            addon=self.addon,
+            content_review_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.FAIL,
         )
         self.past_negative_decision.update(appeal_job=self.cinder_job)
         self._test_approve_appeal_or_override(ContentActionTargetAppealApprove)
@@ -1315,7 +1325,8 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
     def test_approve_override_success_but_listing_rejected(self):
         self.addon.update(status=amo.STATUS_REJECTED)
         AddonApprovalsCounter.objects.create(
-            addon=self.addon, last_content_review_pass=False
+            addon=self.addon,
+            content_review_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.FAIL,
         )
         self.decision.update(override_of=self.past_negative_decision)
         self._test_approve_appeal_or_override(ContentActionOverrideApprove)

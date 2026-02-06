@@ -417,7 +417,7 @@ class TestReviewHelper(TestReviewHelperBase):
         ]
         AddonApprovalsCounter.objects.create(
             addon=self.addon,
-            last_content_review_pass=False,
+            content_review_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.FAIL,
         )
         assert (
             list(
@@ -1922,17 +1922,19 @@ class TestReviewHelper(TestReviewHelperBase):
         self.sign_file_mock.reset()
         self.setup_data(amo.STATUS_REJECTED)
         AddonApprovalsCounter.objects.create(
-            addon=self.addon, last_content_review_pass=False
+            addon=self.addon,
+            content_review_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.FAIL,
         )
         AutoApprovalSummary.objects.update_or_create(
             version=self.review_version,
             defaults={'verdict': amo.AUTO_APPROVED, 'weight': 101},
         )
+        assert self.addon.status == amo.STATUS_REJECTED
 
         self.helper.handler.approve_latest_version()
 
-        assert self.addon.status == amo.STATUS_REJECTED
-        assert self.addon.versions.all()[0].file.status == (amo.STATUS_APPROVED)
+        assert self.addon.reload().status == amo.STATUS_REJECTED
+        assert self.addon.versions.all()[0].file.status == amo.STATUS_APPROVED
 
         assert len(mail.outbox) == 1
         message = mail.outbox[0]
@@ -1942,7 +1944,10 @@ class TestReviewHelper(TestReviewHelperBase):
         # AddonApprovalsCounter counter is now at 1 for this addon.
         approval_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
         assert approval_counter.counter == 1
-        assert approval_counter.last_content_review_pass is False  # hasn't changed
+        assert (
+            approval_counter.content_review_status
+            == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.FAIL
+        )  # hasn't changed
 
         self.sign_file_mock.assert_called_with(self.file)
         assert storage.exists(self.file.file.path)
@@ -1995,7 +2000,8 @@ class TestReviewHelper(TestReviewHelperBase):
     def test_nomination_but_listing_rejected_to_public_not_human(self):
         self.setup_data(amo.STATUS_REJECTED, human_review=False)
         approval_counter = AddonApprovalsCounter.objects.create(
-            addon=self.addon, last_content_review_pass=False
+            addon=self.addon,
+            content_review_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.FAIL,
         )
         self.sign_file_mock.reset()
 
@@ -3559,7 +3565,10 @@ class TestReviewHelper(TestReviewHelperBase):
         assert approvals_counter.counter == 0
         assert approvals_counter.last_human_review is None
         self.assertCloseToNow(approvals_counter.last_content_review)
-        assert approvals_counter.last_content_review_pass is True
+        assert (
+            approvals_counter.content_review_status
+            == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.PASS
+        )
         assert self.check_log_count(amo.LOG.CONFIRM_AUTO_APPROVED.id) == 0
         assert self.check_log_count(amo.LOG.APPROVE_LISTING_CONTENT.id) == 1
         activity = (
@@ -3604,7 +3613,10 @@ class TestReviewHelper(TestReviewHelperBase):
         assert approvals_counter.counter == 0
         assert approvals_counter.last_human_review is None
         self.assertCloseToNow(approvals_counter.last_content_review)
-        assert approvals_counter.last_content_review_pass is True
+        assert (
+            approvals_counter.content_review_status
+            == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.PASS
+        )
         assert self.check_log_count(amo.LOG.CONFIRM_AUTO_APPROVED.id) == 0
         assert self.check_log_count(amo.LOG.APPROVE_LISTING_CONTENT.id) == 1
         activity = (
@@ -3622,7 +3634,8 @@ class TestReviewHelper(TestReviewHelperBase):
     def test_approve_rejected_listing_content_review(self):
         self.grant_permission(self.user, 'Addons:ContentReview')
         approvals_counter = AddonApprovalsCounter.objects.create(
-            addon=self.addon, last_content_review_pass=False
+            addon=self.addon,
+            content_review_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.REQUESTED,
         )
         self.setup_data(
             amo.STATUS_REJECTED, file_status=amo.STATUS_APPROVED, content_review=True
@@ -3647,7 +3660,10 @@ class TestReviewHelper(TestReviewHelperBase):
         assert approvals_counter.reload().counter == 0
         assert approvals_counter.last_human_review is None
         self.assertCloseToNow(approvals_counter.last_content_review)
-        assert approvals_counter.last_content_review_pass is True
+        assert (
+            approvals_counter.content_review_status
+            == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.PASS
+        )
         assert self.check_log_count(amo.LOG.CONFIRM_AUTO_APPROVED.id) == 0
         assert self.check_log_count(amo.LOG.APPROVE_REJECTED_LISTING_CONTENT.id) == 1
         activity = (
@@ -3668,7 +3684,8 @@ class TestReviewHelper(TestReviewHelperBase):
     def test_approve_rejected_listing_content_review_with_policies(self):
         self.grant_permission(self.user, 'Addons:ContentReview')
         approvals_counter = AddonApprovalsCounter.objects.create(
-            addon=self.addon, last_content_review_pass=False
+            addon=self.addon,
+            content_review_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.REQUESTED,
         )
         self.setup_data(
             amo.STATUS_REJECTED, file_status=amo.STATUS_APPROVED, content_review=True
@@ -3697,7 +3714,10 @@ class TestReviewHelper(TestReviewHelperBase):
         assert approvals_counter.reload().counter == 0
         assert approvals_counter.last_human_review is None
         self.assertCloseToNow(approvals_counter.last_content_review)
-        assert approvals_counter.last_content_review_pass is True
+        assert (
+            approvals_counter.content_review_status
+            == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.PASS
+        )
         assert self.check_log_count(amo.LOG.CONFIRM_AUTO_APPROVED.id) == 0
         assert self.check_log_count(amo.LOG.APPROVE_REJECTED_LISTING_CONTENT.id) == 1
         activity = (
@@ -3743,7 +3763,10 @@ class TestReviewHelper(TestReviewHelperBase):
         assert approvals_counter.counter == 0
         assert approvals_counter.last_human_review is None
         assert approvals_counter.last_content_review is None
-        assert approvals_counter.last_content_review_pass is False
+        assert (
+            approvals_counter.content_review_status
+            == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.FAIL
+        )
         assert self.check_log_count(amo.LOG.REJECT_LISTING_CONTENT.id) == 1
         activity = (
             ActivityLog.objects.for_addons(self.addon)
@@ -3800,7 +3823,10 @@ class TestReviewHelper(TestReviewHelperBase):
         assert approvals_counter.counter == 0
         assert approvals_counter.last_human_review is None
         assert approvals_counter.last_content_review is None
-        assert approvals_counter.last_content_review_pass is False
+        assert (
+            approvals_counter.content_review_status
+            == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.FAIL
+        )
         assert self.check_log_count(amo.LOG.REJECT_LISTING_CONTENT.id) == 1
         activity = (
             ActivityLog.objects.for_addons(self.addon)

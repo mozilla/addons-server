@@ -699,9 +699,7 @@ class ContentActionRejectListingContent(ContentActionDisableAddon):
     def process_action(self, release_hold=False):
         if self.target.status not in (amo.STATUS_DISABLED, amo.STATUS_REJECTED):
             self.target.update(status=amo.STATUS_REJECTED)
-            AddonApprovalsCounter.objects.update_or_create(
-                addon=self.target, defaults={'last_content_review_pass': False}
-            )
+            AddonApprovalsCounter.reject_content_for_addon(self.target)
         return self.log_action(amo.LOG.REJECT_LISTING_CONTENT)
 
     def hold_action(self):
@@ -885,14 +883,8 @@ class ContentActionTargetAppealApprove(
                 and target.status == amo.STATUS_REJECTED
             ):
                 target_versions = target_versions.none()
-                AddonApprovalsCounter.objects.update_or_create(
-                    addon=target,
-                    defaults={
-                        'last_content_review': datetime.now(),
-                        'last_content_review_pass': True,
-                    },
-                )
-                # Call the function to correct it the status
+                AddonApprovalsCounter.approve_content_for_addon(target)
+                # Call update function to correct ihe status
                 target.update_status()
                 activity_log_action = amo.LOG.APPROVE_REJECTED_LISTING_CONTENT
 
@@ -966,13 +958,7 @@ class ContentActionApproveListingContent(AnyTargetMixin, ContentAction):
 
     def process_action(self, release_hold=False):
         if isinstance(self.target, Addon):
-            AddonApprovalsCounter.objects.update_or_create(
-                addon=self.target,
-                defaults={
-                    'last_content_review': datetime.now(),
-                    'last_content_review_pass': True,
-                },
-            )
+            AddonApprovalsCounter.approve_content_for_addon(self.target)
             if self.status == amo.STATUS_REJECTED:
                 self.decision.metadata['previous_status'] = self.status
                 self.decision.save(update_fields=['metadata'])

@@ -191,7 +191,8 @@ class TestVersion(TestCase):
 
     def test_version_delete_with_rejected_listing(self):
         AddonApprovalsCounter.objects.create(
-            addon=self.addon, last_content_review_pass=False
+            addon=self.addon,
+            content_review_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.FAIL,
         )
         response = self.client.post(self.delete_url, self.delete_data)
         assert response.status_code == 302
@@ -209,7 +210,8 @@ class TestVersion(TestCase):
 
     def test_disable_version_with_rejected_listing(self):
         AddonApprovalsCounter.objects.create(
-            addon=self.addon, last_content_review_pass=False
+            addon=self.addon,
+            content_review_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.FAIL,
         )
         self.test_disable_version()
         assert Addon.objects.get(id=3615).status == amo.STATUS_REJECTED

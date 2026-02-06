@@ -34,6 +34,7 @@ import olympia.core.logger
 from olympia import activity, amo, core
 from olympia.addons.utils import generate_addon_guid
 from olympia.amo.decorators import use_primary_db
+from olympia.amo.enum import EnumChoices
 from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import (
     BasePreview,
@@ -397,11 +398,13 @@ class AddonManager(ManagerBase):
             .valid()
             .filter(
                 _current_version__reviewerflags__pending_rejection__isnull=True,
-                addonapprovalscounter__last_content_review=None,
                 # Only content review extensions and dictionaries. See
                 # https://github.com/mozilla/addons-server/issues/11796 &
                 # https://github.com/mozilla/addons-server/issues/12065
                 type__in=(amo.ADDON_EXTENSION, amo.ADDON_DICT),
+            )
+            .exclude(
+                addonapprovalscounter__content_review_status__in=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.COMPLETE
             )
             .order_by('created')
         )
@@ -1298,7 +1301,8 @@ class Addon(OnChangeMixin, ModelBase):
         correct_status = self.status
         force_update = False
         if AddonApprovalsCounter.objects.filter(
-            addon=self, last_content_review_pass=False
+            addon=self,
+            content_review_status__in=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.REJECTED,
         ).exists():
             # If the content review failed, the status should stay as rejected
             correct_status = amo.STATUS_REJECTED
@@ -2408,14 +2412,31 @@ class AddonApprovalsCounter(ModelBase):
       add-on
     - last_content_review, the date of the last time a human fully reviewed the
       add-on content (not code).
-    - last_content_review_pass, a boolean indicating if the last content review passed.
+    - content_review_status, the status of the last content review.
     """
+
+    class CONTENT_REVIEW_STATUSES(EnumChoices):
+        UNREVIEWED = 0, 'Unreviewed'
+        CHANGED = 1, 'Pending, accepted content changed'
+        PASS = 2, 'Pass'
+        FAIL = 3, 'Fail'
+        REQUESTED = 4, 'Pending, New review requested'
+
+    CONTENT_REVIEW_STATUSES.add_subset('REJECTED', ('FAIL', 'REQUESTED'))
+    CONTENT_REVIEW_STATUSES.add_subset(
+        'PENDING', ('UNREVIEWED', 'CHANGED', 'REQUESTED')
+    )
+    CONTENT_REVIEW_STATUSES.add_subset('COMPLETE', ('PASS', 'FAIL'))
 
     addon = models.OneToOneField(Addon, primary_key=True, on_delete=models.CASCADE)
     counter = models.PositiveIntegerField(default=0)
     last_human_review = models.DateTimeField(null=True)
     last_content_review = models.DateTimeField(null=True, db_index=True)
-    last_content_review_pass = models.BooleanField(null=True, db_index=True)
+    content_review_status = models.SmallIntegerField(
+        choices=CONTENT_REVIEW_STATUSES.choices,
+        db_index=True,
+        default=CONTENT_REVIEW_STATUSES.UNREVIEWED,
+    )
 
     def __str__(self):
         return '%s: %d' % (str(self.pk), self.counter) if self.pk else ''
@@ -2433,12 +2454,16 @@ class AddonApprovalsCounter(ModelBase):
             'counter': 1,
             'last_human_review': now,
             'last_content_review': now,
+            'content_review_status': cls.CONTENT_REVIEW_STATUSES.PASS,
         }
         # TODO: rewrite this using update_or_create when we're on django5.2
         # - it supports seperate create and update defaults.
         obj, created = cls.objects.get_or_create(addon=addon, defaults=data)
         if not created:
             data['counter'] = F('counter') + 1
+            if obj.content_review_status == cls.CONTENT_REVIEW_STATUSES.FAIL:
+                # if they failed content review, they have to request a new review.
+                del data['content_review_status']
             obj.update(**data)
         return obj
 
@@ -2453,13 +2478,33 @@ class AddonApprovalsCounter(ModelBase):
     @classmethod
     def approve_content_for_addon(cls, addon):
         """
-        Set last_content_review and last_content_review_pass to True for this addon.
+        Set last_content_review and content_review_status to
+        CONTENT_REVIEW_STATUSES.PASS for this addon.
         """
         obj, _ = cls.objects.update_or_create(
             addon=addon,
             defaults={
                 'last_content_review': datetime.now(),
-                'last_content_review_pass': True,
+                'content_review_status': (
+                    AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.PASS
+                ),
+            },
+        )
+        return obj
+
+    @classmethod
+    def reject_content_for_addon(cls, addon):
+        """
+        Set content_review_status to CONTENT_REVIEW_STATUSES.FAIL for this
+        addon.
+        """
+        obj, _ = cls.objects.update_or_create(
+            addon=addon,
+            defaults={
+                'last_content_review': None,
+                'content_review_status': (
+                    AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.FAIL
+                ),
             },
         )
         return obj
@@ -2470,8 +2515,29 @@ class AddonApprovalsCounter(ModelBase):
         Reset the last_content_review date for this addon so it triggers
         another review.
         """
-        obj, _ = cls.objects.update_or_create(
+        obj, created = cls.objects.update_or_create(
             addon=addon, defaults={'last_content_review': None}
+        )
+        if (
+            not created
+            and obj.content_review_status == cls.CONTENT_REVIEW_STATUSES.PASS
+        ):
+            obj.update(content_review_status=cls.CONTENT_REVIEW_STATUSES.CHANGED)
+        assert obj.last_content_review is None
+        return obj
+
+    @classmethod
+    def request_new_content_review_for_addon(cls, addon):
+        """
+        Set content_review_status to CONTENT_REVIEW_STATUSES.REQUESTED for this addon.
+        """
+        obj, _ = cls.objects.update_or_create(
+            addon=addon,
+            defaults={
+                'content_review_status': (
+                    AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.REQUESTED
+                ),
+            },
         )
         return obj
 

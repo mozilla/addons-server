@@ -2187,11 +2187,12 @@ class TestContentReviewQueue(QueueTest):
             confirmed=True,
         )
         AddonApprovalsCounter.objects.create(
-            addon=extra_addon1, last_content_review=self.days_ago(370)
+            addon=extra_addon1,
+            last_content_review=self.days_ago(370),
+            content_review_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.PASS,
         )
 
-        # This one is quite similar, except its last content review is even
-        # older..
+        # This add-on was reviewed and failed content review.
         extra_addon2 = addon_factory(name='Extra Addön 2')
         AutoApprovalSummary.objects.create(
             version=extra_addon2.current_version,
@@ -2199,7 +2200,9 @@ class TestContentReviewQueue(QueueTest):
             confirmed=True,
         )
         AddonApprovalsCounter.objects.create(
-            addon=extra_addon2, last_content_review=self.days_ago(842)
+            addon=extra_addon2,
+            last_content_review=None,
+            content_review_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.FAIL,
         )
 
         # Has been auto-approved, but that content has been approved by
@@ -2211,37 +2214,67 @@ class TestContentReviewQueue(QueueTest):
             confirmed=True,
         )
         AddonApprovalsCounter.objects.create(
-            addon=extra_addon3, last_content_review=self.days_ago(1)
+            addon=extra_addon3,
+            last_content_review=self.days_ago(1),
+            content_review_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.PASS,
         )
 
-        # Those should appear in the queue
+        ### The following should appear in the queue
         # Has not been auto-approved.
-        addon1 = addon_factory(name='Addôn 1', created=self.days_ago(4))
-
+        addon1 = addon_factory(name='Addôn 1', created=self.days_ago(6))
+        # No AddonApprovalsCounter too.
         # Has not been auto-approved either, only dry run.
-        addon2 = addon_factory(name='Addôn 2', created=self.days_ago(3))
+        addon2 = addon_factory(name='Addôn 2', created=self.days_ago(5))
         AutoApprovalSummary.objects.create(
             version=addon2.current_version,
             verdict=amo.WOULD_HAVE_BEEN_AUTO_APPROVED,
         )
+        # No AddonApprovalsCounter too.
 
         # This one has never been content-reviewed.
         addon3 = addon_factory(
             name='Addön 3',
-            created=self.days_ago(2),
+            created=self.days_ago(4),
         )
         AutoApprovalSummary.objects.create(
             version=addon3.current_version, verdict=amo.AUTO_APPROVED, confirmed=True
         )
-        AddonApprovalsCounter.objects.create(addon=addon3, last_content_review=None)
+        AddonApprovalsCounter.objects.create(
+            addon=addon3,
+            last_content_review=None,
+            content_review_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.UNREVIEWED,
+        )
 
-        # This one has never been content reviewed either, and it does not even
+        # This one has never been content reviewed either, and it does not
         # have an AddonApprovalsCounter.
-        addon4 = addon_factory(name='Addön 4', created=self.days_ago(1))
+        addon4 = addon_factory(name='Addön 4', created=self.days_ago(3))
         AutoApprovalSummary.objects.create(
             version=addon4.current_version, verdict=amo.AUTO_APPROVED, confirmed=True
         )
         assert not AddonApprovalsCounter.objects.filter(addon=addon4).exists()
+
+        # This add-on was reviewed previously, but has changed content since
+        addon5 = addon_factory(
+            name='Addön 5',
+            created=self.days_ago(2),
+        )
+        AddonApprovalsCounter.objects.create(
+            addon=addon5,
+            last_content_review=None,
+            content_review_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.CHANGED,
+        )
+
+        # And this add-on was reviewed and rejected, but the developer requested a
+        # new review
+        addon6 = addon_factory(
+            name='Addön 6',
+            created=self.days_ago(1),
+        )
+        AddonApprovalsCounter.objects.create(
+            addon=addon6,
+            last_content_review=None,
+            content_review_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.REQUESTED,
+        )
 
         # Those should *not* appear in the queue
         # Has not been auto-approved but themes, langpacks and search plugins
@@ -2253,7 +2286,7 @@ class TestContentReviewQueue(QueueTest):
 
         # Addons with no last_content_review date, ordered by
         # their creation date, older first.
-        self.expected_addons = [addon1, addon2, addon3, addon4]
+        self.expected_addons = [addon1, addon2, addon3, addon4, addon5, addon6]
         self.expected_versions = self.get_expected_versions(self.expected_addons)
 
     def test_only_viewable_with_specific_permission(self):
@@ -2270,7 +2303,7 @@ class TestContentReviewQueue(QueueTest):
     def test_results(self):
         self.login_with_permission()
         self.generate_files()
-        with self.assertNumQueries(14):
+        with self.assertNumQueries(16):
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
             # - 1 for the current queue count for pagination purposes
@@ -2279,7 +2312,7 @@ class TestContentReviewQueue(QueueTest):
             #     the important bit)
             # - 2 for config items (motd / site notice)
             # - 1 for my add-ons in user menu
-            # - 4 for promoted group queries
+            # - 6 for promoted group queries
             self._test_results()
 
     def test_queue_layout(self):
@@ -2287,7 +2320,7 @@ class TestContentReviewQueue(QueueTest):
         self.generate_files()
 
         self._test_queue_layout(
-            'Content Review', tab_position=0, total_addons=4, total_queues=1, per_page=1
+            'Content Review', tab_position=0, total_addons=6, total_queues=1, per_page=1
         )
 
     def test_pending_rejection_filtered_out(self):
@@ -4459,8 +4492,8 @@ class TestReview(ReviewBase):
         ).get()
         assert a_log.details['comments'] == ''
         assert (
-            AddonApprovalsCounter.objects.get(addon=self.addon).last_content_review_pass
-            is True
+            AddonApprovalsCounter.objects.get(addon=self.addon).content_review_status
+            == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.PASS
         )
         self.assert3xx(response, content_url)
 
@@ -4472,7 +4505,12 @@ class TestReview(ReviewBase):
             status=201,
         )
         assert AddonApprovalsCounter.objects.update_or_create(
-            addon=self.addon, defaults={'last_content_review_pass': False}
+            addon=self.addon,
+            defaults={
+                'content_review_status': (
+                    AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.REQUESTED
+                )
+            },
         )
         self.addon.update(status=amo.STATUS_REJECTED)
         GroupUser.objects.filter(user=self.reviewer).all().delete()
@@ -4497,8 +4535,8 @@ class TestReview(ReviewBase):
         ).get()
         assert a_log.details['comments'] == ''
         assert (
-            AddonApprovalsCounter.objects.get(addon=self.addon).last_content_review_pass
-            is True
+            AddonApprovalsCounter.objects.get(addon=self.addon).content_review_status
+            == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.PASS
         )
         self.assert3xx(response, content_url)
 
@@ -4549,8 +4587,8 @@ class TestReview(ReviewBase):
         assert a_log.details['comments'] == 'Reject does support comments'
         self.assert3xx(response, content_url)
         assert (
-            AddonApprovalsCounter.objects.get(addon=self.addon).last_content_review_pass
-            is False
+            AddonApprovalsCounter.objects.get(addon=self.addon).content_review_status
+            == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.FAIL
         )
         assert (
             responses.calls[0].request.url
