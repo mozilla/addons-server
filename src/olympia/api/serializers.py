@@ -5,7 +5,7 @@ from datetime import datetime
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 
-from elasticsearch_dsl.response.hit import Hit
+from elasticsearch.dsl.response.hit import Hit
 from rest_framework import serializers
 
 from olympia import amo

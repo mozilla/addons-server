@@ -58,10 +58,10 @@ updates:
     - ">= 6"
   - dependency-name: elasticsearch
     versions:
-    - ">= 8"
-  - dependency-name: elasticsearch-dsl
+    - ">= 9"
+  - dependency-name: elastic-transport
     versions:
-    - ">= 8"
+    - ">= 9"
   - dependency-name: kombu
     versions:
     - ">= 6"

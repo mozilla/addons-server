@@ -8,7 +8,7 @@ from django.db import transaction
 from django.db.models import Q, Value
 from django.db.models.functions import Collate
 
-from elasticsearch_dsl import Search
+from elasticsearch.dsl import Search
 
 import olympia.core
 from olympia import activity, amo
