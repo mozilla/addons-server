@@ -61,6 +61,6 @@
     "stylelint-config-standard-less": "^4.0.1",
     "vite": "^7.3.1",
     "vitest": "^4.0.18",
-    "zod": "^3.24.2"
+    "zod": "^4.3.6"
   }
 }
