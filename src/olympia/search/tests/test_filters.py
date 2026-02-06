@@ -179,7 +179,7 @@ class TestQueryFilter(FilterTestsBase):
                 'bool': {
                     'must': [
                         {'term': {'is_experimental': False}},
-                        {'terms': {'status': [4,]}},
+                        {'terms': {'status': [4]}},
                         {'exists': {'field': 'current_version'}},
                         {'term': {'is_disabled': False}},
                     ]
