@@ -1291,11 +1291,11 @@ msgstr "{user} hesabının {0} özelliği güncellendi."
 #: src/olympia/constants/activity.py:1279
 #, python-brace-format
 msgid "{addon} listing content approved."
-msgstr ""
+msgstr "{addon} sayfa içeriği onaylandı."
 
 #: src/olympia/constants/activity.py:1281
 msgid "Rejected listing approved"
-msgstr ""
+msgstr "Reddedilen listeleme onaylandı"
 
 #: src/olympia/constants/activity.py:1293
 #, python-brace-format
@@ -1304,7 +1304,7 @@ msgstr "{addon} {version} sayfa içeriği reddedildi."
 
 #: src/olympia/constants/activity.py:1294
 msgid "Listing rejected"
-msgstr ""
+msgstr "Listeleme reddedildi"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
