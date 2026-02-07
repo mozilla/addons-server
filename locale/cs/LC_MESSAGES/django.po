@@ -1296,7 +1296,7 @@ msgstr "Obsah stránky doplňku {addon} byl schválen."
 
 #: src/olympia/constants/activity.py:1281
 msgid "Rejected listing approved"
-msgstr "Odmítnutý zápis schválen"
+msgstr "Odmítnutá stránka byla schválena"
 
 #: src/olympia/constants/activity.py:1293
 #, python-brace-format
@@ -1305,7 +1305,7 @@ msgstr "Obsah stránky doplňku {addon} byl zamítnut."
 
 #: src/olympia/constants/activity.py:1294
 msgid "Listing rejected"
-msgstr "Nabídka zamítnuta"
+msgstr "Stránka zamítnuta"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
