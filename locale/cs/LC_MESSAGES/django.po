@@ -1292,7 +1292,7 @@ msgstr "U účtu {user} byla aktualizována vlastnost {0}."
 #: src/olympia/constants/activity.py:1279
 #, python-brace-format
 msgid "{addon} listing content approved."
-msgstr "Obsah stránky {addon} byl schválen."
+msgstr "Obsah stránky doplňku {addon} byl schválen."
 
 #: src/olympia/constants/activity.py:1281
 msgid "Rejected listing approved"
