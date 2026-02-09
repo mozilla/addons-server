@@ -484,10 +484,12 @@ class CSPMiddleware(CSPMiddlewareUpstream):
     def get_policy_parts(self, request, response, report_only=False):
         policy_parts = super().get_policy_parts(request, response, report_only)
 
-        if request.path.startswith('/en-US/admin/models/'):
+        # We set path_info in LocaleAndAppURLMiddleware to not include the
+        # locale part.
+        if request.path_info.startswith('/admin/models/'):
             policy_parts.update = {
                 'script-src': (
-                    f'{settings.INTERNAL_SITE_URL}/en-US/admin/models/jsi18n/'
+                    f'{settings.INTERNAL_SITE_URL}/{request.LANG}/admin/models/jsi18n/'
                 ),
             }
 

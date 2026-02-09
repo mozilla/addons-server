@@ -28,6 +28,23 @@ class TestCSPHeaders(TestCase):
         ]
         assert ' '.join(expected) + ';' in response['content-security-policy']
 
+    def test_admin_csp_different_locale(self):
+        user = user_factory(email='me@mozilla.com')
+        self.grant_permission(user, '*:*')
+        self.client.force_login(user)
+        with self.activate('fr'):
+            url = reverse('admin:index')
+        response = self.client.get(url, follow=True)
+        assert response.status_code == 200
+        self._test_for_specific_csp_settings(response)
+        # Extra for the admin
+        expected = [
+            'script-src',
+            *settings.CONTENT_SECURITY_POLICY['DIRECTIVES']['script-src'],
+            'http://testserver/fr/admin/models/jsi18n/',
+        ]
+        assert ' '.join(expected) + ';' in response['content-security-policy']
+
     def test_developers_csp(self):
         response = self.client.get('/en-US/developers/')
         assert response.status_code == 200
