@@ -1017,7 +1017,9 @@ def developer_profile(request, user_id):
         request,
         'reviewers/developer_profile.html',
         context={
-            'is_user_admin': acl.action_allowed_for(request.user, amo.permissions.USERS_EDIT),
+            'is_user_admin': acl.action_allowed_for(
+                request.user, amo.permissions.USERS_EDIT
+            ),
             'developer': developer,
             'addonusers_pager': addonusers_pager,
         },

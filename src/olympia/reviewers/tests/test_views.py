@@ -2396,8 +2396,8 @@ class ReviewBase(QueueTest):
         self.reviewer.update(display_name='A Reviêwer')
         self.url = reverse('reviewers.review', args=[self.addon.pk])
         self.listed_url = reverse('reviewers.review', args=['listed', self.addon.pk])
-
-        AddonUser.objects.create(addon=self.addon, user_id=999)
+        self.addon_author = UserProfile.objects.get(pk=999)
+        AddonUser.objects.create(addon=self.addon, user_id=self.addon_author.pk)
 
     def get_addon(self):
         return Addon.objects.get(pk=self.addon.pk)
@@ -3458,12 +3458,19 @@ class TestReview(ReviewBase):
             ('Listed Review Page', reverse('reviewers.review', args=(self.addon.id,))),
             ('Edit', self.addon.get_dev_url()),
             ('Admin Page', reverse('admin:addons_addon_change', args=[self.addon.id])),
+            (
+                'Author(s) Admin List Page',
+                reverse('admin:users_userprofile_changelist')
+                + f'?q={self.addon_author.id}',
+            ),
             ('Statistics', reverse('stats.overview', args=[self.addon.id])),
         ]
         check_links(expected, doc('#actions-addon a'))
 
     def test_action_links_as_admin(self):
         self.login_as_admin()
+        another_author = user_factory()
+        self.addon.authors.add(another_author)
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -3475,6 +3482,11 @@ class TestReview(ReviewBase):
             ),
             ('Edit', self.addon.get_dev_url()),
             ('Admin Page', reverse('admin:addons_addon_change', args=[self.addon.id])),
+            (
+                'Author(s) Admin List Page',
+                reverse('admin:users_userprofile_changelist')
+                + f'?q={self.addon_author.id},{another_author.id}',
+            ),
             ('Statistics', reverse('stats.overview', args=[self.addon.id])),
         ]
         check_links(expected, doc('#actions-addon a'))
@@ -3494,6 +3506,11 @@ class TestReview(ReviewBase):
             ),
             ('Edit', self.addon.get_dev_url()),
             ('Admin Page', reverse('admin:addons_addon_change', args=[self.addon.id])),
+            (
+                'Author(s) Admin List Page',
+                reverse('admin:users_userprofile_changelist')
+                + f'?q={self.addon_author.id}',
+            ),
             ('Statistics', reverse('stats.overview', args=[self.addon.id])),
         ]
         check_links(expected, doc('#actions-addon a'))
@@ -3522,6 +3539,11 @@ class TestReview(ReviewBase):
             ),
             ('Edit', self.addon.get_dev_url()),
             ('Admin Page', reverse('admin:addons_addon_change', args=[self.addon.id])),
+            (
+                'Author(s) Admin List Page',
+                reverse('admin:users_userprofile_changelist')
+                + f'?q={self.addon_author.id}',
+            ),
             ('Statistics', reverse('stats.overview', args=[self.addon.id])),
         ]
         check_links(expected, doc('#actions-addon a'))
@@ -3548,6 +3570,11 @@ class TestReview(ReviewBase):
             ),
             ('Edit', self.addon.get_dev_url()),
             ('Admin Page', reverse('admin:addons_addon_change', args=[self.addon.id])),
+            (
+                'Author(s) Admin List Page',
+                reverse('admin:users_userprofile_changelist')
+                + f'?q={self.addon_author.id}',
+            ),
             ('Statistics', reverse('stats.overview', args=[self.addon.id])),
         ]
         check_links(expected, doc('#actions-addon a'))
@@ -3574,6 +3601,11 @@ class TestReview(ReviewBase):
             ),
             ('Edit', self.addon.get_dev_url()),
             ('Admin Page', reverse('admin:addons_addon_change', args=[self.addon.id])),
+            (
+                'Author(s) Admin List Page',
+                reverse('admin:users_userprofile_changelist')
+                + f'?q={self.addon_author.id}',
+            ),
             ('Statistics', reverse('stats.overview', args=[self.addon.id])),
         ]
         check_links(expected, doc('#actions-addon a'))
@@ -3602,6 +3634,11 @@ class TestReview(ReviewBase):
                 reverse('reviewers.review', args=('unlisted', self.addon.id)),
             ),
             ('Admin Page', reverse('admin:addons_addon_change', args=[self.addon.id])),
+            (
+                'Author(s) Admin List Page',
+                reverse('admin:users_userprofile_changelist')
+                + f'?q={self.addon_author.id}',
+            ),
             ('Statistics', reverse('stats.overview', args=[self.addon.id])),
         ]
         check_links(expected, doc('#actions-addon a'))
@@ -3627,6 +3664,11 @@ class TestReview(ReviewBase):
                 reverse('reviewers.review', args=('content', self.addon.id)),
             ),
             ('Admin Page', reverse('admin:addons_addon_change', args=[self.addon.id])),
+            (
+                'Author(s) Admin List Page',
+                reverse('admin:users_userprofile_changelist')
+                + f'?q={self.addon_author.id}',
+            ),
             ('Statistics', reverse('stats.overview', args=[self.addon.id])),
         ]
         check_links(expected, doc('#actions-addon a'))
@@ -6260,6 +6302,35 @@ class TestReview(ReviewBase):
             response,
             f'<a href="{unlisted_profile_url}"'
             f'class="is_unlisted">{unlisted_author.name}</a>',
+        )
+
+    def test_links_to_developer_admin_page(self):
+        self.login_as_admin()
+        author_admin_url = reverse(
+            'admin:users_userprofile_change', args=(self.addon_author.id,)
+        )
+        author_profile_url = reverse(
+            'reviewers.developer_profile', args=(self.addon_author.id,)
+        )
+
+        another_author = user_factory()
+        another_author_admin_url = reverse(
+            'admin:users_userprofile_change', args=(another_author.id,)
+        )
+        another_author_profile_url = reverse(
+            'reviewers.developer_profile', args=(another_author.id,)
+        )
+        AddonUser.objects.create(addon=self.addon, user=another_author)
+
+        response = self.client.get(self.url)
+
+        self.assertContains(
+            response,
+            f'<a href="{author_profile_url}">{self.addon_author.name}</a> [<a href="{author_admin_url}">admin</a>],',
+        )
+        self.assertContains(
+            response,
+            f'<a href="{another_author_profile_url}">{another_author.name}</a> [<a href="{another_author_admin_url}">admin</a>]',
         )
 
     def test_displayed_metadata(self):
