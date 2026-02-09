@@ -367,17 +367,18 @@ class AbstractScannerResultAdminMixin:
     @admin.action(description='Block these add-ons')
     def block_addons_action(self, request, queryset):
         related_name = self.model._meta.get_field('version').related_query_name()
-        guids = (
+        addonids = (
             Addon.unfiltered.filter(
                 **{f'versions__{related_name}__in': queryset.values_list('pk')}
             )
-            .values_list('guid', flat=True)
+            .values_list('pk', flat=True)
             .distinct()
-            .order_by('guid')
+            .order_by('pk')
         )
         url = reverse('admin:blocklist_blocklistsubmission_add')
-        # blocklist submission page expects guids separated by \n
-        parameters = {'guids': '\n'.join(guids)}
+        # Use `~` as the delimiter because it doesn't have to be quoted so we
+        # can cram more ids in an URL.
+        parameters = {'addons': '~'.join(map(str, addonids))}
         return HttpResponseRedirect(url + f'?{urlencode(parameters)}')
 
     @admin.action(description='Search for authors of these add-ons')
@@ -896,6 +897,7 @@ class ScannerQueryResultAdmin(AbstractScannerResultAdminMixin, AMOModelAdmin):
             return obj.version.addon.average_daily_users
         return '-'
 
+    addon_adi.short_description = 'Add-on ADI'
     addon_adi.admin_order_field = 'version__addon__average_daily_users'
 
     def formatted_channel(self, obj):

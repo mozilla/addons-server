@@ -114,22 +114,23 @@ class TestScannerResultAdmin(TestCase):
     def test_block_addons_action(self):
         self.grant_permission(self.user, 'Blocklist:Create')
         rule = ScannerRule.objects.create(name='my_rule', scanner=CUSTOMS)
-        version_factory(addon=addon_factory(guid='@guid1'))
-        addon_factory(guid='@guid2')
+        addon1 = addon_factory()
+        version_factory(addon=addon1)
+        addon2 = addon_factory()
         for version in Version.objects.all():
             ScannerResult.objects.create(
                 scanner=CUSTOMS,
                 version=version,
                 results={'matchedRules': [rule.name]},
             )
-        addon_factory(guid='@guid3')  # not matching, ignored.
+        addon_factory()  # not matching, ignored.
         qs = ScannerResult.objects.filter(matched_rules=rule)
         request = RequestFactory().get('/')
         request.user = self.user
         scanner_result_admin = ScannerResultAdmin(ScannerResult, admin.site)
         response = scanner_result_admin.block_addons_action(request, qs)
         submission_url = reverse('admin:blocklist_blocklistsubmission_add')
-        query_string = '?guids=%40guid1%0A%40guid2'
+        query_string = f'?addons={addon1.pk}~{addon2.pk}'
         assert response['location'] == submission_url + query_string
 
     def test_search_for_authors_action(self):
@@ -1745,13 +1746,14 @@ class TestScannerQueryResultAdmin(TestCase):
 
     def test_block_addons_action(self):
         self.grant_permission(self.user, 'Blocklist:Create')
-        version_factory(addon=addon_factory(guid='@guid1'))
-        addon_factory(guid='@guid2')
+        addon1 = addon_factory()
+        version_factory(addon=addon1)
+        addon2 = addon_factory()
         for version in Version.objects.all():
             self.scanner_query_result_factory(
                 version=version, scanner=YARA, matched_rule=self.rule
             )
-        addon_factory(guid='@guid3')  # not matching, ignored.
+        addon_factory()  # not matching, ignored.
         qs = ScannerQueryResult.objects.filter(matched_rule=self.rule)
         request = RequestFactory().get('/')
         request.user = self.user
@@ -1760,7 +1762,7 @@ class TestScannerQueryResultAdmin(TestCase):
         )
         response = scanner_query_result_admin.block_addons_action(request, qs)
         submission_url = reverse('admin:blocklist_blocklistsubmission_add')
-        query_string = '?guids=%40guid1%0A%40guid2'
+        query_string = f'?addons={addon1.pk}~{addon2.pk}'
         assert response['location'] == submission_url + query_string
 
     def test_search_for_authors_action(self):
