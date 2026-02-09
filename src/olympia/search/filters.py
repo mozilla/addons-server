@@ -7,7 +7,7 @@ from django.utils.http import urlsafe_base64_decode
 from django.utils.translation import gettext
 
 import colorgram
-from elasticsearch_dsl import Q, query
+from elasticsearch.dsl import Q, query
 from rest_framework import serializers
 from rest_framework.filters import BaseFilterBackend
 from waffle import switch_is_active

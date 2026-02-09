@@ -5,7 +5,8 @@ from copy import deepcopy
 from django.conf import settings
 from django.core.management.base import CommandError
 
-from elasticsearch import Elasticsearch, TransportError, helpers, transport
+from elasticsearch import Elasticsearch, helpers, transport
+from elasticsearch.exceptions import NotFoundError
 
 from .models import Reindexing
 
@@ -74,7 +75,7 @@ def unindex_objects(ids, indexer_class):
     for id_ in ids:
         try:
             es.delete(index=index, id=id_)
-        except TransportError:
+        except NotFoundError:
             # We ignore already deleted objects.
             pass
 
