@@ -2374,14 +2374,6 @@ class TestCallWebhooks(UploadMixin, TestCase):
         # Call the webhooks.
         call_webhooks(WEBHOOK_DURING_VALIDATION, payload)
 
-        assert _call_webhook_mock.called
-        assert _call_webhook_mock.call_count == 2
-        _call_webhook_mock.assert_has_calls(
-            [
-                mock.call(webhook=webhook_1, payload=payload),
-                mock.call(webhook=webhook_3, payload=payload),
-            ]
-        )
         results = ScannerResult.objects.all()
         assert len(results) == 2
         for result in results:
@@ -2389,6 +2381,27 @@ class TestCallWebhooks(UploadMixin, TestCase):
             assert result.results == returned_data
         assert results[0].webhook_event == event_1
         assert results[1].webhook_event == event_3
+
+        assert _call_webhook_mock.called
+        assert _call_webhook_mock.call_count == 2
+        _call_webhook_mock.assert_has_calls(
+            [
+                mock.call(
+                    webhook=webhook_1,
+                    payload={
+                        **payload,
+                        'scanner_result_url': f'http://testserver/api/v5/scanner/results/{results[0].pk}/',
+                    },
+                ),
+                mock.call(
+                    webhook=webhook_3,
+                    payload={
+                        **payload,
+                        'scanner_result_url': f'http://testserver/api/v5/scanner/results/{results[1].pk}/',
+                    },
+                ),
+            ]
+        )
 
     @mock.patch('olympia.scanners.tasks._call_webhook')
     def test_call_webhooks_raises(self, _call_webhook_mock):

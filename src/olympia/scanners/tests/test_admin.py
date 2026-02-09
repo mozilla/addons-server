@@ -63,7 +63,6 @@ from olympia.scanners.models import (
     ScannerWebhookEvent,
 )
 from olympia.scanners.templatetags.scanners import format_scanners_data
-from olympia.users.models import UserProfile
 from olympia.versions.models import Version
 
 
@@ -2502,9 +2501,7 @@ class TestScannerWebhookAdmin(TestCase):
 
     def test_service_account_with_service_account(self):
         webhook = ScannerWebhook.objects.create(name='some service')
-        user = UserProfile.objects.get_service_account(
-            name=webhook.service_account_name
-        )
+        user = webhook.service_account
 
         service_account_html = self.admin.service_account(webhook)
         assert user.username in service_account_html
@@ -2521,10 +2518,7 @@ class TestScannerWebhookAdmin(TestCase):
         )
 
         webhook = ScannerWebhook.objects.last()
-        user = UserProfile.objects.get_service_account(
-            name=webhook.service_account_name
-        )
-        api_key = APIKey.get_jwt_key(user=user)
+        api_key = APIKey.get_jwt_key(user=webhook.service_account)
         assert webhook.name == 'scanner-name'
         assert b'Please note the JWT keys' in response.content
         assert api_key.key.encode() in response.content

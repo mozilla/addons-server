@@ -294,7 +294,7 @@ class ScannerWebhook(ModelBase):
 
     def save(self, *args, **kwargs):
         service_account, created = UserProfile.objects.get_or_create_service_account(
-            name=self.service_account_name,
+            name=self._service_account_name,
             notes=(
                 'Service account automatically created for '
                 f'the "{self.name}" scanner webhook.'
@@ -308,8 +308,12 @@ class ScannerWebhook(ModelBase):
         return super().save(*args, **kwargs)
 
     @property
-    def service_account_name(self):
+    def _service_account_name(self):
         return f'webhook-{self.name}'
+
+    @property
+    def service_account(self):
+        return UserProfile.objects.get_service_account(self._service_account_name)
 
     def __str__(self):
         return self.name
@@ -365,6 +369,10 @@ class ScannerResult(AbstractScannerResult):
     @classproperty
     def rule_model(self):
         return self.matched_rules.rel.model
+
+    @property
+    def webhook(self):
+        return self.webhook_event.webhook if self.webhook_event else None
 
     def get_rules_queryset(self):
         # See: https://github.com/mozilla/addons-server/issues/13143

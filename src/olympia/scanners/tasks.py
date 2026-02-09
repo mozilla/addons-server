@@ -8,6 +8,7 @@ from collections import defaultdict, namedtuple
 
 from django.conf import settings
 from django.db.models import F
+from django.urls import reverse
 
 import regex
 import requests
@@ -23,6 +24,7 @@ from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.celery import create_chunked_tasks_signatures, task
 from olympia.amo.decorators import use_primary_db
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import (
     attach_trans_dict,
     generate_lowercase_homoglyphs_variants_for_string,
@@ -100,15 +102,27 @@ def call_webhooks(event_name, payload, upload=None, version=None):
         log.info('Calling webhook "%s".', event.webhook.name)
 
         try:
-            data = _call_webhook(webhook=event.webhook, payload=payload)
-
-            ScannerResult.objects.create(
+            scanner_result = ScannerResult.objects.create(
                 scanner=WEBHOOK,
                 webhook_event=event,
                 upload=upload,
                 version=version,
-                results=data,
             )
+
+            data = _call_webhook(
+                webhook=event.webhook,
+                payload={
+                    **payload,
+                    'scanner_result_url': absolutify(
+                        reverse(
+                            'v5:scanner-result-patch',
+                            args=[scanner_result.pk],
+                        )
+                    ),
+                },
+            )
+
+            scanner_result.update(results=data)
         except Exception as exc:
             log.exception('Error while calling webhook "%s".', event.webhook.name)
             raise exc

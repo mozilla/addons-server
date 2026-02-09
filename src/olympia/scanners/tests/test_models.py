@@ -662,15 +662,14 @@ class TestScannerWebhook(TestCase):
         name = 'some name'
         webhook = ScannerWebhook(name=name, url='https://example.com', api_key='secret')
         with self.assertRaises(UserProfile.DoesNotExist):
-            UserProfile.objects.get_service_account(name=webhook.service_account_name)
+            user = webhook.service_account
 
         webhook.save()
         # Double-save to check the presence of a single `GroupUser` instance.
         webhook.save()
 
-        user = UserProfile.objects.get_service_account(
-            name=webhook.service_account_name
-        )
+        user = webhook.service_account
+        assert user
         assert user.pk is not None
         assert user.notes == (
             f'Service account automatically created for the "{name}" scanner webhook.'
