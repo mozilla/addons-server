@@ -1,8 +1,9 @@
 import os
 
 from django.conf import settings
+from django.urls import reverse
 
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import TestCase, user_factory
 from olympia.lib import settings_base as base_settings
 
 
@@ -11,10 +12,51 @@ def test_default_settings_no_report_only():
 
 
 class TestCSPHeaders(TestCase):
-    def test_for_specific_csp_settings(self):
-        """Test that required settings are provided as headers."""
+    def test_admin_csp(self):
+        user = user_factory(email='me@mozilla.com')
+        self.grant_permission(user, '*:*')
+        self.client.force_login(user)
+        url = reverse('admin:index')
+        response = self.client.get(url, follow=True)
+        assert response.status_code == 200
+        self._test_for_specific_csp_settings(response)
+        # Extra for the admin
+        expected = [
+            'script-src',
+            *settings.CONTENT_SECURITY_POLICY['DIRECTIVES']['script-src'],
+            'http://testserver/en-US/admin/models/jsi18n/',
+        ]
+        assert ' '.join(expected) + ';' in response['content-security-policy']
+
+    def test_admin_csp_different_locale(self):
+        user = user_factory(email='me@mozilla.com')
+        self.grant_permission(user, '*:*')
+        self.client.force_login(user)
+        with self.activate('fr'):
+            url = reverse('admin:index')
+        response = self.client.get(url, follow=True)
+        assert response.status_code == 200
+        self._test_for_specific_csp_settings(response)
+        # Extra for the admin
+        expected = [
+            'script-src',
+            *settings.CONTENT_SECURITY_POLICY['DIRECTIVES']['script-src'],
+            'http://testserver/fr/admin/models/jsi18n/',
+        ]
+        assert ' '.join(expected) + ';' in response['content-security-policy']
+
+    def test_developers_csp(self):
         response = self.client.get('/en-US/developers/')
         assert response.status_code == 200
+        self._test_for_specific_csp_settings(response)
+        expected = [
+            'script-src',
+            *settings.CONTENT_SECURITY_POLICY['DIRECTIVES']['script-src'],
+        ]
+        assert ' '.join(expected) + ';' in response['content-security-policy']
+
+    def _test_for_specific_csp_settings(self, response):
+        """Test that required settings are provided as headers."""
         # Make sure a default-src is set.
         assert "default-src 'none'" in response['content-security-policy']
         # Make sure a object-src is locked down.

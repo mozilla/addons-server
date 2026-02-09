@@ -35,6 +35,7 @@ from django.utils.http import MAX_URL_LENGTH
 from django.utils.translation import activate, gettext_lazy as _
 
 import MySQLdb as mysql
+from csp.middleware import CSPMiddleware as CSPMiddlewareUpstream
 from django_statsd.clients import statsd
 from django_statsd.middleware import (
     GraphiteRequestTimingMiddleware as GraphiteRequestTimingMiddlewareUpstream,
@@ -474,3 +475,22 @@ class GraphiteRequestTimingMiddleware(GraphiteRequestTimingMiddlewareUpstream):
         request._view_module = view.__module__
         request._view_name = view.__name__
         request._start_time = time.time()
+
+
+class CSPMiddleware(CSPMiddlewareUpstream):
+    """Like django-csp's middleware, but with custom script-src directive for
+    the admin."""
+
+    def get_policy_parts(self, request, response, report_only=False):
+        policy_parts = super().get_policy_parts(request, response, report_only)
+
+        # We set path_info in LocaleAndAppURLMiddleware to not include the
+        # locale part.
+        if request.path_info.startswith('/admin/models/'):
+            policy_parts.update = {
+                'script-src': (
+                    f'{settings.INTERNAL_SITE_URL}/{request.LANG}/admin/models/jsi18n/'
+                ),
+            }
+
+        return policy_parts

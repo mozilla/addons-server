@@ -504,7 +504,7 @@ MIDDLEWARE = (
     'waffle.middleware.WaffleMiddleware',
     # CSP and CORS need to come before CommonMiddleware because they might
     # need to add headers to 304 responses returned by CommonMiddleware.
-    'csp.middleware.CSPMiddleware',
+    'olympia.amo.middleware.CSPMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     # Enable conditional processing, e.g ETags.
     'django.middleware.http.ConditionalGetMiddleware',
