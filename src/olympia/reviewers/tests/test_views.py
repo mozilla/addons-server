@@ -7085,6 +7085,16 @@ class TestDeveloperProfile(ReviewerTest):
         self.assertContains(response, 'Approved')
         self.assertContains(response, 'Owner')
 
+    def test_is_admin(self):
+        self.login_as_admin()
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        developer_admin_url = reverse(
+            'admin:users_userprofile_change', args=(self.developer.id,)
+        )
+        expected_link = f'<a href="{developer_admin_url}">User Admin Page</a>'
+        self.assertContains(response, expected_link)
+
     def test_deleted_owner(self):
         self.addon.addonuser_set.get(user=self.developer).delete()
         response = self.client.get(self.url)
