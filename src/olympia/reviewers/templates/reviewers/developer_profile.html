@@ -1,62 +1,76 @@
 {% extends "reviewers/base.html" %}
 
+{% block bodyclass %}{{ super() }} inverse{% endblock %}
+
 {% block title %}
 {{ 'User #{user_id} – Reviewer Tools – Add-ons for Firefox'.format(user_id=developer.id) }}
 {% endblock %}
 
 {% block content %}
-<h2>
-  {{ 'Developer profile for User:'}} <a href="{{ developer.get_url_path() }}">{{ developer.id }} {{ developer.name
-    }}</a>
-  &lt;{{ developer.email }}&gt;
-</h2>
-<h3>
-  {{ 'Addons' }}
-</h3>
-<div>
-  <table>
-    <tbody>
-      <thead>
-        <tr class="listing-header">
-          <th>ID: Name</th>
-          <th>Add-on ID</th>
-          <th>Type</th>
-          <th>Status</th>
-          <th>Role</th>
-          <th></th>
-          <th></th>
+<hgroup>
+  <h2 class="addon_developer">
+    {{ 'Developer profile for User:'}} <a href="{{ developer.get_url_path() }}">{{ developer.id }} {{ developer.name
+      }}</a>
+    &lt;{{ developer.email }}&gt;
+  </h2>
+</hgroup>
+<div class="primary">
+  <h3>
+    {{ 'Addons' }}
+  </h3>
+  <div>
+    <table class="addons-list">
+      <tbody>
+        <thead>
+          <tr class="listing-header">
+            <th>ID: Name</th>
+            <th>Add-on ID</th>
+            <th>Type</th>
+            <th>Status</th>
+            <th>Role</th>
+            <th colspan="2">Review links</th>
+          </tr>
+        </thead>
+        {% for addonuser in addonusers_pager.object_list %}
+        {% with addon = addonuser.addon %}
+        <tr>
+          <th>
+            {% if addon.status != amo.STATUS_DELETED %}
+            <a href="{{ addon.get_url_path() }}">{{ addon.id }}: {{ addon.name }}</a>
+            {% else %}
+            {{ addon.id }}: {{ addon.name }}
+            {% endif %}
+          </th>
+          <td>{{ addon.addonguid_guid }}</td>
+          <td>{{ addon.get_type_display() }}</td>
+          <td>{{ addon.get_status_display() }}</td>
+          <td>{{ addonuser.get_role_display() }}</td>
+          <td>
+            {% if addon.has_listed_versions(include_deleted=True) %}
+              <a href="{{ url('reviewers.review', 'listed', addon.id)}}">Listed Review</a>
+            {% endif %}
+          </td>
+          <td>
+            {% if addon.has_unlisted_versions(include_deleted=True)%}
+              <a href="{{ url('reviewers.review', 'unlisted', addon.id)}}">Unlisted Review</a>
+            {% endif %}
+          </td>
         </tr>
-      </thead>
-      {% for addonuser in addonusers_pager.object_list %}
-      {% with addon = addonuser.addon %}
-      <tr>
-        <th>
-          {% if addon.status != amo.STATUS_DELETED %}
-          <a href="{{ addon.get_url_path() }}">{{ addon.id }}: {{ addon.name }}</a>
-          {% else %}
-          {{ addon.id }}: {{ addon.name }}
-          {% endif %}
-        </th>
-        <td>{{ addon.addonguid_guid }}</td>
-        <td>{{ addon.get_type_display() }}</td>
-        <td>{{ addon.get_status_display() }}</td>
-        <td>{{ addonuser.get_role_display() }}</td>
-        <td>
-          {% if addon.has_listed_versions(include_deleted=True) %}
-          [<a href="{{ url('reviewers.review', 'listed', addon.id)}}">Listed Review</a>]
-          {% endif %}
-        </td>
-        <td>
-          {% if addon.has_unlisted_versions(include_deleted=True)%}
-          [<a href="{{ url('reviewers.review', 'unlisted', addon.id)}}">Unlisted Review</a>]
-          {% endif %}
-        </td>
-      </tr>
-      {% endwith %}
-      {% endfor %}
-    </tbody>
-  </table>
-  {{ addonusers_pager|paginator }}
+        {% endwith %}
+        {% endfor %}
+      </tbody>
+    </table>
+    {{ addonusers_pager|paginator }}
+  </div>
 </div>
-
+<div class="secondary scroll_sidebar_parent">
+  <div id="scroll_sidebar">
+    {% if is_user_admin %}
+    <strong>Actions</strong>
+    <ul>
+      <li><a href="{{ url('admin:users_userprofile_change', developer.id) }}">User Admin Page</a> <em>(admin)</em></li>
+    </ul>
+    {% endif %}
+  </div>
+</div>
 {% endblock %}
