@@ -621,9 +621,9 @@ class AutoApprovalSummary(ModelBase):
         is_langpack = addon.type == amo.ADDON_LPAPP
         now = datetime.now()
         try:
-            content_review = addon.addonapprovalscounter.last_content_review
+            content_review = addon.addonapprovalscounter.content_review_status
         except AddonApprovalsCounter.DoesNotExist:
-            content_review = None
+            content_review = AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.UNREVIEWED
         INITIAL_AUTO_APPROVAL_DELAY_FOR_LISTED = get_config(
             amo.config_keys.INITIAL_AUTO_APPROVAL_DELAY_FOR_LISTED
         )
@@ -633,7 +633,7 @@ class AutoApprovalSummary(ModelBase):
             and version.addon.status == amo.STATUS_NOMINATED
             and now - version.created
             < timedelta(seconds=INITIAL_AUTO_APPROVAL_DELAY_FOR_LISTED)
-            and content_review is None
+            and content_review != AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.PASS
         )
 
     @classmethod

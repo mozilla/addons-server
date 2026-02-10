@@ -1275,11 +1275,22 @@ class TestAutoApprovalSummary(TestCase):
         self.addon.addonapprovalscounter = AddonApprovalsCounter.objects.create(
             addon=self.addon
         )
-        assert self.addon.addonapprovalscounter.last_content_review is None
+        assert self.addon.addonapprovalscounter.content_review_status == (
+            AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.UNREVIEWED
+        )
         assert AutoApprovalSummary.check_should_be_delayed(self.version) is True
 
+        # check all statuses, other than PASS, lead to a delay.
+        for status in AddonApprovalsCounter.CONTENT_REVIEW_STATUSES:
+            if status == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.PASS:
+                continue
+            self.addon.addonapprovalscounter.update(content_review_status=status)
+            assert AutoApprovalSummary.check_should_be_delayed(self.version) is True
+
         # Once there is a content review, it should no longer be delayed.
-        self.addon.addonapprovalscounter.update(last_content_review=datetime.now())
+        self.addon.addonapprovalscounter.update(
+            content_review_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.PASS
+        )
         assert AutoApprovalSummary.check_should_be_delayed(self.version) is False
 
     def test_check_should_be_delayed_langpacks_are_exempted(self):

@@ -302,27 +302,27 @@ class BaseTestEditDescribe(BaseTestEdit):
         data = self.get_dict()
         addon = self.addon = self.get_addon()
         AddonApprovalsCounter.approve_content_for_addon(addon=addon)
-        old_content_review = AddonApprovalsCounter.objects.get(
-            addon=addon
-        ).last_content_review
+        counter = AddonApprovalsCounter.objects.get(addon=addon)
+        old_content_review = counter.last_content_review
         assert old_content_review
+        assert counter.content_review_status == counter.CONTENT_REVIEW_STATUSES.PASS
 
         # make the edit
         response = self.client.post(self.describe_edit_url, data)
         assert response.status_code == 200
         addon = self.addon = self.get_addon()
 
+        counter.reload()
         if self.listed:
             # last_content_review should have been reset
-            assert not AddonApprovalsCounter.objects.get(
-                addon=addon
-            ).last_content_review
+            assert not counter.last_content_review
+            assert (
+                counter.content_review_status == counter.CONTENT_REVIEW_STATUSES.CHANGED
+            )
         else:
             # Do not reset last_content_review for unlisted-only add-ons
-            assert (
-                old_content_review
-                == AddonApprovalsCounter.objects.get(addon=addon).last_content_review
-            )
+            assert old_content_review == counter.last_content_review
+            assert counter.content_review_status == counter.CONTENT_REVIEW_STATUSES.PASS
         # Check metadata is updated in any case
         assert str(addon.name) == data['name']
         assert str(addon.summary) == data['summary']
@@ -359,15 +359,17 @@ class BaseTestEditDescribe(BaseTestEdit):
         # Now repeat, but we won't be changing either name or summary
         alogs.delete()
         AddonApprovalsCounter.approve_content_for_addon(addon=addon)
-        assert AddonApprovalsCounter.objects.get(addon=addon).last_content_review
+        assert counter.reload().last_content_review
+        assert counter.content_review_status == counter.CONTENT_REVIEW_STATUSES.PASS
+
         data['description'] = 'its a totally new description!'
         self.describe_edit_url = self.get_url('describe', edit=True)
         response = self.client.post(self.describe_edit_url, data)
         assert response.status_code == 200
         addon = self.addon = self.get_addon()
-
         # Still keeps its date this time, so no new content review
-        assert AddonApprovalsCounter.objects.get(addon=addon).last_content_review
+        assert counter.reload().last_content_review
+        assert counter.content_review_status == counter.CONTENT_REVIEW_STATUSES.PASS
         # no changes logged for name or summary this time
         assert not ActivityLog.objects.filter(
             action=amo.LOG.EDIT_ADDON_PROPERTY.id
@@ -383,9 +385,11 @@ class BaseTestEditDescribe(BaseTestEdit):
             response = self.client.post(self.describe_edit_url, data)
             assert response.status_code == 200
             addon = self.addon = self.get_addon()
-            assert not AddonApprovalsCounter.objects.get(
-                addon=addon
-            ).last_content_review
+            counter = AddonApprovalsCounter.objects.get(addon=addon)
+            assert not counter.last_content_review
+            assert counter.content_review_status == (
+                AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.UNREVIEWED
+            )
             assert str(addon.summary) == data['summary']
 
     @mock.patch('olympia.devhub.forms.run_narc_on_version')

@@ -2570,9 +2570,9 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
 
         self.addon.reload()
         # last_content_review should have been reset
-        assert not AddonApprovalsCounter.objects.get(
-            addon=self.addon
-        ).last_content_review
+        counter = AddonApprovalsCounter.objects.get(addon=self.addon)
+        assert not counter.last_content_review
+        assert counter.content_review_status == counter.CONTENT_REVIEW_STATUSES.CHANGED
         self.statsd_incr_mock.assert_any_call(
             'addons.submission.metadata_content_review_triggered'
         )
