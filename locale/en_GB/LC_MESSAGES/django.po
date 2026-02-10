@@ -4694,7 +4694,7 @@ msgstr "Leave a clean digital trail. Make Firefox forget web site data like cook
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:113 src/olympia/discovery/strings.jinja2:852
 msgid "No need to write the same thing over and over. Save frequently-entered text to paste anytime."
-msgstr "No need to write the same thing over and over. Save frequently-entered text to paste any time."
+msgstr "No need to write the same thing over and over. Save frequently-entered text to paste at any time."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
