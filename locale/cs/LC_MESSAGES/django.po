@@ -5391,7 +5391,7 @@ msgstr "Změňte vzhled svého prohlížeče. Snadno si navrhněte své vlastní
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:521
 msgid "Keep personal notes anywhere on the web. Simply use a sidebar to attach notes on specific web pages."
-msgstr "Veďte si kdekoli na webu osobní poznámky. Připojení poznámek ke konkrétním webovým stránkám provedete jednoduše pomocí postranního panelu."
+msgstr "Veďte si kdekoli na webu osobní poznámky. Připojení poznámek ke konkrétním webovým stránkám provedete jednoduše pomocí postranní lišty."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:524
