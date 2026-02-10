@@ -6326,11 +6326,13 @@ class TestReview(ReviewBase):
 
         self.assertContains(
             response,
-            f'<a href="{author_profile_url}">{self.addon_author.name}</a> [<a href="{author_admin_url}">admin</a>],',
+            f'<a href="{author_profile_url}">{self.addon_author.name}</a>'
+            f' [<a href="{author_admin_url}">admin</a>],',
         )
         self.assertContains(
             response,
-            f'<a href="{another_author_profile_url}">{another_author.name}</a> [<a href="{another_author_admin_url}">admin</a>]',
+            f'<a href="{another_author_profile_url}">{another_author.name}</a>'
+            f' [<a href="{another_author_admin_url}">admin</a>]',
         )
 
     def test_displayed_metadata(self):
