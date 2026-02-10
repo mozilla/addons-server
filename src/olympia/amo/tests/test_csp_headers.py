@@ -1,6 +1,7 @@
 import os
 
 from django.conf import settings
+from django.test.utils import override_settings
 from django.urls import reverse
 
 from olympia.amo.tests import TestCase, user_factory
@@ -12,6 +13,7 @@ def test_default_settings_no_report_only():
 
 
 class TestCSPHeaders(TestCase):
+    @override_settings(SITE_URL='http://internal-admin-testserver')
     def test_admin_csp(self):
         user = user_factory(email='me@mozilla.com')
         self.grant_permission(user, '*:*')
@@ -24,7 +26,7 @@ class TestCSPHeaders(TestCase):
         expected = [
             'script-src',
             *settings.CONTENT_SECURITY_POLICY['DIRECTIVES']['script-src'],
-            'http://testserver/en-US/admin/models/jsi18n/',
+            'http://internal-admin-testserver/en-US/admin/models/jsi18n/',
         ]
         assert ' '.join(expected) + ';' in response['content-security-policy']
 

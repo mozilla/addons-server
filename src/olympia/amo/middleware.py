@@ -488,9 +488,7 @@ class CSPMiddleware(CSPMiddlewareUpstream):
         # locale part.
         if request.path_info.startswith('/admin/models/'):
             policy_parts.update = {
-                'script-src': (
-                    f'{settings.INTERNAL_SITE_URL}/{request.LANG}/admin/models/jsi18n/'
-                ),
+                'script-src': f'{settings.SITE_URL}/{request.LANG}/admin/models/jsi18n/'
             }
 
         return policy_parts
