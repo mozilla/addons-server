@@ -404,7 +404,9 @@ class AddonManager(ManagerBase):
                 type__in=(amo.ADDON_EXTENSION, amo.ADDON_DICT),
             )
             .exclude(
-                addonapprovalscounter__content_review_status__in=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.COMPLETE
+                addonapprovalscounter__content_review_status__in=(
+                    AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.COMPLETE
+                )
             )
             .order_by('created')
         )
