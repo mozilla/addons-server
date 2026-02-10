@@ -26,7 +26,7 @@
   </h2>
   <h4 class="author">by
     {% for author in addon.current_authors %}
-    <a href="{{ url('reviewers.developer_profile', author.id) }}"{% if not author.listed %}class="is_unlisted"{% endif %}>{{ author.name }}</a>{% if not loop.last %},{% endif %}
+    <a href="{{ url('reviewers.developer_profile', author.id) }}"{% if not author.listed %}class="is_unlisted"{% endif %}>{{ author.name }}</a>{% if is_user_admin %} [<a href="{{ url('admin:users_userprofile_change', author.id) }}">admin</a>]{% endif %}{% if not loop.last %},{% endif %}
     {% endfor %}
   </h4>
 
@@ -489,9 +489,11 @@
       {% if not addon.is_deleted %}
         <li><a href="{{ addon.get_dev_url() }}">Edit</a> <em>(admin)</em></li>
       {% endif %}
-
       <li><a href="{{ url('admin:addons_addon_change', addon.id) }}">Admin Page</a> <em>(admin)</em></li>
       <li><a href="{{ url('stats.overview', addon.id) }}">Statistics</a></li>
+    {% endif %}
+    {% if is_user_admin %}
+      <li><a href="{{ url('admin:users_userprofile_changelist') }}?q={{ addon.current_authors|join(',', attribute='id') }}">Author(s) Admin List Page</a> <em>(admin)</em></li>
     {% endif %}
   </ul>
 

@@ -748,6 +748,7 @@ def review(request, addon, channel=None):
         .exists(),
         important_changes_log=important_changes_log,
         is_admin=is_admin,
+        is_user_admin=acl.action_allowed_for(request.user, amo.permissions.USERS_EDIT),
         language_dict=dict(settings.LANGUAGES),
         latest_not_disabled_version=latest_not_disabled_version,
         latest_version_is_unreviewed_and_not_pending_rejection=(
@@ -1012,10 +1013,14 @@ def developer_profile(request, user_id):
     developer = get_object_or_404(UserProfile, id=user_id)
     qs = AddonUser.unfiltered.filter(user=developer).order_by('addon_id')
     addonusers_pager = paginate(request, qs, 100)
+
     return TemplateResponse(
         request,
         'reviewers/developer_profile.html',
         context={
+            'is_user_admin': acl.action_allowed_for(
+                request.user, amo.permissions.USERS_EDIT
+            ),
             'developer': developer,
             'addonusers_pager': addonusers_pager,
         },
