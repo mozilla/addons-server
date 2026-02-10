@@ -202,7 +202,7 @@ class SystemCheckIntegrationTest(TestCase):
 
     def _test_nginx_response(self, status_code=200, body='', served_by='nginx'):
         self.mock_get_version_json.return_value['target'] = 'development'
-        url = f'http://nginx{settings.MEDIA_URL_PREFIX}test.txt'
+        url = f'{settings.INTERNAL_SITE_URL}{settings.MEDIA_URL_PREFIX}test.txt'
 
         responses.add(
             responses.GET,
