@@ -3458,12 +3458,12 @@ class TestReview(ReviewBase):
             ('Listed Review Page', reverse('reviewers.review', args=(self.addon.id,))),
             ('Edit', self.addon.get_dev_url()),
             ('Admin Page', reverse('admin:addons_addon_change', args=[self.addon.id])),
+            ('Statistics', reverse('stats.overview', args=[self.addon.id])),
             (
                 'Author(s) Admin List Page',
                 reverse('admin:users_userprofile_changelist')
                 + f'?q={self.addon_author.id}',
             ),
-            ('Statistics', reverse('stats.overview', args=[self.addon.id])),
         ]
         check_links(expected, doc('#actions-addon a'))
 
@@ -3482,12 +3482,12 @@ class TestReview(ReviewBase):
             ),
             ('Edit', self.addon.get_dev_url()),
             ('Admin Page', reverse('admin:addons_addon_change', args=[self.addon.id])),
+            ('Statistics', reverse('stats.overview', args=[self.addon.id])),
             (
                 'Author(s) Admin List Page',
                 reverse('admin:users_userprofile_changelist')
                 + f'?q={self.addon_author.id},{another_author.id}',
             ),
-            ('Statistics', reverse('stats.overview', args=[self.addon.id])),
         ]
         check_links(expected, doc('#actions-addon a'))
 
@@ -3506,12 +3506,12 @@ class TestReview(ReviewBase):
             ),
             ('Edit', self.addon.get_dev_url()),
             ('Admin Page', reverse('admin:addons_addon_change', args=[self.addon.id])),
+            ('Statistics', reverse('stats.overview', args=[self.addon.id])),
             (
                 'Author(s) Admin List Page',
                 reverse('admin:users_userprofile_changelist')
                 + f'?q={self.addon_author.id}',
             ),
-            ('Statistics', reverse('stats.overview', args=[self.addon.id])),
         ]
         check_links(expected, doc('#actions-addon a'))
 
@@ -3539,12 +3539,12 @@ class TestReview(ReviewBase):
             ),
             ('Edit', self.addon.get_dev_url()),
             ('Admin Page', reverse('admin:addons_addon_change', args=[self.addon.id])),
+            ('Statistics', reverse('stats.overview', args=[self.addon.id])),
             (
                 'Author(s) Admin List Page',
                 reverse('admin:users_userprofile_changelist')
                 + f'?q={self.addon_author.id}',
             ),
-            ('Statistics', reverse('stats.overview', args=[self.addon.id])),
         ]
         check_links(expected, doc('#actions-addon a'))
 
@@ -3570,12 +3570,12 @@ class TestReview(ReviewBase):
             ),
             ('Edit', self.addon.get_dev_url()),
             ('Admin Page', reverse('admin:addons_addon_change', args=[self.addon.id])),
+            ('Statistics', reverse('stats.overview', args=[self.addon.id])),
             (
                 'Author(s) Admin List Page',
                 reverse('admin:users_userprofile_changelist')
                 + f'?q={self.addon_author.id}',
             ),
-            ('Statistics', reverse('stats.overview', args=[self.addon.id])),
         ]
         check_links(expected, doc('#actions-addon a'))
 
@@ -3601,12 +3601,12 @@ class TestReview(ReviewBase):
             ),
             ('Edit', self.addon.get_dev_url()),
             ('Admin Page', reverse('admin:addons_addon_change', args=[self.addon.id])),
+            ('Statistics', reverse('stats.overview', args=[self.addon.id])),
             (
                 'Author(s) Admin List Page',
                 reverse('admin:users_userprofile_changelist')
                 + f'?q={self.addon_author.id}',
             ),
-            ('Statistics', reverse('stats.overview', args=[self.addon.id])),
         ]
         check_links(expected, doc('#actions-addon a'))
 
@@ -3634,12 +3634,12 @@ class TestReview(ReviewBase):
                 reverse('reviewers.review', args=('unlisted', self.addon.id)),
             ),
             ('Admin Page', reverse('admin:addons_addon_change', args=[self.addon.id])),
+            ('Statistics', reverse('stats.overview', args=[self.addon.id])),
             (
                 'Author(s) Admin List Page',
                 reverse('admin:users_userprofile_changelist')
                 + f'?q={self.addon_author.id}',
             ),
-            ('Statistics', reverse('stats.overview', args=[self.addon.id])),
         ]
         check_links(expected, doc('#actions-addon a'))
 
@@ -3664,12 +3664,12 @@ class TestReview(ReviewBase):
                 reverse('reviewers.review', args=('content', self.addon.id)),
             ),
             ('Admin Page', reverse('admin:addons_addon_change', args=[self.addon.id])),
+            ('Statistics', reverse('stats.overview', args=[self.addon.id])),
             (
                 'Author(s) Admin List Page',
                 reverse('admin:users_userprofile_changelist')
                 + f'?q={self.addon_author.id}',
             ),
-            ('Statistics', reverse('stats.overview', args=[self.addon.id])),
         ]
         check_links(expected, doc('#actions-addon a'))
 
