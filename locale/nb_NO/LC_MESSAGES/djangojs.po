@@ -19,7 +19,7 @@ msgstr "Et problem oppstod ved forsøk på å kontakte serveren."
 
 #: static/js/common/upload-addon.js:78
 msgid "Select a file..."
-msgstr "XXX fil ..."
+msgstr "Velg fil ..."
 
 #: static/js/common/upload-addon.js:82
 msgid "Your add-on should end with .zip, .xpi or .crx"
