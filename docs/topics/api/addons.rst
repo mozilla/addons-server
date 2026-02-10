@@ -221,16 +221,16 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
 
     Possible values for the add-on ``status`` field / parameter:
 
-    ==============  ==========================================================
+    ==============  ==============================================================
              Value  Description
-    ==============  ==========================================================
+    ==============  ==============================================================
             public  Approved
            deleted  Deleted
           disabled  Disabled by Mozilla
-          rejected  Listing rejected
+          rejected  Listing content :ref:`rejected <listing-content-review>`
          nominated  Awaiting Review
         incomplete  Incomplete - no approved listed versions
-    ==============  ==========================================================
+    ==============  ==============================================================
 
 
 .. _addon-detail-application:

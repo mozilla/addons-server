@@ -82,6 +82,7 @@ from .decorators import addon_view_factory, require_submissions_enabled
 from .indexers import AddonIndexer
 from .models import (
     Addon,
+    AddonApprovalsCounter,
     AddonBrowserMapping,
     AddonUser,
     AddonUserPendingConfirmation,
@@ -91,6 +92,7 @@ from .serializers import (
     AddonAuthorSerializer,
     AddonBrowserMappingSerializer,
     AddonEulaPolicySerializer,
+    AddonListingContentReviewSerializer,
     AddonPendingAuthorSerializer,
     AddonSerializer,
     DeveloperAddonSerializer,
@@ -421,6 +423,30 @@ class AddonViewSet(
     def create(self, request, *args, **kwargs):
         response = super().create(request, *args, **kwargs)
         return response
+
+    @action(
+        detail=True,
+        serializer_class=None,  # this endpoint is for developers only
+        serializer_class_for_developers=AddonListingContentReviewSerializer,
+        permission_classes=write_permission_classes,
+    )
+    def listingcontentreview(self, request, pk=None):
+        return self.retrieve(request)
+
+    @listingcontentreview.mapping.patch
+    def update_listingcontentreview(self, request, pk=None):
+        addon = self.get_object()
+        ouput = self.get_serializer(addon).data
+        if (
+            request.data.get('has_requested_review')
+            and not ouput.get('has_requested_review')
+            and ouput.get('can_request_review')
+        ):
+            AddonApprovalsCounter.request_new_content_review_for_addon(addon)
+            addon.addonapprovalscounter.reload()
+            ouput = self.get_serializer(addon).data
+            ActivityLog.objects.create(amo.LOG.REJECTED_LISTING_REVIEW_REQUEST, addon)
+        return Response(ouput, status=status.HTTP_202_ACCEPTED)
 
 
 class AddonChildMixin:

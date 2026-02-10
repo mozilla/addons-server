@@ -1904,3 +1904,57 @@ class VersionRollbackSerializer(DeveloperVersionSerializer):
                 )
             )
         return data
+
+
+class AddonListingContentReviewSerializer(AMOModelSerializer):
+    is_rejected = serializers.SerializerMethodField()
+    can_request_review = serializers.SerializerMethodField()
+    has_requested_review = serializers.SerializerMethodField()
+    policies = serializers.SerializerMethodField()
+    comments = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Addon
+        fields = (
+            'is_rejected',
+            'can_request_review',
+            'has_requested_review',
+            'policies',
+            'comments',
+        )
+        validators = (NoThemesValidator(),)
+
+    def get_is_rejected(self, obj):
+        return obj.status == amo.STATUS_REJECTED
+
+    def get_can_request_review(self, obj):
+        return self.get_is_rejected(obj) and not self.get_has_requested_review(obj)
+
+    def get_has_requested_review(self, obj):
+        try:
+            counter = obj.addonapprovalscounter
+        except AddonApprovalsCounter.DoesNotExist:
+            return False
+        return (
+            counter.content_review_status
+            == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.REQUESTED
+        )
+
+    def _get_reject_listing_content_log(self, obj):
+        if not hasattr(self, '_rejected_log_instance'):
+            self._rejected_log_instance = (
+                ActivityLog.objects.filter(
+                    addonlog__addon=obj, action=amo.LOG.REJECT_LISTING_CONTENT.id
+                )
+                .order_by('-created')
+                .first()
+            )
+        return self._rejected_log_instance
+
+    def get_policies(self, obj):
+        rejected_log = self._get_reject_listing_content_log(obj)
+        return (rejected_log and rejected_log.details.get('policy_texts')) or []
+
+    def get_comments(self, obj):
+        rejected_log = self._get_reject_listing_content_log(obj)
+        return (rejected_log and rejected_log.details.get('comments')) or None

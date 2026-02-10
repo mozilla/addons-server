@@ -5635,6 +5635,160 @@ class TestAddonViewSetEulaPolicy(TestCase):
         }
 
 
+class TestAddonListingContentReview(TestCase):
+    client_class = APITestClientSessionID
+
+    def setUp(self):
+        super().setUp()
+        self.user = user_factory(read_dev_agreement=self.days_ago(1))
+        self.addon = addon_factory(
+            guid=generate_addon_guid(),
+            name='My Addôn',
+            slug='my-addon',
+            status=amo.STATUS_REJECTED,
+            users=[self.user],
+        )
+        self.counter = AddonApprovalsCounter.objects.create(
+            addon=self.addon,
+            content_review_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.FAIL,
+        )
+        self.url = reverse_ns(
+            'addon-listingcontentreview', kwargs={'pk': self.addon.pk}
+        )
+        self.log_details = {
+            'comments': 'Manual words',
+            'policy_texts': [
+                'Acceptable Use, specifically Controlled substances: This is a policy'
+            ],
+        }
+        ActivityLog.objects.create(
+            amo.LOG.REJECT_LISTING_CONTENT.id,
+            self.addon,
+            details=self.log_details,
+            user=self.user,
+        )
+        self.client.login_api(self.user)
+
+    def test_url(self):
+        self.detail_url = reverse_ns('addon-detail', kwargs={'pk': self.addon.pk})
+        assert self.url == '{}{}'.format(self.detail_url, 'listingcontentreview/')
+
+    def test_anonymous(self):
+        self.client.logout_api()
+        response = self.client.get(self.url)
+        assert response.status_code == 401
+
+    def test_not_owner(self):
+        self.client.logout_api()
+        self.client.login_api(user_factory(read_dev_agreement=self.days_ago(1)))
+        response = self.client.get(self.url)
+        assert response.status_code == 403
+
+    def test_rejected(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert response.json() == {
+            'is_rejected': True,
+            'can_request_review': True,
+            'has_requested_review': False,
+            'policies': self.log_details['policy_texts'],
+            'comments': self.log_details['comments'],
+        }
+
+    def test_rejected_review_requested(self):
+        self.counter.update(
+            content_review_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.REQUESTED
+        )
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert response.json() == {
+            'is_rejected': True,
+            'can_request_review': False,
+            'has_requested_review': True,
+            'policies': self.log_details['policy_texts'],
+            'comments': self.log_details['comments'],
+        }
+
+    def test_not_rejected(self):
+        # This is before there is a content review - we're testing that nothing breaks
+        # when the AddonApprovalsCounter or ActivityLog entries don't exist.
+        self.counter.delete()
+        ActivityLog.objects.filter(action=amo.LOG.REJECT_LISTING_CONTENT.id).delete()
+        self.addon.update(status=amo.STATUS_APPROVED)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert response.json() == {
+            'is_rejected': False,
+            'can_request_review': False,
+            'has_requested_review': False,
+            'policies': [],
+            'comments': None,
+        }
+
+    def test_now_pass(self):
+        # This is when the add-on was previous contently rejected, but now has passed
+        self.counter.update(
+            content_review_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.PASS
+        )
+        self.addon.update(status=amo.STATUS_APPROVED)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert response.json() == {
+            'is_rejected': False,
+            'can_request_review': False,
+            'has_requested_review': False,
+            'policies': self.log_details['policy_texts'],
+            'comments': self.log_details['comments'],
+        }
+
+    def test_update_non_author(self):
+        self.client.logout_api()
+        self.client.login_api(user_factory(read_dev_agreement=self.days_ago(1)))
+        response = self.client.patch(self.url, {'has_requested_review': True})
+        assert response.status_code == 403
+        assert (
+            self.counter.content_review_status
+            == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.FAIL
+        )
+
+    def test_update_anonymous(self):
+        self.client.logout_api()
+        response = self.client.patch(self.url, {'has_requested_review': True})
+        assert response.status_code == 401
+        assert (
+            self.counter.content_review_status
+            == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.FAIL
+        )
+
+    def test_update(self):
+        assert not ActivityLog.objects.filter(
+            action=amo.LOG.REJECTED_LISTING_REVIEW_REQUEST.id, user=self.user
+        ).exists()
+        assert (
+            self.counter.content_review_status
+            == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.FAIL
+        )
+
+        response = self.client.patch(self.url, {'has_requested_review': True})
+        assert response.status_code == 202
+
+        assert response.json() == {
+            'is_rejected': True,
+            'can_request_review': False,
+            'has_requested_review': True,
+            'policies': self.log_details['policy_texts'],
+            'comments': self.log_details['comments'],
+        }
+
+        assert (
+            self.counter.reload().content_review_status
+            == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.REQUESTED
+        )
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.REJECTED_LISTING_REVIEW_REQUEST.id, user=self.user
+        ).exists()
+
+
 class TestAddonSearchView(ESTestCase):
     client_class = APITestClientSessionID
 
