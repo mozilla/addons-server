@@ -5230,7 +5230,7 @@ msgstr "Umožněte webovému obsahu se spustit pouze ze stránek, kterým důvě
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:428 src/olympia/discovery/strings.jinja2:747
 msgid "Take full control of the cookies you've accumulated while browsing."
-msgstr "Získejte plnou kontrolu nad cookies, které se vám při procházení nashromáždili."
+msgstr "Získejte plnou kontrolu nad cookies, které se vám při procházení stránek nashromáždili."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:431
@@ -5594,7 +5594,7 @@ msgstr "Výkonný vyskakovací slovník optimalizovaný pro učení nových jazy
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:673
 msgid "Hover your mouse over thumbnails to easily browse and download HD images."
-msgstr "Najeďte myší na náhledy pro snadné procházení a stahování HD obrázků."
+msgstr "Najeďte myší na náhledy pro snadné procházení stránek a stahování HD obrázků."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:676
