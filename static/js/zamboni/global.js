@@ -420,7 +420,7 @@ $.fn.modal = function (click_target, o) {
 function makeslug(s, delimiter) {
   if (!s) return '';
   let re = new RegExp('[^\\w' + unicode_letters + '\\s-]+', 'g');
-  s = $.trim(s.replace(re, ' '));
+  s = s.replace(re, ' ').trim();
   s = s.replace(/[-\s]+/g, delimiter || '-').toLowerCase();
   return s;
 }
