@@ -356,15 +356,10 @@ class AbstractScannerResultAdminMixin:
             StateFilter.parameter_name: 'all',
         }
 
-    def get_actions(self, request):
-        actions = super().get_actions(request)
-        if not acl.action_allowed_for(request.user, amo.permissions.BLOCKLIST_CREATE):
-            actions.pop('block_addons_action', None)
-        if not acl.action_allowed_for(request.user, amo.permissions.USERS_EDIT):
-            actions.pop('search_for_authors_action', None)
-        return actions
+    def has_block_addons_permission(self, request):
+        return acl.action_allowed_for(request.user, amo.permissions.BLOCKLIST_CREATE)
 
-    @admin.action(description='Block these add-ons')
+    @admin.action(description='Block these add-ons', permissions=['block_addons'])
     def block_addons_action(self, request, queryset):
         related_name = self.model._meta.get_field('version').related_query_name()
         addonids = (
@@ -381,7 +376,13 @@ class AbstractScannerResultAdminMixin:
         parameters = {'addons': '~'.join(map(str, addonids))}
         return HttpResponseRedirect(url + f'?{urlencode(parameters)}')
 
-    @admin.action(description='Search for authors of these add-ons')
+    def has_search_for_authors_permission(self, request):
+        return acl.action_allowed_for(request.user, amo.permissions.USERS_EDIT)
+
+    @admin.action(
+        description='Search for authors of these add-ons',
+        permissions=['search_for_authors'],
+    )
     def search_for_authors_action(self, request, queryset):
         related_name = self.model._meta.get_field('version').related_query_name()
         userids = (
