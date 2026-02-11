@@ -1310,11 +1310,11 @@ msgstr "Stránka zamítnuta"
 #: src/olympia/constants/activity.py:1316
 #, python-brace-format
 msgid "{addon} listing content review requested."
-msgstr ""
+msgstr "{addon} - vyžádána kontrola obsahu stránky."
 
 #: src/olympia/constants/activity.py:1317
 msgid "Listing review requested"
-msgstr ""
+msgstr "Požádána kontrola stránky"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -2174,7 +2174,7 @@ msgstr "Nesprávný název URL. Doplněk nebyl smazán."
 
 #: src/olympia/devhub/views.py:436
 msgid "Request for a new review of listing content acknowledged."
-msgstr ""
+msgstr "Žádost o novou kontrolu obsahu stránky byla přijata."
 
 #: src/olympia/devhub/views.py:480
 msgid "Invitation accepted."
@@ -3980,6 +3980,8 @@ msgid ""
 "{label_open}Listing Content Rejected:{label_close} Won't be included in search results, and its product page will be unavailable. New listed version submissions won't be accepted in this state, but "
 "existing versions awaiting review will be reviewed, and approved versions remain usable by existing users."
 msgstr ""
+"{label_open}Listing Content zamítnut:{label_close} Nebude zobrazován ve výsledcích vyhledávání a související stránka produktu bude nedostupná. Nově přidané verze nebudou v tomto stavu přijímány, ale"
+" existující verze čekající na kontrolu zkontrolovány budou a schválené verze zůstanou stávajícími uživateli použitelné."
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:22
 #, python-brace-format
@@ -3995,19 +3997,19 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:39
 msgid "Our review found that your listing content violates the following Mozilla policy or policies:"
-msgstr ""
+msgstr "Při kontrole jsme zjistili, že obsah vašeho profilu porušuje následující zásady:"
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:50
 msgid "To address these issues, please update your listing and request another review of the content."
-msgstr ""
+msgstr "Pro vyřešení těchto problémů prosím aktualizujte svou stránku a požádejte o novou kontrolu obsahu."
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:54
 msgid "Review requested already, awaiting review"
-msgstr ""
+msgstr "Kontrola již byla požadována, čeká na kontrolu"
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:59
 msgid "I confirm I have addressed the issues, and request a review"
-msgstr ""
+msgstr "Potvrzuji, že jsem problémy vyřešil(a), a žádám o kontrolu"
 
 #: src/olympia/devhub/templates/devhub/includes/macros.html:5
 msgid "Some Markdown supported."

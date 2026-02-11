@@ -1296,11 +1296,11 @@ msgstr "已拒絕上架"
 #: src/olympia/constants/activity.py:1316
 #, python-brace-format
 msgid "{addon} listing content review requested."
-msgstr ""
+msgstr "{addon} 已要求上架內容審核。"
 
 #: src/olympia/constants/activity.py:1317
 msgid "Listing review requested"
-msgstr ""
+msgstr "已請求上架審核"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -2148,7 +2148,7 @@ msgstr "網址不正確，並未刪除附加元件。"
 
 #: src/olympia/devhub/views.py:436
 msgid "Request for a new review of listing content acknowledged."
-msgstr ""
+msgstr "已收到對新版本上架內容審核的請求。"
 
 #: src/olympia/devhub/views.py:480
 msgid "Invitation accepted."
@@ -3911,7 +3911,7 @@ msgstr "附加元件公開程度"
 msgid ""
 "{label_open}Listing Content Rejected:{label_close} Won't be included in search results, and its product page will be unavailable. New listed version submissions won't be accepted in this state, but "
 "existing versions awaiting review will be reviewed, and approved versions remain usable by existing users."
-msgstr ""
+msgstr "{label_open}上架內容遭拒：{label_close}不會列入到搜尋結果中，且產品頁面將俗法開啟。在此狀態下，不會接受新提出的上架版本，但現有等待審核中的版本還是會進行審核，且現有的使用者仍然可以使用已通過審核的版本。"
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:22
 #, python-brace-format
@@ -3926,19 +3926,19 @@ msgstr "{label_open}隱藏:{label_close} 將不會列入於搜尋結果，產品
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:39
 msgid "Our review found that your listing content violates the following Mozilla policy or policies:"
-msgstr ""
+msgstr "我們的審核過程發現您的上架內容違反下列 Mozilla 政策或原則："
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:50
 msgid "To address these issues, please update your listing and request another review of the content."
-msgstr ""
+msgstr "為了解決這些問題，請更新上架資訊後再次請求內容審核。"
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:54
 msgid "Review requested already, awaiting review"
-msgstr ""
+msgstr "已經發出請求，等待審核中"
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:59
 msgid "I confirm I have addressed the issues, and request a review"
-msgstr ""
+msgstr "我確認我已經處理好問題，並請求審核"
 
 #: src/olympia/devhub/templates/devhub/includes/macros.html:5
 msgid "Some Markdown supported."
