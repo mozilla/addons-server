@@ -4,7 +4,7 @@ import itertools
 import json
 import os
 import uuid
-from collections import defaultdict
+from collections import defaultdict, namedtuple
 
 from django.conf import settings
 from django.db.models import F
@@ -13,6 +13,7 @@ import regex
 import requests
 import waffle
 import yara
+import yara_x
 from django_statsd.clients import statsd
 from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.util import Retry
@@ -512,7 +513,41 @@ def _run_yara_for_path(scanner_result, path, definition=None):
         # Initialize external variables so that compilation works, we'll
         # override them later when matching.
         externals = ScannerRule.get_yara_externals()
-        rules = yara.compile(source=definition, externals=externals)
+
+        if waffle.switch_is_active('use-yara-x'):
+            compiler = yara_x.Compiler()
+            # Initialize the global variables (externals).
+            for k, v in externals.items():
+                compiler.define_global(k, v)
+            # Add the yara rule definition.
+            compiler.add_source(definition)
+            # Create a scanner instance so that we can override the externals
+            # per file (in the `_scan()` function).
+            scanner = yara_x.Scanner(compiler.build())
+
+            def _scan(data, externals):
+                for k, v in externals.items():
+                    scanner.set_global(k, v)
+                # Return an array of tuples that is compatible with the
+                # (legacy) yara matches.
+                LegacyYaraMatch = namedtuple(
+                    'LegacyYaraMatch',
+                    ['rule', 'meta', 'tags'],
+                )
+                return [
+                    LegacyYaraMatch(
+                        rule=match.identifier,
+                        meta=dict(match.metadata),
+                        tags=match.tags,
+                    )
+                    for match in scanner.scan(data).matching_rules
+                ]
+
+        else:
+            rules = yara.compile(source=definition, externals=externals)
+
+            def _scan(data, externals):
+                return rules.match(data=data, externals=externals)
 
         zip_file = SafeZip(source=path, ignore_filename_errors=True)
         for zip_info in zip_file.info_list:
@@ -525,7 +560,8 @@ def _run_yara_for_path(scanner_result, path, definition=None):
                 externals['is_locale_file'] = filename.startswith(
                     '_locales/'
                 ) and filename.endswith('/messages.json')
-                for match in rules.match(data=file_content, externals=externals):
+
+                for match in _scan(data=file_content, externals=externals):
                     # Also add the filename to the meta dict in results.
                     meta = {**match.meta, 'filename': filename}
                     scanner_result.add_yara_result(

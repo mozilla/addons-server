@@ -7,6 +7,7 @@ from django.core.files import File as DjangoFile
 from django.test.utils import override_settings
 
 import requests
+from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.amo.tests import (
@@ -1513,6 +1514,52 @@ class TestRunYara(UploadMixin, TestCase):
         }
 
     @mock.patch('olympia.scanners.tasks.statsd.incr')
+    def test_run_with_meta_and_tags(self, incr_mock):
+        assert len(ScannerResult.objects.all()) == 0
+        # This rule will match for all files in the xpi.
+        rule = ScannerRule.objects.create(
+            name='always_true',
+            scanner=YARA,
+            definition="""
+                rule always_true : Tag1 Tag2 Tag3 {
+                    meta:
+                        meta_1 = "some metadata"
+                    condition:
+                        true
+                }
+            """,
+        )
+
+        received_results = run_yara(self.results, self.upload.pk)
+
+        scanner_results = ScannerResult.objects.all()
+        assert len(scanner_results) == 1
+        scanner_result = scanner_results[0]
+        assert scanner_result.upload == self.upload
+        assert len(scanner_result.results) == 2
+        assert scanner_result.results[0] == {
+            'rule': rule.name,
+            'tags': ['Tag1', 'Tag2', 'Tag3'],
+            'meta': {'filename': 'index.js', 'meta_1': 'some metadata'},
+        }
+        assert scanner_result.results[1] == {
+            'rule': rule.name,
+            'tags': ['Tag1', 'Tag2', 'Tag3'],
+            'meta': {'filename': 'manifest.json', 'meta_1': 'some metadata'},
+        }
+        assert incr_mock.called
+        assert incr_mock.call_count == 3
+        incr_mock.assert_has_calls(
+            [
+                mock.call('devhub.yara.has_matches'),
+                mock.call(f'devhub.yara.rule.{rule.id}.match'),
+                mock.call('devhub.yara.success'),
+            ]
+        )
+        # The task should always return the results.
+        assert received_results == self.results
+
+    @mock.patch('olympia.scanners.tasks.statsd.incr')
     def test_run(self, incr_mock):
         assert len(ScannerResult.objects.all()) == 0
         # This rule will match for all files in the xpi.
@@ -1773,11 +1820,15 @@ class TestRunYara(UploadMixin, TestCase):
         assert yara_result.upload == self.upload
         assert len(yara_result.results) == 0
 
+    @mock.patch('yara_x.Compiler.build')
     @mock.patch('yara.compile')
     @mock.patch('olympia.scanners.tasks.statsd.incr')
-    def test_run_does_not_raise(self, incr_mock, yara_compile_mock):
+    def test_run_does_not_raise(
+        self, incr_mock, yara_compile_mock, yara_x_compile_mock
+    ):
         self.create_switch('ignore-exceptions-in-scanner-tasks', active=True)
         yara_compile_mock.side_effect = Exception()
+        yara_x_compile_mock.side_effect = Exception()
 
         # We use `_run_yara()` because `run_yara()` is decorated with
         # `@validation_task`, which gracefully handles exceptions.
@@ -1788,10 +1839,12 @@ class TestRunYara(UploadMixin, TestCase):
         # The task should always return the results.
         assert received_results == self.results
 
+    @mock.patch('yara_x.Compiler.build')
     @mock.patch('yara.compile')
     @mock.patch('olympia.scanners.tasks.statsd.incr')
-    def test_throws_errors(self, incr_mock, yara_compile_mock):
+    def test_throws_errors(self, incr_mock, yara_compile_mock, yara_x_compile_mock):
         yara_compile_mock.side_effect = RuntimeError()
+        yara_x_compile_mock.side_effect = RuntimeError()
 
         # We use `_run_yara()` because `run_yara()` is decorated with
         # `@validation_task`, which gracefully handles exceptions.
@@ -1844,6 +1897,11 @@ class TestRunYara(UploadMixin, TestCase):
         }
         # The task should always return the results.
         assert received_results == self.results
+
+
+@override_switch(name='use-yara-x', active=True)
+class TestRunYaraX(TestRunYara):
+    pass
 
 
 class TestRunQueryRuleMixin:
@@ -2192,6 +2250,11 @@ class TestRunYaraQueryRule(TestRunQueryRuleMixin, TestCase):
         }
         self.rule.reload()
         assert self.rule.state == RUNNING  # Not touched by this task.
+
+
+@override_switch(name='use-yara-x', active=True)
+class TestRunYaraXQueryRule(TestRunYaraQueryRule):
+    pass
 
 
 class TestRunNarcQueryRule(TestRunQueryRuleMixin, TestCase):
