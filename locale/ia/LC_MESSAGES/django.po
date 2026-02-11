@@ -6170,7 +6170,7 @@ msgstr "Le themas melio evalutate"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1181 src/olympia/discovery/strings.jinja2:1226
 msgid "See more top rated themes"
-msgstr "Vide altere themas melio valutate"
+msgstr "Vider altere themas melio evalutate"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1184
