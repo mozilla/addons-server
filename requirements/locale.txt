@@ -1,6 +1,6 @@
-dennis==1.1.0 \
-    --hash=sha256:305ec6531b49edaf0434cb19b5498b7d66870e229234672cfad6a95811b9d66c \
-    --hash=sha256:8cfa89acbee5acd3e70714fbc45d9dc23446a2418624c17b1dcfdf0bdd33bbe0
+dennis==1.2.0 \
+    --hash=sha256:14cf763b9d55d27599d4f7f1061b85eabd342b28b0abab90d1dad1f4297c0346 \
+    --hash=sha256:826d447ed9b3d3c9dec0d550a8647a90dfc8932ac5b8a1a619a0c30c7d63d79b
 # polib is required by dennis
 polib==1.2.0 \
     --hash=sha256:1c77ee1b81feb31df9bca258cbc58db1bbb32d10214b173882452c73af06d62d \
