@@ -1300,11 +1300,11 @@ msgstr "Proprietatea {0} contului {user} a fost actualizată."
 #: src/olympia/constants/activity.py:1279
 #, python-brace-format
 msgid "{addon} listing content approved."
-msgstr ""
+msgstr "Conținutul listării {addon} a fost aprobat."
 
 #: src/olympia/constants/activity.py:1281
 msgid "Rejected listing approved"
-msgstr ""
+msgstr "Listare respinsă aprobată"
 
 #: src/olympia/constants/activity.py:1293
 #, python-brace-format
@@ -1313,7 +1313,7 @@ msgstr "Conținutul listării {addon} a fost respins."
 
 #: src/olympia/constants/activity.py:1294
 msgid "Listing rejected"
-msgstr ""
+msgstr "Listare respinsă"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
