@@ -1318,11 +1318,11 @@ msgstr "Contenuti per la scheda rifiutati"
 #: src/olympia/constants/activity.py:1316
 #, python-brace-format
 msgid "{addon} listing content review requested."
-msgstr ""
+msgstr "Richiesta revisione dei contenuti della scheda di {addon}."
 
 #: src/olympia/constants/activity.py:1317
 msgid "Listing review requested"
-msgstr ""
+msgstr "Richiesta revisione contenuti scheda"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -2207,7 +2207,7 @@ msgstr "Il nome dell’URL non è valido. Il componente aggiuntivo non è stato 
 
 #: src/olympia/devhub/views.py:436
 msgid "Request for a new review of listing content acknowledged."
-msgstr ""
+msgstr "La richiesta di una nuova revisione dei contenuti della scheda è stata accettata."
 
 #: src/olympia/devhub/views.py:480
 msgid "Invitation accepted."
@@ -4057,19 +4057,19 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:39
 msgid "Our review found that your listing content violates the following Mozilla policy or policies:"
-msgstr ""
+msgstr "Dalla revisione è emerso che i contenuti della tua scheda violano le seguenti norme o politiche di Mozilla:"
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:50
 msgid "To address these issues, please update your listing and request another review of the content."
-msgstr ""
+msgstr "Per risolvere questi problemi, aggiorna la scheda e richiedi un’ulteriore revisione dei contenuti."
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:54
 msgid "Review requested already, awaiting review"
-msgstr ""
+msgstr "Revisione già richiesta, in attesa di revisione"
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:59
 msgid "I confirm I have addressed the issues, and request a review"
-msgstr ""
+msgstr "Confermo di aver risolto i problemi e richiedo una nuova revisione"
 
 #: src/olympia/devhub/templates/devhub/includes/macros.html:5
 msgid "Some Markdown supported."

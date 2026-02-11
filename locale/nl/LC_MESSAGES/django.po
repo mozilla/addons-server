@@ -2174,7 +2174,7 @@ msgstr "URL-naam onjuist. Add-on is niet verwijderd."
 
 #: src/olympia/devhub/views.py:436
 msgid "Request for a new review of listing content acknowledged."
-msgstr "Verzoek voor een nieuwe beoordeling van inhoud van vermelding bevestigd."
+msgstr "Verzoek om een nieuwe beoordeling van inhoud van vermelding bevestigd."
 
 #: src/olympia/devhub/views.py:480
 msgid "Invitation accepted."
