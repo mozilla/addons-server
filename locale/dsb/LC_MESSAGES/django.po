@@ -3997,6 +3997,8 @@ msgid ""
 "{label_open}Listing Content Rejected:{label_close} Won't be included in search results, and its product page will be unavailable. New listed version submissions won't be accepted in this state, but "
 "existing versions awaiting review will be reviewed, and approved versions remain usable by existing users."
 msgstr ""
+"{label_open}Wopśimjeśe lisćinowego zapiska wótpokazane:{label_close} Njepśidawaju se pytańskim wuslědkam a jogo produktowy bok njebuźo k dispoziciji. Zapódaśa nowych naliconych wersijow njebudu se w"
+" toś tom stawje akceptěrowaś, ale eksistěrujuce wersije, kótarež na pśeglědowanje cakaju, budu se pśeglědowaś a pśizwólone wersije wót eksistěrujucych wužywarjow wužywajobne wóstanu."
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:22
 #, python-brace-format
@@ -4013,19 +4015,19 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:39
 msgid "Our review found that your listing content violates the following Mozilla policy or policies:"
-msgstr ""
+msgstr "Našo pśeglědowanje jo namakało, až se wopśimjeśe wašogo lisćinowego zapiska pśeśiwo slědujucym pšawidłam Mozilla pśejźo:"
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:50
 msgid "To address these issues, please update your listing and request another review of the content."
-msgstr ""
+msgstr "Aby toś te problemy rozwězał, aktualizěrujśo pšosym waš lisćinowy zapisk a pšosćo wó dalšne pśeglědowanje wopśimjeśa."
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:54
 msgid "Review requested already, awaiting review"
-msgstr ""
+msgstr "Pśeglědowanje jo južo pominane, caka se na pśeglědowanje"
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:59
 msgid "I confirm I have addressed the issues, and request a review"
-msgstr ""
+msgstr "Wobkšuśijom, až som rozwězał problemy a pšosym wó pśeglědowanje"
 
 #: src/olympia/devhub/templates/devhub/includes/macros.html:5
 msgid "Some Markdown supported."
