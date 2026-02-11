@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-10 13:03+0000\n"
+"POT-Creation-Date: 2026-02-11 14:38+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1071,6 +1071,13 @@ msgstr "{addon} listing content rejected."
 msgid "Listing rejected"
 msgstr "Listing rejected"
 
+#, python-brace-format
+msgid "{addon} listing content review requested."
+msgstr "{addon} listing content review requested."
+
+msgid "Listing review requested"
+msgstr "Listing review requested"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -1735,6 +1742,9 @@ msgstr "URL name was incorrect. Theme was not deleted."
 
 msgid "URL name was incorrect. Add-on was not deleted."
 msgstr "URL name was incorrect. Add-on was not deleted."
+
+msgid "Request for a new review of listing content acknowledged."
+msgstr "Request for a new review of listing content acknowledged."
 
 msgid "Invitation accepted."
 msgstr "Invitation accepted."
@@ -3242,6 +3252,39 @@ msgstr "Please choose a license appropriate for the rights you grant on your sou
 msgid "Sort by:"
 msgstr "Sort by:"
 
+#, fuzzy
+msgid "Listing visibility"
+msgstr "Addon visibility"
+
+#, python-brace-format
+msgid ""
+"{label_open}Listing Content Rejected:{label_close} Won't be included in search results, and its product page will be unavailable. New listed version submissions won't be accepted in this state, but "
+"existing versions awaiting review will be reviewed, and approved versions remain usable by existing users."
+msgstr ""
+"{label_open}Listing Content Rejected:{label_close} Won't be included in search results, and its product page will be unavailable. New listed version submissions won't be accepted in this state, but "
+"existing versions awaiting review will be reviewed, and approved versions remain usable by existing users."
+
+#, fuzzy, python-brace-format
+msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
+msgstr "Visible to everyone on {0} and included in search results and listing pages"
+
+#, fuzzy, python-brace-format
+msgid ""
+"{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
+msgstr "Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
+
+msgid "Our review found that your listing content violates the following Mozilla policy or policies:"
+msgstr "Our review found that your listing content violates the following Mozilla policy or policies:"
+
+msgid "To address these issues, please update your listing and request another review of the content."
+msgstr "To address these issues, please update your listing and request another review of the content."
+
+msgid "Review requested already, awaiting review"
+msgstr "Review requested already, awaiting review"
+
+msgid "I confirm I have addressed the issues, and request a review"
+msgstr "I confirm I have addressed the issues, and request a review"
+
 msgid "Some Markdown supported."
 msgstr "Some Markdown supported."
 
@@ -3570,19 +3613,6 @@ msgstr "Delete reply"
 
 msgid "Reply"
 msgstr "Reply"
-
-#, fuzzy
-msgid "Listing visibility"
-msgstr "Addon visibility"
-
-#, fuzzy, python-brace-format
-msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
-msgstr "Visible to everyone on {0} and included in search results and listing pages"
-
-#, fuzzy, python-brace-format
-msgid ""
-"{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
-msgstr "Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 
 #, fuzzy
 msgid "Listed versions"

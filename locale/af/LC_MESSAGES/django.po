@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-10 13:03+0000\n"
+"POT-Creation-Date: 2026-02-11 14:38+0000\n"
 "Language: af\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1003,6 +1003,13 @@ msgstr ""
 msgid "Listing rejected"
 msgstr ""
 
+#, python-brace-format
+msgid "{addon} listing content review requested."
+msgstr ""
+
+msgid "Listing review requested"
+msgstr ""
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -1643,6 +1650,9 @@ msgid "URL name was incorrect. Theme was not deleted."
 msgstr ""
 
 msgid "URL name was incorrect. Add-on was not deleted."
+msgstr ""
+
+msgid "Request for a new review of listing content acknowledged."
 msgstr ""
 
 msgid "Invitation accepted."
@@ -2991,6 +3001,36 @@ msgstr ""
 msgid "Sort by:"
 msgstr "Sorteer volgens:"
 
+msgid "Listing visibility"
+msgstr ""
+
+#, python-brace-format
+msgid ""
+"{label_open}Listing Content Rejected:{label_close} Won't be included in search results, and its product page will be unavailable. New listed version submissions won't be accepted in this state, but "
+"existing versions awaiting review will be reviewed, and approved versions remain usable by existing users."
+msgstr ""
+
+#, python-brace-format
+msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
+msgstr ""
+
+#, python-brace-format
+msgid ""
+"{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
+msgstr ""
+
+msgid "Our review found that your listing content violates the following Mozilla policy or policies:"
+msgstr ""
+
+msgid "To address these issues, please update your listing and request another review of the content."
+msgstr ""
+
+msgid "Review requested already, awaiting review"
+msgstr ""
+
+msgid "I confirm I have addressed the issues, and request a review"
+msgstr ""
+
 msgid "Some Markdown supported."
 msgstr ""
 
@@ -3303,18 +3343,6 @@ msgstr "Skryf 'n antwoord"
 
 msgid "Reply"
 msgstr "Antwoord"
-
-msgid "Listing visibility"
-msgstr ""
-
-#, python-brace-format
-msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
-msgstr ""
-
-#, python-brace-format
-msgid ""
-"{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
-msgstr ""
 
 #, fuzzy
 msgid "Listed versions"
