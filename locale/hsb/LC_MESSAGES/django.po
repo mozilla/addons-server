@@ -4014,19 +4014,19 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:39
 msgid "Our review found that your listing content violates the following Mozilla policy or policies:"
-msgstr ""
+msgstr "Naše přepruwowanje namaka, zo so wobsah wašeho lisćinoweho zapiska přećiwo slědowacym prawidłam Mozilla přeńdźe:"
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:50
 msgid "To address these issues, please update your listing and request another review of the content."
-msgstr ""
+msgstr "Zo byšće tute problemy rozrisał, aktualizujće prošu waš lisćinowy zapisk a prošće wo dalše přepruwowanje wobsaha."
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:54
 msgid "Review requested already, awaiting review"
-msgstr ""
+msgstr "Přepruwowanje je hižo požadane, čaka so na přepruwowanje"
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:59
 msgid "I confirm I have addressed the issues, and request a review"
-msgstr ""
+msgstr "Wobkrućam, zo sym problemy rozrisał a prošu wo přepruwowanje"
 
 #: src/olympia/devhub/templates/devhub/includes/macros.html:5
 msgid "Some Markdown supported."
