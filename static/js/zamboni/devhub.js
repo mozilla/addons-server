@@ -163,7 +163,7 @@ $(document).ready(function () {
     });
   });
 
-  $('.enable-addon').on('click', function () {
+  $('.enable-addon, .rejected-review-request').on('click', function () {
     $.ajax({
       type: 'POST',
       url: $(this).data('url'),

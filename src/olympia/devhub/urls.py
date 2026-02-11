@@ -19,6 +19,11 @@ detail_patterns = [
     re_path(r'^disable$', views.disable, name='devhub.addons.disable'),
     re_path(r'^enable$', views.enable, name='devhub.addons.enable'),
     re_path(
+        r'^content-review-request$',
+        views.rejected_review_request,
+        name='devhub.addons.rejected_review_request',
+    ),
+    re_path(
         r'^cancel-latest-(?P<channel>listed|unlisted)$',
         views.cancel,
         name='devhub.addons.cancel',
