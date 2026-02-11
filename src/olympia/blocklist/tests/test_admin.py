@@ -802,6 +802,93 @@ class TestBlocklistSubmissionAdmin(TestCase):
             is_active=True
         ).exists()
 
+    def test_add_multiple_from_pks(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Blocklist:Create')
+        self.client.force_login(user)
+
+        new_addon_adu = addon_adu = 45768
+        new_addon = addon_factory(
+            guid='any@new', name='New Danger', average_daily_users=new_addon_adu
+        )
+        existing_and_complete = block_factory(
+            addon=addon_factory(guid='full@existing', name='Full Danger'),
+            # addon will have a different adu
+            average_daily_users_snapshot=346733434,
+            updated_by=user_factory(),
+        )
+        partial_addon_adu = addon_adu - 1
+        partial_addon = addon_factory(
+            guid='partial@existing',
+            name='Partial Danger',
+            average_daily_users=(partial_addon_adu),
+        )
+        partial_addon.current_version.update(
+            created=partial_addon.current_version.created - timedelta(seconds=1)
+        )
+        block_factory(
+            guid=partial_addon.guid,
+            # should be updated to addon's adu
+            average_daily_users_snapshot=146722437,
+            updated_by=user_factory(),
+        )
+        new_partial_addon_version = version_factory(addon=partial_addon)
+        # Delete any ActivityLog caused by our creations above to make things
+        # easier to test.
+        ActivityLog.objects.all().delete()
+
+        parameter = '?addons=' + '~'.join(
+            map(
+                str,
+                [
+                    new_addon.pk,
+                    existing_and_complete.addon.pk,
+                    partial_addon.pk,
+                    partial_addon.pk + 42,  # Invalid, ignored
+                ],
+            )
+        )
+
+        response = self.client.get(
+            self.submission_url + parameter,
+            follow=True,
+        )
+        content = response.content.decode('utf-8')
+        # meta data for new blocks and existing ones needing update:
+        assert 'Add-on GUIDs (one per line)' not in content
+        total_adu = new_addon_adu + partial_addon_adu
+        assert f'2 Add-on GUIDs with {total_adu:,} users:' in content
+        assert 'any@new' in content
+        assert 'New Danger' in content
+        assert f'{new_addon.average_daily_users} users' in content
+        assert 'partial@existing' in content
+        assert 'Partial Danger' in content
+        assert f'{partial_addon.average_daily_users} users' in content
+        # but not for existing blocks already 0 - *
+        assert 'full@existing' in content
+        assert 'Full Danger' not in content
+        assert f'{existing_and_complete.addon.average_daily_users} users' not in content
+
+        # Check we didn't create the block already
+        assert Block.objects.count() == 2
+        assert BlocklistSubmission.objects.count() == 0
+
+        # Check what's in the form we would be submitting
+        doc = pq(response.content)
+        assert doc('input[name=input_guids]')[0].attrib['value'].split('\n') == [
+            'any@new',
+            'full@existing',
+            'partial@existing',
+        ]
+        changed_version_ids = doc('input[name=changed_version_ids]')
+        assert len(changed_version_ids) == 2
+        assert changed_version_ids[0].attrib['value'] == str(
+            new_addon.current_version.pk
+        )
+        assert changed_version_ids[1].attrib['value'] == str(
+            new_partial_addon_version.pk
+        )
+
     def _test_add_multiple_submit(self, addon_adu, delay=0):
         """addon_adu is important because whether dual signoff is needed is
         based on what the average_daily_users is."""

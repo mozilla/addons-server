@@ -5,7 +5,7 @@ from django.contrib import admin, messages
 from django.contrib.admin import SimpleListFilter
 from django.db.models import Count, Prefetch
 from django.forms import ModelForm
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import redirect
 from django.template.loader import render_to_string
 from django.urls import re_path, reverse
@@ -318,7 +318,7 @@ class ScannerRuleModelForm(ModelForm):
 
 
 class AbstractScannerResultAdminMixin:
-    actions = None
+    actions = ['block_addons_action', 'search_for_authors_action']
     view_on_site = False
     list_select_related = ('version',)
     raw_id_fields = ('version',)
@@ -355,6 +355,49 @@ class AbstractScannerResultAdminMixin:
             WithVersionFilter.parameter_name: 'all',
             StateFilter.parameter_name: 'all',
         }
+
+    def has_block_addons_permission(self, request):
+        return acl.action_allowed_for(request.user, amo.permissions.BLOCKLIST_CREATE)
+
+    @admin.action(description='Block these add-ons', permissions=['block_addons'])
+    def block_addons_action(self, request, queryset):
+        related_name = self.model._meta.get_field('version').related_query_name()
+        addonids = (
+            Addon.unfiltered.filter(
+                **{f'versions__{related_name}__in': queryset.values_list('pk')}
+            )
+            .values_list('pk', flat=True)
+            .distinct()
+            .order_by('pk')
+        )
+        url = reverse('admin:blocklist_blocklistsubmission_add')
+        # Use `~` as the delimiter because it doesn't have to be quoted so we
+        # can cram more ids in an URL.
+        parameters = {'addons': '~'.join(map(str, addonids))}
+        return HttpResponseRedirect(url + f'?{urlencode(parameters)}')
+
+    def has_search_for_authors_permission(self, request):
+        return acl.action_allowed_for(request.user, amo.permissions.USERS_EDIT)
+
+    @admin.action(
+        description='Search for authors of these add-ons',
+        permissions=['search_for_authors'],
+    )
+    def search_for_authors_action(self, request, queryset):
+        related_name = self.model._meta.get_field('version').related_query_name()
+        userids = (
+            UserProfile.objects.filter(
+                **{
+                    f'addons__versions__{related_name}__in': queryset.values_list('pk'),
+                }
+            )
+            .values_list('pk', flat=True)
+            .distinct()
+            .order_by('pk')
+        )
+        url = reverse('admin:users_userprofile_changelist')
+        parameters = {'q': ','.join(map(str, userids))}
+        return HttpResponseRedirect(url + f'?{urlencode(parameters)}')
 
     # Remove the "add" button
     def has_add_permission(self, request):
@@ -855,6 +898,7 @@ class ScannerQueryResultAdmin(AbstractScannerResultAdminMixin, AMOModelAdmin):
             return obj.version.addon.average_daily_users
         return '-'
 
+    addon_adi.short_description = 'Add-on ADI'
     addon_adi.admin_order_field = 'version__addon__average_daily_users'
 
     def formatted_channel(self, obj):
@@ -879,6 +923,8 @@ class ScannerQueryResultAdmin(AbstractScannerResultAdminMixin, AMOModelAdmin):
                 obj.version.get_channel_display(),
             )
         return '-'
+
+    formatted_channel.short_description = 'Channel'
 
     def version_number(self, obj):
         if obj.version:

@@ -372,13 +372,6 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
 
         return ro_fields
 
-    def _get_input_guids(self, request):
-        return splitlines(
-            self.get_value(
-                'guids', request, default=request.POST.get('input_guids', '')
-            )
-        )
-
     def add_view(self, request, **kwargs):
         if not self.has_add_permission(request):
             raise PermissionDenied
@@ -392,13 +385,22 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
                 default=BlocklistSubmission.ACTIONS.ADDCHANGE,
             )
         )
+        # If we get a guids param it's a redirect from input_guids_view.
         guids_data = self.get_value('guids', request)
+        # If we get an addons param (pks separated by "~") we have to
+        # translate that to guids first.
+        pks_data = self.get_value('addons', request)
+        if pks_data:
+            guids_data = '\n'.join(
+                Addon.unfiltered.filter(pk__in=pks_data.split('~')).values_list(
+                    'guid', flat=True
+                )
+            )
         if guids_data and 'input_guids' not in request.POST:
-            # If we get a guids param it's a redirect from input_guids_view.
             initial = {
                 key: value
                 for key, value in request.GET.items()
-                if key not in ('v', 'guids')
+                if key not in ('v', 'guids', 'addons')
             }
             if version_ids := request.GET.getlist('v'):
                 # `v` can contain multiple version ids
