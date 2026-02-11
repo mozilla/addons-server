@@ -3995,7 +3995,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:39
 msgid "Our review found that your listing content violates the following Mozilla policy or policies:"
-msgstr "Gjennomgangen vår fant ut at innholdet i oppføringen din bryter med følgende Mozilla-regl(er):"
+msgstr "Gjennomgangen vår fant ut at innholdet i oppføringen din bryter med følgende Mozilla-regel, eller -regler:"
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:50
 msgid "To address these issues, please update your listing and request another review of the content."
