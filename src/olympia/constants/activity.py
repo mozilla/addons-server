@@ -1317,6 +1317,7 @@ class REJECTED_LISTING_REVIEW_REQUEST(_LOG):
     short = _('Listing review requested')
     keep = True
     review_email_user = True
+    review_queue_important_change = True
 
 
 LOGS = [x for x in vars().values() if isclass(x) and issubclass(x, _LOG) and x != _LOG]
