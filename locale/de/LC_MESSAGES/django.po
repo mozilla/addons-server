@@ -1316,11 +1316,11 @@ msgstr "Listeneintrag abgelehnt"
 #: src/olympia/constants/activity.py:1316
 #, python-brace-format
 msgid "{addon} listing content review requested."
-msgstr ""
+msgstr "Inhaltsüberprüfung des Listeneintrags zu {addon} angefordert."
 
 #: src/olympia/constants/activity.py:1317
 msgid "Listing review requested"
-msgstr ""
+msgstr "Überprüfung des Listeneintrags angefordert"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -2188,7 +2188,7 @@ msgstr "Adressname war falsch. Add-on wurde nicht gelöscht."
 
 #: src/olympia/devhub/views.py:436
 msgid "Request for a new review of listing content acknowledged."
-msgstr ""
+msgstr "Anfrage auf neue Überprüfung des Listeninhalts bestätigt."
 
 #: src/olympia/devhub/views.py:480
 msgid "Invitation accepted."
@@ -4006,6 +4006,8 @@ msgid ""
 "{label_open}Listing Content Rejected:{label_close} Won't be included in search results, and its product page will be unavailable. New listed version submissions won't be accepted in this state, but "
 "existing versions awaiting review will be reviewed, and approved versions remain usable by existing users."
 msgstr ""
+"{label_open} Listeneintrag abgelehnt:{label_close} Erscheint nicht in Suchergebnissen, und die zugehörige Produktseite ist nicht verfügbar. Einreichungen neuer gelisteter Versionen werden in diesem "
+"Status nicht akzeptiert, aber bestehende Versionen, die auf Überprüfung warten, werden überprüft und freigeschaltete Versionen können weiterhin von bestehenden Nutzern verwendet werden."
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:22
 #, python-brace-format
@@ -4022,19 +4024,19 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:39
 msgid "Our review found that your listing content violates the following Mozilla policy or policies:"
-msgstr ""
+msgstr "Unsere Überprüfung hat ergeben, dass der Inhalt Ihres Listeneintrags gegen die folgenden Richtlinien von Mozilla verstößt:"
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:50
 msgid "To address these issues, please update your listing and request another review of the content."
-msgstr ""
+msgstr "Um diese Probleme zu beheben, aktualisieren Sie bitte Ihren Listeneintrag und fordern Sie eine erneute Überprüfung des Inhalts an."
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:54
 msgid "Review requested already, awaiting review"
-msgstr ""
+msgstr "Überprüfung bereits angefordert, wartet auf Überprüfung"
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:59
 msgid "I confirm I have addressed the issues, and request a review"
-msgstr ""
+msgstr "Ich bestätige, dass ich die Probleme behoben habe und eine Überprüfung benötige"
 
 #: src/olympia/devhub/templates/devhub/includes/macros.html:5
 msgid "Some Markdown supported."
