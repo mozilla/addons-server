@@ -1310,11 +1310,11 @@ msgstr "Listning avvisad"
 #: src/olympia/constants/activity.py:1316
 #, python-brace-format
 msgid "{addon} listing content review requested."
-msgstr ""
+msgstr "{addon} begärd granskning av listningsinnehåll."
 
 #: src/olympia/constants/activity.py:1317
 msgid "Listing review requested"
-msgstr ""
+msgstr "Granskning av listning begärd"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -2169,7 +2169,7 @@ msgstr "URL-namn var felaktig. Tillägg togs inte bort."
 
 #: src/olympia/devhub/views.py:436
 msgid "Request for a new review of listing content acknowledged."
-msgstr ""
+msgstr "Begäran om ny granskning av listningsinnehåll bekräftas."
 
 #: src/olympia/devhub/views.py:480
 msgid "Invitation accepted."
@@ -3994,6 +3994,8 @@ msgid ""
 "{label_open}Listing Content Rejected:{label_close} Won't be included in search results, and its product page will be unavailable. New listed version submissions won't be accepted in this state, but "
 "existing versions awaiting review will be reviewed, and approved versions remain usable by existing users."
 msgstr ""
+"{label_open}Listningsinnehåll avvisat:{label_close} Kommer inte att inkluderas i sökresultaten och produktsidan kommer inte att vara tillgänglig. Nya listade versioner accepteras inte i detta "
+"tillstånd, men befintliga versioner som väntar på granskning kommer att granskas och godkända versioner kan fortfarande användas av befintliga användare."
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:22
 #, python-brace-format
@@ -4008,19 +4010,19 @@ msgstr "{label_open}Osynlig:{label_close} Ingår inte i sökresultaten, och prod
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:39
 msgid "Our review found that your listing content violates the following Mozilla policy or policies:"
-msgstr ""
+msgstr "Vår granskning fann att ditt listningsinnehåll bryter mot följande Mozilla-policy eller policyer:"
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:50
 msgid "To address these issues, please update your listing and request another review of the content."
-msgstr ""
+msgstr "För att åtgärda dessa problem, vänligen uppdatera din listning och begär en ny granskning av innehållet."
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:54
 msgid "Review requested already, awaiting review"
-msgstr ""
+msgstr "Granskning har redan begärts, väntar på granskning"
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:59
 msgid "I confirm I have addressed the issues, and request a review"
-msgstr ""
+msgstr "Jag bekräftar att jag har löst problemen och begär en granskning"
 
 #: src/olympia/devhub/templates/devhub/includes/macros.html:5
 msgid "Some Markdown supported."
