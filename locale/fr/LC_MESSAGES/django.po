@@ -4049,19 +4049,19 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:39
 msgid "Our review found that your listing content violates the following Mozilla policy or policies:"
-msgstr ""
+msgstr "Notre vérification a révélé que le contenu de votre page enfreint la ou les politique·s de Mozilla suivante·s :"
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:50
 msgid "To address these issues, please update your listing and request another review of the content."
-msgstr ""
+msgstr "Pour résoudre ces problèmes, veuillez mettre à jour votre page et demander une autre vérification du contenu."
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:54
 msgid "Review requested already, awaiting review"
-msgstr ""
+msgstr "Vérification déjà demandée, en attente de vérification"
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:59
 msgid "I confirm I have addressed the issues, and request a review"
-msgstr ""
+msgstr "Je confirme avoir corrigé les problèmes et je demande une vérification"
 
 #: src/olympia/devhub/templates/devhub/includes/macros.html:5
 msgid "Some Markdown supported."
