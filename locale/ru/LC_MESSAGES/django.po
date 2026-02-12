@@ -1309,11 +1309,11 @@ msgstr "Листинг отклонён"
 #: src/olympia/constants/activity.py:1316
 #, python-brace-format
 msgid "{addon} listing content review requested."
-msgstr ""
+msgstr "Запрошена проверка листинга содержимого {addon}."
 
 #: src/olympia/constants/activity.py:1317
 msgid "Listing review requested"
-msgstr ""
+msgstr "Запрошена проверка листинга"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -2178,7 +2178,7 @@ msgstr "Указан неверный адрес. Дополнение не уд
 
 #: src/olympia/devhub/views.py:436
 msgid "Request for a new review of listing content acknowledged."
-msgstr ""
+msgstr "Запрос на новую проверку содержимого листинга подтвержден."
 
 #: src/olympia/devhub/views.py:480
 msgid "Invitation accepted."
