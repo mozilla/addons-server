@@ -3639,7 +3639,7 @@ msgstr "Créer une version de thème"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:82
 msgid "You can upload a finished theme using the upload option above, or you can build it yourself using this tool."
-msgstr ""
+msgstr "Vous pouvez envoyer un thème fini en utilisant l’option d’envoi ci-dessus, ou vous pouvez le créer vous-même en utilisant cet outil."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:88
 msgid "Create a Theme"
