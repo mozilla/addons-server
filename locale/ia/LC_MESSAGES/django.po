@@ -1317,7 +1317,7 @@ msgstr "Demandate revision de contento del catalogo {addon}."
 
 #: src/olympia/constants/activity.py:1317
 msgid "Listing review requested"
-msgstr ""
+msgstr "Revision de catalogo demandate"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -2176,7 +2176,7 @@ msgstr "Le nomine del URL esseva incorrecte. Le additivo non esseva delite."
 
 #: src/olympia/devhub/views.py:436
 msgid "Request for a new review of listing content acknowledged."
-msgstr ""
+msgstr "Requesta de un nove revision de contento de catalogo recognoscite."
 
 #: src/olympia/devhub/views.py:480
 msgid "Invitation accepted."
