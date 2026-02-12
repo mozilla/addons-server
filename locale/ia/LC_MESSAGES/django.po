@@ -1313,7 +1313,7 @@ msgstr "Lista refusate"
 #: src/olympia/constants/activity.py:1316
 #, python-brace-format
 msgid "{addon} listing content review requested."
-msgstr ""
+msgstr "Demandate revision de contento del catalogo {addon}."
 
 #: src/olympia/constants/activity.py:1317
 msgid "Listing review requested"
@@ -4003,7 +4003,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:50
 msgid "To address these issues, please update your listing and request another review of the content."
-msgstr ""
+msgstr "Pro solver iste problemas, actualisa tu catalogo e pete un altere revision del contento."
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:54
 msgid "Review requested already, awaiting review"
