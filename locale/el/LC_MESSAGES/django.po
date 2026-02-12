@@ -384,7 +384,7 @@ msgstr "Οι καταχωρημένες εκδόσεις δεν μπορούν �
 
 #: src/olympia/addons/serializers.py:578 src/olympia/signing/views.py:218
 msgid "Listed versions cannot be submitted while add-on listing is rejected."
-msgstr ""
+msgstr "Οι καταχωρημένες εκδόσεις δεν μπορούν να υποβληθούν, όσο η καταχώρηση του πρόσθετου έχει απορριφθεί."
 
 #: src/olympia/addons/serializers.py:619
 #, python-format
