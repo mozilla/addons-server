@@ -385,7 +385,7 @@ msgstr "Les versions répertoriées ne peuvent pas être soumises lorsque le mod
 
 #: src/olympia/addons/serializers.py:578 src/olympia/signing/views.py:218
 msgid "Listed versions cannot be submitted while add-on listing is rejected."
-msgstr ""
+msgstr "Les versions répertoriées ne peuvent pas être soumises lorsque la page du module complémentaire est désactivée."
 
 #: src/olympia/addons/serializers.py:619
 #, python-format
@@ -1302,29 +1302,29 @@ msgstr "Propriété {0} du compte {user} mise à jour."
 #: src/olympia/constants/activity.py:1279
 #, python-brace-format
 msgid "{addon} listing content approved."
-msgstr ""
+msgstr "Contenu de la page de {addon} approuvé."
 
 #: src/olympia/constants/activity.py:1281
 msgid "Rejected listing approved"
-msgstr ""
+msgstr "Page rejetée désormais approuvée"
 
 #: src/olympia/constants/activity.py:1293
 #, python-brace-format
 msgid "{addon} listing content rejected."
-msgstr ""
+msgstr "Contenu de la page de {addon} rejeté."
 
 #: src/olympia/constants/activity.py:1294
 msgid "Listing rejected"
-msgstr ""
+msgstr "Page rejetée"
 
 #: src/olympia/constants/activity.py:1316
 #, python-brace-format
 msgid "{addon} listing content review requested."
-msgstr ""
+msgstr "Vérification du contenu de la page de {addon} demandée."
 
 #: src/olympia/constants/activity.py:1317
 msgid "Listing review requested"
-msgstr ""
+msgstr "Vérification de la page demandée"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -1364,7 +1364,7 @@ msgstr "En attente de validation"
 
 #: src/olympia/constants/base.py:27
 msgid "Listing Content Rejected"
-msgstr ""
+msgstr "Contenu de la page rejeté"
 
 #: src/olympia/constants/base.py:28 src/olympia/constants/base.py:35
 msgid "Disabled by Mozilla"
@@ -2208,7 +2208,7 @@ msgstr "Le nom de l’URL était incorrect. Le module n’a pas été supprimé.
 
 #: src/olympia/devhub/views.py:436
 msgid "Request for a new review of listing content acknowledged."
-msgstr ""
+msgstr "Accusé de réception de la demande de nouvelle vérification du contenu de la page."
 
 #: src/olympia/devhub/views.py:480
 msgid "Invitation accepted."
@@ -3115,7 +3115,7 @@ msgstr "Votre module complémentaire est pour le moment « Invisible »."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cant_submit_new_listed_versions_warning.html:5
 msgid "Your add-on listing was rejected."
-msgstr ""
+msgstr "La page de votre module a été rejetée."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cant_submit_new_listed_versions_warning.html:7
 msgid "While in this state, \"On your own\" is the only distribution method available."
@@ -3865,7 +3865,7 @@ msgstr "Votre module a été désactivé par un administrateur du site et n’es
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:32
 msgid "Your add-on listing was rejected. It is not listed in our gallery. Please address the reasons and reapply for review."
-msgstr ""
+msgstr "La page de votre module a été rejetée. Il n’est pas listé dans notre galerie. Veuillez corriger les motifs évoqués et effectuer une nouvelle demande de vérification."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:35
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
