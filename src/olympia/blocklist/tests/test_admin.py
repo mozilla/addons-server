@@ -1474,6 +1474,37 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert b'Review Listed' not in response.content
         assert b'Review Unlisted' in response.content
 
+    def test_authors_links(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Blocklist:Create')
+        self.client.force_login(user)
+
+        user1 = user_factory()
+        user2 = user_factory()
+        addon = addon_factory(users=[user1], average_daily_users=999)
+        other_addon = addon_factory(users=[user2, user1], average_daily_users=666)
+        author_admin_url = reverse('admin:users_userprofile_changelist')
+
+        response = self.client.get(
+            self.submission_url,
+            {'guids': f'{addon.guid}\n {other_addon.guid}\n'},
+        )
+        doc = pq(response.content.decode('utf-8'))
+        link = doc('.field-blocks-to-add h3 a')[0]
+        assert link.text_content() == 'author(s)'
+        assert link.attrib['href'] == author_admin_url + f'?q={user1.pk},{user2.pk}'
+        items = doc('.guid_list > li')
+        assert items[0].findall('a')[1].text_content() == 'Authors(s)'
+        assert (
+            items[0].findall('a')[1].attrib['href']
+            == author_admin_url + f'?q={user1.pk}'
+        )
+        assert items[1].findall('a')[1].text_content() == 'Authors(s)'
+        assert (
+            items[1].findall('a')[1].attrib['href']
+            == author_admin_url + f'?q={user1.pk},{user2.pk}'
+        )
+
     def test_can_not_add_without_create_permission(self):
         user = user_factory(email='someone@mozilla.com')
         # The signoff permission shouldn't be sufficient
