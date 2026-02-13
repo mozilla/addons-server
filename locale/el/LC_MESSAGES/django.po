@@ -1300,20 +1300,20 @@ msgstr "Η ιδιότητα {0} του λογαριασμού {user} ενημε�
 #: src/olympia/constants/activity.py:1279
 #, python-brace-format
 msgid "{addon} listing content approved."
-msgstr ""
+msgstr "Εγκρίθηκε το περιεχόμενο της καταχώρησης του {addon}."
 
 #: src/olympia/constants/activity.py:1281
 msgid "Rejected listing approved"
-msgstr ""
+msgstr "Η απορριφθείσα καταχώρηση εγκρίθηκε"
 
 #: src/olympia/constants/activity.py:1293
 #, python-brace-format
 msgid "{addon} listing content rejected."
-msgstr ""
+msgstr "Απορρίφθηκε το περιεχόμενο της καταχώρησης του {addon}."
 
 #: src/olympia/constants/activity.py:1294
 msgid "Listing rejected"
-msgstr ""
+msgstr "Η καταχώρηση απορρίφθηκε"
 
 #: src/olympia/constants/activity.py:1316
 #, python-brace-format
