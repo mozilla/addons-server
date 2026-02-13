@@ -383,7 +383,7 @@ class UserManager(BaseUserManager, ManagerBase):
 
             APIKey.new_jwt_credentials(user=user)
 
-        return user
+        return user, created
 
     def _make_username_for_service_account(self, name):
         return slugify(f'service-account-{name}')

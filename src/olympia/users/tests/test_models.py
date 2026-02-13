@@ -1848,8 +1848,9 @@ class TestUserManager(TestCase):
     def test_get_or_create_service_account(self):
         name = 'some service'
 
-        user = UserProfile.objects.get_or_create_service_account(name=name)
+        user, created = UserProfile.objects.get_or_create_service_account(name=name)
 
+        assert created
         assert user.pk is not None
         assert not user.email
         assert not user.fxa_id
@@ -1862,8 +1863,12 @@ class TestUserManager(TestCase):
         name = 'some service'
         notes = 'some notes'
 
-        user = UserProfile.objects.get_or_create_service_account(name=name, notes=notes)
+        user, created = UserProfile.objects.get_or_create_service_account(
+            name=name,
+            notes=notes,
+        )
 
+        assert created
         assert user.pk is not None
         assert not user.email
         assert not user.fxa_id
@@ -1876,11 +1881,13 @@ class TestUserManager(TestCase):
         number_of_keys = len(APIKey.objects.all())
 
         name = 'some service'
-        user = UserProfile.objects.get_or_create_service_account(name=name)
+        user, created = UserProfile.objects.get_or_create_service_account(name=name)
+        assert created
         jwt_key = APIKey.get_jwt_key(user=user)
         assert jwt_key
         # Call method again, verify that it doesn't recreate an account.
-        user2 = UserProfile.objects.get_or_create_service_account(name=name)
+        user2, created = UserProfile.objects.get_or_create_service_account(name=name)
+        assert not created
         assert user2.pk == user.pk
         assert APIKey.get_jwt_key(user=user2) == jwt_key
 
@@ -1897,7 +1904,8 @@ class TestUserManager(TestCase):
 
     def test_get_service_account(self):
         name = 'some service'
-        user = UserProfile.objects.get_or_create_service_account(name=name)
+        user, created = UserProfile.objects.get_or_create_service_account(name=name)
+        assert created
         assert UserProfile.objects.get_service_account(name=name) == user
 
 

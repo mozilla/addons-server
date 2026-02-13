@@ -9,6 +9,7 @@ import pytest
 import time_machine
 
 from olympia import amo
+from olympia.access.models import Group, GroupUser
 from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.constants.scanners import (
     ABORTED,
@@ -19,6 +20,7 @@ from olympia.constants.scanners import (
     NARC,
     NEW,
     RUNNING,
+    SCANNER_SERVICE_ACCOUNTS_GROUP,
     SCANNERS,
     SCHEDULED,
     UNKNOWN,
@@ -663,6 +665,8 @@ class TestScannerWebhook(TestCase):
             UserProfile.objects.get_service_account(name=webhook.service_account_name)
 
         webhook.save()
+        # Double-save to check the presence of a single `GroupUser` instance.
+        webhook.save()
 
         user = UserProfile.objects.get_service_account(
             name=webhook.service_account_name
@@ -671,3 +675,6 @@ class TestScannerWebhook(TestCase):
         assert user.notes == (
             f'Service account automatically created for the "{name}" scanner webhook.'
         )
+
+        scanner_group = Group.objects.get(name=SCANNER_SERVICE_ACCOUNTS_GROUP)
+        assert GroupUser.objects.filter(group=scanner_group, user=user).count() == 1
