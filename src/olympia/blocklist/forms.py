@@ -92,11 +92,17 @@ class BlocksWidget(forms.widgets.SelectMultiple):
         """Return an HTML link for all authors across all add-ons. If the block
         wasn't loaded with full objects or if somehow the add-ons don't have
         any authors, return an empty string instead."""
-        if ids := set(
-            chain(
-                *(
-                    [author.pk for author in getattr(block.addon, 'all_authors', [])]
-                    for block in self.blocks
+        if ids := sorted(
+            set(
+                chain(
+                    *(
+                        [
+                            author.pk
+                            for author in getattr(block.addon, 'all_authors', [])
+                        ]
+                        for block in self.blocks
+                        if hasattr(block, 'addon')
+                    )
                 )
             )
         ):

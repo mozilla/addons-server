@@ -1,6 +1,7 @@
 from django.contrib import admin as admin_site
 from django.core.exceptions import ValidationError
 from django.test import RequestFactory
+from django.urls import reverse
 
 from olympia.amo.tests import (
     TestCase,
@@ -206,6 +207,12 @@ class TestBlocklistSubmissionForm(TestCase):
             assert choices[0][0] == self.new_addon.current_version.id
 
     def test_changed_version_ids_widget(self):
+        user1 = user_factory()
+        user2 = user_factory()
+        user3 = user_factory()
+        self.new_addon.authors.add(user1, user2)
+        self.existing_block_full.addon.authors.add(user_factory())
+        self.existing_block_partial.addon.authors.add(user3, user2)
         data = {
             'action': str(BlocklistSubmission.ACTIONS.ADDCHANGE),
             'input_guids': f'{self.new_addon.guid}\n'
@@ -235,6 +242,8 @@ class TestBlocklistSubmissionForm(TestCase):
                 'template_name': 'admin/blocklist/widgets/blocks.html',
                 'value': value,
             },
+            'all_authors_url': reverse('admin:users_userprofile_changelist')
+            + f'?q={user1.pk},{user2.pk},{user3.pk}',
             'blocks': form.blocks,
             'total_adu': sum(block.current_adu for block in form.blocks),
         }
