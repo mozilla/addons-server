@@ -11,6 +11,46 @@ Activity
     the moment is :ref:`the internal one<api-auth-internal>`.
 
 
+----------------------
+Listing Content Review
+----------------------
+
+.. _listing-content-review:
+
+This endpoint allows you to view the listing content review history for an extension,
+and to request a new review if the listing is rejected (after you have addressed
+the reasons for the rejection).
+
+.. http:get:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/listingcontentreview/
+
+    .. note::
+        All add-ons require authentication and either
+        reviewer permissions or a user account listed as a developer of the
+        add-on.
+
+    :>json boolean is_rejected: Whether the listing content review was rejected.
+    :>json boolean can_request_review: Whether a new listing content review can be requested.  This is `true` if the :ref:`add-on status <addon-detail-object>` is :ref:`rejected <addon-detail-status>`, and developer has not yet requested a new review, `false` otherwise.
+    :>json boolean has_requested_review: Whether the developer has requested a new listing content review after a rejection.
+    :>json string[] policies: An array of policies the listing violated, for the listing content review rejection.  Empty if not rejected.
+    :>json string|null comments: The text content of the listing content review, if any.  `null` if not rejected or if there were no comments.
+
+
+---------------------------------
+Requesting Listing Content Review
+---------------------------------
+
+.. _listing-content-review-request:
+
+This endpoint allows a new listing content review to be requested for an extension after a listing content review rejection, once the developer has addressed the reasons for the rejection.
+
+    .. note::
+        This API requires :doc:`authentication <auth>`, and for the user to be an author of the add-on.
+
+.. http:patch:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/listingcontentreview/
+
+    :<json boolean has_requested_review: Whether the developer has requested a new listing content review after a rejection.  Must be `true` to request a new review, and cannot be `true` if the listing content review was not rejected. If a new review has already been requested setting it does nothing currently.
+
+
 -----------------
 Review Notes List
 -----------------
