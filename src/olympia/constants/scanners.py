@@ -72,6 +72,9 @@ QUERY_RULE_STATES = {
 LABEL_BAD = 'bad'
 LABEL_GOOD = 'good'
 
+# Scanner service accounts group
+SCANNER_SERVICE_ACCOUNTS_GROUP = 'Service accounts for scanners'
+
 # Webhook events
 WEBHOOK_DURING_VALIDATION = 1
 WEBHOOK_ON_SOURCE_CODE_UPLOADED = 2
