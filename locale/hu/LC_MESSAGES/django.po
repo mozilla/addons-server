@@ -1307,11 +1307,11 @@ msgstr "Listázás elutasítva"
 #: src/olympia/constants/activity.py:1316
 #, python-brace-format
 msgid "{addon} listing content review requested."
-msgstr ""
+msgstr "A(z) {addon} listázásának tartalmi felülvizsgálata kérve."
 
 #: src/olympia/constants/activity.py:1317
 msgid "Listing review requested"
-msgstr ""
+msgstr "Listázás tartalmi felülvizsgálata kérve"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
