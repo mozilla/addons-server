@@ -1310,11 +1310,11 @@ msgstr "Zaradenie doplnku do databázy doplnkov zamietnuté"
 #: src/olympia/constants/activity.py:1316
 #, python-brace-format
 msgid "{addon} listing content review requested."
-msgstr ""
+msgstr "Požiadané o posúdenie zaradenia doplnku {addon} do zoznamu doplnkov."
 
 #: src/olympia/constants/activity.py:1317
 msgid "Listing review requested"
-msgstr ""
+msgstr "Požiadané o posúdenie zaradenia doplnku"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -2174,7 +2174,7 @@ msgstr "URL názov je nesprávny. Doplnok nebol odstránený."
 
 #: src/olympia/devhub/views.py:436
 msgid "Request for a new review of listing content acknowledged."
-msgstr ""
+msgstr "Žiadosť o nové preskúmanie zaradenia doplnku bola potvrdená."
 
 #: src/olympia/devhub/views.py:480
 msgid "Invitation accepted."
@@ -3980,6 +3980,8 @@ msgid ""
 "{label_open}Listing Content Rejected:{label_close} Won't be included in search results, and its product page will be unavailable. New listed version submissions won't be accepted in this state, but "
 "existing versions awaiting review will be reviewed, and approved versions remain usable by existing users."
 msgstr ""
+"{label_open}Zaradenie doplnku do zoznamu doplnkov zamietnuté:{label_close} Nebude zahrnutý vo výsledkoch vyhľadávania a stránka produktu nebude dostupná. Nové verzie doplnku nebudú v tomto stave "
+"akceptované, ale existujúce verzie čakajúce na kontrolu budú skontrolované a schválené verzie zostanú použiteľné pre existujúcich používateľov."
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:22
 #, python-brace-format
@@ -3994,15 +3996,15 @@ msgstr "{label_open}Neviditeľný:{label_close} Nebude zahrnutý do výsledkov v
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:39
 msgid "Our review found that your listing content violates the following Mozilla policy or policies:"
-msgstr ""
+msgstr "Pri našej kontrole sme zistili, že obsah vášho záznamu porušuje nasledujúce zásady spoločnosti Mozilla:"
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:50
 msgid "To address these issues, please update your listing and request another review of the content."
-msgstr ""
+msgstr "Ak chcete tieto problémy vyriešiť, aktualizujte svoj produkt a požiadajte o ďalšiu kontrolu obsahu."
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:54
 msgid "Review requested already, awaiting review"
-msgstr ""
+msgstr "Žiadosť o kontrolu už bola vyžiadaná, čaká sa na kontrolu"
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:59
 msgid "I confirm I have addressed the issues, and request a review"
