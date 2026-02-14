@@ -3996,7 +3996,7 @@ msgstr "Gjennomgangen vår fann ut at innhaldet i oppføringa di bryt med følgj
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:50
 msgid "To address these issues, please update your listing and request another review of the content."
-msgstr ""
+msgstr "For å rette opp desse problema må du oppdatere oppføringa di og be om ein ny gjennomgang av innhaldet."
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:54
 msgid "Review requested already, awaiting review"
