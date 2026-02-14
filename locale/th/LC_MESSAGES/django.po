@@ -125,6 +125,10 @@ msgid ""
 "\n"
 "After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, we have removed the content, and notified the user of our action.\n"
 msgstr ""
+"\n"
+"ขอบคุณสำหรับรายงานของคุณเกี่ยวกับ %(name)s ในส่วนเสริมของ Mozilla และสำหรับข้อมูลเพิ่มเติมเกี่ยวกับข้อกังวลของคุณ\n"
+"\n"
+"หลังจากตรวจสอบคำอุทธรณ์ของคุณแล้ว เราได้พิจารณาแล้วว่าการตัดสินใจก่อนหน้านี้ของเราที่ว่าเนื้อหานี้ไม่ละเมิดนโยบายของ Mozilla (%(policy_document_url)s) นั้นไม่ถูกต้อง จากการพิจารณาดังกล่าว เราจึงได้ลบเนื้อหาออกและแจ้งให้ผู้ใช้ทราบถึงการดำเนินการของเราแล้ว\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown_delayed.txt:5
 #, python-format
@@ -134,6 +138,10 @@ msgid ""
 "\n"
 "After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, we have requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
 msgstr ""
+"\n"
+"ขอบคุณสำหรับรายงานของคุณเกี่ยวกับ %(name)s บนส่วนเสริมของ Mozilla และสำหรับข้อมูลเพิ่มเติมเกี่ยวกับข้อกังวลของคุณ\n"
+"\n"
+"หลังจากตรวจสอบคำอุทธรณ์ของคุณแล้ว เราได้พิจารณาแล้วว่าการตัดสินใจก่อนหน้านี้ของเราที่ว่าเนื้อหานี้ไม่ละเมิดนโยบายของ Mozilla (%(policy_document_url)s) นั้นไม่ถูกต้อง จากการพิจารณาดังกล่าว เราได้ขอให้ผู้พัฒนาทำการแก้ไข หากพวกเขาไม่แก้ไขเนื้อหาเพื่อแก้ไขการละเมิด เราจะลบเนื้อหานั้นออก\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:5
 #, python-format
@@ -143,13 +151,17 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it does not violate Mozilla's policies (%(policy_document_url)s).  It will therefore not be subject to any moderation action.\n"
 msgstr ""
+"\n"
+"ขอบคุณสำหรับรายงานของคุณเกี่ยวกับ %(name)s ที่ %(target_url)s\n"
+"\n"
+"เราได้ตรวจสอบรายงานของคุณและเนื้อหาที่เกี่ยวข้องแล้ว และพบว่าไม่ละเมิดนโยบายของ Mozilla (%(policy_document_url)s) ดังนั้นจึงจะไม่มีการดำเนินการใด ๆ ต่อการกลั่นกรอง\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:7
 #, python-format
 msgid ""
 "You have the right to appeal this decision within 6 months from the date of this email. See %(appeal_url)s for details on the appeal process, including how to file an appeal for this specific "
 "decision."
-msgstr ""
+msgstr "คุณมีสิทธิ์ยื่นอุทธรณ์คำตัดสินนี้ภายใน 6 เดือนนับจากวันที่ได้รับอีเมลฉบับนี้ ดูรายละเอียดเกี่ยวกับกระบวนการอุทธรณ์ได้ที่ %(appeal_url)s รวมถึงวิธีการยื่นอุทธรณ์สำหรับคำตัดสินนี้โดยเฉพาะ"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_addon.txt:5
 #, python-format
