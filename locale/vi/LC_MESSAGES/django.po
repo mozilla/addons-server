@@ -3979,6 +3979,8 @@ msgid ""
 "{label_open}Listing Content Rejected:{label_close} Won't be included in search results, and its product page will be unavailable. New listed version submissions won't be accepted in this state, but "
 "existing versions awaiting review will be reviewed, and approved versions remain usable by existing users."
 msgstr ""
+"{label_open}Nội dung đăng tải bị từ chối:{label_close} Sản phẩm sẽ không xuất hiện trong kết quả tìm kiếm và trang sản phẩm sẽ không khả dụng. Các phiên bản mới được đăng tải sẽ không được chấp nhận"
+" ở trạng thái này, nhưng các phiên bản hiện có đang chờ xem xét sẽ được xem xét và các phiên bản đã được phê duyệt vẫn có thể sử dụng được bởi người dùng hiện tại."
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:22
 #, python-brace-format
@@ -3994,19 +3996,19 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:39
 msgid "Our review found that your listing content violates the following Mozilla policy or policies:"
-msgstr ""
+msgstr "Qua quá trình xem xét, chúng tôi phát hiện nội dung đăng tải của bạn vi phạm một hoặc nhiều chính sách sau đây của Mozilla:"
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:50
 msgid "To address these issues, please update your listing and request another review of the content."
-msgstr ""
+msgstr "Để giải quyết những vấn đề này, vui lòng cập nhật thông tin đăng tải và yêu cầu xem xét lại nội dung."
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:54
 msgid "Review requested already, awaiting review"
-msgstr ""
+msgstr "Đã gửi yêu cầu xem xét trước đó, đang chờ xem xét"
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:59
 msgid "I confirm I have addressed the issues, and request a review"
-msgstr ""
+msgstr "Tôi xác nhận đã giải quyết các vấn đề và yêu cầu xem xét lại"
 
 #: src/olympia/devhub/templates/devhub/includes/macros.html:5
 msgid "Some Markdown supported."
