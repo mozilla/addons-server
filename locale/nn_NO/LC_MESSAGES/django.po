@@ -1294,11 +1294,11 @@ msgstr "Konto {user}, eigenskap {0} oppdatert."
 #: src/olympia/constants/activity.py:1279
 #, python-brace-format
 msgid "{addon} listing content approved."
-msgstr ""
+msgstr "{addon}-oppføringsinnhald godkjent."
 
 #: src/olympia/constants/activity.py:1281
 msgid "Rejected listing approved"
-msgstr ""
+msgstr "Avvist oppføring godkjend"
 
 #: src/olympia/constants/activity.py:1293
 #, python-brace-format
@@ -1307,7 +1307,7 @@ msgstr "Innhaldet i oppføringa for {addon} vart avvist."
 
 #: src/olympia/constants/activity.py:1294
 msgid "Listing rejected"
-msgstr ""
+msgstr "Oppføring avvist"
 
 #: src/olympia/constants/activity.py:1316
 #, python-brace-format
