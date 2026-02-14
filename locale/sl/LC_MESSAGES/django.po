@@ -1294,7 +1294,7 @@ msgstr "Vsebina objave za {addon} odobrena."
 
 #: src/olympia/constants/activity.py:1281
 msgid "Rejected listing approved"
-msgstr "Zavrnjena kotacija odobrena"
+msgstr "Zavrnjena objava odobrena"
 
 #: src/olympia/constants/activity.py:1293
 #, python-brace-format
@@ -1303,7 +1303,7 @@ msgstr "Vsebina objave za {addon} zavrnjena."
 
 #: src/olympia/constants/activity.py:1294
 msgid "Listing rejected"
-msgstr "Objavljanje zavrnjeno"
+msgstr "Objava zavrnjena"
 
 #: src/olympia/constants/activity.py:1316
 #, python-brace-format
@@ -2172,7 +2172,7 @@ msgstr "Nepravilno ime spletnega naslova. Dodatek ni bil izbrisan."
 
 #: src/olympia/devhub/views.py:436
 msgid "Request for a new review of listing content acknowledged."
-msgstr "Zahteva za nov pregled vsebine kotacije je priznana."
+msgstr "Zahteva za nov pregled vsebine objave je zabeležena."
 
 #: src/olympia/devhub/views.py:480
 msgid "Invitation accepted."
@@ -2559,7 +2559,7 @@ msgstr "Osveži rezultate"
 #: src/olympia/devhub/templates/devhub/verify_email.html:101
 #, python-format
 msgid "If you encounter issues, please see our <a %(a_attrs)s>troubleshooting suggestions</a> on Firefox Extension Workshop."
-msgstr "Če naletite na težave, si oglejte naše <a %(a_attrs)s>predloge za odpravljanje težav</a> na delavnici razširitev Firefox."
+msgstr "Če naletite na težave, si oglejte naše <a %(a_attrs)s>predloge za odpravljanje težav</a> na spletni strani delavnice razširitev za Firefox."
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html:4 src/olympia/devhub/templates/devhub/addons/activity.html:17
 msgid "Recent Activity for My Add-ons"
@@ -3996,11 +3996,11 @@ msgstr "{label_open}Nevidno:{label_close} Ne bo vključeno v zadetke iskanja in 
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:39
 msgid "Our review found that your listing content violates the following Mozilla policy or policies:"
-msgstr "Naš pregled je ugotovil, da vsebina vaše objave krši naslednje Mozilline pravilnike:"
+msgstr "Pri pregledu smo ugotovili, da vsebina vaše objave krši naslednje Mozilline pravilnike:"
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:50
 msgid "To address these issues, please update your listing and request another review of the content."
-msgstr "Za odpravo teh težav posodobite svojo objavo in zahtevajte ponovni pregled vsebine."
+msgstr "Za odpravo teh težav uredite svojo objavo in zahtevajte ponovni pregled vsebine."
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:54
 msgid "Review requested already, awaiting review"
@@ -4008,7 +4008,7 @@ msgstr "Pregled je že zahtevan, čaka na pregled"
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:59
 msgid "I confirm I have addressed the issues, and request a review"
-msgstr "Potrjujem, da sem težave naslovil, in zahtevam pregled"
+msgstr "Potrjujem, da sem odpravil težave, in zahtevam pregled"
 
 #: src/olympia/devhub/templates/devhub/includes/macros.html:5
 msgid "Some Markdown supported."
