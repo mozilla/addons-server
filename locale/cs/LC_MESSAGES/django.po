@@ -1314,7 +1314,7 @@ msgstr "{addon} - vyžádána kontrola obsahu stránky."
 
 #: src/olympia/constants/activity.py:1317
 msgid "Listing review requested"
-msgstr "Požádána kontrola stránky"
+msgstr "Požádání o posouzení zařazení doplňku"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -2174,7 +2174,7 @@ msgstr "Nesprávný název URL. Doplněk nebyl smazán."
 
 #: src/olympia/devhub/views.py:436
 msgid "Request for a new review of listing content acknowledged."
-msgstr "Žádost o novou kontrolu obsahu stránky byla přijata."
+msgstr "Žádost o nové přezkoumání zařazení doplňku byla potvrzena."
 
 #: src/olympia/devhub/views.py:480
 msgid "Invitation accepted."
@@ -3997,11 +3997,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:39
 msgid "Our review found that your listing content violates the following Mozilla policy or policies:"
-msgstr "Při kontrole jsme zjistili, že obsah vašeho profilu porušuje následující zásady:"
+msgstr "Při kontrole jsme zjistili, že obsah vašeho obsahu porušuje následující zásady nebo zásady Mozilly:"
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:50
 msgid "To address these issues, please update your listing and request another review of the content."
-msgstr "Pro vyřešení těchto problémů prosím aktualizujte svou stránku a požádejte o novou kontrolu obsahu."
+msgstr "Chcete-li tyto problémy vyřešit, aktualizujte svůj obsah a požádejte o další kontrolu obsahu."
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:54
 msgid "Review requested already, awaiting review"
