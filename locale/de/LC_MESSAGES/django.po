@@ -1869,7 +1869,7 @@ msgstr "Die Kategorie „Verschiedenes“ kann nicht mit anderen Kategorien komb
 
 #: src/olympia/devhub/forms.py:246 src/olympia/devhub/forms.py:1360
 msgid "There was an error uploading your image."
-msgstr ""
+msgstr "Beim Hochladen Ihrer Grafik ist ein Fehler aufgetreten."
 
 #: src/olympia/devhub/forms.py:300
 #, python-format
