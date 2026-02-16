@@ -1485,10 +1485,22 @@ class TestBlocklistSubmissionAdmin(TestCase):
         other_addon = addon_factory(users=[user2, user1], average_daily_users=666)
         author_admin_url = reverse('admin:users_userprofile_changelist')
 
-        response = self.client.get(
-            self.submission_url,
-            {'guids': f'{addon.guid}\n {other_addon.guid}\n'},
-        )
+        with self.assertNumQueries(12):
+            # - 2 savepoints (tests)
+            # - user
+            # - groups
+            # - add-ons by guid
+            # - add-ons translations
+            # - add-ons authors
+            # - add-ons blocks
+            # - blocklist submission
+            # - versions
+            # - contentype
+            # - review action reasons
+            response = self.client.get(
+                self.submission_url,
+                {'guids': f'{addon.guid}\n {other_addon.guid}\n'},
+            )
         doc = pq(response.content.decode('utf-8'))
         link = doc('.field-blocks-to-add h3 a')[0]
         assert link.text_content() == 'author(s)'
