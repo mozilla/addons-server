@@ -59,10 +59,13 @@ class Block(ModelBase):
         return super().save(**kwargs)
 
     @classmethod
-    def get_addons_for_guids_qs(cls, guids):
-        return (
-            Addon.unfiltered.filter(guid__in=guids).order_by('-id').only_translations()
-        )
+    def get_addons_for_guids_qs(cls, guids, with_names_and_authors=True):
+        qs = Addon.unfiltered.filter(guid__in=guids).order_by('-id').only_translations()
+        if with_names_and_authors:
+            qs = qs.only_translations().transform(Addon.attach_all_authors)
+        else:
+            qs = qs.no_transforms()
+        return qs
 
     @cached_property
     def addon(self):
@@ -115,7 +118,7 @@ class Block(ModelBase):
             url = absolutify(
                 reverse('reviewers.review', kwargs={'addon_id': self.addon.pk})
             )
-            return format_html('<a href="{}">{}</a>', url, 'Review Listed')
+            return format_html('· <a href="{}">{}</a>', url, 'Review Listed')
         return ''
 
     def review_unlisted_link(self):
@@ -128,7 +131,16 @@ class Block(ModelBase):
             url = absolutify(
                 reverse('reviewers.review', args=('unlisted', self.addon.pk))
             )
-            return format_html('<a href="{}">{}</a>', url, 'Review Unlisted')
+            return format_html('· <a href="{}">{}</a>', url, 'Review Unlisted')
+        return ''
+
+    def all_authors_link(self):
+        if self.addon and self.addon.all_authors:
+            parameter = '?q=' + ','.join(
+                map(str, (author.pk for author in self.addon.all_authors))
+            )
+            url = reverse('admin:users_userprofile_changelist') + parameter
+            return format_html('· <a href="{}">{}</a>', url, 'Authors(s)')
         return ''
 
     @cached_property
@@ -382,9 +394,9 @@ class BlocklistSubmission(ModelBase):
     @classmethod
     def _get_fake_blocks_from_guids(cls, guids):
         addons = list(
-            Block.get_addons_for_guids_qs(guids).values_list(
-                'guid', 'average_daily_users', named=True
-            )
+            Block.get_addons_for_guids_qs(
+                guids, with_names_and_authors=False
+            ).values_list('guid', 'average_daily_users', named=True)
         )
         adu_lookup = {addon.guid: addon.average_daily_users for addon in addons}
 
