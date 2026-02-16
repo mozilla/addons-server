@@ -1856,7 +1856,7 @@ msgstr "De categorie diversen kan niet met extra categorieën worden gecombineer
 
 #: src/olympia/devhub/forms.py:246 src/olympia/devhub/forms.py:1360
 msgid "There was an error uploading your image."
-msgstr ""
+msgstr "Er is een fout opgetreden bij het uploaden van uw afbeelding."
 
 #: src/olympia/devhub/forms.py:300
 #, python-format
