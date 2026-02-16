@@ -287,7 +287,7 @@ function addonFormSubmit() {
       $document.scrollTop($document.height() - scrollBottom);
       truncateFields();
       annotateLocalizedErrors(parent_div);
-      if (parent_div.is('#edit-addon-media')) {
+      if (!hasErrors && parent_div.is('#edit-addon-media')) {
         imageStatus.start();
         hideSameSizedIcons();
       }
@@ -1201,6 +1201,9 @@ let imageStatus = {
   },
   newurl: function (orig) {
     let bst = new Date().getTime();
+    if (!orig) {
+      orig = '';
+    }
     orig += (orig.indexOf('?') > 1 ? '&' : '?') + bst;
     return orig;
   },
