@@ -371,6 +371,9 @@ class TestBlocklistSubmissionAdmin(TestCase):
             f'{settings.CINDER_SERVER_URL}create_decision',
             callback=lambda r: (201, {}, json.dumps({'uuid': uuid.uuid4().hex})),
         )
+        # Preload content type for BlocklistSubmission so that it's done before
+        # we check SQL queries - gets more consistent results since it's cached
+        (ContentType.objects.get_for_model(BlocklistSubmission),)
 
     def test_initial_values_from_add_from_addon_pk_view(self):
         user = user_factory(email='someone@mozilla.com')
@@ -1485,7 +1488,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         other_addon = addon_factory(users=[user2, user1], average_daily_users=666)
         author_admin_url = reverse('admin:users_userprofile_changelist')
 
-        with self.assertNumQueries(12):
+        with self.assertNumQueries(11):
             # - 2 savepoints (tests)
             # - user
             # - groups
@@ -1495,7 +1498,6 @@ class TestBlocklistSubmissionAdmin(TestCase):
             # - add-ons blocks
             # - blocklist submission
             # - versions
-            # - contentype
             # - review action reasons
             response = self.client.get(
                 self.submission_url,
