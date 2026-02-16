@@ -588,7 +588,6 @@ additional_character_replacements = {
         '𞤂',
         '𞤄',
         '𞤊',
-
     ),
     'i': (
         '¡',
