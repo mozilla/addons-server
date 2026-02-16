@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  messages.pootle\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-13 12:52+0000\n"
+"POT-Creation-Date: 2026-02-16 14:18+0000\n"
 "PO-Revision-Date: 2013-11-07 07:24+0000\n"
 "Last-Translator: Julen <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -1427,6 +1427,9 @@ msgstr[0] "Kategoria bakarra izan dezakezu soilik."
 msgstr[1] "{0} kategoria izan ditzakezu soilik."
 
 msgid "The miscellaneous category cannot be combined with additional categories."
+msgstr ""
+
+msgid "There was an error uploading your image."
 msgstr ""
 
 #, python-format

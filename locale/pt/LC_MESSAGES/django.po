@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-13 12:52+0000\n"
+"POT-Creation-Date: 2026-02-16 14:18+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1433,6 +1433,9 @@ msgstr[1] "Apenas pode ter {0} categorias."
 
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "A categoria diversos não pode ser combinada com categorias adicionais."
+
+msgid "There was an error uploading your image."
+msgstr ""
 
 #, python-format
 msgid "URL domain must be one of [%s]."
