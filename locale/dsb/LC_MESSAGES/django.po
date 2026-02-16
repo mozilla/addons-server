@@ -1860,7 +1860,7 @@ msgstr "Kategorija „Wšake“ njedajo se drugimi kategorijami kombiněrowaś."
 
 #: src/olympia/devhub/forms.py:246 src/olympia/devhub/forms.py:1360
 msgid "There was an error uploading your image."
-msgstr ""
+msgstr "Pśi nagrawanju wašogo wobraza jo zmólka nastała."
 
 #: src/olympia/devhub/forms.py:300
 #, python-format

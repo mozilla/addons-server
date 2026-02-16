@@ -1857,7 +1857,7 @@ msgstr "Kategorija „Wšelake“ njeda so z druhimi kategorijemi kombinować."
 
 #: src/olympia/devhub/forms.py:246 src/olympia/devhub/forms.py:1360
 msgid "There was an error uploading your image."
-msgstr ""
+msgstr "Při nahrawanju wašeho wobraza je zmylk wustupił."
 
 #: src/olympia/devhub/forms.py:300
 #, python-format
