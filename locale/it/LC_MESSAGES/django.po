@@ -1886,7 +1886,7 @@ msgstr "La categoria Varie non può essere utilizzata insieme ad ulteriori categ
 
 #: src/olympia/devhub/forms.py:246 src/olympia/devhub/forms.py:1360
 msgid "There was an error uploading your image."
-msgstr ""
+msgstr "Si è verificato un errore durante il caricamento dell’immagine."
 
 #: src/olympia/devhub/forms.py:300
 #, python-format

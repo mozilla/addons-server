@@ -1835,7 +1835,7 @@ msgstr "這個雜項類別不能與其他的類別結合。"
 
 #: src/olympia/devhub/forms.py:246 src/olympia/devhub/forms.py:1360
 msgid "There was an error uploading your image."
-msgstr ""
+msgstr "上傳您的圖片時發生錯誤。"
 
 #: src/olympia/devhub/forms.py:300
 #, python-format
