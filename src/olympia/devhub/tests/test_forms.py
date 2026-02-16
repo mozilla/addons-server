@@ -1,6 +1,7 @@
 import os
 import shutil
 import tempfile
+import uuid
 from datetime import datetime, timedelta
 from unittest import mock
 
@@ -531,19 +532,28 @@ class TestPreviewForm(TestCase):
     def test_preview_modified(self, update_mock):
         addon = Addon.objects.get(pk=3615)
         name = 'transparent.png'
+        upload_hash = uuid.uuid4().hex
         form = forms.PreviewForm(
-            {'caption': 'test', 'upload_hash': name, 'position': 1}
+            {'caption': 'test', 'upload_hash': upload_hash, 'position': 1}
         )
-        with storage.open(os.path.join(self.dest, name), 'wb') as f:
+        with storage.open(os.path.join(self.dest, upload_hash), 'wb') as f:
             shutil.copyfileobj(open(get_image_path(name), 'rb'), f)
         assert form.is_valid()
         form.save(addon)
         assert update_mock.called
 
-    def test_caption_too_long(self):
-        name = 'transparent.png'
+    def test_preview_invalid_hash(self):
         form = forms.PreviewForm(
-            {'caption': 'û' * 281, 'upload_hash': name, 'position': 1}
+            {'caption': 'test', 'upload_hash': 'something.png', 'position': 1}
+        )
+        assert not form.is_valid()
+        assert form.errors == {
+            'upload_hash': ['There was an error uploading your image.']
+        }
+
+    def test_caption_too_long(self):
+        form = forms.PreviewForm(
+            {'caption': 'û' * 281, 'upload_hash': uuid.uuid4().hex, 'position': 1}
         )
         assert form.fields['caption'].max_length == 280
         assert form.fields['caption'].widget.attrs['maxlength'] == '280'
@@ -555,11 +565,11 @@ class TestPreviewForm(TestCase):
     def test_preview_transparency(self):
         addon = Addon.objects.get(pk=3615)
         name = 'transparent-cotton'
-        hash = '12345678abcd'
+        upload_hash = uuid.uuid4().hex
         form = forms.PreviewForm(
-            {'caption': 'test', 'upload_hash': hash, 'position': 1}
+            {'caption': 'test', 'upload_hash': upload_hash, 'position': 1}
         )
-        with storage.open(os.path.join(self.dest, hash), 'wb') as f:
+        with storage.open(os.path.join(self.dest, upload_hash), 'wb') as f:
             shutil.copyfileobj(open(get_image_path(name + '.png'), 'rb'), f)
         assert form.is_valid()
         form.save(addon)
@@ -575,10 +585,11 @@ class TestPreviewForm(TestCase):
     def test_preview_size(self, pngcrush_image_mock):
         addon = Addon.objects.get(pk=3615)
         name = 'teamaddons.jpg'
+        upload_hash = uuid.uuid4().hex
         form = forms.PreviewForm(
-            {'caption': 'test', 'upload_hash': name, 'position': 1}
+            {'caption': 'test', 'upload_hash': upload_hash, 'position': 1}
         )
-        with storage.open(os.path.join(self.dest, name), 'wb') as f:
+        with storage.open(os.path.join(self.dest, upload_hash), 'wb') as f:
             shutil.copyfileobj(open(get_image_path(name), 'rb'), f)
         assert form.is_valid()
         form.save(addon)
@@ -1236,16 +1247,29 @@ class TestIconForm(TestCase):
     @mock.patch('olympia.amo.models.ModelBase.update')
     def test_icon_modified(self, update_mock):
         name = 'transparent.png'
+        icon_upload_hash = uuid.uuid4().hex
         form = forms.AddonFormMedia(
-            {'icon_upload_hash': name}, request=self.request, instance=self.addon
+            {'icon_upload_hash': icon_upload_hash},
+            request=self.request,
+            instance=self.addon,
         )
-
-        dest = os.path.join(self.icon_path, name)
+        dest = os.path.join(self.icon_path, icon_upload_hash)
         with storage.open(dest, 'wb') as f:
             shutil.copyfileobj(open(get_image_path(name), 'rb'), f)
         assert form.is_valid()
         form.save(addon=self.addon)
         assert update_mock.called
+
+    def test_icon_invalid_hash(self):
+        form = forms.AddonFormMedia(
+            {'icon_upload_hash': 'some-icon.png'},
+            request=self.request,
+            instance=self.addon,
+        )
+        assert not form.is_valid()
+        assert form.errors == {
+            'icon_upload_hash': ['There was an error uploading your image.']
+        }
 
 
 class TestCategoryForm(TestCase):
