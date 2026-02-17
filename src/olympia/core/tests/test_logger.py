@@ -73,7 +73,7 @@ class LoggerTests(TestCase):
         assert log.process('test msg', extra) == ('test msg', expected_kwargs)
 
     def test_json_formatter(self):
-        formatter = olympia.core.logger.JsonFormatter()
+        formatter = olympia.core.logger.AMOMozlogFormatter()
         record = self.make_fake_record()
         # These would be set by the adapter.
         record.__dict__['USERNAME'] = 'foo'
@@ -88,7 +88,7 @@ class LoggerTests(TestCase):
         }
 
     def test_json_formatter_severity(self):
-        formatter = olympia.core.logger.JsonFormatter()
+        formatter = olympia.core.logger.AMOMozlogFormatter()
 
         record = self.make_fake_record(level=logging.NOTSET)
         formatted = json.loads(formatter.format(record))
