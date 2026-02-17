@@ -199,7 +199,6 @@ additional_character_replacements = {
         '᧔',
         'ᱜ',
         'ᲀ',
-        'Ე',
         'Ჺ',
         '₡',
         '₢',
