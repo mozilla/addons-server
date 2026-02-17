@@ -480,43 +480,22 @@ def build_characters_normalization_replacement_table(categories_to_strip):
 
     Results are cached in memory as building the table can be quite slow.
     """
+    from olympia.amo.confusables import additional_character_replacements
+
     translations_table = dict.fromkeys(
         i
         for i in range(sys.maxunicode)
         if unicodedata.category(chr(i))[0] in categories_to_strip
         or chr(i) in OneOrMorePrintableCharacterValidator.special_blank_characters
     )
-    # Then add additional characters that are usually not normally considered
-    # confusables, but we think they should, so we want to get the
-    # corresponding ascii character when normalizing for name checks. This can
-    # override symbols we would strip if we only used the table generated
-    # above.
-    additional_replacements = {
-        'a': ('Ѧ', 'ѧ', 'Ꙙ', 'ꙙ'),
-        'b': ('В', 'Ъ', 'в', 'ъ', 'ь', 'Ꙏ', 'ꙏ'),
-        'c': ('¢', 'Ҫ', 'ҫ'),
-        'd': ('ð', 'đ'),
-        'e': ('Ε', 'ε', 'Є', 'Э', '€', '℈', 'Ꞓ', 'ꭼ', 'з', 'э', 'є', 'Ҽ', 'Ҿ', 'ҿ'),
-        'f': ('ƒ', 'ϝ', 'ғ', 'Ғ'),
-        'h': ('ħ', 'Ђ', 'н', 'Ң', 'ң', 'Ҥ', 'ҥ', 'Һ', 'Ӈ', 'ӈ', 'Ӊ', 'ӊ'),
-        'i': ('ı',),
-        'k': ('ĸ', 'κ', 'к', 'қ', 'ҝ', 'ҟ', 'ҡ', 'ᴋ', 'Қ', 'Ҝ', 'Ҟ', 'Ҡ', 'Ӄ', 'ӄ'),
-        'l': ('ł', 'ꙇ', '𐑃'),
-        'm': ('ʍ', 'м', 'ᴍ', 'ꮇ', 'Ӎ', 'ӎ', 'Ꙧ', 'ꙧ'),
-        'n': ('И', 'и'),
-        'o': ('ø', 'Ѻ', 'ѻ', 'ѳ', 'ꙩ'),
-        'r': ('Я', 'я'),
-        's': ('ѕ', 'ꙅ', 'Ꙅ', 'Ꚃ', 'ꚃ'),
-        't': ('ŧ', 'τ', 'т', 'ᴛ', '⊤', 'Ꚍ', 'ꚍ', 'Ꚑ', 'ꚑ', 'ꞇ', 'Ҭ', 'ҭ'),
-        'w': ('ω', 'ш', 'Ш', 'Щ', 'щ', 'Ѡ', 'ѿ', 'Ꚗ', 'ꚗ'),
-        'x': ('Ҳ', 'ҳ', 'Ӽ', 'ӽ', 'Ӿ', 'ӿ'),
-        'y': ('Ұ', 'ұ'),
-    }
+
+    # additional characters replacement table - this can override symbols we
+    # would strip if we only used the table generated above.
     additional_replacement_table = dict(
         itertools.chain(
             *(
                 list(zip(map(ord, letters), itertools.repeat(ord(replacement))))
-                for replacement, letters in additional_replacements.items()
+                for replacement, letters in additional_character_replacements.items()
             )
         )
     )
