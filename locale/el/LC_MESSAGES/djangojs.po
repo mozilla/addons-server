@@ -572,7 +572,7 @@ msgstr "{0} γραμμή {1}"
 
 #: static/js/zamboni/validator.js:376
 msgid "Add-on failed validation."
-msgstr "Αποτυχία επικύρωσης προσθέτου."
+msgstr "Η επικύρωση του προσθέτου απέτυχε."
 
 #: static/js/zamboni/validator.js:378
 msgid "Add-on passed validation."

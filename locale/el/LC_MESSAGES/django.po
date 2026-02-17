@@ -3638,7 +3638,7 @@ msgstr "Δημιουργία έκδοσης θέματος"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:82
 msgid "You can upload a finished theme using the upload option above, or you can build it yourself using this tool."
-msgstr ""
+msgstr "Μπορείτε να μεταφορτώσετε ένα ολοκληρωμένο θέμα χρησιμοποιώντας την παραπάνω επιλογή μεταφόρτωσης ή μπορείτε να το δημιουργήσετε με αυτό το εργαλείο."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:88
 msgid "Create a Theme"
