@@ -7,7 +7,7 @@ from django.conf import settings
 from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
 from django.core.paginator import Paginator
-from django.db.models import Exists, OuterRef, Q
+from django.db.models import Exists, F, OuterRef, Q
 from django.db.transaction import non_atomic_requests
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect
@@ -31,7 +31,6 @@ from olympia.addons.models import (
     Addon,
     AddonApprovalsCounter,
     AddonReviewerFlags,
-    AddonUser,
 )
 from olympia.amo.decorators import (
     json_view,
@@ -105,6 +104,7 @@ from .serializers import (
 from .templatetags.jinja_helpers import to_dom_id
 from .utils import (
     ContentReviewTable,
+    DeveloperAddonsTable,
     HeldDecisionQueueTable,
     ModerationQueueTable,
     PendingManualApprovalQueueTable,
@@ -1011,8 +1011,24 @@ def theme_background_images(request, version_id):
 @any_reviewer_required
 def developer_profile(request, user_id):
     developer = get_object_or_404(UserProfile, id=user_id)
-    qs = AddonUser.unfiltered.filter(user=developer).order_by('addon_id')
-    addonusers_pager = paginate(request, qs, 100)
+    sub_versions_qs = Version.unfiltered.filter(addon=OuterRef('pk')).values_list('id')
+    annotations = {
+        '_author_role': F('addonuser__role'),
+        '_unlisted_versions_exists': Exists(
+            sub_versions_qs.filter(channel=amo.CHANNEL_UNLISTED)
+        ),
+        '_listed_versions_exists': Exists(
+            sub_versions_qs.filter(channel=amo.CHANNEL_LISTED)
+        ),
+    }
+    qs = (
+        Addon.unfiltered.filter(authors=developer)
+        .select_related('addonguid')
+        .annotate(**annotations)
+        .only_translations()
+    )
+    table = DeveloperAddonsTable(data=qs, order_by=request.GET.get('sort') or 'id')
+    page = paginate(request, table.rows, 100, count=qs.count())
 
     return TemplateResponse(
         request,
@@ -1022,7 +1038,8 @@ def developer_profile(request, user_id):
                 request.user, amo.permissions.USERS_EDIT
             ),
             'developer': developer,
-            'addonusers_pager': addonusers_pager,
+            'page': page,
+            'table': table,
         },
     )
 

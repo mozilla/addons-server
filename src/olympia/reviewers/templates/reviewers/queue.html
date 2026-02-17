@@ -119,24 +119,7 @@
         <thead>
           <tr class="listing-header">
               <th>&nbsp;</th>
-              {% for column in table.columns %}
-                {% if column.order_by_alias == column.order_by_alias.next %}
-                  {% set cls, sprite = '', 'both' %}
-                {% elif column.order_by_alias.is_descending %}
-                  {% set cls, sprite = 'ordered', 'desc' %}
-                {% elif column.order_by_alias.is_ascending %}
-                  {% set cls, sprite = 'ordered', 'asc' %}
-                {% endif %}
-                <th class="{{ cls }}">
-                  {% if column.orderable %}
-                    <a href="{{ request.get_full_path()|urlparams(sort=column.order_by_alias.next) }}" class="sort-icon ed-sprite-sort-{{ sprite }}">
-                      {{ column }}
-                    </a>
-                  {% else %}
-                    {{ column }}
-                  {% endif %}
-                </th>
-              {% endfor %}
+              {% include 'reviewers/includes/table_headers.html' %}
           </tr>
         </thead>
         <tbody>
