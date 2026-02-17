@@ -876,7 +876,7 @@ LOGGING = {
     'disable_existing_loggers': False,
     'formatters': {
         'json': {
-            '()': olympia.core.logger.JsonFormatter,
+            '()': olympia.core.logger.AMOMozlogFormatter,
             'logger_name': 'http_app_addons',
         },
     },
