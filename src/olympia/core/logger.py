@@ -9,10 +9,10 @@ def getLogger(name=None):
     """Wrap logging.getLogger to return a LoggerAdapter that adds extra common
     arguments to each log statement."""
     logger = logging.getLogger(name)
-    return AmoLoggerAdapter(logger)
+    return AMOLoggerAdapter(logger)
 
 
-class AmoLoggerAdapter(logging.LoggerAdapter):
+class AMOLoggerAdapter(logging.LoggerAdapter):
     """
     Adapter adding the REMOTE_ADDR and USERNAME to every logging message's
     kwargs extra dict, which in return will automatically be merged in every
@@ -33,8 +33,8 @@ class AmoLoggerAdapter(logging.LoggerAdapter):
         return msg, kwargs
 
 
-class JsonFormatter(dockerflow.logging.JsonLogFormatter):
-    """Like JsonLogFormatter, but with uid and remoteAddressChain set from
+class AMOMozlogFormatter(dockerflow.logging.MozlogFormatter):
+    """Like MozlogFormatter, but with uid and remoteAddressChain set from
     current user and ip, following mozlog format, as well as an additional
     severity field at the root of the output for stackdriver."""
 
