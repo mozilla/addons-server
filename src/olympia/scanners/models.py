@@ -14,6 +14,7 @@ from django_jsonform.models.fields import JSONField as JSONFormJSONField
 
 import olympia.core.logger
 from olympia import amo
+from olympia.access.models import Group, GroupUser
 from olympia.amo.models import ModelBase
 from olympia.constants.base import ADDON_EXTENSION
 from olympia.constants.scanners import (
@@ -37,6 +38,7 @@ from olympia.constants.scanners import (
     QUERY_RULE_STATES,
     RESULT_STATES,
     RUNNING,
+    SCANNER_SERVICE_ACCOUNTS_GROUP,
     SCANNERS,
     SCHEDULED,
     UNKNOWN,
@@ -291,13 +293,17 @@ class ScannerWebhook(ModelBase):
         db_table = 'scanners_webhooks'
 
     def save(self, *args, **kwargs):
-        UserProfile.objects.get_or_create_service_account(
+        service_account, created = UserProfile.objects.get_or_create_service_account(
             name=self.service_account_name,
             notes=(
                 'Service account automatically created for '
                 f'the "{self.name}" scanner webhook.'
             ),
         )
+        if created:
+            # Add service account to the scanner group.
+            group = Group.objects.get(name=SCANNER_SERVICE_ACCOUNTS_GROUP)
+            GroupUser.objects.get_or_create(group=group, user=service_account)
 
         return super().save(*args, **kwargs)
 
