@@ -1,20 +1,21 @@
 {% load humanize %}
 
-<h3>{{ blocks|length|intcomma }} Add-on GUIDs with {{ total_adu|intcomma }} users:</h3>
- <ul class="guid_list">
+<h3>{{ blocks|length|intcomma }} Add-on GUIDs with {{ total_adu|intcomma }} users{% if all_authors_url %} · <a href="{{ all_authors_url }}">author(s)</a>{% endif %}:</h3>
+<ul class="guid_list">
   {% for block_obj in blocks %}
     <li>
       {{ block_obj.guid }}.
       {% if block_obj.addon %}
-        <span class="addon-name">{{ block_obj.addon.name }}</span>
+        · <span class="addon-name">{{ block_obj.addon.name }}</span>
       {% endif %}
 
       {% if block_obj.average_daily_users_snapshot is not None %}
-        ({{ block_obj.average_daily_users_snapshot }} users).
+        ({{ block_obj.average_daily_users_snapshot }} users)
       {% endif %}
 
       {{ block_obj.review_listed_link }}
       {{ block_obj.review_unlisted_link }}
+      {{ block_obj.all_authors_link }}
       {% if block_obj.id %}
         <span class="existing_block">[<a href="{% url 'admin:blocklist_block_change' block_obj.id %}">Edit Block</a>]</span>
       {% else %}
