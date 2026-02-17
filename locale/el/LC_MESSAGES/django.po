@@ -4055,15 +4055,15 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:50
 msgid "To address these issues, please update your listing and request another review of the content."
-msgstr ""
+msgstr "Για την επίλυση αυτών των ζητημάτων, ενημερώστε την καταχώρησή σας και αιτηθείτε νέα αξιολόγηση του περιεχομένου."
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:54
 msgid "Review requested already, awaiting review"
-msgstr ""
+msgstr "Ζητήθηκε ήδη αξιολόγηση, αναμένεται αξιολόγηση"
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:59
 msgid "I confirm I have addressed the issues, and request a review"
-msgstr ""
+msgstr "Επιβεβαιώνω ότι έχω επιλύσει τα ζητήματα και αιτούμαι αξιολόγηση"
 
 #: src/olympia/devhub/templates/devhub/includes/macros.html:5
 msgid "Some Markdown supported."
@@ -4869,7 +4869,7 @@ msgstr "Αλλάξτε τον τρόπο με τον οποίο περιηγεί
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:158
 msgid "Screenshot webpages, make edits & share."
-msgstr ""
+msgstr "Δημιουργία, επεξεργασία και κοινοποίηση στιγμιότυπων ιστοσελίδων."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:161
@@ -6115,7 +6115,7 @@ msgstr "Απόρρητο και ασφάλεια"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1126
 msgid "See more privacy staff picks"
-msgstr ""
+msgstr "Περισσότερες επιλογές απορρήτου συντακτών"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1129
