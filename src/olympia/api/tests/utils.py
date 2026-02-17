@@ -52,6 +52,11 @@ class APIKeyAuthTestMixin(JWTAuthKeyTester):
             url, data, HTTP_AUTHORIZATION=self.authorization(), **client_kwargs
         )
 
+    def patch(self, url, data=None, **client_kwargs):
+        return self.client.patch(
+            url, data, HTTP_AUTHORIZATION=self.authorization(), **client_kwargs
+        )
+
     def auth_required(self, cls):
         """
         Tests that the JWT Auth class is on the class, without having

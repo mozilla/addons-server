@@ -1191,9 +1191,7 @@ class ScannerWebhookAdmin(AMOModelAdmin):
 
     def service_account(self, obj):
         try:
-            user = UserProfile.objects.get_service_account(
-                name=obj.service_account_name
-            )
+            user = obj.service_account
         except UserProfile.DoesNotExist:
             return '(will be automatically created)'
 
@@ -1213,9 +1211,7 @@ class ScannerWebhookAdmin(AMOModelAdmin):
         if not change:
             # Display the JWT keys only once on creation.
             try:
-                user = UserProfile.objects.get_service_account(
-                    name=obj.service_account_name
-                )
+                user = obj.service_account
                 api_key = APIKey.get_jwt_key(user=user)
                 messages.add_message(
                     request,

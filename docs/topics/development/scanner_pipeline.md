@@ -9,8 +9,10 @@ occur on AMO. These webhooks are registed in the AMO (django) admin.
 
 When a [scanner webhook event](#scanner-webhook-events) occurs, AMO will send an
 HTTP request to each webhook subscribed to this event. The payload sent to the
-webook depends on the event. The response from each webhook will lead to the
-creation of a [scanner result](#scanner-results).
+webook depends on the event. AMO creates a [scanner result](#scanner-results)
+before calling the webhook, and includes a `scanner_result_url` in the payload
+that allows the scanner to [asynchronously send its results](#asynchronous-scanning)
+back to AMO.
 
 Each service registered as a scanner webhook must be protected with a shared
 secret (api) key. Read [the scanners authentication
@@ -48,11 +50,13 @@ validation chain.
 
 The payload sent looks like this. Assuming correct permissions, the URL in
 `download_url` allows the services notified for this event to download the (raw)
-uploaded file.
+uploaded file. The `scanner_result_url` allows the scanner to send results
+asynchronously.
 
 ```json
 {
-  "download_url": "http://olympia.test/uploads/file/42"
+  "download_url": "http://olympia.test/uploads/file/42",
+  "scanner_result_url": "http://olympia.test/api/v5/scanner/results/123/"
 }
 ```
 
@@ -68,7 +72,8 @@ The payload sent looks like this:
   "version_id": 42,
   "download_source_url": "http://olympia.test/downloads/source/42",
   "license_slug": "MPL-2.0",
-  "activity_log_id": 2170
+  "activity_log_id": 2170,
+  "scanner_result_url": "http://olympia.test/api/v5/scanner/results/124/"
 }
 ```
 
@@ -112,6 +117,8 @@ These actions are defined in `src/olympia/scanners/actions.py`.
 (scanners-authentication)=
 ### Authentication
 
+#### Authenticating incoming webhook calls
+
 Scanners must verify the incoming requests using the `Authorization` header and
 not allow unauthenticated requests. For every webhook call, AMO will send this
 header using the _API key_ defined in the Django admin as follows:
@@ -124,11 +131,57 @@ Authorization: HMAC-SHA256 <hexdigest>
 the _API key_ used as the secret key. Make sure to hash the _raw_ request's
 body.
 
+#### Authenticating asynchronous result submissions
+
+When sending results asynchronously via PATCH to the `scanner_result_url`,
+scanners must authenticate using JWT credentials. Each scanner webhook has an
+automatically created service account, and the JWT keys for this account are
+displayed in the Django admin after creating the webhook.
+
+Use the JWT key and secret to generate a JWT token and include it in the
+`Authorization` header when making PATCH requests to submit results
+asynchronously.
+
 ### API response
 
-Scanners must return a JSON response that contains the following fields:
+Scanners can choose to return results synchronously or asynchronously:
+
+#### Synchronous response
+
+Scanners can return a JSON response immediately that contains the following fields:
 
 - `version`: the scanner version
+- `matchedRules`: an array of matched rule identifiers (string)
+
+(asynchronous-scanning)=
+#### Asynchronous response
+
+Scanners can also return a quick acknowledgment response (or any response) and
+send their results later using the `scanner_result_url` provided in the webhook
+payload. This is useful for long-running scans.
+
+To send results asynchronously:
+
+1. The scanner receives a webhook call with a `scanner_result_url` in the payload
+2. The scanner returns a quick response (e.g., HTTP 202 Accepted)
+3. The scanner performs its analysis
+4. The scanner sends a PATCH request to the `scanner_result_url` with the results
+
+The PATCH request must be authenticated using the [service account JWT
+credentials](#scanners-authentication) and include a JSON body with a `results`
+field:
+
+```json
+{
+  "results": {
+    "version": "1.0.0",
+    "matchedRules": []
+  }
+}
+```
+
+The `results` field should contain the same data structure as a synchronous
+response would return.
 
 ### Creating a new scanner
 
@@ -149,7 +202,13 @@ import { createExpressApp } from "addons-scanner-utils";
 const handler = (req, res) => {
   console.log({ data: req.body });
 
+  // Option 1: Synchronous response
   res.json({ version: "1.0.0" });
+
+  // Option 2: Asynchronous response (for long-running scans)
+  // res.status(202).json({ message: "Scan started" });
+  // // Perform scanning asynchronously and later send results to:
+  // // req.body.scanner_result_url
 };
 
 const app = createExpressApp({
@@ -183,7 +242,8 @@ When uploading a new file, you should see the following in the console:
 ```js
 {
   data: {
-    download_url: "http://olympia.test/uploads/file/fa7868396b7e44ef8a0711f608f534f7/?access_token=w0Tl7qmJqBMQ4gtitKbcdKozulWVQWhkU0wEA10N"
+    download_url: "http://olympia.test/uploads/file/fa7868396b7e44ef8a0711f608f534f7/?access_token=w0Tl7qmJqBMQ4gtitKbcdKozulWVQWhkU0wEA10N",
+    scanner_result_url: "http://olympia.test/api/v5/scanner/results/123/"
   }
 }
 ```
