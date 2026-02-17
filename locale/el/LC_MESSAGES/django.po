@@ -1318,11 +1318,11 @@ msgstr "Η καταχώρηση απορρίφθηκε"
 #: src/olympia/constants/activity.py:1316
 #, python-brace-format
 msgid "{addon} listing content review requested."
-msgstr ""
+msgstr "Ζητήθηκε καταχώρηση του περιεχομένου της καταχώρησης του {addon}."
 
 #: src/olympia/constants/activity.py:1317
 msgid "Listing review requested"
-msgstr ""
+msgstr "Ζητήθηκε αξιολόγηση καταχώρησης"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -1362,7 +1362,7 @@ msgstr "Αναμένεται αξιολόγηση"
 
 #: src/olympia/constants/base.py:27
 msgid "Listing Content Rejected"
-msgstr ""
+msgstr "Το περιεχόμενο της καταχώρησης απορρίφθηκε"
 
 #: src/olympia/constants/base.py:28 src/olympia/constants/base.py:35
 msgid "Disabled by Mozilla"
@@ -1894,7 +1894,7 @@ msgstr "Η κατηγορία «Διάφορα» δεν μπορεί να συν
 
 #: src/olympia/devhub/forms.py:246 src/olympia/devhub/forms.py:1360
 msgid "There was an error uploading your image."
-msgstr ""
+msgstr "Προέκυψε σφάλμα κατά τη μεταφόρτωση της εικόνας σας."
 
 #: src/olympia/devhub/forms.py:300
 #, python-format
@@ -2217,7 +2217,7 @@ msgstr "Το όνομα URL ήταν λάθος. Το πρόσθετο δεν δ
 
 #: src/olympia/devhub/views.py:436
 msgid "Request for a new review of listing content acknowledged."
-msgstr ""
+msgstr "Το αίτημα για νέα αξιολόγηση του περιεχομένου της καταχώρησης εγκρίθηκε."
 
 #: src/olympia/devhub/views.py:480
 msgid "Invitation accepted."
