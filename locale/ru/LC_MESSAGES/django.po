@@ -1858,7 +1858,7 @@ msgstr "Категория «Разное» не может быть скомб�
 
 #: src/olympia/devhub/forms.py:246 src/olympia/devhub/forms.py:1360
 msgid "There was an error uploading your image."
-msgstr ""
+msgstr "Ошибка при загрузке вашего изображения."
 
 #: src/olympia/devhub/forms.py:300
 #, python-format
