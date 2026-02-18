@@ -376,7 +376,7 @@ class TestScannerResultAdmin(TestCase):
             ('yara', '?scanner=3'),
             ('mad', '?scanner=4'),
             ('narc', '?scanner=5'),
-            ('[webhook] some-webhook', f'?scanner=6_{webhook.id}'),
+            ('some-webhook', f'?scanner=6_{webhook.id}'),
             ('All', '?has_matched_rules=all'),
             (' With matched rules only', '?'),
             ('All', '?state=all'),
@@ -1150,8 +1150,7 @@ class TestScannerResultAdmin(TestCase):
         )
         result = ScannerResult(scanner=WEBHOOK, webhook_event=event)
         assert (
-            self.admin.formatted_scanner(result)
-            == '[webhook] some service (during_validation)'
+            self.admin.formatted_scanner(result) == 'some service (during_validation)'
         )
 
 
@@ -2458,6 +2457,21 @@ class FormattedMatchedRulesWithFilesAndData(TestCase):
         )
         doc = pq(content)
         assert doc('caption').text() == 'yara'
+        assert doc('caption a')[0].attrib['href'] == (
+            '/en-US/admin/models/scanners/scannerresult/42/change/'
+        )
+
+    def test_display_scanner_webhook(self):
+        event = ScannerWebhookEvent.objects.create(
+            event=WEBHOOK_DURING_VALIDATION,
+            webhook=ScannerWebhook.objects.create(name='some service'),
+        )
+        result = ScannerResult(pk=42, scanner=WEBHOOK, webhook_event=event)
+        content = formatted_matched_rules_with_files_and_data(
+            result, display_scanner=True
+        )
+        doc = pq(content)
+        assert doc('caption').text() == 'some service (during_validation)'
         assert doc('caption a')[0].attrib['href'] == (
             '/en-US/admin/models/scanners/scannerresult/42/change/'
         )

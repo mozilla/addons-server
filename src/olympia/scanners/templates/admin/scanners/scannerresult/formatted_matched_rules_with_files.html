@@ -9,7 +9,7 @@
 <table>
   {% if display_scanner %}
   <caption>
-    <a class="result-link" href="{% url 'admin:scanners_scannerresult_change' obj.pk %}">{{ obj.get_scanner_display }}</a>
+    <a class="result-link" href="{% url 'admin:scanners_scannerresult_change' obj.pk %}">{{ obj }}</a>
   </caption>
   {% endif %}
   <thead>
