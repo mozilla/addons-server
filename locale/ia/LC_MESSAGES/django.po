@@ -1858,7 +1858,7 @@ msgstr "Le categoria Miscellanea non pote esser combinate con altere categorias.
 
 #: src/olympia/devhub/forms.py:246 src/olympia/devhub/forms.py:1360
 msgid "There was an error uploading your image."
-msgstr ""
+msgstr "Error durante le cargamento de tu imagine."
 
 #: src/olympia/devhub/forms.py:300
 #, python-format
