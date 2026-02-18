@@ -24,6 +24,8 @@ from olympia.constants.scanners import (
     SCANNERS,
     SCHEDULED,
     UNKNOWN,
+    WEBHOOK,
+    WEBHOOK_DURING_VALIDATION,
     YARA,
 )
 from olympia.files.models import FileUpload
@@ -34,6 +36,7 @@ from olympia.scanners.models import (
     ScannerResult,
     ScannerRule,
     ScannerWebhook,
+    ScannerWebhookEvent,
 )
 from olympia.users.models import UserProfile
 
@@ -370,6 +373,17 @@ class TestScannerResult(TestScannerResultMixin, TestCase):
         result.results = [{'rule': rule.name}]  # Fake match
         result.save()
         assert result.has_matches is False
+
+    def test_str(self):
+        result = ScannerResult(scanner=YARA)
+        assert str(result) == 'yara'
+
+        event = ScannerWebhookEvent.objects.create(
+            event=WEBHOOK_DURING_VALIDATION,
+            webhook=ScannerWebhook.objects.create(name='some service'),
+        )
+        result = ScannerResult(scanner=WEBHOOK, webhook_event=event)
+        assert str(result) == 'some service (during_validation)'
 
 
 class TestScannerQueryResult(TestScannerResultMixin, TestCase):
