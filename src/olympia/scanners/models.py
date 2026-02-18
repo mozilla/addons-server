@@ -42,6 +42,7 @@ from olympia.constants.scanners import (
     SCANNERS,
     SCHEDULED,
     UNKNOWN,
+    WEBHOOK,
     WEBHOOK_EVENTS,
     YARA,
 )
@@ -455,6 +456,11 @@ class ScannerResult(AbstractScannerResult):
         log.info('Starting action "%s" for version %s.', action_name, version.pk)
         action_function(version=version, rule=rule)
         log.info('Ending action "%s" for version %s.', action_name, version.pk)
+
+    def __str__(self):
+        if self.scanner == WEBHOOK:
+            return str(self.webhook_event)
+        return self.get_scanner_name()
 
 
 class ScannerMatch(ModelBase):

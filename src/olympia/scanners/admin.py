@@ -139,7 +139,7 @@ class ScannerFilter(SimpleListFilter):
             *((k, v) for k, v in SCANNERS.items() if k != WEBHOOK),
             # Webhook scanners
             *(
-                (f'{WEBHOOK}_{k}', f'[webhook] {v}')
+                (f'{WEBHOOK}_{k}', v)
                 for k, v in ScannerWebhook.objects.values_list('id', 'name')
             ),
         )
@@ -670,10 +670,7 @@ class ScannerResultAdmin(AbstractScannerResultAdminMixin, AMOModelAdmin):
         return super().get_queryset(request).prefetch_related('matched_rules')
 
     def formatted_scanner(self, obj):
-        if obj.scanner == WEBHOOK:
-            return f'[webhook] {obj.webhook_event}'
-        else:
-            return obj.get_scanner_display()
+        return str(obj)
 
     formatted_scanner.short_description = 'Scanner'
 
