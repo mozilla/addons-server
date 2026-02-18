@@ -269,6 +269,10 @@ class InitializeSessionMixin:
         }
         self.client.cookies[session_cookie].update(cookie_data)
 
+    def get_session(self, session_key):
+        engine = import_module(settings.SESSION_ENGINE)
+        return engine.SessionStore(session_key)
+
 
 class TestClient(Client):
     def __getattr__(self, name):

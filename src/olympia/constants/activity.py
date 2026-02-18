@@ -1320,6 +1320,13 @@ class REJECTED_LISTING_REVIEW_REQUEST(_LOG):
     review_queue_important_change = True
 
 
+class SESSION_ANOMALY(_LOG):
+    id = 215
+    format = '{user_responsible} session anomaly'
+    short = 'Session anomaly'
+    admin_event = True
+
+
 LOGS = [x for x in vars().values() if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 # Make sure there's no duplicate IDs.
 assert len(LOGS) == len({log.id for log in LOGS})

@@ -9,6 +9,7 @@ from rest_framework.authentication import BaseAuthentication, get_authorization_
 
 import olympia.core.logger
 from olympia import core
+from olympia.accounts.utils import check_for_session_anomaly
 from olympia.accounts.verify import (
     IdentificationError,
     check_and_update_fxa_access_token,
@@ -124,6 +125,10 @@ class SessionIDAuthentication(BaseAuthentication):
                 'code': 'ERROR_AUTHENTICATION_EXPIRED',
             }
             raise exceptions.AuthenticationFailed(msg) from exc
+
+        check_for_session_anomaly(
+            session=request.session, headers=request.headers, user=user
+        )
 
         # Set user in thread like UserAndAddrMiddleware does.
         core.set_user(user)
