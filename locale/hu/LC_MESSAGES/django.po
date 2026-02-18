@@ -1862,7 +1862,7 @@ msgstr "Az egyéb kategória nem vonható össze más kategóriákkal."
 
 #: src/olympia/devhub/forms.py:246 src/olympia/devhub/forms.py:1360
 msgid "There was an error uploading your image."
-msgstr ""
+msgstr "Hiba történt a kép feltöltésekor."
 
 #: src/olympia/devhub/forms.py:300
 #, python-format
@@ -2184,7 +2184,7 @@ msgstr "A webcím neve helytelen volt. A kiegészítő nem törlődött."
 
 #: src/olympia/devhub/views.py:436
 msgid "Request for a new review of listing content acknowledged."
-msgstr ""
+msgstr "A listázási tartalomhoz kért új ellenőrzés kérése elfogadva."
 
 #: src/olympia/devhub/views.py:480
 msgid "Invitation accepted."
@@ -3999,6 +3999,8 @@ msgid ""
 "{label_open}Listing Content Rejected:{label_close} Won't be included in search results, and its product page will be unavailable. New listed version submissions won't be accepted in this state, but "
 "existing versions awaiting review will be reviewed, and approved versions remain usable by existing users."
 msgstr ""
+"{label_open}Listázási tartalom elutasítva:{label_close} Nem fog szerepelni a keresési találatokban, és a termékoldala sem lesz elérhető. Az új listázott verzióbeküldések ebben az állapotban nem "
+"lesznek elfogadva, de az ellenőrzésre váró verziók ellenőrizve lesznek, és a jóváhagyott verziókat a meglévő felhasználók továbbra is használhatják."
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:22
 #, python-brace-format
@@ -4015,19 +4017,19 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:39
 msgid "Our review found that your listing content violates the following Mozilla policy or policies:"
-msgstr ""
+msgstr "Az ellenőrzésünk azt találta, hogy a listázott tartalom megsérti a Mozilla alábbi irányelveit:"
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:50
 msgid "To address these issues, please update your listing and request another review of the content."
-msgstr ""
+msgstr "A problémák megoldása érdekében frissítse a listázását, és kérje a tartalom újbóli ellenőrzését."
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:54
 msgid "Review requested already, awaiting review"
-msgstr ""
+msgstr "Már kérte az ellenőrzést, várakozás az ellenőrzésre"
 
 #: src/olympia/devhub/templates/devhub/includes/listing_visibility.html:59
 msgid "I confirm I have addressed the issues, and request a review"
-msgstr ""
+msgstr "Megerősítem, hogy megoldottam a problémákat, és ellenőrzést kérek"
 
 #: src/olympia/devhub/templates/devhub/includes/macros.html:5
 msgid "Some Markdown supported."
