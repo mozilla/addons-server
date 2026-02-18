@@ -130,15 +130,17 @@ class AbstractScannerResult(ModelBase):
                 for field in ('pattern', 'span'):
                     meta.pop(field, None)
                 res[item['rule']].append(meta)
-        elif self.scanner == CUSTOMS:
-            scanMap = self.results.get('scanMap', {}).copy()
-            for filename, rules in scanMap.items():
-                for ruleId, data in rules.items():
-                    data = data.copy()
-                    if data.pop('RULE_HAS_MATCHED', False):
-                        if filename == '__GLOBAL__':
-                            filename = ''
-                        res[ruleId].append({'filename': filename, 'data': data})
+        else:
+            # TODO: we might need to rework this part once we have more scanners.
+            if 'scanMap' in self.results:
+                scanMap = self.results.get('scanMap', {}).copy()
+                for filename, rules in scanMap.items():
+                    for ruleId, data in rules.items():
+                        data = data.copy()
+                        if data.pop('RULE_HAS_MATCHED', False):
+                            if filename == '__GLOBAL__':
+                                filename = ''
+                            res[ruleId].append({'filename': filename, 'data': data})
         return res
 
     def get_git_repository(self):
