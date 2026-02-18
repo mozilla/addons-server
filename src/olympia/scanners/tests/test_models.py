@@ -252,6 +252,26 @@ class TestScannerResultMixin:
             ],
         }
 
+    def test_get_files_and_data_by_matched_rules_else_branch_is_generic(self):
+        result = self.create_result(scanner=WEBHOOK)
+        result.results = {
+            'scanMap': {
+                'file/1.js': {
+                    'rule1': {'RULE_HAS_MATCHED': True},
+                    'rule2': {'RULE_HAS_MATCHED': False},
+                },
+                '__GLOBAL__': {
+                    'rule1': {'RULE_HAS_MATCHED': True, 'EXTRA': 'data'},
+                },
+            }
+        }
+        assert result.get_files_and_data_by_matched_rules() == {
+            'rule1': [
+                {'filename': 'file/1.js', 'data': {}},
+                {'filename': '', 'data': {'EXTRA': 'data'}},
+            ],
+        }
+
     def test_get_files_and_data_by_matched_rules_for_narc(self):
         result = self.create_result(scanner=NARC)
         rule = self.rule_model.objects.create(name='foobar', scanner=NARC)
