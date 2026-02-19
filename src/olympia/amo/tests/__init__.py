@@ -30,6 +30,7 @@ from django.utils.encoding import force_str
 from django.utils.html import escape
 
 import pytest
+import waffle
 from rest_framework.reverse import reverse as drf_reverse
 from rest_framework.settings import api_settings
 from rest_framework.test import APIClient, APIRequestFactory
@@ -297,6 +298,12 @@ class TestClient(Client):
         session['has_two_factor_authentication'] = True
         session.save()
 
+    def force_login(self, user, backend=None):
+        super().force_login(user, backend=backend)
+        # Prime cache for enable-session-anomaly-recording waffle switch because it
+        # has the potential to mess with a lot of assertNumQueries().
+        waffle.switch_is_active('enable-session-anomaly-recording')
+
 
 class APITestClientSessionID(APIClient):
     def create_session(self, user, **overrides):
@@ -326,6 +333,9 @@ class APITestClientSessionID(APIClient):
 
     def login_api(self, user):
         self.defaults['HTTP_AUTHORIZATION'] = f'Session {self.create_session(user)}'
+        # Prime cache for enable-session-anomaly-recording waffle switch because it
+        # has the potential to mess with a lot of assertNumQueries().
+        waffle.switch_is_active('enable-session-anomaly-recording')
 
     def logout_api(self):
         """
