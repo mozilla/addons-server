@@ -122,7 +122,10 @@ def call_webhooks(event_name, payload, upload=None, version=None):
                 },
             )
 
-            scanner_result.update(results=data)
+            scanner_result.results = data
+            # We don't pass `update_fields` because the `save()` method
+            # also updates other fields (e.g. has_matches, matched_rules).
+            scanner_result.save()
         except Exception as exc:
             log.exception('Error while calling webhook "%s".', event.webhook.name)
             raise exc

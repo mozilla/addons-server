@@ -150,5 +150,9 @@ def patch_scanner_result(request, pk=None):
     # Return a 400 response if the data was invalid.
     serializer.is_valid(raise_exception=True)
 
-    scanner_result.update(results=serializer.validated_data['results'])
+    scanner_result.results = serializer.validated_data['results']
+    # We don't pass `update_fields` because the `save()` method
+    # also updates other fields (e.g. has_matches, matched_rules).
+    scanner_result.save()
+
     return Response(status=status.HTTP_204_NO_CONTENT)
