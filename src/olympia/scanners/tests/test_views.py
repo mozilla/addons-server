@@ -28,6 +28,7 @@ from olympia.constants.scanners import (
 )
 from olympia.scanners.models import (
     ScannerResult,
+    ScannerRule,
     ScannerWebhook,
     ScannerWebhookEvent,
 )
@@ -512,6 +513,21 @@ class TestPatchScannerResult(APIKeyAuthTestMixin, TestCase):
         response = self.patch(self.url, data={})
 
         assert response.status_code == 400
+
+    def test_success_extracts_matched_rules(self):
+        rule = ScannerRule.objects.create(
+            name='some-rule',
+            scanner=WEBHOOK,
+            is_active=True,
+        )
+
+        results = {'version': '1.2.3', 'matchedRules': [rule.name]}
+        response = self.patch(self.url, data={'results': results})
+
+        assert response.status_code == 204
+        self.scanner_result.refresh_from_db()
+        assert self.scanner_result.has_matches is True
+        assert list(self.scanner_result.matched_rules.all()) == [rule]
 
     def test_invalid_group(self):
         self.webhook.service_account.groupuser_set.all().delete()
