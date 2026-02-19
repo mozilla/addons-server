@@ -28,12 +28,13 @@ def login_required(f):
     def decorator(func):
         @functools.wraps(func)
         def wrapper(request, *args, **kw):
-            # Prevent circular ref in accounts.utils
-
             if request.user.is_authenticated:
-                check_for_session_anomaly(
-                    session=request.session, headers=request.headers, user=request.user
-                )
+                if hasattr(request, 'session'):
+                    check_for_session_anomaly(
+                        session=request.session,
+                        headers=request.headers,
+                        user=request.user,
+                    )
                 return func(request, *args, **kw)
             else:
                 return redirect_for_login(request)
