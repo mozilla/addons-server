@@ -23,7 +23,7 @@ on:
         description: How many splits for test_main
         type: number
         required: false
-        default: 16
+        default: 20
   workflow_dispatch:
     inputs:
       version:
@@ -38,7 +38,7 @@ on:
         description: How many splits for test_main
         type: number
         required: false
-        default: 16
+        default: 20
 
 concurrency:
   group: test_main-${{ github.workflow }}-${{ github.event_name}}-${{ github.ref}}-${{ toJson(inputs) }}
