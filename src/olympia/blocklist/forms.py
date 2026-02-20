@@ -1,18 +1,16 @@
 from collections import defaultdict
 from datetime import datetime, timedelta
-from itertools import chain
 
 from django import forms
 from django.core.exceptions import ValidationError
 from django.forms.widgets import HiddenInput, NumberInput
-from django.urls import reverse
 
 from olympia.amo.admin import HTML5DateTimeInput
 from olympia.amo.forms import AMOModelForm
 from olympia.reviewers.models import ReviewActionReason
 
 from .models import Block, BlocklistSubmission, BlockType
-from .utils import splitlines
+from .utils import all_authors_from_blocks_url, splitlines
 
 
 # The limit for how many GUIDs should be fully loaded with all metadata
@@ -88,28 +86,6 @@ class BlocksWidget(forms.widgets.SelectMultiple):
             verb = '?'
         return verb
 
-    def get_all_authors_url(self):
-        """Return an HTML link for all authors across all add-ons. If the block
-        wasn't loaded with full objects or if somehow the add-ons don't have
-        any authors, return an empty string instead."""
-        if ids := sorted(
-            set(
-                chain(
-                    *(
-                        [
-                            author.pk
-                            for author in getattr(block.addon, 'all_authors', [])
-                        ]
-                        for block in self.blocks
-                        if hasattr(block, 'addon')
-                    )
-                )
-            )
-        ):
-            parameter = '?q=' + ','.join(map(str, ids))
-            return reverse('admin:users_userprofile_changelist') + parameter
-        return ''
-
     def get_context(self, name, value, attrs):
         context = super().get_context(name, value, attrs)
         return {
@@ -119,7 +95,7 @@ class BlocksWidget(forms.widgets.SelectMultiple):
                 'choices': self.choices,
                 'value': value,
             },
-            'all_authors_url': self.get_all_authors_url(),
+            'all_authors_url': all_authors_from_blocks_url(self.blocks),
             'blocks': self.blocks,
             'total_adu': sum(block.current_adu for block in self.blocks),
             'verb': self.get_verb(self.action),

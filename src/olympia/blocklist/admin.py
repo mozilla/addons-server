@@ -24,7 +24,7 @@ from .forms import (
 )
 from .models import Block, BlocklistSubmission, BlockType, BlockVersion
 from .tasks import process_blocklistsubmission
-from .utils import splitlines
+from .utils import all_authors_from_blocks_url, splitlines
 
 
 class BlocklistSubmissionStateFilter(admin.SimpleListFilter):
@@ -555,7 +555,12 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
 
         return render_to_string(
             'admin/blocklist/includes/blocks.html',
-            {'blocks': obj._blocks, 'instance': obj, 'total_adu': total_adu},
+            {
+                'all_authors_url': all_authors_from_blocks_url(obj._blocks),
+                'blocks': obj._blocks,
+                'instance': obj,
+                'total_adu': total_adu,
+            },
         )
 
     ro_changed_version_ids.short_description = 'Changed version ids'

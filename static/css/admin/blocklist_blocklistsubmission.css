@@ -4,7 +4,7 @@ div.horizontal-grid {
     grid-template-columns: 1fr 1fr;
 }
 
-form ul.guid_list {
+form .form-row ul.guid_list {
     margin: 0;
     border: solid 1px black;
     max-height: 12em;
@@ -13,15 +13,15 @@ form ul.guid_list {
     padding: 5px 20px;
 }
 
-form .guid_list li ul {
+form .form-row ul.guid_list li ul {
     margin: 0;
 }
 
-form ul.guid_list >li {
+form .form-row ul.guid_list >li {
     list-style-type: disc;
 }
 
-form ul.guid_list .addon-name {
+form .form-row ul.guid_list .addon-name {
     font-weight: 800;
 }
 

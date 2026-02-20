@@ -1504,9 +1504,56 @@ class TestBlocklistSubmissionAdmin(TestCase):
                 {'guids': f'{addon.guid}\n {other_addon.guid}\n'},
             )
         doc = pq(response.content.decode('utf-8'))
+        # Link to all authors for all add-ons in the submission.
         link = doc('.field-blocks-to-add h3 a')[0]
         assert link.text_content() == 'author(s)'
         assert link.attrib['href'] == author_admin_url + f'?q={user1.pk},{user2.pk}'
+
+        # Links to authors of each individual add-ons in the submission.
+        items = doc('.guid_list > li')
+        assert items[0].findall('a')[1].text_content() == 'Authors(s)'
+        assert (
+            items[0].findall('a')[1].attrib['href']
+            == author_admin_url + f'?q={user1.pk}'
+        )
+        assert items[1].findall('a')[1].text_content() == 'Authors(s)'
+        assert (
+            items[1].findall('a')[1].attrib['href']
+            == author_admin_url + f'?q={user1.pk},{user2.pk}'
+        )
+
+    def test_authors_links_existing_submission(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Blocklist:Create')
+        self.client.force_login(user)
+
+        user1 = user_factory()
+        user2 = user_factory()
+        addon = addon_factory(users=[user1], average_daily_users=999)
+        other_addon = addon_factory(users=[user2, user1], average_daily_users=666)
+        author_admin_url = reverse('admin:users_userprofile_changelist')
+
+        submission = BlocklistSubmission.objects.create(
+            input_guids=f'{addon.guid}\n {other_addon.guid}\n',
+            changed_version_ids=[
+                addon.current_version.id,
+                other_addon.current_version.id,
+            ],
+            signoff_state=BlocklistSubmission.SIGNOFF_STATES.PUBLISHED,
+        )
+        url = reverse(
+            'admin:blocklist_blocklistsubmission_change', args=(submission.id,)
+        )
+
+        response = self.client.get(url)
+        assert response.status_code == 200
+        doc = pq(response.content.decode('utf-8'))
+        # Link to all authors for all add-ons in the submission.
+        link = doc('.field-ro_changed_version_ids h3 a')[0]
+        assert link.text_content() == 'author(s)'
+        assert link.attrib['href'] == author_admin_url + f'?q={user1.pk},{user2.pk}'
+
+        # Links to authors of each individual add-ons in the submission.
         items = doc('.guid_list > li')
         assert items[0].findall('a')[1].text_content() == 'Authors(s)'
         assert (

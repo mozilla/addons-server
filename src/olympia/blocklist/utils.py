@@ -1,4 +1,7 @@
 from datetime import datetime
+from itertools import chain
+
+from django.urls import reverse
 
 import olympia.core.logger
 from olympia import amo
@@ -299,3 +302,23 @@ def get_mlbf_base_id_config_key(block_type, compat: bool = False):
     if compat and block_type == BlockType.BLOCKED:
         return amo.config_keys.BLOCKLIST_MLBF_BASE_ID
     return getattr(amo.config_keys, f'BLOCKLIST_MLBF_BASE_ID_{block_type.name.upper()}')
+
+
+def all_authors_from_blocks_url(blocks):
+    """Return an HTML link for all authors across all add-on blocks.
+    If the blocks weren't loaded with full objects or if somehow the add-ons
+    don't have any authors, return an empty string instead."""
+    if ids := sorted(
+        set(
+            chain(
+                *(
+                    [author.pk for author in getattr(block.addon, 'all_authors', [])]
+                    for block in blocks
+                    if hasattr(block, 'addon')
+                )
+            )
+        )
+    ):
+        parameter = '?q=' + ','.join(map(str, ids))
+        return reverse('admin:users_userprofile_changelist') + parameter
+    return ''
