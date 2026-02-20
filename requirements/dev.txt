@@ -350,9 +350,9 @@ pytest-split==0.11.0 \
 pytest-reportlog==1.0.0 \
     --hash=sha256:3fc837ef3be6e50f33b52aaf99f88bfbb2ec525febbc3990389d24bbfba28753 \
     --hash=sha256:75aec3a92bb53456c3e028605a636579d26f31c6f1e035ad9f706c203cfcb74e
-django-dbbackup==5.0.0 \
-    --hash=sha256:a0301b14a4bb3c7243a2fde76d09f8f572f16cd7639f75f4cd42d898fc1b82a2 \
-    --hash=sha256:aa9cc88e1413adfec0e547dd91e0afed6dbb91a02459697663a9b988dbc71f18
+django-dbbackup==5.2.0 \
+    --hash=sha256:540948869e44778b5b33333cbab0cfe44279defd47df635d309ede8666894370 \
+    --hash=sha256:72b11dd31758abcf8f2d405fd2efbc49c9624bc17196f8c68542d3dc8d8d53c3
 pytest-env==1.2.0 \
     --hash=sha256:475e2ebe8626cee01f491f304a74b12137742397d6c784ea4bc258f069232b80 \
     --hash=sha256:d7e5b7198f9b83c795377c09feefa45d56083834e60d04767efd64819fc9da00
