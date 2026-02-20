@@ -1,9 +1,4 @@
-import pytest
-
 from olympia.reviewers.templatetags import assay, jinja_helpers
-
-
-pytestmark = pytest.mark.django_db
 
 
 def test_create_an_assay_url():

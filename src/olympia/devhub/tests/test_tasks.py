@@ -28,9 +28,6 @@ from olympia.files.tests.test_models import UploadMixin
 from olympia.files.utils import NoManifestFound
 
 
-pytestmark = pytest.mark.django_db
-
-
 @pytest.mark.django_db
 @mock.patch('olympia.amo.utils.pngcrush_image')
 def test_recreate_previews(pngcrush_image_mock):

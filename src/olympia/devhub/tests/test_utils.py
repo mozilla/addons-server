@@ -237,7 +237,6 @@ def test_extract_theme_properties(zip_file):
     assert result == {}  # There's no file, but it be should safely handled.
 
 
-@pytest.mark.django_db
 def test_wizard_unsupported_properties():
     data = {
         'colors': {

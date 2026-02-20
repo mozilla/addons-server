@@ -59,9 +59,6 @@ from ..models import (
 from ..utils import get_review_due_date
 
 
-pytestmark = pytest.mark.django_db
-
-
 class TestVersionManagerLatestPublicCompatibleWith(TestCase):
     def test_latest_public_compatible_with_multiple_addons(self):
         # Add compatible add-ons. We're going to request versions compatible
@@ -1733,6 +1730,7 @@ class TestVersion(AMOPaths, TestCase):
         assert len(mail.outbox) == 0
 
 
+@pytest.mark.django_db
 @pytest.mark.parametrize(
     'addon_status,file_status,is_unreviewed',
     [

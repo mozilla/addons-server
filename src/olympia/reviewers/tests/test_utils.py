@@ -11,7 +11,6 @@ from django.db import transaction
 from django.test.utils import override_settings
 from django.urls import reverse
 
-import pytest
 import responses
 from waffle.testutils import override_switch
 
@@ -63,9 +62,6 @@ from olympia.reviewers.utils import (
 from olympia.users.models import UserProfile
 from olympia.users.utils import get_task_user
 from olympia.versions.models import VersionReviewerFlags
-
-
-pytestmark = pytest.mark.django_db
 
 
 REVIEW_FILES_STATUSES = (amo.STATUS_APPROVED, amo.STATUS_DISABLED)

@@ -9,9 +9,6 @@ from olympia.amo.templatetags.jinja_helpers import PaginationRenderer
 from olympia.amo.tests import TestCase
 
 
-pytestmark = pytest.mark.django_db
-
-
 def mock_pager(page_number, num_pages, count):
     m = Mock()
     m.paginator = Mock()

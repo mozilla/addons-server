@@ -4,12 +4,7 @@ from django.http import HttpRequest
 from django.template import loader
 from django.utils.translation import gettext
 
-import pytest
-
 from olympia.amo.messages import _make_message, info
-
-
-pytestmark = pytest.mark.django_db
 
 
 def test_xss():

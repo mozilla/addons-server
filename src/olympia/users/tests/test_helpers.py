@@ -1,10 +1,5 @@
-import pytest
-
 from olympia.users.models import UserProfile
 from olympia.users.templatetags.jinja_helpers import user_link
-
-
-pytestmark = pytest.mark.django_db
 
 
 def test_user_link():
@@ -41,13 +36,13 @@ def test_user_link_xss():
 
 def test_user_link_unicode():
     """make sure helper won't choke on unicode input"""
-    user = UserProfile.objects.create(username='jmüller', display_name='Jürgen Müller')
+    user = UserProfile(username='jmüller', display_name='Jürgen Müller')
     assert user_link(user) == (
         '<a href="%s" title="%s">Jürgen Müller</a>'
         % (user.get_absolute_url(), user.name)
     )
 
-    user = UserProfile.objects.create(display_name='\xe5\xaf\x92\xe6\x98\x9f')
+    user = UserProfile(display_name='\xe5\xaf\x92\xe6\x98\x9f')
     assert user_link(user) == (
         '<a href="%s" title="%s">%s</a>'
         % (user.get_absolute_url(), user.name, user.display_name)

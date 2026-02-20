@@ -7,7 +7,7 @@ import tempfile
 from unittest import mock
 
 from django.conf import settings
-from django.test import RequestFactory
+from django.test import RequestFactory, SimpleTestCase
 from django.test.utils import override_settings
 from django.utils.functional import cached_property
 from django.utils.http import quote_etag
@@ -42,8 +42,6 @@ from olympia.amo.utils import (
 from olympia.constants.abuse import REPORTED_MEDIA_BACKUP_EXPIRATION_DAYS
 from olympia.core.languages import LANGUAGES_NOT_IN_BABEL
 
-
-pytestmark = pytest.mark.django_db
 
 IMAGE_FILESIZE_MAX = 200 * 1024
 
@@ -375,7 +373,7 @@ def test_images_are_small():
     assert not large_images
 
 
-class TestIsSafeUrl(TestCase):
+class TestIsSafeUrl(SimpleTestCase):
     def test_enforces_https_when_request_is_secure(self):
         request = RequestFactory().get('/', secure=True)
         assert is_safe_url(f'https://{settings.DOMAIN}', request)

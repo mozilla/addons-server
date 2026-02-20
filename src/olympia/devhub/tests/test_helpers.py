@@ -12,9 +12,6 @@ from olympia.amo.tests.test_helpers import render
 from olympia.devhub.templatetags import jinja_helpers
 
 
-pytestmark = pytest.mark.django_db
-
-
 def test_dev_page_title():
     translation.activate('en-US')
     request = Mock()
@@ -63,6 +60,7 @@ def test_log_action_class():
         assert render('{{ log_action_class(id) }}', {'id': v.id}) == cls
 
 
+@pytest.mark.django_db
 @pytest.mark.parametrize(
     'action1,action2,action3,expected_count',
     (

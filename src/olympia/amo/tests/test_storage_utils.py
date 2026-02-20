@@ -5,13 +5,8 @@ from functools import partial
 from django.conf import settings
 from django.core.files.base import ContentFile
 
-import pytest
-
 from olympia.amo.tests import TestCase
 from olympia.amo.utils import SafeStorage, rm_local_tmp_dir
-
-
-pytestmark = pytest.mark.django_db
 
 
 def test_storage_walk():
