@@ -1548,6 +1548,3 @@ SPECTACULAR_SETTINGS = {
 SWAGGER_SCHEMA_FILE = path('schema.yml')
 
 SWAGGER_UI_ENABLED = env('SWAGGER_UI_ENABLED', default=False) or TARGET != 'production'
-
-# Source builder settings.
-SOURCE_BUILDER_VIEWER_URL = env('SOURCE_BUILDER_VIEWER_URL', default=None)

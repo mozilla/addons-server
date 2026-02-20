@@ -4388,33 +4388,6 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         assert b'Download files' in response.content
 
-    @override_settings(SOURCE_BUILDER_VIEWER_URL='https://source.builder/')
-    @override_switch('enable-source-builder', active=True)
-    def test_source_builder_link(self):
-        self._setup_source()
-        url = reverse('reviewers.review', args=[self.addon.pk])
-
-        response = self.client.get(url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        builder_link = doc('#versions-history td.files .source-builder')
-        assert builder_link[0].text == 'Source Builder'
-        assert (
-            builder_link.attr['href']
-            == f'https://source.builder/?addon_id={self.addon.id}&version_id={self.addon.current_version.id}'
-        )
-
-    @override_settings(SOURCE_BUILDER_VIEWER_URL='https://source.builder/')
-    @override_switch('enable-source-builder', active=False)
-    def test_no_source_link_if_waffle_off(self):
-        self._setup_source()
-        url = reverse('reviewers.review', args=[self.addon.pk])
-
-        response = self.client.get(url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert not doc('#versions-history td.files .source-builder')
-
     def test_translations(self):
         self.addon.name = {
             'de': None,
